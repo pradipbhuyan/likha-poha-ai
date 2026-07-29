@@ -7,40 +7,61 @@ import rehypeKatex from "rehype-katex";
 /**
  * ExtractPopupBlock — renders a clickable citation pill for a fenced
  * ```extract-ref``` JSON block. Clicking it opens a small modal showing the
- * actual referenced source text (e.g. an NCERT "Critical Reflection" extract
- * or exercise question), so a bare citation like "NCERT Critical Reflection
- * I.2(iv)" is never left dangling with nothing for the student to refer to.
+ * actual referenced source content, so a bare citation like "NCERT
+ * Exercise 5" is never left dangling with nothing for the student to
+ * refer to.
  *
- * Expected JSON shape (see prepare_gpt55_prompts.py for the generation
- * rule that requires this block wherever a humanities/language worked
- * example or quick-check cites a specific NCERT extract/exercise number):
- *   {
- *     "citation": "NCERT Critical Reflection I.2(iv)",
- *     "extract_text": "The actual excerpt or exercise text, verbatim from
- *                       the source PDF, that the citation refers to.",
- *     "note": "optional short context line, e.g. chapter/section name"
- *   }
+ * Supports TWO JSON shapes:
  *
- * Fails safe: if the raw JSON is malformed or missing required fields,
- * renders nothing rather than showing a broken block.
+ *   1. Current / preferred — page-image form (shows the real scanned NCERT
+ *      textbook page):
+ *        {
+ *          "citation": "NCERT Exercise 5",
+ *          "page_number": 15,
+ *          "asset_url": "https://.../page-0015.jpg"
+ *        }
+ *
+ *   2. Legacy — text-extract form (older content generated before the
+ *      page-image approach was standardized; kept for backward
+ *      compatibility with any lesson content not yet migrated):
+ *        {
+ *          "citation": "NCERT Critical Reflection I.2(iv)",
+ *          "extract_text": "The actual excerpt or exercise text, verbatim
+ *                            from the source PDF, that the citation refers
+ *                            to.",
+ *          "note": "optional short context line, e.g. chapter/section name"
+ *        }
+ *
+ * Fails safe: if the raw JSON is malformed or missing required fields for
+ * either shape, renders nothing rather than showing a broken block.
  */
 
 function parseExtract(raw) {
   try {
     const data = JSON.parse(raw);
-    if (
-      data &&
-      typeof data.citation === "string" &&
-      data.citation.trim().length > 0 &&
-      typeof data.extract_text === "string" &&
-      data.extract_text.trim().length > 0
-    ) {
+    if (!data || typeof data.citation !== "string" || data.citation.trim().length === 0) {
+      return null;
+    }
+    const citation = data.citation.trim();
+
+    if (typeof data.asset_url === "string" && data.asset_url.trim().length > 0) {
       return {
-        citation: data.citation.trim(),
+        kind: "page-image",
+        citation,
+        asset_url: data.asset_url.trim(),
+        page_number: typeof data.page_number === "number" ? data.page_number : null,
+      };
+    }
+
+    if (typeof data.extract_text === "string" && data.extract_text.trim().length > 0) {
+      return {
+        kind: "text",
+        citation,
         extract_text: data.extract_text.trim(),
         note: typeof data.note === "string" ? data.note.trim() : "",
       };
     }
+
     return null;
   } catch {
     return null;
@@ -60,6 +81,69 @@ function ExtractText({ children }) {
     >
       {children}
     </ReactMarkdown>
+  );
+}
+
+function ExtractModalBody({ extract }) {
+  if (extract.kind === "page-image") {
+    return (
+      <>
+        <div
+          style={{
+            background: "var(--surface2,#f8fafc)",
+            borderRadius: 10,
+            padding: 8,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <img
+            src={extract.asset_url}
+            alt={`${extract.citation} — scanned NCERT page`}
+            style={{ maxWidth: "100%", borderRadius: 6, display: "block" }}
+            loading="lazy"
+          />
+        </div>
+        <a
+          href={extract.asset_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "block",
+            textAlign: "center",
+            marginTop: 10,
+            fontSize: ".82rem",
+            fontWeight: 600,
+            color: "#6366f1",
+          }}
+        >
+          Open full-size page{extract.page_number ? ` (NCERT page ${extract.page_number})` : ""}
+        </a>
+      </>
+    );
+  }
+
+  return (
+    <>
+      {extract.note && (
+        <p style={{ fontSize: ".78rem", color: "#64748b", marginBottom: 10, fontStyle: "italic" }}>
+          {extract.note}
+        </p>
+      )}
+      <div
+        style={{
+          background: "var(--surface2,#f8fafc)",
+          borderRadius: 10,
+          padding: "14px 16px",
+          fontSize: ".92rem",
+          lineHeight: 1.6,
+          color: "var(--text,#374151)",
+          whiteSpace: "pre-wrap",
+        }}
+      >
+        <ExtractText>{extract.extract_text}</ExtractText>
+      </div>
+    </>
   );
 }
 
@@ -94,7 +178,9 @@ function ExtractPopupBlock({ raw }) {
       >
         <span aria-hidden="true">📖</span>
         {extract.citation}
-        <span style={{ opacity: 0.7, fontWeight: 500 }}>· view text</span>
+        <span style={{ opacity: 0.7, fontWeight: 500 }}>
+          {extract.kind === "page-image" ? "· view page" : "· view text"}
+        </span>
       </button>
 
       {open && createPortal(
@@ -150,7 +236,7 @@ function ExtractPopupBlock({ raw }) {
             >
               <div>
                 <div style={{ fontSize: ".72rem", fontWeight: 700, color: "#6366f1", letterSpacing: ".03em", textTransform: "uppercase" }}>
-                  Source text
+                  {extract.kind === "page-image" ? "Source page" : "Source text"}
                 </div>
                 <h4 style={{ margin: "4px 0 0", fontSize: "1rem", fontWeight: 800, color: "var(--text,#1f2937)" }}>
                   {extract.citation}
@@ -165,25 +251,7 @@ function ExtractPopupBlock({ raw }) {
               </button>
             </div>
 
-            {extract.note && (
-              <p style={{ fontSize: ".78rem", color: "#64748b", marginBottom: 10, fontStyle: "italic" }}>
-                {extract.note}
-              </p>
-            )}
-
-            <div
-              style={{
-                background: "var(--surface2,#f8fafc)",
-                borderRadius: 10,
-                padding: "14px 16px",
-                fontSize: ".92rem",
-                lineHeight: 1.6,
-                color: "var(--text,#374151)",
-                whiteSpace: "pre-wrap",
-              }}
-            >
-              <ExtractText>{extract.extract_text}</ExtractText>
-            </div>
+            <ExtractModalBody extract={extract} />
 
             <button
               onClick={() => setOpen(false)}

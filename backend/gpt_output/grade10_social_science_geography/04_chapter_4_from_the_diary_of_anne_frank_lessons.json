@@ -1,0 +1,93 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "English",
+    "chapter": "Chapter 4: From the Diary of Anne Frank",
+    "central_question": "How does Anne’s diary voice reveal her need for a true confidante, her lively intelligence, and her ability to respond to loneliness and authority with honesty and humour?",
+    "in_scope_units": [
+      "Before You Read: Anne Frank’s life, diary, and historical background",
+      "Activity: distinguishing a diary, journal, log, and memoir",
+      "Anne’s reason for writing and her decision to call the diary Kitty",
+      "Anne’s brief family and school background",
+      "The dated diary entry about promotion anxiety and Mr Keesing",
+      "The three chatterbox assignments and the humorous poem",
+      "Thinking about the Text and Anne’s characterisation",
+      "Thinking about Language: compound words, phrasal verbs, idioms, and dictionary use",
+      "Contracted forms and conversational effect",
+      "Diary-writing task, listening summary, and lesson recap"
+    ],
+    "banned_topics": [
+      "Amanda!"
+    ],
+    "must_include_keywords": [
+      "Anne Frank",
+      "Kitty",
+      "diary",
+      "journal",
+      "log",
+      "memoir",
+      "Paper has more patience than people",
+      "confide",
+      "true friend",
+      "Otto Frank",
+      "Margot",
+      "Mrs Kuperus",
+      "Grandma",
+      "20 June 1942",
+      "Mr Keesing",
+      "chatterbox",
+      "A Chatterbox",
+      "An Incorrigible Chatterbox",
+      "Quack, Quack, Quack, Said Mistress Chatterbox",
+      "Sanne",
+      "humour",
+      "ingenuity",
+      "first-person voice",
+      "compound words",
+      "phrasal verbs",
+      "idioms",
+      "contracted forms",
+      "diary language",
+      "subjectless sentences",
+      "sentence fragments",
+      "Samuel Pepys"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Anne has no family or acquaintances, so she is literally alone.",
+        "correction": "She has loving parents, a sister, relatives, and many people she calls friends, but she lacks one true friend in whom she can confide."
+      },
+      {
+        "claim": "Kitty is a school friend who receives Anne’s letters.",
+        "correction": "Kitty is the name Anne gives her diary so that she can treat it as an imagined close friend."
+      },
+      {
+        "claim": "Mr Keesing remains harsh and never appreciates Anne’s humour.",
+        "correction": "He laughs at her arguments, enjoys the final poem, reads it to other classes, and stops assigning extra homework."
+      },
+      {
+        "claim": "Anne’s diary only records facts and dates.",
+        "correction": "She deliberately writes thoughts, feelings, judgements, memories, and humour, treating the diary as a confidante."
+      },
+      {
+        "claim": "Contracted forms are errors that should be removed from all writing.",
+        "correction": "They are appropriate in conversational forms such as diaries, plays, and novels, though not usually in formal writing."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Before You Read, Activity 1–2, to distinguish diary, journal, log, and memoir entries.",
+      "Use the first Oral Comprehension Check to explain why Anne writes and why she trusts paper.",
+      "Use the second Oral Comprehension Check to analyse the purpose of her brief life sketch and her love for Grandma.",
+      "Use the third Oral Comprehension Check and Thinking about the Text, Questions 4–7, to assess Anne and Mr Keesing.",
+      "Use Thinking about Language I–V and the diary-writing task to practise compounds, phrasal verbs, idioms, contractions, and diary style."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Thinking about the Text, Thinking about Language I–V, a diary-writing task, and a listening summary based on Samuel Pepys."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 4: From the Diary of Anne Frank\n\n## What you will learn\nYou will understand the historical introduction to Anne Frank and distinguish a diary from a journal, log, and memoir. You will also examine why Anne begins writing and why she names her diary Kitty.\n\n## Simple explanation\nAnne has family, a home, and many acquaintances, yet she feels unable to share her deepest thoughts with anyone. She therefore turns a notebook into an imagined friend who will listen patiently.\n\n## Step-by-step breakdown\n- **Historical background**: Anne is a German-born Jewish girl who writes while hiding in Amsterdam during the Nazi occupation.\n- **The published diary**: Her father Otto Frank survives, finds that the diary has been saved, and arranges its publication as The Diary of a Young Girl.\n- **Personal record types**: A diary records daily thoughts and feelings; a journal is a fuller continuing record; a log records dated and timed events, often officially; a memoir records a person’s life and experiences.\n- **Strange experience**: Anne has never written before and doubts whether anyone will care about the musings of a thirteen-year-old schoolgirl.\n- **Need to write**: She wants to get things “off my chest.”\n- **Paper and patience**: The statement “Paper has more patience than people” means the page listens without interrupting, judging, or becoming tired.\n- **Kitty**: Anne does not want merely to list facts; she wants the diary to act as her true friend.\n\n## Worked example\nQuestion: Why does Anne believe she can confide more in her diary than in people?\n\nSolution:\n- Step 1: She says she has many people around her but cannot move beyond ordinary everyday talk or become emotionally close to them.\n- Step 2: Paper is patient and allows her to express private thoughts freely, so she imagines the diary as a friend named Kitty.\n- Final answer: Anne trusts the diary because it offers the patient, private, non-judgemental companionship that she does not experience in her social relationships.\n\n## Common mistake\nDo not interpret “I don’t have a friend” literally. Anne carefully explains that she has many friends but lacks one true confidante.\n\n## Quick check question\nQuestion: Why does Anne call the diary “Kitty”?\nAnswer: She wants to give the diary the identity of a long-awaited true friend rather than treat it as a book of impersonal facts.\nExplanation: Naming it makes her first-person writing intimate and conversational.\n\n## Summary\n- Anne’s diary grows from a need for emotional honesty.\n- The historical introduction explains why the diary later becomes important.\n- Diary, journal, log, and memoir have different purposes.\n- Anne distinguishes social company from true friendship.\n- Kitty is the imagined listener to whom she can confide.",
+    "Core explanation": "# Core explanation: Chapter 4: From the Diary of Anne Frank\n\n## What you will learn\nYou will study Anne’s brief life sketch, her relationships with family and teachers, and the features of her diary voice. You will see how factual background and personal emotion work together.\n\n## Simple explanation\nAnne pauses before telling current stories because Kitty would not understand them without background. Her sketch gives names, places, family movements, school memories, and her grief for her grandmother.\n\n## Step-by-step breakdown\n- **Purpose of the sketch**: Anne says she must provide a brief account before she can “plunge right in” to her stories.\n- **Family**: She describes her father as the most adorable father she has seen and identifies her mother, sister Margot, and grandmother.\n- **Movement to Holland**: Her family members move from Germany to Holland at different times, and Anne humorously says she was “plunked down” as a birthday present for Margot.\n- **School memory**: Mrs Kuperus is both headmistress and a teacher whom Anne remembers with affection; they cry at their farewell.\n- **Grandmother**: Anne recalls Grandma’s illness and death and says no one knows how often she still thinks of and loves her.\n- **Diary voice**: The first-person narration combines dates and facts with direct judgement, humour, affection, and private feeling.\n- **Insider treatment**: Anne gives Kitty background because she treats the diary as a close companion who should understand her life.\n\n## Worked example\nQuestion: What evidence shows that Anne loved her grandmother deeply?\n\nSolution:\n- Step 1: Anne remembers Grandma’s illness, operation, death, and the quiet birthday that followed.\n- Step 2: She says she often thinks of Grandma, still loves her, and includes Grandma’s candle in the later birthday celebration.\n- Final answer: Anne’s continued remembrance and the symbolic candle show enduring affection and grief for her grandmother.\n\n## Common mistake\nDo not describe the family sketch as an objective biography. It is selective and personal, shaped by Anne’s feelings and conversational relationship with Kitty.\n\n## Quick check question\nQuestion: Why does Anne provide details about Mrs Kuperus?\nAnswer: The memory shows an affectionate school relationship and helps Kitty understand an earlier stage of Anne’s life.\nExplanation: Their tearful farewell reveals Anne’s emotional attachment, not merely the name of a teacher.\n\n## Summary\n- Background helps Kitty understand later diary entries.\n- Anne mixes factual chronology with personal feeling.\n- Her father, grandmother, and Mrs Kuperus are described warmly.\n- Humorous phrasing appears even in family history.\n- The first-person diary voice is intimate and reflective.",
+    "Worked examples": "# Worked examples: Chapter 4: From the Diary of Anne Frank\n\n## What you will learn\nYou will analyse the school setting, Anne’s anxiety about promotion, and her conflict with Mr Keesing over talking. You will also examine her first two essays and the reasoning she uses.\n\n## Simple explanation\nAnne’s classroom voice is lively, observant, and humorous. When Mr Keesing punishes her with essays, she does not simply complain; she tries to turn each assignment into a convincing and clever response.\n\n## Step-by-step breakdown\n- **Promotion anxiety**: The class is “quaking in its boots” while teachers decide who will move up and who will be kept back.\n- **Anne’s confidence**: She expects to pass but is uncertain about maths.\n- **Mr Keesing**: The maths teacher is annoyed because Anne talks too much despite warnings.\n- **First assignment**: In “A Chatterbox,” she argues that talking is a student’s trait and promises to control it.\n- **Inherited trait argument**: She adds that her mother talks as much as she does, so the habit is inherited and difficult to cure.\n- **Second assignment**: After she continues talking, he sets “An Incorrigible Chatterbox.”\n- **Characterisation**: Anne is self-aware, argumentative, witty, and determined to produce original rather than empty writing.\n\n## Worked example\nQuestion: How does Anne justify being a chatterbox in her first essay?\n\nSolution:\n- Step 1: She admits that talking is a student’s trait and says she will try to keep it under control.\n- Step 2: She humorously argues that the habit is inherited because her mother talks as much as she does, and inherited traits cannot easily be changed.\n- Final answer: Anne combines partial acceptance of responsibility with a clever hereditary argument, turning a punishment into an amusing defence.\n\n## Common mistake\nDo not say Anne refuses to do the punishment. She completes the assigned work and uses its form to answer the teacher intelligently.\n\n## Quick check question\nQuestion: Why is “quaking in its boots” appropriate for the class?\nAnswer: It expresses that the students are shaking with fear and nervousness about promotion decisions.\nExplanation: It is an idiom, not a literal description of everyone’s boots moving.\n\n## Summary\n- The dated entry creates a lively classroom scene.\n- Anne is confident but worried about maths.\n- Mr Keesing punishes her repeated talking with essays.\n- Her defence is logical, humorous, and self-aware.\n- Her personality emerges through first-person commentary and idiom.",
+    "Exam-style problems": "# Exam-style problems: Chapter 4: From the Diary of Anne Frank\n\n## What you will learn\nYou will examine the third assignment, Sanne’s help, the poem’s humour, and Mr Keesing’s final response. You will evaluate whether he is only strict or also flexible and appreciative.\n\n## Simple explanation\nMr Keesing tries to outwit Anne with the ridiculous title “Quack, Quack, Quack, Said Mistress Chatterbox.” Anne and Sanne respond with a comic verse that makes the punishment itself into a joke.\n\n## Step-by-step breakdown\n- **Third assignment**: Mr Keesing gives the title after Anne talks through another lesson.\n- **Need for originality**: Anne feels that she has nearly exhausted her ingenuity on the subject of chatterboxes.\n- **Sanne’s contribution**: Her friend, who is good at poetry, helps write the essay in verse.\n- **The comic plot**: A father swan bites three ducklings because they quack too much.\n- **Reversal of the joke**: Anne intends to make sure “the joke was on him.”\n- **Mr Keesing’s flexibility**: He understands the humour, reads the poem to the class and other classes, and stops assigning extra homework.\n- **Character contrast**: Anne is witty and inventive; Mr Keesing is strict about discipline but capable of appreciation and change.\n\n## Worked example\nQuestion: Is Mr Keesing an entirely strict and humourless teacher? Give evidence.\n\nSolution:\n- Step 1: He gives Anne repeated extra assignments because she ignores warnings and continues talking.\n- Step 2: However, he laughs at her arguments, appreciates the final poem, shares it with other classes, and changes his treatment of her.\n- Final answer: Mr Keesing is strict about classroom discipline but not humourless. His willingness to enjoy Anne’s wit and stop the punishment shows flexibility and fairness.\n\n## Common mistake\nDo not claim that Anne defeats Mr Keesing through disobedience. She succeeds through creativity within the task he has assigned.\n\n## Quick check question\nQuestion: What finally makes Mr Keesing allow Anne to talk without assigning more extra homework?\nAnswer: He enjoys the humorous verse about the duck family and accepts the joke in the right spirit.\nExplanation: The poem changes their conflict into shared humour.\n\n## Summary\n- The third essay demands a new creative response.\n- Sanne helps Anne write in verse.\n- The poem turns punishment into humour.\n- Mr Keesing proves capable of changing his approach.\n- Anne’s ingenuity and confidence shape the resolution.",
+    "Revision and recap": "# Revision and recap: Chapter 4: From the Diary of Anne Frank\n\n## What you will learn\nYou will revise the language sections on compounds, phrasal verbs, idioms, contracted forms, and diary style. You will also connect these features to Anne’s natural, speech-like voice.\n\n## Simple explanation\nThe language of a diary often sounds like private speech. Anne’s entry uses everyday expressions, contractions, and vivid idioms, while the exercises teach how these forms differ from formal writing.\n\n## Step-by-step breakdown\n- **Compound words**: Headmistress, homework, notebook, and outbursts are compound nouns; long-awaited and stiff-backed are compound adjectives.\n- **Phrasal verbs**: Plunge in means go straight to the topic; kept back means not promoted; move up means go to the next grade; ramble on means speak or write without focus; get along with means have a good relationship.\n- **More phrasal verbs**: Calm down means make quiet; stay in means remain indoors; make up for means compensate; hand in means submit work to a person in authority.\n- **Idioms**: Quaking in its boots means very frightened; not lose heart means not become discouraged; caught my eye means attracted attention; had enough means could tolerate no more.\n- **Dictionary use**: An idiom is usually found under its first meaningful word, often in the base form, such as catch for caught my eye.\n- **Contracted forms**: I’ve, can’t, I’d, she’s, and they’re make written dialogue or diary language sound like speech.\n- **Diary language**: Subjectless sentences, fragments, contractions, everyday expressions, feelings, and vivid details are suitable in a diary but not in formal writing.\n- **Listening link**: The Samuel Pepys extract shows how a diary can also become a historical record.\n\n## Worked example\nQuestion: Explain the phrasal verb “make up for” in Anne’s account of her birthday.\n\nSolution:\n- Step 1: The earlier birthday had little celebration because Grandma was ill.\n- Step 2: The later celebration was intended to compensate for that disappointing occasion.\n- Final answer: “Make up for” means compensate for something missing or unsatisfactory earlier.\n\n## Common mistake\nDo not expand every “I’d” in the same way. Depending on context, it can mean “I had” or “I would.”\n\n## Quick check question\nQuestion: Why are contracted forms common in diaries?\nAnswer: They make written language sound like natural private speech.\nExplanation: A diary often resembles a person speaking to oneself or to an imagined listener, as Anne speaks to Kitty.\n\n## Summary\n- Compound words combine two or more words.\n- Phrasal verbs often have meanings different from their individual parts.\n- Idioms must be interpreted as fixed expressions.\n- Contractions support a conversational diary voice.\n- Diary style may use fragments and subjectless sentences.\n- Anne’s language reveals honesty, humour, intelligence, and emotional need."
+  }
+}

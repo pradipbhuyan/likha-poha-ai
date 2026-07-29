@@ -1,0 +1,170 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who among the following was the author of book ‘The Story of Indian Archaeology’?",
+    "options": [
+      "R E M Wheeler",
+      "John Marshall",
+      "S.N.Roy",
+      "Rakhal Das Bannerjee"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who among the following was the first Director-General of the Archaeological Survey of India (ASI)?",
+    "options": [
+      "Alexender Cunningham",
+      "Harold Hargreaves",
+      "Daya Ram Sahni.",
+      "John Marshall"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one among the following religious practices was seemed to be unfamiliar and unusual with the Harrapan culture?",
+    "options": [
+      "Mother Goddess",
+      "Priest King",
+      "Yogic posture seal",
+      "Sanskritic Yajnas"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is the oldest stupa in India and was commissioned by the Mauryan King Ashoka?",
+    "options": [
+      "Shanti Stupa",
+      "Amaravati Stupa",
+      "Sanchi Stupa",
+      "Nagarjuna Konda Stupa"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following aspects describes the meaning of ‘Tirthankaras’ in Jainism?",
+    "options": [
+      "Supreme Being who is the incarnation of God",
+      "Those who guide men and women across the river of existence.",
+      "Those who follow the path of Vedanta asceticism",
+      "Those who know the ultimate truth and dharma"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following empire issued gold coins for the very first time in first century CE?",
+    "options": [
+      "Gupta Empire",
+      "Maurya Empire",
+      "Kushana Empire",
+      "Yaudheya Empire"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following city of the Harappan Civilization was exclusively devoted to craft production of Shell objects?",
+    "options": [
+      "Kotdiji",
+      "Kalibangan",
+      "Manda",
+      "Chanhudaro"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who among the following was the composer of ‘Prayaga Prashasti’?",
+    "options": [
+      "Kalidasa",
+      "Kalhana",
+      "Harisena",
+      "Banabhatta"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the domestic architecture of Harappa there were no windows in the walls along the ground level. Identify the possible cause mentioned by the archaeologists from the following options.",
+    "options": [
+      "It was a custom.",
+      "To maintain privacy.",
+      "No concern of ventilation.",
+      "Part of unplanned process."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The composition of the Mahabharata has been traditionally attributed to a Rishi. Identify his name from the following options.",
+    "options": [
+      "Rishi Kanada",
+      "Rishi Kapila",
+      "Rishi Agastya",
+      "Rishi Vyasa"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who among the following travelled in Vijayanagar Empire in the fifteenth century and was greatly impressed by the fortification of the empire?",
+    "options": [
+      "Duarte Barbosa",
+      "Abdur Razzak",
+      "Colin Mackenzie",
+      "Domingo Paes"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who among the following was the first woman to be ordained as a bhikkhuni?",
+    "options": [
+      "Mahapajapati Gotami",
+      "Yasodharā",
+      "Mahamaya",
+      "Dhammananda"
+    ],
+    "diagram_dependent": false
+  }
+]

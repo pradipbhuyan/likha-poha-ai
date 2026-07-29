@@ -1,0 +1,404 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following was the main demand of the Khilafat movement?",
+    "options": [
+      "a. Dominion status for India",
+      "b. Self-rule to India",
+      "c. Restoration of Caliphate of Turkey",
+      "d. Revival of orthodox culture of Islam"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following issues did not contribute to the spread of the revolt of 1857?",
+    "options": [
+      "a. Dominion status for India",
+      "b. Self-rule to India",
+      "c. Restoration of Caliphate of Turkey",
+      "d. Revival of orthodox culture of Islam"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who among the following was the best known ruler of the Satavahana Dynasty?",
+    "options": [
+      "Yagnasri Satakarni",
+      "Simuka Satakarni",
+      "Gotami-puta Siri- Satakarni",
+      "Vashisthaputra Satakarni"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the picture from the given options",
+    "options": [
+      "Terracota figure of a sathavahana ruler",
+      "Ashoka fighting Kalinga war.",
+      "Terracota figure depicting a scene from Mahabharatha (West Bengal)",
+      "A sculpture depicting Krishna advising Arjuna."
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The didactic (informative) sections of Mahabharata were added in 200-400 CE. Which text do they largely resemble?",
+    "options": [
+      "Sutta Pitaka",
+      "Manusmriti",
+      "Rigveda",
+      "Upanishads"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider the following statements regarding Harappan Culture and choose the correct option.",
+    "options": [
+      "The most unique feature was the development of urban centres.",
+      "The settlements were divided into two sections i.e. the citadel and the lower town.",
+      "Drainage system was ordinary and unplanned.",
+      "Roads were not laid out along a grid pattern."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "There are two statements marked as Assertion (A) and Reason (R), mark your answer as per the codes given below.",
+    "options": [
+      "Only (i) is correct.",
+      "Only (i) and (ii) are correct.",
+      "Only (ii) and (iii) are correct.",
+      "Only (iii) and (iv) are correct."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the craft centers related to the Harapan civilization with the help of the given information.",
+    "options": [
+      "Located near the coast.",
+      "They were specialized for making shell objects."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who wrote the book Kitab-ul-Hind?",
+    "options": [
+      "Ibn Battuta"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Choose the correct option from the following statements with reference to the Magadha empire.",
+    "options": [
+      "Initially Pataliputra was the capital of Magadha.",
+      "Chandra Gupta was one of the early rulers of Magadha who ruled in 6 BCE.",
+      "Magadha became the most powerful Mahajanapada between 6th and 4th BCE.",
+      "Ashoka was the founder of Mauryan dynasty."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements carefully and identify the place where this Dargah is located from the given options.",
+    "options": [
+      "It is a Dargah of the Shaikh Moinuddin Chishti.",
+      "Akbar visited this place many times.",
+      "Delhi",
+      "Mehrauli"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following countries was the source of cotton after the break of the American Civil War in 1861?",
+    "options": [
+      "America",
+      "Africa",
+      "India",
+      "Sri Lanka"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "With reference to the role of the British officers in India, Match Column-B with column- A, by using the codes given below.",
+    "options": [
+      "Lord Cornwallis",
+      "Augustus Cleveland",
+      "Francis Buchanan",
+      "David Ricardo"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who among the following led the flag of the Revolt of 1857 against the British in Bihar?",
+    "options": [
+      "Nana Sahib",
+      "Maulvi Ahmadullah",
+      "Kunwar Singh",
+      "Birjis Qadr"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The _______ was the amount assessed and _______ was the amount collected by the Mughal Kings as land revenue.",
+    "options": [
+      "Iqta and jagir",
+      "Jama and Hasil",
+      "Naqdi and Iqta",
+      "Zabti and Jama"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who among the following travelled in the Vijayanagar empire in the 15th century and was greatly impressed by the fortification of the Vijayanagar?",
+    "options": [
+      "Daurte Barbosa",
+      "Colin Mackenzie",
+      "Abdur Razzak",
+      "Domingo Paes"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Abu'l Fazl was a court historian of which the following Mughal emperor?",
+    "options": [
+      "Humayun",
+      "Akbar",
+      "Babur",
+      "Jahangir"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Choose the correct place from the given options: - Dussehra festival was held with great prestige and power at the Vijayanagar empire",
+    "options": [
+      "Hazara Rama Temple",
+      "Virupaksha Temple"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Why was the task of defining minority rights in the Constituent Assembly difficult? Choose the correct option from the following:- Different groups had different demands regarding rights.",
+    "options": [
+      "British did not want to include it in the constitutional frame work.",
+      "Gandhiji opposed the idea of special rights for some sections.",
+      "Rights of people in Princely states were ambiguous."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the name of the person from the information given below. He was born at Tangier in one of the most respectable and educated family.",
+    "options": [
+      "He considered experience gained through travel as a source of knowledge than books.",
+      "He had travelled to middle east and few trading ports on the coast of East Africa.",
+      "He wrote a book named Rihia"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Gandhiji asked for the remission of taxes for the peasants in which of the following movement?",
+    "options": [
+      "Rowlatt satyagraha",
+      "Champaran Satyagraha",
+      "Khedda Satyagraha",
+      "Salt Satyagraha"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Describe any three features of the burial sites in Harappa?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Critically examine the limitations of the inscriptional evidence in understanding political and economic history of India.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 3,
+    "question_text": "India had unique system of communication during the 14th century\" Examine the statement made by Ibn Battuta.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 3,
+    "question_text": "Analyse the main features of Amara nayaka system which was introduced in the Vijayanagar Empire.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 3,
+    "question_text": "The Burdwan auction had a strange twist and was considered a big public event in 1797\", explain the statement.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 3,
+    "question_text": "The relationship of the sepoys with the superior white officers underwent a significant change in the years preceding the uprising of 1857\", support the statement with examples.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 8,
+    "question_text": "The Mahabharata is an invaluable source available to historians to study social practices and norms in early societies\". Justify the statement.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 8,
+    "question_text": "Examine the evidence that suggests land revenue was important for the Mughal Fiscal system.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 8,
+    "question_text": "Examine the condition of zamindars in Mughal agrarian society.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "D",
+    "question_type": "source_based",
+    "marks": 4,
+    "question_text": "Read the following source carefully and answer the questions that follow:",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "E",
+    "question_type": "long_answer",
+    "marks": 1,
+    "question_text": "Read the following source carefully and answer the questions that follow: 'The British element is gone, but they have left the mischief behind' Sardar Vallabhbhai Patel said: It is no use saying that we ask for separate electorates, because it is good for us. We have heard it long enough. We have heard it for years, and as a result of this agitation we are now a separate nation ... Can you show me one free country where there are separate electorates? If so, I shall be prepared to accept it. But in this unfortunate country if this separate electorate is going to be persisted in, even after the division of the country, woe betide the country; it is not worth living in. Therefore, I say, it is not for my good alone, it is for your own good that I say it, forget the past. One day, we may be united ... The British element is gone, but they have left the mischief behind. We do not want to perpetuate that mischief. (Hear, hear). When the British introduced this element, they had not expected that they will have to go so soon. They wanted it for their easy administration. That is all right. But they have left the legacy behind. Are we to get out of it or not? CAD, VOL.V",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "E",
+    "question_type": "short_answer",
+    "marks": 1,
+    "question_text": "Identify the ultimate message stressed by Sardar Valla Bhai Patel in his speech.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "E",
+    "question_type": "short_answer",
+    "marks": 5,
+    "question_text": "On the given political map of India, locate and label the following with appropriate symbols: a. Kalibangan, a Harappan site b. Agra, a territory under Babur, Akbar, and Aurangzeb c. Sanchi, a Buddhist site.",
+    "options": [],
+    "diagram_dependent": true
+  }
+]

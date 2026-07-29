@@ -1,0 +1,78 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: Forest and Wildlife Resources",
+  "central_question": "Why must India conserve its biodiversity, and how can laws, forest classification and community participation protect forests and wildlife?",
+  "in_scope_units": [
+    "Flora and Fauna in India: biodiversity, ecological interdependence and the importance of forests in life-support systems.",
+    "Conservation of Forest and Wildlife in India: legal protection, national parks, sanctuaries and species-focused programmes.",
+    "Project Tiger: causes of tiger decline, the purpose of the campaign and examples of tiger reserves.",
+    "Types and Distribution of Forest and Wildlife Resources: reserved, protected and unclassed forests and their regional distribution.",
+    "Community and Conservation: village action, movements, ecological farming, sacred groves and joint forest management."
+  ],
+  "banned_topics": [
+    "Detailed natural vegetation types and climatic controls from the Natural Vegetation and Wildlife chapter.",
+    "Detailed mining methods and mineral distribution from Minerals and Energy Resources.",
+    "General water scarcity and dam management from Water Resources."
+  ],
+  "must_include_keywords": [
+    "biodiversity",
+    "biological diversity",
+    "flora",
+    "fauna",
+    "ecological system",
+    "primary producers",
+    "Indian Wildlife (Protection) Act 1972",
+    "endangered species",
+    "national parks",
+    "wildlife sanctuaries",
+    "Project Tiger",
+    "poaching",
+    "habitat",
+    "prey base",
+    "reserved forests",
+    "protected forests",
+    "unclassed forests",
+    "permanent forest estates",
+    "Sariska Tiger Reserve",
+    "Bhairodev Dakav Sonchuri",
+    "Chipko movement",
+    "indigenous species",
+    "Beej Bachao Andolan",
+    "Navdanya",
+    "sacred groves",
+    "Bishnoi villages",
+    "joint forest management",
+    "JFM",
+    "Odisha",
+    "non-timber forest produce"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Biodiversity means only the number of wild animals in a region.",
+      "correction": "The chapter defines biodiversity as the rich variety of wildlife and cultivated species, diverse in form and function, linked through networks of interdependence."
+    },
+    {
+      "claim": "Project Tiger was launched only to increase tiger numbers.",
+      "correction": "The chapter presents tiger conservation both as protection of an endangered species and as a means of preserving large biotypes and habitats."
+    },
+    {
+      "claim": "Unclassed forests belong only to private individuals.",
+      "correction": "Unclassed forests include forests and wastelands belonging to governments, private individuals and communities."
+    },
+    {
+      "claim": "Community participation is separate from formal forest conservation.",
+      "correction": "Examples such as Sariska, Chipko, sacred groves and JFM show that community participation is central to conservation and restoration."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 3(i) to define biodiversity and connect it with air, water, soil and human survival.",
+    "Use NCERT Exercise 1(i) to distinguish direct community participation from formal demarcation of sanctuaries.",
+    "Use NCERT Exercise 2 to compare reserved, protected and unclassed forests.",
+    "Use NCERT Exercise 4(i) to organise evidence on community-led conservation.",
+    "Use NCERT Exercise 4(ii) to synthesise good conservation practices."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section “EXERCISES”, Questions 1 to 4, covering MCQ, matching, short-answer and long-answer responses.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

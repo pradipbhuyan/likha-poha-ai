@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 12: Surface Areas and Volumes",
+  "central_question": "How can the exposed surface area, volume and capacity of an object made by joining or removing basic solids be calculated correctly?",
+  "in_scope_units": [
+    "Introduction: recognises real objects as combinations of cuboids, cones, cylinders, spheres and hemispheres.",
+    "Surface Area of a Combination of Solids: adds only exposed curved or plane surfaces and removes joined or covered faces.",
+    "Volume of a Combination of Solids: adds volumes of joined parts and subtracts volumes of cavities, depressions or occupied spaces.",
+    "Summary: consolidates methods for surface area and volume of objects formed from basic solids."
+  ],
+  "banned_topics": [
+    "Frustums of cones, which are not developed in the supplied chapter.",
+    "Similarity-based conversion of one solid into another and melting or recasting problems.",
+    "Two-dimensional sector and segment area problems from Areas Related to Circles.",
+    "Coordinate geometry or algebraic equations unrelated to mensuration."
+  ],
+  "must_include_keywords": [
+    "combination of solids",
+    "cuboid",
+    "cube",
+    "cone",
+    "cylinder",
+    "sphere",
+    "hemisphere",
+    "total surface area",
+    "TSA",
+    "curved surface area",
+    "CSA",
+    "exposed surface",
+    "joined face",
+    "common radius",
+    "slant height",
+    "base area",
+    "circular ring",
+    "hemispherical depression",
+    "hollow vessel",
+    "capsule",
+    "cone mounted on cylinder",
+    "cone surmounted by hemisphere",
+    "volume",
+    "capacity",
+    "apparent capacity",
+    "actual capacity",
+    "cavity",
+    "displacement",
+    "sum of constituent volumes",
+    "subtract occupied volume",
+    "unit conversion",
+    "cm²",
+    "cm³",
+    "m²",
+    "m³"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The total surface area of a joined solid is always the sum of the total surface areas of all its parts.",
+      "correction": "Joined faces become hidden, so only surfaces visible from outside are counted."
+    },
+    {
+      "claim": "The volume of joined solids must also exclude their common face.",
+      "correction": "A common face has no volume; volumes of non-overlapping joined parts are added directly."
+    },
+    {
+      "claim": "A hemispherical depression reduces surface area because material is removed.",
+      "correction": "For surface area, the removed flat circular part is replaced by the curved surface of the depression; the net effect depends on both areas."
+    },
+    {
+      "claim": "The total height of a cone-hemisphere toy is the cone height alone.",
+      "correction": "The cone height equals total height minus the hemisphere radius."
+    },
+    {
+      "claim": "Surface area and volume can be calculated using mixed centimetre and metre dimensions.",
+      "correction": "Convert all dimensions to one unit before substitution, then use square units for area and cubic units for volume."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with NCERT Figures 12.2–12.5 and NCERT Example 1 to identify constituent solids and exposed curved surfaces.",
+    "Use NCERT Examples 2 and 3 to handle hidden attachment areas and a visible circular ring when radii differ.",
+    "Use NCERT Example 5 to add volumes of a cuboid and half cylinder and then subtract occupied space.",
+    "Use NCERT Example 6 to distinguish apparent capacity from actual capacity when a raised hemisphere occupies space.",
+    "Finish with NCERT Exercise 12.2 Question 5 or NCERT Example 7 for subtraction and displacement in a multi-solid volume problem."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "NCERT Exercise 12.1 contains Questions 1–9 on combined surface areas, and Exercise 12.2 contains Questions 1–8 on combined volumes and capacities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

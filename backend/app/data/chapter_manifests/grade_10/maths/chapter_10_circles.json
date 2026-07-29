@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 10: Circles",
+  "central_question": "What geometric properties follow when lines touch a circle, and how can tangents from points on or outside the circle be analysed and used in proofs?",
+  "in_scope_units": [
+    "Introduction: classifies a line relative to a circle as non-intersecting, secant or tangent according to the number of common points.",
+    "Tangent to a Circle: develops tangent existence, point of contact and the theorem that a tangent is perpendicular to the radius at contact.",
+    "Number of Tangents from a Point on a Circle: distinguishes points inside, on and outside a circle and proves equality of tangent lengths from an external point.",
+    "Applications and Summary: applies tangent theorems to concentric circles, angle relations, chord lengths, circumscribed quadrilaterals and exam proofs."
+  ],
+  "banned_topics": [
+    "Area and circumference calculations for circles, sectors and segments.",
+    "Construction of tangents with ruler and compass as a separate construction chapter.",
+    "The tangent-chord angle theorem and cyclic-quadrilateral theorems, which are not developed in the supplied chapter.",
+    "Coordinate equations of circles and analytic tangent equations."
+  ],
+  "must_include_keywords": [
+    "circle",
+    "centre",
+    "radius",
+    "chord",
+    "line",
+    "non-intersecting line",
+    "secant",
+    "tangent",
+    "one common point",
+    "two common points",
+    "point of contact",
+    "special case of a secant",
+    "parallel tangents",
+    "Theorem 10.1",
+    "perpendicular",
+    "normal",
+    "inside point",
+    "point on the circle",
+    "external point",
+    "number of tangents",
+    "length of tangent",
+    "Theorem 10.2",
+    "equal tangents",
+    "RHS congruence",
+    "CPCT",
+    "Pythagoras Theorem",
+    "angle bisector",
+    "concentric circles",
+    "isosceles triangle",
+    "circumscribed quadrilateral",
+    "supplementary angles"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A tangent is any line that meets a circle.",
+      "correction": "A tangent meets the circle at exactly one point; a line meeting it at two points is a secant."
+    },
+    {
+      "claim": "A tangent is perpendicular to every radius of the circle.",
+      "correction": "A tangent is perpendicular only to the radius drawn to its point of contact."
+    },
+    {
+      "claim": "Two tangents can be drawn through a point inside a circle.",
+      "correction": "No tangent passes through an interior point; one tangent passes through a point on the circle and two through an external point."
+    },
+    {
+      "claim": "Any two tangent segments to a circle are equal.",
+      "correction": "The two tangent segments drawn from the same external point are equal."
+    },
+    {
+      "claim": "The radius, tangent length and centre-to-external-point distance form a triangle with the radius as hypotenuse.",
+      "correction": "The radius and tangent are perpendicular legs, while the centre-to-external-point segment is the hypotenuse."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with Figure 10.1 and NCERT Activities 1 and 2 to distinguish non-intersecting lines, secants and tangents and observe tangent existence.",
+    "Prove Theorem 10.1 and apply NCERT Exercise 10.1 Question 3 using the right triangle at the point of contact.",
+    "Use NCERT Activity 3 and Theorem 10.2 to establish the number of tangents and equality of tangent lengths.",
+    "Apply NCERT Examples 1 and 2 to concentric-circle chords and angle relations.",
+    "Finish with NCERT Example 3 and Exercise 10.2 Questions 8 to 13 for numerical and circumscribed-figure proofs."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter practice is organised as NCERT Exercises 10.1 and 10.2, covering tangent definitions, perpendicular radii, tangent counts, equal tangent lengths and applications.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

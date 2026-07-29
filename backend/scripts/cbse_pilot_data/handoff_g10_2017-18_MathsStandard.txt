@@ -1,0 +1,114 @@
+CBSE Grade 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2017-18
+Subject: Mathematics Standard
+Source Subject Code: MathsStandard
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/CLASS_X_2017_18/MathsStandard-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/CLASS_X_2017_18/MathsStandard-MS.pdf
+Total Questions: 30
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/CLASS_X_2017_18/MathsStandard-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [short_answer, 7m, Sec A]
+Write whether the rational number 75 will have a terminating decimal expansion or a nor-terminating repeating decimal expansion.
+
+Q10 [mcq, 1m, Sec B]
+If p1, 3   is the mid -point of the line segment joining the points (2, 0) and 20, 9   , then show that the line 5x + 3y + 2 = 0 passes through the point (–1, 3p).
+
+Q11 [mcq, 1m, Sec B]
+A box contains cards numbered 11 to 123. A card is drawn at random from the box. Find the probability that the number on the drawn card is (i) a square number (ii) a multiple of 7
+
+Q12 [mcq, 1m, Sec B]
+A box contains 12 balls of which some are red in colour. If 6 more red balls are p ut in the box and a ball is drawn at random, the probability of drawing a red ball doubles than what it was before. Find the number of red balls in the bag. Section C Question numbers 13 to 22 carry 3 marks each.
+
+Q13 [mcq, 1m, Sec C]
+Show that exactly one of the numbers n, n + 2 or n + 4 is divisible by 3.
+
+Q14 [mcq, 1m, Sec C]
+Find all the zeroes of the polynomial 4323x 6x 2x 10x 5+ - - - if two of its zeroes are 55and –33 .
+
+Q15 [mcq, 1m, Sec C]
+Seven times a two digit number is equal to four times the number obtained by reversing t he order of its digits. If the difference of the digits is 3, determine the number.
+
+Q16 [mcq, 1m, Sec C]
+In what ratio does the x -axis divide the line segment joining the points ( –4, –6) and (–1, 7)? Find the co-ordinates of the point of division. OR The points A(4, –2), B(7, 2), C(0, 9) and D(–3, 5) form a parallelogram. Find the length of the altitude of the parallelogram on the base AB.
+
+Q17 [mcq, 1m, Sec C]
+In given figure 1 2 and NSQ MTR      , then prove that PTS ~ PRQ . OR In an equilateral triangle ABC, D is a point on the side BC such that 1BD BC.3 Prove that 9AD2 = 7AB2
+  [NOTE: diagram]
+
+Q18 [mcq, 1m, Sec C]
+In given figure XY and XY are two parallel tangents to a circle with centre O and another tangent AB with point o f contact C intersecting XY at A and XY at B. Prove that  AOB = 90°.
+  [NOTE: diagram]
+
+Q19 [mcq, 1m, Sec C]
+Evaluate: 2 2 2 2 2 2 2 cosec 63 tan 24 sin 63 cos 63 sin 27 sin 27º sec63 cot 66 sec 27 2(cos ec 65 tan 25 )               OR If sin cos 2, then evaluate : tan cot      
+
+Q2 [mcq, 1m, Sec A]
+Find the value(s) of k, if the quadratic equation 23x k 3 x 4 0- + = has equal roots.
+
+Q20 [mcq, 1m, Sec C]
+In given figure ABPC is a quadrant of a circle of rad ius 14 cm and a semicircle is drawn with BC as diameter. Find the area of the shaded region
+  [NOTE: diagram]
+
+Q21 [mcq, 1m, Sec C]
+Water in a canal, 6 m wide and 1.5 m deep, is flowing with a speed of 10 km/h. How much area will it irrigate in 30 minutes, if 8 cm of standing water is needed? OR A cone of maximum size is carved out from a cube of edge 14 cm. Find the surface area of the remaining solid after the cone is carved out.
+
+Q22 [mcq, 1m, Sec C]
+Find the mode of the following distribution of marks obtained by the students in an examination: Marks obtained 0-20 20-40 40-60 60-80 80-100 Number of students 15 18 21 29 17 Given the mean of the above distribution is 53, using empirical relationship estimate the value of its median. Section D Question numbers 23 to 30 carry 4 marks each.
+
+Q23 [mcq, 1m, Sec D]
+A train travelling at a uniform speed for 360 km would have taken 48 minutes less to travel the same distance if its speed were 5 km/hour more. Find the original speed of the train. OR Check whether the equation 5x 2 – 6x – 2 = 0 has real roots and if it has, fi nd them by the method of completing the sq uare. Also verify that roots obtained satisfy the given equation.
+
+Q24 [mcq, 1m, Sec D]
+An AP consists of 37 terms. The sum of the three middle most terms is 225 and the sum of the last three terms is 429. Find the AP.
+
+Q25 [mcq, 1m, Sec D]
+Show that in a right triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides. OR Prove that the ratio of the areas of two similar triangles is equal to the ratio of the squares of their corresponding sides.
+
+Q26 [case_study, 4m, Sec D]
+Draw a triangle ABC with side BC = 7 cm, B 45 , A 105      . Then, construct a triangle whose sides are 3 times the corresponding sides of ABC.
+
+Q27 [mcq, 1m, Sec D]
+Prove that cos sin 1 cosec cotcos sin 1          
+
+Q28 [mcq, 1m, Sec D]
+The angles of de pression of the top and bottom of a building 50 metres high as observed from the top of a tower are 30° and 60°, respectively. Find the height of the tower and also the horizontal distance between the building and the tower.
+
+Q29 [mcq, 1m, Sec D]
+Two dairy owners A and B sell flavoured milk filled to capacity in mugs of negligible thickness, which are cylindrical in shape with a raised hemispherical bottom. The mugs are 14 cm high and have diameter of 7 cm as shown in given figure. Both A and B sell flavoured milk at the ra te of ` 80 per litre. The dai ry owner A uses the formula 2rh to find the volume of milk in the mug and charges ` 43.12 for it. The dairy owner B is of the view that the price of actual quantity of milk should be charged. What accordi ng to him should be the price of one mug of milk? Which value is exhibited by the dairy owner B? 22use 7  
+  [NOTE: diagram]
+
+Q3 [mcq, 1m, Sec A]
+Find the eleventh term from the last term of the AP: 27, 23, 19, ..., –65.
+
+Q30 [mcq, 1m, Sec D]
+The following distribution shows the daily pocket allowance of children of a locality. The mean pocket allowance is ` 18. Find the missing frequency k. Daily pocket allowance (in `) 11–13 13–15 15–17 17–19 19–21 21–23 23–25 Number of children 3 6 9 13 k 5 4 OR The following frequency distribution shows the distance (in metres) thrown by 68 students in a Javelin throw competition. Distance (in m) 0–10 10–20 20–30 30–40 40–50 50–60 60–70 Number of students 4 5 13 20 14 8 4 Draw a less than type O give for the given data and find the median distance thrown using this curve.
+
+Q4 [mcq, 1m, Sec A]
+Find the coordinates of the point on y-axis which is nearest to the point (–2, 5).
+
+Q5 [mcq, 1m, Sec A]
+In given figure , ST || RQ, PS = 3 cm and SR = 4 cm. Find the ratio of the area of  PST to the area of  PRQ.
+  [NOTE: diagram]
+
+Q6 [mcq, 1m, Sec A]
+If 2cos A 5= , find the value of 4 + 4 tan2 A Section B Question numbers 7 to 12 carry 2 marks each.
+
+Q7 [mcq, 1m, Sec B]
+If two positive integers p and q are written as 2 3 3p a b and q a b;== a, b are prime numbers, then verify: LCM (p, q) × HCF (p, q) = pq
+
+Q8 [short_answer, 2m, Sec B]
+The sum of first n terms of an AP is given by nS 2n 3n=+ . Find the sixteenth term of the AP.
+
+Q9 [mcq, 1m, Sec B]
+Find the value(s) of k for which the pair of linear equations k x + y = k2 and x + ky = 1 have infinitely many solutions.
+
+======================================================================
+Return the complete JSON array.

@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 5",
+  "subject": "English",
+  "chapter": "5. The Frog",
+  "central_question": "How does the frog describe its life, movement, survival, and surroundings while the chapter develops grammar, listening, and creative skills?",
+  "in_scope_units": [
+    "Let us Recite: habitat, tadpole, feeding, movement, camouflage, danger, croaking, and webbed feet",
+    "Let us Think: comprehension and comparison with fish and scuba flippers",
+    "Let us Learn: conjunctions and correct sentence order",
+    "Let us Speak and Listen: tongue twisters, vowel pairs, and My Frog’s World",
+    "Let us Write, Do, and Explore: Hopper’s message, frog and toad, drawing sequence, Ganges river dolphin, and aquatic animals"
+  ],
+  "banned_topics": [
+    "Water-tank designs",
+    "The merchant and golden cage",
+    "Hockey dialogue"
+  ],
+  "must_include_keywords": [
+    "frog",
+    "ponds",
+    "rain",
+    "muddy drain",
+    "tadpole",
+    "flick",
+    "tongue",
+    "land and water",
+    "damp",
+    "dew",
+    "camouflage",
+    "snakes",
+    "beware",
+    "croak",
+    "webbed feet",
+    "rhyme",
+    "imagery",
+    "tone",
+    "and",
+    "but",
+    "because",
+    "or",
+    "word order",
+    "silently",
+    "tongue twisters",
+    "bet-bat",
+    "Frog’s World",
+    "Hopper",
+    "lily leaf pad",
+    "frog and toad",
+    "sequence words",
+    "Ganges river dolphin",
+    "puffer fish",
+    "jellyfish",
+    "octopus"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The tadpole hops on land.",
+      "correction": "The poem describes the tadpole as swimming and fish-like."
+    },
+    {
+      "claim": "The frog faces no danger.",
+      "correction": "It warns that snakes are near and it must beware."
+    },
+    {
+      "claim": "The dolphin fact is part of the poem.",
+      "correction": "It appears in a later Did You Know box."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Let us Think A to find evidence for habitat, food, movement, and hiding.",
+    "Use Let us Learn A to choose conjunctions by meaning.",
+    "Use Let us Learn B to select correct word order.",
+    "Use Let us Listen to build Frog’s World from instructions.",
+    "Use Let us Write and the frog-toad box for message writing and comparison."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "There is no separate final exercise set; practice is organised across the Let us sections and information boxes.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

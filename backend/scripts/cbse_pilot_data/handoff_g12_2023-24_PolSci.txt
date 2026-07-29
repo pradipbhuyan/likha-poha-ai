@@ -1,0 +1,127 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2023-24
+Subject: Political Science
+Source Subject Code: PolSci
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/PolSci-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/PolSci-MS.pdf
+Total Questions: 30
+======================================================================
+
+TASK: For each question below, provide the answer in the EXACT JSON format shown.
+
+OUTPUT FORMAT (return a JSON array):
+[{
+  "question_number": <integer>,
+  "question_text": "<copy from input>",
+  "question_type": "<copy from input>",
+  "options": [<copy from input>],
+  "answer_text": "<for mcq/assertion_reason: exact option text; for others: complete answer>",
+  "answer_explanation": "<2-4 sentence explanation based on CBSE curriculum>"
+}, ...]
+
+IMPORTANT RULES:
+- For MCQ/assertion_reason: answer_text MUST be the EXACT text of one of the options
+- For short_answer/long_answer/case_study: answer_text = complete answer per marking scheme
+- Diagram-dependent questions: use NEEDS_MANUAL_REVIEW_diagram_dependent if no text alt exists
+- Official Marking Scheme PDF: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/PolSci-MS.pdf
+
+======================================================================
+
+QUESTIONS:
+
+Q1 [mcq, 1 mark(s), Section A]
+Arrange the following events in chronological order and choose the correct option: (i) The Soviet invasion of Afghanistan. (ii) End of civil war in Tajikistan. (iii) A military coup by the Communist Party hardliners. (iv) Russian Revolution. a. (i), (ii), (iii), (iv) b. (ii), (i), (iv), (iii) c. (iv), (i), (iii), (ii) d. (iii), (i), (ii), (iv)
+
+Q10 [mcq, 1 mark(s), Section A]
+In the following question, a statement of
+
+Q11 [mcq, 1 mark(s), Section A]
+For the early realization of freedom of which country did India make an earnest effort by convening an international conference to support the freedom struggle. a. Malaysia b. Vietnam c. Thailand d. Indonesia
+
+Q12 [mcq, 1 mark(s), Section A]
+Bodo community belongs to . a. Manipur b. Assam Political Science Class XII SQP 2023-24 c. Mizoram d. Arunachal Pradesh SECTION- B (12 MARKS)
+
+Q13 [mcq, 1 mark(s), Section B]
+Highlight any two features of Indo-Bhutan relationship. 2x1=2
+
+Q14 [mcq, 1 mark(s), Section B]
+Analyse any two components of India’s security strategy. 2x1=2
+
+Q15 [short_answer, 2 mark(s), Section B]
+State any two differences between the First Five Year Plan and the Second Five Year Plan.
+
+Q16 [mcq, 1 mark(s), Section B]
+Describe any two problems faced by the Election Commission while holding the first general elections in the country. 2x1=2
+
+Q17 [mcq, 1 mark(s), Section B]
+Describe any two security challenges faced by the newly independent countries of Asia and Africa after the Second World War. 2x1=2
+
+Q18 [mcq, 1 mark(s), Section B]
+Explain any two lessons learnt from the emergency imposed in 1975. 2 SECTION-C (20 MARKS)
+
+Q19 [mcq, 1 mark(s), Section C]
+Describe any four features of India’s Nuclear Policy. 4x1=4
+
+Q2 [mcq, 1 mark(s), Section A]
+The President of which Central Asian country appointed himself to power, first for ten years and extended it for another ten years? a. Turkmenistan Political Science Class XII SQP 2023-24 b. Ukraine c. Azerbaijan d. Kyrgyzstan
+
+Q20 [case_study, 4 mark(s), Section C]
+Discuss the developments that escalated the crisis within the USSR that hastened its Disintegration.
+
+Q21 [mcq, 1 mark(s), Section C]
+‘In spite of the conflict, Sri Lanka has registered considerable economic growth and recorded high levels of human development’. Support the statement. OR Highlight any four hurdles in the path of building a stable democracy in Pakistan. 4x 1=4 (CB)
+
+Q22 [case_study, 4 mark(s), Section C]
+‘The culture of the politically & economically dominant society leaves its imprint on a less powerful society.’ Analyse the statement. OR Analyse the economic effects of globalization on developing nations. (CB)
+
+Q23 [case_study, 4 mark(s), Section C]
+‘Regional demands from different parts of India exemplify the principle of unity with diversity’. Do you agree? Support your answer with appropriate arguments. (CB) SECTION-D (12 MARKS) Political Science Class XII SQP 2023-24
+
+Q24 [mcq, 1 mark(s), Section D]
+Read the passage given below and answer the questions that follow: ‘Commons’ are those resources which are not owned by anyone but rather shared by a community. This could be a ‘common room’, a ‘community centre’, a park or a river. Similarly, there are some areas or regions of the world which are located outside the sovereign jurisdiction of any one state, and therefore require common governance by the international community. These are known as res communis humanitatis or global commons. 1. Which of the following is a part of global commons? a. Ocean floor b. River Narmada c. Thar desert d. Nilgiris 2. The Earth summit was held in . a. Kyoto b. Rio- de- Janeiro c. Rome d. Montreal 3. Which of the following agencies of the United Nations is associated in dealing with environmental issues? a. UNESCO b. ECOSOC c. UNEP d. UNFCCC 4. Why is cooperation over global commons not easy? a. Task cannot be monitored b. Lack of consensus on common environmental agendas c. Similar approach to environment between the global north and south. d. All of the above 1+1+1 +1=4 (CB)
+
+Q25 [mcq, 1 mark(s), Section D]
+In the given outline political map of India, four states have been marked as
+  (A) ,
+  (B) ,
+  (C) and
+  (D) . Identify these states on the basis of the information given below and write their correct names in your answer book along with the respective serial numbers of the information used and the concerned alphabets as per the format that follows: (i) The state related to the leader who signed the Tashkent Agreement (ii) The state related to C Natarajan Annadurai. (iii) The state related to Karpuri Thakur, who implemented reservation for backward classes. 1+1+1 +1=4 (CB)
+
+Q26 [mcq, 1 mark(s), Section D]
+Study the given cartoon and answer the questions that follow: 1) Identify any two leaders shown in the cartoon who had won the 1977 elections. 2) Explain the term MISA. 3) Why was the Congress voted out of power? 1+1+2 =4 (CB) Following questions are for the Visually Impaired candidates in lieu of question number 26 1) Who led the Bihar Movement? 2) What was the main reason for the student’s movement in Gujarat? 3) What does Article 352 state? 4) Why did the Janata party fail to remain in power for a full term? SECTION-E (24 MARKS)
+
+Q27 [mcq, 1 mark(s), Section E]
+Explain the factors that make European Union a highly influential regional organisation. OR Explain the meaning of ‘ASEAN Way’? Name the pillars and objectives of ASEAN community. What are the components of the ASEAN Vision 2020? 2+2+2 =6
+
+Q28 [short_answer, 6 mark(s), Section E]
+‘Reforming the UN means restructuring of the Security Council’. Justify this statement with suitable arguments. OR What makes the UN an indispensable organisation? What steps should be taken to make the UN more relevant in the changing context? (CB)
+
+Q29 [short_answer, 6 mark(s), Section E]
+Explain any three challenges faced by India at the time of its independence. Political Science Class XII SQP 2023-24 OR Analyse any six consequences of the partition of India in 1947.
+
+Q3 [mcq, 1 mark(s), Section A]
+Arms control is an important measure of traditional security as: a. It prevents the military action. b. It coordinates actions to defend against military attack. c. It regulates the acquisition or development of weapons. d. It is concerned with preventing a war like situation.
+
+Q30 [short_answer, 6 mark(s), Section E]
+Describe any three major developments in Indian politics since 1989. OR ‘In the midst of severe competition and many conflicts, a consensus appears to have emerged among most parties.’ Describe any three points of consensus.
+
+Q4 [mcq, 1 mark(s), Section A]
+ensures that rivals do not go to war through misunderstanding or misconception. a. Alliance Building b. Confidence Building c. Balance of power d. Arms Control
+
+Q5 [mcq, 1 mark(s), Section A]
+Match the List I with the List II Codes: a. A-(iii), B- (i), C-(ii), D-(iv) b. A-(ii), B- (i), C-(iii), D-(iv) c. A-(ii), B- (i), C-(iv), D-(iii) d. A-(iv), B- (ii), C-(iii), D-(i)
+
+Q6 [mcq, 1 mark(s), Section A]
+In the following question, a statement of
+
+Q7 [mcq, 1 mark(s), Section A]
+Name the founder President of ‘Congress Socialist Party’. a. K.M. Munshi b. Acharya Narendra Dev c. Shyama Prasad Mukherjee d. Minoo Masani
+
+Q8 [mcq, 1 mark(s), Section A]
+After Independence, the first Lok Sabha elections had to be postponed twice and was finally held from: a. November 1951 to February 1952 b. December 1951 to February 1952 c. September1951 to February 1952 d. October 1951 to February 1952
+
+Q9 [mcq, 1 mark(s), Section A]
+Which one of the following Chinese leaders was accompanied by Dalai Lama during the visit to India in 1956? a. Hua Guofeng b. Zhao Ziyang c. Premier Zhou Enlai d. Li Peng
+
+======================================================================
+Now return the complete JSON array with answers for all questions above.

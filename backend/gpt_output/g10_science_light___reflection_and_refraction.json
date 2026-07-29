@@ -1,0 +1,112 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Science",
+    "chapter": "Chapter 9: Light – Reflection and Refraction",
+    "central_question": "How do reflection and refraction control the path of light and the position, size and nature of images formed by mirrors and lenses?",
+    "in_scope_units": [
+      "Straight-line propagation of light, laws of reflection and image properties of a plane mirror.",
+      "Concave and convex spherical mirrors, their parts, principal focus, focal length and the relation R = 2f.",
+      "Image formation by spherical mirrors, ray-diagram rules, uses of mirrors and convex-mirror field of view.",
+      "New Cartesian sign convention, mirror formula and magnification with NCERT numerical examples.",
+      "Refraction in daily-life observations and through a rectangular glass slab, including lateral displacement.",
+      "Laws of refraction, Snell's law, refractive index, speed of light and optical density.",
+      "Convex and concave spherical lenses, optical centre, principal foci, focal length and image formation.",
+      "Lens ray diagrams, sign convention, lens formula, magnification, power of a lens and dioptre."
+    ],
+    "banned_topics": [
+      "Detailed diffraction, wave-particle duality and quantum theory of light, which the chapter explicitly leaves for higher classes.",
+      "Twinkling of stars, rainbow formation and atmospheric refraction, which are not developed in this chapter.",
+      "Defects of vision and their correction in detail, which belong to the Human Eye and the Colourful World chapter.",
+      "Prism dispersion, total internal reflection and optical instruments beyond the brief applications stated here."
+    ],
+    "must_include_keywords": [
+      "ray of light",
+      "reflection",
+      "angle of incidence",
+      "angle of reflection",
+      "normal",
+      "spherical mirror",
+      "concave mirror",
+      "convex mirror",
+      "pole",
+      "centre of curvature",
+      "radius of curvature",
+      "principal axis",
+      "principal focus",
+      "focal length",
+      "aperture",
+      "R = 2f",
+      "real image",
+      "virtual image",
+      "ray diagram",
+      "New Cartesian Sign Convention",
+      "mirror formula",
+      "magnification",
+      "refraction",
+      "rectangular glass slab",
+      "lateral displacement",
+      "Snell's law",
+      "refractive index",
+      "optical density",
+      "speed of light",
+      "convex lens",
+      "concave lens",
+      "optical centre",
+      "lens formula",
+      "power of a lens",
+      "dioptre",
+      "converging lens",
+      "diverging lens"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The normal is the mirror surface or the principal axis in every situation.",
+        "correction": "The normal is perpendicular to the reflecting or refracting surface at the point of incidence; at a spherical mirror's pole, the principal axis is normal to the mirror."
+      },
+      {
+        "claim": "A concave mirror always forms a real inverted image.",
+        "correction": "When the object is between the pole and focus, a concave mirror forms an enlarged, virtual and erect image behind the mirror."
+      },
+      {
+        "claim": "A convex mirror can form an enlarged image.",
+        "correction": "For real objects, a convex mirror forms a virtual, erect and diminished image behind the mirror."
+      },
+      {
+        "claim": "Positive magnification always means the image is enlarged.",
+        "correction": "The sign indicates orientation and nature; magnitude indicates size. A positive value less than 1 is virtual, erect and diminished."
+      },
+      {
+        "claim": "Optical density and mass density are the same.",
+        "correction": "Optical density depends on refractive index and speed of light; kerosene is optically denser than water even though its mass density is lower."
+      },
+      {
+        "claim": "A ray through a rectangular glass slab emerges along the same line as the incident ray.",
+        "correction": "For oblique incidence it emerges parallel to the incident ray but is shifted sideways."
+      },
+      {
+        "claim": "The mirror formula and lens formula have the same sign between 1/v and 1/u.",
+        "correction": "Mirror: 1/v + 1/u = 1/f. Lens: 1/v - 1/u = 1/f."
+      },
+      {
+        "claim": "Power can be calculated using focal length in centimetres without conversion.",
+        "correction": "For power in dioptres, focal length must be expressed in metres."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Activities 9.1-9.3 to move from curved-spoon observations to concave/convex mirrors and focal length.",
+      "Use NCERT Table 9.1 and Activity 9.4 to construct concave-mirror ray diagrams for each object position.",
+      "Use NCERT Examples 9.1 and 9.2 to apply mirror sign convention, mirror formula and magnification.",
+      "Use NCERT Activities 9.8-9.10 to explain apparent depth and the parallel but laterally displaced emergent ray from a glass slab.",
+      "Use NCERT Examples 9.3 and 9.4 and end-of-chapter Exercises 10-17 to apply lens formula, magnification and power."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with the NCERT EXERCISES section containing Questions 1-17."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Light – Reflection and Refraction\n\n## What you will learn\nYou will recall the laws of reflection and learn the geometry of concave and convex spherical mirrors. You will connect the spoon and sunlight activities with pole, centre of curvature, focus, focal length and image formation.\n\n## Simple explanation\nObjects become visible when reflected light reaches our eyes. For ordinary optical situations in this chapter, light is represented by straight rays that reflect from mirrors according to two fixed laws.\n\n## Step-by-step breakdown\n- **Straight-line propagation**: A small source forms a sharp shadow of an opaque object, supporting the ray model in which light travels in straight lines.\n- **Laws of reflection**: The angle of incidence equals the angle of reflection, and the incident ray, reflected ray and normal at the point of incidence lie in one plane.\n- **Plane-mirror image**: A plane mirror forms a virtual, erect, same-sized and laterally inverted image at the same distance behind the mirror as the object is in front.\n- **Activity 9.1**: The inward side of a shining spoon behaves approximately like a concave mirror; the outward bulging side behaves like a convex mirror.\n- **Spherical-mirror types**: A concave mirror curves inward towards the sphere's centre, while a convex mirror curves outward.\n- **Mirror terms**: Pole P is the centre of the reflecting surface; centre of curvature C is the sphere's centre; PC is radius R; the line through P and C is the principal axis.\n- **Focus and focal length**: Parallel rays meet at the principal focus of a concave mirror or appear to diverge from the focus of a convex mirror. PF is focal length f.\n- **R = 2f**: For a spherical mirror of small aperture, the radius of curvature is twice the focal length, so F lies midway between P and C.\n- **Activity 9.3**: Changing the candle position relative to P, F and C changes whether a concave-mirror image is real or virtual, enlarged, same-sized or diminished.\n\n## Worked example\nQuestion: Using NCERT Activity 9.2, explain why a sharp spot of sunlight formed by a concave mirror can burn paper and what distance it estimates.\n\nSolution:\n- Step 1: Sunlight reaching the mirror is approximately a bundle of parallel rays.\n- Step 2: A concave mirror reflects these rays so that they converge at its principal focus, concentrating light energy and heat in a small spot.\n- Final answer: The paper may burn, and the distance from the mirror's pole to the sharp image of the Sun gives the approximate focal length.\n\n## Common mistake\nDo not say the centre of curvature lies on the mirror. It is the centre of the sphere of which the mirror is a part, so it lies in front of a concave mirror and behind a convex mirror.\n\n## Quick check question\nQuestion: Based on the NCERT in-text Question after Activity 9.6, a spherical mirror has radius of curvature 20 cm. What is its focal length?\nAnswer: 10 cm.\nExplanation: For a spherical mirror of small aperture, R = 2f, so f = R/2 = 20/2 = 10 cm.\n\n## Summary\n- Reflection obeys two laws at every reflecting surface.\n- Concave and convex mirrors are parts of spherical surfaces.\n- P, C, R, principal axis, F and f describe mirror geometry.\n- A concave mirror converges parallel rays; a convex mirror makes them appear to diverge.\n- For small apertures, R = 2f.\n- Image properties depend on the object's position relative to P, F and C.",
+    "Core explanation": "# Core Explanation: Light – Reflection and Refraction\n\n## What you will learn\nYou will construct mirror ray diagrams and use the New Cartesian Sign Convention. You will apply the mirror formula and magnification to determine image position, nature, orientation and size.\n\n## Simple explanation\nTwo carefully chosen rays are enough to locate an image. Their reflected paths meet for a real image, while backward extensions meet for a virtual image.\n\n## Step-by-step breakdown\n- **Principal ray 1**: A ray parallel to the principal axis reflects through F for a concave mirror and appears to diverge from F for a convex mirror.\n- **Principal ray 2**: A ray through F, or directed towards F for a convex mirror, reflects parallel to the principal axis.\n- **Principal ray 3**: A ray through or directed towards C returns along the same path because it strikes normally.\n- **Ray at the pole**: An oblique ray at P follows the laws of reflection and makes equal angles with the principal axis.\n- **Concave-mirror images**: Table 9.1 covers all standard positions. Only an object between P and F gives a virtual, erect, enlarged image; most other finite positions beyond F give real inverted images.\n- **Convex-mirror images**: A convex mirror always forms a virtual, erect and diminished image between P and F behind the mirror, giving a wide field of view.\n- **Uses**: Concave mirrors are used in headlights, shaving mirrors, dental mirrors and solar furnaces. Convex mirrors are used as rear-view mirrors.\n- **Sign convention**: Distances are measured from P. Right is positive, left is negative; heights above the axis are positive and below are negative. A real object placed on the left has negative u.\n- **Mirror formula**: The relation is 1/v + 1/u = 1/f.\n- **Mirror magnification**: m = h'/h = -v/u. Negative m indicates a real inverted image; positive m indicates a virtual erect image, while |m| describes relative size.\n\n## Worked example\nQuestion: Work through NCERT Example 9.1: a convex rear-view mirror has R = 3.00 m and a bus is 5.00 m away. Find the image position and magnification.\n\nSolution:\n- Step 1: Apply signs: R = +3.00 m, so f = R/2 = +1.50 m; u = -5.00 m.\n- Step 2: Use 1/v + 1/u = 1/f: 1/v = 1/1.50 - 1/(-5.00) = 1/1.50 + 1/5.00, giving v = +1.15 m behind the mirror.\n- Final answer: m = -v/u = -(+1.15)/(-5.00) = +0.23. The image is virtual, erect and diminished to 0.23 times the object's size.\n\n## Common mistake\nA positive magnification does not always mean enlargement. In Example 9.1, m = +0.23 means the image is virtual and erect, but its size is only 0.23 times the object.\n\n## Quick check question\nQuestion: Based on NCERT end-of-chapter Exercise Q5, if your image remains erect no matter how far you stand from a mirror, what type of mirror can it be?\nAnswer: It can be either a plane mirror or a convex mirror.\nExplanation: Both always form erect virtual images for real objects. A concave mirror forms an inverted image when the object is beyond its focus.\n\n## Summary\n- Two principal rays can locate an image.\n- Concave-mirror image properties change with object position.\n- Convex mirrors always give virtual, erect, diminished images and a wide field of view.\n- The New Cartesian Sign Convention must be applied before substitution.\n- Mirror formula: 1/v + 1/u = 1/f.\n- Mirror magnification: m = -v/u = h'/h.",
+    "Worked examples": "# Worked Examples: Light – Reflection and Refraction\n\n## What you will learn\nYou will explain refraction using everyday observations and the rectangular glass-slab experiment. You will use Snell's law, refractive index and optical density to predict how a ray bends and how fast light travels in a medium.\n\n## Simple explanation\nRefraction occurs because the speed of light changes when it passes obliquely from one transparent medium to another. The changed direction makes objects appear displaced or raised.\n\n## Step-by-step breakdown\n- **Everyday observations**: A pond bottom appears raised, a partly immersed pencil appears displaced, and a lemon in water appears larger because rays change direction at the boundary.\n- **Activities 9.7 and 9.8**: A coin appears at a shifted, raised position in water, so reaching for its apparent position can miss the actual coin.\n- **Activity 9.9**: A line viewed through a glass slab appears bent at the edges for oblique viewing and raised from above.\n- **Glass slab**: In Activity 9.10, a ray bends towards the normal from air to glass and away from the normal from glass to air.\n- **Emergent ray**: Because the slab faces are parallel, the two bendings are equal and opposite; the emergent ray is parallel to the incident ray but laterally displaced.\n- **Laws of refraction**: The incident ray, refracted ray and normal lie in one plane. For a fixed colour and pair of media, sin i/sin r is constant, called Snell's law.\n- **Relative refractive index**: n21 = v1/v2, the speed in medium 1 divided by the speed in medium 2.\n- **Absolute refractive index**: n = c/v, where c = 3 × 10^8 m s^-1 in vacuum or approximately air.\n- **Optical density**: A higher refractive index means optically denser and lower light speed. Optical density is not the same as mass density.\n- **Direction of bending**: Rarer to denser: light slows and bends towards the normal. Denser to rarer: it speeds up and bends away.\n\n## Worked example\nQuestion: Use the NCERT in-text refraction Question 2: light enters glass of refractive index 1.50 from air. Find its speed in glass when c = 3 × 10^8 m s^-1.\n\nSolution:\n- Step 1: Use the definition n = c/v.\n- Step 2: Rearrange to v = c/n and substitute v = (3 × 10^8)/1.50.\n- Final answer: v = 2 × 10^8 m s^-1. Light travels more slowly in glass than in air because glass has the higher optical density.\n\n## Common mistake\nDo not equate optical density with mass density. Table 9.3 shows kerosene has a higher refractive index than water and is optically denser, even though its mass density is lower.\n\n## Quick check question\nQuestion: Based on NCERT Table 9.3 and in-text Question 4, in which does light travel fastest: kerosene, turpentine or water?\nAnswer: Water.\nExplanation: Water has the lowest refractive index of the three (1.33 compared with 1.44 for kerosene and 1.47 for turpentine), so light has the highest speed in water among them.\n\n## Summary\n- Refraction is caused by a change in light speed between media.\n- A ray bends towards the normal on entering an optically denser medium.\n- A rectangular slab produces a parallel but laterally shifted emergent ray.\n- Snell's law gives sin i/sin r as a constant for a fixed pair of media and colour.\n- Refractive index relates inversely to light speed.\n- Optical density is different from mass density.",
+    "Exam-style problems": "# Exam-Style Problems: Light – Reflection and Refraction\n\n## What you will learn\nYou will study convex and concave lenses, their ray diagrams and image rules. You will apply the lens formula, lens magnification and power of a lens using the NCERT sign convention.\n\n## Simple explanation\nA convex lens converges parallel rays and a concave lens diverges them. The image formed depends on the object position for a convex lens, while a concave lens always gives a virtual, erect and diminished image for a real object.\n\n## Step-by-step breakdown\n- **Lens construction**: A lens is bounded by two surfaces, at least one spherical. A convex lens is thicker at the middle; a concave lens is thicker at the edges.\n- **Optical centre**: A ray through optical centre O passes without deviation for the thin lenses considered.\n- **Two principal foci**: A lens has F1 and F2 because light may enter from either side. Focal length is the distance from O to a principal focus.\n- **Activity 9.11**: A convex lens converges sunlight to a real image of the Sun, and the lens-to-image distance gives the approximate focal length.\n- **Convex-lens images**: Table 9.4 shows real inverted images for objects beyond F1, no finite screen image at F1, and an enlarged virtual erect image when the object lies between F1 and O.\n- **Concave-lens images**: Table 9.5 shows a virtual, erect and diminished image between F1 and O for every finite real-object position.\n- **Lens ray rules**: Parallel ray → through F2 for convex or appears from F1 for concave; ray through or towards focus → parallel; ray through O → undeviated.\n- **Lens sign convention**: Distances are measured from O. Convex-lens f is positive; concave-lens f is negative.\n- **Lens formula**: 1/v - 1/u = 1/f.\n- **Lens magnification**: m = h'/h = v/u.\n- **Power**: P = 1/f when f is in metres. Unit: dioptre D. Convex power is positive; concave power is negative.\n\n## Worked example\nQuestion: Work through NCERT Example 9.4: h = 2.0 cm, convex-lens f = +10 cm and u = -15 cm. Find v, h' and m.\n\nSolution:\n- Step 1: Use 1/v - 1/u = 1/f: 1/v = 1/u + 1/f = -1/15 + 1/10 = 1/30, so v = +30 cm.\n- Step 2: Use m = v/u = +30/-15 = -2, and h' = mh = (-2)(2.0 cm) = -4.0 cm.\n- Final answer: The image is 30 cm on the other side of the lens, real, inverted and 4.0 cm tall; it is enlarged two times.\n\n## Common mistake\nStudents often copy the mirror magnification formula into lens problems. For mirrors m = -v/u, but for lenses m = v/u.\n\n## Quick check question\nQuestion: Based on NCERT end-of-chapter Exercise Q16, find the focal length and type of a lens of power -2.0 D.\nAnswer: f = -0.50 m, and the lens is concave (diverging).\nExplanation: Using P = 1/f gives f = 1/(-2.0) m = -0.50 m. Negative focal length and power identify a concave lens.\n\n## Summary\n- Convex lenses converge; concave lenses diverge.\n- A thin lens has two principal foci and one optical centre.\n- Convex-lens images depend on object position.\n- A concave lens always forms a virtual, erect, diminished image for a real object.\n- Lens formula: 1/v - 1/u = 1/f.\n- Lens magnification: m = v/u.\n- Power P = 1/f in metres and is measured in dioptres.",
+    "Revision and recap": "# Revision and Recap: Light – Reflection and Refraction\n\n## What you will learn\nYou will integrate reflection, refraction, mirrors, lenses, sign conventions and formulas into one exam-ready framework. You will practise selecting the correct device, predicting image nature and checking whether a numerical answer agrees with a ray diagram.\n\n## Simple explanation\nThe safest way to solve an optics problem is to identify the device, predict the image qualitatively, assign signs, use the correct formula and then interpret the signs and magnitude of the answer.\n\n## Step-by-step breakdown\n- **Reflection versus refraction**: Reflection returns light into the original medium; refraction changes its direction when speed changes across a transparent-medium boundary.\n- **Real versus virtual**: A real image is formed by actual ray intersection and can be obtained on a screen. A virtual image is formed by apparent ray intersection and cannot be caught on a screen.\n- **Mirror selection**: Concave mirrors can magnify nearby objects or form parallel beams; convex mirrors give a wide field of view and erect diminished images.\n- **Lens selection**: A short-focal-length convex lens gives stronger convergence and is preferred for magnifying small letters, as in Exercise Q6.\n- **Formula check**: Mirror: 1/v + 1/u = 1/f and m = -v/u. Lens: 1/v - 1/u = 1/f and m = v/u.\n- **Sign check**: A real object on the left has u < 0. Concave-mirror f < 0, convex-mirror f > 0; convex-lens f > 0, concave-lens f < 0.\n- **Refraction check**: Higher n means lower speed and greater optical density. Rarer-to-denser bends towards the normal; denser-to-rarer bends away.\n- **Power check**: Convert focal length to metres before using P = 1/f; the sign of power identifies converging or diverging action.\n- **Experimental reasoning**: Activities 9.2 and 9.11 show concentration of sunlight by concave mirrors and convex lenses; Activities 9.8-9.10 show apparent displacement and glass-slab refraction.\n\n## Worked example\nQuestion: Solve NCERT end-of-chapter Exercise Q12: an object is 10 cm in front of a convex mirror of focal length 15 cm. Find image position and nature.\n\nSolution:\n- Step 1: Assign signs: u = -10 cm and f = +15 cm for a convex mirror.\n- Step 2: Use 1/v + 1/u = 1/f: 1/v = 1/15 - 1/(-10) = 1/15 + 1/10 = 1/6, so v = +6 cm.\n- Final answer: The positive v places the image 6 cm behind the mirror. It is virtual and erect; m = -v/u = -(+6)/(-10) = +0.6, so it is diminished.\n\n## Common mistake\nA numerical result should not be accepted without a physical check. For a convex mirror, a negative v or magnification greater than 1 would contradict the known image rule for a real object and signals a sign or algebra error.\n\n## Quick check question\nQuestion: Based on NCERT end-of-chapter Exercise Q13, what does magnification +1 for a plane mirror mean?\nAnswer: The image is virtual and erect, and its height is equal to the object's height.\nExplanation: The positive sign indicates an erect virtual image, and magnitude 1 means the image and object have the same size.\n\n## Summary\n- Predict image behaviour before calculating.\n- Use the correct sign convention and the correct mirror or lens formula.\n- Interpret both sign and magnitude of magnification.\n- Use refractive index to compare light speeds and bending direction.\n- Use metres when calculating lens power in dioptres.\n- Check every numerical result against the corresponding ray-diagram rule."
+  }
+}

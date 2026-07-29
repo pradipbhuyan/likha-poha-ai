@@ -1,0 +1,117 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 5: Life Processes",
+  "central_question": "How do living organisms obtain, release, transport, and remove materials and energy so that their organised bodies remain alive?",
+  "in_scope_units": [
+    "What are life processes: maintenance, molecular movement, energy needs, diffusion limits, and specialised tissues",
+    "Nutrition: autotrophic and heterotrophic modes",
+    "Autotrophic nutrition: photosynthesis, chlorophyll, carbon dioxide, water, sunlight, stomata, and mineral uptake",
+    "Heterotrophic nutrition: external digestion, internal digestion, and parasitic nutrition",
+    "Nutrition in unicellular organisms: Amoeba and Paramoecium",
+    "Nutrition in human beings: alimentary canal, digestive secretions, enzymes, absorption, and egestion",
+    "Respiration: breakdown of glucose, aerobic and anaerobic pathways, pyruvate, and ATP",
+    "Gas exchange in plants, aquatic animals, and terrestrial animals",
+    "Human respiratory system: air passages, alveoli, breathing movements, haemoglobin, and gas transport",
+    "Transportation in human beings: blood, heart, double circulation, blood vessels, platelets, blood pressure, and lymph",
+    "Transportation in plants: xylem, root pressure, transpiration pull, phloem, and translocation",
+    "Excretion in human beings: kidneys, nephrons, filtration, selective reabsorption, urine formation, and dialysis",
+    "Excretion in plants: diffusion, transpiration, vacuoles, leaves, resins, gums, and soil release"
+  ],
+  "banned_topics": [
+    "Detailed cell division and reproduction",
+    "Detailed neural and hormonal control",
+    "Genetics and heredity",
+    "Detailed ecology and food webs",
+    "Molecular biochemistry beyond the glucose-pyruvate pathways and ATP described in the chapter"
+  ],
+  "must_include_keywords": [
+    "life processes",
+    "maintenance",
+    "nutrition",
+    "autotroph",
+    "heterotroph",
+    "photosynthesis",
+    "chlorophyll",
+    "stomata",
+    "guard cells",
+    "starch",
+    "Amoeba",
+    "food vacuole",
+    "alimentary canal",
+    "salivary amylase",
+    "peristalsis",
+    "hydrochloric acid",
+    "pepsin",
+    "bile",
+    "trypsin",
+    "lipase",
+    "villi",
+    "respiration",
+    "pyruvate",
+    "aerobic",
+    "anaerobic",
+    "ATP",
+    "alveoli",
+    "haemoglobin",
+    "blood",
+    "plasma",
+    "heart",
+    "double circulation",
+    "artery",
+    "vein",
+    "capillary",
+    "platelets",
+    "lymph",
+    "xylem",
+    "transpiration",
+    "phloem",
+    "translocation",
+    "excretion",
+    "kidney",
+    "nephron",
+    "selective reabsorption"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Visible movement alone is a sufficient definition of life.",
+      "correction": "Visible movement is evidence but not a complete criterion; continuous molecular movement and maintenance processes are essential to living organisation."
+    },
+    {
+      "claim": "Plants obtain food directly from the soil.",
+      "correction": "Green plants make carbohydrates by photosynthesis from carbon dioxide and water using sunlight and chlorophyll; roots supply water and minerals, not ready-made food."
+    },
+    {
+      "claim": "Bile digests fats because it contains a fat-digesting enzyme.",
+      "correction": "Bile makes the acidic food alkaline and breaks large fat globules into smaller droplets; lipase is the enzyme that breaks down emulsified fats."
+    },
+    {
+      "claim": "Breathing and cellular respiration are the same process.",
+      "correction": "Breathing exchanges gases with the environment, while cellular respiration breaks down food in cells to release energy and make ATP."
+    },
+    {
+      "claim": "All carbon dioxide is carried by red blood cells.",
+      "correction": "Oxygen is mainly carried by haemoglobin in red blood corpuscles, while carbon dioxide is more soluble in water and is mostly transported in dissolved form in blood."
+    },
+    {
+      "claim": "Xylem and phloem both move materials only upward.",
+      "correction": "Xylem mainly carries water and minerals upward, while phloem translocates food according to need in both upward and downward directions."
+    },
+    {
+      "claim": "Urine is produced by filtering out only wastes, with no useful substances entering the filtrate.",
+      "correction": "The initial filtrate contains water, glucose, amino acids, and salts; useful substances and much water are selectively reabsorbed in nephron tubules."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activities 5.1 and 5.2 to reason that chlorophyll and carbon dioxide are necessary for photosynthesis.",
+    "Use NCERT Activity 5.3 to infer the action of salivary amylase on starch.",
+    "Use NCERT Activities 5.4 and 5.5 to compare carbon dioxide in exhaled air and fermentation products.",
+    "Use NCERT Exercise 8 and Figure 5.8 to compare aerobic and anaerobic breakdown of pyruvate.",
+    "Use NCERT Exercise 11 and Figure 5.11 to trace double circulation through the human heart.",
+    "Use NCERT Activity 5.8 and Exercise 12 to compare xylem transport with phloem translocation.",
+    "Use NCERT Exercise 13 to compare the thin exchange surfaces of alveoli and nephrons."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES section contains Questions 1-13, including four multiple-choice questions and descriptive questions on nutrition, respiration, transport, and excretion.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

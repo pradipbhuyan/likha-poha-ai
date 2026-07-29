@@ -1,0 +1,175 @@
+CBSE Grade 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2020-21
+Subject: Science
+Source Subject Code: Science
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2020_21/Science-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2020_21/Science-MS.pdf
+Total Questions: 32
+======================================================================
+
+TASK: For each question provide answers in the JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+RULES: MCQ/AR: answer_text = exact option text. Check marking scheme PDF.
+Diagram questions: use NEEDS_MANUAL_REVIEW_diagram_dependent if no VI alternate.
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Lactic acid production has occurred in the athlete while running in the 400 m race. Which of the following processes explains this event?
+  (A) a) Aerobic respiration
+  (B) b) Anaerobic respiration
+  (C) c) Fermentation
+  (D) d) Breathing
+
+Q13 [mcq, 1m, Sec A]
+State the role of pancreas in digestion of food.
+  (A) Both A and R are true, and R is correct explanation of the assertion.
+  (B) Both A and R are true, but R is not the correct explanation of the assertion.
+  (C) A is true, but R is false.
+  (D) A is false, but R is true.
+
+Q14 [assertion_reason, 1m, Sec A]
+Assertion: After white washing the walls, a shiny white finish on walls is obtained after two to three days. Reason: Calcium Oxide reacts with Carbon dioxide to form Calcium Hydrogen Carbonate which gives shiny white finish.
+
+Q15 [assertion_reason, 1m, Sec A]
+Assertion: Food chain is responsible for the entry of harmful chemicals in our bodies. Reason: The length and complexity of food chains vary greatly.
+
+Q16 [assertion_reason, 1m, Sec A]
+Assertion: A geneticist crossed a pea plant having violet flowers with a pea plant with white flowers, he got all violet flowers in first generation. Reason: White colour gene is not passed on to next generation.
+
+Q17 [short_answer, 4m, Sec A]
+Read the following and answer any four questions from 17 (i) to 17 (v) All living cells require energy for various activities. This energy is available by the breakdown of simple carbohydrates either using oxygen or without using oxygen.
+
+Q18 [mcq, 1m, Sec A]
+Read the following and answer any four questions from 18 (i) to 18 (v). Metallic Character The ability of an atom to donate electrons and form positive ion (cation) is known as electropositivity or metallic character. Down the group, metallic character increases due to increase in atomic size and across the period, from
+  (A) 1x 4
+
+Q19 [long_answer, 5m, Sec I]
+Read the following and answer any four questions from 19 (i) to 19 (v) Sumati wanted to see the stars of the night sky. She knows that she needs a telescope to see those distant stars. She finds out that the telescopes, which are made of lenses, are called refracting telescopes and the ones which are made of mirrors are called reflecting telescopes.
+
+Q2 [long_answer, 5m, Sec B]
+Study the graph below that represents the amount of energy supplied with respect to the time while an athlete is running at full speed.
+  [NOTE: diagram]
+
+Q20 [mcq, 1m, Sec A]
+A solenoid is a long helical coil of wire through which a current is run in order to create a magnetic field. The magnetic field of the solenoid is the superposition of the fields due to the current through each coil. It is nearly uniform inside the solenoid and close to zero outside and is similar to the field of a bar magnet having a north pole at one end and a south pole at the other depending upon the direction of current flow. The magnetic field produced in the solenoid is dependent on a few factors such as, the current in the coil, number of turns per unit length etc.
+  (A) The unit of magnetic field as given in the graph attached is in milli-Tesla (mT) and the current is given in Ampere.
+  (B) The magnetic field lines produced inside the solenoid are similar to that of ...
+  (C) The bar will be magnetised as long as there is current in the circuit.
+  (D) The bar will be magnetised permanently.
+  [NOTE: diagram]
+
+Q21 [short_answer, 2m, Sec B]
+Bile juice does not have any digestive enzyme but still plays a significant role in the process of digestion. Justify the statement.
+
+Q22 [short_answer, 2m, Sec B]
+State the events occurring during the process of photosynthesis. Is it essential that these steps take place one after the other immediately?
+
+Q23 [short_answer, 2m, Sec B]
+Give a test that can be used to confirm the presence of carbon in a compound. With a valency of 4, how is carbon able to attain noble gas configuration in its compounds?
+
+Q24 [mcq, 1m, Sec A]
+The following observations were made by a student on treating four metals P, Q, R and S with the given salt solutions: Sample | MgSO4(aq) | Zn(NO3)2(aq) | CaSO4(aq) | Na2SO4(aq) | P | No reaction | Reaction occurs | Reaction occurs | No reaction | Q | Reaction occurs | Reaction occurs | Reaction occurs | Reaction occurs | R | No Reaction | Reaction Occurs | No Reaction | No Reaction | S | No Reaction | No Reaction | No Reaction | No Reaction Based on the above observations: (a) Arrange the given samples in the increasing order of reactivity (b) Write the chemical formulae of products formed when Q reacts with CuSO4 solution.
+  (A) P
+  (B) Q
+  (C) R
+  (D) S
+
+Q25 [short_answer, 2m, Sec B]
+A student observes the above phenomenon in the lab as a white light passes through a prism. Among many other colours, he observed the position of the two colours Red and Violet. What is the phenomenon called? What is the reason for the violet light to bend more than the red light?
+  [NOTE: diagram]
+
+Q26 [mcq, 2m, Sec C]
+A student has two resistors- 2 Ω and 3 Ω. She has to put one of them in place of R2 as shown in the circuit. The current that she needs in the entire circuit is exactly 9A. Show by calculation which of the two resistors she should choose.
+  (A) 2 Ω
+  (B) 3 Ω
+  (C) 4 Ω
+  (D) 6 Ω
+  [NOTE: diagram]
+
+Q27 [short_answer, 3m, Sec C]
+After self-pollination in pea plants with round, yellow seeds, following types of seeds were obtained by Mendel:
+
+Q28 [short_answer, 3m, Sec C]
+In humans, there is a 50% probability of the birth of a boy and 50 % probability that a girl will be born. Justify the statement on the basis of the mechanism of sex-determination in human beings.
+
+Q29 [short_answer, 3m, Sec C]
+Plastic cups were used to serve tea in trains in early days- these could be returned to the vendors, cleaned and reused. Later,Kulhads were used instead of plastic cups. Now, paper cups are used for serving tea. What are the reasons for the shift from Plastic to Kulhads and then finally to paper cups?
+
+Q3 [mcq, 1m, Sec A]
+If the polarity of the battery connected to the wire is reversed, how would the direction of the magnetic field be changed?
+  (A) r1
+  (B) r2
+  (C) r3
+  (D) r4
+
+Q30 [mcq, 3m, Sec A]
+Which of the following reactions is/ are an endothermic reaction(s) where decomposition also happens? Respiration Heating of lead nitrate Decomposition of organic matter Electrolysis of acidified water
+  (A) Respiration
+  (B) Heating of lead nitrate
+  (C) Decomposition of organic matter
+  (D) Electrolysis of acidified water
+
+Q31 [mcq, 3m, Sec B]
+The following table shows the position of five elements A, B, C, D and E in the modern periodic table. Group Period
+  (A) A
+  (B) B
+  (C) C
+  (D) D
+
+Q32 [mcq, 3m, Sec A]
+Explain the formation of Calcium Chloride with the help of electron dot structure. (At numbers: Ca = 20; Cl = 17)
+  (A) Why do ionic compounds not conduct electricity in solid state but conduct electricity in molten and aqueous state?
+  (B) In which medium does the light move faster, water or diamond?
+  (C) What is the refractive index of diamond with respect to water?
+
+Q33 [mcq, 3m, Sec A]
+Refractive index of water with respect to air is 1.33 and that of diamond is 2.42.
+  (A) In which medium does the light move faster, water or diamond?
+  (B) What is the refractive index of diamond with respect to water?
+
+Q34 [mcq, 5m, Sec D]
+Match the following pH values 1, 7, 10, 13 to the solutions given below: Milk of magnesia Gastric juices Brine Aqueous Sodium hydroxide. Amit and Rita decided to bake a cake and added baking soda to the cake batter.
+  (A) Milk of magnesia
+  (B) Gastric juices
+  (C) Brine
+  (D) Aqueous Sodium hydroxide
+
+Q35 [mcq, 5m, Sec O]
+Trace the changes that take place in a flower from gamete formation to fruit formation.
+  (A) 
+  (B) 
+  (C) 
+  (D) 
+
+Q36 [mcq, 5m, Sec O]
+In the given circuit, A, B, C and D are four lamps connected with a battery of 60V.
+  (A) 
+  (B) 
+  (C) 
+  (D) 
+
+Q4 [mcq, 1m, Sec A]
+Explain the rule that is used to find the direction of the magnetic field for a straight current carrying conductor.
+  (A) r1
+  (B) r2
+  (C) r3
+  (D) r4
+
+Q5 [mcq, 1m, Sec A]
+Both a spherical mirror and a thin spherical lens have a focal length of (-)15 cm. What type of mirror and lens are these? 1
+
+Q6 [mcq, 1m, Sec A]
+The image formed by a concave mirror is observed to be real, inverted and larger than the object. Where is the object placed? OR Name the part of a lens through which a ray of light passes without suffering any deviation.
+
+Q7 [mcq, 1m, Sec A]
+In the arrangement shown in figure there are two coils wound on a non-conducting cylindrical rod. Initially the key is not inserted in the circuit. Later the key is inserted and then removed shortly after. What are the two observations that can be noted from the galvanometer reading?
+  [NOTE: diagram]
+
+Q8 [mcq, 1m, Sec A]
+Draw the magnetic field lines around a straight current carrying conductor. 1 9 Two unequal resistances are connected in parallel. If you are not provided with any other parameters (eg. numerical values of I and R), what can be said about the voltage drop across the two resistors? OR Some work is done to move a charge Q from infinity to a point A in space. The potential of the point A is given as V. What is the work done to move this charge from infinity in terms of Q and V?
+
+======================================================================
+Return the complete JSON array.

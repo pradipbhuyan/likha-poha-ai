@@ -1,0 +1,90 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 7: Coordinate Geometry",
+    "central_question": "How can coordinates and algebra be used to calculate distances, test geometric properties and locate points that divide line segments in given ratios?",
+    "in_scope_units": [
+      "Introduction: reviews coordinate axes, abscissa and ordinate and presents coordinate geometry as an algebraic tool for studying figures.",
+      "Distance Formula: derives the distance between two points using Pythagoras Theorem and applies it to triangles, quadrilaterals, collinearity and equidistant points.",
+      "Section Formula: derives coordinates of a point dividing a segment internally in a given ratio, including the midpoint and trisection cases.",
+      "Summary and Note to the Reader: consolidates distance, origin-distance, internal section and midpoint formulae and excludes external division from the present chapter."
+    ],
+    "banned_topics": [
+      "The external section formula, which the note explicitly postpones to higher classes.",
+      "Slope, equation of a line and area of a triangle by determinant formula, which are not developed in the supplied chapter text.",
+      "Detailed graphing of linear equations and parabolas, which are only recalled from earlier chapters.",
+      "Three-dimensional coordinate geometry."
+    ],
+    "must_include_keywords": [
+      "coordinate axes",
+      "x-coordinate",
+      "abscissa",
+      "y-coordinate",
+      "ordinate",
+      "x-axis",
+      "y-axis",
+      "origin",
+      "ordered pair",
+      "quadrant",
+      "Pythagoras Theorem",
+      "distance formula",
+      "non-negative distance",
+      "distance from origin",
+      "triangle",
+      "right triangle",
+      "isosceles triangle",
+      "square",
+      "quadrilateral",
+      "diagonal",
+      "collinear points",
+      "equidistant",
+      "perpendicular bisector",
+      "section formula",
+      "internal division",
+      "ratio m₁:m₂",
+      "midpoint formula",
+      "trisection",
+      "point of intersection",
+      "parallelogram",
+      "diagonals bisect each other"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The x-coordinate is the distance from the x-axis.",
+        "correction": "The x-coordinate or abscissa measures directed distance from the y-axis; the y-coordinate or ordinate measures directed distance from the x-axis."
+      },
+      {
+        "claim": "The distance formula can give a negative distance if coordinate differences are negative.",
+        "correction": "Coordinate differences are squared and the positive square root is taken, so distance is always non-negative."
+      },
+      {
+        "claim": "To test collinearity, it is enough to find two equal distances.",
+        "correction": "For three distinct points with one lying between the other two, collinearity is established by a relation such as AB + BC = AC."
+      },
+      {
+        "claim": "In the section formula, m₁ multiplies the coordinates of the first endpoint A.",
+        "correction": "For PA:PB = m₁:m₂, the coordinates are ((m₁x₂ + m₂x₁)/(m₁+m₂), (m₁y₂ + m₂y₁)/(m₁+m₂)); each weight multiplies the opposite endpoint."
+      },
+      {
+        "claim": "A point on the y-axis can be written as (x, 0).",
+        "correction": "A point on the y-axis has the form (0, y), while a point on the x-axis has the form (x, 0)."
+      }
+    ],
+    "recommended_example_progression": [
+      "Start with the Section 7.2 town problem and Exercise 7.1 Questions 1 and 2 to derive and practise the distance formula.",
+      "Use NCERT Examples 1, 2 and 3 to classify a triangle, verify a square and test collinearity.",
+      "Use NCERT Examples 4 and 5 for equidistant-point equations and axis constraints.",
+      "Derive the internal section formula from the relay-tower situation and practise it with NCERT Example 6.",
+      "Finish with NCERT Examples 7 to 10 for finding a ratio, trisection, an axis intersection and an unknown parallelogram coordinate."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter practice is contained in NCERT Exercises 7.1 and 7.2, covering the distance formula and the internal section or midpoint formula."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Coordinate Geometry\n\n## What you will learn\nYou will review how points are represented on coordinate axes and derive the distance formula. You will calculate distances on an axis, across quadrants and from the origin.\n\n## Simple explanation\nCoordinates turn a geometric position into an ordered pair. The horizontal change between two points and the vertical change between them form the legs of a right triangle, so Pythagoras Theorem gives the direct distance.\n\n## Step-by-step breakdown\n- **Coordinates**: The x-coordinate or abscissa is the directed distance from the y-axis, and the y-coordinate or ordinate is the directed distance from the x-axis.\n- **Points on axes**: A point on the x-axis has form (x, 0), while a point on the y-axis has form (0, y).\n- **Horizontal and vertical changes**: For P(x₁, y₁) and Q(x₂, y₂), the horizontal change is x₂ − x₁ and the vertical change is y₂ − y₁.\n- **Distance formula**: PQ = √[(x₂ − x₁)² + (y₂ − y₁)²].\n- **Positive root**: Distance is non-negative, so only the positive square root is used.\n- **Distance from origin**: For P(x, y), OP = √(x² + y²).\n\n## Worked example\nQuestion: Solve NCERT Exercise 7.1 Question 2 and find the distance between (0, 0) and (36, 15), representing towns A and B.\n\nSolution:\n- Step 1: Let A(0, 0) and B(36, 15).\n- Step 2: Use AB = √[(36 − 0)² + (15 − 0)²].\n- Step 3: AB = √(36² + 15²) = √(1296 + 225).\n- Step 4: AB = √1521 = 39.\n- Final answer: **The distance between the towns is 39 km.**\n\n## Common mistake\nDo not add the coordinate differences directly. The distance is not (x₂ − x₁) + (y₂ − y₁); the differences must be squared, added and square-rooted.\n\n## Quick check question\nQuestion: Find the distance in NCERT Exercise 7.1 Question 1(i) between (2, 3) and (4, 1).\nAnswer: The distance is 2√2 units.\nExplanation: √[(4 − 2)² + (1 − 3)²] = √(2² + (−2)²) = √8 = 2√2.\n\n## Summary\n- Coordinates locate points using ordered pairs.\n- Points on the axes have one coordinate equal to zero.\n- The distance formula follows from Pythagoras Theorem.\n- Squaring removes the sign of coordinate differences.\n- Distance is always taken as the non-negative square root.",
+    "Core explanation": "# Core explanation: Coordinate Geometry\n\n## What you will learn\nYou will use distances to identify triangles, quadrilaterals and collinear points. You will learn to compare squared lengths when that avoids unnecessary square roots.\n\n## Simple explanation\nCoordinates do more than measure separation. Once all relevant side and diagonal lengths are known, familiar geometric properties can be checked algebraically: equal sides indicate isosceles figures, the Pythagorean relation identifies a right angle and a sum of segment lengths tests collinearity.\n\n## Step-by-step breakdown\n- **Triangle existence**: Three distances form a triangle when the sum of any two is greater than the third.\n- **Right triangle test**: If the square of the longest side equals the sum of squares of the other two, the triangle is right-angled.\n- **Equal-side test**: Equal pairwise distances can establish an isosceles triangle or a rhombus-type side condition.\n- **Square test used in NCERT Example 2**: Four equal sides together with equal diagonals establish a square.\n- **Collinearity by distance**: If B lies between A and C and AB + BC = AC, the three points are collinear.\n- **Squared distances**: When only equality or a Pythagorean relation is needed, comparing squared distances is often simpler and exact.\n\n## Worked example\nQuestion: Reproduce NCERT Example 2 and show that A(1, 7), B(4, 2), C(−1, −1) and D(−4, 4) are vertices of a square.\n\nSolution:\n- Step 1: AB² = (4 − 1)² + (2 − 7)² = 3² + (−5)² = 9 + 25 = 34.\n- Step 2: BC² = (−1 − 4)² + (−1 − 2)² = (−5)² + (−3)² = 25 + 9 = 34.\n- Step 3: CD² = (−4 + 1)² + (4 + 1)² = (−3)² + 5² = 9 + 25 = 34.\n- Step 4: DA² = (1 + 4)² + (7 − 4)² = 5² + 3² = 25 + 9 = 34.\n- Step 5: AC² = (−1 − 1)² + (−1 − 7)² = (−2)² + (−8)² = 4 + 64 = 68.\n- Step 6: BD² = (−4 − 4)² + (4 − 2)² = (−8)² + 2² = 64 + 4 = 68.\n- Step 7: Thus AB = BC = CD = DA and AC = BD.\n- Final answer: **ABCD is a square.**\n\n## Common mistake\nEqual diagonals alone do not prove that a quadrilateral is a square. The NCERT solution also verifies that all four sides are equal.\n\n## Quick check question\nQuestion: In NCERT Example 3, are A(3, 1), B(6, 4) and C(8, 6) collinear?\nAnswer: Yes, the three points are collinear.\nExplanation: AB = 3√2, BC = 2√2 and AC = 5√2, so AB + BC = AC.\n\n## Summary\n- Distance calculations can verify geometric properties.\n- The converse of Pythagoras Theorem identifies a right angle.\n- Equal sides and diagonals help classify quadrilaterals.\n- Collinearity can be tested by an additive distance relation.\n- Squared distances often reduce algebraic work.",
+    "Worked examples": "# Worked examples: Coordinate Geometry\n\n## What you will learn\nYou will form equations for points that are equidistant from two fixed points. You will also apply the special coordinate form of a point constrained to the x-axis or y-axis.\n\n## Simple explanation\nIf P is equidistant from A and B, then PA = PB. Squaring both sides removes square roots and produces an algebraic equation. A point on an axis has one coordinate fixed at zero, which reduces the number of unknowns.\n\n## Step-by-step breakdown\n- **Equidistant condition**: PA = PB can be written as PA² = PB².\n- **Expansion**: Substitute the distance formula, expand both sides and cancel common x² and y² terms.\n- **Perpendicular bisector link**: The set of points equidistant from A and B lies on the perpendicular bisector of AB.\n- **Point on the x-axis**: Use P(x, 0).\n- **Point on the y-axis**: Use P(0, y).\n- **Verification**: Substitute the final coordinate into both distances to confirm equality.\n\n## Worked example\nQuestion: Solve NCERT Example 5: Find the point on the y-axis equidistant from A(6, 5) and B(−4, 3).\n\nSolution:\n- Step 1: A point on the y-axis has the form P(0, y).\n- Step 2: Since P is equidistant from A and B, PA² = PB².\n- Step 3: (6 − 0)² + (5 − y)² = (−4 − 0)² + (3 − y)².\n- Step 4: 36 + 25 − 10y + y² = 16 + 9 − 6y + y².\n- Step 5: 61 − 10y = 25 − 6y.\n- Step 6: 36 = 4y, so y = 9.\n- Step 7: Therefore, P = (0, 9). Checking gives PA² = 36 + 16 = 52 and PB² = 16 + 36 = 52.\n- Final answer: **The required point is (0, 9).**\n\n## Common mistake\nDo not represent a point on the y-axis as (y, 0). Its x-coordinate must be zero, so the correct form is (0, y).\n\n## Quick check question\nQuestion: Solve NCERT Exercise 7.1 Question 7: Find the point on the x-axis equidistant from (2, −5) and (−2, 9).\nAnswer: The required point is (−7, 0).\nExplanation: Let P(x, 0). Equating squared distances gives (x − 2)² + 25 = (x + 2)² + 81, which simplifies to −8x = 56 and hence x = −7.\n\n## Summary\n- Equidistant points satisfy equal squared distances.\n- Squaring avoids carrying radicals through the algebra.\n- Axis constraints fix one coordinate at zero.\n- Equidistant points lie on a perpendicular bisector.\n- Always verify the final coordinate when practical.",
+    "Exam-style problems": "# Exam-style problems: Coordinate Geometry\n\n## What you will learn\nYou will derive and apply the internal section formula and its midpoint case. You will learn why each ratio number multiplies the coordinates of the opposite endpoint.\n\n## Simple explanation\nA point dividing a segment is a weighted average of its endpoints. If P is closer to A, the coordinate of B receives the larger weight in the formula, which is why the ratio numbers appear with the opposite endpoints.\n\n## Step-by-step breakdown\n- **Internal division**: If P divides AB internally, P lies between A and B.\n- **Ratio convention**: PA:PB = m₁:m₂.\n- **Section formula**: P = ((m₁x₂ + m₂x₁)/(m₁ + m₂), (m₁y₂ + m₂y₁)/(m₁ + m₂)).\n- **Opposite weighting**: m₁ multiplies the coordinates of B and m₂ multiplies the coordinates of A.\n- **k:1 form**: For ratio k:1, P = ((kx₂ + x₁)/(k + 1), (ky₂ + y₁)/(k + 1)).\n- **Midpoint formula**: For ratio 1:1, midpoint = ((x₁ + x₂)/2, (y₁ + y₂)/2).\n\n## Worked example\nQuestion: Solve NCERT Example 6: Find the point dividing the segment joining (4, −3) and (8, 5) internally in the ratio 3:1.\n\nSolution:\n- Step 1: Let A(4, −3), B(8, 5) and PA:PB = 3:1.\n- Step 2: Use x = [3(8) + 1(4)]/(3 + 1).\n- Step 3: x = (24 + 4)/4 = 28/4 = 7.\n- Step 4: Use y = [3(5) + 1(−3)]/(3 + 1).\n- Step 5: y = (15 − 3)/4 = 12/4 = 3.\n- Final answer: **The required point is (7, 3).**\n\n## Common mistake\nDo not pair the ratio numbers with the same-side endpoint. For PA:PB = 3:1, the 3 multiplies B's coordinates and the 1 multiplies A's coordinates.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 7.2 Question 1: Find the point dividing (−1, 7) and (4, −3) in the ratio 2:3.\nAnswer: The point is (1, 3).\nExplanation: x = [2(4) + 3(−1)]/5 = 1 and y = [2(−3) + 3(7)]/5 = 3.\n\n## Summary\n- The section formula locates an internal division point.\n- Ratio numbers multiply opposite endpoints.\n- The denominator is the sum of the ratio parts.\n- The midpoint is the 1:1 special case.\n- Apply the formula separately to x- and y-coordinates.",
+    "Revision and recap": "# Revision and recap: Coordinate Geometry\n\n## What you will learn\nYou will revise distance, section and midpoint methods through more advanced coordinate conditions. You will find an unknown ratio or axis-intersection point and use midpoint equality in a parallelogram.\n\n## Simple explanation\nMany exam questions reverse the usual process: instead of finding a dividing point from a ratio, they give the point and ask for the ratio. Axis questions add the condition x = 0 or y = 0, while parallelogram questions use the fact that diagonals bisect each other.\n\n## Step-by-step breakdown\n- **Finding an unknown ratio**: Substitute the known dividing point into the section formula and solve for m₁:m₂ or k:1.\n- **Trisection**: The two trisection points divide the original segment in ratios 1:2 and 2:1.\n- **Axis intersection**: On the y-axis set the section-formula x-coordinate to zero; on the x-axis set the y-coordinate to zero.\n- **Parallelogram property**: The midpoint of one diagonal equals the midpoint of the other diagonal.\n- **Diameter and centre**: The centre of a circle is the midpoint of a diameter, so the unknown endpoint can be found using midpoint equations.\n- **Scope limit**: Only internal division is treated here; external section formula is reserved for higher classes.\n\n## Worked example\nQuestion: Solve NCERT Example 9: Find the ratio in which the y-axis divides the segment joining (5, −6) and (−1, −4), and find the point of intersection.\n\nSolution:\n- Step 1: Let the y-axis point divide A(5, −6) and B(−1, −4) in the ratio k:1.\n- Step 2: By the section formula, its x-coordinate is [k(−1) + 1(5)]/(k + 1) = (−k + 5)/(k + 1).\n- Step 3: Since the point lies on the y-axis, x = 0. Thus (−k + 5)/(k + 1) = 0.\n- Step 4: Therefore, −k + 5 = 0 and k = 5. The ratio is 5:1.\n- Step 5: The y-coordinate is [5(−4) + 1(−6)]/(5 + 1) = (−20 − 6)/6 = −26/6 = −13/3.\n- Final answer: **The ratio is 5:1 and the point is (0, −13/3).**\n\n## Common mistake\nA fraction equals zero because its numerator is zero, not because its denominator is zero. In the y-axis problem, set −k + 5 = 0 while keeping k + 1 non-zero.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 7.2 Question 6: If (1, 2), (4, y), (x, 6) and (3, 5) are consecutive vertices of a parallelogram, find x and y.\nAnswer: x = 6 and y = 3.\nExplanation: The midpoint of the first and third vertices is ((1 + x)/2, 4), and the midpoint of the second and fourth is (7/2, (y + 5)/2). Equating coordinates gives 1 + x = 7 and 8 = y + 5.\n\n## Summary\n- Distance and section formulae translate geometry into algebra.\n- Unknown ratios are found by substituting the known division point.\n- Axis constraints set one coordinate to zero.\n- Trisection uses ratios 1:2 and 2:1.\n- Diagonals of a parallelogram have the same midpoint.\n- External division is outside this chapter's scope."
+  }
+}

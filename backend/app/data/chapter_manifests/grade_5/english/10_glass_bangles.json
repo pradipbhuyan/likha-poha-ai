@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 5",
+  "subject": "English",
+  "chapter": "10. Glass Bangles",
+  "central_question": "How can traditional craftsmanship and thoughtful innovation work together to help artisans, customers, and the wider community?",
+  "in_scope_units": [
+    "Let us Read: Firozabad, Ravi’s workshop, glass-bangle making, Diwali demand, Ananya’s designs, and community impact",
+    "Let us Think: process, character roles, innovation, pride, and local markets",
+    "Let us Learn: associations, punctuation, and past perfect sequence",
+    "Let us Speak and Listen: tongue twisters, regional crafts, and besan-laddu sequence",
+    "Let us Write, Do, Explore, Observe, and Self-assessment: festival writing, Rock Garden, craft places, rangoli, savings account, textbook observation, and reflection"
+  ],
+  "banned_topics": [
+    "The Panchayat well judgment",
+    "Gilli Danda rules",
+    "Frog habitat poem"
+  ],
+  "must_include_keywords": [
+    "Firozabad",
+    "Uttar Pradesh",
+    "glassware",
+    "Ravi",
+    "artisan",
+    "craftsmanship",
+    "clinking",
+    "furnace",
+    "heat glass",
+    "shape",
+    "cooling",
+    "traditional Indian designs",
+    "Diwali",
+    "Ananya",
+    "modern elements",
+    "floral patterns",
+    "geometric shapes",
+    "special collection",
+    "customers",
+    "community",
+    "local artisans",
+    "packing",
+    "transportation",
+    "innovation",
+    "word association",
+    "capital letters",
+    "full stop",
+    "comma",
+    "question mark",
+    "past perfect",
+    "had completed",
+    "past simple",
+    "first action",
+    "second action",
+    "tongue twisters",
+    "besan laddus",
+    "sequence",
+    "festival paragraph",
+    "Rock Garden Chandigarh",
+    "Madhubani painting",
+    "Paithani Saree",
+    "Blue pottery",
+    "Phulkari embroidery",
+    "rangoli",
+    "Savings Account",
+    "interest",
+    "Fixed Deposit",
+    "Recurring Deposit",
+    "Self-assessment 2"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Ananya rejects the traditional craft.",
+      "correction": "She combines traditional designs with modern floral patterns and geometric shapes."
+    },
+    {
+      "claim": "The success helps only Ravi and Ananya.",
+      "correction": "It creates more work for local artisans and jobs in packing and transportation."
+    },
+    {
+      "claim": "Past perfect uses has or have plus a verb.",
+      "correction": "The chapter’s example uses had completed; standard past perfect is had plus the past participle. The printed rule line with has or have does not match its own example."
+    },
+    {
+      "claim": "The listening passage is about Aarav and Meera.",
+      "correction": "The passage names Arjun and Meera; the later instruction using Aarav is inconsistent with the passage."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Let us Think A to explain the bangle-making process, Ananya’s contribution, and community benefit.",
+    "Use Let us Learn B to restore capitals and punctuation in the supplied sentences.",
+    "Use the past-perfect table to identify earlier and later past actions by meaning.",
+    "Use Let us Listen to put the supplied laddu-making actions in sequence.",
+    "Use Let us Explore to explain the Savings Account example and distinguish the research prompts for Fixed and Recurring Deposits."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "There is no separate final exercise set; the chapter continues through Let us Think, Learn, Speak, Listen, Write, Do, Explore, Observe, Answer Key, Self-assessment 2, and reading logs.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

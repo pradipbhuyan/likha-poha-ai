@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: Federalism",
+  "central_question": "How does federalism divide and practise power across national, State and local governments while preserving unity and accommodating regional diversity?",
+  "in_scope_units": [
+    "What is federalism: federal and unitary systems, features and objectives.",
+    "Routes to federation: coming together and holding together federations.",
+    "What makes India a federal country: Union of States, tiers and constitutional distribution of power.",
+    "Union, State and Concurrent Lists, residuary powers, special provisions and Union Territories.",
+    "Constitutional safeguards: amendment procedure, judiciary and financial powers.",
+    "How federalism is practised: linguistic States, language policy and Centre–State relations.",
+    "Decentralisation in India: the 1992 amendment, Panchayati Raj and urban local government.",
+    "Achievements and limits of the third tier and local self-government."
+  ],
+  "banned_topics": [
+    "Horizontal power sharing among legislature, executive and judiciary as the main focus, which belongs to Power-sharing.",
+    "Detailed ideologies and organisational challenges of political parties, which belongs to Political Parties.",
+    "Detailed gender, religion and caste divisions, which belongs to Gender, Religion and Caste."
+  ],
+  "must_include_keywords": [
+    "federalism",
+    "unitary government",
+    "jurisdiction",
+    "constitutional guarantee",
+    "financial autonomy",
+    "mutual trust",
+    "coming together federation",
+    "holding together federation",
+    "Union of States",
+    "Union Government",
+    "State Governments",
+    "Union List",
+    "State List",
+    "Concurrent List",
+    "residuary subjects",
+    "Article 371",
+    "Union Territories",
+    "High Courts",
+    "Supreme Court",
+    "linguistic States",
+    "official language",
+    "Scheduled Languages",
+    "English",
+    "Hindi",
+    "Centre–State relations",
+    "regional parties",
+    "coalition government",
+    "decentralisation",
+    "1992 Constitutional amendment",
+    "Panchayati Raj",
+    "Gram Panchayat",
+    "Gram Sabha",
+    "Panchayat Samiti",
+    "Zilla Parishad",
+    "municipality",
+    "municipal corporation",
+    "State Election Commission"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "In a federation, the Central Government can order State Governments on every subject.",
+      "correction": "Each tier has constitutionally specified jurisdiction and is independently answerable to the people within its own sphere."
+    },
+    {
+      "claim": "India is not federal because the Constitution uses the phrase Union of States rather than the word federation.",
+      "correction": "The chapter states that the Indian Union is based on federal principles and contains the key features of federalism."
+    },
+    {
+      "claim": "Hindi is India’s national language.",
+      "correction": "The Constitution did not give national-language status to any one language; Hindi is the official language and English continues for official purposes."
+    },
+    {
+      "claim": "Decentralisation means local bodies remain fully controlled by State Governments.",
+      "correction": "The 1992 amendment made regular elections and reservations mandatory and required States to share powers and revenue with local bodies."
+    }
+  ],
+  "recommended_example_progression": [
+    "Differentiate federal and unitary government using NCERT Exercise 4.",
+    "Classify subjects under the three constitutional Lists using NCERT Exercise 9.",
+    "Evaluate India’s language policy using NCERT Exercise 7.",
+    "Compare local government before and after 1992 using NCERT Exercise 5.",
+    "Test the meaning of federation through NCERT Exercise 12."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The NCERT end-of-chapter Exercises contain Questions 1–12 on maps, federal features, constitutional Lists, language policy, local government and conceptual application.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

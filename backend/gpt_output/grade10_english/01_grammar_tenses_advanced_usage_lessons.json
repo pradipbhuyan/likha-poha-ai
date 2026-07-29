@@ -1,0 +1,69 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "English",
+    "chapter": "Grammar: Tenses (Advanced Usage)",
+    "central_question": "How can a student choose and combine tense forms accurately when events occur at different times or appear in future time clauses and reported conditionals?",
+    "in_scope_units": [
+      "Mixed-tense sentences that describe two related events occurring at different times",
+      "Future time clauses with when, while, as soon as, until, before, and after",
+      "Backshift in reported conditional sentences",
+      "Simple present for definite future schedules and arrangements"
+    ],
+    "banned_topics": [
+      "Complete rules of active and passive voice",
+      "Determiners and articles",
+      "Subject-verb concord rules unrelated to tense choice"
+    ],
+    "must_include_keywords": [
+      "mixed tense",
+      "future perfect",
+      "simple present",
+      "time clause",
+      "main clause",
+      "when",
+      "while",
+      "as soon as",
+      "until",
+      "before",
+      "after",
+      "reported speech",
+      "backshift",
+      "conditional sentence",
+      "would",
+      "schedule",
+      "definite future arrangement",
+      "past perfect",
+      "sequence of events"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A future time clause must use will because it refers to the future.",
+        "correction": "After when, while, as soon as, until, before, and after, use the simple present for future meaning; keep will in the main clause."
+      },
+      {
+        "claim": "Both events in a sentence must always use the same tense.",
+        "correction": "Related events may correctly use different tenses when their time relationship is different, such as simple present in a time clause with future perfect in the main clause."
+      },
+      {
+        "claim": "In reported conditionals, only the main clause changes tense.",
+        "correction": "When the reporting verb creates a past-time frame, both the if-clause and the main clause shift consistently, for example study/will becomes studied/would."
+      }
+    ],
+    "recommended_example_progression": [
+      "Fill in a blank using future perfect with a simple-present time clause",
+      "Correct the use of will inside a future time clause",
+      "Rewrite a direct conditional statement in reported speech",
+      "Complete a timetable sentence using the simple present",
+      "Correct a mixed-tense sequencing error using the past perfect"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice uses gap filling, sentence completion, dialogue reporting, and error correction in mixed-tense contexts."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Grammar: Tenses (Advanced Usage)\n\n## What you will learn\nYou will learn why one sentence may use two different tenses. You will also learn to show which event happens first and which event is completed later.\n\n## Simple explanation\nAdvanced tense use is mainly about time relationships. The tense of each verb must match the time of its own event, not simply copy the tense of the other verb in the sentence.\n\n## Step-by-step breakdown\n- **Mixed-tense sentence**: Use different tenses when two related actions belong to different time points.\n- **Future perfect + simple present**: Structure: main clause with will have + past participle, followed by a time clause in the simple present. Example: By the time he arrives, we will have finished dinner.\n- **Sequence of events**: The future perfect shows an action completed before another future action expressed in the simple present time clause.\n\n## Worked example\nQuestion: Fill in the blank with the correct form of complete: 'By the time the teacher arrives, the students ___ the display.'\n\nSolution:\n- Step 1: The words 'By the time' show that one future action will be completed before another future action.\n- Step 2: Use future perfect in the main clause: will have + past participle completed.\n- Final answer: By the time the teacher arrives, the students will have completed the display.\n\n## Common mistake\nIncorrect: 'By the time the teacher will arrive, the students will have completed the display.' The time clause must use the simple present: 'arrives'.\n\n## Quick check question\nQuestion: Complete the sentence: 'Before the guests arrive, we ___ dinner.' (finish)\nAnswer: Before the guests arrive, we will have finished dinner.\nExplanation: The action of finishing dinner will be complete before the future arrival, so the main clause uses future perfect while the time clause uses simple present.\n\n## Summary\n- Different events in one sentence may require different tenses.\n- Future perfect uses will have + past participle.\n- A future time clause normally uses the simple present.\n- Choose tense according to the time of each event.",
+    "Core explanation": "# Core explanation: Grammar: Tenses (Advanced Usage)\n\n## What you will learn\nYou will learn the rule for future time clauses. You will practise using the simple present after time words even when the meaning is future.\n\n## Simple explanation\nWords such as when, while, as soon as, until, before, and after introduce time clauses. In these clauses, English normally uses the simple present for future time instead of will.\n\n## Step-by-step breakdown\n- **Time-clause structure**: Main clause: will + base verb; time clause: when/while/as soon as/until/before/after + simple present.\n- **Correct pattern**: I will call you when I reach home.\n- **Position of clauses**: The time clause may come first or second: 'When I reach home, I will call you' and 'I will call you when I reach home' are both correct.\n- **No will in the time clause**: Do not write 'when I will reach home' when the clause refers to future time.\n\n## Worked example\nQuestion: Identify and correct the error: 'As soon as the bell will ring, the students will leave the room.'\n\nSolution:\n- Step 1: The clause beginning with 'as soon as' is a future time clause.\n- Step 2: Replace 'will ring' with the simple present 'rings'.\n- Final answer: As soon as the bell rings, the students will leave the room.\n\n## Common mistake\nStudents often place will in both clauses. The future marker belongs in the main clause, while the time clause takes the simple present.\n\n## Quick check question\nQuestion: Fill in the blank: 'We will wait here until the bus ___.' (arrive)\nAnswer: We will wait here until the bus arrives.\nExplanation: The clause introduced by 'until' is a future time clause, so it takes the simple present 'arrives', not 'will arrive'.\n\n## Summary\n- Use simple present after future time connectors.\n- Keep will in the main clause when needed.\n- The rule applies to when, while, as soon as, until, before, and after.\n- Clause order does not change the tense rule.",
+    "Worked examples": "# Worked examples: Grammar: Tenses (Advanced Usage)\n\n## What you will learn\nYou will learn how a conditional sentence changes when it is reported. You will keep the tense shift consistent in both parts of the conditional.\n\n## Simple explanation\nWhen a present conditional is reported after a past reporting verb, the if-clause and the main clause usually shift together. Present simple changes to past simple, and will changes to would.\n\n## Step-by-step breakdown\n- **Direct conditional**: Pattern: If + simple present, will + base verb. Example: If I study, I will pass.\n- **Reported conditional**: Pattern after a past reporting verb: if + past simple, would + base verb.\n- **Pronoun consistency**: Change pronouns to match the speaker and listener in the reporting context.\n- **Complete backshift**: Do not shift only one clause; both related clauses must fit the past reporting frame.\n\n## Worked example\nQuestion: Rewrite in reported speech: Riya said, 'If I practise regularly, I will improve.'\n\nSolution:\n- Step 1: The reporting verb 'said' is in the past, so the conditional is backshifted.\n- Step 2: Change 'I practise' to 'she practised' and 'I will improve' to 'she would improve'.\n- Final answer: Riya said that if she practised regularly, she would improve.\n\n## Common mistake\nIncorrect: 'Riya said that if she practises regularly, she would improve.' This mixes an unshifted if-clause with a shifted main clause.\n\n## Quick check question\nQuestion: Rewrite in reported speech: Aman said, 'If I finish early, I will help you.'\nAnswer: Aman said that if he finished early, he would help me.\nExplanation: The reporting verb is past, so 'finish' changes to 'finished', 'will' changes to 'would', and the pronouns change according to the reporting context.\n\n## Summary\n- Present conditional forms backshift in reported speech.\n- Study/will becomes studied/would in the given pattern.\n- Both clauses must shift consistently.\n- Pronouns must match the new reporting viewpoint.",
+    "Exam-style problems": "# Exam-style problems: Grammar: Tenses (Advanced Usage)\n\n## What you will learn\nYou will learn to use the simple present for fixed future schedules and definite arrangements. You will distinguish a timetable statement from an ordinary prediction.\n\n## Simple explanation\nA scheduled event can be expressed in the simple present even when it happens in the future. The timetable or programme makes the event definite.\n\n## Step-by-step breakdown\n- **Scheduled future**: Use the simple present for fixed timetables: 'The train leaves at 6 p.m. tomorrow.'\n- **Form**: Subject + simple-present verb + future-time expression.\n- **Typical contexts**: Trains, buses, school terms, examinations, meetings, and published programmes may use this pattern when the time is fixed.\n- **Meaning**: The present form does not mean the event is happening now; it shows a definite schedule.\n\n## Worked example\nQuestion: Fill in the blank with the correct form of begin: 'The examination ___ at 9 a.m. tomorrow.'\n\nSolution:\n- Step 1: The sentence refers to a fixed examination schedule.\n- Step 2: Use the simple present form 'begins'.\n- Final answer: The examination begins at 9 a.m. tomorrow.\n\n## Common mistake\nIncorrect: 'The examination will begins at 9 a.m. tomorrow.' After will, the base form would be required, but the timetable rule here correctly uses the simple present 'begins'.\n\n## Quick check question\nQuestion: Complete the sentence: 'The school ___ next Monday.' (reopen)\nAnswer: The school reopens next Monday.\nExplanation: A fixed school schedule can be expressed in the simple present even though the event is in the future.\n\n## Summary\n- Fixed schedules can use the simple present.\n- A future-time expression may appear with a present-tense verb.\n- Use the third-person singular -s where required.\n- Choose this pattern for definite timetables, not uncertain predictions.",
+    "Revision and recap": "# Revision and recap: Grammar: Tenses (Advanced Usage)\n\n## What you will learn\nYou will revise mixed tense choice, time clauses, reported conditionals, and scheduled future events. You will also correct tense mismatches in sequential actions.\n\n## Simple explanation\nA strong tense answer checks three things: the time of each event, the connector joining the events, and whether the sentence is direct, reported, scheduled, or sequential.\n\n## Step-by-step breakdown\n- **Earlier past action**: Use the past perfect, had + past participle, for an action completed before another past action when the sequence needs to be made clear.\n- **Future time clause**: Use simple present after a time connector and future tense in the main clause where required.\n- **Reported conditional**: Shift both the if-clause and main clause consistently after a past reporting verb.\n- **Schedule**: Use simple present for a definite future timetable.\n\n## Worked example\nQuestion: Identify and correct the error: 'He finished his work after he will eat dinner.'\n\nSolution:\n- Step 1: Both actions are in the past, and eating happened before finishing the work.\n- Step 2: Replace 'will eat' with past perfect 'had eaten' to show the earlier past action.\n- Final answer: He finished his work after he had eaten dinner.\n\n## Common mistake\nDo not choose tense only from one time word. Check the relationship between all events; a past sequence may need past perfect, while a future time clause needs simple present.\n\n## Quick check question\nQuestion: Correct the sentence: 'When she will return, we will discuss the plan.'\nAnswer: When she returns, we will discuss the plan.\nExplanation: The clause beginning with 'when' is a future time clause, so it uses the simple present 'returns'.\n\n## Summary\n- Match each verb to its own time reference.\n- Use simple present in future time clauses.\n- Use consistent backshift in reported conditionals.\n- Use simple present for fixed schedules.\n- Use past perfect to clarify an earlier past action."
+  }
+}

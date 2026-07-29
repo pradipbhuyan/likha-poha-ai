@@ -1,0 +1,88 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 1
+Subject: Mathematics
+Source Subject Code: Maths
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Maths-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Maths-MS.pdf
+Total Questions: 23
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Maths-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+sin [ 𝜋 3 −sin-1 (− 2)] is equal to: a) 2 b) c) -1 d) 1
+
+Q10 [mcq, 1m, Sec A]
+sin (tan-1x), where |x| < 1, is equal to: a) 𝑥 √1−𝑥2 b) √1−𝑥2 c) √1+𝑥2 d) 𝑥 √1+𝑥2
+
+Q11 [mcq, 1m, Sec A]
+Let the relation R in the set A = {x ∈ Z : 0 ≤ x ≤ 12}, given by R = {(a, b) : |a – b| is a multiple of 4}. Then [1], the equivalence class containing 1, is: a) {1, 5, 9} b) {0, 1, 2, 5} c) 𝜙 d) A
+
+Q12 [mcq, 1m, Sec A]
+If ex + ey = ex+y , then 𝑑𝑦 𝑑𝑥 is: a) e y - x b) e x + y c) – e y - x d) 2 e x - y
+
+Q13 [mcq, 1m, Sec A]
+Given that matrices A and B are of order 3×n and m×5 respectively, then the order of matrix C = 5A +3B is: a) 3×5 b) 5×3 c) 3×3 d) 5×5
+
+Q14 [mcq, 1m, Sec A]
+If y = 5 cos x – 3 sin x, then 𝑑2𝑦 𝑑𝑥2 is equal to: a) - y b) y c) 25y d) 9y
+
+Q15 [mcq, 1m, Sec A]
+For matrix A =[ 2 5 −11 7], (𝑎𝑑𝑗𝐴)′ is equal to: a) [−2 −5 11 −7] b) [ 7 5 11 2] c) [ 7 11 −5 2 ] d) [ 7 −5 11 2 ]
+
+Q16 [mcq, 1m, Sec A]
+The points on the curve 𝑥2 9 + 𝑦2 16 = 1 at which the tangents are parallel to y- axis are: a) (0,±4) b) (±4,0) c) (±3,0) d) (0, ±3)
+
+Q17 [mcq, 1m, Sec A]
+Given that A = [𝑎𝑖𝑗] is a square matrix of order 3×3 and |A| = −7, then the value of ∑ 𝑎𝑖2𝐴𝑖2 𝑖=1 , where 𝐴𝑖𝑗 denotes the cofactor of element 𝑎𝑖𝑗 is: a) 7 b) -7 c) 0 d) 49
+
+Q18 [mcq, 1m, Sec A]
+If y = log(cos 𝑒 𝑥), then 𝑑𝑦 𝑑𝑥 is: a) cos 𝑒 𝑥−1 b) 𝑒−𝑥 cos 𝑒 𝑥 c) 𝑒 𝑥sin 𝑒 𝑥 d) − 𝑒 𝑥 tan 𝑒 𝑥
+
+Q19 [mcq, 1m, Sec A]
+Based on the given shaded region as the feasible region in the graph, at which point(s) is the objective function Z = 3x + 9y maximum? a) Point B b) Point C c) Point D d) every point on the line segment CD
+
+Q2 [mcq, 1m, Sec A]
+The value of k (k < 0) for which the function 𝑓 defined as 𝑓(𝑥) = { 1−𝑐𝑜𝑠𝑘𝑥 𝑥𝑠𝑖𝑛𝑥 , 𝑥 ≠ 0 2 , 𝑥 = 0 is continuous at 𝑥 = 0 is: a) ±1 b) −1 c) ± 2 d)
+
+Q20 [mcq, 1m, Sec A]
+The least value of the function 𝑓(𝑥) = 2𝑐𝑜𝑠𝑥+ 𝑥 in the closed interval [0, 𝜋 2] is: a) 2 b) 𝜋 6 + √3 c) 𝜋 2 d) The least value does not exist.
+
+Q21 [mcq, 1m, Sec B]
+a) −6, −12, −18 b) −6, −4, −9 c) −6, 4, 9 d) −6, 12, 18 33. A linear programming problem is as follows: 𝑀𝑖𝑛𝑖𝑚𝑖𝑧𝑒 𝑍 = 30𝑥 + 50𝑦 subject to the constraints, 3𝑥 + 5𝑦 ≥ 15 2𝑥 + 3𝑦 ≤ 18 𝑥 ≥ 0, 𝑦 ≥ 0 In the feasible region, the minimum value of Z occurs at a) a unique point b) no point c) infinitely many points d) two points only 34. The area of a trapezium is defined by function 𝑓 and given by 𝑓(𝑥) = (10 + 𝑥)√100 − 𝑥2, then the area when it is maximised is: a) 75𝑐𝑚2 b) 7√3𝑐𝑚2 c) 75√3𝑐𝑚2 d) 5𝑐𝑚2 35. If A is square matrix such that A2 = A, then (I + A)³ – 7 A is equal to: a) A b) I + A c) I − A d) I 36. If tan-1 x = y, then: a) −1 < y < 1 b) −𝜋 2 ≤ y ≤ 𝜋
+
+Q22 [mcq, 1m, Sec B]
+c) −𝜋 2 < y < 𝜋
+
+Q23 [mcq, 1m, Sec C]
+sinα 1 −sinα 1 sinα −1 −sinα 1 ], where 0 ≤ α ≤ 2π, then: a) |A|=0 b) |A| 𝜖(2, ∞) c) |A| 𝜖(2,4) d) |A| 𝜖[2,4]
+
+Q3 [mcq, 1m, Sec A]
+If A = [aij] is a square matrix of order 2 such that aij = {1, 𝑤ℎ𝑒𝑛 𝑖 ≠ 𝑗 0, 𝑤ℎ𝑒𝑛 𝑖 = 𝑗 , then A2 is: a) [1 0 1 0] b) |1 1 0 0| c) |1 1 1 0| d) [1 0 0 1]
+
+Q4 [mcq, 1m, Sec A]
+Value of 𝑘, for which A = [𝑘 8 4 2𝑘] is a singular matrix is: a) 4 b) -4 c) ±4 d) 0
+
+Q5 [mcq, 1m, Sec A]
+Find the intervals in which the function f given by f (x) = x 2 – 4x + 6 is strictly increasing: a) (– ∞, 2) ∪ (2, ∞) b) (2, ∞) c) (−∞, 2) d) (– ∞, 2]∪ (2, ∞)
+
+Q6 [mcq, 1m, Sec A]
+Given that A is a square matrix of order 3 and | A | = - 4, then | adj A | is equal to: a) -4 b) 4 c) -16 d) 16
+
+Q7 [mcq, 1m, Sec A]
+A relation R in set A = {1,2,3} is defined as R = {(1, 1), (1, 2), (2, 2), (3, 3)}. Which of the following ordered pair in R shall be removed to make it an equivalence relation in A? a) (1, 1) b) (1, 2) c) (2, 2) d) (3, 3)
+
+Q8 [mcq, 1m, Sec A]
+If [2𝑎 + 𝑏 𝑎 − 2𝑏 5𝑐 − 𝑑 4𝑐 + 3𝑑] = [ 4 −3 11 24], then value of a + b – c + 2d is: a) 8 b) 10 c) 4 d) –8
+
+Q9 [mcq, 1m, Sec A]
+The point at which the normal to the curve y = 𝑥 + 𝑥, x > 0 is perpendicular to the line 3x – 4y – 7 = 0 is: a) (2, 5/2) b) (±2, 5/2) c) (- 1/2, 5/2) d) (1/2, 5/2)
+
+======================================================================
+Return the complete JSON array.

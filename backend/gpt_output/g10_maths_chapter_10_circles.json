@@ -1,0 +1,90 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 10: Circles",
+    "central_question": "What geometric properties follow when lines touch a circle, and how can tangents from points on or outside the circle be analysed and used in proofs?",
+    "in_scope_units": [
+      "Introduction: classifies a line relative to a circle as non-intersecting, secant or tangent according to the number of common points.",
+      "Tangent to a Circle: develops tangent existence, point of contact and the theorem that a tangent is perpendicular to the radius at contact.",
+      "Number of Tangents from a Point on a Circle: distinguishes points inside, on and outside a circle and proves equality of tangent lengths from an external point.",
+      "Applications and Summary: applies tangent theorems to concentric circles, angle relations, chord lengths, circumscribed quadrilaterals and exam proofs."
+    ],
+    "banned_topics": [
+      "Area and circumference calculations for circles, sectors and segments.",
+      "Construction of tangents with ruler and compass as a separate construction chapter.",
+      "The tangent-chord angle theorem and cyclic-quadrilateral theorems, which are not developed in the supplied chapter.",
+      "Coordinate equations of circles and analytic tangent equations."
+    ],
+    "must_include_keywords": [
+      "circle",
+      "centre",
+      "radius",
+      "chord",
+      "line",
+      "non-intersecting line",
+      "secant",
+      "tangent",
+      "one common point",
+      "two common points",
+      "point of contact",
+      "special case of a secant",
+      "parallel tangents",
+      "Theorem 10.1",
+      "perpendicular",
+      "normal",
+      "inside point",
+      "point on the circle",
+      "external point",
+      "number of tangents",
+      "length of tangent",
+      "Theorem 10.2",
+      "equal tangents",
+      "RHS congruence",
+      "CPCT",
+      "Pythagoras Theorem",
+      "angle bisector",
+      "concentric circles",
+      "isosceles triangle",
+      "circumscribed quadrilateral",
+      "supplementary angles"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A tangent is any line that meets a circle.",
+        "correction": "A tangent meets the circle at exactly one point; a line meeting it at two points is a secant."
+      },
+      {
+        "claim": "A tangent is perpendicular to every radius of the circle.",
+        "correction": "A tangent is perpendicular only to the radius drawn to its point of contact."
+      },
+      {
+        "claim": "Two tangents can be drawn through a point inside a circle.",
+        "correction": "No tangent passes through an interior point; one tangent passes through a point on the circle and two through an external point."
+      },
+      {
+        "claim": "Any two tangent segments to a circle are equal.",
+        "correction": "The two tangent segments drawn from the same external point are equal."
+      },
+      {
+        "claim": "The radius, tangent length and centre-to-external-point distance form a triangle with the radius as hypotenuse.",
+        "correction": "The radius and tangent are perpendicular legs, while the centre-to-external-point segment is the hypotenuse."
+      }
+    ],
+    "recommended_example_progression": [
+      "Start with Figure 10.1 and NCERT Activities 1 and 2 to distinguish non-intersecting lines, secants and tangents and observe tangent existence.",
+      "Prove Theorem 10.1 and apply NCERT Exercise 10.1 Question 3 using the right triangle at the point of contact.",
+      "Use NCERT Activity 3 and Theorem 10.2 to establish the number of tangents and equality of tangent lengths.",
+      "Apply NCERT Examples 1 and 2 to concentric-circle chords and angle relations.",
+      "Finish with NCERT Example 3 and Exercise 10.2 Questions 8 to 13 for numerical and circumscribed-figure proofs."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter practice is organised as NCERT Exercises 10.1 and 10.2, covering tangent definitions, perpendicular radii, tangent counts, equal tangent lengths and applications."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Circles\n\n## What you will learn\nYou will classify the possible positions of a line relative to a circle and understand the meaning of a tangent and point of contact. You will also connect a tangent with a limiting position of a secant.\n\n## Simple explanation\nA line may miss a circle, cut it at two points or touch it at exactly one point. These cases are called non-intersecting line, secant and tangent respectively.\n\n## Step-by-step breakdown\n- **Non-intersecting line**: The line and circle have no common point.\n- **Secant**: The line intersects the circle at two distinct points and cuts a chord.\n- **Tangent**: The line intersects the circle at exactly one point.\n- **Point of contact**: The single common point of a tangent and the circle.\n- **Limiting secant idea**: In NCERT Activities 1 and 2, the two endpoints of a secant's chord move together; when they coincide, the secant becomes a tangent.\n- **Parallel tangents**: For a given secant direction, at most two tangents to a circle can be parallel to it, one on each side.\n\n## Worked example\nQuestion: Complete NCERT Exercise 10.1 Question 2.\n\nSolution:\n- Step 1: A tangent meets a circle at exactly **one** point.\n- Step 2: A line meeting a circle at two points is a **secant**.\n- Step 3: A circle can have at most **two** parallel tangents in a given direction.\n- Step 4: The common point of a tangent and the circle is the **point of contact**.\n- Final answer: **(i) one, (ii) secant, (iii) two, (iv) point of contact.**\n\n## Common mistake\nDo not call a line tangent merely because it appears to touch a sketch. The defining condition is exactly one common point with the circle.\n\n## Quick check question\nQuestion: Answer NCERT Exercise 10.1 Question 1: How many tangents can a circle have?\nAnswer: A circle has infinitely many tangents, one at each point of the circle.\nExplanation: Every point on the circle has one and only one tangent, and the circle contains infinitely many points.\n\n## Summary\n- A line can have zero, one or two common points with a circle.\n- A secant has two common points.\n- A tangent has one common point.\n- The common point is the point of contact.\n- A tangent is the limiting case of a secant.",
+    "Core explanation": "# Core explanation: Circles\n\n## What you will learn\nYou will prove and apply Theorem 10.1: the tangent at a point of a circle is perpendicular to the radius through that point. You will use the resulting right triangle to calculate a tangent length.\n\n## Simple explanation\nAmong all segments joining the centre to points on the tangent line, the radius to the point of contact is the shortest. The shortest distance from a point to a line is perpendicular, so the radius and tangent meet at 90°.\n\n## Step-by-step breakdown\n- **Theorem 10.1**: If XY is tangent at P to a circle with centre O, then OP ⟂ XY.\n- **Why other tangent-line points are outside**: Any other point Q on XY cannot lie inside the circle; otherwise the line would intersect the circle twice and become a secant.\n- **Shortest-distance argument**: OQ > OP for every Q ≠ P on the tangent, making OP the shortest distance from O to XY.\n- **Unique tangent at a point**: Only one line through P can be perpendicular to OP, so only one tangent exists at P.\n- **Normal**: The line through the radius at the point of contact is also called the normal to the circle.\n- **Right-triangle use**: Radius, tangent segment and centre-to-external-point segment satisfy Pythagoras Theorem.\n\n## Worked example\nQuestion: Solve NCERT Exercise 10.1 Question 3: A tangent PQ at P to a circle of radius 5 cm meets a line through centre O at Q, where OQ = 12 cm. Find PQ.\n\nSolution:\n- Step 1: Since PQ is tangent at P, OP ⟂ PQ by Theorem 10.1.\n- Step 2: Therefore, ΔOPQ is right-angled at P, with hypotenuse OQ = 12 cm and OP = 5 cm.\n- Step 3: By Pythagoras Theorem, OQ² = OP² + PQ².\n- Step 4: 12² = 5² + PQ².\n- Step 5: PQ² = 144 − 25 = 119.\n- Step 6: PQ = √119 cm, taking the positive root because length is positive.\n- Final answer: **PQ = √119 cm, option (D).**\n\n## Common mistake\nDo not use 12² + 5² for the tangent. OQ is the hypotenuse, so the tangent square is OQ² − OP².\n\n## Quick check question\nQuestion: Why are the tangents at the endpoints of a diameter parallel, as required in NCERT Exercise 10.2 Question 4?\nAnswer: Each tangent is perpendicular to the same diameter line, so the two tangents are parallel.\nExplanation: By Theorem 10.1, the tangent at each endpoint is perpendicular to the radius through that endpoint; the two radii lie on the same diameter.\n\n## Summary\n- A tangent is perpendicular to the radius at contact.\n- The perpendicular radius is the shortest centre-to-tangent distance.\n- There is one tangent at each point on a circle.\n- The radius line is also called the normal.\n- Tangent-length calculations use a right triangle.",
+    "Worked examples": "# Worked examples: Circles\n\n## What you will learn\nYou will determine the number of tangents through points inside, on and outside a circle and prove that two tangents from the same external point have equal lengths.\n\n## Simple explanation\nAn interior point gives no tangent because every line through it cuts the circle twice. A point on the circle gives one tangent. An external point gives exactly two tangents, and symmetry through the line joining the point to the centre makes their lengths equal.\n\n## Step-by-step breakdown\n- **Interior point**: Zero tangents can be drawn.\n- **Point on the circle**: Exactly one tangent can be drawn.\n- **External point**: Exactly two tangents can be drawn.\n- **Length of tangent**: The segment from the external point to the point of contact.\n- **Theorem 10.2**: Tangents PQ and PR from the same external point P satisfy PQ = PR.\n- **Congruence proof**: Right triangles OQP and ORP have equal radii, common hypotenuse OP and right angles, so they are congruent by RHS.\n\n## Worked example\nQuestion: Prove NCERT Theorem 10.2: The lengths of tangents drawn from an external point to a circle are equal.\n\nSolution:\n- Step 1: Let P be outside the circle with centre O, and let PQ and PR be tangents touching at Q and R.\n- Step 2: Join OP, OQ and OR.\n- Step 3: By Theorem 10.1, OQ ⟂ PQ and OR ⟂ PR, so ∠OQP = ∠ORP = 90°.\n- Step 4: OQ = OR because both are radii of the same circle.\n- Step 5: OP = OP because it is common to both triangles.\n- Step 6: Therefore, ΔOQP ≅ ΔORP by RHS congruence.\n- Step 7: Corresponding tangent sides are equal by CPCT.\n- Final answer: **PQ = PR.**\n\n## Common mistake\nThe theorem does not say all tangents to a circle have equal lengths. Equality applies only to the two tangent segments drawn from the same external point.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 10.2 Question 1: A tangent from Q is 24 cm and Q is 25 cm from the centre. Find the radius.\nAnswer: The radius is 7 cm, option (A).\nExplanation: The radius is perpendicular to the tangent, so 25² = r² + 24². Thus r² = 625 − 576 = 49 and r = 7 cm.\n\n## Summary\n- Interior, boundary and exterior points give 0, 1 and 2 tangents respectively.\n- Tangent length is measured to the point of contact.\n- Two tangents from one external point are equal.\n- The proof uses perpendicular radii and RHS congruence.\n- The centre lies on the angle bisector between the two tangents.",
+    "Exam-style problems": "# Exam-style problems: Circles\n\n## What you will learn\nYou will combine both tangent theorems with isosceles-triangle angle facts. You will prove the relation between the angle formed by two tangents and an angle involving the centre.\n\n## Simple explanation\nEqual tangent lengths create an isosceles triangle. The perpendicular radius adds a right angle, allowing the base-angle expression to be connected to the angle between a radius and the chord joining the contact points.\n\n## Step-by-step breakdown\n- **Equal tangent triangle**: If TP and TQ are tangents, TP = TQ, so ΔTPQ is isosceles.\n- **Base angles**: If ∠PTQ = θ, each base angle equals (180° − θ)/2 = 90° − θ/2.\n- **Radius-tangent right angle**: ∠OPT = 90°.\n- **Angle subtraction**: ∠OPQ = ∠OPT − ∠TPQ.\n- **Result**: ∠PTQ = 2∠OPQ.\n- **Related central-angle result**: The angle between two tangents is supplementary to the angle subtended by the contact chord at the centre.\n\n## Worked example\nQuestion: Prove NCERT Example 2: Two tangents TP and TQ are drawn from external point T to a circle with centre O. Prove ∠PTQ = 2∠OPQ.\n\nSolution:\n- Step 1: Let ∠PTQ = θ.\n- Step 2: By Theorem 10.2, TP = TQ, so ΔTPQ is isosceles.\n- Step 3: Therefore, ∠TPQ = ∠TQP = (180° − θ)/2 = 90° − θ/2.\n- Step 4: By Theorem 10.1, OP ⟂ PT, so ∠OPT = 90°.\n- Step 5: At P, ∠OPQ = ∠OPT − ∠TPQ.\n- Step 6: ∠OPQ = 90° − (90° − θ/2) = θ/2.\n- Step 7: Therefore, θ = 2∠OPQ.\n- Final answer: **∠PTQ = 2∠OPQ.**\n\n## Common mistake\nDo not assume OP is perpendicular to chord PQ. The guaranteed perpendicular is OP to tangent PT at P; any chord-bisecting conclusion needs additional reasoning.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 10.2 Question 2: If ∠POQ = 110° and TP and TQ are tangents, find ∠PTQ.\nAnswer: ∠PTQ = 70°, option (B).\nExplanation: OP ⟂ PT and OQ ⟂ QT, so quadrilateral OPTQ has two right angles. Hence ∠PTQ + ∠POQ = 180°, giving 180° − 110° = 70°.\n\n## Summary\n- Equal tangent lengths create an isosceles triangle.\n- Radius-tangent angles are 90°.\n- Base-angle algebra connects tangent and centre angles.\n- The two-tangent angle and the central angle are supplementary.\n- Draw all radii to points of contact before starting an angle proof.",
+    "Revision and recap": "# Revision and recap: Circles\n\n## What you will learn\nYou will revise tangent properties through a numerical chord-and-tangent problem and a circumscribed-quadrilateral result. You will combine equal tangents, perpendicular radii, chord bisection, similarity and Pythagoras Theorem.\n\n## Simple explanation\nAdvanced circle questions often require more than one familiar result. Join the centre to contact points, use equal tangents to identify symmetry and then apply a right-triangle or similar-triangle relation.\n\n## Step-by-step breakdown\n- **Useful first construction**: Join the centre to every point of contact and join the centre to the external point.\n- **Symmetry from equal tangents**: For tangents TP and TQ, the line TO bisects ∠PTQ and is perpendicular to chord PQ.\n- **Perpendicular from centre to chord**: It bisects the chord, so an 8 cm chord gives two 4 cm halves.\n- **Right-triangle lengths**: Radius 5 cm and half-chord 4 cm give the centre-to-chord distance 3 cm.\n- **Similar triangles**: Equal acute angles in the smaller right triangles can produce the tangent length.\n- **Circumscribed figures**: Equal tangent segments from each vertex lead to side-sum relations such as AB + CD = AD + BC.\n\n## Worked example\nQuestion: Solve NCERT Example 3: PQ is an 8 cm chord of a circle of radius 5 cm. Tangents at P and Q meet at T. Find TP.\n\nSolution:\n- Step 1: Join OT and let it meet PQ at R.\n- Step 2: Since TP = TQ, ΔTPQ is isosceles. The line from T through the centre bisects the vertex angle and is perpendicular to PQ, so PR = RQ = 8/2 = 4 cm.\n- Step 3: In right ΔOPR, OR = √(OP² − PR²) = √(5² − 4²) = √9 = 3 cm.\n- Step 4: ∠TPR + ∠RPO = 90°, and ∠TPR + ∠PTR = 90°, so ∠RPO = ∠PTR.\n- Step 5: Thus right ΔTRP ~ right ΔPRO by AA similarity.\n- Step 6: Corresponding sides give TP/PO = RP/RO.\n- Step 7: TP/5 = 4/3, so TP = 20/3 cm.\n- Final answer: **TP = 20/3 cm.**\n\n## Common mistake\nDo not assume the tangent length equals the half-chord. They belong to different triangles; a similarity or Pythagorean relation is needed.\n\n## Quick check question\nQuestion: What is proved in NCERT Exercise 10.2 Question 8 for a quadrilateral ABCD circumscribing a circle?\nAnswer: AB + CD = AD + BC.\nExplanation: If the circle touches AB, BC, CD and DA, tangent segments from each vertex are equal. Writing each side as a sum of its two tangent segments makes both totals contain the same four segments.\n\n## Summary\n- Draw radii to points of contact.\n- Tangents from one external point are equal.\n- A perpendicular from the centre bisects a chord.\n- Similarity and Pythagoras can determine tangent lengths.\n- Circumscribed quadrilaterals satisfy an opposite-side sum relation.\n- The chapter's core results are perpendicular radius and equal tangent lengths."
+  }
+}

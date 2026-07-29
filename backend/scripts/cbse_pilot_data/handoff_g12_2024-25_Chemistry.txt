@@ -1,0 +1,147 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2024-25
+Subject: Chemistry
+Source Subject Code: Chemistry
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2024_25/Chemistry-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2024_25/Chemistry-MS.pdf
+Total Questions: 33
+======================================================================
+
+TASK: For each question below, provide the answer in the EXACT JSON format shown.
+
+OUTPUT FORMAT (return a JSON array):
+[{
+  "question_number": <integer>,
+  "question_text": "<copy from input>",
+  "question_type": "<copy from input>",
+  "options": [<copy from input>],
+  "answer_text": "<for mcq/assertion_reason: exact option text; for others: complete answer>",
+  "answer_explanation": "<2-4 sentence explanation based on CBSE curriculum>"
+}, ...]
+
+IMPORTANT RULES:
+- For MCQ/assertion_reason: answer_text MUST be the EXACT text of one of the options
+- For short_answer/long_answer/case_study: answer_text = complete answer per marking scheme
+- Diagram-dependent questions: use NEEDS_MANUAL_REVIEW_diagram_dependent if no text alt exists
+- Official Marking Scheme PDF: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2024_25/Chemistry-MS.pdf
+
+======================================================================
+
+QUESTIONS:
+
+Q1 [mcq, 1 mark(s), Section A]
+Ammonolysisofethylchloridefollowedbyreactionoftheaminesoformedwith1moleofmethylchloridegivesanaminethat a. reactswithHinsbergreagenttoformaproductsolubleinanalkali.b. onreactionwithNitrousacid,producednitrogengas.c. reactswithBenzenesulphonylchloridetoformaproductthatisinsolubleinalkali.d. doesnotreactwithHinsbergreagent.
+
+Q10 [short_answer, 13 mark(s), Section A]
+Afirst-orderreactionisfoundtohavearateconstant,k=5.5×10 -1 4s -1 . Thetimetakenforcompletionofthereactionis: a. 1.26x10 sb. 2.52x10 sc. 0.63x10 sd. Itnevergoestocompletion
+
+Q11 [mcq, 1 mark(s), Section A]
+Astudentwaspreparinganilineinthelab.Shetookacompound“X”andreduceditinthepresenceofNiasacatalyst.Whatcouldbethecompound“X” a. Nitrobenzeneb. 1-Nitrohexanec. Benzonitriled. 1-Hexanenitrile
+
+Q12 [mcq, 1 mark(s), Section A]
+Whichofthefollowingcompoundgivesanoximewithhydroxylamine: a. CH3 COCH3 b. CH3 COOHc. (CH3 CO)2 Od. CH3 COCl
+
+Q13 [short_answer, 2 mark(s), Section A]
+Assertion(A):[Mn(CN)6 ] 3– hasamagneticmomentoftwounpairedelectronswhile[MnCl6 ] 3– hasaparamagneticmomentoffourunpairedelectrons.Reason(R):[Mn(CN)6 ] 3– isinnerorbitalcomplexesinvolvingd sp hybridisation,ontheotherhand,[MnCl6 ] 3– isouterorbitalcomplexesinvolvingsp d hybridisation. Selectthemostappropriateanswerfromtheoptionsgivenbelow:a. BothAandRaretrueandRisthecorrectexplanationofAb. BothAandRaretruebutRisnotthecorrectexplanationofA.c. AistruebutRisfalse.d. AisfalsebutRistrue.
+
+Q14 [assertion_reason, 1 mark(s), Section A]
+Assertion(A): Forstrongelectrolytes,thereisa slowincreaseinmolarconductivitywithdilutionandcanberepresentedbytheequation Reason(R):Thevalueoftheconstant‘A’ forNaCl,CaCl2 ,andMgSO4 inagivensolventandatagiventemperatureisdifferent. Selectthemostappropriateanswerfromtheoptionsgivenbelow:a. BothAandRaretrueandRisthecorrectexplanationofAb. BothAandRaretruebutRisnotthecorrectexplanationofA.c. AistruebutRisfalse.d. AisfalsebutRistrue.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q15 [assertion_reason, 1 mark(s), Section A]
+Assertion
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q16 [assertion_reason, 1 mark(s), Section A]
+Assertion(A):Thehalf-lifeforazeroorderreactionisindependentoftheinitialconcentrationofthereactant.Reason(R):Forazeroorderreaction,Rate=k Selectthemostappropriateanswerfromtheoptionsgivenbelow:a. BothAandRaretrueandRisthecorrectexplanationofAb. BothAandRaretruebutRisnotthecorrectexplanationofA.c. AistruebutRisfalse.d. AisfalsebutRistrue. SECTIONBThissectioncontains5questionswithinternalchoiceinonequestion.Thefollowingquestionsareveryshortanswertypeandcarry2markseach.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q17 [mcq, 1 mark(s), Section B]
+a. Nitrogengasissolubleinwater.Attemperature293K,thevalueofKH is76.48kbar. Howwouldthesolubilityofnitrogenvary(increase,decreaseorremainthesame)atatemperatureabove293K,if thevalueofKH risesto88.8kbar.b. Chloroform(b.p.61.2 o C)andacetone(b.p.56 o C)aremixedtoformanazeotrope.Themolefractionofacetoneinthismixtureis0.339.Predictwhethertheboilingpointoftheazeotropeformedwillbe(i)60 o C(ii)64.5 o Cor(iii)54 o C.Defendyouranswerwithreason. OR a. Asodabottlewillgoflat(looseitsfizz)fasterinSrinagarthaninDelhi.Isthisstatementcorrect?Whyorwhynot?b. Howdoessugarhelpinincreasingtheshelflifeoftheproduct?
+
+Q18 [mcq, 1 mark(s), Section B]
+a. WritetheIUPACnameofthefollowingcomplex:K[Cr(H2 O)2 (C2 O4 )2 ]H2 Ob. Namethemetalpresentinthecomplexcompoundof(i)Haemoglobin(ii)VitaminB-12 ½+½
+
+Q19 [short_answer, 11 mark(s), Section B]
+Observethefollowingcellandanswerthequestionsthatfollow: a.Representthecellshowninthefigure.b.Namethecarriersofthecurrentinthesaltbridgec.Writethereactiontakingplaceattheanode. (forvisuallychallengedlearners)Forthecellrepresentedas: Mg(s)/Mg 2+ (aq)//Ag + (aq)/Ag(s)a.Identifythecathodeandtheanodeb.Writetheoverallreaction 1½½
+  [NOTE: This question references a diagram]
+
+Q2 [mcq, 1 mark(s), Section A]
+Whichoneofthefollowinghasthehighestdipolemoment? a. CH3 Fb. CH3 Clc. CH3 Id. CH3 Br
+
+Q20 [mcq, 1 mark(s), Section B]
+Completethefollowingreactionsbywritingthemajorandminorproductineachcase(any2) a.CH3 CH2 Br+KCN→ b.CH3 CH2 CH=CH2 +HBr c.(CH3 )2 CHCHClCH3 +alcKOH→
+
+Q21 [mcq, 1 mark(s), Section B]
+ThepresenceofCarbonylgroupinglucoseisconfirmedbyitsreactionwithhydroxylamine.Identifythetypeofcarbonylgrouppresentanditsposition.Giveachemicalreactioninsupportofyouranswer. SECTIONCThissectioncontains7questionswithinternalchoiceinonequestion.Thefollowingquestionsareshortanswertypeandcarry3markseach.
+
+Q22 [short_answer, 2 mark(s), Section C]
+a. Writedownthereactionoccurringontwoinertelectrodeswhenelectrolysisofcopperchlorideisdone.Whatwillhappenifaconcentratedsolutionofcoppersulphateisreplacedwithcopperchloride? b. WriteanexpressionforthemolarconductivityofaluminiumsulphateatinfinitedilutionaccordingtoKohlrauschlaw. 1
+
+Q23 [mcq, 1 mark(s), Section C]
+Accountforthefollowing:a. Thelowestoxideoftransitionmetalisbasic,andthehighestisacidic.b. Chromiumisahardmetalwhilemercuryisaliquidmetalc. Theionisationenergyofelementsofthe3dseriesdoesnotvarymuchwithincreasingatomicnumber. 111
+
+Q24 [mcq, 1 mark(s), Section C]
+a. Givethechemicalreactioninvolvedwhenp-nitrotolueneundergoesEtardreaction.b. WhydoesBenzoicacidexistasadimerinanaproticsolvent?c. BenzeneonreactionwithmethylchlorideinthepresenceofanhydrousAlCl3 formstoluene.Whatistheexpectedoutcomeifbenzeneisreplacedbybenzoicacid?Giveareasonforyouranswer. OR Anorganiccompound‘X’,doesnotundergoaldolcondensation.However‘X’withcompound‘Y’inthepresenceofastrongbasereacttogivethecompound1,3-diphenylprop-2-en-1-one. a.Identify‘X’and‘Y’b.Writethechemicalreactioninvolved.c.GiveonechemicaltesttodistinguishbetweenXandY. 111
+
+Q25 [short_answer, 2 mark(s), Section C]
+a. Givethestructureofallthepossibledipeptidesformedwhenthefollowingtwoaminoacidsformapeptidebond. Alanine Glycine b. Keratin,insulin,andmyosinareafewexamplesofproteinspresentinthehumanbody.Identifywhichtypeofproteiniskeratinandinsulinanddifferentiatebetweenthembasedontheirphysicalproperties.
+
+Q26 [mcq, 1 mark(s), Section C]
+Neetawasexperimentinginthelabtostudythechemicalreactivityofalcohols.Shecarriedoutadehydrationreactionofpropanolat140 o Cto180 o C.Differentproductswereobtainedatthesetwotemperatures.a. Identifythemajorproductformedat140 o Candthesubstitutionmechanismfollowedinthiscase.b. Identifythemajorproductformedat180 o Candthesubstitutionmechanismfollowedinthiscase. 1+½1+½
+
+Q27 [mcq, 1 mark(s), Section C]
+VariousisomerichaloalkaneswiththegeneralformulaC4 H9 Clundergohydrolysisreaction.Amongthem,compound“A”isthemostreactivethroughSN mechanism.Identify“A”citingthereasonforyourchoice.Writethemechanismforthereaction.
+
+Q28 [short_answer, 2 mark(s), Section C]
+Theequilibriumconstantofcellreaction:Sn 4+ (.aq) + Al(s) → Al 3+ + Sn 2+ (aq)is4.617x10 184 , at25 o C a. Calculatethestandardemfofthecell.(Given:log4.617x10 184 =184.6644) b. WhatwillbetheE o ofthehalfcellAl 3+ /Al,ifE o ofhalfcellSn 4+ /Sn 2+ is0.15V. SECTIOND Thefollowingquestionsarecase-basedquestions.Eachquestionhasaninternalchoiceandcarries4 (2+1+1)markseach.Readthepassagecarefullyandanswerthequestionsthatfollow.
+
+Q29 [short_answer, 8 mark(s), Section D]
+Dependenceoftherateofreactionontheconcentrationofreactants,temperature,andotherfactorsisthemostgeneralmethodforweedingoutunsuitablereactionmechanisms.Thetermmechanismmeansalltheindividualcollisionalorelementaryprocessesinvolvingmolecules(atoms,radicals,andionsincluded)thattakeplacesimultaneouslyorconsecutivelytoproducetheobservedoverallreaction.Forexample,whenhydrogengasreactswithbromine,therateofthereactionwasfoundtobeproportionaltotheconcentrationofH2 andtothesquarerootoftheconcentrationofBr2 .Furthermore,theratewasinhibitedbyincreasingtheconcentrationofHBrasthereactionproceeded.Theseobservationsarenotconsistentwithamechanisminvolvingbimolecularcollisionsofasinglemoleculeofeachkind.Thecurrentlyacceptedmechanismisconsiderablymorecomplicated,involvingthedissociationofbrominemoleculesintoatomsfollowedbyreactionsbetweenatomsandmolecules: Itisclearfromthisexamplethatthemechanismcannotbepredictedfromthe overallstoichiometry. (source:Moore,J.W.,&Pearson,R.G.(1981). Kineticsandmechanism.JohnWiley&Sons.) a.Predicttheexpressionfortherateofreactionandorderforthefollowing: H2 +Br2 2HBr Whataretheunitsofrateconstantfortheabovereaction? b.HowwilltherateofreactionbeaffectediftheconcentrationofBr2 istripled? OR WhatchangeintheconcentrationofH2 willtripletherateofreaction? c.SupposeareactionbetweenAandB, wasexperimentallyfoundtobefirstorderwithrespecttobothAandB.Sotherateequationis: Rate=k[A][B] Whichofthesetwomechanismsisconsistentwiththisexperimentalfinding?Why? Mechanism1 A→C+D (slow) B+C→E (fast) Mechanism2 A+B→C+D (slow) C→E (fast)
+
+Q3 [short_answer, 7 mark(s), Section A]
+MatchthepropertiesgivenincolumnI withthemetalsincolumnII ColumnI ColumnII(i)Actinoidhavingconfiguration[Rn]5f 6d 7s (A)Ce(ii)Lanthanoidwhichhas4f electronic (B)Luconfigurationin+3oxidationstate.(iii)Lanthanoidwhichshow+4Oxidationstate (C)Cm a.(i)-(C),(ii)-(B),(iii)-(A)b.(i)-(C),(ii)-(A),(iii)-(B)c.(i)-(A),(ii)-(B),(iii)-(C)d.(i)-(B),(ii)-(A),(iii)-(C)
+
+Q30 [short_answer, 9 mark(s), Section D]
+Aminesarebasicinnature.ThepKb valueisameasureofthebasicstrengthofanamine.LowerthevalueofpKb ,morebasicistheamine.Theeffectofsubstituentonthebasicstrengthofaminesinaqueoussolutionwasdeterminedusingtitrations.Thesubstituent“X”replaced“-CH2 ”groupinpiperidine(compound1)andpropylamineCH3 CH2 CH2 NH2 , (compound2). Compound1: Compound2: HXCH2 CH2 NH2 Theexperimentaldataistabulatedbelow: Substituent“X” Electro-negativityof X substitutedpiperidinecompound pKa Substitutedpropylaminecompound pKa CH2 2.55 11.13 CH3 CH2 CH2 NH2 10.67 NH 3.12 9.81 NH2 CH2 CH2 NH2 10.08 O 3.44 8.36 HOCH2 CH2 NH2 9.45 CH3 CON 3.6 7.94 CH3 CONHCH2 CH2 NH2 9.28 C6 H5 CON 3.7 7.78 C6 H5 CONHCH2 CH2 NH2 ___ (source:HallJr, H.K.(1956).Fieldandinductiveeffectsonthebasestrengthsofamines. JournaloftheAmericanChemicalSociety, 78(11),2570-2572.) Studytheabovedataandanswerthefollowingquestions: a.PlotagraphbetweentheelectronegativityofthesubstituentvspKb valueofthecorrespondingsubstitutedpropylamine(giventhatpKa +pKb =14).Isthereanyrelationbetweentheelectronegativityofthesubstituentanditsbasicstrength? b.Theelectronegativityofthesubstituent“C6 H5 CON”is3.7,whatistheexpectedpKavalueofcompoundC6 H5 CONHCH2 CH2 NH2 ? (i)9.9 (ii)9.5 (iii)9.3 (iv)9.1 c.ThepKavalueofthesubstitutedpiperidineformedwithsubstituent“X”isfoundtobe8.28.Whatistheexpectedelectronegativityof“X” (i)3.5(ii)3.4(iii)3.8(iv)3.1 OR WhatisthemostsuitablepKavalueofthesubstitutedpropylamineformedwithsubstituent“X”withelectronegativity3.0 (i)10.67(ii)10.08(iii)10.15(iv)11.10 (forvisuallychallengedlearners) a.HowdoestheelectronegativityofthesubstituentaffectthepKb valueandthebasicstrengthofthesubstitutedpropylamine(giventhatpKa +pKb =14).?Giveareasontosupportyouranswer. b.Theelectronegativityofthesubstituent“C6 H5 CON”is3.7,whatistheexpectedpKavalueofcompoundC6 H5 CONHCH2 CH2 NH2 ? (i)9.9 (ii)9.5 (iii)9.3 (iv)9.1 c.ThepKavalueofthesubstitutedpiperidine(compound1) formedwithsubstituent“X”isfoundtobe8.28.Whatistheexpectedelectronegativityof“X” (i)3.5(ii)3.4(iii)3.8(iv)3.1 OR WhatisthemostsuitablepKavalueofthesubstitutedpropylamineformedwithsubstituent“X”withelectronegativity3.0 (i)10.67(ii)10.08(iii)10.15(iv)11.10 SECTIONEThefollowingquestionsarelonganswertypesandcarry5markseach.Allquestionshaveaninternalchoice.
+
+Q31 [short_answer, 11 mark(s), Section E]
+a. ApurplecolourcompoundA,whichisastrongoxidisingagentandusedforbleachingofwool,cotton,silkandothertextilefibreswasaddedtoeachofthethreetesttubesalongwithH2 SO4 . Itwasfollowedbystrongheating. Inwhichoftheabovetesttubes;A,BorC:(i)Violetvapourswillbeformed(ii)Thebubblesofgasevolvedwillextinguishaburningmatchstick.Writeanequationforeachoftheaboveobservations. b.AmetalionM n+ ofthefirsttransitionserieshavingd configurationcombineswiththreedidentateligands.Assuming∆0 <P: (i) Drawthecrystalfieldenergyleveldiagramforthe3dorbitalofthiscomplex.(ii) WhatisthehybridisationofM n+ inthiscomplexandwhy?(iii) Namethetypeofisomerismexhibitedbythiscomplex. OR a. Using, ValenceBondTheory identify A, B, C, D, E andF inthefollowingtable b.WritetheionicequationsforthereactionofacidifiedK2 Cr2 O7 with(i)H2 S and(ii)FeSO4
+  [NOTE: This question references a diagram]
+
+Q32 [mcq, 1 mark(s), Section E]
+a.Givereasonsforthefollowing:(i)Thereactionofethanolwithacetylchlorideiscarriedoutinthepresenceofpyridine. (ii)Cresolsarelessacidicthanphenol.b.Williamson’sprocessisusedforthepreparationofethersfrom alkylhalide. Identifythealkylbromideandsodiumalkoxideusedforthepreparationof 2- Ethoxy-3-methylpentane c.Convert:(i)Tolueneto3-nitrobenzoicacid.(ii)Benzenetom-nitroacetophenone. OR a. Outofformicacidandaceticacid,whichonewillgivetheHVZreaction?Giveasuitablereasoninsupportofyouranswerandwritethechemicalreactioninvolved. b.Alcoholsareacidicbuttheyareweakeracidsthanwater.Arrangevariousisomersofbutanolintheincreasingorderoftheiracidicnature.Giveareasonforthesame. c.AnorganiccompoundA whichisaGrignardreagentisusedtoobtain2-methylbutan-2-olonreactionwithacarbonylcompound‘B’. IdentifyA’ and‘B’.WritetheequationforthereactionbetweenAandB.
+
+Q33 [short_answer, 2 mark(s), Section E]
+a.Anexperimentwascarriedoutinthelaboratory,tostudydepressioninfreezingpoint.1MaqueoussolutionofAl(NO3 )3 and1Maqueoussolutionofglucoseweretaken.Fromthegivenfigureidentifysolution1andsolution2.Giveaplausiblereasonforyouranswer. b.Theosmoticpressureofasolutionofcanesugarwasfoundtobe2.46atmat300K.Ifthesolutionwasdilutedfivetimes,calculatetheosmoticpressureatthesametemperature. Howcantheosmoticpressureofthegivencanesugarsolutionbedecreasedwithoutchangingitsvolume?Giveareasonforyouranswer. OR
+  [NOTE: This question references a diagram]
+
+Q4 [mcq, 1 mark(s), Section A]
+Studythegraphshowingtheboilingpointsofbromoalkanesandidentifythecompounds. a.1=Bromomethane,2=2-Bromobutane,3=1-Bromobutane,4=2-Bromo-2-methylpropane b.1=1-Bromobutane,2=2-Bromo-2-methylpropane,3=2-Bromobutane,4=Bromomethane c.1=Bromomethane,2=1-Bromobutane,3=2-Bromo-2-methylpropane,4=2-Bromobutane, d.1=Bromomethane,2=2-Bromo-2-methylpropane,3=2-Bromobutane,4=1-Bromobutane (forvisuallychallengedlearners)Whichofthefollowinghaloalkaneshasthehighestboilingpoint?a. 2-Bromo-2-methylpropaneb. 2-Bromobutanec. Bromomethaned. 1-Bromobutane
+
+Q5 [mcq, 1 mark(s), Section A]
+TheinitialconcentrationofRinthereactionRPis4.62x10 -2 mol/L.Whatisthehalflifeforthereactionifk=2.31x10 -2 molL -1 s -1 a. 30sb. 3sc. 1sd. 10s
+
+Q6 [mcq, 1 mark(s), Section A]
+WhenC6 H5 COOCOCH3 istreatedwithH2 O, theproductobtainedis: a. Benzoicacidandethanolb. Benzoicacidandethanoicacidc. AceticAcidandphenold. Benzoicanhydrideandmethanol
+
+Q7 [mcq, 1 mark(s), Section A]
+‘X’and‘Y’intheabovetableare: a. X=[Co(NH3 )6 ] 2+ 3Cl - ,Y=1:3b. X=[Co(NH3 )4 Cl2 ] + Cl, - Y=1:3c. X=[Co(NH3 )4 Cl2 ] + Cl - , Y=1:1d. X=[Co(NH3 )4 Cl2 ] 3+ 3Cl - ,Y=1:1
+
+Q8 [mcq, 1 mark(s), Section A]
+Whichofthefollowingcontainsonlyβ- D-glucoseasitsmonosaccharideunit: a. Sucroseb. Cellulosec. Starchd. Maltose
+
+Q9 [mcq, 1 mark(s), Section A]
+Whichoneofthefollowingsetscorrectlyrepresentstheincreaseintheparamagneticpropertyoftheions? a. Ti 3+ <Fe 2+ <Cr 3+ <Mn 2+ b. Ti 3+ <Mn 2+ <Fe 2+ <Cr 3+ c. Mn 2+ <Fe 2+ <Cr 3+ <Ti 3+ d. Ti 3+ <Cr 3+ <Fe 2+ <Mn 2+
+
+======================================================================
+Now return the complete JSON array with answers for all questions above.

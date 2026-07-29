@@ -1,0 +1,245 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "ZnO crystal on heating acquires the formula Zn 1+x O. Give reason. OR There is an increase in conductivity when Silicon is doped with Phosphorous. Give reason",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Based on the type of dispersed phase, what type of colloids are micelles?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "On the basis of crystal field theory, write the electronic configuration of d 6 in terms of gt2 and ge in an octahedral field when .Po  OR Low spin configuration are rarely observed in tetrahedral coordination entity formation. Explain",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the compound that on hydrogenation produces an optically active compound from the following compounds: (A) (B)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Write the name of the biodegradable polymer used in orthopaedic devices. CH3CH2 Br H CH3 CH3 H Br Section-B",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Calculate the freezing point of a solution containing 8.1 g of HBr in 100 g of water, assuming the acid to be 90 % ionized. [Given: Molar mass Br = 80 g/mol, Kf water = 1.86 K kg / mol] OR Calculate the molality of ethanol solution in which the mole fraction of water is 0.88.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Identify the reaction and write the IUPAC name of the product formed: (a) CH3-CH2-COOH (i) Br2 / Red phosphorous (b) O Cl H2 Pd- BaSO4 OR Write the structures and IUPAC names of the cross aldol condensation products only of ethanal and propanal.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "(a) Justify the role of tert-butyl peroxide in the polymerization of ethene. (b) Write the structures of the monomers of the following polymer:",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Write the mechanism of acid dehydration of ethanol to yield ethane",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "For a certain chemical reaction variation in concentration [A] vs. time (s) plot is given below: (i) Predict the order of the given reaction? (ii) What does the slope of the line and intercept indicate? (iii) What is the unit of rate constant k? CH2 - CH = CH - CH2 - CH2 -CH C6H5 n",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Draw the molecular structures of the following: (a) Noble gas species which is isostructural with  3BrO (b) Dibasic oxoacid of phosphorus",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 23,
+    "question_text": "(i) On the basis of the standard electrode potential values stated for acid solutions, predict whether Ti4+ species may be used to oxidise Fe(II) to Fe(III) VETieTi o 01.034   VEFeeFe o 77.023   (ii) Based on the data arrange Fe 2+, Mn2+ and Cr2+ in the increasing order of stability of +2 oxidation state.(Give a brief reason) VE VE VE FeFe o MnMn o CrCr o 8.0 5.1 4.0 / / /       Section-C",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Niobium crystallises in body -centred cubic structure. If the atomic radius is 143.1 pm, calculate the density of Niobium. (Atomic mass = 93u).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Give reasons for the following: a. When 2g of benzoic acid is dissolved in 25 g of benzene, the experimentally determined molar mass is always greater than the true value. b. Mixture of ethanol and acetone shows positive deviation from Raoult’s Law. c. The preservation of fruits by adding concentrated sugar solution protects against bacterial action.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "An alcohol A (C 4H10O) on oxidation with acidi fied potassium dichromate gives acid B (C4H8O2). Compound A when dehydrated with conc. H 2SO4 at 443 K gives compound C. Treatment of C with aqueous H 2SO4 gives compound D (C 4H10O) which is an isomer of A. Compound D is resistant to oxidation but compound A can be easily oxidised. Identi fy A, B, C and D. Name the type of isomerism exhibited by A and D",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Which one of the following compounds will undergo faster hydrolysis reaction by S N1 mechanism? Justify your answer. or CH3CH2CH2Cl OR A compound is formed by the substitution of two chlorine atoms for two hydrogen atoms in propane. Write the structures of the isomers possible. Give the IUPAC name of the isomer which can exhibit enantiomerism. CH2Cl",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Complete the following reactions : (a) (b) (c)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Give reasons for the following: (i) Use of aspartame as an artificial sweetener is limited to cold foods. (ii) Metal hydroxides are better alternatives than sodium hydrogen carbonate for treatment of acidity. (iii) Aspirin is used in prevention of heart attacks.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(a) Name the branched chain component of starch. (b) Ribose in RNA and deoxyribose in DNA differ in the structure around which carbon atom? (c) How many peptide linkages are present in a tripeptide? OR Give three reactions of glucose which cannot be explained by its chain structure",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The following data were obtained during the first order thermal decomposition of N 2O5(g) at a constant volume: )()(2)(2 24252 gOgONgON  S.No. Time (sec.) Total pressure(atm) 1. 0 0.5 2. 100 0.512 Calculate the rate constant OR Two reactions of the same order have equal pre exponential factors but their activation energies differ by 24.9 kJ mol -1. Calculate the ratio between the rate constants of these reactions at 27oC. (Gas constant R = 8.314 J K−1 mol−1) O + NH2 OH KMnO4 , H2SO4  COOH COOH + NH3 Strong heating",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(a) A colloidal sol is prepared by the given met hod in figure. What is the charge of AgI colloidal particles in the test tube? How is the sol formed, represented? (b) Explain how the phenomenon of adsorption fin ds application in Heterogeneous catalysis. (c) Which of the following electrolytes is the most effective for the coagulation of Fe(OH)3 sol which is a positively charged sol ? NaCl, Na2SO4, Na3PO4",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 22,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Describe how the following steps can be carried out? (a) Recovery of Gold from leached gold metal complex.. (b) Conversion of Zirconium iodide to pure Zirconium. (c) Formation of slag in the extraction of copper. (Write the chemical equations also for the reactions involved) OR Explain the use of the following: a) NaCN in Froth Floatation Method. b) Carbon monoxide in Mond process. c) Coke in the extraction of Zinc from Zinc Oxide",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Explain the following: (a) Out of Sc3+, Co2+ and Cr3+ions, only Sc3+ is colourless in aqueous solutions. (Atomic no.: Co = 27; Sc = 21 and Cr = 24) (b) The CuCu oE /2 for copper metal is positive (+0.34), unlike the remaining members of the first transition series (c) La(OH)3 is more basic than Lu(OH)3.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "A metal complex having composition Cr (NH3)4Cl2Br has been isolated in two forms A and B. The form A reacts with AgNO 3 to give a white precipitate readily soluble in dilute aqueous ammonia whereas B gives a pale yellow precipitate soluble in concentrated ammonia. (i) Write the formulae of isomers A and B. (ii) State the hybridisation of chromium in each of them. (iii) Calculate the magnetic moment (spin only value) of the isomer A Section-D",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "D",
+    "question_type": "short_answer",
+    "marks": 0,
+    "question_text": "(a) Identify A-D (b) Distinguish between the following pair of compounds: (i) Aniline and Benzylamine. (ii) Methylamine and Dimethylamine. (c) Complete the following: BACNCHCH HNOCLiAlH    2 4 /0 OR (a) Account for the following: (i) Direct nitration of aniline yields significant amount of meta derivative. (ii) Primary aromatic amines cannot be prepared by Gabriel phthalimide synthesis. (b) Carry out the following conversions: (i) Ethanoic acid into methanamine. (ii) Aniline to p-Bromoaniline. (c) Arrange the following in increasing order of basic strength: Aniline, p-nitroaniline and p-toludine.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(a) A cell is prepared by dipping a zinc rod in 1M zinc sulphate solution and a silver electrode in 1M silver nitrate solution. The standard electrode potential given: E0 Zn2+ / Zn = - 0.76 V, E0 Ag+ / Ag = + 0.80 V What is the effect of increase in concentration of Zn2+ on the Ecell? (b) Write the products of electrolysis of aqueous solution of NaCl with platinum electrodes. (c) Calculate e.m.f. of the following cell at 298 K: Ni(s) / Ni2+ (0.01 M) // Cu2+ (0.1M) / Cu (s) [ Given E0 Ni2+/ Ni = - 0.25 V , E0 Cu2+/Cu = + 0.34 V ) Write the overall cell reaction. OR CH2Cl A B NaOH(aq)/Br2 C CH2NO2 CH2NC D Sn / HCl (a) Apply Kohlrausch law of independent migration of ions, write the expression to determine the limiting molar conductivity of calcium chloride. (b) Given are the conductivity and molar conductivity of NaCl solutions at 298K at different concentrations: Concentration M Conductivity Scm-1 Molar conductivity S cm2 mol-1 0.100 106.74 x 10 -4 106.7 0.05 55.53 x 10 -4 111.1 0.02 23.15 x 10 -4 115.8 Compare the variation of conductivity and molar conductivity of NaCl solutions on dilution. Give reason. (c) 0.1 M KCl solution offered a resistance of 100 ohms in a conductivity cell at 298 K. If the cell constant of the cell is 1.29 cm -1, calculate the molar conductivity of KCl solution.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(a) Account for the following observations: (i) SF4 is easily hydrolysed whereas SF6 is not easily hydrolysed (ii) Chlorine water is a powerful bleaching agent. (iii) Bi(V) is a stronger oxidising agent than Sb(V) (b) What happens when (i) White phosphorus is heated with concent rated NaOH solution in an inert atmosphere of CO2. (ii) XeF6 undergoes partial hydrolysis. (Give the chemical equations involved). OR (a) What inspired N.Bartlett for carrying out reaction between Xe and PtF6? (b) Arrange the following in the order of property indicated against each set: (i) F2, I2, Br2, Cl2 (increasing bond dissociation enthalpy) (ii) NH3, AsH3, SbH3, BiH3, PH3 (decreasing base strength) (c) Complete the following equations: (i)  )(2 diluteandcoldNaOHCl (ii)  OHSOFe 22",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

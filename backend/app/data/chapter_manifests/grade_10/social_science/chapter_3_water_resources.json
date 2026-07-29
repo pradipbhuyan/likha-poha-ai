@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: Water Resources",
+  "central_question": "Why does water scarcity occur despite water being renewable, and how can India manage water through conservation, multipurpose projects and rainwater harvesting?",
+  "in_scope_units": [
+    "Water scarcity and the need for water conservation and management.",
+    "Quantitative and qualitative causes of scarcity, including population, irrigation, industry, urbanisation and pollution.",
+    "Multi-purpose river projects and integrated water resources management, including ancient hydraulic structures and dams.",
+    "Benefits, ecological costs, social opposition and inter-state conflicts linked with large dams.",
+    "Rainwater harvesting: traditional regional systems, rooftop harvesting, modern adaptations and bamboo drip irrigation."
+  ],
+  "banned_topics": [
+    "Detailed river landforms and drainage patterns from the Drainage chapter.",
+    "Detailed crop geography from Agriculture.",
+    "Detailed industrial pollution controls from Manufacturing Industries."
+  ],
+  "must_include_keywords": [
+    "hydrological cycle",
+    "renewable resource",
+    "water scarcity",
+    "over-exploitation",
+    "unequal access",
+    "irrigated agriculture",
+    "groundwater",
+    "industrialisation",
+    "urbanisation",
+    "water pollution",
+    "Jal Jeevan Mission",
+    "Atal Bhujal Yojana",
+    "water conservation",
+    "multi-purpose river projects",
+    "dam",
+    "reservoir",
+    "Bhakra-Nangal",
+    "Hirakud",
+    "Sardar Sarovar",
+    "sedimentation",
+    "salinisation",
+    "inter-state water dispute",
+    "rainwater harvesting",
+    "guls",
+    "kuls",
+    "khadins",
+    "johads",
+    "tankas",
+    "palar pani",
+    "Shillong",
+    "Gendathur",
+    "Tamil Nadu",
+    "bamboo drip irrigation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Water scarcity occurs only in low-rainfall regions.",
+      "correction": "The chapter states that scarcity may result from over-exploitation, high demand, unequal access or pollution even where rainfall or water availability is high."
+    },
+    {
+      "claim": "A dam is built only for irrigation.",
+      "correction": "Modern dams support irrigation, electricity generation, water supply, flood control, recreation, navigation and fish breeding."
+    },
+    {
+      "claim": "Large dams always control floods successfully.",
+      "correction": "The chapter notes that sedimentation can trigger floods and that big dams may fail during excessive rainfall."
+    },
+    {
+      "claim": "Rainwater harvesting is a single uniform technique.",
+      "correction": "The chapter presents region-specific systems such as guls or kuls, khadins, johads, tankas and bamboo drip irrigation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 2(i) to explain how the hydrological cycle renews water.",
+    "Use NCERT Exercise 2(ii) to classify the multiple causes of water scarcity.",
+    "Use NCERT Exercise 2(iii) to compare benefits and disadvantages of multipurpose projects.",
+    "Use NCERT Exercise 3(i) to explain rooftop rainwater harvesting and tankas in Rajasthan.",
+    "Use NCERT Exercise 3(ii) to compare modern adaptations such as Gendathur and compulsory rooftop systems in Tamil Nadu."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “EXERCISES”, Questions 1 to 3, including MCQs, correction of false statements, short answers and long answers.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

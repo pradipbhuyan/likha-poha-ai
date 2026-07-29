@@ -1,0 +1,183 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2020-21
+Subject: History
+Source Subject Code: History
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/History-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/History-MS.pdf
+Total Questions: 30
+======================================================================
+TASK: For each question provide the answer in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/History-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Ancient Mesopotamian texts refer to copper coming from a place called 'Magan'. Which place were they referring to?
+  (A) Whom did Ashoka appoint to spread the message of dhamma?
+  (B) Read the following information and mention the context in which the statement is connected- ' Many Kushana rulers also adopted the title ' devaputra' or 'son of God'.
+
+Q10 [mcq, 1m, Sec A]
+Given below are two statements, one labelled as Assertion(A) and the other labelled as Reason (R). Assertion (A): Archaeologists suggest that in the north-eastern corner of the urban core rich traders lived. Reason (R): Numerous tombs, mosques, and fine Chinese porcelain have been found here.
+  (A) Both (A) and (R) are correct and (R) is the correct explanation of (A)
+  (B) Both (A) and (R) are correct, but (R) is not the correct explanation of (A)
+  (C) (A) is correct, but (R) is not correct
+  (D) (R) is correct, but (A) is not correct
+
+Q11 [mcq, 1m, Sec A]
+With which Mughal Emperor can we associate 'Alamgir Nama'?
+  (A) Aurangzeb
+  (B) Shah Jahan
+  (C) Humanyun
+  (D) Jahangir
+
+Q12 [mcq, 1m, Sec A]
+The two artists, Mir Saiyyad Ali and Abdus Samad were brought from Iran to the Mughal court by Emperor _______
+  (A) Aurangzeb
+  (B) Shah Jahan
+  (C) Humanyun
+  (D) Jahangir
+
+Q13 [mcq, 1m, Sec A]
+Show how the powers of jotedars were more effective than that of zamindars?
+  (A) List I
+  (B) List II
+  (C) List I
+  (D) List II
+
+Q14 [mcq, 1m, Sec A]
+Match the following:
+  (A) Delhi
+  (B) Birjis Qadr
+  (C) Kanpur
+  (D) Kunwar Singh
+  (5) Arrah
+  (6) Bahadur Shah
+  (7) Lucknow
+  (8) Nana Sahib
+
+Q15 [mcq, 1m, Sec A]
+Mahatma Gandhi illustrated his tactical wisdom by picking on salt monopoly .Which of the following statement (s) is/ are correct to prove this?
+  (A) State monopoly over salt was deeply unpopular.
+  (B) People were forbidden from making salt for even domestic use.
+  (C) Salt was not an essential item.
+
+Q16 [mcq, 1m, Sec B]
+Who among the following declared- Separate Electorate was a 'poison that has entered the body politic of our country'?
+
+Q17 [short_answer, 3m, Sec B]
+Read the following excerpt from the Prayaga Prashasti carefully and answer any three questions :
+
+Q18 [long_answer, 5m, Sec A]
+Read the following text and answer any three of the following questions: Apart from wives, numerous male and female slaves populated the Mughal household. The tasks they performed varied from the most mundane to those requiring skill, tact and intelligence. Slave eunuchs (khwajasara) moved between the external and Apart from wives, numerous male and female slaves populated the Mughal household. The tasks they performed varied from the most mundane to those requiring skill, tact and intelligence. Slave eunuchs (khwajasara) moved between the external and internal life of the household as guards, servants, and also as agents for women dabbling in commerce. After Nur Jahan, Mughal queens and princesses began to control significant financial resources. Shah Jahan's daughters Jahanara and Roshanara enjoyed an annual income often equal to that of
+
+Q19 [assertion_reason, 5m, Sec A]
+Referring to the condition of zamindars and the auction of lands, the Fifth Report stated: The revenue was not realised with punctuality, and lands to a considerable extent were periodically exposed to sale by auction. In the native year 1203, corresponding with 1796-97, the land advertised for sale comprehended a jumma or assessment of sicca rupees 28,70,061, the extent of land actually sold bore a jumma or assessment of 14,18,756, and the amount of purchase money sicca rupees 17,90,416. In 1204, corresponding with 1797-98, the land advertised was for sicca rupees 26,66,191, the quantity sold was for sicca rupees 22,74,076, and the purchase money sicca rupees 21,47,580. Among the defaulters were some of the oldest families of the country. Such were the rajahs of Nuddea, Rajeshaye, Bishenpore (all districts of Bengal), ... and others, the dismemberment of whose estates at the end of each succeeding year, threatened them with poverty and ruin, and in some instances presented difficulties to the revenue officers, in their efforts to preserve undiminished the amount of public assessment.
+  (A) Both A and R are correct and R is the correct explanation of A.
+  (B) Both A and R are correct but R is not the correct explanation of A.
+  (C) A is correct but R is wrong.
+  (D) R is correct but A is wrong.
+
+Q2 [mcq, 1m, Sec A]
+Whom did Ashoka appoint to spread the message of dhamma?
+  (A) Ancient Mesopotamian texts refer to copper coming from a place called 'Magan'. Which place were they referring to?
+  (B) Read the following information and mention the context in which the statement is connected- ' Many Kushana rulers also adopted the title ' devaputra' or 'son of God'.
+
+Q20 [mcq, 3m, Sec C]
+Explain the sources used by historians to reconstruct the history of the Mauryan Empire.
+  (A) The nobility was recruited consciously by the Mughal rulers from diverse ethnic and religious groups.
+  (B) The battle between the hoe and plough was a long one.
+  (C) Rumours circulate only when they resonate, with the deep fears and suspicion of the people.
+  (D) Be lamps unto yourselves as all of you must work out your own liberation.
+
+Q21 [mcq, 3m, Sec C]
+The nobility was recruited consciously by the Mughal rulers from diverse ethnic and religious groups.
+  (A) Justify.
+  (B) Substantiate the statement with reference to the Santhal and Paharias of Raj Mahal Hills during the 18th century.
+  (C) How was this statement true in the context of the Revolt of 1857?
+  (D) In light of this statement explain the teachings of Buddhism.
+
+Q22 [mcq, 3m, Sec C]
+The battle between the hoe and plough was a long one.
+  (A) Substantiate the statement with reference to the Santhal and Paharias of Raj Mahal Hills during the 18th century.
+  (B) Rumours circulate only when they resonate, with the deep fears and suspicion of the people.
+  (C) How was this statement true in the context of the Revolt of 1857?
+  (D) Be lamps unto yourselves as all of you must work out your own liberation.
+
+Q23 [mcq, 3m, Sec C]
+Rumours circulate only when they resonate, with the deep fears and suspicion of the people.
+  (A) How was this statement true in the context of the Revolt of 1857?
+  (B) Be lamps unto yourselves as all of you must work out your own liberation.
+  (C) The nobility was recruited consciously by the Mughal rulers from diverse ethnic and religious groups.
+  (D) The battle between the hoe and plough was a long one.
+
+Q24 [short_answer, 8m, Sec D]
+Explain the most important idea of Jainism and its impact on Indian thinking.
+
+Q25 [short_answer, 8m, Sec D]
+Identify the rituals and practices associated with the Mahanavami Dibba, a structure in the Royal Centre of Vijayanagara Empire.
+
+Q26 [short_answer, 8m, Sec E]
+Examine the different kinds of sources from which the political career of Gandhiji and the history of the National movement could be reconstructed.
+
+Q27 [mcq, 1m, Sec A]
+The most ancient system yet discovered
+  (A) About the drains, Mackay noted: "It is certainly the most complete ancient system as yet discovered." Every house was connected to the street drains. The main channels were made of bricks set in mortar and were covered with loose bricks that could be removed for cleaning. In some cases, limestone was used for the covers. House drains first emptied into a sump or cesspit into which solid matter settled while wastewater flowed out into the street drains. Very long drainage channels were provided at intervals with sumps for cleaning. It is a wonder of archaeology that "little heaps of material, mostly sand, have frequently been found lying alongside drainage channels, which shows ... that the debris was not always carted away when the drain was cleared". FROM ERNEST MACKAY, Early Indus Civilisation, 1948.
+  (B) 27.1) Enumerate one reason, why, Mackay states  that" it is certainly the most complete ancient systems yet discovered"
+  (C) 27.2) Define the term' grid pattern' of the Lower town and state one of its features.
+  (D) 27.3)Describe the features of the domestic drainage system.
+
+Q28 [long_answer, 5m, Sec A]
+The pilgrimage of the Mughal princess Jahanara,1643
+  (A) The following is an excerpt from Jahanara's biography of Shaikh Muinuddin Chishti,titled Munis al Arwah (The Confidant of Spirits): After praising the one God ... this lowly faqira (humble soul) Jahanara ... went from the capital Agra in the company of my great father (Emperor Shah Jahan) towards the pure region of incomparable Ajmer ... I was committed to this idea, that every day in every station I would perform two cycles of optional prayer ... For several days ... I did not sleep on a leopard skin at night, I did not extend my feet in the direction of the blessed sanctuary of the revered saving master, and I did not turn my back towards him. I passed the days beneath the trees. On Thursday, the fourth of the blessed month of Ramzan, I attained the happiness of pilgrimage to the illuminated and the perfumed tomb ... With an hour of daylight remaining, I went to the holy sanctuary and rubbed my pale face with the dust of that threshold. From the doorway to the blessed tomb I went barefoot, kissing the ground. Having entered the dome, I went around the light-filled tomb of my master seven
+
+Q29 [short_answer, 1m, Sec F]
+What should be the qualities of a national language? A few months before his death Mahatma Gandhi reiterated his views on the language question: This Hindustani should be neither Sanskritised Hindi nor Persianised Urdu but a happy combination of both. It should also freely admit words wherever necessary from the different regional languages and also assimilate words from foreign languages, provided that they can mix well and easily with our national language. Thus our national language must develop into a rich and powerful instrument capable of expressing the whole gamut of human thought and feelings. To confine oneself to Hindi or Urdu would be a crime against intelligence and the spirit of patriotism. HARIJANSEVAK, 12 OCTOBER 1947
+
+Q3 [mcq, 1m, Sec A]
+Read the following information and mention the context in which the statement is connected- ' Many Kushana rulers also adopted the title ' devaputra' or 'son of God'.
+  (A) Ancient Mesopotamian texts refer to copper coming from a place called 'Magan'. Which place were they referring to?
+  (B) Whom did Ashoka appoint to spread the message of dhamma?
+
+Q30 [short_answer, 1m, Sec F]
+On the given political map of India, locate and label the following with appropriate symbols : a) Lothal, a mature Harappan site OR Sanchi, a major Buddhist site b) Agra, a territory under Babur, Akbar, and Aurangzeb OR Calcutta, a main centre of the revolt1857 c) Dandi
+  [NOTE: diagram]
+
+Q4 [mcq, 1m, Sec A]
+Which among the following was a strategy adopted by the Brahmanas to enforce the varna order?
+  (A) A) assert that varna order was a human creation
+  (B) B) advised kings to punish those who violated these norms
+  (C) C) persuaded people that their status was determined by Birth
+  (D) D) persuaded people that their status was determined by occupations they practised.
+
+Q5 [mcq, 1m, Sec A]
+Look at the given image and state what does the symbol of 'stupa' stand for?
+  [NOTE: diagram]
+
+Q6 [mcq, 1m, Sec A]
+Which of the following was a non-Buddhist symbol used to decorate stupa:
+  (A) Shalabhanjika
+  (B) Wheel
+  (C) Stupa
+  (D) Tree
+
+Q7 [mcq, 1m, Sec A]
+Identify the Bhakti tradition which favoured widow remarriage.
+  (A) Alvars
+  (B) Nayanars
+  (C) Lingayats
+  (D) Siddhas
+
+Q8 [mcq, 1m, Sec A]
+What is the source to know about the Virashaiva tradition in Karnataka?
+  [NOTE: diagram]
+
+Q9 [mcq, 1m, Sec A]
+Differentiate between 'Nayaks' and the 'Amara-nayakas'.
+  [NOTE: diagram]
+
+======================================================================
+Return the complete JSON array.

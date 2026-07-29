@@ -1,0 +1,338 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who among the following was the founder of ‘Young Europe’ underground secret society in Berne?",
+    "options": [
+      "Giuseppe Garibaldi",
+      "Giuseppe Mazzini",
+      "Count Cavour",
+      "Otto von Bismark"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following was the result of the Act of Union, 1707?",
+    "options": [
+      "Unification of Germany",
+      "Unification of the kingdom of Great Britain",
+      "Unification of Italy",
+      "Unification of Vietnam"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the correct statement with regard to the ‘Zollverein’ from the following options:",
+    "options": [
+      "It was a coalition of Prussian states formed to manage political alliances.",
+      "Its aim was to bind the Prussia politically into an association.",
+      "It was a Custom Union at the initiative of Prussia.",
+      "It helped to awaken and raise national sentiment in Europe."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following countries were involved in the Three Wars with Prussia and ended with victory and unification of Germany?",
+    "options": [
+      "Austria, Poland and France",
+      "Austria, Denmark and France",
+      "Austria, Turkey and France",
+      "Austria, England and France"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the ideology under which people demanded freedom of markets in early- nineteenth-century Europe.",
+    "options": [
+      "Romanticism",
+      "Liberalism",
+      "Socialism",
+      "Rationalism"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Choose the correctly matched pair about the crops and the areas they are grown in:",
+    "options": [
+      "Groundnut- Assam",
+      "Tea- Gujarat",
+      "Coffee- Karnataka",
+      "Sugarcane – Chhattisgarh"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The piece of land left uncultivated for the past 1 to 5 agricultural years is ca lled _________. Choose the correct option:",
+    "options": [
+      "Barren land",
+      "Forest land",
+      "Grazing land",
+      "Fallow land"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following conferences was convened to discuss environmental protection and socio-economic development at the global level in 1992?",
+    "options": [
+      "Kyoto Protocol",
+      "Montreal Protocol",
+      "Rio de Janeiro Earth Summit",
+      "World Summit on Sustainable Development"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "India has land under a variety of relief features. Which of the following features ensure perennial flow of some rivers, provide facilities for tourism and ecological aspects?",
+    "options": [
+      "Plains",
+      "Plateaus",
+      "Islands",
+      "Mountains"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following human activities has contributed significantly in land degradation?",
+    "options": [
+      "Deforestation",
+      "Crop rotation",
+      "Shelter belts",
+      "Ploughing"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following countries adopted majoritarianism in their Constitution?",
+    "options": [
+      "Nepal",
+      "India",
+      "Sri Lanka",
+      "Bangladesh"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the significant reason of power sharing from the following options.",
+    "options": [
+      "Reduces socio-economic conflicts",
+      "Provides ethnic -cultural development",
+      "Allows people to enjoy specific rights",
+      "Restricts supremacy of one party"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Apart from the Central and the State Government, Belgium has a third kind of government as well. Identify this third kind of government from the following options:",
+    "options": [
+      "Democratic Government",
+      "Socialist Government",
+      "Community Government",
+      "Liberal Government"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following countries is an example of ‘Coming Together Federation’?",
+    "options": [
+      "India",
+      "Sri Lanka",
+      "USA",
+      "Belgium"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Why is the power shared amongst different organs of government called as horizontal distribution of power? Identify the correct reason.",
+    "options": [
+      "It gives judiciary more power than legislature and executive.",
+      "It allows different organs of government to be placed at the same level.",
+      "It gives representation to different ideologies at political level.",
+      "It influences and coordinates in the decision-making process."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In India’s federal system, the Central and the S tate governments have the power to legislate on all those subjects which are included in the:",
+    "options": [
+      "Union list",
+      "State list",
+      "Concurrent list",
+      "Residuary subjects"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following states of India enjoy special powers under Article 371A of the Constitution of India?",
+    "options": [
+      "Nagaland",
+      "Rajasthan",
+      "Himachal Pradesh",
+      "Tamil Nadu"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one the following is an example of Primary Sector activity?",
+    "options": [
+      "Baking",
+      "Outsourcing",
+      "Farming",
+      "Banking"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following measures the proportion of literate population in the seven and above age group?",
+    "options": [
+      "Net Attendance Ratio",
+      "Enrolment Rate",
+      "Literacy Rate",
+      "Drop out Ratio"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following is the correct meaning of ‘Average Income’?",
+    "options": [
+      "The total income of the country divided by its earning population.",
+      "The total income of the country divided by its total population.",
+      "The total income of all the residents of the country.",
+      "The total income from the domestic and foreign sources."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following best describes Human Development Index (HDI)?",
+    "options": [
+      "Improvement in science, information and technology",
+      "Improvement in health, education and income",
+      "Improvement in information and communication",
+      "Improvement in investment, finance and technology"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "“Consequences of environmental degradation do not respect national or state boundaries.” Which of the following is the essence of this statement?",
+    "options": [
+      "Economic development",
+      "Human Development",
+      "Sustainable Development",
+      "National Development"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following examples fall under an organized sector?",
+    "options": [
+      "A daily wage labourer working for a contractor.",
+      "An engineer getting all employment benefits.",
+      "A cleaning staff in a private school",
+      "A tailor stitching clothes at his home."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Mahatma Gandhi National Rural Employment Guarantee Act 2005 state s a guarantee of minimum 100 days of employment per year . If government is unable to fulfil these 100 days of an employment, the government would have to----------------------------------- Choose the correct option:",
+    "options": [
+      "Pay the compensation in lieu of these days",
+      "Provide another scheme for the same",
+      "Pay at least 1/3  percent allowance",
+      "Provide health care as compensation"
+    ],
+    "diagram_dependent": false
+  }
+]

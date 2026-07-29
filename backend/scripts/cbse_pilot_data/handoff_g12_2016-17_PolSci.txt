@@ -1,0 +1,108 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2016-17
+Subject: Political Science
+Source Subject Code: PolSci
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/PolSci-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/PolSci-MS.pdf
+Total Questions: 27
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/PolSci-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Name the paramilitary force of Hyderabad Nizam t o counter communist forces during 1947. 1
+
+Q10 [mcq, 1m, Sec A]
+How did the opposition parties of 1950s play a crucial role in making the democratic character of the system? Explain 2
+
+Q11 [mcq, 1m, Sec A]
+How can peace and cooperation be enhanced in the SAARC region? Give any four reforms. 4
+
+Q12 [case_study, 4m, Sec A]
+Mention the role of E V Ramaswamy Naicker in the Dravidian Movement
+
+Q13 [mcq, 1m, Sec A]
+European Union has become a Supra-National organization. Explain. 4
+
+Q14 [mcq, 1m, Sec A]
+Examine the key controversies over the strategy of economic development in the early years of independence. 4
+
+Q15 [mcq, 1m, Sec A]
+Highlight the political and social aspects of the soviet system prior to 1991. 4
+
+Q16 [mcq, 1m, Sec A]
+,’The question of indigenous people brings the issue of environment, resources and politics together’. Explain the statement. 4
+
+Q17 [mcq, 1m, Sec A]
+Read the following passage and answer the following questions: The process of nation-building did not come to an e nd with the partition and integration of princely states. Now the challenge w as to draw the internal boundaries of the Indian states. The boundaries had to be drawn in a way so that the linguistic and cultural plurality of the countr y could be reflected without affecting the unity of the nation. a) Which commission was appointed to look into the question of redrawing of boundaries of the states on the lingual basis? 1 b) Why did the lingual issues become the basis of t he formation of Andhra Pradesh? 2 c) How is democracy associated with plurality? 2 ( 1+2+2=5)
+
+Q18 [mcq, 1m, Sec A]
+Read the following passage and answer the following questions: The emergency and the period around it can be descr ibed as a period of the constitutional crisis because it had its origin s in the constitutional battle over the jurisdiction of the parliament and the jud iciary. On the other hand, it was also a period of political crisis. The party in power had absolute majority and yet, its leadership decided to suspend the democratic process. a) Why is the period of emergency described as a pe riod of political crisis? 1 b) What were the issues of dispute between judiciar y and parliament during 1970’s? 2 c) How did the role of mass protest during emergenc y reflect the attributed aspiration of people? 2 ( 1+2+2=5)
+
+Q19 [mcq, 1m, Sec A]
+Read the following passage and answer the following questions: The Cuban missile crisis was a high point of what c ame to be known as the cold war. The cold war referred to the competition, the tensions and a series of confrontations between the United States and Soviet Union, backed by their respective allies. Fortunately, it never escalated into a hot war, that is a full scale war between these two powers. a) Why was the Cuban missile crisis considered as a high point of cold war? 1 b) Mention any two contentious issues between USA and USSR. 2 c) Name any two military alliances formed by the USA during the cold war. 2 (1+2+2=5)
+
+Q2 [mcq, 1m, Sec A]
+Which one of the following statements about the Bandwagon Strategy is false?
+  (A) advisable to extract benefits by operating withi n the hegemonic system
+  (B) to take advantage of the opportunities that hegemony creates
+  (C) staying as far removed from the dominant power as possible
+  (D) for raising economic power work with hegemony                                          1
+
+Q20 [mcq, 1m, Sec A]
+Read the following Cartoon and answer the following questions: a) Which country is represented as thumb? 1 b) What does this cartoon say about the nature of h egemony? 2 c) Mention any one operation undertaken by this cou ntry. 2 Note. The following question is for the visually impaired children in lieu of Q20 a) Which country in the world is having global dom inance? 1 b) Mention the military dominance of that country i n the world. 2 c) State its structural hegemony. 2 ( 1+2+2=5)
+
+Q21 [mcq, 1m, Sec A]
+In the given political outline map of India, five states have been marked as (A), (B),(C),(D) and (E). Identify these states on the basis of the information given below and write their correct names in your answer book along with their respective serial number of the information used and the concerned alphabets as per the following format. i. State to which the Nizam belonged to. ii. State which is related with article 370 of Indi an constitution. iii. State where the operation blue star was launch ed. iv. State from where the J.P.Narayan demanded the d ismissal of congress govt. in 1974. V. State which is highly affected the Naxalites. 5x1=5 SR. No. of the information used Alphabet Concerned Name of the State i) To v) …Note. The following question is for the visually impaired children in lieu of Q21 i. Why was Naxalite movement considered as a threat to the democracy? 2 ii. How was the Naxalite movement splintered into v arious political parties and organizations of India? 2 iii. Which sections of Indian society are most affe cted by the Naxalite movement? 1 ( 2+2+1=5) B A D E C
+
+Q22 [mcq, 1m, Sec A]
+Describe any six consequences of the disintegration of USSR. 6 Or Explain the relevance of NAM in the contemporary scenario.
+
+Q23 [mcq, 1m, Sec A]
+It is believed that a strengthened and revitalized UN is desirable in the changing world. Highlight the necessary reforms for its strengthening. 6 Or The non -traditional concepts both human security and global security focus on the change nature of threats and security. Substantiate the statement.
+
+Q24 [mcq, 1m, Sec A]
+What do inter-connected world mean? State the cultural and political dimensions of it. 6 Or Explain common but differential responsibility. Mention any two steps taken up by the global world in this direction.
+
+Q25 [mcq, 1m, Sec A]
+Why did India and China both view themselves as rising powers in the global politics in spite of tensions between them? Substantiate your answer by giving any four areas that have brought cordiality in their relationship. OR 6 Analyse the relationship between India and Pakistan
+
+Q26 [mcq, 1m, Sec A]
+Describe the three major issues in the North-Eastern States of India. OR 6 Explain the factors responsible for the formation of Bhartiye Kisan Union.
+
+Q27 [mcq, 1m, Sec A]
+Analyse any three major factors which led to the popularity of Indira Gandhi govt. in the early 1990s. OR 6 Analyse any three major reasons for the split of congress (o) and congress (R) in 1969
+
+Q3 [mcq, 1m, Sec A]
+Why was BAMCEF established? 1
+
+Q4 [mcq, 1m, Sec A]
+How did the Anti Arrack Movement lead to 73 rd and 74 th amendment of the Indian constitution? 1
+
+Q5 [mcq, 1m, Sec A]
+Mention any two reforms initiated by Mikhail Go rbachev in the Soviet Union 1
+
+Q6 [mcq, 1m, Sec A]
+Match the following Secretary Generals of UNO with their respective countries:
+  (A) Trygve Lie                                                         i. Egypt
+  (B) Boutros-Boutros Ghali                                      ii. Ghana
+  (C) Kofi Annan                                                       iii. Burma (Myanmar
+  (D) U Thant                                                            iv. Norway                      2
+
+Q7 [mcq, 1m, Sec A]
+How is oil continued to be the most important re source in the global strategy? Explain with an example. 2
+
+Q8 [mcq, 1m, Sec A]
+Why was Shah Commission appointed? Mention any o ne of its finding 1+1=2
+
+Q9 [mcq, 1m, Sec A]
+State the outcomes of Punjab Accord. 2
+
+======================================================================
+Return the complete JSON array.

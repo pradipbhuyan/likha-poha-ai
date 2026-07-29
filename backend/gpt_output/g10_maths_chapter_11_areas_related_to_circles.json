@@ -1,0 +1,91 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 11: Areas Related to Circles",
+    "central_question": "How can the lengths and areas of sectors, arcs and segments of a circle be calculated and applied to real objects?",
+    "in_scope_units": [
+      "Areas of Sector and Segment of a Circle: identifies minor and major sectors and segments and develops formulas for sector area, arc length and segment area.",
+      "Worked applications and Exercise 11.1: applies the formulas to quadrants, clock hands, chords, grazing regions, brooches, umbrellas, wipers, lighthouse beams and circular designs.",
+      "Summary: consolidates the three central results for arc length, sector area and segment area."
+    ],
+    "banned_topics": [
+      "Tangent theorems and equal tangent lengths, which belong to the chapter Circles.",
+      "Surface areas and volumes of cylinders, cones, spheres and combined solids.",
+      "Coordinate equations of circles and analytic geometry of circles.",
+      "Construction of tangents or division of line segments using ruler and compass."
+    ],
+    "must_include_keywords": [
+      "circle",
+      "circular region",
+      "centre",
+      "radius",
+      "chord",
+      "arc",
+      "sector",
+      "segment",
+      "minor sector",
+      "major sector",
+      "minor segment",
+      "major segment",
+      "angle of the sector",
+      "360 degrees",
+      "unitary method",
+      "πr²",
+      "2πr",
+      "arc length",
+      "sector area",
+      "corresponding triangle",
+      "area of segment",
+      "quadrant",
+      "central angle",
+      "complementary region",
+      "minute hand",
+      "grazing area",
+      "equal sectors",
+      "umbrella ribs",
+      "wiper sweep",
+      "lighthouse sector",
+      "brooch",
+      "square units",
+      "linear units"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A sector and a segment are the same region.",
+        "correction": "A sector is enclosed by two radii and an arc, while a segment is enclosed by a chord and its corresponding arc."
+      },
+      {
+        "claim": "The formula θ/360 × 2πr gives the area of a sector.",
+        "correction": "θ/360 × 2πr gives arc length; sector area is θ/360 × πr²."
+      },
+      {
+        "claim": "The area of a segment is just the area of its sector.",
+        "correction": "For a minor segment, subtract the area of the triangle formed by the two radii and the chord from the sector area."
+      },
+      {
+        "claim": "A major sector has angle θ when the corresponding minor sector has angle θ.",
+        "correction": "The major sector angle is 360° − θ, and its area can also be found by subtracting the minor-sector area from πr²."
+      },
+      {
+        "claim": "Arc length should be written in square centimetres.",
+        "correction": "Arc length is a length and uses linear units such as cm; sector and segment areas use square units such as cm²."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Figures 11.1 and 11.2 and NCERT Example 1 to distinguish minor and major sectors and calculate their areas.",
+      "Use NCERT Exercise 11.1 Question 5 to connect a central angle with both arc length and sector area.",
+      "Develop segment area through NCERT Example 2, including the complete triangle calculation.",
+      "Apply sectors to a real boundary situation through NCERT Exercise 11.1 Question 8 on a horse tied at a corner of a square field.",
+      "Finish with NCERT Exercise 11.1 Question 9 on a circular brooch divided into ten equal sectors."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "NCERT Exercise 11.1 contains Questions 1–14 on sector area, arc length, segment area and applications to circular designs and swept regions."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Areas Related to Circles\n\n## What you will learn\nYou will distinguish a sector from a segment and identify minor and major regions. You will also learn how the central angle determines which part of the circle is being discussed.\n\n## Simple explanation\nA circle can be divided in two different ways. Two radii and the arc between them form a sector, while a chord and its corresponding arc form a segment.\n\n## Step-by-step breakdown\n- **Sector**: The circular region enclosed by two radii and their corresponding arc is a sector.\n- **Angle of a sector**: The angle formed at the centre by the two bounding radii is the angle of the sector.\n- **Minor and major sectors**: The smaller sector is the minor sector; the remaining region is the major sector, whose angle is 360° minus the minor-sector angle.\n- **Segment**: The circular region enclosed by a chord and the corresponding arc is a segment.\n- **Minor and major segments**: A chord divides the circular region into a minor segment and a major segment. Unless stated otherwise, the chapter uses sector and segment to mean the minor ones.\n- **Whole-circle reference**: The complete circular region has angle 360° and area πr², so every sector is a fraction of the whole circle.\n\n## Worked example\nQuestion: Solve NCERT Example 1: A circle has radius 4 cm and a sector angle of 30°. Find the minor-sector area and the corresponding major-sector area, using π = 3.14.\n\nSolution:\n- Step 1: Use sector area = θ/360 × πr².\n- Step 2: Minor-sector area = 30/360 × 3.14 × 4² = 1/12 × 3.14 × 16.\n- Step 3: 3.14 × 16 = 50.24, so minor-sector area = 50.24/12 = 4.1866… cm² ≈ 4.19 cm².\n- Step 4: Area of the complete circle = 3.14 × 4² = 50.24 cm².\n- Step 5: Major-sector area = 50.24 − 4.19 = 46.05 cm² ≈ 46.1 cm².\n- Final answer: Minor-sector area ≈ 4.19 cm² and major-sector area ≈ 46.1 cm².\n\n## Common mistake\nDo not identify a shaded region only by its size. Check its boundaries: two radii plus an arc indicate a sector, whereas a chord plus an arc indicate a segment.\n\n## Quick check question\nQuestion: In NCERT Figure 11.2, what boundaries form the minor segment APB?\nAnswer: The chord AB and the corresponding minor arc APB form the minor segment.\nExplanation: A segment is defined by a chord and its corresponding arc; radii are not its two boundary sides.\n\n## Summary\n- A sector is bounded by two radii and an arc.\n- A segment is bounded by a chord and an arc.\n- Minor and major regions together make the complete circular region.\n- The major-sector angle is 360° minus the minor-sector angle.\n- Areas are measured in square units.",
+    "Core explanation": "# Core explanation: Areas Related to Circles\n\n## What you will learn\nYou will derive and apply the formulas for sector area and arc length. You will see why both formulas use the fraction θ/360.\n\n## Simple explanation\nA sector with angle θ occupies θ out of the full 360 degrees around the centre. Therefore, both its area and its arc length are the same fraction θ/360 of the complete circle.\n\n## Step-by-step breakdown\n- **Area of a circle**: A circle of radius r has area πr².\n- **Circumference**: A circle of radius r has circumference 2πr.\n- **Unitary method for area**: If 360° corresponds to πr², then 1° corresponds to πr²/360 and θ° corresponds to θ/360 × πr².\n- **Sector-area formula**: Area of a sector = θ/360 × πr², where θ is measured in degrees.\n- **Unitary method for length**: If 360° corresponds to circumference 2πr, then θ° corresponds to θ/360 × 2πr.\n- **Arc-length formula**: Length of an arc = θ/360 × 2πr.\n- **Units check**: Arc length has linear units, while sector area has square units.\n\n## Worked example\nQuestion: Solve NCERT Exercise 11.1 Question 5 parts (i) and (ii): In a circle of radius 21 cm, an arc subtends 60° at the centre. Find the arc length and the sector area, using π = 22/7.\n\nSolution:\n- Step 1: Given r = 21 cm and θ = 60°.\n- Step 2: Arc length = 60/360 × 2 × 22/7 × 21.\n- Step 3: Simplify 60/360 = 1/6 and 21/7 = 3: arc length = 1/6 × 2 × 22 × 3 = 132/6 = 22 cm.\n- Step 4: Sector area = 60/360 × 22/7 × 21².\n- Step 5: Sector area = 1/6 × 22/7 × 441 = 1/6 × 22 × 63 = 1386/6 = 231 cm².\n- Final answer: Arc length = 22 cm and sector area = 231 cm².\n\n## Common mistake\nA frequent error is to use r² in the arc-length formula. Circumference depends on r, so arc length uses 2πr, not πr².\n\n## Quick check question\nQuestion: Solve NCERT Exercise 11.1 Question 1: Find the area of a 60° sector of radius 6 cm, using π = 22/7.\nAnswer: The area is 132/7 cm², approximately 18.86 cm².\nExplanation: Area = 60/360 × 22/7 × 6² = 1/6 × 22/7 × 36 = 132/7 cm².\n\n## Summary\n- The factor θ/360 gives the fraction of the complete circle.\n- Sector area is θ/360 × πr².\n- Arc length is θ/360 × 2πr.\n- Use degrees consistently for θ.\n- Write correct linear or square units.",
+    "Worked examples": "# Worked examples: Areas Related to Circles\n\n## What you will learn\nYou will calculate the area of a segment by subtracting a triangle from a sector. You will also connect the geometry of an isosceles triangle with trigonometric ratios.\n\n## Simple explanation\nA minor segment contains the sector but excludes the triangle formed by the two radii and the chord. Therefore, its area is sector area minus triangle area.\n\n## Step-by-step breakdown\n- **Segment formula**: Area of minor segment = area of corresponding sector − area of the corresponding triangle.\n- **Triangle inside the sector**: The two sides from the centre to the chord endpoints are radii, so the triangle is isosceles.\n- **Perpendicular bisector**: Drawing a perpendicular from the centre to the chord bisects the chord and the vertex angle in the isosceles triangle.\n- **Major segment**: Area of major segment = πr² − area of minor segment.\n- **Major sector**: Area of major sector = πr² − area of minor sector, or (360° − θ)/360 × πr².\n\n## Worked example\nQuestion: Rework NCERT Example 2: Find the area of segment AYB when r = 21 cm and ∠AOB = 120°, using π = 22/7.\n\nSolution:\n- Step 1: Area of sector OAYB = 120/360 × 22/7 × 21² = 1/3 × 22/7 × 441 = 462 cm².\n- Step 2: Draw OM perpendicular to AB. Since OA = OB, M is the midpoint of AB and ∠AOM = 60°.\n- Step 3: In right triangle OMA, OM/OA = cos 60° = 1/2, so OM = 21/2 cm.\n- Step 4: Also, AM/OA = sin 60° = √3/2, so AM = 21√3/2 cm and AB = 2AM = 21√3 cm.\n- Step 5: Area of triangle OAB = 1/2 × AB × OM = 1/2 × 21√3 × 21/2 = 441√3/4 cm².\n- Step 6: Segment area = sector area − triangle area = 462 − 441√3/4 cm².\n- Step 7: Factor 21/4: 462 = 1848/4 = 21 × 88/4, so area = 21/4(88 − 21√3) cm².\n- Final answer: Area of segment AYB = 462 − 441√3/4 cm² = 21/4(88 − 21√3) cm².\n\n## Common mistake\nDo not subtract the sector from the triangle. The minor segment is the part of the sector outside the triangle, so use sector area minus triangle area.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 11.1 Question 4(i): A chord of a circle of radius 10 cm subtends 90° at the centre. Find the minor-segment area using π = 3.14.\nAnswer: The minor-segment area is 28.5 cm².\nExplanation: The 90° sector area is 90/360 × 3.14 × 10² = 78.5 cm². The triangle between the two radii is right-angled with area 1/2 × 10 × 10 = 50 cm². Therefore, segment area = 78.5 − 50 = 28.5 cm².\n\n## Summary\n- A segment calculation needs both a sector and a triangle.\n- The two radii create an isosceles triangle.\n- A perpendicular from the centre to the chord helps find its base and height.\n- Minor segment = sector − triangle.\n- Major segment = circle − minor segment.",
+    "Exam-style problems": "# Exam-style problems: Areas Related to Circles\n\n## What you will learn\nYou will translate a real boundary condition into a sector and compare areas when the radius changes. You will practise keeping the angle fixed while applying the sector-area formula.\n\n## Simple explanation\nMany application questions describe a rotating hand, rope, beam or blade. First identify the centre, radius and swept angle; then treat the swept region as a sector.\n\n## Step-by-step breakdown\n- **Corner of a square**: A rope tied at a corner can sweep only a quadrant, because the two sides of the field form a 90° angle.\n- **Swept region**: A rotating line segment of fixed length traces a sector whose radius is the segment length.\n- **Comparing radii**: For the same angle, sector area is proportional to r², so doubling the radius makes the area four times as large.\n- **Non-overlapping regions**: When wiper sectors do not overlap, their areas can be added directly.\n- **Context check**: The radius must fit within the stated field or object; in NCERT Question 8, both 5 m and 10 m are less than the 15 m side.\n\n## Worked example\nQuestion: Solve NCERT Exercise 11.1 Question 8: A horse is tied at one corner of a square field of side 15 m. Find the grazing area with a 5 m rope and the increase if the rope becomes 10 m, using π = 3.14.\n\nSolution:\n- Step 1: The corner angle is 90°, so the grazing region is a quadrant.\n- Step 2: For r = 5 m, grazing area = 90/360 × 3.14 × 5² = 1/4 × 3.14 × 25 = 19.625 m².\n- Step 3: For r = 10 m, grazing area = 90/360 × 3.14 × 10² = 1/4 × 3.14 × 100 = 78.5 m².\n- Step 4: Increase in grazing area = 78.5 − 19.625 = 58.875 m².\n- Final answer: Grazing area with a 5 m rope = 19.625 m²; increase for a 10 m rope = 58.875 m².\n\n## Common mistake\nDo not use the full-circle area for an object tied at a corner. The two sides of the square restrict the motion to 90°, which is one quadrant.\n\n## Quick check question\nQuestion: For NCERT Exercise 11.1 Question 11, two non-overlapping wipers each have length 25 cm and sweep 115°. What total area do they clean, using π = 22/7?\nAnswer: The total cleaned area is 158125/126 cm², approximately 1254.96 cm².\nExplanation: One wiper cleans 115/360 × π × 25². Because the two regions do not overlap, total area = 2 × 115/360 × 22/7 × 625 = 158125/126 cm² ≈ 1254.96 cm².\n\n## Summary\n- Turn a real swept region into a sector.\n- A square corner gives a 90° sector.\n- Keep the angle fraction θ/360 visible in the working.\n- Add sector areas only when the problem states that they do not overlap.\n- Area changes with the square of the radius.",
+    "Revision and recap": "# Revision and recap: Areas Related to Circles\n\n## What you will learn\nYou will combine circumference, diameters and equal-sector area in one design problem. You will then review how to choose the correct formula from the wording of a question.\n\n## Simple explanation\nA circular design may require both linear measurement for its wire boundary and area measurement for its coloured regions. Separate the length calculation from the area calculation before substituting values.\n\n## Step-by-step breakdown\n- **Linear material**: Use circumference and straight-line lengths when the question asks for wire, boundary or arc length.\n- **Equal sectors**: If a circle is divided into n equal sectors, each sector has angle 360°/n and area πr²/n.\n- **Diameter and radius**: Convert diameter to radius before using area formulas: r = d/2.\n- **Mixed designs**: Brooches, umbrellas and table-cover designs combine circle geometry with equal partitions.\n- **Formula choice**: Look for the words arc, sector, segment, major or minor before choosing the formula.\n- **Chapter results**: Arc length = θ/360 × 2πr; sector area = θ/360 × πr²; segment area = sector area − triangle area.\n\n## Worked example\nQuestion: Solve NCERT Exercise 11.1 Question 9: A circular brooch has diameter 35 mm and five diameters dividing it into ten equal sectors. Find the total wire length and the area of each sector, using π = 22/7.\n\nSolution:\n- Step 1: Circumference of the outer circle = πd = 22/7 × 35 = 110 mm.\n- Step 2: Length of five diameters = 5 × 35 = 175 mm.\n- Step 3: Total wire length = 110 + 175 = 285 mm.\n- Step 4: Radius = 35/2 = 17.5 mm.\n- Step 5: Area of the circle = 22/7 × 17.5² = 22/7 × 306.25 = 962.5 mm².\n- Step 6: The ten sectors are equal, so area of each sector = 962.5/10 = 96.25 mm².\n- Final answer: Total wire required = 285 mm; area of each sector = 96.25 mm².\n\n## Common mistake\nDo not add the five radii when the figure contains five complete diameters. Each diameter has length 35 mm, so the internal wire length is 5 × 35 mm.\n\n## Quick check question\nQuestion: Answer NCERT Exercise 11.1 Question 14: Which expression gives the area of a sector of angle p degrees and radius R?\nAnswer: p/360 × πR², which is option (D) as printed in the exercise because p/720 × 2πR² simplifies to p/360 × πR².\nExplanation: A sector occupies p/360 of the complete circle, whose area is πR².\n\n## Summary\n- Use linear units for wire and arc length.\n- Use square units for sector and segment area.\n- Equal sectors divide the full circle equally.\n- Convert diameter to radius for area calculations.\n- Check whether a hidden triangle must be subtracted for a segment.\n- The three chapter formulas all come from comparing a part with the complete circle."
+  }
+}

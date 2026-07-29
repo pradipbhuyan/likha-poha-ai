@@ -1,0 +1,93 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Social Science",
+    "chapter": "Chapter 4: Agriculture",
+    "central_question": "How do farming systems, cropping seasons, crop requirements and reforms shape Indian agriculture?",
+    "in_scope_units": [
+      "Importance of agriculture and its role in food, industry and exports.",
+      "Types of farming: primitive subsistence, intensive subsistence, commercial and plantation farming.",
+      "Cropping pattern: rabi, kharif and zaid seasons.",
+      "Major crops: cereals, millets, pulses and maize with their conditions and regions.",
+      "Food crops other than grains, beverage crops, horticulture, non-food and fibre crops.",
+      "Technological and institutional reforms, farmer support schemes and the Bhoodan-Gramdan movement."
+    ],
+    "banned_topics": [
+      "Detailed soil classification from Resources and Development.",
+      "Detailed industrial location of agro-based industries from Manufacturing Industries.",
+      "Detailed irrigation-project debates from Water Resources."
+    ],
+    "must_include_keywords": [
+      "primitive subsistence farming",
+      "slash and burn",
+      "jhumming",
+      "intensive subsistence farming",
+      "commercial farming",
+      "plantation agriculture",
+      "HYV seeds",
+      "rabi",
+      "kharif",
+      "zaid",
+      "rice",
+      "wheat",
+      "millets",
+      "jowar",
+      "bajra",
+      "ragi",
+      "maize",
+      "pulses",
+      "leguminous crops",
+      "sugarcane",
+      "oilseeds",
+      "tea",
+      "coffee",
+      "horticulture",
+      "rubber",
+      "cotton",
+      "jute",
+      "sericulture",
+      "land reforms",
+      "Green Revolution",
+      "White Revolution",
+      "crop insurance",
+      "Kisan Credit Card",
+      "minimum support price",
+      "Bhoodan",
+      "Gramdan",
+      "Vinoba Bhave"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Plantation farming is a form of subsistence farming.",
+        "correction": "The chapter identifies plantation as a type of commercial farming in which one crop is grown on a large area for the market and processing industries."
+      },
+      {
+        "claim": "Rice is always a subsistence crop.",
+        "correction": "The chapter states that rice is commercial in Haryana and Punjab but can be a subsistence crop in Odisha."
+      },
+      {
+        "claim": "All pulses fix nitrogen.",
+        "correction": "The chapter states that the listed pulses are leguminous and restore fertility except arhar."
+      },
+      {
+        "claim": "Agricultural reforms were only technological.",
+        "correction": "The chapter includes institutional reforms, credit, insurance, price support, information services and land movements as well as technology."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 1(i) to identify plantation agriculture from its defining feature.",
+      "Use NCERT Exercise 1(ii) to distinguish rabi crops from kharif crops.",
+      "Use NCERT Exercise 2(i) to connect a beverage crop with geographical conditions.",
+      "Use NCERT Exercise 3(ii) to write a structured answer on conditions required for rice.",
+      "Use NCERT Exercise 3(i) to organise government initiatives for higher agricultural production."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with “EXERCISES”, Questions 1 to 3, followed by project work and an agriculture word-search activity."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Agriculture\n\n## What you will learn\nYou will compare the main types of farming practised in India. You will identify how land, labour, technology, markets and population pressure shape each system.\n\n## Simple explanation\nIndian farming ranges from family-based subsistence cultivation to capital-intensive commercial plantations. The method used depends on physical conditions, technology and socio-cultural practices.\n\n## Step-by-step breakdown\n- **Primitive subsistence**: It uses small patches, primitive tools and family or community labour, and depends on monsoon and natural soil fertility.\n- **Slash and burn**: Farmers clear a patch, grow food crops and shift when fertility declines so natural processes can restore the soil.\n- **Jhumming and regional names**: This system has several names in India, including jhumming in the north-east and other regional names listed in the chapter.\n- **Intensive subsistence**: It is labour-intensive and uses high doses of biochemical inputs and irrigation in areas with high population pressure on land.\n- **Commercial farming**: It uses modern inputs such as HYV seeds, chemical fertilisers, insecticides and pesticides to obtain higher productivity.\n- **Plantation**: A single crop is grown over a large area using capital and migrant labour, and output is linked with processing industries and markets.\n- **Regional commercialisation**: The same crop may be commercial in one region and subsistence-oriented in another.\n\n## Worked example\nQuestion: Which system described in NCERT Exercise 1(i) grows a single crop on a large area?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1(i)\", \"extract_text\": \"Which one of the following describes a system of agriculture where a single crop is grown on a large area?\\n(a) Shifting Agriculture\\n(b) Plantation Agriculture\\n(c) Horticulture\\n(d) Intensive Agriculture\", \"note\": \"End-of-chapter exercise\"}\n```\n\nSolution:\n- Step 1: The plantation section states that a single crop is grown on a large area.\n- Step 2: It is organised for the market and has an interface with processing industry.\n- Final answer: The correct answer is Plantation Agriculture.\n\n## Common mistake\nDo not confuse intensive subsistence farming with plantation farming. Intensive farming seeks high output from limited land, while plantations grow one crop on large estates for the market.\n\n## Quick check question\nQuestion: What type of farming is practised by Rinjha’s family in the chapter example?\nAnswer: Primitive subsistence or slash-and-burn farming, locally associated with jhumming.\nExplanation: Her family clears and burns a patch and later searches for a fresh patch as fertility declines.\n\n## Summary\n- Farming systems differ in purpose, scale and inputs.\n- Jhumming is a form of slash-and-burn cultivation.\n- Intensive subsistence farming responds to population pressure.\n- Plantations are commercial and linked to industry.",
+    "Core explanation": "# Core explanation: Agriculture\n\n## What you will learn\nYou will understand India’s three cropping seasons and relate each season to typical crops and regional conditions. You will also learn why irrigation and winter rainfall can change crop geography.\n\n## Simple explanation\nCropping seasons organise agricultural time around temperature, rainfall and monsoon patterns. Rabi, kharif and zaid crops are sown and harvested in different parts of the year.\n\n## Step-by-step breakdown\n- **Rabi**: Rabi crops are sown from October to December and harvested from April to June; examples include wheat, barley, peas, gram and mustard.\n- **Rabi regions**: Punjab, Haryana, Himachal Pradesh, Jammu and Kashmir, Uttarakhand and Uttar Pradesh are important for wheat and other rabi crops.\n- **Winter precipitation**: Western temperate cyclones support rabi crops, while the Green Revolution also increased production in north-western regions.\n- **Kharif**: Kharif crops are grown with the onset of monsoon and harvested in September-October.\n- **Kharif examples**: Paddy, maize, jowar, bajra, tur, moong, urad, cotton, jute, groundnut and soyabean are listed as kharif crops.\n- **Zaid**: The short summer season between rabi and kharif produces watermelon, muskmelon, cucumber, vegetables and fodder crops.\n- **Multiple paddy crops**: Assam, West Bengal and Odisha grow Aus, Aman and Boro paddy crops in a year.\n\n## Worked example\nQuestion: According to NCERT Exercise 1(ii), which listed crop is a rabi crop?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1(ii)\", \"extract_text\": \"Which one of the following is a rabi crop?\\n(a) Rice\\n(b) Gram\\n(c) Millets\\n(d) Cotton\", \"note\": \"End-of-chapter exercise\"}\n```\n\nSolution:\n- Step 1: The cropping-pattern section lists gram among important rabi crops.\n- Step 2: Rice, millets and cotton are listed with kharif cultivation in this context.\n- Final answer: The correct answer is Gram.\n\n## Common mistake\nA common error is to classify a crop only by its most familiar season. The chapter notes that some crops, such as maize, can also be grown in a different season in certain states.\n\n## Quick check question\nQuestion: Name two zaid crops from the chapter.\nAnswer: Watermelon and cucumber; muskmelon, vegetables and fodder crops are also listed.\nExplanation: These are grown during the short summer season between rabi and kharif.\n\n## Summary\n- Rabi is the winter-sown season.\n- Kharif begins with the monsoon.\n- Zaid is a short summer season.\n- Regional climate and irrigation modify crop patterns.",
+    "Worked examples": "# Worked examples: Agriculture\n\n## What you will learn\nYou will connect crop requirements with crop distribution. You will compare rice, wheat, millets, maize and pulses using climate, soil, water and regional evidence.\n\n## Simple explanation\nDifferent crops succeed under different combinations of temperature, rainfall, soil and irrigation. Exam answers should connect conditions with the regions where a crop is grown.\n\n## Step-by-step breakdown\n- **Rice**: Rice is a kharif staple requiring high temperature above 25°C, high humidity and rainfall above 100 cm, though irrigation supports it in lower-rainfall areas.\n- **Rice regions**: It is grown in northern and north-eastern plains, coastal and deltaic areas, and through irrigation in Punjab, Haryana, western Uttar Pradesh and parts of Rajasthan.\n- **Wheat**: Wheat is a rabi crop needing a cool growing season, bright sunshine at ripening and 50 to 75 cm of evenly distributed rainfall.\n- **Millets**: Jowar, bajra and ragi are nutritionally valuable; their soil and moisture needs vary, with ragi adapted to dry regions.\n- **Maize**: Maize is used as food and fodder, is mainly kharif, requires 21°C to 27°C and grows well in old alluvial soil.\n- **Pulses**: Pulses need less moisture and most restore soil fertility by fixing nitrogen, so they are often rotated with other crops.\n\n## Worked example\nQuestion: Using NCERT Exercise 3(ii), describe the geographical conditions required for the growth of rice.\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(ii)\", \"extract_text\": \"Describe the geographical conditions required for the growth of rice.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nSolution:\n- Step 1: State the climatic requirements: high temperature, high humidity and high annual rainfall.\n- Step 2: Add that irrigation makes rice possible in areas of lower rainfall and connect this with its plains, coastal and deltaic distribution.\n- Final answer: Rice requires temperatures above 25°C, high humidity and annual rainfall above 100 cm. In drier areas it depends on irrigation, which explains its cultivation in parts of north-western India as well as humid plains and coastal deltas.\n\n## Common mistake\nDo not list states without explaining conditions. A geography answer should show why the crop is suited to those regions.\n\n## Quick check question\nQuestion: Why are pulses commonly grown in rotation with other crops?\nAnswer: Most pulses are leguminous and help restore soil fertility by fixing nitrogen from the air.\nExplanation: Crop rotation uses this soil-enriching quality while also benefiting from the lower moisture requirement of pulses.\n\n## Summary\n- Rice needs heat, humidity and abundant water.\n- Wheat needs a cool season and bright ripening sunshine.\n- Millets suit varied and often drier conditions.\n- Most pulses improve soil fertility.",
+    "Exam-style problems": "# Exam-style problems: Agriculture\n\n## What you will learn\nYou will revise food crops other than grains, beverage crops, horticulture and non-food crops. You will practise linking each crop with its climate, use and producing regions.\n\n## Simple explanation\nIndian agriculture supplies food, beverages, industrial raw materials and exports. Crop geography reflects both natural conditions and links with markets and processing.\n\n## Step-by-step breakdown\n- **Sugarcane**: A tropical and subtropical crop needing a hot, humid climate, irrigation in lower-rainfall regions and manual labour; it supplies sugar, gur, khandsari and molasses.\n- **Oilseeds**: Groundnut, mustard, coconut, sesamum, soyabean, castor, cotton seed, linseed and sunflower provide edible oils and industrial raw materials.\n- **Tea**: Tea is plantation agriculture requiring warm, moist, frost-free conditions, deep well-drained humus-rich soil and abundant skilled labour.\n- **Coffee**: Arabica coffee is grown mainly in the Nilgiri region of Karnataka, Kerala and Tamil Nadu after its introduction in the Baba Budan Hills.\n- **Horticulture**: India produces tropical and temperate fruits as well as a wide range of vegetables.\n- **Rubber**: Rubber requires a moist, humid climate, rainfall above 200 cm and temperatures above 25°C.\n- **Cotton**: Cotton grows in drier black-soil regions of the Deccan and needs high temperature, light rainfall or irrigation, bright sunshine and a long frost-free period.\n- **Jute**: Jute, the golden fibre, grows on fertile floodplain soils renewed by annual floods and requires high temperature.\n\n## Worked example\nQuestion: According to NCERT Exercise 2(i), name one important beverage crop and specify the geographical conditions required for its growth.\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(i)\", \"extract_text\": \"Name one important beverage crop and specify the geographical conditions required for its growth.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nSolution:\n- Step 1: Choose tea because the chapter gives a complete set of conditions.\n- Step 2: State warm and moist frost-free climate, frequent showers, and deep fertile well-drained soil rich in humus and organic matter.\n- Final answer: Tea is an important beverage crop. It grows well in warm, moist, frost-free tropical or subtropical climates with frequent showers and deep, fertile, well-drained humus-rich soil.\n\n## Common mistake\nDo not answer only with the crop name. The question explicitly requires geographical conditions.\n\n## Quick check question\nQuestion: Why is jute called the golden fibre in the chapter?\nAnswer: The chapter identifies jute by this name and explains its use in gunny bags, mats, ropes, yarn, carpets and other artefacts.\nExplanation: Its importance as a versatile fibre crop underlies the label used in the text.\n\n## Summary\n- Agriculture supplies both food and industrial materials.\n- Tea and coffee are important plantation beverages.\n- Cotton and jute are major fibre crops.\n- Crop requirements explain regional specialisation.",
+    "Revision and recap": "# Revision and recap: Agriculture\n\n## What you will learn\nYou will examine technological and institutional reforms in Indian agriculture. You will also connect farmer support programmes with the Bhoodan-Gramdan movement.\n\n## Simple explanation\nAgricultural development requires more than seeds and machines. Land policy, credit, insurance, price support, information and cooperative action are also part of reform.\n\n## Step-by-step breakdown\n- **Post-Independence reforms**: Collectivisation, consolidation of holdings, cooperation and abolition of zamindari were prioritised, while land reform was central to the First Five Year Plan.\n- **Green and White Revolutions**: Package technology and Operation Flood were introduced in the 1960s and 1970s, though development became concentrated in selected areas.\n- **Comprehensive programme**: The 1980s and 1990s combined institutional and technical measures for land development.\n- **Risk protection**: Crop insurance was provided against drought, flood, cyclone, fire and disease.\n- **Credit**: Grameen banks, cooperative societies, Kisan Credit Card and other schemes expanded lower-cost finance and protection.\n- **Price and information**: Weather bulletins, farm programmes, minimum support prices and procurement prices aimed to protect farmers from exploitation.\n- **Bhoodan and Gramdan**: Vinoba Bhave’s movement encouraged voluntary gifts of land and villages for landless people and became known as a blood-less revolution.\n\n## Worked example\nQuestion: Using NCERT Exercise 3(i), suggest the initiatives taken by the government to increase agricultural production.\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(i)\", \"extract_text\": \"Suggest the initiative taken by the government to ensure the increase in agricultural production.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nSolution:\n- Step 1: Organise initiatives into land reform, technology, finance, insurance, information and price support.\n- Step 2: Explain that reform combined institutional change with productive inputs rather than relying on one measure.\n- Final answer: Government initiatives included land reforms and consolidation, Green Revolution technology, irrigation and development programmes, crop insurance, rural credit, Kisan Credit Card, farmer information services, and minimum support and procurement prices.\n\n## Common mistake\nA weak answer lists only the Green Revolution. The chapter presents a wider reform package with institutional, financial and protective measures.\n\n## Quick check question\nQuestion: What was Bhoodan?\nAnswer: Bhoodan was the voluntary donation of land for distribution among landless villagers, associated with Vinoba Bhave’s movement.\nExplanation: The Pochampally example in the chapter shows land being offered for landless families, after which the idea spread more widely.\n\n## Summary\n- Agricultural reform is both technological and institutional.\n- Insurance and credit reduce farmer risk.\n- Price support checks exploitation by speculators and middlemen.\n- Bhoodan-Gramdan promoted voluntary redistribution."
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 8: Heredity",
+  "central_question": "How are traits and variations produced, expressed and passed from parents to offspring across generations?",
+  "in_scope_units": [
+    "Accumulation of variation during asexual and sexual reproduction and the role of environmental selection in survival.",
+    "Heredity and inherited traits, including classroom observation of free and attached earlobes.",
+    "Mendel's monohybrid experiments, F1 and F2 generations, genes, dominant and recessive traits, and the 1:2:1 genotype pattern.",
+    "Independent inheritance of two traits and formation of new combinations in a dihybrid cross.",
+    "Expression of traits through DNA, genes, proteins, enzymes and plant growth hormones.",
+    "Chromosomes, two gene sets in body cells, one gene set in germ-cells, and restoration of chromosome number after fertilisation.",
+    "Sex determination in different species and the XX-XY mechanism in human beings."
+  ],
+  "banned_topics": [
+    "Detailed modes of reproduction, reproductive organs, pregnancy and contraception, which belong to How do Organisms Reproduce?",
+    "Detailed natural selection, speciation and evolutionary history, which are beyond this chapter's stated treatment.",
+    "Pedigree analysis, DNA replication chemistry and molecular genetics beyond the gene-protein explanation given here."
+  ],
+  "must_include_keywords": [
+    "variation",
+    "asexual reproduction",
+    "sexual reproduction",
+    "inheritance",
+    "trait",
+    "earlobes",
+    "Gregor Johann Mendel",
+    "garden pea",
+    "F1 generation",
+    "F2 generation",
+    "self-pollination",
+    "gene",
+    "factor",
+    "TT",
+    "Tt",
+    "tt",
+    "dominant trait",
+    "recessive trait",
+    "monohybrid cross",
+    "dihybrid cross",
+    "round seeds",
+    "wrinkled seeds",
+    "independent inheritance",
+    "new combinations",
+    "DNA",
+    "protein",
+    "enzyme",
+    "plant hormone",
+    "chromosome",
+    "germ-cell",
+    "maternal",
+    "paternal",
+    "sex chromosomes",
+    "XX",
+    "XY",
+    "X chromosome",
+    "Y chromosome",
+    "sex determination"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A dominant trait is always more common or stronger in a population.",
+      "correction": "Dominant means that one copy is sufficient for expression; it does not mean more common, healthier or physically stronger."
+    },
+    {
+      "claim": "The recessive trait disappears in the F1 generation.",
+      "correction": "The recessive factor is inherited by F1 plants but is not expressed when a dominant factor is present; it can reappear in F2."
+    },
+    {
+      "claim": "F1 offspring are a blended medium form of the two parental traits.",
+      "correction": "In Mendel's tall × short cross, all F1 plants were tall; there were no medium-height plants."
+    },
+    {
+      "claim": "Every visible difference is inherited.",
+      "correction": "The chapter discusses inherited traits and variations passed through DNA; observation alone must be supported by family or breeding evidence."
+    },
+    {
+      "claim": "Genes themselves are proteins.",
+      "correction": "A gene is a section of DNA that provides information for making a protein."
+    },
+    {
+      "claim": "The mother determines the sex of a human child.",
+      "correction": "Every child receives an X chromosome from the mother; the father's X- or Y-bearing sperm determines whether the child is XX or XY."
+    },
+    {
+      "claim": "Human beings have 23 perfectly matched chromosome pairs in both sexes.",
+      "correction": "There are 22 similar pairs; the sex-chromosome pair is XX in women and XY in men."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 8.1 to collect and interpret evidence about free and attached earlobes.",
+    "Use NCERT Figure 8.3 and Activity 8.2 to distinguish TT, Tt and tt and reason about the 1:2:1 genotype pattern.",
+    "Use NCERT Figure 8.5 to identify new combinations that demonstrate independent inheritance.",
+    "Use NCERT end-of-chapter Exercise Q1 to infer the genetic make-up TtWW from the stated offspring pattern.",
+    "Use NCERT Figure 8.6 and the in-text Question 4 to explain XX-XY sex determination without blaming either parent."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the NCERT EXERCISES section containing Questions 1-4.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

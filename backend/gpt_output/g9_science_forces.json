@@ -1,0 +1,123 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Science",
+    "chapter": "How Forces Affect Motion",
+    "central_question": "How do the magnitude, direction and balance of forces determine whether an object remains at rest, moves with constant velocity, accelerates or interacts with other objects?",
+    "in_scope_units": [
+      "The concept of force: effects of force, magnitude, direction, SI unit newton and measurement using a spring balance.",
+      "Balanced and unbalanced forces: combining forces in the same or opposite directions and finding the net force.",
+      "The force of friction: its direction, dependence on surfaces, measurement and role in slowing or enabling motion.",
+      "Newton's first law of motion: zero net force, constant velocity and inertia.",
+      "Newton's second law of motion: relation among net force, mass and acceleration, including F = ma and gravitational force F = mg.",
+      "Applications of the second law: catching a ball, airbags, impact forces, force-time ideas and graph-based calculations.",
+      "Newton's third law of motion: equal and opposite forces on different objects in contact and non-contact interactions.",
+      "Applications of the third law: walking, rowing, recoil, balloons, rockets and spacecraft manoeuvres.",
+      "Forces acting on a system of objects: internal and external forces and acceleration of connected masses treated as one system."
+    ],
+    "banned_topics": [
+      "Detailed vector resolution and calculation of forces acting at arbitrary angles.",
+      "Torque, moments of force and full rotational dynamics.",
+      "Detailed coefficients of static, sliding and rolling friction beyond the chapter's qualitative treatment.",
+      "A full derivation of momentum conservation or variable-mass rocket equations.",
+      "Relativistic mechanics, quantum mechanics and advanced modifications of Newton's laws.",
+      "Standalone teaching of kinematic equations and graph interpretation beyond their use in this chapter's force problems."
+    ],
+    "must_include_keywords": [
+      "force",
+      "magnitude",
+      "direction",
+      "newton",
+      "spring balance",
+      "balanced forces",
+      "unbalanced forces",
+      "net force",
+      "friction",
+      "normal force",
+      "gravitational force",
+      "buoyant force",
+      "inertia",
+      "Newton's first law",
+      "constant velocity",
+      "acceleration",
+      "Newton's second law",
+      "F = ma",
+      "F = mg",
+      "acceleration due to gravity",
+      "g = 9.8 m s^-2",
+      "momentum",
+      "airbag",
+      "Newton's third law",
+      "equal and opposite forces",
+      "action-reaction pair",
+      "walking",
+      "canoe",
+      "rocket",
+      "recoil",
+      "contact force",
+      "non-contact force",
+      "system of objects",
+      "internal forces",
+      "external forces",
+      "tension"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A moving object must always have a force acting in the direction of its motion.",
+        "correction": "An object can move with constant velocity when the net force is zero; a net force is required only to change its velocity."
+      },
+      {
+        "claim": "Balanced forces mean that no forces are acting on the object.",
+        "correction": "Balanced forces may be present, but their vector sum is zero, so they do not produce acceleration."
+      },
+      {
+        "claim": "Friction always opposes the applied force.",
+        "correction": "Friction opposes relative motion or the tendency of relative motion between surfaces; while walking, friction from the ground acts forward and helps the person move."
+      },
+      {
+        "claim": "If two forces are equal and opposite, they always cancel each other.",
+        "correction": "They cancel only when they act on the same object. Newton's third-law pair acts on two different objects and therefore does not cancel."
+      },
+      {
+        "claim": "Equal and opposite third-law forces produce equal accelerations.",
+        "correction": "The forces are equal, but accelerations can differ because acceleration also depends on mass through a = F/m."
+      },
+      {
+        "claim": "Constant velocity means only constant speed.",
+        "correction": "Constant velocity means both the magnitude and the direction of velocity remain unchanged."
+      },
+      {
+        "claim": "The SI unit of force is written as Newton with symbol n.",
+        "correction": "The unit name is written newton with a small n, while its symbol is N."
+      },
+      {
+        "claim": "In F = ma, any one force may be used for F.",
+        "correction": "F represents the net force on the object, not an individual force unless it is the only unbalanced force."
+      },
+      {
+        "claim": "A heavier falling object has a larger acceleration due to gravity near Earth's surface.",
+        "correction": "The acceleration due to Earth's gravity, g, is nearly the same for all objects near the surface and does not depend on their mass."
+      },
+      {
+        "claim": "Internal forces must always be included when finding the acceleration of a whole connected system.",
+        "correction": "When connected objects are treated as one system, internal forces such as tension cancel within the system; only external forces determine the system's acceleration."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Example 6.1 to add or subtract collinear forces and identify the direction of the net force.",
+      "Use NCERT Activities 6.1 and 6.2 to connect surface type, friction, stopping distance and spring-balance readings.",
+      "Use NCERT Examples 6.2 and 6.3 to apply Newton's first law to constant velocity and motion graphs.",
+      "Use NCERT Examples 6.4, 6.5 and 6.6 to progress from F = mg to friction-limited motion and velocity-time graph calculations using F = ma.",
+      "Use NCERT Activities 6.5, 6.6 and 6.7 followed by Examples 6.7 and 6.8 to distinguish third-law force pairs from their different accelerations.",
+      "Finish with NCERT Exercise Questions 4, 11, 14 and 15 from Revise, Reflect, Refine to integrate net force, graphs, friction and systems of objects."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Revise, Reflect, Refine' and contains Questions 1-16 on pages 112-114 of the supplied chapter."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: How Forces Affect Motion\n\n## What you will learn\nYou will learn what a force is, why both its magnitude and direction matter, and how it is measured. You will also distinguish balanced forces from unbalanced forces and calculate simple net forces acting along one straight line.\n\n## Simple explanation\nA force is a push or a pull that can start motion, stop motion, change speed, change direction or change shape. In real situations, several forces usually act together, so the motion of an object depends on their combined effect, called the net force.\n\n## Step-by-step breakdown\n- **Effects of force**: A force can make a ball at rest move, change the direction of a moving cricket ball, or change the shape of a lemon when squeezed.\n- **Magnitude and direction**: Force must be described using both its strength and its direction. Changing either one can change the effect on the object.\n- **SI unit**: The SI unit of force is the newton, written with a small 'n'; its symbol is N.\n- **Measuring force**: A spring balance measures the magnitude of a force. It can measure weight as well as other pulling forces.\n- **Several forces on one object**: A pushed box experiences an applied force and friction; a floating ball experiences downward gravitational force and upward buoyant force.\n- **Balanced forces**: Equal forces in opposite directions acting on the same object give zero net force. They do not produce acceleration.\n- **Unbalanced forces**: If opposite forces are unequal, the net force equals their difference and points towards the larger force.\n- **Forces in the same direction**: Their magnitudes add, and the net force acts in the common direction.\n\n## Worked example\nQuestion: In NCERT Example 6.1, forces of 10 N and 6 N act on a block. Find the net force when both act towards the right, and when 10 N acts right while 6 N acts left.\n\nSolution:\n- Step 1: For forces in the same direction, add their magnitudes: 10 N + 6 N = 16 N.\n- Step 2: For opposite forces, subtract the smaller from the larger: 10 N - 6 N = 4 N.\n- Final answer: The net force is 16 N to the right in the first case and 4 N to the right in the second case.\n\n## Common mistake\nDo not say that balanced forces mean no forces are present. Balanced forces are present, but their net effect on the object's acceleration is zero.\n\n## Quick check question\nQuestion: In NCERT Pause and Ponder 1, a weightlifter keeps a barbell steady. Are the upward force by the weightlifter and the downward gravitational force balanced?\nAnswer: Yes. They are equal in magnitude and opposite in direction, so the net force on the steady barbell is zero.\nExplanation: A steady object has no acceleration. Therefore, the forces acting on it must be balanced.\n\n## Summary\n- Force has magnitude, direction and unit.\n- The SI unit of force is the newton (N).\n- A spring balance measures force.\n- Balanced forces give zero net force.\n- Unbalanced forces produce a non-zero net force and can change motion.",
+    "Core explanation": "# Core Explanation: How Forces Affect Motion\n\n## What you will learn\nYou will explore friction and see why moving objects usually slow down in everyday life. You will then connect this idea to Newton's first law, constant velocity and inertia.\n\n## Simple explanation\nFriction acts between surfaces in contact and often opposes motion. Because friction is common, it can appear as though a continuous force is needed to keep an object moving. Newton's first law shows that without a net force, an object at rest stays at rest and a moving object continues with constant velocity.\n\n## Step-by-step breakdown\n- **Friction on a pushed object**: A box may not move until the applied force becomes larger than friction, creating a net force in the forward direction.\n- **Other forces on the box**: Weight acts downward and the normal force acts upward. On a horizontal surface these can balance each other.\n- **Why objects stop**: After the applied force is removed, friction remains opposite to the motion and reduces velocity until the object stops.\n- **Activity 6.1**: The same stack of four coins, launched by the same stretched rubber band, travels different distances on wooden, laminated and polished surfaces because friction differs.\n- **Activity 6.2**: The spring-balance reading when a block just starts moving gives an approximate measure of friction. A smaller reading means smaller friction.\n- **Frictionless thought experiment**: If friction were zero and no other net force acted, a moving object would not slow down and would continue with constant velocity.\n- **Newton's first law**: An object at rest remains at rest, and an object in motion continues with constant velocity, unless a net force acts on it.\n- **Inertia**: Inertia is the tendency of an object to resist a change in its state of rest or uniform motion.\n- **Graph meaning**: With zero net force, an object may remain at rest or move with constant velocity; its acceleration is zero in both cases.\n\n## Worked example\nQuestion: In NCERT Example 6.2, a person pushes a moving box forward with a force equal to the backward frictional force. Will the box stop or continue moving?\n\nSolution:\n- Step 1: The forward applied force and backward frictional force are equal and opposite.\n- Step 2: Their net force is zero, so the acceleration is zero.\n- Final answer: The box continues moving with constant velocity according to Newton's first law.\n\n## Common mistake\nA force is not needed to maintain constant velocity when the net force is zero. A force is needed to change velocity, including changing speed, changing direction or stopping the object.\n\n## Quick check question\nQuestion: NCERT Pause and Ponder 3 asks whether a net force acts on an object moving with constant velocity. What is the answer?\nAnswer: No. The net force is zero.\nExplanation: Constant velocity means zero acceleration. By Newton's first law, zero acceleration corresponds to zero net force.\n\n## Summary\n- Friction commonly acts opposite to motion and slows objects.\n- Friction depends on the nature of the surfaces in contact.\n- A spring balance can give an approximate measure of friction.\n- Zero net force means zero acceleration.\n- Newton's first law describes rest and constant-velocity motion.\n- Inertia is resistance to a change in the state of motion.",
+    "Worked examples": "# Worked Examples: How Forces Affect Motion\n\n## What you will learn\nYou will learn Newton's second law and use it to connect net force, mass and acceleration. You will also apply F = ma and F = mg to numerical and graph-based situations from the chapter.\n\n## Simple explanation\nA non-zero net force produces acceleration in the direction of that force. For a fixed mass, a larger net force produces a larger acceleration. For the same force, a larger mass produces a smaller acceleration.\n\n## Step-by-step breakdown\n- **Activity 6.3**: With the same cart mass, increasing the pulling force increases acceleration.\n- **Activity 6.4**: With the same pulling force, increasing the cart's mass decreases acceleration.\n- **Newton's second law**: The acceleration of an object is directly proportional to net force and inversely proportional to mass.\n- **Equation**: a = F/m or F = ma, where F is the net force.\n- **Direction**: Acceleration is in the direction of the net force.\n- **Definition of one newton**: One newton produces an acceleration of 1 m s^-2 in a mass of 1 kg.\n- **Gravitational force**: The weight of an object is F = mg, where g = 9.8 m s^-2 near Earth's surface; 10 m s^-2 may be used for quick estimates.\n- **Acceleration due to gravity**: Near Earth's surface, g does not depend on the mass of the falling object.\n- **Reducing impact force**: Pulling the hands backward while catching a ball, using airbags, bubble wrap or a landing mat increases stopping time and reduces acceleration and force.\n- **Velocity-time graphs**: The slope gives acceleration; use F = ma after finding the acceleration.\n\n## Worked example\nQuestion: Solve NCERT Example 6.5(ii): A 25 kg block experiences 50 N friction and is pushed forward with 55 N. Find its acceleration and displacement in 2 s from rest.\n\nSolution:\n- Step 1: Net force = 55 N - 50 N = 5 N forward.\n- Step 2: Acceleration, a = F/m = 5/25 = 0.2 m s^-2.\n- Step 3: Using s = ut + 1/2 at^2 with u = 0, t = 2 s: s = 0 + 1/2 x 0.2 x 2^2 = 0.4 m.\n- Final answer: The acceleration is 0.2 m s^-2 and the displacement is 0.4 m forward.\n\n## Common mistake\nDo not substitute the applied force directly into F = ma when friction or another opposing force is present. First calculate the net force.\n\n## Quick check question\nQuestion: In NCERT Pause and Ponder 6, a 100 g toy car moves with a constant velocity of 0.5 m s^-1. What is the net force on it?\nAnswer: 0 N.\nExplanation: Constant velocity means zero acceleration, so F = ma = m x 0 = 0 N.\n\n## Summary\n- Newton's second law uses the net force.\n- F = ma and a = F/m.\n- More force gives more acceleration for the same mass.\n- More mass gives less acceleration for the same force.\n- Weight is given by F = mg.\n- Increasing stopping time reduces impact acceleration and force.",
+    "Exam-style problems": "# Exam-Style Problems: How Forces Affect Motion\n\n## What you will learn\nYou will apply Newton's third law to contact and non-contact interactions. You will distinguish a third-law force pair from balanced forces and explain motion in walking, rowing, recoil, balloons and rockets.\n\n## Simple explanation\nWhenever one object exerts a force on another object, the second object simultaneously exerts an equal force in the opposite direction on the first. These forces act on different objects, so they do not cancel each other.\n\n## Step-by-step breakdown\n- **Activity 6.5**: Pushing a heavy table from a wheeled chair makes the chair move in the opposite direction because the table pushes back.\n- **Walking and cycling**: The foot pushes the ground backward, while friction from the ground pushes the person or bicycle forward.\n- **Useful friction**: Grooves on footwear and tyre treads increase friction, making walking and driving safer.\n- **Activity 6.6**: Two connected spring balances show equal readings, verifying equal force magnitudes in opposite directions.\n- **Newton's third law**: Whenever one object exerts a force on a second, the second exerts an equal and opposite force on the first.\n- **Different objects**: Third-law forces act on two different objects; balanced forces act on the same object.\n- **Canoe motion**: The paddle pushes water backward, and water pushes the paddle and canoe forward.\n- **Activity 6.7 and rocket motion**: Air rushing backward pushes the balloon forward; exhaust gases expelled downward push a rocket upward.\n- **Contact and non-contact forces**: The third law applies to mechanical contact forces and also magnetic, electrostatic and gravitational interactions.\n- **Equal forces, unequal accelerations**: Because a = F/m, objects of different masses can have different accelerations even when the forces are equal.\n\n## Worked example\nQuestion: Solve NCERT Example 6.8: A 0.1 kg bullet is fired from a 5 kg gun with a force of 2 N. Find the initial acceleration magnitudes of the bullet and the gun.\n\nSolution:\n- Step 1: By Newton's third law, the bullet and gun exert equal forces of 2 N on each other in opposite directions.\n- Step 2: Gun acceleration = F/m = 2/5 = 0.4 m s^-2.\n- Step 3: Bullet acceleration = F/m = 2/0.1 = 20 m s^-2.\n- Final answer: The gun accelerates at 0.4 m s^-2 and the bullet at 20 m s^-2 in opposite directions.\n\n## Common mistake\nDo not call the force on the bullet and the force on the gun balanced forces. They are a third-law pair acting on different objects.\n\n## Quick check question\nQuestion: In NCERT Revise, Reflect, Refine Question 7, a sailor jumps forward from a small boat. In which direction does the boat move, and why?\nAnswer: The boat moves backward.\nExplanation: The sailor pushes the boat backward while jumping, and the boat exerts an equal and opposite force on the sailor. The two forces act on different objects.\n\n## Summary\n- Forces occur in interacting pairs.\n- Third-law forces are equal in magnitude and opposite in direction.\n- The pair acts on different objects and does not cancel.\n- Friction can help walking and vehicle motion.\n- Rowing, recoil, balloons and rockets illustrate the third law.\n- Equal forces can produce different accelerations when masses differ.",
+    "Revision and recap": "# Revision and Recap: How Forces Affect Motion\n\n## What you will learn\nYou will combine all three laws of motion and apply them to connected objects. You will learn why treating several connected objects as one system can simplify force analysis.\n\n## Simple explanation\nWhen objects are connected, they can often be treated as one system. Forces between parts of the system are internal, while forces exerted from outside are external. The acceleration of the whole system depends on the net external force and the total mass.\n\n## Step-by-step breakdown\n- **System of objects**: Two connected boxes and the string can be treated as one combined system.\n- **Tension as an internal force**: The string pulls the boxes in opposite ways, but these tension forces are internal to the chosen system.\n- **External force**: The applied pulling force F acts from outside the system and determines its horizontal acceleration on a frictionless surface.\n- **System acceleration**: For masses m1 and m2, a = F/(m1 + m2).\n- **Vertical balance**: The total normal force upward balances the total gravitational force downward when there is no vertical acceleration.\n- **First-law review**: Zero net force means rest or constant velocity.\n- **Second-law review**: Non-zero net force produces acceleration according to F = ma.\n- **Third-law review**: Interacting objects exert equal and opposite forces on each other.\n- **Integrated method**: Identify the object or system, list forces, choose a direction, calculate net force, then apply the relevant Newton's law.\n\n## Worked example\nQuestion: Based on NCERT Section 6.7 and Equation 6.4, two boxes of masses m1 and m2 are connected on a frictionless horizontal surface and pulled by an external force F. What is their common acceleration?\n\nSolution:\n- Step 1: Treat both boxes and the connecting string as one system of total mass m1 + m2.\n- Step 2: Ignore the internal tension forces when analysing the whole system; the horizontal external force is F.\n- Step 3: Apply Newton's second law: a = net external force/total mass.\n- Final answer: a = F/(m1 + m2).\n\n## Common mistake\nDo not include the same internal tension force twice when calculating the acceleration of the complete system. Internal forces cancel within the system-level analysis.\n\n## Quick check question\nQuestion: In NCERT Revise, Reflect, Refine Question 4, 95 oarsmen propel a boat forward and 5 row in the opposite direction. Each applies 200 N. Ignoring drag, what is the net force?\nAnswer: 18,000 N forward.\nExplanation: Forward force = 95 x 200 = 19,000 N. Opposing force = 5 x 200 = 1,000 N. Net force = 19,000 - 1,000 = 18,000 N forward.\n\n## Summary\n- Choose the object or system before analysing forces.\n- Internal forces are omitted when treating the whole system.\n- External forces determine the system's acceleration.\n- For two connected masses, a = F/(m1 + m2) on a frictionless surface.\n- Newton's first, second and third laws form one connected framework.\n- Always use net force, direction and mass carefully in exam problems."
+  }
+}

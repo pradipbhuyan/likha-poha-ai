@@ -1,0 +1,102 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2018-19
+Subject: Biology
+Source Subject Code: Biology
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Biology-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Biology-MS.pdf
+Total Questions: 27
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Biology-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+How many pollen grains and ovules are likely to be formed in the anther and the ovary of an angiosperm bearing 25 microspore mother cells and 25 megaspore mother cells respectively? OR In case of polyembryony, an embryo A develops from the synergids and the embryo B develops from the nucellus. State the ploidy of embryo A and B.
+
+Q10 [short_answer, 2m, Sec B]
+How do automobiles fitted with catalytic converters reduce air pollution? Suggest the best fuel for such vehicles.
+
+Q11 [short_answer, 2m, Sec B]
+State the Mendelian principle which can be derived from a dihybrid cross and not from monohybrid cross.
+
+Q12 [short_answer, 2m, Sec B]
+Comment upon the mode of pollination in Vallisneria and Eichhornia which have emergent flowers. SECTION- C
+
+Q13 [short_answer, 3m, Sec C]
+Alien species are highly invasive and are a threat to indigenous species. Substantiate this statement with any three examples.
+
+Q14 [short_answer, 3m, Sec C]
+The embryo sac in female gametophyte is seven celled and eight nucleated structure. Justify the statement with the help of a labelled diagram. OR List the changes that occur when an ovule matures into seed.
+  [NOTE: diagram]
+
+Q15 [short_answer, 3m, Sec C]
+Compare and contrast the theories of evolution proposed by Darwin and Hugo De Vries.
+
+Q16 [short_answer, 3m, Sec C]
+Explain the different steps involved in the secondary treatment of sewage. OR Microbes can be used to decrease the use of chemical fertilizers. Explain how this can be accomplished.
+
+Q17 [short_answer, 3m, Sec C]
+a) How do DNA fragments migrate and resolve in a Gel electrophoresis? b) How lane one is different from lane 2, 3 and 4 in the Gel electrophoresis set up? c) How pure DNA fragments are made observable in the visible light?
+
+Q18 [short_answer, 3m, Sec C]
+Suggest and explain the assisted reproductiv e techniques which will help a couple to have children, where the female had a blockage in the fallopian tube and the male partner had a low sperm count.
+
+Q19 [short_answer, 3m, Sec C]
+a) Construct a complete transcription unit with promoter and terminator on the basis of the hypothetical template strand given below: b) Write the RNA strand transcribed from the above transcription unit along with its polarity. OR a) Mention two events in which DNA is unzipped. b) Predict the consequences when both the template and the coding strands of a DNA segment participate in transcription process?
+
+Q2 [mcq, 1m, Sec A]
+Give the scientific name of the source organism from which the first antibiotic was produced.
+
+Q20 [short_answer, 3m, Sec C]
+As a biologist explain the technique to a dairy farmer for increasing the yield of herd size of cattle in a short time.
+
+Q21 [short_answer, 3m, Sec C]
+The Indian Gov ernment refuted the attempt by a multinational company (MNC) to patent the antiseptic property of curcumin derived from Turmeric. Analyze the unethical practice adopted by the MNC, state its implications and suggest provisions in the Indian Law to prevent such malpractices.
+
+Q22 [short_answer, 3m, Sec C]
+A 17-year old boy is suffering from high fever with profuse sweating and chills. Choose the correct option from the following diseases which explains these symptoms and rule out the rest with adequate reasons. (a) Typhoid (b) Viral Fever(c) Malaria
+
+Q23 [short_answer, 3m, Sec C]
+Study the given pedigree chart and answer the questions that follow: (a) Is the trait recessive or dominant? (b) Is the trait sex-linked or autosomal? (c) Give the genotypes of the parents shown in generation I and their third child shown in generation II and the first grandchild shown in generation III. OR Haemophilia is a sex linked recessive disorder of humans. The pedigree chart given below shows the inheritance of Haemophilia in one family. Study the pattern of inheritance and answer the questions given. (a) Give all the possible genotypes of the members 4, 5 and 6 in the pedigree chart. (b) A blood test shows that the individual 14 is a carrier of haemophilia. The member numbered 15 has recently married the member numbered 14. What is the probability that their first child will be a haemophilic male.? Show with the help of Punnett square.
+
+Q24 [short_answer, 3m, Sec C]
+a) In a pond there were 200 frogs. 40 more were born in the year. Calculate the birth rate of the population. b) Population in terms of number is not always a necessary parameter to measure population density. Justify with two examples. SECTION- D
+
+Q25 [long_answer, 5m, Sec D]
+People living in t he coast al areas are forced to evict their dwelling units as the sea has inundated into the land areas. State the possible reasons and suggest measures that could be taken to reduce the deleterious changes in the environment. OR A young sperm whale , 33-foot long was found dead off the coast. It had a large amount of human trash like trash bags, polypropylene sacks, ropes, net segments etc. amounting to 29 kilograms in its digestive system. The whale died because of inflammation of the abdominal lining. Analyze the possible reasons for such mishaps and suggest measures that can be taken to reduce such incidents.
+
+Q26 [long_answer, 5m, Sec D]
+Aneuploidy of chromosomes in human beings results in certain disorders. Draw out the possibilities of the karyotype in common disorders of this kind in human beings and its consequences in individuals. OR In a dihybrid cross , white eyed, yellow bodied female Drosophila was crossed with red eyed, brown bodied male Drosophila. The cross produced 1.3 percent recombinants and 98.7 progeny with parental type combinations in the F2 generation. Analyze the above observation and compare with the Mendelian dihybrid cross.
+
+Q27 [long_answer, 5m, Sec D]
+Differentiate between spermatogenesis and oogenesis. OR ‘Parturition is induced by a complex Neuro endocrine mechanism’. Justify
+
+Q3 [mcq, 1m, Sec A]
+The prophase I stage of meiosis plays a vital role in r-DNA formation. Justify with reason.
+
+Q4 [mcq, 1m, Sec A]
+Name the technique by which Gene expression can be controlled with the help of RNA molecule.
+
+Q5 [mcq, 1m, Sec A]
+Define Diapause OR Define Standing Crop SECTION- B
+
+Q6 [short_answer, 2m, Sec B]
+The figure given below represents a molecule present in the body of a mammal - a) Name the parts labelled ‘a’ and ‘b’ in the molecule shown above. b) Name the type of cells that produce this molecule. OR Life style diseases are increasing alarmingly in India. We are also dealing with large scale malnutrition in the population. Suggest a process by which we can address both these problems. Give any three examples to support your answer.
+  [NOTE: diagram]
+
+Q7 [short_answer, 2m, Sec B]
+Why does the lac operon shut down some time after the addition of lactose in the medium where E.coli was growing? Why low level expression of lac operon is always required?
+
+Q8 [short_answer, 2m, Sec B]
+a) While cloning vectors , which of the two will be preferred by biotechnologists - bacteriophages or plasmids. Justify with reason. b) Name the first tran sgenic cow developed and state the improvement in the quality of the product produced by it.
+
+Q9 [short_answer, 2m, Sec B]
+Explain the impact of removal of thymus gland on the immune system of a human body. OR A farmer maintained beehives in his Brassica field during its flowering season. How will he be benefitted?
+
+======================================================================
+Return the complete JSON array.

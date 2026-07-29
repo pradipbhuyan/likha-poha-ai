@@ -1,0 +1,91 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 1
+Subject: Sociology
+Source Subject Code: Sociology
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Sociology-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Sociology-MS.pdf
+Total Questions: 24
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Sociology-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+There is a close relationship between disability and poverty. Identify the option that does not hold true in this context. a) Malnutrition b) Frequent childbirth c) Inadequate immunisation d) High socio-economic status
+
+Q10 [mcq, 1m, Sec A]
+Caste system imposes rules. Which of the following is incorrect in this context? a) Caste groups are endogamous. b) Caste is hierarchical system. c) Occupational choices are open. d) There are restrictions on food sharing.
+
+Q11 [mcq, 1m, Sec A]
+How did the British try to understand the complexity of caste system? a) Interview b) Survey c) Participant Observation d) Interview and Participant Observation
+
+Q12 [mcq, 1m, Sec A]
+Two broad sets of issues have been most important in giving rise to tribal movements- control over vital economic resources and . a) issues relating to matters of ethnic-cultural identity b) globalisation c) colonialism d) secularisation
+
+Q13 [mcq, 1m, Sec A]
+It was in the and spheres that caste has proved strongest. a) economic and technical b) religious and technical c) cultural and educational d) cultural and domestic
+
+Q14 [mcq, 1m, Sec A]
+Just like caste in India, race in South Africa stratifies society into a hierarchy. This system is called . a) Casteism b) Apartheid c) Tribalism d) Untouchability
+
+Q15 [mcq, 1m, Sec A]
+The service and artisanal castes who occupied the lower rungs of the caste hierarchy are referred to as- a) Dalit b) Scheduled Tribes c) Bohras d) OBCs
+
+Q16 [mcq, 1m, Sec A]
+is often grounded in stereotypes. a) inclusion b) Prejudice c) Reservation d) Accommodation
+
+Q17 [mcq, 1m, Sec A]
+People do not face discrimination and exclusion on the basis of- a) Caste b) Class c) Gender d) Family system
+
+Q18 [mcq, 1m, Sec A]
+Cultural diversity can present tough challenges. Which of the following is not a reason for the same? a) It can arouse intense passions. b) It can often mobilise large numbers of people. c) Cultural identities are not significant. d) Cultural differences are accompanied by economic and social inequalities.
+
+Q19 [mcq, 1m, Sec A]
+is the most recent significant initiative of the civil society which makes the state accountable to the nation and its people. a) MGNREGA b) BETI BACHAO BETI PADHAO c) RTI d) NATIONAL HEALTH POLICY
+
+Q2 [mcq, 1m, Sec A]
+Which of the following does not lead to population explosion? a) Low level of economic development can lead to population explosion. b) It happens due to high birth rate and low death rate. c) It takes longer for society to alter reproductive behaviour. d) Reduced fertility rate
+
+Q20 [mcq, 1m, Sec A]
+Language coupled with and have provided the most powerful instrument for the formation of ethno-national identity in India. a) region, religion b) regional, tribal identity c) Religion, class d) Class, gender
+
+Q21 [mcq, 1m, Sec A]
+To be effective, the ideas of inclusive nationalism had to be built into the . a) Constitution b) Parliament c) Supreme Court d) Legislature
+
+Q22 [mcq, 1m, Sec A]
+What criterion is used to define minority in the sociological sense? a) Privilege b) Only numerical distinction c) Solidarity due to experience of disadvantage d) Individualism
+
+Q23 [mcq, 1m, Sec A]
+states often limit or abolish civil liberties. a) Authoritarian b) Democratic c) Civil Society d) Libertarian
+
+Q24 [mcq, 1m, Sec A]
+Stree Purush Tulana, was written as a protest against the double standards of a male dominated society. The author of this book was- a) Tarabai Shinde b) Savitri Phule c) Annie Beasant d) Anita Ghai
+
+Q3 [mcq, 1m, Sec A]
+India’s population is projected to increase from 1.2 billion today to an estimated 1.6 billion by 2050. This happens due to- a) Population momentum b) Population explosion c) Population policy d) National Health Policy
+
+Q4 [mcq, 1m, Sec A]
+Ageing population implies- a) Low dependency ratio b) High dependency ratio c) Window of economic opportunity d) High death rate
+
+Q5 [mcq, 1m, Sec A]
+Which of the following factors is not responsible for the caste system to become invisible for the upper caste, urban middle and upper classes in the contemporary period? a) Subsidised public education b) Expansion of state sector jobs after independence c) opportunities offered by rapid development d) no inherited educational or economic capital
+
+Q6 [mcq, 1m, Sec A]
+The newly married couple stays with the groom’s parents. Which form of family is this? a) Patrilocal b) Neolocal c) Matrilocal d) Avunculocal
+
+Q7 [mcq, 1m, Sec A]
+Unlike the death rate, does not register a sharp fall because it is a socio-cultural phenomenon. a) Birth rate b) Maternal mortality rate c) Life expectancy d) Dependency ratio
+
+Q8 [mcq, 1m, Sec A]
+Demographic data are not important for which of the following? a) planning and implementation of state policies b) economic development c) general public welfare d) Preventing disintegration of joint families
+
+Q9 [mcq, 1m, Sec A]
+The rate of natural increase is the difference between- a) Birth rate and maternal mortality rate b) Maternal mortality rate and life expectancy c) Dependency ratio and death rate d) Birth rate and death rate
+
+======================================================================
+Return the complete JSON array.

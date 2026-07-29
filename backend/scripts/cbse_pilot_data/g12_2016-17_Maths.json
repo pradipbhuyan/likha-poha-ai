@@ -1,0 +1,263 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What is the principal value of . /?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A and B are square matrices of order 3 each, | | = 2 and | | = 3. Find | |",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What is the distance of the point (p, q, r) from the x-axis?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Let f : R → R be defined by f(x) = 3x 2 5 and g : R → R be defined by g(x) = . Find gof SECTION-B Questions from 5 to 12 are of 2 marks each.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "How many equivalence relations on the set {1,2,3} containing (1,2) and (2,1) are there in all ? Justify your answer.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Let li,mi,ni ; i = 1, 2, 3 be the direction cosines of three mutually perpendicular vectors in space. Show that AA’ = I 3 , where A = [ ].",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If ey (x + 1) = 1, show that",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the sum of the order and the degree of the following differential equations: + √ +( 1 +x) =0",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the Cartesian and Vector equations of the line which passes through the point ( 2 4 5) and pa a e to the ine gi en by",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Solve the following Linear Programming Problem graphically: Maximize Z = 3x + 4y subject to x + y",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A couple has 2 children. Find the probability that both are boys, if it is known that (i) one of them is a boy (ii) the older child is a boy.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The sides of an equilateral triangle are increasing at the rate of 2 cm/sec. Find the rate at which its area increases, when side is 10 cm long. SECTION-C Questions from 13 to 23 are of 4 marks each.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If A + B + C = then find the value of | ( ) ( ) | OR Using properties of determinant, prove that | | = 3abc",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "It is given that for the function f(x) = x3 6x2 + ax + b Ro e’s theo em ho ds in * 1 3+ with c = 2 + √ . Find the a ues of ‘a’ and ‘b’",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Determine for what values of x, the function f(x) = x3 + ( x ≠ 0) is st ict y inc easing o strictly decreasing OR Find the point on the curve y = at which the tangent is y = x 11",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Evaluate ∫ ( ) dx as limit of sums.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the area of the region bounded by the y-axis, y = cos x and y = sinx, 0",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Can y = ax + be a solution of the following differential equation? y = x + ...............(*) If no, find the solution of the D.E.(*). OR Check whether the following differential equation is homogeneous or not xy = 1 + cos . / x ≠ 0 Find the general solution of the differential equation using substitution y=vx.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the vectors ⃗ a ̂ + ̂ + ̂ , ⃗ ̂ + b ̂ + ̂ ⃗⃗⃗ ̂ + ̂ + ̂ are coplanar, then for a, b, c ≠ 1 show that + + = 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A p ane meets the coo dinate axes in A B and C such that the cent oid of ∆ ABC is the point ( α, β,γ) . Show that the equation of the plane is",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If a 20 year old girl drives her car at 25 km/h, she has to spend Rs 4/km on petrol. If she drives her car at 40 km/h, the petrol cost increases to Rs 5/km. She has Rs 200 to spend on petrol and wishes to find the maximum distance she can travel within one hour. Express the above problem as a Linear Programming Problem. Write any one value reflected in the problem.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The random variable X has a probability distribution P(X) of the following form, where k is some number: k , if x =0 P(X) = 2k , if x = 1 3k , if x = 2 0 , otherwise (i) Find the value of k (ii) Find P(X <2) (iii) Find P(X ) ( ) P(X )",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A bag contains ( 2n +1) coins. It is known that ‘n’ of these coins ha e a head on both its sides whereas the rest of the coins are fair. A coin is picked up at random from the bag and is tossed. If the probability that the toss results in a head is find the a ue of ‘n’. SECTION-D Questions from 24 to 29 are of 6 marks each",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Using properties of integral, evaluate ∫ dx OR Find: ∫ dx",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Does the following trigonometric equation have any solutions? If Yes, obtain the solution(s): . / + . / = OR Determine whether the operation  define below on is binary operation or not. a  b = ab+1 If yes, check the commutative and the associative properties. Also check the existence of identity element and the inverse of all elements in .",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the value of x, y and z, if A = [ ] satisfies A’ = A 1 OR Verify: A(adj A) = (adj A)A = | ||I for matrix A = [ ]",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find if y = { √ }",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the sho test distance between the ine x y + 1 = 0 and the cu e y 2 = x",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Define skew lines. Using only vector approach, find the shortest distance between the following two skew lines: = (8 + 3λ) ̂ (9 + 16λ) ̂ +(10 + 7λ) ̂ = 15 ̂ + 29 ̂ +5 ̂ + μ (3 ̂ + 8 ̂ 5 ̂ ) SAMPLE QUESTION PAPER CLASS-XII (2016-17) MATHEMATICS (041) Marking Scheme",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

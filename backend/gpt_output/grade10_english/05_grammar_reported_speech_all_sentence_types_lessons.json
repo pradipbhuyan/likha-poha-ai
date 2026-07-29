@@ -1,0 +1,73 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "English",
+    "chapter": "Grammar: Reported Speech (All Sentence Types)",
+    "central_question": "How can a student convert mixed direct speech into consistent reported speech while preserving sentence type, meaning, pronouns, tense, and modal force?",
+    "in_scope_units": [
+      "Mixed-dialogue conversion across speakers and sentence types",
+      "Reporting questions that also function as polite requests",
+      "Reporting conditional sentences with consistent backshift",
+      "Reporting modals of deduction without unnecessary change"
+    ],
+    "banned_topics": [
+      "Independent essay writing",
+      "Active and passive voice rules unrelated to reporting",
+      "Determiner choice"
+    ],
+    "must_include_keywords": [
+      "reported speech",
+      "direct speech",
+      "reporting verb",
+      "backshift",
+      "pronoun change",
+      "time change",
+      "place change",
+      "statement",
+      "question",
+      "command",
+      "request",
+      "exclamation",
+      "mixed dialogue",
+      "if",
+      "whether",
+      "to-infinitive",
+      "conditional sentence",
+      "would",
+      "modal of deduction",
+      "must",
+      "might",
+      "could",
+      "consistent tense frame"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Each sentence in a reported passage can use a different tense pattern without regard to the reporting verb.",
+        "correction": "Once a past reporting frame is established, tense and pronoun changes must remain consistent throughout the passage unless meaning clearly requires otherwise."
+      },
+      {
+        "claim": "A command is reported like an ordinary statement.",
+        "correction": "An imperative is normally reported with an appropriate reporting verb followed by object + to-infinitive or not to-infinitive."
+      },
+      {
+        "claim": "Every must changes to had to in reported speech.",
+        "correction": "Must expressing pure deduction usually remains must; only must expressing obligation normally changes to had to."
+      }
+    ],
+    "recommended_example_progression": [
+      "Convert a statement and request from a short dialogue",
+      "Report a polite question-request using asked to or asked if",
+      "Backshift both clauses of a conditional sentence",
+      "Keep must unchanged when it expresses deduction",
+      "Convert a mixed passage containing a statement, command, and exclamation"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice presents dialogue completion, mixed-sentence reporting, paragraph conversion, and error correction."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Grammar: Reported Speech (All Sentence Types)\n\n## What you will learn\nYou will learn how to convert a short mixed dialogue into reported speech. You will keep speakers, reporting verbs, pronouns, and tense changes consistent.\n\n## Simple explanation\nA mixed dialogue may contain statements, questions, commands, requests, and exclamations. Each sentence type needs a suitable reporting structure, but the whole passage must remain consistent within the same reporting frame.\n\n## Step-by-step breakdown\n- **Reporting verb**: Choose a verb that matches the function: said, asked, requested, ordered, or exclaimed.\n- **Backshift**: When the reporting verb is in the past, tense forms normally shift into the past reporting frame.\n- **Pronoun change**: Change first- and second-person pronouns according to the speaker and listener.\n- **Passage consistency**: Do not backshift one sentence and leave another unshifted without a clear reason.\n\n## Worked example\nQuestion: Rewrite in reported speech: Mira said to Arun, 'I am tired. Please close the window.'\n\nSolution:\n- Step 1: Report the statement with 'said that' and change 'I' to 'she' and 'am' to 'was'.\n- Step 2: Report the request with 'requested Arun to' followed by the base verb 'close'.\n- Final answer: Mira told Arun that she was tired and requested him to close the window.\n\n## Common mistake\nDo not report the request as 'she said that close the window'. A request needs a reporting verb and a to-infinitive structure.\n\n## Quick check question\nQuestion: Rewrite in reported speech: Karan said to Meera, 'I will call you tomorrow.'\nAnswer: Karan told Meera that he would call her the next day.\nExplanation: Will changes to would, the pronouns change with the speakers, and 'tomorrow' changes to 'the next day' in the past reporting frame.\n\n## Summary\n- Mixed passages require sentence-type awareness.\n- Use suitable reporting verbs.\n- Keep tense, pronoun, and time changes consistent.\n- Commands and requests commonly use to-infinitives.",
+    "Core explanation": "# Core explanation: Grammar: Reported Speech (All Sentence Types)\n\n## What you will learn\nYou will learn two correct ways to report a polite question that also functions as a request. You will preserve both its interrogative form and its polite purpose.\n\n## Simple explanation\nA sentence such as 'Could you please tell me the time?' is grammatically a question but functionally a polite request. It may be reported with asked + object + to-infinitive or with asked if + clause.\n\n## Step-by-step breakdown\n- **Request pattern**: She politely asked him to tell her the time.\n- **Question pattern**: She asked if he could tell her the time.\n- **No question word order**: In the if-clause, use statement order: subject before verb.\n- **Politeness**: An adverb such as politely may preserve the tone where appropriate.\n\n## Worked example\nQuestion: Rewrite in reported speech: She asked Ravi, 'Could you please open the gate?'\n\nSolution:\n- Step 1: The sentence is a polite request in question form.\n- Step 2: Use 'politely asked Ravi to' followed by the base verb 'open'.\n- Final answer: She politely asked Ravi to open the gate.\n\n## Common mistake\nIncorrect: 'She asked Ravi could he open the gate.' Reported questions use statement word order and normally require if or whether for yes-no questions.\n\n## Quick check question\nQuestion: Rewrite using an if-clause: He asked me, 'Could you help me?'\nAnswer: He asked me if I could help him.\nExplanation: A yes-no question is linked with if, and the reported clause uses statement order: I could help him.\n\n## Summary\n- A polite question may also function as a request.\n- Use asked + object + to-infinitive for the request meaning.\n- Use asked if/whether + statement order for the question meaning.\n- Change pronouns according to the reporting context.",
+    "Worked examples": "# Worked examples: Grammar: Reported Speech (All Sentence Types)\n\n## What you will learn\nYou will learn to report conditional sentences. You will shift the if-clause and the main clause together when the reporting frame is in the past.\n\n## Simple explanation\nA conditional sentence contains two connected clauses. If one clause is backshifted while the other is not, the result is usually inconsistent.\n\n## Step-by-step breakdown\n- **Direct form**: If + simple present, will + base verb.\n- **Reported form**: After a past reporting verb: if + past simple, would + base verb.\n- **Both clauses shift**: The tense relationship must remain balanced.\n- **Pronouns**: Change pronouns to match the speaker and listener.\n\n## Worked example\nQuestion: Rewrite in reported speech: Nita said, 'If I work hard, I will succeed.'\n\nSolution:\n- Step 1: The reporting verb 'said' establishes a past frame.\n- Step 2: Change 'I work' to 'she worked' and 'I will succeed' to 'she would succeed'.\n- Final answer: Nita said that if she worked hard, she would succeed.\n\n## Common mistake\nIncorrect: 'Nita said that if she works hard, she would succeed.' This shifts only one clause.\n\n## Quick check question\nQuestion: Rewrite in reported speech: Mohan said, 'If I leave now, I will reach on time.'\nAnswer: Mohan said that if he left then, he would reach on time.\nExplanation: Both clauses backshift consistently, and the time reference 'now' changes to 'then'.\n\n## Summary\n- A conditional has an if-clause and a main clause.\n- Both clauses normally backshift together.\n- Will changes to would in the given pattern.\n- Pronoun and time changes must remain consistent.",
+    "Exam-style problems": "# Exam-style problems: Grammar: Reported Speech (All Sentence Types)\n\n## What you will learn\nYou will learn how modals of deduction behave in reported speech. You will avoid changing must when it still expresses the same deduction.\n\n## Simple explanation\nSome modals express probability or deduction rather than obligation. In reported speech, must, might, and could used for deduction usually remain unchanged because the speaker's degree of certainty is being preserved.\n\n## Step-by-step breakdown\n- **Must as deduction**: Direct: 'He must be at home.' Reported: She said that he must be at home.\n- **Might and could**: When they express probability, they usually remain unchanged.\n- **Meaning test**: Ask whether the modal expresses deduction or obligation.\n- **Do not over-backshift**: Changing every modal mechanically can alter the intended meaning.\n\n## Worked example\nQuestion: Rewrite in reported speech: She said, 'He must be waiting outside.'\n\nSolution:\n- Step 1: Here 'must' expresses a present deduction about his likely location or action.\n- Step 2: Keep 'must' unchanged and backshift the surrounding reporting frame only as needed.\n- Final answer: She said that he must be waiting outside.\n\n## Common mistake\nDo not change deduction must to had to. 'Had to' would express obligation, which changes the meaning.\n\n## Quick check question\nQuestion: Rewrite in reported speech: Rina said, 'They might be delayed.'\nAnswer: Rina said that they might be delayed.\nExplanation: Might expresses possibility and normally remains unchanged in reported speech.\n\n## Summary\n- Modal meaning controls the reported form.\n- Must for deduction usually remains must.\n- Might and could for probability usually remain unchanged.\n- Do not turn deduction into obligation.",
+    "Revision and recap": "# Revision and recap: Grammar: Reported Speech (All Sentence Types)\n\n## What you will learn\nYou will revise mixed dialogue conversion across sentence types. You will use statement clauses, to-infinitives, question links, and suitable reporting verbs accurately.\n\n## Simple explanation\nBefore converting a passage, label every utterance as a statement, question, command, request, or exclamation. Then apply the right structure while keeping one consistent tense and pronoun frame.\n\n## Step-by-step breakdown\n- **Statement**: Use said/told + that-clause with suitable backshift.\n- **Question**: Use asked + if/whether or a question word, followed by statement order.\n- **Command or request**: Use ordered/requested/told + object + to-infinitive; use not to for a negative command.\n- **Exclamation**: Use an appropriate reporting verb such as exclaimed and convert the content into a statement clause.\n- **Consistency check**: Review tense, pronouns, time, place, and modal meaning across the whole passage.\n\n## Worked example\nQuestion: Rewrite in reported speech: The coach said, 'You played well. Do not lose confidence. What a fine effort it was!'\n\nSolution:\n- Step 1: Report the statement with a past-tense that-clause.\n- Step 2: Report the negative command with 'advised the players not to lose confidence' and the exclamation with 'exclaimed that'.\n- Final answer: The coach said that the players had played well, advised them not to lose confidence, and exclaimed that it had been a fine effort.\n\n## Common mistake\nDo not report a command by dropping the to-infinitive. Use 'told/advised + object + to/not to + verb'.\n\n## Quick check question\nQuestion: Rewrite in reported speech: Mother said to me, 'Please finish your homework.'\nAnswer: Mother requested me to finish my homework.\nExplanation: The direct sentence is a request, so it is reported with requested + object + to-infinitive.\n\n## Summary\n- Identify the sentence type before converting it.\n- Use statement order in reported questions.\n- Use to-infinitives for commands and requests.\n- Backshift conditionals consistently.\n- Preserve deduction modals when their meaning remains unchanged."
+  }
+}

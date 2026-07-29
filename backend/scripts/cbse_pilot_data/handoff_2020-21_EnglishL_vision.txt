@@ -1,0 +1,92 @@
+CBSE Grade 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2020-21
+Subject: English Language and Literature
+Source Subject Code: EnglishL
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2020_21/EnglishL-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2020_21/EnglishL-MS.pdf
+Total Questions: 13
+======================================================================
+
+TASK: For each question provide answers in the JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+RULES: MCQ/AR: answer_text = exact option text. Check marking scheme PDF.
+Diagram questions: use NEEDS_MANUAL_REVIEW_diagram_dependent if no VI alternate.
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+For Visually Impaired Candidates in lieu of Q9 A The table below displays the responses of 85 college athlete-respondents, aged 16-24, about sources of nutrition information. Write a paragraph analyzing the given data.
+  [NOTE: diagram]
+
+Q10 [mcq, 1m, Sec B]
+Which of the characteristics are apt about the writer in the following context: "I know I have limits and that I've reached them, but I'm going to ignore them and see if or how long I can get by with it." ?
+  (A) negligent
+  (B) indecisive
+  (C) spontaneous
+  (D) reckless
+  (5) purposeless
+  (6) patient
+
+Q11 [short_answer, 40m, Sec L]
+(B) (any two) i. The use of symbolism in the poem 'Fire and Ice' conveys the poet's message effectively. Expand with reference to the poem.
+
+Q12 [mcq, 5m, Sec B]
+Answer ANY ONE the following in 100-120 words. Natalya and Ivan argued about the ownership of Oxen Meadows and the superiority of their respective dogs in the play, The Proposal. Imagine yourself as the playwright of the play. Based on your understanding of the personality traits of Natalya and Ivan, write a dialogue based on an imaginary event, showcasing another argument between them.
+  (A) Suddenly I came out of the clouds and saw two straight lines of lights in front of me. It was a runway!
+  (B) All through the night Lencho thought only of his one hope: the help of God...The following Sunday, at daybreak he began to write a letter...It was nothing less than a letter to God...The following Sunday Lencho came a bit earlier than usual to ask if there was a letter for him...Lencho showed not the slightest surprise on seeing the money, such was his confidence.
+  (C) Hari Singh says- "He knew it but neither his lips nor his eyes showed anything." Anil successfully addressed the situation by not addressing it at all. Elaborate based on your reading of The Thief's Story.
+
+Q13 [mcq, 5m, Sec B]
+Answer ANY ONE of the following in 100-120 words. Bholi's evolution from a 'dumb cow' to a 'masterpiece' supports the given quote. Justify.
+  (A) I am only one but, I am one. I cannot do everything but I can do something. And I will not let what I cannot do interfere with what I do.
+
+Q2 [long_answer, 5m, Sec B]
+Read the following excerpt from an article that appeared in the magazine section of a local daily: The ban on single-use plastic is impractical. The purpose of articles like bags and packaging is ultimately to make human life easier. Plastic articles do this well, so they shouldn't be banned.
+
+Q3 [mcq, 1m, Sec O]
+The poet feels that there is no point consoling the boy as a) it would give him false hope. b) he might demand for a new ball. c) it might distress him further. d) whatever he has lost is irretrievable.
+  (A) a) it would give him false hope.
+  (B) b) he might demand for a new ball.
+  (C) c) it might distress him further.
+  (D) d) whatever he has lost is irretrievable.
+
+Q4 [mcq, 1m, Sec I]
+'Merrily over — there it is in the water!' The dash here is meant to convey a) some familiar experience. b) a feeling of excitement. c) a sense of unexpected interruption. d) some thoughtful moments.
+  (A) some familiar experience.
+  (B) a feeling of excitement.
+  (C) a sense of unexpected interruption.
+  (D) some thoughtful moments.
+
+Q5 [mcq, 1m, Sec V]
+The tiger's 'brilliant eyes' reveal that he a) hopes to be free and in the wild, someday. b) is looked after well and is nourished and healthy. c) enjoys staring at the bright stars each night. d) is well-rested and hence, wide-awake.
+  (A) a) hopes to be free and in the wild, someday.
+  (B) b) is looked after well and is nourished and healthy.
+  (C) c) enjoys staring at the bright stars each night.
+  (D) d) is well-rested and hence, wide-awake.
+
+Q6 [mcq, 1m, Sec B]
+Which of the characteristics are apt about the writer in the following context: "I know I have limits and that I've reached them, but I'm going to ignore them and see if or how long I can get by with it." ?
+  (A) negligent
+  (B) indecisive
+  (C) spontaneous
+  (D) reckless
+  (5) purposeless
+  (6) patient
+
+Q7 [mcq, 1m, Sec V]
+The education aspect in the market profile of the ecotourist revealed that a) mainstream market trends were popular with undergraduates. b) ecotourists were only those who had basic education. c) mainstream markets were popular tourist destinations for educated ecotourists. d) ecotourism was no more limited to the small group of highly educated travellers.
+  (A) a) mainstream market trends were popular with undergraduates.
+  (B) b) ecotourists were only those who had basic education.
+  (C) c) mainstream markets were popular tourist destinations for educated ecotourists.
+  (D) d) ecotourism was no more limited to the small group of highly educated travellers.
+
+Q8 [short_answer, 5m, Sec B]
+Attempt ANY ONE of the following in 100-120 words. You are Tabassum/Tarun, a resident of Satya Nagar Colony, Bhubaneshwar, Orissa. You have noticed that some residents of your colony are repeatedly flouting quarantine rules laid out during the outbreak of the COVID-19 pandemic. Write a letter to the SHO of the local Police Station, drawing attention towards the same. Explain how such acts impact the health of the community and request immediate intervention and strict action.
+
+Q9 [mcq, 5m, Sec B]
+Attempt ANY ONE of the following in 100-120 words. You are Vaijanthi/Vijay from Prakasham Nagar, Secunderabad, Andhra Pradesh. Write a letter to Book Haven Store, requesting home delivery of the books, stationery and art materials you had ordered telephonically. Share the reason for being unable to pick up the goods in person. Confirm your address details and a convenient time slot.
+
+======================================================================
+Return the complete JSON array.

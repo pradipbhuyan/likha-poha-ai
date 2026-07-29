@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 13: Our Environment",
+  "central_question": "How do living and non-living components interact in ecosystems, and how do human activities disturb energy flow, the ozone layer and waste balance?",
+  "in_scope_units": [
+    "Ecosystems and their biotic and abiotic components, including natural and human-made ecosystems.",
+    "Producers, consumers and decomposers and their interdependence.",
+    "Food chains, trophic levels, food webs and unidirectional energy flow.",
+    "The approximately ten-percent transfer of energy between trophic levels and limits on food-chain length.",
+    "Biological magnification of persistent chemicals through food chains.",
+    "Ozone formation, protection from ultraviolet radiation and depletion by chlorofluorocarbons.",
+    "Biodegradable and non-biodegradable wastes.",
+    "Waste generation, segregation, sewage and industrial waste treatment, recycling and environment-friendly practices."
+  ],
+  "banned_topics": [
+    "Detailed management of forests, wildlife, coal, petroleum and dams, which belongs to the Sustainable Management of Natural Resources chapter.",
+    "Detailed biochemical pathways of photosynthesis and respiration.",
+    "Global warming and climate-change mechanisms not discussed in this chapter.",
+    "Detailed sewage-treatment engineering or industrial process design beyond the activities in the chapter."
+  ],
+  "must_include_keywords": [
+    "ecosystem",
+    "biotic components",
+    "abiotic components",
+    "natural ecosystem",
+    "human-made ecosystem",
+    "producer",
+    "consumer",
+    "decomposer",
+    "photosynthesis",
+    "food chain",
+    "trophic level",
+    "primary consumer",
+    "secondary consumer",
+    "tertiary consumer",
+    "food web",
+    "energy flow",
+    "1% solar energy",
+    "10% law",
+    "unidirectional",
+    "biological magnification",
+    "pesticides",
+    "ozone",
+    "ultraviolet radiation",
+    "CFCs",
+    "UNEP",
+    "biodegradable",
+    "non-biodegradable",
+    "enzymes",
+    "waste segregation",
+    "sewage",
+    "industrial waste",
+    "recycling",
+    "electronic waste",
+    "environment-friendly practices"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An ecosystem contains only living organisms.",
+      "correction": "An ecosystem includes interacting biotic components and abiotic physical factors such as temperature, rainfall, wind, soil and minerals."
+    },
+    {
+      "claim": "Decomposers destroy nutrients and remove them from the ecosystem.",
+      "correction": "Decomposers break complex organic remains into simple inorganic substances that return to the soil and can be reused by plants."
+    },
+    {
+      "claim": "Energy cycles back from consumers to producers.",
+      "correction": "Energy flow is unidirectional and decreases at each trophic level; it does not return to the previous level."
+    },
+    {
+      "claim": "Ten percent of sunlight reaching Earth is captured by plants.",
+      "correction": "The chapter states that green plants in a terrestrial ecosystem capture about 1% of the sunlight falling on their leaves, and on average about 10% of food energy becomes available to the next trophic level."
+    },
+    {
+      "claim": "Ozone is always beneficial.",
+      "correction": "Ozone is poisonous near living organisms, but at higher atmospheric levels it protects Earth by absorbing harmful ultraviolet radiation."
+    },
+    {
+      "claim": "Biodegradable waste can never harm the environment.",
+      "correction": "Even biodegradable waste can cause problems if produced or accumulated faster than natural processes can handle it."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activities 13.1-13.2 to classify ecosystem components and build an aquatic food chain.",
+    "Use the food-chain figures and Exercises Q4-Q6 to analyse trophic levels, energy transfer and ecosystem disturbance.",
+    "Use NCERT Activity 13.3 and Exercise Q6 to explain pesticide entry and biological magnification.",
+    "Use NCERT Activity 13.4 and Exercise Q9 for ozone formation, CFCs and protection from UV radiation.",
+    "Use NCERT Activities 13.5-13.9 and Exercises Q1, Q3, Q7 and Q8 for waste classification and management."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES contain Questions 1-9 on biodegradability, food chains, environment-friendly practices, trophic-level disturbance, biological magnification, waste and ozone depletion.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

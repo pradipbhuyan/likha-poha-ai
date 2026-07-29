@@ -1,0 +1,78 @@
+{
+  "grade": "Grade 5",
+  "subject": "English",
+  "chapter": "2. Gone with the Scooter",
+  "central_question": "How do honesty, teamwork, language skills, and a comic accident shape Gopi’s experience with a found hockey ball?",
+  "in_scope_units": [
+    "Let us Read: Gopi hears a sound, searches the garden, and finds a hockey ball",
+    "Playground scene: claims, hockey actions, and the ball leaving with a scooter",
+    "Let us Think: comprehension, honesty, imagination, and helmet safety",
+    "Let us Learn: vocabulary, connectors, adverbs of frequency, and adverbs of time",
+    "Let us Listen and Speak: drawing instructions, chain story, and long or short oo sounds",
+    "Let us Write: conversation, compound words, and ai words",
+    "Let us Do and Explore: Tigers and Goats, game chart, and sports biography"
+  ],
+  "banned_topics": [
+    "Rainbow imagery and VIBGYOR",
+    "Present perfect and bird feeders",
+    "Water-tank construction"
+  ],
+  "must_include_keywords": [
+    "Gopi",
+    "veranda",
+    "rustling",
+    "thud",
+    "hockey ball",
+    "dry leaves",
+    "honesty",
+    "Manoj",
+    "Ramani",
+    "Deepak",
+    "Jay",
+    "goalkeeper",
+    "dribble",
+    "grab",
+    "boast",
+    "unaware",
+    "helmet",
+    "because",
+    "however",
+    "adverbs of frequency",
+    "adverbs of time",
+    "regularly",
+    "yesterday",
+    "long oo",
+    "short oo",
+    "compound words",
+    "chair",
+    "Tigers and Goats",
+    "three tigers",
+    "thirteen goats",
+    "Kabaddi",
+    "sports biography"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The scooterist steals the ball.",
+      "correction": "The ball falls into the scooter basket, and the scooterist is unaware."
+    },
+    {
+      "claim": "Manoj’s old lost ball must be the same ball.",
+      "correction": "Gopi rejects the claim because Manoj lost his ball four months earlier."
+    },
+    {
+      "claim": "Goats can move immediately in Tigers and Goats.",
+      "correction": "They cannot move until all thirteen goats have been placed."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Let us Think A to trace the sound, search, discovery, and final laughter.",
+    "Use Let us Learn A to distinguish dribble, boast, rustle, and grab.",
+    "Use Let us Learn C to sort frequency and time adverbs.",
+    "Use Let us Write A to create a conversation after the scooter incident.",
+    "Use Let us Do to explain the two players’ objectives and movement rules."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "There is no single final exercise block; tasks appear under Let us Think, Let us Learn, Let us Listen, Let us Speak, Let us Write, Let us Do, and Let us Explore.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

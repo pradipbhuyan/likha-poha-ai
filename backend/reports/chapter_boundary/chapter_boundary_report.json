@@ -1,0 +1,93 @@
+{
+  "audited_at": "2026-07-29T14:30:05.341052+00:00",
+  "manifests_used": 1,
+  "lessons_audited": 7,
+  "total_critical_findings": 0,
+  "total_high_findings": 0,
+  "results": [
+    {
+      "lesson_cache_id": "2625b740-29d7-419f-b599-1839b9816f2e",
+      "grade": "Grade 5",
+      "subject": "English",
+      "chapter": "10. Glass Bangles",
+      "step_title": "Recap",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 4244
+    },
+    {
+      "lesson_cache_id": "a6bf7a99-3459-4608-bb01-c240f6086432",
+      "grade": "Grade 5",
+      "subject": "English",
+      "chapter": "10. Glass Bangles",
+      "step_title": "What We Learn",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 3385
+    },
+    {
+      "lesson_cache_id": "23cc3a18-a02e-4d9e-83bb-911fdd3b1f42",
+      "grade": "Grade 5",
+      "subject": "English",
+      "chapter": "10. Glass Bangles",
+      "step_title": "Worked examples",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 1954
+    },
+    {
+      "lesson_cache_id": "c206afca-b917-429f-8cea-fe4d32eefee0",
+      "grade": "Grade 5",
+      "subject": "English",
+      "chapter": "10. Glass Bangles",
+      "step_title": "Core explanation",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 1976
+    },
+    {
+      "lesson_cache_id": "e115b21d-43cb-47fe-8884-37f4942ae219",
+      "grade": "Grade 5",
+      "subject": "English",
+      "chapter": "10. Glass Bangles",
+      "step_title": "Revision and recap",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2472
+    },
+    {
+      "lesson_cache_id": "fa8ca881-9859-4a54-9190-ad3b76e52b0c",
+      "grade": "Grade 5",
+      "subject": "English",
+      "chapter": "10. Glass Bangles",
+      "step_title": "Concept introduction",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 1791
+    },
+    {
+      "lesson_cache_id": "00921c84-4c17-4433-a1a2-5ff6e6ec16e7",
+      "grade": "Grade 5",
+      "subject": "English",
+      "chapter": "10. Glass Bangles",
+      "step_title": "Exam-style problems",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 1939
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 7,
+    "question_text": "Write whether the rational number 75 will have a terminating decimal expansion or a nor-terminating repeating decimal expansion.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the value(s) of k, if the quadratic equation 23x k 3 x 4 0- + = has equal roots.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the eleventh term from the last term of the AP: 27, 23, 19, ..., –65.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the coordinates of the point on y-axis which is nearest to the point (–2, 5).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In given figure , ST || RQ, PS = 3 cm and SR = 4 cm. Find the ratio of the area of  PST to the area of  PRQ.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If 2cos A 5= , find the value of 4 + 4 tan2 A Section B Question numbers 7 to 12 carry 2 marks each.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If two positive integers p and q are written as 2 3 3p a b and q a b;== a, b are prime numbers, then verify: LCM (p, q) × HCF (p, q) = pq",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "The sum of first n terms of an AP is given by nS 2n 3n=+ . Find the sixteenth term of the AP.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the value(s) of k for which the pair of linear equations k x + y = k2 and x + ky = 1 have infinitely many solutions.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If p1, 3   is the mid -point of the line segment joining the points (2, 0) and 20, 9   , then show that the line 5x + 3y + 2 = 0 passes through the point (–1, 3p).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A box contains cards numbered 11 to 123. A card is drawn at random from the box. Find the probability that the number on the drawn card is (i) a square number (ii) a multiple of 7",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A box contains 12 balls of which some are red in colour. If 6 more red balls are p ut in the box and a ball is drawn at random, the probability of drawing a red ball doubles than what it was before. Find the number of red balls in the bag. Section C Question numbers 13 to 22 carry 3 marks each.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Show that exactly one of the numbers n, n + 2 or n + 4 is divisible by 3.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find all the zeroes of the polynomial 4323x 6x 2x 10x 5+ - - - if two of its zeroes are 55and –33 .",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Seven times a two digit number is equal to four times the number obtained by reversing t he order of its digits. If the difference of the digits is 3, determine the number.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In what ratio does the x -axis divide the line segment joining the points ( –4, –6) and (–1, 7)? Find the co-ordinates of the point of division. OR The points A(4, –2), B(7, 2), C(0, 9) and D(–3, 5) form a parallelogram. Find the length of the altitude of the parallelogram on the base AB.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In given figure 1 2 and NSQ MTR      , then prove that PTS ~ PRQ . OR In an equilateral triangle ABC, D is a point on the side BC such that 1BD BC.3 Prove that 9AD2 = 7AB2",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 18,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In given figure XY and XY are two parallel tangents to a circle with centre O and another tangent AB with point o f contact C intersecting XY at A and XY at B. Prove that  AOB = 90°.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 19,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Evaluate: 2 2 2 2 2 2 2 cosec 63 tan 24 sin 63 cos 63 sin 27 sin 27º sec63 cot 66 sec 27 2(cos ec 65 tan 25 )               OR If sin cos 2, then evaluate : tan cot      ",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In given figure ABPC is a quadrant of a circle of rad ius 14 cm and a semicircle is drawn with BC as diameter. Find the area of the shaded region",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 21,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Water in a canal, 6 m wide and 1.5 m deep, is flowing with a speed of 10 km/h. How much area will it irrigate in 30 minutes, if 8 cm of standing water is needed? OR A cone of maximum size is carved out from a cube of edge 14 cm. Find the surface area of the remaining solid after the cone is carved out.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the mode of the following distribution of marks obtained by the students in an examination: Marks obtained 0-20 20-40 40-60 60-80 80-100 Number of students 15 18 21 29 17 Given the mean of the above distribution is 53, using empirical relationship estimate the value of its median. Section D Question numbers 23 to 30 carry 4 marks each.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A train travelling at a uniform speed for 360 km would have taken 48 minutes less to travel the same distance if its speed were 5 km/hour more. Find the original speed of the train. OR Check whether the equation 5x 2 – 6x – 2 = 0 has real roots and if it has, fi nd them by the method of completing the sq uare. Also verify that roots obtained satisfy the given equation.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "An AP consists of 37 terms. The sum of the three middle most terms is 225 and the sum of the last three terms is 429. Find the AP.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Show that in a right triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides. OR Prove that the ratio of the areas of two similar triangles is equal to the ratio of the squares of their corresponding sides.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Draw a triangle ABC with side BC = 7 cm, B 45 , A 105      . Then, construct a triangle whose sides are 3 times the corresponding sides of ABC.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Prove that cos sin 1 cosec cotcos sin 1          ",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The angles of de pression of the top and bottom of a building 50 metres high as observed from the top of a tower are 30° and 60°, respectively. Find the height of the tower and also the horizontal distance between the building and the tower.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Two dairy owners A and B sell flavoured milk filled to capacity in mugs of negligible thickness, which are cylindrical in shape with a raised hemispherical bottom. The mugs are 14 cm high and have diameter of 7 cm as shown in given figure. Both A and B sell flavoured milk at the ra te of ` 80 per litre. The dai ry owner A uses the formula 2rh to find the volume of milk in the mug and charges ` 43.12 for it. The dairy owner B is of the view that the price of actual quantity of milk should be charged. What accordi ng to him should be the price of one mug of milk? Which value is exhibited by the dairy owner B? 22use 7  ",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 30,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The following distribution shows the daily pocket allowance of children of a locality. The mean pocket allowance is ` 18. Find the missing frequency k. Daily pocket allowance (in `) 11–13 13–15 15–17 17–19 19–21 21–23 23–25 Number of children 3 6 9 13 k 5 4 OR The following frequency distribution shows the distance (in metres) thrown by 68 students in a Javelin throw competition. Distance (in m) 0–10 10–20 20–30 30–40 40–50 50–60 60–70 Number of students 4 5 13 20 14 8 4 Draw a less than type O give for the given data and find the median distance thrown using this curve.",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

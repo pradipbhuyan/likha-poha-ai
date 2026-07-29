@@ -1,0 +1,175 @@
+CBSE GRADE 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2020-21
+Subject: Social Science
+Source Subject Code: SocialScience
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2020_21/SocialScience-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2020_21/SocialScience-MS.pdf
+Total Questions: 31
+======================================================================
+
+TASK: For each question below, provide the answer in the EXACT JSON format shown.
+
+OUTPUT FORMAT (return a JSON array):
+[{
+  "question_number": <integer>,
+  "question_text": "<copy from input>",
+  "question_type": "<copy from input>",
+  "options": [<copy from input>],
+  "answer_text": "<for mcq/assertion_reason: exact option text; for others: concise answer>",
+  "answer_explanation": "<2-4 sentence explanation based on CBSE curriculum>"
+}, ...]
+
+IMPORTANT RULES:
+- For MCQ/assertion_reason: answer_text MUST be the EXACT text of one of the options (copy verbatim)
+- For short_answer: answer_text should be a complete answer per marking scheme
+- For long_answer/case_study: answer_text should be a full answer per marking scheme
+- If a question is diagram-dependent and no text alternative exists, use: NEEDS_MANUAL_REVIEW_diagram_dependent
+- Refer to the official Marking Scheme PDF for correct answers: https://cbseacademic.nic.in/web_material/SQP/ClassX_2020_21/SocialScience-MS.pdf
+
+======================================================================
+
+QUESTIONS:
+
+Q1 [mcq, 1 mark(s), Section A]
+Identify the correct statement with regard to ‘The Act of Union -1707’ from the following options.
+  (A) The British monarchy surrendered the power to English Parliament.
+  (B) The British parliament seized power from Ireland.
+  (C) The formation of the ‘United Kingdom of Great Britain’.
+  (D) The British nation was formed as a result of a war with Scotland and Wales.
+
+Q10 [mcq, 1 mark(s), Section A]
+Define Majoritarianism. OR Define Ethnicity.
+
+Q11 [mcq, 1 mark(s), Section A]
+Which administrative authority legislates on Residuary subjects? OR Which administrative authority legislates on Union list?
+
+Q12 [mcq, 1 mark(s), Section A]
+Read the given data and find out which country has most equitable distribution of income. Countries Monthly Income of Citizens in four countries in 2018 Citizen I Citizen II Citizen III Citizen IV Citizen V Average Country A 10500 11200 10800 11000 10700 10,840 Country B 600 5000 600 600 600 1,480 Country C 550 10500 400 7500 2000 4,190 Country D 800 4800 700 5000 750 2,410 a. Country A b. Country B c. Country C d. Country D Red to brown in colour Sandy in texture and saline in nature Lacks humus and moisture
+
+Q13 [mcq, 1 mark(s), Section A]
+Read the information given below and select the correct option - Mohan is an agricultural labourer. There are several months in a year when he has no work and needs credit to meet his daily expenses. He depends upon his employer, the landowner for credit who charges an interest rate of 5 per cent per month. Mohan repay s the money by working physically for the landowner on his farmland. Over the years his debt will –
+  (A) Increase - because of increasing interest and non-payment of monthly amount
+  (B) Remain constant - as he is working for the employer but is repaying less
+  (C) Reduce - as amount equivalent to his salary is being counted as monthly repayment
+  (D) Be totally repaid - as he is repaying the debt in the form of physical labour
+  (5) There are govt. bodies to supervise informal sector
+  (6) Money lenders ask for a reasonable rate of interest
+  (7) Cost of informal loans to the borrower is quite high
+  (8) Money lenders use fair means to get their money back
+
+Q14 [mcq, 1 mark(s), Section A]
+Which one of the following options describe ‘Collateral’?
+  (A) Double coincidence of wants
+  (B) Certain products for barter
+  (C) Trade in barter
+  (D) Asset as guarantee for loan
+
+Q15 [mcq, 1 mark(s), Section A]
+Read the given statements in context of ‘globalization’ and choose the correct option -
+  (A) It is the only way for economic development of the country
+  (B) Interlinks only production based activities in dispersed locations in the world
+  (C) It has always given only positive results in all the countries
+  (D) Leads to spread of technology, cultures and diseases from a region to another
+
+Q16 [assertion_reason, 1 mark(s), Section A]
+In the question given below, there are two statements marked as Assertion (A) and Reason ®. Read the statements and chose the correct option: Assertion (A): Different people have different development goals. Reason ®: People want freedom, equality, security and respect Options: a. Both A and R are true and R is the correct explanation of A. b. Both A and R are true but R is not the correct explanation of A. c. A is true but R is false. d. A is false but R is true. SECTION B (3X6=18)
+  (A) Increase - because of increasing interest and non-payment of monthly amount
+  (B) Remain constant - as he is working for the employer but is repaying less
+  (C) Reduce - as amount equivalent to his salary is being counted as monthly repayment
+  (D) Be totally repaid - as he is repaying the debt in the form of physical labour
+
+Q17 [mcq, 1 mark(s), Section B]
+Why did Gandhiji start Non-Cooperation Movement? Explain. 3
+
+Q18 [short_answer, 3 mark(s), Section B]
+Explain the measures and practices introduced by the French revolutionaries to create a sense of collective identity amongst the French people. OR “Like Germany, Italy too had a long history of political fragmentation”. Explain.
+
+Q19 [mcq, 1 mark(s), Section B]
+Suggest and explain any three ways to protect land from degradation in various states of India. 3
+
+Q2 [mcq, 1 mark(s), Section A]
+Which of the following treaty recognized Greece as an independent nation?
+  (A) Treaty of Sevres
+  (B) Treaty of Versailles
+  (C) Treaty of Lausanne
+  (D) Treaty of Constantinople
+
+Q20 [short_answer, 3 mark(s), Section B]
+Describe any three steps taken by the government towards decentralization in the year 1992. OR Describe any three federal features of Indian democracy.
+
+Q21 [short_answer, 3 mark(s), Section B]
+Imagine yourself to be XYZ, a member of a women Self - Help Group. Analyse the ways through which your group provides loan to the members.
+
+Q22 [mcq, 1 mark(s), Section B]
+‘The issue of sustainability is important for development.’ Examine the statement. 3 SECTION C (4x4=16)
+
+Q23 [case_study, 4 mark(s), Section C]
+Read the source given below and answer the questions that follows: Following the defeat of Napoleon in 1815, European governments were driven by a spirit of conservatism. Conservatives believed that established, traditional institutions of state and society – like the monarchy, the Church, social hierarchies, property and the family –should be preserved. Most conservatives, however, did not propose a return to the society of pre -revolutionary days. Rather, they realised, from the changes initiated by Napoleon, that modernisation could in fact strengthen traditional institutions like the monarchy. It could make state power more effective and stronger. A modern army, an efficient bureaucracy, a dynamic economy, the abolition of feudalism and serfdom could strengthen the autocratic monarchies of Europe. In 1815, representatives of the European powers who had collectively defeated Napoleon, met at Vienna to draw up a settlement for Europe. The Congress was hosted by the Austrian Chancellor Duke Metternich. The delegates drew up the Treaty of Vienna of 1815 with the object of undoing most of the changes that had come about in Europe during the Napoleonic wars. The Bourbon dynasty, which had been deposed during the French Revolution, was restored to power, and France lost the territories it had annexed under Napoleon. A series of states were set up on the boundaries of France to prevent French expansion in future. Answer the following MCQs by choosing the most appropriate option 23.1 Which of the following statements correctly describes about European conservative ideology? (1) A. Preservation of believes introduced by Napoleon B. Preservation of two sects of Christianity C. Preservation of socialist ideology in economic sphere D. Preservation of traditionalist beliefs in state and society 23.2 Identify the purpose to convene the Vienna of Congress in 1815 from the following options? (1) A. To declare competition of German unification B. To restore conservative regime in Europe C. To declare war against France D. To start the process of Italian Unification 23. 3. What did conservatives focus on at the Congress of Vienna? Select the appropriate option.(1) A. To re-establish peace and stability in Europe B. To establish socialism in Europe C. To introduce democracy in France D. To set up a new Parliament in Austria 23.4 How did the Congress of Vienna ensure peace in Europe? Select the appropriate option. (1) A. With the restoration of Bourbon Dynasty B. Austria was not given the control of Northern Italy C. Laying out a balance of power between all the great powers in Europe D. By giving power to the German confederation
+
+Q24 [case_study, 4 mark(s), Section C]
+Read the text given below and answer the following questions. Manufacturing industries not only help in modernising agriculture, which forms the backbone of our economy, they also reduce the heavy dependence of people on agricultural income by providing them jobs in secondary and tertiary sectors. Industrial develop ment is a precondition for eradication of unemployment and poverty from our country. This was the main philosophy behind public sector industries and joint sector ventures in India. It was also aimed at bringing down regional disparities by establishing in dustries in tribal and backward areas. Export of manufactured goods expands trade and commerce, and brings in much needed foreign exchange. Countries that transform their raw materials into a wide variety of finished goods of higher value are prosperous. India’s prosperity lies in increasing and diversifying its manufacturing industries as quickly as possible. Agriculture and industry are not exclusive of each other. They move hand in hand. For instance, the agro-industries in India have given a major boost to agriculture by raising its productivity. Answer the following MCQs by choosing the most appropriate option 24.1. Manufacturing industries fall in _________ and agriculture in ___________ . ( 1) A. Primary, Secondary Sector B. Secondary, Tertiary Sector C. Primary, Tertiary Sector D. Secondary, Primary Sector 24.2. Manufacturing provides job opportunities to reduce dependence on agriculture. Identify which sector the following jobs belong to – (1) Jobs created or promoted by manufacturing industries Sector a. Garment production 1.Primary b. Research & Development 2.Tertiary c. Banking 3.Secondary d. Mining 4.Quaternary Choose the correct option – A. a-1, b-2, c-3, d-4 B. a-3, b-4, c-2, d-1 C. a-2, b-3, c-1, d-2 D. a-4, b-1, c-4, d-3 24.3. Which of the following options does not help in modernising agriculture? (1) A. Manufacturing farm equipment B. Providing unskilled labour force C. Supplying fertilizers and pesticides D. Producing tube well pumps and sprinklers 24.4. In order to attract foreign manufacturing firms, a country needs to develop - (1) A. Agrarian facilities B. Cultivable lands C. Media facilities D. Infrastructure facilities
+
+Q25 [case_study, 4 mark(s), Section C]
+Read the given extract and answer the following questions. In a democracy, we are most concerned with ensuring that people will have the right to choose their rulers and people will have control over the rulers. Whenever possible and necessary, citizens should be able to participate in decision making, that affects them all. Therefore, the most basic outcome of democracy should be that it produces a government that is accountable to the citizens, and responsive to the needs and expectations of the citizens. Some people think that democracy produces less effective government. It is, of course, true that non-democratic rulers are very quick and efficient in decision making and implementation, whereas, democracy is based on the idea of deliberation and negotiation. So, some delay is bound to take place. But, because it has followed procedures, its decisions may be both more acceptable to the people and more effective. Moreover, when citizens want to know if a decision was taken through the correct procedures, they can find this out. They have the right and the means to examine the process of decision making. This is known as transparency. This factor is often missing from a non -democratic government. There is another aspect in which democratic government is certainly better than its alternatives: democratic government is legitimate government. It may be slow, less efficient, not alwa ys very responsive, or clean. But a democratic government is people’s own government. Answer the following MCQs by choosing the most appropriate option 25.1. People’s right to choose their own rulers is called as the – (1) A. Right to Initiate B. Right to Plebiscite C. Right to Vote D. Right to Referendum 25.2. Which of the following options helps in promoting transparency in the governance? (1) A. Right to education B. Right to information C. Right against exploitation D. Right to speech and expression 25.3. __________________________ make/s the government legitimate. (1) A. Credibility of politicians B. People’s movements C. Free and fair elections D. Holding of powers 25.4. Decisions in a democracy are more acceptable to the people because they are - (1) A. Taken swiftly and implemented quickly B. Taken by giving privileges to the people C. Taken through elites’ votes D. Taken after following due processes
+
+Q26 [case_study, 4 mark(s), Section C]
+Read the source given below and answer the following questions - Ford Motors, an American company, is one of the world’s largest automobile manufacturers with production spread over 26 countries of the world. Ford Motors came to India in 1995 and spent Rs. 1700 crore to set up a large plant near Chennai. This was done in collaboration with Mahindra and Mahindra, a major Indian manufacturer of jeeps and trucks. By the year 2004, Ford Motors was selling 27,000 cars in the Indian markets, while 24,000 cars were exported from India to South Africa, Mexico and Brazil. The company wanted to develop Ford India as a component supplying base for its other plants across the globe. Answer the following MCQs by choosing the most appropriate option 26.1. The passage given above relates to which of the following options? (1) A. Increased employment B. Foreign investment C. Foreign collaboration D. International competition 26.2. According to the given passage, Ford Motors can be termed as a Multi -National Company based on which of the following options? (1) A. Production of different types of automobiles B. Largest automobile manufacturer in the world C. Because of largescale exports of cars across globe D. Industrial and commercial ventures across globe 26.3. By setting up their production plants in India, Ford Motors wanted to – (1) A. Collaborate with a leading Indian Automobile company B. Satisfy the demands of American, African and Indian markets C. Tap the benefits of low-cost production and a large market D. Take over small automobile manufacturing units in India 26.4. ‘Ford Motors' wish to develop Ford India as a component supplying base for its other plants across the globe is an evidence of - (1) A. Promoting local industries of India B. Merging trade from different countries C. Supplying jobs to factory workers in India D. Interlinking of production across countries SECTION D (5x5=25)
+
+Q27 [long_answer, 5 mark(s), Section D]
+How did people belonging to different communities, regions or language groups develop a sense of collective belonging in the nineteenth century India? Explain. OR Explain the meaning and notion of ‘Swaraj’ as perceived by the plantation workers. How did they respond to the call of ‘the Non – Cooperation movement’? + =
+
+Q28 [long_answer, 5 mark(s), Section D]
+Describe the role of mass communication in India. OR Describe the benefits of Roadways.
+
+Q29 [long_answer, 5 mark(s), Section D]
+Suggest and explain any five ways to reform Political Parties in India.
+
+Q3 [mcq, 1 mark(s), Section A]
+Which of the following was the reason for calling off ‘the Non-cooperation Movement’ by Gandhiji?
+  (A) Pressure from the British Government
+  (B) Second Round Table Conference
+  (C) Gandhiji’s arrest
+  (D) Chauri-Chaura incident
+
+Q30 [mcq, 1 mark(s), Section D]
+‘Power sharing is the essence of a democratic government.’ Examine the statement. 5
+
+Q31 [mcq, 1 mark(s), Section D]
+‘Tertiary sector is playing a significant role in the development of Indian Economy’. Justify the statement. OR ‘Public sector contributes to the economic development of India.’ Justify the statement.
+
+Q4 [mcq, 1 mark(s), Section A]
+Fill in the blank : Business Processes Outsourcing (BPO) is an example of _______ industry in India. OR Green Revolution has helped------------------------- industry to expand in different parts of India.
+
+Q5 [mcq, 1 mark(s), Section A]
+Choose the correctly matched pair about the Primitive Cultivation in India from the following options:
+  (A) Dahiya – Madhya Pradesh
+  (B) Kumari-Jharkhand
+  (C) Khil -Andhra Pradesh
+  (D) Koman- Karnataka
+
+Q6 [mcq, 1 mark(s), Section A]
+Fill in the blank- Barley: Rabi crop, cotton: kharif, ___________________: zaid crop.
+  (A) Wheat
+  (B) Mustard
+  (C) Soya bean
+  (D) Cucumber
+
+Q7 [mcq, 1 mark(s), Section A]
+Identify the soil with the help of the following features.
+
+Q8 [mcq, 1 mark(s), Section A]
+A type of millet rich in iron, calcium, other micro nutrients and roughage is
+  (A) Bajra
+  (B) Rajma
+  (C) Jowar
+  (D) Ragi
+
+Q9 [mcq, 1 mark(s), Section A]
+Population of Sri Lankan Tamils is concentrated in ____________ region of Sri Lanka.
+  (A) North and South
+  (B) North and East
+  (C) East and West
+  (D) South and East
+
+======================================================================
+Now return the complete JSON array with answers for all questions above.

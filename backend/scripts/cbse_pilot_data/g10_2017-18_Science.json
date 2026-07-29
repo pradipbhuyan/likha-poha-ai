@@ -1,0 +1,245 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Give an example of a flower which contains both stamens and carpels. 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Mention any one point of difference between Pepsin and Trypsin. 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "An element “X” has mass number 35 and the number of neutrons, is 18. Identify the group number and period of “X”.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "An object of height 1.2m is placed before a concave mirror of focal length 20cm so that a real image is formed at a distance of 60cm from it. Find the position of an object. What will be the height of the image formed?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Why is there a need to harness non -conventional sources of energy? Give two main reasons.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Name the electric device that converts mechanical energy into electrical energy. Draw the labelled diagram and explain the principle involved in this device. OR i) What is the function of earth wire in electrical instruments? ii) Explain what is short circuiting an electric supply. iii) What is the usual current rating of the fuse wire in the line to feed (a) Lights and fans? (b) Appliances of 2kW or more power?",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Draw a circuit diagram of an electric circuit containing a cell, a key , an ammeter , a resistor of 4Ω in series with a combination of two resistors (8Ω each) in parallel and a voltmeter across parallel combination. Each of them dissipate maximum energy an d can withstand a maximum power of 16W without melting. Find the maximum current that can flow through the three resistors.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "In the electrolysis of water, a) Name the gas collected at anode and cathode b) Why is the volume of gas collected at one electrode double than the other? c) What would happen if dil H2SO4 is not added to water?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Differentiate between the arrangement of elements in Mendeleev’s periodic table and Modern periodic table. Pg2 of 4",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Explain the ways in which glucose is broken down in absence of oxygen. OR List three differences between arteries and veins.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "How do Mendel’s experiments show that traits may be dominant or recessive? 3",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Rohit focused the image of a candle flame on a white screen using a convex lens. He noted down the position of the candle , screen and lens as under : Position of candle = 26.0 cm Position of convex lens = 50.0 cm Position of screen = 74.0 cm i) What is the focal length of the convex lens? ii) Where will the image be formed if he shifts the candle towards the lens at a position of 38 cm? iii) Draw a ray diagram to show the formation of the image in case (ii) as said above?",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "“pH has a great importance in our daily life” explain by giving three examples. OR A compound which is prepared from gypsum has the property of hardening when mixed with a proper quantity of water. Identify the compound and write its chemical formula. Write the chemical e quation for its preparation. Mention any one use of the compound.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Why are fossils considered important in the study of evolution? Explain two ways by which age of fossils can be estimated.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Our government launches campaigns to provide information about AIDS prevention, testing and treatment by putting posters, conducting radio shows and using other agencies of advertisements. a) To which category of diseases AIDS belong? Name its causative organism. b) Which kind of value is government trying to develop in the citizens by conducting the above kind of programs.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "With the help of a labelled circuit diagram wire describe an activity to illustrate the pattern of the magnetic field lines around a straight current carrying long conducting wire . i) Name the rule that is used to find the direction of magnetic field associated with a current carrying conductor. ii) Is there a similar magnetic field produced around a thin beam of moving (a) alpha particles and (b) neutrons? Justify your answer.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "You are given balls and stick model of six carbon atoms and fourteen hydrogen atoms and sufficient number of sticks. In how many ways one can join the models of six carbon atoms and fourteen hydrogen atoms to form different molecules of C6H14. OR Draw the structural formulae of all the possible isomers of the compound with the molecular formula C3H6O and also give their electron dot structures.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "a) i) Draw a neat diagram of human brain and ii) Label Medulla and Cerebellum iii) Write the functions of the above mentioned parts b) ”Both overproduction and underproduction of Growth hormone leads to disorders in the body.” Explain Pg3 of 4",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Noopur needs a lens of power -4.5D for correction of her vision. a) What kind of defect in vision is she suffering from? b) What is the focal length and nature of the corrective lens? c) Draw ray diagrams showing the (a) defected eye and (b) correction for this defect. d) What are the causes of this defect?",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "a) What is reactivity series? How does the reactivity series of metals help in predicting the relative activities of various metals? b) Suggest different chemical processes used for obtaining a metal from its oxides for metals in the middle of the reactivity series and metals towards the top of the reactivity series. Support your answer with one example each.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "a) “Improvements in our lifestyle have resulted in greater amounts of waste generation.” Give two examples to support the given statement. Suggest one change that we can incorporate in our lifestyle in order to reduce non- biodegradable waste. b) The following organisms form a food chain. Insect, Hawk, Grass, Snake, Frog Which of these will have highest concentration of non-biodegradable chemicals? Name the phenomenon. OR a) What do you understand by “Watershed Management”? List any two advantages of watershed management. b) “Human beings occupy the top level in any food chain.” What are the consequences of this on our body? SECTION – B",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "What do you observe when you drop a few drops of acetic acid to a test tube containing: a) Phenolphthalein c) distilled water b) Universal indicator d) sodium hydrogen carbonate",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Riya performs two set of experiments to study the length of the foam formed which are as follows: Set I: she takes 10 ml of distilled water in test tube “A” and adds 5-6 drops of liquid soap in it and shakes the test tube vigorously. Set II: she takes 10 ml of distilled water in a test tube “A” and add s 5-6 drops of liquid soap with half spoonful of CaSO 4 in it and shake s the test tube. Write your observation and reason.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "A student observed a permanent slide showing asexual reproduction in yeast. Draw diagrams of the observations he must have made from the slide. Name the process also.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "A student conducted an experiment to show CO 2 is released during respiration. List two precautions that he/she must take for obtaining correct observations.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "The values of current I flowing in a given resistor for the corresponding values of potential difference V across the resistor are given below: I (ampere) 0.5 1.0 2.0 3.0 4.0 V (volt) 1.6 3.4 6.7 10.2 13.2 Pg4 of 4 Plot a graph between V and I and calculate the resistance of the resistor. OR In a given ammeter, a student sees that needle indicates 17 divisions in ammeter while performing an experiment to verify Ohm’s law. If ammeter has 10 divisions between 0 and 0.5A, then what is the value corresponding to 17 divisions?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Draw a path of light ray passing through a prism. Label angle of incidence and angle of deviation in the ray diagram.",
+    "options": [],
+    "diagram_dependent": true
+  }
+]

@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 9",
+  "subject": "English",
+  "chapter": "Grammar: Subject-Verb Concord",
+  "central_question": "How can a student make the verb agree correctly with the true subject in number and person, even in complex sentence patterns?",
+  "in_scope_units": [
+    "Basic singular and plural subject-verb agreement",
+    "Subjects joined by and",
+    "Single ideas or entities joined by and",
+    "Subjects joined by or or nor and agreement with the nearer subject",
+    "Collective nouns acting as one unit or as individual members",
+    "Singular indefinite pronouns such as each, either, neither, everyone, someone and nobody",
+    "Agreement with the true subject when a phrase comes between subject and verb",
+    "Common agreement errors"
+  ],
+  "banned_topics": [
+    "Tense choice beyond selecting the agreeing verb form",
+    "Pronoun-antecedent agreement as a separate topic",
+    "Reported speech",
+    "Active and passive voice"
+  ],
+  "must_include_keywords": [
+    "subject-verb concord",
+    "agreement",
+    "singular subject",
+    "plural subject",
+    "singular verb",
+    "plural verb",
+    "person",
+    "and",
+    "single idea",
+    "or",
+    "nor",
+    "nearer subject",
+    "collective noun",
+    "unit",
+    "individual members",
+    "indefinite pronoun",
+    "each",
+    "either",
+    "neither",
+    "everyone",
+    "someone",
+    "nobody",
+    "intervening phrase",
+    "true subject"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The noun nearest to the verb always controls agreement.",
+      "correction": "Normally the verb agrees with the true subject, not a noun in an intervening phrase; the nearer-subject rule applies specifically to subjects joined by 'or' or 'nor'."
+    },
+    {
+      "claim": "Every pair of nouns joined by 'and' takes a plural verb.",
+      "correction": "Subjects joined by 'and' usually take a plural verb, but a single idea or entity such as 'Bread and butter' may take a singular verb."
+    },
+    {
+      "claim": "Indefinite pronouns such as everyone and neither are plural because they refer to several people.",
+      "correction": "Each, either, neither, everyone, someone and nobody are grammatically singular and take singular verbs."
+    }
+  ],
+  "recommended_example_progression": [
+    "Fill in blanks with singular or plural verbs for simple subjects.",
+    "Correct sentences with subjects joined by and, including the single-idea exception.",
+    "Choose a verb for or/nor constructions by identifying the nearer subject.",
+    "Distinguish collective nouns acting as a unit from members acting individually and practise singular indefinite pronouns.",
+    "Edit sentences containing prepositional phrases between the true subject and the verb."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE exercises include verb selection, fill-in-the-blanks, sentence editing, error correction and short passage completion based on subject-verb agreement.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

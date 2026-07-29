@@ -1,0 +1,192 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST (Vision-extracted)
+Academic Year: 2024-25
+Subject: Mathematics
+Source Subject Code: Maths
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2024_25/Maths-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2024_25/Maths-MS.pdf
+Total Questions Extracted: 30 (out of ~38 total; 8 unextractable diagram-only questions)
+======================================================================
+
+TASK: Provide answers for each question below.
+
+OUTPUT FORMAT (JSON array):
+[{
+  "question_number": <int>,
+  "question_text": "<copy>",
+  "question_type": "<copy>",
+  "options": [<copy>],
+  "answer_text": "<for mcq/ar: exact option text; for others: full answer>",
+  "answer_explanation": "<2-4 sentences>"
+}, ...]
+
+RULES:
+- MCQ/AR: answer_text must be EXACT option text
+- Mark Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2024_25/Maths-MS.pdf
+- diagram_dependent questions: use NEEDS_MANUAL_REVIEW_diagram_dependent if no text alt
+
+======================================================================
+
+QUESTIONS:
+
+Q1 [mcq, 2m, Sec I]
+When two birds flew from Cage-I to Cage-II and two birds flew back from Cage-II to Cage-I then find the probability that the owl is still in Cage-I.
+  (A) 1/4
+  (B) 1/2
+  (C) 1/3
+  (D) 1/6
+
+Q10 [mcq, 4m, Sec C]
+If |ā| = 3, |b̄| = 4 and |ā + b̄| =5, then |ā - b̄| =
+  (A) 3
+  (B) 4
+  (C) 5
+  (D) 8
+
+Q11 [case_study, 8m, Sec D]
+For the linear programming problem (LPP), the objective function is Z = 4x + 3y and the feasible region determined by a set of constraints is shown in the graph:
+
+Q12 [mcq, 1m, Sec A]
+The value of Z at Q(30,20) is less than the value at R(40,0).
+  (A) −1/−1−2−1
+  (B) −1/−1−2−1
+  (C) −1/−1−2−1
+  (D) −1/−1−2−1
+
+Q13 [mcq, 1m, Sec B]
+What is the general solution of the differential equation e^y' = x?
+  (A) y = xlogx + c
+  (B) y = xlogx - x + c
+  (C) y = xlogx + x + c
+  (D) y = x + c
+
+Q14 [mcq, 1m, Sec C]
+The graph drawn below depicts
+  (A) y = sin^(-1)x
+  (B) y = cos^(-1)x
+  (C) y = cosec^(-1)x
+  (D) y = cot^(-1)x
+  [NOTE: diagram referenced]
+
+Q16 [case_study, 5m, Sec D]
+A linear programming problem (LPP) along with the graph of its constraints is shown below.
+  [NOTE: diagram referenced]
+
+Q17 [mcq, 1m, Sec A]
+The function f : R → Z defined by f(x) = [x] ; where [.] denotes the greatest integer function, is
+  (A) Continuous at x = 2.5 but not differentiable at x = 2.5
+  (B) Not Continuous at x = 2.5 but differentiable at x = 2.5
+  (C) Not Continuous at x = 2.5 and not differentiable at x = 2.5
+  (D) Continuous as well as differentiable at x = 2.5
+
+Q18 [mcq, 1m, Sec Q]
+A student observes an open-air Honeybee nest on the branch of a tree, whose plane figure is parabolic shape given by x^2 = 4y. Then the area (in sq units) of the region bounded by parabola x^2 = 4y and the line y = 4 is
+  (A) 32
+  (B) 64
+  (C) 128
+  (D) 256
+
+Q19 [assertion_reason, 1m, Sec A]
+Consider the function defined as f(x) = |x| + |x - 1|, x ∈ R. Then f(x) is not differentiable at x = 0 and x = 1.
+
+Q2 [mcq, 2m, Sec I]
+When two birds flew from Cage-I to Cage-II and two birds flew back from Cage-II to Cage-I, the owl is still seen in Cage-I, what is the probability that one parrot and the owl flew from Cage-I to Cage-II?
+  (A) 1/4
+  (B) 1/2
+  (C) 1/3
+  (D) 1/6
+
+Q20 [assertion_reason, 1m, Sec A]
+The function f: R - {(2n + 1)π : n ∈ Z} → (−∞, −1] ∪ [1, ∞) defined by f(x) = sec x is not one-one function in its domain.
+
+Q21 [short_answer, 2m, Sec B]
+If cot^−1(3x + 5) > π/4, then find the range of the values of x.
+
+Q22 [short_answer, 3m, Sec B]
+The cost (in rupees) of producing x items in factory, each day is given by C(x) = 0.00013x^3 + 0.002 x^2 + 5x + 2200. Find the marginal cost when 150 items are produced.
+
+Q23 [long_answer, 5m, Sec B]
+Find the derivative of tan^−1 x with respect to log x ; (where x ∈ (1,∞)).
+
+Q24 [short_answer, 2m, Sec O]
+A person standing at O(0,0,0) is watching an aeroplane which is at the coordinate point A(4,0,3). At the same time he saw a bird at the coordinate point B(0,0,1). Find the angles which BA makes with the x,y and z axes.
+
+Q25 [case_study, 4m, Sec O]
+The two co-initial adjacent sides of a parallelogram are 2i - 4j - 5k and 2i + 2j + 3k. Find its diagonals and use them to find the area of the parallelogram.
+  [NOTE: diagram referenced]
+
+Q32 [mcq, 5m, Sec D]
+Draw the rough sketch of the curve y = 20 cos 2 x; (where rac{\pi}{6} \leq x \leq rac{\pi}{3}). Using integration, find the area of the region bounded by the curve y = 20 cos2x from the ordinates x = rac{\pi}{6} to x = rac{\pi}{3} and the x-axis.
+  [NOTE: diagram referenced]
+
+Q33 [mcq, 5m, Sec D]
+The equation of the path traversed by the ball headed by the footballer is y = ax^2 + bx + c; (where 0 \leq x \leq 14 and a, b, c \in R and a 
+eq 0) with respect to a XY-coordinate system in the vertical plane. The ball passes through the points (2,15), (4,25) and (14,15). Determine the values of a, b and c by solving the system of linear equations in a, b and c, using matrix method. Also find the equation of the path traversed by the ball.
+  [NOTE: diagram referenced]
+
+Q34 [mcq, 5m, Sec O]
+If (x - a)^2 + (y - b)^2 = c^2, for some c > 0, prove that rac{1}{(dx/dy)^2} is a constant independent of a and b.
+
+Q35 [mcq, 5m, Sec O]
+Find the shortest distance between the lines l_1 and l_2 whose vector equations are \vec{r} = (-i - j - \hat{k}) + \lambda(7i - 6j + \hat{k}) and \vec{r} = (3i + 5j + 7\hat{k}) + \mu(i - 2j + \hat{k}) where \lambda and \mu are parameters.
+
+Q36 [case_study, 4m, Sec E]
+Ramesh, the owner of a sweet selling shop, purchased some rectangular card board sheets of dimension 25cm by 40cm to make container packets without top. Let x cm be the length of the side of the square to be cut out from each corner to give that sheet the shape of the container by folding up the flaps.
+
+Q37 [mcq, 2m, Sec C]
+An organization conducted bike race under 2 different categories-boys and girls. In all, there were 250 participants. Among all of them finally three from Category 1 and two from Category 2 were selected for the final race. Ravi forms two sets B and G with these participants for his college project.
+  (A) B represents the set of boys selected and G the set of girls who were selected for the final race.
+  (B) B represents the set of girls selected and G the set of boys who were selected for the final race.
+  (C) B represents the set of boys selected and G the set of boys who were selected for the final race.
+  (D) B represents the set of girls selected and G the set of girls who were selected for the final race.
+
+Q38 [mcq, 2m, Sec C]
+Arka bought two cages of birds: Cage-I contains 5 parrots and 1 owl and Cage -II contains 6 parrots. One day Arka forgot to lock both cages and two birds flew from Cage-I to Cage-II (simultaneously). Then two birds flew back from cage-II to cage-I(simultaneously).
+  (A) Assume that all the birds have equal chances of flying.
+  (B) Assume that all the birds have equal chances of flying.
+  (C) Assume that all the birds have equal chances of flying.
+  (D) Assume that all the birds have equal chances of flying.
+
+Q4 [mcq, 5m, Sec A]
+If A and B are non-singular matrices of same order with det(A) = 5, then det(B^(-1)AB)^2 is equal to
+  (A) 5^2
+  (B) 5^4
+  (C) 5^5
+  (D) 5^0
+
+Q5 [mcq, 5m, Sec B]
+The value of 'n', such that the differential equation x^n dy/dx = y(logy - logx + 1); (where x,y ∈ R+) is homogeneous, is
+  (A) 0
+  (B) 1
+  (C) 2
+  (D) 3
+
+Q6 [mcq, 2m, Sec C]
+If the points (x1,y1), (x2,y2) and (x1 + x2,y1 + y2) are collinear, then x1y2 is equal to
+  (A) 0
+  (B) 1
+  (C) 2
+  (D) 3
+
+Q7 [mcq, 1m, Sec D]
+If A = [0 1; -1 a -b; 2 3 0] is a skew-symmetric matrix then the value of a + b + c =
+  (A) 0
+  (B) 1
+  (C) 2
+  (D) 3
+
+Q8 [mcq, 2m, Sec A]
+For any two events A and B, if P(Ā) = 1/2, P(B) = 2/3 and P(A ∩ B) = 1/4, then P(Ā/B) equals:
+  (A) 3/8
+  (B) 8/9
+  (C) 5/8
+  (D) 1/4
+
+Q9 [mcq, 3m, Sec B]
+The value of α if the angle between ṗ = 2α^2i - 3αj + k and q̇ = i + j + αk is obtuse, is
+  (A) R - [0, 1]
+  (B) (0, 1)
+  (C) [0, ∞)
+  (D) [1, ∞)
+
+======================================================================
+Return the complete JSON array.

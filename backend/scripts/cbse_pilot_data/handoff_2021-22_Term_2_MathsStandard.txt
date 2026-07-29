@@ -1,0 +1,77 @@
+CBSE GRADE 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 2
+Subject: Mathematics
+Source Subject Code: MathsStandard
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/MathsStandard-SQP_Term2.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/MathsStandard-MS_Term2.pdf
+Total Questions: 14
+======================================================================
+
+TASK: For each question below, provide the answer in the EXACT JSON format shown.
+
+OUTPUT FORMAT (return a JSON array):
+[{
+  "question_number": <integer>,
+  "question_text": "<copy from input>",
+  "question_type": "<copy from input>",
+  "options": [<copy from input>],
+  "answer_text": "<for mcq/assertion_reason: exact option text; for others: concise answer>",
+  "answer_explanation": "<2-4 sentence explanation based on CBSE curriculum>"
+}, ...]
+
+IMPORTANT RULES:
+- For MCQ/assertion_reason: answer_text MUST be the EXACT text of one of the options (copy verbatim)
+- For short_answer: answer_text should be a complete answer per marking scheme
+- For long_answer/case_study: answer_text should be a full answer per marking scheme
+- If a question is diagram-dependent and no text alternative exists, use: NEEDS_MANUAL_REVIEW_diagram_dependent
+- Refer to the official Marking Scheme PDF for correct answers: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/MathsStandard-MS_Term2.pdf
+
+======================================================================
+
+QUESTIONS:
+
+Q1 [short_answer, 2 mark(s), Section A]
+Find the value of a25 - a15 for the AP: 6, 9, 12, 15, ……….. OR If 7 times the seventh term of the AP is equal to 5 times the fifth term, then find the value of its 12th term.
+
+Q10 [short_answer, 3 mark(s), Section B]
+Two vertical poles of different heights are standing 20m away from each other on the level ground. The angle of elevation of the top of the first pole from the foot of the second pole is 60° and angle of elevation of the top of the second pole from the foot of the first pole is 30°. Find the difference between the heights of two poles. (Take √3 = 1.73) OR A boy 1.7 m tall is standing on a horizontal ground, 50 m away from a building. The angle of elevation of the top of the building from his eye is 60°. Calculat e the height of the building. (Take √3 = 1.73) Section-C
+
+Q11 [case_study, 4 mark(s), Section C]
+The internal and external radii of a spherical shell are 3cm and 5cm respectively. It is melted and recast into a solid cylinder of diameter 14cm, find the height of the cylinder. Also find the total surface area of the cylinder. (Take 𝜋 = 7 )
+
+Q12 [case_study, 4 mark(s), Section C]
+Prove that the angle between the two tangents drawn from an external point to a circle is supplementary to the angle subtended by the line segment joining the points of contact to the centre. OR Two tangents TP and TQ are drawn to a circle with centre O from an external point T. Prove that ∠𝑃𝑇𝑄 = 2∠𝑂𝑃𝑄
+
+Q13 [case_study, 4 mark(s), Section C]
+Case Study-1 Trigonometry in the form of triangulation forms the basis of navigation, whether it is by land, sea or air. GPS a radio navigation system helps to locate our position on earth with the help of satellites. A guard, stationed at the top of a 240m tower, observed an unidentified boat coming towards it. A clinometer or inclinometer is an instrument used f or measuring angles or slopes(tilt). The guard used the clinometer to measure the angle of depression of the boat coming towards the lighthouse and found it to be 30°. (Lighthouse of Mumbai Harbour. Picture credits - Times of India Travel) i) Make a labelled figure on the basis of the given information and calculate the distance of the boat from the foot of the observation tower. ii) After 10 minutes, the guard observed that the boat was approaching the tower and its distance from tower is reduced by 240(√3 - 1) m. He immediately raised the alarm. What was the new angle of depression of the boat from the top of the observation tower?
+  [NOTE: This question references a diagram]
+
+Q14 [case_study, 4 mark(s), Section C]
+Case Study-2 Push-ups are a fast and effective exercise for building strength. These are helpful in almost all sports including athletics. While the push -up primarily targets the muscles of the chest, arms, and shoulders, support required from other muscles helps in toning up the whole body. Nitesh wants to participate in the push-up challenge. He can currently make 3000 push-ups in one hour. But he wants to achieve a target of 3900 push-ups in 1 hour for which he practices regularly. With each day of practice, he is able to make 5 more push -ups in one hour as compared to the pr evious day. If on first day of practice he makes 3000 push-ups and continues to practice regularly till his target is achieved . Keeping the above situation in mind answer the following questions: i) Form an A.P representing the number of push -ups per day and hence find the minimum number of days he needs to practice be fore the day his goal is accomplished? ii) Find the total number of push-ups performed by Nitesh up to the day his goal is achieved.
+
+Q2 [short_answer, 2 mark(s), Section A]
+Find the value of 𝑚 so that the quadratic equation 𝑚𝑥(5𝑥 − 6) = 0 has two equal roots.
+
+Q3 [short_answer, 2 mark(s), Section A]
+From a point P, two tangents PA and PB are drawn to a circle C(0, r). If OP = 2r, then find ∠𝐴𝑃𝐵. What type of triangle is APB?
+
+Q4 [short_answer, 2 mark(s), Section A]
+The curved surface area of a right circular cone is 12320 cm². If the radius of its base is 56cm, then find its height.
+
+Q5 [short_answer, 2 mark(s), Section A]
+Mrs. Garg recorded the marks obtained by her students in the following table. She calculated the modal marks of the students of the class as 45. While printing the data, a blank was left. Find the missing frequency in the table given below . Marks Obtained 0 - 20 20 - 40 40 - 60 60 - 80 80 - 100 O A B P r 2r Number of Students 5 10 --- 6 3
+
+Q6 [short_answer, 2 mark(s), Section A]
+If Ritu were younger by 5 years than what she really is, then the square of her age would have been 11 more than five times her present age. What is her present age? OR Solve for x: 9x² - 6px + (p² - q²) = 0 Section-B
+
+Q7 [short_answer, 3 mark(s), Section B]
+Following is the distribution of the long jump competition in which 250 students participated. Find the median distance jumped by the students. Interpret the median Distance (in m) 0 - 1 1 - 2 2 - 3 3 - 4 4 - 5 Number of Students 40 80 62 38 30
+
+Q8 [short_answer, 3 mark(s), Section B]
+Construct a pair of tangents to a circle of radius 4cm, which are inclined to each other at an angle of 60°.
+
+Q9 [short_answer, 3 mark(s), Section B]
+The distribution given below shows the runs scored by batsmen in one -day cricket matches. Find the mean number of runs. Runs scored 0 - 40 40 - 80 80 - 120 120 - 160 160 - 200 Number of batsmen 12 20 35 30 23
+
+======================================================================
+Now return the complete JSON array with answers for all questions above.

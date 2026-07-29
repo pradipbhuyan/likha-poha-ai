@@ -1,0 +1,414 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements carefully: Statement 1: Consumption function assumes that, consumption changes at a constant rate as income changes. Statement 2: Autonomous consumption is the ratio of total consumption (C) to total income (Y). In light of the given statements, choose the correct alternative from the following: a) Statement 1 is true and Statement 2 is false. b) Statement 1 is false and Statement 2 is true. c) Both Statements 1 and 2 are true. d) Both Statements 1 and 2 are false.",
+    "options": [
+      "a) Statement 1 is true and Statement 2 is false.",
+      "b) Statement 1 is false and Statement 2 is true.",
+      "c) Both Statements 1 and 2 are true.",
+      "d) Both Statements 1 and 2 are false."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "For a closed economy (with no foreign trade), which one of the following is correct? a) GDP = GNP b) GDP > GNP c) GDP < GNP d) GDP + GNP=0",
+    "options": [
+      "a) GDP = GNP",
+      "b) GDP > GNP",
+      "c) GDP < GNP",
+      "d) GDP + GNP=0"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The value of _______ can be greater than one. (Choose the correct alternative to fill up the blank) a) Marginal Propensity to Consume b) Average Propensity to Consume c) Marginal Propensity to Save d) Average Propensity to Save",
+    "options": [
+      "a) Marginal Propensity to Consume",
+      "b) Average Propensity to Consume",
+      "c) Marginal Propensity to Save",
+      "d) Average Propensity to Save"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 1,
+    "question_text": "As per the Reserve Bank of India (RBI) press report, dated 29th December, 2022: \"Net external commercial borrowings to India recorded an outflow of US$ 0.4 billion in the second quarter (2022-23)\" The above transaction will be recorded in the _______ account on _______ side of Balance of payments account of India. (Choose the correct alternative to fill up the blanks) a) current, credit b) current, debit c) capital, credit d) capital, debit",
+    "options": [
+      "a) current, credit",
+      "b) current, debit",
+      "c) capital, credit",
+      "d) capital, debit"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "On the basis of the given statement, identify the function performed by money: a) Medium of exchange b) Store of Value c) Unit of account d) Means of standard of deferred payments",
+    "options": [
+      "a) Medium of exchange",
+      "b) Store of Value",
+      "c) Unit of account",
+      "d) Means of standard of deferred payments"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the missing figures and choose the correct alternative: Round Deposits Loans (80%) Reserve Ratio (20%) I 1,000 800 200 II 800 ... (i)... 160 ... ... ... Total ... (ii)... ... (iii)... ... (iv)...",
+    "options": [
+      "a) 640,1000,4000,5000",
+      "b) 960,5000,4000,1000",
+      "c) 640,4000,1000,5000",
+      "d) 640,5000,4000,1000"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Graphically, Aggregate Demand function can be obtained by vertically adding the consumption, saving b) consumption, investment c) investment, saving d) aggregate supply, consumption",
+    "options": [
+      "a) consumption, saving",
+      "b) consumption, investment",
+      "c) investment, saving",
+      "d) aggregate supply, consumption"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the correct reason(s) that may affect the demand for foreign exchange in an economy. I. Imports of visibles II. Exports of invisibles III. Remittances by residents working abroad IV. Purchase of assets abroad",
+    "options": [
+      "a) I and II",
+      "b) II and III",
+      "c) III and IV",
+      "d) I and IV"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Suppose for a given economy, S= -60 + 0.1Y I= ₹ 4,000 crore (Where S = Saving Function, Y = National Income and I = Investment Expenditure) Equilibrium level of Income would be ₹ _______ crore. (Choose the correct alternative to fill up the blank)",
+    "options": [
+      "a) 640,1000,4000,5000",
+      "b) 960,5000,4000,1000",
+      "c) 640,4000,1000,5000",
+      "d) 640,5000,4000,1000"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following chart carefully and choose the correct alternative:",
+    "options": [
+      "Capital Account",
+      "Investments",
+      "External Borrowings",
+      "External Assistance"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 3,
+    "question_text": "'Current account deficit in an economy must be financed by a corresponding capital account surplus'. Do you agree with the given statement? Give valid reason(s) in support of your answer.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 3,
+    "question_text": "On the basis of the given data, estimate the value of Domestic Income:",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 13,
+    "section": "B",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "For a hypothetical economy, the government incurs an investment expenditure of ₹ 1,000 crore. If the value of Marginal Propensity to Save (MPS) falls from 0.25 to 0.10, Calculate the value of increase in income due to change in the value of Marginal Propensity to Save (MPS).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "O",
+    "question_type": "short_answer",
+    "marks": 4,
+    "question_text": "Elaborate the possible impact of the same, on the level of output, income and employment.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "O",
+    "question_type": "short_answer",
+    "marks": 4,
+    "question_text": "Discuss the rationale behind the step taken by the Reserve Bank of India.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "On the basis of the given information, calculate the value of:",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "O",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Identify and discuss the nature of the government expenditure indicated in the given statement.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "B",
+    "question_type": "case_study",
+    "marks": 1,
+    "question_text": "Identify the correct combination of the 'Goals of Indian Five Year Plans':",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "China has performed exceedingly well in various health and economic indicators. Identify which of the following is not a health indicator?",
+    "options": [
+      "Infant Mortality Rate (per 1000 live births)",
+      "Life Expectancy at Birth (years)",
+      "Percentage of people below poverty line (National)",
+      "Maternal Mortality Rate (per 1 lakh births)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The shackles of agriculture during the colonial rule were permanently broken by the Green Revolution that resulted from the application of _______. (Choose the correct alternative to fill up the blank)",
+    "options": [
+      "High Yielding Varieties (HYV)",
+      "Mechanization of Agriculture",
+      "Chemical Fertilizers and Pesticides",
+      "Organic Fertilizers and Pesticides"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Study the following picture and answer the given question:",
+    "options": [
+      "Women in rural households take up bee-keeping as an entrepreneurial activity. Such kind of activities may be envisaged under _______ as diversification activity.",
+      "Animal husbandry",
+      "Fisheries",
+      "Poultry"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 22,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements: Assertion (A) and Reason (R). Choose the correct alternative from those given below.",
+    "options": [
+      "Assertion (A): In 1991, as an immediate measure to resolve the Balance of Payments crisis, the rupee was devalued against foreign currencies.",
+      "Reason (R): Devaluation of currency was eminent, to replenish the deteriorated foreign exchange reserves.",
+      "Both Assertion (A) and Reason (R) are true, but Reason (R) is not the correct explanation of Assertion (A).",
+      "Assertion (A) is true, but Reason (R) is false.",
+      "Assertion (A) is false, but Reason (R) is true."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Under _______ in China, farmers and industrial units were required to buy and sell fixed quantities of inputs and outputs on the basis of prices fixed by the government and the rest were purchased and sold at market prices.",
+    "options": [
+      "Commune System",
+      "Great Leap Forward",
+      "Dual Pricing",
+      "Great Proletarian Cultural Revolution"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Micro credit programmes play a vital role in ensuring an overall development of the rural economy as they _______. (Choose the correct alternative to fill up the blank)",
+    "options": [
+      "provide financial support",
+      "lead to women empowerment",
+      "enhance the reach of formal credit system",
+      "i) and (ii)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "may be defined as the measure of the extent of demographic participation in the social and political decision making.",
+    "options": [
+      "Economic indicator",
+      "Health indicator",
+      "Liberty indicator",
+      "Demographic indicator"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements carefully:",
+    "options": [
+      "The nature of unemployment problem in India is uni-faceted.",
+      "Worker-Population ratio is an indicator used for analysing the employment situation in a country.",
+      "In light of the given statements, choose the correct alternative from the following:",
+      "Both Statements 1 and 2 are true.",
+      "Both Statements 1 and 2 are false."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "From the set of the events given in column I and corresponding facts given in Column II, choose the correct pair of statements:",
+    "options": [
+      "Adoption of mixed economic system",
+      "The common development policy of India and China",
+      "Introduction of economic reforms in China",
+      "Imposed by World Bank",
+      "Great Leap Forward Campaign",
+      "Focussed on massive industrialization",
+      "First Five Year Plan of Pakistan",
+      "Announced in 1953"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 3,
+    "question_text": "During the colonial period, a number of socio-economic indicators were in a dilapidated state. List any three such indicators that led to the worsening of India's demographic profile.",
+    "options": [
+      "The pre-independent India's occupational structure experienced growing regional variation.",
+      "Justify the above statement with valid explanation."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 3,
+    "question_text": "Ravya was initially working as an office clerk in a firm. In the pursuit to attain, a higher position and income, she attended a few on-the-job training sessions. These sessions contributed positively to her skills and expertise. Explain the impact of Ravya's decision on human capital formation.",
+    "options": [
+      "Justify the given statement with valid arguments in support of your answer."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 4,
+    "question_text": "In the late 1970s, China introduced the One-child policy that led to arrest in the population coupled with skewed sex ratio. Justify the given statement with valid arguments in support of your answer.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 2,
+    "question_text": "State and elaborate whether the following statements are true or false, with valid arguments: (i) Agricultural marketing is a process that ensures the transportation of various agricultural commodities only. (ii) Jan-Dhan Yojana has been a crucial step for financial resource mobilization in the Indian economy.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 4,
+    "question_text": "Since independence, the government has been playing an important role in generating employment directly or indirectly. Discuss.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 33,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 3,
+    "question_text": "Green revolution transformed India from a subsistent food grain economy to a food surplus economy. Justify the statement, giving reasons in support of your answer.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "O",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Sustainable development is the development that meets the needs of the present, without compromising the ability of future generations to meet their own needs. India is critical in determining the success in a pursuit to achieve sustainable development. The Union Budget 2023 presented by Finance Minister Nirmala Sitharaman builds on India's commitment to lead the global action against climate change, preserve biodiversity and support sustainable development. The government has accelerated the pace of Green Growth as India is facing the grave reality of depleting natural resources, limited supply of water, minerals, and fossil fuels. In a bid to counter the climate threat, India has committed to achieving net zero by 2070; released a low-carbon development strategy; and introduced the concept of 'LiFE' (Lifestyle for Environment) to promote responsible consumption. The Green Growth actions include several pointed measures that would facilitate the much-needed steady decarbonization of Indian industries, reduce dependency on fossil fuel imports and establish technology and market leadership in this sunrise sector. For instance: The allocation of Rs 35,000 crore of priority capital investment towards achieving net zero by 2070 and clean energy transition ensures the country's energy security. The outlay of Rs 19,700 crore for the Green Hydrogen Mission will mobilise a green hydrogen production capacity of 5 metric million tonnes by 2030. Moreover, to encourage the optimal use of wetlands, enhance biodiversity, carbon stock, eco-tourism opportunities and income generation for local communities, the Amrit Dharohar scheme will be implemented over three years.",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

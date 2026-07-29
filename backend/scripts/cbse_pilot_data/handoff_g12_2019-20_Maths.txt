@@ -1,0 +1,152 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2019-20
+Subject: Mathematics
+Source Subject Code: Maths
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Maths-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Maths-MS.pdf
+Total Questions: 35
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Maths-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+If A is any square matrix of order 3 × 3 such that |A| = 3, then the value of |adjA| is ?
+  (A) 3
+  (B) 9
+  (C) 27
+
+Q10 [mcq, 1m, Sec A]
+The equation of the line in vector form passing through the point(−1,3,5) and parallel to line ௫ିଷ ଶ = ௬ିସ ଷ , z = 2. is
+  (A) r⃗ = ൫−ı̂ + 3ȷ̂ + 5k෠൯+ λ൫2ı̂ + 3ȷ̂ + k෠൯.
+  (B) r⃗ = ൫−ı̂ + 3ȷ̂ + 5k෠൯+ λ(2ı̂ + 3ȷ̂)
+  (C) r⃗ = ൫2ı̂ + 3ȷ̂ − 2k෠൯+ λ൫−ı̂ + 3ȷ̂ + 5k෠൯
+  (D) r⃗ = (2ı̂ + 3ȷ̂) + λ൫−ı̂ + 3ȷ̂ + 5k෠൯
+
+Q11 [mcq, 1m, Sec A]
+If f be the greatest integer function defined asf(x) = [x] and g be the modulus function defined as g(x) = |x| , then the value of g of ቀ− ହ ସቁ is___________
+
+Q12 [mcq, 1m, Sec A]
+If the function݂(ݔ)= ቊ ௫మିଵ ௫ିଵwhen ݔ≠ 1 ݇ when ݔ=1 is given to be continuous at ݔ=1, then the value of ݇ is ____
+
+Q13 [mcq, 1m, Sec A]
+Ifቂ1 2 2 1ቃቂx yቃ= ቂ5 4ቃ , then value of y is _____. 1
+
+Q14 [mcq, 1m, Sec A]
+If tangent to the curve yଶ+ 3x − 7 = 0 at the point (ℎ,݇) is parallel to line x − y = 4, then value of k is ___? OR For the curve ݕ=5ݔ− 2ݔଷ ,if ݔ increases at the rate of 2units/sec, then at ݔ=3the slope of the curve is changing at_________
+
+Q15 [mcq, 1m, Sec A]
+The magnitude of projection of ൫2ı̂ − ȷ̂ + k෠൯ on ൫ı̂ − 2ȷ̂ + 2k෠൯is_________ OR Vector of magnitude 5 units and in the direction opposite to 2ı̂ + 3ȷ̂ − 6k෠ is___ (Q16 - Q20) Answer the following questions
+
+Q16 [mcq, 1m, Sec A]
+Check whether (l + m + n) is a factor of the determinantอ l + m m + n n + l n l m 2 2 2 อor not. Give reason.
+
+Q17 [mcq, 1m, Sec A]
+Evaluate ∫ (ݔଷ+ 1)ݔ݀ ଶ ିଶ .
+
+Q18 [mcq, 1m, Sec A]
+Find ∫ ଷାଷ௖௢௦௫ ௫ା௦௜௡௫ݔ݀. OR Find ∫(ݏ݋ܿଶ2ݔ−݊݅ݏଶ2ݔ)ݔ݀
+
+Q19 [mcq, 1m, Sec A]
+Find ∫ xe(ଵା୶మ)dx.
+
+Q2 [mcq, 1m, Sec A]
+Suppose P and Q are two different matrices of order 3 × n and n × p , then the order of the matrix P × Q is?
+  (A) 3 × p
+  (B) p × 3
+  (C) n × n
+  (D) 3 × 3
+
+Q20 [mcq, 1m, Sec A]
+Write the general solution of differential equation ୢ୷ ୢ୶= e୶ା୷ SECTION – B
+
+Q21 [short_answer, 2m, Sec B]
+Express sinିଵቀ ୱ୧୬୶ାୡ୭ୱ୶ √ଶ ቁ ;where− ஠ ସ<ݔ< ஠ ସ , in the simplest form. OR Let R be the relation in the set Z of integers given by R = {(a, b) : 2 divides a – b}.Show that the relation R transitive? Write the equivalence class [0].
+
+Q22 [short_answer, 2m, Sec B]
+If = aeଶ୶+ beି୶ , then show that ୢమ୷ ୢ୶మ− ୢ୷ ୢ୶− 2y = 0.
+
+Q23 [short_answer, 2m, Sec B]
+A parti cle moves along the curve xଶ= 2y . At what point, ordinate increases at the same rate as abscissa increases?
+
+Q24 [short_answer, 2m, Sec B]
+For three non-zero vectors aሬ⃗, bሬ⃗ and c⃗ , prove that [ ܽሬ⃗ - ܾሬ⃗ ܾሬ⃗ - ܿ⃗ ܿ⃗ - ܽሬ⃗ ] = 0 . OR If ܽ⃗+ ܾሬ⃗ +ܿ⃗= 0 ݀݊ܽ |ܽ⃗| = 3, หܾሬ⃗ห= 5, |ܿ⃗| = 7 , then find the value of ܽ⃗ .ܾ ሬ⃗ +ܾሬ⃗.ܿ⃗ +ܿ⃗ .ܽ⃗ .
+
+Q25 [short_answer, 2m, Sec B]
+Find the acute angle between the lines ୶ିସ ଷ = ୷ାଷ ସ = ୸ାଵ ହ and ୶ିଵ ସ = ୷ାଵ ିଷ = ୸ାଵ଴ ହ 2
+
+Q26 [short_answer, 2m, Sec B]
+A speaks truth in 80% cases and B speaks truth in 90%cases. In what percentage of cases are they likely to agree with each other in stating the same fact? SECTION – C
+
+Q27 [case_study, 4m, Sec C]
+Let ݂:A → B be a function defined as ݂(ݔ)= ଶ௫ାଷ ௫ିଷ, whereA = R − {3}and B = R − {2}. Is the function f one –one and onto? Is f invertible? If yes, then find its inverse.
+
+Q28 [case_study, 4m, Sec C]
+If √1 − xଶ+ ඥ1 − yଶ= a(x − y) , then prove that ୢ୷ ୢ୶= ඥଵି୷మ √ଵି୶మ . OR If x = a(cos 2θ + 2θ sin 2θ) and y = a(sin 2θ − 2θ cos 2θ) , find ୢమ୷ ୢ୶మ at θ = ஠ ଼.
+
+Q29 [case_study, 4m, Sec C]
+Solve the differential equation x dy − y dx = ඥxଶ+ yଶ dx .
+
+Q3 [mcq, 1m, Sec A]
+If ൫2ı̂ + 6ȷ̂ + 27k෠൯× ൫ı̂ + pȷ̂ + qk෠൯= 0ሬ⃗ ,then the values of p and q are ?
+  (A) p= 6 ,q=27
+  (B) p=3,q= ଶ଻ ଶ
+  (C) p=6,q= ଶ଻ ଶ
+  (D) p=3  ,q=27
+
+Q30 [case_study, 4m, Sec C]
+Evaluate ∫ |ݔଶ− 2ݔ|ݔ݀ ଷ ଵ .
+
+Q31 [case_study, 4m, Sec C]
+Two numbers a re selected at random (without replacement) from first 7 natural numbers. If X denotes the smaller of the two numbers obtained, find the probability distribution of X. Also, find mean of the distribution. OR There are three coins, one is a two headed coin (having head on both the faces), another is a biased coin that comes up head s 75% of the time and the third is an unbiased coin. One of the three coins is chosen at random and tossed. If It shows head. What is probability that it was the two headed coin ?
+
+Q32 [case_study, 4m, Sec C]
+Two tailors A and B earn ₹150 and ₹200 per day respectively. A can stitch 6 shirts and 4 pants per day, while B can stitch 10 shirts and 4 pants per day. Form a L.P.P to minimize the labour cost to produce (stitch) at least 60 shirts and 32 pants and solve it graphically. SECTION D
+
+Q33 [long_answer, 6m, Sec D]
+Using the properties of determinants, prove that ቮ (ݕ+ݖ )ଶݔଶݔଶ ݕଶ (ݖ+ݔ )ଶݕଶ ݖଶݖଶ (ݔ+ݕ )ଶ ቮ= 2ݖݕݔ(ݔ+ݕ +ݖ )ଷ . OR If A = ൥ 2 3 4 1 −1 0 0 1 2 ൩, find Aିଵ. Hence, solve the system of equations ݔ−ݕ=3 ; 2ݔ+3ݕ+4ݖ=17; ݕ+2ݖ=7
+
+Q34 [long_answer, 6m, Sec D]
+Using integration, find the area of the region {(x, y) ∶ xଶ + yଶ ≤ 1 , x + y ≥ 1, x ≥ 0, y ≥ 0 }
+
+Q35 [long_answer, 6m, Sec D]
+A given quantity of metal is to be cast into a solid half circular cylinder with a rectangular base and semi -circular ends. Show that in order that total surface area is minimum, the ratio of length of cylinder to the diameter of semi-circular ends is π ∶ π + 2. OR Show that the triang le of maximum area that can be inscribed in a given circle is an equilateral triangle.
+
+Q36 [long_answer, 6m, Sec D]
+Find the equation of a plane passing through the points ܣ(2,1,2) and ܤ(4, −2,1) and perpendicular to planer⃗. ൫ı̂ − 2k෠൯= 5. Also, find the coordinates of the point, where the line passing through the points (3,4,1) and (5,1,6) crosses the plane thus obtained.
+
+Q4 [mcq, 1m, Sec A]
+If A and B are two events such that P(A)=0.2 , P(B)=0.4 and P(A ∪ B)=0.5 , then value of P(A/B) is ?
+  (A) 0.1
+  (B) 0.25
+  (C) 0.5
+  (D) 0.08
+
+Q5 [mcq, 1m, Sec A]
+The point which does not lie in the half plane 2ݔ+3ݕ− 12 ≤ 0 is
+  (A) (1,2)
+  (B) (2,1)
+  (C) (2,3)
+  (D) (−3, 2)
+
+Q6 [mcq, 1m, Sec A]
+If sinିଵx + sinିଵy = ଶ஠ ଷ , then the value of cosିଵx + cosିଵy is ________
+  (A) π
+
+Q7 [mcq, 1m, Sec A]
+An urn contains 6 balls of which two are red and four are black. Two balls are drawn at random. Probability that they are of the different colours is
+  (A) sinିଵቀ ହ୶ ଷቁ+ c
+
+Q9 [mcq, 1m, Sec A]
+What is the distance(in units) between the two planes 3x + 5y + 7z = 3 and 9x + 15y + 21z = 9 ?
+  (A) 0
+  (B) 3
+  (C) 6
+
+======================================================================
+Return the complete JSON array.

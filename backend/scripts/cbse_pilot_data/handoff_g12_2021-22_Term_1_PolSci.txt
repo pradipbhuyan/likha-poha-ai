@@ -1,0 +1,95 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 1
+Subject: Political Science
+Source Subject Code: PolSci
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/PolSci-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/PolSci-MS.pdf
+Total Questions: 24
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/PolSci-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Newly independent countries got an option to stay away from any of the alliances, since the time was created. a) NATO b) CENTO c) Warsaw Pact d) NAM
+
+Q10 [mcq, 1m, Sec A]
+Arrange the following in the chronological order of their establishment: i) The World Trade Organisation ii) Amnesty International iii) League of Nations iv) World Bank a) iii, iv,i, ii b) iv, iii, ii, i c) ii, iii, iv, i d) i, ii,iii, iv
+
+Q11 [mcq, 1m, Sec A]
+Which from the following is concerned with the safe and peaceful use of nuclear technology under the UN System: a) UN International Safeguard Committee b) UN Security Council c) International Atomic Energy Agency d) Amnesty International
+
+Q12 [mcq, 1m, Sec A]
+India conducted its I and II nuclear tests at Pokhran in the year and . a) 1978, 1991 b) 1971, 1992 c) 1974, 1998 d) 1974, 1996
+
+Q13 [mcq, 1m, Sec A]
+The Arab Spring did not transcend which of the following countries? a) Tunisia b) Libya c) Iran d) Yemen
+
+Q14 [mcq, 1m, Sec A]
+Which among the following is not an outcome of the disintegration of the USSR? a) End of the ideological war between the US and the USSR. b) Birth of CIS. c) Change in balance of power in the world order. d) Crisis in the Middle East.
+
+Q15 [mcq, 1m, Sec A]
+The three major objectives of Nehru's foreign policy were: i) To preserve the hard-earned sovereignty. ii) To protect territorial integrity. iii) To promote rapid economic development. iv) To establish a Capitalist System in India. Select the correct answer using the force given below: a) i, ii and iv only. b) ii, iii and iv only. c) i, ii and iii only. d) ii, iii and iv only.
+
+Q16 [mcq, 1m, Sec A]
+Which of the following is not the disputed site between India and China? a) Doklam b) Galwan Valley c) Depsang Plains d) Lipulekh Pass
+
+Q17 [mcq, 1m, Sec A]
+The Nizam wanted an independent status for Hyderabad. He entered into what was called the standstill agreement with India in November 1947 for _ while negotiations with the Indian Government were going on. a) A year b) Three years c) Two years d) Six months
+
+Q18 [mcq, 1m, Sec A]
+“The foreign policy of a country is the outcome of her economic policy" these remarks were made by – a) Indira Gandhi b) Jawahar Lal Nehru c) Morarji Desai d) Charan Singh
+
+Q19 [mcq, 1m, Sec A]
+The high point of Cold War was – a) Cuban Missile Crisis. b) Atomic bomb attack on Hiroshima and Nagasaki. c) Establishment of SEATO and CENTO. d) Establishment of NATO
+
+Q2 [mcq, 1m, Sec A]
+The smaller states were important for super powers due to:- i. Vital resources ii. Territory iii. Economic support Identify the correct option. a) i & iii b) i & ii c) ii & iii d) i, ii & iii
+
+Q20 [mcq, 1m, Sec A]
+What is “Amnesty International”? a) Nuclear Safety Organisation b) Government organisation c) Non-Government organisation d) Human Development Organisation
+
+Q21 [mcq, 1m, Sec A]
+Choose the odd one out of the following statements.
+  (A) States Reorganization Act-1956
+  (B) Partition of India-1947
+  (C) Number of Princely States-512
+  (D) Independence of India-1947
+
+Q22 [mcq, 1m, Sec A]
+What was the impact of the Indo-China Conflict on the opposition parties? i) The CPI, which was in favour of the Soviet Union, grew closer with the Congress. ii) The Communist Party of India broke up in 1963. iii) Alerted the leaders of India about the situation in the Northeast. iv) Nagaland was given state status. Select the correct answer using the force given below: a) i, ii and iii only. b) iii only. c) i and iii only. d) i only.
+
+Q23 [mcq, 1m, Sec A]
+The Russian Revolution was inspired by the ideals of as opposed to capitalism and the need for an Society. a) Socialism, Egalitarian b) Communal, Religious c) Socialism, Religious d) Communal, Egalitarian
+
+Q24 [mcq, 1m, Sec A]
+Which one of the following statements is false.:- a) The Nizam of Hyderabad was keen to have an independent status for the state of Hyderabad. b) Jammu and Kashmir was ready to sign the Instrument of Accession. c) The issue of Junagarh was resolved after a plebiscite in the state. d) Travancore was not the first Indian State to merge into the Union of India.
+
+Q3 [mcq, 1m, Sec A]
+Who appoints the Vice-Chairperson of NITI Aayog? a) The Prime Minister b) The President c) The Chief Executive Officer d) The Finance Minister
+
+Q4 [mcq, 1m, Sec A]
+Which among the following statements about Soviet System is not true:- a) The Soviet Union had complex communication. b) It had a complex machinery production system and transport sector that connected its remotest areas with efficiency. c) It had a domestic consumer industry that produced everything from pins to cars. d) Soviet Union disintegrated in 1992.
+
+Q5 [mcq, 1m, Sec A]
+Policy has been adopted by NITI Aayog. a) Make in India b) Made in India c) Startup India d) Ayushman Bharat
+
+Q6 [mcq, 1m, Sec A]
+Who were the three leaders who floated the idea of NAM? a) Nehru, Tito, Nasser b) Nehru, Sukarno, Shah c) Nehru, Nkrumah, Shah d) Nehru, Shah, Tito
+
+Q7 [mcq, 1m, Sec A]
+Where did Pakistan conduct its nuclear tests? a) Patkai hills b) Chagai hills c) Naga hills d) Kargil hills
+
+Q8 [mcq, 1m, Sec A]
+Which was the biggest challenge before the newly independent India? a) National Integration b) Industrialisation c) Population d) Unemployment
+
+Q9 [mcq, 1m, Sec A]
+Which of these statements about Non-Aligned Movement is incorrect? a) Enabling newly decolonized countries to pursue independent policies b) Refusal to joining any military alliance c) Following a policy of neutrality on global issues d) Focus on elimination of global economic inequalities
+
+======================================================================
+Return the complete JSON array.

@@ -1,0 +1,355 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "There are two statements marked as Assertion(A) and Reason(R). Mark your answer as per the codes provided below.",
+    "options": [
+      "High level of human development group has 53 countries.",
+      "A higher investment in people and good governance has set this group apart from others."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Both (A) and (R) are true but (R) is not the correct explanation of (A)",
+    "options": [
+      "Both (A) and (R) are true and (R) is the correct explanation of (A)",
+      "Both (A) and (R) are incorrect.",
+      "(A) is correct but (R) is incorrect."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider the following and choose the correct answer with the help of given codes-",
+    "options": [
+      "STAGES OF POPULATION",
+      "GROWTH FEATURES"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "D",
+    "question_type": "short_answer",
+    "marks": 1,
+    "question_text": "Consider the following statements and choose the correct answer with the help of given Option:",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "Locate and label any five of the following geographical features on the Political Outline map of India with appropriate symbols:",
+    "options": [
+      "a. An important seaport in Andhra Pradesh.",
+      "b. An important coal mine in Tamil Nadu.",
+      "c. Ratnagiri - iron ore mines.",
+      "d. An oil refinery in Gujarat.",
+      "e. The state with highest population density.",
+      "f. The state leading in the production of jute."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following is the largest linguistic group of India?",
+    "options": [
+      "Sino - Tibetan",
+      "Austric",
+      "Indo - Aryan",
+      "Dravidian"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the followings is not a function of World Trade Organization (WTO)?",
+    "options": [
+      "WTO is the only international organization dealing with the global rules of trade between nations.",
+      "WTO resolves disputes between its member nations.",
+      "WTO covers trade in services, such as telecommunication and banking.",
+      "WTO provides funding to the global economies."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is an example of low order service?",
+    "options": [
+      "Teacher",
+      "Gardener",
+      "Lawyer",
+      "Musician"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In which of the following group of countries of the world, HYV of Wheat and Rice were developed?",
+    "options": [
+      "Japan and Australia",
+      "Mexico and Philippines",
+      "USA and Japan",
+      "Mexico and Singapore"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider the following statements and choose the correct answer with the help of given options.",
+    "options": [
+      "In recent years- ropeways, cableways and pipelines were developed as a means of transport.",
+      "They were developed to cater to the demands of transporting specific goods under special circumstances."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Given below are the steps to generate geothermal energy. Arrange the following in correct sequence:",
+    "options": [
+      "(iv) - (ii) - (i) - (iii)",
+      "(ii) - (i) - (iv) - (iii)",
+      "(i) - (iv) - (iii) - (ii)",
+      "(iii) - (ii) - (iv) - (i)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is NOT the benefit of rainwater harvesting?",
+    "options": [
+      "It increases water availability.",
+      "It checks the declining groundwater table.",
+      "It improves the quality of ground water through dilution of contaminants like fluoride and nitrates.",
+      "Helpful in production of hydroelectricity."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following plan was introduced to improve the conditions of roads in India after independence?",
+    "options": [
+      "Five Year Road Plan",
+      "Nagpur Plan",
+      "Ten Years Road Plan",
+      "Twenty Years Road Plan"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If you are asked to formulate the National Water Policy, what will be the utmost important priority for you.",
+    "options": [
+      "To provide water for generation of hydroelectricity",
+      "Availability of water for industries",
+      "To provide drinking water",
+      "Availability of water for navigation"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "How does the natural increase in population occur, as per the graph?",
+    "options": [
+      "Birth Rate - Death Rate",
+      "Death Rate + Birth Rate",
+      "Growth Rate - Birth Rate",
+      "Birth Rate + Migration"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 16,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What does the transition from high fluctuating stage of birth and death rate to low fluctuating stage indicate?",
+    "options": [
+      "Shift from Urban Industrial economy to Rural Agrarian economy",
+      "Shift from Rural Agrarian economy to Urban Industrial economy",
+      "Low Birth and Death Rate to High Birth and Death Rate",
+      "Migration from Urban to Rural areas"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What conditions of birth rate and death rate are generally seen in least developed countries?",
+    "options": [
+      "High Birth Rate and High Death Rate",
+      "Low Birth rate and Low Death rate",
+      "High Birth Rate and Low Death Rate",
+      "Low Birth Rate and High Death Rate"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "B",
+    "question_type": "long_answer",
+    "marks": 3,
+    "question_text": "Read the given Passage carefully and answer the questions that follow:",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Name the capital city and an important agro centre located on this route.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 20,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "A. \"The basic goal of development is to create conditions where the people can live a meaningful life\" - What do you mean by meaningful life?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "OR B. How do people's choices get affected in different aspects of life due to lack of human development?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "A. How is 'Naturalisation of Humans' different from 'Humanisation of Nature'?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "O",
+    "question_type": "mcq",
+    "marks": 3,
+    "question_text": "Evaluate the dualisms that exist in Geography.",
+    "options": [
+      "Quaternary activities centre around research and development.",
+      "Examine the statement."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Question numbers 24 to 28 are Long Answer Type questions.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "There is low yield per acre but high yield per person in the interior parts of semi-arid lands of the mid-latitudes in the world. Support the statement with suitable examples from different parts of the world.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "Formulate the guidelines to promote sustainability in the Indira Gandhi Canal Command area.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "Land degradation in India is caused by human made processes that are more harmful than natural processes. Explain the statement with suitable examples.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "How has noise pollution become a serious problem in recent years in India? Explain.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "On the given political map of the World, seven geographical features have been marked as A, B, C, D, E, F and G. Identify any five with the help of the following information and write their correct names on the lines drawn near each feature.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 30,
+    "section": "G",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In which state are Ratnagiri iron ore mines located?",
+    "options": [
+      "Maharashtra",
+      "Gujarat",
+      "Karnataka",
+      "Andhra Pradesh"
+    ],
+    "diagram_dependent": false
+  }
+]

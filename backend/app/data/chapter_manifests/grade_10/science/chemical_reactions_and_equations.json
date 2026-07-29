@@ -1,0 +1,168 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chemical Reactions and Equations",
+  "central_question": "How can we recognise, represent, classify and explain chemical reactions, including their effects in everyday life?",
+  "in_scope_units": [
+    "Recognising a chemical reaction through changes in state, colour, gas evolution and temperature, using Activities 1.1-1.3.",
+    "Chemical equations: word equations, reactants, products, skeletal equations and symbolic representation.",
+    "Balanced chemical equations, the law of conservation of mass, hit-and-trial balancing, state symbols and reaction conditions.",
+    "Combination reactions and exothermic reactions, including quicklime with water, combustion and respiration.",
+    "Decomposition reactions caused by heat, electricity or light, and their connection with endothermic change.",
+    "Displacement reactions demonstrated by iron in copper sulphate solution.",
+    "Double displacement and precipitation reactions demonstrated by sodium sulphate and barium chloride solutions.",
+    "Oxidation, reduction and redox reactions using gain or loss of oxygen or hydrogen.",
+    "Effects of oxidation in everyday life: corrosion and rancidity.",
+    "Chapter review through the NCERT 'What you have learnt', Exercises 1-20 and Group Activity."
+  ],
+  "banned_topics": [
+    "Detailed electronic theories of chemical bonding, which are assigned to later chapters.",
+    "The complete reactivity series and extraction of metals, which belong mainly to the Metals and Non-metals chapter.",
+    "Detailed cellular respiration pathways, which belong to the Life Processes chapter."
+  ],
+  "must_include_keywords": [
+    "chemical reaction",
+    "change in state",
+    "change in colour",
+    "evolution of gas",
+    "change in temperature",
+    "reactants",
+    "products",
+    "word equation",
+    "skeletal equation",
+    "balanced chemical equation",
+    "law of conservation of mass",
+    "coefficient",
+    "hit-and-trial method",
+    "state symbols",
+    "aqueous",
+    "combination reaction",
+    "decomposition reaction",
+    "thermal decomposition",
+    "electrolysis",
+    "photochemical decomposition",
+    "exothermic reaction",
+    "endothermic reaction",
+    "displacement reaction",
+    "double displacement reaction",
+    "precipitate",
+    "oxidation",
+    "reduction",
+    "redox reaction",
+    "corrosion",
+    "rancidity",
+    "antioxidants",
+    "nitrogen flushing"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Balancing an equation means changing subscripts inside a chemical formula.",
+      "correction": "Only coefficients may be changed while balancing; changing a subscript changes the identity of the substance."
+    },
+    {
+      "claim": "Any visible change is automatically a chemical reaction.",
+      "correction": "A chemical reaction forms new substance(s); observations such as colour change, gas evolution or temperature change are evidence that must be interpreted with the reaction context."
+    },
+    {
+      "claim": "A decomposition reaction always occurs only on heating.",
+      "correction": "Decomposition may be caused by heat, electricity or light, as shown in Activities 1.5-1.8."
+    },
+    {
+      "claim": "Displacement and double displacement reactions are the same because both involve replacement.",
+      "correction": "In displacement, one element replaces another from a compound; in double displacement, ions from two compounds exchange partners."
+    },
+    {
+      "claim": "Oxidation and reduction occur as separate, unrelated reactions.",
+      "correction": "In a redox reaction, oxidation and reduction occur together: one substance gains oxygen or loses hydrogen while another loses oxygen or gains hydrogen."
+    },
+    {
+      "claim": "Rancidity is caused by microorganisms only.",
+      "correction": "In this chapter, rancidity is explained as oxidation of fats and oils, which changes their smell and taste."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Activity 1.1 to connect observation, product formation and the word equation for burning magnesium.",
+    "Use NCERT Equation (1.4)-(1.10) to model the complete hit-and-trial balancing of Fe + H2O -> Fe3O4 + H2.",
+    "Compare NCERT Activity 1.4 with Activities 1.5-1.8 to distinguish combination, decomposition, exothermic and endothermic processes.",
+    "Use NCERT Activity 1.9 and Activity 1.10 to contrast displacement with double displacement and precipitation.",
+    "Use NCERT Activity 1.11 and Exercises 16-20 to consolidate redox, corrosion and rancidity."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the end-of-chapter 'EXERCISES' section, Questions 1-20, followed by the Group Activity on identifying exothermic and endothermic changes.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Rusting is itself a slow redox/oxidation reaction, so the corrosion of iron studied at the end of this chapter is really a continuation of the oxidation ideas built up in Activity 1.11 — the same gain-of-oxygen idea, just spread out over weeks instead of happening in a flame.",
+      "The magnesium-ribbon flame in Activity 1.1 is bright enough that it was historically used in early photographic flashbulbs, which is why 'flash powder' photography and magnesium combustion share the same underlying reaction.",
+      "Silver chloride's light-driven decomposition in Activity 1.8 is the same photochemical principle that black-and-white photographic film relies on to darken where light strikes it."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Burning magnesium ribbon (Activity 1.1)",
+        "search_description": "burning magnesium ribbon white flame magnesium oxide ash chemistry demonstration",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A magnesium ribbon burning with a bright white flame, producing white magnesium oxide ash.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Magnesium_ribbon_burning.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Magnesium_ribbon_burning.jpg/960px-Magnesium_ribbon_burning.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Magnesium_ribbon_burning.jpg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Capt. John Yossarian"
+      },
+      {
+        "topic": "Iron nail displacing copper from copper sulphate (Activity 1.9)",
+        "search_description": "iron nail copper sulphate solution displacement reaction colour change blue to green",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "An iron nail coated with reddish-brown copper after being dipped in blue copper sulphate solution, which has faded in colour.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Rusty_10%E2%80%9D_iron_nail_-_geograph.org.uk_-_7515295.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Rusty_10%E2%80%9D_iron_nail_-_geograph.org.uk_-_7515295.jpg/960px-Rusty_10%E2%80%9D_iron_nail_-_geograph.org.uk_-_7515295.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Rusty_10”_iron_nail_-_geograph.org.uk_-_7515295.jpg",
+        "license": "CC BY-SA 2.0",
+        "attribution": "Alan Hughes"
+      },
+      {
+        "topic": "Barium sulphate precipitate forming (Activity 1.10)",
+        "search_description": "sodium sulphate barium chloride white precipitate double displacement reaction test tube",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A white precipitate of barium sulphate settling in a test tube after mixing sodium sulphate and barium chloride solutions.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Natriumsulfaat.JPG",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Natriumsulfaat.JPG",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Natriumsulfaat.JPG",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Capaccio"
+      },
+      {
+        "topic": "Rusting of iron (corrosion)",
+        "search_description": "rusted iron surface reddish brown corrosion close up",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A close-up of an iron surface coated with reddish-brown rust.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Rust_and_dirt.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Rust_and_dirt.jpg/960px-Rust_and_dirt.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Rust_and_dirt.jpg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Roger McLassus"
+      },
+      {
+        "topic": "Electrolysis of water apparatus (Activity 1.7)",
+        "search_description": "electrolysis of water apparatus hydrogen oxygen gas collection test tubes diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "An electrolysis apparatus showing hydrogen gas collected in double the volume of oxygen gas in two inverted test tubes.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Electrolysis_Apparatus.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Electrolysis_Apparatus.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Electrolysis_Apparatus.png",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Ivan Akira"
+      },
+      {
+        "topic": "Copper oxide colour change on reduction (Activity 1.11)",
+        "search_description": "copper oxide black coating heated copper wire redox reaction hydrogen",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A copper wire with a black copper oxide coating, which turns back to brown copper when heated in a stream of hydrogen gas.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Copper%28II%29_oxide_sample.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Copper%28II%29_oxide_sample.jpg/960px-Copper%28II%29_oxide_sample.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Copper(II)_oxide_sample.jpg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Adam Rędzikowski"
+      }
+    ]
+  }
+}

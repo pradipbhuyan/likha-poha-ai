@@ -1,0 +1,88 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2016-17
+Subject: Geography
+Source Subject Code: Geography
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Geography-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Geography-MS.pdf
+Total Questions: 22
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Geography-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+How is density of population of a region calculated? 1
+
+Q10 [mcq, 1m, Sec A]
+Explain any three characteristics of clustered rural settlements of India. 3x1=3
+
+Q11 [mcq, 1m, Sec A]
+Study the diagram given below and answer the questions: 1+1+1=3 a) Identify the iron and steel plant shown in the map. b) Name any two raw materials used in this plant and their sources. c) How does the iron and steel plants form a base for industrial development?
+  [NOTE: diagram]
+
+Q12 [mcq, 1m, Sec A]
+American slave auction advertised slaves for sale or temporary hire by their owners. Buyers often paid as much as $2,000 for a skilled, healthy slave. Such auctions often separated family members from one another, many of whom never saw their loved ones again. Read the above paragraph and answer the following: a. “Slavery was a curse” Justify the statement in your opinion. b. What kind of values are needed to bring slavery to an end? 1½+ 1½=3
+
+Q13 [mcq, 1m, Sec A]
+Study the diagram given below and answer the questions: 1½+ 1½=3 a)Why is the agriculture sector using 89% of surface water and 92% of underground water? b) Usages of which two sectors are likely to increase more in future?
+  [NOTE: diagram]
+
+Q14 [long_answer, 5m, Sec A]
+Name any five types of rural settlement patterns developed in different parts of the world. Write their typical features.
+
+Q15 [mcq, 1m, Sec A]
+What are the problems faced by the Indian agriculture system? Suggest some ways to overcome them. 3+2=5
+
+Q16 [long_answer, 5m, Sec A]
+What is meant by human development? What are its different approaches? Explain.
+
+Q17 [long_answer, 5m, Sec A]
+What is the impact of rural-urban migration on the age and sex structure of the place of origin and destination? Discuss the consequences of international migration in India.
+
+Q18 [long_answer, 5m, Sec A]
+What is the basic function of the World Trade Organisation (WTO)? What benefits do nations get by forming trading blocs?
+
+Q19 [long_answer, 5m, Sec A]
+Study the diagram given below and answer the questions: Mention the measures proposed to promote sustainable development in the Command area of Indira Gandhi Canal irrigation project which are meant to restore ecological balance.
+  [NOTE: diagram]
+
+Q2 [mcq, 1m, Sec A]
+How has India emerged as a leading country in medical tourism? 1
+
+Q20 [mcq, 1m, Sec A]
+‘Indian railways brought people of diverse cultures together’. Support this statement with suitable examples. 5x1=5
+
+Q21 [long_answer, 5m, Sec A]
+In the given political outline map of the world, the following four features are shown. Identify these features and write their correct names on the lines marked near each feature. A: Area of nomadic herding B: A sea port C: A mega city D: An international airport E: An area of high density
+
+Q22 [long_answer, 5m, Sec A]
+On the outline political map of India provided to you, locate and label the following with appropriate symbols : (i) A dam in Gujarat. (ii) A state with highest sex ratio. (iii) A state where Telugu is mainly spoken. (iv) A state with lowest HDI rank (v) A lignite coalmine in Tamil Nadu
+
+Q3 [mcq, 1m, Sec A]
+Maharashtra has emerged as the leading sugar producer in India. Give two reasons. ½+½=1
+
+Q4 [mcq, 1m, Sec A]
+Who are called red collar workers? 1
+
+Q5 [mcq, 1m, Sec A]
+Mention any two characteristics of sub-urbanisation. ½+½=1
+
+Q6 [mcq, 1m, Sec A]
+Which port is situated on the mouth of Zuari estuary? 1
+
+Q7 [mcq, 1m, Sec A]
+Name any two areas of high latitudes where hunting and food gathering is practiced. ½+½=1
+
+Q8 [mcq, 1m, Sec A]
+“The knowledge about nature is extremely important to develop technology”. Support this statement by giving three examples. 3x1=3
+
+Q9 [short_answer, 3m, Sec A]
+Urban waste disposal in major metropolitan cities of India has become a major cause of concern in recent years. How can we overcome this problem?
+
+======================================================================
+Return the complete JSON array.

@@ -1,0 +1,106 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2018-19
+Subject: Physics
+Source Subject Code: Physics
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Physics-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Physics-MS.pdf
+Total Questions: 27
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Physics-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+State the SI unit of the electric polarization vector P 1
+
+Q10 [short_answer, 2m, Sec B]
+A narrow slit is illuminated by a parallel beam of monochromatic light of wavelength λ equals to 6000 Å and the angular width of the central maxima in the resulting diffraction pattern is measured. When the slit is next illuminated by light of wavelength λ ’, the angular width decreases by 30%. Calculate the value of the wavelength λ’.
+
+Q11 [short_answer, 2m, Sec B]
+What are universal gates? How can AND gate be realized using an appropriate combination of NOR gates?
+
+Q12 [short_answer, 2m, Sec B]
+A TV transmission tower antenna is at a height of 20 m. How much range can it cover if the receiving antenna is at a height of 25 m? Section-C
+
+Q13 [short_answer, 3m, Sec C]
+A particle, having a charge +5 μC, is initially at rest at the point x = 30 cm on the x axis. The particle begins to move due to the presence of a charge Q that is kept fixed at the origin. Find the kinetic energy of the particle at the instant it has move d 15 cm from its initial position if (a) Q =+15μC and (b) Q = -15μC
+
+Q14 [short_answer, 3m, Sec C]
+(a) An electric dipole is kept first to the left and then to the right of a negatively charged infinite plane sheet having a uniform surface charge density. The arrows p 1 and p2 show the directions of its electric dipole moment in the two cases. Identify for each case, whether the dipole is in stable or unstable equilibrium. Justify each answer. (b) Next, the dipole is kept in a similar way (as shown), near an infinitely long straight wire having uniform negative linear charge density. Will the dipole be in equilibrium at these two positions? Justify your answer.
+
+Q15 [short_answer, 3m, Sec C]
+Two material bars A and B of equal area of cross -section, are connected in series to a DC supply. A is made of usual resistance wire and B of an n-type semiconductor. (a) In which bar is drift speed of free electrons greater? (b) If the same constant current continues to flow for a long time, how will the voltage drop across A and B be affected? Justify each answer.
+
+Q16 [short_answer, 3m, Sec C]
+Derive an expression for the velocity vC of a positive ions passing undeflected through a region where crossed and uniform electric field E and magnetic field B are simultaneously present. Draw and justify the trajectory of identical positive ions whose velocity has a magnitude less than IvCI. OR A particle of mass m and charge q is in motion at speed v parallel to a long straight conductor carrying current I as shown below. Find magnitude and direction of electric field required so that the particle goes undeflected.
+  [NOTE: diagram]
+
+Q17 [short_answer, 3m, Sec C]
+A sinusoidal voltage of peak value 10 V is applied to a series LCR circuit in which resistance, capacitance and inductance have values of 10 Ω, 1μF and 1H respectively. Find (i) the peak voltage across the inductor at resonance (ii) quality factor of the circuit.
+
+Q18 [long_answer, 6m, Sec C]
+a) What is the principle of transformer? 3 b) Explain how laminating the core of a transformer helps to reduce eddy current losses in it c) Why the primary and secondary coils of a transformer are preferably wound on the same core OR Show that in the free oscillations of an LC circuit, the sum of energies stored in the capacitor and the inductor is constant in time.
+
+Q19 [short_answer, 3m, Sec C]
+Draw a labelled ray diagram to show the image formation in a refracting type astronomical telescope in the normal adjustment position. Write two drawbacks of refracting type telescopes. OR (a)Define resolving power of a telescope. Write the factors on which it depends. (b) A telescope resolves whereas a microscope magnifies. Justify the statement.
+  [NOTE: diagram]
+
+Q2 [mcq, 1m, Sec A]
+Define temperature coefficient of resistivity
+
+Q20 [short_answer, 3m, Sec C]
+A jar of height h is filled with a transparent liquid of refractive index μ. At the centre of the jar on the bottom surface is a dot. Find the minimum diameter of a disc, such that when it is placed on the top surface symmetrically about the centre, the dot is invisible
+
+Q21 [short_answer, 3m, Sec C]
+(a) In photoelectric effect, do all the electrons that absorb a photon come out as photoelectrons irrespective of their location? Explain. (b) A source of light, of frequency greater than the threshold frequency, is placed at a distance ‘d’ from the cathode of a photocell. The stopping potential is found to be V. If the distance of the light source is reduced to d/n (where n>1), explain the c hanges that are likely to be observed in the (i) photoelectric current and (ii) stopping potential.
+
+Q22 [short_answer, 3m, Sec C]
+A monochromatic radiation of wavelength 975 Å excites the hydrogen atom from its ground state to a higher state. How many different spectral lines ar e possible in the resulting spectrum? Which transition corresponds to the longest wavelength amongst them?
+
+Q23 [short_answer, 3m, Sec C]
+Binding energy per nucleon versus mass number curve is as shown. are four nuclei indicated on the curve. Based on the graph: (a) Arrange X, W and S in the increasing order of stability. (b) Write the relation between the relevant A and Z values for the following nuclear reaction. S X + W (c) Explain why binding energy for heavy nuclei is low. OR How are protons, which are positively charged, held together inside a nucleus? Explain the variation of potential energy of a pair of nucleons as a function of their separation. State the significance of negative potential energy in this region?
+
+Q24 [short_answer, 3m, Sec C]
+A sinusoidal carrier wave of amplitude A c and angular frequency ω c is modulated in accordance with a sinusoidal information signal of amplitude A m and angular frequency ωm. Show that the amplitude modulated signal contains three frequencies centered around ω c. Draw the frequency spectrum of the resulting modulated signal. Section-D
+
+Q25 [long_answer, 5m, Sec D]
+(a)Write the expression for the equivalent magnetic moment of a planer current loop of area A, having N turns and carrying a current i. Use the expression to find the magnetic dipole moment of a revolving electron. (b) A circular loop of radius r, having N turns and carrying current I, is kept in the XY plane. It is then subjected to a uniform magnetic field B = Bx i + By j + Bz k. Obtain expression for the magnetic potential energy of the coil-magnetic field system. OR (a) A long solenoid with air core has n turns per unit length and carries a current I. Using Ampere’s circuital law, derive an expression for the magnetic field B at an interior point on its axis. Write an expression for magnetic intensity H in the interior of the solenoid. (b) A (small) bar of material, having magnetic susceptibility χ, is now put along the axis and near the centre, of the solenoid which is carrying a d.c. current through its coils. After some time, the bar is taken out and suspended freely wi th an unspun thread. Will the bar orient itself in magnetic meridian if (i) χ < 0 (ii) χ ˃ 1000? Justify your answer in each case.
+
+Q26 [long_answer, 5m, Sec D]
+(a)There are two sets of apparatus of Young’s double slit experiment. In set A , the phase difference between the two wa ves emanating from the slits does not change with time, whereas in set B, the phase difference between the two waves from the slits changes rapidly with time. What difference will be observed in the pattern obtained on the screen in the two set ups? (b) Deduce the expression for the resultant intensity in both the above mentioned set ups (A and B), assuming that the waves emanating from the two slits have the same amplitude A and same wavelength λ. OR (a) The two polaroids, in a given set up, are kept ‘crossed’ with respect to each other. A third polaroid, now put in between these two polaroids, can be rotated. Find an expression for the dependence of the intensity of light I, transmitted by the system, on the angle between the pass axis of first and the third polaroid. Draw a graph showing the dependence of I on ϴ. (b) When an unpolarized light is incident on a plane glass surface, find the expression for the angle of incidence so that the reflected and refracted light rays are perpendicular to each other. What is the state of polarisation, of reflected and refracted light, under this condition?
+
+Q27 [long_answer, 5m, Sec D]
+(a) Draw the circuit diagram to determine the characteristics of a pnp transistor in common emitter configuration. Explain, using I-V characteristics, how the collector current changes with the base current. How can (i) output resistance and (ii) current amplification factor be determined from the I - V characteristics? OR (a) Why are photodiodes preferably operated under reverse bias when the current in the forward bias is known to be more than that in reverse bias? The two optoelectronic devices: - Photodiode and solar cell, have the same working principle but differ in terms of their process of operation. Explain the difference between the two devices in terms of (i) biasing, (ii) junction area and (iii) I-V characteristics.
+  [NOTE: diagram]
+
+Q3 [mcq, 1m, Sec A]
+Name the electromagnetic waves that are widely used as a diagnostic tool in medicine. 1 OR Name the current which can flow even in the absence of electric charge.
+
+Q4 [mcq, 1m, Sec A]
+A ray of light is incident on a medium with angle of incidence ‘i’ and is refracted into a second medium with angle of refraction ‘r’. The graph of sin i versus sin r is as shown. Find the ratio of the velocity of light in the first medium to the velocity of light in the second medium.
+
+Q5 [mcq, 1m, Sec A]
+Two particles have equal momenta. What is the ratio of their de-Broglie wavelengths? 1 OR Monochromatic light of frequency 6.0x 1014 Hz is produced by a laser. What is the energy of a photon in the light beam? Section-B
+
+Q6 [short_answer, 2m, Sec B]
+A network of resistors is connected to a 16 V battery with internal resistance of 1., as shown in the following figure. Compute the equivalent resistance of the network. OR A 9 V battery is connected in series with a resistor .T he terminal voltage is found to be 8 V. Current through the circuit is measured as 5 A. What is the internal resistance of the battery?
+  [NOTE: diagram]
+
+Q7 [short_answer, 2m, Sec B]
+The diagram below shows a potentiometer set up. On touching the jockey near to the end X of the potentiometer wire, the galvanometer pointer deflects to left. On touching the jockey near to end Y of the potentiometer, the galvanometer pointer again deflects to left but now by a larger amount. Identify the fault in the circuit and explain, using appropriate equations or otherwise, how it leads to such a one-sided deflection. OR Following circuit was set up in a meter bridge experiment to determine the value X of an unknown resistance. (a) Write the formula to be used for finding X from the observations. (b) If the resistance R is increased, what will happen to balancing length?
+  [NOTE: diagram]
+
+Q8 [short_answer, 2m, Sec B]
+The figure shows two sinusoidal curves representing oscillating supply voltage and current in an ac circuit. Draw a phasor diagram to represent the current and supply voltage appropriately as phasors. State the phase difference between the two quantities.
+  [NOTE: diagram]
+
+Q9 [short_answer, 2m, Sec B]
+Compare the following (i) Wavelengths of the incident solar radiation absorbed by the earth’s surface and the radiation re-radiated by the earth. (ii) Tanning effect produced on the skin by UV radiation incident directly on the skin and that coming through glass window.
+
+======================================================================
+Return the complete JSON array.

@@ -1,0 +1,154 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2023-24
+Subject: Sociology
+Source Subject Code: Sociology
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Sociology-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Sociology-MS.pdf
+Total Questions: 35
+======================================================================
+
+TASK: For each question below, provide the answer in the EXACT JSON format shown.
+
+OUTPUT FORMAT (return a JSON array):
+[{
+  "question_number": <integer>,
+  "question_text": "<copy from input>",
+  "question_type": "<copy from input>",
+  "options": [<copy from input>],
+  "answer_text": "<for mcq/assertion_reason: exact option text; for others: complete answer>",
+  "answer_explanation": "<2-4 sentence explanation based on CBSE curriculum>"
+}, ...]
+
+IMPORTANT RULES:
+- For MCQ/assertion_reason: answer_text MUST be the EXACT text of one of the options
+- For short_answer/long_answer/case_study: answer_text = complete answer per marking scheme
+- Diagram-dependent questions: use NEEDS_MANUAL_REVIEW_diagram_dependent if no text alt exists
+- Official Marking Scheme PDF: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Sociology-MS.pdf
+
+======================================================================
+
+QUESTIONS:
+
+Q1 [assertion_reason, 1 mark(s), Section A]
+Assertion (A): People often do not see the end result of their work because they are producing only one small part of a product. Reason(R): Industrialisation involves a detailed division of labour where people do not enjoy work, and see it as something they have to do only in order to survive. a) Both A and R are true and R is the correct explanation of A. b) Both A and R are true but R is not the correct explanation of A. c) A is true but R is false. d) A is false and R is true.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q10 [mcq, 1 mark(s), Section A]
+Cultural diversity can present tough challenges. Which of the following is not a reason for challenge? a) It can arouse intense passions among its members and mobilise large numbers of people b) Economic and social inequalities among the communities. c) Equal distribution of scarce resources - like river water, jobs or governments funds. d) Injustices suffered by one community provoke opposition from same communities.
+
+Q11 [mcq, 1 mark(s), Section A]
+Policies promoting integration involve- a) Outright suppression of identities of groups which are in minority. b) Complete erosion of cultural differences between groups. c) Elimination of ethno-national and cultural differences from the public arena. d) All of the above.
+
+Q12 [assertion_reason, 1 mark(s), Section A]
+Assertion (A): Urbanisation in the colonial period saw the formation of new urban centres. Reason (R): These urban centres were designed to functions as trading posts alone. a) Both A and R are true and R is the correct explanation of A. b) Both A and R are true but R is not the correct explanation of A. c) A is true but R is false. d) A is false and R is true.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q13 [assertion_reason, 1 mark(s), Section A]
+Assertion (A): The impact of Sanskritisation is many sided. Reason (R): Its influence can be seen in language, literature, ideology, music, dance, drama,style of life and ritual. a) Both A and R are true and R is the correct explanation of A.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q14 [mcq, 1 mark(s), Section A]
+Major difference between developing and developed countries is in the number of people in ___________salaried employment. a) Daily Wages b) Regular c) Irregular d) Both b) & c) 1(U)
+
+Q15 [mcq, 1 mark(s), Section A]
+The Right to Information campaign is an example of ____________. a) Redemptive Movement b) Reformist Movement c) Revolutionary Movement d) Old Social Movement 1(U)
+
+Q16 [mcq, 1 mark(s), Section A]
+Which of the following is not a feature of social movements? a) Sustained collective action b) Aims to bring about changes on a public issue c) Shared objectives and ideologies d) Does not need leadership or structure 1(U) SECTION-B
+
+Q17 [mcq, 1 mark(s), Section B]
+In Modern Foods, which was set up by the government to make healthy bread available at cheap prices, and which was the first company to be privatised, 60% of the workers were forced to retire in the first five years. Based on the given passage, answer the following question. How did disinvestment impact the workers? (OR) “In Maruti Udyog Ltd. two cars roll off the assembly line every minute. Workers get only 45 minutes rest in the entire day - two tea breaks of 7.5 minutes each and one lunch break of half an hour. Most of them are exhausted by the age of 40 and take voluntary retirement.” 2(CREATE) Based upon above passage, answer the following question. What, according to you, is the impact of the factory’s working condition on the workers and on the factory?
+
+Q18 [mcq, 1 mark(s), Section B]
+Many of our cultural practices and patterns can be traced to our agrarian backgrounds. Give two examples. 2(U)
+
+Q19 [mcq, 1 mark(s), Section B]
+Using an example, describe adivasis internal colonialism. 2(AS)
+
+Q2 [mcq, 1 mark(s), Section A]
+Which of the following stages, as per the Theory of Demographic Transition, is that of high population growth? a) First Stage b) Both first and second stage 1(U) c) Second Stage d) Third Stage
+
+Q20 [mcq, 1 mark(s), Section B]
+With an example show how being a minority group can be disadvantageous in one sense but not in another. 2(U)
+
+Q21 [mcq, 1 mark(s), Section B]
+The 1989 Prevention of Atrocities Act revised and strengthened the legal provisions punishing acts of violence or humiliation against Dalits and adivasis. Legislation on this subject was passed repeatedly. Do you think s tate action alone can ensure social change? Give reasons for your answer.
+
+Q22 [mcq, 1 mark(s), Section B]
+City offers relative anonymity to those migrating to it. What do you mean by relative anonymity?
+
+Q23 [mcq, 1 mark(s), Section B]
+“If hard labour were such a good thing the rich would keep it all for themselves. All over the world, back-breaking work like stone breaking, digging, carrying heavy weights, pulling rickshaws or carts is invariably done by the poor. And yet they rarely improve their life chances.” Which social phenomena is reflected in this proverb? Give any two characteristics of this phenomena. 2(CREATE)
+
+Q24 [mcq, 1 mark(s), Section B]
+Rabindranath Tagore on the evils of exclusive nationalism …where the spirit of the Western nationalism prevails, the whole people is being taught from boyhood to foster hatred and ambitions by all kinds of means -- by the manufacture of half-truths and untruths in history, by persistent misrepresentation of other races and the culture of unfavorable sentiments towards them…Never think for a moment that the hurt you inflict upon other races will not infect you, or that the enmities you sow around your homes will be a wall of protection to you for all time to come? To imbue the minds of a whole people with an abnormal vanity of its own superiority, to teach it to take pride in its moral callousness and I’ll be gotten wealth, to perpetuate humiliation of defeated nations by exhibiting trophies won from war, and using 2(CREATE) these schools in order to breed in children’s minds contempt for others, is imitating the West where she has a festering sore… Source: On Nationalism by Rabindranath Tagore. First published in 1917, Reprint Edition of Macmillan, Madras 1930. Read the passage and show any two ways in which exclusive nationalism is practiced. (OR) Is statehood always based on linguistic identity? Give reasons for your answer.
+
+Q25 [mcq, 1 mark(s), Section B]
+In what ways have social movements shaped the world we live and continue to do so? 2(U) SECTION-C
+
+Q26 [mcq, 1 mark(s), Section C]
+Kumudtai’s journey into Sanskrit began with great interest and eagerness with Gokhale Guruji, her teacher at school… At the University, the Head of the Department was a well-known scholar and he took great pleasure in taunting Kumudtai…Despite the adverse comments she successfully completed her Masters in Sanskrit…. Source: Kumud Pawade (1938) What does Kumud Pawade’s autobiography show us about the relation between gender and caste? 4(U)
+
+Q27 [mcq, 1 mark(s), Section C]
+The post independent Indian state’s caste considerations had some contradictions. What were these contradictions? (OR) What are the factors behind the assertion of tribal identity today? 4(U)
+
+Q28 [mcq, 1 mark(s), Section C]
+Using an example, show how the treatment of Indian plantation labour was different from the way colonial administration treated their own labour back home.
+
+Q29 [mcq, 1 mark(s), Section C]
+“Every human being needs a sense of stable identity to operate in this world. Questions like — Who am I? How am I different from others? How do others understand and comprehend me? What goals and aspirations should I have? – constantly crop up in our life right from childhood. We are able to answer many of these questions because of the way in which we are socialised, or taught how to live in society by our immediate families and our community in various senses.” During a communal conflict, communities construct matching but opposite mirror images of each other. Explain this statement.
+
+Q3 [mcq, 1 mark(s), Section A]
+Which of the following statements is not true for the institution of caste today? a) some scholars argue that what we know today as caste is more a product of colonialism than of ancient Indian tradition. b) Counting and official recording of caste identities gave the institution a new life. c) The institution became extremely flexible. d) Government of India Act of 1935 was passed which gave legal recognition to the lists or ‘schedules’ of castes and tri bes marked out for special treatment by the state. This is how the terms ‘Scheduled Tribes’ and the ‘Scheduled Castes’ came into being. 1(CREATE)
+
+Q30 [mcq, 1 mark(s), Section C]
+“Green Revolution of the 1960s and 1970s brought about significant changes in the areas where it took place. The Green Revolution, as you
+
+Q31 [mcq, 1 mark(s), Section C]
+“The structure of the family can be studied both as a social institution in itself and also in its relationship to other social institutions of society. ” Elaborate. 4(U)
+
+Q32 [mcq, 1 mark(s), Section C]
+The agrarian structure becomes more unequal with high agricultural productivity. Explain with a suitable example. 4(CREATE) SECTION-D
+
+Q33 [mcq, 1 mark(s), Section D]
+
+
+Q34 [mcq, 1 mark(s), Section D]
+“Niyamgiri Hills is home to Dongria Kondh, a particularly vulnerable tribal group, who had unanimously voted against a project by state government-owned Odisha Mining Corporation (OMC) and Sterlite Industries which wanted to mine bauxite. The villages’ decision followed a landmark Supreme Court verdi ct on April 18, 2013, that vindicated the decade -long movement. The court said forest clearance for the mining project, which had been withdrawn by the Environment Ministry in 2010, could be given only after taking the consent of the gram sabhas, or villag e councils, in the region in tandem with the Forest Right Act (FRA).” (Source: Development At Cost Of Human Lives? Revisiting Adivasi Resistance In Mali Parbat, Niyamgiri Hills, Shreya Basak, 19 Jan 2023 12:29 PM, Outlook) Based on the given passage, answer the following questions. a) What is a social movement? b) Based on your reading of the passage, identify the issues that the social movement addresses. Would you classify this social movement as old or new? Give reasons for your answer. 6(CREATE)
+
+Q35 [mcq, 1 mark(s), Section D]
+What changes did globalization and liberalization introduce in the Indian industrial society? 6(U)
+
+Q4 [mcq, 1 mark(s), Section A]
+Which of the following reasons are responsible for the invisibility of the caste system in the upper castes and upper middle class? a) Policy of reservation b) Education and Employment in Private Sector c) developmental policies of the post-colonial era d) their lead over the rest of society (in terms of education) did not ensure protection from serious competition 1(U)
+
+Q5 [mcq, 1 mark(s), Section A]
+“Considering from an urban point of view, the rapid growth in urbanization shows that the town or city has been acting as a magnet for the rural population.” Choose the incorrect statement about urbanization in India? a) Rural- to- Urban migration has increased due to decline in common property resources. b) Urban areas are a decisive force in terms of political dynamics. c) People go to cities in search of work. d) Cities offer anonymity to the poor and oppressed class. 1(CREATE)
+
+Q6 [mcq, 1 mark(s), Section A]
+In which ways Adivasis struggles are different from Dalit struggle? 1(U) a) They were not discriminated against like the Dalits. b) Their social and economic conditions were better than the Dalits c) They did not face social exclusion like the Dalits. d) Adivasis were concentrated in contagious areas and could demand statehood
+
+Q7 [mcq, 1 mark(s), Section A]
+Stereotypes fix whole groups into single_______ categories, they refuse to recognize the_______ across individuals and across context or across time. a) Homogeneous, variation b) Heterogeneous, similarities c) Broad, similarities d) Diverse, differences
+
+Q8 [mcq, 1 mark(s), Section A]
+Person from a well -off family can afford expensive higher education. Someone with influential relatives and friends may – through access to good advice, recommendations or information – manage to get a well- paid job. Which concept is being talked of? a) Forms of capital by Bourdieu b) Resources by Bourdieu c) Ideal types by Max Weber d) Ideal Types by Bourdieu
+
+Q9 [assertion_reason, 1 mark(s), Section A]
+Assertion(A): The everydayness of social inequality and exclusion often make them appear inevitable, almost natural. Reason(R): The common -sense understanding is that the poor and marginalised are where they are because they are lacking in ability, or haven’t tried hard enough to improve their situation. a) Both A and R are true and R is the correct explanation of A. b) Both A and R are true but R is not the correct explanation of A. c) A is true but R is false. d) A is false and R is true.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+======================================================================
+Now return the complete JSON array with answers for all questions above.

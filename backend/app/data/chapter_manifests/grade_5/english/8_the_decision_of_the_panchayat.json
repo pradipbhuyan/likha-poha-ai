@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 5",
+  "subject": "English",
+  "chapter": "8. The Decision of the Panchayat",
+  "central_question": "How does the Panchayat use careful listening and wise reasoning to resolve cheating fairly?",
+  "in_scope_units": [
+    "Let us Read: farmer, well purchase, neighbour’s trick, Panchayat meeting, and judgment",
+    "Let us Think: reasons, fairness, dialogue speakers, and personal conflict resolution",
+    "Let us Learn: vocabulary, prepositions, and event order",
+    "Let us Speak and Write: predicting a picture story, farmer’s letter, and suffix -less",
+    "Let us Listen and Do: Sri Ramakrishna, banyan tree, Neem Tree comprehension, and picture differences"
+  ],
+  "banned_topics": [
+    "Gilli Danda rules",
+    "Glass-bangle designs",
+    "Rainbow colour mixing"
+  ],
+  "must_include_keywords": [
+    "farmer",
+    "well",
+    "neighbour",
+    "cunning",
+    "village chief",
+    "Panchayat",
+    "banyan tree",
+    "summoned",
+    "adamant",
+    "judgment",
+    "both sides",
+    "remove the water",
+    "fine",
+    "apologise",
+    "wisdom",
+    "fairness",
+    "prospered",
+    "worried",
+    "prepositions",
+    "under",
+    "with",
+    "after",
+    "before",
+    "event order",
+    "letter writing",
+    "priceless",
+    "suffix -less",
+    "Sri Ramakrishna Paramahamsa",
+    "Naren",
+    "Swami Vivekananda",
+    "rivers",
+    "ocean",
+    "simple life",
+    "banyan tree facts",
+    "Neem Tree",
+    "twigs",
+    "mosquitoes",
+    "pests",
+    "disappear",
+    "vanish",
+    "picture differences"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The neighbour sold the well and fairly kept all rights to its water.",
+      "correction": "The Panchayat points out that if the water is his, he cannot keep it in the farmer’s well; otherwise it belongs to the well owner."
+    },
+    {
+      "claim": "The Panchayat judges before hearing both sides.",
+      "correction": "The chief and members hear the farmer and neighbour and discuss the matter before giving judgment."
+    },
+    {
+      "claim": "Priceless means having no value.",
+      "correction": "The chapter explains that priceless means so valuable that a price cannot be put on it."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Let us Think A to explain the purchase, conflict, reasoning, and final judgment.",
+    "Use Let us Think B to evaluate fairness and identify who said each quotation.",
+    "Use Let us Learn B to select prepositions from the supplied list.",
+    "Use Let us Write A and B for the farmer’s letter and suffix -less.",
+    "Use Let us Listen and Let us Do A for factual comprehension of Ramakrishna and the Neem Tree."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "There is no separate final exercise set; questions and activities appear throughout Let us Think, Learn, Speak, Write, Listen, and Do.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

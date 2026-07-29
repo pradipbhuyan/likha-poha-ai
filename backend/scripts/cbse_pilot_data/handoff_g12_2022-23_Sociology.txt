@@ -1,0 +1,153 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2022-23
+Subject: Sociology
+Source Subject Code: Sociology
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/Sociology-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/Sociology-MS.pdf
+Total Questions: 38
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/Sociology-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec D]
+“Famines were also a major and recurring source of increased mortality.” Which of the following is not a cause of famines? a) Continuing poverty and malnutrition in an agro-climatic environment. b) Inadequate means of transport and communication. c) Failure of entitlements d) Increasing birth rates
+
+Q10 [mcq, 1m, Sec D]
+The challenge is in reinvigorating India’s commitment to practices- a) Pluralism b) Institutional accommodation c) Conflict resolution through democratic means d) All of the above
+
+Q11 [mcq, 1m, Sec D]
+While a few villages are totally absorbed in the process of expansion, only the land of many others, excluding the inhabited area, is used for urban development… The growth of ____________ cities accounts for the third type of urban impact on the surrounding villages. a) Metropolitan b) Small c) Ghetto d) Heritage
+
+Q12 [mcq, 1m, Sec D]
+With the growth of _____________ movement in the 20th century, there was an attempt in several Indian languages to drop Sanskrit words and phrases. a) Brahminical b) Anti-Brahminical c) Women’s d) Tribal
+
+Q13 [mcq, 1m, Sec D]
+Which of the following is not a result of contract farming? a) It disengages many people from the production process. b) Makes their own indigenous knowledge of agriculture irrelevant. c) It is ecologically sustainable d) Caters primarily to the production of elite items
+
+Q14 [assertion_reason, 1m, Sec D]
+Assertion(A): Members of low ranked caste groups had to provide labour for a fixed number of days per year to the village zamindar. Reason(R): Lack of resources and dependence on the landed caste for economic and social support meant that many working poor were tied to landowners in hereditary labour relationships. a) Both A and R are true and R is the correct explanation of A. b) Both A and R are true but R is not the correct explanation of A. c) A is true but R is false. d) A is false and R is true.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q15 [mcq, 1m, Sec D]
+Women are also emerging as the main source of agricultural labour leading to ______________ labour force. a) Feminization of agriculture b) Womanisation of agriculture c) Reformation of agriculture d) Restoration of agriculture
+
+Q16 [mcq, 1m, Sec D]
+“The spate of farmers’ suicides that has been occurring in different parts of the country since 1997–98 can be linked to the ‘agrarian distress’ caused by structural changes in agriculture and changes in economic and agricultural policies. Which of the following is not a reason for agrarian distress? a) Changed cropping pattern b) Changing patterns of landholdings c) Heavy migration to cities d) Shift to cash crops
+
+Q17 [mcq, 1m, Sec D]
+In outsourcing, work is allocated by _________________countries to __________ countries. a) Developed, developing b) Underdeveloped, developed c) Developing, underdeveloped d) Developing, developed
+
+Q18 [assertion_reason, 1m, Sec D]
+Assertion(A): Earlier architects and engineers had to be skilled draughtsmen, now the computer does a lot of the work for them. Reason(R): The use of machinery deskills workers. a) Both A and R are true and R is the correct explanation of A. b) Both A and R are true but R is not the correct explanation of A. c) A is true but R is false. d) A is false and R is true.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q19 [mcq, 1m, Sec D]
+‘Stand Up India Scheme’ and ‘Make in India’ are programmes that will help realise the- a) Benefits of high dependency ratio b) Demographic dividend c) Benefit of high death rate d) Benefit of high fertility rate
+
+Q2 [assertion_reason, 1m, Sec D]
+Assertion(A): The Population Pyramid shows a bulge in the middle age groups, due to opportunity provided by the demographic structure. Reason(R): This is due to high birth rate in the middle age groups. a) Both A and R are true and R is the correct explanation of A. b) Both A and R are true but R is not the correct explanation of A. c) A is true but R is false. d) A is false and R is true.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q20 [assertion_reason, 1m, Sec D]
+Assertion(A): In Modern Foods, 60% of the workers were forced to retire in the first five years. Reason(R): This was due to complacency in work. a) Both A and R are true and R is the correct explanation of A. b) Both A and R are true but R is not the correct explanation of A. c) A is true but R is false. d) A is false and R is true. SECTION-B
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q21 [mcq, 1m, Sec B]
+The growth rate of India in the decade 1911-21, exhibited a diverse pattern. State two reasons. 2
+
+Q22 [short_answer, 2m, Sec B]
+Not all of the changes in Social Institutions brought about by the British were intended or deliberate. Give an example to justify the statement.
+
+Q23 [short_answer, 2m, Sec B]
+“In both English and Indian fictional writings, we often encounter an entire group of people classified as ‘lazy’ or ‘cunning’.” What are the problems with such a classification? OR “In all regions of the world persons with disabilities face attitudinal b arriers, including prejudice, low expectations and even fear. Negative attitudes about disability impact on all aspects of the lives of persons with disabilities, including the ability to access education, to participate in non-exploitative work, to live where and with whom one chooses, to marry and start a family, and to move about freely within the community.” Suggest any two ways b y which an attitudinal change can be brought about to remedy the conditions of people with disabilities.
+
+Q24 [short_answer, 2m, Sec B]
+“Every human being needs a sense of stable identity to operate in this world. Questions like — Who am I? How am I different from others? How do others understand and comprehend me? What goals and aspirations should I have? – constantly crop up in our life right from childhood.” How are these questions answered? OR State is indeed a very crucial institution when it comes to the management of cultural diversity in a nation. How?
+
+Q25 [mcq, 1m, Sec B]
+What is the difference between assimilationist and integrationist policies? 2
+
+Q26 [mcq, 1m, Sec B]
+Using the example of Kumud Pawade, show how the process of sanskritisation is gendered. 2
+
+Q27 [mcq, 1m, Sec B]
+What was unique about the social reform movements of the 19th century? 2
+
+Q28 [mcq, 1m, Sec B]
+Differentiate between Zamindari system and Raiyatwari system with regard to the consequence on agricultural prosperity. 2
+
+Q29 [short_answer, 2m, Sec B]
+“In places like Bengaluru, Hyderabad and Gurugram, where many IT firms or call centres are located, shops and restaurants have also changed their opening hours, and are open late.” Give reasons. OR The Industrial Society is characterised by alienation. How? SECTION-C
+
+Q3 [mcq, 1m, Sec D]
+The interaction of the tribal communities with the mainstream has generally been on terms unfavourable for the tribals. Many tribal identities today are centred on ideas of ________________ to the overwhelming force of the non-tribal word. a) Resistance and cooperation b) Cooperation and opposition c) Resistance and opposition d) Movement and opposition
+
+Q30 [case_study, 4m, Sec C]
+In the context of identities, why did tribal societies get more and more differentiated? OR One of the most significant yet paradoxical changes in the caste system in the contemporary period is that it has tended to become ‘invisible’ for the upper caste, urban middle and upper classes. Elaborate.
+
+Q31 [mcq, 1m, Sec C]
+Why is it hard to define a nation? 4
+
+Q32 [mcq, 1m, Sec C]
+How are capitalism and colonialism linked? 4
+
+Q33 [mcq, 1m, Sec C]
+How did the Land Ceiling Act prove to be toothless in most of the states? 4
+
+Q34 [case_study, 4m, Sec C]
+“The more mechanised an industry gets, the fewer people are employed.” Explain with a suitable example. OR Mahatma Gandhi saw mechanisation as a danger to employment. Explain.
+
+Q35 [mcq, 1m, Sec C]
+Differentiate between old and new social movements. 4 SECTION-D
+
+Q36 [short_answer, 6m, Sec D]
+“…The contractors’ men who were travelling to Reni from Joshimath stopped the bus shortly before Reni. Skirting the village, they made for the forest. A small girl who spied the workers with their implements rushed to Gaura Devi, the head of the village Ma hila Mandal (Women’s Club). Gaura Devi quickly mobilised the other housewives and went to the forest. Pleading with the labourers not to start felling operations, the women initially met with abuse and threats. When the women refused to budge, the men were eventually forced to retire.” How are environmental movements also about economics and identity issues? Elaborate.
+
+Q37 [short_answer, 6m, Sec D]
+a) Give reasons for declining sex-ratio. b) In your opinion, what steps should be taken to deal with this bias against the girl-child? (FOR VISUALLY CHALLENGED CANDIDATES) “Demographers and Sociologists have offered several reasons for the decline in the sex ratio in India.” Elaborate.
+
+Q38 [short_answer, 6m, Sec D]
+Elaborate on state and non-state initiatives addressing caste and tribal discrimination. OR What are the major concerns for the Adivasis today?
+
+Q4 [assertion_reason, 1m, Sec D]
+Assertion(A): Tribes are pristine societies uncontaminated by civilisation: Reason(R): Tribes should really be seen as “secondary” phenomena arising out of the exploitative and colonialist contact between pre -existing states and non -state groups like the tribals. a) Both A and R are true and R is the correct explanation of A. b) Both A and R are true but R is not the correct explanation of A. c) A is true but R is false. d) A is false and R is true.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q5 [mcq, 1m, Sec D]
+Which of the following make the Dominant Castes dominant? I. small population II. land rights III. intermediate caste IV. decisive role in regional politics a) I. and II. b) I. and III. c) II., III., IV. d) I. and IV.
+
+Q6 [mcq, 1m, Sec D]
+The __________ family is often seen as symptomatic of India. a) Nuclear b) Patriarchal c) Patrilineal d) Extended
+
+Q7 [mcq, 1m, Sec D]
+The person who is refused a job because of his/her caste may be told that he/she was less qualified than others and the selection was done purely on merit. This is an example of- a) Discrimination b) Social stratification c) Egalitarianism d) Stereotype
+
+Q8 [mcq, 1m, Sec D]
+Person from a well-off family can afford expensive higher education. Someone with influential relatives and friends may – through access to good advice, recommendations or information – manage to get a well-paid job. Which of the following is true in the given context? I. There are multiple forms of capital. II. Different forms of capital cannot be converted into the other. III. The forms of capital overlap. a) I. is false b) I. and II. are true c) I. and III. are true d) I., II. and III. are true
+
+Q9 [mcq, 1m, Sec D]
+Historically, states have tried to establish and enhance their political legitimacy through nation-building strategies. They sought to secure ... the loyalty and obedience of their citizens through policies of assimilation or integration. Attaining these objectives was not easy, especial ly in a context of cultural diversity where citizens, in addition to their identifications with their country, might also feel a strong sense of identity with their community – ethnic, religious, linguistic and so on. Two nation building strategies used were- a) Assimilation and integration b) Assimilation and sanskritisation c) Integration and sanskritisation d) Westernisation and sanskritisation
+
+======================================================================
+Return the complete JSON array.

@@ -1,0 +1,112 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2019-20
+Subject: Political Science
+Source Subject Code: PolSci
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/PolSci-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/PolSci-MS.pdf
+Total Questions: 31
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/PolSci-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Complete the following in a meaningful way: - What are safety nets? OR In 1945 the Allied forces included the US_____ USSR and _________. (Remembering)
+
+Q10 [mcq, 1m, Sec A]
+Which of the following countries had an issue related to the migration of Rohingyas? a) Nepal b) Bhutan c)Myanmar d)China (HOTS)
+
+Q11 [mcq, 1m, Sec A]
+Complete the sentence--- The Rio Summit recommended a list of development practices called- ----------. (HOTS)
+
+Q12 [mcq, 1m, Sec A]
+The famous speech delivered by JawaharLal Nehru at the hour of midnight on 14-15 August, 1947 has come to be called as---------------- -----. (Remembering) Page | 3
+
+Q13 [mcq, 1m, Sec A]
+Which institution has replaced the planning commission? 1 (remembering)
+
+Q14 [mcq, 1m, Sec A]
+Name the person with whom would you associate the following slogans? a. Aya Ram and Gaya Ram ___________________ b. Total Revolution _________________________ (application)
+
+Q15 [mcq, 1m, Sec A]
+Select the correct option: - The Grand Alliance of opposition of 1971 a. Got a combined tally of seats that was less than 40. b. Had a clear ideological programme. c.Had a grand finish in the 1970 elections. d.Proved to be a grand success. (application)
+
+Q16 [mcq, 1m, Sec A]
+Select the correct option for the leader and the country that helped to reach the Tashkent agreement between India and Pakistan: I. India, Nehru b. USSR, Kosygin c. Egypt, Nasser d. Indonesia, Sukarno (HOTS)
+
+Q17 [mcq, 1m, Sec A]
+Correct and rewrite the statement----- Ravi, Beas river dispute was resolved between Himachal Pradesh, Punjab and Uttarakhand. (understanding)
+
+Q18 [mcq, 1m, Sec A]
+Identify the organisation that brokered the Indus water treaty between India and Pakistan. (HOTS)
+
+Q19 [mcq, 1m, Sec A]
+At the time of Independence, Indian leaders were committed to the aims of Liberty, Equality, Fraternity and ________. (understanding)
+
+Q2 [mcq, 1m, Sec A]
+. Which event in 1989 led to the unification of Germany? 1 (Remembering)
+
+Q20 [mcq, 1m, Sec A]
+Correct the following sentence and rewrite it-- On June 1977, Prime Minister Morarji Desai recommended the (Remembering) Page | 4 imposition of the emergency to GyaniZail Singh. SECTION-B
+
+Q21 [mcq, 1m, Sec B]
+Mention any two main objectives of the United Nations. 2 (understanding)
+
+Q22 [mcq, 1m, Sec B]
+Highlight two arenas of Cold War along with example of each. 2 (application)
+
+Q23 [short_answer, 2m, Sec B]
+Explain with the help of an example the meaning of Anti- Congressism. (HOTS) SECTION-C
+
+Q24 [mcq, 1m, Sec C]
+Describe the objectives of Iraq invasion by the US.. 4 (Remembering)
+
+Q25 [case_study, 4m, Sec C]
+Highlight the role of Jawaharlal Nehru the first Prime Minister of India in the formation of India’s foreign policy. (understanding)
+
+Q26 [mcq, 1m, Sec C]
+Analyse any four challenges faced by Election Commission of India before the first General Election. OR Which two models of modern development were there before India on the eve of independence? Which model did India decide to choose and why? 1x4 (Evaluation) 1+3
+
+Q27 [case_study, 4m, Sec C]
+You are an important leader of Farmers’ agitation. The Government authorities ask you to present any two demands on behalf of the farmers. On priority basis, which three demands will you make? Support your demands with appropriate arguments. (HOTS) SECTION-D
+
+Q28 [long_answer, 5m, Sec D]
+Study the given cartoon carefully and answer the questions that follow-- (application) Page | 5 a) What does lion in the cartoon represent ?What does it believe ? b) What does tiger in the cartoon represent? What is its demand? c) Which country’s problem is depicted here? Which dilemma of government is represented by this cartoon? d) Name the external powers that helped to resolve issues. Question To be attempted only by visually impaired students ‘In spite of the ongoing conflict, Srilanka recorded development”. Comment
+
+Q29 [mcq, 1m, Sec D]
+Read the passage given below and answer the questions that follow: The growing focus on environmental issues within the arena of global politics was firmly consolidated at the United Nations Conference on Environment and Development held at Rio de Janerio, Brazil in June 1992. This was also called the Earth Summit….What was obvious at the Rio Summit was the rich and the developed countries of the first world generally referred to as the “Global North” were pursuing a different environmental agenda than the poor and the developing countries of the III world called the “Global South”...The differences in their approach culminated into the adoption of the principle called “Common but differentiated responsibilities.” a) How was the environmental concern of the first world different from that of the third world? b) In what ways did the principle of “Common but differentiated responsibilities’ help in addressing and overcoming the differences between the “Global North” and ‘Global South”? 2+3=5(HOTS) Page | 6
+
+Q3 [mcq, 1m, Sec A]
+Correct the statement and re write: - The first world was the communist countries and the third world was the capitalist countries. (understanding)
+
+Q30 [long_answer, 5m, Sec D]
+Read the given passage and answer the questions that follow: “In the early years of independence, two contradictory tendencies were already well advanced inside the Congress Party. On the other hand, the national party executive endorsed socialist principles of state ownership, regulation and control over key sectors of the economy in order to improve productivity and at the same time curb economic concentration. On the other hand, the national Congress government pursued liberal economic policies and incentives to private investment that was justified in terms of sole criterion of achieving maximum increase in production”. Francine Frankel a) What concept of planning was finally adopted by India ? b) In order to improve productivity which principles were endorsed by the national party. c) Do you agree - that there was a contradiction between the central leadership of the Congress party and its state level leaders. Justify your answer (understanding)
+
+Q31 [long_answer, 6m, Sec D]
+In the given outline political map of India five states have been marked as (A) (B) (C)(D) and (E). Identify these states on the basis of the information given below and write their correct names in your answer book , along with their respective serial number of the (Evaluation) Page | 7 information used and the concerned alphabets as per the following format:- (i) The state where women put a ban on the sale of arrack and stopped its auction. (ii) The state where there was anti Hindi agitation in 1965. (iii)The state where the MKSS demanded records for famine relief and accounts of labours. (iv) The state where the Sardar Sarovar dam is located. (v) The state which saw a farmers agitation in 1988 protesting against the governments increased electricity rates. Corresponding numbers Answer Corresponding Alphabet (i) (ii) (iii) (iv) (v) Visually impaired students Answer the following questions by naming the state (i)The state where the movement to hug trees to avoid felling them for sports good began. (ii)The state where the Sardar Sarovar Project is. (iii)The state where the Anandpur Sahib Resolution has been signed. (iv)The state which was a Union territory but became a full- fledged state in 1987. (v) The state where the leader Laldenga entered into an armed Page | 8 struggle with India. SECTION-E Q32 Critically evaluate the role of the UNO in a Unipolar world. Is it still relevant? How? OR Examine the role of traditional notion of security in the contemporary world. (Remembering) Q33 Identify the two power blocs by emphasising their role during the Cuban missile crisis. OR Compare and contrast the “shock therapy “of the USSR with “’the open door’ policy of China. (understanding) Q34 “The split of Congress in 1969 was inevitable.” Elaborate. OR “Government that are seen to be unstable, quarrelsome and divisive have been severely punished”. Elucidate giving examples from 1975- 1977 (application)
+
+Q4 [mcq, 1m, Sec A]
+Name any two founder leaders of NAM?______________________. 1 (Remembering) Page | 2
+
+Q5 [mcq, 1m, Sec A]
+Which state was carved out of Assam from the following- I. Meghalaya ii.Sikkim iii.Manipur iv.Tripura (application)
+
+Q6 [mcq, 1m, Sec A]
+What was the main purpose of launching Operation Enduring freedom? (application/ understanding)
+
+Q7 [mcq, 1m, Sec A]
+The strategy of staying as far removed from the dominant power as possible is also known as--------------------. (application)
+
+Q8 [mcq, 1m, Sec A]
+Informal, non-confrontationist and cooperative interaction among members of South East Asian Nations is also called-----------------. (application)
+
+Q9 [mcq, 1m, Sec A]
+Identify the country----- Where the Monarch worked to weed out militants and guerrillas from north-eastern India that operated in his country with a view to help India. (Remembering)
+
+======================================================================
+Return the complete JSON array.

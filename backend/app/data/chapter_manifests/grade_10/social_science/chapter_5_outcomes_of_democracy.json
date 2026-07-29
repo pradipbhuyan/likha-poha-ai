@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: Outcomes of Democracy",
+  "central_question": "What outcomes can citizens reasonably expect from democracy, and how does its actual record compare across government quality, development, equality, diversity, dignity and freedom?",
+  "in_scope_units": [
+    "How do we assess democracy’s outcomes: reasonable expectations and the limits of democracy as a form of government.",
+    "Accountable, responsive and legitimate government: procedures, transparency, participation and public support.",
+    "Economic growth and development under democracies and dictatorships.",
+    "Reduction of inequality and poverty: political equality alongside continuing economic disparities.",
+    "Accommodation of social diversity: negotiation, majority–minority cooperation and non-permanent majorities.",
+    "Dignity and freedom of citizens: women, disadvantaged castes, democratic rights and continuing public expectations."
+  ],
+  "banned_topics": [
+    "Detailed definition and constitutional structure of federalism, which belongs to Federalism.",
+    "Detailed profiles and recognition criteria of political parties, which belongs to Political Parties.",
+    "Detailed classification of communalism and caste politics, which belongs to Gender, Religion and Caste."
+  ],
+  "must_include_keywords": [
+    "outcomes of democracy",
+    "equality among citizens",
+    "dignity of the individual",
+    "quality of decision-making",
+    "conflict resolution",
+    "correct mistakes",
+    "form of government",
+    "accountable government",
+    "responsive government",
+    "legitimate government",
+    "deliberation",
+    "negotiation",
+    "norms and procedures",
+    "transparency",
+    "free and fair elections",
+    "public debate",
+    "right to information",
+    "corruption",
+    "popular support",
+    "economic growth",
+    "economic development",
+    "dictatorship",
+    "inequality",
+    "poverty",
+    "political equality",
+    "economic disparities",
+    "social diversity",
+    "majority opinion",
+    "majority community",
+    "minority",
+    "dignity",
+    "freedom",
+    "women",
+    "caste inequality",
+    "equal opportunity",
+    "citizen",
+    "subject",
+    "vote makes a difference"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Democracy guarantees that every social and economic problem will be solved.",
+      "correction": "Democracy creates conditions and procedures; citizens and institutions must use them to pursue goals, and actual performance is mixed."
+    },
+    {
+      "claim": "A faster decision is always a better democratic outcome.",
+      "correction": "Democratic deliberation may take time, but decisions following accepted procedures can be more acceptable and effective."
+    },
+    {
+      "claim": "Democracy always produces higher economic growth than dictatorship.",
+      "correction": "The chapter’s evidence does not show democracy as a guarantee of higher growth, especially when growth is considered alone."
+    },
+    {
+      "claim": "Majority rule means permanent rule by the largest religious, racial or linguistic community.",
+      "correction": "Democratic majorities must remain open and changing, and the majority must work with minorities to represent the general view."
+    }
+  ],
+  "recommended_example_progression": [
+    "Evaluate broad claims about democracy using NCERT Exercise 3.",
+    "Explain accountable, responsive and legitimate government using NCERT Exercise 1 and the Nannu case in Exercise 8.",
+    "Interpret evidence on inequality using NCERT Exercise 7.",
+    "State the conditions for accommodating diversity using NCERT Exercise 2.",
+    "Distinguish political equality, dignity and majority rule using NCERT Exercises 5 and 6."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The NCERT end-of-chapter Exercises contain Questions 1–8 on accountability, social diversity, economic claims, democratic challenges, political equality, dignity and the Right to Information case of Nannu.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

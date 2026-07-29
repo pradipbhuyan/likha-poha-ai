@@ -1,0 +1,198 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2022-23
+Subject: History
+Source Subject Code: History
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/History-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/History-MS.pdf
+Total Questions: 33
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/History-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q10 [assertion_reason, 1m, Sec E]
+Given below are two statements, one labelled as Assertion(A) and the other labelled as Reason (R). Assertion (A): Archaeologists and historians find Harappan script enigmatic Reason (R): The Harrapan script remains undeciphered till date. A.Both (A) and (R) are correct and (R)is the correct explanation of (A) B.Both (A) and (R) are correct, but (R) is not the correct explanation of (A) C.(A) is correct, but (R) is not correct
+  (A) 1 - b, 2- c, 3 -d , 4- a
+  (B) 1 - a, 2- d, 3 -c , 4- b
+  (C) 1 - c, 2- b, 3 -d , 4- a
+  (D) 1 - d, 2- a, 3 -b , 4- c
+
+Q11 [mcq, 1m, Sec E]
+Complete the following with the correct option Kitab ul Hind : Al-Biruni , Rihla :………………. :
+  (A) Ibn Hawqal
+  (B) Ibn Jubayr
+  (C) Ibn Qalaqis
+  (D) Ibn Battuta
+
+Q12 [mcq, 1m, Sec E]
+Which among the following is Correctly matched? List I List II CENTRE LEADER --------------------------------------------------------------------
+  (A) Delhi                                          Nana Saheb
+  (B) Kanpur                                      Kunwar Singh
+  (C) Arrah                                         Bahadur Shah
+  (D) Lucknow                                   Birjis Qadr
+
+Q13 [assertion_reason, 1m, Sec E]
+Given below are two statements, one labelled as Assertion(A) and the other labelled as Reason (R). Assertion (A): The Santhals were given land and persuaded to settle in the rocky upper part of Rajmahal Hills. Reason (R): The British perceived Paharias and Santhals as ideal settlers
+  (A) 1 - b, 2- c, 3 -d , 4- a
+  (B) 1 - a, 2- d, 3 -c , 4- b
+  (C) 1 - c, 2- b, 3 -d , 4- a
+  (D) 1 - d, 2- a, 3 -b , 4- c
+
+Q14 [mcq, 1m, Sec E]
+Consider the following statements and select the correct from the following option: I. François Bernier was closely associated with the Prince Dara Shukoh. II.Bernier travelled to several parts of the country, and wrote accounts III.He dedicated his major writing to the king of France and Aurangzeb. Options
+  (A) II & III
+  (B) II &III
+  (C) I & II
+  (D) I & III
+
+Q15 [mcq, 1m, Sec E]
+From which of the following regions Ahom rulers belonged to?
+  (A) Delhi
+  (B) Orissa
+  (C) Ajmer
+  (D) Assam
+
+Q16 [mcq, 1m, Sec E]
+Which one of the following metallic coins was more prevalent during the Mughal Empire.?
+  (A) Gold
+  (B) Copper
+  (C) Bronze
+  (D) Silver
+
+Q17 [mcq, 1m, Sec E]
+Who among the following Introduced Permanent Settlement in Bengal?
+  (A) Lord Cornwallis
+  (B) Lord Dalhousie
+  (C) Lord Irwin
+  (D) Lord Bentinck
+
+Q18 [mcq, 1m, Sec E]
+Which of the following options is correct?
+  (A) Gandhi ji started Quit India Mission in 1930.
+  (B) Gandhiji gave his first speech in Champaran
+  (C) Gandhiji worked as radical nationalist leader
+  (D) Gandhi considered G.K. Gokhale as his political mentor
+
+Q19 [mcq, 1m, Sec E]
+Find out from the following pairs which one is NOT correctly matched:
+  (A) Lord Wellesley: Subsidiary Alliance
+  (B) Lord Dalhousie: Doctrine of Lapse
+  (C) Lord Henry Hardinge: Introduced the Enfield rifles
+  (D) Lord Canning: Religious Disabilities Act
+
+Q2 [mcq, 1m, Sec E]
+Who among the following had issued the first gold coins in the first century CE? A.The Yaudheyas B.The Parthians C.The Guptas D.The Kushanas
+
+Q20 [mcq, 1m, Sec E]
+Who among the following was the President of Constituent Assembly?
+  (A) Jawahar Lal Nehru
+  (B) B.R. Ambedkar
+  (C) Rajendra Prasad
+  (D) Vallabh Bhai Patel
+
+Q21 [mcq, 1m, Sec E]
+Which one of the following languages was favored by Gandhiji as the national language?
+  (A) Hindi
+  (B) Urdu
+  (C) Hindustani
+  (D) English
+
+Q22 [short_answer, 3m, Sec B]
+Describe any three sources to know about Harrapan civilization. OR Describe any three features of Harrapan drainage system.
+
+Q23 [mcq, 1m, Sec B]
+“Magadha was the most powerful Mahajanpada ‘. Examine the statement 3
+
+Q24 [short_answer, 3m, Sec B]
+Analyze the concept of the Asiatic mode of production as stated by Karl Marx.
+
+Q25 [mcq, 1m, Sec B]
+Describe the features of water resources of Vijayanagar empire. 3
+
+Q26 [short_answer, 3m, Sec B]
+“The power of the Jotedars was more effective than that of the zamindars. Justify the statement with suitable arguments.
+
+Q27 [short_answer, 3m, Sec B]
+“Art and literature helped in keeping alive the memory of 1857.” Explain with examples from Indian perspective. OR ‘Rumours and prophesies played an important role in the Revolt of 1857.’ Explain the statement with example SECTION C Long Answer Type Questions 8x3=24
+
+Q28 [short_answer, 8m, Sec C]
+Describe the familial relationship observed during Mahabharat era. OR Describe the Social implications of access to Resources during Mahabharat period
+
+Q29 [short_answer, 8m, Sec C]
+Analyze the importance and limitations of A-i-Akbari as a source of Akbar’s reign. OR Examine the ways in which panchayats and village headmen regulated Mughal rural society.
+
+Q3 [mcq, 1m, Sec E]
+Match the following and select the correct option List-I Harappan Site List-II Famous for 1. Lothal a. Specialised centres for making shell objects 2. Kalibangan b. Near sources of carnelian 3. Dholavira c. Evidence of ploughed field found
+
+Q30 [short_answer, 8m, Sec C]
+Explain the importance of Non-Cooperation Movement. OR Explain the significance of Civil Disobedience Movement SECTION -D Source Based Questions 4x3=12
+
+Q31 [case_study, 4m, Sec D]
+Read the following source carefully and answer the questions that follow: 31.1) Why was Sanchi an interest to Alexander Cunningham? 31.2) How was Sanchi related with the Buddhism? 31.3) How did Shahjahan Begum conserve Sanchi stupa?
+
+Q32 [case_study, 4m, Sec D]
+Read the following source carefully and answer the questions that follow: 32.1) Examine the reason of calling Meera Bai as an ascetic figure. 32.2) Analyze Meera Bai’s relation with Mewar. 32.3) How was Mirabai unique among the poet-saints of the Bhakti movement.
+  [NOTE: diagram]
+
+Q33 [case_study, 4m, Sec D]
+Read the following source carefully and answer the questions that follow: 33.1) Explain the term sovereignty 33.2) How has democracy been related with sovereignty in the passage? 33.3) How did the Constitutional framers highlighted the need of economic democracy? SECTION E Map Based Question 1x5=5
+
+Q34 [mcq, 1m, Sec E]
+(34.1) On the given political map of India, locate and label the following with appropriate symbols: I. Amravati – A Stupa II. Rakhigarhi- Indus Valley Site III. Agra-Territory Under the Control of Mughals OR Vijayanagar- Capital of Vijayanagar empire (34.2) On the same outline map, two places have been marked as ‘A and B,as the centres of the Revolt of 1857 Identify them and write their correct names on the lines drawn near them.
+
+Q4 [mcq, 1m, Sec E]
+Nageshwar d. Water reservoirs found.
+  (A) 1 - b, 2- c, 3 -d , 4- a
+  (B) 1 - a, 2- d, 3 -c , 4- b
+  (C) 1 - c, 2- b, 3 -d , 4- a
+  (D) 1 - d, 2- a, 3 -b , 4- c
+  (5) Marriage outside a kin group.
+  (6) Marriage within a kin group.
+  (7) A woman having several husbands. D.A man having several wives.
+
+Q5 [mcq, 1m, Sec E]
+Identify the given image from the following options: Source -NCERT Options:
+  (A) Sculpture of a Gupta king
+  (B) Sculpture of a Maurya king
+  (C) Sculpture of a Kushana king
+  (D) Sculpture of a Chola king
+  (5) Banbhatta
+  (6) Charak
+  (7) Harisena
+  (8) Surdas
+
+Q6 [mcq, 1m, Sec E]
+“Be lamps unto yourselves as all of you must work out your own liberation.” Identify the essence of the words of Buddha from the options given below:
+  (A) One should connect to inner being.
+  (B) One should live life of brahmacharya
+  (C) One should focus and express feelings
+  (D) One should spread religion everywhere.
+
+Q7 [mcq, 1m, Sec E]
+Which one among the following dynasties built the Hiriya canal?
+  (A) Sangama dynasty
+  (B) Tuluva dynasty
+  (C) Saluva dynasty
+  (D) Aravidu dynasty
+
+Q8 [mcq, 1m, Sec E]
+Fill in the blank : The local merchants of the Vijayanagara empire who participated in the trade of horses were called-----------------:
+  (A) Gajapati
+  (B) Mahanayakas
+  (C) Kudirai Chettis
+  (D) Narapati
+
+Q9 [mcq, 1m, Sec E]
+Find out the correct chronological order of ‘the Chishti Silsila’ from the following options : I. Shaikh Nizamuddin Auliya II. Shaikh Fariduddin Ganj – Shakar III. Shaikh Nasiruddin Chiragh-i Delhi IV. Shaikh Muinuddin Sijzi Options:
+  (A) I, II,  III & IV
+  (B) II, III ,IV & I
+  (C) III,II,  I & IV
+  (D) IV,II,I & III
+
+======================================================================
+Return the complete JSON array.

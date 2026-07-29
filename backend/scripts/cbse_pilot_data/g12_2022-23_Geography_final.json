@@ -1,0 +1,282 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which two cities are connected by Channel Tunnel? a. London with Barcelona b. London with Berlin c. London with Paris d. London with Rome",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following pairs is matched correctly? NAME OF THE COUNTRY OIL PORT a. Tunisia Tripoli b. Lebanon Esskhira c. Venezuela Maracaibo d. Oman Aden",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following may be interpreted as a spontaneous effort to achieve a better balance between population and resources? a. Migration b. Growth Rate c. Birth Rate d. Death Rate",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following features is related to the second stage of Demographic Transition Theory? a. Fertility and Mortality decline considerably b. Decline in Mortality but fertility remains high c. Fertility and Mortality are high d. Fertility declines and Mortality high",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What is the major export from New Mangalore ports? a. Coal b. Iron ore c. Copper d. Mica",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is a feature of Kandla Port? a. It is the biggest port of the country b. Its harbour is situated at Zuari estuary c. It is situated at the head of Gulf of Kachchh d. It is the oldest port of India",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is incorrectly matched? NAME OF THE STATE COAL MINING CENTRE a. Telangana Singareni b. Maharashtra Korba c. Odisha Talcher d. West Bengal Raniganj",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the correct order of location from west to east, for the given natural gas reserves of India. a. Ankaleshwar, Tripura, Jaisalmer, Krishna Godavari basin b. Jaisalmer, Ankaleshwar, Krishna Godavari basin, Tripura c. Tripura, Jaisalmer, Krishna Godavari basin, Ankaleshwar d. Krishna Godavari basin, Ankaleshwar, Tripura, Jaisalmer",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following are industrial towns of India? a. Hugli, Salem, Bhilai b. Jamshedpur, Pushkar, Ujjain c. Coimbatore, New Delhi, Imphal d. Chandigarh, Mugalsarai, Shillong",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following are the features of Urban Settlements in India? a. Complex way of life, manufacturing of finished goods, nodes of economic growth. b. Intimate social relations, mainly primary economic activities, people are less mobile. c. Economy mainly based on primary activities, providing food and raw materials, and social relations are formal. d. Provide a variety of services, poor transport networks, social relations are intimate.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Arrange the following in correct sequence: Following is the sequence of generating geothermal : (i) It is so hot that when it rises to the earth's surface, it turns into steam. (ii) Groundwater in such areas (where the geothermal gradient is high) absorbs heat from the rocks and becomes hot. (iii) This steam is used to drive turbines and generate electricity. (iv) Geothermal energy exists, because the earth grows progressively hotter with increasing depth. a. (iv) - (ii) - (i) - (iii) b. (ii) - (i) - (iv) - (iii) c. (i) - (iv) - (iii) - (ii) d. (iii) - (ii) - (iv) - (i)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider the following statements and choose the correct option from the given options I. The WTO however has been criticized and opposed by those who are worried about the effects of Free trade and economic globalization. II. Free trade does not make ordinary people‟s lives more prosperous. Options- a. Only statement I is correct b. Both the statements are true and statement II correctly present the reason for statement I c. Only Statement II is correct d. Both the statements I and II are incorrect",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Settlements can be of various types. Reason: Various physical factors affect the growth of settlements. Options: a. Only assertion is correct b. Only reason is correct c. Both statements are correct. Statement II correctly explains statement I. d. Both are correct but not related to each other",
+    "options": [
+      "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
+      "Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)",
+      "Assertion (A) is true but reason (R) is false",
+      "Assertion (A) is false but reason (R) is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion; Mediterranean regions have been inhabited from early periods in history. Reason; Plain areas are favorable for the production of crops and to build roads and industries. a. Only assertion is correct b. Only reason is correct c. Both assertion and reason are correct and reason is the correct explanation for assertion d. Both assertion and reason are correct but reason is not the correct explanation for assertion Read the following case study and answer question no 15 to 17. Ralegan Siddhi is a small village in the district of Ahmadnagar, Maharashtra. It has become an example for watershed development throughout the country. In 1975, this village was caught in a web of poverty and illicit liquor trade. The transformation took place when a retired army personnel settled down in the village and took up the task of watershed development. He convinced villagers about the importance of family planning and voluntary labour; preventing open grazing, felling trees, and liquor prohibition. Voluntary labour was necessary to ensure minimum dependence on the government for financial ai d. Even those who were working outside the village contributed to the development by committing a month's salary every year. Work began with the percolation tank constructed in the village. In 1975, the tank could not hold water. The embankment wall leaked. People voluntarily repaired the embankment. The seven wells below it swelled with water in summer for the first time in the living memory of the people. The people reposed their faith in him and his visions. A youth group called Tarun Mandal w as formed. The group worked to ban the dowry system, caste discrimination and un touch ability. Liquor distilling units were removed and prohibition imposed. Open grazing was completely banned with a new emphasis on stallfeeding. The cultivation of water intensive crops like sugarcane was banned. Crops such as pulses, oilseeds and certain cash crops with low water requirements were encouraged. All elections to local bodies began to be held on the basis of consensus. \"It made the community leaders complete representatives of the people.\" A system of Nyay Panchayats (informal courts) were also set up. Since then, no case has been referred to the police. A Rs. 22 lakh school building was constructed using only the resources of the village. No donations were taken. Money, if needed, was borrowed and paid back. The villagers took pride in this selfreliance. A new system of sharing labour grew out of this infusion of pride and voluntary spirit. People volunteered to help each other in agricultural operation s. Landless labourers also gained employment.",
+    "options": [
+      "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
+      "Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)",
+      "Assertion (A) is true but reason (R) is false",
+      "Assertion (A) is false but reason (R) is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following methods of water conservation brought prosperity in Ralegan Siddhi? (a) Rainwater harvesting (b) Watershed development (c) Groundwater recharge (d) Construction of dams.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following measures were taken to increase democratic participation in the village? (a) Construction of school (b) Local body elections (c) Liquor prohibition (d) All of the above",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following made Ralegan Siddhi independent of government's financial aid? (a) Prohibition of liquor (b) Voluntary labour (c) Local body election (d) Agriculture SECTION B Question numbers 18-23 are SA type questions. Question 18 & 19 are Source based questions.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Read the given Passage carefully and answer the questions that follow: Bharmaur tribal area comprises Bharmaur and Holi tehsils of Chamba district of Himachal Pradesh. It has been a notified tribal area since 21 November 1975. Bharmaur is inhabited by „Gaddi‟, a tribal community who have maintained a distinct identity in the Himalayan region as they practiced transhumance and conversed through Gaddiali dialect. Bharmaur tribal region has harsh climate conditions, low resource base and fragile environment. These factors have influ enced the society and Economy of the region. According to the 2011 census, the total population of Bharmaur sub-division was 39,113 i.e., 21 persons per sq km. It is one of the most (economically and socially) backward areas of Himachal Pradesh. Historically, the Gaddis have experienced geographical and political isolation and socio-economic deprivation. The economy is largely based on agriculture and allied activities such as sheep and goat rearing. The process of development of the tribal area of Bharmaur started in the 1970s when Gaddis were included among „scheduled tribes‟. Under the Fifth Five Year Plan, the tribal sub -plan was introduced in 1974 and Bharmaur was designated as one of the five Integrated Tribal Development Projects (ITDP) in Himachal Pradesh. This area development plan was aimed at improving the quality of life of the Gaddis and narrowing the gap in the level of development between Bharmaur and other areas of Himachal Pradesh. This plan laid the highest priority on development of transpo rt and communications, agriculture and allied activities, and social and community services. 1) How have the Gaddi Tribal Community maintained a distinct identity in the Himalayan region? 2) Which factors have influenced the society and Economy of the region to remain backward? 3) Under the Integrated Tribal Development Project, Which areas were given the highest priority?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Observe the given map and answer the following questions: 1) Name the Railway line and name the country where it lies. 2) Name the stations marked as „A‟ and „B‟. 3) State two reasons why it is the most important route in Asia? For Visually Impaired Students in lieu of Q.No. 19 1) Name the longest Railway Line of Asia. In which country it is located. 2) Name the Capital city and important agro center located on this line 3) Give two reasons why it is the most important route in Asia?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "What is meant by the density of population? Explain with examples the physical and economic factors which affect population distribution. OR With the help of a neat and labeled diagram, explain the three stages of the Demographic Transition Theory.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Examine the features of cottage manufacturing or household industries.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "How is „Naturalisation of Humans‟ different from „Humanisation of Nature‟? OR “The approaches to the study of human geography have been evolving over a period of time”. How have these schools of thought changed the approaches of study to human geography?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Elucidate any 3 characteristics of the most effective and advanced personal communication system in India. SECTION C Question numbers 24 to 28 are Long Answer based questions.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Describe the main characteristics of Intensive Subsistence Agriculture. In which parts of the world this type of agriculture is practiced?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Discuss the problems of Slums and Urban Waste Disposal in developing countries like India.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "How have good governance and people-oriented policies with reference to the pillars of human development, increased the values of freedom and capabilities? OR “The ways to measure human development are constantly being redefined”. Evaluate this statement keeping in mind the attainments and shortfall in human development.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Justify the tremendous growth of the Service Sector in developed and developing countries than the manufacturing sector? Explain giving suitable examples.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Analyse any five problems faced by Indian farmers in agriculture. OR On the basis of the main source of moisture for crops, analyse the types of farming in the Indian scenario. SECTION D Question numbers 29 & 30 are Map based questions having 5 sub-parts each.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "On the given political map of the world, the following seven features are shown. Identify any five of these features and write their correct names on the lines marked near each feature. A. A Shipping Canal B. An International Airport C. An International Seaport D. An area of Extensive Commercial Grain farming E. A Nomadic Herding area F. Largest Country of South America G. A Major Seaport For Visually Impaired Students in lieu of Q.No. 29 (Attempt Any 5) A Name the shipping canal between North and South America B Name the busiest International airport of Germany C Name the International Trading port of South East Asia. D Name the area of Extensive Commercial Grain farming in Australia E Write the name of the Nomadic herding area of North Africa. F. Name the Largest Country of South America G Name the important sea port located on the eastern coast of Australia.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "On the given political map of India, locate and label any five of the following with appropriate symbols : A. Northern most Seaport on Western coast of India B. A copper mine of Rajasthan C. A market based oil refinery located in Bihar D. State with lowest population density E. Largest coffee producing state F. An international airport of Kerala G. A state with highest level of urbanization For Visually Impaired Students in lieu of Q.No. 30 (Attempt Any 5) A. Name the Northernmost Seaport on Western coast of India B. Write the name of oldest copper mine of Rajasthan C. Name the market based oil refinery located in Bihar D. Name the State with lowest population density E. Write the name of Largest coffee producing state of India F. Name An international airport of Kerala G. Name A state with highest level of urbanization Q30 Q29",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

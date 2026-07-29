@@ -1,0 +1,302 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The ratio of LCM and HCF of the least composite and the least prime numbers is",
+    "options": [
+      "1:2",
+      "2:1",
+      "1:1",
+      "1:3"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The value of k for which the lines 5x+7y=3 and 15x + 21y = k coincide is",
+    "options": [
+      "9",
+      "5",
+      "7",
+      "18"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A girl walks 200m towards East and then 150m towards North. The distance of the girl from the starting point is",
+    "options": [
+      "350m",
+      "250m",
+      "300m",
+      "225"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The lengths of the diagonals of a rhombus are 24cm and 32cm, then the length of the altitude of the rhombus is",
+    "options": [
+      "12cm",
+      "12.8cm",
+      "19 cm`",
+      "19.2cm"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Two fair coins are tossed. What is the probability of getting at the most one head?",
+    "options": [
+      "¾",
+      "¼",
+      "½",
+      "3/8"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "∆ABC~∆PQR. If AM and PN are altitudes of ∆ABC and ∆PQR respectively and AB2 : PQ2 = 4 : 9, then AM:PN =",
+    "options": [
+      "16:81",
+      "4:9",
+      "3:2",
+      "2:3"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If 2sin2β – cos2β = 2, then β is",
+    "options": [
+      "0ᵒ",
+      "90ᵒ",
+      "45ᵒ",
+      "30ᵒ"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Prime factors of the denominator of a rational number with the decimal expansion 44.123 are",
+    "options": [
+      "2,3",
+      "2,3,5",
+      "2,5",
+      "3,5"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The lines x = a and y = b, are",
+    "options": [
+      "intersecting",
+      "parallel",
+      "overlapping",
+      "(None of these)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The distance of point A(-5, 6) from the origin is",
+    "options": [
+      "11 units",
+      "61 units",
+      "√11 units",
+      "√61 units"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If a² = 23/25, then a is",
+    "options": [
+      "rational",
+      "irrational",
+      "whole number",
+      "integer"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If LCM(x, 18) =36 and HCF(x, 18) =2, then x is",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In ∆ABC right angled at B, if tan A= √3, then cos A cos C- sin A sin C =",
+    "options": [
+      "-1",
+      "0",
+      "1",
+      "√3/2"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the angles of ∆ABC are in ratio 1:1:2, respectively (the largest angle being angle C), then the value of sec A cosec B – tan A cot B is",
+    "options": [
+      "0",
+      "1/2",
+      "1",
+      "√3/2"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The number of revolutions made by a circular wheel of radius 0.7m in rolling a distance of 176m is",
+    "options": [
+      "22",
+      "24",
+      "75",
+      "40"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "∆ABC is such that AB=3 cm, BC= 2cm, CA= 2.5 cm. If ∆ABC ~ ∆DEF and EF = 4cm, then perimeter of ∆DEF is",
+    "options": [
+      "7.5 cm",
+      "15 cm",
+      "22.5 cm",
+      "30 cm"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the figure, if DE∥ BC, AD = 3cm, BD = 4cm and BC= 14 cm, then DE equals",
+    "options": [
+      "7cm",
+      "6cm",
+      "4cm",
+      "3cm"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If 4 tanβ = 3, then 4 𝑠𝑖𝑛𝛽−3 cos 𝛽 4 sin 𝛽+3 cos 𝛽 =",
+    "options": [
+      "0",
+      "1/3",
+      "2/3",
+      "¾"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "One equation of a pair of dependent linear equations is –5x + 7y = 2. The second equation can be a) 10x+14y +4 = 0 b) –10x –14y+ 4 = 0 c) –10x+14y + 4 = 0",
+    "options": [
+      "10x – 14y = –4"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A letter of English alphabets is chosen at random. What is the probability that it is a letter of the word ‘MATHEMATICS’?",
+    "options": [
+      "4/13",
+      "9/26",
+      "5/13",
+      "11/26"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "",
+    "options": [
+      "3sq. units",
+      "4sq. units",
+      "6sq. units",
+      "8sq. units"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The figure given alongside shows the path of a diver, when she takes a jump from the diving board. Clearly it is a parabola. Annie was standing on a diving board, 48 feet above the water level. She took a dive into the pool. Her height (in feet) above the water level at any time‘t’ in seconds is given by the polynomial h(t) such that h(t) = -16t² + 8t + k.",
+    "options": [],
+    "diagram_dependent": true
+  }
+]

@@ -1,0 +1,93 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2020-21
+Subject: Geography
+Source Subject Code: Geography
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Geography-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Geography-MS.pdf
+Total Questions: 22
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Geography-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Fill in the blanks- ________________ and _______________ densities should be found out, in order to get a better insight into the human-land ratio.
+
+Q10 [mcq, 1m, Sec A]
+Arrange the correct sequence of column II against the column I COLUMN I (RELATED FIELD) COLUMN II (MINERALS) I. Chikkamagaluru 1. Iron Ore II. Singhbhum 2. Bauxite III. Durg 3. Manganese IV. Koraput 4. Copper
+  (A) III – 1,     IV – 2,     I – 3,      II – 4
+  (B) I – 4,       II – 3,      III – 2,    IV – 1
+  (C) IV – 3,     I -4,       II – 1,      III – 2
+  (D) II -2,      III – 1,     IV – 4,     I - 3
+
+Q11 [mcq, 1m, Sec A]
+Which of the following programme has been launched by present Union Government for the cleaning of river Ganga? a) Ganga Action Plan b) Namami Gange c) Ganga Namami Action Plan d) Ganga Cleaning Mission
+
+Q12 [mcq, 1m, Sec A]
+The outsourcing of which of the following activity is not an example of Knowledge Processing Outsourcing (KPO) ? a) E- Learning b) Intellectual property c) Collection of information d) Legal profession
+
+Q13 [mcq, 1m, Sec A]
+Relate the most important factor responsible for high density of population found in Katanga-Zambia Plateau located in Africa: a) Availability of copper in abundance b) Availability of forests resources c) Close social ties d) Scenic natural beauty
+
+Q14 [mcq, 1m, Sec A]
+If a country is having large proportion of young population, it would mean- a) High Birth rate and the population is youthful. b) Large working population.
+
+Q15 [mcq, 1m, Sec A]
+c) High expenditure on healthcare facilities. d) Heavy pressure on government to arrange basic facilities. Age and skill selective migration from rural areas has not affected adversely to which of the following demographic attribute? a) Downfall recorded in working population in rural areas b) The whole burden of agricultural work has to be borne by the old population in rural areas c) Old people and women are left behind in the place of origin d) Balance in age and sex composition
+
+Q16 [mcq, 1m, Sec C]
+A state with lowest density of population
+
+Q17 [mcq, 1m, Sec C]
+A state with highest level of urbanization
+
+Q18 [mcq, 1m, Sec C]
+Bengaluru – Mega City
+
+Q19 [mcq, 1m, Sec C]
+Mayurbhanj Iron Ore Mines
+
+Q2 [mcq, 1m, Sec A]
+Arrange the following approaches in a sequence order according to their development 1. Spatial organization 2. Regional approach
+
+Q20 [mcq, 1m, Sec C]
+Jamnagar Oil Refinery
+
+Q21 [mcq, 1m, Sec C]
+Katni Bauxite Mines
+
+Q22 [mcq, 1m, Sec C]
+Neyveli Lignite Coal Field 1x5=5 Q29 For Visually Impaired Candidates, in lieu of Q. No. 28. Write the names of any five of the following places in your answer sheet
+
+Q3 [mcq, 1m, Sec A]
+Areal differentiation
+
+Q4 [mcq, 1m, Sec A]
+Humanistic approach
+  (A) 1     4    2    3
+  (B) 4     1    3    2
+  (C) 2     3    1    4
+  (D) 3     2    4    1
+
+Q5 [mcq, 1m, Sec A]
+Which of the following programs sponsored by central government aims at enabling the rural population to conserve water for drinking, irrigation, fisheries and afforestation? a) Arvary Pani Sansad b) Haryali c) Neeru-Meeru d) Narmada bachao
+
+Q6 [mcq, 1m, Sec A]
+Population of India according to their Occupation can be categorized into: a) Main workers, Marginal workers, Non workers b) Marginal workers, Household industrial workers, Non workers c) Non workers, agricultural labourers, Marginal workers d) Cultivators, Main workers, Marginal workers
+
+Q7 [mcq, 1m, Sec A]
+Fill in the blank- The concept of Human Development was developed by____________________
+
+Q8 [mcq, 1m, Sec A]
+Which of the following best describes development? a) An increase in size b) A constant in size c) A positive change in quality d) A simple change in quality
+
+Q9 [mcq, 1m, Sec A]
+Which one of the following is not a plantation crop? a) Coffee b) Sugarcane c) Rubber d) Wheat
+
+======================================================================
+Return the complete JSON array.

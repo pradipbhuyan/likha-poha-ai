@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 8: Introduction to Trigonometry",
+  "central_question": "How do ratios of the sides of a right triangle connect an acute angle with lengths, standard-angle values and identities that hold for every allowed angle?",
+  "in_scope_units": [
+    "Introduction: motivates trigonometry through right-triangle models of heights and distances and defines its focus on side-angle relationships.",
+    "Trigonometric Ratios: defines sin, cos, tan, cosec, sec and cot, establishes reciprocal and quotient relations, and shows ratios depend on the angle rather than triangle size.",
+    "Trigonometric Ratios of Some Specific Angles: derives and tabulates values for 0°, 30°, 45°, 60° and 90°.",
+    "Trigonometric Identities: derives sin²A + cos²A = 1, 1 + tan²A = sec²A and 1 + cot²A = cosec²A and applies them to proofs.",
+    "Summary: consolidates definitions, standard values, bounds and domains of the principal identities."
+  ],
+  "banned_topics": [
+    "Heights-and-distances word problems using angles of elevation and depression, which are developed in Chapter 9.",
+    "Inverse trigonometric functions such as sin⁻¹A; the chapter explicitly reserves them for higher classes.",
+    "Trigonometric ratios of general angles beyond 0° to 90°.",
+    "Sine rule, cosine rule and trigonometric graphs."
+  ],
+  "must_include_keywords": [
+    "right triangle",
+    "acute angle",
+    "opposite side",
+    "adjacent side",
+    "hypotenuse",
+    "trigonometry",
+    "trigonometric ratios",
+    "sine",
+    "cosine",
+    "tangent",
+    "cosecant",
+    "secant",
+    "cotangent",
+    "sin A",
+    "cos A",
+    "tan A",
+    "cosec A",
+    "sec A",
+    "cot A",
+    "reciprocal ratios",
+    "tan A = sin A/cos A",
+    "similar triangles",
+    "Pythagoras Theorem",
+    "theta",
+    "specific angles",
+    "0°",
+    "30°",
+    "45°",
+    "60°",
+    "90°",
+    "undefined",
+    "trigonometric identity",
+    "sin²A + cos²A = 1",
+    "1 + tan²A = sec²A",
+    "1 + cot²A = cosec²A",
+    "domain"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The opposite and adjacent sides are fixed sides of a right triangle.",
+      "correction": "Opposite and adjacent are named relative to the chosen acute angle; they interchange when the reference angle changes, while the hypotenuse remains fixed."
+    },
+    {
+      "claim": "sin A means sin multiplied by A.",
+      "correction": "sin A is the abbreviation for the sine of angle A; 'sin' by itself is not a numerical factor."
+    },
+    {
+      "claim": "cosec A and sin⁻¹A mean the same thing.",
+      "correction": "cosec A = 1/sin A, whereas sin⁻¹A denotes inverse sine and is not studied here."
+    },
+    {
+      "claim": "All six trigonometric ratios are defined at both 0° and 90°.",
+      "correction": "At 0°, cosec and cot are undefined; at 90°, sec and tan are undefined."
+    },
+    {
+      "claim": "An identity may be proved by checking one numerical angle.",
+      "correction": "A trigonometric identity must be true for every angle in its stated domain, so it requires algebraic derivation or proof."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Figures 8.4 and 8.5 and NCERT Exercise 8.1 Question 1 to identify opposite, adjacent and hypotenuse for each acute angle.",
+    "Use NCERT Example 1 and Exercise 8.1 Questions 3 to 5 to determine all ratios from one known ratio.",
+    "Derive the 45°, 30° and 60° values from Figures 8.14 and 8.15, then use NCERT Example 6 and Exercise 8.2 Question 1.",
+    "Derive the three identities from Pythagoras Theorem and apply NCERT Examples 9 and 10.",
+    "Finish with NCERT Examples 11 and 12 and Exercise 8.3 for multi-step identity proofs and domain awareness."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter practice is organised as NCERT Exercises 8.1, 8.2 and 8.3 for basic ratios, standard-angle values and trigonometric identities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

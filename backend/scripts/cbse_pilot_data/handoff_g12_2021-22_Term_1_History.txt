@@ -1,0 +1,103 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 1
+Subject: History
+Source Subject Code: History
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/History-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/History-MS.pdf
+Total Questions: 12
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/History-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Who among the following was the author of book ‘The Story of Indian Archaeology’?
+  (A) R E M Wheeler
+  (B) John Marshall
+  (C) S.N.Roy
+  (D) Rakhal Das Bannerjee
+
+Q10 [mcq, 1m, Sec A]
+The composition of the Mahabharata has been traditionally attributed to a Rishi. Identify his name from the following options.
+  (A) Rishi Kanada
+  (B) Rishi Kapila
+  (C) Rishi Agastya
+  (D) Rishi Vyasa
+
+Q11 [mcq, 1m, Sec A]
+Who among the following travelled in Vijayanagar Empire in the fifteenth century and was greatly impressed by the fortification of the empire?
+  (A) Duarte Barbosa
+  (B) Abdur Razzak
+  (C) Colin Mackenzie
+  (D) Domingo Paes
+
+Q12 [mcq, 1m, Sec A]
+Who among the following was the first woman to be ordained as a bhikkhuni?
+  (A) Mahapajapati Gotami
+  (B) Yasodharā
+  (C) Mahamaya
+  (D) Dhammananda
+
+Q2 [mcq, 1m, Sec A]
+Who among the following was the first Director-General of the Archaeological Survey of India (ASI)?
+  (A) Alexender Cunningham
+  (B) Harold Hargreaves
+  (C) Daya Ram Sahni.
+  (D) John Marshall
+
+Q3 [mcq, 1m, Sec A]
+Which one among the following religious practices was seemed to be unfamiliar and unusual with the Harrapan culture?
+  (A) Mother Goddess
+  (B) Priest King
+  (C) Yogic posture seal
+  (D) Sanskritic Yajnas
+
+Q4 [mcq, 1m, Sec A]
+Which of the following is the oldest stupa in India and was commissioned by the Mauryan King Ashoka?
+  (A) Shanti Stupa
+  (B) Amaravati Stupa
+  (C) Sanchi Stupa
+  (D) Nagarjuna Konda Stupa
+
+Q5 [mcq, 1m, Sec A]
+Which one of the following aspects describes the meaning of ‘Tirthankaras’ in Jainism?
+  (A) Supreme Being who is the incarnation of God
+  (B) Those who guide men and women across the river of existence.
+  (C) Those who follow the path of Vedanta asceticism
+  (D) Those who know the ultimate truth and dharma
+
+Q6 [mcq, 1m, Sec A]
+Which of the following empire issued gold coins for the very first time in first century CE?
+  (A) Gupta Empire
+  (B) Maurya Empire
+  (C) Kushana Empire
+  (D) Yaudheya Empire
+
+Q7 [mcq, 1m, Sec A]
+Which of the following city of the Harappan Civilization was exclusively devoted to craft production of Shell objects?
+  (A) Kotdiji
+  (B) Kalibangan
+  (C) Manda
+  (D) Chanhudaro
+
+Q8 [mcq, 1m, Sec A]
+Who among the following was the composer of ‘Prayaga Prashasti’?
+  (A) Kalidasa
+  (B) Kalhana
+  (C) Harisena
+  (D) Banabhatta
+
+Q9 [mcq, 1m, Sec A]
+In the domestic architecture of Harappa there were no windows in the walls along the ground level. Identify the possible cause mentioned by the archaeologists from the following options.
+  (A) It was a custom.
+  (B) To maintain privacy.
+  (C) No concern of ventilation.
+  (D) Part of unplanned process.
+
+======================================================================
+Return the complete JSON array.

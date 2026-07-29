@@ -1,0 +1,61 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 2
+Subject: Biology
+Source Subject Code: Biology
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Biology-SQP_Term2.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Biology-MS_Term2.pdf
+Total Questions: 13
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Biology-MS_Term2.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [short_answer, 2m, Sec A]
+Humans have innate immunity for protection against pathogens that may enter the gut along with food. What are the two barriers that protect the body from such pathogens?
+
+Q10 [short_answer, 3m, Sec B]
+a. ‘The Evil Quartet’ describes the rates of species extinction due to human activities. Explain how the population of organisms is aff ected by fragmentation the habitats. b. Introduction of alien species has led to environmental damage and decline of indigenous species. Give any one example of how it has affected the indigenous species? c. Could the extinction of S teller’s sea cow and passenger pigeon be saved by man? Give reasons to support your answer.
+
+Q11 [short_answer, 3m, Sec B]
+a. The image shown below is of a sacred grove found in India. Explain how has human involvement helped in the preservation of these biodiversity rich regions. b. Value of Z (regression coefficient) is considered for measuring the species richness of an area. If the value of Z is 0.7 for area A ,and 0.15 for area B, which area has higher species richness and a steeper slope?
+  [NOTE: diagram]
+
+Q12 [short_answer, 3m, Sec B]
+The image below depicts the result of gel electrophoresis If the ladder represents sequence length upto 3000 base pairs (bp), a. Which of the bands (I - IV) correspond to 2500 bp and 100 bp respectively? b. Explain the basis of this kind of separation and also mention the significance of this process. SECTION C
+
+Q13 [long_answer, 5m, Sec C]
+Some restriction enzymes break a phosphodiester bond on both the DNA strands, such that only one end of each molecule is cut and these ends have regions of single stranded DNA. BamH1is one such restriction enzyme which binds at the recognition sequence, 5’ -GGATCC- 3’and cleaves these sequences just after the 5’- guanine on each strand. a. What is the objective of this action? b. Explain how the gene of interest is introduced into a vector. c. You are given the DNA shown below. 5’ ATTTTGAGGATCCGTAATGTCCT 3’ 3’ TAAAACTCCTAGGCATTACAGGA 5’ If this DNA was cut with BamHI, how many DNA fragments would you expect? Write the sequence of these double -stranded DNA fragments with their respective polarity. d. A gene M was introduced into E.coli cloning vector PBR322 at BamH1 site. What will be its impact on the recombinant plamids? Give a possible way by which you could differenti ate non recombinant to recombinant plasmids.
+  [NOTE: diagram]
+
+Q2 [short_answer, 2m, Sec A]
+A patient admitted in ICU was diagnosed to have suffer ed from myocardial infarction. The condition of coronary artery is depicted in the image below. Name two bioactive agents and their mode of action that can improve this condition. OR Substantiate by giving two reasons as to why a holistic understanding of the flora and fauna the cropland is required before introducing an appropriate biocontrol method.
+
+Q3 [short_answer, 2m, Sec A]
+Identify the compound chemical structure is shown below. State any three of its physical properties.
+  [NOTE: diagram]
+
+Q4 [short_answer, 2m, Sec A]
+Water samples were collected at points A, B and C in a segment of a river near a sugar factory and tested for BOD level. The BOD levels of samples A, B and C were 400 mg/L, 480 mg/L and 8 mg/L respectively. What is this indicative of? Explain why the BOD level gets reduced considerably at the collection point C?
+
+Q5 [short_answer, 2m, Sec A]
+An ecologist study an area with population A, thriving on unlimited resources and showing exponential growth, introduced population B and C to the same area. What will be the effect on the growth pattern of the population A, B and C when living together in the same habitat?
+
+Q6 [short_answer, 2m, Sec A]
+With the decline in the population of fig species it was noticed that the population of wasp species also started to decline. What is the relationship between the two and what could be the possible reason for decline of wasps? OR With the increase in the global temperature, the inhabitants of Antarctica are facing fluctuations in the temperature. Out of the regulators and the conformers, which of the two will have better chances of survival? Give two adaptations that support them to survive in the ambient environment? Give one suitable example. SECTION B
+
+Q7 [short_answer, 3m, Sec B]
+How do normal cells get transformed into cancerous neoplastic cells? Elaborate giving three examples of inducing agent. OR A person is suffering from a high-grade fever. Which symptoms will help to identify if he/she is suffering from Typhoid, Pneumonia or Malaria?
+
+Q8 [short_answer, 3m, Sec B]
+Recognition of an antigenic protein of a pathogen or exposure to a pathogen occurs during many types of immune responses, including active immunity and induced active immunity. Specify the types of responses elicited when human beings get encountered by a pathogen.
+
+Q9 [short_answer, 3m, Sec B]
+In a pathological lab, a series of steps were undertaken for finding the gene of interest. Describe the steps, or make a flow chart showing the process of amplification of this gene of interest.
+
+======================================================================
+Return the complete JSON array.

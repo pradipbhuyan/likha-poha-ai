@@ -1,0 +1,120 @@
+CBSE Grade 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2016-17
+Subject: Mathematics Standard
+Source Subject Code: MathsStandard
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/CLASS X_2016_17/MathsStandard-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/CLASS X_2016_17/MathsStandard-MS.pdf
+Total Questions: 31
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/CLASS X_2016_17/MathsStandard-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+A letter is chosen at random from the letter of the ―word PROBABILITY‖. Find the probability that it is a not a vowel.
+
+Q10 [mcq, 1m, Sec B]
+In the given figure, common tangents AB and CD to the two circles intersect at E. Prove that AB = CD. SECTION – C (Question numbers 11 to 20 carry 3 marks each)
+  [NOTE: diagram]
+
+Q11 [mcq, 1m, Sec C]
+Solve the given equation by the method of completing the squares: x2 + 12x – 45 = 0
+
+Q12 [mcq, 1m, Sec C]
+The sum of first six terms of an A.P. is 42. The ratio of its 10 th term to its 30th term is 1:3. Find the first term of the A.P.
+
+Q13 [mcq, 1m, Sec C]
+From the top of a lighthouse 75 m high, the angles of depression of two ships are observed to be 30ᵒ and 45ᵒ respectively. If one ship is directly behind the other on the same side of the lighthouse then find the distance between the two ships.
+
+Q14 [mcq, 1m, Sec C]
+The vertices of a triangle are A (-1, 3), B (1, -1) and C (5, 1). Find the length of the median through the vertex C.
+
+Q15 [mcq, 1m, Sec C]
+The king, queen and jack of diamond are removed from a deck of 52 playing cards and then well shuffled. Now one card is drawn at random from the remaining cards. Determine the probability that the card drawn is : i) A face card. ii) A red card. iii) A king.
+
+Q16 [mcq, 1m, Sec C]
+Find the area of the minor segment of a circle of radius 42cm, if the length of the corresponding arc is 44 cm.
+
+Q17 [mcq, 1m, Sec C]
+A cylindrical pipe has inner diameter of 4 cm and water flows through it at the rate of 20 meter per minute. How long would it take to fill a conical ta nk of radius 40 cm and depth 72cm?
+
+Q18 [mcq, 1m, Sec C]
+In given figure, PS is the diameter of a circle of radius 6 cm. The points Q and R trisects the diameter PS. Semi circles are drawn on PQ and QS as diameters . Find the area of the shaded region.
+  [NOTE: diagram]
+
+Q19 [mcq, 1m, Sec C]
+Find the number of spherical lead shots , each of diameter 6 cm that can be made from a solid cuboid of lead having dimensions 24 cm  22 cm  12 cm.
+
+Q2 [mcq, 1m, Sec A]
+Find the 17th term from the end of the AP: 1, 6, 11, 16….. 211, 216
+
+Q20 [mcq, 1m, Sec C]
+A wooden souvenir is made by scooping out a hemisphere from each end of a solid cylinder. If the height of the cylinder is 10 cm and its base is of radius 3.5 cm then find the total cost of polishing the souvenir at the rate of Rs. 10 per cm2. SECTION – D (Question numbers 21 to 31 carry 4 marks each)
+
+Q21 [mcq, 1m, Sec D]
+Draw a ∆ ABC with sides BC = 5cm, AB = 6cm and AC = 7cm and then construct a triangle similar to ABC whose sides are of the corresponding sides of ABC.
+
+Q22 [mcq, 1m, Sec D]
+A train covers a distance of 90 kms at a uniform speed. It would ha ve taken 30 minutes less if the speed had been 15 km/hr more. Calculate the original duration of the journey
+
+Q23 [mcq, 1m, Sec D]
+Cards marked with numbers 1, 3, 5… 49 are placed in a box and mixed thoroughly. One card is drawn from the box. Find the probability that the number on the card is (i) divisible by 3 (ii) a composite number (iii) Not a perfect square (iv) Multiple of 3 and 5.
+
+Q24 [mcq, 1m, Sec D]
+In given figure, XY and PQ are two parallel tan gents to a circle with centre O and another tangent AB with point of contact C intersecting XY at A and PQ at B. Prove that AOB = 90°
+  [NOTE: diagram]
+
+Q25 [mcq, 1m, Sec D]
+Solve the following quadratic equation by applying the quadratic formula: ( )
+
+Q26 [mcq, 1m, Sec D]
+The points A ( 1 , -2 ) , B ( 2 , 3 ), C ( k , 2 )and D ( - 4 , - 3 ) are the vertices of a parallelogram. F ind the value of k and the altitude of the parallelogram corresponding to the base AB.
+
+Q27 [mcq, 1m, Sec D]
+From a point 100 m above a lake the angle of elevation of a stationary helicopter is30ᵒ and the angle of depression of reflection of the helicopter in the lake is 60ᵒ. Find the height of the helicopter above the lake.
+
+Q28 [mcq, 1m, Sec D]
+A donor agency ensures milk is supplied in containers, which are in the form of a frustum of a cone to be distributed t o flood victims in a camp. The height of each frustum is 30 cm and the radii of whose lower and upper circular ends are 20 cm and 40 cm respectively . . If this milk is available at the rate of Rs.35 per litre and 880 litres of milk is needed daily for a camp.
+  (A) Find how many milk containers are needed daily for the camp.
+  (B) What daily cost will it put on the donor agency?
+  (C) What value of the donor agency is depicted in this situation?
+
+Q29 [mcq, 1m, Sec D]
+The radii of two concentric circles are 13 cm and 8 cm. AB is a diameter of the bigger circle and BD is tangent to the smaller circle touching it at D and intersecting the larger circle at P, on producing. Find the length of AP.
+
+Q3 [mcq, 1m, Sec A]
+A pole 6 m high casts a shadow 2√3 m long on the ground, then find the angle of elevation of the sun.
+
+Q30 [mcq, 1m, Sec D]
+A manufacturer of TV set s produced 600 units in the 3rd year and 700 uni ts in the 7th year. Assuming that, production increases uniformly by a fixed number of units every year. Find (i) The production in 1st year. (ii) The production in 10th year. (iii) The total production in 7 years.
+
+Q31 [mcq, 1m, Sec D]
+50 circular discs, each of radius 7cm and thickness 0.5cm are placed one above the other. Find the total surface area of the solid so formed. Find how much space will be left in a cubical box of side 25cm if the solid formed is placed inside it. --ooo— SAMPLE QUESTION PAPER MATHEMATICS CLASS-X (2016-17) SUMMATIVE ASSESSMENT -II MARKING SCHEME SECTION -A
+
+Q4 [mcq, 1m, Sec A]
+In the given figure PA and PB are tangents to a circle with centre O. If APB = (2x 3 and AOB = (3x 7 , then find the value of x SECTION – B (Question numbers 5 to 10 carry 2 marks each)
+  [NOTE: diagram]
+
+Q5 [mcq, 1m, Sec B]
+Find the sum of all natural numbers that are less than 100 and divisible by 4.
+
+Q6 [mcq, 1m, Sec B]
+Find the value of p for which the points ( -1 , 3 ) , ( 2 , p ) and ( 5 , - 1 ) are collinear.
+
+Q7 [mcq, 1m, Sec B]
+Find the value(s) of , for which the equation has equal roots.
+
+Q8 [mcq, 1m, Sec B]
+Using the figure given below, prove that AR = (perimeter of triangle ABC)
+  [NOTE: diagram]
+
+Q9 [mcq, 1m, Sec B]
+P and Q are the points with co-ordinates (2, -1) and (-3, 4). Find the co- ordinates of the point R such that PR is of PQ.
+
+======================================================================
+Return the complete JSON array.

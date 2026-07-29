@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 5",
+  "subject": "English",
+  "chapter": "6. What a Tank!",
+  "central_question": "How do traditional and creative water-storage systems show the value of conservation, identity, and responsible water use?",
+  "in_scope_units": [
+    "Let us Read: traditional water storage, overhead tanks, Punjab designs, identity, and construction",
+    "Let us Think: comprehension and personal design ideas",
+    "Let us Learn: contractions, exclamatory sentences, emotions, animal families, and picture work",
+    "Let us Speak and Listen: saving water, sound meaning, and A Day without Water",
+    "Let us Write and Explore: awareness poster, word endings, tank cleaning, and The Thirsty Crow enactment"
+  ],
+  "banned_topics": [
+    "Hockey game rules",
+    "The parrot’s golden cage",
+    "Vocation poem"
+  ],
+  "must_include_keywords": [
+    "water conservation",
+    "storage structures",
+    "Ooranis",
+    "Panam Keni",
+    "Tankas",
+    "Thar region",
+    "underground tanks",
+    "overhead water tanks",
+    "Punjab",
+    "culture",
+    "heritage",
+    "football",
+    "rooster",
+    "aeroplane",
+    "tractor",
+    "bullock cart",
+    "cement",
+    "steel rods",
+    "concrete",
+    "identity",
+    "contractions",
+    "apostrophe",
+    "aren’t",
+    "wouldn’t",
+    "exclamatory sentences",
+    "Wow",
+    "Hurrah",
+    "animal families",
+    "water wastage",
+    "tumbler",
+    "I scream",
+    "Ice cream",
+    "Suma",
+    "Water Conservation Week",
+    "rainwater harvesting",
+    "Save Every Drop",
+    "poster",
+    "water-tank cleaning",
+    "The Thirsty Crow"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Tankas are overhead tanks in Punjab.",
+      "correction": "Tankas are underground tanks common in Rajasthan’s Thar region; the creative overhead tanks are in rural Punjab."
+    },
+    {
+      "claim": "The tank shapes are only decoration.",
+      "correction": "They can reflect the owner’s work or interests, such as a tractor for a farmer or football for a football lover."
+    },
+    {
+      "claim": "An exclamatory sentence is identified only by an exclamation mark.",
+      "correction": "The chapter also points to strong emotion and words such as Wow, Hurrah, and Oh."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Let us Think A to explain storage, Punjab’s location, construction, and identity.",
+    "Use Let us Learn A and B to form contractions with apostrophes.",
+    "Use Let us Learn C and D to identify emotions in exclamatory sentences.",
+    "Use Let us Listen to answer the five questions on Suma’s water shortage.",
+    "Use Let us Write A to plan the Save Our Water Tanks campaign poster."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter has no single final exercise block; learning is distributed across Let us Think, Learn, Speak, Listen, Write, and Explore.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

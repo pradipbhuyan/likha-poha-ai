@@ -1,0 +1,128 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Maths",
+    "chapter": "Introduction to Linear Polynomials",
+    "central_question": "How can linear polynomials represent, evaluate, compare, and graph quantities that change by a constant amount?",
+    "in_scope_units": [
+      "2.1 Introduction — algebraic expressions, terms, variables, coefficients, constants, one-variable polynomials, degree, and classification as constant, linear, quadratic, or cubic.",
+      "2.2 Linear Polynomials — degree-one polynomials, constant successive differences, evaluation by substitution, linear equations, and the input-output view of a polynomial.",
+      "2.3 Exploring Linear Patterns — recognising constant-difference sequences and forming an nth-term linear expression from tile, spending, fare, area, volume, and reading situations.",
+      "2.4 Linear Growth and Linear Decay — modelling fixed increases and fixed decreases over equal intervals using linear expressions and tables of values.",
+      "2.5 Linear Relationships — expressing the relation between two variables as y = ax + b and determining a and b from two observed input-output pairs.",
+      "2.6 Visualising Linear Relationships — plotting y = ax + b as a straight line, testing whether points satisfy an equation, and interpreting slope, y-intercept, growth, decay, and parallel lines.",
+      "End-of-Chapter Exercises and Chapter Summary — integrated practice on polynomial degree and evaluation, linear equations and patterns, graphing, slope, intercepts, parallel lines, and applied modelling."
+    ],
+    "banned_topics": [
+      "Polynomial division, the Remainder Theorem, and the Factor Theorem",
+      "Factorisation methods and solving general quadratic or cubic equations",
+      "Formal arithmetic-progression formulas beyond the chapter's introductory constant-difference patterns",
+      "Advanced function theory such as domain, range, composition, and inverse functions",
+      "Advanced coordinate-geometry forms of a line such as point-slope, two-point, and normal forms",
+      "General methods for solving systems of several linear equations beyond finding a and b from the two relationships used in this chapter"
+    ],
+    "must_include_keywords": [
+      "algebraic expression",
+      "term",
+      "variable",
+      "coefficient",
+      "constant term",
+      "one-variable polynomial",
+      "univariate polynomial",
+      "degree",
+      "constant polynomial",
+      "linear polynomial",
+      "quadratic polynomial",
+      "cubic polynomial",
+      "substitution",
+      "evaluation",
+      "linear equation",
+      "input-output process",
+      "function",
+      "linear pattern",
+      "constant difference",
+      "nth term",
+      "2n - 1",
+      "linear growth",
+      "linear decay",
+      "equal intervals",
+      "y = ax + b",
+      "linear relationship",
+      "straight line",
+      "coordinate plane",
+      "slope",
+      "positive slope",
+      "negative slope",
+      "y-intercept",
+      "origin",
+      "parallel lines",
+      "point satisfies an equation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The degree of a polynomial is the number of terms in it.",
+        "correction": "The degree is the highest power of the variable with a non-zero coefficient; for example, 5y³ + y² + 2y - 1 has degree 3 even though it has four terms."
+      },
+      {
+        "claim": "Every algebraic expression with variables is a one-variable polynomial.",
+        "correction": "A one-variable or univariate polynomial uses only one variable and its non-negative whole-number powers; expressions such as 4x + 5y + 3 use two variables and are outside the chapter's one-variable focus."
+      },
+      {
+        "claim": "A constant such as -9 has no degree.",
+        "correction": "A non-zero constant is a constant polynomial of degree 0 because it can be written using x⁰."
+      },
+      {
+        "claim": "The coefficient of a missing term is undefined.",
+        "correction": "A missing term has coefficient 0; for example, the coefficient of z in 4z³ + 5z² - 11 is 0."
+      },
+      {
+        "claim": "A linear polynomial and a linear equation are the same thing.",
+        "correction": "An expression such as 2x + 10 is a linear polynomial; equating it to a constant, as in 2x + 10 = 64, gives a linear equation."
+      },
+      {
+        "claim": "Any sequence that generally rises or falls is a linear pattern.",
+        "correction": "A linear pattern changes by a constant amount over equal steps, so consecutive differences must be constant."
+      },
+      {
+        "claim": "The auto-rikshaw rule 15n - 5 applies to every distance including distances below 2 km.",
+        "correction": "In Example 8, the fare rule 15n - 5 is stated for n ≥ 2 because the initial 2 km have a fixed fare of ₹25."
+      },
+      {
+        "claim": "In y = ax + b, b is the x-intercept.",
+        "correction": "The value b is the y-intercept, and the line cuts the y-axis at (0, b)."
+      },
+      {
+        "claim": "Every line of the form y = ax + b passes through the origin.",
+        "correction": "A line passes through the origin only when b = 0, giving the special form y = ax."
+      },
+      {
+        "claim": "Lines are parallel whenever their y-intercepts are equal.",
+        "correction": "In the chapter, lines with equal slopes a and different y-intercepts b are parallel."
+      },
+      {
+        "claim": "A negative slope means the graph is not linear.",
+        "correction": "A straight line may have a negative slope; in this chapter, negative slope represents linear decay."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Example 1 to identify the terms 4x, 5y, and 3, the variables x and y, the coefficients 4 and 5, and the constant 3.",
+      "Use NCERT Example 3 to move from a two-variable expression to the one-variable polynomial 10x - x² and discuss its degree.",
+      "Use NCERT Exercise Set 2.1, Questions 1, 3, 4, and 5 to practise degree, coefficients of present and missing terms, and constant terms.",
+      "Use NCERT Examples 4 and 5 to introduce linear polynomials through square perimeter and chess-club charges, highlighting constant successive differences.",
+      "Use NCERT Example 6 and Exercise Set 2.2 to connect a linear polynomial with a linear equation and evaluation by substitution.",
+      "Use NCERT Fig. 2.4 and the rule 2n - 1 to derive an nth term from the square-tile pattern.",
+      "Use NCERT Examples 7 and 8 to model linear decrease in pocket money and a distance-based auto-rikshaw fare.",
+      "Use NCERT Examples 9 and 10 to compare linear growth C(d) = 100 + 60d with linear decay h(t) = 3 - 0.5t.",
+      "Use NCERT Example 11 and Exercise Set 2.5 to determine a and b in y = ax + b from two observed values.",
+      "Use NCERT Examples 12-16 and Exercise Set 2.6 to progress from plotting points to interpreting slope, y-intercept, positive and negative slope, and parallel lines."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The section titled 'End-of-Chapter Exercises' contains Questions 1-14, including starred higher-order problems on graphs, linear models, polynomial rules, and parallel lines."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Introduction to Linear Polynomials\n\n## What you will learn\nYou will revise the parts of an algebraic expression and learn what makes an expression a one-variable polynomial. You will also classify polynomials by degree as constant, linear, quadratic, or cubic.\n\n## Simple explanation\nAlgebra uses letters to represent quantities that may vary. In a polynomial, these variables appear with non-negative whole-number powers, and the highest power tells us the degree of the polynomial.\n\n## Step-by-step breakdown\n- **Terms, variables, coefficients, and constants**: In NCERT Example 1, the expression 4x + 5y + 3 has terms 4x, 5y, and 3. The variables are x and y, the coefficients are 4 and 5, and 3 is the constant term.\n- **Expressions can use more than one variable**: NCERT Example 2 gives 200l + 160w + 50lw, which contains the two variables l and w. This helps distinguish general algebraic expressions from the one-variable polynomials studied in the rest of the chapter.\n- **One-variable polynomial**: Expressions such as x² + 1, 2y - 5, 5y³ + y² + 2y - 1, and 3z + 7 each involve only one variable and its powers. They are called one-variable or univariate polynomials.\n- **Degree**: The degree is the highest power of the variable with a non-zero coefficient. Thus, 5y³ + y² + 2y - 1 has degree 3, x² + 5x + 1 has degree 2, and 3z + 7 has degree 1.\n- **Names based on degree**: Degree 3 gives a cubic polynomial, degree 2 gives a quadratic polynomial, degree 1 gives a linear polynomial, and a non-zero constant such as 8 is a constant polynomial of degree 0.\n- **Missing terms**: When a power does not appear, its coefficient is 0. For example, the coefficient of z in 4z³ + 5z² - 11 is 0.\n\n## Worked example\nQuestion: NCERT Exercise Set 2.1, Question 1 asks for the degrees of (i) 2x² - 5x + 3, (ii) y³ + 2y - 1, (iii) -9, and (iv) 4z - 3.\n\nSolution:\n- Step 1: Identify the highest power in 2x² - 5x + 3; it is 2.\n- Step 2: Identify the highest power in y³ + 2y - 1; it is 3.\n- Step 3: Treat -9 as a non-zero constant polynomial, so its degree is 0.\n- Step 4: Identify the highest power in 4z - 3; it is 1.\n- Final answer: The degrees are (i) 2, (ii) 3, (iii) 0, and (iv) 1.\n\n## Common mistake\nDo not count the number of terms to find the degree. The degree is determined by the highest power of the variable, not by how many terms the polynomial has.\n\n## Quick check question\nQuestion: NCERT Exercise Set 2.1, Question 3 asks for the coefficients of x² and x³ in x⁴ - 3x³ + 6x² - 2x + 7. What are they?\nAnswer: The coefficient of x² is 6, and the coefficient of x³ is -3.\nExplanation: A coefficient is the numerical factor multiplying the stated power of the variable; the relevant terms are 6x² and -3x³.\n\n## Summary\n- An algebraic expression is made of terms involving numbers, variables, and operations.\n- A one-variable or univariate polynomial contains only one variable and its powers.\n- The degree is the highest power with a non-zero coefficient.\n- Degree 1, 2, and 3 polynomials are called linear, quadratic, and cubic, respectively.\n- A non-zero constant polynomial has degree 0.\n- A missing power has coefficient 0.",
+    "Core explanation": "# Core Explanation: Introduction to Linear Polynomials\n\n## What you will learn\nYou will understand what a linear polynomial is and why its successive values change by a constant amount. You will also evaluate polynomials, distinguish a polynomial from an equation, and view a polynomial as an input-output process.\n\n## Simple explanation\nA linear polynomial has degree 1 and can be written in a form such as ax + b, where the variable has power 1. Substituting a value for the variable produces an output, and equating the polynomial to a constant produces a linear equation.\n\n## Step-by-step breakdown\n- **Linear polynomial**: A polynomial of degree 1 is linear. NCERT Example 4 gives the perimeter of a square of side x as 4x.\n- **Constant successive change**: In Example 4, increasing the side by 0.5 cm increases the perimeter by 2 cm. In Example 5, the chess-club cost 200 + 50m rises by ₹50 for every additional match.\n- **Polynomial versus equation**: The expression 2x + 10 is a linear polynomial. In NCERT Example 6, setting it equal to 64 gives the linear equation 2x + 10 = 64.\n- **Evaluation by substitution**: To evaluate a polynomial, replace the variable by its given value and simplify. For 2x + 3, x = 4 gives 11, while x = -6 gives -9.\n- **Input-output process**: NCERT Fig. 2.3 treats x as the input and the value of 2x + 3 as the output. The chapter refers to this process as a function while noting that functions are studied further in later grades.\n- **Linear and quadratic functions**: The expression 2x + 3 is linear, whereas the rectangle-area expression 10x - x² from Example 3 is quadratic.\n\n## Worked example\nQuestion: NCERT Example 6 states that the sum of two numbers is 64 and one number is 10 more than the other. Find the two numbers.\n\nSolution:\n- Step 1: Let the smaller number be x, so the larger number is x + 10.\n- Step 2: Use the sum: x + (x + 10) = 64.\n- Step 3: Simplify to 2x + 10 = 64, then 2x = 54.\n- Step 4: Divide by 2 to get x = 27; the larger number is 27 + 10 = 37.\n- Final answer: The two numbers are 27 and 37.\n\n## Common mistake\nA linear polynomial is an expression, not a statement of equality. It becomes a linear equation only when it is equated to a number or another expression.\n\n## Quick check question\nQuestion: NCERT Exercise Set 2.2, Question 1 asks for the values of 5x - 3 when x = 0, x = -1, and x = 2. What are the values?\nAnswer: The values are -3, -8, and 7, respectively.\nExplanation: Substitution gives 5(0) - 3 = -3, 5(-1) - 3 = -8, and 5(2) - 3 = 7.\n\n## Summary\n- A linear polynomial has degree 1.\n- Its values change by a constant amount when the input changes by equal steps.\n- Substitution is used to evaluate a polynomial.\n- Equating a linear polynomial to a constant gives a linear equation.\n- A polynomial can be viewed as an input-output rule.\n- Linear and quadratic expressions produce different kinds of input-output processes.",
+    "Worked examples": "# Worked Examples: Introduction to Linear Polynomials\n\n## What you will learn\nYou will build linear rules from growing and decreasing patterns. You will also compare linear growth with linear decay and use an nth-term expression to answer questions about a particular stage or time.\n\n## Simple explanation\nA linear pattern changes by the same amount at every equal step. When the quantity increases, it shows linear growth; when it decreases, it shows linear decay.\n\n## Step-by-step breakdown\n- **Square-tile pattern**: In NCERT Fig. 2.4, the numbers of tiles are 1, 3, 5, 7, 9, 11, 13. The constant difference is 2, and the number of tiles at Stage n is 2n - 1.\n- **Finding a stage or term**: The rule 2n - 1 can be used in two directions: substitute n to find the number of tiles, or set 2n - 1 equal to a given number of tiles to find the stage.\n- **Pocket-money decay**: In NCERT Example 7, Bela starts with ₹100 and spends ₹5 per day, so the amount after n days is 100 - 5n.\n- **Fare model with a condition**: In NCERT Example 8, the auto-rikshaw fare is ₹25 for the initial 2 km and then rises by ₹15 per km. For n ≥ 2, the fare is 25 + 15(n - 2) = 15n - 5.\n- **Linear growth**: NCERT Example 9 uses C(d) = 100 + 60d. Every increase of 1 km raises the journey cost by the constant amount ₹60.\n- **Linear decay**: NCERT Example 10 uses h(t) = 3 - 0.5t. Every increase of one month lowers the water height by the constant amount 0.5 m.\n- **Equal intervals matter**: A change is linear only when equal changes in the input produce equal changes in the output.\n\n## Worked example\nQuestion: NCERT Example 8 asks for the auto-rikshaw fare for 10 km when the initial 2 km cost ₹25 and every kilometre thereafter costs ₹15 more. Its Think and Reflect question asks for the distance when the fare is ₹130.\n\nSolution:\n- Step 1: For n ≥ 2, write the fare as 25 + 15(n - 2) = 15n - 5.\n- Step 2: For 10 km, substitute n = 10: 15(10) - 5 = 145.\n- Step 3: For a fare of ₹130, solve 15n - 5 = 130.\n- Step 4: This gives 15n = 135, so n = 9.\n- Final answer: The 10 km fare is ₹145, and a fare of ₹130 corresponds to 9 km.\n\n## Common mistake\nDo not use the rule 15n - 5 for distances below 2 km. The chapter states this formula for n ≥ 2 because the first 2 km have a fixed fare of ₹25.\n\n## Quick check question\nQuestion: NCERT Example 10 gives h(t) = 3 - 0.5t for the water height in metres after t months. What is the height after 5 months?\nAnswer: The height is 0.5 m.\nExplanation: Substitute t = 5: h(5) = 3 - 0.5(5) = 3 - 2.5 = 0.5.\n\n## Summary\n- A linear pattern has a constant difference between consecutive outputs.\n- The square-tile pattern is represented by 2n - 1.\n- Linear growth adds a fixed amount over equal intervals.\n- Linear decay subtracts a fixed amount over equal intervals.\n- An nth-term rule can find either an output or the stage that gives a stated output.\n- Conditions such as n ≥ 2 must be respected when using a model.",
+    "Exam-style problems": "# Exam-Style Problems: Introduction to Linear Polynomials\n\n## What you will learn\nYou will represent a relationship between two variables in the form y = ax + b. You will also determine the values of a and b from two known input-output pairs and interpret what these constants mean in context.\n\n## Simple explanation\nIn y = ax + b, the number a tells how much y changes when x increases by one unit, while b gives the value of y when x = 0. Two known pairs of values provide two equations that can be solved to find a and b.\n\n## Step-by-step breakdown\n- **Linear relationship**: The chapter represents a linear relationship between x and y by y = ax + b.\n- **Connection with a pattern**: For the square-tile pattern, x is the stage number and y is the number of tiles, so y = 2x - 1.\n- **Using two observed values**: Each observed pair (x, y) is substituted into y = ax + b to form an equation in a and b.\n- **Meaning of a**: In a billing problem, a is the additional cost for each extra unit used, such as each GB or each learning module.\n- **Meaning of b**: The constant b is the fixed part of the bill, which remains even when the usage variable is 0.\n- **Checking the model**: After finding a and b, substitute both original pairs to verify that the equation produces the stated outputs.\n\n## Worked example\nQuestion: NCERT Example 11 states that a telecom bill is ₹350 for 10 GB and ₹550 for 20 GB. If y = ax + b, find a, b, and the linear relationship.\n\nSolution:\n- Step 1: Substitute (10, 350): 350 = 10a + b.\n- Step 2: Substitute (20, 550): 550 = 20a + b.\n- Step 3: Subtract the first equation from the second: 200 = 10a, so a = 20.\n- Step 4: Use 350 = 10(20) + b to get b = 150.\n- Final answer: a = 20, b = 150, and the relationship is y = 20x + 150. Here ₹20 is the cost per GB and ₹150 is the fixed monthly fee.\n\n## Common mistake\nDo not treat both numbers in y = ax + b as usage charges. The coefficient a is the change per unit of x, while b is the fixed value when x = 0.\n\n## Quick check question\nQuestion: NCERT Exercise Set 2.5, Question 1 states that a learning-platform bill is ₹400 for 10 modules and ₹500 for 14 modules. Find a and b in y = ax + b.\nAnswer: a = 25 and b = 150, so y = 25x + 150.\nExplanation: The equations are 400 = 10a + b and 500 = 14a + b. Their difference gives 100 = 4a, so a = 25; substituting back gives b = 150.\n\n## Summary\n- A linear relationship can be written as y = ax + b.\n- Two known input-output pairs produce two equations for a and b.\n- The value a is the constant change in y for each unit change in x.\n- The value b is the fixed output when x = 0.\n- Substitution into both original pairs checks the model.\n- Context determines the practical meaning of a and b.",
+    "Revision and recap": "# Revision and Recap: Introduction to Linear Polynomials\n\n## What you will learn\nYou will connect a linear relationship with its straight-line graph. You will interpret slope and y-intercept, compare positive and negative slopes, and recognise when lines are parallel.\n\n## Simple explanation\nA graph turns the equation y = ax + b into a straight line. The coefficient a controls the line's direction and steepness, while b tells where it crosses the y-axis.\n\n## Step-by-step breakdown\n- **Plotting a line**: Two points are enough to draw a linear equation. For y = 2x + 1, NCERT Fig. 2.5 uses A(0, 1) and B(3, 7).\n- **Testing a point**: A point lies on a line only if its coordinates satisfy the equation. For example, (7, 15) lies on y = 2x + 1 because 15 = 2(7) + 1.\n- **Recognising y = ax**: NCERT Example 12 shows that the points (-1, -3), (0, 0), (1, 3), (3, 9), and (4, 12) satisfy y = 3x.\n- **Lines through the origin**: Every equation y = ax has b = 0, so its graph passes through (0, 0).\n- **Slope**: In y = ax + b, a is the slope. A positive slope rises from left to right and represents linear growth; a negative slope falls from left to right and represents linear decay.\n- **Steepness**: For positive a, the line y = ax is steeper than y = x when a > 1 and less steep when 0 < a < 1. The chapter makes the corresponding comparison for y = -ax.\n- **Y-intercept**: The line y = ax + b cuts the y-axis at (0, b). Thus, y = x + 3 has y-intercept 3, while y = 3x - 2 has y-intercept -2.\n- **Parallel lines**: When a is fixed and b changes, the lines have equal slopes and different y-intercepts, so they are parallel. NCERT Example 16 illustrates this with y = 2x - 1, y = 2x + 1, and y = 2x + 5.\n\n## Worked example\nQuestion: NCERT Example 16 compares y = 2x - 1, y = 2x + 1, and y = 2x + 5. What do their graphs show about slope, y-intercept, and parallel lines?\n\nSolution:\n- Step 1: Read the coefficient of x in each equation; every line has slope 2.\n- Step 2: Read the constant terms; the y-intercepts are -1, 1, and 5.\n- Step 3: Equal slopes give the same direction and steepness, while different intercepts shift the lines.\n- Final answer: The three lines are parallel, all have slope 2, and they cut the y-axis at (0, -1), (0, 1), and (0, 5).\n\n## Common mistake\nDo not call b the x-intercept. In y = ax + b, b is the y-intercept because setting x = 0 gives the point (0, b).\n\n## Quick check question\nQuestion: NCERT End-of-Chapter Exercise 7 asks for the slopes and y-intercepts of (i) y = -3x + 4, (ii) 2y = 4x + 7, (iii) 5y = 6x - 10, and (iv) 3y = 6x - 11, and asks whether any lines are parallel.\nAnswer: (i) slope -3, y-intercept 4, point (0, 4); (ii) slope 2, y-intercept 7/2, point (0, 7/2); (iii) slope 6/5, y-intercept -2, point (0, -2); (iv) slope 2, y-intercept -11/3, point (0, -11/3). Lines (ii) and (iv) are parallel.\nExplanation: Rewrite each equation in the form y = ax + b. Lines (ii) and (iv) have the same slope 2 but different y-intercepts, so they are parallel.\n\n## Summary\n- The graph of y = ax + b is a straight line.\n- Two points are enough to draw a line, and every point on it satisfies the equation.\n- The coefficient a is the slope and controls direction and steepness.\n- The constant b is the y-intercept, giving the point (0, b).\n- Positive slope represents linear growth, and negative slope represents linear decay.\n- Equal slopes with different y-intercepts produce parallel lines."
+  }
+}

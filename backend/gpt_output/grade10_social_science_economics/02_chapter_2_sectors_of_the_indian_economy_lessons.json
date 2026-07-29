@@ -1,0 +1,90 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Social Science",
+    "chapter": "Chapter 2: Sectors of the Indian Economy",
+    "central_question": "How can economic activities be classified to understand production, employment, working conditions and the responsibilities of government?",
+    "in_scope_units": [
+      "Sectors of Economic Activities: primary, secondary and tertiary activities and interdependence",
+      "Comparing the Three Sectors: value, final goods, intermediate goods, GDP and GVA",
+      "Historical Change in Sectors: shifts in developed economies",
+      "Primary, Secondary and Tertiary Sectors in India: production and employment trends",
+      "Rising Importance of the Tertiary Sector in Production",
+      "Where Are Most of the People Employed?: underemployment and disguised unemployment",
+      "How to Create More Employment?: infrastructure, services, rural industries and employment guarantee",
+      "Division of Sectors as Organised and Unorganised",
+      "How to Protect Workers in the Unorganised Sector?",
+      "Sectors in Terms of Ownership: Public and Private Sectors"
+    ],
+    "banned_topics": [
+      "Detailed terms of bank credit and collateral",
+      "World Trade Organisation and foreign investment",
+      "Consumer redressal commissions",
+      "Human Development Index methodology"
+    ],
+    "must_include_keywords": [
+      "primary sector",
+      "secondary sector",
+      "tertiary sector",
+      "service sector",
+      "interdependence",
+      "final goods",
+      "intermediate goods",
+      "GDP",
+      "GVA",
+      "double counting",
+      "tertiary-sector growth",
+      "employment",
+      "underemployment",
+      "disguised unemployment",
+      "Laxmi",
+      "irrigation",
+      "rural roads",
+      "MGNREGA 2005",
+      "Viksit Bharat-G RAM G 2025",
+      "organised sector",
+      "unorganised sector",
+      "Kanta",
+      "Kamal",
+      "job security",
+      "provident fund",
+      "public sector",
+      "private sector",
+      "ownership",
+      "public facilities"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The tertiary sector does not contribute to production because it does not manufacture goods.",
+        "correction": "Tertiary activities provide services that support production and also include essential services."
+      },
+      {
+        "claim": "GDP includes the value of all intermediate and final goods separately.",
+        "correction": "GDP counts final goods and services so that intermediate values are not counted repeatedly."
+      },
+      {
+        "claim": "Underemployed workers are not working at all.",
+        "correction": "Underemployed workers may appear employed but work below their productive capacity."
+      },
+      {
+        "claim": "Organised and public sector mean the same thing.",
+        "correction": "Organised–unorganised concerns employment conditions; public–private concerns ownership."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Table 2.1 to establish interdependence among sectors.",
+      "Use the NCERT wheat–flour–biscuits example to explain final and intermediate goods.",
+      "Use NCERT Graphs 1–3 and the Laxmi example to connect production, employment and disguised unemployment.",
+      "Use the NCERT Kanta–Kamal comparison for organised and unorganised employment.",
+      "Use the NCERT public-sector examples of infrastructure, electricity and the Public Distribution System."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with 'EXERCISES', Questions 1–24."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Sectors of the Indian Economy\n\n## What you will learn\nYou will learn how economic activities are classified into primary, secondary and tertiary sectors. You will also understand why these sectors are different but highly interdependent.\n\n## Simple explanation\nEconomic activities either produce natural goods, transform materials into manufactured goods, or provide services. Classification helps us study a complex economy in a clear and useful way.\n\n## Step-by-step breakdown\n- **Primary sector**: Activities directly using natural resources belong here, including agriculture, dairy, fishing, forestry and extraction of minerals and ores.\n- **Secondary sector**: This sector changes natural products into other forms through manufacturing, such as converting cotton into cloth, sugarcane into sugar or earth into bricks.\n- **Tertiary sector**: This sector, also called the service sector, provides services such as transport, storage, communication, banking and trade, and also includes teachers, doctors, lawyers, barbers and information-technology services.\n- **Interdependence**: A sugar mill needs sugarcane from farmers, farmers need manufactured inputs, and all sectors depend on transport and markets.\n- **Criterion of classification**: Primary, secondary and tertiary sectors are classified by the nature of the economic activity, not by ownership or job security.\n\n## Worked example\nQuestion: How does a strike by transporters show that the three sectors are interdependent?\n\nSolution:\n- Step 1: The chapter explains that vegetables and milk from rural areas may not reach urban markets when lorries stop operating, while farmers may be unable to sell their produce.\n- Step 2: Transport is a tertiary activity that links primary production with consumers and other sectors.\n- Final answer: The strike shows that production alone is not enough; services are essential for goods to move, be sold and be consumed.\n\n## Common mistake\nA common mistake is to think that tertiary activities are unproductive because they do not make goods. They support production and also provide essential services.\n\n## Quick check question\nQuestion: Why is dairy placed in the primary sector?\nAnswer: Because milk is obtained through a biological process that directly depends on animals and natural inputs such as fodder.\nExplanation: Primary-sector activities directly use or depend on natural resources and processes.\n\n## Summary\n- Primary activities produce natural goods.\n- Secondary activities manufacture goods.\n- Tertiary activities provide services.\n- The three sectors are strongly interdependent.\n- The nature of activity is the classification criterion.",
+    "Core explanation": "# Core explanation: Sectors of the Indian Economy\n\n## What you will learn\nYou will understand how the output of sectors is measured using value. You will distinguish final goods from intermediate goods and learn the meanings of GDP and GVA.\n\n## Simple explanation\nCars, wheat, computers and services cannot be added as physical quantities. Economists therefore use their monetary values, while counting only final goods and services to avoid counting the same value repeatedly.\n\n## Step-by-step breakdown\n- **Value instead of quantity**: Different goods and services are compared by their value rather than by adding unlike physical units.\n- **Final goods**: Final goods and services are those that reach the final user or consumer.\n- **Intermediate goods**: Intermediate goods are used up in producing final goods. Their value is already included in the final product.\n- **Avoiding double counting**: In the wheat–flour–biscuits example, counting wheat, flour and biscuits separately would count the same embedded value more than once.\n- **Gross Domestic Product**: GDP is the value of all final goods and services produced within a country during a particular year.\n- **Gross Value Added**: GVA measures the contribution of sectors after adjusting for taxes and subsidies.\n- **Historical change**: Developed countries generally shifted from primary to secondary and later to tertiary dominance in production and employment.\n\n## Worked example\nQuestion: Why are only final goods and services counted while estimating total production?\n\nSolution:\n- Step 1: The chapter's biscuit example states that the final value of biscuits already includes the value of wheat, flour, sugar, oil and other intermediate inputs.\n- Step 2: Adding intermediate goods separately would count the same value at several stages.\n- Final answer: Only final goods and services are counted to avoid double counting and to measure the total value created for final use.\n\n## Common mistake\nA common mistake is to define GDP as the value of every good sold. GDP counts final goods and services produced within the country during the year.\n\n## Quick check question\nQuestion: What is an intermediate good?\nAnswer: A good that is used up in producing another good or service.\nExplanation: Its value becomes part of the value of the final product.\n\n## Summary\n- Output is measured through value, not unlike physical quantities.\n- Final goods are counted; intermediate goods are not counted separately.\n- GDP measures final output produced within a country in a year.\n- GVA measures sectoral contribution after taxes and subsidies are adjusted.\n- The importance of sectors changes over time.",
+    "Worked examples": "# Worked examples: Sectors of the Indian Economy\n\n## What you will learn\nYou will examine the rise of the tertiary sector, the mismatch between production and employment, and disguised unemployment. You will also study measures for creating more work.\n\n## Simple explanation\nIndia's tertiary sector became the largest producing sector, but the primary sector continued to employ the most people. This mismatch helps explain underemployment in agriculture.\n\n## Step-by-step breakdown\n- **Rising tertiary production**: Between 1977–78 and 2017–18, production increased in all sectors but rose most in the tertiary sector.\n- **Reasons for service growth**: Basic services, expansion of agriculture and industry, rising incomes, and information and communication technology increased demand for services.\n- **Employment mismatch**: The shift in production was not matched by an equal shift in employment because too few jobs were created in secondary and tertiary activities.\n- **Underemployment**: People are underemployed when they work less than their potential even though they appear to be working.\n- **Disguised unemployment**: In Laxmi's family, some members can leave the farm without reducing output, so their unemployment is hidden.\n- **Creating employment**: Irrigation, cheap credit, rural roads, storage, agro-processing, education, health services, tourism, crafts and IT can generate productive work.\n- **Right to work**: MGNREGA 2005 guaranteed rural employment and unemployment allowance under stated conditions; the chapter notes its replacement in 2025 by Viksit Bharat-G RAM G 2025.\n\n## Worked example\nQuestion: Why does moving two members of Laxmi's family to other work not reduce farm production?\n\nSolution:\n- Step 1: The chapter states that all five family members work on a small unirrigated plot even though their labour effort is divided and not fully used.\n- Step 2: Some workers add little or no extra output because more people are working than necessary.\n- Final answer: Their movement to productive work elsewhere can raise family income without lowering agricultural output, which is the central idea of disguised unemployment.\n\n## Common mistake\nA common mistake is to describe disguised unemployment as complete idleness. The workers appear employed, but their labour is not fully required.\n\n## Quick check question\nQuestion: What does underemployment mean?\nAnswer: It means people are working less than what they are capable of doing.\nExplanation: Their labour and time are not being used to their full productive potential.\n\n## Summary\n- Tertiary-sector growth in production was faster than the shift in employment.\n- Primary-sector employment remained very large.\n- Underemployment can be hidden or disguised.\n- New jobs require investment in agriculture, infrastructure, industry and services.\n- Employment programmes support the right to work.",
+    "Exam-style problems": "# Exam-style problems: Sectors of the Indian Economy\n\n## What you will learn\nYou will compare organised and unorganised employment. You will understand why workers in the unorganised sector need legal protection and economic support.\n\n## Simple explanation\nThe organised–unorganised classification is based on employment conditions and compliance with rules. It is not the same as primary–secondary–tertiary classification.\n\n## Step-by-step breakdown\n- **Organised sector**: Enterprises are registered, employment is regular, rules are followed and workers may receive fixed hours, overtime, paid leave, provident fund, gratuity, medical benefits and pensions.\n- **Kanta's conditions**: Kanta receives a regular salary, allowances, provident fund, paid holidays and an appointment letter.\n- **Unorganised sector**: Small and scattered units often do not follow regulations. Jobs are low-paid, irregular and insecure, with little access to paid leave or other benefits.\n- **Kamal's conditions**: Kamal works long hours as a daily-wage labourer, has no paid leave or appointment letter and can be dismissed at any time.\n- **Vulnerable workers**: Landless labourers, small farmers, artisans, construction workers, street vendors, garment workers, rag pickers and many workers from historically disadvantaged communities are concentrated in the unorganised sector.\n- **Protection and support**: Workers need fair wages, safety, health protection, secure conditions, credit, storage, raw materials and marketing support.\n\n## Worked example\nQuestion: Why is Kanta's job organised while Kamal's job is unorganised?\n\nSolution:\n- Step 1: Kanta has regular terms, documented employment and benefits under rules, whereas Kamal has daily wages, no paid leave, no formal appointment letter and no job security.\n- Step 2: The distinction depends on employment conditions, registration and enforcement of regulations.\n- Final answer: Kanta works in the organised sector; Kamal works in the unorganised sector because his employment is insecure and protections are absent.\n\n## Common mistake\nA common mistake is to assume that all factory jobs are organised. A workplace's registration and actual employment conditions must be examined.\n\n## Quick check question\nQuestion: Name two benefits commonly associated with organised employment.\nAnswer: Paid leave and provident fund.\nExplanation: The chapter also mentions overtime payment, gratuity, medical benefits, safe conditions and pensions.\n\n## Summary\n- Employment conditions distinguish organised from unorganised work.\n- Organised workers usually have documented rights and benefits.\n- Unorganised workers often face low wages, insecurity and weak enforcement.\n- Protection is necessary for economic and social development.",
+    "Revision and recap": "# Revision and recap: Sectors of the Indian Economy\n\n## What you will learn\nYou will learn the public–private classification and revise all three ways of classifying economic activity. You will understand why government undertakes activities that cannot be left only to profit-seeking firms.\n\n## Simple explanation\nOwnership provides another basis of classification. Private activity is generally guided by profit, while the public sector must also provide essential services and support development.\n\n## Step-by-step breakdown\n- **Public sector**: The government owns most assets and is responsible for service delivery, as in railways and the post office.\n- **Private sector**: Private individuals or companies own assets and provide services, as in TISCO and Reliance Industries.\n- **Profit and public purpose**: Private-sector activity is generally guided by profit, but the public sector has responsibilities beyond earning profit.\n- **Large infrastructure**: Roads, bridges, railways, harbours, electricity generation and irrigation require large investment and should be accessible to society.\n- **Supportive role**: Government may subsidise electricity, procure wheat and rice at fair prices, store food and sell it through ration shops.\n- **Human development**: Government has primary responsibility for public facilities such as health, education, safe drinking water, housing, nutrition and support to neglected regions.\n- **Three criteria recap**: Nature of activity gives primary–secondary–tertiary; employment conditions give organised–unorganised; ownership gives public–private.\n\n## Worked example\nQuestion: Why can the provision of basic infrastructure not be judged only by immediate profit?\n\nSolution:\n- Step 1: The chapter explains that facilities such as roads, bridges, railways, harbours, electricity and irrigation require heavy spending and must be available to large numbers of people.\n- Step 2: A private provider may not supply them at a reasonable cost or may charge high user fees.\n- Final answer: Government undertakes such activities because they are essential for society and development even when they do not maximise profit.\n\n## Common mistake\nA common mistake is to classify the public and private sectors by the type of activity. They are classified by ownership of assets and responsibility for service delivery.\n\n## Quick check question\nQuestion: On what basis are public and private sectors distinguished?\nAnswer: On the basis of ownership of assets and responsibility for providing services.\nExplanation: Government ownership indicates the public sector, while private ownership indicates the private sector.\n\n## Summary\n- Public and private sectors are classified by ownership.\n- Government provides infrastructure and essential services.\n- Public spending can support producers and consumers.\n- The chapter uses three different criteria to classify economic activity.\n- Classification helps reveal problems in production, employment and access."
+  }
+}

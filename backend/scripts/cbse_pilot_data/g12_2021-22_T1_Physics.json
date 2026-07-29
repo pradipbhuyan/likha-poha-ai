@@ -1,0 +1,128 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is NOT the property of equipotential surface? (i) They do not cross each other. (ii) The rate of change of potential with distanc e on them is zero. (iii) For a uniform electric field they are conce ntric spheres. (iv) They can be imaginary spheres.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Two point charges +8q and -2q are located at x=0 and x=L respectively. The point on x axis at which net electric field is zero due to these charges is- (i) 8L (ii) 4L (iii) 2 L (iv) L",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "An electric dipole of moment p is placed parallel to the uniform electric field. The amount of work done in rotating the dip ole by 90 0 is- (i) 2pE (ii) pE (iii) pE/2 (iv) Zero",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Three capacitors 2 µF, 3 µF and 6 µF are joined in series with each other. The equivalent capacitance is- (i) 1/2 µF (ii) 1 µF (iii) 2 µF (iv) 11 µF",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Two point charges placed in a medium of dielectric constant 5 are at a distance r between them, experience an electrostat ic force ‘F’. The electrostatic force between them in vacuum at the same distance r will be- (i) 5F (ii) F (iii) F/2 (iv) F/5",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which statement is true for Gauss law- (i) All the charges whether inside or outside the gaussian surface contribute to the electric flux. (ii) Electric flux depends upon the geometry of th e gaussian surface. (iii) Gauss theorem can be applied to non-uniform electric field. (iv) The electric field over the gaussian surface remains continuous and uniform at every point.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A capacitor plates are charged by a battery with ‘V’ volts. After charging battery is disconnected and a dielectric slab with dielectric constant ‘K’ is inserted between its plates, the potential acro ss the plates of a capacitor will become (i) Zero (ii) V/2 (iii) V/K (iv) KV",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The best instrument for accurate measurement of EMF of a cell is- (i) Potentiometer (ii) metre bridge (iii) Voltmeter (iv) ammeter and voltmeter",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "An electric current is passed through a circuit containing two wires of same material, connected in parallel. If the lengt hs and radii of the wires are in the ratio of 3:2 and 2:3, then the ratio of the current passing through the wire will be (i) 2:3 (ii) 3:2 (iii) 8:27 (iv) 27:8",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "By increasing the temperature, the specific resistance of a conductor and a semiconductor- (i) increases for both. (ii) decreases for both. (iii) increases for a conductor and decreases for a semiconductor. (iv) decreases for a conductor and increases for a semiconductor.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "We use alloys for making standard resistors because they have (i) low temperature coefficient of resistivity and high specific resistance (ii) high temperature coefficient of resistivity an d low specific resistance (iii) low temperature coefficient of resistivity an d low specific resistance (iv) high temperature coefficient of resistivity an d high specific resistance",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A constant voltage is applied between the two ends of a uniform metallic wire, heat ‘H’ is developed in it. If ano ther wire of the same material, double the radius and twice the length a s compared to original wire is used then the heat developed in it will be- (i) H/2 (ii) H (iii) 2H (iv) 4H",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the potential difference V applied across a conductor is increased to 2V with its temperature kept constant, free electrons in a conductor (i) r emain the same (ii) become half of its previous value (iii) b e double of its initial value (iv) become zero.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The equivalent resistance (i) 3 ohms (ii) 5.5 ohms (iii) 7.5 ohms (iv) 9.5 ohms Q15 . The SI unit of magnetic field intensity is (i) AmN -1 (ii) NA -1m-1 (iii) NA -2m-2 (iv) NA -1m-2",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

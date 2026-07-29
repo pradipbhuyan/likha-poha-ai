@@ -1,0 +1,91 @@
+[
+  {
+    "question_number": 1,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If ijA a   is a square matrix of order 2 such that1, when 0, when ij i ja i j   , then 2A is",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If A and B are invertible square matrices of the same order, then which of the following is not correct?",
+    "options": [
+      "-1 | A |AB | B |",
+      "  1 1 | |  |B|AB A  ",
+      "  1 1 1AB B A   ",
+      "  1 1 1A B B A     "
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the area of the triangle with vertices 3 ,0 , 3,0 and 0,k is 9 squnits, then the value/s of k will be",
+    "options": [
+      "9",
+      "3",
+      "-9",
+      "6"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If  , if 0 3, if 0 kx xxf x x    is continuous at 0x , then the value of k is",
+    "options": [
+      "−3",
+      "0",
+      "3",
+      "any real number"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The lines   2 3 6r i j k i j k        and   2 6 9 18r i j k i j k        ; (where & are scalars) are",
+    "options": [
+      "coincident",
+      "skew",
+      "intersecting",
+      "parallel Q6.  The degree of the differential equation 322221dy d yisdx dx            ",
+      "4",
+      "32",
+      "2",
+      "Not defined Q7.  The corner points of the bounded feasible region determined by a system of linear constraints are    0, 3 , 1,1and  3,0 . Let      ,Z px qy where  ,   0 .p qThe condition on p and q so that the minimum of Z occurs at  3, 0and  1,1  is",
+      "2p q",
+      "2qp",
+      "3p q",
+      "p q Q8. ABCDis a rhombus whose diagonals intersect at E. Then EA EB EC ED         equals to",
+      "0",
+      "AD ",
+      "2BD ",
+      "2AD  Q9.  For any integer ,nthe value of 2cos x 3  Sin (2n + 1) x dxe is",
+      "-1",
+      "0",
+      "1",
+      "2 Q10. The value of ,  ifA0 2 11 2 0 2 ,where ,2 0x xA x x xx x           is",
+      " 22 1x",
+      "0",
+      " 32 1x",
+      " 22 1x Q11. The feasible region corresponding to the linear constraints of a Linear Programming Problem is given    below.            Which of the following is not a constraint to the given Linear Programming Problem?",
+      "2x y ",
+      "2 10x y ",
+      "1x y ",
+      "1x y "
+    ],
+    "diagram_dependent": false
+  }
+]

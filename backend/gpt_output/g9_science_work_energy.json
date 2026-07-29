@@ -1,0 +1,137 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Science",
+    "chapter": "Work, Energy, and Simple Machines",
+    "central_question": "How can work and energy be used to analyse motion, and how do power and simple machines help us perform tasks more effectively?",
+    "in_scope_units": [
+      "Work Done by a Constant Force: defining scientific work as force multiplied by displacement in the direction of the force and expressing it in joules.",
+      "When Work Done Is Equal to Zero: recognising zero work when force is zero, displacement is zero, or force is perpendicular to displacement.",
+      "Positive and Negative Work Done: deciding the sign of work from the relative directions of force and displacement.",
+      "The Work-Energy Theorem: relating work done on an object or system to the change in its energy.",
+      "Forms of Energy: identifying mechanical, thermal, light, sound, electrical, nuclear and chemical energy and their transformations.",
+      "Mechanical Energy: understanding energy due to the motion or position of an object.",
+      "Kinetic Energy: deriving and using K = 1/2 mv^2 and connecting positive or negative work with changes in speed.",
+      "Potential Energy: understanding stored energy due to deformation or the relative positions of interacting objects.",
+      "Gravitational Potential Energy: investigating height-dependent energy and using U = mgh near the Earth's surface.",
+      "Conservation of Mechanical Energy: following the interchange of kinetic and potential energy in free fall, a pendulum and a slide.",
+      "Power: defining power as the rate of doing work and using P = W/t with the watt as its SI unit.",
+      "Simple Machines: understanding effort, load and mechanical advantage and why machines change force or direction without reducing ideal total work.",
+      "Pulley: comparing fixed and movable pulley arrangements and their mechanical advantage.",
+      "Inclined Plane: relating reduced effort to increased distance and using mechanical advantage = L/h when friction is ignored.",
+      "Lever: identifying fulcrum, effort, load, effort arm and load arm and applying the balancing principle.",
+      "Classes of Levers: classifying levers according to the relative positions of effort, fulcrum and load.",
+      "Bridging Science and Society and The Journey Beyond: connecting energy conversion to a gharat or panchakki and exploring elastic energy, simple-machine models and simulations."
+    ],
+    "banned_topics": [
+      "Detailed calculation of work for an arbitrary angle using W = Fs cos theta, which is reserved for higher grades.",
+      "Detailed gravitational potential energy far from the Earth's surface or orbital-energy formulas.",
+      "Formal torque, rotational dynamics and angular-momentum calculations beyond the lever balance relation used in this chapter.",
+      "Machine efficiency, velocity ratio and frictional-loss formulas not introduced in the chapter.",
+      "Detailed thermodynamics, electrical-circuit theory, nuclear physics or cosmology beyond the brief energy-form examples in the source chapter.",
+      "Treating perpetual-motion machines as physically possible devices."
+    ],
+    "must_include_keywords": [
+      "work",
+      "constant force",
+      "displacement",
+      "joule",
+      "force-displacement graph",
+      "zero work",
+      "positive work",
+      "negative work",
+      "energy",
+      "work-energy theorem",
+      "energy transformation",
+      "mechanical energy",
+      "kinetic energy",
+      "K = 1/2 mv^2",
+      "potential energy",
+      "deformation",
+      "relative positions",
+      "gravitational potential energy",
+      "U = mgh",
+      "conservation of mechanical energy",
+      "friction",
+      "air resistance",
+      "power",
+      "P = W/t",
+      "watt",
+      "simple machine",
+      "effort",
+      "load",
+      "mechanical advantage",
+      "pulley",
+      "fixed pulley",
+      "movable pulley",
+      "inclined plane",
+      "lever",
+      "fulcrum",
+      "effort arm",
+      "load arm",
+      "classes of levers",
+      "gharat",
+      "panchakki"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Applying a force always means that scientific work is done.",
+        "correction": "Work is done on an object only when the force produces displacement in the direction of the force; pushing a rigid wall produces zero work on the wall because its displacement is zero."
+      },
+      {
+        "claim": "A person carrying a box horizontally does positive work on the box because an upward force is being applied.",
+        "correction": "The upward force is perpendicular to the horizontal displacement, so the work done by that upward force on the box is zero."
+      },
+      {
+        "claim": "Negative work means that no work is done.",
+        "correction": "Negative work is real work done by a force opposite to displacement and it reduces the object's energy, as when a goalkeeper stops a ball."
+      },
+      {
+        "claim": "Kinetic energy is directly proportional to velocity.",
+        "correction": "Kinetic energy is proportional to the square of velocity, K = 1/2 mv^2; doubling velocity makes kinetic energy four times as large."
+      },
+      {
+        "claim": "A motionless stretched rubber band has no energy.",
+        "correction": "Although its kinetic energy is zero, the stretched band stores potential energy because of its deformation."
+      },
+      {
+        "claim": "Mechanical energy is conserved in every real motion without qualification.",
+        "correction": "Mechanical energy remains constant when no other external forces act; friction and air resistance transfer mechanical energy to other forms and cause real pendulums and machines to slow down."
+      },
+      {
+        "claim": "Power and work are the same physical quantity.",
+        "correction": "Work measures energy transferred, while power measures how quickly work is done: P = W/t."
+      },
+      {
+        "claim": "A fixed pulley reduces the magnitude of the effort needed.",
+        "correction": "An ideal fixed pulley only changes the direction of the effort; its load and effort are equal and its mechanical advantage is 1."
+      },
+      {
+        "claim": "An inclined plane reduces the total ideal work required to reach a given height.",
+        "correction": "It reduces the force by increasing the distance over which the force acts; ignoring friction, the total work remains equal to the gain in potential energy."
+      },
+      {
+        "claim": "A machine creates energy when it multiplies force.",
+        "correction": "Machines do not create energy; ignoring friction, the work put in equals the useful work done on the load."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Example 7.2 to calculate negative work by the goalkeeper and establish the sign convention.",
+      "Use NCERT Example 7.3 to connect collisions, positive and negative work, and energy transfer in a carrom shot.",
+      "Move to NCERT Example 7.5 to calculate kinetic energy and practise converting km h^-1 to m s^-1.",
+      "Use NCERT Activity 7.1 and Example 7.7 to connect greater height with greater gravitational potential energy and apply U = mgh.",
+      "Use NCERT Activity 7.2 and Example 7.8 to show conservation of mechanical energy in a pendulum and on a frictionless slide.",
+      "Use NCERT Example 7.10 to distinguish work from power through the time taken to lift a load.",
+      "Use NCERT Activity 7.3 and Example 7.12 to develop the force-distance trade-off and mechanical advantage of an inclined plane.",
+      "Finish with NCERT Activity 7.5 and Example 7.13 to apply the lever balance relation to a beam balance and seesaw."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section 'Revise, Reflect, Refine' contains Questions 1-15, followed by the practical extension tasks in 'The Journey Beyond'."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Work, Energy, and Simple Machines\n\n## What you will learn\nYou will learn the scientific meaning of work and how it differs from everyday usage. You will identify zero, positive and negative work and connect work with changes in energy through the work-energy theorem.\n\n## Simple explanation\nIn science, effort alone is not enough for work to be done on an object. A force must cause displacement in the direction of that force. The sign of work tells us whether the force adds energy to the object or takes energy away from it.\n\n## Step-by-step breakdown\n- **Work done by a constant force**: When a constant force `F` moves an object through displacement `s` in the direction of the force, the work done is `W = F × s`.\n- **SI unit of work**: Work is measured in joules. `1 J = 1 N × 1 m = 1 kg m^2 s^-2`.\n- **Area under a force-displacement graph**: Work equals the area under the force-displacement graph. In Fig. 7.4, a force of 10 N acting through 1 m does 10 J of work.\n- **Zero work**: Work is zero when the force is zero, when displacement is zero, or when the force is perpendicular to displacement. Pushing a rigid wall and carrying a box horizontally with an upward supporting force are examples.\n- **Positive work**: Work is positive when force and displacement are in the same direction, as when a wheelchair is pushed forward.\n- **Negative work**: Work is negative when force and displacement are in opposite directions, as when a goalkeeper stops a moving ball.\n- **Energy and the work-energy theorem**: Energy is the capacity to do work. Work done on an object or system appears as a change in its energy: `work done = change in energy`.\n\n## Worked example\nQuestion: In NCERT Example 7.2, a goalkeeper applies a force of 200 N while her hand and the ball move back by 15 cm as the ball is stopped. How much work does the goalkeeper do on the ball?\n\nSolution:\n- Step 1: Convert the displacement: `15 cm = 0.15 m`.\n- Step 2: The goalkeeper's force is opposite to the ball's displacement, so take the displacement in the force direction as `-0.15 m`.\n- Step 3: Use `W = F × s = 200 N × (-0.15 m)`.\n- Final answer: The work done by the goalkeeper on the ball is `-30 J`.\n\n## Common mistake\nA student may say that pushing a wall involves work on the wall because the person becomes tired. The person uses internal body energy, but the work done on the wall is zero because the wall has no displacement.\n\n## Quick check question\nQuestion: NCERT Pause and Ponder 1 asks whether a weightlifter holding a barbell steady does work on the barbell. What is the answer?\nAnswer: The work done by the weightlifter on the barbell is zero while the barbell is held steady.\nExplanation: The weightlifter applies an upward force, but the barbell's displacement is zero, so `W = F × 0 = 0`.\n\n## Summary\n- Scientific work requires both force and displacement in the force direction.\n- Work is measured in joules and can be found from a force-displacement graph.\n- Work can be zero, positive or negative.\n- Positive work increases energy, while negative work decreases energy.\n- The work-energy theorem states that work done equals the change in energy.",
+    "Core explanation": "# Core Explanation: Work, Energy, and Simple Machines\n\n## What you will learn\nYou will examine different forms of energy and focus on mechanical energy. You will learn the expressions for kinetic energy and gravitational potential energy and understand how energy can be stored through motion, deformation or relative position.\n\n## Simple explanation\nEnergy appears in many forms and can change from one form to another. Mechanical energy is especially useful for studying motion because it includes kinetic energy due to motion and potential energy stored because of shape or position.\n\n## Step-by-step breakdown\n- **Forms of energy**: The chapter identifies mechanical, thermal, light, sound, electrical, nuclear and chemical energy.\n- **Energy transformation**: Electrical energy can become light energy in a bulb or thermal energy in a water heater; chemical energy from food can become mechanical energy in muscles; a ringing bell changes mechanical energy into sound energy.\n- **Mechanical energy**: Mechanical energy is energy due to the motion or position of an object.\n- **Kinetic energy**: The energy of motion is kinetic energy. A motionless object is taken to have zero kinetic energy.\n- **Deriving kinetic energy**: Using `v^2 = u^2 + 2as`, `F = ma` and `W = F × s`, the work done is `W = 1/2 m(v^2 - u^2)`. For an object starting from rest, `K = 1/2 mv^2`.\n- **Effect of speed**: Kinetic energy depends on the square of speed. If speed doubles, kinetic energy becomes four times the original value.\n- **Potential energy**: Potential energy is stored because of deformation or because interacting objects have particular relative positions. A stretched band, compressed spring, separated magnets, separated electric charges and an Earth-ball system can store potential energy.\n- **Gravitational potential energy**: Near the Earth's surface, lifting mass `m` through height `h` requires work `mgh`, so its gravitational potential energy is `U = mgh`.\n- **Evidence from Activity 7.1**: A ball dropped from 2 m makes a deeper depression in sand than one dropped from about 1 m, showing that greater height gives greater gravitational potential energy.\n\n## Worked example\nQuestion: In NCERT Example 7.5, a cricket ball of mass 0.2 kg is delivered at 154.8 km h^-1, which is 43 m s^-1. Calculate its kinetic energy.\n\nSolution:\n- Step 1: Use `K = 1/2 mv^2`.\n- Step 2: Substitute `m = 0.2 kg` and `v = 43 m s^-1`.\n- Step 3: `K = 1/2 × 0.2 × 43^2`.\n- Final answer: The kinetic energy of the ball is `184.9 J`.\n\n## Common mistake\nA motionless stretched rubber band is sometimes said to have no energy. Its kinetic energy is zero, but it stores potential energy because work was done to deform it.\n\n## Quick check question\nQuestion: NCERT Pause and Ponder 4 states that objects A and B have masses `m` and `4m` but the same kinetic energy. What is the ratio of the magnitudes of their velocities?\nAnswer: The velocity ratio is `v_A : v_B = 2 : 1`.\nExplanation: Equal kinetic energies give `1/2 m v_A^2 = 1/2 (4m) v_B^2`, so `v_A^2 = 4v_B^2` and therefore `v_A = 2v_B`.\n\n## Summary\n- Energy can change among mechanical, thermal, light, sound, electrical, nuclear and chemical forms.\n- Kinetic energy is `K = 1/2 mv^2` and depends on the square of speed.\n- Potential energy can be stored through deformation or relative position.\n- Near the Earth's surface, gravitational potential energy is `U = mgh`.\n- Work done on an object or system changes its energy.",
+    "Worked examples": "# Worked Examples: Work, Energy, and Simple Machines\n\n## What you will learn\nYou will use conservation of mechanical energy to analyse free fall, a pendulum and a slide. You will also see how friction or another opposing force changes mechanical energy and how gravitational potential energy depends on height rather than the path taken.\n\n## Simple explanation\nKinetic energy and potential energy can change into each other. When only gravity acts, their sum remains constant. In real systems, friction and air resistance transfer some mechanical energy to other forms, so the moving object does not return to exactly the same height.\n\n## Step-by-step breakdown\n- **Mechanical energy**: Mechanical energy is the sum `K + U`.\n- **Free fall**: At height `h`, a dropped object begins with potential energy `mgh` and zero kinetic energy. As it falls, potential energy decreases by exactly the amount that kinetic energy increases when no other external force acts.\n- **Conservation statement**: Mechanical energy remains constant during motion under gravity if no other external forces act.\n- **Pendulum in Activity 7.2**: At extreme point P, the bob has potential energy and zero kinetic energy. At lowest point Q, its potential energy is taken as zero and its kinetic energy is greatest. At extreme point R, it again has potential energy and zero kinetic energy.\n- **Real pendulum**: Friction at the support and air resistance cause the pendulum to lose mechanical energy and eventually stop.\n- **Slide in Example 7.8**: Neglecting friction, `mgh = 1/2 mv^2`, giving `v = sqrt(2gh)`. The final speed depends on the vertical height, not on the child's mass or the slide's shape.\n- **Escape ramp in Example 7.9**: The truck's initial kinetic energy is reduced by the gain in potential energy and by negative work done by sand. This gives a minimum ramp length of 20 m for the stated data.\n- **Path and potential energy**: The gain in gravitational potential energy depends on mass, gravitational acceleration and vertical height, not on whether the object travels straight up or follows stairs.\n\n## Worked example\nQuestion: In NCERT Example 7.8, a child starts from rest at the top of a slide of vertical height `h`. Neglecting friction, find the child's speed at the bottom.\n\nSolution:\n- Step 1: At the top, the child's gravitational potential energy is `mgh` and the kinetic energy is zero.\n- Step 2: At the bottom, take the potential energy as zero and the kinetic energy as `1/2 mv^2`.\n- Step 3: By conservation of mechanical energy, `mgh = 1/2 mv^2`.\n- Step 4: Cancel `m` and solve: `v^2 = 2gh`.\n- Final answer: The speed at the bottom is `v = sqrt(2gh)`; it is independent of the child's mass and the shape of the slide when friction is neglected.\n\n## Common mistake\nIt is incorrect to apply conservation of mechanical energy without checking for friction or air resistance. When these forces act, mechanical energy decreases because energy is transferred to other forms.\n\n## Quick check question\nQuestion: NCERT Revise, Reflect, Refine Question 5 gives `m = 50 kg`, `g = 10 m s^-2` and building height `h = 72.5 m`. What is the gain in potential energy by elevator and by staircase, and what does this show?\nAnswer: The gain is `mgh = 50 × 10 × 72.5 = 36,250 J` by both routes.\nExplanation: Both routes end at the same vertical height, so the gain in gravitational potential energy is the same and does not depend on the path taken.\n\n## Summary\n- Mechanical energy is the sum of kinetic and potential energy.\n- In ideal motion under gravity, lost potential energy becomes kinetic energy.\n- A pendulum continually exchanges potential and kinetic energy.\n- Friction and air resistance reduce mechanical energy in real systems.\n- Gravitational potential-energy change depends on vertical height, not path.",
+    "Exam-style problems": "# Exam-Style Problems: Work, Energy, and Simple Machines\n\n## What you will learn\nYou will distinguish power from work and apply the idea of mechanical advantage. You will analyse fixed and movable pulleys and derive why a longer inclined plane requires less effort while leaving ideal total work unchanged.\n\n## Simple explanation\nTwo people can do the same work but use different amounts of time; the one who finishes faster has greater power. Simple machines make tasks more convenient by changing the size or direction of a force, but they do not create energy or reduce the ideal work needed.\n\n## Step-by-step breakdown\n- **Power**: Average power is the rate of doing work: `P = W/t`.\n- **SI unit of power**: The watt is the SI unit. `1 W = 1 J s^-1`. The chapter also notes that `1 horsepower = 746 W`.\n- **Same work, different power**: Doing the same work in less time requires greater power.\n- **Simple machine**: A simple machine changes the magnitude or direction of the force needed for a task.\n- **Effort and load**: Effort is the force applied to a machine; load is the force that must be overcome.\n- **Mechanical advantage**: `mechanical advantage = load/effort`.\n- **Fixed pulley**: A fixed pulley changes the direction of effort but does not reduce its magnitude, so its mechanical advantage is 1.\n- **Movable pulley system**: A movable pulley or system of pulleys can have mechanical advantage greater than 1 and lift a heavier load with smaller effort.\n- **Inclined plane in Activity 7.3**: Making the plank less steep decreases the required force but increases the distance through which the force acts.\n- **Inclined-plane relation**: Ignoring friction and moving at constant speed, `F' × L = mgh`, so `mechanical advantage = mg/F' = L/h`.\n- **Energy rule for machines**: Ignoring friction, input work equals useful work on the load. Machines make work easier to perform but do not create energy.\n\n## Worked example\nQuestion: In NCERT Example 7.12, a ramp raises an object over a 30 cm step. Its horizontal width is 40 cm, so its length is 50 cm. What is its mechanical advantage?\n\nSolution:\n- Step 1: Use the inclined-plane relation `mechanical advantage = L/h`.\n- Step 2: Substitute `L = 50 cm` and `h = 30 cm`.\n- Step 3: `mechanical advantage = 50/30`.\n- Final answer: The mechanical advantage is approximately `1.67`.\n\n## Common mistake\nA fixed pulley is often described as reducing effort. In the ideal case it only changes the direction of the effort; a movable pulley arrangement is needed for mechanical advantage greater than 1.\n\n## Quick check question\nQuestion: NCERT Revise, Reflect, Refine Question 7 asks about raising a flag with a pulley. What determines the energy required, does raising it faster change the work, and what happens to power if the speed is doubled?\nAnswer: The required energy depends on the flag's mass, gravitational acceleration and vertical height. Raising it faster does not change the ideal work, but doubling the raising speed halves the time and therefore doubles the power requirement.\nExplanation: The work is the gain in potential energy `mgh`, which is independent of time. Since `P = W/t`, the same work in half the time requires twice the power.\n\n## Summary\n- Power measures how quickly work is done.\n- The watt is equal to one joule per second.\n- Mechanical advantage is the ratio of load to effort.\n- A fixed pulley changes direction; a movable pulley can reduce effort.\n- A longer inclined plane reduces force by increasing distance.\n- Ideal machines conserve work and do not create energy.",
+    "Revision and recap": "# Revision and Recap: Work, Energy, and Simple Machines\n\n## What you will learn\nYou will consolidate the lever principle, the three classes of levers and the chapter's main energy ideas. You will also connect the concepts to a traditional watermill and to practical investigations suggested at the end of the chapter.\n\n## Simple explanation\nA lever helps move a load by allowing a smaller effort to act through a larger distance. Its usefulness depends on the positions of effort, fulcrum and load. The same energy principles that explain levers also explain pulleys, ramps, pendulums, watermills and many everyday machines.\n\n## Step-by-step breakdown\n- **Lever**: A lever is a rigid bar that rotates about a fixed point called the fulcrum.\n- **Main parts**: The force applied is the effort, the force overcome is the load, the effort arm is the distance from effort to fulcrum, and the load arm is the distance from load to fulcrum.\n- **Work transfer through a lever**: The smaller effort moves through a larger distance while the load moves through a smaller distance, giving `F1 × d1 = F2 × d2` in the ideal case.\n- **Balance condition**: A lever balances when `effort × effort arm = load × load arm`.\n- **Mechanical advantage of a lever**: `mechanical advantage = load/effort = effort arm/load arm`. Increasing the effort arm reduces the effort needed for the same load.\n- **Class I lever**: The fulcrum is between load and effort; examples listed include scissors, crowbar, pliers, balance scale and seesaw.\n- **Class II lever**: The load is between fulcrum and effort; examples include a lemon squeezer, wheelbarrow and bottle opener.\n- **Class III lever**: The effort is between fulcrum and load; examples include tweezers, broom, hammer and oar.\n- **Machines and energy**: Real machines slow down because friction and other resistive effects transfer mechanical energy to other forms. A perpetual-motion machine cannot keep doing useful work forever without an energy supply.\n- **Watermill connection**: In a Himalayan gharat or panchakki, water's potential energy becomes kinetic energy, rotates a wheel and drives a grinding stone. The same broad conversion is used when stored water helps generate electricity.\n- **Journey Beyond**: The chapter suggests testing elastic potential energy with a pen refill and rubber band, building simple-machine models, and using simulations to vary mass, height and friction. It briefly mentions dark energy only as an open scientific idea, not as part of the chapter's calculations.\n\n## Worked example\nQuestion: In NCERT Example 7.13, a seesaw has fulcrum C, seats A and E at 2 m from C, and seats B and D at 1 m from C. Where should children of masses 15 kg and 30 kg sit to balance it?\n\nSolution:\n- Step 1: Place the 15 kg child on seat A, 2 m from the fulcrum.\n- Step 2: Use the balance condition: `15 kg × 2 m = 30 kg × L`.\n- Step 3: Solve to get `L = 1 m`.\n- Final answer: The 30 kg child should sit on seat D, 1 m from the fulcrum on the opposite side.\n\n## Common mistake\nIncreasing the effort arm is sometimes thought to increase the effort needed. It actually reduces the effort required for the same load because the effort acts at a greater distance from the fulcrum.\n\n## Quick check question\nQuestion: NCERT Revise, Reflect, Refine Question 9 states that an adult weighs twice as much as a child and the seesaw is balanced. How must their distances from the fulcrum compare?\nAnswer: The child must sit twice as far from the fulcrum as the adult, on the opposite side.\nExplanation: Balance requires `child weight × child distance = adult weight × adult distance`. If the adult's weight is twice the child's, the child's distance must be twice the adult's distance.\n\n## Summary\n- A lever rotates about a fulcrum and uses different arm lengths to change force.\n- A balanced lever satisfies effort × effort arm = load × load arm.\n- Lever mechanical advantage equals effort arm divided by load arm.\n- Lever classes depend on which of fulcrum, load or effort lies between the other two.\n- Machines transfer energy rather than create it.\n- The chapter connects these ideas to watermills, model-building and energy simulations."
+  }
+}

@@ -1,0 +1,236 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Define Kraft temperature. 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The electronic configuration of a transition element in +3 oxidation state is [Ar]3d7. Find out its atomic number.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Draw the structure of 4-tertbutyl-3-iodoheptane.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Give the equation of reaction for the preparation of phenol from cumene. 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Name the type of semiconductor obtained when silicon is doped with boron.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "The two complexes of nickel, [Ni(CN)4]2- and [Ni(CO)4], have different structures but possess same magnetic behaviour. Explain. OR A chloride of fourth group cation in qualitative analysis gives a green coloured complex [A] in aqueous solution which when treated with ethane –1, 2 – diamine (en) gives pale - yellow solution [B] which on subsequent addition of ethane –1, 2 – diamine turns to blue/purple [C] and finally to violet [D]. Write the structures of complexes [A], [B], [C] and [D].",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Account for the following : (i) XeF2 is linear molecule without a bend. (ii) The electron gain enthalpy with negative sign for fluorine is less than that of chlorine, still fluorine is a stronger oxidizing agent than chlorine.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Derive the relationship between relative lowering of vapour pressure and mole fraction of the volatile liquid.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "After 24 hrs, only 0.125 gm out of the initial quantity of 1 gm of a radioactive isotope remains behind. What is its half life period?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Write the IUPAC names of the following:",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The edge length of a unit cell of a metal having molecular mass 75 g/mol is 5 A◦ which crystallises in a cubic lattice. If the density is 2g/cc, then find the radius of the metal atom.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(i) A mixture of X and Y was loaded in the column of silica. It was eluted by alcohol water mixture. Compound Y eluted in preference to compound X. Compare the extent of adsorption of X and Y on column. (ii) Why copper matte is put in silica lined converter? Write reactions involved (iii)Name the method used for the refining of Zr.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(i) Complete the following chemical equations. (a) NH4Cl (aq.)+ NaNO2 (aq. ) → (b) P4 + 3NaOH + 3H2O→ (ii) Why is Ka2 << Ka1 for H2SO4 in water?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Write the correct formulae for the following coordination compounds: (i) CrCl3.6H2O (violet with 3 chloride ions precipitated as AgCl) (ii) CrCl3.6H2O (light green colour, with 2 chloride ions precipitated as AgCl ) (iii)CrCl3.6H2O (dark green colour, with 1 chloride ion precipitated as AgCl )",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Give reasons for the following observations: (i) p-dichlorobenzene has higher melting point than those of o and m –isomers. (ii) Haloarenes are less reactive than haloalkanes towards nucleophillic substitution reaction. (iii) The treatment of alkyl chloride with aqueous KOH leads to the formation of alcohol but in the presence of alcoholic KOH, alkene is the major product,",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(i) Why does leather get hardened after tanning? (ii) On the basis of Hardy-Schulze rule explain why the coagulating power of phosphate is higher than chloride. (iii)Do the vital functions of the body such as digestion get affected during fever? Explain your answer.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Calculate the mass of a non-volatile solute (molar mass40 g/mol) which should be dissolved in 114 g octane to reduce its vapour pressure to 80%. OR At 300 K, 36 g of glucose, C 6H12O6 present per litre in its solution has an osmotic pressure of 4.98 bar. If the osmotic pressure of another glucose solution is 1.52 bar at the same temperature, calculate the concentration of the other solution.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Carry out the following conversions : i) Phenol to benzoquinone. ii) Propanone to 2-Methylpropan-2-ol. iii) Propene to propan-2-ol.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(i) Illustrate the following reactions: a) Hoffmann bromamide degradation reaction. b) Coupling reaction. (ii) Write a chemical test to distinguish between aniline and methylamine.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(i) Name the common types of secondary structure of proteins and give one point of difference. (ii) Give one structural difference between amylose and amylopectin",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Observe the graph in diagram and answer the following questions. 3 (i) If slope is equal to -2.0x10-6 sec-1, what will be the value of rate constant? (ii) How does the half-life of zero order reaction relate to its rate constant?",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 22,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(i) Classify the following as addition and condensation polymers: Terylene, Bakelite, Polyvinyl chloride, Polythene. (ii) Explain the difference between Buna – N and Buna – S.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Ali’s brother likes taking medicines. He sometimes even takes cough syrups even when he is not ill. One such day, he took cough syrup when he was healthy. After some time he started feeling nausea, headache and his body started itching. A li’s father did not take him to the doctor and wanted to give medicine on his own. Ali insisted that his father should not give medicine to his brother on his own but should take him to a doctor. After reading the above passage, answer the following questions: (i) Mention the values shown by Ali. (ii) Why did his body start itching and what kind of me dicine will doctor prescribe him? (iii) Why medicines should not be taken without consulting doctor? (iv) Give one point of difference between agonist and antagonist.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(i) State the relationship amongst cell constant of a cell, resistance of the solution in the cell and conductivity of the solution. How is molar conductivity of a solution related to conductivity of its solution? (ii) A voltaic cell is set up at 25◦C with the following half cell; Al / Al 3+ (0.001 M) and Ni /Ni 2+ (0.50 M) Calculate the cell voltage. [ E◦ Ni2+/Ni = - 0.25V, E◦Al3+/Al = -1.66V] OR (i) Calculate the potential of hydrogen electrode in conta ct with a solution whose pH is 10. (ii) State Faraday’s laws of electrolysis. How much charge in terms of Faraday is required for reduction of 1 mol of Cr2O72- to Cr 3+ ?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(i) Is the variability in oxidation number of transition elements different from that of non – transition elements? Illustrate with examples. (ii) Give reasons: (a) d- block elements exhibit more oxidation states than f-block elements. (b) Orange solution of potassium dichromate turns yellow on adding sodium hydroxide to it. (c) Zirconium (Z= 40) and Hafnium (Z = 72) have almost similar atomic radii. OR (i) Describe the preparation of potassium permanganate from pyrolusite ore. Write balanced chemical equation for one reaction to show the oxidizing nature of potassium permanganate. (ii) Draw the structures of chromate and dichromate ions.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(i) A ketone A which undergoes haloform reaction gives compound B on reduction. B on heating with sulphuric acid gives compound C, which forms mono -ozonide D. The compound D on hydrolysis in presence of zinc dust gives only acetaldehyde. Write the structures and IUPAC names of A, B and C. Write down the reactions involved. (ii) Predict the products formed when cyclohexanecarbaldehyde reacts with following reagents. (a) PhMgBr and then H3O+. (b) Tollens’ reagent. OR (i) Complete each synthesis by giving missing starting material, reagent or products: O + OH NH2(a) H + CH3 (b) O OH O OH CH2 O H O (c) (d) (e) KMnO4 KOH, heat SOCl2  MARKING SCHEME",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

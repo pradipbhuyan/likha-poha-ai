@@ -1,0 +1,137 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2023-24
+Subject: Business Studies
+Source Subject Code: BusinessStudies
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/BusinessStudies-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/BusinessStudies-MS.pdf
+Total Questions: 33
+======================================================================
+
+TASK: For each question below, provide the answer in the EXACT JSON format shown.
+
+OUTPUT FORMAT (return a JSON array):
+[{
+  "question_number": <integer>,
+  "question_text": "<copy from input>",
+  "question_type": "<copy from input>",
+  "options": [<copy from input>],
+  "answer_text": "<for mcq/assertion_reason: exact option text; for others: complete answer>",
+  "answer_explanation": "<2-4 sentence explanation based on CBSE curriculum>"
+}, ...]
+
+IMPORTANT RULES:
+- For MCQ/assertion_reason: answer_text MUST be the EXACT text of one of the options
+- For short_answer/long_answer/case_study: answer_text = complete answer per marking scheme
+- Diagram-dependent questions: use NEEDS_MANUAL_REVIEW_diagram_dependent if no text alt exists
+- Official Marking Scheme PDF: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/BusinessStudies-MS.pdf
+
+======================================================================
+
+QUESTIONS:
+
+Q1 [mcq, 1 mark(s), Section A]
+This question paper contains 34 questions.
+
+Q10 [assertion_reason, 1 mark(s), Section A]
+Read the following statements: Assertion
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q11 [mcq, 1 mark(s), Section A]
+Concentration of decision making functions at the apex of management hierarchy is called __________ a) Decentralisation. b) Delegation c) Organisational structure. d) Centralisation
+
+Q12 [mcq, 1 mark(s), Section A]
+Some employees have been assigned the job of measuring the output in an objective and reliable way. They are applying different techniques for achieving this aim. Some of these are personal-observation, sample-checking etc. They are also keeping the units of measurement same as that of the units in the standards. Name the step of ‘Controlling process applicable in the above paragraph. a) Analysing deviations b) Comparing actual performance with standards. c) Establishing standards. d) Measurement of actual performance
+
+Q13 [mcq, 1 mark(s), Section A]
+Statement I: For products requiring long term storage like agricultural products, the warehouses are located near to the market. Statement II: Higher the level of inventory, higher will be the level of service to customers but the cost of carrying the inventory will also be high. Choose the correct option from the following: a) Statement I is true and II is false b) Statement II is true and I is false c) Both the statements are true d) Both the statements are false
+
+Q14 [mcq, 1 mark(s), Section A]
+Mr. Vivek is working as the General Manager of Oshin Hotels Ltd. Mr. Vivek observed that Government was taking a special interest in the Tourism industry as this sector is an important source of foreign exchange and employment promotion. On the basis of this news, the company decided to set up hotels at several tourist places. Oshin Hotels Ltd. established 50 hotels before other companies considered this issue. Very soon, this brand Oshin Hotels Ltd. became well known in the market. Identify the importance of business environment described here. a) It enables the firm to identify opportunities and getting the first mover advantage. b) It helps the firm to identify threats and early warning signals. c) It helps in tapping useful resources. d) It helps in improving performance.
+
+Q15 [mcq, 1 mark(s), Section A]
+Name the function of management that acts as a means for translating plans into action. a) Planning b) Directing c) Organising d) Controlling
+
+Q16 [mcq, 1 mark(s), Section A]
+STATEMENT I: Electronic holdings can be converted into physical certificates with the process of dematerialisation. STATEMENT II: There is no danger of theft, loss or forgery of share certificates in dematerialisation. Choose the correct option from the following: a) Statement I is true and II is false b) Statement II is true and I is false c) Both the statements are true d) Both the statements are false
+
+Q17 [mcq, 1 mark(s), Section A]
+‘Pace.’ is a reputed Chartered Accountant firm which renders services to big MNC’s. The Chartered Accountants of the firm are required to travel to Delhi and NCR for which they use company’s cars. The firm decided to convert its Petrol cars to Electric cars in order to improve the quality of life of people. Identify the dimensions of business environment. a) Political and Legal environment b) Legal and Social environment c) Technological and Political environment d) Social and Technological Environment
+
+Q18 [mcq, 1 mark(s), Section A]
+Match the following tools of promotion with their explanation and choose the correct option A. It is undertaken by some identified person /company who makes efforts and bears the cost of it. 1 Personal selling B. It plays an important role at the awareness stage and develops product preferences with the aim of making sale. 2 Sales Promotion C. It helps in managing public opinion and company’s relation with the public on regular basis. 3 Advertising D. It uses tools specifically designed to promote to customers, middlemen and to salespersons. 4 Public Relations a) A (3), B (1), C (4), D (2) b) A (1), B (3), C (4), D (2) c) A (2), B (3), C (4), D(1) d) A (2), B (4), C (1), D (3)
+
+Q19 [mcq, 1 mark(s), Section A]
+From the following which is not a relevant feature of management as science: a) Principles are based on the basis of experimentation b) Systematized body of knowledge c) Based on practice and creativity d) Universal Validity
+
+Q2 [mcq, 1 mark(s), Section A]
+Marks are indicated against each question.
+
+Q20 [mcq, 1 mark(s), Section A]
+The aim of demonetisation was not to____________ a) Curb corruption b) Reduce the prices of real estate c) Withhold the accumulation of black money generated by undeclared income d) Counterfeit the use of high denomination notes for illegal activities
+
+Q21 [short_answer, 3 mark(s), Section A]
+Captcha Ltd. is a construction company in which all the employees learn various ways of dealing with diverse situations from their seniors. Company provides financial as well as non-financial incentives. This helps the employees to grow and develop their abilities. The organisation behaves as a responsible constituent of society and always creates good quality products. It has a positive image in the market. The training modules are excellent and the employees always try to find unique ways of providing solutions in the context of rapidly changing business environment. This has helped the organisation to adjust smoothly. Identify and state three points of importance of management being highlighted here.
+
+Q22 [short_answer, 3 mark(s), Section A]
+State any three reasons as to why controlling is regarded as an indispensable function of management. OR Enumerate any three advantages of Management by Exception which is used by manager in analysing deviations.
+
+Q23 [short_answer, 3 mark(s), Section A]
+Resolutions Pvt. Ltd. is a publishing company. Its book on Business Studies for class XII is in great demand. As a result, the employees in the marketing department are always racing against time as they have to work overtime and on holidays as well to cater to the demand. The work stress has led to dissatisfaction among the employees of the marketing department. 1. Name and explain the step of staffing process which has not been performed properly. 2. Also, explain the immediate next step in the process of staffing.
+
+Q24 [short_answer, 3 mark(s), Section A]
+State any three functions of Stock Exchange. OR State the first three steps involved in the screen-based trading for buying and selling of securities.
+
+Q25 [case_study, 4 mark(s), Section A]
+Explain the following features of Directing a) Directing initiates action b) Directing is a continuous process OR Explain the following leadership styles: a) Autocratic leadership b) Laissez Faire leadership
+
+Q26 [case_study, 4 mark(s), Section A]
+State any four limitations of using internal sources of recruitment. OR State any four commonly used sources of recruiting employees from outside the organisation.
+
+Q27 [case_study, 4 mark(s), Section A]
+Mr. Akshay, a 20 year old college student purchased a book online from XYZ Pvt Ltd and when it was delivered, he noticed that there was no MRP mentioned on it. He browsed the internet and found that the book was sold at different prices in different places. He filed a case in District forum against the publisher. The court held in favour of Akshay and awarded a compensation of ₹10,000. a)Identify and state the consumer right violated in the above case. b) Name and explain the right exercised by Mr. Akshay.
+
+Q28 [case_study, 4 mark(s), Section A]
+Explain the following factors affecting the dividend decision of the company: a) Taxation Policy b) Cash Flow Position
+
+Q29 [case_study, 4 mark(s), Section A]
+Identify and state the various elements of communication highlighted in the following cases: (i) Department 'A' has sent an encoded message to department 'B' through internet. What is the role of internet here? (ii) Madhur is making gestures so that he can send a message to Ranbhir. What is Madhur doing here? (iii) Ranbhir is trying to understand the message sent by Madhur by reading his gestures. What is Ranbhir doing here? (iv) Kamesh picks up his phone and finds a message on it. He reads the message carefully. What is the role of Kamesh here?
+
+Q3 [mcq, 1 mark(s), Section A]
+Answers should be brief and to the point.
+
+Q30 [case_study, 4 mark(s), Section A]
+Dhaval Acharya, after acquiring a bachelor’s degree in Hotel Management joined his father’s chain of vegetarian restaurants in Ahmednagar. Being young and enterprising, he suggested his father to add a new section of vegetarian bakery items which required an investment of ₹ 5 crores. His father Mr. Aariketh Acharya suggested him to take the decision with caution and understood everything comprehensively as bad decision may damage the financial fortune of business. Identify the decision suggested by Mr. Aariketh Acharya. State by giving any three reasons as to why he must have advised his son to take decision with caution. 31. 1) Explain any two techniques of Scientific Management from the following: a) Method study b) Motion study c) Time study 2) Differentiate between Unity of Command and Unity of Direction on any three basis. OR 1) Explain any two principles of Fayol from the following: a) Discipline b) Order c) Initiative 2) Differentiate between contributions made by F.W.Taylor and Henry Fayol on any three basis. 3+3=6 3+3=6
+
+Q32 [short_answer, 6 mark(s), Section A]
+Explain the steps that are required to be performed by a manager before evaluating all possible courses of action in planning process. OR Explain how planning: a) Reduces overlapping and wasteful activities b) Establishes standards for controlling c) Facilitates decision making
+
+Q33 [mcq, 1 mark(s), Section A]
+Read the statements given in point 1 and 2, answer the questions that follow: 1) Tea is produced in Assam but is carried to customers not only in this state but also in other parts of the country. a) Identify and explain the function of marketing that enables the marketer to achieve its goals. b) Enumerate any two factors that marketer should take into consideration in order to analyse the identified needs. 2) Paddy is grown during summer season but its demand and sale takes place throughout the year. a) Name and state the function of marketing which should be undertaken to reduce the gap between production and consumption of Paddy. b) State by giving two reasons as to why proper discharge of this function is important. 3+3=6
+
+Q34 [short_answer, 6 mark(s), Section A]
+Diligent developers, a website design company in Bangalore is a startup initiative of Mr. Maniraj which aims at achieving a profit margin of 10% in its first year. Mr. Maniraj appointed Mr. Advait as the Digital marketing Head, Mr. Kiyansh as the head of Backend department and Mr. Nirved headed the Graphics Designing Department. Since each head was specialised in specific skills, it resulted in increased efficiency and better coordination. However, problems arose when Mr. Advait started considering group objectives superior to organisational objectives and stopped exchanging information with Mr. Kiyansh and Mr. Nirved. The company had to bear the brunt of lack of coordination and was unable to achieve its objectives. a) Identify and state the organisational structure adopted by the company. b) State two benefits and two limitations of the identified structure highlighted in the above case.
+
+Q4 [mcq, 1 mark(s), Section A]
+Answers to the questions carrying 3 marks may be from 50 to 75 words.
+
+Q5 [mcq, 1 mark(s), Section A]
+Answers to the questions carrying 4 marks may be about 150 words.
+
+Q6 [mcq, 1 mark(s), Section A]
+Answers to the questions carrying 6 marks may be about 200 words.
+
+Q7 [mcq, 1 mark(s), Section A]
+Attempt all parts of the questions together. 1. The Board of directors of Medex Pharma Ltd. decided to issue debentures worth ₹40 lakhs in order to finance a major Research and Development project. This would increase the Debt Equity ratio from 1:1 to 2:1.However, at the same time it would increase the Earnings per share. The reason that will justify the above situation is: a) Unfavourable financial leverage, as the financial risk will be higher. b) Unfavourable financial leverage, as return on investment is lower than the cost of debt. c) Favourable financial leverage as debt is easily available d) Favourable financial leverage, as return on investment is higher than cost of debt 2. A bottle of Anti- dandruff shampoo mentions ' Clean your hair and get rid of dandruff in one squeeze'. The product related decision involved is- a) Branding b) Product quality c) Packaging d) Labelling 3. With the presence of women in the workforce, there has been a shift towards formal wear, increased demand of electronic gadgets and increase in demand of cosmetics. The related dimension of business environment referred in the above lines is: a) Technological environment. b) Social environment c) Political environment. d) Economic environment 4. Name the function of marketing which is effective in bringing repeat sales from the customers and developing brand loyalty for a product. a) Standardization and grading b) Promotion c) Customer support services d) Packaging and labelling 5. SEBI calls for information and issues a show cause notice to stock exchange and its officials seeking explanation and conducting audit and enquiry. Which function is SEBI performing? a) Regulatory function b) Development function c) Protective function d) Both a) and c) 6. Identify the point of significance of management illustrated in the picture. a) Management helps in achieving group goals b) Management helps in achieving personal objectives c) Management helps in development of society d) Management increases efficiency 7. The allocative function of Financial market helps in ________ a) Bringing transparency in trading procedure b) Earning higher rate of return to household sector c) Better functioning of depository d) Determining the prices of securities
+  [NOTE: This question references a diagram]
+
+Q8 [mcq, 1 mark(s), Section A]
+IND Dyechem Ltd. is a chemical manufacturing company producing dyes and pigments both for domestic and international market. It has enjoyed a considerable market share but lately, it has been facing problems in terms of target sales and customer satisfaction. This is due to the reason that new entrants have emerged with better technology and competitive pricing. The Chairman of the company addressed this issue in the departmental meeting. The production head, Mr. Kamble, advised the Chairman to revamp the system and take immediate necessary actions to rectify the problem so that sales are achieved as per the plans. Identify the relevant function of management being discussed here. a) Organising b) Staffing b) Controlling d) Planning
+
+Q9 [mcq, 1 mark(s), Section A]
+Choose the incorrect statement about pricing objectives as a factor affecting the price of a product. a) If a firm's objective is to maximize profits in the short run, it should charge maximum price for its products. b) If a firm's objective is to capture market share, it should keep low price of its product. c) If a firm wants to attain product quality leadership, it should charge lower prices. d) If a firm is facing problems in survival due to stiff competition, it may offer discount on its products.
+
+======================================================================
+Now return the complete JSON array with answers for all questions above.

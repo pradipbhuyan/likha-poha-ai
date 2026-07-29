@@ -1,0 +1,110 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2019-20
+Subject: Geography
+Source Subject Code: Geography
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Geography-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Geography-MS.pdf
+Total Questions: 30
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Geography-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Which one of the following is the largest linguistic group of India? a. Sino – Tibetan b. Indo – Aryan c. Austric d. Dravidian OR Which one of the following periods had witnessed rapid growth of population. a. Before 1921 b. 1921 - 1951 c. 1951 – 1981 d. After 1981
+
+Q10 [mcq, 1m, Sec A]
+Which one of the following forms of settlement develops along either side of roads, rivers or canals? a. Circular b. Linear c. Cross Shaped d. Square
+
+Q11 [mcq, 1m, Sec A]
+Which one of the following types of economic activities dominates in all rural settlements? a. Primary b. Tertiary c. Secondary d. Quaternary
+
+Q12 [mcq, 1m, Sec A]
+The first urban settlement to reach a population of one million was: a. Paris b. New York c. London d. Canberra 4 | P a g e
+
+Q13 [mcq, 1m, Sec A]
+Identify the land locked harbor from the followings- a. Vishakhapatnam b. Mumbai c. Ennor d. Haldia
+
+Q14 [mcq, 1m, Sec A]
+Which one of the following is the longest national highway of India? a. NH-1 b. NH-7 c. NH-6 d. NH-8
+
+Q15 [mcq, 1m, Sec A]
+Complete the following table by writing appropriate answer: `
+
+Q16 [mcq, 1m, Sec A]
+Name the Headquarters of Northern Railway Zone of India a. Lucknow b. Kanpur c. New Delhi d. Chandigarh
+
+Q17 [mcq, 1m, Sec A]
+Land degradation in irrigated areas is caused by which of following reason ? a. Gully erosion b. Wind erosion c. Salinization of soil d. Siltation of land
+
+Q18 [mcq, 1m, Sec A]
+South-West monsoon in India coincides with which cropping season? a. Kharif b. Rabi 5 | P a g e c. Zaid d. None of the above SECTION B
+
+Q19 [short_answer, 3m, Sec B]
+“The chief gateways of the world of international trade are the harbours and ports”. Justify the statement with examples.
+
+Q2 [mcq, 1m, Sec A]
+Which one of the following is the main reason for male migration in India? a. Education b. Business c. Work and employment d. Marriage 2 | P a g e
+
+Q20 [short_answer, 3m, Sec B]
+How is Possibilism different from Environmental Determinism? Explain with suitable Examples.
+
+Q21 [short_answer, 3m, Sec B]
+Study the pie-chart given below and answer the questions that follow- a. Which sector’s share is the maximum in the usage of surface and ground water? b. What is the percentage of agricultural sector in the usage of surface water and Ground water? c. Why the development of irrigation was assigned a very high priority in the Five years plans? For visually impaired candidates ( in place of Q. No. 21) a. Name the two sources where water is available for irrigation. b. Which sector of economy uses the maximum amount of water in our country? c. Why is development of irrigation was assigned a very high priority in five years plans? 6 | P a g e
+
+Q22 [short_answer, 3m, Sec B]
+‘Development has direct bearings on the deteriorating human conditions’. How poor people are more affected in this process? OR Describe the concept of Human Development as defined by United Nations Development Programme (UNDP) SECTION C
+
+Q23 [long_answer, 5m, Sec C]
+The challenge of sustainable development requires integration of quest for economic development with environmental concerns. Comprehend the statement in relation to the development of non conventional sources of energy in India by giving suitable example. OR Nuclear energy is replacing the conventional sources in India. Do you think it as a viable energy source of energy in future keeping in view the availability of nuclear minerals in India.
+
+Q24 [short_answer, 3m, Sec C]
+Study the map given below and answer the questions that follows- 3+2=5 7 | P a g e a. What is the difference between the two areas shown as ‘Under Flow’ and ‘Under Lift’ system of irrigation. b. Name any four districts that are benefited by the command area of the canal in stage I and stage II For visually impaired candidates ( in place of Q. No. 24) a. How has the introduction of Indira Gandhi Canal irrigation in the dry lands of Rajasthan influenced the environmental conditions of the region positively? Explain in three points. b. Name any four districts benefitted by the Indira Gandhi Canal irrigation system.
+
+Q25 [long_answer, 5m, Sec C]
+Classify industries on the basis of the raw material used. Explain each of them with examples. OR Explain why high-tech industries in many countries are being attracted to the peripheral areas of major metropolitan centres?
+
+Q26 [long_answer, 5m, Sec C]
+“The modern economic development in the world is mainly the result of the development of Quaternary Service.” Explain the statement with suitable examples.
+
+Q27 [long_answer, 5m, Sec C]
+What are the modes by which cyber space will expand the contemporary economic and social space of humans? OR Which are the major regions of the world having a dense network of airways? Explain with examples.
+
+Q28 [long_answer, 5m, Sec C]
+Land degradation caused by human made processes are more harmful than natural processes in India. Analyse the statement with suitable examples. OR How has Noise pollution become hazardous in many big cities of India? Explain by giving suitable examples.
+
+Q29 [long_answer, 5m, Sec C]
+On the outline map of India mark and indicate the following features (any five) a. State having highest urban population b. Software technology park of Telangana c. International airport located in Assam d. Eastern terminal point of Golden Quadrilateral e. Copper mine located in Rajasthan f. Bauxite mines in Odisha g. Southern terminal station of North-South corridor. 8 | P a g e For visually impaired candidates ( in place of Q. No. 29)Attempt any five a. Which state in India has highest urban population? b. Name the Software technology park of Telangana. c. Name the international airport located in Assam. d. Which is the eastern terminal of Golden Quadrilateral? e. Name the copper mines of Rajasthan. f. Write the name of Bauxite mine of Odisha. g. Which is the southern terminal of North South Corridor? 1x5=5
+
+Q3 [mcq, 1m, Sec A]
+Identify the country with the highest sex ratio in the world a. Latvia b. United Arab Emirates c. Japan d. France OR Which one of the following figures represents the working age group of the population? a. 15 to 65 years b. 15 to 64 years c. 15 to 66 years d. 15 to 59 years
+  [NOTE: diagram]
+
+Q30 [long_answer, 5m, Sec C]
+On the given political map of the world, following five features are shown. Identify these features with the help of the given key and write them on the blanks marked A , B , C , D and E A. A Mega city B. A major sea-port C. Grasslands of Africa with extensive commercial grain farming D. An important Shipping Canal E. Industrial region of the US. For visually impaired candidates ( in place of Q. No. 30) a. Write the name of Mega City located in Western India. b. Name the major seaport located on the Pacific coast of Canada. c. Name the Grasslands of Africa with extensive Commercial grain farming. d. Which is the important waterway of Central America? e. Name the Industrial region of Eastern U.S.A. 1x5 9 | P a g e Q29 10 | P a g e Q30
+
+Q4 [mcq, 1m, Sec A]
+Which one of the following group of cities have been arranged in the sequence of their ranks i.e., 1,2,3 and 4 in size ? a. Greater Mumbai, Bangaluru, Kolkata, Chennai. b. Delhi, Greater Mumbai, Chennai, Kolkata. c. Kolkata, Greater Mumbai, Chennai, Delhi. d. Greater Mumbai, Kolkata, Delhi, Chennai. OR Palli and nagla belong to which one of the following rural settlements- a. Clustered b. Semi-clustered c. Hamleted d. Dispersed or isolated.
+
+Q5 [mcq, 1m, Sec A]
+Which one of the following is not a Push factor? a. Water Shortage b. Medical/Educational facilities c. Unemployment d. Epidemics
+
+Q6 [mcq, 1m, Sec A]
+Which one of the following best is the best description of Development? a. An increase in size b. A constant in size c. A positive change in quality d. A simple change in quality 3 | P a g e
+
+Q7 [mcq, 1m, Sec A]
+Which one of the following is not a Plantation Crop? a. Coffee b. Sugarcane c. Wheat d. Rubber
+
+Q8 [mcq, 1m, Sec A]
+Which one of the following types of cultivation was developed by European colonists? a. Kolkhoz b. Mixed Farming c. Viticulture d. Plantation
+
+Q9 [mcq, 1m, Sec A]
+Which one of the following does not follow Monoculture? a. Commercial Grain Farming b. Plantation Agriculture c. Mixed Farming d. Dairy Farming
+
+======================================================================
+Return the complete JSON array.

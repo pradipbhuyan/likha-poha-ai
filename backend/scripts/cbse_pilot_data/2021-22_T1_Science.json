@@ -1,0 +1,732 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Reema took 5ml of Lead Nitrate solution in a beaker and added approximately 4ml of Potassium Iodide solution to it. What would she observe?",
+    "options": [
+      "The solution turned red.",
+      "Yellow precipitate was formed.",
+      "White precipitate was formed.",
+      "The reaction mixture became hot."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Identify gas A in the following experiment. A. Nitrogen B. Hydrogen C. Oxygen D. Carbon dioxide",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following two combinations are correct? Metal Gas Evolved (i) Copper Yes (ii) Iron Yes (iii) Magnesium No (iv) Zinc Yes",
+    "options": [
+      "i and iii",
+      "i and iv",
+      "ii and iii",
+      "ii and iv"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following correctly represents a balanced chemical equation?",
+    "options": [
+      "Fe(s) + 4H2O(g) → Fe3O4 (s) + 4H2(g)",
+      "3Fe(s) + 4H2O(g) → Fe3O4 (s) + 4H2(g)",
+      "3Fe(s) + H2O(g) → Fe3O4 (s) + H2(g)",
+      "3Fe(s) + 4H2O(g) → Fe3O4 (s) + H2(g)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The graph given below depicts a neutralization reaction (acid + alkali → salt + water). The pH of a solution changes as we add excess of acid to an alkali. Which letter denotes the area of the graph where both acid and salt are present? A. A B. B C. C D. D",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the reaction of iron with copper sulphate solution: CuSO4 + Fe ---> Cu + FeSO4 Which option in the given table correctly represents the substance oxidised and the reducing agent? OPTION Substance Oxidized Reducing Agent A Fe Fe B Fe FeSO4 C Cu Fe D CuSO4 Fe",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The chemical reaction between copper and oxygen can be categorized as:",
+    "options": [
+      "Displacement reaction",
+      "Decomposition reaction",
+      "Combination reaction",
+      "Double displacement reaction"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the given options correctly represent s the Parent acid and base of Calcium Carbonate? OPTION PARENT ACID PARENT BASE A HCl NaOH B H2CO3 Ca(OH) 2 C H3PO3 CaSO4 D H2SO4 CaSO4",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "How will you protect yourself from the heat generated while diluting a concentrated acid?",
+    "options": [
+      "By adding acid to water with constant stirring.",
+      "By adding water to acid with constant stirring.",
+      "By adding water to acid followed by base.",
+      "By adding base to acid with constant stirring."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Why is it important to balance a skeletal chemical equation? A. To verify law of conservation of energy. B. To verify the law of constant proportion. C. To verify the law of conservation of mass. D. To verify the l0aw of conservation of momentum.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Carefully study the diagram of the human respiratory system with labels A, B, C and D. Select the option which gives correct identification and main function and /or characteristic.",
+    "options": [
+      "(i) Trachea: It is supported by bony rings for conducting inspired air.",
+      "(ii) Ribs: When we breathe out, ribs are lifted.",
+      "(iii) Alveoli: Thin-walled sac like structures for exchange of gases.",
+      "(iv) Diaphragm: It is pulled up when we breathe in."
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Identify the option that indicates the correct enzyme that is secreted in location A, B and C. A. (i)-lipase, (ii)-trypsin, (iii)-pepsin B. (i)-amylase, (ii)-pepsin, (iii)-trypsin C. (i)-trypsin, (ii)-amylase, (iii)-carboxylase D. (i)-permease, (ii)-carboxylase, (iii)-oxidase",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Opening and closing of stomatal pore depends on:",
+    "options": [
+      "Atmospheric temperature",
+      "oxygen concentration around stomata",
+      "carbon dioxide concentration around stomata",
+      "water content in the guard cells"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The figure given below shows a schematic plan of blood circulation in humans with labels (i) to (iv). Identify the correct label with its functions?",
+    "options": [
+      "(i) Pulmonary vein - takes impure blood from body part.",
+      "(ii) Pulmonary artery - takes blood from lung to heart.",
+      "(iii) Aorta - takes blood from heart to body parts.",
+      "(iv) Vena cava takes - blood from body parts to right auricle."
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 6,
+    "question_text": "Identify the phase of circulation which is represented in the diagram of heart given below. Arrows indicate contraction of the chambers shown. A. Blood transferred to the right ventricle and left ventricle simultaneously. B. Blood is transferred to lungs for oxyg enation and is pumped into various organs simultaneously. C. Blood transferred to the right auricle and left auricle simultaneously. D. Blood is received from lungs after oxygenation and is received from various organs of the body.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Observe the diagram of Human digestive system. Match the labeling referred in column I and correlate with the function in column II.",
+    "options": [
+      "i.- a) ; ii – b) ; iii – c) ; iv- d)",
+      "i.- b) ; ii – c) ; iii – d) ; iv- a)",
+      "i.- b) ; ii – d) ; iii – c) ; iv- a)",
+      "i.- d) ; ii – a) ; iii – b) ; iv- c)"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 7,
+    "question_text": "Which of the following mirror is used by a dentist to examine a small cavity in a patient’s teeth? A. Convex mirror B. Plane mirror C. Concave mirror D. Any spherical mirror",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which diagram shows image formation of an object on a screen by a converging lens?",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following can make a parallel beam of light when light from a point source is incident on it?",
+    "options": [
+      "Concave mirror as well as convex lens.",
+      "Convex mirror as well as concave lens.",
+      "Two plane mirrors placed at 90° to each others.",
+      "Concave mirror as well as concave lens."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider these indices of refraction: glass: 1.52; air: 1.0003; water: 1.333. Based on the refractive indices of three materials, arrange the speed of light through th em in decreasing order.",
+    "options": [
+      "The speed of light in water > the speed of light in air > the speed of light in glass.",
+      "The speed of light in glass > the speed of light in water > the speed of light in air.",
+      "The speed of light in air > the speed of light in water > the speed of light in glass.",
+      "The speed of light in glass > the speed of light in air > the speed of light in water."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 8,
+    "question_text": "If a beam of red light and a beam of violet light are incident at the same angle on the inclined surface of a prism from air medium and produce angles of refraction r and v respectively, which of the following is correct? A. r = v B. r > v C. r = 1/v D. r < v",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Examine the above figure and state which of the following option is correct? [one small box in the figure is equal to 1 cm]",
+    "options": [
+      "The mirror has a focal length of -6 cm and will produce an image of magnification +1.",
+      "The mirror has a focal length of -3 cm and will produce an image   of magnification -1.",
+      "The mirror has a focal length of -3 cm and will produce an image of magnification +1.",
+      "The mirror has a focal length of -6 cm and will produce an image   of magnification -1."
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 23,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The angle of incidence from air to glass at the point O on the hemispherical glass slab is.",
+    "options": [
+      "45°",
+      "0°",
+      "90°",
+      "180°"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 9,
+    "question_text": "A prism ABC (with BC as base) is placed in different orientations. A narrow beam of white light is incident on the prism as shown in below Figure. In which of the following diagrams, after dispersion, the third colour from the top of the spectrum corresponds to the colour of the sky? A. (i) B. (ii) C. (iii) D. (iv) SECTION - B Section - B consists of 24 questions (Sl. No.25 to 48). Attempt any 20 questions from this section. The first attempted 20 questions would be evaluated.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the correct option from the given table which represents the type of reactions occurring in step 1 and step 2. endothermic exothermic A B C D ×   ×  ×  ×",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In which year is concentration of hydrogen ion the highest?",
+    "options": [
+      "2002",
+      "2008",
+      "2011",
+      "2005"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 10,
+    "question_text": "The diagram shows the reaction between metal and dil. acid. What is the reason for different behaviour of Mg in test tube B? A. Mg is lighter element than dil. HCl B. Mg reacts with dil. HCl to produce H2 gas which helps in floating C. Mg reacts with dil. HCl to produce N2 gas which helps in floating D. Mg reacts with dil. HCl to produce CO2 gas which helps in floating",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 28,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The table shown below gives information about four substances: A, B, C and D. SUBSTANCE MELTING POINT (K) ELECTRICAL CONDUCTIVITY SOLID LIQUID/ AQUEOUS A 295 Good Good B 1210 Poor Good C 1890 Poor Good D 1160 Poor Poor Identify Ionic compounds from the above given substances.",
+    "options": [
+      "A, B",
+      "B, C",
+      "A, B, D",
+      "A, C, D"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 29,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Vinay observed that the stain of curry on a white shirt becomes reddish -brown when soap is scrubbed on it, but it turns yellow again when the shirt is washed with plenty of water. What might be the reason for his observation? i. Soap is acidic in nature ii. Soap is basic in nature iii. Turmeric is a natural indicator which gives reddish tinge in bases iv. Turmeric is a natural indicator which gives reddish tinge in acids",
+    "options": [
+      "i and  ii",
+      "ii and iii",
+      "i  and iv",
+      "ii and iv"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 11,
+    "question_text": "In which of the following setups would the bulb glow? A. i and ii B. i and iv C. ii, iii and iv D. i, ii and iv Question No. 31 to 35 consist of two statements –",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "B",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Fresh milk in which baking soda is added, takes a longer time to set as curd. Reason: Baking soda decreases the pH value of fresh milk to below 6.",
+    "options": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true and R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is False but R is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "B",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Decomposition of vegetable matter into compost is an endothermic reaction. Reason: Decomposition reaction involves breakdown of a single reactant into simpler products.",
+    "options": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true and R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is False but R is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "B",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Resins and gums are stored in old xylem tissue in plants. Reason:Resins and gums facilitate transport of water molecules.",
+    "options": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true and R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is False but R is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "B",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Sky appears blue in the day time. Reason: White light is composed of seven colours.",
+    "options": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true and R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is False but R is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 35,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The table given below shows the reaction of a few elements with acids and bases to evolve Hydrogen gas. Element Acid Base A × × B   C  × D   Which of these elements form amphoteric oxides?",
+    "options": [
+      "A and D",
+      "B and D",
+      "A and C",
+      "B and D"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 36,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 13,
+    "question_text": "In which of the following groups of organisms, blood flows through the heart only once during one cycle of passage through the body? A. Rabbit, Parrot, Turtle B. Frog, crocodile, Pigeon C. Whale, Labeo, Penguin D. Shark, dog fish, sting ray",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 37,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What is common between extensive network of blood vessels around walls of alveoli and in glomerulus of nephron?",
+    "options": [
+      "Thick walled arteries richly supplied with blood",
+      "Thin walled veins poorly supplied with blood",
+      "Thick walled capillaries poorly supplied with blood.",
+      "Thin walled capillaries richly supplied with blood"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 38,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Plants use completely different process for excretion as compared to animals. Which one of the following processes is NOT followed by plants for excretion?",
+    "options": [
+      "They can get rid of excess water by transpiration.",
+      "They selectively filter toxic substances through their leaves.",
+      "Waste products are stored as resins and gums in old xylem.",
+      "They excrete waste substances into the soil around them."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 39,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the power of a lens is - 4.0 D, then it means that the lens is a",
+    "options": [
+      "concave lens of focal length -50 m",
+      "convex lens of focal length +50 cm",
+      "concave lens of focal length -25 cm",
+      "convex lens of focal length -25 m"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 40,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Rays from Sun converge at a point 15 cm in front of a concave mirror. Where should an object be placed so that size of its image is equal to the size of the object?",
+    "options": [
+      "30 cm in front of the mirror",
+      "15 cm in front of the mirror",
+      "Between 15 cm and 30 cm in front of the mirror",
+      "More than 30 cm in front of the mirror"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 41,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In which of the following groups of organisms, food material is broken down outside the body and then absorbed in?",
+    "options": [
+      "mushroom, green plants, amoeba",
+      "yeast, mushroom, bread mould",
+      "paramecium, amoeba, cuscuta",
+      "cuscuta, lice, tapeworm"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 42,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In a person the tubule part of the nephron is not functioning at all. What will its effect be on urine formation?",
+    "options": [
+      "The urine will not be formed.",
+      "Quality and quantity of urine is unaffected.",
+      "Urine is more concentrated.",
+      "Urine is more diluted."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 43,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 14,
+    "question_text": "If the real image of a candle flame formed by a lens is three times the size of the flame and the distance between lens and image is 80 cm, at what distance should the candle be placed from the lens? A. -80cm B. -40 cm C. -40/3 cm D. -80/3 cm",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 44,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 15,
+    "question_text": "While looking at the above diagram, Nalini concluded the following- i. the image of the object will be a virtual one. ii. the reflected ray will travel along the same path as the incident ray but in opposite direction. iii. the image of the object will be inverted. iv. this is a concave mirror and hence the focal length will be negative. Which one of the above statements are correct? A. i and ii B. i and iii C. ii, iii and iv D. i, ii, iii and iv",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 45,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the above diagram light is travelling through different media. It is noted by a scien tist that ∠1= ∠3= ∠4 but ∠2 <∠1. Which of the following statement would be correct?",
+    "options": [
+      "Medium 1 is the denser than medium 3 but it’s density is equal to medium 2.",
+      "Medium 2 is the rarest medium.",
+      "Medium 3 is denser than medium 1.",
+      "Medium 1 and 3 are essential ly the same medium, but medium 2 is denser than 1 and 3."
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 46,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The refractive index of flint glass is 1.65 and that for alcohol is 1.36 with respect to air. What is the refractive index of the flint glass with respect to alcohol ?",
+    "options": [
+      "0.82",
+      "1.21",
+      "1.11",
+      "1.01"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 47,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 16,
+    "question_text": "The above lens has a focal length of 10 cm. The object of height 2 mm is placed at a distance of 5 cm from the pole. Find the height of the image. A. 4 cm B. 6.67 mm C. 4 mm D. 3.33 mm",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 48,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 17,
+    "question_text": "A cable manufacturing unit tested few elements on the basisof their physical properties. Properties W X Y Z Malleable Yes No No Yes Ductile Yes No No Yes Electrical conductivity Yes Yes Yes No Melting Point High Low Low High Which of the above elements were dicarded for usage by the company? A. W, X, Y B. X, Y, Z C. W, X, Z D. W, X, Z SECTION – C Section- C consists of three Cases followed by questions. There are a total of 12 questions in this section. Attempt any 10 questions from this section. The first attempted 10 questions would be evaluated. Case The Salt Story From: The New Indian Express 9 March 2021 The salt pans in Marakkanam, a port town about 120 km from Chennai are the third largest producer of salt in Tamil Nadu. Separation of salt from water is a laborious process and the salt obtained is used as raw materials for manufacture of various sodium compounds. One such compound is Sodium hydrogen carbonate, used in baking, as an antacid and in soda acid fire extinguishers. The table shows the mass of various compounds obtained when 1litre of sea water is evaporated COMPOUND FORMULA MASS OF SOLID PRESENT /g Sodium Chloride NaCl 28.0 Magnesium Chloride MgCl2 8.0 Magnesium Sulphate MgSO4 6.0 Calcium Sulphate CaSO4 2.0 Calcium Carbonate CaCO3 1.0 TOTAL AMOUNT OF SALT OBTAINED 45.0",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 49,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which compound in the table reacts with acids to release carbon dioxide?",
+    "options": [
+      "NaCl",
+      "CaSO4",
+      "CaCO3",
+      "MgSO4"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 50,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "How many grams of Magnesium Sulphate are present in 135g of solid left by evaporation of sea water?",
+    "options": [
+      "6g",
+      "12g",
+      "18g",
+      "24g"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 51,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What is the saturated solution of Sodium Chloride called?",
+    "options": [
+      "Brine",
+      "Lime water",
+      "Slaked lime",
+      "Soda water"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 52,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 18,
+    "question_text": "What is the pH of the acid which is used in the formation of common salt? A. Between 1 to 3 B. Between 6 to 8 C. Between 8 to 10 D. Between 11 to 13 Case The Figure shown below represents an activi ty to prove the requirements for photosynthesis. During this activity, two healthy potted plants were kept in the dark for 72 hours. After 72 hours, KOH is kept in the watch glass in setup X and not in setup Y. Both these setups are air tight and have been kept in light for 6 hours. Then, Iodine Test is performed with one leaf from each of the two plants X and Y.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 53,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "This experimental set up is used to prove essentiality of which of the following requirements of photosynthesis?",
+    "options": [
+      "Chlorophyll",
+      "Oxygen",
+      "Carbon dioxide",
+      "Sunlight"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 54,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The function of KOH is to absorb",
+    "options": [
+      "Oxygen.",
+      "Carbon dioxide.",
+      "Moisture.",
+      "Sunlight."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 55,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements shows the correct results of Iodine Test performed on the leaf from plant X and Y respectively?",
+    "options": [
+      "Blue - black colour would be obtained on the leaf of plant Xand no change in colour on leaf of plant Y.",
+      "Blue - black colour would be obtained on the leaf of plant Y and no change in colour onleaf of plant X.",
+      "Red colour would be obtained on the leaf of plant X and brown colour on the leaf of plant Y.",
+      "Red colour would be obtained on the leaf of plant Y and brown colour on the leaf of plant X."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 56,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 19,
+    "question_text": "Which of the following steps can be followed for making the apparatus air tight? i. placing the plants on glass plate ii. using a suction pump. iii. applying aseline to seal the bottom of jar. iv. creating vacuum A. i and ii B. ii. and iii C. i. and iii D. ii. and iv Case Noor, a young student, was trying to demonstrate some properties of light in her Science project work. She kept ‘X’ inside the box (as shown in the figure) and with the help of a laser pointer made light rays pass through the holes on one side of the box. She had a small butter-paper screen to see the spots of light being cast as they emerged.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 57,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What could be the ‘X’ that she placed inside the box to make the rays behave as shown?",
+    "options": [
+      "a converging lens",
+      "a parallel-sided glass block",
+      "a plane mirror",
+      "a triangular prism"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 58,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "She measured the angles of incidence for both the rays on the left side of the box to be 48.60. She knew the refractive index of the material ‘X’ inside the box was 1.5. What will be the approximate value of angle of refraction?",
+    "options": [
+      "450",
+      "400",
+      "300",
+      "600 (use the value: sin 48.60 ≈ 0.75)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 59,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 20,
+    "question_text": "Her friend noted the following observations from this demonstration: i. Glass is optically rarer than air. ii. Air and glass allow light to pass through them with the same velocity. iii. Air is optically rarer than glass. iv. Speed of light through a denser medium is faster than that of a rarer medium. v. The ratio: sin of angle of incidence in the first medium to the ratio of sin of angle of refraction in the second medium, gives the refractive index of the second material with respect to the first one. Which one of the combination of the above statements given below is correct. A. ii, iv and v are correct. B. iii and iv are correct. C. i, iv and v are correct. D. iii and v are correct.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 60,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the object inside the box was made of a material with a refractive index less than 1.5 then the",
+    "options": [
+      "lateral shift of the rays would have been less.",
+      "lateral shift of the rays would have been more.",
+      "lateral shift of the rays would remain the same as before.",
+      "there is not enough information to comment on any of the above statements"
+    ],
+    "diagram_dependent": true
+  }
+]

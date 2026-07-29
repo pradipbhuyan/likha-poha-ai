@@ -1,0 +1,108 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2018-19
+Subject: Mathematics
+Source Subject Code: Maths
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Maths-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Maths-MS.pdf
+Total Questions: 29
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Maths-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec D]
+If A and B are invertible matrices of order 3, 1 1| A | 2 and | (AB) | . 6    Find |B|.
+
+Q10 [mcq, 1m, Sec B]
+Find the area of the parall elogram whose diagonals are represented by the vectors ˆ ˆ ˆ ˆ ˆ ˆa 2i 3j 4k and b 2i j 2k      OR Find the angle between the vectors ˆ ˆ ˆ ˆ ˆ ˆa i j k and b i – j k    
+
+Q11 [mcq, 1m, Sec B]
+If A and B are two independent events, prove that A and B are also independent.
+
+Q12 [mcq, 1m, Sec B]
+One bag contains 3 red and 5 black balls. Another bag contains 6 red and 4 black balls. A ball is transferred from first bag to the second bag and then a ball is drawn from the second bag. Find the probability that the ball drawn is red. OR If P
+  (A) = 0.6, P
+  (B) = 0.5 and P(A|B) = 0.3, then find P( B). Section C
+
+Q13 [mcq, 1m, Sec C]
+Prove that the function f:[0, )  R given by f(x) = 9x2 + 6x – 5 is not invertible. Modify the codomain of the function f to make it invertible, and hence find f–1. OR Check whether the relation R in the set R of real numbers, defined by R = {(a, b) : 1 + ab > 0}, is reflexive, symmetric or transitive.
+
+Q14 [short_answer, 3m, Sec C]
+Find the value of : 111sin 2 tan cos(tan 2 2)4  
+
+Q15 [mcq, 1m, Sec C]
+Using properties of determinants, prove that: 2 2 2 a b c c b a c b c a (a b c) (a b c ) a b b a c         
+
+Q16 [short_answer, 2m, Sec C]
+If sin x x dyy x sin(x ), find dx OR If 2 4 1 dyy log(1 2t t ), x tan t, find dx    
+
+Q17 [short_answer, 2m, Sec C]
+If 1y cos(m cos x) Show that: d y dy(1 x ) x m y dxdx    = 0
+
+Q18 [mcq, 1m, Sec C]
+Find the equations of the normal to the curve 3y 4x 3x 5   which are perpendicular to the line 9x y 5 0   .
+
+Q19 [case_study, 4m, Sec C]
+Find: x1 dx x(x 1)  
+
+Q2 [mcq, 1m, Sec D]
+Differentiate 22sin (x ) w.r.t x2.
+
+Q20 [mcq, 1m, Sec C]
+Evaluate: x | x | 1 dx x 2 | x | 1  
+
+Q21 [mcq, 1m, Sec C]
+Find the particular solution of the following differential equation. xcos y dx (1 2e )sin y dy 0; y(0) 4      OR Find the general solution of the differential equation: dx y tan y x tan y xy dy y tan y 
+
+Q22 [mcq, 1m, Sec C]
+If ˆ ˆ ˆ ˆ ˆ ˆp i j k and q i – 2 j k     , find a vector of magnitude 53 units perpendicular to the vector q and coplanar with vectors p and q .
+
+Q23 [case_study, 4m, Sec C]
+Find the vector equation o f the line joining (1, 2, 3) and ( –3, 4, 3) and show that it is perpendicular to the z-axis. Section D
+
+Q24 [mcq, 1m, Sec D]
+If A = 3 1 2 3 2 3 2 0 1      , find A–1. Hence, solve the system of equations: 3x + 3y+ 2z = 1 x + 2y = 4 2x – 3y –z = 5 OR Find the inverse of the following matrix using elementary transformations. 2 1 3 5 3 1 3 2 3   
+
+Q25 [mcq, 1m, Sec D]
+A cuboidal shaped godown with square base is to be constructed . Three times as much cost per square meter is incurred for constructing the roof as compared to the walls. Find the dimensions of the godown if it is to enclose a given volume and minimize the cost of constructing the roof and the walls.
+
+Q26 [mcq, 1m, Sec D]
+Find the area bounded by the curves y x, 2y 3 x and x axis    . OR Find the area of the region. {(x, y) : x2 + y2  8, x2  2y}
+
+Q27 [long_answer, 5m, Sec D]
+Find the equation of the plane through the line x 1 y 4 z 4 3 2 2     and parallel to the line x 1 1 y z 2 2 4 1    . Hence, find the shortest distance between the lines. OR Show that the line of intersection of the planes x + 2y + 3z = 8 and 2x + 3y + 4z = 11 is coplanar with the line x 1 y 1 z 1 1 2 3    . Also find the equation of the plane containing them.
+
+Q28 [mcq, 1m, Sec D]
+A manufacturer makes two types of toys A and B. Three machine are needed for this purpose and the time (in minutes) required for each toy on the machines is given below: Types of Toys Machines I II III A 20 10 10 B 10 20 30 The machines I, II and III are available for a maximum of 3 hours, 2 hours and 2 hours 30 minutes respectively. The profit on each toy of type A is ` 50 and that of type B is ` 60. Formulate the above problem as a L.P.P and solve it graphically to maximize profit.
+
+Q29 [mcq, 1m, Sec D]
+The members of a consulting firm rent cars from three rental agencies: 50% from agency X, 30% from agency Y and 20% from agency Z. From past experience it is known that 9% of the cars from agency X need a service and tuning before renting, 12% of the cars from agency Y need a service and tuning before renting and 10% of the cars from agency Z need a service and tuning before renting. If the rental car delivered to the firm needs service and tuning, find the probability that agency Z is not to be blamed.
+
+Q3 [short_answer, 32m, Sec D]
+Write the order of the differential equation: d y dylog x dxdx   
+
+Q4 [mcq, 1m, Sec D]
+Find the acute angle which the line with direction cosines 11, , n 36 makes with positive direction of z-axis. OR Find the direction cosines of the line: x 1 z 1 y22     Section B
+
+Q5 [mcq, 1m, Sec B]
+Let A = Z × Z and * be a binary operation on A defined by (a, b)*(c, d) (ad bc, bd). Find the identity element for * in the set A.
+
+Q6 [short_answer, 2m, Sec B]
+If 3 1 1 0A and I1 2 0 1           , find k so that 2A 5A kI .
+
+Q7 [short_answer, 2m, Sec B]
+Find : 2 2 2 (x sin x)sec x dx 1x  
+
+Q8 [short_answer, 3m, Sec B]
+Find: x e (x 3) dx (x 1)   OR Find: 4 4 (x x) dx x  
+
+Q9 [mcq, 1m, Sec B]
+Form the differential equation of all circles which touch the x-axis at the origin.
+
+======================================================================
+Return the complete JSON array.

@@ -1,0 +1,65 @@
+[
+  {
+    "question_number": 1,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "(B) 2025 1 (C)   2025 45 (D)   2025 2025 Q.2. Assume , , , X Y Z W and P are matrices of order 2 , 3 , 2 , 3n k p n    and ,pk respectively. Then the restriction on , nk and p so that PY WY will be defined are: (A) 3, k p n (B) is arbitrary, 2kp  (C) is arbitrary, 3pk  (D) 2, 3kp  Q.3. The interval in which the function f defined by 𝑓(𝑥) = 𝑒𝑥 is strictly increasing, is (A) [1, ∞) (B)  ,0 (C) (−∞, ∞) (D) (0,∞) Class-XII/Sample Paper/2024-25/Mathematics/ Q.4. If andAB are non-singular matrices of same order with 𝒅𝒆𝒕(𝑨) = 𝟓, then 𝒅𝒆𝒕(𝑩−𝟏𝑨𝑩)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 55,
+    "question_text": "is equal to (A) 5 (B) 25 (C) 45 (D) Q.5. The value of ''n , such that the differential equation 𝒙𝒏 𝒅𝒚 𝒅𝒙 = 𝒚(𝒍𝒐𝒈𝒚 − 𝒍𝒐𝒈𝒙 + 𝟏); (𝐰𝐡𝐞𝐫𝐞 𝒙, 𝒚 ∈ 𝑹+) is homogeneous, is (A) 0 (B) 1 (C) 2 (D)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Q.6. If the points (𝒙𝟏, 𝒚𝟏), (𝒙𝟐, 𝒚𝟐) and (𝒙𝟏 + 𝒙𝟐, 𝒚𝟏 + 𝒚𝟐)are collinear, then 𝒙𝟏𝒚𝟐 is equal to",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4 Q.8. For any two events A and B , if  "
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Q.9. The value of 𝛼 if the angle between 𝑝⃗ = 2𝛼2𝑖̂− 3𝛼𝑗̂+ 𝑘̂ and 𝑞⃗ = 𝑖̂+ 𝑗̂+ 𝛼𝑘̂ is obtuse, is",
+    "options": [
+      "𝑅 −  [0, 1]",
+      "(0, 1)",
+      "[0, ∞)",
+      "[1, ∞) Q.10. If |𝑎⃗ | = 3, |𝑏⃗⃗| = 4 and |𝑎⃗ + 𝑏⃗⃗| =5, then |𝑎⃗ − 𝑏⃗⃗| =",
+      "3",
+      "4",
+      "5",
+      "8 Q.11. For the linear programming problem (LPP), the objective function is 43Z x y and the feasible region determined by a set of constraints is shown in the graph:",
+      "Maximum value of Z is at  40,0R .",
+      "Maximum value of Z  is at  30,20Q .",
+      "Value of Z  at  40,0R  is less than the value at  0,40P .",
+      "The value of Z  at  30,20Q  is less than the value at  40,0R . Q.12.  ∫ 𝒅𝒙 𝒙𝟑(𝟏+𝒙𝟒)"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 6,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "to 𝑥 = 𝜋",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

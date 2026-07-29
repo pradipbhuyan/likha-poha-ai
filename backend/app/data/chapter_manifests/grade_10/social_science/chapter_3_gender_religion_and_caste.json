@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: Gender, Religion and Caste",
+  "central_question": "How do gender, religious and caste differences create inequality and enter politics, and when does their political expression strengthen or harm democracy?",
+  "in_scope_units": [
+    "Gender and politics: gender division, social expectations and the public/private division.",
+    "Feminist movements, patriarchy and forms of discrimination against women.",
+    "Women’s political representation and reservations in elected bodies.",
+    "Religion, communalism and politics: acceptable and dangerous relationships between religion and politics.",
+    "Forms of communalism and the constitutional meaning of a secular state.",
+    "Caste inequalities: hereditary occupation, exclusion, reform and continuing economic inequality.",
+    "Caste in politics: candidate selection, appeals, representation and limits of vote-bank assumptions.",
+    "Politics in caste: politicisation, coalition, dignity, opportunities and possible conflict."
+  ],
+  "banned_topics": [
+    "Detailed federal distribution of legislative powers, which belongs to Federalism.",
+    "Detailed recognition, ideologies and reform of political parties, which belongs to Political Parties.",
+    "A general evaluation of all outcomes of democracy, which belongs to Outcomes of Democracy."
+  ],
+  "must_include_keywords": [
+    "gender division",
+    "sexual division of labour",
+    "public/private division",
+    "feminist",
+    "feminist movements",
+    "patriarchy",
+    "unpaid work",
+    "Equal Remuneration Act, 1976",
+    "child sex ratio",
+    "domestic violence",
+    "women’s political representation",
+    "Panchayati Raj",
+    "Nari Shakti Vandan Adhiniyam",
+    "religious diversity",
+    "family laws",
+    "communalism",
+    "communal politics",
+    "majoritarian dominance",
+    "political mobilisation",
+    "communal violence",
+    "secular state",
+    "freedom of religion",
+    "religious discrimination",
+    "untouchability",
+    "caste inequalities",
+    "hereditary occupational division",
+    "Jotiba Phule",
+    "B.R. Ambedkar",
+    "Periyar Ramaswami Naicker",
+    "urbanisation",
+    "occupational mobility",
+    "caste hierarchy",
+    "casteism",
+    "vote bank",
+    "universal adult franchise",
+    "one-person-one-vote",
+    "Dalits",
+    "Adivasis",
+    "OBCs",
+    "politicisation of caste"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Gender division is mainly a biological division of work.",
+      "correction": "The chapter explains it as a hierarchical social division created by expectations and stereotypes, not biology."
+    },
+    {
+      "claim": "Any mention of religion in politics is communal.",
+      "correction": "Moral values, minority protection and reform against discrimination may enter politics legitimately if all religions are treated equally."
+    },
+    {
+      "claim": "A secular state must never intervene in religious matters.",
+      "correction": "India’s Constitution allows intervention to ensure equality within religious communities, including the ban on untouchability."
+    },
+    {
+      "claim": "Caste alone determines Indian election results.",
+      "correction": "No constituency is generally controlled by one caste, no party receives all votes of a caste, and performance, leadership, party attachment, gender and economic interests also matter."
+    }
+  ],
+  "recommended_example_progression": [
+    "Identify gender disadvantage using NCERT Exercise 1.",
+    "Assess women’s legislative representation using NCERT Exercise 5.",
+    "Classify forms of communal politics using NCERT Exercise 2.",
+    "Explain continuing caste inequality using NCERT Exercise 3.",
+    "Show why caste alone cannot determine elections using NCERT Exercise 4."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The NCERT end-of-chapter Exercises contain Questions 1–12 on gender discrimination, representation, communalism, secularism, caste inequality and caste–politics relations.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

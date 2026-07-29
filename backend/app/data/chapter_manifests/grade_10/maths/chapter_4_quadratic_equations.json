@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 4: Quadratic Equations",
+  "central_question": "How can real-life conditions be converted into quadratic equations, solved for their roots, and tested for the nature and feasibility of those roots?",
+  "in_scope_units": [
+    "Introduction: formation of a quadratic equation from a real-life area problem and a brief historical context.",
+    "Quadratic Equations: standard form, recognising equations after simplification, and modelling situations mathematically.",
+    "Solution of a Quadratic Equation by Factorisation: roots, zero-product reasoning, repeated roots, verification and rejection of inadmissible contextual roots.",
+    "Nature of Roots: quadratic formula, discriminant, distinct equal or non-real root cases, and applications.",
+    "Summary: consolidates definitions, factorisation, formula and discriminant conditions."
+  ],
+  "banned_topics": [
+    "Complex-number solutions when the discriminant is negative; the supplied chapter states only that there are no real roots.",
+    "Detailed derivation by completing the square, which is mentioned historically but not developed in the supplied chapter.",
+    "Graphical solution of quadratic equations using parabolas, which belongs to the Polynomials chapter and is not a method developed here.",
+    "Higher-degree equations that do not simplify to degree 2."
+  ],
+  "must_include_keywords": [
+    "quadratic equation",
+    "quadratic polynomial",
+    "standard form",
+    "ax² + bx + c = 0",
+    "a ≠ 0",
+    "real coefficients",
+    "simplification",
+    "degree 2",
+    "root",
+    "solution",
+    "zero of a quadratic polynomial",
+    "at most two roots",
+    "factorisation",
+    "splitting the middle term",
+    "linear factors",
+    "zero-product property",
+    "repeated root",
+    "verification",
+    "contextual restriction",
+    "quadratic formula",
+    "x = (−b ± √(b² − 4ac))/(2a)",
+    "discriminant",
+    "b² − 4ac",
+    "two distinct real roots",
+    "two equal real roots",
+    "no real roots",
+    "positive discriminant",
+    "zero discriminant",
+    "negative discriminant",
+    "word problem",
+    "area",
+    "consecutive integers",
+    "Pythagoras theorem",
+    "feasibility"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An equation is quadratic whenever x² appears before simplification.",
+      "correction": "The equation must simplify to ax² + bx + c = 0 with a ≠ 0; x² terms may cancel and leave a linear equation."
+    },
+    {
+      "claim": "The roots of a quadratic equation and the zeroes of the corresponding quadratic polynomial are different ideas.",
+      "correction": "For ax² + bx + c = 0, the roots are exactly the zeroes of ax² + bx + c."
+    },
+    {
+      "claim": "Every algebraic root is acceptable in a word problem.",
+      "correction": "A root must satisfy the context; negative lengths, counts or ages are rejected when the quantities must be positive."
+    },
+    {
+      "claim": "The discriminant is b² + 4ac or the denominator in the quadratic formula is 2.",
+      "correction": "The discriminant is b² − 4ac and the denominator is 2a."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the prayer hall situation in Section 4.1 to form 2x² + x − 300 = 0.",
+    "Use NCERT Example 2 to decide whether equations are quadratic only after full simplification.",
+    "Use NCERT Example 3 and Example 5 to solve by factorisation, including distinct and repeated roots.",
+    "Use NCERT Example 6 to apply contextual rejection of a negative root.",
+    "Use NCERT Examples 7, 8 and 9 to classify roots with the discriminant and solve feasible applications."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter contains Exercise 4.1 on recognising and forming quadratic equations, Exercise 4.2 on factorisation and applications, and Exercise 4.3 on the nature of roots and feasibility.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 9",
+  "subject": "English",
+  "chapter": "Grammar: Tenses",
+  "central_question": "How can a student choose and form the correct tense to show when an action happens and whether it is complete, continuing or repeated?",
+  "in_scope_units": [
+    "Simple present: habitual actions, facts and general truths",
+    "Present continuous: actions happening now or temporary ongoing actions",
+    "Present perfect: completed actions at an unspecified past time or past actions continuing now",
+    "Present perfect continuous: actions continuing from the past into the present",
+    "Simple past: completed actions at a specific past time",
+    "Past continuous: actions in progress at a particular past time",
+    "Past perfect: actions completed before another past action",
+    "Past perfect continuous: actions continuing up to a past point",
+    "Simple future with will or shall",
+    "Future continuous for actions in progress at a future time",
+    "Future perfect for actions completed before a future point",
+    "Future perfect continuous for actions continuing up to a future point",
+    "Common errors involving specific past time, since/for and third-person singular agreement"
+  ],
+  "banned_topics": [
+    "Reported speech",
+    "Active and passive voice",
+    "Modals as a separate topic",
+    "Subject-verb concord beyond the third-person singular tense form"
+  ],
+  "must_include_keywords": [
+    "tense",
+    "simple present",
+    "present continuous",
+    "present perfect",
+    "present perfect continuous",
+    "simple past",
+    "past continuous",
+    "past perfect",
+    "past perfect continuous",
+    "simple future",
+    "future continuous",
+    "future perfect",
+    "future perfect continuous",
+    "base verb",
+    "past participle",
+    "verb-ing",
+    "has",
+    "have",
+    "had",
+    "will",
+    "since",
+    "for",
+    "specific past time",
+    "third-person singular"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Present perfect can be used with a finished past-time expression such as yesterday.",
+      "correction": "A specific finished past time requires the simple past: 'I saw him yesterday,' not 'I have seen him yesterday.'"
+    },
+    {
+      "claim": "Since and for can be used interchangeably.",
+      "correction": "Use 'since' with a point in time and 'for' with a duration."
+    },
+    {
+      "claim": "The simple present uses the base verb for every subject.",
+      "correction": "A third-person singular subject normally takes the verb ending -s or -es, as in 'She walks.'"
+    }
+  ],
+  "recommended_example_progression": [
+    "Fill in blanks using simple present and present continuous from time clues.",
+    "Correct present perfect and present perfect continuous sentences using has/have, since and for.",
+    "Choose among the four past tenses in a short sequence of events.",
+    "Complete future-time sentences using will, will be, will have and will have been.",
+    "Edit a mixed-tense passage containing typical CBSE errors."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes fill-in-the-blanks, gap filling in passages, sentence completion, tense transformation and error correction.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

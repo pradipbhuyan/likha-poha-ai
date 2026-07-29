@@ -1,0 +1,166 @@
+CBSE Grade 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2016-17
+Subject: Science
+Source Subject Code: Science
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/CLASS X_2016_17/Science-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/CLASS X_2016_17/Science-MS.pdf
+Total Questions: 36
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/CLASS X_2016_17/Science-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Name the process of converting vegetable oil to vegetable ghee. 1
+
+Q10 [short_answer, 3m, Sec A]
+Consider the following elements 4Be, 9F, 19K, 20Ca a) Select the element having one election in the outer most shell. b) Select two elements of the same group. c) Write the formula and state the nature of the Compound formed when the element K reacts with an element X of electronic configuration 2, 8, 7.
+
+Q11 [short_answer, 3m, Sec A]
+Explain with the help of labelled diagrams the development that takes place in each of the body parts of a Planaria where body is cut into three pieces. None this process and give an example of an organism in which a similar process can be observed.
+  [NOTE: diagram]
+
+Q12 [short_answer, 3m, Sec A]
+List any four methods of contraception used b y humans. How does the use of three methods have a direct effect on the heath and prosperity of a family?
+
+Q13 [short_answer, 3m, Sec A]
+List two functions each of the following points of human female reproductive system a) Ovaries b) Fallopian tubes c) Uterus
+
+Q14 [short_answer, 3m, Sec A]
+“Different species use different strategies to determine sex of a new born individual. It can be environmental cues or genetically determined”. Justify this statement giving reason/example.
+
+Q15 [short_answer, 3m, Sec A]
+List in tabular form, two distinguishing features between the acquired traits and the inherited traits with one example of each.
+
+Q16 [short_answer, 3m, Sec A]
+A student has to project a three times magnified image of a candle flame on a wa ll. Name the type of the lens (c onverging/ diverging) required for the purpose. It the candle flame is at a distance of 6 m from the wall, find the focal length of the lens.
+
+Q17 [short_answer, 3m, Sec A]
+A child while playing with his father’s spectacles burnt a hole in a piece of them tissue paper by focusing the image of the Sun on at. a) Name the defect of vision his father is suffering form. b) List two causes of the defect. c) Draw a ray diagram to show how this defect may be corrected using a suitable lens.
+  [NOTE: diagram]
+
+Q18 [short_answer, 3m, Sec A]
+Some residents of your colony are planning to cut trees to create a place for parking vehicles. You are upset by knowing all this and wa nted to do something to create awareness about the importance of trees. (a) List any three reasons that you will use to convince residents of your colony not to cut the existing trees. (b) List any three values that would be inculcated amongst them with su ch approach.
+
+Q19 [long_answer, 5m, Sec A]
+a) State two main reasons for carbon forming a very large number of compounds. b) Give reason why carbon forms compound (i) Namely by Covalent bonding (ii) Having low melting and boiling points c) What happens when (Write chemical equations of the reactions) (i) A piece of sodium metal is added to ethanol. (ii) Ethanoic acid reacts with sodium hydroxide.
+
+Q2 [mcq, 1m, Sec A]
+List two secondary sexual characters of males that are different from that of females.
+
+Q20 [long_answer, 5m, Sec A]
+A. Draw a longitudinal section of a flower and label the following parts – a) Part that develops into a fruit b) Part that produces pollen grain c) Part that transfers male gametes d) Part that is sticky to trap B. Write the names of the parts labeled as A, B, C, D in the diagram given below:
+  [NOTE: diagram]
+
+Q21 [long_answer, 5m, Sec A]
+A. How does speciation take place? B. Define the term GENE. C. The gene for red hair is recessive to the gene for black hair. What will be the hair colour of a child if he inherits a gene for red colour from his mother and a gene for black hair from his father? Express with the help of flow chart.
+
+Q22 [long_answer, 5m, Sec A]
+A. Explain the formation of rainbow in the sky with the help of a diagram. List the three phenomena of light involved. Which colour – violet or red appears at top of the rainbow? B. What is the difference in colours of the sun observed during sunrise/sunset and noon? Give explanation for each.
+  [NOTE: diagram]
+
+Q23 [long_answer, 5m, Sec A]
+(i) Which property of concave mirror is utilized for using them as shaving mirrors? (ii) Light passes through a rectangular glass slab and through a triangular glass prism. Using proper ray diagram, explain in what way does the direction of the two emergent beams differs with respect to the incident beam of light. (iii) A concave lens has a focal length of 50 cm Calculate its power.
+  [NOTE: diagram]
+
+Q24 [long_answer, 5m, Sec A]
+(i) Rohit claims to have obtained an image twice the size of object with a concave lens. Is he correct? Give reason for your answer. (ii) Where should an object be placed in case of a convex lens to form an image of same size as of the object? Show with the help of ray diagram the position and the nature of the image formed. (iii) With the help of ray diagram, illustrate the change in position, nature and size of the image formed if the convex lens in case of (ii) is replaced by concave lens of same focal length. Section B
+  [NOTE: diagram]
+
+Q25 [mcq, 1m, Sec B]
+In the preparation of soap, sodium chloride causes:
+  (A) complete saponification.
+  (B) complete hydrolysis.
+  (C) complete neutralization.
+  (D) complete precipitation.
+
+Q26 [mcq, 1m, Sec B]
+Vishakha carried out saponification reaction in the lab and she gave following comments as: (i) Soap is salt of fatly acid. (ii) Heat is absorbed in this reaction. (iii) Reaction mixture is basic in nature (iv) These are neutralization reaction The correct statements are:
+  (A) (i) & (iii)
+  (B) (ii) & (iv)
+  (C) (i) & (ii)
+  (D) (i), (ii) & (iii)
+
+Q27 [mcq, 1m, Sec B]
+Select from the following salts which may be used to prepare hard water required for the experiment. A. CaSO4 B. Na2SO4 C. CaCl2 D. K2SO4 E. NaHCO3 F. MgCl2 1. A, B and D 2. A, C and F 3. B, D and E 4. C, E and F
+
+Q28 [mcq, 1m, Sec B]
+Four students A,B,C and D did their experiment of finding the focal length of convex lens by obtaining image of a distant object as follows:  Student A used the window grill in the laboratory as the object and a white paper sheet held in hand as the screen.  Student B used a distant tree in the shade and a white thick held in a stand as the screen.  Student C used a well illuminated laboratory window grill as the object and a white paper sheet held in a stand as the screen.  Student D used a well illuminated distant tree as the object and a white thick board held in a stand as the screen. Which student has used the correct method for performing experiment out of the above setups?
+  (A) A
+  (B) B
+  (C) C
+  (D) D
+
+Q29 [mcq, 1m, Sec B]
+In the setup shown below, a clear image of a distant object is obtained on the screen. The focal length of the concave mirror is:
+  (A) 11.4 cm
+  (B) 9.4 cm
+  (C) 9.8cm
+  (D) 9.9cm
+  [NOTE: diagram]
+
+Q3 [mcq, 1m, Sec A]
+Write the main function of Ozone in the upper atmosphere 1
+
+Q30 [mcq, 1m, Sec B]
+In the experiment on refraction of light through a rectangular glass slab done by four students A, B, C and D, the following observations were made: (A) The emergent ray moves towards the normal after second refraction through glass slab with  i = e (B) The emergent ray moves away from the normal after second refraction through glass slab  i   e (C ) For any angle of incidence, always I ˃ e, always.
+  (A) The emergent ray moves away from normal after second refraction through glass slab with i=e
+  (B) (A)
+  (C) (B) (c )    (C )
+  (D) (D)
+
+Q31 [mcq, 1m, Sec B]
+To trace the path of ray of light through the triangular glass prism, a student observes that the emergent ray has
+  (A) bent away from the base of the prism
+  (B) bent towards the base of the prism (c ) moved parallel to the direction of incident ray
+  (C) gone perpendicular to incident ray.
+
+Q32 [mcq, 1m, Sec B]
+The diagrams A and B represents the following relationship:
+  (A) homologous organs
+  (B) analogous organs ( c)  vestigial organs
+  (C) rudimentary organs
+  [NOTE: diagram]
+
+Q33 [mcq, 1m, Sec B]
+Identify the parts labeled 1 and 2 in the adjoining figure.
+  (A) 1- micropyle, 2- epicotyls
+  (B) 1- cotyledon, 2- embryo (c ) 1-radicle , 2-plumule
+  (C) 1-plumule, 2-radicles
+  [NOTE: diagram]
+
+Q34 [short_answer, 2m, Sec B]
+When you add sodium hydrogen carbonate to acetic acid in a test tube, a gas liberates immediately with a brisk effervescence. None the gas and describe the method of its testing in the laboratory.
+
+Q35 [mcq, 1m, Sec B]
+Mention about the four events that occur during binary fission in amoeba. 2
+
+Q36 [short_answer, 2m, Sec B]
+A student obtained a sharp image of a lighted candle on a screen using a convex lens. Now he wants to focus a distant lamp on a far away electric pole. In which direction should the lens be moved for this purpose with respect to the screen, to get a sharp image on the screen? Justify your answer.
+
+Q4 [short_answer, 2m, Sec A]
+When a concave mirror is placed facing the Sun, the Sun’s rays converge to a point 10 cm from the mirror. Now, if you place a 2 cm long candles flame 20 cm away on the principal axis of the mirror, where would you place a screen to obtain the image of the candle? What would see the size of the image? Draw a ray diagram to justify your answer.
+  [NOTE: diagram]
+
+Q5 [short_answer, 2m, Sec A]
+If you find coliform bacteria in a sample of water collected from a river, what would you conclude? Give reason for such kind of water pollution.
+
+Q6 [short_answer, 2m, Sec A]
+Which natural resources are called the “biodiversity hot spots”? How these hot spots maintain ecological balance?
+
+Q7 [short_answer, 3m, Sec A]
+What are isomers? “Isomers of the first three members of alkane series are not possible”. Give reason to justify this statement and draw structures of two isomers of butane, C4 H10.
+
+Q8 [short_answer, 3m, Sec A]
+An organic compound ‘X’ is a liquid at room temperature. It is also a very good solvent and has the molecular formula C2 H6 O. on oxidation ‘X’ gives ‘Y’ which give, break effervescence on reacting with NaHCO 3. X reacts with Y in the presence of conc.H2SO4to give another compound ‘Z’ which has a pleasant smell. Identify X , Y and Z. also write chemical equations to show the formation of Y and Z.
+
+Q9 [short_answer, 3m, Sec A]
+An element ‘A’ belongs to 3rd period and 17th group of the periodic table. a) Write atomic member and electronic configuration of ‘A’ b) State whether A is a metal or a non – metal. c) Write the nature of bond formed if A reacts with another element B of electronic configuration 2, 8, 1. d) Write the chemical formula of the compound formed.
+
+======================================================================
+Return the complete JSON array.

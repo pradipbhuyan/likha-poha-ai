@@ -1,0 +1,146 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Science",
+    "chapter": "Journey Inside the Atom",
+    "central_question": "How did scientific evidence reveal what atoms contain, how their particles are arranged, and how atomic structure determines an element's identity, mass, stability, and combining capacity?",
+    "in_scope_units": [
+      "8.1 Rediscovering the Roots of Atomic Theory: early ideas of parmanu and atomos, followed by Dalton's experimental atomic theory.",
+      "8.2 A Short Historical Journey Through Atomic Models: how new evidence caused atomic models to change.",
+      "8.2.1 Thomson's Model of an Atom: cathode rays, discovery of electrons, and the plum pudding model.",
+      "8.2.2 Testing Thomson's Model: the gold foil or alpha-particle scattering experiment and its observations.",
+      "Rutherford's Model of an Atom: the dense positive nucleus, mostly empty space, and orbiting electrons.",
+      "Limitations of Rutherford's Model: why the planetary model could not explain atomic stability.",
+      "Discovery of the Proton: positive charge in the nucleus and electrical neutrality of atoms.",
+      "8.2.3 Bohr's Model of the Atom: fixed energy levels or shells and stationary states.",
+      "8.3 What Components Contribute to the Mass of an Atom?: why most atomic mass lies in the nucleus.",
+      "8.3.1 Discovery of the Neutron: Chadwick's neutral particle and the three subatomic particles.",
+      "8.4 Symbols of Elements: Dalton's pictorial symbols, Berzelius's alphabetic symbols, and IUPAC writing rules.",
+      "8.5 Atomic Number: proton number, the symbol Z, and the identity of an element.",
+      "8.6 Mass Number: nucleons, the symbol A, atomic notation, and neutron calculations.",
+      "8.7 Distribution of Electrons in Energy Levels: Bohr-Bury rules and shell capacities.",
+      "8.7.1 Building Up Atoms: electronic configurations of the first eighteen elements.",
+      "8.8 Combining Capacity of an Atom: valence shell, valence electrons, octet stability, and valency.",
+      "8.9.1 Isotopes: atoms of the same element with different neutron counts, their properties, and uses.",
+      "Average Atomic Mass: abundance-weighted calculation using naturally occurring isotopes.",
+      "8.9.2 Isobars: atoms of different elements with the same mass number but different atomic numbers.",
+      "Development Beyond Bohr's Model: the chapter's brief indication that modern atomic theory uses electron clouds and remains an evolving field."
+    ],
+    "banned_topics": [
+      "Detailed periodic-table classification into groups, periods, metals, non-metals, and trends",
+      "Detailed ionic and covalent bond formation, Lewis structures, and chemical formula writing",
+      "Quantum numbers, orbitals, subshells, probability wavefunctions, and mathematical quantum mechanics",
+      "Radioactive decay laws, half-life calculations, nuclear equations, and detailed nuclear fission or fusion mechanisms",
+      "Stoichiometry, mole concept, and molar-mass calculations"
+    ],
+    "must_include_keywords": [
+      "Acharya Kanada",
+      "parmanu",
+      "Leucippus",
+      "Democritus",
+      "atomos",
+      "John Dalton",
+      "atomic theory",
+      "radioactivity",
+      "J. J. Thomson",
+      "cathode rays",
+      "electron",
+      "plum pudding model",
+      "gold foil experiment",
+      "alpha particles",
+      "scattering",
+      "Ernest Rutherford",
+      "nucleus",
+      "empty space",
+      "planetary model",
+      "proton",
+      "electrical neutrality",
+      "Niels Bohr",
+      "stationary states",
+      "energy levels",
+      "K shell",
+      "L shell",
+      "James Chadwick",
+      "neutron",
+      "chemical symbols",
+      "IUPAC",
+      "atomic number",
+      "mass number",
+      "nucleons",
+      "2n^2 rule",
+      "electronic configuration",
+      "valence electrons",
+      "octet",
+      "valency",
+      "isotopes",
+      "weighted average atomic mass",
+      "isobars"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Dalton's atom is still considered completely indivisible.",
+        "correction": "Dalton described atoms as indivisible, but the later discovery of electrons, protons, and neutrons showed that atoms contain subatomic particles."
+      },
+      {
+        "claim": "Thomson placed electrons around a central nucleus.",
+        "correction": "Thomson proposed a positively charged sphere with electrons embedded throughout it; his model had no central nucleus."
+      },
+      {
+        "claim": "Most alpha particles bounced back in Rutherford's experiment.",
+        "correction": "Most alpha particles passed through the foil undeflected, some were deflected, and only a few bounced back."
+      },
+      {
+        "claim": "The gold foil experiment directly discovered neutrons.",
+        "correction": "The experiment supported the existence of a small, dense, positively charged nucleus; James Chadwick discovered the neutron later, in 1932."
+      },
+      {
+        "claim": "Rutherford's model fully explained why atoms are stable.",
+        "correction": "Rutherford's model could not explain why accelerating electrons would not lose energy and spiral into the nucleus."
+      },
+      {
+        "claim": "In Bohr's model, electrons can occupy any position between shells.",
+        "correction": "Bohr proposed that electrons occupy only allowed stationary shells or energy levels and not the spaces between them."
+      },
+      {
+        "claim": "Atomic number equals the number of neutrons.",
+        "correction": "Atomic number Z equals the number of protons; in a neutral atom it also equals the number of electrons."
+      },
+      {
+        "claim": "Mass number includes the mass contribution of electrons.",
+        "correction": "Mass number A is the total number of protons and neutrons, called nucleons; electron mass is ignored in this calculation."
+      },
+      {
+        "claim": "The third shell must always contain 18 electrons before the next shell can begin.",
+        "correction": "The chapter gives 2n^2 as a shell-capacity rule, but for the first eighteen elements it uses the Bohr-Bury filling shown in Table 8.4, with configurations up to 2, 8, 8."
+      },
+      {
+        "claim": "Isotopes are different elements because their masses differ.",
+        "correction": "Isotopes have the same atomic number and are therefore the same element, but they have different mass numbers because their neutron counts differ."
+      },
+      {
+        "claim": "An average atomic mass such as 35.5 u means every chlorine atom has a fractional mass of 35.5 u.",
+        "correction": "35.5 u is the weighted average for a natural sample containing chlorine isotopes in their natural abundances, not the mass of one individual chlorine atom."
+      },
+      {
+        "claim": "Isobars have the same atomic number.",
+        "correction": "Isobars are atoms of different elements with the same mass number but different atomic numbers."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Pause and Ponder Q3 to connect cathode-ray evidence with the conclusion that electrons occur in all atoms.",
+      "Use NCERT Revise, Reflect, Refine Q1 to interpret the observations and conclusions of Rutherford's gold foil experiment.",
+      "Use NCERT Pause and Ponder Q10 to calculate electrons, protons, and neutrons from atomic number 26 and mass number 56.",
+      "Use NCERT Pause and Ponder Q15 to practise electronic configurations for atomic numbers 12, 16, and 18.",
+      "Use NCERT Revise, Reflect, Refine Q14 as an integrated atomic-number, mass-number, element-identification, configuration, valency, and isotope problem.",
+      "Finish with NCERT Pause and Ponder Q18 to calculate the weighted average atomic mass of bromine from isotopic abundances."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Revise, Reflect, Refine' and contains Questions 1-15 on pages 158-160 of the supplied chapter."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Journey Inside the Atom\n\n## What you will learn\nYou will trace how the idea of the atom changed from an ancient philosophical proposal to an evidence-based scientific model. You will also learn how cathode-ray experiments revealed the electron and led J. J. Thomson to propose the first model containing positive and negative charge.\n\n## Simple explanation\nPeople first imagined that matter must be made of extremely small particles. Much later, experiments showed that atoms are not indivisible: they contain smaller particles. Each new piece of evidence forced scientists to improve the atomic model.\n\n## Step-by-step breakdown\n- **Ancient Indian idea**: Acharya Kanada proposed that repeated division of matter would finally reach indivisible particles called *parmanus*. He described combinations such as dyads and triads, but did not specify the exact proportions in which they form substances.\n- **Ancient Greek idea**: Leucippus and Democritus proposed indivisible particles called *atomos*, meaning indivisible.\n- **Nature of the early ideas**: These ancient ideas were philosophical and were not based on experimental observations.\n- **Dalton's atomic theory**: In 1808, John Dalton gave the first scientific description of matter as being composed of indivisible atoms, based on the experiments known at that time.\n- **Why the model had to change**: Radioactivity and later experiments showed that atoms emit smaller particles, so atoms could not be truly indivisible.\n- **Cathode-ray experiment**: In 1897, J. J. Thomson passed electricity through gas at very low pressure in a glass tube. Rays travelled from the cathode to the anode.\n- **Discovery of electrons**: The cathode rays behaved as streams of negatively charged particles much lighter than atoms. Their nature did not depend on the cathode material or the gas, showing that electrons occur in all atoms.\n- **Thomson's model**: Thomson pictured the atom as a sphere of positive charge with electrons embedded throughout it, like seeds in a watermelon or plums in a pudding.\n- **Charge balance**: The total positive and negative charges had to balance for the atom to remain electrically neutral.\n\n## Worked example\nQuestion: NCERT Pause and Ponder Q3 asks: Why did Thomson conclude that electrons are present in all atoms?\n\nSolution:\n- Step 1: Thomson observed cathode rays in a low-pressure discharge tube.\n- Step 2: The nature of the rays did not change when the material of the cathode or the gas in the tube was changed.\n- Step 3: Therefore, the negatively charged particles producing the rays could not belong to only one material or one gas.\n- Final answer: Thomson concluded that electrons are present in all atoms because cathode rays had the same nature regardless of the cathode material and the gas used.\n\n## Common mistake\nA common mistake is to draw Thomson's atom with a central nucleus. Thomson's model had no nucleus; it had positive charge spread through the whole atom with electrons embedded in it.\n\n## Quick check question\nQuestion: In NCERT Pause and Ponder Q1, what happens if the positive charge of the clay in a Thomson-style model is less than the total negative charge of the electron beads?\nAnswer: The model has a net negative charge and does not represent a neutral atom.\nExplanation: A neutral atom requires total positive charge to equal total negative charge. If negative charge is greater, the charges do not cancel.\n\n## Summary\n- Ancient thinkers proposed indivisible particles called parmanus or atomos.\n- Dalton converted the atomic idea into an early scientific theory.\n- Cathode rays revealed negatively charged electrons inside atoms.\n- Electrons are present in every element.\n- Thomson proposed the plum pudding model to explain atomic neutrality.",
+    "Core explanation": "# Core explanation: Journey Inside the Atom\n\n## What you will learn\nYou will understand how Rutherford's gold foil experiment overturned Thomson's model and revealed the nucleus. You will then compare Rutherford's and Bohr's models, and learn the roles of protons and neutrons in the atom.\n\n## Simple explanation\nRutherford's experiment showed that an atom is mostly empty space with nearly all its positive charge and mass concentrated in a tiny nucleus. Rutherford's planetary model was important but could not explain stability, so Bohr proposed fixed energy levels in which electrons do not lose energy.\n\n## Step-by-step breakdown\n- **Gold foil setup**: In 1911, Geiger and Marsden, working under Ernest Rutherford, directed a narrow beam of positively charged alpha particles at a very thin gold foil.\n- **Expected result from Thomson's model**: If positive charge were spread uniformly, nearly all alpha particles should pass through with little or no deflection.\n- **Actual observations**: Most alpha particles passed straight through, some were deflected through large angles, and a few bounced back.\n- **Meaning of most particles passing through**: Most of the atom must be empty space.\n- **Meaning of large deflections**: Positive charge and most of the atom's mass must be concentrated in a tiny, dense central nucleus.\n- **Relative size**: The chapter gives an atomic diameter of about 10^-10 m and a nuclear diameter of about 10^-15 m, making the nucleus about 10^5 times smaller than the atom.\n- **Rutherford's planetary model**: Electrons were proposed to revolve around the nucleus like planets around the Sun.\n- **Proton and neutrality**: Rutherford showed that the nucleus contains positively charged protons. In a neutral atom, the number of protons equals the number of electrons.\n- **Limitation of Rutherford's model**: A charged electron moving in a circular path is accelerating. The model could not explain why it would not lose energy, spiral inward, and collapse into the nucleus.\n- **Bohr's stationary states**: In 1913, Niels Bohr proposed allowed circular shells or energy levels, named K, L, M, N or n = 1, 2, 3, 4. An electron in an allowed shell does not lose energy.\n- **Energy changes**: An electron moves from one shell to another only by absorbing or releasing a fixed amount of energy equal to the energy difference between the levels.\n- **Discovery of the neutron**: In 1932, James Chadwick discovered the neutron, which has no electrical charge and a mass nearly equal to that of a proton.\n- **Where atomic mass lies**: Almost all atomic mass comes from protons and neutrons packed in the nucleus; the mass of electrons is negligible for the chapter's calculations.\n- **Relative charges**: Electron = -1, proton = +1, neutron = 0.\n\n## Worked example\nQuestion: NCERT Revise, Reflect, Refine Q1 asks which statements correctly describe Rutherford's gold foil experiment: (i) it showed neutrons, (ii) it disproved the plum pudding model and led to the nuclear idea, (iii) large deflections showed that positive charge and most mass are packed in a tiny centre, and (iv) it showed that electrons move around the nucleus.\n\nSolution:\n- Step 1: Statement (i) is incorrect because the experiment did not discover neutrons; Chadwick discovered them later.\n- Step 2: Statement (ii) is correct because the scattering results could not be explained by Thomson's uniformly positive sphere.\n- Step 3: Statement (iii) is correct because strong deflection of a few positively charged alpha particles requires a small, dense, positively charged centre.\n- Step 4: Statement (iv) is incorrect because the scattering observations established the nucleus, not the motion of electrons around it.\n- Final answer: Statements (ii) and (iii) are correct; statements (i) and (iv) are incorrect.\n\n## Common mistake\nDo not say that many alpha particles hit the nucleus. Only a few were strongly deflected or bounced back; this is why Rutherford concluded that the nucleus occupies a very small part of the atom.\n\n## Quick check question\nQuestion: According to NCERT Revise, Reflect, Refine Q2, which statement is correct: electrons lose energy in fixed orbits, electrons can be anywhere with any energy, electrons revolve in fixed-energy orbits without losing energy, or electrons can remain between energy levels?\nAnswer: Electrons revolve around the nucleus in orbits of fixed energy without losing energy.\nExplanation: This is Bohr's postulate of stationary states. The other statements contradict the model described in the chapter.\n\n## Summary\n- Rutherford's experiment showed that atoms are mostly empty space.\n- A tiny, dense nucleus contains positive charge and most atomic mass.\n- Protons are positive; neutral atoms have equal numbers of protons and electrons.\n- Rutherford's model could not explain atomic stability.\n- Bohr introduced fixed energy levels where electrons do not lose energy.\n- Chadwick's neutron completed the chapter's three-particle picture of the atom.",
+    "Worked examples": "# Worked examples: Journey Inside the Atom\n\n## What you will learn\nYou will learn how elements are represented and how atomic number, mass number, and atomic notation are used. You will also apply the Bohr-Bury rules to write electronic configurations for the first eighteen elements.\n\n## Simple explanation\nAn element is identified by its number of protons. Its mass number counts the protons and neutrons in the nucleus, while its electronic configuration shows how its electrons are distributed among the K, L, M, and N shells.\n\n## Step-by-step breakdown\n- **Chemical symbols**: Dalton first used pictorial symbols. Berzelius later proposed alphabetic symbols, and IUPAC now approves element names and symbols.\n- **Writing symbols correctly**: The first letter is uppercase and the second, if present, is lowercase: H, Al, Co, Cl, Zn.\n- **Symbols from older names**: Fe comes from *ferrum*, Hg from *hydrargyros*, W from *wolfram*, Na from *natrium*, and K from *kalium*.\n- **Atomic number**: Atomic number Z is the number of protons in the nucleus and uniquely identifies an element.\n- **Neutral atoms**: In a neutral atom, number of electrons = number of protons = atomic number.\n- **Mass number**: Mass number A = number of protons + number of neutrons.\n- **Nucleons**: Protons and neutrons together are called nucleons.\n- **Neutron calculation**: Number of neutrons = A - Z.\n- **Atomic notation**: The mass number is written at the upper left of the element symbol and the atomic number at the lower left, as in carbon-12 with Z = 6.\n- **Shell-capacity rule**: The maximum capacity of a shell is 2n^2. Thus K can hold 2, L can hold 8, and M can hold 18 electrons.\n- **Outermost-shell rule**: The outermost shell can contain at most 8 electrons, except the first shell, which can hold at most 2.\n- **Order of filling**: Electrons fill shells stepwise from the shell closest to the nucleus outward: K, then L, then M, then N.\n- **Electronic configuration**: The arrangement of electrons in shells is called the electronic configuration. Examples from Table 8.4 include Na = 2, 8, 1; Mg = 2, 8, 2; and Ar = 2, 8, 8.\n\n## Worked example\nQuestion: NCERT Pause and Ponder Q10 states that an atom has atomic number 26 and 56 nucleons. Find its numbers of electrons, protons, and neutrons.\n\nSolution:\n- Step 1: Atomic number Z = number of protons = 26.\n- Step 2: The atom is neutral, so number of electrons = number of protons = 26.\n- Step 3: Mass number A = 56 = protons + neutrons.\n- Step 4: Neutrons = 56 - 26 = 30.\n- Final answer: Protons = 26, electrons = 26, and neutrons = 30.\n\n## Common mistake\nDo not use the mass number as the number of electrons. In a neutral atom, electrons equal the atomic number, while the mass number counts protons plus neutrons.\n\n## Quick check question\nQuestion: NCERT Pause and Ponder Q15 asks for the electronic configurations of elements with atomic numbers 12, 16, and 18. What are they?\nAnswer: Z = 12: 2, 8, 2; Z = 16: 2, 8, 6; Z = 18: 2, 8, 8.\nExplanation: Fill K with 2 electrons, then L with 8, and place the remaining electrons in M, following the distributions shown for the first eighteen elements.\n\n## Summary\n- IUPAC symbols use an uppercase first letter and lowercase second letter.\n- Atomic number Z equals the proton number.\n- A neutral atom has equal numbers of protons and electrons.\n- Mass number A equals protons plus neutrons.\n- Neutrons are calculated using A - Z.\n- Electronic configurations fill shells from K outward.",
+    "Exam-style problems": "# Exam-style problems: Journey Inside the Atom\n\n## What you will learn\nYou will connect electronic configuration with valency and stability. You will also distinguish isotopes from isobars and calculate weighted average atomic mass using the abundances given in the chapter.\n\n## Simple explanation\nThe outermost electrons control how an atom combines with other atoms. Atoms of the same element may have different numbers of neutrons, producing isotopes, while atoms of different elements can sometimes have the same mass number, producing isobars.\n\n## Step-by-step breakdown\n- **Valence shell**: The outermost occupied shell is the valence shell.\n- **Valence electrons**: Electrons in the valence shell are called valence electrons.\n- **Stable configuration**: An octet means 8 electrons in the outermost shell; helium is stable with 2 electrons in its only shell.\n- **Valency**: Valency is the number of electrons gained, lost, or shared to reach a stable configuration.\n- **Examples of valency**: Sodium, 2, 8, 1, loses one electron and has valency 1. Oxygen, 2, 6, gains two and has valency 2. Carbon, 2, 4, shares four and has valency 4.\n- **Isotopes**: Isotopes are atoms of the same element with the same atomic number but different mass numbers because they contain different numbers of neutrons.\n- **Hydrogen isotopes**: Protium has no neutron, deuterium has one neutron, and tritium has two neutrons; each has one proton and one electron.\n- **Carbon isotopes**: Carbon-12, carbon-13, and carbon-14 each have six protons and six electrons but different neutron counts.\n- **Chemical properties of isotopes**: Isotopes have similar chemical properties because they have the same electronic configuration and the same valence-electron arrangement.\n- **Uses of isotopes**: Uranium-235 is used as reactor fuel, cobalt-60 in cancer radiation treatment, iodine-131 in treatment of goitre and thyroid cancer, and carbon-14 for dating fossils and artefacts.\n- **Weighted average atomic mass**: Multiply each isotope's mass by its fractional abundance and add the results. Chlorine's 35 u and 37 u isotopes at 75% and 25% give 35.5 u.\n- **Meaning of a fractional average**: The average does not mean that one chlorine atom has a mass of 35.5 u; it describes a natural mixture of isotopes.\n- **Isobars**: Isobars are atoms of different elements with the same mass number but different atomic numbers, such as calcium-40, potassium-40, and argon-40.\n\n## Worked example\nQuestion: NCERT Pause and Ponder Q18 gives bromine isotopes bromine-79 at 49.7% and bromine-81 at 50.3%. Calculate the average atomic mass.\n\nSolution:\n- Step 1: Convert the percentages to fractions: 49.7/100 and 50.3/100.\n- Step 2: Multiply each isotope mass by its abundance: 79 × 49.7/100 = 39.263 u and 81 × 50.3/100 = 40.743 u.\n- Step 3: Add the contributions: 39.263 u + 40.743 u = 80.006 u.\n- Final answer: The average atomic mass of bromine is 80.006 u, approximately 80.0 u.\n\n## Common mistake\nDo not calculate an ordinary mean when isotope abundances are unequal. The chapter requires a weighted average based on the percentage of each isotope in nature.\n\n## Quick check question\nQuestion: In NCERT Revise, Reflect, Refine Q3, X has 18 protons and 19 neutrons, Y has 17 protons and 18 neutrons, and Z has 17 protons and 20 neutrons. What is the relation between Y and Z, and between Z and X?\nAnswer: Y and Z are isotopes; Z and X are isobars.\nExplanation: Y and Z have the same atomic number 17 but mass numbers 35 and 37. Z and X have different atomic numbers, 17 and 18, but both have mass number 37.\n\n## Summary\n- Valency depends on electrons gained, lost, or shared to reach stability.\n- A complete octet, or helium's duplet, is largely stable and unreactive.\n- Isotopes have the same atomic number but different mass numbers.\n- Isotopes of one element have similar chemical properties.\n- Average atomic mass must account for natural abundance.\n- Isobars have the same mass number but different atomic numbers.",
+    "Revision and recap": "# Revision and recap: Journey Inside the Atom\n\n## What you will learn\nYou will bring together the complete journey from Dalton's indivisible atom to the chapter's modern view of atomic structure. You will revise how to move between atomic number, mass number, electronic configuration, valency, isotopes, and isobars in an integrated problem.\n\n## Simple explanation\nThe chapter shows science as a process of model-building. Dalton, Thomson, Rutherford, Bohr, and Chadwick each explained evidence that earlier models could not, while later evidence continued to refine the picture of the atom.\n\n## Step-by-step breakdown\n- **Chronological development**: Ancient parmanu and atomos ideas were followed by Dalton's experimental atomic theory, Thomson's positive sphere with electrons, Rutherford's nuclear model, Bohr's fixed energy levels, and the later quantum-mechanical idea of electron clouds.\n- **Evidence drives change**: Cathode rays required electrons to be included; gold-foil scattering required a nucleus; atomic stability required Bohr's stationary states; unexplained nuclear mass required the neutron.\n- **Three particles**: Electrons carry relative charge -1, protons +1, and neutrons 0. Protons and neutrons occupy the nucleus, while electrons occupy energy levels around it.\n- **Identity and mass**: Atomic number Z gives the number of protons and identifies the element. Mass number A gives the total number of protons and neutrons.\n- **Neutrality**: A neutral atom has equal numbers of protons and electrons.\n- **Electron arrangement**: For the first eighteen elements, configurations are built from K outward and are used to determine valence electrons.\n- **Valency and reactivity**: Atoms with incomplete outer shells tend to gain, lose, or share electrons; atoms with a complete octet, or helium's complete first shell, are largely stable.\n- **Isotopes and isobars**: Same Z but different A means isotopes; same A but different Z means isobars.\n- **India connection**: The chapter highlights BARC and the Dhruva reactor for neutron-scattering research, and Homi Jehangir Bhabha's role in India's atomic-energy programme.\n- **Modern caution**: The chapter states that Bohr's paths are not the final model; modern theory describes electron clouds and probability regions, which are studied in higher grades.\n\n## Worked example\nQuestion: NCERT Revise, Reflect, Refine Q14 states that element X has mass number 35 and 18 neutrons. Find its protons, electrons, atomic number, identity, electronic configuration, valence electrons, the new mass number after adding two neutrons, and its relation to the new atom.\n\nSolution:\n- Step 1: Protons = mass number - neutrons = 35 - 18 = 17.\n- Step 2: The atom is neutral, so electrons = 17.\n- Step 3: Atomic number = number of protons = 17.\n- Step 4: The element with atomic number 17 is chlorine, symbol Cl.\n- Step 5: Its electronic configuration is 2, 8, 7.\n- Step 6: It has 7 valence electrons.\n- Step 7: Adding two neutrons changes the mass number from 35 to 37 but does not change the atomic number.\n- Final answer: X is chlorine-35 with 17 protons, 17 electrons, Z = 17, configuration 2, 8, 7, and 7 valence electrons. After two neutrons are added it becomes chlorine-37, an isotope of the original atom.\n\n## Common mistake\nAdding neutrons does not change the identity of an element because atomic number depends on protons, not neutrons. It changes only the mass number and creates another isotope.\n\n## Quick check question\nQuestion: NCERT Revise, Reflect, Refine Q5 asks for the correct chronological order of Dalton's, Thomson's, Rutherford's, and Bohr's models. What is the order?\nAnswer: Dalton → Thomson → Rutherford → Bohr.\nExplanation: Dalton described indivisible atoms, Thomson added embedded electrons and positive charge, Rutherford introduced the dense nucleus, and Bohr introduced fixed-energy shells.\n\n## Summary\n- Atomic models changed whenever new evidence exposed a limitation.\n- The nucleus contains protons and neutrons and almost all atomic mass.\n- Atomic number identifies the element; mass number counts nucleons.\n- Electronic configuration determines valence electrons and helps predict valency.\n- Isotopes belong to the same element; isobars belong to different elements.\n- The modern atomic story continues beyond Bohr's model."
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 5: Arithmetic Progressions",
+  "central_question": "How can a constant-difference pattern be recognised, described by its nth term, summed efficiently, and used to solve practical problems?",
+  "in_scope_units": [
+    "Introduction: everyday number patterns and the distinction between constant addition and other patterns.",
+    "Arithmetic Progressions: definition, terms, first term, common difference, general form, finite and infinite APs, and recognition tests.",
+    "nth Term of an AP: derivation and use of aₙ = a + (n − 1)d, including finding terms, term positions and number of terms.",
+    "Sum of First n Terms of an AP: derivation and use of Sₙ = n/2[2a + (n − 1)d] and Sₙ = n/2(a + l), including applications.",
+    "Summary and note to the reader: consolidates formulas and introduces the arithmetic mean of three terms in AP."
+  ],
+  "banned_topics": [
+    "Geometric progressions and compound-growth formulas, except when used only as non-examples of an AP.",
+    "Fibonacci sequence methods, except as a non-example showing unequal consecutive differences.",
+    "Infinite series and convergence.",
+    "General sequence notation or recurrence theory beyond arithmetic progressions."
+  ],
+  "must_include_keywords": [
+    "pattern",
+    "sequence of terms",
+    "arithmetic progression",
+    "AP",
+    "term",
+    "first term",
+    "common difference",
+    "positive common difference",
+    "negative common difference",
+    "zero common difference",
+    "successive terms",
+    "aₖ₊₁ − aₖ",
+    "general form",
+    "a, a + d, a + 2d",
+    "finite AP",
+    "infinite AP",
+    "last term",
+    "nth term",
+    "general term",
+    "aₙ = a + (n − 1)d",
+    "term position",
+    "number of terms",
+    "term from the end",
+    "simple interest",
+    "multiples",
+    "sum of first n terms",
+    "Sₙ",
+    "Sₙ = n/2[2a + (n − 1)d]",
+    "Sₙ = n/2(a + l)",
+    "Gauss pairing method",
+    "aₙ = Sₙ − Sₙ₋₁",
+    "daily-life application",
+    "arithmetic mean",
+    "b = (a + c)/2"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any list with an obvious pattern is an arithmetic progression.",
+      "correction": "A list is an AP only when the difference between every pair of consecutive terms is the same."
+    },
+    {
+      "claim": "The common difference is found by subtracting the next term from the previous term.",
+      "correction": "Use d = aₖ₊₁ − aₖ: subtract the earlier term from the immediately following term, even when the result is negative."
+    },
+    {
+      "claim": "The nth term is a + nd.",
+      "correction": "The first term already corresponds to n = 1, so aₙ = a + (n − 1)d."
+    },
+    {
+      "claim": "The sum formula is Sₙ = n[2a + (n − 1)d].",
+      "correction": "The correct formula includes division by 2: Sₙ = n/2[2a + (n − 1)d]."
+    },
+    {
+      "claim": "A calculated term number n may be any real number.",
+      "correction": "A term position must be a positive integer; a fractional n shows that the proposed number is not a term of the AP."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 2 to decide which lists are APs by checking consecutive differences.",
+    "Use NCERT Example 3 and Example 4 to apply aₙ = a + (n − 1)d and locate a term.",
+    "Use NCERT Example 7 and Example 8 to count terms and find a term from the end.",
+    "Use the Gauss 1-to-100 argument in Section 5.4 to derive the sum formula.",
+    "Use NCERT Examples 11, 13 and 16 to apply sums, solve for n, and model uniform production."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter contains Exercise 5.1 on recognising APs, Exercise 5.2 on nth terms and positions, and Exercise 5.3 on sums and applications.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 5",
+  "subject": "English",
+  "chapter": "1. Papa's Spectacles",
+  "central_question": "How do careful observation, helpfulness, and language play turn Papa’s search into a humorous learning experience?",
+  "in_scope_units": [
+    "Let us Recite: Papa searches for spectacles that are already on his head",
+    "Let us Think: comprehension, misplaced things, helpers, and gratitude",
+    "Let us Learn: ascending order, pair phrases, correct spelling, prepositions, and opposites",
+    "Let us Speak and Listen: words for father and similar-sounding word pairs",
+    "Let us Write: changing the poem into a story with a consistent tense",
+    "Let us Do and Just for Fun: matchsticks, visual observation, hidden letter, and riddle"
+  ],
+  "banned_topics": [
+    "Hockey rules and sports biography",
+    "Rainbow colour mixing",
+    "Bird sanctuary facts"
+  ],
+  "must_include_keywords": [
+    "spectacles",
+    "pair",
+    "glanced",
+    "searching",
+    "newspaper",
+    "pockets",
+    "chair",
+    "window",
+    "head",
+    "ascending order",
+    "handkerchief",
+    "watermelon",
+    "correct spelling",
+    "prepositions",
+    "around",
+    "among",
+    "before",
+    "after",
+    "opposites",
+    "father",
+    "pair-peer",
+    "present tense",
+    "past tense",
+    "matchsticks",
+    "hidden letter",
+    "onion",
+    "gratitude"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Papa finds the spectacles under the chair.",
+      "correction": "He looks under the chair, but the child shows that the spectacles are on Papa’s head."
+    },
+    {
+      "claim": "Ascending order means alphabetical order.",
+      "correction": "The task asks for smallest or lightest first and biggest or heaviest last, or smaller numbers before larger ones."
+    },
+    {
+      "claim": "The poem-to-story task must be in past tense.",
+      "correction": "The chapter suggests present tense and also allows a past-tense version with a different opening."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Let us Think A to reconstruct the search and surprise ending.",
+    "Use Let us Learn A to arrange a supplied group in ascending order.",
+    "Use Let us Learn D to select prepositions from the given box.",
+    "Use Let us Write to convert the poem into a prose story.",
+    "Use Let us Do C and the final riddle for observation and inference."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "There is no single end-of-chapter exercise block; practice is distributed across Let us Think, Let us Learn, Let us Speak, Let us Listen, Let us Write, Let us Do, and Just for Fun.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 7: Lifelines of National Economy",
+  "central_question": "How do transport, communication, trade and tourism connect India and sustain its national economy?",
+  "in_scope_units": [
+    "Transport, communication and trade as complementary lifelines of development.",
+    "Roadways and the classification and advantages of roads.",
+    "Railways, their distribution, importance and operational challenges.",
+    "Pipelines as specialised transport for liquids, gases and slurry.",
+    "Waterways, national waterways and major sea ports.",
+    "Airways and regional connectivity.",
+    "Personal and mass communication, postal, telecom and digital networks.",
+    "International trade, balance of trade and tourism as a trade activity."
+  ],
+  "banned_topics": [
+    "Detailed industrial location from Manufacturing Industries.",
+    "Detailed mineral-pipeline production geography from Minerals and Energy Resources.",
+    "Detailed tourism case studies not stated in the chapter."
+  ],
+  "must_include_keywords": [
+    "transport",
+    "communication",
+    "trade",
+    "roadways",
+    "Golden Quadrilateral",
+    "North-South Corridor",
+    "East-West Corridor",
+    "National Highways",
+    "State Highways",
+    "district roads",
+    "rural roads",
+    "Border Roads Organisation",
+    "metalled roads",
+    "railways",
+    "Konkan Railway",
+    "broad gauge",
+    "pipelines",
+    "HVJ pipeline",
+    "waterways",
+    "National Waterways",
+    "major sea ports",
+    "Deendayal Port",
+    "Mumbai port",
+    "Vishakhapatnam port",
+    "airways",
+    "UDAN",
+    "postal network",
+    "telecom",
+    "mass communication",
+    "Digital India",
+    "international trade",
+    "balance of trade",
+    "exports",
+    "imports",
+    "tourism"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Transport and communication are independent sectors.",
+      "correction": "The chapter describes transport, communication and trade as complementary systems that together connect supply, demand and markets."
+    },
+    {
+      "claim": "Road transport is always cheaper than rail transport.",
+      "correction": "The chapter gives road advantages mainly for short distances, smaller loads, difficult terrain, door-to-door service and feeder links."
+    },
+    {
+      "claim": "Pipelines can carry only liquids.",
+      "correction": "They carry crude oil, petroleum products and natural gas, and solids can be transported when converted into slurry."
+    },
+    {
+      "claim": "A favourable balance of trade means imports are greater than exports.",
+      "correction": "A favourable balance occurs when the value of exports exceeds the value of imports."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 2(i) to state three merits of roadways.",
+    "Use NCERT Exercise 2(ii) to explain where rail transport is most convenient.",
+    "Use NCERT Exercise 1(ii) to identify pipelines as reducing trans-shipment losses and delays.",
+    "Use NCERT Exercise 3(i) to explain why transport and communication are national lifelines.",
+    "Use NCERT Exercise 2(iv) to distinguish local and international trade."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “EXERCISES”, Questions 1 to 3, followed by a quiz drive and a transport word-search activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

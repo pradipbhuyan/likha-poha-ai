@@ -1,0 +1,72 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "English",
+    "chapter": "Grammar: Modals (Advanced Usage)",
+    "central_question": "How can a student use perfect modal forms to express past deduction, possibility, regret, unnecessary action, obligation, and reported meaning accurately?",
+    "in_scope_units": [
+      "Past deduction and probability with must have, might have, could have, and can't have",
+      "Regret or criticism with should have and ought to have",
+      "Unnecessary completed action with needn't have",
+      "Modal changes in reported speech"
+    ],
+    "banned_topics": [
+      "Complete tense system unrelated to modal meaning",
+      "Active and passive voice transformations",
+      "Determiners and articles"
+    ],
+    "must_include_keywords": [
+      "modal verb",
+      "past participle",
+      "must have",
+      "might have",
+      "could have",
+      "can't have",
+      "deduction",
+      "probability",
+      "certainty",
+      "possibility",
+      "should have",
+      "ought to have",
+      "regret",
+      "criticism",
+      "needn't have",
+      "unnecessary action",
+      "reported speech",
+      "would",
+      "could",
+      "might",
+      "had to",
+      "past obligation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Must have and had to both express past obligation.",
+        "correction": "Must have + past participle expresses deduction about the past, while had to expresses past obligation."
+      },
+      {
+        "claim": "After should have, the simple past form is used.",
+        "correction": "Perfect modals take have + past participle, so the correct form is should have gone, not should have went."
+      },
+      {
+        "claim": "Needn't have means the action was not done.",
+        "correction": "Needn't have + past participle means the action was actually done but was unnecessary."
+      }
+    ],
+    "recommended_example_progression": [
+      "Choose must have, might have, or can't have from evidence",
+      "Correct a should have + past participle error",
+      "Rewrite an unnecessary completed action using needn't have",
+      "Convert modal verbs in reported speech",
+      "Distinguish deduction from past obligation"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes gap filling, contextual modal choice, reported-speech transformation, and error correction."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Grammar: Modals (Advanced Usage)\n\n## What you will learn\nYou will learn how modals express deductions and possibilities about past events. You will select the modal according to the strength of the evidence.\n\n## Simple explanation\nTo talk about a past event that we did not directly observe, use a modal followed by have and the past participle. The modal shows how certain or uncertain the speaker is.\n\n## Step-by-step breakdown\n- **Strong past deduction**: must have + past participle expresses strong certainty: 'She must have left already; her car is gone.'\n- **Past possibility**: might have or could have + past participle expresses possibility: 'He might have missed the bus.'\n- **Negative deduction**: can't have + past participle expresses near certainty that something did not happen.\n- **Common structure**: modal + have + past participle\n\n## Worked example\nQuestion: Fill in the blank with a suitable modal: 'The lights are off and the door is locked. They ___ left already.'\n\nSolution:\n- Step 1: The evidence strongly suggests that they left.\n- Step 2: Use 'must have' followed by the past participle 'left'.\n- Final answer: The lights are off and the door is locked. They must have left already.\n\n## Common mistake\nDo not use 'must had left'. After a modal, use the base form 'have', followed by the past participle.\n\n## Quick check question\nQuestion: Complete the sentence: 'He ___ forgotten the meeting; I am not certain.'\nAnswer: He might have forgotten the meeting; I am not certain.\nExplanation: The speaker expresses possibility rather than certainty, so 'might have + past participle' is suitable.\n\n## Summary\n- Perfect modals use modal + have + past participle.\n- Must have shows strong deduction.\n- Might have and could have show possibility.\n- Can't have shows strong negative deduction.",
+    "Core explanation": "# Core explanation: Grammar: Modals (Advanced Usage)\n\n## What you will learn\nYou will learn to express regret or criticism about a past action. You will use should have and ought to have with the correct verb form.\n\n## Simple explanation\nShould have and ought to have show that an action was expected or advisable in the past but did not happen. They often express regret or criticism.\n\n## Step-by-step breakdown\n- **Form**: should have/ought to have + past participle\n- **Regret**: Use the form when the speaker wishes a past action had happened.\n- **Criticism**: Use the form when someone failed to do what was expected.\n- **Past participle**: The verb after have must be the past participle: gone, written, told, finished.\n\n## Worked example\nQuestion: Identify and correct the error: 'You should have went to the doctor earlier.'\n\nSolution:\n- Step 1: The expression 'should have' must be followed by a past participle.\n- Step 2: The past participle of 'go' is 'gone', not 'went'.\n- Final answer: You should have gone to the doctor earlier.\n\n## Common mistake\nIncorrect: 'She ought to have spoke politely.' Correct: 'She ought to have spoken politely.'\n\n## Quick check question\nQuestion: Fill in the blank: 'We ___ informed them earlier.' (express regret)\nAnswer: We should have informed them earlier.\nExplanation: Should have + past participle expresses regret about an action that did not happen.\n\n## Summary\n- Should have and ought to have refer to unfulfilled past expectations.\n- They can express regret or criticism.\n- Always use the past participle after have.\n- Do not use the simple past after a perfect modal.",
+    "Worked examples": "# Worked examples: Grammar: Modals (Advanced Usage)\n\n## What you will learn\nYou will learn to use needn't have for an action that was done but was unnecessary. You will distinguish it from forms that describe actions not done.\n\n## Simple explanation\nNeedn't have + past participle tells us that someone completed an action, but later it became clear that the action was not necessary.\n\n## Step-by-step breakdown\n- **Form**: needn't have + past participle\n- **Meaning**: The action happened, but it was unnecessary.\n- **Example**: You needn't have brought an umbrella; it didn't rain.\n- **Evidence**: A second clause often explains why the completed action was unnecessary.\n\n## Worked example\nQuestion: Rewrite using needn't have: 'You brought extra food, but enough food was already available.'\n\nSolution:\n- Step 1: The action of bringing extra food was completed.\n- Step 2: The action was unnecessary because enough food was already available.\n- Final answer: You needn't have brought extra food; enough food was already available.\n\n## Common mistake\nDo not interpret 'needn't have brought' as 'did not bring'. It means the person did bring it, but the action was unnecessary.\n\n## Quick check question\nQuestion: Rewrite using needn't have: 'She booked a taxi, but the school had arranged transport.'\nAnswer: She needn't have booked a taxi; the school had arranged transport.\nExplanation: Needn't have + past participle is used because she actually booked the taxi, although it was not necessary.\n\n## Summary\n- Needn't have describes an unnecessary completed action.\n- The structure is needn't have + past participle.\n- The action did happen.\n- Context should show why it was unnecessary.",
+    "Exam-style problems": "# Exam-style problems: Grammar: Modals (Advanced Usage)\n\n## What you will learn\nYou will learn how common modals change in reported speech. You will also learn the special treatment of must according to its meaning.\n\n## Simple explanation\nWhen direct speech is reported in a past-time frame, many modals shift to past-related forms. However, must used for deduction usually remains must.\n\n## Step-by-step breakdown\n- **Will to would**: Direct will normally changes to would.\n- **Can to could**: Direct can normally changes to could.\n- **May to might**: Direct may normally changes to might.\n- **Must for obligation**: Must expressing obligation changes to had to.\n- **Must for deduction**: Must expressing deduction remains must because the deduction is preserved.\n\n## Worked example\nQuestion: Rewrite in reported speech: Neha said, 'I must submit the form today.'\n\nSolution:\n- Step 1: Here 'must' expresses obligation.\n- Step 2: Change must to had to and adjust the pronoun and time reference.\n- Final answer: Neha said that she had to submit the form that day.\n\n## Common mistake\nDo not change every must to had to. In 'He must be at home,' must is a deduction and normally remains unchanged in reported speech.\n\n## Quick check question\nQuestion: Rewrite in reported speech: Ravi said, 'I can solve this problem.'\nAnswer: Ravi said that he could solve that problem.\nExplanation: In reported speech after a past reporting verb, can changes to could, and 'this' changes according to the reporting viewpoint.\n\n## Summary\n- Will changes to would.\n- Can changes to could.\n- May changes to might.\n- Must changes according to whether it expresses obligation or deduction.",
+    "Revision and recap": "# Revision and recap: Grammar: Modals (Advanced Usage)\n\n## What you will learn\nYou will revise all perfect modal meanings and reported modal changes. You will practise separating deduction from obligation.\n\n## Simple explanation\nFirst identify the meaning: certainty, possibility, negative deduction, regret, unnecessary action, or obligation. Then select the correct modal form and past participle.\n\n## Step-by-step breakdown\n- **Deduction**: must have + past participle\n- **Possibility**: might have/could have + past participle\n- **Negative deduction**: can't have + past participle\n- **Regret or criticism**: should have/ought to have + past participle\n- **Unnecessary completed action**: needn't have + past participle\n- **Past obligation**: had to + base verb\n\n## Worked example\nQuestion: Choose the correct completion: 'He ___ go to school yesterday because attendance was compulsory.' (must have/had to)\n\nSolution:\n- Step 1: The sentence describes an obligation, not a deduction.\n- Step 2: Use 'had to' followed by the base verb 'go'.\n- Final answer: He had to go to school yesterday because attendance was compulsory.\n\n## Common mistake\nIncorrect: 'He must have go.' Perfect modals require have + past participle, so use 'must have gone'.\n\n## Quick check question\nQuestion: Correct the sentence: 'She can't have wrote the report in five minutes.'\nAnswer: She can't have written the report in five minutes.\nExplanation: Can't have expresses strong negative deduction, and it must be followed by the past participle 'written'.\n\n## Summary\n- Identify meaning before choosing a modal.\n- Perfect modals always use have + past participle.\n- Must have is deduction; had to is past obligation.\n- Needn't have means the action was done unnecessarily.\n- Reported modals change according to both tense and meaning."
+  }
+}

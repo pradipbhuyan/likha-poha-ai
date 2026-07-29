@@ -1,0 +1,351 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements is true:",
+    "options": [
+      "Melting point of Phosphorous is less than that of Nitrogen",
+      "N 2 is highly reactive while P 4 is inert",
+      "Nitrogen shows higher tendency of catenation than P",
+      "N-N is weaker than P-P"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is a non-stoichiometric defect?",
+    "options": [
+      "Frenkel defect",
+      "Schottky defect",
+      "metal deficiency defect",
+      "interstitial defect"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the law which is stated as: “For any solution, the partial vapour pressure of each volatile component in the solution is directly proportional to its mole fraction.”",
+    "options": [
+      "Henry’s law",
+      "Raoult’s law",
+      "Dalton’s law",
+      "Gay-Lussac's Law"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Pink colour of LiCl crystals is due to:",
+    "options": [
+      "Schottky defect",
+      "Frenkel defect",
+      "Metal excess defect",
+      "Metal deficiency defect"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following isomer has the highest meltingpoint:",
+    "options": [
+      "1,2-dicholorbenzene",
+      "1,3 -dichlorobenzene",
+      "1,4-dicholorbenzene",
+      "all isomers have same melting points"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following reactions is not explained by the open chain Structureof glucose:",
+    "options": [
+      "Formation of pentaacetate of glucose with acetic anhydride.",
+      "formation of addition product with 2,4 DNP reagent",
+      "Silver mirror formation with Tollen’s reagent",
+      "existence of alpha and beta forms of glucose."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Williamson’s synthesis of preparing dimethyl ether is an:",
+    "options": [
+      "S N 1 reaction",
+      "Elimination reaction",
+      "S N 2 reaction",
+      "Nucleophilic addition reaction"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Chlorine water loses its yellow colour on standing because:",
+    "options": [
+      "HCl gas is produced, due to the action of sunlight.",
+      "a mixture of HOCl and HCl is produced in the presence of light",
+      "HOCl and hydrogen gas is produced",
+      "a mixture of HCl and ClO 3 is produced, due to the action of sunlight"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "During dehydration of alcohols to alkenes by heating with concentrated H 2SO 4, the initiation step is:",
+    "options": [
+      "protonation of alcohol molecule",
+      "formation of carbocation",
+      "elimination of water",
+      "formation of an ester"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Amorphous solids are:",
+    "options": [
+      "isotropic",
+      "anisotropic",
+      "isotopic",
+      "isomeric"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following reactions is used to prepare salicylaldehyde?",
+    "options": [
+      "Kolbe’s reaction",
+      "Etard reaction",
+      "Reimer- Tiemann reaction",
+      "Stephen’s reduction."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is an example of a solid solution?",
+    "options": [
+      "sea water",
+      "sugar solution",
+      "smoke",
+      "22 carat gold"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The boiling points of alcohols are higher than those of hydrocarbons of comparable masses due to:",
+    "options": [
+      "Hydrogen bonding ( b) Ion – dipole interaction",
+      "Dipole- dipole interaction",
+      "Van der Waal’s forces."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following has the lowest boiling point:",
+    "options": [
+      "H 2O",
+      "H 2S",
+      "H 2Se",
+      "H 2Te"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statement is correct:",
+    "options": [
+      "Fibrous proteins are generally soluble in water",
+      "Albumin is an example of fibrous proteins",
+      "In fibrous proteins, the structure is stabilised by hydrogen bonds and disulphide bonds",
+      "pH does not affect the primary structure of protein."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Major product obtained on reaction of 3-Phenyl propene with HBr in presence of organic peroxide",
+    "options": [
+      "3- Phenyl 1- bromopropane",
+      "1 –Phenyl -3- bromopropane",
+      "1-Phenyl -2-bromopropane",
+      "3-Phenyl -2- bromopropane"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is a correct statement for C 2H5Br?",
+    "options": [
+      "It reacts with metallic Na to give ethane.",
+      "It gives nitroethane on heating with aqueous solution of AgNO",
+      "It gives C 2H5OH on boiling with alcoholic potash.",
+      "It forms diethylthioether on heating with alcoholic KSH."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Covalency of nitrogen is restricted to:",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Solubility of gases in liquids decreases with rise in temperature because dissolution is an:",
+    "options": [
+      "endothermic and reversible process",
+      "exothermic and reversible process",
+      "endothermic and irreversible process",
+      "exothermic and irreversible process"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "All elements of Group 15 show allotropy except:",
+    "options": [
+      "Nitrogen",
+      "Arsenic",
+      "Antimony",
+      "Bismuth"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is a polysaccharide?",
+    "options": [
+      "glucose",
+      "maltose",
+      "glycogen",
+      "lactose"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Substance having the lowest boiling point:",
+    "options": [
+      "Hydrogen",
+      "Oxygen",
+      "Nitrogen",
+      "Helium"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Lower molecular mass alcohols are:",
+    "options": [
+      "miscible in limited amount of water",
+      "miscible in excess of water",
+      "miscible in water in all proportions",
+      "immiscible in water"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Maximum oxidation state exhibited by Chlorine is:",
+    "options": [
+      "+1",
+      "+3",
+      "+5",
+      "+7"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In which of the following cases blood cells will shrink:",
+    "options": [
+      "when placed in water containing more than 0.9% (mass/ volume) NaCl solution.",
+      "when placed in water containing less than 0.9% (mass /volume) NaCl solution.",
+      "when placed in water containing   0.9% (mass/volume) NaCl solution.",
+      "when placed in   distilled water."
+    ],
+    "diagram_dependent": false
+  }
+]

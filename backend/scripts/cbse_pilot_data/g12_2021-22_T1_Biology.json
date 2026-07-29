@@ -1,0 +1,738 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The structure of bilobed anther consists of",
+    "options": [
+      "2 thecae, 2 sporangia",
+      "4 thecae, 4 sporangia",
+      "4 thecae, 2 sporangia",
+      "2 thecae, 4 sporangia"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "In the figure of anatropous ovule given below, choose the correct option for the characteristic distribution of cells within the typical embryo sac Number of cells at chalazal end Number of cells at micropylar end Number of nuclei left in central cell A 3 2 3 B 3 3 2 C 2 3 3 D 2 2 4",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The coconut water from tender coconut is",
+    "options": [
+      "cellular endosperm.",
+      "free nuclear endosperm.",
+      "both cellular and nuclear endosperm.",
+      "free nuclear embryo."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Pollen grains are well preserved as fossils because of presence of",
+    "options": [
+      "sporopollenin",
+      "cellulose",
+      "lignocellulose",
+      "pectocellulose"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements are true related to Seed X and Y? (i) Seed X is dicot and endospermic or albuminous. (ii) Seed X is dicot and non-endospermic or non-albuminous. (iii) Seed Y is monocot and endospermic or albuminous. (iv) Seed Y is monocot and non-endospermic or non-albuminous. Choose the correct option with the respect to the nature of the seed",
+    "options": [
+      "(i), (iii)",
+      "(ii), (iii)",
+      "(i), (iv)",
+      "(ii), (iv)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Which of the following statements are correct with respect to hormones secreted by placenta? (i) Placenta secretes relaxin during later stage of pregnancy. (ii) Placenta secretes high amount of FSH during pregnancy. (iii) Placenta secretes relaxin during initial stage of pregnancy. (iv) Placenta secretes hCG and hPL during pregnancy. A. (i) and (iv) B. (i), (ii) and (iv) C. (iii) and (iv) D. (ii), (iii) and (iv) SEED X SEED Y",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Figure A shows the front view of the human female reproductive system and Figure Bshows the development of a fertilized human egg cell Figure A Figure B. Identify the correct stage of development of human embryo (Figure B) that takes place at the site X, Y and Z respectively in the human female reproductive system (Figure A). Choose the correct option from the table below: X Y Z A Morula Fertilized egg Blastocyst B Unfertilized egg Fertilized egg Morula C Blastocyst Fertilized egg Unfertilized egg D Fertilized egg Morula Blastocyst",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Penetration of the sperm in the ovum is followed by",
+    "options": [
+      "formation of first polar body.",
+      "completion of meiosis II.",
+      "first meiosis.",
+      "dissolution of zona pellucida."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The correct sequence of hormone secretion from beginning of menstruation is",
+    "options": [
+      "FSH, progesterone, estrogen.",
+      "estrogen, FSH, progesterone.",
+      "FSH, estrogen, progesterone.",
+      "estrogen, progesterone, FSH."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the dioecious aquatic plant shown, identify the characteristics of the male flowers that reach the female flowers for pollination:",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "The thalamus contributes to the fruit formation in A. banana. B. orange. C. strawberry. D. guava. Size of the flower Colour of flower Characteristic feature of pollengrain A small brightly coloured Light weight and non-sticky B large colourless large and sticky C small white small, covered with mucilage D large colourless non sticky",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "How many types of gametes would be produced if the genotype of a parent is AaBB?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements indicates parallelism in genes and chromosomes? (i) They occur in pairs (ii) They segregate during gamete formation (iii) They show linkage (iv) Independent pairs segregate independently",
+    "options": [
+      "(i) and (iii)",
+      "(ii) and (iii)",
+      "(i), (ii) and (iii)",
+      "(i), (ii) and (iv)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following amino acid substitution is responsible for causing sickle cell anemia?",
+    "options": [
+      "Valine is substituted by Glutamic acid in the α globin chain at the sixth position",
+      "Valine is substituted by Glutamic acid in the β globin chain at seventh position",
+      "Glutamic acid is substituted by Valine in the α globin chain at the sixth position",
+      "Glutamic acid is substituted by Valine in the β globin chain at the sixth position"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In human beings, where genotype AABBCC represents dark skin colour, aabbcc represents light skin colour and AaBbCc represents intermediate skin colour; the pattern of genetic inheritance can be termed as:",
+    "options": [
+      "Pleiotropy and codominance",
+      "Pleiotropy and incomplete dominance",
+      "Polygenic and qualitative inheritance",
+      "Polygenic and quantitative inheritance"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 6,
+    "question_text": "Which of the following combination of chromosome numbers represents the correct sex determination pattern in honey bees? A. Male 32, Female 16 B. Male 16, Female 32 C. Male 31, Female 32 D. Female 32, Male 31",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Rajesh and Mahesh have defective haemoglobin due to genetic disorders. Rajesh has too few globin molecules while Mahesh has incorrectly functioning globin molecules.Identify the disorder they are suffering from.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following criteria must a molecule fulfil to act as a genetic material? (i) It should not be able to generate its replica (ii) It should chemically and structurally be stable (iii) It should not allow slow mutation (iv) It should be able to express itself in the form of Mendelian Characters",
+    "options": [
+      "(i) and (ii)",
+      "(ii) and (iii)",
+      "(iii) and (iv)",
+      "(ii) and (iv)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The promoter site and the terminator site for transcription are located at",
+    "options": [
+      "3′ (downstream) end and 5′ (upstream) end, respectively of the transcription unit",
+      "5′ (upstream) end and 3′ (downstream) end, respectively of the transcription unit",
+      "the 5′ (upstream) end of the transcription unit",
+      "the 3′ (downstream) end of the transcription unit"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is correct about mature RNA in eukaryotes?",
+    "options": [
+      "Exons and introns do not appear in the mature RNA.",
+      "Exons appear, but introns do not appear in the mature RNA.",
+      "Introns appear, but exons do not appear in the mature RNA.",
+      "Both exons and introns appear in the mature RNA."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 7,
+    "question_text": "In E.coli, the lac operon gets switched on when A. lactose is present and it binds to the repressor. B. repressor binds to operator. C. RNA polymerase binds to the operator. D. lactose is present and it binds to RNA polymerase.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Oswald Avery, Colin MacLeod and Maclyn McCarty used enzymes to purify biochemicals such as proteins, DNA and RNA from the heat-killed S cells to see which ones could transform live R cells into S cells in Griffith's experiment. They observed that",
+    "options": [
+      "Proteases and RNases affected transformation.",
+      "DNase inhibited transformation.",
+      "Proteases and Lipases affected transformation.",
+      "RNases inhibited transformation."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "AUG on the mRNA will result in the activation of which of the following RNA having correct combination of amino acids:",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 8,
+    "question_text": "Short stretches of DNA used to identify complementary sequence in a sample arecalled A. probes B. markers C. VNTRs D. primers Site A Site B A. UAC Methionine B. Methionine UAC C. Methionine AUG D. AUG Methionine SECTION - B Section - B consists of 24 questions (Sl. No.25 to 48). Attempt any 20 questions from this section. The first attempted 20 questions would be evaluated. Question No. 25 to 28 consist of two statements –",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Lactational amenorrhea is the natural method of contraception. Reason: It increases the phagocytosis of sperm.",
+    "options": [
+      "cellular endosperm.",
+      "free nuclear endosperm.",
+      "both cellular and nuclear endosperm.",
+      "free nuclear embryo."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "B",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Saheli, an oral contraceptive for females, contains a steroidal preparation. Reason: It is a \"once a week\" pill with very few side effects.",
+    "options": [
+      "cellular endosperm.",
+      "free nuclear endosperm.",
+      "both cellular and nuclear endosperm.",
+      "free nuclear embryo."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "B",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Parturition is induced by a complex neuro endocrine meachanism. Reason: At the end of gestation period, the maternal pituitary releases prolactin which causes uterine contractions.",
+    "options": [
+      "cellular endosperm.",
+      "free nuclear endosperm.",
+      "both cellular and nuclear endosperm.",
+      "free nuclear embryo."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 9,
+    "question_text": "Assertion: When the two genes in a dihybrid cross are situated on the same chromosome, the proportion of parental gene combinations is much higher than non - parental type. Reason: Higher parental gene combinations can be attributed to crossing over between two genes. Concentration of which of the following substances will decrease in the maternal blood as it flows from embryo to placenta through the umbilical cord? i. Oxygen ii. Amino Acids iii. Carbon dioxide iv. Urea A. i and ii B. ii and iv C. iii and iv D. i and iv 30 In a fertilized ovule, n, 2n and 3n conditions occur respectively in A. antipodal, zygote and endosperm B. zygote, nucellus and endosperm C. endosperm, nucellus and zygote. D. antipodals, synergids and integusments 31 A botanist studying Viola (common pansy) noticed that one of the two flower types withered and developed no further due to some unfavorable condition, but the other flower type on the same plant survived and it resulted in an assured seed set. Which of the following will be correct? A. The flower type which survived is Cleistogamous and it always exhibits autogamy B. The flower type which survived is Chasmogamous and it always exhibits geitonogamy. C. The flower type which survived is Cleistogamous and it exhibits both autogamy and geitonogamy. D. The flower type which survived is Chasmogamous and it never exhibits autogamy. 32 During parturition, a pregnant woman is having prolonged labour pains and child birth has to be fastened. It is advisable to administer a hormone that can A. increase the metabolic rate. B. release glucose in the blood. C. stimulate the ovary. D. activate smooth muscles. 33 A female undergoing IVF treatment has blocked fallopian tubes. The technique by which the embryo with more than 8 blastomeres will be transferred into the female for further development is A. ZIFT B. GIFT C. IUT D. AI 34 The mode of action of the copper ions in an IUD is to A. increase the movement of sperms. B. decrease the movement of the sperms. C. make the uterus unsuitable for implantation. D. make the cervix hostile to the sperms. 35 To produce 400 seeds, the number of meiotic divisions required will be A. 400 B. 200 C. 500 D. 800 36 A cross is made between tall pea plants having green pods and dwarf pea plants having yellow pods. In the F2 generation, out of 80 plants how many are likely to be tall plants? A. 15 B. 20 C. 45 D. 60 37 In Antirrhinum, RR is phenotypically red flowers, rr is white and Rr is pink. Select the correct phenotypic ratio in F1 generation when a cross is performed between RR X Rr: A. 1 red: 2 Pink: 1 white B. 2 Pink: 1 white C. 2 Red: 2 Pink D. All Pink 38 What would be the genotype of the parents if the offspring have the phenotypes in 1:1 proportion? A. Aa X Aa B. AA X AA C. Aa X AA D. Aa x aa What is the pattern of inheritance in the above pedigree chart? A. Autosomal dominant B. Autosomal recessive C. Sex -linked dominant D. Sex -linked recessive 40 A couple has two daughters. What is the probability that the third child will also be a female? A. 25% B. 50% C. 75% D. 100% 41 Genotypic ratio of 1:2:1 is obtained in a cross between A. AB X AB B. Ab X Ab C. Ab X ab D. ab X ab 42 Total number of nucleotide sequences of DNA that codes for a hormone is 1530. The proportion of different bases in the sequence is found to be Adenine = 34%, Guanine = 19%, Cytosine = 23%, Thymine = 19%. Applying Chargaff’s rule, what conclusion can be drawn? A. It is a double stranded circular DNA. B. It is a single stranded DNA. C. It is a double stranded linear DNA. D. It is a single stranded DNA coiled on Histones. 43 A stretch of an euchromatin has 200 nucleosomes. How many bp will there be in the stretch and what would be the length of the typical euchromatin? A. 20,000 bp and 13,000 x10-9 m B. 10,000 bp and 10,000 x10-9 m C. 40,000 bp and 13,600 x10-9 m D. 40,000 bp and 13,900 x10-9 m 44 Observe structures A and B given below. Which of the following statements are correct? A. A is having 2 '-OH group which makes it less reactive and structurally stable, whereas B is having 2'-H group which makes it more reactive and unstable. B. A is having 2 '-OH group which makes it more reactive and structurally unstable, whereas B is having 2'-H group which makes it less reactive and structurally stable. C. A and B both have -OH groups which make it more reactive and structurally stable. D. A and B both are having -OH groups which make it less reactive and structurally stable 45 If Meselson and Stahl's experiment is continued for sixth generations in bacteria, the ratio of Heavy strands 15N/15N :Hybrid15N/14N : light 14N/14N containing DNA in the sixth generation would be A. 1:1:1 B. 0:1:7 C. 0:1:15 D. 0:1:31 46 Two important RNA processing events lead to specialized end sequences in most human mRNAs: (i) at the 5’ end, and (ii) at the 3’ end. At the 5’end the most distinctive specialized end nucleotide, (iii) is added and a sequence of about 200 (iv) is added to the 3’ end. A. (i) Initiator codon (ii) Promotor (iii) Terminator codon (iv) Release factors B. (i). Promotor (ii) Elongation (iii) Regulation (iv) Termination. C. (i) Capping (ii) Polyadenylation (iii) mGppp (iv) Poly(A). D. (i) Repressor (ii) Co repressor (iii) Operon (iv) sRelease factors 47 What are minisatellites? A. 10-40 bp sized small sequences within the genes B. Short coding repetitive region on the eukaryotic genome C. Short non-coding repetitive sequence forming large portion of eukaryotic genome D. Regions of coding strands of the DNA 48 There was a mix-up at the hospital after a fire accident in the nursery division. Which of these children belong to the parents? A. All of the children B. Children 2, 3 & 6 C. Children 1 & 3 D. Children 2 & 4 SECTION - C Section-C consists of one case followed by 6 questions linked to this case (Q.No.49 to 54). Besides this, 6 more questions are given. Attempt any 10 questions in this section. The first attempted 10 questions would be evaluated. Case To answer the questions, study the graphs below for Subject 1 and 2 showing different levels of certain hormones. 49 The peak observed in Subject 1 and 2 is due to A. estrogen B. progesterone C. luteinizing hormone D. follicle stimulating hormone 50 Subject 2 has higher level of hormone B, which is A. estrogen B. progesterone C. luteinizing hormone D. follicle stimulating hormone 51 If the peak of Hormone A does not appear in the study for Subject 1, which of the following statement is true? A. Peak of Hormone B will be observed at a higher point in the graph B. Peak of Hormone B will be observed at a point lower than what is given in the graph C. There will be no observed data for Hormone B D. The graph for Hormone B will be a sharp rise followed by a plateau 52 Which structure in the ovary will remain functional in subject 2? A. Corpus Luteum B. Tertiary follicle C. Graafian follicle D. Primary follicle 53 For subject 2 it is observed that the peak for hormone B has reached the plateau stage. After approximately how much time will the curve for hormone B descend? A. 28 days B. 42 days C. 180 days D. 280 days 54 Which of the following statements is true about the subjects? A. Subject 1 is pregnant B. Subject 2 is pregnant C. Both subject 1 and 2 are pregnant D. Both subject 1 and 2 are not pregnant 55 The gene that controls the ABO blood group system in human beings has three alleles -IA, IB and i. A child has blood group O. His father has blood group A and mother has blood group B. Genotypes of other off springs can be: i. IBIB ii. IAi iii. IBi iv. IAIB v. ii A. i, ii, iii, v B. ii, iii ,iv, v C. iii, iv, v D. iv, iii, i 56 Placed below is a karyotype of a human being.. On the basis of this karyotype, which of the following conclusions can be drawn: A. Normal human female B. Person is suffering from Colour Blindness C. Affected individual is a female with Down’s syndrome D. Affected individual is a female with Turner’s syndrome 57 Given below is a dihybrid cross performed on Drosophila. Which of the following conclusions can be drawn on the basis of this cross? When yellow bodied (y), white eyed (w) Drosophila females were hybridized with brown bodied (y+), red eyed males (w+) and F1 progenies were intercrossed, F2 generation would have shown the following ratio: A. 1:2:1 because of linkage of genes B. 9:3:3:1 because of recombination of genes C. Deviation from 9:3:3:1 ratio because of segregation of genes D. Deviation from 9:3:3:1 ratio because of linkage of genes 58 Which cellular process is shown below? A. DNA Replication B. Translation - Initiation C. Translation - Elongation D. Translation – Termination 59 Origin of replication of DNA in E. coli is shown below, Identify the labelled parts (i),(ii), (iii) and (iv) A. (i)- discontinuous synthesis , (ii)- continuous synthesis (iii) 3’ end (iv) 5’end B. (i)- continuous synthesis , (ii)- discontinuous synthesis (iii) 5’ end (iv) 3’end C. (i)- discontinuous synthesis, (ii)- continuous synthesis (iii) 5’ end (iv) 3’end D. (i)- continuous synthesis , (ii)- discontinuous synthesis (iii) 3’ end (iv) 5’end 60 Transcription unit is represented in the diagram given below. Identify site (i), factor (ii) and Enzyme (iii) responsible for carrying out the process. A. (i) Promoter Site, (ii) Rho factor (iii) RNA polymerase B. (i) Terminator Site, (ii) Sigma factor (iii) RNA polymerase C. (i) Promoter Site, (ii) Sigma factor (iii) RNA polymerase D. (i) Promoter Site, (ii) Sigma factor (iii) DNA polymerase * * * Questions in lieu of diagram based questions for VI candidates Total Alternative Questions - 20 Section - A 2. During megasporogenesis, potential megaspore mother cell undergoes following cell divisions to form gametophyte female A. two meiotic divisions and three mitotic division B. one meiotic and one mitotic divisions C. one meiotic and three mitotic divisions D. one meiotic and two mitotic divisions 5. Apomictic embryos in Citrus arise from: A. diploid Egg B. synergids C. nucellus D. antipodal cells 7. Choose the correct option wherein, the correct stages of the development of human embryo takes place. 10. On observing the pollen grain under the microscope, it was found to be long and ribbon shaped. The flower bearing these pollen grain will be pollinated by: A. Insects B. Water C. Air D. Birds 23. Which of the following are correct statements for a tRNA molecule?” i. It is an adapter molecule ii. Previously called as sRNA (soluble RNA) iii. tRNA has a codon loop that has bases complementary to the code, iv. it also has an amino acid accepter end to which it binds to amino acids. v. It is non-specific for each amino acid. A. i , ii and iii B. ii, iii and iv C. i, ii, and iv D. i, iv and v Ovary Fallopian Tube Uterus A Morula Fertilized egg Blastocyst B Unfertilized egg Fertilized egg Morula C Unfertilized egg Fertilized egg Blastocyst D Fertilized egg Morula Blastocyst Section - B",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 30,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In a fertilized ovule, n, 2n and 3n conditions occur respectively in",
+    "options": [
+      "antipodal, zygote and endosperm",
+      "zygote, nucellus and endosperm",
+      "endosperm, nucellus and zygote.",
+      "antipodals, synergids and integusments"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A botanist studying Viola (common pansy) noticed that one of the two flower types withered and developed no further due to some unfavorable condition, but the other flower type on the same plant survived and it resulted in an assured seed set. Which of the following will be correct?",
+    "options": [
+      "The flower type which survived is Cleistogamous and it always exhibits autogamy",
+      "The flower type which survived is Chasmogamous and it always exhibits geitonogamy.",
+      "The flower type which survived is Cleistogamous and it exhibits both autogamy and geitonogamy.",
+      "The flower type which survived is Chasmogamous and it never exhibits autogamy."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "During parturition, a pregnant woman is having prolonged labour pains and child birth has to be fastened. It is advisable to administer a hormone that can",
+    "options": [
+      "increase the metabolic rate.",
+      "release glucose in the blood.",
+      "stimulate the ovary.",
+      "activate smooth muscles."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A female undergoing IVF treatment has blocked fallopian tubes. The technique by which the embryo with more than 8 blastomeres will be transferred into the female for further development is",
+    "options": [
+      "ZIFT",
+      "GIFT",
+      "IUT",
+      "AI"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The mode of action of the copper ions in an IUD is to",
+    "options": [
+      "increase the movement of sperms.",
+      "decrease the movement of the sperms.",
+      "make the uterus unsuitable for implantation.",
+      "make the cervix hostile to the sperms."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 35,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 10,
+    "question_text": "To produce 400 seeds, the number of meiotic divisions required will be A. 400 B. 200 C. 500 D. 800",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 36,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A cross is made between tall pea plants having green pods and dwarf pea plants having yellow pods. In the F2 generation, out of 80 plants how many are likely to be tall plants?",
+    "options": [
+      "15",
+      "20",
+      "45",
+      "60"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 37,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In Antirrhinum, RR is phenotypically red flowers, rr is white and Rr is pink. Select the correct phenotypic ratio in F1 generation when a cross is performed between RR X Rr:",
+    "options": [
+      "1 red: 2 Pink: 1 white",
+      "2 Pink: 1 white",
+      "2 Red: 2 Pink",
+      "All Pink"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 38,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What would be the genotype of the parents if the offspring have the phenotypes in 1:1 proportion?",
+    "options": [
+      "Aa X Aa",
+      "AA X AA",
+      "Aa X AA",
+      "Aa x aa"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 39,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What is the pattern of inheritance in the above pedigree chart?",
+    "options": [
+      "Autosomal dominant",
+      "Autosomal recessive",
+      "Sex -linked dominant",
+      "Sex -linked recessive"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 40,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 11,
+    "question_text": "A couple has two daughters. What is the probability that the third child will also be a female? A. 25% B. 50% C. 75% D. 100%",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 41,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Genotypic ratio of 1:2:1 is obtained in a cross between",
+    "options": [
+      "AB X AB",
+      "Ab X Ab",
+      "Ab X ab",
+      "ab X ab"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 42,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Total number of nucleotide sequences of DNA that codes for a hormone is 1530. The proportion of different bases in the sequence is found to be Adenine = 34%, Guanine = 19%, Cytosine = 23%, Thymine = 19%. Applying Chargaff’s rule, what conclusion can be drawn?",
+    "options": [
+      "It is a double stranded circular DNA.",
+      "It is a single stranded DNA.",
+      "It is a double stranded linear DNA.",
+      "It is a single stranded DNA coiled on Histones."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 43,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A stretch of an euchromatin has 200 nucleosomes. How many bp will there be in the stretch and what would be the length of the typical euchromatin?",
+    "options": [
+      "20,000 bp and 13,000 x10-9 m",
+      "10,000 bp and 10,000 x10-9 m",
+      "40,000 bp and 13,600 x10-9 m",
+      "40,000 bp and 13,900 x10-9 m"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 44,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 12,
+    "question_text": "Observe structures A and B given below. Which of the following statements are correct? A. A is having 2 '-OH group which makes it less reactive and structurally stable, whereas B is having 2'-H group which makes it more reactive and unstable. B. A is having 2 '-OH group which makes it more reactive and structurally unstable, whereas B is having 2'-H group which makes it less reactive and structurally stable. C. A and B both have -OH groups which make it more reactive and structurally stable. D. A and B both are having -OH groups which make it less reactive and structurally stable",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 45,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If Meselson and Stahl's experiment is continued for sixth generations in bacteria, the ratio of Heavy strands 15N/15N :Hybrid15N/14N : light 14N/14N containing DNA in the sixth generation would be",
+    "options": [
+      "1:1:1",
+      "0:1:7",
+      "0:1:15",
+      "0:1:31"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 46,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Two important RNA processing events lead to specialized end sequences in most human mRNAs: (i) at the 5’ end, and (ii) at the 3’ end. At the 5’end the most distinctive specialized end nucleotide, (iii) is added and a sequence of about 200 (iv) is added to the 3’ end.",
+    "options": [
+      "(i) Initiator codon (ii) Promotor (iii) Terminator codon (iv) Release factors",
+      "(i). Promotor (ii) Elongation (iii) Regulation (iv) Termination.",
+      "(i) Capping (ii) Polyadenylation (iii) mGppp (iv) Poly(A).",
+      "(i) Repressor (ii) Co repressor (iii) Operon (iv) sRelease factors"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 47,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What are minisatellites?",
+    "options": [
+      "10-40 bp sized small sequences within the genes",
+      "Short coding repetitive region on the eukaryotic genome",
+      "Short non-coding repetitive sequence forming large portion of eukaryotic genome",
+      "Regions of coding strands of the DNA"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 48,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 13,
+    "question_text": "There was a mix-up at the hospital after a fire accident in the nursery division. Which of these children belong to the parents? A. All of the children B. Children 2, 3 & 6 C. Children 1 & 3 D. Children 2 & 4 SECTION - C Section-C consists of one case followed by 6 questions linked to this case (Q.No.49 to 54). Besides this, 6 more questions are given. Attempt any 10 questions in this section. The first attempted 10 questions would be evaluated. Case To answer the questions, study the graphs below for Subject 1 and 2 showing different levels of certain hormones.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 49,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The peak observed in Subject 1 and 2 is due to",
+    "options": [
+      "estrogen",
+      "progesterone",
+      "luteinizing hormone",
+      "follicle stimulating hormone"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 50,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Subject 2 has higher level of hormone B, which is",
+    "options": [
+      "estrogen",
+      "progesterone",
+      "luteinizing hormone",
+      "follicle stimulating hormone"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 51,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the peak of Hormone A does not appear in the study for Subject 1, which of the following statement is true?",
+    "options": [
+      "Peak of Hormone B will be observed at a higher point in the graph",
+      "Peak of Hormone B will be observed at a point lower than what is given in the graph",
+      "There will be no observed data for Hormone B",
+      "The graph for Hormone B will be a sharp rise followed by a plateau"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 52,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 14,
+    "question_text": "Which structure in the ovary will remain functional in subject 2? A. Corpus Luteum B. Tertiary follicle C. Graafian follicle D. Primary follicle",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 53,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "For subject 2 it is observed that the peak for hormone B has reached the plateau stage. After approximately how much time will the curve for hormone B descend?",
+    "options": [
+      "28 days",
+      "42 days",
+      "180 days",
+      "280 days"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 54,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements is true about the subjects?",
+    "options": [
+      "Subject 1 is pregnant",
+      "Subject 2 is pregnant",
+      "Both subject 1 and 2 are pregnant",
+      "Both subject 1 and 2 are not pregnant"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 55,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The gene that controls the ABO blood group system in human beings has three alleles -IA, IB and i. A child has blood group O. His father has blood group A and mother has blood group B. Genotypes of other off springs can be: i. IBIB ii. IAi iii. IBi iv. IAIB v. ii",
+    "options": [
+      "i, ii, iii, v",
+      "ii, iii ,iv, v",
+      "iii, iv, v",
+      "iv, iii, i"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 56,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 15,
+    "question_text": "Placed below is a karyotype of a human being.. On the basis of this karyotype, which of the following conclusions can be drawn: A. Normal human female B. Person is suffering from Colour Blindness C. Affected individual is a female with Down’s syndrome D. Affected individual is a female with Turner’s syndrome",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 57,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 16,
+    "question_text": "Given below is a dihybrid cross performed on Drosophila. Which of the following conclusions can be drawn on the basis of this cross? When yellow bodied (y), white eyed (w) Drosophila females were hybridized with brown bodied (y+), red eyed males (w+) and F1 progenies were intercrossed, F2 generation would have shown the following ratio: A. 1:2:1 because of linkage of genes B. 9:3:3:1 because of recombination of genes C. Deviation from 9:3:3:1 ratio because of segregation of genes D. Deviation from 9:3:3:1 ratio because of linkage of genes",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 58,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which cellular process is shown below?",
+    "options": [
+      "DNA Replication",
+      "Translation - Initiation",
+      "Translation - Elongation",
+      "Translation – Termination"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 59,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Origin of replication of DNA in E. coli is shown below, Identify the labelled parts (i),(ii), (iii) and (iv)",
+    "options": [
+      "(i)- discontinuous synthesis , (ii)- continuous synthesis (iii) 3’ end (iv) 5’end",
+      "(i)- continuous synthesis , (ii)- discontinuous synthesis (iii) 5’ end (iv) 3’end",
+      "(i)- discontinuous synthesis, (ii)- continuous synthesis (iii) 5’ end (iv) 3’end",
+      "(i)- continuous synthesis , (ii)- discontinuous synthesis (iii) 3’ end (iv) 5’end"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 60,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Transcription unit is represented in the diagram given below. Identify site (i), factor (ii) and Enzyme (iii) responsible for carrying out the process.",
+    "options": [
+      "(i) Promoter Site, (ii) Rho factor (iii) RNA polymerase",
+      "(i) Terminator Site, (ii) Sigma factor (iii) RNA polymerase",
+      "(i) Promoter Site, (ii) Sigma factor (iii) RNA polymerase",
+      "(i) Promoter Site, (ii) Sigma factor (iii) DNA polymerase * * *"
+    ],
+    "diagram_dependent": true
+  }
+]

@@ -1,0 +1,124 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Science",
+    "chapter": "Chapter 5: Life Processes",
+    "central_question": "How do living organisms obtain, release, transport, and remove materials and energy so that their organised bodies remain alive?",
+    "in_scope_units": [
+      "What are life processes: maintenance, molecular movement, energy needs, diffusion limits, and specialised tissues",
+      "Nutrition: autotrophic and heterotrophic modes",
+      "Autotrophic nutrition: photosynthesis, chlorophyll, carbon dioxide, water, sunlight, stomata, and mineral uptake",
+      "Heterotrophic nutrition: external digestion, internal digestion, and parasitic nutrition",
+      "Nutrition in unicellular organisms: Amoeba and Paramoecium",
+      "Nutrition in human beings: alimentary canal, digestive secretions, enzymes, absorption, and egestion",
+      "Respiration: breakdown of glucose, aerobic and anaerobic pathways, pyruvate, and ATP",
+      "Gas exchange in plants, aquatic animals, and terrestrial animals",
+      "Human respiratory system: air passages, alveoli, breathing movements, haemoglobin, and gas transport",
+      "Transportation in human beings: blood, heart, double circulation, blood vessels, platelets, blood pressure, and lymph",
+      "Transportation in plants: xylem, root pressure, transpiration pull, phloem, and translocation",
+      "Excretion in human beings: kidneys, nephrons, filtration, selective reabsorption, urine formation, and dialysis",
+      "Excretion in plants: diffusion, transpiration, vacuoles, leaves, resins, gums, and soil release"
+    ],
+    "banned_topics": [
+      "Detailed cell division and reproduction",
+      "Detailed neural and hormonal control",
+      "Genetics and heredity",
+      "Detailed ecology and food webs",
+      "Molecular biochemistry beyond the glucose-pyruvate pathways and ATP described in the chapter"
+    ],
+    "must_include_keywords": [
+      "life processes",
+      "maintenance",
+      "nutrition",
+      "autotroph",
+      "heterotroph",
+      "photosynthesis",
+      "chlorophyll",
+      "stomata",
+      "guard cells",
+      "starch",
+      "Amoeba",
+      "food vacuole",
+      "alimentary canal",
+      "salivary amylase",
+      "peristalsis",
+      "hydrochloric acid",
+      "pepsin",
+      "bile",
+      "trypsin",
+      "lipase",
+      "villi",
+      "respiration",
+      "pyruvate",
+      "aerobic",
+      "anaerobic",
+      "ATP",
+      "alveoli",
+      "haemoglobin",
+      "blood",
+      "plasma",
+      "heart",
+      "double circulation",
+      "artery",
+      "vein",
+      "capillary",
+      "platelets",
+      "lymph",
+      "xylem",
+      "transpiration",
+      "phloem",
+      "translocation",
+      "excretion",
+      "kidney",
+      "nephron",
+      "selective reabsorption"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Visible movement alone is a sufficient definition of life.",
+        "correction": "Visible movement is evidence but not a complete criterion; continuous molecular movement and maintenance processes are essential to living organisation."
+      },
+      {
+        "claim": "Plants obtain food directly from the soil.",
+        "correction": "Green plants make carbohydrates by photosynthesis from carbon dioxide and water using sunlight and chlorophyll; roots supply water and minerals, not ready-made food."
+      },
+      {
+        "claim": "Bile digests fats because it contains a fat-digesting enzyme.",
+        "correction": "Bile makes the acidic food alkaline and breaks large fat globules into smaller droplets; lipase is the enzyme that breaks down emulsified fats."
+      },
+      {
+        "claim": "Breathing and cellular respiration are the same process.",
+        "correction": "Breathing exchanges gases with the environment, while cellular respiration breaks down food in cells to release energy and make ATP."
+      },
+      {
+        "claim": "All carbon dioxide is carried by red blood cells.",
+        "correction": "Oxygen is mainly carried by haemoglobin in red blood corpuscles, while carbon dioxide is more soluble in water and is mostly transported in dissolved form in blood."
+      },
+      {
+        "claim": "Xylem and phloem both move materials only upward.",
+        "correction": "Xylem mainly carries water and minerals upward, while phloem translocates food according to need in both upward and downward directions."
+      },
+      {
+        "claim": "Urine is produced by filtering out only wastes, with no useful substances entering the filtrate.",
+        "correction": "The initial filtrate contains water, glucose, amino acids, and salts; useful substances and much water are selectively reabsorbed in nephron tubules."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Activities 5.1 and 5.2 to reason that chlorophyll and carbon dioxide are necessary for photosynthesis.",
+      "Use NCERT Activity 5.3 to infer the action of salivary amylase on starch.",
+      "Use NCERT Activities 5.4 and 5.5 to compare carbon dioxide in exhaled air and fermentation products.",
+      "Use NCERT Exercise 8 and Figure 5.8 to compare aerobic and anaerobic breakdown of pyruvate.",
+      "Use NCERT Exercise 11 and Figure 5.11 to trace double circulation through the human heart.",
+      "Use NCERT Activity 5.8 and Exercise 12 to compare xylem transport with phloem translocation.",
+      "Use NCERT Exercise 13 to compare the thin exchange surfaces of alveoli and nephrons."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES section contains Questions 1-13, including four multiple-choice questions and descriptive questions on nutrition, respiration, transport, and excretion."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Life Processes\n\n## What you will learn\nYou will learn why living organisms require continuous maintenance and why nutrition, respiration, transportation, and excretion are essential. You will then study autotrophic nutrition and the conditions needed for photosynthesis.\n\n## Simple explanation\nLiving bodies remain organised only if molecules are continuously moved, repaired, and replaced. These maintenance activities need energy and raw materials, so organisms must obtain food, release usable energy, transport materials, and remove harmful wastes.\n\n## Step-by-step breakdown\n- **Meaning of life processes**: Life processes are the functions that maintain the organised living state even when an organism appears inactive or is asleep.\n- **Why diffusion becomes insufficient**: In multicellular organisms, many cells are far from the external environment. Specialised tissues are therefore needed for intake, transport, and waste removal.\n- **Nutrition and respiration**: Nutrition supplies energy sources and raw materials. Respiration uses food, often with oxygen, to release energy for cellular needs.\n- **Transportation and excretion**: A transport system carries food and oxygen to cells and carries wastes to specialised excretory tissues.\n- **Autotrophic nutrition**: Green plants and some bacteria use simple inorganic materials. Photosynthesis converts carbon dioxide and water into carbohydrates in the presence of sunlight and chlorophyll.\n- **Events in photosynthesis**: Chlorophyll absorbs light; light energy is converted into chemical energy and water is split; carbon dioxide is reduced to carbohydrates.\n- **Evidence from Activity 5.1**: After the starch test, only the green regions of a variegated leaf turn blue-black, showing that chlorophyll is necessary for starch formation.\n- **Evidence from Activity 5.2**: Potassium hydroxide absorbs carbon dioxide. A destarched plant kept without carbon dioxide forms less or no starch, showing that carbon dioxide is necessary.\n- **Stomata and guard cells**: Stomata allow gas exchange. Guard cells open the pore when they swell and close it when they shrink, helping control carbon dioxide intake and water loss.\n\n## Worked example\nQuestion: Using NCERT Activity 5.2, explain how the experiment shows that carbon dioxide is necessary for photosynthesis.\n\nSolution:\n- Step 1: Both similar plants are destarched in darkness. One is placed under an airtight bell jar with potassium hydroxide, which absorbs carbon dioxide, while the control plant has no potassium hydroxide.\n- Step 2: After exposure to sunlight, leaves are tested for starch. The control leaf shows more starch, while the leaf deprived of carbon dioxide does not show the same starch formation.\n- Final answer: Since light and other conditions are similar but carbon dioxide is removed only in one set-up, the difference in starch formation shows that carbon dioxide is necessary for photosynthesis.\n\n## Common mistake\nPlants do not absorb ready-made food from soil. Roots absorb water and minerals; leaves use carbon dioxide, water, sunlight, and chlorophyll to make carbohydrates.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 3, which conditions are required for autotrophic nutrition?\nAnswer: Carbon dioxide, water, chlorophyll, and sunlight are required.\nExplanation: Carbon dioxide and water are the raw materials, chlorophyll captures light energy, and sunlight provides the external energy for carbohydrate synthesis.\n\n## Summary\n- Life processes maintain the organised living state.\n- Multicellular organisms need specialised systems because diffusion alone is insufficient.\n- Photosynthesis stores solar energy in carbohydrates.\n- Chlorophyll and carbon dioxide are shown to be necessary by Activities 5.1 and 5.2.\n- Stomata regulate gas exchange and water loss.",
+    "Core explanation": "# Core explanation: Life Processes\n\n## What you will learn\nYou will learn the main forms of heterotrophic nutrition and follow food through the human alimentary canal. You will connect digestive organs, secretions, enzymes, absorption, and egestion in one continuous sequence.\n\n## Simple explanation\nHeterotrophs obtain complex food made by other organisms and must break it into small soluble molecules. In humans, different regions of the alimentary canal perform specialised tasks so that nutrients can be digested and absorbed efficiently.\n\n## Step-by-step breakdown\n- **Heterotrophic strategies**: Fungi such as bread mould, yeast, and mushrooms digest food outside the body and absorb it. Animals generally take food inside. Parasites such as Cuscuta, ticks, lice, leeches, and tapeworms obtain food from a host.\n- **Amoeba and Paramoecium**: Amoeba surrounds food with pseudopodia to form a food vacuole. Paramoecium uses cilia to move food to a fixed intake region.\n- **Mouth**: Teeth crush food, the tongue mixes it, and saliva wets it. Salivary amylase breaks starch into simple sugar.\n- **Activity 5.3 evidence**: Iodine shows starch in the tube without saliva, but much less or none in the tube with saliva after 20-30 minutes, showing that saliva acts on starch.\n- **Peristalsis**: Rhythmic contractions of the gut wall push food through the oesophagus and along the alimentary canal.\n- **Stomach**: Gastric glands release hydrochloric acid, pepsin, and mucus. Acid provides the medium for pepsin and also helps deal with microbes; mucus protects the stomach lining.\n- **Small intestine**: Bile from the liver makes food alkaline and emulsifies fats. Pancreatic trypsin acts on proteins and lipase acts on emulsified fats. Intestinal enzymes complete digestion into amino acids, glucose, fatty acids, and glycerol.\n- **Absorption**: Villi increase the surface area of the small intestine and contain blood vessels that carry absorbed food to body cells.\n- **Large intestine and egestion**: The large intestine absorbs more water. The remaining material leaves through the anus under control of the anal sphincter.\n\n## Worked example\nQuestion: Using NCERT Activity 5.3, what conclusion can be drawn about the action of saliva on starch?\n\nSolution:\n- Step 1: Both tubes contain starch, but only tube A receives saliva. After 20-30 minutes, iodine is added to both.\n- Step 2: The control tube shows the blue-black colour of starch, while tube A shows less or no such colour because salivary amylase has broken down starch.\n- Final answer: Saliva contains salivary amylase, which digests starch into simpler sugars.\n\n## Common mistake\nBile is often called a digestive enzyme. It is not an enzyme; it helps create an alkaline medium and divides large fat globules into smaller droplets so lipase can act efficiently.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 5, how are fats digested and where does this occur?\nAnswer: In the small intestine, bile salts emulsify large fat globules into smaller droplets, and lipase breaks the emulsified fats into fatty acids and glycerol.\nExplanation: Emulsification increases the surface available for lipase, while the enzyme performs the chemical breakdown.\n\n## Summary\n- Heterotrophs obtain complex food from other organisms.\n- Digestion starts in the mouth with chewing and salivary amylase.\n- The stomach provides an acidic medium for pepsin and protects itself with mucus.\n- Complete digestion occurs mainly in the small intestine.\n- Villi provide a large surface for absorption, and the large intestine absorbs water.",
+    "Worked examples": "# Worked examples: Life Processes\n\n## What you will learn\nYou will learn how glucose is broken down through aerobic and anaerobic pathways and how ATP stores usable energy. You will also study gas exchange in plants, aquatic animals, and the human respiratory system.\n\n## Simple explanation\nRespiration is the cellular process that releases energy from food. Glucose first becomes pyruvate in the cytoplasm; what happens next depends on oxygen availability and the organism or tissue involved.\n\n## Step-by-step breakdown\n- **Common first step**: A six-carbon glucose molecule is broken into a three-carbon pyruvate molecule in the cytoplasm.\n- **Anaerobic respiration in yeast**: Without oxygen, pyruvate forms ethanol, carbon dioxide, and energy during fermentation.\n- **Low oxygen in muscles**: When oxygen is insufficient during sudden activity, pyruvate forms lactic acid and energy; lactic-acid build-up causes cramps.\n- **Aerobic respiration**: In mitochondria, oxygen enables complete breakdown of pyruvate into carbon dioxide and water, releasing much more energy.\n- **ATP**: Energy released in respiration is used to make ATP from ADP and inorganic phosphate. Breaking the terminal phosphate linkage releases energy for cellular activities.\n- **Activity 5.4 evidence**: Exhaled air turns lime water milky faster than ordinary air passed with a syringe, showing that exhaled air contains more carbon dioxide.\n- **Activity 5.5 evidence**: Gas from yeast fermentation turns lime water milky, showing that carbon dioxide is a product of fermentation.\n- **Gas exchange in plants**: Stomata and intercellular spaces allow diffusion. At night carbon dioxide release is prominent; during the day carbon dioxide from respiration is used in photosynthesis and oxygen release is prominent.\n- **Aquatic respiration**: Water contains less dissolved oxygen than air, so fish move water over gills at a faster rate than terrestrial animals breathe.\n- **Human respiration**: Air is filtered in the nasal passage, moves through the trachea and bronchi, and reaches alveoli. Alveoli provide thin, extensive, blood-rich surfaces for gas exchange.\n- **Gas transport**: Haemoglobin in red blood corpuscles carries oxygen. Carbon dioxide, being more soluble in water, is mostly transported in dissolved form.\n\n## Worked example\nQuestion: Using NCERT Activity 5.4, why does exhaled air turn lime water milky faster than air passed by a syringe?\n\nSolution:\n- Step 1: Equal fresh samples of lime water are exposed to exhaled air and ordinary air. Milkiness indicates reaction with carbon dioxide.\n- Step 2: The sample receiving exhaled air turns milky sooner, so carbon dioxide reaches the lime water faster from exhaled air.\n- Final answer: Exhaled air contains a higher proportion of carbon dioxide than ordinary atmospheric air because cellular respiration produces carbon dioxide.\n\n## Common mistake\nBreathing is not identical to respiration. Breathing moves air into and out of the lungs; respiration is the cellular breakdown of food that releases energy and produces ATP.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 8, state one major difference between aerobic and anaerobic respiration.\nAnswer: Aerobic respiration uses oxygen and releases much more energy, forming carbon dioxide and water; anaerobic respiration occurs without oxygen and releases less energy, forming products such as ethanol and carbon dioxide in yeast or lactic acid in muscle cells.\nExplanation: Oxygen allows a more complete breakdown of pyruvate in mitochondria.\n\n## Summary\n- Glucose first forms pyruvate in the cytoplasm.\n- Pyruvate follows different pathways depending on oxygen availability.\n- Aerobic respiration releases more energy than anaerobic respiration.\n- ATP transfers respiration energy to cellular work.\n- Alveoli and haemoglobin make gas exchange and oxygen transport efficient.",
+    "Exam-style problems": "# Exam-style problems: Life Processes\n\n## What you will learn\nYou will learn how humans and plants transport materials over long distances. You will trace blood through the heart, compare blood vessels, and distinguish xylem transport from phloem translocation.\n\n## Simple explanation\nLarge multicellular organisms need transport networks because diffusion is too slow over long distances. Humans use a pumping heart and blood vessels, while plants use xylem and phloem conducting tissues.\n\n## Step-by-step breakdown\n- **Blood components**: Plasma transports dissolved food, carbon dioxide, salts, and nitrogenous wastes. Red blood corpuscles carry oxygen using haemoglobin.\n- **Heart chambers**: The left atrium receives oxygen-rich blood from lungs, the left ventricle pumps it to the body, the right atrium receives deoxygenated blood from the body, and the right ventricle pumps it to the lungs.\n- **Valves and wall thickness**: Valves prevent backflow. Ventricles have thicker walls than atria because they pump blood out of the heart.\n- **Double circulation**: In humans, blood passes through the heart twice in one complete body circuit—once through the pulmonary circuit and once through the systemic circuit. Separation prevents mixing and supports high energy needs.\n- **Blood vessels**: Arteries carry blood away from the heart and have thick elastic walls. Veins return blood and contain valves. One-cell-thick capillaries allow exchange with tissues.\n- **Platelets and lymph**: Platelets help clot blood at injuries. Lymph carries absorbed fat and returns excess tissue fluid to the blood.\n- **Xylem**: Connected vessels and tracheids carry water and minerals. Root cells actively take up ions; root pressure contributes, especially at night.\n- **Activity 5.8 and transpiration**: Water vapour collects around the plant but not the stick. Evaporation from leaves produces transpiration pull, the major daytime force moving water upward.\n- **Phloem and translocation**: Sieve tubes and companion cells move soluble products of photosynthesis and amino acids in both directions. Loading sucrose uses ATP and creates pressure that drives flow toward lower-pressure tissues.\n\n## Worked example\nQuestion: Using NCERT Exercise 11 and Figure 5.11, describe double circulation in human beings and explain why it is necessary.\n\nSolution:\n- Step 1: Deoxygenated blood travels from the body to the right side of the heart and is pumped to the lungs. Oxygenated blood returns from the lungs to the left side of the heart.\n- Step 2: The left ventricle then pumps oxygen-rich blood to the body. Thus blood passes through the heart twice in one full circuit.\n- Final answer: This double circulation keeps oxygenated and deoxygenated blood separate and supplies oxygen efficiently to tissues, which is important for mammals with high energy needs.\n\n## Common mistake\nArteries are not defined as vessels that always carry oxygenated blood. They are defined by carrying blood away from the heart; the pulmonary artery carries deoxygenated blood to the lungs.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 12, what is one key difference between xylem and phloem transport?\nAnswer: Xylem mainly transports water and minerals upward using root pressure and transpiration pull, whereas phloem uses energy to translocate food and other solutes in both upward and downward directions.\nExplanation: Xylem flow is largely driven by physical forces, while phloem loading uses ATP and pressure differences according to the plant's needs.\n\n## Summary\n- Blood, heart, and blood vessels form the human transport system.\n- Double circulation separates oxygen-rich and oxygen-poor blood.\n- Arteries, veins, and capillaries are adapted to different transport roles.\n- Xylem moves water and minerals; transpiration pull is important during the day.\n- Phloem uses energy to translocate food in both directions.",
+    "Revision and recap": "# Revision and recap: Life Processes\n\n## What you will learn\nYou will learn how humans and plants remove metabolic wastes and how urine formation is regulated. You will then connect excretion with the other life processes in a final chapter-wide review.\n\n## Simple explanation\nChemical reactions that sustain life also produce wastes. Unicellular organisms may remove wastes by diffusion, but humans use kidneys and nephrons, while plants store, diffuse, or shed different waste products.\n\n## Step-by-step breakdown\n- **Meaning of excretion**: Excretion is the biological removal of harmful metabolic wastes, including nitrogenous wastes.\n- **Human excretory organs**: The system includes two kidneys, two ureters, a urinary bladder, and a urethra.\n- **Nephron structure**: A cluster of thin-walled capillaries filters blood into Bowman's capsule, which leads into a coiled tubule.\n- **Filtration and reabsorption**: Initial filtrate contains useful substances as well as wastes. Glucose, amino acids, salts, and much water are selectively reabsorbed.\n- **Regulation of urine volume**: Water reabsorption depends on excess water in the body and the amount of dissolved waste that must be excreted.\n- **Urine pathway**: Urine passes from kidneys through ureters to the bladder and leaves through the urethra.\n- **Dialysis**: An artificial kidney removes nitrogenous wastes by diffusion across a semipermeable lining, but unlike a nephron it does not perform selective reabsorption.\n- **Plant excretion**: Plants release gases by diffusion, remove excess water by transpiration, store wastes in vacuoles and falling leaves, deposit resins and gums in old xylem, and release some wastes into soil.\n- **Integrated life-process link**: Nutrition supplies materials, respiration releases ATP, transportation distributes substances, and excretion removes harmful products.\n\n## Worked example\nQuestion: Using NCERT Exercise 13, compare alveoli and nephrons with respect to structure and function.\n\nSolution:\n- Step 1: Both contain extensive networks of thin-walled capillaries that provide a large, short-distance exchange surface.\n- Step 2: Alveoli exchange oxygen and carbon dioxide between air and blood. Nephrons filter blood, then selectively reabsorb useful substances and water while forming urine.\n- Final answer: Both are specialised thin exchange units, but alveoli perform gas exchange whereas nephrons filter blood and regulate the removal of soluble wastes and water.\n\n## Common mistake\nThe kidney does not simply pour all filtered material into urine. Most water and useful dissolved substances are selectively reabsorbed before urine leaves the nephron.\n\n## Quick check question\nQuestion: Based on the in-text Question 3 in Section 5.5, how is the amount of urine produced regulated?\nAnswer: It is regulated by varying how much water is reabsorbed in the nephron tubules, according to the body's excess water and the amount of dissolved waste that must be removed.\nExplanation: More reabsorption produces less urine, while less reabsorption allows more water to be excreted.\n\n## Summary\n- Nephrons filter blood and selectively reabsorb useful substances.\n- Urine volume changes with the body's water and waste balance.\n- Dialysis removes wastes by diffusion but does not reproduce nephron reabsorption.\n- Plants use diffusion, transpiration, storage, shedding, and soil release to remove wastes.\n- Nutrition, respiration, transportation, and excretion work together to maintain life."
+  }
+}

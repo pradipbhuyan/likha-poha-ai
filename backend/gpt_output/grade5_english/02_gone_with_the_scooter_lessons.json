@@ -1,0 +1,85 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "English",
+    "chapter": "2. Gone with the Scooter",
+    "central_question": "How do honesty, teamwork, language skills, and a comic accident shape Gopi’s experience with a found hockey ball?",
+    "in_scope_units": [
+      "Let us Read: Gopi hears a sound, searches the garden, and finds a hockey ball",
+      "Playground scene: claims, hockey actions, and the ball leaving with a scooter",
+      "Let us Think: comprehension, honesty, imagination, and helmet safety",
+      "Let us Learn: vocabulary, connectors, adverbs of frequency, and adverbs of time",
+      "Let us Listen and Speak: drawing instructions, chain story, and long or short oo sounds",
+      "Let us Write: conversation, compound words, and ai words",
+      "Let us Do and Explore: Tigers and Goats, game chart, and sports biography"
+    ],
+    "banned_topics": [
+      "Rainbow imagery and VIBGYOR",
+      "Present perfect and bird feeders",
+      "Water-tank construction"
+    ],
+    "must_include_keywords": [
+      "Gopi",
+      "veranda",
+      "rustling",
+      "thud",
+      "hockey ball",
+      "dry leaves",
+      "honesty",
+      "Manoj",
+      "Ramani",
+      "Deepak",
+      "Jay",
+      "goalkeeper",
+      "dribble",
+      "grab",
+      "boast",
+      "unaware",
+      "helmet",
+      "because",
+      "however",
+      "adverbs of frequency",
+      "adverbs of time",
+      "regularly",
+      "yesterday",
+      "long oo",
+      "short oo",
+      "compound words",
+      "chair",
+      "Tigers and Goats",
+      "three tigers",
+      "thirteen goats",
+      "Kabaddi",
+      "sports biography"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The scooterist steals the ball.",
+        "correction": "The ball falls into the scooter basket, and the scooterist is unaware."
+      },
+      {
+        "claim": "Manoj’s old lost ball must be the same ball.",
+        "correction": "Gopi rejects the claim because Manoj lost his ball four months earlier."
+      },
+      {
+        "claim": "Goats can move immediately in Tigers and Goats.",
+        "correction": "They cannot move until all thirteen goats have been placed."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Let us Think A to trace the sound, search, discovery, and final laughter.",
+      "Use Let us Learn A to distinguish dribble, boast, rustle, and grab.",
+      "Use Let us Learn C to sort frequency and time adverbs.",
+      "Use Let us Write A to create a conversation after the scooter incident.",
+      "Use Let us Do to explain the two players’ objectives and movement rules."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "There is no single final exercise block; tasks appear under Let us Think, Let us Learn, Let us Listen, Let us Speak, Let us Write, Let us Do, and Let us Explore."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: 2. Gone with the Scooter\n\n## What you will learn\nYou will learn the opening events, Gopi’s search, and his honest decision. You will use evidence and language activities from the chapter.\n\n## Simple explanation\nGopi hears rustling and a thud while reading on the veranda. He searches the garden, finds a white hockey ball on dry leaves, and decides not to keep it without asking around.\n\n## Step-by-step breakdown\n- **Setting**: It is a hot summer afternoon and Gopi is reading.\n- **Sound**: Rustling and a thud send him into the garden.\n- **Search**: He checks grass, bushes, and a heap of dry leaves.\n- **Discovery**: He finds a hockey ball.\n- **Honesty**: He says he cannot keep it for himself.\n\n## Worked example\nQuestion: What does Gopi’s decision show?\n\nSolution:\n- Step 1: He says he will ask around instead of keeping the ball.\n- Step 2: He recognises that the ball may belong to someone else.\n- Final answer: Gopi is honest and responsible.\n\n## Common mistake\nDo not say Gopi immediately knows the owner; he does not.\n\n## Quick check question\nQuestion: Where does he find the ball?\nAnswer: On a heap of dry leaves.\nExplanation: The search ends at the heap in the garden.\n\n## Summary\n- Gopi follows sound clues.\n- He searches carefully.\n- His response shows honesty.",
+    "Core explanation": "# Core explanation: 2. Gone with the Scooter\n\n## What you will learn\nYou will learn the playground dialogue, hockey actions, and the comic ending. You will use evidence and language activities from the chapter.\n\n## Simple explanation\nGopi asks his friends about the ball. Manoj, Ramani, and Deepak speak, then the group starts a hockey game that ends when Jay’s shot lands in a passing scooter basket.\n\n## Step-by-step breakdown\n- **Manoj**: He says he lost a ball four months ago.\n- **Ramani**: She claims the ball but wants to see it before naming the colour.\n- **Deepak**: He boasts about a new football.\n- **Game**: Manoj is goalkeeper; Gopi passes; Deepak drives; Ramani dribbles; Jay shoots.\n- **Ending**: The unaware scooterist drives away with the ball.\n- **Safety**: The Think section asks about helmets for rider and pillion rider.\n\n## Worked example\nQuestion: Why do the children laugh?\n\nSolution:\n- Step 1: The ball unexpectedly lands in a passing scooter basket.\n- Step 2: It disappears again in a strange accident just after they begin playing.\n- Final answer: They laugh at the surprising way the ball goes away.\n\n## Common mistake\nDo not describe the scooterist as a thief; the story says the person is unaware.\n\n## Quick check question\nQuestion: Who is the goalkeeper?\nAnswer: Manoj.\nExplanation: He goes to the goalpost because he likes that role.\n\n## Summary\n- Dialogue reveals different claims.\n- The game uses passing, driving, and dribbling.\n- The ending is accidental and funny.",
+    "Worked examples": "# Worked examples: 2. Gone with the Scooter\n\n## What you will learn\nYou will learn vocabulary, connectors, and adverbs of frequency and time. You will use evidence and language activities from the chapter.\n\n## Simple explanation\nThe chapter explains hockey words and uses because, however, since, and when to join ideas. It also sorts words by how often or when an action happens.\n\n## Step-by-step breakdown\n- **Dribble**: Move a ball with small taps in hockey.\n- **Boast**: Speak too proudly.\n- **Rustle**: A soft crackling sound.\n- **Grab**: Take something suddenly.\n- **Frequency**: Usually, often, regularly, always, and never answer how often.\n- **Time**: Today, yesterday, and now answer when.\n- **Contrast**: However introduces a contrasting idea.\n- **Category names**: The activity explicitly distinguishes adverbs of frequency from adverbs of time.\n\n## Worked example\nQuestion: What does regularly tell us in ‘friends regularly gathered’?\n\nSolution:\n- Step 1: It describes how often they gathered.\n- Step 2: It shows repetition rather than one exact time.\n- Final answer: Regularly is an adverb of frequency.\n\n## Common mistake\nDo not assume every adverb ends in -ly; today, yesterday, and now are also adverbs.\n\n## Quick check question\nQuestion: Which word introduces contrast?\nAnswer: However.\nExplanation: It contrasts an expectation with what actually happens.\n\n## Summary\n- Vocabulary is understood in context.\n- Connectors show reason, time, or contrast.\n- Frequency and time adverbs answer different questions.",
+    "Exam-style problems": "# Exam-style problems: 2. Gone with the Scooter\n\n## What you will learn\nYou will learn listening, storytelling, vowel sounds, dialogue, compound words, and ai words. You will use evidence and language activities from the chapter.\n\n## Simple explanation\nThe chapter combines oral instructions and creative writing. Learners draw the dry-leaf scene, add to a chain story, compare oo sounds, and form new words.\n\n## Step-by-step breakdown\n- **Drawing**: Big dry leaves, a ball, twigs, and colours follow the teacher’s instructions.\n- **Chain story**: Each learner adds one sentence.\n- **Long oo**: School, maroon, scooter, bloom, food, and moon are in the activity.\n- **Short oo**: Book, foot, hood, shook, look, and took provide contrast.\n- **Conversation**: The five friends speak after the ball disappears.\n- **Compounds**: Sunrise and football model joining two words.\n- **ai clues**: Chair, rain, train, paint, brain, snail, mail, sail, tail, and stairs are prompted.\n\n## Worked example\nQuestion: How can the post-incident conversation stay faithful?\n\nSolution:\n- Step 1: It should begin after the scooter and ball are gone.\n- Step 2: The friends may be surprised or amused, but should not accuse the unaware rider.\n- Final answer: A faithful dialogue continues the comic accident without changing the facts.\n\n## Common mistake\nDo not treat oo as one fixed sound; the activity contrasts long and short sounds.\n\n## Quick check question\nQuestion: Name one long-oo word from the list.\nAnswer: Scooter.\nExplanation: Scooter appears among the words to identify with the long sound.\n\n## Summary\n- Listening can be turned into an accurate drawing.\n- Shared stories require attention to earlier lines.\n- Compound words join complete words.",
+    "Revision and recap": "# Revision and recap: 2. Gone with the Scooter\n\n## What you will learn\nYou will learn the Tigers and Goats game and the sports exploration tasks. You will use evidence and language activities from the chapter.\n\n## Simple explanation\nThe final activity uses a cardboard board, three tiger pebbles, and thirteen goat pebbles. The Explore section then compares games and plans a sports biography.\n\n## Step-by-step breakdown\n- **Players**: At least two players take Tiger and Goat roles.\n- **Tiger aim**: Capture five goats by jumping into a free intersection.\n- **Goat aim**: Surround all three tigers so they cannot move.\n- **Order**: The goat places first, and goats cannot move until all thirteen are placed.\n- **Chart**: Games are compared by name, indoor or outdoor type, players, and equipment; Kabaddi is the example.\n- **Biography**: The prompts ask for sport, birth details, achievements, and inspiration.\n- **Goat pieces**: The board uses thirteen goats represented by smaller pebbles.\n\n## Worked example\nQuestion: How do the players’ goals differ?\n\nSolution:\n- Step 1: Tigers try to capture five goats; goats try to block all three tigers.\n- Step 2: One strategy removes pieces while the other restricts movement.\n- Final answer: The two roles have opposing objectives.\n\n## Common mistake\nDo not move goats before all thirteen have been placed.\n\n## Quick check question\nQuestion: How many tiger pebbles are used?\nAnswer: Three.\nExplanation: The materials list specifies three big pebbles for tigers.\n\n## Summary\n- Tigers capture by jumping.\n- Goats win by surrounding.\n- The Explore tasks connect games with sports research."
+  }
+}

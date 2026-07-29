@@ -13,6 +13,20 @@ import { normalizeTutorMarkdown } from "../../utils/markdownCleanup";
  *  bare citation like "NCERT Critical Reflection I.2(iv)" refers to),
  *  strips mermaid, and keeps tables scrollable on mobile. */
 
+// Custom fenced-code languages that render as interactive components
+// (a clickable pill / a structured visual card) rather than literal code
+// text. ReactMarkdown wraps EVERY fenced code block in a <pre> by default —
+// fine for real code, but a <pre> imposes monospace font, white-space:pre
+// and (via several .lesson-section-body pre/code CSS rules across the app)
+// layout quirks that can visually shrink or hide a nested interactive
+// element (seen: an extract-ref citation pill rendering with zero visible
+// size when several such fences are interleaved with bullet-list items,
+// e.g. Grade 10 Science Activity 1.4-1.8 citations). Detecting the
+// language on the <pre> itself (via its single child's className) lets us
+// skip the <pre> wrapper entirely for these block types and render the
+// interactive component as a normal sibling <div>/<button> instead.
+const _CUSTOM_BLOCK_LANGUAGE_RE = /language-(?:visual-json|extract-ref|mermaid)/;
+
 function JourneyCode({ className, children }) {
   const language = className || "";
   const raw = String(children).replace(/\n$/, "");
@@ -20,6 +34,25 @@ function JourneyCode({ className, children }) {
   if (/language-extract-ref/.test(language)) return <ExtractPopupBlock raw={raw} />;
   if (/language-mermaid/.test(language)) return null;
   return <code className={className}>{children}</code>;
+}
+
+function JourneyPre({ node, children }) {
+  // IMPORTANT: cannot detect the fence language by inspecting `children`'s
+  // rendered props — by the time <pre>'s children reach this component,
+  // the nested <code> element has ALREADY been converted by JourneyCode
+  // into e.g. <ExtractPopupBlock raw={...} />, which has no `className`
+  // prop at all (JourneyCode never forwards it). Checking children props
+  // here is therefore always a no-op miss. `node` is react-markdown's
+  // original hast AST node for this <pre> BEFORE any component mapping
+  // was applied, so node.children[0].properties.className still holds
+  // the real "language-x" class — that's what must be checked instead.
+  const codeNode = node?.children?.find((c) => c.tagName === "code");
+  const codeClassName = (codeNode?.properties?.className || []).join(" ");
+  if (_CUSTOM_BLOCK_LANGUAGE_RE.test(codeClassName)) {
+    // Render the custom component directly, no <pre> wrapper.
+    return <>{children}</>;
+  }
+  return <pre>{children}</pre>;
 }
 
 function JourneyTable({ children }) {
@@ -33,7 +66,7 @@ function JourneyTable({ children }) {
 }
 
 function LessonMarkdown({ children, unwrapParagraph = false }) {
-  const components = { code: JourneyCode, table: JourneyTable };
+  const components = { code: JourneyCode, pre: JourneyPre, table: JourneyTable };
   if (unwrapParagraph) {
     components.p = ({ children: inner }) => <>{inner}</>;
   }

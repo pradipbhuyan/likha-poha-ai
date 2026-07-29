@@ -1,0 +1,85 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements carefully: Statement 1: Consumption function assumes that, consumption changes at a constant rate as income changes. Statement 2: Autonomous consumption is the ratio of total consumption",
+    "options": [
+      "to total income (Y). In light of the given statements, choose the correct alternative from the following: a) Statement 1 is true and Statement 2 is false. b) Statement 1 is false and Statement 2 is true. c) Both Statements 1 and 2 are true. d) Both Statements 1 and 2 are false."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "For a closed economy (with no foreign trade), which one of the following is correct? a) GDP = GNP b) GDP > GNP c) GDP < GNP d) GDP + GNP=0",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The value of __________ can be greater than one. (Choose the correct alternative to fill up the blank) a) Marginal Propensity to Consume b) Average Propensity to Consume c) Marginal Propensity to Save d) Average Propensity to Save",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "As per the Reserve Bank of India (RBI) press report, dated 29th December, 2022: \"Net external commercial borrowings to India recorded an outflow of US$ 0.4 billion in the second quarter (2022-23)\" The above transaction will be recorded in the _______ account on ______ side of Balance of payments account of India. (Choose the correct alternative to fill up the blanks) a) current, credit b) current, debit c) capital, credit d) capital, debit",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "“The value of all goods and services can be expressed in monetary units.” On the basis of the given statement, identify the function performed by money: a) Medium of exchange b) Store of Value c) Unit of account d) Means of standard of deferred payments",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the missing figures and choose the correct alternative: Round Deposits Loans (80%) Reserve Ratio (20%) I 1,000 800 200 II 800 ….(i)…. 160 .. .. .. .. .. .. Total …(ii)… …(iii)… …(iv)… Alternatives: a) 640,1000,4000,5000 b) 960,5000,4000,1000 c) 640,4000,1000,5000 d) 640,5000,4000,1000",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Graphically, Aggregate Demand function can be obtained by vertically adding the _________ and _________ function.(Choose the correct alternative to fill up the blanks) a) consumption, saving b) consumption, investment c) investment, saving d) aggregate supply, consumption",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the correct reason(s) that may affect the demand for foreign exchange in an economy. I. Imports of visibles II. Exports of invisibles III. Remittances by residents working abroad IV. Purchase of assets abroad Alternatives: a) I and II b) II and III c) III and IV d) I and IV",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Suppose for a given economy, S= -60 + 0.1Y I= ₹ 4,000 crore (Where S = Saving Function, Y = National Income and I = Investment Expenditure) Equilibrium level of Income would be ₹ ______ crore. (Choose the correct alternative to fill up the blank) Alternatives: a) 4,000 b) 40,000 c) 40,600 d) 60,400 10 Read the following chart carefully and choose the correct alternative:Alternatives: a) Interest received on loans c) Portfolio Investment 11 ‘Current account deficit in an economysurplus’. Do you agree with the given statement12 (A) On the basis of the given data, estimate the value of Domestic Income: S. No. Items i. Household Consumptionii. Gross Fixed Capital iii. Change in stock iv. Government Final Cv. Net Exports vi. Net Indirect Taxes vii. Net Factor Income Fviii. Consumption of Fixed Capital (B) State the meanings of the following:(i) Externalities (ii)13 For a hypothetical economy, the government incurs an investment expenditure of crore. If the value of Marginal Propensity to Calculate the value of increase in income due to change in the value of to Save (MPS). InvestmentsDirect Investment_______carefully and choose the correct alternative: b) Multilateral Loans d) Government Aid in an economy must be financed by a corresponding capital account with the given statement? Give valid reason(s) in support of your answer.On the basis of the given data, estimate the value of Domestic Income: Amount(₹in onsumption Expenditure Formation Consumption Expenditure From Abroad Consumption of Fixed Capital OR the meanings of the following: (ii) Operating Surplus (iii)Consumption GoodsFor a hypothetical economy, the government incurs an investment expenditure of Marginal Propensity to Save (MPS) falls from 0.25 to 0.10increase in income due to change in the value of Marginal Propensity Capital Account_______External Borrowings External Assistance 1 1 capital account in support of your answer. 3 Amount in crore) 600 200 40 200 (-)40 120 20 40 Consumption Goods 3 3 For a hypothetical economy, the government incurs an investment expenditure of ₹ 1,000 0.10. Marginal Propensity 4",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

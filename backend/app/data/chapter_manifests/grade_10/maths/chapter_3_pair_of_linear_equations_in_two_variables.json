@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 3: Pair of Linear Equations in Two Variables",
+  "central_question": "How can two related linear conditions be modelled and solved, and how can we determine whether they have one, no, or infinitely many common solutions?",
+  "in_scope_units": [
+    "Introduction: representing a real-life situation using two linear equations in two variables.",
+    "Graphical Method of Solution: intersecting, parallel and coincident lines; consistency; and coefficient-ratio conditions.",
+    "Algebraic Methods of Solving a Pair of Linear Equations: why exact algebraic methods are useful.",
+    "Substitution Method: expressing one variable in terms of the other and interpreting true or false identities.",
+    "Elimination Method: making one pair of coefficients equal and eliminating a variable.",
+    "Summary: consolidates graphical and algebraic solution types and consistency conditions."
+  ],
+  "banned_topics": [
+    "Quadratic equations or nonlinear systems that cannot first be reduced to a pair of linear equations.",
+    "Matrix inversion, determinants or Cramer's rule, which are not part of the supplied chapter.",
+    "The cross-multiplication method, which is not developed in the supplied chapter text.",
+    "Three-variable simultaneous equations."
+  ],
+  "must_include_keywords": [
+    "pair of linear equations",
+    "two variables",
+    "solution",
+    "common solution",
+    "graphical method",
+    "straight lines",
+    "intersecting lines",
+    "parallel lines",
+    "coincident lines",
+    "unique solution",
+    "no solution",
+    "infinitely many solutions",
+    "consistent pair",
+    "inconsistent pair",
+    "dependent pair",
+    "a₁/a₂",
+    "b₁/b₂",
+    "c₁/c₂",
+    "coefficient ratios",
+    "point of intersection",
+    "substitution method",
+    "express one variable",
+    "true statement",
+    "false statement",
+    "elimination method",
+    "equal coefficients",
+    "add equations",
+    "subtract equations",
+    "verification",
+    "word problem",
+    "linear model",
+    "non-integral coordinates"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every pair of linear equations has exactly one solution.",
+      "correction": "A pair can have one solution, no solution, or infinitely many solutions, depending on whether the lines intersect, are parallel, or coincide."
+    },
+    {
+      "claim": "If a₁/a₂ = b₁/b₂, the pair always has infinitely many solutions.",
+      "correction": "Infinitely many solutions require a₁/a₂ = b₁/b₂ = c₁/c₂; if the first two ratios are equal but differ from c₁/c₂, the lines are parallel and there is no solution."
+    },
+    {
+      "claim": "A true statement such as 18 = 18 after substitution gives one numerical solution.",
+      "correction": "A true identity with no variable indicates infinitely many solutions, not a unique solution."
+    },
+    {
+      "claim": "A false statement such as 0 = 9 means an algebra mistake must have occurred.",
+      "correction": "When the algebra is correct, a false statement shows that the pair is inconsistent and has no common solution."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the Akhila Giant Wheel and Hoopla situation from Section 3.1 to form and solve a pair of equations.",
+    "Use Table 3.1 and NCERT Example 1 to connect coefficient ratios, line positions and graphical solutions.",
+    "Use NCERT Example 4 to demonstrate the substitution method with a fractional solution.",
+    "Use NCERT Examples 6 and 7 to interpret a true identity and a false statement after substitution.",
+    "Use NCERT Example 8 and Example 10 to practise elimination and modelling applications."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter contains Exercise 3.1 on graphs and consistency, Exercise 3.2 on substitution, and Exercise 3.3 on elimination and applications.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

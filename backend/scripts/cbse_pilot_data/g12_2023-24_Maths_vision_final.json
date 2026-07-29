@@ -1,0 +1,350 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If A = [a_{ij}] is a square matrix of order 2 such that a_{ij} = {1, when i ≠ j, 0, when i = j, then A^2 is",
+    "options": [
+      "[1 0; 0 1]",
+      "[1 0; 0 2]",
+      "[1 1; 0 0]",
+      "[1 0; 0 1]"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If A and B are invertible square matrices of the same order, then which of the following is not correct?",
+    "options": [
+      "|AB^{-1}| = |A^{-1}||B|",
+      "|(AB)^{-1}| = |A^{-1}||B^{-1}|",
+      "(AB)^{-1} = B^{-1}A^{-1}",
+      "(AB)^{-1} = B^{-1} + A^{-1}"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the area of the triangle with vertices (-3 ,0 ),(3,0) and (0,k) is 9 sq units, then the value/s of k will be",
+    "options": [
+      "9",
+      "-9",
+      "6",
+      "3"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If f(x) = {kx | x < 0, if x ≥ 0 is continuous at x = 0, then the value of k is",
+    "options": [
+      "3",
+      "0",
+      "3",
+      "any real number"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If \\overrightarrow{a} = 4\\hat{i} + 6\\hat{j} and \\overrightarrow{b} = 3\\hat{j} + 4\\hat{k}, then the vector form of the component of \\overrightarrow{a} along \\overrightarrow{b} is",
+    "options": [
+      "rac{18}{5}(3\\hat{i} + 4\\hat{k})",
+      "rac{18}{25}(3\\hat{j} + 4\\hat{k})",
+      "rac{18}{5}(3\\hat{i} + 4\\hat{k})",
+      "rac{18}{25}(4\\hat{i} + 6\\hat{j})"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Given that A is a square matrix of order 3 and |A| = -2, then |adj(2A)| is equal to",
+    "options": [
+      "-2^3",
+      "+4",
+      "-2^2",
+      "2^3"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A problem in Mathematics is given to three students whose chances of solving it are \frac{1}{2}, \frac{1}{3}, \frac{1}{4} respectively. If the events of their solving the problem are independent then the probability that the problem will be solved, is",
+    "options": [
+      "rac{1}{4}",
+      "rac{1}{3}",
+      "rac{1}{2}",
+      "rac{3}{4}"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The general solution of the differential equation ydx - xdy = 0; (Given x,y > 0), is of the form",
+    "options": [
+      "xy = c",
+      "x = c y^2",
+      "y = c x^2",
+      "y = cx^2"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 2,
+    "question_text": "The value of \\lambda for which two vectors 2\\hat{i} - \\hat{j} + 2\\hat{k} and 3\\hat{i} + \\hat{j} + \\hat{k} are perpendicular is",
+    "options": [
+      "2",
+      "4",
+      "6",
+      "8"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The set of all points where the function f(x) = x + |x| is differentiable, is",
+    "options": [
+      "(0,\\infty)",
+      "(-\\infty,0)\\cup(0,\\infty)",
+      "(-\\infty,\\infty)",
+      "(-\\infty,0)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the direction cosines of a line are <\frac{1}{\\sqrt{c}},\frac{1}{\\sqrt{c}},\frac{1}{\\sqrt{c}}>, then",
+    "options": [
+      "0<c<1",
+      "c>2",
+      "c= \\pm\\sqrt{2}",
+      "c= \\pm\\sqrt{3}"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Let f(x) be a polynomial function of degree 6 such that \frac{d}{dx}(f(x))=(x-1)^3(x-3)^2, then f(x) has a minimum at x = 1.",
+    "options": [
+      "True",
+      "False",
+      "True",
+      "False"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "B",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "ASSERTION (A): The relation f : {1,2,3,4} \to {x,y,z,p} defined by f = {(1,x),(2,y),(3,z)} is a bijective function. REASON (R): The function f : {1,2,3} \to {x,y,z,p} such that f = {(1,x),(2,y),(3,z)} is one-one.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 2,
+    "question_text": "Find the value of sin^(-1) (cos(33π/5)). OR Find the domain of sin^(-1) (x^2 - 4).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 2,
+    "question_text": "Find the interval/s in which the function f : R \to R defined by f(x) = xe^x, is increasing.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 2,
+    "question_text": "If f(x) = 1 / (4x^2 + 2x + 1); x ∈ R, then find the maximum value of f(x). OR Find the maximum profit that a company can make, if the profit function is given by P(x) = 72 + 42x - x^2, where x is the number of units and P is the profit in rupees.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 2,
+    "question_text": "Evaluate : ∫ log (2 - x / 2 + x) dx.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 2,
+    "question_text": "Check whether the function f : R \to R defined by f(x) = x^3 + x, has any critical point/s or not? If yes, then find the point/s.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 3,
+    "question_text": "Find : ∫ (2x^2 + 3 / x^2(x^2 + 9)) dx; x ≠ 0.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 3,
+    "question_text": "The random variable X has a probability distribution P(X) of the following form, where 'k' is some real number: P(X) = { k, if x = 0 2k, if x = 1 3k, if x = 2 0, otherwise (i) Determine the value of k. (ii) Find P(X < 2).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Find \\[\frac{x}{1-x^3} dx; \\quad x \\in (0,1).\nOR\nEvaluate: \\int_0^{\\pi} \\log (1+\tan x) dx.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Solve the differential equation: \\[y e^{y} dx = (x e^{x+y^2}) dy, \\quad (y \neq 0).\nOR\nSolve the differential equation: (\\cos^2 x) \frac{dy}{dx} + y = \tan x; \\quad (0 \\leq x < \frac{\\pi}{2}).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Solve the following Linear Programming Problem graphically: Minimize: z = x + 2y, subject to the constraints: x + 2y \\geq 100, 2x - y \\leq 0, 2x + y \\leq 200, x, y \\geq 0.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 31,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Solve the following Linear Programming Problem graphically: Maximize: z = -x + 2y, subject to the constraints: x \\geq 3, x + y \\geq 5, x + 2y \\geq 6, y \\geq 0.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 32,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Make a rough sketch of the region \\{(x,y): 0 \\leq y \\leq x^2 + 1, 0 \\leq y \\leq x + 1, 0 \\leq x \\leq 2\\} and find the area of the region, using the method of integration.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 33,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Let \\mathbb{N} be the set of all natural numbers and R be a relation on \\mathbb{N} \times \\mathbb{N} defined by (a,b) R (c,d) \\Leftrightarrow ad = bc for all (a,b),(c,d) \\in \\mathbb{N} \times \\mathbb{N}. Show that R is an equivalence relation on \\mathbb{N} \times \\mathbb{N}. Also, find the equivalence class of (2,6), i.e., [(2,6)].",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Show that the function f : \\mathbb{R} \to \\mathbb{R} : -1 < x < 1\\} defined by f(x) = \frac{x}{1+|x|}, x \\in \\mathbb{R} is one-one and onto function.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 35,
+    "section": "O",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the coordinates of the image of the point (1, 6, 3) with respect to the line r = (j + 2k) + λ(i + 2j + 3k); where 'λ' is a scalar. Also, find the distance of the image from the y-axis.",
+    "options": [
+      "(2, 3, 10)",
+      "(4, 6, 5)",
+      "(1, 6, 9)",
+      "(20, 2, z)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 36,
+    "section": "O",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "An aeroplane is flying along the line r = λ(i - j + k); where 'λ' is a scalar and another aeroplane is flying along the line r = i - j + μ(-2j + k); where 'μ' is a scalar. At what points on the lines should they reach, so that the distance between them is the shortest? Find the shortest possible distance between them.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 37,
+    "section": "Q",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Teams A, B, C went for playing a tug of war game. Teams A, B, C have attached a rope to a metal ring and is trying to pull the ring into their own area.",
+    "options": [
+      "Team A pulls with force F1 = 6i + 0j kN",
+      "Team B pulls with force F2 = -4i + 4j kN",
+      "Team C pulls with force F3 = -3i - 3j kN"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 38,
+    "section": "Q",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The relation between the height of the plant ('y' in cm) with respect to its exposure to the sunlight is governed by the following equation y = 4x - 1/2 x^2, where 'x' is the number of days exposed to the sunlight, for x ≤ 3.",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

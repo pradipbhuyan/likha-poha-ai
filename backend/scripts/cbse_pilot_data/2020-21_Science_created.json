@@ -1,0 +1,74 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "List any two observations when Ferrous Sulphate is heated in a dry test tube? OR Identify the products formed when 1 mL of dil. Hydrochloric acid is added to 1g of Sodium metal?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Write the chemical name and chemical formula of the salt used to remove permanent hardness of water. 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is not observed in a homologous series? Give reason for your choice. a) Change in chemical properties b) Difference in -CH2 and 14u molecular mass c) Gradation in physical properties d) Same functional group",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Why does the Sun appear white at noon? 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Both a spherical mirror and a thin spherical lens have a focal length of (-)15 cm. What type of mirror and lens are these? 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The image formed by a concave mirror is observed to be real, inverted and larger than the object. Where is the object placed? OR Name the part of a lens through which a ray of light passes without suffering any deviation.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the arrangement shown in figure there are two coils wound on a non-conducting cylindrical rod. Initially the key is not inserted in the circuit. Later the key is inserted and then removed shortly after. What are the two observations that can be noted from the galvanometer reading?",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Draw the magnetic field lines around a straight current carrying conductor. 1 9 Two unequal resistances are connected in parallel. If you are not provided with any other parameters (eg. numerical values of I and R), what can be said about the voltage drop across the two resistors? OR Some work is done to move a charge Q from infinity to a point A in space. The potential of the point A is given as V. What is the work done to move this charge from infinity in terms of Q and V?",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

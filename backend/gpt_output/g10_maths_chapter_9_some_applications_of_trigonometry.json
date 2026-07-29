@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 9: Some Applications of Trigonometry",
+    "central_question": "How can angles of elevation or depression and right-triangle ratios be used to determine inaccessible heights and horizontal distances?",
+    "in_scope_units": [
+      "Heights and Distances: defines line of sight, angle of elevation and angle of depression and models real situations with right triangles.",
+      "Single-triangle applications: determines tower heights, ladder lengths, observer-adjusted heights and horizontal distances.",
+      "Multiple-triangle applications: solves problems involving two angles, shadows, stacked structures, buildings, bridges and river widths.",
+      "Exercise 9.1 and Summary: applies the method to ropes, trees, slides, kites, towers, ships, balloons and moving vehicles and consolidates the key definitions."
+    ],
+    "banned_topics": [
+      "Derivation of the trigonometric-ratio table and identities, which belongs to Chapter 8.",
+      "Surveying formulas involving sine rule or cosine rule.",
+      "Non-right-triangle trigonometry and angles outside the standard Grade 10 scope.",
+      "Coordinate-geometry methods for distance and slope."
+    ],
+    "must_include_keywords": [
+      "heights and distances",
+      "line of sight",
+      "observer",
+      "horizontal level",
+      "angle of elevation",
+      "angle of depression",
+      "right triangle",
+      "vertical object",
+      "level ground",
+      "opposite side",
+      "adjacent side",
+      "hypotenuse",
+      "tan",
+      "cot",
+      "sin",
+      "cos",
+      "30°",
+      "45°",
+      "60°",
+      "tower",
+      "ladder",
+      "observer height",
+      "chimney",
+      "flagstaff",
+      "shadow",
+      "Sun's altitude",
+      "parallel horizontal lines",
+      "alternate angles",
+      "multi-storeyed building",
+      "bridge",
+      "river width",
+      "lighthouse",
+      "distance travelled",
+      "diagram",
+      "unit consistency"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "An angle of depression is measured from the vertical line through the observer.",
+        "correction": "Both angle of elevation and angle of depression are measured between the line of sight and a horizontal line through the observer."
+      },
+      {
+        "claim": "The angle of depression at the observer is unrelated to the corresponding angle of elevation at the object.",
+        "correction": "The two horizontal lines are parallel, so these angles are equal as alternate interior angles when the same line of sight is a transversal."
+      },
+      {
+        "claim": "The calculated vertical side always equals the total height of the object.",
+        "correction": "When the line of sight starts at the observer's eye level, the observer's height may need to be added to the calculated vertical difference."
+      },
+      {
+        "claim": "Any trigonometric ratio can be selected without checking the known and unknown sides.",
+        "correction": "Choose the ratio that directly contains the known side and the required side to minimise unnecessary work."
+      },
+      {
+        "claim": "A word problem can be solved reliably without drawing a labelled diagram.",
+        "correction": "A correct diagram is essential for identifying the right triangle, equal horizontal distances and the appropriate height components."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with Figures 9.1 to 9.3 and NCERT Example 1 to define line of sight and angle of elevation in a single right triangle.",
+      "Use NCERT Examples 2 and 3 to select sine, cotangent or tangent and account for a person's height.",
+      "Use NCERT Example 4 for two angles of elevation from one point and a stacked object.",
+      "Use NCERT Example 5 for two shadow lengths and simultaneous equations.",
+      "Finish with NCERT Examples 6 and 7 and Exercise 9.1 Questions 12 to 15 for angles of depression and multi-triangle reasoning."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "NCERT Exercise 9.1 contains Questions 1 to 15 on heights, distances, angles of elevation and angles of depression."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Some Applications of Trigonometry\n\n## What you will learn\nYou will define line of sight, angle of elevation and angle of depression and translate a viewing situation into a right triangle. You will then solve a basic tower-height problem using tangent.\n\n## Simple explanation\nThe line of sight joins the observer's eye to the point being viewed. If the point is above the observer's horizontal level, the line of sight makes an angle of elevation; if it is below, it makes an angle of depression.\n\n## Step-by-step breakdown\n- **Line of sight**: The line drawn from the observer's eye to the point on the object being viewed.\n- **Horizontal level**: The reference line through the observer's eye from which elevation or depression is measured.\n- **Angle of elevation**: The angle between the horizontal and an upward line of sight.\n- **Angle of depression**: The angle between the horizontal and a downward line of sight.\n- **Right-triangle model**: A vertical object and level ground form a right angle; the line of sight is normally the hypotenuse.\n- **Selecting tangent**: When vertical height and horizontal distance are involved, tan θ = opposite/adjacent is usually direct.\n\n## Worked example\nQuestion: Solve NCERT Example 1: From a point 15 m from the foot of a vertical tower, the angle of elevation of its top is 60°. Find the tower's height.\n\nSolution:\n- Step 1: Let AB be the tower height and BC = 15 m be the horizontal distance. Then ΔABC is right-angled at B and ∠ACB = 60°.\n- Step 2: Relative to 60°, AB is opposite and BC is adjacent.\n- Step 3: tan 60° = AB/BC.\n- Step 4: √3 = AB/15.\n- Step 5: AB = 15√3 m.\n- Final answer: **The tower is 15√3 m high.**\n\n## Common mistake\nDo not measure the angle of elevation from the vertical tower. It is measured from the horizontal line through the observer.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 9.1 Question 4: A point is 30 m from a tower and the angle of elevation is 30°. Find the height.\nAnswer: The height is 10√3 m.\nExplanation: tan 30° = h/30 = 1/√3, so h = 30/√3 = 10√3 m.\n\n## Summary\n- The line of sight joins the observer to the viewed point.\n- Elevation is upward from the horizontal.\n- Depression is downward from the horizontal.\n- Vertical and horizontal lines create a right triangle.\n- Tangent links height and horizontal distance.",
+    "Core explanation": "# Core explanation: Some Applications of Trigonometry\n\n## What you will learn\nYou will choose among sine, cosine, tangent and cotangent in single-triangle applications. You will calculate a ladder length and its distance from a pole while carefully identifying the hypotenuse and vertical reach.\n\n## Simple explanation\nThe best ratio is the one containing the sides you know and the side you need. In a ladder problem, the ladder is the hypotenuse; in a tower problem, the vertical height is opposite the ground angle.\n\n## Step-by-step breakdown\n- **Draw and label first**: Mark the right angle, the given angle, known lengths and required length.\n- **Hypotenuse questions**: Use sine or cosine when the sloping line is required.\n- **Horizontal placement**: Use tangent or cotangent to connect the vertical reach with the ground distance.\n- **Height difference**: If the repair point is below the top, subtract the gap from the total pole height before applying trigonometry.\n- **Approximation**: Use the supplied approximation, such as √3 = 1.73, only after obtaining an exact expression.\n- **Reasonableness**: The hypotenuse must be longer than either leg of the right triangle.\n\n## Worked example\nQuestion: Solve NCERT Example 2: A 5 m pole has a repair point 1.3 m below its top. A ladder is inclined at 60° to the horizontal. Find the ladder length and its distance from the pole, taking √3 = 1.73.\n\nSolution:\n- Step 1: The vertical reach is BD = 5 − 1.3 = 3.7 m.\n- Step 2: Let BC be the ladder. Since BC is the hypotenuse, sin 60° = BD/BC.\n- Step 3: √3/2 = 3.7/BC.\n- Step 4: BC = (3.7 × 2)/√3 = 7.4/1.73 ≈ 4.28 m.\n- Step 5: Let DC be the horizontal distance from the pole. cot 60° = DC/BD = 1/√3.\n- Step 6: DC = 3.7/√3 = 3.7/1.73 ≈ 2.14 m.\n- Final answer: **The ladder should be about 4.28 m long and its foot should be about 2.14 m from the pole.**\n\n## Common mistake\nDo not use the full 5 m pole height as the vertical leg. The electrician only needs to reach 3.7 m above the ground.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 9.1 Question 5: A kite is 60 m above the ground and its taut string is inclined at 60° to the ground. Find the string length.\nAnswer: The string length is 40√3 m.\nExplanation: If L is the hypotenuse, sin 60° = 60/L. Thus L = 60/(√3/2) = 120/√3 = 40√3 m.\n\n## Summary\n- Select a ratio containing the known and required sides.\n- A ladder or taut string is usually the hypotenuse.\n- Subtract any stated gap before using the vertical reach.\n- Keep exact surd form before approximating.\n- Check that the hypotenuse is the longest length.",
+    "Worked examples": "# Worked examples: Some Applications of Trigonometry\n\n## What you will learn\nYou will solve a two-angle problem involving a building and flagstaff. You will learn to use one right triangle first, then carry its result into a second triangle sharing the same horizontal distance.\n\n## Simple explanation\nWhen two tops are viewed from the same ground point, two right triangles share the same adjacent side. Solve the triangle containing a known height first; then use the common distance to calculate the extra height.\n\n## Step-by-step breakdown\n- **Shared observation point**: Both lines of sight begin at the same point P.\n- **Common adjacent side**: The distance from P to the building is the base of both right triangles.\n- **Known lower height first**: The building height and its elevation angle determine the horizontal distance.\n- **Total upper height**: The taller triangle contains building height plus flagstaff height.\n- **Difference of heights**: Subtract the known building height from the calculated total height.\n- **Exact and approximate forms**: Retain 10√3 before using √3 = 1.732.\n\n## Worked example\nQuestion: Solve NCERT Example 4: A 10 m building subtends an elevation angle of 30° at P, while the top of a flagstaff on it subtends 45°. Find the flagstaff length and the distance from P to the building, taking √3 = 1.732.\n\nSolution:\n- Step 1: Let AB = 10 m be the building and AP be the horizontal distance.\n- Step 2: In right ΔPAB, tan 30° = AB/AP.\n- Step 3: 1/√3 = 10/AP, so AP = 10√3 m ≈ 17.32 m.\n- Step 4: Let the flagstaff BD = x m. Then total height AD = 10 + x.\n- Step 5: In right ΔPAD, tan 45° = AD/AP.\n- Step 6: 1 = (10 + x)/(10√3), so 10 + x = 10√3.\n- Step 7: x = 10(√3 − 1) ≈ 10(1.732 − 1) = 7.32 m.\n- Final answer: **The building is 10√3 m (about 17.32 m) from P, and the flagstaff is about 7.32 m long.**\n\n## Common mistake\nDo not treat 10 + x as the flagstaff length. It is the total height up to the top of the flagstaff; the flagstaff alone is x.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 9.1 Question 7: A transmission tower stands on a 20 m building. From a ground point, the elevation angles of the building top and tower top are 45° and 60°. Find the tower height.\nAnswer: The tower height is 20(√3 − 1) m.\nExplanation: tan 45° = 20/d gives d = 20 m. If tower height is h, tan 60° = (20 + h)/20 = √3, so h = 20√3 − 20.\n\n## Summary\n- Two lines of sight can create two right triangles.\n- Shared ground distance links the equations.\n- Solve the triangle with a known height first.\n- The upper triangle uses the total stacked height.\n- Subtract to obtain the added structure's height.",
+    "Exam-style problems": "# Exam-style problems: Some Applications of Trigonometry\n\n## What you will learn\nYou will solve a changing-shadow problem using two simultaneous right triangles. You will also interpret the Sun's altitude as the angle of elevation from the shadow tip to the top of the object.\n\n## Simple explanation\nA lower Sun angle produces a longer shadow. The tower height is the same in both triangles, but their bases differ by the stated amount. Two tangent equations then determine the unknown base and height.\n\n## Step-by-step breakdown\n- **Sun's altitude**: It is used as the angle of elevation of the top from the tip of the shadow.\n- **Two shadow positions**: Use one variable for the shorter shadow and add the stated difference for the longer shadow.\n- **Same vertical height**: Both triangles contain the same tower height h.\n- **Equation at 60°**: tan 60° = h/(shorter shadow).\n- **Equation at 30°**: tan 30° = h/(longer shadow).\n- **Solve systematically**: Express h from one equation and substitute into the other.\n\n## Worked example\nQuestion: Solve NCERT Example 5: A tower's shadow is 40 m longer when the Sun's altitude is 30° than when it is 60°. Find the tower height.\n\nSolution:\n- Step 1: Let the tower height AB = h m and the shorter shadow BC = x m.\n- Step 2: The longer shadow DB = x + 40 m.\n- Step 3: In ΔABC, tan 60° = h/x, so √3 = h/x and h = x√3.  (1)\n- Step 4: In ΔABD, tan 30° = h/(x + 40), so 1/√3 = h/(x + 40).  (2)\n- Step 5: Substitute h = x√3 into (2): 1/√3 = x√3/(x + 40).\n- Step 6: Cross-multiply: x + 40 = 3x.\n- Step 7: 2x = 40, so x = 20.\n- Step 8: h = x√3 = 20√3.\n- Final answer: **The tower height is 20√3 m.**\n\n## Common mistake\nDo not assign x to the longer shadow and then also write the longer shadow as x + 40. Define the variable clearly and use it consistently.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 9.1 Question 6: A 1.5 m boy views the top of a 30 m building first at 30° and then at 60°. How far does he walk towards it?\nAnswer: He walks 19√3 m.\nExplanation: The vertical difference above his eyes is 30 − 1.5 = 28.5 m. The initial distance is 28.5/tan 30° = 28.5√3, the final distance is 28.5/tan 60° = 9.5√3, and the difference is 19√3 m.\n\n## Summary\n- A smaller elevation angle gives a longer shadow.\n- The two triangles share the same height.\n- Represent the second base using the stated difference.\n- Use two tangent equations and solve them together.\n- Observer height must be removed from the total height when the angle starts at eye level.",
+    "Revision and recap": "# Revision and recap: Some Applications of Trigonometry\n\n## What you will learn\nYou will revise angles of depression and multi-triangle diagrams through a bridge-and-river problem. You will also connect depression angles to corresponding elevation angles using parallel horizontal lines.\n\n## Simple explanation\nIn a depression problem, draw a horizontal line through the observer. Because the observer's horizontal and the ground or water level are parallel, each depression angle equals the corresponding elevation angle at the lower point.\n\n## Step-by-step breakdown\n- **Depression-to-elevation conversion**: Use alternate interior angles formed by the line of sight cutting parallel horizontal lines.\n- **Perpendicular height**: Drop a vertical from the observer to the lower horizontal line to create right triangles.\n- **Opposite banks or objects**: Split the required total width into two horizontal parts.\n- **Add component distances**: Compute each part separately and add them.\n- **Diagram accuracy**: Keep the 30° and 45° lines on the correct sides of the vertical.\n- **Broader applications**: Exercise 9.1 extends the method to buildings, lighthouses, ships, balloons and a moving car.\n\n## Worked example\nQuestion: Solve NCERT Example 7: From a bridge point 3 m above the banks, the depression angles to opposite banks are 30° and 45°. Find the river width.\n\nSolution:\n- Step 1: Let P be the bridge point, D its vertical foot, and A and B the opposite banks. Then PD = 3 m and AB = AD + DB.\n- Step 2: The depression angle to A equals the elevation angle ∠A = 30°.\n- Step 3: In right ΔAPD, tan 30° = PD/AD.\n- Step 4: 1/√3 = 3/AD, so AD = 3√3 m.\n- Step 5: The depression angle to B equals the elevation angle ∠B = 45°.\n- Step 6: In right ΔPBD, tan 45° = PD/DB = 1, so DB = 3 m.\n- Step 7: AB = AD + DB = 3√3 + 3 = 3(√3 + 1) m.\n- Final answer: **The river is 3(√3 + 1) m wide.**\n\n## Common mistake\nDo not add or subtract the two depression angles. They belong to separate right triangles and must be used independently.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 9.1 Question 13: From a 75 m lighthouse, depression angles to two ships on the same side are 45° and 30°, with one behind the other. Find their separation.\nAnswer: The ships are 75(√3 − 1) m apart.\nExplanation: The nearer ship is 75/tan 45° = 75 m from the lighthouse foot, while the farther ship is 75/tan 30° = 75√3 m away. Their separation is 75√3 − 75.\n\n## Summary\n- Elevation and depression are measured from horizontal lines.\n- Corresponding elevation and depression angles are equal.\n- Drop a perpendicular to form right triangles.\n- Compute separate horizontal parts before adding or subtracting.\n- Include observer or platform height correctly.\n- A labelled diagram is the foundation of every solution."
+  }
+}

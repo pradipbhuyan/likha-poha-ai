@@ -1,0 +1,145 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Science",
+    "chapter": "Sound Waves: Characteristics and Applications",
+    "central_question": "How is sound produced, propagated, described, perceived, reflected, and used in everyday life and technology?",
+    "in_scope_units": [
+      "10.1 Production of Sound — vibrations, sources of sound, vibrating strings, membranes, air columns, vocal cords, and animal sound production",
+      "10.1.1 Tuning fork — structure of a tuning fork and experimental evidence that vibrating prongs produce sound",
+      "10.2 Propagation of Sound — travel of sound through solids, liquids, and gases",
+      "10.2.1 Sound needs a medium to propagate — vacuum bell jar evidence and communication in outer space",
+      "10.3 Sound Waves — compressions, rarefactions, particle oscillation, longitudinal waves, and mechanical waves",
+      "10.4 Energy of Sound Waves — transfer of energy through a medium and energy conversion in microphones and speakers",
+      "10.5 Graphical Representation of a Sound Wave — density-distance graphs, average density, crests, and troughs",
+      "10.6 Characteristics of a Sound Wave — measurable quantities used to describe sound",
+      "10.6.1 Wavelength, frequency and time period — definitions, SI units, and the relation ν = 1/T",
+      "10.6.2 Amplitude and intensity of sound waves — energy carried by waves and reduction of intensity with distance",
+      "10.6.3 Speed of Sound — relation v = λν, dependence on medium, temperature, and humidity, and numerical applications",
+      "10.6.4 Human perception of sound — pitch, loudness, audible range, infrasonic and ultrasonic frequencies, tone, musical note, timbre, and octave",
+      "10.7 Reflection of Sound — laws of reflection applied to sound",
+      "10.7.1 Echo — conditions for hearing an echo and echo-distance calculations",
+      "10.7.2 Reverberation — multiple reflections and control of reverberation in halls",
+      "10.8 Ultrasonic and Infrasonic Waves, and their Applications — uses in science, medicine, industry, natural-event detection, echolocation, and sonar",
+      "10.8.1 Echolocation — locating objects through reflected sound in bats, other animals, and sonar systems"
+    ],
+    "banned_topics": [
+      "Detailed electromagnetic-wave theory or optical calculations beyond the brief comparison of light and sound",
+      "Detailed anatomy and physiology of the human ear beyond the eardrum, tiny bones, cochlea, and hearing description given in this chapter",
+      "Detailed electronic circuit design for microphones, speakers, amplifiers, sonar, or hearing aids",
+      "Advanced wave interference, diffraction, resonance, standing waves, and Doppler effect",
+      "Advanced musical scales or music theory beyond frequency, tone, note, fundamental, overtones, timbre, and octave described in the chapter"
+    ],
+    "must_include_keywords": [
+      "vibration",
+      "source of sound",
+      "vocal cords",
+      "larynx",
+      "tuning fork",
+      "medium",
+      "vacuum",
+      "compression",
+      "rarefaction",
+      "sound wave",
+      "longitudinal wave",
+      "mechanical wave",
+      "energy transfer",
+      "microphone",
+      "speaker",
+      "density",
+      "crest",
+      "trough",
+      "wavelength",
+      "frequency",
+      "hertz",
+      "time period",
+      "amplitude",
+      "intensity",
+      "speed of sound",
+      "v = λν",
+      "pitch",
+      "loudness",
+      "audible range",
+      "infrasonic waves",
+      "ultrasonic waves",
+      "decibel",
+      "noise pollution",
+      "tone",
+      "timbre",
+      "reflection of sound",
+      "echo",
+      "reverberation",
+      "echolocation",
+      "sonar"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Sound can travel through empty space because we can see explosions in space.",
+        "correction": "Sound is a mechanical wave and needs a material medium; in the near vacuum of outer space, sound cannot propagate directly."
+      },
+      {
+        "claim": "Air particles travel all the way from the source to the listener.",
+        "correction": "The particles of the medium only vibrate about their mean positions; the density disturbance and energy propagate through the medium."
+      },
+      {
+        "claim": "Compression means low density and rarefaction means high density.",
+        "correction": "A compression is a region of higher-than-average density, while a rarefaction is a region of lower-than-average density."
+      },
+      {
+        "claim": "Sound waves in air are transverse waves.",
+        "correction": "Sound waves in air are longitudinal waves because particles vibrate parallel to the direction of wave propagation."
+      },
+      {
+        "claim": "Frequency and time period increase together.",
+        "correction": "Frequency and time period are inversely related: ν = 1/T."
+      },
+      {
+        "claim": "A larger amplitude necessarily means a higher pitch.",
+        "correction": "Amplitude is mainly perceived as loudness, while frequency is mainly perceived as pitch."
+      },
+      {
+        "claim": "The speed of sound in a medium increases when the source frequency increases.",
+        "correction": "In ordinary media such as air, speed depends mainly on the medium and conditions; when frequency changes, wavelength changes so that v = λν remains satisfied."
+      },
+      {
+        "claim": "An echo distance is calculated using d = vt without considering the return journey.",
+        "correction": "For an echo, sound travels to the reflecting surface and back, so the one-way distance is d = vt/2."
+      },
+      {
+        "claim": "Echo and reverberation are identical.",
+        "correction": "An echo is heard as a separate reflected sound when the time gap is at least 0.1 s, while reverberation is persistence caused by closely spaced multiple reflections."
+      },
+      {
+        "claim": "Humans can hear every sound frequency.",
+        "correction": "The approximate human audible range is 20 Hz to 20 kHz; lower frequencies are infrasonic and higher frequencies are ultrasonic."
+      },
+      {
+        "claim": "Loudness and intensity are exactly the same physical quantity.",
+        "correction": "Intensity is measurable sound energy per unit area per unit time, while loudness is the listener's subjective perception."
+      },
+      {
+        "claim": "SONAR distance uses the full echo time as one-way travel time.",
+        "correction": "The recorded time is for the outward and return journey, so the one-way time is half the measured time."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Activity 10.1 to connect vibration of a rubber band with production of sound.",
+      "Use NCERT Activity 10.2 and the tuning-fork-and-water observation to confirm that the sound source is vibrating.",
+      "Use NCERT Activities 10.3 and 10.4 and the vacuum bell jar in Section 10.2.1 to establish that sound travels through solids, liquids, and gases but not vacuum.",
+      "Use NCERT Activity 10.5 to model compressions, rarefactions, particle oscillation, and longitudinal propagation with a slinky.",
+      "Use NCERT Example 10.1 to calculate frequency and time period from 10 oscillations in 2 seconds.",
+      "Use NCERT Examples 10.2 to 10.4 to connect wavelength, frequency, speed, lightning delay, and graph reading.",
+      "Use NCERT Example 10.5 to calculate distance from an echo using the round-trip factor of two.",
+      "Use NCERT Example 10.6 to calculate distance using a sonar echo in seawater.",
+      "Finish with selected Revise, Reflect, Refine Questions 3, 4, 8, 9, 10, 11, 12, 13, 14, and 15 for mixed conceptual and numerical practice."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Revise, Reflect, Refine' and contains Questions 1–15, followed by 'The Journey Beyond' activities."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Sound Waves: Characteristics and Applications\n\n## What you will learn\nYou will learn that sound begins with a vibrating source and reaches us only through a material medium. You will also use the rubber-band, tuning-fork, desk, water, and bell-jar investigations to understand how sound is produced and propagated.\n\n## Simple explanation\nA sound is produced when an object vibrates. The vibration disturbs nearby particles of a solid, liquid, or gas, and the disturbance passes from particle to particle until it reaches a listener. Without matter between the source and listener, sound cannot travel.\n\n## Step-by-step breakdown\n- **Vibration produces sound**: Activity 10.1 shows that a stretched rubber band produces sound while it vibrates, and the sound stops when the vibration stops. Vibration is periodic to-and-fro motion or oscillation.\n- **Different vibrating sources**: Sound may come from vibrating strings, stretched membranes, air columns, metal objects, or other vibrating parts. The object producing sound is the source.\n- **Human and animal sound**: In humans, tightly stretched vocal cords inside the larynx vibrate. The tongue, lips, mouth, and nasal cavity shape this sound into speech or music. Grasshoppers and crickets can produce sound by rubbing body parts.\n- **Tuning fork evidence**: In Activity 10.2, striking a tuning fork makes its prongs vibrate. A vibrating prong produces sound and forms waves when it touches water.\n- **Sound through solids**: Activity 10.3 shows that a knock on a desk can be heard through the solid desk.\n- **Sound through liquids**: Activity 10.4 shows that tapping submerged metal spoons produces sound that reaches the listener through water and air.\n- **Medium and vacuum**: A medium is the material through which sound propagates. It may be a solid, liquid, or gas. A vacuum has no material medium.\n- **Bell-jar evidence**: In the vacuum bell jar experiment, the ringing bell becomes fainter as air is removed, even though the bell can still be seen vibrating. This shows that sound needs a medium.\n- **Sound in space**: Outer space is a near vacuum, so astronauts cannot directly hear speech or metal clanking during a spacewalk; they use communication devices.\n\n## Worked example\nQuestion: Based on NCERT Activity 10.1, what happens to the sound when the stretched rubber band stops vibrating, and what conclusion follows?\n\nSolution:\n- Step 1: The rubber band produces sound while it is stretched and vibrating.\n- Step 2: When the vibration stops, the sound also stops.\n- Final answer: Sound stops when the rubber band stops vibrating, showing that sound is produced by vibrations.\n\n## Common mistake\nA student may think sound is produced simply because an object is present. The object must vibrate; a stationary source does not continue producing sound.\n\n## Quick check question\nQuestion: In NCERT Pause and Ponder Q3, a bell inside a closed jar becomes almost inaudible after most air is pumped out. Which option is correct?\nAnswer: Option (ii): Both the assertion and reason are true, and the reason correctly explains the assertion.\nExplanation: The bell still vibrates, but sound cannot travel effectively because sound requires a material medium and most of the air has been removed.\n\n## Summary\n- Sound is produced by vibrating objects.\n- A tuning fork, vocal cords, strings, membranes, and air columns can act as sound sources.\n- Sound travels through solids, liquids, and gases.\n- Sound cannot propagate through vacuum.\n- Astronauts need communication devices because outer space is nearly a vacuum.",
+    "Core explanation": "# Core Explanation: Sound Waves: Characteristics and Applications\n\n## What you will learn\nYou will learn how a sound disturbance moves through a medium as compressions and rarefactions. You will distinguish particle motion from wave motion, classify sound as a longitudinal mechanical wave, and understand that sound transfers energy rather than matter. You will also learn how a sound wave is represented on a density-distance graph.\n\n## Simple explanation\nA sound wave does not carry a stream of air from the source to the listener. Instead, particles near the source vibrate and pass the disturbance and energy to neighbouring particles. Regions of higher and lower density move through the medium while the particles themselves remain near their mean positions.\n\n## Step-by-step breakdown\n- **Slinky model**: Activity 10.5 produces closely spaced and spread-out regions that move along a slinky. A marked turn only moves back and forth; it does not travel with the disturbance.\n- **Compression**: When a piston moves forward, nearby air particles are pushed closer together, creating a region of higher-than-average density called a compression.\n- **Rarefaction**: When the piston moves backward, a region of lower-than-average density forms. This is called a rarefaction.\n- **Sound wave**: A sound wave is a propagating series of alternating compressions and rarefactions in a medium, without actual flow of the medium's particles from source to listener.\n- **Direction of propagation**: The direction in which the disturbance travels is the direction of wave propagation.\n- **Longitudinal wave**: In sound, medium particles vibrate parallel to the direction of propagation. Therefore, sound is a longitudinal wave.\n- **Mechanical wave**: Because sound requires a material medium, it is a mechanical wave.\n- **Energy transfer**: Activity 10.6 shows that a loud sound makes a stretched sheet vibrate and causes grains on it to jump. Sound transfers energy through the medium.\n- **Microphone and speaker**: A microphone converts sound energy into electrical energy through a vibrating diaphragm. A speaker converts an electrical signal into sound by making a cone or diaphragm vibrate.\n- **Density graph**: In a density-versus-distance graph, the x-axis shows distance and the y-axis shows density. A compression corresponds to density above the average, and a rarefaction to density below the average.\n- **Crest and trough**: The highest point of the density graph is a crest and represents maximum density. The lowest point is a trough and represents minimum density.\n\n## Worked example\nQuestion: Based on NCERT Activity 10.5 and Pause and Ponder Q4, do the particles of the medium move forward continuously with compressions and rarefactions?\n\nSolution:\n- Step 1: The marked turn of the slinky moves back and forth around its original position.\n- Step 2: The closely spaced and spread-out regions move along the slinky.\n- Final answer: No. Compressions and rarefactions move through the medium, but individual particles only oscillate about their mean positions. Therefore, in Q4 the correct option is (iii): the assertion is true but the reason is false.\n\n## Common mistake\nDo not say that the air from a tuning fork travels all the way to the ear. The disturbance and energy travel; the air particles only oscillate locally.\n\n## Quick check question\nQuestion: In NCERT Pause and Ponder Q5, what actually reaches the ear when sound travels from a tuning fork?\nAnswer: Option (ii), energy carried by sound waves.\nExplanation: The medium particles transfer energy by vibrating and colliding with neighbouring particles; neither the tuning-fork material nor a continuous stream of air reaches the ear.\n\n## Summary\n- Sound travels as alternating compressions and rarefactions.\n- Medium particles vibrate about their mean positions.\n- Sound in a medium is a longitudinal mechanical wave.\n- Sound transfers energy, not matter.\n- Density graphs use crests for maximum density and troughs for minimum density.",
+    "Worked examples": "# Worked Examples: Sound Waves: Characteristics and Applications\n\n## What you will learn\nYou will learn to calculate frequency, time period, wavelength, and speed, and to interpret sound-wave graphs. You will also connect amplitude with energy, intensity with energy flow, and frequency and amplitude with the human perceptions of pitch and loudness.\n\n## Simple explanation\nThe main measurable characteristics of sound are wavelength, frequency, time period, amplitude, intensity, and speed. These quantities help us describe a wave objectively, while pitch and loudness describe how a listener experiences it.\n\n## Step-by-step breakdown\n- **Wavelength (λ)**: The distance between two consecutive crests or two consecutive troughs. Its SI unit is metre.\n- **Frequency (ν)**: The number of density oscillations at a fixed point per unit time. Its SI unit is hertz.\n- **Time period (T)**: The time taken for one complete density oscillation. Its SI unit is second.\n- **Frequency-time relation**: Frequency and time period are inversely related: ν = 1/T.\n- **Amplitude**: The maximum change in density in a compression or rarefaction compared with average density. Larger amplitude means the wave carries more energy.\n- **Intensity**: Sound energy passing through unit area perpendicular to the direction of propagation in unit time. Intensity decreases as sound spreads over a larger area.\n- **Speed relation**: A disturbance covers one wavelength in one time period, so v = λ/T. Since ν = 1/T, v = λν.\n- **Effect of medium**: Sound travels fastest in solids, slower in liquids, and slowest in gases. Table 10.1 gives about 5000 m s⁻¹ in steel, 1500 m s⁻¹ in water, and 340 m s⁻¹ in air at 15 °C.\n- **Temperature and humidity**: The speed of sound in air increases with temperature and humidity. The chapter gives about 331 m s⁻¹ at 0 °C and 344 m s⁻¹ at 22 °C in dry air.\n- **Pitch**: Human perception of frequency. Higher frequency is generally heard as higher pitch.\n- **Loudness**: Human perception related mainly to amplitude. Greater amplitude is generally heard as louder sound.\n- **Audible range**: Approximate human hearing range is 20 Hz to 20 kHz. Below 20 Hz is infrasonic; above 20 kHz is ultrasonic.\n- **Tone, note, timbre, and octave**: A tone is nearly one frequency. A musical note contains a fundamental and overtones. Timbre distinguishes instruments playing the same note, and an octave is an interval in which one fundamental frequency is double the other.\n- **Noise and hearing**: Unwanted or harmful sound is noise. Prolonged exposure to loud sound can affect health and hearing. Loudness levels are commonly expressed in decibels.\n\n## Worked example\nQuestion: Solve NCERT Example 10.4. A sound wave in steel has wavelength 50 m and speed 5000 m s⁻¹. Find its frequency and time period.\n\nSolution:\n- Step 1: Use ν = v/λ = 5000 m s⁻¹ ÷ 50 m = 100 Hz.\n- Step 2: Use T = 1/ν = 1/100 s = 0.01 s.\n- Final answer: Frequency = 100 Hz and time period = 0.01 s.\n\n## Common mistake\nDo not confuse wavelength with amplitude. Wavelength is a horizontal distance between repeating points, while amplitude is the maximum vertical change from the average-density line on the graph.\n\n## Quick check question\nQuestion: NCERT Example 10.1 states that 10 density oscillations occur in 2 s. What are the frequency and time period?\nAnswer: Frequency = 5 Hz and time period = 0.2 s.\nExplanation: Frequency = 10/2 = 5 Hz, and T = 1/5 = 0.2 s.\n\n## Summary\n- Wavelength measures spatial repetition; frequency measures oscillations per second.\n- Frequency and time period obey ν = 1/T.\n- Wave speed obeys v = λν.\n- Larger amplitude means more energy and usually greater loudness.\n- Frequency is mainly perceived as pitch.\n- Human hearing is approximately 20 Hz to 20 kHz.",
+    "Exam-style problems": "# Exam-Style Problems: Sound Waves: Characteristics and Applications\n\n## What you will learn\nYou will learn how reflection produces echoes and reverberation and how to solve round-trip sound problems. You will also study the uses of infrasonic and ultrasonic waves, including echolocation and sonar.\n\n## Simple explanation\nSound can reflect from surfaces just as light does. If the reflected sound returns after a sufficient delay, it is heard as an echo; if many reflections arrive too close together, sound persists as reverberation. The same reflection principle is used by animals and sonar systems to locate objects.\n\n## Step-by-step breakdown\n- **Reflection of sound**: Sound can bounce from solid or liquid obstacles. The incident and reflected directions make equal angles with the normal and lie in the same plane.\n- **Echo**: An echo is a reflected sound heard separately from the original. The time gap must be at least about 0.1 s.\n- **Minimum echo distance**: At 340 m s⁻¹, sound travels 34 m in 0.1 s for the outward and return journey, so the reflecting surface must be about 17 m away.\n- **Surface effect**: Hard, smooth surfaces reflect sound strongly. Soft surfaces absorb sound, while rough surfaces scatter it.\n- **Echo formula**: For a measured round-trip time t, the one-way distance is d = vt/2.\n- **Reverberation**: Multiple reflections make sound persist after the source stops. The chapter describes it for reflection time differences below 0.05 s.\n- **Controlling reverberation**: Sound-absorbing panels, upholstered chairs, curtains, and soft porous surfaces reduce unwanted reverberation in halls.\n- **Infrasonic applications**: Frequencies below 20 Hz can help detect earthquakes, volcanic eruptions, and severe storms because such waves can travel long distances.\n- **Ultrasonic applications**: Frequencies above 20 kHz are used in ultrasonography, breaking kidney stones, ultrasonic welding, cleaning delicate parts, detecting flaws in metal blocks, and locating objects by reflection.\n- **Echolocation**: Bats emit ultrasonic pulses and analyse echoes to locate obstacles and prey. Dolphins, whales, and some birds also use reflected sound.\n- **SONAR**: Sound navigation and ranging sends ultrasonic waves through water and analyses returning echoes to determine the distance, direction, and speed of underwater objects.\n\n## Worked example\nQuestion: Solve NCERT Example 10.6. A sonar signal returns after 0.90 s in seawater where sound speed is 1530 m s⁻¹. How far away is the object?\n\nSolution:\n- Step 1: The 0.90 s is the round-trip time, so one-way time = 0.90/2 = 0.45 s.\n- Step 2: Distance = speed × one-way time = 1530 × 0.45 = 688.5 m.\n- Final answer: The object is 688.5 m away.\n\n## Common mistake\nIn echo and sonar questions, using the full measured time as the one-way time gives twice the correct distance. Always check whether the signal travelled to the object and back.\n\n## Quick check question\nQuestion: Solve NCERT Pause and Ponder Q12. Echoes must arrive at least 0.2 s after emission. What minimum distance should the reflecting surface be placed at if the speed of sound is 343 m s⁻¹?\nAnswer: 34.3 m.\nExplanation: The sound travels to the reflector and back, so d = vt/2 = 343 × 0.2 ÷ 2 = 34.3 m.\n\n## Summary\n- Reflection of sound follows the same basic laws as reflection of light.\n- A separate echo requires a time gap of about 0.1 s or more.\n- Echo and sonar distances use d = vt/2.\n- Reverberation is persistence caused by multiple closely spaced reflections.\n- Infrasonic and ultrasonic waves have important scientific, medical, and industrial uses.\n- Echolocation and sonar locate objects through reflected sound.",
+    "Revision and recap": "# Revision and Recap: Sound Waves: Characteristics and Applications\n\n## What you will learn\nYou will revise the complete chapter from production of sound to sonar applications. You will connect concepts, formulas, graphs, perception, reflection, and applications, and practise identifying the correct principle before calculating.\n\n## Simple explanation\nThe full story of sound begins with vibration, continues through a medium as a longitudinal density disturbance carrying energy, and ends when the wave is detected or reflected. Its measurable characteristics explain pitch, loudness, travel time, echoes, and technological applications.\n\n## Step-by-step breakdown\n- **Production**: A vibrating source, such as a rubber band, vocal cords, or tuning fork, produces sound.\n- **Propagation**: Sound travels through solids, liquids, and gases but not through vacuum.\n- **Wave structure**: Alternating compressions and rarefactions move through the medium while particles oscillate near their mean positions.\n- **Wave type**: Sound is a longitudinal mechanical wave.\n- **Energy**: Sound transfers energy through vibrating particles and collisions.\n- **Graph reading**: Crests represent maximum density, troughs represent minimum density, wavelength is the spacing between repeating crests or troughs, and amplitude is measured from the average-density line.\n- **Core formulas**: ν = 1/T and v = λν.\n- **Perception**: Frequency is mainly perceived as pitch; amplitude is mainly perceived as loudness. Intensity is measurable, while loudness is subjective.\n- **Hearing range**: Humans hear roughly 20 Hz to 20 kHz. Below this is infrasonic and above it is ultrasonic.\n- **Reflection**: Echoes are separate reflected sounds; reverberation is persistence due to multiple reflections.\n- **Applications**: Ultrasound is used in imaging, stone breaking, welding, cleaning, flaw detection, echolocation, and sonar; infrasound is used to detect natural events.\n- **Exam strategy**: Identify whether the question concerns production, medium, wave motion, graph interpretation, v = λν, frequency-time relation, perception, or round-trip reflection before substituting numbers.\n\n## Worked example\nQuestion: Solve NCERT Revise, Reflect, Refine Q9. A sound wave has wavelength 3.44 m and speed 344 m s⁻¹. Find its time period.\n\nSolution:\n- Step 1: Frequency ν = v/λ = 344/3.44 = 100 Hz.\n- Step 2: Time period T = 1/ν = 1/100 = 0.01 s.\n- Final answer: The time period is 0.01 s.\n\n## Common mistake\nDo not rely on a single word such as “loud” or “high” without identifying the physical quantity. High pitch refers to higher frequency, while loud sound generally refers to larger amplitude and greater perceived loudness.\n\n## Quick check question\nQuestion: In NCERT Revise, Reflect, Refine Q8, what is wrong with showing an explosion in outer space with a flash and sound occurring together for an observer?\nAnswer: The flash can travel through vacuum, but sound cannot propagate through the near vacuum of space; therefore, an external observer would not hear the explosion directly through space.\nExplanation: Light does not require a material medium, whereas sound is a mechanical wave and does require one.\n\n## Summary\n- Vibrations produce sound, and a material medium carries it.\n- Sound travels as a longitudinal mechanical wave of compressions and rarefactions.\n- Particles oscillate locally while energy and disturbance propagate.\n- Use ν = 1/T and v = λν for numerical problems.\n- Pitch relates mainly to frequency; loudness relates mainly to amplitude.\n- Reflection explains echoes, reverberation, echolocation, and sonar."
+  }
+}

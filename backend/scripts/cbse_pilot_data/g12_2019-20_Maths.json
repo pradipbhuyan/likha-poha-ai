@@ -1,0 +1,354 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If A is any square matrix of order 3 × 3 such that |A| = 3, then the value of |adjA| is ?",
+    "options": [
+      "3",
+      "9",
+      "27"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Suppose P and Q are two different matrices of order 3 × n and n × p , then the order of the matrix P × Q is?",
+    "options": [
+      "3 × p",
+      "p × 3",
+      "n × n",
+      "3 × 3"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If ൫2ı̂ + 6ȷ̂ + 27k෠൯× ൫ı̂ + pȷ̂ + qk෠൯= 0ሬ⃗ ,then the values of p and q are ?",
+    "options": [
+      "p= 6 ,q=27",
+      "p=3,q= ଶ଻ ଶ",
+      "p=6,q= ଶ଻ ଶ",
+      "p=3  ,q=27"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If A and B are two events such that P(A)=0.2 , P(B)=0.4 and P(A ∪ B)=0.5 , then value of P(A/B) is ?",
+    "options": [
+      "0.1",
+      "0.25",
+      "0.5",
+      "0.08"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The point which does not lie in the half plane 2ݔ+3ݕ− 12 ≤ 0 is",
+    "options": [
+      "(1,2)",
+      "(2,1)",
+      "(2,3)",
+      "(−3, 2)"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If sinିଵx + sinିଵy = ଶ஠ ଷ , then the value of cosିଵx + cosିଵy is ________",
+    "options": [
+      "π"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "An urn contains 6 balls of which two are red and four are black. Two balls are drawn at random. Probability that they are of the different colours is",
+    "options": [
+      "sinିଵቀ ହ୶ ଷቁ+ c"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What is the distance(in units) between the two planes 3x + 5y + 7z = 3 and 9x + 15y + 21z = 9 ?",
+    "options": [
+      "0",
+      "3",
+      "6"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The equation of the line in vector form passing through the point(−1,3,5) and parallel to line ௫ିଷ ଶ = ௬ିସ ଷ , z = 2. is",
+    "options": [
+      "r⃗ = ൫−ı̂ + 3ȷ̂ + 5k෠൯+ λ൫2ı̂ + 3ȷ̂ + k෠൯.",
+      "r⃗ = ൫−ı̂ + 3ȷ̂ + 5k෠൯+ λ(2ı̂ + 3ȷ̂)",
+      "r⃗ = ൫2ı̂ + 3ȷ̂ − 2k෠൯+ λ൫−ı̂ + 3ȷ̂ + 5k෠൯",
+      "r⃗ = (2ı̂ + 3ȷ̂) + λ൫−ı̂ + 3ȷ̂ + 5k෠൯"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If f be the greatest integer function defined asf(x) = [x] and g be the modulus function defined as g(x) = |x| , then the value of g of ቀ− ହ ସቁ is___________",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the function݂(ݔ)= ቊ ௫మିଵ ௫ିଵwhen ݔ≠ 1 ݇ when ݔ=1 is given to be continuous at ݔ=1, then the value of ݇ is ____",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Ifቂ1 2 2 1ቃቂx yቃ= ቂ5 4ቃ , then value of y is _____. 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If tangent to the curve yଶ+ 3x − 7 = 0 at the point (ℎ,݇) is parallel to line x − y = 4, then value of k is ___? OR For the curve ݕ=5ݔ− 2ݔଷ ,if ݔ increases at the rate of 2units/sec, then at ݔ=3the slope of the curve is changing at_________",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The magnitude of projection of ൫2ı̂ − ȷ̂ + k෠൯ on ൫ı̂ − 2ȷ̂ + 2k෠൯is_________ OR Vector of magnitude 5 units and in the direction opposite to 2ı̂ + 3ȷ̂ − 6k෠ is___ (Q16 - Q20) Answer the following questions",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Check whether (l + m + n) is a factor of the determinantอ l + m m + n n + l n l m 2 2 2 อor not. Give reason.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Evaluate ∫ (ݔଷ+ 1)ݔ݀ ଶ ିଶ .",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find ∫ ଷାଷ௖௢௦௫ ௫ା௦௜௡௫ݔ݀. OR Find ∫(ݏ݋ܿଶ2ݔ−݊݅ݏଶ2ݔ)ݔ݀",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find ∫ xe(ଵା୶మ)dx.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Write the general solution of differential equation ୢ୷ ୢ୶= e୶ା୷ SECTION – B",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Express sinିଵቀ ୱ୧୬୶ାୡ୭ୱ୶ √ଶ ቁ ;where− ஠ ସ<ݔ< ஠ ସ , in the simplest form. OR Let R be the relation in the set Z of integers given by R = {(a, b) : 2 divides a – b}.Show that the relation R transitive? Write the equivalence class [0].",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "If = aeଶ୶+ beି୶ , then show that ୢమ୷ ୢ୶మ− ୢ୷ ୢ୶− 2y = 0.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "A parti cle moves along the curve xଶ= 2y . At what point, ordinate increases at the same rate as abscissa increases?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "For three non-zero vectors aሬ⃗, bሬ⃗ and c⃗ , prove that [ ܽሬ⃗ - ܾሬ⃗ ܾሬ⃗ - ܿ⃗ ܿ⃗ - ܽሬ⃗ ] = 0 . OR If ܽ⃗+ ܾሬ⃗ +ܿ⃗= 0 ݀݊ܽ |ܽ⃗| = 3, หܾሬ⃗ห= 5, |ܿ⃗| = 7 , then find the value of ܽ⃗ .ܾ ሬ⃗ +ܾሬ⃗.ܿ⃗ +ܿ⃗ .ܽ⃗ .",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Find the acute angle between the lines ୶ିସ ଷ = ୷ାଷ ସ = ୸ାଵ ହ and ୶ିଵ ସ = ୷ାଵ ିଷ = ୸ାଵ଴ ହ 2",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "A speaks truth in 80% cases and B speaks truth in 90%cases. In what percentage of cases are they likely to agree with each other in stating the same fact? SECTION – C",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Let ݂:A → B be a function defined as ݂(ݔ)= ଶ௫ାଷ ௫ିଷ, whereA = R − {3}and B = R − {2}. Is the function f one –one and onto? Is f invertible? If yes, then find its inverse.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "If √1 − xଶ+ ඥ1 − yଶ= a(x − y) , then prove that ୢ୷ ୢ୶= ඥଵି୷మ √ଵି୶మ . OR If x = a(cos 2θ + 2θ sin 2θ) and y = a(sin 2θ − 2θ cos 2θ) , find ୢమ୷ ୢ୶మ at θ = ஠ ଼.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Solve the differential equation x dy − y dx = ඥxଶ+ yଶ dx .",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "C",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Evaluate ∫ |ݔଶ− 2ݔ|ݔ݀ ଷ ଵ .",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "C",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Two numbers a re selected at random (without replacement) from first 7 natural numbers. If X denotes the smaller of the two numbers obtained, find the probability distribution of X. Also, find mean of the distribution. OR There are three coins, one is a two headed coin (having head on both the faces), another is a biased coin that comes up head s 75% of the time and the third is an unbiased coin. One of the three coins is chosen at random and tossed. If It shows head. What is probability that it was the two headed coin ?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "C",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Two tailors A and B earn ₹150 and ₹200 per day respectively. A can stitch 6 shirts and 4 pants per day, while B can stitch 10 shirts and 4 pants per day. Form a L.P.P to minimize the labour cost to produce (stitch) at least 60 shirts and 32 pants and solve it graphically. SECTION D",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "Using the properties of determinants, prove that ቮ (ݕ+ݖ )ଶݔଶݔଶ ݕଶ (ݖ+ݔ )ଶݕଶ ݖଶݖଶ (ݔ+ݕ )ଶ ቮ= 2ݖݕݔ(ݔ+ݕ +ݖ )ଷ . OR If A = ൥ 2 3 4 1 −1 0 0 1 2 ൩, find Aିଵ. Hence, solve the system of equations ݔ−ݕ=3 ; 2ݔ+3ݕ+4ݖ=17; ݕ+2ݖ=7",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "Using integration, find the area of the region {(x, y) ∶ xଶ + yଶ ≤ 1 , x + y ≥ 1, x ≥ 0, y ≥ 0 }",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 35,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "A given quantity of metal is to be cast into a solid half circular cylinder with a rectangular base and semi -circular ends. Show that in order that total surface area is minimum, the ratio of length of cylinder to the diameter of semi-circular ends is π ∶ π + 2. OR Show that the triang le of maximum area that can be inscribed in a given circle is an equilateral triangle.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 36,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "Find the equation of a plane passing through the points ܣ(2,1,2) and ܤ(4, −2,1) and perpendicular to planer⃗. ൫ı̂ − 2k෠൯= 5. Also, find the coordinates of the point, where the line passing through the points (3,4,1) and (5,1,6) crosses the plane thus obtained.",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

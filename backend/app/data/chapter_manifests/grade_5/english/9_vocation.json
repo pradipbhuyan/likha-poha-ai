@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 5",
+  "subject": "English",
+  "chapter": "9. Vocation",
+  "central_question": "Why does the child admire the freedom he imagines in different kinds of work, and what does he overlook about each vocation?",
+  "in_scope_units": [
+    "Let us Recite: hawker in the morning, gardener in the afternoon, and watchman at night",
+    "Let us Think: speaker, daily schedule, admiration, simile, and observation",
+    "Let us Learn: word meanings, sentence correction, and tools used in work",
+    "Let us Listen and Speak: WH questions, -tion pronunciation, and sharing feelings about many tasks",
+    "Let us Write, Do, and Explore: hidden difficulties, family work, Job Mix-Up, career choices, and respect for all work"
+  ],
+  "banned_topics": [
+    "The Panchayat dispute",
+    "Glass-bangle making process",
+    "Water-tank conservation"
+  ],
+  "must_include_keywords": [
+    "vocation",
+    "Rabindranath Tagore",
+    "gong",
+    "lane",
+    "hawker",
+    "bangles",
+    "freedom",
+    "gardener",
+    "spade",
+    "dust",
+    "watchman",
+    "street-lamp",
+    "giant",
+    "red eye",
+    "lantern",
+    "shadow",
+    "morning",
+    "afternoon",
+    "evening",
+    "daily schedule",
+    "simile",
+    "word meanings",
+    "sentence correction",
+    "hammer",
+    "camera",
+    "telescope",
+    "screwdriver",
+    "sickle",
+    "stethoscope",
+    "WH-family",
+    "cushion",
+    "ration",
+    "fashion",
+    "tension",
+    "vocation pronunciation",
+    "difficult parts of work",
+    "family vocations",
+    "A.P.J. Abdul Kalam",
+    "M. Visvesvaraya",
+    "Janaki Ammal",
+    "M.S. Subbulakshmi",
+    "Salim Ali",
+    "Job Mix-Up",
+    "beekeeper",
+    "photographer",
+    "teacher",
+    "dancer",
+    "chef",
+    "pilot",
+    "farmer",
+    "florist",
+    "no work is superior or inferior"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The speaker fully understands every difficulty of the jobs he admires.",
+      "correction": "The writing task states that the child sees only the fun part and asks learners to consider difficult or boring parts."
+    },
+    {
+      "claim": "The street-lamp is literally a giant.",
+      "correction": "The poem compares it to a giant with one red eye; this is a simile."
+    },
+    {
+      "claim": "The watchman never sleeps at any time.",
+      "correction": "That is the child speaker’s imaginative description based on seeing him at night, not a complete factual account of the watchman’s life."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Let us Think A to identify the three workers, the street-lamp comparison, and the speaker’s schedule.",
+    "Use Let us Learn B to correct the supplied errors in agreement, comparison, and word form.",
+    "Use Let us Listen to create WH questions about the poem.",
+    "Use Let us Write 1 to contrast the child’s imagined freedom with possible work difficulties.",
+    "Use Let us Do and Explore to match work with correct duties and justify a chosen vocation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "There is no separate end-of-chapter exercise block; practice is spread across Let us Think, Learn, Listen, Speak, Write, Do, and Explore.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

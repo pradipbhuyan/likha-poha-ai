@@ -1,0 +1,50 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 2
+Subject: History
+Source Subject Code: History
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/History-SQP_Term2.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/History-MS_Term2.pdf
+Total Questions: 10
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/History-MS_Term2.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Describe the role of Dr BR Ambedkar in the Constituent Assembly of India. 3K
+
+Q10 [mcq, 1m, Sec D]
+On the given political outline map of India, locate and label ANY ONE of the following with appropriate symbol: I. The place where Gandhiji withdrew Non-Cooperation Movement ( 1) OR 1+1=2 II. The place where Gandhiji started satyagraha for the indigo planters ( 1) b) On the same outline map of India, a place related to the centres of the Revolt of 1857 is marked as A. Identify it and write its name on the line drawn near them. ( 1) Note: The following questions are for the Visually Impaired Candidates only in lieu of Q. No. 10
+
+Q2 [mcq, 1m, Sec A]
+Critically analyse the Fifth Report which was submitted to the British Parliament in 1813. OR Examine the policies adopted by the British towards Paharias during 18th century. 3E 3E
+
+Q3 [mcq, 1m, Sec A]
+Rumours and Prophecies played a part in moving people to action.’ Explain the statement in the context of the Revolt of 1857. 3U
+
+Q4 [mcq, 1m, Sec A]
+Why have many scholars written the months after Independence as being Gandhiji's "finest hours? Explain. 3U SECTION B __Long Answer Type Questions 6X3=18
+
+Q5 [mcq, 1m, Sec B]
+Describe the role of any six prominent leaders of northern India who fought against the British in the Revolt of 1857. 6K
+
+Q6 [mcq, 1m, Sec B]
+Quit India movement was genuinely a mass movement bringing into its ambit hundreds of thousands of ordinary Indians. Elucidate the statement with suitable examples. OR ‘Gandhiji had mobilized a wider discontentment against the British rule in the Salt Satyagraha.’ Elucidate the statement with suitable examples 6A 6A
+
+Q7 [mcq, 1m, Sec B]
+Abul Fazal describes the ideal of Sulh- i -Kul (absolute peace) as the cornerstone of Akbar enlightened rule”. Support the statement with few examples. OR ‘The officer corps of the Mughals were described as bouquet of flowers held together by loyalty to the emperor.’ Justify the statements with suitable arguments 6H 6H SECTION C __Case Based Questions 4X2=8
+
+Q8 [mcq, 1m, Sec C]
+Read the source given below and answer the questions that follows. The flight of the written word In Abu’l Fazl’s words: The written word may embody the wisdom of bygone ages and may become a means to intellectual progress. The spoken word goes to the heart of those who are present to hear it. The written word gives wisdom to those who are near and far. If it was not for the written word, the spoken word would soon die, and no keepsake would be left us from those who are passed away. Superficial observers see in the letter a dark figure, but the deep sighted see in it a lamp of wisdom (chirag-i shinasai ). The written word looks black, notwithstanding the thousand rays within it, or it is a light with a mole on it that wards off the evil eye. A letter (khat) is the portrait of wisdom; a rough sketch from the realm of ideas; a dark light ushering in day; a black cloud pregnant with knowledge; speaking though dumb; stationary yet travelling; stretched on the sheet, and yet soaring upwards. Source from ‘The Kings and Chronicles’, Theme9, pg-227 NCERT Unit-II 1+1+2 =4H 8.1 Why were words considered as the lamp of wisdom? ( 1) 8.2 How has Abul Fazal related words with knowledge? (1) 8.3 How did Abul Fazal refer difference between a ‘common viewer's observation’ and the ‘observation of a learned person?2
+  [NOTE: diagram]
+
+Q9 [mcq, 1m, Sec C]
+Read the source given below and answer the questions that follows. “There cannot be any divided loyalty” Govind Ballabh Pant argued that in order to become loyal citizens people had to stop focusing only on the community and the self: For the success of democracy one must train himself in the art of self -discipline. In democracies one should care less for himself and more for others. There cannot be any divided loyalty. All loyalties must exclusively be centred round the State. If in a democracy, you create rival loyalties, or you create a system in which any individual or group, instead of suppressing his extravagance, cares nought for larger or other interests, then democracy is doomed. Cad, Vol.Ii Source from Theme-15 – “Framing the Constitution’ PG-419 NCERT 9.1 How did G.B Pant encourage citizens to make a unified nation? (1) 9.2 Why did he urge citizens for loyalty towards nation? (1) 9.3How was loyalty considered as the base of social pyramid? (2) 1+1+2 =4H Section-D Map Skill Base Question
+
+======================================================================
+Return the complete JSON array.

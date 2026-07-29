@@ -1,0 +1,69 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "English",
+    "chapter": "Grammar: Subject-Verb Concord (Advanced Rules)",
+    "central_question": "How can a student choose a verb that agrees with the true grammatical number and meaning of an advanced subject expression?",
+    "in_scope_units": [
+      "Plural-looking subjects that are singular in meaning",
+      "Agreement with a number of and the number of",
+      "Agreement with fractions and percentages followed by of",
+      "Agreement inside relative pronoun clauses"
+    ],
+    "banned_topics": [
+      "Tense sequencing",
+      "Reported speech",
+      "Active and passive voice"
+    ],
+    "must_include_keywords": [
+      "subject-verb concord",
+      "singular verb",
+      "plural verb",
+      "singular in meaning",
+      "news",
+      "mathematics",
+      "physics",
+      "athletics",
+      "a number of",
+      "the number of",
+      "fraction",
+      "percentage",
+      "of-phrase",
+      "relative pronoun",
+      "relative clause",
+      "antecedent",
+      "who",
+      "students",
+      "agreement"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Any noun ending in -s must take a plural verb.",
+        "correction": "Subjects such as news, mathematics, physics, and athletics are singular in meaning and take singular verbs."
+      },
+      {
+        "claim": "A number of and the number of take the same verb.",
+        "correction": "A number of + plural noun takes a plural verb, while the number of + plural noun takes a singular verb."
+      },
+      {
+        "claim": "A percentage always takes a singular verb.",
+        "correction": "With fractions and percentages, the verb agrees with the noun that follows of."
+      }
+    ],
+    "recommended_example_progression": [
+      "Correct a plural-looking singular subject",
+      "Choose verbs after a number of and the number of",
+      "Complete fraction and percentage sentences",
+      "Correct agreement in a relative clause",
+      "Solve a mixed concord error-correction item"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes gap filling, editing, sentence correction, and verb-choice questions in context."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Grammar: Subject-Verb Concord (Advanced Rules)\n\n## What you will learn\nYou will learn that some subjects end in -s but are singular in meaning. You will choose the verb according to meaning, not only spelling.\n\n## Simple explanation\nA subject may look plural because it ends in -s, yet represent one field, activity, or body of information. Such a subject takes a singular verb.\n\n## Step-by-step breakdown\n- **Singular meaning**: News, mathematics, physics, and athletics are treated as singular subjects in the given rule.\n- **Verb choice**: Use is, was, has, or another singular verb form with these subjects.\n- **Examples**: The news is disturbing. Mathematics is my favourite subject.\n- **Meaning over appearance**: Do not decide agreement only from the final letter of the noun.\n\n## Worked example\nQuestion: Identify and correct the error: 'Physics are difficult for many learners.'\n\nSolution:\n- Step 1: Physics is the name of one subject and is singular in meaning.\n- Step 2: Replace the plural verb 'are' with the singular verb 'is'.\n- Final answer: Physics is difficult for many learners.\n\n## Common mistake\nIncorrect: 'The news are encouraging.' Correct: 'The news is encouraging.'\n\n## Quick check question\nQuestion: Fill in the blank: 'Mathematics ___ an important subject.' (is/are)\nAnswer: Mathematics is an important subject.\nExplanation: Mathematics is singular in meaning although it ends in -s, so it takes the singular verb 'is'.\n\n## Summary\n- Some -s nouns are singular in meaning.\n- News, mathematics, physics, and athletics take singular verbs.\n- Agreement depends on grammatical meaning.\n- Do not rely only on the noun's ending.",
+    "Core explanation": "# Core explanation: Grammar: Subject-Verb Concord (Advanced Rules)\n\n## What you will learn\nYou will learn the different agreement patterns of a number of and the number of. You will identify the true subject in each expression.\n\n## Simple explanation\nThe small word 'the' changes the grammatical focus. 'A number of' means several and takes a plural verb, while 'the number of' refers to one total and takes a singular verb.\n\n## Step-by-step breakdown\n- **A number of**: Structure: a number of + plural noun + plural verb. Example: A number of students are absent.\n- **The number of**: Structure: the number of + plural noun + singular verb. Example: The number of absent students is high.\n- **Meaning test**: Ask whether the phrase means several individuals or one total figure.\n- **Nearest noun trap**: Do not make the verb agree automatically with the plural noun after of in 'the number of'.\n\n## Worked example\nQuestion: Choose the correct verb: 'The number of applications ___ increasing.' (is/are)\n\nSolution:\n- Step 1: The grammatical subject is 'the number', which is singular.\n- Step 2: Use the singular verb 'is'.\n- Final answer: The number of applications is increasing.\n\n## Common mistake\nIncorrect: 'A number of players is waiting.' Correct: 'A number of players are waiting.'\n\n## Quick check question\nQuestion: Fill in the blank: 'A number of books ___ missing from the shelf.' (is/are)\nAnswer: A number of books are missing from the shelf.\nExplanation: 'A number of' means several books, so the phrase takes the plural verb 'are'.\n\n## Summary\n- A number of takes a plural verb.\n- The number of takes a singular verb.\n- Meaning determines the head of the subject phrase.\n- Do not follow the nearest plural noun blindly.",
+    "Worked examples": "# Worked examples: Grammar: Subject-Verb Concord (Advanced Rules)\n\n## What you will learn\nYou will learn how verbs agree with fractions and percentages. You will look at the noun after of to decide whether the verb is singular or plural.\n\n## Simple explanation\nA fraction or percentage does not decide the verb by itself. The noun after of controls agreement because it tells us what quantity is being discussed.\n\n## Step-by-step breakdown\n- **Singular noun after of**: Use a singular verb: Half of the cake is gone.\n- **Plural noun after of**: Use a plural verb: Half of the students are present.\n- **Uncountable noun**: An uncountable noun generally takes a singular verb in this pattern.\n- **Plural count noun**: A plural count noun takes a plural verb.\n\n## Worked example\nQuestion: Fill in the blank: 'Seventy percent of the water ___ been used.' (has/have)\n\nSolution:\n- Step 1: The noun after of is 'water', an uncountable singular noun.\n- Step 2: Use the singular auxiliary 'has'.\n- Final answer: Seventy percent of the water has been used.\n\n## Common mistake\nDo not make every percentage plural. Agreement depends on the noun after of.\n\n## Quick check question\nQuestion: Complete the sentence: 'Half of the players ___ ready.' (is/are)\nAnswer: Half of the players are ready.\nExplanation: The noun after of is the plural noun 'players', so the verb must be plural.\n\n## Summary\n- Fractions and percentages follow the noun after of.\n- A singular or uncountable noun takes a singular verb.\n- A plural noun takes a plural verb.\n- Always identify the noun being measured.",
+    "Exam-style problems": "# Exam-style problems: Grammar: Subject-Verb Concord (Advanced Rules)\n\n## What you will learn\nYou will learn agreement inside relative clauses. You will make the relative-clause verb agree with the noun referred to by who or another relative pronoun.\n\n## Simple explanation\nA relative pronoun carries the number of its antecedent into the relative clause. Therefore, the verb after who agrees with the noun that who refers to.\n\n## Step-by-step breakdown\n- **Antecedent**: The antecedent is the noun to which the relative pronoun refers.\n- **Plural reference**: In 'one of the students who study hard', who refers to students, so the verb is plural 'study'.\n- **Standard school rule**: Apply the standard agreement rule taught in the textbook even though some contexts may allow a different interpretation.\n- **Method**: Locate who, identify its antecedent, then choose the matching verb.\n\n## Worked example\nQuestion: Choose the correct verb: 'She is one of the athletes who ___ every day.' (train/trains)\n\nSolution:\n- Step 1: The relative pronoun 'who' refers to the plural noun 'athletes'.\n- Step 2: Use the plural verb 'train'.\n- Final answer: She is one of the athletes who train every day.\n\n## Common mistake\nA common error is making the relative verb agree with 'one' instead of the plural antecedent in the standard pattern.\n\n## Quick check question\nQuestion: Correct the sentence: 'He is one of the students who studies hard.'\nAnswer: He is one of the students who study hard.\nExplanation: Under the standard rule, 'who' refers to the plural noun 'students', so the relative clause takes the plural verb 'study'.\n\n## Summary\n- The relative-clause verb agrees with the antecedent.\n- Identify what who refers to.\n- Plural antecedents take plural verbs.\n- Use the standard textbook rule in 'one of the students who...' patterns.",
+    "Revision and recap": "# Revision and recap: Grammar: Subject-Verb Concord (Advanced Rules)\n\n## What you will learn\nYou will revise all four advanced concord rules. You will learn a quick method for finding the true subject before choosing the verb.\n\n## Simple explanation\nUnderline the complete subject, identify its true grammatical head, and then decide whether that head is singular or plural. Do not let nearby plural words mislead you.\n\n## Step-by-step breakdown\n- **Plural-looking singular**: Use a singular verb with news, mathematics, physics, and athletics.\n- **Number expressions**: A number of is plural; the number of is singular.\n- **Fractions and percentages**: Agree with the noun after of.\n- **Relative clauses**: Agree with the antecedent of the relative pronoun.\n\n## Worked example\nQuestion: Identify and correct the error: 'The number of students who studies French are rising.'\n\nSolution:\n- Step 1: 'Who' refers to the plural noun 'students', so use 'study'.\n- Step 2: The main subject is 'the number', so the main verb must be singular 'is'.\n- Final answer: The number of students who study French is rising.\n\n## Common mistake\nDo not choose both verbs from the nearest noun. Each verb has its own subject: the relative-clause verb agrees with 'students', while the main verb agrees with 'the number'.\n\n## Quick check question\nQuestion: Fill in the blank: 'A number of students who ___ music are present.' (enjoy/enjoys)\nAnswer: A number of students who enjoy music are present.\nExplanation: 'Who' refers to plural 'students', so use 'enjoy'; 'a number of students' also takes the plural main verb 'are'.\n\n## Summary\n- Find the subject of each verb separately.\n- Meaning can override an -s ending.\n- A number of and the number of follow different rules.\n- Fractions follow the noun after of.\n- Relative pronouns inherit agreement from their antecedents."
+  }
+}

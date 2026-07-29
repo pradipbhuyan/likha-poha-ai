@@ -1,0 +1,92 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 2: Polynomials",
+    "central_question": "How can the zeroes of a polynomial be understood algebraically and geometrically, and how are they related to the polynomial's coefficients?",
+    "in_scope_units": [
+      "Introduction: degree, linear, quadratic and cubic polynomials, values of a polynomial, and the definition of a zero.",
+      "Geometrical Meaning of the Zeroes of a Polynomial: x-axis intersections for linear, quadratic and cubic graphs and the maximum possible number of zeroes.",
+      "Relationship between Zeroes and Coefficients of a Polynomial: quadratic and cubic coefficient relations and construction of a quadratic polynomial from the sum and product of its zeroes.",
+      "Summary: consolidates polynomial degrees, graphical zeroes, and coefficient relations."
+    ],
+    "banned_topics": [
+      "Polynomial division algorithm and remainder theorem, because the supplied chapter text announces division but contains no developed section or exercise on it.",
+      "Solving quadratic equations with the quadratic formula or discriminant, which belongs to the chapter Quadratic Equations.",
+      "Detailed graph plotting procedures for quadratic and cubic polynomials, which the source explicitly says are not meant to be performed or evaluated."
+    ],
+    "must_include_keywords": [
+      "polynomial",
+      "variable",
+      "coefficient",
+      "degree",
+      "linear polynomial",
+      "quadratic polynomial",
+      "cubic polynomial",
+      "real coefficients",
+      "value of p(x)",
+      "p(k)",
+      "zero of a polynomial",
+      "p(k) = 0",
+      "linear zero",
+      "graph",
+      "x-axis",
+      "x-coordinate",
+      "straight line",
+      "parabola",
+      "opens upwards",
+      "opens downwards",
+      "two distinct zeroes",
+      "equal zeroes",
+      "no zero",
+      "cubic graph",
+      "at most n zeroes",
+      "factorisation",
+      "splitting the middle term",
+      "alpha",
+      "beta",
+      "gamma",
+      "sum of zeroes",
+      "product of zeroes",
+      "α + β = −b/a",
+      "αβ = c/a",
+      "α + β + γ = −b/a",
+      "αβ + βγ + γα = c/a",
+      "αβγ = −d/a",
+      "quadratic polynomial from zeroes"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every expression containing x is a polynomial.",
+        "correction": "Expressions such as 1/(x − 1), √x + 2 and 1/(x² + 2x + 3) are not polynomials because the variable does not occur only with non-negative integral powers."
+      },
+      {
+        "claim": "A zero is the y-coordinate where the graph crosses the y-axis.",
+        "correction": "A zero is the x-coordinate of a point where the graph y = p(x) meets the x-axis."
+      },
+      {
+        "claim": "A quadratic polynomial must have exactly two real zeroes.",
+        "correction": "A quadratic polynomial can have two distinct zeroes, one repeated zero, or no real zero; it has at most two zeroes."
+      },
+      {
+        "claim": "For ax² + bx + c, the sum of zeroes is b/a.",
+        "correction": "The sum is −b/a and the product is c/a. The minus sign in the sum is essential."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the polynomial p(x) = x² − 3x − 4 from Section 2.1 to introduce values and zeroes.",
+      "Use Fig. 2.1 and Table 2.1/Fig. 2.2 to connect zeroes with x-axis intersections for linear and quadratic polynomials.",
+      "Use NCERT Example 1 and Exercise 2.1 to count zeroes directly from graphs.",
+      "Use NCERT Example 2 and Example 3 to find quadratic zeroes and verify α + β = −b/a and αβ = c/a.",
+      "Use NCERT Example 4 to construct a quadratic polynomial and Example 5 to review cubic zero-coefficient relations."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The supplied chapter contains Exercise 2.1 on counting zeroes from graphs and Exercise 2.2 on quadratic zeroes, coefficient relations and constructing quadratic polynomials."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Polynomials\n\n## What you will learn\nYou will identify the degree and type of a polynomial, evaluate p(x) at a given number, and understand what a zero of a polynomial means. You will also recall the zero of a linear polynomial.\n\n## Simple explanation\nA polynomial is built from constants and non-negative integral powers of a variable. Its degree is the highest power with a non-zero coefficient. A number k is a zero of p(x) when substituting k makes the value of the polynomial equal to zero.\n\n## Step-by-step breakdown\n- **Degree**: The highest power of the variable in a polynomial is its degree.\n- **Linear, quadratic and cubic**: Degrees 1, 2 and 3 are called linear, quadratic and cubic respectively.\n- **Standard forms**: A quadratic polynomial is ax² + bx + c with a ≠ 0; a cubic polynomial is ax³ + bx² + cx + d with a ≠ 0.\n- **Value of a polynomial**: Replacing x by k gives p(k), the value of p(x) at x = k.\n- **Zero of a polynomial**: A real number k is a zero if p(k) = 0.\n- **Linear polynomial**: The zero of ax + b, a ≠ 0, is x = −b/a.\n\n## Worked example\nQuestion: Using the polynomial from NCERT Section 2.1, find p(2), p(−1) and p(4) for p(x) = x² − 3x − 4, and identify its zeroes.\n\nSolution:\n- Step 1: p(2) = 2² − 3(2) − 4 = 4 − 6 − 4 = −6.\n- Step 2: p(−1) = (−1)² − 3(−1) − 4 = 1 + 3 − 4 = 0.\n- Step 3: p(4) = 4² − 3(4) − 4 = 16 − 12 − 4 = 0.\n- Step 4: Since p(−1) = 0 and p(4) = 0, −1 and 4 are zeroes.\n- Final answer: **p(2) = −6, and the zeroes are −1 and 4**.\n\n## Common mistake\nWhen substituting a negative value, put it in brackets. For example, (−1)² = 1, not −1.\n\n## Quick check question\nQuestion: Using the linear polynomial in NCERT Section 2.1, find the zero of p(x) = 2x + 3.\nAnswer: The zero is x = −3/2.\nExplanation: Set p(x) = 0: 2x + 3 = 0, so 2x = −3 and x = −3/2.\n\n## Summary\n- The degree is the highest power of the variable.\n- Degrees 1, 2 and 3 give linear, quadratic and cubic polynomials.\n- p(k) is found by substitution.\n- k is a zero when p(k) = 0.\n- The zero of ax + b is −b/a.",
+    "Core explanation": "# Core explanation: Polynomials\n\n## What you will learn\nYou will interpret polynomial zeroes from graphs. You will compare the graphical behaviour of linear and quadratic polynomials and understand the three possible cases for a quadratic.\n\n## Simple explanation\nAt every point on the x-axis, y = 0. Therefore, wherever the graph of y = p(x) meets the x-axis, p(x) is zero, and the x-coordinate of that point is a zero of the polynomial.\n\n## Step-by-step breakdown\n- **Linear graph**: y = ax + b, a ≠ 0, is a straight line and has exactly one zero, the x-coordinate of its x-axis intersection.\n- **NCERT Fig. 2.1**: The line y = 2x + 3 meets the x-axis at (−3/2, 0), matching the algebraic zero −3/2.\n- **Quadratic graph**: y = ax² + bx + c is a parabola; it opens upward for a > 0 and downward for a < 0.\n- **Two intersections**: If the parabola cuts the x-axis at two distinct points, the polynomial has two distinct zeroes.\n- **One intersection**: If it just touches the x-axis at one point, it has one repeated zero.\n- **No intersection**: If it remains entirely above or below the x-axis, it has no real zero.\n- **Maximum**: A quadratic polynomial has at most two zeroes.\n\n## Worked example\nQuestion: Use NCERT Table 2.1 and Fig. 2.2 to identify the zeroes of y = x² − 3x − 4.\n\nSolution:\n- Step 1: Table 2.1 shows that y = 0 when x = −1 and when x = 4.\n- Step 2: On the graph, the parabola meets the x-axis at (−1, 0) and (4, 0).\n- Step 3: The x-coordinates of these intersection points are the zeroes.\n- Final answer: The zeroes are **−1 and 4**.\n\n## Common mistake\nDo not count the y-intercept as a zero. The point (0, −4) lies on the y-axis and gives p(0) = −4, not p(0) = 0.\n\n## Quick check question\nQuestion: According to NCERT Fig. 2.4, how many zeroes does a quadratic graph have when it touches the x-axis at exactly one point?\nAnswer: It has one zero, counted as two equal or coincident zeroes.\nExplanation: The two intersection points merge into one point, so there is only one distinct x-coordinate where p(x) = 0.\n\n## Summary\n- Zeroes are x-coordinates of x-axis intersections.\n- A linear polynomial has exactly one zero.\n- A quadratic graph is a parabola.\n- A quadratic can have two distinct, one repeated, or no real zeroes.\n- A degree-2 polynomial has at most two zeroes.",
+    "Worked examples": "# Worked examples: Polynomials\n\n## What you will learn\nYou will extend the graphical meaning of zeroes to cubic polynomials and count zeroes from a graph. You will also learn the general upper limit on the number of zeroes.\n\n## Simple explanation\nThe same graphical rule works for every polynomial: count the points where y = p(x) meets the x-axis. A degree-n polynomial can have at most n zeroes, though it may have fewer.\n\n## Step-by-step breakdown\n- **Cubic example x³ − 4x**: The table gives zeroes −2, 0 and 2, and the graph meets the x-axis at those three x-coordinates.\n- **Repeated zero visible as one point**: The graph of y = x³ has only the zero 0, even though its degree is 3.\n- **Two distinct zeroes in a cubic**: x³ − x² = x²(x − 1) has zeroes 0 and 1.\n- **Maximum rule**: A polynomial of degree n has at most n zeroes.\n- **Counting from a graph**: Count every distinct point at which the curve crosses or touches the x-axis.\n\n## Worked example\nQuestion: Solve NCERT Example 1 for the six graphs in Fig. 2.9 by stating the number of zeroes in each case.\n\nSolution:\n- Step 1: Graph (i) meets the x-axis once, so it has 1 zero.\n- Step 2: Graph (ii) meets the x-axis twice, so it has 2 zeroes.\n- Step 3: Graph (iii) meets the x-axis three times, so it has 3 zeroes.\n- Step 4: Graph (iv) meets the x-axis once, so it has 1 zero.\n- Step 5: Graph (v) touches the x-axis once, so it has 1 distinct zero.\n- Step 6: Graph (vi) meets the x-axis four times, so it has 4 zeroes.\n- Final answer: The numbers of zeroes are **1, 2, 3, 1, 1 and 4** respectively.\n\n## Common mistake\nA point where the graph only touches the x-axis still represents a zero. Do not count only crossings.\n\n## Quick check question\nQuestion: Using NCERT Table 2.2, list the zeroes of p(x) = x³ − 4x.\nAnswer: The zeroes are −2, 0 and 2.\nExplanation: The table gives p(−2) = 0, p(0) = 0 and p(2) = 0, matching the three x-axis intersections in Fig. 2.6.\n\n## Summary\n- Cubic zeroes are also x-axis intersection coordinates.\n- A cubic can have one, two or three distinct zeroes.\n- Touching the x-axis counts as a zero.\n- A degree-n polynomial has at most n zeroes.\n- Graphs can reveal zeroes without algebraic factorisation.",
+    "Exam-style problems": "# Exam-style problems: Polynomials\n\n## What you will learn\nYou will find the zeroes of a quadratic polynomial by factorisation and verify their relationship with the coefficients. You will also construct a quadratic polynomial when the sum and product of its zeroes are given.\n\n## Simple explanation\nFor p(x) = ax² + bx + c with zeroes α and β, the sum and product are fixed by the coefficients: α + β = −b/a and αβ = c/a. These relations provide a quick check on factorisation and help build a polynomial from its zeroes.\n\n## Step-by-step breakdown\n- **Factorisation**: Rewrite a quadratic as a product of two linear factors and set each factor equal to zero.\n- **Sum relation**: α + β = −b/a.\n- **Product relation**: αβ = c/a.\n- **Verification**: Compare the numerical sum and product of the found zeroes with the coefficient ratios.\n- **Constructing a polynomial**: If the sum is S and product is P, one suitable monic polynomial is x² − Sx + P.\n- **Scalar multiples**: Any non-zero multiple k(x² − Sx + P) has the same zeroes.\n\n## Worked example\nQuestion: Solve NCERT Example 2: Find the zeroes of x² + 7x + 10 and verify the relationship between zeroes and coefficients.\n\nSolution:\n- Step 1: Factorise x² + 7x + 10 = (x + 2)(x + 5).\n- Step 2: Set each factor to zero: x + 2 = 0 or x + 5 = 0.\n- Step 3: Therefore, the zeroes are α = −2 and β = −5.\n- Step 4: Sum: α + β = −2 + (−5) = −7.\n- Step 5: From coefficients, −b/a = −7/1 = −7.\n- Step 6: Product: αβ = (−2)(−5) = 10.\n- Step 7: From coefficients, c/a = 10/1 = 10.\n- Final answer: The zeroes are **−2 and −5**, and both coefficient relations are verified.\n\n## Common mistake\nThe polynomial formed from sum S and product P is x² − Sx + P, not x² + Sx + P. The coefficient of x carries the negative of the sum.\n\n## Quick check question\nQuestion: Using NCERT Example 4, find one quadratic polynomial whose zeroes have sum −3 and product 2.\nAnswer: x² + 3x + 2.\nExplanation: For sum S = −3 and product P = 2, x² − Sx + P = x² − (−3)x + 2 = x² + 3x + 2.\n\n## Summary\n- Factorisation gives the zeroes of a quadratic.\n- The sum of zeroes is −b/a.\n- The product of zeroes is c/a.\n- The coefficient relations verify calculated zeroes.\n- A monic polynomial with sum S and product P is x² − Sx + P.",
+    "Revision and recap": "# Revision and recap: Polynomials\n\n## What you will learn\nYou will revise the complete chapter and connect cubic zeroes with cubic coefficients. You will distinguish the quadratic relations from their cubic counterparts.\n\n## Simple explanation\nA cubic polynomial can have up to three zeroes. If its zeroes are α, β and γ, three coefficient relations are needed: their sum, the sum of pairwise products, and their product.\n\n## Step-by-step breakdown\n- **Quadratic recap**: For ax² + bx + c, α + β = −b/a and αβ = c/a.\n- **Cubic form**: A cubic polynomial has the form ax³ + bx² + cx + d, with a ≠ 0.\n- **Cubic sum**: α + β + γ = −b/a.\n- **Pairwise products**: αβ + βγ + γα = c/a.\n- **Product of three zeroes**: αβγ = −d/a.\n- **Graphical recap**: The number of distinct zeroes equals the number of distinct x-axis intersections and cannot exceed the degree.\n\n## Worked example\nQuestion: Using the zeroes stated before NCERT Example 5, verify the coefficient relations for p(x) = 2x³ − 5x² − 14x + 8 with zeroes 4, −2 and 1/2.\n\nSolution:\n- Step 1: Here a = 2, b = −5, c = −14 and d = 8.\n- Step 2: Sum of zeroes = 4 + (−2) + 1/2 = 2 + 1/2 = 5/2.\n- Step 3: −b/a = −(−5)/2 = 5/2, so the sum relation holds.\n- Step 4: Pairwise sum = 4(−2) + (−2)(1/2) + (1/2)(4) = −8 − 1 + 2 = −7.\n- Step 5: c/a = −14/2 = −7, so the pairwise-product relation holds.\n- Step 6: Product = 4(−2)(1/2) = −4.\n- Step 7: −d/a = −8/2 = −4, so the product relation holds.\n- Final answer: All three cubic zero-coefficient relations are verified.\n\n## Common mistake\nFor a cubic, the product of the zeroes is −d/a, not d/a. The alternating sign pattern differs from the quadratic product formula.\n\n## Quick check question\nQuestion: In NCERT Example 3, what are the zeroes of x² − 3 and what are their sum and product?\nAnswer: The zeroes are √3 and −√3; their sum is 0 and their product is −3.\nExplanation: x² − 3 = (x − √3)(x + √3), so the zeroes are opposites and their product is −(√3)² = −3.\n\n## Summary\n- Zeroes are values that make p(x) equal to zero.\n- Graphically, zeroes are x-axis intersection coordinates.\n- A degree-n polynomial has at most n zeroes.\n- Quadratic coefficient relations involve a sum and a product.\n- Cubic coefficient relations also include the sum of pairwise products."
+  }
+}

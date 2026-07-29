@@ -1,0 +1,135 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2020-21
+Subject: Accountancy
+Source Subject Code: Accountancy
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Accountancy-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Accountancy-MS.pdf
+Total Questions: 32
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Accountancy-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+mark each. 5. Question nos. 14 and 30 are short answer type–I questions carrying 3 marks each. 6. Question nos. 15 to 18 and 31 are short answer type–II questions carrying 4 marks each. 7. Question nos. 19, 20 and 32 are long answer type–I questions carrying 6 marks each. 8. Question nos. 21 and 22 are long answer type–II questions carrying 8 marks each. 9. There is no overall choice. However, an internal choice has been provided in 2 questions of three marks, 2 questions of four marks and 2 questions of eight marks. Sample Paper – Accountancy (2020-21) Part- A (Accounting for Not for Profit organizations, Partnership firms and Companies) 1 Which of the following items is not dealt through Profit and Loss Appropriation Account? a. Interest on Partner’s Loan b. Partner’s Salary c. Interest on Partner’s Capital d. Partner's Commission
+
+Q10 [mcq, 1m, Sec A]
+Retirement or death of a partner will create a situation for the continuing partners, which is known as: A. Dissolution of Partnership B. Dissolution of partnership firm C. Winding up of business D. None of the above
+
+Q11 [mcq, 1m, Sec A]
+A, B and C are partners. C expired on 18th December 2019 and as per agreement surviving partners A and B directed the accountant to prepare financial statements as on 18th December 2019 and accordingly the share of profits of C (deceased partner) was calculated as `12,00,000. Which account will be debited to transfer C’s share of profits: a. Profit and Loss Suspense Account. b. Profit and loss Appropriation Account. c. Profit and loss Account. d. None of the above.
+
+Q12 [mcq, 1m, Sec A]
+E, F and G are partners sharing profits in the ratio of 3:3:2. As per the partnership agreement, G is to get a minimum amount of `80,000 as his share of profits every year and any deficiency on this account is to be personally borne by E. The net profit for the year ended 31st March, 2020 amounted to `3,12 ,000. Calculate the amount of deficiency to be borne by E? a. `1,000 b. `4,000 c. `8,000 Sample Paper – Accountancy (2020-21) d. `2,000
+
+Q13 [mcq, 1m, Sec A]
+Pick the odd one out: a. Rent to partner. b. Manager’s Commission. c. Interest on Partner’s Loan. d. Interest on Partner’s capital.
+
+Q14 [short_answer, 3m, Sec A]
+From the following information, calculate the amount to be charged to Income and Expenditure Account for 'Sports material consumed' for the year 2019-20. Particulars Amount (`) Stock of Sports material (01-04-2019) 60000 Amount paid to creditors (during 2019-20) 3,00,000 Creditors for Sports Materials (01-04-2019) 1,00,000 Creditors for Sports Materials (31-03-2020) 80000 Sports Material sold During the year (Book Value Rs.35,000) 15000 Cash Purchases of Sports Material (During the Year 2019-20) 1,30,000 There was zero stock at the end of financial year 2019-20. Or Calculate the amount of Subscription to be credited to Income and Expenditure account for the year 2019-20. Particulars Amount (`) Amount received during the year ( including ` 20,000 for 2018-19 , `30,000 for 2020-21 and `10,000 for 2021-22) 7,80,000 Subscription received in advance as on 01-04-2019 (including `15,000 for 2020-21) 35000 Subscription in arrears as on 01-04-2019 40000 Subscription in arrears as on 31-03-2020 50000 Out of subscription in arrears on 01-04-2019, `15,000 are no longer recoverable.
+
+Q15 [case_study, 4m, Sec A]
+Rohit, Raman and Raina are partners in a firm. Their capital accounts on 1st April, 2019, stood at `2,00,000, `1,20,000 and `1,60,000 respectively. Each partner withdrew `15,000 during the financial year 2019-20. As per the provisions of their partnership deed: (a) Interest on capital was to be allowed @ 5% per annum. (b) Interest on drawings was to be charged @ 4% per annum. (c) Profits and losses were to be shared in the ratio 5:4:1. The net profit of `72,000 for the year ended 31st March 2020, was divided equally amongst the partners without providing for the terms of the deed. You are required to pass a single adjustment entry to rectify the error (Show workings clearly). Or Sample Paper – Accountancy (2020-21) A&B are partners in the ratio of 3:2. The firm maintains fluctuating capital accounts and the balance of the same as on 31-03-2020 amounted to `1,60,000 and `1,40,000 for A and B respectively. Their drawings during the year were `30,000 each. As per partnership deed interest on capital @10% p.a. on opening capitals had been provided to them. Calculate opening capitals of partners given that their profits were `90,000. Show your workings clearly.
+
+Q16 [case_study, 4m, Sec A]
+From the following information complete Journal entries. Date Particulars L.F. Debit (`) Credit (`) Share Capital A/c Dr. Securities Premium Reserve A/c Dr. To Share Forfeiture A/c To Calls in Arrears A/c (Being___?___shares forfeited for non-payment of `_?___ including premium of `2 per share) ? 1000 ? 3,500 Bank A/c Dr. Share Forfeiture A/c Dr. To Share Capital A/c (Being_?___shares reissued at `9 per share as fully paid) ? ? ? Share forfeiture A/c Dr. To Capital Reserve A/c (Being forfeiture money transferred to capital reserve) 600 600 Dr. Share forfeiture A/c Cr. Date Particulars Amount Date Particulars Amount To Share Capital A/c To Capital reserve A/c To Balance c/d ? 600 600 By Share Capital A/c 1500 1500 1500 (Face value of share is `10 each)
+
+Q17 [case_study, 4m, Sec A]
+Pass necessary journal entries in the following cases on the dissolution of a partnership firm of partners X, Y, A and B: (i) Realization expenses of ` 5,000 were to borne by X, a partner. However, it was paid by Y. (ii) Investments costing ` 25,000 (comprising 1000 shares), had been written off from the books completely. These shares are valued at ` 20 each and were divided amongst the partners. (iii) Y’s loan of `50,000 settled at ` 48,000. (iv) Machinery (book value ` 6,00,000) was given to creditor at a discount of 20%. Sample Paper – Accountancy (2020-21)
+
+Q18 [case_study, 4m, Sec A]
+Ajay, Binod and Chandra entered into partnership on 1st April 2019 with a capital of `3,00,000, `2,00,000 and `1,00,000 respectively. In addition to capital Chandra has advanced a loan of `1,00,000. Since they had no agreement to guide them, they faced following issues during and at the end of the year. 1. Ajay wanted interest on capital to be provided @8% pa but Binod and Chandra did not agree. 2. Chandra wanted that interest on loan be paid to him @ 10% pa but Ajay and Binod wanted to pay @ 5% pa. 3. Ajay and Binod demanded to share profits in the ratio of their capital contribution, Chandra is not in agreement with this proposal. 4. Binod, being working partner, demands a lump sum payment of `40,000 as remuneration for which other others partners are not in agreement. You are required to suggest and help them resolve these issues.
+
+Q19 [short_answer, 6m, Sec A]
+From the following Receipts and Payments Account of Krish Fitness and wellness Club for the year ended 31st March 2020, prepare Income and Expenditure Account. Receipts and Payments Account Dr. For the year ending 31st March, 2020 Cr. Receipts Amount Payments Amount To Balance b/d 85,000 By Doctors and Coaches Honorarium By Medicines By Medical Equipment By General Expenses By Furniture By Newspaper By Rent, Rates and Taxes By Tournament expenses By Balance c/d 25,000 To Subscription 68,500 15,500 To Entrance Fees 25,000 30,000 To Life Membership Fees 30,000 8,000 To Donations for tournament fund 20,000 20,000 To Sale of old Medical equipment 8,000 (Book Value `15,000) To Miscellaneous Receipts 5,000 15,000 5,000 60,000 77,000 248500 248500 Additional Information: Following opening balances appeared in the books on 1st April, 2019. (a) Tournament fund ` 15,000. (b) Medical Equipment `1,50,000. (c) Outstanding Subscription was ` 8,000 and Advance Subscription `5,000 (for 2019-20). During the year 2019-20 Depreciation on medical equipment was ` 25,000. There were 600 members each paying an annual subscription of `100.
+
+Q2 [mcq, 1m, Sec A]
+For which of the following situations, the old profit sharing ratio of partners is used at the time of admission of a new partner? a. When new partner brings only a part of his share of goodwill. b. When new partner is not able to bring his share of goodwill. c. When, at the time of admission, goodwill already appears in the balance sheet. d. When new partner brings his share of goodwill in cash.
+
+Q20 [short_answer, 6m, Sec A]
+i) Neeraj Ltd. took over business of Ajay enterprises on 1-04-2020. The details of the agreement regarding the assets and liabilities to be taken over are: Particulars Book Value (`) Agreed Value (`) Building 20,00,000 35,00,000 Plant and Machinery 12,00,000 8,00,000 Stock 4,00,000 4,00,000 Sample Paper – Accountancy (2020-21) Trade receivables 5,00,000 4,00,000 Creditors 2,00,000 3,00,000 Outstanding Expenses 50,000 1,00,000 It was decided to pay for purchase consideration as `7, 00,000 through Cheque and balance by issue of 2,00,000, 9% Debentures of `20 each at a premium of 25%. Journalize. ii) On April 1, 2019 Z Ltd. issued, 10,000, 8% Debentures of `100 each at premium of 5%, to be redeemable at a premium of 10%, after 5 years. The entire amount was payable on application. The issue was oversubscribed to the extent of 10,000 debentures and the allotment was made proportionately to all the applicants. The securities premium amount has not been utilized for any other purpose during the year. Give journal entries for the issue of debentures and writing off loss on issue of debentures.
+
+Q21 [short_answer, 8m, Sec A]
+Sunaina and Tamanna are partners in a firm sharing profits and losses in the ratio of 3:2. Their Balance Sheet as at 31st March, 2020 stood as follows: Balance Sheet Liabilities Amount (`) Assets Amount (`) Capital Accounts: Plant & Machinery 1,20,000 Sunaina 60,000 Land and Building 1,40,000 Tamanna 80,000 1,40,000 Debtors 1,90,000 Current Accounts: Less: Provision for Sunaina 10,000 Doubtful debts (40,000) 1,50,000 Tamanna 30,000 40,000 Stock 40,000 General Reserve 1,20,000 Cash 30,000 Workmen’s Compensation Reserve 50,000 Goodwill 20,000 Creditors 1,50,000 5,00,000 5,00,000 They agreed to admit Pranav into partnership for 1/5th share of profits on 1st April, 2020, on the following terms: (a) All Debtors are good. (b) Value of land and building to be increased to `1,80,000. (c) Value of plant and machinery to be reduced by `20,000. (d) The liability against Workmen’s Compensation Fund is determined at `20,000 which is to be paid later in the year. (e) Mr. Anil, to whom `40,000 were payable (already included in above creditors), drew a bill of exchange for 3 months which was duly accepted. (f) Pranav to bring in capital of `1,00,000 and `10,000 as premium for goodwill in cash. Journalize. Or Krish, Vrish and Peter are partners sharing profits in the ratio of 3:2:1. Vrish retired from the firm. On that date the Balance Sheet of the firm was as follows : Balance Sheet as on March 31, 2020 Liabilities (`) Assets (`) Creditors 15,000 Bank 7,600 General Reserve 12,000 Furniture 41,000 Sample Paper – Accountancy (2020-21) Bills Payable 12,000 Stock 9,000 Outstanding Salary 2,200 Premises 80,000 Provision for Legal Damages 6,000 Debtors 6,000 Capitals Less: Provision for Doubtful Debts 400 5,600 Krish 46,000 Vrish 30,000 Peter 20,000 1,43,200 1,43,200 Additional Information :  Premises to be appreciated by 20%, Stock to be depreciated by 10% and Provision f or doubtful debts was to be maintained @ 5% on Debtors. Further, provision for legal damages is to be increased by ` 1,200 and furniture to be brought up to ` 45,000.  Goodwill of the firm is valued at ` 42,000.  ` 26,000 from Vrish’s Capital account be transferred to his loan account and balance to be paid through bank; if required, necessary loan may be obtained from bank.  New profit sharing ratio of Krish and Peter is decided to be 5:1. Prepare Revaluation Account, Partners Capital Accounts and Balance Sheet.
+
+Q22 [short_answer, 8m, Sec A]
+Zocon Ltd. issued a prospectus inviting applications for 5,00,000 equity shares of `10 each issued at a premium of 10% payable as: `3 on Application `5 on Allotment (including premium) and `3 on call. Applications were received for 6, 60,000 shares. Allotment was made as follows: (a) Applicants of 4, 00,000 shares were allotted in full. (b) Applicants of 2, 00,000 shares were allotted 50% on pro rata basis. (c) Applicants of 60,000 shares were issued letters of regret. A shareholder to whom 500 shares were allotted under category (a) paid full amount on shares allotted to him along with allotment money. Another shareholder to whom 1,000 shares were allotted under category (b) failed to pay the amount due on allotment. His shares were immediately forfeited. These shares were then reissued at `14 per share as `7 paid up. Call has not yet been made. Journalise. Or X Ltd. has offered 50000 equity shares of `100 each at a premium of `20, payable as follows: Application `50 Allotment `40 (including premium) and balance on first and final call. The bank account of the company has received `35, 00,000 on account of share application money. X Ltd. decided to allot shares to all the applicants on Pro Rata basis. The balance in calls in arrears account at the time of allotment and first and final call amounted to `1, 00,000 and `1, 50,000 respectively. These shares were forfeited and re-issued at `90 per share as fully paid up. Journalize. Part – B (Analysis of Financial statements) Sample Paper – Accountancy (2020-21)
+
+Q23 [mcq, 1m, Sec A]
+Balance Sheet (Extract) Equity and liabilities Equity and Liabities 31-3-2019 31-3-2020 12% Debentures 2,00,000 1,60,000 Additional Information: Interest on debentures is paid on half yearly basis on 30th September and 31st March each year. Debentures were redeemed on 30th September 2019. How much amount (related to above information) will be shown in Financing Activity for Cash Flow Statement prepared on 31st March 2020? A. Outflow `40,000. B. Inflow `42,600. C. Outflow `61,600. D. Outflow `64,000
+
+Q24 [mcq, 1m, Sec A]
+What will be the Current ratio of a company whose Net Working Capital is Zero?
+
+Q25 [mcq, 1m, Sec A]
+Which of the following is not a part of Finance Cost (in statement of profit and loss)?
+  (A) Bank Charges
+  (B) Interest Paid on Debentures
+  (C) Interest Paid on Public Deposits
+  (D) Loss on Issue of Debentures
+
+Q26 [mcq, 1m, Sec A]
+Which of the following is not an investing cash flow? A. Purchase of marketable securities for `25,000 cash. B. Sale of land for `28,000 cash. C. Sale of 2,500 shares (held as investment) for `15 each. D. Purchase of equipment for `500 cash.
+
+Q27 [mcq, 1m, Sec A]
+Proposed dividend is a _______________liability.
+
+Q28 [mcq, 1m, Sec A]
+The ___________ may indicate that the firm is experiencing stock outs and lost sales. a. Average payment period b. Inventory turnover ratio c. Average collection period d. Quick ratio
+
+Q29 [mcq, 1m, Sec A]
+Current ratio of Vidur Pvt. Ltd. is 3:2. Accountant wants to maintain it at 2:1. Following options are available. (i) He can repay Bills Payable (ii) He can purchase goods on credit (iii) He can take short term loan Choose the correct option
+  (A) Only (i) is correct
+  (B) Only (ii) is correct
+  (C) Only (i) and (iii) are correct
+  (D) Only (ii) and (iii) are correct
+
+Q3 [mcq, 1m, Sec A]
+Reserve Capital is not a part of:
+  (A) Authorized Capital
+  (B) Subscribed capital
+  (C) Unsubscribed capital
+  (D) Issued Share Capital
+
+Q30 [short_answer, 3m, Sec A]
+Calculate proprietary ratio, if Total assets to Debt ratio is 2:1. Debt is `5,00,000. Equity shares capital is 0.5 times of debt. Preference Shares capital is 25% of equity share capital. Net profit before tax is `10,00,000 and rate of tax is 40%. Or From the following information, calculate ‘Interest Coverage Ratio. Profit after interest and tax `7,50,000 Sample Paper – Accountancy (2020-21) Rate of income tax 25% 9 % Debentures `8,00,000
+
+Q31 [case_study, 4m, Sec A]
+Prepare a comparative Statement of Profit and Loss from the following: Particulars 31.03.19 (`) 31.03.20 (`) Revenue From operations Cost of materials Consumed Other Expenses Tax rate 20,00,000 10,00,000 --nil-- 50% 25,00,000 13,00,000 1,20,000 50% Or From the following Balance Sheet of R Ltd., Prepare a Common Size Statement Balance Sheet of R Ltd. (as at 31st March, 2020). Particulars Note no. 31.3.2020 (`) 31.3.2019 (`) I EQUITY AND LIABILITIES 1. Shareholder’s Funds: a. Share Capital 2,50,000 2,00,000 b. Reserve and Surplus 80,000 60,000 2. Current Liabilities: a. Trade Payable 70,000 40,000 Total 4,00,000 3,00,000 II ASSETS 1. Non-Current Assets: a. Fixed Assets: i. Tangible Assets 1,60,000 1,20,000 ii. Intangible Assets 20,000 30,000 2. Current Assets a. Inventories 80,000 30,000 b. Trade Receivables 1,20,000 1,00,000 c. Cash and Cash Equivalents 20,000 20,000 Total 4,00,000 3,00,000
+
+Q32 [mcq, 1m, Sec A]
+Prepare Cash Flow Statement on the basis of information given in the Balance Sheets of Relga Ltd. as at 31st March, 2019 and 31st March, 2020: Particulars Note No. 31st March 2019 31st March 2020 I. Equity and Liabilities 1. Shareholder’s Funds
+  (A) Share Capital
+  (B) Reserves and Surplus 2. Non-current Liabilities Long-term Borrowings 3. Current Liabilities
+  (C) Trade Payables
+  (D) Other Current Liabilities
+
+Q4 [mcq, 1m, Sec A]
+Sports Star Charitable club has income of ` 16,000 and ‘deficit’ debited to capital fund of ` 4,300 for the year 2019- 20, then expenditure for the year 2019-20 is: (A) ` 11,700 (B) ` 4,300 (C) ` 20,300 (D) None of these
+
+Q5 [mcq, 1m, Sec A]
+At the time of dissolution of partnership firm, journal entry for the settlement of loan advanced by the firm to a partner would be: a Bank A/c Dr. To Loan to Partner A/c b Loan to partner A/c Dr. To Bank A/c c Realization A/c Dr. To Loan to Partner A/c d None of these
+
+Q6 [mcq, 1m, Sec A]
+A company forfeited 4,000 shares of `10 each on which application money of `3 has been paid. Out of these 2,000 shares were reissued as fully paid up and `4,000 has been transferred to capital reserve. Calculate the rate at which these shares were reissued. a. `10 Per share b. ` 9 Per share c. `11 Per share d. `8 Per share Sample Paper – Accountancy (2020-21)
+
+Q7 [mcq, 1m, Sec A]
+On the basis of the following data, how much final payment will be made to a partner on firm’s dissolution? Credit balance of capital account of the partner was `50,000. Share of loss on realization amounted to `10,000. Firm’s liability taken over by him was for `8,000. a. `32,000 b. `48,000 c. `40,000 d. `52,000
+
+Q8 [mcq, 1m, Sec A]
+Arun and Vijay are partners in a firm sharing profits and losses in the ratio of 5:1. Balance Sheet (Extract) Liabilities ` Assets ` Machinery 40,000 If value of machinery in the balance sheet is undervalued by 20%, then at what value will machinery be shown in new balance sheet:
+  (A) ` 44,000
+  (B) `48,000
+  (C) `32,000
+  (D) `50,000
+
+Q9 [mcq, 1m, Sec A]
+Rex, Tex and Flex are partners in a firm in the ratio of 5:3:2. As per their partnership agreement, the share of deceased partner is to be calculated on the basis of profits and turnover of previous accounting year. Tex expired on 31st December 2019. Turnover till the date of death was `18,00,000. Their profits and turnover for the year 2018-19 amounted to `4,00,000 and `20,00,000 respectively. An amount of `____________will be given to his executors as his share of profits till the date of death.
+
+======================================================================
+Return the complete JSON array.

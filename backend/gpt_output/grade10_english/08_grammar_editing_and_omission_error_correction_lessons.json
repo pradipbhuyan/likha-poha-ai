@@ -1,0 +1,79 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "English",
+    "chapter": "Grammar: Editing and Omission (Error Correction)",
+    "central_question": "How can a student identify one wrong or missing word per line and present the exact correction in the standard CBSE editing or omission format?",
+    "in_scope_units": [
+      "Editing passages with one incorrect grammatical word per line",
+      "Omission passages with one missing word at a marked position",
+      "Standard incorrect-word or caret-based answer format",
+      "Common omitted categories: articles, prepositions, auxiliaries, and conjunctions"
+    ],
+    "banned_topics": [
+      "Full paragraph rewriting as the primary answer format",
+      "Literary interpretation",
+      "Creative writing"
+    ],
+    "must_include_keywords": [
+      "editing",
+      "omission",
+      "incorrect word",
+      "correct word",
+      "missing word",
+      "caret",
+      "one error per line",
+      "tense",
+      "article",
+      "preposition",
+      "subject-verb agreement",
+      "degree of comparison",
+      "modal",
+      "auxiliary verb",
+      "conjunction",
+      "a",
+      "an",
+      "the",
+      "in",
+      "on",
+      "at",
+      "to",
+      "is",
+      "am",
+      "are",
+      "and",
+      "but",
+      "because",
+      "CBSE answer format"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Editing and omission are the same question type.",
+        "correction": "Editing replaces a wrong word; omission inserts a missing word at a specific position."
+      },
+      {
+        "claim": "A full corrected paragraph is the required answer.",
+        "correction": "The standard CBSE response records the incorrect or missing word and the correction, usually one entry per line."
+      },
+      {
+        "claim": "The position of a missing word does not matter.",
+        "correction": "In omission, the caret position is essential because it shows exactly where the missing word must be inserted."
+      }
+    ],
+    "recommended_example_progression": [
+      "Replace one wrong tense form in an editing line",
+      "Replace a wrong article or preposition",
+      "Insert a missing preposition at a caret",
+      "Insert a missing auxiliary or conjunction",
+      "Complete a mixed mini-passage using the standard CBSE answer format"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice gives a short passage with one error or omission per line and expects a word-level answer in a table or correction format."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Grammar: Editing and Omission (Error Correction)\n\n## What you will learn\nYou will learn the difference between editing and omission. You will identify whether a line contains a wrong word to replace or a missing word to insert.\n\n## Simple explanation\nIn editing, a word is present but incorrect. In omission, a required word is absent. The two tasks must be answered differently.\n\n## Step-by-step breakdown\n- **Editing**: Find the incorrect word and replace it with the correct word.\n- **Omission**: Find the missing word and insert it at the marked caret position.\n- **One item per line**: CBSE passages usually test one grammatical problem in each line.\n- **Word-level response**: Give the exact word correction rather than rewriting the entire paragraph as the main answer.\n\n## Worked example\nQuestion: Editing task: Identify the incorrect word and give the correction: 'She has went to school.'\n\nSolution:\n- Step 1: The auxiliary 'has' requires a past participle.\n- Step 2: The incorrect word is 'went'; replace it with 'gone'.\n- Final answer: went -> gone. Corrected sentence: She has gone to school.\n\n## Common mistake\nDo not treat an editing item as an omission item. Here a wrong word is already present and must be replaced.\n\n## Quick check question\nQuestion: Omission task: Identify the missing word: 'He went ^ the market.'\nAnswer: ^ -> to. Corrected sentence: He went to the market.\nExplanation: The verb 'went' requires the preposition 'to' before the destination, and the caret shows the insertion point.\n\n## Summary\n- Editing replaces a wrong word.\n- Omission inserts a missing word.\n- The caret marks the omission position.\n- Answer at word level in the expected exam format.",
+    "Core explanation": "# Core explanation: Grammar: Editing and Omission (Error Correction)\n\n## What you will learn\nYou will learn the most common error types in editing passages. You will use surrounding grammar clues to find the single wrong word.\n\n## Simple explanation\nEditing questions often test tense, articles, prepositions, subject-verb agreement, degree of comparison, and modals. Read the whole sentence before replacing the marked word.\n\n## Step-by-step breakdown\n- **Tense error**: Check whether the verb form fits the auxiliary and time reference.\n- **Article error**: Check whether a, an, the, or zero article is required.\n- **Preposition error**: Check the relationship between words and the standard preposition used.\n- **Agreement error**: Make the verb agree with its subject.\n- **Comparison and modal error**: Check standard comparative forms and the verb form following a modal.\n\n## Worked example\nQuestion: Editing task: Identify the incorrect word and correction: 'The students is preparing for the test.'\n\nSolution:\n- Step 1: The subject 'students' is plural.\n- Step 2: Replace the singular verb 'is' with the plural verb 'are'.\n- Final answer: is -> are. Corrected sentence: The students are preparing for the test.\n\n## Common mistake\nDo not change more than the tested word unless the exam line clearly requires it. The usual pattern is one error per line.\n\n## Quick check question\nQuestion: Editing task: 'She is the more talented singer in the group.' Identify the incorrect word.\nAnswer: more -> most. Corrected sentence: She is the most talented singer in the group.\nExplanation: The phrase compares one person with the whole group, so the superlative 'most' is required.\n\n## Summary\n- Read the full line before correcting one word.\n- Common editing targets include tense, article, preposition, agreement, comparison, and modal use.\n- Replace only the incorrect word in the standard format.\n- Check that the corrected sentence is fully grammatical.",
+    "Worked examples": "# Worked examples: Grammar: Editing and Omission (Error Correction)\n\n## What you will learn\nYou will learn to solve omission questions involving articles and prepositions. You will mark the exact insertion point and supply only the missing word.\n\n## Simple explanation\nArticles and prepositions are frequently omitted because a sentence may still look understandable without them. Grammar, however, requires the missing word at a precise position.\n\n## Step-by-step breakdown\n- **Article omission**: Insert a, an, or the before the noun when required.\n- **Preposition omission**: Insert in, on, at, to, of, or with according to the relationship.\n- **Caret position**: The missing word belongs exactly where the caret appears.\n- **Answer format**: caret position -> missing word, followed by the corrected sentence for checking.\n\n## Worked example\nQuestion: Omission task: 'She bought ^ umbrella because it was raining.' Identify the missing word.\n\nSolution:\n- Step 1: 'Umbrella' is a singular countable noun beginning with a vowel sound.\n- Step 2: Insert the article 'an' at the caret.\n- Final answer: ^ -> an. Corrected sentence: She bought an umbrella because it was raining.\n\n## Common mistake\nDo not insert an article at a different position. The caret fixes the location of the missing word.\n\n## Quick check question\nQuestion: Omission task: 'The book is ^ the table.'\nAnswer: ^ -> on. Corrected sentence: The book is on the table.\nExplanation: The preposition 'on' expresses the position of the book relative to the table.\n\n## Summary\n- Articles and prepositions are common omission targets.\n- Use noun type and meaning to choose the article.\n- Use spatial or logical relationship to choose the preposition.\n- Respect the exact caret position.",
+    "Exam-style problems": "# Exam-style problems: Grammar: Editing and Omission (Error Correction)\n\n## What you will learn\nYou will learn to identify missing auxiliary verbs and conjunctions. You will use sentence structure and meaning to choose the omitted word.\n\n## Simple explanation\nAn auxiliary completes the verb phrase, while a conjunction connects ideas. In omission questions, the surrounding words reveal which category is missing.\n\n## Step-by-step breakdown\n- **Auxiliary verbs**: Common forms include is, am, are, was, were, has, have, had, will, and would.\n- **Conjunctions**: Common forms include and, but, or, and because.\n- **Verb phrase clue**: A participle may require an auxiliary: 'I ^ happy' needs 'am'.\n- **Logical-link clue**: Two clauses may need a connector showing addition, contrast, choice, or reason.\n\n## Worked example\nQuestion: Omission task: 'The children ^ playing in the field.' Identify the missing word.\n\nSolution:\n- Step 1: The -ing form 'playing' needs an auxiliary to form the present continuous tense.\n- Step 2: The plural subject 'children' requires 'are'.\n- Final answer: ^ -> are. Corrected sentence: The children are playing in the field.\n\n## Common mistake\nDo not choose an auxiliary only from tense; it must also agree with the subject.\n\n## Quick check question\nQuestion: Omission task: 'I stayed at home ^ I was unwell.'\nAnswer: ^ -> because. Corrected sentence: I stayed at home because I was unwell.\nExplanation: The second clause gives the reason for staying at home, so the conjunction 'because' is required.\n\n## Summary\n- Auxiliaries complete verb phrases.\n- Auxiliaries must agree with the subject.\n- Conjunctions express logical relationships.\n- Context determines the exact missing word.",
+    "Revision and recap": "# Revision and recap: Grammar: Editing and Omission (Error Correction)\n\n## What you will learn\nYou will revise the standard answer format for editing and omission. You will practise giving concise word-level answers that match CBSE marking expectations.\n\n## Simple explanation\nThe examiner usually awards credit for the exact incorrect or missing word and its correction. A full rewrite may help you check grammar, but the answer entry should remain word-focused.\n\n## Step-by-step breakdown\n- **Editing format**: incorrect word -> correct word\n- **Omission format**: caret position -> missing word\n- **One correction**: Supply one correction per tested line unless the question states otherwise.\n- **Final verification**: Read the corrected sentence silently to confirm tense, agreement, article, preposition, modal, or conjunction use.\n\n## Worked example\nQuestion: Give the CBSE-style corrections for these two lines: (a) 'He do not know the answer.' (b) 'She ^ ready for the test.'\n\nSolution:\n- Step 1: In (a), the singular subject 'He' requires 'does', so replace 'do'.\n- Step 2: In (b), the adjective 'ready' needs the auxiliary 'is' after 'She'.\n- Final answer: (a) do -> does. Corrected sentence: He does not know the answer. (b) ^ -> is. Corrected sentence: She is ready for the test.\n\n## Common mistake\nDo not write only the corrected paragraph when the question asks for word entries. Show the exact replacement or insertion.\n\n## Quick check question\nQuestion: Editing task: 'You should have went earlier.' Give the correction.\nAnswer: went -> gone. Corrected sentence: You should have gone earlier.\nExplanation: After 'should have', the verb must be in the past participle form, so 'gone' replaces 'went'.\n\n## Summary\n- Editing replaces; omission inserts.\n- Use the exact CBSE word-level format.\n- Check only one tested error or omission per line.\n- Common targets include tense, articles, prepositions, agreement, auxiliaries, modals, and conjunctions.\n- Always verify the complete corrected sentence."
+  }
+}

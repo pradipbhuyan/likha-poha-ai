@@ -1,0 +1,72 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "English",
+    "chapter": "Grammar: Active and Passive Voice (Advanced Usage)",
+    "central_question": "How can a student transform advanced active structures into accurate passive forms while preserving tense, objects, command force, infinitives, and reporting meaning?",
+    "in_scope_units": [
+      "Past modal passive with modal + have been + past participle",
+      "Passive sentences with two objects",
+      "Passive imperative with Let + object + be + past participle",
+      "Passive of make followed by an infinitive",
+      "Formal passive structures with reporting verbs"
+    ],
+    "banned_topics": [
+      "Reported-speech backshift unrelated to passive reporting structures",
+      "Determiners",
+      "Degrees of comparison"
+    ],
+    "must_include_keywords": [
+      "active voice",
+      "passive voice",
+      "modal",
+      "have been",
+      "past participle",
+      "direct object",
+      "indirect object",
+      "two objects",
+      "by-phrase",
+      "to",
+      "imperative",
+      "Let",
+      "be",
+      "make",
+      "made to",
+      "infinitive",
+      "reporting verb",
+      "It is said that",
+      "is said to be",
+      "is said to have",
+      "formal statement"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A past modal passive uses modal + been + past participle.",
+        "correction": "The complete structure is modal + have been + past participle."
+      },
+      {
+        "claim": "The passive of 'They made him work' is 'He was made work'.",
+        "correction": "Make changes to be made to in the passive: 'He was made to work.'"
+      },
+      {
+        "claim": "The passive imperative of 'Close the door' is simply 'The door is closed'.",
+        "correction": "The passive command is 'Let the door be closed.'"
+      }
+    ],
+    "recommended_example_progression": [
+      "Change a past modal sentence into passive voice",
+      "Form two passives from a sentence with two objects",
+      "Change an imperative into a passive imperative",
+      "Transform make + object + infinitive into be made to",
+      "Rewrite a reporting statement with It is said that and subject + is said to"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes active-passive transformation, gap filling, error correction, and formal reporting-verb rewrites."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Grammar: Active and Passive Voice (Advanced Usage)\n\n## What you will learn\nYou will learn the passive structure used with past modals. You will keep the modal meaning while changing the focus from the doer to the receiver of the action.\n\n## Simple explanation\nWhen an active sentence contains a perfect modal, the passive uses modal + have been + past participle. The object of the active sentence becomes the subject of the passive sentence.\n\n## Step-by-step breakdown\n- **Structure**: modal + have been + past participle\n- **Example form**: The work should have been finished by now.\n- **Object to subject**: Move the active object into the passive subject position.\n- **Agent**: Add a by-phrase only when the doer is important.\n\n## Worked example\nQuestion: Change into passive voice: 'They should have completed the work by now.'\n\nSolution:\n- Step 1: The object 'the work' becomes the passive subject.\n- Step 2: Use 'should have been' followed by the past participle 'completed'.\n- Final answer: The work should have been completed by now.\n\n## Common mistake\nDo not omit 'have'. Incorrect: 'The work should been completed.' Correct: 'The work should have been completed.'\n\n## Quick check question\nQuestion: Change into passive voice: 'The team could have solved the problem.'\nAnswer: The problem could have been solved by the team.\nExplanation: The past modal passive requires 'could have been + past participle'.\n\n## Summary\n- Perfect modal passive uses modal + have been + past participle.\n- The active object becomes the passive subject.\n- Keep the original modal meaning.\n- Use a by-phrase only when useful.",
+    "Core explanation": "# Core explanation: Grammar: Active and Passive Voice (Advanced Usage)\n\n## What you will learn\nYou will learn how to make passive sentences when the active sentence has two objects. You will see why the person object often becomes the passive subject.\n\n## Simple explanation\nA verb such as give may take an indirect object and a direct object. Either object can become the passive subject, although the person object usually produces the more natural sentence.\n\n## Step-by-step breakdown\n- **Indirect object**: The person receiving something: him in 'She gave him a book'.\n- **Direct object**: The thing given: a book.\n- **Person-subject passive**: He was given a book by her.\n- **Thing-subject passive**: A book was given to him by her.\n- **Preposition**: When the direct object becomes subject, use 'to' before the person object in this pattern.\n\n## Worked example\nQuestion: Change into passive voice in two ways: 'The teacher gave Rohan a certificate.'\n\nSolution:\n- Step 1: Make the indirect object 'Rohan' the subject: 'Rohan was given a certificate by the teacher.'\n- Step 2: Make the direct object 'a certificate' the subject and add 'to Rohan'.\n- Final answer: Rohan was given a certificate by the teacher. / A certificate was given to Rohan by the teacher.\n\n## Common mistake\nDo not write 'A certificate was given Rohan' in this standard pattern; use 'given to Rohan'.\n\n## Quick check question\nQuestion: Change into passive voice using the person as subject: 'She sent me an invitation.'\nAnswer: I was sent an invitation by her.\nExplanation: The indirect object 'me' becomes the subject 'I', and the verb changes to 'was sent'.\n\n## Summary\n- Two-object sentences can have two passive forms.\n- The person object is the more common passive subject.\n- The thing-subject passive generally uses to before the person.\n- Pronoun case changes when an object becomes a subject.",
+    "Worked examples": "# Worked examples: Grammar: Active and Passive Voice (Advanced Usage)\n\n## What you will learn\nYou will learn the passive form of an imperative sentence. You will preserve the command meaning instead of turning it into an ordinary statement.\n\n## Simple explanation\nA passive command begins with Let, followed by the object, be, and the past participle. This structure keeps the force of an instruction.\n\n## Step-by-step breakdown\n- **Imperative active**: Close the door.\n- **Passive imperative**: Let the door be closed.\n- **Structure**: Let + object + be + past participle\n- **Command meaning**: The passive form must still function as a command.\n\n## Worked example\nQuestion: Change into passive voice: 'Complete the assignment today.'\n\nSolution:\n- Step 1: Identify the object 'the assignment'.\n- Step 2: Use Let + object + be + past participle.\n- Final answer: Let the assignment be completed today.\n\n## Common mistake\nIncorrect: 'The assignment is completed today.' This is a statement, not a passive imperative.\n\n## Quick check question\nQuestion: Change into passive voice: 'Open the windows.'\nAnswer: Let the windows be opened.\nExplanation: The passive imperative uses Let + object + be + past participle.\n\n## Summary\n- Passive imperatives begin with Let.\n- Place the object after Let.\n- Use be + past participle.\n- Preserve the command force.",
+    "Exam-style problems": "# Exam-style problems: Grammar: Active and Passive Voice (Advanced Usage)\n\n## What you will learn\nYou will learn the passive of make followed by an infinitive. You will add to before the infinitive in the passive form.\n\n## Simple explanation\nIn the active pattern, make is followed by an object and a bare infinitive. In the passive, the object becomes the subject and 'was/were made to' is followed by the base verb.\n\n## Step-by-step breakdown\n- **Active pattern**: make + object + base verb\n- **Passive pattern**: subject + be made to + base verb\n- **Required to**: The passive form adds 'to' before the infinitive.\n- **Example**: They made him work. -> He was made to work.\n\n## Worked example\nQuestion: Change into passive voice: 'The coach made the players practise harder.'\n\nSolution:\n- Step 1: The object 'the players' becomes the passive subject.\n- Step 2: Change 'made ... practise' to 'were made to practise'.\n- Final answer: The players were made to practise harder by the coach.\n\n## Common mistake\nIncorrect: 'The players were made practise harder.' The passive of make requires 'to practise'.\n\n## Quick check question\nQuestion: Correct the passive sentence: 'She was made apologise.'\nAnswer: She was made to apologise.\nExplanation: After 'was made' in the passive, use 'to + base verb'.\n\n## Summary\n- Active make uses a bare infinitive.\n- Passive be made uses to-infinitive.\n- The active object becomes the passive subject.\n- Keep the tense in the form of be.",
+    "Revision and recap": "# Revision and recap: Grammar: Active and Passive Voice (Advanced Usage)\n\n## What you will learn\nYou will learn formal passive structures with reporting verbs. You will revise all advanced passive patterns in one final step.\n\n## Simple explanation\nFormal English often reports a general belief without naming the people who hold it. Two common passive structures are 'It is said that...' and 'subject + is said to...'.\n\n## Step-by-step breakdown\n- **Impersonal passive**: People say he is honest. -> It is said that he is honest.\n- **Personal passive**: People say he is honest. -> He is said to be honest.\n- **Earlier action**: Where the reported action is earlier, the pattern may use 'is said to have + past participle'.\n- **Formal tone**: These structures remove an indefinite reporter such as people.\n\n## Worked example\nQuestion: Rewrite in two passive ways: 'People believe that she has won the award.'\n\nSolution:\n- Step 1: Use the impersonal structure: 'It is believed that she has won the award.'\n- Step 2: Use the personal structure with a perfect infinitive because the winning is earlier: 'She is believed to have won the award.'\n- Final answer: It is believed that she has won the award. / She is believed to have won the award.\n\n## Common mistake\nDo not use 'She is believed that...' The personal passive requires an infinitive: 'She is believed to have won...'.\n\n## Quick check question\nQuestion: Rewrite in passive voice: 'People say that he is honest.'\nAnswer: It is said that he is honest. / He is said to be honest.\nExplanation: A reporting verb can form either the impersonal passive 'It is said that...' or the personal passive 'He is said to be...'.\n\n## Summary\n- Use modal + have been + past participle for perfect modal passives.\n- Either object may become subject in a two-object passive.\n- Use Let + object + be + past participle for commands.\n- Use be made to + infinitive in the passive.\n- Use formal reporting passives for impersonal statements."
+  }
+}

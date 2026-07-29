@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "English",
+    "chapter": "Chapter 5: Glimpses of India",
+    "central_question": "How do three contrasting accounts of Goa, Coorg, and Assam reveal India’s cultural traditions, landscapes, livelihoods, and regional diversity?",
+    "in_scope_units": [
+      "Before You Read activity on images, travel, colonial influences, tea, and coffee",
+      "A Baker from Goa: Portuguese influence and the continuing pader tradition",
+      "The baker’s rounds, children’s memories, bread varieties, dress, accounts, and prosperity",
+      "Comprehension, tone, descriptive writing, comparison of texts, and craft-based discussion",
+      "Coorg: location, climate, rainforests, coffee, and landscape",
+      "Kodavu origins, dress, hospitality, martial tradition, and the Coorg Regiment",
+      "The Kaveri, wildlife, adventure sports, Brahmagiri, Nisargadhama, Bylakuppe, and travel fact file",
+      "Coorg comprehension, phrase work, and collocations",
+      "Tea from Assam: train journey, tea landscape, legends, history, and the Dhekiabari estate",
+      "Word building, -ing and -ed adjectives, role play, and advertisement writing",
+      "Chapter recap on India’s regional variety"
+    ],
+    "banned_topics": [
+      "The Trees"
+    ],
+    "must_include_keywords": [
+      "Goa",
+      "Portuguese",
+      "pader",
+      "bamboo staff",
+      "jhang jhang",
+      "bread-bangles",
+      "bol",
+      "bolinhas",
+      "kabai",
+      "nostalgia",
+      "Coorg",
+      "Kodagu",
+      "coffee plantations",
+      "evergreen rainforests",
+      "Kodavus",
+      "kuppia",
+      "Kaveri",
+      "Coorg Regiment",
+      "General Cariappa",
+      "hospitality",
+      "rafting",
+      "rappelling",
+      "Brahmagiri hills",
+      "Nisargadhama",
+      "Bylakuppe",
+      "collocations",
+      "Assam",
+      "Pranjol",
+      "Rajvir",
+      "tea country",
+      "Chinese legend",
+      "Bodhidharma",
+      "Dhekiabari Tea Estate",
+      "second flush",
+      "tea pluckers",
+      "word building",
+      "-ing adjectives",
+      "-ed adjectives"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The Goan bakers disappeared when Portuguese rule ended.",
+        "correction": "The makers and their family profession continue; the traditional bakers are still known as paders."
+      },
+      {
+        "claim": "Children ran to the baker mainly to buy ordinary loaves for the household.",
+        "correction": "The household servant bought the loaves, while the children eagerly wanted bread-bangles and special sweet bread."
+      },
+      {
+        "claim": "The chapter states with certainty that Kodavus are of Greek origin.",
+        "correction": "It presents Greek and Arabic descent as possibilities supported by stories and cultural resemblance, not as certain fact."
+      },
+      {
+        "claim": "Coorg is described only as a quiet coffee-growing region.",
+        "correction": "It is also presented through martial traditions, wildlife, hospitality, adventure sports, and cultural diversity."
+      },
+      {
+        "claim": "The text identifies one proven discoverer of tea.",
+        "correction": "Rajvir says no one really knows who discovered tea and recounts Chinese and Indian legends."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use A Baker from Goa, Oral Comprehension Checks and Thinking about the Text, Questions 1–3, to establish tradition, importance, and tone.",
+      "Use the A Baker from Goa writing comparison to distinguish a personal pen-portrait from an impersonal factual account.",
+      "Use Coorg, Thinking about the Text, Questions 1–4, to organise details on people, crops, sports, animals, and travel.",
+      "Use the Coorg collocation exercise to connect descriptive vocabulary with natural word partnerships.",
+      "Use Tea from Assam and its language tasks to analyse legends, plantation imagery, word building, and -ing/-ed adjectives."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The three sections include their own comprehension and language tasks, followed by writing, group discussion, role play, advertisement work, and What We Have Done."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 5: Glimpses of India\n\n## What you will learn\nYou will study the Goan pader as a living link between Portuguese influence and village life. You will also analyse the nostalgic first-person voice and the sensory details used in the pen-portrait.\n\n## Simple explanation\nThe first glimpse of India presents bread-making not merely as a job but as a social tradition. The narrator remembers sounds, smells, clothing, food, and childhood excitement to show the baker’s place in Goan life.\n\n## Step-by-step breakdown\n- **Continuing tradition**: The Portuguese and old bread-eaters may have gone, but mixers, moulders, bakers, furnaces, and the family profession remain.\n- **Pader**: Traditional bakers are still known by this name in Goa.\n- **The sound of arrival**: The bamboo staff makes a “jhang, jhang” sound that announces the morning round.\n- **Two daily visits**: The baker comes when setting out and again after selling the basket’s contents.\n- **Children’s desire**: The servant buys ordinary loaves, while the children want bread-bangles and special sweet bread.\n- **Sensory memory**: The narrator recalls the thud and jingle, the fragrance of loaves, and the sight of the basket.\n- **Tone**: The voice is nostalgic and playful, especially in the humorous claim that the tiger never brushed its teeth and hot tea could clean everything.\n\n## Worked example\nQuestion: How does the writer create a vivid childhood memory of the baker’s arrival?\n\nSolution:\n- Step 1: He uses sound details such as the “thud and jingle” and “jhang, jhang” of the bamboo staff.\n- Step 2: He adds smell, movement, and childlike action—the fragrance of loaves, the children climbing to peep into the basket, and their desire for bread-bangles.\n- Final answer: The memory becomes vivid through sensory imagery, repeated actions, and a playful first-person tone rather than through a plain factual description.\n\n## Common mistake\nDo not say the children ran because they were responsible for buying the household bread. Their excitement centred on bread-bangles and special sweet bread.\n\n## Quick check question\nQuestion: What evidence shows that bread-making is still alive in Goa?\nAnswer: The old furnaces still exist, the baker’s bamboo can still be heard, and sons continue the family profession as paders.\nExplanation: These details show continuity after the Portuguese period.\n\n## Summary\n- The pader tradition survives in Goa.\n- The baker is remembered through sound, smell, and action.\n- Children value bread-bangles and sweet bread.\n- The first-person voice is nostalgic and humorous.\n- The section is a pen-portrait, not a neutral report.",
+    "Core explanation": "# Core explanation: Chapter 5: Glimpses of India\n\n## What you will learn\nYou will examine the baker’s cultural importance, dress, payment system, and prosperity. You will also compare the personal account with a more factual passage about Goan bakers.\n\n## Simple explanation\nBread is woven into marriages, engagements, feasts, Christmas, and village routine. The baker’s importance can be measured through social customs as well as through his successful livelihood.\n\n## Step-by-step breakdown\n- **Ceremonial importance**: The sweet bread bol is linked with marriage gifts, bread with parties and feasts, sandwiches with engagement, and cakes and bolinhas with Christmas and festivals.\n- **Kabai**: In Portuguese times the baker wore a single-piece long frock reaching the knees.\n- **Later dress**: In the narrator’s childhood, bakers wore a shirt and trousers shorter than full length but longer than half pants.\n- **Monthly accounts**: Bills were collected at the end of the month and accounts were written in pencil on a wall.\n- **Prosperity**: Baking is described as profitable; the baker, family, and servants look happy and well fed.\n- **Open testimony**: A plump physique publicly indicates prosperity and becomes a basis for comparison with a baker.\n- **Text comparison**: The personal passage creates a picture through nostalgia and sensory detail, while the adapted factual passage explains survival, delivery, family knowledge, and Portuguese influence more directly.\n- **Wider skill**: The writing and group tasks ask students to transform factual description into personal travel writing and discuss endangered crafts.\n\n## Worked example\nQuestion: Why can the baker be called an essential figure in traditional Goan village life?\n\nSolution:\n- Step 1: Bread products are required for marriages, engagements, feasts, Christmas, and other festivals.\n- Step 2: The baker also appears daily, supplies households, and supports a prosperous family profession.\n- Final answer: The baker is essential because his work serves everyday needs, major celebrations, and an inherited community tradition.\n\n## Common mistake\nDo not claim that the kabai is the dress the narrator sees all modern paders wearing. It belongs to the earlier Portuguese period; later bakers wear a different shirt-and-trouser style.\n\n## Quick check question\nQuestion: Where were the baker’s monthly accounts recorded?\nAnswer: They were recorded in pencil on a wall.\nExplanation: The detail helps recreate the practical routines of the traditional profession.\n\n## Summary\n- Bread is integral to Goan ceremonies and festivals.\n- The baker’s dress changes across periods.\n- Monthly credit is part of the village economy.\n- Physical prosperity is presented as evidence of a profitable trade.\n- Personal and factual accounts create different reading effects.",
+    "Worked examples": "# Worked examples: Chapter 5: Glimpses of India\n\n## What you will learn\nYou will explore Coorg’s location, climate, landscape, people, and cultural traditions. You will distinguish statements presented as fact from stories presented as possible origins.\n\n## Simple explanation\nCoorg is described as a “piece of heaven” because of its rolling hills, rainforests, spices, coffee, and misty scenery. The account also presents a proud community with strong traditions of hospitality and courage.\n\n## Step-by-step breakdown\n- **Location**: Coorg, or Kodagu, lies midway between Mysore and Mangalore and is the smallest district of Karnataka.\n- **Landscape and crop**: Evergreen rainforests, spices, coffee plantations, rolling hills, and colonial bungalows create the region’s identity.\n- **Season**: Heavy monsoon rain keeps many visitors away, while September to March is described as the season of joy.\n- **Possible descent**: One story connects Kodavus with Alexander’s army; another theory points to Arabic origin.\n- **Dress evidence**: The Kodavu kuppia resembles the kuffia worn by Arabs and Kurds.\n- **Hospitality and valour**: Coorgi homes welcome guests and recount tales of courageous sons and fathers.\n- **Military tradition**: The Coorg Regiment is highly decorated, and General Cariappa is identified as the first Chief of the Indian Army and a Coorgi.\n- **Careful reading**: Words such as “possibly,” “as one story goes,” and “theory” show that the origin accounts are not stated as certainty.\n\n## Worked example\nQuestion: How does the writer support the idea that the people of Coorg have a martial tradition?\n\nSolution:\n- Step 1: The text refers to tales of valour told in Coorgi homes and identifies the Coorg Regiment as one of the most decorated in the Indian Army.\n- Step 2: It also names General Cariappa and notes the special permission traditionally associated with Kodavus carrying firearms.\n- Final answer: The martial identity is built through family stories of courage, distinguished military service, and customs linked with arms and dress.\n\n## Common mistake\nDo not present the story of Alexander’s army as proven history. The text introduces it with “As one story goes” and also offers an Arabic-origin theory.\n\n## Quick check question\nQuestion: What is the main crop associated with Coorg?\nAnswer: Coffee is the main crop highlighted in the account.\nExplanation: The section calls Coorg “coffee country” and repeatedly describes coffee plantations and the smell of coffee in the air.\n\n## Summary\n- Coorg combines natural beauty with a strong cultural identity.\n- Coffee, spices, and rainforests shape the landscape.\n- Kodavu origin is presented through competing possibilities.\n- Hospitality and martial valour are major social qualities.\n- Careful readers distinguish evidence, legend, and theory.",
+    "Exam-style problems": "# Exam-style problems: Chapter 5: Glimpses of India\n\n## What you will learn\nYou will study Coorg’s river, wildlife, adventure activities, viewpoints, and travel information. You will also revise descriptive phrases and collocations from the section.\n\n## Simple explanation\nThe second half of the Coorg account moves from cultural history into a travel portrait. It invites the reader to imagine clear water, forest animals, climbing routes, rope bridges, and a wide misty landscape.\n\n## Step-by-step breakdown\n- **Kaveri**: The river receives water from Coorg’s hills and forests.\n- **River life**: Mahaseer, kingfishers, squirrels, langurs, elephants, and mahouts create a lively natural scene.\n- **Adventure**: Rafting, canoeing, rappelling, rock climbing, mountain biking, trekking, and walking trails attract visitors.\n- **Wildlife**: Macaques, Malabar squirrels, langurs, slender loris, birds, bees, butterflies, and wild elephants are mentioned.\n- **Viewpoints**: The Brahmagiri hills offer a panoramic view of the misty landscape.\n- **Nearby attractions**: A rope bridge leads to Nisargadhama, and Bylakuppe has a major Tibetan settlement with Buddhist monks.\n- **Fact file**: Madikeri is the gateway; routes are described by air, rail, and road.\n- **Collocations**: Natural combinations such as ancient culture, unforgettable experience, terrible weather, and sudden surprise show how words commonly go together.\n\n## Worked example\nQuestion: How does the Coorg section appeal to both nature lovers and adventure seekers?\n\nSolution:\n- Step 1: It describes forests, coffee estates, river life, birds, animals, butterflies, panoramic hills, and Tibetan monks.\n- Step 2: It also lists high-energy activities such as rafting, canoeing, rappelling, climbing, biking, and trekking.\n- Final answer: The account combines rich natural and cultural observation with a wide range of outdoor activities, making Coorg attractive to different kinds of travellers.\n\n## Common mistake\nDo not treat the Fact File as the only description of Coorg. It gives practical travel information, while the main prose creates the region’s emotional and visual appeal.\n\n## Quick check question\nQuestion: What does “panoramic view” mean in the Coorg section?\nAnswer: It means a wide view of a large area of land.\nExplanation: The phrase describes the broad misty landscape seen from the Brahmagiri hills.\n\n## Summary\n- Coorg’s hills and forests feed the Kaveri.\n- Wildlife is presented through active, visual scenes.\n- Adventure sports contrast with the idea of a laidback life.\n- Brahmagiri, Nisargadhama, and Bylakuppe broaden the travel portrait.\n- The Fact File gives practical routes.\n- Collocations improve natural descriptive language.",
+    "Revision and recap": "# Revision and recap: Chapter 5: Glimpses of India\n\n## What you will learn\nYou will study the journey in Tea from Assam, the legends and history associated with tea, and the view of the Dhekiabari estate. You will also revise word building and the difference between -ing and -ed adjectives.\n\n## Simple explanation\nRajvir’s excitement turns an ordinary train journey into a discovery of “tea country.” His conversation with Pranjol combines scenery, legend, history, and careful observation of plantation work.\n\n## Step-by-step breakdown\n- **Characters and journey**: Pranjol, from Assam, invites his Delhi classmate Rajvir to his father’s tea garden in Upper Assam.\n- **Tea culture**: A vendor calls “chai-garam,” and almost everyone in the compartment is drinking tea.\n- **Landscape**: Paddy fields give way to a “sea of tea bushes,” shade trees, ordered rows, workers, and factory chimneys.\n- **Different viewpoints**: Rajvir is excited because the scene is new; Pranjol is familiar with plantation life.\n- **Legends**: Rajvir recounts a Chinese emperor’s accidental discovery and the Indian story of Bodhidharma’s eyelids producing tea plants.\n- **Historical claims in the text**: Tea is said to have been first drunk in China long ago and later reached Europe, where it was initially treated more as medicine than beverage.\n- **Dhekiabari estate**: Tea bushes are neatly pruned; pluckers carry bamboo baskets and wear plastic aprons; a tractor carries leaves.\n- **Second flush**: Rajvir identifies the sprouting period from May to July as yielding the best tea.\n- **Word building**: Upkeep, downpour, undergo, dropout, and walk-in combine verbs with particles.\n- **Adjectives**: -ing adjectives describe something that causes a feeling; -ed adjectives describe the person’s mental or physical response.\n\n## Worked example\nQuestion: How does the writer make the Assam tea landscape appear new and impressive through Rajvir’s eyes?\n\nSolution:\n- Step 1: Rajvir notices the intense greenery, the transition from paddy to tea bushes, wooded hills, shade trees, and doll-like workers in ordered rows.\n- Step 2: Pranjol’s calm response contrasts with Rajvir’s excitement because Pranjol has grown up on a plantation.\n- Final answer: The landscape feels impressive because it is filtered through a visitor’s wonder and contrasted with the familiarity of someone for whom tea country is ordinary.\n\n## Common mistake\nDo not state that the legends prove who discovered tea. Rajvir explicitly says that no one really knows and then offers traditional stories.\n\n## Quick check question\nQuestion: What is the difference between “exciting” and “excited” in the chapter’s language exercise?\nAnswer: “Exciting” describes something that causes excitement, while “excited” describes how a person feels in response.\nExplanation: The -ing form names the quality of the event or thing; the -ed form names the resulting state.\n\n## Summary\n- Assam is shown through travel, conversation, and plantation imagery.\n- Rajvir brings curiosity and prior reading to the visit.\n- The text presents more than one tea legend without proving either.\n- Plantation work is shown through pruning, plucking, baskets, and transport.\n- Word building combines verbs and particles.\n- -ing and -ed adjectives distinguish cause from response.\n- Together, Goa, Coorg, and Assam reveal India’s cultural and geographical variety."
+  }
+}

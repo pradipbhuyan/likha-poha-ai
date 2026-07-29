@@ -1,0 +1,202 @@
+CBSE GRADE 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 1
+Subject: Social Science
+Source Subject Code: SocialScience
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/SocialScience-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/SocialScience-MS.pdf
+Total Questions: 24
+======================================================================
+
+TASK: For each question below, provide the answer in the EXACT JSON format shown.
+
+OUTPUT FORMAT (return a JSON array):
+[{
+  "question_number": <integer>,
+  "question_text": "<copy from input>",
+  "question_type": "<copy from input>",
+  "options": [<copy from input>],
+  "answer_text": "<for mcq/assertion_reason: exact option text; for others: concise answer>",
+  "answer_explanation": "<2-4 sentence explanation based on CBSE curriculum>"
+}, ...]
+
+IMPORTANT RULES:
+- For MCQ/assertion_reason: answer_text MUST be the EXACT text of one of the options (copy verbatim)
+- For short_answer: answer_text should be a complete answer per marking scheme
+- For long_answer/case_study: answer_text should be a full answer per marking scheme
+- If a question is diagram-dependent and no text alternative exists, use: NEEDS_MANUAL_REVIEW_diagram_dependent
+- Refer to the official Marking Scheme PDF for correct answers: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/SocialScience-MS.pdf
+
+======================================================================
+
+QUESTIONS:
+
+Q1 [mcq, 1 mark(s), Section A]
+Who among the following was the founder of ‘Young Europe’ underground secret society in Berne?
+  (A) Giuseppe Garibaldi
+  (B) Giuseppe Mazzini
+  (C) Count Cavour
+  (D) Otto von Bismark
+
+Q10 [mcq, 1 mark(s), Section A]
+Which one of the following human activities has contributed significantly in land degradation?
+  (A) Deforestation
+  (B) Crop rotation
+  (C) Shelter belts
+  (D) Ploughing
+
+Q11 [mcq, 1 mark(s), Section A]
+Which one of the following countries adopted majoritarianism in their Constitution?
+  (A) Nepal
+  (B) India
+  (C) Sri Lanka
+  (D) Bangladesh
+
+Q12 [mcq, 1 mark(s), Section A]
+Identify the significant reason of power sharing from the following options.
+  (A) Reduces socio-economic conflicts
+  (B) Provides ethnic -cultural development
+  (C) Allows people to enjoy specific rights
+  (D) Restricts supremacy of one party
+
+Q13 [mcq, 1 mark(s), Section A]
+Apart from the Central and the State Government, Belgium has a third kind of government as well. Identify this third kind of government from the following options:
+  (A) Democratic Government
+  (B) Socialist Government
+  (C) Community Government
+  (D) Liberal Government
+
+Q14 [mcq, 1 mark(s), Section A]
+Which of the following countries is an example of ‘Coming Together Federation’?
+  (A) India
+  (B) Sri Lanka
+  (C) USA
+  (D) Belgium
+
+Q15 [mcq, 1 mark(s), Section A]
+Why is the power shared amongst different organs of government called as horizontal distribution of power? Identify the correct reason.
+  (A) It gives judiciary more power than legislature and executive.
+  (B) It allows different organs of government to be placed at the same level.
+  (C) It gives representation to different ideologies at political level.
+  (D) It influences and coordinates in the decision-making process.
+
+Q16 [mcq, 1 mark(s), Section A]
+In India’s federal system, the Central and the S tate governments have the power to legislate on all those subjects which are included in the:
+  (A) Union list
+  (B) State list
+  (C) Concurrent list
+  (D) Residuary subjects
+
+Q17 [mcq, 1 mark(s), Section A]
+Which of the following states of India enjoy special powers under Article 371A of the Constitution of India?
+  (A) Nagaland
+  (B) Rajasthan
+  (C) Himachal Pradesh
+  (D) Tamil Nadu
+
+Q18 [mcq, 1 mark(s), Section A]
+Which one the following is an example of Primary Sector activity?
+  (A) Baking
+  (B) Outsourcing
+  (C) Farming
+  (D) Banking
+
+Q19 [mcq, 1 mark(s), Section A]
+Which of the following measures the proportion of literate population in the seven and above age group?
+  (A) Net Attendance Ratio
+  (B) Enrolment Rate
+  (C) Literacy Rate
+  (D) Drop out Ratio
+
+Q2 [mcq, 1 mark(s), Section A]
+Which of the following was the result of the Act of Union, 1707?
+  (A) Unification of Germany
+  (B) Unification of the kingdom of Great Britain
+  (C) Unification of Italy
+  (D) Unification of Vietnam
+
+Q20 [mcq, 1 mark(s), Section A]
+Which one of the following is the correct meaning of ‘Average Income’?
+  (A) The total income of the country divided by its earning population.
+  (B) The total income of the country divided by its total population.
+  (C) The total income of all the residents of the country.
+  (D) The total income from the domestic and foreign sources.
+
+Q21 [mcq, 1 mark(s), Section A]
+Which one of the following best describes Human Development Index (HDI)?
+  (A) Improvement in science, information and technology
+  (B) Improvement in health, education and income
+  (C) Improvement in information and communication
+  (D) Improvement in investment, finance and technology
+
+Q22 [mcq, 1 mark(s), Section A]
+“Consequences of environmental degradation do not respect national or state boundaries.” Which of the following is the essence of this statement?
+  (A) Economic development
+  (B) Human Development
+  (C) Sustainable Development
+  (D) National Development
+
+Q23 [mcq, 1 mark(s), Section A]
+Which of the following examples fall under an organized sector?
+  (A) A daily wage labourer working for a contractor.
+  (B) An engineer getting all employment benefits.
+  (C) A cleaning staff in a private school
+  (D) A tailor stitching clothes at his home.
+
+Q24 [mcq, 1 mark(s), Section A]
+Mahatma Gandhi National Rural Employment Guarantee Act 2005 state s a guarantee of minimum 100 days of employment per year . If government is unable to fulfil these 100 days of an employment, the government would have to----------------------------------- Choose the correct option:
+  (A) Pay the compensation in lieu of these days
+  (B) Provide another scheme for the same
+  (C) Pay at least 1/3  percent allowance
+  (D) Provide health care as compensation
+
+Q3 [mcq, 1 mark(s), Section A]
+Identify the correct statement with regard to the ‘Zollverein’ from the following options:
+  (A) It was a coalition of Prussian states formed to manage political alliances.
+  (B) Its aim was to bind the Prussia politically into an association.
+  (C) It was a Custom Union at the initiative of Prussia.
+  (D) It helped to awaken and raise national sentiment in Europe.
+
+Q4 [mcq, 1 mark(s), Section A]
+Which of the following countries were involved in the Three Wars with Prussia and ended with victory and unification of Germany?
+  (A) Austria, Poland and France
+  (B) Austria, Denmark and France
+  (C) Austria, Turkey and France
+  (D) Austria, England and France
+
+Q5 [mcq, 1 mark(s), Section A]
+Identify the ideology under which people demanded freedom of markets in early- nineteenth-century Europe.
+  (A) Romanticism
+  (B) Liberalism
+  (C) Socialism
+  (D) Rationalism
+
+Q6 [mcq, 1 mark(s), Section A]
+Choose the correctly matched pair about the crops and the areas they are grown in:
+  (A) Groundnut- Assam
+  (B) Tea- Gujarat
+  (C) Coffee- Karnataka
+  (D) Sugarcane – Chhattisgarh
+
+Q7 [mcq, 1 mark(s), Section A]
+The piece of land left uncultivated for the past 1 to 5 agricultural years is ca lled _________. Choose the correct option:
+  (A) Barren land
+  (B) Forest land
+  (C) Grazing land
+  (D) Fallow land
+
+Q8 [mcq, 1 mark(s), Section A]
+Which one of the following conferences was convened to discuss environmental protection and socio-economic development at the global level in 1992?
+  (A) Kyoto Protocol
+  (B) Montreal Protocol
+  (C) Rio de Janeiro Earth Summit
+  (D) World Summit on Sustainable Development
+
+Q9 [mcq, 1 mark(s), Section A]
+India has land under a variety of relief features. Which of the following features ensure perennial flow of some rivers, provide facilities for tourism and ecological aspects?
+  (A) Plains
+  (B) Plateaus
+  (C) Islands
+  (D) Mountains
+
+======================================================================
+Now return the complete JSON array with answers for all questions above.

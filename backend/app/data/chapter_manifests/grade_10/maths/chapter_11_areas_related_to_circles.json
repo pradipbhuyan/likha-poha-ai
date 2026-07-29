@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 11: Areas Related to Circles",
+  "central_question": "How can the lengths and areas of sectors, arcs and segments of a circle be calculated and applied to real objects?",
+  "in_scope_units": [
+    "Areas of Sector and Segment of a Circle: identifies minor and major sectors and segments and develops formulas for sector area, arc length and segment area.",
+    "Worked applications and Exercise 11.1: applies the formulas to quadrants, clock hands, chords, grazing regions, brooches, umbrellas, wipers, lighthouse beams and circular designs.",
+    "Summary: consolidates the three central results for arc length, sector area and segment area."
+  ],
+  "banned_topics": [
+    "Tangent theorems and equal tangent lengths, which belong to the chapter Circles.",
+    "Surface areas and volumes of cylinders, cones, spheres and combined solids.",
+    "Coordinate equations of circles and analytic geometry of circles.",
+    "Construction of tangents or division of line segments using ruler and compass."
+  ],
+  "must_include_keywords": [
+    "circle",
+    "circular region",
+    "centre",
+    "radius",
+    "chord",
+    "arc",
+    "sector",
+    "segment",
+    "minor sector",
+    "major sector",
+    "minor segment",
+    "major segment",
+    "angle of the sector",
+    "360 degrees",
+    "unitary method",
+    "πr²",
+    "2πr",
+    "arc length",
+    "sector area",
+    "corresponding triangle",
+    "area of segment",
+    "quadrant",
+    "central angle",
+    "complementary region",
+    "minute hand",
+    "grazing area",
+    "equal sectors",
+    "umbrella ribs",
+    "wiper sweep",
+    "lighthouse sector",
+    "brooch",
+    "square units",
+    "linear units"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A sector and a segment are the same region.",
+      "correction": "A sector is enclosed by two radii and an arc, while a segment is enclosed by a chord and its corresponding arc."
+    },
+    {
+      "claim": "The formula θ/360 × 2πr gives the area of a sector.",
+      "correction": "θ/360 × 2πr gives arc length; sector area is θ/360 × πr²."
+    },
+    {
+      "claim": "The area of a segment is just the area of its sector.",
+      "correction": "For a minor segment, subtract the area of the triangle formed by the two radii and the chord from the sector area."
+    },
+    {
+      "claim": "A major sector has angle θ when the corresponding minor sector has angle θ.",
+      "correction": "The major sector angle is 360° − θ, and its area can also be found by subtracting the minor-sector area from πr²."
+    },
+    {
+      "claim": "Arc length should be written in square centimetres.",
+      "correction": "Arc length is a length and uses linear units such as cm; sector and segment areas use square units such as cm²."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Figures 11.1 and 11.2 and NCERT Example 1 to distinguish minor and major sectors and calculate their areas.",
+    "Use NCERT Exercise 11.1 Question 5 to connect a central angle with both arc length and sector area.",
+    "Develop segment area through NCERT Example 2, including the complete triangle calculation.",
+    "Apply sectors to a real boundary situation through NCERT Exercise 11.1 Question 8 on a horse tied at a corner of a square field.",
+    "Finish with NCERT Exercise 11.1 Question 9 on a circular brooch divided into ten equal sectors."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "NCERT Exercise 11.1 contains Questions 1–14 on sector area, arc length, segment area and applications to circular designs and swept regions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

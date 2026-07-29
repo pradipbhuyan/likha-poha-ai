@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 10: The Human Eye and the Colourful World",
+  "central_question": "How does the human eye form clear images, how are common vision defects corrected, and how do refraction, dispersion, atmospheric refraction and scattering produce familiar optical phenomena?",
+  "in_scope_units": [
+    "The human eye: cornea, iris, pupil, crystalline lens, retina, optic nerve and image formation.",
+    "Power of accommodation, near point, far point and cataract.",
+    "Defects of vision and their correction: myopia, hypermetropia and presbyopia.",
+    "Refraction of light through a triangular glass prism and angle of deviation.",
+    "Dispersion of white light, spectrum, VIBGYOR, recombination and rainbow formation.",
+    "Atmospheric refraction: wavering through hot air, twinkling of stars, non-twinkling of planets, advanced sunrise and delayed sunset.",
+    "Scattering of light, Tyndall effect, blue colour of the sky and use of red danger signals."
+  ],
+  "banned_topics": [
+    "Detailed mirror formula and image formation by spherical mirrors, which belong to the previous light chapter.",
+    "Detailed lens formula derivations and ray-diagram cases for lenses beyond what is needed for vision correction.",
+    "Wave optics topics such as interference, diffraction and polarisation.",
+    "Detailed anatomy or diseases of the eye not discussed in this chapter."
+  ],
+  "must_include_keywords": [
+    "cornea",
+    "iris",
+    "pupil",
+    "crystalline lens",
+    "ciliary muscles",
+    "retina",
+    "optic nerve",
+    "accommodation",
+    "near point",
+    "far point",
+    "25 cm",
+    "cataract",
+    "myopia",
+    "hypermetropia",
+    "presbyopia",
+    "concave lens",
+    "convex lens",
+    "bifocal lens",
+    "prism",
+    "angle of deviation",
+    "dispersion",
+    "spectrum",
+    "VIBGYOR",
+    "rainbow",
+    "atmospheric refraction",
+    "twinkling of stars",
+    "advanced sunrise",
+    "delayed sunset",
+    "Tyndall effect",
+    "scattering of light",
+    "blue sky",
+    "red danger signal"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The eye lens performs most of the refraction of incoming light.",
+      "correction": "Most refraction occurs at the outer surface of the cornea; the crystalline lens mainly provides fine adjustment of focal length for focusing on the retina."
+    },
+    {
+      "claim": "Myopia is corrected by a convex lens because the image forms in front of the retina.",
+      "correction": "Myopia is corrected by a concave lens, which diverges incoming rays so that the eye focuses the image on the retina."
+    },
+    {
+      "claim": "Hypermetropia and presbyopia are the same defect.",
+      "correction": "Hypermetropia is a refractive defect caused by an eye lens with too long a focal length or a short eyeball; presbyopia is an age-related loss of accommodation due to weakening ciliary muscles and reduced lens flexibility."
+    },
+    {
+      "claim": "Stars twinkle because they produce changing amounts of light.",
+      "correction": "Stars twinkle because atmospheric refraction through continually changing layers of air changes their apparent position and the amount of starlight entering the eye."
+    },
+    {
+      "claim": "The sky is blue because the atmosphere contains blue-coloured particles.",
+      "correction": "Fine particles and air molecules scatter shorter wavelengths, especially blue light, more strongly than longer red wavelengths."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise Q1-Q4 to connect eye parts, accommodation and the least distance of distinct vision.",
+    "Use the in-text question about a myopic eye with far point 1.2 m and NCERT Exercise Q6-Q7 for corrective lenses.",
+    "Use NCERT Activity 10.1 to explain refraction and deviation through a prism.",
+    "Use NCERT Activity 10.2 and Figures 10.5-10.8 to explain dispersion, recombination and rainbow formation.",
+    "Use NCERT Exercise Q10-Q12 to explain atmospheric refraction and scattering."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES contain Questions 1-12, covering accommodation, image formation in the eye, corrective lenses, atmospheric refraction and scattering.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

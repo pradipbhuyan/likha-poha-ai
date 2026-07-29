@@ -46,7 +46,33 @@ from app.services.logger_service import get_logger
 _log = get_logger("services.chapter_doc")
 
 # Steps whose cached rows may exist under a legacy title (pre-rename prewarm).
-_LEGACY_STEP_TITLES = {"Exam-style problems": "Practice questions"}
+# Maps a CANONICAL step title (from get_lesson_steps()/_get_lesson_steps())
+# to an alternate lesson_cache.step_title to try if the exact canonical
+# title has no row. Needed because Grade 4/5's canonical curriculum uses
+# a simplified 3-step structure (What We Learn / Worked Examples / Recap
+# — see lesson_kb_service._get_lesson_steps()), but the standard GPT-5.5
+# chapter-authoring pipeline (prepare_gpt55_prompts.py) always generates
+# the full 5-step structure (Concept introduction / Core explanation /
+# Worked examples / Exam-style problems / Revision and recap) for EVERY
+# grade, including Grade 4/5. Without this mapping, freshly-ingested
+# Grade 4/5 GPT-5.5 content is silently invisible to students — only 2 of
+# 5 generated steps ("What We Learn"->none, "Worked Examples"->none,
+# "Recap"->none) would exact-match, confirmed live for Grade 5 English
+# "1. Papa's Spectacles" (10-chapter GPT-5.5 batch on 2026-07-29): only
+# very old pre-GPT-5.5 rows under the literal "What We Learn"/"Recap"
+# titles were being served, and "Worked Examples" (capital E, the
+# canonical title) never matched the stored "Worked examples" (lowercase
+# e) title at all. This intentionally leaves 2 of the 5 generated steps
+# ("Core explanation", "Exam-style problems") unused for Grade 4/5 —
+# consistent with that grade band's deliberately simpler 3-step design,
+# not a bug; the content still exists in lesson_cache/manifests for any
+# future curriculum change, just not rendered to young learners today.
+_LEGACY_STEP_TITLES = {
+    "Exam-style problems": "Practice questions",
+    "What We Learn": "Concept introduction",
+    "Worked Examples": "Worked examples",
+    "Recap": "Revision and recap",
+}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -677,13 +703,32 @@ def convert_chapter(
 
     steps = get_lesson_steps(grade)
     for index, step_title in enumerate(steps):
-        content = step_rows.get(step_title)
         lkb_step_title = step_title
-        if content is None and step_title in _LEGACY_STEP_TITLES:
-            legacy = _LEGACY_STEP_TITLES[step_title]
-            content = step_rows.get(legacy)
+        content = None
+        # Prefer the mapped alternate title FIRST (e.g. Grade 4/5's
+        # canonical "Worked Examples" maps to the GPT-5.5 pipeline's
+        # standard "Worked examples") — this is deliberately checked
+        # BEFORE the literal canonical title, because a chapter can have
+        # BOTH an old pre-GPT-5.5 row stored under the literal canonical
+        # title (e.g. "What We Learn", "Recap" from an earlier prewarm
+        # pass) AND fresh GPT-5.5 content stored under the mapped title
+        # (e.g. "Concept introduction", "Revision and recap"). Checking
+        # the literal title first would silently keep serving that old
+        # stale content forever, exactly as confirmed live for Grade 5
+        # English "1. Papa's Spectacles" and its sibling chapters on
+        # 2026-07-29 — only 1 of 3 canonical steps ("Worked Examples")
+        # actually had zero pre-existing legacy row, so it alone updated
+        # correctly on the first version of this fallback; "What We
+        # Learn" and "Recap" kept resolving to old July-10 rows because
+        # those literal titles matched directly before the mapped
+        # alternate was ever tried.
+        if step_title in _LEGACY_STEP_TITLES:
+            mapped = _LEGACY_STEP_TITLES[step_title]
+            content = step_rows.get(mapped)
             if content is not None:
-                lkb_step_title = legacy
+                lkb_step_title = mapped
+        if content is None:
+            content = step_rows.get(step_title)
         if content is None:
             continue
 

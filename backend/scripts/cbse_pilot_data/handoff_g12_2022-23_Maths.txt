@@ -1,0 +1,199 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2022-23
+Subject: Mathematics
+Source Subject Code: Maths
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/Maths-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/Maths-MS.pdf
+Total Questions: 33
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/Maths-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec E]
+If A =[aij] is a skew-symmetric matrix of order n, then
+  (A) 𝑎௜௝= ଵ ௔ೕ೔ ∀ 𝑖,𝑗
+  (B) 𝑎௜௝≠ 0 ∀ 𝑖,𝑗
+  (C) 𝑎௜௝= 0,𝑤ℎ𝑒𝑟𝑒 𝑖 =𝑗
+  (D) 𝑎௜௝≠ 0 𝑤ℎ𝑒𝑟𝑒 𝑖 =𝑗
+
+Q10 [mcq, 1m, Sec E]
+If A, B are non-singular square matrices of the same order, then (𝐴𝐵ିଵ)ିଵ =
+  (A) 𝐴ିଵ𝐵
+  (B) 𝐴ିଵ𝐵ିଵ
+  (C) 𝐵𝐴ିଵ
+  (D) 𝐴𝐵
+
+Q11 [mcq, 1m, Sec E]
+The corner points of the shaded unbounded feasible region of an LPP are (0, 4), (0.6, 1.6) and (3, 0) as shown in the figure. The minimum value of the objective function Z = 4x + 6y occurs at
+  (A) (0.6, 1.6) 𝑜𝑛𝑙𝑦
+  (B) (3, 0) only
+  (C) (0.6, 1.6) and (3, 0) only
+  (D) at every point of the line-segment joining the points (0.6, 1.6) and (3, 0)
+  [NOTE: diagram]
+
+Q12 [mcq, 1m, Sec E]
+If ቚ2 4 5 1 ቚ=ቚ2𝑥 4 6 𝑥ቚ,𝑡ℎ𝑒𝑛 𝑡ℎ𝑒 𝑝𝑜𝑠𝑠𝑖𝑏𝑙𝑒 value(s) of ‘x’ is/are
+  (A) 3
+  (B) √3
+  (C) -√3
+  (D) √3, −√3
+
+Q13 [mcq, 1m, Sec E]
+If A is a square matrix of order 3 and |A| = 5, then |𝑎𝑑𝑗𝐴| =
+  (A) 5
+  (B) 25
+  (C) 125
+  (D) ଵ ହ
+
+Q14 [mcq, 1m, Sec E]
+Given two independent events A and B such that P(A) =0.3, P(B) = 0.6 and P(𝐴ᇱ∩𝐵ᇱ) is
+  (A) 0.9
+  (B) 0.18
+  (C) 0.28
+  (D) 0.1
+
+Q15 [mcq, 1m, Sec E]
+The general solution of the differential equation 𝑦𝑑𝑥−𝑥𝑑𝑦= 0 𝑖𝑠
+  (A) 𝑥𝑦=𝐶
+  (B) 𝑥=𝐶𝑦ଶ
+  (C) 𝑦=𝐶𝑥
+  (D) 𝑦=𝐶𝑥ଶ
+
+Q16 [mcq, 1m, Sec E]
+If 𝑦=𝑠𝑖𝑛ିଵ𝑥, then (1 −𝑥ଶ)𝑦ଶ 𝑖𝑠 equal to
+  (A) 𝑥𝑦ଵ
+  (B) 𝑥𝑦
+  (C) 𝑥𝑦ଶ
+  (D) 𝑥ଶ
+
+Q17 [mcq, 1m, Sec E]
+If two vectors 𝑎⃗ 𝑎𝑛𝑑 𝑏ሬ⃗ are such that |𝑎⃗| = 2 ,ห𝑏ሬ⃗ห= 3 𝑎𝑛𝑑 𝑎⃗.𝑏ሬ⃗ = 4,𝑡ℎ𝑒𝑛 ห𝑎⃗ − 2𝑏ሬ⃗ห is equal to
+  (A) √2
+  (B) 2√6
+  (C) 24
+  (D) 2√2
+
+Q18 [assertion_reason, 1m, Sec E]
+P is a point on the line joining the points 𝐴(0,5, −2) and 𝐵(3, −1,2). If the x-coordinate of P is 6, then its z-coordinate is
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q19 [assertion_reason, 1m, Sec E]
+Assertion (A): The domain of the function 𝑠𝑒𝑐ିଵ 2𝑥 is ቀ−∞, −ଵ ଶቃ∪ [ଵ ଶ , ∞) Reason (R): 𝑠𝑒𝑐ିଵ(−2) = −గ ସ
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q2 [mcq, 1m, Sec E]
+If A is a square matrix of order 3, |𝐴′| = −3, then |𝐴𝐴′| =
+  (A) 9
+  (B) -9
+  (C) 3
+  (D) -3
+
+Q20 [assertion_reason, 1m, Sec E]
+Assertion (A): The acute angle between the line 𝑟̅ =𝚤̂ +𝚥̂ + 2𝑘෠+𝜆(𝚤̂ −𝚥̂) and the x-axis is గ ସ Reason(R): The acute angle 𝜃 between the lines 𝑟̅ =𝑥ଵ𝚤̂ +𝑦ଵ𝚥̂ +𝑧ଵ𝑘෠+𝜆൫𝑎ଵ𝚤̂ +𝑏ଵ𝚥̂ +𝑐ଵ𝑘෠൯ and 𝑟̅ =𝑥ଶ𝚤̂ +𝑦ଶ𝚥̂ +𝑧ଶ𝑘෠+𝜇൫𝑎ଶ𝚤̂ +𝑏ଶ𝚥̂ +𝑐ଶ𝑘෠൯ is given by 𝑐𝑜𝑠𝜃= |௔భ௔మା௕భ௕మା௖భ௖మ| ට ௔భమା௕భమା௖భమට ௔మమା௕మమା௖మమ SECTION B This section comprises of very short answer type-questions (VSA) of 2 marks each
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q21 [mcq, 1m, Sec B]
+Find the value of 𝑠𝑖𝑛ିଵ[𝑠𝑖𝑛ቀଵଷగ ଻ ቁ] OR Prove that the function f is surjective, where 𝑓:𝑁→𝑁 such that 𝑓(𝑛) =൞ 𝑛+ 1 2 ,𝑖𝑓 𝑛 𝑖𝑠 𝑜𝑑𝑑 𝑛 2,𝑖𝑓 𝑛 𝑖𝑠 𝑒𝑣𝑒𝑛 Is the function injective? Justify your answer.
+
+Q22 [mcq, 1m, Sec B]
+A man 1.6 m tall walks at the rate of 0.3 m/sec away from a street light that is 4 m above the ground. At what rate is the tip of his shadow moving? At what rate is his shadow lengthening?
+
+Q23 [mcq, 1m, Sec B]
+If 𝑎⃗ =𝚤̂ −𝚥̂ + 7𝑘෠ 𝑎𝑛𝑑 𝑏ሬ⃗ = 5𝚤̂ −𝚥̂ +𝜆𝑘෠, then find the value of 𝜆 so that the vectors 𝑎⃗ +𝑏ሬ⃗ 𝑎𝑛𝑑 𝑎⃗ −𝑏ሬ⃗ are orthogonal. 𝑶𝑹 Page 4 Find the direction ratio and direction cosines of a line parallel to the line whose equations are 6𝑥− 12 = 3𝑦+ 9 = 2𝑧− 2
+
+Q24 [mcq, 1m, Sec B]
+If 𝑦√1 −𝑥ଶ +𝑥ඥ 1 −𝑦ଶ = 1 ,𝑡ℎ𝑒𝑛 𝑝𝑟𝑜𝑣𝑒 𝑡ℎ𝑎𝑡 ௗ௬ ௗ௫ = −ට ଵି௬ మ ଵି௫ మ
+
+Q25 [mcq, 1m, Sec B]
+Find |𝑥⃗| if (𝑥⃗ −𝑎⃗).(𝑥⃗ +𝑎⃗)= 12, where 𝑎⃗ is a unit vector. SECTION C (This section comprises of short answer type questions (SA) of 3 marks each)
+
+Q26 [mcq, 1m, Sec C]
+Find: ∫ ௗ௫ √ଷିଶ௫ି௫ మ
+
+Q27 [mcq, 1m, Sec C]
+Three friends go for coffee. They decide who will pay the bill, by each tossing a coin and then letting the “odd person” pay. There is no odd person if all three tosses produce the same result. If there is no odd person in the first round, they make a second round of tosses and they continue to do so until there is an odd person. What is the probability that exactly three rounds of tosses are made? OR Find the mean number of defective items in a sample of two items drawn one-by-one without replacement from an urn containing 6 items, which include 2 defective items. Assume that the items are identical in shape and size.
+
+Q28 [mcq, 1m, Sec C]
+Evaluate: ∫ ௗ௫ ଵା√௧௔௡௫ గ ଷൗగ ଺ൗ OR Evaluate: ∫ |𝑥− 1|ସ ଴ 𝑑𝑥
+
+Q29 [mcq, 1m, Sec C]
+Solve the differential equation: 𝑦𝑑𝑥+(𝑥−𝑦ଶ)𝑑𝑦= 0 OR Solve the differential equation: 𝑥𝑑𝑦−𝑦𝑑𝑥=ඥ 𝑥ଶ +𝑦ଶ 𝑑𝑥
+
+Q3 [mcq, 1m, Sec E]
+The area of a triangle with vertices A, B, C is given by
+  (A) ห𝐴𝐵ሬሬሬሬሬ⃗×𝐴𝐶ሬሬሬሬሬ⃗ห
+  (B) ଵ ଶ ห𝐴𝐵ሬሬሬሬሬ⃗×𝐴𝐶ሬሬሬሬሬ⃗ห
+  (C) ଵ ସ ห𝐴𝐶ሬሬሬሬሬ⃗×𝐴𝐵ሬሬሬሬሬ⃗ห
+  (D) ଵ ଼ ห𝐴𝐶ሬሬሬሬሬ⃗×𝐴𝐵ሬሬሬሬሬ⃗ห
+
+Q30 [mcq, 1m, Sec C]
+Solve the following Linear Programming Problem graphically: Maximize Z = 400x + 300y subject to 𝑥+𝑦≤ 200,𝑥≤ 40,𝑥≥ 20,𝑦≥ 0
+
+Q31 [mcq, 1m, Sec C]
+Find ∫൫௫యା௫ାଵ ൯ (௫మିଵ) 𝑑𝑥 SECTION D (This section comprises of long answer-type questions (LA) of 5 marks each)
+
+Q32 [mcq, 1m, Sec D]
+Make a rough sketch of the region {(𝑥,𝑦): 0 ≤𝑦≤𝑥ଶ, 0 ≤𝑦≤𝑥, 0 ≤𝑥≤ 2} and find the area of the region using integration.
+
+Q33 [mcq, 1m, Sec D]
+Define the relation R in the set 𝑁×𝑁 as follows: For (a, b), (c, d) ∈𝑁×𝑁, (a, b) R (c, d) iff ad = bc. Prove that R is an equivalence relation in 𝑁×𝑁. OR Given a non-empty set X, define the relation R in P(X) as follows: For A, B ∈ 𝑃(𝑋), (𝐴, 𝐵) ∈symmetric. Q34. An insect is crawling along the line insect is crawling along the line lines should they reach so that the distance between them is the shortest? possible distance between them. The equations of motion of a rocket ar 𝑥 = 2𝑡, 𝑦 = −4𝑡, 𝑧 = 4𝑡, where the time t is given in seconds, and the coordinates of a moving point in km. What from the starting point O(0, 0, 0) 𝑟 ⃗ = 20𝚤̂ − 10𝚥̂ + 40𝑘෠+ 𝜇( Q35. If A = ൥2 −3 53 2 −41 1 −2൩, find 2𝑥 − 3𝑦 + 5𝑧 = 11, 3𝑥 +2 (This section comprises ofwith two sub-parts. First two case study questions have three subof marks 1, 1, 2 respectively. The third case study question has two submarks each.) Q36. Case-Study 1: Read the following passage and answer the questions given below. The temperature of a person during an intestinal illness is given by 𝑓(𝑥)= −0.1𝑥ଶ+ 𝑚𝑥 +98 temperature in °F at x days. (i) Is the function differentiable in the interval (0, 12)? Justify your answer.(ii) If 6 is the critical point empty set X, define the relation R in P(X) as follows: 𝑅 iff 𝐴 ⊂ 𝐵. Prove that R is reflexive, transitiveAn insect is crawling along the line 𝑟̅ = 6𝚤̂ + 2𝚥̂ + 2𝑘෠+ 𝜆൫𝚤̂ − 2𝚥̂ + 2𝑘෠൯ and insect is crawling along the line 𝑟̅ = −4𝚤̂ − 𝑘෠+ 𝜇൫3𝚤̂ − 2𝚥̂ − 2𝑘෠൯. At what points on the lines should they reach so that the distance between them is the shortest? Find thepossible distance between them. OR The equations of motion of a rocket are: where the time t is given in seconds, and the coordinates of a is the path of the rocket? At what distances will the rocket be (0, 0, 0) and from the following line in 10 seconds?(10𝚤̂ − 20𝚥̂ + 10𝑘෠) ൩, find 𝐴ିଵ. Use 𝐴ିଵ to solve the following system of equations2𝑦 − 4𝑧 = −5, 𝑥 + 𝑦 − 2𝑧 = −3 SECTION E This section comprises of 3 case-study/passage-based questions of First two case study questions have three sub-parts (i), (ii), (iii) of marks 1, 1, 2 respectively. The third case study question has two subRead the following passage and answer the questions given below. The temperature of a person during an intestinal illness is given by 98.6,0 ≤ 𝑥 ≤ 12, m being a constant, where f(x) is the temperature in °F at x days. Is the function differentiable in the interval (0, 12)? Justify your answer.If 6 is the critical point of the function, then find the value of the constant transitive and not ൯and another At what points on the Find the shortest where the time t is given in seconds, and the coordinates of a will the rocket be in 10 seconds? the following system of equations of 4 marks each parts (i), (ii), (iii) of marks 1, 1, 2 respectively. The third case study question has two sub-parts of 2 Read the following passage and answer the questions given below. f(x) is the Is the function differentiable in the interval (0, 12)? Justify your answer. e function, then find the value of the constant m. Page 6 (iii) Find the intervals in which the function is strictly increasing/strictly decreasing. OR (iii) Find the points of local maximum/local minimum, if any, in the interval (0, 12) as well as the points of absolute maximum/absolute minimum in the interval [0, 12]. Also, find the corresponding local maximum/local minimum and the absolute maximum/absolute minimum values of the function.
+
+Q4 [mcq, 1m, Sec E]
+The value of ‘k’ for which the function f(x) =ቊ ଵି௖௢௦ସ௫ ଼௫మ ,𝑖𝑓 𝑥≠ 0 𝑘,𝑖𝑓 𝑥= 0 is continuous at x = 0 is
+  (A) 0
+  (B) -1
+  (C) 1.
+  (D) 2
+
+Q5 [mcq, 1m, Sec E]
+If 𝑓ᇱ(𝑥)=𝑥+ଵ ௫, then 𝑓(𝑥) is
+  (A) 𝑥ଶ + log |𝑥| +𝐶
+  (B) ௫మ ଶ + log |𝑥| +𝐶
+  (C) ௫ ଶ + log |𝑥| +𝐶
+  (D) ௫ ଶ − log |𝑥| +𝐶
+
+Q6 [mcq, 1m, Sec E]
+If m and n, respectively, are the order and the degree of the differential equation ௗ ௗ௫ ቂቀௗ௬ ௗ௫ቁቃ ସ = 0, then m + n =
+  (A) 1
+  (B) 2
+  (C) 3
+  (D) 4
+
+Q7 [mcq, 1m, Sec E]
+The solution set of the inequality 3x + 5y < 4 is
+  (A) an open half-plane not containing the origin.
+  (B) an open half-plane containing the origin.
+  (C) the whole XY-plane not containing the line 3x + 5y = 4.
+  (D) a closed half plane containing the origin.
+
+Q8 [mcq, 1m, Sec E]
+The scalar projection of the vector 3𝚤̂ −𝚥̂ − 2𝑘෠ 𝑜𝑛 𝑡ℎ𝑒 𝑣𝑒𝑐𝑡𝑜𝑟 𝚤̂ + 2𝚥̂ − 3𝑘 ෡ is
+  (A) ଻ √ଵସ
+  (B) ଻ ଵସ
+  (C) ଺ ଵଷ
+  (D) ଻ ଶ
+
+Q9 [mcq, 1m, Sec E]
+The value of ∫ ௫ ௫మାଵ ଷ ଶ dx is
+  (A) log4
+  (B) 𝑙𝑜𝑔ଷ ଶ
+  (C) ଵ ଶ 𝑙𝑜𝑔2
+  (D) 𝑙𝑜𝑔ଽ ସ
+
+======================================================================
+Return the complete JSON array.

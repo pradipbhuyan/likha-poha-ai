@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 4: Carbon and Its Compounds",
+  "central_question": "Why can carbon form an enormous variety of stable compounds, and how do their structures explain their properties, reactions and everyday uses?",
+  "in_scope_units": [
+    "Covalent bonding through sharing of electrons and the tetravalency of carbon",
+    "Single, double and triple covalent bonds in simple molecules",
+    "Properties of covalent compounds and allotropes of carbon",
+    "Catenation and the versatile nature of carbon",
+    "Saturated and unsaturated carbon compounds",
+    "Straight chains, branched chains, rings, structural isomers and hydrocarbons",
+    "Heteroatoms and functional groups",
+    "Homologous series and basic nomenclature of carbon compounds",
+    "Combustion, oxidation, addition and substitution reactions",
+    "Properties and reactions of ethanol",
+    "Properties and reactions of ethanoic acid, esterification and saponification",
+    "Cleaning action of soaps, micelles, hard water and detergents"
+  ],
+  "banned_topics": [
+    "Detailed petroleum refining and fractional distillation",
+    "Advanced organic reaction mechanisms",
+    "Stereoisomerism and optical isomerism",
+    "Polymers not discussed in the chapter",
+    "Biochemistry of carbohydrates, proteins and nucleic acids"
+  ],
+  "must_include_keywords": [
+    "covalent bond",
+    "electron sharing",
+    "tetravalency",
+    "catenation",
+    "single bond",
+    "double bond",
+    "triple bond",
+    "methane",
+    "diamond",
+    "graphite",
+    "fullerene",
+    "saturated compound",
+    "unsaturated compound",
+    "hydrocarbon",
+    "alkane",
+    "alkene",
+    "alkyne",
+    "structural isomer",
+    "functional group",
+    "homologous series",
+    "nomenclature",
+    "combustion",
+    "oxidation",
+    "addition reaction",
+    "substitution reaction",
+    "ethanol",
+    "ethanoic acid",
+    "esterification",
+    "saponification",
+    "soap",
+    "micelle",
+    "hydrophilic",
+    "hydrophobic",
+    "hard water",
+    "detergent"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Carbon normally forms C4+ or C4- ions to complete its octet.",
+      "correction": "Gaining or losing four electrons is energetically difficult; carbon completes its outer shell mainly by sharing electrons and forming covalent bonds."
+    },
+    {
+      "claim": "All carbon compounds conduct electricity because carbon is present.",
+      "correction": "Most covalent carbon compounds are poor conductors because electron sharing does not produce mobile ions. Graphite is an important allotrope that conducts electricity."
+    },
+    {
+      "claim": "Compounds with the same molecular formula must have the same structure.",
+      "correction": "Structural isomers have the same molecular formula but different carbon skeletons or structures, as shown for butane."
+    },
+    {
+      "claim": "Soap works equally well in hard and soft water.",
+      "correction": "Soap forms an insoluble curdy precipitate with calcium and magnesium ions in hard water, while detergents remain effective."
+    },
+    {
+      "claim": "Mustard or vegetable oil becomes healthier when hydrogenated.",
+      "correction": "The chapter explains that hydrogenation converts unsaturated oils into saturated fats and notes that saturated fatty acids are considered harmful for health."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Figures 4.1-4.5 and Exercise Question 4 to construct electron-dot structures and explain covalent bonding.",
+    "Use NCERT Figures 4.6-4.10 and Activity 4.2 to build chains, recognise saturation, identify isomers and form homologous series.",
+    "Use NCERT Activities 4.3-4.5 and the chemical-property questions to reason from flame, soot and colour change to combustion and oxidation.",
+    "Use NCERT Activities 4.6-4.9 to compare ethanol and ethanoic acid and explain esterification, saponification and carbonate reactions.",
+    "Use NCERT Activities 4.10-4.12 and Exercise Questions 8, 10 and 15 to explain micelles, hard-water scum and detergent action."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The NCERT end-of-chapter EXERCISES contain Questions 1-15, followed by group activities on molecular models and soap preparation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

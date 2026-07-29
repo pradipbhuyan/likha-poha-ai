@@ -1,0 +1,90 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 4: Quadratic Equations",
+    "central_question": "How can real-life conditions be converted into quadratic equations, solved for their roots, and tested for the nature and feasibility of those roots?",
+    "in_scope_units": [
+      "Introduction: formation of a quadratic equation from a real-life area problem and a brief historical context.",
+      "Quadratic Equations: standard form, recognising equations after simplification, and modelling situations mathematically.",
+      "Solution of a Quadratic Equation by Factorisation: roots, zero-product reasoning, repeated roots, verification and rejection of inadmissible contextual roots.",
+      "Nature of Roots: quadratic formula, discriminant, distinct equal or non-real root cases, and applications.",
+      "Summary: consolidates definitions, factorisation, formula and discriminant conditions."
+    ],
+    "banned_topics": [
+      "Complex-number solutions when the discriminant is negative; the supplied chapter states only that there are no real roots.",
+      "Detailed derivation by completing the square, which is mentioned historically but not developed in the supplied chapter.",
+      "Graphical solution of quadratic equations using parabolas, which belongs to the Polynomials chapter and is not a method developed here.",
+      "Higher-degree equations that do not simplify to degree 2."
+    ],
+    "must_include_keywords": [
+      "quadratic equation",
+      "quadratic polynomial",
+      "standard form",
+      "ax² + bx + c = 0",
+      "a ≠ 0",
+      "real coefficients",
+      "simplification",
+      "degree 2",
+      "root",
+      "solution",
+      "zero of a quadratic polynomial",
+      "at most two roots",
+      "factorisation",
+      "splitting the middle term",
+      "linear factors",
+      "zero-product property",
+      "repeated root",
+      "verification",
+      "contextual restriction",
+      "quadratic formula",
+      "x = (−b ± √(b² − 4ac))/(2a)",
+      "discriminant",
+      "b² − 4ac",
+      "two distinct real roots",
+      "two equal real roots",
+      "no real roots",
+      "positive discriminant",
+      "zero discriminant",
+      "negative discriminant",
+      "word problem",
+      "area",
+      "consecutive integers",
+      "Pythagoras theorem",
+      "feasibility"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "An equation is quadratic whenever x² appears before simplification.",
+        "correction": "The equation must simplify to ax² + bx + c = 0 with a ≠ 0; x² terms may cancel and leave a linear equation."
+      },
+      {
+        "claim": "The roots of a quadratic equation and the zeroes of the corresponding quadratic polynomial are different ideas.",
+        "correction": "For ax² + bx + c = 0, the roots are exactly the zeroes of ax² + bx + c."
+      },
+      {
+        "claim": "Every algebraic root is acceptable in a word problem.",
+        "correction": "A root must satisfy the context; negative lengths, counts or ages are rejected when the quantities must be positive."
+      },
+      {
+        "claim": "The discriminant is b² + 4ac or the denominator in the quadratic formula is 2.",
+        "correction": "The discriminant is b² − 4ac and the denominator is 2a."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the prayer hall situation in Section 4.1 to form 2x² + x − 300 = 0.",
+      "Use NCERT Example 2 to decide whether equations are quadratic only after full simplification.",
+      "Use NCERT Example 3 and Example 5 to solve by factorisation, including distinct and repeated roots.",
+      "Use NCERT Example 6 to apply contextual rejection of a negative root.",
+      "Use NCERT Examples 7, 8 and 9 to classify roots with the discriminant and solve feasible applications."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The supplied chapter contains Exercise 4.1 on recognising and forming quadratic equations, Exercise 4.2 on factorisation and applications, and Exercise 4.3 on the nature of roots and feasibility."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Quadratic Equations\n\n## What you will learn\nYou will understand the standard form of a quadratic equation and form one from a real-life condition. You will also see why the coefficient of x² must be non-zero.\n\n## Simple explanation\nWhen a quadratic polynomial is equated to zero, it becomes a quadratic equation. The standard form is ax² + bx + c = 0, where a, b and c are real numbers and a ≠ 0.\n\n## Step-by-step breakdown\n- **Quadratic equation**: An equation of degree 2 in one variable is written as ax² + bx + c = 0.\n- **Non-zero leading coefficient**: If a = 0, the x² term disappears and the equation is not quadratic.\n- **Standard form**: Expand brackets, collect like terms, move all terms to one side and arrange in descending powers.\n- **Modelling**: Choose a variable, express related quantities in terms of it, use the stated condition and simplify.\n- **Dimensions and units**: Area problems often produce a product of two linear expressions, leading to an x² term.\n\n## Worked example\nQuestion: Form the quadratic equation for the prayer hall in NCERT Section 4.1, whose area is 300 m² and whose length is 1 m more than twice its breadth.\n\nSolution:\n- Step 1: Let the breadth be x metres.\n- Step 2: Then the length is (2x + 1) metres.\n- Step 3: Area = length × breadth = (2x + 1)x.\n- Step 4: Given area 300 m², x(2x + 1) = 300.\n- Step 5: Expand: 2x² + x = 300.\n- Step 6: Move all terms to one side: 2x² + x − 300 = 0.\n- Final answer: The required quadratic equation is **2x² + x − 300 = 0**.\n\n## Common mistake\nDo not write the length as 2(x + 1). “One more than twice the breadth” means 2x + 1, not 2x + 2.\n\n## Quick check question\nQuestion: In NCERT Exercise 4.1 Question 2(ii), form the quadratic equation if the product of two consecutive positive integers is 306.\nAnswer: x² + x − 306 = 0.\nExplanation: Let the smaller integer be x, so the next is x + 1. Then x(x + 1) = 306, giving x² + x − 306 = 0.\n\n## Summary\n- A quadratic equation has degree 2.\n- Its standard form is ax² + bx + c = 0 with a ≠ 0.\n- Equations should be expanded and simplified before classification.\n- Real-life products often create quadratic equations.\n- Variables and units must be defined clearly.",
+    "Core explanation": "# Core explanation: Quadratic Equations\n\n## What you will learn\nYou will decide whether a given equation is quadratic after complete simplification. You will also distinguish appearance from actual degree.\n\n## Simple explanation\nAn equation may look quadratic but simplify to a linear equation because x² terms cancel. Another equation may look cubic but simplify to degree 2 because x³ terms cancel.\n\n## Step-by-step breakdown\n- **Expand identities**: Use identities such as (x − 2)² = x² − 4x + 4 and (x + 2)³ = x³ + 6x² + 12x + 8.\n- **Move terms**: Bring all expressions to one side of the equality.\n- **Combine like terms**: Cancel equal powers and inspect the highest remaining power.\n- **Quadratic test**: The simplified equation must have a non-zero x² coefficient and no higher power.\n- **Do not judge by first appearance**: Classification is made only after simplification.\n\n## Worked example\nQuestion: Solve NCERT Example 2(ii): Check whether x(x + 1) + 8 = (x + 2)(x − 2) is a quadratic equation.\n\nSolution:\n- Step 1: Expand the left side: x(x + 1) + 8 = x² + x + 8.\n- Step 2: Expand the right side: (x + 2)(x − 2) = x² − 4.\n- Step 3: Equate: x² + x + 8 = x² − 4.\n- Step 4: Subtract x² from both sides: x + 8 = −4.\n- Step 5: Move all terms to one side: x + 12 = 0.\n- Step 6: The highest power is 1, not 2.\n- Final answer: The equation is **not quadratic; it is linear after simplification**.\n\n## Common mistake\nDo not stop as soon as you see x² on both sides. Equal x² terms may cancel, changing the degree.\n\n## Quick check question\nQuestion: According to NCERT Example 2(iv), what does (x + 2)³ = x³ − 4 simplify to, and is it quadratic?\nAnswer: It simplifies to x² + 2x + 2 = 0, so it is quadratic.\nExplanation: Expanding gives x³ + 6x² + 12x + 8 = x³ − 4; the x³ terms cancel and division by 6 gives x² + 2x + 2 = 0.\n\n## Summary\n- Expand both sides fully.\n- Bring all terms to one side.\n- Cancel like terms before deciding the degree.\n- A visible x² term does not guarantee a quadratic equation.\n- A seemingly cubic equation may simplify to a quadratic.",
+    "Worked examples": "# Worked examples: Quadratic Equations\n\n## What you will learn\nYou will understand roots and solve quadratic equations by factorisation. You will practise splitting the middle term and handling repeated factors.\n\n## Simple explanation\nA root is a value of x that makes the quadratic expression zero. If the expression is factorised into two linear factors, their product is zero only when at least one factor is zero.\n\n## Step-by-step breakdown\n- **Root**: α is a root of ax² + bx + c = 0 when aα² + bα + c = 0.\n- **Connection with zeroes**: Roots of the equation are the zeroes of the corresponding quadratic polynomial.\n- **At most two roots**: A quadratic equation can have at most two real roots.\n- **Splitting the middle term**: Find two terms whose sum is bx and whose product equals acx².\n- **Grouping**: Factor by grouping to obtain two linear factors.\n- **Zero-product property**: If (px + q)(rx + s) = 0, set each factor equal to zero.\n- **Repeated factor**: The same factor twice gives two equal roots.\n\n## Worked example\nQuestion: Solve NCERT Example 3 by factorisation: 2x² − 5x + 3 = 0.\n\nSolution:\n- Step 1: The product of the first and constant terms is 2 × 3 = 6.\n- Step 2: Split −5x as −2x − 3x because (−2)(−3) = 6 and −2 + (−3) = −5.\n- Step 3: 2x² − 5x + 3 = 2x² − 2x − 3x + 3.\n- Step 4: Group: 2x(x − 1) − 3(x − 1) = 0.\n- Step 5: Factor: (2x − 3)(x − 1) = 0.\n- Step 6: Therefore, 2x − 3 = 0 or x − 1 = 0.\n- Step 7: Hence x = 3/2 or x = 1.\n- Final answer: The roots are **1 and 3/2**.\n\n## Common mistake\nAfter factorisation, equate each complete factor to zero. Do not set individual terms such as 2x or −3 to zero separately.\n\n## Quick check question\nQuestion: In NCERT Example 5, what are the roots of 3x² − 2√6x + 2 = 0?\nAnswer: Both roots are √(2/3).\nExplanation: The expression factorises as (√3x − √2)² = 0, so √3x − √2 = 0 and x = √2/√3 = √(2/3), repeated twice.\n\n## Summary\n- Roots make the quadratic equation true.\n- Roots and polynomial zeroes are the same values.\n- Factorisation reduces a quadratic to linear factors.\n- Each factor is equated to zero.\n- A repeated linear factor gives equal roots.",
+    "Exam-style problems": "# Exam-style problems: Quadratic Equations\n\n## What you will learn\nYou will use the quadratic formula and discriminant to identify the nature of roots. You will calculate carefully with negative coefficients.\n\n## Simple explanation\nThe discriminant D = b² − 4ac tells us whether real roots exist before we solve the equation. The quadratic formula gives the roots whenever D is non-negative.\n\n## Step-by-step breakdown\n- **Quadratic formula**: x = [−b ± √(b² − 4ac)]/(2a).\n- **Discriminant**: D = b² − 4ac.\n- **D > 0**: Two distinct real roots.\n- **D = 0**: Two equal real roots, both equal to −b/(2a).\n- **D < 0**: No real roots.\n- **Substitution of coefficients**: Include the sign of b and c exactly as written in standard form.\n\n## Worked example\nQuestion: Solve NCERT Example 9: Find the discriminant and nature of roots of 3x² − 2x + 1/3 = 0, and find the roots.\n\nSolution:\n- Step 1: Compare with ax² + bx + c = 0: a = 3, b = −2, c = 1/3.\n- Step 2: D = b² − 4ac.\n- Step 3: D = (−2)² − 4(3)(1/3) = 4 − 4 = 0.\n- Step 4: Since D = 0, the equation has two equal real roots.\n- Step 5: Each root is −b/(2a) = −(−2)/(2 × 3) = 2/6 = 1/3.\n- Final answer: The discriminant is **0**, and the equal roots are **1/3 and 1/3**.\n\n## Common mistake\nWhen b is negative, b² is positive and −b is also positive. Keep brackets: (−2)² = 4 and −(−2) = 2.\n\n## Quick check question\nQuestion: In NCERT Example 7, what is the nature of the roots of 2x² − 4x + 3 = 0?\nAnswer: The equation has no real roots.\nExplanation: D = (−4)² − 4(2)(3) = 16 − 24 = −8 < 0.\n\n## Summary\n- Use D = b² − 4ac to classify roots.\n- Positive D gives two distinct real roots.\n- Zero D gives equal real roots.\n- Negative D gives no real roots.\n- The quadratic formula uses the denominator 2a.",
+    "Revision and recap": "# Revision and recap: Quadratic Equations\n\n## What you will learn\nYou will revise the full problem-solving process and apply it to a geometric feasibility problem. You will decide which algebraic roots are meaningful in context.\n\n## Simple explanation\nA complete solution to an application has four stages: form the equation, determine whether real roots exist, solve it, and reject any root that violates the meaning of the variable.\n\n## Step-by-step breakdown\n- **Model the situation**: Define x and translate lengths, areas, products or times into an equation.\n- **Write standard form**: Arrange as ax² + bx + c = 0.\n- **Choose a method**: Factorise when convenient; use the quadratic formula when needed.\n- **Check the discriminant**: Establish whether the situation has real algebraic solutions.\n- **Apply restrictions**: Length, age, count and speed generally require positive values.\n- **Verify**: Substitute the accepted value into the original condition.\n\n## Worked example\nQuestion: Solve NCERT Example 8: A circular park has diameter 13 m. A point P on the boundary is 7 m farther from gate A than from the diametrically opposite gate B. Find the distances from P to the gates.\n\nSolution:\n- Step 1: Let PB = x m, so AP = x + 7 m.\n- Step 2: Since AB is a diameter, ∠APB = 90°, so AP² + PB² = AB².\n- Step 3: (x + 7)² + x² = 13².\n- Step 4: x² + 14x + 49 + x² = 169.\n- Step 5: 2x² + 14x − 120 = 0, so x² + 7x − 60 = 0.\n- Step 6: D = 7² − 4(1)(−60) = 49 + 240 = 289 > 0, so real roots exist.\n- Step 7: x = [−7 ± √289]/2 = (−7 ± 17)/2.\n- Step 8: Thus x = 5 or x = −12.\n- Step 9: Reject x = −12 because a distance cannot be negative.\n- Step 10: PB = 5 m and AP = 5 + 7 = 12 m.\n- Final answer: The point is **5 m from gate B and 12 m from gate A**.\n\n## Common mistake\nDo not report every root without interpretation. Algebra gives x = 5 and x = −12, but only x = 5 is a possible distance.\n\n## Quick check question\nQuestion: Using NCERT Example 6, what are the dimensions of the 300 m² prayer hall?\nAnswer: Breadth = 12 m and length = 25 m.\nExplanation: 2x² + x − 300 = (x − 12)(2x + 25) = 0 gives x = 12 or −12.5; the negative breadth is rejected, and 2(12) + 1 = 25.\n\n## Summary\n- Form and simplify the quadratic equation first.\n- Roots can be found by factorisation or the quadratic formula.\n- The discriminant predicts the nature of roots.\n- Context can eliminate an algebraic root.\n- Accepted roots must be verified in the original situation."
+  }
+}

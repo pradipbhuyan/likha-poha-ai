@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 3: Metals and Non-metals",
+  "central_question": "How do the physical properties, chemical reactivity, bonding, occurrence, extraction and corrosion of metals and non-metals explain their behaviour and uses?",
+  "in_scope_units": [
+    "Physical properties of metals: lustre, hardness, malleability, ductility, heat and electrical conductivity, and sonority",
+    "Physical properties of non-metals and important exceptions to general metal/non-metal trends",
+    "Chemical properties of metals with oxygen, water, dilute acids and salt solutions",
+    "The reactivity series and prediction of displacement reactions",
+    "Electron transfer between metals and non-metals and the formation of ionic compounds",
+    "Physical properties, solubility and electrical conductivity of ionic compounds",
+    "Occurrence of metals as minerals and ores, enrichment of ores and extraction according to reactivity",
+    "Roasting, calcination, reduction, thermit reaction, electrolytic reduction and electrolytic refining",
+    "Corrosion of silver, copper and iron, conditions required for rusting, and methods of prevention",
+    "Alloys, amalgams and the improvement of metal properties"
+  ],
+  "banned_topics": [
+    "Detailed periodic-table classification and periodic trends",
+    "Acid-base pH calculations",
+    "Carbon compound nomenclature and homologous series",
+    "Detailed electrochemical-cell theory beyond the electrolytic processes described in this chapter"
+  ],
+  "must_include_keywords": [
+    "metallic lustre",
+    "malleability",
+    "ductility",
+    "sonorous",
+    "conductor",
+    "non-metal",
+    "graphite",
+    "amphoteric oxide",
+    "aluminium oxide",
+    "zinc oxide",
+    "reactivity series",
+    "displacement reaction",
+    "hydrogen gas",
+    "ionic compound",
+    "cation",
+    "anion",
+    "electrostatic attraction",
+    "mineral",
+    "ore",
+    "gangue",
+    "roasting",
+    "calcination",
+    "reduction",
+    "thermit reaction",
+    "electrolysis",
+    "electrolytic refining",
+    "anode mud",
+    "corrosion",
+    "rusting",
+    "galvanisation",
+    "alloy",
+    "amalgam"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every metal is hard, solid and has a high melting point.",
+      "correction": "These are general trends with exceptions: mercury is liquid at room temperature, gallium and caesium have low melting points, and alkali metals such as sodium are soft enough to cut with a knife."
+    },
+    {
+      "claim": "All metal oxides are only basic.",
+      "correction": "Most metal oxides are basic, but aluminium oxide and zinc oxide are amphoteric because they react with both acids and bases to form salt and water."
+    },
+    {
+      "claim": "Any metal can displace any other metal from its salt solution.",
+      "correction": "A displacement occurs only when the free metal is more reactive than the metal present in the salt solution."
+    },
+    {
+      "claim": "Ionic compounds conduct electricity in the solid state because they contain ions.",
+      "correction": "Their ions are fixed in a rigid lattice in the solid state; ionic compounds conduct only when molten or dissolved in water because the ions can then move."
+    },
+    {
+      "claim": "Rusting needs only water or only oxygen.",
+      "correction": "Activity 3.14 shows that iron rusts when both air and water are present."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activities 3.1-3.7 to classify samples by lustre, malleability, ductility, conductivity and sonority while noting exceptions.",
+    "Use NCERT Activities 3.9-3.12 to infer relative reactivity from reactions with oxygen, water, acids and salt solutions.",
+    "Use NCERT Figures 3.5-3.6 and Activity 3.13 to explain electron transfer and the properties of ionic compounds.",
+    "Use NCERT Figure 3.10 and the extraction examples for mercury, copper and zinc to select a metallurgy method from the reactivity series.",
+    "Use NCERT Activity 3.14 and Exercise Questions 2, 10 and 12 to reason about corrosion and its prevention."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The NCERT end-of-chapter EXERCISES contain Questions 1-16, covering displacement, physical and chemical properties, ionic bonding, extraction, refining, corrosion and applications.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 5",
+  "subject": "English",
+  "chapter": "7. Gilli Danda",
+  "central_question": "How does the poem celebrate outdoor play while the chapter builds vocabulary, grammar, speaking, writing, and making skills?",
+  "in_scope_units": [
+    "Let us Recite: joyful outdoor play with a gilli and danda",
+    "Let us Think: comprehension, outside setting, meaning of sound, and imagination",
+    "Let us Learn: prefixes, abstract nouns, and possessive pronouns",
+    "Let us Speak and Listen: explaining a group game and matching actions to phrases",
+    "Let us Write and Do: dictionary use, question formation, double letters, antonyms, making Gilli Danda, riddle, and Spellathon"
+  ],
+  "banned_topics": [
+    "Water conservation systems",
+    "The Panchayat well dispute",
+    "Glass-bangle production"
+  ],
+  "must_include_keywords": [
+    "playground",
+    "gilli",
+    "danda",
+    "gather",
+    "joy",
+    "swing and hit",
+    "quit",
+    "bright blue skies",
+    "golden rays",
+    "outdoor game",
+    "tip-cat",
+    "prefix",
+    "un-",
+    "re-",
+    "unhappy",
+    "redo",
+    "abstract nouns",
+    "happiness",
+    "truth",
+    "fear",
+    "possessive pronouns",
+    "mine",
+    "his",
+    "theirs",
+    "hers",
+    "ours",
+    "yours",
+    "safety instructions",
+    "dictionary",
+    "question mark",
+    "double letters",
+    "antonyms",
+    "waste material",
+    "rough stone",
+    "riddle",
+    "your name",
+    "Spellathon"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Gilli Danda is played with a ball.",
+      "correction": "It is played with one short stick called the gilli and one long stick called the danda."
+    },
+    {
+      "claim": "Happiness is a concrete noun because people can feel it.",
+      "correction": "The chapter treats happiness as an abstract noun because it cannot be touched, seen, smelt, or tasted."
+    },
+    {
+      "claim": "Possessive pronouns are followed by a noun in these examples.",
+      "correction": "Mine, his, hers, ours, theirs, and yours stand independently to show ownership."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Let us Think A to explain the game, the players’ feelings, and the outdoor setting.",
+    "Use Let us Learn A to add un- or re- and explain the changed meaning.",
+    "Use Let us Learn B and C to distinguish abstract nouns and choose possessive pronouns.",
+    "Use Let us Write B to rearrange supplied words into questions with capitals and question marks.",
+    "Use Let us Do A and B to explain the making steps and Spellathon rule."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "There is no single end-of-chapter exercise block; activities are organised under Let us Think, Learn, Speak, Listen, Write, and Do.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

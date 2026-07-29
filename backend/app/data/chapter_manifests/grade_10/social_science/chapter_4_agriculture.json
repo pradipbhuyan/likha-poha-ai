@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 4: Agriculture",
+  "central_question": "How do farming systems, cropping seasons, crop requirements and reforms shape Indian agriculture?",
+  "in_scope_units": [
+    "Importance of agriculture and its role in food, industry and exports.",
+    "Types of farming: primitive subsistence, intensive subsistence, commercial and plantation farming.",
+    "Cropping pattern: rabi, kharif and zaid seasons.",
+    "Major crops: cereals, millets, pulses and maize with their conditions and regions.",
+    "Food crops other than grains, beverage crops, horticulture, non-food and fibre crops.",
+    "Technological and institutional reforms, farmer support schemes and the Bhoodan-Gramdan movement."
+  ],
+  "banned_topics": [
+    "Detailed soil classification from Resources and Development.",
+    "Detailed industrial location of agro-based industries from Manufacturing Industries.",
+    "Detailed irrigation-project debates from Water Resources."
+  ],
+  "must_include_keywords": [
+    "primitive subsistence farming",
+    "slash and burn",
+    "jhumming",
+    "intensive subsistence farming",
+    "commercial farming",
+    "plantation agriculture",
+    "HYV seeds",
+    "rabi",
+    "kharif",
+    "zaid",
+    "rice",
+    "wheat",
+    "millets",
+    "jowar",
+    "bajra",
+    "ragi",
+    "maize",
+    "pulses",
+    "leguminous crops",
+    "sugarcane",
+    "oilseeds",
+    "tea",
+    "coffee",
+    "horticulture",
+    "rubber",
+    "cotton",
+    "jute",
+    "sericulture",
+    "land reforms",
+    "Green Revolution",
+    "White Revolution",
+    "crop insurance",
+    "Kisan Credit Card",
+    "minimum support price",
+    "Bhoodan",
+    "Gramdan",
+    "Vinoba Bhave"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Plantation farming is a form of subsistence farming.",
+      "correction": "The chapter identifies plantation as a type of commercial farming in which one crop is grown on a large area for the market and processing industries."
+    },
+    {
+      "claim": "Rice is always a subsistence crop.",
+      "correction": "The chapter states that rice is commercial in Haryana and Punjab but can be a subsistence crop in Odisha."
+    },
+    {
+      "claim": "All pulses fix nitrogen.",
+      "correction": "The chapter states that the listed pulses are leguminous and restore fertility except arhar."
+    },
+    {
+      "claim": "Agricultural reforms were only technological.",
+      "correction": "The chapter includes institutional reforms, credit, insurance, price support, information services and land movements as well as technology."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1(i) to identify plantation agriculture from its defining feature.",
+    "Use NCERT Exercise 1(ii) to distinguish rabi crops from kharif crops.",
+    "Use NCERT Exercise 2(i) to connect a beverage crop with geographical conditions.",
+    "Use NCERT Exercise 3(ii) to write a structured answer on conditions required for rice.",
+    "Use NCERT Exercise 3(i) to organise government initiatives for higher agricultural production."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “EXERCISES”, Questions 1 to 3, followed by project work and an agriculture word-search activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

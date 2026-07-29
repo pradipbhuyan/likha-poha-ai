@@ -1,0 +1,80 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "English",
+    "chapter": "Grammar: Modals",
+    "central_question": "How can a student select and form modal verbs correctly to express ability, permission, possibility, obligation, advice, absence of necessity and prohibition?",
+    "in_scope_units": [
+      "Form of modal verbs followed by the base form",
+      "Ability with can and could",
+      "Permission with may, can and polite could",
+      "Possibility with may, might and could",
+      "Necessity and obligation with must and have to",
+      "Advice with should and ought to",
+      "Absence of necessity with need not and do not have to",
+      "Prohibition with must not and cannot",
+      "Common modal errors involving to, third-person -s and meaning differences"
+    ],
+    "banned_topics": [
+      "Tense system beyond the time contrast needed for can/could",
+      "Reported speech",
+      "Conditionals",
+      "Active and passive voice"
+    ],
+    "must_include_keywords": [
+      "modal verb",
+      "base form",
+      "can",
+      "could",
+      "may",
+      "might",
+      "shall",
+      "should",
+      "will",
+      "would",
+      "must",
+      "ought to",
+      "need",
+      "dare",
+      "ability",
+      "permission",
+      "possibility",
+      "necessity",
+      "obligation",
+      "advice",
+      "need not",
+      "have to",
+      "must not",
+      "prohibition"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A modal is followed by 'to' and then the main verb.",
+        "correction": "A modal is normally followed directly by the base form: 'She can sing.' The fixed expression 'ought to' is the stated exception in this topic."
+      },
+      {
+        "claim": "A modal takes -s with a third-person singular subject.",
+        "correction": "Modals do not take -s: 'He can swim,' not 'He cans swim.'"
+      },
+      {
+        "claim": "Must not and need not have the same meaning.",
+        "correction": "Must not expresses prohibition; need not expresses absence of necessity or optional action."
+      }
+    ],
+    "recommended_example_progression": [
+      "Correct sentences containing 'to' or '-s' after a modal.",
+      "Fill in blanks for ability and permission using can, could or may.",
+      "Choose may, might or could to express degrees of possibility.",
+      "Distinguish must from have to in internal and external obligation contexts.",
+      "Edit mixed sentences involving should, ought to, need not and must not."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Typical CBSE tasks include gap filling, dialogue completion, sentence rewriting, choice of the most suitable modal and error correction."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Grammar: Modals\n\n## What you will learn\nYou will learn the basic form of modal verbs and use `can` and `could` for ability. You will also use `may`, `can` and polite `could` for permission.\n\n## Simple explanation\nA modal comes before the main verb and adds a meaning such as ability or permission. The main verb stays in its base form, and the modal does not take `-s` for a third-person singular subject.\n\n## Step-by-step breakdown\n- **Modal form**: `subject + modal + base form of main verb`.\n- **No ordinary `to`**: Say `can sing`, not `can to sing`. The expression `ought to` is a fixed form taught separately.\n- **No third-person `-s`**: Say `He can swim`, not `He cans swim`.\n- **Present ability**: Use `can`. Example: `She can swim well.`\n- **Past ability**: Use `could`. Example: `He could run fast when he was young.`\n- **Formal permission**: Use `may`, as in `May I come in?`\n- **Informal permission**: `Can I use your pen?` is common in informal situations.\n- **Very polite request or permission**: Use `could`, as in `Could you please pass the salt?`\n\n## Worked example\nQuestion: Correct the sentence: `He cans solve this puzzle.`\n\nSolution:\n- Step 1: Identify the modal `can`; modals do not take `-s`.\n- Step 2: Keep the main verb in the base form `solve`.\n- Final answer: He can solve this puzzle.\n\n## Common mistake\nIncorrect: `She can to sing.` Correct: `She can sing.` A modal is followed directly by the base form of the main verb.\n\n## Quick check question\nQuestion: Fill in the blank with a very polite modal: `___ you please open the window?`\nAnswer: Could you please open the window?\nExplanation: `Could` is used for a very polite request, followed by the base verb `open`.\n\n## Summary\n- A modal is followed by the base verb.\n- Modals do not take `-s`.\n- `Can` expresses present ability.\n- `Could` expresses past ability.\n- `May`, `can` and polite `could` can express permission.",
+    "Core explanation": "# Core explanation: Grammar: Modals\n\n## What you will learn\nYou will express possibility with `may`, `might` and `could`. You will choose a modal according to how certain or hypothetical the possibility is.\n\n## Simple explanation\nPossibility modals show that something is not certain. `May` often suggests a fairly strong possibility, while `might` suggests a weaker or more hypothetical possibility; `could` can also present a possible outcome.\n\n## Step-by-step breakdown\n- **May for possibility**: Use `may + base verb` for a fairly strong possibility. Example: `It may rain today.`\n- **Might for weaker possibility**: Use `might + base verb` when the speaker is less certain. Example: `It might rain, but I am not sure.`\n- **Could for possibility**: Use `could + base verb` to show that something is possible. Example: `The delay could affect the schedule.`\n- **Form remains unchanged**: The verb after each modal stays in the base form: `may arrive`, `might happen`, `could change`.\n- **Meaning matters**: The modal should match the speaker's degree of confidence, not merely the subject of the sentence.\n\n## Worked example\nQuestion: Fill in the blank with the weaker possibility modal: `The team ___ win, but the result is very uncertain.`\n\nSolution:\n- Step 1: The sentence says the result is very uncertain.\n- Step 2: Use `might`, which expresses a weaker or more hypothetical possibility.\n- Final answer: The team might win, but the result is very uncertain.\n\n## Common mistake\nDo not add tense endings to the main verb after a possibility modal. Correct: `It may rain`; incorrect: `It may rains`.\n\n## Quick check question\nQuestion: Fill in the blank with a suitable possibility modal: `Heavy traffic ___ delay the bus.`\nAnswer: Heavy traffic could delay the bus.\nExplanation: `Could + base verb` expresses a possible result, and `delay` remains in the base form.\n\n## Summary\n- `May` expresses a fairly strong possibility.\n- `Might` expresses a weaker or more hypothetical possibility.\n- `Could` can also express possibility.\n- Each modal is followed by the base form.\n- Choose the modal from the intended degree of certainty.",
+    "Worked examples": "# Worked examples: Grammar: Modals\n\n## What you will learn\nYou will distinguish `must` from `have to` when expressing necessity and obligation. You will identify whether the obligation comes mainly from the speaker's judgement or from an external rule.\n\n## Simple explanation\nBoth `must` and `have to` can show obligation. `Must` often presents the speaker's strong judgement, while `have to` often points to a rule or circumstance imposed from outside.\n\n## Step-by-step breakdown\n- **Must for strong necessity**: Use `must + base verb` when the speaker gives a strong instruction or judgement. Example: `You must wear a helmet while riding a bike.`\n- **Have to for external obligation**: Use `have to + base verb` when a rule, timetable or authority creates the obligation. Example: `Students have to submit the form by Friday.`\n- **Meaning contrast**: The action may be equally necessary, but the source of the obligation differs.\n- **Form of must**: `Must` does not change with the subject and is followed by a base verb.\n- **Form of have to**: `Have to` is not a pure modal in form; it changes to `has to` with third-person singular subjects.\n\n## Worked example\nQuestion: Fill in the blank with the expression that best shows an external school rule: `Every student ___ wear the prescribed uniform.`\n\nSolution:\n- Step 1: The obligation comes from a school rule, not merely the speaker's personal judgement.\n- Step 2: Use `has to` with the singular subject `Every student`.\n- Final answer: Every student has to wear the prescribed uniform.\n\n## Common mistake\nDo not write `He musts leave now.` The modal `must` never takes `-s`; the correct sentence is `He must leave now.`\n\n## Quick check question\nQuestion: Complete the sentence to show the speaker's strong advice: `You ___ wear a helmet while riding a bike.`\nAnswer: You must wear a helmet while riding a bike.\nExplanation: `Must` expresses the speaker's strong judgement of necessity and is followed by the base verb `wear`.\n\n## Summary\n- `Must` often shows strong personal judgement or instruction.\n- `Have to` often shows an external rule or circumstance.\n- `Must` never changes form.\n- `Have to` changes to `has to` with a singular third-person subject.\n- Both are followed by the base form of the main verb.",
+    "Exam-style problems": "# Exam-style problems: Grammar: Modals\n\n## What you will learn\nYou will use `should` and `ought to` for advice, `need not` and `do not have to` for absence of necessity, and `must not` or `cannot` for prohibition.\n\n## Simple explanation\nAdvice recommends an action, absence of necessity makes an action optional, and prohibition says that an action is not allowed. These meanings must not be confused.\n\n## Step-by-step breakdown\n- **Advice with should**: Use `should + base verb`. Example: `You should apologise to her.`\n- **Advice with ought to**: Use the fixed form `ought to + base verb`. Example: `We ought to help others.`\n- **Absence of necessity**: `Need not` means an action is not required. Example: `You need not come if you are unwell.`\n- **Alternative absence form**: `Do not have to` also means there is no obligation.\n- **Prohibition with must not**: `Must not` means an action is forbidden. Example: `You must not smoke here.`\n- **Prohibition with cannot**: `Cannot` can also state that an action is not permitted.\n- **Meaning contrast**: `You need not come` means coming is optional; `You must not come` means do not come.\n\n## Worked example\nQuestion: Choose the correct expression: `The museum is closed today, so you ___ go there.` (`need not` / `must not`)\n\nSolution:\n- Step 1: The sentence says the visit is unnecessary, not forbidden by a rule.\n- Step 2: Use `need not` to express absence of necessity.\n- Final answer: The museum is closed today, so you need not go there.\n\n## Common mistake\n`Must not` does not mean `not necessary`. It expresses prohibition. Use `need not` or `do not have to` when an action is optional.\n\n## Quick check question\nQuestion: Fill in the blank to express advice: `You ___ apologise for your rude remark.`\nAnswer: You should apologise for your rude remark.\nExplanation: `Should + base verb` is used to give advice.\n\n## Summary\n- `Should` and `ought to` give advice.\n- `Need not` and `do not have to` show absence of necessity.\n- `Must not` and `cannot` show prohibition.\n- `Need not` makes an action optional.\n- `Must not` forbids an action.",
+    "Revision and recap": "# Revision and recap: Grammar: Modals\n\n## What you will learn\nYou will revise modal meanings and correct common CBSE-style errors. You will choose a modal from the purpose of the sentence and keep the main verb in the correct base form.\n\n## Simple explanation\nFirst identify the meaning: ability, permission, possibility, obligation, advice, optional action or prohibition. Then choose the modal and check that its form is correct.\n\n## Step-by-step breakdown\n- **Ability**: `Can` for present ability and `could` for past ability.\n- **Permission**: `May` is formal, `can` is informal and `could` is very polite.\n- **Possibility**: `May`, `might` and `could` express different degrees or shades of possibility.\n- **Obligation**: `Must` often reflects the speaker's judgement; `have to` often reflects an external rule.\n- **Advice**: Use `should` or `ought to`.\n- **No necessity**: Use `need not` or `do not have to`.\n- **Prohibition**: Use `must not` or `cannot`.\n- **Form check**: No ordinary `to` after a modal, no `-s` on a modal, and no inflected main verb after it.\n\n## Worked example\nQuestion: Identify and correct the error: `She might comes later.`\n\nSolution:\n- Step 1: `Might` is a modal expressing possibility.\n- Step 2: The main verb must be in the base form `come`, not `comes`.\n- Final answer: She might come later.\n\n## Common mistake\nStudents often choose a grammatically possible modal but miss the intended meaning. Always decide whether the sentence expresses permission, possibility, advice, necessity or prohibition before selecting the word.\n\n## Quick check question\nQuestion: Correct the sentence: `He can to complete the task.`\nAnswer: He can complete the task.\nExplanation: A modal is followed directly by the base form of the main verb; `to` is not used after `can`.\n\n## Summary\n- Identify the exact meaning before choosing a modal.\n- Keep the modal unchanged for all subjects.\n- Follow the modal with the base verb.\n- Distinguish `must not` from `need not`.\n- Distinguish personal judgement with `must` from external obligation with `have to`.\n- Use polite and formal permission forms appropriately."
+  }
+}

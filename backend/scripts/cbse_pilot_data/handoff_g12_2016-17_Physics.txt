@@ -1,0 +1,105 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2016-17
+Subject: Physics
+Source Subject Code: Physics
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Physics-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Physics-MS.pdf
+Total Questions: 26
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Physics-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Represent graphically the variation of electric field with distance, for a uniformly charged plane sheet. (1)
+
+Q10 [mcq, 1m, Sec B]
+Distinguish between any two types of propagation of electromagnetic waves based on a) frequency range over which they are applicable and b) communication systems in which they are used. (2) SECTION C
+
+Q11 [mcq, 1m, Sec C]
+If N drops of same size each having the same charge, coalesce to form a bigger drop. How will the following vary with respect to single small drop? (3) (i) Total charge on bigger drop (ii) Potential on the bigger drop (iii) Capacitance
+
+Q12 [mcq, 1m, Sec C]
+In the given circuit, a metre bridge is shown in the balance d state. The metre bridge wire has a resistance of 1  cm-1. Calculate the unknown resistance X and the current drawn from the battery of a negligible internal resistance if the magnitude of Y is 6 . If at the balancing point, we interchange the position of galvanometer and the cell, how it will affect the position of the galvanometer? (3) OR Calculate the current drawn from the battery in the given network shown here. State Kirchhoff’s loop law and name the law on which it is based on. (3)
+
+Q13 [mcq, 1m, Sec C]
+A metallic ring of mass m and radius l is falling under gravity in a region having a magnetic field. If z is the vertical direction, the z-component of magnetic field is Bz = B o (1+z). If R is the resistance of the ring and if the ring falls with a velocity v, find the energy lost in the resistance. If the ring has reached a constant velocity, use the conservation of energy to determine v in terms of m, B,  and acceleration due to gravity g. (3)
+
+Q14 [mcq, 1m, Sec C]
+
+  (A) Consider two different hydrogen atoms. The electron in each atom is in an excited state. Is it possible for the electrons to have different energies but same orbital angular momentum according to the Bohr model? Justify your answer.
+  (B) If a proton had a radius R and the charge was uniformly distributed, calculate using Bohr theory, the ground state energy of a H – atom when R = 10 Ao. (3)
+
+Q15 [mcq, 1m, Sec C]
+Describe the concept used for the selection of velocity of a charged particle. Explain the principle of the device with the help of a diagram where the same concept is used. What is the resonating condition for the said device? (3)
+  [NOTE: diagram]
+
+Q16 [mcq, 1m, Sec C]
+Consider a two slit interference arrangements such that the distance of the screen from the slits is half the distance between the slits. Obtain the value of D in terms of  such that the fist minima on the screen falls at a distance D from the centre O. (3)
+
+Q17 [mcq, 1m, Sec C]
+Draw a labelled ray diagram of an astronomical telescope in the normal adjustment position and find the magnitudes of a) The length of the telescope b) The magnification of the telescope if the focal length of the objective lens is = 15 m and the focal length of an eye lens is 5 cm. (3)
+  [NOTE: diagram]
+
+Q18 [mcq, 1m, Sec C]
+Radiation of frequency 1015 Hz is incident on three photo sensitive surfaces A, B and C. Following observations are recorded: a) no photoemission occurs b) photoemission occurs but the photoelectrons have zero kinetic energy. c) photo emission occurs and photoelectrons have some kinetic energy. Based on Einstein’s photo-electric equation, explain the three observations. (3)
+
+Q19 [mcq, 1m, Sec C]
+A proton and an alpha particle enter at right angles into a uniform magnetic field of intensity B. Calculate the radii of their paths when they enter the field with the same a) momentum and b) kinetic energy (3)
+
+Q2 [mcq, 1m, Sec A]
+Draw a graph to show a variation of resistance of a metal wire as a function of its diameter keeping its length and material constant. (1)
+
+Q20 [mcq, 1m, Sec C]
+Explain: a) Three photo diodes D1, D2 and D3 are made of semiconductors having band gaps of 2.5 eV, 2 eV and 3 eV respectively. Which one will be able to detect light of wavelength 6000 Ao? (2) b) Why an elemental semiconductor cannot be used to make visible LEDs? (1)
+
+Q21 [mcq, 1m, Sec C]
+In the circuit shown, when the input voltage of the base resistance is 10 V, VBE is zero and VCE is also zero, find the values of IB, IC and . (3)
+
+Q22 [mcq, 1m, Sec C]
+Explain with reason: a) In amplitude modulation, the modulation index  is kept less than or equal to 1. b) The maximum amplitude of an amplitude modulated wave is found to be 15 V while its minimum amplitude is found to be 3 V. What is the modulation index? c) Why amplitude modulated signal be noisier than a frequency modulated signal upon transmission through a channel? (3) SECTION D
+
+Q23 [mcq, 1m, Sec D]
+Muthuswami a resident of Kundakulam was all set to leave everything and shift to another place in view of the decision of Government to start nuclear thermal power plant at Kundakulam. His granddaughter Prachi, a science student was really upset on the ignorant decision of her grandfather. She could finally convince him not to shift, since adequate safety measures to avoid any nuclear mishap have already been taken by the Gov ernment before starting nuclear thermal power plants. (i) What is the value displayed by Prachi in convincing her grandfather? (ii) What is the principle behind working of nuclear reactor? (iii) What are the main component of nuclear reactor? (iv) Why is heavy water used as moderator? (4) SECTION E
+
+Q24 [mcq, 1m, Sec E]
+Find the expression for the energy stored in the capacitor. Also find the energy lost when the charged capacitor is disconnected from the source and connected in parallel with the uncharged capacitor. Where does this loss of energy appear? (2+2+1) OR
+  (A) An electric dipole is held in uniform electric field. (i) Using suitable diagram, show that it does not undergo any translatory motion. (ii) Define torque, giving its SI unit; derive an expression for the torque acting on this dipole.                                                                               (1+2)
+  (B) A capacitor is made of a flat plate of area A and second plate having a stair like structure as shown in figure below. If width of each stair is A/3 and height is d. Find the capacitance of the arrangement.                                                  (2)
+  [NOTE: diagram]
+
+Q25 [mcq, 1m, Sec E]
+a) Derive the condition for the resonance to occur in LCR series circuit. (2) b) In a series L-R circuit, L = 35 mH and R = 11 , V = Vo sin t of Vrms = 220 V and frequency 50 Hz are applied. Find the current amplitude in the circuit and phase of current with respect to voltage. Draw reactance-frequency graph. (3) OR a) An a.c. source generating a voltage V = V o sin t is connected to a capacitor of capacitance C. Find the expression for the current I flowing through it. Plot a graph of V and I versus t to show that the current is π/2 ahead of the voltage. (3) b) A resistor of 200  and a capacitor of 15 F are connected in series to a 220 V, 50 Hz a.c. source. Calculate the current in the circuit and the rms voltage across the resistor and the capacitor. Why the algebraic sum of these voltages is more than the source voltage? (2)
+
+Q26 [mcq, 1m, Sec E]
+a) For same value of angle of incidence, the angles of refraction in three media are 15o, 20o and 25o respectively. In which medium, the velocity of light will be minimum? (2) b) Derive the relationship between angle of incidence, angle of prism and angle of minimum deviation for an equilateral prism. (3) OR a) State the conditions for total internal reflection to occur. (2) b) A right angled prism of refractive index n has a plate of refractive index n1 so that n1 < n, cemented to its diagonal face. The assembly is in air. A ray is incident on AB. i. Calculate the angle of incidence at AB for which the ray strikes the diagonal face at the critical angle. ii. Assuming n = 1.352, calculate the angle of incidence at AB for which the refracted ray passes through the diagonal face undeviated. (3)
+
+Q3 [mcq, 1m, Sec A]
+A rod of length L, along East-West direction is dropped from a height H. If B be the magnetic field due to earth at that place and angle of dip is θ, then what is the magnitude of induced emf across two ends of the rod when the rod reaches the earth? (1)
+
+Q4 [mcq, 1m, Sec A]
+Two polaroids are placed with their optic axis perpendicular to each other. One of them is rotated through 45°, what is the intensity of light emerging from the second polaroid if I0 is the intensity of unpolarised light? (1)
+
+Q5 [mcq, 1m, Sec A]
+With the help of a block diagram, show the basic constituents of the communication system. (1) SECTION B
+  [NOTE: diagram]
+
+Q6 [mcq, 1m, Sec B]
+Two wires A and B of the same material and having same length, have their cross sectional areas in the ratio 1:6. What would be the ratio of heat produced in these wires when same voltage is applied across each? (2)
+
+Q7 [mcq, 1m, Sec B]
+The focal length of a convex lens made of glass is 20 cm. What will be its new focal length when placed in a medium of refractive index 1.25? (2) OR The following data was recorded for values of object distance and the corresponding values of image distance in the experiment on study of real image formation by a convex lens of power + 5 D. One of these observations is incorrect. Identify this observation and give reason for your choice. Sr. No. 1 2 3 4 5 6 Object distance (cm) 25 30 35 45 50 55 Image distance (cm) 97 61 37 35 32 30
+
+Q8 [mcq, 1m, Sec B]
+An -particle and a proton are accelerated through the same potential difference. Calculate the ratio of linear momenta acquired by the two. (2)
+
+Q9 [mcq, 1m, Sec B]
+The activity R of an unknown nuclide is measured at hourly intervals. The results found are tabulated as follows: (2) t (h) 0 1 2 3 4 R (MBq) 100 35.36 12.51 4.42 1.56 a) Plot the graph of R versus t and calculate half life from the graph. b) Plot the graph of ln (R/Ro) versus t and obtain the value of half life from the graph.
+
+======================================================================
+Return the complete JSON array.

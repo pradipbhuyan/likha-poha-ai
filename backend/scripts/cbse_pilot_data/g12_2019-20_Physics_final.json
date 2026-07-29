@@ -1,0 +1,371 @@
+[
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Section – A Directions (Q1-Q10) Select the most appropriate option from those given below each question 1. A charge q is placed at the point of intersection of body diagonals of a cube. The electric flux passing through any one of its face is",
+    "options": [
+      "Insulator",
+      "conductor",
+      "semiconductor",
+      "dielectric"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the ammeter in the given circuit shown in the diagram reads 2A, the resistance R is",
+    "options": [
+      "1Ω",
+      "2Ω",
+      "3Ω",
+      "4Ω"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The heat produced by 100W heater in 2 minutes is equal to",
+    "options": [
+      "10.5kJ",
+      "16.3kJ",
+      "12.0kJ",
+      "14.2kJ"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Time period of a charged particle undergoing a circular motion in a uniform magnetic field is independent of",
+    "options": [
+      "speed of the particle",
+      "mass of the particle",
+      "charge of the particle",
+      "magnetic field"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The final image formed in an astronomical refracting telescope with respect to the object is",
+    "options": [
+      "Real inverted",
+      "Real erect",
+      "Virtual erect",
+      "Virtual inverted"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The shape of the interference fringes in Young’s double slit experiment when D (distance between slit and screen) is very large as compared to fringe width is nearly",
+    "options": [
+      "straight line",
+      "parabolic",
+      "circular",
+      "hyperbolic"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Unpolarized light is incident on a plane glass surface having refractive index . The angle of incidence at which reflected and refracted rays would become perpendicular to each other is :",
+    "options": [
+      "15°",
+      "30°",
+      "45°",
+      "60°"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Photoelectric emission from a given surface of metal can take place when the value of a ‘physical quantity’ is less than the energy of incident photon. The physical quantity is :",
+    "options": [
+      "Threshold frequency",
+      "Work function of surface",
+      "Threshold wave length",
+      "Stopping Potential"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A photon beam of energy 12.1eV is incident on a hydrogen atom. The orbit to which electron of H-atom be excited is",
+    "options": [
+      "2nd",
+      "3rd",
+      "4th",
+      "5th"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Horizontal and vertical components of earth’s magnetic field at a place are equal. The angle of dip at that place is ________. OR A free floating magnetic needle at North pole is __________to the surface of earth.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The magnetic flux linked with a coil changes by 2×10-2Wb when the current changes by 0.01A. The self inductance of the coil is_______.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the angular speed of the armature of a dynamo is doubled then the amplitude of the induced e.m.f will become_______.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "An electron is accelerated through a potential difference of 100 V , then de-Broglie wavelength associated with it is approximately ____________Ao",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "An equilateral prism is made up of material of refractive index . The angle of minimum deviation of light passing through the prism is_________. Directions (Q16 –Q20) Answer the following",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which physical quantity in a nuclear reaction is considered equivalent to the Q- value of the reaction?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Zener diode is used in reverse bias. When its reverse bias is increased, how does the thickness of the depletion layer change? 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The initial concentration of a radioactive substance is No and its half life is 12 hours. What will be its concentration after 36 hours? 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Work function of Sodium is 2.75eV. What will be KE of emitted electron when photon of energy 3.54eV is incident on the surface of sodium? 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "From the information of energy band gaps of diodes, how do you decide which can be light emitting diodes? OR Give any one advantage of LEDs over conventional incandescent low power lamps",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Derive the expression for drift velocity of free electron in terms of relaxation time and electric field applied across a conductor. 2",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Find total energy stored in capacitors given in the circuit",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "An α - particle and a proton are accelerated through same potential difference. Find the ratio (vα/ vp)of velocities acquired by two particles.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What is Brewster’s angle? Derive relation between Brewster angle and refractive index of medium which produces Plane Polarized light. 2",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "The work function of Cs is 2.14eV.Find (a) threshold frequency for Cs (b) Wavelength of incident light if the photo current is brought to zero by stopping potential of 0.6 V.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Derive an expression for the radius of nth Bohr’s orbit in Hydrogen atom. OR Energy of electron in first excited state in Hydrogen atom is -3.4eV. Find KE and PE of electron in the ground state.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Draw energy band diagram of p & n type semiconductors. Also write two differences between p and n type semiconductors. OR Energy gap in a p – n photodiode is 2.8 eV. Can it detect a wavelength of 6000 nm? Justify your answer. Section – C",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "State working principle of potentiometer. Explain how the balance point shifts when value of resistor R increases in the circuit of potentiometer, given below.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Using Biot-Savart’s law, derive an expression for magnetic field at any point on axial line of a current carrying circular loop. Hence, find magnitude of magnetic field intensity at the centre of circular coil.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Obtain the resonant frequency and Q – factor of a series LCR circuit with L = 3H, C = 27𝛍F, R = 7.4Ω. It is desired to improve the sharpness of resonance of circuit by reducing its full width at half maximum by a factor of 2. Suggest a suitable way.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "State the conditions of total internal reflection. Refractive indices of the given prism material for Red, Blue and Green colors are respectively 1.39, 1.48 and 1.42 respectively. Trace the path of rays through the prism.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Define resolving power of an astronomical refracting telescope and write expression for it in normal adjustment.Assume that light of wave length 6000Å is coming from a star, what is the limit of resolution of a telescope whose objective has a diameter of 2.54m? OR Write the basic assumptions used in the derivation of lens – maker’s formula and hence derive this expression.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Show that can not spontaneously emit a proton. Given: = 238.05079u, = 237.05121u = 1.00783u",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Suggest an idea to convert a full wave bridge rectifier to a half wave rectifier by changing the connecting wire/s. Draw the diagram and explain your answer. Section – D",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 35,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(a) Using Gauss’s law, derive expression for intensity of electric field at any point near the infinitely long straight uniformly charged wire. (b)The electric field components in the following figure are Ex = αx, Ey = 0, Ez= 0; in which α = 400 N/C m. Calculate (i) the electric flux through the cube, and (ii) the charge within the cube assume that a = 0.1m. OR a) Define electrostatic potential at a point. Write its SI unit. Three charges q 1 , q2 and q3 are kept respectively at points A, B and C as shown in figures. Write the expression for electrostatic potential energy of the system. b) Depict the equipotential surfaces due to (i) an electric dipole (ii) two identical negative charges separated by a small distance.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 36,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "In the following diagram, the arm PQ of the rectangular conductor is moved from x = 0; outwards. The uniform magnetic field is perpendicular to the plane and extends from x = 0 to x = b and is zero for x >b. Only the arm PQ possesses substantial resistance ‘r’. consider the situation when the arm PQ is pulled outwards from x = 0 to x = 2b, and is then moved back to x = 0 with constant speed ‘ѵ’. Obtain expressions for the (i) electric flux, (ii) the induced emf,(iii)the force necessary to pull the arm and (iv) the power dissipated as Joule heat. Sketch the variation of these quantities with distance. OR Write working principle of cyclotron and with a suitable diagram explain its working. Give any two applications of cyclotron.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 37,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Derive mirror equation for a convex mirror. Using it, show that a convex mirror always produces a virtual image, independent of the location of object. OR (a) Draw a ray diagram for final image formed at distance of distinct vision (D) by a compound microscope and write expression for its magnifying power. (b) An angular magnification (magnifying power) of 30x is desired for a compound microscope using as objective of focal length 1.25cm and eye piece of focal length 5cm. How will you set up the compound microscope?",
+    "options": [],
+    "diagram_dependent": true
+  }
+]

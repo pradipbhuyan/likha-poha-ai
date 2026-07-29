@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 11: Electricity",
+  "central_question": "How are electric current, potential difference and resistance related, and how do resistor combinations determine heating, power and electrical energy use in circuits?",
+  "in_scope_units": [
+    "Electric current, charge flow, electric circuit, conventional current and measurement by an ammeter.",
+    "Electric potential difference, work per unit charge and measurement by a voltmeter.",
+    "Conventional symbols used in circuit diagrams.",
+    "Ohm's law and the relationship among potential difference, current and resistance.",
+    "Factors affecting resistance and the concept of electrical resistivity.",
+    "Equivalent resistance of resistors connected in series.",
+    "Equivalent resistance of resistors connected in parallel and advantages of parallel circuits.",
+    "Heating effect of electric current, Joule's law and practical applications including heating devices, bulbs and fuses.",
+    "Electric power, electrical energy, watt, kilowatt-hour and cost of energy consumption."
+  ],
+  "banned_topics": [
+    "Magnetic field produced by current, motors, generators and electromagnetic induction, which belong to the next chapter.",
+    "Electrostatic force and Coulomb's law.",
+    "Detailed semiconductor electronics and alternating-current circuit analysis.",
+    "Detailed domestic wiring beyond the fuse application stated in this chapter."
+  ],
+  "must_include_keywords": [
+    "electric charge",
+    "electric current",
+    "electric circuit",
+    "conventional current",
+    "electron flow",
+    "coulomb",
+    "ampere",
+    "ammeter",
+    "potential difference",
+    "volt",
+    "voltmeter",
+    "circuit diagram",
+    "Ohm's law",
+    "resistance",
+    "ohm",
+    "rheostat",
+    "resistivity",
+    "length",
+    "area of cross-section",
+    "series combination",
+    "parallel combination",
+    "equivalent resistance",
+    "Joule's law of heating",
+    "electric fuse",
+    "tungsten filament",
+    "electric power",
+    "watt",
+    "kilowatt",
+    "kilowatt-hour",
+    "commercial unit",
+    "electrical energy"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Conventional current flows in the same direction as electrons in a metal wire.",
+      "correction": "Conventional current is taken opposite to the direction of electron flow."
+    },
+    {
+      "claim": "An ammeter is connected in parallel and a voltmeter in series.",
+      "correction": "An ammeter is connected in series with the circuit, while a voltmeter is connected in parallel across the points being measured."
+    },
+    {
+      "claim": "Ohm's law is valid under all conditions.",
+      "correction": "For a given metallic conductor, potential difference is proportional to current only when temperature remains the same."
+    },
+    {
+      "claim": "A thicker wire has greater resistance than a thinner wire of the same material and length.",
+      "correction": "Resistance is inversely proportional to area of cross-section, so a thicker wire has lower resistance."
+    },
+    {
+      "claim": "The equivalent resistance of parallel resistors is larger than every branch resistance.",
+      "correction": "The equivalent resistance of a parallel combination is smaller than the smallest individual resistance."
+    },
+    {
+      "claim": "Electricity bills charge for electrons consumed.",
+      "correction": "Electrons are not consumed; the bill is for electrical energy supplied to move charges through appliances."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Examples 11.1 and 11.2 for current as charge per time and potential difference as work per charge.",
+    "Use NCERT Activity 11.1 and Examples 11.3-11.6 for Ohm's law, resistance and resistivity.",
+    "Use NCERT Activities 11.4-11.6 and Examples 11.7-11.9 for series, parallel and mixed resistor combinations.",
+    "Use NCERT Examples 11.10-11.11 and the in-text heating questions for Joule's law and practical heating applications.",
+    "Use NCERT Examples 11.12-11.13 and Exercises Q15-Q17 for electric power and commercial energy use."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES contain Questions 1-18, covering resistance, resistor combinations, heating, power, energy and practical material choices.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

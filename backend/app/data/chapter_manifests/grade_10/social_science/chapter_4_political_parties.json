@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 4: Political Parties",
+  "central_question": "Why are political parties necessary for representative democracy, how is India’s party system organised, and what reforms can address the major weaknesses of parties?",
+  "in_scope_units": [
+    "Why do we need political parties: meaning, components and functions.",
+    "Necessity of parties in representative democracies.",
+    "How many parties should we have: one-party, two-party and multiparty systems, alliances and coalitions.",
+    "Popular participation and trust in political parties.",
+    "National parties: registration, recognition criteria and the recognised national parties described in the chapter.",
+    "State parties and their contribution to coalitions, federalism and democratic diversity.",
+    "Challenges to political parties: internal democracy, dynastic succession, money and muscle power, and lack of meaningful choice.",
+    "How parties can be reformed: legal measures, institutional orders, public pressure and participation."
+  ],
+  "banned_topics": [
+    "Detailed constitutional distribution of powers between Union and States, which belongs to Federalism.",
+    "Detailed communalism and caste inequality, which belongs to Gender, Religion and Caste.",
+    "A general assessment of democracy’s economic and social outcomes, which belongs to Outcomes of Democracy."
+  ],
+  "must_include_keywords": [
+    "political party",
+    "partisanship",
+    "leaders",
+    "active members",
+    "followers",
+    "contest elections",
+    "policies and programmes",
+    "form and run governments",
+    "opposition",
+    "public opinion",
+    "government machinery",
+    "welfare schemes",
+    "representative democracy",
+    "one-party system",
+    "two-party system",
+    "multiparty system",
+    "coalition",
+    "alliance",
+    "Election Commission",
+    "recognised political party",
+    "election symbol",
+    "State party",
+    "national party",
+    "AAP",
+    "BSP",
+    "BJP",
+    "CPI-M",
+    "INC",
+    "NPP",
+    "State parties",
+    "internal democracy",
+    "dynastic succession",
+    "money and muscle power",
+    "meaningful choice",
+    "defection",
+    "affidavit",
+    "organisational elections",
+    "state funding of elections",
+    "public pressure",
+    "political participation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Political parties only divide society and have no democratic function.",
+      "correction": "Parties aggregate opinions, contest elections, make laws, form governments, provide opposition, shape public opinion and connect people to government."
+    },
+    {
+      "claim": "A one-party system is democratic if citizens are legally free to form parties.",
+      "correction": "A democratic system must permit genuine competition and a fair chance for at least two parties to come to power."
+    },
+    {
+      "claim": "Every State party has only a regional ideology.",
+      "correction": "Some State parties have all-India organisation or outlook but have achieved electoral success mainly in particular States."
+    },
+    {
+      "claim": "Legal regulation alone can fully reform political parties.",
+      "correction": "The chapter warns against over-regulation and stresses public pressure and citizens joining parties as additional paths to reform."
+    }
+  ],
+  "recommended_example_progression": [
+    "Explain the functions of parties using NCERT Exercise 1.",
+    "Test the necessity of parties using NCERT Exercise 10.",
+    "Match parties and alliances using NCERT Exercise 7.",
+    "Analyse the four challenges using NCERT Exercise 2.",
+    "Design reforms and a democratic party organisation using NCERT Exercises 3 and 11."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The NCERT end-of-chapter Exercises contain Questions 1–11 on definitions, functions, party systems, parties, challenges, reforms and the Nagarik Shakti passage.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,115 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2019-20
+Subject: Economics
+Source Subject Code: Economics
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Economics-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Economics-MS.pdf
+Total Questions: 32
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Economics-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec B]
+mark 8 20 Increased by 12 3 marks 4 4 No change 4 marks 6 6 No change 6 marks 6 4 Decreased by 2 Total Questions 24 34
+
+Q10 [mcq, 1m, Sec B]
+Government expenditure on Mid-Day Meal scheme running in government (state run) schools is a type of ……………….……….. expenditure in government budget. (Fill up the blank with correct answer)
+
+Q11 [short_answer, 3m, Sec B]
+“India's GDP is expected to expand 7.5% in 2019-20: World Bank” - The Economic Times. Does the given statement mean that welfare of people of India increase at the same rate? Comment with reason.
+
+Q12 [short_answer, 3m, Sec B]
+Calculate the value of Marginal Propensity to Consume (MPC), if in an economy, autonomous consumption is ₹ 500 crores, ex-ante investments are ₹ 4000crores and equilibrium level of Income of the economy is ₹ 18,000 crores. Or Suppose in a hypothetical economy, the savings increase by ₹ 20 crores when national income increases by ₹ 100 crores. Compute the additional investments needed to attain an increase in national income by ₹ 6,000 crores?
+
+Q13 [case_study, 4m, Sec B]
+Discuss any one of the following functions of a central bank: a) As government’s bank b) Open market operations.
+
+Q14 [case_study, 4m, Sec B]
+“Foreign Institutional Investors (FIIs) remained net seller in the Indian capital markets over the last few weeks”. - The Economic Times. State and discuss the likely effects of the given statement on foreign exchange rate with reference to the Indian Economy. Or ‘Many large Multinational Corporations (MNCs) have recently shifted their investments from China and have started their production in India, thereby boosting the Make in India plans of the Government’. Presuming other factors being constant, discuss the effects of the given statement on Foreign Exchange rates with reference to the Indian Economy.
+
+Q15 [case_study, 4m, Sec B]
+Elaborate the objective of ‘reallocation of resources’ in the government budget.
+
+Q16 [case_study, 4m, Sec B]
+a) ‘Real Gross Domestic Product is a better indicator of economic growth than Nominal Gross Domestic Product’. Do you agree with the given statement? Support your answer with a suitable numerical example. b) Calculate ‘Depreciation on Capital Asset’ from the following data S.no Particulars Amount (in ₹crores) i. Capital value of the asset 1,000 ii. Estimated life of the asset 20 years iii. Scrap Value Nil Or a) ‘Circular flow of income in a two sector economy is based on the axiom that one’s expenditure is other’s income’. Do you agree with the given statement? Support your answer with valid reasons. b) Calculate compensation of employees from the following data: S.no Particulars Amount (in ₹crores) i. Profits after tax 20 ii. Interest 45 iii. Gross Domestic Product at Market Price 200 iv. Goods and Services Tax 10 v. Consumption of Fixed Capital 50 vi. Rent 25 vii. Corporate Tax 5
+
+Q17 [long_answer, 6m, Sec B]
+‘An economy is operating at under-employment level of income’. What is meant by the given statement? Discuss one fiscal measure and one monetary measure to tackle the situation. SECTION-B (Indian Economic Development)
+
+Q18 [mcq, 1m, Sec B]
+Name any two taxes which were subsumed in Goods and Services Tax (GST). 1
+
+Q19 [mcq, 1m, Sec B]
+State weather the following statement is true or false: ‘The latest demonetization of currency was undertaken by the Government of India on November 8, 2016’.
+
+Q20 [mcq, 1m, Sec B]
+Identify the correct sequence of alternatives given in Column II by matching them with respective terms in Column I: Column – I Column – II A. Land Ceiling i. Increase in production of food grain using high yielding variety seeds B. Land reforms ii. Portion of agricultural produce sold in the market C. Green Revolution iii. Fixing the maximum limit of land holding for an individual. D. Marketed Surplus iv. Change in the ownership of land (land to tillers)
+
+Q21 [long_answer, 5m, Sec B]
+Agriculture marketing does not comprise of ……………..… (Choose the correct alternative) a) Transportation of the produce to the market place for sale. b) Grading of the produce according to the quality. c) Storage of the produce for sale in future. d) Credit taken to meet expenditure on agriculture.
+
+Q22 [mcq, 1m, Sec B]
+Under ………………………type of unemployment, marginal product gained by employing one additional unit of labour is zero. (Fill up the blank with correct answer) Or ………………………… an indicator which is used for analyzing the employment situation of a country. (Fill up the blank with correct answer)
+
+Q23 [mcq, 1m, Sec B]
+In 1955, Karve committee was constituted for aiming the…..…………… (Fill up the blank with correct answer)
+
+Q24 [mcq, 1m, Sec B]
+Identify the correct sequence of alternatives given in Column II by matching them with respective terms in Column I Column – I Column -II A. Study Group formed by Planning Commission for Poverty i. 2005 B. ‘Task Force on Projections of the Minimum Needs and Effective Consumption Demand’ ii. 1962 C. Mahatma Gandhi National Rural Employment Guarantee Act iii. 2014 D. Jan DhanYojana iv. 1979 Choose the correct alternative: a) ii , iii , iv , i b) iii , ii , i, iv c) i , ii , iii , iv d) ii , iv , i, iii
+
+Q25 [mcq, 1m, Sec B]
+Solar energy can be converted into electricity with the help of ……….……………………. (Photovoltaic cell/Lithium cells). (Fill up the blank with correct alternative)
+
+Q26 [mcq, 1m, Sec B]
+Arrange the following events of China in chronological order and choose the correct alternative: i. Great Proletarian Cultural Revolution ii. Great Leap Forward campaign iii. Introduction of Economic Reforms iv. First five year plan Choose the correct alternative: a) ii, iv, iii, i b) iv, ii, i, iii c) ii, iv, i, iii d) iv, i, ii, iii
+
+Q27 [mcq, 1m, Sec B]
+Introduction of Economic Reform in Pakistan took place in…………… (Choose the correct alternative) a) 1978 b) 1980 c)1988 d) 1991
+
+Q28 [short_answer, 3m, Sec B]
+“Recently Indians have drifted away from the traditional knowledge and practices and caused large scale damage to environment”. Explain how, adopting the traditional practices can be helpful in achieving the objective of sustainable development? Or ‘Power sector in India has major issues with its installed capacity’. Discuss the given statement.
+
+Q29 [short_answer, 3m, Sec B]
+‘Education Commission 1964-66 had recommended that at least 6 per cent of GDP must be spent on education’. How far India has been able to achieve the said goal?
+
+Q3 [mcq, 1m, Sec B]
+marks 4 4 No change
+
+Q30 [case_study, 4m, Sec B]
+‘The opening up of the Indian Economy has led to a rapid increase in Foreign Direct Investments and Foreign Exchange Reserves of the country’. Defend or refute the given statement.
+
+Q31 [case_study, 4m, Sec B]
+Define the following terms a) Disinvestment b) Import Substitution OR Define the following terms a) Outsourcing b) Quota
+
+Q32 [short_answer, 3m, Sec B]
+Answer the following questions on the basis of the following data: a) Comment upon the population growth rates among the three countries. b) Which country has most skewed in sex ratio? Country Estimated Population (in million) Annual Growth of Population (in %) Sex Ratio India 1311 1.2 929 China 1371 0.5 941 Pakistan 188 2.1 947 Source: World Development Indicators, 2015, www.worldbank.org
+
+Q33 [long_answer, 6m, Sec B]
+“Rural Economic development is essential for Indian Economic development”. Do you agree with the given statement? Support your answer with valid reasons.
+
+Q34 [long_answer, 6m, Sec B]
+‘In spite of the increase in public health expenditure Indian Health System is an ailing system in itself’. Defend the statement citing any three major problems of Health sector in India. Or Study the following chart showing the Growth of Employment and Gross Domestic Product and analyse the trend of the two variables from 1990-2012.
+
+Q4 [short_answer, 2m, Sec B]
+marks 6 6 No change 6 marks 6 4 Decreased by 2 Total Questions 24 34 SAMPLE QUESTION PAPER (2019-20) ECONOMICS (030) Time allowed: 3 hours Maximum Marks: 80 General instructions: i. All the questions in both the sections are compulsory. Marks for questions are indicated against each question. ii. Question number 1 - 10 and 18 - 27 are very short-answer questions carrying 1 mark each. They are required to be answered in one word or one sentence each. iii. Question number 11 - 12 and 28 - 29 are short-answer questions caring 3 marks each. Answers to them should not normally exceed 60-80 words each. iv. Question number 13 - 15 and 30 - 32 are also short-answer questions carrying 4 marks each. Answers to them should not normally exceed 80-100 words each. v. Question number 16 - 17 and 33 - 34 are long answer questions carrying 6 marks each. Answers to them should not normally exceed 100-150 words each. vi. Answer should be brief and to the point and the above word limit be adhered to as far as possible. SECTION - A (Macro Economics) Q.No QUESTION Marks 1 Value of Money Multiplier ………………(increases/decreases/remains unchanged) with an increase in Cash Reserve Ratio. (Fill up the blank with correct alternative) 2 Define an intermediate good. 1 3 Average Propensity to Consume can never be ………………………... (choose the correct alternative) a) positive b) zero c) more than one d) less than one 4 Name any two quantitative tools to control credit creation in an economy. Or What are demand deposits?
+
+Q6 [short_answer, 2m, Sec B]
+marks 6 4 Decreased by 2 Total Questions 24 34 SAMPLE QUESTION PAPER (2019-20) ECONOMICS (030) Time allowed: 3 hours Maximum Marks: 80 General instructions: i. All the questions in both the sections are compulsory. Marks for questions are indicated against each question. ii. Question number 1 - 10 and 18 - 27 are very short-answer questions carrying 1 mark each. They are required to be answered in one word or one sentence each. iii. Question number 11 - 12 and 28 - 29 are short-answer questions caring 3 marks each. Answers to them should not normally exceed 60-80 words each. iv. Question number 13 - 15 and 30 - 32 are also short-answer questions carrying 4 marks each. Answers to them should not normally exceed 80-100 words each. v. Question number 16 - 17 and 33 - 34 are long answer questions carrying 6 marks each. Answers to them should not normally exceed 100-150 words each. vi. Answer should be brief and to the point and the above word limit be adhered to as far as possible. SECTION - A (Macro Economics) Q.No QUESTION Marks 1 Value of Money Multiplier ………………(increases/decreases/remains unchanged) with an increase in Cash Reserve Ratio. (Fill up the blank with correct alternative) 2 Define an intermediate good. 1 3 Average Propensity to Consume can never be ………………………... (choose the correct alternative) a) positive b) zero c) more than one d) less than one 4 Name any two quantitative tools to control credit creation in an economy. Or What are demand deposits? 5 The monetary policy generally targets to ensure………….…… (Choose the correct alternative) a) price stability in the economy b) employment generation in the country. c) stable foreign relations. d) greater tax collections for the government. 6 In an economy, break-even point and equilibrium point may lie at the same level of income, if ex-ante investments are ………………… (Fill up the blank with correct answer)
+
+Q7 [mcq, 1m, Sec B]
+State whether the given statement is true or false: ‘Managed Floating Exchange Rate is decided by market forces but remains within a specific range as decided by central bank’.
+
+Q8 [mcq, 1m, Sec B]
+The formula to calculate Primary deficit is …………..… (Fill up the blank with correct answer)
+
+Q9 [mcq, 1m, Sec B]
+From the set of statements given in Column I and Column II, choose the correct pair of statements: Column I Column II a) Export of software to France (i) Debit side of current account b) Import of Machinery from China (ii) Capital Account of Balance of Payments c) Remittances to relative staying abroad (iii) Debit side of Current Account of Balance of Payments d) Investment by Apple phones firm in India (iv) Credit side of Current Account of Balance of Payments
+
+======================================================================
+Return the complete JSON array.

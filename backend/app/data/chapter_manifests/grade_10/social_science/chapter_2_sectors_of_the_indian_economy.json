@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: Sectors of the Indian Economy",
+  "central_question": "How can economic activities be classified to understand production, employment, working conditions and the responsibilities of government?",
+  "in_scope_units": [
+    "Sectors of Economic Activities: primary, secondary and tertiary activities and interdependence",
+    "Comparing the Three Sectors: value, final goods, intermediate goods, GDP and GVA",
+    "Historical Change in Sectors: shifts in developed economies",
+    "Primary, Secondary and Tertiary Sectors in India: production and employment trends",
+    "Rising Importance of the Tertiary Sector in Production",
+    "Where Are Most of the People Employed?: underemployment and disguised unemployment",
+    "How to Create More Employment?: infrastructure, services, rural industries and employment guarantee",
+    "Division of Sectors as Organised and Unorganised",
+    "How to Protect Workers in the Unorganised Sector?",
+    "Sectors in Terms of Ownership: Public and Private Sectors"
+  ],
+  "banned_topics": [
+    "Detailed terms of bank credit and collateral",
+    "World Trade Organisation and foreign investment",
+    "Consumer redressal commissions",
+    "Human Development Index methodology"
+  ],
+  "must_include_keywords": [
+    "primary sector",
+    "secondary sector",
+    "tertiary sector",
+    "service sector",
+    "interdependence",
+    "final goods",
+    "intermediate goods",
+    "GDP",
+    "GVA",
+    "double counting",
+    "tertiary-sector growth",
+    "employment",
+    "underemployment",
+    "disguised unemployment",
+    "Laxmi",
+    "irrigation",
+    "rural roads",
+    "MGNREGA 2005",
+    "Viksit Bharat-G RAM G 2025",
+    "organised sector",
+    "unorganised sector",
+    "Kanta",
+    "Kamal",
+    "job security",
+    "provident fund",
+    "public sector",
+    "private sector",
+    "ownership",
+    "public facilities"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The tertiary sector does not contribute to production because it does not manufacture goods.",
+      "correction": "Tertiary activities provide services that support production and also include essential services."
+    },
+    {
+      "claim": "GDP includes the value of all intermediate and final goods separately.",
+      "correction": "GDP counts final goods and services so that intermediate values are not counted repeatedly."
+    },
+    {
+      "claim": "Underemployed workers are not working at all.",
+      "correction": "Underemployed workers may appear employed but work below their productive capacity."
+    },
+    {
+      "claim": "Organised and public sector mean the same thing.",
+      "correction": "Organised–unorganised concerns employment conditions; public–private concerns ownership."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Table 2.1 to establish interdependence among sectors.",
+    "Use the NCERT wheat–flour–biscuits example to explain final and intermediate goods.",
+    "Use NCERT Graphs 1–3 and the Laxmi example to connect production, employment and disguised unemployment.",
+    "Use the NCERT Kanta–Kamal comparison for organised and unorganised employment.",
+    "Use the NCERT public-sector examples of infrastructure, electricity and the Public Distribution System."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with 'EXERCISES', Questions 1–24.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

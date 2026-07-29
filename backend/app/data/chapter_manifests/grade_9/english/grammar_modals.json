@@ -1,0 +1,73 @@
+{
+  "grade": "Grade 9",
+  "subject": "English",
+  "chapter": "Grammar: Modals",
+  "central_question": "How can a student select and form modal verbs correctly to express ability, permission, possibility, obligation, advice, absence of necessity and prohibition?",
+  "in_scope_units": [
+    "Form of modal verbs followed by the base form",
+    "Ability with can and could",
+    "Permission with may, can and polite could",
+    "Possibility with may, might and could",
+    "Necessity and obligation with must and have to",
+    "Advice with should and ought to",
+    "Absence of necessity with need not and do not have to",
+    "Prohibition with must not and cannot",
+    "Common modal errors involving to, third-person -s and meaning differences"
+  ],
+  "banned_topics": [
+    "Tense system beyond the time contrast needed for can/could",
+    "Reported speech",
+    "Conditionals",
+    "Active and passive voice"
+  ],
+  "must_include_keywords": [
+    "modal verb",
+    "base form",
+    "can",
+    "could",
+    "may",
+    "might",
+    "shall",
+    "should",
+    "will",
+    "would",
+    "must",
+    "ought to",
+    "need",
+    "dare",
+    "ability",
+    "permission",
+    "possibility",
+    "necessity",
+    "obligation",
+    "advice",
+    "need not",
+    "have to",
+    "must not",
+    "prohibition"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A modal is followed by 'to' and then the main verb.",
+      "correction": "A modal is normally followed directly by the base form: 'She can sing.' The fixed expression 'ought to' is the stated exception in this topic."
+    },
+    {
+      "claim": "A modal takes -s with a third-person singular subject.",
+      "correction": "Modals do not take -s: 'He can swim,' not 'He cans swim.'"
+    },
+    {
+      "claim": "Must not and need not have the same meaning.",
+      "correction": "Must not expresses prohibition; need not expresses absence of necessity or optional action."
+    }
+  ],
+  "recommended_example_progression": [
+    "Correct sentences containing 'to' or '-s' after a modal.",
+    "Fill in blanks for ability and permission using can, could or may.",
+    "Choose may, might or could to express degrees of possibility.",
+    "Distinguish must from have to in internal and external obligation contexts.",
+    "Edit mixed sentences involving should, ought to, need not and must not."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE tasks include gap filling, dialogue completion, sentence rewriting, choice of the most suitable modal and error correction.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

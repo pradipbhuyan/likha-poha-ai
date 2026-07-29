@@ -1,0 +1,380 @@
+CBSE GRADE 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 1
+Subject: Science
+Source Subject Code: Science
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/Science-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/Science-MS.pdf
+Total Questions: 60
+======================================================================
+
+TASK: For each question below, provide the answer in the EXACT JSON format shown.
+
+OUTPUT FORMAT (return a JSON array):
+[{
+  "question_number": <integer>,
+  "question_text": "<copy from input>",
+  "question_type": "<copy from input>",
+  "options": [<copy from input>],
+  "answer_text": "<for mcq/assertion_reason: exact option text; for others: concise answer>",
+  "answer_explanation": "<2-4 sentence explanation based on CBSE curriculum>"
+}, ...]
+
+IMPORTANT RULES:
+- For MCQ/assertion_reason: answer_text MUST be the EXACT text of one of the options (copy verbatim)
+- For short_answer: answer_text should be a complete answer per marking scheme
+- For long_answer/case_study: answer_text should be a full answer per marking scheme
+- If a question is diagram-dependent and no text alternative exists, use: NEEDS_MANUAL_REVIEW_diagram_dependent
+- Refer to the official Marking Scheme PDF for correct answers: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/Science-MS.pdf
+
+======================================================================
+
+QUESTIONS:
+
+Q1 [mcq, 1 mark(s), Section A]
+Reema took 5ml of Lead Nitrate solution in a beaker and added approximately 4ml of Potassium Iodide solution to it. What would she observe?
+  (A) The solution turned red.
+  (B) Yellow precipitate was formed.
+  (C) White precipitate was formed.
+  (D) The reaction mixture became hot.
+
+Q10 [case_study, 4 mark(s), Section A]
+Why is it important to balance a skeletal chemical equation? A. To verify law of conservation of energy. B. To verify the law of constant proportion. C. To verify the law of conservation of mass. D. To verify the l0aw of conservation of momentum.
+
+Q11 [mcq, 1 mark(s), Section A]
+Carefully study the diagram of the human respiratory system with labels A, B, C and D. Select the option which gives correct identification and main function and /or characteristic.
+  (A) (i) Trachea: It is supported by bony rings for conducting inspired air.
+  (B) (ii) Ribs: When we breathe out, ribs are lifted.
+  (C) (iii) Alveoli: Thin-walled sac like structures for exchange of gases.
+  (D) (iv) Diaphragm: It is pulled up when we breathe in.
+  [NOTE: This question references a diagram]
+
+Q12 [long_answer, 5 mark(s), Section A]
+Identify the option that indicates the correct enzyme that is secreted in location A, B and C. A. (i)-lipase, (ii)-trypsin, (iii)-pepsin B. (i)-amylase, (ii)-pepsin, (iii)-trypsin C. (i)-trypsin, (ii)-amylase, (iii)-carboxylase D. (i)-permease, (ii)-carboxylase, (iii)-oxidase
+
+Q13 [mcq, 1 mark(s), Section A]
+Opening and closing of stomatal pore depends on:
+  (A) Atmospheric temperature
+  (B) oxygen concentration around stomata
+  (C) carbon dioxide concentration around stomata
+  (D) water content in the guard cells
+
+Q14 [mcq, 1 mark(s), Section A]
+The figure given below shows a schematic plan of blood circulation in humans with labels (i) to (iv). Identify the correct label with its functions?
+  (A) (i) Pulmonary vein - takes impure blood from body part.
+  (B) (ii) Pulmonary artery - takes blood from lung to heart.
+  (C) (iii) Aorta - takes blood from heart to body parts.
+  (D) (iv) Vena cava takes - blood from body parts to right auricle.
+  [NOTE: This question references a diagram]
+
+Q15 [short_answer, 6 mark(s), Section A]
+Identify the phase of circulation which is represented in the diagram of heart given below. Arrows indicate contraction of the chambers shown. A. Blood transferred to the right ventricle and left ventricle simultaneously. B. Blood is transferred to lungs for oxyg enation and is pumped into various organs simultaneously. C. Blood transferred to the right auricle and left auricle simultaneously. D. Blood is received from lungs after oxygenation and is received from various organs of the body.
+  [NOTE: This question references a diagram]
+
+Q16 [mcq, 1 mark(s), Section A]
+Observe the diagram of Human digestive system. Match the labeling referred in column I and correlate with the function in column II.
+  (A) i.- a) ; ii – b) ; iii – c) ; iv- d)
+  (B) i.- b) ; ii – c) ; iii – d) ; iv- a)
+  (C) i.- b) ; ii – d) ; iii – c) ; iv- a)
+  (D) i.- d) ; ii – a) ; iii – b) ; iv- c)
+  [NOTE: This question references a diagram]
+
+Q17 [short_answer, 7 mark(s), Section A]
+Which of the following mirror is used by a dentist to examine a small cavity in a patient’s teeth? A. Convex mirror B. Plane mirror C. Concave mirror D. Any spherical mirror
+
+Q18 [mcq, 1 mark(s), Section A]
+Which diagram shows image formation of an object on a screen by a converging lens?
+  [NOTE: This question references a diagram]
+
+Q19 [mcq, 1 mark(s), Section A]
+Which of the following can make a parallel beam of light when light from a point source is incident on it?
+  (A) Concave mirror as well as convex lens.
+  (B) Convex mirror as well as concave lens.
+  (C) Two plane mirrors placed at 90° to each others.
+  (D) Concave mirror as well as concave lens.
+
+Q2 [short_answer, 2 mark(s), Section A]
+Identify gas A in the following experiment. A. Nitrogen B. Hydrogen C. Oxygen D. Carbon dioxide
+
+Q20 [mcq, 1 mark(s), Section A]
+Consider these indices of refraction: glass: 1.52; air: 1.0003; water: 1.333. Based on the refractive indices of three materials, arrange the speed of light through th em in decreasing order.
+  (A) The speed of light in water > the speed of light in air > the speed of light in glass.
+  (B) The speed of light in glass > the speed of light in water > the speed of light in air.
+  (C) The speed of light in air > the speed of light in water > the speed of light in glass.
+  (D) The speed of light in glass > the speed of light in air > the speed of light in water.
+
+Q21 [short_answer, 8 mark(s), Section A]
+If a beam of red light and a beam of violet light are incident at the same angle on the inclined surface of a prism from air medium and produce angles of refraction r and v respectively, which of the following is correct? A. r = v B. r > v C. r = 1/v D. r < v
+
+Q22 [mcq, 1 mark(s), Section A]
+Examine the above figure and state which of the following option is correct? [one small box in the figure is equal to 1 cm]
+  (A) The mirror has a focal length of -6 cm and will produce an image of magnification +1.
+  (B) The mirror has a focal length of -3 cm and will produce an image   of magnification -1.
+  (C) The mirror has a focal length of -3 cm and will produce an image of magnification +1.
+  (D) The mirror has a focal length of -6 cm and will produce an image   of magnification -1.
+  [NOTE: This question references a diagram]
+
+Q23 [mcq, 1 mark(s), Section A]
+The angle of incidence from air to glass at the point O on the hemispherical glass slab is.
+  (A) 45°
+  (B) 0°
+  (C) 90°
+  (D) 180°
+
+Q24 [short_answer, 9 mark(s), Section A]
+A prism ABC (with BC as base) is placed in different orientations. A narrow beam of white light is incident on the prism as shown in below Figure. In which of the following diagrams, after dispersion, the third colour from the top of the spectrum corresponds to the colour of the sky? A. (i) B. (ii) C. (iii) D. (iv) SECTION - B Section - B consists of 24 questions (Sl. No.25 to 48). Attempt any 20 questions from this section. The first attempted 20 questions would be evaluated.
+  [NOTE: This question references a diagram]
+
+Q25 [mcq, 1 mark(s), Section B]
+Identify the correct option from the given table which represents the type of reactions occurring in step 1 and step 2. endothermic exothermic A B C D ×   ×  ×  ×
+
+Q26 [mcq, 1 mark(s), Section B]
+In which year is concentration of hydrogen ion the highest?
+  (A) 2002
+  (B) 2008
+  (C) 2011
+  (D) 2005
+
+Q27 [short_answer, 10 mark(s), Section B]
+The diagram shows the reaction between metal and dil. acid. What is the reason for different behaviour of Mg in test tube B? A. Mg is lighter element than dil. HCl B. Mg reacts with dil. HCl to produce H2 gas which helps in floating C. Mg reacts with dil. HCl to produce N2 gas which helps in floating D. Mg reacts with dil. HCl to produce CO2 gas which helps in floating
+  [NOTE: This question references a diagram]
+
+Q28 [mcq, 1 mark(s), Section B]
+The table shown below gives information about four substances: A, B, C and D. SUBSTANCE MELTING POINT (K) ELECTRICAL CONDUCTIVITY SOLID LIQUID/ AQUEOUS A 295 Good Good B 1210 Poor Good C 1890 Poor Good D 1160 Poor Poor Identify Ionic compounds from the above given substances.
+  (A) A, B
+  (B) B, C
+  (C) A, B, D
+  (D) A, C, D
+  [NOTE: This question references a diagram]
+
+Q29 [mcq, 1 mark(s), Section B]
+Vinay observed that the stain of curry on a white shirt becomes reddish -brown when soap is scrubbed on it, but it turns yellow again when the shirt is washed with plenty of water. What might be the reason for his observation? i. Soap is acidic in nature ii. Soap is basic in nature iii. Turmeric is a natural indicator which gives reddish tinge in bases iv. Turmeric is a natural indicator which gives reddish tinge in acids
+  (A) i and  ii
+  (B) ii and iii
+  (C) i  and iv
+  (D) ii and iv
+
+Q3 [mcq, 1 mark(s), Section A]
+Which of the following two combinations are correct? Metal Gas Evolved (i) Copper Yes (ii) Iron Yes (iii) Magnesium No (iv) Zinc Yes
+  (A) i and iii
+  (B) i and iv
+  (C) ii and iii
+  (D) ii and iv
+
+Q30 [short_answer, 11 mark(s), Section B]
+In which of the following setups would the bulb glow? A. i and ii B. i and iv C. ii, iii and iv D. i, ii and iv Question No. 31 to 35 consist of two statements –
+
+Q31 [assertion_reason, 1 mark(s), Section B]
+Assertion: Fresh milk in which baking soda is added, takes a longer time to set as curd. Reason: Baking soda decreases the pH value of fresh milk to below 6.
+  (A) Both A and R are true and R is the correct explanation of A
+  (B) Both A and R are true and R is not the correct explanation of A
+  (C) A is true but R is false
+  (D) A is False but R is true
+
+Q32 [assertion_reason, 1 mark(s), Section B]
+Assertion: Decomposition of vegetable matter into compost is an endothermic reaction. Reason: Decomposition reaction involves breakdown of a single reactant into simpler products.
+  (A) Both A and R are true and R is the correct explanation of A
+  (B) Both A and R are true and R is not the correct explanation of A
+  (C) A is true but R is false
+  (D) A is False but R is true
+
+Q33 [assertion_reason, 1 mark(s), Section B]
+Assertion: Resins and gums are stored in old xylem tissue in plants. Reason:Resins and gums facilitate transport of water molecules.
+  (A) Both A and R are true and R is the correct explanation of A
+  (B) Both A and R are true and R is not the correct explanation of A
+  (C) A is true but R is false
+  (D) A is False but R is true
+
+Q34 [assertion_reason, 1 mark(s), Section B]
+Assertion: Sky appears blue in the day time. Reason: White light is composed of seven colours.
+  (A) Both A and R are true and R is the correct explanation of A
+  (B) Both A and R are true and R is not the correct explanation of A
+  (C) A is true but R is false
+  (D) A is False but R is true
+
+Q35 [mcq, 1 mark(s), Section B]
+The table given below shows the reaction of a few elements with acids and bases to evolve Hydrogen gas. Element Acid Base A × × B   C  × D   Which of these elements form amphoteric oxides?
+  (A) A and D
+  (B) B and D
+  (C) A and C
+  (D) B and D
+
+Q36 [short_answer, 13 mark(s), Section B]
+In which of the following groups of organisms, blood flows through the heart only once during one cycle of passage through the body? A. Rabbit, Parrot, Turtle B. Frog, crocodile, Pigeon C. Whale, Labeo, Penguin D. Shark, dog fish, sting ray
+
+Q37 [mcq, 1 mark(s), Section B]
+What is common between extensive network of blood vessels around walls of alveoli and in glomerulus of nephron?
+  (A) Thick walled arteries richly supplied with blood
+  (B) Thin walled veins poorly supplied with blood
+  (C) Thick walled capillaries poorly supplied with blood.
+  (D) Thin walled capillaries richly supplied with blood
+
+Q38 [mcq, 1 mark(s), Section B]
+Plants use completely different process for excretion as compared to animals. Which one of the following processes is NOT followed by plants for excretion?
+  (A) They can get rid of excess water by transpiration.
+  (B) They selectively filter toxic substances through their leaves.
+  (C) Waste products are stored as resins and gums in old xylem.
+  (D) They excrete waste substances into the soil around them.
+
+Q39 [mcq, 1 mark(s), Section B]
+If the power of a lens is - 4.0 D, then it means that the lens is a
+  (A) concave lens of focal length -50 m
+  (B) convex lens of focal length +50 cm
+  (C) concave lens of focal length -25 cm
+  (D) convex lens of focal length -25 m
+
+Q4 [mcq, 1 mark(s), Section A]
+Which of the following correctly represents a balanced chemical equation?
+  (A) Fe(s) + 4H2O(g) → Fe3O4 (s) + 4H2(g)
+  (B) 3Fe(s) + 4H2O(g) → Fe3O4 (s) + 4H2(g)
+  (C) 3Fe(s) + H2O(g) → Fe3O4 (s) + H2(g)
+  (D) 3Fe(s) + 4H2O(g) → Fe3O4 (s) + H2(g)
+
+Q40 [mcq, 1 mark(s), Section B]
+Rays from Sun converge at a point 15 cm in front of a concave mirror. Where should an object be placed so that size of its image is equal to the size of the object?
+  (A) 30 cm in front of the mirror
+  (B) 15 cm in front of the mirror
+  (C) Between 15 cm and 30 cm in front of the mirror
+  (D) More than 30 cm in front of the mirror
+
+Q41 [mcq, 1 mark(s), Section B]
+In which of the following groups of organisms, food material is broken down outside the body and then absorbed in?
+  (A) mushroom, green plants, amoeba
+  (B) yeast, mushroom, bread mould
+  (C) paramecium, amoeba, cuscuta
+  (D) cuscuta, lice, tapeworm
+
+Q42 [mcq, 1 mark(s), Section B]
+In a person the tubule part of the nephron is not functioning at all. What will its effect be on urine formation?
+  (A) The urine will not be formed.
+  (B) Quality and quantity of urine is unaffected.
+  (C) Urine is more concentrated.
+  (D) Urine is more diluted.
+
+Q43 [short_answer, 14 mark(s), Section B]
+If the real image of a candle flame formed by a lens is three times the size of the flame and the distance between lens and image is 80 cm, at what distance should the candle be placed from the lens? A. -80cm B. -40 cm C. -40/3 cm D. -80/3 cm
+
+Q44 [short_answer, 15 mark(s), Section B]
+While looking at the above diagram, Nalini concluded the following- i. the image of the object will be a virtual one. ii. the reflected ray will travel along the same path as the incident ray but in opposite direction. iii. the image of the object will be inverted. iv. this is a concave mirror and hence the focal length will be negative. Which one of the above statements are correct? A. i and ii B. i and iii C. ii, iii and iv D. i, ii, iii and iv
+  [NOTE: This question references a diagram]
+
+Q45 [mcq, 1 mark(s), Section B]
+In the above diagram light is travelling through different media. It is noted by a scien tist that ∠1= ∠3= ∠4 but ∠2 <∠1. Which of the following statement would be correct?
+  (A) Medium 1 is the denser than medium 3 but it’s density is equal to medium 2.
+  (B) Medium 2 is the rarest medium.
+  (C) Medium 3 is denser than medium 1.
+  (D) Medium 1 and 3 are essential ly the same medium, but medium 2 is denser than 1 and 3.
+  [NOTE: This question references a diagram]
+
+Q46 [mcq, 1 mark(s), Section B]
+The refractive index of flint glass is 1.65 and that for alcohol is 1.36 with respect to air. What is the refractive index of the flint glass with respect to alcohol ?
+  (A) 0.82
+  (B) 1.21
+  (C) 1.11
+  (D) 1.01
+
+Q47 [short_answer, 16 mark(s), Section B]
+The above lens has a focal length of 10 cm. The object of height 2 mm is placed at a distance of 5 cm from the pole. Find the height of the image. A. 4 cm B. 6.67 mm C. 4 mm D. 3.33 mm
+
+Q48 [short_answer, 17 mark(s), Section B]
+A cable manufacturing unit tested few elements on the basisof their physical properties. Properties W X Y Z Malleable Yes No No Yes Ductile Yes No No Yes Electrical conductivity Yes Yes Yes No Melting Point High Low Low High Which of the above elements were dicarded for usage by the company? A. W, X, Y B. X, Y, Z C. W, X, Z D. W, X, Z SECTION – C Section- C consists of three Cases followed by questions. There are a total of 12 questions in this section. Attempt any 10 questions from this section. The first attempted 10 questions would be evaluated. Case The Salt Story From: The New Indian Express 9 March 2021 The salt pans in Marakkanam, a port town about 120 km from Chennai are the third largest producer of salt in Tamil Nadu. Separation of salt from water is a laborious process and the salt obtained is used as raw materials for manufacture of various sodium compounds. One such compound is Sodium hydrogen carbonate, used in baking, as an antacid and in soda acid fire extinguishers. The table shows the mass of various compounds obtained when 1litre of sea water is evaporated COMPOUND FORMULA MASS OF SOLID PRESENT /g Sodium Chloride NaCl 28.0 Magnesium Chloride MgCl2 8.0 Magnesium Sulphate MgSO4 6.0 Calcium Sulphate CaSO4 2.0 Calcium Carbonate CaCO3 1.0 TOTAL AMOUNT OF SALT OBTAINED 45.0
+
+Q49 [mcq, 1 mark(s), Section C]
+Which compound in the table reacts with acids to release carbon dioxide?
+  (A) NaCl
+  (B) CaSO4
+  (C) CaCO3
+  (D) MgSO4
+
+Q5 [short_answer, 3 mark(s), Section A]
+The graph given below depicts a neutralization reaction (acid + alkali → salt + water). The pH of a solution changes as we add excess of acid to an alkali. Which letter denotes the area of the graph where both acid and salt are present? A. A B. B C. C D. D
+
+Q50 [mcq, 1 mark(s), Section C]
+How many grams of Magnesium Sulphate are present in 135g of solid left by evaporation of sea water?
+  (A) 6g
+  (B) 12g
+  (C) 18g
+  (D) 24g
+
+Q51 [mcq, 1 mark(s), Section C]
+What is the saturated solution of Sodium Chloride called?
+  (A) Brine
+  (B) Lime water
+  (C) Slaked lime
+  (D) Soda water
+
+Q52 [short_answer, 18 mark(s), Section C]
+What is the pH of the acid which is used in the formation of common salt? A. Between 1 to 3 B. Between 6 to 8 C. Between 8 to 10 D. Between 11 to 13 Case The Figure shown below represents an activi ty to prove the requirements for photosynthesis. During this activity, two healthy potted plants were kept in the dark for 72 hours. After 72 hours, KOH is kept in the watch glass in setup X and not in setup Y. Both these setups are air tight and have been kept in light for 6 hours. Then, Iodine Test is performed with one leaf from each of the two plants X and Y.
+  [NOTE: This question references a diagram]
+
+Q53 [mcq, 1 mark(s), Section C]
+This experimental set up is used to prove essentiality of which of the following requirements of photosynthesis?
+  (A) Chlorophyll
+  (B) Oxygen
+  (C) Carbon dioxide
+  (D) Sunlight
+
+Q54 [mcq, 1 mark(s), Section C]
+The function of KOH is to absorb
+  (A) Oxygen.
+  (B) Carbon dioxide.
+  (C) Moisture.
+  (D) Sunlight.
+
+Q55 [mcq, 1 mark(s), Section C]
+Which of the following statements shows the correct results of Iodine Test performed on the leaf from plant X and Y respectively?
+  (A) Blue - black colour would be obtained on the leaf of plant Xand no change in colour on leaf of plant Y.
+  (B) Blue - black colour would be obtained on the leaf of plant Y and no change in colour onleaf of plant X.
+  (C) Red colour would be obtained on the leaf of plant X and brown colour on the leaf of plant Y.
+  (D) Red colour would be obtained on the leaf of plant Y and brown colour on the leaf of plant X.
+
+Q56 [short_answer, 19 mark(s), Section C]
+Which of the following steps can be followed for making the apparatus air tight? i. placing the plants on glass plate ii. using a suction pump. iii. applying aseline to seal the bottom of jar. iv. creating vacuum A. i and ii B. ii. and iii C. i. and iii D. ii. and iv Case Noor, a young student, was trying to demonstrate some properties of light in her Science project work. She kept ‘X’ inside the box (as shown in the figure) and with the help of a laser pointer made light rays pass through the holes on one side of the box. She had a small butter-paper screen to see the spots of light being cast as they emerged.
+  [NOTE: This question references a diagram]
+
+Q57 [mcq, 1 mark(s), Section C]
+What could be the ‘X’ that she placed inside the box to make the rays behave as shown?
+  (A) a converging lens
+  (B) a parallel-sided glass block
+  (C) a plane mirror
+  (D) a triangular prism
+
+Q58 [mcq, 1 mark(s), Section C]
+She measured the angles of incidence for both the rays on the left side of the box to be 48.60. She knew the refractive index of the material ‘X’ inside the box was 1.5. What will be the approximate value of angle of refraction?
+  (A) 450
+  (B) 400
+  (C) 300
+  (D) 600 (use the value: sin 48.60 ≈ 0.75)
+
+Q59 [short_answer, 20 mark(s), Section C]
+Her friend noted the following observations from this demonstration: i. Glass is optically rarer than air. ii. Air and glass allow light to pass through them with the same velocity. iii. Air is optically rarer than glass. iv. Speed of light through a denser medium is faster than that of a rarer medium. v. The ratio: sin of angle of incidence in the first medium to the ratio of sin of angle of refraction in the second medium, gives the refractive index of the second material with respect to the first one. Which one of the combination of the above statements given below is correct. A. ii, iv and v are correct. B. iii and iv are correct. C. i, iv and v are correct. D. iii and v are correct.
+
+Q6 [mcq, 1 mark(s), Section A]
+In the reaction of iron with copper sulphate solution: CuSO4 + Fe ---> Cu + FeSO4 Which option in the given table correctly represents the substance oxidised and the reducing agent? OPTION Substance Oxidized Reducing Agent A Fe Fe B Fe FeSO4 C Cu Fe D CuSO4 Fe
+
+Q60 [mcq, 1 mark(s), Section C]
+If the object inside the box was made of a material with a refractive index less than 1.5 then the
+  (A) lateral shift of the rays would have been less.
+  (B) lateral shift of the rays would have been more.
+  (C) lateral shift of the rays would remain the same as before.
+  (D) there is not enough information to comment on any of the above statements
+  [NOTE: This question references a diagram]
+
+Q7 [mcq, 1 mark(s), Section A]
+The chemical reaction between copper and oxygen can be categorized as:
+  (A) Displacement reaction
+  (B) Decomposition reaction
+  (C) Combination reaction
+  (D) Double displacement reaction
+
+Q8 [mcq, 1 mark(s), Section A]
+Which of the given options correctly represent s the Parent acid and base of Calcium Carbonate? OPTION PARENT ACID PARENT BASE A HCl NaOH B H2CO3 Ca(OH) 2 C H3PO3 CaSO4 D H2SO4 CaSO4
+
+Q9 [mcq, 1 mark(s), Section A]
+How will you protect yourself from the heat generated while diluting a concentrated acid?
+  (A) By adding acid to water with constant stirring.
+  (B) By adding water to acid with constant stirring.
+  (C) By adding water to acid followed by base.
+  (D) By adding base to acid with constant stirring.
+
+======================================================================
+Now return the complete JSON array with answers for all questions above.

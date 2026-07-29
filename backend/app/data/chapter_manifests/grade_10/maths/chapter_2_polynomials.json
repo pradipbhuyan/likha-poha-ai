@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 2: Polynomials",
+  "central_question": "How can the zeroes of a polynomial be understood algebraically and geometrically, and how are they related to the polynomial's coefficients?",
+  "in_scope_units": [
+    "Introduction: degree, linear, quadratic and cubic polynomials, values of a polynomial, and the definition of a zero.",
+    "Geometrical Meaning of the Zeroes of a Polynomial: x-axis intersections for linear, quadratic and cubic graphs and the maximum possible number of zeroes.",
+    "Relationship between Zeroes and Coefficients of a Polynomial: quadratic and cubic coefficient relations and construction of a quadratic polynomial from the sum and product of its zeroes.",
+    "Summary: consolidates polynomial degrees, graphical zeroes, and coefficient relations."
+  ],
+  "banned_topics": [
+    "Polynomial division algorithm and remainder theorem, because the supplied chapter text announces division but contains no developed section or exercise on it.",
+    "Solving quadratic equations with the quadratic formula or discriminant, which belongs to the chapter Quadratic Equations.",
+    "Detailed graph plotting procedures for quadratic and cubic polynomials, which the source explicitly says are not meant to be performed or evaluated."
+  ],
+  "must_include_keywords": [
+    "polynomial",
+    "variable",
+    "coefficient",
+    "degree",
+    "linear polynomial",
+    "quadratic polynomial",
+    "cubic polynomial",
+    "real coefficients",
+    "value of p(x)",
+    "p(k)",
+    "zero of a polynomial",
+    "p(k) = 0",
+    "linear zero",
+    "graph",
+    "x-axis",
+    "x-coordinate",
+    "straight line",
+    "parabola",
+    "opens upwards",
+    "opens downwards",
+    "two distinct zeroes",
+    "equal zeroes",
+    "no zero",
+    "cubic graph",
+    "at most n zeroes",
+    "factorisation",
+    "splitting the middle term",
+    "alpha",
+    "beta",
+    "gamma",
+    "sum of zeroes",
+    "product of zeroes",
+    "α + β = −b/a",
+    "αβ = c/a",
+    "α + β + γ = −b/a",
+    "αβ + βγ + γα = c/a",
+    "αβγ = −d/a",
+    "quadratic polynomial from zeroes"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every expression containing x is a polynomial.",
+      "correction": "Expressions such as 1/(x − 1), √x + 2 and 1/(x² + 2x + 3) are not polynomials because the variable does not occur only with non-negative integral powers."
+    },
+    {
+      "claim": "A zero is the y-coordinate where the graph crosses the y-axis.",
+      "correction": "A zero is the x-coordinate of a point where the graph y = p(x) meets the x-axis."
+    },
+    {
+      "claim": "A quadratic polynomial must have exactly two real zeroes.",
+      "correction": "A quadratic polynomial can have two distinct zeroes, one repeated zero, or no real zero; it has at most two zeroes."
+    },
+    {
+      "claim": "For ax² + bx + c, the sum of zeroes is b/a.",
+      "correction": "The sum is −b/a and the product is c/a. The minus sign in the sum is essential."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the polynomial p(x) = x² − 3x − 4 from Section 2.1 to introduce values and zeroes.",
+    "Use Fig. 2.1 and Table 2.1/Fig. 2.2 to connect zeroes with x-axis intersections for linear and quadratic polynomials.",
+    "Use NCERT Example 1 and Exercise 2.1 to count zeroes directly from graphs.",
+    "Use NCERT Example 2 and Example 3 to find quadratic zeroes and verify α + β = −b/a and αβ = c/a.",
+    "Use NCERT Example 4 to construct a quadratic polynomial and Example 5 to review cubic zero-coefficient relations."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter contains Exercise 2.1 on counting zeroes from graphs and Exercise 2.2 on quadratic zeroes, coefficient relations and constructing quadratic polynomials.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

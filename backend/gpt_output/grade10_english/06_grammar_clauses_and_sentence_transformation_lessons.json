@@ -1,0 +1,74 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "English",
+    "chapter": "Grammar: Clauses and Sentence Transformation",
+    "central_question": "How can a student change the grammatical form of a sentence while preserving its original meaning and logical relationship?",
+    "in_scope_units": [
+      "Combining simple sentences into complex sentences using clauses",
+      "Combining simple sentences into compound sentences using coordinating conjunctions",
+      "Reducing a complex sentence to a simple sentence with a phrase",
+      "Transforming degrees of comparison without changing meaning",
+      "Transforming assertive sentences into interrogative or exclamatory forms"
+    ],
+    "banned_topics": [
+      "Reported speech conversion",
+      "Active and passive voice",
+      "Tense backshift"
+    ],
+    "must_include_keywords": [
+      "clause",
+      "simple sentence",
+      "complex sentence",
+      "compound sentence",
+      "adverb clause",
+      "reason",
+      "coordinating conjunction",
+      "and",
+      "but",
+      "or",
+      "so",
+      "yet",
+      "phrase",
+      "in spite of",
+      "degree of comparison",
+      "positive degree",
+      "comparative degree",
+      "superlative degree",
+      "any other",
+      "assertive sentence",
+      "interrogative sentence",
+      "exclamatory sentence",
+      "same meaning"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Any conjunction can be used when combining sentences.",
+        "correction": "The conjunction or clause marker must preserve the original logical relationship, such as reason, contrast, choice, or result."
+      },
+      {
+        "claim": "A clause can be reduced to any phrase as long as the sentence is shorter.",
+        "correction": "The reduced phrase must preserve the same subject relationship and logical meaning as the original clause."
+      },
+      {
+        "claim": "Ravi is taller than any boy in the class is the exact comparative form of the superlative.",
+        "correction": "The standard form is 'Ravi is taller than any other boy in the class.'"
+      }
+    ],
+    "recommended_example_progression": [
+      "Combine two simple sentences using an adverb clause of reason",
+      "Combine two simple sentences with a coordinating conjunction",
+      "Reduce a contrast clause to an in spite of phrase",
+      "Transform positive degree into comparative and superlative",
+      "Transform an assertive sentence into an exclamatory sentence"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes sentence combining, rewriting without changing meaning, degree transformation, and assertive-interrogative-exclamatory conversion."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Grammar: Clauses and Sentence Transformation\n\n## What you will learn\nYou will learn to combine two simple sentences into one complex sentence. You will use a clause that shows the correct logical relationship.\n\n## Simple explanation\nA complex sentence has one main clause and at least one dependent clause. The dependent clause may explain reason, time, condition, contrast, or another relationship.\n\n## Step-by-step breakdown\n- **Simple sentences**: Each simple sentence contains one main clause.\n- **Complex sentence**: Combine ideas by making one clause dependent on the other.\n- **Adverb clause of reason**: Use because when one sentence gives the reason for the other.\n- **Meaning preservation**: The new sentence must express the same cause-and-effect relationship.\n\n## Worked example\nQuestion: Combine into a complex sentence: 'He is honest. Everyone respects him.'\n\nSolution:\n- Step 1: The first sentence gives the reason for the respect.\n- Step 2: Use the subordinating conjunction 'because' to form an adverb clause of reason.\n- Final answer: Everyone respects him because he is honest.\n\n## Common mistake\nDo not use a connector that changes the relationship. 'Although he is honest' would show contrast, not reason.\n\n## Quick check question\nQuestion: Combine using a reason clause: 'She worked carefully. She avoided errors.'\nAnswer: She avoided errors because she worked carefully.\nExplanation: The second idea is the result and the first idea is the reason, so a because-clause preserves the meaning.\n\n## Summary\n- A complex sentence contains a dependent clause.\n- Use because for a reason relationship.\n- Keep one clause as the main clause.\n- Preserve the original logic.",
+    "Core explanation": "# Core explanation: Grammar: Clauses and Sentence Transformation\n\n## What you will learn\nYou will learn to combine simple sentences into a compound sentence. You will choose a coordinating conjunction that matches the relationship between the ideas.\n\n## Simple explanation\nA compound sentence joins two independent clauses. Coordinating conjunctions such as and, but, or, so, and yet show addition, contrast, choice, result, or unexpected contrast.\n\n## Step-by-step breakdown\n- **And**: Joins similar or additional ideas.\n- **But/Yet**: Shows contrast.\n- **Or**: Shows a choice or alternative.\n- **So**: Shows a result.\n- **Compound structure**: Independent clause + comma + coordinating conjunction + independent clause.\n\n## Worked example\nQuestion: Combine into a compound sentence: 'He worked hard. He succeeded.'\n\nSolution:\n- Step 1: The second sentence is the result of the first.\n- Step 2: Use the coordinating conjunction 'so'.\n- Final answer: He worked hard, so he succeeded.\n\n## Common mistake\nDo not use 'but' when the second clause is a result rather than a contrast.\n\n## Quick check question\nQuestion: Combine using a suitable coordinating conjunction: 'Hurry up. You will miss the bus.'\nAnswer: Hurry up, or you will miss the bus.\nExplanation: The second clause presents the alternative consequence if the first instruction is not followed, so 'or' is suitable.\n\n## Summary\n- A compound sentence joins two independent clauses.\n- Use and for addition, but/yet for contrast, or for choice, and so for result.\n- Choose the conjunction from meaning.\n- Both joined clauses remain grammatically complete.",
+    "Worked examples": "# Worked examples: Grammar: Clauses and Sentence Transformation\n\n## What you will learn\nYou will learn to change a complex sentence into a simple sentence. You will reduce a clause to a phrase without changing the logical relationship.\n\n## Simple explanation\nA dependent clause can sometimes be shortened to a phrase. The transformation is correct only when the meaning, especially contrast or reason, remains the same.\n\n## Step-by-step breakdown\n- **Clause to phrase**: Replace a finite clause with a suitable phrase.\n- **Contrast pattern**: Although + subject + verb can become in spite of/despite + noun or -ing form.\n- **Example**: Although he was tired, he finished the work. -> In spite of being tired, he finished the work.\n- **Subject control**: Make sure the implied subject of the phrase is clear and matches the main clause.\n\n## Worked example\nQuestion: Transform into a simple sentence: 'Although she was nervous, she answered clearly.'\n\nSolution:\n- Step 1: The original clause expresses contrast.\n- Step 2: Reduce 'although she was nervous' to 'in spite of being nervous'.\n- Final answer: In spite of being nervous, she answered clearly.\n\n## Common mistake\nDo not replace a contrast clause with a reason phrase. That would change the meaning.\n\n## Quick check question\nQuestion: Transform into a simple sentence: 'Although he was ill, he attended the meeting.'\nAnswer: In spite of being ill, he attended the meeting.\nExplanation: The although-clause of contrast is correctly reduced to the phrase 'in spite of being ill'.\n\n## Summary\n- A complex sentence can sometimes be reduced to a simple sentence.\n- Use a phrase that preserves the original relationship.\n- Although can become in spite of/despite in the given pattern.\n- Check the implied subject carefully.",
+    "Exam-style problems": "# Exam-style problems: Grammar: Clauses and Sentence Transformation\n\n## What you will learn\nYou will learn to transform positive, comparative, and superlative degrees. You will keep the comparison meaning exactly the same.\n\n## Simple explanation\nDegree transformation changes the grammatical form of comparison, not the fact being expressed. Standard markers such as no other and any other help preserve the correct set of comparison.\n\n## Step-by-step breakdown\n- **Positive degree**: No other boy in the class is as tall as Ravi.\n- **Comparative degree**: Ravi is taller than any other boy in the class.\n- **Superlative degree**: Ravi is the tallest boy in the class.\n- **Any other**: Include 'other' because Ravi himself is part of the group being compared.\n\n## Worked example\nQuestion: Transform into the comparative degree: 'Maya is the most diligent student in the class.'\n\nSolution:\n- Step 1: Maya is one member of the class and is compared with all the remaining students.\n- Step 2: Use 'more diligent than any other student'.\n- Final answer: Maya is more diligent than any other student in the class.\n\n## Common mistake\nIncorrect: 'Maya is more diligent than any student in the class.' This can illogically include Maya in the comparison; use 'any other student'.\n\n## Quick check question\nQuestion: Transform into the superlative degree: 'No other metal is as useful as iron.'\nAnswer: Iron is the most useful metal.\nExplanation: The positive pattern 'No other ... as ... as' changes to the superlative pattern 'the most ...'.\n\n## Summary\n- Positive, comparative, and superlative forms can express the same fact.\n- Use no other in the standard positive form.\n- Use any other in the comparative form.\n- Use the before the superlative.",
+    "Revision and recap": "# Revision and recap: Grammar: Clauses and Sentence Transformation\n\n## What you will learn\nYou will learn to transform assertive sentences into interrogative or exclamatory forms while keeping the meaning. You will also revise all major sentence transformations.\n\n## Simple explanation\nA transformation is successful only if the new sentence has the required form and the same meaning. Punctuation and word order are part of the transformation.\n\n## Step-by-step breakdown\n- **Assertive to exclamatory**: It was a beautiful sight. -> What a beautiful sight it was!\n- **Assertive to interrogative**: A rhetorical question may express the same strong assertion when used appropriately.\n- **Exclamatory structure**: What + article + adjective + noun + subject + verb!\n- **Final check**: Compare the original and transformed meanings before accepting the answer.\n\n## Worked example\nQuestion: Transform into an exclamatory sentence: 'It was a very exciting match.'\n\nSolution:\n- Step 1: The sentence strongly praises the quality of the match.\n- Step 2: Use the pattern 'What an + adjective + singular countable noun + subject + verb!'.\n- Final answer: What an exciting match it was!\n\n## Common mistake\nDo not omit the article in 'What an exciting match'. The singular countable noun 'match' requires 'an' after what.\n\n## Quick check question\nQuestion: Transform into an exclamatory sentence: 'It is a very pleasant morning.'\nAnswer: What a pleasant morning it is!\nExplanation: The assertive sentence changes to the exclamatory pattern 'What a + adjective + noun + subject + verb!' without changing the meaning.\n\n## Summary\n- Transformation changes form, not meaning.\n- Complex sentences use dependent clauses.\n- Compound sentences use coordinating conjunctions.\n- Clauses may be reduced to equivalent phrases.\n- Comparison and sentence-type transformations require exact standard patterns."
+  }
+}

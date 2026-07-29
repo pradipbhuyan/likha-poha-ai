@@ -1,0 +1,99 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Science",
+    "chapter": "Chapter 11: Electricity",
+    "central_question": "How are electric current, potential difference and resistance related, and how do resistor combinations determine heating, power and electrical energy use in circuits?",
+    "in_scope_units": [
+      "Electric current, charge flow, electric circuit, conventional current and measurement by an ammeter.",
+      "Electric potential difference, work per unit charge and measurement by a voltmeter.",
+      "Conventional symbols used in circuit diagrams.",
+      "Ohm's law and the relationship among potential difference, current and resistance.",
+      "Factors affecting resistance and the concept of electrical resistivity.",
+      "Equivalent resistance of resistors connected in series.",
+      "Equivalent resistance of resistors connected in parallel and advantages of parallel circuits.",
+      "Heating effect of electric current, Joule's law and practical applications including heating devices, bulbs and fuses.",
+      "Electric power, electrical energy, watt, kilowatt-hour and cost of energy consumption."
+    ],
+    "banned_topics": [
+      "Magnetic field produced by current, motors, generators and electromagnetic induction, which belong to the next chapter.",
+      "Electrostatic force and Coulomb's law.",
+      "Detailed semiconductor electronics and alternating-current circuit analysis.",
+      "Detailed domestic wiring beyond the fuse application stated in this chapter."
+    ],
+    "must_include_keywords": [
+      "electric charge",
+      "electric current",
+      "electric circuit",
+      "conventional current",
+      "electron flow",
+      "coulomb",
+      "ampere",
+      "ammeter",
+      "potential difference",
+      "volt",
+      "voltmeter",
+      "circuit diagram",
+      "Ohm's law",
+      "resistance",
+      "ohm",
+      "rheostat",
+      "resistivity",
+      "length",
+      "area of cross-section",
+      "series combination",
+      "parallel combination",
+      "equivalent resistance",
+      "Joule's law of heating",
+      "electric fuse",
+      "tungsten filament",
+      "electric power",
+      "watt",
+      "kilowatt",
+      "kilowatt-hour",
+      "commercial unit",
+      "electrical energy"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Conventional current flows in the same direction as electrons in a metal wire.",
+        "correction": "Conventional current is taken opposite to the direction of electron flow."
+      },
+      {
+        "claim": "An ammeter is connected in parallel and a voltmeter in series.",
+        "correction": "An ammeter is connected in series with the circuit, while a voltmeter is connected in parallel across the points being measured."
+      },
+      {
+        "claim": "Ohm's law is valid under all conditions.",
+        "correction": "For a given metallic conductor, potential difference is proportional to current only when temperature remains the same."
+      },
+      {
+        "claim": "A thicker wire has greater resistance than a thinner wire of the same material and length.",
+        "correction": "Resistance is inversely proportional to area of cross-section, so a thicker wire has lower resistance."
+      },
+      {
+        "claim": "The equivalent resistance of parallel resistors is larger than every branch resistance.",
+        "correction": "The equivalent resistance of a parallel combination is smaller than the smallest individual resistance."
+      },
+      {
+        "claim": "Electricity bills charge for electrons consumed.",
+        "correction": "Electrons are not consumed; the bill is for electrical energy supplied to move charges through appliances."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Examples 11.1 and 11.2 for current as charge per time and potential difference as work per charge.",
+      "Use NCERT Activity 11.1 and Examples 11.3-11.6 for Ohm's law, resistance and resistivity.",
+      "Use NCERT Activities 11.4-11.6 and Examples 11.7-11.9 for series, parallel and mixed resistor combinations.",
+      "Use NCERT Examples 11.10-11.11 and the in-text heating questions for Joule's law and practical heating applications.",
+      "Use NCERT Examples 11.12-11.13 and Exercises Q15-Q17 for electric power and commercial energy use."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES contain Questions 1-18, covering resistance, resistor combinations, heating, power, energy and practical material choices."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Electricity\n\n## What you will learn\nYou will define electric current and electric circuit, use I = Q/t, and distinguish conventional current from electron flow. You will also define potential difference and identify how ammeters and voltmeters are connected.\n\n## Simple explanation\nElectric current exists when charge flows through a closed conducting path. A cell or battery maintains a potential difference that supplies energy to move charges. Current tells us how much charge passes per second, while potential difference tells us the work done per unit charge.\n\n## Step-by-step breakdown\n- **Closed electric circuit**: A continuous and closed conducting path allows current to flow. If the switch is open or the path is broken, current stops.\n- **Current as rate of charge flow**: If charge Q passes a cross-section in time t, current is I = Q/t.\n- **Direction of current**: In metallic wires electrons move, but conventional current is taken in the direction of positive charge flow, opposite to electron motion.\n- **Units**: Charge is measured in coulomb and current in ampere. One ampere is one coulomb per second.\n- **Ammeter**: An ammeter measures current and is always connected in series with the part of the circuit carrying that current.\n- **Potential difference**: Potential difference is work done per unit charge: V = W/Q. One volt equals one joule per coulomb.\n- **Voltmeter**: A voltmeter is connected in parallel across the two points whose potential difference is required.\n- **Circuit symbols**: Cells, batteries, open and closed keys, wire joints, bulbs, resistors, rheostats, ammeters and voltmeters are shown using conventional symbols.\n\n## Worked example\nQuestion: Using NCERT Example 11.1, find the charge flowing when a current of 0.5 A passes for 10 minutes.\n\nSolution:\n- Step 1: Convert 10 minutes to 600 seconds.\n- Step 2: Use Q = It because current is charge per unit time.\n- Step 3: Calculate Q = 0.5 A × 600 s = 300 C.\n- Final answer: The charge that flows is 300 C.\n\n## Common mistake\nDo not substitute time in minutes when current is in amperes. Since 1 A = 1 C/s, time must be in seconds.\n\n## Quick check question\nQuestion: Based on NCERT Example 11.2, how much work is done in moving 2 C through a potential difference of 12 V?\nAnswer: 24 J.\nExplanation: From V = W/Q, W = VQ = 12 V × 2 C = 24 J.\n\n## Summary\n- Current is the rate of flow of charge: I = Q/t.\n- Potential difference is work per unit charge: V = W/Q.\n- Ammeter: series connection; voltmeter: parallel connection.\n- A cell or battery supplies the potential difference needed for current.",
+    "Core explanation": "# Core explanation: Electricity\n\n## What you will learn\nYou will derive and apply Ohm's law and explain resistance. You will also investigate how length, cross-sectional area, material and temperature affect resistance and resistivity.\n\n## Simple explanation\nResistance opposes charge flow. In NCERT Activity 11.1, increasing the number of cells increases both potential difference and current, while V/I remains nearly constant for the nichrome wire at constant temperature. This constant is its resistance.\n\n## Step-by-step breakdown\n- **Ohm's law**: For a given metallic conductor at constant temperature, V is directly proportional to I: V = IR.\n- **Resistance**: R = V/I. Its SI unit is ohm. A resistance of 1 ohm allows 1 A when 1 V is applied.\n- **Current control**: I = V/R. For a fixed voltage, increasing resistance reduces current. A rheostat varies resistance without changing the source.\n- **Different components**: NCERT Activity 11.2 shows that nichrome wire, a torch bulb and a 10 W bulb draw different currents because they offer different resistances.\n- **Length**: NCERT Activity 11.3 shows that doubling a wire's length, with material and thickness unchanged, doubles resistance and halves current at the same voltage.\n- **Cross-sectional area**: A thicker wire has a larger area and lower resistance; R is inversely proportional to A.\n- **Material and resistivity**: R = ρl/A. Resistivity ρ is characteristic of the material and has unit ohm metre.\n- **Material choices**: Alloys generally have higher resistivity and do not oxidise readily at high temperature, so they are used in heating devices. Copper and aluminium are used in transmission lines because of low resistivity.\n\n## Worked example\nQuestion: Using NCERT Example 11.4, a heater takes 4 A at 60 V. What current will it take at 120 V if resistance remains constant?\n\nSolution:\n- Step 1: Find the resistance at 60 V: R = V/I = 60/4 = 15 ohm.\n- Step 2: At constant temperature the resistance remains 15 ohm.\n- Step 3: Use I = V/R = 120/15 = 8 A.\n- Final answer: The heater will draw 8 A.\n\n## Common mistake\nDo not say that current is always directly proportional to voltage without the constant-temperature condition. Heating can change resistance.\n\n## Quick check question\nQuestion: Based on NCERT Example 11.6, a wire of resistance 4 ohm is replaced by a wire of the same material with half the length and twice the area. What is the new resistance?\nAnswer: 1 ohm.\nExplanation: Since R is proportional to l/A, changing l to l/2 and A to 2A makes the resistance one-fourth: 4 ohm ÷ 4 = 1 ohm.\n\n## Summary\n- Ohm's law is V = IR at constant temperature.\n- Resistance increases with length and decreases with area.\n- Resistivity depends on material and temperature.\n- Rheostats regulate current by changing circuit resistance.",
+    "Worked examples": "# Worked examples: Electricity\n\n## What you will learn\nYou will compare series and parallel resistor combinations. You will calculate equivalent resistance, current and potential difference using the observations from NCERT Activities 11.4-11.6.\n\n## Simple explanation\nA series circuit has one path, so the same current passes through every resistor and the potential differences add. A parallel circuit has branches, so each branch has the same potential difference and the branch currents add.\n\n## Step-by-step breakdown\n- **Series current**: NCERT Activity 11.4 shows that the ammeter reading is the same wherever it is placed in a series circuit.\n- **Series potential difference**: NCERT Activity 11.5 shows V = V1 + V2 + V3.\n- **Series equivalent resistance**: Applying Ohm's law gives Rs = R1 + R2 + R3. It is greater than any individual resistance.\n- **Parallel potential difference**: NCERT Activity 11.6 shows that the same potential difference V acts across every branch.\n- **Parallel current**: The total current is the sum of branch currents: I = I1 + I2 + I3.\n- **Parallel equivalent resistance**: 1/Rp = 1/R1 + 1/R2 + 1/R3. The equivalent resistance is lower than the smallest branch resistance.\n- **Practical advantage**: Parallel connection lets appliances receive the same supply voltage and operate independently; failure of one branch does not stop the others.\n\n## Worked example\nQuestion: Using NCERT Example 11.8, three resistors 5 ohm, 10 ohm and 30 ohm are connected in parallel to 12 V. Find the branch currents, total current and equivalent resistance.\n\nSolution:\n- Step 1: Each branch has 12 V, so I1 = 12/5 = 2.4 A, I2 = 12/10 = 1.2 A and I3 = 12/30 = 0.4 A.\n- Step 2: Add branch currents: I = 2.4 + 1.2 + 0.4 = 4 A.\n- Step 3: Use Rp = V/I = 12/4 = 3 ohm, consistent with the reciprocal formula.\n- Final answer: The branch currents are 2.4 A, 1.2 A and 0.4 A; total current is 4 A; equivalent resistance is 3 ohm.\n\n## Common mistake\nDo not add resistances directly in parallel. Add reciprocals, or find total current and use R = V/I.\n\n## Quick check question\nQuestion: Based on NCERT Example 11.7, what is the total resistance of 20 ohm and 4 ohm connected in series?\nAnswer: 24 ohm.\nExplanation: Series resistances add directly: Rs = 20 + 4 = 24 ohm.\n\n## Summary\n- Series: same current, divided voltage, resistances add.\n- Parallel: same voltage, divided current, reciprocals add.\n- Parallel equivalent resistance is less than the smallest branch resistance.\n- Domestic-type appliances are connected in parallel for independent operation.",
+    "Exam-style problems": "# Exam-style problems: Electricity\n\n## What you will learn\nYou will explain the heating effect of current and apply Joule's law. You will also connect the heating effect to electric irons, toasters, bulb filaments and fuses.\n\n## Simple explanation\nA source supplies energy to move charge through a resistor. In a purely resistive circuit, this electrical energy is converted into heat. The heat depends strongly on current because Joule's law contains the square of current.\n\n## Step-by-step breakdown\n- **Energy supplied**: For charge Q crossing potential difference V, work is VQ. With Q = It, electrical energy supplied in time t is VIt.\n- **Joule's law**: Heat produced is H = VIt = I²Rt for a steady current in a resistor.\n- **Dependence**: For fixed R and t, heat is proportional to I²; for fixed I and t it is proportional to R; and for fixed I and R it is proportional to time.\n- **Heating appliances**: Electric irons, toasters, ovens, kettles and heaters use Joule heating.\n- **Bulb filament**: Tungsten is used because it is strong and has a very high melting point. The bulb is filled with inactive nitrogen and argon to prolong filament life.\n- **Fuse**: A fuse is connected in series. Excess current raises its temperature, melts the fuse wire and breaks the circuit.\n- **Fuse rating**: The chapter example states that a 1 kW iron at 220 V draws about 4.54 A, so a 5 A fuse is appropriate.\n\n## Worked example\nQuestion: Using the NCERT in-text heating question, calculate the heat developed by a 20 ohm electric iron carrying 5 A for 30 s.\n\nSolution:\n- Step 1: Use Joule's law H = I²Rt.\n- Step 2: Substitute I = 5 A, R = 20 ohm and t = 30 s.\n- Step 3: H = 25 × 20 × 30 = 15000 J.\n- Final answer: The heat developed is 15000 J.\n\n## Common mistake\nDo not use H = IRt. Current must be squared in H = I²Rt.\n\n## Quick check question\nQuestion: Based on NCERT Example 11.11, 100 J of heat is produced each second in a 4 ohm resistor. What potential difference is required?\nAnswer: 20 V.\nExplanation: For 1 s, I = square root of [H/(Rt)] = square root of [100/(4 × 1)] = 5 A, and V = IR = 5 × 4 = 20 V.\n\n## Summary\n- Electrical energy in a resistor becomes heat.\n- Joule's law is H = I²Rt.\n- Heating elements use high-resistivity materials that withstand high temperature.\n- A fuse protects a circuit by melting when current is too large.",
+    "Revision and recap": "# Revision and recap: Electricity\n\n## What you will learn\nYou will revise electric power and the commercial unit of electrical energy. You will calculate appliance power, energy use and cost, and consolidate the chapter's core relationships.\n\n## Simple explanation\nPower is the rate at which electrical energy is converted or consumed. A high-power appliance transfers more energy each second. Electricity bills measure total energy, not current alone and not the number of electrons used.\n\n## Step-by-step breakdown\n- **Electric power**: P = VI. Using Ohm's law, equivalent forms are P = I²R and P = V²/R.\n- **Watt**: One watt is the power used when 1 A flows at a potential difference of 1 V: 1 W = 1 V A.\n- **Kilowatt**: 1 kW = 1000 W.\n- **Electrical energy**: Energy equals power multiplied by time.\n- **Commercial unit**: One kilowatt-hour is the energy used by a 1 kW appliance for 1 hour. 1 kWh = 3.6 × 10⁶ J and is commonly called one unit.\n- **Energy cost**: Cost is calculated from energy in kWh multiplied by the price per kWh.\n- **Formula selection**: Use I = Q/t and V = W/Q for basic quantities; V = IR for resistance; series or parallel rules for combinations; H = I²Rt for heating; and P = VI for power.\n\n## Worked example\nQuestion: Using NCERT Example 11.13, find the energy cost for a 400 W refrigerator used 8 hours per day for 30 days at Rs 3.00 per kWh.\n\nSolution:\n- Step 1: Energy = 400 W × 8 h/day × 30 days = 96000 Wh.\n- Step 2: Convert to kilowatt-hours: 96000 Wh = 96 kWh.\n- Step 3: Cost = 96 × Rs 3.00 = Rs 288.\n- Final answer: The refrigerator uses 96 kWh and costs Rs 288 to operate for 30 days.\n\n## Common mistake\nDo not treat kilowatt as a unit of energy. Kilowatt is power; kilowatt-hour is energy.\n\n## Quick check question\nQuestion: Based on NCERT Example 11.12, what is the power of a bulb connected to 220 V and drawing 0.50 A?\nAnswer: 110 W.\nExplanation: P = VI = 220 × 0.50 = 110 W.\n\n## Summary\n- Power is the rate of electrical energy consumption.\n- P = VI = I²R = V²/R.\n- 1 kWh = 3.6 × 10⁶ J.\n- Electricity charges are based on energy consumed in kilowatt-hours."
+  }
+}

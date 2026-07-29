@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 12: Surface Areas and Volumes",
+    "central_question": "How can the exposed surface area, volume and capacity of an object made by joining or removing basic solids be calculated correctly?",
+    "in_scope_units": [
+      "Introduction: recognises real objects as combinations of cuboids, cones, cylinders, spheres and hemispheres.",
+      "Surface Area of a Combination of Solids: adds only exposed curved or plane surfaces and removes joined or covered faces.",
+      "Volume of a Combination of Solids: adds volumes of joined parts and subtracts volumes of cavities, depressions or occupied spaces.",
+      "Summary: consolidates methods for surface area and volume of objects formed from basic solids."
+    ],
+    "banned_topics": [
+      "Frustums of cones, which are not developed in the supplied chapter.",
+      "Similarity-based conversion of one solid into another and melting or recasting problems.",
+      "Two-dimensional sector and segment area problems from Areas Related to Circles.",
+      "Coordinate geometry or algebraic equations unrelated to mensuration."
+    ],
+    "must_include_keywords": [
+      "combination of solids",
+      "cuboid",
+      "cube",
+      "cone",
+      "cylinder",
+      "sphere",
+      "hemisphere",
+      "total surface area",
+      "TSA",
+      "curved surface area",
+      "CSA",
+      "exposed surface",
+      "joined face",
+      "common radius",
+      "slant height",
+      "base area",
+      "circular ring",
+      "hemispherical depression",
+      "hollow vessel",
+      "capsule",
+      "cone mounted on cylinder",
+      "cone surmounted by hemisphere",
+      "volume",
+      "capacity",
+      "apparent capacity",
+      "actual capacity",
+      "cavity",
+      "displacement",
+      "sum of constituent volumes",
+      "subtract occupied volume",
+      "unit conversion",
+      "cm²",
+      "cm³",
+      "m²",
+      "m³"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The total surface area of a joined solid is always the sum of the total surface areas of all its parts.",
+        "correction": "Joined faces become hidden, so only surfaces visible from outside are counted."
+      },
+      {
+        "claim": "The volume of joined solids must also exclude their common face.",
+        "correction": "A common face has no volume; volumes of non-overlapping joined parts are added directly."
+      },
+      {
+        "claim": "A hemispherical depression reduces surface area because material is removed.",
+        "correction": "For surface area, the removed flat circular part is replaced by the curved surface of the depression; the net effect depends on both areas."
+      },
+      {
+        "claim": "The total height of a cone-hemisphere toy is the cone height alone.",
+        "correction": "The cone height equals total height minus the hemisphere radius."
+      },
+      {
+        "claim": "Surface area and volume can be calculated using mixed centimetre and metre dimensions.",
+        "correction": "Convert all dimensions to one unit before substitution, then use square units for area and cubic units for volume."
+      }
+    ],
+    "recommended_example_progression": [
+      "Start with NCERT Figures 12.2–12.5 and NCERT Example 1 to identify constituent solids and exposed curved surfaces.",
+      "Use NCERT Examples 2 and 3 to handle hidden attachment areas and a visible circular ring when radii differ.",
+      "Use NCERT Example 5 to add volumes of a cuboid and half cylinder and then subtract occupied space.",
+      "Use NCERT Example 6 to distinguish apparent capacity from actual capacity when a raised hemisphere occupies space.",
+      "Finish with NCERT Exercise 12.2 Question 5 or NCERT Example 7 for subtraction and displacement in a multi-solid volume problem."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "NCERT Exercise 12.1 contains Questions 1–9 on combined surface areas, and Exercise 12.2 contains Questions 1–8 on combined volumes and capacities."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Surface Areas and Volumes\n\n## What you will learn\nYou will recognise a real object as a combination of familiar solids and identify which surfaces remain exposed. You will calculate the painted area of a cone joined to a hemisphere.\n\n## Simple explanation\nA combined solid should first be split mentally into basic solids. For surface area, count only the parts that can be touched or painted from outside; the flat faces used for joining are hidden.\n\n## Step-by-step breakdown\n- **Basic solids**: The chapter uses cuboids, cubes, cones, cylinders, spheres and hemispheres as building blocks.\n- **Decomposition**: A truck tank or capsule can be viewed as a cylinder with two hemispherical ends; a test tube can be viewed as a cylinder with one hemispherical end.\n- **Exposed surface rule**: When solids are joined, their common faces disappear from the outside surface.\n- **Cone and hemisphere toy**: When equal circular faces are joined, the exposed area is CSA of cone + CSA of hemisphere.\n- **Cone slant height**: For a right circular cone, l = √(r² + h²).\n- **Hemisphere height**: The height of a hemisphere equals its radius, which must be removed from the total height to obtain the cone height in a joined toy.\n\n## Worked example\nQuestion: Solve NCERT Example 1: A playing top is a cone surmounted by a hemisphere. Its total height is 5 cm and diameter is 3.5 cm. Find the area to be coloured, using π = 22/7.\n\nSolution:\n- Step 1: Radius r = 3.5/2 = 1.75 cm.\n- Step 2: Cone height h = total height − hemisphere radius = 5 − 1.75 = 3.25 cm.\n- Step 3: Slant height l = √(r² + h²) = √(1.75² + 3.25²) = √13.625 ≈ 3.7 cm.\n- Step 4: CSA of hemisphere = 2πr² = 2 × 22/7 × 1.75².\n- Step 5: CSA of cone = πrl = 22/7 × 1.75 × 3.7.\n- Step 6: Total coloured area = 2πr² + πrl = πr(2r + l).\n- Step 7: Substitute: 22/7 × 1.75 × (3.5 + 3.7) = 5.5 × 7.2 = 39.6 cm².\n- Final answer: The area to be coloured is approximately 39.6 cm².\n\n## Common mistake\nDo not add the circular base areas of both solids. Those equal circles are joined to each other and are not exposed.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 12.1 Question 3: A cone of radius 3.5 cm is mounted on a hemisphere of the same radius. Total height is 15.5 cm. Find the total surface area, using π = 22/7.\nAnswer: The total surface area is 214.5 cm².\nExplanation: Cone height = 15.5 − 3.5 = 12 cm, so l = √(3.5² + 12²) = 12.5 cm. Exposed area = πrl + 2πr² = πr(l + 2r) = 22/7 × 3.5 × (12.5 + 7) = 214.5 cm².\n\n## Summary\n- Break a combined object into basic solids.\n- For surface area, count only visible faces.\n- Joined circular faces are hidden.\n- Use l = √(r² + h²) for a cone.\n- Keep all lengths in the same unit.",
+    "Core explanation": "# Core explanation: Surface Areas and Volumes\n\n## What you will learn\nYou will handle surface-area problems where joined solids have different radii or where a depression is cut into a solid. You will learn to add exposed surfaces and subtract covered plane regions.\n\n## Simple explanation\nA careful sketch is essential. Mark every surface as exposed, covered or removed before writing a formula; this prevents double counting.\n\n## Step-by-step breakdown\n- **Covered attachment area**: If a hemisphere sits on a cube, subtract the circular part of the cube that is covered and add the hemisphere curved surface.\n- **Unequal radii**: If a cone base is wider than the cylinder supporting it, the uncovered ring of the cone base remains visible.\n- **Circular ring**: Visible ring area = area of larger circle − area of smaller circle.\n- **Open or uncovered base**: A base is included only when it is actually exposed; for example, a tent base is not covered with canvas.\n- **Depression**: A hemispherical depression contributes its curved inner surface, while the flat circular opening is removed from the original plane face.\n- **Colour-wise area**: When different portions are painted different colours, list the exposed surfaces belonging to each colour separately.\n\n## Worked example\nQuestion: Solve NCERT Example 3: A toy rocket has a cone of height 6 cm and diameter 5 cm mounted on a cylinder. The total height is 26 cm and cylinder diameter is 3 cm. Find the orange cone area and yellow cylinder area, using π = 3.14.\n\nSolution:\n- Step 1: Cone radius r = 2.5 cm, cone height h = 6 cm; cylinder radius r′ = 1.5 cm and cylinder height h′ = 26 − 6 = 20 cm.\n- Step 2: Cone slant height l = √(2.5² + 6²) = √(6.25 + 36) = √42.25 = 6.5 cm.\n- Step 3: The orange part includes cone CSA and the visible ring of its base.\n- Step 4: Orange area = πrl + πr² − π(r′)² = π[(2.5 × 6.5) + 2.5² − 1.5²].\n- Step 5: Inside the bracket: 16.25 + 6.25 − 2.25 = 20.25, so orange area = 3.14 × 20.25 = 63.585 cm².\n- Step 6: The yellow part includes cylinder CSA and its exposed lower base.\n- Step 7: Yellow area = 2πr′h′ + π(r′)² = πr′(2h′ + r′) = 3.14 × 1.5 × (40 + 1.5).\n- Step 8: Yellow area = 4.71 × 41.5 = 195.465 cm².\n- Final answer: Orange area = 63.585 cm² and yellow area = 195.465 cm².\n\n## Common mistake\nDo not remove the whole base of the cone just because it rests on the cylinder. Only the smaller circular part covered by the cylinder is hidden; the surrounding ring is exposed.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 12.1 Question 5: A hemispherical depression of diameter 7 cm is cut from one face of a cube of edge 7 cm. Find the remaining surface area, using π = 22/7.\nAnswer: The remaining surface area is 332.5 cm².\nExplanation: Cube TSA = 6 × 7² = 294 cm². Radius of depression = 3.5 cm. Remove the flat circle πr² and add the hemispherical CSA 2πr², giving 294 − πr² + 2πr² = 294 + πr² = 294 + 38.5 = 332.5 cm².\n\n## Summary\n- Classify surfaces before calculating.\n- Subtract covered or removed flat regions.\n- Add newly exposed curved regions.\n- Different radii can leave a visible ring.\n- A cavity can increase the measured surface area.",
+    "Worked examples": "# Worked examples: Surface Areas and Volumes\n\n## What you will learn\nYou will calculate the volume of a joined solid and then adjust it for machinery and people occupying space. You will see why volume treatment differs from surface-area treatment.\n\n## Simple explanation\nWhen non-overlapping solids are joined, their volumes are added because the common face has no thickness and no volume. If some space is occupied inside the object, subtract that occupied volume from the total capacity.\n\n## Step-by-step breakdown\n- **Volume addition**: Volume of a combined solid = sum of the volumes of its non-overlapping constituent solids.\n- **Half cylinder**: A half cylinder has one-half the volume of a complete cylinder with the same radius and length.\n- **Cuboid volume**: Volume = length × breadth × height.\n- **Cylinder volume**: Volume = πr²h.\n- **Occupied space**: Available air or liquid capacity equals total internal volume minus the volume occupied by objects.\n- **Surface versus volume**: Hidden faces affect surface area, but they do not require any subtraction in a volume sum.\n\n## Worked example\nQuestion: Solve NCERT Example 5: A shed is a cuboid of base 7 m × 15 m and height 8 m, surmounted by a half cylinder of diameter 7 m and length 15 m. Find its air volume and the air left after machinery occupies 300 m³ and 20 workers occupy 0.08 m³ each, using π = 22/7.\n\nSolution:\n- Step 1: Cuboid volume = 15 × 7 × 8 = 840 m³.\n- Step 2: Half-cylinder radius = 7/2 = 3.5 m and length = 15 m.\n- Step 3: Half-cylinder volume = 1/2 × πr²h = 1/2 × 22/7 × 3.5² × 15.\n- Step 4: 3.5² = 12.25, so half-cylinder volume = 1/2 × 22/7 × 12.25 × 15 = 288.75 m³.\n- Step 5: Total empty-shed air volume = 840 + 288.75 = 1128.75 m³.\n- Step 6: Workers occupy 20 × 0.08 = 1.6 m³.\n- Step 7: Air left = 1128.75 − (300 + 1.6) = 1128.75 − 301.6 = 827.15 m³.\n- Final answer: The empty shed holds 1128.75 m³ of air; with machinery and workers, 827.15 m³ of air remains.\n\n## Common mistake\nDo not subtract the rectangular contact area between the cuboid and half cylinder from a volume calculation. Contact areas matter for surface area, not volume.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 12.2 Question 1: A cone of radius 1 cm and height 1 cm stands on a hemisphere of radius 1 cm. Find the volume in terms of π.\nAnswer: The volume is π cm³.\nExplanation: Volume = cone + hemisphere = 1/3πr²h + 2/3πr³ = 1/3π(1)²(1) + 2/3π(1)³ = π cm³.\n\n## Summary\n- Add constituent volumes for joined solids.\n- A common face has zero volume.\n- Subtract only genuine cavities or occupied spaces.\n- Use cubic units for volume and capacity.\n- Interpret each dimension according to the solid it belongs to.",
+    "Exam-style problems": "# Exam-style problems: Surface Areas and Volumes\n\n## What you will learn\nYou will distinguish apparent capacity from actual capacity when a solid projection occupies part of a container. You will also practise subtracting several conical cavities from a cuboid.\n\n## Simple explanation\nA container may look like a full cylinder from the outside but hold less because a raised part occupies internal space. Actual capacity is the outer internal volume minus the volume of the raised solid.\n\n## Step-by-step breakdown\n- **Apparent capacity**: The capacity obtained by treating the whole inside as a simple basic solid.\n- **Actual capacity**: The volume that can really be filled after subtracting raised portions or internal obstructions.\n- **Hemispherical raised base**: Its volume is 2/3πr³ and must be subtracted from the cylindrical volume.\n- **Multiple cavities**: For identical cavities, find one cavity volume, multiply by their number and subtract from the original solid.\n- **Capacity units**: One cubic centimetre is one millilitre, although the chapter calculations may leave capacity in cm³.\n- **Reasonableness check**: Actual capacity cannot exceed apparent capacity when a raised solid occupies space.\n\n## Worked example\nQuestion: Solve NCERT Example 6: A cylindrical glass has inner diameter 5 cm and height 10 cm, but a hemispherical raised base reduces its capacity. Find apparent and actual capacities, using π = 3.14.\n\nSolution:\n- Step 1: Inner radius r = 5/2 = 2.5 cm and cylinder height h = 10 cm.\n- Step 2: Apparent capacity = πr²h = 3.14 × 2.5² × 10.\n- Step 3: 2.5² = 6.25, so apparent capacity = 3.14 × 62.5 = 196.25 cm³.\n- Step 4: Volume of raised hemisphere = 2/3πr³ = 2/3 × 3.14 × 2.5³.\n- Step 5: 2.5³ = 15.625, so hemisphere volume = 2/3 × 3.14 × 15.625 ≈ 32.71 cm³.\n- Step 6: Actual capacity = 196.25 − 32.71 = 163.54 cm³.\n- Final answer: Apparent capacity = 196.25 cm³ and actual capacity = 163.54 cm³.\n\n## Common mistake\nDo not add the hemisphere because it is a raised obstruction inside the glass. It occupies space that would otherwise hold juice, so its volume must be subtracted.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 12.2 Question 4: A 15 cm × 10 cm × 3.5 cm wooden cuboid has four conical depressions, each of radius 0.5 cm and depth 1.4 cm. Find the wood volume, using π = 22/7.\nAnswer: The wood volume is 7853/15 cm³, approximately 523.53 cm³.\nExplanation: Cuboid volume = 15 × 10 × 3.5 = 525 cm³. One cone volume = 1/3 × 22/7 × 0.5² × 1.4 = 11/30 cm³. Four cones occupy 44/30 = 22/15 cm³. Remaining wood = 525 − 22/15 = 7853/15 ≈ 523.53 cm³.\n\n## Summary\n- Apparent capacity ignores an internal obstruction.\n- Actual capacity subtracts the obstruction volume.\n- Cavities reduce the amount of material in a solid.\n- Multiply one cavity volume by the number of identical cavities.\n- Check that the final capacity or material volume is smaller than the original.",
+    "Revision and recap": "# Revision and recap: Surface Areas and Volumes\n\n## What you will learn\nYou will solve a displacement problem and review the decision process for combined-solid questions. You will connect volume removed or immersed with an equal volume of displaced liquid.\n\n## Simple explanation\nIn displacement problems, the volume of water flowing out equals the volume of the objects placed into the full vessel. This converts a liquid-volume statement into an equation involving the number of identical solids.\n\n## Step-by-step breakdown\n- **Displacement**: When a full vessel receives completely immersed objects, the overflow volume equals the total immersed volume.\n- **Cone capacity**: Volume of a cone = 1/3πr²h.\n- **Sphere volume**: Volume of a sphere = 4/3πr³.\n- **Number of objects**: Number = total displaced volume ÷ volume of one object.\n- **Surface-area checklist**: Identify exposed surfaces, remove hidden faces, add cavity surfaces and use square units.\n- **Volume checklist**: Add joined parts, subtract cavities or occupied space, and use cubic units.\n- **Unit conversion**: Convert dimensions before calculations; for example, 1.45 m becomes 145 cm when combined with a 30 cm radius.\n\n## Worked example\nQuestion: Solve NCERT Exercise 12.2 Question 5: An inverted cone of height 8 cm and radius 5 cm is full of water. Spherical lead shots of radius 0.5 cm are dropped in, causing one-fourth of the water to overflow. Find the number of shots.\n\nSolution:\n- Step 1: Volume of the conical vessel = 1/3πr²h = 1/3π × 5² × 8 = 200π/3 cm³.\n- Step 2: Overflow volume = one-fourth of the cone volume = 1/4 × 200π/3 = 50π/3 cm³.\n- Step 3: Volume of one lead shot = 4/3π(0.5)³.\n- Step 4: Since 0.5³ = 1/8, one shot volume = 4/3π × 1/8 = π/6 cm³.\n- Step 5: Number of shots = (50π/3) ÷ (π/6) = 50π/3 × 6/π = 100.\n- Final answer: The number of lead shots is 100.\n\n## Common mistake\nDo not equate one-fourth of the cone height or radius with the overflow. The statement says one-fourth of the water, so take one-fourth of the cone volume.\n\n## Quick check question\nQuestion: In NCERT Exercise 12.2 Question 7, a cone of radius 60 cm and height 120 cm on a hemisphere of radius 60 cm is placed in a full cylinder of radius 60 cm and height 180 cm. What volume of water remains?\nAnswer: The water remaining is 360000π cm³.\nExplanation: Cylinder volume = π × 60² × 180 = 648000π cm³. Cone volume = 1/3π × 60² × 120 = 144000π cm³. Hemisphere volume = 2/3π × 60³ = 144000π cm³. Water left = 648000π − 288000π = 360000π cm³.\n\n## Summary\n- Combined-solid problems begin with a correct decomposition.\n- Surface area counts only exposed surfaces.\n- Volume adds joined parts and subtracts cavities or obstructions.\n- Displaced liquid equals immersed volume.\n- Use square units for area and cubic units for volume.\n- A final reasonableness check can catch wrong addition or subtraction."
+  }
+}

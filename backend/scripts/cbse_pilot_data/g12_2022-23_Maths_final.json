@@ -1,0 +1,399 @@
+[
+  {
+    "question_number": 1,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If A =[aij] is a skew-symmetric matrix of order n, then",
+    "options": [
+      "𝑎௜௝= ଵ ௔ೕ೔ ∀ 𝑖,𝑗",
+      "𝑎௜௝≠ 0 ∀ 𝑖,𝑗",
+      "𝑎௜௝= 0,𝑤ℎ𝑒𝑟𝑒 𝑖 =𝑗",
+      "𝑎௜௝≠ 0 𝑤ℎ𝑒𝑟𝑒 𝑖 =𝑗"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If A is a square matrix of order 3, |𝐴′| = −3, then |𝐴𝐴′| =",
+    "options": [
+      "9",
+      "-9",
+      "3",
+      "-3"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The area of a triangle with vertices A, B, C is given by",
+    "options": [
+      "ห𝐴𝐵ሬሬሬሬሬ⃗×𝐴𝐶ሬሬሬሬሬ⃗ห",
+      "ଵ ଶ ห𝐴𝐵ሬሬሬሬሬ⃗×𝐴𝐶ሬሬሬሬሬ⃗ห",
+      "ଵ ସ ห𝐴𝐶ሬሬሬሬሬ⃗×𝐴𝐵ሬሬሬሬሬ⃗ห",
+      "ଵ ଼ ห𝐴𝐶ሬሬሬሬሬ⃗×𝐴𝐵ሬሬሬሬሬ⃗ห"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The value of ‘k’ for which the function f(x) =ቊ ଵି௖௢௦ସ௫ ଼௫మ ,𝑖𝑓 𝑥≠ 0 𝑘,𝑖𝑓 𝑥= 0 is continuous at x = 0 is",
+    "options": [
+      "0",
+      "-1",
+      "1.",
+      "2"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If 𝑓ᇱ(𝑥)=𝑥+ଵ ௫, then 𝑓(𝑥) is",
+    "options": [
+      "𝑥ଶ + log |𝑥| +𝐶",
+      "௫మ ଶ + log |𝑥| +𝐶",
+      "௫ ଶ + log |𝑥| +𝐶",
+      "௫ ଶ − log |𝑥| +𝐶"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If m and n, respectively, are the order and the degree of the differential equation ௗ ௗ௫ ቂቀௗ௬ ௗ௫ቁቃ ସ = 0, then m + n =",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The solution set of the inequality 3x + 5y < 4 is",
+    "options": [
+      "an open half-plane not containing the origin.",
+      "an open half-plane containing the origin.",
+      "the whole XY-plane not containing the line 3x + 5y = 4.",
+      "a closed half plane containing the origin."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The scalar projection of the vector 3𝚤̂ −𝚥̂ − 2𝑘෠ 𝑜𝑛 𝑡ℎ𝑒 𝑣𝑒𝑐𝑡𝑜𝑟 𝚤̂ + 2𝚥̂ − 3𝑘 ෡ is",
+    "options": [
+      "଻ √ଵସ",
+      "଻ ଵସ",
+      "଺ ଵଷ",
+      "଻ ଶ"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The value of ∫ ௫ ௫మାଵ ଷ ଶ dx is",
+    "options": [
+      "log4",
+      "𝑙𝑜𝑔ଷ ଶ",
+      "ଵ ଶ 𝑙𝑜𝑔2",
+      "𝑙𝑜𝑔ଽ ସ"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If A, B are non-singular square matrices of the same order, then (𝐴𝐵ିଵ)ିଵ =",
+    "options": [
+      "𝐴ିଵ𝐵",
+      "𝐴ିଵ𝐵ିଵ",
+      "𝐵𝐴ିଵ",
+      "𝐴𝐵"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The corner points of the shaded unbounded feasible region of an LPP are (0, 4), (0.6, 1.6) and (3, 0) as shown in the figure. The minimum value of the objective function Z = 4x + 6y occurs at",
+    "options": [
+      "(0.6, 1.6) 𝑜𝑛𝑙𝑦",
+      "(3, 0) only",
+      "(0.6, 1.6) and (3, 0) only",
+      "at every point of the line-segment joining the points (0.6, 1.6) and (3, 0)"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 12,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If ቚ2 4 5 1 ቚ=ቚ2𝑥 4 6 𝑥ቚ,𝑡ℎ𝑒𝑛 𝑡ℎ𝑒 𝑝𝑜𝑠𝑠𝑖𝑏𝑙𝑒 value(s) of ‘x’ is/are",
+    "options": [
+      "3",
+      "√3",
+      "-√3",
+      "√3, −√3"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If A is a square matrix of order 3 and |A| = 5, then |𝑎𝑑𝑗𝐴| =",
+    "options": [
+      "5",
+      "25",
+      "125",
+      "ଵ ହ"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Given two independent events A and B such that P(A) =0.3, P(B) = 0.6 and P(𝐴ᇱ∩𝐵ᇱ) is",
+    "options": [
+      "0.9",
+      "0.18",
+      "0.28",
+      "0.1"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The general solution of the differential equation 𝑦𝑑𝑥−𝑥𝑑𝑦= 0 𝑖𝑠",
+    "options": [
+      "𝑥𝑦=𝐶",
+      "𝑥=𝐶𝑦ଶ",
+      "𝑦=𝐶𝑥",
+      "𝑦=𝐶𝑥ଶ"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If 𝑦=𝑠𝑖𝑛ିଵ𝑥, then (1 −𝑥ଶ)𝑦ଶ 𝑖𝑠 equal to",
+    "options": [
+      "𝑥𝑦ଵ",
+      "𝑥𝑦",
+      "𝑥𝑦ଶ",
+      "𝑥ଶ"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If two vectors 𝑎⃗ 𝑎𝑛𝑑 𝑏ሬ⃗ are such that |𝑎⃗| = 2 ,ห𝑏ሬ⃗ห= 3 𝑎𝑛𝑑 𝑎⃗.𝑏ሬ⃗ = 4,𝑡ℎ𝑒𝑛 ห𝑎⃗ − 2𝑏ሬ⃗ห is equal to",
+    "options": [
+      "√2",
+      "2√6",
+      "24",
+      "2√2"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "E",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "P is a point on the line joining the points 𝐴(0,5, −2) and 𝐵(3, −1,2). If the x-coordinate of P is 6, then its z-coordinate is",
+    "options": [
+      "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
+      "Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)",
+      "Assertion (A) is true but reason (R) is false",
+      "Assertion (A) is false but reason (R) is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "E",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion (A): The domain of the function 𝑠𝑒𝑐ିଵ 2𝑥 is ቀ−∞, −ଵ ଶቃ∪ [ଵ ଶ , ∞) Reason (R): 𝑠𝑒𝑐ିଵ(−2) = −గ ସ",
+    "options": [
+      "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
+      "Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)",
+      "Assertion (A) is true but reason (R) is false",
+      "Assertion (A) is false but reason (R) is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "E",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion (A): The acute angle between the line 𝑟̅ =𝚤̂ +𝚥̂ + 2𝑘෠+𝜆(𝚤̂ −𝚥̂) and the x-axis is గ ସ Reason(R): The acute angle 𝜃 between the lines 𝑟̅ =𝑥ଵ𝚤̂ +𝑦ଵ𝚥̂ +𝑧ଵ𝑘෠+𝜆൫𝑎ଵ𝚤̂ +𝑏ଵ𝚥̂ +𝑐ଵ𝑘෠൯ and 𝑟̅ =𝑥ଶ𝚤̂ +𝑦ଶ𝚥̂ +𝑧ଶ𝑘෠+𝜇൫𝑎ଶ𝚤̂ +𝑏ଶ𝚥̂ +𝑐ଶ𝑘෠൯ is given by 𝑐𝑜𝑠𝜃= |௔భ௔మା௕భ௕మା௖భ௖మ| ට ௔భమା௕భమା௖భమට ௔మమା௕మమା௖మమ SECTION B This section comprises of very short answer type-questions (VSA) of 2 marks each",
+    "options": [
+      "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
+      "Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)",
+      "Assertion (A) is true but reason (R) is false",
+      "Assertion (A) is false but reason (R) is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the value of 𝑠𝑖𝑛ିଵ[𝑠𝑖𝑛ቀଵଷగ ଻ ቁ] OR Prove that the function f is surjective, where 𝑓:𝑁→𝑁 such that 𝑓(𝑛) =൞ 𝑛+ 1 2 ,𝑖𝑓 𝑛 𝑖𝑠 𝑜𝑑𝑑 𝑛 2,𝑖𝑓 𝑛 𝑖𝑠 𝑒𝑣𝑒𝑛 Is the function injective? Justify your answer.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A man 1.6 m tall walks at the rate of 0.3 m/sec away from a street light that is 4 m above the ground. At what rate is the tip of his shadow moving? At what rate is his shadow lengthening?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If 𝑎⃗ =𝚤̂ −𝚥̂ + 7𝑘෠ 𝑎𝑛𝑑 𝑏ሬ⃗ = 5𝚤̂ −𝚥̂ +𝜆𝑘෠, then find the value of 𝜆 so that the vectors 𝑎⃗ +𝑏ሬ⃗ 𝑎𝑛𝑑 𝑎⃗ −𝑏ሬ⃗ are orthogonal. 𝑶𝑹 Page 4 Find the direction ratio and direction cosines of a line parallel to the line whose equations are 6𝑥− 12 = 3𝑦+ 9 = 2𝑧− 2",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If 𝑦√1 −𝑥ଶ +𝑥ඥ 1 −𝑦ଶ = 1 ,𝑡ℎ𝑒𝑛 𝑝𝑟𝑜𝑣𝑒 𝑡ℎ𝑎𝑡 ௗ௬ ௗ௫ = −ට ଵି௬ మ ଵି௫ మ",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find |𝑥⃗| if (𝑥⃗ −𝑎⃗).(𝑥⃗ +𝑎⃗)= 12, where 𝑎⃗ is a unit vector. SECTION C (This section comprises of short answer type questions (SA) of 3 marks each)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find: ∫ ௗ௫ √ଷିଶ௫ି௫ మ",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Three friends go for coffee. They decide who will pay the bill, by each tossing a coin and then letting the “odd person” pay. There is no odd person if all three tosses produce the same result. If there is no odd person in the first round, they make a second round of tosses and they continue to do so until there is an odd person. What is the probability that exactly three rounds of tosses are made? OR Find the mean number of defective items in a sample of two items drawn one-by-one without replacement from an urn containing 6 items, which include 2 defective items. Assume that the items are identical in shape and size.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Evaluate: ∫ ௗ௫ ଵା√௧௔௡௫ గ ଷൗగ ଺ൗ OR Evaluate: ∫ |𝑥− 1|ସ ଴ 𝑑𝑥",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Solve the differential equation: 𝑦𝑑𝑥+(𝑥−𝑦ଶ)𝑑𝑦= 0 OR Solve the differential equation: 𝑥𝑑𝑦−𝑦𝑑𝑥=ඥ 𝑥ଶ +𝑦ଶ 𝑑𝑥",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Solve the following Linear Programming Problem graphically: Maximize Z = 400x + 300y subject to 𝑥+𝑦≤ 200,𝑥≤ 40,𝑥≥ 20,𝑦≥ 0",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find ∫൫௫యା௫ାଵ ൯ (௫మିଵ) 𝑑𝑥 SECTION D (This section comprises of long answer-type questions (LA) of 5 marks each)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Make a rough sketch of the region {(𝑥,𝑦): 0 ≤𝑦≤𝑥ଶ, 0 ≤𝑦≤𝑥, 0 ≤𝑥≤ 2} and find the area of the region using integration.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Define the relation R in the set 𝑁×𝑁 as follows: For (a, b), (c, d) ∈𝑁×𝑁, (a, b) R (c, d) iff ad = bc. Prove that R is an equivalence relation in 𝑁×𝑁. OR Given a non-empty set X, define the relation R in P(X) as follows: For A, B ∈ 𝑃(𝑋), (𝐴, 𝐵) ∈symmetric. Q34. An insect is crawling along the line insect is crawling along the line lines should they reach so that the distance between them is the shortest? possible distance between them. The equations of motion of a rocket ar 𝑥 = 2𝑡, 𝑦 = −4𝑡, 𝑧 = 4𝑡, where the time t is given in seconds, and the coordinates of a moving point in km. What from the starting point O(0, 0, 0) 𝑟 ⃗ = 20𝚤̂ − 10𝚥̂ + 40𝑘෠+ 𝜇( Q35. If A = ൥2 −3 53 2 −41 1 −2൩, find 2𝑥 − 3𝑦 + 5𝑧 = 11, 3𝑥 +2 (This section comprises ofwith two sub-parts. First two case study questions have three subof marks 1, 1, 2 respectively. The third case study question has two submarks each.) Q36. Case-Study 1: Read the following passage and answer the questions given below. The temperature of a person during an intestinal illness is given by 𝑓(𝑥)= −0.1𝑥ଶ+ 𝑚𝑥 +98 temperature in °F at x days. (i) Is the function differentiable in the interval (0, 12)? Justify your answer.(ii) If 6 is the critical point empty set X, define the relation R in P(X) as follows: 𝑅 iff 𝐴 ⊂ 𝐵. Prove that R is reflexive, transitiveAn insect is crawling along the line 𝑟̅ = 6𝚤̂ + 2𝚥̂ + 2𝑘෠+ 𝜆൫𝚤̂ − 2𝚥̂ + 2𝑘෠൯ and insect is crawling along the line 𝑟̅ = −4𝚤̂ − 𝑘෠+ 𝜇൫3𝚤̂ − 2𝚥̂ − 2𝑘෠൯. At what points on the lines should they reach so that the distance between them is the shortest? Find thepossible distance between them. OR The equations of motion of a rocket are: where the time t is given in seconds, and the coordinates of a is the path of the rocket? At what distances will the rocket be (0, 0, 0) and from the following line in 10 seconds?(10𝚤̂ − 20𝚥̂ + 10𝑘෠) ൩, find 𝐴ିଵ. Use 𝐴ିଵ to solve the following system of equations2𝑦 − 4𝑧 = −5, 𝑥 + 𝑦 − 2𝑧 = −3 SECTION E This section comprises of 3 case-study/passage-based questions of First two case study questions have three sub-parts (i), (ii), (iii) of marks 1, 1, 2 respectively. The third case study question has two subRead the following passage and answer the questions given below. The temperature of a person during an intestinal illness is given by 98.6,0 ≤ 𝑥 ≤ 12, m being a constant, where f(x) is the temperature in °F at x days. Is the function differentiable in the interval (0, 12)? Justify your answer.If 6 is the critical point of the function, then find the value of the constant transitive and not ൯and another At what points on the Find the shortest where the time t is given in seconds, and the coordinates of a will the rocket be in 10 seconds? the following system of equations of 4 marks each parts (i), (ii), (iii) of marks 1, 1, 2 respectively. The third case study question has two sub-parts of 2 Read the following passage and answer the questions given below. f(x) is the Is the function differentiable in the interval (0, 12)? Justify your answer. e function, then find the value of the constant m. Page 6 (iii) Find the intervals in which the function is strictly increasing/strictly decreasing. OR (iii) Find the points of local maximum/local minimum, if any, in the interval (0, 12) as well as the points of absolute maximum/absolute minimum in the interval [0, 12]. Also, find the corresponding local maximum/local minimum and the absolute maximum/absolute minimum values of the function.",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

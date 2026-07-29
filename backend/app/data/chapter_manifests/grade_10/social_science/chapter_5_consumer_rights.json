@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: Consumer Rights",
+  "central_question": "Why do consumers need legal rights, reliable information and collective institutions to obtain fair treatment in the marketplace?",
+  "in_scope_units": [
+    "The Consumer in the Marketplace: unequal power and exploitation",
+    "Consumer Movement: origins, organisation and COPRA",
+    "Consumer Rights — Safety Is Everyone's Right",
+    "Information About Goods and Services and the RTI Act",
+    "When Choice Is Denied",
+    "Where Should Consumers Go to Get Justice?: redressal and complaint procedure",
+    "Consumer forums, protection councils and the three-tier redressal machinery",
+    "Learning to Become Well-Informed Consumers",
+    "ISI and Agmark: standards and certification",
+    "Taking the Consumer Movement Forward: progress, limitations, amendment and mediation"
+  ],
+  "banned_topics": [
+    "Detailed bank credit and collateral",
+    "MNC production networks and WTO rules",
+    "Primary, secondary and tertiary sector classification",
+    "HDI and per capita income comparisons"
+  ],
+  "must_include_keywords": [
+    "consumer",
+    "marketplace",
+    "unfair trade practices",
+    "adulterated goods",
+    "defective goods",
+    "consumer movement",
+    "hoarding",
+    "black marketing",
+    "Consumers International",
+    "Consumer Protection Act 1986",
+    "COPRA",
+    "2019 amendment",
+    "right to safety",
+    "Reji Mathew",
+    "right to information",
+    "MRP",
+    "expiry date",
+    "RTI Act",
+    "Amritha",
+    "right to choice",
+    "Abirami",
+    "right to redressal",
+    "Prakash",
+    "consumer protection council",
+    "Consumer Disputes Redressal Commission",
+    "right to representation",
+    "right to consumer education",
+    "ISI",
+    "Agmark",
+    "Hallmark",
+    "+F",
+    "bill",
+    "warranty",
+    "mediation",
+    "National Consumers' Day"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Consumer protection is needed only when a physical product is defective.",
+      "correction": "Consumer rights also apply to deficient services such as healthcare, education and communication."
+    },
+    {
+      "claim": "A consumer protection council and a Consumer Disputes Redressal Commission are the same.",
+      "correction": "Councils guide and represent consumers; commissions are quasi-judicial bodies that decide cases."
+    },
+    {
+      "claim": "Every product must carry ISI or Agmark.",
+      "correction": "Standards are not compulsory for all products, though certification is mandatory for specified health, safety and mass-consumption goods."
+    },
+    {
+      "claim": "The redressal process is always simple and fast.",
+      "correction": "The chapter notes that it can be cumbersome, expensive and time-consuming."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the NCERT marketplace examples of short weight, hidden charges and defective goods.",
+    "Use the NCERT Reji Mathew case for the right to safety.",
+    "Use the NCERT Amritha and Abirami cases for information and choice.",
+    "Use the NCERT Prakash sequence to explain complaint and redressal procedures.",
+    "Use the NCERT certification-mark and consumer-awareness activities for informed consumer practice."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with 'EXERCISES', Questions 1–13, followed by Additional Projects / Activities and a consumer-awareness questionnaire.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

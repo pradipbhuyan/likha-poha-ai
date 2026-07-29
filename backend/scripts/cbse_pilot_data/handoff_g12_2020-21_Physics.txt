@@ -1,0 +1,148 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2020-21
+Subject: Physics
+Source Subject Code: Physics
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Physics-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Physics-MS.pdf
+Total Questions: 33
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Physics-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Name the physical quantity having unit J/T.
+
+Q10 [assertion_reason, 1m, Sec A]
+Which specially fabricated pn junction diode is used for detecting light intensity? For question numbers 11, 12, 13 and 14, two statements are given-one labelled Assertion (A) and the other labelled Reason (R). Select the correct answer to these questions from the codes
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q11 [assertion_reason, 1m, Sec A]
+Assertion(A) : In a nonuniform electric field, a dipole will have translatory as well as rotatory motion. Reason(R): In a nonuniform electric field, a dipole experiences a force as well as torque.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q12 [assertion_reason, 1m, Sec A]
+Assertion(A): Electric field is always normal to equipotential surfaces and along the direction of decreasing order of potential Reason(R): Negative gradient of electric potential is electric field.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q13 [assertion_reason, 1m, Sec A]
+Assertion (A): A convex mirror cannot form real images. Reason (R): Convex mirror converges the parallel rays that are incident on it.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q14 [assertion_reason, 1m, Sec A]
+Assertion(A): A convex lens of focal length 30 cm can’t be used as a simple microscope in normal setting. Reason (R): For normal setting, the angular magnification of simple microscope is M=D/f Section – B Questions 15 and 16 are Case Study based questions and are compulsory. Attempt any 4 sub parts from each question. Each question carries 1 mark.
+  (A) Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)
+  (B) Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)
+  (C) Assertion (A) is true but reason (R) is false
+  (D) Assertion (A) is false but reason (R) is true
+
+Q15 [case_study, 4m, Sec B]
+Faraday Cage: A Faraday cage or Faraday shield is an enclosure made of a conducting material. The fields within a conductor cancel out with any external fields, so the electric field within the enclosure is zero. These Faraday cages act as big hollow conductors you can put things in to shield them from electrical fields. Any electrical shocks the cage receives, pass harmlessly around the outside of the cage. 1. Which of the following material can be used to make a Faraday cage? (i) a) Plastic b) Glass c) Copper d) Wood 2. Example of a real-world Faraday cage is a) car b) plastic box c) lightning rod d) metal rod a) 3. What is the electrical force inside a Faraday cage when it is struck by lightning? a) The same as the lightning b) Half that of the lightning c) Zero d) A quarter of the lightning 4. An isolated point charge +q is placed inside the Faraday cage. Its surface must have charge equal to- a) Zero b) +q c) –q d) +2q 5. A point charge of 2C is placed at centre of Faraday cage in the shape of cube with surface of 9 cm edge. The number of electric field lines passing through the cube normally will be- a) 1.9105 Nm2/C entering the surface b) 1.9105 Nm2/C leaving the surface c) 2.0105 Nm2/C leaving the surface d) 2.0105 Nm2/C entering the surface
+
+Q16 [case_study, 4m, Sec B]
+Sparking Brilliance of Diamond: The total internal reflection of the light is used in polishing diamonds to create a sparking brilliance. By polishing the diamond with specific cuts, it is adjusted the most of the light rays approaching the surface are incident with an angle of incidence more than critical angle. Hence, they suffer multiple reflections and ultimately come out of diamond from the top. This gives the diamond a sparking brilliance. 1. Light cannot easily escape a diamond without multiple internal reflections. This is because: a) Its critical angle with reference to air is too large b) Its critical angle with reference to air is too small c) The diamond is transparent d) Rays always enter at angle greater than critical angle 2. The critical angle for a diamond is 24.4o. Then its refractive index is- a) 2.42 b) 0.413 c) 1 d) 1.413 3. The basic reason for the extraordinary sparkle of suitably cut diamond is that a) It has low refractive index b) It has high transparency c) It has high refractive index d) It is very hard 4. A diamond is immersed in a liquid with a refractive index greater than water. Then the critical angle for total internal reflection will a) will depend on the nature of the liquid b) decrease c) remains the same d) increase 5. The following diagram shows same diamond cut in two different shapes. The brilliance of diamond in the second diamond will be: a) less than the first b) greater than first c) same as first d) will depend on the intensity of light Section – C All questions are compulsory. In case of internal choices, attempt anyone.
+  [NOTE: diagram]
+
+Q17 [short_answer, 2m, Sec C]
+Two straight infinitely long wires are fixed in space so that the current in the left wire is 2 A and directed out of the plane of the page and the current in the right wire is 3 A and directed into the plane of the page. In which region(s) is/are there a point on the x -axis, at which the magnetic field is equal to zero due to these currents carrying wires? Justify your answer .
+
+Q18 [short_answer, 2m, Sec C]
+Draw the graph showing intensity distribution of fringes with phase angle due to diffraction through single slit. OR What should be the width of each slit to obtain n maxima of double slit pattern within the central maxima of single slit pattern?
+
+Q19 [short_answer, 2m, Sec C]
+Deduce an expression for the potential energy of a system of two point charges q1 and q2 located at positions r 1 and r2 respectively in an external field (E⃗⃗ ) OR Establish the relation between electric field and electric potential at a point. Draw the equipotential surface for an electric field pointing in +Z direction with its magnitude increasing at constant rate along –Z direction
+
+Q2 [mcq, 1m, Sec A]
+Mention one use of part of electromagnetic spectrum to which a wavelength of 21 cm (emitted by hydrogen in interstellar space) belongs. OR Give the ratio of velocity of the two light waves of wavelengths 4000Å and 8000Å travelling in vacuum.
+
+Q20 [short_answer, 2m, Sec C]
+Explain with help of circuit diagram , the action of a forward biased p-n junction diode which emits spontaneous radiation. State the least band gap energy of this diode to have emission in visible region.
+  [NOTE: diagram]
+
+Q21 [short_answer, 2m, Sec C]
+A coil of wire enclosing an area 100 cm2 is placed with its plane making an angle 600 with the magnetic field of strength 10-1T. What is the flux through the coil? If magnetic field is reduced to zero in 10-3 s, then find the induced emf?
+
+Q22 [short_answer, 2m, Sec C]
+Two waves from two coherent sources S and S’ superimpose at X as shown in the figure. If X is a point on the second minima and SX – S’X is 4.5 cm. Calculate the wavelength of the waves.
+  [NOTE: diagram]
+
+Q23 [short_answer, 2m, Sec C]
+Draw the energy band diagram when intrinsic semiconductor (Ge) is doped with impurity atoms of Antimony (Sb). Name the extrinsic semiconductor so obtained and majority charge carriers in it.
+  [NOTE: diagram]
+
+Q24 [short_answer, 2m, Sec C]
+Define the terms magnetic inclination and horizontal component of earth’s magnetic field at a place. Establish the relationship between the two with help of a diagram. OR Horizontal component of earth’s magnetic field at a place is √3 times the vertical component. What is the value of inclination at that place?
+  [NOTE: diagram]
+
+Q25 [short_answer, 2m, Sec C]
+Write two characteristics of image formed when an object is placed between the optical centre and focus of a thin convex lens. Draw the graph showing variation of image distance v with object distance u in this case. Section -D All questions are compulsory. In case of internal choices, attempt any one.
+
+Q26 [short_answer, 3m, Sec D]
+A rectangular loop which was initially inside the region of uniform and time - independent magnetic field, is pulled out with constant velocity 𝑣 as shown in the figure. a) Sketch the variation of magnetic flux, the induced current, and power dissipated as Joule heat as function of time. b) If instead of rectangular loop, circular loop is pulled out; do you expect the same value of induced current? Justify your answer. Sketch the variation of flux in this case with time.
+  [NOTE: diagram]
+
+Q27 [short_answer, 3m, Sec D]
+A variable resistor R is connected across a cell of emf E and internal resistance r. a) Draw the circuit diagram. b) Plot the graph showing variation of potential drop across R as function of R. c) At what value of R current in circuit will be maximum. OR A storage battery is of emf 8V and internal resistance 0.5 ohm is being charged by d.c supply of 120 V using a resistor of 15.5 ohm a) Draw the circuit diagram. b) Calculate the potential difference across the battery. c) What is the purpose of having series resistance in this circuit?
+  [NOTE: diagram]
+
+Q28 [short_answer, 3m, Sec D]
+a) Explain de-Broglie argument to propose his hypothesis. Show that de - Broglie wavelength of photon equals electromagnetic radiation. b) If, deuterons and alpha particle are accelerated through same potential, find the ratio of the associated de-Broglie wavelengths of two. OR State the main implications of observations obtained from various photoelectric experiments. Can these implications be explained by wave nature of light? Justify your answer.
+
+Q29 [short_answer, 3m, Sec D]
+Derive an expression for the frequency of radiation emitted when a hydrogen atom de-excites from level n to level (n – 1). Also show that for large values of n, this frequency equals to classical frequency of revolution of an electron.
+
+Q3 [mcq, 1m, Sec A]
+An electron with charge -e and mass m travels at a speed v in a plane perpendicular to a magnetic field of magnitude B. The electron follows a circular path of radius R. In a time, t, the electron travels halfway around the circle. What is the amount of work done by the magnetic field?
+
+Q30 [short_answer, 3m, Sec D]
+a) Give one point of difference between nuclear fission and nuclear fusion. b) Suppose we consider fission of a 5626Fe into two equal fragments of 2813Al nucleus. Is the fission energetically possible? Justify your answer by working out Q value of the process. Given (m)5626Fe = 55.93494 u and (m)2813Al = 27.98191 Section – E All questions are compulsory. In case of internal choices, attempt any one.
+
+Q31 [long_answer, 5m, Sec E]
+a) State Gauss’s law in electrostatics. Show that with help of suitable figure that outward flux due to a point charge Q , in vacuum within gauss ian surface, is independent of its size and shape. b) In the figure there are three infinite long thin sheets having surface charge density +2σ, -2σ and +σ respectively. Give the magnitude and direction of electric field at a point to the left of sheet of charge density +2σ and to the right of sheet of charge density +σ. OR a) Define an ideal electric dipole. Give an example. b) Derive an expression for the torque experienced by an electric dipole in a uniform electric field. What is net force acting on this dipole. c) An electric dipole of length 2cm is placed with its axis making an angle of 600 with respect to uniform electric field of 105N/C. If it experiences a torque of 8√3 Nm, calculate the (i) magnitude of charge on the dipole, and its potential energy.
+  [NOTE: diagram]
+
+Q32 [long_answer, 5m, Sec E]
+a) Derive the expression for the current flowing in an ideal capacitor and its reactance when connected to an ac source of voltage V=V0sinωt. b) Draw its phasor diagram. c) If resistance is added in series to capacitor what changes will occur in the current flowing in the circuit and phase angle between voltage and current. OR a) State the principle of ac generator. b) Explain with the help of a well labelled diagram, its working and obtain the expression for the emf generated in the coil. c) Is it possible to generate emf without rotating the coil? Explain
+  [NOTE: diagram]
+
+Q33 [long_answer, 5m, Sec E]
+a) Define a wave front. b) Draw the diagram to show the shape of plane wave front as they pass through (i) a thin prism and (ii) a thin convex lens. State the nature of refracted wave front. c) Verify Snell’s law of refraction using Huygens’s principle. OR a) State two main considerations taken into account while choosing the objective of astronomical telescope. b) Draw a ray diagram of reflecting type telescope. State its magnifying power. c) State the advantages of reflecting type telescope over the refracting type?
+  [NOTE: diagram]
+
+Q4 [mcq, 1m, Sec A]
+A solenoid with N loops of wire tightly wrapped around an iron -core is carrying an electric current I. If the current through this solenoid is reduced to half, then what change would you expect in inductance L of the solenoid. OR An alternating current from a source is given by i=10sin314t. What is the effective value of current and frequency of source?
+
+Q5 [mcq, 1m, Sec A]
+What is the value of angular momentum of electron in the second orbit of Bohr’s model of hydrogen atom?
+
+Q6 [mcq, 1m, Sec A]
+In a photoelectric experiment, the potential required to stop the ejection of electrons from cathode is 4V. What is the value of maximum kinetic energy of emitted Photoelectrons?
+
+Q7 [mcq, 1m, Sec A]
+In decay of free neutron, name the elementary particle emitted along with proton and electron in nuclear reaction. OR In the following nuclear reaction, Identify unknown labelled X.
+
+Q8 [mcq, 1m, Sec A]
+How does the width of a depleti on region of a pn junction vary if doping concentration is increased? OR In half wave rectification, what is the output frequency if input frequency is 25 Hz.
+
+Q9 [mcq, 1m, Sec A]
+When a voltage drop across a pn junction diode is increased from 0.70 V to 0.71V, the change in the diode current is 10 mA .What is the dynamic resistance of diode?
+
+======================================================================
+Return the complete JSON array.

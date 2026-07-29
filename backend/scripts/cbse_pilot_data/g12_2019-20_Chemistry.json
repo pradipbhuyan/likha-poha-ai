@@ -1,0 +1,29 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "0.1 0.1 0.05",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "0.2 0.1 0.10",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "0.1 0.2 0.05 Determine the half-life period. OR A first order reaction is 50 % complete in 50 minutes at 300 K and the same reaction is again 50 % complete in 25 minutes at 350 K. Calculate activation energy of the reaction.",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

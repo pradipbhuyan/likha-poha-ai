@@ -1,0 +1,105 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 9: Light – Reflection and Refraction",
+  "central_question": "How do reflection and refraction control the path of light and the position, size and nature of images formed by mirrors and lenses?",
+  "in_scope_units": [
+    "Straight-line propagation of light, laws of reflection and image properties of a plane mirror.",
+    "Concave and convex spherical mirrors, their parts, principal focus, focal length and the relation R = 2f.",
+    "Image formation by spherical mirrors, ray-diagram rules, uses of mirrors and convex-mirror field of view.",
+    "New Cartesian sign convention, mirror formula and magnification with NCERT numerical examples.",
+    "Refraction in daily-life observations and through a rectangular glass slab, including lateral displacement.",
+    "Laws of refraction, Snell's law, refractive index, speed of light and optical density.",
+    "Convex and concave spherical lenses, optical centre, principal foci, focal length and image formation.",
+    "Lens ray diagrams, sign convention, lens formula, magnification, power of a lens and dioptre."
+  ],
+  "banned_topics": [
+    "Detailed diffraction, wave-particle duality and quantum theory of light, which the chapter explicitly leaves for higher classes.",
+    "Twinkling of stars, rainbow formation and atmospheric refraction, which are not developed in this chapter.",
+    "Defects of vision and their correction in detail, which belong to the Human Eye and the Colourful World chapter.",
+    "Prism dispersion, total internal reflection and optical instruments beyond the brief applications stated here."
+  ],
+  "must_include_keywords": [
+    "ray of light",
+    "reflection",
+    "angle of incidence",
+    "angle of reflection",
+    "normal",
+    "spherical mirror",
+    "concave mirror",
+    "convex mirror",
+    "pole",
+    "centre of curvature",
+    "radius of curvature",
+    "principal axis",
+    "principal focus",
+    "focal length",
+    "aperture",
+    "R = 2f",
+    "real image",
+    "virtual image",
+    "ray diagram",
+    "New Cartesian Sign Convention",
+    "mirror formula",
+    "magnification",
+    "refraction",
+    "rectangular glass slab",
+    "lateral displacement",
+    "Snell's law",
+    "refractive index",
+    "optical density",
+    "speed of light",
+    "convex lens",
+    "concave lens",
+    "optical centre",
+    "lens formula",
+    "power of a lens",
+    "dioptre",
+    "converging lens",
+    "diverging lens"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The normal is the mirror surface or the principal axis in every situation.",
+      "correction": "The normal is perpendicular to the reflecting or refracting surface at the point of incidence; at a spherical mirror's pole, the principal axis is normal to the mirror."
+    },
+    {
+      "claim": "A concave mirror always forms a real inverted image.",
+      "correction": "When the object is between the pole and focus, a concave mirror forms an enlarged, virtual and erect image behind the mirror."
+    },
+    {
+      "claim": "A convex mirror can form an enlarged image.",
+      "correction": "For real objects, a convex mirror forms a virtual, erect and diminished image behind the mirror."
+    },
+    {
+      "claim": "Positive magnification always means the image is enlarged.",
+      "correction": "The sign indicates orientation and nature; magnitude indicates size. A positive value less than 1 is virtual, erect and diminished."
+    },
+    {
+      "claim": "Optical density and mass density are the same.",
+      "correction": "Optical density depends on refractive index and speed of light; kerosene is optically denser than water even though its mass density is lower."
+    },
+    {
+      "claim": "A ray through a rectangular glass slab emerges along the same line as the incident ray.",
+      "correction": "For oblique incidence it emerges parallel to the incident ray but is shifted sideways."
+    },
+    {
+      "claim": "The mirror formula and lens formula have the same sign between 1/v and 1/u.",
+      "correction": "Mirror: 1/v + 1/u = 1/f. Lens: 1/v - 1/u = 1/f."
+    },
+    {
+      "claim": "Power can be calculated using focal length in centimetres without conversion.",
+      "correction": "For power in dioptres, focal length must be expressed in metres."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activities 9.1-9.3 to move from curved-spoon observations to concave/convex mirrors and focal length.",
+    "Use NCERT Table 9.1 and Activity 9.4 to construct concave-mirror ray diagrams for each object position.",
+    "Use NCERT Examples 9.1 and 9.2 to apply mirror sign convention, mirror formula and magnification.",
+    "Use NCERT Activities 9.8-9.10 to explain apparent depth and the parallel but laterally displaced emergent ray from a glass slab.",
+    "Use NCERT Examples 9.3 and 9.4 and end-of-chapter Exercises 10-17 to apply lens formula, magnification and power."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the NCERT EXERCISES section containing Questions 1-17.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

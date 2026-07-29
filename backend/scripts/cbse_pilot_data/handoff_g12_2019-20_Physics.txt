@@ -1,0 +1,169 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2019-20
+Subject: Physics
+Source Subject Code: Physics
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Physics-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Physics-MS.pdf
+Total Questions: 36
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2019_20/Physics-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q10 [mcq, 1m, Sec A]
+A photon beam of energy 12.1eV is incident on a hydrogen atom. The orbit to which electron of H-atom be excited is
+  (A) 2nd
+  (B) 3rd
+  (C) 4th
+  (D) 5th
+
+Q11 [mcq, 1m, Sec A]
+Horizontal and vertical components of earth’s magnetic field at a place are equal. The angle of dip at that place is ________. OR A free floating magnetic needle at North pole is __________to the surface of earth.
+
+Q12 [mcq, 1m, Sec A]
+The magnetic flux linked with a coil changes by 2×10-2Wb when the current changes by 0.01A. The self inductance of the coil is_______.
+
+Q13 [mcq, 1m, Sec A]
+If the angular speed of the armature of a dynamo is doubled then the amplitude of the induced e.m.f will become_______.
+
+Q14 [mcq, 1m, Sec A]
+An electron is accelerated through a potential difference of 100 V , then de-Broglie wavelength associated with it is approximately ____________Ao
+
+Q15 [mcq, 1m, Sec A]
+An equilateral prism is made up of material of refractive index . The angle of minimum deviation of light passing through the prism is_________. Directions (Q16 –Q20) Answer the following
+
+Q16 [mcq, 1m, Sec A]
+Which physical quantity in a nuclear reaction is considered equivalent to the Q- value of the reaction?
+
+Q17 [mcq, 1m, Sec A]
+Zener diode is used in reverse bias. When its reverse bias is increased, how does the thickness of the depletion layer change? 1
+
+Q18 [mcq, 1m, Sec A]
+The initial concentration of a radioactive substance is No and its half life is 12 hours. What will be its concentration after 36 hours? 1
+
+Q19 [case_study, 4m, Sec A]
+Work function of Sodium is 2.75eV. What will be KE of emitted electron when photon of energy 3.54eV is incident on the surface of sodium? 1
+
+Q2 [mcq, 1m, Sec A]
+Section – A Directions (Q1-Q10) Select the most appropriate option from those given below each question 1. A charge q is placed at the point of intersection of body diagonals of a cube. The electric flux passing through any one of its face is
+  (A) Insulator
+  (B) conductor
+  (C) semiconductor
+  (D) dielectric
+
+Q20 [mcq, 1m, Sec A]
+From the information of energy band gaps of diodes, how do you decide which can be light emitting diodes? OR Give any one advantage of LEDs over conventional incandescent low power lamps
+
+Q21 [mcq, 1m, Sec A]
+Derive the expression for drift velocity of free electron in terms of relaxation time and electric field applied across a conductor. 2
+
+Q22 [short_answer, 2m, Sec A]
+Find total energy stored in capacitors given in the circuit
+
+Q23 [short_answer, 2m, Sec A]
+An α - particle and a proton are accelerated through same potential difference. Find the ratio (vα/ vp)of velocities acquired by two particles.
+
+Q24 [mcq, 1m, Sec A]
+What is Brewster’s angle? Derive relation between Brewster angle and refractive index of medium which produces Plane Polarized light. 2
+
+Q25 [short_answer, 2m, Sec A]
+The work function of Cs is 2.14eV.Find (a) threshold frequency for Cs (b) Wavelength of incident light if the photo current is brought to zero by stopping potential of 0.6 V.
+
+Q26 [short_answer, 2m, Sec A]
+Derive an expression for the radius of nth Bohr’s orbit in Hydrogen atom. OR Energy of electron in first excited state in Hydrogen atom is -3.4eV. Find KE and PE of electron in the ground state.
+
+Q27 [short_answer, 2m, Sec A]
+Draw energy band diagram of p & n type semiconductors. Also write two differences between p and n type semiconductors. OR Energy gap in a p – n photodiode is 2.8 eV. Can it detect a wavelength of 6000 nm? Justify your answer. Section – C
+  [NOTE: diagram]
+
+Q28 [short_answer, 3m, Sec C]
+State working principle of potentiometer. Explain how the balance point shifts when value of resistor R increases in the circuit of potentiometer, given below.
+
+Q29 [short_answer, 3m, Sec C]
+Using Biot-Savart’s law, derive an expression for magnetic field at any point on axial line of a current carrying circular loop. Hence, find magnitude of magnetic field intensity at the centre of circular coil.
+
+Q3 [mcq, 1m, Sec A]
+If the ammeter in the given circuit shown in the diagram reads 2A, the resistance R is
+  (A) 1Ω
+  (B) 2Ω
+  (C) 3Ω
+  (D) 4Ω
+  [NOTE: diagram]
+
+Q30 [short_answer, 3m, Sec C]
+Obtain the resonant frequency and Q – factor of a series LCR circuit with L = 3H, C = 27𝛍F, R = 7.4Ω. It is desired to improve the sharpness of resonance of circuit by reducing its full width at half maximum by a factor of 2. Suggest a suitable way.
+
+Q31 [short_answer, 3m, Sec C]
+State the conditions of total internal reflection. Refractive indices of the given prism material for Red, Blue and Green colors are respectively 1.39, 1.48 and 1.42 respectively. Trace the path of rays through the prism.
+
+Q32 [short_answer, 3m, Sec C]
+Define resolving power of an astronomical refracting telescope and write expression for it in normal adjustment.Assume that light of wave length 6000Å is coming from a star, what is the limit of resolution of a telescope whose objective has a diameter of 2.54m? OR Write the basic assumptions used in the derivation of lens – maker’s formula and hence derive this expression.
+
+Q33 [short_answer, 3m, Sec C]
+Show that can not spontaneously emit a proton. Given: = 238.05079u, = 237.05121u = 1.00783u
+
+Q34 [short_answer, 3m, Sec C]
+Suggest an idea to convert a full wave bridge rectifier to a half wave rectifier by changing the connecting wire/s. Draw the diagram and explain your answer. Section – D
+  [NOTE: diagram]
+
+Q35 [long_answer, 5m, Sec D]
+(a) Using Gauss’s law, derive expression for intensity of electric field at any point near the infinitely long straight uniformly charged wire. (b)The electric field components in the following figure are Ex = αx, Ey = 0, Ez= 0; in which α = 400 N/C m. Calculate (i) the electric flux through the cube, and (ii) the charge within the cube assume that a = 0.1m. OR a) Define electrostatic potential at a point. Write its SI unit. Three charges q 1 , q2 and q3 are kept respectively at points A, B and C as shown in figures. Write the expression for electrostatic potential energy of the system. b) Depict the equipotential surfaces due to (i) an electric dipole (ii) two identical negative charges separated by a small distance.
+  [NOTE: diagram]
+
+Q36 [long_answer, 5m, Sec D]
+In the following diagram, the arm PQ of the rectangular conductor is moved from x = 0; outwards. The uniform magnetic field is perpendicular to the plane and extends from x = 0 to x = b and is zero for x >b. Only the arm PQ possesses substantial resistance ‘r’. consider the situation when the arm PQ is pulled outwards from x = 0 to x = 2b, and is then moved back to x = 0 with constant speed ‘ѵ’. Obtain expressions for the (i) electric flux, (ii) the induced emf,(iii)the force necessary to pull the arm and (iv) the power dissipated as Joule heat. Sketch the variation of these quantities with distance. OR Write working principle of cyclotron and with a suitable diagram explain its working. Give any two applications of cyclotron.
+  [NOTE: diagram]
+
+Q37 [long_answer, 5m, Sec D]
+Derive mirror equation for a convex mirror. Using it, show that a convex mirror always produces a virtual image, independent of the location of object. OR (a) Draw a ray diagram for final image formed at distance of distinct vision (D) by a compound microscope and write expression for its magnifying power. (b) An angular magnification (magnifying power) of 30x is desired for a compound microscope using as objective of focal length 1.25cm and eye piece of focal length 5cm. How will you set up the compound microscope?
+  [NOTE: diagram]
+
+Q4 [mcq, 1m, Sec A]
+The heat produced by 100W heater in 2 minutes is equal to
+  (A) 10.5kJ
+  (B) 16.3kJ
+  (C) 12.0kJ
+  (D) 14.2kJ
+
+Q5 [mcq, 1m, Sec A]
+Time period of a charged particle undergoing a circular motion in a uniform magnetic field is independent of
+  (A) speed of the particle
+  (B) mass of the particle
+  (C) charge of the particle
+  (D) magnetic field
+
+Q6 [mcq, 1m, Sec A]
+The final image formed in an astronomical refracting telescope with respect to the object is
+  (A) Real inverted
+  (B) Real erect
+  (C) Virtual erect
+  (D) Virtual inverted
+
+Q7 [mcq, 1m, Sec A]
+The shape of the interference fringes in Young’s double slit experiment when D (distance between slit and screen) is very large as compared to fringe width is nearly
+  (A) straight line
+  (B) parabolic
+  (C) circular
+  (D) hyperbolic
+
+Q8 [mcq, 1m, Sec A]
+Unpolarized light is incident on a plane glass surface having refractive index . The angle of incidence at which reflected and refracted rays would become perpendicular to each other is :
+  (A) 15°
+  (B) 30°
+  (C) 45°
+  (D) 60°
+
+Q9 [mcq, 1m, Sec A]
+Photoelectric emission from a given surface of metal can take place when the value of a ‘physical quantity’ is less than the energy of incident photon. The physical quantity is :
+  (A) Threshold frequency
+  (B) Work function of surface
+  (C) Threshold wave length
+  (D) Stopping Potential
+
+======================================================================
+Return the complete JSON array.

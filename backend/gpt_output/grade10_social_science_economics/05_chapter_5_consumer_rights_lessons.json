@@ -1,0 +1,96 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Social Science",
+    "chapter": "Chapter 5: Consumer Rights",
+    "central_question": "Why do consumers need legal rights, reliable information and collective institutions to obtain fair treatment in the marketplace?",
+    "in_scope_units": [
+      "The Consumer in the Marketplace: unequal power and exploitation",
+      "Consumer Movement: origins, organisation and COPRA",
+      "Consumer Rights — Safety Is Everyone's Right",
+      "Information About Goods and Services and the RTI Act",
+      "When Choice Is Denied",
+      "Where Should Consumers Go to Get Justice?: redressal and complaint procedure",
+      "Consumer forums, protection councils and the three-tier redressal machinery",
+      "Learning to Become Well-Informed Consumers",
+      "ISI and Agmark: standards and certification",
+      "Taking the Consumer Movement Forward: progress, limitations, amendment and mediation"
+    ],
+    "banned_topics": [
+      "Detailed bank credit and collateral",
+      "MNC production networks and WTO rules",
+      "Primary, secondary and tertiary sector classification",
+      "HDI and per capita income comparisons"
+    ],
+    "must_include_keywords": [
+      "consumer",
+      "marketplace",
+      "unfair trade practices",
+      "adulterated goods",
+      "defective goods",
+      "consumer movement",
+      "hoarding",
+      "black marketing",
+      "Consumers International",
+      "Consumer Protection Act 1986",
+      "COPRA",
+      "2019 amendment",
+      "right to safety",
+      "Reji Mathew",
+      "right to information",
+      "MRP",
+      "expiry date",
+      "RTI Act",
+      "Amritha",
+      "right to choice",
+      "Abirami",
+      "right to redressal",
+      "Prakash",
+      "consumer protection council",
+      "Consumer Disputes Redressal Commission",
+      "right to representation",
+      "right to consumer education",
+      "ISI",
+      "Agmark",
+      "Hallmark",
+      "+F",
+      "bill",
+      "warranty",
+      "mediation",
+      "National Consumers' Day"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Consumer protection is needed only when a physical product is defective.",
+        "correction": "Consumer rights also apply to deficient services such as healthcare, education and communication."
+      },
+      {
+        "claim": "A consumer protection council and a Consumer Disputes Redressal Commission are the same.",
+        "correction": "Councils guide and represent consumers; commissions are quasi-judicial bodies that decide cases."
+      },
+      {
+        "claim": "Every product must carry ISI or Agmark.",
+        "correction": "Standards are not compulsory for all products, though certification is mandatory for specified health, safety and mass-consumption goods."
+      },
+      {
+        "claim": "The redressal process is always simple and fast.",
+        "correction": "The chapter notes that it can be cumbersome, expensive and time-consuming."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the NCERT marketplace examples of short weight, hidden charges and defective goods.",
+      "Use the NCERT Reji Mathew case for the right to safety.",
+      "Use the NCERT Amritha and Abirami cases for information and choice.",
+      "Use the NCERT Prakash sequence to explain complaint and redressal procedures.",
+      "Use the NCERT certification-mark and consumer-awareness activities for informed consumer practice."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with 'EXERCISES', Questions 1–13, followed by Additional Projects / Activities and a consumer-awareness questionnaire."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Consumer Rights\n\n## What you will learn\nYou will learn why consumers need protection in the marketplace and how the consumer movement developed. You will understand common forms of exploitation and the background of COPRA.\n\n## Simple explanation\nConsumers often buy in small quantities and are scattered, while producers or sellers may have greater information, wealth and bargaining power. Rules, collective action and legal institutions are needed to make markets fairer.\n\n## Step-by-step breakdown\n- **Consumer in the marketplace**: A consumer purchases final goods and services and may be in a weak position after a sale.\n- **Unfair trade practices**: Exploitation includes short weighing, hidden charges, adulterated goods, defective goods and false information.\n- **Power imbalance**: Large firms can influence the marketplace and advertising, while individual consumers have limited bargaining power.\n- **Need for regulation**: Safety rules, truthful information and enforceable responsibilities are needed because sellers may try to shift blame to buyers.\n- **Origins of the consumer movement**: In India, food shortages, hoarding, black marketing and adulteration helped create an organised consumer movement in the 1960s.\n- **Consumer organisations**: Groups wrote articles, held exhibitions and examined malpractices in ration shops and public transport.\n- **International foundation**: The United Nations adopted Guidelines for Consumer Protection in 1985, and Consumers International became an umbrella body for many organisations.\n- **COPRA**: The Consumer Protection Act 1986, popularly known as COPRA, was enacted in 1986 and later received a 2019 amendment.\n\n## Worked example\nQuestion: Why are individual consumers often weak in the marketplace?\n\nSolution:\n- Step 1: The chapter explains that consumers are scattered and buy small amounts, while some producers are few, powerful and able to control information and market conditions.\n- Step 2: This imbalance makes it difficult for a single buyer to obtain redressal or challenge unfair trade practices.\n- Final answer: Consumer protection requires rules, organisations and institutions because individual bargaining power is often insufficient.\n\n## Common mistake\nA common mistake is to blame exploitation entirely on careless buyers. Producers and sellers have responsibilities, and public regulation is necessary.\n\n## Quick check question\nQuestion: Name two unfair trade practices mentioned in the chapter.\nAnswer: Short weighing and selling adulterated or defective goods.\nExplanation: The chapter also mentions hidden charges and false information.\n\n## Summary\n- A consumer may face unequal power in the marketplace.\n- Exploitation includes short weight, hidden charges, adulterated goods and defective goods.\n- The consumer movement arose from dissatisfaction with unfair trade practices.\n- Consumer groups and legal measures shifted responsibility toward sellers.\n- The Consumer Protection Act 1986 created a stronger framework for protection.",
+    "Core explanation": "# Core explanation: Consumer Rights\n\n## What you will learn\nYou will understand the rights to safety, information and choice. You will analyse the cases of Reji Mathew, Amritha and Abirami.\n\n## Simple explanation\nConsumer rights apply to both goods and services. A consumer should be protected from danger, receive relevant information and remain free to choose without forced purchase.\n\n## Step-by-step breakdown\n- **Right to safety**: Consumers must be protected from goods and services hazardous to life and property, and producers must follow safety rules.\n- **Reji Mathew's case**: Improper anaesthesia during a tonsil operation caused lifelong harm; the National Commission held the hospital responsible for medical negligence.\n- **Right to information**: Packages should show ingredients, price, batch number, manufacturing date, expiry date, manufacturer address, directions and risks where relevant.\n- **MRP and expiry date**: Consumers can complain about sales above the Maximum Retail Price or expired medicines and can seek replacement for defective goods within the relevant period.\n- **RTI Act**: The Right to Information Act, enacted in October 2005, gives citizens access to information about government departments.\n- **Amritha's case**: An RTI application helped Amritha learn the reason for delay in a government recruitment result and receive her appointment letter.\n- **Right to choice**: Consumers should decide whether to buy or continue a service and should not be forced to purchase linked products.\n- **Abirami's case**: Consumer commissions recognised Abirami's right to leave a coaching course and ordered refund and compensation.\n\n## Worked example\nQuestion: How do the cases of Reji Mathew, Amritha and Abirami illustrate different consumer rights?\n\nSolution:\n- Step 1: Reji Mathew's case concerns unsafe and negligent medical service, Amritha's case concerns access to government information, and Abirami's case concerns freedom to discontinue a service.\n- Step 2: Each case connects a real harm or denial to a specific right: right to safety, right to information or right to choice.\n- Final answer: Together the cases show that consumer rights cover services as well as physical goods and can be enforced through legal or administrative processes.\n\n## Common mistake\nA common mistake is to think consumer rights apply only to products bought in shops. They also cover services such as healthcare, education, communication and government information.\n\n## Quick check question\nQuestion: What does MRP stand for?\nAnswer: Maximum Retail Price.\nExplanation: A consumer can protest if a packaged good is sold above the printed MRP.\n\n## Summary\n- The right to safety protects life and property.\n- The right to information supports informed decisions and complaints.\n- The right to choice prevents forced or tied purchases.\n- Consumer rights apply to services as well as goods.\n- Case histories show how rights are enforced.",
+    "Worked examples": "# Worked examples: Consumer Rights\n\n## What you will learn\nYou will learn the right to redressal and the process of filing a consumer complaint. You will distinguish a consumer protection council from a Consumer Disputes Redressal Commission.\n\n## Simple explanation\nA consumer who suffers unfair trade practice, defective goods or deficient service can seek compensation or another remedy. Advice groups help consumers, while commissions hear and decide disputes.\n\n## Step-by-step breakdown\n- **Right to redressal**: Consumers may seek compensation according to the degree of damage caused by unfair practice or deficient service.\n- **Prakash's complaint**: After a money order failed to reach his daughter, Prakash sought information, approached a consumer protection council, filed a case, produced documents and argued before the commission.\n- **Filing without a lawyer**: A consumer may file and plead a case personally, with or without a lawyer.\n- **Physical and digital filing**: The chapter notes that complaints can be made physically or through the Internet and may be conducted through video conferencing.\n- **Consumer protection council**: This type of voluntary organisation advises consumers, spreads awareness and may represent individuals.\n- **Consumer Disputes Redressal Commission**: This quasi-judicial body hears evidence and issues decisions.\n- **Three-tier system**: District, State and National Commissions deal with claims at different levels, and appeals can move upward.\n- **Right to representation**: Consumers may present their cases directly or through organisations and representatives.\n\n## Worked example\nQuestion: What is the difference between a consumer protection council and a Consumer Disputes Redressal Commission?\n\nSolution:\n- Step 1: The chapter describes councils as voluntary organisations that guide and sometimes represent consumers, while commissions are quasi-judicial authorities that hear cases and give verdicts.\n- Step 2: One mainly supports and advises; the other legally adjudicates disputes.\n- Final answer: A consumer protection council helps a consumer prepare and pursue a complaint, whereas a Consumer Disputes Redressal Commission decides the dispute and can order a remedy.\n\n## Common mistake\nA common mistake is to call every consumer forum a court that issues binding orders. Voluntary councils and statutory commissions perform different functions.\n\n## Quick check question\nQuestion: Can a consumer file a complaint without hiring a lawyer?\nAnswer: Yes.\nExplanation: The chapter states that a consumer can file and plead a complaint personally, with or without legal assistance.\n\n## Summary\n- The right to redressal provides remedies for harm.\n- Documents such as a bill and warranty strengthen a complaint.\n- A consumer protection council advises and may represent consumers.\n- A Consumer Disputes Redressal Commission hears evidence and issues decisions.\n- The system operates at district, state and national levels.",
+    "Exam-style problems": "# Exam-style problems: Consumer Rights\n\n## What you will learn\nYou will learn how to become a well-informed consumer. You will understand quality certification, bills, labels, consumer duties and the importance of evidence.\n\n## Simple explanation\nRights become effective when consumers read information, demand proof of purchase, compare offers and act when standards are violated.\n\n## Step-by-step breakdown\n- **Right to consumer education**: A well-informed consumer understands rights, legal procedures and the meaning of product information.\n- **Quality marks**: ISI, Agmark, Hallmark and +F certification help consumers identify compliance with specified standards.\n- **Mandatory certification**: Certification is compulsory for some health, safety and mass-consumption products, including LPG cylinders, food colours and additives, cement and packaged drinking water.\n- **Bill and cash memo**: Proof of purchase is important when seeking replacement, refund or compensation.\n- **Checking labels**: Consumers should examine MRP, expiry date, ingredients, quantity, batch number, directions and manufacturer details.\n- **Advertising claims**: Catchy offers should be assessed by comparing the real benefit rather than accepting claims automatically.\n- **Duties in practice**: Consumers should insist on correct weights, use meters where relevant, preserve documents and complain against unfair practices.\n- **Consumer awareness**: Education enables consumers to distinguish choices and use legal remedies effectively.\n\n## Worked example\nQuestion: Why should a consumer insist on a bill even for an ordinary purchase?\n\nSolution:\n- Step 1: The chapter explains that consumer cases require evidence, and many complaints become difficult when cash memos are not issued or preserved.\n- Step 2: A bill connects the product or service to the seller, date and amount and supports the consumer's claim.\n- Final answer: Insisting on and keeping a bill is a practical consumer duty because it provides evidence for replacement, refund or redressal.\n\n## Common mistake\nA common mistake is to assume a certification mark guarantees that every product in the market is certified. Standards are not compulsory for all products, though they are mandatory for specified safety and mass-consumption goods.\n\n## Quick check question\nQuestion: Which mark is associated in the chapter with certification of agricultural products such as edible oil and cereals?\nAnswer: Agmark.\nExplanation: The chapter lists Agmark among quality-certification marks used to assure consumers.\n\n## Summary\n- The right to consumer education converts rights into practical protection.\n- ISI, Agmark, Hallmark and +F help identify standardised goods.\n- Labels provide information needed for safe and informed choice.\n- A bill and warranty are essential evidence.\n- Consumers must question misleading offers and unfair practices.",
+    "Revision and recap": "# Revision and recap: Consumer Rights\n\n## What you will learn\nYou will assess the progress and limits of the consumer movement. You will revise the six major rights and understand why active public participation remains necessary.\n\n## Simple explanation\nConsumer protection has expanded through laws, commissions, coverage of Internet purchases and mediation, but the redressal process can still be slow, costly and difficult.\n\n## Step-by-step breakdown\n- **National Consumers' Day**: India observes National Consumers' Day on 24 December because the Consumer Protection Act was enacted on that date in 1986.\n- **Progress of organisations**: The number of consumer groups has increased, though only a small proportion are well organised and widely recognised.\n- **Continuing difficulties**: Cases may be cumbersome, expensive and time-consuming, and consumers may need lawyers or struggle to collect evidence.\n- **2019 amendment**: The amended law includes Internet purchases and strengthens responsibility for defective products and deficient services.\n- **Mediation**: Settlement through a neutral intermediary outside the commission is encouraged.\n- **Weak enforcement**: Rules protecting consumers and workers are often not followed fully, and awareness spreads slowly.\n- **Active participation**: Consumer movements become effective when people voluntarily organise, complain, preserve evidence and support one another.\n- **Six rights recap**: The chapter lists the right to choice, right to information, right to redressal, right to representation, right to safety and right to consumer education.\n\n## Worked example\nQuestion: Why has consumer protection not become fully effective despite laws and commissions?\n\nSolution:\n- Step 1: The chapter identifies slow and costly procedures, lack of bills, weak enforcement, limited organisation and low awareness.\n- Step 2: Legal rights need evidence, accessible institutions and active consumer participation to work in practice.\n- Final answer: The framework has improved, but effectiveness remains uneven because institutions and citizens must continue strengthening implementation.\n\n## Common mistake\nA common mistake is to say that the consumer redressal process is always simple and quick. The chapter describes it as frequently cumbersome, expensive and time-consuming.\n\n## Quick check question\nQuestion: List the six consumer rights named in the chapter.\nAnswer: Right to choice, right to information, right to redressal, right to representation, right to safety and right to consumer education.\nExplanation: These rights together cover informed purchase, protection, participation and remedy.\n\n## Summary\n- Consumer protection has progressed but remains incomplete.\n- The 2019 amendment covers Internet purchases and strengthens accountability.\n- Mediation provides another route to settlement.\n- Weak enforcement and limited awareness continue to be challenges.\n- Active consumers and organisations are essential to the consumer movement."
+  }
+}

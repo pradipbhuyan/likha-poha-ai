@@ -1,0 +1,86 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 1: Real Numbers",
+    "central_question": "How does unique prime factorisation help us analyse integers, compute HCF and LCM, and prove that important real numbers are irrational?",
+    "in_scope_units": [
+      "Introduction: links real numbers with divisibility, prime factorisation, HCF and LCM, and irrational numbers.",
+      "The Fundamental Theorem of Arithmetic: prime factorisation, uniqueness, and applications to divisibility, HCF and LCM.",
+      "Revisiting Irrational Numbers: the prime-divisor theorem and proofs by contradiction for square roots and related expressions.",
+      "Summary and note to the reader: consolidates the chapter results and distinguishes the two-number HCF-LCM product rule from the three-number case."
+    ],
+    "banned_topics": [
+      "A full procedure for Euclid's division algorithm, because no worked section on that algorithm appears in the supplied chapter text.",
+      "The theorem classifying terminating and non-terminating recurring decimal expansions, because it is mentioned in the introduction but not developed in the supplied chapter text.",
+      "Complex numbers or irrationality proofs involving non-real square roots."
+    ],
+    "must_include_keywords": [
+      "real numbers",
+      "natural numbers",
+      "prime number",
+      "composite number",
+      "prime factorisation",
+      "factor tree",
+      "powers of primes",
+      "Fundamental Theorem of Arithmetic",
+      "unique factorisation",
+      "order of prime factors",
+      "divisibility",
+      "HCF",
+      "LCM",
+      "smallest power",
+      "greatest power",
+      "HCF(a, b) × LCM(a, b) = a × b",
+      "two positive integers",
+      "three positive integers",
+      "coprime",
+      "irrational number",
+      "rational number",
+      "proof by contradiction",
+      "Theorem 1.2",
+      "p divides a²",
+      "p divides a",
+      "square root",
+      "√2",
+      "√3",
+      "√5",
+      "sum or difference",
+      "non-zero rational",
+      "product or quotient"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A composite number can have two genuinely different prime factorisations.",
+        "correction": "By the Fundamental Theorem of Arithmetic, its prime factorisation is unique apart from the order of the prime factors."
+      },
+      {
+        "claim": "For HCF, take the greatest power of every prime appearing in either number.",
+        "correction": "For HCF, take the smallest power of each common prime factor; the greatest powers of all involved primes are used for the LCM."
+      },
+      {
+        "claim": "HCF × LCM equals the product of the numbers for any number of integers.",
+        "correction": "The identity HCF(a, b) × LCM(a, b) = a × b is stated for two positive integers; Example 4 shows it does not extend in that simple form to three integers."
+      },
+      {
+        "claim": "To prove √p irrational, it is enough to say that p is not a perfect square.",
+        "correction": "The chapter uses proof by contradiction: assume √p = a/b in lowest terms and show that p divides both a and b, contradicting coprimality."
+      }
+    ],
+    "recommended_example_progression": [
+      "Start with the factor tree of 32760 from Section 1.2 to illustrate prime factorisation and uniqueness.",
+      "Use NCERT Example 2 and Example 3 to compute HCF and LCM and verify the two-number product relation.",
+      "Use NCERT Example 1 and Exercise 1.1 Question 6 to apply prime factors to last-digit and compositeness arguments.",
+      "Use Theorem 1.3 and NCERT Example 5 to model a complete proof by contradiction for √2 and √3.",
+      "Finish with NCERT Examples 6 and 7 and Exercise 1.2 to prove irrationality of expressions formed from rational and irrational numbers."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The supplied chapter contains Exercise 1.1 on prime factorisation, HCF and LCM, and Exercise 1.2 on irrationality proofs."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Real Numbers\n\n## What you will learn\nYou will learn how natural numbers are built from prime numbers and why prime factorisation is unique. You will also connect this result to the main structure of the chapter.\n\n## Simple explanation\nPrime numbers are the basic building blocks of positive integers. A composite number can be broken into prime factors, and the Fundamental Theorem of Arithmetic guarantees that this breakdown is unique except for the order of the factors.\n\n## Step-by-step breakdown\n- **Prime and composite numbers**: A prime number has exactly two positive factors, while a composite number can be expressed as a product of primes.\n- **Factor tree**: Repeatedly split a composite number into factors until every branch ends in a prime number.\n- **Fundamental Theorem of Arithmetic**: Every composite number can be expressed as a product of primes, and this factorisation is unique apart from the order in which the prime factors occur.\n- **Powers of primes**: Repeated prime factors may be grouped using exponents; for example, three factors of 2 are written as 2³.\n- **Why uniqueness matters**: Once prime factors are written in ascending order, there is only one prime factorisation of the number.\n\n## Worked example\nQuestion: Using the factor tree shown in NCERT Section 1.2, express 32760 as a product of powers of primes.\n\nSolution:\n- Step 1: From the factor tree, 32760 = 2 × 16380.\n- Step 2: Continue factorising: 16380 = 2 × 8190 and 8190 = 2 × 4095.\n- Step 3: Factorise 4095 = 3 × 1365, 1365 = 3 × 455, 455 = 5 × 91, and 91 = 7 × 13.\n- Step 4: Therefore, 32760 = 2 × 2 × 2 × 3 × 3 × 5 × 7 × 13.\n- Step 5: Group equal prime factors: 32760 = 2³ × 3² × 5 × 7 × 13.\n- Final answer: The prime factorisation is **32760 = 2³ × 3² × 5 × 7 × 13**.\n\n## Common mistake\nDo not stop a factor tree at a composite factor such as 91. Continue until every final factor is prime; here, 91 = 7 × 13.\n\n## Quick check question\nQuestion: In NCERT Exercise 1.1 Question 1(i), express 140 as a product of prime factors.\nAnswer: 140 = 2² × 5 × 7.\nExplanation: 140 = 14 × 10 = (2 × 7)(2 × 5) = 2² × 5 × 7, and all the factors are prime.\n\n## Summary\n- Composite numbers can be broken into prime factors.\n- Prime factorisation is unique apart from order.\n- Repeated prime factors are written using powers.\n- A complete factorisation must end only in primes.",
+    "Core explanation": "# Core explanation: Real Numbers\n\n## What you will learn\nYou will use prime factorisation to find HCF and LCM. You will also learn the exact product relation for two positive integers and why it must not be copied blindly to three integers.\n\n## Simple explanation\nThe HCF keeps only the prime factors common to all the given numbers, using their smallest powers. The LCM includes every prime factor needed to cover all the numbers, using the greatest powers.\n\n## Step-by-step breakdown\n- **HCF by prime factorisation**: Write each number as a product of primes and select the smallest power of every common prime factor.\n- **LCM by prime factorisation**: Select the greatest power of every prime factor appearing in the numbers.\n- **Two-number identity**: For positive integers a and b, HCF(a, b) × LCM(a, b) = a × b.\n- **Using a known HCF**: If the HCF is known, LCM(a, b) = (a × b)/HCF(a, b).\n- **Three-number warning**: NCERT Example 4 shows that the product of three numbers is not generally equal to the product of their HCF and LCM.\n\n## Worked example\nQuestion: Solve NCERT Example 3: Find the HCF of 96 and 404 by prime factorisation and hence find their LCM.\n\nSolution:\n- Step 1: Prime factorise 96: 96 = 2⁵ × 3.\n- Step 2: Prime factorise 404: 404 = 2² × 101.\n- Step 3: The only common prime factor is 2, and the smaller power is 2².\n- Step 4: Therefore, HCF(96, 404) = 2² = 4.\n- Step 5: Use HCF × LCM = product of the two numbers.\n- Step 6: LCM(96, 404) = (96 × 404)/4 = 96 × 101 = 9696.\n- Final answer: **HCF = 4 and LCM = 9696**.\n\n## Common mistake\nWhen finding the HCF, do not include a prime that occurs in only one number. For 96 and 404, 3 and 101 are not common factors.\n\n## Quick check question\nQuestion: Using NCERT Example 2, find HCF(6, 20) and LCM(6, 20).\nAnswer: HCF(6, 20) = 2 and LCM(6, 20) = 60.\nExplanation: 6 = 2 × 3 and 20 = 2² × 5. The smallest common power is 2¹, while the greatest powers involved are 2², 3¹ and 5¹.\n\n## Summary\n- HCF uses smallest powers of common primes.\n- LCM uses greatest powers of all involved primes.\n- For two positive integers, HCF × LCM equals their product.\n- The simple two-number identity does not extend unchanged to three numbers.",
+    "Worked examples": "# Worked examples: Real Numbers\n\n## What you will learn\nYou will apply unique prime factorisation to divisibility, last-digit and compositeness questions. You will also use LCM in a repeated-event problem.\n\n## Simple explanation\nA number ending in 0 must contain both 2 and 5 in its prime factorisation. Likewise, an expression is composite if it can be written as a product of integers greater than 1.\n\n## Step-by-step breakdown\n- **Ending in zero**: A positive integer ending in 0 is divisible by 10 = 2 × 5, so its prime factorisation must contain both 2 and 5.\n- **Powers with restricted prime factors**: A number such as 4ⁿ = 2²ⁿ contains only the prime factor 2.\n- **Showing an expression is composite**: Factor out a common integer greater than 1.\n- **Meeting again at a starting point**: When two repeated cycles begin together, the next common starting time is the LCM of their cycle lengths.\n\n## Worked example\nQuestion: Solve NCERT Exercise 1.1 Question 7: Sonia completes one round in 18 minutes and Ravi in 12 minutes. After how many minutes will they meet again at the starting point?\n\nSolution:\n- Step 1: They will both be at the starting point after a time that is a multiple of both 18 and 12.\n- Step 2: Prime factorise: 18 = 2 × 3² and 12 = 2² × 3.\n- Step 3: Take the greatest powers of all primes: LCM(18, 12) = 2² × 3².\n- Step 4: LCM(18, 12) = 4 × 9 = 36.\n- Final answer: They will meet again at the starting point after **36 minutes**.\n\n## Common mistake\nDo not use the HCF for a “next time together” problem. The required time must be a common multiple of both cycle lengths, so the LCM is used.\n\n## Quick check question\nQuestion: In NCERT Exercise 1.1 Question 6, why is 7 × 11 × 13 + 13 composite?\nAnswer: 7 × 11 × 13 + 13 = 13(7 × 11 + 1) = 13 × 78, so it is composite.\nExplanation: The expression has been written as a product of two integers greater than 1.\n\n## Summary\n- A last digit of 0 requires prime factors 2 and 5.\n- The number 4ⁿ contains only the prime factor 2.\n- Factoring an expression can prove it is composite.\n- Repeated cycles meet again after their LCM.",
+    "Exam-style problems": "# Exam-style problems: Real Numbers\n\n## What you will learn\nYou will understand the key theorem used in irrationality proofs and write a complete proof by contradiction. The emphasis is on logically justified steps, not only the final statement.\n\n## Simple explanation\nTo prove a square root is irrational, assume the opposite: write it as a fraction in lowest terms. The algebra then forces the numerator and denominator to share a prime factor, contradicting the claim that they were coprime.\n\n## Step-by-step breakdown\n- **Irrational number**: A number is irrational if it cannot be written as p/q, where p and q are integers and q ≠ 0.\n- **Theorem 1.2**: If p is prime and p divides a², then p divides a.\n- **Lowest terms**: In a contradiction proof, write the assumed rational number as a/b with a and b coprime.\n- **Contradiction pattern**: Show that the same prime divides both a and b, which contradicts coprimality.\n- **Conclusion**: Reject the original assumption and conclude that the number is irrational.\n\n## Worked example\nQuestion: Prove, as in NCERT Example 5, that √3 is irrational.\n\nSolution:\n- Step 1: Assume, to the contrary, that √3 is rational.\n- Step 2: Then √3 = a/b for integers a and b, b ≠ 0, with a and b coprime.\n- Step 3: Multiply by b: b√3 = a.\n- Step 4: Square both sides: 3b² = a².\n- Step 5: Therefore, 3 divides a². By Theorem 1.2, 3 divides a.\n- Step 6: Write a = 3c for some integer c.\n- Step 7: Substitute into 3b² = a²: 3b² = 9c², so b² = 3c².\n- Step 8: Therefore, 3 divides b², and by Theorem 1.2, 3 divides b.\n- Step 9: Thus, 3 divides both a and b, contradicting that a and b are coprime.\n- Final answer: The assumption is false; therefore, **√3 is irrational**.\n\n## Common mistake\nDo not omit the statement that a and b are coprime. Without reducing the fraction to lowest terms, the final contradiction is not established.\n\n## Quick check question\nQuestion: In NCERT Exercise 1.2 Question 1, what contradiction proves that √5 is irrational?\nAnswer: Assuming √5 = a/b in lowest terms leads to 5 dividing both a and b, contradicting that a and b are coprime.\nExplanation: From 5b² = a², Theorem 1.2 gives 5 | a; substituting a = 5c then gives b² = 5c² and hence 5 | b.\n\n## Summary\n- Irrationality proofs begin by assuming rationality.\n- The fraction must be taken in lowest terms.\n- Theorem 1.2 transfers prime divisibility from a square to its base.\n- A common prime factor in numerator and denominator creates the contradiction.",
+    "Revision and recap": "# Revision and recap: Real Numbers\n\n## What you will learn\nYou will revise the chapter's main results and use known irrational numbers to prove that related expressions are irrational. You will also distinguish valid results for two numbers from statements that fail for three numbers.\n\n## Simple explanation\nOnce a number such as √2 or √3 is known to be irrational, a rational rearrangement cannot turn it into a rational number. Assuming that an expression such as 5 − √3 or 3√2 is rational lets us rearrange and incorrectly conclude that √3 or √2 is rational.\n\n## Step-by-step breakdown\n- **Rational plus or minus irrational**: The sum or difference of a rational number and an irrational number is irrational.\n- **Non-zero rational times irrational**: The product of a non-zero rational number and an irrational number is irrational.\n- **Non-zero rational quotient**: Dividing an irrational number by a non-zero rational number, or a non-zero rational by an irrational number where defined, does not produce the rational conclusion assumed in these proofs.\n- **Rearrangement method**: Assume the target expression is rational and isolate the known irrational number.\n- **Chapter recap**: Unique prime factorisation supports HCF-LCM calculations and the divisibility theorem used in irrationality proofs.\n\n## Worked example\nQuestion: Show, as in NCERT Example 7, that 3√2 is irrational.\n\nSolution:\n- Step 1: Assume, to the contrary, that 3√2 is rational.\n- Step 2: Then 3√2 = a/b for integers a and b, b ≠ 0.\n- Step 3: Divide both sides by 3: √2 = a/(3b).\n- Step 4: Since a and 3b are integers and 3b ≠ 0, a/(3b) is rational.\n- Step 5: This would make √2 rational, contradicting Theorem 1.3.\n- Final answer: Therefore, **3√2 is irrational**.\n\n## Common mistake\nDo not claim that the product of any rational number and an irrational number is irrational. The rational factor must be non-zero; multiplying by 0 gives 0, which is rational.\n\n## Quick check question\nQuestion: Using the method of NCERT Example 6, explain why 5 − √3 is irrational.\nAnswer: If 5 − √3 were rational, then √3 = 5 − (5 − √3) would be rational, contradicting that √3 is irrational.\nExplanation: The difference of two rational numbers is rational, so the assumption would force the known irrational number √3 to be rational.\n\n## Summary\n- The Fundamental Theorem of Arithmetic gives unique prime factorisation.\n- Prime factorisation is used to find HCF and LCM.\n- If p divides a² for prime p, then p divides a.\n- Proof by contradiction establishes the irrationality of √2, √3 and √5.\n- Rational combinations with a known irrational number must be handled with the non-zero condition where required."
+  }
+}

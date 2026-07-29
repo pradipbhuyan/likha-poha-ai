@@ -1,0 +1,61 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 2
+Subject: Sociology
+Source Subject Code: Sociology
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Sociology-SQP_Term2.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Sociology-MS_Term2.pdf
+Total Questions: 14
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Sociology-MS_Term2.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec D]
+A model of the South Asian colonial city The European town…had spacious bungalows, elegant apartment houses, planned streets, trees on both sides of the street,…clubs for afternoon and evening get togethers…The open space was reserved for…Western recreational facilities, such as race and golf courses, soccer and cricket. When domestic water supply, electric connections, and sewage links were available or technically possible, the European town residents utilised them fully, whereas their use was quite restricted to the native town. (Dutt 1993: 361) Read the source and answer the following question. Did the model of the South Asian colonial city cater to the needs of the natives? Give a reason for your answer.
+
+Q10 [case_study, 4m, Sec C]
+Compare the experience of industrialization in the West with that of the Indian experience.
+
+Q11 [mcq, 1m, Sec C]
+Elucidate the phenomena of modernity. 4 OR “19th century reform initiated a period of questioning, reinterpretations and both intellectual and social growth.” Using suitable examples, justify the given statement.
+
+Q12 [case_study, 4m, Sec C]
+Identify and discuss the plight of the various stakeholders in the Bombay Textile strike of 1982. SECTION D
+
+Q13 [short_answer, 6m, Sec D]
+Jharkhand is one of the newly formed states of India, carved out of south Bihar in the year 2000. Describe the social movement that led to the creation of this state. OR Using an example, explain an ecological movement.
+
+Q14 [short_answer, 6m, Sec D]
+Show the relation between circulation of labour and feminization of agricultural labour force.
+
+Q2 [mcq, 1m, Sec D]
+Kumudtai’s journey into Sanskrit began with great interest and eagerness with Gokhale Guruji, her teacher at school…At the University, the Head of the Department was a well- known scholar and he took great pleasure in taunting Kumudtai…Despite the adverse comments she successfully completed her Masters in Sanskrit…. Source: Kumud Pawade (1938) Read the source and answer the following question. Do you think sanskritisation is a gendered process? Give a reason for your answer. SECTION B
+
+Q3 [short_answer, 2m, Sec B]
+Agricultural productivity increased sharply because of the new technology. India was able to become self-sufficient in food grain production for the first time in decades. It was primarily the medium and large farmers who were able to benefit from the new technology. 3. A) What is subsistence agriculture? 3. B) Who were able to reap the most benefits from Green Revolution and commercialisation of agriculture?
+
+Q4 [short_answer, 2m, Sec B]
+In the mid–1970s, there was a renewal of the women’s movement in India which was called the second phase of the Indian women’s movement. There was the growth of what is termed as the autonomous women’s movements. 4. A) How can these movements be called autonomous? 4. B) Write about any one ideological change that was noticed in the autonomous women’s movement.
+
+Q5 [mcq, 1m, Sec B]
+Compare the impact of just-in-time for the company vis-à-vis the worker. 2
+
+Q6 [short_answer, 2m, Sec B]
+Can we apply the distinction between old and new social movements in the Indian context?
+
+Q7 [short_answer, 2m, Sec B]
+Often it is thought that imparting knowledge of 'scientific' farming methods will improve the condition of Indian farmers. Is this statement true? Give one reason for your answer.
+
+Q8 [mcq, 1m, Sec B]
+Differentiate between the organized and unorganized sector. 2 OR What are the social consequences of the long working hours in the IT sector?
+
+Q9 [mcq, 1m, Sec B]
+Labour is more free in an industrial society. How? 2 SECTION C
+
+======================================================================
+Return the complete JSON array.

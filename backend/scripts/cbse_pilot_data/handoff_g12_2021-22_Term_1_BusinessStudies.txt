@@ -1,0 +1,100 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 1
+Subject: Business Studies
+Source Subject Code: BusinessStudies
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/BusinessStudies-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/BusinessStudies-MS.pdf
+Total Questions: 11
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/BusinessStudies-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+“What distinguishes a successful manager from a less successful one is the ability to put the principles into practice.” Which aspect of the nature of management is highlighted in the above statement? a) Management as a science b) Management as an art c) Management as a profession d) Management is an intangible force.
+
+Q10 [mcq, 1m, Sec A]
+“Changes or events cannot be eliminated but they can be anticipated and managerial responses to them can be developed.” is suggested by the following importance of planning:
+  (A) Planning facilitates decision making
+  (B) Planning promotes innovative ideas
+  (C) Planning provides direction
+  (D) Planning reduces the risks of uncertainty.
+
+Q11 [mcq, 1m, Sec A]
+“Grouping similar nature jobs into larger units called departments” is the step in the process of one of the functions of management. Identify the function of management.
+  (A) Planning
+  (B) Organising
+  (C) Directing
+  (D) Staffing
+  (5) Planning precedes other functions
+  (6) Planning requires logical and systematic thinking
+  (7) Plan is framed, it is implemented, and is followed by another plan, and so on
+  (8) Planning is required at all levels of management as well as in all departments of the organisation. Page | 4
+  (9) Physical Distribution
+  (10) Gathering and analysing market information
+  (11) Promotion
+  (12) Transportation
+
+Q2 [mcq, 1m, Sec A]
+____________ provides a rational approach for setting objectives and developing appropriate courses of action for achieving predetermined objectives.
+  (A) Directing
+  (B) Staffing
+  (C) Planning
+  (D) Controlling Page | 2
+
+Q3 [mcq, 1m, Sec A]
+Marketing mix is the set of _____________________ that the firm uses to pursue its marketing objectives in the target market.
+  (A) Production tools
+  (B) Promotional tools
+  (C) Marketing tools
+  (D) Selling tools
+
+Q4 [mcq, 1m, Sec A]
+Which level of management is responsible for the welfare and survival of the organisation?
+  (A) Top level of management
+  (B) Middle level of management
+  (C) Supervisory level
+  (D) Both
+  (5) and
+
+Q5 [mcq, 1m, Sec A]
+Name the principle of management given by Fayol which when applied would mean that the workers and management both honour their commitments without any prejudice towards one another.
+  (A) Discipline
+  (B) Mental Revolution
+  (C) Remuneration of employees
+  (D) Scalar chain
+
+Q6 [mcq, 1m, Sec A]
+A brand or part of the brand that is given legal protection is called _____________
+  (A) Brand Mark
+  (B) Trademark
+  (C) Brand
+  (D) Brand name
+
+Q7 [mcq, 1m, Sec A]
+Identify the dimension of the characteristic of management- “it is multidimensional”, which specifies that the task of management is to make the strengths of human resources effective and their weaknesses irrelevant towards achieving the organisation's objectives.
+  (A) Management of work
+  (B) Management of people
+  (C) Management of operations
+  (D) Management of goals Page | 3
+
+Q8 [mcq, 1m, Sec A]
+___________________ involves a variety of programmes designed to promote and protect a company’s image and its individual products in the eyes of the public.
+  (A) Advertising
+  (B) Personal selling
+  (C) Publicity
+  (D) Public relations
+
+Q9 [mcq, 1m, Sec A]
+Which type of organisational structure will you suggest for a firm which has diversified activities and operations requiring a high degree of specialisation ? ( a) Centralised structure
+  (A) Decentralised Structure
+  (B) Divisional structure
+  (C) Functional structure
+
+======================================================================
+Return the complete JSON array.

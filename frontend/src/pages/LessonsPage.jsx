@@ -319,8 +319,21 @@ function LessonsPage({ user, setActivePage }) {
           {/* Refresh lesson — reliably clears the server-side chapter-doc
               cache and rebuilds from the latest lesson_cache content. Use
               this instead of a browser hard-refresh, which cannot touch
-              this server-side cache table. See §4o of the plan doc. */}
-          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 8 }}>
+              this server-side cache table. See §4o of the plan doc.
+              Sticky-positioned so it stays reachable while scrolling
+              through a long chapter, instead of only being visible at the
+              very top of the page. */}
+          <div
+            style={{
+              position: "sticky",
+              top: 8,
+              zIndex: 40,
+              display: "flex",
+              justifyContent: "flex-end",
+              marginBottom: 8,
+              pointerEvents: "none",
+            }}
+          >
             <button
               type="button"
               onClick={handleRefreshLesson}
@@ -339,6 +352,8 @@ function LessonsPage({ user, setActivePage }) {
                 color: "var(--text, #374151)",
                 cursor: chapterDocRefreshing ? "default" : "pointer",
                 opacity: chapterDocRefreshing ? 0.6 : 1,
+                boxShadow: "0 2px 8px rgba(0,0,0,.12)",
+                pointerEvents: "auto",
               }}
             >
               <RotateCcw size={14} strokeWidth={2.4} />

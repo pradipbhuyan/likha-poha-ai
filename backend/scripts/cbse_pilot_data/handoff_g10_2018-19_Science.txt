@@ -1,0 +1,109 @@
+CBSE Grade 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2018-19
+Subject: Science
+Source Subject Code: Science
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2018_19/Science-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2018_19/Science-MS.pdf
+Total Questions: 27
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassX_2018_19/Science-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Name a common nutrient that is absorbed in the small intestine and reabsorbed by the kidney tubules. 1
+
+Q10 [mcq, 1m, Sec C]
+A variegated leaf with green and yellow patches in used for an experiment to prove that chloroph yll is required for photosynthesis. Before the experiment the green portions (A), and the pale yellow portions (B), are observed. What will be the colour of ‘A’ just before and after the starch test? Also write the equation of photosyn thesis and mark, as well as validate from which molecule the by-product is obtained. 3
+
+Q11 [mcq, 1m, Sec C]
+The image of an object formed by a mirror is real, inverted and is of magnification -1. If the image is at the distance of 30 cm from the mirror, where is the object placed? Find the position of the image if the object i s now moved 20 cm towards the mirror. What is the nature of the image obtained? Justify your answer with the help of ray diagram. 3 OR What is meant by power of a lens? You have three lenses L 1, L2 and L3 of powers +10D, +5D and -10D respectively. State the nature and focal length of each lens. Explain whi ch of the three lenses will form a virtual and magnified image of an object placed at 15 cm from the lens. Draw the ray diagram in support of your answer.
+  [NOTE: diagram]
+
+Q12 [mcq, 1m, Sec C]
+Two lamps, one rated 100 W at 220 V and the other 200 W at 220V are connected (i) in series and (ii) in parallel to electric main supply of 220V. Find the current drawn in each case. 3
+
+Q13 [short_answer, 3m, Sec C]
+The figure below shows three cylindrical copper conductors along with their face areas and lengths. Compare the resistance and the resistivity of the three conductors. Justify your answer. 3
+  [NOTE: diagram]
+
+Q14 [mcq, 1m, Sec C]
+What is biogas? Describe the steps involved in obtaining biogas. 3
+
+Q15 [mcq, 1m, Sec C]
+How is ozone both beneficial and damaging? How can depletion of ozone layer be prevented? 3 OR The flow of energy between various components of the environment has been extensively studied. List four findings. SECTION D
+
+Q16 [mcq, 1m, Sec D]
+a) How will you show experimentally that metals are good conductors of heat. 5 b) Describe the extraction of Mercury metal from its ore Cinnabar (HgS).
+
+Q17 [mcq, 1m, Sec D]
+A compound A (C 2H4O2) reacts with Na metal to form a compound ‘B’ and evolves a gas which burns with a pop sound. Compound ‘A’ on treatment with an alcohol ‘C’ in presence of an acid forms a sweet smelling compound ‘D’ (C4H8O2). On addition of NaOH to ‘D’ gives back B and C. Identify A, B, C and D write the reactions involved. 5 OR a) Explain why carbon forms covalent bond? Give two reasons for carbon forming a large number of compounds. b) Explain the formation of ammonia molecule.
+
+Q18 [mcq, 1m, Sec D]
+a) Draw the diagram of female reproductive system and match and mark the part(s): 5 i) Where block is created surgically to prevent fertilization. ii) Where Copper-T is inserted? iii) Inside which condom can be placed. b) Why do more and more people prefer to use condoms? What is the principle behind use of condoms?
+  [NOTE: diagram]
+
+Q19 [mcq, 1m, Sec D]
+Name the phenomenon that governs the following: - 5 i) Green beetles living in green bushes are not eaten by the crows. ii) Number of blue beetles in green bushes increases, only because the red beetles living there were trampled by a herd of elephants. L A
+
+Q2 [mcq, 1m, Sec A]
+The presence of a particular group of bacteria in water bodies indicates contamination. Identify the group. 1 SECTION B
+
+Q20 [mcq, 1m, Sec D]
+
+  (A) What is meant by the term ‘power of accommodation’? Name the component of eye that is responsible for the power of accommodation.                                 5
+  (B) A student sitting at the back bench in a class has difficulty in reading. What could be his defect of vision? Draw ray diagrams to illustrate the image formation of the blackboard when he is seated at the (i) back seat (ii) front seat. State two possible causes of this defect. Explain the method of correcting this defect with the help of a ray diagram.
+  [NOTE: diagram]
+
+Q21 [mcq, 1m, Sec D]
+(i) With the help of an activity, explain the met hod of inducing electric current in a coil with a moving magnet. State the rule used to find the direction of electric current thus generated in the coil. 5 (ii) Two circular coils-1 and coil-2 are kept close to each other as shown in the diagram.Coil-1 is connected to a battery and key and coil-2with a galvanometer. State your observation in the galvanometer:
+  (A) When key K closed ;
+  (B) when key K is opened; Give reason for your observations.
+  [NOTE: diagram]
+
+Q22 [short_answer, 2m, Sec E]
+When few drops of phenolphthalein are added to a dilute solution of sodium hydroxide a pink colo ur is produced. What will be the colour of the final mixture when excess of HCl is added to it? (justify your answer) OR Arrange the metals iron, magnesium, zinc and copper in the increasing order of their reactivity. What will be the two observations made by the student when iron filings are added to copper sulphate solution? 2
+
+Q23 [mcq, 1m, Sec E]
+From an experiment to study the properties of acetic acid. Answer the following questions: 2 a) Name the substances which on addition to acetic acid produce carbon dioxide gas. Give relevant ch emical equation for the above? b) How is CO2 gas tested in the laboratory?
+
+Q24 [mcq, 1m, Sec E]
+When observed under high power of the microscope, ‘chain of buds’ is visible in the2 microscopic view. In which organism can it be observed? Explain the process. OR In the experimental set up on ‘CO2 is released during respiration,’ if one forgets to keep the vial with KOH in the conical flask, how will the result vary? Give details. 2
+
+Q25 [mcq, 1m, Sec E]
+You soak seeds of bean and observe them after 2-3 days. Lit four observations? 2
+
+Q26 [mcq, 1m, Sec E]
+The current flowing through a resistor connected in an electrical circuit and the potential difference developed across its ends are shown in the given ammeter and voltmeter. Find the least count of the voltmeter and ammeter .What is the voltage and the current across the given resistor? 2
+
+Q27 [mcq, 1m, Sec E]
+Consider the path of a ray of light passing through a rectangula r glass slab for different angles of incidence. (i) Which one is greater: angle of incidence or angle of refraction? (ii) What happens to the emergent a ngle on increasing the incident angle at air-glass interface? (iii) State the conditions when no bending occurs. 2 OR Sunita takes a mirror which is depressed at the centre and mounts it on a mirror stand. An erect and enlarged image of her face is formed. She places the mirror on a stand along a meter scale at 15 cm mark. In front of this mirror, she mounts a white screen and moves it back and forth along the meter scale till a sharp, well- defined inverted image of a distant tree is formed on the screen at 35 cm mark. (i) Name the mirror and find its focal length. (ii) Why does Sunita get sharp image of the distant building at 35 cm mark?
+
+Q3 [mcq, 1m, Sec B]
+How is Magnesium Chloride formed by the transfer of electrons? Why does the solution of Magnesium chloride conduct electricity? 2
+
+Q4 [mcq, 1m, Sec B]
+In a flowering plant, summarize the events that take place after fertilization. 2
+
+Q5 [mcq, 1m, Sec B]
+A ray of light enters into benzene from air. If the refractive index of benzene is 1.50, by what percent does the speed of light reduce on entering the benzene? 2 OR For the same angle of incidence in media A,B and C, the angles of refraction are 200, 300 and 400 respectively. In which medium will the velocity of light be maximum? Give reason in support of your answer.
+
+Q6 [mcq, 1m, Sec B]
+What happens when aqueous solutions of Sodium sulphate and Barium chloride are mixed? Give a balanced equation for the reaction with state symbols. Name and define the type of chemical reaction involved in the above change. 2 SECTION C
+
+Q7 [mcq, 1m, Sec C]
+Identify the compound of calcium which is used for plastering of fractured bones. With the help of chemical equation show how is it prepared and what special precautions should be taken during the preparation of this compound. 3 OR ‘Sweet tooth may lead to tooth decay’. Explain why? What is the role of tooth paste in preventing cavities?
+
+Q8 [mcq, 1m, Sec C]
+The electronic configuration of an element ‘X’ is 2,8,6. To which group and period of the modern periodic table does ‘X’ belong .State it valency and justify your answer in each case. 3
+
+Q9 [mcq, 1m, Sec C]
+Pertaining to endocrine system, what will you interpret if- 3 i) You observe swollen neck in people living in the hills ii) Over secretion of Growth Hormone takes place during childhood iii) Facial hair develops in boys aged 13.
+
+======================================================================
+Return the complete JSON array.

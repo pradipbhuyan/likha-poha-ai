@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 9: Some Applications of Trigonometry",
+  "central_question": "How can angles of elevation or depression and right-triangle ratios be used to determine inaccessible heights and horizontal distances?",
+  "in_scope_units": [
+    "Heights and Distances: defines line of sight, angle of elevation and angle of depression and models real situations with right triangles.",
+    "Single-triangle applications: determines tower heights, ladder lengths, observer-adjusted heights and horizontal distances.",
+    "Multiple-triangle applications: solves problems involving two angles, shadows, stacked structures, buildings, bridges and river widths.",
+    "Exercise 9.1 and Summary: applies the method to ropes, trees, slides, kites, towers, ships, balloons and moving vehicles and consolidates the key definitions."
+  ],
+  "banned_topics": [
+    "Derivation of the trigonometric-ratio table and identities, which belongs to Chapter 8.",
+    "Surveying formulas involving sine rule or cosine rule.",
+    "Non-right-triangle trigonometry and angles outside the standard Grade 10 scope.",
+    "Coordinate-geometry methods for distance and slope."
+  ],
+  "must_include_keywords": [
+    "heights and distances",
+    "line of sight",
+    "observer",
+    "horizontal level",
+    "angle of elevation",
+    "angle of depression",
+    "right triangle",
+    "vertical object",
+    "level ground",
+    "opposite side",
+    "adjacent side",
+    "hypotenuse",
+    "tan",
+    "cot",
+    "sin",
+    "cos",
+    "30°",
+    "45°",
+    "60°",
+    "tower",
+    "ladder",
+    "observer height",
+    "chimney",
+    "flagstaff",
+    "shadow",
+    "Sun's altitude",
+    "parallel horizontal lines",
+    "alternate angles",
+    "multi-storeyed building",
+    "bridge",
+    "river width",
+    "lighthouse",
+    "distance travelled",
+    "diagram",
+    "unit consistency"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An angle of depression is measured from the vertical line through the observer.",
+      "correction": "Both angle of elevation and angle of depression are measured between the line of sight and a horizontal line through the observer."
+    },
+    {
+      "claim": "The angle of depression at the observer is unrelated to the corresponding angle of elevation at the object.",
+      "correction": "The two horizontal lines are parallel, so these angles are equal as alternate interior angles when the same line of sight is a transversal."
+    },
+    {
+      "claim": "The calculated vertical side always equals the total height of the object.",
+      "correction": "When the line of sight starts at the observer's eye level, the observer's height may need to be added to the calculated vertical difference."
+    },
+    {
+      "claim": "Any trigonometric ratio can be selected without checking the known and unknown sides.",
+      "correction": "Choose the ratio that directly contains the known side and the required side to minimise unnecessary work."
+    },
+    {
+      "claim": "A word problem can be solved reliably without drawing a labelled diagram.",
+      "correction": "A correct diagram is essential for identifying the right triangle, equal horizontal distances and the appropriate height components."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Figures 9.1 to 9.3 and NCERT Example 1 to define line of sight and angle of elevation in a single right triangle.",
+    "Use NCERT Examples 2 and 3 to select sine, cotangent or tangent and account for a person's height.",
+    "Use NCERT Example 4 for two angles of elevation from one point and a stacked object.",
+    "Use NCERT Example 5 for two shadow lengths and simultaneous equations.",
+    "Finish with NCERT Examples 6 and 7 and Exercise 9.1 Questions 12 to 15 for angles of depression and multi-triangle reasoning."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "NCERT Exercise 9.1 contains Questions 1 to 15 on heights, distances, angles of elevation and angles of depression.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

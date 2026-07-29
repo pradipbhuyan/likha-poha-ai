@@ -1,0 +1,198 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2023-24
+Subject: History
+Source Subject Code: History
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/History-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/History-MS.pdf
+Total Questions: 34
+======================================================================
+TASK: Provide answers in JSON format for each question.
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+RULES: MCQ/AR: answer_text = exact option text. diagram_dependent: NEEDS_MANUAL_REVIEW_diagram_dependent
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/History-MS.pdf
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Which one of the following was the main demand of the Khilafat movement?
+  (A) a. Dominion status for India
+  (B) b. Self-rule to India
+  (C) c. Restoration of Caliphate of Turkey
+  (D) d. Revival of orthodox culture of Islam
+
+Q10 [mcq, 1m, Sec A]
+Choose the correct option from the following statements with reference to the Magadha empire.
+  (A) Initially Pataliputra was the capital of Magadha.
+  (B) Chandra Gupta was one of the early rulers of Magadha who ruled in 6 BCE.
+  (C) Magadha became the most powerful Mahajanapada between 6th and 4th BCE.
+  (D) Ashoka was the founder of Mauryan dynasty.
+
+Q11 [mcq, 1m, Sec A]
+Read the following statements carefully and identify the place where this Dargah is located from the given options.
+  (A) It is a Dargah of the Shaikh Moinuddin Chishti.
+  (B) Akbar visited this place many times.
+  (C) Delhi
+  (D) Mehrauli
+
+Q12 [mcq, 1m, Sec A]
+Which one of the following countries was the source of cotton after the break of the American Civil War in 1861?
+  (A) America
+  (B) Africa
+  (C) India
+  (D) Sri Lanka
+
+Q13 [mcq, 1m, Sec A]
+With reference to the role of the British officers in India, Match Column-B with column- A, by using the codes given below.
+  (A) Lord Cornwallis
+  (B) Augustus Cleveland
+  (C) Francis Buchanan
+  (D) David Ricardo
+
+Q14 [mcq, 1m, Sec A]
+Who among the following led the flag of the Revolt of 1857 against the British in Bihar?
+  (A) Nana Sahib
+  (B) Maulvi Ahmadullah
+  (C) Kunwar Singh
+  (D) Birjis Qadr
+
+Q15 [mcq, 1m, Sec A]
+The _______ was the amount assessed and _______ was the amount collected by the Mughal Kings as land revenue.
+  (A) Iqta and jagir
+  (B) Jama and Hasil
+  (C) Naqdi and Iqta
+  (D) Zabti and Jama
+
+Q16 [mcq, 1m, Sec A]
+Who among the following travelled in the Vijayanagar empire in the 15th century and was greatly impressed by the fortification of the Vijayanagar?
+  (A) Daurte Barbosa
+  (B) Colin Mackenzie
+  (C) Abdur Razzak
+  (D) Domingo Paes
+
+Q17 [mcq, 1m, Sec A]
+Abu'l Fazl was a court historian of which the following Mughal emperor?
+  (A) Humayun
+  (B) Akbar
+  (C) Babur
+  (D) Jahangir
+
+Q18 [mcq, 1m, Sec A]
+Choose the correct place from the given options: - Dussehra festival was held with great prestige and power at the Vijayanagar empire
+  (A) Hazara Rama Temple
+  (B) Virupaksha Temple
+
+Q19 [mcq, 1m, Sec B]
+Why was the task of defining minority rights in the Constituent Assembly difficult? Choose the correct option from the following:- Different groups had different demands regarding rights.
+  (A) British did not want to include it in the constitutional frame work.
+  (B) Gandhiji opposed the idea of special rights for some sections.
+  (C) Rights of people in Princely states were ambiguous.
+
+Q2 [mcq, 1m, Sec A]
+Which of the following issues did not contribute to the spread of the revolt of 1857?
+  (A) a. Dominion status for India
+  (B) b. Self-rule to India
+  (C) c. Restoration of Caliphate of Turkey
+  (D) d. Revival of orthodox culture of Islam
+
+Q20 [mcq, 1m, Sec B]
+Identify the name of the person from the information given below. He was born at Tangier in one of the most respectable and educated family.
+  (A) He considered experience gained through travel as a source of knowledge than books.
+  (B) He had travelled to middle east and few trading ports on the coast of East Africa.
+  (C) He wrote a book named Rihia
+
+Q21 [mcq, 1m, Sec B]
+Gandhiji asked for the remission of taxes for the peasants in which of the following movement?
+  (A) Rowlatt satyagraha
+  (B) Champaran Satyagraha
+  (C) Khedda Satyagraha
+  (D) Salt Satyagraha
+
+Q22 [short_answer, 3m, Sec B]
+Describe any three features of the burial sites in Harappa?
+
+Q23 [short_answer, 3m, Sec B]
+Critically examine the limitations of the inscriptional evidence in understanding political and economic history of India.
+
+Q24 [long_answer, 3m, Sec C]
+India had unique system of communication during the 14th century" Examine the statement made by Ibn Battuta.
+
+Q25 [long_answer, 3m, Sec C]
+Analyse the main features of Amara nayaka system which was introduced in the Vijayanagar Empire.
+
+Q26 [long_answer, 3m, Sec C]
+The Burdwan auction had a strange twist and was considered a big public event in 1797", explain the statement.
+
+Q27 [long_answer, 3m, Sec C]
+The relationship of the sepoys with the superior white officers underwent a significant change in the years preceding the uprising of 1857", support the statement with examples.
+
+Q28 [long_answer, 8m, Sec C]
+The Mahabharata is an invaluable source available to historians to study social practices and norms in early societies". Justify the statement.
+
+Q29 [long_answer, 8m, Sec C]
+Examine the evidence that suggests land revenue was important for the Mughal Fiscal system.
+
+Q3 [mcq, 1m, Sec A]
+Who among the following was the best known ruler of the Satavahana Dynasty?
+  (A) Yagnasri Satakarni
+  (B) Simuka Satakarni
+  (C) Gotami-puta Siri- Satakarni
+  (D) Vashisthaputra Satakarni
+
+Q30 [long_answer, 8m, Sec C]
+Examine the condition of zamindars in Mughal agrarian society.
+
+Q31 [source_based, 4m, Sec D]
+Read the following source carefully and answer the questions that follow:
+
+Q32 [long_answer, 1m, Sec E]
+Read the following source carefully and answer the questions that follow: 'The British element is gone, but they have left the mischief behind' Sardar Vallabhbhai Patel said: It is no use saying that we ask for separate electorates, because it is good for us. We have heard it long enough. We have heard it for years, and as a result of this agitation we are now a separate nation ... Can you show me one free country where there are separate electorates? If so, I shall be prepared to accept it. But in this unfortunate country if this separate electorate is going to be persisted in, even after the division of the country, woe betide the country; it is not worth living in. Therefore, I say, it is not for my good alone, it is for your own good that I say it, forget the past. One day, we may be united ... The British element is gone, but they have left the mischief behind. We do not want to perpetuate that mischief. (Hear, hear). When the British introduced this element, they had not expected that they will have to go so soon. They wanted it for their easy administration. That is all right. But they have left the legacy behind. Are we to get out of it or not? CAD, VOL.V
+
+Q33 [short_answer, 1m, Sec E]
+Identify the ultimate message stressed by Sardar Valla Bhai Patel in his speech.
+
+Q34 [short_answer, 5m, Sec E]
+On the given political map of India, locate and label the following with appropriate symbols: a. Kalibangan, a Harappan site b. Agra, a territory under Babur, Akbar, and Aurangzeb c. Sanchi, a Buddhist site.
+  [NOTE: diagram]
+
+Q4 [mcq, 1m, Sec A]
+Identify the picture from the given options
+  (A) Terracota figure of a sathavahana ruler
+  (B) Ashoka fighting Kalinga war.
+  (C) Terracota figure depicting a scene from Mahabharatha (West Bengal)
+  (D) A sculpture depicting Krishna advising Arjuna.
+  [NOTE: diagram]
+
+Q5 [mcq, 1m, Sec A]
+The didactic (informative) sections of Mahabharata were added in 200-400 CE. Which text do they largely resemble?
+  (A) Sutta Pitaka
+  (B) Manusmriti
+  (C) Rigveda
+  (D) Upanishads
+
+Q6 [mcq, 1m, Sec A]
+Consider the following statements regarding Harappan Culture and choose the correct option.
+  (A) The most unique feature was the development of urban centres.
+  (B) The settlements were divided into two sections i.e. the citadel and the lower town.
+  (C) Drainage system was ordinary and unplanned.
+  (D) Roads were not laid out along a grid pattern.
+
+Q7 [mcq, 1m, Sec A]
+There are two statements marked as Assertion (A) and Reason (R), mark your answer as per the codes given below.
+  (A) Only (i) is correct.
+  (B) Only (i) and (ii) are correct.
+  (C) Only (ii) and (iii) are correct.
+  (D) Only (iii) and (iv) are correct.
+
+Q8 [mcq, 1m, Sec A]
+Identify the craft centers related to the Harapan civilization with the help of the given information.
+  (A) Located near the coast.
+  (B) They were specialized for making shell objects.
+
+Q9 [mcq, 1m, Sec A]
+Who wrote the book Kitab-ul-Hind?
+  (A) Ibn Battuta
+
+======================================================================
+Return the complete JSON array.

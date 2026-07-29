@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Social Science",
+    "chapter": "Chapter 5: Minerals and Energy Resources",
+    "central_question": "How do minerals and energy resources occur, support development and require careful conservation?",
+    "in_scope_units": [
+      "Meaning, uses and classification of minerals.",
+      "Mode of occurrence of minerals in veins, lodes, beds, layers, residual deposits, placers and ocean water.",
+      "Distribution and uses of ferrous, non-ferrous, non-metallic and rock minerals in India.",
+      "Hazards of mining and conservation of finite mineral resources.",
+      "Conventional energy resources: coal, petroleum, natural gas and electricity.",
+      "Non-conventional energy resources: atomic, solar, wind, biogas, tidal and geothermal energy.",
+      "Conservation of energy resources and sustainable energy choices."
+    ],
+    "banned_topics": [
+      "Detailed manufacturing processes and industrial location from Manufacturing Industries.",
+      "Detailed rock cycle and landform processes beyond the mineral occurrences stated in this chapter.",
+      "Detailed dam debates from Water Resources."
+    ],
+    "must_include_keywords": [
+      "mineral",
+      "ore",
+      "veins",
+      "lodes",
+      "beds",
+      "layers",
+      "residual mass",
+      "placer deposits",
+      "ferrous minerals",
+      "iron ore",
+      "magnetite",
+      "hematite",
+      "manganese",
+      "non-ferrous minerals",
+      "copper",
+      "bauxite",
+      "mica",
+      "limestone",
+      "mining hazards",
+      "mineral conservation",
+      "recycling",
+      "coal",
+      "peat",
+      "lignite",
+      "bituminous",
+      "anthracite",
+      "petroleum",
+      "natural gas",
+      "CNG",
+      "PNG",
+      "hydel electricity",
+      "thermal electricity",
+      "solar energy",
+      "wind power",
+      "biogas",
+      "tidal energy",
+      "geothermal energy",
+      "uranium",
+      "thorium",
+      "energy conservation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every mineral occurrence is an economically usable ore.",
+        "correction": "An ore must contain a mineral in sufficient concentration for extraction to be commercially viable."
+      },
+      {
+        "claim": "Bauxite is deposited in veins and lodes.",
+        "correction": "The chapter states that bauxite forms as a residual mass after decomposition and removal of soluble material from surface rocks."
+      },
+      {
+        "claim": "Hydel and thermal electricity are both renewable.",
+        "correction": "Hydel electricity uses renewable flowing water, while thermal power uses non-renewable coal, petroleum or natural gas."
+      },
+      {
+        "claim": "Conservation means stopping all mineral extraction.",
+        "correction": "The chapter recommends planned use, improved technology for low-grade ores, recycling, scrap use and substitutes."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 2(ii) to define a mineral precisely.",
+      "Use NCERT Exercise 1(i) to identify bauxite as a residual mineral deposit.",
+      "Use NCERT Exercise 2(iv) to explain why minerals must be conserved.",
+      "Use NCERT Exercise 3(i) to organise the distribution of coal in India.",
+      "Use NCERT Exercise 3(ii) to explain why solar energy has a bright future in India."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with “EXERCISES”, Questions 1 to 3, followed by a mineral crossword activity."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Minerals and Energy Resources\n\n## What you will learn\nYou will define minerals and ores and understand why minerals occur in different forms. You will compare the main geological modes of occurrence described in the chapter.\n\n## Simple explanation\nMinerals are naturally occurring substances with a definable internal structure. They become economically useful when their concentration, form and location make extraction viable.\n\n## Step-by-step breakdown\n- **Mineral definition**: Geologists define a mineral as a homogeneous, naturally occurring substance with a definable internal structure.\n- **Mineral variety**: Physical and chemical conditions produce differences in colour, hardness, crystal form, lustre and density.\n- **Ore**: An ore is an accumulation of a mineral mixed with other elements and must contain enough mineral for commercial extraction.\n- **Veins and lodes**: In igneous and metamorphic rocks, minerals can fill cracks, faults and joints; smaller deposits are veins and larger ones are lodes.\n- **Beds and layers**: Sedimentary minerals form through deposition, accumulation, concentration or evaporation in horizontal strata.\n- **Residual deposits**: Decomposition and removal of soluble material can leave a weathered residual mass; bauxite forms in this way.\n- **Placer and ocean deposits**: Gold, silver, tin and platinum may occur in placer deposits, while ocean water yields common salt, magnesium and bromine.\n\n## Worked example\nQuestion: According to NCERT Exercise 2(ii), what is a mineral?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(ii)\", \"extract_text\": \"What is a mineral?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nSolution:\n- Step 1: Use the geologists’ definition provided in the text.\n- Step 2: Include natural occurrence, homogeneity and definable internal structure.\n- Final answer: A mineral is a homogeneous, naturally occurring substance with a definable internal structure.\n\n## Common mistake\nDo not define a mineral simply as any useful rock. Rocks are combinations of minerals, while minerals have their own internal structure and properties.\n\n## Quick check question\nQuestion: What is the difference between a vein and a lode?\nAnswer: Both are mineral occurrences in cracks or cavities, but a vein is smaller and a lode is larger.\nExplanation: The chapter distinguishes them by size within igneous and metamorphic rock structures.\n\n## Summary\n- Minerals have definable internal structure.\n- Ores must be commercially viable concentrations.\n- Geological structure affects extraction and cost.\n- Minerals occur through several distinct processes.",
+    "Core explanation": "# Core explanation: Minerals and Energy Resources\n\n## What you will learn\nYou will classify major minerals and connect their properties with uses and distribution. You will distinguish ferrous, non-ferrous, non-metallic and rock minerals.\n\n## Simple explanation\nIndia has varied but unevenly distributed mineral resources. Geological structure, extraction cost and distance from markets affect whether a deposit becomes a mine.\n\n## Step-by-step breakdown\n- **Ferrous minerals**: They account for about three-fourths of the value of metallic mineral production and support metallurgical industries.\n- **Iron ore**: Magnetite has very high iron content and magnetic qualities; hematite is the most important industrial iron ore by quantity used.\n- **Iron belts**: The chapter identifies Odisha-Jharkhand, Durg-Bastar-Chandrapur, Ballari-Chitradurga-Chikkamagaluru-Tumakuru and Maharashtra-Goa belts.\n- **Manganese**: It is used in steel and ferro-manganese alloy, as well as bleaching powder, insecticides and paints.\n- **Copper**: Copper is malleable, ductile and conductive, making it important for electrical, electronics and chemical industries.\n- **Bauxite**: Alumina and aluminium are obtained from bauxite, which combines lightness, strength, conductivity and malleability.\n- **Mica**: Mica’s dielectric strength, insulation and resistance to high voltage make it indispensable in electrical and electronic industries.\n- **Limestone**: Limestone is a basic raw material for cement and is essential for smelting iron ore in a blast furnace.\n\n## Worked example\nQuestion: Which mineral in NCERT Exercise 1(i) is formed by decomposition of rocks leaving a residual mass?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1(i)\", \"extract_text\": \"Which one of the following minerals is formed by decomposition of rocks, leaving a residual mass of weathered material?\\n(a) coal\\n(b) bauxite\\n(c) gold\\n(d) zinc\", \"note\": \"End-of-chapter exercise\"}\n```\n\nSolution:\n- Step 1: The mode-of-occurrence section explicitly names bauxite as a residual deposit.\n- Step 2: It forms after soluble constituents are removed from weathered surface rocks.\n- Final answer: The correct answer is bauxite.\n\n## Common mistake\nDo not classify bauxite as a sedimentary bed merely because it is mined near the surface. Its formation process in the chapter is residual weathering.\n\n## Quick check question\nQuestion: Why is mica important in electrical and electronic industries?\nAnswer: Because it has excellent dielectric strength, a low power-loss factor, insulating properties and resistance to high voltage.\nExplanation: These properties allow it to withstand electrical stress while limiting power loss.\n\n## Summary\n- Ferrous minerals support steel and metallurgy.\n- Mineral properties determine industrial uses.\n- Bauxite is a residual deposit.\n- Mica and limestone are important non-ferrous or non-metallic industrial resources.",
+    "Worked examples": "# Worked examples: Minerals and Energy Resources\n\n## What you will learn\nYou will analyse mining hazards and explain why mineral conservation is necessary. You will connect the slow formation of minerals with sustainable use.\n\n## Simple explanation\nMining supports development but can damage health, land and water. Mineral deposits are finite because geological formation is extremely slow compared with present consumption.\n\n## Step-by-step breakdown\n- **Health hazards**: Dust and noxious fumes make miners vulnerable to pulmonary diseases.\n- **Safety hazards**: Mine-roof collapse, inundation and fires in coal mines are constant threats.\n- **Water contamination**: Mining contaminates regional water sources, while waste and slurry increase stream and river pollution.\n- **Land degradation**: Dumping waste and slurry degrades land and soil.\n- **Finite deposits**: Workable mineral deposits form only a very small fraction of the earth’s crust and require millions of years to form.\n- **Rising extraction cost**: Continued extraction pushes mining to greater depths while ore quality declines.\n- **Conservation methods**: Planned use, better technology, low-grade ore use, recycling, scrap metals and substitutes can extend resource life.\n\n## Worked example\nQuestion: According to NCERT Exercise 2(iv), why do we need to conserve mineral resources?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(iv)\", \"extract_text\": \"Why do we need to conserve mineral resources ?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nSolution:\n- Step 1: Minerals form through geological processes that are extremely slow compared with current extraction.\n- Step 2: Deposits are finite, quality declines with continued use and extraction from greater depths becomes more expensive.\n- Final answer: Mineral resources must be conserved because they are finite and non-renewable, take millions of years to form, and become costlier and lower in quality as rich deposits are exhausted.\n\n## Common mistake\nConservation does not mean that minerals should never be used. It means planned, efficient use with recycling, substitutes and improved technology.\n\n## Quick check question\nQuestion: Name two environmental impacts of mining from the chapter.\nAnswer: Contamination of water sources and degradation of land or soil; stream and river pollution are also stated.\nExplanation: Waste, slurry and mining operations transfer pollutants into land and water systems.\n\n## Summary\n- Mining creates health, safety and environmental risks.\n- Mineral formation is far slower than consumption.\n- Extraction becomes deeper and more expensive over time.\n- Recycling and substitutes are major conservation measures.",
+    "Exam-style problems": "# Exam-style problems: Minerals and Energy Resources\n\n## What you will learn\nYou will study conventional energy resources and their distribution. You will distinguish coal types, petroleum, natural gas, hydel power and thermal power.\n\n## Simple explanation\nConventional energy resources remain central to India’s economy. Their formation, location and transport influence industries and power generation.\n\n## Step-by-step breakdown\n- **Coal uses**: Coal supplies power generation, industry and domestic needs and is India’s most abundant fossil fuel.\n- **Coal types**: Peat has low carbon and high moisture, lignite is low-grade brown coal, bituminous is widely used commercially and anthracite is the highest-quality hard coal.\n- **Coal distribution**: Gondwana coal occurs in the Damodar valley and other peninsular valleys, while tertiary coal occurs in north-eastern states.\n- **Industrial location**: Heavy industries and thermal plants locate near coalfields because coal is bulky and loses weight as ash after use.\n- **Petroleum**: It supplies fuel, lubricants and industrial raw material; major production areas include Mumbai High, Gujarat and Assam.\n- **Natural gas**: It is used in power, industry, petrochemicals, fertilisers, transport as CNG and homes as PNG.\n- **Electricity**: Hydel power uses fast-flowing renewable water, while thermal power burns non-renewable coal, petroleum or natural gas.\n\n## Worked example\nQuestion: Using NCERT Exercise 3(i), describe the distribution of coal in India.\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(i)\", \"extract_text\": \"Describe the distribution of coal in India.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nSolution:\n- Step 1: Separate Gondwana coal from tertiary coal.\n- Step 2: Name the Damodar valley coalfields and the other peninsular valleys, then identify the north-eastern tertiary states.\n- Final answer: Gondwana coal is concentrated in the Damodar valley, including Jharia, Raniganj and Bokaro, and also occurs in the Godavari, Mahanadi, Son and Wardha valleys. Tertiary coal occurs in Meghalaya, Assam, Arunachal Pradesh and Nagaland.\n\n## Common mistake\nDo not describe all coal as one geological type. The chapter distinguishes older Gondwana coal from younger tertiary deposits.\n\n## Quick check question\nQuestion: Why are many thermal power plants located near coalfields?\nAnswer: Coal is bulky and loses weight as it becomes ash, so locating power plants near coalfields reduces transport costs.\nExplanation: The chapter connects this transport characteristic directly with industrial location.\n\n## Summary\n- Coal is India’s most abundant fossil fuel.\n- Coal types differ in carbon, moisture and heating value.\n- Petroleum and gas support many industries and transport uses.\n- Hydel is renewable; thermal generation uses fossil fuels.",
+    "Revision and recap": "# Revision and recap: Minerals and Energy Resources\n\n## What you will learn\nYou will compare non-conventional energy sources and revise the need for energy conservation. You will evaluate why renewable energy is important for India’s future.\n\n## Simple explanation\nRising fossil-fuel use creates supply and environmental concerns. India’s sunlight, wind, biomass, tides and geothermal potential provide alternatives that can support a more sustainable energy path.\n\n## Step-by-step breakdown\n- **Atomic energy**: Uranium and thorium are used to generate nuclear power; the chapter notes thorium-rich monazite sands in Kerala.\n- **Solar energy**: Photovoltaic technology converts sunlight directly into electricity and can reduce rural dependence on firewood and dung cakes.\n- **Wind**: Tamil Nadu has the largest wind farm cluster mentioned, with other important wind farms in several states and Lakshadweep.\n- **Biogas**: Organic wastes produce gas and improved manure; cattle-dung plants are called gobar gas plants.\n- **Tidal**: Floodgate dams can trap high-tide water and release it through turbines; suitable regions include the Gulfs of Khambhat and Kuchchh and the Sunderban delta.\n- **Geothermal**: Heat from the earth produces steam for turbines; experimental projects are at Manikaran and Puga Valley.\n- **Energy conservation**: Public transport, switching off unused electricity, power-saving devices and renewable sources support sustainable energy development.\n\n## Worked example\nQuestion: According to NCERT Exercise 3(ii), why does solar energy have a bright future in India?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(ii)\", \"extract_text\": \"Why do you think that solar energy has a bright future in India?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nSolution:\n- Step 1: India is a tropical country with abundant sunlight and large potential for solar power.\n- Step 2: Solar technology can serve rural and remote areas, reduce dependence on firewood and dung cakes and support environmental conservation.\n- Final answer: Solar energy has a bright future because India receives abundant sunlight, photovoltaic technology can supply dispersed and remote areas, and wider use can reduce fossil-fuel and biomass pressure while supporting conservation.\n\n## Common mistake\nDo not state that solar energy is already the only major source. The chapter presents it as a rapidly growing non-conventional source with strong future potential.\n\n## Quick check question\nQuestion: What are the twin benefits of biogas plants for farmers?\nAnswer: They provide energy and improve the quality of manure.\nExplanation: Using cattle dung for biogas avoids burning it as fuel and retains a better manure resource for agriculture.\n\n## Summary\n- Renewable sources reduce dependence on fossil fuels.\n- Solar, wind and biomass have strong Indian potential.\n- Tidal and geothermal energy depend on suitable locations.\n- Energy saved is energy produced."
+  }
+}

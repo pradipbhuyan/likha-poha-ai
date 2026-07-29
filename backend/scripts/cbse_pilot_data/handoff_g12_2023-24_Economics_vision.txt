@@ -1,0 +1,210 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2023-24
+Subject: Economics
+Source Subject Code: Economics
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Economics-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Economics-MS.pdf
+Total Questions: 34
+======================================================================
+TASK: Provide answers in JSON format for each question.
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+RULES: MCQ/AR: answer_text = exact option text. diagram_dependent: NEEDS_MANUAL_REVIEW_diagram_dependent
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Economics-MS.pdf
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Read the following statements carefully: Statement 1: Consumption function assumes that, consumption changes at a constant rate as income changes. Statement 2: Autonomous consumption is the ratio of total consumption (C) to total income (Y). In light of the given statements, choose the correct alternative from the following: a) Statement 1 is true and Statement 2 is false. b) Statement 1 is false and Statement 2 is true. c) Both Statements 1 and 2 are true. d) Both Statements 1 and 2 are false.
+  (A) a) Statement 1 is true and Statement 2 is false.
+  (B) b) Statement 1 is false and Statement 2 is true.
+  (C) c) Both Statements 1 and 2 are true.
+  (D) d) Both Statements 1 and 2 are false.
+
+Q10 [mcq, 1m, Sec A]
+Read the following chart carefully and choose the correct alternative:
+  (A) Capital Account
+  (B) Investments
+  (C) External Borrowings
+  (D) External Assistance
+  [NOTE: diagram]
+
+Q11 [mcq, 3m, Sec A]
+'Current account deficit in an economy must be financed by a corresponding capital account surplus'. Do you agree with the given statement? Give valid reason(s) in support of your answer.
+
+Q12 [long_answer, 3m, Sec A]
+On the basis of the given data, estimate the value of Domestic Income:
+  [NOTE: diagram]
+
+Q13 [case_study, 4m, Sec B]
+For a hypothetical economy, the government incurs an investment expenditure of ₹ 1,000 crore. If the value of Marginal Propensity to Save (MPS) falls from 0.25 to 0.10, Calculate the value of increase in income due to change in the value of Marginal Propensity to Save (MPS).
+
+Q14 [short_answer, 4m, Sec O]
+Elaborate the possible impact of the same, on the level of output, income and employment.
+
+Q15 [short_answer, 4m, Sec O]
+Discuss the rationale behind the step taken by the Reserve Bank of India.
+
+Q16 [short_answer, 3m, Sec A]
+On the basis of the given information, calculate the value of:
+
+Q17 [short_answer, 3m, Sec O]
+Identify and discuss the nature of the government expenditure indicated in the given statement.
+
+Q18 [case_study, 1m, Sec B]
+Identify the correct combination of the 'Goals of Indian Five Year Plans':
+
+Q19 [mcq, 1m, Sec A]
+China has performed exceedingly well in various health and economic indicators. Identify which of the following is not a health indicator?
+  (A) Infant Mortality Rate (per 1000 live births)
+  (B) Life Expectancy at Birth (years)
+  (C) Percentage of people below poverty line (National)
+  (D) Maternal Mortality Rate (per 1 lakh births)
+
+Q2 [mcq, 1m, Sec A]
+For a closed economy (with no foreign trade), which one of the following is correct? a) GDP = GNP b) GDP > GNP c) GDP < GNP d) GDP + GNP=0
+  (A) a) GDP = GNP
+  (B) b) GDP > GNP
+  (C) c) GDP < GNP
+  (D) d) GDP + GNP=0
+
+Q20 [mcq, 1m, Sec A]
+The shackles of agriculture during the colonial rule were permanently broken by the Green Revolution that resulted from the application of _______. (Choose the correct alternative to fill up the blank)
+  (A) High Yielding Varieties (HYV)
+  (B) Mechanization of Agriculture
+  (C) Chemical Fertilizers and Pesticides
+  (D) Organic Fertilizers and Pesticides
+
+Q21 [mcq, 1m, Sec A]
+Study the following picture and answer the given question:
+  (A) Women in rural households take up bee-keeping as an entrepreneurial activity. Such kind of activities may be envisaged under _______ as diversification activity.
+  (B) Animal husbandry
+  (C) Fisheries
+  (D) Poultry
+  [NOTE: diagram]
+
+Q22 [mcq, 1m, Sec A]
+Read the following statements: Assertion (A) and Reason (R). Choose the correct alternative from those given below.
+  (A) Assertion (A): In 1991, as an immediate measure to resolve the Balance of Payments crisis, the rupee was devalued against foreign currencies.
+  (B) Reason (R): Devaluation of currency was eminent, to replenish the deteriorated foreign exchange reserves.
+  (C) Both Assertion (A) and Reason (R) are true, but Reason (R) is not the correct explanation of Assertion (A).
+  (D) Assertion (A) is true, but Reason (R) is false.
+  (5) Assertion (A) is false, but Reason (R) is true.
+
+Q23 [mcq, 1m, Sec A]
+Under _______ in China, farmers and industrial units were required to buy and sell fixed quantities of inputs and outputs on the basis of prices fixed by the government and the rest were purchased and sold at market prices.
+  (A) Commune System
+  (B) Great Leap Forward
+  (C) Dual Pricing
+  (D) Great Proletarian Cultural Revolution
+
+Q24 [mcq, 1m, Sec A]
+Micro credit programmes play a vital role in ensuring an overall development of the rural economy as they _______. (Choose the correct alternative to fill up the blank)
+  (A) provide financial support
+  (B) lead to women empowerment
+  (C) enhance the reach of formal credit system
+  (D) i) and (ii)
+
+Q25 [mcq, 1m, Sec A]
+may be defined as the measure of the extent of demographic participation in the social and political decision making.
+  (A) Economic indicator
+  (B) Health indicator
+  (C) Liberty indicator
+  (D) Demographic indicator
+
+Q26 [mcq, 1m, Sec A]
+Read the following statements carefully:
+  (A) The nature of unemployment problem in India is uni-faceted.
+  (B) Worker-Population ratio is an indicator used for analysing the employment situation in a country.
+  (C) In light of the given statements, choose the correct alternative from the following:
+  (D) Both Statements 1 and 2 are true.
+  (5) Both Statements 1 and 2 are false.
+
+Q27 [mcq, 1m, Sec A]
+From the set of the events given in column I and corresponding facts given in Column II, choose the correct pair of statements:
+  (A) Adoption of mixed economic system
+  (B) The common development policy of India and China
+  (C) Introduction of economic reforms in China
+  (D) Imposed by World Bank
+  (5) Great Leap Forward Campaign
+  (6) Focussed on massive industrialization
+  (7) First Five Year Plan of Pakistan
+  (8) Announced in 1953
+
+Q28 [mcq, 3m, Sec A]
+During the colonial period, a number of socio-economic indicators were in a dilapidated state. List any three such indicators that led to the worsening of India's demographic profile.
+  (A) The pre-independent India's occupational structure experienced growing regional variation.
+  (B) Justify the above statement with valid explanation.
+
+Q29 [mcq, 3m, Sec A]
+Ravya was initially working as an office clerk in a firm. In the pursuit to attain, a higher position and income, she attended a few on-the-job training sessions. These sessions contributed positively to her skills and expertise. Explain the impact of Ravya's decision on human capital formation.
+  (A) Justify the given statement with valid arguments in support of your answer.
+
+Q3 [mcq, 1m, Sec A]
+The value of _______ can be greater than one. (Choose the correct alternative to fill up the blank) a) Marginal Propensity to Consume b) Average Propensity to Consume c) Marginal Propensity to Save d) Average Propensity to Save
+  (A) a) Marginal Propensity to Consume
+  (B) b) Average Propensity to Consume
+  (C) c) Marginal Propensity to Save
+  (D) d) Average Propensity to Save
+
+Q30 [mcq, 4m, Sec A]
+In the late 1970s, China introduced the One-child policy that led to arrest in the population coupled with skewed sex ratio. Justify the given statement with valid arguments in support of your answer.
+
+Q31 [mcq, 2m, Sec A]
+State and elaborate whether the following statements are true or false, with valid arguments: (i) Agricultural marketing is a process that ensures the transportation of various agricultural commodities only. (ii) Jan-Dhan Yojana has been a crucial step for financial resource mobilization in the Indian economy.
+
+Q32 [mcq, 4m, Sec B]
+Since independence, the government has been playing an important role in generating employment directly or indirectly. Discuss.
+  [NOTE: diagram]
+
+Q33 [mcq, 3m, Sec A]
+Green revolution transformed India from a subsistent food grain economy to a food surplus economy. Justify the statement, giving reasons in support of your answer.
+
+Q34 [long_answer, 5m, Sec O]
+Sustainable development is the development that meets the needs of the present, without compromising the ability of future generations to meet their own needs. India is critical in determining the success in a pursuit to achieve sustainable development. The Union Budget 2023 presented by Finance Minister Nirmala Sitharaman builds on India's commitment to lead the global action against climate change, preserve biodiversity and support sustainable development. The government has accelerated the pace of Green Growth as India is facing the grave reality of depleting natural resources, limited supply of water, minerals, and fossil fuels. In a bid to counter the climate threat, India has committed to achieving net zero by 2070; released a low-carbon development strategy; and introduced the concept of 'LiFE' (Lifestyle for Environment) to promote responsible consumption. The Green Growth actions include several pointed measures that would facilitate the much-needed steady decarbonization of Indian industries, reduce dependency on fossil fuel imports and establish technology and market leadership in this sunrise sector. For instance: The allocation of Rs 35,000 crore of priority capital investment towards achieving net zero by 2070 and clean energy transition ensures the country's energy security. The outlay of Rs 19,700 crore for the Green Hydrogen Mission will mobilise a green hydrogen production capacity of 5 metric million tonnes by 2030. Moreover, to encourage the optimal use of wetlands, enhance biodiversity, carbon stock, eco-tourism opportunities and income generation for local communities, the Amrit Dharohar scheme will be implemented over three years.
+
+Q4 [case_study, 1m, Sec A]
+As per the Reserve Bank of India (RBI) press report, dated 29th December, 2022: "Net external commercial borrowings to India recorded an outflow of US$ 0.4 billion in the second quarter (2022-23)" The above transaction will be recorded in the _______ account on _______ side of Balance of payments account of India. (Choose the correct alternative to fill up the blanks) a) current, credit b) current, debit c) capital, credit d) capital, debit
+  (A) a) current, credit
+  (B) b) current, debit
+  (C) c) capital, credit
+  (D) d) capital, debit
+
+Q5 [mcq, 1m, Sec A]
+On the basis of the given statement, identify the function performed by money: a) Medium of exchange b) Store of Value c) Unit of account d) Means of standard of deferred payments
+  (A) a) Medium of exchange
+  (B) b) Store of Value
+  (C) c) Unit of account
+  (D) d) Means of standard of deferred payments
+
+Q6 [mcq, 1m, Sec A]
+Find the missing figures and choose the correct alternative: Round Deposits Loans (80%) Reserve Ratio (20%) I 1,000 800 200 II 800 ... (i)... 160 ... ... ... Total ... (ii)... ... (iii)... ... (iv)...
+  (A) a) 640,1000,4000,5000
+  (B) b) 960,5000,4000,1000
+  (C) c) 640,4000,1000,5000
+  (D) d) 640,5000,4000,1000
+
+Q7 [mcq, 1m, Sec B]
+Graphically, Aggregate Demand function can be obtained by vertically adding the consumption, saving b) consumption, investment c) investment, saving d) aggregate supply, consumption
+  (A) a) consumption, saving
+  (B) b) consumption, investment
+  (C) c) investment, saving
+  (D) d) aggregate supply, consumption
+
+Q8 [mcq, 1m, Sec C]
+Identify the correct reason(s) that may affect the demand for foreign exchange in an economy. I. Imports of visibles II. Exports of invisibles III. Remittances by residents working abroad IV. Purchase of assets abroad
+  (A) a) I and II
+  (B) b) II and III
+  (C) c) III and IV
+  (D) d) I and IV
+
+Q9 [mcq, 1m, Sec D]
+Suppose for a given economy, S= -60 + 0.1Y I= ₹ 4,000 crore (Where S = Saving Function, Y = National Income and I = Investment Expenditure) Equilibrium level of Income would be ₹ _______ crore. (Choose the correct alternative to fill up the blank)
+  (A) a) 640,1000,4000,5000
+  (B) b) 960,5000,4000,1000
+  (C) c) 640,4000,1000,5000
+  (D) d) 640,5000,4000,1000
+
+======================================================================
+Return the complete JSON array.

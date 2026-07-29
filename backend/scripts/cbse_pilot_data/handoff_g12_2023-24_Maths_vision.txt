@@ -1,0 +1,176 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2023-24
+Subject: Maths
+Source Subject Code: Maths
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Maths-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Maths-MS.pdf
+Total Questions: 31
+======================================================================
+TASK: Provide answers in JSON format for each question.
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+RULES: MCQ/AR: answer_text = exact option text. diagram_dependent: NEEDS_MANUAL_REVIEW_diagram_dependent
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Maths-MS.pdf
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+If A = [a_{ij}] is a square matrix of order 2 such that a_{ij} = {1, when i ≠ j, 0, when i = j, then A^2 is
+  (A) [1 0; 0 1]
+  (B) [1 0; 0 2]
+  (C) [1 1; 0 0]
+  (D) [1 0; 0 1]
+
+Q12 [mcq, 1m, Sec A]
+If \overrightarrow{a} = 4\hat{i} + 6\hat{j} and \overrightarrow{b} = 3\hat{j} + 4\hat{k}, then the vector form of the component of \overrightarrow{a} along \overrightarrow{b} is
+  (A) rac{18}{5}(3\hat{i} + 4\hat{k})
+  (B) rac{18}{25}(3\hat{j} + 4\hat{k})
+  (C) rac{18}{5}(3\hat{i} + 4\hat{k})
+  (D) rac{18}{25}(4\hat{i} + 6\hat{j})
+
+Q13 [mcq, 1m, Sec A]
+Given that A is a square matrix of order 3 and |A| = -2, then |adj(2A)| is equal to
+  (A) -2^3
+  (B) +4
+  (C) -2^2
+  (D) 2^3
+
+Q14 [mcq, 1m, Sec A]
+A problem in Mathematics is given to three students whose chances of solving it are rac{1}{2}, rac{1}{3}, rac{1}{4} respectively. If the events of their solving the problem are independent then the probability that the problem will be solved, is
+  (A) rac{1}{4}
+  (B) rac{1}{3}
+  (C) rac{1}{2}
+  (D) rac{3}{4}
+
+Q15 [mcq, 1m, Sec A]
+The general solution of the differential equation ydx - xdy = 0; (Given x,y > 0), is of the form
+  (A) xy = c
+  (B) x = c y^2
+  (C) y = c x^2
+  (D) y = cx^2
+
+Q16 [mcq, 2m, Sec A]
+The value of \lambda for which two vectors 2\hat{i} - \hat{j} + 2\hat{k} and 3\hat{i} + \hat{j} + \hat{k} are perpendicular is
+  (A) 2
+  (B) 4
+  (C) 6
+  (D) 8
+
+Q17 [mcq, 1m, Sec A]
+The set of all points where the function f(x) = x + |x| is differentiable, is
+  (A) (0,\infty)
+  (B) (-\infty,0)\cup(0,\infty)
+  (C) (-\infty,\infty)
+  (D) (-\infty,0)
+
+Q18 [mcq, 1m, Sec A]
+If the direction cosines of a line are <rac{1}{\sqrt{c}},rac{1}{\sqrt{c}},rac{1}{\sqrt{c}}>, then
+  (A) 0<c<1
+  (B) c>2
+  (C) c= \pm\sqrt{2}
+  (D) c= \pm\sqrt{3}
+
+Q19 [mcq, 1m, Sec A]
+Let f(x) be a polynomial function of degree 6 such that rac{d}{dx}(f(x))=(x-1)^3(x-3)^2, then f(x) has a minimum at x = 1.
+  (A) True
+  (B) False
+  (C) True
+  (D) False
+
+Q2 [mcq, 1m, Sec A]
+If A and B are invertible square matrices of the same order, then which of the following is not correct?
+  (A) |AB^{-1}| = |A^{-1}||B|
+  (B) |(AB)^{-1}| = |A^{-1}||B^{-1}|
+  (C) (AB)^{-1} = B^{-1}A^{-1}
+  (D) (AB)^{-1} = B^{-1} + A^{-1}
+
+Q20 [assertion_reason, 1m, Sec B]
+ASSERTION (A): The relation f : {1,2,3,4} 	o {x,y,z,p} defined by f = {(1,x),(2,y),(3,z)} is a bijective function. REASON (R): The function f : {1,2,3} 	o {x,y,z,p} such that f = {(1,x),(2,y),(3,z)} is one-one.
+
+Q21 [mcq, 2m, Sec B]
+Find the value of sin^(-1) (cos(33π/5)). OR Find the domain of sin^(-1) (x^2 - 4).
+
+Q22 [mcq, 2m, Sec B]
+Find the interval/s in which the function f : R 	o R defined by f(x) = xe^x, is increasing.
+
+Q23 [mcq, 2m, Sec B]
+If f(x) = 1 / (4x^2 + 2x + 1); x ∈ R, then find the maximum value of f(x). OR Find the maximum profit that a company can make, if the profit function is given by P(x) = 72 + 42x - x^2, where x is the number of units and P is the profit in rupees.
+
+Q24 [mcq, 2m, Sec B]
+Evaluate : ∫ log (2 - x / 2 + x) dx.
+
+Q25 [mcq, 2m, Sec B]
+Check whether the function f : R 	o R defined by f(x) = x^3 + x, has any critical point/s or not? If yes, then find the point/s.
+
+Q26 [mcq, 3m, Sec C]
+Find : ∫ (2x^2 + 3 / x^2(x^2 + 9)) dx; x ≠ 0.
+
+Q27 [mcq, 3m, Sec C]
+The random variable X has a probability distribution P(X) of the following form, where 'k' is some real number: P(X) = { k, if x = 0 2k, if x = 1 3k, if x = 2 0, otherwise (i) Determine the value of k. (ii) Find P(X < 2).
+
+Q28 [long_answer, 5m, Sec D]
+Find \[rac{x}{1-x^3} dx; \quad x \in (0,1).
+OR
+Evaluate: \int_0^{\pi} \log (1+	an x) dx.
+
+Q29 [long_answer, 5m, Sec D]
+Solve the differential equation: \[y e^{y} dx = (x e^{x+y^2}) dy, \quad (y 
+eq 0).
+OR
+Solve the differential equation: (\cos^2 x) rac{dy}{dx} + y = 	an x; \quad (0 \leq x < rac{\pi}{2}).
+
+Q3 [mcq, 1m, Sec A]
+If the area of the triangle with vertices (-3 ,0 ),(3,0) and (0,k) is 9 sq units, then the value/s of k will be
+  (A) 9
+  (B) -9
+  (C) 6
+  (D) 3
+  [NOTE: diagram]
+
+Q30 [long_answer, 5m, Sec D]
+Solve the following Linear Programming Problem graphically: Minimize: z = x + 2y, subject to the constraints: x + 2y \geq 100, 2x - y \leq 0, 2x + y \leq 200, x, y \geq 0.
+  [NOTE: diagram]
+
+Q31 [long_answer, 5m, Sec D]
+Solve the following Linear Programming Problem graphically: Maximize: z = -x + 2y, subject to the constraints: x \geq 3, x + y \geq 5, x + 2y \geq 6, y \geq 0.
+  [NOTE: diagram]
+
+Q32 [long_answer, 5m, Sec D]
+Make a rough sketch of the region \{(x,y): 0 \leq y \leq x^2 + 1, 0 \leq y \leq x + 1, 0 \leq x \leq 2\} and find the area of the region, using the method of integration.
+  [NOTE: diagram]
+
+Q33 [long_answer, 5m, Sec D]
+Let \mathbb{N} be the set of all natural numbers and R be a relation on \mathbb{N} 	imes \mathbb{N} defined by (a,b) R (c,d) \Leftrightarrow ad = bc for all (a,b),(c,d) \in \mathbb{N} 	imes \mathbb{N}. Show that R is an equivalence relation on \mathbb{N} 	imes \mathbb{N}. Also, find the equivalence class of (2,6), i.e., [(2,6)].
+
+Q34 [long_answer, 5m, Sec D]
+Show that the function f : \mathbb{R} 	o \mathbb{R} : -1 < x < 1\} defined by f(x) = rac{x}{1+|x|}, x \in \mathbb{R} is one-one and onto function.
+
+Q35 [mcq, 1m, Sec O]
+Find the coordinates of the image of the point (1, 6, 3) with respect to the line r = (j + 2k) + λ(i + 2j + 3k); where 'λ' is a scalar. Also, find the distance of the image from the y-axis.
+  (A) (2, 3, 10)
+  (B) (4, 6, 5)
+  (C) (1, 6, 9)
+  (D) (20, 2, z)
+
+Q36 [case_study, 4m, Sec O]
+An aeroplane is flying along the line r = λ(i - j + k); where 'λ' is a scalar and another aeroplane is flying along the line r = i - j + μ(-2j + k); where 'μ' is a scalar. At what points on the lines should they reach, so that the distance between them is the shortest? Find the shortest possible distance between them.
+
+Q37 [mcq, 1m, Sec Q]
+Teams A, B, C went for playing a tug of war game. Teams A, B, C have attached a rope to a metal ring and is trying to pull the ring into their own area.
+  (A) Team A pulls with force F1 = 6i + 0j kN
+  (B) Team B pulls with force F2 = -4i + 4j kN
+  (C) Team C pulls with force F3 = -3i - 3j kN
+
+Q38 [short_answer, 3m, Sec Q]
+The relation between the height of the plant ('y' in cm) with respect to its exposure to the sunlight is governed by the following equation y = 4x - 1/2 x^2, where 'x' is the number of days exposed to the sunlight, for x ≤ 3.
+
+Q4 [mcq, 1m, Sec A]
+If f(x) = {kx | x < 0, if x ≥ 0 is continuous at x = 0, then the value of k is
+  (A) 3
+  (B) 0
+  (C) 3
+  (D) any real number
+
+======================================================================
+Return the complete JSON array.

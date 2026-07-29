@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: Minerals and Energy Resources",
+  "central_question": "How do minerals and energy resources occur, support development and require careful conservation?",
+  "in_scope_units": [
+    "Meaning, uses and classification of minerals.",
+    "Mode of occurrence of minerals in veins, lodes, beds, layers, residual deposits, placers and ocean water.",
+    "Distribution and uses of ferrous, non-ferrous, non-metallic and rock minerals in India.",
+    "Hazards of mining and conservation of finite mineral resources.",
+    "Conventional energy resources: coal, petroleum, natural gas and electricity.",
+    "Non-conventional energy resources: atomic, solar, wind, biogas, tidal and geothermal energy.",
+    "Conservation of energy resources and sustainable energy choices."
+  ],
+  "banned_topics": [
+    "Detailed manufacturing processes and industrial location from Manufacturing Industries.",
+    "Detailed rock cycle and landform processes beyond the mineral occurrences stated in this chapter.",
+    "Detailed dam debates from Water Resources."
+  ],
+  "must_include_keywords": [
+    "mineral",
+    "ore",
+    "veins",
+    "lodes",
+    "beds",
+    "layers",
+    "residual mass",
+    "placer deposits",
+    "ferrous minerals",
+    "iron ore",
+    "magnetite",
+    "hematite",
+    "manganese",
+    "non-ferrous minerals",
+    "copper",
+    "bauxite",
+    "mica",
+    "limestone",
+    "mining hazards",
+    "mineral conservation",
+    "recycling",
+    "coal",
+    "peat",
+    "lignite",
+    "bituminous",
+    "anthracite",
+    "petroleum",
+    "natural gas",
+    "CNG",
+    "PNG",
+    "hydel electricity",
+    "thermal electricity",
+    "solar energy",
+    "wind power",
+    "biogas",
+    "tidal energy",
+    "geothermal energy",
+    "uranium",
+    "thorium",
+    "energy conservation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every mineral occurrence is an economically usable ore.",
+      "correction": "An ore must contain a mineral in sufficient concentration for extraction to be commercially viable."
+    },
+    {
+      "claim": "Bauxite is deposited in veins and lodes.",
+      "correction": "The chapter states that bauxite forms as a residual mass after decomposition and removal of soluble material from surface rocks."
+    },
+    {
+      "claim": "Hydel and thermal electricity are both renewable.",
+      "correction": "Hydel electricity uses renewable flowing water, while thermal power uses non-renewable coal, petroleum or natural gas."
+    },
+    {
+      "claim": "Conservation means stopping all mineral extraction.",
+      "correction": "The chapter recommends planned use, improved technology for low-grade ores, recycling, scrap use and substitutes."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 2(ii) to define a mineral precisely.",
+    "Use NCERT Exercise 1(i) to identify bauxite as a residual mineral deposit.",
+    "Use NCERT Exercise 2(iv) to explain why minerals must be conserved.",
+    "Use NCERT Exercise 3(i) to organise the distribution of coal in India.",
+    "Use NCERT Exercise 3(ii) to explain why solar energy has a bright future in India."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “EXERCISES”, Questions 1 to 3, followed by a mineral crossword activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

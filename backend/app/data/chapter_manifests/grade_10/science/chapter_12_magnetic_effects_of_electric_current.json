@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 12: Magnetic Effects of Electric Current",
+  "central_question": "How does electric current produce magnetic fields and forces, and how are these ideas applied to electromagnets and safe domestic electric circuits?",
+  "in_scope_units": [
+    "Oersted's observation linking electric current and magnetism.",
+    "Magnetic field and magnetic field lines around a bar magnet.",
+    "Magnetic field due to a current-carrying straight conductor and the right-hand thumb rule.",
+    "Magnetic field due to a current-carrying circular loop.",
+    "Magnetic field due to a solenoid and formation of an electromagnet.",
+    "Force on a current-carrying conductor in a magnetic field and Fleming's left-hand rule.",
+    "Domestic electric circuits: live, neutral and earth wires, parallel connection, fuses, short-circuiting and overloading."
+  ],
+  "banned_topics": [
+    "Detailed derivation of Ohm's law, electrical power and Joule heating calculations from the Electricity chapter, except where a fuse is discussed for safety.",
+    "Detailed construction and working of electric motors and generators, which are only named in this chapter extract.",
+    "Electromagnetic induction and transformer theory beyond the content provided.",
+    "Atomic-domain theories of ferromagnetism."
+  ],
+  "must_include_keywords": [
+    "Hans Christian Oersted",
+    "compass needle",
+    "bar magnet",
+    "magnetic field",
+    "magnetic field lines",
+    "north pole",
+    "south pole",
+    "closed curves",
+    "concentric circles",
+    "current-carrying conductor",
+    "right-hand thumb rule",
+    "straight conductor",
+    "circular loop",
+    "number of turns",
+    "solenoid",
+    "uniform magnetic field",
+    "soft iron",
+    "electromagnet",
+    "force on a conductor",
+    "Fleming's left-hand rule",
+    "current direction",
+    "field direction",
+    "live wire",
+    "neutral wire",
+    "earth wire",
+    "220 V",
+    "parallel connection",
+    "electric fuse",
+    "short-circuiting",
+    "overloading",
+    "electric shock"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Magnetic field lines start at the north pole and end permanently at the south pole.",
+      "correction": "Outside a magnet they go from north to south, but inside the magnet they return from south to north, so magnetic field lines are closed curves."
+    },
+    {
+      "claim": "Two magnetic field lines can cross if the field is strong.",
+      "correction": "Field lines never cross because the magnetic field at one point cannot have two directions."
+    },
+    {
+      "claim": "Increasing distance from a current-carrying straight wire increases its magnetic field.",
+      "correction": "For the same current, the field becomes weaker as distance from the wire increases."
+    },
+    {
+      "claim": "The right-hand thumb rule gives the direction of force on a conductor.",
+      "correction": "The right-hand thumb rule gives magnetic field direction around a current-carrying conductor; Fleming's left-hand rule gives the force direction."
+    },
+    {
+      "claim": "The green-insulated wire is the live wire.",
+      "correction": "In the chapter, the green-insulated wire is the earth wire; the live wire is usually red and the neutral wire black."
+    },
+    {
+      "claim": "Short-circuiting means current becomes very small.",
+      "correction": "When live and neutral wires come into direct contact, current increases abruptly and heavily."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activities 12.1-12.3 to establish the magnetic effect of current and properties of field lines.",
+    "Use NCERT Activities 12.4-12.5 and Example 12.1 for field direction around a straight conductor.",
+    "Use NCERT Activity 12.6 and the solenoid section for circular coils, uniform fields and electromagnets.",
+    "Use NCERT Activity 12.7 and Example 12.2 for force direction and Fleming's left-hand rule.",
+    "Use the domestic-circuit in-text questions and end Exercises Q2, Q8 and Q9 for short circuits, earthing and fuse safety."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES contain Questions 1-9 on field patterns, direction rules, force, short circuits and earthing.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

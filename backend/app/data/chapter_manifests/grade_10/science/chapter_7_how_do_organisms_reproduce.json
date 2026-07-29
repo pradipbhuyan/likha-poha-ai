@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 7: How do Organisms Reproduce?",
+  "central_question": "How do organisms produce new individuals while preserving their basic body design and also creating variations that help species continue over time?",
+  "in_scope_units": [
+    "Why reproduction matters, how DNA copying creates similar but not identical offspring, and why variation supports the survival of species.",
+    "Asexual reproduction in single and simple multicellular organisms through fission, fragmentation, regeneration, budding, vegetative propagation, tissue culture and spore formation.",
+    "Why sexual reproduction produces greater variation and how meiosis, male gametes and female gametes maintain chromosome number.",
+    "Sexual reproduction in flowering plants through pollination, pollen-tube growth, fertilisation, seed formation, fruit formation and germination.",
+    "Human sexual maturation, the male and female reproductive systems, fertilisation, implantation, placenta, foetal development and menstruation.",
+    "Reproductive health, sexually transmitted infections, contraception, responsible choices and the social concern of sex-selective abortion."
+  ],
+  "banned_topics": [
+    "Detailed Mendelian inheritance, dominant and recessive traits, and sex-chromosome inheritance, which belong to the Heredity chapter.",
+    "Detailed evolutionary mechanisms and natural selection, which are treated in the next chapter.",
+    "Detailed hormonal control of puberty and reproduction beyond the functions stated in this chapter, which belongs mainly to Control and Coordination."
+  ],
+  "must_include_keywords": [
+    "reproduction",
+    "DNA copying",
+    "variation",
+    "species survival",
+    "asexual reproduction",
+    "binary fission",
+    "multiple fission",
+    "Amoeba",
+    "Leishmania",
+    "Plasmodium",
+    "budding",
+    "yeast",
+    "Hydra",
+    "fragmentation",
+    "Spirogyra",
+    "regeneration",
+    "Planaria",
+    "vegetative propagation",
+    "Bryophyllum",
+    "tissue culture",
+    "spores",
+    "Rhizopus",
+    "sexual reproduction",
+    "meiosis",
+    "gamete",
+    "stamen",
+    "pistil",
+    "pollination",
+    "fertilisation",
+    "zygote",
+    "seed",
+    "germination",
+    "puberty",
+    "testes",
+    "ovaries",
+    "fallopian tube",
+    "uterus",
+    "placenta",
+    "menstruation",
+    "contraception"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Reproduction is essential for the survival of an individual organism.",
+      "correction": "Reproduction is not needed to keep an individual alive; it is important for the continuity and stability of the species population."
+    },
+    {
+      "claim": "DNA copying produces perfectly identical offspring every time.",
+      "correction": "DNA copies are generally similar but small inaccuracies can create variations; some variations may be harmful while others can survive."
+    },
+    {
+      "claim": "Regeneration and reproduction are always the same process.",
+      "correction": "Regeneration can produce a complete organism from body parts in simple organisms, but most organisms do not normally reproduce by being cut into pieces."
+    },
+    {
+      "claim": "Pollination and fertilisation mean the same thing.",
+      "correction": "Pollination is transfer of pollen from anther to stigma; fertilisation is fusion of the male germ-cell with the female gamete in the ovule."
+    },
+    {
+      "claim": "Fertilisation in humans normally occurs in the uterus.",
+      "correction": "The sperms may meet the egg in the oviduct or fallopian tube; the developing embryo later implants in the uterus."
+    },
+    {
+      "claim": "A copper-T protects against sexually transmitted infections.",
+      "correction": "A copper-T is used to prevent pregnancy; condoms help reduce transmission of many sexually transmitted infections."
+    },
+    {
+      "claim": "Menstruation is the release of an unfertilised egg only.",
+      "correction": "When fertilisation does not occur, the thickened uterine lining breaks down and leaves the body as blood and mucus through the vagina."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 7.3 to distinguish ordinary Amoeba from Amoeba undergoing binary fission.",
+    "Use NCERT Activities 7.5 and 7.6 to infer why only plant pieces containing a bud or node grow into new plants.",
+    "Use NCERT Activity 7.7 and Figures 7.8-7.9 to trace pollination, fertilisation, seed formation and germination.",
+    "Use NCERT end-of-chapter Exercise Q6 to reason why menstruation occurs when the egg is not fertilised.",
+    "Use NCERT end-of-chapter Exercises Q8 and Q11 to compare contraceptive methods and explain why they may be adopted."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the NCERT EXERCISES section containing Questions 1-11.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

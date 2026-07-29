@@ -1,0 +1,130 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In a pure semiconductor crystal of Si, if antimony is added then what type of extrinsic semiconductor i s obtained. Draw the energy band diagram of this extrinsic semiconductor so formed.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider two different hydrogen atoms. The electron in each atom is in an excited state. Is it possible for the electrons to have different energies but same orbital angular momentum according to the Bohr model? Justify your answer. OR Explain how does (i) photoelectric current and (ii) kinetic energy of the photoelectrons emitted in a photocell vary if the frequency of incident radiation is doubled, but keeping the intensity same? Show the graphical variation in the above two cases.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Name the device which converts the change in intensity of illumination to change in electric current flowing through it. Plot I-V characteristics of this device for different intensities. State any two applications of this device. SECTION B",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Derive an expression for the frequency of radiation emitted when a hydrogen atom de-excites from level n to level (n – 1). Also show that for large values of n, this frequency equals to classical frequency of revolution of an electron.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Explain with a proper diagram how an ac signal can be converted into dc ( pulsating)signal with output frequency as double than the input frequency using pn junction diode. Give its input and output waveforms.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 6,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "How long can an electric lamp of 100 W be kept glowing by fusion of 2 kg of deuterium? Take the fusion reaction as Hଵଶ + Hଵଶ → Heଶଷ + n + 3.27 MeV",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Define wavefront. Draw the shape of refracted wavefront when the plane incident wave undergoes refraction from optically denser medium to rarer medium. Hence prove Snell’s law of refraction.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "",
+    "options": [
+      "Draw a ray diagram of compound microscope for the final image formed at least distance of distinct vision?",
+      "An angular magnification of 30X is desired using an objective of focal length 1.25 cm and an eye piece of focal length 5 cm. How will you set up the compound microscope for the final image formed at least distance of distinct vision? OR",
+      "Draw a ray diagram of Astronomical Telescope for the final image formed at infinity.",
+      "A small telescope has an objective lens of focal length 140 cm and an eyepiece of focal length 5.0 cm. Find the magnifying power of the telescope for viewing distant objects when (i)  the telescope is in normal adjustment, (ii) the final image is formed at the least distance of distinct vision."
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 9,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Light of wavelength 2000 Å falls on a metal surface of work function 4.2 eV.",
+    "options": [
+      "What is the kinetic energy (in eV) of the fastest electrons emitted from the surface?",
+      "What will be the change in the energy of the emitted electrons if the intensity of light with same wavelength is doubled?",
+      "If the same light falls on another surface of work function 6.5 eV, what will be the energy of emitted electrons?"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The focal length of a convex lens made of glass of refractive index (1.5) is 20 cm. What will be its new focal length when placed in a medium of refractive index 1.25 ? Is focal length positive or negative? What does it signify?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "",
+    "options": [
+      "Name the e.m. waves which are suitable for radar systems used in aircraft navigation. Write the range of frequency of these waves.",
+      "If the Earth did not have atmosphere, would its average surface temperature be higher or lower than what it is now? Explain.",
+      "An e.m. wave exerts pressure on the surface on which it is incident. Justify. OR",
+      "\"If the slits in Young's double slit experiment are identical, then intensity at any point on the screen may vary between zero and four times to the intensity due to single slit\". Justify the above statement through a relevant mathematical expression.",
+      "Draw the intensity distribution as function of phase angle when diffraction of light takes place through coherently illuminated single slit."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "CASE STUDY: MIRAGE IN DESERTS To a distant observer, the light appears to be coming from somewhere below the ground. The observer naturally assumes that light is being reflected from the ground, say, by a pool of water near the tall object. Such inverted images of distant tall objects cause an optical illusion to the observer. This phenomenon is called mirage. This type of mirage is especially common in hot deserts. Based on the above facts, answer the following questions:",
+    "options": [
+      "Which of the following phenomena is prominently involved in the formation of mirage in deserts? (i) Refraction, Total internal Reflection (ii)  Dispersion and Refraction (iii)  Dispersion and scattering of light (iv)  Total internal Reflection and diffraction.",
+      "A diver at a depth 12 m inside water ቀaμω =ସ ଷቁ sees the sky in a cone of semi- vertical angle (i) sinିଵ ସ ଷ (ii)    tanିଵ ସ ଷ (iii)  sinିଵ ଷ ସ (iv)     90°",
+      "In an optical fibre, if n1 and n2 are the refractive indices of the core and cladding, then which among the following, would be a correct equation? (i)  n1 < n2 (ii)  n1 = n2 (iii) n1 << n2 (iv)  n 1 > n2",
+      "A diamond is immersed in such a liquid which has its refractive index with respect to air as greater than the refractive index of  water with respect  to air.  Then the critical angle of diamond-liquid interface as compared to critical angle of diamond -water interface will (i) depend on the nature of the liquid only (ii)    decrease (iii) remain the same (iv) increase."
+    ],
+    "diagram_dependent": true
+  }
+]

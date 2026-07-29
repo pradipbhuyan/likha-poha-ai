@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 5",
+  "subject": "English",
+  "chapter": "4. The Wise Parrot",
+  "central_question": "How do freedom, intelligence, communication, and responsible care shape the parrot’s escape and the chapter’s language work?",
+  "in_scope_units": [
+    "Let us Read: merchant, golden cage, request for freedom, and message to jungle parrots",
+    "The escape: silent signal, imitation, windowsill, and open sky",
+    "Let us Think: comprehension, freedom, intelligence, and wisdom",
+    "Let us Learn: phrases, collective nouns, and present perfect tense",
+    "Let us Listen and Speak: bird sanctuaries and ai or oi sounds",
+    "Let us Write, Do, Explore, and Self-assessment: continuation, bird feeder, bird research, and reflection"
+  ],
+  "banned_topics": [
+    "Hockey rules",
+    "Rainbow colour combinations",
+    "Water tank designs"
+  ],
+  "must_include_keywords": [
+    "merchant",
+    "golden cage",
+    "talkative parrot",
+    "open skies",
+    "tender fruits",
+    "freedom",
+    "jungle",
+    "flight of parrots",
+    "distressed",
+    "perch",
+    "windowsill",
+    "silent signal",
+    "escape",
+    "wisdom",
+    "phrases",
+    "look after",
+    "collective nouns",
+    "flock",
+    "pack",
+    "bouquet",
+    "swarm",
+    "army",
+    "bunch",
+    "present perfect",
+    "has",
+    "have",
+    "bird sanctuaries",
+    "Vedanthangal",
+    "Bharatpur",
+    "ai sound",
+    "oi sound",
+    "bird feeder",
+    "macaw",
+    "weaver bird",
+    "self-assessment"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The golden cage makes the parrot happy.",
+      "correction": "The parrot longs for open skies and asks for freedom."
+    },
+    {
+      "claim": "The parrots really die.",
+      "correction": "The jungle parrot demonstrates a trick and the pet copies it to escape."
+    },
+    {
+      "claim": "Only strength helps the parrot.",
+      "correction": "Observation and intelligence, not physical force, make the escape possible."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Let us Think A to trace the wish, message, and escape.",
+    "Use Let us Think B to discuss freedom and intelligence.",
+    "Use Let us Learn B for collective nouns.",
+    "Use Let us Learn C for present-perfect completion.",
+    "Use Let us Do to compare care through a feeder with confinement."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "There is no separate final numbered exercise set; work is divided across the Let us sections and Self-assessment 1.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,380 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of these statements about the princely states is incorrect: a) Some of the princely states clearly wanted to become part of the Indian Union. b) The Indian government was ready to give autonomy to some regions. c) First of all, the ruler of Junagarh announced that the state had decided on Independence. d) Princely states covered one third of the land area of the British Indian Empire.",
+    "options": [
+      "a) Some of the princely states clearly wanted to become part of the Indian Union.",
+      "b) The Indian government was ready to give autonomy to some regions.",
+      "c) First of all, the ruler of Junagarh announced that the state had decided on Independence.",
+      "d) Princely states covered one third of the land area of the British Indian Empire."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "acts as a think tank of the Union Government.",
+    "options": [
+      "a) NITI Aayog",
+      "b) Yojana Aayog",
+      "c) Election Commission of India",
+      "d) Ministry of External Affairs"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which set of the Countries belonged to the NATO Group?",
+    "options": [
+      "a) Poland, Britain, Romania",
+      "b) USA, Czech Republic, France",
+      "c) Britain, France, west Germany",
+      "d) Spain, France, East Germany"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Globalisation leads to each culture becoming______",
+    "options": [
+      "More Different",
+      "More Transparent",
+      "More Distinctive",
+      "More Different and Distinctive"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which factors contributed to Pakistan's failure in building a stable democracy?",
+    "options": [
+      "Dominance of the Military",
+      "Dominance of the clergy",
+      "Dominance of the landowning aristocracy",
+      "All of the above"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Arab Spring began with----",
+    "options": [
+      "Russian Revolution",
+      "Tunisian Revolution",
+      "Egyptian Revolution",
+      "Syrian Revolution"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "'Choose the wrong statement:",
+    "options": [
+      "Six-point proposal of Sheikh Mujibur Rehman for greater autonomy to East Pakistan.",
+      "India and Pakistan conduct nuclear tests in 1998.",
+      "SAFTA signed at the 7th SAARC Summit in Islamabad.",
+      "India and Bangladesh sign the Farakka Treaty for sharing of the Ganga waters in 1996."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the decade of 1960's, the Congress Party under the leadership of Indira Gandhi was affected by--------",
+    "options": [
+      "Violence",
+      "Defection",
+      "Internal conflicts",
+      "Censorship"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Policy has been adopted by NITI Aayog.",
+    "options": [
+      "Make in India",
+      "Made in India",
+      "Start-up India",
+      "Ayushman Bharat"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "First Gulf War was known as--------",
+    "options": [
+      "Operation Infinite Reach",
+      "Operation Enduring Freedom",
+      "Operation Desert Storm",
+      "Operation Iraqi Freedom"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The high point of Cold War was --------",
+    "options": [
+      "Cuban Missile Crises",
+      "Atomic bomb attack on Hiroshima and Nagasaki",
+      "Establishment of SEATO and CENTO",
+      "Establishment of NATO"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Sardar Vallabhbhai Patel faced key challenges of integration in which of the following states.",
+    "options": [
+      "Hyderabad, Moradabad, Junagarh",
+      "Hyderabad, Sikandarabad, Jammu",
+      "Hyderabad, Junagarh, Kashmir",
+      "Jammu, Junagarh, Kashmir"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "With its pre-intended goal __ the NDA III Government started several Socio-economic welfare schemes to make development accessible to the masses.",
+    "options": [
+      "Jai Jawan,Jai Kisan",
+      "Jai Jawan, Jai Kisan, Jai Vigyan",
+      "Sabka Saath, Sabka Vikas",
+      "Garibi Hatao"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "BJP led coalition of 2014 was also called as",
+    "options": [
+      "Majority Coalition",
+      "Surplus Majority Coalition",
+      "Clear Majority Coalition",
+      "Democratic Coalition"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The main agenda of the World Social Forum is",
+    "options": [
+      "Opposition to Terrorism",
+      "Opposition to Neo-Liberal Globalisation",
+      "Opposition to Colonialism",
+      "Opposition to Communism"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Arrange the following in the chronological order:",
+    "options": [
+      "Establishment of Human Rights Council",
+      "Yalta Conference",
+      "Atlantic Charter",
+      "India join the UN"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "America extended massive financial help for reviving Europe's economy under what was called the \"Marshall Plan\". The US also created a new collective security structure under NATO. Under the Marshall Plan, the Organisation for European Economic Cooperation (OEEC) was established in 1948 to channel aid to the West European States. It became a forum where the Western European States began to cooperate on trade and economic issues. The Council of Europe, established in 1949, was another step forward in political cooperation. The process of economic integration of European capitalist countries proceeded step by step leading to the formation of the European Economic Community (EEC) in 1957.",
+    "options": [
+      "Aid given by the US",
+      "Economic Aid given by the US",
+      "Military help given by the US",
+      "Financial Aid given by the US"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The era of Liberalisation, Privatisation and Globalisation from the early 1990's , is attributed to the emergence of a competitive market society encompassing all important sectors of economy, society and polity thus paving the way for the \"Third Democratic Upsurge\". The Democratic Upsurge represents a competitive electoral market which is based not on the principle of survival of the fittest but rather the survival of the ablest. It underlines three shifts in India's electoral market: from State to Market, from Government to Governance, from State as Controller to State as Facilitator. Moreover, the Third Democratic Upsurge seeks to promote the participation of the youth who constitute a significant chunk of Indian society as the real game changers in view of their increasing electoral preference for both development and governance in India's contemporary democratic politics.",
+    "options": [
+      "Liberalisation",
+      "Privatisation",
+      "Globalisation",
+      "All of the above"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "What was the impact of the Emergency on newspapers and magazines?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Explain the role played by Syndicates in the Congress Party.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "State two objectives of NITI Aayog.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "What were the changes that occurred in Indian Politics after 1977 elections?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "The South Asian experience of democracy has expanded the global imagination of democracy. Explain the statement with examples.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "D",
+    "question_type": "short_answer",
+    "marks": 4,
+    "question_text": "Explain Cuban Missile Crises?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "D",
+    "question_type": "short_answer",
+    "marks": 4,
+    "question_text": "Highlight the salient features of Indo-Israeli relations in contemporary times.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "D",
+    "question_type": "short_answer",
+    "marks": 4,
+    "question_text": "Elaborate the Nuclear Policy of India.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "D",
+    "question_type": "short_answer",
+    "marks": 4,
+    "question_text": "State the political impact of globalization on the world.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "E",
+    "question_type": "short_answer",
+    "marks": 5,
+    "question_text": "In the given outline political map of India, five states have been marked as (A), (B), (C), (D), (E). Identify these states on the basis of the information given below and write their correct names in your answer book along with their respective serial number of the information used and the concerned alphabets as per format that follows: 1+1+1+1+1= 5",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 5,
+    "question_text": "Note: The following questions are for Visually Impaired candidates only in lieu of Qn. 29 (cartoon question) 2+2+1=5",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "F",
+    "question_type": "short_answer",
+    "marks": 6,
+    "question_text": "Critically examine the consequences of disintegration of the Soviet Union. OR Analyse the factors responsible for the disintegration of USSR with special reference to Perestroika and Glasnost.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "F",
+    "question_type": "short_answer",
+    "marks": 6,
+    "question_text": "How did the reorganisation of states take place in India after its Independence? Explain.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "F",
+    "question_type": "short_answer",
+    "marks": 6,
+    "question_text": "Describe the major developments that have taken place in Indian Politics during The NDA III & IV.",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

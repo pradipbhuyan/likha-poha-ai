@@ -1,0 +1,59 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is a type of rock that forms from the cooling and solidification of magma or lava?",
+    "options": [
+      "Igneous",
+      "Sedimentary",
+      "Metamorphic",
+      "Fossil"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "What is the process by which plants convert sunlight into energy?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "C",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Case Study: The Himalayas are a mountain range that stretches across several countries in Asia. What are some of the main features of the Himalayas?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Describe the water cycle and its importance in the Earth's ecosystem.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "E",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "For visually impaired students in lieu of Question no. 10(Attempt any 5). 1x5=5 a) Name an important Iron Ore mine of Chhattisgarh. b) An important Oil Refinery located in Uttar Pradesh c) Where is the largest Lignite coal mine, located in India and what is the name of that mine? d) Write down the name of Easternmost terminal of East-West Corridor e) Which is the Southernmost Metropolitan city connected by the Golden Quadrilateral? f) What is the name of the Oldest Copper mines of Rajasthan?",
+    "options": [
+      "Name an important Iron Ore mine of Chhattisgarh",
+      "An important Oil Refinery located in Uttar Pradesh",
+      "Where is the largest Lignite coal mine, located in India and what is the name of that mine?",
+      "Write down the name of Easternmost terminal of East-West Corridor",
+      "Which is the Southernmost Metropolitan city connected by the Golden Quadrilateral?",
+      "What is the name of the Oldest Copper mines of Rajasthan?"
+    ],
+    "diagram_dependent": false
+  }
+]

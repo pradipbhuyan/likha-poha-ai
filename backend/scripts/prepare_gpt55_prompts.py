@@ -129,6 +129,159 @@ BOOK_SOURCES = {
         "subject_class": "humanities_or_language",
         "content_language": "hi",
     },
+    # ── Grade 5 and Grade 6 books (added 2026-07-29) ─────────────────────
+    # PDFs supplied locally under ~/Downloads/Class <N> - <Subject>/ with
+    # each subject's own book code + 2-digit chapter numbering, matching
+    # rag_documents ids 495-600 / 900-901 / 1016 exactly (already-uploaded
+    # RAG content) — verified chapter names and counts directly against
+    # rag_documents before adding these entries (see
+    # docs/GPT55_LESSON_UPDATE_STATUS.md for the verification query).
+    # None of Grade 5/6's syllabus.py entries have real chapter lists yet
+    # (same placeholder situation as Grade 10), so every one of these
+    # needs a CHAPTER_NAME_OVERRIDES entry below.
+    ("Grade 5", "English"): {
+        "pdf_dir": Path.home() / "Downloads" / "Class 5 - English",
+        "book_code": "eesa1",
+        "num_chapters": 10,
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 5", "Hindi"): {
+        "pdf_dir": Path.home() / "Downloads" / "Class 5 - Hindi",
+        "book_code": "ehve1",
+        "num_chapters": 12,
+        "subject_class": "humanities_or_language",
+        "content_language": "hi",
+    },
+    ("Grade 5", "Maths"): {
+        "pdf_dir": Path.home() / "Downloads" / "Class 5 - Maths",
+        "book_code": "eemm1",
+        "num_chapters": 15,
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 5", "EVS"): {
+        "pdf_dir": Path.home() / "Downloads" / "Class 5 - World Around Us",
+        "book_code": "eeev1",
+        "num_chapters": 10,
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 6", "English"): {
+        "pdf_dir": Path.home() / "Downloads" / "Class 6 - English",
+        "book_code": "fepr1",
+        "num_chapters": 5,
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 6", "Hindi"): {
+        "pdf_dir": Path.home() / "Downloads" / "Class 6 - Hindi",
+        "book_code": "fhml1",
+        "num_chapters": 13,
+        "subject_class": "humanities_or_language",
+        "content_language": "hi",
+    },
+    ("Grade 6", "Maths"): {
+        "pdf_dir": Path.home() / "Downloads" / "Class 6 - Maths",
+        "book_code": "fegp1",
+        "num_chapters": 10,
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 6", "Science"): {
+        "pdf_dir": Path.home() / "Downloads" / "Class 6 - Science",
+        "book_code": "fecu1",
+        "num_chapters": 12,
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 6", "Social Science"): {
+        "pdf_dir": Path.home() / "Downloads" / "Class 6 - Social",
+        "book_code": "fees1",
+        "num_chapters": 14,
+        "subject_class": "humanities_or_language",
+    },
+    # ── Grade 7 and Grade 8 books (added 2026-07-29) ─────────────────────
+    # PDFs live in TWO places: the "RAG DB/Grade_7/" and "RAG DB/Class 8/"
+    # folders inside the repo (Grade 7 Maths/Science, Grade 8 all
+    # subjects), and ~/Downloads/Class 7 - <Subject>/ for the remaining
+    # Grade 7 subjects supplied separately (Hindi, Social Science split
+    # across two physical parts). No Grade 7 English PDF exists locally
+    # anywhere (confirmed via search) and no rag_documents id-gap PDF was
+    # found for it either — that subject is correctly out of scope, same
+    # treatment as Grade 5/6 Computer Science. Grade 8 Science/Maths also
+    # have 17-30 supplementary NCERT Exemplar chapters in rag_documents
+    # (ids 902-932) that are intentionally OUT of scope for this batch —
+    # only the primary textbook chapters are covered here, consistent
+    # with how Grade 9 Maths's Exemplar chapters were treated in earlier
+    # sessions (not prioritized by default).
+    ("Grade 7", "Maths"): {
+        # Physically split into two NCERT volumes with INDEPENDENT
+        # chapter numbering (Part 1: gegp101..gegp108, chapters 1-8; Part
+        # 2: gegp201..gegp207, chapters 1-7 again) — uses the new "parts"
+        # multi-volume support added to this script this session.
+        "parts": [
+            {"pdf_dir": REPO_ROOT / "RAG DB" / "Grade_7" / "Maths", "book_code": "gegp1", "num_chapters": 8},
+            {"pdf_dir": REPO_ROOT / "RAG DB" / "Grade_7" / "Maths", "book_code": "gegp2", "num_chapters": 7},
+        ],
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 7", "Science"): {
+        "pdf_dir": REPO_ROOT / "RAG DB" / "Grade_7" / "Science",
+        "book_code": "gecu1",
+        "num_chapters": 12,
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 7", "Hindi"): {
+        "pdf_dir": Path.home() / "Downloads" / "Class 7 - Hindi",
+        "book_code": "ghml1",
+        "num_chapters": 10,
+        "subject_class": "humanities_or_language",
+        "content_language": "hi",
+    },
+    ("Grade 7", "Social Science"): {
+        # Physically split into two NCERT volumes with INDEPENDENT
+        # chapter numbering (Part 1: gees101..gees112, chapters 1-12;
+        # Part 2: gees201..gees208, chapters 1-8 again).
+        "parts": [
+            {"pdf_dir": Path.home() / "Downloads" / "Class 7 - Social Part 1", "book_code": "gees1", "num_chapters": 12},
+            {"pdf_dir": Path.home() / "Downloads" / "Class 7 - Social Part 2", "book_code": "gees2", "num_chapters": 8},
+        ],
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 8", "English"): {
+        "pdf_dir": REPO_ROOT / "RAG DB" / "Class 8" / "English",
+        "book_code": "hepr1",
+        "num_chapters": 5,
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 8", "Hindi"): {
+        "pdf_dir": REPO_ROOT / "RAG DB" / "Class 8" / "hindi",
+        "book_code": "hhml1",
+        "num_chapters": 10,
+        "subject_class": "humanities_or_language",
+        "content_language": "hi",
+    },
+    ("Grade 8", "Maths"): {
+        # Physically split into two NCERT volumes with INDEPENDENT
+        # chapter numbering (Part 1: hegp101..hegp107, chapters 1-7;
+        # Part 2: hegp201..hegp207, chapters 1-7 again). Only the 14
+        # primary-textbook chapters are covered — the 13 supplementary
+        # Exemplar chapters (rag_documents ids 902-914) are out of scope.
+        "parts": [
+            {"pdf_dir": REPO_ROOT / "RAG DB" / "Class 8" / "Maths-Part1", "book_code": "hegp1", "num_chapters": 7},
+            {"pdf_dir": REPO_ROOT / "RAG DB" / "Class 8" / "Maths-Part2", "book_code": "hegp2", "num_chapters": 7},
+        ],
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 8", "Science"): {
+        # Only the 13 primary-textbook chapters — the 17 supplementary
+        # Exemplar chapters (rag_documents ids 915-932) are out of scope.
+        "pdf_dir": REPO_ROOT / "RAG DB" / "Class 8" / "Science",
+        "book_code": "hecu1",
+        "num_chapters": 13,
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 8", "Social Science"): {
+        "pdf_dir": REPO_ROOT / "RAG DB" / "Class 8" / "Social",
+        "book_code": "hees1",
+        "num_chapters": 7,
+        "subject_class": "humanities_or_language",
+    },
 }
 
 # Grade 10's syllabus.py only has a single placeholder entry
@@ -155,6 +308,193 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Light – Reflection and Refraction",
         "The Human Eye and the Colourful World", "Electricity",
         "Magnetic Effects of Electric Current", "Our Environment",
+    ],
+    # ── Grade 5 and Grade 6 overrides (added 2026-07-29) ─────────────────
+    # Copied verbatim from rag_documents.chapter (ids 495-600 / 900-901 /
+    # 1016) so the GPT-5.5 manifest's "chapter" field will match exactly
+    # and the student-facing dropdown can find the ingested content —
+    # per the documented lesson (see docs/GPT55_LESSON_UPDATE_STATUS.md,
+    # "always check rag_documents.chapter for the EXACT chapter string
+    # BEFORE ingesting, not syllabus.py's list").
+    ("Grade 5", "English"): [
+        "1. Papa's Spectacles", "2. Gone with the Scooter", "3. The Rainbow",
+        "4. The Wise Parrot", "5. The Frog", "6. What a Tank!",
+        "7. Gilli Danda", "8. The Decision of the Panchayat", "9. Vocation",
+        "10. Glass Bangles",
+    ],
+    ("Grade 5", "Hindi"): [
+        "1. किरन", "2. न्याय की कु सी", "3. चाँद का कु रता", "4. साङके न",
+        "5. सुंदरिया", "6. चतुर चित्रकार", "7. मेरा बचपन",
+        "8. काजीरंगा राष्ट्ीय उद्ान की यात्", "9. न्याय", "10. तीन मछलियाँ",
+        "11. हमारे ये कलामंदिर", "12. गंगा की कहानी",
+    ],
+    ("Grade 5", "Maths"): [
+        "Chapter 1: We the Travellers — I", "Chapter 2: Fractions",
+        "Chapter 3: Angles as Turns", "Chapter 4: We the Travellers — II",
+        "Chapter 5: Far and Near", "Chapter 6: The Dairy Farm",
+        "Chapter 7: Shapes and Patterns", "Chapter 8: Weight and Capacity",
+        "Chapter 9: Coconut Farm", "Chapter 10: Symmetrical Designs",
+        "Chapter 11: Grandmother’s Quilt", "Chapter 12: Racing Seconds",
+        "Chapter 13: Animal Jumps", "Chapter 14: Maps and Locations",
+        "Chapter 15: Data Through Pictures",
+    ],
+    ("Grade 5", "EVS"): [
+        "Chapter 1: Water — The Essence of Life",
+        "Chapter 2: Journey of a River", "Chapter 3: The Mystery of Food",
+        "Chapter 4: Our School — A Happy Place",
+        "Chapter 5: Our Vibrant Country", "Chapter 6: Some Unique Places",
+        "Chapter 7: Energy — How Things Work",
+        "Chapter 8: Clothes — How Things are Made",
+        "Chapter 9: Rhythms of Nature", "Chapter 10: Earth — Our Shared Home",
+    ],
+    ("Grade 6", "English"): [
+        "Unit 1: Fables and Folk Tales", "Unit 2: Friendship",
+        "Unit 3: Nurturing Nature", "Unit 4: Sports and Wellness",
+        "Unit 5: Culture and Tradition",
+    ],
+    ("Grade 6", "Hindi"): [
+        "1. मातृभूमि", "2. गोल", "3. पहली बूँद", "4. हार की जीत",
+        "5. रहीम के दोहे", "6. मेरी माँ", "7. जलाते चलो",
+        "8. समरिया और मबहू नृत्य", "9. मैया मैं नमहं माखन खायो",
+        "10. परीक्ा", "11. चेतक की वीरता",
+        "12. हिंद महासागर में छोटा-सा हिंदुस्ान", "13. पेड़ की बात",
+    ],
+    ("Grade 6", "Maths"): [
+        "Chapter 1 Patterns in Mathematics", "Chapter 2 Lines and Angles",
+        "Chapter 3 Number Play", "Chapter 4 Data Handling and Presentation",
+        "Chapter 5 Prime Time", "Chapter 6 Perimeter and Area",
+        "Chapter 7 Fractions", "Chapter 8 Playing with Constructions",
+        "Chapter 9 Symmetry", "Chapter 10 The Other Side of Zero",
+    ],
+    ("Grade 6", "Science"): [
+        "Chapter 1: The Wonderful World of Science",
+        "Chapter 2: Diversity in the Living World",
+        "Chapter 3: Mindful Eating: A Path to a Healthy Body",
+        "Chapter 4: Exploring Magnets",
+        "Chapter 5: Measurement of Length and Motion",
+        "Chapter 6: Materials Around Us",
+        "Chapter 7: Temperature and its Measurement",
+        "Chapter 8: A Journey through States of Water",
+        "Chapter 9: Methods of Separation in Everyday Life",
+        "Chapter 10: Living Creatures: Exploring their Characteristics",
+        "Chapter 11: Nature’s Treasures", "Chapter 12: Beyond Earth",
+    ],
+    ("Grade 6", "Social Science"): [
+        "1. Locating Places on the Earth", "2. Oceans and Continents",
+        "3. Landforms and Life", "4. Timeline and Sources of History",
+        "5. India, That Is Bharat",
+        "6. The Beginnings of Indian Civilisation",
+        "7. India's Cultural Roots",
+        "8. Unity in Diversity, or 'Many in the One'",
+        "9. Family and Community",
+        "10. Grassroots Democracy — Part 1: Governance",
+        "11. Grassroots Democracy — Part 2: Local Government in Rural Areas",
+        "12. Grassroots Democracy — Part 3: Local Government in Urban Areas",
+        "13. The Value of Work", "14. Economic Activities Around Us",
+    ],
+    # ── Grade 7 and Grade 8 overrides (added 2026-07-29) ─────────────────
+    # Copied verbatim from rag_documents.chapter, re-ordered by each
+    # book's own chapter-number label to match the PDF-file numbering
+    # exactly (some ids were inserted out of numeric order in the DB —
+    # confirmed and corrected via a direct sort-by-chapter-number query,
+    # see docs/GPT55_LESSON_UPDATE_STATUS.md for the verification).
+    ("Grade 7", "Maths"): [
+        # Part 1 (gegp101-108, chapters 1-8)
+        "Chapter 1: Large Numbers Around Us", "Chapter 2: Arithmetic Expressions",
+        "Chapter 3: A Peek Beyond the Point", "Chapter 4: Expressions using Letter-Numbers",
+        "Chapter 5: Parallel and Intersecting Lines", "Chapter 6: Number Play",
+        "Chapter 7: A Tale of Three Intersecting Lines", "Chapter 8: Working with Fractions",
+        # Part 2 (gegp201-207, chapters 1-7 renumbered)
+        "Chapter 1: Geometric Twins", "Chapter 2: Operations with Integers",
+        "Chapter 3: Finding Common Ground", "Chapter 4: Another Peek Beyond the Point",
+        "Chapter 5: Connecting the Dots…", "Chapter 6: Constructions and Tilings",
+        "Chapter 7: Finding the Unknown",
+    ],
+    ("Grade 7", "Science"): [
+        "Chapter 1: The Ever-Evolving World of Science",
+        "Chapter 2: Exploring Substances: Acids, Bases and Neutral",
+        "Chapter 3: Electricity: Circuits and Their Components",
+        "Chapter 4: The World of Metals and Non-metals",
+        "Chapter 5: Changes Around Us: Physical and Chemical",
+        "Chapter 6: Adolescence: A Stage of Growth and Change",
+        "Chapter 7: Heat Transfer in Nature",
+        "Chapter 8: Measurement of Time and Motion",
+        "Chapter 9: Life Processes in Animals",
+        "Chapter 10: Life Processes in Plants",
+        "Chapter 11: Light: Shadows and Reflections",
+        "Chapter 12: Earth, Moon, and the Sun",
+    ],
+    ("Grade 7", "Hindi"): [
+        "पाठ 1: माँ, कह एक कहानी", "पाठ 2: तीन बुद्धमान",
+        "पाठ 3: फ ू ल और काँटा", "पाठ 4: पानी रे पानी",
+        "पाठ 5: नहीं होना बीमार", "पाठ 6: िगरधर किवराय की क ुं डिलया",
+        "पाठ 7: वषार्-बहार", "पाठ 8: िबरजू महाराज से साक्षाार",
+        "पाठ 9: धिधड़या", "पाठ 10: मुीरा का़े पाद",
+    ],
+    ("Grade 7", "Social Science"): [
+        # Part 1 (gees101-112, chapters 1-12) — reordered by chapter
+        # number (rag_documents ids 484/485 were inserted out of order:
+        # "Chapter 12" before "Chapter 10")
+        "Chapter 1: Geographical Diversity of India", "Chapter 2: Understanding the Weather",
+        "Chapter 3: Climates of India", "Chapter 4: New Beginnings: Cities and States",
+        "Chapter 5: The Rise of Empires", "Chapter 6: The Age of Reorganisation",
+        "Chapter 7: The Gupta Era: An Age of Tireless Creativity",
+        "Chapter 8: How the Land Becomes Sacred",
+        "Chapter 9: From the Rulers to the Ruled: Types",
+        "Chapter 10: The Constitution of India — An Introduction",
+        "Chapter 11: From Barter to Money", "Chapter 12: Understanding Markets",
+        # Part 2 (gees201-208, chapters 1-8 renumbered)
+        "Chapter 1: The Story of Indian Farming", "Chapter 2: India and Her Neighbours",
+        "Chapter 3: Empires and Kingdoms: 6th to 10th Centuries",
+        "Chapter 4: Turning Tides: 11th and 12th Centuries",
+        "Chapter 5: India, a Home to Many",
+        "Chapter 6: The State, the Government, and You",
+        "Chapter 7: Infrastructure: Engine of India’s Development",
+        "Chapter 8: Banks and the Magic of Finance",
+    ],
+    ("Grade 8", "English"): [
+        "Unit 1: Wit and Wisdom", "Unit 2: Values and Dispositions",
+        "Unit 3: Mystery and Magic", "Unit 4: Environment",
+        "Unit 5: Science and Curiosity",
+    ],
+    ("Grade 8", "Hindi"): [
+        "Chapter 1: स्वदेश", "Chapter 2: दो गौरैैयाा", "Chapter 3: एक आशीर्वाद",
+        "Chapter 4: हरिद्वार", "Chapter 5: कबीर के दोहे", "Chapter 6: एक टोकरी भर",
+        "Chapter 7: मत बाँधो", "Chapter 8: नए मेहेमाान", "Chapter 9: आदमी का अनुपात",
+        "Chapter 10: तरुण केे स्वप्न",
+    ],
+    ("Grade 8", "Maths"): [
+        # Part 1 (hegp101-107, chapters 1-7)
+        "Chapter 1: A Square and A Cube", "Chapter 2: Power Play",
+        "Chapter 3: A Story of Numbers", "Chapter 4: Quadrilaterals",
+        "Chapter 5: Number Play", "Chapter 6: We Distribute, Yet Things Multiply",
+        "Chapter 7: Proportional Reasoning",
+        # Part 2 (hegp201-207, chapters 1-7 renumbered)
+        "Chapter 1: Fractions in Disguise", "Chapter 2: The Baudhayana-Pythagoras Theorem",
+        "Chapter 3: Proportional Reasoning-2", "Chapter 4: Exploring Some Geometric Themes",
+        "Chapter 5: Tales by Dots and Lines", "Chapter 6: Algebra Play", "Chapter 7: Area",
+    ],
+    ("Grade 8", "Science"): [
+        "Chapter 1: Exploring the Investigative World of Science",
+        "Chapter 2: The Invisible Living World: Beyond Our Naked Eye",
+        "Chapter 3: Interpreting Health: The Ultimate Treasure",
+        "Chapter 4: Electricity: Magnetic and Heating Effects",
+        "Chapter 5: Exploring Forces", "Chapter 6: Pressure, Winds, Storms, and Cyclones",
+        "Chapter 7: Particulate Nature of Matter",
+        "Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures",
+        "Chapter 9: The Amazing World of Solutes, Solvents, and Solutions",
+        "Chapter 10: Light: Mirrors and Lenses", "Chapter 11: Keeping Time with the Skies",
+        "Chapter 12: How Nature Works in Harmony",
+        "Chapter 13: Our Home: Earth, a Unique Life Sustaining Planet",
+    ],
+    ("Grade 8", "Social Science"): [
+        "Chapter 1: Natural Resources and Their Use",
+        "Chapter 2: Reshaping India’s Political Map",
+        "Chapter 3: The Rise of the Marathas",
+        "Chapter 4: The Colonial Era in India",
+        "Chapter 5: Universal Franchise and India’s Electoral System",
+        "Chapter 6: The Parliamentary System: Legislature and Executive",
+        "Chapter 7: Factors of Production",
     ],
 }
 
@@ -512,6 +852,35 @@ def get_chapter_list(grade: str, subject: str) -> list[str]:
         raise ValueError(f"Could not find chapter list for {grade}/{subject} in syllabus.py: {e}")
 
 
+def _resolve_pdf_path_for_chapter(source_cfg: dict, chapter_index_1based: int) -> Path:
+    """Return the source PDF path for the i-th chapter (1-based) of a
+    book, supporting BOTH the simple single-part shape
+    ({pdf_dir, book_code, num_chapters}) and the multi-part shape
+    ({parts: [{pdf_dir, book_code, num_chapters}, ...]}) used by NCERT
+    books physically split into two volumes (e.g. Grade 7 Maths Part 1/2,
+    Grade 7 Social Science Part 1/2, Grade 8 Maths Part 1/2) where each
+    part restarts its own chapter numbering (e.g. Part 1 has
+    <code1>01..08, Part 2 has <code2>01..07 — NOT a continuous 01..15)."""
+    if "parts" in source_cfg:
+        remaining = chapter_index_1based
+        for part in source_cfg["parts"]:
+            if remaining <= part["num_chapters"]:
+                return part["pdf_dir"] / f"{part['book_code']}{remaining:02d}.pdf"
+            remaining -= part["num_chapters"]
+        raise IndexError(
+            f"chapter index {chapter_index_1based} exceeds total parts chapter count"
+        )
+    pdf_dir = source_cfg["pdf_dir"]
+    book_code = source_cfg["book_code"]
+    return pdf_dir / f"{book_code}{chapter_index_1based:02d}.pdf"
+
+
+def _total_num_chapters(source_cfg: dict) -> int:
+    if "parts" in source_cfg:
+        return sum(part["num_chapters"] for part in source_cfg["parts"])
+    return source_cfg["num_chapters"]
+
+
 def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
     key = (grade, subject)
     if key not in BOOK_SOURCES:
@@ -520,9 +889,7 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
         sys.exit(1)
 
     source_cfg = BOOK_SOURCES[key]
-    pdf_dir = source_cfg["pdf_dir"]
-    book_code = source_cfg["book_code"]
-    num_chapters = source_cfg["num_chapters"]
+    num_chapters = _total_num_chapters(source_cfg)
     subject_class = source_cfg["subject_class"]
     content_language = source_cfg.get("content_language", "en")
     headings = HEADING_SETS.get(content_language, HEADING_SETS["en"])
@@ -595,8 +962,11 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
             "- Final answer: ..."
         )
 
-    if not pdf_dir.exists():
-        print(f"ERROR: PDF source directory not found: {pdf_dir}")
+    # For single-part books, validate the directory exists up front (as
+    # before). For multi-part books, each part's directory is checked
+    # implicitly when its first chapter's PDF is resolved below.
+    if "parts" not in source_cfg and not source_cfg["pdf_dir"].exists():
+        print(f"ERROR: PDF source directory not found: {source_cfg['pdf_dir']}")
         sys.exit(1)
 
     chapters = get_chapter_list(grade, subject)
@@ -611,7 +981,11 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"\n  Preparing GPT-5.5 prompts for {grade} / {subject}")
-    print(f"  Source PDFs: {pdf_dir}")
+    if "parts" in source_cfg:
+        for idx, part in enumerate(source_cfg["parts"], start=1):
+            print(f"  Source PDFs (part {idx}): {part['pdf_dir']}")
+    else:
+        print(f"  Source PDFs: {source_cfg['pdf_dir']}")
     print(f"  Output folder: {output_dir}")
     print(f"  Chapters to process: {n}\n")
 
@@ -619,8 +993,7 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
 
     for i in range(1, n + 1):
         chapter_name = chapters[i - 1]
-        pdf_filename = f"{book_code}{i:02d}.pdf"
-        pdf_path = pdf_dir / pdf_filename
+        pdf_path = _resolve_pdf_path_for_chapter(source_cfg, i)
 
         chapter_slug = _slugify(chapter_name)
         safe_prefix = f"{i:02d}_{chapter_slug}"

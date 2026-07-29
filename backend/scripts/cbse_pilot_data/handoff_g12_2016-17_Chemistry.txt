@@ -1,0 +1,98 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2016-17
+Subject: Chemistry
+Source Subject Code: Chemistry
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Chemistry-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Chemistry-MS.pdf
+Total Questions: 26
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Chemistry-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Define Kraft temperature. 1
+
+Q10 [short_answer, 2m, Sec A]
+Write the IUPAC names of the following:
+
+Q11 [short_answer, 3m, Sec A]
+The edge length of a unit cell of a metal having molecular mass 75 g/mol is 5 A◦ which crystallises in a cubic lattice. If the density is 2g/cc, then find the radius of the metal atom.
+
+Q12 [short_answer, 3m, Sec A]
+(i) A mixture of X and Y was loaded in the column of silica. It was eluted by alcohol water mixture. Compound Y eluted in preference to compound X. Compare the extent of adsorption of X and Y on column. (ii) Why copper matte is put in silica lined converter? Write reactions involved (iii)Name the method used for the refining of Zr.
+
+Q13 [short_answer, 3m, Sec A]
+(i) Complete the following chemical equations. (a) NH4Cl (aq.)+ NaNO2 (aq. ) → (b) P4 + 3NaOH + 3H2O→ (ii) Why is Ka2 << Ka1 for H2SO4 in water?
+
+Q14 [short_answer, 3m, Sec A]
+Write the correct formulae for the following coordination compounds: (i) CrCl3.6H2O (violet with 3 chloride ions precipitated as AgCl) (ii) CrCl3.6H2O (light green colour, with 2 chloride ions precipitated as AgCl ) (iii)CrCl3.6H2O (dark green colour, with 1 chloride ion precipitated as AgCl )
+
+Q15 [short_answer, 3m, Sec A]
+Give reasons for the following observations: (i) p-dichlorobenzene has higher melting point than those of o and m –isomers. (ii) Haloarenes are less reactive than haloalkanes towards nucleophillic substitution reaction. (iii) The treatment of alkyl chloride with aqueous KOH leads to the formation of alcohol but in the presence of alcoholic KOH, alkene is the major product,
+
+Q16 [short_answer, 3m, Sec A]
+(i) Why does leather get hardened after tanning? (ii) On the basis of Hardy-Schulze rule explain why the coagulating power of phosphate is higher than chloride. (iii)Do the vital functions of the body such as digestion get affected during fever? Explain your answer.
+
+Q17 [short_answer, 3m, Sec A]
+Calculate the mass of a non-volatile solute (molar mass40 g/mol) which should be dissolved in 114 g octane to reduce its vapour pressure to 80%. OR At 300 K, 36 g of glucose, C 6H12O6 present per litre in its solution has an osmotic pressure of 4.98 bar. If the osmotic pressure of another glucose solution is 1.52 bar at the same temperature, calculate the concentration of the other solution.
+
+Q18 [short_answer, 3m, Sec A]
+Carry out the following conversions : i) Phenol to benzoquinone. ii) Propanone to 2-Methylpropan-2-ol. iii) Propene to propan-2-ol.
+
+Q19 [short_answer, 3m, Sec A]
+(i) Illustrate the following reactions: a) Hoffmann bromamide degradation reaction. b) Coupling reaction. (ii) Write a chemical test to distinguish between aniline and methylamine.
+
+Q2 [mcq, 1m, Sec A]
+The electronic configuration of a transition element in +3 oxidation state is [Ar]3d7. Find out its atomic number.
+
+Q20 [short_answer, 3m, Sec A]
+(i) Name the common types of secondary structure of proteins and give one point of difference. (ii) Give one structural difference between amylose and amylopectin
+
+Q21 [mcq, 1m, Sec A]
+Observe the graph in diagram and answer the following questions. 3 (i) If slope is equal to -2.0x10-6 sec-1, what will be the value of rate constant? (ii) How does the half-life of zero order reaction relate to its rate constant?
+  [NOTE: diagram]
+
+Q22 [short_answer, 3m, Sec A]
+(i) Classify the following as addition and condensation polymers: Terylene, Bakelite, Polyvinyl chloride, Polythene. (ii) Explain the difference between Buna – N and Buna – S.
+
+Q23 [case_study, 4m, Sec A]
+Ali’s brother likes taking medicines. He sometimes even takes cough syrups even when he is not ill. One such day, he took cough syrup when he was healthy. After some time he started feeling nausea, headache and his body started itching. A li’s father did not take him to the doctor and wanted to give medicine on his own. Ali insisted that his father should not give medicine to his brother on his own but should take him to a doctor. After reading the above passage, answer the following questions: (i) Mention the values shown by Ali. (ii) Why did his body start itching and what kind of me dicine will doctor prescribe him? (iii) Why medicines should not be taken without consulting doctor? (iv) Give one point of difference between agonist and antagonist.
+
+Q24 [long_answer, 5m, Sec A]
+(i) State the relationship amongst cell constant of a cell, resistance of the solution in the cell and conductivity of the solution. How is molar conductivity of a solution related to conductivity of its solution? (ii) A voltaic cell is set up at 25◦C with the following half cell; Al / Al 3+ (0.001 M) and Ni /Ni 2+ (0.50 M) Calculate the cell voltage. [ E◦ Ni2+/Ni = - 0.25V, E◦Al3+/Al = -1.66V] OR (i) Calculate the potential of hydrogen electrode in conta ct with a solution whose pH is 10. (ii) State Faraday’s laws of electrolysis. How much charge in terms of Faraday is required for reduction of 1 mol of Cr2O72- to Cr 3+ ?
+
+Q25 [long_answer, 5m, Sec A]
+(i) Is the variability in oxidation number of transition elements different from that of non – transition elements? Illustrate with examples. (ii) Give reasons: (a) d- block elements exhibit more oxidation states than f-block elements. (b) Orange solution of potassium dichromate turns yellow on adding sodium hydroxide to it. (c) Zirconium (Z= 40) and Hafnium (Z = 72) have almost similar atomic radii. OR (i) Describe the preparation of potassium permanganate from pyrolusite ore. Write balanced chemical equation for one reaction to show the oxidizing nature of potassium permanganate. (ii) Draw the structures of chromate and dichromate ions.
+
+Q26 [long_answer, 5m, Sec A]
+(i) A ketone A which undergoes haloform reaction gives compound B on reduction. B on heating with sulphuric acid gives compound C, which forms mono -ozonide D. The compound D on hydrolysis in presence of zinc dust gives only acetaldehyde. Write the structures and IUPAC names of A, B and C. Write down the reactions involved. (ii) Predict the products formed when cyclohexanecarbaldehyde reacts with following reagents. (a) PhMgBr and then H3O+. (b) Tollens’ reagent. OR (i) Complete each synthesis by giving missing starting material, reagent or products: O + OH NH2(a) H + CH3 (b) O OH O OH CH2 O H O (c) (d) (e) KMnO4 KOH, heat SOCl2  MARKING SCHEME
+
+Q3 [mcq, 1m, Sec A]
+Draw the structure of 4-tertbutyl-3-iodoheptane.
+
+Q4 [mcq, 1m, Sec A]
+Give the equation of reaction for the preparation of phenol from cumene. 1
+
+Q5 [mcq, 1m, Sec A]
+Name the type of semiconductor obtained when silicon is doped with boron.
+
+Q6 [short_answer, 2m, Sec A]
+The two complexes of nickel, [Ni(CN)4]2- and [Ni(CO)4], have different structures but possess same magnetic behaviour. Explain. OR A chloride of fourth group cation in qualitative analysis gives a green coloured complex [A] in aqueous solution which when treated with ethane –1, 2 – diamine (en) gives pale - yellow solution [B] which on subsequent addition of ethane –1, 2 – diamine turns to blue/purple [C] and finally to violet [D]. Write the structures of complexes [A], [B], [C] and [D].
+
+Q7 [short_answer, 2m, Sec A]
+Account for the following : (i) XeF2 is linear molecule without a bend. (ii) The electron gain enthalpy with negative sign for fluorine is less than that of chlorine, still fluorine is a stronger oxidizing agent than chlorine.
+
+Q8 [short_answer, 2m, Sec A]
+Derive the relationship between relative lowering of vapour pressure and mole fraction of the volatile liquid.
+
+Q9 [short_answer, 2m, Sec A]
+After 24 hrs, only 0.125 gm out of the initial quantity of 1 gm of a radioactive isotope remains behind. What is its half life period?
+
+======================================================================
+Return the complete JSON array.

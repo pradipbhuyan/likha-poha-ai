@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Science",
+    "chapter": "Chapter 12: Magnetic Effects of Electric Current",
+    "central_question": "How does electric current produce magnetic fields and forces, and how are these ideas applied to electromagnets and safe domestic electric circuits?",
+    "in_scope_units": [
+      "Oersted's observation linking electric current and magnetism.",
+      "Magnetic field and magnetic field lines around a bar magnet.",
+      "Magnetic field due to a current-carrying straight conductor and the right-hand thumb rule.",
+      "Magnetic field due to a current-carrying circular loop.",
+      "Magnetic field due to a solenoid and formation of an electromagnet.",
+      "Force on a current-carrying conductor in a magnetic field and Fleming's left-hand rule.",
+      "Domestic electric circuits: live, neutral and earth wires, parallel connection, fuses, short-circuiting and overloading."
+    ],
+    "banned_topics": [
+      "Detailed derivation of Ohm's law, electrical power and Joule heating calculations from the Electricity chapter, except where a fuse is discussed for safety.",
+      "Detailed construction and working of electric motors and generators, which are only named in this chapter extract.",
+      "Electromagnetic induction and transformer theory beyond the content provided.",
+      "Atomic-domain theories of ferromagnetism."
+    ],
+    "must_include_keywords": [
+      "Hans Christian Oersted",
+      "compass needle",
+      "bar magnet",
+      "magnetic field",
+      "magnetic field lines",
+      "north pole",
+      "south pole",
+      "closed curves",
+      "concentric circles",
+      "current-carrying conductor",
+      "right-hand thumb rule",
+      "straight conductor",
+      "circular loop",
+      "number of turns",
+      "solenoid",
+      "uniform magnetic field",
+      "soft iron",
+      "electromagnet",
+      "force on a conductor",
+      "Fleming's left-hand rule",
+      "current direction",
+      "field direction",
+      "live wire",
+      "neutral wire",
+      "earth wire",
+      "220 V",
+      "parallel connection",
+      "electric fuse",
+      "short-circuiting",
+      "overloading",
+      "electric shock"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Magnetic field lines start at the north pole and end permanently at the south pole.",
+        "correction": "Outside a magnet they go from north to south, but inside the magnet they return from south to north, so magnetic field lines are closed curves."
+      },
+      {
+        "claim": "Two magnetic field lines can cross if the field is strong.",
+        "correction": "Field lines never cross because the magnetic field at one point cannot have two directions."
+      },
+      {
+        "claim": "Increasing distance from a current-carrying straight wire increases its magnetic field.",
+        "correction": "For the same current, the field becomes weaker as distance from the wire increases."
+      },
+      {
+        "claim": "The right-hand thumb rule gives the direction of force on a conductor.",
+        "correction": "The right-hand thumb rule gives magnetic field direction around a current-carrying conductor; Fleming's left-hand rule gives the force direction."
+      },
+      {
+        "claim": "The green-insulated wire is the live wire.",
+        "correction": "In the chapter, the green-insulated wire is the earth wire; the live wire is usually red and the neutral wire black."
+      },
+      {
+        "claim": "Short-circuiting means current becomes very small.",
+        "correction": "When live and neutral wires come into direct contact, current increases abruptly and heavily."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Activities 12.1-12.3 to establish the magnetic effect of current and properties of field lines.",
+      "Use NCERT Activities 12.4-12.5 and Example 12.1 for field direction around a straight conductor.",
+      "Use NCERT Activity 12.6 and the solenoid section for circular coils, uniform fields and electromagnets.",
+      "Use NCERT Activity 12.7 and Example 12.2 for force direction and Fleming's left-hand rule.",
+      "Use the domestic-circuit in-text questions and end Exercises Q2, Q8 and Q9 for short circuits, earthing and fuse safety."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES contain Questions 1-9 on field patterns, direction rules, force, short circuits and earthing."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Magnetic Effects of Electric Current\n\n## What you will learn\nYou will explain Oersted's observation and define magnetic field and field lines. You will learn the direction, strength and non-intersection properties of field lines around a bar magnet.\n\n## Simple explanation\nA compass needle is a small magnet. When current passes through a nearby wire, the compass deflects, showing that current produces a magnetic field. A magnetic field is the region where magnetic force can be detected, and field lines are a way to represent its direction and relative strength.\n\n## Step-by-step breakdown\n- **Oersted's observation**: In NCERT Activity 12.1, passing current through a copper wire deflects a nearby compass needle, linking electricity and magnetism.\n- **Compass needle**: Its north-seeking end points approximately north and its south-seeking end points approximately south.\n- **Magnetic field**: The region around a magnet in which its force can be detected.\n- **Iron filings**: NCERT Activity 12.2 shows iron filings aligning in a pattern around a bar magnet; the pattern represents field lines.\n- **Tracing a field line**: NCERT Activity 12.3 uses successive compass positions to draw the field around a bar magnet.\n- **Direction**: Outside the magnet, field lines emerge from the north pole and enter the south pole. Inside, they run from south to north, forming closed curves.\n- **Strength**: Field lines are closer together where the magnetic field is stronger.\n- **No crossing**: Two field lines cannot cross because a compass at one point cannot point in two directions.\n\n## Worked example\nQuestion: Using NCERT Activity 12.1, what conclusion follows when a compass needle deflects after current is switched on in the nearby copper wire?\n\nSolution:\n- Step 1: Before current flows, the compass has its usual orientation.\n- Step 2: After current flows, the needle changes direction.\n- Step 3: A magnetic influence must therefore have been produced by the current-carrying wire.\n- Final answer: An electric current produces a magnetic field around the conductor.\n\n## Common mistake\nDo not treat field lines as physical wires or paths that contain material. They are a representation of field direction and relative strength.\n\n## Quick check question\nQuestion: Based on the in-text question after Section 12.1, why do two magnetic field lines never intersect?\nAnswer: Because the magnetic field at one point has only one direction, so a compass needle cannot point in two directions at the same point.\nExplanation: An intersection would imply two different field directions at one location, which is impossible.\n\n## Summary\n- Current can produce a magnetic field.\n- Field lines show field direction and relative strength.\n- Magnetic field lines form closed curves.\n- Field lines never intersect.",
+    "Core explanation": "# Core explanation: Magnetic Effects of Electric Current\n\n## What you will learn\nYou will describe the magnetic field around a straight current-carrying conductor. You will apply the right-hand thumb rule and explain how current and distance affect field strength.\n\n## Simple explanation\nAround a straight wire, magnetic field lines form concentric circles centred on the wire. Reversing current reverses the field direction. Increasing current strengthens the field, while moving farther from the wire weakens it.\n\n## Step-by-step breakdown\n- **Reversing current**: NCERT Activity 12.4 shows that the compass deflection reverses when the direction of current through the straight wire is reversed.\n- **Concentric circles**: NCERT Activity 12.5 uses iron filings on cardboard to reveal circular field lines around a wire passing normally through the cardboard.\n- **Finding direction**: A compass placed on a circular field line points along the local field direction.\n- **Effect of current**: At a fixed point, greater current produces greater compass deflection and therefore a stronger magnetic field.\n- **Effect of distance**: At the same current, compass deflection decreases as it is moved farther from the wire; field strength decreases with distance.\n- **Right-hand thumb rule**: Hold the conductor in the right hand with thumb pointing in the direction of current. Curled fingers show the direction of magnetic field lines.\n- **Maxwell's corkscrew rule**: The chapter notes this as another name for the same direction rule.\n\n## Worked example\nQuestion: Using NCERT Example 12.1, a horizontal current flows from east to west. How is the magnetic field direction described when viewed from the east end and from the west end?\n\nSolution:\n- Step 1: Point the right thumb from east to west, along the current.\n- Step 2: The curled fingers give the circular magnetic field direction around the wire.\n- Step 3: Viewed from the east end the field is clockwise; viewed from the west end it is anticlockwise.\n- Final answer: The field is clockwise when viewed from the east end and anticlockwise when viewed from the west end.\n\n## Common mistake\nDo not use the left hand for the right-hand thumb rule. The hand matters because reversing it reverses the predicted field direction.\n\n## Quick check question\nQuestion: Based on NCERT Activity 12.5, what happens to magnetic field strength if the compass is moved farther from the straight wire while current remains unchanged?\nAnswer: The magnetic field becomes weaker.\nExplanation: The compass deflection decreases with distance, showing reduced field strength.\n\n## Summary\n- Straight-wire field lines are concentric circles.\n- Reversing current reverses field direction.\n- More current gives a stronger field.\n- Greater distance gives a weaker field.\n- The right-hand thumb rule gives field direction.",
+    "Worked examples": "# Worked examples: Magnetic Effects of Electric Current\n\n## What you will learn\nYou will compare magnetic fields produced by a circular loop and a solenoid. You will explain how more turns strengthen a coil's field and how a solenoid can form an electromagnet.\n\n## Simple explanation\nBending a current-carrying wire into a loop makes the fields from different parts of the wire reinforce one another near the centre. Winding many turns into a cylindrical solenoid produces a field like that of a bar magnet and a nearly uniform field inside.\n\n## Step-by-step breakdown\n- **Circular loop**: At the centre, the large circular field arcs from all parts of the loop appear nearly as parallel straight lines and act in the same direction.\n- **Number of turns**: If a circular coil has n turns carrying current in the same direction, the field is n times that of one turn because the fields add.\n- **NCERT Activity 12.6**: Iron filings around a many-turn circular coil reveal the field pattern produced by the coil.\n- **Solenoid**: A solenoid is a closely wound cylindrical coil of many turns of insulated copper wire.\n- **Bar-magnet-like field**: One end of a current-carrying solenoid behaves like a north pole and the other like a south pole.\n- **Uniform field**: Inside a long solenoid, field lines are parallel and straight, indicating nearly the same field at all points.\n- **Electromagnet**: A strong solenoid field magnetises soft iron placed inside the coil, forming an electromagnet.\n\n## Worked example\nQuestion: Based on the NCERT in-text question after the solenoid section, a circular loop lies in the plane of the table and carries clockwise current. What is the field direction inside and outside the loop?\n\nSolution:\n- Step 1: Curl the fingers of the right hand in the clockwise direction of current.\n- Step 2: The thumb then points perpendicular to the table, into the table, for the field inside the loop.\n- Step 3: The return field outside the loop is out of the table.\n- Final answer: Inside the loop the magnetic field is into the table; outside it is out of the table.\n\n## Common mistake\nDo not say the magnetic field inside a solenoid is zero because the field lines are parallel. Parallel, equally spaced lines represent a uniform non-zero field.\n\n## Quick check question\nQuestion: Based on the NCERT multiple-choice question in Section 12.2.4, how does the field inside a long current-carrying solenoid vary?\nAnswer: It is the same at all points inside the solenoid, approximately uniform.\nExplanation: Parallel, closely spaced straight field lines inside the solenoid represent a uniform magnetic field.\n\n## Summary\n- Fields from different parts of a loop reinforce at its centre.\n- More turns produce a stronger field for the same current.\n- A solenoid has a bar-magnet-like field.\n- The field inside a long solenoid is nearly uniform.\n- Soft iron inside a solenoid forms an electromagnet.",
+    "Exam-style problems": "# Exam-style problems: Magnetic Effects of Electric Current\n\n## What you will learn\nYou will explain the force on a current-carrying conductor in a magnetic field. You will use Fleming's left-hand rule and correctly handle the opposite directions of electron motion and conventional current.\n\n## Simple explanation\nA magnetic field can push a current-carrying conductor. The force direction depends on both current direction and field direction. When current and field are at right angles, the force is greatest and is perpendicular to both.\n\n## Step-by-step breakdown\n- **NCERT Activity 12.7**: A suspended aluminium rod moves when current passes through it between the poles of a horseshoe magnet.\n- **Reversing current**: Reversing the current reverses the rod's displacement.\n- **Reversing field**: Interchanging magnet poles also reverses the force direction.\n- **Maximum force**: The force is greatest when current is perpendicular to the magnetic field.\n- **Fleming's left-hand rule**: With thumb, forefinger and middle finger mutually perpendicular: forefinger shows field, middle finger shows current and thumb shows force or motion.\n- **Electron direction**: For an electron beam, conventional current is opposite to electron motion, so that reversal must be made before using the rule.\n- **Applications named**: The chapter names electric motors, generators, loudspeakers, microphones and measuring instruments as devices using current-carrying conductors and magnetic fields.\n\n## Worked example\nQuestion: Using NCERT Example 12.2, an electron enters a magnetic field at right angles as shown in Figure 12.14. In which direction is the force?\n\nSolution:\n- Step 1: The electron moves downward, so conventional current is upward.\n- Step 2: Apply Fleming's left-hand rule with field to the right and current upward.\n- Step 3: The thumb points into the page.\n- Final answer: The force is directed into the page, option (d).\n\n## Common mistake\nDo not use electron motion directly as current direction. Conventional current is opposite to the direction of electron motion.\n\n## Quick check question\nQuestion: Based on NCERT Exercise Q5, when is the force on a current-carrying conductor in a magnetic field largest?\nAnswer: When the current direction is at right angles to the magnetic field direction.\nExplanation: The chapter's Activity 12.7 states that displacement, and hence force, is maximum for perpendicular current and field.\n\n## Summary\n- A current-carrying conductor experiences force in a magnetic field.\n- Reversing current or field reverses force.\n- The force is maximum when current and field are perpendicular.\n- Fleming's left-hand rule gives the force direction.",
+    "Revision and recap": "# Revision and recap: Magnetic Effects of Electric Current\n\n## What you will learn\nYou will understand domestic electric circuits and their safety features. You will explain parallel connection, earthing, fuses, short-circuiting and overloading, then revise the chapter's direction rules.\n\n## Simple explanation\nA domestic circuit must deliver the correct voltage to appliances while protecting users and wiring. Appliances are connected in parallel so each receives the same potential difference and can be switched independently. Earthing and fuses reduce the risk from leakage and excessive current.\n\n## Step-by-step breakdown\n- **Supply wires**: The chapter describes live wire with red insulation, neutral wire with black insulation and an earth wire with green insulation. The potential difference between live and neutral is 220 V.\n- **Separate circuits**: A 15 A circuit is used for higher-power appliances such as geysers and air coolers, while a 5 A circuit is used for bulbs and fans.\n- **Parallel appliances**: Appliances are connected across live and neutral in parallel so each gets equal potential difference and has a separate switch.\n- **Earth wire**: The metallic body of an appliance is connected to earth through a low-resistance path so leakage current does not keep the body at a dangerous potential.\n- **Fuse**: The fuse is in series and melts by Joule heating when current exceeds the safe value, breaking the circuit.\n- **Short-circuiting**: Direct contact between live and neutral causes an abrupt, heavy increase in current.\n- **Overloading**: It can result from too many appliances on one socket or an accidental rise in supply voltage.\n- **Rule recap**: Right-hand thumb rule gives field direction; Fleming's left-hand rule gives force direction.\n\n## Worked example\nQuestion: Using the NCERT in-text domestic-circuit question, a 2 kW oven is connected to a 220 V circuit rated 5 A. What result is expected?\n\nSolution:\n- Step 1: Find the current: I = P/V = 2000 W/220 V, which is about 9.1 A.\n- Step 2: This current is greater than the 5 A circuit rating.\n- Step 3: The circuit will be overloaded and the fuse should melt or the protective device should disconnect the circuit.\n- Final answer: The oven overloads the 5 A circuit because it draws about 9.1 A; the fuse should operate to protect the circuit.\n\n## Common mistake\nDo not confuse overloading with short-circuiting. Overloading can come from excessive appliance demand; short-circuiting specifically involves direct live-neutral contact.\n\n## Quick check question\nQuestion: Based on NCERT Exercise Q9, what is the function of the earth wire?\nAnswer: It provides a low-resistance path for leakage current from the metallic body of an appliance to the earth, reducing the risk of severe electric shock.\nExplanation: Earthing keeps the metal body near earth potential and allows fault current to flow safely rather than through the user.\n\n## Summary\n- Domestic appliances are connected in parallel.\n- The earth wire protects users from leakage current.\n- A fuse protects against excessive current.\n- Short circuits cause a heavy current rise; overloading can result from excessive appliance demand.\n- Use the right-hand thumb rule for field and Fleming's left-hand rule for force."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 14: Probability",
+  "central_question": "How can the likelihood of an event be calculated from equally likely outcomes and related to its complement, certainty and impossibility?",
+  "in_scope_units": [
+    "Probability — A Theoretical Approach: defines random experiments, equally likely outcomes and theoretical probability and contrasts it with empirical probability.",
+    "Elementary, complementary, sure and impossible events: establishes the sum and range properties of probability.",
+    "Applications to coins, dice, cards, balls, marbles, birthdays and selections: counts favourable and total outcomes.",
+    "Multiple-outcome experiments: constructs sample spaces for two coins, repeated throws and two distinguishable dice.",
+    "Continuous geometric extensions marked not for examination: uses favourable length or area divided by total length or area.",
+    "Summary and note: consolidates P(E), complements and the relationship between experimental and theoretical probability."
+  ],
+  "banned_topics": [
+    "Conditional probability, Bayes’ theorem and independent-event multiplication rules.",
+    "Permutations and combinations as a separate counting theory.",
+    "Random variables, probability distributions and expected value.",
+    "Statistics formulas for mean, median and mode."
+  ],
+  "must_include_keywords": [
+    "random experiment",
+    "fair coin",
+    "unbiased",
+    "fair die",
+    "equally likely outcomes",
+    "sample space",
+    "event",
+    "favourable outcomes",
+    "possible outcomes",
+    "theoretical probability",
+    "classical probability",
+    "experimental probability",
+    "empirical probability",
+    "Pierre Simon Laplace",
+    "elementary event",
+    "complement",
+    "complementary events",
+    "P(not E)",
+    "sure event",
+    "certain event",
+    "impossible event",
+    "0 ≤ P(E) ≤ 1",
+    "coin toss",
+    "die throw",
+    "well-shuffled deck",
+    "52 cards",
+    "four suits",
+    "face cards",
+    "marbles",
+    "at least one",
+    "ordered pair",
+    "two dice",
+    "36 outcomes",
+    "favourable length",
+    "favourable area",
+    "sum of elementary-event probabilities"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any two named outcomes of an experiment are automatically equally likely.",
+      "correction": "Equal likelihood must be justified; for example, drawing a red colour from four red balls and a blue colour from one blue ball is not equally likely."
+    },
+    {
+      "claim": "Probability is favourable outcomes divided by total outcomes even when the elementary outcomes are not equally likely.",
+      "correction": "The chapter’s theoretical formula is used under the assumption that all elementary outcomes are equally likely."
+    },
+    {
+      "claim": "P(not E) = P(E) − 1.",
+      "correction": "Complementary events satisfy P(E) + P(not E) = 1, so P(not E) = 1 − P(E)."
+    },
+    {
+      "claim": "A probability may be negative or greater than 1.",
+      "correction": "For every event, 0 ≤ P(E) ≤ 1."
+    },
+    {
+      "claim": "When two coins are tossed, HH, TT and one head-one tail are three equally likely outcomes.",
+      "correction": "The four equally likely ordered outcomes are HH, HT, TH and TT; one head-one tail contains two outcomes."
+    },
+    {
+      "claim": "The eleven possible sums of two dice are equally likely.",
+      "correction": "The 36 ordered pairs are equally likely, but different sums have different numbers of favourable ordered pairs."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with NCERT Examples 1 and 2 to define theoretical probability and elementary events using a coin and three coloured balls.",
+    "Use NCERT Example 3 and the following remarks to develop complements, impossible events, sure events and the bound 0 ≤ P(E) ≤ 1.",
+    "Apply complements and card structure through NCERT Examples 4–6.",
+    "Construct finite sample spaces through NCERT Example 9 for two coins and NCERT Example 13 for two distinguishable dice.",
+    "Finish with NCERT Exercise 14.1 Questions 23–25 to test repeated trials, at-least-one events and incorrect equally-likely arguments."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "NCERT Exercise 14.1 contains Questions 1–25 on equally likely outcomes, complements, coins, dice, cards, selections, repeated trials and geometric probability extensions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

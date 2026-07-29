@@ -1,0 +1,71 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "English",
+    "chapter": "Grammar: Determiners (Advanced Usage)",
+    "central_question": "How can a student choose determiners and articles that express the intended quantity, definiteness, negation, and general meaning accurately?",
+    "in_scope_units": [
+      "Positive and negative quantity with a few/few and a little/little",
+      "Use of the with superlatives, ordinal numbers, and unique nouns",
+      "Equivalent negative patterns with no and not any",
+      "Zero article with general plural and abstract or uncountable nouns"
+    ],
+    "banned_topics": [
+      "Verb tense formation",
+      "Reported speech",
+      "Voice transformation"
+    ],
+    "must_include_keywords": [
+      "determiner",
+      "a few",
+      "few",
+      "a little",
+      "little",
+      "positive sense",
+      "negative sense",
+      "countable noun",
+      "uncountable noun",
+      "the",
+      "superlative",
+      "ordinal number",
+      "unique noun",
+      "no",
+      "not any",
+      "negative verb",
+      "zero article",
+      "abstract noun",
+      "general plural noun",
+      "honesty",
+      "dogs"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Few and a few have the same meaning.",
+        "correction": "A few has a positive sense meaning some, while few has a negative sense meaning almost none or not enough."
+      },
+      {
+        "claim": "Little can be used with plural countable nouns such as friends.",
+        "correction": "Use few/a few with plural countable nouns and little/a little with uncountable nouns."
+      },
+      {
+        "claim": "Abstract nouns always require the article the.",
+        "correction": "General abstract nouns often take the zero article, as in 'Honesty is important.'"
+      }
+    ],
+    "recommended_example_progression": [
+      "Choose between a few and few from intended meaning",
+      "Choose between a little and little with an uncountable noun",
+      "Insert the before a superlative, ordinal, or unique noun",
+      "Transform no into not any without changing meaning",
+      "Remove an unnecessary article before a general abstract noun"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes gap filling, omission, editing, and sentence rewriting with suitable determiners."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Grammar: Determiners (Advanced Usage)\n\n## What you will learn\nYou will learn the meaning difference between a few and few. You will use these forms correctly with plural countable nouns.\n\n## Simple explanation\nThe article a changes the meaning. 'A few' means some and has a positive sense, while 'few' means almost none and has a negative sense.\n\n## Step-by-step breakdown\n- **A few**: Use with plural countable nouns to mean some, usually enough for the purpose.\n- **Few**: Use with plural countable nouns to mean almost none or not enough.\n- **Positive meaning**: I have a few friends here means I do have some friends.\n- **Negative meaning**: I have few friends here means I have almost no friends.\n\n## Worked example\nQuestion: Fill in the blank with 'a few' or 'few': 'We have ___ minutes left, so we can revise one answer.'\n\nSolution:\n- Step 1: The sentence suggests that some time is available and it is useful.\n- Step 2: Choose the positive form 'a few'.\n- Final answer: We have a few minutes left, so we can revise one answer.\n\n## Common mistake\nDo not use little with plural countable nouns such as friends or minutes. Use few or a few.\n\n## Quick check question\nQuestion: Complete the sentence: 'There are ___ seats left; almost everyone will have to stand.'\nAnswer: There are few seats left; almost everyone will have to stand.\nExplanation: The sentence has a negative meaning: almost no seats remain, so 'few' is correct.\n\n## Summary\n- A few and few are used with plural countable nouns.\n- A few has a positive sense.\n- Few has a negative sense.\n- Choose according to the intended meaning.",
+    "Core explanation": "# Core explanation: Grammar: Determiners (Advanced Usage)\n\n## What you will learn\nYou will learn the meaning difference between a little and little. You will use these forms correctly with uncountable nouns.\n\n## Simple explanation\nWith uncountable nouns, 'a little' means some and has a positive sense, while 'little' means almost none or not enough.\n\n## Step-by-step breakdown\n- **A little**: Use with an uncountable noun to show a small but useful amount.\n- **Little**: Use with an uncountable noun to show an insufficient or almost zero amount.\n- **Noun type**: Use these forms with nouns such as water, time, hope, and patience.\n- **Meaning contrast**: A little hope is positive; little hope is negative.\n\n## Worked example\nQuestion: Fill in the blank with 'a little' or 'little': 'There is ___ water left, enough for one glass.'\n\nSolution:\n- Step 1: Water is uncountable.\n- Step 2: The amount is small but sufficient, so use the positive form 'a little'.\n- Final answer: There is a little water left, enough for one glass.\n\n## Common mistake\nIncorrect: 'I have a little friends.' Friends is plural and countable, so use 'a few friends'.\n\n## Quick check question\nQuestion: Complete the sentence: 'There is ___ hope of success; the plan has failed completely.'\nAnswer: There is little hope of success; the plan has failed completely.\nExplanation: The meaning is negative and hope is uncountable, so 'little' is correct.\n\n## Summary\n- A little and little are used with uncountable nouns.\n- A little is positive.\n- Little is negative.\n- Match the determiner to both noun type and meaning.",
+    "Worked examples": "# Worked examples: Grammar: Determiners (Advanced Usage)\n\n## What you will learn\nYou will learn when the definite article the is required. You will use it with superlatives, ordinal numbers, and unique nouns.\n\n## Simple explanation\nThe points to a definite or unique reference. It is used before superlative forms, ordinal numbers, and nouns that are unique in the given world or context.\n\n## Step-by-step breakdown\n- **Superlatives**: Use the before a superlative: the best, the tallest, the most useful.\n- **Ordinal numbers**: Use the before an ordinal: the first day, the second chapter.\n- **Unique nouns**: Use the with unique nouns such as the sun and the Ganga.\n- **Definite reference**: The signals that the listener can identify the specific item.\n\n## Worked example\nQuestion: Insert the correct article: 'Rina was ___ first student to finish the test.'\n\nSolution:\n- Step 1: 'First' is an ordinal number.\n- Step 2: Ordinal numbers normally take the definite article 'the'.\n- Final answer: Rina was the first student to finish the test.\n\n## Common mistake\nDo not omit the before a superlative in this pattern: use 'the tallest building', not 'tallest building'.\n\n## Quick check question\nQuestion: Fill in the blank: '___ sun rises in the east.'\nAnswer: The sun rises in the east.\nExplanation: The sun is treated as a unique noun, so it takes the definite article 'the'.\n\n## Summary\n- Use the with superlatives.\n- Use the with ordinal numbers.\n- Use the with unique nouns.\n- The marks a definite reference.",
+    "Exam-style problems": "# Exam-style problems: Grammar: Determiners (Advanced Usage)\n\n## What you will learn\nYou will learn how no and not any express the same negative meaning. You will transform one structure into the other without creating a double negative.\n\n## Simple explanation\nNo is placed directly before a noun in an affirmative verb structure. Not any is used with a negative verb. The two patterns can express the same meaning.\n\n## Step-by-step breakdown\n- **No pattern**: There is no water left.\n- **Not any pattern**: There isn't any water left.\n- **Structure**: Affirmative verb + no + noun; negative verb + any + noun.\n- **Avoid double marking**: Do not combine a negative verb with no in this standard transformation.\n\n## Worked example\nQuestion: Rewrite using 'not any': 'There are no tickets available.'\n\nSolution:\n- Step 1: Change the affirmative verb 'are' to the negative form 'aren't'.\n- Step 2: Replace 'no' with 'any'.\n- Final answer: There aren't any tickets available.\n\n## Common mistake\nIncorrect: 'There aren't no tickets.' In standard school grammar, use either 'There are no tickets' or 'There aren't any tickets'.\n\n## Quick check question\nQuestion: Rewrite using 'no': 'We do not have any information.'\nAnswer: We have no information.\nExplanation: Replace the negative verb phrase 'do not have any' with the affirmative verb 'have' followed by the determiner 'no'.\n\n## Summary\n- No can directly determine a noun.\n- Not any requires a negative verb.\n- The two patterns may have the same meaning.\n- Avoid an incorrect double negative.",
+    "Revision and recap": "# Revision and recap: Grammar: Determiners (Advanced Usage)\n\n## What you will learn\nYou will revise quantity determiners, the definite article, negative determiners, and the zero article. You will correct unnecessary articles before general nouns.\n\n## Simple explanation\nGeneral abstract nouns, general uncountable nouns, and plural nouns used for an entire class often take no article. This absence of an article is called the zero article.\n\n## Step-by-step breakdown\n- **Abstract noun**: Use zero article for a general idea: Honesty is important.\n- **General plural noun**: Use zero article for a whole class: Dogs are loyal animals.\n- **General uncountable noun**: Use zero article when speaking generally, unless the noun is made specific by context.\n- **Contrast with the**: Use the only when the noun is specific, superlative, ordinal, or unique under the given rules.\n\n## Worked example\nQuestion: Identify and correct the error: 'The honesty is the best policy.'\n\nSolution:\n- Step 1: 'Honesty' is an abstract noun used in a general sense.\n- Step 2: Remove the unnecessary article before 'honesty'.\n- Final answer: Honesty is the best policy.\n\n## Common mistake\nDo not remove the from 'the best policy'. The article is required because 'best' is a superlative.\n\n## Quick check question\nQuestion: Correct the sentence: 'The dogs are loyal animals.' when referring to dogs in general.\nAnswer: Dogs are loyal animals.\nExplanation: A general plural noun used for the whole class takes the zero article.\n\n## Summary\n- Use a few/few with plural countable nouns.\n- Use a little/little with uncountable nouns.\n- Use the with superlatives, ordinals, and unique nouns.\n- Use no or not any in the correct negative structure.\n- Use zero article for general abstract and plural nouns."
+  }
+}

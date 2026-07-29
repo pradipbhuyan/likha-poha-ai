@@ -1,0 +1,96 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 8: Introduction to Trigonometry",
+    "central_question": "How do ratios of the sides of a right triangle connect an acute angle with lengths, standard-angle values and identities that hold for every allowed angle?",
+    "in_scope_units": [
+      "Introduction: motivates trigonometry through right-triangle models of heights and distances and defines its focus on side-angle relationships.",
+      "Trigonometric Ratios: defines sin, cos, tan, cosec, sec and cot, establishes reciprocal and quotient relations, and shows ratios depend on the angle rather than triangle size.",
+      "Trigonometric Ratios of Some Specific Angles: derives and tabulates values for 0°, 30°, 45°, 60° and 90°.",
+      "Trigonometric Identities: derives sin²A + cos²A = 1, 1 + tan²A = sec²A and 1 + cot²A = cosec²A and applies them to proofs.",
+      "Summary: consolidates definitions, standard values, bounds and domains of the principal identities."
+    ],
+    "banned_topics": [
+      "Heights-and-distances word problems using angles of elevation and depression, which are developed in Chapter 9.",
+      "Inverse trigonometric functions such as sin⁻¹A; the chapter explicitly reserves them for higher classes.",
+      "Trigonometric ratios of general angles beyond 0° to 90°.",
+      "Sine rule, cosine rule and trigonometric graphs."
+    ],
+    "must_include_keywords": [
+      "right triangle",
+      "acute angle",
+      "opposite side",
+      "adjacent side",
+      "hypotenuse",
+      "trigonometry",
+      "trigonometric ratios",
+      "sine",
+      "cosine",
+      "tangent",
+      "cosecant",
+      "secant",
+      "cotangent",
+      "sin A",
+      "cos A",
+      "tan A",
+      "cosec A",
+      "sec A",
+      "cot A",
+      "reciprocal ratios",
+      "tan A = sin A/cos A",
+      "similar triangles",
+      "Pythagoras Theorem",
+      "theta",
+      "specific angles",
+      "0°",
+      "30°",
+      "45°",
+      "60°",
+      "90°",
+      "undefined",
+      "trigonometric identity",
+      "sin²A + cos²A = 1",
+      "1 + tan²A = sec²A",
+      "1 + cot²A = cosec²A",
+      "domain"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The opposite and adjacent sides are fixed sides of a right triangle.",
+        "correction": "Opposite and adjacent are named relative to the chosen acute angle; they interchange when the reference angle changes, while the hypotenuse remains fixed."
+      },
+      {
+        "claim": "sin A means sin multiplied by A.",
+        "correction": "sin A is the abbreviation for the sine of angle A; 'sin' by itself is not a numerical factor."
+      },
+      {
+        "claim": "cosec A and sin⁻¹A mean the same thing.",
+        "correction": "cosec A = 1/sin A, whereas sin⁻¹A denotes inverse sine and is not studied here."
+      },
+      {
+        "claim": "All six trigonometric ratios are defined at both 0° and 90°.",
+        "correction": "At 0°, cosec and cot are undefined; at 90°, sec and tan are undefined."
+      },
+      {
+        "claim": "An identity may be proved by checking one numerical angle.",
+        "correction": "A trigonometric identity must be true for every angle in its stated domain, so it requires algebraic derivation or proof."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with Figures 8.4 and 8.5 and NCERT Exercise 8.1 Question 1 to identify opposite, adjacent and hypotenuse for each acute angle.",
+      "Use NCERT Example 1 and Exercise 8.1 Questions 3 to 5 to determine all ratios from one known ratio.",
+      "Derive the 45°, 30° and 60° values from Figures 8.14 and 8.15, then use NCERT Example 6 and Exercise 8.2 Question 1.",
+      "Derive the three identities from Pythagoras Theorem and apply NCERT Examples 9 and 10.",
+      "Finish with NCERT Examples 11 and 12 and Exercise 8.3 for multi-step identity proofs and domain awareness."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter practice is organised as NCERT Exercises 8.1, 8.2 and 8.3 for basic ratios, standard-angle values and trigonometric identities."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Introduction to Trigonometry\n\n## What you will learn\nYou will identify the sides of a right triangle relative to a chosen acute angle and define all six trigonometric ratios. You will also use reciprocal and quotient relations between these ratios.\n\n## Simple explanation\nTrigonometry studies relationships between the sides and angles of a triangle. In a right triangle, the hypotenuse is opposite the right angle; the other two sides are called opposite and adjacent according to the acute angle being considered.\n\n## Step-by-step breakdown\n- **Reference angle**: Opposite and adjacent are always named with respect to the selected acute angle.\n- **Hypotenuse**: The side opposite the right angle is the hypotenuse and is the longest side.\n- **Primary ratios**: sin A = opposite/hypotenuse, cos A = adjacent/hypotenuse and tan A = opposite/adjacent.\n- **Reciprocal ratios**: cosec A = 1/sin A, sec A = 1/cos A and cot A = 1/tan A.\n- **Quotient relations**: tan A = sin A/cos A and cot A = cos A/sin A.\n- **Notation warning**: sin A is the sine of angle A, not the product of 'sin' and A.\n\n## Worked example\nQuestion: Solve NCERT Exercise 8.1 Question 1: In ΔABC right-angled at B, AB = 24 cm and BC = 7 cm. Find sin A, cos A, sin C and cos C.\n\nSolution:\n- Step 1: By Pythagoras Theorem, AC² = AB² + BC² = 24² + 7² = 576 + 49 = 625.\n- Step 2: Therefore, AC = 25 cm.\n- Step 3: With respect to angle A, opposite = BC = 7 and adjacent = AB = 24. Thus sin A = 7/25 and cos A = 24/25.\n- Step 4: With respect to angle C, opposite = AB = 24 and adjacent = BC = 7. Thus sin C = 24/25 and cos C = 7/25.\n- Final answer: **sin A = 7/25, cos A = 24/25, sin C = 24/25 and cos C = 7/25.**\n\n## Common mistake\nDo not keep the same side labelled opposite when the reference angle changes from A to C. The legs AB and BC exchange their roles.\n\n## Quick check question\nQuestion: In NCERT Exercise 8.1 Question 11(iv), is the statement “cot A is the product of cot and A” true or false?\nAnswer: False.\nExplanation: cot A is an abbreviation for the cotangent of angle A; it is not a product.\n\n## Summary\n- Trigonometric ratios connect an acute angle with side lengths.\n- Opposite and adjacent depend on the reference angle.\n- The hypotenuse is opposite the right angle.\n- cosec, sec and cot are reciprocal ratios.\n- tan A = sin A/cos A and cot A = cos A/sin A.",
+    "Core explanation": "# Core explanation: Introduction to Trigonometry\n\n## What you will learn\nYou will understand why trigonometric ratios remain unchanged when the triangle is enlarged or reduced but the angle stays the same. You will then calculate all six ratios from one known ratio.\n\n## Simple explanation\nRight triangles having the same acute angle are similar by AA. Their corresponding sides change by the same scale factor, so every ratio of corresponding side lengths stays unchanged. This makes a trigonometric ratio a property of the angle rather than of one particular triangle.\n\n## Step-by-step breakdown\n- **Similarity foundation**: The right triangles in Fig. 8.6 share angle A and each has a right angle, so they are similar by AA.\n- **Ratio invariance**: Corresponding sides are proportional, giving the same values of sin A, cos A, tan A and the reciprocal ratios in every such triangle.\n- **Choosing side multiples**: If tan A = 4/3, take opposite = 4k and adjacent = 3k for positive k.\n- **Finding the third side**: Use Pythagoras Theorem to calculate the hypotenuse.\n- **Positive lengths**: Side lengths are positive, so the positive square root is chosen.\n- **Bounds**: Since the hypotenuse is longest, sin A and cos A do not exceed 1 for the angles considered.\n\n## Worked example\nQuestion: Solve NCERT Example 1: Given tan A = 4/3, find the other trigonometric ratios.\n\nSolution:\n- Step 1: tan A = opposite/adjacent = 4/3. Let opposite side BC = 4k and adjacent side AB = 3k.\n- Step 2: By Pythagoras Theorem, AC² = AB² + BC² = (3k)² + (4k)² = 9k² + 16k² = 25k².\n- Step 3: Since AC is a length, AC = 5k.\n- Step 4: sin A = BC/AC = 4k/5k = 4/5.\n- Step 5: cos A = AB/AC = 3k/5k = 3/5.\n- Step 6: cot A = 1/tan A = 3/4, cosec A = 1/sin A = 5/4 and sec A = 1/cos A = 5/3.\n- Final answer: **sin A = 4/5, cos A = 3/5, cot A = 3/4, cosec A = 5/4 and sec A = 5/3.**\n\n## Common mistake\nA ratio such as 4/3 does not mean the sides are exactly 4 cm and 3 cm. They may be 4k and 3k; the common factor cancels from every trigonometric ratio.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 8.1 Question 3: If sin A = 3/4, find cos A and tan A for acute A.\nAnswer: cos A = √7/4 and tan A = 3/√7 = 3√7/7.\nExplanation: Take opposite = 3k and hypotenuse = 4k. The adjacent side is √[(4k)² − (3k)²] = √7k, so cos A = √7/4 and tan A = 3/√7.\n\n## Summary\n- Equal acute angles produce similar right triangles.\n- Trigonometric ratios depend on the angle, not triangle size.\n- One known ratio fixes a side proportion.\n- Pythagoras Theorem gives the third side.\n- Reciprocal relations give cosec, sec and cot efficiently.",
+    "Worked examples": "# Worked examples: Introduction to Trigonometry\n\n## What you will learn\nYou will derive and use the trigonometric ratios of 0°, 30°, 45°, 60° and 90°. You will identify which values are undefined and use the standard table to find missing sides and angles.\n\n## Simple explanation\nThe standard values come from special right triangles: an isosceles right triangle gives 45°, and a bisected equilateral triangle gives 30° and 60°. Values at 0° and 90° are defined by examining the limiting positions of the sides.\n\n## Step-by-step breakdown\n- **45° triangle**: Equal legs a and a give hypotenuse a√2, so sin 45° = cos 45° = 1/√2 and tan 45° = 1.\n- **30° and 60° triangle**: Bisecting an equilateral triangle of side 2a creates legs a and a√3 and hypotenuse 2a.\n- **Values at 0°**: sin 0° = 0 and cos 0° = 1; tan 0° = 0, sec 0° = 1, while cosec 0° and cot 0° are undefined.\n- **Values at 90°**: sin 90° = 1 and cos 90° = 0; cosec 90° = 1 and cot 90° = 0, while tan 90° and sec 90° are undefined.\n- **Trend**: From 0° to 90°, sin A increases from 0 to 1 and cos A decreases from 1 to 0.\n- **Choosing a ratio**: Select the ratio containing the known side and the side to be found.\n\n## Worked example\nQuestion: Solve NCERT Example 6: In ΔABC right-angled at B, AB = 5 cm and ∠ACB = 30°. Find BC and AC.\n\nSolution:\n- Step 1: Relative to angle C = 30°, AB is opposite, BC is adjacent and AC is the hypotenuse.\n- Step 2: tan 30° = AB/BC = 1/√3.\n- Step 3: 5/BC = 1/√3, so BC = 5√3 cm.\n- Step 4: sin 30° = AB/AC = 1/2.\n- Step 5: 5/AC = 1/2, so AC = 10 cm.\n- Final answer: **BC = 5√3 cm and AC = 10 cm.**\n\n## Common mistake\nDo not assign a numerical value to a ratio whose denominator is zero. Thus tan 90° and sec 90° are undefined, not zero or infinity in this chapter.\n\n## Quick check question\nQuestion: Evaluate NCERT Exercise 8.2 Question 1(i): sin 60° cos 30° + sin 30° cos 60°.\nAnswer: The value is 1.\nExplanation: (√3/2)(√3/2) + (1/2)(1/2) = 3/4 + 1/4 = 1.\n\n## Summary\n- Special triangles produce the 30°, 45° and 60° values.\n- Values at 0° and 90° include some undefined ratios.\n- Use the standard-angle table exactly.\n- sin A rises and cos A falls from 0° to 90°.\n- Choose the ratio that links the known and required sides.",
+    "Exam-style problems": "# Exam-style problems: Introduction to Trigonometry\n\n## What you will learn\nYou will derive the three fundamental identities from Pythagoras Theorem and use them in an identity proof. You will also track the angle ranges for which each expression is defined.\n\n## Simple explanation\nAn identity is an equation true for every allowed value of the angle. The three basic identities are obtained by dividing the Pythagorean equation by the square of the hypotenuse or by the square of either leg.\n\n## Step-by-step breakdown\n- **First identity**: Dividing AB² + BC² = AC² by AC² gives cos²A + sin²A = 1 for 0° ≤ A ≤ 90°.\n- **Second identity**: Dividing by AB² gives 1 + tan²A = sec²A for 0° ≤ A < 90°.\n- **Third identity**: Dividing by BC² gives cot²A + 1 = cosec²A for 0° < A ≤ 90°.\n- **Identity proof method**: Usually simplify one side at a time until it becomes the other side.\n- **Convert ratios**: Use sec A = 1/cos A and tan A = sin A/cos A when the identity contains these terms.\n- **Domain awareness**: Never divide by a trigonometric ratio that may be zero in the stated range without checking that the expression is defined.\n\n## Worked example\nQuestion: Prove NCERT Example 10: sec A(1 − sin A)(sec A + tan A) = 1.\n\nSolution:\n- Step 1: Start with the left-hand side: LHS = sec A(1 − sin A)(sec A + tan A).\n- Step 2: Replace sec A = 1/cos A and tan A = sin A/cos A.\n- Step 3: LHS = (1/cos A)(1 − sin A)[1/cos A + sin A/cos A].\n- Step 4: LHS = (1/cos A)(1 − sin A)[(1 + sin A)/cos A].\n- Step 5: LHS = (1 − sin A)(1 + sin A)/cos²A.\n- Step 6: LHS = (1 − sin²A)/cos²A.\n- Step 7: Since 1 − sin²A = cos²A, LHS = cos²A/cos²A = 1.\n- Final answer: **LHS = 1 = RHS; hence the identity is proved.**\n\n## Common mistake\nDo not cancel terms across addition or subtraction. For example, no term can be cancelled directly from (1 − sin A)(1 + sin A) until the product is recognised as 1 − sin²A.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 8.3 Question 3(i): Find 9sec²A − 9tan²A.\nAnswer: The value is 9.\nExplanation: 9sec²A − 9tan²A = 9(sec²A − tan²A) = 9 × 1 = 9.\n\n## Summary\n- The three identities come from Pythagoras Theorem.\n- Identities are valid only where all expressions are defined.\n- Convert sec, cosec, tan and cot when useful.\n- Simplify logically rather than checking one angle.\n- Factorisations such as 1 − sin²A = cos²A are central.",
+    "Revision and recap": "# Revision and recap: Introduction to Trigonometry\n\n## What you will learn\nYou will revise definitions, standard values and identities through an exam-style proof and an angle equation. You will also distinguish reciprocal notation from inverse-trigonometric notation and apply domain restrictions correctly.\n\n## Simple explanation\nA strong trigonometry solution begins by identifying the right relation: a side ratio, a standard-angle value or a fundamental identity. Every manipulation must preserve equality, and the final angle must satisfy the conditions stated in the question.\n\n## Step-by-step breakdown\n- **Core ratios**: sin = opposite/hypotenuse, cos = adjacent/hypotenuse and tan = opposite/adjacent.\n- **Reciprocals and quotients**: cosec = 1/sin, sec = 1/cos, cot = 1/tan and tan = sin/cos.\n- **Standard values**: Memorise the exact values for 0°, 30°, 45°, 60° and 90°, including undefined entries.\n- **Identity toolkit**: sin²A + cos²A = 1, sec²A − tan²A = 1 and cosec²A − cot²A = 1.\n- **Proof strategy**: Convert the more complicated side into sin and cos, factor where possible and use one of the identities.\n- **Angle equations**: Use the stated range to select the standard angle that matches a trigonometric value.\n\n## Worked example\nQuestion: Prove NCERT Example 11: (cot A − cos A)/(cot A + cos A) = (cosec A − 1)/(cosec A + 1).\n\nSolution:\n- Step 1: Start with LHS = (cot A − cos A)/(cot A + cos A).\n- Step 2: Replace cot A by cos A/sin A.\n- Step 3: LHS = [(cos A/sin A) − cos A]/[(cos A/sin A) + cos A].\n- Step 4: Factor cos A from numerator and denominator.\n- Step 5: LHS = cos A(1/sin A − 1) / [cos A(1/sin A + 1)].\n- Step 6: Cancel the common non-zero factor cos A for the acute angles considered.\n- Step 7: LHS = (1/sin A − 1)/(1/sin A + 1).\n- Step 8: Since 1/sin A = cosec A, LHS = (cosec A − 1)/(cosec A + 1) = RHS.\n- Final answer: **The identity is proved.**\n\n## Common mistake\nDo not write cosec A = sin⁻¹A. In this chapter, cosec A means 1/sin A; inverse sine is a different concept for higher classes.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 8.2 Question 3: tan(A + B) = √3 and tan(A − B) = 1/√3, with 0° < A + B ≤ 90° and A > B. Find A and B.\nAnswer: A = 45° and B = 15°.\nExplanation: The range gives A + B = 60° and A − B = 30°. Adding gives 2A = 90°, so A = 45°; subtracting gives 2B = 30°, so B = 15°.\n\n## Summary\n- Side labels depend on the chosen acute angle.\n- Six ratios are connected by reciprocal and quotient relations.\n- Exact standard values include defined and undefined cases.\n- Three Pythagorean identities support most algebraic proofs.\n- Domains and stated angle ranges determine valid answers.\n- Reciprocal notation is not inverse-function notation."
+  }
+}

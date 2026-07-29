@@ -1,0 +1,175 @@
+CBSE Grade 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2019-20
+Subject: Mathematics Standard
+Source Subject Code: MathsStandard
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2019_20/MathsStandard-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2019_20/MathsStandard-MS.pdf
+Total Questions: 39
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassX_2019_20/MathsStandard-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+HCF of 168 and 126 is
+  (A) 21
+  (B) 42
+  (C) 14
+  (D) 18
+
+Q10 [mcq, 1m, Sec A]
+The mid point of the line segment joining the points (- 5, 7) and (- 1, 3) is
+  (A) (-3, 7)
+  (B) (-3, 5)
+  (C) (-1, 5)
+  (D) (5, -3)
+
+Q11 [mcq, 1m, Sec A]
+The point which divides the line segment joining the points A (0, 5) and B (5, 0) internally in the ratio 2:3 is _____________
+
+Q12 [mcq, 1m, Sec A]
+The pair of lines represented by the equations 2x+y+3 = 0 and 4x+ky+6 = 0 will be parallel if value of k is ______. OR If the quadratic equation x2 – 2x + k = 0 has equal roots, then value of k is ______.
+
+Q13 [mcq, 1m, Sec A]
+The value of sin 60୭cos 30୭+ sin 30୭cos 60୭ is______.
+
+Q14 [mcq, 1m, Sec A]
+Value of cos 0°. Cos 30° .cos 45° . cos 60° . cos 90° is ___________.
+
+Q15 [mcq, 1m, Sec A]
+The sides of two similar triangles are in the ratio 2:3, then the areas of these triangles are in the ratio ______________ (16 – 20) Answer the following :
+
+Q16 [mcq, 1m, Sec A]
+△PQR is right angled isosceles triangle, right angled at R. Find value of sin P. OR If 15 cot A = 8, then find value of cosec A.
+
+Q17 [mcq, 1m, Sec A]
+If area of quadrant of a circle is 38.5 cm2 then find its diameter (use π = ଶଶ ଻)
+
+Q18 [mcq, 1m, Sec A]
+A dice is thrown once. Find the probability of getting a prime number.
+
+Q19 [mcq, 1m, Sec A]
+In the given fig. If DE ‖ BC Find EC.
+
+Q2 [mcq, 1m, Sec A]
+Empirical relationship between the three measures of central tendency is 1
+  (A) 2 Mean = 3 Median – Mode
+  (B) 2 Mode = 3 Median – Mean
+  (C) Mode = 2 Mean – 3 Median
+  (D) 3 Median = 2 Mode + Mean
+
+Q20 [mcq, 1m, Sec A]
+Find the common difference of the A.P whose first term is 12 and fifth term is 0. SECTION – B
+
+Q21 [short_answer, 2m, Sec B]
+If two coins are tossed simultaneously. Find the probability of getting 2 heads.
+
+Q22 [short_answer, 2m, Sec B]
+A lot of 25 bulbs contain 5 defective ones. One bulb is drawn at random from the lot. What is the probability that the bulb is good. OR Two dice are thrown simultaneously at random. Find the probability of getting a sum of eight.
+
+Q23 [short_answer, 2m, Sec B]
+Prove that the tangents drawn at the ends of a diameter of a circle are parallel.
+
+Q24 [short_answer, 2m, Sec B]
+Show that tan 48୭tan 23୭tan 42୭tan 67୭= 1. OR Evaluate cos 48୭cos 42୭− sin 48୭sin 42୭
+
+Q25 [short_answer, 2m, Sec B]
+Find the area of circle whose circumference is 22cm. 26 Read the following passage and answer the questions that follows: A teacher told 10 students to write a polynomial on the black board. Students wrote
+
+Q27 [short_answer, 3m, Sec C]
+Find the zeroes of the quadratic polynomial xଶ− 3x − 10 and verify the relationship between the zeroes and coefficient.
+
+Q28 [short_answer, 3m, Sec C]
+Draw a circle of radius 4 cm.From the point 7 cm away from its centre, construct the pair of tangents to the circle. OR Draw a line segment of length 8 cm and divide it in the ratio 2:3
+
+Q29 [short_answer, 3m, Sec C]
+Following figure depicts a park where two opposite sides are parallel and left and right ends are semi-circular in shape. It has a 7m wide track for walking Two friends Seema and Meena went to the park. Meena said that area of the track is 4066m2. Is she right? Explain.
+  [NOTE: diagram]
+
+Q3 [mcq, 1m, Sec A]
+In the given figure, if TP and TQ are tangents to a circle with centre O, so that ∠POQ = 110°, then ∠PTQ is
+  (A) 110°
+  (B) 90°
+  (C) 80°
+  (D) 70°
+  [NOTE: diagram]
+
+Q30 [short_answer, 3m, Sec C]
+Prove that ୡ୭୲୅ି ୡ୭ୱ୅ ୡ୭୲୅ାୡ୭ୱ୅ = ୡ୭ୱୣୡ୅ିଵ ୡ୭ୱୣୡ୅ାଵ OR Prove that: ୲ୟ୬୅ ା ୱ୧୬୅ ୲ୟ୬୅ ି ୱ୧୬୅= ୱୣୡ ୅ାଵ ୱୣୡ ୅ିଵ
+
+Q31 [short_answer, 3m, Sec C]
+Prove that 5 - √3 is irrational, given that √3 is irrational. OR An army contingent of 616 members is to march behind an army band of 32 members in a parade. The two groups are to march in the same number of columns. What is the maximum number of columns in which they can march ?
+
+Q32 [short_answer, 3m, Sec C]
+Prove that the lengths of tangents drawn from an external point to a circle are equal.
+
+Q33 [short_answer, 3m, Sec C]
+Read the following passage and answer the questions that follows: In a class room, four students Sita, Gita, Rita and Anita are sitting at A(3,4), B(6,7), C(9,4), D(6,1) respectively. Then a new student Anjali joins the class (i) Teacher tells Anjali to sit in the middle of the four students. Find the coordinates of the position where she can sit. (ii) Calculate the distance between Sita and Anita. (iii) Which two students are equidistant from Gita.
+
+Q34 [short_answer, 3m, Sec C]
+Solve 2x + 3y = 11 and x − 2y = −12 algebraically and hence find the value of ‘m’ for which y = mx + 3. SECTION D
+
+Q35 [case_study, 4m, Sec D]
+Find two consecutive positive integers sum of whose squares is 365.
+
+Q36 [case_study, 4m, Sec D]
+If the sum of first 14 terms of an A.P. is 1050 and its first term is 10, find the 20 th term. OR The first term of an A.P. is 5, the last term is 45 and sum is 400. Find the number of terms and the common difference.
+
+Q37 [case_study, 4m, Sec D]
+As observed from the top of a 75m high light house above the sea level, the angles of depression of two ships are 30 O and 45O respectively If one ship is exactly behind the other on the same side of the light house and in the same straight line, find the distance between the two ships. (use √3 = 1.732)
+
+Q38 [case_study, 4m, Sec D]
+If a line is drawn parallel to one side of a triangle to intersect the other two sides in distinct points, then prove that the other two sides are divided in the same ratio. OR State and prove the Pythagoras theorem.
+
+Q39 [case_study, 4m, Sec D]
+A copper rod of diameter 1 cm and length 8 cm is drawn in to a wire of length 18 m of uniform thickness. Find the thickness of wire. Or A metallic sphere of radius 4.2 cm is melted and recast into the shape of a cylinder of radius 6 cm. Find the height of the cylinder.
+
+Q4 [mcq, 1m, Sec A]
+325 can be expressed as a product of its primes as
+  (A) 52×7
+  (B) 52×13
+  (C) 5×132
+  (D) 2×32×52
+
+Q40 [case_study, 4m, Sec D]
+The following distribution gives the daily income of 50 workers of a factory Daily income 400- 420 420-440 440-460 460-480 480-500 Number of workers 12 14 8 6 10 Convert this distribution to less than type of cumulative frequency distribution and draw its ogive.
+
+Q5 [mcq, 1m, Sec A]
+One card is drawn from a well shuffled deck of 52 cards. The probability that it is black queen is
+
+Q6 [mcq, 1m, Sec A]
+The sum of the zeroes of the polynomial 2x2-8x +6 is
+  (A) - 3
+  (B) 3
+  (C) - 4
+  (D) 4
+
+Q7 [mcq, 1m, Sec A]
+Which of the following is the decimal expansion of an irrational number
+  (A) 4.561
+  (B) 0.12തതതത
+  (C) 5.010010001…
+  (D) 6.03
+
+Q8 [mcq, 1m, Sec A]
+The following figure shows the graph of y = p(x), where p(x) is a polynomial in variable x. The number of zeroes of the polynomial p(x) is
+  (A) 1
+  (B) 2
+  (C) 3
+  (D) 4
+  [NOTE: diagram]
+
+Q9 [mcq, 1m, Sec A]
+The distance of the point P (3, - 4) from the origin is
+  (A) 7 units
+  (B) 5 units
+  (C) 4 units
+  (D) 3 units
+
+======================================================================
+Return the complete JSON array.

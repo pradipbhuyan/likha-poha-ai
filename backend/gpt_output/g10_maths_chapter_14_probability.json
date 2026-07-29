@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 14: Probability",
+    "central_question": "How can the likelihood of an event be calculated from equally likely outcomes and related to its complement, certainty and impossibility?",
+    "in_scope_units": [
+      "Probability — A Theoretical Approach: defines random experiments, equally likely outcomes and theoretical probability and contrasts it with empirical probability.",
+      "Elementary, complementary, sure and impossible events: establishes the sum and range properties of probability.",
+      "Applications to coins, dice, cards, balls, marbles, birthdays and selections: counts favourable and total outcomes.",
+      "Multiple-outcome experiments: constructs sample spaces for two coins, repeated throws and two distinguishable dice.",
+      "Continuous geometric extensions marked not for examination: uses favourable length or area divided by total length or area.",
+      "Summary and note: consolidates P(E), complements and the relationship between experimental and theoretical probability."
+    ],
+    "banned_topics": [
+      "Conditional probability, Bayes’ theorem and independent-event multiplication rules.",
+      "Permutations and combinations as a separate counting theory.",
+      "Random variables, probability distributions and expected value.",
+      "Statistics formulas for mean, median and mode."
+    ],
+    "must_include_keywords": [
+      "random experiment",
+      "fair coin",
+      "unbiased",
+      "fair die",
+      "equally likely outcomes",
+      "sample space",
+      "event",
+      "favourable outcomes",
+      "possible outcomes",
+      "theoretical probability",
+      "classical probability",
+      "experimental probability",
+      "empirical probability",
+      "Pierre Simon Laplace",
+      "elementary event",
+      "complement",
+      "complementary events",
+      "P(not E)",
+      "sure event",
+      "certain event",
+      "impossible event",
+      "0 ≤ P(E) ≤ 1",
+      "coin toss",
+      "die throw",
+      "well-shuffled deck",
+      "52 cards",
+      "four suits",
+      "face cards",
+      "marbles",
+      "at least one",
+      "ordered pair",
+      "two dice",
+      "36 outcomes",
+      "favourable length",
+      "favourable area",
+      "sum of elementary-event probabilities"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Any two named outcomes of an experiment are automatically equally likely.",
+        "correction": "Equal likelihood must be justified; for example, drawing a red colour from four red balls and a blue colour from one blue ball is not equally likely."
+      },
+      {
+        "claim": "Probability is favourable outcomes divided by total outcomes even when the elementary outcomes are not equally likely.",
+        "correction": "The chapter’s theoretical formula is used under the assumption that all elementary outcomes are equally likely."
+      },
+      {
+        "claim": "P(not E) = P(E) − 1.",
+        "correction": "Complementary events satisfy P(E) + P(not E) = 1, so P(not E) = 1 − P(E)."
+      },
+      {
+        "claim": "A probability may be negative or greater than 1.",
+        "correction": "For every event, 0 ≤ P(E) ≤ 1."
+      },
+      {
+        "claim": "When two coins are tossed, HH, TT and one head-one tail are three equally likely outcomes.",
+        "correction": "The four equally likely ordered outcomes are HH, HT, TH and TT; one head-one tail contains two outcomes."
+      },
+      {
+        "claim": "The eleven possible sums of two dice are equally likely.",
+        "correction": "The 36 ordered pairs are equally likely, but different sums have different numbers of favourable ordered pairs."
+      }
+    ],
+    "recommended_example_progression": [
+      "Start with NCERT Examples 1 and 2 to define theoretical probability and elementary events using a coin and three coloured balls.",
+      "Use NCERT Example 3 and the following remarks to develop complements, impossible events, sure events and the bound 0 ≤ P(E) ≤ 1.",
+      "Apply complements and card structure through NCERT Examples 4–6.",
+      "Construct finite sample spaces through NCERT Example 9 for two coins and NCERT Example 13 for two distinguishable dice.",
+      "Finish with NCERT Exercise 14.1 Questions 23–25 to test repeated trials, at-least-one events and incorrect equally-likely arguments."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "NCERT Exercise 14.1 contains Questions 1–25 on equally likely outcomes, complements, coins, dice, cards, selections, repeated trials and geometric probability extensions."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Probability\n\n## What you will learn\nYou will understand random experiments, equally likely outcomes and theoretical probability. You will also distinguish a colour event from the individual equally likely objects that can be drawn.\n\n## Simple explanation\nProbability compares the number of favourable elementary outcomes with the total number of equally likely elementary outcomes. Before using the formula, confirm that the outcomes being counted really are equally likely.\n\n## Step-by-step breakdown\n- **Fair coin**: A fair or unbiased coin has no reason to land more often on heads than tails when tossed randomly.\n- **Fair die**: A fair die has six equally likely face outcomes: 1, 2, 3, 4, 5 and 6.\n- **Not every description is equally likely**: In a bag with four red balls and one blue ball, red and blue colour outcomes are not equally likely, although each individual ball is equally likely to be drawn.\n- **Theoretical probability**: P(E) = number of outcomes favourable to E / number of all possible outcomes, assuming equally likely outcomes.\n- **Experimental probability**: Empirical probability is based on observed frequency over repeated trials; theoretical probability predicts from assumptions.\n- **Historical note**: The chapter attributes the classical definition to Pierre Simon Laplace in 1795 and notes earlier and later contributions to probability theory.\n- **Elementary event**: An event containing exactly one elementary outcome.\n\n## Worked example\nQuestion: Solve NCERT Example 2: A bag contains one red, one blue and one yellow ball of the same size. One ball is drawn at random. Find the probabilities of yellow, red and blue.\n\nSolution:\n- Step 1: The three individual balls are equally likely to be drawn.\n- Step 2: Total number of possible outcomes = 3.\n- Step 3: For event Y, drawing yellow, the number of favourable outcomes = 1, so P(Y) = 1/3.\n- Step 4: For event R, drawing red, the number of favourable outcomes = 1, so P(R) = 1/3.\n- Step 5: For event B, drawing blue, the number of favourable outcomes = 1, so P(B) = 1/3.\n- Step 6: Check: P(Y) + P(R) + P(B) = 1/3 + 1/3 + 1/3 = 1.\n- Final answer: P(yellow) = P(red) = P(blue) = 1/3.\n\n## Common mistake\nDo not count only the names of broad categories when their contents differ. The elementary objects must be equally likely before favourable and total counts are compared.\n\n## Quick check question\nQuestion: From NCERT Example 3, what is the probability of getting a number greater than 4 on one fair die throw?\nAnswer: The probability is 1/3.\nExplanation: The six equally likely outcomes are 1–6. Favourable outcomes are 5 and 6, so P = 2/6 = 1/3.\n\n## Summary\n- A random experiment has known possible outcomes but an uncertain result.\n- The theoretical formula assumes equally likely elementary outcomes.\n- Count favourable outcomes and all possible outcomes carefully.\n- An elementary event has one outcome.\n- Probabilities of all elementary events add to 1.",
+    "Core explanation": "# Core explanation: Probability\n\n## What you will learn\nYou will use complementary events and identify sure and impossible events. You will also apply these ideas to a well-shuffled deck of cards.\n\n## Simple explanation\nAn event and its complement cover all possibilities without overlap. Therefore, their probabilities add to 1, which often makes “not” questions quicker to solve.\n\n## Step-by-step breakdown\n- **Complement**: The event not E is written as Ē and contains every outcome not in E.\n- **Complement rule**: P(Ē) = 1 − P(E), because P(E) + P(Ē) = 1.\n- **Impossible event**: An event with no favourable outcome has probability 0.\n- **Sure event**: An event containing every possible outcome has probability 1.\n- **Probability range**: For every event, 0 ≤ P(E) ≤ 1.\n- **Deck structure**: A standard deck has 52 cards in four suits of 13; hearts and diamonds are red, clubs and spades are black, and kings, queens and jacks are face cards.\n- **Well-shuffled deck**: Shuffling supports the assumption that each individual card is equally likely to be drawn.\n\n## Worked example\nQuestion: Solve NCERT Example 4: One card is drawn from a well-shuffled deck of 52 cards. Find the probability that it is an ace and that it is not an ace.\n\nSolution:\n- Step 1: There are 52 equally likely card outcomes.\n- Step 2: There are four aces, so P(ace) = 4/52 = 1/13.\n- Step 3: There are 52 − 4 = 48 non-aces, so P(not ace) = 48/52 = 12/13.\n- Step 4: Alternatively, P(not ace) = 1 − P(ace) = 1 − 1/13 = 12/13.\n- Step 5: Check: 1/13 + 12/13 = 1.\n- Final answer: P(ace) = 1/13 and P(not ace) = 12/13.\n\n## Common mistake\nDo not subtract in the wrong order. Complement probability is 1 − P(E), not P(E) − 1.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 14.1 Question 5: If P(E) = 0.05, find P(not E).\nAnswer: P(not E) = 0.95.\nExplanation: P(not E) = 1 − P(E) = 1 − 0.05 = 0.95.\n\n## Summary\n- Complementary events exhaust all possibilities.\n- Their probabilities add to 1.\n- Impossible events have probability 0.\n- Sure events have probability 1.\n- Every probability lies from 0 to 1 inclusive.\n- Card counting begins with the 52 equally likely cards.",
+    "Worked examples": "# Worked examples: Probability\n\n## What you will learn\nYou will construct the complete sample space for two different coins and solve an “at least one” event. You will see why ordered outcomes must be kept distinct.\n\n## Simple explanation\nFor more than one trial, list elementary outcomes systematically. “At least one” can be counted directly or found by subtracting the probability of none from 1.\n\n## Step-by-step breakdown\n- **Two different coins**: The first and second coins are distinguishable, so HT and TH are different ordered outcomes.\n- **Sample space**: For two fair coins, S = {HH, HT, TH, TT}.\n- **At least one**: The event includes every outcome containing one or more successes.\n- **Complement shortcut**: P(at least one head) = 1 − P(no head).\n- **Random selection**: For marbles or name cards, each individual item is an equally likely elementary outcome when the draw is random.\n- **Partition check**: Probabilities of disjoint colour categories covering the box should add to 1.\n\n## Worked example\nQuestion: Solve NCERT Example 9: Two different fair coins are tossed simultaneously. Find the probability of getting at least one head.\n\nSolution:\n- Step 1: List the four equally likely ordered outcomes: HH, HT, TH, TT.\n- Step 2: The event “at least one head” contains HH, HT and TH.\n- Step 3: Number of favourable outcomes = 3 and total outcomes = 4.\n- Step 4: Therefore P(at least one head) = 3/4.\n- Step 5: Complement check: the only no-head outcome is TT, so P(no head) = 1/4 and 1 − 1/4 = 3/4.\n- Final answer: The probability of at least one head is 3/4.\n\n## Common mistake\nDo not merge HT and TH into one elementary outcome. The coins are different, so the order identifies which coin shows the head.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 14.1 Question 9(iii): A box has 5 red, 8 white and 4 green marbles. What is the probability of drawing a marble that is not green?\nAnswer: The probability is 13/17.\nExplanation: There are 17 marbles in total and 4 are green. Therefore 13 are not green, so P(not green) = 13/17. Equivalently, 1 − 4/17 = 13/17.\n\n## Summary\n- List multi-trial outcomes systematically.\n- Distinguishable objects produce ordered outcomes.\n- At least one can often be solved by a complement.\n- Random draws count individual objects as elementary outcomes.\n- Use a probability-sum check when categories cover all outcomes.",
+    "Exam-style problems": "# Exam-style problems: Probability\n\n## What you will learn\nYou will build the 36-outcome sample space for two distinguishable dice and count outcomes for given sums. You will also use a complement for a repeated-die event.\n\n## Simple explanation\nWhen two dice are thrown, the elementary outcome is an ordered pair. The sums are not equally likely because some sums can be formed by more ordered pairs than others.\n\n## Step-by-step breakdown\n- **Ordered pair**: For a blue and a grey die, (1,4) and (4,1) are different because the colours identify the first and second entries.\n- **Number of outcomes**: Six choices for the first die and six for the second give 6 × 6 = 36 equally likely ordered pairs.\n- **Sum event**: Count all ordered pairs whose coordinates add to the required sum.\n- **Impossible sum**: The largest sum is 12, so a sum of 13 has no favourable outcome.\n- **Certain bound**: Every two-dice sum is at most 12, so that event contains all 36 outcomes.\n- **Repeated throw equivalence**: Throwing one die twice is treated as the same 36-outcome experiment as throwing two distinguishable dice simultaneously.\n\n## Worked example\nQuestion: Solve NCERT Example 13: Two dice, one blue and one grey, are thrown. Find probabilities that the sum is (i) 8, (ii) 13 and (iii) at most 12.\n\nSolution:\n- Step 1: Total equally likely ordered outcomes = 6 × 6 = 36.\n- Step 2: For sum 8, favourable pairs are (2,6), (3,5), (4,4), (5,3), (6,2): five outcomes.\n- Step 3: Therefore P(sum 8) = 5/36.\n- Step 4: A sum of 13 is impossible because the maximum sum is 6 + 6 = 12, so P(sum 13) = 0/36 = 0.\n- Step 5: Every ordered pair has sum at most 12, so P(sum ≤ 12) = 36/36 = 1.\n- Final answer: P(sum 8) = 5/36, P(sum 13) = 0 and P(sum ≤ 12) = 1.\n\n## Common mistake\nDo not assign probability 1/11 to each possible sum from 2 to 12. The 36 ordered pairs are equally likely, but the sums have unequal numbers of favourable pairs.\n\n## Quick check question\nQuestion: Solve NCERT Exercise 14.1 Question 24: A die is thrown twice. Find the probability that 5 does not appear either time and that 5 appears at least once.\nAnswer: P(no 5 in either throw) = 25/36 and P(at least one 5) = 11/36.\nExplanation: Each throw has 5 non-5 outcomes out of 6. In the 36 ordered pairs, 5 × 5 = 25 contain no 5, so P(no 5) = 25/36. The complement gives P(at least one 5) = 1 − 25/36 = 11/36.\n\n## Summary\n- Two dice produce 36 equally likely ordered pairs.\n- Order matters for distinguishable dice.\n- Count favourable pairs, not just distinct sum values.\n- Impossible and certain events give probabilities 0 and 1.\n- A complement is efficient for at-least-one questions.",
+    "Revision and recap": "# Revision and recap: Probability\n\n## What you will learn\nYou will review repeated coin tosses, test flawed equally-likely arguments and connect theoretical probability with empirical probability. You will also recognise the chapter’s non-examination geometric extensions.\n\n## Simple explanation\nA reliable solution lists equally likely elementary outcomes first and only then groups them into events. Experimental results may fluctuate, but with many trials they are expected to become close to the theoretical probability.\n\n## Step-by-step breakdown\n- **Three coin tosses**: Three fair tosses produce 2³ = 8 equally likely ordered sequences.\n- **Grouped events**: A verbal event may contain several elementary outcomes and therefore need not have the same probability as another verbal event.\n- **Empirical versus theoretical**: Empirical probability records what happened; theoretical probability predicts under stated assumptions.\n- **Large number of trials**: The chapter notes that experimental probability is expected to approach theoretical probability as trials increase.\n- **Continuous extension**: NCERT Examples 10 and 11, marked not for examination, use favourable length/total length or favourable area/total area.\n- **Final checklist**: Verify equal likelihood, list the sample space, define the event, count favourable outcomes, simplify and check 0 ≤ P ≤ 1.\n\n## Worked example\nQuestion: Solve NCERT Exercise 14.1 Question 23: A one-rupee coin is tossed three times. Hanif wins if all tosses are the same and loses otherwise. Find the probability that he loses.\n\nSolution:\n- Step 1: List the eight equally likely sequences: HHH, HHT, HTH, HTT, THH, THT, TTH, TTT.\n- Step 2: Hanif wins for HHH or TTT, so there are 2 winning outcomes.\n- Step 3: The remaining 8 − 2 = 6 outcomes are losing outcomes.\n- Step 4: Therefore P(lose) = 6/8 = 3/4.\n- Step 5: Complement check: P(win) = 2/8 = 1/4, so P(lose) = 1 − 1/4 = 3/4.\n- Final answer: The probability that Hanif loses is 3/4.\n\n## Common mistake\nDo not count “all same” and “not all same” as two equally likely outcomes. They contain 2 and 6 elementary sequences respectively.\n\n## Quick check question\nQuestion: Answer NCERT Exercise 14.1 Question 25: Is it correct that two heads, two tails and one of each each have probability 1/3? Is P(odd on one die) = 1/2 correct?\nAnswer: The first argument is incorrect; the second is correct.\nExplanation: For two coins, HH and TT each have probability 1/4, while one of each contains HT and TH and has probability 2/4 = 1/2. For one fair die, odd outcomes {1,3,5} and even outcomes {2,4,6} each contain three of the six equally likely outcomes, so P(odd) = 3/6 = 1/2.\n\n## Summary\n- Elementary outcomes, not broad labels, must be equally likely.\n- Three coin tosses have eight ordered outcomes.\n- Complement probabilities add to 1.\n- Experimental probability is observed; theoretical probability is predicted.\n- Geometric probability examples in this chapter are marked not for examination.\n- Every final probability must lie between 0 and 1."
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 3: Pair of Linear Equations in Two Variables",
+    "central_question": "How can two related linear conditions be modelled and solved, and how can we determine whether they have one, no, or infinitely many common solutions?",
+    "in_scope_units": [
+      "Introduction: representing a real-life situation using two linear equations in two variables.",
+      "Graphical Method of Solution: intersecting, parallel and coincident lines; consistency; and coefficient-ratio conditions.",
+      "Algebraic Methods of Solving a Pair of Linear Equations: why exact algebraic methods are useful.",
+      "Substitution Method: expressing one variable in terms of the other and interpreting true or false identities.",
+      "Elimination Method: making one pair of coefficients equal and eliminating a variable.",
+      "Summary: consolidates graphical and algebraic solution types and consistency conditions."
+    ],
+    "banned_topics": [
+      "Quadratic equations or nonlinear systems that cannot first be reduced to a pair of linear equations.",
+      "Matrix inversion, determinants or Cramer's rule, which are not part of the supplied chapter.",
+      "The cross-multiplication method, which is not developed in the supplied chapter text.",
+      "Three-variable simultaneous equations."
+    ],
+    "must_include_keywords": [
+      "pair of linear equations",
+      "two variables",
+      "solution",
+      "common solution",
+      "graphical method",
+      "straight lines",
+      "intersecting lines",
+      "parallel lines",
+      "coincident lines",
+      "unique solution",
+      "no solution",
+      "infinitely many solutions",
+      "consistent pair",
+      "inconsistent pair",
+      "dependent pair",
+      "a₁/a₂",
+      "b₁/b₂",
+      "c₁/c₂",
+      "coefficient ratios",
+      "point of intersection",
+      "substitution method",
+      "express one variable",
+      "true statement",
+      "false statement",
+      "elimination method",
+      "equal coefficients",
+      "add equations",
+      "subtract equations",
+      "verification",
+      "word problem",
+      "linear model",
+      "non-integral coordinates"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every pair of linear equations has exactly one solution.",
+        "correction": "A pair can have one solution, no solution, or infinitely many solutions, depending on whether the lines intersect, are parallel, or coincide."
+      },
+      {
+        "claim": "If a₁/a₂ = b₁/b₂, the pair always has infinitely many solutions.",
+        "correction": "Infinitely many solutions require a₁/a₂ = b₁/b₂ = c₁/c₂; if the first two ratios are equal but differ from c₁/c₂, the lines are parallel and there is no solution."
+      },
+      {
+        "claim": "A true statement such as 18 = 18 after substitution gives one numerical solution.",
+        "correction": "A true identity with no variable indicates infinitely many solutions, not a unique solution."
+      },
+      {
+        "claim": "A false statement such as 0 = 9 means an algebra mistake must have occurred.",
+        "correction": "When the algebra is correct, a false statement shows that the pair is inconsistent and has no common solution."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the Akhila Giant Wheel and Hoopla situation from Section 3.1 to form and solve a pair of equations.",
+      "Use Table 3.1 and NCERT Example 1 to connect coefficient ratios, line positions and graphical solutions.",
+      "Use NCERT Example 4 to demonstrate the substitution method with a fractional solution.",
+      "Use NCERT Examples 6 and 7 to interpret a true identity and a false statement after substitution.",
+      "Use NCERT Example 8 and Example 10 to practise elimination and modelling applications."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The supplied chapter contains Exercise 3.1 on graphs and consistency, Exercise 3.2 on substitution, and Exercise 3.3 on elimination and applications."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Pair of Linear Equations in Two Variables\n\n## What you will learn\nYou will translate two conditions from a real-life situation into two linear equations. You will understand that a solution must satisfy both equations at the same time.\n\n## Simple explanation\nOne linear equation in two variables usually has many solutions. A pair of equations narrows the possibilities: the required ordered pair must be common to both equations.\n\n## Step-by-step breakdown\n- **Choosing variables**: Assign clear meanings and units to x and y before forming equations.\n- **Forming the first equation**: Translate one relationship between the two unknowns.\n- **Forming the second equation**: Translate the independent total, cost, age or quantity condition.\n- **Common solution**: An ordered pair (x, y) is a solution only if it satisfies both equations.\n- **Verification**: Substitute the values into both original equations and check the real-life conditions.\n\n## Worked example\nQuestion: Solve the Akhila fair problem from NCERT Section 3.1, where y = x/2 and 3x + 4y = 20.\n\nSolution:\n- Step 1: Let x be the number of Giant Wheel rides and y be the number of Hoopla games.\n- Step 2: The first condition gives y = x/2.\n- Step 3: Substitute y = x/2 into 3x + 4y = 20.\n- Step 4: 3x + 4(x/2) = 20.\n- Step 5: 3x + 2x = 20, so 5x = 20 and x = 4.\n- Step 6: y = x/2 = 4/2 = 2.\n- Step 7: Check the cost: 3(4) + 4(2) = 12 + 8 = 20.\n- Final answer: Akhila had **4 rides and played Hoopla 2 times**.\n\n## Common mistake\nDo not solve only one equation and stop. A value pair must satisfy both equations to be the solution of the pair.\n\n## Quick check question\nQuestion: In NCERT Exercise 3.1 Question 1(i), 10 students take part and the number of girls is 4 more than the number of boys. What equations represent the situation?\nAnswer: If x is the number of boys and y is the number of girls, then x + y = 10 and y = x + 4.\nExplanation: The first equation represents the total number of students, and the second represents the difference between girls and boys.\n\n## Summary\n- Two unknown quantities are represented by two variables.\n- Each condition gives one linear equation.\n- A solution satisfies both equations simultaneously.\n- Substitution into the original conditions verifies the result.",
+    "Core explanation": "# Core explanation: Pair of Linear Equations in Two Variables\n\n## What you will learn\nYou will classify a pair of linear equations from its graph and from coefficient ratios. You will connect intersecting, parallel and coincident lines with the number of solutions.\n\n## Simple explanation\nEach linear equation in two variables represents a straight line. The common solutions of the pair are exactly the common points of the two lines.\n\n## Step-by-step breakdown\n- **Intersecting lines**: They meet at one point, so the pair has a unique solution and is consistent.\n- **Parallel lines**: They never meet, so the pair has no solution and is inconsistent.\n- **Coincident lines**: They are the same line, so every point on the line is a common solution; the pair is dependent and consistent.\n- **General form**: Write the equations as a₁x + b₁y + c₁ = 0 and a₂x + b₂y + c₂ = 0.\n- **Unique solution condition**: a₁/a₂ ≠ b₁/b₂.\n- **No solution condition**: a₁/a₂ = b₁/b₂ ≠ c₁/c₂.\n- **Infinitely many solutions condition**: a₁/a₂ = b₁/b₂ = c₁/c₂.\n\n## Worked example\nQuestion: Solve NCERT Example 1 graphically: x + 3y = 6 and 2x − 3y = 12.\n\nSolution:\n- Step 1: For x + 3y = 6, choose x = 0 to get y = 2, giving A(0, 2); choose x = 6 to get y = 0, giving B(6, 0).\n- Step 2: For 2x − 3y = 12, choose x = 0 to get y = −4, giving P(0, −4); choose x = 3 to get y = −2, giving Q(3, −2).\n- Step 3: Draw line AB through A and B, and line PQ through P and Q.\n- Step 4: The lines intersect at B(6, 0).\n- Step 5: Verify: 6 + 3(0) = 6 and 2(6) − 3(0) = 12.\n- Final answer: The pair is **consistent** and its unique solution is **x = 6, y = 0**.\n\n## Common mistake\nWhen comparing ratios, first move every term to the same standard form. A sign change in c can completely change the classification.\n\n## Quick check question\nQuestion: Classify the pair in NCERT Table 3.1: x + 2y − 4 = 0 and 2x + 4y − 12 = 0.\nAnswer: The lines are parallel and the pair has no solution.\nExplanation: a₁/a₂ = 1/2 and b₁/b₂ = 2/4 = 1/2, but c₁/c₂ = (−4)/(−12) = 1/3, so a₁/a₂ = b₁/b₂ ≠ c₁/c₂.\n\n## Summary\n- A graphical solution is a common point of two lines.\n- Intersecting lines give one solution.\n- Parallel lines give no solution.\n- Coincident lines give infinitely many solutions.\n- Coefficient ratios classify the pair without drawing the graph.",
+    "Worked examples": "# Worked examples: Pair of Linear Equations in Two Variables\n\n## What you will learn\nYou will solve a pair of equations by substitution. You will also interpret the special outcomes that produce a true identity or a false statement.\n\n## Simple explanation\nIn substitution, one variable is written in terms of the other. Replacing it in the second equation produces an equation in one variable, which can then be solved exactly.\n\n## Step-by-step breakdown\n- **Choose a convenient equation**: Isolate x or y using the equation that gives the simplest expression.\n- **Substitute**: Replace that variable in the other equation.\n- **Solve one-variable equation**: Simplify carefully, including signs and fractions.\n- **Back-substitute**: Use the obtained value to find the second variable.\n- **True identity**: A statement such as 18 = 18 means infinitely many solutions.\n- **False identity**: A statement such as −4 = 0 means no solution.\n\n## Worked example\nQuestion: Solve NCERT Example 4 by substitution: 7x − 15y = 2 and x + 2y = 3.\n\nSolution:\n- Step 1: From x + 2y = 3, write x = 3 − 2y.\n- Step 2: Substitute in 7x − 15y = 2: 7(3 − 2y) − 15y = 2.\n- Step 3: Expand: 21 − 14y − 15y = 2.\n- Step 4: Combine terms: 21 − 29y = 2.\n- Step 5: Therefore, −29y = −19, so y = 19/29.\n- Step 6: Back-substitute: x = 3 − 2(19/29) = 87/29 − 38/29 = 49/29.\n- Step 7: Both values satisfy the original equations.\n- Final answer: **x = 49/29 and y = 19/29**.\n\n## Common mistake\nAfter isolating a variable, use brackets during substitution. For example, 7(3 − 2y) must become 21 − 14y, not 21 − 2y.\n\n## Quick check question\nQuestion: What conclusion follows in NCERT Example 6 when substitution gives 18 = 18 for 2x + 3y = 9 and 4x + 6y = 18?\nAnswer: The pair has infinitely many solutions.\nExplanation: The second equation is exactly twice the first, so both equations represent the same line and the final identity is true for every common point.\n\n## Summary\n- Isolate one variable and substitute it into the other equation.\n- Solve the resulting one-variable equation.\n- Back-substitute to find the second variable.\n- A true variable-free identity gives infinitely many solutions.\n- A false variable-free statement gives no solution.",
+    "Exam-style problems": "# Exam-style problems: Pair of Linear Equations in Two Variables\n\n## What you will learn\nYou will solve pairs by elimination and apply the method to a real-life problem. You will learn how multiplication, addition or subtraction removes one variable.\n\n## Simple explanation\nElimination is efficient when the coefficient of one variable can be made equal in both equations. Adding or subtracting the equations then cancels that variable.\n\n## Step-by-step breakdown\n- **Prepare coefficients**: Multiply one or both equations by suitable non-zero constants.\n- **Choose addition or subtraction**: Opposite coefficients cancel by addition; equal coefficients cancel by subtraction.\n- **Solve the remaining equation**: Find the value of the variable that remains.\n- **Back-substitute**: Put the value in either original equation.\n- **Interpret the answer**: Convert x and y back into the quantities named in the problem.\n- **Verify**: Check both equations and all real-life conditions.\n\n## Worked example\nQuestion: Solve NCERT Example 8: The income ratio is 9:7, expenditure ratio is 4:3, and each person saves ₹2,000 per month. Find their monthly incomes.\n\nSolution:\n- Step 1: Let the incomes be ₹9x and ₹7x, and expenditures be ₹4y and ₹3y.\n- Step 2: Savings give 9x − 4y = 2000 and 7x − 3y = 2000.\n- Step 3: Multiply the first equation by 3: 27x − 12y = 6000.\n- Step 4: Multiply the second equation by 4: 28x − 12y = 8000.\n- Step 5: Subtract the first new equation from the second: x = 2000.\n- Step 6: Substitute in 9x − 4y = 2000: 9(2000) − 4y = 2000.\n- Step 7: 18000 − 4y = 2000, so 4y = 16000 and y = 4000.\n- Step 8: The incomes are ₹9x = ₹18,000 and ₹7x = ₹14,000.\n- Final answer: The monthly incomes are **₹18,000 and ₹14,000**.\n\n## Common mistake\nWhen subtracting one equation from another, subtract every term on both sides. Writing 28x − 27x correctly but mishandling −12y − (−12y) causes sign errors.\n\n## Quick check question\nQuestion: In NCERT Example 9, elimination of 2x + 3y = 8 and 4x + 6y = 7 gives 0 = 9. What does this mean?\nAnswer: The pair has no solution and is inconsistent.\nExplanation: The left sides become identical after multiplying the first equation by 2, but the right sides differ, so no ordered pair can satisfy both equations.\n\n## Summary\n- Multiply equations to make one pair of coefficients equal.\n- Add or subtract to eliminate a variable.\n- Solve and back-substitute.\n- Elimination can expose no-solution or infinite-solution cases.\n- Real-life answers must be interpreted and verified.",
+    "Revision and recap": "# Revision and recap: Pair of Linear Equations in Two Variables\n\n## What you will learn\nYou will revise all solution types and choose between graphical, substitution and elimination methods. You will also solve a modelling problem in which two possible cases must be considered.\n\n## Simple explanation\nThe same pair can often be solved by more than one method. Graphs show the nature of the solution clearly, while substitution and elimination usually give exact values, especially when coordinates are fractional or difficult to read.\n\n## Step-by-step breakdown\n- **Graphical method**: Best for visualising whether lines intersect, coincide or remain parallel.\n- **Substitution method**: Convenient when one variable is already isolated or has coefficient 1.\n- **Elimination method**: Convenient when coefficients can easily be made equal.\n- **Consistency test**: Use a₁/a₂, b₁/b₂ and c₁/c₂ to predict the number of solutions.\n- **Word-problem workflow**: Define variables, form equations, solve, interpret and verify.\n- **Case-based modelling**: Statements such as “digits differ by 2” may require x − y = 2 or y − x = 2.\n\n## Worked example\nQuestion: Solve NCERT Example 10: A two-digit number and its reverse have sum 66, and the digits differ by 2. Find all such numbers.\n\nSolution:\n- Step 1: Let x be the tens digit and y be the units digit. The number is 10x + y and its reverse is 10y + x.\n- Step 2: (10x + y) + (10y + x) = 66 gives 11x + 11y = 66, so x + y = 6.\n- Step 3: The digits differ by 2, so either x − y = 2 or y − x = 2.\n- Step 4: Solve x + y = 6 and x − y = 2. Adding gives 2x = 8, so x = 4 and y = 2. The number is 42.\n- Step 5: Solve x + y = 6 and y − x = 2. Adding gives 2y = 8, so y = 4 and x = 2. The number is 24.\n- Step 6: Check: 42 + 24 = 66 and the digit difference is 2.\n- Final answer: The two possible numbers are **42 and 24**.\n\n## Common mistake\nDo not replace “the digits differ by 2” with only x − y = 2. The larger digit is not specified, so both x − y = 2 and y − x = 2 must be considered.\n\n## Quick check question\nQuestion: Using NCERT Exercise 3.2 Question 1(i), solve x + y = 14 and x − y = 4.\nAnswer: x = 9 and y = 5.\nExplanation: Adding the equations gives 2x = 18, so x = 9; then 9 + y = 14 gives y = 5.\n\n## Summary\n- A pair can have one, none or infinitely many solutions.\n- Graphs and coefficient ratios classify the pair.\n- Substitution and elimination give exact algebraic solutions.\n- True identities indicate infinitely many solutions; false identities indicate none.\n- Careful variable definitions and verification are essential in applications."
+  }
+}

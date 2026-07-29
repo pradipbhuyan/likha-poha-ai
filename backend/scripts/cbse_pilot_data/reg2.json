@@ -1,0 +1,346 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "This question paper contains two parts A and B.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Both Part A and Part B have internal choices. Part – A: 1. It consists three sections- I and II. 2. Section I has 16 questions of 1 mark each. Internal choice is provided in 5 questions.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Section II has 4 questions on case study. Each case study has 5 case-based sub-parts. An examinee is to attempt any 4 out of 5 sub-parts. Part – B: 1. Question No 21 to 26 are Very short answer Type questions of 2 mark each, 2. Question No 27 to 33 are Short Answer Type questions of 3 marks each 3. Question No 34 to 36 are Long Answer Type questions of 5 marks each.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Internal choice is provided in 2 questions of 2 marks, 2 questions of 3 marks and 1 question of 5 marks. Question No. Part-A Marks allocated Section-I Section I has 16 questions of 1 mark each. Internal choice is provided in 5 questions. 1 If xy=180 and HCF(x,y)=3, then find the LCM(x,y). OR The decimal representation of 14587 21 × 54 will terminate after how many decimal places? 2 If the sum of the zeroes of the quadratic polynomial 3x2-kx+6 is 3, then find the value of k. 3. For what value of k, the pair of linear equations 3x+y=3 and 6x+ky=8 does not have a solution. 4. If 3 chairs and 1 table costs Rs. 1500 and 6 chairs and 1 table costs Rs.2400. Form linear equations to represent this situation.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which term of the A.P. 27, 24, 21,…..is zero? OR In an Arithmetic Progression, if d= - 4, n=7,an=4, then find a.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "For what values of k, the equation 9x2+6kx+4=0 has equal roots?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the roots of the equation x2+7x+10=0 OR For what value(s) of ‘a’ quadratic equation 30 𝑎𝑥2 − 6𝑥 + 1 = 0 has no real roots?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If PQ=28cm, then find the perimeter of ∆PLM",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If two tangents are inclined at 60˚ are drawn to a circle of radius 3cm then find length of each tangent. OR PQ is a tangent to a circle with centre O at point P. If ∆OPQ is an isosceles triangle, then find ∠OQP.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the ∆ABC, D and E are points on side AB and AC respectively such that DE II BC. If AE=2cm, AD=3cm and BD=4.5cm, then find CE.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the figure, if B1, B2, B3,…... and A1,A2, A3,….. have been marked at equal distances. In what ratio C divides AB?",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "𝑆𝑖𝑛 𝐴 + 𝐶𝑜𝑠 𝐵 = 1, 𝐴 = 30° and B is an acute angle, then find the value of B. 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If x=2sin2Ɵ and y=2cos2Ɵ+1, then find x+y",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In a circle of diameter 42cm,if an arc subtends an angle of 60˚ at the centre where ∏=22/7, then what will be the length of arc.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "12 solid spheres of the same radii are made by melting a solid metallic cylinder of base diameter 2cm and height 16cm. Find the diameter of the each sphere.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the probability of getting a doublet in a throw of a pair of dice. OR Find the probability of getting a black queen when a card is drawn at random from a well-shuffled pack of 52 cards. Section-II Case study based questions are compulsory. Attempt any four sub parts of each question. Each subpart carries 1 mark",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Case Study based-1 SUN ROOM The diagrams show the plans for a sun room. It will be built onto the wall of a house. The four walls of the sunroom are square clear glass panels. The roof is made using • Four clear glass panels, trapezium in shape, all the same size • One tinted glass panel, half a regular octagon in shape",
+    "options": [
+      "Refer to Top View Find the mid-point of the segment joining the points J (6, 17) and I (9, 16). (i) (33/2,15/2) (ii) (3/2,1/2) (iii)(15/2,33/2) (iv) (1/2,3/2)",
+      "Refer to Top View The distance of the point P from the y-axis is (i) 4 (ii) 15 (iii) 19 (iv) 25",
+      "Refer to Front View The distance between the points A and S  is (i) 4 (ii) 8 (iii)16 (iv)20",
+      "Refer to Front View Find the co-ordinates of the point which divides the line segment joining the points A and B in the ratio 1:3 internally. (i)  (8.5,2.0) (ii) (2.0,9.5) (iii) (3.0,7.5) (iv) (2.0,8.5)"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Case Study Based- 2 SCALE FACTOR AND SIMILARITY SCALE FACTOR A scale drawing of an object is the same shape as the object but a different size. The scale of a drawing is a comparison of the length used on a drawing to the length it represents. The scale is written as a ratio. SIMILAR FIGURES The ratio of two corresponding sides in similar figures is called the scale factor. Scale factor = 𝑙𝑒𝑛𝑔𝑡ℎ 𝑖𝑛 𝑖𝑚𝑎𝑔𝑒 𝑐𝑜𝑟𝑟𝑒𝑠𝑝𝑜𝑛𝑑𝑖𝑛𝑔 𝑙𝑒𝑛𝑔𝑡ℎ 𝑖𝑛 𝑜𝑏𝑗𝑒𝑐𝑡 If one shape can become another using Resizing then the shapes are Similar Th Th Rotation or Turn Reflection or Flip Translation or Slide Hence, two shapes are Similar when one can become the other after a resize, flip, slide or turn.",
+    "options": [
+      "A model of a boat is made on the scale of 1:4. The model is 120cm long. The full size of the boat has a width of 60cm. What is the width of the scale model?",
+      "What will effect the similarity of any two polygons? (i) They are flipped horizontally (ii)They are dilated by a scale factor (iii)They are translated down (iv)They are not the mirror image of one another",
+      "If two similar triangles have a scale factor of a: b. Which statement regarding the two triangles is true? (i)The ratio of their perimeters is 3a : b (ii)Their altitudes have a ratio a:b (iii)Their medians have a ratio 𝑎 2 : b (iv)Their angle bisectors have a ratio a2 : b2",
+      "The shadow of a stick 5m long is 2m. At the same time the shadow of a tree 12.5m high is"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Case Study Based- 3 Applications of Parabolas-Highway Overpasses/Underpasses A highway underpass is parabolic in shape. Parabola A parabola is the graph that results from p(x)=ax2+bx+c Parabolas are symmetric about a vertical line known as the Axis of Symmetry. The Axis of Symmetry runs through the maximum or minimum point of the parabola which is called the Vertex",
+    "options": [
+      "If the highway overpass is represented by x2–2x –8. Then its zeroes are (i)  (2,-4) (ii)  (4,-2) (iii) (-2,-2) (iv) (-4,-4)",
+      "The highway overpass is represented graphically. Zeroes of a polynomial can be expressed graphically. Number of zeroes of polynomial is equal to number of points where the graph of polynomial (i) Intersects x-axis (ii) Intersects y-axis (iii) Intersects y-axis or x-axis (iv)None of the above",
+      "Graph of a quadratic polynomial is a (i) straight line (ii) circle (iii)parabola (iv)ellipse",
+      "The representation of Highway Underpass whose one zero is 6 and sum of the zeroes is 0, is (i)x2 – 6x + 2 (ii) x2 – 36 (iii)x2 – 6 (iv)x2 – 3"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Case Study Based- 4 100m RACE A stopwatch was used to find the time that it took a group of students to run 100 m. Time (in sec) 0-20 20-40 40-60 60-80 80-100 No. of students 8 10 13 6 3",
+    "options": [
+      "Estimate the mean time taken by a student to finish the race.",
+      "What wiil be the upper limit of the modal class ?",
+      "The construction of cummulative frequency table is useful in determining the",
+      "The sum of lower limits of median class and modal class is"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "3 bells ring at an interval of 4,7 and 14 minutes. All three bell rang at 6 am, when the three balls will the ring together next?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Find the point on x-axis which is equidistant from the points (2,-2) and (-4,2) OR P (-2, 5) and Q (3, 2) are two points. Find the co-ordinates of the point R on PQ such that PR=2QR",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Find a quadratic polynomial whose zeroes are 5-3√2 and 5+3√2.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Draw a line segment AB of length 9cm. With A and B as centres, draw circles of radius 5cm and 3cm respectively. Construct tangents to each circle from the centre of the other circle.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "If tanA=3/4, find the value of 1/sinA+1/cosA OR If √3 sinƟ-cosƟ=0 and 0˚<Ɵ <90˚, find the value of Ɵ",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "In the figure, quadrilateral ABCD is circumscribing a circle with centre O and AD⊥AB. If radius of incircle is 10cm, then the value of x is",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 27,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": ". Prove that 2-√3 is irrational, given that √3 is irrational.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "If one root of the quadratic equation 3x2+px+4=0 is 2/3, then find the value of p and the other root of the equation. OR The roots α and β of the quadratic equation x2-5x+3(k-1)=0 are such that α- β=1. Find the value k.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "In the figure, ABCD is a square of side 14 cm. Semi-circles are drawn with each side of square as diameter. Find the area of the shaded region.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 30,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The perimeters of two similar triangles are 25cm and 15cm respectively. If one side of the first triangle is 9cm, find the length of the corresponding side of the second triangle. OR In an equilateral triangle ABC, D is a point on side BC such that BD = 1/3 BC. Prove that 9 AD2 = 7 AB2",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The median of the following data is 16. Find the missing frequencies a and b, if the total of the frequencies is 70. Class 0-5 5-10 10-15 15-20 20-25 25-30 30-35 35-40 Frequency 12 a 12 15 b 6 6 4",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "If the angles of elevation of the top of the candle from two coins distant ‘a’ cm and ‘b’ cm (a>b) from its base and in the same straight line from it are 30˚ and 60˚, then find the height of the candle. Section V",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The mode of the following data is 67. Find the missing frequency x. Class 40-50 50-60 60-70 70-80 80-90 Frequency 5 x 15 12 7",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "The two palm trees are of equal heights and are standing opposite each other on either side of the river, which is 80 m wide. From a point O between them on the river the angles of elevation of the top of the trees are 60° and 30°, respectively. Find the height of the trees and the distances of the point O from the trees. OR The angles of depression of the top and bottom of a building 50 meters high as observed from the top of a tower are 30˚ and 60˚ respectively. Find the height of the tower, and also the horizontal distance between the building and the tower.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 35,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Water is flowing through a cylindrical pipe of internal diameter 2cm, into a cylindrical tank of base radius 40 cm at the rate of 0.7m/sec. By how much will the water rise in the tank in half an hour?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 36,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "A motorboat covers a distance of 16km upstream and 24km downstream in 6 hours. In the same time it covers a distance of 12 km upstream and 36km downstream. Find the speed of the boat in still water and that of the stream.",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

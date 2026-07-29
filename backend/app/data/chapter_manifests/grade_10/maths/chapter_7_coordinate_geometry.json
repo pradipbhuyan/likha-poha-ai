@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 7: Coordinate Geometry",
+  "central_question": "How can coordinates and algebra be used to calculate distances, test geometric properties and locate points that divide line segments in given ratios?",
+  "in_scope_units": [
+    "Introduction: reviews coordinate axes, abscissa and ordinate and presents coordinate geometry as an algebraic tool for studying figures.",
+    "Distance Formula: derives the distance between two points using Pythagoras Theorem and applies it to triangles, quadrilaterals, collinearity and equidistant points.",
+    "Section Formula: derives coordinates of a point dividing a segment internally in a given ratio, including the midpoint and trisection cases.",
+    "Summary and Note to the Reader: consolidates distance, origin-distance, internal section and midpoint formulae and excludes external division from the present chapter."
+  ],
+  "banned_topics": [
+    "The external section formula, which the note explicitly postpones to higher classes.",
+    "Slope, equation of a line and area of a triangle by determinant formula, which are not developed in the supplied chapter text.",
+    "Detailed graphing of linear equations and parabolas, which are only recalled from earlier chapters.",
+    "Three-dimensional coordinate geometry."
+  ],
+  "must_include_keywords": [
+    "coordinate axes",
+    "x-coordinate",
+    "abscissa",
+    "y-coordinate",
+    "ordinate",
+    "x-axis",
+    "y-axis",
+    "origin",
+    "ordered pair",
+    "quadrant",
+    "Pythagoras Theorem",
+    "distance formula",
+    "non-negative distance",
+    "distance from origin",
+    "triangle",
+    "right triangle",
+    "isosceles triangle",
+    "square",
+    "quadrilateral",
+    "diagonal",
+    "collinear points",
+    "equidistant",
+    "perpendicular bisector",
+    "section formula",
+    "internal division",
+    "ratio m₁:m₂",
+    "midpoint formula",
+    "trisection",
+    "point of intersection",
+    "parallelogram",
+    "diagonals bisect each other"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The x-coordinate is the distance from the x-axis.",
+      "correction": "The x-coordinate or abscissa measures directed distance from the y-axis; the y-coordinate or ordinate measures directed distance from the x-axis."
+    },
+    {
+      "claim": "The distance formula can give a negative distance if coordinate differences are negative.",
+      "correction": "Coordinate differences are squared and the positive square root is taken, so distance is always non-negative."
+    },
+    {
+      "claim": "To test collinearity, it is enough to find two equal distances.",
+      "correction": "For three distinct points with one lying between the other two, collinearity is established by a relation such as AB + BC = AC."
+    },
+    {
+      "claim": "In the section formula, m₁ multiplies the coordinates of the first endpoint A.",
+      "correction": "For PA:PB = m₁:m₂, the coordinates are ((m₁x₂ + m₂x₁)/(m₁+m₂), (m₁y₂ + m₂y₁)/(m₁+m₂)); each weight multiplies the opposite endpoint."
+    },
+    {
+      "claim": "A point on the y-axis can be written as (x, 0).",
+      "correction": "A point on the y-axis has the form (0, y), while a point on the x-axis has the form (x, 0)."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with the Section 7.2 town problem and Exercise 7.1 Questions 1 and 2 to derive and practise the distance formula.",
+    "Use NCERT Examples 1, 2 and 3 to classify a triangle, verify a square and test collinearity.",
+    "Use NCERT Examples 4 and 5 for equidistant-point equations and axis constraints.",
+    "Derive the internal section formula from the relay-tower situation and practise it with NCERT Example 6.",
+    "Finish with NCERT Examples 7 to 10 for finding a ratio, trisection, an axis intersection and an unknown parallelogram coordinate."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter practice is contained in NCERT Exercises 7.1 and 7.2, covering the distance formula and the internal section or midpoint formula.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

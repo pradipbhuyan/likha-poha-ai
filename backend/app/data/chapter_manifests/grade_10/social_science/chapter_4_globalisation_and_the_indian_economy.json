@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 4: Globalisation and the Indian Economy",
+  "central_question": "How have MNCs, foreign trade, technology and liberalisation integrated India with the world economy, and why have the benefits and costs been uneven?",
+  "in_scope_units": [
+    "Production Across Countries: the spread of MNC production",
+    "Interlinking Production Across Countries: foreign investment, partnerships, acquisitions and supply orders",
+    "Foreign Trade and Integration of Markets",
+    "What Is Globalisation?: rapid integration through trade and investment",
+    "Factors That Have Enabled Globalisation: transport and information technology",
+    "Liberalisation of Foreign Trade and Foreign Investment Policy",
+    "World Trade Organisation and the debate on fair trade practices",
+    "Impact of Globalisation in India: consumers, MNCs, Indian firms and service exports",
+    "Small Producers — Compete or Perish",
+    "Competition and Uncertain Employment",
+    "The Struggle for a Fair Globalisation"
+  ],
+  "banned_topics": [
+    "Bank collateral and self-help groups",
+    "GDP, disguised unemployment and sector classification",
+    "Consumer courts and certification marks",
+    "Detailed human-development rankings"
+  ],
+  "must_include_keywords": [
+    "MNC",
+    "multinational corporation",
+    "production across countries",
+    "foreign investment",
+    "interlinking production",
+    "joint production",
+    "acquisition",
+    "small producers",
+    "foreign trade",
+    "integration of markets",
+    "Chinese toys",
+    "globalisation",
+    "transport technology",
+    "containers",
+    "information technology",
+    "Internet",
+    "e-banking",
+    "trade barrier",
+    "import tax",
+    "quota",
+    "liberalisation",
+    "1991",
+    "World Trade Organisation",
+    "WTO",
+    "Special Economic Zones",
+    "SEZs",
+    "competition",
+    "flexible employment",
+    "Sushila",
+    "fair globalisation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An MNC is any company that exports goods.",
+      "correction": "An MNC owns or controls production in more than one nation."
+    },
+    {
+      "claim": "Foreign trade and foreign investment are the same.",
+      "correction": "Foreign trade is cross-border buying and selling; foreign investment is spending on productive assets in another country."
+    },
+    {
+      "claim": "Liberalisation means government has no role.",
+      "correction": "Liberalisation means reducing trade and investment restrictions; government still regulates, supports and negotiates."
+    },
+    {
+      "claim": "Globalisation benefits all producers and workers equally.",
+      "correction": "The chapter shows gains for some groups and losses or insecurity for many small producers and workers."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the NCERT industrial-equipment MNC example to map a global production chain.",
+    "Use the NCERT Cargill–Parakh and Ford Motors cases to explain foreign investment and interlinking.",
+    "Use the NCERT Chinese-toys example to analyse market integration and unequal effects.",
+    "Use the NCERT London-magazine example for IT-enabled globalisation.",
+    "Use the NCERT Sushila garment-worker case to evaluate fair globalisation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with 'EXERCISES', Questions 1–13, followed by an Additional Activity / Project.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

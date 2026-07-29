@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Maths",
+    "chapter": "Chapter 5: Arithmetic Progressions",
+    "central_question": "How can a constant-difference pattern be recognised, described by its nth term, summed efficiently, and used to solve practical problems?",
+    "in_scope_units": [
+      "Introduction: everyday number patterns and the distinction between constant addition and other patterns.",
+      "Arithmetic Progressions: definition, terms, first term, common difference, general form, finite and infinite APs, and recognition tests.",
+      "nth Term of an AP: derivation and use of aₙ = a + (n − 1)d, including finding terms, term positions and number of terms.",
+      "Sum of First n Terms of an AP: derivation and use of Sₙ = n/2[2a + (n − 1)d] and Sₙ = n/2(a + l), including applications.",
+      "Summary and note to the reader: consolidates formulas and introduces the arithmetic mean of three terms in AP."
+    ],
+    "banned_topics": [
+      "Geometric progressions and compound-growth formulas, except when used only as non-examples of an AP.",
+      "Fibonacci sequence methods, except as a non-example showing unequal consecutive differences.",
+      "Infinite series and convergence.",
+      "General sequence notation or recurrence theory beyond arithmetic progressions."
+    ],
+    "must_include_keywords": [
+      "pattern",
+      "sequence of terms",
+      "arithmetic progression",
+      "AP",
+      "term",
+      "first term",
+      "common difference",
+      "positive common difference",
+      "negative common difference",
+      "zero common difference",
+      "successive terms",
+      "aₖ₊₁ − aₖ",
+      "general form",
+      "a, a + d, a + 2d",
+      "finite AP",
+      "infinite AP",
+      "last term",
+      "nth term",
+      "general term",
+      "aₙ = a + (n − 1)d",
+      "term position",
+      "number of terms",
+      "term from the end",
+      "simple interest",
+      "multiples",
+      "sum of first n terms",
+      "Sₙ",
+      "Sₙ = n/2[2a + (n − 1)d]",
+      "Sₙ = n/2(a + l)",
+      "Gauss pairing method",
+      "aₙ = Sₙ − Sₙ₋₁",
+      "daily-life application",
+      "arithmetic mean",
+      "b = (a + c)/2"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Any list with an obvious pattern is an arithmetic progression.",
+        "correction": "A list is an AP only when the difference between every pair of consecutive terms is the same."
+      },
+      {
+        "claim": "The common difference is found by subtracting the next term from the previous term.",
+        "correction": "Use d = aₖ₊₁ − aₖ: subtract the earlier term from the immediately following term, even when the result is negative."
+      },
+      {
+        "claim": "The nth term is a + nd.",
+        "correction": "The first term already corresponds to n = 1, so aₙ = a + (n − 1)d."
+      },
+      {
+        "claim": "The sum formula is Sₙ = n[2a + (n − 1)d].",
+        "correction": "The correct formula includes division by 2: Sₙ = n/2[2a + (n − 1)d]."
+      },
+      {
+        "claim": "A calculated term number n may be any real number.",
+        "correction": "A term position must be a positive integer; a fractional n shows that the proposed number is not a term of the AP."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Example 2 to decide which lists are APs by checking consecutive differences.",
+      "Use NCERT Example 3 and Example 4 to apply aₙ = a + (n − 1)d and locate a term.",
+      "Use NCERT Example 7 and Example 8 to count terms and find a term from the end.",
+      "Use the Gauss 1-to-100 argument in Section 5.4 to derive the sum formula.",
+      "Use NCERT Examples 11, 13 and 16 to apply sums, solve for n, and model uniform production."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The supplied chapter contains Exercise 5.1 on recognising APs, Exercise 5.2 on nth terms and positions, and Exercise 5.3 on sums and applications."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Arithmetic Progressions\n\n## What you will learn\nYou will recognise an arithmetic progression and find its first term and common difference. You will also distinguish constant addition from multiplication, square and Fibonacci-type patterns.\n\n## Simple explanation\nAn arithmetic progression is a list in which the same fixed number is added to each term to get the next term. That fixed number is called the common difference and may be positive, negative or zero.\n\n## Step-by-step breakdown\n- **Terms**: Each number in a list is called a term.\n- **Arithmetic progression**: A list is an AP when every term after the first is obtained by adding the same fixed number to the preceding term.\n- **Common difference**: d = a₂ − a₁ = a₃ − a₂ = … = aₖ₊₁ − aₖ.\n- **Positive d**: Terms increase by a fixed amount, as in 8000, 8500, 9000, … .\n- **Negative d**: Terms decrease by a fixed amount, as in 45, 43, 41, … .\n- **Zero d**: A constant list such as 3, 3, 3, … is also an AP.\n- **Non-examples**: Constant multiplication, consecutive squares and the rabbit sequence 1, 1, 2, 3, 5, 8 do not have a constant difference.\n\n## Worked example\nQuestion: Solve NCERT Example 2(i): Determine whether 4, 10, 16, 22, … is an AP and write the next two terms.\n\nSolution:\n- Step 1: a₂ − a₁ = 10 − 4 = 6.\n- Step 2: a₃ − a₂ = 16 − 10 = 6.\n- Step 3: a₄ − a₃ = 22 − 16 = 6.\n- Step 4: The consecutive differences are equal, so the list is an AP with d = 6.\n- Step 5: Next term = 22 + 6 = 28.\n- Step 6: Following term = 28 + 6 = 34.\n- Final answer: It is an AP with **d = 6**, and the next two terms are **28 and 34**.\n\n## Common mistake\nDo not decide from only one difference when the list contains enough terms to check more. The common difference must remain the same throughout.\n\n## Quick check question\nQuestion: In NCERT Example 2(iii), does −2, 2, −2, 2, −2, … form an AP?\nAnswer: No, it does not form an AP.\nExplanation: The first difference is 2 − (−2) = 4, while the next is −2 − 2 = −4; the differences are not equal.\n\n## Summary\n- An AP has a constant consecutive difference.\n- The common difference may be positive, negative or zero.\n- Compute d as next term minus previous term.\n- Not every patterned list is an AP.\n- Checking consecutive differences is the basic recognition test.",
+    "Core explanation": "# Core explanation: Arithmetic Progressions\n\n## What you will learn\nYou will write the general form of an AP and distinguish finite and infinite APs. You will build an AP from its first term and common difference and recover a and d from a given list.\n\n## Simple explanation\nKnowing the first term a and the common difference d completely determines an AP. Its terms are a, a + d, a + 2d, a + 3d, and so on.\n\n## Step-by-step breakdown\n- **General form**: a, a + d, a + 2d, a + 3d, … .\n- **First term**: a is the starting value.\n- **Building terms**: Add d repeatedly; if d is negative, each addition decreases the term.\n- **Finite AP**: Has a fixed number of terms and a last term l.\n- **Infinite AP**: Continues indefinitely and has no last term.\n- **Recovering d**: Once a list is known to be an AP, any one consecutive difference gives d.\n- **Direction matters**: For 6, 3, 0, −3, …, d = 3 − 6 = −3, not 6 − 3.\n\n## Worked example\nQuestion: Solve NCERT Exercise 5.1 Question 2(iii): Write the first four terms when a = 4 and d = −3.\n\nSolution:\n- Step 1: First term a₁ = a = 4.\n- Step 2: Second term a₂ = a + d = 4 + (−3) = 1.\n- Step 3: Third term a₃ = a + 2d = 4 + 2(−3) = 4 − 6 = −2.\n- Step 4: Fourth term a₄ = a + 3d = 4 + 3(−3) = 4 − 9 = −5.\n- Final answer: The first four terms are **4, 1, −2, −5**.\n\n## Common mistake\nWhen d is negative, adding d means subtracting its magnitude. Do not change d from −3 to +3 after the first step.\n\n## Quick check question\nQuestion: In NCERT Example 1, find a and d for 3/2, 1/2, −1/2, −3/2, … .\nAnswer: a = 3/2 and d = −1.\nExplanation: The first term is 3/2, and d = 1/2 − 3/2 = −2/2 = −1.\n\n## Summary\n- The general AP is a, a + d, a + 2d, … .\n- Both a and d are needed to determine the AP.\n- A finite AP has a last term; an infinite AP does not.\n- Negative d produces a decreasing AP.\n- Always compute d as later term minus earlier term.",
+    "Worked examples": "# Worked examples: Arithmetic Progressions\n\n## What you will learn\nYou will derive and use the nth-term formula. You will find a specified term, determine which term equals a given value, and decide whether a number belongs to an AP.\n\n## Simple explanation\nTo reach the nth term from the first term, the common difference is added n − 1 times. Therefore, aₙ = a + (n − 1)d.\n\n## Step-by-step breakdown\n- **Second term**: a₂ = a + d = a + (2 − 1)d.\n- **Third term**: a₃ = a + 2d = a + (3 − 1)d.\n- **nth term**: aₙ = a + (n − 1)d.\n- **Finding a term**: Substitute a, d and n.\n- **Finding the position**: Set a + (n − 1)d equal to the given term and solve for n.\n- **Membership test**: The resulting n must be a positive integer.\n- **Last term**: In a finite AP, l = a + (n − 1)d.\n\n## Worked example\nQuestion: Solve NCERT Example 4: Which term of 21, 18, 15, … is −81, and is any term equal to 0?\n\nSolution:\n- Step 1: Here a = 21 and d = 18 − 21 = −3.\n- Step 2: For aₙ = −81, use −81 = 21 + (n − 1)(−3).\n- Step 3: −81 = 21 − 3n + 3 = 24 − 3n.\n- Step 4: −105 = −3n, so n = 35.\n- Step 5: Therefore, −81 is the 35th term.\n- Step 6: To test 0, set 0 = 21 + (n − 1)(−3).\n- Step 7: 0 = 24 − 3n, so 3n = 24 and n = 8.\n- Final answer: **−81 is the 35th term, and 0 is the 8th term**.\n\n## Common mistake\nUse n − 1, not n, in the formula. The first term requires zero additions of d.\n\n## Quick check question\nQuestion: In NCERT Example 6, is 301 a term of 5, 11, 17, 23, …?\nAnswer: No, 301 is not a term.\nExplanation: With a = 5 and d = 6, 301 = 5 + (n − 1)6 gives n = 151/3, which is not a positive integer.\n\n## Summary\n- The nth term is aₙ = a + (n − 1)d.\n- Set aₙ equal to a target value to find its position.\n- A valid term position must be a positive integer.\n- The same formula finds the last term and number of terms.\n- Negative common differences are handled without changing the formula.",
+    "Exam-style problems": "# Exam-style problems: Arithmetic Progressions\n\n## What you will learn\nYou will derive and apply the sum formulas for an AP. You will use the first term, common difference, last term and number of terms in different combinations.\n\n## Simple explanation\nPairing the first and last terms, the second and second-last terms, and so on gives the same sum in every pair. This leads to Sₙ = n/2[2a + (n − 1)d], or Sₙ = n/2(a + l) when the last term is known.\n\n## Step-by-step breakdown\n- **Gauss pairing**: Write the sum forward and backward and add corresponding terms.\n- **General sum formula**: Sₙ = n/2[2a + (n − 1)d].\n- **First-last form**: Since l = a + (n − 1)d, Sₙ = n/2(a + l).\n- **Choosing a formula**: Use the d-form when a, d and n are known; use the l-form when a, l and n are known.\n- **Recovering a term from sums**: aₙ = Sₙ − Sₙ₋₁.\n- **Solving for an unknown**: Substitute known values and solve the resulting linear or quadratic equation.\n\n## Worked example\nQuestion: Solve NCERT Example 11: Find the sum of the first 22 terms of 8, 3, −2, … .\n\nSolution:\n- Step 1: a = 8.\n- Step 2: d = 3 − 8 = −5.\n- Step 3: n = 22.\n- Step 4: Use Sₙ = n/2[2a + (n − 1)d].\n- Step 5: S₂₂ = 22/2[2(8) + (22 − 1)(−5)].\n- Step 6: S₂₂ = 11[16 + 21(−5)].\n- Step 7: S₂₂ = 11(16 − 105) = 11(−89) = −979.\n- Final answer: The sum of the first 22 terms is **−979**.\n\n## Common mistake\nDo not treat d = −5 as +5 inside the sum formula. A negative common difference can make the later terms and the total sum negative.\n\n## Quick check question\nQuestion: In NCERT Example 14(i), find 1 + 2 + 3 + … + 1000 using the AP sum formula.\nAnswer: 500500.\nExplanation: Here n = 1000, a = 1 and l = 1000, so S = 1000/2(1 + 1000) = 500 × 1001 = 500500.\n\n## Summary\n- Pairing terms leads to the AP sum formula.\n- Sₙ = n/2[2a + (n − 1)d].\n- Sₙ = n/2(a + l) when the last term is known.\n- Use the sign of d exactly as given.\n- Individual terms can be recovered using aₙ = Sₙ − Sₙ₋₁.",
+    "Revision and recap": "# Revision and recap: Arithmetic Progressions\n\n## What you will learn\nYou will revise recognition, nth terms and sums through a practical production problem. You will also connect three terms in AP with the arithmetic mean.\n\n## Simple explanation\nMost AP applications follow one chain: show that the change is uniform, identify a and d, use the nth-term formula for a particular stage, and use the sum formula for a cumulative total.\n\n## Step-by-step breakdown\n- **Uniform increase or decrease**: A fixed change from one stage to the next creates an AP.\n- **Determine a and d**: Two known terms can produce two linear equations in a and d.\n- **Find a future term**: Use aₙ = a + (n − 1)d.\n- **Find cumulative production or payment**: Use Sₙ = n/2[2a + (n − 1)d].\n- **Arithmetic mean**: If a, b and c are consecutive terms of an AP, then b − a = c − b, so 2b = a + c and b = (a + c)/2.\n- **Final checks**: n must be a positive integer, and the answer must fit the practical setting.\n\n## Worked example\nQuestion: Solve NCERT Example 16: A manufacturer produced 600 TV sets in the third year and 700 in the seventh year, with a uniform annual increase. Find the first-year production, tenth-year production and total production in the first seven years.\n\nSolution:\n- Step 1: Let first-year production be a and annual increase be d.\n- Step 2: Third term: a₃ = a + 2d = 600.\n- Step 3: Seventh term: a₇ = a + 6d = 700.\n- Step 4: Subtract the equations: 4d = 100, so d = 25.\n- Step 5: Substitute in a + 2d = 600: a + 50 = 600, so a = 550.\n- Step 6: Tenth-year production: a₁₀ = 550 + 9(25) = 550 + 225 = 775.\n- Step 7: First-seven-year total: S₇ = 7/2[2(550) + 6(25)].\n- Step 8: S₇ = 7/2[1100 + 150] = 7/2 × 1250 = 4375.\n- Final answer: First year = **550 sets**, tenth year = **775 sets**, and first seven years total = **4375 sets**.\n\n## Common mistake\nDo not use a₃ = a + 3d or a₇ = a + 7d. The nth term contains n − 1 differences, so the correct expressions are a + 2d and a + 6d.\n\n## Quick check question\nQuestion: Using NCERT Example 10, how many rows are in the flower bed with 23, 21, 19, …, 5 rose plants?\nAnswer: 10 rows.\nExplanation: With a = 23, d = −2 and aₙ = 5, 5 = 23 + (n − 1)(−2) gives −18 = −2(n − 1), so n − 1 = 9 and n = 10.\n\n## Summary\n- Constant differences define an AP.\n- The nth term is a + (n − 1)d.\n- The sum is n/2[2a + (n − 1)d].\n- Two known terms can determine a and d.\n- In three consecutive AP terms, the middle term is the arithmetic mean of the other two."
+  }
+}

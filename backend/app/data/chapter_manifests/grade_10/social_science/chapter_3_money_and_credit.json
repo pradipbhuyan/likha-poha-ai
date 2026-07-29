@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: Money and Credit",
+  "central_question": "How do money, banks and different credit arrangements enable exchange and development, and why must affordable credit be made accessible to all?",
+  "in_scope_units": [
+    "Money as a Medium of Exchange: barter and double coincidence of wants",
+    "Modern Forms of Money: currency, deposits and cheque payments",
+    "Loan Activities of Banks: deposits, reserves, borrowers and bank income",
+    "Two Different Credit Situations: productive credit and debt trap",
+    "Terms of Credit: interest, collateral, documentation and repayment",
+    "Variety of Credit Arrangements: village lenders, borrowers and cooperatives",
+    "Formal Sector Credit in India: RBI supervision and formal–informal differences",
+    "Formal and Informal Credit — Who Gets What?: unequal access",
+    "Self-Help Groups for the Poor: savings, group loans and bank linkage",
+    "Grameen Bank of Bangladesh and chapter summing up"
+  ],
+  "banned_topics": [
+    "GDP and sectoral classification",
+    "WTO, MNCs and trade barriers",
+    "Consumer rights and consumer commissions",
+    "Detailed public-facility comparisons among states"
+  ],
+  "must_include_keywords": [
+    "barter",
+    "double coincidence of wants",
+    "medium of exchange",
+    "currency",
+    "Reserve Bank of India",
+    "demand deposits",
+    "cheque",
+    "bank deposits",
+    "borrowers",
+    "interest",
+    "credit",
+    "Salim",
+    "Swapna",
+    "debt trap",
+    "terms of credit",
+    "collateral",
+    "documentation",
+    "Megha",
+    "Shyamal",
+    "Arun",
+    "Rama",
+    "cooperatives",
+    "formal credit",
+    "informal credit",
+    "RBI supervision",
+    "affordable credit",
+    "Self Help Groups",
+    "SHGs",
+    "group responsibility",
+    "Grameen Bank"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Money is needed only when goods are bought with cash.",
+      "correction": "Money includes currency and demand deposits, and payments can be settled through cheques without cash."
+    },
+    {
+      "claim": "Credit always improves the borrower's condition.",
+      "correction": "Credit can increase earnings or create a debt trap depending on risk, terms and repayment capacity."
+    },
+    {
+      "claim": "Interest rate is the only term of credit.",
+      "correction": "Terms of credit include interest, collateral, documentation and the mode of repayment."
+    },
+    {
+      "claim": "Poor households depend on informal credit because it is cheaper.",
+      "correction": "Informal credit is often costlier; poor households may depend on it because formal loans require access, documents and collateral."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the NCERT shoe-manufacturer barter example.",
+    "Use the NCERT M. Salim cheque-payment example to explain demand deposits.",
+    "Compare the NCERT Salim and Swapna credit situations.",
+    "Use Megha's house loan and the Sonpur village cases to analyse terms of credit.",
+    "Conclude with the NCERT SHG and Grameen Bank examples."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with 'EXERCISES', Questions 1–13, followed by an Additional Project / Activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

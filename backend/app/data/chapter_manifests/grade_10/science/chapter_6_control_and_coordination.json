@@ -1,0 +1,115 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 6: Control and Coordination",
+  "central_question": "How do animals and plants detect changes, transmit information, and produce coordinated responses through nervous or chemical signals?",
+  "in_scope_units": [
+    "Animals—nervous system: receptors, neurons, electrical impulses, synapses, and neuromuscular junctions",
+    "Reflex actions: reflex arc, spinal cord, and rapid protective responses",
+    "Human brain: central and peripheral nervous systems, fore-brain, mid-brain, hind-brain, medulla, and cerebellum",
+    "Protection of nervous tissues: skull, fluid cushioning, vertebral column, and spinal cord",
+    "How nervous tissue causes action: nerve impulses, muscle proteins, and shortening of muscle cells",
+    "Coordination in plants: growth-independent and growth-dependent movements",
+    "Immediate response to stimulus in sensitive plants: electrochemical communication and water-driven cell-shape changes",
+    "Movement due to growth: tendrils, phototropism, geotropism, hydrotropism, and chemotropism",
+    "Plant hormones: auxin, gibberellins, cytokinins, and abscisic acid",
+    "Hormones in animals: endocrine glands, adrenaline, thyroxin, growth hormone, testosterone, oestrogen, and insulin",
+    "Feedback mechanisms: regulation of hormone timing and quantity"
+  ],
+  "banned_topics": [
+    "Detailed reproduction and gamete formation",
+    "Detailed anatomy of the eye and image formation",
+    "Detailed digestion, respiration, and circulation except where used as examples of involuntary or hormonal control",
+    "Genetic inheritance of hormonal disorders",
+    "Plant mineral nutrition and photosynthesis beyond their use as stimulus-response examples"
+  ],
+  "must_include_keywords": [
+    "stimulus",
+    "response",
+    "control",
+    "coordination",
+    "receptor",
+    "gustatory receptor",
+    "olfactory receptor",
+    "neuron",
+    "dendrite",
+    "cell body",
+    "axon",
+    "electrical impulse",
+    "synapse",
+    "reflex action",
+    "reflex arc",
+    "spinal cord",
+    "central nervous system",
+    "peripheral nervous system",
+    "fore-brain",
+    "mid-brain",
+    "hind-brain",
+    "medulla",
+    "cerebellum",
+    "voluntary action",
+    "involuntary action",
+    "muscle protein",
+    "sensitive plant",
+    "tropic movement",
+    "phototropism",
+    "geotropism",
+    "hydrotropism",
+    "chemotropism",
+    "auxin",
+    "gibberellin",
+    "cytokinin",
+    "abscisic acid",
+    "hormone",
+    "endocrine gland",
+    "adrenaline",
+    "thyroxin",
+    "growth hormone",
+    "testosterone",
+    "oestrogen",
+    "insulin",
+    "feedback mechanism"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A nervous impulse crosses a synapse as an electrical signal through empty space.",
+      "correction": "At the axon end, the electrical impulse causes release of chemicals; these cross the synapse and trigger a new electrical impulse in the next cell."
+    },
+    {
+      "claim": "The brain is not involved in a reflex action at all.",
+      "correction": "The quick reflex arc is completed through the spinal cord, but information also travels to the brain, which becomes aware of the stimulus."
+    },
+    {
+      "claim": "All involuntary actions are reflex actions.",
+      "correction": "Reflex actions are rapid responses through reflex arcs, while involuntary actions such as heartbeat, salivation, and vomiting are controlled by brain regions such as the medulla."
+    },
+    {
+      "claim": "The sensitive plant folds its leaves because the touched part grows more slowly.",
+      "correction": "Its rapid touch response is growth-independent and occurs when cells change water content and shape; growth differences explain movements such as tendril coiling and phototropism."
+    },
+    {
+      "claim": "Auxin accumulates on the illuminated side of a shoot and makes it bend away from light.",
+      "correction": "Auxin moves to the shady side, promotes greater cell elongation there, and bends the shoot toward light."
+    },
+    {
+      "claim": "Hormones act only where they are produced.",
+      "correction": "Hormones are produced in one location and move to target tissues elsewhere; plant hormones diffuse and animal hormones are commonly carried by blood."
+    },
+    {
+      "claim": "Insulin raises blood sugar whenever it becomes low.",
+      "correction": "When blood sugar rises, the pancreas secretes more insulin; as the level falls, insulin secretion is reduced through feedback regulation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 6.1 and Figure 6.1 to connect taste, smell, receptors, neurons, and synaptic transmission.",
+    "Use Figure 6.2 and NCERT Exercise 10 to distinguish reflex actions from involuntary actions.",
+    "Use Figure 6.3 and the in-text questions to map fore-brain, medulla, and cerebellum to their functions.",
+    "Use NCERT Activity 6.2 to reason from directional growth to phototropism and auxin distribution.",
+    "Use NCERT Exercises 6, 8, and 12 to compare plant growth responses, chemical coordination, and sensitive-plant movement.",
+    "Use NCERT Activities 6.3 and 6.4 to connect endocrine glands, hormones, functions, and feedback mechanisms.",
+    "Use NCERT Exercise 11 to compare nervous and hormonal coordination in animals."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES section contains Questions 1-12, including three multiple-choice questions and descriptive questions on nervous, plant, and hormonal coordination.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,766 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The Question Paper contains THREE sections.",
+    "options": [
+      "Section A-READING has 18 questions. Attempt a total of 14 questions, as per specific instructions for each question.",
+      "Section B-WRITING & GRAMMAR has 12 questions. Attempt a total of 10 questions, as per specific instructions for each question.",
+      "Section C-LITERATURE has 30 questions. Attempt 26 questions, as per specific instructions for each question.",
+      "All questions carry equal marks.",
+      "There is no negative marking."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Nature is our mother, our first teacher. The greatest lesson that she teaches us is to maintain an equilibrium in life. We learn to maintain composure through our joys, sorrows and fears. In fact, there are a thousand lessons that nature can teach us, provided we look for them.",
+    "options": [
+      "With time, a sapling grows into a full-grown tree; something so tiny and delicate develops into a strong tree capable of supporting others. No matter how tall it grows, how much it may flourish, or how many animals and birds it may support, its roots are firmly buried from where it once rose. That's a lesson - to keep ourselves grounded, respect and embrace our roots, and give something back to those humble beginnings that nurtured usinto who we are.",
+      "Then there is the message of peaceful coexistence. 'I am because we are.' Nature provides every creature a chance to exist. However, the existence of one creature or being depends on the existence of the other. The tiger eats the antelope; without the antelope, the tiger wouldn't survive. Likewise, without tigers, the over-abundance of antelopes would cause them to starve to death.",
+      "I wonder if you have noticed that when birds or squirrels see a predator, they give out an alarm call to their fellow creatures, of the lurking danger. They put themselves in danger to save the lives of others. Many animals, like the salmon, usually die after they spawn, but this doesn't stop them. One life extinguished for the betterment of others is a small price to pay.",
+      "The snow melts in the warmth of spring to give birth to fresh green leaves. In autumn these leaves age into shades of gold only to be buried in the cold grave of winter. Changes inevitable; the sooner we embrace this, the better it is for us. We must also understand that even in pain there is growth. If you cut a hole in the tree, it will grow around it. No matter what may come in its way, a river will continue to flow. Similarly, no matter what grief may break your heart, nature teaches us that life goes on."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A Portmanteau words like smog (smoke + fog), is a blend of words in which parts of multiple words are combined into a new word. From the options given below, select a Portmanteau word that appears in the para VI.",
+    "options": [
+      "coexistence",
+      "workaholic",
+      "full-grown",
+      "flourish"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Select the qualities from paragraph III, that the author wants us to imbib.",
+    "options": [
+      "Being- (1) acceptive (2) passionate (3) emotional (4) resilient (5) perceptive"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is shown by the changing of seasons?",
+    "options": [
+      "The beauty of nature.",
+      "Nature's creativity.",
+      "All seasons are equal.",
+      "Nothing lasts forever."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What does the writer advise, in paragraph VI?",
+    "options": [
+      "Indulging in competition with others.",
+      "Making priority lists.",
+      "Taking life seriously.",
+      "Having free time for ourselves."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Choose the option that lists the quote best expressing the central idea of the passage.",
+    "options": [
+      "Nature: She pardons no mistakes. Her yea is yea, and her nay, nay. --Ralph Waldo Emerson",
+      "Look deep into nature, and then you will understand everything better. -- A. Einstein",
+      "Nature never deceives us; it is we who deceive ourselves.--Jean Jacques Rousseau",
+      "All the ugliness of the world can best be forgotten in the beauty of nature!--Mehmet Murat"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "The purpose of the research by Publishers Association was to study the _______. Choose the correct option.",
+    "options": [
+      "A. variety in films and TV shows.",
+      "B. impact of films on books.",
+      "C. choice of books for film-making.",
+      "D. connect between books and films."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Select the option that is true for the two statements given below. (1) The revenues generated at the box office have increased. (2) Majority of the top films in the UK are based on published material.",
+    "options": [
+      "A. (1) is the result of (2).",
+      "B. (1) is the reason for (2).",
+      "C. (1) is independent of (2).",
+      "D. (1) contradicts (2)."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Select the option that gives the correct meaning of the following statement. \"The sales of the book in 2017 alone accounted for 23% of all sales since 1992.\"",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "According to the research, the films based on books have greater success because _______.",
+    "options": [
+      "people like to see the characters from the books on screen.",
+      "the films get the advantage of the fame of the books.",
+      "it takes less effort for people to watch films than read books.",
+      "the films get a ready-made script from the books."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Select the option listing what the given sentence refers to.",
+    "options": [
+      "The plot and the storyline of such films are better.",
+      "The characters are likely to be more vivid.",
+      "The production of such films is meant for the rich and famous.",
+      "The settings and costumes are adapted from the book."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "On what from the following were the maximum TV serials in UK in the year 2017 based?",
+    "options": [
+      "books.",
+      "historical stories.",
+      "original true stories.",
+      "previous films."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "This passage lists an example proving that TV dramas based on literary works have _______.",
+    "options": [
+      "increased the immediate sales of the book",
+      "increased the sales of the book during the first screening",
+      "had no immediate impact on the sales of the book",
+      "had very little impact on the sales of the book"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Choose the correct option to answer the following: According to paragraph V, 'there is a two-way relationship between books and the screen'. This is so because both",
+    "options": [
+      "revolve around the same stories.",
+      "cater to an audience with the same taste.",
+      "gain from each other's popularity.",
+      "belong to the creative field."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "G",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The hospital board clearly mentioned that you ______ smoke in the hospital as it is a health hazard for all.",
+    "options": [
+      "cannot",
+      "must not",
+      "need not",
+      "might not"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "G",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "There's never ______ petrol left after Rahul uses the car.",
+    "options": [
+      "much",
+      "little",
+      "many",
+      "a little"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "G",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "I am taking driving lessons now. Hopefully, I ______ my driving test by November.",
+    "options": [
+      "will take",
+      "would pass",
+      "will have taken",
+      "will be taking"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "G",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which option displays the correct change of the following to reported speech? Sunitha asked Venkat, 'How much is the rent for your flat?'",
+    "options": [
+      "Sunitha asked Venkat how much was his rent for flat.",
+      "Sunitha asked Venkat how much the rent for his flat was.",
+      "Sunita enquires from Venkat that how much rent he pays.",
+      "Sunita told Venkat how much the rent for his flat was."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "G",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which option displays the correct change of the following to reported speech? She said, 'I told Damanjit to send you an e-mail three days ago.'",
+    "options": [
+      "She told that Damanjit had mailed you three days then.",
+      "She informed me that Damanjit has mailed me three days before.",
+      "She says that she has told Damanjit to send me an e-mail three days then.",
+      "She said that she had told Damanjit to send an e-mail to me three days before."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "G",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The dog ______ under the chair before the children arrived.",
+    "options": [
+      "has been hiding",
+      "was hid",
+      "have hid",
+      "had hidden"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "I",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "Select the option with relevant aspects that Debashree should select, for the letter.",
+    "options": [
+      "The newspaper's name",
+      "Attached proof of the newspaper subscription",
+      "Debashree's address",
+      "Formal tone"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "I",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "Select the appropriate subject for this letter.",
+    "options": [
+      "Drawing attention towards differently-abled people",
+      "The Differently-abled: Neglected or Misunderstood?",
+      "Tourist places are an inconvenience to differently-abled people",
+      "Inconvenience Faced by the Differently-abled at Tourist Spots"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "I",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "Which option should Debashree select, to elaborate on the difficulties faced by the differently-abled?",
+    "options": [
+      "Absence of ramps for wheelchairs",
+      "Unclean toilets",
+      "High ticket-prices",
+      "Absence of ramps for wheelchairs",
+      "Tourist guides untrained in sign language",
+      "Lack of braille-script tourist pamphlets"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "I",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Debashree shares some suggestions in her letter, to address the issue. Select the option that helps her complete these suggestions, appropriately.",
+    "options": [
+      "In my opinion, the media can play a pivotal role in transforming people's attitudes against negligence to the needs of the differently-abled, at the tourist spots, shall go a long way in bringing about a positive change."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "L",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Select the option that correctly justifies the choice of the concluding portion of this letter.",
+    "options": [
+      "Yes, to Option (1) because of the authoritative tone.",
+      "No, to Option (1) because of the informal tone.",
+      "Yes, to Option (2) because of the tone of polite expectation.",
+      "No, to Option (2) because of the certainty in the tone."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "L",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Select the option that completes the concluding line appropriately.",
+    "options": [
+      "I hope that my letter will............",
+      "help spread awareness about the issue.",
+      "lead to action against all authorities responsible, at tourist spots.",
+      "improve circulation of the national daily."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "L",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What was the unintended effect of the long oppression?",
+    "options": [
+      "It made the people different to injustice.",
+      "It made the people reject oppression.",
+      "It influenced a generation to fight against injustice.",
+      "It made people accept their oppression."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "L",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Men of such extraordinary courage refers to the people who............",
+    "options": [
+      "liberated and abolished the Apartheid system.",
+      "used their resources to spread awareness.",
+      "fought for their country's freedom.",
+      "demonstrated utmost strength to oppose the system."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Nelson Mandela compares _______ to diamonds.",
+    "options": [
+      "his countrymen",
+      "patriots",
+      "wise men",
+      "the oppressed"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "When Nelson Mandela says, \"I have seen men and women risk and give their lives for an idea.\" he means that they are............",
+    "options": [
+      "stubborn",
+      "committed",
+      "intelligent",
+      "proud"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 35,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Select the suitable word from the extract to complete the following: depths: heights : : compassion _______.",
+    "options": [
+      "wisdom",
+      "oppression",
+      "struggle",
+      "courage"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 36,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Why does Anne feel the following? ...no one will believe that a thirteen-year-old girl is completely alone in the world.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 37,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Select the most appropriate option for (1) and (2). (1) ...on the surface I seem to have everything, except my one true friend. (2) Anne doesn't truly connect with anyone.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 38,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "From the options given below, identify Anne's tone in the extract.",
+    "options": [
+      "restless",
+      "dissatisfied",
+      "scared",
+      "hurt"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 39,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Select the option which displays an example of 'having a good time'.",
+    "options": [
+      "He is out for a picnic with his friends and they are laughing and singing together.",
+      "He is studying hard for the periodic test the following day to improve his scores.",
+      "He is trying to convince his father to purchase the latest video games for him.",
+      "He just rescued an injured puppy and is tending to its wounds."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 40,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "What do we get to know about Anne when she says the following? I can't bring myself to talk about anything but ordinary everyday things",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 41,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "The poet says money is external. What does it mean in this extract?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 42,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What does the boy learn by losing the ball, according to the extract?",
+    "options": [
+      "Loss is the unavoidable truth of life.",
+      "Material objects can be replaced.",
+      "Money buys happiness.",
+      "Losses in life can be prevented with care.",
+      "Life continues despite losses."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 43,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The boy is learning how to stand up... This means that he is learning to be _______ in the face of difficulties.",
+    "options": [
+      "patient",
+      "resilient",
+      "defensive",
+      "judgemental"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 44,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which option lists who is speaking these lines?",
+    "options": [
+      "An observer.",
+      "The boy's parent.",
+      "The ball salesman.",
+      "A friend."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 45,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "According to the poet, from whom do we mostly learn about loss?",
+    "options": [
+      "Elders.",
+      "Experiences.",
+      "Books.",
+      "Teachers."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 46,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Even though Hari Singh followed Anil casually, it was a/an ...",
+    "options": [
+      "careless action.",
+      "staged move.",
+      "unusual decision.",
+      "bold step."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 47,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "From the following options, identify Hari Singh's intention behind the appealing smile.",
+    "options": [
+      "Deceit",
+      "Harm",
+      "Hatred",
+      "Jealousy"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 48,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Select the option listing Anil's characteristics, as revealed in the extract.",
+    "options": [
+      "unassuming",
+      "kind",
+      "determined",
+      "naive"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 49,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Select the most appropriate option based on (1) and (2).",
+    "options": [
+      "Anil gave his meal to a stray dog.",
+      "Hari Singh did not know how to cook."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 50,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The phrase hung around suggests that Hari Singh continued to",
+    "options": [
+      "smile.",
+      "cook.",
+      "appeal.",
+      "linger."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 51,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Lencho is",
+    "options": [
+      "doubtful",
+      "stressed",
+      "confused",
+      "dismissive"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 52,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which option correctly replaces the underlined phrase in the give line from Fire and Ice? I hold with those who favour fire.",
+    "options": [
+      "am as experienced as",
+      "strongly disagree with",
+      "have the same opinion as",
+      "habitually avoid"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 53,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The purpose of the treatment, given to the young seagull by his parents, was to....................",
+    "options": [
+      "teach him a lesson about the importance of food.",
+      "inculcate obedience towards them.",
+      "let him overcome his fear.",
+      "improve his relationship with his siblings."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 54,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Peggy often gave a nudge to one of her friends when she spoke to Wanda in the school yard. This meant that she wanted her friend to",
+    "options": [
+      "stop talking to Wanda and move on",
+      "observe and partake in the joke on Wanda",
+      "ignore the complete situation with Wanda",
+      "interrupt any reply that came from Wanda"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 55,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the poem Dust of Snow, which negative symbols have been used to create a positive effect?",
+    "options": [
+      "hemlock tree; crow",
+      "crow; snow",
+      "snow; hemlock tree",
+      "crow; dust"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 56,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Mandela refers to liberty as \"newborn\" because it",
+    "options": [
+      "was dependent on others for growth and guidance.",
+      "had recently been attained with lots of struggle.",
+      "made people experience infant-like excitement.",
+      "arrived unexpectedly for everyone."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 57,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the poem A Tiger in the Zoo, what does the tiger's 'quiet rage', indicate?",
+    "options": [
+      "It indicates that the tiger's anger is forgotten.",
+      "provoked.",
+      "suppressed.",
+      "opposed."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 58,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the option that aptly describes Griffin.",
+    "options": [
+      "greedy, yet kind",
+      "proud and honourable",
+      "considerate and selfless",
+      "brilliant, but lawless"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 59,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Anil's carelessness made stealing from him _______ for Hari Singh.",
+    "options": [
+      "uninteresting",
+      "difficult",
+      "systematic",
+      "predictable"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 60,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 5,
+    "question_text": "What does the exclamation, 'This is a triumph of surgery!', by Mrs. Pumphrey, mean?",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

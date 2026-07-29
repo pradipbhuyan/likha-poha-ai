@@ -1,0 +1,272 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the value of a, for which point P ( ୟ ଷ, 2) is the mid-point of the line segment joining the points Q(-5,4) and R(-1,0).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the value of k, for which one root of the quadratic equation kx2-14x+8 = 0 is 2. OR Find the value(s) of k for which the equation ݔଶ+ 5ݔ݇+16 = 0 has real and equal roots.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Write the value of cotଶθ − ଵ ୱ୧୬మ஘ OR If ߠ݊݅ݏ=ߠݏ݋ܿ then find the value of 2tanθ + cosଶθ",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If nth term of an A.P. is (2n+1), what is the sum of its first three terms?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In figure if AD= 6cm, DB=9cm, AE = 8cm and EC = 12cm and ADE = 480. Find ABC",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "After how many decimal places will the decimal expansion of ଶଷ ଶర×ହయ terminate? Section-B",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "The HCF and LCM of two numbers are 9 and 360 respectively. If one number is 45, find the other number. OR Show that 7 − √5 is irrational, give that √5 is irrational.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Find the 20th term from the last term of the AP 3,8,13,….,253 OR If 7 times the 7th term of an A.P is equal to 11 times its 11th term, then find its 18th term.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Find the coordinates of the point P which divides the join of A( -2,5) and B(3,-5) in the ratio 2:3",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "A card is drawn at random from a well shuffled deck of 52 cards. Find the probability of getting neither a red card nor a queen.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Two dice are thrown at the same time and the product of numbers appearing on them is noted. Find the probability that the product is a prime number",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "For what value of p will the following pair of linear equations have infinitely many solutions (p-3)x+3y = p px+py = 12 Section-C",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Use Euclid’s Division Algorithm to find the HCF of 726 and 275.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Find the zeroes of the following polynomial: 5√5x2+30x+8√5",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Places A and B are 80 km apart from each other on a highway. A car starts from A and another from B at the same time. If they move in same direction they meet in 8 hours and if they move towards each other they meet in 1 hour 20 minutes. Find the speed of cars.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The points A(1,-2) , B(2,3), C (k,2) and D(-4,-3) are the vertices of a parallelogram. Find the value of k. OR Find the value of k for which the points (3k-1,k-2), (k,k-7) and (k-1,-k-2) are collinear.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Prove that ࣂ࢚࢕ࢉ−ࣂ࢔ࢇ࢚= ૛࢙࢕ࢉ૛ࣂି૚ ࣂ࢙࢕ࢉࣂ࢔࢏࢙ OR Prove that ࢔࢏࢙ࣂ(૚+ࣂ࢔ࢇ࢚)+ ࣂ࢙࢕ࢉ(૚+ࣂ࢚࢕ࢉ)= ࣂࢉࢋ࢙+ࣂࢉࢋ࢙࢕ࢉ",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The radii of two concentric circles are 13 cm and 8 cm. AB is a diameter of the bigger circle and BD is a tangent to the smaller circle touching it at D and intersecting the larger circle at P on producing. Find the length of AP.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "In figure 1 = 2and ∆NSQ ≅ ∆MTR, then prove that ∆PTS~∆PRQ. OR In ∆ABC, if AD is the median, then show that AB2+AC2 = 2(AD2+BD2)",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 20,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Find the area of the minor segment of a circle of radius 42cm, if length of the corresponding arc is 44cm.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Water is flowing at the rate of 15 km per hour through a pipe of diameter 14cm into a rectangular tank which is 50 m long and 44 m wide. Find the time in which the level of water in the tank will rise by 21 cm. OR A solid sphere of radius 3 cm is melted and then recast into small spherical balls each of diameter 0.6cm. Find the number of balls.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The table shows the daily expenditure on grocery of 25 households in a locality. Find the modal daily expenditure on grocery by a suitable method. Daily Expenditure (in Rs.) 100-150 150-200 200-250 250-300 300-350 No of households 4 5 12 2 2 Section-D",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "A train takes 2 hours less for a journey of 300km if its speed is increased by 5 km/h from its usual speed. Find the usual speed of the train. OR Solve for x: ૚ (܉ା܊ାܠ)= ૚ ܉+ ૚ ܊+ ૚ ܠ ,[ ܉ ≠ ૙,܊ ≠ ૙,ܠ≠ ૙,ܠ≠ −(܉+܊ )]",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "An AP consists of 50 terms of which 3rd term is 12 and the last term is 106. Find the 29th term.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Prove that in a right angled triangle square of the hypotenuse is equal to sum of the squares of other two sides.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Draw a ∆ܥܤܣ with sides 6cm, 8cm and 9 cm and then construct a triangle similar to ∆ܥܤܣ whose sides are ଷ ହ of the corresponding sides of ∆ܥܤܣ.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "A man on the top of a vertical observation tower observes a car moving at a uniform speed coming directly towards it. If it takes 12 minutes for the angle of depression to change from 300 to 450, how long will the car take to reach the observation tower from this point? OR The angle of elevation of a cloud from a point 60 m above the surface of the water of a lake is 300 and the angle of depression of its shadow from the same point in water of lake is 600. Find the height of the cloud from the surface of water.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "The median of the following data is 525. Find the values of x and y if the total frequency is 100. Class Interval Frequency 0-100 2 100-200 5 200-300 x 300-400 12 400-500 17 500-600 20 600-700 Y 700-800 9 800-900 7 900-1000 4 OR The following data indicates the marks of 53 students in Mathematics. Marks Number of students 0-10 5 10-20 3 20-30 4 30-40 3 40-50 4 50-60 4 60-70 7 70-80 9 80-90 7 90-100 8 Draw less than type ogive for the data above and hence find the median.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "The radii of circular ends of a bucket of height 24 cm are 15 cm and 5 cm. Find the area of its curved surface.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "If ߠܿ݁ݏ+ߠ݊ܽݐ =݌ then find the value of ܿ݁ݏ݋ܿߠ.",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

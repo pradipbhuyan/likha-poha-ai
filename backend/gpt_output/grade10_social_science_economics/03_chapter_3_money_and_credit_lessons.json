@@ -1,0 +1,91 @@
+{
+  "manifest": {
+    "grade": "Grade 10",
+    "subject": "Social Science",
+    "chapter": "Chapter 3: Money and Credit",
+    "central_question": "How do money, banks and different credit arrangements enable exchange and development, and why must affordable credit be made accessible to all?",
+    "in_scope_units": [
+      "Money as a Medium of Exchange: barter and double coincidence of wants",
+      "Modern Forms of Money: currency, deposits and cheque payments",
+      "Loan Activities of Banks: deposits, reserves, borrowers and bank income",
+      "Two Different Credit Situations: productive credit and debt trap",
+      "Terms of Credit: interest, collateral, documentation and repayment",
+      "Variety of Credit Arrangements: village lenders, borrowers and cooperatives",
+      "Formal Sector Credit in India: RBI supervision and formal–informal differences",
+      "Formal and Informal Credit — Who Gets What?: unequal access",
+      "Self-Help Groups for the Poor: savings, group loans and bank linkage",
+      "Grameen Bank of Bangladesh and chapter summing up"
+    ],
+    "banned_topics": [
+      "GDP and sectoral classification",
+      "WTO, MNCs and trade barriers",
+      "Consumer rights and consumer commissions",
+      "Detailed public-facility comparisons among states"
+    ],
+    "must_include_keywords": [
+      "barter",
+      "double coincidence of wants",
+      "medium of exchange",
+      "currency",
+      "Reserve Bank of India",
+      "demand deposits",
+      "cheque",
+      "bank deposits",
+      "borrowers",
+      "interest",
+      "credit",
+      "Salim",
+      "Swapna",
+      "debt trap",
+      "terms of credit",
+      "collateral",
+      "documentation",
+      "Megha",
+      "Shyamal",
+      "Arun",
+      "Rama",
+      "cooperatives",
+      "formal credit",
+      "informal credit",
+      "RBI supervision",
+      "affordable credit",
+      "Self Help Groups",
+      "SHGs",
+      "group responsibility",
+      "Grameen Bank"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Money is needed only when goods are bought with cash.",
+        "correction": "Money includes currency and demand deposits, and payments can be settled through cheques without cash."
+      },
+      {
+        "claim": "Credit always improves the borrower's condition.",
+        "correction": "Credit can increase earnings or create a debt trap depending on risk, terms and repayment capacity."
+      },
+      {
+        "claim": "Interest rate is the only term of credit.",
+        "correction": "Terms of credit include interest, collateral, documentation and the mode of repayment."
+      },
+      {
+        "claim": "Poor households depend on informal credit because it is cheaper.",
+        "correction": "Informal credit is often costlier; poor households may depend on it because formal loans require access, documents and collateral."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the NCERT shoe-manufacturer barter example.",
+      "Use the NCERT M. Salim cheque-payment example to explain demand deposits.",
+      "Compare the NCERT Salim and Swapna credit situations.",
+      "Use Megha's house loan and the Sonpur village cases to analyse terms of credit.",
+      "Conclude with the NCERT SHG and Grameen Bank examples."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with 'EXERCISES', Questions 1–13, followed by an Additional Project / Activity."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Money and Credit\n\n## What you will learn\nYou will learn why money is used as a medium of exchange. You will understand barter, double coincidence of wants, currency, demand deposits and cheque payments.\n\n## Simple explanation\nMoney separates selling from buying. A person can sell a product for money and then use that money to buy something from a different person.\n\n## Step-by-step breakdown\n- **Barter**: In a barter system goods and services are directly exchanged without money.\n- **Double coincidence of wants**: Barter requires each party to want exactly what the other offers at the same time.\n- **Medium of exchange**: Money provides an intermediate step, so the shoe manufacturer can sell shoes to one person and buy wheat from another.\n- **Currency**: Paper notes and coins are accepted because they are authorised by the government. In India the Reserve Bank of India issues currency notes on behalf of the central government.\n- **Demand deposits**: Bank deposits that can be withdrawn on demand are called demand deposits and earn interest while remaining available for use.\n- **Cheque payments**: A cheque instructs a bank to transfer a specified amount from the payer's account to the named recipient, allowing payment without cash.\n- **Modern money**: Currency and demand deposits together constitute important modern forms of money linked to the banking system.\n\n## Worked example\nQuestion: How does money remove the difficulty faced by the shoe manufacturer in a barter system?\n\nSolution:\n- Step 1: Without money, the manufacturer must find a wheat farmer who both wants shoes and is willing to exchange wheat for them.\n- Step 2: Money allows the manufacturer to sell shoes to any buyer and later use the money to purchase wheat from another seller.\n- Final answer: Money eliminates the need for double coincidence of wants and therefore makes exchange easier.\n\n## Common mistake\nA common mistake is to say that every payment instrument is itself money. The chapter notes that some cards facilitate transactions, while currency and demand deposits are the central modern forms discussed.\n\n## Quick check question\nQuestion: Why are demand deposits considered money?\nAnswer: Because they can be withdrawn on demand and used to settle payments, including through cheques.\nExplanation: They share the essential medium-of-exchange function of money.\n\n## Summary\n- Barter requires double coincidence of wants.\n- Money acts as a medium of exchange.\n- Currency is authorised by the government.\n- Demand deposits are withdrawable on demand.\n- Cheques transfer bank deposits without cash.",
+    "Core explanation": "# Core explanation: Money and Credit\n\n## What you will learn\nYou will understand how banks use deposits and mediate between depositors and borrowers. You will also analyse how credit can produce either a positive outcome or a debt trap.\n\n## Simple explanation\nBanks keep a small part of deposits as cash and lend a major portion to people who need funds. Credit helps when it raises earnings and can be repaid, but it becomes harmful when risk and loss make repayment impossible.\n\n## Step-by-step breakdown\n- **Bank mediation**: Banks connect people with surplus bank deposits to borrowers who need funds for economic activity.\n- **Cash reserve**: The chapter states that banks keep about 5 per cent of deposits as cash to meet normal withdrawals.\n- **Bank income**: Banks charge a higher interest rate on loans than the interest they pay on deposits; the difference is a main source of income.\n- **Meaning of credit**: Credit is an agreement in which a lender supplies money, goods or services in return for a promise of future payment.\n- **Salim's positive credit**: Salim borrows to meet working-capital needs, completes a large shoe order, earns a profit and repays the loan.\n- **Swapna's debt trap**: Swapna borrows for cultivation, loses her crop to pests, cannot repay and finally sells part of her land.\n- **Risk and support**: Whether credit is useful depends on the risk in the situation and whether support exists when a loss occurs.\n\n## Worked example\nQuestion: Why does credit improve Salim's position but worsen Swapna's position?\n\nSolution:\n- Step 1: Salim's credit finances production for an order that he completes successfully, while Swapna's crop fails and leaves her without enough income to repay.\n- Step 2: The outcome depends on the success of the activity, the borrower's repayment capacity and the availability of support when risk turns into loss.\n- Final answer: Credit is not automatically beneficial or harmful; its effect depends on circumstances and terms.\n\n## Common mistake\nA common mistake is to treat every loan as a sign of development. A loan can increase earnings or push a borrower into a debt trap.\n\n## Quick check question\nQuestion: What is a debt trap?\nAnswer: A situation in which debt grows and recovery becomes very difficult, often forcing the borrower to sacrifice assets or take fresh loans.\nExplanation: Swapna's inability to repay after crop failure illustrates this process.\n\n## Summary\n- Banks channel deposits into loans.\n- Credit is a promise of future payment.\n- Productive credit can increase earnings.\n- High risk and failed income can create a debt trap.\n- Credit outcomes depend on risk, support and repayment capacity.",
+    "Worked examples": "# Worked examples: Money and Credit\n\n## What you will learn\nYou will learn the terms of credit and compare different village credit arrangements. You will understand interest, collateral, documentation, repayment and the power of lenders.\n\n## Simple explanation\nEvery loan has conditions. Easy or difficult terms depend not only on the interest rate but also on collateral, documents, repayment rules and the lender's control over the borrower.\n\n## Step-by-step breakdown\n- **Interest rate**: The borrower pays interest in addition to repaying the principal.\n- **Collateral**: Collateral is an asset such as land, a building, a vehicle, livestock or bank deposits offered as a guarantee until repayment.\n- **Documentation**: Formal lenders may require employment records, salary details, identity documents or proof of ownership.\n- **Mode of repayment**: Loans may be repaid in instalments, after harvest or within an agreed period.\n- **Megha's housing loan**: Megha borrows Rs 5 lakh at 12 per cent annual interest for 10 years, repays in monthly instalments and deposits the house papers as collateral.\n- **Shyamal's trader loan**: The trader supplies inputs on credit, charges monthly interest and requires Shyamal to sell the crop to him, often at low post-harvest prices.\n- **Arun's bank loan**: Arun receives a lower annual interest rate, a longer repayment period and access to a loan against a cold-storage receipt.\n- **Rama's dependence**: Rama borrows from her employer at a high monthly rate and repays through labour, repeatedly taking new loans.\n- **Cooperatives**: Cooperatives pool member resources and provide loans for cultivation, equipment, trade, housing and other needs.\n\n## Worked example\nQuestion: Why are Arun's terms of credit more favourable than Shyamal's and Rama's?\n\nSolution:\n- Step 1: Arun receives a bank loan at a lower annual rate with a longer repayment period, while Shyamal and Rama face high monthly interest and additional dependence on traders or employers.\n- Step 2: Lower interest and flexible repayment leave more income with the borrower and reduce the lender's control over sale of produce or labour.\n- Final answer: Arun has easier terms of credit, while Shyamal and Rama bear costly and restrictive informal arrangements.\n\n## Common mistake\nA common mistake is to compare loans only by the interest rate. Collateral, documentation, repayment conditions and linked obligations are also parts of the terms of credit.\n\n## Quick check question\nQuestion: Why do lenders ask for collateral?\nAnswer: To secure repayment by giving the lender the right to sell the asset if the borrower fails to repay.\nExplanation: Collateral reduces the lender's risk but can exclude poor borrowers who do not own suitable assets.\n\n## Summary\n- Terms of credit include interest, collateral, documentation and repayment.\n- Collateral protects the lender but can restrict access for the poor.\n- Village credit arrangements differ sharply by borrower and lender.\n- Informal credit can include hidden controls over produce or labour.\n- Cooperatives provide another source of relatively cheap rural credit.",
+    "Exam-style problems": "# Exam-style problems: Money and Credit\n\n## What you will learn\nYou will distinguish formal and informal sources of credit. You will learn how the Reserve Bank of India supervises banks and why access to affordable formal credit is unequal.\n\n## Simple explanation\nFormal credit is regulated; informal credit is not supervised in the same way. Poor households often depend on costly informal lenders because they lack collateral, documents or nearby bank access.\n\n## Step-by-step breakdown\n- **Formal sources**: Banks and cooperatives are formal credit sources.\n- **Informal sources**: Moneylenders, traders, employers, landlords, relatives and friends are informal credit sources.\n- **RBI supervision**: The Reserve Bank of India monitors cash balances and requires banks to report how much they lend, to whom and at what interest rate.\n- **No comparable informal supervision**: Informal lenders can charge high rates and may use unfair recovery methods.\n- **Cost of borrowing**: High interest consumes a larger share of earnings and can create increasing debt.\n- **Unequal access**: Richer households receive a larger share of formal credit, while poorer households depend more on informal credit.\n- **Development role**: Cheap and affordable credit supports cultivation, trade, small industry and other income-generating activity.\n- **Need for expansion**: Banks and cooperatives must lend more, especially in rural areas, and distribute formal credit more equally.\n\n## Worked example\nQuestion: Why should formal sources of credit expand even when informal lenders are easier to approach?\n\nSolution:\n- Step 1: The chapter explains that informal lenders often charge much higher interest and are not supervised, while formal loans are regulated and generally cheaper.\n- Step 2: High borrowing costs reduce the borrower's remaining income and can cause debt traps, limiting productive investment.\n- Final answer: Formal credit should expand and reach poor households so that affordable credit supports development and dependence on costly informal credit falls.\n\n## Common mistake\nA common mistake is to call every loan from a known person safe. Personal familiarity does not guarantee fair interest, records or recovery methods.\n\n## Quick check question\nQuestion: Which institution supervises formal sources of credit in India?\nAnswer: The Reserve Bank of India.\nExplanation: Its RBI supervision includes monitoring bank practices, cash balances and lending information.\n\n## Summary\n- Banks and cooperatives are formal lenders.\n- Moneylenders, traders and employers are informal lenders.\n- The RBI supervises formal credit.\n- Informal credit is often more expensive and weakly regulated.\n- Affordable formal credit must reach poorer borrowers more equally.",
+    "Revision and recap": "# Revision and recap: Money and Credit\n\n## What you will learn\nYou will understand how Self Help Groups improve access to credit for the poor. You will revise the full chapter from money and banking to fair and affordable credit.\n\n## Simple explanation\nSelf Help Groups combine regular saving, group decision-making and shared responsibility. They help poor women obtain timely loans without conventional collateral and also strengthen collective action.\n\n## Step-by-step breakdown\n- **SHG membership and saving**: A typical Self Help Group has 15–20 members from one neighbourhood who save regularly according to their ability.\n- **Internal lending**: Members can take small loans from the group at an interest rate lower than that charged by moneylenders.\n- **Bank linkage**: After regular saving for a year or two, SHGs may become eligible for a bank loan sanctioned in the group's name.\n- **No conventional collateral**: Banks are willing to lend because group responsibility supports repayment and members follow up non-payment.\n- **Uses of loans**: Loans can release mortgaged land, buy seeds or raw materials, obtain housing materials, or acquire assets such as sewing machines, handlooms and cattle.\n- **Women's empowerment**: SHGs promote financial self-reliance and provide a platform to discuss health, nutrition and domestic violence.\n- **Grameen Bank**: The chapter presents Grameen Bank of Bangladesh as a major example of reaching poor women with reasonable credit for income-generating activity.\n- **Chapter connection**: Modern money depends on banking, and fair development requires credit that is productive, affordable and accessible.\n\n## Worked example\nQuestion: How do SHGs overcome the problem of collateral?\n\nSolution:\n- Step 1: Members save together, decide on loans collectively and hold the group responsible for repayment. Non-payment is followed up by other members.\n- Step 2: Group responsibility gives banks confidence even when individual members have no asset to offer as collateral.\n- Final answer: SHGs replace individual collateral with regular saving, collective monitoring and shared repayment responsibility.\n\n## Common mistake\nA common mistake is to think SHG decisions are taken by the bank. The group members decide the purpose, amount, interest and repayment schedule of loans.\n\n## Quick check question\nQuestion: Who takes most important savings and loan decisions in an SHG?\nAnswer: The group members.\nExplanation: Collective decision-making is a defining feature of the SHG model described in the chapter.\n\n## Summary\n- Self Help Groups pool savings and make small loans.\n- Group responsibility can substitute for conventional collateral.\n- Bank-linked SHGs provide timely and reasonably priced credit.\n- SHGs support self-employment and women's collective strength.\n- Fair credit access is essential for inclusive development."
+  }
+}

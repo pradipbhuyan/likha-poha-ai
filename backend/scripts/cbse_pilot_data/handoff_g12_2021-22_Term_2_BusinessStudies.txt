@@ -1,0 +1,49 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 2
+Subject: Business Studies
+Source Subject Code: BusinessStudies
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/BusinessStudies-SQP_Term2.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/BusinessStudies-MS_Term2.pdf
+Total Questions: 10
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/BusinessStudies-MS_Term2.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q10 [mcq, 1m, Sec A]
+State any five regulatory functions of the Securities and Exchange Board of India 5
+
+Q11 [long_answer, 5m, Sec A]
+In an interview with a leading news channel, Mr. Rakesh Kwatra, CEO of ‘Get My Job” has suggested that the Companies which want more and more people to apply for jobs in their organisation should make the process of applying for jobs easier and candidate friendly. It is for this reason, he said, that most progressive companies today have a short application process. He also said that the application form filled by the candidate is very important as it is the information supplied in the application forms, which helps the manager in eliminating unqualified or unfit job seekers. The company can create a mechanism that attempts to measure certain characteristics of individuals like aptitude, manual dexterity, and intelligence to personality. The candidate may then be called for an in-depth conversation to evaluate their suitability for the job. (a). Name the process and steps in the process of identifying and choosing the best person out of a number of prospective candidates for a job discussed above. (b). Also explain the next three steps in the process which can be subsequently performed by the company.
+
+Q12 [long_answer, 5m, Sec A]
+Vansh Limited is a large and reputed company which manufactures ventilators. After the outbreak of ‘COVID-19’ in 2020 the company witnessed an increase in revenue by 40%. It has plans to further increase its production capacity and also start production of PPE kits, sanitisers and masks in 2022. The Finance manager of the Company Mr. Rajiv feels confident about the future of the company and its liquidity position. Discuss the meaning of Dividend Decision and in the light of the above statement explain any two factors which should be considered by ‘Vansh Limited’ while formulating the dividend policy of the company. OR Vedansh Limited has a share capital of ₹10,00,000 divided into shares of ₹100 each .For expansion purpose ,the company requires additional funds of ₹ 5,00,000 . The management is considering the following alternatives for raising funds : Alternative 1: Issue of 5000 Equity shares of ₹100 each Alternative 2: Issue of 10% Debentures of Rs. 5,00,000 The company’s present Earnings Before Interest and Tax ( EBIT) is ₹4,00,000 p.a. Assuming that the rate of Return of Investment remains the same after expansion, which alternative should be used by the company in order to maximise the returns to the equity shareholders. The Tax rate is 50%. Show the working.
+
+Q2 [mcq, 1m, Sec A]
+marks questions are Short Answer Type Questions and are to be answered in 30-50 words.
+
+Q3 [short_answer, 2m, Sec A]
+marks questions are Short Answer Type Questions and are to be answered in 50-80 words. 5 marks questions are Long Answer Type Questions and are to be answered in 80-120 words. This question paper contains Case/Source Based Questions. S.NO QUESTIONS MARKS 1 Identify and explain the two sources of the source of recruitment which cannot be used when the existing staff is either insufficient or does not fulfil the eligibility criteria of the jobs to be filled. ‘MYKAA Limited ‘is dealing in all types of cosmetic products. It is enjoying increased demand for its product during the last few years. For the purpose of expansion the company needs ₹ 100 crores as additional capital. The company decides to raise funds through equity shares. Chirag Kapoor, the finance manager of the company recommended that the shares may be sold through issuing houses or brokers. Identify and explain the method recommended by Mr.Kapoor through which the company can raise additional funds for expansion purposes. 3 Explain the two concepts which are part of the exercise which would reveal whether a company is understaffed, overstaffed or optimally staffed.
+
+Q5 [short_answer, 2m, Sec A]
+marks questions are Long Answer Type Questions and are to be answered in 80-120 words. This question paper contains Case/Source Based Questions. S.NO QUESTIONS MARKS 1 Identify and explain the two sources of the source of recruitment which cannot be used when the existing staff is either insufficient or does not fulfil the eligibility criteria of the jobs to be filled. ‘MYKAA Limited ‘is dealing in all types of cosmetic products. It is enjoying increased demand for its product during the last few years. For the purpose of expansion the company needs ₹ 100 crores as additional capital. The company decides to raise funds through equity shares. Chirag Kapoor, the finance manager of the company recommended that the shares may be sold through issuing houses or brokers. Identify and explain the method recommended by Mr.Kapoor through which the company can raise additional funds for expansion purposes. 3 Explain the two concepts which are part of the exercise which would reveal whether a company is understaffed, overstaffed or optimally staffed. “Measurement of a company’s progress may involve calculation of certain ratios like gross profit ratio, net profit ratio, and return on investment etc. at periodic intervals”. Identify the function of management involved in the above context. Also briefly explain the step in the process of the identified function discussed above. 5 Mr. Pawan Kumar, the CEO of an E-Commerce start up, which was facing the problem of huge employee turnover, decided to hold a meeting with the managers to discuss the issue. While addressing the managers in the meeting, he advised them to take certain measures which focus on psychological, social and emotional factors, in order to motivate employees. Explain any two such measures discussed by him, when he suggested that job should be made interesting so that the job itself becomes a source of motivation, employees should be congratulated for good performance, also, stability regarding future income and work should be provided to employees, in order to develop a positive attitude among the subordinates.
+
+Q6 [short_answer, 3m, Sec A]
+State any three points of importance of Directing. OR Define leadership as an element of Directing? Enumerate any two styles of Leadership.
+
+Q7 [mcq, 1m, Sec A]
+List any three factors affecting the Working Capital requirement of a company. 3
+
+Q8 [short_answer, 3m, Sec A]
+Priya is a regional manager of XYZ. Ltd. She is a hardworking employee and is trying to reduce wastage of resources in her company. She has set standards for performance of different activities and is ensuring that targets are met according to these standards with minimal wastage of resources. She has set up CCTV cameras which helps her to keep a close check on the activities of the subordinates and know how the employees are performing. She also rewards the employees with a bonus when these standards are met. She is trying her best to ensure a good performance of her team this year through the application of an important function of management. Explain any two benefits of the function of management highlighted above.
+
+Q9 [long_answer, 5m, Sec A]
+Enumerate any five rights of a consumer under the Consumer Protection Act, 2019. OR Enumerate any five responsibilities of a Consumer Protection Act, 2019.
+
+======================================================================
+Return the complete JSON array.

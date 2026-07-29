@@ -1,0 +1,190 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2020-21
+Subject: Biology
+Source Subject Code: Biology
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Biology-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Biology-MS.pdf
+Total Questions: 32
+======================================================================
+TASK: For each question provide the answer in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2020_21/Biology-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Why does endosperm development precede embryo development?
+  (A) Why does endosperm development precede embryo development.
+  (B) How many meiotic divisions are required to produce 76 seeds in a Guava fruit?
+  (C) How does pollination take place in water hyacinth and water lily?
+  (D) Name the glands that contribute to human seminal plasma.
+  (5) A snapdragon plant with violet flowers was crossed with another such plant with white flowers. The F1 progeny obtained had pink flowers. Explain, in brief, the inheritance pattern seen in offsprings of F1 generation?
+
+Q10 [mcq, 1m, Sec A]
+Which of the three forests- Temperate, Mangroves and Tropical Evergreen is more vulnerable to invasion by outside animals and plants?
+  (A) Why does endosperm development precede embryo development.
+  (B) How many meiotic divisions are required to produce 76 seeds in a Guava fruit?
+  (C) How does pollination take place in water hyacinth and water lily?
+  (D) Name the glands that contribute to human seminal plasma.
+  (5) A snapdragon plant with violet flowers was crossed with another such plant with white flowers. The F1 progeny obtained had pink flowers. Explain, in brief, the inheritance pattern seen in offsprings of F1 generation?
+
+Q11 [assertion_reason, 1m, Sec A]
+Primary transcripts in eukaryotes are nonfunctional.
+  (A) Methyl guanosine triphosphate is attached to 5' - end of hnRNA.
+  (B) Both assertion and reason are true, and reason is the correct explanation of assertion.
+  (C) Both assertion and reason are true, but reason is not the correct explanation of assertion.
+  (D) Both assertion and reason are false.
+
+Q12 [assertion_reason, 1m, Sec A]
+E. coli having pBR322 with DNA insert at BamHI site cannot grow in medium containing tetracycline.
+  (A) Recognition site for Bam HI is present in tet R region of pBR322.
+  (B) Both assertion and reason are true, and the reason is the correct explanation of the assertion.
+  (C) Both assertion and reason are true, but the reason is not the correct explanation of the assertion.
+  (D) Both assertion and reason are false.
+
+Q13 [assertion_reason, 1m, Sec A]
+A community with more species is more stable than that with less species.
+  (A) More the number of species, lesser the variation in the total biomass production year after year.
+  (B) Both assertion and reason are true, and the reason is the correct explanation of the assertion.
+  (C) Both assertion and reason are true, but the reason is not the correct explanation of the assertion.
+  (D) Both assertion and reason are false.
+
+Q14 [assertion_reason, 1m, Sec A]
+In Ophrys one petal of the flower bears an uncanny resemblance to the female bee.
+  (A) Both assertion and reason are true, and the reason is the correct explanation of the assertion.
+  (B) Both assertion and reason are true, but the reason is not the correct explanation of the assertion.
+  (C) Assertion is true but reason is false.
+  (D) Both assertion and reason are false.
+
+Q15 [mcq, 1m, Sec A]
+Read the following and answer any four questions from 15(i) to 15(v) given below:
+  (A) The presence of dragonflies can reveal changes in the water ecosystems more quickly than studying other animals or plants.
+  (B) Dragonfly eggs are laid and hatched in or near water, so their lives impact both water and land ecosystems.
+  (C) Once hatched, dragonfly nymphs can breathe underwater which enables them to eat mosquito larvae, other aquatic insects and worms, and even small aquatic vertebrates like tadpoles and small fish and in the air.
+  (D) Adult dragonflies capture and eat adult mosquitoes.
+  (5) Community wide mosquito control programs that spray insecticides to kill adult mosquitoes also kill dragonflies.
+
+Q17 [short_answer, 2m, Sec B]
+State the composition and principle of oral pills as a contraceptive measure taking the example of Saheli.
+
+Q18 [short_answer, 2m, Sec B]
+Karyotype of a child shows trisomy of chromosome number 21. Identify the disorder and state the symptoms which are likely to be exhibited in this case.
+
+Q19 [short_answer, 2m, Sec B]
+Explain four advantages of mycorrhizal association to plants.
+
+Q2 [mcq, 1m, Sec I]
+If both parents have sickle cell trait, then there is _______ of the child having sickle cell anemia.
+  (A) 25 % risk
+  (B) 50 % risk
+  (C) 75% risk
+  (D) No risk
+
+Q20 [short_answer, 2m, Sec B]
+Explain the method to increase the competency of the bacterial cell membrane to take up recombinant DNA?
+
+Q21 [short_answer, 2m, Sec B]
+What are bioreactors? How are large volumes of cultures maintained and processed in them?
+
+Q22 [short_answer, 2m, Sec B]
+What are sticky ends? State their significance in recombination DNA technology.
+
+Q23 [short_answer, 2m, Sec B]
+Explain the procedure by which PCR aids in early detection of cancer.
+
+Q24 [short_answer, 2m, Sec B]
+Define interference competition. Give one example that supports competitive exclusion occurring in nature.
+
+Q25 [short_answer, 2m, Sec B]
+The Tropical regions are likely to have more biological diversity than the Temperate ones. Give two reasons to justify the statement.
+
+Q26 [long_answer, 3m, Sec C]
+A fully developed foetus initiates its delivery from the mother's womb. Justify the statement.
+
+Q27 [short_answer, 3m, Sec C]
+How would you find out the genotype of a pea plant with violet flowers? Explain with the help of Punnets' square showing crosses.
+  [NOTE: diagram]
+
+Q28 [short_answer, 3m, Sec C]
+Define flocs and state their importance in biological treatment of waste water.
+
+Q29 [short_answer, 3m, Sec C]
+A farmer noticed that nematode infection in tobacco plants has resulted in the reduction in the yield. Suggest a strategy which provides cellular defense for providing resistance to this pest. Explain the technique.
+
+Q3 [mcq, 1m, Sec I]
+If both parents have sickle cell trait, then there is _______ of the child having sickle cell trait.
+  (A) 25 % risk
+  (B) 50 % risk
+  (C) 75% risk
+  (D) No risk
+
+Q30 [assertion_reason, 3m, Sec C]
+The graph given below represents three categories of organismic responses - L, M and N to cope with stressful conditions. Identify the categories L and M.
+  [NOTE: diagram]
+
+Q31 [mcq, 5m, Sec D]
+The following figure shows a foetus within the uterus. On the basis of the given figure, answer the questions that follow: (a) In the above figure, choose and name the correct part (A, B, C or D) that act as a temporary endocrine gland and substantiate your answer. Why is it also called the functional junction? (b) Mention the role of B in the development of the embryo. (c) Name the fluid surrounding the developing embryo. How is it misused for sex-determination?
+  (A) A
+  (B) B
+  (C) C
+  (D) D
+  [NOTE: diagram]
+
+Q32 [long_answer, 5m, Sec O]
+Evaluate the suitability of DNA and RNA as genetic material and justify the suitability of the one that is preferred as an ideal genetic material.
+
+Q33 [long_answer, 5m, Sec O]
+Explain the mechanism of DNA replication as suggested by Watson and Crick.
+
+Q4 [mcq, 1m, Sec I]
+If one parent has sickle cell anemia and the other has sickle cell trait, there is _______ that their children will have sickle cell trait.
+  (A) 25 % risk
+  (B) 75% risk
+  (C) 50% risk
+  (D) 25% risk
+
+Q5 [mcq, 1m, Sec A]
+A snapdragon plant with violet flowers was crossed with another such plant with white flowers. The F1 progeny obtained had pink flowers. Explain, in brief, the inheritance pattern seen in offsprings of F1 generation?
+  (A) Why does endosperm development precede embryo development.
+  (B) How many meiotic divisions are required to produce 76 seeds in a Guava fruit?
+  (C) How does pollination take place in water hyacinth and water lily?
+  (D) Name the glands that contribute to human seminal plasma.
+  (5) A snapdragon plant with violet flowers was crossed with another such plant with white flowers. The F1 progeny obtained had pink flowers. Explain, in brief, the inheritance pattern seen in offsprings of F1 generation?
+
+Q6 [mcq, 1m, Sec A]
+Differentiate between aneuploidy and polyploidy.
+  (A) Why does endosperm development precede embryo development.
+  (B) How many meiotic divisions are required to produce 76 seeds in a Guava fruit?
+  (C) How does pollination take place in water hyacinth and water lily?
+  (D) Name the glands that contribute to human seminal plasma.
+  (5) A snapdragon plant with violet flowers was crossed with another such plant with white flowers. The F1 progeny obtained had pink flowers. Explain, in brief, the inheritance pattern seen in offsprings of F1 generation?
+
+Q7 [mcq, 1m, Sec A]
+Predict the effect if, the codon UAU coding for an amino acid at the 25th position of a polypeptide of 50 amino acids, is mutated to UAA.
+  (A) Why does endosperm development precede embryo development.
+  (B) How many meiotic divisions are required to produce 76 seeds in a Guava fruit?
+  (C) How does pollination take place in water hyacinth and water lily?
+  (D) Name the glands that contribute to human seminal plasma.
+  (5) A snapdragon plant with violet flowers was crossed with another such plant with white flowers. The F1 progeny obtained had pink flowers. Explain, in brief, the inheritance pattern seen in offsprings of F1 generation?
+
+Q8 [mcq, 1m, Sec A]
+Differentiate between pro-insulin and mature insulin.
+  (A) Why does endosperm development precede embryo development.
+  (B) How many meiotic divisions are required to produce 76 seeds in a Guava fruit?
+  (C) How does pollination take place in water hyacinth and water lily?
+  (D) Name the glands that contribute to human seminal plasma.
+  (5) A snapdragon plant with violet flowers was crossed with another such plant with white flowers. The F1 progeny obtained had pink flowers. Explain, in brief, the inheritance pattern seen in offsprings of F1 generation?
+
+Q9 [mcq, 1m, Sec A]
+Name the commonly used vector for cloning genes into higher organisms.
+  (A) Why does endosperm development precede embryo development.
+  (B) How many meiotic divisions are required to produce 76 seeds in a Guava fruit?
+  (C) How does pollination take place in water hyacinth and water lily?
+  (D) Name the glands that contribute to human seminal plasma.
+  (5) A snapdragon plant with violet flowers was crossed with another such plant with white flowers. The F1 progeny obtained had pink flowers. Explain, in brief, the inheritance pattern seen in offsprings of F1 generation?
+
+======================================================================
+Return the complete JSON array.

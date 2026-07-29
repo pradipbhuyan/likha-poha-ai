@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 13: Statistics",
+  "central_question": "How can grouped data be summarised meaningfully using mean, mode, median and cumulative frequency?",
+  "in_scope_units": [
+    "Introduction: extends measures of central tendency from ungrouped to grouped data and introduces cumulative frequency and ogives.",
+    "Mean of Grouped Data: develops direct, assumed-mean and step-deviation methods using class marks.",
+    "Mode of Grouped Data: identifies the modal class and calculates a mode within it.",
+    "Median of Grouped Data: forms less-than and more-than cumulative-frequency distributions, locates the median class and applies the median formula.",
+    "Choice and comparison of measures: explains when mean, median or mode is appropriate and states their empirical relationship.",
+    "Summary and note: consolidates formulas and requires continuous class intervals before mode, median and ogive work."
+  ],
+  "banned_topics": [
+    "Variance, standard deviation and coefficient of variation.",
+    "Correlation, regression and bivariate-data analysis.",
+    "Probability calculations and random experiments.",
+    "Detailed construction of histograms and frequency polygons already studied in Class IX, except as background context."
+  ],
+  "must_include_keywords": [
+    "grouped data",
+    "ungrouped data",
+    "frequency distribution",
+    "class interval",
+    "class limits",
+    "class size",
+    "class mark",
+    "mid-point assumption",
+    "frequency",
+    "summation",
+    "Σfixi",
+    "mean",
+    "direct method",
+    "assumed mean",
+    "deviation",
+    "di = xi − a",
+    "step-deviation",
+    "ui = (xi − a)/h",
+    "modal class",
+    "mode",
+    "f0",
+    "f1",
+    "f2",
+    "median",
+    "middle observation",
+    "cumulative frequency",
+    "less-than type",
+    "more-than type",
+    "median class",
+    "n/2",
+    "continuous classes",
+    "ogive",
+    "measures of central tendency",
+    "extreme values",
+    "empirical relationship",
+    "3 Median = Mode + 2 Mean"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The lower or upper class limit can be used directly as xi when finding grouped mean.",
+      "correction": "Use the class mark xi, the average of the lower and upper class limits."
+    },
+    {
+      "claim": "The grouped mean is always the exact mean of the original observations.",
+      "correction": "It is generally an estimate because all observations in a class are represented by its class mark."
+    },
+    {
+      "claim": "The mode of grouped data is the frequency of the modal class.",
+      "correction": "The modal class has the greatest frequency, but the mode is a data value inside that class obtained from the mode formula."
+    },
+    {
+      "claim": "The median class is the class whose frequency is nearest to n/2.",
+      "correction": "Locate the first cumulative frequency greater than or equal to n/2; its class is the median class."
+    },
+    {
+      "claim": "Discontinuous inclusive classes can be used directly in the grouped median or mode formulas.",
+      "correction": "The class intervals must first be converted to continuous form."
+    },
+    {
+      "claim": "The empirical relation among mean, median and mode is a definition that must hold exactly for every data set.",
+      "correction": "It is an empirical relationship used as an approximate connection, not the definition of any measure."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 1 and Tables 13.1–13.3 to compare exact ungrouped mean with approximate grouped mean by the direct method.",
+    "Use NCERT Activity 1 and NCERT Example 2 to practise assumed mean and step-deviation and verify that all three mean methods agree.",
+    "Introduce the modal class and formula through NCERT Example 5, then compare mean and mode using NCERT Example 6.",
+    "Build cumulative frequency and the median formula through Tables 13.12–13.15 and NCERT Example 7.",
+    "Finish with NCERT Exercise 13.3 Question 1 to calculate and compare mean, median and mode in one distribution."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "NCERT Exercises 13.1, 13.2 and 13.3 cover grouped mean, grouped mode, grouped median, missing frequencies and comparison of all three measures.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,106 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 2: Acids, Bases and Salts",
+  "central_question": "How do acids, bases and salts behave in water and reactions, how is their strength measured, and how are their properties used in daily life?",
+  "in_scope_units": [
+    "Acid-base indicators, including litmus, turmeric, methyl orange, phenolphthalein and olfactory indicators.",
+    "Reactions of acids and bases with metals, including liberation and testing of hydrogen gas.",
+    "Reactions of acids with metal carbonates and hydrogencarbonates, including the lime-water test for carbon dioxide.",
+    "Neutralisation and reactions of metallic oxides with acids and non-metallic oxides with bases.",
+    "Common ionic behaviour of acids and bases in water, electrical conductivity, hydronium ions, hydroxide ions and alkalis.",
+    "Dilution of acids and bases, its exothermic nature and the safety rule for adding acid to water.",
+    "pH scale, strong and weak acids or bases, and universal indicator.",
+    "Importance of pH in living organisms, acid rain, soil, digestion, tooth decay and stings.",
+    "Families of salts and the acidic, basic or neutral nature of salt solutions.",
+    "Common salt as a raw material: chlor-alkali process, bleaching powder, baking soda and washing soda.",
+    "Water of crystallisation, gypsum and Plaster of Paris.",
+    "Chapter review through the NCERT 'What you have learnt', Exercises 1-15 and Group Activities."
+  ],
+  "banned_topics": [
+    "Full logarithmic calculations of pH, which are beyond the treatment in this chapter.",
+    "Detailed ionic equilibrium constants and buffer calculations, which belong to higher classes.",
+    "Detailed industrial engineering of electrolysis cells beyond the chlor-alkali process shown in the chapter.",
+    "Detailed metallurgy of metals and ores, which belongs to the Metals and Non-metals chapter."
+  ],
+  "must_include_keywords": [
+    "acid",
+    "base",
+    "salt",
+    "indicator",
+    "litmus",
+    "phenolphthalein",
+    "methyl orange",
+    "olfactory indicator",
+    "hydrogen gas",
+    "carbon dioxide",
+    "lime water",
+    "neutralisation",
+    "metal oxide",
+    "non-metallic oxide",
+    "H+(aq)",
+    "H3O+",
+    "OH-(aq)",
+    "aqueous solution",
+    "electrical conductivity",
+    "alkali",
+    "dilution",
+    "exothermic",
+    "universal indicator",
+    "pH scale",
+    "strong acid",
+    "weak acid",
+    "acid rain",
+    "antacid",
+    "tooth decay",
+    "family of salts",
+    "brine",
+    "chlor-alkali process",
+    "bleaching powder",
+    "baking soda",
+    "washing soda",
+    "water of crystallisation",
+    "gypsum",
+    "Plaster of Paris"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every compound containing hydrogen is an acid.",
+      "correction": "Acids produce H+(aq) or H3O+ ions in water; glucose and alcohol contain hydrogen but do not ionise to produce these ions and do not conduct like acids in Activity 2.8."
+    },
+    {
+      "claim": "All bases are alkalis.",
+      "correction": "An alkali is specifically a base that dissolves in water; all bases are not water-soluble."
+    },
+    {
+      "claim": "Dry HCl gas should turn dry blue litmus red because HCl is an acid.",
+      "correction": "HCl produces hydrogen ions only in the presence of water, so dry HCl does not change dry blue litmus."
+    },
+    {
+      "claim": "During dilution, water should be poured into concentrated acid.",
+      "correction": "Acid must be added slowly to water with constant stirring because dilution is highly exothermic and adding water to concentrated acid can cause dangerous splashing."
+    },
+    {
+      "claim": "A lower pH means a lower hydrogen-ion concentration.",
+      "correction": "Higher hydronium-ion concentration corresponds to lower pH."
+    },
+    {
+      "claim": "All salts are neutral.",
+      "correction": "Salt solutions may be neutral, acidic or basic depending on the strengths of the acid and base from which the salt is formed."
+    },
+    {
+      "claim": "Water of crystallisation means that salt crystals are simply wet on the outside.",
+      "correction": "Water of crystallisation is a fixed number of water molecules chemically associated with each formula unit of the salt."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with NCERT Activities 2.1 and 2.2 to identify acids and bases using colour and odour indicators.",
+    "Use NCERT Activities 2.3-2.7 to build the standard reaction patterns of acids and bases.",
+    "Use NCERT Activities 2.8-2.10 to explain ions, conductivity, water dependence and safe dilution.",
+    "Use NCERT Activities 2.11-2.12 and Exercises 9-12 to apply the pH scale to daily life.",
+    "Use NCERT Activities 2.13-2.15 and Exercises 13-15 to consolidate salt families, common-salt products and water of crystallisation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the end-of-chapter 'EXERCISES' section, Questions 1-15, followed by Group Activity I on a natural indicator and Group Activity II on a soda-acid fire extinguisher.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

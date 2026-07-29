@@ -1,0 +1,183 @@
+CBSE GRADE 10 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 1
+Subject: Mathematics
+Source Subject Code: MathsStandard
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/MathsStandard-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/MathsStandard-MS.pdf
+Total Questions: 22
+======================================================================
+
+TASK: For each question below, provide the answer in the EXACT JSON format shown.
+
+OUTPUT FORMAT (return a JSON array):
+[{
+  "question_number": <integer>,
+  "question_text": "<copy from input>",
+  "question_type": "<copy from input>",
+  "options": [<copy from input>],
+  "answer_text": "<for mcq/assertion_reason: exact option text; for others: concise answer>",
+  "answer_explanation": "<2-4 sentence explanation based on CBSE curriculum>"
+}, ...]
+
+IMPORTANT RULES:
+- For MCQ/assertion_reason: answer_text MUST be the EXACT text of one of the options (copy verbatim)
+- For short_answer: answer_text should be a complete answer per marking scheme
+- For long_answer/case_study: answer_text should be a full answer per marking scheme
+- If a question is diagram-dependent and no text alternative exists, use: NEEDS_MANUAL_REVIEW_diagram_dependent
+- Refer to the official Marking Scheme PDF for correct answers: https://cbseacademic.nic.in/web_material/SQP/ClassX_2021_22/MathsStandard-MS.pdf
+
+======================================================================
+
+QUESTIONS:
+
+Q1 [mcq, 1 mark(s), Section A]
+The ratio of LCM and HCF of the least composite and the least prime numbers is
+  (A) 1:2
+  (B) 2:1
+  (C) 1:1
+  (D) 1:3
+
+Q10 [mcq, 1 mark(s), Section A]
+The distance of point A(-5, 6) from the origin is
+  (A) 11 units
+  (B) 61 units
+  (C) √11 units
+  (D) √61 units
+
+Q11 [mcq, 1 mark(s), Section A]
+If a² = 23/25, then a is
+  (A) rational
+  (B) irrational
+  (C) whole number
+  (D) integer
+
+Q12 [mcq, 1 mark(s), Section A]
+If LCM(x, 18) =36 and HCF(x, 18) =2, then x is
+  (A) 2
+  (B) 3
+  (C) 4
+  (D) 5
+
+Q13 [mcq, 1 mark(s), Section A]
+In ∆ABC right angled at B, if tan A= √3, then cos A cos C- sin A sin C =
+  (A) -1
+  (B) 0
+  (C) 1
+  (D) √3/2
+
+Q14 [mcq, 1 mark(s), Section A]
+If the angles of ∆ABC are in ratio 1:1:2, respectively (the largest angle being angle C), then the value of sec A cosec B – tan A cot B is
+  (A) 0
+  (B) 1/2
+  (C) 1
+  (D) √3/2
+
+Q15 [mcq, 1 mark(s), Section A]
+The number of revolutions made by a circular wheel of radius 0.7m in rolling a distance of 176m is
+  (A) 22
+  (B) 24
+  (C) 75
+  (D) 40
+
+Q16 [mcq, 1 mark(s), Section A]
+∆ABC is such that AB=3 cm, BC= 2cm, CA= 2.5 cm. If ∆ABC ~ ∆DEF and EF = 4cm, then perimeter of ∆DEF is
+  (A) 7.5 cm
+  (B) 15 cm
+  (C) 22.5 cm
+  (D) 30 cm
+
+Q17 [mcq, 1 mark(s), Section A]
+In the figure, if DE∥ BC, AD = 3cm, BD = 4cm and BC= 14 cm, then DE equals
+  (A) 7cm
+  (B) 6cm
+  (C) 4cm
+  (D) 3cm
+  [NOTE: This question references a diagram]
+
+Q18 [mcq, 1 mark(s), Section A]
+If 4 tanβ = 3, then 4 𝑠𝑖𝑛𝛽−3 cos 𝛽 4 sin 𝛽+3 cos 𝛽 =
+  (A) 0
+  (B) 1/3
+  (C) 2/3
+  (D) ¾
+
+Q19 [mcq, 1 mark(s), Section A]
+One equation of a pair of dependent linear equations is –5x + 7y = 2. The second equation can be a) 10x+14y +4 = 0 b) –10x –14y+ 4 = 0 c) –10x+14y + 4 = 0
+  (A) 10x – 14y = –4
+
+Q2 [mcq, 1 mark(s), Section A]
+The value of k for which the lines 5x+7y=3 and 15x + 21y = k coincide is
+  (A) 9
+  (B) 5
+  (C) 7
+  (D) 18
+
+Q20 [mcq, 1 mark(s), Section A]
+A letter of English alphabets is chosen at random. What is the probability that it is a letter of the word ‘MATHEMATICS’?
+  (A) 4/13
+  (B) 9/26
+  (C) 5/13
+  (D) 11/26
+
+Q21 [mcq, 1 mark(s), Section B]
+
+  (A) 3sq. units
+  (B) 4sq. units
+  (C) 6sq. units
+  (D) 8sq. units
+
+Q22 [mcq, 1 mark(s), Section C]
+The figure given alongside shows the path of a diver, when she takes a jump from the diving board. Clearly it is a parabola. Annie was standing on a diving board, 48 feet above the water level. She took a dive into the pool. Her height (in feet) above the water level at any time‘t’ in seconds is given by the polynomial h(t) such that h(t) = -16t² + 8t + k.
+  [NOTE: This question references a diagram]
+
+Q3 [mcq, 1 mark(s), Section A]
+A girl walks 200m towards East and then 150m towards North. The distance of the girl from the starting point is
+  (A) 350m
+  (B) 250m
+  (C) 300m
+  (D) 225
+
+Q4 [mcq, 1 mark(s), Section A]
+The lengths of the diagonals of a rhombus are 24cm and 32cm, then the length of the altitude of the rhombus is
+  (A) 12cm
+  (B) 12.8cm
+  (C) 19 cm`
+  (D) 19.2cm
+
+Q5 [mcq, 1 mark(s), Section A]
+Two fair coins are tossed. What is the probability of getting at the most one head?
+  (A) ¾
+  (B) ¼
+  (C) ½
+  (D) 3/8
+
+Q6 [mcq, 1 mark(s), Section A]
+∆ABC~∆PQR. If AM and PN are altitudes of ∆ABC and ∆PQR respectively and AB2 : PQ2 = 4 : 9, then AM:PN =
+  (A) 16:81
+  (B) 4:9
+  (C) 3:2
+  (D) 2:3
+
+Q7 [mcq, 1 mark(s), Section A]
+If 2sin2β – cos2β = 2, then β is
+  (A) 0ᵒ
+  (B) 90ᵒ
+  (C) 45ᵒ
+  (D) 30ᵒ
+
+Q8 [mcq, 1 mark(s), Section A]
+Prime factors of the denominator of a rational number with the decimal expansion 44.123 are
+  (A) 2,3
+  (B) 2,3,5
+  (C) 2,5
+  (D) 3,5
+
+Q9 [mcq, 1 mark(s), Section A]
+The lines x = a and y = b, are
+  (A) intersecting
+  (B) parallel
+  (C) overlapping
+  (D) (None of these)
+
+======================================================================
+Now return the complete JSON array with answers for all questions above.

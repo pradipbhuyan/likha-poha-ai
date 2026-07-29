@@ -1,0 +1,111 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2016-17
+Subject: Economics
+Source Subject Code: Economics
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Economics-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Economics-MS.pdf
+Total Questions: 30
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Economics-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+When is a consumer said to be rational? (1)
+
+Q10 [mcq, 1m, Sec A]
+Identify which of the following is not true for th e Indifference Curves. Give valid reasons for choice of your answer: a. Lower indifference curve represents lower level of satisfaction. b. Two regular convex to origin indifference curves can intersect each other. c. Indifference curve must be convex to origin at the point of tangency with the budget line at the consumer’s equilibrium. d. Indifference curves are drawn under the ordinal approach to consumer equilibrium. OR A consumer has total money income of 250 to be spent on two goods X and Y with prices of 25 and 10 per unit respectively. On the basis of the information given, answer the following questions: a. Give the equation of the budget line for the consumer. b. What is the value of slope of the budget line? c. How many units can the consumer buy if he is to spend all his money income on good X? d. How does the budget line change if there is a fall in price of good Y? (4)
+
+Q11 [mcq, 1m, Sec A]
+Explain the concept of marginal opportunity cost using a numerical example. (4)
+
+Q12 [mcq, 1m, Sec A]
+Define Price Floor. What is the common purpose of fixation of floor price by the government? Explain any one likely consequence of this nature of intervention by the government. OR Define Price Ceiling. What is the common purpose for the price ceiling imposed by the government? Explain any one likely consequence of this nature of intervention by the government in the price determination process. (2+2+2)
+
+Q13 [mcq, 1m, Sec A]
+Price SS L . o Quantity a) Apply the geometric method to determine the elasticity of supply at point L on the supply curve SS given above. (3) b) Justify the statement, ‘In economics, normal profits are always a part of total cost’. (3)
+
+Q14 [mcq, 1m, Sec A]
+A consumer, Mr. Aman is in state of equilibrium consuming two goods X and Y, with given prices Px and Py. Explain what will happen if : a. MUx / Px is greater than MUy / Py. b. Py falls (6)
+
+Q15 [mcq, 1m, Sec A]
+State, with valid reasons, which of the following statement are true or false: a. Average Revenue curve under the Perfect Competition is a downward sloping curve. b. AFC curve is a rectangular hyperbola curve. c. When MR is falling but positive, TR will also be falling and positive. (6) Section B: Macroeconomics
+
+Q16 [mcq, 1m, Sec B]
+Supply of money refers to quantity of money a. As on 31 st March b. During any specified period of time c. As on any point of time d. During a fiscal year (1)
+
+Q17 [mcq, 1m, Sec B]
+Define nominal flow. (1)
+
+Q18 [mcq, 1m, Sec B]
+Primary deficit is equal to: (1) i) Fiscal Deficit less Interest Payments ii) Revenue Deficit less borrowings iii) Borrowings less interest payments iv) Borrowings less Fiscal Deficit.
+
+Q19 [mcq, 1m, Sec B]
+Which of the following is not a Quantitative Me thod of credit control? (1) i) Open Market Operation ii) Margin Requirements iii) Variable Reserve Ratio iv) Bank Rate Policy
+
+Q2 [mcq, 1m, Sec A]
+Define normative economics, with a suitable example. (1)
+
+Q20 [mcq, 1m, Sec B]
+What are ‘subsidies’? (1)
+
+Q21 [mcq, 1m, Sec B]
+Explain how ‘Depreciation of currency’ promotes exports of a country? (3)
+
+Q22 [mcq, 1m, Sec B]
+If in an economy: a) Consumption function is given by C = 100 + 0. 75 Y, and b) Autonomous investment is 150 crores. Estimate (i) Equilibrium level of income and (ii) Consumption and Savings at the equilibrium level of income. OR Explain how the economy achieves equilibrium level of income using Consumption + Investment (C+I) approach. (3)
+
+Q23 [mcq, 1m, Sec B]
+State under what conditions in the following s tatements may be true: a. GNDI is equal to GNP at market prices. b. Domestic Income is greater than National Income c. Value of output is equal to Value Added (3)
+
+Q24 [mcq, 1m, Sec B]
+` GDP as an index of welfare may understate or overstate welfare.` Explain the statement using examples of a positive and a negative externality (4)
+
+Q25 [mcq, 1m, Sec B]
+Define Balance of Payments. Discuss briefly the components of current account. (4)
+
+Q26 [mcq, 1m, Sec B]
+Explain the concepts of Real GDP and Nominal GD P, using a suitable numerical example. OR State the various precautions of Product Method that should be kept in mind while estimating national income. (4)
+
+Q27 [mcq, 1m, Sec B]
+a) “Fiscal deficit is necessarily inflationary in nature”. Do you agree? Support your answer with valid reasons. b) Elaborate ‘Economic Growth’ as an objective of government budget. (3+3)
+
+Q28 [mcq, 1m, Sec B]
+What is the range of values of investment multi plier? Clarify the relation of investment multiplier with marginal propensity to consume (MPC ) and with marginal propensity to save (MPS). (6)
+
+Q29 [mcq, 1m, Sec B]
+Discuss how the central bank plays the role of `controller of credit` in an economy? OR Using a numerical example elaborate the credit cre ation process as handled by the commercial banks. (6)
+
+Q3 [mcq, 1m, Sec A]
+State the meaning of `quantity demanded of a commodity`. (1)
+
+Q30 [mcq, 1m, Sec B]
+Compute
+  (A) National Income and
+  (B) Personal Di sposable Income.   (6)
+
+Q4 [mcq, 1m, Sec A]
+If a firm’s production department data says that th e total variable cost for producing 8 units and 10 units of output is 2,500 and 3,000 respectively, marginal cost of 10 th unit will be a. 100 b. 150 c. 500 d. 250 (1)
+
+Q5 [mcq, 1m, Sec A]
+State any one assumption for the construction of the curve that shows the possibilities of potential production of two goods in an economy. (1)
+
+Q6 [mcq, 1m, Sec A]
+State the behavior of Marginal Physical Product, under Returns to a Factor. (3)
+
+Q7 [mcq, 1m, Sec A]
+Using appropriate schedules, briefly describe the determination of market equilibrium. (3)
+
+Q8 [mcq, 1m, Sec A]
+“In a hypothetical market of mobile phones, the bran d AWAAZ was leading the market share. Its nearest competitor VAARTA suddenly chang ed its strategy by bringing in a new model of the mobile phone at a relatively lesser pr ice. In response, AWAAZ too slashed its price .” Based on the above information, identify the form o f market represented and discuss any one feature of the market. Or Discuss the primary reason for ‘indeterminateness of demand curve’ under the oligopoly form of market. (3)
+
+Q9 [mcq, 1m, Sec A]
+a. Arrange the following coefficients of price elasticity of demand in ascending order: -0.7, -0.3, -1.1, -0.8 b. Comment upon the degree of elasticity of demand for Good X, using the total outlay method, if the price of X falls from 18 per unit to 13 per unit and its quantity demanded rises from 50 units to 100 units. (1+3)
+
+======================================================================
+Return the complete JSON array.

@@ -1,0 +1,94 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2016-17
+Subject: Sociology
+Source Subject Code: Sociology
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Sociology-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Sociology-MS.pdf
+Total Questions: 25
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/CLASS XII_2016_17/Sociology-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+There are 25 questions in all.
+
+Q10 [mcq, 1m, Sec A]
+Can we apply the distinction between old and n ew social movements in the Indian context? Substantiate your answer with reasons. 2
+
+Q11 [mcq, 1m, Sec A]
+Analyse the relation between rituals and secular goals. 2
+
+Q12 [mcq, 1m, Sec A]
+“Constitution has the capacity to help people because it is based on basic norms of social 2 justice.” How? Explain using an example.
+
+Q13 [mcq, 1m, Sec A]
+How were capitalism and colonialism linked? 2
+
+Q14 [mcq, 1m, Sec A]
+Point out one way in which caste has weakened in one sphere and remained strong in another. 2
+
+Q15 [mcq, 1m, Sec A]
+“Aggregate statistics offer a concrete and str ong argument for the existence of social phenomena.” Elaborate on the meaning on aggregate s tatistics and explain the statement using an example . 4
+
+Q16 [mcq, 1m, Sec A]
+“Forced incorporation of tribal communities into ma instream processes has had its impact on tribal culture and society as much as its economy.” Elaborate . 4
+
+Q17 [mcq, 1m, Sec A]
+State and describe the features of social stratification. 4
+
+Q18 [mcq, 1m, Sec A]
+Describe the working and division of labour in the brickyards of South Gujarat. 4 OR Do industrialisation and the shift to services and knowledge-based work like IT lead to greater skills or de-skilling? Elaborate.
+
+Q19 [mcq, 1m, Sec A]
+“What marked these 19 th century social reform attempts was the modern cont ext and mix of ideas.” Interpret the given statement. 4 OR Marginalised caste groups may have gained some prid e and self-confidence but otherwise remain excluded and discriminated. Elaborate.
+
+Q2 [mcq, 1m, Sec A]
+All questions are compulsory.
+
+Q20 [mcq, 1m, Sec A]
+Would it be appropriate to say that democratic values and institutions are purely western? Comment in the context of the values of Indian democracy. 4
+
+Q21 [mcq, 1m, Sec A]
+“Encouraging or at least allowing cultural div ersity is good policy from both the practical and the principled point of view.” Justify the statement using India’s case as a ‘state-nation’. 4
+
+Q22 [mcq, 1m, Sec A]
+Do you think that with the growth of TV and in ternet in India, the print media has been 6 sidelined? Give your comments . OR The beginning of the printing press led to the grow th of the idea of a ‘Nation’ as an ‘imagined community’. Comment as suggested by Benedict Anderson.
+
+Q23 [mcq, 1m, Sec A]
+“The change in the nature of relationship betw een landlords and agricultural workers was described by the sociologist Jan Breman as a shift from patronage to exploitation.” Explain the given statement in the context of Footloose Labour. 6
+
+Q24 [mcq, 1m, Sec A]
+Explain the stages of Indian economic history. 6
+
+Q25 [mcq, 1m, Sec A]
+Most of us make our money from thin air: we p roduce nothing that can be weighed, touched or easily measured. Our output is not stockpiled at ha rbours, stored in warehouses or shipped in railway car. Most of us earn our livings providing service, judgement, information, analysis, whether in a telephone call centre, a lawyer’s office, a government department or a scientific laboratory. We are all in the thin-air business. Source: Charles Leadbeater 1999 Living on Thin Air: The New Economy (London: Viking) a) Define Weightless Economy. b) What in your opinion is the “thin-air business”? 6
+
+Q3 [mcq, 1m, Sec A]
+Questions No. 1-14 are very short answer type questions carrying 2 marks each. Answer to each question should not exceed 30 words.
+
+Q4 [mcq, 1m, Sec A]
+Questions No. 15-21 are short answer type questions carrying 4 marks each. Answer to each question should not exceed 80 words.
+
+Q5 [mcq, 1m, Sec A]
+Questions No. 22-25 are of long answer type questions carrying 6 marks each. Answer to each question should not exceed 200 words each. Que stions no 25 is to be answered with the help of the passage given. Q1. There are two reasons why there are more female s than males in most countries. However, in South Korea and India, the sex ratio has been declining. What are these two reasons? Why is the trend different for India, China and South Korea? 2 Q2. State reasons for women’s reform movement being often termed as middle class reform movement. 2 Q3. “In Indian nationalism, the dominant trend was marke d by an inclusive and democratic vision.” What do you understand by the words inclusive and democratic in the given statement? 2 Q4. Name any two distinct modes of protest that social movements have developed. 2 Q5. Describe the model of the South Asian colonial City . 2
+
+Q6 [mcq, 1m, Sec A]
+There were certain expectations from the nation building process that the first generation leaders embarked upon. Name them. 2
+
+Q7 [mcq, 1m, Sec A]
+“There is a vital difference between the empire building of pre-capitalist times and that of capitalist times”. Which was applicable in case of India and why? Give one reason. 2
+
+Q8 [mcq, 1m, Sec A]
+Name the features of New Farmer’s Movements. 2
+
+Q9 [mcq, 1m, Sec A]
+Explain the meaning of De-skilled workers using an example . 2
+
+======================================================================
+Return the complete JSON array.

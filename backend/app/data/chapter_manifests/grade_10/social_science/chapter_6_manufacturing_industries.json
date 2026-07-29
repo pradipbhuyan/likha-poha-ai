@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 6: Manufacturing Industries",
+  "central_question": "Why is manufacturing vital to India, where do major industries develop, and how can industrial pollution be controlled?",
+  "in_scope_units": [
+    "Meaning and importance of manufacturing in economic development.",
+    "Classification of industries by raw material, role, investment, ownership and weight.",
+    "Agro-based industries: cotton, jute and sugar industries.",
+    "Mineral-based and other industries: iron and steel, aluminium, chemicals, fertilisers, cement, automobiles and IT-electronics.",
+    "Industrial pollution of air, water, land and the noise environment.",
+    "Control of environmental degradation, effluent treatment and the NTPC example."
+  ],
+  "banned_topics": [
+    "Detailed crop-production conditions from Agriculture.",
+    "Detailed mineral occurrence and mining from Minerals and Energy Resources.",
+    "General transport-network classification from Lifelines of National Economy."
+  ],
+  "must_include_keywords": [
+    "manufacturing",
+    "secondary sector",
+    "value addition",
+    "agro-based industries",
+    "mineral-based industries",
+    "basic industries",
+    "consumer industries",
+    "public sector",
+    "private sector",
+    "joint sector",
+    "cooperative sector",
+    "heavy industries",
+    "light industries",
+    "textile industry",
+    "cotton textiles",
+    "jute textiles",
+    "sugar industry",
+    "iron and steel industry",
+    "Chhotanagpur plateau",
+    "aluminium smelting",
+    "chemical industry",
+    "fertilizer industry",
+    "cement industry",
+    "automobile industry",
+    "information technology",
+    "electronics industry",
+    "air pollution",
+    "water pollution",
+    "land pollution",
+    "noise pollution",
+    "effluent treatment",
+    "recycling",
+    "electrostatic precipitators",
+    "NTPC",
+    "Environment Management System"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Manufacturing means only machine production in large factories.",
+      "correction": "The chapter includes large, small and household production; manufacturing means processing raw materials into more valuable products in large quantities."
+    },
+    {
+      "claim": "Basic industries sell only directly to consumers.",
+      "correction": "Basic or key industries supply materials or products used to manufacture other goods."
+    },
+    {
+      "claim": "Industrial pollution is only air pollution.",
+      "correction": "The chapter identifies air, water, land and noise pollution."
+    },
+    {
+      "claim": "Pollution control begins only after waste reaches a river.",
+      "correction": "The chapter prioritises minimising water use, reuse, recycling, rainwater harvesting and staged treatment before discharge."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 2(i) to define manufacturing and value addition.",
+    "Use the chapter classification activity to distinguish heavy and light industries.",
+    "Use NCERT Exercise 2(ii) to explain basic industries with an example.",
+    "Use NCERT Exercise 3(i) to classify industrial pollution by air, water, land and noise.",
+    "Use NCERT Exercise 3(ii) to organise practical steps for reducing environmental degradation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “EXERCISES”, Questions 1 to 3, followed by industry activities, project work and word-search tasks.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

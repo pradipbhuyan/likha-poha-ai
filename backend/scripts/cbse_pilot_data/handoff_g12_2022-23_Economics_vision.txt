@@ -1,0 +1,204 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2022-23
+Subject: Economics
+Source Subject Code: Economics
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/Economics-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/Economics-MS.pdf
+Total Questions: 34
+======================================================================
+TASK: For each question provide the answer in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2022_23/Economics-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Read the following statements carefully:
+  (A) The consumption curve is an upward sloping straight line curve due to direct relationship between income and consumption and the assumption of constant Marginal Propensity to Consume.
+  (B) Aggregate Demand curve and Consumption curve are parallel to each other.
+  (C) In the light of the given statements, choose the correct alternative from the following:
+  (D) Both statements 1 and 2 are true
+  (5) Both statements 1 and 2 are false
+
+Q10 [assertion_reason, 1m, Sec A]
+Read the following statement -Assertion (A) and Reason (R). Choose one of the correct alternatives given below: Assertion (A): Saving curve makes a negative intercept on the vertical axis at zero level of income. Reason (R): Saving function refers to the functional relationship between saving and income.
+  (A) Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of Assertion (A).
+  (B) Both Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A).
+  (C) Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A).
+  (D) Assertion (A) is true but Reason (R) is false.
+
+Q11 [short_answer, 3m, Sec B]
+Suppose in a hypothetical economy there are only two Firms A and B, Firm A sold goods for ₹ 2,000 to Firm B and purchased goods for ₹ 1,000. Firm B exported goods for ₹ 2,500 and had domestic sales of ₹ 1,500. Calculate Net Domestic Product at market price, if consumption of fixed capital is ₹ 200.
+
+Q12 [short_answer, 3m, Sec B]
+Explain, how exchange rate is determined under a free market exchange rate system.
+
+Q13 [long_answer, 4m, Sec A]
+If an economy plans to increase its income by ₹ 2,000 crore and the Marginal Propensity to Consume is 75%. Estimate the increase in investment required to achieve the targeted increase in income.
+
+Q14 [long_answer, 4m, Sec A]
+As per the following news published in The Economic Times on 26th December, 2021: 'Reserve Bank of India has sold government securities worth ₹ 8,710 crore in the secondary market, over the last four weeks, to drain out excessive liquidity'. Identify the likely cause and the consequences behind, this type of action plan of the Reserve Bank.
+
+Q15 [long_answer, 4m, Sec A]
+Read the following text carefully, discuss briefly the relevant function of the Central Bank, indicated : Recently, Reserve Bank of India (RBI) conducted a statutory inspection for supervisory evaluation against a Commercial Bank. The commercial bank was imposed with stringent penalties, owing to deficiencies in regulatory compliances. As per the Central Bank, the inspection revealed non-compliances vis-à-vis different directions issued by RBI, on the following fronts: i. ATM Card frauds ii. Ensuring integrity and quality of data iii. Loans to small borrowers OR 'Reserve Ratio and Credit Creation are inversely related.' Do you agree with the given statement? Justify your answer with a suitable numerical example.
+
+Q16 [long_answer, 3m, Sec A]
+Define Gross Domestic Product (GDP) deflator and discuss its importance. State and discuss any two precautions to be considered while estimating national income by Expenditure Method.
+
+Q17 [long_answer, 3m, Sec A]
+Compare the trends depicted in the figures given below:
+  [NOTE: diagram]
+
+Q18 [mcq, 1m, Sec B]
+Identify, which of the following indicates the adverse impact of British rule in India.
+  (A) Introduction of communication networks in India
+  (B) Change in composition of India's foreign trade
+  (C) Introduction of modern administrative system in India
+  (D) Introduction of railways in India
+
+Q19 [mcq, 1m, Sec B]
+committee was set up for the development and promotion of small scale industries in India.
+  (A) Karve
+  (B) Tapas Majumdar
+  (C) Mahalanobis
+  (D) TRYSEM
+
+Q2 [mcq, 1m, Sec A]
+Owing to the Russia-Ukraine crisis, the world is experiencing rising crude prices due to supply-side issues.
+  (A) Production of cars in India will rise.
+  (B) Production and sale of cycles in India will rise.
+  (C) Inflow of US Dollars in India will rise.
+  (D) Outflow of US Dollars from India will rise.
+
+Q20 [mcq, 1m, Sec B]
+First Industrial Policy Resolution of Independent India was announced in the year _______ (Fill in the blank with the correct alternative)
+  (A) 1947
+  (B) 1948
+  (C) 1951
+  (D) 1956
+
+Q21 [mcq, 1m, Sec B]
+Identify which of the following is a source of non-institutional credit in the rural areas of India.
+  (A) NABARD
+  (B) Regional Rural Banks
+  (C) Money Lenders
+  (D) Commercial Banks
+
+Q22 [case_study, 1m, Sec B]
+From the set of the events given in column I and corresponding facts given in Column II, choose the correct pair of statement:
+
+Q23 [mcq, 1m, Sec A]
+Read the following statements carefully. Statement 1: On-the-job trainings help to bridge a gap between theoretical concepts and practical experiences. Statement 2: On-the-job trainings update the employees, with the latest changes in their work field. In the light of the given statements, choose the correct alternative: a) Statement 1 is true and statement 2 is false b) Statement 1 is false and statement 2 is true c) Both statements 1 and 2 are true d) Both statements 1 and 2 are false
+  (A) Statement 1 is true and statement 2 is false
+  (B) Statement 1 is false and statement 2 is true
+  (C) Both statements 1 and 2 are true
+  (D) Both statements 1 and 2 are false
+
+Q24 [mcq, 1m, Sec A]
+Read the following statements carefully. Statement 1: Both India and Pakistan initiated their economic reforms without any external pressures. Statement 2: Pakistan has successfully implemented the SEZ policy and reaped its benefits using the Export Promotion policy. In the light of the given statements, choose the correct alternative: a) Statement 1 is true and statement 2 is false b) Statement 1 is false and statement 2 is true c) Both statements 1 and 2 are true d) Both statements 1 and 2 are false
+  (A) Statement 1 is true and statement 2 is false
+  (B) Statement 1 is false and statement 2 is true
+  (C) Both statements 1 and 2 are true
+  (D) Both statements 1 and 2 are false
+
+Q25 [mcq, 1m, Sec B]
+is not a cause for environmental degradation. OR is not the strategy for Sustainable Development. (Choose the correct alternative) a) Waste management b) Deforestation c) Global warming d) Guarding green cover
+  (A) Waste management
+  (B) Deforestation
+  (C) Global warming
+  (D) Guarding green cover
+
+Q26 [assertion_reason, 1m, Sec A]
+Read the following statement -Assertion (A) and Reason (R). Choose one of the correct alternatives given below: Assertion (A): Unemployment and poverty are inseparable twins. Reason(R): Unemployment is the root cause of all socio-economic evils. Alternatives: a) Statement 1 is true and statement 2 is false b) Statement 1 is false and statement 2 is true c) Both statements 1 and 2 are true d) Both statements 1 and 2 are false
+  (A) Statement 1 is true and statement 2 is false
+  (B) Statement 1 is false and statement 2 is true
+  (C) Both statements 1 and 2 are true
+  (D) Both statements 1 and 2 are false
+
+Q27 [assertion_reason, 1m, Sec A]
+Read the following statement -Assertion (A) and Reason (R). Choose one of the correct alternatives given below: Assertion (A): In the late 1970s, China's population growth rate had sharply declined. Reason(R): China has witnessed an increase in the proportion of elderly people owing to stringent family planning programmes.
+  (A) Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of Assertion (A).
+  (B) Both Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A).
+  (C) Assertion (A) is true but Reason (R) is false.
+  (D) Assertion (A) is false but Reason (R) is true.
+
+Q28 [short_answer, 3m, Sec A]
+Interpret the given picture on account of current environmental challenges.
+  [NOTE: diagram]
+
+Q29 [short_answer, 3m, Sec A]
+Defend or refute the following statement with valid explanation: 'Disguised unemployment is a common form of unemployment in rural India' Or Critically evaluate the role of rural banking system in the process of rural development in India.
+
+Q3 [short_answer, 3m, Sec A]
+Justify the following statement with valid explanation: 'Green revolution enabled the government to procure sufficient food grains to build its stocks that could be used during time of shortage'.
+
+Q30 [short_answer, 3m, Sec A]
+Compare and analyse the following information related to Imports and Exports of the three neighbouring nations:
+
+Q31 [mcq, 1m, Sec A]
+Name any one Maharatana company.
+  (A) Land ceiling promotes equity.
+  (B) Support the given statement with valid explanation.
+  (C) Discuss briefly, how institutional reforms (land reforms) have played a significant role in transforming Indian agriculture.
+  (D) None of the above.
+
+Q32 [mcq, 2m, Sec A]
+State whether the following statements are true/false, with valid arguments:
+  (A) Human Capital and Human Development are one and the same thing.
+  (B) India has a poor stock of technical manpower.
+  (C) None of the above.
+  (D) All of the above.
+
+Q33 [mcq, 2m, Sec A]
+Define agricultural marketing.
+  (A) Discuss briefly the importance of micro-credit programmes in rural development.
+  (B) Enlist any two problems faced by farmers in the initial years of organic farming.
+  (C) None of the above.
+  (D) All of the above.
+
+Q34 [case_study, 3m, Sec A]
+Read the following text carefully and answer the given questions on the basis of the same and common understanding:
+
+Q4 [mcq, 1m, Sec A]
+Read the following statements carefully: Statement 1: Export of financial services by India will be recorded on credit side of current account. Statement2: Foreign Direct Investments in India will be recorded on credit side of capital account. In the light of the given statements, choose the correct alternative: a) Statement 1 is true and statement 2 is false b) Statement 1 is false and statement 2 is true c) Both statements 1 and 2 are true d) Both statements 1 and 2 are false
+  (A) a) Statement 1 is true and statement 2 is false
+  (B) b) Statement 1 is false and statement 2 is true
+  (C) c) Both statements 1 and 2 are true
+  (D) d) Both statements 1 and 2 are false
+
+Q5 [mcq, 1m, Sec A]
+Read the following statements carefully: Statement 1 - Net investment is a stock concept. Statement 2 - Capital is a flow concept. In the light of the given statements, choose the correct alternative from the following: a) Statement 1 is true and statement 2 is false b) Statement 1 is false and statement 2 is true c) Both statements 1 and 2 are true d) Both statements 1 and 2 are false OR
+  (A) a) Statement 1 is true and statement 2 is false
+  (B) b) Statement 1 is false and statement 2 is true
+  (C) c) Both statements 1 and 2 are true
+  (D) d) Both statements 1 and 2 are false
+
+Q6 [mcq, 1m, Sec A]
+If in an economy, the value of investment multiplier is 4 and Autonomous Consumption is ₹ 30 Crore, the relevant consumption function would be :
+  (A) a) Output, Production
+  (B) b) Value added, Production
+  (C) c) Output, Disposition
+  (D) d) Wealth, Development
+
+Q7 [mcq, 1m, Sec A]
+Money supply in India may increase if, _______ (Choose the correct alternative) 1. Reserve Bank of India(RBI) injects more money in circulation 2. the commercial banks expand their credit operation 3. tax rates are reduced by the Central Government 4. Reserve Bank of India increases the Bank Rate
+  (A) 1,2 and 3 are correct
+  (B) 2,3 and 4 are correct
+  (C) 1,3 and 4 are correct
+  (D) 1,2 and 4 are correct
+
+Q8 [short_answer, 1m, Sec B]
+Suppose, following data is presented, for an imaginary economy: (all figures in ₹ '000 Crore) Year Visible Exports Visible Imports Identify, which of the statement about the period 2010 to 2020 is correct? a) Improvement in balance of trade b) Increase in trade deficit c) Improvement in balance in invisibles items d) Deterioration of balance of trade OR The following information is given for an imaginary country: Current Account Amount (in ₹'000 Crore) Visible Exports 100 Visible Imports 150 Invisible Exports 70 Invisible Imports 30 Net current transfer balance 15
+
+Q9 [assertion_reason, 1m, Sec A]
+Read the following statement -Assertion (A) and Reason (R). Choose one of the correct alternatives given below: Assertion (A): Ex-post Investments represent planned Investments; whereas ex-ante Investments represent actual level of investments. Reason (R): At equilibrium level, Ex-ante Savings and Ex-ante Investments are always equal.
+  (A) Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of Assertion (A).
+  (B) Both Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A).
+  (C) Assertion (A) is true but Reason (R) is false.
+  (D) Assertion (A) is false but Reason (R) is true.
+
+======================================================================
+Return the complete JSON array.

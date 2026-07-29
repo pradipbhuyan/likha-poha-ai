@@ -1,0 +1,58 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 2
+Subject: Political Science
+Source Subject Code: PolSci
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/PolSci-SQP_Term2.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/PolSci-MS_Term2.pdf
+Total Questions: 13
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/PolSci-MS_Term2.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [short_answer, 6m, Sec C]
+‘In recent years India has paid adequate attention to ASEAN’. Give two points to justify the statement. 2 OR Explain ‘Miracle on the Han River’.
+
+Q10 [case_study, 4m, Sec B]
+Describe various issues regarding the National Emergency of 1975 in India. 4
+
+Q11 [case_study, 4m, Sec B]
+In the given outline political map of India, four states have been marked as (A), (B), (C), (D). Identify these states on the basis of the information given below and write their correct names in your answer book along with their respective serial number of the information used and the concerned alphabets as per format that follows: 4 (i)The state to which Minister for Communications in the first ministry of free India belonged. (ii) The state to which the former Prime Minister Morarji Desai was related (iii). The state to which S. Nijalingappa belonged. (iv)The state related to former Congress President K. Kamraj. Sr. Number of the information used Alphabet concerned Name of State (i) (ii) (iii) (iv) This question is for Visually impaired candidates only in lieu of question no. 11. 11 A. What is the meaning of Defection in terms of Indian politics? Describe any two demerits of defection. 4 Section-C
+
+Q12 [short_answer, 6m, Sec C]
+‘Peace and prosperity of countries lay in the establishment and strengthening of regional economic organizations’. Critically evaluate the statement. 6 OR Give an account of the changing role of state in the light of Globalization.
+
+Q13 [short_answer, 6m, Sec C]
+Critically evaluate the six main issues in Indian politics during the 21st century. 6 OR Discuss the impact of the relationship between the Judiciary and the Executive during emergency period in India.
+
+Q2 [short_answer, 6m, Sec C]
+South Asia stands for diversity in every sense and yet constitutes one geo-political space. Do you agree with the statement? Give two reasons for your answer. 2
+
+Q3 [short_answer, 6m, Sec C]
+Why do you think India is now considered as an important centre of power? 2
+
+Q4 [short_answer, 6m, Sec C]
+American involvement in South Asia has rapidly increased after the Cold War. Give two examples to illustrate. 2
+
+Q5 [short_answer, 6m, Sec C]
+Evaluate the role of SAARC in facilitating the economic cooperation in the South Asian region. 2
+
+Q6 [short_answer, 6m, Sec C]
+The first general election was postponed twice. Give two reasons for the same. 2
+
+Q7 [short_answer, 6m, Sec C]
+Explicate two features of a Coalition Government. 2
+
+Q8 [short_answer, 6m, Sec C]
+Name the leader who led a peoples’ march to Parliament in 1975 and state as to what was unique about this march. 2 Section-B
+
+Q9 [case_study, 4m, Sec B]
+Compare the European Union with ASEAN. 4
+
+======================================================================
+Return the complete JSON array.

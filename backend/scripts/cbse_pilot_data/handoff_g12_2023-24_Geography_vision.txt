@@ -1,0 +1,177 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2023-24
+Subject: Geography
+Source Subject Code: Geography
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Geography-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Geography-MS.pdf
+Total Questions: 30
+======================================================================
+TASK: Provide answers in JSON format for each question.
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+RULES: MCQ/AR: answer_text = exact option text. diagram_dependent: NEEDS_MANUAL_REVIEW_diagram_dependent
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2023_24/Geography-MS.pdf
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+There are two statements marked as Assertion(A) and Reason(R). Mark your answer as per the codes provided below.
+  (A) High level of human development group has 53 countries.
+  (B) A higher investment in people and good governance has set this group apart from others.
+
+Q10 [mcq, 1m, Sec B]
+Consider the following statements and choose the correct answer with the help of given options.
+  (A) In recent years- ropeways, cableways and pipelines were developed as a means of transport.
+  (B) They were developed to cater to the demands of transporting specific goods under special circumstances.
+
+Q11 [mcq, 1m, Sec A]
+Given below are the steps to generate geothermal energy. Arrange the following in correct sequence:
+  (A) (iv) - (ii) - (i) - (iii)
+  (B) (ii) - (i) - (iv) - (iii)
+  (C) (i) - (iv) - (iii) - (ii)
+  (D) (iii) - (ii) - (iv) - (i)
+
+Q12 [mcq, 1m, Sec A]
+Which of the following is NOT the benefit of rainwater harvesting?
+  (A) It increases water availability.
+  (B) It checks the declining groundwater table.
+  (C) It improves the quality of ground water through dilution of contaminants like fluoride and nitrates.
+  (D) Helpful in production of hydroelectricity.
+
+Q13 [mcq, 1m, Sec A]
+Which of the following plan was introduced to improve the conditions of roads in India after independence?
+  (A) Five Year Road Plan
+  (B) Nagpur Plan
+  (C) Ten Years Road Plan
+  (D) Twenty Years Road Plan
+
+Q14 [mcq, 1m, Sec A]
+If you are asked to formulate the National Water Policy, what will be the utmost important priority for you.
+  (A) To provide water for generation of hydroelectricity
+  (B) Availability of water for industries
+  (C) To provide drinking water
+  (D) Availability of water for navigation
+
+Q15 [mcq, 1m, Sec A]
+How does the natural increase in population occur, as per the graph?
+  (A) Birth Rate - Death Rate
+  (B) Death Rate + Birth Rate
+  (C) Growth Rate - Birth Rate
+  (D) Birth Rate + Migration
+  [NOTE: diagram]
+
+Q16 [mcq, 1m, Sec B]
+What does the transition from high fluctuating stage of birth and death rate to low fluctuating stage indicate?
+  (A) Shift from Urban Industrial economy to Rural Agrarian economy
+  (B) Shift from Rural Agrarian economy to Urban Industrial economy
+  (C) Low Birth and Death Rate to High Birth and Death Rate
+  (D) Migration from Urban to Rural areas
+
+Q17 [mcq, 1m, Sec B]
+What conditions of birth rate and death rate are generally seen in least developed countries?
+  (A) High Birth Rate and High Death Rate
+  (B) Low Birth rate and Low Death rate
+  (C) High Birth Rate and Low Death Rate
+  (D) Low Birth Rate and High Death Rate
+
+Q18 [long_answer, 3m, Sec B]
+Read the given Passage carefully and answer the questions that follow:
+
+Q19 [mcq, 1m, Sec C]
+Name the capital city and an important agro centre located on this route.
+  [NOTE: diagram]
+
+Q2 [mcq, 1m, Sec A]
+Both (A) and (R) are true but (R) is not the correct explanation of (A)
+  (A) Both (A) and (R) are true and (R) is the correct explanation of (A)
+  (B) Both (A) and (R) are incorrect.
+  (C) (A) is correct but (R) is incorrect.
+
+Q20 [short_answer, 3m, Sec C]
+A. "The basic goal of development is to create conditions where the people can live a meaningful life" - What do you mean by meaningful life?
+
+Q21 [short_answer, 3m, Sec C]
+OR B. How do people's choices get affected in different aspects of life due to lack of human development?
+
+Q22 [short_answer, 3m, Sec C]
+A. How is 'Naturalisation of Humans' different from 'Humanisation of Nature'?
+
+Q23 [mcq, 3m, Sec O]
+Evaluate the dualisms that exist in Geography.
+  (A) Quaternary activities centre around research and development.
+  (B) Examine the statement.
+
+Q24 [long_answer, 5m, Sec D]
+Question numbers 24 to 28 are Long Answer Type questions.
+
+Q25 [mcq, 5m, Sec D]
+There is low yield per acre but high yield per person in the interior parts of semi-arid lands of the mid-latitudes in the world. Support the statement with suitable examples from different parts of the world.
+
+Q26 [mcq, 5m, Sec D]
+Formulate the guidelines to promote sustainability in the Indira Gandhi Canal Command area.
+
+Q27 [mcq, 5m, Sec D]
+Land degradation in India is caused by human made processes that are more harmful than natural processes. Explain the statement with suitable examples.
+
+Q28 [mcq, 5m, Sec D]
+How has noise pollution become a serious problem in recent years in India? Explain.
+
+Q29 [mcq, 5m, Sec E]
+On the given political map of the World, seven geographical features have been marked as A, B, C, D, E, F and G. Identify any five with the help of the following information and write their correct names on the lines drawn near each feature.
+  [NOTE: diagram]
+
+Q3 [mcq, 1m, Sec A]
+Consider the following and choose the correct answer with the help of given codes-
+  (A) STAGES OF POPULATION
+  (B) GROWTH FEATURES
+
+Q30 [mcq, 1m, Sec G]
+In which state are Ratnagiri iron ore mines located?
+  (A) Maharashtra
+  (B) Gujarat
+  (C) Karnataka
+  (D) Andhra Pradesh
+
+Q4 [short_answer, 1m, Sec D]
+Consider the following statements and choose the correct answer with the help of given Option:
+
+Q5 [mcq, 5m, Sec A]
+Locate and label any five of the following geographical features on the Political Outline map of India with appropriate symbols:
+  (A) a. An important seaport in Andhra Pradesh.
+  (B) b. An important coal mine in Tamil Nadu.
+  (C) c. Ratnagiri - iron ore mines.
+  (D) d. An oil refinery in Gujarat.
+  (5) e. The state with highest population density.
+  (6) f. The state leading in the production of jute.
+
+Q6 [mcq, 1m, Sec A]
+Which one of the following is the largest linguistic group of India?
+  (A) Sino - Tibetan
+  (B) Austric
+  (C) Indo - Aryan
+  (D) Dravidian
+
+Q7 [mcq, 1m, Sec A]
+Which of the followings is not a function of World Trade Organization (WTO)?
+  (A) WTO is the only international organization dealing with the global rules of trade between nations.
+  (B) WTO resolves disputes between its member nations.
+  (C) WTO covers trade in services, such as telecommunication and banking.
+  (D) WTO provides funding to the global economies.
+
+Q8 [mcq, 1m, Sec B]
+Which of the following is an example of low order service?
+  (A) Teacher
+  (B) Gardener
+  (C) Lawyer
+  (D) Musician
+
+Q9 [mcq, 1m, Sec B]
+In which of the following group of countries of the world, HYV of Wheat and Rice were developed?
+  (A) Japan and Australia
+  (B) Mexico and Philippines
+  (C) USA and Japan
+  (D) Mexico and Singapore
+
+======================================================================
+Return the complete JSON array.

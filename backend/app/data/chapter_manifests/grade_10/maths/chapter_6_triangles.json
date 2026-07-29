@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 6: Triangles",
+  "central_question": "How can proportional sides and equal angles be used to recognise similar figures and solve indirect measurement and proof problems involving triangles?",
+  "in_scope_units": [
+    "Introduction: distinguishes congruent figures from similar figures and connects similarity with indirect measurement.",
+    "Similar Figures: defines similarity of polygons using equal corresponding angles and proportional corresponding sides, including scale factor.",
+    "Similarity of Triangles: develops the Basic Proportionality Theorem and its converse for a line cutting two sides of a triangle.",
+    "Criteria for Similarity of Triangles: establishes AAA or AA, SSS and SAS similarity criteria with correct correspondence of vertices.",
+    "Applications and Summary: applies similarity to lengths, angles, shadows, medians, trapeziums and indirect measurement, and notes the RHS similarity criterion for right triangles."
+  ],
+  "banned_topics": [
+    "A full treatment of Pythagoras Theorem and its converse as a separate chapter topic; this chapter only refers to earlier knowledge and similarity-based applications.",
+    "Trigonometric ratios, angles of elevation and angles of depression, which are developed in Chapters 8 and 9.",
+    "Coordinate-geometry distance and section formulae, which belong to Chapter 7.",
+    "Congruence criteria as the main lesson content; congruence is recalled only to contrast it with similarity and support a few proofs."
+  ],
+  "must_include_keywords": [
+    "similar figures",
+    "congruent figures",
+    "same shape",
+    "same size",
+    "corresponding angles",
+    "corresponding sides",
+    "proportion",
+    "scale factor",
+    "similar polygons",
+    "equiangular triangles",
+    "Thales",
+    "Basic Proportionality Theorem",
+    "Thales Theorem",
+    "Theorem 6.1",
+    "converse",
+    "Theorem 6.2",
+    "parallel line",
+    "area of triangles",
+    "same base",
+    "same parallels",
+    "triangle similarity",
+    "correct correspondence",
+    "similarity symbol",
+    "AAA similarity",
+    "AA similarity",
+    "SSS similarity",
+    "SAS similarity",
+    "RHS similarity",
+    "indirect measurement",
+    "shadow",
+    "median",
+    "trapezium",
+    "isosceles triangle",
+    "Pythagoras Theorem"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Figures of the same shape must also be the same size.",
+      "correction": "Similar figures have the same shape but need not have the same size; figures with the same shape and size are congruent."
+    },
+    {
+      "claim": "Equal corresponding angles alone are enough to prove that any two polygons are similar.",
+      "correction": "For general polygons, both equal corresponding angles and proportional corresponding sides are required; triangles are special because one similarity condition can imply the other."
+    },
+    {
+      "claim": "If DE is parallel to BC in triangle ABC, then AD/AB = EC/AC.",
+      "correction": "The corresponding ratios are AD/AB = AE/AC, or equivalently AD/DB = AE/EC."
+    },
+    {
+      "claim": "The order of vertices in a similarity statement is unimportant.",
+      "correction": "The order records correspondence. For example, ΔABC ~ ΔDEF means A ↔ D, B ↔ E and C ↔ F."
+    },
+    {
+      "claim": "SAS similarity works with any equal angle and any two proportional sides.",
+      "correction": "The equal angle must be the included angle between the two pairs of proportional sides."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Activity 1 and Exercise 6.1 Question 1 to distinguish similar and congruent figures and identify the two polygon-similarity conditions.",
+    "Use NCERT Activity 2, Theorem 6.1 and Example 1 to establish the Basic Proportionality Theorem and derive whole-side ratios.",
+    "Use NCERT Activity 3 and Exercise 6.2 Question 2 to apply the converse of the Basic Proportionality Theorem.",
+    "Use NCERT Examples 4, 5 and 6 to compare AA or AAA, SSS and SAS similarity criteria with correct vertex correspondence.",
+    "Finish with NCERT Example 7 and Exercise 6.3 Questions 13 and 15 for indirect measurement and exam-style proof applications."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter practice is organised as NCERT Exercises 6.1, 6.2 and 6.3, covering similar figures, proportionality theorems, similarity criteria and applications.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -14,7 +14,7 @@
  * MathAwareMarkdown (LaTeX → Unicode) in lessons.tsx is reused untouched.
  */
 import { ReactNode, useMemo, useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Linking, Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 // ── Block / doc types (mirror backend app/models/lesson_blocks.py) ───────────
@@ -261,9 +261,54 @@ function VisualCard({ visual, accent }: { visual: VisualSpec; accent: string }) 
 const FENCED_VISUAL_RE = /```+\s*visual-json\s*\n?([\s\S]*?)```+/gi;
 const LOOSE_VISUAL_RE = /(?:^|\n)[ \t]*visual-json[ \t]*\n[ \t]*(\{.*?\})[ \t]*(?=\n|$)/gi;
 
-function extractVisualsFromMarkdown(content: string): { text: string; visuals: VisualSpec[] } {
+// ── extract-ref citation fences — see web ExtractPopupBlock.jsx for the two
+// supported JSON shapes (page-image form + legacy text-extract form). The
+// mobile ChapterJourney previously had ZERO handling for this fence type,
+// so every "```extract-ref``` " block (citation pills for Activity/Exercise/
+// Example NCERT references) silently fell through to plain markdown/code
+// text with no way to view the actual textbook page — this is the bug this
+// component now fixes, mirroring the web behaviour.
+const FENCED_EXTRACT_RE = /```+\s*extract-ref\s*\n?([\s\S]*?)```+/gi;
+
+export interface ExtractRefData {
+  citation: string;
+  note?: string;
+  // Page-image form (current, preferred)
+  pageNumber?: number | null;
+  assetUrl?: string;
+  // Legacy text-extract form (older content, kept working)
+  extractText?: string;
+}
+
+function parseExtractRefPayload(payload: string): ExtractRefData | null {
+  try {
+    const data = JSON.parse(payload.trim());
+    if (!data || typeof data.citation !== "string" || !data.citation.trim()) return null;
+    const citation = data.citation.trim();
+    const note = typeof data.note === "string" ? data.note.trim() : "";
+    if (typeof data.asset_url === "string" && data.asset_url.trim()) {
+      return {
+        citation,
+        note,
+        assetUrl: data.asset_url.trim(),
+        pageNumber: typeof data.page_number === "number" ? data.page_number : null,
+      };
+    }
+    if (typeof data.extract_text === "string" && data.extract_text.trim()) {
+      return { citation, note, extractText: data.extract_text.trim() };
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+function extractVisualsFromMarkdown(
+  content: string
+): { text: string; visuals: VisualSpec[]; extractRefs: ExtractRefData[] } {
   const visuals: VisualSpec[] = [];
-  const capture = (_match: string, payload: string) => {
+  const extractRefs: ExtractRefData[] = [];
+  const captureVisual = (_match: string, payload: string) => {
     try {
       const parsed = JSON.parse(payload.trim());
       if (parsed && ["flow", "steps", "cycle", "compare"].includes(parsed.type)) {
@@ -274,10 +319,93 @@ function extractVisualsFromMarkdown(content: string): { text: string; visuals: V
     }
     return "";
   };
-  let text = (content ?? "").replace(FENCED_VISUAL_RE, capture);
-  text = text.replace(LOOSE_VISUAL_RE, (m, payload) => "\n" + capture(m, payload));
+  const captureExtractRef = (_match: string, payload: string) => {
+    const parsed = parseExtractRefPayload(payload);
+    if (parsed) extractRefs.push(parsed);
+    return "";
+  };
+  let text = (content ?? "").replace(FENCED_VISUAL_RE, captureVisual);
+  text = text.replace(LOOSE_VISUAL_RE, (m, payload) => "\n" + captureVisual(m, payload));
   text = text.replace(/(?:^|\n)[ \t]*visual-json[ \t]*(?=\n|$)/gi, "\n");
-  return { text: text.trim(), visuals };
+  text = text.replace(FENCED_EXTRACT_RE, captureExtractRef);
+  return { text: text.trim(), visuals, extractRefs };
+}
+
+// ── Extract-ref citation pill + modal ─────────────────────────────────────────
+// Mirrors web ExtractPopupBlock.jsx: a small tappable pill that opens a modal
+// showing the actual scanned NCERT textbook page image (or, for older
+// legacy-form content with no page image available, the extracted text).
+function ExtractRefPill({ data }: { data: ExtractRefData }) {
+  const [open, setOpen] = useState(false);
+  const isPageImage = !!data.assetUrl;
+  const pillLabel = isPageImage && data.pageNumber
+    ? `${data.citation} · page ${data.pageNumber}`
+    : data.citation;
+
+  return (
+    <>
+      <TouchableOpacity
+        style={cjStyles.extractPill}
+        onPress={() => setOpen(true)}
+        activeOpacity={0.75}
+      >
+        <Text style={cjStyles.extractPillIcon}>{isPageImage ? "📄" : "📖"}</Text>
+        <Text style={cjStyles.extractPillLabel}>{pillLabel}</Text>
+        <Text style={cjStyles.extractPillHint}>
+          {isPageImage ? "view textbook page" : "view text"}
+        </Text>
+      </TouchableOpacity>
+
+      <Modal
+        visible={open}
+        animationType="fade"
+        transparent
+        onRequestClose={() => setOpen(false)}
+      >
+        <View style={cjStyles.extractModalScrim}>
+          <View style={cjStyles.extractModalCard}>
+            <View style={cjStyles.extractModalHeaderRow}>
+              <View style={{ flex: 1 }}>
+                <Text style={cjStyles.extractModalEyebrow}>
+                  {isPageImage ? "NCERT Textbook Page" : "Source text"}
+                </Text>
+                <Text style={cjStyles.extractModalTitle}>
+                  {data.citation}
+                  {isPageImage && data.pageNumber ? ` (page ${data.pageNumber})` : ""}
+                </Text>
+              </View>
+              <TouchableOpacity onPress={() => setOpen(false)} style={{ padding: 4 }}>
+                <Feather name="x" size={20} color="#94a3b8" />
+              </TouchableOpacity>
+            </View>
+
+            {data.note ? <Text style={cjStyles.extractModalNote}>{data.note}</Text> : null}
+
+            {isPageImage ? (
+              <>
+                <Image
+                  source={{ uri: data.assetUrl }}
+                  style={cjStyles.extractModalImage}
+                  resizeMode="contain"
+                />
+                <TouchableOpacity onPress={() => Linking.openURL(data.assetUrl!)}>
+                  <Text style={cjStyles.extractModalOpenLink}>Open full-size page ↗</Text>
+                </TouchableOpacity>
+              </>
+            ) : (
+              <View style={cjStyles.extractModalTextBox}>
+                <Text style={cjStyles.extractModalTextContent}>{data.extractText}</Text>
+              </View>
+            )}
+
+            <TouchableOpacity style={cjStyles.extractModalCloseBtn} onPress={() => setOpen(false)}>
+              <Text style={cjStyles.extractModalCloseBtnText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    </>
+  );
 }
 
 // ── Textbook image — real, admin-approved NCERT page (never AI-generated) ────
@@ -339,15 +467,20 @@ export default function ChapterJourney({ doc, grade, renderMarkdown }: {
   const [xp, setXp] = useState(0);
   const [checksDone, setChecksDone] = useState(0);
 
-  // Wrap the injected markdown renderer with the visual-json safety net:
-  // parseable visuals render natively, raw JSON never reaches the screen.
+  // Wrap the injected markdown renderer with the visual-json AND extract-ref
+  // safety net: parseable visuals render natively, extract-ref fences render
+  // as tappable citation pills (opening the real NCERT page image), and raw
+  // JSON/fence syntax never reaches the screen as literal text.
   function renderBody(content: string, accent: string) {
-    const { text, visuals } = extractVisualsFromMarkdown(content);
+    const { text, visuals, extractRefs } = extractVisualsFromMarkdown(content);
     return (
       <View>
         {text ? renderMarkdown(text, accent) : null}
         {visuals.map((visual, i) => (
           <VisualCard key={i} visual={visual} accent={accent} />
+        ))}
+        {extractRefs.map((ref, i) => (
+          <ExtractRefPill key={i} data={ref} />
         ))}
       </View>
     );
@@ -565,4 +698,42 @@ const cjStyles = StyleSheet.create({
   finishCard: { borderRadius: 16, padding: 20, alignItems: "center", marginTop: 6, marginBottom: 10 },
   finishTitle: { color: "#fff", fontSize: 16, fontWeight: "800", marginTop: 8, textAlign: "center" },
   finishText: { color: "rgba(255,255,255,.9)", fontSize: 13, textAlign: "center", marginTop: 4, lineHeight: 19 },
+  // Extract-ref citation pill (mirrors web .extract-ref-pill) + modal
+  extractPill: {
+    flexDirection: "row", alignItems: "center", gap: 6, alignSelf: "flex-start",
+    borderWidth: 1.5, borderColor: "rgba(99,102,241,.35)", backgroundColor: "rgba(99,102,241,.08)",
+    borderRadius: 20, paddingHorizontal: 12, paddingVertical: 6, marginVertical: 6,
+  },
+  extractPillIcon: { fontSize: 13 },
+  extractPillLabel: { fontSize: 13, fontWeight: "700", color: "#6366f1" },
+  extractPillHint: { fontSize: 11, fontWeight: "600", color: "#6366f1", opacity: 0.75 },
+  extractModalScrim: {
+    flex: 1, backgroundColor: "rgba(2,6,23,0.72)", alignItems: "center",
+    justifyContent: "center", padding: 16,
+  },
+  extractModalCard: {
+    backgroundColor: "#fff", borderRadius: 14, padding: 20, width: "100%", maxWidth: 420,
+    maxHeight: "85%",
+  },
+  extractModalHeaderRow: { flexDirection: "row", alignItems: "flex-start", gap: 12, marginBottom: 12 },
+  extractModalEyebrow: {
+    fontSize: 10, fontWeight: "800", color: "#6366f1", letterSpacing: 0.6,
+    textTransform: "uppercase", marginBottom: 4,
+  },
+  extractModalTitle: { fontSize: 15, fontWeight: "800", color: "#1f2937" },
+  extractModalNote: { fontSize: 12, color: "#64748b", fontStyle: "italic", marginBottom: 10 },
+  extractModalImage: {
+    width: "100%", height: 340, borderRadius: 8, backgroundColor: "#f8fafc", marginBottom: 10,
+  },
+  extractModalOpenLink: {
+    fontSize: 13, fontWeight: "700", color: "#6366f1", textAlign: "center", marginBottom: 12,
+  },
+  extractModalTextBox: {
+    backgroundColor: "#f8fafc", borderRadius: 10, padding: 14, marginBottom: 12,
+  },
+  extractModalTextContent: { fontSize: 14, color: "#374151", lineHeight: 21 },
+  extractModalCloseBtn: {
+    backgroundColor: "#6366f1", borderRadius: 8, paddingVertical: 11, alignItems: "center",
+  },
+  extractModalCloseBtnText: { color: "#fff", fontWeight: "700", fontSize: 14 },
 });

@@ -1,0 +1,79 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "English",
+    "chapter": "Grammar: Subject-Verb Concord",
+    "central_question": "How can a student make the verb agree correctly with the true subject in number and person, even in complex sentence patterns?",
+    "in_scope_units": [
+      "Basic singular and plural subject-verb agreement",
+      "Subjects joined by and",
+      "Single ideas or entities joined by and",
+      "Subjects joined by or or nor and agreement with the nearer subject",
+      "Collective nouns acting as one unit or as individual members",
+      "Singular indefinite pronouns such as each, either, neither, everyone, someone and nobody",
+      "Agreement with the true subject when a phrase comes between subject and verb",
+      "Common agreement errors"
+    ],
+    "banned_topics": [
+      "Tense choice beyond selecting the agreeing verb form",
+      "Pronoun-antecedent agreement as a separate topic",
+      "Reported speech",
+      "Active and passive voice"
+    ],
+    "must_include_keywords": [
+      "subject-verb concord",
+      "agreement",
+      "singular subject",
+      "plural subject",
+      "singular verb",
+      "plural verb",
+      "person",
+      "and",
+      "single idea",
+      "or",
+      "nor",
+      "nearer subject",
+      "collective noun",
+      "unit",
+      "individual members",
+      "indefinite pronoun",
+      "each",
+      "either",
+      "neither",
+      "everyone",
+      "someone",
+      "nobody",
+      "intervening phrase",
+      "true subject"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The noun nearest to the verb always controls agreement.",
+        "correction": "Normally the verb agrees with the true subject, not a noun in an intervening phrase; the nearer-subject rule applies specifically to subjects joined by 'or' or 'nor'."
+      },
+      {
+        "claim": "Every pair of nouns joined by 'and' takes a plural verb.",
+        "correction": "Subjects joined by 'and' usually take a plural verb, but a single idea or entity such as 'Bread and butter' may take a singular verb."
+      },
+      {
+        "claim": "Indefinite pronouns such as everyone and neither are plural because they refer to several people.",
+        "correction": "Each, either, neither, everyone, someone and nobody are grammatically singular and take singular verbs."
+      }
+    ],
+    "recommended_example_progression": [
+      "Fill in blanks with singular or plural verbs for simple subjects.",
+      "Correct sentences with subjects joined by and, including the single-idea exception.",
+      "Choose a verb for or/nor constructions by identifying the nearer subject.",
+      "Distinguish collective nouns acting as a unit from members acting individually and practise singular indefinite pronouns.",
+      "Edit sentences containing prepositional phrases between the true subject and the verb."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Typical CBSE exercises include verb selection, fill-in-the-blanks, sentence editing, error correction and short passage completion based on subject-verb agreement."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Grammar: Subject-Verb Concord\n\n## What you will learn\nYou will learn the basic rule of subject-verb concord. You will identify whether the subject is singular or plural and select the matching verb form.\n\n## Simple explanation\nThe verb must agree with its subject in number and person. A singular subject takes a singular verb, while a plural subject takes a plural verb.\n\n## Step-by-step breakdown\n- **Singular subject**: Use a singular verb. Example: `The boy plays football.`\n- **Plural subject**: Use a plural verb. Example: `The boys play football.`\n- **Present-tense contrast**: With most verbs, the third-person singular form ends in `-s/-es`, while the plural form uses the base verb.\n- **Find the complete subject**: Ask who or what performs the action before selecting the verb.\n- **Agreement in person**: The verb form must also match first, second or third person, as in `I am`, `you are` and `she is`.\n\n## Worked example\nQuestion: Fill in the blank with the correct verb: `The child ___ (read/reads) every evening.`\n\nSolution:\n- Step 1: The subject `The child` is singular and third person.\n- Step 2: Choose the singular present-tense verb `reads`.\n- Final answer: The child reads every evening.\n\n## Common mistake\nDo not assume that the longer verb form is plural. In the simple present, `plays` is singular, while `play` is used with plural subjects.\n\n## Quick check question\nQuestion: Choose the correct verb: `The players ___ (practises/practise) daily.`\nAnswer: The players practise daily.\nExplanation: `Players` is a plural subject, so it takes the plural verb `practise`.\n\n## Summary\n- The verb agrees with the subject in number and person.\n- A singular subject takes a singular verb.\n- A plural subject takes a plural verb.\n- Identify the true subject before choosing the verb.\n- In the simple present, third-person singular verbs often end in `-s/-es`.",
+    "Core explanation": "# Core explanation: Grammar: Subject-Verb Concord\n\n## What you will learn\nYou will use the correct verb with subjects joined by `and`. You will also recognise the exception in which two nouns express one idea or entity.\n\n## Simple explanation\nTwo separate subjects joined by `and` usually form a plural subject. However, when the words together name one recognised idea, item or unit, a singular verb is used.\n\n## Step-by-step breakdown\n- **Separate subjects joined by and**: Use a plural verb. Example: `Rahul and Priya are good friends.`\n- **Reason for plural agreement**: The sentence refers to two different people or things.\n- **Single idea or entity**: Use a singular verb when the two nouns together represent one unit. Example: `Bread and butter is my favourite breakfast.`\n- **Meaning controls the exception**: Decide whether the sentence presents two separate subjects or one combined idea.\n- **Do not apply the exception automatically**: Most `and` subjects are plural unless the combined expression clearly functions as one unit.\n\n## Worked example\nQuestion: Choose the correct verb: `Rohan and his sister ___ (is/are) attending the programme.`\n\nSolution:\n- Step 1: `Rohan` and `his sister` are two separate people joined by `and`.\n- Step 2: Use the plural verb `are`.\n- Final answer: Rohan and his sister are attending the programme.\n\n## Common mistake\nIt is incorrect to use a plural verb merely because two nouns appear. In `Bread and butter is my favourite breakfast`, the phrase expresses one combined food item or idea.\n\n## Quick check question\nQuestion: Fill in the blank: `Bread and butter ___ (is/are) served for breakfast.`\nAnswer: Bread and butter is served for breakfast.\nExplanation: The two nouns express a single combined food item, so the verb is singular.\n\n## Summary\n- Subjects joined by `and` usually take a plural verb.\n- Two separate people or things require plural agreement.\n- A single combined idea may take a singular verb.\n- Meaning determines whether the exception applies.\n- Check whether the joined nouns act as one unit.",
+    "Worked examples": "# Worked examples: Grammar: Subject-Verb Concord\n\n## What you will learn\nYou will apply the nearer-subject rule with `or` and `nor`. You will choose the verb that agrees with the subject closest to it.\n\n## Simple explanation\nWhen two subjects are joined by `or` or `nor`, the verb agrees with the nearer subject. Therefore, changing the order of the subjects may change the verb form.\n\n## Step-by-step breakdown\n- **Or/nor rule**: The verb agrees with the subject nearest to the verb.\n- **Plural nearer subject**: `Neither the teacher nor the students were present.` The nearer subject `students` is plural.\n- **Singular nearer subject**: `Neither the students nor the teacher was present.` The nearer subject `teacher` is singular.\n- **Person agreement**: In `Either she or I am responsible`, the nearer subject `I` requires `am`.\n- **Reading strategy**: Ignore the first subject temporarily and check the noun or pronoun immediately before the verb.\n\n## Worked example\nQuestion: Fill in the blank: `Either the teachers or the principal ___ (is/are) attending the meeting.`\n\nSolution:\n- Step 1: The subjects are joined by `or`, so apply the nearer-subject rule.\n- Step 2: The nearer subject `principal` is singular, so choose `is`.\n- Final answer: Either the teachers or the principal is attending the meeting.\n\n## Common mistake\nThe verb does not automatically agree with the first subject in an `or/nor` construction. It agrees with the nearer subject.\n\n## Quick check question\nQuestion: Choose the correct verb: `Neither the captain nor the players ___ (was/were) ready.`\nAnswer: Neither the captain nor the players were ready.\nExplanation: The nearer subject `players` is plural, so the plural verb `were` is required.\n\n## Summary\n- Subjects joined by `or/nor` use the nearer-subject rule.\n- A singular nearer subject takes a singular verb.\n- A plural nearer subject takes a plural verb.\n- Person also follows the nearer subject.\n- Reordering the subjects can change the verb form.",
+    "Exam-style problems": "# Exam-style problems: Grammar: Subject-Verb Concord\n\n## What you will learn\nYou will choose verbs with collective nouns and singular indefinite pronouns. You will distinguish a group acting as one unit from its members acting individually.\n\n## Simple explanation\nA collective noun may be singular or plural depending on meaning. In contrast, indefinite pronouns such as `each`, `either`, `neither`, `everyone`, `someone` and `nobody` are always singular in the rules given here.\n\n## Step-by-step breakdown\n- **Collective noun as a unit**: Use a singular verb. Example: `The team is playing well.`\n- **Collective noun as individuals**: Use a plural verb when the members act separately. Example: `The team are arguing among themselves.`\n- **Meaning test**: Ask whether the group performs one action together or whether its members act individually.\n- **Each**: `Each of the students has submitted the assignment.` The head word `each` is singular.\n- **Either and neither**: Both are singular when used as indefinite pronouns.\n- **Everyone, someone and nobody**: These pronouns are singular and take singular verbs such as `has` or `is`.\n\n## Worked example\nQuestion: Correct the sentence: `Everyone have completed the work.`\n\nSolution:\n- Step 1: The subject `Everyone` is an indefinite pronoun and is grammatically singular.\n- Step 2: Replace the plural verb `have` with the singular verb `has`.\n- Final answer: Everyone has completed the work.\n\n## Common mistake\nA collective noun is not always singular. Use a plural verb when the sentence focuses on the individual members acting separately.\n\n## Quick check question\nQuestion: Fill in the blank: `Neither of the answers ___ (is/are) correct.`\nAnswer: Neither of the answers is correct.\nExplanation: `Neither` is a singular indefinite pronoun, so it takes the singular verb `is`.\n\n## Summary\n- Collective nouns take singular verbs when acting as one unit.\n- They may take plural verbs when members act individually.\n- `Each`, `either` and `neither` are singular.\n- `Everyone`, `someone` and `nobody` are singular.\n- Agreement follows the grammatical subject, not the number of people implied.",
+    "Revision and recap": "# Revision and recap: Grammar: Subject-Verb Concord\n\n## What you will learn\nYou will prevent intervening phrases from misleading you and revise all major concord rules. You will locate the true subject before selecting the verb.\n\n## Simple explanation\nA phrase between the subject and the verb may contain a noun with a different number, but that noun does not control the verb. The verb still agrees with the true subject.\n\n## Step-by-step breakdown\n- **Intervening phrase rule**: Remove or ignore the phrase between the subject and verb to identify the true subject.\n- **Example**: In `The list of items is on the table`, the subject is `list`, not `items`.\n- **Basic agreement**: Singular subjects take singular verbs; plural subjects take plural verbs.\n- **And**: Usually plural, except when the joined nouns express a single idea.\n- **Or/nor**: The verb agrees with the nearer subject.\n- **Collective nouns**: Agreement depends on unit meaning or individual-member meaning.\n- **Indefinite pronouns**: `Each`, `either`, `neither`, `everyone`, `someone` and `nobody` are singular.\n\n## Worked example\nQuestion: Identify and correct the error: `The list of items are ready.`\n\nSolution:\n- Step 1: Remove the intervening phrase `of items`; the true subject is `list`.\n- Step 2: `List` is singular, so replace `are` with `is`.\n- Final answer: The list of items is ready.\n\n## Common mistake\nDo not make the verb agree with the noun nearest to it when that noun belongs to a prepositional phrase. The nearer-subject rule is for `or/nor`, not for ordinary intervening phrases.\n\n## Quick check question\nQuestion: Fill in the blank: `The bouquet of roses ___ (looks/look) beautiful.`\nAnswer: The bouquet of roses looks beautiful.\nExplanation: The true subject is the singular noun `bouquet`; `of roses` is an intervening phrase and does not change the verb's number.\n\n## Summary\n- Find the true subject before choosing the verb.\n- Ignore nouns inside intervening phrases.\n- Apply the special `and` and `or/nor` rules accurately.\n- Interpret collective nouns from meaning.\n- Treat the listed indefinite pronouns as singular.\n- Recheck number and person after completing the sentence."
+  }
+}

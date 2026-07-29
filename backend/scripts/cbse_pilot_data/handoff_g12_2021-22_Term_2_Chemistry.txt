@@ -1,0 +1,58 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 2
+Subject: Chemistry
+Source Subject Code: Chemistry
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Chemistry-SQP_Term2.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Chemistry-MS_Term2.pdf
+Total Questions: 12
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Chemistry-MS_Term2.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Arrange the following in the increasing order of their property indicated (any 2): a. Benzoic acid, Phenol, Picric acid, Salicylic acid (pka values). b. Acetaldehyde, Acetone, Methyl tert butyl ketone (reactivity towards NH2OH). c. ethanol, ethanoic acid, benzoic acid (boiling point) (1x2=2)
+
+Q10 [mcq, 1m, Sec B]
+Represent the cell in which the following reaction takes place.The value of E˚ for the cell is 1.260 V. What is the value of Ecell ? 2Al(s) + 3Cd2+ (0.1M)  3Cd (s) + 2Al3+ (0.01M) (3)
+
+Q11 [mcq, 1m, Sec B]
+a. Why are fluorides of transition metals more stable in their higher oxidation state as compared to the lower oxidation state? b. Which one of the following would feel attraction when placed in magnetic field: Co2+ , Ag+ ,Ti4+ , Zn2+ c. It has been observed that first ionization energy of 5 d series of transition elements are higher than that of 3d and 4d series, explain why? (1x3=3) OR 11. On the basis of the figure given below, answer the following questions: (source: NCERT) a. Why Manganese has lower melting point than Chromium? b. Why do transition metals of 3d series have lower melting points as compared to 4d series? c. In the third transition series, identify and name the metal with the highest melting point. (1x3=3) SECTION C
+  [NOTE: diagram]
+
+Q12 [mcq, 1m, Sec C]
+Read the passage given below and answer the questions that follow. Are there nuclear reactions going on in our bodies? There are nuclear reactions constantly occurring in our bodies, but there are very few of them compared to the chemical reactions, and they do not affect our bodies much. All of the physical processes that take place to keep a human body running are chemical processes. Nuclear reactions can lead to chemical damage, which the body may notice and try to fix. The nuclear reaction occurring in our bodies is radioactive decay. This is the change of a less stable nucleus to a more stable nucleus. Every atom has either a stable nucleus or an unstable nucleus, depending on how big it is and on the ratio of protons to neutrons. The ratio of neutrons to protons in a stable nucleus is thus around 1:1 for small nuclei (Z < 20). Nuclei with too many neutrons, too few neutrons, or that are simply too big are unstable. They eventually transform to a stable form through radioactive decay. Wherever there are atoms with unstable nuclei (radioactive atoms), there are nuclear reactions occurring naturally. The interesting thing is that there are small amounts of radioactive atoms everywhere: in your chair, in the ground, in the food you eat, and yes, in your body. The most common natural radioactive isotopes in humans are carbon-14 and potassium-40. Chemically, these isotopes behave exactly like stable carbon and potassium. For this reason, the body uses carbon-14 and potassium-40 just like it does normal carbon and potassium; building them into the different parts of the cells, without knowing that they are radioactive. In time, carbon-14 atoms decay to stable nitrogen atoms and potassium-40 atoms decay to stable calcium atoms. Chemicals in the body that relied on having a carbon-14 atom or potassium-40 atom in a certain spot will suddenly have a nitrogen or calcium atom. Such a change damages the chemical. Normally, such changes are so rare, that the body can repair the damage or filter away the damaged chemicals. The natural occurrence of carbon-14 decay in the body is the core principle behind carbon dating. As long as a person is alive and still eating, every carbon-14 atom that decays into a nitrogen atom is replaced on average with a new carbon-14 atom. But once a person dies, he stops replacing the decaying carbon-14 atoms. Slowly the carbon-14 atoms decay to nitrogen without being replaced, so that there is less and less carbon-14 in a dead body. The rate at which carbon-14 decays is constant and follows first order kinetics. It has a half - life of nearly 6000 years, so by measuring the relative amount of carbon-14 in a bone, archeologists can calculate when the person died. All living organisms consume carbon, so carbon dating can be used to date any living organism, and any object made from a living organism. Bones, wood, leather, and even paper can be accurately dated, as long as they first existed within the last 60,000 years. This is all because of the fact that nuclear reactions naturally occur in living organisms. (source: The textbook Chemistry: The Practical Science by Paul B. Kelter, Michael D. Mosher and Andrew Scott states) a. Why is Carbon -14 radioactive while Carbon -12 not? (Atomic number of Carbon: 6) b. Researchers have uncovered the youngest known dinosaur bone, dating around 65 million years ago. How was the age of this fossil estimated? c. Which are the two most common radioactive decays happening in human body? d. Suppose an organism has 20 g of Carbon -14 at its time of death. Approximately how much Carbon -14 remains after 10,320 years? (Given antilog 0.517 = 3.289) OR d. Approximately how old is a fossil with 12 g of Carbon -14 if it initially possessed 32 g of Carbon -14? (Given log 2.667 = 0.4260) (1+1+1+2)
+
+Q2 [mcq, 1m, Sec A]
+Solutions of two electrolytes ‘A’ and ‘B’ are diluted. The Λm of ‘B’ increases 1.5 times while that of A increases 25 times. Which of the two is a strong electrolyte? Justify your answer. Graphically show the behavior of ‘A’ and ‘B’. (2)
+
+Q3 [mcq, 1m, Sec A]
+Give reasons to support the answer: a. Presence of Alpha hydrogen in aldehydes and ketones is essential for aldol condensation. b. 3 –Hydroxy pentan-2-one shows positive Tollen’s test. (1x2=2) SECTION B
+
+Q4 [mcq, 1m, Sec B]
+Account for the following: a. Aniline cannot be prepared by the ammonolysis of chlorobenzene under normal conditions. b. N-ethylethanamine boils at 329.3K and butanamine boils at 350.8K, although both are isomeric in nature. c. Acylation of aniline is carried out in the presence of pyridine. (1x3=3) OR 4. Convert the following: a. Phenol to N-phenylethanamide. b. Chloroethane to methanamine. c. Propanenitrile to ethanol. (1x3=3)
+
+Q5 [mcq, 1m, Sec B]
+Answer the following questions: a. [Ni(H2O)6 ] 2+ (aq) is green in colour whereas [Ni(H2O)4 (en)]2+(aq)is blue in colour , give reason in support of your answer . b. Write the formula and hybridization of the following compound: tris(ethane-1,2–diamine) cobalt(III) sulphate (1+2) OR 5. In a coordination entity, the electronic configuration of the central metal ion is t2g3 eg1 a. Is the coordination compound a high spin or low spin complex? b. Draw the crystal field splitting diagram for the above complex. (1+2)
+  [NOTE: diagram]
+
+Q6 [mcq, 1m, Sec B]
+Account for the following: a. Ti(IV) is more stable than the Ti (II) or Ti(III). b. In case of transition elements, ions of the same charge in a given series show progressive decrease in radius with increasing atomic number. c. Zinc is a comparatively a soft metal, iron and chromium are typically hard. (1x3=3)
+
+Q7 [mcq, 1m, Sec B]
+An alkene ‘A’ (Mol. formula C5H10) on ozonolysis gives a mixture of two compounds ‘B’ and ‘C’. Compound ‘B’ gives positive Fehling’s test and also forms iodoform on treatment with I2 and NaOH. Compound ‘C’ does not give Fehling’s test but forms iodoform. Identify the compounds A, B and C. Write the reaction for ozonolysis and formation of iodoform from B and C. (3)
+
+Q8 [mcq, 1m, Sec B]
+Observe the figure given below and answer the questions that follow: a. Which process is represented in the figure? b. What is the application of this process? c. Can the same process occur without applying electric field? Why is the electric field applied?
+  [NOTE: diagram]
+
+Q9 [mcq, 1m, Sec B]
+What happens when reactions: a. N-ethylethanamine reacts with benzenesulphonyl chloride. b. Benzylchloride is treated with ammonia followed by the reaction with Chloromethane. c. Aniline reacts with chloroform in the presence of alcoholic potassium hydroxide. (1x3=3) OR 9. a. Write the IUPAC name for the following organic compound: CH3 – N—CH2CH3 b.Complete the following: Sn/HCl Br2/H2O NaNO2/HCl HBF4 C6H5NO2 A B C D 273-278K (1x3=3)
+
+======================================================================
+Return the complete JSON array.

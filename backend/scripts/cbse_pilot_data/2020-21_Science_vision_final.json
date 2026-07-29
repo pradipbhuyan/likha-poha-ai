@@ -1,0 +1,323 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Lactic acid production has occurred in the athlete while running in the 400 m race. Which of the following processes explains this event?",
+    "options": [
+      "a) Aerobic respiration",
+      "b) Anaerobic respiration",
+      "c) Fermentation",
+      "d) Breathing"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "B",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Study the graph below that represents the amount of energy supplied with respect to the time while an athlete is running at full speed.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the polarity of the battery connected to the wire is reversed, how would the direction of the magnetic field be changed?",
+    "options": [
+      "r1",
+      "r2",
+      "r3",
+      "r4"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Explain the rule that is used to find the direction of the magnetic field for a straight current carrying conductor.",
+    "options": [
+      "r1",
+      "r2",
+      "r3",
+      "r4"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "State the role of pancreas in digestion of food.",
+    "options": [
+      "Both A and R are true, and R is correct explanation of the assertion.",
+      "Both A and R are true, but R is not the correct explanation of the assertion.",
+      "A is true, but R is false.",
+      "A is false, but R is true."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: After white washing the walls, a shiny white finish on walls is obtained after two to three days. Reason: Calcium Oxide reacts with Carbon dioxide to form Calcium Hydrogen Carbonate which gives shiny white finish.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Food chain is responsible for the entry of harmful chemicals in our bodies. Reason: The length and complexity of food chains vary greatly.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: A geneticist crossed a pea plant having violet flowers with a pea plant with white flowers, he got all violet flowers in first generation. Reason: White colour gene is not passed on to next generation.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 4,
+    "question_text": "Read the following and answer any four questions from 17 (i) to 17 (v) All living cells require energy for various activities. This energy is available by the breakdown of simple carbohydrates either using oxygen or without using oxygen.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following and answer any four questions from 18 (i) to 18 (v). Metallic Character The ability of an atom to donate electrons and form positive ion (cation) is known as electropositivity or metallic character. Down the group, metallic character increases due to increase in atomic size and across the period, from",
+    "options": [
+      "1x 4"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "I",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Read the following and answer any four questions from 19 (i) to 19 (v) Sumati wanted to see the stars of the night sky. She knows that she needs a telescope to see those distant stars. She finds out that the telescopes, which are made of lenses, are called refracting telescopes and the ones which are made of mirrors are called reflecting telescopes.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A solenoid is a long helical coil of wire through which a current is run in order to create a magnetic field. The magnetic field of the solenoid is the superposition of the fields due to the current through each coil. It is nearly uniform inside the solenoid and close to zero outside and is similar to the field of a bar magnet having a north pole at one end and a south pole at the other depending upon the direction of current flow. The magnetic field produced in the solenoid is dependent on a few factors such as, the current in the coil, number of turns per unit length etc.",
+    "options": [
+      "The unit of magnetic field as given in the graph attached is in milli-Tesla (mT) and the current is given in Ampere.",
+      "The magnetic field lines produced inside the solenoid are similar to that of ...",
+      "The bar will be magnetised as long as there is current in the circuit.",
+      "The bar will be magnetised permanently."
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Bile juice does not have any digestive enzyme but still plays a significant role in the process of digestion. Justify the statement.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "State the events occurring during the process of photosynthesis. Is it essential that these steps take place one after the other immediately?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Give a test that can be used to confirm the presence of carbon in a compound. With a valency of 4, how is carbon able to attain noble gas configuration in its compounds?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The following observations were made by a student on treating four metals P, Q, R and S with the given salt solutions: Sample | MgSO4(aq) | Zn(NO3)2(aq) | CaSO4(aq) | Na2SO4(aq) | P | No reaction | Reaction occurs | Reaction occurs | No reaction | Q | Reaction occurs | Reaction occurs | Reaction occurs | Reaction occurs | R | No Reaction | Reaction Occurs | No Reaction | No Reaction | S | No Reaction | No Reaction | No Reaction | No Reaction Based on the above observations: (a) Arrange the given samples in the increasing order of reactivity (b) Write the chemical formulae of products formed when Q reacts with CuSO4 solution.",
+    "options": [
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "A student observes the above phenomenon in the lab as a white light passes through a prism. Among many other colours, he observed the position of the two colours Red and Violet. What is the phenomenon called? What is the reason for the violet light to bend more than the red light?",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 26,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 2,
+    "question_text": "A student has two resistors- 2 Ω and 3 Ω. She has to put one of them in place of R2 as shown in the circuit. The current that she needs in the entire circuit is exactly 9A. Show by calculation which of the two resistors she should choose.",
+    "options": [
+      "2 Ω",
+      "3 Ω",
+      "4 Ω",
+      "6 Ω"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "After self-pollination in pea plants with round, yellow seeds, following types of seeds were obtained by Mendel:",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "In humans, there is a 50% probability of the birth of a boy and 50 % probability that a girl will be born. Justify the statement on the basis of the mechanism of sex-determination in human beings.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Plastic cups were used to serve tea in trains in early days- these could be returned to the vendors, cleaned and reused. Later,Kulhads were used instead of plastic cups. Now, paper cups are used for serving tea. What are the reasons for the shift from Plastic to Kulhads and then finally to paper cups?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 3,
+    "question_text": "Which of the following reactions is/ are an endothermic reaction(s) where decomposition also happens? Respiration Heating of lead nitrate Decomposition of organic matter Electrolysis of acidified water",
+    "options": [
+      "Respiration",
+      "Heating of lead nitrate",
+      "Decomposition of organic matter",
+      "Electrolysis of acidified water"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 3,
+    "question_text": "The following table shows the position of five elements A, B, C, D and E in the modern periodic table. Group Period",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 3,
+    "question_text": "Explain the formation of Calcium Chloride with the help of electron dot structure. (At numbers: Ca = 20; Cl = 17)",
+    "options": [
+      "Why do ionic compounds not conduct electricity in solid state but conduct electricity in molten and aqueous state?",
+      "In which medium does the light move faster, water or diamond?",
+      "What is the refractive index of diamond with respect to water?"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 3,
+    "question_text": "Refractive index of water with respect to air is 1.33 and that of diamond is 2.42.",
+    "options": [
+      "In which medium does the light move faster, water or diamond?",
+      "What is the refractive index of diamond with respect to water?"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "Match the following pH values 1, 7, 10, 13 to the solutions given below: Milk of magnesia Gastric juices Brine Aqueous Sodium hydroxide. Amit and Rita decided to bake a cake and added baking soda to the cake batter.",
+    "options": [
+      "Milk of magnesia",
+      "Gastric juices",
+      "Brine",
+      "Aqueous Sodium hydroxide"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 35,
+    "section": "O",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "Trace the changes that take place in a flower from gamete formation to fruit formation.",
+    "options": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 36,
+    "section": "O",
+    "question_type": "mcq",
+    "marks": 5,
+    "question_text": "In the given circuit, A, B, C and D are four lamps connected with a battery of 60V.",
+    "options": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "diagram_dependent": false
+  }
+]

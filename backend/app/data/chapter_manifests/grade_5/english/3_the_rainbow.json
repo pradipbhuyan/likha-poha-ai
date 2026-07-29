@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 5",
+  "subject": "English",
+  "chapter": "3. The Rainbow",
+  "central_question": "How does the poem use comparison, sound, imagery, and colour activities to show the beauty of clouds and the rainbow?",
+  "in_scope_units": [
+    "Let us Recite: boats, ships, bridges, clouds, and the rainbow",
+    "Let us Think: bow, overtops, the reference of these, and true or false statements",
+    "Let us Learn and Listen: unscrambling, rhyme, repetition, imagery, and sound",
+    "Let us Speak and Write: expressive recitation, journey paragraph, compound words, noun and verb use, and opposites",
+    "VIBGYOR, kitchen colours, Flowerpot Friend, colour combinations, boats, and natural versus human-made things"
+  ],
+  "banned_topics": [
+    "Hockey actions and scooter safety",
+    "The parrot’s escape plan",
+    "Frog and toad comparison"
+  ],
+  "must_include_keywords": [
+    "Christina Rossetti",
+    "boats",
+    "ships",
+    "rivers",
+    "seas",
+    "clouds",
+    "bow",
+    "bridges heaven",
+    "overtops",
+    "earth to sky",
+    "prettier far than these",
+    "rhyme",
+    "repetition",
+    "imagery",
+    "tone",
+    "sail",
+    "compound words",
+    "rainbow",
+    "bridge as noun",
+    "bridge as verb",
+    "journey paragraph",
+    "opposites",
+    "VIBGYOR",
+    "Violet",
+    "Indigo",
+    "Green",
+    "rain droplets",
+    "Flowerpot Friend",
+    "purple",
+    "maroon",
+    "types of boats",
+    "human-made",
+    "natural things",
+    "Isaac Newton",
+    "spinning disc"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Bow means a weapon in this poem.",
+      "correction": "It means the curved rainbow that seems to bridge heaven."
+    },
+    {
+      "claim": "Boats sail on seas and ships sail on rivers.",
+      "correction": "The poem says boats sail on rivers and ships sail on seas."
+    },
+    {
+      "claim": "The poem itself explains rainbow science.",
+      "correction": "The poem is a comparison of beauty; the sunlight and rain-droplet explanation appears later."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Let us Think A to interpret bow and the different references of these.",
+    "Use Let us Learn B to identify rhyme, repetition, and images.",
+    "Use Let us Write B and C for compound words and noun or verb functions.",
+    "Use Let us Write E to recall VIBGYOR.",
+    "Use Let us Do and Explore for colour mixing and natural versus human-made objects."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "There is no separate final exercise block; questions and activities are distributed across the named Let us sections.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

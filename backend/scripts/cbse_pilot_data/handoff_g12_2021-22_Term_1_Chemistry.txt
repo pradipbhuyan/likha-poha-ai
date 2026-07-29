@@ -1,0 +1,193 @@
+CBSE GRADE 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2021-22 Term 1
+Subject: Chemistry
+Source Subject Code: Chemistry
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Chemistry-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Chemistry-MS.pdf
+Total Questions: 25
+======================================================================
+TASK: For each question provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2021_22/Chemistry-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec A]
+Which of the following statements is true:
+  (A) Melting point of Phosphorous is less than that of Nitrogen
+  (B) N 2 is highly reactive while P 4 is inert
+  (C) Nitrogen shows higher tendency of catenation than P
+  (D) N-N is weaker than P-P
+
+Q10 [mcq, 1m, Sec A]
+Amorphous solids are:
+  (A) isotropic
+  (B) anisotropic
+  (C) isotopic
+  (D) isomeric
+
+Q11 [mcq, 1m, Sec A]
+Which of the following reactions is used to prepare salicylaldehyde?
+  (A) Kolbe’s reaction
+  (B) Etard reaction
+  (C) Reimer- Tiemann reaction
+  (D) Stephen’s reduction.
+
+Q12 [mcq, 1m, Sec A]
+Which of the following is an example of a solid solution?
+  (A) sea water
+  (B) sugar solution
+  (C) smoke
+  (D) 22 carat gold
+
+Q13 [mcq, 1m, Sec A]
+The boiling points of alcohols are higher than those of hydrocarbons of comparable masses due to:
+  (A) Hydrogen bonding ( b) Ion – dipole interaction
+  (B) Dipole- dipole interaction
+  (C) Van der Waal’s forces.
+
+Q14 [mcq, 1m, Sec A]
+Which of the following has the lowest boiling point:
+  (A) H 2O
+  (B) H 2S
+  (C) H 2Se
+  (D) H 2Te
+
+Q15 [mcq, 1m, Sec A]
+Which of the following statement is correct:
+  (A) Fibrous proteins are generally soluble in water
+  (B) Albumin is an example of fibrous proteins
+  (C) In fibrous proteins, the structure is stabilised by hydrogen bonds and disulphide bonds
+  (D) pH does not affect the primary structure of protein.
+
+Q16 [mcq, 1m, Sec A]
+Major product obtained on reaction of 3-Phenyl propene with HBr in presence of organic peroxide
+  (A) 3- Phenyl 1- bromopropane
+  (B) 1 –Phenyl -3- bromopropane
+  (C) 1-Phenyl -2-bromopropane
+  (D) 3-Phenyl -2- bromopropane
+
+Q17 [mcq, 1m, Sec A]
+Which of the following is a correct statement for C 2H5Br?
+  (A) It reacts with metallic Na to give ethane.
+  (B) It gives nitroethane on heating with aqueous solution of AgNO
+  (C) It gives C 2H5OH on boiling with alcoholic potash.
+  (D) It forms diethylthioether on heating with alcoholic KSH.
+
+Q18 [mcq, 1m, Sec A]
+Covalency of nitrogen is restricted to:
+  (A) 2
+  (B) 3
+  (C) 4
+  (D) 5
+
+Q19 [mcq, 1m, Sec A]
+Solubility of gases in liquids decreases with rise in temperature because dissolution is an:
+  (A) endothermic and reversible process
+  (B) exothermic and reversible process
+  (C) endothermic and irreversible process
+  (D) exothermic and irreversible process
+
+Q2 [mcq, 1m, Sec A]
+Which of the following is a non-stoichiometric defect?
+  (A) Frenkel defect
+  (B) Schottky defect
+  (C) metal deficiency defect
+  (D) interstitial defect
+
+Q20 [mcq, 1m, Sec A]
+All elements of Group 15 show allotropy except:
+  (A) Nitrogen
+  (B) Arsenic
+  (C) Antimony
+  (D) Bismuth
+
+Q21 [mcq, 1m, Sec A]
+Which of the following is a polysaccharide?
+  (A) glucose
+  (B) maltose
+  (C) glycogen
+  (D) lactose
+
+Q22 [mcq, 1m, Sec A]
+Substance having the lowest boiling point:
+  (A) Hydrogen
+  (B) Oxygen
+  (C) Nitrogen
+  (D) Helium
+
+Q23 [mcq, 1m, Sec A]
+Lower molecular mass alcohols are:
+  (A) miscible in limited amount of water
+  (B) miscible in excess of water
+  (C) miscible in water in all proportions
+  (D) immiscible in water
+
+Q24 [mcq, 1m, Sec A]
+Maximum oxidation state exhibited by Chlorine is:
+  (A) +1
+  (B) +3
+  (C) +5
+  (D) +7
+
+Q25 [mcq, 1m, Sec A]
+In which of the following cases blood cells will shrink:
+  (A) when placed in water containing more than 0.9% (mass/ volume) NaCl solution.
+  (B) when placed in water containing less than 0.9% (mass /volume) NaCl solution.
+  (C) when placed in water containing   0.9% (mass/volume) NaCl solution.
+  (D) when placed in   distilled water.
+
+Q3 [mcq, 1m, Sec A]
+Identify the law which is stated as: “For any solution, the partial vapour pressure of each volatile component in the solution is directly proportional to its mole fraction.”
+  (A) Henry’s law
+  (B) Raoult’s law
+  (C) Dalton’s law
+  (D) Gay-Lussac's Law
+
+Q4 [mcq, 1m, Sec A]
+Pink colour of LiCl crystals is due to:
+  (A) Schottky defect
+  (B) Frenkel defect
+  (C) Metal excess defect
+  (D) Metal deficiency defect
+
+Q5 [mcq, 1m, Sec A]
+Which of the following isomer has the highest meltingpoint:
+  (A) 1,2-dicholorbenzene
+  (B) 1,3 -dichlorobenzene
+  (C) 1,4-dicholorbenzene
+  (D) all isomers have same melting points
+
+Q6 [mcq, 1m, Sec A]
+Which one of the following reactions is not explained by the open chain Structureof glucose:
+  (A) Formation of pentaacetate of glucose with acetic anhydride.
+  (B) formation of addition product with 2,4 DNP reagent
+  (C) Silver mirror formation with Tollen’s reagent
+  (D) existence of alpha and beta forms of glucose.
+
+Q7 [mcq, 1m, Sec A]
+Williamson’s synthesis of preparing dimethyl ether is an:
+  (A) S N 1 reaction
+  (B) Elimination reaction
+  (C) S N 2 reaction
+  (D) Nucleophilic addition reaction
+
+Q8 [mcq, 1m, Sec A]
+Chlorine water loses its yellow colour on standing because:
+  (A) HCl gas is produced, due to the action of sunlight.
+  (B) a mixture of HOCl and HCl is produced in the presence of light
+  (C) HOCl and hydrogen gas is produced
+  (D) a mixture of HCl and ClO 3 is produced, due to the action of sunlight
+
+Q9 [mcq, 1m, Sec A]
+During dehydration of alcohols to alkenes by heating with concentrated H 2SO 4, the initiation step is:
+  (A) protonation of alcohol molecule
+  (B) formation of carbocation
+  (C) elimination of water
+  (D) formation of an ester
+
+======================================================================
+Return the complete JSON array.

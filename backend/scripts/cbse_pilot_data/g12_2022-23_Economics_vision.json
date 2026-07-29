@@ -1,0 +1,409 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements carefully:",
+    "options": [
+      "The consumption curve is an upward sloping straight line curve due to direct relationship between income and consumption and the assumption of constant Marginal Propensity to Consume.",
+      "Aggregate Demand curve and Consumption curve are parallel to each other.",
+      "In the light of the given statements, choose the correct alternative from the following:",
+      "Both statements 1 and 2 are true",
+      "Both statements 1 and 2 are false"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Owing to the Russia-Ukraine crisis, the world is experiencing rising crude prices due to supply-side issues.",
+    "options": [
+      "Production of cars in India will rise.",
+      "Production and sale of cycles in India will rise.",
+      "Inflow of US Dollars in India will rise.",
+      "Outflow of US Dollars from India will rise."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Justify the following statement with valid explanation: 'Green revolution enabled the government to procure sufficient food grains to build its stocks that could be used during time of shortage'.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements carefully: Statement 1: Export of financial services by India will be recorded on credit side of current account. Statement2: Foreign Direct Investments in India will be recorded on credit side of capital account. In the light of the given statements, choose the correct alternative: a) Statement 1 is true and statement 2 is false b) Statement 1 is false and statement 2 is true c) Both statements 1 and 2 are true d) Both statements 1 and 2 are false",
+    "options": [
+      "a) Statement 1 is true and statement 2 is false",
+      "b) Statement 1 is false and statement 2 is true",
+      "c) Both statements 1 and 2 are true",
+      "d) Both statements 1 and 2 are false"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements carefully: Statement 1 - Net investment is a stock concept. Statement 2 - Capital is a flow concept. In the light of the given statements, choose the correct alternative from the following: a) Statement 1 is true and statement 2 is false b) Statement 1 is false and statement 2 is true c) Both statements 1 and 2 are true d) Both statements 1 and 2 are false OR",
+    "options": [
+      "a) Statement 1 is true and statement 2 is false",
+      "b) Statement 1 is false and statement 2 is true",
+      "c) Both statements 1 and 2 are true",
+      "d) Both statements 1 and 2 are false"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If in an economy, the value of investment multiplier is 4 and Autonomous Consumption is ₹ 30 Crore, the relevant consumption function would be :",
+    "options": [
+      "a) Output, Production",
+      "b) Value added, Production",
+      "c) Output, Disposition",
+      "d) Wealth, Development"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Money supply in India may increase if, _______ (Choose the correct alternative) 1. Reserve Bank of India(RBI) injects more money in circulation 2. the commercial banks expand their credit operation 3. tax rates are reduced by the Central Government 4. Reserve Bank of India increases the Bank Rate",
+    "options": [
+      "1,2 and 3 are correct",
+      "2,3 and 4 are correct",
+      "1,3 and 4 are correct",
+      "1,2 and 4 are correct"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 1,
+    "question_text": "Suppose, following data is presented, for an imaginary economy: (all figures in ₹ '000 Crore) Year Visible Exports Visible Imports Identify, which of the statement about the period 2010 to 2020 is correct? a) Improvement in balance of trade b) Increase in trade deficit c) Improvement in balance in invisibles items d) Deterioration of balance of trade OR The following information is given for an imaginary country: Current Account Amount (in ₹'000 Crore) Visible Exports 100 Visible Imports 150 Invisible Exports 70 Invisible Imports 30 Net current transfer balance 15",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Read the following statement -Assertion (A) and Reason (R). Choose one of the correct alternatives given below: Assertion (A): Ex-post Investments represent planned Investments; whereas ex-ante Investments represent actual level of investments. Reason (R): At equilibrium level, Ex-ante Savings and Ex-ante Investments are always equal.",
+    "options": [
+      "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of Assertion (A).",
+      "Both Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A).",
+      "Assertion (A) is true but Reason (R) is false.",
+      "Assertion (A) is false but Reason (R) is true."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Read the following statement -Assertion (A) and Reason (R). Choose one of the correct alternatives given below: Assertion (A): Saving curve makes a negative intercept on the vertical axis at zero level of income. Reason (R): Saving function refers to the functional relationship between saving and income.",
+    "options": [
+      "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of Assertion (A).",
+      "Both Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A).",
+      "Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A).",
+      "Assertion (A) is true but Reason (R) is false."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Suppose in a hypothetical economy there are only two Firms A and B, Firm A sold goods for ₹ 2,000 to Firm B and purchased goods for ₹ 1,000. Firm B exported goods for ₹ 2,500 and had domestic sales of ₹ 1,500. Calculate Net Domestic Product at market price, if consumption of fixed capital is ₹ 200.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Explain, how exchange rate is determined under a free market exchange rate system.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 4,
+    "question_text": "If an economy plans to increase its income by ₹ 2,000 crore and the Marginal Propensity to Consume is 75%. Estimate the increase in investment required to achieve the targeted increase in income.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 4,
+    "question_text": "As per the following news published in The Economic Times on 26th December, 2021: 'Reserve Bank of India has sold government securities worth ₹ 8,710 crore in the secondary market, over the last four weeks, to drain out excessive liquidity'. Identify the likely cause and the consequences behind, this type of action plan of the Reserve Bank.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 4,
+    "question_text": "Read the following text carefully, discuss briefly the relevant function of the Central Bank, indicated : Recently, Reserve Bank of India (RBI) conducted a statutory inspection for supervisory evaluation against a Commercial Bank. The commercial bank was imposed with stringent penalties, owing to deficiencies in regulatory compliances. As per the Central Bank, the inspection revealed non-compliances vis-à-vis different directions issued by RBI, on the following fronts: i. ATM Card frauds ii. Ensuring integrity and quality of data iii. Loans to small borrowers OR 'Reserve Ratio and Credit Creation are inversely related.' Do you agree with the given statement? Justify your answer with a suitable numerical example.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 3,
+    "question_text": "Define Gross Domestic Product (GDP) deflator and discuss its importance. State and discuss any two precautions to be considered while estimating national income by Expenditure Method.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 3,
+    "question_text": "Compare the trends depicted in the figures given below:",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 18,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify, which of the following indicates the adverse impact of British rule in India.",
+    "options": [
+      "Introduction of communication networks in India",
+      "Change in composition of India's foreign trade",
+      "Introduction of modern administrative system in India",
+      "Introduction of railways in India"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "committee was set up for the development and promotion of small scale industries in India.",
+    "options": [
+      "Karve",
+      "Tapas Majumdar",
+      "Mahalanobis",
+      "TRYSEM"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "First Industrial Policy Resolution of Independent India was announced in the year _______ (Fill in the blank with the correct alternative)",
+    "options": [
+      "1947",
+      "1948",
+      "1951",
+      "1956"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify which of the following is a source of non-institutional credit in the rural areas of India.",
+    "options": [
+      "NABARD",
+      "Regional Rural Banks",
+      "Money Lenders",
+      "Commercial Banks"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "case_study",
+    "marks": 1,
+    "question_text": "From the set of the events given in column I and corresponding facts given in Column II, choose the correct pair of statement:",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements carefully. Statement 1: On-the-job trainings help to bridge a gap between theoretical concepts and practical experiences. Statement 2: On-the-job trainings update the employees, with the latest changes in their work field. In the light of the given statements, choose the correct alternative: a) Statement 1 is true and statement 2 is false b) Statement 1 is false and statement 2 is true c) Both statements 1 and 2 are true d) Both statements 1 and 2 are false",
+    "options": [
+      "Statement 1 is true and statement 2 is false",
+      "Statement 1 is false and statement 2 is true",
+      "Both statements 1 and 2 are true",
+      "Both statements 1 and 2 are false"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements carefully. Statement 1: Both India and Pakistan initiated their economic reforms without any external pressures. Statement 2: Pakistan has successfully implemented the SEZ policy and reaped its benefits using the Export Promotion policy. In the light of the given statements, choose the correct alternative: a) Statement 1 is true and statement 2 is false b) Statement 1 is false and statement 2 is true c) Both statements 1 and 2 are true d) Both statements 1 and 2 are false",
+    "options": [
+      "Statement 1 is true and statement 2 is false",
+      "Statement 1 is false and statement 2 is true",
+      "Both statements 1 and 2 are true",
+      "Both statements 1 and 2 are false"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "is not a cause for environmental degradation. OR is not the strategy for Sustainable Development. (Choose the correct alternative) a) Waste management b) Deforestation c) Global warming d) Guarding green cover",
+    "options": [
+      "Waste management",
+      "Deforestation",
+      "Global warming",
+      "Guarding green cover"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Read the following statement -Assertion (A) and Reason (R). Choose one of the correct alternatives given below: Assertion (A): Unemployment and poverty are inseparable twins. Reason(R): Unemployment is the root cause of all socio-economic evils. Alternatives: a) Statement 1 is true and statement 2 is false b) Statement 1 is false and statement 2 is true c) Both statements 1 and 2 are true d) Both statements 1 and 2 are false",
+    "options": [
+      "Statement 1 is true and statement 2 is false",
+      "Statement 1 is false and statement 2 is true",
+      "Both statements 1 and 2 are true",
+      "Both statements 1 and 2 are false"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Read the following statement -Assertion (A) and Reason (R). Choose one of the correct alternatives given below: Assertion (A): In the late 1970s, China's population growth rate had sharply declined. Reason(R): China has witnessed an increase in the proportion of elderly people owing to stringent family planning programmes.",
+    "options": [
+      "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of Assertion (A).",
+      "Both Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A).",
+      "Assertion (A) is true but Reason (R) is false.",
+      "Assertion (A) is false but Reason (R) is true."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Interpret the given picture on account of current environmental challenges.",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 29,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Defend or refute the following statement with valid explanation: 'Disguised unemployment is a common form of unemployment in rural India' Or Critically evaluate the role of rural banking system in the process of rural development in India.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Compare and analyse the following information related to Imports and Exports of the three neighbouring nations:",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Name any one Maharatana company.",
+    "options": [
+      "Land ceiling promotes equity.",
+      "Support the given statement with valid explanation.",
+      "Discuss briefly, how institutional reforms (land reforms) have played a significant role in transforming Indian agriculture.",
+      "None of the above."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 2,
+    "question_text": "State whether the following statements are true/false, with valid arguments:",
+    "options": [
+      "Human Capital and Human Development are one and the same thing.",
+      "India has a poor stock of technical manpower.",
+      "None of the above.",
+      "All of the above."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 2,
+    "question_text": "Define agricultural marketing.",
+    "options": [
+      "Discuss briefly the importance of micro-credit programmes in rural development.",
+      "Enlist any two problems faced by farmers in the initial years of organic farming.",
+      "None of the above.",
+      "All of the above."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 3,
+    "question_text": "Read the following text carefully and answer the given questions on the basis of the same and common understanding:",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

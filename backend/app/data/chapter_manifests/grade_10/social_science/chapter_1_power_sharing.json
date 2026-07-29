@@ -1,0 +1,78 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: Power-sharing",
+  "central_question": "Why is power sharing essential in a democracy, and through which arrangements can power be distributed to protect unity, participation and diversity?",
+  "in_scope_units": [
+    "Overview: democracy requires intelligent sharing of power rather than concentration in one organ or community.",
+    "Belgium and Sri Lanka: comparison of their linguistic, regional and religious diversity.",
+    "Majoritarianism in Sri Lanka: Sinhala-majority policies, Tamil alienation, conflict and civil war.",
+    "Accommodation in Belgium: constitutional arrangements among linguistic communities, regions and Brussels.",
+    "Why power sharing is desirable: prudential and moral reasons for sharing power.",
+    "Forms of power-sharing: horizontal, vertical, social-group and political-party or pressure-group arrangements."
+  ],
+  "banned_topics": [
+    "Detailed distribution of subjects through the Union, State and Concurrent Lists, which belongs to the Federalism chapter.",
+    "Detailed classification and reform of national and State political parties, which belongs to the Political Parties chapter.",
+    "Detailed analysis of gender, religious and caste inequalities, which belongs to the next social-divisions chapter."
+  ],
+  "must_include_keywords": [
+    "Belgium",
+    "Sri Lanka",
+    "Brussels",
+    "Flemish region",
+    "Wallonia region",
+    "Dutch-speaking",
+    "French-speaking",
+    "German-speaking",
+    "Sinhala-speakers",
+    "Sri Lankan Tamils",
+    "Indian Tamils",
+    "majoritarianism",
+    "Buddhism",
+    "regional autonomy",
+    "Tamil Eelam",
+    "civil war",
+    "community government",
+    "prudential reason",
+    "moral reason",
+    "legitimate government",
+    "horizontal distribution of power",
+    "vertical division of power",
+    "checks and balances",
+    "federal government",
+    "State Governments",
+    "reserved constituencies",
+    "coalition government",
+    "pressure groups",
+    "political participation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Power sharing weakens a country because authority is divided.",
+      "correction": "The chapter shows that sharing power can strengthen national unity by reducing conflict, protecting minorities and giving citizens a stake in government."
+    },
+    {
+      "claim": "Majority rule means the majority community may disregard minorities.",
+      "correction": "Democracy requires respect for minority interests; majoritarian domination can produce alienation, conflict and even threaten national unity."
+    },
+    {
+      "claim": "Belgium solved its problem by giving all power to the Dutch-speaking majority.",
+      "correction": "Belgium used equal representation, autonomous State Governments, a separate Brussels government and a community government to share power."
+    },
+    {
+      "claim": "Power sharing occurs only between the legislature, executive and judiciary.",
+      "correction": "The chapter identifies four broad forms: among organs, among levels, among social groups, and among parties, pressure groups and movements."
+    }
+  ],
+  "recommended_example_progression": [
+    "Compare Belgian accommodation with Sri Lankan majoritarianism using NCERT Exercise 7.",
+    "Judge the Merchtem language ban against the Belgian model using NCERT Exercise 4.",
+    "Separate prudential and moral reasons using the Panchayati Raj passage in NCERT Exercise 5.",
+    "Classify the four forms of power sharing using NCERT Exercise 8.",
+    "Conclude why power sharing is good for democracy using NCERT Exercise 9."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The NCERT end-of-chapter Exercises contain Questions 1–9 on the forms, reasons, country cases and democratic value of power sharing.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

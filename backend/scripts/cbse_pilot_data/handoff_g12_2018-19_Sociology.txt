@@ -1,0 +1,94 @@
+CBSE Grade 12 SAMPLE PAPER ANSWERS REQUEST
+Academic Year: 2018-19
+Subject: Sociology
+Source Subject Code: Sociology
+Question Paper URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Sociology-SQP.pdf
+Marking Scheme URL: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Sociology-MS.pdf
+Total Questions: 25
+======================================================================
+TASK: Provide answers in JSON format:
+[{"question_number":<int>,"question_text":"<copy>","question_type":"<copy>","options":[<copy>],"answer_text":"<exact option for mcq/ar; full answer otherwise>","answer_explanation":"<2-4 sentences>"},...]
+
+Marking Scheme: https://cbseacademic.nic.in/web_material/SQP/ClassXII_2018_19/Sociology-MS.pdf
+Diagram questions: NEEDS_MANUAL_REVIEW_diagram_dependent
+
+======================================================================
+QUESTIONS:
+
+Q1 [mcq, 1m, Sec C]
+What is mass-media? 2
+
+Q10 [short_answer, 2m, Sec C]
+Why does cultural diversity present tough challenges? State any two reasons. OR How does regionalism get established in the Indian context?
+
+Q11 [short_answer, 2m, Sec C]
+Green revolution led to regional inequalities. Give examples. OR Feminisation of agricultural labour force leads to greater insecurity among women. Give reasons.
+
+Q12 [mcq, 1m, Sec C]
+Establish the connection between circulation of labour and Footloose Labour. 2
+
+Q13 [short_answer, 2m, Sec C]
+“Caste has become all too visible for the scheduled castes and tribes”. Give two examples from daily life to support this statement.
+
+Q14 [short_answer, 2m, Sec C]
+Change in social structure leads to changes in the family structure. Justify the given statement. SECTION B
+
+Q15 [mcq, 1m, Sec B]
+Evaluate the outcomes of family planning programme during emergency. 4
+
+Q16 [mcq, 1m, Sec B]
+How is India an example of a state-nation? 4
+
+Q17 [mcq, 1m, Sec B]
+State any two theories of social movements. 4
+
+Q18 [case_study, 4m, Sec B]
+Identify how mass media is a part of our everyday life. OR What are the reasons for the amazing growth in Indian language newspapers?
+
+Q19 [case_study, 4m, Sec B]
+Discuss the impact of globalisation on culture. OR Do you think that globalisation is a threat to many indigenous crafts and literary traditions and knowledge systems? Give reasons.
+
+Q2 [mcq, 1m, Sec C]
+State any one set of principles on which caste system is based. 2
+
+Q20 [case_study, 4m, Sec B]
+Process of sanskritisation encourages inequalities and discrimination. Explain with examples.
+
+Q21 [case_study, 4m, Sec B]
+Competing interests do not always reflect clear class divide. Exemplify. OR Many tribal areas have rich tradition of grass-root democracy. Illustrate with example. SECTION C
+
+Q22 [long_answer, 6m, Sec C]
+Highlight the state and non-state initiatives addressing caste and tribe discrimination. OR What are the major issues of concern to adivasis today?
+
+Q23 [long_answer, 6m, Sec C]
+Colonial rule in India brought about structural changes in the legal, industrial and architectural spheres. Give examples. OR Exemplify the different kinds of urbanisation witnessed in India in the first two decades after independence.
+
+Q24 [long_answer, 6m, Sec C]
+“There is a whole range of work settings from large companies where work is automated to small home-based production.” Analyse. OR Enlist the changes brought about by Globalisation and Liberalisation in the Indian industrial set up.
+
+Q25 [long_answer, 6m, Sec C]
+Passage based question When a market becomes a commodity: The Pushkar camel fair “Come the month of Kartika …, Thar camel drivers spruce up their ships of the desert and start the long walk to Pushkar in time for Kartik Purnima … Each year around 200,000 people conver ge here, bringing with them some 50,000 camels and cattle. The place becomes an extraordinary swirl of colour, sound and movement, thronged with musicians, mystics, tourists, traders, animals and devotees. It’s a camel - grooming nirvana, with an incredible array of cornrows, anklets, embroidery and pom poms.” “The religious event builds in tandem with the Camel Fair in a wild, magical crescendo of incense, chanting and processions to dousing day, the last night of the fair, when thousands of devotees wash aw ay their sins and set candles afloat on the holy water.” (From the Lonely Planet tourist guidebook for India, 11th edition) I What is commodification? 2 b ) Explain how a market becomes commodity. 4
+
+Q3 [short_answer, 2m, Sec C]
+What are the various occupations followed in rural society? OR What do you understand by the term ‘Benami Transfers’?
+
+Q4 [mcq, 1m, Sec C]
+What are counter movements? 2
+
+Q5 [short_answer, 2m, Sec C]
+Why is falling dependency ratio a source of economic growth and prosperity? OR On what basis have the three phases of population growth been classified in the Theory of Demographic Transition.
+
+Q6 [mcq, 1m, Sec C]
+What are the sources of revenue for the Panchayats? 2
+
+Q7 [short_answer, 2m, Sec C]
+Bring out the difference between assimilationist and integrationist policies. OR How is the outcome of a vibrant civil society different from an authoritarian state.
+
+Q8 [mcq, 1m, Sec C]
+Why was Dharma Sabha formed? 2
+
+Q9 [mcq, 1m, Sec C]
+Justify the importance of Silk Route for the Indian traders during the early years. 2
+
+======================================================================
+Return the complete JSON array.
