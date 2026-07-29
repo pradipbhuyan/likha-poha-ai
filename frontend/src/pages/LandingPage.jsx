@@ -26,7 +26,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
     { q: "Which classes and boards are supported?", a: "LikhaPoha AI supports Grade 5 to Grade 12 for CBSE. Grade 5–10 covers Science, Maths, English, Social Science, and Hindi. Grade 11–12 adds Physics, Chemistry, Mathematics, Biology, Accountancy, Economics, and Business Studies — plus an Exam Prep Center for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT." },
     { q: "What is the Exam Prep Center for Grade 11 & 12?", a: "The Exam Prep Center covers six exams: JEE Main, NEET UG, and CUET UG with an NTA-style simulator, curated MCQ question bank, subject-wise topic priorities, and simulated full-length tests with a floating countdown timer and question palette — exactly like the real exam interface. It also covers SAT, IELTS, and TOEFL iBT for students planning to study abroad, with exam-authentic practice for each format. It is included in the Premium plan at no extra cost." },
     { q: "Does the AI use real textbooks or make things up?", a: "Every lesson and doubt answer is grounded in uploaded NCERT textbooks using RAG technology. The AI cannot hallucinate chapter content — it is strictly textbook-aligned." },
-    { q: "How many practice questions are available?", a: "LikhaPoha AI has 90,000+ practice questions covering all chapters from Grade 5 to Grade 12 across CBSE subjects — including question banks for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT for Grade 11 & 12." },
+    { q: "How many practice questions are available?", a: "LikhaPoha AI has 140,000+ practice questions covering all chapters from Grade 5 to Grade 12 across CBSE subjects — including question banks for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT for Grade 11 & 12." },
     { q: "Is there a mobile app?", a: "LikhaPoha AI is a mobile-first progressive web app. It works perfectly on any phone browser — no app download needed. Add it to your home screen for an app-like experience." },
     { q: "Can I manage multiple children on the Parent Dashboard?", a: "Yes — the Parent Dashboard includes a Family Learning Center where you can manage multiple children from one unified dashboard. Simply click the '+ Add Child' button to add another child and track their progress, test performance, and weak areas separately." },
     { q: "What does the Parent Dashboard show?", a: "The Parent Dashboard acts as a central Family Learning Center. It provides real-time tracking of daily learning progress, mock test scores and score trends, AI usage, and automatic weak-area alerts when a child is struggling. It also lets parents add children and manage subscription plans." },
@@ -82,7 +82,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <div className="lp-stat"><div className="lp-sn">900+</div><div className="lp-sl">Chapters (Gr 5&ndash;12)</div></div>
           <div className="lp-stat"><div className="lp-sn">8</div><div className="lp-sl">Grades (5&ndash;12)</div></div>
           <div className="lp-stat"><div className="lp-sn">12+</div><div className="lp-sl">Subjects</div></div>
-          <div className="lp-stat"><div className="lp-sn">90,000+</div><div className="lp-sl">Practice Questions</div></div>
+          <div className="lp-stat"><div className="lp-sn">140,000+</div><div className="lp-sl">Practice Questions</div></div>
         </div>
       </div>
       {/* AI for Good */}
@@ -164,7 +164,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <div>
             <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(124,58,237,.15)"}}><BookOpen size={22} strokeWidth={2} /></div><h3>Step-wise AI Lessons</h3><p>4&ndash;6 focused steps per chapter &mdash; Concept intro, Core explanation, Worked examples, Exam-style problems, Revision.</p></div>
             <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(16,185,129,.15)"}}><MessageCircle size={22} strokeWidth={2} /></div><h3>Instant Doubt Solving</h3><p>Ask any chapter question. AI answers from your actual NCERT textbook &mdash; not generic internet content.</p></div>
-            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(245,158,11,.15)"}}><ClipboardList size={22} strokeWidth={2} /></div><h3>Mock Tests and Question Bank</h3><p>CBSE class tests, mid-terms and full mock tests across all grades. 90,000+ practice questions — Grade 5 to Grade 12.</p></div>
+            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(245,158,11,.15)"}}><ClipboardList size={22} strokeWidth={2} /></div><h3>Mock Tests and Question Bank</h3><p>CBSE class tests, mid-terms and full mock tests across all grades. 140,000+ practice questions — Grade 5 to Grade 12.</p></div>
             <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(239,68,68,.15)"}}><Users size={22} strokeWidth={2} /></div><h3>Parent Dashboard</h3><p>Track daily study time, test scores, weak area alerts, and AI usage. Two children per family account.</p></div>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:"16px"}}>

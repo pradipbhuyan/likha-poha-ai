@@ -445,7 +445,7 @@ def generate_practice_questions(
     # ── End prewarm cache check ───────────────────────────────────────────────
 
     # ── Question bank only — no LLM ───────────────────────────────────────────
-    # With 100,000+ questions in the bank, every chapter should have enough.
+    # With 140,000+ questions in the bank, every chapter should have enough.
     # Tries multiple difficulty levels to maximise hit rate.
     # Returns [] if no questions found for this chapter.
     try:

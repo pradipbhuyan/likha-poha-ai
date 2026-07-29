@@ -33,7 +33,7 @@ PLATFORM_FAQ: list[dict] = [
             "AI teacher available any time, one that actually uses their NCERT textbook?*\n\n"
             "Today, LikhaPoha AI supports **Class 5 to Class 12 CBSE** students — including "
             "a Grade 11–12 Exam Prep Center for JEE Main, NEET UG, CUET UG, SAT, IELTS, and "
-            "TOEFL iBT — with step-wise AI lessons, instant doubt answering, 90,000+ practice "
+            "TOEFL iBT — with step-wise AI lessons, instant doubt answering, 140,000+ practice "
             "questions, mock tests, and a real-time parent dashboard.\n\n"
             "It is an independent, affordable AI learning companion built for Indian families."
         ),
@@ -49,7 +49,7 @@ PLATFORM_FAQ: list[dict] = [
             "It gives your child:\n"
             "- 📚 Step-wise AI lessons grounded in NCERT textbooks\n"
             "- 🤖 Instant doubt solving from the actual textbook\n"
-            "- 📝 90,000+ CBSE practice questions and mock tests\n"
+            "- 📝 140,000+ CBSE practice questions and mock tests\n"
             "- 🎯 A Grade 11–12 Exam Prep Center for JEE, NEET, CUET, SAT, IELTS & TOEFL iBT\n"
             "- 👨‍👩‍👧 Parent dashboard with real-time progress tracking\n\n"
             "Everything works on any phone browser — no app download needed."
@@ -219,7 +219,7 @@ PLATFORM_FAQ: list[dict] = [
         "keywords": ["mock test", "practice test", "question bank", "practice question",
                      "test", "mcq", "how many questions", "90000", "70000"],
         "answer": (
-            "LikhaPoha AI has **90,000+ practice questions** across Grade 5–12 CBSE subjects — "
+            "LikhaPoha AI has **140,000+ practice questions** across Grade 5–12 CBSE subjects — "
             "plus dedicated question banks for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT.\n\n"
             "**Mock Test Studio lets students:**\n"
             "- Choose subject, chapter, difficulty (Easy / Medium / Hard)\n"

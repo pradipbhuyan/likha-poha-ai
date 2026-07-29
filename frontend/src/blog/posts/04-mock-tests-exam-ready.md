@@ -34,7 +34,7 @@ If you've only practised one type, you'll be caught off guard by the others.
 
 ## How Likha Poha AI's Mock Test Studio Covers All Types
 
-Likha Poha AI has **70,000+ practice questions** across all grades (5–10) and subjects, covering multiple question formats. When you create a mock test, you can:
+Likha Poha AI has **140,000+ practice questions** across all grades (5–10) and subjects, covering multiple question formats. When you create a mock test, you can:
 
 ### Choose by Chapter and Difficulty
 Select exactly which chapter you want to test — say, *Chapter 3: Atoms and Molecules* for Grade 9 Chemistry. Set the difficulty to Easy, Medium, or Hard depending on where you are in your preparation.

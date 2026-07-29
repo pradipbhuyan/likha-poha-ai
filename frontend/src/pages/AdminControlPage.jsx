@@ -2393,7 +2393,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
                           );
                           const emailSubject = encodeURIComponent("Likha Poha AI — CBSE AI Tutor Invitation");
                           const emailBody = encodeURIComponent(
-                            `Hi,\n\nI'd like to invite you to try Likha Poha AI — India's smartest CBSE AI Tutor for Class 5–10.\n\nUse this exclusive signup link:\n${signupLink}\n\nValid until: ${oc.valid_until?.slice(0,10)}\n\nFeatures:\n• Instant step-by-step CBSE lessons\n• AI doubt solving\n• Mock tests with 70,000+ questions\n\nBest regards`
+                            `Hi,\n\nI'd like to invite you to try Likha Poha AI — India's smartest CBSE AI Tutor for Class 5–10.\n\nUse this exclusive signup link:\n${signupLink}\n\nValid until: ${oc.valid_until?.slice(0,10)}\n\nFeatures:\n• Instant step-by-step CBSE lessons\n• AI doubt solving\n• Mock tests with 140,000+ questions\n\nBest regards`
                           );
                           return (
                             <div style={{ marginTop: 8 }}>
