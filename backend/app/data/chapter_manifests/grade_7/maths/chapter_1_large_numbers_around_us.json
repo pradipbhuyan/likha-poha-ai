@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 1: Large Numbers Around Us",
+  "central_question": "How can we read, represent, estimate, compare and calculate with very large numbers meaningfully and efficiently?",
+  "in_scope_units": [
+    "1.1 A Lakh Varieties!: building the meaning of one lakh, comparing large quantities, and reading and writing numbers in the Indian place value system.",
+    "1.2 Land of Tens: representing numbers with place-value button presses, finding multiple decompositions, and minimising the number of clicks.",
+    "1.3 Of Crores and Crores!: relating lakhs, crores and arabs to millions and billions and comparing Indian and International comma placement.",
+    "1.4 Exact and Approximate Values: deciding when exact values or estimates are useful, rounding to different places, and interpreting city-population data.",
+    "1.5 Patterns in Products: regrouping factors for quick multiplication, predicting the number of digits in products, and interpreting large-number facts.",
+    "1.6 Did You Ever Wonder…?: using assumptions and multi-step calculations to judge large-number claims and solve the chapter’s final challenges.",
+    "Toothpick Digits: forming, enlarging and rearranging numerals represented with sticks."
+  ],
+  "banned_topics": [
+    "Formal laws of exponents and scientific notation, which are not taught in this chapter.",
+    "Prime factorisation algorithms and divisibility tests as independent topics.",
+    "Algebraic equations with unknown variables beyond the simple expressions used to describe quantities.",
+    "Detailed statistics such as mean, median and graphical data analysis."
+  ],
+  "must_include_keywords": [
+    "lakh",
+    "crore",
+    "arab",
+    "million",
+    "billion",
+    "Indian place value system",
+    "International system",
+    "comma grouping",
+    "place value",
+    "expanded form",
+    "Creative Chitti",
+    "Systematic Sippy",
+    "button clicks",
+    "nearest thousand",
+    "nearest lakh",
+    "nearest crore",
+    "rounding up",
+    "rounding down",
+    "approximation",
+    "exact value",
+    "population",
+    "Statue of Unity",
+    "Kunchikal waterfall",
+    "multiplication shortcut",
+    "factor regrouping",
+    "digits in a product",
+    "reasonable assumption",
+    "thought experiment",
+    "toothpick digits"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "One million and one lakh are the same number.",
+      "correction": "One million is 10,00,000 in the Indian system, which equals ten lakhs; one lakh is 1,00,000."
+    },
+    {
+      "claim": "Indian and International systems place commas in the same positions.",
+      "correction": "The Indian system groups digits 3-2-2-2 from the right, while the International system groups them 3-3-3."
+    },
+    {
+      "claim": "Rounding always means choosing the nearest lower number.",
+      "correction": "Depending on the situation, a number may be rounded up, rounded down, or rounded to its nearest place value."
+    },
+    {
+      "claim": "The fewest button presses can be found by any random decomposition.",
+      "correction": "With Systematic Sippy, the least-click expression follows the place-value digits, and the minimum number of clicks is the sum of those digits."
+    },
+    {
+      "claim": "The product of an m-digit and an n-digit number always has exactly m+n digits.",
+      "correction": "Its product has either m+n−1 digits or m+n digits."
+    },
+    {
+      "claim": "An approximate answer is acceptable even when an exact phone number or money transaction is needed.",
+      "correction": "Some situations require exact numbers; approximation is useful only when a close sense of size is sufficient."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Section 1.1 Figure it Out Questions 1–3 on Chintamani's population to anchor one lakh through subtraction and increase.",
+    "Use Section 1.2 Creative Chitti and Systematic Sippy for 5072 and 8300 to compare multiple decompositions with least-click place-value forms.",
+    "Use Section 1.3 Figure it Out Question 1 to write a numeral in both Indian and International naming systems.",
+    "Use Section 1.4 the nearest-neighbour example for 6,72,85,183 and the Pune population question to practise rounding and approximation.",
+    "Use Section 1.5 Figure it Out Question 1 to regroup factors in 2 × 1768 × 50 and explain the shortcut.",
+    "Finish with Section 1.6 Figure it Out Questions 11–14 to apply units, estimation and large-number reasoning."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The concluding 'Figure it Out' exercise in Section 1.6 contains Questions 1–14, followed by the 'Toothpick Digits' enrichment activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

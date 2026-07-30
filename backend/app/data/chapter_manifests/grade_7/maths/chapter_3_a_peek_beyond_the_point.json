@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 3: A Peek Beyond the Point",
+  "central_question": "How does the decimal place value system help us represent, measure, compare and calculate quantities smaller than one unit accurately?",
+  "in_scope_units": [
+    "3.1 The Need for Smaller Units: measuring lengths that lie between whole-number marks.",
+    "3.2 A Tenth Part: representing mixed quantities in units and tenths and adding or subtracting tenths.",
+    "3.3 A Hundredth Part: dividing tenths further, converting between forms, and operating with tenths and hundredths.",
+    "3.4 Decimal Place Value: extending the base-ten place value system to tenths, hundredths, thousandths and decimal notation.",
+    "3.5 Units of Measurement: converting millimetres and centimetres, centimetres and metres, grams and kilograms, and paise and rupees.",
+    "3.6 Locating and Comparing Decimals: placing decimals on number lines, understanding trailing zeroes, comparing place values and finding closest decimals.",
+    "3.7 Addition and Subtraction of Decimals: aligning place values, performing operations, extending decimal sequences and estimating results.",
+    "3.8 More on the Decimal System: avoiding decimal and unit-conversion errors, interpreting decimal-like notations correctly, and reviewing the history of decimal notation."
+  ],
+  "banned_topics": [
+    "Multiplication and division algorithms for general decimal numbers, which are not the main operations developed in this chapter.",
+    "Percentages, profit and loss, simple interest and commercial arithmetic.",
+    "Recurring decimals and irrational numbers.",
+    "Coordinate geometry and plotting ordered pairs.",
+    "Scientific notation and significant figures."
+  ],
+  "must_include_keywords": [
+    "smaller unit",
+    "one-tenth",
+    "one-hundredth",
+    "one-thousandth",
+    "decimal system",
+    "decimal point",
+    "place value",
+    "tenths",
+    "hundredths",
+    "thousandths",
+    "mixed quantity",
+    "regrouping",
+    "number line",
+    "trailing zeroes",
+    "compare decimals",
+    "closest decimal",
+    "millimetre",
+    "centimetre",
+    "metre",
+    "gram",
+    "kilogram",
+    "milligram",
+    "paisa",
+    "rupee",
+    "unit conversion",
+    "addition of decimals",
+    "subtraction of decimals",
+    "decimal sequence",
+    "estimation",
+    "measurement error",
+    "4.5 hours",
+    "5.5 overs"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A decimal with more digits is always larger.",
+      "correction": "The digits must be compared by place value; for example, 0.2 is greater than 0.02 even though 0.02 has more digits."
+    },
+    {
+      "claim": "Adding zeroes to the right of a decimal always changes its value.",
+      "correction": "Trailing zeroes do not change value: 0.2 = 0.20 = 0.200."
+    },
+    {
+      "claim": "7.05 means seven and five tenths.",
+      "correction": "7.05 means seven units, zero tenths and five hundredths."
+    },
+    {
+      "claim": "Decimal addition is done by lining up the last digits.",
+      "correction": "Decimal points and matching place values must be aligned before addition or subtraction."
+    },
+    {
+      "claim": "4.5 hours means 4 hours 5 minutes.",
+      "correction": "0.5 hour is half of 60 minutes, so 4.5 hours means 4 hours 30 minutes."
+    },
+    {
+      "claim": "5.5 overs is the decimal number five and a half overs.",
+      "correction": "Cricket notation is not ordinary decimal notation; 5.5 overs means 5 overs and 5 balls."
+    },
+    {
+      "claim": "Moving between units never requires checking the conversion factor.",
+      "correction": "Each conversion depends on the relationship between units, such as 10 mm = 1 cm, 100 cm = 1 m and 1000 g = 1 kg."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Sections 3.1–3.2 and the screw and arm-length examples to connect measurement with tenths.",
+    "Use the folded-paper example in Section 3.3 and the page 58 Figure it Out to introduce hundredths and regrouping.",
+    "Use the place-value table for 705, 70.5 and 7.05 in Section 3.4 to establish decimal notation and reading.",
+    "Use the conversion exercises on pages 64–69 for mm–cm, cm–m, g–kg and paise–rupee.",
+    "Use the zero dilemma and 6.456 versus 6.465 in Section 3.6 for equality, location and comparison.",
+    "Use the cloth example and page 75 Figure it Out for decimal addition and subtraction.",
+    "Conclude with the Section 3.8 incidents and the final Figure it Out Questions 1–16."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The final 'Figure it Out' exercise on pages 78–80 contains Questions 1–16, followed by the chapter summary.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

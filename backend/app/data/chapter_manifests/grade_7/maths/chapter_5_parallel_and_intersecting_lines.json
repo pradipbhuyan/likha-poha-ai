@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 5: Parallel and Intersecting Lines",
+  "central_question": "How can angle relationships be used to identify, construct and reason about intersecting, perpendicular and parallel lines?",
+  "in_scope_units": [
+    "5.1 Across the Line: intersecting lines, linear pairs, vertically opposite angles and proof by reasoning.",
+    "5.2 Perpendicular Lines: lines meeting at four right angles.",
+    "5.3 Between Lines: recognising parallel lines as coplanar lines that never meet when extended.",
+    "5.4 Parallel and Perpendicular Lines in Paper Folding: observing, creating and marking line relationships.",
+    "5.5 Transversals: the eight angles formed when one line crosses two lines.",
+    "5.6 Corresponding Angles: identifying corresponding pairs and using their equality to test for parallel lines.",
+    "5.7 Drawing Parallel Lines: ruler, set-square and paper-folding constructions through a given point.",
+    "5.8 Alternate Angles: equality of alternate angles and supplementary same-side interior angles for parallel lines.",
+    "5.9 Parallel Illusions: recognising that visual appearance may mislead and geometric relationships require reasoning."
+  ],
+  "banned_topics": [
+    "Triangle congruence and similarity theorems.",
+    "Polygon interior-angle sums as a separate topic.",
+    "Coordinate geometry, slopes and equations of lines.",
+    "Three-dimensional skew lines, except the reminder that parallel lines must be coplanar.",
+    "Circle theorems and tangent properties."
+  ],
+  "must_include_keywords": [
+    "plane surface",
+    "intersecting lines",
+    "point of intersection",
+    "linear pair",
+    "straight angle",
+    "180°",
+    "vertically opposite angles",
+    "proof",
+    "perpendicular lines",
+    "right angle",
+    "90°",
+    "parallel lines",
+    "coplanar",
+    "paper folding",
+    "arrow notation",
+    "square angle mark",
+    "transversal",
+    "eight angles",
+    "corresponding angles",
+    "alternate angles",
+    "interior angles",
+    "same side of transversal",
+    "supplementary",
+    "ruler",
+    "set square",
+    "protractor",
+    "tracing paper",
+    "construction",
+    "parallel illusion"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Two lines that do not meet on the page are automatically parallel.",
+      "correction": "They are parallel only if they lie in the same plane and would never meet however far they are extended."
+    },
+    {
+      "claim": "Vertically opposite angles add to 180°.",
+      "correction": "Vertically opposite angles are equal; adjacent linear-pair angles add to 180°."
+    },
+    {
+      "claim": "Perpendicular lines form only one right angle.",
+      "correction": "Two perpendicular lines form four right angles, each measuring 90°."
+    },
+    {
+      "claim": "Corresponding angles are always equal whenever a transversal crosses two lines.",
+      "correction": "Corresponding angles are equal when the crossed lines are parallel; conversely, equal corresponding angles establish that the lines are parallel."
+    },
+    {
+      "claim": "Alternate angles are equal for any two crossed lines.",
+      "correction": "Alternate angles are equal when a transversal intersects a pair of parallel lines."
+    },
+    {
+      "claim": "All interior angles formed by parallel lines are equal.",
+      "correction": "Interior angles on the same side of a transversal add to 180°; they need not be equal."
+    },
+    {
+      "claim": "A small measurement mismatch disproves a geometric property.",
+      "correction": "Drawing thickness and protractor error may cause small differences; ideal geometric relationships are established by reasoning."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Activity 1 and Figure it Out on page 108 to establish linear pairs and vertically opposite angles.",
+    "Use Activity 2 and the page 113–114 drawing exercises to recognise and mark parallel and perpendicular lines.",
+    "Use Figure 5.14 and Activity 3 to identify transversals and corresponding-angle positions.",
+    "Use Activities 4–5 to establish both directions of the corresponding-angle criterion for parallelism.",
+    "Use the page 119 Figure it Out construction to draw a parallel through a point with ruler and set square.",
+    "Use Activity 6 and Examples 1–4 to derive alternate-angle and same-side interior-angle results.",
+    "Finish with Figure it Out Questions 1–6 on pages 123–125."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The concluding 'Figure it Out' set on pages 123–125 contains Questions 1–6, followed by Section 5.9 'Parallel Illusions' and the summary.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

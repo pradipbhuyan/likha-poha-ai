@@ -248,7 +248,11 @@ def ensure_textbook_images(manifest: dict, dry_run: bool, force: bool) -> None:
     print(f"  Textbook images: locating source PDF and rag_documents row for this chapter...")
 
     try:
-        from scripts.prepare_gpt55_prompts import BOOK_SOURCES, get_chapter_list  # noqa: PLC0415
+        from scripts.prepare_gpt55_prompts import (  # noqa: PLC0415
+            BOOK_SOURCES,
+            _resolve_pdf_path_for_chapter,
+            get_chapter_list,
+        )
     except Exception as e:
         print(f"    [skip] Could not import prepare_gpt55_prompts.BOOK_SOURCES: {e}")
         return
@@ -261,8 +265,6 @@ def ensure_textbook_images(manifest: dict, dry_run: bool, force: bool) -> None:
         return
 
     source_cfg = BOOK_SOURCES[key]
-    pdf_dir = source_cfg["pdf_dir"]
-    book_code = source_cfg["book_code"]
 
     try:
         chapters = get_chapter_list(grade, subject)
@@ -283,7 +285,14 @@ def ensure_textbook_images(manifest: dict, dry_run: bool, force: bool) -> None:
               f"entry in the {grade}/{subject} syllabus chapter list.")
         return
 
-    pdf_path = pdf_dir / f"{book_code}{chapter_index:02d}.pdf"
+    # Supports both the simple single-part shape ({pdf_dir, book_code,
+    # num_chapters}) and the multi-part shape ({parts: [...]}) used by
+    # NCERT books physically split into two volumes (e.g. Grade 7 Maths).
+    try:
+        pdf_path = _resolve_pdf_path_for_chapter(source_cfg, chapter_index)
+    except Exception as e:
+        print(f"    [skip] Could not resolve PDF path for chapter index {chapter_index}: {e}")
+        return
     if not pdf_path.exists():
         print(f"    [skip] Source PDF not found: {pdf_path}")
         return

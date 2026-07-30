@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 4: Expressions using Letter-Numbers",
+  "central_question": "How can letter-numbers and algebraic expressions describe, evaluate, simplify and justify general mathematical relationships and patterns?",
+  "in_scope_units": [
+    "4.1 The Notion of Letter-Numbers: representing changing quantities, relationships and formulas with letters.",
+    "4.2 Revisiting Arithmetic Expressions: applying terms, brackets, swapping, grouping and distribution to expressions before introducing algebraic manipulation.",
+    "4.3 Omission of the Multiplication Symbol in Algebraic Expressions: reading forms such as 4n and substituting number values correctly.",
+    "4.4 Simplification of Algebraic Expressions: combining like terms, opening brackets, using the distributive property and testing expression equality.",
+    "4.5 Pick Patterns and Reveal Relationships—Formula Detective: finding formulas from input-output number machines.",
+    "Algebraic Expressions to Describe Patterns: describing repeating designs and using quotient and remainder to identify positions.",
+    "Patterns in a Calendar: proving general relationships by expressing calendar entries with a letter-number.",
+    "Matchstick Patterns: deriving and comparing general expressions for growing visual patterns.",
+    "Final Figure it Out: modelling costs, movement, time, grids, traffic-light cycles and other situations with expressions."
+  ],
+  "banned_topics": [
+    "Solving formal linear equations in one or more variables.",
+    "Polynomial multiplication beyond distributing a number over a simple sum or difference.",
+    "Factorisation identities such as squares and cubes of binomials.",
+    "Coordinate graphs and functions.",
+    "Algebraic fractions with letter-numbers in denominators."
+  ],
+  "must_include_keywords": [
+    "letter-number",
+    "algebraic expression",
+    "formula",
+    "substitution",
+    "term",
+    "coefficient",
+    "omission of multiplication sign",
+    "like terms",
+    "unlike terms",
+    "simplified form",
+    "distributive property",
+    "open brackets",
+    "perimeter",
+    "area",
+    "number machine",
+    "input",
+    "output",
+    "pattern",
+    "nth term",
+    "3n",
+    "3n − 1",
+    "3n − 2",
+    "calendar",
+    "diagonal sums",
+    "2a + 8",
+    "matchstick pattern",
+    "2y + 1",
+    "remainder",
+    "modelling",
+    "equivalent expressions",
+    "5u",
+    "5 + u",
+    "10y − 3",
+    "10(y − 3)"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A letter-number has one permanently fixed value.",
+      "correction": "A letter-number represents a number whose value may vary with the situation; substituting different values changes the expression's value."
+    },
+    {
+      "claim": "5u means 5 + u.",
+      "correction": "5u is shorthand for 5 × u; 5 + u means five more than u and is usually different."
+    },
+    {
+      "claim": "3a + 2b can be simplified to 5ab or 5.",
+      "correction": "The terms contain different letter-numbers and are unlike terms, so 3a + 2b is already in simplest form."
+    },
+    {
+      "claim": "10y − 3 and 10(y − 3) are equal.",
+      "correction": "10(y − 3) = 10y − 30, whereas 10y − 3 subtracts only 3."
+    },
+    {
+      "claim": "When subtracting a bracket, the signs inside remain unchanged.",
+      "correction": "Every term in the subtracted bracket changes sign, as in (40x + 75y) − (6x + 10y) = 40x + 75y − 6x − 10y."
+    },
+    {
+      "claim": "Checking several examples proves that a pattern always holds.",
+      "correction": "Examples suggest a pattern, but a general algebraic argument, such as both calendar diagonal sums simplifying to 2a + 8, proves it for every valid case."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Examples 1–4 and the page 84 Figure it Out to translate age, matchstick, cost and perimeter relationships into formulas.",
+    "Use Section 4.3 'Mind the Mistake' to practise substitution and distinguish multiplication from addition.",
+    "Use Examples 5–11 and the pages 93–95 exercises to combine like terms, distribute and compare expressions.",
+    "Use Formula Detective on pages 95–96 to infer a rule from repeated input-output pairs.",
+    "Use Example 12 and the calendar proof on pages 96–99 to model repeating positions and prove a general pattern.",
+    "Use the matchstick derivation on pages 100–101 and final Figure it Out Questions 1–15 for application."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The concluding 'Figure it Out' exercise on pages 102–105 contains Questions 1–15 and is followed by the chapter summary.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

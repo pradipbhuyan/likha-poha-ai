@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 2: Arithmetic Expressions",
+  "central_question": "How can arithmetic expressions be read, compared, evaluated and transformed correctly using terms, brackets and operation properties?",
+  "in_scope_units": [
+    "2.1 Simple Expressions: meanings and values of arithmetic expressions, equality, and comparison by calculation or reasoning.",
+    "2.2 Reading and Evaluating Complex Expressions—Brackets and Terms: resolving ambiguity, identifying terms, and treating subtraction as addition of an inverse.",
+    "Swapping and Grouping: using the commutative and associative properties of addition to reorder and regroup terms.",
+    "More Expressions and Their Terms: translating situations and arrangements into expressions and evaluating each term before addition.",
+    "Removing Brackets—I: changing signs correctly when brackets are preceded by a negative sign and preserving signs otherwise.",
+    "Tinker the Terms—I: predicting how an expression's value changes when one term changes.",
+    "Removing Brackets—II: using the distributive property over sums and differences.",
+    "Tinker the Terms—II: using distributive reasoning for efficient products.",
+    "Expression Engineer!: creating expressions with prescribed numbers and operations."
+  ],
+  "banned_topics": [
+    "Solving linear equations for unknown variables.",
+    "Algebraic simplification with letter-numbers, which is developed in Chapter 4.",
+    "Powers, roots and exponent laws.",
+    "Formal BODMAS as an unexplained mnemonic in place of the chapter's terms-and-brackets approach."
+  ],
+  "must_include_keywords": [
+    "arithmetic expression",
+    "value",
+    "equality sign",
+    "compare",
+    "greater than",
+    "less than",
+    "brackets",
+    "term",
+    "inverse",
+    "negative number",
+    "sum of terms",
+    "commutative property",
+    "associative property",
+    "swapping",
+    "grouping",
+    "linear context",
+    "remove brackets",
+    "change signs",
+    "distributive property",
+    "multiple of a sum",
+    "multiple of a difference",
+    "evaluate",
+    "reasoning",
+    "Irfan",
+    "Mallesh",
+    "Manasa",
+    "Jasoda",
+    "Expression Engineer"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "In 30 + 5 × 4, adding 30 and 5 first is always correct.",
+      "correction": "The terms are 30 and 5 × 4, so evaluate 5 × 4 first and then add: 30 + 20 = 50."
+    },
+    {
+      "claim": "The terms of 83 − 14 are 83 and 14.",
+      "correction": "Writing subtraction as addition of the inverse gives 83 + (−14), so the terms are 83 and −14."
+    },
+    {
+      "claim": "Removing brackets never changes signs.",
+      "correction": "When brackets are preceded by a negative sign, every term inside changes sign; with a positive sign, the terms keep their signs."
+    },
+    {
+      "claim": "500 − (250 − 100) equals 500 − 250 − 100.",
+      "correction": "It equals 500 − 250 + 100 = 350 because subtracting the bracket changes the sign of −100."
+    },
+    {
+      "claim": "2 × (43 + 24) means 2 × 43 + 24.",
+      "correction": "The multiplier applies to both terms: 2 × (43 + 24) = 2 × 43 + 2 × 24."
+    },
+    {
+      "claim": "Subtraction can be regrouped freely in the same way as addition.",
+      "correction": "First rewrite subtraction as addition of negative terms; then the sum of terms may be reordered and regrouped."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with Example 1 and the page 25 Figure it Out exercises to define, equalise and order simple expressions.",
+    "Use Examples 4 and 5 to show why brackets are needed in 30 + (5 × 4) and 100 − (15 + 56).",
+    "Use Examples 6–11 and the page 34 Figure it Out to identify terms and evaluate them before adding.",
+    "Use Examples 12–14 and the page 37 Figure it Out to remove brackets and reason about sign changes.",
+    "Use Examples 15–18 and the page 41 Figure it Out to develop and apply the distributive property.",
+    "Conclude with the page 42–44 Figure it Out problems and the 'Expression Engineer!' enrichment."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The final 'Figure it Out' exercise spans pages 42–44 with Questions 1–6, followed by the 'Expression Engineer!' enrichment on page 45.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
