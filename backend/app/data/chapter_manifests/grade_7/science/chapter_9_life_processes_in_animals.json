@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 9: Life Processes in Animals",
+  "central_question": "How do animals obtain usable nutrients and energy through digestion, breathing and respiration, and how are these processes adapted in different animals?",
+  "in_scope_units": [
+    "Introduction to life processes and animal feeding methods, with nutrition and respiration as the chapter focus.",
+    "9.1 Nutrition in Animals and digestion in humans—alimentary canal, mouth, saliva, oesophagus, stomach, small intestine, digestive juices, absorption, large intestine and egestion.",
+    "Activity 9.1—iodine test comparing rice or chapati before and after chewing to show the action of saliva on starch.",
+    "Nutrition in other animals—rumination in ruminants and grinding by the gizzard in birds.",
+    "9.2 Respiration in Animals—difference between breathing and respiration and the release of energy from food.",
+    "Human breathing system—nostrils, nasal passage, windpipe, lungs, alveoli, rib cage and diaphragm; Activities 9.2 and 9.3.",
+    "Gas exchange, composition of inhaled and exhaled air, cellular respiration and transport by blood.",
+    "Breathing in other animals—lungs, gills, moist skin and changes between tadpole and adult frog.",
+    "In a Nutshell, Let Us Enhance Our Learning Questions 1–10 and exploratory tasks."
+  ],
+  "banned_topics": [
+    "Detailed human circulatory-system anatomy.",
+    "Reproductive processes in animals.",
+    "Advanced enzyme names and biochemical pathways.",
+    "Cellular respiration stages such as glycolysis and the Krebs cycle.",
+    "Medical diagnosis of digestive or respiratory diseases."
+  ],
+  "must_include_keywords": [
+    "life processes",
+    "nutrition",
+    "digestion",
+    "alimentary canal",
+    "mouth",
+    "saliva",
+    "starch",
+    "iodine solution",
+    "oesophagus",
+    "stomach",
+    "small intestine",
+    "bile",
+    "pancreatic juice",
+    "absorption",
+    "large intestine",
+    "rectum",
+    "anus",
+    "egestion",
+    "rumination",
+    "rumen",
+    "gizzard",
+    "breathing",
+    "respiration",
+    "nostrils",
+    "nasal passages",
+    "windpipe",
+    "lungs",
+    "alveoli",
+    "rib cage",
+    "diaphragm",
+    "inhalation",
+    "exhalation",
+    "oxygen",
+    "carbon dioxide",
+    "lime water",
+    "gills",
+    "moist skin",
+    "Activity 9.1",
+    "Activity 9.2",
+    "Let Us Enhance Our Learning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All digestion takes place in the stomach.",
+      "correction": "Digestion begins in the mouth and continues through the stomach and small intestine."
+    },
+    {
+      "claim": "Saliva only makes food wet.",
+      "correction": "Saliva moistens food and begins the breakdown of starch into simpler sugar."
+    },
+    {
+      "claim": "The small intestine is called small because it is the shortest part.",
+      "correction": "It is long but narrower than the large intestine; the names mainly reflect width."
+    },
+    {
+      "claim": "Breathing and respiration are the same process.",
+      "correction": "Breathing is physical movement of air, whereas respiration is a chemical process that releases energy from food."
+    },
+    {
+      "claim": "Exhaled air contains no oxygen.",
+      "correction": "Exhaled air still contains substantial oxygen, though less than inhaled air, and contains more carbon dioxide."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 9.1 and Question 2 to show saliva acting on starch through the iodine test.",
+    "Trace food through the alimentary canal using Question 1.",
+    "Use the ruminant and bird examples to compare specialised digestion.",
+    "Use Activity 9.2 and Question 3 to model the diaphragm's role.",
+    "Use Activity 9.3 and Question 10 to compare carbon dioxide in inhaled and exhaled air.",
+    "Use Questions 5–8 to distinguish breathing from respiration and explain breathing-rate differences."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section 'Let Us Enhance Our Learning' contains Questions 1–10, followed by exploratory activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,76 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 9 Symmetry",
+  "central_question": "How can repetition through reflection or rotation be recognised, created, and measured?",
+  "in_scope_units": [
+    "Introduction to symmetry — definite repetition in natural, artistic, and architectural figures",
+    "9.1 Line of Symmetry — folding, reflection, multiple lines, and symmetric constructions",
+    "Paper cutting, punching, and grid completion — creating reflection symmetry",
+    "9.2 Rotational Symmetry — centre of rotation, angles of symmetry, windmills, squares, and radial arms",
+    "Comparing reflection and rotational symmetry — figures with one, both, or neither type",
+    "Symmetry designs, tiles, and games"
+  ],
+  "banned_topics": [
+    "Transformation matrices",
+    "Group theory",
+    "Coordinate reflection formulae"
+  ],
+  "must_include_keywords": [
+    "symmetry",
+    "definite pattern",
+    "symmetrical",
+    "asymmetrical",
+    "line of symmetry",
+    "axis of symmetry",
+    "fold",
+    "overlap",
+    "reflection",
+    "mirror image",
+    "vertical",
+    "horizontal",
+    "diagonal",
+    "square",
+    "rectangle",
+    "paper cutting",
+    "hole punching",
+    "grid completion",
+    "rotational symmetry",
+    "centre of rotation",
+    "angle of symmetry",
+    "quarter turn",
+    "half turn",
+    "three-quarter turn",
+    "full turn",
+    "90°",
+    "180°",
+    "270°",
+    "360°",
+    "radial arms",
+    "smallest angle of symmetry"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every symmetrical figure has a line of symmetry.",
+      "correction": "A pinwheel may have rotational symmetry without reflection symmetry."
+    },
+    {
+      "claim": "A non-square rectangle has diagonal symmetry lines.",
+      "correction": "Its diagonals do not make the halves overlap."
+    },
+    {
+      "claim": "A 360° return alone proves rotational symmetry.",
+      "correction": "The chapter requires a matching angle strictly below 360°."
+    }
+  ],
+  "recommended_example_progression": [
+    "Compare the opening flower, butterfly, rangoli, pinwheel, and cloud.",
+    "Fold a square to find four lines of symmetry and test a rectangle diagonal.",
+    "Use cutting, punching, and grid completion for reflection.",
+    "Rotate the windmill and square through 90°, 180°, 270°, and 360°.",
+    "Divide 360° among equal radial arms."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out tasks in Sections 9.1–9.2, including regular polygons, Parliament Building, Koch snowflake, Ashoka Chakra, tiles, and the final game.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

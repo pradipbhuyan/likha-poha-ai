@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: Reshaping India’s Political Map",
+  "central_question": "How did invasions, empires, regional resistance, administration, and economic resilience reshape India from the thirteenth to the seventeenth centuries?",
+  "in_scope_units": [
+    "Timeline and the meaning of the medieval period in the Indian context.",
+    "Rise and fall of the Delhi Sultanate and the effects of expansion, taxation, plunder, and instability.",
+    "Resistance by the Eastern Gangas, Musunuri Nayakas, Hoysalas, Mewar, and regional powers.",
+    "The Vijayanagara Empire, Krishnadevaraya, cultural patronage, trade, and the Battle of Talikota.",
+    "The Mughal Empire from Babur to Akbar, Jahangir, Shah Jahan, and Aurangzeb.",
+    "Resistance by peasants, tribal groups, Rajputs, Ahoms, and Sikhs.",
+    "Sultanate and Mughal administration, including iqta, mansabdari, and revenue reforms.",
+    "People's lives, agriculture, crafts, trade, hundis, temple economies, inequality, and cultural resilience."
+  ],
+  "banned_topics": [
+    "Detailed Maratha history, which belongs to Chapter 3.",
+    "Detailed British colonial rule, which belongs to Chapter 4.",
+    "Assigning present-day communities responsibility for actions of historical rulers."
+  ],
+  "must_include_keywords": [
+    "medieval period",
+    "Delhi Sultanate",
+    "Mamluks",
+    "Khiljis",
+    "Tughlaqs",
+    "Sayyids",
+    "Lodis",
+    "Ala-ud-din Khilji",
+    "Malik Kafur",
+    "Muhammad bin Tughlaq",
+    "token currency",
+    "jizya",
+    "Timur",
+    "Eastern Ganga kingdom",
+    "Narasimhadeva I",
+    "Musunuri Nayakas",
+    "Hoysalas",
+    "Rana Kumbha",
+    "Vijayanagara Empire",
+    "Harihara",
+    "Bukka",
+    "Krishnadevaraya",
+    "Battle of Talikota",
+    "Babur",
+    "First Battle of Panipat",
+    "Akbar",
+    "sulh-i-kul",
+    "Aurangzeb",
+    "Maharana Pratap",
+    "Ahoms",
+    "Lachit Borphukan",
+    "Battle of Saraighat",
+    "Guru Tegh Bahadur",
+    "Khalsa",
+    "iqta",
+    "mansabdari",
+    "Todar Mal",
+    "hundi"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Delhi Sultanate continuously controlled all of India.",
+      "correction": "Its reach changed over time, and several regional powers resisted or remained outside its authority."
+    },
+    {
+      "claim": "The Vijayanagara Empire was only a military state.",
+      "correction": "It was also a major centre of trade, literature, scholarship, temple patronage, art, and architecture."
+    },
+    {
+      "claim": "Akbar's reign can be described only as tolerant.",
+      "correction": "The chapter presents brutal early conquest and a later phase that increasingly used alliances, abolished jizya, and promoted sulh-i-kul."
+    },
+    {
+      "claim": "Aurangzeb's long wars permanently strengthened the Mughal Empire.",
+      "correction": "The Deccan wars depleted the treasury, strained administration, and contributed to decline after his death."
+    },
+    {
+      "claim": "Political instability stopped India's economy completely.",
+      "correction": "Agriculture, crafts, credit, temple economies, and long-distance trade continued, although common people often faced heavy hardship."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the NCERT map comparison of Tughlaq, Lodi, Vijayanagara, Mughal, Rajput, Ahom, and Sikh territories.",
+    "Analyse the chapter prompt on why Ala-ud-din Khilji called himself the second Alexander.",
+    "Use Domingo Paes's description of Vijayanagara to infer urban and commercial life.",
+    "Compare Akbar's military and diplomatic strategies through the chapter's reflective prompt.",
+    "Use the end questions on Vijayanagara and Ahom resistance and on trade in Surat, Calicut, or Hooghly."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1–7 on political strategies, resistance, court life, Akbar, Talikota, Sikh values, and port trade.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

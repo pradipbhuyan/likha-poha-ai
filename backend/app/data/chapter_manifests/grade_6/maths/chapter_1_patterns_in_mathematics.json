@@ -1,0 +1,65 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 1 Patterns in Mathematics",
+  "central_question": "How can we recognise, represent, extend, and explain patterns in numbers and shapes?",
+  "in_scope_units": [
+    "1.1 What is Mathematics? — patterns and explanations in everyday life and science",
+    "1.2 Patterns in Numbers — whole-number sequences and number theory",
+    "1.3 Visualising Number Sequences — dot and block representations",
+    "1.4 Relations among Number Sequences — links among odd, square, triangular, hexagonal, cube, and power sequences",
+    "1.5 Patterns in Shapes — regular polygons, complete graphs, stacked shapes, and Koch snowflakes",
+    "1.6 Relation to Number Sequences — counting features in changing shapes"
+  ],
+  "banned_topics": [
+    "Formal algebraic sequence formulae",
+    "Angle measurement",
+    "Perimeter and area formulae"
+  ],
+  "must_include_keywords": [
+    "pattern",
+    "explanation",
+    "number theory",
+    "whole numbers",
+    "number sequence",
+    "counting numbers",
+    "odd numbers",
+    "even numbers",
+    "triangular numbers",
+    "square numbers",
+    "cube numbers",
+    "Virahanka numbers",
+    "powers of 2",
+    "powers of 3",
+    "pictorial representation",
+    "hexagonal numbers",
+    "sum of odd numbers",
+    "consecutive triangular numbers",
+    "shape sequence",
+    "regular polygons",
+    "complete graphs",
+    "stacked squares",
+    "stacked triangles",
+    "Koch snowflake"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Guessing the next term completely explains a pattern.",
+      "correction": "The chapter also requires a rule and an explanation of why it works."
+    },
+    {
+      "claim": "Adding consecutive odd numbers gives triangular numbers.",
+      "correction": "Starting with 1, their successive sums give square numbers."
+    }
+  ],
+  "recommended_example_progression": [
+    "Extend the sequences in Section 1.2 Table 1.",
+    "Use Section 1.3 Table 2 to visualise triangular, square, and cube numbers.",
+    "Use Section 1.4 to connect sums of odd numbers with squares.",
+    "Use Section 1.4 to add consecutive triangular numbers.",
+    "Use Sections 1.5–1.6 to count features in shape sequences."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out and Math Talk tasks across Sections 1.1–1.6 and the chapter Summary on page 12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

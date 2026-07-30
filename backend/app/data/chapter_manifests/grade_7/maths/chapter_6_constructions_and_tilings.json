@@ -1,0 +1,105 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 6: Constructions and Tilings",
+  "central_question": "How can ruler-and-compass constructions and tiling arguments create exact geometric designs and determine whether shapes cover a region without gaps or overlaps?",
+  "in_scope_units": [
+    "6.1 Geometric Constructions—Eyes: using equal-radius arcs to locate points on a perpendicular bisector and construct a symmetric eye.",
+    "Perpendicular Bisector and Bisection: proving through congruent triangles that the constructed line passes through the midpoint at 90°.",
+    "Construction of a 90° Angle at a Given Point and Śulba-Sūtras: adapting the perpendicular-bisector method and using a folded-rope construction.",
+    "Angle Bisection for a Design: constructing equal halves of any angle and obtaining 45° from 90°.",
+    "Repeating Units and Repeating Angles: copying an angle exactly with a ruler and compass.",
+    "Construction of Parallel Lines and Arch Designs: transferring equal angles to create parallel lines, trefoil arches and pointed arches.",
+    "Regular Hexagons and Equilateral Triangles: using six 60° angles around a point to construct a regular hexagon.",
+    "Related Constructions: constructing 30°, 15°, a six-pointed star, inflexed arcs and perpendiculars through an external point.",
+    "6.2 Tiling—Tangrams and Rectangular Grids: covering regions without gaps or overlaps and testing 2 × 1 domino tilings.",
+    "Checkerboard Reasoning and Plane Tilings: using parity and colour balance, then exploring squares, equilateral triangles, regular hexagons, Escher tilings and honeycomb cells.",
+    "Chapter Figure it Out activities: applying construction and tiling reasoning throughout the chapter."
+  ],
+  "banned_topics": [
+    "Construction of a regular pentagon, which the chapter explicitly postpones to later years.",
+    "Formal coordinate geometry constructions.",
+    "Area formulas for circles and polygons.",
+    "Three-dimensional tessellations and polyhedra.",
+    "Advanced symmetry groups and formal topology."
+  ],
+  "must_include_keywords": [
+    "geometric construction",
+    "ruler",
+    "compass",
+    "arc",
+    "equal radius",
+    "supporting line",
+    "line of symmetry",
+    "bisection",
+    "midpoint",
+    "perpendicular bisector",
+    "90° angle",
+    "congruent triangles",
+    "SSS",
+    "Śulba-Sūtras",
+    "rope construction",
+    "angle bisector",
+    "45° angle",
+    "copy an angle",
+    "parallel lines",
+    "trefoil arch",
+    "pointed arch",
+    "regular hexagon",
+    "equilateral triangle",
+    "60° angle",
+    "30° angle",
+    "15° angle",
+    "six-pointed star",
+    "angles around a point",
+    "360°",
+    "tangram",
+    "tiling",
+    "2 × 1 tile",
+    "parity",
+    "checkerboard colouring",
+    "gap",
+    "overlap",
+    "regular polygon",
+    "Escher",
+    "hexagonal cells"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any two arcs drawn from the endpoints of a segment will produce its perpendicular bisector.",
+      "correction": "For each intersection point, the arcs from the two endpoints must use the same radius and must be long enough to meet."
+    },
+    {
+      "claim": "A perpendicular bisector only makes a right angle.",
+      "correction": "It must both be perpendicular to the segment and pass through its midpoint."
+    },
+    {
+      "claim": "To bisect an angle, the arcs drawn from the two marked points may use different radii.",
+      "correction": "Those two arcs must use the same radius so their intersection is equally distant from both marked points."
+    },
+    {
+      "claim": "A region with an even number of unit squares is always tileable by 2 × 1 tiles.",
+      "correction": "Even area is necessary but not sufficient; the shape and checkerboard colour balance can still make tiling impossible."
+    },
+    {
+      "claim": "Any regular polygon can tile the plane by itself.",
+      "correction": "The chapter demonstrates tilings with squares, equilateral triangles and regular hexagons, not every regular polygon."
+    },
+    {
+      "claim": "The chapter gives a complete ruler-and-compass construction of a regular pentagon.",
+      "correction": "It states that regular-pentagon construction needs ideas to be studied in later years."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the 'Eyes' construction and Fig. 6.1 to construct and justify a perpendicular bisector.",
+    "Use Figs. 6.2–6.4 to construct a 90° angle at a point and reproduce the Śulba-Sūtra rope method.",
+    "Use the Steps for Angle Bisection on pages 143–144 to obtain 45° and justify the construction by SSS.",
+    "Use the Steps of Construction to Copy an Angle on page 146 and the parallel-line construction in Figs. 6.7–6.10.",
+    "Use the arch activities and the regular-hexagon construction on pages 149–154.",
+    "Use the 4 × 6, 4 × 7 and 5 × 7 grid questions and checkerboard examples on pages 157–159.",
+    "Conclude with plane tilings by regular polygons, Escher designs and hexagonal cells on pages 160–163."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains several section-wise Figure it Out construction and tiling activities rather than one consolidated numbered end exercise, followed by the summary on page 163.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,110 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Science",
+    "chapter": "Chapter 11: Light: Shadows and Reflections",
+    "central_question": "How does light travel and interact with materials, objects, mirrors, and small openings to produce shadows, reflections, and images?",
+    "in_scope_units": [
+      "11.1 Sources of Light—natural and artificial sources, luminous and non-luminous objects, moonlight as reflected sunlight, and responsible use and disposal of LED lamps.",
+      "11.2 Does Light Travel in a Straight Line?—Activities 11.1 and 11.2 using aligned holes and straight or bent pipes to test rectilinear propagation of light.",
+      "11.3 Light through Transparent, Translucent, and Opaque Materials—Activity 11.3, prediction and observation, and classification by how much light passes through.",
+      "11.4 Shadow Formation—requirements for a visible shadow, darker, lighter and faint shadows, and Activity 11.4 on changes in shape, size and sharpness.",
+      "11.5 Reflection of Light—Activities 11.5 and 11.6 showing that a shiny surface or plane mirror changes the direction of light.",
+      "11.6 Images Formed in a Plane Mirror—Activities 11.7 and 11.8 on object and image, same size, erect image, inability to obtain the image on a screen, apparent position and lateral inversion.",
+      "11.7 Pinhole Camera—Activities 11.9 and 11.10 showing image formation through a tiny hole and an inverted image on a screen.",
+      "11.8 Making Some Useful Items—construction and working of a periscope and kaleidoscope using plane mirrors and repeated reflections.",
+      "In a Nutshell, Let Us Enhance Our Learning Questions 1–12, and exploratory projects on fireflies, coloured light, multiple mirrors and small mirrors."
+    ],
+    "banned_topics": [
+      "Laws of reflection using angles of incidence and reflection.",
+      "Refraction, lenses and image formation by lenses.",
+      "Dispersion of white light and rainbow formation.",
+      "Detailed wave theory or diffraction calculations.",
+      "Curved mirrors and focal length."
+    ],
+    "must_include_keywords": [
+      "luminous object",
+      "non-luminous object",
+      "Sun",
+      "Moon",
+      "natural light",
+      "artificial light",
+      "LED lamp",
+      "straight line",
+      "Activity 11.1",
+      "Activity 11.2",
+      "transparent",
+      "translucent",
+      "opaque",
+      "Activity 11.3",
+      "shadow",
+      "source of light",
+      "screen",
+      "shape",
+      "size",
+      "sharpness",
+      "Activity 11.4",
+      "reflection of light",
+      "shiny surface",
+      "plane mirror",
+      "Activity 11.5",
+      "Activity 11.6",
+      "image",
+      "object",
+      "erect",
+      "same size",
+      "lateral inversion",
+      "Activity 11.7",
+      "Activity 11.8",
+      "pinhole camera",
+      "inverted image",
+      "Activity 11.9",
+      "Activity 11.10",
+      "periscope",
+      "kaleidoscope",
+      "Let Us Enhance Our Learning"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The Moon is a luminous object because it shines at night.",
+        "correction": "The Moon is non-luminous; it appears bright because it reflects sunlight."
+      },
+      {
+        "claim": "Light can be seen through a bent pipe because it follows the shape of the pipe.",
+        "correction": "Activity 11.2 shows that a candle flame is visible through a straight pipe but not a bent pipe because light travels in straight lines."
+      },
+      {
+        "claim": "Only opaque objects form shadows.",
+        "correction": "Opaque objects form darker shadows, translucent objects form lighter shadows, and some transparent objects can form faint shadows."
+      },
+      {
+        "claim": "Changing the colour of an opaque object changes the colour of its shadow.",
+        "correction": "Activity 11.4 shows that the colour of the opaque object does not change the colour of the shadow."
+      },
+      {
+        "claim": "A plane-mirror image can be captured on a screen.",
+        "correction": "The image formed by a plane mirror cannot be obtained on a screen."
+      },
+      {
+        "claim": "A pinhole-camera image is laterally inverted but upright.",
+        "correction": "A pinhole camera forms an upside-down, inverted image on a screen, whereas a plane-mirror image is erect and laterally inverted."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Activities 11.1 and 11.2 to reason from observation to the conclusion that light travels in a straight line.",
+      "Use NCERT Activity 11.3 and Let Us Enhance Our Learning Question 2 to classify materials by the amount of light transmitted.",
+      "Use NCERT Activity 11.4 and Questions 5–6 to explain how object position and number of light sources change a shadow.",
+      "Use NCERT Activities 11.5–11.8 and Questions 8 and 10 to establish reflection and the properties of a plane-mirror image.",
+      "Use NCERT Activities 11.9–11.10 and Question 7 to explain why a pinhole camera forms an inverted image.",
+      "Use NCERT Question 11 to apply reflection in the design of a periscope."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The section 'Let Us Enhance Our Learning' contains Questions 1–12, followed by four Exploratory Projects."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 11: Light: Shadows and Reflections\n\n## What you will learn\nYou will identify luminous and non-luminous objects and distinguish natural from artificial sources of light. You will then use Activities 11.1 and 11.2 to understand why light is said to travel in a straight line.\n\n## Simple explanation\nSome objects produce their own light, while other objects become visible because light falls on them and is reflected. The path followed by light can be tested by checking whether it passes through aligned openings or reaches the eye through a straight tube.\n\n## Step-by-step breakdown\n- **Natural sources**: The Sun is the main natural source of light on Earth; stars, lightning, natural fire and certain animals also emit light.\n- **Artificial sources**: Fire made using fuels and electric lamps are artificial sources created for human use.\n- **Luminous objects**: Objects that emit their own light are luminous.\n- **Non-luminous objects**: Objects that do not emit their own light are non-luminous; the Moon shines by reflecting sunlight.\n- **LED lamps**: LED lamps use less power, are brighter and last longer than traditional lamps, but should be recycled or disposed of properly at the end of life.\n- **Activity 11.1**: A light spot reaches the screen only when the holes in three matchboxes are aligned.\n- **Activity 11.2**: A candle flame is visible through a straight pipe but not through a bent pipe.\n- **Scientific conclusion**: Both activities support the conclusion that light travels in a straight line.\n\n## Worked example\nQuestion: NCERT Activity 11.1 produces a bright spot when the three holes are aligned, but the spot disappears when one matchbox is shifted. What scientific conclusion follows?\n\nSolution:\n- Step 1: Observe that light passes through all three holes only when they lie on one straight path.\n- Step 2: When one hole is moved sideways or vertically, the straight path is blocked.\n- Step 3: The screen then receives no bright spot from the torch.\n- Final answer: Light travels in a straight line.\n\n## Common mistake\nDo not call the Moon a source of its own light. Its visible light is sunlight reflected from its surface.\n\n## Quick check question\nQuestion: According to NCERT Activity 11.2, why is the candle flame not visible through the bent pipe?\nAnswer: The flame is not visible because light travels in a straight line and cannot follow the bend of the pipe.\nExplanation: The straight pipe provides an unobstructed straight path from the flame to the eye, whereas the bent pipe does not.\n\n## Summary\n- Luminous objects emit light.\n- The Moon is non-luminous.\n- Natural and artificial light sources are different.\n- Activities 11.1 and 11.2 show straight-line travel of light.\n- LED lamps should be used and disposed of responsibly.",
+    "Core explanation": "# Core explanation: Chapter 11: Light: Shadows and Reflections\n\n## What you will learn\nYou will classify materials according to how much light passes through them. You will also investigate how shadows form and how their darkness, shape, size and sharpness depend on the arrangement.\n\n## Simple explanation\nA material may allow almost all, only part, or almost none of the incident light to pass. When an object blocks light from reaching a surface, a dark or faint region called a shadow is seen.\n\n## Step-by-step breakdown\n- **Activity 11.3**: Students first predict and then observe whether torchlight passes through cardboard, paper, glass, tracing paper, thick cloth and other materials.\n- **Transparent**: Light passes almost completely through transparent materials.\n- **Translucent**: Light passes partially through translucent materials.\n- **Opaque**: Light does not pass through opaque materials.\n- **Shadow formation**: A shadow is the dark region where light does not reach because an object blocks its path.\n- **Shadow darkness**: Opaque objects make darker shadows, translucent objects lighter shadows, and some transparent objects faint shadows.\n- **Three requirements**: A source of light, an object and a screen or surface are needed to observe a shadow.\n- **Activity 11.4**: Removing the source, object or screen prevents observation of the shadow.\n- **Position effects**: Moving or tilting the object changes the shadow's size, shape or sharpness.\n- **Colour effect**: Changing the colour of an opaque object does not change the colour of its shadow.\n\n## Worked example\nQuestion: NCERT Activity 11.4 asks what happens when the object is moved closer to the torch while the torch and screen stay fixed. Predict the change using straight-line travel of light.\n\nSolution:\n- Step 1: The torch sends out spreading rays of light.\n- Step 2: When the object is closer to the torch, it blocks a wider spread of those rays.\n- Step 3: A larger blocked region reaches the screen.\n- Final answer: The shadow becomes larger.\n\n## Common mistake\nDo not describe a shadow as a black copy of the object. It is a region receiving less or no direct light, and its shape may not reveal every detail of the object.\n\n## Quick check question\nQuestion: In NCERT Let Us Enhance Our Learning Question 6, what appears on the screen if the ball is removed from the torch–ball–screen setup?\nAnswer: A bright spot appears on the screen.\nExplanation: With no ball to block the light, the torchlight reaches the screen directly.\n\n## Summary\n- Materials are transparent, translucent or opaque.\n- A shadow forms when light is blocked.\n- A source, object and screen are required.\n- Position changes shadow size and shape.\n- Object colour does not determine shadow colour.",
+    "Worked examples": "# Worked examples: Chapter 11: Light: Shadows and Reflections\n\n## What you will learn\nYou will understand reflection as a change in the direction of light at a shiny surface. You will investigate the image formed by a plane mirror and list its main properties.\n\n## Simple explanation\nA plane mirror redirects light that falls on it. The reflected light reaching our eyes makes an object appear as an image behind the mirror.\n\n## Step-by-step breakdown\n- **Activity 11.5**: Tilting a shiny steel plate or plane mirror redirects sunlight and moves the bright spot on a wall.\n- **Reflection**: The change in direction of light by a mirror is called reflection of light.\n- **Activity 11.6**: A thin beam formed with a torch and comb changes direction after striking a plane mirror.\n- **Object and image**: The actual pen is the object; the similar-looking pen that appears behind the mirror is its image.\n- **Same size**: Activity 11.7 shows that the image in a plane mirror has the same size as the object.\n- **Erect image**: The plane-mirror image remains upright.\n- **Not obtained on a screen**: Moving a screen in front of or behind the mirror does not capture the image.\n- **Apparent position**: When the object is moved closer to or farther from the mirror, the image appears correspondingly closer to or farther from it.\n- **Lateral inversion**: The left side appears right and the right side appears left in the image.\n\n## Worked example\nQuestion: NCERT Let Us Enhance Our Learning Question 8 asks a student to hold their written name parallel to a plane mirror. What difference is seen, and why?\n\nSolution:\n- Step 1: The mirror forms an erect image of the written name.\n- Step 2: The letters appear reversed from left to right.\n- Step 3: This is not an upside-down reversal; it is a perceived left-right reversal.\n- Final answer: The written name appears laterally inverted because plane-mirror images show lateral inversion.\n\n## Common mistake\nDo not say a plane mirror turns the image upside down. It keeps the image erect but produces lateral inversion.\n\n## Quick check question\nQuestion: According to NCERT Activity 11.7, can the image of the pen in a plane mirror be obtained on a screen?\nAnswer: No, the plane-mirror image cannot be obtained on a screen.\nExplanation: The activity tests screens placed behind and in front of the mirror and finds that no image is formed on them.\n\n## Summary\n- A mirror changes the direction of light.\n- This change is reflection.\n- A plane-mirror image is the same size and erect.\n- It cannot be obtained on a screen.\n- It is laterally inverted.",
+    "Exam-style problems": "# Exam-style problems: Chapter 11: Light: Shadows and Reflections\n\n## What you will learn\nYou will explain how a pinhole camera forms an image on a screen. You will compare its inverted image with the erect, laterally inverted image formed by a plane mirror.\n\n## Simple explanation\nA pinhole camera allows only narrow bundles of light from different parts of an object to pass through a tiny opening. Because light travels in straight lines, rays from the top and bottom cross at the pinhole and reach opposite parts of the screen.\n\n## Step-by-step breakdown\n- **Pinhole camera**: It is a device in which light from an object passes through a tiny hole and forms an image on a screen.\n- **Activity 11.9**: A candle flame placed before a pinhole forms an upside-down image on the screen.\n- **Inverted image**: The top of the object appears at the lower part of the screen and the lower part appears at the upper part.\n- **Screen image**: Unlike a plane-mirror image, the pinhole-camera image is actually visible on a screen.\n- **Activity 11.10**: Two sliding boxes, a small pinhole and a tracing-paper screen make an outdoor pinhole camera.\n- **Dark covering**: Covering the head and camera with a dark cloth improves visibility by reducing stray light.\n- **Adjustment**: Sliding the inner box changes the pinhole-to-screen distance until a clear image appears.\n- **Colour**: The activity asks students to notice that the image shows the colours of the viewed object.\n- **Comparison**: A plane-mirror image is erect and laterally inverted; a pinhole-camera image is upside down.\n\n## Worked example\nQuestion: NCERT Let Us Enhance Our Learning Question 7 asks for the image of the tree in Fig. 11.19 as seen through a pinhole camera. How should it be drawn?\n\nSolution:\n- Step 1: Use the principle from Activity 11.9 that a pinhole camera forms an inverted image.\n- Step 2: Keep the general outline and colours of the tree.\n- Step 3: Reverse the top and bottom positions rather than only the left and right.\n- Final answer: The tree should be drawn upside down on the screen.\n\n## Common mistake\nDo not confuse inversion with lateral inversion. Pinhole-camera inversion is top-to-bottom, while plane-mirror lateral inversion is a left-right reversal.\n\n## Quick check question\nQuestion: According to NCERT Activity 11.9, where is the image of the candle flame formed?\nAnswer: It is formed on the screen placed behind the cardboard containing the pinhole.\nExplanation: Light from the flame passes through the tiny hole and reaches the screen, producing an inverted image.\n\n## Summary\n- A pinhole camera uses a tiny opening.\n- Straight-line light paths produce inversion.\n- The image is formed on a screen.\n- The image is upside down.\n- Mirror and pinhole-camera images have different properties.",
+    "Revision and recap": "# Revision and recap: Chapter 11: Light: Shadows and Reflections\n\n## What you will learn\nYou will apply straight-line travel and reflection to useful devices. You will revise periscopes, kaleidoscopes and the main ideas tested in Let Us Enhance Our Learning Questions 1–12.\n\n## Simple explanation\nA periscope uses two mirrors to redirect light from a hidden object to the observer. A kaleidoscope uses three mirrors and repeated reflections to create many changing patterns.\n\n## Step-by-step breakdown\n- **Periscope**: Two plane mirrors placed in a Z-shaped box allow an observer to see an object that is not directly visible.\n- **Uses**: Periscopes are used in submarines, tanks, bunkers and situations where an obstacle blocks direct sight.\n- **Kaleidoscope**: Three equal-width mirror strips are joined in a triangular arrangement inside a tube.\n- **Pattern formation**: Coloured pieces and repeated reflections create many images and changing symmetrical-looking patterns.\n- **Repeated reflections**: Reflections of reflections from the three mirrors produce multiple images.\n- **Question 1**: Pole Star and Sun are luminous; Mars, Moon, Venus and a mirror are non-luminous in the given list.\n- **Question 3**: Only the observer whose pipe gives a straight path to the candle can see the flame.\n- **Question 5**: The ball closer to the torch forms a larger shadow; closer to the wall it forms a smaller, sharper shadow.\n- **Question 10**: Statements about lateral inversion and the mirror appearance of vertically symmetrical letters T and O are both true.\n- **Question 12**: A high bird's shadow is too faint and spread out to notice clearly, while a low bird forms a smaller, darker and sharper shadow.\n\n## Worked example\nQuestion: NCERT Let Us Enhance Our Learning Question 11 gives a bent tube and two plane mirrors. Can it be used as a periscope?\n\nSolution:\n- Step 1: A periscope needs two changes in light direction.\n- Step 2: Place one mirror near each bend so incoming light is redirected along the tube and then towards the eye.\n- Step 3: The reflective faces must be oriented to send light through the two sections.\n- Final answer: Yes, the tube can be used as a periscope if one plane mirror is fixed at each bend in the correct orientation.\n\n## Common mistake\nDo not say a periscope works because light bends around corners by itself. The mirrors reflect and redirect the light at each bend.\n\n## Quick check question\nQuestion: According to NCERT Let Us Enhance Our Learning Question 2, which device forms an inverted image?\nAnswer: The pinhole camera.\nExplanation: The matching exercise pairs 'Pinhole camera' with 'Forms an inverted image'.\n\n## Summary\n- Periscopes use two reflections.\n- Kaleidoscopes use multiple reflections.\n- Light does not turn corners without being redirected.\n- Shadow size depends on position.\n- The chapter connects sources, straight paths, shadows, reflection and images."
+  }
+}

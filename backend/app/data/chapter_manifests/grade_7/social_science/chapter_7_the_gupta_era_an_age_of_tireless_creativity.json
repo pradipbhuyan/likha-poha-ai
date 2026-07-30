@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 7: The Gupta Era: An Age of Tireless Creativity",
+  "central_question": "How did Gupta political stability, administration and patronage support major achievements in art, literature, science and learning while other regional powers also flourished?",
+  "in_scope_units": [
+    "The Gupta era and its political setting—Guptas, Vākāṭakas, Pallavas and Kāmarūpa from the 3rd to 6th centuries CE.",
+    "The Iron Pillar of Delhi—Chandragupta II, metallurgy, inscriptions, Viṣhṇu devotion and rust resistance.",
+    "A New Power Emerges—Gupta origins, Chandragupta I, alliances and the rise of a major empire.",
+    "The warrior king—Samudragupta, the Prayāga praśhasti, Harisena, campaigns, tributary rulers and aśhvamedha coins.",
+    "Sources and territory—inscriptions, coins, literary texts, maps and the extent of Gupta control.",
+    "Faxian’s account—urban prosperity, charity, trade, social conditions, outcastes and the need to compare multiple sources.",
+    "Governance and administration—imperial titles, military campaigns, diplomacy, matrimonial alliances, Prabhāvatī Gupta, provinces and copper-plate land grants.",
+    "Thriving trade—land tax, other revenues, Indian Ocean connections, Socotra and cultural exchange.",
+    "The Classical Age—religious patronage, Nālandā, Sanskrit literature, mathematics, astronomy, medicine and metallurgy.",
+    "Major thinkers and writers—Āryabhaṭa, Varāhamihira, Kālidāsa and codification of Ayurveda.",
+    "The Quest for Beauty—Sārnāth, Ajanta, Udayagiri, temples, sculpture and painting.",
+    "Decline and regional powers—Hūṇa invasions, internal conflict, Pallavas and Kāmarūpa.",
+    "Before we move on and Questions and activities 1–7—life, rulers, peace, court culture, sites, Pallavas and heritage visits."
+  ],
+  "banned_topics": [
+    "Detailed post-Gupta political history beyond the chapter’s brief transition.",
+    "Detailed Mauryan history or Chandragupta Maurya, who must not be confused with Gupta rulers.",
+    "Advanced mathematical proofs of Āryabhaṭa’s formulas.",
+    "Detailed later temple architecture reserved for higher grades."
+  ],
+  "must_include_keywords": [
+    "Gupta Empire",
+    "Chandragupta I",
+    "Samudragupta",
+    "Chandragupta II",
+    "Vikramāditya",
+    "Iron Pillar",
+    "metallurgy",
+    "Prayāga praśhasti",
+    "Harisena",
+    "aśhvamedha yajña",
+    "Faxian",
+    "travelogue",
+    "mahārājadhirāja",
+    "matrimonial alliance",
+    "Prabhāvatī Gupta",
+    "Vākāṭakas",
+    "copper plates",
+    "land tax",
+    "Indian Ocean trade",
+    "Socotra Island",
+    "classical age",
+    "Nālandā",
+    "Āryabhaṭa",
+    "Āryabhaṭīya",
+    "Varāhamihira",
+    "Bṛihat Samhitā",
+    "Kālidāsa",
+    "Meghadūtam",
+    "Ayurveda",
+    "Ajanta caves",
+    "Udayagiri",
+    "Pallavas",
+    "Kāmarūpa",
+    "Hūṇas"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Chandragupta II was the same ruler as Chandragupta Maurya.",
+      "correction": "Chandragupta II belonged to the Gupta dynasty and lived centuries after Chandragupta Maurya."
+    },
+    {
+      "claim": "The Gupta Empire controlled every part of the Subcontinent directly.",
+      "correction": "Many regional kingdoms coexisted, and defeated rulers were sometimes restored as tributaries rather than directly governed."
+    },
+    {
+      "claim": "Faxian’s account gives a complete and neutral picture of all Gupta society.",
+      "correction": "The chapter warns that his travelogue reflects one observer, one period and limited parts of society and must be compared with other evidence."
+    },
+    {
+      "claim": "The term ‘classical age’ refers only to military victories.",
+      "correction": "The chapter links it mainly to peace, stability and achievements in literature, science, mathematics, medicine, metallurgy, art and architecture."
+    },
+    {
+      "claim": "Only the Guptas contributed to culture during this period.",
+      "correction": "The Vākāṭakas, Pallavas and Varmans of Kāmarūpa also supported learning, religion, art and architecture."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Questions and activities Q2 to identify Chandragupta II as Vikramāditya.",
+    "Use NCERT Questions and activities Q3 to explain how peace supported sociocultural and scientific development.",
+    "Use NCERT Questions and activities Q1 to reconstruct life in Pāṭaliputra using chapter evidence.",
+    "Use NCERT Questions and activities Q5 to match Kāñchipuram, Ujjayinī, Udayagiri, Ajanta and Pāṭaliputra with their significance.",
+    "Use NCERT Questions and activities Q6 to explain who the Pallavas were and where they ruled."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–7.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

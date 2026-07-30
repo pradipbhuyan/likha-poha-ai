@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 2: The Invisible Living World: Beyond Our Naked Eye",
+  "central_question": "How do microscopes reveal cells and microorganisms, and how do the structures, organisation and diverse activities of these tiny living units support organisms and affect our lives?",
+  "in_scope_units": [
+    "Magnification, early microscopy, Robert Hooke, Antonie van Leeuwenhoek and the discovery of cells and microorganisms.",
+    "Onion-peel and cheek-cell observations and the basic parts and functions of cells.",
+    "Variation in cell shape and the levels cell–tissue–organ–organ system–organism.",
+    "Microorganisms in pond water and soil: protozoa, algae, fungi, bacteria and viruses.",
+    "Microbes in decomposition, biogas, food fermentation, root nodules and environmental clean-up.",
+    "Microalgae and the cell as the basic unit of unicellular and multicellular life."
+  ],
+  "banned_topics": [
+    "Detailed disease mechanisms, which are taught in Chapter 3.",
+    "Advanced organelle ultrastructure and cell division.",
+    "Taxonomic classification beyond categories presented in the chapter."
+  ],
+  "must_include_keywords": [
+    "lens",
+    "magnifying glass",
+    "microscope",
+    "Robert Hooke",
+    "Micrographia",
+    "Antonie van Leeuwenhoek",
+    "cell",
+    "cell membrane",
+    "cytoplasm",
+    "nucleus",
+    "cell wall",
+    "chloroplast",
+    "vacuole",
+    "muscle cell",
+    "nerve cell",
+    "tissue",
+    "organ",
+    "organ system",
+    "organism",
+    "unicellular",
+    "multicellular",
+    "microorganism",
+    "protozoa",
+    "algae",
+    "fungi",
+    "bacteria",
+    "virus",
+    "decomposition",
+    "manure",
+    "biogas",
+    "yeast",
+    "fermentation",
+    "Lactobacillus",
+    "Rhizobium",
+    "root nodule",
+    "microalgae",
+    "Spirulina",
+    "nucleoid"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Robert Hooke was the first to observe living bacteria.",
+      "correction": "Hooke described cork compartments and named them cells; Leeuwenhoek clearly observed tiny living organisms such as bacteria and blood cells."
+    },
+    {
+      "claim": "All cells have a cell wall and chloroplasts.",
+      "correction": "Plant cells have a cell wall and chloroplasts in green parts; animal cells do not, and bacteria have a cell wall but no well-defined nucleus."
+    },
+    {
+      "claim": "All microorganisms are harmful.",
+      "correction": "Many microorganisms decompose waste, form food, improve soil, produce oxygen or help clean pollution."
+    },
+    {
+      "claim": "Viruses are ordinary unicellular microorganisms.",
+      "correction": "The chapter describes viruses as microscopic and acellular; they multiply only inside living cells."
+    },
+    {
+      "claim": "Yeast makes dough rise because warm air expands inside it.",
+      "correction": "Yeast respires and releases carbon dioxide, whose bubbles make dough soft and fluffy."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 2.1 to show magnification with a water-filled flask.",
+    "Compare Activity 2.2 onion peel and Activity 2.3 cheek cells.",
+    "Use Activities 2.4–2.6 to categorise microbes found in pond water and soil.",
+    "Use Activity 2.7 to explain decomposition and manure.",
+    "Use Activities 2.8 and 2.9 for yeast and Lactobacillus fermentation.",
+    "Use Keep the curiosity alive Q2 and Q9 to reason from yeast gas to carbon dioxide."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–9, followed by Discover, design, and debate projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

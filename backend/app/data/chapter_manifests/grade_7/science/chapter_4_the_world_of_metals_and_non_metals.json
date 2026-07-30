@@ -1,0 +1,100 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 4: The World of Metals and Non-metals",
+  "central_question": "How do physical properties and reactions with air and water distinguish metals from non-metals and explain their uses, risks and importance?",
+  "in_scope_units": [
+    "Ironsmith context and 4.1 Properties of Materials: observing how iron and other materials are shaped and used.",
+    "4.1.1 Malleability: metallic lustre, hardness, flattening, brittleness and important exceptions.",
+    "4.1.2 Ductility: drawing metals into wires and their uses in electrical fittings, ornaments, instruments, bridges and cranes.",
+    "4.1.3 Sonority: comparing ringing and dull sounds.",
+    "4.1.4 Conduction of heat: metal and wooden spoons in hot water and cooking-vessel design.",
+    "4.1.5 Conduction of electricity: tester observations and protective use of poor conductors.",
+    "4.2 Effect of Air and Water on Metals: Iron: rusting, corrosion, conditions needed and prevention.",
+    "4.3 Effect of Air and Water on Other Metals: burning magnesium, magnesium oxide and basic metal oxides; sodium storage.",
+    "4.4 Substances that Behave Differently from Metals in Air and Water: burning sulfur, acidic non-metal oxides and non-metal properties.",
+    "4.5 Are Non-metals Essential in Everyday Life?: oxygen, carbon, nitrogen, chlorine, iodine, alloys, technology and recycling.",
+    "Let Us Enhance Our Learning: Questions 1–12 and exploratory projects."
+  ],
+  "banned_topics": [
+    "Detailed periodic table classification.",
+    "Electron transfer and ionic bonding.",
+    "Balancing advanced chemical equations.",
+    "Extraction and refining of metals from ores.",
+    "Detailed electrochemical corrosion mechanisms."
+  ],
+  "must_include_keywords": [
+    "metallic lustre",
+    "malleability",
+    "brittle",
+    "ductility",
+    "sonority",
+    "conduction of heat",
+    "conduction of electricity",
+    "copper",
+    "aluminium",
+    "iron",
+    "sulfur",
+    "coal",
+    "wood",
+    "sodium",
+    "potassium",
+    "mercury",
+    "rust",
+    "rusting",
+    "moist air",
+    "corrosion",
+    "silica gel",
+    "oil layer",
+    "galvanisation",
+    "magnesium ribbon",
+    "magnesium oxide",
+    "basic oxide",
+    "sulfur dioxide",
+    "sulfurous acid",
+    "acidic oxide",
+    "non-metal",
+    "element",
+    "oxygen",
+    "carbon",
+    "nitrogen",
+    "chlorine",
+    "iodine",
+    "alloy",
+    "recycling",
+    "Let Us Enhance Our Learning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All metals are hard solids at room temperature.",
+      "correction": "Sodium and potassium are soft, while mercury is liquid at room temperature."
+    },
+    {
+      "claim": "Anything that is not a metal is automatically a non-metal element.",
+      "correction": "Plastic, glass, wood, rubber and paper are not classified as metals or non-metals because they are not elements."
+    },
+    {
+      "claim": "Iron rusts in dry air or in air-free water alone.",
+      "correction": "Activity 4.5 shows that both air and water, that is moist air, are required."
+    },
+    {
+      "claim": "All oxides turn red litmus blue.",
+      "correction": "Metal oxides are generally basic, while non-metal oxides are generally acidic."
+    },
+    {
+      "claim": "Copper vessels are used because copper conducts electricity.",
+      "correction": "For boiling water, the relevant property is good conduction of heat."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 4.1 to compare lustre, hardness, malleability and brittleness.",
+    "Use Activity 4.2 for sonority and Activities 4.3–4.4 for heat and electrical conduction.",
+    "Use Activity 4.5 to isolate the conditions required for rusting.",
+    "Use Activity 4.6 to connect magnesium burning with a basic metal oxide.",
+    "Use Activities 4.7–4.8 to contrast sulfur oxide and sulfur-water behaviour.",
+    "Use Let Us Enhance Our Learning Questions 1, 3, 6, 8, 9, 10 and 12 for application."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The section 'Let Us Enhance Our Learning' contains Questions 1–12, followed by four Exploratory Projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 11: Keeping Time with the Skies",
+  "central_question": "How do repeated motions of the Moon, Earth, and artificial satellites help us explain lunar phases, build calendars, measure time, and use space technology?",
+  "in_scope_units": [
+    "11.1 How Does the Moon's Appearance Change and Why?: observing the Moon over a month and recording its changing illuminated portion and position.",
+    "11.1.1 Phases of the Moon: full Moon, new Moon, crescent, gibbous, waxing, waning, Shukla Paksha, and Krishna Paksha.",
+    "11.1.3 Making sense of our observations: reflected sunlight, the ball-and-lamp model, Sun-Earth-Moon geometry, and why phases are not eclipses.",
+    "11.2 How Did Calendars Come into Existence?: natural periodic cycles that define day, month, and year.",
+    "11.2.1 Lunar calendars, 11.2.2 Solar calendars, and luni-solar calendars: synchronising Moon cycles with seasons, leap years, and intercalary months.",
+    "Cultural and scientific timekeeping in India, including the Indian National Calendar and seasonal observations.",
+    "11.4 Why Do We Launch Artificial Satellites in Space?: uses, ISRO examples, observing satellites, and the problem of space debris."
+  ],
+  "banned_topics": [
+    "Detailed eclipse prediction and eclipse calculations from a separate Earth-Moon-Sun chapter.",
+    "Kepler's laws, orbital mechanics, and gravitational calculations.",
+    "Detailed satellite engineering, rocket propulsion, and communication electronics."
+  ],
+  "must_include_keywords": [
+    "Moon",
+    "reflected sunlight",
+    "illuminated portion",
+    "phases of the Moon",
+    "full Moon",
+    "new Moon",
+    "crescent",
+    "gibbous",
+    "waxing",
+    "waning",
+    "Shukla Paksha",
+    "Krishna Paksha",
+    "Purnima",
+    "Amavasya",
+    "Sun-Earth-Moon geometry",
+    "lunar eclipse",
+    "solar eclipse",
+    "rotation",
+    "revolution",
+    "mean solar day",
+    "shortest shadow",
+    "29.5 days",
+    "solar year",
+    "lunar calendar",
+    "solar calendar",
+    "luni-solar calendar",
+    "leap year",
+    "intercalary month",
+    "artificial satellite",
+    "natural satellite",
+    "ISRO",
+    "Cartosat",
+    "AstroSat",
+    "Bhuvan",
+    "space debris",
+    "Vikram Sarabhai",
+    "tides"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Moon produces its own light.",
+      "correction": "The Moon shines because it reflects sunlight."
+    },
+    {
+      "claim": "Earth's shadow causes the ordinary phases of the Moon.",
+      "correction": "Phases result from seeing different fractions of the Moon's sunlit half as the Moon revolves around Earth; Earth's shadow causes a lunar eclipse."
+    },
+    {
+      "claim": "The Moon can be seen only at night.",
+      "correction": "The Moon is sometimes visible during daytime, depending on its position relative to the Sun and Earth."
+    },
+    {
+      "claim": "A lunar year and a solar year have the same length.",
+      "correction": "The chapter gives a lunar year as 354 days and a solar year as about 365 and a quarter days."
+    },
+    {
+      "claim": "Every moving point of light is a star.",
+      "correction": "Artificial satellites can appear as fast-moving points of light, especially near sunrise or sunset."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 11.1 to record the Moon at sunrise and sunset and identify waxing or waning changes.",
+    "Use NCERT Activity 11.2 to explain phases with a ball, a lamp, and the observer's head.",
+    "Use NCERT Activity 11.3 and Table 11.2 to identify the shortest shadow and estimate a mean solar day.",
+    "Use NCERT Keep the curiosity alive Q2, Q7, and Q10 to compare lunar, luni-solar, and solar calendars.",
+    "Use NCERT Activity 11.4 and Q11 to identify artificial satellites and explain their purposes."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1-12, followed by Discover, design, and debate projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

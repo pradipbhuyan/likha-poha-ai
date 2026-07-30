@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 5: Number Play",
+  "central_question": "How can parity, remainders, algebra and digit patterns be used to prove claims about factors, multiples and divisibility?",
+  "in_scope_units": [
+    "Sums of consecutive numbers and sign-placement patterns.",
+    "Parity of arithmetic and algebraic expressions.",
+    "Even numbers classified by remainders modulo 4.",
+    "Always, sometimes or never statements about factors and multiples.",
+    "General remainder forms such as 5k + 3.",
+    "Divisibility shortcuts for 2, 4, 5, 8 and 10 using place value.",
+    "Divisibility by 9 and 3 using digit sums and remainders.",
+    "Divisibility by 11 using alternating place-value sums.",
+    "Combining divisibility tests through factors and LCM.",
+    "Digital roots and their patterns.",
+    "Cryptarithms solved through divisibility and place-value reasoning."
+  ],
+  "banned_topics": [
+    "Formal modular-arithmetic notation beyond the chapter's remainder language.",
+    "Proofs using advanced number theory.",
+    "Prime-number tests unrelated to the chapter's factor and divisibility patterns."
+  ],
+  "must_include_keywords": [
+    "consecutive numbers",
+    "parity",
+    "even",
+    "odd",
+    "factor",
+    "multiple",
+    "remainder",
+    "algebraic expression",
+    "counterexample",
+    "always true",
+    "sometimes true",
+    "never true",
+    "4k",
+    "4k + 2",
+    "5k + 3",
+    "divisibility",
+    "place value",
+    "digit sum",
+    "divisibility by 9",
+    "divisibility by 3",
+    "divisibility by 11",
+    "alternating sum",
+    "LCM",
+    "digital root",
+    "cryptarithm",
+    "visualisation",
+    "generalisation",
+    "proof"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Changing a plus sign to a minus sign always changes parity.",
+      "correction": "The change is twice the affected number, which is even, so parity stays the same."
+    },
+    {
+      "claim": "The sum of any two even numbers is divisible by 4.",
+      "correction": "It is divisible by 4 only when both leave the same remainder, 0 or 2, upon division by 4."
+    },
+    {
+      "claim": "If a number is divisible by 4 and 6, it must be divisible by 24.",
+      "correction": "It is guaranteed divisible by lcm(4,6) = 12, not necessarily by 24."
+    },
+    {
+      "claim": "A number ending in 9 is divisible by 9.",
+      "correction": "Divisibility by 9 depends on the sum of all digits, not only the units digit."
+    },
+    {
+      "claim": "For divisibility by 11, simply add all digits.",
+      "correction": "Use the difference between the sums of digits in alternating place positions."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the eight sign arrangements of 3, 4, 5 and 6 to establish common parity.",
+    "Use 4p and 4q, or 4p+2 and 4q+2, to decide when two even numbers sum to a multiple of 4.",
+    "Use Figure it Out Q3 to classify statements as always, sometimes or never true.",
+    "Use 427 to derive the divisibility-by-9 remainder from its digit sum.",
+    "Use the chapter's 320185 example for the alternating-sum test for 11.",
+    "Use the final cryptarithms to combine place-value and divisibility reasoning."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Figure it Out sets follow the remainder section, the divisibility section and the cryptarithm section, ending with a summary of divisibility properties and reasoning methods.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

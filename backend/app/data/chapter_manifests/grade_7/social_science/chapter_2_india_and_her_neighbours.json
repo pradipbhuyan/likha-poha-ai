@@ -1,0 +1,105 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: India and Her Neighbours",
+  "central_question": "How have geography, shared history, culture, trade and present-day challenges shaped India’s relationships with her land and maritime neighbours?",
+  "in_scope_units": [
+    "Framing the Neighbourhood—land neighbours, maritime neighbours, India’s coastline, Indian Ocean position, regionalism and wider South Asian connections.",
+    "India and Her Land-based Neighbours—geographical borders and historical, cultural, economic and political links.",
+    "India and China—Himalayan border, Buddhist exchange, trade, tensions and dialogue.",
+    "India and Pakistan—Partition, conflict, shared heritage, pilgrimage routes and the Kartarpur Corridor.",
+    "India and Bangladesh—shared history and language, transboundary rivers, cooperation and the Sundarban.",
+    "India and Nepal—open border, sacred sites, the 1950 treaty, migration and trade.",
+    "India and Bhutan—hydropower, Buddhist heritage, strategic cooperation and Gross National Happiness.",
+    "India and Myanmar—border and maritime links, gateway to Southeast Asia, connectivity and heritage restoration.",
+    "India and Afghanistan—Uttarāpatha, ancient Buddhist-Hindu links and Indian support for infrastructure, education and healthcare.",
+    "India’s Maritime Neighbours and SAARC—regional cooperation and historical sea links.",
+    "India and Sri Lanka—Palk Strait, Buddhism and Hinduism, civil-war effects and modern partnership.",
+    "India and the Maldives—maritime culture, disaster support, Dhivehi links, climate vulnerability and solar cooperation.",
+    "India and Thailand—trade, Dvāravatī, Ayutthayā, shared traditions and the Trilateral Highway.",
+    "India and Malaysia—early cultural influence, Indian migration, trade and strategic links.",
+    "India and Singapore—historical ties, Tamil language, urban planning, investment and Indian community.",
+    "India and Indonesia—archipelago, ancient exchange, Borobudur, maritime security and tsunami warning cooperation.",
+    "India and Iran—Bronze Age and Silk Route links, language and culture, Chabahar Port and modern cooperation.",
+    "India and Oman—Harappan copper trade, Indian community, defence exercises and maritime security.",
+    "Before we move on and Questions and activities 1–8—neighbourhood, Buddhism, open borders, assistance, shared challenges and maps of connection."
+  ],
+  "banned_topics": [
+    "Detailed military history of wars and current border disputes beyond the chapter’s overview.",
+    "Detailed foreign-policy analysis or political opinions not present in the textbook.",
+    "Detailed doctrines of Buddhism, Hinduism or Islam beyond their role in regional links.",
+    "Country-by-country facts unrelated to India’s geographical, historical or present relationship."
+  ],
+  "must_include_keywords": [
+    "land neighbour",
+    "maritime neighbour",
+    "Indian Ocean",
+    "regionalism",
+    "China",
+    "Buddhism",
+    "Pakistan",
+    "Partition",
+    "Kartarpur Corridor",
+    "Bangladesh",
+    "transboundary rivers",
+    "Sundarban",
+    "Nepal",
+    "open border",
+    "Bhutan",
+    "hydroelectric power",
+    "Myanmar",
+    "gateway to Southeast Asia",
+    "Afghanistan",
+    "Uttarāpatha",
+    "SAARC",
+    "Sri Lanka",
+    "Palk Strait",
+    "Maldives",
+    "Dhivehi",
+    "Thailand",
+    "Suvarṇabhūmi",
+    "Malaysia",
+    "Singapore",
+    "Tamil",
+    "Indonesia",
+    "Borobudur",
+    "tsunami early warning",
+    "Iran",
+    "Silk Route",
+    "Chabahar Port",
+    "Oman",
+    "maritime security"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Only countries sharing a land border can be India’s neighbours.",
+      "correction": "The chapter includes maritime neighbours connected across shared seas and presents a wider Indian Ocean neighbourhood."
+    },
+    {
+      "claim": "India’s relationships with neighbours are based only on present-day politics.",
+      "correction": "Geography, trade routes, religions, languages, migration, shared heritage and disaster cooperation also shape these relationships."
+    },
+    {
+      "claim": "An open border means there are no safety arrangements or cooperation between states.",
+      "correction": "The India–Nepal open border permits movement without passports or visas while both countries cooperate to keep it safe."
+    },
+    {
+      "claim": "Shared challenges always create conflict.",
+      "correction": "The chapter shows cooperation on the Sundarban, hydropower, disaster relief, tsunami warning, maritime security and climate action."
+    },
+    {
+      "claim": "Cultural influence travelled in only one direction and ended in ancient times.",
+      "correction": "The chapter describes centuries of two-way exchange and continuing modern links in language, food, arts, trade, education and technology."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Q1 to define a maritime neighbour with Sri Lanka and the Maldives as examples.",
+    "Use NCERT Q4 to show why shared culture, trade, rivers and cooperation make neighbourhood more than geography.",
+    "Use NCERT Q3 to analyse how the India–Nepal open border shapes daily life.",
+    "Use NCERT Q2 to trace Buddhist links with China, Bhutan, Myanmar, Sri Lanka and Southeast Asia.",
+    "Use NCERT Q6 to compare shared challenges that produced cooperation, including the Sundarban, tsunami warning and climate action."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–8.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

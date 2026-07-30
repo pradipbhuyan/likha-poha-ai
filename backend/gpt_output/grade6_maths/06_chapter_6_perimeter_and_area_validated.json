@@ -1,0 +1,78 @@
+{
+  "manifest": {
+    "grade": "Grade 6",
+    "subject": "Maths",
+    "chapter": "Chapter 6 Perimeter and Area",
+    "central_question": "How can we measure and compare the boundary and the enclosed region of plane figures?",
+    "in_scope_units": [
+      "6.1 Perimeter — polygon boundaries, formulae, regular polygons, and split-and-rejoin figures",
+      "6.2 Area — enclosed region, square units, rectangle and square formulae, composite regions, and grid estimates",
+      "6.3 Area of a Triangle — rectangle diagonals and half-area reasoning",
+      "Making it More or Less — equal areas with different perimeters and related investigations",
+      "House-plan applications — missing dimensions and combined areas"
+    ],
+    "banned_topics": [
+      "Circle circumference and area formulae",
+      "Heron's formula",
+      "Surface area and volume"
+    ],
+    "must_include_keywords": [
+      "closed plane figure",
+      "boundary",
+      "perimeter",
+      "polygon",
+      "rectangle",
+      "square",
+      "triangle",
+      "regular polygon",
+      "equilateral triangle",
+      "straight unit",
+      "diagonal unit",
+      "split and rejoin",
+      "area",
+      "region enclosed",
+      "square unit",
+      "length × breadth",
+      "side × side",
+      "composite figure",
+      "grid paper",
+      "full square",
+      "half square",
+      "estimate",
+      "diagonal",
+      "area of a triangle",
+      "half of rectangle",
+      "same area different perimeter",
+      "house plan"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Perimeter and area use the same units.",
+        "correction": "Perimeter uses linear units; area uses square units."
+      },
+      {
+        "claim": "Same area means same perimeter.",
+        "correction": "The chapter constructs equal-area figures with different perimeters."
+      },
+      {
+        "claim": "A diagonal grid step equals a horizontal step.",
+        "correction": "The chapter records straight and diagonal units separately where needed."
+      }
+    ],
+    "recommended_example_progression": [
+      "Derive rectangle, square, and triangle perimeters.",
+      "Use the 6 cm by 4 cm split-and-rejoin task.",
+      "Solve carpet and flower-bed remaining-area examples.",
+      "Estimate irregular area on graph paper.",
+      "Use a rectangle diagonal to reason about triangle area."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out and Let's Explore tasks through pages 129–150, including composite figures, unit-square investigations, house plans, and final mixed exercises."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 6 Perimeter and Area\n\n## What you will learn\nYou will define perimeter and calculate it for polygons.\n\n## Simple explanation\nPerimeter is the distance along the complete outer boundary of a closed figure.\n\n## Step-by-step breakdown\n- **Polygon**: Add all side lengths.\n- **Rectangle**: P=2×(length+breadth).\n- **Square**: P=4×side.\n- **Triangle**: Add its three sides.\n- **Regular polygon**: Number of sides × one side length.\n\n## Worked example\nQuestion: Find the perimeter of a triangle with sides 4 cm, 5 cm, and 7 cm.\n\nSolution:\n- Step 1: Add 4+5+7.\n- Step 2: Use centimetres because this is a length.\n- Final answer: 16 cm.\n\n## Common mistake\nDo not multiply length and breadth when finding perimeter.\n\n## Quick check question\nQuestion: What is the perimeter of a square of side 75 m?\nAnswer: 300 m.\nExplanation: 4×75=300.\n\n## Summary\n- Perimeter measures boundary.\n- Add polygon sides.\n- Use linear units.",
+    "Core explanation": "# Core explanation: Chapter 6 Perimeter and Area\n\n## What you will learn\nYou will solve boundary applications and see how rearrangement changes perimeter.\n\n## Simple explanation\nWhen pieces are joined, shared edges become internal and stop contributing to the outer boundary.\n\n## Step-by-step breakdown\n- **Applications**: Lace, fencing, and rounds use perimeter.\n- **Shared edge**: An internal join is not counted.\n- **Split and rejoin**: The same pieces can expose different total boundary lengths.\n- **Straight units**: Horizontal and vertical grid lengths.\n- **Diagonal units**: Slanting lengths may be recorded separately.\n\n## Worked example\nQuestion: How much lace is needed around a 3 m by 2 m rectangular tablecloth?\n\nSolution:\n- Step 1: Use 2(l+b)=2(3+2).\n- Step 2: Compute 2×5.\n- Final answer: 10 m.\n\n## Common mistake\nCount only the final external boundary, not internal shared edges.\n\n## Quick check question\nQuestion: Three rounds of a 300 m boundary cover what distance?\nAnswer: 900 m.\nExplanation: 3×300=900.\n\n## Summary\n- 'Around' signals perimeter.\n- Joining can hide edges.\n- Rearrangement can change perimeter.",
+    "Worked examples": "# Worked examples: Chapter 6 Perimeter and Area\n\n## What you will learn\nYou will calculate area and solve remaining-region problems.\n\n## Simple explanation\nArea measures the region enclosed by a figure and is expressed in square units.\n\n## Step-by-step breakdown\n- **Rectangle**: A=length×breadth.\n- **Square**: A=side×side.\n- **Remaining region**: Whole area minus covered or removed area.\n- **Composite shape**: Split into rectangles and add.\n- **Units**: Use cm², m², or another square unit.\n\n## Worked example\nQuestion: A 5 m by 4 m floor has a square carpet of side 3 m. Find the uncovered area.\n\nSolution:\n- Step 1: Floor area=20 m² and carpet area=9 m².\n- Step 2: Subtract 20−9.\n- Final answer: 11 m².\n\n## Common mistake\nSubtract areas, not side lengths.\n\n## Quick check question\nQuestion: Four beds each have area 16 m². What is their total area?\nAnswer: 64 m².\nExplanation: 4×16=64.\n\n## Summary\n- Area uses square units.\n- Multiply rectangle dimensions.\n- Subtract areas for uncovered regions.",
+    "Exam-style problems": "# Exam-style problems: Chapter 6 Perimeter and Area\n\n## What you will learn\nYou will estimate irregular areas on graph paper and compare equal-area rectangles.\n\n## Simple explanation\nCount full squares and apply one consistent convention to partial boundary squares.\n\n## Step-by-step breakdown\n- **Full square**: Count as 1 square unit.\n- **Less than half**: Ignore under the chapter convention.\n- **More than half**: Count as 1 square unit.\n- **Exactly half**: Count as 1/2 square unit.\n- **Square tiles**: They pack without gaps.\n- **Equal area**: Different factor pairs give different perimeters.\n\n## Worked example\nQuestion: For whole-number rectangles of area 24, which has the least perimeter?\n\nSolution:\n- Step 1: Factor pairs are 1×24, 2×12, 3×8, and 4×6.\n- Step 2: Their perimeters are 50, 28, 22, and 20.\n- Final answer: The 4×6 rectangle, with perimeter 20 units.\n\n## Common mistake\nDo not count every touched grid square as a full square.\n\n## Quick check question\nQuestion: Why are circles poor standard area tiles here?\nAnswer: They leave gaps and allow different packings.\nExplanation: The same region could then produce inconsistent counts.\n\n## Summary\n- Grid estimates follow stated rules.\n- Squares tile consistently.\n- Equal areas can have different perimeters.",
+    "Revision and recap": "# Revision and recap: Chapter 6 Perimeter and Area\n\n## What you will learn\nYou will connect triangle area with rectangles and review area–perimeter relationships.\n\n## Simple explanation\nA rectangle cut along a diagonal forms two matching triangles, so each has half its area.\n\n## Step-by-step breakdown\n- **Diagonal**: Joins opposite vertices.\n- **Equal triangles**: The two pieces overlap exactly.\n- **Triangle area**: Half of base×height in the displayed rectangle setting.\n- **Different shapes**: Triangles may look different but share area.\n- **House plans**: Combine dimensions and room areas carefully.\n\n## Worked example\nQuestion: A rectangle is 5 grid units by 4 grid units. Find the area of a triangle formed by a diagonal.\n\nSolution:\n- Step 1: Rectangle area=5×4=20 square units.\n- Step 2: Take half: 20÷2.\n- Final answer: 10 square units.\n\n## Common mistake\nDo not halve the rectangle's perimeter to get triangle area.\n\n## Quick check question\nQuestion: Can two nine-square figures have perimeters 12 and 20?\nAnswer: Yes.\nExplanation: The chapter shows different connected arrangements of the same nine unit squares.\n\n## Summary\n- A diagonal halves rectangle area.\n- Area and perimeter are independent measures.\n- Plans require correct dimensions and units."
+  }
+}

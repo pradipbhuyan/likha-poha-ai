@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 2: Exploring Substances: Acids, Bases and Neutral",
+  "central_question": "How can natural indicators identify acidic, basic and neutral substances, and how does neutralisation help in experiments and everyday life?",
+  "in_scope_units": [
+    "2.1 Nature—Our Science Laboratory: classifying common samples as acidic, basic or neutral using natural indicators.",
+    "2.1.1 Litmus as an indicator: testing samples with blue and red litmus, grouping observations and relating acidity or basicity to colour change.",
+    "Activity 2.2 and edible substances: relating sour taste to acids and slippery feel to bases while following safety rules.",
+    "2.1.2 Red rose as an indicator: preparing red rose extract and identifying red, green or unchanged responses.",
+    "2.1.3 Turmeric as an indicator: preparing turmeric paper and recognising that it detects bases but cannot separate acids from neutral substances.",
+    "Activity 2.6 Olfactory indicators: using onion-treated strips to investigate odour changes in acidic and basic media.",
+    "2.2 What Happens When Acidic Substances Mix with Basic Substances?: Activity 2.7 and the neutralisation reaction.",
+    "2.3 Neutralisation in Daily Life: ant bites, acidic or basic soil and treatment of acidic industrial waste.",
+    "Let Us Enhance Our Learning: Questions 1–12 and exploratory projects on indicators, water and soil."
+  ],
+  "banned_topics": [
+    "The pH scale and numerical pH calculations.",
+    "Strong and weak acids or bases.",
+    "Detailed ionic equations and molecular structure.",
+    "Industrial manufacture of acids, bases and salts.",
+    "Titration calculations and concentration formulas."
+  ],
+  "must_include_keywords": [
+    "acidic",
+    "basic",
+    "neutral",
+    "litmus",
+    "blue litmus",
+    "red litmus",
+    "acid-base indicator",
+    "lichen",
+    "lemon juice",
+    "vinegar",
+    "baking soda solution",
+    "lime water",
+    "sugar solution",
+    "salt solution",
+    "sour taste",
+    "slippery",
+    "red rose extract",
+    "turmeric paper",
+    "olfactory indicator",
+    "onion",
+    "neutralisation",
+    "salt",
+    "water",
+    "heat",
+    "formic acid",
+    "ant bite",
+    "acidic soil",
+    "basic soil",
+    "manure",
+    "composted leaves",
+    "industrial waste",
+    "Prafulla Chandra Ray",
+    "Activity 2.7",
+    "Let Us Enhance Our Learning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A substance that does not change turmeric paper must be acidic.",
+      "correction": "Turmeric remains yellow in both acidic and neutral substances; it can identify a base but cannot distinguish acid from neutral."
+    },
+    {
+      "claim": "Every sour or bitter substance may be safely tasted to classify it.",
+      "correction": "The chapter warns never to taste unknown substances; indicators should be used for testing."
+    },
+    {
+      "claim": "Lime water is the same as the citrus fruit lime.",
+      "correction": "Lime water is a solution of calcium hydroxide in water; it must not be confused with the fruit."
+    },
+    {
+      "claim": "Neutralisation means simply mixing any acid and base in any amount.",
+      "correction": "Sufficient quantities are needed so the effects neutralise; salt, water and heat are formed."
+    },
+    {
+      "claim": "A neutral soil always guarantees healthy plant growth.",
+      "correction": "Plants can still be unhealthy in neutral soil if nutrients are deficient."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 2.1 and Tables 2.1–2.2 to introduce litmus-based classification.",
+    "Use Activity 2.4 to compare red rose extract with litmus results.",
+    "Use Activity 2.5 and the secret-message card to establish the strengths and limits of turmeric paper.",
+    "Use Activity 2.6 to introduce olfactory indicators without relying on colour.",
+    "Use Activity 2.7 to derive Acid + Base → Salt + Water + Heat.",
+    "Use Let Us Enhance Our Learning Questions 1, 2, 4, 5, 10 and 12 for application and reasoning."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The section 'Let Us Enhance Our Learning' contains Questions 1–12, followed by a Dive Deeper prompt and three Exploratory Projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

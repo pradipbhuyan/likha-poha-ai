@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 1: Exploring the Investigative World of Science",
+  "central_question": "How can curiosity be turned into a fair, systematic investigation that uses careful observation, controlled changes, measurement and evidence to build scientific explanations?",
+  "in_scope_units": [
+    "Science as a continuing journey from wonder and evolving ideas to focused investigation.",
+    "The root and kite symbols as a balance between grounded observation and creative thinking.",
+    "A preview of Grade 8 themes from microbes, health and electricity to forces, matter, light, ecosystems and Earth.",
+    "The closing puri investigation: identifying variables, observations, measurements and fair-test conditions.",
+    "Systematic recording, changing one factor at a time, generating new questions and accepting that some questions remain open."
+  ],
+  "banned_topics": [
+    "Detailed teaching of microbes, diseases, electricity, forces, matter, light, calendars or ecosystems, which are only previewed here.",
+    "Advanced statistical experimental design.",
+    "Giving a fixed final scientific explanation for why one side of every puri is thinner, because the chapter states that the phenomenon is not completely understood."
+  ],
+  "must_include_keywords": [
+    "curiosity",
+    "scientific question",
+    "focused question",
+    "investigation",
+    "observation",
+    "experiment",
+    "evidence",
+    "measurement",
+    "variable",
+    "control",
+    "fair test",
+    "one factor at a time",
+    "notes",
+    "prediction",
+    "explanation",
+    "puri",
+    "dough thickness",
+    "dough size",
+    "type of flour",
+    "oil temperature",
+    "frying method",
+    "puffing time",
+    "root",
+    "kite",
+    "creative thinking",
+    "systematic investigation",
+    "real-world puzzle",
+    "new questions",
+    "scientific uncertainty"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Science is mainly memorising facts already discovered by others.",
+      "correction": "The chapter stresses learning how to find new facts by asking focused questions, observing, experimenting and explaining."
+    },
+    {
+      "claim": "A fair experiment should change several conditions together so the result is clearer.",
+      "correction": "Only one condition should be changed at a time while other relevant conditions are kept the same."
+    },
+    {
+      "claim": "Only numerical observations count as scientific evidence.",
+      "correction": "The chapter includes both measurable observations, such as puffing time, and descriptive or yes/no observations, such as whether a puri puffs."
+    },
+    {
+      "claim": "A school laboratory is essential for every investigation.",
+      "correction": "The chapter uses a kitchen and puri frying to show that careful scientific investigation can begin in everyday settings."
+    },
+    {
+      "claim": "If an experiment does not settle a question, it has failed.",
+      "correction": "An investigation can improve understanding and lead to better questions even when the phenomenon is not fully explained."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the opening Probe and ponder questions to distinguish curiosity questions from recall questions.",
+    "Use the root-and-kite passage to discuss evidence and imagination as complementary parts of science.",
+    "Use the Grade 8 journey preview to map how one scientific idea connects to another.",
+    "Use the closing NCERT puri investigation to identify changed, controlled and observed variables.",
+    "Use the fresh-versus-stored dough and pricked-puri questions to show how one investigation generates the next."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "This introductory chapter has no separate numbered Keep the curiosity alive exercise set; its principal application is the closing puri investigation on pages 5–7.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,98 @@
+{
+  "grade": "Grade 8",
+  "subject": "English",
+  "chapter": "Unit 2: Values and Dispositions",
+  "central_question": "How do courage, empathy, integrity, perseverance, and service turn individual choices into meaningful contributions to other people and the nation?",
+  "in_scope_units": [
+    "Pre-reading activities on Republic Day, bravery awards, qualities of soldiers, and messages to those who defend the nation.",
+    "A Tale of Valour—Major Somnath Sharma’s early influences, leadership of D Company, the Battle of Badgam, defence of Srinagar, supreme sacrifice, and posthumous Param Vir Chakra.",
+    "Language and communication linked to A Tale of Valour—chronology, expressions of resistance, armed-forces collective nouns, over- verbs, noun–verb spelling pairs, subject–verb agreement, listening about the Param Vir Chakra, speaking on national service, and a letter of enquiry.",
+    "Exploration of Captain Vikram Batra, gallantry awards, women in the Armed Forces, Birsa Munda, and patriotic songs.",
+    "Somebody’s Mother by Mary Dow Brine—the vulnerable old woman, the compassionate schoolboy, kindness, empathy, imagery, rhyme, repetition, contrast, and the title’s universal message.",
+    "Language and communication linked to Somebody’s Mother—antonyms, contextual vocabulary, hand idioms, analogies, lest, -ed pronunciation, oral narration, diary writing, gratitude, and A Nation’s Strength.",
+    "Verghese Kurien— I Too Had A Dream—a letter to Siddharth about lasting written communication, service to farmers, life in Anand, family support, integrity, responsibility, common good, happiness, and true rewards.",
+    "Language and communication linked to Verghese Kurien—fact and opinion, synonyms and expressions, word games, en dash and em dash, possessive forms and contractions, prepositional phrases, sentence order, listening about Evelyn Glennie, syllable stress, sound patterns, pausing, and chunking."
+  ],
+  "banned_topics": [
+    "A complete military history of the Indo–Pakistan War beyond the events and background presented in A Tale of Valour.",
+    "Technical weapon operation or battlefield tactics beyond the narrative’s description of the Battle of Badgam.",
+    "A full history of India’s dairy cooperative movement beyond Verghese Kurien’s reflections in the letter.",
+    "Biographical details about Mary Dow Brine, Evelyn Glennie, or other figures not included in the unit."
+  ],
+  "must_include_keywords": [
+    "Major Somnath Sharma",
+    "Battle of Badgam",
+    "D Company",
+    "Kumaon Regiment",
+    "Srinagar airfield",
+    "Operation Gulmarg",
+    "hold their ground",
+    "Param Vir Chakra",
+    "courage",
+    "duty",
+    "self-sacrifice",
+    "leadership",
+    "Somebody’s Mother",
+    "Mary Dow Brine",
+    "empathy",
+    "lend a hand",
+    "slippery street",
+    "AABB rhyme",
+    "simile",
+    "repetition",
+    "Verghese Kurien",
+    "Siddharth",
+    "Anand",
+    "dairy farmers",
+    "integrity",
+    "common good",
+    "responsibility",
+    "Padma Vibhushan",
+    "subject–verb agreement",
+    "collective nouns",
+    "fact and opinion",
+    "prepositional phrases",
+    "en dash",
+    "em dash",
+    "diary entry",
+    "letter of enquiry",
+    "Evelyn Glennie",
+    "pausing and chunking"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "D Company quickly defeated all the invaders at Badgam.",
+      "correction": "The company’s resistance delayed and demotivated the larger attacking force, provided time for reinforcements to arrive, and helped save Srinagar."
+    },
+    {
+      "claim": "Major Somnath Sharma stayed away from action because his left hand was in plaster.",
+      "correction": "Although his left hand was in plaster, he insisted on remaining with his men because he knew them and would not let them go into action without him."
+    },
+    {
+      "claim": "The boy in Somebody’s Mother is proud because he feels superior to the old woman.",
+      "correction": "The poem presents him as grateful and happy that his firm, strong feet allow him to guide her trembling feet safely."
+    },
+    {
+      "claim": "Verghese Kurien always planned to build his career by serving dairy farmers.",
+      "correction": "He states that this was not the career he had envisioned, but he chose Anand because he believed he could make a more meaningful contribution there."
+    },
+    {
+      "claim": "Kurien defines failure simply as not succeeding.",
+      "correction": "He says failure is not about not succeeding; it is about not giving one’s best effort and not contributing, however modestly, to the common good."
+    },
+    {
+      "claim": "A phone conversation and a letter give the same kind of lasting pleasure.",
+      "correction": "Kurien describes telephone joy as immediate but fleeting, while writing can be treasured and re-read over the years with abiding pleasure."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with NCERT Let us discuss after A Tale of Valour to arrange the events from Major Somnath Sharma’s birth to the Param Vir Chakra.",
+    "Use NCERT Let us think and reflect II.2–4 after A Tale of Valour to analyse leadership, last words, and the likely result if D Company had not held its ground.",
+    "Use NCERT Let us discuss II–VI and Let us think and reflect after Somebody’s Mother to study theme, sympathetic tone, AABB rhyme, imagery, contrast, and empathy.",
+    "Use NCERT Let us discuss and Let us think and reflect after Verghese Kurien— I Too Had A Dream to distinguish fact from opinion and explain integrity, service, and common good.",
+    "Conclude with NCERT Let us learn tasks on subject–verb agreement, dashes, possessives and contractions, prepositional phrases, followed by the enquiry letter and diary entry."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit’s exercises appear after each selection under Let us discuss, Let us think and reflect, Let us learn, Let us listen, Let us speak, Let us write, and Let us explore.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

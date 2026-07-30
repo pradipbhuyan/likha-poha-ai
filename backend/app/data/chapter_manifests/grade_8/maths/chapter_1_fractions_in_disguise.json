@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 1: Fractions in Disguise",
+  "central_question": "How can percentages be understood as fractions and decimals and then used to compare, estimate, model and solve everyday problems involving change, profit, loss, tax and compounding?",
+  "in_scope_units": [
+    "Fractions as percentages, the meaning of per cent, and conversion between fractions and percentages.",
+    "Mental percentage strategies and the Fractions-Decimals-Percentages trio.",
+    "Finding a percentage of a quantity, finding the whole from a given percentage, and using bar models and proportional reasoning.",
+    "Percentages greater than 100 and comparison of quantities through common percentage bases.",
+    "Converting ratios and ingredient compositions into percentages, including the Know Your Contents activity.",
+    "Percentage increase and decrease.",
+    "Profit, loss, marked price, discount and tax applications.",
+    "Interest with and without compounding, general amount formulae and exponential versus linear growth.",
+    "Depreciation and successive percentage changes.",
+    "Estimation, interpretation of percentage graphs and end-of-chapter applications."
+  ],
+  "banned_topics": [
+    "Logarithms for solving compound-growth equations.",
+    "Advanced banking formulas involving continuously compounded interest.",
+    "Probability calculations unrelated to percentage interpretation."
+  ],
+  "must_include_keywords": [
+    "per cent",
+    "per hundred",
+    "percentage",
+    "fraction",
+    "decimal",
+    "equivalent fraction",
+    "FDP trio",
+    "mental calculation",
+    "estimate",
+    "bar model",
+    "proportional reasoning",
+    "percentage greater than 100",
+    "ratio",
+    "base quantity",
+    "percentage increase",
+    "percentage decrease",
+    "profit",
+    "loss",
+    "cost price",
+    "selling price",
+    "marked price",
+    "discount",
+    "tax",
+    "GST",
+    "principal",
+    "rate of interest",
+    "time period",
+    "without compounding",
+    "compounding",
+    "simple growth",
+    "exponential growth",
+    "depreciation",
+    "successive discount",
+    "Know Your Contents",
+    "percentage graph"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A percentage is a separate kind of number unrelated to fractions.",
+      "correction": "x% means x/100, so every percentage is a fraction with denominator 100 and can also be written as a decimal."
+    },
+    {
+      "claim": "A 50% increase followed by a 50% decrease returns a quantity to its original value.",
+      "correction": "The two percentages use different base quantities; for an original value x, the result is 1.5x × 0.5 = 0.75x."
+    },
+    {
+      "claim": "A 30% discount followed by a 20% discount is the same as one 50% discount.",
+      "correction": "The second discount is taken on the already reduced price, so the combined multiplier is 0.70 × 0.80 = 0.56, equivalent to a 44% discount."
+    },
+    {
+      "claim": "When comparing two percentages, the larger percentage always represents the larger absolute amount.",
+      "correction": "Percentages are proportions; the underlying base quantities must also be considered."
+    },
+    {
+      "claim": "Simple and compound interest produce the same amount whenever the annual rate and time are the same.",
+      "correction": "Without compounding the principal remains fixed; with compounding, each term's interest is added to the principal for the next term."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 1 to convert 3/4 of the orange paint mixture into 75%.",
+    "Use NCERT Example 3 to find the minimum A-grade mark when 80% of 75 is required.",
+    "Use NCERT Example 5 to find the remaining Delhi-Agra distance when 40% equals 92 km.",
+    "Use the NCERT tomato-price and theatre-footfall examples to calculate percentage increase and decrease.",
+    "Use NCERT Example 8 and Figure it Out Q1-Q3 to compare interest with and without compounding.",
+    "Use NCERT Example 12 to compare successive discounts with a single discount."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter has several Figure it Out sets throughout the chapter, including percentage conversion and bar-model questions, change and transaction problems, interest and compounding questions, and the final mixed application set before the Summary.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 7: Heat Transfer in Nature",
+  "central_question": "How is heat transferred by conduction, convection and radiation, and how do these processes influence clothing, houses, winds, the water cycle and groundwater?",
+  "in_scope_units": [
+    "Opening context of regional climate, the Sun as a heat source and metal cooking utensils.",
+    "7.1 Conduction of Heat—Activity 7.1, transfer from hotter to colder parts of solids, conductors, insulators and applications in clothing and buildings.",
+    "7.2 Convection—Activities 7.2 and 7.3, rising warm air and water, sinking cooler particles, convection currents, sea breeze and land breeze.",
+    "7.3 Radiation—heat transfer without a medium, heating by the Sun and fire, colour and heat absorption, and combined heat-transfer processes in a pan and bukhari.",
+    "Water-cycle section—evaporation, transpiration, condensation, precipitation, redistribution of water and the role of solar heat.",
+    "Infiltration and groundwater—movement through gravel, sand and clay; pore spaces, aquifers, depletion, recharge pits, rainwater harvesting and ice stupas.",
+    "In a Nutshell, Let Us Enhance Our Learning Questions 1–10 and exploratory projects."
+  ],
+  "banned_topics": [
+    "Numerical calorimetry and specific heat capacity.",
+    "Detailed molecular kinetic theory.",
+    "Weather forecasting beyond the chapter's sea-breeze and land-breeze explanations.",
+    "Detailed cloud classification and atmospheric circulation.",
+    "Advanced groundwater engineering or hydrological calculations."
+  ],
+  "must_include_keywords": [
+    "heat transfer",
+    "conduction",
+    "hotter part",
+    "colder part",
+    "good conductor",
+    "poor conductor",
+    "insulator",
+    "metal strip",
+    "wax",
+    "pins",
+    "woollen fabric",
+    "trapped air",
+    "hollow bricks",
+    "convection",
+    "warm air",
+    "cool air",
+    "convection current",
+    "potassium permanganate",
+    "sea breeze",
+    "land breeze",
+    "radiation",
+    "no medium",
+    "light-coloured clothes",
+    "dark surfaces",
+    "Sun",
+    "water cycle",
+    "evaporation",
+    "transpiration",
+    "condensation",
+    "precipitation",
+    "infiltration",
+    "groundwater",
+    "aquifer",
+    "rainwater harvesting",
+    "recharge pit",
+    "ice stupa",
+    "Activity 7.1",
+    "Activity 7.3",
+    "Let Us Enhance Our Learning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "During conduction, heated particles travel from the hot end to the cold end.",
+      "correction": "Particles transfer heat to neighbouring particles but do not move away from their positions."
+    },
+    {
+      "claim": "Convection is the main heat-transfer process in solid metals.",
+      "correction": "Heat moves mainly by conduction in solids and by convection in liquids and gases."
+    },
+    {
+      "claim": "Radiation requires air or another medium.",
+      "correction": "Radiation does not require a material medium; this is how heat from the Sun reaches Earth."
+    },
+    {
+      "claim": "Sea breeze occurs at night and land breeze during the day.",
+      "correction": "During the day cooler air moves from sea to land; at night cooler air moves from land to sea."
+    },
+    {
+      "claim": "The water cycle creates new water.",
+      "correction": "The water cycle continuously redistributes and replenishes water already present on Earth."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 7.1 and Let Us Enhance Our Learning Question 1(ii) to establish conduction and the order in which pins fall.",
+    "Use Activity 7.2 to explain why warmed air rises.",
+    "Use Activity 7.3 to trace a convection current in heated water.",
+    "Use the sea-breeze and land-breeze figures and Question 8 to connect convection with coastal temperature.",
+    "Use the fireplace, clothing and heating-pan examples to distinguish radiation from conduction and convection.",
+    "Use Questions 9–10 for infiltration, groundwater and water-cycle reasoning."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section 'Let Us Enhance Our Learning' contains Questions 1–10, followed by three Exploratory Projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

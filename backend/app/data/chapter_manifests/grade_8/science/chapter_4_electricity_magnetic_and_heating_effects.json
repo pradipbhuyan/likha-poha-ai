@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 4: Electricity: Magnetic and Heating Effects",
+  "central_question": "How does electric current produce magnetic fields and heat, and how do chemical cells and batteries supply current for practical devices?",
+  "in_scope_units": [
+    "Magnetic effect of current and compass deflection.",
+    "Electromagnets, poles, iron cores, strength, current direction and lifting applications.",
+    "Heating effect, resistance, nichrome, heating elements and electrical safety.",
+    "Voltaic cells, electrodes, electrolytes and lemon-cell construction.",
+    "Dry cells, rechargeable batteries, battery life, recycling and emerging battery technologies."
+  ],
+  "banned_topics": [
+    "Detailed motor and generator design.",
+    "Household wiring calculations and Ohm's law.",
+    "Chemical electrochemistry beyond the cell descriptions in the chapter."
+  ],
+  "must_include_keywords": [
+    "electric current",
+    "magnetic effect",
+    "magnetic field",
+    "compass",
+    "Oersted",
+    "current-carrying wire",
+    "coil",
+    "electromagnet",
+    "iron core",
+    "north pole",
+    "south pole",
+    "current direction",
+    "number of turns",
+    "lifting electromagnet",
+    "heating effect",
+    "resistance",
+    "nichrome",
+    "heating element",
+    "electric heater",
+    "electric iron",
+    "electric kettle",
+    "overheating",
+    "Voltaic cell",
+    "Galvanic cell",
+    "electrode",
+    "electrolyte",
+    "chemical reaction",
+    "lemon cell",
+    "LED",
+    "dry cell",
+    "zinc container",
+    "carbon rod",
+    "rechargeable battery",
+    "lithium-ion",
+    "solid-state battery",
+    "e-waste"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A wire remains magnetic after current is switched off.",
+      "correction": "The magnetic field around the wire or coil disappears when current stops."
+    },
+    {
+      "claim": "An iron core is required for any coil to show magnetic effect.",
+      "correction": "A current-carrying coil already produces a magnetic field; an iron core makes it stronger."
+    },
+    {
+      "claim": "More current only strengthens magnetism and does not affect heating.",
+      "correction": "The chapter shows both stronger magnetic effect and greater heating when current increases."
+    },
+    {
+      "claim": "Nichrome is used because it offers no resistance.",
+      "correction": "Nichrome has higher resistance than comparable copper wire, converting more electrical energy into heat."
+    },
+    {
+      "claim": "All batteries can be recharged indefinitely.",
+      "correction": "Dry cells are single-use, and rechargeable batteries also wear out after many cycles."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 4.1 to connect current with compass deflection.",
+    "Use Activities 4.2–4.4 to construct and test an electromagnet.",
+    "Use Activity 4.5 to investigate heating in nichrome.",
+    "Use Activity 4.6 to construct a lemon-cell battery and test LED polarity.",
+    "Use Keep the curiosity alive Q8–Q11 to integrate magnetism, heating and cells."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–11, followed by Discover, design, and debate investigations.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

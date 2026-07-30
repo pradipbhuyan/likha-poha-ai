@@ -1,0 +1,75 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 10 The Other Side of Zero",
+  "central_question": "How can numbers below zero be represented, compared, added, and subtracted consistently?",
+  "in_scope_units": [
+    "Bela's Building of Fun — positive floors, negative floors, zero, and inverse positions",
+    "Comparing integers — order on a marked number line",
+    "Addition as movement — Starting Number + Movement = Target Number",
+    "Subtraction as required movement — Target Number − Starting Number = Movement needed",
+    "Marked and unmarked number lines — operations with small and large integers",
+    "Token and movement models — positive and negative quantities and zero pairs",
+    "Brahmagupta's rules — arithmetic with positive, negative, and zero",
+    "Historical perspective and Integers: Snakes and Ladders"
+  ],
+  "banned_topics": [
+    "Multiplication and division rules for negative numbers beyond the chapter",
+    "Abstract ring theory",
+    "Two-dimensional coordinates"
+  ],
+  "must_include_keywords": [
+    "positive number",
+    "negative number",
+    "zero",
+    "integer",
+    "inverse",
+    "opposite",
+    "floor",
+    "number line",
+    "left of zero",
+    "right of zero",
+    "greater than",
+    "less than",
+    "movement",
+    "starting number",
+    "target number",
+    "forward",
+    "backward",
+    "addition",
+    "subtraction",
+    "missing addend",
+    "unmarked number line",
+    "positive token",
+    "negative token",
+    "zero pair",
+    "Brahmagupta",
+    "subtracting a negative",
+    "year 628 CE",
+    "Snakes and Ladders"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A negative number with larger digits is greater.",
+      "correction": "Farther left is smaller; −12 is less than −10."
+    },
+    {
+      "claim": "Subtracting a negative makes a result smaller.",
+      "correction": "Subtracting a negative equals adding the corresponding positive."
+    },
+    {
+      "claim": "Zero is positive or negative.",
+      "correction": "Zero is neither, although it is an integer."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Building of Fun floors to introduce positive, negative, zero, and inverses.",
+    "Compare values on a marked number line.",
+    "Use 5+4=9, 9+(−6)=3, and 3+(−5)=−2 for movement.",
+    "Use 85+(−60)=25 and (−100)−(+250)=−350 on an unmarked line.",
+    "Apply Brahmagupta's rules and the final integer game."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out, number-line, token, Brahmagupta-rule, and Integers: Snakes and Ladders tasks through the chapter.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

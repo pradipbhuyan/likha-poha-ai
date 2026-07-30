@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 8",
+  "subject": "English",
+  "chapter": "Unit 3: Mystery and Magic",
+  "central_question": "How do observation, critical thinking, imagination, and curiosity help people solve mysteries, use power responsibly, and understand extraordinary phenomena?",
+  "in_scope_units": [
+    "Pre-reading activities on anagrams and the different meanings of the word case.",
+    "The Case of the Fifth Word—Encyclopedia Brown, Chief Brown’s unsolved case, Tim Nolan and Daniel Davenport, the jewellery robbery, the calendar code, the missing fifth word, and the hidden jewellery.",
+    "Language and communication linked to The Case of the Fifth Word—fact and opinion, Leroy’s character traits, phrasal verbs, homophones, rebus puzzles, spoonerisms, linking words, reported questions, observation skills, group discussion, report writing, optical illusions, encyclopedia, and thesaurus.",
+    "The Magic Brush of Dreams—Gopi’s gift, the instruction to help the poor, useful paintings for villagers, the Zamindar’s greed, imprisonment, escape, resistance, and celebration.",
+    "Literary and language work linked to The Magic Brush of Dreams—sequence, shifting tone, ABCB rhyme, narrative or ballad form, imagery, repetition, symbolism, multiple meanings of draw, reaction words, falling intonation, formal and informal requests, imaginative essays, riddles, and magical-object design.",
+    "Spectacular Wonders—The Valley of Flowers, living root bridges, Lonar Crater Lake, Magnetic Hill, glowing waters of Kumbalangi, the Sundarbans, and Chandipur Beach.",
+    "Language and communication linked to Spectacular Wonders—information tables, descriptive language, introductory questions, expressions, synonyms, binomials, and present and past participles."
+  ],
+  "banned_topics": [
+    "A general history of crime or police procedure beyond the fictional case presented in the unit.",
+    "Scientific claims about supernatural magic; the magic brush belongs to a folk-tale poem and is not presented as science.",
+    "Natural wonders outside the seven Indian phenomena described in Spectacular Wonders.",
+    "Detailed geological, botanical, or astronomical theory not provided in the text."
+  ],
+  "must_include_keywords": [
+    "Encyclopedia Brown",
+    "Leroy",
+    "Chief Brown",
+    "Tim Nolan",
+    "Daniel Davenport",
+    "Diamond Mart",
+    "calendar code",
+    "Nom Utes Sweden Hurts",
+    "Friday",
+    "fir tree",
+    "fact and opinion",
+    "critical thinking",
+    "reported speech",
+    "phrasal verbs",
+    "homophones",
+    "spoonerism",
+    "Gopi",
+    "magic brush",
+    "Zamindar",
+    "kindness",
+    "greed",
+    "ABCB rhyme",
+    "ballad",
+    "imagery",
+    "repetition",
+    "symbolism",
+    "Valley of Flowers",
+    "living root bridges",
+    "Lonar Crater Lake",
+    "Magnetic Hill",
+    "optical illusion",
+    "bioluminescence",
+    "Kumbalangi",
+    "Sundarbans",
+    "Chandipur Beach",
+    "ebb tide",
+    "binomials",
+    "participles",
+    "report writing",
+    "imaginative essay"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The four code words should be understood only by their ordinary dictionary meanings.",
+      "correction": "They represent Monday, Tuesday, Wednesday, and Thursday after the letters d-a-y are dropped and the remaining letters are rearranged."
+    },
+    {
+      "claim": "The fifth word was written beneath the other four words.",
+      "correction": "The fifth word was unwritten: Fir, representing Friday, and it directed the search to the young fir tree."
+    },
+    {
+      "claim": "Gopi uses the brush mainly to gain wealth for herself.",
+      "correction": "She follows the instruction to help the poor by painting food and useful objects for villagers and refuses the Zamindar’s demand for riches."
+    },
+    {
+      "claim": "The Zamindar politely requests Gopi’s help.",
+      "correction": "He orders her to paint wealth, imprisons her when she refuses, and continues to threaten and chase her."
+    },
+    {
+      "claim": "Vehicles at Magnetic Hill truly move uphill because gravity stops working.",
+      "correction": "The text explains that the effect is an optical illusion caused by the alignment of surrounding slopes and the horizon line."
+    },
+    {
+      "claim": "Chandipur Beach disappears permanently.",
+      "correction": "The sea retreats during ebb tide and returns to the shore at high tide, creating a daily hide-and-seek effect."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Let us discuss after The Case of the Fifth Word to distinguish facts from opinions and identify Leroy’s traits from textual evidence.",
+    "Use NCERT Let us think and reflect II.6 after The Case of the Fifth Word to analyse how the coded message controls the plot and solution.",
+    "Use NCERT Let us discuss II–VI after The Magic Brush of Dreams to trace the tone shift, ABCB rhyme, imagery, repetition, symbolism, and the moral contrast between Gopi and the Zamindar.",
+    "Use NCERT Let us think and reflect II.1–4 after Spectacular Wonders to explain the living root bridges, Lonar Crater Lake, descriptive questions, and the writer’s purpose.",
+    "Conclude with NCERT Let us learn on reported questions, phrasal verbs, homophones, binomials, and participles, followed by report and imaginative-essay writing."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit’s exercises appear after each selection under Let us discuss, Let us think and reflect, Let us learn, Let us listen, Let us speak, Let us write, and Let us explore.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

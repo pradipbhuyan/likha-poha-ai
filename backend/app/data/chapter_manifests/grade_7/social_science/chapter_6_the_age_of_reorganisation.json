@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 6: The Age of Reorganisation",
+  "central_question": "How did the breakup of the Maurya Empire lead to new kingdoms, trade networks and cultural exchanges that reorganised political and cultural life across the Indian Subcontinent?",
+  "in_scope_units": [
+    "The breakup of the Maurya Empire and the meaning of the ‘Age of Reorganisation’, including the rise of competing regional kingdoms.",
+    "Political methods used by new kingdoms, including warfare, border control and matrimonial alliances.",
+    "The Śhungas—Puṣhyamitra Śhunga, the aśhvamedha yajña, Vedic revival, Sanskrit learning, Bharhut Stūpa and artistic patronage.",
+    "The Sātavāhanas—Deccan rule, agriculture, maritime trade, coins, Naneghat, Gautamīputra Sātakarṇi, queens, inscriptions and religious patronage.",
+    "The Chedis and Khāravela—Kalinga, Jain learning, Udayagiri-Khandagiri caves, Hāthīgumphā inscription and respect for many schools of thought.",
+    "Southern kingdoms—Cheras, Cholas and Pāṇḍyas, Sangam literature, trade, Karikāla, Kallaṇai, Silappadikāram and regional prosperity.",
+    "Indo-Greeks and Śhakas—northwestern invasions, coinage, Heliodorus pillar, cultural blending and the Śhaka Samvat.",
+    "The Kuṣhāṇas—Kaṇiṣhka, Silk Route trade, religious inclusiveness and the Gāndhāra and Mathurā schools of art.",
+    "Cultural exchange and assimilation—Indian and foreign influences in art, architecture, language, coinage and literature.",
+    "Before we move on and Questions and activities 1–6—reorganisation, Sangam literature, titles, kingdoms, royal emblems and historical monuments."
+  ],
+  "banned_topics": [
+    "Detailed Mauryan administration and Ashoka’s dhamma, which belong mainly to Chapter 5.",
+    "Detailed Gupta political and cultural history, which belongs to Chapter 7.",
+    "Modern political borders or present-day international relations beyond locating ancient regions.",
+    "Advanced art-history classification not stated in the chapter."
+  ],
+  "must_include_keywords": [
+    "Age of Reorganisation",
+    "Maurya Empire",
+    "Puṣhyamitra Śhunga",
+    "Śhunga dynasty",
+    "aśhvamedha yajña",
+    "Bharhut Stūpa",
+    "Sātavāhanas",
+    "Gautamīputra Sātakarṇi",
+    "Gautamī Balaśhrī",
+    "Naneghat",
+    "Brahmi script",
+    "Chedis",
+    "Khāravela",
+    "Hāthīgumphā inscription",
+    "Udayagiri-Khandagiri caves",
+    "Sangam literature",
+    "Cholas",
+    "Cheras",
+    "Pāṇḍyas",
+    "Karikāla",
+    "Kallaṇai",
+    "Silappadikāram",
+    "Kaṇṇagi",
+    "Indo-Greeks",
+    "Heliodorus pillar",
+    "Śhakas",
+    "Śhaka Samvat",
+    "Kuṣhāṇas",
+    "Kaṇiṣhka",
+    "Silk Route",
+    "Gāndhāra style",
+    "Mathurā style",
+    "cultural assimilation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The end of the Maurya Empire immediately produced one new empire over the whole Subcontinent.",
+      "correction": "The chapter describes the emergence of many competing kingdoms and dynasties, both indigenous and foreign-origin, after Mauryan decline."
+    },
+    {
+      "claim": "Foreign rulers preserved only Greek or Central Asian culture and remained separate from Indian society.",
+      "correction": "Indo-Greeks, Śhakas and Kuṣhāṇas were strongly influenced by local culture and contributed to blended art, coinage, language and religious traditions."
+    },
+    {
+      "claim": "The Sātavāhanas depended only on warfare.",
+      "correction": "Their prosperity also rested on agriculture, river systems, internal and maritime trade, tolls, taxes and cultural patronage."
+    },
+    {
+      "claim": "The Gāndhāra and Mathurā schools were identical.",
+      "correction": "Gāndhāra art blended Greco-Roman and Indian features and often used grey-black schist, while Mathurā art used red sandstone and reflected a more distinct Indian style."
+    },
+    {
+      "claim": "Southern kingdoms were politically and culturally unimportant during this period.",
+      "correction": "The Cholas, Cheras and Pāṇḍyas supported trade, literature, irrigation, art and regional state formation, and remained independent of Mauryan control."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Questions and activities Q1 to explain why the post-Maurya era is called an age of reorganisation.",
+    "Use NCERT Questions and activities Q2 to build a structured note on Sangam literature.",
+    "Use NCERT Questions and activities Q3 to analyse why some Sātavāhana rulers used their mothers’ names.",
+    "Use NCERT Questions and activities Q4 to compare the political, economic and cultural features of one selected kingdom.",
+    "Use NCERT Questions and activities Q6 to map the locations of post-Maurya architectural sites."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

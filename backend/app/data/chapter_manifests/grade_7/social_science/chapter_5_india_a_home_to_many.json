@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: India, a Home to Many",
+  "central_question": "Why did diverse migrant and refugee communities make India their home, how did they preserve and adapt their traditions, and which Indian values supported inclusion?",
+  "in_scope_units": [
+    "Migration to India—representative communities that came from other parts of the world and added to India’s diversity.",
+    "The Story of Indian Jews—Bene Israel, Cochin Jews, refuge from persecution, land grants, synagogues and integration.",
+    "The Syriac Christian Community—persecution in West Asia, travel along trade routes, settlement on the Malabar coast and freedom of worship.",
+    "The Legend of the Parsi Wise Man, Milk, and Sugar—Zoroastrian flight from Persia, settlement in Gujarat and the meaning of integration without loss of identity.",
+    "Parsi cultural connections—fire worship, Vedic and Avestan similarities, local cultural adaptation and continued contribution.",
+    "The Arab Merchant Community—peaceful maritime trade, settlement on the western coast, local marriages and the Mappila community.",
+    "The African Connection—Siddi origins, enslavement, military roles, African-Indian cultural fusion, present challenges and Hirabai Lobi.",
+    "The Armenians in India—trade, Mughal patronage, churches, schools, administration and settlements in Agra, Surat, Kolkata and Chennai.",
+    "The Baha’i Community—persecution in Iran, arrival in India and a message of religious harmony and human unity.",
+    "The Good Maharaja and the Polish Children—wartime refuge provided by Digvijaysinhji Ranjitsinhji Jadeja.",
+    "Tibetan Refugees in India—1959 asylum, the Dalai Lama, settlements, monasteries, Sowa Rigpa, education and cultural preservation.",
+    "The Whole World is Family—vasudhaiva kutumbakam, atithi devo bhava, sarve bhavantu sukhinah and compassion.",
+    "Indian Values Beyond India—peaceful expatriate integration and the universal relevance of human unity.",
+    "Before we move on and Questions and activities 1–4—routes, cultural values, contributions and community projects."
+  ],
+  "banned_topics": [
+    "A complete history or theology of Judaism, Christianity, Zoroastrianism, Islam, Baha’i faith or Tibetan Buddhism.",
+    "Detailed Mughal history, which the chapter says will be studied in Grade 8.",
+    "A general history of every migrant community in India; the chapter explicitly presents selected representative examples.",
+    "Modern immigration law or citizenship procedures not discussed in the chapter."
+  ],
+  "must_include_keywords": [
+    "migration",
+    "refuge",
+    "persecution",
+    "Bene Israel",
+    "Cochin Jews",
+    "synagogue",
+    "Syriac Christians",
+    "Malabar coast",
+    "Parsis",
+    "Zoroastrianism",
+    "Jadi Rāṇā",
+    "milk and sugar",
+    "Udvada",
+    "Avesta",
+    "Vedic Sanskrit",
+    "Arab merchants",
+    "Mappila",
+    "Cheraman Juma Masjid",
+    "Siddis",
+    "African-Indian cultural fusion",
+    "Hirabai Lobi",
+    "Armenians",
+    "Baha’i",
+    "Digvijaysinhji Ranjitsinhji Jadeja",
+    "Polish refugees",
+    "Tibetan refugees",
+    "Dalai Lama",
+    "Dharamshala",
+    "Sowa Rigpa",
+    "vasudhaiva kutumbakam",
+    "atithi devo bhava",
+    "sarve bhavantu sukhinah",
+    "compassion",
+    "assimilation",
+    "inclusion"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All communities in the chapter came to India for the same reason.",
+      "correction": "Some fled persecution or war, while others arrived through trade or in search of opportunity; their routes and experiences differed."
+    },
+    {
+      "claim": "Integration required communities to abandon their religion and culture.",
+      "correction": "The examples show communities preserving faith and traditions while adopting local languages, clothing, food, institutions and social practices."
+    },
+    {
+      "claim": "Arab settlers described in the chapter arrived as conquerors.",
+      "correction": "The early Arab settlers discussed here came as peaceful merchants, traded and formed local communities."
+    },
+    {
+      "claim": "The Siddis voluntarily migrated as traders.",
+      "correction": "Many Siddis were enslaved in Africa and brought to India by Arab, Portuguese and British traders, though some later gained military and political prominence."
+    },
+    {
+      "claim": "The chapter claims every migrant community had an easy or prosperous life.",
+      "correction": "It records inclusion and contribution but also continuing challenges, including the poor economic condition of many Siddis."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use a chapter-based analysis of Jewish and Syriac Christian settlement to distinguish refuge, religious freedom and integration.",
+    "Use NCERT Q2 to identify the Indian values that support welcome and coexistence.",
+    "Use NCERT Q3 to investigate how communities contributed after settling in India.",
+    "Use NCERT Q1 to trace migration routes and the seas, mountains and trade corridors involved.",
+    "Use NCERT Q4 to synthesise community histories through a collaborative project."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–4.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

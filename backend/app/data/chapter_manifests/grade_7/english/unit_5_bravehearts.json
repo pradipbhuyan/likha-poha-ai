@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 7",
+  "subject": "English",
+  "chapter": "Unit 5: Bravehearts",
+  "central_question": "How do remembrance, sacrifice, courage, leadership and responsible expression help a nation honour its bravehearts?",
+  "in_scope_units": [
+    "A Homage to Our Brave Soldiers—letters, school visit and the National War Memorial.",
+    "The cost of freedom, sacrifice, gallantry and gratitude.",
+    "Memorial tablets, circles and stories of fallen heroes.",
+    "Lance Naik Albert Ekka, Major Padmapani Acharya and educational resources.",
+    "Letter form, prefixes, bravery vocabulary, clauses and conjunctions.",
+    "Listening and writing about Armed Forces service in war and peace.",
+    "My Dear Soldiers—vigilance, terrain, sacrifice, prayer and service.",
+    "Imagery, simile, metaphor, repetition, alliteration, tone and theme.",
+    "Recitation, collocations, acrostic poetry and gratitude notes.",
+    "Rani Abbakka—sovereignty, refusal of tribute and resistance.",
+    "Cause and effect, comic-strip form, dialogue and inference.",
+    "Direct and indirect speech, spelling and silent letters.",
+    "Rani Gaidinliu and women who helped shape India's identity."
+  ],
+  "banned_topics": [
+    "Detailed military tactics or weapon instructions.",
+    "Current political debate beyond the source.",
+    "Complete military history of every conflict or award.",
+    "External biographies not needed for the unit."
+  ],
+  "must_include_keywords": [
+    "bravehearts",
+    "homage",
+    "National War Memorial",
+    "sacrifice",
+    "freedom",
+    "territorial integrity",
+    "tablet",
+    "Amar Chakra",
+    "Veerta Chakra",
+    "Tyag Chakra",
+    "Raksha Chakra",
+    "gallantry",
+    "Param Vir Chakra",
+    "Lance Naik Albert Ekka",
+    "Major Padmapani Acharya",
+    "gratitude",
+    "My Dear Soldiers",
+    "A.P.J. Abdul Kalam",
+    "patriotism",
+    "imagery",
+    "simile",
+    "metaphor",
+    "alliteration",
+    "Rani Abbakka",
+    "Ullal",
+    "sovereign country",
+    "tribute",
+    "Portuguese",
+    "Zamorin of Kozhikode",
+    "leadership",
+    "direct speech",
+    "indirect speech",
+    "Rani Gaidinliu",
+    "courage",
+    "service"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A war memorial celebrates war.",
+      "correction": "The text presents remembrance, gratitude and the pain and cost of war."
+    },
+    {
+      "claim": "'Great sons' excludes women soldiers.",
+      "correction": "The textbook note says it refers to all soldiers, men and women."
+    },
+    {
+      "claim": "Rani Abbakka misunderstands the tribute demand.",
+      "correction": "She deliberately asserts Ullal's sovereignty and rejects Portuguese authority."
+    },
+    {
+      "claim": "Courage means acting without thought.",
+      "correction": "The unit connects courage with discipline, leadership, service and responsibility."
+    },
+    {
+      "claim": "Indirect speech needs no grammatical change.",
+      "correction": "Pronouns, tense and time or place expressions often change."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the National War Memorial and the purpose of remembrance.",
+    "Analyse one soldier's story and the language of gratitude.",
+    "Use My Dear Soldiers for theme and poetic devices.",
+    "Use Rani Abbakka for sovereignty, leadership and cause-effect.",
+    "Finish with reported speech, recitation, writing and Rani Gaidinliu."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit includes comprehension, extract-based reflection, poetry, vocabulary, grammar, listening, recitation, letters, acrostics and dialogue activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

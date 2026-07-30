@@ -1,0 +1,86 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 2: Power Play",
+    "central_question": "How do powers and exponents describe multiplicative growth, simplify repeated multiplication and help represent extremely large or small numbers?",
+    "in_scope_units": [
+      "Paper-folding thought experiment and repeated doubling of thickness.",
+      "Exponential or multiplicative growth in stories such as the shining stones, magical pond and combinations.",
+      "Comparison of linear additive growth with exponential multiplicative growth.",
+      "Meaning of powers and exponent notation, including zero and negative exponents.",
+      "Laws of exponents for multiplication, division and powers of powers.",
+      "Powers of 10 and comparison of very large quantities.",
+      "Scientific notation in standard form.",
+      "Estimation and modelling activities involving large numbers and assumptions."
+    ],
+    "banned_topics": [
+      "Logarithms.",
+      "Compound interest formulas not present in the chapter.",
+      "Exponential equations requiring algebraic solution methods."
+    ],
+    "must_include_keywords": [
+      "paper folding",
+      "doubling",
+      "exponential growth",
+      "multiplicative growth",
+      "linear growth",
+      "additive growth",
+      "power",
+      "base",
+      "exponent",
+      "repeated multiplication",
+      "zero exponent",
+      "negative exponent",
+      "laws of exponents",
+      "power of a power",
+      "product of powers",
+      "quotient of powers",
+      "powers of 10",
+      "scientific notation",
+      "standard form",
+      "approximation",
+      "assumption",
+      "modelling",
+      "Moon",
+      "large numbers"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Exponential growth adds the same amount at every step.",
+        "correction": "Exponential growth multiplies by the same factor; linear growth adds the same amount."
+      },
+      {
+        "claim": "aᵐ × aⁿ = aᵐⁿ.",
+        "correction": "For the same nonzero base, aᵐ × aⁿ = aᵐ⁺ⁿ."
+      },
+      {
+        "claim": "(aᵐ)ⁿ = aᵐ⁺ⁿ.",
+        "correction": "A power raised to a power gives (aᵐ)ⁿ = aᵐⁿ."
+      },
+      {
+        "claim": "a⁰ = 0.",
+        "correction": "For a ≠ 0, a⁰ = 1."
+      },
+      {
+        "claim": "Any expression of the form x × 10ⁿ is in standard scientific notation.",
+        "correction": "In standard scientific notation, 1 ≤ x < 10 and n is an integer."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the opening paper-folding table with initial thickness 0.001 cm to model doubling.",
+      "Compare the 46 folds with the linear 20 cm ladder-step model to the Moon.",
+      "Use the chapter summary examples to practise each exponent law.",
+      "Convert 308100000 into 3.081 × 10⁸.",
+      "Use the chapter's estimation questions to model a large real-world quantity with stated assumptions."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Figure it Out and Math Talk tasks are distributed across the chapter, followed by a summary of exponential growth, exponent laws and scientific notation."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 2: Power Play\n\n## What you will learn\nYou will see how repeated doubling creates rapid growth. The paper-folding activity will be used to distinguish multiplication-based growth from ordinary addition.\n\n## Simple explanation\nIf a sheet is 0.001 cm thick and its thickness doubles with every fold, the thickness after n folds is 0.001 × 2ⁿ cm.\n\n## Step-by-step breakdown\n- **Initial value**: Before folding, the thickness is 0.001 cm.\n- **One fold**: The thickness doubles to 0.002 cm.\n- **Repeated doubling**: Each new thickness is 2 times the previous thickness.\n- **Power notation**: The repeated factor 2 is written compactly as 2ⁿ.\n- **Rapid growth**: After 30 folds the model gives about 10.7 km.\n\n## Worked example\nQuestion: Using the chapter model, express the paper thickness after 10 folds.\n\nSolution:\n- Step 1: Start with 0.001 cm.\n- Step 2: Ten folds multiply the thickness by 2 ten times.\n- Step 3: Write the model: 0.001 × 2¹⁰ cm.\n- Step 4: Calculate 2¹⁰ = 1024.\n- Step 5: Multiply: 0.001 × 1024 = 1.024 cm.\n- Final answer: The thickness after 10 folds is 1.024 cm.\n\n## Common mistake\nDo not multiply 0.001 by 10. Ten folds mean ten doublings, so the factor is 2¹⁰, not 10.\n\n## Quick check question\nQuestion: What is the multiplier after 17 folds?\nAnswer: 2¹⁷.\nExplanation: Each fold contributes one factor of 2, so 17 folds give 2 multiplied by itself 17 times.\n\n## Summary\n- Repeated multiplication is written with powers.\n- The exponent counts the number of repeated factors.\n- Doubling produces exponential growth.",
+    "Core explanation": "# Core explanation: Chapter 2: Power Play\n\n## What you will learn\nYou will compare linear and exponential growth and learn the vocabulary of powers. You will understand why the same number of steps can produce very different outcomes.\n\n## Simple explanation\nLinear growth repeatedly adds a fixed amount. Exponential growth repeatedly multiplies by a fixed factor.\n\n## Step-by-step breakdown\n- **Linear model**: The imagined ladder adds 20 cm for each step.\n- **Exponential model**: The paper thickness is multiplied by 2 at each fold.\n- **Base**: The repeated factor is the base.\n- **Exponent**: The number of repeated factors is the exponent.\n- **Comparison**: The chapter contrasts 1,92,20,00,000 ladder steps with only 46 paper-fold doublings in the mathematical model.\n\n## Worked example\nQuestion: Why is the ladder-to-the-Moon model linear while the paper-folding model is exponential?\n\nSolution:\n- Step 1: In the ladder model, every new step adds the same 20 cm.\n- Step 2: After n steps, the gain is 20n cm, which is repeated addition.\n- Step 3: In the paper model, each fold multiplies the current thickness by 2.\n- Step 4: After n folds, the multiplier is 2ⁿ, which is repeated multiplication.\n- Final answer: The ladder shows linear additive growth; paper folding shows exponential multiplicative growth.\n\n## Common mistake\nDo not decide from the size of the final answer. The operation repeated at each stage—addition or multiplication—determines the type of growth.\n\n## Quick check question\nQuestion: A quantity changes 5, 10, 15, 20, ... . Is this linear or exponential growth?\nAnswer: Linear growth.\nExplanation: The same amount, 5, is added at every step.\n\n## Summary\n- Linear growth has a constant difference.\n- Exponential growth has a constant multiplying factor.\n- Powers compactly describe repeated multiplication.",
+    "Worked examples": "# Worked examples: Chapter 2: Power Play\n\n## What you will learn\nYou will apply the laws of exponents with complete working. You will also see how zero and negative exponents extend the same patterns.\n\n## Simple explanation\nExponent laws shorten products and quotients that have the same base. They follow from counting repeated factors.\n\n## Step-by-step breakdown\n- **Product rule**: aᵐ × aⁿ = aᵐ⁺ⁿ.\n- **Quotient rule**: aᵐ ÷ aⁿ = aᵐ⁻ⁿ for a ≠ 0.\n- **Power rule**: (aᵐ)ⁿ = aᵐⁿ.\n- **Same exponent**: aⁿbⁿ = (ab)ⁿ and aⁿ ÷ bⁿ = (a/b)ⁿ.\n- **Zero exponent**: a⁰ = 1 for a ≠ 0.\n- **Negative exponent**: a⁻ⁿ = 1/aⁿ for a ≠ 0.\n\n## Worked example\nQuestion: Simplify 2⁵ × 2³ ÷ 2⁴.\n\nSolution:\n- Step 1: Combine the product with the same base: 2⁵ × 2³ = 2⁵⁺³ = 2⁸.\n- Step 2: Divide powers with the same base: 2⁸ ÷ 2⁴ = 2⁸⁻⁴.\n- Step 3: Simplify the exponent: 2⁴.\n- Step 4: Calculate if required: 2⁴ = 16.\n- Final answer: 2⁵ × 2³ ÷ 2⁴ = 2⁴ = 16.\n\n## Common mistake\nDo not add or subtract the bases. The rules change the exponents only when the bases are the same.\n\n## Quick check question\nQuestion: Simplify (3²)⁴.\nAnswer: 3⁸.\nExplanation: A power raised to a power multiplies the exponents: (3²)⁴ = 3²ˣ⁴ = 3⁸.\n\n## Summary\n- Add exponents when multiplying equal bases.\n- Subtract exponents when dividing equal bases.\n- Multiply exponents for a power of a power.\n- Negative exponents represent reciprocals.",
+    "Exam-style problems": "# Exam-style problems: Chapter 2: Power Play\n\n## What you will learn\nYou will represent large numbers with powers of 10 and scientific notation. You will check whether a notation is in standard form.\n\n## Simple explanation\nScientific notation writes a nonzero number as x × 10ⁿ, where 1 ≤ x < 10 and n is an integer.\n\n## Step-by-step breakdown\n- **Place-value shift**: Moving the decimal left makes the leading number smaller and increases the exponent.\n- **Positive exponent**: Used for numbers greater than or equal to 10.\n- **Negative exponent**: Used for positive numbers less than 1.\n- **Standard coefficient**: There must be exactly one nonzero digit before the decimal point.\n- **Comparison**: For positive numbers in standard form, first compare the powers of 10.\n\n## Worked example\nQuestion: Write 308100000 in standard scientific notation.\n\nSolution:\n- Step 1: Place the decimal after the first nonzero digit: 3.081.\n- Step 2: Count how many places the decimal moved left: 8 places.\n- Step 3: Multiply by 10⁸ to preserve the value.\n- Step 4: Check the coefficient: 1 ≤ 3.081 < 10.\n- Final answer: 308100000 = 3.081 × 10⁸.\n\n## Common mistake\nDo not write 30.81 × 10⁷ as the final standard form. It has the correct value, but 30.81 is not between 1 and 10.\n\n## Quick check question\nQuestion: Is 0.72 × 10⁶ in standard scientific notation?\nAnswer: No.\nExplanation: The coefficient must be at least 1. It should be rewritten as 7.2 × 10⁵.\n\n## Summary\n- Scientific notation combines a coefficient and a power of 10.\n- The coefficient is at least 1 and less than 10.\n- The exponent records the decimal-point movement.",
+    "Revision and recap": "# Revision and recap: Chapter 2: Power Play\n\n## What you will learn\nYou will combine growth, exponent laws, scientific notation and mathematical modelling. You will also practise stating assumptions clearly.\n\n## Simple explanation\nThe chapter uses thought experiments to build number sense. A model is useful only when its assumptions, units and repeated operation are clear.\n\n## Step-by-step breakdown\n- **Guess first**: An instinctive estimate gives a scale against which the calculation can be checked.\n- **Model**: Translate the situation into repeated addition, multiplication or powers.\n- **Assumptions**: State quantities such as initial thickness or step size.\n- **Units**: Convert units before comparing or calculating.\n- **Reasonableness**: Compare the result with a familiar landmark or quantity.\n- **Notation**: Use powers and scientific notation to communicate large values efficiently.\n\n## Worked example\nQuestion: The paper has initial thickness 0.001 cm. Give a model for its thickness after 46 folds and explain what each part means.\n\nSolution:\n- Step 1: The initial thickness is 0.001 cm.\n- Step 2: Each fold doubles the thickness, contributing a factor of 2.\n- Step 3: Forty-six folds contribute 46 factors of 2, written 2⁴⁶.\n- Step 4: Therefore the model is T = 0.001 × 2⁴⁶ cm.\n- Final answer: T = 0.001 × 2⁴⁶ cm; 0.001 is the starting thickness, 2 is the growth factor and 46 is the number of folds.\n\n## Common mistake\nDo not present a huge calculated value without its unit or assumptions. A modelling answer must say what was assumed and what the variables mean.\n\n## Quick check question\nQuestion: What is n⁰ for nonzero n?\nAnswer: 1.\nExplanation: Using nᵐ ÷ nᵐ = nᵐ⁻ᵐ = n⁰ and also nᵐ ÷ nᵐ = 1 shows that n⁰ = 1.\n\n## Summary\n- Exponential growth is multiplicative.\n- Exponent laws follow repeated-factor reasoning.\n- Scientific notation expresses large and small numbers compactly.\n- Good models state assumptions and units."
+  }
+}

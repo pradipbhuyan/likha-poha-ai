@@ -1,0 +1,109 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Maths",
+    "chapter": "Chapter 1: Geometric Twins",
+    "central_question": "Which measurements guarantee that figures or triangles have exactly the same shape and size, and what geometric facts can be proved from congruence?",
+    "in_scope_units": [
+      "1.1 Geometric Twins: defining congruent figures through exact shape and size, superimposition, rotation and reflection.",
+      "1.2 Congruence of Triangles—Measuring the Sidelengths: establishing the SSS condition.",
+      "Conventions to Express Congruence: matching corresponding vertices, sides and angles and writing triangle names in the correct order.",
+      "Measuring the Angles: showing that equal angles alone do not guarantee congruence.",
+      "Measuring Two Sides and the Included Angle: establishing the SAS condition.",
+      "Measuring Two Sides and a Non-included Angle: demonstrating that SSA does not generally guarantee congruence.",
+      "Two Angles and the Included Side and Measuring Two Angles and a Non-Included Side: establishing ASA and AAS.",
+      "Measuring Two Sides in a Right Triangle: establishing the RHS condition using a right angle, hypotenuse and one side.",
+      "Conditions that are Sufficient to Guarantee Congruence: summarising SSS, SAS, ASA, AAS and RHS.",
+      "1.3 Angles of Isosceles and Equilateral Triangles: using congruence to prove equal base angles and 60° angles in an equilateral triangle.",
+      "Congruent Triangles in Real Life and final Figure it Out: applying congruence to structures, parallel lines, squares, circles and missing angles."
+    ],
+    "banned_topics": [
+      "Similarity criteria and scale factors.",
+      "Triangle construction existence and triangle inequality.",
+      "Area-based congruence claims.",
+      "Pythagoras theorem.",
+      "Formal coordinate proofs."
+    ],
+    "must_include_keywords": [
+      "congruent",
+      "same shape and size",
+      "superimpose",
+      "trace",
+      "rotate",
+      "flip",
+      "corresponding vertices",
+      "corresponding sides",
+      "corresponding angles",
+      "congruence symbol",
+      "SSS",
+      "SAS",
+      "included angle",
+      "SSA",
+      "non-included angle",
+      "ASA",
+      "included side",
+      "AAS",
+      "RHS",
+      "right angle",
+      "hypotenuse",
+      "common side",
+      "midpoint",
+      "vertically opposite angles",
+      "rectangle",
+      "square",
+      "isosceles triangle",
+      "altitude",
+      "angles opposite equal sides",
+      "equilateral triangle",
+      "60°",
+      "real-life designs",
+      "Louvre Museum",
+      "Pyramid of Giza",
+      "rangoli",
+      "Howrah Bridge"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Figures are congruent if they have the same shape, even when their sizes differ.",
+        "correction": "Congruent figures must have both the same shape and the same size."
+      },
+      {
+        "claim": "A rotated or reflected copy is not congruent to the original.",
+        "correction": "Rotation and flipping are allowed before superimposition; the figures remain congruent."
+      },
+      {
+        "claim": "The order of vertices in a congruence statement does not matter.",
+        "correction": "The order must match corresponding vertices, sides and angles."
+      },
+      {
+        "claim": "Three equal angles guarantee triangle congruence.",
+        "correction": "Triangles can have the same three angles but different sizes, so angle equality alone is insufficient."
+      },
+      {
+        "claim": "SSA always guarantees congruence.",
+        "correction": "Two sides and a non-included angle can produce two non-congruent triangles."
+      },
+      {
+        "claim": "RHS means any two sides of right triangles are enough.",
+        "correction": "RHS requires equal right angles, equal hypotenuses and one corresponding equal side."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the signboard symbol AB = 4 cm, BC = 8 cm and ∠ABC = 80° to introduce exact replication and congruence.",
+      "Use the 4 cm, 6 cm, 8 cm triangle construction to motivate SSS.",
+      "Use rectangle ABCD with diagonal BD to practise SSS and correct correspondence.",
+      "Use the 6 cm, 5 cm, 30° example for SAS and the 6 cm, 4 cm, 30° construction to show the SSA ambiguity.",
+      "Use the 35°, 75°, 4 cm example to derive AAS from ASA.",
+      "Use the right-triangle construction with side 4 cm and hypotenuse 5 cm for RHS.",
+      "Conclude with the isosceles-triangle proof and final Figure it Out Questions 1–6."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The concluding 'Figure it Out' exercise on pages 20–21 contains Questions 1–6, followed by the summary and the 'Expression Engineer!' congruent-region activity."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 9: Geometric Twins\n\n## What you will learn\nYou will understand what congruent figures are and how to test exact sameness. You will see why measurements must fix both shape and size.\n\n## Simple explanation\nTwo figures are congruent when one can fit exactly over the other after moving, rotating or flipping it. Looking similar is not enough; all corresponding measurements must agree.\n\n## Step-by-step breakdown\n- **Signboard problem**: Arm lengths AB = 4 cm and BC = 8 cm alone permit different angles and therefore different shapes.\n- **Fixing the angle**: Adding ∠ABC = 80° fixes the open symbol's shape and size.\n- **Definition**: Congruent figures are exact copies with the same shape and size.\n- **Superimposition**: Tracing or using a cutout can test whether one figure fits exactly over another.\n- **Allowed movements**: Translation, rotation and reflection do not change congruence.\n- **Circles**: Two circles are congruent when their radii are equal.\n- **Rectangles**: Two rectangles are congruent when their corresponding length and breadth are equal.\n\n## Worked example\nQuestion: Section 1.1 signboard activity: Are AB = 4 cm and BC = 8 cm enough to recreate the symbol exactly? What additional measure is used?\n\nSolution:\n- Step 1: Draw two arms of lengths 4 cm and 8 cm with different angles between them.\n- Step 2: These figures have the same arm lengths but different shapes.\n- Step 3: Therefore the two lengths alone are not sufficient.\n- Step 4: The included angle ∠ABC is also required; the chapter uses 80°.\n- Final answer: AB = 4 cm, BC = 8 cm and ∠ABC = 80° fix the exact replica.\n\n## Common mistake\nDo not judge congruence only from appearance. A drawing can look similar while having a different size or angle.\n\n## Quick check question\nQuestion: Can a reflected copy of a figure be congruent to the original?\nAnswer: Yes.\nExplanation: A figure may be flipped before superimposition; if it then fits exactly, the figures are congruent.\n\n## Summary\n- Congruence requires equal shape and size.\n- Measurements must remove all possible variation.\n- Superimposition is a direct test.\n- Rotation and reflection preserve congruence.\n- Length alone may not fix an open figure.",
+    "Core explanation": "# Core explanation: Chapter 9: Geometric Twins\n\n## What you will learn\nYou will establish triangle congruence using three side lengths. You will write congruence statements with correct corresponding order.\n\n## Simple explanation\nA triangle's three side lengths fix its shape and size. However, a congruence statement is meaningful only when the first, second and third vertices match their true corresponding vertices.\n\n## Step-by-step breakdown\n- **SSS condition**: If three sides of one triangle equal the three corresponding sides of another, the triangles are congruent.\n- **Two arc intersections**: The two constructed triangles above and below a base are mirror copies and therefore congruent.\n- **Correspondence**: In ΔABC ≅ ΔXYZ, A ↔ X, B ↔ Y and C ↔ Z.\n- **Corresponding sides**: AB ↔ XY, BC ↔ YZ and AC ↔ XZ.\n- **Corresponding angles**: ∠A = ∠X, ∠B = ∠Y and ∠C = ∠Z.\n- **Correct renaming**: If ΔABC ≅ ΔXYZ, then ΔACB ≅ ΔXZY is also correct.\n- **Common side**: A shared side such as BD in two triangles equals itself.\n\n## Worked example\nQuestion: Fig. 1.1: In rectangle ABCD with diagonal BD, prove the two triangles are congruent and write the correct correspondence.\n\nSolution:\n- Step 1: In a rectangle, AB = CD and AD = CB.\n- Step 2: BD is common to ΔABD and ΔCDB.\n- Step 3: Thus the three side pairs are AB ↔ CD, AD ↔ CB and BD ↔ DB.\n- Step 4: The correct vertex matching is A ↔ C, B ↔ D and D ↔ B.\n- Final answer: By SSS, ΔABD ≅ ΔCDB.\n\n## Common mistake\nDo not match vertices because they occupy similar-looking positions on the page. Match them from equal side pairs.\n\n## Quick check question\nQuestion: If ΔHEN ≅ ΔBIG, which vertex corresponds to E?\nAnswer: I.\nExplanation: The second vertex in the first name corresponds to the second vertex in the second name.\n\n## Summary\n- SSS uses three equal side pairs.\n- A common side can supply one pair.\n- Vertex order records correspondence.\n- Correct naming determines corresponding angles and sides.\n- Mirror-image triangles can be congruent.",
+    "Worked examples": "# Worked examples: Chapter 9: Geometric Twins\n\n## What you will learn\nYou will compare SAS with the ambiguous SSA case and learn the ASA and AAS conditions. You will recognise which combinations of sides and angles fix one triangle.\n\n## Simple explanation\nThe position of a given angle matters. An angle between two known sides fixes their opening, while a non-included angle may allow two different third vertices.\n\n## Step-by-step breakdown\n- **SAS**: Two corresponding sides and the included angle guarantee congruence.\n- **Included angle example**: AB = XY = 6 cm, AC = XZ = 5 cm and ∠A = ∠X = 30° give congruent triangles.\n- **SSA ambiguity**: With sides 6 cm and 4 cm and a non-included 30° angle, an arc can cut a ray at two points.\n- **Angles alone**: 30°, 70° and 80° can form triangles of different sizes.\n- **ASA**: Two equal angles and the included equal side guarantee congruence.\n- **AAS**: Two equal angles and a corresponding non-included side also guarantee congruence because the third angles are equal.\n- **Angle sum support**: For 35° and 75°, the third angle is 70° in both triangles.\n\n## Worked example\nQuestion: Fig. 1.2: Given ∠A = ∠X = 35°, ∠C = ∠Z = 75° and BC = YZ = 4 cm, prove ΔABC ≅ ΔXYZ.\n\nSolution:\n- Step 1: Use the triangle angle sum: ∠B = 180° − 35° − 75° = 70°.\n- Step 2: Similarly, ∠Y = 70°.\n- Step 3: Now ∠B = ∠Y, BC = YZ and ∠C = ∠Z.\n- Step 4: These are two angles and the included side.\n- Final answer: By ASA, ΔABC ≅ ΔXYZ; the original data is also described as AAS.\n\n## Common mistake\nDo not call an angle included unless it lies between the two given sides, or call a side included unless it joins the two given angles.\n\n## Quick check question\nQuestion: Does SSA always guarantee congruence?\nAnswer: No.\nExplanation: The chapter's 6 cm, 4 cm and 30° construction gives two different third vertices and two non-congruent triangles.\n\n## Summary\n- SAS requires an included angle.\n- SSA is generally ambiguous.\n- Three angles alone do not fix size.\n- ASA uses an included side.\n- AAS also guarantees congruence.",
+    "Exam-style problems": "# Exam-style problems: Chapter 9: Geometric Twins\n\n## What you will learn\nYou will use RHS and other congruence criteria to prove unknown sides or angles equal. You will identify corresponding parts after proving triangles congruent.\n\n## Simple explanation\nIn right triangles, the right angle is already fixed. Equal hypotenuses and one equal corresponding side are enough to determine congruence.\n\n## Step-by-step breakdown\n- **Hypotenuse**: The side opposite the right angle is the hypotenuse.\n- **RHS condition**: Equal right angles, hypotenuses and one side guarantee congruence.\n- **Construction example**: A right triangle with one side 4 cm and hypotenuse 5 cm has only congruent reflected possibilities.\n- **Midpoint example**: AO = OD and BO = OC, while ∠AOB = ∠DOC as vertically opposite angles.\n- **SAS conclusion**: These facts give ΔAOB ≅ ΔDOC and therefore AB = DC.\n- **CPCT idea**: Once congruence is established, corresponding sides and angles are equal.\n- **Sufficient criteria**: The chapter lists SSS, SAS, ASA, AAS and RHS.\n\n## Worked example\nQuestion: Midpoint example: O is the midpoint of AD and BC. Prove AB = CD.\n\nSolution:\n- Step 1: AO = OD because O is the midpoint of AD.\n- Step 2: BO = OC because O is the midpoint of BC.\n- Step 3: ∠AOB = ∠DOC because they are vertically opposite angles.\n- Step 4: The equal angle is included between the equal side pairs.\n- Step 5: By SAS, ΔAOB ≅ ΔDOC.\n- Final answer: AB and DC are corresponding sides, so AB = DC.\n\n## Common mistake\nDo not use RHS unless the equal longest side is the hypotenuse opposite the right angle.\n\n## Quick check question\nQuestion: Name all five sufficient congruence conditions in the chapter.\nAnswer: SSS, SAS, ASA, AAS and RHS.\nExplanation: Each listed condition fixes enough corresponding measurements to guarantee equal shape and size.\n\n## Summary\n- RHS is specific to right triangles.\n- The hypotenuse lies opposite 90°.\n- Midpoints provide equal side segments.\n- Vertically opposite angles are equal.\n- Corresponding parts are used after proving congruence.",
+    "Revision and recap": "# Revision and recap: Chapter 9: Geometric Twins\n\n## What you will learn\nYou will use congruence to prove properties of isosceles and equilateral triangles. You will also connect congruent triangles with structures and designs.\n\n## Simple explanation\nCongruence can turn equal sides into equal angles. Splitting a symmetric triangle into two right triangles provides a pair that can be proved congruent.\n\n## Step-by-step breakdown\n- **Isosceles setup**: In ΔABC, AB = AC and altitude AD is perpendicular to BC.\n- **RHS proof**: ΔADB and ΔADC have equal hypotenuses AB and AC, common side AD and right angles at D.\n- **Base angles**: Therefore ∠B = ∠C as corresponding angles of congruent triangles.\n- **Given apex angle**: If ∠A = 80°, then the other two equal angles total 100°, so each is 50°.\n- **Equilateral triangle**: All three side pairs are equal, so all three angles are equal.\n- **Angle measure**: Three equal angles total 180°, making each 60°.\n- **Real-life patterns**: The chapter points to congruent triangles in the Louvre, Pyramid of Giza, dome and rangoli designs and Howrah Bridge.\n\n## Worked example\nQuestion: Section 1.3: In isosceles ΔABC, AB = AC and ∠A = 80°. Find ∠B and ∠C.\n\nSolution:\n- Step 1: Construct altitude AD to BC.\n- Step 2: By RHS, ΔADB ≅ ΔADC, so ∠B = ∠C.\n- Step 3: Use the angle sum: ∠B + ∠C = 180° − 80° = 100°.\n- Step 4: Because they are equal, each is 100° ÷ 2 = 50°.\n- Final answer: ∠B = ∠C = 50°.\n\n## Common mistake\nDo not assume equal-looking base angles without a reason. Use equal sides and congruence, or the established isosceles-triangle property.\n\n## Quick check question\nQuestion: What is the measure of every angle in an equilateral triangle?\nAnswer: 60°.\nExplanation: All three angles are equal and their sum is 180°, so each is 180° ÷ 3 = 60°.\n\n## Summary\n- Angles opposite equal sides are equal.\n- RHS proves the two halves of an isosceles triangle congruent.\n- An apex angle of 80° gives base angles of 50°.\n- Every equilateral-triangle angle is 60°.\n- Congruent triangles appear in many designs and structures."
+  }
+}

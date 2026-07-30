@@ -162,8 +162,21 @@ def parse_sections(markdown: str) -> list[dict]:
 
 
 def classify_section(title: str) -> str:
-    """Map a section title to a block category — port of getSectionType."""
-    t = (title or "").lower()
+    """Map a section title to a block category — port of getSectionType().
+
+    Hindi patterns mirror the frontend's LessonSections.jsx getSectionType()
+    (see scripts/prepare_gpt55_prompts.py HEADING_SETS["hi"]:
+    आप क्या सीखेंगे, सरल व्याख्या, चरण-दर-चरण विवरण, हल किया गया उदाहरण,
+    सामान्य भूल, शीघ्र जाँच प्रश्न, सारांश). Without these, every Hindi
+    "check" section (शीघ्र जाँच प्रश्न) fell through to the generic
+    "concept" classification, which meant parse_freetext_qa() never ran
+    for Hindi Quick check questions — the whole "Question: ... Answer:
+    ... Explanation: ..." text rendered as one unbroken sentence instead
+    of parsing into a proper FreeTextQABlock with each part on its own
+    line. Confirmed live for every Grade 10 Hindi chapter (user-reported
+    screenshot)."""
+    title = title or ""
+    t = title.lower()
     if "new words" in t or "vocabulary" in t:
         return "vocab"
     if any(k in t for k in ("what you will learn", "introduction", "overview", "context", "what we learn")):
@@ -180,6 +193,20 @@ def classify_section(title: str) -> str:
         return "concept"
     if "question" in t or "practice" in t:
         return "check"
+    # Hindi patterns (checked against the ORIGINAL-case title — Devanagari
+    # has no case folding, so this uses `title`, not the lowercased `t`).
+    if "आप क्या सीखेंगे" in title or "परिचय" in title:
+        return "intro"
+    if "सरल व्याख्या" in title or "मुख्य व्याख्या" in title or "विवरण" in title:
+        return "concept"
+    if "हल किया गया उदाहरण" in title or "उदाहरण" in title:
+        return "example"
+    if "सामान्य भूल" in title or "भूल" in title or "चेतावनी" in title:
+        return "warning"
+    if "जाँच प्रश्न" in title or "अभ्यास प्रश्न" in title or "प्रश्न" in title:
+        return "check"
+    if "सारांश" in title or "पुनरावलोकन" in title:
+        return "summary"
     return "concept"
 
 

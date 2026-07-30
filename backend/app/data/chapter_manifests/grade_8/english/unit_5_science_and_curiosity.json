@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 8",
+  "subject": "English",
+  "chapter": "Unit 5: Science and Curiosity",
+  "central_question": "How do curiosity, observation, persistence, and creative scientific thinking reveal hidden worlds, solve unexpected problems, and open paths for others?",
+  "in_scope_units": [
+    "Pre-reading activities on feathered and furry companions, animals in space, and vocabulary linked to rules, blending, admission, and diet.",
+    "Feathered Friend by Arthur C. Clarke—Sven Olsen’s canary Claribel, construction in free fall, adaptation to zero gravity, a failing air system, the canary’s warning, and humorous science fiction.",
+    "Language and communication linked to Feathered Friend—adjective collocations, merged words, future-time references, listening to a Martian conversation, silent letters, asking for suggestions, article writing on the internet, canaries in mines, astronauts’ routines, animals sensing calamities, Salim Ali, and bird-feeder construction.",
+    "Magnifying Glass by Walter de la Mare—the hidden complexity of chalk, moss, water, spiders, flies, and the moon, presented through wonder, visual imagery, simile, metaphor, personification, alliteration, quatrains, and ABCB rhyme.",
+    "Language and communication linked to Magnifying Glass—vocabulary, collective nouns, eye idioms, -ish adjectives, listening on Indian inventions, /v/ and /f/ pronunciation, speaking about space and invention, conversation writing, low-vision aids, telescopes, observatories, ancient Indian astronomers, and Jantar Mantar.",
+    "Bibha Chowdhuri—the Beam of Light that Lit the Path for Women in Indian Science—barriers to women in STEM, cosmic-ray research, pi-mesons, Manchester, TIFR, overlooked achievement, later recognition, and the link to women leading modern ISRO missions.",
+    "Language and communication linked to Bibha Chowdhuri—antonyms, scientific and social vocabulary, suffixes, acronyms, clipping, active and passive voice, experiment and mission reports, listening on artificial intelligence, a panel discussion on mobile phones, a science-exhibition report, augmented and virtual reality, science awards, and women pioneers."
+  ],
+  "banned_topics": [
+    "Technical astrophysics, particle physics, or space-station engineering beyond what the unit explicitly explains.",
+    "Medical or safety advice about gas exposure beyond the story and the canary-in-the-coal-mine exploration note.",
+    "Biographical or scientific claims about Bibha Chowdhuri and other scientists not included in the text.",
+    "A complete history of astronomy, artificial intelligence, or Indian scientific institutions."
+  ],
+  "must_include_keywords": [
+    "Sven Olsen",
+    "Claribel",
+    "canary",
+    "space station",
+    "free fall",
+    "zero gravity",
+    "air purifier",
+    "alarm circuit",
+    "oxygen",
+    "canary in the coal mine",
+    "science fiction",
+    "humour",
+    "Magnifying Glass",
+    "Walter de la Mare",
+    "myriad shells",
+    "moss forest",
+    "spinnerets",
+    "visual imagery",
+    "simile",
+    "metaphor",
+    "personification",
+    "ABCB rhyme",
+    "Bibha Chowdhuri",
+    "cosmic rays",
+    "pi-mesons",
+    "Patrick M. S. Blackett",
+    "TIFR",
+    "Homi J. Bhabha",
+    "star Bibha",
+    "Ritu Karidhal Srivastava",
+    "women in STEM",
+    "future-time reference",
+    "merged words",
+    "passive voice",
+    "acronyms",
+    "clipping",
+    "AR",
+    "VR",
+    "science exhibition report",
+    "curiosity"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Claribel is brought aboard as part of an official space-station experiment.",
+      "correction": "Sven secretly brings her from Earth, partly out of scientific curiosity, and the crew later adopts her as a general pet."
+    },
+    {
+      "claim": "Claribel dies, and her condition has no connection with the crew.",
+      "correction": "She revives with oxygen, faints again, and alerts the narrator that the station air is unsafe."
+    },
+    {
+      "claim": "The station’s duplicate alarm circuits both function correctly.",
+      "correction": "The air purifier freezes during an eclipse, the single connected alarm fails, and the second alarm circuit has not yet been connected."
+    },
+    {
+      "claim": "The magic in Magnifying Glass is supernatural.",
+      "correction": "The ‘magic’ is the instrument’s ability to reveal tiny structures and make ordinary objects appear marvellous through close observation."
+    },
+    {
+      "claim": "Bibha Chowdhuri received a Nobel Prize in 1950.",
+      "correction": "Erwin Schrödinger nominated her for a Nobel Prize, but the nomination was unsuccessful."
+    },
+    {
+      "claim": "Bibha Chowdhuri received many awards during her lifetime.",
+      "correction": "The text states that she received no awards during her lifetime, although later a star was named Bibha and a chair professorship was declared in her name."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Let us discuss and Let us think and reflect after Feathered Friend to trace Claribel’s adaptation, collapse, revival, and warning role.",
+    "Use NCERT Let us think and reflect II.5–6 after Feathered Friend to analyse uncertainty in space and the writer’s humorous treatment of science fiction.",
+    "Use NCERT Let us discuss II–V and Let us think and reflect after Magnifying Glass to study central idea, quatrains, ABCB rhyme, imagery, simile, metaphor, personification, and the shift to the moon.",
+    "Use NCERT Let us discuss and Let us think and reflect after Bibha Chowdhuri to arrange her career, explain her pioneering role, and analyse the ‘beam of light’ symbol.",
+    "Conclude with NCERT Let us learn on future-time forms, merged words, suffixes, acronyms, clipping, and passive voice, followed by article, conversation, panel-discussion, and science-report tasks."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit’s exercises appear after each selection under Let us discuss, Let us think and reflect, Let us learn, Let us listen, Let us speak, Let us write, and Let us explore.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

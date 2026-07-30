@@ -1,0 +1,84 @@
+{
+  "manifest": {
+    "grade": "Grade 6",
+    "subject": "Maths",
+    "chapter": "Chapter 2 Lines and Angles",
+    "central_question": "How can we describe, compare, measure, draw, and classify the basic objects of plane geometry?",
+    "in_scope_units": [
+      "2.1 Point",
+      "2.2 Line Segment",
+      "2.3 Line",
+      "2.4 Ray",
+      "2.5 Angle",
+      "2.6 Comparing Angles",
+      "2.7 Making Rotating Arms",
+      "2.8 Special Types of Angles",
+      "2.9 Measuring Angles",
+      "2.10 Drawing and Estimating Angles",
+      "2.11 Types of Angles by Degree Measure"
+    ],
+    "banned_topics": [
+      "Triangle congruence tests",
+      "Parallel-line angle theorems",
+      "Area calculations"
+    ],
+    "must_include_keywords": [
+      "point",
+      "line segment",
+      "endpoints",
+      "line",
+      "ray",
+      "starting point",
+      "angle",
+      "vertex",
+      "arms",
+      "rotation",
+      "superimposition",
+      "straight angle",
+      "right angle",
+      "perpendicular lines",
+      "acute angle",
+      "obtuse angle",
+      "reflex angle",
+      "full turn",
+      "half turn",
+      "quarter turn",
+      "degree",
+      "protractor",
+      "inner scale",
+      "outer scale",
+      "angle bisector",
+      "paper folding",
+      "clock angles"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Longer arms make a larger angle.",
+        "correction": "Angle size depends on the amount of turn, not arm length."
+      },
+      {
+        "claim": "Ray OA can always be renamed AO.",
+        "correction": "The first letter names the starting point, so the rays differ."
+      },
+      {
+        "claim": "Every angle at P can be called ∠P.",
+        "correction": "Use three letters when more than one angle has vertex P."
+      }
+    ],
+    "recommended_example_progression": [
+      "Name points, segments, rays, and angles in Sections 2.1–2.5.",
+      "Compare angles by superimposition in Section 2.6.",
+      "Obtain right angles through folding in Section 2.8.",
+      "Measure with unlabelled and labelled protractors in Section 2.9.",
+      "Use clock, drawing, and classification tasks in Sections 2.10–2.11."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out and Let's Explore tasks through Sections 2.1–2.11, including the final pages 52–54."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 2 Lines and Angles\n\n## What you will learn\nYou will distinguish points, line segments, lines, and rays and use their notation correctly.\n\n## Simple explanation\nEndpoints and arrowheads tell us how far a geometric object extends.\n\n## Step-by-step breakdown\n- **Point**: A precise location with no length, breadth, or height.\n- **Line segment**: The shortest straight path between two endpoints.\n- **Line**: Extends endlessly in both directions.\n- **Ray**: Has one starting point and extends endlessly in one direction.\n\n## Worked example\nQuestion: From Section 2.4, how many lines pass through one point, and how many pass through two distinct points?\n\nSolution:\n- Step 1: A line through one point can take endlessly many directions.\n- Step 2: Two distinct points determine one straight line.\n- Final answer: Infinitely many through one point; exactly one through two distinct points.\n\n## Common mistake\nA drawn dot is only a model of a point and should not be treated as having size.\n\n## Quick check question\nQuestion: How many endpoints does a line segment have?\nAnswer: Two.\nExplanation: The segment is bounded by its two fixed endpoints.\n\n## Summary\n- Points locate positions.\n- Segments have two endpoints.\n- Lines extend both ways.\n- Rays extend from one start.",
+    "Core explanation": "# Core explanation: Chapter 2 Lines and Angles\n\n## What you will learn\nYou will name angles, identify their vertex and arms, and compare angle sizes.\n\n## Simple explanation\nAn angle is two rays with a common starting point, and its size is an amount of turn.\n\n## Step-by-step breakdown\n- **Vertex**: The common starting point of the rays.\n- **Arms**: The two rays forming the angle.\n- **Notation**: The vertex is the middle letter in a three-letter name.\n- **Superimposition**: Overlap vertices and one arm to compare the other arms.\n\n## Worked example\nQuestion: Why can the displayed ∠APB in Section 2.5 not be labelled simply ∠P?\n\nSolution:\n- Step 1: Several rays begin at P, producing several possible angles.\n- Step 2: The one-letter name does not specify the intended pair of arms.\n- Final answer: Use a three-letter name such as ∠APB, with P in the middle.\n\n## Common mistake\nDo not compare angles by arm length; compare the turn between them.\n\n## Quick check question\nQuestion: In ∠STR, which letter names the vertex?\nAnswer: T.\nExplanation: The vertex is always the middle letter.\n\n## Summary\n- Two rays form an angle.\n- The common endpoint is the vertex.\n- Angle size measures turn.\n- Superimposition compares angles.",
+    "Worked examples": "# Worked examples: Chapter 2 Lines and Angles\n\n## What you will learn\nYou will connect turns with degrees and classify angles.\n\n## Simple explanation\nA full turn is divided into 360 equal degree units, giving standard reference angles.\n\n## Step-by-step breakdown\n- **Full turn**: 360°.\n- **Straight angle**: 180° or half a turn.\n- **Right angle**: 90° or a quarter turn.\n- **Acute**: Greater than 0° and less than 90°.\n- **Obtuse**: Greater than 90° and less than 180°.\n- **Reflex**: Greater than 180° and less than 360°.\n\n## Worked example\nQuestion: From the clock activity, find the smaller angle at 4 o'clock.\n\nSolution:\n- Step 1: A clock has 12 equal gaps, so each is 360°÷12=30°.\n- Step 2: Four gaps give 4×30°=120°.\n- Final answer: 120°, an obtuse angle.\n\n## Common mistake\nBoundary values have their own names: 90° is right and 180° is straight.\n\n## Quick check question\nQuestion: What type of angle is 180°?\nAnswer: A straight angle.\nExplanation: It is exactly half of a full turn.\n\n## Summary\n- 360° is a full turn.\n- 90° and 180° are key references.\n- Degree ranges determine angle types.",
+    "Exam-style problems": "# Exam-style problems: Chapter 2 Lines and Angles\n\n## What you will learn\nYou will measure and construct angles accurately with a protractor.\n\n## Simple explanation\nA semicircular protractor divides a straight angle into 180 one-degree units and has scales for both directions.\n\n## Step-by-step breakdown\n- **Centre**: Place it exactly on the vertex.\n- **Zero line**: Align one arm with 0°.\n- **Scale**: Use the scale beginning at zero on the aligned arm.\n- **Drawing**: Mark the desired degree and join it to the vertex.\n- **Angle bisector**: A fold or line that divides an angle into two equal angles.\n\n## Worked example\nQuestion: Follow the NCERT example to draw ∠TIN=30°.\n\nSolution:\n- Step 1: Draw ray IN and align it with the protractor's 0° line at I.\n- Step 2: Mark T at 30° and draw ray IT.\n- Final answer: ∠TIN=30°, an acute angle.\n\n## Common mistake\nDo not read the scale that begins at 180° on the aligned arm.\n\n## Quick check question\nQuestion: A 90° angle is bisected. What is each part?\nAnswer: 45°.\nExplanation: Bisecting divides the angle into two equal parts.\n\n## Summary\n- Centre on the vertex.\n- Align one arm to zero.\n- Read the correct scale.\n- A bisector makes equal angles.",
+    "Revision and recap": "# Revision and recap: Chapter 2 Lines and Angles\n\n## What you will learn\nYou will combine notation, measurement, construction, classification, and real-life angle contexts.\n\n## Simple explanation\nAccurate geometry depends on labels, reference directions, and exact degree limits.\n\n## Step-by-step breakdown\n- **Identify**: Mark vertex and arms.\n- **Compare**: Use turn or superimposition.\n- **Measure**: Align the protractor correctly.\n- **Classify**: Compare with 90°, 180°, and 360°.\n- **Apply**: Recognise angles in clocks, doors, swings, and slopes.\n\n## Worked example\nQuestion: In the final Let's Explore figure, ∠TER=80° lies in straight angle ∠REB. Find ∠BET.\n\nSolution:\n- Step 1: The adjacent angles total 180°.\n- Step 2: Compute 180°−80°=100°.\n- Final answer: ∠BET=100°, an obtuse angle.\n\n## Common mistake\nDo not classify by appearance when an exact measure is available.\n\n## Quick check question\nQuestion: The Ashoka Chakra has 24 equally spaced spokes. What is the angle between neighbours?\nAnswer: 15°.\nExplanation: 360°÷24=15°.\n\n## Summary\n- Use precise notation.\n- Angle size is turn, not arm length.\n- Protractor alignment matters.\n- Degree measure fixes the classification."
+  }
+}

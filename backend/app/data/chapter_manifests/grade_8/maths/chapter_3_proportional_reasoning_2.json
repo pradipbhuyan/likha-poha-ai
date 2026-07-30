@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 3: Proportional Reasoning-2",
+  "central_question": "How can direct and inverse proportional reasoning be extended to maps, multi-term ratios, pie charts, sharing problems and combined work?",
+  "in_scope_units": [
+    "A recap of proportional ratios and cross multiplication.",
+    "Map scales and representative fractions relating map distances to actual distances.",
+    "Ratios with three or more terms and simplification by a common factor.",
+    "Dividing a quantity in a given multi-term ratio.",
+    "Constructing pie charts by converting category ratios into angles totalling 360 degrees.",
+    "Direct proportion and the Rule of Three.",
+    "Inverse proportion, constant products and recognition from tables.",
+    "Applications involving speed and time, workers and days, pumps and hours, food and students.",
+    "Combined work rates when two people or machines work together."
+  ],
+  "banned_topics": [
+    "Trigonometric scale drawing.",
+    "Probability interpretation of pie charts.",
+    "Algebraic functions and graphs beyond direct and inverse proportional relationships."
+  ],
+  "must_include_keywords": [
+    "ratio",
+    "proportion",
+    "cross multiplication",
+    "equivalent ratios",
+    "scale factor",
+    "map scale",
+    "representative fraction",
+    "actual distance",
+    "map distance",
+    "same units",
+    "multi-term ratio",
+    "HCF",
+    "simplest form",
+    "total parts",
+    "sharing",
+    "pie chart",
+    "central angle",
+    "360 degrees",
+    "direct proportion",
+    "Rule of Three",
+    "inverse proportion",
+    "constant product",
+    "xy = k",
+    "speed",
+    "time",
+    "workers",
+    "days",
+    "pumps",
+    "food provision",
+    "work rate",
+    "combined work",
+    "idli batter",
+    "concrete mixture",
+    "triangle angles",
+    "grade distribution"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Two ratios are proportional when their corresponding terms have the same difference.",
+      "correction": "They are proportional when corresponding terms have the same multiplicative relationship, equivalently when cross products are equal."
+    },
+    {
+      "claim": "A map scale can be used without converting actual and map lengths to compatible units.",
+      "correction": "Both quantities must be expressed in the units required by the representative fraction before calculating."
+    },
+    {
+      "claim": "To divide a whole in ratio 2:3:5, divide the whole by 5.",
+      "correction": "First add the ratio terms; there are 2+3+5=10 total parts."
+    },
+    {
+      "claim": "In inverse proportion, the ratio x/y remains constant.",
+      "correction": "For inverse proportion, the product xy remains constant."
+    },
+    {
+      "claim": "The direct Rule of Three can be used for speed and time over a fixed distance.",
+      "correction": "For a fixed distance, speed and time are inversely proportional: increasing speed decreases time."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Section 3.1's idli ratios 6:3 and 4:2 to verify proportion by cross multiplication.",
+    "Use Section 3.2's map representative fraction example to convert map distance to actual distance.",
+    "Use the concrete-mixture example to divide 110 units in the ratio 2:3:6 or its stated simplified equivalent.",
+    "Use Section 3.5's grade distribution 12:10:8:6:4 to create the five pie-chart angles.",
+    "Use Section 3.6 Example 3 to show that 20 workers for 4 days corresponds to 10 workers for 8 days.",
+    "Use the combined-work example where Ram takes 1 hour and Shyam 1.5 hours."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Figure it Out sets occur after the map and multi-term ratio sections, after pie charts, and throughout the inverse-proportion section, followed by a chapter summary.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

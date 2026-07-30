@@ -200,15 +200,28 @@ BOOK_SOURCES = {
     # folders inside the repo (Grade 7 Maths/Science, Grade 8 all
     # subjects), and ~/Downloads/Class 7 - <Subject>/ for the remaining
     # Grade 7 subjects supplied separately (Hindi, Social Science split
-    # across two physical parts). No Grade 7 English PDF exists locally
-    # anywhere (confirmed via search) and no rag_documents id-gap PDF was
-    # found for it either — that subject is correctly out of scope, same
-    # treatment as Grade 5/6 Computer Science. Grade 8 Science/Maths also
+    # across two physical parts). Grade 8 Science/Maths also
     # have 17-30 supplementary NCERT Exemplar chapters in rag_documents
     # (ids 902-932) that are intentionally OUT of scope for this batch —
     # only the primary textbook chapters are covered here, consistent
     # with how Grade 9 Maths's Exemplar chapters were treated in earlier
     # sessions (not prioritized by default).
+    #
+    # Grade 7 English ("Poorvi") — added later: source PDFs were found
+    # locally at ~/Downloads/English-Class7/ (book code "gepr1",
+    # gepr101.pdf..gepr105.pdf, 5 units — plus a front-matter-only
+    # "gepr1ps.pdf" that is correctly excluded since it has no lesson
+    # content). This book was earlier believed to have no local PDF at
+    # all (see historical note removed above) — that was wrong; the PDFs
+    # existed under a differently-named Downloads folder
+    # ("English-Class7", not "Class 7 - English") that a prior session's
+    # search did not check.
+    ("Grade 7", "English"): {
+        "pdf_dir": Path.home() / "Downloads" / "English-Class7",
+        "book_code": "gepr1",
+        "num_chapters": 5,
+        "subject_class": "humanities_or_language",
+    },
     ("Grade 7", "Maths"): {
         # Physically split into two NCERT volumes with INDEPENDENT
         # chapter numbering (Part 1: gegp101..gegp108, chapters 1-8; Part
@@ -280,6 +293,104 @@ BOOK_SOURCES = {
         "pdf_dir": REPO_ROOT / "RAG DB" / "Class 8" / "Social",
         "book_code": "hees1",
         "num_chapters": 7,
+        "subject_class": "humanities_or_language",
+    },
+    # ── Grade 11 books (added 2026-07-30) ────────────────────────────────
+    # PDFs supplied locally under ~/Downloads/Class 11 - <Subject>/ with
+    # each subject's own NCERT book code + 2-digit chapter numbering.
+    # This is the current (2026-27 reprint) reduced-syllabus NCERT book:
+    # Mathematics has 14 chapters (Sets .. Probability, no separate
+    # "Principle of Mathematical Induction" or "Mathematical Reasoning"
+    # chapters); Physics is split into two physical volumes with
+    # INDEPENDENT-looking but actually CONTINUOUS chapter numbering
+    # (Part 1: Chapter 1 Units and Measurements .. Chapter 7 Gravitation;
+    # Part 2: Chapter 8 Mechanical Properties of Solids .. Chapter 14
+    # Waves — confirmed directly from each PDF's own printed chapter
+    # number, verified via extract_pdf_text on page 1 of every file).
+    # Neither subject's syllabus.py entry has a real chapter list yet
+    # (both show the "Uploaded Chapter Content" placeholder), so both
+    # need a CHAPTER_NAME_OVERRIDES entry below.
+    ("Grade 11", "Mathematics"): {
+        "pdf_dir": Path.home() / "Downloads" / "Class 11 - Maths",
+        "book_code": "kemh1",
+        "num_chapters": 14,
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 11", "Physics"): {
+        # Physically split into two NCERT volumes with CONTINUOUS chapter
+        # numbering (Part 1: keph101..keph107, chapters 1-7; Part 2:
+        # keph201..keph207, chapters 8-14 — NOT restarted numbering like
+        # Grade 7/8's split Maths/Social Science books).
+        "parts": [
+            {"pdf_dir": Path.home() / "Downloads" / "Class 11 - Physics Part 1", "book_code": "keph1", "num_chapters": 7},
+            {"pdf_dir": Path.home() / "Downloads" / "Class 11 - Physics Part 2", "book_code": "keph2", "num_chapters": 7},
+        ],
+        "subject_class": "science_or_maths",
+    },
+    # ── Grade 11 books from OneDrive cbse_ncert_pdfs collection (added
+    # 2026-07-30) ────────────────────────────────────────────────────────
+    # Verified directly against each PDF's own printed chapter/unit
+    # heading (not the older CHAPTER_TITLES catalogue in
+    # scripts/ingest_grade_1112_pdfs.py, which was confirmed STALE for
+    # several of these subjects — e.g. its Grade_11/History list
+    # ("From the Beginning of Time" etc.) does not match these PDFs at
+    # all; the History folder here actually contains "Human Ecology and
+    # Family Sciences" content, a completely different NCERT subject —
+    # left OUT of this config entirely pending the correct History PDFs
+    # being sourced). Sociology has 0 PDFs in this folder (not yet
+    # scraped) and is also left out.
+    ("Grade 11", "Biology"): {
+        "pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Biology",
+        "book_code": "kebo1",
+        "num_chapters": 19,
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 11", "Business Studies"): {
+        "pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Business_Studies",
+        "book_code": "kebs1",
+        "num_chapters": 10,
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 11", "Accountancy"): {
+        # Continuous chapter numbering across two file-name series
+        # (keac101-107 = Chapters 1-7, keac201-202 = Chapters 8-9 —
+        # confirmed directly from each PDF's own printed chapter number).
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Accountancy", "book_code": "keac1", "num_chapters": 7},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Accountancy", "book_code": "keac2", "num_chapters": 2},
+        ],
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 11", "Political Science"): {
+        # Two separate NCERT books, each independently numbered
+        # Chapter 1-8 / 1-10 (confirmed from each PDF's own printed
+        # chapter number/title): "Political Theory" (keps101-108) then
+        # "Indian Constitution at Work" (keps201-210).
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Political_Science", "book_code": "keps1", "num_chapters": 8},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Political_Science", "book_code": "keps2", "num_chapters": 10},
+        ],
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 11", "Economics"): {
+        # Two separate NCERT books, each independently numbered:
+        # "Indian Economic Development" (keec101-108) then "Statistics
+        # for Economics" (kest101-108) — confirmed from each PDF's own
+        # printed content.
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Economics", "book_code": "keec1", "num_chapters": 8},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Economics", "book_code": "kest1", "num_chapters": 8},
+        ],
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 11", "Geography"): {
+        # Two separate NCERT books, each independently numbered:
+        # "Fundamentals of Physical Geography" (kegy101-106) then
+        # "India — Physical Environment" (kegy201-210).
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Geography", "book_code": "kegy1", "num_chapters": 6},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Geography", "book_code": "kegy2", "num_chapters": 10},
+        ],
         "subject_class": "humanities_or_language",
     },
 }
@@ -398,6 +509,19 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
     # exactly (some ids were inserted out of numeric order in the DB —
     # confirmed and corrected via a direct sort-by-chapter-number query,
     # see docs/GPT55_LESSON_UPDATE_STATUS.md for the verification).
+    # Grade 7 English ("Poorvi") — copied verbatim from rag_documents.
+    # chapter (ids 449-453, ordered ascending by id which matches the PDF
+    # unit order gepr101..gepr105 exactly). Note id 452's stored title
+    # ("Chapter Travel and Adventure") differs in format from the other
+    # four ("Unit N: <TITLE>") — this is an existing inconsistency in the
+    # already-uploaded rag_documents row, not something to silently
+    # "fix"/rename here, since the manifest's chapter field must match
+    # this exact string for the dropdown to find the ingested content.
+    ("Grade 7", "English"): [
+        "Unit 1: LEARNING TOGETHER", "Unit 2: WIT AND HUMOUR",
+        "Unit 3: DREAMS AND DISCOVERIES", "Chapter Travel and Adventure",
+        "Unit 5: Bravehearts",
+    ],
     ("Grade 7", "Maths"): [
         # Part 1 (gegp101-108, chapters 1-8)
         "Chapter 1: Large Numbers Around Us", "Chapter 2: Arithmetic Expressions",
@@ -495,6 +619,114 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Chapter 5: Universal Franchise and India’s Electoral System",
         "Chapter 6: The Parliamentary System: Legislature and Executive",
         "Chapter 7: Factors of Production",
+    ],
+    # ── Grade 11 overrides (added 2026-07-30) ────────────────────────────
+    # Copied verbatim from each PDF's own printed chapter title (see
+    # BOOK_SOURCES comment above) since syllabus.py has no real chapter
+    # list for either subject yet.
+    ("Grade 11", "Mathematics"): [
+        "Chapter 1: Sets", "Chapter 2: Relations and Functions",
+        "Chapter 3: Trigonometric Functions",
+        "Chapter 4: Complex Numbers and Quadratic Equations",
+        "Chapter 5: Linear Inequalities",
+        "Chapter 6: Permutations and Combinations",
+        "Chapter 7: Binomial Theorem", "Chapter 8: Sequences and Series",
+        "Chapter 9: Straight Lines", "Chapter 10: Conic Sections",
+        "Chapter 11: Introduction to Three Dimensional Geometry",
+        "Chapter 12: Limits and Derivatives", "Chapter 13: Statistics",
+        "Chapter 14: Probability",
+    ],
+    ("Grade 11", "Physics"): [
+        "Chapter 1: Units and Measurements",
+        "Chapter 2: Motion in a Straight Line", "Chapter 3: Motion in a Plane",
+        "Chapter 4: Laws of Motion", "Chapter 5: Work, Energy and Power",
+        "Chapter 6: Systems of Particles and Rotational Motion",
+        "Chapter 7: Gravitation", "Chapter 8: Mechanical Properties of Solids",
+        "Chapter 9: Mechanical Properties of Fluids",
+        "Chapter 10: Thermal Properties of Matter", "Chapter 11: Thermodynamics",
+        "Chapter 12: Kinetic Theory", "Chapter 13: Oscillations",
+        "Chapter 14: Waves",
+    ],
+    ("Grade 11", "Biology"): [
+        "Chapter 1: The Living World", "Chapter 2: Biological Classification",
+        "Chapter 3: Plant Kingdom", "Chapter 4: Animal Kingdom",
+        "Chapter 5: Morphology of Flowering Plants",
+        "Chapter 6: Anatomy of Flowering Plants",
+        "Chapter 7: Structural Organisation in Animals",
+        "Chapter 8: Cell: The Unit of Life", "Chapter 9: Biomolecules",
+        "Chapter 10: Cell Cycle and Cell Division",
+        "Chapter 11: Transport in Plants", "Chapter 12: Mineral Nutrition",
+        "Chapter 13: Photosynthesis in Higher Plants",
+        "Chapter 14: Respiration in Plants",
+        "Chapter 15: Plant Growth and Development",
+        "Chapter 16: Digestion and Absorption",
+        "Chapter 17: Breathing and Exchange of Gases",
+        "Chapter 18: Body Fluids and Circulation",
+        "Chapter 19: Excretory Products and their Elimination",
+    ],
+    ("Grade 11", "Business Studies"): [
+        "Chapter 1: Business, Trade and Commerce",
+        "Chapter 2: Forms of Business Organisation",
+        "Chapter 3: Private, Public and Global Enterprises",
+        "Chapter 4: Business Services", "Chapter 5: Emerging Modes of Business",
+        "Chapter 6: Social Responsibilities of Business and Business Ethics",
+        "Chapter 7: Formation of a Company",
+        "Chapter 8: Sources of Business Finance",
+        "Chapter 9: MSME and Business Entrepreneurship",
+        "Chapter 10: Internal Trade",
+    ],
+    ("Grade 11", "Accountancy"): [
+        "Chapter 1: Introduction to Accounting",
+        "Chapter 2: Theory Base of Accounting",
+        "Chapter 3: Recording of Transactions-I",
+        "Chapter 4: Recording of Transactions-II",
+        "Chapter 5: Bank Reconciliation Statement",
+        "Chapter 6: Trial Balance and Rectification of Errors",
+        "Chapter 7: Depreciation, Provisions and Reserves",
+        "Chapter 8: Financial Statements - I", "Chapter 9: Financial Statements - II",
+    ],
+    ("Grade 11", "Political Science"): [
+        "Chapter 1: Introduction (Political Theory)",
+        "Chapter 2: Freedom", "Chapter 3: Equality", "Chapter 4: Social Justice",
+        "Chapter 5: Rights", "Chapter 6: Citizenship", "Chapter 7: Nationalism",
+        "Chapter 8: Secularism",
+        "Chapter 1: Constitution: Why and How?",
+        "Chapter 2: Rights in the Indian Constitution",
+        "Chapter 3: Election and Representation", "Chapter 4: Executive",
+        "Chapter 5: Legislature", "Chapter 6: Judiciary", "Chapter 7: Federalism",
+        "Chapter 8: Local Governments",
+        "Chapter 9: Constitution as a Living Document",
+        "Chapter 10: The Philosophy of the Constitution",
+    ],
+    ("Grade 11", "Economics"): [
+        "Chapter 1: Indian Economy on the Eve of Independence",
+        "Chapter 2: Indian Economy 1950-1990",
+        "Chapter 3: Economic Reforms",
+        "Chapter 4: Current Challenges Facing the Indian Economy",
+        "Chapter 5: Rural Development",
+        "Chapter 6: Indian Economic Development: Some Salient Aspects",
+        "Chapter 7: Environment and Sustainable Development",
+        "Chapter 8: Development Experiences of India: A Comparison with Neighbours",
+        "Chapter 1: Introduction to Statistics", "Chapter 2: Collection of Data",
+        "Chapter 3: Organisation of Data", "Chapter 4: Presentation of Data",
+        "Chapter 5: Measures of Central Tendency",
+        "Chapter 6: Measures of Dispersion", "Chapter 7: Index Numbers",
+        "Chapter 8: Use of Statistical Tools",
+    ],
+    ("Grade 11", "Geography"): [
+        "Chapter 1: Introduction (Fundamentals of Physical Geography)",
+        "Chapter 2: Physiography", "Chapter 3: Drainage System in India",
+        "Chapter 4: Climate and Vegetation",
+        "Chapter 5: Natural Vegetation",
+        "Chapter 6: Natural Hazards and Disasters: Causes, Consequences and Management",
+        "Chapter 1: Geography as a Discipline",
+        "Chapter 2: The Earth", "Chapter 3: Landforms",
+        "Chapter 4: Landforms and their Evolution", "Chapter 5: Climate",
+        "Chapter 6: Solar Radiation, Heat Balance and Temperature",
+        "Chapter 7: Atmospheric Circulation and Weather Systems",
+        "Chapter 8: Water in the Atmosphere",
+        "Chapter 9: World Climate and Climate Change",
+        "Chapter 10: Water (Oceans)",
     ],
 }
 
@@ -906,14 +1138,35 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
         content_language_note = ""
 
     # The "Worked example" section's internal structure depends entirely
-    # on subject_class — a numeric Question/Solution/Step-1/Step-2/Final-
-    # answer format is appropriate for Science/Maths, but forcing that
-    # same shape onto literature/language/social-science chapters causes
-    # GPT-5.5 to fabricate pseudo-math (e.g. inventing how many days a
-    # story character spent doing something, then "calculating" it) —
+    # on subject_class — a genuine interpretive/analytical format is
+    # appropriate for Science/Maths, but forcing that same shape onto
+    # literature/language/social-science chapters causes GPT-5.5 to
+    # fabricate pseudo-math (e.g. inventing how many days a story
+    # character spent doing something, then "calculating" it) —
     # confirmed directly from real generated output. Humanities/language
     # chapters instead get a discursive, evidence-based reasoning format
     # with no arithmetic at all.
+    #
+    # Heading word ("Answer:" vs "Solution:") and bullet format: per
+    # direct user request (2026-07-30), Hindi/English/Social Science use
+    # "Answer:" instead of "Solution:" as the heading word, and EVERY
+    # subject's worked-example bullets are plain "- <reasoning text>"
+    # lines with NO "Step N:" label prefix (the numbered-step labelling
+    # read as needlessly mechanical for narrative/discursive reasoning —
+    # the bullet marker alone already conveys sequence). This mirrors the
+    # one-time migration already applied to existing lesson_cache content
+    # (see docs/GPT55_LESSON_UPDATE_STATUS.md) so all NEWLY authored
+    # chapters match the corrected existing ones from the start.
+    # Broadened 2026-07-30 per direct user request: "I want all solution
+    # for Hindi, English and Social Studies and Humanities subjects to be
+    # replaced by Answer" -- this now covers every subject configured with
+    # subject_class="humanities_or_language" in BOOK_SOURCES (Business
+    # Studies, Economics, English, Geography, Hindi, Political Science,
+    # Social Science), not just the original 3-subject list, so any
+    # newly-added humanities subject automatically gets the correct
+    # heading word without needing a separate manual update here.
+    _solution_heading = "Answer" if subject_class == "humanities_or_language" else "Solution"
+
     if subject_class == "humanities_or_language":
         worked_example_format_note = (
             "Question: <a genuine interpretive/analytical question — ideally "
@@ -941,25 +1194,29 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
             "is a general reference to the whole chapter/story (not a "
             "specific numbered extract), the extract-ref block is not "
             "needed.\n\n"
-            "Solution:\n"
-            "- Step 1: <identify the relevant textual evidence — a direct "
-            "quote or specific reference from CHAPTER_PDF_TEXT>\n"
-            "- Step 2: <interpret what that evidence means/shows>\n"
+            f"{_solution_heading}:\n"
+            "- <identify the relevant textual evidence — a direct quote or "
+            "specific reference from CHAPTER_PDF_TEXT>\n"
+            "- <interpret what that evidence means/shows>\n"
             "- Final answer: <the reasoned conclusion, in prose — NEVER a "
             "number derived from invented arithmetic>\n\n"
             "Do NOT invent any quantity (a count, date, duration, age, "
             "distance, etc.) to calculate — every worked example for this "
             "subject must be answered through reasoning and textual evidence, "
-            "not arithmetic."
+            "not arithmetic. Do NOT prefix any bullet with a 'Step N:' label "
+            "— write each bullet as a plain reasoning statement."
         )
     else:
         worked_example_format_note = (
             "Question: <a question that cites a real NCERT activity/example/"
             "exercise number>\n\n"
-            "Solution:\n"
-            "- Step 1: ...\n"
-            "- Step 2: ...\n"
-            "- Final answer: ..."
+            f"{_solution_heading}:\n"
+            "- <first reasoning/calculation step, no 'Step N:' label>\n"
+            "- <next reasoning/calculation step, no 'Step N:' label>\n"
+            "- Final answer: ...\n\n"
+            "Do NOT prefix any bullet with a 'Step N:' label — write each "
+            "bullet as a plain statement of that step's reasoning or "
+            "calculation."
         )
 
     # For single-part books, validate the directory exists up front (as

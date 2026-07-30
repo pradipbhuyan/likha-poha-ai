@@ -1,0 +1,103 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: The Rise of Empires",
+  "central_question": "How did resources, trade, armies, administration and welfare ideas transform kingdoms into empires, especially under the Nandas and Mauryas?",
+  "in_scope_units": [
+    "Pataliputra narrative and What is an Empire?—fortified capital, markets, tributaries and overlordship.",
+    "Features of an empire—army, administration, laws, resources, culture and communication.",
+    "Trade, trade routes and guilds—economic support, traded goods, taxation and shrenis.",
+    "The Rise of Magadha—fertile land, forests, elephants, iron, rivers, Ajatashatru and Nandas.",
+    "The Arrival of the Greeks—Alexander, Porus, satraps, resistance and retreat.",
+    "The Mighty Mauryas—Chandragupta, Kautilya, Greek satraps, Megasthenes and Indika.",
+    "Kautilya’s concept—Arthashastra, saptanga, law, welfare and alliances.",
+    "The King Who Chose Peace—Ashoka, Kalinga, edicts, Prakrit, Brahmi and dhamma.",
+    "Life and contributions—Pataliputra, granaries, artisans, Sarnath capital, stupas and art.",
+    "The Fragile Nature of Empires—tribute, distance, succession, rebellion and crises.",
+    "Questions and activities 1–9—empire features, transition, Mauryas, Kautilya, Ashoka and travel."
+  ],
+  "banned_topics": [
+    "Detailed post-Mauryan and later empires.",
+    "Detailed Buddhist doctrine.",
+    "Modern nations treated as identical to empires.",
+    "Invented ancient travel times."
+  ],
+  "must_include_keywords": [
+    "empire",
+    "emperor",
+    "tributary",
+    "overlordship",
+    "Pataliputra",
+    "army",
+    "administration",
+    "taxes",
+    "trade routes",
+    "guilds",
+    "shrenis",
+    "Magadha",
+    "Ajatashatru",
+    "iron ploughs",
+    "Ganga",
+    "Son",
+    "Mahapadma Nanda",
+    "Dhana Nanda",
+    "Alexander",
+    "Porus",
+    "satrap",
+    "Gymnosophists",
+    "Maurya Empire",
+    "Chandragupta Maurya",
+    "Kautilya",
+    "Arthashastra",
+    "saptanga",
+    "Megasthenes",
+    "Indika",
+    "Ashoka",
+    "Kalinga war",
+    "edicts",
+    "Prakrit",
+    "Brahmi",
+    "dharma",
+    "Devanampiya Piyadasi",
+    "Sarnath capital",
+    "dharmachakra",
+    "stupa",
+    "fragile empires"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An empire is only a kingdom with a larger capital.",
+      "correction": "It is a collection of territories under central authority, often with tributary rulers."
+    },
+    {
+      "claim": "Armies alone kept empires alive.",
+      "correction": "Administration, taxes, trade, resources and communication were also necessary."
+    },
+    {
+      "claim": "Alexander conquered all of India.",
+      "correction": "He reached the northwest and his army refused to advance towards the Ganga."
+    },
+    {
+      "claim": "Kautilya focused only on war.",
+      "correction": "He also addressed welfare, justice, agriculture, administration and alliances."
+    },
+    {
+      "claim": "Ashoka was always peaceful.",
+      "correction": "He fought the Kalinga war before choosing peace."
+    },
+    {
+      "claim": "Large empires are automatically stable.",
+      "correction": "Distance, tribute, weak succession and crises make them fragile."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Questions and activities Q1 to compare empire and kingdom.",
+    "Use Q2 to connect factors behind imperial growth.",
+    "Use Q4 to explain Mauryan importance.",
+    "Use Q5 to analyse Kautilya’s ideas.",
+    "Use Q6 and Q7 to evaluate Ashoka and religious tolerance."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions and activities 1–9.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,69 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 4 Data Handling and Presentation",
+  "central_question": "How can collected information be organised, represented, and interpreted clearly?",
+  "in_scope_units": [
+    "4.1 Collecting and Organising Data — data, categories, tally marks, frequencies, and ordered lists",
+    "4.2 Pictographs — symbols, keys, scales, and partial symbols",
+    "4.3 Bar Graphs — axes, equal-width bars, uniform gaps, suitable scales, and interpretation",
+    "Choosing representations — matching a list, table, pictograph, or graph to the question"
+  ],
+  "banned_topics": [
+    "Mean, median, and mode",
+    "Pie charts",
+    "Probability"
+  ],
+  "must_include_keywords": [
+    "data",
+    "information",
+    "collection",
+    "observation",
+    "category",
+    "table",
+    "tally marks",
+    "groups of five",
+    "frequency",
+    "ascending order",
+    "largest",
+    "smallest",
+    "pictograph",
+    "symbol",
+    "key",
+    "scale",
+    "half symbol",
+    "bar graph",
+    "horizontal axis",
+    "vertical axis",
+    "equal width",
+    "equal spacing",
+    "suitable scale",
+    "title",
+    "label",
+    "interpretation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Category totals always identify the individual students.",
+      "correction": "Frequencies give totals; names require a separate individual record."
+    },
+    {
+      "claim": "One pictograph symbol always means one item.",
+      "correction": "Its value is determined by the key."
+    },
+    {
+      "claim": "Bar widths and gaps may vary freely.",
+      "correction": "Bars should have equal width and uniform spacing."
+    }
+  ],
+  "recommended_example_progression": [
+    "Organise sweet preferences using tallies and frequencies.",
+    "Sort the shoe-size list in ascending order.",
+    "Interpret the sleep pictograph with whole and half symbols.",
+    "Construct a sweet-preference bar graph.",
+    "Choose larger scales for Smriti's runs and Imran's expenditure."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out tasks in Sections 4.1–4.3 for tables, pictographs, bar graphs, and interpretation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

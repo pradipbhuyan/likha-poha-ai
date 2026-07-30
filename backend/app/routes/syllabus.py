@@ -255,6 +255,34 @@ def keep_consistent_part_series(chapters):
     ]
 
 
+def title_prefix_for_source_detection(title, chapter):
+    """
+    Return the book/part-labeling portion of a title, with the chapter's own
+    text stripped off the end.
+
+    rag_documents.title is always built as "<book/part description> -
+    {chapter}", so the chapter's own subject-matter wording must never be
+    scanned for source/part detection -- confirmed live for Grade 6 Social
+    Science: chapter "4. Timeline and Sources of History" made
+    extract_book_source() misdetect the book source as "History" (it's
+    really "Text Book", the word "History" only appears because it's part of
+    THIS chapter's own title), and every single "Text Book - N. <title>"
+    chapter made extract_part_number() misdetect the chapter's own leading
+    ordinal N as a fake "Part N" marker (its regex matches "book" followed by
+    "- N", which is exactly what "Text Book - 4." looks like). Both bugs
+    together caused every chapter in the subject to get a spurious, mutually
+    inconsistent "Part N -" / "<wrong source> - Part N -" label, which in
+    turn broke admin-reviewed-order matching in normalize_rag_chapter_lookup
+    (a differently-prefixed live label never matches the unprefixed saved
+    override), so the whole dropdown silently fell back to raw upload order.
+    """
+    title = title or ""
+    chapter = chapter or ""
+    if chapter and title.endswith(chapter):
+        return title[: -len(chapter)]
+    return title
+
+
 def uploaded_chapter_sort_key(item):
     """
     Sort uploaded RAG chapters for student dropdowns.
@@ -264,10 +292,10 @@ def uploaded_chapter_sort_key(item):
     """
     chapter = item["chapter"]
     title = item.get("title") or ""
-    combined = f"{title} {chapter}"
+    title_prefix = title_prefix_for_source_detection(title, chapter)
     normalized = chapter.lower()
-    source = extract_book_source(title)
-    part_number = extract_part_number(combined)
+    source = extract_book_source(title_prefix)
+    part_number = extract_part_number(title_prefix)
     chapter_number = extract_chapter_number(chapter)
 
     if any(token in normalized for token in ["front matter", "table of contents", "toc"]):
@@ -296,11 +324,22 @@ def normalize_chapter_lookup(chapter):
 
 
 def normalize_rag_chapter_lookup(chapter):
-    """Normalize display labels to the stored RAG chapter label for matching."""
-    without_part = strip_part_prefix(chapter)
-    without_source = strip_book_source_prefix(without_part)
+    """Normalize display labels to the stored RAG chapter label for matching.
 
-    return re.sub(r"\s+", " ", without_source.strip()).casefold()
+    Display labels are constructed as "<Source> - Part N - <chapter>" (source
+    prefix wraps the part prefix, see sort_uploaded_chapters) -- so unwrapping
+    must strip the source prefix FIRST, then the part prefix. Stripping in
+    the opposite order (as this used to) leaves a dangling "Part N - " on any
+    chapter that has both prefixes stacked, so it can never normalize-match
+    a plain saved-override label, and the admin-reviewed chapter order is
+    silently discarded for the entire subject in favor of raw upload order --
+    confirmed live for Grade 6 Social Science, where this caused all 14
+    reviewed chapters to be dropped and the dropdown to fall back to
+    unsorted/mislabeled live chapters."""
+    without_source = strip_book_source_prefix(chapter)
+    without_part = strip_part_prefix(without_source)
+
+    return re.sub(r"\s+", " ", without_part.strip()).casefold()
 
 
 def sort_uploaded_chapters(existing_chapters, uploaded_items):
@@ -313,11 +352,15 @@ def sort_uploaded_chapters(existing_chapters, uploaded_items):
     seen = set()
     sorted_uploaded = []
     part_numbers = {
-        extract_part_number(f"{item.get('title') or ''} {item.get('chapter') or ''}")
+        extract_part_number(
+            title_prefix_for_source_detection(item.get("title") or "", item.get("chapter") or "")
+        )
         for item in uploaded_items
     }
     source_labels = {
-        extract_book_source(item.get("title") or "")
+        extract_book_source(
+            title_prefix_for_source_detection(item.get("title") or "", item.get("chapter") or "")
+        )
         for item in uploaded_items
     }
     use_part_prefix = len(part_numbers) > 1
@@ -325,8 +368,9 @@ def sort_uploaded_chapters(existing_chapters, uploaded_items):
 
     for item in sorted(uploaded_items, key=uploaded_chapter_sort_key):
         chapter = item["chapter"].strip()
-        source = extract_book_source(item.get("title") or "")
-        part_number = extract_part_number(f"{item.get('title') or ''} {chapter}")
+        title_prefix = title_prefix_for_source_detection(item.get("title") or "", chapter)
+        source = extract_book_source(title_prefix)
+        part_number = extract_part_number(title_prefix)
         display_chapter = create_part_display_label(
             chapter,
             part_number,
@@ -381,7 +425,16 @@ def clean_chapter_list(chapters):
     seen = set()
 
     for chapter in chapters:
-        label = str(chapter or "").strip()
+        # Strip non-printable characters (e.g. \x08 backspace from PDF
+        # uploads) the same way merge_uploaded_rag_chapters() already does
+        # for live rag_documents.chapter values -- otherwise a saved admin
+        # override containing a stray backspace (confirmed live: 4 of 10
+        # Grade 6 Maths chapters) never normalizes to match its live
+        # counterpart in merge_reviewed_and_live_chapters(), so those
+        # entries silently fall through to the "append new live chapters
+        # at the end" path instead of keeping their correct reviewed
+        # position -- producing an out-of-order student-facing dropdown.
+        label = "".join(c for c in str(chapter or "") if c.isprintable()).strip()
         lookup_key = normalize_chapter_lookup(label)
 
         if not label or is_uploaded_placeholder(label) or lookup_key in seen:

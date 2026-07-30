@@ -1,0 +1,83 @@
+{
+  "manifest": {
+    "grade": "Grade 6",
+    "subject": "Maths",
+    "chapter": "Chapter 8 Playing with Constructions",
+    "central_question": "How can ruler-and-compass properties be used to plan and construct accurate figures?",
+    "in_scope_units": [
+      "8.1 Artwork — compass curves, circles, centre, radius, and repeated arcs",
+      "8.2 Squares and Rectangles — properties, naming, and rotated figures",
+      "8.3 Constructing Squares and Rectangles — perpendicular lines and given side lengths",
+      "8.4 Exploring Rectangles — moving points, subdivisions, centres, holes, and curves",
+      "8.5 Exploring Diagonals of Rectangles and Squares — diagonal and angle investigations",
+      "8.6 Points Equidistant from Two Given Points — circle intersections and the house construction"
+    ],
+    "banned_topics": [
+      "Formal Euclidean proofs",
+      "Triangle congruence criteria",
+      "Coordinate equations"
+    ],
+    "must_include_keywords": [
+      "ruler",
+      "compass",
+      "curve",
+      "circle",
+      "centre",
+      "radius",
+      "fixed distance",
+      "arc",
+      "A Person",
+      "Wavy Wave",
+      "Eyes",
+      "rectangle",
+      "opposite sides",
+      "right angle",
+      "square",
+      "all sides equal",
+      "valid naming",
+      "rotated square",
+      "perpendicular",
+      "construction steps",
+      "rough diagram",
+      "identical squares",
+      "centre of rectangle",
+      "diagonal",
+      "opposite angles",
+      "given side",
+      "given diagonal",
+      "equidistant",
+      "intersection of circles",
+      "intersection of arcs",
+      "House construction"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A rotated square is no longer a square.",
+        "correction": "Rotation preserves all side lengths and angles."
+      },
+      {
+        "claim": "Any order of corner labels names a rectangle.",
+        "correction": "The order must follow consecutive corners around the boundary."
+      },
+      {
+        "claim": "A fixed-distance point must be found by ruler trial and error.",
+        "correction": "A circle or arc locates all points at that distance."
+      }
+    ],
+    "recommended_example_progression": [
+      "Construct a 4 cm radius circle and the 8 cm Wavy Wave.",
+      "Verify square and rectangle properties after rotation.",
+      "Construct a 6 cm square and given-side rectangles.",
+      "Explore subdivisions and rectangle diagonals.",
+      "Use equal-radius arcs to construct the house."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the Construct, Figure it Out, Explore, Think, and Try tasks through Sections 8.1–8.6."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 8 Playing with Constructions\n\n## What you will learn\nYou will use a compass to construct circles and arcs at a fixed distance.\n\n## Simple explanation\nA compass keeps one point fixed while the pencil stays at a constant radius.\n\n## Step-by-step breakdown\n- **Circle**: All its points are the same distance from the centre.\n- **Radius**: The fixed centre-to-circle distance.\n- **Compass setting**: Set the opening against a ruler.\n- **Arc**: A required part of a circle.\n- **Artwork**: A Person, Wavy Wave, and Eyes use repeated curves.\n\n## Worked example\nQuestion: The Wavy Wave half-circle spans AX=4 cm. What radius is required?\n\nSolution:\n- Step 1: AX is the diameter of the half-circle.\n- Step 2: Take half of 4 cm.\n- Final answer: 2 cm.\n\n## Common mistake\nDo not move the compass point while drawing one circle.\n\n## Quick check question\nQuestion: What curve is formed by all points 4 cm from P?\nAnswer: A circle of radius 4 cm centred at P.\nExplanation: A circle is the set of points at one fixed distance from a centre.\n\n## Summary\n- A compass transfers distance.\n- Circle points share a radius.\n- Arcs are parts of circles.",
+    "Core explanation": "# Core explanation: Chapter 8 Playing with Constructions\n\n## What you will learn\nYou will identify and name squares and rectangles, including rotated ones.\n\n## Simple explanation\nA figure's type depends on its side and angle properties, not its orientation.\n\n## Step-by-step breakdown\n- **Rectangle**: Opposite sides equal; all angles 90°.\n- **Square**: All sides equal; all angles 90°.\n- **Naming**: Follow consecutive boundary corners.\n- **Rotation**: Preserves lengths and angles.\n- **Dot grid**: Positions can help verify right angles and equal sides.\n\n## Worked example\nQuestion: Which is not a valid name for the displayed square: PQSR, SPQR, RSPQ, or QRSP?\n\nSolution:\n- Step 1: Trace consecutive corners around the square.\n- Step 2: PQSR jumps across instead of following the boundary.\n- Final answer: PQSR.\n\n## Common mistake\nA diamond-like orientation does not stop a square from being a square.\n\n## Quick check question\nQuestion: Does rotation change a rectangle's right angles?\nAnswer: No.\nExplanation: A rigid turn preserves angle measures.\n\n## Summary\n- Definitions use measurable properties.\n- Names follow boundary order.\n- Rotation changes orientation only.",
+    "Worked examples": "# Worked examples: Chapter 8 Playing with Constructions\n\n## What you will learn\nYou will construct squares and rectangles from given side lengths.\n\n## Simple explanation\nStart with known information, create perpendicular directions, transfer lengths, and verify.\n\n## Step-by-step breakdown\n- **Base**: Draw the given side.\n- **Perpendicular**: Construct a 90° line through an endpoint.\n- **Transfer**: Mark the adjacent side with ruler or compass.\n- **Complete**: Draw the remaining sides.\n- **Verify**: Check equalities and right angles.\n\n## Worked example\nQuestion: Construct square PQRS with side 6 cm.\n\nSolution:\n- Step 1: Draw PQ=6 cm and perpendiculars at P and Q.\n- Step 2: Mark PS=QR=6 cm and join S to R.\n- Final answer: PQRS has four 6 cm sides and four right angles.\n\n## Common mistake\nDo not accept appearance alone as verification.\n\n## Quick check question\nQuestion: Can a quadrilateral have four right angles but unequal opposite sides?\nAnswer: No.\nExplanation: Such a quadrilateral is a rectangle, whose opposite sides are equal.\n\n## Summary\n- Plan the sequence.\n- Perpendiculars create right angles.\n- Transfer lengths accurately.\n- Verify the result.",
+    "Exam-style problems": "# Exam-style problems: Chapter 8 Playing with Constructions\n\n## What you will learn\nYou will explore rectangle subdivisions, centres, and diagonals and construct from partial data.\n\n## Simple explanation\nA rough diagram shows which unknown point can be located from the information given.\n\n## Step-by-step breakdown\n- **Identical squares**: Three in a row require length three times breadth.\n- **Centre**: Diagonals locate the centre for a square or circular hole.\n- **Diagonal**: Joins opposite vertices.\n- **Angle split**: A rectangle diagonal may divide 90° into complementary parts.\n- **Side and diagonal**: Use an arc to impose the diagonal length.\n\n## Worked example\nQuestion: Why can a diagonal split a rectangle corner into 60° and 30°?\n\nSolution:\n- Step 1: A rectangle corner is 90°.\n- Step 2: 60°+30°=90°.\n- Final answer: The two angles exactly partition the right angle.\n\n## Common mistake\nA rectangle diagonal does not generally bisect a corner; 45° and 45° is the square special case.\n\n## Quick check question\nQuestion: What ratio lets a rectangle be divided into three identical squares in one row?\nAnswer: Length = 3 × breadth.\nExplanation: Each square side equals the breadth, and three sides make the length.\n\n## Summary\n- Use a rough sketch.\n- Diagonals locate centres and split angles.\n- Special cases can have extra properties.",
+    "Revision and recap": "# Revision and recap: Chapter 8 Playing with Constructions\n\n## What you will learn\nYou will find a point equidistant from two given points and complete the house construction.\n\n## Simple explanation\nA point satisfying two fixed-distance conditions lies at an intersection of the corresponding circles or arcs.\n\n## Step-by-step breakdown\n- **First circle**: All points 5 cm from B.\n- **Second circle**: All points 5 cm from C.\n- **Intersection**: A point 5 cm from both.\n- **House**: Join A to B and C and use an arc from A.\n- **Efficiency**: Only necessary arcs need be drawn.\n\n## Worked example\nQuestion: How is point A located when AB=AC=5 cm?\n\nSolution:\n- Step 1: Draw a 5 cm arc centred at B.\n- Step 2: Draw a 5 cm arc centred at C and choose their required intersection.\n- Final answer: The intersection is A, with AB=AC=5 cm.\n\n## Common mistake\nA point on only one circle satisfies only one distance condition.\n\n## Quick check question\nQuestion: For the larger 7 cm house, what arc radius is used?\nAnswer: 7 cm.\nExplanation: Each required border distance is 7 cm.\n\n## Summary\n- Circle intersections satisfy two distances.\n- Arcs avoid unnecessary full circles.\n- Verify every final length."
+  }
+}

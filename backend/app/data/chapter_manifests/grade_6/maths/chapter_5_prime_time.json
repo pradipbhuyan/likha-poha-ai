@@ -1,0 +1,71 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 5 Prime Time",
+  "central_question": "How do factors, multiples, prime numbers, and divisibility patterns help us analyse whole numbers?",
+  "in_scope_units": [
+    "5.1 Common Multiples and Common Factors — repeated jumps, idli-vada, and shared factors",
+    "5.2 Prime Numbers — prime, composite, 1, and the Sieve of Eratosthenes",
+    "5.3 Co-prime Numbers — pairs sharing no factor other than 1 and co-prime art",
+    "5.4 Prime Factorisation — unique prime decomposition, products, co-prime checking, and divisibility",
+    "5.5 Divisibility Tests — tests for 10, 5, 2, 4, and 8",
+    "5.6 Fun with Numbers — special properties and prime-product puzzles"
+  ],
+  "banned_topics": [
+    "Divisibility tests for 3, 6, 7, and 9",
+    "Formal proof of unique prime factorisation",
+    "Advanced HCF and LCM algorithms"
+  ],
+  "must_include_keywords": [
+    "multiple",
+    "common multiple",
+    "factor",
+    "common factor",
+    "idli-vada",
+    "jump size",
+    "prime number",
+    "composite number",
+    "1 is neither prime nor composite",
+    "Sieve of Eratosthenes",
+    "co-prime",
+    "safe pair",
+    "thread-gap",
+    "prime factorisation",
+    "unique except order",
+    "common prime factor",
+    "divisibility",
+    "last digit",
+    "last two digits",
+    "last three digits",
+    "divisible by 10",
+    "divisible by 5",
+    "divisible by 2",
+    "divisible by 4",
+    "divisible by 8",
+    "prime puzzle"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "1 is prime.",
+      "correction": "It has one factor, so it is neither prime nor composite."
+    },
+    {
+      "claim": "One partial factorisation can prove two numbers are co-prime.",
+      "correction": "A missed factor may be common; use complete prime factorisations."
+    },
+    {
+      "claim": "Matching prime names is enough for divisibility.",
+      "correction": "The number of occurrences of each prime factor also matters."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use idli-vada to identify multiples and common multiples.",
+    "Use jump sizes for factors and common factors.",
+    "Use the Sieve of Eratosthenes for primes up to 100.",
+    "Use 56 and 63 to expose incomplete-factor reasoning.",
+    "Apply prime factorisation and tests for 10, 5, 2, 4, and 8."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out and Math Talk exercises across Sections 5.1–5.6, ending with the special-number and prime-grid puzzles.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

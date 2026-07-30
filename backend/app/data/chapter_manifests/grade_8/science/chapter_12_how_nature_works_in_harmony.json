@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 12: How Nature Works in Harmony",
+  "central_question": "How do living and non-living components interact through feeding, cooperation, competition, decomposition, and human influence to sustain or disturb ecosystem balance?",
+  "in_scope_units": [
+    "12.1 How Do We Experience and Interpret Our Surroundings?: habitats and their biotic and abiotic components.",
+    "12.2 Who All Live Together in Nature?: population, community, pollination, and competition for resources.",
+    "12.3 Does Every Organism in a Community Matter?: the pond-fish-dragonfly-pollinator study and direct and indirect effects.",
+    "12.4 Interactions Among Organisms and Surroundings: ecosystem formation, aquatic and terrestrial ecosystems, and overlapping systems.",
+    "12.5 Who Eats Whom?: producers, consumers, herbivores, carnivores, omnivores, food chains, trophic levels, and food webs.",
+    "12.6 What Happens to Waste in Nature?: decomposition, decomposers, saprotrophs, nutrient recycling, and migratory birds.",
+    "12.7 and 12.8: cascading effects, dynamic balance, competition, mutualism, commensalism, and parasitism.",
+    "12.9 Benefits of Ecosystems: ecosystem services, Sundarbans, threats, protected areas, and human-made ecosystems.",
+    "12.9.2 Healthy ecosystems and farms: Green Revolution, soil health, natural predators, monoculture, and sustainable farming."
+  ],
+  "banned_topics": [
+    "Detailed biochemical pathways of photosynthesis and respiration.",
+    "Advanced ecological population equations and energy-flow calculations.",
+    "Taxonomic classification of all organisms in the examples."
+  ],
+  "must_include_keywords": [
+    "habitat",
+    "biotic component",
+    "abiotic component",
+    "population",
+    "community",
+    "ecosystem",
+    "aquatic ecosystem",
+    "terrestrial ecosystem",
+    "human-made ecosystem",
+    "pollination",
+    "producer",
+    "autotroph",
+    "consumer",
+    "heterotroph",
+    "herbivore",
+    "carnivore",
+    "omnivore",
+    "food chain",
+    "trophic level",
+    "food web",
+    "decomposition",
+    "decomposer",
+    "saprotroph",
+    "nutrient recycling",
+    "competition",
+    "mutualism",
+    "commensalism",
+    "parasitism",
+    "dynamic balance",
+    "cascading effect",
+    "biodiversity",
+    "Sundarbans",
+    "mangrove",
+    "protected area",
+    "Green Revolution",
+    "synthetic fertiliser",
+    "pesticide resistance",
+    "monoculture",
+    "humus",
+    "sustainable farming"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A habitat contains only living organisms.",
+      "correction": "Every habitat includes biotic components and abiotic components such as air, water, soil, sunlight, and temperature."
+    },
+    {
+      "claim": "A population is made of different kinds of organisms.",
+      "correction": "A population is a group of the same type of organism in a habitat at a given time; different populations together form a community."
+    },
+    {
+      "claim": "Food chains in an ecosystem remain separate.",
+      "correction": "Food chains are interconnected to form a food web."
+    },
+    {
+      "claim": "Decomposers only remove waste and have no further role.",
+      "correction": "Decomposers return nutrients to the environment and support new plant growth."
+    },
+    {
+      "claim": "Ecosystem balance is fixed and never changes.",
+      "correction": "The chapter describes ecosystem balance as dynamic and capable of being disrupted by natural or human-made changes."
+    },
+    {
+      "claim": "All interactions benefit both organisms.",
+      "correction": "Mutualism benefits both, commensalism benefits one without affecting the other, and parasitism benefits one while harming the other."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 12.1 to compare living and non-living components of two habitats.",
+    "Use NCERT Activity 12.2 to distinguish individual, population, community, and ecosystem.",
+    "Use NCERT Activity 12.3 to trace the fish-dragonfly-pollinator-seed cascade.",
+    "Use NCERT Activities 12.5-12.8 to classify feeding roles and build food chains, trophic pyramids, and food webs.",
+    "Use NCERT Activity 12.9 and Keep the curiosity alive Q4 and Q9 to analyse cascading population changes.",
+    "Use NCERT Activity 12.10 and Q8 to evaluate sustainable human-made farm ecosystems."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1-9, followed by Discover, design, and debate projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Science",
+    "chapter": "Chapter 2: Exploring Substances: Acids, Bases and Neutral",
+    "central_question": "How can natural indicators identify acidic, basic and neutral substances, and how does neutralisation help in experiments and everyday life?",
+    "in_scope_units": [
+      "2.1 Nature—Our Science Laboratory: classifying common samples as acidic, basic or neutral using natural indicators.",
+      "2.1.1 Litmus as an indicator: testing samples with blue and red litmus, grouping observations and relating acidity or basicity to colour change.",
+      "Activity 2.2 and edible substances: relating sour taste to acids and slippery feel to bases while following safety rules.",
+      "2.1.2 Red rose as an indicator: preparing red rose extract and identifying red, green or unchanged responses.",
+      "2.1.3 Turmeric as an indicator: preparing turmeric paper and recognising that it detects bases but cannot separate acids from neutral substances.",
+      "Activity 2.6 Olfactory indicators: using onion-treated strips to investigate odour changes in acidic and basic media.",
+      "2.2 What Happens When Acidic Substances Mix with Basic Substances?: Activity 2.7 and the neutralisation reaction.",
+      "2.3 Neutralisation in Daily Life: ant bites, acidic or basic soil and treatment of acidic industrial waste.",
+      "Let Us Enhance Our Learning: Questions 1–12 and exploratory projects on indicators, water and soil."
+    ],
+    "banned_topics": [
+      "The pH scale and numerical pH calculations.",
+      "Strong and weak acids or bases.",
+      "Detailed ionic equations and molecular structure.",
+      "Industrial manufacture of acids, bases and salts.",
+      "Titration calculations and concentration formulas."
+    ],
+    "must_include_keywords": [
+      "acidic",
+      "basic",
+      "neutral",
+      "litmus",
+      "blue litmus",
+      "red litmus",
+      "acid-base indicator",
+      "lichen",
+      "lemon juice",
+      "vinegar",
+      "baking soda solution",
+      "lime water",
+      "sugar solution",
+      "salt solution",
+      "sour taste",
+      "slippery",
+      "red rose extract",
+      "turmeric paper",
+      "olfactory indicator",
+      "onion",
+      "neutralisation",
+      "salt",
+      "water",
+      "heat",
+      "formic acid",
+      "ant bite",
+      "acidic soil",
+      "basic soil",
+      "manure",
+      "composted leaves",
+      "industrial waste",
+      "Prafulla Chandra Ray",
+      "Activity 2.7",
+      "Let Us Enhance Our Learning"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A substance that does not change turmeric paper must be acidic.",
+        "correction": "Turmeric remains yellow in both acidic and neutral substances; it can identify a base but cannot distinguish acid from neutral."
+      },
+      {
+        "claim": "Every sour or bitter substance may be safely tasted to classify it.",
+        "correction": "The chapter warns never to taste unknown substances; indicators should be used for testing."
+      },
+      {
+        "claim": "Lime water is the same as the citrus fruit lime.",
+        "correction": "Lime water is a solution of calcium hydroxide in water; it must not be confused with the fruit."
+      },
+      {
+        "claim": "Neutralisation means simply mixing any acid and base in any amount.",
+        "correction": "Sufficient quantities are needed so the effects neutralise; salt, water and heat are formed."
+      },
+      {
+        "claim": "A neutral soil always guarantees healthy plant growth.",
+        "correction": "Plants can still be unhealthy in neutral soil if nutrients are deficient."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activity 2.1 and Tables 2.1–2.2 to introduce litmus-based classification.",
+      "Use Activity 2.4 to compare red rose extract with litmus results.",
+      "Use Activity 2.5 and the secret-message card to establish the strengths and limits of turmeric paper.",
+      "Use Activity 2.6 to introduce olfactory indicators without relying on colour.",
+      "Use Activity 2.7 to derive Acid + Base → Salt + Water + Heat.",
+      "Use Let Us Enhance Our Learning Questions 1, 2, 4, 5, 10 and 12 for application and reasoning."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The section 'Let Us Enhance Our Learning' contains Questions 1–12, followed by a Dive Deeper prompt and three Exploratory Projects."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 2: Exploring Substances: Acids, Bases and Neutral\n\n## What you will learn\nYou will classify common substances as acidic, basic or neutral using red and blue litmus paper. You will learn the safe observation rules that make indicators better than tasting unknown materials.\n\n## Simple explanation\nAn indicator gives a visible or detectable change that helps identify the nature of a substance. Litmus, obtained from lichens, changes colour differently in acidic and basic solutions.\n\n## Step-by-step breakdown\n- **Activity 2.1**: Samples such as lemon juice, soap solution, vinegar, baking soda solution, lime water, tap water, sugar solution and salt solution are tested.\n- **Acidic response**: An acidic substance turns blue litmus paper red.\n- **Basic response**: A basic substance turns red litmus paper blue.\n- **Neutral response**: A neutral substance changes neither red nor blue litmus paper.\n- **Grouping**: Table 2.2 groups the tested samples by their colour responses.\n- **Litmus source**: Litmus is a natural substance obtained from lichens and is available as solution or paper strips.\n- **Safety**: Unknown substances must not be tasted.\n\n## Worked example\nQuestion: Activity 2.1: Classify lemon juice, soap solution and sugar solution using the stated litmus observations.\n\nSolution:\n- Step 1: Lemon juice turns blue litmus red, so it belongs to the acidic group.\n- Step 2: Soap solution turns red litmus blue, so it belongs to the basic group.\n- Step 3: Sugar solution changes neither litmus paper, so it belongs to the neutral group.\n- Final answer: Lemon juice is acidic, soap solution is basic and sugar solution is neutral.\n\n## Common mistake\nDo not identify an acid or base from only the original colour of the sample. Use the indicator's change, not the sample's appearance.\n\n## Quick check question\nQuestion: What does blue litmus paper do in an acidic solution?\nAnswer: It turns red.\nExplanation: The chapter defines substances that turn blue litmus red as acidic in nature.\n\n## Summary\n- Indicators help classify substances safely.\n- Acids turn blue litmus red.\n- Bases turn red litmus blue.\n- Neutral substances change neither litmus colour.\n- Litmus comes from lichens.",
+    "Core explanation": "# Core explanation: Chapter 2: Exploring Substances: Acids, Bases and Neutral\n\n## What you will learn\nYou will use taste and touch observations only for known edible or safe substances and study red rose extract as another indicator. You will compare its colour changes with litmus results.\n\n## Simple explanation\nDifferent natural indicators respond in different ways. Red rose extract becomes a shade of red in acidic solutions and a shade of green in basic solutions.\n\n## Step-by-step breakdown\n- **Activity 2.2**: Known edible acidic substances tend to taste sour, but unknown substances must never be tasted.\n- **Common acids**: The chapter links common foods with acids such as citric, ascorbic, tartaric and oxalic acids.\n- **Basic feel**: Baking soda solution feels soapy or slippery, a common property of basic substances.\n- **Not every bitter item is basic**: Bitter gourd tastes bitter but is not stated to be basic.\n- **Activity 2.3**: Fallen red rose petals are washed, crushed, soaked in hot water and filtered to prepare an extract.\n- **Activity 2.4**: Red rose extract turns red in acidic samples and green in basic samples.\n- **Natural indicators**: Beetroot, purple cabbage, turmeric, jamun and red hibiscus may also act as indicators.\n\n## Worked example\nQuestion: Activity 2.4: Predict the red rose extract colours after adding lemon juice and soap solution.\n\nSolution:\n- Step 1: Lemon juice is acidic because it turns blue litmus red in Activity 2.1.\n- Step 2: Red rose extract gives a red shade in an acidic solution.\n- Step 3: Soap solution is basic because it turns red litmus blue.\n- Step 4: Red rose extract gives a green shade in a basic solution.\n- Final answer: Lemon juice gives a red shade and soap solution gives a green shade.\n\n## Common mistake\nDo not conclude that every bitter substance is a base. The chapter explicitly gives bitter gourd as a counterexample.\n\n## Quick check question\nQuestion: What colour does red rose extract generally show in a basic solution?\nAnswer: A shade of green.\nExplanation: Activity 2.4 compares the extract with litmus groups and concludes that basic solutions produce a green colour.\n\n## Summary\n- Known sour foods tend to contain acids.\n- Basic substances are often slippery.\n- Red rose extract is a natural indicator.\n- Acids give a red shade and bases a green shade with red rose extract.",
+    "Worked examples": "# Worked examples: Chapter 2: Exploring Substances: Acids, Bases and Neutral\n\n## What you will learn\nYou will prepare and interpret turmeric paper and understand olfactory indicators. You will recognise what each indicator can and cannot tell you.\n\n## Simple explanation\nTurmeric and onion do not behave like litmus. Turmeric detects bases through a yellow-to-red change, while an olfactory indicator is recognised through a change in smell.\n\n## Step-by-step breakdown\n- **Activity 2.5**: Turmeric paste colours filter paper yellow; after drying, the paper is cut into strips.\n- **Basic response**: Yellow turmeric paper turns red in a basic solution.\n- **Acidic and neutral response**: Turmeric remains unchanged in both acidic and neutral substances.\n- **Indicator limitation**: Turmeric cannot differentiate an acid from a neutral substance.\n- **Secret message**: A basic solution such as soap solution can produce coloured writing on turmeric-treated paper.\n- **Activity 2.6**: Onion-treated cloth or paper strips are tested with tamarind water and baking soda solution.\n- **Olfactory indicator**: A substance whose odour changes in acidic or basic medium is called an olfactory indicator.\n\n## Worked example\nQuestion: Let Us Enhance Our Learning Question 10: Can vinegar, baking soda solution and sugar solution be identified using only turmeric paper?\n\nSolution:\n- Step 1: Baking soda solution is basic, so it turns turmeric paper red.\n- Step 2: Vinegar is acidic, so turmeric paper remains yellow.\n- Step 3: Sugar solution is neutral, so turmeric paper also remains yellow.\n- Step 4: Turmeric separates the base from the other two but cannot distinguish vinegar from sugar solution.\n- Final answer: No, all three cannot be identified using only turmeric paper.\n\n## Common mistake\nDo not say turmeric is a complete indicator for all three groups. It identifies bases but gives the same unchanged result for acids and neutral substances.\n\n## Quick check question\nQuestion: Which kind of indicator can help a blindfolded person distinguish solutions without relying on colour?\nAnswer: An olfactory indicator, such as onion-treated strips.\nExplanation: Olfactory indicators are detected through changes in odour rather than changes in colour.\n\n## Summary\n- Turmeric paper turns red with bases.\n- Acids and neutral substances leave turmeric yellow.\n- Every indicator has limits.\n- Olfactory indicators use smell changes.\n- Combining indicators improves identification.",
+    "Exam-style problems": "# Exam-style problems: Chapter 2: Exploring Substances: Acids, Bases and Neutral\n\n## What you will learn\nYou will explain what happens when an acid and a base are mixed in suitable amounts. You will apply the neutralisation equation to a litmus experiment and everyday situations.\n\n## Simple explanation\nIn neutralisation, the acidic and basic effects cancel when enough of each is mixed. The reaction forms salt and water and releases heat.\n\n## Step-by-step breakdown\n- **Activity 2.7 setup**: Diluted lemon juice with blue litmus first turns red because the solution is acidic.\n- **Adding lime water**: As the basic lime water is added and mixed, the acidic effect is neutralised.\n- **Colour change**: With sufficient lime water, the solution is no longer acidic and the observed litmus colour changes.\n- **General equation**: Acid + Base → Salt + Water + Heat.\n- **Ant bite**: Moist baking soda, a base, helps neutralise the acidic formic acid from a red ant bite.\n- **Acidic soil**: Lime, a base, can treat soil made acidic by excessive fertiliser use.\n- **Basic soil**: Manure and composted leaves release acids that help neutralise basic soil.\n- **Industrial waste**: Acidic waste should be neutralised with basic substances before release.\n\n## Worked example\nQuestion: Activity 2.7: Explain why adding sufficient lime water changes the lemon-juice solution from acidic towards neutral.\n\nSolution:\n- Step 1: Lemon juice is acidic, so blue litmus changes to red.\n- Step 2: Lime water is basic.\n- Step 3: Adding and swirling lime water allows the base to react with the acid.\n- Step 4: With sufficient base, the acidic effect is neutralised.\n- Step 5: Salt and water are formed and heat is released.\n- Final answer: The change occurs because an acid-base neutralisation reaction has taken place.\n\n## Common mistake\nDo not treat neutralisation as dilution alone. Water lowers concentration, but the chapter's neutralisation involves an acid reacting with a base to form new products.\n\n## Quick check question\nQuestion: What are the three products or effects named in the chapter's neutralisation equation?\nAnswer: Salt, water and heat.\nExplanation: The chapter writes the reaction as Acid + Base → Salt + Water + Heat.\n\n## Summary\n- Acids and bases can neutralise each other.\n- Neutralisation forms salt and water.\n- Heat is released.\n- Neutralisation has practical uses in health, farming and pollution control.",
+    "Revision and recap": "# Revision and recap: Chapter 2: Exploring Substances: Acids, Bases and Neutral\n\n## What you will learn\nYou will combine evidence from different indicators and solve classification problems. You will also review the limits of conclusions about soil and unknown substances.\n\n## Simple explanation\nA reliable conclusion uses all observations together. Litmus, red rose, turmeric and olfactory indicators provide different clues, so the best choice depends on the question.\n\n## Step-by-step breakdown\n- **Multiple evidence**: A liquid that leaves red litmus unchanged but turns blue litmus red is acidic.\n- **Red rose evidence**: Green with red rose extract indicates a basic solution.\n- **Turmeric evidence**: Red turmeric paper indicates a base; unchanged yellow is not enough to decide between acid and neutral.\n- **Indicator choice**: A blindfolded learner should use an olfactory indicator rather than colour-based paper.\n- **Greeting-card idea**: Turmeric-treated paper and a basic writing solution can create a message revealed by colour change.\n- **Soil caution**: Poor plant health may result from acidic soil, basic soil or nutrient deficiency.\n- **Scientist connection**: Prafulla Chandra Ray advanced chemical research in India and wrote about the history of Indian chemistry.\n\n## Worked example\nQuestion: Let Us Enhance Our Learning Question 2: Red litmus turns blue in solution A, turmeric turns red in solution B, and red rose extract turns green in solution C. Classify A, B and C.\n\nSolution:\n- Step 1: Red litmus turning blue shows that A is basic.\n- Step 2: Turmeric turning red shows that B is basic.\n- Step 3: Red rose extract turning green shows that C is basic.\n- Final answer: The correct sequence is basic, basic and basic.\n\n## Common mistake\nDo not claim that a single unchanged indicator result always proves neutrality. The result may also match an acid, depending on the indicator.\n\n## Quick check question\nQuestion: Why can poor plant growth continue even when soil is neutral?\nAnswer: The soil may be deficient in nutrients.\nExplanation: The chapter states that neutral soil does not rule out nutrient deficiency as a cause of poor plant health.\n\n## Summary\n- Use indicator evidence carefully.\n- Different indicators provide different information.\n- Neutralisation has several daily-life applications.\n- Safety rules are essential when testing substances.\n- Indicator limitations must be stated in conclusions."
+  }
+}

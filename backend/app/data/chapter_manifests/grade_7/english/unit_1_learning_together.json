@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 7",
+  "subject": "English",
+  "chapter": "Unit 1: Learning Together",
+  "central_question": "How do courage, perseverance, empathy, equal opportunity and careful use of our senses help people learn and grow together?",
+  "in_scope_units": [
+    "The Day the River Spoke—Jahnavi's wish to attend school, the personified River, courage and equal opportunity.",
+    "Characterisation of Jahnavi through thoughts, fears, actions and hopes.",
+    "Personification, imagery, sound words and nature description.",
+    "Girls' education, dignity, equality and the role of supportive adults.",
+    "Try Again—King Bruce, the spider, repeated failure and perseverance.",
+    "Narrative poetry, rhyme scheme, repetition, alliteration and metaphor.",
+    "Three Days to See—Helen Keller's imagined three days of sight.",
+    "Sensory language, modal verbs, empathy and inclusion.",
+    "Listening texts on teamwork, Braille and Digital India.",
+    "Prepositions, adverbs, modal verbs and sensory words.",
+    "Descriptive paragraphs, posters and reflective responses."
+  ],
+  "banned_topics": [
+    "Detailed biographies beyond information needed to understand the texts.",
+    "External statistics or policy claims about girls' education.",
+    "Medical explanations of blindness or hearing impairment.",
+    "Advanced poetic theory beyond Grade 7."
+  ],
+  "must_include_keywords": [
+    "Jahnavi",
+    "River",
+    "personification",
+    "girls' education",
+    "equal opportunity",
+    "courage",
+    "teacher",
+    "King Bruce",
+    "spider",
+    "Try Again",
+    "perseverance",
+    "narrative poem",
+    "rhyme scheme",
+    "repetition",
+    "alliteration",
+    "Helen Keller",
+    "Three Days to See",
+    "five senses",
+    "sensory words",
+    "modal verbs",
+    "Braille",
+    "Digital India",
+    "inclusion",
+    "dignity",
+    "teamwork",
+    "descriptive writing"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The River is an ordinary human character.",
+      "correction": "The River is a natural element given human speech and understanding through personification."
+    },
+    {
+      "claim": "Jahnavi attends school without fear or resistance.",
+      "correction": "She needs encouragement before gathering courage to approach the school."
+    },
+    {
+      "claim": "The spider succeeds on its first attempt.",
+      "correction": "Its repeated attempts teach King Bruce perseverance."
+    },
+    {
+      "claim": "Three Days to See is only about eyesight.",
+      "correction": "Helen Keller asks readers to value every sense and develop empathy."
+    },
+    {
+      "claim": "Grammar is unrelated to the unit's themes.",
+      "correction": "Modals and sensory words express advice, ability and vivid experience."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Jahnavi's problem and the River's encouragement.",
+    "Analyse personification and connect it with equality.",
+    "Use Try Again to examine perseverance after failure.",
+    "Use Three Days to See for inference about values and empathy.",
+    "Finish with integrated grammar, listening and writing."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit contains 'Let us discuss', 'Let us think and reflect', 'Let us learn', 'Let us listen', 'Let us speak', 'Let us write' and 'Let us explore' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

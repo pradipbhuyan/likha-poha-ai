@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 6: Pressure, Winds, Storms, and Cyclones",
+  "central_question": "How do force and pressure in solids, liquids and gases produce winds and shape dangerous weather events such as thunderstorms, lightning and cyclones?",
+  "in_scope_units": [
+    "Pressure as force per unit area, its SI unit pascal, and daily applications involving contact area.",
+    "Pressure exerted by liquids, its dependence on column height, and pressure in all directions.",
+    "Atmospheric pressure, pressure differences, rubber suckers, balloons and balance with pressure inside the body.",
+    "Formation of wind as air moves from high-pressure to low-pressure regions, including land and sea breezes.",
+    "Lower air pressure associated with high-speed winds and its effects on roofs and other structures.",
+    "Formation of storms, thunderstorms, charge separation, lightning, thunder and safety precautions.",
+    "Formation, structure, impacts, monitoring and safety related to tropical cyclones."
+  ],
+  "banned_topics": [
+    "Detailed weather-map forecasting calculations.",
+    "Advanced fluid mechanics such as Bernoulli equations.",
+    "Electrical-circuit theory beyond the static-charge explanation of lightning."
+  ],
+  "must_include_keywords": [
+    "pressure",
+    "force per unit area",
+    "pascal",
+    "N/m²",
+    "contact area",
+    "liquid pressure",
+    "water column",
+    "height",
+    "pressure in all directions",
+    "dam",
+    "atmosphere",
+    "atmospheric pressure",
+    "rubber sucker",
+    "pressure difference",
+    "high pressure",
+    "low pressure",
+    "wind",
+    "sea breeze",
+    "land breeze",
+    "high-speed wind",
+    "storm",
+    "thunderstorm",
+    "static charge",
+    "charge separation",
+    "lightning",
+    "thunder",
+    "electrical insulator",
+    "lightning conductor",
+    "cyclone",
+    "warm ocean water",
+    "condensation",
+    "Earth's rotation",
+    "eye of cyclone",
+    "storm surge",
+    "India Meteorological Department",
+    "cyclone shelter"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Pressure and force mean the same thing.",
+      "correction": "Pressure is force acting per unit area, so the same force can produce different pressures on different areas."
+    },
+    {
+      "claim": "Liquid pressure depends mainly on how wide the container is.",
+      "correction": "Activities 6.1 and 6.2 show that pressure at a level depends on the height of the liquid column and acts in all directions."
+    },
+    {
+      "claim": "Air flows naturally from low pressure to high pressure.",
+      "correction": "Air moves from a region of higher pressure towards a region of lower pressure until the difference reduces."
+    },
+    {
+      "claim": "The eye of a cyclone has the strongest winds and heaviest rain.",
+      "correction": "The eye is the calm central region of lowest pressure; the surrounding region has strong winds and heavy rainfall."
+    },
+    {
+      "claim": "Lightning is produced because air always conducts electricity well.",
+      "correction": "Air normally acts as an insulator; lightning occurs when a very large charge build-up breaks down this insulation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the 100 N force on 2 m² example in Section 6.1 to calculate 50 Pa.",
+    "Use Activities 6.1 and 6.2 to compare liquid pressure by height and direction.",
+    "Use Activities 6.3 and 6.4 to infer atmospheric pressure and pressure difference.",
+    "Use Activity 6.5 to show that air moves from high pressure to low pressure.",
+    "Use Activity 6.6 to connect high-speed winds with reduced pressure.",
+    "Use Keep the curiosity alive Q4 and Q5 for numerical pressure comparisons.",
+    "Use Q11 and Q12 to explain thunderstorm and lightning formation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–13, followed by Discover, design, and debate projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

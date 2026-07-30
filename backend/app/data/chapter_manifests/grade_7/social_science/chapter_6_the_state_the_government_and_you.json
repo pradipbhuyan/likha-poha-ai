@@ -1,0 +1,100 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 6: The State, the Government, and You",
+  "central_question": "How do the state, constitutional government, democratic institutions, citizens and different levels of authority work together to protect rights and serve people?",
+  "in_scope_units": [
+    "What is a State?—population, defined territory, government and sovereignty.",
+    "What is a Government?—leaders, ministers and officials who make laws, enforce them and resolve disputes on behalf of the state.",
+    "People, police and government—law and order, legitimate force, constitutional rights and the criminal justice system.",
+    "Democracy and Republic—popular choice of government, elected head of state, constitutional limits and comparison with monarchies.",
+    "India, a Republic that Protects the Rights of All—fundamental rights, minority protection, Dongria Kondh and the RWA example.",
+    "Legislature, Executive and Judiciary—the three organs and their roles in lawmaking, implementation and constitutional protection.",
+    "Political and Permanent Executive—elected leaders, civil servants, UPSC, bureaucracy, public services and large programmes.",
+    "C.B. Muthamma—gender discrimination, constitutional equality and the Supreme Court.",
+    "The Government and You—protector, provider and regulator roles.",
+    "Citizen engagement—grievance redressal, RTI, media, civil society, political representatives and voting.",
+    "Judiciary: the Watchdog—interpretation, rights, judicial review, independence and rule of law.",
+    "Tiers of Government—union, state and local levels in India’s federal system.",
+    "Decentralisation—constitutional local government, panchayati raj, municipalities, accountability and gram swaraj.",
+    "Education across levels and organs—legislation, administration, budgets, child-rights bodies and courts.",
+    "Before we move on and Questions and activities 1–5—democracy, republic, power-sharing, rights, decentralisation and citizen experience."
+  ],
+  "banned_topics": [
+    "Detailed parliamentary lawmaking procedures and executive formation reserved for Grade 8.",
+    "Detailed court hierarchy and judicial procedure reserved for later study.",
+    "Political party comparison or current election commentary not included in the chapter.",
+    "Detailed histories of every form of government, which were introduced in an earlier chapter."
+  ],
+  "must_include_keywords": [
+    "state",
+    "permanent population",
+    "defined territory",
+    "government",
+    "sovereignty",
+    "police",
+    "democracy",
+    "republic",
+    "Preamble",
+    "fundamental rights",
+    "dominance of the majority",
+    "rule of law",
+    "Constitution",
+    "legislature",
+    "executive",
+    "judiciary",
+    "political executive",
+    "permanent executive",
+    "bureaucracy",
+    "civil servants",
+    "UPSC",
+    "C.B. Muthamma",
+    "protector",
+    "provider",
+    "regulator",
+    "grievance redressal",
+    "RTI",
+    "transparency",
+    "accountability",
+    "civil society",
+    "Silent Valley",
+    "judicial review",
+    "federalism",
+    "decentralisation",
+    "panchayati raj",
+    "municipalities",
+    "gram swaraj"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The state and the current government are identical.",
+      "correction": "The state includes people, territory, government and sovereignty; governments may change after elections while the state continues."
+    },
+    {
+      "claim": "Every democracy is automatically a republic.",
+      "correction": "A democracy chooses government through elections, while a republic has an elected rather than hereditary head of state; democratic monarchies also exist."
+    },
+    {
+      "claim": "A majority may lawfully remove the fundamental rights of a minority.",
+      "correction": "India’s Constitution and courts limit power and protect fundamental rights against dominance of the majority."
+    },
+    {
+      "claim": "Bureaucrats are replaced whenever a new political party forms the government.",
+      "correction": "The permanent executive continues across elections and implements policies under different elected governments."
+    },
+    {
+      "claim": "Decentralisation means that local governments handle national defence and foreign affairs.",
+      "correction": "Local governments address local concerns, while matters such as defence remain with the union government."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use a chapter-based comparison to distinguish the enduring state from a changing government.",
+    "Use NCERT Q1 to distinguish democracy from republic.",
+    "Use NCERT Q3 to reason about shared power, rights and checks on a representative body.",
+    "Use NCERT Q4 to examine Parliament, courts, constitutional limits and judicial review.",
+    "Use NCERT Q2 to explain why local knowledge, participation and accountability make decentralisation important."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–5.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

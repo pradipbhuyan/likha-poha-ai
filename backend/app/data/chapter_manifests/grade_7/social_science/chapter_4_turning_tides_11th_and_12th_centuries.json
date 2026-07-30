@@ -1,0 +1,98 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 4: Turning Tides: 11th and 12th Centuries",
+  "central_question": "How did invasions, regional kingdoms, maritime expansion, trade, learning and social-religious change make the 11th and 12th centuries a turning point marked by both disruption and resilience?",
+  "in_scope_units": [
+    "Chronological setting and the idea of a transition—Turkic invasions, regional powers, creativity and the need to study both conflict and resilience.",
+    "The Ghaznavid invasions—Hindu Shāhi resistance, the Khyber Pass, Mahmūd’s campaigns, warfare, plunder, temple destruction and the limited territorial aim of his raids.",
+    "Al-Bīrūnī—his study of Indian religion, philosophy, geography, mathematics and astronomy, and his observations on the impact of warfare on learning.",
+    "Bhāskarāchārya—Līlāvatī, Bījagaṇita, Siddhāntaśhiromaṇi and the continued flourishing of mathematics and astronomy outside areas affected by invasion.",
+    "Eastern India—Sena power in Bengal, Jayadeva, the Eastern Gangas, regional alliances and the Jagannātha and Konark temple traditions.",
+    "Further South—Western and Eastern Chālukyas and the rise of the Kākatīyas and Hoysalas.",
+    "The Kākatīyas and Hoysalas—local administration, irrigation, Telugu and Kannada patronage, Warangal, Belur and Halebidu architecture.",
+    "The Cholas, masters of the seas—Rājarāja I, Rājendra I, Sri Lanka, the Śhrīvijaya expedition, China trade, public works and Chola decline.",
+    "The Paramāras and Bhoja—the Malwa kingdom, military resistance, governance, water management, Bhojeshwar Temple and scholarship.",
+    "The Ghūrid turning point—Muhammad Ghūrī, Chaulukya resistance, Pṛithvīrāja III, the Battles of Tarain, Qutb-ud-din Aibak and territorial conquest.",
+    "Bakhtiyār Khiljī in eastern India—the destruction of Nālandā and Vikramaśhilā, the conquest of Bengal and defeat in Kāmarūpa.",
+    "Governance, trade and cultural life—armies, taxation, agriculture, irrigation, merchant guilds, ports, literature, science and temple building.",
+    "Rāmānujāchārya and Basaveśhvara—viśhiṣhṭādvaita, bhakti, the Lingāyat movement, vachanas and the anubhava maṇḍapa.",
+    "Taking Stock and Questions and activities 1–8—change and continuity, dynasties, geography, monuments, learning and contrasting invasion strategies."
+  ],
+  "banned_topics": [
+    "Detailed administration and later history of the Delhi Sultanate, which the chapter reserves for Grade 8.",
+    "Detailed Gupta, Pāla, Pratīhāra and Rāṣhṭrakūṭa history already covered in preceding chapters.",
+    "Modern political responsibility for medieval events; the chapter explicitly warns against blaming people today.",
+    "Advanced mathematical solution methods for the Līlāvatī riddle, which are not the historical focus of this chapter."
+  ],
+  "must_include_keywords": [
+    "Hindu Shāhis",
+    "Khyber Pass",
+    "Mahmūd of Ghazni",
+    "Jayapāla",
+    "Ānandapāla",
+    "Somnath",
+    "al-Bīrūnī",
+    "Bhāskarāchārya",
+    "Līlāvatī",
+    "Senas",
+    "Eastern Gangas",
+    "Kākatīyas",
+    "Orugallu",
+    "Hoysalas",
+    "Belur",
+    "Halebidu",
+    "Rājarāja Chola I",
+    "Rājendra Chola I",
+    "Śhrīvijaya",
+    "Strait of Malacca",
+    "Paramāras",
+    "King Bhoja",
+    "Muhammad Ghūrī",
+    "Chaulukyas",
+    "Chāhamānas",
+    "Pṛithvīrāja III",
+    "Battles of Tarain",
+    "Qutb-ud-din Aibak",
+    "Bakhtiyār Khiljī",
+    "Nālandā",
+    "Vikramaśhilā",
+    "merchant guilds",
+    "Rāmānujāchārya",
+    "Basaveśhvara",
+    "anubhava maṇḍapa",
+    "resilience"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Mahmūd of Ghazni and Muhammad Ghūrī followed the same strategy in India.",
+      "correction": "Mahmūd repeatedly raided, plundered and withdrew, while Muhammad Ghūrī sought territorial conquest and left commanders to consolidate control."
+    },
+    {
+      "claim": "The whole Subcontinent came under Turkic rule during these two centuries.",
+      "correction": "Large parts of northern India and all of southern India remained outside the invaders’ control during the period discussed."
+    },
+    {
+      "claim": "Rājendra Chola occupied and permanently ruled the Śhrīvijaya Empire.",
+      "correction": "His naval campaign defeated Śhrīvijaya and captured its capital, but the chapter describes it as a punitive expedition rather than permanent occupation."
+    },
+    {
+      "claim": "War brought all trade, science and cultural activity to an end.",
+      "correction": "Despite severe disruption in parts of the north, trade, agriculture, literature, science, temple building and regional-language culture continued to flourish."
+    },
+    {
+      "claim": "The Chaulukyas of Gujarat and the Chālukyas of the Deccan were the same dynasty.",
+      "correction": "The chapter clearly distinguishes the Chaulukya or Solanki dynasty of Gujarat from the Chālukya dynasty of the Deccan."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Q8 to compare the contrasting aims and outcomes of Mahmūd’s raids and Muhammad Ghūrī’s territorial strategy.",
+    "Use NCERT Q5 to connect regional dynasties with their major centres and monuments.",
+    "Use NCERT Q6 to organise continuity and change among dynasties across the preceding and present periods.",
+    "Use NCERT Q7 to assess why Nālandā mattered and how its destruction affected learning.",
+    "Use NCERT Q1 to synthesise the period through examples of both change and continuity."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–8.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

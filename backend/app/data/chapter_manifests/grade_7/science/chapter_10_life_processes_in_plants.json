@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 10: Life Processes in Plants",
+  "central_question": "How do plants make food, exchange gases, transport water and food, and respire to support growth and survival?",
+  "in_scope_units": [
+    "10.1 How Do Plants Grow?—Activity 10.1 testing the need for water and sunlight.",
+    "10.2 How Do Plants Get Food? and 10.2.1 Leaves—Food Factories of Plants, including starch, chlorophyll and Activities 10.2–10.3.",
+    "10.2.2 Role of Air in Preparing Food—Activity 10.4 on carbon dioxide and Activity 10.5 on oxygen release.",
+    "10.2.3 Photosynthesis—word equation, sunlight, chlorophyll, carbon dioxide, water, glucose, starch and oxygen.",
+    "10.2.4 Exchange of Gases in Plants—Activity 10.6 and stomata.",
+    "10.3 Transport in Plants—Activity 10.7, movement of water and minerals through xylem, and movement of food through phloem.",
+    "10.4 Do Plants Respire?—Activity 10.8 with germinating seeds, lime water and the respiration equation.",
+    "In a Nutshell, Let Us Enhance Our Learning Questions 1–10 and exploratory projects."
+  ],
+  "banned_topics": [
+    "Detailed chloroplast structure and light-dependent reactions.",
+    "Calvin cycle and biochemical pathways.",
+    "Advanced plant-hormone physiology.",
+    "Detailed mineral-deficiency diagnosis.",
+    "Reproduction in flowering plants."
+  ],
+  "must_include_keywords": [
+    "plant growth",
+    "water",
+    "sunlight",
+    "photosynthesis",
+    "leaf",
+    "food factory",
+    "starch",
+    "iodine solution",
+    "blue-black",
+    "chlorophyll",
+    "variegated leaf",
+    "carbon dioxide",
+    "sodium hydroxide",
+    "oxygen",
+    "water plant",
+    "glucose",
+    "stomata",
+    "guard cells",
+    "gas exchange",
+    "roots",
+    "root hairs",
+    "xylem",
+    "minerals",
+    "red ink",
+    "phloem",
+    "transport of food",
+    "respiration",
+    "germinating seeds",
+    "lime water",
+    "energy",
+    "Activity 10.1",
+    "Activity 10.2",
+    "Activity 10.4",
+    "Activity 10.7",
+    "Activity 10.8",
+    "Let Us Enhance Our Learning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Plants obtain ready-made food from soil.",
+      "correction": "Plants absorb water and minerals from soil but make food in green parts by photosynthesis."
+    },
+    {
+      "claim": "Sunlight and water alone are enough for photosynthesis.",
+      "correction": "Carbon dioxide and chlorophyll are also required."
+    },
+    {
+      "claim": "Plants take in oxygen and release carbon dioxide only, even in sunlight.",
+      "correction": "During photosynthesis green parts use carbon dioxide and release oxygen, while respiration continues in plant cells."
+    },
+    {
+      "claim": "Xylem transports food from leaves.",
+      "correction": "Xylem transports water and minerals; phloem transports prepared food."
+    },
+    {
+      "claim": "Only green leaves respire.",
+      "correction": "All living plant parts respire, including roots, stems, leaves and germinating seeds."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 10.1 to establish that both water and sunlight support healthy plant growth.",
+    "Use Activity 10.2 for the iodine test and Activity 10.3 for chlorophyll and sunlight.",
+    "Use Activity 10.4 to demonstrate the requirement of carbon dioxide.",
+    "Use Activity 10.5 to identify oxygen released by an illuminated water plant.",
+    "Use Activity 10.6 for stomata and Activity 10.7 for xylem transport.",
+    "Use Activity 10.8 and Questions 1, 7 and 10 to compare photosynthesis with respiration."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section 'Let Us Enhance Our Learning' contains Questions 1–10, followed by Exploratory Projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

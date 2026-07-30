@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 3: Electricity: Circuits and Their Components",
+  "central_question": "How do cells, batteries, lamps, LEDs, switches, wires and material properties work together to form safe, complete electrical circuits?",
+  "in_scope_units": [
+    "Uses and sources of electricity, the Bhakra Nangal context and essential safety precautions.",
+    "3.1 A Torchlight: observing the lamp, switch and cells inside a torch.",
+    "3.2 A Simple Electrical Circuit: electric cell, battery, incandescent lamp, LED, complete circuit and switch.",
+    "3.2.1 Electric cell and 3.2.2 Battery: terminals, cell arrangement and combinations of cells.",
+    "3.2.3 Electric lamp: filament-based incandescent lamps and polarity-sensitive LEDs.",
+    "3.2.4–3.2.6 Making a lamp glow, electrical circuits and switches: complete paths, current direction, open and closed circuits.",
+    "3.3 Circuit Diagrams: standard symbols for cells, batteries, lamps, LEDs, switches and wires.",
+    "3.4 Electrical Conductors and Insulators: tester circuit, material classification, wire coverings and safety.",
+    "Let Us Enhance Our Learning: Questions 1–11 and exploratory projects on power, solar circuits, cells and household materials."
+  ],
+  "banned_topics": [
+    "Numerical current, voltage and resistance calculations.",
+    "Ohm's law and circuit equations.",
+    "Household mains wiring procedures.",
+    "Detailed series and parallel circuit theory beyond the figures provided.",
+    "Electromagnetism, motors and generators in technical detail."
+  ],
+  "must_include_keywords": [
+    "torchlight",
+    "electric cell",
+    "positive terminal",
+    "negative terminal",
+    "battery",
+    "incandescent lamp",
+    "filament",
+    "LED",
+    "longer wire",
+    "shorter wire",
+    "electrical circuit",
+    "complete path",
+    "electric current",
+    "positive to negative",
+    "fused lamp",
+    "open circuit",
+    "closed circuit",
+    "switch",
+    "ON position",
+    "OFF position",
+    "circuit diagram",
+    "symbol",
+    "wire",
+    "conductor",
+    "insulator",
+    "tester",
+    "copper",
+    "plastic",
+    "rubber",
+    "ceramics",
+    "electric shock",
+    "Direct Current",
+    "Alternating Current",
+    "Activity 3.6",
+    "Activity 3.11",
+    "Let Us Enhance Our Learning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A switch produces electric current.",
+      "correction": "A cell or battery supplies electrical energy; a switch only completes or breaks the circuit."
+    },
+    {
+      "claim": "An LED glows in either direction like an incandescent lamp.",
+      "correction": "An LED allows current in one direction and must be connected with its longer positive wire to the battery's positive terminal."
+    },
+    {
+      "claim": "A lamp glows whenever one wire touches the cell.",
+      "correction": "Both lamp terminals must connect to different cell terminals to form a complete path."
+    },
+    {
+      "claim": "The plastic covering on a wire should remain at the connection point.",
+      "correction": "The insulating covering must be removed at the ends so exposed metal can make electrical contact."
+    },
+    {
+      "claim": "All materials conduct electricity equally well.",
+      "correction": "Activity 3.11 distinguishes conductors such as metals from insulators such as plastic, rubber and glass."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 3.1 to identify the visible parts and switching behaviour of a torch.",
+    "Use Activities 3.2–3.5 to study cell terminals, battery arrangement, filament lamps and LED polarity.",
+    "Use Activity 3.6 and Table 3.1 to establish the need for a complete circuit.",
+    "Use Activities 3.8–3.9 to connect ON/OFF positions with closed/open circuits.",
+    "Use Activity 3.10 to translate real circuits into standard circuit diagrams.",
+    "Use Activity 3.11 and Let Us Enhance Our Learning Questions 2, 4, 7, 9 and 10 for testing and troubleshooting."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The section 'Let Us Enhance Our Learning' contains Questions 1–11, followed by Exploratory Projects and a Science and Society note.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

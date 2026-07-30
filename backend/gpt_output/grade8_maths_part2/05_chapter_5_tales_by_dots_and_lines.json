@@ -1,0 +1,106 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 5: Tales by Dots and Lines",
+    "central_question": "How do mean, median, dot plots, spreadsheets and line graphs help us describe the centre of data, analyse changes and draw meaningful conclusions?",
+    "in_scope_units": [
+      "The mean as a balancing centre on a dot plot.",
+      "Equal total distances on the two sides of the mean.",
+      "How inserting, removing, increasing or decreasing data values affects the mean.",
+      "How adding a constant to all values or multiplying all values changes the mean.",
+      "The median and its behaviour when data values are inserted or removed.",
+      "Finding missing values and correcting a mean when data are changed.",
+      "Mean and median from frequency tables.",
+      "Spreadsheet tables, cells, ranges and formulae such as SUM and AVERAGE.",
+      "Line graphs for representing change over time.",
+      "Reading, comparing and interpreting multiple line graphs.",
+      "Generating questions and observations from temperature, rainfall, sunrise, sunset, moonrise and moonset data.",
+      "The closing Game of Hex strategy activity."
+    ],
+    "banned_topics": [
+      "Probability distributions and standard deviation.",
+      "Regression, correlation coefficients and trend-line equations.",
+      "Database programming beyond the spreadsheet operations shown in the chapter."
+    ],
+    "must_include_keywords": [
+      "data",
+      "dot plot",
+      "arithmetic mean",
+      "median",
+      "central tendency",
+      "balance point",
+      "distance from the mean",
+      "sorted data",
+      "inserting a value",
+      "removing a value",
+      "outlier",
+      "constant shift",
+      "scaling data",
+      "frequency",
+      "frequency table",
+      "cumulative frequency",
+      "weighted sum",
+      "family size",
+      "spreadsheet",
+      "cell",
+      "row",
+      "column",
+      "cell range",
+      "formula",
+      "SUM",
+      "AVERAGE",
+      "fill handle",
+      "line graph",
+      "horizontal axis",
+      "vertical axis",
+      "change over time",
+      "temperature",
+      "rainfall",
+      "sunrise",
+      "sunset",
+      "moonrise",
+      "moonset",
+      "interpretation",
+      "observation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The mean is always the midpoint of the smallest and largest values.",
+        "correction": "The mean balances the total distances on its two sides; it is not generally the midpoint of the extremes."
+      },
+      {
+        "claim": "Adding one value above the old mean leaves the mean unchanged.",
+        "correction": "Adding a value above the current mean increases the mean; a value below it decreases the mean."
+      },
+      {
+        "claim": "The median of an even number of values is either one of the two middle values.",
+        "correction": "It is the arithmetic mean of the two middle values after sorting."
+      },
+      {
+        "claim": "The mean of a frequency table is the sum of distinct values divided by the number of distinct values.",
+        "correction": "Each value must be multiplied by its frequency, and the total divided by the sum of frequencies."
+      },
+      {
+        "claim": "A line graph alone proves why a change occurred.",
+        "correction": "A graph shows patterns and changes; explanations of causes need additional evidence."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the opening dot plots for 3 and 7, and 8 and 9, to show the mean halfway between two values.",
+      "Use the balancing-distance activity to show equal total distances on both sides of a mean.",
+      "Use the chapter's wrestler-weight missing-value problem whose unknown value is 43.",
+      "Use the family-size frequency table to calculate mean 188/36 = 5.22 and median 5.",
+      "Use the student-marks spreadsheet to demonstrate SUM and AVERAGE formulae and copying formulae.",
+      "Use one of the final line-graph activities to identify axes, read approximate values and distinguish observations from unsupported causes."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with an extended Figure it Out set of data and line-graph interpretation tasks, including sunrise-sunset and moonrise-moonset questions, followed by the Summary and Game of Hex."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 5: Tales by Dots and Lines\n\n## What you will learn\nYou will see the arithmetic mean as a balance point rather than only a formula. You will use dot plots and distances to explain why the mean represents the centre of a data set.\n\n## Simple explanation\nFor two values, the mean lies exactly halfway between them. For more values, it is the point where the total distance of data values on the left equals the total distance on the right.\n\n## Step-by-step breakdown\n- **Mean formula**: Arithmetic mean = sum of all values ÷ number of values.\n- **Dot plot**: Each data value is marked as a dot at its position on a number line.\n- **Two-value centre**: The mean of two values is their midpoint.\n- **Balance property**: The positive and negative deviations from the mean add to zero.\n- **Distance interpretation**: The total distance to the left equals the total distance to the right when directions are accounted for.\n- **Uniqueness**: A data set has one arithmetic mean.\n\n## Worked example\nQuestion: NCERT Section 5.1 opening example: Find and interpret the mean of 3 and 7.\n\nSolution:\n- Step 1: Add the values: 3+7=10.\n- Step 2: Divide by the number of values: 10÷2=5.\n- Step 3: On the number line, the distance from 3 to 5 is 2.\n- Step 4: The distance from 5 to 7 is also 2.\n- Step 5: Therefore 5 is exactly halfway between the two values.\n- Final answer: The mean is 5, the balance point between 3 and 7.\n\n## Common mistake\nDo not assume this midpoint-of-extremes rule works for every larger data set. The balance depends on all values and their repetitions.\n\n## Quick check question\nQuestion: Find the mean of 8 and 9.\nAnswer: 8.5.\nExplanation: (8+9)÷2=17÷2=8.5, which is 0.5 unit from each value.\n\n## Summary\n- The mean is both a calculated average and a geometric balance point.\n- Dot plots make distances visible.\n- For two values, the mean is their midpoint.\n- For many values, every data point contributes to the balance.",
+    "Core explanation": "# Core explanation: Chapter 5: Tales by Dots and Lines\n\n## What you will learn\nYou will predict how the mean changes when data values are added, removed or transformed. You will distinguish changes that move the mean from those that keep it fixed.\n\n## Simple explanation\nThe mean responds to both the number of values and their total. A new value above the current mean pulls it upward; one below pulls it downward.\n\n## Step-by-step breakdown\n- **Adding above the mean**: The total rises by more than one current mean-share, so the mean increases.\n- **Adding below the mean**: The new value contributes less than a current mean-share, so the mean decreases.\n- **Adding the mean**: Adding a value equal to the current mean leaves the mean unchanged.\n- **Balanced additions**: Adding values equally far on opposite sides of the mean keeps the balance.\n- **Constant shift**: Adding k to every value adds k to the mean.\n- **Scaling**: Multiplying every value by k multiplies the mean by k.\n- **Removal**: Removing a value above the mean lowers the total relative to the count and can lower the new mean; the exact effect should be reasoned carefully.\n\n## Worked example\nQuestion: NCERT transformation discussion: If 5 is added to every value in a data set whose mean is 12, what is the new mean?\n\nSolution:\n- Step 1: Let there be n values with total 12n.\n- Step 2: Adding 5 to every value increases the total by 5n.\n- Step 3: New total = 12n+5n=17n.\n- Step 4: The number of values remains n.\n- Step 5: New mean = 17n÷n=17.\n- Final answer: The new mean is 17.\n\n## Common mistake\nDo not add 5 only once to the total. It is added to every data value, so the total increases by 5 times the number of values.\n\n## Quick check question\nQuestion: If every value is multiplied by 3 and the original mean is 8, what is the new mean?\nAnswer: 24.\nExplanation: Multiplying all n values by 3 multiplies their total by 3, so the mean is also multiplied by 3: 3×8=24.\n\n## Summary\n- The mean changes predictably under uniform transformations.\n- A constant addition shifts the mean by the same constant.\n- A common multiplier scales the mean.\n- The position of an inserted value relative to the mean determines the direction of change.",
+    "Worked examples": "# Worked examples: Chapter 5: Tales by Dots and Lines\n\n## What you will learn\nYou will solve missing-value and corrected-data problems using the relationship between mean, total and number of observations. You will show every reconstruction step.\n\n## Simple explanation\nThe mean formula can be rearranged: total = mean × number of values. This makes it possible to recover a missing observation or correct an incorrectly recorded value.\n\n## Step-by-step breakdown\n- **Recover total**: Multiply the mean by the number of observations.\n- **Known subtotal**: Add all available values.\n- **Missing value**: Subtract the known subtotal from the required total.\n- **Correction**: Replace the wrong value by subtracting it and adding the correct value.\n- **New mean**: Divide the corrected total by the unchanged count.\n- **Check**: Insert the recovered value and recompute the mean.\n\n## Worked example\nQuestion: NCERT wrestler-weight problem: The chapter's missing weight is found to be 43. Explain the standard calculation structure.\n\nSolution:\n- Step 1: Multiply the stated mean by the stated number of wrestlers to obtain the required total weight.\n- Step 2: Add the known wrestlers' weights to obtain the known subtotal.\n- Step 3: Subtract the known subtotal from the required total.\n- Step 4: The difference is the missing wrestler's weight.\n- Step 5: The chapter's values give a difference of 43.\n- Final answer: The missing weight is 43 kg.\n\n## Common mistake\nDo not divide the known subtotal by the total number of wrestlers. The missing value is found from the total required by the mean.\n\n## Quick check question\nQuestion: A data set has 5 values and mean 12. Four values total 49. Find the fifth value.\nAnswer: 11.\nExplanation: Required total = 5×12=60. Missing value = 60-49=11.\n\n## Summary\n- Mean and count determine the total.\n- Missing data are recovered by subtraction from that total.\n- Correcting a record changes the total but not the count.\n- Substitution provides a quick verification.",
+    "Exam-style problems": "# Exam-style problems: Chapter 5: Tales by Dots and Lines\n\n## What you will learn\nYou will calculate mean and median from a frequency table. You will use cumulative frequency positions instead of writing every value repeatedly.\n\n## Simple explanation\nA frequency table compresses repeated data. For the mean, use value×frequency; for the median, locate the middle position or positions in the ordered data.\n\n## Step-by-step breakdown\n- **Weighted total**: Sum x×f for every distinct value x with frequency f.\n- **Total frequency**: Sum all frequencies to get the number of observations.\n- **Mean**: Σfx ÷ Σf.\n- **Odd median**: Locate position (n+1)/2.\n- **Even median**: Locate positions n/2 and n/2+1 and average their values.\n- **Cumulative frequency**: Successive frequency totals show which value occupies each position.\n\n## Worked example\nQuestion: NCERT family-size table: The weighted total is 188 for 36 families. Find the mean and median when positions 15-23 all have family size 5.\n\nSolution:\n- Step 1: Mean = weighted total ÷ number of families = 188÷36.\n- Step 2: Calculate 188÷36 = 47/9 = 5.222..., approximately 5.22.\n- Step 3: There are 36 values, so the median uses the 18th and 19th positions.\n- Step 4: The cumulative frequencies show that positions 15 through 23 have value 5.\n- Step 5: Therefore both the 18th and 19th values are 5.\n- Step 6: Median = (5+5)÷2=5.\n- Final answer: The mean is approximately 5.22 and the median is 5.\n\n## Common mistake\nDo not average the distinct family-size labels. Their frequencies must be included.\n\n## Quick check question\nQuestion: For 36 ordered observations, which two positions determine the median?\nAnswer: The 18th and 19th positions.\nExplanation: For an even count n=36, the two middle positions are n/2=18 and n/2+1=19.\n\n## Summary\n- Frequency tables preserve all repeated observations compactly.\n- The mean uses weighted values.\n- The median depends on ordered positions.\n- Cumulative frequency identifies those positions efficiently.",
+    "Revision and recap": "# Revision and recap: Chapter 5: Tales by Dots and Lines\n\n## What you will learn\nYou will use spreadsheets to calculate summaries and line graphs to analyse change over time. You will separate what a graph shows from explanations that require more evidence.\n\n## Simple explanation\nSpreadsheets automate repeated arithmetic across rows and columns. Line graphs place time or another ordered variable on the horizontal axis and measured values on the vertical axis.\n\n## Step-by-step breakdown\n- **Cell**: A cell is identified by its column letter and row number.\n- **Range**: A range such as B3:G3 refers to all cells from B3 through G3.\n- **SUM formula**: A formula such as =SUM(B3:G3) adds the values in the range.\n- **AVERAGE formula**: A formula such as =AVERAGE(B7:D7) finds the arithmetic mean of the selected cells.\n- **Copying formulae**: A fill handle can extend a formula to neighbouring rows with adjusted references.\n- **Line graph axes**: The horizontal axis often records time; the vertical axis records the changing quantity.\n- **Reading values**: Locate the time, move to the plotted line and read the corresponding vertical value.\n- **Interpretation**: Compare trends, peaks, dips and intervals, while avoiding unsupported causal claims.\n\n## Worked example\nQuestion: NCERT spreadsheet table: What does =SUM(B3:G3) calculate for a student's row?\n\nSolution:\n- Step 1: The range B3:G3 includes the six subject-mark cells in row 3.\n- Step 2: SUM adds every numeric value in that inclusive range.\n- Step 3: The result is the student's total marks across the six subjects.\n- Step 4: Copying the formula down calculates the corresponding total for other students.\n- Final answer: It calculates the total of the six subject marks in cells B3 through G3.\n\n## Common mistake\nDo not omit the equals sign in a spreadsheet formula; without it, the entry may be treated as text.\n\n## Quick check question\nQuestion: What does a line graph show particularly well?\nAnswer: How a quantity changes across an ordered variable such as time.\nExplanation: Joining values in sequence makes rises, falls, peaks and patterns over time easy to compare.\n\n## Summary\n- Spreadsheet formulae reduce repetitive calculation.\n- Cell references determine which data are used.\n- Line graphs visualise change over time.\n- A graph supports observations but does not by itself prove causes.\n- Good data analysis generates further questions as well as answers."
+  }
+}

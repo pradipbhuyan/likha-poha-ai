@@ -1,0 +1,112 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Social Science",
+    "chapter": "Chapter 2: India and Her Neighbours",
+    "central_question": "How have geography, shared history, culture, trade and present-day challenges shaped India’s relationships with her land and maritime neighbours?",
+    "in_scope_units": [
+      "Framing the Neighbourhood—land neighbours, maritime neighbours, India’s coastline, Indian Ocean position, regionalism and wider South Asian connections.",
+      "India and Her Land-based Neighbours—geographical borders and historical, cultural, economic and political links.",
+      "India and China—Himalayan border, Buddhist exchange, trade, tensions and dialogue.",
+      "India and Pakistan—Partition, conflict, shared heritage, pilgrimage routes and the Kartarpur Corridor.",
+      "India and Bangladesh—shared history and language, transboundary rivers, cooperation and the Sundarban.",
+      "India and Nepal—open border, sacred sites, the 1950 treaty, migration and trade.",
+      "India and Bhutan—hydropower, Buddhist heritage, strategic cooperation and Gross National Happiness.",
+      "India and Myanmar—border and maritime links, gateway to Southeast Asia, connectivity and heritage restoration.",
+      "India and Afghanistan—Uttarāpatha, ancient Buddhist-Hindu links and Indian support for infrastructure, education and healthcare.",
+      "India’s Maritime Neighbours and SAARC—regional cooperation and historical sea links.",
+      "India and Sri Lanka—Palk Strait, Buddhism and Hinduism, civil-war effects and modern partnership.",
+      "India and the Maldives—maritime culture, disaster support, Dhivehi links, climate vulnerability and solar cooperation.",
+      "India and Thailand—trade, Dvāravatī, Ayutthayā, shared traditions and the Trilateral Highway.",
+      "India and Malaysia—early cultural influence, Indian migration, trade and strategic links.",
+      "India and Singapore—historical ties, Tamil language, urban planning, investment and Indian community.",
+      "India and Indonesia—archipelago, ancient exchange, Borobudur, maritime security and tsunami warning cooperation.",
+      "India and Iran—Bronze Age and Silk Route links, language and culture, Chabahar Port and modern cooperation.",
+      "India and Oman—Harappan copper trade, Indian community, defence exercises and maritime security.",
+      "Before we move on and Questions and activities 1–8—neighbourhood, Buddhism, open borders, assistance, shared challenges and maps of connection."
+    ],
+    "banned_topics": [
+      "Detailed military history of wars and current border disputes beyond the chapter’s overview.",
+      "Detailed foreign-policy analysis or political opinions not present in the textbook.",
+      "Detailed doctrines of Buddhism, Hinduism or Islam beyond their role in regional links.",
+      "Country-by-country facts unrelated to India’s geographical, historical or present relationship."
+    ],
+    "must_include_keywords": [
+      "land neighbour",
+      "maritime neighbour",
+      "Indian Ocean",
+      "regionalism",
+      "China",
+      "Buddhism",
+      "Pakistan",
+      "Partition",
+      "Kartarpur Corridor",
+      "Bangladesh",
+      "transboundary rivers",
+      "Sundarban",
+      "Nepal",
+      "open border",
+      "Bhutan",
+      "hydroelectric power",
+      "Myanmar",
+      "gateway to Southeast Asia",
+      "Afghanistan",
+      "Uttarāpatha",
+      "SAARC",
+      "Sri Lanka",
+      "Palk Strait",
+      "Maldives",
+      "Dhivehi",
+      "Thailand",
+      "Suvarṇabhūmi",
+      "Malaysia",
+      "Singapore",
+      "Tamil",
+      "Indonesia",
+      "Borobudur",
+      "tsunami early warning",
+      "Iran",
+      "Silk Route",
+      "Chabahar Port",
+      "Oman",
+      "maritime security"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Only countries sharing a land border can be India’s neighbours.",
+        "correction": "The chapter includes maritime neighbours connected across shared seas and presents a wider Indian Ocean neighbourhood."
+      },
+      {
+        "claim": "India’s relationships with neighbours are based only on present-day politics.",
+        "correction": "Geography, trade routes, religions, languages, migration, shared heritage and disaster cooperation also shape these relationships."
+      },
+      {
+        "claim": "An open border means there are no safety arrangements or cooperation between states.",
+        "correction": "The India–Nepal open border permits movement without passports or visas while both countries cooperate to keep it safe."
+      },
+      {
+        "claim": "Shared challenges always create conflict.",
+        "correction": "The chapter shows cooperation on the Sundarban, hydropower, disaster relief, tsunami warning, maritime security and climate action."
+      },
+      {
+        "claim": "Cultural influence travelled in only one direction and ended in ancient times.",
+        "correction": "The chapter describes centuries of two-way exchange and continuing modern links in language, food, arts, trade, education and technology."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Q1 to define a maritime neighbour with Sri Lanka and the Maldives as examples.",
+      "Use NCERT Q4 to show why shared culture, trade, rivers and cooperation make neighbourhood more than geography.",
+      "Use NCERT Q3 to analyse how the India–Nepal open border shapes daily life.",
+      "Use NCERT Q2 to trace Buddhist links with China, Bhutan, Myanmar, Sri Lanka and Southeast Asia.",
+      "Use NCERT Q6 to compare shared challenges that produced cooperation, including the Sundarban, tsunami warning and climate action."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–8."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 2: India and Her Neighbours\n\n## What you will learn\nYou will distinguish land and maritime neighbours and explain India’s strategic position in the Indian Ocean. You will then examine the mixture of cooperation and tension in relationships with China and Pakistan.\n\n## Simple explanation\nNeighbourhood is not limited to a line on land. Seas, mountains, trade routes, pilgrimage, shared languages and historical memories also connect countries.\n\n## Step-by-step breakdown\n- **Land neighbourhood**: India shares land boundaries with Pakistan, Afghanistan, China’s Tibet region, Nepal, Bhutan, Bangladesh and Myanmar.\n- **Maritime neighbourhood**: Sri Lanka and the Maldives are immediate neighbours across water, while a wider circle includes Indian Ocean countries.\n- **Indian Ocean position**: India’s peninsula and long coastline give access to routes linking Southeast Asia, West Asia and Africa.\n- **Regionalism**: Cooperation among neighbouring countries can support peace, stability, development and disaster relief.\n- **China**: The Himalayas form a shared frontier, while Buddhism, pilgrim-monks and historical trade created deep links.\n- **Modern China relationship**: Trade and company links coexist with border tensions and efforts at dialogue and resolution.\n- **Pakistan**: Partition created a deeply divided political history marked by conflicts, yet languages, cuisine, music, festivals and sacred sites remain shared.\n- **Kartarpur Corridor**: The visa-free corridor allows permit-holding Indian pilgrims to visit Gurdwara Darbar Sahib.\n\n## Worked example\nQuestion: Using NCERT Q1, define a maritime neighbour and give two examples with respect to India.\n```extract-ref\n{\"citation\": \"NCERT Q1\", \"extract_text\": \"Explain who a maritime neighbour is with two examples with respect to India.\", \"note\": \"Questions and activities\"}\n```\n\nSolution:\n- Step 1: The chapter defines a maritime neighbour as a country connected to another by a shared sea or ocean even without a direct land border.\n- Step 2: Sri Lanka lies across the Palk Strait, and the Maldives lies close to Minicoy across the Indian Ocean.\n- Final answer: A maritime neighbour is connected across shared waters; Sri Lanka and the Maldives are two immediate examples for India.\n\n## Common mistake\nDo not use 'maritime neighbour' as another term for a country sharing a river border; the connection is through a sea or ocean.\n\n## Quick check question\nQuestion: Why is India described as a link between Southeast Asia, West Asia and Africa?\nAnswer: Its peninsular position extends into the Indian Ocean and provides access to major sea routes.\nExplanation: This geography supports trade, regional cooperation and timely disaster assistance.\n\n## Summary\n- Neighbourhood includes land and sea connections.\n- India occupies a central Indian Ocean position.\n- Regionalism encourages shared progress.\n- China and Pakistan show how history, culture and politics interact.",
+    "Core explanation": "# Core explanation: Chapter 2: India and Her Neighbours\n\n## What you will learn\nYou will study India’s relationships with Bangladesh, Nepal, Bhutan, Myanmar and Afghanistan. You will connect rivers, open borders, energy, religion, trade routes and development projects with cooperation.\n\n## Simple explanation\nDifferent land neighbours are linked to India in different ways. Some relationships depend on shared rivers, some on free movement, some on energy and some on ancient roads or religious traditions.\n\n## Step-by-step breakdown\n- **Bangladesh**: The relationship is shaped by common history, Bangla language, trade, diplomacy and rivers flowing from the Ganga and Brahmaputra systems.\n- **Sundarban**: India and Bangladesh coordinate protection of the shared mangrove ecosystem, which supports biodiversity and buffers cyclones.\n- **Nepal**: The 1950 Treaty supports an open border, free movement, family connections, education, healthcare, employment and trade.\n- **Bhutan**: Rivers support hydropower projects that contribute to Bhutan’s economy and supply renewable energy to India.\n- **Buddhist heritage**: Bhutanese pilgrims visit Indian sites, and Guru Padmasambhava is central to Bhutan’s religious history.\n- **Myanmar**: Land and sea links connect India’s northeast with Southeast Asia, while agreements and restoration projects strengthen ties.\n- **Afghanistan**: The Uttarāpatha carried goods, religions and ideas, and modern Indian assistance has supported roads, Parliament, education and healthcare.\n- **Shared pattern**: Geography becomes meaningful through movement of people, services, goods, ideas and public cooperation.\n\n## Worked example\nQuestion: Using NCERT Q3, explain what an open-border policy means and how it affects people along the India–Nepal border.\n```extract-ref\n{\"citation\": \"NCERT Q3\", \"extract_text\": \"What does ‘open border’ policy mean? How does the India–Nepal ‘open border’ policy affect the lives of people living along the border?\", \"note\": \"Questions and activities\"}\n```\n\nSolution:\n- Step 1: The chapter states that citizens can cross without passports or visas and use the border for work, education, healthcare, trade, religious visits and family contact.\n- Step 2: This freedom makes border communities economically and socially interdependent, while cooperation is still needed to prevent misuse.\n- Final answer: The open border allows easy daily movement and close family, cultural and commercial links, making it a practical symbol of trust and cooperation.\n\n## Common mistake\nDo not assume an open border erases the existence of two countries; it changes travel requirements while national governments remain distinct.\n\n## Quick check question\nQuestion: Which shared natural system is central to India–Bangladesh agriculture and livelihoods?\nAnswer: Transboundary rivers connected with the Ganga and Brahmaputra systems.\nExplanation: They support agriculture, fisheries, transportation and millions of livelihoods in both countries.\n\n## Summary\n- Bangladesh and India share rivers and ecosystems.\n- Nepal’s open border supports daily life.\n- Bhutan and India cooperate in hydropower.\n- Myanmar links India with Southeast Asia.\n- Afghanistan is connected through ancient and modern routes.",
+    "Worked examples": "# Worked examples: Chapter 2: India and Her Neighbours\n\n## What you will learn\nYou will examine India’s closest maritime relationships with Sri Lanka and the Maldives. You will connect shared culture with crisis assistance, climate vulnerability and regional responsibility.\n\n## Simple explanation\nA narrow sea does not prevent deep links. Sri Lanka and the Maldives show how religion, language, cuisine, migration, security and disaster relief join countries across water.\n\n## Step-by-step breakdown\n- **Sri Lanka’s location**: The island lies southeast of India across the narrow Palk Strait.\n- **Religious exchange**: Buddhism reached Sri Lanka through Mahendra and Sanghamitrā, while Hindu traditions also travelled through the epics.\n- **Civil-war effects**: Conflict affected Sri Lankan Tamils and led many families to move to south India.\n- **Modern Sri Lanka ties**: Cultural closeness, trade, strategy and regional cooperation continue.\n- **Maldives geography**: The island country lies close to Minicoy and is important for Indian Ocean trade and security.\n- **Cultural links**: Dhivehi, food, dance and boat-building show historical contact with Sanskrit, Tamil, Malayalam and other Indian traditions.\n- **First responder**: India assisted during the 2004 tsunami, the 2014 Malé water crisis and the COVID-19 pandemic.\n- **Climate risk**: Sea-level rise threatens low islands, and solar cooperation offers one sustainability response.\n\n## Worked example\nQuestion: Using NCERT Q5, explain how India has helped smaller countries in its neighbourhood, using examples from Sri Lanka or the Maldives.\n```extract-ref\n{\"citation\": \"NCERT Q5\", \"extract_text\": \"What are the different ways in which India has helped smaller countries in her neighbourhood? Explain with examples.\", \"note\": \"Questions and activities\"}\n```\n\nSolution:\n- Step 1: The chapter records disaster and water-crisis assistance to the Maldives and describes regional humanitarian aid; it also presents cultural, infrastructure and restoration support elsewhere.\n- Step 2: Such help responds to immediate emergencies while building longer-term trust and cooperation.\n- Final answer: India has assisted neighbours through disaster relief, essential supplies, infrastructure, energy and heritage cooperation, with the Maldives’ tsunami and water-crisis support as clear examples.\n\n## Common mistake\nDo not reduce assistance to financial aid; the chapter includes technical, humanitarian, cultural, energy and infrastructure support.\n\n## Quick check question\nQuestion: What separates India and Sri Lanka?\nAnswer: The Palk Strait.\nExplanation: It is a narrow stretch of sea that makes Sri Lanka India’s closest major maritime neighbour.\n\n## Summary\n- Sri Lanka and India share cultural and historical ties.\n- The Maldives has strong South Indian linguistic and cultural links.\n- India has acted as a regional first responder.\n- Climate change creates shared maritime challenges.",
+    "Exam-style problems": "# Exam-style problems: Chapter 2: India and Her Neighbours\n\n## What you will learn\nYou will trace India’s links with Thailand, Malaysia, Singapore and Indonesia. You will see how old maritime routes influenced names, scripts, religions and communities and how modern trade and security renew those links.\n\n## Simple explanation\nSoutheast Asian connections were built peacefully through traders, monks, migrants, texts and shared sea routes. Modern highways, investment, education and maritime cooperation add new layers.\n\n## Step-by-step breakdown\n- **Thailand**: Dvāravatī and Ayutthayā recall Dvārakā and Ayodhyā, while Buddhism, Hindu stories and royal traditions show cultural exchange.\n- **Modern Thailand link**: The India–Myanmar–Thailand Trilateral Highway aims to improve connectivity and trade.\n- **Malaysia**: Early Indian scripts and Hindu-Buddhist influence were followed by migration of south Indian workers and modern economic partnerships.\n- **Singapore**: Its name derives from Singapuram, Tamil is an official language and Indian-origin residents, students, tourists and businesses sustain ties.\n- **Indonesia**: Java and Sumatra had ancient trade and educational links with India, while Borobudur and the Rāmāyaṇa remain visible cultural connections.\n- **Islamic link**: The chapter states that Islam also travelled to Indonesia from India’s shores.\n- **Modern Indonesia link**: India and Indonesia cooperate in maritime security, defence, sustainable development and protection of sea lanes.\n- **Tsunami warning**: After the 2004 disaster, Indian Ocean states built sensors, satellites and communication links to warn the region.\n\n## Worked example\nQuestion: Using NCERT Q2, explain how Buddhism created links between India and her neighbours.\n```extract-ref\n{\"citation\": \"NCERT Q2\", \"extract_text\": \"How has Buddhism created links with India’s neighbours? Give examples to explain your answer.\", \"note\": \"Questions and activities\"}\n```\n\nSolution:\n- Step 1: The chapter follows Buddhism from India to China, Sri Lanka, Bhutan, Myanmar, Thailand and Indonesia through monks, pilgrims, texts, sites and art.\n- Step 2: These movements created spiritual and intellectual ties that continue through pilgrimage, monuments and shared traditions.\n- Final answer: Buddhism linked India with neighbours by carrying teachers, learners, manuscripts, sacred places and artistic forms across land and sea.\n\n## Common mistake\nDo not present all neighbouring Buddhist traditions as identical; the chapter describes Theravāda, Mahāyāna and Vajrayāna histories in different regions.\n\n## Quick check question\nQuestion: What modern project connects India through Myanmar to Thailand?\nAnswer: The India–Myanmar–Thailand Trilateral Highway.\nExplanation: It is intended to improve overland connectivity, trade and regional cooperation.\n\n## Summary\n- Maritime exchange shaped Southeast Asian cultures.\n- Indian and local traditions combined in distinct ways.\n- Migration and language preserve modern connections.\n- Regional infrastructure revives old routes.\n- Disaster warning shows practical cooperation.",
+    "Revision and recap": "# Revision and recap: Chapter 2: India and Her Neighbours\n\n## What you will learn\nYou will examine India’s western maritime links with Iran and Oman and revise the chapter’s larger patterns. You will explain how shared challenges can become opportunities for regional cooperation.\n\n## Simple explanation\nIndia’s wider neighbourhood stretches west across the Arabian Sea and land routes. Iran and Oman show long continuity from Bronze Age trade to present ports, energy, defence and maritime security.\n\n## Step-by-step breakdown\n- **Iran**: Bronze Age exchange, routes later connected with the Silk Route, related languages and cultural contact linked India and Iran.\n- **Chabahar Port**: Indian participation improves access towards Afghanistan and Central Asia.\n- **Oman**: Harappan traders are thought to have obtained copper ingots from Oman more than five millennia ago.\n- **People-to-people ties**: Oman includes a long-established Indian community and a Hindu temple in Muscat.\n- **Defence**: India and Oman conduct joint exercises and cooperate on Indian Ocean security.\n- **Ancient routes**: Uttarāpatha, Dakṣhiṇāpatha, Silk and spice routes carried goods, beliefs and stories.\n- **Modern regional groups**: SAARC and other groupings seek social, cultural, economic, educational, health or security cooperation.\n- **Shared challenges**: Cyclones, sea-level rise, tsunamis, piracy and protection of trade routes require coordinated responses.\n- **Central conclusion**: Being neighbours includes geography but also repeated relationships built by people, exchange and common responsibility.\n\n## Worked example\nQuestion: Using NCERT Q6, explain how a shared challenge can become an opportunity for cooperation, with examples from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Q6\", \"extract_text\": \"How do shared challenges become opportunities for cooperation? Were there examples in this chapter to illustrate this?\", \"note\": \"Questions and activities\"}\n```\n\nSolution:\n- Step 1: The chapter describes India and Bangladesh managing the Sundarban, Indian Ocean countries creating a tsunami-warning network and maritime neighbours cooperating on security and climate concerns.\n- Step 2: A problem crossing national borders cannot be solved fully by one country, so shared information, technology and resources improve protection.\n- Final answer: Shared ecological and security risks become opportunities when neighbours coordinate conservation, warning systems, relief and maritime action.\n\n## Common mistake\nDo not assume every regional organisation always works smoothly; the chapter notes that political tensions have disrupted SAARC.\n\n## Quick check question\nQuestion: Which port helps India improve access towards Afghanistan and Central Asia?\nAnswer: Chabahar Port in Iran.\nExplanation: India is helping develop it as part of transport and regional cooperation.\n\n## Summary\n- Iran and Oman are part of India’s wider neighbourhood.\n- Ancient trade routes created durable cultural links.\n- Modern ports and defence ties renew cooperation.\n- Shared challenges demand regional solutions.\n- Neighbourhood is geographical, historical and human."
+  }
+}

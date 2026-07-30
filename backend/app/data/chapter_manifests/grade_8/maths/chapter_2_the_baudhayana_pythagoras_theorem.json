@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 2: The Baudhayana-Pythagoras Theorem",
+  "central_question": "How do areas of squares built on the sides of right triangles reveal the Baudhayana-Pythagoras relationship and support constructions, number patterns and real-world applications?",
+  "in_scope_units": [
+    "Doubling a square by constructing a new square on its diagonal and verifying the equal-area dissection.",
+    "Halving a square by joining or folding through the midpoints of its sides.",
+    "The hypotenuse of an isosceles right triangle, the relation c² = 2a², and the number √2.",
+    "Decimal bounds and the non-terminating, non-rational nature of √2 as presented in the chapter.",
+    "Combining two different squares through dissection to obtain the Baudhayana-Pythagoras theorem.",
+    "Using a² + b² = c² to find missing sides of right triangles.",
+    "Baudhayana-Pythagoras triples, scaled triples, primitive triples and a method based on odd squares.",
+    "Fermat's Last Theorem and Andrew Wiles's 1994 proof.",
+    "Applications including Bhaskaracharya's lotus problem, square diagonals, rhombuses, grid squares and equilateral triangles."
+  ],
+  "banned_topics": [
+    "Trigonometric ratios such as sine, cosine and tangent.",
+    "Coordinate-geometry distance formula as a separate theorem.",
+    "Proof techniques involving calculus or advanced irrational-number theory."
+  ],
+  "must_include_keywords": [
+    "Baudhayana",
+    "Sulba-Sutra",
+    "doubling a square",
+    "halving a square",
+    "diagonal",
+    "dissection",
+    "congruent triangles",
+    "right-angled triangle",
+    "hypotenuse",
+    "isosceles right triangle",
+    "square root of 2",
+    "lower bound",
+    "upper bound",
+    "terminating decimal",
+    "irrational number",
+    "combining squares",
+    "a² + b² = c²",
+    "Baudhayana-Pythagoras theorem",
+    "3-4-5 triangle",
+    "Baudhayana triple",
+    "primitive triple",
+    "scaled triple",
+    "positive integer",
+    "odd square",
+    "Fermat's Last Theorem",
+    "Andrew Wiles",
+    "Bhaskaracharya",
+    "Lilavati",
+    "lotus problem",
+    "rhombus diagonal",
+    "equilateral triangle",
+    "area of a square"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Doubling the side of a square doubles its area.",
+      "correction": "Doubling the side multiplies the area by 2² = 4; a square on the original diagonal has twice the original area."
+    },
+    {
+      "claim": "In a² + b² = c², c can be any side of a right triangle.",
+      "correction": "c must be the hypotenuse, the side opposite the right angle and the longest side."
+    },
+    {
+      "claim": "If c² = 25, then c can be taken as √5 for a side length.",
+      "correction": "A geometric length is positive, so c = 5."
+    },
+    {
+      "claim": "Every integer multiple of one entry of a Pythagorean triple gives a new triple.",
+      "correction": "The same positive integer scale factor must multiply all three entries."
+    },
+    {
+      "claim": "√2 is exactly 1.414.",
+      "correction": "The chapter establishes 1.414 < √2 < 1.415; 1.414 is only a lower decimal approximation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Section 2.1's square-on-the-diagonal construction and paper dissection to show why the area doubles.",
+    "Use Section 2.3 Example 1 to estimate the hypotenuse when the equal sides are 12 units.",
+    "Use the Figure it Out problem with shorter sides 5 cm and 12 cm to obtain the 5-12-13 triple.",
+    "Use Section 2.5's proof that (3k,4k,5k) is a triple for every positive integer k.",
+    "Use Section 2.7's Bhaskaracharya lotus problem to obtain the lake depth of 4 units."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The final Figure it Out set in Section 2.7 contains Questions 1-9 on square diagonals, missing right-triangle sides, a rhombus, triples, grid-square areas and an equilateral triangle, followed by the Summary.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 9: From the Rulers to the Ruled: Types",
+  "central_question": "How do governments differ in their source of authority, structure and goals, and why do democratic rights, representation and accountability matter?",
+  "in_scope_units": [
+    "What is Government? What are its Functions?—law and order, security, defence, services, economy and welfare.",
+    "What is Democracy?—rule of the people, the school committee example, voting and representation.",
+    "Functions of Government—legislative, executive and judicial functions.",
+    "What Makes Governments Different?—source of authority, formation, organs, constitution, values and goals.",
+    "Democratic Governments around the World—equality, freedom, representative participation, universal adult franchise, fundamental rights and independent judiciary.",
+    "Different forms of democratic governments—direct and representative democracy.",
+    "Parliamentary and presidential democracy—executive-legislature relations and accountability.",
+    "Government institutions—executive, legislature, upper and lower houses and separation of power.",
+    "A Peek into History—Vajji, Lichchhavis, early republics and Uttaramerur inscriptions.",
+    "Other Forms of Government—monarchy, rājadharma, absolute and constitutional monarchy.",
+    "Theocracy—religious authority and the example of Iran.",
+    "Dictatorship—absolute power, Hitler, Idi Amin and Shane’s everyday life.",
+    "Oligarchy—rule by a small powerful group and the danger of excessive influence.",
+    "Why Democracy Matters—rights, choice, accountability, elections, welfare and democratic challenges.",
+    "Before we move on and Questions and activities 1–8—types, India, judiciary, comparisons, matching, country research and democratic hurdles."
+  ],
+  "banned_topics": [
+    "Detailed constitutional provisions, which belong mainly to Chapter 10.",
+    "Detailed election procedures or political-party systems not described in the chapter.",
+    "Current political evaluation of countries beyond the textbook examples.",
+    "Detailed history of World War II beyond the chapter’s brief dictatorship example."
+  ],
+  "must_include_keywords": [
+    "government",
+    "democracy",
+    "rule of the people",
+    "representative",
+    "legislative function",
+    "executive function",
+    "judicial function",
+    "constitution",
+    "equality",
+    "freedom",
+    "representative participation",
+    "universal adult franchise",
+    "fundamental rights",
+    "independent judiciary",
+    "direct democracy",
+    "representative democracy",
+    "accountability",
+    "parliamentary democracy",
+    "presidential democracy",
+    "Lok Sabha",
+    "Rajya Sabha",
+    "separation of power",
+    "republic",
+    "Vajji",
+    "Uttaramerur inscriptions",
+    "monarchy",
+    "rājadharma",
+    "absolute monarchy",
+    "constitutional monarchy",
+    "theocracy",
+    "dictatorship",
+    "oligarchy",
+    "democratic vigilance"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All democracies have exactly the same structure.",
+      "correction": "The chapter distinguishes direct and representative democracy and, within representative systems, parliamentary and presidential forms."
+    },
+    {
+      "claim": "In a parliamentary democracy, people directly elect the prime minister as a separate executive.",
+      "correction": "People elect the legislature, and selected members of the legislature become ministers; the council remains accountable to the legislature."
+    },
+    {
+      "claim": "A monarchy always means that the monarch exercises all real power.",
+      "correction": "An absolute monarch has extensive control, but in a constitutional monarchy the monarch may have only nominal power."
+    },
+    {
+      "claim": "Elections alone guarantee a complete democracy.",
+      "correction": "The chapter also requires equality, freedom, rights, universal adult franchise, an independent judiciary and accountability."
+    },
+    {
+      "claim": "Democracy has no weaknesses or challenges.",
+      "correction": "Corruption, wealth disparity, excessive influence, weakened judicial independence and information manipulation can obstruct democratic ideals."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Questions and activities Q2 to explain why India is a parliamentary democracy.",
+    "Use NCERT Questions and activities Q3 to reason why judicial independence matters.",
+    "Use NCERT Questions and activities Q5 to match practices with democracy, monarchy, theocracy and dictatorship.",
+    "Use NCERT Questions and activities Q8 to compare democracy with monarchy and dictatorship.",
+    "Use NCERT Questions and activities Q7 to analyse democratic hurdles and possible responses."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–8.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

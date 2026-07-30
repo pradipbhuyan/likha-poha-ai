@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 5: Number Play",
+    "central_question": "How can parity, remainders, algebra and digit patterns be used to prove claims about factors, multiples and divisibility?",
+    "in_scope_units": [
+      "Sums of consecutive numbers and sign-placement patterns.",
+      "Parity of arithmetic and algebraic expressions.",
+      "Even numbers classified by remainders modulo 4.",
+      "Always, sometimes or never statements about factors and multiples.",
+      "General remainder forms such as 5k + 3.",
+      "Divisibility shortcuts for 2, 4, 5, 8 and 10 using place value.",
+      "Divisibility by 9 and 3 using digit sums and remainders.",
+      "Divisibility by 11 using alternating place-value sums.",
+      "Combining divisibility tests through factors and LCM.",
+      "Digital roots and their patterns.",
+      "Cryptarithms solved through divisibility and place-value reasoning."
+    ],
+    "banned_topics": [
+      "Formal modular-arithmetic notation beyond the chapter's remainder language.",
+      "Proofs using advanced number theory.",
+      "Prime-number tests unrelated to the chapter's factor and divisibility patterns."
+    ],
+    "must_include_keywords": [
+      "consecutive numbers",
+      "parity",
+      "even",
+      "odd",
+      "factor",
+      "multiple",
+      "remainder",
+      "algebraic expression",
+      "counterexample",
+      "always true",
+      "sometimes true",
+      "never true",
+      "4k",
+      "4k + 2",
+      "5k + 3",
+      "divisibility",
+      "place value",
+      "digit sum",
+      "divisibility by 9",
+      "divisibility by 3",
+      "divisibility by 11",
+      "alternating sum",
+      "LCM",
+      "digital root",
+      "cryptarithm",
+      "visualisation",
+      "generalisation",
+      "proof"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Changing a plus sign to a minus sign always changes parity.",
+        "correction": "The change is twice the affected number, which is even, so parity stays the same."
+      },
+      {
+        "claim": "The sum of any two even numbers is divisible by 4.",
+        "correction": "It is divisible by 4 only when both leave the same remainder, 0 or 2, upon division by 4."
+      },
+      {
+        "claim": "If a number is divisible by 4 and 6, it must be divisible by 24.",
+        "correction": "It is guaranteed divisible by lcm(4,6) = 12, not necessarily by 24."
+      },
+      {
+        "claim": "A number ending in 9 is divisible by 9.",
+        "correction": "Divisibility by 9 depends on the sum of all digits, not only the units digit."
+      },
+      {
+        "claim": "For divisibility by 11, simply add all digits.",
+        "correction": "Use the difference between the sums of digits in alternating place positions."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the eight sign arrangements of 3, 4, 5 and 6 to establish common parity.",
+      "Use 4p and 4q, or 4p+2 and 4q+2, to decide when two even numbers sum to a multiple of 4.",
+      "Use Figure it Out Q3 to classify statements as always, sometimes or never true.",
+      "Use 427 to derive the divisibility-by-9 remainder from its digit sum.",
+      "Use the chapter's 320185 example for the alternating-sum test for 11.",
+      "Use the final cryptarithms to combine place-value and divisibility reasoning."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Figure it Out sets follow the remainder section, the divisibility section and the cryptarithm section, ending with a summary of divisibility properties and reasoning methods."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 5: Number Play\n\n## What you will learn\nYou will explore parity through consecutive numbers and sign changes. You will prove why all expressions formed from the same four numbers using plus and minus signs have the same parity.\n\n## Simple explanation\nSwitching +b to −b changes an expression by 2b. Since 2b is even, the old and new expressions have the same parity.\n\n## Step-by-step breakdown\n- **Parity**: Whether an integer is even or odd.\n- **Eight expressions**: Three sign positions give 2³ = 8 plus-minus arrangements.\n- **Sign switch**: Changing one sign changes the value by twice a number.\n- **Even change**: Adding or subtracting an even number preserves parity.\n- **General result**: All a ± b ± c ± d expressions have the same parity.\n\n## Worked example\nQuestion: Show why a + b − c − d and a − b − c − d have the same parity.\n\nSolution:\n- Step 1: Find their difference: (a + b − c − d) − (a − b − c − d).\n- Step 2: Open the second bracket: a + b − c − d − a + b + c + d.\n- Step 3: Cancel common terms to obtain 2b.\n- Step 4: Since 2b is even, the two original expressions differ by an even number.\n- Step 5: Integers that differ by an even number have the same parity.\n- Final answer: The two expressions always have the same parity.\n\n## Common mistake\nWhen subtracting a bracket, change every sign inside it. Missing one sign change leads to an incorrect difference.\n\n## Quick check question\nQuestion: Do 3 + 4 − 5 + 6 and 3 − 4 − 5 + 6 have the same parity?\nAnswer: Yes; both are even.\nExplanation: Their difference is 2 × 4 = 8, an even number, so their parity is the same.\n\n## Summary\n- Parity is preserved by an even change.\n- Algebra proves infinitely many cases at once.\n- Examples suggest a pattern; reasoning establishes it.",
+    "Core explanation": "# Core explanation: Chapter 5: Number Play\n\n## What you will learn\nYou will classify even numbers by their remainder upon division by 4. You will decide exactly when the sum of two even numbers is a multiple of 4.\n\n## Simple explanation\nEvery even number is either 4p or 4p + 2. Add the forms and inspect the remaining term.\n\n## Step-by-step breakdown\n- **Type 1**: Multiples of 4 have form 4p.\n- **Type 2**: Even non-multiples of 4 have form 4p + 2.\n- **Same type 0**: 4p + 4q = 4(p+q), a multiple of 4.\n- **Same type 2**: (4p+2)+(4q+2) = 4(p+q+1), a multiple of 4.\n- **Different types**: 4p+(4q+2) = 4(p+q)+2, not a multiple of 4.\n\n## Worked example\nQuestion: Decide whether 22 + 6 is divisible by 4 using algebraic forms.\n\nSolution:\n- Step 1: 22 = 4 × 5 + 2, so it has form 4p + 2.\n- Step 2: 6 = 4 × 1 + 2, so it also has form 4q + 2.\n- Step 3: Add: (4p+2)+(4q+2) = 4(p+q+1).\n- Step 4: Substitute p=5 and q=1: 4(5+1+1) = 4×7 = 28.\n- Final answer: 22 + 6 = 28, which is divisible by 4.\n\n## Common mistake\nDo not conclude that 'even + even' is automatically a multiple of 4. Parity guarantees only divisibility by 2.\n\n## Quick check question\nQuestion: Is 12 + 6 divisible by 4?\nAnswer: No.\nExplanation: 12 has remainder 0 and 6 has remainder 2 upon division by 4, so the sum has remainder 2.\n\n## Summary\n- Even numbers have remainder 0 or 2 modulo 4.\n- Equal remainder types add to a multiple of 4.\n- Different remainder types do not.",
+    "Worked examples": "# Worked examples: Chapter 5: Number Play\n\n## What you will learn\nYou will test factor-and-multiple claims as always true, sometimes true or never true. You will justify each classification with algebra and counterexamples.\n\n## Simple explanation\nAn always statement needs a proof. A never statement needs a contradiction or general reason. A sometimes statement needs both an example and a counterexample.\n\n## Step-by-step breakdown\n- **Divisor of sums**: If a divides M and N, then a divides M+N and M−N.\n- **Multiples**: If A is divisible by k, every multiple of A is divisible by k.\n- **Factors**: If A is divisible by k, A is divisible by every factor of k.\n- **Common divisibility**: If A is divisible by k and m, then A is divisible by lcm(k,m).\n- **Counterexample**: One valid counterexample disproves an always claim.\n\n## Worked example\nQuestion: Classify: If a number is divisible by both 6 and 4, it must be divisible by 24.\n\nSolution:\n- Step 1: A number divisible by both 6 and 4 must be divisible by lcm(6,4).\n- Step 2: Prime factors: 6 = 2×3 and 4 = 2².\n- Step 3: Therefore lcm(6,4) = 2²×3 = 12.\n- Step 4: Some common multiples, such as 24, are divisible by 24.\n- Step 5: But 12 is divisible by both 6 and 4 and is not divisible by 24.\n- Final answer: The statement is sometimes true, not always true.\n\n## Common mistake\nDo not multiply 6×4 automatically. Shared prime factors must not be counted twice when finding the LCM.\n\n## Quick check question\nQuestion: If a number is divisible by 12, is it always divisible by 3?\nAnswer: Yes.\nExplanation: 3 is a factor of 12. Every multiple of 12 contains the factor 3.\n\n## Summary\n- Proofs use algebraic factor forms.\n- LCM controls simultaneous divisibility.\n- Examples and counterexamples serve different logical roles.",
+    "Exam-style problems": "# Exam-style problems: Chapter 5: Number Play\n\n## What you will learn\nYou will express remainder classes algebraically and derive divisibility tests from place value. You will solve a digit-sum remainder problem.\n\n## Simple explanation\nA number leaving remainder r when divided by m has the form mk + r, where 0 ≤ r < m.\n\n## Step-by-step breakdown\n- **Remainder form**: 5k + 3 represents all integers with remainder 3 upon division by 5.\n- **Equivalent form**: 5k − 2 gives the same positive sequence when k ≥ 1.\n- **Place-value idea**: 10, 100, 1000, ... each leave remainder 1 when divided by 9.\n- **Digit sum**: A number and its digit sum have the same remainder upon division by 9.\n- **Divisibility by 3**: The same reasoning works with digit sums modulo 3.\n\n## Worked example\nQuestion: Find the remainder when 427 is divided by 9 using the chapter's digit-sum reasoning.\n\nSolution:\n- Step 1: Write 427 = 4×100 + 2×10 + 7.\n- Step 2: Each power 100 and 10 leaves remainder 1 when divided by 9.\n- Step 3: So the remainder is the same as 4 + 2 + 7 = 13.\n- Step 4: Reduce 13 by one group of 9: 13 − 9 = 4.\n- Final answer: The remainder is 4.\n\n## Common mistake\nDo not stop at a digit sum larger than the divisor. Reduce it again until the remainder is between 0 and 8.\n\n## Quick check question\nQuestion: Write an expression for all numbers that leave remainder 2 when divided by 6.\nAnswer: 6k + 2.\nExplanation: A multiple of 6 is 6k; adding 2 gives remainder 2.\n\n## Summary\n- Remainder classes have the form divisor × integer + remainder.\n- Digit sums preserve remainders for divisibility by 9 and 3.\n- Place-value reasoning explains the shortcut.",
+    "Revision and recap": "# Revision and recap: Chapter 5: Number Play\n\n## What you will learn\nYou will revise divisibility by 11, digital roots and cryptarithm reasoning. You will combine several chapter ideas in one workflow.\n\n## Simple explanation\nPowers of 10 alternate between 1 more and 1 less than multiples of 11. Therefore the difference of alternating digit sums determines divisibility by 11.\n\n## Step-by-step breakdown\n- **Alternating positions**: Add digits in the 1, 100, 10000, ... positions.\n- **Other positions**: Add digits in the 10, 1000, 100000, ... positions.\n- **Difference**: If the difference is 0 or a multiple of 11, the number is divisible by 11.\n- **Digital root**: Repeatedly add digits until one digit remains.\n- **Nine pattern**: Multiples of 9 have digital root 9, except zero itself.\n- **Cryptarithm**: Letters stand for digits; place value, carries and divisibility restrict possibilities.\n\n## Worked example\nQuestion: Use the alternating-sum test to decide whether 5529 is divisible by 11.\n\nSolution:\n- Step 1: From the right, add digits in alternating positions: 9 + 5 = 14.\n- Step 2: Add the other-position digits: 2 + 5 = 7.\n- Step 3: Find the difference: 14 − 7 = 7.\n- Step 4: Since 7 is not 0 or a multiple of 11, 5529 is not divisible by 11.\n- Final answer: 5529 is not divisible by 11.\n\n## Common mistake\nKeep the alternating groups fixed from one end. Do not accidentally place adjacent digits in the same group.\n\n## Quick check question\nQuestion: What is the digital root of 489710?\nAnswer: 2.\nExplanation: 4+8+9+7+1+0 = 29, then 2+9 = 11, then 1+1 = 2.\n\n## Summary\n- Divisibility tests are consequences of place value.\n- Digital roots repeat the digit-sum process.\n- Cryptarithms combine algebra, digits and logical elimination.\n- Reasoning is stronger than checking isolated examples."
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 7: Factors of Production",
+  "central_question": "How do land, labour, human capital, capital, entrepreneurship, and technology combine to produce goods and services responsibly?",
+  "in_scope_units": [
+    "Production, businesses, inputs, goods, services, and the Pause Point restaurant case.",
+    "Land as natural resources and labour as physical and mental effort.",
+    "Human capital, education, training, healthcare, social culture, productivity, and demographic dividend.",
+    "India's ancient skill heritage, shilpa shastras, work as worship, and stitched shipbuilding.",
+    "Capital: money, durable assets, savings, loans, interest, shares, stock markets, and dividends.",
+    "Entrepreneurship, startups, innovation, risk, coordination, social value, and J.R.D. Tata.",
+    "Technology as an enabler, including UPI, GPS, online learning, SWAYAM, and career portals.",
+    "Interconnection of factors, supply chains, mobile-phone assembly, sustainability, worker rights, and CSR."
+  ],
+  "banned_topics": [
+    "Detailed banking and stock-market mechanisms beyond the chapter's introductory descriptions.",
+    "Detailed natural-resource classification, which belongs to Chapter 1.",
+    "Advanced macroeconomic production or national-income models."
+  ],
+  "must_include_keywords": [
+    "production",
+    "goods and services",
+    "factors of production",
+    "land",
+    "natural resources",
+    "labour",
+    "physical effort",
+    "mental effort",
+    "skill",
+    "human capital",
+    "education",
+    "training",
+    "healthcare",
+    "productivity",
+    "kaizen",
+    "adult literacy",
+    "demographic dividend",
+    "shilpa shastras",
+    "stitched shipbuilding",
+    "capital",
+    "physical capital",
+    "financial capital",
+    "savings",
+    "loan",
+    "interest",
+    "stock market",
+    "shares",
+    "dividend",
+    "entrepreneurship",
+    "entrepreneur",
+    "startup",
+    "J.R.D. Tata",
+    "technology",
+    "UPI",
+    "GPS",
+    "SWAYAM",
+    "supply chain",
+    "labour-intensive",
+    "capital-intensive",
+    "Corporate Social Responsibility"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Land means only the physical plot on which a factory stands.",
+      "correction": "In economics, land includes natural resources such as soil, forests, water, air, sunlight, minerals, oil, and gas."
+    },
+    {
+      "claim": "Labour and human capital mean exactly the same thing.",
+      "correction": "Labour is physical and mental effort, while human capital is the knowledge, skill, ability, and expertise that improve it."
+    },
+    {
+      "claim": "Capital means only money.",
+      "correction": "Capital includes money and durable human-made productive assets such as machinery, tools, vehicles, computers, shops, and factories."
+    },
+    {
+      "claim": "Technology always replaces workers completely.",
+      "correction": "Technology can change the mix of inputs, but human effort remains necessary for design, operation, supervision, and improvement."
+    },
+    {
+      "claim": "A business is responsible only for profit.",
+      "correction": "The chapter includes responsibilities towards resources, workers, communities, consumers, pollution control, and CSR."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the locality-survey table to classify inputs used by shops and service providers.",
+    "Analyse the Pause Point restaurant case to identify land, labour, capital, entrepreneurship, and technology.",
+    "Use the human-capital prompts on schooling, healthcare, workplace culture, and skill shortages.",
+    "Study the J.R.D. Tata case to distinguish profit, innovation, worker welfare, and social purpose.",
+    "Trace the mobile-phone assembly flowchart and the Ratna business scenarios in the end exercises."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1–10 on classification, human capital, technology, entrepreneurship, a steel-bottle business, an interview, and Ratna's business scenarios.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

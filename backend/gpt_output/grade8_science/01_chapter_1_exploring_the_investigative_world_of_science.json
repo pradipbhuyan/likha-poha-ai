@@ -1,0 +1,88 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Science",
+    "chapter": "Chapter 1: Exploring the Investigative World of Science",
+    "central_question": "How can curiosity be turned into a fair, systematic investigation that uses careful observation, controlled changes, measurement and evidence to build scientific explanations?",
+    "in_scope_units": [
+      "Science as a continuing journey from wonder and evolving ideas to focused investigation.",
+      "The root and kite symbols as a balance between grounded observation and creative thinking.",
+      "A preview of Grade 8 themes from microbes, health and electricity to forces, matter, light, ecosystems and Earth.",
+      "The closing puri investigation: identifying variables, observations, measurements and fair-test conditions.",
+      "Systematic recording, changing one factor at a time, generating new questions and accepting that some questions remain open."
+    ],
+    "banned_topics": [
+      "Detailed teaching of microbes, diseases, electricity, forces, matter, light, calendars or ecosystems, which are only previewed here.",
+      "Advanced statistical experimental design.",
+      "Giving a fixed final scientific explanation for why one side of every puri is thinner, because the chapter states that the phenomenon is not completely understood."
+    ],
+    "must_include_keywords": [
+      "curiosity",
+      "scientific question",
+      "focused question",
+      "investigation",
+      "observation",
+      "experiment",
+      "evidence",
+      "measurement",
+      "variable",
+      "control",
+      "fair test",
+      "one factor at a time",
+      "notes",
+      "prediction",
+      "explanation",
+      "puri",
+      "dough thickness",
+      "dough size",
+      "type of flour",
+      "oil temperature",
+      "frying method",
+      "puffing time",
+      "root",
+      "kite",
+      "creative thinking",
+      "systematic investigation",
+      "real-world puzzle",
+      "new questions",
+      "scientific uncertainty"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Science is mainly memorising facts already discovered by others.",
+        "correction": "The chapter stresses learning how to find new facts by asking focused questions, observing, experimenting and explaining."
+      },
+      {
+        "claim": "A fair experiment should change several conditions together so the result is clearer.",
+        "correction": "Only one condition should be changed at a time while other relevant conditions are kept the same."
+      },
+      {
+        "claim": "Only numerical observations count as scientific evidence.",
+        "correction": "The chapter includes both measurable observations, such as puffing time, and descriptive or yes/no observations, such as whether a puri puffs."
+      },
+      {
+        "claim": "A school laboratory is essential for every investigation.",
+        "correction": "The chapter uses a kitchen and puri frying to show that careful scientific investigation can begin in everyday settings."
+      },
+      {
+        "claim": "If an experiment does not settle a question, it has failed.",
+        "correction": "An investigation can improve understanding and lead to better questions even when the phenomenon is not fully explained."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the opening Probe and ponder questions to distinguish curiosity questions from recall questions.",
+      "Use the root-and-kite passage to discuss evidence and imagination as complementary parts of science.",
+      "Use the Grade 8 journey preview to map how one scientific idea connects to another.",
+      "Use the closing NCERT puri investigation to identify changed, controlled and observed variables.",
+      "Use the fresh-versus-stored dough and pricked-puri questions to show how one investigation generates the next."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "This introductory chapter has no separate numbered Keep the curiosity alive exercise set; its principal application is the closing puri investigation on pages 5–7."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 1: Exploring the Investigative World of Science\n\n## What you will learn\nYou will understand why science begins with curiosity but goes beyond simply asking questions. You will see how focused questions turn everyday observations into investigable problems.\n\n## Simple explanation\nWonder supplies the starting point. A scientific investigation then narrows that wonder into a question that can be explored through observations, comparisons or simple experiments.\n\n## Step-by-step breakdown\n- **Wonder**: The opening questions about puris, grains of sand, stars and biological diversity invite exploration rather than memorised answers.\n- **Focused questions**: Grade 8 moves from broad why-and-how questions towards questions that suggest what can be observed or changed.\n- **Investigators**: Students are presented as young scientists who explore real-world puzzles.\n- **Open-ended science**: Each answer may reveal further questions, so scientific ideas continue to evolve.\n\n## Worked example\nQuestion: In the NCERT opening Probe and ponder, why is 'Why is one side of a puri thinner than the other?' a useful starting question for science?\n\nSolution:\n- Step 1: It begins with a repeatable everyday observation rather than an unsupported claim.\n- Step 2: It invites possible explanations involving dough, heat and frying conditions.\n- Step 3: Those possibilities can be converted into specific comparisons and experiments.\n- Final answer: It is useful because it is observable, investigable and capable of generating testable follow-up questions.\n\n## Common mistake\nDo not treat every interesting question as immediately testable. It often needs to be narrowed into a focused question with observable outcomes.\n\n## Quick check question\nQuestion: What is the first role of curiosity in an investigation?\nAnswer: It helps us notice a puzzle and frame a question worth exploring.\nExplanation: Without a question, there is no clear purpose for deciding what to observe, compare or test.\n\n## Summary\n- Science begins with wonder.\n- Focused questions guide investigations.\n- Everyday life offers genuine scientific puzzles.\n- Scientific understanding can grow through new questions.",
+    "Core explanation": "# Core explanation: Chapter 1: Exploring the Investigative World of Science\n\n## What you will learn\nYou will interpret the root and kite symbols used in the chapter. You will connect careful observation with creative thinking.\n\n## Simple explanation\nGood science needs both discipline and imagination. The root represents a firm foundation in evidence, while the kite represents ideas that explore new possibilities.\n\n## Step-by-step breakdown\n- **Root**: The root symbolises knowledge grounded in environment, traditions, cultural heritage and real observations.\n- **Kite**: The kite symbolises curiosity taking flight towards the unknown.\n- **Balance**: Creative explanations must remain connected to evidence.\n- **Communication**: Investigators should explain clearly what they observe and how they reason.\n\n## Worked example\nQuestion: Using the NCERT root-and-kite passage, explain why creativity alone is not enough for a scientific explanation.\n\nSolution:\n- Step 1: Creative thinking can suggest many possible explanations.\n- Step 2: Careful observations are needed to check whether those explanations fit reality.\n- Step 3: A scientific explanation must therefore keep imaginative ideas tied to evidence.\n- Final answer: Creativity proposes possibilities, but evidence decides which possibilities are supported.\n\n## Common mistake\nDo not oppose creativity and accuracy. The chapter presents them as partners, not alternatives.\n\n## Quick check question\nQuestion: What does the root remind a young investigator to do?\nAnswer: Stay grounded in careful observation, knowledge and real evidence.\nExplanation: The root represents the dependable foundation from which ideas can safely develop.\n\n## Summary\n- Evidence gives scientific ideas a foundation.\n- Creative thinking helps explore the unknown.\n- Both are needed for investigation.\n- Clear explanation is part of scientific work.",
+    "Worked examples": "# Worked examples: Chapter 1: Exploring the Investigative World of Science\n\n## What you will learn\nYou will identify variables in the NCERT puri investigation. You will distinguish what is changed, what is kept the same and what is observed.\n\n## Simple explanation\nA fair comparison changes one chosen condition while keeping other important conditions alike. The response is then recorded to see whether the chosen change made a difference.\n\n## Step-by-step breakdown\n- **Possible changed factors**: The chapter suggests dough thickness, circle size, flour type, oil temperature and the way dough is placed in oil.\n- **Observed outcomes**: Students may record whether puffing occurs, how long it takes and whether one side becomes thin.\n- **Controlled conditions**: When testing oil temperature, dough circles should have the same thickness and be placed into the oil in the same way.\n- **Repeatability**: Notes about splattering, smell, smoke and puffing support later comparison.\n\n## Worked example\nQuestion: In the NCERT closing puri investigation, how should oil temperature be tested fairly?\n\nSolution:\n- Step 1: Prepare dough circles of the same thickness and size.\n- Step 2: Place them into the oil in the same manner.\n- Step 3: Change only the oil-temperature condition, such as very hot, hot and less hot.\n- Step 4: Record puffing, time and other relevant observations for each condition.\n- Final answer: Change the oil temperature while keeping dough and placement conditions the same, then compare recorded outcomes.\n\n## Common mistake\nChanging flour type, dough thickness and oil temperature together makes it impossible to know which factor caused the observed difference.\n\n## Quick check question\nQuestion: If dough thickness is the chosen variable, what should happen to oil temperature?\nAnswer: It should be kept the same for all trials.\nExplanation: A fair test isolates the effect of thickness by holding other relevant conditions constant.\n\n## Summary\n- A variable is a condition that can change.\n- A fair test changes one factor at a time.\n- Outcomes can be numerical or descriptive.\n- Systematic notes make comparisons reliable.",
+    "Exam-style problems": "# Exam-style problems: Chapter 1: Exploring the Investigative World of Science\n\n## What you will learn\nYou will analyse evidence from a simple experiment and decide what a result can and cannot show. You will avoid claiming more than the observations support.\n\n## Simple explanation\nAn observation becomes useful evidence only when it is connected to the question and collected under comparable conditions. A result may support an idea without proving that it is the only possible explanation.\n\n## Step-by-step breakdown\n- **Prediction**: Before testing, state what you expect and why.\n- **Observation**: Record what actually happens rather than what you hoped would happen.\n- **Comparison**: Compare trials that differ in the selected variable.\n- **Conclusion**: State the limited relationship supported by the evidence.\n- **Further testing**: Repeat or design a new test when other explanations remain possible.\n\n## Worked example\nQuestion: Suppose the puris in hotter oil puff faster in the NCERT investigation. What is the strongest justified conclusion?\n\nSolution:\n- Step 1: Confirm that dough thickness, size and placement were kept the same.\n- Step 2: Compare the recorded puffing times across oil-temperature conditions.\n- Step 3: State only that, under those tested conditions, hotter oil was associated with faster puffing.\n- Step 4: Do not claim that oil temperature explains every aspect of puri shape without further evidence.\n- Final answer: The evidence supports a relationship between the tested oil temperature and puffing time under the controlled conditions.\n\n## Common mistake\nA single result should not be turned into a universal law, especially when trials have not been repeated or other factors have not been checked.\n\n## Quick check question\nQuestion: Why should observations be written during an experiment?\nAnswer: So that trials can be compared accurately and conclusions can be checked against evidence.\nExplanation: Memory can omit or change details, while written records preserve what was actually observed.\n\n## Summary\n- Predictions are tested against observations.\n- Conclusions must match the evidence.\n- Controls make comparisons meaningful.\n- Unexpected results can lead to new investigations.",
+    "Revision and recap": "# Revision and recap: Chapter 1: Exploring the Investigative World of Science\n\n## What you will learn\nYou will revise the complete cycle of systematic investigation. You will see why scientific uncertainty and follow-up questions are signs of progress.\n\n## Simple explanation\nInvestigation is a cycle: notice, question, plan, predict, test, record, compare, explain and ask again. The chapter closes by encouraging careful exploration even when the final answer is not yet known.\n\n## Step-by-step breakdown\n- **Notice and question**: Begin with a specific feature of the world that needs explanation.\n- **Plan and control**: Choose one factor to change and decide what to keep constant.\n- **Observe and measure**: Collect evidence using suitable qualitative or quantitative observations.\n- **Explain**: Connect the evidence to a cautious conclusion.\n- **Extend**: Ask what happens with stored dough, a hole in the puri or another controlled change.\n- **Uncertainty**: The chapter notes that puri puffing is not completely understood, showing that science remains open.\n\n## Worked example\nQuestion: Using the NCERT closing sequence, design the next investigation after testing fresh puri dough.\n\nSolution:\n- Step 1: Frame the follow-up question: Do puris puff differently when made from fresh and stored dough?\n- Step 2: Keep flour type, dough thickness, size, oil temperature and placement method the same.\n- Step 3: Change only whether the dough is fresh or stored.\n- Step 4: Record whether each puri puffs and its puffing time.\n- Final answer: A fair follow-up compares fresh and stored dough while controlling the other frying conditions.\n\n## Common mistake\nUncertainty does not allow unsupported guessing; it calls for more careful questions and evidence.\n\n## Quick check question\nQuestion: What often happens after one round of experiments?\nAnswer: New questions arise from the observations and limitations of the first investigation.\nExplanation: The chapter explicitly uses fresh dough and a pricked puri as examples of follow-up questions.\n\n## Summary\n- Systematic investigation follows a connected sequence.\n- Evidence-based explanations can remain provisional.\n- New questions are part of progress.\n- Curiosity should be guided by careful observation."
+  }
+}

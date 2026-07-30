@@ -1,0 +1,102 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Social Science",
+    "chapter": "Chapter 7: Factors of Production",
+    "central_question": "How do land, labour, human capital, capital, entrepreneurship, and technology combine to produce goods and services responsibly?",
+    "in_scope_units": [
+      "Production, businesses, inputs, goods, services, and the Pause Point restaurant case.",
+      "Land as natural resources and labour as physical and mental effort.",
+      "Human capital, education, training, healthcare, social culture, productivity, and demographic dividend.",
+      "India's ancient skill heritage, shilpa shastras, work as worship, and stitched shipbuilding.",
+      "Capital: money, durable assets, savings, loans, interest, shares, stock markets, and dividends.",
+      "Entrepreneurship, startups, innovation, risk, coordination, social value, and J.R.D. Tata.",
+      "Technology as an enabler, including UPI, GPS, online learning, SWAYAM, and career portals.",
+      "Interconnection of factors, supply chains, mobile-phone assembly, sustainability, worker rights, and CSR."
+    ],
+    "banned_topics": [
+      "Detailed banking and stock-market mechanisms beyond the chapter's introductory descriptions.",
+      "Detailed natural-resource classification, which belongs to Chapter 1.",
+      "Advanced macroeconomic production or national-income models."
+    ],
+    "must_include_keywords": [
+      "production",
+      "goods and services",
+      "factors of production",
+      "land",
+      "natural resources",
+      "labour",
+      "physical effort",
+      "mental effort",
+      "skill",
+      "human capital",
+      "education",
+      "training",
+      "healthcare",
+      "productivity",
+      "kaizen",
+      "adult literacy",
+      "demographic dividend",
+      "shilpa shastras",
+      "stitched shipbuilding",
+      "capital",
+      "physical capital",
+      "financial capital",
+      "savings",
+      "loan",
+      "interest",
+      "stock market",
+      "shares",
+      "dividend",
+      "entrepreneurship",
+      "entrepreneur",
+      "startup",
+      "J.R.D. Tata",
+      "technology",
+      "UPI",
+      "GPS",
+      "SWAYAM",
+      "supply chain",
+      "labour-intensive",
+      "capital-intensive",
+      "Corporate Social Responsibility"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Land means only the physical plot on which a factory stands.",
+        "correction": "In economics, land includes natural resources such as soil, forests, water, air, sunlight, minerals, oil, and gas."
+      },
+      {
+        "claim": "Labour and human capital mean exactly the same thing.",
+        "correction": "Labour is physical and mental effort, while human capital is the knowledge, skill, ability, and expertise that improve it."
+      },
+      {
+        "claim": "Capital means only money.",
+        "correction": "Capital includes money and durable human-made productive assets such as machinery, tools, vehicles, computers, shops, and factories."
+      },
+      {
+        "claim": "Technology always replaces workers completely.",
+        "correction": "Technology can change the mix of inputs, but human effort remains necessary for design, operation, supervision, and improvement."
+      },
+      {
+        "claim": "A business is responsible only for profit.",
+        "correction": "The chapter includes responsibilities towards resources, workers, communities, consumers, pollution control, and CSR."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the locality-survey table to classify inputs used by shops and service providers.",
+      "Analyse the Pause Point restaurant case to identify land, labour, capital, entrepreneurship, and technology.",
+      "Use the human-capital prompts on schooling, healthcare, workplace culture, and skill shortages.",
+      "Study the J.R.D. Tata case to distinguish profit, innovation, worker welfare, and social purpose.",
+      "Trace the mobile-phone assembly flowchart and the Ratna business scenarios in the end exercises."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1–10 on classification, human capital, technology, entrepreneurship, a steel-bottle business, an interview, and Ratna's business scenarios."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Factors of Production\n\n## What you will learn\nYou will define production and the four main factors of production. You will use the Pause Point restaurant and neighbourhood businesses to identify them.\n\n## Simple explanation\nEvery good or service requires inputs. Economics groups the main inputs into land, labour, capital, and entrepreneurship, while technology helps people use them effectively.\n\n## Step-by-step breakdown\n- **Production**: The process of turning resources and inputs into goods and services.\n- **Business**: A firm, shop, factory, or service provider that combines inputs.\n- **Land**: All natural resources used in production, including soil, water, air, sunlight, forests, minerals, oil, and gas.\n- **Labour**: The physical and mental effort of people.\n- **Capital**: Money and durable human-made assets used to produce.\n- **Entrepreneurship**: The ability to identify an opportunity, take risks, organise factors, and decide.\n- **Technology**: A facilitator that can increase output or improve how inputs are combined.\n\n## Worked example\nQuestion: How do Ratna's decisions at Pause Point show all four factors of production?\n\nAnswer:\n- She chose a location, arranged money and equipment, hired staff, bought ingredients, and planned the business.\n- Location and ingredients connect to land, staff to labour, money and equipment to capital, and planning and risk-taking to entrepreneurship.\n- Final answer: Pause Point works because Ratna combines all the factors rather than relying on any one input.\n\n## Common mistake\nNot every object is capital; natural inputs are land, human effort is labour, and productive human-made assets are capital.\n\n## Quick check question\nQuestion: What are the four main factors of production?\nAnswer: Land, labour, capital, and entrepreneurship.\nExplanation: Technology is described as a crucial facilitator.\n\n## Summary\n- Production requires combined inputs.\n- The four main factors have different roles.\n- A business succeeds by organising them together.",
+    "Core explanation": "# Core explanation: Factors of Production\n\n## What you will learn\nYou will distinguish labour from human capital and identify conditions that develop human capability. You will examine education, training, health, culture, literacy, and traditional skills.\n\n## Simple explanation\nPeople contribute effort, but the quality of that effort depends on knowledge, skill, health, experience, values, and opportunities to learn.\n\n## Step-by-step breakdown\n- **Labour and human capital**: Labour is effort; human capital is the specialised knowledge and ability that make it more productive.\n- **Education**: Builds literacy, knowledge, understanding, and problem-solving.\n- **Training**: Provides practical experience and job-specific skill.\n- **Healthcare**: Supports attendance, cognitive development, physical capacity, and creativity.\n- **Social culture**: Kaizen, punctuality, attention to detail, and continuous improvement can strengthen productivity.\n- **Challenges**: Unequal literacy, dropout, poor health, and skill shortages limit opportunity and business growth.\n- **Demographic dividend**: A large young population supports growth only when education, health, and skilling are available.\n- **Skill heritage**: Shilpa shastras, temple crafts, and stitched shipbuilding show long traditions of knowledge.\n\n## Worked example\nQuestion: Why can two people doing the same kind of labour produce different results?\n\nAnswer:\n- The chapter separates effort from specialised skills, knowledge, health, practice, and expertise.\n- Education, training, experience, and health improve judgement, speed, quality, and problem-solving.\n- Final answer: Different levels of human capital can make similar labour more or less productive and effective.\n\n## Common mistake\nSocially necessary jobs should not be treated as unimportant merely because they require different formal qualifications.\n\n## Quick check question\nQuestion: Name three facilitators of human capital discussed in the chapter.\nAnswer: Education and training, healthcare, and supportive social or cultural influences.\nExplanation: They build knowledge, practical skill, health, discipline, and productivity.\n\n## Summary\n- Human capital improves the quality of labour.\n- Education, training, and health complement each other.\n- India's skill heritage shows knowledge passed across generations.",
+    "Worked examples": "# Worked examples: Factors of Production\n\n## What you will learn\nYou will understand financial and physical capital and the role of entrepreneurship. You will compare savings, loans, shares, dividends, risk, innovation, employment, and social purpose.\n\n## Simple explanation\nBusinesses need productive assets and finance. Entrepreneurs decide how to gather resources, combine them with people and natural inputs, and respond to opportunities.\n\n## Step-by-step breakdown\n- **Physical capital**: Machinery, tools, equipment, vehicles, computers, shops, factories, and offices are productive assets.\n- **Financial capital**: Money is used for rent, equipment, wages, raw materials, and expansion.\n- **Sources**: Small firms may use savings, family support, or loans; large companies may sell shares.\n- **Interest**: The borrower pays the lender for using money over time.\n- **Dividend**: A company may distribute part of its profits to shareholders.\n- **Entrepreneur**: Identifies a problem, develops an idea, takes risk, coordinates factors, and decides.\n- **Social value**: Entrepreneurs create products, services, employment, and livelihoods.\n- **J.R.D. Tata**: The chapter highlights aviation, industrial development, worker welfare, vision, and honesty.\n\n## Worked example\nQuestion: Why is entrepreneurship distinct from capital?\n\nAnswer:\n- Capital provides finance and assets, while the entrepreneur identifies opportunity, accepts risk, combines inputs, and decides how the business operates.\n- Money and machinery cannot independently set goals, innovate, or coordinate people.\n- Final answer: Entrepreneurship is distinct because it supplies judgement, organisation, risk-taking, and direction.\n\n## Common mistake\nTaking a bank loan does not guarantee success; capital must still be used effectively and repaid with interest.\n\n## Quick check question\nQuestion: What is the difference between interest and a dividend?\nAnswer: Interest is paid by a borrower to a lender; a dividend is a share of company profit paid to shareholders.\nExplanation: They arise from different financial relationships.\n\n## Summary\n- Capital includes finance and productive assets.\n- Entrepreneurs organise factors and accept risk.\n- Businesses can combine profit with worker welfare and social contribution.",
+    "Exam-style problems": "# Exam-style problems: Factors of Production\n\n## What you will learn\nYou will study technology as an enabler and explain how factors are interconnected. You will analyse labour-intensive and capital-intensive production, supply chains, and mobile-phone assembly.\n\n## Simple explanation\nTechnology changes how people combine inputs, but it does not remove the need for land, labour, skills, finance, or entrepreneurship.\n\n## Step-by-step breakdown\n- **Technology**: The application of scientific knowledge to practical production and services.\n- **Examples**: UPI supports payments, GPS supports transport, drones support crop care, and email changes communication.\n- **Old and new**: New technology can replace some methods, while pulleys and wheelbarrows remain useful.\n- **Learning and jobs**: SWAYAM and the National Career Service reduce geographical barriers.\n- **Input proportions**: Agriculture and handicrafts may be labour-intensive; chips and satellites are capital-intensive.\n- **Complementarity**: Missing or misused factors can reduce output or stop production.\n- **Supply chain**: A network of people, organisations, resources, activities, and technologies moves a product from inputs to sale.\n- **Mobile assembly**: Research, land, materials, software, machinery, testing, packaging, and distribution all depend on multiple factors.\n\n## Worked example\nQuestion: Can technology replace labour completely in mobile-phone production?\n\nAnswer:\n- The chapter states that people are involved in design, software, engineering, project management, supervision, testing, and improvement.\n- Machines can change tasks and reduce some labour needs, but skilled people remain necessary.\n- Final answer: Technology changes the form and proportion of labour rather than removing human contribution altogether.\n\n## Common mistake\nTechnological progress does not always require discarding older tools; usefulness depends on the task.\n\n## Quick check question\nQuestion: What can happen if a crucial supply-chain input is delayed?\nAnswer: Production may become inefficient or stop because required factors cannot be combined at the right time.\nExplanation: The chapter links such disruption with dependence on distant sources.\n\n## Summary\n- Technology changes productivity and input proportions.\n- Factors complement one another.\n- Supply chains connect geographically separated inputs and activities.",
+    "Revision and recap": "# Revision and recap: Factors of Production\n\n## What you will learn\nYou will examine responsibilities towards natural resources, workers, communities, and customers. You will connect sustainable production, workplace rights, training, recycling, and CSR.\n\n## Simple explanation\nProduction creates benefits but can also cause pollution, unsafe work, unfair treatment, and resource depletion. Responsible businesses reduce these harms.\n\n## Step-by-step breakdown\n- **Environmental responsibility**: Leather waste and poorly recycled smartphones can pollute soil and water.\n- **Sustainable practices**: Businesses should reduce waste, treat wastewater, recycle materials, and protect resources.\n- **Fair compensation**: Workers should receive fair pay and safe working conditions.\n- **Skill development**: Employers should invest in training and education.\n- **Rights and protection**: Businesses should prevent discrimination and follow rules on lawful benefits.\n- **Community responsibility**: Operations should respect local communities, biodiversity, employees, and customers.\n- **CSR**: Corporate Social Responsibility addresses social and environmental concerns in business operations.\n\n## Worked example\nQuestion: Why are worker training and environmental protection both production responsibilities?\n\nAnswer:\n- Training strengthens human capital, while environmental protection preserves land, water, health, biodiversity, and future productive capacity.\n- A business depends on both capable people and functioning natural systems.\n- Final answer: Responsible production protects the factors on which the business and society depend over the long term.\n\n## Common mistake\nCSR is not a substitute for obeying labour or environmental law; basic duties still apply.\n\n## Quick check question\nQuestion: Give one responsibility towards workers and one towards Nature.\nAnswer: Provide fair and safe working conditions, and reduce pollution or recycle waste to protect natural resources.\nExplanation: The chapter treats social and environmental care as part of responsible production.\n\n## Summary\n- Production must be economically, socially, and environmentally responsible.\n- Workers need fair treatment, safety, and skill development.\n- Sustainable use preserves factors of production for the future."
+  }
+}

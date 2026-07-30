@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 4: Another Peek Beyond the Point",
+  "central_question": "How can decimal multiplication and division be performed and interpreted accurately in calculations, measurements and real-life models?",
+  "in_scope_units": [
+    "4.1 A Quick Recap of Decimals: expanding decimal fractions and dividing numbers by 10, 100, 1000 and other powers of ten.",
+    "4.2 Decimal Multiplication: multiplying decimals through equivalent fractions, counting decimal places and comparing a product with its factors.",
+    "4.3 Decimal Division: dividing by powers of ten, using equivalent fractions and applying long division through decimal places.",
+    "Division with a Decimal Quotient and Decimal Dividend: regrouping ones as tenths, hundredths and thousandths and placing the decimal point in the quotient.",
+    "Division with a Decimal Divisor: multiplying dividend and divisor by the same power of ten to make the divisor a counting number.",
+    "Does This Ever End? and A Magic Number: exploring non-terminating repeating quotients, 10 ÷ 3, 1 ÷ 7 and the cyclic number 142857.",
+    "Dividend, Divisor and Quotient: examining when a quotient is smaller or greater than the dividend.",
+    "4.4 Look Before You Leap!: using decimal operations to understand the Gregorian leap-year rules based on divisibility by 4, 100 and 400.",
+    "Final Figure it Out and Hidato: applying decimal arithmetic in Questions 1–11 and completing the consecutive-number puzzle enrichment."
+  ],
+  "banned_topics": [
+    "General percentage calculations.",
+    "Formal classification of rational and irrational numbers.",
+    "Rounding rules and significant figures.",
+    "Algebraic polynomial multiplication.",
+    "Astronomical derivation of the exact length of the tropical year."
+  ],
+  "must_include_keywords": [
+    "decimal fraction",
+    "divide by 10",
+    "divide by 100",
+    "decimal multiplication",
+    "multiplier",
+    "multiplicand",
+    "product",
+    "decimal places",
+    "equivalent fraction",
+    "between 0 and 1",
+    "decimal division",
+    "dividend",
+    "divisor",
+    "quotient",
+    "reciprocal",
+    "long division",
+    "place value",
+    "regrouping",
+    "decimal dividend",
+    "decimal divisor",
+    "terminating decimal",
+    "non-terminating decimal",
+    "repeating digits",
+    "remainder",
+    "142857",
+    "cyclic number",
+    "leap year",
+    "365.2422 days",
+    "divisible by 4",
+    "divisible by 100",
+    "divisible by 400",
+    "Gregorian calendar",
+    "Hidato"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The decimal point in a product is placed under the decimal points in the factors.",
+      "correction": "Multiply as counting numbers, then give the product as many decimal places as the total in both factors."
+    },
+    {
+      "claim": "When the divisor is decimal, only the divisor should be multiplied by 10 or 100.",
+      "correction": "The dividend and divisor must both be multiplied by the same power of ten so the quotient remains unchanged."
+    },
+    {
+      "claim": "A product is always greater than both factors.",
+      "correction": "If both positive factors are between 0 and 1, the product is less than both."
+    },
+    {
+      "claim": "A quotient is always smaller than the dividend.",
+      "correction": "Dividing a positive number by a positive decimal between 0 and 1 gives a quotient greater than the dividend."
+    },
+    {
+      "claim": "Every long division produces a finite decimal.",
+      "correction": "Some divisions never end and have repeating digits, such as 10 ÷ 3 = 3.333…."
+    },
+    {
+      "claim": "Every year divisible by 4 is a leap year without exception.",
+      "correction": "A century year is not a leap year unless it is divisible by 400."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Section 4.1 examples 24 ÷ 100 and 678 ÷ 1000 to review movement of the decimal point.",
+    "Use Examples 1–5 to derive decimal multiplication from equivalent fractions and total decimal places.",
+    "Use Example 6 and Example 7 to introduce division by powers of ten and equivalent fractions.",
+    "Use Examples 8–11 to extend long division into tenths, hundredths and thousandths.",
+    "Use Examples 12–13 to handle a decimal divisor by scaling both dividend and divisor.",
+    "Use 10 ÷ 3 and 1 ÷ 7 to distinguish terminating and repeating quotients.",
+    "Conclude with the leap-year calculations in Section 4.4 and final Figure it Out Questions 1–11."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The concluding 'Figure it Out' exercise on pages 93–95 contains Questions 1–11, followed by the summary and Hidato enrichment.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

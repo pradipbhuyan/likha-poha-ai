@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 5: Tales by Dots and Lines",
+  "central_question": "How do mean, median, dot plots, spreadsheets and line graphs help us describe the centre of data, analyse changes and draw meaningful conclusions?",
+  "in_scope_units": [
+    "The mean as a balancing centre on a dot plot.",
+    "Equal total distances on the two sides of the mean.",
+    "How inserting, removing, increasing or decreasing data values affects the mean.",
+    "How adding a constant to all values or multiplying all values changes the mean.",
+    "The median and its behaviour when data values are inserted or removed.",
+    "Finding missing values and correcting a mean when data are changed.",
+    "Mean and median from frequency tables.",
+    "Spreadsheet tables, cells, ranges and formulae such as SUM and AVERAGE.",
+    "Line graphs for representing change over time.",
+    "Reading, comparing and interpreting multiple line graphs.",
+    "Generating questions and observations from temperature, rainfall, sunrise, sunset, moonrise and moonset data.",
+    "The closing Game of Hex strategy activity."
+  ],
+  "banned_topics": [
+    "Probability distributions and standard deviation.",
+    "Regression, correlation coefficients and trend-line equations.",
+    "Database programming beyond the spreadsheet operations shown in the chapter."
+  ],
+  "must_include_keywords": [
+    "data",
+    "dot plot",
+    "arithmetic mean",
+    "median",
+    "central tendency",
+    "balance point",
+    "distance from the mean",
+    "sorted data",
+    "inserting a value",
+    "removing a value",
+    "outlier",
+    "constant shift",
+    "scaling data",
+    "frequency",
+    "frequency table",
+    "cumulative frequency",
+    "weighted sum",
+    "family size",
+    "spreadsheet",
+    "cell",
+    "row",
+    "column",
+    "cell range",
+    "formula",
+    "SUM",
+    "AVERAGE",
+    "fill handle",
+    "line graph",
+    "horizontal axis",
+    "vertical axis",
+    "change over time",
+    "temperature",
+    "rainfall",
+    "sunrise",
+    "sunset",
+    "moonrise",
+    "moonset",
+    "interpretation",
+    "observation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The mean is always the midpoint of the smallest and largest values.",
+      "correction": "The mean balances the total distances on its two sides; it is not generally the midpoint of the extremes."
+    },
+    {
+      "claim": "Adding one value above the old mean leaves the mean unchanged.",
+      "correction": "Adding a value above the current mean increases the mean; a value below it decreases the mean."
+    },
+    {
+      "claim": "The median of an even number of values is either one of the two middle values.",
+      "correction": "It is the arithmetic mean of the two middle values after sorting."
+    },
+    {
+      "claim": "The mean of a frequency table is the sum of distinct values divided by the number of distinct values.",
+      "correction": "Each value must be multiplied by its frequency, and the total divided by the sum of frequencies."
+    },
+    {
+      "claim": "A line graph alone proves why a change occurred.",
+      "correction": "A graph shows patterns and changes; explanations of causes need additional evidence."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the opening dot plots for 3 and 7, and 8 and 9, to show the mean halfway between two values.",
+    "Use the balancing-distance activity to show equal total distances on both sides of a mean.",
+    "Use the chapter's wrestler-weight missing-value problem whose unknown value is 43.",
+    "Use the family-size frequency table to calculate mean 188/36 = 5.22 and median 5.",
+    "Use the student-marks spreadsheet to demonstrate SUM and AVERAGE formulae and copying formulae.",
+    "Use one of the final line-graph activities to identify axes, read approximate values and distinguish observations from unsupported causes."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with an extended Figure it Out set of data and line-graph interpretation tasks, including sunrise-sunset and moonrise-moonset questions, followed by the Summary and Game of Hex.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

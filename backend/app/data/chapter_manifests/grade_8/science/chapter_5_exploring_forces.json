@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 5: Exploring Forces",
+  "central_question": "How do contact and non-contact forces change motion and shape, determine weight, and interact with liquids to produce floating or sinking?",
+  "in_scope_units": [
+    "Force as a push or pull arising from interaction and its effects on motion and shape.",
+    "Contact forces: muscular force and friction, including surface dependence and fluid friction.",
+    "Non-contact magnetic, electrostatic and gravitational forces.",
+    "Weight, mass, spring balances, range, least count and measurement.",
+    "Buoyant force, Archimedes' principle, floating and sinking."
+  ],
+  "banned_topics": [
+    "Pressure calculations, taught in Chapter 6.",
+    "Detailed density calculations, taught in Chapter 9.",
+    "Newton's laws and vector resolution."
+  ],
+  "must_include_keywords": [
+    "force",
+    "push",
+    "pull",
+    "interaction",
+    "newton",
+    "motion",
+    "speed",
+    "direction",
+    "shape",
+    "contact force",
+    "muscular force",
+    "friction",
+    "surface irregularity",
+    "fluid friction",
+    "non-contact force",
+    "magnetic force",
+    "static charge",
+    "electrostatic force",
+    "like charges",
+    "unlike charges",
+    "gravitational force",
+    "gravity",
+    "vertical motion",
+    "weight",
+    "mass",
+    "spring balance",
+    "range",
+    "smallest division",
+    "newton",
+    "buoyant force",
+    "upthrust",
+    "floating",
+    "sinking",
+    "Archimedes' principle",
+    "displaced liquid"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An object at rest has no forces acting on it.",
+      "correction": "Forces may act but balance one another, producing no change in motion."
+    },
+    {
+      "claim": "Friction always acts in the direction of motion.",
+      "correction": "Friction opposes the direction in which an object moves or tries to move."
+    },
+    {
+      "claim": "Mass and weight are the same quantity.",
+      "correction": "Mass is amount of matter in kg or g; weight is gravitational force in newtons and can vary by location."
+    },
+    {
+      "claim": "Gravity acts only on falling objects.",
+      "correction": "Earth's gravitational force acts on objects continuously, including at the topmost point of a throw."
+    },
+    {
+      "claim": "A larger object must sink and a smaller object must float.",
+      "correction": "Floating depends on the relationship between weight and buoyant force, not size alone."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activities 5.1 and 5.2 to define force and its effects.",
+    "Use Activities 5.3 and 5.4 to infer the direction and surface dependence of friction.",
+    "Use Activities 5.5–5.8 to compare non-contact forces.",
+    "Use Activities 5.9–5.12 to read and use a spring balance.",
+    "Use Activity 5.13 and Keep the curiosity alive Q4 and Q10 for buoyancy."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–10, followed by Discover, design, and debate projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

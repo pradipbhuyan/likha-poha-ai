@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Science",
+    "chapter": "Chapter 7: Particulate Nature of Matter",
+    "central_question": "How do the size, spacing, attraction, movement and thermal energy of constituent particles explain the properties and changes of solids, liquids and gases?",
+    "in_scope_units": [
+      "Matter as extremely small constituent particles, supported by breaking chalk and dissolving sugar.",
+      "Interparticle spaces and attractive forces, including Acharya Kanad's idea of Parmanu.",
+      "Solid state, fixed shape and volume, particle vibration, melting and melting point.",
+      "Liquid state, fixed volume but no fixed shape, boiling, vapour formation and evaporation.",
+      "Gaseous state, free movement, no fixed shape or volume, and the idea of fluids.",
+      "Comparison of interparticle spacing and compressibility using a syringe and dissolved substances.",
+      "Continuous particle motion, diffusion and the effect of heating."
+    ],
+    "banned_topics": [
+      "Detailed atomic structure and chemical bonding.",
+      "Gas laws and pressure-volume calculations.",
+      "Chemical classification of atoms and molecules beyond the brief closing extension."
+    ],
+    "must_include_keywords": [
+      "matter",
+      "constituent particles",
+      "physical change",
+      "chalk powder",
+      "dissolution",
+      "interparticle space",
+      "interparticle attraction",
+      "Acharya Kanad",
+      "Parmanu",
+      "solid",
+      "fixed shape",
+      "fixed volume",
+      "vibration",
+      "melting point",
+      "ice",
+      "urea",
+      "iron",
+      "liquid",
+      "flow",
+      "boiling point",
+      "vapour",
+      "evaporation",
+      "gas",
+      "fluid",
+      "compressibility",
+      "syringe",
+      "solution",
+      "potassium permanganate",
+      "diffusion",
+      "thermal energy",
+      "particle motion",
+      "insoluble",
+      "smoke",
+      "incense fragrance",
+      "atoms",
+      "molecules"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A grain of chalk powder is the smallest possible particle of chalk.",
+        "correction": "Each visible grain is itself made of an enormous number of much smaller constituent particles."
+      },
+      {
+        "claim": "The spaces between particles are filled with air.",
+        "correction": "The chapter states that interparticle spaces contain no material."
+      },
+      {
+        "claim": "Particles in a solid are completely motionless.",
+        "correction": "They vibrate or oscillate about fixed positions."
+      },
+      {
+        "claim": "Evaporation and boiling occur only at the boiling point.",
+        "correction": "Boiling occurs throughout a liquid at its boiling point, while evaporation occurs slowly at the surface at all temperatures."
+      },
+      {
+        "claim": "Rice grains become a liquid because a pile takes the shape of its container.",
+        "correction": "Each rice grain retains a fixed shape and volume, so the material remains a collection of solids."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activity 7.1 to distinguish size reduction from formation of a new substance.",
+      "Use Activity 7.2 to infer invisible sugar particles and interparticle spaces.",
+      "Use Activities 7.3–7.5 to compare solids, liquids and gases.",
+      "Use Activities 7.6 and 7.7 to investigate compressibility and spacing.",
+      "Use Activities 7.8 and 7.9 to show continuous particle motion and diffusion.",
+      "Use Keep the curiosity alive Q6–Q10 for particle diagrams and state classification."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–10, followed by Discover, design, and debate activities."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 7: Particulate Nature of Matter\n\n## What you will learn\nYou will gather evidence that matter consists of extremely small particles. You will connect chalk grinding and sugar dissolving with physical change and interparticle spaces.\n\n## Simple explanation\nVisible pieces can be divided into smaller pieces without changing the substance. When sugar disappears from view in water but the water tastes sweet, its particles have spread through spaces among water particles.\n\n## Step-by-step breakdown\n- **Activity 7.1**: Breaking and grinding chalk changes only particle size, not the substance.\n- **Constituent particle**: It is a basic unit that makes up a larger quantity of a substance.\n- **Activity 7.2**: Dissolved sugar remains present even though its particles are not visible.\n- **Interparticle space**: Sugar particles occupy available spaces between water particles.\n- **Scale**: Constituent particles are too small to see with an ordinary microscope.\n\n## Worked example\nQuestion: Activity 7.2: What evidence shows that sugar remains in the water after it is no longer visible?\n\nSolution:\n- Step 1: Before stirring, sugar is visible in the tumbler.\n- Step 2: After stirring, no separate grains are seen.\n- Step 3: The water tastes sweet throughout.\n- Step 4: The taste is evidence that sugar particles remain dispersed in the solution.\n- Final answer: Sugar is still present as extremely small particles distributed through the water.\n\n## Common mistake\nDissolving does not mean that sugar has been destroyed or changed into water.\n\n## Quick check question\nQuestion: Is grinding chalk a physical or chemical change?\nAnswer: It is a physical change.\nExplanation: Only the size of the chalk pieces changes; no new substance forms.\n\n## Summary\n- Matter contains tiny particles.\n- Visible grains are not the smallest units.\n- Dissolved particles remain present.\n- Spaces exist between particles.",
+    "Core explanation": "# Core explanation: Chapter 7: Particulate Nature of Matter\n\n## What you will learn\nYou will explain how particle attraction and thermal energy produce the solid and liquid states. You will distinguish melting, boiling and evaporation.\n\n## Simple explanation\nParticles attract one another. Strong attraction and low movement maintain a solid, while added heat increases movement and can allow particles to change position and form a liquid.\n\n## Step-by-step breakdown\n- **Interparticle attraction**: Its strength depends on substance and distance between particles.\n- **Solid**: Particles are tightly packed, strongly attracted and limited to vibration around fixed positions.\n- **Melting**: At the melting point, increased vibration weakens the hold of fixed positions and a liquid forms.\n- **Liquid**: Particles remain close but can move past one another, giving fixed volume but no fixed shape.\n- **Boiling**: Rapid vapour formation occurs throughout a liquid at its boiling point.\n- **Evaporation**: Slow surface vapour formation can occur below the boiling point.\n\n## Worked example\nQuestion: Activity 7.4 transfers 200 mL of water among differently shaped containers. What does it show?\n\nSolution:\n- Step 1: The shape of the water changes with each container.\n- Step 2: The marked volume remains 200 mL when no water is lost.\n- Step 3: Therefore the particles can move and rearrange while remaining within a fixed total volume.\n- Final answer: A liquid has no fixed shape but has a definite volume.\n\n## Common mistake\nDo not call evaporation boiling. Evaporation is a surface process at many temperatures, while boiling is rapid throughout the liquid at a specific temperature.\n\n## Quick check question\nQuestion: What is the melting point of ice listed in Table 7.1?\nAnswer: 0 °C.\nExplanation: The table gives the minimum temperature at atmospheric pressure at which ice changes from solid to liquid.\n\n## Summary\n- Strong attraction supports solids.\n- Liquid particles can move past one another.\n- Melting uses added thermal energy.\n- Boiling and evaporation differ.",
+    "Worked examples": "# Worked examples: Chapter 7: Particulate Nature of Matter\n\n## What you will learn\nYou will investigate gases and compare particle spacing in all three states. You will explain why gases are compressible but water is practically incompressible.\n\n## Simple explanation\nGas particles are far apart, move freely and have negligible attraction, so gases fill the entire available space and can be compressed.\n\n## Step-by-step breakdown\n- **Activity 7.5**: Smoke spreads from one gas jar into the other and fills the available space.\n- **Gas properties**: Gases have neither fixed shape nor fixed volume.\n- **Fluids**: Liquids and gases can flow and are both classified as fluids.\n- **Activity 7.6**: Air volume decreases when the syringe plunger is pushed while the opening is sealed.\n- **Water comparison**: Water is practically incompressible because its particles are already much closer.\n- **Spacing order**: Interparticle spacing is least in solids, greater in liquids and greatest in gases.\n\n## Worked example\nQuestion: Activity 7.6: Why can the plunger move inward when air is trapped in the syringe?\n\nSolution:\n- Step 1: Gas particles initially have large spaces between them.\n- Step 2: Pushing the plunger applies external pressure.\n- Step 3: The particles are forced closer together, reducing the air volume.\n- Final answer: Air can be compressed because gas particles have large interparticle spaces.\n\n## Common mistake\nDo not say gases have no particles because they are invisible; their particles are simply extremely small and widely spaced.\n\n## Quick check question\nQuestion: Which state has maximum interparticle space?\nAnswer: The gaseous state.\nExplanation: Gas particles move freely through the entire available volume and are widely separated.\n\n## Summary\n- Gases fill available space.\n- Gas attraction is negligible.\n- Gases are compressible.\n- Solids, liquids and gases differ in spacing.",
+    "Exam-style problems": "# Exam-style problems: Chapter 7: Particulate Nature of Matter\n\n## What you will learn\nYou will use dissolution to investigate spaces in liquids and distinguish soluble from insoluble solids. You will interpret volume changes carefully.\n\n## Simple explanation\nA dissolved substance can fit into spaces among solvent particles, but this does not mean every solid dissolves. Attraction between the substances also matters.\n\n## Step-by-step breakdown\n- **Activity 7.7**: Adding sugar first raises the level; after dissolving, the level may fall slightly from mark B.\n- **Volume evidence**: The solution volume is less than the separate sum of water and solid volumes.\n- **Soluble solids**: Sugar, salt and glucose can disperse as constituent particles in water.\n- **Insoluble solids**: Sand remains as visible particles and settles, increasing occupied volume.\n- **Empty spaces**: Interparticle spaces are not pockets of air; they contain no matter.\n- **Context of particle**: Dust in suspended particulate matter is much larger than constituent atoms and molecules.\n\n## Worked example\nQuestion: Activity 7.7: Why may the level decrease after added sugar dissolves?\n\nSolution:\n- Step 1: Before dissolution, the visible sugar occupies extra bulk in the vessel.\n- Step 2: During dissolution, sugar separates into much smaller constituent particles.\n- Step 3: These particles occupy spaces between water particles.\n- Step 4: The final volume can therefore be less than the simple sum of the starting volumes.\n- Final answer: The level may decrease because dissolved sugar particles occupy interparticle spaces in water.\n\n## Common mistake\nInterparticle spaces are not filled with air; the chapter explicitly says they contain nothing.\n\n## Quick check question\nQuestion: What happens when sand is mixed with water?\nAnswer: It does not dissolve; the particles settle and occupy additional space.\nExplanation: Water particles cannot pull the strongly held sand particles into a dissolved distribution.\n\n## Summary\n- Liquids contain interparticle spaces.\n- Dissolved particles occupy those spaces.\n- Solubility varies by substance.\n- Sand remains an insoluble solid.",
+    "Revision and recap": "# Revision and recap: Chapter 7: Particulate Nature of Matter\n\n## What you will learn\nYou will show that particles are in constant motion and that heating speeds their movement. You will integrate state, spacing, attraction and thermal energy.\n\n## Simple explanation\nParticles collide and spread even when we cannot see them directly. Faster particle motion at higher temperature causes more rapid diffusion.\n\n## Step-by-step breakdown\n- **Activity 7.8**: Potassium permanganate colour spreads until water becomes uniformly pink.\n- **Temperature comparison**: It spreads fastest in hot water and slowest in ice-cold water.\n- **Activity 7.9**: Incense fragrance reaches distant parts of a room because gas particles move constantly.\n- **Thermal energy**: Heating increases particle movement and can overcome attraction.\n- **State summary**: Solids vibrate, liquids move within limited space and gases move throughout available space.\n- **Atoms and molecules**: The chapter closes by identifying these as tiny particles studied further in higher grades.\n\n## Worked example\nQuestion: Activity 7.8: Why does potassium permanganate spread faster in hot water than in cold water?\n\nSolution:\n- Step 1: Heating gives water particles more thermal energy.\n- Step 2: The particles move and collide more rapidly.\n- Step 3: They separate and distribute potassium permanganate particles faster.\n- Final answer: Higher temperature increases particle motion, so diffusion occurs faster.\n\n## Common mistake\nThe pink colour does not spread because the colour itself has a purpose or direction; random particle motion and collisions distribute it.\n\n## Quick check question\nQuestion: What does smelling incense across a room demonstrate?\nAnswer: Gas particles and fragrance particles are in continuous motion and spread through the available air.\nExplanation: The moving air particles collide with and distribute the fragrance particles.\n\n## Summary\n- Particles move continuously.\n- Heating increases motion.\n- Diffusion occurs in liquids and gases.\n- Thermal energy helps determine physical state."
+  }
+}

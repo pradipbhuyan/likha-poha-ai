@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 2: The Baudhayana-Pythagoras Theorem",
+    "central_question": "How do areas of squares built on the sides of right triangles reveal the Baudhayana-Pythagoras relationship and support constructions, number patterns and real-world applications?",
+    "in_scope_units": [
+      "Doubling a square by constructing a new square on its diagonal and verifying the equal-area dissection.",
+      "Halving a square by joining or folding through the midpoints of its sides.",
+      "The hypotenuse of an isosceles right triangle, the relation c² = 2a², and the number √2.",
+      "Decimal bounds and the non-terminating, non-rational nature of √2 as presented in the chapter.",
+      "Combining two different squares through dissection to obtain the Baudhayana-Pythagoras theorem.",
+      "Using a² + b² = c² to find missing sides of right triangles.",
+      "Baudhayana-Pythagoras triples, scaled triples, primitive triples and a method based on odd squares.",
+      "Fermat's Last Theorem and Andrew Wiles's 1994 proof.",
+      "Applications including Bhaskaracharya's lotus problem, square diagonals, rhombuses, grid squares and equilateral triangles."
+    ],
+    "banned_topics": [
+      "Trigonometric ratios such as sine, cosine and tangent.",
+      "Coordinate-geometry distance formula as a separate theorem.",
+      "Proof techniques involving calculus or advanced irrational-number theory."
+    ],
+    "must_include_keywords": [
+      "Baudhayana",
+      "Sulba-Sutra",
+      "doubling a square",
+      "halving a square",
+      "diagonal",
+      "dissection",
+      "congruent triangles",
+      "right-angled triangle",
+      "hypotenuse",
+      "isosceles right triangle",
+      "square root of 2",
+      "lower bound",
+      "upper bound",
+      "terminating decimal",
+      "irrational number",
+      "combining squares",
+      "a² + b² = c²",
+      "Baudhayana-Pythagoras theorem",
+      "3-4-5 triangle",
+      "Baudhayana triple",
+      "primitive triple",
+      "scaled triple",
+      "positive integer",
+      "odd square",
+      "Fermat's Last Theorem",
+      "Andrew Wiles",
+      "Bhaskaracharya",
+      "Lilavati",
+      "lotus problem",
+      "rhombus diagonal",
+      "equilateral triangle",
+      "area of a square"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Doubling the side of a square doubles its area.",
+        "correction": "Doubling the side multiplies the area by 2² = 4; a square on the original diagonal has twice the original area."
+      },
+      {
+        "claim": "In a² + b² = c², c can be any side of a right triangle.",
+        "correction": "c must be the hypotenuse, the side opposite the right angle and the longest side."
+      },
+      {
+        "claim": "If c² = 25, then c can be taken as √5 for a side length.",
+        "correction": "A geometric length is positive, so c = 5."
+      },
+      {
+        "claim": "Every integer multiple of one entry of a Pythagorean triple gives a new triple.",
+        "correction": "The same positive integer scale factor must multiply all three entries."
+      },
+      {
+        "claim": "√2 is exactly 1.414.",
+        "correction": "The chapter establishes 1.414 < √2 < 1.415; 1.414 is only a lower decimal approximation."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Section 2.1's square-on-the-diagonal construction and paper dissection to show why the area doubles.",
+      "Use Section 2.3 Example 1 to estimate the hypotenuse when the equal sides are 12 units.",
+      "Use the Figure it Out problem with shorter sides 5 cm and 12 cm to obtain the 5-12-13 triple.",
+      "Use Section 2.5's proof that (3k,4k,5k) is a triple for every positive integer k.",
+      "Use Section 2.7's Bhaskaracharya lotus problem to obtain the lake depth of 4 units."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The final Figure it Out set in Section 2.7 contains Questions 1-9 on square diagonals, missing right-triangle sides, a rhombus, triples, grid-square areas and an equilateral triangle, followed by the Summary."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 2: The Baudhayana-Pythagoras Theorem\n\n## What you will learn\nYou will explore Baudhayana's geometric methods for doubling and halving a square. You will understand why changing a side length and changing an area are not the same operation.\n\n## Simple explanation\nA square's area depends on the square of its side. Baudhayana's construction uses the diagonal and congruent triangular pieces to create a square whose area is exactly twice the original.\n\n## Step-by-step breakdown\n- **Doubling by diagonal**: A square constructed on the diagonal of a given square contains four congruent small triangles while the original contains two.\n- **Area comparison**: Four equal pieces have twice the area of two equal pieces.\n- **East-west and north-south lines**: Perpendicular horizontal and vertical lines make the equal triangular regions visible.\n- **Paper dissection**: Pieces from a second identical square can be rearranged around the first to form the doubled square.\n- **Halving**: Joining the midpoints of the original square's sides creates a tilted inner square with half the original area.\n\n## Worked example\nQuestion: NCERT Section 2.1: Why does constructing a square on the diagonal of a given square double its area?\n\nSolution:\n- Step 1: Divide the original square by a diagonal into two congruent right triangles.\n- Step 2: Extend the original horizontal and vertical sides through the vertices of the square built on the diagonal.\n- Step 3: These lines divide the new square into four triangles congruent to the two in the original square.\n- Step 4: The original square contains 2 equal triangles, while the new square contains 4.\n- Step 5: Therefore, new area/original area = 4/2 = 2.\n- Final answer: The square on the diagonal has twice the area of the original square.\n\n## Common mistake\nDo not double the original side length. A side doubled to 2s produces area (2s)² = 4s², not 2s².\n\n## Quick check question\nQuestion: NCERT Section 2.2: Does a square with half the side length have half the area?\nAnswer: No; it has one-fourth the area.\nExplanation: If the original side is s, the new side is s/2 and its area is (s/2)² = s²/4.\n\n## Summary\n- Area grows with the square of side length.\n- The diagonal construction doubles area.\n- The midpoint construction halves area.\n- Dissection proves equality of areas without relying only on measurement.",
+    "Core explanation": "# Core explanation: Chapter 2: The Baudhayana-Pythagoras Theorem\n\n## What you will learn\nYou will derive the hypotenuse of an isosceles right triangle and interpret √2. You will use square areas to obtain c² = 2a².\n\n## Simple explanation\nTwo identical isosceles right triangles make a square. The square on their common hypotenuse has twice the area of the square on one equal side.\n\n## Step-by-step breakdown\n- **Hypotenuse**: It is the side opposite the right angle.\n- **Equal legs**: If each shorter side is a, the square on each has area a².\n- **Area relation**: For an isosceles right triangle, c² = a²+a² = 2a².\n- **Length relation**: Since lengths are positive, c = a√2.\n- **Bounds for √2**: Squaring decimals gives 1.414² < 2 < 1.415², so 1.414 < √2 < 1.415.\n- **Representation**: The chapter explains that √2 is neither a terminating decimal nor a fraction of positive integers.\n\n## Worked example\nQuestion: NCERT Section 2.3 Example 2: If the hypotenuse of an isosceles right triangle is √72, find its equal sides.\n\nSolution:\n- Step 1: Let each equal side be a and the hypotenuse be c.\n- Step 2: Use c² = 2a².\n- Step 3: Substitute c = √72: (√72)² = 2a².\n- Step 4: So 72 = 2a².\n- Step 5: Divide by 2: a² = 36.\n- Step 6: Take the positive square root: a = 6.\n- Final answer: Each of the two equal sides is 6 units.\n\n## Common mistake\nDo not write a = ±6 in the geometric answer. A side length must be positive.\n\n## Quick check question\nQuestion: NCERT Section 2.3: Between which consecutive integers does √288 lie?\nAnswer: Between 16 and 17.\nExplanation: 16² = 256 and 17² = 289, and 256 < 288 < 289.\n\n## Summary\n- An isosceles right triangle satisfies c² = 2a².\n- The hypotenuse is a√2.\n- Square comparisons give bounds for square roots.\n- Decimal bounds are approximations, not exact equalities.",
+    "Worked examples": "# Worked examples: Chapter 2: The Baudhayana-Pythagoras Theorem\n\n## What you will learn\nYou will derive and apply the general Baudhayana-Pythagoras theorem. You will find either the hypotenuse or a shorter side with full algebraic working.\n\n## Simple explanation\nWhen squares are built on all three sides of a right triangle, the square on the hypotenuse has area equal to the sum of the two other square areas.\n\n## Step-by-step breakdown\n- **Dissection proof**: Two different squares are cut and rearranged into one square whose side is the triangle's hypotenuse.\n- **Theorem**: If a and b are the shorter sides and c the hypotenuse, then a²+b²=c².\n- **Finding c**: Calculate c² and take the positive square root.\n- **Finding a leg**: Rearrange to a²=c²-b² before taking the positive square root.\n- **Verification**: Check that the largest given side is used as c and that the computed length is reasonable.\n\n## Worked example\nQuestion: NCERT Figure it Out after the theorem, Q1: A right triangle has shorter sides 5 cm and 12 cm. Find its hypotenuse.\n\nSolution:\n- Step 1: Let c be the hypotenuse.\n- Step 2: Apply the theorem: 5²+12²=c².\n- Step 3: Calculate the squares: 25+144=c².\n- Step 4: Add: 169=c².\n- Step 5: Take the positive square root: c=√169=13.\n- Final answer: The hypotenuse is 13 cm.\n\n## Common mistake\nDo not add the side lengths first and then square. The theorem requires the sum of the individual squares.\n\n## Quick check question\nQuestion: NCERT Figure it Out Q2: A right triangle has one shorter side 8 cm and hypotenuse 17 cm. Find the other side.\nAnswer: 15 cm.\nExplanation: Let the missing side be b. Then 8²+b²=17², so b²=289-64=225 and b=15.\n\n## Summary\n- The theorem relates square areas, not the unsquared side lengths.\n- The hypotenuse must be identified before substitution.\n- A missing shorter side is found by subtraction.\n- Only the positive square root is used for a length.",
+    "Exam-style problems": "# Exam-style problems: Chapter 2: The Baudhayana-Pythagoras Theorem\n\n## What you will learn\nYou will study integer right-triangle triples and prove why scaling preserves them. You will distinguish primitive triples from scaled triples.\n\n## Simple explanation\nA Baudhayana-Pythagoras triple is a triple of positive integers satisfying a²+b²=c². Multiplying all three entries by the same positive integer creates another triple.\n\n## Step-by-step breakdown\n- **Examples**: The chapter lists (3,4,5), (5,12,13), (8,15,17), (7,24,25), (12,35,37) and (15,36,39).\n- **Scaled triple**: If (a,b,c) is a triple, then (ka,kb,kc) is also a triple.\n- **Algebraic proof**: (ka)²+(kb)²=k²(a²+b²)=k²c²=(kc)².\n- **Primitive triple**: A primitive triple has no common factor greater than 1.\n- **Odd-square method**: The chapter develops triples from the fact that sums of consecutive odd numbers form squares.\n- **Infinite family**: (3k,4k,5k) gives infinitely many triples.\n\n## Worked example\nQuestion: NCERT Section 2.5: Prove that (3k,4k,5k) is a Baudhayana triple for every positive integer k.\n\nSolution:\n- Step 1: Square the first entry: (3k)²=9k².\n- Step 2: Square the second entry: (4k)²=16k².\n- Step 3: Add: 9k²+16k²=25k².\n- Step 4: Write 25k² as a square: 25k²=(5k)².\n- Step 5: Thus (3k)²+(4k)²=(5k)².\n- Final answer: (3k,4k,5k) is a Baudhayana triple for every positive integer k.\n\n## Common mistake\nDo not use different scale factors for different sides. For example, (6,12,15) is not obtained by one common scaling of (3,4,5) and does not satisfy the equation.\n\n## Quick check question\nQuestion: Is (6,8,10) a primitive triple?\nAnswer: No.\nExplanation: All three entries have common factor 2, and the triple is 2×(3,4,5).\n\n## Summary\n- Triples contain positive integer side lengths.\n- A common scale factor preserves the theorem.\n- Primitive triples have no common factor above 1.\n- One primitive triple generates infinitely many scaled triples.",
+    "Revision and recap": "# Revision and recap: Chapter 2: The Baudhayana-Pythagoras Theorem\n\n## What you will learn\nYou will apply the theorem to a classical problem and review the chapter's historical extension to Fermat's Last Theorem. You will model a word problem as a right triangle before solving it.\n\n## Simple explanation\nThe theorem becomes useful when a diagram contains a hidden right triangle. The lotus problem from Bhaskaracharya's Lilavati is solved by naming the unknown depth and relating the vertical, horizontal and sloping lengths.\n\n## Step-by-step breakdown\n- **Lotus model**: The depth is x, the horizontal displacement is 3, and the full stem is x+1.\n- **Equation**: The right triangle gives 3²+x²=(x+1)².\n- **Cancellation**: Expanding both sides cancels x² and leaves a linear equation.\n- **Fermat's question**: The chapter asks whether xⁿ+yⁿ=zⁿ has positive-integer solutions for n>2.\n- **Fermat's Last Theorem**: It states that there are no such positive-integer solutions for n>2.\n- **Andrew Wiles**: The chapter records that Wiles proved the theorem in 1994.\n- **Further applications**: Square diagonals, rhombus half-diagonals and triangle altitudes create right triangles.\n\n## Worked example\nQuestion: NCERT Section 2.7, Bhaskaracharya's Lilavati problem: A lotus is 1 unit above the water and bends so its tip touches the water 3 units away. Find the depth.\n\nSolution:\n- Step 1: Let the water depth be x units.\n- Step 2: The full lotus stem has length x+1 units.\n- Step 3: The vertical depth x and horizontal distance 3 are perpendicular sides of a right triangle.\n- Step 4: Apply the theorem: x²+3²=(x+1)².\n- Step 5: Expand: x²+9=x²+2x+1.\n- Step 6: Subtract x²: 9=2x+1.\n- Step 7: Subtract 1: 8=2x.\n- Step 8: Divide by 2: x=4.\n- Final answer: The lake is 4 units deep.\n\n## Common mistake\nDo not use x-1 as the stem length. The stem includes the depth x plus the 1 unit above the water.\n\n## Quick check question\nQuestion: NCERT final Figure it Out Q1: What is the diagonal of a square of side 5 cm?\nAnswer: 5√2 cm.\nExplanation: The diagonal is the hypotenuse of an isosceles right triangle with legs 5 and 5, so d²=25+25=50 and d=√50=5√2.\n\n## Summary\n- Draw or identify the right triangle before writing the equation.\n- Classical construction problems and modern applications use the same theorem.\n- Baudhayana triples concern exponent 2.\n- Fermat's Last Theorem concerns powers greater than 2.\n- The chapter connects geometry, number patterns and mathematical history."
+  }
+}

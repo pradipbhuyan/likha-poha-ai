@@ -1,0 +1,106 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Science",
+    "chapter": "Chapter 9: Life Processes in Animals",
+    "central_question": "How do animals obtain usable nutrients and energy through digestion, breathing and respiration, and how are these processes adapted in different animals?",
+    "in_scope_units": [
+      "Introduction to life processes and animal feeding methods, with nutrition and respiration as the chapter focus.",
+      "9.1 Nutrition in Animals and digestion in humans—alimentary canal, mouth, saliva, oesophagus, stomach, small intestine, digestive juices, absorption, large intestine and egestion.",
+      "Activity 9.1—iodine test comparing rice or chapati before and after chewing to show the action of saliva on starch.",
+      "Nutrition in other animals—rumination in ruminants and grinding by the gizzard in birds.",
+      "9.2 Respiration in Animals—difference between breathing and respiration and the release of energy from food.",
+      "Human breathing system—nostrils, nasal passage, windpipe, lungs, alveoli, rib cage and diaphragm; Activities 9.2 and 9.3.",
+      "Gas exchange, composition of inhaled and exhaled air, cellular respiration and transport by blood.",
+      "Breathing in other animals—lungs, gills, moist skin and changes between tadpole and adult frog.",
+      "In a Nutshell, Let Us Enhance Our Learning Questions 1–10 and exploratory tasks."
+    ],
+    "banned_topics": [
+      "Detailed human circulatory-system anatomy.",
+      "Reproductive processes in animals.",
+      "Advanced enzyme names and biochemical pathways.",
+      "Cellular respiration stages such as glycolysis and the Krebs cycle.",
+      "Medical diagnosis of digestive or respiratory diseases."
+    ],
+    "must_include_keywords": [
+      "life processes",
+      "nutrition",
+      "digestion",
+      "alimentary canal",
+      "mouth",
+      "saliva",
+      "starch",
+      "iodine solution",
+      "oesophagus",
+      "stomach",
+      "small intestine",
+      "bile",
+      "pancreatic juice",
+      "absorption",
+      "large intestine",
+      "rectum",
+      "anus",
+      "egestion",
+      "rumination",
+      "rumen",
+      "gizzard",
+      "breathing",
+      "respiration",
+      "nostrils",
+      "nasal passages",
+      "windpipe",
+      "lungs",
+      "alveoli",
+      "rib cage",
+      "diaphragm",
+      "inhalation",
+      "exhalation",
+      "oxygen",
+      "carbon dioxide",
+      "lime water",
+      "gills",
+      "moist skin",
+      "Activity 9.1",
+      "Activity 9.2",
+      "Let Us Enhance Our Learning"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "All digestion takes place in the stomach.",
+        "correction": "Digestion begins in the mouth and continues through the stomach and small intestine."
+      },
+      {
+        "claim": "Saliva only makes food wet.",
+        "correction": "Saliva moistens food and begins the breakdown of starch into simpler sugar."
+      },
+      {
+        "claim": "The small intestine is called small because it is the shortest part.",
+        "correction": "It is long but narrower than the large intestine; the names mainly reflect width."
+      },
+      {
+        "claim": "Breathing and respiration are the same process.",
+        "correction": "Breathing is physical movement of air, whereas respiration is a chemical process that releases energy from food."
+      },
+      {
+        "claim": "Exhaled air contains no oxygen.",
+        "correction": "Exhaled air still contains substantial oxygen, though less than inhaled air, and contains more carbon dioxide."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activity 9.1 and Question 2 to show saliva acting on starch through the iodine test.",
+      "Trace food through the alimentary canal using Question 1.",
+      "Use the ruminant and bird examples to compare specialised digestion.",
+      "Use Activity 9.2 and Question 3 to model the diaphragm's role.",
+      "Use Activity 9.3 and Question 10 to compare carbon dioxide in inhaled and exhaled air.",
+      "Use Questions 5–8 to distinguish breathing from respiration and explain breathing-rate differences."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end section 'Let Us Enhance Our Learning' contains Questions 1–10, followed by exploratory activities."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 9: Life Processes in Animals\n\n## What you will learn\nYou will understand why animals need digestion and trace food through the human alimentary canal. You will distinguish mechanical breakdown, chemical digestion, absorption and egestion.\n\n## Simple explanation\nFood contains complex carbohydrates, proteins and fats that must be broken into simpler forms before the body can use them. This happens step by step as food travels from the mouth to the anus.\n\n## Step-by-step breakdown\n- **Life processes**: Nutrition and respiration are essential processes that support survival and release of energy.\n- **Alimentary canal**: The long digestive tube begins at the mouth and ends at the anus.\n- **Mouth**: Teeth cut and grind food, the tongue mixes it and saliva moistens it.\n- **Oesophagus**: Wave-like contraction and relaxation push swallowed food towards the stomach.\n- **Stomach**: Muscular walls mix food with acidic digestive juice, while mucus helps protect the stomach lining.\n- **Small intestine**: Bile, pancreatic juice and intestinal juice complete much of the chemical digestion.\n- **Absorption**: Finger-like projections increase the surface through which digested nutrients enter the blood.\n- **Large intestine**: Water and salts are absorbed from undigested material.\n- **Egestion**: Waste is stored in the rectum and removed through the anus.\n\n## Worked example\nQuestion: NCERT Let Us Enhance Our Learning Question 1 asks students to complete the journey of food from the mouth to the anus.\n\nSolution:\n- Step 1: Begin with the mouth, where chewing and saliva start digestion.\n- Step 2: Move through the oesophagus or food pipe.\n- Step 3: Place the stomach next.\n- Step 4: Continue through the small intestine and then the large intestine.\n- Step 5: End with rectum and anus.\n- Final answer: The route is mouth → oesophagus → stomach → small intestine → large intestine → rectum → anus.\n\n## Common mistake\nDo not place the liver or pancreas inside the food pathway. They provide secretions, but food does not pass through them.\n\n## Quick check question\nQuestion: Where does most absorption of digested nutrients occur?\nAnswer: In the small intestine.\nExplanation: Its inner surface has many finger-like projections that provide a large area for nutrients to enter the blood.\n\n## Summary\n- Digestion changes complex food into simpler forms.\n- Food follows an ordered path through the alimentary canal.\n- Different organs perform different tasks.\n- The small intestine absorbs nutrients.\n- The large intestine absorbs water and salts.",
+    "Core explanation": "# Core explanation: Chapter 9: Life Processes in Animals\n\n## What you will learn\nYou will investigate the action of saliva through Activity 9.1. You will use the iodine test to compare unchewed and chewed starchy food.\n\n## Simple explanation\nIodine solution turns blue-black when starch is present. Chewing mixes food with saliva, which begins changing starch into simpler sugar, so the test result can become less intense.\n\n## Step-by-step breakdown\n- **Activity 9.1**: Rice or chapati is tested before and after thorough chewing.\n- **Iodine indicator**: A blue-black colour indicates starch.\n- **Unchewed food**: It contains starch that gives a strong blue-black response.\n- **Chewed food**: Saliva mixes thoroughly with the food during chewing.\n- **Salivary action**: Saliva begins the conversion of starch into sugar.\n- **Comparison**: The chewed sample may show a reduced blue-black colour because some starch has been broken down.\n- **Control of variables**: Comparable amounts of food and iodine should be used.\n- **Mouth digestion**: The result demonstrates that chemical digestion begins before food reaches the stomach.\n\n## Worked example\nQuestion: NCERT Activity 9.1 compares iodine added to ordinary rice and thoroughly chewed rice. What observations and conclusion are expected?\n\nSolution:\n- Step 1: Iodine gives a blue-black colour with the unchewed starchy food.\n- Step 2: Chewed food has been mixed with saliva for longer.\n- Step 3: Saliva converts part of the starch into simpler sugar.\n- Step 4: The chewed sample therefore shows less blue-black colour or a weaker starch response.\n- Final answer: Saliva begins starch digestion in the mouth.\n\n## Common mistake\nDo not claim that chewing removes all starch instantly. The activity shows that breakdown begins; the extent depends on time and mixing.\n\n## Quick check question\nQuestion: What does a blue-black colour after adding iodine indicate?\nAnswer: It indicates the presence of starch.\nExplanation: Iodine is used in the chapter as an indicator for starch-containing food.\n\n## Summary\n- Iodine tests for starch.\n- Saliva begins chemical digestion.\n- Chewing supports both mechanical and chemical processing.\n- Digestion starts in the mouth.\n- Comparative observations support conclusions.",
+    "Worked examples": "# Worked examples: Chapter 9: Life Processes in Animals\n\n## What you will learn\nYou will compare digestion in humans, ruminants and birds. You will understand rumination, the rumen and the grinding function of the gizzard.\n\n## Simple explanation\nAnimals eat in different ways and have digestive adaptations suited to their food. Cattle re-chew partly digested plant food, while many birds use a muscular gizzard and swallowed grit to grind food.\n\n## Step-by-step breakdown\n- **Ruminants**: Cows, buffaloes and similar animals quickly swallow grass and store it in a specialised stomach chamber.\n- **Rumen**: Partly digested food is held and acted upon before being returned to the mouth.\n- **Cud**: The returned food is chewed again more thoroughly.\n- **Rumination**: The process of bringing partially digested food back to the mouth and re-chewing it is rumination.\n- **Plant fibre**: This extended processing helps make tough plant food usable.\n- **Bird feeding**: Birds do not have teeth for chewing food in the mouth.\n- **Gizzard**: A strong muscular part of the digestive system grinds food.\n- **Grit**: Small stones swallowed by birds assist the gizzard in grinding.\n\n## Worked example\nQuestion: Using the NCERT discussion of ruminants, explain why a cow may appear to chew even when it is not grazing.\n\nSolution:\n- Step 1: The cow earlier swallowed plant food with limited chewing.\n- Step 2: The food entered the rumen for partial digestion.\n- Step 3: A portion is brought back to the mouth as cud.\n- Step 4: The cow chews the cud thoroughly before swallowing again.\n- Final answer: The cow appears to chew because it is carrying out rumination.\n\n## Common mistake\nDo not say that a ruminant's second chewing is new food being collected. It is previously swallowed food returned from the rumen.\n\n## Quick check question\nQuestion: What is the function of a bird's gizzard?\nAnswer: It grinds food mechanically, often with the help of swallowed grit.\nExplanation: Birds lack teeth, so the muscular gizzard performs much of the grinding.\n\n## Summary\n- Digestive systems reflect feeding habits.\n- Ruminants re-chew cud.\n- The rumen stores partly digested food.\n- Birds use a muscular gizzard.\n- Grit helps grind food.",
+    "Exam-style problems": "# Exam-style problems: Chapter 9: Life Processes in Animals\n\n## What you will learn\nYou will distinguish breathing from respiration and model inhalation and exhalation using Activity 9.2. You will explain the roles of the rib cage, diaphragm and lungs.\n\n## Simple explanation\nBreathing moves air into and out of the lungs. Respiration is the chemical release of energy from food using oxygen and producing carbon dioxide and water.\n\n## Step-by-step breakdown\n- **Breathing**: A physical process involving inhalation and exhalation.\n- **Respiration**: A chemical process represented as glucose + oxygen → carbon dioxide + water + energy.\n- **Nostrils and nasal passages**: Air enters, while hairs and mucus help trap dust and dirt.\n- **Windpipe**: Air travels towards the lungs through the tracheal passage.\n- **Rib cage**: It protects the lungs and moves during breathing.\n- **Diaphragm**: The muscular sheet below the lungs changes the volume of the chest cavity.\n- **Activity 9.2**: Balloons represent lungs and a stretched rubber sheet represents the diaphragm.\n- **Inhalation**: Pulling the sheet down increases space and inflates the balloons.\n- **Exhalation**: Pushing the sheet up decreases space and allows the balloons to deflate.\n- **Alveoli**: Tiny air sacs provide a large surface for gas exchange with blood.\n\n## Worked example\nQuestion: NCERT Activity 9.2 uses a bottle, two balloons and a rubber sheet. What happens when the rubber sheet is pulled downward?\n\nSolution:\n- Step 1: The rubber sheet models the diaphragm.\n- Step 2: Pulling it down increases the space inside the bottle.\n- Step 3: The pressure inside becomes lower relative to outside air.\n- Step 4: Air enters through the tube and the balloons expand.\n- Final answer: The balloons inflate, modelling inhalation when the diaphragm moves downward.\n\n## Common mistake\nDo not say the diaphragm directly pumps air through the windpipe. Its movement changes chest volume and pressure, causing air to move.\n\n## Quick check question\nQuestion: What is the role of the diaphragm in breathing?\nAnswer: Its downward and upward movements change chest-cavity volume and help inhalation and exhalation.\nExplanation: A larger chest volume draws air in, while a smaller volume helps push air out.\n\n## Summary\n- Breathing and respiration are different.\n- The diaphragm changes chest volume.\n- The rib cage protects and assists breathing.\n- Alveoli exchange gases.\n- Activity 9.2 models inhalation and exhalation.",
+    "Revision and recap": "# Revision and recap: Chapter 9: Life Processes in Animals\n\n## What you will learn\nYou will compare inhaled and exhaled air and study breathing adaptations in other animals. You will apply Activity 9.3 and the end-of-chapter questions to carbon dioxide, oxygen and habitat-specific structures.\n\n## Simple explanation\nInhaled air contains more oxygen, while exhaled air contains more carbon dioxide. Animals use different structures—lungs, gills or moist skin—to exchange gases in their habitats.\n\n## Step-by-step breakdown\n- **Activity 9.3**: Air is passed through lime water to compare the carbon dioxide content of inhaled and exhaled air.\n- **Milky lime water**: Carbon dioxide reacts with lime water and produces a milky appearance.\n- **Exhaled air**: It turns lime water milky more quickly because it contains more carbon dioxide.\n- **Oxygen comparison**: Exhaled air still contains oxygen, but less than inhaled air.\n- **Blood transport**: Oxygen is carried from lungs to body cells, and carbon dioxide is returned to the lungs.\n- **Fish**: Gills extract dissolved oxygen from water.\n- **Frog**: A tadpole uses gills, while an adult frog uses lungs and moist skin.\n- **Earthworm**: Gas exchange occurs through moist skin.\n- **Land vertebrates**: Many use lungs adapted for breathing air.\n\n## Worked example\nQuestion: NCERT Activity 9.3 compares air passed through lime water. Why does exhaled air make it milky faster?\n\nSolution:\n- Step 1: Lime water becomes milky in the presence of carbon dioxide.\n- Step 2: Body cells produce carbon dioxide during respiration.\n- Step 3: Blood carries this gas to the lungs.\n- Step 4: Exhalation removes air with a higher carbon dioxide concentration than inhaled air.\n- Final answer: Exhaled air makes lime water milky faster because it contains more carbon dioxide.\n\n## Common mistake\nDo not say humans inhale pure oxygen. We inhale air, which is a mixture containing oxygen, nitrogen and other gases.\n\n## Quick check question\nQuestion: How does a fish obtain oxygen?\nAnswer: Its gills absorb oxygen dissolved in water.\nExplanation: Water passes over the gill surfaces, where gas exchange takes place.\n\n## Summary\n- Exhaled air contains more carbon dioxide.\n- Exhaled air still contains oxygen.\n- Lime water detects carbon dioxide.\n- Different animals use different respiratory structures.\n- Breathing adaptations match habitat and life stage."
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: Natural Resources and Their Use",
+  "central_question": "How can people understand and use natural resources responsibly while protecting Nature's capacity to restore and regenerate?",
+  "in_scope_units": [
+    "When Nature becomes a resource: technological accessibility, economic feasibility, and cultural acceptability.",
+    "Categories of natural resources by use: resources essential for life, resources for materials, and resources for energy.",
+    "Renewable and non-renewable resources, including restoration, regeneration, and sustainable rates of use.",
+    "Ecosystem functions, ecosystem services, pollution, overfishing, forest depletion, and disturbed natural cycles.",
+    "Uneven distribution of resources and its effects on settlements, industries, trade, employment, displacement, and conflict.",
+    "Shared resources, the Kaveri River example, and the natural resource curse.",
+    "Stewardship through groundwater recharge, soil restoration, sustainable materials, and traditional knowledge.",
+    "Punjab groundwater depletion, cement production, Vrikshayurveda, Sikkim organic farming, and renewable-energy transition."
+  ],
+  "banned_topics": [
+    "Detailed theory of capital, labour, and entrepreneurship, which belongs to Chapter 7.",
+    "Advanced scientific explanations of climate systems or mineral formation.",
+    "Detailed legal settlement of interstate and international water disputes."
+  ],
+  "must_include_keywords": [
+    "Nature",
+    "natural resources",
+    "technological accessibility",
+    "economic feasibility",
+    "cultural acceptability",
+    "resources essential for life",
+    "resources for materials",
+    "resources for energy",
+    "renewable resources",
+    "non-renewable resources",
+    "restoration",
+    "regeneration",
+    "sustainability",
+    "ecosystem functions",
+    "ecosystem services",
+    "overexploitation",
+    "groundwater",
+    "soil degradation",
+    "uneven distribution",
+    "Kaveri River",
+    "natural resource curse",
+    "stewardship",
+    "Punjab",
+    "cement industry",
+    "Vrikshayurveda",
+    "organic farming",
+    "Sikkim",
+    "solar energy",
+    "International Solar Alliance",
+    "Bhadla Solar Park",
+    "biodiversity loss",
+    "climate change",
+    "lokasangraha"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Everything found in Nature is automatically a usable resource.",
+      "correction": "A natural entity becomes a usable resource when it is technologically accessible, economically feasible to use, and culturally acceptable."
+    },
+    {
+      "claim": "Renewable resources can never run out.",
+      "correction": "They remain renewable only when use does not exceed Nature's rate of restoration and regeneration."
+    },
+    {
+      "claim": "A resource-rich region is automatically prosperous.",
+      "correction": "The natural resource curse shows that resources alone do not guarantee prosperity without skills, industries, governance, and planning."
+    },
+    {
+      "claim": "Stewardship means that people should never use natural resources.",
+      "correction": "Stewardship means responsible use, restoration of renewables, and judicious use of non-renewables while sustainable alternatives are developed."
+    },
+    {
+      "claim": "Traditional practices and modern technology are always opposed.",
+      "correction": "The chapter supports combining useful traditional knowledge with suitable modern science and technology."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the NCERT 'Think About It' prompt that traces everyday objects back to Nature.",
+    "Use the chapter's forest, river, solar-energy, and traditional fishing examples to distinguish renewable resources from unlimited resources.",
+    "Analyse the NCERT mineral-distribution map and its implications for industry and settlements.",
+    "Study the NCERT Punjab groundwater caselet as a short-term benefit versus long-term sustainability problem.",
+    "Compare the cement, Vrikshayurveda, Sikkim organic-farming, and solar-energy examples as stewardship responses."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1–5 on renewability, ecosystem functions, cultural practices, and responsible production.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

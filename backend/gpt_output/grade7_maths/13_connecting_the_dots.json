@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Maths",
+    "chapter": "Chapter 5: Connecting the Dots…",
+    "central_question": "How can data be collected, represented and analysed with mean, median, variability and graphs to make justified conclusions without overgeneralising?",
+    "in_scope_units": [
+      "5.1 Of Questions and Statements: distinguishing statistical questions and statements and recognising the need to collect variable data.",
+      "5.2 Representative Values: comparing data groups using totals, arithmetic mean and the fair-share interpretation.",
+      "Know Your Onions and Dot Plots: comparing minimum, maximum, range, total, mean, clusters and spread while noting that order information may be lost.",
+      "Averages Around Us, Outliers and Medians: finding medians for odd and even data sets and studying how outliers affect the mean.",
+      "Measures of Central Tendency and Variability: using mean, median, minimum and maximum together to describe data.",
+      "Zero versus No Value and A Mean Foot: distinguishing a recorded zero from an absent observation and viewing the mean as equalisation.",
+      "5.3 Visualising Data: reading and constructing clustered or double-column graphs and following the two-step identify-and-infer process.",
+      "Rocket launches, daylight hours and cricket graphs: interpreting scale, trends, categories and claims supported by a graph.",
+      "5.4 Data Detective: examining height data over grades, ages, years and countries and avoiding unsupported generalisations.",
+      "Final Figure it Out and Projects: solving Questions 1–13 and conducting individual or group data investigations."
+    ],
+    "banned_topics": [
+      "Probability calculations.",
+      "Mode as a required measure, because the chapter focuses on mean and median.",
+      "Formal standard deviation, variance and quartiles.",
+      "Pie charts and histograms as construction topics.",
+      "Causal claims that cannot be established from the displayed data."
+    ],
+    "must_include_keywords": [
+      "statistical question",
+      "statistical statement",
+      "data collection",
+      "arithmetic mean",
+      "average",
+      "fair share",
+      "representative value",
+      "sum of values",
+      "number of values",
+      "median",
+      "sorted data",
+      "odd number of values",
+      "even number of values",
+      "outlier",
+      "minimum",
+      "maximum",
+      "range",
+      "variability",
+      "central tendency",
+      "dot plot",
+      "clustered column graph",
+      "double column graph",
+      "double-bar graph",
+      "scale",
+      "category",
+      "trend",
+      "identify what is given",
+      "infer from what is given",
+      "zero value",
+      "no value",
+      "Yahapur",
+      "Wahapur",
+      "rocket launches",
+      "daylight hours",
+      "Data Detective",
+      "overgeneralisation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A total is always enough to compare two groups.",
+        "correction": "If group sizes differ, compare a representative value such as the mean rather than totals alone."
+      },
+      {
+        "claim": "The median is the middle entry in the order originally given.",
+        "correction": "The data must first be sorted; with an even number of values, average the two middle values."
+      },
+      {
+        "claim": "The mean always represents typical data well.",
+        "correction": "A very high or low outlier can pull the mean away from most values, while the median is usually less affected."
+      },
+      {
+        "claim": "A score of zero and an absent observation are the same.",
+        "correction": "Zero is a recorded value and is included, while a dash meaning did not play or was absent is not counted as a data value."
+      },
+      {
+        "claim": "A graph proves any general claim about all people or all future years.",
+        "correction": "Conclusions must stay within the population, categories and time period represented by the data."
+      },
+      {
+        "claim": "A dot plot preserves the original month-by-month order.",
+        "correction": "A dot plot displays frequency, clustering and spread but may lose the original sequence of observations."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with Section 5.1's list of questions to classify statistical and non-statistical questions.",
+      "Use the guava fair-share activity and the Hibiscus data on page 100 to build the arithmetic mean.",
+      "Use Figure it Out Question 1 on page 101 to calculate the mean of Shreyas's eight bounce counts.",
+      "Use the Yahapur and Wahapur onion tables and dot plots on pages 101–103 to compare centre and spread.",
+      "Use the two family-height examples on pages 105–108 to introduce median and outliers.",
+      "Use the rocket-launch and daylight graphs on pages 115–120 to practise the identify-and-infer process.",
+      "Conclude with Data Detective and final Figure it Out Questions 1–13 on pages 129–134."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The concluding Figure it Out section on pages 129–134 contains Questions 1–13, including projects, followed by the chapter summary."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 13: Connecting the Dots…\n\n## What you will learn\nYou will distinguish a statistical question from a question with one fixed answer. You will learn why statistical statements depend on collected data, variation and careful interpretation.\n\n## Simple explanation\nA statistical question expects different observations and is answered by collecting and analysing data. A statistical statement summarises a phenomenon using numerical values, proportions, probabilities or predictions.\n\n## Step-by-step breakdown\n- **Variation**: The question 'How tall are Grade 7 students in our school?' expects many possible heights rather than one fixed value.\n- **Data requirement**: Onion prices can vary over time, so comparing towns requires price data across suitable periods.\n- **Statistical statement**: A claim such as an approximate travel time or a prediction based on past performance uses numerical evidence and uncertainty.\n- **Statistics**: The chapter defines statistics as collecting, organising, analysing, interpreting and presenting data.\n- **Question quality**: A personal question such as 'Do you like reading?' asks one person for one response, while asking what fraction of a class likes an activity produces variable group data.\n- **Justified conclusion**: The wording of a conclusion should match what the collected observations can support.\n\n## Worked example\nQuestion: NCERT Math Talk, Section 5.1: Is 'How old are the dogs that live on this street?' a statistical question?\n\nSolution:\n- Step 1: The question concerns several dogs on the street.\n- Step 2: The dogs may have different ages, so variation is expected.\n- Step 3: The ages must be collected as data.\n- Step 4: The data can then be organised and summarised.\n- Final answer: Yes, it is a statistical question.\n\n## Common mistake\nDo not label every question containing a number as statistical. A statistical question is identified by expected variation and the need to collect data.\n\n## Quick check question\nQuestion: Is 'What fraction of the students in your class like walking up a hill?' a statistical question?\nAnswer: Yes.\nExplanation: Responses must be collected from the class, and students may give different answers before the fraction is calculated.\n\n## Summary\n- Statistical questions expect variable answers.\n- They require data collection and analysis.\n- Statistical statements summarise evidence numerically.\n- Conclusions should reflect the data actually gathered.",
+    "Core explanation": "# Core explanation: Chapter 13: Connecting the Dots…\n\n## What you will learn\nYou will calculate the arithmetic mean and interpret it as a fair share. You will compare groups of unequal size using a per-observation value rather than totals alone.\n\n## Simple explanation\nThe mean balances the highs and lows in a data set. It is found by adding all values and dividing by the number of observations.\n\n## Step-by-step breakdown\n- **Formula**: Mean = sum of all values ÷ number of values.\n- **Fair share**: If 30 guavas are shared among 5 people, the mean share is 6; among 6 people, it is 5.\n- **Representative value**: The mean is one number used to represent a group of observations.\n- **Unequal group sizes**: Totals alone may be misleading when players took part in different numbers of matches.\n- **Hibiscus example**: For 2, 7, 9, 4 and 3 flowers, the total is 25 and the mean is 5.\n- **Historical terms**: The chapter connects mean with equalising terms such as samamiti and mentions Brahmagupta, Mahāvīrācārya, Śrīpati, Bhāskarācārya and Gaṇeṣa.\n- **Speed comparison**: For race times, a lower mean time indicates quicker average performance.\n\n## Worked example\nQuestion: NCERT Figure it Out, page 101, Question 1: Find the average of 6, 2, 9, 5, 4, 6, 3 and 5 bounces.\n\nSolution:\n- Step 1: Add the eight values: 6 + 2 + 9 + 5 + 4 + 6 + 3 + 5 = 40.\n- Step 2: Count the observations: there are 8 attempts.\n- Step 3: Mean = 40 ÷ 8.\n- Step 4: 40 ÷ 8 = 5.\n- Final answer: The average number of bounces is 5.\n\n## Common mistake\nDo not divide by the largest value or by the range. Divide the total by the number of observations.\n\n## Quick check question\nQuestion: The Hibiscus counts are 2, 7, 9, 4 and 3. What is their mean?\nAnswer: 5 flowers per day.\nExplanation: The total is 25 and there are 5 days, so 25 ÷ 5 = 5.\n\n## Summary\n- The mean represents an equal share.\n- Add every recorded value exactly once.\n- Divide by the number of recorded observations.\n- Means allow fairer comparison of differently sized groups.",
+    "Worked examples": "# Worked examples: Chapter 13: Connecting the Dots…\n\n## What you will learn\nYou will use dot plots, medians and outliers to describe the centre and spread of data. You will choose between mean and median by examining the shape of the data.\n\n## Simple explanation\nA dot plot shows how often values occur and whether data is clustered or spread out. The median is found after sorting and is often more stable than the mean when an extreme outlier is present.\n\n## Step-by-step breakdown\n- **Dot plot**: Each dot represents one occurrence at a value on a scaled line.\n- **Minimum and maximum**: The leftmost and rightmost data values identify the extremes.\n- **Range**: The difference between maximum and minimum describes one aspect of spread.\n- **Odd-data median**: For 118, 165, 170, 173, 175, the middle value is 170.\n- **Even-data median**: For 155, 160, 164, 165, 169, 173, average the two middle values: (164 + 165) ÷ 2 = 164.5.\n- **Outlier**: The height 118 cm is far from the rest of Poovizhi's family data and pulls the mean downward.\n- **Mean and median**: When data is balanced they are often close; a low outlier can produce mean < median and a high outlier can produce mean > median.\n- **Sequence loss**: The onion-price dot plot shows frequencies and spread but not which value belongs to each month.\n\n## Worked example\nQuestion: NCERT 'Height of a Family': Find the median of Yaangba's family heights 169, 173, 155, 165, 160 and 164 cm.\n\nSolution:\n- Step 1: Sort the heights: 155, 160, 164, 165, 169, 173.\n- Step 2: There are 6 values, so there is no single middle observation.\n- Step 3: The two middle values are the 3rd and 4th: 164 and 165.\n- Step 4: Median = (164 + 165) ÷ 2 = 329 ÷ 2.\n- Step 5: 329 ÷ 2 = 164.5.\n- Final answer: The median height is 164.5 cm.\n\n## Common mistake\nDo not find the median before sorting. The middle positions have meaning only in ascending or descending order.\n\n## Quick check question\nQuestion: For the newspaper-page data 16, 18, 20, 22, 26, 16, 10, what is the median?\nAnswer: 18 pages.\nExplanation: Sorted data is 10, 16, 16, 18, 20, 22, 26; the fourth of seven values is 18.\n\n## Summary\n- Dot plots reveal frequency and variability.\n- Sort data before finding its median.\n- For even data, average the two middle values.\n- Outliers can move the mean strongly.\n- Mean and median provide complementary views.",
+    "Exam-style problems": "# Exam-style problems: Chapter 13: Connecting the Dots…\n\n## What you will learn\nYou will read and construct clustered bar graphs and justify statements from visual data. You will follow a two-step process: first identify what is shown, then infer only what the graph supports.\n\n## Simple explanation\nA clustered graph places bars for related groups side by side, making category-by-category comparison easier. Scale, axes, labels and patterns must be read before conclusions are drawn.\n\n## Step-by-step breakdown\n- **Clustered graph**: The Yahapur–Wahapur graph places two monthly onion-price bars beside each other.\n- **Double bar or column**: Two bars per category compare two data groups across the same categories.\n- **Scale**: The rocket graph uses 1 unit length = 20 rockets, while the daylight graph uses 1 unit = 5 hours.\n- **Step 1**: Identify axes, categories, years, scale, ordering and visible patterns.\n- **Step 2**: Infer trends and comparisons from the displayed values.\n- **Rocket pattern**: The source graph compares organisations across 2021, 2022 and 2023 and includes an 'Others' category.\n- **Daylight pattern**: City 1 rises to a June maximum while City 2 reaches a June minimum because the cities are in opposite hemispheres.\n- **Limits**: A graph of selected organisations and years cannot prove an unrestricted claim about all organisations or all time.\n\n## Worked example\nQuestion: NCERT rocket-launch graph: Evaluate the statement 'All organisations launched more rockets than the previous years.'\n\nSolution:\n- Step 1: Read the three adjacent bars for each organisation for 2021, 2022 and 2023.\n- Step 2: Look for any organisation whose bar decreases from one year to the next.\n- Step 3: The chapter notes that Arianespace decreased every year.\n- Step 4: United Launch Alliance increased and then decreased.\n- Step 5: Therefore the statement is not supported by the graph.\n- Final answer: The claim is false for the displayed data.\n\n## Common mistake\nDo not infer a value from bar height without first reading the scale. A bar reaching three units means different quantities on graphs with different scales.\n\n## Quick check question\nQuestion: In the daylight graph, which month has City 1's maximum and City 2's minimum?\nAnswer: June.\nExplanation: The June bar is the highest for City 1 and the lowest for City 2 in the displayed clustered graph.\n\n## Summary\n- Clustered bars compare groups within common categories.\n- Read the scale before estimating values.\n- Separate observation from interpretation.\n- A conclusion must be directly justified by displayed data.\n- Graph design and category order affect what is easy to see.",
+    "Revision and recap": "# Revision and recap: Chapter 13: Connecting the Dots…\n\n## What you will learn\nYou will combine statistical questions, centre, variability and visualisation to investigate data responsibly. You will distinguish zero from missing data and avoid generalising beyond the sample.\n\n## Simple explanation\nData tells a useful story only when observations are counted correctly and claims stay within the evidence. Mean, median, extremes and graphs should be considered together rather than as isolated calculations.\n\n## Step-by-step breakdown\n- **Zero value**: A player who played and scored 0 contributes a zero to the mean and median.\n- **No value**: A dash for 'did not play' is not an observation and is not included in the number of matches.\n- **Central tendency**: Mean and median describe where values tend to gather.\n- **Variability**: Minimum, maximum, range, clustering and spread describe how values differ.\n- **Data Detective**: The height tables support comparisons of average heights by age, year and group but not claims about every individual.\n- **Sample limits**: Data from one or two schools cannot establish a universal statement about all children.\n- **Projects**: The chapter proposes collecting sentence lengths, name lengths, daily outings, family heights and time estimates, then using dot plots and double bars.\n- **Responsible conclusion**: A statement should identify the population and time period to which it applies.\n\n## Worked example\nQuestion: NCERT final Figure it Out, Question 2(b): Player C scores 8, 11, did not play, and 13. Should the mean be divided by 3 or 4?\n\nSolution:\n- Step 1: Record the played-game scores: 8, 11 and 13.\n- Step 2: The 'did not play' entry is not a score and is not a data value.\n- Step 3: Total points = 8 + 11 + 13 = 32.\n- Step 4: Number of games played = 3.\n- Step 5: Mean = 32 ÷ 3 = 10 2/3 points per played game.\n- Final answer: Divide by 3, not 4.\n\n## Common mistake\nDo not replace missing data with zero. A zero records an actual outcome; missing data records no outcome.\n\n## Quick check question\nQuestion: Can the mean or median of the daily water-usage data lie between 25 and 30 when every listed value is at most 20.5?\nAnswer: No.\nExplanation: Both mean and median lie between the minimum and maximum recorded values, so neither can exceed the maximum 20.5.\n\n## Summary\n- Include recorded zeroes but exclude missing observations.\n- Use mean and median with measures of spread.\n- A graph supports only claims within its data.\n- Samples do not justify unlimited generalisations.\n- Good statistical work links questions, data, analysis and cautious conclusions."
+  }
+}

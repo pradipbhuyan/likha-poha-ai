@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 10: The Constitution of India — An Introduction",
+  "central_question": "How does the Constitution organise Indian democracy, protect rights, express national values and adapt to changing needs?",
+  "in_scope_units": [
+    "Republic Day and the Constitution coming into effect on 26 January 1950.",
+    "What Is a Constitution?—basic principles, laws, government organs, checks and balances, rights, duties and national goals.",
+    "Why do we need a constitution?—the rulebook analogy, consensus and agreed procedures.",
+    "Writing the Constitution of India—Constituent Assembly, Drafting Committee, dates, representation and adoption.",
+    "What Shaped and Influenced the Indian Constitution?—freedom movement, civilisational heritage and learning from other constitutions.",
+    "Influence of the Indian Freedom Movement—equality, justice, freedom, fraternity, rights, voting and separation of powers.",
+    "India’s civilisational heritage and history—unity in diversity, multiple viewpoints, Nature, learning, respect, duties and governance traditions.",
+    "Learnings from across the world—France, Ireland, USA and adapted constitutional ideas.",
+    "Illustrations and artistic design of the handwritten Constitution.",
+    "Key Features of the Constitution—three organs, three tiers, elections, Fundamental Rights, Fundamental Duties and Directive Principles of State Policy.",
+    "The Constitution is a Living Document—amendments, debate, public feedback, flag rights and Panchayati Raj.",
+    "Understanding the Preamble—We the People, sovereign, socialist, secular, democratic, republic, justice, liberty, equality and fraternity.",
+    "Before we move on and Questions and activities 1–7—diversity, values, equality, franchise, influences, ideals and constitutional vocabulary."
+  ],
+  "banned_topics": [
+    "Detailed article-by-article constitutional law not presented in the chapter.",
+    "Detailed court procedures or legal advice.",
+    "Detailed political-party and election-management systems.",
+    "Unverified recent constitutional amendments beyond the chapter’s examples."
+  ],
+  "must_include_keywords": [
+    "Constitution",
+    "Republic Day",
+    "26 January 1950",
+    "rulebook",
+    "legislature",
+    "executive",
+    "judiciary",
+    "checks and balances",
+    "rights and duties",
+    "Constituent Assembly",
+    "Dr. Rajendra Prasad",
+    "Drafting Committee",
+    "Dr. B.R. Ambedkar",
+    "26 November 1949",
+    "freedom movement",
+    "civilisational heritage",
+    "vasudhaiva kutumbakam",
+    "Fundamental Rights",
+    "Fundamental Duties",
+    "Directive Principles of State Policy",
+    "DPSP",
+    "Article 14",
+    "Article 21",
+    "Article 21-A",
+    "amendment",
+    "living document",
+    "73rd Constitutional Amendment",
+    "Preamble",
+    "We the People",
+    "sovereign",
+    "socialist",
+    "secular",
+    "democratic",
+    "republic",
+    "justice",
+    "liberty",
+    "equality",
+    "fraternity"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Constitution is only a list of punishments and legal rules.",
+      "correction": "It also defines government institutions, checks and balances, citizen rights and duties, national values and long-term goals."
+    },
+    {
+      "claim": "Dr. B.R. Ambedkar wrote the Constitution entirely by himself.",
+      "correction": "He chaired the Drafting Committee, while the Constituent Assembly debated, developed and adopted the Constitution."
+    },
+    {
+      "claim": "Fundamental Rights and Directive Principles are enforceable in exactly the same way.",
+      "correction": "Fundamental Rights can be protected through courts, while Directive Principles guide government goals and are not directly enforceable by a judge."
+    },
+    {
+      "claim": "The Constitution cannot be changed.",
+      "correction": "It is a living document that can be amended through rigorous constitutional procedures."
+    },
+    {
+      "claim": "The Preamble was handed down by a monarch.",
+      "correction": "‘We, the People of India’ means the Constitution was enacted by the people through their representatives."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Questions and activities Q1 to explain why diverse representation in the Constituent Assembly mattered.",
+    "Use NCERT Questions and activities Q2 to identify constitutional values in everyday situations.",
+    "Use NCERT Questions and activities Q3 to discuss equality before law.",
+    "Use NCERT Questions and activities Q5 to compare the influence of the freedom struggle and civilisational heritage.",
+    "Use NCERT Questions and activities Q6 to reflect on incomplete achievement of constitutional ideals and citizens’ responsibilities."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–7 followed by a constitutional crossword.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

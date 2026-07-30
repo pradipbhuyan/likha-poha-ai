@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 7: Infrastructure: Engine of India’s Development",
+  "central_question": "How do interconnected transport, utility and communication systems improve economic life and wellbeing, and why must infrastructure be inclusive, sustainable and responsibly maintained?",
+  "in_scope_units": [
+    "Introduction—physical infrastructure as tangible transport, utility, communication and energy networks.",
+    "Why physical infrastructure is important—Rishabh’s journey, Satish’s farm supply chain and the interdependence of roads, irrigation, storage, markets and internet.",
+    "National importance—trade, tourism, remote access, emergency response and national security.",
+    "Road and highway network—local, state and national roads, NH44, the Golden Quadrilateral and links to other transport.",
+    "Bridges and difficult terrain—Dhola Sadiya Bridge and Meghalaya’s living root bridges.",
+    "Indian railway network—colonial origins, trade, passenger and freight movement, energy use, electrification and employment.",
+    "Metro train systems—urban mobility, cleaner electricity, reduced congestion and station-based economic activity.",
+    "Air transport—passengers, cargo, disaster aid, airports and terrain access.",
+    "Shipping and ports—coastline, heavy cargo, major and minor ports and international trade.",
+    "Communications Infrastructure—towers, fibre, satellites, servers, e-governance, e-commerce and education.",
+    "Development of communications and J.C. Bose—wireless transmission, inventions and research institutions.",
+    "Social infrastructure—schools, hospitals, police, courts, parks, libraries and community wellbeing.",
+    "Collective Responsibility Towards Infrastructure—maintenance, waste, potholes, accessibility and environmental design.",
+    "Infrastructure in the Arthaśhāstra—road and waterway regulation, widths, penalties and public responsibility.",
+    "Before we move on and Questions and activities 1–7—local benefits, jobs, environment, disasters, public conduct, future design and innovation."
+  ],
+  "banned_topics": [
+    "Detailed banking, payments and stock markets, which belong to the financial-infrastructure chapter.",
+    "Advanced engineering calculations or construction specifications beyond the examples in the chapter.",
+    "Current infrastructure statistics not included in the textbook source.",
+    "A full history of colonial rule or transport policy beyond the railway context given here."
+  ],
+  "must_include_keywords": [
+    "physical infrastructure",
+    "transportation systems",
+    "utilities",
+    "communication networks",
+    "energy infrastructure",
+    "Rishabh",
+    "Satish",
+    "cold storage",
+    "roads",
+    "national highways",
+    "NH44",
+    "Golden Quadrilateral",
+    "Dhola Sadiya Bridge",
+    "living root bridges",
+    "Indian Railways",
+    "electrification",
+    "metro",
+    "air transport",
+    "cargo",
+    "ports",
+    "shipping",
+    "communication infrastructure",
+    "fibre cables",
+    "satellites",
+    "data centres",
+    "e-governance",
+    "e-commerce",
+    "J.C. Bose",
+    "wireless transmission",
+    "social infrastructure",
+    "collective responsibility",
+    "sustainable infrastructure",
+    "accessibility",
+    "Arthaśhāstra"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Infrastructure means only roads and bridges.",
+      "correction": "The chapter includes transport, utilities, communication, energy and also discusses social infrastructure."
+    },
+    {
+      "claim": "Each form of infrastructure works independently.",
+      "correction": "The Rishabh and Satish example shows that transport, irrigation, storage, electricity, internet and markets depend on one another."
+    },
+    {
+      "claim": "Railways were introduced only to benefit Indian passengers.",
+      "correction": "The colonial system was introduced to move raw materials, imported goods and troops, although it later supported wider trade and settlement."
+    },
+    {
+      "claim": "Modern infrastructure should be designed only for speed and cost.",
+      "correction": "The chapter requires environmental care, clean energy, biodiversity protection and access for children, older people and disabled persons."
+    },
+    {
+      "claim": "Only government is responsible for public infrastructure.",
+      "correction": "Government builds and regulates it, while citizens share responsibility for careful use, reporting damage and avoiding misuse."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Q1 to connect a local infrastructure project with changes in daily life.",
+    "Use NCERT Q4 to analyse how transport and communication support disaster response.",
+    "Use NCERT Q2 to trace direct and indirect employment around highways, airports and ports.",
+    "Use NCERT Q7 to examine technological innovation for mobility and ease of living.",
+    "Use NCERT Q5 to link misuse of public spaces with collective responsibility and practical prevention."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–7.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

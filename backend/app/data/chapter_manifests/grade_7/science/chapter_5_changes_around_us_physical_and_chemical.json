@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 5: Changes Around Us: Physical and Chemical",
+  "central_question": "How can changes be classified by new-substance formation, reversibility, usefulness and natural processes, and what conditions are required for combustion?",
+  "in_scope_units": [
+    "Activity 5.1 and everyday changes: observing changes in size, shape, state, smell and other properties.",
+    "5.1 A Substance May Change in Appearance but Remain the Same!: physical changes in paper, balloons, chalk and states of water.",
+    "5.2 A Substance May Change in Appearance and Not Remain the Same!: chemical changes, lime-water test and vinegar-baking soda reaction.",
+    "5.3 Some Other Processes Involving Chemical Changes: rusting and combustion.",
+    "Activities 5.5–5.6: oxygen requirement, ignition temperature and the fire triangle.",
+    "5.4 Can Physical and Chemical Changes Occur in the Same Process?: burning candle and Michael Faraday.",
+    "5.5 Are Changes Permanent?: reversible and irreversible changes.",
+    "5.6 Are All Changes Desirable?: desirable, undesirable and context-dependent changes and environmental effects.",
+    "5.7 Some Slow Natural Changes: weathering of rocks, soil formation, erosion, transport and deposition.",
+    "Let Us Enhance Our Learning: Questions 1–10 and exploratory projects."
+  ],
+  "banned_topics": [
+    "Detailed atomic rearrangement and chemical bonding.",
+    "Balancing chemical equations by coefficients.",
+    "Quantitative heat of combustion calculations.",
+    "Detailed rock-cycle classification.",
+    "Advanced kinetics and reaction-rate equations."
+  ],
+  "must_include_keywords": [
+    "physical change",
+    "chemical change",
+    "new substance",
+    "shape",
+    "size",
+    "state",
+    "chemical reaction",
+    "chemical equation",
+    "lime water",
+    "carbon dioxide",
+    "calcium carbonate",
+    "vinegar",
+    "baking soda",
+    "fizzing",
+    "rusting",
+    "iron oxide",
+    "combustion",
+    "combustible substance",
+    "oxygen",
+    "ignition temperature",
+    "fuel",
+    "heat",
+    "fire triangle",
+    "candle",
+    "melting",
+    "solidification",
+    "evaporation",
+    "reversible",
+    "irreversible",
+    "desirable",
+    "undesirable",
+    "compost",
+    "weathering",
+    "sediments",
+    "basalt",
+    "erosion",
+    "soil formation",
+    "Michael Faraday",
+    "Let Us Enhance Our Learning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every irreversible change is chemical.",
+      "correction": "Crushing chalk and chopping vegetables are physical changes that may not be practically reversible."
+    },
+    {
+      "claim": "Every colour change proves a chemical change.",
+      "correction": "A chemical change is identified by formation of one or more new substances; colour change is evidence only when interpreted with the process."
+    },
+    {
+      "claim": "Air alone is enough for any combustible material to burn.",
+      "correction": "Fuel, oxygen and heat sufficient to reach ignition temperature are all required."
+    },
+    {
+      "claim": "Only the wax melting occurs when a candle burns.",
+      "correction": "Melting, flowing, solidification and evaporation are physical changes, while burning wax vapour is a chemical change."
+    },
+    {
+      "claim": "Weathering and erosion mean the same thing.",
+      "correction": "Weathering breaks or chemically alters rocks, while erosion moves rock particles, soil and sediments."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activities 5.1–5.2 to introduce observations and physical changes.",
+    "Use Activities 5.3–5.4 to establish new-substance formation and the lime-water carbon-dioxide test.",
+    "Use Activities 5.5–5.6 to derive the requirements of combustion and ignition temperature.",
+    "Use Activity 5.7 to separate physical and chemical parts of candle burning.",
+    "Use Activity 5.8 to compare reversible and irreversible changes.",
+    "Use Let Us Enhance Our Learning Questions 1, 3, 5, 7, 9 and 10 for classification and evidence."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The section 'Let Us Enhance Our Learning' contains Questions 1–10, followed by several Exploratory Projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

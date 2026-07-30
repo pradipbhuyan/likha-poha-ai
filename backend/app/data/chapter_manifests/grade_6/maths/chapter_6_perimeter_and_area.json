@@ -1,0 +1,71 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 6 Perimeter and Area",
+  "central_question": "How can we measure and compare the boundary and the enclosed region of plane figures?",
+  "in_scope_units": [
+    "6.1 Perimeter — polygon boundaries, formulae, regular polygons, and split-and-rejoin figures",
+    "6.2 Area — enclosed region, square units, rectangle and square formulae, composite regions, and grid estimates",
+    "6.3 Area of a Triangle — rectangle diagonals and half-area reasoning",
+    "Making it More or Less — equal areas with different perimeters and related investigations",
+    "House-plan applications — missing dimensions and combined areas"
+  ],
+  "banned_topics": [
+    "Circle circumference and area formulae",
+    "Heron's formula",
+    "Surface area and volume"
+  ],
+  "must_include_keywords": [
+    "closed plane figure",
+    "boundary",
+    "perimeter",
+    "polygon",
+    "rectangle",
+    "square",
+    "triangle",
+    "regular polygon",
+    "equilateral triangle",
+    "straight unit",
+    "diagonal unit",
+    "split and rejoin",
+    "area",
+    "region enclosed",
+    "square unit",
+    "length × breadth",
+    "side × side",
+    "composite figure",
+    "grid paper",
+    "full square",
+    "half square",
+    "estimate",
+    "diagonal",
+    "area of a triangle",
+    "half of rectangle",
+    "same area different perimeter",
+    "house plan"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Perimeter and area use the same units.",
+      "correction": "Perimeter uses linear units; area uses square units."
+    },
+    {
+      "claim": "Same area means same perimeter.",
+      "correction": "The chapter constructs equal-area figures with different perimeters."
+    },
+    {
+      "claim": "A diagonal grid step equals a horizontal step.",
+      "correction": "The chapter records straight and diagonal units separately where needed."
+    }
+  ],
+  "recommended_example_progression": [
+    "Derive rectangle, square, and triangle perimeters.",
+    "Use the 6 cm by 4 cm split-and-rejoin task.",
+    "Solve carpet and flower-bed remaining-area examples.",
+    "Estimate irregular area on graph paper.",
+    "Use a rectangle diagonal to reason about triangle area."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out and Let's Explore tasks through pages 129–150, including composite figures, unit-square investigations, house plans, and final mixed exercises.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

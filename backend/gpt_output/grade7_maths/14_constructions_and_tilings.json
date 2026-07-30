@@ -1,0 +1,112 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Maths",
+    "chapter": "Chapter 6: Constructions and Tilings",
+    "central_question": "How can ruler-and-compass constructions and tiling arguments create exact geometric designs and determine whether shapes cover a region without gaps or overlaps?",
+    "in_scope_units": [
+      "6.1 Geometric Constructions—Eyes: using equal-radius arcs to locate points on a perpendicular bisector and construct a symmetric eye.",
+      "Perpendicular Bisector and Bisection: proving through congruent triangles that the constructed line passes through the midpoint at 90°.",
+      "Construction of a 90° Angle at a Given Point and Śulba-Sūtras: adapting the perpendicular-bisector method and using a folded-rope construction.",
+      "Angle Bisection for a Design: constructing equal halves of any angle and obtaining 45° from 90°.",
+      "Repeating Units and Repeating Angles: copying an angle exactly with a ruler and compass.",
+      "Construction of Parallel Lines and Arch Designs: transferring equal angles to create parallel lines, trefoil arches and pointed arches.",
+      "Regular Hexagons and Equilateral Triangles: using six 60° angles around a point to construct a regular hexagon.",
+      "Related Constructions: constructing 30°, 15°, a six-pointed star, inflexed arcs and perpendiculars through an external point.",
+      "6.2 Tiling—Tangrams and Rectangular Grids: covering regions without gaps or overlaps and testing 2 × 1 domino tilings.",
+      "Checkerboard Reasoning and Plane Tilings: using parity and colour balance, then exploring squares, equilateral triangles, regular hexagons, Escher tilings and honeycomb cells.",
+      "Chapter Figure it Out activities: applying construction and tiling reasoning throughout the chapter."
+    ],
+    "banned_topics": [
+      "Construction of a regular pentagon, which the chapter explicitly postpones to later years.",
+      "Formal coordinate geometry constructions.",
+      "Area formulas for circles and polygons.",
+      "Three-dimensional tessellations and polyhedra.",
+      "Advanced symmetry groups and formal topology."
+    ],
+    "must_include_keywords": [
+      "geometric construction",
+      "ruler",
+      "compass",
+      "arc",
+      "equal radius",
+      "supporting line",
+      "line of symmetry",
+      "bisection",
+      "midpoint",
+      "perpendicular bisector",
+      "90° angle",
+      "congruent triangles",
+      "SSS",
+      "Śulba-Sūtras",
+      "rope construction",
+      "angle bisector",
+      "45° angle",
+      "copy an angle",
+      "parallel lines",
+      "trefoil arch",
+      "pointed arch",
+      "regular hexagon",
+      "equilateral triangle",
+      "60° angle",
+      "30° angle",
+      "15° angle",
+      "six-pointed star",
+      "angles around a point",
+      "360°",
+      "tangram",
+      "tiling",
+      "2 × 1 tile",
+      "parity",
+      "checkerboard colouring",
+      "gap",
+      "overlap",
+      "regular polygon",
+      "Escher",
+      "hexagonal cells"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Any two arcs drawn from the endpoints of a segment will produce its perpendicular bisector.",
+        "correction": "For each intersection point, the arcs from the two endpoints must use the same radius and must be long enough to meet."
+      },
+      {
+        "claim": "A perpendicular bisector only makes a right angle.",
+        "correction": "It must both be perpendicular to the segment and pass through its midpoint."
+      },
+      {
+        "claim": "To bisect an angle, the arcs drawn from the two marked points may use different radii.",
+        "correction": "Those two arcs must use the same radius so their intersection is equally distant from both marked points."
+      },
+      {
+        "claim": "A region with an even number of unit squares is always tileable by 2 × 1 tiles.",
+        "correction": "Even area is necessary but not sufficient; the shape and checkerboard colour balance can still make tiling impossible."
+      },
+      {
+        "claim": "Any regular polygon can tile the plane by itself.",
+        "correction": "The chapter demonstrates tilings with squares, equilateral triangles and regular hexagons, not every regular polygon."
+      },
+      {
+        "claim": "The chapter gives a complete ruler-and-compass construction of a regular pentagon.",
+        "correction": "It states that regular-pentagon construction needs ideas to be studied in later years."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the 'Eyes' construction and Fig. 6.1 to construct and justify a perpendicular bisector.",
+      "Use Figs. 6.2–6.4 to construct a 90° angle at a point and reproduce the Śulba-Sūtra rope method.",
+      "Use the Steps for Angle Bisection on pages 143–144 to obtain 45° and justify the construction by SSS.",
+      "Use the Steps of Construction to Copy an Angle on page 146 and the parallel-line construction in Figs. 6.7–6.10.",
+      "Use the arch activities and the regular-hexagon construction on pages 149–154.",
+      "Use the 4 × 6, 4 × 7 and 5 × 7 grid questions and checkerboard examples on pages 157–159.",
+      "Conclude with plane tilings by regular polygons, Escher designs and hexagonal cells on pages 160–163."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains several section-wise Figure it Out construction and tiling activities rather than one consolidated numbered end exercise, followed by the summary on page 163."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 14: Constructions and Tilings\n\n## What you will learn\nYou will construct the perpendicular bisector of a line segment using equal-radius arcs. You will understand why the construction gives both a midpoint and a right angle.\n\n## Simple explanation\nA point that is equally distant from both endpoints of a segment lies on its perpendicular bisector. Two such points can be joined to obtain the complete bisector accurately without measuring the segment with a marked scale.\n\n## Step-by-step breakdown\n- **Eye construction**: The upper and lower arcs are symmetric when their centres A and B are equally distant from endpoints X and Y.\n- **Equal-radius arcs**: Draw arcs from X and Y above the segment using the same radius; repeat below the segment.\n- **Intersection points**: The upper arcs meet at A and the lower arcs meet at B, giving AX = AY and BX = BY.\n- **Bisection**: Dividing a segment or geometric quantity into two identical parts is called bisection.\n- **Perpendicular bisector**: Line AB meets XY at midpoint O and forms angles of 90°.\n- **Congruence justification**: The chapter uses congruent triangles to establish OX = OY and equal adjacent angles.\n- **Accuracy**: The construction is more exact than estimating or measuring the midpoint with a ruler.\n\n## Worked example\nQuestion: NCERT Fig. 6.1: Construct the perpendicular bisector of segment XY and justify the result.\n\nSolution:\n- Step 1: With centre X, draw sufficiently long arcs above and below XY.\n- Step 2: Without changing the radius, draw arcs with centre Y meeting the first pair at A and B.\n- Step 3: Join A and B, and let AB meet XY at O.\n- Step 4: Since AX = AY, BX = BY and AB is common, the relevant triangles are congruent by SSS.\n- Step 5: Corresponding parts give OX = OY, so O is the midpoint.\n- Step 6: The adjacent equal angles on straight line XY total 180°, so each is 90°.\n- Final answer: AB is the perpendicular bisector of XY.\n\n## Common mistake\nDo not use unequal compass openings for arcs drawn from X and Y. Without equal distances from the endpoints, the intersection need not lie on the perpendicular bisector.\n\n## Quick check question\nQuestion: What two conditions must line AB satisfy to be the perpendicular bisector of XY?\nAnswer: AB must pass through the midpoint of XY and meet XY at 90°.\nExplanation: 'Bisector' requires two equal halves, and 'perpendicular' requires a right angle.\n\n## Summary\n- Equal-radius arcs locate points equidistant from two endpoints.\n- Joining two such points gives the perpendicular bisector.\n- A perpendicular bisector passes through the midpoint.\n- It forms a 90° angle with the segment.\n- Congruence explains why the construction is exact.",
+    "Core explanation": "# Core explanation: Chapter 14: Constructions and Tilings\n\n## What you will learn\nYou will construct a 90° angle at a chosen point and bisect any angle. You will relate modern ruler-and-compass steps to the rope methods described in the Śulba-Sūtras.\n\n## Simple explanation\nThe perpendicular-bisector idea can be adapted when the midpoint is already known. Angle bisection similarly creates two congruent triangles so the original angle is divided into equal parts.\n\n## Step-by-step breakdown\n- **90° at a point**: Mark points X and Y at equal distances on opposite sides of O; a perpendicular-bisector arc through O gives the required perpendicular.\n- **One intersection needed**: Because O is already on the perpendicular bisector, only one additional arc intersection is required.\n- **Śulba-Sūtras**: The chapter describes early Indian geometric texts connected with fire-altar construction and exact rope procedures.\n- **Rope method**: A rope with its midpoint marked is stretched from pegs at X and Y, first above and then below, locating points A and B.\n- **Angle bisection**: Mark A and B on the arms so OA = OB, then draw equal-radius arcs meeting at C.\n- **SSS proof**: Triangles OAC and OBC have OA = OB, AC = BC and common side OC, so their vertex angles at O are equal.\n- **45° construction**: Bisecting a constructed 90° angle gives 45°.\n- **Other halves**: Bisecting 60° gives 30°, and bisecting 30° gives 15°.\n\n## Worked example\nQuestion: NCERT 'Steps for Angle Bisection': Bisect ∠XOY.\n\nSolution:\n- Step 1: With O as centre, draw an arc cutting the two arms at A and B, so OA = OB.\n- Step 2: With centre A, draw a sufficiently long arc inside the angle.\n- Step 3: Using the same radius and centre B, draw another arc meeting the first at C.\n- Step 4: Join O to C.\n- Step 5: In ΔOAC and ΔOBC, OA = OB, AC = BC and OC is common.\n- Step 6: By SSS, the triangles are congruent, so ∠AOC = ∠COB.\n- Final answer: OC is the angle bisector of ∠XOY.\n\n## Common mistake\nDo not change the compass radius between drawing the arcs from A and B. Equal radii are what make AC = BC.\n\n## Quick check question\nQuestion: How can a 45° angle be constructed using the chapter's methods?\nAnswer: Construct a 90° angle and bisect it.\nExplanation: An angle bisector divides 90° into two equal angles, each measuring 45°.\n\n## Summary\n- A known midpoint simplifies perpendicular construction.\n- The Śulba-Sūtra rope method uses equal stretched lengths.\n- Angle bisection is justified by SSS congruence.\n- Bisecting 90°, 60° and 30° produces 45°, 30° and 15°.",
+    "Worked examples": "# Worked examples: Chapter 14: Constructions and Tilings\n\n## What you will learn\nYou will copy an angle, construct a parallel line and use supporting lines to design arches. You will see how exact repeated lengths and angles build symmetrical patterns.\n\n## Simple explanation\nA copied angle is created by reproducing the same small triangle formed by an arc and its chord. Equal corresponding angles can then be used to construct parallel lines and repeated design units.\n\n## Step-by-step breakdown\n- **Copying an angle**: Draw an arc from the original vertex A that cuts the arms at B and C.\n- **Transfer the radius**: Draw an arc of the same radius from the new vertex X, cutting its base ray at Z.\n- **Transfer the chord**: Measure BC with the compass and mark Y on the new arc so YZ = BC.\n- **Congruence**: The original and copied support triangles have three equal side pairs, so the angles are equal by SSS.\n- **Parallel construction**: Copy a corresponding angle along a transversal; equal corresponding angles imply the two lines are parallel.\n- **Trefoil arch**: Construct equal support angles at A and D and equal support lengths AB = CD before drawing arcs.\n- **Pointed arch**: Two equal supporting line segments and their marked midpoints guide the symmetric arcs.\n- **Aesthetic radius**: The chapter permits adjusting arch radii while preserving the designed support structure.\n\n## Worked example\nQuestion: NCERT page 146, Steps of Construction to Copy an Angle: Copy ∠BAC at vertex X.\n\nSolution:\n- Step 1: Draw a base ray from X.\n- Step 2: With centre A, draw an arc cutting the original angle arms at B and C.\n- Step 3: Using the same radius and centre X, draw an arc cutting the base ray at Z.\n- Step 4: Measure chord BC with the compass.\n- Step 5: With centre Z and radius BC, cut the new arc at Y.\n- Step 6: Join X to Y.\n- Final answer: Triangles ABC and XYZ have corresponding equal sides, so the copied angle ∠YXZ equals ∠BAC.\n\n## Common mistake\nDo not transfer only the arc radius. The chord BC must also be transferred; otherwise the opening of the copied angle is not fixed.\n\n## Quick check question\nQuestion: Why does copying a corresponding angle help construct a line parallel to a given line?\nAnswer: Equal corresponding angles formed by a transversal indicate that the two lines are parallel.\nExplanation: The copied angle recreates the same direction relative to the transversal, which fixes a parallel line.\n\n## Summary\n- An angle copy reproduces both an arc radius and a chord.\n- SSS congruence guarantees the copied angle is exact.\n- Equal corresponding angles construct parallel lines.\n- Supporting lines control symmetry in arch designs.",
+    "Exam-style problems": "# Exam-style problems: Chapter 14: Constructions and Tilings\n\n## What you will learn\nYou will construct 60° and regular hexagons and reason with angles around a point. You will combine equilateral triangles, bisection and rotational symmetry in composite constructions.\n\n## Simple explanation\nAn equilateral triangle has three 60° angles. Six such angles fit exactly around a point because 6 × 60° = 360°, producing the central structure of a regular hexagon.\n\n## Step-by-step breakdown\n- **60° construction**: An arc centred at A marks B, and an equal-radius arc centred at B meets it at C; AB = BC = CA.\n- **Equilateral reasoning**: Equal sides make ΔABC equilateral, so ∠CAX = 60° when B lies on ray AX.\n- **Angles around a point**: Non-overlapping angles fill a complete turn when their sum is 360°.\n- **Hexagon decomposition**: A regular hexagon can be divided into six congruent equilateral triangles meeting at its centre.\n- **Central straight lines**: Pairs of 60° central sectors form 180° across opposite vertices.\n- **Related angles**: Bisecting 60° gives 30°, and bisecting again gives 15°.\n- **Six-pointed star**: The construction uses a hexagonal arrangement and six equilateral outer triangles.\n- **Regular-pentagon boundary**: The text explicitly leaves exact construction of a regular pentagon for later study.\n\n## Worked example\nQuestion: NCERT page 153: Construct a 60° angle at A on ray AX.\n\nSolution:\n- Step 1: With centre A and any chosen radius, draw an arc cutting AX at B.\n- Step 2: Without changing the radius, draw an arc with centre B meeting the first arc at C.\n- Step 3: Join A to C.\n- Step 4: AB, BC and CA are all the same compass radius.\n- Step 5: Therefore ΔABC is equilateral.\n- Step 6: Every angle of an equilateral triangle is 60°.\n- Final answer: Hence ∠CAX = ∠CAB = 60°.\n\n## Common mistake\nDo not use a different radius for the second arc. Equal radii are needed to make all three sides of the support triangle equal.\n\n## Quick check question\nQuestion: What is the missing angle if 40° + 60° + 50° + 30° + 40° + 90° and the missing angle make 360°?\nAnswer: 50°.\nExplanation: The known angles total 310°, so the gap is 360° − 310° = 50°; therefore a 70° angle will not fit exactly.\n\n## Summary\n- Equal-radius arcs construct an equilateral triangle.\n- An equilateral triangle supplies a 60° angle.\n- Six 60° angles make a complete 360° turn.\n- Regular hexagons can be built from six congruent equilateral triangles.\n- Bisection extends the construction to 30° and 15°.",
+    "Revision and recap": "# Revision and recap: Chapter 14: Constructions and Tilings\n\n## What you will learn\nYou will decide whether regions can be tiled with 2 × 1 tiles and explore plane tilings. You will use area parity and checkerboard colouring as logical tests rather than relying only on trial and error.\n\n## Simple explanation\nTiling means covering a region completely without gaps or overlaps. Every 2 × 1 tile covers two adjacent unit squares, so a tileable region must meet both numerical and positional conditions.\n\n## Step-by-step breakdown\n- **Tangrams**: The section begins with seven pieces obtained from a square and uses rearrangement to form shapes.\n- **Domino tile**: A 2 × 1 tile may be placed vertically or horizontally and covers exactly two adjacent unit squares.\n- **Even-area necessity**: A 5 × 7 grid has 35 squares, so it cannot be covered by two-square tiles.\n- **General grid strategy**: If at least one of m or n is even, a full m × n rectangle can be tiled by rows or columns of dominoes.\n- **Odd-by-odd rectangle**: If both m and n are odd, mn is odd, so complete domino tiling is impossible.\n- **Insufficient condition**: Removing one square from a 5 × 3 grid makes the area even, but location can still prevent a tiling.\n- **Checkerboard invariant**: Every adjacent domino covers one black and one white square, so a tileable region must have equal counts of both colours.\n- **Plane tilings**: Squares, equilateral triangles and regular hexagons tile the plane; the chapter also shows non-regular and Escher-style tilings.\n- **Nature**: Beehive and some wasp-nest faces use hexagonal cells without wasted gaps.\n\n## Worked example\nQuestion: NCERT Section 6.2: Can a 5 × 7 grid be tiled completely with 2 × 1 tiles?\n\nSolution:\n- Step 1: Count the unit squares: 5 × 7 = 35.\n- Step 2: Each 2 × 1 tile covers exactly 2 unit squares.\n- Step 3: A whole number of such tiles would cover an even number of squares.\n- Step 4: Since 35 is odd, one unit square would always remain uncovered.\n- Final answer: A 5 × 7 grid cannot be tiled with 2 × 1 tiles.\n\n## Common mistake\nDo not conclude that every even-area region is tileable. An even count passes only the first test; adjacency and black-white balance may still make tiling impossible.\n\n## Quick check question\nQuestion: Can a 6 × 9 rectangular grid be tiled with 2 × 1 tiles?\nAnswer: Yes.\nExplanation: The number of rows, 6, is even, so each column can be covered by three vertical 2 × 1 tiles.\n\n## Summary\n- Tiling permits neither gaps nor overlaps.\n- Domino tilings require an even number of unit squares.\n- Even area alone may not be sufficient.\n- Checkerboard colouring gives a stronger impossibility test.\n- Several regular and non-regular shapes tile the plane."
+  }
+}

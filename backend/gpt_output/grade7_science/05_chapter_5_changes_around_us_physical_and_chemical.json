@@ -1,0 +1,106 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Science",
+    "chapter": "Chapter 5: Changes Around Us: Physical and Chemical",
+    "central_question": "How can changes be classified by new-substance formation, reversibility, usefulness and natural processes, and what conditions are required for combustion?",
+    "in_scope_units": [
+      "Activity 5.1 and everyday changes: observing changes in size, shape, state, smell and other properties.",
+      "5.1 A Substance May Change in Appearance but Remain the Same!: physical changes in paper, balloons, chalk and states of water.",
+      "5.2 A Substance May Change in Appearance and Not Remain the Same!: chemical changes, lime-water test and vinegar-baking soda reaction.",
+      "5.3 Some Other Processes Involving Chemical Changes: rusting and combustion.",
+      "Activities 5.5–5.6: oxygen requirement, ignition temperature and the fire triangle.",
+      "5.4 Can Physical and Chemical Changes Occur in the Same Process?: burning candle and Michael Faraday.",
+      "5.5 Are Changes Permanent?: reversible and irreversible changes.",
+      "5.6 Are All Changes Desirable?: desirable, undesirable and context-dependent changes and environmental effects.",
+      "5.7 Some Slow Natural Changes: weathering of rocks, soil formation, erosion, transport and deposition.",
+      "Let Us Enhance Our Learning: Questions 1–10 and exploratory projects."
+    ],
+    "banned_topics": [
+      "Detailed atomic rearrangement and chemical bonding.",
+      "Balancing chemical equations by coefficients.",
+      "Quantitative heat of combustion calculations.",
+      "Detailed rock-cycle classification.",
+      "Advanced kinetics and reaction-rate equations."
+    ],
+    "must_include_keywords": [
+      "physical change",
+      "chemical change",
+      "new substance",
+      "shape",
+      "size",
+      "state",
+      "chemical reaction",
+      "chemical equation",
+      "lime water",
+      "carbon dioxide",
+      "calcium carbonate",
+      "vinegar",
+      "baking soda",
+      "fizzing",
+      "rusting",
+      "iron oxide",
+      "combustion",
+      "combustible substance",
+      "oxygen",
+      "ignition temperature",
+      "fuel",
+      "heat",
+      "fire triangle",
+      "candle",
+      "melting",
+      "solidification",
+      "evaporation",
+      "reversible",
+      "irreversible",
+      "desirable",
+      "undesirable",
+      "compost",
+      "weathering",
+      "sediments",
+      "basalt",
+      "erosion",
+      "soil formation",
+      "Michael Faraday",
+      "Let Us Enhance Our Learning"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every irreversible change is chemical.",
+        "correction": "Crushing chalk and chopping vegetables are physical changes that may not be practically reversible."
+      },
+      {
+        "claim": "Every colour change proves a chemical change.",
+        "correction": "A chemical change is identified by formation of one or more new substances; colour change is evidence only when interpreted with the process."
+      },
+      {
+        "claim": "Air alone is enough for any combustible material to burn.",
+        "correction": "Fuel, oxygen and heat sufficient to reach ignition temperature are all required."
+      },
+      {
+        "claim": "Only the wax melting occurs when a candle burns.",
+        "correction": "Melting, flowing, solidification and evaporation are physical changes, while burning wax vapour is a chemical change."
+      },
+      {
+        "claim": "Weathering and erosion mean the same thing.",
+        "correction": "Weathering breaks or chemically alters rocks, while erosion moves rock particles, soil and sediments."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activities 5.1–5.2 to introduce observations and physical changes.",
+      "Use Activities 5.3–5.4 to establish new-substance formation and the lime-water carbon-dioxide test.",
+      "Use Activities 5.5–5.6 to derive the requirements of combustion and ignition temperature.",
+      "Use Activity 5.7 to separate physical and chemical parts of candle burning.",
+      "Use Activity 5.8 to compare reversible and irreversible changes.",
+      "Use Let Us Enhance Our Learning Questions 1, 3, 5, 7, 9 and 10 for classification and evidence."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The section 'Let Us Enhance Our Learning' contains Questions 1–10, followed by several Exploratory Projects."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 5: Changes Around Us: Physical and Chemical\n\n## What you will learn\nYou will observe changes around you and distinguish a physical change from a chemical change. You will focus on whether a new substance is formed.\n\n## Simple explanation\nObjects may change size, shape or state while remaining the same material. A physical change changes physical properties but does not create a new substance.\n\n## Step-by-step breakdown\n- **Activity 5.1**: Examples include melting ice, chopping vegetables, boiling water, making popcorn, cutting paper, burning wood and drying clothes.\n- **Senses**: Changes may be noticed through sight, smell, touch, hearing and taste, though unsafe tasting must be avoided.\n- **Activity 5.2 paper**: Folding changes shape, and unfolding can return the paper's form.\n- **Balloon**: Inflating and releasing air changes shape; pricking produces a physical change that is not practically reversible.\n- **Chalk**: Crushing changes size but the material remains chalk.\n- **State change**: Water can change among solid, liquid and gas without becoming a different substance.\n- **Definition**: A physical change forms no new substance.\n\n## Worked example\nQuestion: Activity 5.2: Why is crushing a piece of chalk into powder classified as a physical change?\n\nSolution:\n- Step 1: Observe that the chalk piece changes into smaller particles.\n- Step 2: The size and shape change.\n- Step 3: The material in the powder is still chalk.\n- Step 4: No new substance is formed.\n- Final answer: Crushing chalk is a physical change.\n\n## Common mistake\nDo not use reversibility as the only test for a physical change. A physical change such as crushing chalk may be difficult to reverse.\n\n## Quick check question\nQuestion: Is melting ice a physical or chemical change?\nAnswer: It is a physical change.\nExplanation: Only the state changes from solid water to liquid water; no new substance is formed.\n\n## Summary\n- Changes can affect size, shape or state.\n- Physical changes form no new substance.\n- Some physical changes are reversible.\n- Some physical changes are not easily reversible.\n- New-substance formation is the key test.",
+    "Core explanation": "# Core explanation: Chapter 5: Changes Around Us: Physical and Chemical\n\n## What you will learn\nYou will identify chemical changes through the formation of new substances. You will use lime water to test carbon dioxide in Activities 5.3 and 5.4.\n\n## Simple explanation\nA chemical reaction produces one or more new substances. Gas formation, a solid deposit or a lasting property change can support this conclusion when the products are identified.\n\n## Step-by-step breakdown\n- **Activity 5.3 tap water**: Exhaled air makes bubbles in tap water without the stated visible new substance.\n- **Activity 5.3 lime water**: Exhaled carbon dioxide turns lime water milky and an insoluble white calcium carbonate substance forms.\n- **Equation**: Calcium hydroxide + Carbon dioxide → Calcium carbonate + Water.\n- **Carbon dioxide test**: Turning lime water milky is used as a test for carbon dioxide.\n- **Activity 5.4**: Vinegar or lemon juice mixed with baking soda produces fizzing and gas bubbles.\n- **Gas identification**: Passing the gas into lime water turns it milky, showing that the gas is carbon dioxide.\n- **Chemical change**: The formation of carbon dioxide and other substances confirms a chemical change.\n- **Control comparison**: Baking soda with water is compared with baking soda and vinegar to examine whether bubbles form.\n\n## Worked example\nQuestion: Activity 5.4: How does the experiment show that the gas from vinegar and baking soda is carbon dioxide?\n\nSolution:\n- Step 1: Mixing vinegar and baking soda produces fizzing and gas bubbles.\n- Step 2: The gas is passed into freshly prepared lime water.\n- Step 3: The lime water turns milky.\n- Step 4: The chapter identifies milky lime water as the test for carbon dioxide.\n- Final answer: The gas formed is carbon dioxide, confirming a chemical change.\n\n## Common mistake\nDo not identify every bubble as a new gas from a chemical reaction. In Activity 5.3, blowing into tap water also creates bubbles without the same milky product.\n\n## Quick check question\nQuestion: What new solid substance makes lime water appear milky when carbon dioxide is passed through it?\nAnswer: Calcium carbonate.\nExplanation: Carbon dioxide reacts with calcium hydroxide in lime water to form insoluble calcium carbonate and water.\n\n## Summary\n- Chemical changes form new substances.\n- Lime water tests for carbon dioxide.\n- Vinegar and baking soda release carbon dioxide.\n- Evidence must be connected to identified products.\n- Chemical equations summarise reactions.",
+    "Worked examples": "# Worked examples: Chapter 5: Changes Around Us: Physical and Chemical\n\n## What you will learn\nYou will study rusting and combustion as chemical changes. You will derive the three conditions needed for burning from Activities 5.5 and 5.6.\n\n## Simple explanation\nCombustion is a reaction with oxygen that produces heat and/or light. A combustible material burns only when oxygen is available and its temperature reaches the ignition temperature.\n\n## Step-by-step breakdown\n- **Rusting**: Iron forms a new brown substance, iron oxide, so rusting is a chemical change.\n- **Magnesium**: Burning magnesium forms magnesium oxide and releases heat and light.\n- **Combustion**: A substance reacting with oxygen and producing heat and/or light undergoes combustion.\n- **Combustible substances**: Wood, paper, cotton and kerosene are examples.\n- **Activity 5.5**: An uncovered candle continues burning while a candle under a glass tumbler goes out after its air supply is limited.\n- **Oxygen**: The component of air that supports combustion is oxygen.\n- **Activity 5.6**: Focused sunlight heats paper until it reaches the minimum temperature needed to catch fire.\n- **Ignition temperature**: The lowest temperature at which a substance catches fire.\n- **Fire triangle**: Fuel, oxygen and heat are all required.\n\n## Worked example\nQuestion: Activity 5.5: Why does the candle covered by a glass tumbler stop burning while the uncovered candle continues?\n\nSolution:\n- Step 1: Both candles begin with a flame and combustible wax.\n- Step 2: The uncovered candle continues to receive air.\n- Step 3: The covered candle has only a limited amount of air.\n- Step 4: Its oxygen supply is not continuously renewed.\n- Step 5: When available oxygen becomes insufficient, combustion stops.\n- Final answer: The covered candle goes out because oxygen is required for combustion.\n\n## Common mistake\nDo not say a flame is always needed to start combustion. Activity 5.6 shows focused sunlight can heat paper to its ignition temperature.\n\n## Quick check question\nQuestion: What are the three parts of the fire triangle?\nAnswer: Fuel, oxygen and heat sufficient to reach ignition temperature.\nExplanation: Removing any one of these conditions prevents or stops combustion.\n\n## Summary\n- Rusting and combustion form new substances.\n- Combustion requires oxygen.\n- Fuel must reach ignition temperature.\n- Heat or light may be released.\n- The fire triangle summarises the three requirements.",
+    "Exam-style problems": "# Exam-style problems: Chapter 5: Changes Around Us: Physical and Chemical\n\n## What you will learn\nYou will analyse a burning candle as a process containing both physical and chemical changes. You will also classify changes by reversibility and usefulness.\n\n## Simple explanation\nOne event can contain several linked changes. Candle wax melts, moves and changes state before its vapour burns, so the complete process cannot be assigned only one label.\n\n## Step-by-step breakdown\n- **Activity 5.7 melting**: Solid wax melts due to heat, a physical change.\n- **Wick action**: Liquid wax is carried up the wick.\n- **Evaporation**: The liquid wax changes to vapour, also a physical change.\n- **Burning**: Wax vapour reacts and forms new substances, so this part is chemical.\n- **Solidification**: Melted wax can cool into new solid shapes, a physical change.\n- **Michael Faraday**: His Chemical History of a Candle lectures used the candle to discuss melting, vapourisation and combustion.\n- **Activity 5.8**: Melting ice and boiling water are reversible, while chopping vegetables and making popcorn are not.\n- **Desirability**: Cooking and ripening may be useful, while rusting and food decay may be unwanted.\n- **Context**: Food decomposition is undesirable during storage but useful for making compost.\n\n## Worked example\nQuestion: Let Us Enhance Our Learning Question 9: Where should 'process of burning a candle' be placed—physical, chemical or both?\n\nSolution:\n- Step 1: The wax melts, which is a physical change.\n- Step 2: Liquid wax moves up the wick and evaporates, also physical changes.\n- Step 3: Wax vapour burns and forms new substances, which is a chemical change.\n- Step 4: The process includes both kinds of change.\n- Final answer: Burning a candle belongs in the overlap of physical and chemical changes.\n\n## Common mistake\nDo not classify all reversible changes as physical and all irreversible changes as chemical. These are different classification criteria.\n\n## Quick check question\nQuestion: Why can decomposition of food be both undesirable and desirable?\nAnswer: It is undesirable when stored food spoils, but desirable when food waste decomposes to form useful compost.\nExplanation: The value of a change can depend on the situation and purpose.\n\n## Summary\n- A single process may contain multiple changes.\n- Candle burning includes physical and chemical parts.\n- Reversibility is a separate property.\n- Desirability depends on context.\n- Scientific classification needs a stated criterion.",
+    "Revision and recap": "# Revision and recap: Chapter 5: Changes Around Us: Physical and Chemical\n\n## What you will learn\nYou will review slow natural changes in rocks and distinguish weathering from erosion. You will connect physical breaking, chemical alteration, transport and soil formation.\n\n## Simple explanation\nRocks change over very long periods. Some processes break or chemically alter them in place, while wind and water may then move the resulting particles elsewhere.\n\n## Step-by-step breakdown\n- **Weathering by physical change**: Temperature variation, growing roots and freezing water in cracks can break large rocks into smaller pieces.\n- **Chemical weathering**: Water or chemicals in water can change rock composition.\n- **Basalt example**: Iron in black basalt forms a red iron-oxide layer after long exposure to water or moist air.\n- **Soil formation**: Physical and chemical changes in rocks together contribute to weathering and eventually soil.\n- **Sediments**: Sand, soil and stones produced from rock breakdown collect in different locations.\n- **Erosion**: Wind and flowing water break down and transport pebbles, soil and sediments.\n- **Smoothing**: River rocks become smoother through continued erosion by flowing water.\n- **Deposition**: When wind or water slows, transported sediment settles and may harden into new rock over time.\n- **Timescale**: Many of these changes take thousands of years and cannot be reversed.\n\n## Worked example\nQuestion: Let Us Enhance Our Learning Question 7: Is soil formation from rocks a physical or chemical change?\n\nSolution:\n- Step 1: Weathering can physically break large rocks into smaller particles.\n- Step 2: Water and chemicals can also react with rock minerals and change composition.\n- Step 3: The basalt example includes formation of red iron oxide.\n- Step 4: Soil formation therefore includes both physical and chemical changes.\n- Final answer: It should be described as involving both types of change.\n\n## Common mistake\nDo not use weathering and erosion as synonyms. Weathering changes rock in place, while erosion includes movement of material by wind or water.\n\n## Quick check question\nQuestion: Is erosion during a landslide described as a physical or chemical change in the chapter?\nAnswer: A physical change.\nExplanation: The material is broken and moved without the chapter identifying a new substance in that process.\n\n## Summary\n- Weathering includes physical and chemical changes.\n- Erosion moves sediments.\n- Soil forms gradually from altered rock material.\n- Natural changes may take thousands of years.\n- The type of change depends on whether new substances form."
+  }
+}

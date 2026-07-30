@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Social Science",
+    "chapter": "Chapter 2: Reshaping India’s Political Map",
+    "central_question": "How did invasions, empires, regional resistance, administration, and economic resilience reshape India from the thirteenth to the seventeenth centuries?",
+    "in_scope_units": [
+      "Timeline and the meaning of the medieval period in the Indian context.",
+      "Rise and fall of the Delhi Sultanate and the effects of expansion, taxation, plunder, and instability.",
+      "Resistance by the Eastern Gangas, Musunuri Nayakas, Hoysalas, Mewar, and regional powers.",
+      "The Vijayanagara Empire, Krishnadevaraya, cultural patronage, trade, and the Battle of Talikota.",
+      "The Mughal Empire from Babur to Akbar, Jahangir, Shah Jahan, and Aurangzeb.",
+      "Resistance by peasants, tribal groups, Rajputs, Ahoms, and Sikhs.",
+      "Sultanate and Mughal administration, including iqta, mansabdari, and revenue reforms.",
+      "People's lives, agriculture, crafts, trade, hundis, temple economies, inequality, and cultural resilience."
+    ],
+    "banned_topics": [
+      "Detailed Maratha history, which belongs to Chapter 3.",
+      "Detailed British colonial rule, which belongs to Chapter 4.",
+      "Assigning present-day communities responsibility for actions of historical rulers."
+    ],
+    "must_include_keywords": [
+      "medieval period",
+      "Delhi Sultanate",
+      "Mamluks",
+      "Khiljis",
+      "Tughlaqs",
+      "Sayyids",
+      "Lodis",
+      "Ala-ud-din Khilji",
+      "Malik Kafur",
+      "Muhammad bin Tughlaq",
+      "token currency",
+      "jizya",
+      "Timur",
+      "Eastern Ganga kingdom",
+      "Narasimhadeva I",
+      "Musunuri Nayakas",
+      "Hoysalas",
+      "Rana Kumbha",
+      "Vijayanagara Empire",
+      "Harihara",
+      "Bukka",
+      "Krishnadevaraya",
+      "Battle of Talikota",
+      "Babur",
+      "First Battle of Panipat",
+      "Akbar",
+      "sulh-i-kul",
+      "Aurangzeb",
+      "Maharana Pratap",
+      "Ahoms",
+      "Lachit Borphukan",
+      "Battle of Saraighat",
+      "Guru Tegh Bahadur",
+      "Khalsa",
+      "iqta",
+      "mansabdari",
+      "Todar Mal",
+      "hundi"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The Delhi Sultanate continuously controlled all of India.",
+        "correction": "Its reach changed over time, and several regional powers resisted or remained outside its authority."
+      },
+      {
+        "claim": "The Vijayanagara Empire was only a military state.",
+        "correction": "It was also a major centre of trade, literature, scholarship, temple patronage, art, and architecture."
+      },
+      {
+        "claim": "Akbar's reign can be described only as tolerant.",
+        "correction": "The chapter presents brutal early conquest and a later phase that increasingly used alliances, abolished jizya, and promoted sulh-i-kul."
+      },
+      {
+        "claim": "Aurangzeb's long wars permanently strengthened the Mughal Empire.",
+        "correction": "The Deccan wars depleted the treasury, strained administration, and contributed to decline after his death."
+      },
+      {
+        "claim": "Political instability stopped India's economy completely.",
+        "correction": "Agriculture, crafts, credit, temple economies, and long-distance trade continued, although common people often faced heavy hardship."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the NCERT map comparison of Tughlaq, Lodi, Vijayanagara, Mughal, Rajput, Ahom, and Sikh territories.",
+      "Analyse the chapter prompt on why Ala-ud-din Khilji called himself the second Alexander.",
+      "Use Domingo Paes's description of Vijayanagara to infer urban and commercial life.",
+      "Compare Akbar's military and diplomatic strategies through the chapter's reflective prompt.",
+      "Use the end questions on Vijayanagara and Ahom resistance and on trade in Surat, Calicut, or Hooghly."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1–7 on political strategies, resistance, court life, Akbar, Talikota, Sikh values, and port trade."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Reshaping India’s Political Map\n\n## What you will learn\nYou will place the chapter on a timeline and understand how the Delhi Sultanate changed political power in northern India. You will also examine expansion, instability, and effects on people.\n\n## Simple explanation\nFrom the thirteenth century onward, India experienced repeated changes in dynasties and boundaries. Maps and timelines show that conquest was never complete or permanent.\n\n## Step-by-step breakdown\n- **Historical frame**: The chapter uses 'medieval' for the broad period from the eleventh to the seventeenth centuries.\n- **Delhi Sultanate dynasties**: The Mamluks, Khiljis, Tughlaqs, Sayyids, and Lodis ruled in succession from Delhi.\n- **Expansion and instability**: Military campaigns sought territory and wealth, while succession was frequently violent.\n- **Ala-ud-din Khilji**: He expanded across northern and central India, repelled Mongol attacks, and sent Malik Kafur southward.\n- **Muhammad bin Tughlaq**: His capital transfer and token currency were ambitious but poorly executed.\n- **Social effects**: Plunder, taxation, enslavement, iconoclasm, and jizya affected trade, agriculture, sacred places, and daily life.\n\n## Worked example\nQuestion: Why is a map more useful than a list of rulers for understanding the Delhi Sultanate?\n\nAnswer:\n- The chapter's maps show changing areas under the Tughlaqs and Lodis alongside territories controlled by the Eastern Gangas and Hoysalas.\n- A list gives succession, but a map reveals limits, resistance, important cities, and changes in control.\n- Final answer: The map shows that political authority was uneven and constantly reshaped rather than uniform across the Subcontinent.\n\n## Common mistake\nA ruler's claim to empire did not necessarily mean effective control over every region.\n\n## Quick check question\nQuestion: Name the five dynasties of the Delhi Sultanate listed in the chapter.\nAnswer: The Mamluks, Khiljis, Tughlaqs, Sayyids, and Lodis.\nExplanation: They ruled successively from Delhi and had changing territorial reach.\n\n## Summary\n- The period was politically dynamic.\n- The Sultanate expanded but faced limits and resistance.\n- Warfare and taxation had major social and economic consequences.",
+    "Core explanation": "# Core explanation: Reshaping India’s Political Map\n\n## What you will learn\nYou will study regional resistance and the rise of Vijayanagara. You will see how geography, confederacies, fortified centres, and cultural patronage helped regional powers endure.\n\n## Simple explanation\nThe political map was shaped not only by conquerors but also by kingdoms that resisted, regrouped, and built new centres of power.\n\n## Step-by-step breakdown\n- **Eastern Gangas**: Narasimhadeva I resisted Sultanate pressure and is linked with the Surya temple at Konark.\n- **Musunuri Nayakas**: Telugu chieftains formed a confederacy and expelled Muhammad bin Tughlaq's forces from Warangal.\n- **Hoysalas and Mewar**: The Hoysalas resisted in the south, while Rana Kumbha defended Mewar and built Kumbhalgarh.\n- **Vijayanagara's foundation**: Harihara and Bukka rejected Delhi's authority and founded an independent southern kingdom.\n- **Krishnadevaraya**: He combined military expansion with patronage of Sanskrit, Telugu, Kannada, temples, and architecture.\n- **Talikota**: A coalition of Deccan Sultanates defeated Vijayanagara in 1565, after which the capital was destroyed and the empire fragmented.\n\n## Worked example\nQuestion: Why did fortified and difficult terrain matter to kingdoms resisting larger armies?\n\nAnswer:\n- The chapter describes Kumbhalgarh in steep forested hills and several regional centres protected by terrain and fortifications.\n- Difficult access slows attackers, protects supplies and populations, and favours defenders who know local routes.\n- Final answer: Geography did not guarantee victory, but it increased resilience and helped regional powers resist stronger forces for longer.\n\n## Common mistake\nA fort was not merely a royal residence; its location, walls, routes, water, and landscape formed part of military strategy.\n\n## Quick check question\nQuestion: What two kinds of achievement marked Krishnadevaraya's reign?\nAnswer: Military strength and cultural renaissance.\nExplanation: He expanded the empire while supporting literature, scholarship, temples, architecture, and trade.\n\n## Summary\n- Resistance reshaped the political map.\n- Vijayanagara became a major southern power.\n- Political power and cultural achievement developed together.",
+    "Worked examples": "# Worked examples: Reshaping India’s Political Map\n\n## What you will learn\nYou will trace the Mughal Empire from Babur to Aurangzeb. You will compare conquest, alliance, administration, religious policy, art, and the costs of prolonged warfare.\n\n## Simple explanation\nThe Mughal state expanded through military technology, diplomacy, administration, and cultural patronage. Its rulers did not follow one unchanging policy.\n\n## Step-by-step breakdown\n- **Babur**: His victory over Ibrahim Lodi at Panipat in 1526 used gunpowder, artillery, and matchlocks.\n- **Sur interlude**: Sher Shah Suri temporarily displaced Humayun, while Himu briefly ruled Delhi before Akbar's forces prevailed.\n- **Akbar's early conquests**: Akbar pursued expansion brutally, including at Chittor.\n- **Akbar's later strategy**: He increasingly used alliances, Rajput participation, abolition of jizya, and sulh-i-kul.\n- **Cultural flourishing**: Translations, architecture, miniature painting, calligraphy, and music developed under Mughal patronage.\n- **Aurangzeb**: He expanded the empire, reimposed jizya, pursued religious restrictions, and spent decades in costly Deccan wars.\n\n## Worked example\nQuestion: Why did Akbar's later political strategy offer more stability than conquest alone?\n\nAnswer:\n- The chapter notes that he welcomed regional leaders, made marriage alliances, abolished jizya, and promoted sulh-i-kul.\n- These measures encouraged groups that might otherwise resist to participate in the empire.\n- Final answer: Military power expanded the empire, but accommodation and participation helped stabilise it.\n\n## Common mistake\nAkbar should not be described as either entirely ruthless or entirely tolerant; the chapter emphasises change across his reign.\n\n## Quick check question\nQuestion: What was one major effect of Aurangzeb's prolonged Deccan wars?\nAnswer: They depleted the Mughal treasury and strained the administration.\nExplanation: The continuing wars consumed resources and contributed to decline after 1707.\n\n## Summary\n- The Mughal Empire began with Babur's victory at Panipat.\n- Akbar combined force and political accommodation.\n- Aurangzeb's expansion carried heavy financial and administrative costs.",
+    "Exam-style problems": "# Exam-style problems: Reshaping India’s Political Map\n\n## What you will learn\nYou will compare major forms of resistance to Mughal power. You will connect leadership, geography, community organisation, faith, and military adaptation.\n\n## Simple explanation\nResistance came from peasants, tribal communities, regional kingdoms, and religious communities, each using different strengths.\n\n## Step-by-step breakdown\n- **Peasant and tribal resistance**: Jats and groups such as Bhils, Gonds, Santhals, and Kochs resisted exploitation, annexation, or taxation.\n- **Rani Durgavati**: The Gond queen defended Garha and became a symbol of regional pride.\n- **Rajputs**: Rana Sanga fought Babur; Maharana Pratap used Aravalli terrain and Bhil support.\n- **Ahoms**: The paik system supported state service and military capacity, while terrain and river warfare aided resistance.\n- **Saraighat**: Lachit Borphukan's forces defeated a larger Mughal force on the Brahmaputra in 1671.\n- **Sikhs**: Persecution led from spiritual organisation to martial resistance and the formation of the Khalsa.\n\n## Worked example\nQuestion: How did geography and social organisation work together in Ahom resistance?\n\nAnswer:\n- The Ahoms used forests, hills, rivers, boats, and local knowledge, while the paik system mobilised labour and military service.\n- Geography provided tactical advantages, and the social system supplied organised human resources.\n- Final answer: Ahom success came from the combination of terrain knowledge, river warfare, persistent tactics, and organised service.\n\n## Common mistake\nResistance should not be explained only through bravery; institutions, supplies, alliances, terrain, and leadership also matter.\n\n## Quick check question\nQuestion: Who led the Ahom forces at the Battle of Saraighat?\nAnswer: Lachit Borphukan.\nExplanation: He commanded the Ahom resistance that defeated the Mughal force near present-day Guwahati.\n\n## Summary\n- Resistance had many regional forms.\n- Geography influenced military strategy.\n- Community institutions helped mobilise people and resources.",
+    "Revision and recap": "# Revision and recap: Reshaping India’s Political Map\n\n## What you will learn\nYou will connect political change with administration and daily economic life. You will revise how India remained productive and culturally creative despite instability and hardship.\n\n## Simple explanation\nEmpires needed taxes, officials, armies, land, and communication. Farmers, craftspeople, merchants, temples, guilds, and local communities sustained economic life.\n\n## Step-by-step breakdown\n- **Sultanate administration**: The sultan ruled with ministers, while the iqta system assigned revenue territories to officials.\n- **Mughal administration**: Akbar organised provinces and departments, used mansabdari, and relied on Todar Mal's revenue surveys.\n- **Agriculture**: Land revenue funded states; irrigation and multiple crops supported the economy, though peasants faced taxes and famines.\n- **Crafts and trade**: Textiles, shipbuilding, metalwork, and overseas trade linked major ports.\n- **Credit networks**: Hundis allowed payments across political boundaries without moving currency physically.\n- **Temple economies**: Temples supported markets, infrastructure, credit, learning, and pilgrimage.\n\n## Worked example\nQuestion: How could trade continue when political boundaries and rulers changed frequently?\n\nAnswer:\n- The chapter points to merchant communities, hundis, credit networks, port cities, and community-based institutions.\n- These systems created trust and financial links that did not depend entirely on a single ruler.\n- Final answer: Economic networks adapted across changing regimes, although warfare and taxation still caused serious disruption.\n\n## Common mistake\nPolitical instability did not mean that all economic activity stopped; the evidence shows prosperity alongside severe inequality and hardship.\n\n## Quick check question\nQuestion: What was the main purpose of a hundi?\nAnswer: It was a written payment instruction that enabled funds to move across regions without carrying currency.\nExplanation: This reduced the risk of plunder and supported long-distance trade.\n\n## Summary\n- Administration connected land revenue to armies and government.\n- Agriculture and crafts remained the foundation of wealth.\n- Trade, credit, temples, and communities supported resilience and shared culture."
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 1: A Square and A Cube",
+  "central_question": "How can factors, patterns, prime factorisation and inverse operations help us recognise, construct and work with square and cube numbers?",
+  "in_scope_units": [
+    "The 100-locker puzzle and the connection between an odd number of factors and perfect squares.",
+    "Square numbers, perfect squares, visual square arrays and patterns in unit digits and trailing zeroes.",
+    "Square roots as the inverse of squaring, including estimation and prime-factorisation methods.",
+    "Problems on the nearest perfect square, making a number a perfect square and numbers between consecutive squares.",
+    "Cubic numbers, unit-cube models and patterns in perfect cubes.",
+    "Cube roots and the prime-factorisation method using groups of three equal prime factors.",
+    "Historical notes on varga, ghana and mula in Indian mathematics.",
+    "The end puzzle on arranging numbers so adjacent pairs add to square numbers."
+  ],
+  "banned_topics": [
+    "General laws of exponents beyond what is needed for squares and cubes.",
+    "Quadratic equations and polynomial factorisation.",
+    "Mensuration formulas for arbitrary solids other than the square and cube models used in the chapter."
+  ],
+  "must_include_keywords": [
+    "locker puzzle",
+    "factor",
+    "factor pair",
+    "odd number of factors",
+    "square number",
+    "perfect square",
+    "square root",
+    "inverse operation",
+    "prime factorisation",
+    "pairing prime factors",
+    "unit digit",
+    "trailing zeroes",
+    "nearest perfect square",
+    "consecutive squares",
+    "cube number",
+    "perfect cube",
+    "unit cube",
+    "cube root",
+    "triples of prime factors",
+    "varga",
+    "ghana",
+    "mula",
+    "Aryabhata",
+    "Brahmagupta",
+    "Square Pairs"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every number has an even number of factors.",
+      "correction": "Perfect squares have an odd number of factors because the square root is paired with itself; most non-squares have factors in distinct pairs."
+    },
+    {
+      "claim": "A perfect square can end in any digit.",
+      "correction": "A perfect square can end only in 0, 1, 4, 5, 6 or 9."
+    },
+    {
+      "claim": "The positive symbol √n gives both square roots of n.",
+      "correction": "√n denotes the positive square root; a positive perfect square has two integral square roots, one positive and one negative."
+    },
+    {
+      "claim": "A number is a perfect cube whenever every prime exponent is even.",
+      "correction": "For a perfect cube, every prime exponent must be a multiple of 3, so the prime factors can be grouped into equal triples."
+    },
+    {
+      "claim": "A cube may end with exactly two zeroes.",
+      "correction": "The number of trailing zeroes in a perfect cube must be a multiple of 3, so a cube cannot end with exactly two zeroes."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the opening 100-locker activity to show why lockers numbered by perfect squares remain open.",
+    "Use the chapter example 324 = 2² × 3⁴ to identify a perfect square and find √324.",
+    "Use Figure it Out Q6 to find the smallest multiplier that makes 9408 a perfect square.",
+    "Use Figure it Out Q1 in the cubic-numbers section to find √27000 and √10648.",
+    "Use Figure it Out Q4 to infer cube roots of 1331, 4913, 12167 and 32768."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains two main Figure it Out sets—one after the square-number section and one after the cube-number section—followed by the Square Pairs puzzle.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

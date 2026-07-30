@@ -1,0 +1,107 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Science",
+    "chapter": "Chapter 4: The World of Metals and Non-metals",
+    "central_question": "How do physical properties and reactions with air and water distinguish metals from non-metals and explain their uses, risks and importance?",
+    "in_scope_units": [
+      "Ironsmith context and 4.1 Properties of Materials: observing how iron and other materials are shaped and used.",
+      "4.1.1 Malleability: metallic lustre, hardness, flattening, brittleness and important exceptions.",
+      "4.1.2 Ductility: drawing metals into wires and their uses in electrical fittings, ornaments, instruments, bridges and cranes.",
+      "4.1.3 Sonority: comparing ringing and dull sounds.",
+      "4.1.4 Conduction of heat: metal and wooden spoons in hot water and cooking-vessel design.",
+      "4.1.5 Conduction of electricity: tester observations and protective use of poor conductors.",
+      "4.2 Effect of Air and Water on Metals: Iron: rusting, corrosion, conditions needed and prevention.",
+      "4.3 Effect of Air and Water on Other Metals: burning magnesium, magnesium oxide and basic metal oxides; sodium storage.",
+      "4.4 Substances that Behave Differently from Metals in Air and Water: burning sulfur, acidic non-metal oxides and non-metal properties.",
+      "4.5 Are Non-metals Essential in Everyday Life?: oxygen, carbon, nitrogen, chlorine, iodine, alloys, technology and recycling.",
+      "Let Us Enhance Our Learning: Questions 1–12 and exploratory projects."
+    ],
+    "banned_topics": [
+      "Detailed periodic table classification.",
+      "Electron transfer and ionic bonding.",
+      "Balancing advanced chemical equations.",
+      "Extraction and refining of metals from ores.",
+      "Detailed electrochemical corrosion mechanisms."
+    ],
+    "must_include_keywords": [
+      "metallic lustre",
+      "malleability",
+      "brittle",
+      "ductility",
+      "sonority",
+      "conduction of heat",
+      "conduction of electricity",
+      "copper",
+      "aluminium",
+      "iron",
+      "sulfur",
+      "coal",
+      "wood",
+      "sodium",
+      "potassium",
+      "mercury",
+      "rust",
+      "rusting",
+      "moist air",
+      "corrosion",
+      "silica gel",
+      "oil layer",
+      "galvanisation",
+      "magnesium ribbon",
+      "magnesium oxide",
+      "basic oxide",
+      "sulfur dioxide",
+      "sulfurous acid",
+      "acidic oxide",
+      "non-metal",
+      "element",
+      "oxygen",
+      "carbon",
+      "nitrogen",
+      "chlorine",
+      "iodine",
+      "alloy",
+      "recycling",
+      "Let Us Enhance Our Learning"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "All metals are hard solids at room temperature.",
+        "correction": "Sodium and potassium are soft, while mercury is liquid at room temperature."
+      },
+      {
+        "claim": "Anything that is not a metal is automatically a non-metal element.",
+        "correction": "Plastic, glass, wood, rubber and paper are not classified as metals or non-metals because they are not elements."
+      },
+      {
+        "claim": "Iron rusts in dry air or in air-free water alone.",
+        "correction": "Activity 4.5 shows that both air and water, that is moist air, are required."
+      },
+      {
+        "claim": "All oxides turn red litmus blue.",
+        "correction": "Metal oxides are generally basic, while non-metal oxides are generally acidic."
+      },
+      {
+        "claim": "Copper vessels are used because copper conducts electricity.",
+        "correction": "For boiling water, the relevant property is good conduction of heat."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activity 4.1 to compare lustre, hardness, malleability and brittleness.",
+      "Use Activity 4.2 for sonority and Activities 4.3–4.4 for heat and electrical conduction.",
+      "Use Activity 4.5 to isolate the conditions required for rusting.",
+      "Use Activity 4.6 to connect magnesium burning with a basic metal oxide.",
+      "Use Activities 4.7–4.8 to contrast sulfur oxide and sulfur-water behaviour.",
+      "Use Let Us Enhance Our Learning Questions 1, 3, 6, 8, 9, 10 and 12 for application."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The section 'Let Us Enhance Our Learning' contains Questions 1–12, followed by four Exploratory Projects."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 4: The World of Metals and Non-metals\n\n## What you will learn\nYou will identify common physical properties of metals and compare them with coal, sulfur and wood. You will use Activity 4.1 to reason from observations rather than memorising a list.\n\n## Simple explanation\nMetals are recognised by a group of properties, not by one feature alone. Many are lustrous, hard and malleable, but the chapter also gives important exceptions.\n\n## Step-by-step breakdown\n- **Activity 4.1 samples**: Copper, aluminium, an iron nail, coal, sulfur and wood are observed and hammered.\n- **Metallic lustre**: The shine shown by metals is called metallic lustre.\n- **Malleability**: Copper, aluminium and iron flatten under hammering because many metals can be beaten into sheets.\n- **Brittleness**: Coal and sulfur break into pieces and are described as brittle.\n- **Wood**: Wood neither forms a sheet nor necessarily breaks like sulfur, so it is neither malleable nor brittle in the stated observation.\n- **Exceptions**: Sodium and potassium are soft enough to cut with a knife, and mercury is liquid at room temperature.\n- **Uses**: Silver foil and aluminium foil are possible because of malleability.\n\n## Worked example\nQuestion: Activity 4.1: Compare what happens when an aluminium piece and a sulfur lump are hammered.\n\nSolution:\n- Step 1: Observe that aluminium is a metal and sulfur is treated as a non-metal in the chapter.\n- Step 2: The aluminium piece becomes flatter under hammering.\n- Step 3: The sulfur lump breaks into pieces.\n- Step 4: Flattening shows malleability, while breaking shows brittleness.\n- Final answer: Aluminium is malleable and sulfur is brittle.\n\n## Common mistake\nDo not classify a material as metal only because it is hard. Several non-metallic materials may be hard, and some metals are soft.\n\n## Quick check question\nQuestion: What is the name of the property that allows a metal to be beaten into a thin sheet?\nAnswer: Malleability.\nExplanation: Activity 4.1 links flattening under hammering with the definition of malleability.\n\n## Summary\n- Metals commonly show metallic lustre.\n- Malleability allows sheet formation.\n- Coal and sulfur are brittle.\n- Metal properties have exceptions.\n- Classification uses several observations together.",
+    "Core explanation": "# Core explanation: Chapter 4: The World of Metals and Non-metals\n\n## What you will learn\nYou will learn about ductility, sonority and conduction of heat. You will connect each property with a real object or Activity 4.2–4.3 observation.\n\n## Simple explanation\nThe usefulness of metals comes from how they can be shaped, how they sound and how they transfer heat. Different properties explain different uses.\n\n## Step-by-step breakdown\n- **Ductility**: Metals such as copper and aluminium can be drawn into wires.\n- **Wire uses**: Metal wires are used in electrical fittings, ornaments and stringed instruments.\n- **Steel ropes**: Steel wire ropes support heavy loads in suspension bridges and cranes.\n- **Activity 4.2**: A metal spoon and coin produce a ringing sound, while coal and wood produce dull sounds.\n- **Sonority**: The ability of metals to produce a ringing sound is called sonority.\n- **Activity 4.3**: The upper end of a metal spoon becomes hotter than that of a wooden spoon in the same hot water.\n- **Conduction**: Heat transfer through a material is conduction; metals are good heat conductors and wood is a poor conductor.\n- **Cooking design**: Vessels are commonly metal while handles use poor heat conductors.\n\n## Worked example\nQuestion: Activity 4.3: Explain why a metal spoon feels hotter than a similar wooden spoon after both stand in the same hot water.\n\nSolution:\n- Step 1: Both spoons are exposed to water at the same temperature for the same time.\n- Step 2: Heat travels more readily along the metal spoon.\n- Step 3: Wood transfers heat poorly.\n- Step 4: The upper end of the metal spoon therefore becomes hotter.\n- Final answer: The observation shows that metal is a better conductor of heat than wood.\n\n## Common mistake\nDo not say a wooden handle contains no heat. The correct idea is that wood transfers heat poorly compared with metal.\n\n## Quick check question\nQuestion: Which property explains the ringing sound of a school bell or ghungroos?\nAnswer: Sonority.\nExplanation: Activity 4.2 shows that metal objects produce a ringing sound, unlike the dull sound of coal or wood.\n\n## Summary\n- Ductility allows wire formation.\n- Sonority produces ringing sounds.\n- Metals transfer heat well.\n- Poor conductors are useful for handles.\n- Uses should be matched with the relevant property.",
+    "Worked examples": "# Worked examples: Chapter 4: The World of Metals and Non-metals\n\n## What you will learn\nYou will investigate electrical conduction and rusting. You will learn how controlled conditions in Activity 4.5 show that both air and water are required for rust formation.\n\n## Simple explanation\nA good experiment changes one condition at a time. The three-bottle rusting setup separates dry air, water without available air and moist air.\n\n## Step-by-step breakdown\n- **Activity 4.4**: Aluminium, iron and copper make the tester bulb glow; sulfur, coal, wood, stone, rubber and nylon do not.\n- **Electrical conductors**: Materials that allow electricity to pass easily are good conductors.\n- **Protection**: Plastic screwdriver handles and rubber gloves are poor conductors that reduce electric-shock risk.\n- **Bottle A**: Silica gel removes moisture, leaving dry air around the nail.\n- **Bottle B**: Boiled cooled water and an oil layer reduce contact with air.\n- **Bottle C**: The partially dipped nail contacts both water and air.\n- **Result**: Brown rust develops in C but not A or B.\n- **Corrosion**: Gradual deterioration of a metal surface by air, water or other substances is corrosion.\n\n## Worked example\nQuestion: Activity 4.5: What conclusion follows from bottles A, B and C after 8–10 days?\n\nSolution:\n- Step 1: Bottle A contains air but no water because silica gel keeps it dry; no rust forms.\n- Step 2: Bottle B contains water but available air is excluded by boiling and the oil layer; no rust forms.\n- Step 3: Bottle C exposes the nail to both air and water; a brown deposit forms.\n- Step 4: The brown deposit is rust.\n- Final answer: Both air and water are required for rusting of iron.\n\n## Common mistake\nDo not say oil chemically removes rust in bottle B. Its role is to prevent air from dissolving in the water.\n\n## Quick check question\nQuestion: What is the general name for gradual damage to metal surfaces by air, water or other substances?\nAnswer: Corrosion.\nExplanation: Rusting is corrosion of iron, while other metals may show different coloured coatings.\n\n## Summary\n- Metals generally conduct electricity.\n- Poor conductors provide protection.\n- Rusting requires moist air.\n- Controlled conditions support reliable conclusions.\n- Rusting is one form of corrosion.",
+    "Exam-style problems": "# Exam-style problems: Chapter 4: The World of Metals and Non-metals\n\n## What you will learn\nYou will compare the reactions of a metal and a non-metal with oxygen and water. You will use Activities 4.6–4.8 and litmus observations to distinguish basic and acidic oxides.\n\n## Simple explanation\nMagnesium and sulfur both react with oxygen, but their products behave differently in water. This contrast helps separate the general behaviour of metal and non-metal oxides.\n\n## Step-by-step breakdown\n- **Activity 4.6**: Magnesium ribbon burns with a dazzling white flame and forms white magnesium oxide powder.\n- **Metal oxide**: The magnesium oxide-water mixture turns red litmus blue and is basic.\n- **Generalisation**: Metal oxides are generally basic in nature.\n- **Sodium**: Sodium is stored in kerosene because it reacts vigorously with oxygen and water and releases much heat.\n- **Activity 4.7**: Burning sulfur forms sulfur dioxide gas.\n- **Acidic product**: Sulfur dioxide dissolved in water forms sulfurous acid and the solution is acidic.\n- **Activity 4.8**: Sulfur placed in water shows no reaction in the stated activity.\n- **Non-metal pattern**: Non-metals are generally dull, non-malleable, non-ductile, non-sonorous and poor conductors.\n\n## Worked example\nQuestion: Let Us Enhance Our Learning Question 6: Compare the products formed when oxygen reacts with magnesium and sulfur.\n\nSolution:\n- Step 1: Magnesium burns in oxygen to form magnesium oxide, a white powder.\n- Step 2: With water, the magnesium oxide mixture turns red litmus blue, showing basic nature.\n- Step 3: Sulfur burns in oxygen to form sulfur dioxide gas.\n- Step 4: The gas dissolves in water to form sulfurous acid, which is acidic.\n- Final answer: The metal oxide is basic, while the non-metal oxide is acidic.\n\n## Common mistake\nDo not conclude that every metal or non-metal reacts at the same speed. The chapter gives general trends and specific examples, including highly reactive sodium.\n\n## Quick check question\nQuestion: Why is sodium stored in kerosene?\nAnswer: To prevent its exposure to air and moisture because it reacts vigorously with oxygen and water and releases much heat.\nExplanation: Kerosene acts as a barrier between sodium and the substances with which it reacts strongly.\n\n## Summary\n- Magnesium oxide is a basic metal oxide.\n- Sulfur dioxide forms an acidic solution.\n- Metal and non-metal oxides show contrasting general behaviour.\n- Sodium requires protected storage.\n- Reaction observations support classification.",
+    "Revision and recap": "# Revision and recap: Chapter 4: The World of Metals and Non-metals\n\n## What you will learn\nYou will review the everyday importance of metals and non-metals and avoid confusing non-metal elements with ordinary non-metallic materials. You will connect properties with uses and sustainability.\n\n## Simple explanation\nMetals and non-metals are sub-categories of elements. Their different properties make both groups essential in daily life and technology.\n\n## Step-by-step breakdown\n- **Elements**: An element is a substance that cannot be broken down into simpler substances; the chapter states that 118 elements are known.\n- **Not every material is an element**: Plastic, glass, wood, rubber and paper are not classified as metals or non-metals in this context.\n- **Oxygen**: A non-metal essential for respiration.\n- **Carbon**: A building block of life forms and a component of proteins, fats and carbohydrates.\n- **Nitrogen**: Used in fertilisers and essential for plant growth.\n- **Chlorine**: Used in water purification.\n- **Iodine**: A solution is applied to wounds as an antiseptic.\n- **Alloys and technology**: Metals and alloys are used in tools, utensils, atomic energy and aerospace.\n- **Recycling**: Iron and aluminium are recycled in India to reduce waste and support sustainability.\n\n## Worked example\nQuestion: Let Us Enhance Our Learning Question 8: Choose the best material from iron, copper, sulfur, coal, plastic, wood and cardboard for a pan used to boil water.\n\nSolution:\n- Step 1: A pan must transfer heat effectively from the heat source to the water.\n- Step 2: Sulfur, coal, plastic, wood and cardboard are unsuitable for the stated purpose.\n- Step 3: Both iron and copper are metals and conduct heat.\n- Step 4: Copper is a very good heat conductor and is an appropriate choice among the listed materials.\n- Final answer: Copper is suitable because it conducts heat well.\n\n## Common mistake\nDo not justify a cooking pan by electrical conductivity. The relevant property is heat conductivity.\n\n## Quick check question\nQuestion: Why should sulfur not be called a protective metal coating for iron?\nAnswer: Sulfur is a non-metal and is not malleable or suitable for forming the protective metallic layer described for galvanisation.\nExplanation: The chapter's protective coating is zinc metal; sulfur's lack of reaction with water does not give it the required physical and protective properties.\n\n## Summary\n- Both metals and non-metals are essential.\n- Elements must be distinguished from composite materials.\n- Properties explain practical uses.\n- Corrosion prevention requires suitable coatings.\n- Recycling supports sustainability."
+  }
+}

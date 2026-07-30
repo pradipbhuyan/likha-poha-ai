@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 4: New Beginnings: Cities and States",
+  "central_question": "How did renewed urbanisation, larger states, new political systems, technology, trade and social organisation transform India in the first millennium BCE?",
+  "in_scope_units": [
+    "From First to Second Urbanisation—Harappan decline and renewed cities.",
+    "Sources—archaeology and late Vedic, Buddhist and Jain literature.",
+    "Janapadas and Mahajanapadas—clan territories, rajas, trade and larger states.",
+    "Fortified capitals—moats, gates and defence.",
+    "Early Democratic Traditions—sabha, samiti, monarchies, ganas and sanghas.",
+    "More Innovations—iron, agriculture, warfare, alliances and punch-marked coins.",
+    "The Varna–Jati System—occupations, four varnas, flexibility, inequality and later rigidity.",
+    "Developments Elsewhere—Uttarapatha, Dakshinapatha, Shishupalgarh, southern kingdoms and overseas trade.",
+    "Questions and activities 1–4—Kautilya, ruler selection, sources and iron."
+  ],
+  "banned_topics": [
+    "Detailed Mauryan imperial history.",
+    "Detailed Buddhist and Jain doctrine.",
+    "Modern constitutional democracy.",
+    "Detailed Harappan planning beyond comparison."
+  ],
+  "must_include_keywords": [
+    "First Urbanisation",
+    "Second Urbanisation",
+    "archaeological excavations",
+    "ancient literature",
+    "janapada",
+    "mahajanapada",
+    "raja",
+    "Ganga plains",
+    "Magadha",
+    "Kosala",
+    "Vatsa",
+    "Avanti",
+    "fortified city",
+    "moat",
+    "sabha",
+    "samiti",
+    "monarchy",
+    "hereditary",
+    "Vajji",
+    "Malla",
+    "gana",
+    "sangha",
+    "early republics",
+    "iron metallurgy",
+    "iron tools",
+    "punch-marked coins",
+    "varna",
+    "jati",
+    "sub-jati",
+    "inequality",
+    "Uttarapatha",
+    "Dakshinapatha",
+    "Shishupalgarh",
+    "Kalinga",
+    "Cholas",
+    "Cheras",
+    "Pandyas",
+    "Kodumanal",
+    "trade networks"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Second Urbanisation was an uninterrupted continuation of Harappan cities.",
+      "correction": "It was a new phase after a long decline of Harappan urban life."
+    },
+    {
+      "claim": "Every mahajanapada was a hereditary monarchy.",
+      "correction": "Vajji and Malla were gana–sangha systems with powerful assemblies."
+    },
+    {
+      "claim": "Iron appeared only after cities grew.",
+      "correction": "Widespread iron tools supported agriculture and state growth."
+    },
+    {
+      "claim": "Jati and varna are identical.",
+      "correction": "Jati referred to occupational communities; varna was a four-part Vedic category."
+    },
+    {
+      "claim": "The varna–jati system was always equally rigid.",
+      "correction": "The chapter notes early flexibility and later rigidity."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Questions and activities Q1 to interpret Kautilya’s ideal kingdom.",
+    "Use Q2 to discuss ruler selection.",
+    "Use Q3 to compare archaeological and literary sources.",
+    "Use Q4 to explain iron and urbanism.",
+    "Use the First/Second Urbanisation table to compare the two phases."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions and activities 1–4.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

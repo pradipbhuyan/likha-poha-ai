@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 2: Power Play",
+  "central_question": "How do powers and exponents describe multiplicative growth, simplify repeated multiplication and help represent extremely large or small numbers?",
+  "in_scope_units": [
+    "Paper-folding thought experiment and repeated doubling of thickness.",
+    "Exponential or multiplicative growth in stories such as the shining stones, magical pond and combinations.",
+    "Comparison of linear additive growth with exponential multiplicative growth.",
+    "Meaning of powers and exponent notation, including zero and negative exponents.",
+    "Laws of exponents for multiplication, division and powers of powers.",
+    "Powers of 10 and comparison of very large quantities.",
+    "Scientific notation in standard form.",
+    "Estimation and modelling activities involving large numbers and assumptions."
+  ],
+  "banned_topics": [
+    "Logarithms.",
+    "Compound interest formulas not present in the chapter.",
+    "Exponential equations requiring algebraic solution methods."
+  ],
+  "must_include_keywords": [
+    "paper folding",
+    "doubling",
+    "exponential growth",
+    "multiplicative growth",
+    "linear growth",
+    "additive growth",
+    "power",
+    "base",
+    "exponent",
+    "repeated multiplication",
+    "zero exponent",
+    "negative exponent",
+    "laws of exponents",
+    "power of a power",
+    "product of powers",
+    "quotient of powers",
+    "powers of 10",
+    "scientific notation",
+    "standard form",
+    "approximation",
+    "assumption",
+    "modelling",
+    "Moon",
+    "large numbers"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Exponential growth adds the same amount at every step.",
+      "correction": "Exponential growth multiplies by the same factor; linear growth adds the same amount."
+    },
+    {
+      "claim": "aᵐ × aⁿ = aᵐⁿ.",
+      "correction": "For the same nonzero base, aᵐ × aⁿ = aᵐ⁺ⁿ."
+    },
+    {
+      "claim": "(aᵐ)ⁿ = aᵐ⁺ⁿ.",
+      "correction": "A power raised to a power gives (aᵐ)ⁿ = aᵐⁿ."
+    },
+    {
+      "claim": "a⁰ = 0.",
+      "correction": "For a ≠ 0, a⁰ = 1."
+    },
+    {
+      "claim": "Any expression of the form x × 10ⁿ is in standard scientific notation.",
+      "correction": "In standard scientific notation, 1 ≤ x < 10 and n is an integer."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the opening paper-folding table with initial thickness 0.001 cm to model doubling.",
+    "Compare the 46 folds with the linear 20 cm ladder-step model to the Moon.",
+    "Use the chapter summary examples to practise each exponent law.",
+    "Convert 308100000 into 3.081 × 10⁸.",
+    "Use the chapter's estimation questions to model a large real-world quantity with stated assumptions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Figure it Out and Math Talk tasks are distributed across the chapter, followed by a summary of exponential growth, exponent laws and scientific notation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

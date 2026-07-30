@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 7: Proportional Reasoning",
+    "central_question": "How can ratios and proportional reasoning compare shapes, mixtures, rates and shares while preserving the same multiplicative relationship?",
+    "in_scope_units": [
+      "Similarity in resized digital images and equal scale factors.",
+      "Ratios and interpretation of their terms.",
+      "Simplest form of a ratio using HCF.",
+      "Equivalent ratios and the proportion symbol.",
+      "Problem solving by scale factor in mixtures, construction and everyday comparisons.",
+      "Situations where adding the same amount does not preserve a ratio.",
+      "Rule of Three or Trairasika and cross multiplication.",
+      "Importance of consistent units in proportion problems.",
+      "Direct-proportion applications and examples that are not direct proportion.",
+      "Market-price and packaging activities.",
+      "Sharing a total in a given ratio."
+    ],
+    "banned_topics": [
+      "Inverse proportion as a fully developed formal chapter.",
+      "Trigonometric similarity.",
+      "Percentage increase and decrease beyond direct ratio reasoning."
+    ],
+    "must_include_keywords": [
+      "ratio",
+      "terms of a ratio",
+      "simplest form",
+      "HCF",
+      "equivalent ratios",
+      "proportion",
+      "proportional",
+      "scale factor",
+      "similar images",
+      "distortion",
+      "same units",
+      "cross multiplication",
+      "Rule of Three",
+      "Trairasika",
+      "pramana",
+      "phala",
+      "ichchha",
+      "ichchhaphala",
+      "direct proportion",
+      "unit conversion",
+      "lemonade",
+      "filter coffee",
+      "mid-day meal",
+      "rate",
+      "weight-to-price ratio",
+      "sharing in a ratio",
+      "total parts",
+      "market comparison",
+      "reasonableness"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Subtracting the same amount from two dimensions preserves similarity.",
+        "correction": "Similarity requires multiplying both dimensions by the same factor, not equal additive changes."
+      },
+      {
+        "claim": "The order of terms in a ratio does not matter.",
+        "correction": "a:b and b:a compare different quantities and generally have different meanings."
+      },
+      {
+        "claim": "Cross multiplication can be used before matching units.",
+        "correction": "Corresponding quantities must use the same units before forming the proportion."
+      },
+      {
+        "claim": "Every problem where one quantity changes with another is direct proportion.",
+        "correction": "For example, at fixed distance, travel time decreases when speed increases, so the chapter warns that the direct Rule of Three setup is invalid."
+      },
+      {
+        "claim": "To share a total in ratio 3:1, give 3 and 1 and stop.",
+        "correction": "The ratio has 4 total parts; scale those parts so their sum equals the whole amount."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use image dimensions 60:40, 30:20 and 90:60 to establish similarity.",
+      "Use Example 1 to reduce 72:96 and compare it with 3:4.",
+      "Use the lemonade Example 2 to scale 6:10 to 18:30.",
+      "Use the mid-day meal Example 8 to introduce Trairasika and cross multiplication.",
+      "Use the car Example 9 to emphasise converting 4 hours to 240 minutes.",
+      "Use Activity 3 to share 12 counters in the ratio 3:1."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Figure it Out sets follow the equivalent-ratio and Rule of Three sections, and the chapter closes with activities on prices, products and sharing a whole in a given ratio."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 7: Proportional Reasoning\n\n## What you will learn\nYou will identify proportional change through image resizing. You will learn why equal differences do not guarantee similar shapes.\n\n## Simple explanation\nA shape keeps its appearance when every corresponding length is multiplied by the same scale factor.\n\n## Step-by-step breakdown\n- **Image A**: Width 60 mm and height 40 mm.\n- **Image C**: Width 30 mm and height 20 mm, both half of A.\n- **Image D**: Width 90 mm and height 60 mm, both 1.5 times A.\n- **Distortion**: Image B changes width and height by different factors.\n- **Proportional change**: Corresponding dimensions use one common multiplying factor.\n\n## Worked example\nQuestion: Explain why images with dimensions 60×40 mm and 30×20 mm are similar.\n\nSolution:\n- Step 1: Compare widths: 30/60 = 1/2.\n- Step 2: Compare heights: 20/40 = 1/2.\n- Step 3: Both dimensions changed by the same factor 1/2.\n- Step 4: Therefore the width-to-height relationship is preserved.\n- Final answer: The images are similar because both dimensions were multiplied by 1/2.\n\n## Common mistake\nDo not compare only the differences. A decrease of 20 mm in both dimensions can still use different multiplying factors and distort the image.\n\n## Quick check question\nQuestion: Is a 90×60 mm image proportional to a 60×40 mm image?\nAnswer: Yes.\nExplanation: 90/60 = 60/40 = 3/2, so both dimensions use scale factor 1.5.\n\n## Summary\n- Similarity depends on equal multiplicative change.\n- A common scale factor preserves shape.\n- Equal additive change does not necessarily preserve shape.",
+    "Core explanation": "# Core explanation: Chapter 7: Proportional Reasoning\n\n## What you will learn\nYou will write, simplify and compare ratios. You will understand the order and meaning of the two terms.\n\n## Simple explanation\nThe ratio a:b compares the first quantity with the second. Divide both terms by their HCF to obtain simplest form.\n\n## Step-by-step breakdown\n- **Terms**: The two quantities in a:b are the first and second terms.\n- **Order**: Width:height is not the same as height:width.\n- **Simplification**: Divide both terms by the same nonzero common factor.\n- **Proportion**: Two ratios are proportional when their simplest forms match.\n- **Notation**: a:b::c:d means a:b and c:d are in proportion.\n\n## Worked example\nQuestion: Are 3:4 and 72:96 proportional?\n\nSolution:\n- Step 1: 3:4 is already in simplest form.\n- Step 2: Find HCF(72,96)=24.\n- Step 3: Divide both terms: 72÷24=3 and 96÷24=4.\n- Step 4: So 72:96 simplifies to 3:4.\n- Step 5: The simplest forms match.\n- Final answer: Yes, 3:4::72:96.\n\n## Common mistake\nDo not simplify by subtracting the same amount from both terms. Equivalent ratios come from multiplying or dividing both terms by the same factor.\n\n## Quick check question\nQuestion: Simplify 90:60.\nAnswer: 3:2.\nExplanation: HCF(90,60)=30, so 90÷30 : 60÷30 = 3:2.\n\n## Summary\n- Ratios are ordered comparisons.\n- Equivalent ratios have the same simplest form.\n- HCF gives an efficient simplification method.",
+    "Worked examples": "# Worked examples: Chapter 7: Proportional Reasoning\n\n## What you will learn\nYou will solve direct-proportion problems by scale factor. You will decide what quantities should be compared before calculating.\n\n## Simple explanation\nFor a direct proportion, multiply corresponding terms by the same factor.\n\n## Step-by-step breakdown\n- **Model**: Write two ratios in the same order.\n- **Factor**: Divide a new known term by its matching original term.\n- **Scale**: Multiply the other original term by that factor.\n- **Check**: Reduce both ratios or cross multiply.\n- **Context**: Interpret the result with its unit.\n\n## Worked example\nQuestion: Kesang uses 10 spoons of sugar for 6 glasses of lemonade. How many spoons are needed for 18 glasses at the same sweetness?\n\nSolution:\n- Step 1: Write the proportion: 6:10::18:x.\n- Step 2: Find the scale factor for glasses: 18÷6=3.\n- Step 3: Apply the same factor to sugar: x=10×3.\n- Step 4: Calculate x=30.\n- Step 5: Check: 6:10 simplifies to 3:5 and 18:30 also simplifies to 3:5.\n- Final answer: 30 spoons of sugar are needed.\n\n## Common mistake\nDo not reverse one of the ratios. If the first ratio is glasses:sugar, the second must also be glasses:sugar.\n\n## Quick check question\nQuestion: If 60 ft of wall uses 3 bags of cement, how many bags are proportional for 40 ft?\nAnswer: 2 bags.\nExplanation: The scale factor is 40/60=2/3, so 3×2/3=2.\n\n## Summary\n- Direct proportion preserves a constant ratio.\n- A scale factor can be an integer or a fraction.\n- The order of corresponding quantities must remain consistent.",
+    "Exam-style problems": "# Exam-style problems: Chapter 7: Proportional Reasoning\n\n## What you will learn\nYou will derive and apply cross multiplication in Rule of Three problems. You will convert units before setting up a proportion.\n\n## Simple explanation\nIf a:b::c:d, then a/b=c/d and cross multiplication gives ad=bc.\n\n## Step-by-step breakdown\n- **Rule of Three**: Three known quantities determine the fourth.\n- **Trairasika**: The chapter links the method with pramana, phala, ichchha and ichchhaphala.\n- **Formula**: d=bc/a when a:b::c:d.\n- **Unit consistency**: Corresponding entries must use the same unit.\n- **Reasonableness**: Check whether the unknown should rise or fall with the known quantity.\n\n## Worked example\nQuestion: A car travels 90 km in 150 minutes at constant speed. Find the distance in 4 hours.\n\nSolution:\n- Step 1: Convert 4 hours to minutes: 4×60=240 minutes.\n- Step 2: Set up the proportion: 150:90::240:x.\n- Step 3: Cross multiply: 150x=240×90.\n- Step 4: Divide: x=(240×90)/150.\n- Step 5: Simplify 240/150=8/5, so x=(8/5)×90=8×18=144.\n- Final answer: The car travels 144 km.\n\n## Common mistake\nDo not use 150 minutes and 4 hours in the same ratio without conversion. Mixed units make the proportion invalid.\n\n## Quick check question\nQuestion: If 120 students need 15 kg rice, how much is needed for 80 students?\nAnswer: 10 kg.\nExplanation: 120:15::80:x gives 120x=80×15, so x=10.\n\n## Summary\n- Cross multiplication follows from equality of ratios.\n- Convert units first.\n- Use context to test whether the direction of change makes sense.",
+    "Revision and recap": "# Revision and recap: Chapter 7: Proportional Reasoning\n\n## What you will learn\nYou will revise non-proportional situations, price comparisons and sharing a whole in a ratio. You will avoid applying the Rule of Three mechanically.\n\n## Simple explanation\nA proportional model is appropriate only when the relationship stays multiplicatively constant. Sharing problems use the sum of ratio parts to divide a fixed whole.\n\n## Step-by-step breakdown\n- **Non-example**: At fixed distance, increasing speed reduces travel time, so speed:time is not a direct proportion.\n- **Price comparison**: Convert package sizes to the same weight before comparing prices.\n- **Packaging**: Price and volume may not be proportional because packaging and other costs differ.\n- **Ratio sharing**: For a:b, the whole has a+b equal parts.\n- **Share formula**: First share = total×a/(a+b); second share = total×b/(a+b).\n- **Check**: Shares must add to the original total and retain the required ratio.\n\n## Worked example\nQuestion: Share 12 counters in the ratio 3:1.\n\nSolution:\n- Step 1: Total ratio parts = 3+1=4.\n- Step 2: Value of one part = 12÷4=3 counters.\n- Step 3: First share = 3 parts = 3×3=9 counters.\n- Step 4: Second share = 1 part = 1×3=3 counters.\n- Step 5: Check: 9+3=12 and 9:3=3:1.\n- Final answer: The shares are 9 counters and 3 counters.\n\n## Common mistake\nDo not divide the total by the larger ratio term. Divide by the sum of all ratio parts.\n\n## Quick check question\nQuestion: Which tea is more expensive: ₹200 for 200 g or ₹800 for 1 kg?\nAnswer: ₹200 for 200 g is more expensive.\nExplanation: Five packets of 200 g make 1 kg, so the equivalent price is 5×₹200=₹1000 per kg, greater than ₹800.\n\n## Summary\n- Not every changing pair is directly proportional.\n- Use common units for fair comparisons.\n- Ratio sharing scales parts to match the whole.\n- Always check the result against the context."
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "manifest": {
+    "grade": "Grade 6",
+    "subject": "Maths",
+    "chapter": "Chapter 5 Prime Time",
+    "central_question": "How do factors, multiples, prime numbers, and divisibility patterns help us analyse whole numbers?",
+    "in_scope_units": [
+      "5.1 Common Multiples and Common Factors — repeated jumps, idli-vada, and shared factors",
+      "5.2 Prime Numbers — prime, composite, 1, and the Sieve of Eratosthenes",
+      "5.3 Co-prime Numbers — pairs sharing no factor other than 1 and co-prime art",
+      "5.4 Prime Factorisation — unique prime decomposition, products, co-prime checking, and divisibility",
+      "5.5 Divisibility Tests — tests for 10, 5, 2, 4, and 8",
+      "5.6 Fun with Numbers — special properties and prime-product puzzles"
+    ],
+    "banned_topics": [
+      "Divisibility tests for 3, 6, 7, and 9",
+      "Formal proof of unique prime factorisation",
+      "Advanced HCF and LCM algorithms"
+    ],
+    "must_include_keywords": [
+      "multiple",
+      "common multiple",
+      "factor",
+      "common factor",
+      "idli-vada",
+      "jump size",
+      "prime number",
+      "composite number",
+      "1 is neither prime nor composite",
+      "Sieve of Eratosthenes",
+      "co-prime",
+      "safe pair",
+      "thread-gap",
+      "prime factorisation",
+      "unique except order",
+      "common prime factor",
+      "divisibility",
+      "last digit",
+      "last two digits",
+      "last three digits",
+      "divisible by 10",
+      "divisible by 5",
+      "divisible by 2",
+      "divisible by 4",
+      "divisible by 8",
+      "prime puzzle"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "1 is prime.",
+        "correction": "It has one factor, so it is neither prime nor composite."
+      },
+      {
+        "claim": "One partial factorisation can prove two numbers are co-prime.",
+        "correction": "A missed factor may be common; use complete prime factorisations."
+      },
+      {
+        "claim": "Matching prime names is enough for divisibility.",
+        "correction": "The number of occurrences of each prime factor also matters."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use idli-vada to identify multiples and common multiples.",
+      "Use jump sizes for factors and common factors.",
+      "Use the Sieve of Eratosthenes for primes up to 100.",
+      "Use 56 and 63 to expose incomplete-factor reasoning.",
+      "Apply prime factorisation and tests for 10, 5, 2, 4, and 8."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out and Math Talk exercises across Sections 5.1–5.6, ending with the special-number and prime-grid puzzles."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 5 Prime Time\n\n## What you will learn\nYou will identify multiples, factors, common multiples, and common factors.\n\n## Simple explanation\nMultiples are reached by equal jumps; factors are jump sizes that land exactly on a number.\n\n## Step-by-step breakdown\n- **Multiples**: Products of a number with 1, 2, 3, ...\n- **Idli-vada**: Common multiples of 3 and 5 trigger the combined call.\n- **Factors**: Divide a number exactly.\n- **Common factors**: Divide each of two numbers exactly.\n- **Jump model**: A valid jump size reaches the target with no remainder.\n\n## Worked example\nQuestion: At what number is idli-vada said for the 10th time?\n\nSolution:\n- Step 1: The first positive common multiple of 3 and 5 is 15.\n- Step 2: The tenth is 10×15.\n- Final answer: 150.\n\n## Common mistake\nDo not confuse a common factor with a common multiple.\n\n## Quick check question\nQuestion: What are the first three positive common multiples of 3 and 5?\nAnswer: 15, 30, 45.\nExplanation: They are the first three positive multiples of 15.\n\n## Summary\n- Multiples come from repeated products.\n- Factors divide exactly.\n- Common relationships apply to both numbers.",
+    "Core explanation": "# Core explanation: Chapter 5 Prime Time\n\n## What you will learn\nYou will distinguish prime, composite, and the number 1 and use the Sieve of Eratosthenes.\n\n## Simple explanation\nPrime numbers have exactly two factors; composite numbers have more than two.\n\n## Step-by-step breakdown\n- **Prime**: Factors are exactly 1 and the number.\n- **Composite**: Has more than two factors.\n- **One**: Has only one factor and belongs to neither group.\n- **Sieve**: Circle the next uncrossed number and cross out its later multiples.\n- **Result**: Circled numbers are prime.\n\n## Worked example\nQuestion: Use the sieve reasoning to decide whether 29 is prime.\n\nSolution:\n- Step 1: 29 is not a later multiple of 2, 3, or 5.\n- Step 2: It remains uncrossed and is circled.\n- Final answer: 29 is prime.\n\n## Common mistake\nDo not call 1 prime; the definition requires two factors.\n\n## Quick check question\nQuestion: Is 25 prime or composite?\nAnswer: Composite.\nExplanation: Its factors include 1, 5, and 25.\n\n## Summary\n- Prime means exactly two factors.\n- Composite means more than two.\n- The sieve lists primes systematically.",
+    "Worked examples": "# Worked examples: Chapter 5 Prime Time\n\n## What you will learn\nYou will identify co-prime pairs and use complete prime factorisation.\n\n## Simple explanation\nTwo numbers are co-prime when their only common factor is 1; the numbers need not themselves be prime.\n\n## Step-by-step breakdown\n- **Co-prime**: A property of a pair.\n- **Prime factorisation**: Continue until every factor is prime.\n- **Uniqueness**: Prime factors and multiplicities are fixed, apart from order.\n- **Common prime**: Any shared prime means the pair is not co-prime.\n- **Co-prime art**: Peg count and thread-gap illustrate the relationship.\n\n## Worked example\nQuestion: Are 56 and 63 co-prime?\n\nSolution:\n- Step 1: 56=2×2×2×7 and 63=3×3×7.\n- Step 2: Both contain the prime factor 7.\n- Final answer: No; 7 is a common factor.\n\n## Common mistake\nDo not stop after showing only one pair of composite factors.\n\n## Quick check question\nQuestion: Are 4 and 9 co-prime?\nAnswer: Yes.\nExplanation: Their only common factor is 1.\n\n## Summary\n- Co-prime pairs share only 1.\n- Complete factorisation avoids missed factors.\n- Factor order does not change the product.",
+    "Exam-style problems": "# Exam-style problems: Chapter 5 Prime Time\n\n## What you will learn\nYou will test divisibility using prime-factor inclusion and place-value shortcuts.\n\n## Simple explanation\nFor some divisors, the last digits reveal whether division will be exact.\n\n## Step-by-step breakdown\n- **By 10**: Units digit 0.\n- **By 5**: Units digit 0 or 5.\n- **By 2**: Units digit even.\n- **By 4**: Last two digits form a multiple of 4.\n- **By 8**: Last three digits form a multiple of 8.\n- **Prime inclusion**: Every required prime and repetition must be present.\n\n## Worked example\nQuestion: Is 42 divisible by 12 using prime factorisation?\n\nSolution:\n- Step 1: 42=2×3×7 and 12=2×2×3.\n- Step 2: 42 has only one factor 2, while 12 needs two.\n- Final answer: No, 42 is not divisible by 12.\n\n## Common mistake\nCompare multiplicities, not only which prime values appear.\n\n## Quick check question\nQuestion: Is 8,536 divisible by 4?\nAnswer: Yes.\nExplanation: The last two digits are 36, which is divisible by 4.\n\n## Summary\n- Use the quickest valid test.\n- Four uses two final digits.\n- Eight uses three final digits.\n- Repeated prime factors matter.",
+    "Revision and recap": "# Revision and recap: Chapter 5 Prime Time\n\n## What you will learn\nYou will solve special-number and prime-product puzzles using factor reasoning.\n\n## Simple explanation\nA number can be special for several valid reasons, but each reason must be stated and checked.\n\n## Step-by-step breakdown\n- **Special properties**: Prime, square, even, or a multiple of a chosen number.\n- **Prime grid**: Every cell must contain a prime.\n- **Row clues**: Cell products equal the number to the right.\n- **Column clues**: Cell products equal the number below.\n- **Boundary**: Tests for 3, 6, 7, and 9 are deferred in the chapter.\n\n## Worked example\nQuestion: Explain the solved prime-puzzle row whose product is 75.\n\nSolution:\n- Step 1: Prime-factorise 75 as 3×5×5.\n- Step 2: Use the primes 5, 5, and 3 in the row, arranged to satisfy columns.\n- Final answer: The row contains 5, 5, and 3.\n\n## Common mistake\nDo not place composite numbers in cells requiring primes.\n\n## Quick check question\nQuestion: Why is 43 special among 9, 16, 25, and 43?\nAnswer: It is the only prime and the only non-square.\nExplanation: The other three are composite square numbers.\n\n## Summary\n- Prime factors decode product clues.\n- A special classification needs a reason.\n- Divisibility and factor ideas reinforce each other."
+  }
+}

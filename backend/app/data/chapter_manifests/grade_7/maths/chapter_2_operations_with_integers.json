@@ -1,0 +1,109 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 2: Operations with Integers",
+  "central_question": "How can positive and negative integers be modelled, multiplied, divided and combined in expressions while preserving their signs and operation properties?",
+  "in_scope_units": [
+    "2.1 A Quick Recap of Integers—Rakesh's Puzzle: finding pairs of integers from their sum and ordered difference.",
+    "Carrom Coin Integers: modelling magnitude and direction on a number line and representing final position by P = a + b.",
+    "Token Model and Additive Inverse: revising integer subtraction through zero pairs and rewriting subtraction as addition of the inverse.",
+    "2.2 Multiplication of Integers: interpreting positive and negative multipliers and multiplicands with token placement and removal.",
+    "Patterns in Integer Multiplication: deriving the sign rules by extending multiplication tables through zero.",
+    "Identity, Additive Inverse and Commutativity: establishing 1 × a = a, −1 × a = −a and a × b = b × a.",
+    "Brahmagupta's Rules and Applications: representing fortune and debt and applying integer multiplication to exam marks and elevator movement.",
+    "A Magic Grid of Integers: multiplying selected entries after striking corresponding rows and columns.",
+    "Division of Integers: reframing division as a missing-factor problem and deriving quotient sign rules.",
+    "Expressions Using Integers: associativity, multiplication in any order, sign of a product of many integers and distributivity over addition.",
+    "Pick the Pattern and Final Figure it Out: evaluating machines and solving Questions 1–16 involving expressions, temperatures, marks, products and integer puzzles.",
+    "Terhüchü: an enrichment strategy game from Assam and Nagaland using movement and captures on a line grid."
+  ],
+  "banned_topics": [
+    "Rational-number arithmetic involving non-integer fractions.",
+    "Formal solution of simultaneous linear equations from sum and difference.",
+    "Exponent laws and powers of negative numbers.",
+    "Absolute-value equations and inequalities.",
+    "Polynomial algebra beyond the stated distributive property."
+  ],
+  "must_include_keywords": [
+    "integer",
+    "sum",
+    "difference",
+    "first number − second number",
+    "number line",
+    "rightward",
+    "leftward",
+    "magnitude",
+    "direction",
+    "final position",
+    "P = a + b",
+    "token model",
+    "positive token",
+    "negative token",
+    "zero pair",
+    "additive inverse",
+    "multiplier",
+    "multiplicand",
+    "product",
+    "sign rule",
+    "same signs",
+    "different signs",
+    "commutative",
+    "associative",
+    "distributive",
+    "identity",
+    "−1 × a",
+    "Brahmagupta",
+    "fortune",
+    "debt",
+    "dividend",
+    "divisor",
+    "quotient",
+    "division by zero",
+    "exam marks",
+    "elevator",
+    "temperature",
+    "magic grid",
+    "pattern machine",
+    "Collatz",
+    "pibs",
+    "Terhüchü"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The difference of two numbers is independent of their order.",
+      "correction": "The chapter defines difference as first number minus second number, so swapping the numbers reverses the sign."
+    },
+    {
+      "claim": "A negative integer has negative magnitude.",
+      "correction": "Magnitude is the non-negative distance from zero; the sign records direction."
+    },
+    {
+      "claim": "Subtracting a negative integer makes the result smaller.",
+      "correction": "Subtracting a negative is adding its positive additive inverse."
+    },
+    {
+      "claim": "The product of two negative integers is negative.",
+      "correction": "The product of integers with the same sign is positive; different signs give a negative product."
+    },
+    {
+      "claim": "Integer division can include a zero divisor.",
+      "correction": "Division by zero is not defined, so the divisor must be non-zero."
+    },
+    {
+      "claim": "The distributive property applies only to positive integers.",
+      "correction": "For all integers a, b and c, a × (b + c) = a × b + a × c."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Rakesh's sum 25 and difference 11 puzzle, then swap the numbers to obtain difference −11.",
+    "Use the carrom movement 5 + (−7) = −2 and the token example 7 − 18 = −11 to revise integer meaning and additive inverse.",
+    "Use the token models for 4 × (−2), (−4) × 2 and (−4) × (−2) to establish multiplication signs.",
+    "Use the multiplication patterns around zero and Figure it Out on page 33 to consolidate the sign rules.",
+    "Use Example 1 on exam marks and Example 2 on the mining elevator for contextual applications.",
+    "Use the division examples (−100) ÷ 25 and (−100) ÷ (−4), then the page 39 Figure it Out questions.",
+    "Finish with the page 42–44 Figure it Out Questions 1–16 on integer expressions and problem solving."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The concluding 'Figure it Out' exercise spans pages 42–44 with Questions 1–16, followed by the summary and the Terhüchü enrichment game.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

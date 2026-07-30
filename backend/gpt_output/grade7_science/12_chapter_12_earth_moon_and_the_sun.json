@@ -1,0 +1,110 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Science",
+    "chapter": "Chapter 12: Earth, Moon, and the Sun",
+    "central_question": "How do the rotation and revolution of the Earth and the relative positions of the Earth, Moon and Sun explain day and night, changing skies, seasons and eclipses?",
+    "in_scope_units": [
+      "12.1 Rotation of the Earth—Activities 12.1 and 12.2, apparent motion, axis of rotation, West-to-East rotation, the 24-hour rotation and the day-night cycle.",
+      "Apparent motion of celestial objects—sunrise and sunset, Activity 12.3 on the Big Dipper and Pole Star, star trails, Foucault's demonstration and Aryabhata's explanation.",
+      "12.2 Revolution of the Earth—definition of revolution and orbit, the nearly circular orbit and one revolution in about 365 days and 6 hours.",
+      "12.2.1 Changing View of Night Sky from the Earth—different directions faced during Earth's revolution and gradual seasonal change in visible stars.",
+      "12.2.2 Seasons on the Earth—tilted axis, spherical Earth, intensity and duration of sunlight, opposite seasons in the hemispheres, solstices, equinoxes, polar daylight and equatorial conditions.",
+      "12.3 Eclipses—relative motion of the Earth, Moon and Sun and the scientific explanation of eclipses.",
+      "12.3.1 Solar Eclipse—Activity 12.4 on apparent size, total and partial solar eclipses, moving lunar shadow and safe viewing.",
+      "12.3.2 Lunar Eclipse—Earth's shadow on the Moon, total and partial lunar eclipses, red appearance and safe naked-eye viewing.",
+      "In a Nutshell, Let Us Enhance Our Learning Questions 1–12 and exploratory projects on illumination, orbital distance and axial tilt."
+    ],
+    "banned_topics": [
+      "Detailed planetary formation and stellar evolution.",
+      "Moon phases, tides and ocean circulation.",
+      "Advanced orbital mechanics and gravitational equations.",
+      "Exact eclipse prediction calculations.",
+      "Detailed telescope optics or astrophotography techniques."
+    ],
+    "must_include_keywords": [
+      "rotation",
+      "axis of rotation",
+      "North Pole",
+      "South Pole",
+      "West to East",
+      "24 hours",
+      "day and night",
+      "sunrise",
+      "sunset",
+      "apparent motion",
+      "Activity 12.1",
+      "Activity 12.2",
+      "Big Dipper",
+      "Saptarishi",
+      "Pole Star",
+      "Dhruva Tara",
+      "Activity 12.3",
+      "revolution",
+      "orbit",
+      "365 days and 6 hours",
+      "changing night sky",
+      "tilted axis",
+      "spherical Earth",
+      "Northern Hemisphere",
+      "Southern Hemisphere",
+      "sunlight intensity",
+      "length of daytime",
+      "summer solstice",
+      "winter solstice",
+      "equinox",
+      "solar eclipse",
+      "apparent size",
+      "Activity 12.4",
+      "total solar eclipse",
+      "partial solar eclipse",
+      "safe viewing",
+      "lunar eclipse",
+      "total lunar eclipse",
+      "partial lunar eclipse",
+      "Let Us Enhance Our Learning"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The Sun actually travels around the Earth once every day.",
+        "correction": "The Sun's daily movement is apparent; it is caused by the Earth's West-to-East rotation."
+      },
+      {
+        "claim": "Day and night are caused by the Earth's revolution around the Sun.",
+        "correction": "Day and night are caused by the Earth's rotation on its axis."
+      },
+      {
+        "claim": "The Pole Star moves rapidly across the sky with all other stars.",
+        "correction": "Because Earth's axis points close to it, the Pole Star appears nearly stationary while other stars appear to move around it."
+      },
+      {
+        "claim": "Seasons occur because Earth is much closer to the Sun in summer.",
+        "correction": "Seasons arise mainly from Earth's tilted axis and spherical shape, which change sunlight intensity and duration; Earth is actually closest to the Sun in January."
+      },
+      {
+        "claim": "A solar eclipse is safe to watch directly because much of the Sun is covered.",
+        "correction": "Direct viewing can still damage the eyes and cause blindness; specialised protection or supervised projection is required."
+      },
+      {
+        "claim": "A lunar eclipse occurs when the Moon comes between the Sun and Earth.",
+        "correction": "That arrangement produces a solar eclipse; a lunar eclipse occurs when Earth comes between the Sun and Moon."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Activity 12.1 to connect opposite apparent motion on a merry-go-round with the Sun's apparent daily movement.",
+      "Use NCERT Activity 12.2 and Questions 2 and 6 to explain West-to-East rotation and day-night differences across Earth.",
+      "Use NCERT Activity 12.3 and Questions 4–5 to distinguish daily apparent motion from yearly changes in the night sky.",
+      "Use Figures 12.9–12.11 and Questions 10 and 12 to reason about seasons, day length and the role of axial tilt.",
+      "Use NCERT Activity 12.4 and Question 9 to explain how the smaller Moon can cover the Sun by apparent size.",
+      "Use Questions 7, 8 and 11 to compare safe viewing and the geometry and visibility of solar and lunar eclipses."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The section 'Let Us Enhance Our Learning' contains Questions 1–12, followed by three Exploratory Projects."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 12: Earth, Moon, and the Sun\n\n## What you will learn\nYou will understand rotation and why the Sun appears to move from East to West. You will use Activities 12.1 and 12.2 to explain the 24-hour day-night cycle.\n\n## Simple explanation\nAn observer on a moving platform may see stationary surroundings appear to move in the opposite direction. In the same way, Earth's own rotation makes the Sun, Moon and stars appear to cross the sky.\n\n## Step-by-step breakdown\n- **Activity 12.1**: On an anti-clockwise merry-go-round, nearby objects appear to move clockwise.\n- **Apparent motion**: The Sun seems to move across the sky because the observer is on the rotating Earth.\n- **Rotation**: Rotation is the motion in which all parts of an object move in circles around an imaginary axis.\n- **Earth's axis**: The axis passes through the geographic North Pole and South Pole.\n- **Direction**: Viewed from above the North Pole, Earth rotates anti-clockwise, from West to East.\n- **Time**: Earth completes one rotation in about 24 hours.\n- **Activity 12.2**: A globe and torch show that one half of Earth is illuminated while the other half is dark.\n- **Sunrise and sunset**: A location experiences sunrise when it moves into sunlight and sunset when it moves into darkness.\n- **India**: Eastern India enters sunlight before western India because Earth rotates from West to East.\n\n## Worked example\nQuestion: NCERT Activity 12.2 uses a globe and torch. How does the model explain day and night at a marked location?\n\nSolution:\n- Step 1: The torch lights only the half of the globe facing it.\n- Step 2: The marked location has daytime when it lies on the illuminated half.\n- Step 3: As the globe rotates West to East, the location moves into darkness and experiences night.\n- Final answer: Earth's rotation causes the repeating day-night cycle.\n\n## Common mistake\nDo not say Earth rotates from East to West. Its rotation is from West to East, which makes the Sun appear to move from East to West.\n\n## Quick check question\nQuestion: According to NCERT Let Us Enhance Our Learning Question 2(ii), what causes day and night?\nAnswer: Day and night are caused by the Earth's rotation.\nExplanation: As Earth turns, locations move alternately into the illuminated half and the dark half.\n\n## Summary\n- Earth rotates on an axis.\n- One rotation takes about 24 hours.\n- Earth rotates from West to East.\n- Rotation causes day and night.\n- The Sun's daily motion is apparent.",
+    "Core explanation": "# Core explanation: Chapter 12: Earth, Moon, and the Sun\n\n## What you will learn\nYou will extend the idea of apparent motion from the Sun to the Moon and stars. You will use Activity 12.3 to explain why the Big Dipper appears to move around the nearly stationary Pole Star.\n\n## Simple explanation\nEarth's rotation changes the direction in which we look at the sky throughout the night. Most stars therefore seem to move, but the Pole Star appears almost fixed because Earth's axis points close to it.\n\n## Step-by-step breakdown\n- **Sun and Moon**: Both appear to rise in the eastward direction and set in the westward direction because of Earth's West-to-East rotation.\n- **Activity 12.3**: Students sketch the Big Dipper at two-hour intervals on the same night.\n- **Big Dipper**: The changing orientation of Saptarishi shows apparent motion around the northern sky.\n- **Pole Star**: Dhruva Tara appears nearly stationary because Earth's rotation axis points close to it.\n- **Star trails**: Long-exposure photographs record the apparent movement of stars as arcs around the Pole Star.\n- **Foucault pendulum**: Leon Foucault used a long pendulum to give a simple demonstration of Earth's rotation.\n- **Aryabhata**: The Aryabhatiya compares apparent westward star motion with stationary objects appearing to move backward to a person in a forward-moving boat.\n- **Question 4**: A constellation seen nearly overhead at 8 pm one day will be seen in nearly the same position at about the same time the next day.\n- **Daily versus yearly change**: Nightly apparent motion comes from rotation, whereas the changing set of stars over months is linked to revolution.\n\n## Worked example\nQuestion: NCERT Activity 12.3 shows the Big Dipper at different orientations during one night. Why does it seem to move around the Pole Star?\n\nSolution:\n- Step 1: Earth rotates continuously from West to East.\n- Step 2: The observer's viewing direction changes as Earth turns.\n- Step 3: Earth's axis points close to the Pole Star, so it appears nearly stationary.\n- Final answer: The Big Dipper and other stars appear to circle around the Pole Star.\n\n## Common mistake\nDo not conclude that all stars physically orbit the Pole Star once each day. The observed pattern is mainly an effect of Earth's rotation.\n\n## Quick check question\nQuestion: According to NCERT Let Us Enhance Our Learning Question 4, when should Padmashree see Orion nearly overhead again after seeing it at 8 pm yesterday?\nAnswer: She should see it nearly overhead at about 8 pm today.\nExplanation: Earth's nearly 24-hour rotation makes the daily sky pattern repeat at approximately the same clock time from one day to the next.\n\n## Summary\n- Earth's rotation causes apparent star motion.\n- The Pole Star appears nearly stationary.\n- The Big Dipper changes orientation through the night.\n- Star trails record this apparent motion.\n- Daily and yearly sky changes have different causes.",
+    "Worked examples": "# Worked examples: Chapter 12: Earth, Moon, and the Sun\n\n## What you will learn\nYou will distinguish revolution from rotation and understand Earth's orbit around the Sun. You will explain why the visible night sky changes gradually over a year.\n\n## Simple explanation\nWhile Earth rotates about its own axis, it also travels around the Sun. At different points in this journey, the night side faces different regions of space, so different star patterns are seen after sunset.\n\n## Step-by-step breakdown\n- **Revolution**: Revolution is the motion of one object around another object.\n- **Orbit**: The path followed during revolution is called an orbit.\n- **Shape**: Viewed from above, Earth's orbit around the Sun is nearly circular.\n- **Time**: Earth completes one revolution in about 365 days and 6 hours.\n- **Rotation and revolution**: The two motions occur at the same time but produce different observable effects.\n- **Changing night sky**: As Earth moves around the Sun, the direction away from the Sun changes.\n- **Different months**: Different stars rise at sunset in March, June, September and December.\n- **Fixed-time observation**: Looking at the sky at the same time on dates separated by a month reveals a gradual change.\n- **Community knowledge**: Bhil and Pawara communities used certain star patterns as markers for the arrival of monsoon rain.\n\n## Worked example\nQuestion: NCERT Let Us Enhance Our Learning Question 5 asks when the same group of stars seen rising at midnight on 21 June will rise at midnight again.\n\nSolution:\n- Step 1: The same midnight viewing direction is recovered after Earth completes one revolution around the Sun.\n- Step 2: One revolution takes nearly one year.\n- Step 3: The date will therefore be approximately the same in the following year.\n- Final answer: The group should rise at midnight again around 21 June next year.\n\n## Common mistake\nDo not use Earth's rotation to explain the month-by-month change in visible constellations. Rotation explains daily motion; revolution explains the yearly change.\n\n## Quick check question\nQuestion: According to the NCERT section 12.2, how long does Earth take to complete one revolution around the Sun?\nAnswer: About 365 days and 6 hours.\nExplanation: This time is nearly one year and is much longer than the roughly 24 hours needed for one rotation.\n\n## Summary\n- Rotation and revolution are different motions.\n- Earth's path is its orbit.\n- One revolution takes about 365 days and 6 hours.\n- Revolution changes the night-sky view over the year.\n- Seasonal sky knowledge can support community observations.",
+    "Exam-style problems": "# Exam-style problems: Chapter 12: Earth, Moon, and the Sun\n\n## What you will learn\nYou will explain seasons using Earth's tilted axis and spherical shape. You will compare June and December in the two hemispheres and revise solstices, equinoxes and day length.\n\n## Simple explanation\nSeasons are caused by changes in the intensity and duration of sunlight received by each hemisphere as tilted Earth revolves around the Sun. They are not caused by a large yearly change in Earth's distance from the Sun.\n\n## Step-by-step breakdown\n- **Tilted axis**: Earth's axis is not upright relative to its orbit, and the tilt is maintained during revolution.\n- **Spherical shape**: The same amount of sunlight may spread over a smaller or larger area on the curved surface.\n- **June**: The Northern Hemisphere is tilted towards the Sun, receives more intense sunlight and has longer daytime, producing summer.\n- **December**: The Northern Hemisphere is tilted away, receives less intense sunlight and has shorter daytime, producing winter.\n- **Opposite hemispheres**: The Southern Hemisphere has winter in June and summer in December.\n- **North Pole**: It receives sunlight for all 24 hours in June and remains in darkness for all 24 hours in December.\n- **Summer solstice**: Around 21 June, the Northern Hemisphere has its longest day.\n- **Winter solstice**: Around 22 December, it has its shortest day and longest night.\n- **Equinoxes**: Around 21 March and 23 September, daytime lasts about 12 hours.\n- **Equator**: The equator has about 12 hours of daylight and darkness throughout the year, so seasonal changes in sunlight are less marked.\n- **Misconception correction**: Earth is closest to the Sun in January, so distance cannot explain Northern Hemisphere summer.\n\n## Worked example\nQuestion: NCERT Let Us Enhance Our Learning Question 10 asks what clothes the Indian cricket team should pack for Australia in December. What is the correct reasoning?\n\nSolution:\n- Step 1: Australia lies in the Southern Hemisphere.\n- Step 2: Seasons there are opposite to those in the Northern Hemisphere.\n- Step 3: December is winter in India but summer in Australia.\n- Final answer: They should pack summer clothes.\n\n## Common mistake\nDo not explain seasons by saying a tilted hemisphere becomes significantly closer to the Sun. The chapter states that the distance difference is too small to cause seasons.\n\n## Quick check question\nQuestion: According to NCERT Let Us Enhance Our Learning Question 12, what would happen to seasons if Earth's axis were not tilted?\nAnswer: The strong seasonal cycle caused by changing sunlight intensity and day length would largely disappear.\nExplanation: Without axial tilt, each latitude would receive nearly the same yearly pattern of sunlight duration and angle instead of alternating summer and winter conditions.\n\n## Summary\n- Seasons depend on axial tilt and Earth's spherical shape.\n- Sunlight intensity and day length change together.\n- The hemispheres have opposite seasons.\n- Solstices mark longest and shortest days.\n- Equinoxes have about 12 hours of day and night.",
+    "Revision and recap": "# Revision and recap: Chapter 12: Earth, Moon, and the Sun\n\n## What you will learn\nYou will compare solar and lunar eclipses using the order of the Sun, Earth and Moon. You will understand apparent size, total and partial eclipses, their visibility and safe observation.\n\n## Simple explanation\nAn eclipse occurs when one body blocks sunlight from reaching another or blocks our view of the Sun. The exact order of the Sun, Earth and Moon determines whether the eclipse is solar or lunar.\n\n## Step-by-step breakdown\n- **Solar eclipse**: The Moon comes between the Sun and Earth and blocks sunlight from reaching part of Earth.\n- **Activity 12.4**: A nearby thumb can cover a distant head, showing that apparent size depends on actual size and distance.\n- **Apparent size**: The smaller Moon can appear nearly as large as the Sun because it is much closer to Earth.\n- **Total solar eclipse**: Observers in the small central region of the Moon's shadow see the Sun completely covered.\n- **Partial solar eclipse**: Observers outside that small region see only part of the Sun covered.\n- **Moving shadow**: Earth's rotation and the Moon's orbital motion move the shadow across Earth's surface, so totality lasts only a few minutes at one place.\n- **Safe viewing**: Never view the Sun directly during an eclipse or through ordinary sunglasses, binoculars or telescopes; use specialised protection or supervised projection.\n- **Lunar eclipse**: Earth comes between the Sun and Moon and blocks sunlight from reaching the Moon.\n- **Total lunar eclipse**: The full Moon lies completely in Earth's shadow and appears dark red.\n- **Partial lunar eclipse**: Only part of the Moon lies in Earth's shadow.\n- **Visibility**: A lunar eclipse can be seen safely with the naked eye from the large night side of Earth, while total solar eclipse is limited to a narrow shadow path.\n\n## Worked example\nQuestion: NCERT Let Us Enhance Our Learning Question 9 asks why the much smaller Moon can completely cover the Sun during a total solar eclipse.\n\nSolution:\n- Step 1: Apparent size depends on both physical size and distance from the observer.\n- Step 2: The Moon is far smaller than the Sun but is also far closer to Earth.\n- Step 3: From Earth, the Moon and Sun can therefore have similar apparent sizes.\n- Final answer: The Moon can completely cover the Sun in our view during a total solar eclipse.\n\n## Common mistake\nDo not treat solar and lunar eclipses as equally safe to view. A lunar eclipse is safe to watch directly, but direct solar viewing can permanently damage the eyes.\n\n## Quick check question\nQuestion: According to NCERT Let Us Enhance Our Learning Question 7, who is careless: Ravikiran using eclipse goggles, Jyothi using projection, Adithya looking directly, or Aruna attending a planetarium programme?\nAnswer: Adithya is careless because he looks directly at the Sun.\nExplanation: The chapter strictly warns that direct solar viewing can damage the eyes and cause blindness, even during an eclipse.\n\n## Summary\n- Solar eclipse order: Sun–Moon–Earth.\n- Lunar eclipse order: Sun–Earth–Moon.\n- Apparent size explains total solar eclipses.\n- Total solar eclipse is visible from a small region.\n- Lunar eclipses are safe to view directly; solar eclipses are not."
+  }
+}

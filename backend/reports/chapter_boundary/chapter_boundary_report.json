@@ -1,112 +1,69 @@
 {
-  "audited_at": "2026-07-29T16:48:46.745237+00:00",
+  "audited_at": "2026-07-30T16:42:06.999685+00:00",
   "manifests_used": 1,
-  "lessons_audited": 8,
+  "lessons_audited": 5,
   "total_critical_findings": 0,
-  "total_high_findings": 1,
+  "total_high_findings": 0,
   "results": [
     {
-      "lesson_cache_id": "7ec9b1c9-e4f2-4184-bcf7-30538d5ce727",
-      "grade": "Grade 5",
-      "subject": "Hindi",
-      "chapter": "10. तीन मछलियाँ",
-      "step_title": "What We Learn",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 4116
-    },
-    {
-      "lesson_cache_id": "bb984a21-7099-4278-8647-af68209cc25a",
-      "grade": "Grade 5",
-      "subject": "Hindi",
-      "chapter": "10. तीन मछलियाँ",
-      "step_title": "Recap",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 3155
-    },
-    {
-      "lesson_cache_id": "23ac4fa4-f50d-4d95-ab52-324e0b797a22",
-      "grade": "Grade 5",
-      "subject": "Hindi",
-      "chapter": "10. तीन मछलियाँ",
-      "step_title": "Revision and recap",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 1486
-    },
-    {
-      "lesson_cache_id": "760baf8c-4d90-4607-93dd-0594c31003db",
-      "grade": "Grade 5",
-      "subject": "Hindi",
-      "chapter": "10. तीन मछलियाँ",
-      "step_title": "Worked examples",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 1475
-    },
-    {
-      "lesson_cache_id": "e71ca263-9b6e-4f36-9892-8d00c344285c",
-      "grade": "Grade 5",
-      "subject": "Hindi",
-      "chapter": "10. तीन मछलियाँ",
-      "step_title": "Concept introduction",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 1387
-    },
-    {
-      "lesson_cache_id": "b6c03190-22a8-49bb-9b3e-b2af7e5ea7c5",
-      "grade": "Grade 5",
-      "subject": "Hindi",
-      "chapter": "10. तीन मछलियाँ",
-      "step_title": "Core explanation",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 1343
-    },
-    {
-      "lesson_cache_id": "eee7b6df-0ea4-4473-a507-7c4460dafd86",
-      "grade": "Grade 5",
-      "subject": "Hindi",
-      "chapter": "10. तीन मछलियाँ",
+      "lesson_cache_id": "824d0c53-80c0-4943-8e39-f7cf5d0011ff",
+      "grade": "Grade 8",
+      "subject": "Maths",
+      "chapter": "Chapter 7: Area",
       "step_title": "Exam-style problems",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_8/maths/chapter_7_area.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 1369
+      "content_length": 2089
     },
     {
-      "lesson_cache_id": null,
-      "grade": "Grade 5",
-      "subject": "Hindi",
-      "chapter": "10. तीन मछलियाँ",
-      "step_title": "(WHOLE CHAPTER — combined coverage check)",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
-      "findings": [
-        {
-          "severity": "high",
-          "category": "coverage_gap",
-          "message": "38% of required syllabus keywords are missing across the WHOLE chapter (all steps combined).",
-          "detail": "Missing: गाढ़ी मित्रता, दूसरा सरोवर, निर्जीव बनना, संज्ञा, सर्वनाम, विशेषण, क्रिया, एकवचन, बहुवचन"
-        }
-      ],
+      "lesson_cache_id": "2e247d42-699a-4169-9d84-b15d6aa61292",
+      "grade": "Grade 8",
+      "subject": "Maths",
+      "chapter": "Chapter 7: Area",
+      "step_title": "Core explanation",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_8/maths/chapter_7_area.json",
+      "findings": [],
       "critical_count": 0,
-      "high_count": 1,
-      "content_length": 14343
+      "high_count": 0,
+      "content_length": 1924
+    },
+    {
+      "lesson_cache_id": "c0549dc6-9904-40af-bbce-d9d46a7f02e6",
+      "grade": "Grade 8",
+      "subject": "Maths",
+      "chapter": "Chapter 7: Area",
+      "step_title": "Concept introduction",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_8/maths/chapter_7_area.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 1878
+    },
+    {
+      "lesson_cache_id": "b32ed932-b04f-42f7-ae9e-82ee1e358290",
+      "grade": "Grade 8",
+      "subject": "Maths",
+      "chapter": "Chapter 7: Area",
+      "step_title": "Worked examples",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_8/maths/chapter_7_area.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2125
+    },
+    {
+      "lesson_cache_id": "f6c2e0e6-8f7d-488e-b45e-b7bb9ea49997",
+      "grade": "Grade 8",
+      "subject": "Maths",
+      "chapter": "Chapter 7: Area",
+      "step_title": "Revision and recap",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_8/maths/chapter_7_area.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2151
     }
   ]
 }

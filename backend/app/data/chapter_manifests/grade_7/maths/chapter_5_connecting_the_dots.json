@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 5: Connecting the Dots…",
+  "central_question": "How can data be collected, represented and analysed with mean, median, variability and graphs to make justified conclusions without overgeneralising?",
+  "in_scope_units": [
+    "5.1 Of Questions and Statements: distinguishing statistical questions and statements and recognising the need to collect variable data.",
+    "5.2 Representative Values: comparing data groups using totals, arithmetic mean and the fair-share interpretation.",
+    "Know Your Onions and Dot Plots: comparing minimum, maximum, range, total, mean, clusters and spread while noting that order information may be lost.",
+    "Averages Around Us, Outliers and Medians: finding medians for odd and even data sets and studying how outliers affect the mean.",
+    "Measures of Central Tendency and Variability: using mean, median, minimum and maximum together to describe data.",
+    "Zero versus No Value and A Mean Foot: distinguishing a recorded zero from an absent observation and viewing the mean as equalisation.",
+    "5.3 Visualising Data: reading and constructing clustered or double-column graphs and following the two-step identify-and-infer process.",
+    "Rocket launches, daylight hours and cricket graphs: interpreting scale, trends, categories and claims supported by a graph.",
+    "5.4 Data Detective: examining height data over grades, ages, years and countries and avoiding unsupported generalisations.",
+    "Final Figure it Out and Projects: solving Questions 1–13 and conducting individual or group data investigations."
+  ],
+  "banned_topics": [
+    "Probability calculations.",
+    "Mode as a required measure, because the chapter focuses on mean and median.",
+    "Formal standard deviation, variance and quartiles.",
+    "Pie charts and histograms as construction topics.",
+    "Causal claims that cannot be established from the displayed data."
+  ],
+  "must_include_keywords": [
+    "statistical question",
+    "statistical statement",
+    "data collection",
+    "arithmetic mean",
+    "average",
+    "fair share",
+    "representative value",
+    "sum of values",
+    "number of values",
+    "median",
+    "sorted data",
+    "odd number of values",
+    "even number of values",
+    "outlier",
+    "minimum",
+    "maximum",
+    "range",
+    "variability",
+    "central tendency",
+    "dot plot",
+    "clustered column graph",
+    "double column graph",
+    "double-bar graph",
+    "scale",
+    "category",
+    "trend",
+    "identify what is given",
+    "infer from what is given",
+    "zero value",
+    "no value",
+    "Yahapur",
+    "Wahapur",
+    "rocket launches",
+    "daylight hours",
+    "Data Detective",
+    "overgeneralisation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A total is always enough to compare two groups.",
+      "correction": "If group sizes differ, compare a representative value such as the mean rather than totals alone."
+    },
+    {
+      "claim": "The median is the middle entry in the order originally given.",
+      "correction": "The data must first be sorted; with an even number of values, average the two middle values."
+    },
+    {
+      "claim": "The mean always represents typical data well.",
+      "correction": "A very high or low outlier can pull the mean away from most values, while the median is usually less affected."
+    },
+    {
+      "claim": "A score of zero and an absent observation are the same.",
+      "correction": "Zero is a recorded value and is included, while a dash meaning did not play or was absent is not counted as a data value."
+    },
+    {
+      "claim": "A graph proves any general claim about all people or all future years.",
+      "correction": "Conclusions must stay within the population, categories and time period represented by the data."
+    },
+    {
+      "claim": "A dot plot preserves the original month-by-month order.",
+      "correction": "A dot plot displays frequency, clustering and spread but may lose the original sequence of observations."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Section 5.1's list of questions to classify statistical and non-statistical questions.",
+    "Use the guava fair-share activity and the Hibiscus data on page 100 to build the arithmetic mean.",
+    "Use Figure it Out Question 1 on page 101 to calculate the mean of Shreyas's eight bounce counts.",
+    "Use the Yahapur and Wahapur onion tables and dot plots on pages 101–103 to compare centre and spread.",
+    "Use the two family-height examples on pages 105–108 to introduce median and outliers.",
+    "Use the rocket-launch and daylight graphs on pages 115–120 to practise the identify-and-infer process.",
+    "Conclude with Data Detective and final Figure it Out Questions 1–13 on pages 129–134."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The concluding Figure it Out section on pages 129–134 contains Questions 1–13, including projects, followed by the chapter summary.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

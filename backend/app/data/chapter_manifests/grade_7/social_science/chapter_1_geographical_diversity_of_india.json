@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: Geographical Diversity of India",
+  "central_question": "How do India’s major physical regions shape natural life, human settlement, economic activity, culture and unity?",
+  "in_scope_units": [
+    "India and the Indian Subcontinent—location, natural boundaries, physical maps, altitude colours and five broad regions.",
+    "The Himalayas—formation, Himadri, Himachal and Shivalik ranges, glaciers, rivers, biodiversity and culture.",
+    "The cold desert of India—Ladakh, Pangong Tso, wildlife, monasteries and adaptation.",
+    "The Gangetic Plains—river systems, fertile soils, farming, population, transport and wildlife.",
+    "The Great Indian Desert and Aravalli Hills—dunes, water scarcity, conservation, minerals and the barrier role of the Aravallis.",
+    "The Peninsular Plateau—Western and Eastern Ghats, Deccan Plateau, rivers, forests, minerals, tribes and waterfalls.",
+    "India’s coastlines—west-coast estuaries, east-coast deltas, ports and farming.",
+    "Indian Islands—Lakshadweep, Andaman and Nicobar Islands, coral, volcanoes, marine space and history.",
+    "The Sundarbans and hills of the Northeast—mangroves, heavy rainfall, biodiversity and living root bridges.",
+    "Questions and activities 1–9—rivers, maps, UNESCO sites, food preservation and geographical unity."
+  ],
+  "banned_topics": [
+    "Detailed weather instruments and forecasting.",
+    "Detailed monsoon formation and climate classification.",
+    "Modern constitutional government.",
+    "Advanced plate-tectonic theory beyond the chapter’s simple account."
+  ],
+  "must_include_keywords": [
+    "Indian Subcontinent",
+    "physical map",
+    "altitude",
+    "Himalayas",
+    "Water Tower of Asia",
+    "Himadri",
+    "Himachal",
+    "Shivalik Hills",
+    "Gangotri Glacier",
+    "Ladakh",
+    "Pangong Tso",
+    "Gangetic Plains",
+    "Ganga",
+    "Indus",
+    "Brahmaputra",
+    "Thar Desert",
+    "sand dunes",
+    "taanka",
+    "kunds",
+    "Aravalli Hills",
+    "Peninsular Plateau",
+    "Western Ghats",
+    "Eastern Ghats",
+    "Deccan Plateau",
+    "Godavari",
+    "Krishna",
+    "Narmada",
+    "coastline",
+    "estuary",
+    "delta",
+    "Lakshadweep",
+    "Andaman and Nicobar Islands",
+    "Barren Island",
+    "Sundarbans",
+    "mangroves",
+    "Meghalaya Plateau",
+    "living root bridges",
+    "UNESCO World Heritage Site"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All deserts in India are hot.",
+      "correction": "The chapter describes the hot Thar Desert and the cold desert of Ladakh."
+    },
+    {
+      "claim": "The Himalayas are one uniform range.",
+      "correction": "They are broadly divided into Himadri, Himachal and Shivalik ranges."
+    },
+    {
+      "claim": "All plateau rivers flow east.",
+      "correction": "Many flow east, but the Narmada and Tapti flow west."
+    },
+    {
+      "claim": "Lakshadweep and the Andaman and Nicobar Islands have the same origin.",
+      "correction": "Lakshadweep is coral-based, while the Andaman and Nicobar group includes volcanic islands."
+    },
+    {
+      "claim": "Geographical diversity only separates people.",
+      "correction": "Rivers, routes, trade and shared history also connect India’s regions."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Questions and activities Q3 to explain why India is called a mini-continent.",
+    "Use Q4 to trace a major river from source to sea.",
+    "Use Q5 to explain the term peninsular plateau.",
+    "Use Q7 to connect a student’s location with physical maps.",
+    "Use Q9 to explain diversity within unity."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions and activities 1–9.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

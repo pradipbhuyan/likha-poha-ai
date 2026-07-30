@@ -1,0 +1,116 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Maths",
+    "chapter": "Chapter 2: Operations with Integers",
+    "central_question": "How can positive and negative integers be modelled, multiplied, divided and combined in expressions while preserving their signs and operation properties?",
+    "in_scope_units": [
+      "2.1 A Quick Recap of Integers—Rakesh's Puzzle: finding pairs of integers from their sum and ordered difference.",
+      "Carrom Coin Integers: modelling magnitude and direction on a number line and representing final position by P = a + b.",
+      "Token Model and Additive Inverse: revising integer subtraction through zero pairs and rewriting subtraction as addition of the inverse.",
+      "2.2 Multiplication of Integers: interpreting positive and negative multipliers and multiplicands with token placement and removal.",
+      "Patterns in Integer Multiplication: deriving the sign rules by extending multiplication tables through zero.",
+      "Identity, Additive Inverse and Commutativity: establishing 1 × a = a, −1 × a = −a and a × b = b × a.",
+      "Brahmagupta's Rules and Applications: representing fortune and debt and applying integer multiplication to exam marks and elevator movement.",
+      "A Magic Grid of Integers: multiplying selected entries after striking corresponding rows and columns.",
+      "Division of Integers: reframing division as a missing-factor problem and deriving quotient sign rules.",
+      "Expressions Using Integers: associativity, multiplication in any order, sign of a product of many integers and distributivity over addition.",
+      "Pick the Pattern and Final Figure it Out: evaluating machines and solving Questions 1–16 involving expressions, temperatures, marks, products and integer puzzles.",
+      "Terhüchü: an enrichment strategy game from Assam and Nagaland using movement and captures on a line grid."
+    ],
+    "banned_topics": [
+      "Rational-number arithmetic involving non-integer fractions.",
+      "Formal solution of simultaneous linear equations from sum and difference.",
+      "Exponent laws and powers of negative numbers.",
+      "Absolute-value equations and inequalities.",
+      "Polynomial algebra beyond the stated distributive property."
+    ],
+    "must_include_keywords": [
+      "integer",
+      "sum",
+      "difference",
+      "first number − second number",
+      "number line",
+      "rightward",
+      "leftward",
+      "magnitude",
+      "direction",
+      "final position",
+      "P = a + b",
+      "token model",
+      "positive token",
+      "negative token",
+      "zero pair",
+      "additive inverse",
+      "multiplier",
+      "multiplicand",
+      "product",
+      "sign rule",
+      "same signs",
+      "different signs",
+      "commutative",
+      "associative",
+      "distributive",
+      "identity",
+      "−1 × a",
+      "Brahmagupta",
+      "fortune",
+      "debt",
+      "dividend",
+      "divisor",
+      "quotient",
+      "division by zero",
+      "exam marks",
+      "elevator",
+      "temperature",
+      "magic grid",
+      "pattern machine",
+      "Collatz",
+      "pibs",
+      "Terhüchü"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The difference of two numbers is independent of their order.",
+        "correction": "The chapter defines difference as first number minus second number, so swapping the numbers reverses the sign."
+      },
+      {
+        "claim": "A negative integer has negative magnitude.",
+        "correction": "Magnitude is the non-negative distance from zero; the sign records direction."
+      },
+      {
+        "claim": "Subtracting a negative integer makes the result smaller.",
+        "correction": "Subtracting a negative is adding its positive additive inverse."
+      },
+      {
+        "claim": "The product of two negative integers is negative.",
+        "correction": "The product of integers with the same sign is positive; different signs give a negative product."
+      },
+      {
+        "claim": "Integer division can include a zero divisor.",
+        "correction": "Division by zero is not defined, so the divisor must be non-zero."
+      },
+      {
+        "claim": "The distributive property applies only to positive integers.",
+        "correction": "For all integers a, b and c, a × (b + c) = a × b + a × c."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with Rakesh's sum 25 and difference 11 puzzle, then swap the numbers to obtain difference −11.",
+      "Use the carrom movement 5 + (−7) = −2 and the token example 7 − 18 = −11 to revise integer meaning and additive inverse.",
+      "Use the token models for 4 × (−2), (−4) × 2 and (−4) × (−2) to establish multiplication signs.",
+      "Use the multiplication patterns around zero and Figure it Out on page 33 to consolidate the sign rules.",
+      "Use Example 1 on exam marks and Example 2 on the mining elevator for contextual applications.",
+      "Use the division examples (−100) ÷ 25 and (−100) ÷ (−4), then the page 39 Figure it Out questions.",
+      "Finish with the page 42–44 Figure it Out Questions 1–16 on integer expressions and problem solving."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The concluding 'Figure it Out' exercise spans pages 42–44 with Questions 1–16, followed by the summary and the Terhüchü enrichment game."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 10: Operations with Integers\n\n## What you will learn\nYou will revise integers through sum-and-difference puzzles, movement on a number line and the token model. You will distinguish magnitude from direction and use additive inverses correctly.\n\n## Simple explanation\nPositive and negative integers can represent opposite directions or changes. On a number line, a positive movement goes right and a negative movement goes left, while the magnitude tells how far.\n\n## Step-by-step breakdown\n- **Ordered difference**: In Rakesh's game, difference means first number minus second number; 18 − 7 = 11 but 7 − 18 = −11.\n- **Final position**: If movements are a and b, the final position from zero is P = a + b.\n- **Carrom example**: A movement of 5 followed by −7 gives 5 + (−7) = −2, two units left of zero.\n- **Magnitude and direction**: The movement −4 has magnitude 4 and leftward direction.\n- **Positive and negative tokens**: A green token represents +1 and a red token represents −1.\n- **Zero pair**: One positive and one negative token cancel to represent zero.\n- **Additive inverse**: Subtracting an integer is equivalent to adding its additive inverse; −(−18) = 18.\n\n## Worked example\nQuestion: Rakesh's Puzzle: Find two numbers whose sum is 25 and difference, first minus second, is 11.\n\nSolution:\n- Step 1: Let the first and second numbers be checked as an ordered pair.\n- Step 2: Try 18 and 7: their sum is 18 + 7 = 25.\n- Step 3: Their ordered difference is 18 − 7 = 11.\n- Step 4: Both conditions are satisfied.\n- Final answer: The numbers are 18 and 7, in that order.\n\n## Common mistake\nDo not treat difference as the larger number minus the smaller number. In this chapter it is specifically first number minus second number.\n\n## Quick check question\nQuestion: If the first movement is −4 and the final position is 5, what is the second movement?\nAnswer: 9.\nExplanation: Using P = a + b, 5 = −4 + b, so b = 9.\n\n## Summary\n- Integers model direction as well as size.\n- Order matters in subtraction.\n- Final position is the sum of signed movements.\n- Zero pairs do not change a token total.\n- Subtracting means adding the additive inverse.",
+    "Core explanation": "# Core explanation: Chapter 10: Operations with Integers\n\n## What you will learn\nYou will model multiplication of integers with tokens and derive the sign rules. You will understand positive and negative multipliers as repeated placement or removal.\n\n## Simple explanation\nA positive multiplier means placing equal token groups into an empty bag. A negative multiplier is interpreted through removing equal groups, using zero pairs when the required tokens are not initially present.\n\n## Step-by-step breakdown\n- **Positive × positive**: 4 × 2 places two positive tokens four times, giving +8.\n- **Positive × negative**: 4 × (−2) places two negative tokens four times, giving −8.\n- **Negative × positive**: (−4) × 2 removes two positives four times; zero pairs leave eight negatives, giving −8.\n- **Negative × negative**: (−4) × (−2) removes two negatives four times; eight positives remain, giving +8.\n- **Same signs**: Two positive factors or two negative factors give a positive product.\n- **Different signs**: One positive factor and one negative factor give a negative product.\n- **Magnitude**: The magnitude of the product is the product of the factor magnitudes.\n\n## Worked example\nQuestion: Token-model example: Explain why (−4) × (−2) = 8.\n\nSolution:\n- Step 1: A negative multiplier of −4 means remove the multiplicand group four times.\n- Step 2: The multiplicand −2 is a group of two negative tokens.\n- Step 3: Start with an empty bag and add two zero pairs for each removal.\n- Step 4: Remove two negative tokens four times.\n- Step 5: Eight positive tokens remain.\n- Final answer: (−4) × (−2) = +8.\n\n## Common mistake\nDo not memorise 'two negatives make a positive' without identifying the operation. In addition, two negative numbers give a more negative sum; the positive result here is a multiplication rule.\n\n## Quick check question\nQuestion: Find (−7) × 3.\nAnswer: −21.\nExplanation: The signs are different, so the product is negative, and 7 × 3 = 21.\n\n## Summary\n- A multiplier controls repeated placement or removal.\n- Zero pairs make token removal possible.\n- Same signs give a positive product.\n- Different signs give a negative product.\n- Multiply magnitudes, then determine the sign.",
+    "Worked examples": "# Worked examples: Chapter 10: Operations with Integers\n\n## What you will learn\nYou will extend multiplication patterns through zero and use integer multiplication properties. You will apply sign rules to real situations such as marks and elevator movement.\n\n## Simple explanation\nMultiplication patterns remain consistent when multipliers pass below zero. Integer multiplication is commutative, and multiplying by 1 keeps a number while multiplying by −1 gives its additive inverse.\n\n## Step-by-step breakdown\n- **Pattern with +3**: As the multiplier falls by 1, products 12, 9, 6, 3, 0, −3, ... fall by 3.\n- **Pattern with −3**: Products −12, −9, −6, −3, 0, 3, ... rise by 3 as the multiplier falls by 1.\n- **Identity**: For every integer a, 1 × a = a.\n- **Negative one**: For every integer a, −1 × a = −a.\n- **Commutativity**: For integers a and b, a × b = b × a.\n- **Brahmagupta**: The chapter describes positive numbers as fortune and negative numbers as debt in his 628 CE sign rules.\n- **Context**: Positive marks or upward movement and negative marks or downward movement can be represented in one expression.\n\n## Worked example\nQuestion: NCERT Example 1: Mala has 30 correct answers worth +5 each and 20 wrong answers worth −2 each. Find her score.\n\nSolution:\n- Step 1: Marks for correct answers = 30 × 5 = 150.\n- Step 2: Marks for wrong answers = 20 × (−2) = −40.\n- Step 3: Total marks = 150 + (−40).\n- Step 4: 150 − 40 = 110.\n- Final answer: Mala's score is 110 marks.\n\n## Common mistake\nDo not subtract the number of wrong answers directly. Multiply each wrong answer by its mark value −2 before combining totals.\n\n## Quick check question\nQuestion: An elevator moves downward at 3 m per minute for 60 minutes from ground level. What is its position?\nAnswer: −180 m, or 180 m below ground.\nExplanation: Downward speed is −3 m/min, so 60 × (−3) = −180.\n\n## Summary\n- Patterns justify multiplication signs.\n- Multiplication by 1 preserves an integer.\n- Multiplication by −1 gives the additive inverse.\n- Integer multiplication is commutative.\n- Signed multiplication models marks, height and movement.",
+    "Exam-style problems": "# Exam-style problems: Chapter 10: Operations with Integers\n\n## What you will learn\nYou will divide integers and solve contextual problems involving temperature, profit and loss. You will connect division with a missing multiplication factor.\n\n## Simple explanation\nTo divide, ask what integer must multiply the divisor to produce the dividend. The quotient follows the same sign pattern as multiplication.\n\n## Step-by-step breakdown\n- **Missing-factor meaning**: (−100) ÷ 25 asks for x such that 25x = −100.\n- **Different signs**: (−100) ÷ 25 = −4 and 50 ÷ (−25) = −2.\n- **Same signs**: (−100) ÷ (−4) = 25.\n- **General rule**: Same-sign dividend and divisor give a positive quotient; different signs give a negative quotient.\n- **Non-zero divisor**: The divisor cannot be zero.\n- **Temperature change**: Repeated hourly drops are represented by multiplication by a negative rate.\n- **Profit and loss**: Profit is positive and loss is negative before totals are added.\n\n## Worked example\nQuestion: Figure it Out Question 2 on page 39: Temperature starts at 32°C and falls 5°C each hour for 10 hours. Find the final temperature.\n\nSolution:\n- Step 1: Represent each hourly fall as −5°C.\n- Step 2: Change in 10 hours = 10 × (−5) = −50°C.\n- Step 3: Final temperature = 32 + (−50).\n- Step 4: 32 − 50 = −18.\n- Final answer: The room temperature is −18°C.\n\n## Common mistake\nDo not ignore the starting value. A rate-times-time calculation gives the change, which must then be added to the initial temperature or position.\n\n## Quick check question\nQuestion: Evaluate (−46) ÷ (−23).\nAnswer: 2.\nExplanation: The signs are the same, so the quotient is positive, and 46 ÷ 23 = 2.\n\n## Summary\n- Division is a missing-factor problem.\n- Same signs give a positive quotient.\n- Different signs give a negative quotient.\n- A divisor must be non-zero.\n- Context problems require initial value plus signed change.",
+    "Revision and recap": "# Revision and recap: Chapter 10: Operations with Integers\n\n## What you will learn\nYou will evaluate longer integer expressions using associativity and distributivity. You will determine the sign of multi-factor products and interpret pattern machines and final challenge problems.\n\n## Simple explanation\nThe usual multiplication properties continue to hold for integers. Careful brackets and sign tracking allow long expressions to be rearranged or expanded without changing their value.\n\n## Step-by-step breakdown\n- **Associative property**: a × (b × c) = (a × b) × c.\n- **Order of many factors**: Commutativity and associativity allow factors to be reordered and grouped conveniently.\n- **Sign of many factors**: An even number of negative factors gives a positive product; an odd number gives a negative product, unless a factor is zero.\n- **Distributive property**: a × (b + c) = a × b + a × c for all integers.\n- **Pattern machine**: Machine 1 performs first + second − third, written a + b − c.\n- **Opposite expression**: Changing every term's sign changes the value to its additive inverse.\n- **Final challenges**: The exercise includes modified Collatz sequences, test marks, temperature expressions, consecutive products, pibs, large products and maximum/minimum expressions.\n- **Terhüchü**: The enrichment describes a two-player strategy game from Assam and Nagaland with movement and capture rules.\n\n## Worked example\nQuestion: Final Figure it Out Question 1(a): Evaluate (−5) × (18 + (−3)).\n\nSolution:\n- Step 1: Evaluate the bracket: 18 + (−3) = 15.\n- Step 2: Multiply: (−5) × 15.\n- Step 3: The signs are different, so the product is negative.\n- Step 4: 5 × 15 = 75.\n- Step 5: The value is −75.\n- Final answer: Check by distribution: (−5)×18 + (−5)×(−3) = −90 + 15 = −75.\n\n## Common mistake\nDo not distribute to only the first term inside brackets. The outside factor multiplies every term.\n\n## Quick check question\nQuestion: What is the sign of (−2) × (−1) × (−5) × (−3)?\nAnswer: Positive.\nExplanation: There are four negative factors, an even number, so the product is positive; its value is 30.\n\n## Summary\n- Associativity changes grouping, not value.\n- Factors may be reordered in multiplication.\n- Parity of negative factors determines the product sign.\n- Distributivity applies to negative integers.\n- Pattern machines translate repeated operations into expressions."
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 7 Fractions",
+  "central_question": "How can fractional quantities be represented, compared, converted, added, and subtracted meaningfully?",
+  "in_scope_units": [
+    "7.1 Fractional Units and Equal Shares",
+    "7.2 Fractional Units as Parts of a Whole",
+    "7.3 Measuring Using Fractional Units",
+    "7.4 Marking Fraction Lengths on the Number Line",
+    "7.5 Mixed Fractions",
+    "7.6 Equivalent Fractions",
+    "7.7 Comparing Fractions",
+    "7.8 Addition and Subtraction of Fractions"
+  ],
+  "banned_topics": [
+    "General multiplication and division of fractions",
+    "Decimal expansions",
+    "Percentages"
+  ],
+  "must_include_keywords": [
+    "equal shares",
+    "fractional unit",
+    "unit fraction",
+    "whole",
+    "numerator",
+    "denominator",
+    "repeated unit fractions",
+    "paper strip",
+    "number line",
+    "fraction greater than 1",
+    "mixed number",
+    "whole part",
+    "fractional part",
+    "equivalent fractions",
+    "fraction wall",
+    "equal length",
+    "lowest terms",
+    "common denominator",
+    "compare numerators",
+    "ascending order",
+    "descending order",
+    "addition",
+    "subtraction",
+    "same denominator",
+    "different denominators",
+    "Brahmagupta's method"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A larger denominator always makes a larger fraction.",
+      "correction": "For unit fractions of one whole, a larger denominator makes smaller parts."
+    },
+    {
+      "claim": "Add both numerators and denominators.",
+      "correction": "Make denominators equal, then add numerators and keep the denominator."
+    },
+    {
+      "claim": "Every fraction greater than 1 has a non-zero fractional part.",
+      "correction": "For example, 8/4 is exactly the whole number 2."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use equal sharing and paper strips for unit fractions.",
+    "Place fractions on the number line.",
+    "Convert between improper fractions and mixed numbers.",
+    "Use a fraction wall for equivalence and lowest terms.",
+    "Compare, add, and subtract using common denominators."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out tasks in Sections 7.1–7.8, including the final Brahmagupta-method subtraction and word problems.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

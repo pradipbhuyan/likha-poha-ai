@@ -1,0 +1,102 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Social Science",
+    "chapter": "Chapter 2: Understanding the Weather",
+    "central_question": "How are weather elements measured and interpreted so that people can describe conditions and prepare for hazards?",
+    "in_scope_units": [
+      "Weather and its Elements—atmosphere, troposphere, temperature, precipitation, pressure, wind and humidity.",
+      "Traditional prediction and meteorology—Nature’s clues and systematic study.",
+      "Temperature instruments—thermometers, scales, maximum, minimum, range and mean.",
+      "Precipitation—rain gauges and rainfall depth.",
+      "Atmospheric pressure—altitude, barometers, millibars and low-pressure systems.",
+      "Wind—high-to-low pressure movement, vane, sock and anemometer.",
+      "Humidity—evaporation, relative humidity and hygrometers.",
+      "Weather Stations and Automated Weather Stations.",
+      "Predicting the Weather—IMD warnings, extreme events, public preparation and evacuation.",
+      "Questions and activities 1–4—instrument matching, forecast interpretation, rain-gauge placement and IMD reporting."
+    ],
+    "banned_topics": [
+      "Long-term climate classification.",
+      "Detailed atmospheric layers beyond the troposphere.",
+      "Detailed climate-change science.",
+      "Medical diagnosis using thermometers."
+    ],
+    "must_include_keywords": [
+      "weather",
+      "atmosphere",
+      "troposphere",
+      "temperature",
+      "precipitation",
+      "atmospheric pressure",
+      "wind",
+      "humidity",
+      "water vapour",
+      "meteorology",
+      "forecast",
+      "thermometer",
+      "Celsius",
+      "Fahrenheit",
+      "ambient temperature",
+      "maximum temperature",
+      "minimum temperature",
+      "range of temperature",
+      "mean daily temperature",
+      "rain gauge",
+      "barometer",
+      "millibar",
+      "low-pressure system",
+      "acclimatise",
+      "wind vane",
+      "wind sock",
+      "anemometer",
+      "relative humidity",
+      "hygrometer",
+      "weather station",
+      "Automated Weather Station",
+      "India Meteorological Department",
+      "weather warning",
+      "heat wave",
+      "cyclone",
+      "fishermen",
+      "evacuation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Weather is a long-term regional pattern.",
+        "correction": "Weather is the state of the atmosphere at a particular time and place."
+      },
+      {
+        "claim": "A rain gauge measures total citywide rain volume.",
+        "correction": "It measures rainfall depth at a properly placed observation point."
+      },
+      {
+        "claim": "Pressure is higher at high altitude.",
+        "correction": "Pressure generally decreases as altitude increases."
+      },
+      {
+        "claim": "A wind vane and anemometer measure the same thing.",
+        "correction": "A vane indicates direction, while an anemometer measures wind speed."
+      },
+      {
+        "claim": "High humidity makes clothes dry faster.",
+        "correction": "High humidity slows evaporation and drying."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Questions and activities Q1 to match instruments and elements.",
+      "Use Q2 to interpret 29°C and 84% humidity.",
+      "Use Q3 to select a suitable rain-gauge site.",
+      "Use Q4 to report IMD Jammu and Kashmir data.",
+      "Use the IMD map dated 19 May 2024 to discuss warning levels."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions and activities 1–4."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 2: Understanding the Weather\n\n## What you will learn\nYou will define weather and identify its five elements. You will understand why standard measurements are clearer than personal descriptions.\n\n## Simple explanation\nWeather is the condition of the atmosphere at a particular place and time. Measuring it allows people in different regions to compare the same conditions.\n\n## Step-by-step breakdown\n- **Atmosphere**: The layer of gases surrounding Earth.\n- **Troposphere**: The lowest layer where almost all weather occurs.\n- **Temperature**: How hot or cold the atmosphere is.\n- **Precipitation**: Rain, snow, sleet or hail falling from the sky.\n- **Atmospheric pressure**: Pressure from the weight of air.\n- **Wind**: Moving air described by speed and direction.\n- **Humidity**: The amount of water vapour in air.\n\n## Worked example\nQuestion: Why is a measured temperature more useful than saying “it feels chilly”?\n\nSolution:\n- Step 1: The chapter shows that a person in Chennai and a person in Kashmir may experience cold differently.\n- Step 2: A standard scale gives both people the same reference.\n- Final answer: Measured temperature communicates weather more clearly than personal feeling alone.\n\n## Common mistake\nWeather is not temperature alone; all five elements matter.\n\n## Quick check question\nQuestion: Where does almost all weather occur?\nAnswer: In the troposphere.\nExplanation: It is the lowest atmospheric layer where people, plants and animals live.\n\n## Summary\n- Weather is local and time-specific.\n- Five elements describe weather.\n- Standard measurement supports comparison.",
+    "Core explanation": "# Core explanation: Chapter 2: Understanding the Weather\n\n## What you will learn\nYou will compare traditional prediction with meteorology and study temperature and rainfall instruments.\n\n## Simple explanation\nTraditional signs come from close observation, while scientific meteorology adds instruments, standard units and repeated records.\n\n## Step-by-step breakdown\n- **Nature’s clues**: Birds, ants, frogs and pine cones have been used as weather signs.\n- **Meteorology**: The systematic study of weather and its evolution.\n- **Thermometers**: They measure ambient, maximum and minimum temperatures.\n- **Scales**: The chapter recalls Celsius and Fahrenheit.\n- **Range**: Maximum temperature minus minimum temperature.\n- **Mean daily temperature**: Maximum plus minimum divided by two.\n- **Rain gauge**: A funnel and tube measure collected rainfall depth in millimetres.\n- **Placement**: It should stand in an open, flat and unobstructed place.\n\n## Worked example\nQuestion: How can traditional knowledge and scientific instruments complement each other?\n\nSolution:\n- Step 1: Both begin with careful observation of changing conditions.\n- Step 2: Instruments add standard readings that can be recorded, compared and analysed.\n- Final answer: Traditional signs provide local knowledge, while meteorology provides precise systematic evidence.\n\n## Common mistake\nA rain gauge should not be placed under trees, roofs or walls.\n\n## Quick check question\nQuestion: What does a rain-gauge reading of 5 mm mean?\nAnswer: The collected water reached a depth of 5 mm.\nExplanation: Rainfall is reported as measured depth in the tube.\n\n## Summary\n- Traditional knowledge records environmental patterns.\n- Meteorology uses instruments and standards.\n- Temperature uses maximum and minimum readings.\n- Rain gauges measure depth.",
+    "Worked examples": "# Worked examples: Chapter 2: Understanding the Weather\n\n## What you will learn\nYou will understand atmospheric pressure and wind. You will connect altitude and low pressure with human comfort and storms.\n\n## Simple explanation\nAir has weight, and differences in pressure move air from one place to another. Pressure measurements can therefore reveal important weather changes.\n\n## Step-by-step breakdown\n- **Altitude**: Pressure decreases and air becomes thinner at greater height.\n- **Acclimatisation**: People pause during high-altitude journeys so the body can adjust.\n- **Barometer**: Measures pressure in millibars.\n- **Reference values**: About 1013 mb is normal at the coast; below 1000 mb indicates a depression.\n- **Wind**: Moves from high pressure towards low pressure.\n- **Wind vane**: Shows wind direction.\n- **Wind sock**: Helps pilots judge direction during take-off and landing.\n- **Anemometer**: Rotating cups measure wind speed in kilometres per hour.\n\n## Worked example\nQuestion: Why is a falling pressure reading important near the coast?\n\nSolution:\n- Step 1: The chapter says coastal pressure can fall sharply and form a depression.\n- Step 2: Intense low-pressure systems may develop into storms or cyclones.\n- Final answer: Monitoring pressure provides evidence for early warnings and preparation.\n\n## Common mistake\nWind does not move from low to high pressure; it moves from high to low.\n\n## Quick check question\nQuestion: Which instrument measures atmospheric pressure?\nAnswer: A barometer.\nExplanation: It displays pressure, usually in millibars.\n\n## Summary\n- Pressure decreases with altitude.\n- Barometers detect low-pressure systems.\n- Wind follows pressure differences.\n- Wind instruments support safety and forecasting.",
+    "Exam-style problems": "# Exam-style problems: Chapter 2: Understanding the Weather\n\n## What you will learn\nYou will study humidity, evaporation and weather stations. You will see how many instruments work together.\n\n## Simple explanation\nHumidity affects drying and comfort. A weather station combines observations so meteorologists can understand the whole situation.\n\n## Step-by-step breakdown\n- **Humidity**: The amount of water vapour in air.\n- **Evaporation**: It slows when the air already contains much water vapour.\n- **Relative humidity**: 0% is completely dry in theory and 100% is saturated.\n- **Typical ranges**: The chapter describes 20–40% as dry and 60–80% as humid.\n- **Hygrometer**: Measures humidity.\n- **Weather station**: Combines temperature, pressure, rainfall, wind and humidity instruments.\n- **AWS**: Uses sensors and records data without continuous human intervention.\n- **Sikkim example**: An AWS was installed above 4,800 metres near a glacial lake in 2023.\n\n## Worked example\nQuestion: Why do clothes dry more slowly at 84% humidity than at 52%?\n\nSolution:\n- Step 1: The chapter states that evaporation slows when air already holds more water vapour.\n- Step 2: At higher relative humidity, the air accepts less additional vapour from wet cloth.\n- Final answer: Clothes dry more slowly in the more humid place when temperature is the same.\n\n## Common mistake\n84% humidity does not mean that 84% of the air is liquid water.\n\n## Quick check question\nQuestion: What instrument measures humidity?\nAnswer: A hygrometer.\nExplanation: It gives a relative-humidity reading for comparison.\n\n## Summary\n- High humidity slows evaporation.\n- Hygrometers measure humidity.\n- Weather stations combine elements.\n- AWS systems support remote monitoring.",
+    "Revision and recap": "# Revision and recap: Chapter 2: Understanding the Weather\n\n## What you will learn\nYou will explain how observations become forecasts and warnings. You will connect weather information with safety decisions.\n\n## Simple explanation\nForecasts guide action. Clear warning maps allow people and governments to prepare for severe heat, rain, storms or cyclones.\n\n## Step-by-step breakdown\n- **Long-term data**: Meteorologists study repeated measurements and patterns.\n- **Extreme weather**: Warnings may cover heat waves, cold waves, rain, snow, hail, storms and cyclones.\n- **IMD map**: Colours and icons show watches, alerts and warnings.\n- **Government action**: Forecasts help mobilise resources and prepare for disasters.\n- **Fishermen**: Storm warnings can stop boats from going to sea.\n- **Evacuation**: Coastal communities may be moved before a cyclone.\n- **Dominant elements**: Different events emphasise temperature, rain, pressure or wind.\n\n## Worked example\nQuestion: Why is a structured warning better than saying “bad weather may occur”?\n\nSolution:\n- Step 1: A warning identifies the hazard, affected area and level of action.\n- Step 2: People can decide whether to monitor, prepare or act immediately.\n- Final answer: Structured warnings support timely, location-specific safety decisions.\n\n## Common mistake\nA forecast is a scientific prediction, not a guarantee.\n\n## Quick check question\nQuestion: Give one safety decision based on a forecast.\nAnswer: Fishermen may be advised not to go to sea before a storm.\nExplanation: Changing plans before conditions worsen reduces danger.\n\n## Summary\n- Forecasts use measured data.\n- Warning maps translate data into action.\n- Different hazards require different responses."
+  }
+}

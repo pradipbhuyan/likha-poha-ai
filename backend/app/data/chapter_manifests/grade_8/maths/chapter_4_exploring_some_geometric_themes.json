@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 4: Exploring Some Geometric Themes",
+  "central_question": "How can repeating geometric processes and different two-dimensional representations help us understand fractals and visualise three-dimensional solids?",
+  "in_scope_units": [
+    "Fractals and self-similarity in natural objects such as ferns, trees, clouds, coastlines and lightning.",
+    "The Sierpinski Carpet, its repeated construction, remaining-square count and hole count.",
+    "The Sierpinski Triangle or Gasket and its repeated midpoint construction.",
+    "The Koch Snowflake, changing side lengths, number of segments and perimeter.",
+    "Fractal patterns in art and architecture.",
+    "Visualising solids through profiles, faces, edges and vertices.",
+    "Prisms and pyramids and patterns in their numbers of faces, edges and vertices.",
+    "Nets of cubes, cuboids, tetrahedrons, pyramids, cylinders, cones and octahedrons.",
+    "Shortest paths on the surfaces of cuboids found by unfolding suitable nets.",
+    "Orthogonal projections of points, lines, polygons and solids.",
+    "Front, top and side views.",
+    "Isometric projections and drawings on isometric grids."
+  ],
+  "banned_topics": [
+    "Fractal dimension and logarithmic dimension formulae.",
+    "Surface-area and volume formulae as a mensuration chapter.",
+    "Perspective drawing with vanishing points.",
+    "Computer-aided design software instructions."
+  ],
+  "must_include_keywords": [
+    "fractal",
+    "self-similarity",
+    "fern",
+    "Sierpinski Carpet",
+    "remaining squares",
+    "holes",
+    "Rₙ = 8ⁿ",
+    "Sierpinski Gasket",
+    "equilateral triangle",
+    "midpoints",
+    "Koch Snowflake",
+    "repeated geometric operation",
+    "sequence of shapes",
+    "fractal art",
+    "solid",
+    "face",
+    "edge",
+    "vertex",
+    "prism",
+    "pyramid",
+    "cube net",
+    "cuboid net",
+    "regular tetrahedron",
+    "cylinder",
+    "cone",
+    "octahedron",
+    "folding",
+    "unfolding",
+    "shortest path",
+    "projection",
+    "vertical plane",
+    "horizontal plane",
+    "side plane",
+    "front view",
+    "top view",
+    "side view",
+    "isometric projection",
+    "isometric grid"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A fractal must be exactly identical at every scale.",
+      "correction": "The chapter treats fractals as self-similar objects whose same or similar patterns repeat at smaller and smaller scales."
+    },
+    {
+      "claim": "At Step n of the Sierpinski Carpet, the number of remaining squares is 9ⁿ.",
+      "correction": "Each remaining square creates 8 remaining squares at the next step, so Rₙ = 8ⁿ."
+    },
+    {
+      "claim": "Any arrangement of six squares joined edge-to-edge is a net of a cube.",
+      "correction": "Only arrangements that fold without overlap into all six faces form cube nets; the chapter states there are 11 distinct cube nets up to rotation and reflection."
+    },
+    {
+      "claim": "The straight line between two surface points on a cuboid can be found from any one unfolding.",
+      "correction": "Different unfoldings can produce different candidate lengths, so all relevant nets must be compared to find the shortest path."
+    },
+    {
+      "claim": "A single projection uniquely identifies a solid.",
+      "correction": "Different objects may have the same projection; front, top and side views are used together to give more information."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the Sierpinski Carpet construction to derive Rₙ = 8ⁿ and Hₙ₊₁ = Hₙ + Rₙ.",
+    "Use the Figure it Out tasks for the Sierpinski Gasket to count remaining triangles and holes.",
+    "Use the Koch Snowflake sequence to track the growth in line segments and perimeter.",
+    "Use the chapter's cube-net exercise to distinguish valid nets and recognise the 11 possibilities.",
+    "Use the ant-and-laddu cuboid problem, including the 24-32-40 right triangle, to compare unfoldings.",
+    "Use the final projection matching activity to connect objects with front, top and side views."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Figure it Out and Math Talk tasks are distributed through the fractal, nets, shortest-path and projection sections, ending with isometric-grid activities and the Summary.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

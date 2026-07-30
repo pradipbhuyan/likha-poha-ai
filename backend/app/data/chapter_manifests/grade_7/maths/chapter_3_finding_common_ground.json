@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 3: Finding Common Ground",
+  "central_question": "How can prime factorisation be used to find the Highest Common Factor and Lowest Common Multiple of numbers efficiently, and how are HCF and LCM related?",
+  "in_scope_units": [
+    "3.1 The Greatest of All: introducing HCF through tiling and bag-packing problems and listing common factors.",
+    "Primes and Prime Factorisation: revising primes and factorising numbers into primes, including the division method.",
+    "Factors of a Number Using Prime Factorisation: constructing all factors as subparts of the prime factorisation.",
+    "Finding the HCF of Numbers Using Prime Factorisation: worked examples finding common factors and HCF from prime factorisations.",
+    "Direct HCF Method: choosing the minimum occurrence of each common prime to build the HCF directly.",
+    "3.2 Least, but not Last!: introducing LCM through toran-length and gajak-visit problems and listing common multiples.",
+    "Finding LCM through Prime Factorisation: building the LCM using the maximum occurrence of each prime factor.",
+    "3.3 Patterns, Properties, and a Pretty Procedure!: generalising HCF and LCM patterns for special number pairs.",
+    "Efficient Procedures for HCF and LCM: the short-division ladder method for finding HCF and LCM together.",
+    "Property Involving both the HCF and the LCM: HCF × LCM = product of the two numbers.",
+    "Figure it Out exercises across the chapter and the concluding chapter Figure it Out with Questions 1–13."
+  ],
+  "banned_topics": [
+    "Fraction addition and subtraction using LCM as a general topic beyond the Mahaviracharya problem mentioned.",
+    "Ratio and proportion.",
+    "Divisibility rules as a separate topic beyond what supports prime factorisation.",
+    "Algebraic identities unrelated to HCF/LCM generalisation."
+  ],
+  "must_include_keywords": [
+    "common factor",
+    "Highest Common Factor",
+    "HCF",
+    "Greatest Common Divisor",
+    "GCD",
+    "prime",
+    "prime factorisation",
+    "composite number",
+    "division method",
+    "subpart",
+    "conjecture",
+    "counterexample",
+    "generalisation",
+    "common multiple",
+    "Lowest Common Multiple",
+    "LCM",
+    "co-prime",
+    "consecutive numbers",
+    "HCF × LCM",
+    "product of two numbers",
+    "short-division ladder",
+    "efficient procedure",
+    "toran",
+    "gajak",
+    "Mahaviracharya",
+    "Sieve of Eratosthenes"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Listing every factor is the only way to find the HCF.",
+      "correction": "Prime factorisation gives a faster, more reliable method by comparing subparts of the factorisations."
+    },
+    {
+      "claim": "The HCF is found by taking the maximum occurrence of each common prime.",
+      "correction": "The HCF uses the minimum occurrence of each common prime across the numbers."
+    },
+    {
+      "claim": "The LCM is found by taking the minimum occurrence of each common prime.",
+      "correction": "The LCM uses the maximum occurrence of each prime factor appearing in any of the numbers."
+    },
+    {
+      "claim": "A larger number always has a longer prime factorisation.",
+      "correction": "This conjecture is disproved by the counterexample of 96 (five prime factors) and 121 (two prime factors), even though 121 is larger."
+    },
+    {
+      "claim": "The LCM of two numbers can be greater than their product.",
+      "correction": "The LCM is never greater than the product of the two numbers."
+    },
+    {
+      "claim": "HCF and LCM are unrelated quantities.",
+      "correction": "For two numbers, HCF × LCM equals the product of the two numbers."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Sameeksha's tile problem to introduce HCF through common factors of 12 and 16.",
+    "Use Lekhana's rice-bag problem and the Jump Jackpot connection to reinforce common factors.",
+    "Use Examples 1–3 to find HCF via prime factorisation subparts for 45 & 75, 112 & 84, and 96 & 275.",
+    "Use Examples 4–5 to derive the direct minimum-occurrence method for 30 & 72 and 225 & 750.",
+    "Use the toran and gajak problems to introduce LCM through common multiples.",
+    "Use Examples 6–7 to find LCM via prime factorisation for 14 & 35 and 96 & 360.",
+    "Use the short-division ladder examples for 84 & 180, 300 & 150, and 630 & 770 to find HCF and LCM together.",
+    "Use the 105 & 95 example to establish HCF × LCM = product of the two numbers.",
+    "Conclude with the chapter Figure it Out Questions 1–13, including the cowherd, box-cube and Mahaviracharya problems."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The concluding chapter Figure it Out contains Questions 1–13, including the cowherd-and-gates problem, box-cube packing, and Mahaviracharya's fraction-sum problem, followed by the chapter summary and Mystery Colours activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

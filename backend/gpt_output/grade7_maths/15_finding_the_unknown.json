@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Maths",
+    "chapter": "Chapter 7: Finding the Unknown",
+    "central_question": "How can an unknown quantity be represented by a letter, translated into an equation and found by preserving equality through inverse operations?",
+    "in_scope_units": [
+      "7.1 Find the Unknowns—Unknown Weights: interpreting balanced scales and removing equal quantities from both sides.",
+      "Matchstick Pattern and Equations: representing the nth pattern with a letter-number and solving conditions such as 2n + 1 = 99.",
+      "7.2 Solving Equations Systematically: understanding equations, LHS, RHS, solutions, trial and error and equality-preserving operations.",
+      "Inverse Operations and Transposition: removing terms or factors through additive inverses, division and multiplication.",
+      "Unknowns on Both Sides: collecting unknown terms on one side and known terms on the other.",
+      "Solving Problems: forming equations from tile patterns, savings, parties, math tricks, ages, prices and sharing situations.",
+      "Generating Equations: creating multiple equations with a specified solution and interpreting equations in context.",
+      "7.3 Mind the Mistake, Mend the Mistake: locating, explaining and correcting errors in equation-solving steps.",
+      "7.4 A Pinch of History: bījagaṇita, Brahmagupta, Al-Khwarizmi, ancient symbols for unknowns and Bhāskarāchārya's horse-price problem.",
+      "Final Figure it Out: solving Questions 1–20 involving machines, taxi fares, number relations, geometry, equations and heads-and-feet reasoning."
+    ],
+    "banned_topics": [
+      "Simultaneous linear equations as a formal elimination or substitution method.",
+      "Quadratic equations and factorisation.",
+      "Inequalities and graphing solution sets.",
+      "Coordinate graphs of linear equations.",
+      "Algebraic identities and polynomial division."
+    ],
+    "must_include_keywords": [
+      "unknown",
+      "balanced scale",
+      "equal quantities",
+      "letter-number",
+      "matchstick pattern",
+      "equation",
+      "left-hand side",
+      "right-hand side",
+      "LHS",
+      "RHS",
+      "solution",
+      "trial and error",
+      "inverse operations",
+      "additive inverse",
+      "multiplicative inverse",
+      "same operation on both sides",
+      "transposition",
+      "substitution",
+      "check the solution",
+      "unknown on both sides",
+      "distributive property",
+      "form an equation",
+      "math trick",
+      "pattern rule",
+      "Mind the Mistake",
+      "bījagaṇita",
+      "Brahmagupta",
+      "Brāhmasphuṭasiddhānta",
+      "Al-Khwarizmi",
+      "al-jabr",
+      "yāvat-tāvat",
+      "rūpa",
+      "Bhāskarāchārya",
+      "horse-price problem",
+      "taxi fare",
+      "heads and feet"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A term can simply be moved across the equality sign and its sign changed without explanation.",
+        "correction": "This shorthand represents applying an inverse operation equally so that the balance of the equation is preserved."
+      },
+      {
+        "claim": "An operation used on one side of an equation need not be used on the other side.",
+        "correction": "The same equality-preserving operation must be applied to both sides."
+      },
+      {
+        "claim": "In 2(x + 1), the factor 2 multiplies only x.",
+        "correction": "By distributivity, 2(x + 1) = 2x + 2."
+      },
+      {
+        "claim": "The first value obtained is automatically the solution.",
+        "correction": "Substitute the value into the original equation and verify that LHS equals RHS."
+      },
+      {
+        "claim": "A dash or diagram can be translated into any convenient equation.",
+        "correction": "Every number, operation and relationship in the equation must match the stated situation."
+      },
+      {
+        "claim": "Every equation has exactly one solution.",
+        "correction": "Some equations may have no solution or may express an equality true for more than one value, although the chapter mainly solves single-solution linear equations."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the balanced-scale sack activities in Figs. 7.9–7.12 to establish doing the same thing on both sides.",
+      "Use the matchstick pattern and equation 2n + 1 = 99 to connect patterns, letter-numbers and equations.",
+      "Use 5x − 4 = 7, Example 5 and Example 6 to teach inverse operations and unknowns on both sides.",
+      "Use Example 7's tile pattern 3k + 1 and Examples 9–11 on savings, brackets and the math trick for modelling.",
+      "Use the Mind the Mistake section on pages 181–182 to diagnose sign and distribution errors.",
+      "Use Example 16, Bhāskarāchārya's horse-price problem, to connect history and equation solving.",
+      "Conclude with final Figure it Out Questions 1–20 on pages 185–189."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The concluding Figure it Out exercise spans pages 185–189 and contains Questions 1–20, including the equation maze and heads-and-feet problem."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 15: Finding the Unknown\n\n## What you will learn\nYou will interpret an unknown as a quantity whose value must be found. You will use balanced scales and matchstick patterns to understand equations and letter-numbers.\n\n## Simple explanation\nAn equation says that two expressions have the same value, just as two plates of a balanced scale have equal weight. Removing or adding equal quantities on both sides keeps the balance unchanged.\n\n## Step-by-step breakdown\n- **Unknown weights**: Pictures represent objects with fixed but initially unknown weights.\n- **Balance principle**: Equal weights may be removed from both plates without disturbing equality.\n- **Letter-number**: A letter such as x, y or n represents a number whose value can vary or must be found.\n- **Pattern rule**: The matchstick pattern is represented by a rule such as 2n + 1 for step n.\n- **Equation**: A condition such as 2n + 1 = 99 asks which step produces 99 matchsticks.\n- **LHS and RHS**: The expression before = is the left-hand side and the expression after = is the right-hand side.\n- **Solution**: A value is a solution when substitution makes LHS and RHS equal.\n\n## Worked example\nQuestion: NCERT matchstick pattern: Solve 2n + 1 = 99.\n\nSolution:\n- Step 1: Start with the equation 2n + 1 = 99.\n- Step 2: Subtract 1 from both sides: 2n + 1 − 1 = 99 − 1.\n- Step 3: Simplify: 2n = 98.\n- Step 4: Divide both sides by 2: n = 98 ÷ 2.\n- Step 5: n = 49.\n- Step 6: Check: 2 × 49 + 1 = 98 + 1 = 99.\n- Final answer: The arrangement with 99 matchsticks is step 49.\n\n## Common mistake\nDo not subtract 1 from only one side. That would destroy the equality represented by the balanced scale.\n\n## Quick check question\nQuestion: What does it mean for x = 4 to be a solution of 8x = 20 + 3x?\nAnswer: Substituting 4 makes both sides equal to 32.\nExplanation: LHS = 8 × 4 = 32 and RHS = 20 + 3 × 4 = 20 + 12 = 32.\n\n## Summary\n- An equation represents a balance.\n- Letters can represent unknown numbers.\n- LHS and RHS must remain equal.\n- A solution is verified by substitution.\n- Patterns can be translated into equations.",
+    "Core explanation": "# Core explanation: Chapter 15: Finding the Unknown\n\n## What you will learn\nYou will solve equations systematically with inverse operations. You will understand transposition as a shorthand for maintaining equality, including equations with unknowns on both sides.\n\n## Simple explanation\nTo isolate the unknown, undo operations in a sensible order. Addition is undone by subtraction, subtraction by addition, multiplication by division and division by multiplication.\n\n## Step-by-step breakdown\n- **Same operation**: Adding, subtracting, multiplying or dividing both sides by the same permissible number preserves equality.\n- **Additive inverse**: To remove +7, subtract 7; to remove −5, subtract −5, which is the same as adding 5.\n- **Factor removal**: To remove a non-zero factor such as 11 in 11y, divide both sides by 11.\n- **Divisor removal**: For u/15 = 6, multiply both sides by 15.\n- **Transposition**: Writing 2y + 7 = 21 as 2y = 21 − 7 records the same inverse operation compactly.\n- **Unknowns on both sides**: Subtract one unknown term from both sides to collect unknowns together.\n- **Check**: Substitute the result into the original equation rather than only a transformed line.\n\n## Worked example\nQuestion: NCERT Example 6: Solve 6y + 7 = 4y + 21.\n\nSolution:\n- Step 1: Subtract 4y from both sides: 6y + 7 − 4y = 4y + 21 − 4y.\n- Step 2: Simplify: 2y + 7 = 21.\n- Step 3: Subtract 7 from both sides: 2y + 7 − 7 = 21 − 7.\n- Step 4: Simplify: 2y = 14.\n- Step 5: Divide both sides by 2: y = 14 ÷ 2.\n- Step 6: y = 7.\n- Step 7: Check: LHS = 6 × 7 + 7 = 49; RHS = 4 × 7 + 21 = 49.\n- Final answer: The solution is y = 7.\n\n## Common mistake\nDo not change 4y to −4y on one side and stop. 'Moving' it means subtracting 4y from both sides.\n\n## Quick check question\nQuestion: Solve u/15 = 6.\nAnswer: u = 90.\nExplanation: Multiply both sides by 15: u = 6 × 15 = 90.\n\n## Summary\n- Inverse operations isolate the unknown.\n- Every operation must preserve equality.\n- Transposition is shorthand, not a separate rule of magic.\n- Unknown terms can occur on both sides.\n- Always verify the solution in the original equation.",
+    "Worked examples": "# Worked examples: Chapter 15: Finding the Unknown\n\n## What you will learn\nYou will form equations from patterns and real-life situations. You will translate words, charges, repeated growth and bracketed processes into mathematical expressions.\n\n## Simple explanation\nThe hardest part of many problems is not the arithmetic but choosing what the unknown means and expressing every relationship correctly. Units and fixed amounts must remain visible in the equation.\n\n## Step-by-step breakdown\n- **Define the unknown**: State clearly what x, k, m or p represents and include its unit when relevant.\n- **Tile pattern**: The kth arrangement in Example 7 contains 3k + 1 tiles.\n- **Fixed and variable amounts**: A taxi fare combines a fixed ₹800 with ₹20 for each kilometre.\n- **Equal savings**: Example 9 equates two expressions for the money held after m months.\n- **Brackets**: In 28(x + 4) + 300 = 1000, the factor 28 multiplies the entire bracket.\n- **Process modelling**: The math trick becomes x → x − 3 → 4(x − 3) → 4(x − 3) + 8.\n- **Interpret the answer**: After solving, relate the numerical result back to steps, months, people, distance or price.\n- **Check reasonableness**: Substitute into the context equation and confirm all quantities match.\n\n## Worked example\nQuestion: NCERT final Figure it Out, Question 6: A taxi charges ₹800 plus ₹20 per kilometre, and the bill is ₹2200. Find the distance.\n\nSolution:\n- Step 1: Let x be the number of kilometres travelled.\n- Step 2: Variable charge = ₹20x.\n- Step 3: Total-charge equation: 800 + 20x = 2200.\n- Step 4: Subtract 800 from both sides: 20x = 2200 − 800 = 1400.\n- Step 5: Divide both sides by 20: x = 1400 ÷ 20.\n- Step 6: x = 70.\n- Step 7: Check: 800 + 20 × 70 = 800 + 1400 = 2200.\n- Final answer: The taxi travelled 70 km.\n\n## Common mistake\nDo not multiply the fixed charge ₹800 by the distance. It is charged once, while ₹20 is the per-kilometre amount.\n\n## Quick check question\nQuestion: NCERT Example 11: The final result of 4(x − 3) + 8 is 24. What was x?\nAnswer: x = 7.\nExplanation: 4(x − 3) + 8 = 24 gives 4(x − 3) = 16, x − 3 = 4 and x = 7.\n\n## Summary\n- Define an unknown before forming an equation.\n- Separate fixed quantities from per-unit quantities.\n- Use brackets to preserve the order of a process.\n- Solve and interpret the result in context.\n- A context check confirms the model and answer.",
+    "Exam-style problems": "# Exam-style problems: Chapter 15: Finding the Unknown\n\n## What you will learn\nYou will diagnose incorrect solution steps and solve equations containing brackets, negative numbers and unknowns on both sides. You will explain each correction rather than merely replacing the final answer.\n\n## Simple explanation\nAn equation solution is a chain of equivalent statements. A single sign, distribution or balance error breaks the chain, so each line must follow logically from the line before it.\n\n## Step-by-step breakdown\n- **Sign error**: From 4x + 6 = 10, subtract 6 to get 4x = 4, not 4x = 16.\n- **Coefficient error**: In 2v − 4 = 6, adding 4 gives 2v = 10; the coefficient 2 cannot disappear.\n- **Unknown terms**: For 5z + 2 = 3z − 4, subtract 3z and then subtract 2 to obtain 2z = −6.\n- **Distributive property**: 4(4q + 2) = 16q + 8; the factor multiplies both terms.\n- **Negative factor**: −2(3 − 4x) = −6 + 8x, not −6 − 8x.\n- **Division step**: When ax = b and a ≠ 0, divide the entire value b by a.\n- **Verification**: Substitution detects many hidden errors immediately.\n- **Equation maze**: The final activity links each equation to the arrow labelled with its correct solution.\n\n## Worked example\nQuestion: NCERT Mind the Mistake, item 1: Correct the solution of 4x + 6 = 10.\n\nSolution:\n- Step 1: Start with 4x + 6 = 10.\n- Step 2: Subtract 6 from both sides: 4x + 6 − 6 = 10 − 6.\n- Step 3: Simplify: 4x = 4.\n- Step 4: Divide both sides by 4: x = 4 ÷ 4.\n- Step 5: x = 1.\n- Step 6: Check: 4 × 1 + 6 = 10.\n- Final answer: The incorrect step was using 10 + 6 instead of 10 − 6; the correct solution is x = 1.\n\n## Common mistake\nDo not remove a coefficient by subtraction. A multiplying coefficient is removed by division.\n\n## Quick check question\nQuestion: Solve 2x + 5 = 3(x − 1).\nAnswer: x = 8.\nExplanation: Expand to 2x + 5 = 3x − 3; subtract 2x to get 5 = x − 3; add 3 to obtain x = 8.\n\n## Summary\n- Every solution line must preserve equality.\n- Use the correct inverse operation.\n- Distribute a factor to every term in brackets.\n- Track negative signs carefully.\n- Substitution is the final error check.",
+    "Revision and recap": "# Revision and recap: Chapter 15: Finding the Unknown\n\n## What you will learn\nYou will connect modern equation solving with the history of algebra and apply it to multi-step challenges. You will review ancient Indian notation, the idea of bījagaṇita and Bhāskarāchārya's horse-price problem.\n\n## Simple explanation\nThe chapter presents algebra as finding what is hidden, like a tree inside a seed. Indian mathematicians developed symbolic work with unknowns, and these ideas later influenced mathematical writing in Arabic and Europe.\n\n## Step-by-step breakdown\n- **Bījagaṇita**: The word bīja means seed; the unknown answer is gradually revealed through algebraic steps.\n- **Brahmagupta**: Chapter 18 of Brāhmasphuṭasiddhānta, dated 628 CE, described operations with unknown quantities.\n- **Ancient symbols**: Unknowns were denoted by forms such as yā, kā and nī, while known quantities used rū.\n- **Yāvat-tāvat**: The symbol yā was short for a phrase meaning 'as much as needed'.\n- **Al-Khwarizmi**: His work around 825 CE used al-jabr, a word that later gave rise to 'algebra'.\n- **Bhāskarāchārya**: The horse problem equates 300 + 6x with 10x − 100 and gives x = 100.\n- **Heads and feet**: The final challenge combines total heads and feet to determine children and donkeys.\n- **General method**: Define, model, solve, verify and interpret.\n\n## Worked example\nQuestion: NCERT Example 16: One person has ₹300 and 6 horses; another has 10 horses and a debt of ₹100. If they are equally rich, find the price of a horse.\n\nSolution:\n- Step 1: Let the price of one horse be ₹x.\n- Step 2: First person's wealth = 300 + 6x.\n- Step 3: Second person's wealth = 10x − 100.\n- Step 4: Form the equation: 300 + 6x = 10x − 100.\n- Step 5: Add 100 to both sides: 400 + 6x = 10x.\n- Step 6: Subtract 6x from both sides: 400 = 4x.\n- Step 7: Divide by 4: x = 100.\n- Final answer: The price of one horse is ₹100.\n\n## Common mistake\nDo not treat a debt of ₹100 as +100. Debt reduces wealth, so the expression is 10x − 100.\n\n## Quick check question\nQuestion: Final Figure it Out Question 20: There are 28 heads and 80 feet among children and donkeys. How many of each are there?\nAnswer: 12 donkeys and 16 children.\nExplanation: Let d be donkeys and c children. Then d + c = 28 and 4d + 2c = 80. Doubling the first relation gives 2d + 2c = 56; subtracting from the feet relation gives 2d = 24, so d = 12 and c = 16.\n\n## Summary\n- Algebra has a long Indian and international history.\n- Symbols make unknown relationships concise.\n- Debt and other signed quantities must be modelled correctly.\n- Multi-step problems follow define, form, solve, check and interpret.\n- Equations reveal hidden values systematically."
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "manifest": {
+    "grade": "Grade 6",
+    "subject": "Maths",
+    "chapter": "Chapter 7 Fractions",
+    "central_question": "How can fractional quantities be represented, compared, converted, added, and subtracted meaningfully?",
+    "in_scope_units": [
+      "7.1 Fractional Units and Equal Shares",
+      "7.2 Fractional Units as Parts of a Whole",
+      "7.3 Measuring Using Fractional Units",
+      "7.4 Marking Fraction Lengths on the Number Line",
+      "7.5 Mixed Fractions",
+      "7.6 Equivalent Fractions",
+      "7.7 Comparing Fractions",
+      "7.8 Addition and Subtraction of Fractions"
+    ],
+    "banned_topics": [
+      "General multiplication and division of fractions",
+      "Decimal expansions",
+      "Percentages"
+    ],
+    "must_include_keywords": [
+      "equal shares",
+      "fractional unit",
+      "unit fraction",
+      "whole",
+      "numerator",
+      "denominator",
+      "repeated unit fractions",
+      "paper strip",
+      "number line",
+      "fraction greater than 1",
+      "mixed number",
+      "whole part",
+      "fractional part",
+      "equivalent fractions",
+      "fraction wall",
+      "equal length",
+      "lowest terms",
+      "common denominator",
+      "compare numerators",
+      "ascending order",
+      "descending order",
+      "addition",
+      "subtraction",
+      "same denominator",
+      "different denominators",
+      "Brahmagupta's method"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A larger denominator always makes a larger fraction.",
+        "correction": "For unit fractions of one whole, a larger denominator makes smaller parts."
+      },
+      {
+        "claim": "Add both numerators and denominators.",
+        "correction": "Make denominators equal, then add numerators and keep the denominator."
+      },
+      {
+        "claim": "Every fraction greater than 1 has a non-zero fractional part.",
+        "correction": "For example, 8/4 is exactly the whole number 2."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use equal sharing and paper strips for unit fractions.",
+      "Place fractions on the number line.",
+      "Convert between improper fractions and mixed numbers.",
+      "Use a fraction wall for equivalence and lowest terms.",
+      "Compare, add, and subtract using common denominators."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out tasks in Sections 7.1–7.8, including the final Brahmagupta-method subtraction and word problems."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 7 Fractions\n\n## What you will learn\nYou will understand fractional units as equal parts and read a fraction as repeated unit fractions.\n\n## Simple explanation\nA fair fraction description begins by dividing one whole into equal parts.\n\n## Step-by-step breakdown\n- **Equal shares**: All pieces representing the same unit fraction must be equal.\n- **Unit fraction**: One equal part, such as 1/4.\n- **Denominator**: Number of equal parts in the whole.\n- **Numerator**: Number of those parts collected.\n- **Repeated unit**: 3/4 means three copies of 1/4.\n\n## Worked example\nQuestion: Three rotis are shared equally among four children. How much does each receive?\n\nSolution:\n- Step 1: Divide the three rotis into 12 quarters.\n- Step 2: Share three quarters with each child.\n- Final answer: Each child receives 3/4 of a roti.\n\n## Common mistake\nUnequal pieces cannot all represent the same fraction.\n\n## Quick check question\nQuestion: What do 5 and 6 mean in 5/6?\nAnswer: 5 is the numerator and 6 the denominator.\nExplanation: The whole has six equal parts and five are counted.\n\n## Summary\n- Fractions require equal parts.\n- The denominator names the unit.\n- The numerator counts units.",
+    "Core explanation": "# Core explanation: Chapter 7 Fractions\n\n## What you will learn\nYou will place fractions on a number line and convert fractions greater than 1 to mixed numbers.\n\n## Simple explanation\nFractions are numbers, so they may lie between whole numbers or beyond 1.\n\n## Step-by-step breakdown\n- **Unit interval**: Divide 0 to 1 according to the denominator.\n- **Steps**: Move the numerator's number of fractional units.\n- **Greater than 1**: The numerator can contain complete groups of the denominator.\n- **Mixed number**: A whole part plus a fractional part below 1.\n- **Reverse conversion**: Rewrite wholes in the stated fractional unit.\n\n## Worked example\nQuestion: Write 9/2 as a mixed number.\n\nSolution:\n- Step 1: Eight halves form four wholes.\n- Step 2: One half remains.\n- Final answer: 4 1/2.\n\n## Common mistake\nDo not place 3/2 between 0 and 1; it is greater than 1.\n\n## Quick check question\nQuestion: Convert 3 3/4 to a regular fraction.\nAnswer: 15/4.\nExplanation: Three wholes are 12 quarters; 12+3=15.\n\n## Summary\n- Fractions have exact number-line positions.\n- Improper fractions can contain wholes.\n- Mixed and regular forms may be equivalent.",
+    "Worked examples": "# Worked examples: Chapter 7 Fractions\n\n## What you will learn\nYou will recognise, generate, and simplify equivalent fractions.\n\n## Simple explanation\nEquivalent fractions name the same quantity using different fractional units.\n\n## Step-by-step breakdown\n- **Fraction wall**: Aligned lengths reveal equivalence.\n- **Generate**: Multiply numerator and denominator by the same number.\n- **Simplify**: Divide both by a common factor.\n- **Lowest terms**: No common factor greater than 1 remains.\n- **Equal shares**: Different partitions can still give the same amount.\n\n## Worked example\nQuestion: Show that 3/6, 4/8, and 5/10 are equivalent.\n\nSolution:\n- Step 1: Simplify 3/6 to 1/2 and 4/8 to 1/2.\n- Step 2: Simplify 5/10 to 1/2.\n- Final answer: All three equal 1/2.\n\n## Common mistake\nChanging only the numerator or only the denominator changes the value.\n\n## Quick check question\nQuestion: Give two fractions equivalent to 2/6.\nAnswer: 1/3 and 4/12.\nExplanation: Simplify by 2 or multiply both terms by 2.\n\n## Summary\n- Equivalent fractions represent equal amounts.\n- Use the same operation on both terms.\n- Lowest terms remove common factors.",
+    "Exam-style problems": "# Exam-style problems: Chapter 7 Fractions\n\n## What you will learn\nYou will compare and order fractions using a common denominator.\n\n## Simple explanation\nOnce fractional units are the same size, compare how many of those units each fraction contains.\n\n## Step-by-step breakdown\n- **Common multiple**: Choose a denominator shared by the fractions.\n- **Equivalent form**: Rewrite each fraction.\n- **Compare**: Use the numerators when denominators match.\n- **Ascending**: Arrange smallest to largest.\n- **Descending**: Arrange largest to smallest.\n\n## Worked example\nQuestion: Compare 4/5 and 7/9 as in the NCERT example.\n\nSolution:\n- Step 1: 4/5=36/45 and 7/9=35/45.\n- Step 2: Since 36>35, compare the original fractions.\n- Final answer: 4/5>7/9.\n\n## Common mistake\nDo not compare unlike fractions using only numerators or denominators.\n\n## Quick check question\nQuestion: Compare 7/9 and 17/21 using denominator 63.\nAnswer: 7/9<17/21.\nExplanation: They become 49/63 and 51/63.\n\n## Summary\n- Create equal fractional units.\n- Then compare numerators.\n- Equivalent forms justify ordering.",
+    "Revision and recap": "# Revision and recap: Chapter 7 Fractions\n\n## What you will learn\nYou will add and subtract fractions with equal or unequal denominators.\n\n## Simple explanation\nFractions can be combined after they are expressed using the same-sized fractional unit.\n\n## Step-by-step breakdown\n- **Same denominator**: Operate on numerators and retain the denominator.\n- **Different denominators**: First make equivalent fractions with a common denominator.\n- **Brahmagupta's method**: Equalise denominators, subtract numerators, simplify.\n- **Mixed result**: Convert a result above 1 if helpful.\n- **Verification**: Use strips or a number line.\n\n## Worked example\nQuestion: Calculate 3/4−2/3 using the chapter method.\n\nSolution:\n- Step 1: 3/4=9/12 and 2/3=8/12.\n- Step 2: Subtract 9/12−8/12.\n- Final answer: 1/12.\n\n## Common mistake\nDo not subtract denominators after a common unit has been created.\n\n## Quick check question\nQuestion: Calculate 1/4+1/3.\nAnswer: 7/12.\nExplanation: 3/12+4/12=7/12.\n\n## Summary\n- Common denominators create equal units.\n- Operate on numerators.\n- Simplify the result.\n- Models can check the answer."
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 9: The Amazing World of Solutes, Solvents, and Solutions",
+  "central_question": "How do solubility, concentration, mass, volume and density explain solutions, measurement and why substances float, sink or change with temperature and pressure?",
+  "in_scope_units": [
+    "Solutions, solutes and solvents in uniform mixtures.",
+    "Unsaturated and saturated solutions, concentration and solubility.",
+    "Effects of temperature on solid and gas solubility.",
+    "Floating and sinking as an introduction to density.",
+    "Density, units, relative density and its independence from shape and size.",
+    "Measuring mass with a balance and volume with a measuring cylinder.",
+    "Meniscus reading, volume of regular solids and displacement for irregular solids.",
+    "Effects of temperature and pressure on density and the special behaviour of water and ice."
+  ],
+  "banned_topics": [
+    "Advanced concentration units such as molarity.",
+    "Archimedes-principle derivations beyond the chapter's density focus.",
+    "Chemical equations for dissolving and solution chemistry."
+  ],
+  "must_include_keywords": [
+    "solution",
+    "uniform mixture",
+    "solute",
+    "solvent",
+    "dissolve",
+    "saturated solution",
+    "unsaturated solution",
+    "concentration",
+    "dilute",
+    "concentrated",
+    "solubility",
+    "temperature",
+    "baking soda",
+    "dissolved oxygen",
+    "aquatic life",
+    "density",
+    "mass",
+    "volume",
+    "kg/m³",
+    "g/mL",
+    "g/cm³",
+    "relative density",
+    "water",
+    "digital balance",
+    "tare",
+    "measuring cylinder",
+    "capacity",
+    "least count",
+    "meniscus",
+    "regular solid",
+    "cuboid",
+    "displacement",
+    "irregular solid",
+    "heating",
+    "pressure",
+    "compressibility",
+    "ice",
+    "expansion",
+    "hot-air balloon"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any mixture containing water is a solution.",
+      "correction": "A solution is uniform; sand-water and sawdust-water are non-uniform mixtures."
+    },
+    {
+      "claim": "A concentrated solution is always saturated.",
+      "correction": "Concentrated describes relative solute amount, while saturated means no more solute can dissolve at that temperature."
+    },
+    {
+      "claim": "Heating generally increases the solubility of gases in water.",
+      "correction": "The chapter states that gas solubility generally decreases as temperature increases."
+    },
+    {
+      "claim": "Mass is the space occupied by an object.",
+      "correction": "Mass is quantity of matter; volume is the occupied space."
+    },
+    {
+      "claim": "Reshaping a fixed piece of clay changes its density.",
+      "correction": "If neither mass nor material volume changes, density remains the same regardless of shape."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 9.1 to establish unsaturated and saturated salt solutions.",
+    "Use Activity 9.2 at 20 °C, 50 °C and 70 °C to study temperature and solubility.",
+    "Use the aluminium example, 27 g and 10 cm³, to calculate 2.7 g/cm³.",
+    "Use Activities 9.3–9.5 for balance, cylinder least count and meniscus.",
+    "Use Activities 9.6 and 9.7 for regular and irregular volumes.",
+    "Use Keep the curiosity alive Q4, Q7, Q9, Q10 and Q11 for density reasoning."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–12, followed by Discover, design, and debate projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

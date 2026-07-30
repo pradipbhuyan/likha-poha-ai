@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 6: Algebra Play",
+    "central_question": "How can algebra explain, solve and create number tricks, pyramids, grids, optimisation puzzles and divisibility patterns?",
+    "in_scope_units": [
+      "Algebra as a language for modelling tricks and puzzles.",
+      "Think of a Number tricks and proof that the result is independent of the starting number.",
+      "A birthday or date-decoding trick represented by 100M + 165 + D.",
+      "Number pyramids in which every entry is the sum of the two entries directly below it.",
+      "General algebraic expressions for the top of a number pyramid and Virahanka-Fibonacci patterns.",
+      "Calendar magic using the algebraic structure of a 2 by 2 calendar grid.",
+      "Algebra grids in which shapes represent unknown numbers.",
+      "The largest-product puzzle with three distinct digits.",
+      "Divisibility tricks involving reversal of two-digit numbers.",
+      "Divisibility of sums of reversals by 11, cyclic three-digit sums by 37 and 3, and repeated three-digit blocks by 7, 11 and 13.",
+      "End-of-chapter algebraic word puzzles and the creation of original tricks."
+    ],
+    "banned_topics": [
+      "Quadratic equations and polynomial factorisation.",
+      "Formal modular-arithmetic notation beyond the chapter's algebraic divisibility reasoning.",
+      "Simultaneous linear equations in matrix form."
+    ],
+    "must_include_keywords": [
+      "algebra",
+      "letter-number",
+      "variable",
+      "expression",
+      "identity",
+      "Think of a Number",
+      "starting number",
+      "date trick",
+      "month",
+      "day",
+      "100M + 165 + D",
+      "number pyramid",
+      "adjacent entries",
+      "top number",
+      "Virahanka-Fibonacci numbers",
+      "calendar magic",
+      "2 by 2 grid",
+      "4a + 16",
+      "algebra grid",
+      "unknown shape",
+      "largest product",
+      "multiplicand",
+      "multiplier",
+      "reversed digits",
+      "two-digit number",
+      "10a + b",
+      "divisible by 9",
+      "divisible by 11",
+      "cyclic digits",
+      "divisible by 37",
+      "abcabc",
+      "1001",
+      "7 × 11 × 13",
+      "generalisation",
+      "proof"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Testing a number trick with several starting numbers proves that it always works.",
+        "correction": "Examples suggest a pattern, but algebra using a variable proves it for every allowed starting number."
+      },
+      {
+        "claim": "In a number pyramid, each entry is the product of the two entries below it.",
+        "correction": "In this chapter, each entry is the sum of the two entries directly below it."
+      },
+      {
+        "claim": "Numbers in a 2 by 2 calendar block are four consecutive integers.",
+        "correction": "They have the form a, a+1, a+7 and a+8 because moving down one calendar row adds 7."
+      },
+      {
+        "claim": "For the largest product, the largest digit should always be the tens digit.",
+        "correction": "For three ordered digits p<q<r, the chapter shows the largest digit r should be the one-digit multiplier and qp the two-digit multiplicand."
+      },
+      {
+        "claim": "The difference between a two-digit number and its reversal is divisible by 11.",
+        "correction": "The difference is 9 times the difference of the digits, while their sum is 11 times the sum of the digits."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Section 6.2's basic trick x → 2x → 2x+4 → x+2 → 2.",
+      "Use the date trick ending in 291 to decode 26 January by subtracting 165.",
+      "Use the chapter's number-pyramid activities to express a three-entry bottom row a,b,c as top a+2b+c.",
+      "Use the calendar example with total 36 to recover the block 5,6,12,13.",
+      "Use Section 6.5's digits 2,3,5 to obtain the maximum product 32×5.",
+      "Use Section 6.6's 47 and 74 reversal example to prove divisibility by 9."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Figure it Out and Math Talk tasks appear after each puzzle family, with the final set in Section 6.6 covering reversal, cyclic-digit and repeated-block divisibility along with contextual algebra puzzles."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 6: Algebra Play\n\n## What you will learn\nYou will use a letter-number to explain why a Think of a Number trick always gives the same result. You will distinguish experimental checking from an algebraic proof.\n\n## Simple explanation\nA variable such as x stands for any starting number. Following every instruction symbolically shows which parts depend on x and which parts cancel.\n\n## Step-by-step breakdown\n- **Starting value**: Represent the unknown starting number by x.\n- **Operation sequence**: Translate each spoken instruction into a new algebraic expression.\n- **Simplification**: Use arithmetic and like-term cancellation after every step.\n- **Independence**: If x disappears from the final expression, the result does not depend on the starting number.\n- **Proof**: Because x was arbitrary, the reasoning covers all starting numbers for which the operations are defined.\n\n## Worked example\nQuestion: NCERT Section 6.2: Explain the trick 'double a number, add 4, divide by 2, then subtract the original number'.\n\nSolution:\n- Step 1: Let the starting number be x.\n- Step 2: Double it: 2x.\n- Step 3: Add 4: 2x+4.\n- Step 4: Divide by 2: (2x+4)/2=x+2.\n- Step 5: Subtract the original number: x+2-x=2.\n- Final answer: The result is always 2.\n\n## Common mistake\nDo not replace x by one convenient number and call that a proof. A single calculation verifies only one case.\n\n## Quick check question\nQuestion: What final value results if the instruction is 'triple x, add 6, divide by 3, subtract x'?\nAnswer: 2.\nExplanation: (3x+6)/3-x=x+2-x=2.\n\n## Summary\n- Variables represent all possible starting values.\n- Every verbal step has an algebraic counterpart.\n- Cancellation explains constant outcomes.\n- Algebra proves a trick rather than merely testing it.",
+    "Core explanation": "# Core explanation: Chapter 6: Algebra Play\n\n## What you will learn\nYou will decode the month and day hidden by the chapter's date trick. You will understand how place value packs two pieces of information into one number.\n\n## Simple explanation\nAfter the stated operations, a month M and day D become 100M+165+D. Subtracting 165 leaves 100M+D, where the last two digits give the day and the preceding digits give the month.\n\n## Step-by-step breakdown\n- **Month variable**: M is the month number from 1 to 12.\n- **Day variable**: D is at most 31, so it occupies at most two decimal digits.\n- **Algebraic result**: The chapter's steps simplify to 100M+165+D.\n- **Decoding**: Subtract 165 to obtain 100M+D.\n- **Place value**: Multiplication by 100 shifts the month two places left.\n- **Designing tricks**: Changing the operations changes the fixed number that must be subtracted during decoding.\n\n## Worked example\nQuestion: NCERT date-trick example: The final answer is 291. Decode the date.\n\nSolution:\n- Step 1: Use the derived form 291=100M+165+D.\n- Step 2: Subtract the fixed part: 291-165=126.\n- Step 3: So 126=100M+D.\n- Step 4: The last two digits are 26, so D=26.\n- Step 5: The remaining leading digit is 1, so M=1.\n- Final answer: The date is 26 January.\n\n## Common mistake\nDo not read 126 as month 12 and day 6. The construction reserves exactly the last two places for the day.\n\n## Quick check question\nQuestion: NCERT follow-up: Decode the final answer 1390.\nAnswer: 25 December.\nExplanation: 1390-165=1225. The last two digits give day 25 and the preceding digits give month 12.\n\n## Summary\n- Algebra reveals the structure hidden by a trick.\n- The fixed value 165 is removed first.\n- Place value separates month and day.\n- A new trick needs a new symbolic derivation.",
+    "Worked examples": "# Worked examples: Chapter 6: Algebra Play\n\n## What you will learn\nYou will solve and generalise number pyramids. You will see why middle bottom entries can contribute more than once to the top.\n\n## Simple explanation\nEach number is the sum of the two directly below it. Repeated addition creates predictable coefficients in the expression at the top.\n\n## Step-by-step breakdown\n- **Local rule**: For adjacent entries u and v, the entry above is u+v.\n- **Three-entry base**: If the bottom row is a,b,c, the next row is a+b and b+c.\n- **Top expression**: The top is (a+b)+(b+c)=a+2b+c.\n- **Repeated contribution**: The middle entry appears in both adjacent sums, so its coefficient is 2.\n- **Reverse solving**: When the top and some lower entries are known, form an equation for the missing entry.\n- **Pattern extension**: Larger pyramids create coefficient patterns connected in the chapter with Virahanka-Fibonacci numbers.\n\n## Worked example\nQuestion: NCERT number-pyramid generalisation: Find the top entry for bottom row a,b,c.\n\nSolution:\n- Step 1: The left entry in the next row is a+b.\n- Step 2: The right entry in the next row is b+c.\n- Step 3: Add these to get the top: (a+b)+(b+c).\n- Step 4: Remove brackets and collect like terms: a+b+b+c=a+2b+c.\n- Final answer: The top entry is a+2b+c.\n\n## Common mistake\nDo not write a+b+c. The middle bottom entry contributes to both entries immediately above it.\n\n## Quick check question\nQuestion: If the bottom row is 12,20,8, what is the top?\nAnswer: 60.\nExplanation: The top is 12+2×20+8=12+40+8=60.\n\n## Summary\n- Every pyramid cell follows one local addition rule.\n- Algebra exposes repeated contributions.\n- A three-entry base produces top a+2b+c.\n- Equations can be used to reconstruct missing entries.",
+    "Exam-style problems": "# Exam-style problems: Chapter 6: Algebra Play\n\n## What you will learn\nYou will solve calendar-grid and largest-product puzzles. You will use algebra to reduce a search problem to a reliable rule.\n\n## Simple explanation\nCalendar positions have fixed differences, and place value determines how strongly a digit contributes to a product. Algebra makes both structures visible.\n\n## Step-by-step breakdown\n- **Calendar row**: Moving one place right adds 1; moving one row down adds 7.\n- **2 by 2 block**: With top-left a, the entries are a,a+1,a+7,a+8.\n- **Block sum**: Their sum is 4a+16.\n- **Recovering a**: Subtract 16 and divide by 4.\n- **Largest product**: For digits p<q<r, compare how each placement changes the product.\n- **Optimal arrangement**: The chapter concludes that qp×r is largest: the largest digit is the multiplier and the other two form a descending two-digit number.\n\n## Worked example\nQuestion: NCERT Calendar Magic: A 2 by 2 calendar block has sum 36. Find its four numbers.\n\nSolution:\n- Step 1: Let the top-left number be a.\n- Step 2: The block is a, a+1, a+7 and a+8.\n- Step 3: Add: a+(a+1)+(a+7)+(a+8)=4a+16.\n- Step 4: Set equal to 36: 4a+16=36.\n- Step 5: Subtract 16: 4a=20.\n- Step 6: Divide by 4: a=5.\n- Step 7: The entries are 5,6,12,13.\n- Final answer: The calendar block is 5, 6, 12 and 13.\n\n## Common mistake\nDo not use a,a+1,a+2,a+3. Calendar columns change by 1, but the next row begins 7 days later.\n\n## Quick check question\nQuestion: NCERT Section 6.5: Using 2,3,5 once in a two-digit number multiplied by a one-digit number, what is the largest product?\nAnswer: 32×5=160.\nExplanation: The chapter's ordering rule puts the largest digit 5 as multiplier and forms 32 from the other digits in descending order.\n\n## Summary\n- Calendar layouts produce fixed algebraic differences.\n- A block sum becomes a linear equation.\n- Place value matters in digit-arrangement products.\n- A general argument is better than checking arrangements without explanation.",
+    "Revision and recap": "# Revision and recap: Chapter 6: Algebra Play\n\n## What you will learn\nYou will prove the chapter's divisibility tricks using place-value expressions. You will connect digit reversal, cyclic permutations and repeated blocks with factors 9, 11, 37, 7 and 13.\n\n## Simple explanation\nWriting a digit string algebraically turns a surprising trick into ordinary factorisation. A two-digit number ab is 10a+b, not a×b.\n\n## Step-by-step breakdown\n- **Reversal difference**: (10b+a)-(10a+b)=9(b-a), so it is divisible by 9.\n- **Reversal sum**: (10a+b)+(10b+a)=11(a+b), so it is divisible by 11.\n- **Cyclic three-digit sum**: abc+bca+cab=111(a+b+c)=3×37×(a+b+c).\n- **Repeated block**: abcabc=1000(abc)+abc=1001(abc).\n- **Factorisation**: 1001=7×11×13.\n- **Meaning of division**: Dividing abcabc successively by 7,11 and 13 returns abc.\n- **General method**: Translate place value, simplify and factor the result.\n\n## Worked example\nQuestion: NCERT Section 6.6: Prove that the difference between 74 and 47 is divisible by 9.\n\nSolution:\n- Step 1: Represent the original two-digit number as 10a+b and its reversal as 10b+a.\n- Step 2: For 47, a=4 and b=7.\n- Step 3: Subtract generally: (10b+a)-(10a+b).\n- Step 4: Simplify: 10b+a-10a-b=9b-9a=9(b-a).\n- Step 5: For a=4,b=7, the difference is 9(7-4)=9×3=27.\n- Step 6: Therefore 27÷9=3 with no remainder.\n- Final answer: The difference is always divisible by 9; for 74-47 the quotient is 3.\n\n## Common mistake\nDo not treat the notation ab as the product a×b. In digit notation, ab means 10a+b.\n\n## Quick check question\nQuestion: Why is the six-digit number abcabc divisible by 7, 11 and 13?\nAnswer: Because abcabc=1001×abc and 1001=7×11×13.\nExplanation: The repeated block contributes one abc in the units group and one multiplied by 1000; their sum is (1000+1)abc=1001abc.\n\n## Summary\n- Place-value algebra explains divisibility tricks.\n- Reversal differences contain factor 9.\n- Reversal sums contain factor 11.\n- Cyclic sums contain factors 3 and 37.\n- Repeated three-digit blocks contain factors 7, 11 and 13."
+  }
+}

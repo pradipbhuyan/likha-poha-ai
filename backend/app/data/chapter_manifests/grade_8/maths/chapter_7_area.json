@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 7: Area",
+  "central_question": "How can unit squares, decomposition, dissection and height-base relationships be used to derive and apply area formulae for triangles and polygons?",
+  "in_scope_units": [
+    "Rectangles and squares, equal-area partitions and area measured by unit squares.",
+    "Area of a rectangle and comparison of rectangle areas.",
+    "Why perimeter cannot be used as a measure of area.",
+    "Areas of paths, crosspaths, tubes and composite rectangular regions.",
+    "Area of a triangle as one-half base times corresponding height.",
+    "Applications of the triangle formula, equal-area triangles, medians and triangles between parallel lines.",
+    "Reflection as a method for a shortest-path problem.",
+    "Area of any polygon by dividing it into triangles.",
+    "Area of a parallelogram derived by dissection into a rectangle.",
+    "Equal-area transformations from the Sulba-Sutras.",
+    "Area of a rhombus from its diagonals.",
+    "Area of a trapezium from a rectangle-and-triangle decomposition and from two copies forming a parallelogram.",
+    "End-of-chapter mixed figures and area comparisons."
+  ],
+  "banned_topics": [
+    "Circumference and area of circles.",
+    "Surface area and volume of three-dimensional solids.",
+    "Coordinate-geometry shoelace formula."
+  ],
+  "must_include_keywords": [
+    "area",
+    "unit square",
+    "square centimetre",
+    "rectangle",
+    "length × width",
+    "square",
+    "equal-area partition",
+    "perimeter",
+    "composite region",
+    "path",
+    "crosspath",
+    "dissection",
+    "congruent triangles",
+    "triangle",
+    "base",
+    "corresponding height",
+    "altitude",
+    "one-half base × height",
+    "median",
+    "parallel lines",
+    "common base",
+    "reflection",
+    "shortest path",
+    "polygon",
+    "triangulation",
+    "parallelogram",
+    "base × height",
+    "rhombus",
+    "diagonals",
+    "perpendicular bisectors",
+    "one-half product of diagonals",
+    "trapezium",
+    "parallel sides",
+    "one-half height × sum of parallel sides",
+    "Sulba-Sutras"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Regions with equal perimeter always have equal area.",
+      "correction": "The chapter shows that the same perimeter can enclose different areas, and a larger perimeter can even accompany a smaller area."
+    },
+    {
+      "claim": "Any side of a triangle can be paired with any altitude in the formula.",
+      "correction": "The height must be perpendicular to the chosen base or its extension."
+    },
+    {
+      "claim": "The sloping side of a parallelogram is its height.",
+      "correction": "Height is the perpendicular distance between the chosen base and the opposite parallel side."
+    },
+    {
+      "claim": "The area of a rhombus is the product of its diagonals.",
+      "correction": "It is one-half the product of its diagonals."
+    },
+    {
+      "claim": "The area of a trapezium is height times the difference of the parallel sides.",
+      "correction": "It is one-half the height times the sum of the two parallel sides."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the opening 7 cm by 4 cm and 8 cm by 3 cm rectangles to compare 28 cm² and 24 cm².",
+    "Use the diagonal of the 7 cm by 4 cm rectangle to obtain two triangles of area 14 cm².",
+    "Use the triangle application that equates two base-height forms to find BY = 3.75 units.",
+    "Use the polygon Figure it Out Q1 with AC=22 cm and two perpendicular heights of 3 cm.",
+    "Use the parallelogram cut-and-rearrange derivation to obtain base×height.",
+    "Use the rhombus Figure it Out Q1 with diagonals 20 cm and 15 cm.",
+    "Use the two-copy trapezium derivation to obtain one-half h(a+b)."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Figure it Out sets follow the rectangle, triangle, polygon, parallelogram and rhombus-trapezium sections; the chapter closes with mixed applications, city-area exploration and the Summary.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures",
+  "central_question": "How can matter be classified as mixtures or pure substances, and how do elements and compounds differ in composition, properties, separation and use?",
+  "in_scope_units": [
+    "Mixtures, components, uniform and non-uniform mixtures, alloys and air.",
+    "Evidence for carbon dioxide and dust in air and the distinction between components and pollutants.",
+    "Types of mixtures and the scientific meaning of a pure substance.",
+    "Decomposition of water and the definition and classification of elements.",
+    "Compounds, fixed ratios, new properties and physical versus chemical separation.",
+    "Sugar decomposition and comparison of iron–sulfur mixture with iron sulfide.",
+    "Uses of elements, compounds and mixtures, including advanced materials and minerals."
+  ],
+  "banned_topics": [
+    "Periodic-table organisation and electron configuration.",
+    "Balancing symbolic chemical equations.",
+    "Detailed ore extraction and metallurgy."
+  ],
+  "must_include_keywords": [
+    "mixture",
+    "component",
+    "uniform mixture",
+    "non-uniform mixture",
+    "alloy",
+    "stainless steel",
+    "brass",
+    "bronze",
+    "air",
+    "nitrogen",
+    "oxygen",
+    "carbon dioxide",
+    "lime water",
+    "calcium carbonate",
+    "dust",
+    "pollutant",
+    "AQI",
+    "pure substance",
+    "adulteration",
+    "physical separation",
+    "element",
+    "atom",
+    "molecule",
+    "metal",
+    "non-metal",
+    "metalloid",
+    "compound",
+    "fixed ratio",
+    "water electrolysis",
+    "hydrogen",
+    "sodium chloride",
+    "sugar decomposition",
+    "iron",
+    "sulfur",
+    "iron sulfide",
+    "magnet test",
+    "mineral",
+    "native mineral",
+    "graphene aerogel",
+    "Dhokra art"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A uniform mixture is automatically a pure substance.",
+      "correction": "A uniform mixture still contains more than one pure component, even though the components are evenly distributed."
+    },
+    {
+      "claim": "The word pure has exactly the same meaning in daily life and science.",
+      "correction": "In science, a pure substance contains only one type of particle and cannot be separated physically; an unadulterated food may still be a mixture."
+    },
+    {
+      "claim": "Compounds retain all the properties of their constituent elements.",
+      "correction": "A compound has new properties different from those of the elements chemically combined in a fixed ratio."
+    },
+    {
+      "claim": "Iron and sulfur in Sample A cannot be separated.",
+      "correction": "They retain their properties, and the iron can be removed with a magnet."
+    },
+    {
+      "claim": "Iron sulfide in Sample B is just a uniform mixture.",
+      "correction": "Heating creates a new compound whose properties differ and whose elements cannot be separated physically."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activities 8.1 and 8.2 to identify carbon dioxide and dust in air.",
+    "Use Activity 8.3 to infer that water is a compound of hydrogen and oxygen.",
+    "Use Activity 8.4 to infer that sugar contains carbon, hydrogen and oxygen.",
+    "Use Activity 8.5 to compare a mixture with the compound iron sulfide.",
+    "Use Keep the curiosity alive Q6 and Q7 for classification and word equations.",
+    "Use Q12 to connect gold with both the mineral and element categories."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–12, followed by Discover, design, and debate activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

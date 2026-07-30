@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 13: Our Home: Earth, a Unique Life Sustaining Planet",
+  "central_question": "Which connected planetary conditions, Earth systems, reproductive processes and responsible human actions allow life to arise, continue and remain protected on Earth?",
+  "in_scope_units": [
+    "Earth as a unique life-sustaining planet, its thin inhabited crust and the evidence supplied by Earth-observation satellite images.",
+    "The eight planets of the solar system, rocky and gaseous planets, planetary temperature, size, atmosphere and the greenhouse effect.",
+    "Earth’s suitable position in the habitable zone, liquid water, nearly circular orbit, appropriate size, gravity, atmosphere, ozone layer and magnetic field.",
+    "The interacting atmosphere, hydrosphere, geosphere and biosphere, including air, water, sunlight, soil, minerals, geodiversity and ecological balance.",
+    "Continuity of life through genes, variation, asexual reproduction, vegetative propagation and sexual reproduction in flowering plants and animals.",
+    "Threats from climate change, biodiversity loss and pollution, together with mitigation, adaptation, sustainable resource use and collective responsibility."
+  ],
+  "banned_topics": [
+    "Detailed internal structure of Earth beyond the crust comparison used in this chapter.",
+    "Advanced genetics, chromosomes, DNA replication and Mendelian inheritance.",
+    "Detailed planetary orbital calculations or astrophysics beyond the chapter comparison.",
+    "Complete classification of ecosystems or food-web construction, which belongs mainly to Chapter 12."
+  ],
+  "must_include_keywords": [
+    "Earth",
+    "life-sustaining planet",
+    "crust",
+    "solar system",
+    "rocky planets",
+    "gaseous planets",
+    "atmosphere",
+    "greenhouse effect",
+    "carbon dioxide",
+    "habitable zone",
+    "Goldilocks zone",
+    "liquid water",
+    "Blue Planet",
+    "nearly circular orbit",
+    "gravity",
+    "ozone layer",
+    "ultraviolet rays",
+    "magnetic field",
+    "cosmic rays",
+    "solar wind",
+    "atmosphere system",
+    "hydrosphere",
+    "geosphere",
+    "biosphere",
+    "geodiversity",
+    "ecological balance",
+    "reproduction",
+    "genes",
+    "variation",
+    "asexual reproduction",
+    "vegetative propagation",
+    "sexual reproduction",
+    "gametes",
+    "pollination",
+    "fertilisation",
+    "zygote",
+    "embryo",
+    "climate change",
+    "biodiversity loss",
+    "triple planetary crisis"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Earth supports life only because it is at the correct distance from the Sun.",
+      "correction": "Distance and liquid water are essential, but Earth’s size, gravity, atmosphere, ozone layer, magnetic field and connected natural systems are also required."
+    },
+    {
+      "claim": "Venus must be cooler than Mercury because it is farther from the Sun.",
+      "correction": "Venus is hotter because its thick carbon-dioxide atmosphere traps heat through a strong greenhouse effect."
+    },
+    {
+      "claim": "The greenhouse effect is entirely harmful.",
+      "correction": "A natural greenhouse effect keeps Earth warm enough for life; the danger comes from additional greenhouse gases causing excessive warming."
+    },
+    {
+      "claim": "Asexual and sexual reproduction both produce genetically identical offspring.",
+      "correction": "Asexual reproduction uses one parent and produces nearly exact copies, whereas sexual reproduction mixes instructions from two parents and creates variation."
+    },
+    {
+      "claim": "Pollination and fertilisation are the same process.",
+      "correction": "Pollination transfers pollen, while fertilisation is the fusion of male and female gametes to form a zygote."
+    },
+    {
+      "claim": "Climate change, biodiversity loss and pollution are separate problems with no influence on one another.",
+      "correction": "They form the interconnected triple planetary crisis because Earth’s atmosphere, water, land and living systems affect one another."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Activity 13.1 by listing easily overlooked features that make Earth suitable for life.",
+    "Use Activity 13.2 and Table 13.2 to compare planetary temperature, relative size and atmosphere and to explain why Venus is hottest.",
+    "Use Keep the curiosity alive Q1 and Q3 to connect Mars and a smaller Earth with atmosphere, gravity and liquid water.",
+    "Use Activity 13.3 to observe vegetative propagation from money-plant stem, potato eyes and ginger.",
+    "Use Keep the curiosity alive Q4, Q5 and Q12 to connect genes, seed dispersal, germination and examples of vegetative propagation.",
+    "Finish with Keep the curiosity alive Q6–Q11 to analyse deforestation, global warming, magnetic protection, Mars settlement, adaptation and absence of atmosphere."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–12, followed by Discover, design, and debate projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

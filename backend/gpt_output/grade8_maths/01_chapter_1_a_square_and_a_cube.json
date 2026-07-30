@@ -1,0 +1,87 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 1: A Square and A Cube",
+    "central_question": "How can factors, patterns, prime factorisation and inverse operations help us recognise, construct and work with square and cube numbers?",
+    "in_scope_units": [
+      "The 100-locker puzzle and the connection between an odd number of factors and perfect squares.",
+      "Square numbers, perfect squares, visual square arrays and patterns in unit digits and trailing zeroes.",
+      "Square roots as the inverse of squaring, including estimation and prime-factorisation methods.",
+      "Problems on the nearest perfect square, making a number a perfect square and numbers between consecutive squares.",
+      "Cubic numbers, unit-cube models and patterns in perfect cubes.",
+      "Cube roots and the prime-factorisation method using groups of three equal prime factors.",
+      "Historical notes on varga, ghana and mula in Indian mathematics.",
+      "The end puzzle on arranging numbers so adjacent pairs add to square numbers."
+    ],
+    "banned_topics": [
+      "General laws of exponents beyond what is needed for squares and cubes.",
+      "Quadratic equations and polynomial factorisation.",
+      "Mensuration formulas for arbitrary solids other than the square and cube models used in the chapter."
+    ],
+    "must_include_keywords": [
+      "locker puzzle",
+      "factor",
+      "factor pair",
+      "odd number of factors",
+      "square number",
+      "perfect square",
+      "square root",
+      "inverse operation",
+      "prime factorisation",
+      "pairing prime factors",
+      "unit digit",
+      "trailing zeroes",
+      "nearest perfect square",
+      "consecutive squares",
+      "cube number",
+      "perfect cube",
+      "unit cube",
+      "cube root",
+      "triples of prime factors",
+      "varga",
+      "ghana",
+      "mula",
+      "Aryabhata",
+      "Brahmagupta",
+      "Square Pairs"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every number has an even number of factors.",
+        "correction": "Perfect squares have an odd number of factors because the square root is paired with itself; most non-squares have factors in distinct pairs."
+      },
+      {
+        "claim": "A perfect square can end in any digit.",
+        "correction": "A perfect square can end only in 0, 1, 4, 5, 6 or 9."
+      },
+      {
+        "claim": "The positive symbol √n gives both square roots of n.",
+        "correction": "√n denotes the positive square root; a positive perfect square has two integral square roots, one positive and one negative."
+      },
+      {
+        "claim": "A number is a perfect cube whenever every prime exponent is even.",
+        "correction": "For a perfect cube, every prime exponent must be a multiple of 3, so the prime factors can be grouped into equal triples."
+      },
+      {
+        "claim": "A cube may end with exactly two zeroes.",
+        "correction": "The number of trailing zeroes in a perfect cube must be a multiple of 3, so a cube cannot end with exactly two zeroes."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the opening 100-locker activity to show why lockers numbered by perfect squares remain open.",
+      "Use the chapter example 324 = 2² × 3⁴ to identify a perfect square and find √324.",
+      "Use Figure it Out Q6 to find the smallest multiplier that makes 9408 a perfect square.",
+      "Use Figure it Out Q1 in the cubic-numbers section to find √27000 and √10648.",
+      "Use Figure it Out Q4 to infer cube roots of 1331, 4913, 12167 and 32768."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains two main Figure it Out sets—one after the square-number section and one after the cube-number section—followed by the Square Pairs puzzle."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 1: A Square and A Cube\n\n## What you will learn\nYou will connect the locker puzzle with factors and perfect squares. You will learn why only some lockers remain open after all 100 people take their turns.\n\n## Simple explanation\nLocker n is toggled once for every factor of n. It remains open only when it is toggled an odd number of times, which happens exactly when n is a perfect square.\n\n## Step-by-step breakdown\n- **Factor pairing**: Factors usually occur in pairs such as 2 and 6 for 12.\n- **Unpaired factor**: For a perfect square, the square root pairs with itself, so the total number of factors is odd.\n- **Open lockers**: Among 1 to 100, the open lockers are 1², 2², 3², ..., 10².\n- **Square number**: A number obtained by multiplying an integer by itself is a square number.\n\n## Worked example\nQuestion: In the opening locker puzzle, why does locker 36 remain open?\n\nSolution:\n- Step 1: List the factors of 36: 1, 2, 3, 4, 6, 9, 12, 18 and 36.\n- Step 2: There are 9 factors, so locker 36 is toggled 9 times.\n- Step 3: An odd number of toggles changes a closed locker to open.\n- Step 4: The odd count occurs because 6 × 6 = 36, so 6 is the unpaired middle factor.\n- Final answer: Locker 36 remains open because 36 is a perfect square and has an odd number of factors.\n\n## Common mistake\nDo not count only the obvious factor pairs and forget the repeated pair 6 × 6. That repeated factor is exactly why the factor count is odd.\n\n## Quick check question\nQuestion: Which lockers from 1 to 25 remain open?\nAnswer: 1, 4, 9, 16 and 25.\nExplanation: These are the perfect squares in the range, so each has an odd number of factors and is toggled an odd number of times.\n\n## Summary\n- A locker is toggled once for each factor of its number.\n- Perfect squares have an odd number of factors.\n- The open lockers from 1 to 100 are the ten perfect squares.",
+    "Core explanation": "# Core explanation: Chapter 1: A Square and A Cube\n\n## What you will learn\nYou will identify perfect squares from their patterns and prime factorisation. You will also understand square roots and estimate larger square roots.\n\n## Simple explanation\nA perfect square has prime factors that can be separated into two identical groups. Its square root is the product of one group.\n\n## Step-by-step breakdown\n- **Prime-factor test**: Every prime exponent in a perfect square is even.\n- **Units-digit filter**: A square cannot end in 2, 3, 7 or 8.\n- **Zero pattern**: A square has an even number of trailing zeroes.\n- **Square root**: Squaring and taking a square root are inverse operations.\n- **Estimation**: Locate the number between two familiar consecutive squares, then use its units digit to narrow the answer.\n\n## Worked example\nQuestion: Use prime factorisation to decide whether 324 is a perfect square and find its square root.\n\nSolution:\n- Step 1: Prime factorise: 324 = 2 × 2 × 3 × 3 × 3 × 3.\n- Step 2: Group equal factors in pairs: 324 = (2 × 2)(3 × 3)(3 × 3).\n- Step 3: Take one factor from each pair: 2 × 3 × 3 = 18.\n- Step 4: Therefore 324 = 18².\n- Final answer: 324 is a perfect square and √324 = 18.\n\n## Common mistake\nA units digit allowed for squares is only a quick filter. For example, ending in 4 does not by itself prove that a number is a perfect square.\n\n## Quick check question\nQuestion: Is 156 a perfect square?\nAnswer: No.\nExplanation: 156 = 2 × 2 × 3 × 13. The factors 3 and 13 cannot be paired, so the prime exponents are not all even.\n\n## Summary\n- Perfect-square prime factors occur in pairs.\n- The positive square root is found by taking one factor from each pair.\n- Digit patterns can reject some numbers but do not fully prove that a number is square.",
+    "Worked examples": "# Worked examples: Chapter 1: A Square and A Cube\n\n## What you will learn\nYou will solve chapter problems about making numbers perfect squares and counting the integers between consecutive squares. Every intermediate step will be shown.\n\n## Simple explanation\nWhen a prime exponent is odd, multiply by that prime to make the exponent even. Also, the number of integers strictly between n² and (n+1)² is 2n.\n\n## Step-by-step breakdown\n- **Making a square**: Complete all unpaired prime factors.\n- **New square root**: After completing the pairs, take one factor from each pair.\n- **Consecutive-square gap**: (n+1)² − n² = 2n + 1, so the count strictly between them is 2n.\n\n## Worked example\nQuestion: NCERT Figure it Out Q6: Find the smallest number by which 9408 must be multiplied to make a perfect square, and find the square root of the product.\n\nSolution:\n- Step 1: Prime factorise: 9408 = 2⁶ × 3 × 7².\n- Step 2: The exponents of 2 and 7 are even, but the exponent of 3 is odd.\n- Step 3: Multiply by 3: 9408 × 3 = 2⁶ × 3² × 7².\n- Step 4: Now take one factor from each pair: √(9408 × 3) = 2³ × 3 × 7.\n- Step 5: Calculate: 2³ × 3 × 7 = 8 × 21 = 168.\n- Final answer: The smallest multiplier is 3, and the square root of the product is 168.\n\n## Common mistake\nDo not multiply by every prime factor again. Only primes with odd exponents need one additional copy.\n\n## Quick check question\nQuestion: How many integers lie strictly between 16² and 17²?\nAnswer: 32.\nExplanation: 17² − 16² = (17−16)(17+16) = 33. Removing the two endpoint squares leaves 33 − 1 = 32 integers.\n\n## Summary\n- Use prime-exponent parity to make a number a square.\n- The smallest multiplier contains only the unpaired prime factors.\n- There are 2n integers between n² and (n+1)².",
+    "Exam-style problems": "# Exam-style problems: Chapter 1: A Square and A Cube\n\n## What you will learn\nYou will work with cubes, cube roots and prime-factor triples. You will also use last-digit reasoning to check claims about cubes.\n\n## Simple explanation\nA cube is formed by multiplying a number by itself three times. A perfect cube has every prime exponent divisible by 3.\n\n## Step-by-step breakdown\n- **Cube model**: A cube of edge n units contains n³ unit cubes.\n- **Prime-factor test**: Group identical prime factors in triples.\n- **Cube root**: Take one factor from each triple.\n- **Trailing zeroes**: A perfect cube has trailing zeroes in groups of three.\n- **Last digit**: The final digit of a cube is determined by the final digit of its cube root.\n\n## Worked example\nQuestion: NCERT Figure it Out Q1: Find √27000.\n\nSolution:\n- Step 1: Prime factorise: 27000 = 27 × 1000.\n- Step 2: Write as cubes: 27 = 3³ and 1000 = 10³.\n- Step 3: Therefore 27000 = 3³ × 10³ = (3 × 10)³.\n- Step 4: So √27000 = 30.\n- Final answer: √27000 = 30.\n\n## Common mistake\nDo not group prime factors in pairs when finding cube roots. Cube roots require groups of three equal factors.\n\n## Quick check question\nQuestion: Is the statement 'There is no perfect cube that ends with 8' true?\nAnswer: No, it is false.\nExplanation: 2³ = 8, so 8 itself is a perfect cube ending in 8. Other numbers ending in 2 also have cubes ending in 8.\n\n## Summary\n- Perfect cubes use groups of three prime factors.\n- Cube root is the inverse of cubing.\n- A single counterexample is enough to disprove a universal claim.",
+    "Revision and recap": "# Revision and recap: Chapter 1: A Square and A Cube\n\n## What you will learn\nYou will revise the complete square-and-cube toolkit and connect the modern ideas with the historical terms varga, ghana and mula.\n\n## Simple explanation\nThe chapter moves from a puzzle about factor counts to efficient tests for square and cube numbers, then to inverse operations and historical mathematical language.\n\n## Step-by-step breakdown\n- **Varga**: The Sanskrit term used for a square figure, its area and square power.\n- **Ghana**: The term used for a solid cube and for a number multiplied by itself three times.\n- **Mula**: A word meaning root or origin, used for square root and cube root.\n- **Square test**: Prime exponents are all even.\n- **Cube test**: Prime exponents are all multiples of three.\n- **Square Pairs**: The closing puzzle asks for arrangements in which adjacent numbers add to perfect squares.\n\n## Worked example\nQuestion: NCERT Figure it Out Q4 gives 1331 as a perfect cube. Find its cube root without full prime factorisation.\n\nSolution:\n- Step 1: The cube lies between 10³ = 1000 and 12³ = 1728, so the root is 11 or 12.\n- Step 2: A cube ending in 1 must come from a number ending in 1.\n- Step 3: Therefore the likely root is 11.\n- Step 4: Verify: 11³ = 11 × 11 × 11 = 121 × 11 = 1331.\n- Final answer: √1331 = 11.\n\n## Common mistake\nDo not rely on the last digit alone. Use a size interval as well, then verify by cubing the candidate.\n\n## Quick check question\nQuestion: State the prime-factor condition for a number to be both a perfect square and a perfect cube.\nAnswer: Every prime exponent must be a multiple of 6.\nExplanation: It must be divisible by both 2 and 3, so each exponent must be a multiple of lcm(2,3) = 6.\n\n## Summary\n- Squares have paired prime factors.\n- Cubes have prime factors in triples.\n- Roots reverse powers.\n- Historical terms show the geometric origin of square and cube language."
+  }
+}

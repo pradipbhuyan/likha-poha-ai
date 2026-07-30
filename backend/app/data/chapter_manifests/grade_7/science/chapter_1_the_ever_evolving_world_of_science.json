@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 1: The Ever-Evolving World of Science",
+  "central_question": "How does curiosity, questioning, observation and experimentation help science keep growing while connecting ideas about nature, society and responsibility?",
+  "in_scope_units": [
+    "Opening invitation to science: science as exploration of the small and large, near and far, through questions, experiments and personal discovery.",
+    "Science as a process: asking how and why, recognising patterns, staying open to the unknown and learning through direct experience.",
+    "Science, society and responsibility: connecting human activity with the natural world, environmental challenges and sustainability.",
+    "Interconnected fields of science: links among physics, chemistry, biology and earth science and the Grade 7 journey through materials, electricity, changes, heat, water, life processes, time, light and space.",
+    "1.1 Happy Exploring!: Activity 1.1 Question the Answer, which develops creative scientific questioning from given answers."
+  ],
+  "banned_topics": [
+    "Detailed acid-base classification, which belongs to Chapter 2.",
+    "Construction and analysis of electrical circuits, which belongs to Chapter 3.",
+    "Detailed properties of metals and non-metals, which belong to Chapter 4.",
+    "Formal classification of physical and chemical changes, which belongs to Chapter 5.",
+    "Detailed explanations of eclipses, planetary motion, circulation, photosynthesis or heat transfer, which are only previewed here."
+  ],
+  "must_include_keywords": [
+    "curiosity",
+    "questioning",
+    "observation",
+    "experiments",
+    "exploration",
+    "scientific process",
+    "patterns in nature",
+    "open to the unknown",
+    "discovery",
+    "responsibility",
+    "environment",
+    "sustainability",
+    "physics",
+    "chemistry",
+    "biology",
+    "earth sciences",
+    "materials",
+    "electricity",
+    "metals and non-metals",
+    "reversible changes",
+    "heat flow",
+    "water cycle",
+    "life processes",
+    "time",
+    "light",
+    "shadows",
+    "eclipses",
+    "Earth",
+    "Moon",
+    "Sun",
+    "Activity 1.1",
+    "Question the Answer",
+    "think like a scientist"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Science is mainly a collection of fixed facts to memorise.",
+      "correction": "The chapter presents science as an ongoing process of asking questions, observing, experimenting and revising understanding."
+    },
+    {
+      "claim": "Only questions with one correct answer are useful in science.",
+      "correction": "Activity 1.1 encourages many creative questions that may lead to the same answer and values interesting questioning."
+    },
+    {
+      "claim": "Physics, chemistry, biology and earth science are completely separate.",
+      "correction": "The chapter explains that scientific fields are interconnected and ideas in one area often inspire questions in another."
+    },
+    {
+      "claim": "Experiments are useful only when they confirm what we expected.",
+      "correction": "Even an experiment that confirms a prediction can raise new questions requiring more observations and experiments."
+    },
+    {
+      "claim": "Science is only about discovery and has nothing to do with society.",
+      "correction": "The chapter connects science with responsibility, environmental challenges and creating a more sustainable world."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the opening paper-plane discussion to connect simple observation with scientific exploration of flight.",
+    "Use the chapter overview of materials, electricity, changes, heat, water and life processes to show links among branches of science.",
+    "Use the light, shadow, day-night and eclipse preview to distinguish asking questions from teaching the later chapter details.",
+    "Use Activity 1.1 Question the Answer with 'Just add some milk' to model generating more than one reasonable question.",
+    "Use the Activity 1.1 answer '42' to discuss why an interesting question is better than an obvious arithmetic question."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "This introductory chapter has no separate end-of-chapter exercise section; its main structured task is Activity 1.1, 'Question the Answer'.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

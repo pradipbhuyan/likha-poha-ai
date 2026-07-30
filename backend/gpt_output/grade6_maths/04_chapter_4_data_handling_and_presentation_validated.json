@@ -1,0 +1,76 @@
+{
+  "manifest": {
+    "grade": "Grade 6",
+    "subject": "Maths",
+    "chapter": "Chapter 4 Data Handling and Presentation",
+    "central_question": "How can collected information be organised, represented, and interpreted clearly?",
+    "in_scope_units": [
+      "4.1 Collecting and Organising Data — data, categories, tally marks, frequencies, and ordered lists",
+      "4.2 Pictographs — symbols, keys, scales, and partial symbols",
+      "4.3 Bar Graphs — axes, equal-width bars, uniform gaps, suitable scales, and interpretation",
+      "Choosing representations — matching a list, table, pictograph, or graph to the question"
+    ],
+    "banned_topics": [
+      "Mean, median, and mode",
+      "Pie charts",
+      "Probability"
+    ],
+    "must_include_keywords": [
+      "data",
+      "information",
+      "collection",
+      "observation",
+      "category",
+      "table",
+      "tally marks",
+      "groups of five",
+      "frequency",
+      "ascending order",
+      "largest",
+      "smallest",
+      "pictograph",
+      "symbol",
+      "key",
+      "scale",
+      "half symbol",
+      "bar graph",
+      "horizontal axis",
+      "vertical axis",
+      "equal width",
+      "equal spacing",
+      "suitable scale",
+      "title",
+      "label",
+      "interpretation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Category totals always identify the individual students.",
+        "correction": "Frequencies give totals; names require a separate individual record."
+      },
+      {
+        "claim": "One pictograph symbol always means one item.",
+        "correction": "Its value is determined by the key."
+      },
+      {
+        "claim": "Bar widths and gaps may vary freely.",
+        "correction": "Bars should have equal width and uniform spacing."
+      }
+    ],
+    "recommended_example_progression": [
+      "Organise sweet preferences using tallies and frequencies.",
+      "Sort the shoe-size list in ascending order.",
+      "Interpret the sleep pictograph with whole and half symbols.",
+      "Construct a sweet-preference bar graph.",
+      "Choose larger scales for Smriti's runs and Imran's expenditure."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out tasks in Sections 4.1–4.3 for tables, pictographs, bar graphs, and interpretation."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 4 Data Handling and Presentation\n\n## What you will learn\nYou will define data and record category frequencies using tally marks.\n\n## Simple explanation\nData is a collection of facts, numbers, measurements, observations, or descriptions that conveys information.\n\n## Step-by-step breakdown\n- **Raw data**: Individual responses or measurements before organisation.\n- **Categories**: Labels such as types of sweets.\n- **Tally marks**: Record each occurrence once and group marks in fives.\n- **Frequency**: The total number of occurrences in a category.\n- **Purpose**: Collect information suited to the question.\n\n## Worked example\nQuestion: What does a frequency of 6 for jalebi mean in the NCERT sweet table?\n\nSolution:\n- Step 1: Locate the jalebi category.\n- Step 2: Read its tally total or frequency.\n- Final answer: Six students preferred jalebi.\n\n## Common mistake\nDo not count one response twice unless multiple choices were allowed.\n\n## Quick check question\nQuestion: What does the frequency of shoe size 5 mean?\nAnswer: The number of students wearing size 5.\nExplanation: Frequency counts how often a value occurs.\n\n## Summary\n- Data answers questions.\n- Categories organise responses.\n- Tallies build frequencies.",
+    "Core explanation": "# Core explanation: Chapter 4 Data Handling and Presentation\n\n## What you will learn\nYou will order numerical data and identify smallest, largest, and repeated values.\n\n## Simple explanation\nSorting brings equal values together and places the extremes at the ends.\n\n## Step-by-step breakdown\n- **Ascending order**: Arrange from smallest to largest.\n- **Smallest**: Read the first value.\n- **Largest**: Read the last value.\n- **Repetition**: Equal values appear together.\n- **Alternative**: A frequency table can replace a long repeated list.\n\n## Worked example\nQuestion: From the ordered shoe-size data, identify the smallest and largest sizes.\n\nSolution:\n- Step 1: Read the first ordered value, 3.\n- Step 2: Read the last ordered value, 7.\n- Final answer: Smallest 3; largest 7.\n\n## Common mistake\nThe most frequent value is not necessarily the largest value.\n\n## Quick check question\nQuestion: Why does sorting help count size 5?\nAnswer: All the 5s appear together.\nExplanation: They can be counted as one consecutive group.\n\n## Summary\n- Ordering reveals extremes.\n- Repeated values form groups.\n- Frequency and magnitude are different ideas.",
+    "Worked examples": "# Worked examples: Chapter 4 Data Handling and Presentation\n\n## What you will learn\nYou will read and construct pictographs using a key and partial symbols.\n\n## Simple explanation\nA pictograph uses pictures to represent data, but the key defines how much each picture means.\n\n## Step-by-step breakdown\n- **Key**: States the value of one symbol.\n- **Whole symbols**: Multiply their count by the key value.\n- **Half symbol**: Represents half the key value when defined.\n- **Labels**: Identify each row or category.\n- **Comparison**: More symbols mean a greater frequency under the same key.\n\n## Worked example\nQuestion: One symbol represents 10 children. What do two full symbols and one half symbol represent?\n\nSolution:\n- Step 1: Two full symbols represent 20.\n- Step 2: One half symbol represents 5; add 20+5.\n- Final answer: 25 children.\n\n## Common mistake\nRead the key before counting symbols as data values.\n\n## Quick check question\nQuestion: What do five symbols represent when each means 10 children?\nAnswer: 50 children.\nExplanation: 5×10=50.\n\n## Summary\n- Every pictograph needs a key.\n- Multiply full symbols by the scale.\n- Interpret partial symbols consistently.",
+    "Exam-style problems": "# Exam-style problems: Chapter 4 Data Handling and Presentation\n\n## What you will learn\nYou will draw and interpret bar graphs with appropriate scales.\n\n## Simple explanation\nBar height or length shows frequency on a numerical scale.\n\n## Step-by-step breakdown\n- **Axes**: One lists categories and the other frequencies.\n- **Bars**: Equal width with uniform gaps.\n- **Scale**: Use one consistent value per unit.\n- **Labels**: Add a title and axis labels.\n- **Zero**: A zero-frequency category has a bar of height zero.\n\n## Worked example\nQuestion: Smriti scored 100 runs in Match 4. With 1 unit=10 runs, how high is the bar?\n\nSolution:\n- Step 1: Compute 100÷10=10 graph units.\n- Step 2: Draw it to the 100-run mark.\n- Final answer: 10 graph units high.\n\n## Common mistake\nDo not change the scale for different bars in the same graph.\n\n## Quick check question\nQuestion: How is 0 runs in Match 6 shown?\nAnswer: A bar of height 0 at the labelled category.\nExplanation: The category remains, but the bar does not rise above the baseline.\n\n## Summary\n- Use a single scale.\n- Keep bars uniform.\n- Titles and labels preserve meaning.",
+    "Revision and recap": "# Revision and recap: Chapter 4 Data Handling and Presentation\n\n## What you will learn\nYou will choose the best representation and verify it against the source data.\n\n## Simple explanation\nLists preserve individual values, tables give exact totals, pictographs communicate visually, and bar graphs make comparisons quick.\n\n## Step-by-step breakdown\n- **Raw list**: Preserves each observation.\n- **Ordered list**: Highlights extremes and repetition.\n- **Frequency table**: Summarises exact category totals.\n- **Pictograph**: Uses a visual key.\n- **Bar graph**: Compares scaled frequencies.\n- **Check**: Totals must agree across representations.\n\n## Worked example\nQuestion: Imran's food expenditure is ₹3,400 and the scale is 1 unit=₹200. Find the bar height.\n\nSolution:\n- Step 1: Divide 3400 by 200.\n- Step 2: The quotient is 17.\n- Final answer: 17 scale units.\n\n## Common mistake\nAvoid a scale that is awkward or makes the graph unnecessarily large.\n\n## Quick check question\nQuestion: Which display is best for quickly comparing several sweet frequencies?\nAnswer: A bar graph.\nExplanation: Side-by-side bar heights make comparison immediate.\n\n## Summary\n- Organise before representing.\n- Choose a display for the question.\n- Check scales, labels, and totals."
+  }
+}

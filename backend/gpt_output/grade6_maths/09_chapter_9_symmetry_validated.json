@@ -1,0 +1,83 @@
+{
+  "manifest": {
+    "grade": "Grade 6",
+    "subject": "Maths",
+    "chapter": "Chapter 9 Symmetry",
+    "central_question": "How can repetition through reflection or rotation be recognised, created, and measured?",
+    "in_scope_units": [
+      "Introduction to symmetry — definite repetition in natural, artistic, and architectural figures",
+      "9.1 Line of Symmetry — folding, reflection, multiple lines, and symmetric constructions",
+      "Paper cutting, punching, and grid completion — creating reflection symmetry",
+      "9.2 Rotational Symmetry — centre of rotation, angles of symmetry, windmills, squares, and radial arms",
+      "Comparing reflection and rotational symmetry — figures with one, both, or neither type",
+      "Symmetry designs, tiles, and games"
+    ],
+    "banned_topics": [
+      "Transformation matrices",
+      "Group theory",
+      "Coordinate reflection formulae"
+    ],
+    "must_include_keywords": [
+      "symmetry",
+      "definite pattern",
+      "symmetrical",
+      "asymmetrical",
+      "line of symmetry",
+      "axis of symmetry",
+      "fold",
+      "overlap",
+      "reflection",
+      "mirror image",
+      "vertical",
+      "horizontal",
+      "diagonal",
+      "square",
+      "rectangle",
+      "paper cutting",
+      "hole punching",
+      "grid completion",
+      "rotational symmetry",
+      "centre of rotation",
+      "angle of symmetry",
+      "quarter turn",
+      "half turn",
+      "three-quarter turn",
+      "full turn",
+      "90°",
+      "180°",
+      "270°",
+      "360°",
+      "radial arms",
+      "smallest angle of symmetry"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every symmetrical figure has a line of symmetry.",
+        "correction": "A pinwheel may have rotational symmetry without reflection symmetry."
+      },
+      {
+        "claim": "A non-square rectangle has diagonal symmetry lines.",
+        "correction": "Its diagonals do not make the halves overlap."
+      },
+      {
+        "claim": "A 360° return alone proves rotational symmetry.",
+        "correction": "The chapter requires a matching angle strictly below 360°."
+      }
+    ],
+    "recommended_example_progression": [
+      "Compare the opening flower, butterfly, rangoli, pinwheel, and cloud.",
+      "Fold a square to find four lines of symmetry and test a rectangle diagonal.",
+      "Use cutting, punching, and grid completion for reflection.",
+      "Rotate the windmill and square through 90°, 180°, 270°, and 360°.",
+      "Divide 360° among equal radial arms."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out tasks in Sections 9.1–9.2, including regular polygons, Parliament Building, Koch snowflake, Ashoka Chakra, tiles, and the final game."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 9 Symmetry\n\n## What you will learn\nYou will recognise symmetry as repetition in a definite pattern and separate examples from non-examples.\n\n## Simple explanation\nA figure is symmetrical when its parts repeat in a matching, organised way.\n\n## Step-by-step breakdown\n- **Examples**: Flower, butterfly, rangoli, and pinwheel show repeated structure.\n- **Non-example**: The displayed cloud has no definite repeated pattern.\n- **Architecture**: The Taj Mahal and gopuram show repeated parts.\n- **Types**: Repetition may match after reflection, rotation, or both.\n\n## Worked example\nQuestion: Which of the butterfly and cloud has a line of symmetry?\n\nSolution:\n- Step 1: Imagine folding each through a possible centre line.\n- Step 2: The butterfly sides match, while the irregular cloud does not.\n- Final answer: The butterfly has a line of symmetry; the cloud does not.\n\n## Common mistake\nBeauty or colour alone does not establish symmetry.\n\n## Quick check question\nQuestion: Can a pinwheel be symmetrical without a line of symmetry?\nAnswer: Yes.\nExplanation: It can match after rotation.\n\n## Summary\n- Symmetry is definite repetition.\n- Reflection and rotation are different tests.\n- A figure may have either, both, or neither.",
+    "Core explanation": "# Core explanation: Chapter 9 Symmetry\n\n## What you will learn\nYou will identify lines of symmetry using folding and reflection.\n\n## Simple explanation\nA line of symmetry divides a figure into two parts that overlap exactly when folded.\n\n## Step-by-step breakdown\n- **Fold test**: The two halves must overlap.\n- **Square**: Vertical, horizontal, and two diagonal lines.\n- **Rectangle**: A non-square rectangle has vertical and horizontal lines only.\n- **Reflection**: Corresponding points exchange positions.\n- **On the axis**: A point on the line remains fixed.\n\n## Worked example\nQuestion: How many lines of symmetry does a square have?\n\nSolution:\n- Step 1: Count the vertical and horizontal midlines.\n- Step 2: Count both diagonals.\n- Final answer: 4 lines of symmetry.\n\n## Common mistake\nDo not give a non-square rectangle diagonal symmetry.\n\n## Quick check question\nQuestion: How many diagonal symmetry lines does a non-square rectangle have?\nAnswer: None.\nExplanation: A diagonal fold does not create exact overlap.\n\n## Summary\n- Folding verifies reflection symmetry.\n- A square has four axes.\n- Corresponding points are mirrored.",
+    "Worked examples": "# Worked examples: Chapter 9 Symmetry\n\n## What you will learn\nYou will create symmetric figures through folds, cuts, punches, and grid reflection.\n\n## Simple explanation\nA fold acts like a mirror, placing matching marks at equal perpendicular distances.\n\n## Step-by-step breakdown\n- **Distance**: A point and its image are equally far from the axis.\n- **Hole punching**: The number of images depends on the folds.\n- **Single cut**: Unfolding creates matching boundaries.\n- **Grid completion**: Copy segments to mirrored positions.\n- **Two axes**: The completed figure must satisfy both reflections.\n\n## Worked example\nQuestion: A square is folded once vertically and punched once away from the fold. How many holes appear after unfolding?\n\nSolution:\n- Step 1: One fold creates two reflected layers.\n- Step 2: The punch appears at one position and its mirror.\n- Final answer: Two symmetric holes.\n\n## Common mistake\nMeasure reflection distance perpendicular to the axis, not along a sloping route.\n\n## Quick check question\nQuestion: What happens if the punched point lies on the fold line?\nAnswer: It maps onto itself, so no separated mirror hole appears.\nExplanation: Its distance from the axis is zero.\n\n## Summary\n- Folds generate mirror images.\n- Reflected points have equal perpendicular distance.\n- Physical unfolding verifies predictions.",
+    "Exam-style problems": "# Exam-style problems: Chapter 9 Symmetry\n\n## What you will learn\nYou will identify rotational symmetry, centres, and angles of symmetry.\n\n## Simple explanation\nA figure has rotational symmetry when a turn smaller than 360° makes it overlap its starting position.\n\n## Step-by-step breakdown\n- **Centre**: The fixed point of rotation.\n- **Angle of symmetry**: A turn producing exact overlap.\n- **Windmill**: Matches at 90°, 180°, 270°, and 360°.\n- **Square**: Has the same four angles about its centre.\n- **No rotational symmetry**: Only matching at 360° is not enough under the chapter definition.\n\n## Worked example\nQuestion: List the windmill's angles of symmetry.\n\nSolution:\n- Step 1: A quarter turn gives 90°.\n- Step 2: Repeated quarter turns give 180°, 270°, and 360°.\n- Final answer: 90°, 180°, 270°, and 360°.\n\n## Common mistake\nEvery figure returns after 360°; genuine rotational symmetry needs a smaller matching turn.\n\n## Quick check question\nQuestion: If the smallest angle is 60°, what other angles occur up to a full turn?\nAnswer: 120°, 180°, 240°, 300°, and 360°.\nExplanation: They are successive multiples of 60°.\n\n## Summary\n- Rotation uses a fixed centre.\n- Matching turns are angles of symmetry.\n- The smallest angle generates the others.",
+    "Revision and recap": "# Revision and recap: Chapter 9 Symmetry\n\n## What you will learn\nYou will analyse radial-arm figures and compare reflection with rotation.\n\n## Simple explanation\nEqual identical arms divide the full 360° turn into equal central angles.\n\n## Step-by-step breakdown\n- **Four arms**: 360°÷4=90°.\n- **Three arms**: 360°÷3=120°.\n- **General rule**: For n identical equally spaced arms, smallest angle=360°÷n.\n- **Both types**: Regular figures may have reflection and rotation.\n- **One type**: An isosceles triangle and a pinwheel illustrate different possibilities.\n- **Verification**: Trace and rotate a cutout.\n\n## Worked example\nQuestion: What angle between three identical arms gives rotational symmetry?\n\nSolution:\n- Step 1: Use a full turn of 360°.\n- Step 2: Divide equally among three gaps.\n- Final answer: 120°.\n\n## Common mistake\nThe division rule requires identical, equally spaced arms.\n\n## Quick check question\nQuestion: How many lines and angles of symmetry does the Ashoka Chakra have in the chapter solution?\nAnswer: 24 lines and 24 angles.\nExplanation: Its 24 equally spaced spokes repeat through reflection and rotation.\n\n## Summary\n- Equal arms divide 360°.\n- Reflection and rotation must be tested separately.\n- Tracing, folding, and rotation verify conclusions."
+  }
+}

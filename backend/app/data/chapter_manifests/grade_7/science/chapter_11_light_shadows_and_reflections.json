@@ -1,0 +1,103 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 11: Light: Shadows and Reflections",
+  "central_question": "How does light travel and interact with materials, objects, mirrors, and small openings to produce shadows, reflections, and images?",
+  "in_scope_units": [
+    "11.1 Sources of Light—natural and artificial sources, luminous and non-luminous objects, moonlight as reflected sunlight, and responsible use and disposal of LED lamps.",
+    "11.2 Does Light Travel in a Straight Line?—Activities 11.1 and 11.2 using aligned holes and straight or bent pipes to test rectilinear propagation of light.",
+    "11.3 Light through Transparent, Translucent, and Opaque Materials—Activity 11.3, prediction and observation, and classification by how much light passes through.",
+    "11.4 Shadow Formation—requirements for a visible shadow, darker, lighter and faint shadows, and Activity 11.4 on changes in shape, size and sharpness.",
+    "11.5 Reflection of Light—Activities 11.5 and 11.6 showing that a shiny surface or plane mirror changes the direction of light.",
+    "11.6 Images Formed in a Plane Mirror—Activities 11.7 and 11.8 on object and image, same size, erect image, inability to obtain the image on a screen, apparent position and lateral inversion.",
+    "11.7 Pinhole Camera—Activities 11.9 and 11.10 showing image formation through a tiny hole and an inverted image on a screen.",
+    "11.8 Making Some Useful Items—construction and working of a periscope and kaleidoscope using plane mirrors and repeated reflections.",
+    "In a Nutshell, Let Us Enhance Our Learning Questions 1–12, and exploratory projects on fireflies, coloured light, multiple mirrors and small mirrors."
+  ],
+  "banned_topics": [
+    "Laws of reflection using angles of incidence and reflection.",
+    "Refraction, lenses and image formation by lenses.",
+    "Dispersion of white light and rainbow formation.",
+    "Detailed wave theory or diffraction calculations.",
+    "Curved mirrors and focal length."
+  ],
+  "must_include_keywords": [
+    "luminous object",
+    "non-luminous object",
+    "Sun",
+    "Moon",
+    "natural light",
+    "artificial light",
+    "LED lamp",
+    "straight line",
+    "Activity 11.1",
+    "Activity 11.2",
+    "transparent",
+    "translucent",
+    "opaque",
+    "Activity 11.3",
+    "shadow",
+    "source of light",
+    "screen",
+    "shape",
+    "size",
+    "sharpness",
+    "Activity 11.4",
+    "reflection of light",
+    "shiny surface",
+    "plane mirror",
+    "Activity 11.5",
+    "Activity 11.6",
+    "image",
+    "object",
+    "erect",
+    "same size",
+    "lateral inversion",
+    "Activity 11.7",
+    "Activity 11.8",
+    "pinhole camera",
+    "inverted image",
+    "Activity 11.9",
+    "Activity 11.10",
+    "periscope",
+    "kaleidoscope",
+    "Let Us Enhance Our Learning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Moon is a luminous object because it shines at night.",
+      "correction": "The Moon is non-luminous; it appears bright because it reflects sunlight."
+    },
+    {
+      "claim": "Light can be seen through a bent pipe because it follows the shape of the pipe.",
+      "correction": "Activity 11.2 shows that a candle flame is visible through a straight pipe but not a bent pipe because light travels in straight lines."
+    },
+    {
+      "claim": "Only opaque objects form shadows.",
+      "correction": "Opaque objects form darker shadows, translucent objects form lighter shadows, and some transparent objects can form faint shadows."
+    },
+    {
+      "claim": "Changing the colour of an opaque object changes the colour of its shadow.",
+      "correction": "Activity 11.4 shows that the colour of the opaque object does not change the colour of the shadow."
+    },
+    {
+      "claim": "A plane-mirror image can be captured on a screen.",
+      "correction": "The image formed by a plane mirror cannot be obtained on a screen."
+    },
+    {
+      "claim": "A pinhole-camera image is laterally inverted but upright.",
+      "correction": "A pinhole camera forms an upside-down, inverted image on a screen, whereas a plane-mirror image is erect and laterally inverted."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activities 11.1 and 11.2 to reason from observation to the conclusion that light travels in a straight line.",
+    "Use NCERT Activity 11.3 and Let Us Enhance Our Learning Question 2 to classify materials by the amount of light transmitted.",
+    "Use NCERT Activity 11.4 and Questions 5–6 to explain how object position and number of light sources change a shadow.",
+    "Use NCERT Activities 11.5–11.8 and Questions 8 and 10 to establish reflection and the properties of a plane-mirror image.",
+    "Use NCERT Activities 11.9–11.10 and Question 7 to explain why a pinhole camera forms an inverted image.",
+    "Use NCERT Question 11 to apply reflection in the design of a periscope."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The section 'Let Us Enhance Our Learning' contains Questions 1–12, followed by four Exploratory Projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

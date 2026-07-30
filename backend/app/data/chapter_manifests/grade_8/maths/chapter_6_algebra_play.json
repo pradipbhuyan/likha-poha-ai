@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 6: Algebra Play",
+  "central_question": "How can algebra explain, solve and create number tricks, pyramids, grids, optimisation puzzles and divisibility patterns?",
+  "in_scope_units": [
+    "Algebra as a language for modelling tricks and puzzles.",
+    "Think of a Number tricks and proof that the result is independent of the starting number.",
+    "A birthday or date-decoding trick represented by 100M + 165 + D.",
+    "Number pyramids in which every entry is the sum of the two entries directly below it.",
+    "General algebraic expressions for the top of a number pyramid and Virahanka-Fibonacci patterns.",
+    "Calendar magic using the algebraic structure of a 2 by 2 calendar grid.",
+    "Algebra grids in which shapes represent unknown numbers.",
+    "The largest-product puzzle with three distinct digits.",
+    "Divisibility tricks involving reversal of two-digit numbers.",
+    "Divisibility of sums of reversals by 11, cyclic three-digit sums by 37 and 3, and repeated three-digit blocks by 7, 11 and 13.",
+    "End-of-chapter algebraic word puzzles and the creation of original tricks."
+  ],
+  "banned_topics": [
+    "Quadratic equations and polynomial factorisation.",
+    "Formal modular-arithmetic notation beyond the chapter's algebraic divisibility reasoning.",
+    "Simultaneous linear equations in matrix form."
+  ],
+  "must_include_keywords": [
+    "algebra",
+    "letter-number",
+    "variable",
+    "expression",
+    "identity",
+    "Think of a Number",
+    "starting number",
+    "date trick",
+    "month",
+    "day",
+    "100M + 165 + D",
+    "number pyramid",
+    "adjacent entries",
+    "top number",
+    "Virahanka-Fibonacci numbers",
+    "calendar magic",
+    "2 by 2 grid",
+    "4a + 16",
+    "algebra grid",
+    "unknown shape",
+    "largest product",
+    "multiplicand",
+    "multiplier",
+    "reversed digits",
+    "two-digit number",
+    "10a + b",
+    "divisible by 9",
+    "divisible by 11",
+    "cyclic digits",
+    "divisible by 37",
+    "abcabc",
+    "1001",
+    "7 × 11 × 13",
+    "generalisation",
+    "proof"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Testing a number trick with several starting numbers proves that it always works.",
+      "correction": "Examples suggest a pattern, but algebra using a variable proves it for every allowed starting number."
+    },
+    {
+      "claim": "In a number pyramid, each entry is the product of the two entries below it.",
+      "correction": "In this chapter, each entry is the sum of the two entries directly below it."
+    },
+    {
+      "claim": "Numbers in a 2 by 2 calendar block are four consecutive integers.",
+      "correction": "They have the form a, a+1, a+7 and a+8 because moving down one calendar row adds 7."
+    },
+    {
+      "claim": "For the largest product, the largest digit should always be the tens digit.",
+      "correction": "For three ordered digits p<q<r, the chapter shows the largest digit r should be the one-digit multiplier and qp the two-digit multiplicand."
+    },
+    {
+      "claim": "The difference between a two-digit number and its reversal is divisible by 11.",
+      "correction": "The difference is 9 times the difference of the digits, while their sum is 11 times the sum of the digits."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Section 6.2's basic trick x → 2x → 2x+4 → x+2 → 2.",
+    "Use the date trick ending in 291 to decode 26 January by subtracting 165.",
+    "Use the chapter's number-pyramid activities to express a three-entry bottom row a,b,c as top a+2b+c.",
+    "Use the calendar example with total 36 to recover the block 5,6,12,13.",
+    "Use Section 6.5's digits 2,3,5 to obtain the maximum product 32×5.",
+    "Use Section 6.6's 47 and 74 reversal example to prove divisibility by 9."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Figure it Out and Math Talk tasks appear after each puzzle family, with the final set in Section 6.6 covering reversal, cyclic-digit and repeated-block divisibility along with contextual algebra puzzles.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

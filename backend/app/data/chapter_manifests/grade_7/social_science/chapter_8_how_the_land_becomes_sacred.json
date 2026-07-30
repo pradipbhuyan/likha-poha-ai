@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 8: How the Land Becomes Sacred",
+  "central_question": "How do sacred places, pilgrimage networks and reverence for Nature turn geography into a shared cultural landscape while supporting ecology, trade and integration?",
+  "in_scope_units": [
+    "What is Sacredness?—religious or spiritual significance attached to places, shrines, journeys, routes and land.",
+    "Sacred places in different faiths—Islam, Christianity, Judaism, Zoroastrianism, Buddhism and Sikhism.",
+    "Pilgrimages—tīrtha, tīrthayātrā, inner and outer journeys, Dharampal’s account and long-distance travel.",
+    "Jain tīrthas, Tīrthankaras, Sabarimala and the Pandharpur wārī.",
+    "More sacred sites—Hindu, folk and tribal reverence for Nature, Bhūdevī, Niyam Dongar, Sikkim and Toda traditions.",
+    "Becoming Aware of Sacred Geography—chār dhām, jyotirlingas, Shakti pīṭhas and networks across the Subcontinent.",
+    "Cultural integration through overlapping routes used by pilgrims, traders, teachers and seekers.",
+    "Sacred Ecology—puṇyakṣhetra and the fusion of geography, culture and spirituality.",
+    "Rivers and sangams—nadīstuti sūkta, sacred rivers and the Kumbh Mela.",
+    "Mountains and forests—hilltop shrines and the symbolic inner journey.",
+    "Trees, forests and sacred groves—peepul, epic traditions, biodiversity, water conservation and regional names.",
+    "From pilgrimage to trade—overlap with Uttarapatha and Dakṣhinapātha and the movement of goods.",
+    "Sacred Geography beyond India—Ancient Greece, Native Americans and Māori reverence for Taranaki Maunga.",
+    "Restoring and conserving the sacred—pollution, degradation, responsibility and sustainability.",
+    "Before we move on and Questions and activities 1–8—environmental respect, local sites, Nature, pilgrimage, economy, culture and two-fold significance."
+  ],
+  "banned_topics": [
+    "Detailed doctrines or rituals of any religion beyond what the chapter states.",
+    "Advanced environmental science or pollution statistics not present in the chapter.",
+    "Detailed ancient trade history beyond the routes and goods specifically recalled in the chapter.",
+    "Constitutional law beyond the chapter’s brief reminder of the duty to protect heritage."
+  ],
+  "must_include_keywords": [
+    "sacredness",
+    "pilgrimage",
+    "shrine",
+    "relic",
+    "tīrtha",
+    "tīrthayātrā",
+    "Great Stūpa at Sanchi",
+    "Mahabodhi Stūpa",
+    "takht",
+    "Tīrthankara",
+    "Sabarimala",
+    "Pandharpur wārī",
+    "Bhūdevī",
+    "Niyam Dongar",
+    "Dongria Khond",
+    "Toda",
+    "sacred geography",
+    "chār dhām",
+    "jyotirlingas",
+    "Shakti pīṭhas",
+    "cultural integration",
+    "puṇyakṣhetra",
+    "nadīstuti sūkta",
+    "sangam",
+    "Kumbh Mela",
+    "amṛita manthana",
+    "peepul tree",
+    "Ficus religiosa",
+    "sacred groves",
+    "biodiversity",
+    "Uttarapatha",
+    "Dakṣhinapātha",
+    "Taranaki Maunga",
+    "sustainability"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Sacredness refers only to a temple or religious building.",
+      "correction": "The chapter includes sacred journeys, routes, natural features and even the land itself."
+    },
+    {
+      "claim": "Pilgrimage is only physical travel.",
+      "correction": "A tīrthayātrā is described as both an outward journey and an inner spiritual journey guided by conduct."
+    },
+    {
+      "claim": "Sacred geography belongs only to Hindu traditions.",
+      "correction": "The chapter discusses sacred places and pilgrimages in many religions and belief systems, including Buddhism, Sikhism, Jainism, Islam and Christianity."
+    },
+    {
+      "claim": "Sacred groves have only religious value.",
+      "correction": "Their sacred status also protects biodiversity, small water bodies and ecological relationships."
+    },
+    {
+      "claim": "Pilgrimage routes had no economic or cultural role.",
+      "correction": "They overlapped with trade routes and brought pilgrims, traders, teachers, ideas, goods and stories into contact."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Questions and activities Q8 to explain the two-fold significance of pilgrimage.",
+    "Use NCERT Questions and activities Q3 to connect sacred rivers, mountains and forests with human life.",
+    "Use NCERT Questions and activities Q5 to analyse pilgrimage routes, trade and regional economies.",
+    "Use NCERT Questions and activities Q1 to interpret David Suzuki’s statement about worldview and environmental action.",
+    "Use NCERT Questions and activities Q6 to explain how sacred places influence nearby culture and traditions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–8.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

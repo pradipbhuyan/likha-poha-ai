@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 7",
+  "subject": "English",
+  "chapter": "Unit 3: Dreams and Discoveries",
+  "central_question": "How do curiosity, imagination, invention and travel help young people discover new possibilities and understand the world?",
+  "in_scope_units": [
+    "My Brother's Great Invention—Anita's first-person narration and Anand's experimental personality.",
+    "The burglar episode, time machine, suspense, humour and unexplained disappearance.",
+    "Character traits supported by evidence and presence of mind.",
+    "Sound words, atmosphere, idiom and plot sequence.",
+    "Vocations, teamwork, creativity, innovation and invention.",
+    "Paper Boats—childhood imagination, hope and connection with an unknown world.",
+    "Imagery, symbolism, alliteration, repetition, tone and mood in the poem.",
+    "Parts of the day, opposites and phrases formed with 'of'.",
+    "Origami listening, craft presentation and diary writing.",
+    "North, South, East, West—Shaana's postcard journey across India.",
+    "Postcard form, first-person voice, diversity, curiosity and changing fears.",
+    "Glaciers, wetlands, forests, deserts, plateaus, beaches and bridges.",
+    "Travel vocabulary, maps, riddles and descriptive writing."
+  ],
+  "banned_topics": [
+    "Scientific claims or instructions for constructing a time machine.",
+    "Complete biographies of the writers.",
+    "External climate statistics.",
+    "Detailed geography beyond the places and features used in the unit."
+  ],
+  "must_include_keywords": [
+    "Anita",
+    "Anand",
+    "first-person narrator",
+    "invention",
+    "time machine",
+    "Boppa",
+    "green scarf",
+    "suspense",
+    "humour",
+    "presence of mind",
+    "creativity",
+    "innovation",
+    "vocation",
+    "Paper Boats",
+    "Rabindranath Tagore",
+    "shiuli flowers",
+    "running stream",
+    "midnight stars",
+    "imagination",
+    "symbolism",
+    "gentle and wishful",
+    "origami",
+    "diary entry",
+    "Shaana",
+    "postcards",
+    "Rameswaram",
+    "Thajiwas glacier",
+    "Sundarbans",
+    "plateaus",
+    "Pamban bridge",
+    "geographical diversity",
+    "travel"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Anand is only careless.",
+      "correction": "He is creative and quick-thinking, although his inventions also cause trouble."
+    },
+    {
+      "claim": "The story proves where Boppa goes.",
+      "correction": "His disappearance remains mysterious; the scarf proves presence, not a scientific destination."
+    },
+    {
+      "claim": "Paper Boats is about commercial shipping.",
+      "correction": "The boats carry identity, hopes and dreams and function as symbols."
+    },
+    {
+      "claim": "Shaana dislikes unfamiliar places.",
+      "correction": "Her postcards show curiosity and growth, including reduced fear of tunnels."
+    },
+    {
+      "claim": "The postcards are a random list.",
+      "correction": "They create a personal, dated journey through varied landscapes and cultures."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Anita's narration and the intruder episode.",
+    "Analyse Anand through evidence and responsible creativity.",
+    "Move to Paper Boats for imagery and symbolism.",
+    "Use Shaana's postcards for inference and diversity.",
+    "Finish with diary, presentation, travel vocabulary and listening."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit includes comprehension, extract-based reflection, vocabulary, grammar, listening, speaking, diary, presentation and travel activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

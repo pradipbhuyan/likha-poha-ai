@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 4: Quadrilaterals",
+    "central_question": "How can definitions, angle relations, congruence and diagonal properties be used to classify and construct special quadrilaterals?",
+    "in_scope_units": [
+      "Meaning of a quadrilateral and its angles.",
+      "Rectangles: definitions, the carpenter's diagonal problem and geometric deductions.",
+      "Squares as special rectangles and their diagonal and angle-bisector properties.",
+      "Sum of the interior angles of a quadrilateral.",
+      "Parallelograms and their side, angle and diagonal properties.",
+      "Rhombuses as special parallelograms and perpendicular diagonals.",
+      "Geoboard and triangle-joining activities for recognising quadrilaterals.",
+      "Kites and their side, angle and diagonal properties.",
+      "Trapeziums and isosceles trapeziums.",
+      "Venn-diagram relationships among parallelograms, rectangles, squares, rhombuses and kites.",
+      "Construction and puzzle activities using diagonal properties."
+    ],
+    "banned_topics": [
+      "Area formulas for quadrilaterals.",
+      "Coordinate-geometry proofs.",
+      "Circle theorems beyond the simple diameter construction activity."
+    ],
+    "must_include_keywords": [
+      "quadrilateral",
+      "rectangle",
+      "square",
+      "parallelogram",
+      "rhombus",
+      "kite",
+      "trapezium",
+      "isosceles trapezium",
+      "diagonal",
+      "bisect",
+      "perpendicular",
+      "parallel opposite sides",
+      "equal opposite sides",
+      "right angle",
+      "angle sum",
+      "360 degrees",
+      "congruence",
+      "SAS",
+      "AAS",
+      "SSS",
+      "vertically opposite angles",
+      "linear pair",
+      "transversal",
+      "carpenter's problem",
+      "Venn diagram",
+      "geoboard",
+      "construction",
+      "conjecture",
+      "proof"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every quadrilateral with equal diagonals is a rectangle.",
+        "correction": "For the diagonal definition used here, the diagonals must be equal and bisect each other."
+      },
+      {
+        "claim": "Every parallelogram is a rectangle.",
+        "correction": "A rectangle is a special parallelogram with four right angles; a general parallelogram need not have right angles."
+      },
+      {
+        "claim": "Every rectangle is a square.",
+        "correction": "Every square is a rectangle, but a rectangle is a square only when all four sides are equal."
+      },
+      {
+        "claim": "The diagonals of every parallelogram are equal.",
+        "correction": "Parallelogram diagonals bisect each other, but they are not necessarily equal."
+      },
+      {
+        "claim": "A trapezium must have exactly one pair of parallel sides.",
+        "correction": "The chapter defines a trapezium as having at least one pair of parallel opposite sides."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the carpenter's 8 cm strips problem to prove the rectangle diagonal properties.",
+      "Use Deduction 5 to construct a square from equal diagonals that bisect at 90°.",
+      "Use the diagonal split of quadrilateral SOME to prove the 360° angle sum.",
+      "Use the 4 cm, 5 cm and 30° construction to derive parallelogram angles and sides.",
+      "Use Figure it Out construction tasks for parallelograms, rhombuses, kites and trapeziums."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Figure it Out sets follow the rectangle-square, parallelogram-rhombus and kite-trapezium sections, with a final Which Quad? paper-folding puzzle."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 4: Quadrilaterals\n\n## What you will learn\nYou will define a quadrilateral and explore rectangles through the carpenter's problem. You will see how congruence proves that rectangle diagonals are equal and bisect each other.\n\n## Simple explanation\nA rectangle has four right angles. Its opposite sides are equal and parallel, and its diagonals are equal and meet at their common midpoint.\n\n## Step-by-step breakdown\n- **Quadrilateral**: A closed figure formed by four line segments.\n- **Rectangle**: A quadrilateral whose four angles are 90°.\n- **Equal diagonals**: AC = BD in rectangle ABCD.\n- **Bisecting diagonals**: At intersection O, AO = OC and BO = OD.\n- **Proof**: Triangle congruence justifies properties that measurement only suggests.\n\n## Worked example\nQuestion: In the carpenter's problem, one diagonal is 8 cm. What must be true of the other diagonal and their joining point?\n\nSolution:\n- Step 1: A rectangle has equal diagonals, so the second strip must also be 8 cm.\n- Step 2: The diagonals of a rectangle bisect each other.\n- Step 3: Each 8 cm strip must therefore be joined at its midpoint.\n- Step 4: Each half from the joint to an endpoint is 4 cm.\n- Final answer: Use another 8 cm strip and join the two strips at their midpoints.\n\n## Common mistake\nDo not require a 90° angle between the diagonals for an ordinary rectangle. Equal diagonals that bisect each other form a rectangle at any non-degenerate intersection angle.\n\n## Quick check question\nQuestion: What does it mean for two diagonals to bisect each other?\nAnswer: Each diagonal cuts the other into two equal parts.\nExplanation: If diagonals AC and BD meet at O, then AO = OC and BO = OD.\n\n## Summary\n- Rectangle diagonals are equal.\n- Rectangle diagonals bisect each other.\n- Congruence changes an observed pattern into a proved property.",
+    "Core explanation": "# Core explanation: Chapter 4: Quadrilaterals\n\n## What you will learn\nYou will understand squares as special rectangles and prove the angle sum of a quadrilateral. You will connect diagonal properties to classification.\n\n## Simple explanation\nA square is a rectangle with all four sides equal. Its equal diagonals bisect each other at right angles and also bisect the four vertex angles.\n\n## Step-by-step breakdown\n- **Square definition**: Four equal sides and four right angles.\n- **Square diagonals**: Equal, mutually bisecting and perpendicular.\n- **Angle bisectors**: Each diagonal divides a 90° corner into two 45° angles.\n- **Quadrilateral angle sum**: A diagonal divides a quadrilateral into two triangles.\n- **Total**: Two triangle sums give 180° + 180° = 360°.\n- **Set relation**: Every square is a rectangle, but not every rectangle is a square.\n\n## Worked example\nQuestion: Prove that the sum of the interior angles of a quadrilateral is 360°.\n\nSolution:\n- Step 1: Draw one diagonal of the quadrilateral.\n- Step 2: The diagonal divides it into two triangles.\n- Step 3: The interior-angle sum of the first triangle is 180°.\n- Step 4: The interior-angle sum of the second triangle is 180°.\n- Step 5: Adding them gives 180° + 180° = 360°.\n- Final answer: The sum of the interior angles of every quadrilateral is 360°.\n\n## Common mistake\nDo not add four right angles unless the quadrilateral is already known to be a rectangle. The 360° result applies even when the individual angles are not 90°.\n\n## Quick check question\nQuestion: Three angles of a quadrilateral are 90°, 110° and 70°. Find the fourth angle.\nAnswer: 90°.\nExplanation: The fourth angle is 360° − (90° + 110° + 70°) = 360° − 270° = 90°.\n\n## Summary\n- A square inherits every rectangle property.\n- Square diagonals are perpendicular and bisect the angles.\n- Every quadrilateral has angle sum 360°.",
+    "Worked examples": "# Worked examples: Chapter 4: Quadrilaterals\n\n## What you will learn\nYou will derive the main properties of a parallelogram. You will calculate unknown angles using parallel-line relations and opposite-angle properties.\n\n## Simple explanation\nA parallelogram has both pairs of opposite sides parallel. Its opposite sides and opposite angles are equal, adjacent angles are supplementary, and its diagonals bisect each other.\n\n## Step-by-step breakdown\n- **Parallel sides**: AB ∥ CD and AD ∥ BC.\n- **Adjacent angles**: Angles on the same side of a transversal sum to 180°.\n- **Opposite angles**: They are equal.\n- **Opposite sides**: They are equal by triangle congruence.\n- **Diagonals**: They bisect each other, but are not generally equal.\n\n## Worked example\nQuestion: The chapter constructs a parallelogram with ∠A = 30°. Find ∠B, ∠C and ∠D.\n\nSolution:\n- Step 1: Adjacent angles are supplementary, so ∠A + ∠B = 180°.\n- Step 2: Substitute ∠A = 30°: 30° + ∠B = 180°.\n- Step 3: Therefore ∠B = 150°.\n- Step 4: Opposite angles are equal, so ∠C = ∠A = 30°.\n- Step 5: Also ∠D = ∠B = 150°.\n- Final answer: The remaining angles are ∠B = 150°, ∠C = 30° and ∠D = 150°.\n\n## Common mistake\nDo not assume adjacent angles of a parallelogram are equal. They are supplementary; only opposite angles are equal.\n\n## Quick check question\nQuestion: A parallelogram has one angle of 110°. What are its other three angles?\nAnswer: 70°, 110° and 70°.\nExplanation: The opposite angle is 110°, and each adjacent angle is 180° − 110° = 70°.\n\n## Summary\n- Opposite angles of a parallelogram are equal.\n- Adjacent angles are supplementary.\n- Diagonals bisect each other.",
+    "Exam-style problems": "# Exam-style problems: Chapter 4: Quadrilaterals\n\n## What you will learn\nYou will distinguish rhombuses and kites using their side and diagonal properties. You will use congruence and angle facts in construction-style questions.\n\n## Simple explanation\nA rhombus is a parallelogram with all sides equal. A kite has two pairs of equal adjacent sides. Their diagonal properties overlap, but they are not the same class.\n\n## Step-by-step breakdown\n- **Rhombus**: All sides equal; opposite sides parallel.\n- **Rhombus diagonals**: They bisect each other at 90° and bisect vertex angles.\n- **Kite**: Two pairs of equal adjacent sides.\n- **Kite diagonals**: One diagonal perpendicularly bisects the other.\n- **Kite angles**: One pair of opposite angles is equal.\n- **Relationship**: A rhombus is a special kite and also a parallelogram.\n\n## Worked example\nQuestion: NCERT construction task: A rhombus has diagonals 4 cm and 5 cm. Describe the construction.\n\nSolution:\n- Step 1: Draw the 5 cm diagonal AC.\n- Step 2: Mark its midpoint O, so AO = OC = 2.5 cm.\n- Step 3: Through O construct a line perpendicular to AC.\n- Step 4: On this perpendicular mark B and D so OB = OD = 2 cm, because the 4 cm diagonal is bisected.\n- Step 5: Join A-B-C-D-A.\n- Final answer: ABCD is the required rhombus.\n\n## Common mistake\nDo not place the full diagonal lengths on each side of O. Since rhombus diagonals bisect each other, use half of each given length from O.\n\n## Quick check question\nQuestion: Which quadrilateral is both a kite and a parallelogram?\nAnswer: A rhombus.\nExplanation: A rhombus has adjacent equal sides like a kite and both pairs of opposite sides parallel like a parallelogram.\n\n## Summary\n- Rhombus diagonals bisect each other at right angles.\n- A kite has only one diagonal that generally bisects the other.\n- Construction questions translate properties directly into compass-and-ruler steps.",
+    "Revision and recap": "# Revision and recap: Chapter 4: Quadrilaterals\n\n## What you will learn\nYou will revise trapeziums, isosceles trapeziums and the inclusion relationships among special quadrilaterals. You will choose properties carefully instead of relying only on appearance.\n\n## Simple explanation\nA trapezium has at least one pair of parallel opposite sides. If its non-parallel sides are equal, it is an isosceles trapezium and the angles adjacent to each base are equal.\n\n## Step-by-step breakdown\n- **Trapezium**: At least one pair of parallel opposite sides.\n- **Same-side angles**: Along each non-parallel side, the two interior angles sum to 180°.\n- **Isosceles trapezium**: The non-parallel sides are equal.\n- **Base angles**: Angles opposite the equal sides are equal.\n- **Hierarchy**: Square ⊂ rectangle ⊂ parallelogram.\n- **Other overlap**: Square is also a rhombus and kite.\n- **Method**: Use definitions, then proven properties, then measurement as a check.\n\n## Worked example\nQuestion: In trapezium PQRS, PQ ∥ SR and ∠S = 65°. Find ∠P.\n\nSolution:\n- Step 1: PS is a transversal of the parallel lines PQ and SR.\n- Step 2: Interior angles on the same side of a transversal sum to 180°.\n- Step 3: So ∠S + ∠P = 180°.\n- Step 4: Substitute: 65° + ∠P = 180°.\n- Step 5: Therefore ∠P = 115°.\n- Final answer: ∠P = 115°.\n\n## Common mistake\nDo not assume the two angles on the same base of every trapezium are equal. That property requires an isosceles trapezium.\n\n## Quick check question\nQuestion: Is every square a parallelogram?\nAnswer: Yes.\nExplanation: A square has both pairs of opposite sides parallel, so it satisfies the definition of a parallelogram.\n\n## Summary\n- Classification begins with definitions.\n- Parallel lines create supplementary angle relations.\n- Venn diagrams show which classes are contained in others.\n- A drawing is evidence for a conjecture, not a proof."
+  }
+}

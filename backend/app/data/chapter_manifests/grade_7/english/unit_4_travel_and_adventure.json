@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 7",
+  "subject": "English",
+  "chapter": "Unit 4: Travel and Adventure",
+  "central_question": "How do travel and adventure develop curiosity, courage, friendship, endurance and awareness of the natural and human world?",
+  "in_scope_units": [
+    "The Tunnel—Suraj's fascination with the railway, jungle and tunnel.",
+    "The steam engine as a sensory image and the contrast between machine and forest.",
+    "Sunder Singh's work as watchman and friendship with Suraj.",
+    "The leopard incident, courage, responsibility and railway safety.",
+    "Sound words, simile, personification, imagery and description.",
+    "Travel—the speaker's fascination with distant trains.",
+    "Rhyme scheme, repetition, imagery, sound, tone and symbolism.",
+    "Train vocabulary, diamante poetry and descriptive journey writing.",
+    "Conquering the Summit—Arunima Sinha's goal, preparation and achievement.",
+    "Bachendri Pal's encouragement and the importance of mental strength.",
+    "Seven Summits, Mount Vinson, endurance and resilience.",
+    "Adventure-sport viewpoints, risk, equipment, training and supervision.",
+    "School-trip announcement listening and responsible preparation."
+  ],
+  "banned_topics": [
+    "Technical railway engineering or tunnel construction.",
+    "Instructions for dangerous adventure sports without supervision.",
+    "Complete biographies beyond the text.",
+    "External records or dates not contained in the source."
+  ],
+  "must_include_keywords": [
+    "Suraj",
+    "Sunder Singh",
+    "railway tunnel",
+    "jungle",
+    "steam engine",
+    "dragon simile",
+    "leopard",
+    "watchman",
+    "friendship",
+    "courage",
+    "responsibility",
+    "sound words",
+    "imagery",
+    "Travel",
+    "Edna St. Vincent Millay",
+    "train whistle",
+    "cinders red",
+    "repetition",
+    "ABAB rhyme scheme",
+    "adventure",
+    "opportunities",
+    "diamante poem",
+    "Arunima Sinha",
+    "prosthetic leg",
+    "Bachendri Pal",
+    "Mount Everest",
+    "Seven Summits",
+    "Mount Vinson",
+    "endurance",
+    "mental strength",
+    "adventure sports",
+    "supervision"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Suraj enters the tunnel to damage the train.",
+      "correction": "He explores from curiosity and later helps protect the line."
+    },
+    {
+      "claim": "The leopard is simply a villain.",
+      "correction": "It belongs to the jungle; danger arises where animal habitat and railway meet."
+    },
+    {
+      "claim": "The speaker in Travel dislikes current friends.",
+      "correction": "The speaker values friends but also desires new journeys."
+    },
+    {
+      "claim": "Arunima succeeds through physical strength alone.",
+      "correction": "The text stresses preparation, mentorship, determination and mental endurance."
+    },
+    {
+      "claim": "Adventure means ignoring risk.",
+      "correction": "The unit stresses training, equipment, supervision and judgement."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Suraj's sensory experience of the tunnel.",
+    "Analyse friendship, the leopard and responsibility.",
+    "Use Travel for imagery, repetition and symbolism.",
+    "Use Conquering the Summit for endurance and mentorship.",
+    "End with descriptive writing, listening and balanced adventure discussion."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit provides comprehension, extract-based reflection, vocabulary, poetry, listening, speaking, descriptive writing and adventure-sport activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

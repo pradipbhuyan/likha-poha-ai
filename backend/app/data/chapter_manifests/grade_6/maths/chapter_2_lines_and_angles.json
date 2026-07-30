@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 2 Lines and Angles",
+  "central_question": "How can we describe, compare, measure, draw, and classify the basic objects of plane geometry?",
+  "in_scope_units": [
+    "2.1 Point",
+    "2.2 Line Segment",
+    "2.3 Line",
+    "2.4 Ray",
+    "2.5 Angle",
+    "2.6 Comparing Angles",
+    "2.7 Making Rotating Arms",
+    "2.8 Special Types of Angles",
+    "2.9 Measuring Angles",
+    "2.10 Drawing and Estimating Angles",
+    "2.11 Types of Angles by Degree Measure"
+  ],
+  "banned_topics": [
+    "Triangle congruence tests",
+    "Parallel-line angle theorems",
+    "Area calculations"
+  ],
+  "must_include_keywords": [
+    "point",
+    "line segment",
+    "endpoints",
+    "line",
+    "ray",
+    "starting point",
+    "angle",
+    "vertex",
+    "arms",
+    "rotation",
+    "superimposition",
+    "straight angle",
+    "right angle",
+    "perpendicular lines",
+    "acute angle",
+    "obtuse angle",
+    "reflex angle",
+    "full turn",
+    "half turn",
+    "quarter turn",
+    "degree",
+    "protractor",
+    "inner scale",
+    "outer scale",
+    "angle bisector",
+    "paper folding",
+    "clock angles"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Longer arms make a larger angle.",
+      "correction": "Angle size depends on the amount of turn, not arm length."
+    },
+    {
+      "claim": "Ray OA can always be renamed AO.",
+      "correction": "The first letter names the starting point, so the rays differ."
+    },
+    {
+      "claim": "Every angle at P can be called ∠P.",
+      "correction": "Use three letters when more than one angle has vertex P."
+    }
+  ],
+  "recommended_example_progression": [
+    "Name points, segments, rays, and angles in Sections 2.1–2.5.",
+    "Compare angles by superimposition in Section 2.6.",
+    "Obtain right angles through folding in Section 2.8.",
+    "Measure with unlabelled and labelled protractors in Section 2.9.",
+    "Use clock, drawing, and classification tasks in Sections 2.10–2.11."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out and Let's Explore tasks through Sections 2.1–2.11, including the final pages 52–54.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

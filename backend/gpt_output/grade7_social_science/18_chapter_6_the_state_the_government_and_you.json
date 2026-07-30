@@ -1,0 +1,107 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Social Science",
+    "chapter": "Chapter 6: The State, the Government, and You",
+    "central_question": "How do the state, constitutional government, democratic institutions, citizens and different levels of authority work together to protect rights and serve people?",
+    "in_scope_units": [
+      "What is a State?—population, defined territory, government and sovereignty.",
+      "What is a Government?—leaders, ministers and officials who make laws, enforce them and resolve disputes on behalf of the state.",
+      "People, police and government—law and order, legitimate force, constitutional rights and the criminal justice system.",
+      "Democracy and Republic—popular choice of government, elected head of state, constitutional limits and comparison with monarchies.",
+      "India, a Republic that Protects the Rights of All—fundamental rights, minority protection, Dongria Kondh and the RWA example.",
+      "Legislature, Executive and Judiciary—the three organs and their roles in lawmaking, implementation and constitutional protection.",
+      "Political and Permanent Executive—elected leaders, civil servants, UPSC, bureaucracy, public services and large programmes.",
+      "C.B. Muthamma—gender discrimination, constitutional equality and the Supreme Court.",
+      "The Government and You—protector, provider and regulator roles.",
+      "Citizen engagement—grievance redressal, RTI, media, civil society, political representatives and voting.",
+      "Judiciary: the Watchdog—interpretation, rights, judicial review, independence and rule of law.",
+      "Tiers of Government—union, state and local levels in India’s federal system.",
+      "Decentralisation—constitutional local government, panchayati raj, municipalities, accountability and gram swaraj.",
+      "Education across levels and organs—legislation, administration, budgets, child-rights bodies and courts.",
+      "Before we move on and Questions and activities 1–5—democracy, republic, power-sharing, rights, decentralisation and citizen experience."
+    ],
+    "banned_topics": [
+      "Detailed parliamentary lawmaking procedures and executive formation reserved for Grade 8.",
+      "Detailed court hierarchy and judicial procedure reserved for later study.",
+      "Political party comparison or current election commentary not included in the chapter.",
+      "Detailed histories of every form of government, which were introduced in an earlier chapter."
+    ],
+    "must_include_keywords": [
+      "state",
+      "permanent population",
+      "defined territory",
+      "government",
+      "sovereignty",
+      "police",
+      "democracy",
+      "republic",
+      "Preamble",
+      "fundamental rights",
+      "dominance of the majority",
+      "rule of law",
+      "Constitution",
+      "legislature",
+      "executive",
+      "judiciary",
+      "political executive",
+      "permanent executive",
+      "bureaucracy",
+      "civil servants",
+      "UPSC",
+      "C.B. Muthamma",
+      "protector",
+      "provider",
+      "regulator",
+      "grievance redressal",
+      "RTI",
+      "transparency",
+      "accountability",
+      "civil society",
+      "Silent Valley",
+      "judicial review",
+      "federalism",
+      "decentralisation",
+      "panchayati raj",
+      "municipalities",
+      "gram swaraj"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The state and the current government are identical.",
+        "correction": "The state includes people, territory, government and sovereignty; governments may change after elections while the state continues."
+      },
+      {
+        "claim": "Every democracy is automatically a republic.",
+        "correction": "A democracy chooses government through elections, while a republic has an elected rather than hereditary head of state; democratic monarchies also exist."
+      },
+      {
+        "claim": "A majority may lawfully remove the fundamental rights of a minority.",
+        "correction": "India’s Constitution and courts limit power and protect fundamental rights against dominance of the majority."
+      },
+      {
+        "claim": "Bureaucrats are replaced whenever a new political party forms the government.",
+        "correction": "The permanent executive continues across elections and implements policies under different elected governments."
+      },
+      {
+        "claim": "Decentralisation means that local governments handle national defence and foreign affairs.",
+        "correction": "Local governments address local concerns, while matters such as defence remain with the union government."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use a chapter-based comparison to distinguish the enduring state from a changing government.",
+      "Use NCERT Q1 to distinguish democracy from republic.",
+      "Use NCERT Q3 to reason about shared power, rights and checks on a representative body.",
+      "Use NCERT Q4 to examine Parliament, courts, constitutional limits and judicial review.",
+      "Use NCERT Q2 to explain why local knowledge, participation and accountability make decentralisation important."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–5."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 6: The State, the Government, and You\n\n## What you will learn\nYou will distinguish the state from the government and identify the four features of a state. You will also understand the police as an agent of the state that must operate within constitutional rights.\n\n## Simple explanation\nA country is more than its current leaders. Its people, territory, governing institutions and independence together form the state, while the government performs the state’s daily public work.\n\n## Step-by-step breakdown\n- **Permanent population**: People who identify with and normally live in a territory form its continuing population.\n- **Defined territory**: A state has agreed boundaries separating its geographical area from neighbouring states.\n- **Government**: Leaders, ministers and officials make and enforce laws and resolve disputes.\n- **Sovereignty**: The state can make decisions and laws without external control over its internal affairs.\n- **Continuity**: Governments change after elections, but the state and its people and territory continue.\n- **Everyday visibility**: People often use state and government interchangeably because government acts as the visible face of the state.\n- **Police**: Police maintain law and order as part of state government and may use lawful force, but they must protect constitutional rights.\n\n## Worked example\nQuestion: Why can the government change while the state remains the same?\n\nSolution:\n- Step 1: The chapter defines the government as only one of four parts of the state and compares it with a school’s principal and teachers, who may change while the school continues.\n- Step 2: The state includes enduring people, territory and sovereignty in addition to whichever government currently administers them.\n- Final answer: An election can replace leaders and ministers without dissolving the country, its population, territory or sovereign authority.\n\n## Common mistake\nDo not define a state only as a geographical area; it also requires people, government and sovereignty.\n\n## Quick check question\nQuestion: What are the four essential parts of a state?\nAnswer: A permanent population, a defined territory, a government and sovereignty.\nExplanation: All four are required for the political organisation described in the chapter.\n\n## Summary\n- The state is broader than the government.\n- Population and territory give the state a social and spatial base.\n- Sovereignty gives independent authority.\n- Government performs daily administration.\n- Police power is limited by constitutional rights.",
+    "Core explanation": "# Core explanation: Chapter 6: The State, the Government, and You\n\n## What you will learn\nYou will distinguish democracy from republic and understand why India is both. You will analyse constitutional limits, fundamental rights and protection against dominance of the majority.\n\n## Simple explanation\nElections answer who chooses government, while a republic also asks how the head of state is selected and how power is limited. India combines popular representation with an elected president and a rights-protecting Constitution.\n\n## Step-by-step breakdown\n- **Democracy**: People choose their government through free and fair elections.\n- **Republic**: The head of state is elected directly or indirectly rather than inheriting office.\n- **Constitutional limits**: A republic places rulers under laws and a constitutional framework.\n- **India and the UK**: Both elect representatives, but India has an elected president while the UK has a hereditary monarch.\n- **Fundamental rights**: Government and majority decisions cannot lawfully violate protected freedoms and equality.\n- **Dongria Kondh**: Legal protection of sacred hills shows how community rights can limit commercial activity.\n- **RWA example**: A majority-backed delivery ban was changed when it endangered elderly and sick residents.\n- **Rule of law**: The Constitution is stronger than unchecked wishes of rulers or majorities.\n\n## Worked example\nQuestion: Using NCERT Q1, is every democracy a republic?\n```extract-ref\n{\"citation\": \"NCERT Q1\", \"extract_text\": \"\\\"Every democracy is a republic.\\\" Is this statement true or false? Explain.\", \"note\": \"Questions and activities\"}\n```\n\nSolution:\n- Step 1: The chapter names the UK, Canada and Sweden as democracies with monarchs, while India and the USA are both democracies and republics.\n- Step 2: Democracy concerns the people’s power to choose government; republic concerns an elected head of state and limits on office.\n- Final answer: The statement is false: some democracies retain hereditary monarchs and therefore are not republics.\n\n## Common mistake\nDo not use democracy and republic as exact synonyms; they describe related but different features.\n\n## Quick check question\nQuestion: Why is India called a democratic republic?\nAnswer: People elect representatives and the head of state is elected indirectly, while the Constitution limits public power and protects rights.\nExplanation: India therefore satisfies both the democratic and republican ideas described in the chapter.\n\n## Summary\n- Democracy means rule through people’s choice.\n- A republic has a non-hereditary head of state.\n- India is both democratic and republican.\n- Fundamental rights limit majority power.\n- The Constitution protects smaller groups and individuals.",
+    "Worked examples": "# Worked examples: Chapter 6: The State, the Government, and You\n\n## What you will learn\nYou will learn how the legislature, executive and judiciary divide public power. You will compare the political and permanent executive and understand why checks, expertise and continuity matter.\n\n## Simple explanation\nGovernment works through institutions rather than one all-powerful leader. Elected representatives set directions, civil servants administer programmes and courts guard law and rights.\n\n## Step-by-step breakdown\n- **Legislature**: It represents people and makes laws for the country or for a state.\n- **Executive**: It implements laws and takes policy decisions.\n- **Judiciary**: It settles disputes, interprets laws and protects constitutional rights.\n- **Political executive**: Prime ministers, chief ministers and ministers are elected or politically accountable and hold office for limited terms.\n- **Permanent executive**: Civil servants selected through processes such as UPSC provide advice, records, administration and service delivery.\n- **Grassroots bureaucracy**: Teachers, health workers, sanitation workers and conductors are among the officials citizens meet.\n- **Large programmes**: Civil servants help conduct elections, census work, disaster relief, MGNREGS and vaccination drives.\n- **C.B. Muthamma**: Her Supreme Court case challenged gender-biased rules and strengthened equality in public service.\n\n## Worked example\nQuestion: Using NCERT Q3, why should power in a student council be shared and limited?\n```extract-ref\n{\"citation\": \"NCERT Q3\", \"extract_text\": \"Imagine you are part of your school’s student council. The council works like a mini-parliament — it has members elected by students, debates issues and makes decisions. In this context, do you think it would be better if only the council president makes all the decisions or if power is to be shared among all members?\\nShould the student council have the power to make rules about the food you eat, or the language you speak?\\nWhat can go wrong if the student council is the most powerful body in your school and no one questions its decisions?\", \"note\": \"Questions and activities\"}\n```\n\nSolution:\n- Step 1: The question describes elected members who debate issues and asks what happens if the president or council can make unchecked rules affecting food or language.\n- Step 2: Election alone does not prevent unfair decisions; discussion, divided responsibilities and review protect the rights of students who disagree.\n- Final answer: Power should be shared and subject to rules because representation, checks and rights are necessary to prevent arbitrary authority.\n\n## Common mistake\nDo not assume that an elected body can do anything it wishes; democratic power remains limited by rights and rules.\n\n## Quick check question\nQuestion: Which part of the executive normally continues after elections?\nAnswer: The permanent executive or bureaucracy.\nExplanation: Civil servants are not replaced with each election and keep administration and services functioning.\n\n## Summary\n- The three organs have different responsibilities.\n- Power-sharing reduces arbitrary decisions.\n- Elected leaders form the political executive.\n- Civil servants form the permanent executive.\n- Courts and constitutional rules provide checks.",
+    "Exam-style problems": "# Exam-style problems: Chapter 6: The State, the Government, and You\n\n## What you will learn\nYou will evaluate government as protector, provider and regulator and study practical ways citizens seek accountability. You will understand grievance systems, RTI, media, civil society and judicial review.\n\n## Simple explanation\nDemocracy continues between elections. Citizens can request information, report problems, organise publicly and approach independent courts when power is misused.\n\n## Step-by-step breakdown\n- **Protector**: Government maintains law and order and defence.\n- **Provider**: It supplies welfare, education and infrastructure.\n- **Regulator**: It sets rules for economic activity, food safety and social justice.\n- **Grievance redressal**: Department offices and portals provide channels for complaints and responses.\n- **RTI**: The Right to Information Act lets citizens seek public information and supports transparency and accountability.\n- **Bagepalli example**: Citizens used project finance information to press officials to correct dangerous roadwork.\n- **Media**: Print, electronic and social media can make public problems visible and reach officials.\n- **Civil society**: NGOs and citizen groups organise around health, education, livelihoods, women and the environment.\n- **Silent Valley**: Public mobilisation helped stop a damaging project and contributed to creation of a National Park.\n- **Judicial review**: Independent courts can check laws and government action against the Constitution.\n\n## Worked example\nQuestion: Using NCERT Q4, should Parliament have unlimited power to make laws?\n```extract-ref\n{\"citation\": \"NCERT Q4\", \"extract_text\": \"Think about these real-life situations in relation to India’s democracy:\\nShould the Parliament be the most powerful institution in the country? Why or why not?\\nShould the Parliament have the power to make any law it wants, even if it affects your rights?\\nWhat could go wrong if lawmaking has no limits? Can it lead to unfair or unjust laws?\\nWho is more powerful in India, the Parliament or the Supreme Court? Give your reasons.\", \"note\": \"Questions and activities\"}\n```\n\nSolution:\n- Step 1: The chapter states that elected leaders cannot pass laws violating fundamental rights and that the judiciary safeguards the Constitution through judicial review.\n- Step 2: Parliament has lawmaking authority, but constitutional democracy deliberately distributes power and gives courts a checking role.\n- Final answer: Parliament is powerful but not unlimited; neither Parliament nor the Supreme Court simply replaces the other, because each performs a distinct constitutional function.\n\n## Common mistake\nDo not rank institutions as if one should control every function; checks and balances are the intended arrangement.\n\n## Quick check question\nQuestion: What is the main purpose of the RTI Act described in the chapter?\nAnswer: It allows citizens to ask for information about government action in the public interest.\nExplanation: Access to information makes public spending and decisions more transparent and officials more accountable.\n\n## Summary\n- Government protects, provides and regulates.\n- Citizens may file grievances and request information.\n- Media and civil society support public action.\n- Courts protect rights and review public power.\n- Accountability is a continuing democratic process.",
+    "Revision and recap": "# Revision and recap: Chapter 6: The State, the Government, and You\n\n## What you will learn\nYou will understand India’s union, state and local tiers and the meaning of decentralisation. You will connect local participation with the coordinated operation of different organs in school education.\n\n## Simple explanation\nA vast country cannot solve every problem from one office. Responsibilities are divided so that local concerns are handled close to people and national concerns remain with higher levels.\n\n## Step-by-step breakdown\n- **Federal structure**: India has a union government, state governments and constitutionally recognised local governments.\n- **Third tier**: Constitutional amendments strengthened panchayati raj and municipalities in the early 1990s.\n- **Decentralisation**: Power and decision-making are spread rather than concentrated in one place.\n- **Local knowledge**: Local representatives understand nearby needs, customs and conditions.\n- **Participation**: People can discuss water, roads, schools and other local concerns directly.\n- **Accountability**: Leaders close to residents can be questioned more easily.\n- **Division of work**: Local bodies handle local services, states handle subjects such as police and health, and the union handles defence and foreign affairs.\n- **Gram swaraj**: Gandhi imagined village republics able to manage vital local needs while remaining interdependent.\n- **Education example**: Legislatures create law and budgets, executives implement programmes and rights bodies and courts protect children.\n\n## Worked example\nQuestion: Using NCERT Q2, why is decentralisation important in India?\n```extract-ref\n{\"citation\": \"NCERT Q2\", \"extract_text\": \"Give two reasons why decentralisation is important in India.\", \"note\": \"Questions and activities\"}\n```\n\nSolution:\n- Step 1: The chapter explains that India is vast and diverse and that local leaders have closer knowledge of local needs; it also links decentralisation with participation and accountability.\n- Step 2: Bringing decisions closer to affected people makes responses more informed and gives citizens a stronger voice and clearer responsibility.\n- Final answer: Decentralisation is important because it improves democratic participation and local knowledge while making public officials easier to hold accountable.\n\n## Common mistake\nDo not equate decentralisation with complete separation; the three levels remain interconnected.\n\n## Quick check question\nQuestion: Who should normally address a broken streetlight?\nAnswer: The relevant local municipal or panchayat authority.\nExplanation: It is a local service problem that can usually be handled faster by the level closest to residents.\n\n## Summary\n- India has union, state and local government.\n- Local government became the constitutional third tier.\n- Decentralisation improves participation and knowledge.\n- Different levels handle different scales of responsibility.\n- Public services require cooperation across organs and tiers."
+  }
+}

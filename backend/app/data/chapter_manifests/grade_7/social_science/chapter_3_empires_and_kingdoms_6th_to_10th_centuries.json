@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: Empires and Kingdoms: 6th to 10th Centuries",
+  "central_question": "How did regional kingdoms, social and cultural change, trade, knowledge and foreign encounters reshape India between the 6th and 10th centuries?",
+  "in_scope_units": [
+    "Chronological setting after Gupta decline—regional powers, political rivalry and cultural renewal from about 600 CE onward.",
+    "The ‘Great King of Kings’—Harṣhavardhana, Kannauj, inscriptions, literature, Bāṇabhaṭṭa, Xuanzang, religious patronage and assemblies.",
+    "A Tripartite Struggle for Kannauj—Pālas, Gurjara-Pratīhāras and Rāṣhṭrakūṭas.",
+    "The Pālas and Vikramaśhilā—Gopāla, Dharmapāla, Buddhism, universities, trade and learning.",
+    "The Gurjara-Pratīhāras—Nāgabhaṭa I, King Bhoja, north Indian power and resistance to invasions.",
+    "The Rāṣhṭrakūṭas—Dantidurga, Mānyakheṭa, Kailaśhanātha temple, Amoghavarṣha and plural patronage.",
+    "Kashmir—Kārkoṭas, Lalitāditya, Queen Diddā, Kalhaṇa’s Rājatarangiṇī, learning, Kashmir Śhaivism and artistic exchange.",
+    "The Deccan and Beyond—Chālukyas, Pulakeśhin II, inscriptions and eastern and western branches.",
+    "The Pallavas—Kānchī, Narasimhavarman I, trade, Māmallapuram, temples and literature.",
+    "Further South—Pāṇḍyas, Cheras and the revived Cholas, irrigation, navy, administration, art and bilingual inscriptions.",
+    "Polity and administration—sāmantas, provinces, districts, villages, assemblies and Uttaramerur.",
+    "Trade, economy and urbanisation—land grants, agriculture, irrigation, ports, merchant guilds, cities and temples.",
+    "Social life—growth and flexibility of jātis, discrimination, cooperation, Kāyasthas and women’s economic, social and political roles.",
+    "Cultural life—plural patronage, Tantra, Buddhism, Jainism, Purāṇas and spread of bhakti through Ālvārs and Nāyanārs.",
+    "A galaxy of mathematicians and astronomers—Brahmagupta, Bhāskara I, Virahānka and Mahāvīra.",
+    "Foreign Invasions—the Hūṇas, assimilation, Arab raids and conquest of Sindh, resistance and scientific-cultural transmission.",
+    "Taking Stock and Questions and activities 1–7—regional consolidation, resilience, rulers, administration, invasions, bhakti and map work."
+  ],
+  "banned_topics": [
+    "Detailed Gupta history before about 600 CE, which belongs to the Gupta Era chapter.",
+    "Detailed dynasties and invasions after the 10th century, which are taken up in the next chapter or Grade 8.",
+    "Advanced mathematics behind Brahmagupta’s or Bhāskara’s methods.",
+    "Present-day religious or political judgments not made in the chapter."
+  ],
+  "must_include_keywords": [
+    "Harṣhavardhana",
+    "Kannauj",
+    "Bāṇabhaṭṭa",
+    "Xuanzang",
+    "Tripartite Struggle",
+    "Pālas",
+    "Gurjara-Pratīhāras",
+    "Rāṣhṭrakūṭas",
+    "Vikramaśhilā",
+    "Dharmapāla",
+    "Amoghavarṣha Nṛipatunga",
+    "Kailaśhanātha temple",
+    "Rājatarangiṇī",
+    "Kalhaṇa",
+    "Chālukyas",
+    "Pulakeśhin II",
+    "Pallavas",
+    "Māmallapuram",
+    "Pāṇḍyas",
+    "Cheras",
+    "Cholas",
+    "sāmantas",
+    "land grants",
+    "merchant guilds",
+    "varṇa-jāti",
+    "Kāyasthas",
+    "religious pluralism",
+    "Bhakti",
+    "Ālvārs",
+    "Nāyanārs",
+    "Brahmagupta",
+    "zero",
+    "Hūṇas",
+    "Muhammad bin Qasim",
+    "Sindh",
+    "Hindu-Arabic numerals"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The decline of the Guptas left India culturally inactive.",
+      "correction": "The chapter presents a politically divided but dynamic period of regional art, literature, learning, trade, science and religious change."
+    },
+    {
+      "claim": "The Tripartite Struggle involved the Pālas, Pallavas and Cholas.",
+      "correction": "It involved the Pālas, Gurjara-Pratīhāras and Rāṣhṭrakūṭas competing for Kannauj."
+    },
+    {
+      "claim": "Rulers supported only the religious tradition they personally followed.",
+      "correction": "Many rulers patronised Hindu, Buddhist and Jain institutions regardless of personal inclination."
+    },
+    {
+      "claim": "Sāmantas were always permanently loyal officials.",
+      "correction": "They were essential subordinate rulers whose loyalty could weaken; some, such as the Rāṣhṭrakūṭas, overthrew their overlords."
+    },
+    {
+      "claim": "Foreign encounters produced only warfare.",
+      "correction": "The period also saw assimilation of Hūṇas, long-distance trade and translations of Indian mathematics, astronomy and medicine into Arabic."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Q4 to interpret Harṣha’s Prayāga assembly from the viewpoint of a common citizen.",
+    "Use NCERT Q1 to imagine how the Tripartite Struggle affected daily life and opinions of rulers.",
+    "Use NCERT Q7 to connect dynasties with Kannauj, Ujjayinī, Mānyakheṭa, Kānchī and Tanjāvūr.",
+    "Use NCERT Q2 to evaluate the strengths and risks of governing through subordinate vassals.",
+    "Use NCERT Q3 to compare the aims, methods and impact of the Hūṇa and Arab invasions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–7.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

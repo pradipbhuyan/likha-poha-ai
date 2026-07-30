@@ -1,0 +1,107 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Social Science",
+    "chapter": "Chapter 3: Climates of India",
+    "central_question": "How do geography and monsoon systems create India’s varied climates, and how do those climates influence life, disasters and climate-change responses?",
+    "in_scope_units": [
+      "Weather, Seasons and the Climate—short-term weather, recurring seasons, long-term climate and six ritus.",
+      "Types of Climates in India—alpine, temperate, subtropical, arid, tropical wet, semi-arid and tropical.",
+      "Factors Determining the Climate—latitude, altitude, proximity to sea, winds and topography.",
+      "Microclimates—valleys, forests and urban heat islands.",
+      "The Monsoons—seasonal winds, summer low pressure, winter reversal and southwest and northeast monsoons.",
+      "Climate and our Lives—traditional knowledge, festivals, agriculture, migration, prices and industry.",
+      "Climates and Disasters—cyclones, floods, glacial bursts, landslides and forest fires.",
+      "Climate Change—fossil fuels, greenhouse effect, warming, resilience, adaptation and mitigation.",
+      "Questions and activities 1–7—climate factors, cities, monsoons, festivals and disasters."
+    ],
+    "banned_topics": [
+      "Detailed operation of weather instruments.",
+      "Daily IMD weather tables.",
+      "Advanced atmospheric circulation not in the chapter.",
+      "Detailed greenhouse-gas chemistry."
+    ],
+    "must_include_keywords": [
+      "weather",
+      "season",
+      "climate",
+      "ritus",
+      "alpine climate",
+      "temperate climate",
+      "subtropical climate",
+      "arid climate",
+      "tropical wet climate",
+      "semi-arid climate",
+      "latitude",
+      "altitude",
+      "proximity to the sea",
+      "winds",
+      "topography",
+      "microclimate",
+      "urban heat island",
+      "monsoon",
+      "mausim",
+      "low pressure",
+      "southwest monsoon",
+      "northeast monsoon",
+      "Western Ghats",
+      "Mawsynram",
+      "monsoon failure",
+      "cyclone",
+      "eye of the cyclone",
+      "flood",
+      "glacial burst",
+      "landslide",
+      "forest fire",
+      "climate change",
+      "fossil fuels",
+      "greenhouse effect",
+      "global warming",
+      "resilience",
+      "adaptation",
+      "mitigation",
+      "sustainable lifestyles"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Weather, season and climate mean the same thing.",
+        "correction": "Weather is short-term, seasons recur yearly, and climate is a decades-long pattern."
+      },
+      {
+        "claim": "Coastal places have the greatest temperature extremes.",
+        "correction": "The sea moderates coastal temperatures."
+      },
+      {
+        "claim": "Monsoon means only rain.",
+        "correction": "Strictly, monsoon means seasonal wind."
+      },
+      {
+        "claim": "The northeast monsoon is entirely dry.",
+        "correction": "Some winds cross the Bay of Bengal and bring rain to east and south India."
+      },
+      {
+        "claim": "Climate disasters are caused only by Nature.",
+        "correction": "Human activities can increase risk and damage."
+      },
+      {
+        "claim": "The natural greenhouse effect is entirely harmful.",
+        "correction": "It supports life; extra human-made gases cause harmful warming."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Questions and activities Q1 to match climate factors and effects.",
+      "Use Q2 to compare weather and climate and explain coastal moderation.",
+      "Use Q3 to classify Leh, Chennai, Delhi, Panaji and Jaipur.",
+      "Use Q4 to draw summer and winter monsoon directions.",
+      "Use Q7 to analyse a climate disaster."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions and activities 1–7."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 3: Climates of India\n\n## What you will learn\nYou will distinguish weather, seasons and climate and identify India’s major climate types.\n\n## Simple explanation\nWeather changes quickly, seasons repeat each year, and climate is the long-term pattern. India contains several climates because its physical regions differ greatly.\n\n## Step-by-step breakdown\n- **Weather**: Conditions experienced hour by hour or day by day.\n- **Seasons**: Periods lasting a few months that recur yearly.\n- **Climate**: Long-term regional weather pattern over several decades.\n- **Six ritus**: Vasanta, grishma, varsha, sharad, hemanta and shishir.\n- **Mountain climates**: High Himalayas are alpine and lower hills are often temperate.\n- **Plains and desert**: Northern plains are subtropical and the Thar is arid.\n- **Coasts and plateau**: The western coast is tropical wet and the Deccan is semi-arid.\n- **Tropical regions**: Eastern and southern India have monsoon-controlled wet and dry periods.\n\n## Worked example\nQuestion: Why are seasons related to both weather and climate?\n\nSolution:\n- Step 1: Weather changes with each season, while recurring seasonal patterns help define climate.\n- Step 2: A season links immediate conditions with a long-term regional pattern.\n- Final answer: Seasons are repeated weather phases that form part of climate.\n\n## Common mistake\nA single rainy day is weather, not climate.\n\n## Quick check question\nQuestion: Which ritu is the rainy season?\nAnswer: Varsha.\nExplanation: The chapter lists varsha among the six traditional seasons.\n\n## Summary\n- Weather is short-term.\n- Seasons recur yearly.\n- Climate is long-term.\n- India has several climate types.",
+    "Core explanation": "# Core explanation: Chapter 3: Climates of India\n\n## What you will learn\nYou will study latitude, altitude, distance from the sea, winds and topography.\n\n## Simple explanation\nClimate results from several factors acting together. Solar angle, elevation, water, moving air and landforms all influence temperature and rainfall.\n\n## Step-by-step breakdown\n- **Latitude**: Equatorial rays are concentrated, while oblique rays at high latitude spread energy.\n- **Altitude**: Air is thinner and cooler at greater height.\n- **Ooty and Coimbatore**: Similar latitude but different altitude produces different summer temperatures.\n- **Sea moderation**: Water heats and cools slowly, reducing coastal extremes.\n- **Mumbai and Nagpur**: Mumbai is milder because it is coastal; Nagpur is more extreme inland.\n- **Winds**: They carry warm, cold, dry or moist air.\n- **Topography**: The Himalayas block some cold winds, while the flat Thar is exposed.\n- **Microclimate**: Small areas such as valleys, forests and urban heat islands differ from surroundings.\n\n## Worked example\nQuestion: Why are Ooty and Coimbatore different despite similar latitude?\n\nSolution:\n- Step 1: The chapter identifies Ooty as a high-altitude place and explains that temperature decreases with height.\n- Step 2: Because latitude is similar, altitude is the key difference.\n- Final answer: Ooty is cooler because it is higher, with thinner air and less heating from the surface.\n\n## Common mistake\nNo single factor explains all climate differences.\n\n## Quick check question\nQuestion: Why is Mumbai milder than Nagpur?\nAnswer: The sea moderates Mumbai’s temperatures.\nExplanation: Water heats and cools more slowly than land, reducing extremes.\n\n## Summary\n- Latitude changes solar heating.\n- Altitude cools highlands.\n- The sea moderates coasts.\n- Winds and landforms redirect air and moisture.",
+    "Worked examples": "# Worked examples: Chapter 3: Climates of India\n\n## What you will learn\nYou will explain the summer and winter monsoon cycles and the role of the Western Ghats.\n\n## Simple explanation\nLand and sea heat and cool at different speeds, reversing pressure and wind direction between summer and winter.\n\n## Step-by-step breakdown\n- **Meaning**: Monsoon comes from mausim and means seasonal wind.\n- **Summer low pressure**: The hot Asian landmass draws air from the cooler ocean.\n- **Moisture**: Ocean winds carry water vapour and bring heavy rain.\n- **Southwest monsoon**: Advances from southern India in early June and usually covers the Subcontinent by mid-July.\n- **Western Ghats**: Western slopes receive more rain than the Deccan to the east.\n- **Winter reversal**: Cool land develops high pressure and sends winds towards the ocean.\n- **Northeast monsoon**: Some winds cross the Bay of Bengal and bring rain to east and south India.\n- **Mawsynram**: Receives about 11,000 mm average annual rainfall.\n\n## Worked example\nQuestion: Why do the southwest and northeast monsoons blow in opposite directions?\n\nSolution:\n- Step 1: Land is low pressure in summer and high pressure in winter because it heats and cools faster than the ocean.\n- Step 2: Air moves from high to low pressure, so wind direction reverses.\n- Final answer: Seasonal reversal of land–sea pressure creates the two monsoons.\n\n## Common mistake\nThe monsoon does not advance evenly; topography and interruptions matter.\n\n## Quick check question\nQuestion: Why do western slopes of the Western Ghats receive more rain?\nAnswer: They block moisture-bearing winds.\nExplanation: Much moisture falls on the windward side before air reaches the plateau.\n\n## Summary\n- Monsoon means seasonal wind.\n- Pressure patterns reverse.\n- The southwest monsoon brings major summer rain.\n- Topography produces unequal rainfall.",
+    "Exam-style problems": "# Exam-style problems: Chapter 3: Climates of India\n\n## What you will learn\nYou will connect climate with culture and the economy and analyse major climate-related disasters.\n\n## Simple explanation\nClimate shapes festivals, farming and prices. Extreme conditions become disasters when people and infrastructure are exposed.\n\n## Step-by-step breakdown\n- **Festivals**: Bihu, Baisakhi, Pongal, Onam, Lohri and others are linked to seasons and farming.\n- **Monsoon failure**: Poor rain harms crops, raises food prices and can cause migration.\n- **Cyclones**: Intense low pressure draws moist air that rotates around a cloudless eye.\n- **Floods**: Heavy rain, overflowing rivers, glacial bursts and blocked urban drainage can flood land.\n- **Landslides**: Rain, earthquakes or volcanic activity can trigger collapse, worsened by deforestation and poor construction.\n- **Forest fires**: Dry conditions, drought, wind and human carelessness spread fires.\n- **Institutions**: The IMD tracks cyclones and the NDRF supports rescue and evacuation.\n\n## Worked example\nQuestion: Why is urban flooding not explained by rainfall alone?\n\nSolution:\n- Step 1: The chapter mentions overloaded drains, construction on waterways and concrete surfaces.\n- Step 2: These human-made conditions prevent drainage and absorption.\n- Final answer: Urban floods result from both heavy rain and planning or land-cover problems.\n\n## Common mistake\nClimate hazards are not always purely natural.\n\n## Quick check question\nQuestion: What is the eye of a cyclone?\nAnswer: The cloudless centre of the rotating low-pressure system.\nExplanation: Moist winds and clouds rotate around this central area.\n\n## Summary\n- Climate affects culture and the economy.\n- Hazards have natural and human causes.\n- Monitoring and rescue reduce risk.",
+    "Revision and recap": "# Revision and recap: Chapter 3: Climates of India\n\n## What you will learn\nYou will understand climate change, the greenhouse effect, resilience, adaptation and mitigation.\n\n## Simple explanation\nEarth needs some trapped heat, but human activity has added greenhouse gases that trap extra heat and disrupt climate patterns.\n\n## Step-by-step breakdown\n- **Climate change**: Significant long-term changes in temperature, precipitation and weather events.\n- **Human causes**: Fossil fuels, deforestation, harmful industry and excessive consumption.\n- **Natural greenhouse effect**: Keeps Earth warm enough for life.\n- **Extra warming**: Additional greenhouse gases trap extra heat and cause rapid warming.\n- **India in early 2025**: Average temperature was stated as 1–3°C above normal.\n- **Resilience**: Capacity to withstand or recover from difficulties.\n- **Adaptation**: Adjusting communities and practices to changing conditions.\n- **Mitigation**: Reducing emissions, planting trees, renewable energy and efficiency.\n- **Sustainable lifestyles**: Long-lasting choices that reduce environmental pressure.\n\n## Worked example\nQuestion: Why distinguish the natural greenhouse effect from global warming?\n\nSolution:\n- Step 1: The natural effect supports life, but added emissions strengthen it rapidly.\n- Step 2: The same process becomes dangerous when human activity traps extra heat.\n- Final answer: Natural heat retention is necessary; excessive added gases cause climate disruption.\n\n## Common mistake\nMitigation reduces causes, while adaptation manages effects.\n\n## Quick check question\nQuestion: Name two mitigation measures.\nAnswer: Reducing emissions and planting trees.\nExplanation: Both lower the causes of warming or help remove carbon dioxide.\n\n## Summary\n- Climate change is long-term.\n- Extra greenhouse gases drive warming.\n- Resilience and adaptation reduce vulnerability.\n- Mitigation tackles causes."
+  }
+}

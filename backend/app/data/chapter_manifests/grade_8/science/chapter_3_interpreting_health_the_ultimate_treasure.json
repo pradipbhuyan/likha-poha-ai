@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 3: Interpreting Health: The Ultimate Treasure",
+  "central_question": "How do physical, mental, social and environmental factors shape health, disease, prevention, immunity and responsible treatment?",
+  "in_scope_units": [
+    "Health as complete physical, mental and social well-being, including the WHO definition and Indian health traditions.",
+    "Healthy habits, nutritious food, exercise, sleep, hygiene, clean surroundings, relationships and emotional well-being.",
+    "Signs and symptoms and the distinction between communicable and non-communicable diseases.",
+    "Pathogens, routes of disease transmission, vectors and preventive measures.",
+    "Lifestyle, environmental and nutritional causes of chronic and deficiency diseases.",
+    "Prevention through sanitation, immunity and vaccination.",
+    "Treatment, antibiotics, antibiotic resistance and responsible healthcare."
+  ],
+  "banned_topics": [
+    "Detailed cell biology of microorganisms from Chapter 2.",
+    "Clinical diagnosis or individual medical prescriptions.",
+    "Unverified remedies or instructions to replace professional medical care."
+  ],
+  "must_include_keywords": [
+    "health",
+    "WHO",
+    "physical well-being",
+    "mental well-being",
+    "social well-being",
+    "Ayurveda",
+    "dinacharya",
+    "ritucharya",
+    "nutrition",
+    "exercise",
+    "sleep",
+    "hygiene",
+    "clean environment",
+    "AQI",
+    "sign",
+    "symptom",
+    "disease",
+    "communicable disease",
+    "non-communicable disease",
+    "pathogen",
+    "virus",
+    "bacterium",
+    "protozoan",
+    "vector",
+    "malaria",
+    "dengue",
+    "diabetes",
+    "asthma",
+    "deficiency disease",
+    "chronic disease",
+    "sanitation",
+    "immunity",
+    "immune system",
+    "vaccine",
+    "acquired immunity",
+    "antibiotic",
+    "antibiotic resistance"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Health simply means not having a diagnosed disease.",
+      "correction": "The chapter and WHO definition include physical, mental and social well-being."
+    },
+    {
+      "claim": "All diseases spread from one person to another.",
+      "correction": "Communicable diseases can spread; non-communicable diseases such as diabetes and asthma do not spread between people."
+    },
+    {
+      "claim": "Symptoms and signs are the same.",
+      "correction": "Symptoms are felt by the person, while signs can be observed or measured."
+    },
+    {
+      "claim": "Vaccines cure a disease after a person becomes ill.",
+      "correction": "Vaccines are preventive and train the immune system before serious disease occurs."
+    },
+    {
+      "claim": "Antibiotics cure viral infections such as cold and flu.",
+      "correction": "Antibiotics act against bacteria, not viruses or protozoa, and misuse promotes resistance."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 3.1 to analyse physical, mental and social causes of the student's difficulties.",
+    "Use Activities 3.2 and 3.3 to connect habits and surroundings with well-being.",
+    "Use Activity 3.4 and Table 3.1 to compare transmission and prevention.",
+    "Use Activity 3.5 to study non-communicable disease risk reduction.",
+    "Use Activity 3.6 to infer the effect of community sanitation.",
+    "Use Activity 3.7 and Keep the curiosity alive Q6 and Q9 to address antibiotic resistance."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–11, followed by Discover, design, and debate activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

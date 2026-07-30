@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 3: A Story of Numbers",
+  "central_question": "How did people develop increasingly efficient number systems, and why is the Indian place-value system with zero especially powerful?",
+  "in_scope_units": [
+    "Reema's curiosity and the historical need for counting.",
+    "Origin and worldwide spread of Indian numerals and zero.",
+    "The mechanism of counting through one-to-one mapping with objects, names and symbols.",
+    "Definitions of number system, numeral and landmark number.",
+    "Early systems using body parts and tally marks.",
+    "Additive number systems and their limits.",
+    "Base-n systems and landmark numbers based on powers.",
+    "Positional systems from Mesopotamian, Mayan and Chinese traditions.",
+    "The Indian base-10 positional system with ten digits including zero.",
+    "Comparison of blank-place placeholders with zero as a full number and digit."
+  ],
+  "banned_topics": [
+    "Detailed arithmetic in modern binary and hexadecimal systems.",
+    "Chronologies of civilisations unrelated to their number representations.",
+    "Modern computer encoding."
+  ],
+  "must_include_keywords": [
+    "counting",
+    "one-to-one mapping",
+    "standard sequence",
+    "number system",
+    "numeral",
+    "landmark number",
+    "base-n",
+    "additive system",
+    "positional system",
+    "place value",
+    "tally marks",
+    "Ishango bone",
+    "body-part counting",
+    "Roman numerals",
+    "Mesopotamian system",
+    "Babylonian",
+    "Mayan system",
+    "Chinese rod numerals",
+    "Indian number system",
+    "Hindu numerals",
+    "Hindu-Arabic numerals",
+    "zero",
+    "Bakhshali manuscript",
+    "Aryabhata",
+    "Al-Khwarizmi",
+    "Fibonacci",
+    "decimal system",
+    "blank space",
+    "efficient computation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The numerals 0–9 originated in Europe.",
+      "correction": "The modern ten-digit system originated and developed in India and later spread through the Arab world to Europe and beyond."
+    },
+    {
+      "claim": "A number and a numeral are exactly the same idea.",
+      "correction": "A number is the quantity or abstract idea; a numeral is a written symbol or group of symbols used to represent it."
+    },
+    {
+      "claim": "Every early number system was positional.",
+      "correction": "Many early systems were additive; positional place-value systems were a later and more efficient development."
+    },
+    {
+      "claim": "A blank space is always as clear and powerful as the digit zero.",
+      "correction": "Blank spaces can be ambiguous, while zero acts as an explicit digit and number, making place-value notation unambiguous."
+    },
+    {
+      "claim": "The term 'Hindu' in Hindu numerals names a religion.",
+      "correction": "In this historical term it refers to the geography or people from whom the numerals came."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the herd-and-sticks activity to demonstrate one-to-one mapping.",
+    "Use the Roman-symbol table to discuss a finite symbol set and its limitations.",
+    "Decode a Mesopotamian or Chinese positional numeral using landmark positions.",
+    "Use the Chinese example 2634 = 2×10³ + 6×10² + 3×10 + 4.",
+    "Compare an ambiguous blank position with the explicit use of 0 in the Indian system."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Figure it Out and Math Talk tasks occur after the counting mechanism and each historical-number-system section, followed by a chapter summary on number systems, bases, place value and zero.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

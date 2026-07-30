@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 7: Particulate Nature of Matter",
+  "central_question": "How do the size, spacing, attraction, movement and thermal energy of constituent particles explain the properties and changes of solids, liquids and gases?",
+  "in_scope_units": [
+    "Matter as extremely small constituent particles, supported by breaking chalk and dissolving sugar.",
+    "Interparticle spaces and attractive forces, including Acharya Kanad's idea of Parmanu.",
+    "Solid state, fixed shape and volume, particle vibration, melting and melting point.",
+    "Liquid state, fixed volume but no fixed shape, boiling, vapour formation and evaporation.",
+    "Gaseous state, free movement, no fixed shape or volume, and the idea of fluids.",
+    "Comparison of interparticle spacing and compressibility using a syringe and dissolved substances.",
+    "Continuous particle motion, diffusion and the effect of heating."
+  ],
+  "banned_topics": [
+    "Detailed atomic structure and chemical bonding.",
+    "Gas laws and pressure-volume calculations.",
+    "Chemical classification of atoms and molecules beyond the brief closing extension."
+  ],
+  "must_include_keywords": [
+    "matter",
+    "constituent particles",
+    "physical change",
+    "chalk powder",
+    "dissolution",
+    "interparticle space",
+    "interparticle attraction",
+    "Acharya Kanad",
+    "Parmanu",
+    "solid",
+    "fixed shape",
+    "fixed volume",
+    "vibration",
+    "melting point",
+    "ice",
+    "urea",
+    "iron",
+    "liquid",
+    "flow",
+    "boiling point",
+    "vapour",
+    "evaporation",
+    "gas",
+    "fluid",
+    "compressibility",
+    "syringe",
+    "solution",
+    "potassium permanganate",
+    "diffusion",
+    "thermal energy",
+    "particle motion",
+    "insoluble",
+    "smoke",
+    "incense fragrance",
+    "atoms",
+    "molecules"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A grain of chalk powder is the smallest possible particle of chalk.",
+      "correction": "Each visible grain is itself made of an enormous number of much smaller constituent particles."
+    },
+    {
+      "claim": "The spaces between particles are filled with air.",
+      "correction": "The chapter states that interparticle spaces contain no material."
+    },
+    {
+      "claim": "Particles in a solid are completely motionless.",
+      "correction": "They vibrate or oscillate about fixed positions."
+    },
+    {
+      "claim": "Evaporation and boiling occur only at the boiling point.",
+      "correction": "Boiling occurs throughout a liquid at its boiling point, while evaporation occurs slowly at the surface at all temperatures."
+    },
+    {
+      "claim": "Rice grains become a liquid because a pile takes the shape of its container.",
+      "correction": "Each rice grain retains a fixed shape and volume, so the material remains a collection of solids."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 7.1 to distinguish size reduction from formation of a new substance.",
+    "Use Activity 7.2 to infer invisible sugar particles and interparticle spaces.",
+    "Use Activities 7.3–7.5 to compare solids, liquids and gases.",
+    "Use Activities 7.6 and 7.7 to investigate compressibility and spacing.",
+    "Use Activities 7.8 and 7.9 to show continuous particle motion and diffusion.",
+    "Use Keep the curiosity alive Q6–Q10 for particle diagrams and state classification."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–10, followed by Discover, design, and debate activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

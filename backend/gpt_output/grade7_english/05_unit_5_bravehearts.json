@@ -1,0 +1,103 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "English",
+    "chapter": "Unit 5: Bravehearts",
+    "central_question": "How do remembrance, sacrifice, courage, leadership and responsible expression help a nation honour its bravehearts?",
+    "in_scope_units": [
+      "A Homage to Our Brave Soldiers—letters, school visit and the National War Memorial.",
+      "The cost of freedom, sacrifice, gallantry and gratitude.",
+      "Memorial tablets, circles and stories of fallen heroes.",
+      "Lance Naik Albert Ekka, Major Padmapani Acharya and educational resources.",
+      "Letter form, prefixes, bravery vocabulary, clauses and conjunctions.",
+      "Listening and writing about Armed Forces service in war and peace.",
+      "My Dear Soldiers—vigilance, terrain, sacrifice, prayer and service.",
+      "Imagery, simile, metaphor, repetition, alliteration, tone and theme.",
+      "Recitation, collocations, acrostic poetry and gratitude notes.",
+      "Rani Abbakka—sovereignty, refusal of tribute and resistance.",
+      "Cause and effect, comic-strip form, dialogue and inference.",
+      "Direct and indirect speech, spelling and silent letters.",
+      "Rani Gaidinliu and women who helped shape India's identity."
+    ],
+    "banned_topics": [
+      "Detailed military tactics or weapon instructions.",
+      "Current political debate beyond the source.",
+      "Complete military history of every conflict or award.",
+      "External biographies not needed for the unit."
+    ],
+    "must_include_keywords": [
+      "bravehearts",
+      "homage",
+      "National War Memorial",
+      "sacrifice",
+      "freedom",
+      "territorial integrity",
+      "tablet",
+      "Amar Chakra",
+      "Veerta Chakra",
+      "Tyag Chakra",
+      "Raksha Chakra",
+      "gallantry",
+      "Param Vir Chakra",
+      "Lance Naik Albert Ekka",
+      "Major Padmapani Acharya",
+      "gratitude",
+      "My Dear Soldiers",
+      "A.P.J. Abdul Kalam",
+      "patriotism",
+      "imagery",
+      "simile",
+      "metaphor",
+      "alliteration",
+      "Rani Abbakka",
+      "Ullal",
+      "sovereign country",
+      "tribute",
+      "Portuguese",
+      "Zamorin of Kozhikode",
+      "leadership",
+      "direct speech",
+      "indirect speech",
+      "Rani Gaidinliu",
+      "courage",
+      "service"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A war memorial celebrates war.",
+        "correction": "The text presents remembrance, gratitude and the pain and cost of war."
+      },
+      {
+        "claim": "'Great sons' excludes women soldiers.",
+        "correction": "The textbook note says it refers to all soldiers, men and women."
+      },
+      {
+        "claim": "Rani Abbakka misunderstands the tribute demand.",
+        "correction": "She deliberately asserts Ullal's sovereignty and rejects Portuguese authority."
+      },
+      {
+        "claim": "Courage means acting without thought.",
+        "correction": "The unit connects courage with discipline, leadership, service and responsibility."
+      },
+      {
+        "claim": "Indirect speech needs no grammatical change.",
+        "correction": "Pronouns, tense and time or place expressions often change."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the National War Memorial and the purpose of remembrance.",
+      "Analyse one soldier's story and the language of gratitude.",
+      "Use My Dear Soldiers for theme and poetic devices.",
+      "Use Rani Abbakka for sovereignty, leadership and cause-effect.",
+      "Finish with reported speech, recitation, writing and Rani Gaidinliu."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The unit includes comprehension, extract-based reflection, poetry, vocabulary, grammar, listening, recitation, letters, acrostics and dialogue activities."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Unit 5: Bravehearts\n\n## What you will learn\nYou will understand why the National War Memorial matters and how the letter form combines information with gratitude.\n\n## Simple explanation\nA school visit turns names and military history into an emotional understanding of the cost of freedom. The memorial honours sacrifice while reminding visitors of war's suffering.\n\n## Step-by-step breakdown\n- **Letter form**: The writer addresses a friend and shares a personal visit.\n- **Purpose**: Students learn about people who protected the country.\n- **Memorial**: The site near India Gate honours fallen personnel.\n- **Tablets**: Individual names preserve public memory.\n- **Four circles**: Amar, Veerta, Tyag and Raksha organise immortality, bravery, sacrifice and protection.\n- **Gallantry**: Stories and awards connect the monument with acts of courage.\n- **Emotional effect**: The visitor feels pride, grief, humility and responsibility.\n- **Peace**: Remembering war also strengthens awareness of its destruction.\n\n## Worked example\nQuestion: What is the significance of the National War Memorial?\n```extract-ref\n{\"citation\": \"NCERT Unit 5, A Homage to Our Brave Soldiers—Think and Reflect\", \"extract_text\": \"What is the significance of the National War Memorial?\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: It preserves names, stories of gallantry and memories of sacrifice.\n- Step 2: It teaches later generations and expresses gratitude while showing freedom's human cost.\n- Final answer: It honours fallen soldiers, educates citizens and keeps courage, sacrifice and peace in public memory.\n\n## Common mistake\nDo not describe it as glorifying violence; the text also stresses devastation and loss.\n\n## Quick check question\nQuestion: Why are individual names important?\nAnswer: They turn an abstract number into remembered human lives.\nExplanation: Naming shows that national freedom was defended by particular people.\n\n## Summary\n- The letter makes history personal.\n- The memorial preserves names and stories.\n- Remembrance connects freedom with sacrifice.\n- Public memory teaches responsibility.",
+    "Core explanation": "# Core explanation: Unit 5: Bravehearts\n\n## What you will learn\nYou will examine how individual stories deepen the memorial's meaning and how language expresses courage.\n\n## Simple explanation\nMonuments become meaningful when readers connect them with people who acted under danger. The unit therefore combines facts, letters and stories of valour.\n\n## Step-by-step breakdown\n- **Albert Ekka**: His story illustrates selflessness, determination and courage.\n- **Padmapani Acharya**: A student presentation keeps a Kargil hero's story in memory.\n- **Gallantry awards**: The unit introduces honours such as PVC and MVC.\n- **Digital awareness**: The memorial application helps more people learn.\n- **Prefixes**: Beginnings such as dis-, in-, im- and un- change root meanings.\n- **Bravery words**: Valiant, heroic, gallant, fearless and undaunted add shades.\n- **Antonyms**: Cowardly, timid, afraid and fear contrast in different roles.\n- **Clauses**: Subordinating words connect cause, time and contrast.\n- **Peacetime service**: Armed Forces also support disasters, infrastructure and welfare.\n\n## Worked example\nQuestion: Why is Lance Naik Albert Ekka described as selfless, determined and courageous?\n```extract-ref\n{\"citation\": \"NCERT Unit 5, A Homage to Our Brave Soldiers—Think and Reflect\", \"extract_text\": \"Lance Naik Albert Ekka is an example of selflessness, determination, and exceptional courage. Elaborate.\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: The text presents him as continuing his duty despite grave danger and injury.\n- Step 2: His focus remains on comrades, mission and country rather than personal safety.\n- Final answer: He is selfless in placing duty first, determined in continuing and courageous in facing extreme danger.\n\n## Common mistake\nDo not repeat adjectives only; connect each quality with action.\n\n## Quick check question\nQuestion: What does 'un-' do in 'undaunted'?\nAnswer: It means 'not' daunted or discouraged.\nExplanation: The prefix changes the root meaning.\n\n## Summary\n- Individual stories humanise a memorial.\n- Awards recognise service.\n- Vocabulary gives shades of courage.\n- Service continues in war and peace.",
+    "Worked examples": "# Worked examples: Unit 5: Bravehearts\n\n## What you will learn\nYou will interpret My Dear Soldiers and explain how poetic devices create an admiring and prayerful tribute.\n\n## Simple explanation\nThe poem addresses soldiers directly and contrasts sleeping citizens with defenders who remain vigilant across difficult terrain and weather.\n\n## Step-by-step breakdown\n- **Direct address**: Repeated 'you' speaks to soldiers with respect.\n- **Theme**: Patriotism, sacrifice and service are central.\n- **Imagery**: Weather and terrain make hardship visible.\n- **Simile**: Soldiers in lonely expanses are compared with yogis.\n- **Metaphor**: Wind chimes appear to honour their feats.\n- **Repetition**: 'You' and 'we' connect defenders and citizens.\n- **Alliteration**: Sound patterns add musical emphasis.\n- **Tone**: The voice is admiring, grateful, respectful and prayerful.\n- **Inclusion**: The textbook note includes men and women soldiers.\n\n## Worked example\nQuestion: Why does the poet use imagery, simile, metaphor, repetition and alliteration?\n```extract-ref\n{\"citation\": \"NCERT Unit 5, My Dear Soldiers—Poetic Devices\", \"extract_text\": \"Complete the following sentences by explaining why the poet has used the following poetic devices: imagery, simile, metaphor, repetition and alliteration.\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: The poem presents harsh terrain, yogi-like endurance, wind chimes and repeated address.\n- Step 2: These devices make sacrifice vivid and intensify gratitude.\n- Final answer: They turn a general tribute into a rhythmic and emotionally powerful expression of respect.\n\n## Common mistake\nDo not only name a device; explain its effect.\n\n## Quick check question\nQuestion: What is the effect of comparing soldiers with yogis?\nAnswer: It suggests discipline, endurance, self-control and devotion.\nExplanation: The comparison presents vigilance as dedicated service.\n\n## Summary\n- The poem honours soldiers directly.\n- Terrain imagery shows hardship.\n- The simile suggests discipline.\n- The tone combines gratitude and prayer.",
+    "Exam-style problems": "# Exam-style problems: Unit 5: Bravehearts\n\n## What you will learn\nYou will analyse Rani Abbakka as a leader and explain sovereignty, resolve and strategy.\n\n## Simple explanation\nThe comic-strip story presents a ruler who refuses to let Ullal remain subordinate to Portuguese power. Her decisions combine courage with public, economic and political action.\n\n## Step-by-step breakdown\n- **Inherited situation**: Ullal is treated as a vassal and pays tribute.\n- **Promise**: Abbakka vows to drive the Portuguese away.\n- **Support**: She asks people to make Ullal stronger and free.\n- **Conflict**: Veera Narsimha considers the decision rash.\n- **Limited alliance**: Other rajas fear Portuguese power.\n- **Sovereignty**: She tells the envoy Ullal takes no orders from Portugal.\n- **Trade**: She builds ships and trades with Arabia with the Zamorin's alliance.\n- **Response**: After Portuguese aggression, she attacks their fort.\n- **Inspiration**: Victory proves a strong foreign power can be challenged.\n\n## Worked example\nQuestion: Why could Rani Abbakka's victory inspire other rulers?\n```extract-ref\n{\"citation\": \"NCERT Unit 5, Rani Abbakka—Think and Reflect\", \"extract_text\": \"Why do you think Rani Abbakka’s victory against the Portuguese would have inspired other rulers to go against a foreign power?\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: She acts despite limited support and combines public backing, trade and decisive resistance.\n- Step 2: Her success challenges the belief that Portuguese power is unbeatable.\n- Final answer: It proves that courage, leadership, unity and strategy can overcome fear of a stronger opponent.\n\n## Common mistake\nDo not describe her as acting through emotion alone; the story also shows strategy.\n\n## Quick check question\nQuestion: Why does she refuse tribute?\nAnswer: She says Ullal is sovereign and rejects Portuguese authority.\nExplanation: Tribute would represent submission.\n\n## Summary\n- Abbakka inherits inequality.\n- She asserts sovereignty.\n- Leadership requires cooperation.\n- Trade and alliances support resistance.",
+    "Revision and recap": "# Revision and recap: Unit 5: Bravehearts\n\n## What you will learn\nYou will connect remembrance, poetry and leadership with grammar, listening and writing.\n\n## Simple explanation\nThe unit honours courage through soldiers at a memorial, defenders in a poem and women leaders who resist injustice and serve communities.\n\n## Step-by-step breakdown\n- **Remembrance**: Memorials, apps, presentations and letters preserve stories.\n- **Recitation**: Pause, volume, pace and posture convey respect.\n- **Gratitude note**: It should be sincere, specific and concise.\n- **Acrostic**: First letters spell a word while lines develop one theme.\n- **Direct speech**: Quotation marks preserve exact words.\n- **Indirect speech**: Tense, pronouns and time or place may change.\n- **Rani Gaidinliu**: The listening text extends resistance and service.\n- **Collocations**: Natural word partnerships improve fluency.\n- **Unified value**: Courage includes service, sacrifice and leadership.\n\n## Worked example\nQuestion: Change 'Rani Abbakka said, “I will make them pay for this.”' into indirect speech.\n```extract-ref\n{\"citation\": \"NCERT Unit 5, Rani Abbakka—Let us Learn\", \"extract_text\": \"Rani Abbakka said, “I will make them pay for this.” Change the sentence into indirect speech.\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: 'Will' changes to 'would', 'I' to 'she' and 'this' to 'that'.\n- Step 2: The changes align the sentence with the reporter's viewpoint.\n- Final answer: Rani Abbakka said that she would make them pay for that.\n\n## Common mistake\nDo not only remove quotation marks; adjust grammar and context.\n\n## Quick check question\nQuestion: Report: 'The merchants said to the Arabians, “Visit us again, brother.”'\nAnswer: The merchants told the Arabian brothers to visit them again.\nExplanation: An imperative is reported with 'told' plus object and to-infinitive.\n\n## Summary\n- The unit links memory with responsibility.\n- Poetry expresses gratitude.\n- Abbakka represents sovereign leadership.\n- Reported speech changes viewpoint."
+  }
+}

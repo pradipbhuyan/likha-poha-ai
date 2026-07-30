@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 11: From Barter to Money",
+  "central_question": "Why did people move from barter to money, and how did money evolve into coin, paper and digital forms that make exchange easier?",
+  "in_scope_units": [
+    "Barter System—exchange of goods or services without money, commodities used as exchange and present-day examples.",
+    "Why Do We Need Money?—double coincidence of wants and the problems of measuring value, divisibility, portability and durability.",
+    "Continuing barter practices—Junbeel Mela, book exchange and exchanging old clothes for utensils.",
+    "Basic Functions of Money—medium of exchange, store of value, common measure of value and standard of deferred payment.",
+    "The Journey of Money—broad evolution from barter and cowries to coinage, paper currency and digital money.",
+    "Coinage—minting, metals and alloys, kārṣhāpaṇas or paṇas, rūpas, obverse and reverse designs, trade evidence and modern Indian coins.",
+    "Paper Money—reasons for its use, currency, denominations and the Reserve Bank of India as the legal authority controlling currency issue.",
+    "New Forms of Money—digital money, QR codes, debit cards, credit cards, net banking and UPI.",
+    "Before we move on and Questions and activities 1–9—barter, limitations, coins, evolution, historical exchange, RBI and payment preferences."
+  ],
+  "banned_topics": [
+    "Detailed functioning of banks, loans, interest or monetary policy, which is not taught in this chapter.",
+    "Detailed stock-market trading, which belongs to later economic study.",
+    "Cryptocurrency and speculative digital assets, which are not included in the chapter.",
+    "Detailed market supply chains and consumer certification marks, which belong to Chapter 12."
+  ],
+  "must_include_keywords": [
+    "barter system",
+    "commodities",
+    "transaction",
+    "double coincidence of wants",
+    "common standard measure of value",
+    "divisibility",
+    "portability",
+    "durability",
+    "Junbeel Mela",
+    "medium of exchange",
+    "store of value",
+    "standard of deferred payment",
+    "coinage",
+    "minting",
+    "alloy",
+    "kārṣhāpaṇa",
+    "paṇa",
+    "rūpa",
+    "obverse",
+    "reverse",
+    "Roman coins",
+    "paper money",
+    "currency",
+    "denomination",
+    "Reserve Bank of India",
+    "RBI",
+    "digital money",
+    "QR code",
+    "UPI",
+    "debit card",
+    "credit card",
+    "net banking"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Barter means exchanging goods only for money.",
+      "correction": "Barter is the direct exchange of goods or services for other goods or services without using money."
+    },
+    {
+      "claim": "Double coincidence of wants means that two goods have the same value.",
+      "correction": "It means each person has exactly what the other person wants and both are willing to exchange directly."
+    },
+    {
+      "claim": "Money serves only as a medium of exchange.",
+      "correction": "The chapter also presents money as a store of value, a common measure of value and a standard of deferred payment."
+    },
+    {
+      "claim": "All money must be a physical object that can be touched.",
+      "correction": "Digital money is intangible and moves electronically through methods such as UPI, cards and net banking."
+    },
+    {
+      "claim": "Anyone may legally print and issue Indian paper currency.",
+      "correction": "The Reserve Bank of India controls the issue of currency, and it is not legal for anybody else to issue it."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Q1 to explain how barter works and identify commodities used in exchange.",
+    "Use NCERT Q2 to organise the limitations of barter into double coincidence, value comparison, divisibility, portability and durability.",
+    "Use NCERT Q4 to trace the transformation of money from commodities and coins to paper and digital forms.",
+    "Use NCERT Q3 to interpret what symbols, materials and designs on ancient Indian coins reveal.",
+    "Use NCERT Q5 to reason how acceptance, ruler authority and long-distance trade could make coins usable across regions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–9.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,106 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Social Science",
+    "chapter": "Chapter 10: The Constitution of India — An Introduction",
+    "central_question": "How does the Constitution organise Indian democracy, protect rights, express national values and adapt to changing needs?",
+    "in_scope_units": [
+      "Republic Day and the Constitution coming into effect on 26 January 1950.",
+      "What Is a Constitution?—basic principles, laws, government organs, checks and balances, rights, duties and national goals.",
+      "Why do we need a constitution?—the rulebook analogy, consensus and agreed procedures.",
+      "Writing the Constitution of India—Constituent Assembly, Drafting Committee, dates, representation and adoption.",
+      "What Shaped and Influenced the Indian Constitution?—freedom movement, civilisational heritage and learning from other constitutions.",
+      "Influence of the Indian Freedom Movement—equality, justice, freedom, fraternity, rights, voting and separation of powers.",
+      "India’s civilisational heritage and history—unity in diversity, multiple viewpoints, Nature, learning, respect, duties and governance traditions.",
+      "Learnings from across the world—France, Ireland, USA and adapted constitutional ideas.",
+      "Illustrations and artistic design of the handwritten Constitution.",
+      "Key Features of the Constitution—three organs, three tiers, elections, Fundamental Rights, Fundamental Duties and Directive Principles of State Policy.",
+      "The Constitution is a Living Document—amendments, debate, public feedback, flag rights and Panchayati Raj.",
+      "Understanding the Preamble—We the People, sovereign, socialist, secular, democratic, republic, justice, liberty, equality and fraternity.",
+      "Before we move on and Questions and activities 1–7—diversity, values, equality, franchise, influences, ideals and constitutional vocabulary."
+    ],
+    "banned_topics": [
+      "Detailed article-by-article constitutional law not presented in the chapter.",
+      "Detailed court procedures or legal advice.",
+      "Detailed political-party and election-management systems.",
+      "Unverified recent constitutional amendments beyond the chapter’s examples."
+    ],
+    "must_include_keywords": [
+      "Constitution",
+      "Republic Day",
+      "26 January 1950",
+      "rulebook",
+      "legislature",
+      "executive",
+      "judiciary",
+      "checks and balances",
+      "rights and duties",
+      "Constituent Assembly",
+      "Dr. Rajendra Prasad",
+      "Drafting Committee",
+      "Dr. B.R. Ambedkar",
+      "26 November 1949",
+      "freedom movement",
+      "civilisational heritage",
+      "vasudhaiva kutumbakam",
+      "Fundamental Rights",
+      "Fundamental Duties",
+      "Directive Principles of State Policy",
+      "DPSP",
+      "Article 14",
+      "Article 21",
+      "Article 21-A",
+      "amendment",
+      "living document",
+      "73rd Constitutional Amendment",
+      "Preamble",
+      "We the People",
+      "sovereign",
+      "socialist",
+      "secular",
+      "democratic",
+      "republic",
+      "justice",
+      "liberty",
+      "equality",
+      "fraternity"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The Constitution is only a list of punishments and legal rules.",
+        "correction": "It also defines government institutions, checks and balances, citizen rights and duties, national values and long-term goals."
+      },
+      {
+        "claim": "Dr. B.R. Ambedkar wrote the Constitution entirely by himself.",
+        "correction": "He chaired the Drafting Committee, while the Constituent Assembly debated, developed and adopted the Constitution."
+      },
+      {
+        "claim": "Fundamental Rights and Directive Principles are enforceable in exactly the same way.",
+        "correction": "Fundamental Rights can be protected through courts, while Directive Principles guide government goals and are not directly enforceable by a judge."
+      },
+      {
+        "claim": "The Constitution cannot be changed.",
+        "correction": "It is a living document that can be amended through rigorous constitutional procedures."
+      },
+      {
+        "claim": "The Preamble was handed down by a monarch.",
+        "correction": "‘We, the People of India’ means the Constitution was enacted by the people through their representatives."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Questions and activities Q1 to explain why diverse representation in the Constituent Assembly mattered.",
+      "Use NCERT Questions and activities Q2 to identify constitutional values in everyday situations.",
+      "Use NCERT Questions and activities Q3 to discuss equality before law.",
+      "Use NCERT Questions and activities Q5 to compare the influence of the freedom struggle and civilisational heritage.",
+      "Use NCERT Questions and activities Q6 to reflect on incomplete achievement of constitutional ideals and citizens’ responsibilities."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–7 followed by a constitutional crossword."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 10: The Constitution of India — An Introduction\n\n## What you will learn\nYou will define a constitution and explain why a country needs one. You will connect the idea of agreed rules with fairness, stable institutions and peaceful settlement of disputes.\n\n## Simple explanation\nA constitution is the basic rulebook of a nation. It states how government is organised, what powers institutions have, what rights citizens possess and what goals the country follows.\n\n## Step-by-step breakdown\n- **Republic Day**: The Constitution came into effect on 26 January 1950, which is celebrated as Republic Day.\n- **Basic principles**: A constitution states the basic laws and principles of a nation.\n- **Government framework**: It defines the legislature, executive and judiciary and their roles.\n- **Checks and balances**: It limits power and promotes fairness, responsibility and accountability.\n- **Rights and duties**: It protects citizens while also stating their responsibilities.\n- **National aspirations**: It expresses long-term goals and ideals such as equality, justice, fraternity, pluralism and freedom.\n- **Rulebook analogy**: Like agreed rules in a game, constitutional rules help settle disputes and guide decisions.\n- **Consent**: Rules work only when people and institutions agree to respect them.\n\n## Worked example\nQuestion: Why is the Constitution compared with a rulebook rather than an ordinary government order?\n\nSolution:\n- Step 1: The chapter says it sets the basic principles for how government is formed and functions and how disputes, rights and duties are handled.\n- Step 2: An ordinary order operates within the system, while the Constitution establishes the system’s highest framework.\n- Final answer: The Constitution is a foundational rulebook because all institutions and officials are expected to act within its agreed principles.\n\n## Common mistake\nDo not reduce the Constitution to a book stored in Parliament; its importance lies in the rules and values people and institutions follow.\n\n## Quick check question\nQuestion: When did the Constitution of India come into effect?\nAnswer: 26 January 1950.\nExplanation: This date is commemorated every year as Republic Day.\n\n## Summary\n- A constitution gives a nation its basic framework.\n- It organises institutions and limits power.\n- It protects rights and defines duties.\n- Shared respect for rules helps resolve disputes.",
+    "Core explanation": "# Core explanation: Chapter 10: The Constitution of India — An Introduction\n\n## What you will learn\nYou will trace how the Constitution was prepared. You will learn the roles of the Constituent Assembly, Dr. Rajendra Prasad, the Drafting Committee and Dr. B.R. Ambedkar.\n\n## Simple explanation\nIndia needed agreed rules for self-government after colonial rule. A diverse assembly debated major questions and produced the Constitution through nearly three years of work.\n\n## Step-by-step breakdown\n- **Constituent Assembly**: It was formed in 1946 to decide how independent India would govern itself.\n- **Representation**: It initially had 389 members, later 299 after Partition, including 15 women and representatives of diverse regions and groups.\n- **Formation date**: The Assembly was formed on 9 December 1946 through members elected by provincial legislative assemblies.\n- **Chairman**: Dr. Rajendra Prasad chaired the Constituent Assembly.\n- **Drafting Committee**: It prepared the initial text under the chairmanship of Dr. B.R. Ambedkar.\n- **Adoption**: The Constitution was completed and adopted on 26 November 1949.\n- **Commencement**: It came into effect on 26 January 1950.\n- **Deliberation**: Members debated voting, separation of powers, rights, amendments and Centre-State relations.\n\n## Worked example\nQuestion: Why was a diverse Constituent Assembly important for India?\n\nSolution:\n- Step 1: The chapter describes India as large, culturally diverse and complex and says members represented different regions, professions and social groups.\n- Step 2: Rules made for the whole country needed discussion by people bringing different experiences and concerns.\n- Final answer: Diverse representation increased the Assembly’s ability to create a Constitution suited to the whole nation rather than one narrow group.\n\n## Common mistake\nDo not say the Drafting Committee alone adopted the Constitution; adoption was the work of the Constituent Assembly.\n\n## Quick check question\nQuestion: Who chaired the Drafting Committee?\nAnswer: Dr. B.R. Ambedkar.\nExplanation: The committee prepared the initial constitutional text for debate and adoption by the Constituent Assembly.\n\n## Summary\n- The Constitution was produced through collective debate.\n- The Assembly represented a diverse country.\n- Dr. Rajendra Prasad chaired the Assembly.\n- Dr. B.R. Ambedkar chaired the Drafting Committee.\n- Adoption and commencement occurred on different dates.",
+    "Worked examples": "# Worked examples: Chapter 10: The Constitution of India — An Introduction\n\n## What you will learn\nYou will study the three main sources that shaped the Constitution: the freedom movement, India’s civilisational heritage and useful ideas from other democratic constitutions.\n\n## Simple explanation\nThe Constitution was neither copied from one source nor created without history. Its framers adapted values and institutions to India’s needs.\n\n## Step-by-step breakdown\n- **Freedom movement**: The struggle contributed ideals of equality, justice, freedom, fraternity and protection of cultural heritage.\n- **Political questions**: Its experience helped shape universal adult voting, fundamental rights, separation of powers and Centre-State relations.\n- **Unity in diversity**: The Constitution embeds the idea of one country that embraces many communities and viewpoints.\n- **Civilisational principles**: Respect for different perspectives, Nature, learning, women and the wellbeing of all influenced constitutional thinking.\n- **Governance traditions**: Janapadas, sanghas, councils, saptānga and rājadharma reflected duties and public roles in governance.\n- **Fundamental Duties**: The chapter links constitutional duties with India’s long emphasis on responsibility.\n- **France**: Liberty, equality and fraternity were adopted from French constitutional tradition.\n- **Ireland**: The Directive Principles of State Policy were inspired by the Irish Constitution.\n- **USA**: The American Constitution helped shape the concept of an independent judiciary.\n- **Adaptation**: Ideas from abroad were studied for usefulness in India’s context, not copied mechanically.\n\n## Worked example\nQuestion: How can the Constitution be both rooted in Indian heritage and open to ideas from other countries?\n\nSolution:\n- Step 1: The framers drew on Indian traditions of unity, duties and multiple viewpoints while also studying French, Irish, American and other constitutions.\n- Step 2: They selected ideas that served India’s needs and combined them with the freedom struggle’s experience.\n- Final answer: The Constitution reflects Indian history and values while adapting useful democratic principles from across the world.\n\n## Common mistake\nDo not assume that borrowing an idea means copying an entire foreign constitution.\n\n## Quick check question\nQuestion: Which constitutional idea was inspired by Ireland?\nAnswer: The Directive Principles of State Policy.\nExplanation: The framers studied the Irish Constitution and adapted this idea for India.\n\n## Summary\n- The freedom struggle shaped constitutional values.\n- Civilisational heritage contributed ideas of duty and pluralism.\n- Foreign ideas were adapted to Indian needs.\n- The Constitution combines continuity with innovation.",
+    "Exam-style problems": "# Exam-style problems: Chapter 10: The Constitution of India — An Introduction\n\n## What you will learn\nYou will distinguish Fundamental Rights, Fundamental Duties and Directive Principles of State Policy. You will connect them with the organs and tiers of government.\n\n## Simple explanation\nThe Constitution protects immediate legal rights, assigns responsibilities to citizens and sets long-term social and economic goals for government.\n\n## Step-by-step breakdown\n- **Three organs**: The legislature makes laws, the executive implements them and the judiciary checks constitutionality and decides disputes.\n- **Three tiers**: Government functions at central, state and local levels, including Panchayati Raj.\n- **Electoral system**: The Constitution enables every eligible citizen to vote.\n- **Fundamental Rights**: They include equality before law, life and personal liberty, protection from exploitation and education.\n- **Article 14**: It guarantees equality before law.\n- **Article 21**: It protects life and personal liberty.\n- **Article 21-A**: It provides the right to education.\n- **Fundamental Duties**: Citizens should respect institutions and symbols, preserve heritage, protect Nature and support education.\n- **DPSP**: Directive Principles guide government towards welfare, justice, health, nutrition and environmental protection.\n- **Enforcement difference**: Rights may be enforced through courts, while Directive Principles are goals that cannot be directly demanded from a judge.\n\n## Worked example\nQuestion: Why did the framers include both Fundamental Rights and Directive Principles?\n\nSolution:\n- Step 1: The chapter says they wanted some promises that citizens could demand immediately and larger goals that might take time to achieve.\n- Step 2: Rights protect individuals now, while Directive Principles guide long-term government action.\n- Final answer: Together they combine enforceable protection with a continuing vision of social and economic progress.\n\n## Common mistake\nDo not say Directive Principles are useless because they are not directly enforceable; they guide policy and express constitutional goals.\n\n## Quick check question\nQuestion: Which article guarantees equality before law?\nAnswer: Article 14.\nExplanation: It is listed among Fundamental Rights and requires legal equality.\n\n## Summary\n- The Constitution organises powers across organs and tiers.\n- Fundamental Rights are enforceable protections.\n- Fundamental Duties guide citizens’ conduct.\n- DPSP directs long-term government policy.\n- Rights and goals serve different but connected purposes.",
+    "Revision and recap": "# Revision and recap: Chapter 10: The Constitution of India — An Introduction\n\n## What you will learn\nYou will explain why the Constitution is a living document and interpret the guiding values in the Preamble. You will connect amendments and citizen action with constitutional continuity.\n\n## Simple explanation\nA strong constitution preserves basic values while allowing carefully debated change. The Preamble summarises the political and moral direction of the whole document.\n\n## Step-by-step breakdown\n- **Living document**: The Constitution can be changed through amendments when new needs arise.\n- **Debate**: Amendments are rigorously debated in Parliament, and some also require state legislative consideration.\n- **Public role**: Opinions may be sought from citizens, and popular movements can encourage change.\n- **Fundamental Duties**: Part IV-A was added in 1976.\n- **Panchayati Raj**: It entered the Constitution through the 73rd Constitutional Amendment in 1992.\n- **Freedom of expression**: A 2004 court decision recognised flying the national flag respectfully as part of expression.\n- **We the People**: The Constitution was enacted through the people’s representatives, not granted by a king.\n- **Sovereign and republic**: India makes its own decisions and has an elected, not hereditary, head of state.\n- **Socialist and secular**: The state aims to reduce inequality and treats religions with equal respect; these words were added in 1976.\n- **Democratic**: People enjoy political rights, elect rulers and hold government accountable.\n- **Justice, liberty, equality and fraternity**: These values guide government policy and citizens’ conduct.\n\n## Worked example\nQuestion: Why does calling the Constitution a living document not mean that it can be changed casually?\n\nSolution:\n- Step 1: The chapter says amendments are rigorously debated and may require parliamentary, state and public involvement.\n- Step 2: Adaptability is balanced by demanding procedures that protect continuity and prevent careless change.\n- Final answer: The Constitution is living because it can respond to new needs through structured democratic processes.\n\n## Common mistake\nDo not treat the Preamble as a decorative introduction; it states the Constitution’s core guiding values.\n\n## Quick check question\nQuestion: What does ‘We, the People of India’ signify?\nAnswer: It signifies that the Constitution was drawn up and enacted by the people through their representatives.\nExplanation: Its authority comes from the people rather than a hereditary ruler or external power.\n\n## Summary\n- Amendments allow careful constitutional change.\n- The Preamble summarises national values.\n- Popular sovereignty begins with ‘We the People’.\n- Justice, liberty, equality and fraternity guide public life.\n- Citizens and institutions share responsibility for constitutional ideals."
+  }
+}

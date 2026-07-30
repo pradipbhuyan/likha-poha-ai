@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 1: Fractions in Disguise",
+    "central_question": "How can percentages be understood as fractions and decimals and then used to compare, estimate, model and solve everyday problems involving change, profit, loss, tax and compounding?",
+    "in_scope_units": [
+      "Fractions as percentages, the meaning of per cent, and conversion between fractions and percentages.",
+      "Mental percentage strategies and the Fractions-Decimals-Percentages trio.",
+      "Finding a percentage of a quantity, finding the whole from a given percentage, and using bar models and proportional reasoning.",
+      "Percentages greater than 100 and comparison of quantities through common percentage bases.",
+      "Converting ratios and ingredient compositions into percentages, including the Know Your Contents activity.",
+      "Percentage increase and decrease.",
+      "Profit, loss, marked price, discount and tax applications.",
+      "Interest with and without compounding, general amount formulae and exponential versus linear growth.",
+      "Depreciation and successive percentage changes.",
+      "Estimation, interpretation of percentage graphs and end-of-chapter applications."
+    ],
+    "banned_topics": [
+      "Logarithms for solving compound-growth equations.",
+      "Advanced banking formulas involving continuously compounded interest.",
+      "Probability calculations unrelated to percentage interpretation."
+    ],
+    "must_include_keywords": [
+      "per cent",
+      "per hundred",
+      "percentage",
+      "fraction",
+      "decimal",
+      "equivalent fraction",
+      "FDP trio",
+      "mental calculation",
+      "estimate",
+      "bar model",
+      "proportional reasoning",
+      "percentage greater than 100",
+      "ratio",
+      "base quantity",
+      "percentage increase",
+      "percentage decrease",
+      "profit",
+      "loss",
+      "cost price",
+      "selling price",
+      "marked price",
+      "discount",
+      "tax",
+      "GST",
+      "principal",
+      "rate of interest",
+      "time period",
+      "without compounding",
+      "compounding",
+      "simple growth",
+      "exponential growth",
+      "depreciation",
+      "successive discount",
+      "Know Your Contents",
+      "percentage graph"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A percentage is a separate kind of number unrelated to fractions.",
+        "correction": "x% means x/100, so every percentage is a fraction with denominator 100 and can also be written as a decimal."
+      },
+      {
+        "claim": "A 50% increase followed by a 50% decrease returns a quantity to its original value.",
+        "correction": "The two percentages use different base quantities; for an original value x, the result is 1.5x × 0.5 = 0.75x."
+      },
+      {
+        "claim": "A 30% discount followed by a 20% discount is the same as one 50% discount.",
+        "correction": "The second discount is taken on the already reduced price, so the combined multiplier is 0.70 × 0.80 = 0.56, equivalent to a 44% discount."
+      },
+      {
+        "claim": "When comparing two percentages, the larger percentage always represents the larger absolute amount.",
+        "correction": "Percentages are proportions; the underlying base quantities must also be considered."
+      },
+      {
+        "claim": "Simple and compound interest produce the same amount whenever the annual rate and time are the same.",
+        "correction": "Without compounding the principal remains fixed; with compounding, each term's interest is added to the principal for the next term."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Example 1 to convert 3/4 of the orange paint mixture into 75%.",
+      "Use NCERT Example 3 to find the minimum A-grade mark when 80% of 75 is required.",
+      "Use NCERT Example 5 to find the remaining Delhi-Agra distance when 40% equals 92 km.",
+      "Use the NCERT tomato-price and theatre-footfall examples to calculate percentage increase and decrease.",
+      "Use NCERT Example 8 and Figure it Out Q1-Q3 to compare interest with and without compounding.",
+      "Use NCERT Example 12 to compare successive discounts with a single discount."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter has several Figure it Out sets throughout the chapter, including percentage conversion and bar-model questions, change and transaction problems, interest and compounding questions, and the final mixed application set before the Summary."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 1: Fractions in Disguise\n\n## What you will learn\nYou will understand the meaning of the symbol % and connect percentages with fractions out of 100. You will convert fractions to percentages and percentages back to fractions using equivalent fractions.\n\n## Simple explanation\nThe phrase per cent means per hundred. Therefore, 25% means 25 out of 100, and 50% of a quantity means one-half of that quantity.\n\n## Step-by-step breakdown\n- **Meaning of %**: x% means x/100, so the symbol always represents a comparison with 100.\n- **Fraction to percentage**: Multiply a fraction by 100% or form an equivalent fraction with denominator 100.\n- **Percentage to fraction**: Write z% as z/100 and simplify if possible.\n- **Equivalent forms**: A quantity can be written as a fraction, decimal or percentage without changing its value.\n- **Why 100 is useful**: Because the number system is base 10, hundredths connect naturally with decimal notation.\n\n## Worked example\nQuestion: NCERT Example 1: Red paint forms 3/4 of a deep orange mixture. What percentage of the mixture is red paint?\n\nSolution:\n- Step 1: Write the fraction of red paint as 3/4.\n- Step 2: Create an equivalent fraction with denominator 100 by multiplying numerator and denominator by 25.\n- Step 3: 3/4 = (3×25)/(4×25) = 75/100.\n- Step 4: A fraction of 75/100 is read as 75 per cent.\n- Final answer: Red paint forms 75% of the mixture.\n\n## Common mistake\nDo not multiply only the numerator by 100. Either multiply the fraction by 100% or multiply numerator and denominator by the same number to form an equivalent fraction.\n\n## Quick check question\nQuestion: NCERT Figure it Out Q2: Nandini has 25 marbles, of which 15 are white. What percentage are white?\nAnswer: 60%.\nExplanation: 15/25 = 3/5 = 60/100, so 60% of the marbles are white.\n\n## Summary\n- Per cent means out of hundred.\n- Percentages are fractions with denominator 100.\n- Equivalent fractions preserve value.\n- Fractions, decimals and percentages can describe the same proportion.",
+    "Core explanation": "# Core explanation: Chapter 1: Fractions in Disguise\n\n## What you will learn\nYou will use the Fractions-Decimals-Percentages trio to calculate common percentages mentally. You will also find a percentage of a quantity and convert ratios into percentages.\n\n## Simple explanation\nA percentage can be treated as a fraction or decimal multiplier. This lets you select the easiest method for a problem instead of following one fixed procedure.\n\n## Step-by-step breakdown\n- **FDP trio**: For example, 50% = 1/2 = 0.5 and 25% = 1/4 = 0.25.\n- **Mental benchmarks**: 10%, 5%, 20%, 25%, 50%, 75% and 100% can be combined to calculate other percentages.\n- **Percentage of a quantity**: x% of y = (x/100)×y.\n- **Ratio to percentage**: First compare one part with the total number of parts, then multiply by 100.\n- **Estimation first**: A rough estimate helps detect unreasonable exact answers.\n- **Bar model**: A bar divided into proportional parts shows the relationship between the known percentage and the whole.\n\n## Worked example\nQuestion: NCERT Example 4: Millet and water are mixed in the ratio 2:7. What percentage of the mixture is millet, and how much millet is needed for 500 ml of mixture?\n\nSolution:\n- Step 1: Total ratio parts = 2+7 = 9.\n- Step 2: Millet is 2/9 of the mixture.\n- Step 3: Percentage of millet = (2/9)×100 = 22.22% approximately.\n- Step 4: Millet in 500 ml = (2/9)×500 = 1000/9 ml.\n- Step 5: 1000/9 = 111.11... ml, which is approximately 111.1 ml.\n- Final answer: Millet forms about 22.22% of the mixture, and about 111.1 ml of millet is needed.\n\n## Common mistake\nDo not divide the millet part by the water part. The required fraction is millet divided by the total mixture, so it is 2/(2+7), not 2/7.\n\n## Quick check question\nQuestion: NCERT Example 3: What is 80% of 75 marks?\nAnswer: 60 marks.\nExplanation: 80% of 75 = (80/100)×75 = (4/5)×75 = 60.\n\n## Summary\n- Choose the fraction, decimal or proportional method that is simplest.\n- A percentage acts as a multiplier.\n- For a ratio, compare a part with the total of all parts.\n- Estimate before calculating exactly.",
+    "Worked examples": "# Worked examples: Chapter 1: Fractions in Disguise\n\n## What you will learn\nYou will solve reverse-percentage and percentage-change problems with complete working. You will identify the correct original base before calculating increase or decrease.\n\n## Simple explanation\nPercentage change compares the amount of change with the original amount. Reverse-percentage problems use the known part to recover the whole.\n\n## Step-by-step breakdown\n- **Finding the whole**: If p% of a total is known, total = known amount × 100/p.\n- **Remaining percentage**: If p% is completed, 100-p% remains.\n- **Percentage increase**: Increase/original × 100.\n- **Percentage decrease**: Decrease/original × 100.\n- **Base quantity**: The original amount, not the new amount, is the denominator in a percentage-change calculation.\n- **Equivalent statements**: A value that becomes 165% of the original has increased by 65%.\n\n## Worked example\nQuestion: NCERT Example 5: A cyclist has completed 40% of the Delhi-Agra journey and covered 92 km. How many more kilometres remain?\n\nSolution:\n- Step 1: Let the total distance be d km.\n- Step 2: 40% of d = 92, so (40/100)d = 92.\n- Step 3: Multiply both sides by 100/40: d = 92×100/40.\n- Step 4: d = 230 km.\n- Step 5: Remaining distance = 230-92 = 138 km.\n- Step 6: Check by percentage: 60% of 230 = 0.60×230 = 138.\n- Final answer: The cyclist has 138 km left to travel.\n\n## Common mistake\nDo not calculate 60% of 92. The 92 km represents 40% of the total journey, not 100%.\n\n## Quick check question\nQuestion: The price of tomatoes rose from ₹30 to ₹42. What was the percentage increase?\nAnswer: 40%.\nExplanation: Increase = ₹42-₹30 = ₹12. Percentage increase = (12/30)×100 = 40%.\n\n## Summary\n- Reverse percentage recovers an unknown total.\n- The remaining percentage is measured against the same whole.\n- Percentage change uses the original value as the base.\n- A final check should reconnect the answer to the given percentage.",
+    "Exam-style problems": "# Exam-style problems: Chapter 1: Fractions in Disguise\n\n## What you will learn\nYou will apply percentages to profit, loss, discount, tax and product comparisons. You will also understand why successive percentage changes cannot usually be added directly.\n\n## Simple explanation\nCommercial percentage problems are built from a sequence of bases: cost price, marked price and selling price. Each percentage must be applied to the correct current base.\n\n## Step-by-step breakdown\n- **Profit**: Profit = selling price - cost price, and profit% = profit/cost price × 100.\n- **Loss**: Loss = cost price - selling price, and loss% = loss/cost price × 100.\n- **Discount**: Discount is usually calculated on the marked price.\n- **Tax**: Tax such as GST is calculated as a percentage of the taxable price.\n- **Successive changes**: Apply each multiplier one after another instead of adding percentages.\n- **KYC comparison**: Convert each ingredient amount to a percentage of the product's total weight before comparing.\n\n## Worked example\nQuestion: NCERT Example 12: Cakely offers 30% followed by 20% discount on a ₹200 cake; Cakify offers one 50% discount. Which is cheaper?\n\nSolution:\n- Step 1: Cakely first discount = 30% of ₹200 = 0.30×200 = ₹60.\n- Step 2: Cakely price after first discount = ₹200-₹60 = ₹140.\n- Step 3: Second discount = 20% of ₹140 = 0.20×140 = ₹28.\n- Step 4: Cakely final price = ₹140-₹28 = ₹112.\n- Step 5: Cakify discount = 50% of ₹200 = ₹100.\n- Step 6: Cakify final price = ₹200-₹100 = ₹100.\n- Step 7: Compare ₹100 and ₹112.\n- Final answer: Cakify is cheaper by ₹12.\n\n## Common mistake\nDo not add 30% and 20% as if both were taken from ₹200. The second 20% is calculated on ₹140.\n\n## Quick check question\nQuestion: NCERT Example 13 shows a 50% markup followed by a 50% discount. What fraction of the original cost remains?\nAnswer: 3/4 of the original cost, which means a 25% loss.\nExplanation: If the cost is x, the marked price is 1.5x and the discounted price is 0.5×1.5x = 0.75x = 3x/4.\n\n## Summary\n- Profit and loss percentages use cost price as their base.\n- Discount usually uses marked price as its base.\n- Successive changes require successive multiplication.\n- Percentages make ingredient and product comparisons clearer.",
+    "Revision and recap": "# Revision and recap: Chapter 1: Fractions in Disguise\n\n## What you will learn\nYou will revise interest with and without compounding, depreciation and interpretation of percentage data. You will connect linear growth with simple interest and repeated multiplication with compound growth.\n\n## Simple explanation\nWithout compounding, the same principal earns interest each term. With compounding, interest is added back, so the next term starts from a larger principal.\n\n## Step-by-step breakdown\n- **No compounding**: For principal p, decimal rate r and t terms, amount = p(1+rt).\n- **Compounding**: For annual compounding, amount = p(1+r)^t.\n- **Linear growth**: Equal interest is added each term when the principal remains unchanged.\n- **Exponential growth**: The amount is repeatedly multiplied by 1+r during compounding.\n- **Depreciation**: A decrease of r each term multiplies the value by 1-r.\n- **Graph interpretation**: Percentage graphs show proportions, not necessarily the absolute numbers of people.\n- **Reasonableness**: Estimate the direction and size of change before applying a formula.\n\n## Worked example\nQuestion: NCERT Figure it Out Q1: Bank of Yahapur offers 10% p.a. on ₹20,000 for 2 years. Compare the amounts with and without annual compounding.\n\nSolution:\n- Step 1: Without compounding, yearly interest = 10% of ₹20,000 = ₹2,000.\n- Step 2: Interest for 2 years = ₹2,000×2 = ₹4,000.\n- Step 3: Amount without compounding = ₹20,000+₹4,000 = ₹24,000.\n- Step 4: With compounding, Year 1 amount = ₹20,000×1.10 = ₹22,000.\n- Step 5: Year 2 amount = ₹22,000×1.10 = ₹24,200.\n- Step 6: Difference = ₹24,200-₹24,000 = ₹200.\n- Final answer: The amounts are ₹24,000 without compounding and ₹24,200 with compounding; compounding gives ₹200 more.\n\n## Common mistake\nDo not use 10 instead of 0.10 in the formula. A rate of 10% is written as 10/100 = 0.10.\n\n## Quick check question\nQuestion: NCERT Example 10: A ₹21,000 TV depreciates by 5% in one year. What is its new value?\nAnswer: ₹19,950.\nExplanation: The remaining value is 95% of ₹21,000: 0.95×21,000 = ₹19,950.\n\n## Summary\n- Simple and compound growth use different repeated processes.\n- Compounding changes the principal after every term.\n- Depreciation uses a multiplier below 1.\n- Percentage graphs must be read as proportions with attention to their base.\n- Estimation and bar models help verify calculations."
+  }
+}

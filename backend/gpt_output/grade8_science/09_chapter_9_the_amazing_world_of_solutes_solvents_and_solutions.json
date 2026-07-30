@@ -1,0 +1,102 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Science",
+    "chapter": "Chapter 9: The Amazing World of Solutes, Solvents, and Solutions",
+    "central_question": "How do solubility, concentration, mass, volume and density explain solutions, measurement and why substances float, sink or change with temperature and pressure?",
+    "in_scope_units": [
+      "Solutions, solutes and solvents in uniform mixtures.",
+      "Unsaturated and saturated solutions, concentration and solubility.",
+      "Effects of temperature on solid and gas solubility.",
+      "Floating and sinking as an introduction to density.",
+      "Density, units, relative density and its independence from shape and size.",
+      "Measuring mass with a balance and volume with a measuring cylinder.",
+      "Meniscus reading, volume of regular solids and displacement for irregular solids.",
+      "Effects of temperature and pressure on density and the special behaviour of water and ice."
+    ],
+    "banned_topics": [
+      "Advanced concentration units such as molarity.",
+      "Archimedes-principle derivations beyond the chapter's density focus.",
+      "Chemical equations for dissolving and solution chemistry."
+    ],
+    "must_include_keywords": [
+      "solution",
+      "uniform mixture",
+      "solute",
+      "solvent",
+      "dissolve",
+      "saturated solution",
+      "unsaturated solution",
+      "concentration",
+      "dilute",
+      "concentrated",
+      "solubility",
+      "temperature",
+      "baking soda",
+      "dissolved oxygen",
+      "aquatic life",
+      "density",
+      "mass",
+      "volume",
+      "kg/m³",
+      "g/mL",
+      "g/cm³",
+      "relative density",
+      "water",
+      "digital balance",
+      "tare",
+      "measuring cylinder",
+      "capacity",
+      "least count",
+      "meniscus",
+      "regular solid",
+      "cuboid",
+      "displacement",
+      "irregular solid",
+      "heating",
+      "pressure",
+      "compressibility",
+      "ice",
+      "expansion",
+      "hot-air balloon"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Any mixture containing water is a solution.",
+        "correction": "A solution is uniform; sand-water and sawdust-water are non-uniform mixtures."
+      },
+      {
+        "claim": "A concentrated solution is always saturated.",
+        "correction": "Concentrated describes relative solute amount, while saturated means no more solute can dissolve at that temperature."
+      },
+      {
+        "claim": "Heating generally increases the solubility of gases in water.",
+        "correction": "The chapter states that gas solubility generally decreases as temperature increases."
+      },
+      {
+        "claim": "Mass is the space occupied by an object.",
+        "correction": "Mass is quantity of matter; volume is the occupied space."
+      },
+      {
+        "claim": "Reshaping a fixed piece of clay changes its density.",
+        "correction": "If neither mass nor material volume changes, density remains the same regardless of shape."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activity 9.1 to establish unsaturated and saturated salt solutions.",
+      "Use Activity 9.2 at 20 °C, 50 °C and 70 °C to study temperature and solubility.",
+      "Use the aluminium example, 27 g and 10 cm³, to calculate 2.7 g/cm³.",
+      "Use Activities 9.3–9.5 for balance, cylinder least count and meniscus.",
+      "Use Activities 9.6 and 9.7 for regular and irregular volumes.",
+      "Use Keep the curiosity alive Q4, Q7, Q9, Q10 and Q11 for density reasoning."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–12, followed by Discover, design, and debate projects."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 9: The Amazing World of Solutes, Solvents, and Solutions\n\n## What you will learn\nYou will define solution, solute and solvent and distinguish a solution from a non-uniform mixture. You will identify components in solid–liquid and liquid–liquid solutions.\n\n## Simple explanation\nA solution is uniform because its components are evenly distributed. In a solid dissolved in a liquid, the solid is the solute and the liquid is the solvent.\n\n## Step-by-step breakdown\n- **ORS**: Sugar and salt are evenly distributed in water, so each sip tastes similar.\n- **Solution**: It is a uniform mixture.\n- **Solute**: The component dissolved, such as salt or sugar in water.\n- **Solvent**: The component doing the dissolving, commonly water.\n- **Liquid mixtures**: The smaller quantity is generally called solute and the larger quantity solvent.\n- **Exception in usage**: In sugar syrup, water remains the solvent even when much sugar is present.\n\n## Worked example\nQuestion: From Section 9.1, identify the solute and solvent in salt water.\n\nSolution:\n- Step 1: Salt is the solid that dissolves.\n- Step 2: Water is the liquid in which it distributes uniformly.\n- Step 3: Together they form a solution.\n- Final answer: Salt is the solute, water is the solvent, and salt water is the solution.\n\n## Common mistake\nChalk powder mixed with water is not a solution because the components are not evenly distributed.\n\n## Quick check question\nQuestion: Is air treated as a solution in this chapter's broad sense?\nAnswer: Yes, it is a uniform mixture of gases.\nExplanation: Its gaseous components are evenly distributed and cannot be separately seen.\n\n## Summary\n- Solutions are uniform mixtures.\n- Solute dissolves in solvent.\n- Physical state can vary.\n- Uniformity distinguishes a solution.",
+    "Core explanation": "# Core explanation: Chapter 9: The Amazing World of Solutes, Solvents, and Solutions\n\n## What you will learn\nYou will distinguish unsaturated, saturated, dilute and concentrated solutions. You will explain how temperature affects solid and gas solubility.\n\n## Simple explanation\nA solvent has a limit to how much of a solute it can dissolve at a given temperature. Heating often raises solid solubility but lowers gas solubility.\n\n## Step-by-step breakdown\n- **Activity 9.1**: Salt dissolves until extra solid remains at the bottom.\n- **Unsaturated**: More solute can still dissolve at the stated temperature.\n- **Saturated**: No more solute dissolves at that temperature.\n- **Concentration**: It describes solute amount in a fixed amount of solution or solvent.\n- **Activity 9.2**: Water at 70 °C dissolves more baking soda than at 50 °C or 20 °C.\n- **Gas solubility**: Dissolved oxygen is more available in cold water and decreases as water warms.\n\n## Worked example\nQuestion: Activity 9.2: What happens to a saturated baking-soda solution at 20 °C when it is heated to 50 °C?\n\nSolution:\n- Step 1: At 20 °C, some baking soda remains undissolved.\n- Step 2: Heating increases the solubility of baking soda in water.\n- Step 3: The previously undissolved solid dissolves, so the old saturated solution becomes unsaturated at the higher temperature.\n- Final answer: Heating to 50 °C allows more baking soda to dissolve.\n\n## Common mistake\nDo not use saturated and concentrated as synonyms; a solution can be concentrated yet still able to dissolve more solute.\n\n## Quick check question\nQuestion: Why can warm water be difficult for aquatic life?\nAnswer: Warm water generally holds less dissolved oxygen.\nExplanation: The solubility of gases decreases with increasing temperature, reducing available oxygen.\n\n## Summary\n- Saturation depends on temperature.\n- Solubility is a maximum amount.\n- Most solids dissolve more on heating.\n- Gases generally dissolve less on heating.",
+    "Worked examples": "# Worked examples: Chapter 9: The Amazing World of Solutes, Solvents, and Solutions\n\n## What you will learn\nYou will define density and calculate it from mass and volume. You will use correct units and interpret relative density.\n\n## Simple explanation\nDensity compares how much mass is packed into each unit of volume. It is a property of a substance and does not depend simply on the object's shape.\n\n## Step-by-step breakdown\n- **Formula**: Density = Mass ÷ Volume.\n- **SI unit**: kg/m³ is the SI unit; g/mL and g/cm³ are convenient alternatives.\n- **Water reference**: At room temperature, 1 mL of water has mass close to 1 g.\n- **Aluminium example**: 27 g in 10 cm³ gives 2.7 g/cm³.\n- **Relative density**: Density of substance divided by density of water, with no unit.\n- **Floating clue**: An object's density helps explain floating or sinking, though the chapter notes it is not the only factor.\n\n## Worked example\nQuestion: Keep the curiosity alive Q4: A stone sculpture has mass 225 g and volume 90 cm³. Find its density and predict its behaviour in water.\n\nSolution:\n- Step 1: Use density = mass ÷ volume.\n- Step 2: Calculate 225 ÷ 90 = 2.5 g/cm³.\n- Step 3: Compare with water, whose density is close to 1 g/cm³.\n- Step 4: The sculpture is denser than water.\n- Final answer: Its density is 2.5 g/cm³, so it sinks in water.\n\n## Common mistake\nDo not compare mass alone when deciding density; volume must also be included.\n\n## Quick check question\nQuestion: Which is denser in Q9: object A at 200 g and 40 cm³ or B at 240 g and 60 cm³?\nAnswer: Object A.\nExplanation: A has density 5 g/cm³, while B has density 4 g/cm³.\n\n## Summary\n- Density is mass per unit volume.\n- Units must be consistent.\n- Relative density has no unit.\n- Density assists floating predictions.",
+    "Exam-style problems": "# Exam-style problems: Chapter 9: The Amazing World of Solutes, Solvents, and Solutions\n\n## What you will learn\nYou will measure mass and volume accurately and determine the density of regular and irregular solids. You will read instrument range, smallest division and meniscus.\n\n## Simple explanation\nReliable density depends on reliable measurements. A balance provides mass, while dimensions or water displacement provide volume.\n\n## Step-by-step breakdown\n- **Activity 9.3**: Tare the balance after placing the watch glass, then read the object's mass.\n- **Activity 9.4**: A 100 mL cylinder with ten divisions per 10 mL has a smallest division of 1 mL.\n- **Activity 9.5**: Read the bottom of the meniscus at eye level for colourless water.\n- **Regular solid**: For a cuboid, volume = length × width × height.\n- **Activity 9.7**: An immersed irregular object displaces a volume of water equal to its own volume.\n- **Example**: A rise from 50 mL to 55 mL gives 5 cm³.\n\n## Worked example\nQuestion: Activity 9.7 records a stone mass of 16.400 g and volume of 5 cm³. Find its density.\n\nSolution:\n- Step 1: The water rise gives the stone volume: 55−50=5 mL=5 cm³.\n- Step 2: Use density = mass ÷ volume.\n- Step 3: Calculate 16.400 ÷ 5 = 3.28.\n- Final answer: The stone's density is 3.28 g/cm³.\n\n## Common mistake\nReading the meniscus from above or below causes parallax error; the eye must be level with the correct part of the meniscus.\n\n## Quick check question\nQuestion: Which part of the water meniscus is read?\nAnswer: The bottom of the meniscus.\nExplanation: For water and other colourless liquids, the scale mark aligned with the lowest point is used.\n\n## Summary\n- Tare removes container mass.\n- Choose an appropriate measuring cylinder.\n- Read at eye level.\n- Displacement measures irregular volume.\n- Density combines both measurements.",
+    "Revision and recap": "# Revision and recap: Chapter 9: The Amazing World of Solutes, Solvents, and Solutions\n\n## What you will learn\nYou will explain how temperature and pressure affect density. You will apply the ideas to hot air, gases and ice floating on water.\n\n## Simple explanation\nHeating usually makes particles spread farther apart, increasing volume without changing mass and therefore lowering density. Pressure strongly changes gas density but has little effect on liquids and solids.\n\n## Step-by-step breakdown\n- **Temperature**: For most substances, heating expands volume and decreases density.\n- **Hot air balloon**: Heated air is less dense than cooler surrounding air and rises.\n- **Gas pressure**: Increasing pressure brings gas particles closer, lowers volume and raises density.\n- **Liquids and solids**: Their density changes little under ordinary pressure because they are hard to compress.\n- **Water exception**: Water has maximum density at 4 °C.\n- **Ice**: Freezing arranges particles into a more open structure, increasing volume and lowering density.\n\n## Worked example\nQuestion: Keep the curiosity alive Q10: A 120 g clay piece is changed from a compact cube to a thin sheet. What happens to its density?\n\nSolution:\n- Step 1: The amount of clay and therefore mass remain 120 g.\n- Step 2: Reshaping does not remove material or change its material volume.\n- Step 3: Since mass and volume remain unchanged, their ratio stays the same.\n- Final answer: Its density remains unchanged.\n\n## Common mistake\nShape and density are different concepts; a flatter object is not automatically less dense.\n\n## Quick check question\nQuestion: Why does ice float on liquid water?\nAnswer: Ice has a more open particle arrangement and lower density than liquid water.\nExplanation: The same mass occupies more volume after freezing, so density decreases.\n\n## Summary\n- Heating usually lowers density.\n- Pressure most strongly affects gases.\n- Shape does not determine density.\n- Ice is less dense than water."
+  }
+}

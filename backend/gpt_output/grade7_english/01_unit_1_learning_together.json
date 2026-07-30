@@ -1,0 +1,92 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "English",
+    "chapter": "Unit 1: Learning Together",
+    "central_question": "How do courage, perseverance, empathy, equal opportunity and careful use of our senses help people learn and grow together?",
+    "in_scope_units": [
+      "The Day the River Spoke—Jahnavi's wish to attend school, the personified River, courage and equal opportunity.",
+      "Characterisation of Jahnavi through thoughts, fears, actions and hopes.",
+      "Personification, imagery, sound words and nature description.",
+      "Girls' education, dignity, equality and the role of supportive adults.",
+      "Try Again—King Bruce, the spider, repeated failure and perseverance.",
+      "Narrative poetry, rhyme scheme, repetition, alliteration and metaphor.",
+      "Three Days to See—Helen Keller's imagined three days of sight.",
+      "Sensory language, modal verbs, empathy and inclusion.",
+      "Listening texts on teamwork, Braille and Digital India.",
+      "Prepositions, adverbs, modal verbs and sensory words.",
+      "Descriptive paragraphs, posters and reflective responses."
+    ],
+    "banned_topics": [
+      "Detailed biographies beyond information needed to understand the texts.",
+      "External statistics or policy claims about girls' education.",
+      "Medical explanations of blindness or hearing impairment.",
+      "Advanced poetic theory beyond Grade 7."
+    ],
+    "must_include_keywords": [
+      "Jahnavi",
+      "River",
+      "personification",
+      "girls' education",
+      "equal opportunity",
+      "courage",
+      "teacher",
+      "King Bruce",
+      "spider",
+      "Try Again",
+      "perseverance",
+      "narrative poem",
+      "rhyme scheme",
+      "repetition",
+      "alliteration",
+      "Helen Keller",
+      "Three Days to See",
+      "five senses",
+      "sensory words",
+      "modal verbs",
+      "Braille",
+      "Digital India",
+      "inclusion",
+      "dignity",
+      "teamwork",
+      "descriptive writing"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The River is an ordinary human character.",
+        "correction": "The River is a natural element given human speech and understanding through personification."
+      },
+      {
+        "claim": "Jahnavi attends school without fear or resistance.",
+        "correction": "She needs encouragement before gathering courage to approach the school."
+      },
+      {
+        "claim": "The spider succeeds on its first attempt.",
+        "correction": "Its repeated attempts teach King Bruce perseverance."
+      },
+      {
+        "claim": "Three Days to See is only about eyesight.",
+        "correction": "Helen Keller asks readers to value every sense and develop empathy."
+      },
+      {
+        "claim": "Grammar is unrelated to the unit's themes.",
+        "correction": "Modals and sensory words express advice, ability and vivid experience."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with Jahnavi's problem and the River's encouragement.",
+      "Analyse personification and connect it with equality.",
+      "Use Try Again to examine perseverance after failure.",
+      "Use Three Days to See for inference about values and empathy.",
+      "Finish with integrated grammar, listening and writing."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The unit contains 'Let us discuss', 'Let us think and reflect', 'Let us learn', 'Let us listen', 'Let us speak', 'Let us write' and 'Let us explore' activities."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Unit 1: Learning Together\n\n## What you will learn\nYou will follow Jahnavi's struggle to attend school and understand how encouragement helps her overcome fear.\n\n## Simple explanation\nJahnavi wants to learn, but household duties and traditional expectations keep her away. The River listens and helps her believe that girls deserve the same opportunity to learn.\n\n## Step-by-step breakdown\n- **Jahnavi's desire**: She wants education and imagines a different future.\n- **Obstacle**: She is expected to stay home and care for younger children.\n- **River as listener**: The River understands her worry and speaks kindly.\n- **Encouragement**: It tells her girls can do as much as boys.\n- **Action**: She gathers courage and approaches the school.\n- **Adult support**: The teacher listens and helps speak to her family.\n- **Hope**: Jahnavi imagines becoming a teacher and helping other girls.\n\n## Worked example\nQuestion: What is the main message of The Day the River Spoke?\n```extract-ref\n{\"citation\": \"NCERT Unit 1, The Day the River Spoke—Think and Reflect\", \"extract_text\": \"What is the main message that the writer intends to convey?\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: Jahnavi wants education but is held back by expectations placed on girls.\n- Step 2: The River and teacher help her question those assumptions and act.\n- Final answer: Girls deserve equal opportunities, and courage grows through encouragement and support.\n\n## Common mistake\nDo not describe Jahnavi as weak; her decision to seek education shows growing courage.\n\n## Quick check question\nQuestion: What changes after Jahnavi speaks with the River?\nAnswer: She becomes confident enough to approach the school.\nExplanation: The River helps her recognise her own ability to act.\n\n## Summary\n- Jahnavi values education.\n- The River encourages equality.\n- The teacher offers practical support.\n- Learning begins with listening and inclusion.",
+    "Core explanation": "# Core explanation: Unit 1: Learning Together\n\n## What you will learn\nYou will analyse personification, characterisation and language in The Day the River Spoke.\n\n## Simple explanation\nThe writer turns the River into a wise companion. Its speech and sympathy express the confidence Jahnavi needs.\n\n## Step-by-step breakdown\n- **Personification**: A non-human element receives human qualities.\n- **Capitalisation**: 'River' appears like a distinct character.\n- **Thoughts**: Jahnavi's worries reveal longing and hesitation.\n- **Actions**: Going to school proves her ability to change.\n- **Nature imagery**: Water, movement and sound create a reflective setting.\n- **Theme**: The speaking River links imagination with equal opportunity.\n\n## Worked example\nQuestion: Why is 'River' written with a capital letter?\n```extract-ref\n{\"citation\": \"NCERT Unit 1, The Day the River Spoke—Language Activity\", \"extract_text\": \"Why has the author used a capital letter for the ‘River’ even when it is a common noun?\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: The River speaks, listens and advises like a person.\n- Step 2: Capitalisation strengthens its role as an individual guide.\n- Final answer: It is capitalised because personification makes the River function like a named character.\n\n## Common mistake\nNot every common noun needs a capital letter; it is purposeful here.\n\n## Quick check question\nQuestion: Which device is used when the River speaks?\nAnswer: Personification.\nExplanation: The writer gives a natural object human speech and concern.\n\n## Summary\n- Personification gives the River a human role.\n- Capitalisation strengthens that role.\n- Imagery builds setting.\n- Technique supports theme.",
+    "Worked examples": "# Worked examples: Unit 1: Learning Together\n\n## What you will learn\nYou will understand Try Again and analyse how the spider teaches King Bruce perseverance.\n\n## Simple explanation\nKing Bruce is discouraged after repeated failure. Watching a spider continue until it succeeds gives him courage to try once more.\n\n## Step-by-step breakdown\n- **Narrative situation**: The poem tells a story with conflict and resolution.\n- **Bruce's despair**: He considers giving up.\n- **Spider's struggle**: It climbs, slips and begins again.\n- **Turning point**: Bruce realises failure need not be final.\n- **Repetition**: Repeated words emphasise effort.\n- **Metaphorical link**: The climb mirrors Bruce's struggle.\n- **Outcome**: Bruce applies the lesson and succeeds.\n\n## Worked example\nQuestion: What is the central idea of Try Again?\n```extract-ref\n{\"citation\": \"NCERT Unit 1, Try Again—Let us Discuss\", \"extract_text\": \"The central idea of the poem is ________.\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: The spider persists through repeated failure.\n- Step 2: Bruce learns that determination matters more than the number of failed attempts.\n- Final answer: Perseverance and renewed effort can turn failure into success.\n\n## Common mistake\nThe poem does not say success is easy; it may require many attempts.\n\n## Quick check question\nQuestion: Why is the spider important to King Bruce?\nAnswer: It gives him a practical example of persistence.\nExplanation: Watching it changes his attitude from despair to determination.\n\n## Summary\n- Try Again is a narrative poem.\n- The spider represents perseverance.\n- Repetition stresses effort.\n- Failure is not final.",
+    "Exam-style problems": "# Exam-style problems: Unit 1: Learning Together\n\n## What you will learn\nYou will interpret Helen Keller's imagined three days of sight and explain what her choices reveal.\n\n## Simple explanation\nThe three-day limit makes people, nature, knowledge and ordinary life feel precious rather than routine.\n\n## Step-by-step breakdown\n- **Day one**: She wants to see people whose kindness enriched her life.\n- **Day two**: She wants dawn, nature, museums and human progress.\n- **Day three**: She wants to observe daily life in the city.\n- **Sensory awareness**: She notices texture, movement, scent, taste and sound.\n- **Empathy**: Imagining loss encourages gratitude and kindness.\n- **Advice**: Use every sense as though it might be lost tomorrow.\n\n## Worked example\nQuestion: What do her choices for the three days reveal?\n```extract-ref\n{\"citation\": \"NCERT Unit 1, Three Days to See—Think and Reflect\", \"extract_text\": \"What do the author’s choices for the three days tell us about her values and priorities?\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: She chooses loved ones, nature, museums, progress and everyday people.\n- Step 2: These choices show affection, curiosity, respect for knowledge and compassion.\n- Final answer: Relationships, learning, beauty and understanding people are her highest priorities.\n\n## Common mistake\nDo not only list activities; explain the values behind them.\n\n## Quick check question\nQuestion: Why does she ask readers to use their senses as if they might lose them?\nAnswer: To make them value experiences they often take for granted.\nExplanation: Imagined loss creates urgency and gratitude.\n\n## Summary\n- The three days reveal values.\n- Relationships come first.\n- Nature and museums represent beauty and knowledge.\n- The essay encourages empathy.",
+    "Revision and recap": "# Revision and recap: Unit 1: Learning Together\n\n## What you will learn\nYou will connect all three texts with grammar, listening and writing.\n\n## Simple explanation\nJahnavi listens to encouragement, Bruce watches a spider, and Helen Keller asks readers to notice the world fully.\n\n## Step-by-step breakdown\n- **Shared theme**: Growth begins through attention and response.\n- **Modal verbs**: Can, should, must and might express ability, advice and obligation.\n- **Sensory words**: They make description precise.\n- **Teamwork**: The ant story shows persistence strengthened by cooperation.\n- **Inclusion**: Braille and digital facilities support diverse learners.\n- **Dignity**: Education and self-respect strengthen society.\n- **Writing**: Good description combines organisation and sensory detail.\n\n## Worked example\nQuestion: How are Jahnavi, Bruce and Helen Keller connected by learning?\n\nSolution:\n- Step 1: Each changes or teaches through listening, watching or reflecting.\n- Step 2: Their attention leads to courage, perseverance or gratitude.\n- Final answer: All three present learning as an active change in attitude.\n\n## Common mistake\nCompare the texts without pretending their plots are identical.\n\n## Quick check question\nQuestion: Choose a modal: 'We ___ respect every learner's dignity.'\nAnswer: Should.\nExplanation: 'Should' expresses moral advice.\n\n## Summary\n- The unit joins equality, perseverance and awareness.\n- Literary devices deepen meaning.\n- Grammar expresses advice.\n- Listening reinforces inclusion."
+  }
+}

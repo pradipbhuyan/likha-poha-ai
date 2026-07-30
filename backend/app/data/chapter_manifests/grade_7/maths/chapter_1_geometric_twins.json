@@ -1,0 +1,102 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 1: Geometric Twins",
+  "central_question": "Which measurements guarantee that figures or triangles have exactly the same shape and size, and what geometric facts can be proved from congruence?",
+  "in_scope_units": [
+    "1.1 Geometric Twins: defining congruent figures through exact shape and size, superimposition, rotation and reflection.",
+    "1.2 Congruence of Triangles—Measuring the Sidelengths: establishing the SSS condition.",
+    "Conventions to Express Congruence: matching corresponding vertices, sides and angles and writing triangle names in the correct order.",
+    "Measuring the Angles: showing that equal angles alone do not guarantee congruence.",
+    "Measuring Two Sides and the Included Angle: establishing the SAS condition.",
+    "Measuring Two Sides and a Non-included Angle: demonstrating that SSA does not generally guarantee congruence.",
+    "Two Angles and the Included Side and Measuring Two Angles and a Non-Included Side: establishing ASA and AAS.",
+    "Measuring Two Sides in a Right Triangle: establishing the RHS condition using a right angle, hypotenuse and one side.",
+    "Conditions that are Sufficient to Guarantee Congruence: summarising SSS, SAS, ASA, AAS and RHS.",
+    "1.3 Angles of Isosceles and Equilateral Triangles: using congruence to prove equal base angles and 60° angles in an equilateral triangle.",
+    "Congruent Triangles in Real Life and final Figure it Out: applying congruence to structures, parallel lines, squares, circles and missing angles."
+  ],
+  "banned_topics": [
+    "Similarity criteria and scale factors.",
+    "Triangle construction existence and triangle inequality.",
+    "Area-based congruence claims.",
+    "Pythagoras theorem.",
+    "Formal coordinate proofs."
+  ],
+  "must_include_keywords": [
+    "congruent",
+    "same shape and size",
+    "superimpose",
+    "trace",
+    "rotate",
+    "flip",
+    "corresponding vertices",
+    "corresponding sides",
+    "corresponding angles",
+    "congruence symbol",
+    "SSS",
+    "SAS",
+    "included angle",
+    "SSA",
+    "non-included angle",
+    "ASA",
+    "included side",
+    "AAS",
+    "RHS",
+    "right angle",
+    "hypotenuse",
+    "common side",
+    "midpoint",
+    "vertically opposite angles",
+    "rectangle",
+    "square",
+    "isosceles triangle",
+    "altitude",
+    "angles opposite equal sides",
+    "equilateral triangle",
+    "60°",
+    "real-life designs",
+    "Louvre Museum",
+    "Pyramid of Giza",
+    "rangoli",
+    "Howrah Bridge"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Figures are congruent if they have the same shape, even when their sizes differ.",
+      "correction": "Congruent figures must have both the same shape and the same size."
+    },
+    {
+      "claim": "A rotated or reflected copy is not congruent to the original.",
+      "correction": "Rotation and flipping are allowed before superimposition; the figures remain congruent."
+    },
+    {
+      "claim": "The order of vertices in a congruence statement does not matter.",
+      "correction": "The order must match corresponding vertices, sides and angles."
+    },
+    {
+      "claim": "Three equal angles guarantee triangle congruence.",
+      "correction": "Triangles can have the same three angles but different sizes, so angle equality alone is insufficient."
+    },
+    {
+      "claim": "SSA always guarantees congruence.",
+      "correction": "Two sides and a non-included angle can produce two non-congruent triangles."
+    },
+    {
+      "claim": "RHS means any two sides of right triangles are enough.",
+      "correction": "RHS requires equal right angles, equal hypotenuses and one corresponding equal side."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the signboard symbol AB = 4 cm, BC = 8 cm and ∠ABC = 80° to introduce exact replication and congruence.",
+    "Use the 4 cm, 6 cm, 8 cm triangle construction to motivate SSS.",
+    "Use rectangle ABCD with diagonal BD to practise SSS and correct correspondence.",
+    "Use the 6 cm, 5 cm, 30° example for SAS and the 6 cm, 4 cm, 30° construction to show the SSA ambiguity.",
+    "Use the 35°, 75°, 4 cm example to derive AAS from ASA.",
+    "Use the right-triangle construction with side 4 cm and hypotenuse 5 cm for RHS.",
+    "Conclude with the isosceles-triangle proof and final Figure it Out Questions 1–6."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The concluding 'Figure it Out' exercise on pages 20–21 contains Questions 1–6, followed by the summary and the 'Expression Engineer!' congruent-region activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

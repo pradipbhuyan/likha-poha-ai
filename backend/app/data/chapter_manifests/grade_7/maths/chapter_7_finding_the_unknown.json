@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 7: Finding the Unknown",
+  "central_question": "How can an unknown quantity be represented by a letter, translated into an equation and found by preserving equality through inverse operations?",
+  "in_scope_units": [
+    "7.1 Find the Unknowns—Unknown Weights: interpreting balanced scales and removing equal quantities from both sides.",
+    "Matchstick Pattern and Equations: representing the nth pattern with a letter-number and solving conditions such as 2n + 1 = 99.",
+    "7.2 Solving Equations Systematically: understanding equations, LHS, RHS, solutions, trial and error and equality-preserving operations.",
+    "Inverse Operations and Transposition: removing terms or factors through additive inverses, division and multiplication.",
+    "Unknowns on Both Sides: collecting unknown terms on one side and known terms on the other.",
+    "Solving Problems: forming equations from tile patterns, savings, parties, math tricks, ages, prices and sharing situations.",
+    "Generating Equations: creating multiple equations with a specified solution and interpreting equations in context.",
+    "7.3 Mind the Mistake, Mend the Mistake: locating, explaining and correcting errors in equation-solving steps.",
+    "7.4 A Pinch of History: bījagaṇita, Brahmagupta, Al-Khwarizmi, ancient symbols for unknowns and Bhāskarāchārya's horse-price problem.",
+    "Final Figure it Out: solving Questions 1–20 involving machines, taxi fares, number relations, geometry, equations and heads-and-feet reasoning."
+  ],
+  "banned_topics": [
+    "Simultaneous linear equations as a formal elimination or substitution method.",
+    "Quadratic equations and factorisation.",
+    "Inequalities and graphing solution sets.",
+    "Coordinate graphs of linear equations.",
+    "Algebraic identities and polynomial division."
+  ],
+  "must_include_keywords": [
+    "unknown",
+    "balanced scale",
+    "equal quantities",
+    "letter-number",
+    "matchstick pattern",
+    "equation",
+    "left-hand side",
+    "right-hand side",
+    "LHS",
+    "RHS",
+    "solution",
+    "trial and error",
+    "inverse operations",
+    "additive inverse",
+    "multiplicative inverse",
+    "same operation on both sides",
+    "transposition",
+    "substitution",
+    "check the solution",
+    "unknown on both sides",
+    "distributive property",
+    "form an equation",
+    "math trick",
+    "pattern rule",
+    "Mind the Mistake",
+    "bījagaṇita",
+    "Brahmagupta",
+    "Brāhmasphuṭasiddhānta",
+    "Al-Khwarizmi",
+    "al-jabr",
+    "yāvat-tāvat",
+    "rūpa",
+    "Bhāskarāchārya",
+    "horse-price problem",
+    "taxi fare",
+    "heads and feet"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A term can simply be moved across the equality sign and its sign changed without explanation.",
+      "correction": "This shorthand represents applying an inverse operation equally so that the balance of the equation is preserved."
+    },
+    {
+      "claim": "An operation used on one side of an equation need not be used on the other side.",
+      "correction": "The same equality-preserving operation must be applied to both sides."
+    },
+    {
+      "claim": "In 2(x + 1), the factor 2 multiplies only x.",
+      "correction": "By distributivity, 2(x + 1) = 2x + 2."
+    },
+    {
+      "claim": "The first value obtained is automatically the solution.",
+      "correction": "Substitute the value into the original equation and verify that LHS equals RHS."
+    },
+    {
+      "claim": "A dash or diagram can be translated into any convenient equation.",
+      "correction": "Every number, operation and relationship in the equation must match the stated situation."
+    },
+    {
+      "claim": "Every equation has exactly one solution.",
+      "correction": "Some equations may have no solution or may express an equality true for more than one value, although the chapter mainly solves single-solution linear equations."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the balanced-scale sack activities in Figs. 7.9–7.12 to establish doing the same thing on both sides.",
+    "Use the matchstick pattern and equation 2n + 1 = 99 to connect patterns, letter-numbers and equations.",
+    "Use 5x − 4 = 7, Example 5 and Example 6 to teach inverse operations and unknowns on both sides.",
+    "Use Example 7's tile pattern 3k + 1 and Examples 9–11 on savings, brackets and the math trick for modelling.",
+    "Use the Mind the Mistake section on pages 181–182 to diagnose sign and distribution errors.",
+    "Use Example 16, Bhāskarāchārya's horse-price problem, to connect history and equation solving.",
+    "Conclude with final Figure it Out Questions 1–20 on pages 185–189."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The concluding Figure it Out exercise spans pages 185–189 and contains Questions 1–20, including the equation maze and heads-and-feet problem.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

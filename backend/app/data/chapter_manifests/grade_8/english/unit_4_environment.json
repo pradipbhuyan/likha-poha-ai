@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 8",
+  "subject": "English",
+  "chapter": "Unit 4: Environment",
+  "central_question": "How does recognising nature’s cycles of growth, harvest, rest, and renewal teach people to care for the environment and live responsibly within it?",
+  "in_scope_units": [
+    "Pre-reading activities on planting, caring for plants, fruit trees, and the importance of trees.",
+    "The Cherry Tree by Ruskin Bond—Rakesh’s seed, life with Grandfather in Mussoorie, seasonal growth, damage and recovery, flowering and fruiting, and the bond between people and a tree they have nurtured.",
+    "Language and communication linked to The Cherry Tree—sequence, cause and effect, vocabulary, taste words, antonyms, past tenses, punctuation and capitalisation, listening on tree-protection movements and environmentalists, syllables, speaking on Van Mahotsav, article writing, banyan trees, Project Tiger, and bird formation.",
+    "Harvest Hymn by Sarojini Naidu—men’s, women’s, and all voices praising Surya, Varuna, Prithvi, and Brahma for the harvest through gratitude, symbolism, imagery, alliteration, metaphor, personification, repetition, and archaic language.",
+    "Language and communication linked to Harvest Hymn—farming implements, contextual synonyms, archaic words, listening on paddy cultivation, silent letters, a harvest-food presentation, slogan writing, millet information, recipes, and harvest songs.",
+    "Waiting for the Rain by Kamakshi Balasubramanian—Velu’s drought, search for answers, conversation with the old woman, the need for land to rest, the return of rain, and nature’s wisdom.",
+    "Language and communication linked to Waiting for the Rain—weather and agriculture vocabulary, homophones, contextual meanings, collocations, present tenses, determiners, weather-forecast listening, a Rain–Earth role-play, a formal rainwater-harvesting request, fallowing, agricultural vocations, indigenous forecasting, and IMD services."
+  ],
+  "banned_topics": [
+    "Detailed plant biology or horticultural methods beyond the events and activities provided in the unit.",
+    "A complete scientific account of climate change, monsoons, or meteorology beyond the given stories, transcript, and exploration notes.",
+    "Religious doctrine beyond the poetic symbolism and praise used in Harvest Hymn.",
+    "Environmental organisations and movements not named or described in the unit."
+  ],
+  "must_include_keywords": [
+    "Rakesh",
+    "Grandfather",
+    "Mussoorie",
+    "cherry seed",
+    "monsoon",
+    "goat",
+    "scythe",
+    "blossom",
+    "resilience",
+    "human–nature bond",
+    "Ruskin Bond",
+    "Harvest Hymn",
+    "Sarojini Naidu",
+    "Surya",
+    "Varuna",
+    "Prithvi",
+    "Brahma",
+    "hymn",
+    "gratitude",
+    "symbolism",
+    "imagery",
+    "personification",
+    "archaic words",
+    "Velu",
+    "drought",
+    "old woman",
+    "Nature as mother",
+    "land needs rest",
+    "fallowing",
+    "sustainable land management",
+    "past tenses",
+    "present tenses",
+    "punctuation",
+    "determiners",
+    "paddy cultivation",
+    "Trees–Our Lifeline",
+    "Van Mahotsav",
+    "rainwater harvesting",
+    "millets",
+    "weather forecast"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The cherry tree grows easily without serious setbacks.",
+      "correction": "It survives its leaves being eaten by a goat, being cut in two by a grass-cutter’s scythe, heavy snow, insects, and difficult mountain conditions."
+    },
+    {
+      "claim": "Rakesh’s final question means that he literally believes he has become God.",
+      "correction": "The question expresses wonder at having planted, cared for, and watched one small seed become a living tree."
+    },
+    {
+      "claim": "Harvest Hymn praises only one force of nature.",
+      "correction": "Its different voices praise Surya, Varuna, Prithvi, and finally the Lord of the Universe for the connected gifts that make harvest possible."
+    },
+    {
+      "claim": "The old woman tells Velu that drought is harmless and farmers should not worry.",
+      "correction": "She recognises his distress but explains that a period without cultivation can allow the old, continuously worked land to rest and recover."
+    },
+    {
+      "claim": "The weather office gives Velu the exact date on which rain will arrive.",
+      "correction": "The staff say they are also at a loss because favourable conditions exist but rain has still not come."
+    },
+    {
+      "claim": "Fallowing means permanently abandoning land.",
+      "correction": "The exploration section defines it as leaving land unsown for one or more vegetative cycles so that nutrients and moisture can recover and pests or diseases can be controlled."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Let us discuss after Part I and Part II of The Cherry Tree to arrange events and connect causes with effects.",
+    "Use NCERT Let us think and reflect II.4–6 after The Cherry Tree to explain Rakesh’s final question, the grandfather–grandson relationship, and the connection between humans and nature.",
+    "Use NCERT Let us discuss II–VI and Let us think and reflect after Harvest Hymn to study setting, tone, voices, sound devices, imagery, metaphor, personification, repetition, and symbolism.",
+    "Use NCERT Let us think and reflect after Waiting for the Rain to analyse Velu’s practical outlook, the old woman’s advice, the land’s need for rest, and the farmer–nature relationship.",
+    "Conclude with NCERT Let us learn on past and present tenses, punctuation, determiners, and homophones, followed by the article, slogan, presentation, and rainwater-harvesting letter."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit’s exercises appear after each selection under Let us discuss, Let us think and reflect, Let us learn, Let us listen, Let us speak, Let us write, and Let us explore.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

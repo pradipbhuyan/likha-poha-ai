@@ -1,0 +1,104 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 7: Area",
+    "central_question": "How can unit squares, decomposition, dissection and height-base relationships be used to derive and apply area formulae for triangles and polygons?",
+    "in_scope_units": [
+      "Rectangles and squares, equal-area partitions and area measured by unit squares.",
+      "Area of a rectangle and comparison of rectangle areas.",
+      "Why perimeter cannot be used as a measure of area.",
+      "Areas of paths, crosspaths, tubes and composite rectangular regions.",
+      "Area of a triangle as one-half base times corresponding height.",
+      "Applications of the triangle formula, equal-area triangles, medians and triangles between parallel lines.",
+      "Reflection as a method for a shortest-path problem.",
+      "Area of any polygon by dividing it into triangles.",
+      "Area of a parallelogram derived by dissection into a rectangle.",
+      "Equal-area transformations from the Sulba-Sutras.",
+      "Area of a rhombus from its diagonals.",
+      "Area of a trapezium from a rectangle-and-triangle decomposition and from two copies forming a parallelogram.",
+      "End-of-chapter mixed figures and area comparisons."
+    ],
+    "banned_topics": [
+      "Circumference and area of circles.",
+      "Surface area and volume of three-dimensional solids.",
+      "Coordinate-geometry shoelace formula."
+    ],
+    "must_include_keywords": [
+      "area",
+      "unit square",
+      "square centimetre",
+      "rectangle",
+      "length × width",
+      "square",
+      "equal-area partition",
+      "perimeter",
+      "composite region",
+      "path",
+      "crosspath",
+      "dissection",
+      "congruent triangles",
+      "triangle",
+      "base",
+      "corresponding height",
+      "altitude",
+      "one-half base × height",
+      "median",
+      "parallel lines",
+      "common base",
+      "reflection",
+      "shortest path",
+      "polygon",
+      "triangulation",
+      "parallelogram",
+      "base × height",
+      "rhombus",
+      "diagonals",
+      "perpendicular bisectors",
+      "one-half product of diagonals",
+      "trapezium",
+      "parallel sides",
+      "one-half height × sum of parallel sides",
+      "Sulba-Sutras"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Regions with equal perimeter always have equal area.",
+        "correction": "The chapter shows that the same perimeter can enclose different areas, and a larger perimeter can even accompany a smaller area."
+      },
+      {
+        "claim": "Any side of a triangle can be paired with any altitude in the formula.",
+        "correction": "The height must be perpendicular to the chosen base or its extension."
+      },
+      {
+        "claim": "The sloping side of a parallelogram is its height.",
+        "correction": "Height is the perpendicular distance between the chosen base and the opposite parallel side."
+      },
+      {
+        "claim": "The area of a rhombus is the product of its diagonals.",
+        "correction": "It is one-half the product of its diagonals."
+      },
+      {
+        "claim": "The area of a trapezium is height times the difference of the parallel sides.",
+        "correction": "It is one-half the height times the sum of the two parallel sides."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the opening 7 cm by 4 cm and 8 cm by 3 cm rectangles to compare 28 cm² and 24 cm².",
+      "Use the diagonal of the 7 cm by 4 cm rectangle to obtain two triangles of area 14 cm².",
+      "Use the triangle application that equates two base-height forms to find BY = 3.75 units.",
+      "Use the polygon Figure it Out Q1 with AC=22 cm and two perpendicular heights of 3 cm.",
+      "Use the parallelogram cut-and-rearrange derivation to obtain base×height.",
+      "Use the rhombus Figure it Out Q1 with diagonals 20 cm and 15 cm.",
+      "Use the two-copy trapezium derivation to obtain one-half h(a+b)."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Figure it Out sets follow the rectangle, triangle, polygon, parallelogram and rhombus-trapezium sections; the chapter closes with mixed applications, city-area exploration and the Summary."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 7: Area\n\n## What you will learn\nYou will measure area using unit squares and apply the rectangle formula. You will also understand why perimeter and area measure different features.\n\n## Simple explanation\nArea counts how much two-dimensional region is covered. A rectangle of length l and width w contains l×w unit squares when the measurements use the corresponding unit.\n\n## Step-by-step breakdown\n- **Unit square**: A square of side one unit is the standard area unit.\n- **Rectangle formula**: Area=length×width.\n- **Square unit notation**: Square centimetres can be written cm².\n- **Equal-area partitions**: Shapes can be compressed in one direction and expanded in another while preserving area.\n- **Perimeter**: Perimeter measures boundary length, not surface coverage.\n- **Non-equivalence**: Equal perimeters need not give equal areas and equal areas need not give equal perimeters.\n\n## Worked example\nQuestion: NCERT opening rangoli example: Which requires more powder, a 7 cm by 4 cm rectangle or an 8 cm by 3 cm rectangle?\n\nSolution:\n- Step 1: First rectangle area = 7×4=28 cm².\n- Step 2: Second rectangle area = 8×3=24 cm².\n- Step 3: Compare 28 and 24.\n- Step 4: Since 28>24, the first rectangle covers 4 cm² more.\n- Final answer: The 7 cm by 4 cm rectangle requires more powder.\n\n## Common mistake\nDo not compare only the longer sides 7 and 8. Area depends on the product of both dimensions.\n\n## Quick check question\nQuestion: What is the area of each triangle formed by the diagonal of the 7 cm by 4 cm rectangle?\nAnswer: 14 cm².\nExplanation: The diagonal creates two congruent triangles, so each has half of 28 cm²: 28÷2=14 cm².\n\n## Summary\n- Area is measured in square units.\n- Rectangle area is a product of perpendicular dimensions.\n- A diagonal divides a rectangle into two equal-area triangles.\n- Perimeter cannot replace area.",
+    "Core explanation": "# Core explanation: Chapter 7: Area\n\n## What you will learn\nYou will derive the area formula for every type of triangle. You will learn to identify the base and its corresponding perpendicular height even when the altitude lies outside the triangle.\n\n## Simple explanation\nA triangle can be paired with a congruent copy or enclosed in a rectangle. It occupies half the area of a rectangle having the same base and height.\n\n## Step-by-step breakdown\n- **Formula**: Area of a triangle = 1/2×base×height.\n- **Corresponding height**: The height is perpendicular to the chosen base line.\n- **Inside altitude**: In an acute triangle, the perpendicular may fall within the base segment.\n- **Outside altitude**: In an obtuse triangle, the perpendicular may meet an extension of the base.\n- **Subtraction proof**: An obtuse triangle can be expressed as the difference of two right or enclosed triangles.\n- **Base choice**: Any side can be the base if the matching perpendicular height is used.\n\n## Worked example\nQuestion: NCERT Fig. 7.1: Find the area of triangle XDC when the rectangle has base 5 units and height 4 units.\n\nSolution:\n- Step 1: Triangle XDC and its matching region occupy half the rectangle with base DC=5 and perpendicular height 4.\n- Step 2: Use the triangle formula: area=1/2×5×4.\n- Step 3: Multiply 5×4=20.\n- Step 4: Take half: 20÷2=10.\n- Final answer: The area of triangle XDC is 10 square units.\n\n## Common mistake\nDo not use a sloping side as the height unless it is perpendicular to the chosen base.\n\n## Quick check question\nQuestion: A triangle has base 6 cm and corresponding height 8 cm. What is its area?\nAnswer: 24 cm².\nExplanation: Area=1/2×6×8=3×8=24 cm².\n\n## Summary\n- A triangle occupies half a matching rectangle or parallelogram.\n- Base and height must be perpendicular.\n- The formula works for acute, right and obtuse triangles.\n- Changing the base requires changing to its corresponding height.",
+    "Worked examples": "# Worked examples: Chapter 7: Area\n\n## What you will learn\nYou will apply the triangle formula in reverse and compare areas using common bases or equal heights. You will also understand why a median creates two equal-area triangles.\n\n## Simple explanation\nThe same triangle area can be written using different base-height pairs. Equating these expressions can reveal an unknown altitude.\n\n## Step-by-step breakdown\n- **Reverse use**: If area and base are known, height=2×area/base.\n- **Alternative bases**: Each side can serve as a base with its own altitude.\n- **Median**: A median divides the opposite side into two equal bases.\n- **Equal areas**: Triangles with equal bases and a common height have equal areas.\n- **Parallel lines**: Triangles on the same base and between the same parallels have equal heights and equal areas.\n- **Reflection**: Reflecting a point can turn a broken-path minimisation into a straight-line shortest path.\n\n## Worked example\nQuestion: NCERT application 'Find BY': The triangle area is 15/2 square units and AC=4 units. Find altitude BY to base AC.\n\nSolution:\n- Step 1: Write the area using base AC and height BY: area=1/2×AC×BY.\n- Step 2: Substitute: 15/2=1/2×4×BY.\n- Step 3: Simplify the right side: 1/2×4×BY=2BY.\n- Step 4: So 2BY=15/2.\n- Step 5: Divide by 2: BY=(15/2)÷2=15/4.\n- Step 6: Convert to decimal: 15/4=3.75.\n- Final answer: BY=3.75 units.\n\n## Common mistake\nDo not multiply both sides by 2 and then forget that the coefficient of BY is already 2.\n\n## Quick check question\nQuestion: Why does a line from a triangle's vertex to the midpoint of the opposite side divide its area equally?\nAnswer: The two smaller triangles have equal bases and the same height.\nExplanation: The midpoint creates two equal base segments on one line, and both triangles share the perpendicular distance from the vertex to that line.\n\n## Summary\n- Area equations can be rearranged to find missing heights.\n- A triangle has several valid base-height pairs.\n- Medians create equal-area halves.\n- Common-base triangles between parallel lines have equal areas.\n- Reflection supports shortest-path reasoning.",
+    "Exam-style problems": "# Exam-style problems: Chapter 7: Area\n\n## What you will learn\nYou will find polygon areas by triangulation and derive the parallelogram formula by dissection. You will preserve area while cutting and rearranging pieces.\n\n## Simple explanation\nAny polygon can be divided into triangles. A parallelogram can also be cut and rearranged into a rectangle with the same base and perpendicular height.\n\n## Step-by-step breakdown\n- **Triangulation**: Draw non-crossing diagonals to split a polygon into triangles.\n- **Polygon area**: Add the areas of all component triangles.\n- **Common diagonal**: A quadrilateral can be split into two triangles using one diagonal.\n- **Dissection**: Cutting and rearranging without overlap or gaps preserves area.\n- **Parallelogram**: Move a triangular end piece to the other side to form a rectangle.\n- **Formula**: Area of a parallelogram=base×corresponding height.\n- **Sulba-Sutras**: The chapter links equal-area transformations to ancient Indian altar-construction geometry.\n\n## Worked example\nQuestion: NCERT polygon Figure it Out Q1: AC=22 cm, and the perpendicular distances from B and D to AC are both 3 cm. Find the area of quadrilateral ABCD.\n\nSolution:\n- Step 1: Diagonal AC divides the quadrilateral into triangles ABC and ADC.\n- Step 2: Area of triangle ABC=1/2×22×3=33 cm².\n- Step 3: Area of triangle ADC=1/2×22×3=33 cm².\n- Step 4: Add the two areas: 33+33=66 cm².\n- Final answer: The area of quadrilateral ABCD is 66 cm².\n\n## Common mistake\nDo not multiply 22×(3+3) without the factor one-half. Each component is a triangle.\n\n## Quick check question\nQuestion: A parallelogram has base 7 cm and corresponding height 4 cm. What is its area?\nAnswer: 28 cm².\nExplanation: Dissection converts it to an equal-area rectangle of dimensions 7 cm and 4 cm, so area=7×4=28 cm².\n\n## Summary\n- Triangulation extends the triangle formula to all polygons.\n- Component areas must not overlap.\n- Dissection preserves area.\n- A parallelogram uses perpendicular height, not sloping side length.\n- Ancient construction problems motivated equal-area transformations.",
+    "Revision and recap": "# Revision and recap: Chapter 7: Area\n\n## What you will learn\nYou will derive and apply the area formulae for a rhombus and a trapezium. You will connect both formulas with rectangles, triangles and parallelograms.\n\n## Simple explanation\nA rhombus's perpendicular diagonals divide it into right triangles. Two copies of a trapezium can be joined to form a parallelogram whose base is the sum of the parallel sides.\n\n## Step-by-step breakdown\n- **Rhombus diagonals**: They are perpendicular bisectors of each other.\n- **Rhombus formula**: Area=1/2×d₁×d₂.\n- **Dissection view**: The rhombus can be rearranged into a rectangle with one diagonal and half the other as sides.\n- **Trapezium**: It has a pair of parallel sides a and b separated by perpendicular height h.\n- **Decomposition**: A trapezium can be split into a rectangle and triangles.\n- **Two-copy proof**: Two congruent copies form a parallelogram of base a+b and height h.\n- **Trapezium formula**: Area=1/2×h×(a+b).\n- **Checks**: Use square units and ensure h is perpendicular to the parallel sides.\n\n## Worked example\nQuestion: NCERT rhombus Figure it Out Q1: Find the area of a rhombus with diagonals 20 cm and 15 cm.\n\nSolution:\n- Step 1: Use area=1/2×d₁×d₂.\n- Step 2: Substitute d₁=20 cm and d₂=15 cm.\n- Step 3: Area=1/2×20×15.\n- Step 4: Half of 20 is 10.\n- Step 5: Area=10×15=150 cm².\n- Final answer: The area is 150 cm².\n\n## Common mistake\nDo not use a diagonal as the perpendicular height in base×height unless the chosen base and geometric relationship justify it. The direct diagonal formula already includes the factor one-half.\n\n## Quick check question\nQuestion: State the area of a trapezium with parallel sides a and b and height h.\nAnswer: 1/2×h×(a+b).\nExplanation: Two copies form a parallelogram with base a+b and height h; one trapezium has half that area.\n\n## Summary\n- Rhombus area uses half the product of diagonals.\n- Trapezium area uses the average of parallel sides times height.\n- Both formulas follow from area-preserving decomposition or duplication.\n- Perpendicular distance is essential in every height-based formula.\n- All final area answers require square units."
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 7",
+  "subject": "English",
+  "chapter": "Unit 2: Wit and Humour",
+  "central_question": "How do unusual situations, wordplay, misunderstanding and attentive communication create humour while teaching respect and social awareness?",
+  "in_scope_units": [
+    "Animals, Birds, and Dr. Dolittle—his change from human doctor to animal doctor.",
+    "Polynesia's explanation of animal sounds and body language.",
+    "The plough horse, green spectacles and listening before treatment.",
+    "Dolittle's animal clinic, reputation and compassionate care.",
+    "Compound words, palindromes, animal vocabulary and tense practice.",
+    "A Funny Man—nonsense, reversal, surprising actions and comic imagery.",
+    "Repetition, alliteration, dialogue, tone and movement in the poem.",
+    "Phrasal verbs, ways of walking, joke telling and limerick writing.",
+    "Say the Right Thing—Mary's attempts at polite conversation.",
+    "Stage directions, awkward silence, irony and misunderstanding.",
+    "Suffixes, say and tell, sentence types and present perfect continuous.",
+    "Notice writing, conversation and converting a play into a story."
+  ],
+  "banned_topics": [
+    "Complete biographies of the writers.",
+    "Veterinary or medical advice beyond the fictional text.",
+    "Humour that insults real social groups or disabilities.",
+    "Advanced dramatic or poetic theory."
+  ],
+  "must_include_keywords": [
+    "Dr. Dolittle",
+    "Polynesia",
+    "animal language",
+    "body language",
+    "plough horse",
+    "green spectacles",
+    "animal clinic",
+    "compassion",
+    "compound words",
+    "palindrome",
+    "present continuous",
+    "A Funny Man",
+    "nonsense verse",
+    "imagery",
+    "alliteration",
+    "repetition",
+    "inversion",
+    "phrasal verbs",
+    "limerick",
+    "Say the Right Thing",
+    "Mary",
+    "Mrs Shaw",
+    "Mrs Harding",
+    "Mrs Lee",
+    "stage directions",
+    "awkward silence",
+    "irony",
+    "manners",
+    "say and tell",
+    "present perfect continuous"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Dolittle guesses what animals need.",
+      "correction": "He learns their communication and listens before treating them."
+    },
+    {
+      "claim": "The plough horse needs medicine.",
+      "correction": "It explains that poor eyesight is the problem and asks for green spectacles."
+    },
+    {
+      "claim": "A Funny Man is realistic behaviour.",
+      "correction": "Its humour comes from deliberate nonsense and reversal."
+    },
+    {
+      "claim": "Mary intends to insult every visitor.",
+      "correction": "She tries to be polite but speaks without tact and causes accidental offence."
+    },
+    {
+      "claim": "Stage directions are spoken aloud.",
+      "correction": "They guide action, silence, expression and atmosphere."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with Dolittle's discovery of animal communication.",
+    "Use the horse scene for inference and humour.",
+    "Move to A Funny Man for nonsense and poetic devices.",
+    "Analyse Say the Right Thing through dialogue and stage directions.",
+    "Conclude with grammar and functional writing."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Each text is followed by comprehension, language, listening, speaking, writing and exploratory activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

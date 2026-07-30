@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Science",
+    "chapter": "Chapter 1: The Ever-Evolving World of Science",
+    "central_question": "How does curiosity, questioning, observation and experimentation help science keep growing while connecting ideas about nature, society and responsibility?",
+    "in_scope_units": [
+      "Opening invitation to science: science as exploration of the small and large, near and far, through questions, experiments and personal discovery.",
+      "Science as a process: asking how and why, recognising patterns, staying open to the unknown and learning through direct experience.",
+      "Science, society and responsibility: connecting human activity with the natural world, environmental challenges and sustainability.",
+      "Interconnected fields of science: links among physics, chemistry, biology and earth science and the Grade 7 journey through materials, electricity, changes, heat, water, life processes, time, light and space.",
+      "1.1 Happy Exploring!: Activity 1.1 Question the Answer, which develops creative scientific questioning from given answers."
+    ],
+    "banned_topics": [
+      "Detailed acid-base classification, which belongs to Chapter 2.",
+      "Construction and analysis of electrical circuits, which belongs to Chapter 3.",
+      "Detailed properties of metals and non-metals, which belong to Chapter 4.",
+      "Formal classification of physical and chemical changes, which belongs to Chapter 5.",
+      "Detailed explanations of eclipses, planetary motion, circulation, photosynthesis or heat transfer, which are only previewed here."
+    ],
+    "must_include_keywords": [
+      "curiosity",
+      "questioning",
+      "observation",
+      "experiments",
+      "exploration",
+      "scientific process",
+      "patterns in nature",
+      "open to the unknown",
+      "discovery",
+      "responsibility",
+      "environment",
+      "sustainability",
+      "physics",
+      "chemistry",
+      "biology",
+      "earth sciences",
+      "materials",
+      "electricity",
+      "metals and non-metals",
+      "reversible changes",
+      "heat flow",
+      "water cycle",
+      "life processes",
+      "time",
+      "light",
+      "shadows",
+      "eclipses",
+      "Earth",
+      "Moon",
+      "Sun",
+      "Activity 1.1",
+      "Question the Answer",
+      "think like a scientist"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Science is mainly a collection of fixed facts to memorise.",
+        "correction": "The chapter presents science as an ongoing process of asking questions, observing, experimenting and revising understanding."
+      },
+      {
+        "claim": "Only questions with one correct answer are useful in science.",
+        "correction": "Activity 1.1 encourages many creative questions that may lead to the same answer and values interesting questioning."
+      },
+      {
+        "claim": "Physics, chemistry, biology and earth science are completely separate.",
+        "correction": "The chapter explains that scientific fields are interconnected and ideas in one area often inspire questions in another."
+      },
+      {
+        "claim": "Experiments are useful only when they confirm what we expected.",
+        "correction": "Even an experiment that confirms a prediction can raise new questions requiring more observations and experiments."
+      },
+      {
+        "claim": "Science is only about discovery and has nothing to do with society.",
+        "correction": "The chapter connects science with responsibility, environmental challenges and creating a more sustainable world."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the opening paper-plane discussion to connect simple observation with scientific exploration of flight.",
+      "Use the chapter overview of materials, electricity, changes, heat, water and life processes to show links among branches of science.",
+      "Use the light, shadow, day-night and eclipse preview to distinguish asking questions from teaching the later chapter details.",
+      "Use Activity 1.1 Question the Answer with 'Just add some milk' to model generating more than one reasonable question.",
+      "Use the Activity 1.1 answer '42' to discuss why an interesting question is better than an obvious arithmetic question."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "This introductory chapter has no separate end-of-chapter exercise section; its main structured task is Activity 1.1, 'Question the Answer'."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 1: The Ever-Evolving World of Science\n\n## What you will learn\nYou will understand why science is more than a textbook of facts. You will see how curiosity, observation and experiments help learners make discoveries for themselves.\n\n## Simple explanation\nScience begins when we notice something, wonder about it and try to find out more. The chapter compares learning with the flight of a butterfly or paper plane because curiosity allows ideas to move in new directions.\n\n## Step-by-step breakdown\n- **A wide world**: Science studies things as small as cells inside a leaf and as large as the Sun, stars and movements in space.\n- **Invitation to explore**: The textbook asks students to question, perform experiments and explore rather than only read information.\n- **Simple beginnings**: The paper-plane example shows how ordinary objects and observations can inspire deeper studies such as flight.\n- **Personal discovery**: Activities are meant to help students discover patterns and explanations through their own experience.\n- **Imagination and evidence**: Imagination suggests questions, while observations and experiments help test them.\n\n## Worked example\nQuestion: Activity 1.1, 'Question the Answer': What kinds of questions could reasonably lead to the answer 'Just add some milk'?\n\nSolution:\n- Step 1: Notice that the activity allows more than one question for the same answer.\n- Step 2: Think of situations in which milk changes a result, such as making a drink less strong or completing a recipe.\n- Step 3: Check that the question is understandable and that the answer fits it.\n- Final answer: A valid example is: 'How can I make this tea less strong?' Answer: 'Just add some milk.'\n\n## Common mistake\nDo not assume that a scientific question must sound complicated. A simple question about an everyday observation can begin a valuable investigation.\n\n## Quick check question\nQuestion: According to the chapter, what should lead the way as learning 'takes flight'?\nAnswer: Curiosity should lead the way.\nExplanation: The butterfly and paper-plane images are used to show that curiosity encourages exploration, imagination and new questions.\n\n## Summary\n- Science studies a very wide range of phenomena.\n- Curiosity starts the process of exploration.\n- Experiments and observations help build understanding.\n- Simple objects can inspire important scientific questions.",
+    "Core explanation": "# Core explanation: Chapter 1: The Ever-Evolving World of Science\n\n## What you will learn\nYou will learn why science is described as a process and a way of thinking. You will connect deeper questions with patterns, evidence and openness to the unknown.\n\n## Simple explanation\nA scientist does not only ask 'What is it?' but also 'How does it work?', 'Why does it happen?' and 'What pattern can we see?'. These questions lead to activities and experiments that improve understanding.\n\n## Step-by-step breakdown\n- **Deeper questions**: Grade 7 encourages questions about how things work, why events happen and what patterns reveal.\n- **Open to the unknown**: Scientific thinking accepts that an answer may not yet be known and that more investigation may be needed.\n- **Experience beyond the book**: The chapter encourages students to step beyond the classroom and learn from activities and experiments.\n- **Evidence and revision**: An observation may support an idea, challenge it or produce a new question.\n- **Continuing process**: Science keeps developing because each answer can lead to additional questions.\n\n## Worked example\nQuestion: Activity 1.1: Construct a creative question for the given answer 'Because the cat's teeth were crooked.'\n\nSolution:\n- Step 1: Identify what the answer explains: a result connected with a cat and crooked teeth.\n- Step 2: Create a situation in which that explanation is sensible.\n- Step 3: Avoid making the question so vague that the answer no longer fits.\n- Final answer: One suitable question is: 'Why did the cat leave uneven bite marks on the food?' Final answer: 'Because the cat's teeth were crooked.'\n\n## Common mistake\nDo not treat an unexpected result as a failed science activity. Unexpected results are often useful because they lead to better questions and further testing.\n\n## Quick check question\nQuestion: What three broad question forms does the chapter especially encourage in Grade 7?\nAnswer: How do things work, why do events happen the way they do, and what can we learn from patterns in nature?\nExplanation: These are the chapter's examples of deeper questions that move beyond simply naming or recalling facts.\n\n## Summary\n- Science is a process of questioning and testing.\n- Patterns can suggest explanations.\n- Unknown answers are invitations to investigate.\n- New evidence can create new questions.",
+    "Worked examples": "# Worked examples: Chapter 1: The Ever-Evolving World of Science\n\n## What you will learn\nYou will see how different fields of science connect with one another. You will also learn how the chapter previews later topics without teaching their full details.\n\n## Simple explanation\nThe Grade 7 journey moves from materials and electricity to changes, heat, water, life processes, time, light and space. These topics appear different, but they influence one another and are studied using the same habits of questioning and evidence.\n\n## Step-by-step breakdown\n- **Materials to electricity**: Testing which materials help a lamp glow leads to classifying materials and studying metals and non-metals.\n- **Changes and heat**: A battery running out, ice melting, fruit ripening and rocks breaking raise questions about kinds of change and the role of heating.\n- **Heat and water**: Heat from the Sun contributes to evaporation, rainfall and movement of water through the environment.\n- **Living systems**: Growth requires eating, breathing and transport of nutrients, while plants also raise questions about food and breathing.\n- **Time and motion**: Clocks, shadows and speed lead to questions about measuring time and how fast events occur.\n- **Light and space**: Light, shadows, eclipses, day and night connect observations on Earth with movements of Earth, Moon and Sun.\n\n## Worked example\nQuestion: Using the chapter overview, explain how a question about a torch can lead to a question about materials.\n\nSolution:\n- Step 1: Begin with the observation that a torch uses cells, wires, a lamp and a switch.\n- Step 2: Ask which materials allow the electrical circuit to work.\n- Step 3: Testing materials can show that some allow current to pass and others do not.\n- Step 4: This leads to classifying materials by their properties and then to studying metals and non-metals.\n- Final answer: A torch question can therefore connect electricity with the study of material properties.\n\n## Common mistake\nDo not teach the full mechanisms of eclipses, circulation or the water cycle in this chapter. They are previews used to show connections and future directions.\n\n## Quick check question\nQuestion: Which later topic is introduced by asking what materials are needed to make a lamp glow?\nAnswer: The properties and classification of materials, leading to metals and non-metals.\nExplanation: The chapter explicitly links simple battery-lamp-wire exploration with classifying materials by their properties.\n\n## Summary\n- Branches of science are interconnected.\n- One investigation can lead to another field.\n- The chapter previews later learning rather than completing it.\n- The same habits of observation and questioning apply across topics.",
+    "Exam-style problems": "# Exam-style problems: Chapter 1: The Ever-Evolving World of Science\n\n## What you will learn\nYou will connect science with responsibility, society and environmental challenges. You will practise explaining why scientific learning includes both discovery and careful action.\n\n## Simple explanation\nScientific knowledge affects how people use resources and respond to environmental problems. The chapter asks young explorers to notice links between human activity, nature and society.\n\n## Step-by-step breakdown\n- **Science and responsibility**: Discovery is important, but the consequences of human actions must also be considered.\n- **Environment**: Activities and experiments help students understand their place in the environment.\n- **Human connections**: Scientific events in the natural world are connected with society and daily decisions.\n- **Sustainability**: Science can contribute to addressing environmental challenges and creating a more sustainable world.\n- **Careful thinking**: Responsible science uses evidence and asks what effects an action may have.\n\n## Worked example\nQuestion: Activity 1.1: Create a question for the answer 'Don't panic, I have my towel' and explain what makes the question creative rather than obvious.\n\nSolution:\n- Step 1: Identify that the answer suggests a problem, a need to stay calm and a towel as a useful object.\n- Step 2: Invent a situation in which the towel has a clear purpose.\n- Step 3: Make the question open enough to show imagination but specific enough for the answer to fit.\n- Step 4: One example is: 'What should we do if the water bottle spills across the experiment table?'\n- Final answer: The answer fits: 'Don't panic, I have my towel.'\n\n## Common mistake\nDo not claim that science automatically solves every environmental problem. The chapter says science can help address challenges, which still requires responsible choices and action.\n\n## Quick check question\nQuestion: Why does the chapter describe science as being about responsibility as well as discovery?\nAnswer: Because human activities affect the natural world and society, and scientific understanding can guide responses to environmental challenges and sustainability.\nExplanation: Knowledge has consequences, so scientific thinking includes examining how actions affect people and the environment.\n\n## Summary\n- Science is connected with society.\n- Human activities influence the natural world.\n- Evidence can guide responsible decisions.\n- Sustainability is part of the chapter's scientific outlook.",
+    "Revision and recap": "# Revision and recap: Chapter 1: The Ever-Evolving World of Science\n\n## What you will learn\nYou will review the habits of a young science explorer and complete the chapter's creative questioning task. You will distinguish a strong question from an obvious or unhelpful one.\n\n## Simple explanation\nGood scientific learning combines curiosity, careful observation, experiments, creative questions and willingness to continue investigating. There is not always only one useful question behind an answer.\n\n## Step-by-step breakdown\n- **Question the answer**: Activity 1.1 reverses the usual test pattern by supplying answers and asking students to invent questions.\n- **Many possibilities**: The answer 'Just make it half' can fit cake sharing, shortening an essay, fitting paper into an envelope or shortening a song.\n- **Interesting over obvious**: For the answer 42, the text asks students not to use an obvious calculation such as 32 + 10.\n- **No wrong questions**: The activity values imagination, provided the question and answer make sense together.\n- **Scientific habit**: Asking better questions helps decide what observations or experiments should come next.\n- **Continuous learning**: Even confirmed predictions can create additional questions.\n\n## Worked example\nQuestion: Activity 1.1: Give an interesting question for the answer '42' without using the obvious example 'What is 32 + 10?'\n\nSolution:\n- Step 1: Avoid a direct arithmetic question, as the activity specifically asks for something more interesting.\n- Step 2: Choose a situation in which 42 is a meaningful answer.\n- Step 3: Make sure the information in the question supports the answer.\n- Step 4: One acceptable question is: 'Our class collected one leaf from each of 42 different plants; how many plant samples are in the collection?'\n- Final answer: The answer is 42.\n\n## Common mistake\nDo not confuse creativity with randomness. A creative question must still be logically connected to the given answer.\n\n## Quick check question\nQuestion: What is the main purpose of Activity 1.1?\nAnswer: To practise creating curious, creative and meaningful questions from given answers and to develop the habit of thinking like a scientist.\nExplanation: The activity shows that scientific thinking depends not only on answering questions but also on asking strong ones.\n\n## Summary\n- Curiosity leads to scientific exploration.\n- Observations and experiments build evidence.\n- Scientific fields connect with one another.\n- Responsibility links science with society and sustainability.\n- Strong questions keep science evolving."
+  }
+}

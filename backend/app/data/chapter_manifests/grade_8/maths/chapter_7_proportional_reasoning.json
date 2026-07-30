@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 7: Proportional Reasoning",
+  "central_question": "How can ratios and proportional reasoning compare shapes, mixtures, rates and shares while preserving the same multiplicative relationship?",
+  "in_scope_units": [
+    "Similarity in resized digital images and equal scale factors.",
+    "Ratios and interpretation of their terms.",
+    "Simplest form of a ratio using HCF.",
+    "Equivalent ratios and the proportion symbol.",
+    "Problem solving by scale factor in mixtures, construction and everyday comparisons.",
+    "Situations where adding the same amount does not preserve a ratio.",
+    "Rule of Three or Trairasika and cross multiplication.",
+    "Importance of consistent units in proportion problems.",
+    "Direct-proportion applications and examples that are not direct proportion.",
+    "Market-price and packaging activities.",
+    "Sharing a total in a given ratio."
+  ],
+  "banned_topics": [
+    "Inverse proportion as a fully developed formal chapter.",
+    "Trigonometric similarity.",
+    "Percentage increase and decrease beyond direct ratio reasoning."
+  ],
+  "must_include_keywords": [
+    "ratio",
+    "terms of a ratio",
+    "simplest form",
+    "HCF",
+    "equivalent ratios",
+    "proportion",
+    "proportional",
+    "scale factor",
+    "similar images",
+    "distortion",
+    "same units",
+    "cross multiplication",
+    "Rule of Three",
+    "Trairasika",
+    "pramana",
+    "phala",
+    "ichchha",
+    "ichchhaphala",
+    "direct proportion",
+    "unit conversion",
+    "lemonade",
+    "filter coffee",
+    "mid-day meal",
+    "rate",
+    "weight-to-price ratio",
+    "sharing in a ratio",
+    "total parts",
+    "market comparison",
+    "reasonableness"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Subtracting the same amount from two dimensions preserves similarity.",
+      "correction": "Similarity requires multiplying both dimensions by the same factor, not equal additive changes."
+    },
+    {
+      "claim": "The order of terms in a ratio does not matter.",
+      "correction": "a:b and b:a compare different quantities and generally have different meanings."
+    },
+    {
+      "claim": "Cross multiplication can be used before matching units.",
+      "correction": "Corresponding quantities must use the same units before forming the proportion."
+    },
+    {
+      "claim": "Every problem where one quantity changes with another is direct proportion.",
+      "correction": "For example, at fixed distance, travel time decreases when speed increases, so the chapter warns that the direct Rule of Three setup is invalid."
+    },
+    {
+      "claim": "To share a total in ratio 3:1, give 3 and 1 and stop.",
+      "correction": "The ratio has 4 total parts; scale those parts so their sum equals the whole amount."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use image dimensions 60:40, 30:20 and 90:60 to establish similarity.",
+    "Use Example 1 to reduce 72:96 and compare it with 3:4.",
+    "Use the lemonade Example 2 to scale 6:10 to 18:30.",
+    "Use the mid-day meal Example 8 to introduce Trairasika and cross multiplication.",
+    "Use the car Example 9 to emphasise converting 4 hours to 240 minutes.",
+    "Use Activity 3 to share 12 counters in the ratio 3:1."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Figure it Out sets follow the equivalent-ratio and Rule of Three sections, and the chapter closes with activities on prices, products and sharing a whole in a given ratio.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

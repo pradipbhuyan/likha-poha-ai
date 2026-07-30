@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 6: We Distribute, Yet Things Multiply",
+  "central_question": "How does the distributive property explain changes in products, expansions, algebraic identities and fast multiplication methods?",
+  "in_scope_units": [
+    "Distributive property of multiplication over addition and subtraction.",
+    "Changes in a product when one or both factors increase or decrease.",
+    "General identity (a+m)(b+n).",
+    "Expansion of algebraic expressions and collection of like terms.",
+    "Historical note on khanda-gunanam and Brahmagupta.",
+    "Fast multiplication by 11, 101, 1001 and related numbers.",
+    "Square of a sum and square of a difference using area models.",
+    "Product of a sum and difference.",
+    "Patterns and applications of the identities.",
+    "Chapter exercises involving multiplication grids, expansion and mental methods."
+  ],
+  "banned_topics": [
+    "Factorisation of quadratic polynomials as a separate topic.",
+    "Quadratic equations.",
+    "Binomial theorem for arbitrary powers."
+  ],
+  "must_include_keywords": [
+    "distributive property",
+    "commutative property",
+    "identity",
+    "expansion",
+    "like terms",
+    "product change",
+    "increase",
+    "decrease",
+    "(a+m)(b+n)",
+    "area model",
+    "integer signs",
+    "fast multiplication",
+    "multiply by 11",
+    "multiply by 101",
+    "multiply by 1001",
+    "square of a sum",
+    "square of a difference",
+    "difference of squares",
+    "a² + 2ab + b²",
+    "a² − 2ab + b²",
+    "a² − b²",
+    "Brahmagupta",
+    "khanda-gunanam",
+    "ista-gunana",
+    "visualisation",
+    "algebraic pattern",
+    "verification"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "a(b+c) = ab+c.",
+      "correction": "The factor a must multiply every term: a(b+c) = ab+ac."
+    },
+    {
+      "claim": "(a+b)² = a²+b².",
+      "correction": "The middle products give (a+b)² = a²+2ab+b²."
+    },
+    {
+      "claim": "(a−b)² = a²−b².",
+      "correction": "(a−b)² = a²−2ab+b²; a²−b² equals (a+b)(a−b)."
+    },
+    {
+      "claim": "All terms in an expansion can be combined.",
+      "correction": "Only like terms with exactly the same letter part can be combined."
+    },
+    {
+      "claim": "Increasing one factor and decreasing the other always leaves the product unchanged.",
+      "correction": "(a+1)(b−1) = ab+b−a−1, so the change depends on a and b."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use 23×27 and the increase-by-1 questions to introduce distribution.",
+    "Derive (a+m)(b+n) = ab+mb+an+mn with the rectangular array.",
+    "Use Example 1 to expand (3a/2)(a−b+1/5).",
+    "Use 3874×11 and 3874×101 for fast multiplication.",
+    "Use the 65² and 55² area models to derive the square identities.",
+    "Use Figure it Out expansion patterns to verify difference-of-powers identities."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Figure it Out sets appear after general expansion and after the special identities, followed by a summary of the distributive identity and its three main special cases.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

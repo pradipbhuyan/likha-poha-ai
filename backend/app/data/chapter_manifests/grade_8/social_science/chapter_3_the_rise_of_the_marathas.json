@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: The Rise of the Marathas",
+  "central_question": "How did the Marathas build, administer, defend, and culturally sustain a pan-Indian power before British dominance?",
+  "in_scope_units": [
+    "Maratha identity, Marathi literary culture, bhakti traditions, and the social setting of Maharashtra.",
+    "Foundation of Maratha power under Chhatrapati Shivaji and the vision of Swarajya.",
+    "Forts, guerrilla warfare, navy, coastal security, Surat, Agra, coronation, and southern expansion.",
+    "The Marathas after Shivaji: Sambhaji, Rajaram, Tarabai, Peshwas, Panipat, Delhi, and Anglo-Maratha wars.",
+    "Civil administration, ashta pradhana mandala, salaries, transfers, welfare, taxes, and coinage.",
+    "Military administration, forts, maritime supremacy, Kanhoji Angre, justice, and trade networks.",
+    "Cultural revival through language, religious respect, women leaders, Thanjavur, Serfoji II, and the Maratha legacy."
+  ],
+  "banned_topics": [
+    "Detailed Mughal history before the rise of the Marathas, which belongs to Chapter 2.",
+    "Detailed British colonial administration after 1818, which belongs to Chapter 4.",
+    "Modern political claims not made in the chapter."
+  ],
+  "must_include_keywords": [
+    "Marathas",
+    "Marathi",
+    "bhakti",
+    "Dnyaneshwar",
+    "Tukaram",
+    "Ramdas",
+    "Chhatrapati Shivaji",
+    "Jijabai",
+    "Swarajya",
+    "forts",
+    "guerrilla warfare",
+    "Maratha Navy",
+    "Sindhudurg",
+    "Afzal Khan",
+    "Shaista Khan",
+    "Surat",
+    "Purandar",
+    "Agra escape",
+    "coronation at Raigad",
+    "dakshina-digvijaya",
+    "Sambhaji",
+    "Rajaram",
+    "Tarabai",
+    "Peshwa Bajirao I",
+    "Nanasaheb Peshwa",
+    "Mahadji Shinde",
+    "Anglo-Maratha wars",
+    "ashta pradhana mandala",
+    "chauth",
+    "sardeshmukhi",
+    "bargirs",
+    "shiledars",
+    "Kanhoji Angre",
+    "panchayat",
+    "Ahilyabai Holkar",
+    "Serfoji II",
+    "Thanjavur"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Marathas rose only because of military victories.",
+      "correction": "Their rise also depended on Marathi culture, bhakti traditions, social organisation, administration, forts, trade, and naval power."
+    },
+    {
+      "claim": "Guerrilla warfare meant avoiding direct conflict completely.",
+      "correction": "It used small groups, speed, surprise, terrain knowledge, ambush, and carefully chosen attacks against larger forces."
+    },
+    {
+      "claim": "The Maratha state remained fully centralised throughout its history.",
+      "correction": "Shivaji built a relatively centralised state, but later expansion produced a decentralised structure with powerful chiefs and Peshwas."
+    },
+    {
+      "claim": "The Marathas had only a land army.",
+      "correction": "Their forces included infantry, cavalry, and a navy, and maritime power was central to the west coast."
+    },
+    {
+      "claim": "Maratha cultural influence was limited to Maharashtra.",
+      "correction": "The chapter describes contributions across India and in Thanjavur in arts, medicine, printing, music, dance, public works, and crafts."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the chapter's bhakti exploration and the cultural foundations of Maratha organisation.",
+    "Analyse the NCERT map of Shivaji's kingdom, forts, ports, and southern territories.",
+    "Use Shivaji's letter on teak, mango, and jackfruit trees to infer his values as a ruler.",
+    "Use the chapter's questions on why forts were the core of the Maratha state.",
+    "Compare Tarabai, Ahilyabai Holkar, and Serfoji II as military, administrative, and cultural leaders."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1–8 on geography, leaders, forts, religious diversity, coins, and the Maratha contribution.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

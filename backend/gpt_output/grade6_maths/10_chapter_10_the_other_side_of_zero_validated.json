@@ -1,0 +1,82 @@
+{
+  "manifest": {
+    "grade": "Grade 6",
+    "subject": "Maths",
+    "chapter": "Chapter 10 The Other Side of Zero",
+    "central_question": "How can numbers below zero be represented, compared, added, and subtracted consistently?",
+    "in_scope_units": [
+      "Bela's Building of Fun — positive floors, negative floors, zero, and inverse positions",
+      "Comparing integers — order on a marked number line",
+      "Addition as movement — Starting Number + Movement = Target Number",
+      "Subtraction as required movement — Target Number − Starting Number = Movement needed",
+      "Marked and unmarked number lines — operations with small and large integers",
+      "Token and movement models — positive and negative quantities and zero pairs",
+      "Brahmagupta's rules — arithmetic with positive, negative, and zero",
+      "Historical perspective and Integers: Snakes and Ladders"
+    ],
+    "banned_topics": [
+      "Multiplication and division rules for negative numbers beyond the chapter",
+      "Abstract ring theory",
+      "Two-dimensional coordinates"
+    ],
+    "must_include_keywords": [
+      "positive number",
+      "negative number",
+      "zero",
+      "integer",
+      "inverse",
+      "opposite",
+      "floor",
+      "number line",
+      "left of zero",
+      "right of zero",
+      "greater than",
+      "less than",
+      "movement",
+      "starting number",
+      "target number",
+      "forward",
+      "backward",
+      "addition",
+      "subtraction",
+      "missing addend",
+      "unmarked number line",
+      "positive token",
+      "negative token",
+      "zero pair",
+      "Brahmagupta",
+      "subtracting a negative",
+      "year 628 CE",
+      "Snakes and Ladders"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A negative number with larger digits is greater.",
+        "correction": "Farther left is smaller; −12 is less than −10."
+      },
+      {
+        "claim": "Subtracting a negative makes a result smaller.",
+        "correction": "Subtracting a negative equals adding the corresponding positive."
+      },
+      {
+        "claim": "Zero is positive or negative.",
+        "correction": "Zero is neither, although it is an integer."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Building of Fun floors to introduce positive, negative, zero, and inverses.",
+      "Compare values on a marked number line.",
+      "Use 5+4=9, 9+(−6)=3, and 3+(−5)=−2 for movement.",
+      "Use 85+(−60)=25 and (−100)−(+250)=−350 on an unmarked line.",
+      "Apply Brahmagupta's rules and the final integer game."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out, number-line, token, Brahmagupta-rule, and Integers: Snakes and Ladders tasks through the chapter."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 10 The Other Side of Zero\n\n## What you will learn\nYou will interpret positive numbers, negative numbers, zero, and inverse pairs using building floors.\n\n## Simple explanation\nZero is the reference floor; positive floors are above it and negative floors are below it.\n\n## Step-by-step breakdown\n- **Positive**: Positions above zero, such as +2.\n- **Negative**: Positions below zero, such as −3.\n- **Zero**: Neither positive nor negative.\n- **Inverse**: The same distance from zero on the opposite side.\n- **Integers**: ..., −2, −1, 0, 1, 2, ...\n\n## Worked example\nQuestion: Write the inverses of +4, −3, and 0.\n\nSolution:\n- Step 1: Reflect each position across zero.\n- Step 2: Pair +4 with −4, −3 with +3, and 0 with itself.\n- Final answer: −4, +3, and 0.\n\n## Common mistake\nZero is its own inverse.\n\n## Quick check question\nQuestion: Which is lower, floor −3 or floor −1?\nAnswer: Floor −3.\nExplanation: It lies farther below zero.\n\n## Summary\n- Signs show sides of zero.\n- Inverse numbers are opposites.\n- Zero is an integer but has no sign category.",
+    "Core explanation": "# Core explanation: Chapter 10 The Other Side of Zero\n\n## What you will learn\nYou will compare integers and model addition as signed movement.\n\n## Simple explanation\nNumbers farther right are greater; a positive movement goes right and a negative movement goes left.\n\n## Step-by-step breakdown\n- **Order**: Right means greater.\n- **Positive movement**: Move right or upward.\n- **Negative movement**: Move left or downward.\n- **Addition relation**: Starting Number + Movement = Target Number.\n- **Inverse sum**: A number plus its inverse is zero.\n\n## Worked example\nQuestion: Start at 9 and move −6. Where do you arrive?\n\nSolution:\n- Step 1: A negative movement goes six steps left.\n- Step 2: Counting left from 9 reaches 3.\n- Final answer: 9+(−6)=3.\n\n## Common mistake\nA minus sign inside a number describes direction; it is not automatically a new subtraction instruction.\n\n## Quick check question\nQuestion: Which is greater, −2 or −5?\nAnswer: −2.\nExplanation: It lies to the right of −5.\n\n## Summary\n- Number-line order determines comparison.\n- Signed movement models addition.\n- Opposites cancel to zero.",
+    "Worked examples": "# Worked examples: Chapter 10 The Other Side of Zero\n\n## What you will learn\nYou will interpret subtraction as the movement needed from a start to a target.\n\n## Simple explanation\nSubtraction can be rewritten as a missing-addend question.\n\n## Step-by-step breakdown\n- **Relation**: Target−Starting=Movement needed.\n- **Positive result**: Target lies to the right.\n- **Negative result**: Target lies to the left.\n- **Missing addend**: Starting+?=Target.\n- **Crossing zero**: Use the complete signed distance.\n\n## Worked example\nQuestion: Find 3−9 using movement.\n\nSolution:\n- Step 1: Rewrite as 9+?=3.\n- Step 2: Move six steps left, so ?=−6.\n- Final answer: 3−9=−6.\n\n## Common mistake\nDo not reverse the target and starting numbers.\n\n## Quick check question\nQuestion: Find −2−3.\nAnswer: −5.\nExplanation: From 3 to −2 is a movement of five steps left.\n\n## Summary\n- Subtraction finds signed movement.\n- A missing-addend equation checks it.\n- Crossing zero uses the same rule.",
+    "Exam-style problems": "# Exam-style problems: Chapter 10 The Other Side of Zero\n\n## What you will learn\nYou will use an unmarked number line for large integer calculations.\n\n## Simple explanation\nAn unmarked line shows zero and only the values needed, while preserving order and direction.\n\n## Step-by-step breakdown\n- **Zero anchor**: Positive values right, negative values left.\n- **Addition example**: 85+(−60)=25.\n- **Subtraction example**: (−100)−(+250) asks for movement from +250 to −100.\n- **Scale**: Relative spacing still matters.\n- **Sign check**: Direction should agree with the answer sign.\n\n## Worked example\nQuestion: Evaluate (−100)−(+250) using the NCERT unmarked-line example.\n\nSolution:\n- Step 1: Rewrite as +250+?=−100.\n- Step 2: Move 350 units left.\n- Final answer: −350.\n\n## Common mistake\nThe digits 100 do not place −100 on the positive side; the sign controls position.\n\n## Quick check question\nQuestion: Evaluate 85+(−60).\nAnswer: 25.\nExplanation: Move 60 left from 85.\n\n## Summary\n- Unmarked lines simplify large values.\n- Zero anchors the layout.\n- Direction determines the sign.",
+    "Revision and recap": "# Revision and recap: Chapter 10 The Other Side of Zero\n\n## What you will learn\nYou will apply Brahmagupta's subtraction rules and review integer operations through games.\n\n## Simple explanation\nThe historical rules agree with the number-line and movement models for positive numbers, negative numbers, and zero.\n\n## Step-by-step breakdown\n- **Smaller from larger positive**: The result is positive.\n- **Larger from smaller positive**: The result is negative.\n- **Subtract negative**: Add the corresponding positive.\n- **Same number**: Difference is zero.\n- **Subtract zero**: The number remains unchanged.\n- **Context**: The chapter notes Brahmagupta's 628 CE work and uses Snakes and Ladders from −50 to +50.\n\n## Worked example\nQuestion: Evaluate 7−(−7).\n\nSolution:\n- Step 1: Subtracting a negative becomes addition.\n- Step 2: Compute 7+7.\n- Final answer: 14.\n\n## Common mistake\nDo not change 7−(−7) into 7−7.\n\n## Quick check question\nQuestion: Evaluate −8−(−10).\nAnswer: 2.\nExplanation: −8+10=2.\n\n## Summary\n- Integer rules match movement.\n- Subtracting a negative becomes addition.\n- Zero and inverse pairs are central.\n- Games reinforce signed operations."
+  }
+}

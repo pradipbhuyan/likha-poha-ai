@@ -23,6 +23,16 @@ RAG_VISUAL_ENABLED_CONTEXTS = {
     # ingestion session): 'add text book images, add reference pdfs
     # wherever applicable' -- same cost trade-off acknowledged as Grade 5.
     ("CBSE", "Grade 6"),
+    # Grade 7 added 2026-07-30 per direct user request (Grade 7 Maths
+    # ingestion session): 'ensure that text book images are added for
+    # each chapter from 1 to 15 along with reference pdf viewer without
+    # fail' -- same cost trade-off acknowledged as Grade 5/6.
+    ("CBSE", "Grade 7"),
+    # Grade 8 added 2026-07-30 per direct user confirmation (Grade 8
+    # English ingestion session, asked explicitly via AskUserQuestion
+    # before extending the allow-list) -- same cost trade-off acknowledged
+    # as Grade 5/6/7.
+    ("CBSE", "Grade 8"),
 }
 VISUAL_REQUEST_TERMS = {
     "diagram",

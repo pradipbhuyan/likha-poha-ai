@@ -1,0 +1,100 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: Climates of India",
+  "central_question": "How do geography and monsoon systems create India’s varied climates, and how do those climates influence life, disasters and climate-change responses?",
+  "in_scope_units": [
+    "Weather, Seasons and the Climate—short-term weather, recurring seasons, long-term climate and six ritus.",
+    "Types of Climates in India—alpine, temperate, subtropical, arid, tropical wet, semi-arid and tropical.",
+    "Factors Determining the Climate—latitude, altitude, proximity to sea, winds and topography.",
+    "Microclimates—valleys, forests and urban heat islands.",
+    "The Monsoons—seasonal winds, summer low pressure, winter reversal and southwest and northeast monsoons.",
+    "Climate and our Lives—traditional knowledge, festivals, agriculture, migration, prices and industry.",
+    "Climates and Disasters—cyclones, floods, glacial bursts, landslides and forest fires.",
+    "Climate Change—fossil fuels, greenhouse effect, warming, resilience, adaptation and mitigation.",
+    "Questions and activities 1–7—climate factors, cities, monsoons, festivals and disasters."
+  ],
+  "banned_topics": [
+    "Detailed operation of weather instruments.",
+    "Daily IMD weather tables.",
+    "Advanced atmospheric circulation not in the chapter.",
+    "Detailed greenhouse-gas chemistry."
+  ],
+  "must_include_keywords": [
+    "weather",
+    "season",
+    "climate",
+    "ritus",
+    "alpine climate",
+    "temperate climate",
+    "subtropical climate",
+    "arid climate",
+    "tropical wet climate",
+    "semi-arid climate",
+    "latitude",
+    "altitude",
+    "proximity to the sea",
+    "winds",
+    "topography",
+    "microclimate",
+    "urban heat island",
+    "monsoon",
+    "mausim",
+    "low pressure",
+    "southwest monsoon",
+    "northeast monsoon",
+    "Western Ghats",
+    "Mawsynram",
+    "monsoon failure",
+    "cyclone",
+    "eye of the cyclone",
+    "flood",
+    "glacial burst",
+    "landslide",
+    "forest fire",
+    "climate change",
+    "fossil fuels",
+    "greenhouse effect",
+    "global warming",
+    "resilience",
+    "adaptation",
+    "mitigation",
+    "sustainable lifestyles"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Weather, season and climate mean the same thing.",
+      "correction": "Weather is short-term, seasons recur yearly, and climate is a decades-long pattern."
+    },
+    {
+      "claim": "Coastal places have the greatest temperature extremes.",
+      "correction": "The sea moderates coastal temperatures."
+    },
+    {
+      "claim": "Monsoon means only rain.",
+      "correction": "Strictly, monsoon means seasonal wind."
+    },
+    {
+      "claim": "The northeast monsoon is entirely dry.",
+      "correction": "Some winds cross the Bay of Bengal and bring rain to east and south India."
+    },
+    {
+      "claim": "Climate disasters are caused only by Nature.",
+      "correction": "Human activities can increase risk and damage."
+    },
+    {
+      "claim": "The natural greenhouse effect is entirely harmful.",
+      "correction": "It supports life; extra human-made gases cause harmful warming."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Questions and activities Q1 to match climate factors and effects.",
+    "Use Q2 to compare weather and climate and explain coastal moderation.",
+    "Use Q3 to classify Leh, Chennai, Delhi, Panaji and Jaipur.",
+    "Use Q4 to draw summer and winter monsoon directions.",
+    "Use Q7 to analyse a climate disaster."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions and activities 1–7.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

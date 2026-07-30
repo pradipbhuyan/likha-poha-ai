@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: Universal Franchise and India’s Electoral System",
+  "central_question": "How does India turn the equal right to vote into free, fair, inclusive, and representative elections at different levels of government?",
+  "in_scope_units": [
+    "Universal adult franchise, equal vote, registration, Article 326, and political equality.",
+    "Accessibility and participation measures for remote voters, elderly citizens, and persons with disabilities.",
+    "The Suryodaya School election caselet: campaigning, secret ballot, counting, invalid ballots, and NOTA.",
+    "The Election Commission of India, its constitutional status, structure, and responsibilities.",
+    "Polling procedure, EVM, VVPAT, reserved constituencies, and the Model Code of Conduct.",
+    "Direct elections to Lok Sabha and assemblies, First-Past-the-Post, MPs, MLAs, majority, coalition, and government formation.",
+    "Indirect elections to Rajya Sabha, President, and Vice President.",
+    "Challenges such as money power, criminal records, voter apathy, misinformation, and responsible voting."
+  ],
+  "banned_topics": [
+    "Detailed day-to-day functioning of Parliament, which belongs to Chapter 6.",
+    "Detailed constitutional history before Independence.",
+    "Mathematical simulation of the single transferable vote mechanism."
+  ],
+  "must_include_keywords": [
+    "universal adult franchise",
+    "franchise",
+    "suffrage",
+    "Article 326",
+    "one person one vote",
+    "constituency",
+    "voter registration",
+    "accessibility",
+    "postal voting",
+    "home voting",
+    "braille ballot",
+    "secret ballot",
+    "NOTA",
+    "Election Commission of India",
+    "Chief Election Commissioner",
+    "Chief Electoral Officer",
+    "District Election Officer",
+    "Returning Officer",
+    "Electoral Registration Officer",
+    "EVM",
+    "VVPAT",
+    "Model Code of Conduct",
+    "reserved constituencies",
+    "Lok Sabha",
+    "State Legislative Assembly",
+    "MP",
+    "MLA",
+    "First-Past-the-Post",
+    "majority",
+    "coalition",
+    "Rajya Sabha",
+    "indirect election",
+    "electoral college",
+    "single transferable vote",
+    "President",
+    "Vice President",
+    "voter apathy"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Universal adult franchise means every resident can vote anywhere.",
+      "correction": "Every eligible adult citizen has an equal vote but must be registered in the relevant constituency."
+    },
+    {
+      "claim": "A candidate must receive more than half the votes to win a Lok Sabha seat.",
+      "correction": "Under First-Past-the-Post, the candidate with the most votes wins even without crossing 50 per cent."
+    },
+    {
+      "claim": "The Election Commission of India directly conducts local-body elections.",
+      "correction": "State Election Commissions manage elections to gram panchayats and urban local bodies."
+    },
+    {
+      "claim": "Rajya Sabha members are directly elected by all voters.",
+      "correction": "Most are elected indirectly by elected MLAs, while twelve are nominated by the President."
+    },
+    {
+      "claim": "NOTA cancels the election if it gets the most votes.",
+      "correction": "The chapter states that NOTA expresses rejection but does not change the result."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with the discussion on why universal franchise was adopted despite low literacy at Independence.",
+    "Use the Suryodaya School caselet to analyse fairness, secrecy, inclusion, and counting.",
+    "Study the ECI structure and the four-stage polling process.",
+    "Use the MCC examples involving gifts, abusive language, officials campaigning, and cash.",
+    "Compare direct and indirect elections for Lok Sabha, Rajya Sabha, President, and Vice President."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1–9 on franchise, secret ballot, election types, EVMs, turnout, reservation, social media, and election results.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

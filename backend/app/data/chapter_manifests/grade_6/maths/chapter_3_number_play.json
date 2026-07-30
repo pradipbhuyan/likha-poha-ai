@@ -1,0 +1,76 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 3 Number Play",
+  "central_question": "How can patterns, digits, operations, estimates, and games reveal surprising properties of numbers?",
+  "in_scope_units": [
+    "3.1 Numbers Can Tell Us Things",
+    "3.2 Supercells",
+    "3.3 Patterns of Numbers on the Number Line",
+    "3.4 Playing with Digits",
+    "3.5 Pretty Palindromic Patterns",
+    "3.6 The Magic Number of Kaprekar",
+    "3.7 Clock and Calendar Numbers",
+    "3.8 Mental Math",
+    "3.9 Playing with Number Patterns",
+    "3.10 An Unsolved Mystery — the Collatz Conjecture",
+    "3.11 Simple Estimation",
+    "3.12 Games and Winning Strategies"
+  ],
+  "banned_topics": [
+    "Claiming the Collatz conjecture is proved",
+    "Formal probability",
+    "Algebraic sequence formulae beyond the chapter"
+  ],
+  "must_include_keywords": [
+    "neighbours",
+    "supercell",
+    "number line",
+    "digits",
+    "digit sum",
+    "systematic counting",
+    "palindrome",
+    "reverse",
+    "Kaprekar",
+    "descending order",
+    "ascending order",
+    "6174",
+    "clock",
+    "calendar",
+    "mental math",
+    "number pattern",
+    "Collatz conjecture",
+    "even number",
+    "odd number",
+    "half",
+    "multiply by 3 and add 1",
+    "estimate",
+    "reasonable approximation",
+    "Game 21",
+    "winning strategy"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A large value is automatically a supercell.",
+      "correction": "It must be larger than every relevant neighbouring cell."
+    },
+    {
+      "claim": "Kaprekar's routine works normally when all four digits are identical.",
+      "correction": "The chapter uses at least two distinct digits; identical digits lead to 0000."
+    },
+    {
+      "claim": "Collatz is a proved theorem.",
+      "correction": "It remains an unsolved conjecture."
+    }
+  ],
+  "recommended_example_progression": [
+    "Identify neighbours and supercells in Sections 3.1–3.2.",
+    "Use digit sums and palindromes in Sections 3.4–3.5.",
+    "Apply Kaprekar's routine in Section 3.6.",
+    "Follow Collatz sequences in Section 3.10.",
+    "Use estimation and Games 21 and 99 in Sections 3.11–3.12."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out, Math Talk, Collatz, estimation, and game challenges across Sections 3.1–3.12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

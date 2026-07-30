@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 6: Adolescence: A Stage of Growth and Change",
+  "central_question": "What physical, reproductive, emotional and behavioural changes occur during adolescence, why do they occur, and how can adolescents manage them responsibly and healthily?",
+  "in_scope_units": [
+    "Introduction through growth and maturity in plants, animals and humans, followed by the human life stages and adolescence as the transition from childhood to adulthood.",
+    "6.1 Growing With Age: The Teenage Years—Activity 6.1 and changes in height, weight, strength, body structure, voice, skin, hair and secondary sexual characteristics.",
+    "6.2 Changes that Indicate Reproductive Capability—puberty, internal reproductive maturity, menstruation and the scientific rejection of myths and taboos.",
+    "6.3 Emotional and Behavioural Changes in Adolescents—Activity 6.2 on mood swings, stronger emotions, sensitivity, creativity, compassion and thoughtful responses.",
+    "6.4 Making Adolescence a Joyful Experience—nutrition, personal and menstrual hygiene, physical activity, balanced social life, responsible social-media behaviour, cyberbullying and avoidance of harmful substances.",
+    "6.5 The ‘Why’ Question for Adolescence—hormones as chemicals that regulate growth, development, menstruation, mood and behaviour.",
+    "In a Nutshell, Let Us Enhance Our Learning Questions 1–10 and exploratory projects on mental health, child marriage and yoga."
+  ],
+  "banned_topics": [
+    "Detailed anatomy of the male and female reproductive systems.",
+    "Fertilisation, pregnancy and childbirth mechanisms.",
+    "Medical diagnosis or treatment of hormonal disorders.",
+    "Detailed digestion and respiration, which belong to later life-process chapters.",
+    "Prescriptive weight-loss or bodybuilding programmes."
+  ],
+  "must_include_keywords": [
+    "adolescence",
+    "10–19 years",
+    "puberty",
+    "growth",
+    "maturity",
+    "height",
+    "weight",
+    "strength",
+    "voice box",
+    "pimples",
+    "secondary sexual characteristics",
+    "menstrual cycle",
+    "menstruation",
+    "myths and taboos",
+    "mood swings",
+    "strong emotions",
+    "sensitivity",
+    "balanced diet",
+    "proteins",
+    "carbohydrates",
+    "fats",
+    "vitamins",
+    "minerals",
+    "calcium",
+    "iron",
+    "personal hygiene",
+    "menstrual hygiene",
+    "physical activity",
+    "social media",
+    "cyberbullying",
+    "privacy",
+    "addiction",
+    "substance abuse",
+    "say NO",
+    "hormones",
+    "Activity 6.1",
+    "Activity 6.2",
+    "Let Us Enhance Our Learning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Adolescence involves only visible physical changes.",
+      "correction": "It includes physical, biological, emotional and behavioural changes, as well as internal changes related to reproductive maturity."
+    },
+    {
+      "claim": "Every adolescent experiences the same changes at exactly the same age.",
+      "correction": "The chapter states that people experience life stages at their own pace, so the timing and duration of changes can vary."
+    },
+    {
+      "claim": "Menstruation is an illness or a reason for social isolation.",
+      "correction": "Menstruation is a natural biological process, and myths or taboos that stigmatise menstruating girls have no scientific basis."
+    },
+    {
+      "claim": "Trying an addictive substance once is harmless because a person can stop whenever they choose.",
+      "correction": "Addictive substances can create a strong urge for repeated use, so the chapter advises saying NO the first time and seeking help when needed."
+    },
+    {
+      "claim": "Hormones are harmful chemicals that appear only during adolescence.",
+      "correction": "Hormones are chemicals naturally produced in the body that regulate growth, development and other functions."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 6.1 and Table 6.1 to organise commonly observed changes during growing up.",
+    "Use the menstrual-cycle discussion and Let Us Enhance Our Learning Question 7 to connect biology with hygiene and dignity.",
+    "Use Activity 6.2 and Question 6 to analyse emotional and behavioural changes.",
+    "Use Activity 6.3 to match locally available foods with nutrients and their functions.",
+    "Use Activity 6.4 and Question 5 to examine responsible social-media behaviour and harmful peer pressure.",
+    "Use Questions 4, 9 and 10 for misconception correction, classification and healthy-lifestyle revision."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section 'Let Us Enhance Our Learning' contains Questions 1–10, followed by three Exploratory Projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

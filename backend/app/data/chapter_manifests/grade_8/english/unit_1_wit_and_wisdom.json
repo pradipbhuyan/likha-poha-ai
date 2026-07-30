@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 8",
+  "subject": "English",
+  "chapter": "Unit 1: Wit and Wisdom",
+  "central_question": "How do wit, close observation, humour, and wise judgement help people resolve conflict, uncover truth, and act more thoughtfully?",
+  "in_scope_units": [
+    "Pre-reading activities on qualities linked with wit, riddles, disagreement, humour, and problem-solving.",
+    "The Wit that Won Hearts—King Krishnadeva Raya, Queen Thirumalambal, Tenali Rama, the misunderstanding over a yawn, and the planned paddy-seed demonstration that restores harmony.",
+    "Language work linked to The Wit that Won Hearts—expressions, sound words, compound words, conditional clauses, listening, question intonation, and narrative-essay writing.",
+    "A Concrete Example—Mrs Jones’s unusual stone-filled garden, the speaker’s contrasting view, humour, imagery, refrain, irony, rhyme, and the pun in the title.",
+    "Language and communication linked to A Concrete Example—word choice, instruments, word formation, informal and formal apologies, notice writing, gardens, a herbarium, and the poem A Sea of Foliage.",
+    "Wisdom Paves the Way—four young men who infer a missing camel’s condition through observation and deduction, face an accusation, and earn places as advisers in the King of Ujjain’s court.",
+    "Language work linked to Wisdom Paves the Way—noun formation, expressions, multiple meanings, modal verbs, sentence stress, intonation, formal complaint writing, and staging a play.",
+    "Exploration of related tales and quotations about wit, wisdom, knowledge, harmony, and learning."
+  ],
+  "banned_topics": [
+    "A detailed political history of the Vijayanagara Empire beyond the background provided in the unit.",
+    "Agricultural science about increasing paddy yield, because the special seeds are part of Tenali Rama’s strategy rather than a farming lesson.",
+    "Medical diagnosis of yawning or sleep disorders.",
+    "Scientific veterinary diagnosis of camels beyond the clues and deductions stated in the play."
+  ],
+  "must_include_keywords": [
+    "King Krishnadeva Raya",
+    "Queen Thirumalambal",
+    "Tenali Rama",
+    "Vijayanagara Empire",
+    "Ashtadiggajas",
+    "yawning",
+    "pride",
+    "paddy seeds",
+    "reconciliation",
+    "conditional clauses",
+    "compound words",
+    "intonation",
+    "narrative essay",
+    "Mrs Jones",
+    "stone-filled garden",
+    "rockery",
+    "sundial",
+    "refrain",
+    "imagery",
+    "situational irony",
+    "pun",
+    "A Concrete Example",
+    "apology",
+    "notice writing",
+    "herbarium",
+    "Ram Datt",
+    "Shiv Datt",
+    "Har Datt",
+    "Dev Datt",
+    "King of Ujjain",
+    "camel tracks",
+    "observation",
+    "deduction",
+    "wisdom",
+    "modal verbs",
+    "sentence stress",
+    "formal complaint",
+    "staging a play"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The queen criticised the king’s poem and deliberately insulted him.",
+      "correction": "The queen was exhausted and yawned while he recited; the king wrongly interpreted the natural yawn as disrespect."
+    },
+    {
+      "claim": "Tenali Rama immediately told the king that he was wrong.",
+      "correction": "Tenali used an indirect, carefully planned demonstration about a person yawning while sowing paddy seeds so that the king would realise his own mistake."
+    },
+    {
+      "claim": "The speaker of A Concrete Example is Mrs Jones.",
+      "correction": "The speaker is Mrs Jones’s next-door neighbour, whose puzzled view of the garden creates much of the humour."
+    },
+    {
+      "claim": "The four young men had secretly seen or stolen the camel.",
+      "correction": "They had not seen it; they inferred its lameness, blindness, short tail, and stomach pain from tracks, untouched foliage, blood droplets, and the pattern of footprints."
+    },
+    {
+      "claim": "Knowledge and wisdom mean exactly the same thing in the unit.",
+      "correction": "The pre-reading section distinguishes knowledge as facts and information from wisdom as using knowledge with good judgement."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Let us discuss after The Wit that Won Hearts: rectify the false statements about the queen, Tenali Rama, the courtiers, and the king.",
+    "Use NCERT Let us think and reflect II.4 after The Wit that Won Hearts to trace Tenali Rama’s indirect strategy and its effect on the king.",
+    "Use NCERT Let us discuss II–VIII after A Concrete Example to analyse tone, AABBCC rhyme, imagery, refrain, irony, and the pun in the title.",
+    "Use NCERT Let us discuss Scene II after Wisdom Paves the Way to arrange each deduction and the King’s judgement in sequence.",
+    "Finish with NCERT Let us learn on conditional clauses and modal verbs, followed by the narrative essay, notice, formal complaint, and staging-a-play tasks."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit’s exercises appear after each selection under Let us discuss, Let us think and reflect, Let us learn, Let us listen, Let us speak, Let us write, and Let us explore.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

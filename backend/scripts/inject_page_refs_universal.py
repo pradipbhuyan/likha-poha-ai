@@ -100,6 +100,21 @@ _CITATION_PATTERNS = [
     (re.compile(r"\bExample\s+(\d+(?:\.\d+)?)\b", re.IGNORECASE), "Example {0}"),
     (re.compile(r"\bCase\s+Study\s+(\d+)\b", re.IGNORECASE), "Case Study {0}"),
     (re.compile(r"\bFig(?:ure)?\.?\s+(\d+\.\d+)\b", re.IGNORECASE), "Figure {0}"),
+    # Grade 6 Maths ("Ganita Prakash", NCF-SE 2023) prints numbered data
+    # tables as literal page headings ("Table 1: Examples of number
+    # sequences") without any Activity/Exercise/Example numbering at all --
+    # confirmed live against rag_visual_assets.nearby_text for Chapter 1.
+    (re.compile(r"\bTable\s+(\d+)\b", re.IGNORECASE), "Table {0}"),
+    # "Section N.N" is a narrative reference GPT-5.5 uses in some Grade 6
+    # Maths worked examples (e.g. "Using NCERT Section 1.3, explain why
+    # 36 is..."), but NCERT never prints the word "Section" on the page
+    # itself -- it prints the bare numbered heading ("1.3 Visualising
+    # Number Sequences"). A literal substring search for "Section 1.3"
+    # in nearby_text therefore always fails. This citation type gets a
+    # dedicated heading-regex resolution path in build_citation_page_map
+    # (see SECTION_CITATION_RE there) instead of the default literal
+    # substring match used by every other pattern above.
+    (re.compile(r"\bSection\s+(\d+\.\d+)\b", re.IGNORECASE), "Section {0}"),
     # Primary-stage (Grade 3-5) NCERT citation grammar -- no decimals.
     (re.compile(r"\bActivity\s+(\d+)\b(?!\.\d)", re.IGNORECASE), "Activity {0}"),
     (
@@ -203,6 +218,30 @@ def find_document_ids(grade: str, subject: str, chapter: str, board: str = "CBSE
         return []
 
 
+SECTION_CITATION_RE = re.compile(r"^Section\s+(\d+\.\d+)$", re.IGNORECASE)
+
+
+def _section_heading_page(rows: list[dict], number: str) -> dict | None:
+    """Resolve a 'Section N.N' citation to the page that actually
+    introduces it. NCERT never prints the word 'Section' -- it prints
+    the bare numbered heading ('1.3 Visualising Number Sequences'), so
+    this looks for `<number> <Capitalized word>` instead of a literal
+    substring match. The same bare number can also appear later in a
+    chapter (e.g. inside a back-of-chapter answer/exercise section) --
+    confirmed live for Grade 6 Maths Chapter 1/2 that these always sort
+    AFTER the real section-intro page, so the lowest matching page
+    number is taken as the real heading (`rows` is already ordered by
+    page_number ascending)."""
+    heading_re = re.compile(r"\b" + re.escape(number) + r"\s+[A-Z]")
+    for row in rows:
+        nearby = row.get("nearby_text") or ""
+        if not nearby or not row.get("asset_url"):
+            continue
+        if heading_re.search(normalize_decorative_headings(nearby)):
+            return {"page_number": row["page_number"], "asset_url": row["asset_url"]}
+    return None
+
+
 def build_citation_page_map(document_ids: list[int], citations: set[str]) -> dict:
     """For each requested citation label, search rag_visual_assets.
     nearby_text (across all given document_ids) for a page containing
@@ -225,6 +264,13 @@ def build_citation_page_map(document_ids: list[int], citations: set[str]) -> dic
         return {}
 
     for citation in citations:
+        section_match = SECTION_CITATION_RE.match(citation)
+        if section_match:
+            match = _section_heading_page(rows, section_match.group(1))
+            if match:
+                result[citation] = match
+            continue
+
         for row in rows:
             nearby = row.get("nearby_text") or ""
             if not nearby:

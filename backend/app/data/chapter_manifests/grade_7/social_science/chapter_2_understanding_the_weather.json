@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: Understanding the Weather",
+  "central_question": "How are weather elements measured and interpreted so that people can describe conditions and prepare for hazards?",
+  "in_scope_units": [
+    "Weather and its Elements—atmosphere, troposphere, temperature, precipitation, pressure, wind and humidity.",
+    "Traditional prediction and meteorology—Nature’s clues and systematic study.",
+    "Temperature instruments—thermometers, scales, maximum, minimum, range and mean.",
+    "Precipitation—rain gauges and rainfall depth.",
+    "Atmospheric pressure—altitude, barometers, millibars and low-pressure systems.",
+    "Wind—high-to-low pressure movement, vane, sock and anemometer.",
+    "Humidity—evaporation, relative humidity and hygrometers.",
+    "Weather Stations and Automated Weather Stations.",
+    "Predicting the Weather—IMD warnings, extreme events, public preparation and evacuation.",
+    "Questions and activities 1–4—instrument matching, forecast interpretation, rain-gauge placement and IMD reporting."
+  ],
+  "banned_topics": [
+    "Long-term climate classification.",
+    "Detailed atmospheric layers beyond the troposphere.",
+    "Detailed climate-change science.",
+    "Medical diagnosis using thermometers."
+  ],
+  "must_include_keywords": [
+    "weather",
+    "atmosphere",
+    "troposphere",
+    "temperature",
+    "precipitation",
+    "atmospheric pressure",
+    "wind",
+    "humidity",
+    "water vapour",
+    "meteorology",
+    "forecast",
+    "thermometer",
+    "Celsius",
+    "Fahrenheit",
+    "ambient temperature",
+    "maximum temperature",
+    "minimum temperature",
+    "range of temperature",
+    "mean daily temperature",
+    "rain gauge",
+    "barometer",
+    "millibar",
+    "low-pressure system",
+    "acclimatise",
+    "wind vane",
+    "wind sock",
+    "anemometer",
+    "relative humidity",
+    "hygrometer",
+    "weather station",
+    "Automated Weather Station",
+    "India Meteorological Department",
+    "weather warning",
+    "heat wave",
+    "cyclone",
+    "fishermen",
+    "evacuation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Weather is a long-term regional pattern.",
+      "correction": "Weather is the state of the atmosphere at a particular time and place."
+    },
+    {
+      "claim": "A rain gauge measures total citywide rain volume.",
+      "correction": "It measures rainfall depth at a properly placed observation point."
+    },
+    {
+      "claim": "Pressure is higher at high altitude.",
+      "correction": "Pressure generally decreases as altitude increases."
+    },
+    {
+      "claim": "A wind vane and anemometer measure the same thing.",
+      "correction": "A vane indicates direction, while an anemometer measures wind speed."
+    },
+    {
+      "claim": "High humidity makes clothes dry faster.",
+      "correction": "High humidity slows evaporation and drying."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Questions and activities Q1 to match instruments and elements.",
+    "Use Q2 to interpret 29°C and 84% humidity.",
+    "Use Q3 to select a suitable rain-gauge site.",
+    "Use Q4 to report IMD Jammu and Kashmir data.",
+    "Use the IMD map dated 19 May 2024 to discuss warning levels."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions and activities 1–4.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

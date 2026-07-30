@@ -1,0 +1,93 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 3: A Story of Numbers",
+    "central_question": "How did people develop increasingly efficient number systems, and why is the Indian place-value system with zero especially powerful?",
+    "in_scope_units": [
+      "Reema's curiosity and the historical need for counting.",
+      "Origin and worldwide spread of Indian numerals and zero.",
+      "The mechanism of counting through one-to-one mapping with objects, names and symbols.",
+      "Definitions of number system, numeral and landmark number.",
+      "Early systems using body parts and tally marks.",
+      "Additive number systems and their limits.",
+      "Base-n systems and landmark numbers based on powers.",
+      "Positional systems from Mesopotamian, Mayan and Chinese traditions.",
+      "The Indian base-10 positional system with ten digits including zero.",
+      "Comparison of blank-place placeholders with zero as a full number and digit."
+    ],
+    "banned_topics": [
+      "Detailed arithmetic in modern binary and hexadecimal systems.",
+      "Chronologies of civilisations unrelated to their number representations.",
+      "Modern computer encoding."
+    ],
+    "must_include_keywords": [
+      "counting",
+      "one-to-one mapping",
+      "standard sequence",
+      "number system",
+      "numeral",
+      "landmark number",
+      "base-n",
+      "additive system",
+      "positional system",
+      "place value",
+      "tally marks",
+      "Ishango bone",
+      "body-part counting",
+      "Roman numerals",
+      "Mesopotamian system",
+      "Babylonian",
+      "Mayan system",
+      "Chinese rod numerals",
+      "Indian number system",
+      "Hindu numerals",
+      "Hindu-Arabic numerals",
+      "zero",
+      "Bakhshali manuscript",
+      "Aryabhata",
+      "Al-Khwarizmi",
+      "Fibonacci",
+      "decimal system",
+      "blank space",
+      "efficient computation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The numerals 0–9 originated in Europe.",
+        "correction": "The modern ten-digit system originated and developed in India and later spread through the Arab world to Europe and beyond."
+      },
+      {
+        "claim": "A number and a numeral are exactly the same idea.",
+        "correction": "A number is the quantity or abstract idea; a numeral is a written symbol or group of symbols used to represent it."
+      },
+      {
+        "claim": "Every early number system was positional.",
+        "correction": "Many early systems were additive; positional place-value systems were a later and more efficient development."
+      },
+      {
+        "claim": "A blank space is always as clear and powerful as the digit zero.",
+        "correction": "Blank spaces can be ambiguous, while zero acts as an explicit digit and number, making place-value notation unambiguous."
+      },
+      {
+        "claim": "The term 'Hindu' in Hindu numerals names a religion.",
+        "correction": "In this historical term it refers to the geography or people from whom the numerals came."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the herd-and-sticks activity to demonstrate one-to-one mapping.",
+      "Use the Roman-symbol table to discuss a finite symbol set and its limitations.",
+      "Decode a Mesopotamian or Chinese positional numeral using landmark positions.",
+      "Use the Chinese example 2634 = 2×10³ + 6×10² + 3×10 + 4.",
+      "Compare an ambiguous blank position with the explicit use of 0 in the Indian system."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Figure it Out and Math Talk tasks occur after the counting mechanism and each historical-number-system section, followed by a chapter summary on number systems, bases, place value and zero."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 3: A Story of Numbers\n\n## What you will learn\nYou will understand why humans needed counting and how one-to-one mapping works. You will distinguish a number from the symbols used to write it.\n\n## Simple explanation\nBefore modern numerals, people could match each animal with a stick, pebble, sound or body part. The matching preserves quantity even when no number name is used.\n\n## Step-by-step breakdown\n- **Need for counting**: Food, livestock, trade, offerings and passing days all created counting needs.\n- **One-to-one mapping**: Each object is paired with exactly one counting object or sound.\n- **Fixed order**: A counting sequence must have a stable order.\n- **Number system**: A standard ordered sequence used to count and represent quantities.\n- **Numeral**: A written symbol or string of symbols representing a number.\n\n## Worked example\nQuestion: A herder keeps one stick for each cow. How can the sticks reveal that a cow is missing?\n\nSolution:\n- Step 1: At the start, pair each cow with one stick.\n- Step 2: When the cows return, pair every returning cow with one stored stick.\n- Step 3: If one stick remains unpaired, one cow has not returned.\n- Step 4: No modern number names are needed; the conclusion comes from the one-to-one mapping.\n- Final answer: An unmatched stick shows that a cow is missing.\n\n## Common mistake\nDo not allow two cows to be matched with the same stick. That would break the one-to-one condition and make the count unreliable.\n\n## Quick check question\nQuestion: What is a numeral?\nAnswer: A written symbol or group of symbols used to represent a number.\nExplanation: For example, the quantity five is a number, while 5, V or five tally marks are different numerals for that quantity.\n\n## Summary\n- Counting can be performed through matching.\n- A number system provides a fixed sequence.\n- Numerals are written representations of numbers.",
+    "Core explanation": "# Core explanation: Chapter 3: A Story of Numbers\n\n## What you will learn\nYou will trace the development from tally marks and body-part sequences to additive systems. You will see why larger quantities create pressure for more efficient representations.\n\n## Simple explanation\nThe earliest representations often used one mark per object. Later systems introduced special landmark symbols so that large numbers did not require an enormous number of marks.\n\n## Step-by-step breakdown\n- **Body-part sequence**: A fixed route through fingers and other body parts can serve as an ordered counting system.\n- **Tally marks**: One notch is made for each object counted.\n- **Archaeological examples**: The chapter mentions the Ishango and Lebombo bones as ancient marked bones.\n- **Additive principle**: A numeral's value is found by adding the values of its symbols.\n- **Roman system**: Symbols such as I, V and X reduce repeated marks but require more symbols and rules for larger numbers.\n- **Limitation**: Without place value, representing arbitrarily large numbers efficiently is difficult.\n\n## Worked example\nQuestion: Why is a tally system less convenient for representing a large collection than a landmark-symbol system?\n\nSolution:\n- Step 1: A tally system requires one mark per object.\n- Step 2: Therefore, a collection of N objects needs N marks.\n- Step 3: A landmark system uses a symbol such as one representing ten or a higher unit.\n- Step 4: Repeated groups can then be compressed into fewer written symbols.\n- Final answer: Landmark symbols make large quantities shorter and easier to read than one-mark-per-object tallies.\n\n## Common mistake\nDo not call every system that uses special symbols a place-value system. Additive systems can have special symbols without the symbol's position changing its value.\n\n## Quick check question\nQuestion: Is the Roman numeral VIII mainly additive?\nAnswer: Yes.\nExplanation: Its value is obtained by adding V + I + I + I = 8.\n\n## Summary\n- Tallies record quantity directly.\n- Landmark symbols compress repeated groups.\n- Additive systems add symbol values.\n- Place value is a separate idea from merely having symbols.",
+    "Worked examples": "# Worked examples: Chapter 3: A Story of Numbers\n\n## What you will learn\nYou will learn the ideas of landmark numbers, base and positional notation. You will decode a historical place-value numeral using expanded form.\n\n## Simple explanation\nIn a base-n system, powers of n act as landmark numbers. In a positional system, a symbol's value depends on both the symbol and its position.\n\n## Step-by-step breakdown\n- **Base**: The common factor whose powers organise the landmark places.\n- **Base 10**: The landmark places are 1, 10, 100, 1000 and so on.\n- **Place value**: A digit in the thousands place contributes digit × 1000.\n- **Mesopotamian system**: Used a base-60 positional structure.\n- **Mayan system**: Used positional ideas with its own base and symbols.\n- **Chinese rods**: Used alternating rod forms in a base-10 positional arrangement.\n\n## Worked example\nQuestion: The chapter's Chinese rod numeral has digits 2, 6, 3 and 4 in the 10³, 10², 10¹ and 10⁰ places. Decode it.\n\nSolution:\n- Step 1: Write the expanded form: 2 × 10³ + 6 × 10² + 3 × 10 + 4 × 1.\n- Step 2: Evaluate each term: 2 × 1000 = 2000; 6 × 100 = 600; 3 × 10 = 30; 4 × 1 = 4.\n- Step 3: Add the place values: 2000 + 600 + 30 + 4.\n- Step 4: The total is 2634.\n- Final answer: The numeral represents 2634.\n\n## Common mistake\nDo not read the symbols by merely adding 2 + 6 + 3 + 4. Their positions multiply them by different landmark powers.\n\n## Quick check question\nQuestion: In base 10, what value does the digit 7 have in 70,000?\nAnswer: 70,000.\nExplanation: The digit is in the ten-thousands place, so its contribution is 7 × 10,000.\n\n## Summary\n- A base determines the landmark powers.\n- Position changes a digit's contribution.\n- Expanded form makes positional notation explicit.",
+    "Exam-style problems": "# Exam-style problems: Chapter 3: A Story of Numbers\n\n## What you will learn\nYou will compare the placeholder methods used in early positional systems with the Indian use of zero. You will explain why zero makes notation unambiguous.\n\n## Simple explanation\nSome positional systems left a blank when a place had no value. A blank can be difficult to see, especially at the beginning or end. Writing 0 explicitly preserves the place.\n\n## Step-by-step breakdown\n- **Blank placeholder**: An empty position indicates that a landmark place is skipped.\n- **Ambiguity**: Spacing may be lost or interpreted incorrectly.\n- **Zero digit**: 0 explicitly records an empty place.\n- **Zero as number**: The Indian system treats zero on par with other digits.\n- **Finite symbols**: All whole numbers can be written with only ten digits 0–9.\n- **Computation**: Clear place value supports efficient written algorithms.\n\n## Worked example\nQuestion: Explain the difference between 204 and 24 using place value.\n\nSolution:\n- Step 1: Write 204 in expanded form: 2 × 100 + 0 × 10 + 4 × 1.\n- Step 2: Write 24 in expanded form: 2 × 10 + 4 × 1.\n- Step 3: The zero in 204 preserves the empty tens place.\n- Step 4: Without that explicit place, moving 2 one position right changes its value from 200 to 20.\n- Final answer: 204 and 24 differ because zero preserves the tens place in 204.\n\n## Common mistake\nDo not say that zero 'has no importance' because its numerical contribution is zero. Its positional role can change the values of all surrounding digits.\n\n## Quick check question\nQuestion: What number is represented by 5 × 1000 + 0 × 100 + 8 × 10 + 2?\nAnswer: 5082.\nExplanation: The digits occupy the thousands, hundreds, tens and units places respectively.\n\n## Summary\n- Zero is both a number and a positional digit.\n- An explicit zero prevents place-value ambiguity.\n- The ten-digit Indian system represents all whole numbers efficiently.",
+    "Revision and recap": "# Revision and recap: Chapter 3: A Story of Numbers\n\n## What you will learn\nYou will revise the historical journey of the Indian numerals and the main ideas that make a number system effective.\n\n## Simple explanation\nThe chapter presents number notation as a human invention that evolved across regions. The Indian base-10 place-value system, with zero, combined compact notation with efficient computation.\n\n## Step-by-step breakdown\n- **Indian origin**: The digits and place-value structure developed in India roughly two thousand years ago.\n- **Bakhshali manuscript**: An early known use of ten digits including a dot-form zero is discussed.\n- **Aryabhata**: Used and explained the Indian system in extensive computation.\n- **Transmission**: The system reached the Arab world and was promoted by scholars including Al-Khwarizmi and Al-Kindi.\n- **Europe**: Fibonacci argued for its adoption, though widespread use took centuries.\n- **Terminology**: Indian, Hindu and Hindu-Arabic numerals recognise the system's origin and transmission.\n- **Key power**: Ten digits, positional value and zero allow unambiguous representation and efficient arithmetic.\n\n## Worked example\nQuestion: Why is the name 'Hindu-Arabic numerals' historically informative?\n\nSolution:\n- Step 1: The numeral system originated and developed in India.\n- Step 2: It was transmitted to and studied in the Arab world.\n- Step 3: European scholars encountered it through Arabic mathematical works.\n- Step 4: The combined name reflects both Indian origin and a major route of transmission.\n- Final answer: The name recognises the Indian origin and the Arab-world transmission of the system.\n\n## Common mistake\nDo not interpret 'Hindu' here as a religious classification; the chapter uses it for the historical geography or people of origin.\n\n## Quick check question\nQuestion: State two defining features of the modern Indian number system.\nAnswer: It is a base-10 positional system and uses ten digits including 0.\nExplanation: The place determines each digit's value, and zero explicitly represents an empty place while also functioning as a number.\n\n## Summary\n- Number systems evolved to make counting and computation easier.\n- Place value connects positions with landmark powers.\n- Zero removes ambiguity.\n- The Indian numeral system spread worldwide."
+  }
+}

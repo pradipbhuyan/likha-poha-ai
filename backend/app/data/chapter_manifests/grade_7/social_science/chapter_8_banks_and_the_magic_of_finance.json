@@ -1,0 +1,106 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 8: Banks and the Magic of Finance",
+  "central_question": "How do banks, payment systems, financial institutions and stock markets move money, support saving and credit, and contribute to development while requiring regulation and safety?",
+  "in_scope_units": [
+    "Introduction—financial infrastructure as banks, payment systems, stock markets and institutions supporting households, businesses and government.",
+    "What banks do—accounts, deposits, withdrawals, saving and borrowing through the Navdeep and Rima example.",
+    "Types of bank account—savings, current and fixed deposit accounts.",
+    "Interest and compounding—growth of savings and the chessboard story of repeated doubling.",
+    "Passbooks, debit and credit—recording financial transactions.",
+    "Loans and credit—purposes of borrowing, repayment, interest and the bank’s interest-rate spread.",
+    "Pradhan Mantri Jan Dhan Yojana—wider access, direct transfers and banking inclusion.",
+    "Other financial institutions—post-office savings, IFCI and NABARD.",
+    "Reserve Bank of India—central bank, banker to banks, currency issue, benchmark rates and regulation.",
+    "Historical lending—temple credit and copper-plate agreements.",
+    "Payment Modes and Systems—withdrawal slips, ATMs, PINs and account access.",
+    "Cheques, POS, internet banking and mobile payments—account-to-account transfers.",
+    "Unified Payments Interface—NPCI, QR codes, UPI PIN, cashless payment and international adoption.",
+    "Stock Market—shares, stock, investment, BSE, company finance, boom, crash and price fluctuations.",
+    "Financial fraud—fake calls, harmful links, OTP and PIN safety, helpline 1930 and cybercrime reporting.",
+    "Before we move on and Questions and activities 1–12—financial infrastructure, accounts, compounding, money flow, stock markets, digital safety and practical banking."
+  ],
+  "banned_topics": [
+    "Advanced investment advice, stock selection or promises of returns.",
+    "Detailed monetary policy beyond the RBI roles and benchmark interest rate named in the chapter.",
+    "Cryptocurrency, which is not part of the chapter.",
+    "Detailed barter, coinage and market supply chains covered in earlier chapters."
+  ],
+  "must_include_keywords": [
+    "financial infrastructure",
+    "bank",
+    "deposit",
+    "bank account",
+    "savings account",
+    "current account",
+    "fixed deposit",
+    "interest",
+    "compounding",
+    "passbook",
+    "debit",
+    "credit",
+    "loan",
+    "borrower",
+    "interest-rate spread",
+    "Jan Dhan Yojana",
+    "post office",
+    "IFCI",
+    "NABARD",
+    "Reserve Bank of India",
+    "central bank",
+    "benchmark interest rate",
+    "ATM",
+    "PIN",
+    "cheque",
+    "POS machine",
+    "netbanking",
+    "BHIM",
+    "UPI",
+    "NPCI",
+    "QR code",
+    "share",
+    "stock",
+    "Bombay Stock Exchange",
+    "stock market boom",
+    "stock market crash",
+    "OTP",
+    "cyber fraud"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Banks store all deposited money without using it.",
+      "correction": "Banks keep reserves and also lend part of deposits to borrowers while paying depositors interest."
+    },
+    {
+      "claim": "Interest always benefits everyone.",
+      "correction": "Interest grows savings for depositors but increases the amount borrowers must repay; compounding can strengthen either effect."
+    },
+    {
+      "claim": "RBI is an ordinary commercial bank for individual savings accounts.",
+      "correction": "RBI is India’s central bank and banker to banks, supervising the system and controlling currency and benchmark rates."
+    },
+    {
+      "claim": "A debit card and a credit entry in a passbook mean the same thing.",
+      "correction": "In the chapter’s transaction language, debit is money leaving an account and credit is money entering it; a debit card accesses the holder’s bank funds."
+    },
+    {
+      "claim": "UPI payments are safe even when a user shares the UPI PIN or OTP.",
+      "correction": "The chapter warns never to share PINs, passwords, OTPs or sensitive bank information and to report fraud promptly."
+    },
+    {
+      "claim": "Buying a share guarantees a profit.",
+      "correction": "Share prices rise and fall with company performance, policy, instability, war and economic shocks, so gains and losses are both possible."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Q1 to define financial infrastructure and connect it with funding and use of physical infrastructure.",
+    "Use NCERT Q3 to compare compounding from the perspective of savers and borrowers.",
+    "Use NCERT Q4 to trace money between households, banks and businesses and identify government support.",
+    "Use NCERT Q7 to explain how shares connect individual savings with company finance.",
+    "Use NCERT Q8 to design a balanced approach to digital convenience and fraud prevention."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

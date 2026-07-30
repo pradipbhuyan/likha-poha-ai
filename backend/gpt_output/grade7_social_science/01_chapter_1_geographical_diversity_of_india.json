@@ -1,0 +1,103 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Social Science",
+    "chapter": "Chapter 1: Geographical Diversity of India",
+    "central_question": "How do India’s major physical regions shape natural life, human settlement, economic activity, culture and unity?",
+    "in_scope_units": [
+      "India and the Indian Subcontinent—location, natural boundaries, physical maps, altitude colours and five broad regions.",
+      "The Himalayas—formation, Himadri, Himachal and Shivalik ranges, glaciers, rivers, biodiversity and culture.",
+      "The cold desert of India—Ladakh, Pangong Tso, wildlife, monasteries and adaptation.",
+      "The Gangetic Plains—river systems, fertile soils, farming, population, transport and wildlife.",
+      "The Great Indian Desert and Aravalli Hills—dunes, water scarcity, conservation, minerals and the barrier role of the Aravallis.",
+      "The Peninsular Plateau—Western and Eastern Ghats, Deccan Plateau, rivers, forests, minerals, tribes and waterfalls.",
+      "India’s coastlines—west-coast estuaries, east-coast deltas, ports and farming.",
+      "Indian Islands—Lakshadweep, Andaman and Nicobar Islands, coral, volcanoes, marine space and history.",
+      "The Sundarbans and hills of the Northeast—mangroves, heavy rainfall, biodiversity and living root bridges.",
+      "Questions and activities 1–9—rivers, maps, UNESCO sites, food preservation and geographical unity."
+    ],
+    "banned_topics": [
+      "Detailed weather instruments and forecasting.",
+      "Detailed monsoon formation and climate classification.",
+      "Modern constitutional government.",
+      "Advanced plate-tectonic theory beyond the chapter’s simple account."
+    ],
+    "must_include_keywords": [
+      "Indian Subcontinent",
+      "physical map",
+      "altitude",
+      "Himalayas",
+      "Water Tower of Asia",
+      "Himadri",
+      "Himachal",
+      "Shivalik Hills",
+      "Gangotri Glacier",
+      "Ladakh",
+      "Pangong Tso",
+      "Gangetic Plains",
+      "Ganga",
+      "Indus",
+      "Brahmaputra",
+      "Thar Desert",
+      "sand dunes",
+      "taanka",
+      "kunds",
+      "Aravalli Hills",
+      "Peninsular Plateau",
+      "Western Ghats",
+      "Eastern Ghats",
+      "Deccan Plateau",
+      "Godavari",
+      "Krishna",
+      "Narmada",
+      "coastline",
+      "estuary",
+      "delta",
+      "Lakshadweep",
+      "Andaman and Nicobar Islands",
+      "Barren Island",
+      "Sundarbans",
+      "mangroves",
+      "Meghalaya Plateau",
+      "living root bridges",
+      "UNESCO World Heritage Site"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "All deserts in India are hot.",
+        "correction": "The chapter describes the hot Thar Desert and the cold desert of Ladakh."
+      },
+      {
+        "claim": "The Himalayas are one uniform range.",
+        "correction": "They are broadly divided into Himadri, Himachal and Shivalik ranges."
+      },
+      {
+        "claim": "All plateau rivers flow east.",
+        "correction": "Many flow east, but the Narmada and Tapti flow west."
+      },
+      {
+        "claim": "Lakshadweep and the Andaman and Nicobar Islands have the same origin.",
+        "correction": "Lakshadweep is coral-based, while the Andaman and Nicobar group includes volcanic islands."
+      },
+      {
+        "claim": "Geographical diversity only separates people.",
+        "correction": "Rivers, routes, trade and shared history also connect India’s regions."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Questions and activities Q3 to explain why India is called a mini-continent.",
+      "Use Q4 to trace a major river from source to sea.",
+      "Use Q5 to explain the term peninsular plateau.",
+      "Use Q7 to connect a student’s location with physical maps.",
+      "Use Q9 to explain diversity within unity."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions and activities 1–9."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 1: Geographical Diversity of India\n\n## What you will learn\nYou will locate India within Asia and identify its broad physical regions. You will also learn how a physical map and its legend show height and landforms.\n\n## Simple explanation\nIndia is a large part of Asia with mountains, plains, deserts, plateaus, coasts and islands. These features form natural boundaries and shape life inside the country.\n\n## Step-by-step breakdown\n- **Indian Subcontinent**: India and Pakistan, Bangladesh, Nepal, Bhutan, Sri Lanka and Myanmar form the Indian Subcontinent.\n- **Five broad regions**: The chapter groups India into the mountain zone, Ganga–Indus plains, desert, southern peninsula and islands.\n- **Natural boundaries**: The Himalayas, Arabian Sea, Indian Ocean, Bay of Bengal and Thar help define India’s setting.\n- **Physical maps**: Colours and a legend indicate altitude and help identify major landforms.\n- **Human impact**: Geography influences climate, settlement, culture, history and economic opportunity.\n\n## Worked example\nQuestion: Why can India be geographically distinct while remaining part of Asia?\n\nSolution:\n- Step 1: The chapter identifies a northern mountain barrier, seas on three sides, a western desert and a varied internal landscape.\n- Step 2: These features create a recognisable physical space with both natural boundaries and regional variety.\n- Final answer: India is distinct because its position and landforms form a clearly shaped and highly diverse region within Asia.\n\n## Common mistake\nDo not confuse a physical map with a political map; one shows landforms and elevation, the other shows administrative borders.\n\n## Quick check question\nQuestion: What helps a reader interpret the colours on a physical map?\nAnswer: The map legend.\nExplanation: The legend explains the altitude or landform represented by each colour.\n\n## Summary\n- India is part of Asia and the Indian Subcontinent.\n- Physical maps show landforms and altitude.\n- Natural boundaries influence India’s national character.",
+    "Core explanation": "# Core explanation: Chapter 1: Geographical Diversity of India\n\n## What you will learn\nYou will study the Himalayas, Ladakh and the Gangetic Plains. You will connect glaciers and rivers with biodiversity, farming and dense settlement.\n\n## Simple explanation\nThe northern mountains store snow and ice, while their rivers nourish the plains below. High mountains and low plains therefore form one linked system.\n\n## Step-by-step breakdown\n- **Himalayan formation**: The Indian landmass collided with Eurasia, folding the land into mountains.\n- **Water Tower of Asia**: Snowmelt feeds the Ganga, Indus and Brahmaputra systems.\n- **Himadri**: The highest rugged range remains snow-covered and has few settlements.\n- **Himachal**: Lower elevations support biodiversity, settlements and hill stations.\n- **Shivalik Hills**: Forested foothills form a transition to the northern plains.\n- **Ladakh**: A cold desert with little rainfall, rugged valleys, Pangong Tso and distinctive wildlife.\n- **Gangetic Plains**: Rivers bring water and minerals, creating fertile land and supporting farming.\n- **Connectivity**: Flat land supports roads, railways, trade and dense population.\n\n## Worked example\nQuestion: Why are the Himalayas both a barrier and a source of life?\n\nSolution:\n- Step 1: They form a massive northern wall, but their snow and glaciers feed major rivers.\n- Step 2: Those rivers supply water and fertile material to plains where millions live and work.\n- Final answer: The Himalayas shape boundaries while sustaining agriculture, settlements, biodiversity and culture.\n\n## Common mistake\nThe plains are not fertile only because they are flat; rivers enrich their soil with water and minerals.\n\n## Quick check question\nQuestion: Which three river systems are linked to the Himalayas and northern plains?\nAnswer: The Ganga, Indus and Brahmaputra systems.\nExplanation: They are fed by the mountain region and support life across the plains.\n\n## Summary\n- The Himalayas have three broad ranges.\n- Ladakh is a cold desert.\n- Mountain rivers sustain the northern plains.",
+    "Worked examples": "# Worked examples: Chapter 1: Geographical Diversity of India\n\n## What you will learn\nYou will examine the Thar Desert, Aravalli Hills and Peninsular Plateau. You will see how physical conditions shape conservation, farming, mining and energy.\n\n## Simple explanation\nPeople adapt differently to dry deserts and resource-rich plateaus. Scarce water encourages conservation, while rivers, forests and minerals support varied livelihoods.\n\n## Step-by-step breakdown\n- **Thar Desert**: The region has dunes, hot days, cold nights and limited water.\n- **Dune formation**: Wind moves and shapes sand into hill-like forms.\n- **Water conservation**: Taanka and kunds store rainwater, and households reuse small amounts of water.\n- **Aravalli Hills**: Ancient hills help limit eastward desert expansion and contain useful minerals.\n- **Peninsular Plateau**: A raised triangular region bordered by the Western and Eastern Ghats.\n- **Rivers**: Godavari, Krishna and Mahanadi flow east; Narmada and Tapti flow west.\n- **Forests and tribes**: Forests support communities such as the Gond, Baiga, Bhil and Korku.\n- **Waterfalls**: Rocky surfaces create waterfalls used for tourism, irrigation and hydroelectricity.\n\n## Worked example\nQuestion: How do the Thar and the plateau show two different kinds of adaptation?\n\nSolution:\n- Step 1: The Thar requires strict water conservation, while the plateau offers rivers, forests, minerals and waterfalls.\n- Step 2: Each environment presents different limits and opportunities.\n- Final answer: Desert life centres on saving scarce water, while plateau life uses diverse natural resources for farming, industry and energy.\n\n## Common mistake\nA plateau is not perfectly flat; it is elevated and can have rocky, uneven surfaces and steep sides.\n\n## Quick check question\nQuestion: Why do many plateau rivers flow east?\nAnswer: The plateau tilts slightly towards the east.\nExplanation: The slope directs many rivers towards the Bay of Bengal, though some flow west.\n\n## Summary\n- The Thar demands careful water use.\n- The Aravallis influence resources and desert spread.\n- The plateau supports rivers, forests, minerals and power.",
+    "Exam-style problems": "# Exam-style problems: Chapter 1: Geographical Diversity of India\n\n## What you will learn\nYou will compare the west and east coasts and study India’s islands. You will distinguish estuaries, deltas, coral islands and volcanic islands.\n\n## Simple explanation\nCoasts are meeting zones of rivers, land and sea. Their shape affects farming, ports and trade, while islands extend India’s ecological and strategic reach.\n\n## Step-by-step breakdown\n- **West Coast**: It stretches from Gujarat to Kerala and has short rivers, creeks and estuaries.\n- **East Coast**: It has broader plains and major deltas formed by large rivers.\n- **Deltas**: Deposited sediments create fertile triangular or fan-shaped land.\n- **Ports**: Coastal cities have been centres of economic activity for millennia.\n- **Lakshadweep**: An Arabian Sea archipelago of 36 coral islands.\n- **Andaman and Nicobar**: A Bay of Bengal archipelago with more than 500 large and small volcanic islands.\n- **Barren Island**: The only active volcano in India.\n- **Cellular Jail**: A preserved site recalling the sacrifices of imprisoned freedom fighters.\n\n## Worked example\nQuestion: Why are major deltas more characteristic of the east coast?\n\nSolution:\n- Step 1: Large east-flowing rivers deposit sediment near the Bay of Bengal, while many west-coast rivers are shorter and form estuaries.\n- Step 2: Different slopes and sediment loads create different river-mouth landforms.\n- Final answer: The broad east coast receives major sediment-rich rivers, so large fertile deltas develop there.\n\n## Common mistake\nDelta and estuary are not synonyms; a delta is built by deposits, while an estuary is a river mouth influenced by the sea.\n\n## Quick check question\nQuestion: Which island group is made mainly of coral islands?\nAnswer: Lakshadweep.\nExplanation: The chapter identifies its 36 islands as coral formations in the Arabian Sea.\n\n## Summary\n- The two coasts have different landforms.\n- Deltas support fertile farming land.\n- Lakshadweep is coral-based.\n- The Andaman and Nicobar group includes volcanic islands.",
+    "Revision and recap": "# Revision and recap: Chapter 1: Geographical Diversity of India\n\n## What you will learn\nYou will revise the Sundarbans and the hills of the Northeast. You will connect biodiversity and community knowledge with diversity within national unity.\n\n## Simple explanation\nThe eastern delta and rainy northeastern hills show how people adapt to rivers, forests and heavy rainfall while developing distinctive cultures.\n\n## Step-by-step breakdown\n- **Sundarbans**: A delta shared by India and Bangladesh where river, sea and land meet.\n- **Mangroves**: Mangrove forests support wildlife such as the Royal Bengal Tiger.\n- **UNESCO site**: The Sundarbans are recognised as a heritage landscape.\n- **Meghalaya Plateau**: The Garo, Khasi and Jaintia hills receive very heavy rainfall.\n- **Living root bridges**: Communities weave living roots over many years to form useful bridges.\n- **Mawlynnong**: The chapter highlights cleanliness, bamboo dustbins and eco-friendly practices.\n- **Unity**: Different landscapes create different livelihoods, yet rivers, routes and shared civilisation connect regions.\n\n## Worked example\nQuestion: How can geography create both diversity and unity?\n\nSolution:\n- Step 1: Different landforms produce different resources, occupations, food, houses and customs.\n- Step 2: The same rivers, routes, trade networks and historical interactions link these regions.\n- Final answer: India’s geography encourages regional variety while also creating interdependence and shared national space.\n\n## Common mistake\nUnity does not require every region to look or live the same.\n\n## Quick check question\nQuestion: What natural material forms the living root bridges?\nAnswer: The living roots of trees.\nExplanation: The roots are woven over time to make bridges suited to a wet environment.\n\n## Summary\n- The Sundarbans combine river, sea and mangroves.\n- The Northeast shows high-rainfall adaptation.\n- Geographical variety and connection coexist."
+  }
+}

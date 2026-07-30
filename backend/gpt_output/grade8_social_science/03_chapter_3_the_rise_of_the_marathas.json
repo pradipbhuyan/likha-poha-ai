@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Social Science",
+    "chapter": "Chapter 3: The Rise of the Marathas",
+    "central_question": "How did the Marathas build, administer, defend, and culturally sustain a pan-Indian power before British dominance?",
+    "in_scope_units": [
+      "Maratha identity, Marathi literary culture, bhakti traditions, and the social setting of Maharashtra.",
+      "Foundation of Maratha power under Chhatrapati Shivaji and the vision of Swarajya.",
+      "Forts, guerrilla warfare, navy, coastal security, Surat, Agra, coronation, and southern expansion.",
+      "The Marathas after Shivaji: Sambhaji, Rajaram, Tarabai, Peshwas, Panipat, Delhi, and Anglo-Maratha wars.",
+      "Civil administration, ashta pradhana mandala, salaries, transfers, welfare, taxes, and coinage.",
+      "Military administration, forts, maritime supremacy, Kanhoji Angre, justice, and trade networks.",
+      "Cultural revival through language, religious respect, women leaders, Thanjavur, Serfoji II, and the Maratha legacy."
+    ],
+    "banned_topics": [
+      "Detailed Mughal history before the rise of the Marathas, which belongs to Chapter 2.",
+      "Detailed British colonial administration after 1818, which belongs to Chapter 4.",
+      "Modern political claims not made in the chapter."
+    ],
+    "must_include_keywords": [
+      "Marathas",
+      "Marathi",
+      "bhakti",
+      "Dnyaneshwar",
+      "Tukaram",
+      "Ramdas",
+      "Chhatrapati Shivaji",
+      "Jijabai",
+      "Swarajya",
+      "forts",
+      "guerrilla warfare",
+      "Maratha Navy",
+      "Sindhudurg",
+      "Afzal Khan",
+      "Shaista Khan",
+      "Surat",
+      "Purandar",
+      "Agra escape",
+      "coronation at Raigad",
+      "dakshina-digvijaya",
+      "Sambhaji",
+      "Rajaram",
+      "Tarabai",
+      "Peshwa Bajirao I",
+      "Nanasaheb Peshwa",
+      "Mahadji Shinde",
+      "Anglo-Maratha wars",
+      "ashta pradhana mandala",
+      "chauth",
+      "sardeshmukhi",
+      "bargirs",
+      "shiledars",
+      "Kanhoji Angre",
+      "panchayat",
+      "Ahilyabai Holkar",
+      "Serfoji II",
+      "Thanjavur"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The Marathas rose only because of military victories.",
+        "correction": "Their rise also depended on Marathi culture, bhakti traditions, social organisation, administration, forts, trade, and naval power."
+      },
+      {
+        "claim": "Guerrilla warfare meant avoiding direct conflict completely.",
+        "correction": "It used small groups, speed, surprise, terrain knowledge, ambush, and carefully chosen attacks against larger forces."
+      },
+      {
+        "claim": "The Maratha state remained fully centralised throughout its history.",
+        "correction": "Shivaji built a relatively centralised state, but later expansion produced a decentralised structure with powerful chiefs and Peshwas."
+      },
+      {
+        "claim": "The Marathas had only a land army.",
+        "correction": "Their forces included infantry, cavalry, and a navy, and maritime power was central to the west coast."
+      },
+      {
+        "claim": "Maratha cultural influence was limited to Maharashtra.",
+        "correction": "The chapter describes contributions across India and in Thanjavur in arts, medicine, printing, music, dance, public works, and crafts."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the chapter's bhakti exploration and the cultural foundations of Maratha organisation.",
+      "Analyse the NCERT map of Shivaji's kingdom, forts, ports, and southern territories.",
+      "Use Shivaji's letter on teak, mango, and jackfruit trees to infer his values as a ruler.",
+      "Use the chapter's questions on why forts were the core of the Maratha state.",
+      "Compare Tarabai, Ahilyabai Holkar, and Serfoji II as military, administrative, and cultural leaders."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1–8 on geography, leaders, forts, religious diversity, coins, and the Maratha contribution."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: The Rise of the Marathas\n\n## What you will learn\nYou will learn who the Marathas were and how cultural traditions helped political organisation. You will trace Shivaji's early life and the idea of Swarajya.\n\n## Simple explanation\nThe Marathas were Marathi-speaking people of the Deccan plateau. Their political rise grew from local conditions, cultural confidence, social networks, and Chhatrapati Shivaji's leadership.\n\n## Step-by-step breakdown\n- **Maratha identity**: The Marathas were native to the Deccan plateau, especially present-day Maharashtra.\n- **Bhakti foundation**: Saints such as Dnyaneshwar, Namdev, Tukaram, and Ramdas used Marathi and made ideas accessible.\n- **Social organisation**: Bhakti traditions encouraged social organisation and political awareness.\n- **Shivaji's upbringing**: Born in 1630 to Shahji and Jijabai, Shivaji grew up in Pune amid conflict among Deccan sultanates.\n- **Beginning of power**: At sixteen, he began capturing and strengthening neglected forts around Pune.\n- **Swarajya**: His vision was a sovereign order with political, economic, and cultural dimensions.\n\n## Worked example\nQuestion: How could a devotional movement contribute indirectly to political organisation?\n\nAnswer:\n- The chapter says Marathi bhakti saints spoke in the language of the people and encouraged social organisation and political awareness.\n- A shared language, values, songs, and networks can create trust and collective identity.\n- Final answer: Bhakti did not itself form the state, but it helped build the cultural foundation on which Maratha unity could grow.\n\n## Common mistake\nCulture should not be treated as separate from politics; shared language, values, and institutions can influence political organisation.\n\n## Quick check question\nQuestion: What did Swarajya mean in Shivaji's vision?\nAnswer: A sovereign kingdom extending across political, economic, and cultural life.\nExplanation: The chapter presents Swarajya as broader than the capture of territory.\n\n## Summary\n- Maratha identity was linked with Marathi culture.\n- Bhakti strengthened social and cultural foundations.\n- Shivaji turned a regional base into a vision of sovereignty.",
+    "Core explanation": "# Core explanation: The Rise of the Marathas\n\n## What you will learn\nYou will study Shivaji's military and political strategy. You will connect forts, terrain, naval power, selected raids, diplomacy, escape, coronation, and southern expansion.\n\n## Simple explanation\nShivaji survived against stronger powers by choosing where and how to fight. His strategy joined mountain forts, coastal defence, speed, intelligence, surprise, and political symbolism.\n\n## Step-by-step breakdown\n- **Maratha Navy**: Expansion to the west coast led Shivaji to create a full-time navy and coastal forts such as Sindhudurg.\n- **Guerrilla warfare**: Small mobile groups used speed, surprise, and terrain knowledge against larger armies.\n- **Pratapgad**: The encounter with Afzal Khan was followed by Maratha attacks from surrounding mountains.\n- **Shaista Khan and Surat**: A night raid forced Shaista Khan to withdraw; Surat was attacked in retaliation, while selected religious and charitable places were spared.\n- **Purandar and Agra**: After a treaty with Jai Singh, Shivaji visited Agra, was confined, and escaped with Sambhaji using baskets.\n- **Coronation and southern campaign**: His 1674 coronation formalised sovereignty, and the southern campaign created strategic depth.\n\n## Worked example\nQuestion: Why were forts and a navy both necessary for Shivaji's state?\n\nAnswer:\n- Forts controlled mountain routes and sheltered forces, while the navy protected the west coast and coastal resources.\n- Mountain and maritime security addressed different threats and supported movement, defence, revenue, and trade.\n- Final answer: Together, forts and naval power gave the Maratha state strategic depth on land and sea.\n\n## Common mistake\nNot every Maratha action was guerrilla warfare; the chapter also includes treaties, naval operations, raids, sieges, and diplomacy.\n\n## Quick check question\nQuestion: What qualities made guerrilla warfare effective for the Marathas?\nAnswer: Speed, surprise, focused small groups, and knowledge of terrain.\nExplanation: These qualities allowed smaller forces to challenge larger armies.\n\n## Summary\n- Military strategy matched geography.\n- The navy was a major innovation.\n- Coronation and southern expansion strengthened sovereignty and survival.",
+    "Worked examples": "# Worked examples: The Rise of the Marathas\n\n## What you will learn\nYou will follow the Marathas after Shivaji and explain how they became a pan-Indian power. You will also analyse the strengths and weaknesses of decentralised expansion.\n\n## Simple explanation\nAfter Shivaji's death, the Marathas survived a long Mughal assault and expanded far beyond Maharashtra. Their structure changed as chiefs and Peshwas gained power.\n\n## Step-by-step breakdown\n- **Sambhaji and Rajaram**: Sambhaji was captured and executed; Rajaram moved to Gingee, spreading the war southward.\n- **Tarabai**: She led resistance and sent Maratha forces north while Aurangzeb remained tied down in the Deccan.\n- **Peshwa leadership**: Bajirao I and Nanasaheb Peshwa were central to pan-Indian expansion.\n- **Northern reach**: The Marathas briefly controlled Lahore, Attock, and Peshawar and later recovered Delhi under Mahadji Shinde.\n- **Panipat and recovery**: The defeat of 1761 was severe, but the Marathas recovered under Madhavrao I.\n- **Anglo-Maratha wars**: Internal disunity and British organisational and technological advantages ended Maratha power by 1818.\n\n## Worked example\nQuestion: Why did decentralisation help Maratha expansion but also create danger?\n\nAnswer:\n- Regional chiefs could act across a large area, but increasing autonomy sometimes produced indiscipline, abuse, and internal disunity.\n- The same flexibility that supported expansion weakened coordination against a highly organised rival.\n- Final answer: Decentralisation broadened Maratha reach but made unity and common discipline harder to maintain.\n\n## Common mistake\nThe defeat at Panipat did not end Maratha power immediately; the chapter states that they recovered and later recaptured Delhi.\n\n## Quick check question\nQuestion: Who were important leaders in the northward expansion and recovery of Maratha power?\nAnswer: Tarabai, Peshwa Bajirao I, Nanasaheb Peshwa, Madhavrao I, and Mahadji Shinde are among those highlighted.\nExplanation: They led resistance, expansion, recovery, and the recapture of Delhi at different stages.\n\n## Summary\n- The Marathas survived Aurangzeb's long campaign.\n- Peshwa-era expansion created a pan-Indian power.\n- Internal disunity later weakened resistance to the British.",
+    "Exam-style problems": "# Exam-style problems: The Rise of the Marathas\n\n## What you will learn\nYou will examine Maratha administration on land and sea. You will connect officials, taxation, soldiers, forts, justice, roads, ferries, and trade.\n\n## Simple explanation\nMilitary success lasted because it was supported by systems of administration, finance, justice, transport, welfare, and maritime defence.\n\n## Step-by-step breakdown\n- **Civil administration**: Shivaji reduced hereditary control, paid officials from the treasury, and transferred them periodically.\n- **Welfare and values**: Widows of soldiers received pensions, and officials were instructed not to oppress subjects.\n- **Council of eight**: The ashta pradhana mandala assisted with finance, revenue, intelligence, diplomacy, justice, religion, and military matters.\n- **Revenue arrangements**: Chauth and sardeshmukhi were levied in some territories in return for protection and limited interference.\n- **Military structure**: Forces included infantry, cavalry, and navy; bargirs used state-provided horses, while shiledars equipped themselves.\n- **Justice and trade**: Panchayats, appeals, kotwals, roads, bridges, ferries, and ships supported order and commerce.\n- **Maritime supremacy**: Kanhoji Angre challenged European naval control and the cartaz system.\n\n## Worked example\nQuestion: What values can be inferred from Shivaji's instructions concerning teak, mango, and jackfruit trees?\n\nAnswer:\n- He required permission before cutting teak and warned officials not to harm fruit trees cared for by people like children.\n- The letter connects state needs with consent, environmental care, empathy, and rejection of oppression.\n- Final answer: It presents a ruler who expected administration to protect subjects and avoid force even while meeting military needs.\n\n## Common mistake\nThe historical Maratha panchayat described here should not be confused with the present-day elected Panchayati Raj body.\n\n## Quick check question\nQuestion: What was the difference between bargirs and shiledars?\nAnswer: The state paid for the horses and equipment of bargirs, while shiledars provided their own.\nExplanation: Both were cavalry soldiers, but their equipment was financed differently.\n\n## Summary\n- Administration supported military power.\n- The state used salaries, transfers, councils, taxes, and welfare measures.\n- Forts, navy, justice, and transport made the system durable.",
+    "Revision and recap": "# Revision and recap: The Rise of the Marathas\n\n## What you will learn\nYou will explore the cultural contribution and historical legacy of the Marathas. You will connect language, religion, women rulers, Thanjavur, medicine, printing, arts, and Swarajya.\n\n## Simple explanation\nThe Maratha legacy included cultural confidence, regional patronage, administrative models, and the belief that Indians could govern themselves.\n\n## Step-by-step breakdown\n- **Language and symbols**: Shivaji's Sanskrit seal, Marathi promotion, Rajya-Vyavahara-Kosha, Devanagari, and Modi script expressed cultural identity.\n- **Religious approach**: Shivaji upheld Hindu traditions while respecting other religions in the examples given.\n- **Tarabai**: She preserved Maratha independence and helped launch northward expansion.\n- **Ahilyabai Holkar**: She governed wisely and built or restored temples, ghats, wells, roads, and supported Maheshwar weaving.\n- **Thanjavur**: Maratha rule encouraged a multilingual culture combining Tamil, Telugu, Marathi, Indian, and European influences.\n- **Serfoji II**: He supported music, Bharatanatyam, medicine, free treatment, printing, and historical inscription.\n- **Legacy**: The chapter links Swarajya with later confidence in self-government.\n\n## Worked example\nQuestion: Why is the Thanjavur example important to understanding the Maratha legacy?\n\nAnswer:\n- The chapter describes patronage of painting, music, dance, literature, medicine, printing, and a multilingual culture.\n- This shows that Maratha influence adapted to local traditions rather than simply copying Maharashtra's culture.\n- Final answer: Thanjavur demonstrates cultural interaction, innovation, and regional patronage as part of Maratha history.\n\n## Common mistake\nCultural revival was not limited to rebuilding temples; it included languages, literature, arts, crafts, medicine, printing, and public works.\n\n## Quick check question\nQuestion: What wider political idea did Swarajya help strengthen?\nAnswer: The idea that Indians could defeat oppressive power and govern themselves.\nExplanation: The chapter connects this confidence with the early seeds of the freedom movement.\n\n## Summary\n- Maratha power had administrative and cultural dimensions.\n- Women leaders made major military and public contributions.\n- Swarajya became a lasting ideal of self-government."
+  }
+}

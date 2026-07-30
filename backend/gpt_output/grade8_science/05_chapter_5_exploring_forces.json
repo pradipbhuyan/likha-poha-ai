@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Science",
+    "chapter": "Chapter 5: Exploring Forces",
+    "central_question": "How do contact and non-contact forces change motion and shape, determine weight, and interact with liquids to produce floating or sinking?",
+    "in_scope_units": [
+      "Force as a push or pull arising from interaction and its effects on motion and shape.",
+      "Contact forces: muscular force and friction, including surface dependence and fluid friction.",
+      "Non-contact magnetic, electrostatic and gravitational forces.",
+      "Weight, mass, spring balances, range, least count and measurement.",
+      "Buoyant force, Archimedes' principle, floating and sinking."
+    ],
+    "banned_topics": [
+      "Pressure calculations, taught in Chapter 6.",
+      "Detailed density calculations, taught in Chapter 9.",
+      "Newton's laws and vector resolution."
+    ],
+    "must_include_keywords": [
+      "force",
+      "push",
+      "pull",
+      "interaction",
+      "newton",
+      "motion",
+      "speed",
+      "direction",
+      "shape",
+      "contact force",
+      "muscular force",
+      "friction",
+      "surface irregularity",
+      "fluid friction",
+      "non-contact force",
+      "magnetic force",
+      "static charge",
+      "electrostatic force",
+      "like charges",
+      "unlike charges",
+      "gravitational force",
+      "gravity",
+      "vertical motion",
+      "weight",
+      "mass",
+      "spring balance",
+      "range",
+      "smallest division",
+      "newton",
+      "buoyant force",
+      "upthrust",
+      "floating",
+      "sinking",
+      "Archimedes' principle",
+      "displaced liquid"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "An object at rest has no forces acting on it.",
+        "correction": "Forces may act but balance one another, producing no change in motion."
+      },
+      {
+        "claim": "Friction always acts in the direction of motion.",
+        "correction": "Friction opposes the direction in which an object moves or tries to move."
+      },
+      {
+        "claim": "Mass and weight are the same quantity.",
+        "correction": "Mass is amount of matter in kg or g; weight is gravitational force in newtons and can vary by location."
+      },
+      {
+        "claim": "Gravity acts only on falling objects.",
+        "correction": "Earth's gravitational force acts on objects continuously, including at the topmost point of a throw."
+      },
+      {
+        "claim": "A larger object must sink and a smaller object must float.",
+        "correction": "Floating depends on the relationship between weight and buoyant force, not size alone."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activities 5.1 and 5.2 to define force and its effects.",
+      "Use Activities 5.3 and 5.4 to infer the direction and surface dependence of friction.",
+      "Use Activities 5.5–5.8 to compare non-contact forces.",
+      "Use Activities 5.9–5.12 to read and use a spring balance.",
+      "Use Activity 5.13 and Keep the curiosity alive Q4 and Q10 for buoyancy."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–10, followed by Discover, design, and debate projects."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 5: Exploring Forces\n\n## What you will learn\nYou will define force as an interaction-based push or pull. You will identify the changes a force can produce.\n\n## Simple explanation\nA force is not merely an action word. It occurs when at least two objects interact and can start, stop, speed up, slow down, turn or deform an object.\n\n## Step-by-step breakdown\n- **Activity 5.1**: Pushing, pulling and lifting the box are different ways of applying force.\n- **Effects**: Force can change state of motion, speed, direction or shape.\n- **Interaction**: At least two objects are involved whenever force acts.\n- **Unit**: The SI unit is the newton, symbol N.\n- **Balanced forces**: An object may remain at rest even while forces balance.\n\n## Worked example\nQuestion: In Activity 5.2, what effects are shown by stopping a bicycle, hitting a moving ball and pressing a balloon?\n\nSolution:\n- Step 1: Stopping the bicycle decreases its speed.\n- Step 2: Hitting the ball changes its direction.\n- Step 3: Pressing the balloon changes its shape.\n- Final answer: Force can change speed, direction and shape.\n\n## Common mistake\nDo not infer that motion always requires an unbalanced force; a force is specifically required to change motion.\n\n## Quick check question\nQuestion: Can a force act without an interaction?\nAnswer: No; force results from an interaction between at least two objects.\nExplanation: One object exerts the push or pull and the other experiences it.\n\n## Summary\n- Force is a push or pull.\n- It results from interaction.\n- It can alter motion or shape.\n- Its SI unit is N.",
+    "Core explanation": "# Core explanation: Chapter 5: Exploring Forces\n\n## What you will learn\nYou will distinguish muscular force and friction as contact forces. You will explain why friction varies with surfaces.\n\n## Simple explanation\nContact forces require touching directly or through an object such as a rope. Friction appears at contacting surfaces and resists relative motion.\n\n## Step-by-step breakdown\n- **Muscular force**: Muscle contraction supports walking, lifting, chewing and circulation.\n- **Activity 5.3**: A sliding object slows and stops because friction acts opposite its motion.\n- **Surface irregularities**: Microscopic unevenness interlocks at contacting surfaces.\n- **Activity 5.4**: The same object travels different distances on glass, cloth, wood, tile and sand.\n- **Fluids**: Air and water also exert friction on moving objects.\n\n## Worked example\nQuestion: Keep the curiosity alive Q7: Why is it easy to slip on ice or polished floors?\n\nSolution:\n- Step 1: Very smooth surfaces provide less interlocking of irregularities.\n- Step 2: The available friction is therefore small.\n- Step 3: The foot can slide more easily instead of gripping the surface.\n- Final answer: Low friction on smooth surfaces makes slipping easier.\n\n## Common mistake\nFriction is not always harmful; walking, braking and gripping require it.\n\n## Quick check question\nQuestion: In which direction does friction act on a sliding box?\nAnswer: Opposite to the box's motion or attempted motion.\nExplanation: Friction resists relative movement between contacting surfaces.\n\n## Summary\n- Muscular force is a contact force.\n- Friction opposes motion.\n- Roughness generally increases friction.\n- Fluids also exert friction.",
+    "Worked examples": "# Worked examples: Chapter 5: Exploring Forces\n\n## What you will learn\nYou will compare magnetic, electrostatic and gravitational forces. You will use activities to infer attraction and repulsion without contact.\n\n## Simple explanation\nSome forces cross a gap. Magnets and electric charges may attract or repel, while gravity is always attractive in the chapter's treatment.\n\n## Step-by-step breakdown\n- **Activity 5.5**: Like poles of ring magnets repel without touching.\n- **Activity 5.6**: A rubbed plastic object attracts paper pieces.\n- **Activity 5.7**: Similarly charged balloons repel, while opposite charges attract.\n- **Activity 5.8**: Thrown objects return because Earth attracts them.\n- **Gravity**: It changes speed and direction during vertical motion.\n\n## Worked example\nQuestion: Keep the curiosity alive Q3: What happens when two balloons rubbed with the same woollen cloth are brought together?\n\nSolution:\n- Step 1: Both balloons acquire similar static charge.\n- Step 2: Like charges repel.\n- Step 3: The balloons therefore move apart.\n- Final answer: The balloons repel because they carry like charges.\n\n## Common mistake\nMagnetic and electrostatic forces are not always attractive; both can also be repulsive.\n\n## Quick check question\nQuestion: Which non-contact force is always attractive here?\nAnswer: Gravitational force.\nExplanation: Earth pulls objects towards itself; the chapter contrasts this with magnetic and electrostatic attraction or repulsion.\n\n## Summary\n- Non-contact forces act across distance.\n- Like magnetic poles and charges repel.\n- Unlike ones attract.\n- Gravity pulls objects towards Earth.",
+    "Exam-style problems": "# Exam-style problems: Chapter 5: Exploring Forces\n\n## What you will learn\nYou will distinguish mass from weight and read a spring balance. You will use range and least count correctly.\n\n## Simple explanation\nMass describes amount of matter. Weight is the force of gravity on that mass and is measured by the stretch of a calibrated spring.\n\n## Step-by-step breakdown\n- **Weight**: It is Earth's gravitational pull on an object and is measured in N.\n- **Mass**: It is amount of matter and is measured in g or kg.\n- **Activity 5.10**: The illustrated spring balance has range 0–10 N.\n- **Activity 5.11**: Five divisions per 1 N give a smallest division of 0.2 N.\n- **Activity 5.12**: Objects must stay within the instrument's range.\n- **Location**: Mass remains constant while weight changes with gravitational strength.\n\n## Worked example\nQuestion: Activity 5.11: What is the least count when 1 N is divided into five equal intervals?\n\nSolution:\n- Step 1: Find the difference between major marks: 1 N.\n- Step 2: Count five equal divisions.\n- Step 3: Divide 1 N by 5.\n- Final answer: 0.2 N.\n\n## Common mistake\nA reading in kilograms is mass, not scientific weight; weight uses newtons.\n\n## Quick check question\nQuestion: What happens to an object's mass on the Moon?\nAnswer: It remains the same.\nExplanation: The amount of matter does not change, although weaker gravity reduces weight.\n\n## Summary\n- Weight is a force.\n- Mass and weight have different units.\n- Spring balance readings require range and least count.\n- Mass remains constant across locations.",
+    "Revision and recap": "# Revision and recap: Chapter 5: Exploring Forces\n\n## What you will learn\nYou will explain buoyant force and predict floating or sinking. You will integrate downward weight with upward force from a liquid.\n\n## Simple explanation\nA liquid pushes an immersed object upward. Whether the object sinks or floats depends on the balance between this upthrust and its weight.\n\n## Step-by-step breakdown\n- **Activity 5.13**: A closed empty bottle pushed underwater experiences an upward push and rises when released.\n- **Buoyant force**: It is the upward force exerted by a liquid on an object.\n- **Sinking**: If weight exceeds buoyant force, the object moves downward.\n- **Floating**: If the forces become equal, the object floats.\n- **Archimedes**: Upthrust equals the weight of liquid displaced for a fully or partly immersed object.\n- **Pumice**: Air spaces can make a rock less dense and capable of floating.\n\n## Worked example\nQuestion: Keep the curiosity alive Q4: Why can a coin sink while a larger wooden block floats?\n\nSolution:\n- Step 1: Size alone does not decide the result.\n- Step 2: The coin's weight is greater than the available upthrust before it can be supported.\n- Step 3: The wooden block displaces enough water for buoyant force to balance its weight.\n- Final answer: The coin sinks and the block floats because their weight–buoyancy relationships differ, not because the block is smaller.\n\n## Common mistake\nDo not say water stops exerting gravity; gravity acts downward while water adds an upward force.\n\n## Quick check question\nQuestion: What force makes the bottle in Activity 5.13 bounce upward?\nAnswer: Buoyant force or upthrust from the water.\nExplanation: The water exerts an upward force that can exceed the bottle's downward weight while it is submerged.\n\n## Summary\n- Liquids exert upthrust.\n- Weight acts downward.\n- Force balance determines floating.\n- Archimedes links upthrust with displaced liquid."
+  }
+}

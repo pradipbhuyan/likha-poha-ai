@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Science",
+    "chapter": "Chapter 10: Light: Mirrors and Lenses",
+    "central_question": "How do curved mirrors and lenses reflect or transmit light to form different images, and how do the laws of reflection explain their behaviour and uses?",
+    "in_scope_units": [
+      "Concave and convex spherical mirrors and their identification.",
+      "Image characteristics of plane, concave and convex mirrors and their practical uses.",
+      "Incident ray, reflected ray, normal, angles and the two laws of reflection.",
+      "Convergence and divergence of parallel light by spherical mirrors and solar concentration.",
+      "Convex and concave lenses, their identification and image characteristics.",
+      "Convergence and divergence by lenses and uses in optical devices."
+    ],
+    "banned_topics": [
+      "Mirror and lens formulae, focal length calculations and ray-diagram case tables.",
+      "Detailed refraction laws or refractive-index calculations.",
+      "Human-eye defects and optical corrections beyond the examples of lens use."
+    ],
+    "must_include_keywords": [
+      "spherical mirror",
+      "concave mirror",
+      "convex mirror",
+      "reflecting surface",
+      "erect image",
+      "inverted image",
+      "enlarged",
+      "diminished",
+      "lateral inversion",
+      "side-view mirror",
+      "dental mirror",
+      "reflector",
+      "incident ray",
+      "reflected ray",
+      "normal",
+      "point of incidence",
+      "angle of incidence",
+      "angle of reflection",
+      "law of reflection",
+      "same plane",
+      "parallel rays",
+      "converge",
+      "diverge",
+      "solar concentrator",
+      "lens",
+      "transparent material",
+      "convex lens",
+      "concave lens",
+      "converging lens",
+      "diverging lens",
+      "magnifying glass",
+      "eyeglasses",
+      "camera",
+      "telescope",
+      "microscope",
+      "eye lens",
+      "sunlight safety"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A concave mirror always forms an inverted image.",
+        "correction": "At a small object distance it forms an erect enlarged image; farther away the image becomes inverted and changes size."
+      },
+      {
+        "claim": "A convex mirror enlarges nearby objects.",
+        "correction": "It always forms an erect diminished image in the chapter's observations."
+      },
+      {
+        "claim": "Angles of incidence and reflection are measured from the mirror surface.",
+        "correction": "Both are measured from the normal at the point of incidence."
+      },
+      {
+        "claim": "Only plane mirrors obey the laws of reflection.",
+        "correction": "The laws apply to plane, concave and convex mirrors; curved surfaces change the directions of their local normals."
+      },
+      {
+        "claim": "Convex and concave lenses behave like mirrors of the same names.",
+        "correction": "A convex lens converges transmitted light and a concave lens diverges it; a concave mirror converges reflected light and a convex mirror diverges it."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activities 10.1–10.3 to distinguish spherical mirrors and compare images.",
+      "Use Activities 10.4 and 10.5 to derive the two laws of reflection.",
+      "Use Activities 10.6 and 10.7 to compare reflection of parallel rays and concentration of sunlight.",
+      "Use Activities 10.8 and 10.9 to define lenses and compare images.",
+      "Use Activities 10.10 and 10.11 to study convergence and divergence by lenses.",
+      "Use Keep the curiosity alive Q1–Q5 for angle and identification practice."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end section Keep the curiosity alive contains Questions 1–12, followed by Discover, design, and debate activities."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 10: Light: Mirrors and Lenses\n\n## What you will learn\nYou will distinguish concave and convex spherical mirrors. You will compare their images with those of a plane mirror.\n\n## Simple explanation\nA spherical mirror has a curved reflecting surface. An inward-curved surface is concave, while an outward-bulging surface is convex.\n\n## Step-by-step breakdown\n- **Activity 10.1**: The inner and outer surfaces of a shiny spoon produce different images.\n- **Concave mirror**: Its reflecting surface curves inward.\n- **Convex mirror**: Its reflecting surface curves outward.\n- **Activity 10.2**: Viewing from the side reveals whether the reflecting surface is inward or outward.\n- **Plane comparison**: A plane mirror forms an erect image of the same size.\n- **Coating**: The reflective coating lies on the opposite side from the working reflecting surface.\n\n## Worked example\nQuestion: Activity 10.1: What difference is seen between the inner and outer surfaces of a spoon?\n\nSolution:\n- Step 1: The inner curved surface behaves like a concave mirror.\n- Step 2: Depending on distance, it can show a larger erect or an inverted image.\n- Step 3: The outer bulging surface behaves like a convex mirror and gives an erect smaller image.\n- Final answer: The two sides act as different spherical mirrors and form different images.\n\n## Common mistake\nDo not identify a mirror only by the direction it faces; inspect whether its reflecting surface curves inward or outward.\n\n## Quick check question\nQuestion: Which mirror curves outward?\nAnswer: A convex mirror.\nExplanation: Its reflecting surface bulges towards the object.\n\n## Summary\n- Spherical mirrors are curved.\n- Concave means inward.\n- Convex means outward.\n- Curvature changes image behaviour.",
+    "Core explanation": "# Core explanation: Chapter 10: Light: Mirrors and Lenses\n\n## What you will learn\nYou will describe image changes in concave and convex mirrors and connect them with practical uses. You will explain the side-view-mirror warning.\n\n## Simple explanation\nA concave mirror's image depends strongly on distance. A convex mirror always gives a smaller erect image and a wide field of view.\n\n## Step-by-step breakdown\n- **Activity 10.3 concave**: Close objects appear erect and enlarged; farther objects become inverted and later smaller.\n- **Activity 10.3 convex**: The image remains erect and diminished as distance changes.\n- **Concave uses**: Torch reflectors and dental mirrors use its concentrating or enlarging behaviour.\n- **Convex uses**: Vehicle, road-safety and surveillance mirrors show a wider area.\n- **Warning**: A diminished image makes vehicles appear farther away than they actually are.\n- **Lateral inversion**: It is observed in plane and spherical mirrors.\n\n## Worked example\nQuestion: Keep the curiosity alive Q10: Why are convex mirrors preferred for observing traffic behind a vehicle?\n\nSolution:\n- Step 1: A convex mirror produces an erect image.\n- Step 2: It diminishes the image and therefore fits more of the scene into the mirror.\n- Step 3: Its outward curvature provides a wider view area than a plane mirror.\n- Final answer: Convex mirrors provide a wide, erect view of traffic behind the vehicle.\n\n## Common mistake\nThe warning does not mean the mirror changes actual distance; the smaller image affects the viewer's judgement.\n\n## Quick check question\nQuestion: What type of mirror does a dentist use for an enlarged close view?\nAnswer: A concave mirror.\nExplanation: A nearby object in a concave mirror appears erect and enlarged.\n\n## Summary\n- Concave images vary with distance.\n- Convex images are erect and diminished.\n- Mirror properties determine uses.\n- Wide view explains vehicle mirrors.",
+    "Worked examples": "# Worked examples: Chapter 10: Light: Mirrors and Lenses\n\n## What you will learn\nYou will state and apply the two laws of reflection. You will construct incident and reflected rays using the normal.\n\n## Simple explanation\nReflection follows a precise geometry. The incoming and outgoing rays make equal angles with the normal, and all three relevant lines lie in one plane.\n\n## Step-by-step breakdown\n- **Incident ray**: The ray travelling towards the mirror.\n- **Reflected ray**: The ray returning from the mirror.\n- **Normal**: A line perpendicular to the mirror at the point of incidence.\n- **First law**: Angle of incidence equals angle of reflection.\n- **Second law**: Incident ray, normal and reflected ray lie in the same plane.\n- **Activity 10.5**: Bending the paper removes the reflected ray from the new plane, demonstrating coplanarity.\n- **All mirrors**: The laws apply to plane and spherical mirrors.\n\n## Worked example\nQuestion: Keep the curiosity alive Q1: The incident ray makes 40° with the normal. What angle does the reflected ray make with the mirror?\n\nSolution:\n- Step 1: By the first law, the angle of reflection from the normal is 40°.\n- Step 2: The normal is 90° to the mirror.\n- Step 3: Therefore the angle between reflected ray and mirror is 90°−40°=50°.\n- Final answer: The reflected ray makes 50° with the mirror.\n\n## Common mistake\nDo not measure incidence from the mirror surface; it is measured from the normal.\n\n## Quick check question\nQuestion: What are the incidence and reflection angles when light travels along the normal?\nAnswer: Both are 0°.\nExplanation: The ray coincides with the normal, so there is no angular separation from it.\n\n## Summary\n- The normal is perpendicular to the mirror.\n- Incidence equals reflection.\n- All rays and the normal are coplanar.\n- The laws apply to curved mirrors too.",
+    "Exam-style problems": "# Exam-style problems: Chapter 10: Light: Mirrors and Lenses\n\n## What you will learn\nYou will compare convergence and divergence by mirrors and follow the chapter's sunlight safety rules. You will connect ray behaviour with solar concentrators.\n\n## Simple explanation\nParallel rays remain parallel after reflection from a plane mirror. A concave mirror brings them together, while a convex mirror spreads them apart.\n\n## Step-by-step breakdown\n- **Activity 10.6 plane**: Parallel incident beams remain parallel after reflection.\n- **Concave**: Different local surface directions reflect parallel rays so they converge.\n- **Convex**: Reflected rays diverge.\n- **Activity 10.7**: A concave mirror concentrates sunlight into a bright hot spot.\n- **Energy concentration**: A small illuminated area receives enough energy to heat or ignite paper.\n- **Solar use**: Concentrators support cooking, furnaces and generation of steam.\n- **Safety**: Never look at the Sun or direct concentrated light towards people.\n\n## Worked example\nQuestion: Activity 10.7: Why can paper begin to burn at the bright spot formed by a concave mirror?\n\nSolution:\n- Step 1: Sunlight reaches the mirror as nearly parallel rays.\n- Step 2: The concave mirror reflects and converges them into a small region.\n- Step 3: Energy concentrated in that region raises the paper temperature enough to ignite.\n- Final answer: Concentrated reflected sunlight produces intense heating at the bright spot.\n\n## Common mistake\nA mirror does not create extra solar energy; it redirects energy from a larger area into a smaller one.\n\n## Quick check question\nQuestion: Which spherical mirror diverges parallel rays?\nAnswer: A convex mirror.\nExplanation: Its outward-curved surface reflects the rays so that they spread apart.\n\n## Summary\n- Concave mirrors converge.\n- Convex mirrors diverge.\n- Concentration raises temperature.\n- Sun experiments require strict eye safety.",
+    "Revision and recap": "# Revision and recap: Chapter 10: Light: Mirrors and Lenses\n\n## What you will learn\nYou will define convex and concave lenses, compare their images and describe how they affect parallel light. You will connect lenses to common optical devices.\n\n## Simple explanation\nUnlike a mirror, a lens transmits light through a curved transparent material. A convex lens is thicker in the middle and converges light; a concave lens is thinner in the middle and diverges light.\n\n## Step-by-step breakdown\n- **Activity 10.8**: A curved water drop enlarges printed text and acts as a simple lens.\n- **Convex lens**: It is thicker in the middle and can form erect enlarged or inverted images depending on distance.\n- **Concave lens**: It is thicker at the edges and always gives an erect diminished view in the activity.\n- **Activity 10.10**: Parallel beams converge through a convex lens and diverge through a concave lens.\n- **Activity 10.11**: A convex lens can concentrate sunlight on paper.\n- **Uses**: Lenses are used in eyeglasses, cameras, telescopes, microscopes and the human eye.\n\n## Worked example\nQuestion: Keep the curiosity alive Q8: What happens as a magnifying glass is moved away from text, and what type of lens is it?\n\nSolution:\n- Step 1: At a suitable small distance, the text appears erect and enlarged.\n- Step 2: As the distance increases, the image changes and may become inverted.\n- Step 3: A magnifying glass is a convex lens.\n- Final answer: It is a convex lens; the enlarged erect view changes as object distance increases and can become inverted.\n\n## Common mistake\nDo not look at the Sun through a convex lens; concentrated sunlight can damage the eyes.\n\n## Quick check question\nQuestion: Which lens always gives an erect diminished image in Activity 10.9?\nAnswer: A concave lens.\nExplanation: The chapter's observations show that a concave lens keeps the image erect and smaller over the tested distances.\n\n## Summary\n- Lenses transmit light.\n- Convex lenses converge.\n- Concave lenses diverge.\n- Image properties depend on lens type and distance.\n- Optical devices use lenses."
+  }
+}

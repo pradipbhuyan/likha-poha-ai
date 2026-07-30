@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 6: The Parliamentary System: Legislature and Executive",
+  "central_question": "How do India's legislature, executive, judiciary, and federal institutions share power, make and implement laws, and remain accountable to the people?",
+  "in_scope_units": [
+    "Parliamentary democracy, popular consent, and Parliament as the supreme legislative body.",
+    "Composition of Parliament: President, Lok Sabha, Rajya Sabha, bicameralism, federalism, Speaker, and Chairperson.",
+    "Legislative functions: constitutional responsibilities, lawmaking, executive accountability, and financial accountability.",
+    "The journey from bill to act through the Right to Education example.",
+    "Union Executive: President, Prime Minister, Council of Ministers, collective responsibility, and civil servants.",
+    "Differences between legislature and executive and the judiciary's role in checks and balances.",
+    "State-level institutions, Union List, State List, Concurrent List, and parallel federal structures.",
+    "Unicameral and bicameral state legislatures and challenges to effective functioning."
+  ],
+  "banned_topics": [
+    "Detailed election procedures, which belong to Chapter 5.",
+    "Detailed court hierarchy and judicial procedure, reserved for a later chapter.",
+    "Advanced constitutional amendment law beyond this chapter's scope."
+  ],
+  "must_include_keywords": [
+    "parliamentary democracy",
+    "popular consent",
+    "Parliament",
+    "President",
+    "Lok Sabha",
+    "Rajya Sabha",
+    "bicameral",
+    "federalism",
+    "Speaker",
+    "Vice President",
+    "legislature",
+    "executive",
+    "judiciary",
+    "constitutional function",
+    "bill",
+    "act",
+    "Standing Committee",
+    "presidential assent",
+    "Gazette",
+    "Right to Education Act",
+    "Article 21A",
+    "Money Bill",
+    "Question Hour",
+    "executive accountability",
+    "financial accountability",
+    "annual budget",
+    "Prime Minister",
+    "Council of Ministers",
+    "collective responsibility",
+    "civil servants",
+    "checks and balances",
+    "Union List",
+    "State List",
+    "Concurrent List",
+    "Vidhan Sabha",
+    "Vidhan Parishad",
+    "legislative productivity"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Parliament consists only of the Lok Sabha and Rajya Sabha.",
+      "correction": "The President is also a constituent part of the Indian Parliament."
+    },
+    {
+      "claim": "The President independently runs the government.",
+      "correction": "The President is the nominal executive; the Prime Minister and Council of Ministers exercise day-to-day authority."
+    },
+    {
+      "claim": "Every bill can begin in either House.",
+      "correction": "A Money Bill can be introduced only in the Lok Sabha and requires the President's prior recommendation."
+    },
+    {
+      "claim": "Separation of powers means the legislature and executive never overlap.",
+      "correction": "Ministers are drawn from Parliament, but accountability, distinct functions, courts, and institutional checks prevent concentration of power."
+    },
+    {
+      "claim": "All state legislatures have two Houses.",
+      "correction": "Most states are unicameral; only some have both a Vidhan Sabha and Vidhan Parishad."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the NCERT diagram of Parliament's composition to distinguish the President, Lok Sabha, and Rajya Sabha.",
+    "Trace the RTE case and the bill-to-act flowchart.",
+    "Analyse the Standing Committee extract on Ayush facilities as executive accountability.",
+    "Compare legislature and executive using the chapter's table.",
+    "Use the Union-State comparison and productivity data to discuss federalism and legislative effectiveness."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1–10 on representation, bicameralism, accountability, bills, disruptions, MPs and MLAs, and the judiciary.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 4: Quadrilaterals",
+  "central_question": "How can definitions, angle relations, congruence and diagonal properties be used to classify and construct special quadrilaterals?",
+  "in_scope_units": [
+    "Meaning of a quadrilateral and its angles.",
+    "Rectangles: definitions, the carpenter's diagonal problem and geometric deductions.",
+    "Squares as special rectangles and their diagonal and angle-bisector properties.",
+    "Sum of the interior angles of a quadrilateral.",
+    "Parallelograms and their side, angle and diagonal properties.",
+    "Rhombuses as special parallelograms and perpendicular diagonals.",
+    "Geoboard and triangle-joining activities for recognising quadrilaterals.",
+    "Kites and their side, angle and diagonal properties.",
+    "Trapeziums and isosceles trapeziums.",
+    "Venn-diagram relationships among parallelograms, rectangles, squares, rhombuses and kites.",
+    "Construction and puzzle activities using diagonal properties."
+  ],
+  "banned_topics": [
+    "Area formulas for quadrilaterals.",
+    "Coordinate-geometry proofs.",
+    "Circle theorems beyond the simple diameter construction activity."
+  ],
+  "must_include_keywords": [
+    "quadrilateral",
+    "rectangle",
+    "square",
+    "parallelogram",
+    "rhombus",
+    "kite",
+    "trapezium",
+    "isosceles trapezium",
+    "diagonal",
+    "bisect",
+    "perpendicular",
+    "parallel opposite sides",
+    "equal opposite sides",
+    "right angle",
+    "angle sum",
+    "360 degrees",
+    "congruence",
+    "SAS",
+    "AAS",
+    "SSS",
+    "vertically opposite angles",
+    "linear pair",
+    "transversal",
+    "carpenter's problem",
+    "Venn diagram",
+    "geoboard",
+    "construction",
+    "conjecture",
+    "proof"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every quadrilateral with equal diagonals is a rectangle.",
+      "correction": "For the diagonal definition used here, the diagonals must be equal and bisect each other."
+    },
+    {
+      "claim": "Every parallelogram is a rectangle.",
+      "correction": "A rectangle is a special parallelogram with four right angles; a general parallelogram need not have right angles."
+    },
+    {
+      "claim": "Every rectangle is a square.",
+      "correction": "Every square is a rectangle, but a rectangle is a square only when all four sides are equal."
+    },
+    {
+      "claim": "The diagonals of every parallelogram are equal.",
+      "correction": "Parallelogram diagonals bisect each other, but they are not necessarily equal."
+    },
+    {
+      "claim": "A trapezium must have exactly one pair of parallel sides.",
+      "correction": "The chapter defines a trapezium as having at least one pair of parallel opposite sides."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the carpenter's 8 cm strips problem to prove the rectangle diagonal properties.",
+    "Use Deduction 5 to construct a square from equal diagonals that bisect at 90°.",
+    "Use the diagonal split of quadrilateral SOME to prove the 360° angle sum.",
+    "Use the 4 cm, 5 cm and 30° construction to derive parallelogram angles and sides.",
+    "Use Figure it Out construction tasks for parallelograms, rhombuses, kites and trapeziums."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Figure it Out sets follow the rectangle-square, parallelogram-rhombus and kite-trapezium sections, with a final Which Quad? paper-folding puzzle.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

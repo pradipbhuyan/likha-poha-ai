@@ -1,0 +1,98 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: The Story of Indian Farming",
+  "central_question": "How do climate, soil, water, seeds, knowledge, technology and public support shape Indian farming and its search for a sustainable future?",
+  "in_scope_units": [
+    "India’s Agricultural Landscape—scope of agriculture and allied activities, livelihoods, women’s work and regional diversity.",
+    "Echoes from the Past—early crops, Harappan farming, intercropping, domestication and agricultural knowledge in Indian texts.",
+    "Climate, Seasons, and Crops—climatic diversity, agroclimatic zones and the southwest and northeast monsoons.",
+    "The rhythm of seasons and crops—kharif, rabi and zaid seasons and their risks.",
+    "Soil, the Foundation of Cultivation—soil formation, humus, six major soil types and soil-crop linkages.",
+    "Nurturing the soil—crop rotation, multiple cropping, contour ploughing, organic fertilisers, panchagavya, terracing, afforestation and precise inputs.",
+    "Water: Rain-Fed vs. Irrigated Agriculture—rain dependence, traditional water systems, phad, bamboo drip, Kallanai, drip and sprinkler irrigation.",
+    "Seeds—traditional preservation, seed treatment, the Indian seed drill, scientific seeds and dependence on seed companies.",
+    "Agricultural Practices: Traditional Wisdom and Modern Innovations—terrace farming, kulāgar, gokṛiṣhi and combinations of methods.",
+    "Contemporary agriculture and the Green Revolution—HYV seeds, irrigation, chemicals, machinery, increased production and environmental limits.",
+    "Sustainable pathways—organic farming, neem-based pesticides, Sikkim, agricultural heritage systems and hydroponics.",
+    "The Role of the Government—inputs, forecasts, training, insurance, procurement, cold storage and digital access.",
+    "Challenges—small landholdings, machinery costs, climate change, Ganga-basin stress, debt and declining farm livelihoods.",
+    "Before we move on and Questions and activities 1–10—regional crops, soils, technology, sustainability, challenges, irrigation and future farming."
+  ],
+  "banned_topics": [
+    "Detailed atmospheric science and weather instruments, which belong to weather and climate chapters.",
+    "Detailed market price formation and wholesale-retail chains, which belong to Understanding Markets.",
+    "Detailed plant physiology or photosynthesis, which belongs to Science.",
+    "Agricultural policies or statistics not stated in the chapter."
+  ],
+  "must_include_keywords": [
+    "agriculture and allied activities",
+    "women farmers",
+    "Harappans",
+    "intercropping",
+    "Vṛikṣhāyurveda",
+    "grafting",
+    "agroclimatic zones",
+    "southwest monsoon",
+    "northeast monsoon",
+    "kharif",
+    "rabi",
+    "zaid",
+    "humus",
+    "alluvial soil",
+    "black soil",
+    "red soil",
+    "laterite soil",
+    "desert soil",
+    "alpine soil",
+    "soil conservation",
+    "crop rotation",
+    "contour ploughing",
+    "rain-fed agriculture",
+    "irrigated agriculture",
+    "phad system",
+    "bamboo drip irrigation",
+    "drip irrigation",
+    "sprinkler irrigation",
+    "beejamrit",
+    "kulāgar",
+    "gokṛiṣhi",
+    "Green Revolution",
+    "organic farming",
+    "hydroponics",
+    "Pradhan Mantri Fasal Bima Yojana",
+    "climate change"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Agriculture means only growing field crops.",
+      "correction": "The chapter uses agriculture broadly to include cultivation, livestock, forestry, horticulture, fisheries, apiculture, silk and fibre-related activities."
+    },
+    {
+      "claim": "Every region can grow the same crops equally well.",
+      "correction": "Crop choices are influenced by climate, monsoon rainfall, water availability, soil, terrain and irrigation."
+    },
+    {
+      "claim": "Modern methods are always sustainable and traditional methods always produce more.",
+      "correction": "Modern methods can be highly productive but may create long-term harm, while traditional methods are often resilient and sustainable but may yield less."
+    },
+    {
+      "claim": "Rain-fed and irrigated agriculture are identical.",
+      "correction": "Rain-fed farming depends entirely on rainfall, while irrigated farming uses artificial methods to supply water."
+    },
+    {
+      "claim": "The Green Revolution had only positive effects.",
+      "correction": "It increased food-grain production and self-sufficiency, but the chapter also describes soil impoverishment, groundwater depletion, pollution and health damage."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Q10 to connect ancient crops with foods still used in homes.",
+    "Use NCERT Q1 to explain why crop patterns differ between Kerala and Punjab.",
+    "Use NCERT Q3 to integrate climate, soil, water and terrain in explaining regional crop success.",
+    "Use NCERT Q5 to compare productivity with the environmental need for sustainable agriculture.",
+    "Use NCERT Q6 and Q9 to analyse present farming challenges and the stressed Ganga basin."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–10.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

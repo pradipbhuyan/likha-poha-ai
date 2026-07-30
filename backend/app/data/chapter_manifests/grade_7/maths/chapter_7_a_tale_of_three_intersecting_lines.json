@@ -1,0 +1,100 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 7: A Tale of Three Intersecting Lines",
+  "central_question": "How can triangle constructions, inequalities, angle relationships, altitudes and classifications be understood through precise geometric reasoning?",
+  "in_scope_units": [
+    "Triangle basics and 7.1 Equilateral Triangles: naming vertices, sides and angles and constructing an equilateral triangle using compass arcs.",
+    "7.2 Constructing a Triangle When its Sides are Given: constructing SSS triangles efficiently with intersecting arcs.",
+    "Are Triangles Possible for any Lengths? and Triangle Inequality: deciding whether three lengths can form a triangle using direct and roundabout paths.",
+    "Visualising the Construction of Circles: connecting circle intersection cases with the necessity and sufficiency of triangle inequality.",
+    "7.3 Construction of Triangles When Some Sides and Angles are Given: constructing from two sides and the included angle, or two angles and the included side.",
+    "Do Triangles Always Exist? and Angle Sum Property: deciding existence from angle sums and proving that a triangle's angles total 180° using a parallel line.",
+    "Exterior Angles: relating an exterior angle to the two remote interior angles.",
+    "7.4 Constructions Related to Altitudes of Triangles: defining, folding and constructing altitudes, including cases where the opposite side is extended.",
+    "7.5 Types of Triangles: classifying triangles by sides and by angle measures.",
+    "Shortest Path in a Box: an enrichment problem about unfolding surfaces to compare paths."
+  ],
+  "banned_topics": [
+    "Triangle congruence criteria such as SSS, SAS, ASA and RHS as proof tests.",
+    "Similarity of triangles and proportional sides.",
+    "Area formulas such as Heron's formula.",
+    "Pythagoras theorem.",
+    "Coordinate geometry and trigonometry."
+  ],
+  "must_include_keywords": [
+    "triangle",
+    "vertex",
+    "side",
+    "angle",
+    "equilateral triangle",
+    "compass",
+    "arc",
+    "circle",
+    "point of intersection",
+    "isosceles triangle",
+    "scalene triangle",
+    "triangle inequality",
+    "direct path",
+    "roundabout path",
+    "longest side",
+    "two smaller sides",
+    "circles touch",
+    "circles intersect",
+    "included angle",
+    "included side",
+    "two sides and an angle",
+    "two angles and a side",
+    "sum less than 180°",
+    "parallel line",
+    "alternate angles",
+    "angle sum property",
+    "180°",
+    "exterior angle",
+    "altitude",
+    "perpendicular",
+    "set square",
+    "acute-angled",
+    "right-angled",
+    "obtuse-angled",
+    "Euclid",
+    "paper folding"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any three positive lengths can form a triangle.",
+      "correction": "The longest length must be strictly less than the sum of the other two; equality or a greater longest length does not form a triangle."
+    },
+    {
+      "claim": "It is necessary to check all three triangle inequalities every time.",
+      "correction": "After arranging the lengths, it is enough to check whether the longest length is less than the sum of the two smaller lengths."
+    },
+    {
+      "claim": "Two given angles can always be used to construct a triangle.",
+      "correction": "Their sum must be less than 180°; if it is 180° or more, the remaining sides do not meet to form a triangle."
+    },
+    {
+      "claim": "The third angle depends on the chosen length of the included side.",
+      "correction": "Once two angles are fixed, the third angle is 180° minus their sum, independent of the side length."
+    },
+    {
+      "claim": "An altitude must always lie inside the triangle.",
+      "correction": "For an obtuse triangle, an altitude may meet an extension of the opposite side outside the triangle."
+    },
+    {
+      "claim": "A triangle with one acute angle is an acute-angled triangle.",
+      "correction": "An acute-angled triangle has all three angles acute."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Section 7.1's construction of an equilateral triangle of side 4 cm using two arcs.",
+    "Use Section 7.2's 4 cm, 5 cm, 6 cm construction to explain why the third vertex is the intersection of two arcs.",
+    "Use the 10 cm, 15 cm, 30 cm discussion and page 156 Figure it Out Question 1 to develop triangle inequality.",
+    "Use Section 7.3's constructions AB = 5 cm, AC = 4 cm, ∠A = 45° and AB = 5 cm, ∠A = 45°, ∠B = 80°.",
+    "Use page 165 Figure it Out Question 1 and the parallel-line proof to establish the angle sum property.",
+    "Conclude with page 170 Figure it Out Questions 1–4 on altitudes and triangle types."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The final 'Figure it Out' exercise in Section 7.5 on pages 170–171 contains Questions 1–4, followed by the 'Shortest Path in a Box!' enrichment.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

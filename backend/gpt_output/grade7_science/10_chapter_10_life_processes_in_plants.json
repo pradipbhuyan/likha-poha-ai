@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Science",
+    "chapter": "Chapter 10: Life Processes in Plants",
+    "central_question": "How do plants make food, exchange gases, transport water and food, and respire to support growth and survival?",
+    "in_scope_units": [
+      "10.1 How Do Plants Grow?—Activity 10.1 testing the need for water and sunlight.",
+      "10.2 How Do Plants Get Food? and 10.2.1 Leaves—Food Factories of Plants, including starch, chlorophyll and Activities 10.2–10.3.",
+      "10.2.2 Role of Air in Preparing Food—Activity 10.4 on carbon dioxide and Activity 10.5 on oxygen release.",
+      "10.2.3 Photosynthesis—word equation, sunlight, chlorophyll, carbon dioxide, water, glucose, starch and oxygen.",
+      "10.2.4 Exchange of Gases in Plants—Activity 10.6 and stomata.",
+      "10.3 Transport in Plants—Activity 10.7, movement of water and minerals through xylem, and movement of food through phloem.",
+      "10.4 Do Plants Respire?—Activity 10.8 with germinating seeds, lime water and the respiration equation.",
+      "In a Nutshell, Let Us Enhance Our Learning Questions 1–10 and exploratory projects."
+    ],
+    "banned_topics": [
+      "Detailed chloroplast structure and light-dependent reactions.",
+      "Calvin cycle and biochemical pathways.",
+      "Advanced plant-hormone physiology.",
+      "Detailed mineral-deficiency diagnosis.",
+      "Reproduction in flowering plants."
+    ],
+    "must_include_keywords": [
+      "plant growth",
+      "water",
+      "sunlight",
+      "photosynthesis",
+      "leaf",
+      "food factory",
+      "starch",
+      "iodine solution",
+      "blue-black",
+      "chlorophyll",
+      "variegated leaf",
+      "carbon dioxide",
+      "sodium hydroxide",
+      "oxygen",
+      "water plant",
+      "glucose",
+      "stomata",
+      "guard cells",
+      "gas exchange",
+      "roots",
+      "root hairs",
+      "xylem",
+      "minerals",
+      "red ink",
+      "phloem",
+      "transport of food",
+      "respiration",
+      "germinating seeds",
+      "lime water",
+      "energy",
+      "Activity 10.1",
+      "Activity 10.2",
+      "Activity 10.4",
+      "Activity 10.7",
+      "Activity 10.8",
+      "Let Us Enhance Our Learning"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Plants obtain ready-made food from soil.",
+        "correction": "Plants absorb water and minerals from soil but make food in green parts by photosynthesis."
+      },
+      {
+        "claim": "Sunlight and water alone are enough for photosynthesis.",
+        "correction": "Carbon dioxide and chlorophyll are also required."
+      },
+      {
+        "claim": "Plants take in oxygen and release carbon dioxide only, even in sunlight.",
+        "correction": "During photosynthesis green parts use carbon dioxide and release oxygen, while respiration continues in plant cells."
+      },
+      {
+        "claim": "Xylem transports food from leaves.",
+        "correction": "Xylem transports water and minerals; phloem transports prepared food."
+      },
+      {
+        "claim": "Only green leaves respire.",
+        "correction": "All living plant parts respire, including roots, stems, leaves and germinating seeds."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activity 10.1 to establish that both water and sunlight support healthy plant growth.",
+      "Use Activity 10.2 for the iodine test and Activity 10.3 for chlorophyll and sunlight.",
+      "Use Activity 10.4 to demonstrate the requirement of carbon dioxide.",
+      "Use Activity 10.5 to identify oxygen released by an illuminated water plant.",
+      "Use Activity 10.6 for stomata and Activity 10.7 for xylem transport.",
+      "Use Activity 10.8 and Questions 1, 7 and 10 to compare photosynthesis with respiration."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end section 'Let Us Enhance Our Learning' contains Questions 1–10, followed by Exploratory Projects."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 10: Life Processes in Plants\n\n## What you will learn\nYou will investigate the basic needs for plant growth through Activity 10.1. You will distinguish resources absorbed from the environment from food made by the plant.\n\n## Simple explanation\nPlants need water, light, air and suitable mineral nutrients. They do not take ready-made food from soil; green parts prepare food using photosynthesis.\n\n## Step-by-step breakdown\n- **Activity 10.1**: Similar plants are kept under different combinations of water and sunlight and observed over about two weeks.\n- **Water**: A plant without water wilts or fails to grow normally.\n- **Sunlight**: A plant kept without light becomes weak and cannot make enough food.\n- **Combined need**: Healthy growth requires both water and sunlight, along with air and nutrients.\n- **Roots**: Roots absorb water and dissolved minerals from soil.\n- **Leaves**: Green leaves are the major food-making organs.\n- **Growth evidence**: Changes in height, leaf condition and overall health are compared.\n- **Fair comparison**: The plants should otherwise be similar so the tested condition explains the difference.\n\n## Worked example\nQuestion: NCERT Activity 10.1 compares plants receiving different combinations of water and sunlight. What conclusion should be drawn?\n\nSolution:\n- Step 1: Observe the plant receiving both water and sunlight.\n- Step 2: Compare it with a plant deprived of water and one deprived of sunlight.\n- Step 3: Note that either missing condition prevents normal healthy growth.\n- Step 4: Rule out unrelated differences by using similar plants and soil.\n- Final answer: Both water and sunlight are necessary for healthy plant growth.\n\n## Common mistake\nDo not conclude that soil itself is the plant's food. Soil supplies water and minerals, while food is manufactured by photosynthesis.\n\n## Quick check question\nQuestion: Which plant part mainly absorbs water and minerals from soil?\nAnswer: The roots, especially through root hairs.\nExplanation: Root hairs increase contact with soil water and dissolved minerals.\n\n## Summary\n- Plants need water and sunlight.\n- Roots absorb water and minerals.\n- Leaves make food.\n- Controlled comparison supports conclusions.\n- Healthy growth depends on several linked processes.",
+    "Core explanation": "# Core explanation: Chapter 10: Life Processes in Plants\n\n## What you will learn\nYou will use Activities 10.2 and 10.3 to show that leaves make starch and that both chlorophyll and sunlight are needed. You will interpret iodine-test evidence correctly.\n\n## Simple explanation\nGlucose produced during photosynthesis may be stored as starch. Iodine solution turns blue-black where starch is present, allowing food production in a leaf to be tested.\n\n## Step-by-step breakdown\n- **Activity 10.2**: A leaf is first treated so its green colour is removed, then iodine solution is added.\n- **Starch test**: Blue-black colour indicates starch.\n- **Decolourisation**: Removing chlorophyll's green colour makes the iodine result easier to observe.\n- **Safety**: Heating alcohol requires adult or teacher supervision and must not be done directly over a flame.\n- **Activity 10.3**: A variegated leaf with green and non-green patches is tested after suitable light exposure.\n- **Chlorophyll**: Only green regions contain chlorophyll.\n- **Sunlight comparison**: A destarched plant or leaf portion exposed to light forms starch; a covered or dark-kept portion does not.\n- **Conclusion**: Chlorophyll and sunlight are both necessary for photosynthesis.\n\n## Worked example\nQuestion: NCERT Activity 10.3 uses a variegated leaf. Which areas turn blue-black after the starch test, and why?\n\nSolution:\n- Step 1: Identify green patches as regions containing chlorophyll.\n- Step 2: Ensure the plant has received sunlight after being destarched.\n- Step 3: Apply the iodine test after removing the leaf's green colour.\n- Step 4: Green regions exposed to light show starch and turn blue-black.\n- Final answer: Only chlorophyll-containing regions exposed to sunlight turn blue-black because they carried out photosynthesis.\n\n## Common mistake\nDo not say iodine turns chlorophyll blue-black. Iodine reacts with starch; chlorophyll is required earlier for food production.\n\n## Quick check question\nQuestion: What does a blue-black region on an iodine-treated leaf show?\nAnswer: It shows that starch is present in that region.\nExplanation: Starch is stored food formed from glucose made during photosynthesis.\n\n## Summary\n- Leaves produce food.\n- Starch is detected by iodine.\n- Chlorophyll is required.\n- Sunlight is required.\n- The test result identifies stored food, not chlorophyll.",
+    "Worked examples": "# Worked examples: Chapter 10: Life Processes in Plants\n\n## What you will learn\nYou will investigate the roles of carbon dioxide and oxygen through Activities 10.4 and 10.5. You will build the word equation for photosynthesis from experimental evidence.\n\n## Simple explanation\nGreen plants use carbon dioxide and water in the presence of sunlight and chlorophyll to make glucose. Oxygen is released, and some glucose is stored as starch.\n\n## Step-by-step breakdown\n- **Activity 10.4**: Part of a destarched leaf is enclosed in a bottle containing sodium hydroxide, which removes carbon dioxide.\n- **Carbon dioxide test**: The enclosed region lacks available carbon dioxide and does not form starch.\n- **Exposed region**: The portion outside the bottle receives carbon dioxide and can form starch in light.\n- **Activity 10.5**: An illuminated water plant produces bubbles that can be collected.\n- **Gas test**: The collected gas supports burning, identifying it as oxygen.\n- **Photosynthesis inputs**: Carbon dioxide and water are used.\n- **Conditions**: Sunlight provides energy and chlorophyll captures it.\n- **Products**: Glucose is formed and oxygen is released.\n- **Storage**: Excess glucose may be converted into starch.\n\n## Worked example\nQuestion: NCERT Activity 10.4 places part of a leaf in a bottle with sodium hydroxide. Why does the enclosed part fail the starch test?\n\nSolution:\n- Step 1: Sodium hydroxide absorbs carbon dioxide inside the bottle.\n- Step 2: The enclosed leaf part still has chlorophyll and receives light but lacks carbon dioxide.\n- Step 3: Without carbon dioxide, photosynthesis cannot produce glucose there.\n- Step 4: No glucose means no starch is formed for the iodine test.\n- Final answer: The enclosed part does not turn blue-black, showing that carbon dioxide is necessary for photosynthesis.\n\n## Common mistake\nDo not describe sodium hydroxide as plant food. Its experimental role is to remove carbon dioxide from the enclosed air.\n\n## Quick check question\nQuestion: Write the chapter's word relationship for photosynthesis.\nAnswer: Carbon dioxide + water, in the presence of sunlight and chlorophyll, produce glucose + oxygen.\nExplanation: The equation summarises the required raw materials, conditions and products demonstrated by the activities.\n\n## Summary\n- Carbon dioxide is required for photosynthesis.\n- Water is another raw material.\n- Sunlight and chlorophyll are essential conditions.\n- Glucose is the food product.\n- Oxygen is released.",
+    "Exam-style problems": "# Exam-style problems: Chapter 10: Life Processes in Plants\n\n## What you will learn\nYou will examine gas exchange and transport in plants. You will use Activities 10.6 and 10.7 to connect stomata, root absorption, xylem and phloem.\n\n## Simple explanation\nPlants must move materials between roots, stems and leaves. Tiny stomata exchange gases, xylem carries water and minerals upward, and phloem distributes prepared food.\n\n## Step-by-step breakdown\n- **Activity 10.6**: A thin leaf peel is observed to identify small pores called stomata.\n- **Stomata**: These pores allow carbon dioxide, oxygen and water vapour to move between the leaf and air.\n- **Guard cells**: Special cells around each pore control opening and closing.\n- **Root hairs**: They absorb water and dissolved minerals from soil.\n- **Activity 10.7**: A plant stem placed in coloured water develops coloured lines in conducting tissues.\n- **Xylem**: This tissue transports water and minerals from roots through the stem to leaves.\n- **Phloem**: This tissue carries food made in leaves to growing and storage regions.\n- **Two-way need**: Roots need food from leaves, while leaves need water and minerals from roots.\n- **Storage organs**: Prepared food may be transported to roots, stems, fruits or seeds for storage.\n\n## Worked example\nQuestion: NCERT Activity 10.7 places a stem in red-coloured water. What does the coloured path demonstrate?\n\nSolution:\n- Step 1: The cut stem absorbs the coloured water.\n- Step 2: Red colour appears in particular tubes within the stem and may reach leaf veins.\n- Step 3: The dye travels with water rather than spreading equally through every tissue.\n- Step 4: These water-conducting tubes are xylem.\n- Final answer: The coloured path demonstrates transport of water and minerals through xylem.\n\n## Common mistake\nDo not say phloem carries water upward. Xylem carries water and minerals; phloem carries food.\n\n## Quick check question\nQuestion: What is the main function of stomata?\nAnswer: They allow gas exchange between the leaf and the surrounding air and also permit water-vapour loss.\nExplanation: Carbon dioxide enters for photosynthesis, while oxygen and water vapour can move out through these pores.\n\n## Summary\n- Stomata control gas exchange.\n- Roots absorb water and minerals.\n- Xylem transports water and minerals.\n- Phloem transports food.\n- Transport links all plant organs.",
+    "Revision and recap": "# Revision and recap: Chapter 10: Life Processes in Plants\n\n## What you will learn\nYou will show that plants respire as well as photosynthesise. You will interpret Activity 10.8 with germinating seeds and compare the two processes accurately.\n\n## Simple explanation\nEvery living plant cell needs energy. During respiration, glucose reacts with oxygen to release energy and form carbon dioxide and water; this occurs day and night in all living parts.\n\n## Step-by-step breakdown\n- **Activity 10.8**: Germinating moong seeds are placed in a setup that directs released gas towards lime water.\n- **Milky observation**: Lime water turns milky, indicating carbon dioxide.\n- **Germination**: Growing seeds have active cells and a high demand for energy.\n- **Respiration equation**: Glucose + oxygen → carbon dioxide + water + energy.\n- **All living parts**: Roots, stems, leaves, flowers, fruits and seeds respire.\n- **Day and night**: Respiration continues whenever cells need energy.\n- **Photosynthesis contrast**: Photosynthesis stores solar energy in glucose and releases oxygen.\n- **Respiration contrast**: Respiration releases usable energy from glucose and produces carbon dioxide.\n- **Gas balance**: In light, photosynthesis may be faster than respiration in green tissue, but both processes can occur.\n\n## Worked example\nQuestion: NCERT Activity 10.8 uses germinating seeds and lime water. Why does the lime water turn milky?\n\nSolution:\n- Step 1: Germinating seeds are living and respire actively.\n- Step 2: Respiration breaks down glucose using oxygen and releases carbon dioxide.\n- Step 3: The released gas reaches the lime water.\n- Step 4: Carbon dioxide reacts with lime water to produce a milky appearance.\n- Final answer: The lime water turns milky because germinating seeds release carbon dioxide during respiration.\n\n## Common mistake\nDo not state that plants respire only at night. Respiration occurs continuously; photosynthesis depends on light.\n\n## Quick check question\nQuestion: Which process releases usable energy from glucose in plant cells?\nAnswer: Respiration.\nExplanation: Photosynthesis makes and stores chemical energy in glucose, while respiration releases energy for cellular work.\n\n## Summary\n- Plants respire in all living parts.\n- Respiration releases energy.\n- Carbon dioxide is produced.\n- Photosynthesis and respiration are different but connected.\n- Respiration continues during day and night."
+  }
+}

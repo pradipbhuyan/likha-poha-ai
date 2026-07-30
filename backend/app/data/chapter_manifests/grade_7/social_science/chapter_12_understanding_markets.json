@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 12: Understanding Markets",
+  "central_question": "How do markets connect buyers, sellers and supply chains, determine prices, serve society and remain fair through government regulation and informed consumer choice?",
+  "in_scope_units": [
+    "What is a Market?—physical and online places of exchange, needs and wants, Hampi Bazaar, buyers, sellers, prices and bargaining.",
+    "Prices and Markets—negotiation and the interaction of the quantity offered by sellers with the quantity required by buyers.",
+    "Markets Around Us—physical markets, online markets, domestic markets, international markets, imports and exports.",
+    "Wholesale and Retail Markets—producers, wholesalers, godowns, cold storage, mandis, retailers, distributors and aggregators.",
+    "The Surat textile chain—raw cotton, processing, wholesale distribution, transport networks and final consumers.",
+    "The Role of Markets in People’s Lives—access to goods, feedback to producers, social relationships and Ima Keithal.",
+    "Government’s Role in the Market—price limits, minimum prices and wages, quality and safety, environmental effects, weights and measures and public goods.",
+    "How consumers assess quality—product labels, FSSAI, ISI, AGMARK, BEE Star ratings, reputation and online reviews.",
+    "Before we move on and Questions and activities 1–10—market features, prices, market types, supply chains, farmer losses, certification and package labels."
+  ],
+  "banned_topics": [
+    "Detailed barter and evolution of money, which belong to Chapter 11.",
+    "Detailed stock-market investment and share trading, which the chapter says will be studied later.",
+    "Advanced demand-and-supply graphs or algebra not presented in the chapter.",
+    "Detailed consumer-court procedures or legal advice not included in the chapter."
+  ],
+  "must_include_keywords": [
+    "market",
+    "needs",
+    "wants",
+    "Hampi Bazaar",
+    "buyer",
+    "seller",
+    "price",
+    "negotiation",
+    "demand",
+    "supply",
+    "physical market",
+    "online market",
+    "domestic market",
+    "international market",
+    "import",
+    "export",
+    "producer",
+    "manufacturer",
+    "wholesaler",
+    "retailer",
+    "distributor",
+    "aggregator",
+    "godown",
+    "cold storage",
+    "mandi",
+    "Surat textile market",
+    "consumer",
+    "Ima Keithal",
+    "public goods",
+    "quality standards",
+    "FSSAI",
+    "ISI Mark",
+    "AGMARK",
+    "BEE Star rating",
+    "online reviews"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A market must always be a physical place where buyers and sellers meet.",
+      "correction": "Markets may be physical or online, and online buyers and sellers can transact from distant locations."
+    },
+    {
+      "claim": "A very high price always guarantees that a transaction will occur.",
+      "correction": "A transaction occurs only when buyer and seller agree; a price that is too high for buyers or too low for sellers may prevent exchange."
+    },
+    {
+      "claim": "Wholesalers and retailers perform the same role.",
+      "correction": "Wholesalers usually buy and sell in bulk, while retailers sell smaller quantities or services to final consumers."
+    },
+    {
+      "claim": "Government has no role once buyers and sellers meet.",
+      "correction": "Government may regulate prices, quality, safety, environmental effects, weights and measures and provide public goods."
+    },
+    {
+      "claim": "Every certification mark is used for the same products.",
+      "correction": "FSSAI is for food safety, ISI covers many industrial products, AGMARK covers agricultural products and BEE ratings show energy efficiency."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Q1 to identify the defining features of a market from a real visit.",
+    "Use NCERT Q3 to reason how a good guava price influences the farmer’s production choices.",
+    "Use NCERT Q7 to analyse how wholesalers, storage and market access may reduce tomato waste and farmer loss.",
+    "Use NCERT Q6 to distinguish price from other factors that influence consumer decisions.",
+    "Use NCERT Q9 and Q10 to inspect certification marks and design an informative package label."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–10.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

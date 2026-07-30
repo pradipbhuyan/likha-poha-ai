@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 8: Measurement of Time and Motion",
+  "central_question": "How can time and motion be measured reliably, and how do speed, average speed and motion patterns help us compare moving objects?",
+  "in_scope_units": [
+    "8.1 Measurement of Time—natural periodic events, traditional devices, sundials, water clocks, hourglasses, candle clocks and Activity 8.1.",
+    "Historical and scientific development of time measurement, including Indian instruments, Galileo's observation and Huygens' pendulum clock.",
+    "8.1.1 Simple pendulum—parts, oscillation, mean and extreme positions, Activity 8.2 and the time period.",
+    "8.1.2 SI unit of time—second, minute, hour, symbols, Activity 8.3 and measurement of small time intervals.",
+    "8.2 Slow or Fast—comparison through distance covered in equal time or time taken for equal distance.",
+    "8.3 Speed—speed formula, SI unit, km/h and m/s, Examples 8.1–8.3, railway timetable, speedometer, odometer and average speed.",
+    "8.4 Uniform and Non-uniform Linear Motion—constant or changing speed on a straight path and interpretation of time-distance data.",
+    "In a Nutshell, Let Us Enhance Our Learning Questions 1–11 and exploratory projects."
+  ],
+  "banned_topics": [
+    "Acceleration formulas and equations of motion.",
+    "Distance-time and velocity-time graphs beyond the chapter's tables.",
+    "Vector velocity and displacement.",
+    "Detailed mechanics of atomic clocks.",
+    "Advanced circular or rotational motion."
+  ],
+  "must_include_keywords": [
+    "time interval",
+    "periodic event",
+    "sundial",
+    "water clock",
+    "hourglass",
+    "candle clock",
+    "simple pendulum",
+    "bob",
+    "mean position",
+    "extreme position",
+    "oscillation",
+    "time period",
+    "Galileo Galilei",
+    "Christiaan Huygens",
+    "second",
+    "minute",
+    "hour",
+    "SI unit",
+    "millisecond",
+    "microsecond",
+    "distance",
+    "time",
+    "speed",
+    "metre per second",
+    "kilometre per hour",
+    "average speed",
+    "speedometer",
+    "odometer",
+    "uniform linear motion",
+    "non-uniform linear motion",
+    "railway timetable",
+    "Activity 8.1",
+    "Activity 8.2",
+    "Example 8.1",
+    "Let Us Enhance Our Learning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "One oscillation is motion from the mean position to one extreme and back to the mean.",
+      "correction": "A complete oscillation returns the bob after visiting both sides of its motion path, as defined by the chapter."
+    },
+    {
+      "claim": "A heavier pendulum bob always has a longer time period.",
+      "correction": "For a pendulum of a given length at a place, changing the bob's mass does not determine the time period."
+    },
+    {
+      "claim": "Average speed is always the arithmetic mean of the different speeds.",
+      "correction": "Average speed is total distance covered divided by total time taken."
+    },
+    {
+      "claim": "An odometer measures speed.",
+      "correction": "A speedometer shows speed, while an odometer records distance travelled."
+    },
+    {
+      "claim": "Uniform motion means covering equal distances in unequal time intervals.",
+      "correction": "In uniform linear motion, equal distances are covered in equal time intervals along a straight line."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 8.1 to build and calibrate a simple water clock.",
+    "Use Activity 8.2 to calculate pendulum time period from the time for ten oscillations.",
+    "Use Example 8.1 to convert 3.6 km in 15 minutes into metre per second.",
+    "Use Examples 8.2 and 8.3 for distance = speed × time and time = distance ÷ speed.",
+    "Use Table 8.3 and Questions 7–10 to distinguish uniform from non-uniform motion.",
+    "Use Question 11 to combine segment times and average-speed reasoning."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section 'Let Us Enhance Our Learning' contains Questions 1–11, followed by Exploratory Projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

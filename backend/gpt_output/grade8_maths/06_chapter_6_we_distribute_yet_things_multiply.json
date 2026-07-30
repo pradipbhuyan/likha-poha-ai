@@ -1,0 +1,92 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 6: We Distribute, Yet Things Multiply",
+    "central_question": "How does the distributive property explain changes in products, expansions, algebraic identities and fast multiplication methods?",
+    "in_scope_units": [
+      "Distributive property of multiplication over addition and subtraction.",
+      "Changes in a product when one or both factors increase or decrease.",
+      "General identity (a+m)(b+n).",
+      "Expansion of algebraic expressions and collection of like terms.",
+      "Historical note on khanda-gunanam and Brahmagupta.",
+      "Fast multiplication by 11, 101, 1001 and related numbers.",
+      "Square of a sum and square of a difference using area models.",
+      "Product of a sum and difference.",
+      "Patterns and applications of the identities.",
+      "Chapter exercises involving multiplication grids, expansion and mental methods."
+    ],
+    "banned_topics": [
+      "Factorisation of quadratic polynomials as a separate topic.",
+      "Quadratic equations.",
+      "Binomial theorem for arbitrary powers."
+    ],
+    "must_include_keywords": [
+      "distributive property",
+      "commutative property",
+      "identity",
+      "expansion",
+      "like terms",
+      "product change",
+      "increase",
+      "decrease",
+      "(a+m)(b+n)",
+      "area model",
+      "integer signs",
+      "fast multiplication",
+      "multiply by 11",
+      "multiply by 101",
+      "multiply by 1001",
+      "square of a sum",
+      "square of a difference",
+      "difference of squares",
+      "a² + 2ab + b²",
+      "a² − 2ab + b²",
+      "a² − b²",
+      "Brahmagupta",
+      "khanda-gunanam",
+      "ista-gunana",
+      "visualisation",
+      "algebraic pattern",
+      "verification"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "a(b+c) = ab+c.",
+        "correction": "The factor a must multiply every term: a(b+c) = ab+ac."
+      },
+      {
+        "claim": "(a+b)² = a²+b².",
+        "correction": "The middle products give (a+b)² = a²+2ab+b²."
+      },
+      {
+        "claim": "(a−b)² = a²−b².",
+        "correction": "(a−b)² = a²−2ab+b²; a²−b² equals (a+b)(a−b)."
+      },
+      {
+        "claim": "All terms in an expansion can be combined.",
+        "correction": "Only like terms with exactly the same letter part can be combined."
+      },
+      {
+        "claim": "Increasing one factor and decreasing the other always leaves the product unchanged.",
+        "correction": "(a+1)(b−1) = ab+b−a−1, so the change depends on a and b."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use 23×27 and the increase-by-1 questions to introduce distribution.",
+      "Derive (a+m)(b+n) = ab+mb+an+mn with the rectangular array.",
+      "Use Example 1 to expand (3a/2)(a−b+1/5).",
+      "Use 3874×11 and 3874×101 for fast multiplication.",
+      "Use the 65² and 55² area models to derive the square identities.",
+      "Use Figure it Out expansion patterns to verify difference-of-powers identities."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Figure it Out sets appear after general expansion and after the special identities, followed by a summary of the distributive identity and its three main special cases."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 6: We Distribute, Yet Things Multiply\n\n## What you will learn\nYou will understand the distributive property through arrays and product changes. You will see how increasing one factor affects a product.\n\n## Simple explanation\nThe property a(b+c)=ab+ac says that a rows of b+c objects can be split into a rows of b and a rows of c.\n\n## Step-by-step breakdown\n- **Distribution**: Multiply the outside factor by every term inside the bracket.\n- **Visual model**: A rectangle of width b+c splits into rectangles of widths b and c.\n- **Increase one factor**: a(b+1)=ab+a, so the product increases by a.\n- **Notation**: a(b+c) means a×(b+c).\n- **Identity**: The equality holds for every allowed value of the letters.\n\n## Worked example\nQuestion: By how much does 23×27 increase when 27 is increased to 28?\n\nSolution:\n- Step 1: Write 23×28 as 23(27+1).\n- Step 2: Distribute: 23(27+1)=23×27+23×1.\n- Step 3: Simplify: 23×27+23.\n- Step 4: The added term is 23.\n- Final answer: The product increases by 23.\n\n## Common mistake\nDo not multiply only the first term in a bracket. Every term must receive the outside factor.\n\n## Quick check question\nQuestion: Expand 5(x+3).\nAnswer: 5x+15.\nExplanation: Distribute 5 to both terms: 5×x + 5×3 = 5x+15.\n\n## Summary\n- Distribution splits one multiplication into a sum of products.\n- The visual area model and algebra express the same idea.\n- Increasing a factor by 1 adds the other factor.",
+    "Core explanation": "# Core explanation: Chapter 6: We Distribute, Yet Things Multiply\n\n## What you will learn\nYou will derive the general two-bracket identity and use integer signs correctly. You will describe the exact change in a product.\n\n## Simple explanation\nEvery term in the first bracket multiplies every term in the second bracket.\n\n## Step-by-step breakdown\n- **General identity**: (a+m)(b+n)=ab+mb+an+mn.\n- **Product change**: Compared with ab, the change is mb+an+mn.\n- **One increase, one decrease**: Use a negative value for m or n.\n- **Sign rules**: A negative times a negative gives a positive term.\n- **Area model**: Four subrectangles correspond to the four products.\n\n## Worked example\nQuestion: Expand (a+1)(b−1) and state its change from ab.\n\nSolution:\n- Step 1: Write b−1 as b+(−1).\n- Step 2: Apply the identity with m=1 and n=−1.\n- Step 3: Obtain ab + 1·b + a(−1) + 1(−1).\n- Step 4: Simplify: ab+b−a−1.\n- Step 5: Subtract the original ab; the change is b−a−1.\n- Final answer: (a+1)(b−1)=ab+b−a−1, so the change is b−a−1.\n\n## Common mistake\nDo not treat the word 'increase' as proof that the final change is positive. The algebraic change can be zero or negative.\n\n## Quick check question\nQuestion: Expand (a−u)(b−v).\nAnswer: ab−ub−av+uv.\nExplanation: Multiply each pair of terms and apply sign rules; the product of −u and −v is +uv.\n\n## Summary\n- Four pairwise products appear in a two-binomial expansion.\n- Negative adjustments are handled with integer sign rules.\n- A single identity covers many increase-and-decrease cases.",
+    "Worked examples": "# Worked examples: Chapter 6: We Distribute, Yet Things Multiply\n\n## What you will learn\nYou will expand expressions with several terms and combine like terms. You will retain complete coefficient and exponent working.\n\n## Simple explanation\nAfter distributing, simplify individual products and combine only terms whose variable parts match exactly.\n\n## Step-by-step breakdown\n- **Term-by-term multiplication**: Multiply the outside monomial by each term.\n- **Exponent notation**: a×a=a² and a×a²=a³.\n- **Like terms**: ab and 3ab are like; a² and a are not.\n- **Coefficients**: Add or subtract numerical coefficients of like terms.\n- **Final check**: Verify that every original term has been multiplied.\n\n## Worked example\nQuestion: Expand (3a/2)(a−b+1/5).\n\nSolution:\n- Step 1: Distribute: (3a/2)·a − (3a/2)·b + (3a/2)·(1/5).\n- Step 2: First term: (3a/2)·a = 3a²/2.\n- Step 3: Second term: (3a/2)·b = 3ab/2.\n- Step 4: Third term: (3a/2)·(1/5) = 3a/10.\n- Step 5: Apply the signs: 3a²/2 − 3ab/2 + 3a/10.\n- Step 6: No terms are like, so no further combination is possible.\n- Final answer: (3a/2)(a−b+1/5)=3a²/2−3ab/2+3a/10.\n\n## Common mistake\nDo not combine a² and a merely because both contain a. Their variable parts and exponents are different.\n\n## Quick check question\nQuestion: Combine a²b + 2a²b.\nAnswer: 3a²b.\nExplanation: The variable parts are identical, so add the coefficients: (1+2)a²b=3a²b.\n\n## Summary\n- Distribute before collecting terms.\n- Simplify powers carefully.\n- Only exact like terms can be combined.",
+    "Exam-style problems": "# Exam-style problems: Chapter 6: We Distribute, Yet Things Multiply\n\n## What you will learn\nYou will use distributivity for fast multiplication and derive the three special identities. You will connect symbolic expansions with square areas.\n\n## Simple explanation\nNumbers near powers of 10 can be split into convenient parts. The same distribution creates the square identities.\n\n## Step-by-step breakdown\n- **Multiply by 11**: Use N(10+1)=10N+N.\n- **Multiply by 101**: Use N(100+1)=100N+N.\n- **Square of sum**: (a+b)²=a²+2ab+b².\n- **Square of difference**: (a−b)²=a²−2ab+b².\n- **Sum times difference**: (a+b)(a−b)=a²−b².\n- **Geometry**: The terms represent square and rectangular regions in an area model.\n\n## Worked example\nQuestion: Use an identity to calculate 65².\n\nSolution:\n- Step 1: Write 65=60+5.\n- Step 2: Apply (a+b)²=a²+2ab+b².\n- Step 3: 65²=60²+2×60×5+5².\n- Step 4: Calculate: 60²=3600, 2×60×5=600 and 5²=25.\n- Step 5: Add: 3600+600+25=4225.\n- Final answer: 65²=4225.\n\n## Common mistake\nDo not omit the middle term 2ab. It represents two rectangles in the area model.\n\n## Quick check question\nQuestion: Evaluate 55² using (60−5)².\nAnswer: 3025.\nExplanation: (60−5)²=60²−2×60×5+5²=3600−600+25=3025.\n\n## Summary\n- Fast multiplication is a practical use of distribution.\n- The middle term in a square identity occurs twice.\n- Difference of squares is a product, not a squared difference.",
+    "Revision and recap": "# Revision and recap: Chapter 6: We Distribute, Yet Things Multiply\n\n## What you will learn\nYou will revise the identity toolkit, historical context and a reliable expansion-checking method. You will recognise common patterns without treating them as memorised magic.\n\n## Simple explanation\nBrahmagupta described multiplication by parts, called khanda-gunanam, and fast multiplication methods called ista-gunana. Modern algebra records the same reasoning compactly.\n\n## Step-by-step breakdown\n- **Core law**: a(b+c)=ab+ac.\n- **Two brackets**: (a+b)(c+d)=ac+ad+bc+bd.\n- **Special identity 1**: (a+b)²=a²+2ab+b².\n- **Special identity 2**: (a−b)²=a²−2ab+b².\n- **Special identity 3**: (a+b)(a−b)=a²−b².\n- **Verification**: Expand directly if an identity is forgotten.\n- **Historical idea**: Break a multiplier into useful parts, multiply separately and add.\n\n## Worked example\nQuestion: Verify (a+b)(a−b)=a²−b² by direct expansion.\n\nSolution:\n- Step 1: Distribute a+b over a−b: (a+b)a − (a+b)b.\n- Step 2: Expand: a²+ab−ab−b².\n- Step 3: The unlike-signed like terms +ab and −ab cancel.\n- Step 4: The result is a²−b².\n- Final answer: (a+b)(a−b)=a²−b².\n\n## Common mistake\nDo not write a²+b² after cancellation. The final b² term is negative because +b is multiplied by −b.\n\n## Quick check question\nQuestion: What is the coefficient of ab in (a+b)²?\nAnswer: 2.\nExplanation: The cross products are ab and ba; since ba=ab, together they make 2ab.\n\n## Summary\n- All identities come from distribution.\n- Area models explain the algebra visually.\n- Direct expansion is a dependable backup method.\n- Sign and like-term checks prevent most errors."
+  }
+}

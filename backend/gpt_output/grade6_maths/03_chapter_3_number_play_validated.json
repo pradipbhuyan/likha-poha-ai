@@ -1,0 +1,83 @@
+{
+  "manifest": {
+    "grade": "Grade 6",
+    "subject": "Maths",
+    "chapter": "Chapter 3 Number Play",
+    "central_question": "How can patterns, digits, operations, estimates, and games reveal surprising properties of numbers?",
+    "in_scope_units": [
+      "3.1 Numbers Can Tell Us Things",
+      "3.2 Supercells",
+      "3.3 Patterns of Numbers on the Number Line",
+      "3.4 Playing with Digits",
+      "3.5 Pretty Palindromic Patterns",
+      "3.6 The Magic Number of Kaprekar",
+      "3.7 Clock and Calendar Numbers",
+      "3.8 Mental Math",
+      "3.9 Playing with Number Patterns",
+      "3.10 An Unsolved Mystery — the Collatz Conjecture",
+      "3.11 Simple Estimation",
+      "3.12 Games and Winning Strategies"
+    ],
+    "banned_topics": [
+      "Claiming the Collatz conjecture is proved",
+      "Formal probability",
+      "Algebraic sequence formulae beyond the chapter"
+    ],
+    "must_include_keywords": [
+      "neighbours",
+      "supercell",
+      "number line",
+      "digits",
+      "digit sum",
+      "systematic counting",
+      "palindrome",
+      "reverse",
+      "Kaprekar",
+      "descending order",
+      "ascending order",
+      "6174",
+      "clock",
+      "calendar",
+      "mental math",
+      "number pattern",
+      "Collatz conjecture",
+      "even number",
+      "odd number",
+      "half",
+      "multiply by 3 and add 1",
+      "estimate",
+      "reasonable approximation",
+      "Game 21",
+      "winning strategy"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A large value is automatically a supercell.",
+        "correction": "It must be larger than every relevant neighbouring cell."
+      },
+      {
+        "claim": "Kaprekar's routine works normally when all four digits are identical.",
+        "correction": "The chapter uses at least two distinct digits; identical digits lead to 0000."
+      },
+      {
+        "claim": "Collatz is a proved theorem.",
+        "correction": "It remains an unsolved conjecture."
+      }
+    ],
+    "recommended_example_progression": [
+      "Identify neighbours and supercells in Sections 3.1–3.2.",
+      "Use digit sums and palindromes in Sections 3.4–3.5.",
+      "Apply Kaprekar's routine in Section 3.6.",
+      "Follow Collatz sequences in Section 3.10.",
+      "Use estimation and Games 21 and 99 in Sections 3.11–3.12."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the Figure it Out, Math Talk, Collatz, estimation, and game challenges across Sections 3.1–3.12."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 3 Number Play\n\n## What you will learn\nYou will interpret neighbour relationships and identify supercells in rows and grids.\n\n## Simple explanation\nA number's position can matter as much as its value. A supercell is defined through comparison with nearby cells.\n\n## Step-by-step breakdown\n- **Neighbours**: Use only the cells immediately specified by the grid activity.\n- **Supercell**: Its value is greater than all relevant neighbours.\n- **Boundary cells**: They have fewer neighbours and are compared only with those present.\n- **Two dimensions**: The chapter uses directions such as left, right, above, and below.\n\n## Worked example\nQuestion: Is 626 a supercell when its neighbours are 615 and 525?\n\nSolution:\n- Step 1: Compare 626 with 615.\n- Step 2: Compare 626 with 525.\n- Final answer: Yes; 626 is greater than both neighbours.\n\n## Common mistake\nDo not compare with unrelated distant cells.\n\n## Quick check question\nQuestion: Can two adjacent cells both be supercells relative to each other?\nAnswer: No.\nExplanation: Whichever is smaller cannot be greater than its adjacent neighbour.\n\n## Summary\n- Position creates number relationships.\n- A supercell beats all relevant neighbours.\n- Edge cells have fewer comparisons.",
+    "Core explanation": "# Core explanation: Chapter 3 Number Play\n\n## What you will learn\nYou will explore digits, digit sums, reversals, and palindromes systematically.\n\n## Simple explanation\nRearranging or reversing digits changes place value while preserving the digits themselves.\n\n## Step-by-step breakdown\n- **Digit sum**: Add the individual digits without place values.\n- **Systematic counting**: Organise cases by place to avoid omissions.\n- **Reverse**: Write the digit string in the opposite order.\n- **Palindrome**: A number equal to its reverse.\n- **Clock and calendar**: Displays produce repeated and palindromic patterns.\n\n## Worked example\nQuestion: Find the digit sums of 635 and its reverse 536.\n\nSolution:\n- Step 1: 6+3+5=14.\n- Step 2: 5+3+6=14.\n- Final answer: Both digit sums are 14.\n\n## Common mistake\nDigit sum is not the numerical value of the number.\n\n## Quick check question\nQuestion: Is 1221 a palindrome?\nAnswer: Yes.\nExplanation: It reads 1221 in both directions.\n\n## Summary\n- Digit order controls place value.\n- Reversal preserves the digit sum.\n- A palindrome equals its reverse.",
+    "Worked examples": "# Worked examples: Chapter 3 Number Play\n\n## What you will learn\nYou will apply Kaprekar's four-digit routine and understand its fixed value.\n\n## Simple explanation\nArrange the same digits greatest-to-least and least-to-greatest, subtract, and repeat.\n\n## Step-by-step breakdown\n- **Condition**: Use a four-digit number with at least two distinct digits.\n- **Descending form**: Largest possible arrangement.\n- **Ascending form**: Smallest arrangement, keeping leading zeroes.\n- **Repeat**: Apply the same subtraction to each result.\n- **Kaprekar value**: The routine reaches 6174 in the chapter's valid cases.\n\n## Worked example\nQuestion: Apply the NCERT routine to 6382.\n\nSolution:\n- Step 1: 8632−2368=6264.\n- Step 2: 6642−2466=4176.\n- Step 3: 7641−1467=6174.\n- Final answer: The routine reaches 6174.\n\n## Common mistake\nDo not drop leading zeroes in a four-digit arrangement.\n\n## Quick check question\nQuestion: Why is 6174 a fixed value?\nAnswer: 7641−1467=6174.\nExplanation: Rearranging its digits and subtracting returns the same number.\n\n## Summary\n- Rearrange, subtract, repeat.\n- At least two digits must differ.\n- 6174 reproduces itself.",
+    "Exam-style problems": "# Exam-style problems: Chapter 3 Number Play\n\n## What you will learn\nYou will follow Collatz sequences and distinguish evidence from proof.\n\n## Simple explanation\nThe rule is simple: halve even numbers; for odd numbers, multiply by 3 and add 1.\n\n## Step-by-step breakdown\n- **Even rule**: n becomes n÷2.\n- **Odd rule**: n becomes 3n+1.\n- **Iteration**: Repeat on each new term.\n- **Examples**: The displayed starts 12, 17, 21, and 22 reach 1.\n- **Status**: The claim for every positive whole number remains unsolved.\n\n## Worked example\nQuestion: Continue the NCERT Collatz sequence from 12 to 1.\n\nSolution:\n- Step 1: 12→6→3.\n- Step 2: 3→10→5→16→8→4→2→1.\n- Final answer: 12, 6, 3, 10, 5, 16, 8, 4, 2, 1.\n\n## Common mistake\nMany successful examples do not prove the conjecture.\n\n## Quick check question\nQuestion: What follows 17 in the Collatz process?\nAnswer: 52.\nExplanation: 17 is odd, so 3×17+1=52.\n\n## Summary\n- Apply the parity rule exactly.\n- Sequences can be long.\n- Collatz remains a conjecture.",
+    "Revision and recap": "# Revision and recap: Chapter 3 Number Play\n\n## What you will learn\nYou will make reasonable estimates and use number patterns to plan game strategies.\n\n## Simple explanation\nAn estimate is useful when exactness is unnecessary; a strategy uses a repeatable pattern rather than luck.\n\n## Step-by-step breakdown\n- **Estimate**: Round or group known quantities.\n- **Reasonableness**: State assumptions and compare with familiar references.\n- **School example**: 32, 29, and 35 children are estimated as about 100.\n- **Game 21**: Players add 1, 2, or 3 and seek control numbers.\n- **Game 99**: Players add 1 through 10 and seek an analogous pattern.\n\n## Worked example\nQuestion: Estimate the total of sections containing 32, 29, and 35 children.\n\nSolution:\n- Step 1: Use convenient values about 30, 30, and 40.\n- Step 2: Add them to get about 100.\n- Final answer: About 100 children; the exact total is 96.\n\n## Common mistake\nDo not present an estimate as an exact result.\n\n## Quick check question\nQuestion: Why should an estimation method be explained?\nAnswer: Different reasonable assumptions can give different estimates.\nExplanation: The method shows why the result is suitable for the purpose.\n\n## Summary\n- Estimation trades exactness for usefulness.\n- Strategies depend on repeatable patterns.\n- Separate estimates, observations, conjectures, and proofs."
+  }
+}

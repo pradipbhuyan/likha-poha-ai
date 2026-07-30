@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "English",
+    "chapter": "Unit 4: Travel and Adventure",
+    "central_question": "How do travel and adventure develop curiosity, courage, friendship, endurance and awareness of the natural and human world?",
+    "in_scope_units": [
+      "The Tunnel—Suraj's fascination with the railway, jungle and tunnel.",
+      "The steam engine as a sensory image and the contrast between machine and forest.",
+      "Sunder Singh's work as watchman and friendship with Suraj.",
+      "The leopard incident, courage, responsibility and railway safety.",
+      "Sound words, simile, personification, imagery and description.",
+      "Travel—the speaker's fascination with distant trains.",
+      "Rhyme scheme, repetition, imagery, sound, tone and symbolism.",
+      "Train vocabulary, diamante poetry and descriptive journey writing.",
+      "Conquering the Summit—Arunima Sinha's goal, preparation and achievement.",
+      "Bachendri Pal's encouragement and the importance of mental strength.",
+      "Seven Summits, Mount Vinson, endurance and resilience.",
+      "Adventure-sport viewpoints, risk, equipment, training and supervision.",
+      "School-trip announcement listening and responsible preparation."
+    ],
+    "banned_topics": [
+      "Technical railway engineering or tunnel construction.",
+      "Instructions for dangerous adventure sports without supervision.",
+      "Complete biographies beyond the text.",
+      "External records or dates not contained in the source."
+    ],
+    "must_include_keywords": [
+      "Suraj",
+      "Sunder Singh",
+      "railway tunnel",
+      "jungle",
+      "steam engine",
+      "dragon simile",
+      "leopard",
+      "watchman",
+      "friendship",
+      "courage",
+      "responsibility",
+      "sound words",
+      "imagery",
+      "Travel",
+      "Edna St. Vincent Millay",
+      "train whistle",
+      "cinders red",
+      "repetition",
+      "ABAB rhyme scheme",
+      "adventure",
+      "opportunities",
+      "diamante poem",
+      "Arunima Sinha",
+      "prosthetic leg",
+      "Bachendri Pal",
+      "Mount Everest",
+      "Seven Summits",
+      "Mount Vinson",
+      "endurance",
+      "mental strength",
+      "adventure sports",
+      "supervision"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Suraj enters the tunnel to damage the train.",
+        "correction": "He explores from curiosity and later helps protect the line."
+      },
+      {
+        "claim": "The leopard is simply a villain.",
+        "correction": "It belongs to the jungle; danger arises where animal habitat and railway meet."
+      },
+      {
+        "claim": "The speaker in Travel dislikes current friends.",
+        "correction": "The speaker values friends but also desires new journeys."
+      },
+      {
+        "claim": "Arunima succeeds through physical strength alone.",
+        "correction": "The text stresses preparation, mentorship, determination and mental endurance."
+      },
+      {
+        "claim": "Adventure means ignoring risk.",
+        "correction": "The unit stresses training, equipment, supervision and judgement."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with Suraj's sensory experience of the tunnel.",
+      "Analyse friendship, the leopard and responsibility.",
+      "Use Travel for imagery, repetition and symbolism.",
+      "Use Conquering the Summit for endurance and mentorship.",
+      "End with descriptive writing, listening and balanced adventure discussion."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The unit provides comprehension, extract-based reflection, vocabulary, poetry, listening, speaking, descriptive writing and adventure-sport activities."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Unit 4: Travel and Adventure\n\n## What you will learn\nYou will follow Suraj's experiences in The Tunnel and understand how curiosity leads to friendship and responsibility.\n\n## Simple explanation\nSuraj is drawn to the railway cutting because it joins the quiet jungle with the power of a passing train. Meeting watchman Sunder Singh turns solitary exploration into shared adventure.\n\n## Step-by-step breakdown\n- **Setting**: A railway line cuts through the jungle and enters a dark tunnel.\n- **Curiosity**: Suraj observes the train and surroundings closely.\n- **Engine image**: The engine emerges like a colourful dragon or beautiful monster.\n- **Silence**: After it passes, smoke drifts and the jungle becomes still.\n- **Sunder Singh**: The watchman checks the tunnel and protects the line.\n- **Friendship**: A young visitor and older watchman share interest in railway and jungle.\n- **Danger**: A leopard near the track threatens both animal and train.\n- **Growth**: Suraj's adventure becomes an act of courage and responsibility.\n\n## Worked example\nQuestion: What draws Sunder Singh and Suraj together?\n```extract-ref\n{\"citation\": \"NCERT Unit 4, The Tunnel—Think and Reflect\", \"extract_text\": \"Sunder Singh and Suraj form an unlikely friendship. What draws them together?\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: Both pay close attention to the tunnel, jungle and trains, and Sunder welcomes Suraj.\n- Step 2: The leopard incident gives them a shared purpose and trust.\n- Final answer: Shared curiosity, friendship and responsibility during danger draw them together.\n\n## Common mistake\nThe friendship is not based only on excitement; care and trust matter.\n\n## Quick check question\nQuestion: What happens after the train passes?\nAnswer: Smoke drifts over the trees and the jungle becomes still.\nExplanation: This emphasises the contrast between machine noise and natural quiet.\n\n## Summary\n- The setting joins jungle and railway.\n- Suraj observes with curiosity.\n- Sunder performs responsible work.\n- Shared experience creates friendship.",
+    "Core explanation": "# Core explanation: Unit 4: Travel and Adventure\n\n## What you will learn\nYou will analyse imagery, sound and atmosphere in The Tunnel.\n\n## Simple explanation\nLoud engine sounds, hot steam, drifting smoke, flickering light and deep darkness create changing moods and make the railway vivid.\n\n## Step-by-step breakdown\n- **Simile**: The engine is compared with a green, black and gold dragon.\n- **Personification**: It appears to roar a challenge and trees seem to flinch.\n- **Sound imagery**: Snorting, puffing, roaring, creaking and rustling make the scene audible.\n- **Light and dark**: The tunnel contrasts with a small circle of daylight.\n- **Firefly image**: Sunder's flickering lamp makes him resemble a firefly.\n- **Leopard**: Its presence creates danger without making nature evil.\n- **Responsibility**: Sunder and Suraj act to prevent harm.\n- **Nature and machine**: The railway entering habitat requires human care.\n\n## Worked example\nQuestion: Why is Sunder Singh called a 'firefly'?\n```extract-ref\n{\"citation\": \"NCERT Unit 4, The Tunnel—Think and Reflect\", \"extract_text\": \"Why is Sunder Singh referred to as a ‘firefly’?\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: He moves in darkness with a small flickering light.\n- Step 2: The image shows how his lamp glows and moves in the large dark landscape.\n- Final answer: He resembles a firefly because his moving lamp flickers in darkness.\n\n## Common mistake\nDo not say he literally becomes an insect; it is a visual comparison.\n\n## Quick check question\nQuestion: What device appears in 'like some green, black, and gold dragon'?\nAnswer: A simile.\nExplanation: The word 'like' compares the engine with a dragon.\n\n## Summary\n- Imagery makes the railway vivid.\n- Sound changes atmosphere.\n- The firefly image highlights the lamp.\n- Responsibility connects adventure with safety.",
+    "Worked examples": "# Worked examples: Unit 4: Travel and Adventure\n\n## What you will learn\nYou will interpret Travel and explain why a distant train symbolises adventure and opportunity.\n\n## Simple explanation\nThe speaker hears and imagines trains by day and night. The fascination suggests a desire to move beyond familiar surroundings.\n\n## Step-by-step breakdown\n- **Distance**: The track is far away, yet the whistle fills the imagination.\n- **Day and night**: Both busy day and quiet night contain the train's presence.\n- **Sound imagery**: The whistle shrieks and the engine steams.\n- **Visual imagery**: Red cinders glow against the sky.\n- **Repetition**: The repeated line stresses constant fascination.\n- **Rhyme**: Each stanza follows ABAB.\n- **Affection**: The speaker values current friends.\n- **Desire**: Every train represents adventure and opportunity.\n- **Tone**: The poem is curious, excited and enthusiastic.\n\n## Worked example\nQuestion: What does 'no matter where it's going' reveal?\n```extract-ref\n{\"citation\": \"NCERT Unit 4, Travel—Think and Reflect\", \"extract_text\": \"What does the line ‘no matter where it’s going’ reveal about the speaker’s attitude towards travel?\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: The speaker would take any train without needing a fixed destination.\n- Step 2: The journey itself represents movement, discovery and possibility.\n- Final answer: It reveals an open, adventurous and enthusiastic attitude.\n\n## Common mistake\nDo not claim the speaker wants to escape bad friends; the poem values them.\n\n## Quick check question\nQuestion: What is the rhyme scheme?\nAnswer: ABAB.\nExplanation: The first and third lines rhyme, and the second and fourth rhyme.\n\n## Summary\n- The train dominates the imagination.\n- Repetition stresses fascination.\n- Imagery appeals to sight and sound.\n- Friends and wanderlust coexist.",
+    "Exam-style problems": "# Exam-style problems: Unit 4: Travel and Adventure\n\n## What you will learn\nYou will analyse Arunima Sinha's journey and the importance of determination, preparation and mentorship.\n\n## Simple explanation\nArunima chooses an extraordinary goal while using a prosthetic leg. Her achievement grows from disciplined effort and the belief that the greatest obstacle must first be conquered within.\n\n## Step-by-step breakdown\n- **Decision**: She sets the goal of climbing Everest.\n- **Mentor**: Bachendri Pal recognises her inner victory.\n- **Preparation**: Mountaineering needs training, planning and endurance.\n- **Everest**: After 52 exhausting days, she reaches the summit on 21 May 2013.\n- **Meaning**: The summit represents physical and mental victory.\n- **Continuing goals**: She climbs peaks across continents.\n- **Mount Vinson**: She completes the Seven Summits in January 2019.\n- **Resilience**: Setbacks become part of sustained effort.\n- **Safety**: Ambition is supported by experts and preparation.\n\n## Worked example\nQuestion: How do Bachendri Pal's words explain Arunima's achievement?\n\nSolution:\n- Step 1: She says deciding to climb with a prosthetic leg means Arunima has already conquered the Everest within.\n- Step 2: The statement identifies self-belief as the foundation for training and endurance.\n- Final answer: The words strengthen her by framing the climb as an inner victory before an external summit.\n\n## Common mistake\nInspiration does not replace preparation; both are necessary.\n\n## Quick check question\nQuestion: What does 'Everest within' mean?\nAnswer: Fear, doubt and limiting beliefs that must be overcome.\nExplanation: The mountain becomes a symbol of an internal challenge.\n\n## Summary\n- Arunima sets a demanding goal.\n- Mentorship strengthens confidence.\n- Preparation makes ambition practical.\n- Resilience continues beyond one summit.",
+    "Revision and recap": "# Revision and recap: Unit 4: Travel and Adventure\n\n## What you will learn\nYou will connect the texts with descriptive writing, listening and speaking.\n\n## Simple explanation\nSuraj explores a tunnel, the speaker dreams of any train and Arunima climbs a mountain. All begin with a desire to move beyond the familiar.\n\n## Step-by-step breakdown\n- **Curiosity**: It makes Suraj notice and the speaker imagine.\n- **Courage**: It helps people face darkness and demanding goals.\n- **Responsibility**: Adventure requires safety and supervision.\n- **Description**: Travel writing uses sights, sounds, people and feelings.\n- **Announcement**: Listen for date, time, uniform, food and permission.\n- **Viewpoints**: Students, parents and instructors may value risk differently.\n- **Diamante**: A seven-line structure connects two ideas.\n- **Character writing**: Actions, appearance and speech create a portrait.\n- **Balance**: Adventure joins enthusiasm with preparation.\n\n## Worked example\nQuestion: How can a train-journey paragraph become vivid?\n```extract-ref\n{\"citation\": \"NCERT Unit 4, Travel—Let us Write\", \"extract_text\": \"Write a descriptive paragraph about your experience of a train journey.\", \"note\": \"Textbook exercise\"}\n```\n\nSolution:\n- Step 1: Describe boarding, passengers, whistle, wheels, scenery and feelings.\n- Step 2: Several senses help the reader experience the journey.\n- Final answer: Use clear sequence, sensory detail and personal response.\n\n## Common mistake\nDo not overload the paragraph with unrelated adjectives.\n\n## Quick check question\nQuestion: Why is supervision important in adventure sports?\nAnswer: It helps with equipment, risk assessment and emergencies.\nExplanation: Adventure should be exciting, not careless.\n\n## Summary\n- Travel may be physical or imaginative.\n- Adventure develops courage.\n- Safety remains essential.\n- Sensory detail improves writing."
+  }
+}

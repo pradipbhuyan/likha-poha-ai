@@ -1,0 +1,76 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 8 Playing with Constructions",
+  "central_question": "How can ruler-and-compass properties be used to plan and construct accurate figures?",
+  "in_scope_units": [
+    "8.1 Artwork — compass curves, circles, centre, radius, and repeated arcs",
+    "8.2 Squares and Rectangles — properties, naming, and rotated figures",
+    "8.3 Constructing Squares and Rectangles — perpendicular lines and given side lengths",
+    "8.4 Exploring Rectangles — moving points, subdivisions, centres, holes, and curves",
+    "8.5 Exploring Diagonals of Rectangles and Squares — diagonal and angle investigations",
+    "8.6 Points Equidistant from Two Given Points — circle intersections and the house construction"
+  ],
+  "banned_topics": [
+    "Formal Euclidean proofs",
+    "Triangle congruence criteria",
+    "Coordinate equations"
+  ],
+  "must_include_keywords": [
+    "ruler",
+    "compass",
+    "curve",
+    "circle",
+    "centre",
+    "radius",
+    "fixed distance",
+    "arc",
+    "A Person",
+    "Wavy Wave",
+    "Eyes",
+    "rectangle",
+    "opposite sides",
+    "right angle",
+    "square",
+    "all sides equal",
+    "valid naming",
+    "rotated square",
+    "perpendicular",
+    "construction steps",
+    "rough diagram",
+    "identical squares",
+    "centre of rectangle",
+    "diagonal",
+    "opposite angles",
+    "given side",
+    "given diagonal",
+    "equidistant",
+    "intersection of circles",
+    "intersection of arcs",
+    "House construction"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A rotated square is no longer a square.",
+      "correction": "Rotation preserves all side lengths and angles."
+    },
+    {
+      "claim": "Any order of corner labels names a rectangle.",
+      "correction": "The order must follow consecutive corners around the boundary."
+    },
+    {
+      "claim": "A fixed-distance point must be found by ruler trial and error.",
+      "correction": "A circle or arc locates all points at that distance."
+    }
+  ],
+  "recommended_example_progression": [
+    "Construct a 4 cm radius circle and the 8 cm Wavy Wave.",
+    "Verify square and rectangle properties after rotation.",
+    "Construct a 6 cm square and given-side rectangles.",
+    "Explore subdivisions and rectangle diagonals.",
+    "Use equal-radius arcs to construct the house."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the Construct, Figure it Out, Explore, Think, and Try tasks through Sections 8.1–8.6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

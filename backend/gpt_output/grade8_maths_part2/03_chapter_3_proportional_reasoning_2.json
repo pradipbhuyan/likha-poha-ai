@@ -1,0 +1,99 @@
+{
+  "manifest": {
+    "grade": "Grade 8",
+    "subject": "Maths",
+    "chapter": "Chapter 3: Proportional Reasoning-2",
+    "central_question": "How can direct and inverse proportional reasoning be extended to maps, multi-term ratios, pie charts, sharing problems and combined work?",
+    "in_scope_units": [
+      "A recap of proportional ratios and cross multiplication.",
+      "Map scales and representative fractions relating map distances to actual distances.",
+      "Ratios with three or more terms and simplification by a common factor.",
+      "Dividing a quantity in a given multi-term ratio.",
+      "Constructing pie charts by converting category ratios into angles totalling 360 degrees.",
+      "Direct proportion and the Rule of Three.",
+      "Inverse proportion, constant products and recognition from tables.",
+      "Applications involving speed and time, workers and days, pumps and hours, food and students.",
+      "Combined work rates when two people or machines work together."
+    ],
+    "banned_topics": [
+      "Trigonometric scale drawing.",
+      "Probability interpretation of pie charts.",
+      "Algebraic functions and graphs beyond direct and inverse proportional relationships."
+    ],
+    "must_include_keywords": [
+      "ratio",
+      "proportion",
+      "cross multiplication",
+      "equivalent ratios",
+      "scale factor",
+      "map scale",
+      "representative fraction",
+      "actual distance",
+      "map distance",
+      "same units",
+      "multi-term ratio",
+      "HCF",
+      "simplest form",
+      "total parts",
+      "sharing",
+      "pie chart",
+      "central angle",
+      "360 degrees",
+      "direct proportion",
+      "Rule of Three",
+      "inverse proportion",
+      "constant product",
+      "xy = k",
+      "speed",
+      "time",
+      "workers",
+      "days",
+      "pumps",
+      "food provision",
+      "work rate",
+      "combined work",
+      "idli batter",
+      "concrete mixture",
+      "triangle angles",
+      "grade distribution"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Two ratios are proportional when their corresponding terms have the same difference.",
+        "correction": "They are proportional when corresponding terms have the same multiplicative relationship, equivalently when cross products are equal."
+      },
+      {
+        "claim": "A map scale can be used without converting actual and map lengths to compatible units.",
+        "correction": "Both quantities must be expressed in the units required by the representative fraction before calculating."
+      },
+      {
+        "claim": "To divide a whole in ratio 2:3:5, divide the whole by 5.",
+        "correction": "First add the ratio terms; there are 2+3+5=10 total parts."
+      },
+      {
+        "claim": "In inverse proportion, the ratio x/y remains constant.",
+        "correction": "For inverse proportion, the product xy remains constant."
+      },
+      {
+        "claim": "The direct Rule of Three can be used for speed and time over a fixed distance.",
+        "correction": "For a fixed distance, speed and time are inversely proportional: increasing speed decreases time."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Section 3.1's idli ratios 6:3 and 4:2 to verify proportion by cross multiplication.",
+      "Use Section 3.2's map representative fraction example to convert map distance to actual distance.",
+      "Use the concrete-mixture example to divide 110 units in the ratio 2:3:6 or its stated simplified equivalent.",
+      "Use Section 3.5's grade distribution 12:10:8:6:4 to create the five pie-chart angles.",
+      "Use Section 3.6 Example 3 to show that 20 workers for 4 days corresponds to 10 workers for 8 days.",
+      "Use the combined-work example where Ram takes 1 hour and Shyam 1.5 hours."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Figure it Out sets occur after the map and multi-term ratio sections, after pie charts, and throughout the inverse-proportion section, followed by a chapter summary."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 3: Proportional Reasoning-2\n\n## What you will learn\nYou will revise proportional ratios and use cross multiplication to test whether two mixtures have the same composition. You will distinguish multiplicative comparison from additive comparison.\n\n## Simple explanation\nIf two ratios a:b and c:d describe the same relationship, then a×d=b×c. This condition lets us compare ratios even when their terms look different.\n\n## Step-by-step breakdown\n- **Proportional relationship**: Related quantities change by the same scale factor.\n- **Equivalent ratios**: Multiplying or dividing both terms by the same nonzero number preserves a ratio.\n- **Cross multiplication**: a:b::c:d exactly when ad=bc.\n- **Order**: The compared quantities must appear in the same order in both ratios.\n- **Context**: A recipe keeps the same taste only when all relevant ingredients remain proportional.\n\n## Worked example\nQuestion: NCERT Section 3.1: Are the idli-batter ratios 6 cups rice to 3 cups urad dal and 4 cups rice to 2 cups urad dal proportional?\n\nSolution:\n- Step 1: Write the ratios in the same order: 6:3 and 4:2.\n- Step 2: Calculate the first cross product: 6×2=12.\n- Step 3: Calculate the second cross product: 3×4=12.\n- Step 4: The two cross products are equal.\n- Step 5: Therefore the two ratios are proportional.\n- Final answer: Yes, 6:3::4:2.\n\n## Common mistake\nDo not compare 6-3 with 4-2. Equal differences do not establish proportionality.\n\n## Quick check question\nQuestion: Are 8:12 and 10:15 proportional?\nAnswer: Yes.\nExplanation: 8×15=120 and 12×10=120, so the cross products are equal.\n\n## Summary\n- Proportion is based on multiplication.\n- Equivalent ratios have equal cross products.\n- Maintain the same quantity order.\n- Context determines what the ratio terms mean.",
+    "Core explanation": "# Core explanation: Chapter 3: Proportional Reasoning-2\n\n## What you will learn\nYou will interpret representative fractions on maps and work with ratios having more than two terms. You will simplify all terms of a multi-term ratio together.\n\n## Simple explanation\nA map scale is a ratio between a map length and the corresponding actual length. Multi-term ratios extend the same idea to three or more related quantities.\n\n## Step-by-step breakdown\n- **Representative fraction**: A scale such as 1:6,000,000 means 1 unit on the map represents 6,000,000 of the same units on the ground.\n- **Unit conversion**: Convert centimetres to kilometres or other required units only after applying the scale carefully.\n- **Multi-term ratio**: a:b:c compares three quantities in a fixed order.\n- **Simplest form**: Divide every term by their common HCF.\n- **Equivalent mixtures**: All terms must be multiplied by the same scale factor.\n- **Triangle check**: Side ratios must also satisfy the triangle inequality if they are to form a triangle.\n\n## Worked example\nQuestion: NCERT map-scale discussion: At scale 1:6,000,000, what actual distance is represented by 1 cm on the map?\n\nSolution:\n- Step 1: The scale says 1 cm represents 6,000,000 cm.\n- Step 2: Convert centimetres to metres: 6,000,000÷100=60,000 m.\n- Step 3: Convert metres to kilometres: 60,000÷1000=60 km.\n- Final answer: 1 cm on the map represents 60 km on the ground.\n\n## Common mistake\nDo not read 1:6,000,000 as 1 cm to 6,000,000 km. The two terms initially use the same unit.\n\n## Quick check question\nQuestion: Simplify the chapter's grade ratio 12:10:8:6:4.\nAnswer: 6:5:4:3:2.\nExplanation: The HCF of all five terms is 2; dividing every term by 2 gives 6:5:4:3:2.\n\n## Summary\n- Map scales are ratios in common units.\n- Representative fractions require careful unit conversion.\n- Every term of a multi-term ratio must be scaled together.\n- Ratio order carries meaning.",
+    "Worked examples": "# Worked examples: Chapter 3: Proportional Reasoning-2\n\n## What you will learn\nYou will divide a total quantity according to a multi-term ratio. You will use the sum of ratio terms to determine the value of one part.\n\n## Simple explanation\nA ratio gives relative parts, not the actual amounts. The whole determines how large one ratio part is.\n\n## Step-by-step breakdown\n- **Total parts**: For a:b:c, add a+b+c.\n- **One part**: Divide the total quantity by the total number of parts.\n- **Individual shares**: Multiply one-part value by each ratio term.\n- **Check sum**: The calculated shares must add to the original whole.\n- **Check ratio**: The shares should simplify to the stated ratio.\n- **Angle sharing**: The same method divides the 180° angle sum of a triangle.\n\n## Worked example\nQuestion: NCERT multi-term ratio example: Divide 50 ml of paint in the ratio 2:3:5.\n\nSolution:\n- Step 1: Add the ratio terms: 2+3+5=10 parts.\n- Step 2: Find one part: 50÷10=5 ml.\n- Step 3: First quantity: 2×5=10 ml.\n- Step 4: Second quantity: 3×5=15 ml.\n- Step 5: Third quantity: 5×5=25 ml.\n- Step 6: Check: 10+15+25=50 ml.\n- Final answer: The three quantities are 10 ml, 15 ml and 25 ml.\n\n## Common mistake\nDo not use 50÷5 for one part. The denominator is the sum 2+3+5, not the largest term.\n\n## Quick check question\nQuestion: NCERT triangle-angle example: Divide 180° in the ratio 1:3:5.\nAnswer: 20°, 60° and 100°.\nExplanation: There are 9 parts, so one part is 180°÷9=20°; multiplying by 1,3,5 gives 20°,60°,100°.\n\n## Summary\n- A ratio becomes actual amounts only after the whole is known.\n- One part equals whole divided by total ratio parts.\n- Shares must add to the whole.\n- The method applies to quantities, money, mixtures and angles.",
+    "Exam-style problems": "# Exam-style problems: Chapter 3: Proportional Reasoning-2\n\n## What you will learn\nYou will construct pie-chart angles from category data. You will ensure that the final angles add to 360°.\n\n## Simple explanation\nA pie chart represents one whole circle. Each category gets the same fraction of 360° as its fraction of the total data.\n\n## Step-by-step breakdown\n- **Total frequency**: Add all category counts.\n- **Category fraction**: Category count divided by total count.\n- **Central angle**: Category fraction × 360°.\n- **Ratio shortcut**: Simplify the category ratio first when convenient.\n- **Construction**: Measure each angle successively from a radius.\n- **Validation**: All angles must sum to 360°.\n\n## Worked example\nQuestion: NCERT Section 3.5: For grades A-E with 12,10,8,6,4 students, calculate the pie-chart angles.\n\nSolution:\n- Step 1: Total students = 12+10+8+6+4=40.\n- Step 2: Grade A angle = (12/40)×360° = 108°.\n- Step 3: Grade B angle = (10/40)×360° = 90°.\n- Step 4: Grade C angle = (8/40)×360° = 72°.\n- Step 5: Grade D angle = (6/40)×360° = 54°.\n- Step 6: Grade E angle = (4/40)×360° = 36°.\n- Step 7: Check: 108+90+72+54+36=360°.\n- Final answer: The angles are 108°, 90°, 72°, 54° and 36°.\n\n## Common mistake\nDo not use the category count itself as the angle. A count must first be converted into its share of the full 360°.\n\n## Quick check question\nQuestion: NCERT Figure it Out Q1: Of 360 people, 90 prefer summer, 120 rainy and the rest winter. What is the winter-sector angle?\nAnswer: 150°.\nExplanation: Winter count is 360-90-120=150. Because the total count is 360, each person corresponds to 1°, so the sector is 150°.\n\n## Summary\n- Pie-chart sectors represent proportions of a whole.\n- Each sector angle is count/total × 360°.\n- Simplifying ratios can make calculations faster.\n- The completed angles must total exactly 360°.",
+    "Revision and recap": "# Revision and recap: Chapter 3: Proportional Reasoning-2\n\n## What you will learn\nYou will distinguish direct from inverse proportion and solve work-rate problems. You will use a constant product for inverse relationships and add rates for combined work.\n\n## Simple explanation\nIn direct proportion, both quantities change by the same factor. In inverse proportion, one increases while the other decreases so that their product stays constant.\n\n## Step-by-step breakdown\n- **Direct proportion**: The quotient y/x remains constant for corresponding values.\n- **Inverse proportion**: The product xy=k remains constant.\n- **Fixed distance**: Speed×time=distance, so speed and time are inverse.\n- **Workers and days**: For the same work at equal efficiency, workers×days is constant.\n- **Pumps and hours**: For identical pumps and one tank, pumps×time is constant.\n- **Individual rate**: If a job takes T hours, the rate is 1/T job per hour.\n- **Combined rate**: Add individual rates, then take the reciprocal to find total time.\n\n## Worked example\nQuestion: NCERT Section 3.6 Example 3: Twenty workers finish a road in 4 days. How many days will 10 workers take?\n\nSolution:\n- Step 1: Workers and days are inversely proportional for the same road.\n- Step 2: Set the products equal: 20×4=10×d.\n- Step 3: Calculate: 80=10d.\n- Step 4: Divide by 10: d=8.\n- Final answer: Ten workers will take 8 days.\n\n## Common mistake\nDo not use 20:10::4:d as a direct proportion. Halving the workers doubles, rather than halves, the time.\n\n## Quick check question\nQuestion: NCERT combined-work example: Ram completes a job in 1 hour and Shyam in 1.5 hours. How long together?\nAnswer: 3/5 hour, or 36 minutes.\nExplanation: Ram's rate is 1 job/hour. Shyam's rate is 1/1.5=2/3 job/hour. Together the rate is 1+2/3=5/3 jobs/hour, so time is 1÷(5/3)=3/5 hour.\n\n## Summary\n- Look at the direction of change before choosing a model.\n- Direct relationships preserve a quotient.\n- Inverse relationships preserve a product.\n- Combined work requires adding rates, not adding times.\n- Units and context are essential checks."
+  }
+}

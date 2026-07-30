@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 6: Number Play",
+  "central_question": "How can number patterns, parity, grids, sequences and digit puzzles reveal hidden mathematical structure without checking every possibility?",
+  "in_scope_units": [
+    "6.1 Numbers Tell us Things: encoding a height arrangement by counting taller people standing in front and reasoning about what the sequence can reveal.",
+    "6.2 Picking Parity: understanding even and odd numbers through pairing, predicting parity of sums, differences, products, grids and algebraic expressions.",
+    "Small Squares in Grids and Parity of Expressions: deciding whether products and expressions are even or odd and deriving the forms 2n and 2n − 1.",
+    "6.3 Some Explorations in Grids: completing row-and-column-sum grids, detecting impossible clues, constructing 3 × 3 magic squares and generalising their structure.",
+    "The First-ever 4 × 4 Magic Square and Magic Squares in History and Culture: exploring the Chautīsā Yantra, Lo Shu Square and other cultural examples.",
+    "6.4 Nature's Favourite Sequence—The Virahāṅka–Fibonacci Numbers: counting rhythms made from 1-beat and 2-beat syllables, forming the sequence and studying its parity.",
+    "6.5 Digits in Disguise: solving cryptarithms or alphametics in which letters represent digits.",
+    "Final Figure it Out: applying parity, magic squares, the Virahāṅka sequence and cryptarithm reasoning to Questions 1–11."
+  ],
+  "banned_topics": [
+    "Formal probability and permutations as general counting techniques.",
+    "Matrix algebra and determinants for constructing magic squares.",
+    "Modular arithmetic notation and congruence classes.",
+    "Closed-form formulas for Fibonacci numbers.",
+    "Formal algebraic equation-solving beyond simple digit and expression reasoning."
+  ],
+  "must_include_keywords": [
+    "height arrangement",
+    "taller in front",
+    "sequence",
+    "Always True",
+    "Only Sometimes True",
+    "Never True",
+    "even number",
+    "odd number",
+    "pairing",
+    "parity",
+    "consecutive numbers",
+    "even + odd",
+    "odd + odd",
+    "small squares in grids",
+    "2n",
+    "2n − 1",
+    "row sum",
+    "column sum",
+    "diagonal",
+    "magic square",
+    "magic sum",
+    "centre number",
+    "generalised form",
+    "Chautīsā Yantra",
+    "Lo Shu Square",
+    "Navagraha Yantra",
+    "Virahāṅka sequence",
+    "short syllable",
+    "long syllable",
+    "1 beat",
+    "2 beats",
+    "rhythms",
+    "Fibonacci numbers",
+    "cryptarithm",
+    "alphametic",
+    "digit",
+    "toggle"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A person who says 0 must be the tallest person in the whole line.",
+      "correction": "The number counts taller people in front only; a person may say 0 even if a taller person stands behind."
+    },
+    {
+      "claim": "The sum of any number of odd numbers is always odd.",
+      "correction": "An even number of odd addends gives an even sum, while an odd number of odd addends gives an odd sum."
+    },
+    {
+      "claim": "If a grid clue is given, a solution must exist.",
+      "correction": "For a 3 × 3 grid using 1–9, a row or column sum cannot be below 6 or above 24; clues such as 5 or 26 make the grid impossible."
+    },
+    {
+      "claim": "The centre of a 3 × 3 magic square using 1–9 can be any digit.",
+      "correction": "The chapter's reasoning shows that the centre must be 5 and the magic sum must be 15."
+    },
+    {
+      "claim": "The Virahāṅka sequence is formed by adding a fixed number each time.",
+      "correction": "Each new term is the sum of the previous two terms."
+    },
+    {
+      "claim": "Different letters in a cryptarithm may be assigned different values in different columns.",
+      "correction": "Each letter represents one fixed digit throughout the entire calculation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Section 6.1 Figure it Out Question 2 to classify statements about the taller-in-front sequence as Always, Sometimes or Never True.",
+    "Use Section 6.2 Figure it Out Questions 1–3 and the Lakpa coin problem to establish parity rules without exhaustive calculation.",
+    "Use the 3 × 3 grid discussion on pages 133–136 to derive magic sum 15 and centre number 5 before constructing a full magic square.",
+    "Use the generalised magic-square Figure it Out on page 137 to build the square with centre 25 and derive a row sum of 3m.",
+    "Use final Figure it Out Questions 7–9 to extend and analyse the Virahāṅka sequence.",
+    "Conclude with final Figure it Out Question 11, the cryptarithm UT + TA = TAT."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The concluding 'Figure it Out' exercise on pages 143–144 contains Questions 1–11, followed by the chapter summary.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,103 @@
+{
+  "manifest": {
+    "grade": "Grade 7",
+    "subject": "Social Science",
+    "chapter": "Chapter 9: From the Rulers to the Ruled: Types",
+    "central_question": "How do governments differ in their source of authority, structure and goals, and why do democratic rights, representation and accountability matter?",
+    "in_scope_units": [
+      "What is Government? What are its Functions?—law and order, security, defence, services, economy and welfare.",
+      "What is Democracy?—rule of the people, the school committee example, voting and representation.",
+      "Functions of Government—legislative, executive and judicial functions.",
+      "What Makes Governments Different?—source of authority, formation, organs, constitution, values and goals.",
+      "Democratic Governments around the World—equality, freedom, representative participation, universal adult franchise, fundamental rights and independent judiciary.",
+      "Different forms of democratic governments—direct and representative democracy.",
+      "Parliamentary and presidential democracy—executive-legislature relations and accountability.",
+      "Government institutions—executive, legislature, upper and lower houses and separation of power.",
+      "A Peek into History—Vajji, Lichchhavis, early republics and Uttaramerur inscriptions.",
+      "Other Forms of Government—monarchy, rājadharma, absolute and constitutional monarchy.",
+      "Theocracy—religious authority and the example of Iran.",
+      "Dictatorship—absolute power, Hitler, Idi Amin and Shane’s everyday life.",
+      "Oligarchy—rule by a small powerful group and the danger of excessive influence.",
+      "Why Democracy Matters—rights, choice, accountability, elections, welfare and democratic challenges.",
+      "Before we move on and Questions and activities 1–8—types, India, judiciary, comparisons, matching, country research and democratic hurdles."
+    ],
+    "banned_topics": [
+      "Detailed constitutional provisions, which belong mainly to Chapter 10.",
+      "Detailed election procedures or political-party systems not described in the chapter.",
+      "Current political evaluation of countries beyond the textbook examples.",
+      "Detailed history of World War II beyond the chapter’s brief dictatorship example."
+    ],
+    "must_include_keywords": [
+      "government",
+      "democracy",
+      "rule of the people",
+      "representative",
+      "legislative function",
+      "executive function",
+      "judicial function",
+      "constitution",
+      "equality",
+      "freedom",
+      "representative participation",
+      "universal adult franchise",
+      "fundamental rights",
+      "independent judiciary",
+      "direct democracy",
+      "representative democracy",
+      "accountability",
+      "parliamentary democracy",
+      "presidential democracy",
+      "Lok Sabha",
+      "Rajya Sabha",
+      "separation of power",
+      "republic",
+      "Vajji",
+      "Uttaramerur inscriptions",
+      "monarchy",
+      "rājadharma",
+      "absolute monarchy",
+      "constitutional monarchy",
+      "theocracy",
+      "dictatorship",
+      "oligarchy",
+      "democratic vigilance"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "All democracies have exactly the same structure.",
+        "correction": "The chapter distinguishes direct and representative democracy and, within representative systems, parliamentary and presidential forms."
+      },
+      {
+        "claim": "In a parliamentary democracy, people directly elect the prime minister as a separate executive.",
+        "correction": "People elect the legislature, and selected members of the legislature become ministers; the council remains accountable to the legislature."
+      },
+      {
+        "claim": "A monarchy always means that the monarch exercises all real power.",
+        "correction": "An absolute monarch has extensive control, but in a constitutional monarchy the monarch may have only nominal power."
+      },
+      {
+        "claim": "Elections alone guarantee a complete democracy.",
+        "correction": "The chapter also requires equality, freedom, rights, universal adult franchise, an independent judiciary and accountability."
+      },
+      {
+        "claim": "Democracy has no weaknesses or challenges.",
+        "correction": "Corruption, wealth disparity, excessive influence, weakened judicial independence and information manipulation can obstruct democratic ideals."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Questions and activities Q2 to explain why India is a parliamentary democracy.",
+      "Use NCERT Questions and activities Q3 to reason why judicial independence matters.",
+      "Use NCERT Questions and activities Q5 to match practices with democracy, monarchy, theocracy and dictatorship.",
+      "Use NCERT Questions and activities Q8 to compare democracy with monarchy and dictatorship.",
+      "Use NCERT Questions and activities Q7 to analyse democratic hurdles and possible responses."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', containing Questions 1–8."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 9: From the Rulers to the Ruled: Types\n\n## What you will learn\nYou will identify the main roles and functions of government. You will use the school committee example to understand representation and democracy as rule of the people.\n\n## Simple explanation\nGovernments maintain order, provide services and work for welfare. In a democracy, the people are the source of authority and choose representatives to govern.\n\n## Step-by-step breakdown\n- **Government roles**: Government maintains law and order, security, defence, foreign relations, services, the economy and public welfare.\n- **Rule of the people**: Democracy means that authority comes from the people of the country.\n- **School example**: A student committee helps explain why representation can be more workable than involving every person in every decision.\n- **Voting**: Students choosing representatives from each grade gives different groups a voice.\n- **Representative**: A representative acts or makes decisions on behalf of another person or group.\n- **Legislative function**: This function creates rules and laws.\n- **Executive function**: This function implements laws and administers the country.\n- **Judicial function**: This function ensures laws are followed and disputes are judged.\n\n## Worked example\nQuestion: Why is the third method in the school example described as democratic?\n\nSolution:\n- Step 1: Students from each grade choose a representative through voting rather than having the Head Teacher select the committee.\n- Step 2: Those affected by the committee’s decisions take part in choosing the people who will speak for them.\n- Final answer: The method is democratic because authority to select representatives comes from the students.\n\n## Common mistake\nDo not treat a school committee as identical to Parliament; the chapter uses it only as a simple analogy for representation.\n\n## Quick check question\nQuestion: Which function of government is responsible for implementing laws?\nAnswer: The executive function.\nExplanation: The legislature makes laws, the executive implements them and the judiciary ensures they are followed.\n\n## Summary\n- Government affects many parts of life.\n- Democracy locates authority in the people.\n- Voting creates representative participation.\n- Government has legislative, executive and judicial functions.",
+    "Core explanation": "# Core explanation: Chapter 9: From the Rulers to the Ruled: Types\n\n## What you will learn\nYou will compare governments by their source of power, method of formation, institutions and goals. You will learn the fundamental principles shared by democratic systems.\n\n## Simple explanation\nGovernments differ not only by name but by who authorises them, how leaders are chosen, how powers are organised and whose welfare they serve.\n\n## Step-by-step breakdown\n- **Source of authority**: In a democracy authority comes from the people; in a theocracy it is linked to religious belief and leadership.\n- **Formation**: Democratic governments are usually formed through elections, while monarchies are generally hereditary.\n- **Government parts**: Legislative, executive and judicial functions may be separated or concentrated.\n- **Constitution**: A constitution contains fundamental rules for how government works.\n- **Goals**: Governments may seek equality and prosperity for all or serve only particular families or groups.\n- **Equality**: Citizens should be treated equally, have equal access to facilities and be equal before law.\n- **Freedom**: Citizens may make choices and express opinions.\n- **Universal adult franchise**: Adult citizens have the right to vote for representatives.\n- **Fundamental rights**: Rights include equality, freedom of speech and expression and protection against exploitation.\n- **Independent judiciary**: Courts protect rights and require citizens and government bodies to follow law.\n\n## Worked example\nQuestion: Why are elections necessary but not sufficient for democracy?\n\nSolution:\n- Step 1: The chapter lists elections and representative participation alongside equality, freedom, fundamental rights and an independent judiciary.\n- Step 2: A government may hold elections but still fail democratic ideals if rights are not protected or power is not accountable.\n- Final answer: Democracy requires both representative choice and institutions that protect equality, freedom and law.\n\n## Common mistake\nDo not define democracy only as voting; its principles also shape how government treats people between elections.\n\n## Quick check question\nQuestion: What does universal adult franchise grant?\nAnswer: It grants every citizen above the specified age the right to vote for a representative.\nExplanation: It makes political participation a general right rather than a privilege of a small group.\n\n## Summary\n- Governments differ in authority, structure and goals.\n- Democracy rests on equality and freedom.\n- Citizens choose representatives through voting.\n- Rights and judicial independence protect democratic life.",
+    "Worked examples": "# Worked examples: Chapter 9: From the Rulers to the Ruled: Types\n\n## What you will learn\nYou will compare direct and representative democracy and distinguish parliamentary from presidential systems. You will understand accountability and separation of power.\n\n## Simple explanation\nDemocracies share core ideals but organise decision-making in different ways. The most important distinction is whether citizens decide directly or elect representatives.\n\n## Step-by-step breakdown\n- **Direct democracy**: Citizens participate directly in rules and decisions, but this is difficult to operate in large countries.\n- **Representative democracy**: Citizens elect people to govern on their behalf through universal adult franchise.\n- **Accountability**: Elected governments are answerable to the people and can be changed through regular elections.\n- **Parliamentary democracy**: The executive is drawn from the legislature and must retain its confidence.\n- **India**: The prime minister and council of ministers are members of Parliament and depend on Lok Sabha confidence.\n- **Presidential democracy**: The elected president heads an executive that operates independently of the legislature.\n- **Legislature**: It makes laws and may include upper and lower houses.\n- **Separation of power**: Legislature, executive and judiciary perform distinct functions without improper interference.\n\n## Worked example\nQuestion: Why is India classified as a parliamentary rather than presidential democracy?\n\nSolution:\n- Step 1: India’s prime minister and council of ministers are part of Parliament and continue in office only while they retain the confidence of the Lok Sabha.\n- Step 2: The executive is therefore linked to and accountable to the legislature rather than operating independently of it.\n- Final answer: India is parliamentary because the executive is formed from the legislature and depends on legislative confidence.\n\n## Common mistake\nDo not confuse separation of powers with complete isolation; institutions have distinct roles but operate within one constitutional system.\n\n## Quick check question\nQuestion: What makes a government accountable in a representative democracy?\nAnswer: It is answerable to the people who elected it.\nExplanation: Regular elections allow citizens to change their representatives when they are dissatisfied.\n\n## Summary\n- Direct democracy involves citizens personally.\n- Representative democracy uses elected representatives.\n- Parliamentary executives depend on legislative confidence.\n- Presidential executives work independently of the legislature.\n- Accountability links government to voters.",
+    "Exam-style problems": "# Exam-style problems: Chapter 9: From the Rulers to the Ruled: Types\n\n## What you will learn\nYou will examine early republics and compare monarchy, theocracy, dictatorship and oligarchy. You will identify where authority is located in each form.\n\n## Simple explanation\nNot all governments receive authority from the people. Power may come from hereditary position, religious leadership, one dictator or a small influential group.\n\n## Step-by-step breakdown\n- **Early republics**: Vajji and the Lichchhavis practised collective decision-making and selected leaders on merit rather than birth.\n- **Uttaramerur**: Chola inscriptions describe village elections, qualifications, duties, ballot boxes and removal for corruption.\n- **Monarchy**: A monarch usually inherits sovereign power within a royal family.\n- **Rājadharma**: Indian traditions expected a raja to rule within dharma and give priority to justice and welfare.\n- **Absolute monarchy**: The monarch controls law-making, implementation and adjudication and is not bound by an advisory council.\n- **Constitutional monarchy**: The monarch is nominal while elected institutions and ministers exercise real power.\n- **Theocracy**: Government is guided by religion and religious leaders; Iran combines theocratic and elected institutions.\n- **Dictatorship**: One person or small group holds absolute power without constitutional or legal limits.\n- **Oligarchy**: A small powerful group, often wealthy or influential, controls major decisions.\n\n## Worked example\nQuestion: Why is constitutional monarchy different from absolute monarchy even though both have a monarch?\n\nSolution:\n- Step 1: In an absolute monarchy the monarch holds extensive governing power, while in Britain the monarch has nominal power and elected Parliament and ministers exercise real authority.\n- Step 2: The title of monarch does not by itself reveal where actual decision-making power lies.\n- Final answer: The two systems differ because one concentrates real power in the monarch and the other places it in constitutional democratic institutions.\n\n## Common mistake\nDo not identify a government only by its ceremonial head; examine who actually makes and implements decisions.\n\n## Quick check question\nQuestion: What is an oligarchy?\nAnswer: A government in which a small powerful group makes the important decisions.\nExplanation: The group may consist of wealthy families, influential people or others with excessive control.\n\n## Summary\n- Republican practices existed in ancient India.\n- Monarchies may be absolute or constitutional.\n- Theocracy places religious authority at the centre.\n- Dictatorship concentrates unrestricted power.\n- Oligarchy is rule by a few.",
+    "Revision and recap": "# Revision and recap: Chapter 9: From the Rulers to the Ruled: Types\n\n## What you will learn\nYou will explain why democracy matters and identify threats to democratic ideals. You will connect rights, accountability and citizen vigilance with everyday freedom.\n\n## Simple explanation\nDemocracy is valued because people choose government, enjoy protected rights and can replace representatives. Yet institutions can weaken unless citizens remain alert.\n\n## Step-by-step breakdown\n- **Everyday freedom**: People may choose what to say, wear, believe and express, provided they do not harm another person’s rights.\n- **Public choice**: Citizens choose representatives and can change them through elections.\n- **Rights protection**: Government is accountable for protecting rights and providing basic needs.\n- **Welfare**: Democratic values should focus on the wellbeing of all people.\n- **Checks**: Regular elections, judicial independence and separation of powers limit misuse.\n- **Corruption**: Private gain can damage public institutions and trust.\n- **Wealth disparity**: Unequal economic influence can weaken political equality.\n- **Excessive control**: A small group may capture democratic institutions and create oligarchic tendencies.\n- **Information manipulation**: Control or distortion of information can prevent citizens from making informed choices.\n- **Vigilance**: Individuals and society must watch institutions, protect rights and resist erosion of democratic values.\n\n## Worked example\nQuestion: Why does democracy require active citizens even after an election is over?\n\nSolution:\n- Step 1: The chapter identifies corruption, excessive influence, weakened judicial independence and information manipulation as continuing threats.\n- Step 2: Voting chooses representatives, but citizens must also monitor whether institutions protect rights and remain accountable.\n- Final answer: Democracy stays strong when citizens participate, question misuse and defend its principles between elections.\n\n## Common mistake\nDo not assume that a democratic label guarantees democratic practice.\n\n## Quick check question\nQuestion: What can citizens do if a representative government performs poorly?\nAnswer: They can change their representatives through elections.\nExplanation: Regular elections create a peaceful mechanism for holding government accountable.\n\n## Summary\n- Democracy protects choice and representation.\n- Government remains answerable to the people.\n- Rights are limited by respect for others’ rights.\n- Democracies face corruption and concentration of influence.\n- Citizen vigilance helps preserve democratic ideals."
+  }
+}

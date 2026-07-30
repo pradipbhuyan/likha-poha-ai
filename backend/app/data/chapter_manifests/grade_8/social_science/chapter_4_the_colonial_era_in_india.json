@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 4: The Colonial Era in India",
+  "central_question": "How did European commercial expansion become British colonial domination, and how did that domination transform India's economy, society, institutions, and resistance?",
+  "in_scope_units": [
+    "The age of colonialism: definition, motives, civilising claims, conquest, exploitation, and decolonisation.",
+    "India before European domination and the Portuguese, Dutch, and French presence.",
+    "The English East India Company's transformation from trader to ruler.",
+    "Divide and rule, the Battle of Plassey, Doctrine of Lapse, subsidiary alliances, and princely states.",
+    "Famines, revenue extraction, the drain of wealth, and colonial symbolism.",
+    "Decline of indigenous industries and changes to governance, law, education, railways, and the telegraph.",
+    "Early resistance: Sannyasi-Fakir, tribal and peasant uprisings, and the Great Rebellion of 1857.",
+    "The legacy of colonialism: exploitation, documentation, archaeology, cultural theft, translation, and cultural influence."
+  ],
+  "banned_topics": [
+    "The full history of the twentieth-century freedom movement.",
+    "Detailed Maratha history before 1818.",
+    "A general history of all European colonies outside India."
+  ],
+  "must_include_keywords": [
+    "colonialism",
+    "Age of Colonialism",
+    "civilising mission",
+    "enslavement",
+    "India's world GDP",
+    "Vasco da Gama",
+    "Portuguese",
+    "cartaz",
+    "Goa Inquisition",
+    "Rani Abbakka",
+    "Dutch East India Company",
+    "Battle of Colachel",
+    "French East India Company",
+    "Dupleix",
+    "sepoys",
+    "Carnatic Wars",
+    "English East India Company",
+    "divide and rule",
+    "Battle of Plassey",
+    "Robert Clive",
+    "Mir Jafar",
+    "Doctrine of Lapse",
+    "subsidiary alliance",
+    "famines",
+    "drain of wealth",
+    "Dadabhai Naoroji",
+    "deindustrialisation",
+    "Macaulay's Minute",
+    "railways",
+    "Sannyasi-Fakir Rebellion",
+    "Kol Uprising",
+    "Santhal Rebellion",
+    "Indigo Revolt",
+    "Great Rebellion of 1857",
+    "Rani Lakshmibai",
+    "Begum Hazrat Mahal",
+    "British Raj",
+    "repatriation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "European colonialism in India began only with the British.",
+      "correction": "Portuguese, Dutch, and French powers established trading and colonial footholds before British dominance."
+    },
+    {
+      "claim": "The British won Plassey only because their army was larger.",
+      "correction": "The chapter emphasises the conspiracy with Mir Jafar, whose forces stood aside, enabling a smaller British force to win."
+    },
+    {
+      "claim": "Railways were built as a free gift for Indian welfare.",
+      "correction": "They were largely funded by Indian revenue and designed mainly to move raw materials, British goods, and troops."
+    },
+    {
+      "claim": "Colonial famines were caused only by drought.",
+      "correction": "Crop failure interacted with harsh revenue demands, grain export, market policy, inadequate relief, and administrative decisions."
+    },
+    {
+      "claim": "The events of 1857 were only a small military mutiny.",
+      "correction": "The chapter calls it the Great Rebellion because it spread widely and involved multiple leaders, regions, and grievances."
+    }
+  ],
+  "recommended_example_progression": [
+    "Analyse the NCERT cartoon of a British magnate straddling Africa and holding a telegraph wire.",
+    "Compare Portuguese, Dutch, French, and British colonial methods using the chapter descriptions.",
+    "Use the painting 'The East offering its riches to Britannia' to interpret colonial symbolism.",
+    "Analyse the evidence on Bengal and Deccan famines and the drain of wealth.",
+    "Trace the sequence from early uprisings to the Great Rebellion of 1857 and the beginning of the British Raj."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1–10 on colonialism, civilising claims, infrastructure, divide and rule, resistance, and alternate history.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
