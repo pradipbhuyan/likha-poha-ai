@@ -105,7 +105,7 @@ _CITATION_PATTERNS = [
     (
         re.compile(
             r"\bLet\s+Us\s+(Do|Solve|Think|Find|Divide|Compare|Multiply|"
-            r"Learn(?:\s+to\s+Divide)?|Draw|Estimate|Try)\b",
+            r"Learn(?:\s+to\s+Divide)?|Draw|Estimate|Try|Explore|Play)\b",
             re.IGNORECASE,
         ),
         "Let Us {0}",
