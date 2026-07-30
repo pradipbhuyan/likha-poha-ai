@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "14. Economic Activities Around Us",
+  "central_question": "How are economic activities classified into primary, secondary and tertiary sectors, and why are the three sectors interdependent?",
+  "in_scope_units": [
+    "Introduction — growth and diversity of economic activities and the need for classification",
+    "The Classification of Economic Activities into Economic Sectors — common characteristics and three broad sectors",
+    "Primary activities — direct dependence on nature and extraction of raw materials",
+    "Secondary activities — construction, utilities and transformation of raw materials into products",
+    "Tertiary activities — services supporting people, production, trade and everyday life",
+    "Interdependence Among Sectors — natural materials, processing, transport, trade and final consumption",
+    "Dairy cooperative: from farm to plate — AMUL, farmers, middlemen, cooperation, processing and distribution",
+    "Book production — pulp, paper, printing, transport and the three-sector chain",
+    "Paper recycling — saving trees, landfill space, energy and water",
+    "Neighbourhood activity mapping — classification, links and consequences if one activity stops"
+  ],
+  "banned_topics": [
+    "Economic and non-economic activity classification from Chapter 13 except as introductory background",
+    "Detailed national-income or employment statistics",
+    "Advanced industrial policy or international trade theory"
+  ],
+  "must_include_keywords": [
+    "monetary value",
+    "economic sectors",
+    "primary sector",
+    "secondary sector",
+    "tertiary sector",
+    "agriculture",
+    "mining",
+    "fishing",
+    "raising livestock",
+    "forestry",
+    "raw materials",
+    "nature",
+    "construction",
+    "manufacturing",
+    "water supply",
+    "electricity production",
+    "processing",
+    "factory",
+    "service sector",
+    "transportation",
+    "banking",
+    "communication",
+    "healthcare",
+    "trade and logistics",
+    "warehouses",
+    "interdependence",
+    "AMUL",
+    "Anand Milk Union Limited",
+    "cooperative",
+    "middlemen",
+    "Sardar Vallabhbhai Patel",
+    "Tribhuvandas Patel",
+    "Varghese Kurien",
+    "pasteurisation",
+    "milk powder",
+    "retail",
+    "export",
+    "paper",
+    "pulp",
+    "recycling"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The primary sector is the most important, so the other sectors are optional.",
+      "correction": "All three sectors support one another and are needed to move goods from raw material to final use."
+    },
+    {
+      "claim": "The tertiary sector produces no value because it provides services rather than goods.",
+      "correction": "Transport, banking, communication, healthcare, repair and retail are essential economic services."
+    },
+    {
+      "claim": "A factory that processes milk belongs to the primary sector because milk comes from animals.",
+      "correction": "Milking livestock is primary; processing milk into butter, cheese or powder is secondary."
+    }
+  ],
+  "recommended_example_progression": [
+    "Sort listed activities into primary, secondary and tertiary sectors using a classification chart.",
+    "Connect natural resources with extraction or cultivation in the primary sector.",
+    "Use examples of grain to flour, wood to furniture and cotton to clothing for the secondary sector.",
+    "Trace all three sectors and cooperative action using the AMUL 'farm to plate' story.",
+    "Build flow diagrams of sector interdependence."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end 'Questions, activities and projects' Questions 1-3 on page 208.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

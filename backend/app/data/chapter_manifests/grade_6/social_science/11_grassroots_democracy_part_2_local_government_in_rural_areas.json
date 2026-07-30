@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "11. Grassroots Democracy — Part 2: Local Government in Rural Areas",
+  "central_question": "How do Panchayati Raj institutions enable rural people to participate in local decision-making, development and self-government?",
+  "in_scope_units": [
+    "Rural needs and local decision-making — the example of Lakshmanpur",
+    "Panchayati Raj System — self-government and the village, block and district three-tier structure",
+    "Gram Panchayat and Gram Sabha — voters, direct participation, elections and the Sarpanch or Pradhan",
+    "Exemplary Sarpanchs — Dnyaneshwar Kamble, Vandana Bahadur Maida and Popatrao Baguji Pawar",
+    "Panchayat administration — Panchayat Secretary, Patwari, meetings, records and land maps",
+    "Child-Friendly Panchayat Initiative — Bal Sabhas, Bal Panchayats, Sikkim and Rajasthan examples",
+    "Panchayat Samiti and Zila Parishad — coordination, development plans, funds and schemes",
+    "Inclusion and representation — disadvantaged sections and reservation of one-third of seats for women",
+    "State variation and common objectives — active village management and development",
+    "Ancient administrative thinking — Kauṭilya's Arthaśhāstra and levels from villages to regional headquarters"
+  ],
+  "banned_topics": [
+    "Detailed functions of urban local bodies from Chapter 12",
+    "Complete structure of national government from Chapter 10",
+    "Modern party politics and election campaigning beyond the chapter"
+  ],
+  "must_include_keywords": [
+    "Panchayat",
+    "Panchayati Raj",
+    "self-government",
+    "three-tier system",
+    "village level",
+    "block level",
+    "district level",
+    "Gram Sabha",
+    "Gram Panchayat",
+    "Sarpanch",
+    "Pradhan",
+    "Panchayat Secretary",
+    "Patwari",
+    "land records",
+    "Dnyaneshwar Kamble",
+    "Vandana Bahadur Maida",
+    "Popatrao Baguji Pawar",
+    "rainwater harvesting",
+    "watershed conservation",
+    "Bal Sabha",
+    "Bal Panchayat",
+    "Child-Friendly Panchayat Initiative",
+    "Sangkhu Radhu Khandu",
+    "Children's Parliament",
+    "Panchayat Samiti",
+    "Mandal Parishad",
+    "Zila Parishad",
+    "development plans",
+    "Pradhan Mantri Gram Sadak Yojana",
+    "reservation for women",
+    "disadvantaged sections",
+    "Kauṭilya",
+    "Arthaśhāstra",
+    "grassroots democracy"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Gram Sabha and Gram Panchayat are the same body.",
+      "correction": "The Gram Sabha consists of enrolled adult voters, while the Gram Panchayat is the elected village-level institution."
+    },
+    {
+      "claim": "The Panchayati Raj system has only a village level.",
+      "correction": "It has village, block and district levels."
+    },
+    {
+      "claim": "Children have no place in local democratic discussion.",
+      "correction": "The chapter describes Bal Sabhas, Bal Panchayats and child-friendly initiatives."
+    }
+  ],
+  "recommended_example_progression": [
+    "Connect local needs with self-government using the Lakshmanpur example.",
+    "Reconstruct the village, block and district tiers.",
+    "Compare inclusive leadership and development work using the Exemplary Sarpanchs section.",
+    "Practise discussion of local issues and solutions using a Bal Panchayat class activity.",
+    "Apply Panchayati Raj institutions to village problems."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end 'Questions, activities and projects' Questions 1-4 on page 171.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

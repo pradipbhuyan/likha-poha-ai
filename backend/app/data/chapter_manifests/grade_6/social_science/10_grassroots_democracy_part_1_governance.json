@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "10. Grassroots Democracy — Part 1: Governance",
+  "central_question": "Why do societies need governance and government, and how do India's organs, levels and democratic processes organise public life?",
+  "in_scope_units": [
+    "Introduction — the need for rules, order and harmony in society",
+    "Governance, government and laws — decision-making, organisation and enforcement",
+    "Public services and daily life — areas where government plays a role",
+    "Three Organs of Government — legislature, executive and judiciary",
+    "Separation of powers — interaction, checks and balances",
+    "Three Levels of Government — local, State and Central or Union levels",
+    "National and State institutions and responsibilities — courts, assemblies and executives",
+    "Dr. A.P.J. Abdul Kalam — a nominal President with influence through education and inspiration",
+    "Democracy — rule of the people, elected representatives, MLAs and MPs",
+    "Direct and representative democracy — voting and representation",
+    "Grassroots democracy — citizen participation in decisions affecting them"
+  ],
+  "banned_topics": [
+    "Detailed Panchayati Raj structure from Chapter 11",
+    "Detailed urban local body structure from Chapter 12",
+    "Advanced constitutional law reserved for later grades"
+  ],
+  "must_include_keywords": [
+    "rules",
+    "laws",
+    "governance",
+    "government",
+    "public services",
+    "legislature",
+    "executive",
+    "judiciary",
+    "cybercrime",
+    "separation of powers",
+    "checks and balances",
+    "local government",
+    "State government",
+    "Central Government",
+    "Union government",
+    "Supreme Court",
+    "High Court",
+    "Lok Sabha",
+    "Rajya Sabha",
+    "Vidhan Sabha",
+    "President",
+    "Governor",
+    "Prime Minister",
+    "Chief Minister",
+    "Dr. A.P.J. Abdul Kalam",
+    "democracy",
+    "dēmos",
+    "kratos",
+    "elections",
+    "representatives",
+    "MLA",
+    "MP",
+    "voting",
+    "direct democracy",
+    "representative democracy",
+    "grassroots democracy",
+    "citizen participation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Governance and government mean exactly the same thing.",
+      "correction": "Governance is the process of decision-making, organising rules and ensuring compliance; government is the group or system performing those functions."
+    },
+    {
+      "claim": "The legislature, executive and judiciary should be controlled by one body.",
+      "correction": "The chapter explains separation of powers and checks and balances."
+    },
+    {
+      "claim": "India is only a direct democracy.",
+      "correction": "India is mainly a representative democracy, though direct voting can be used in smaller settings."
+    }
+  ],
+  "recommended_example_progression": [
+    "Connect rules with order and disorder.",
+    "Trace the roles of legislature, executive and judiciary using the cybercrime example.",
+    "Distinguish local, State and Central government roles using the flood example.",
+    "Explain direct democracy using the class picnic voting example.",
+    "Compare democratic forms, organs and tiers."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end 'Questions, activities and projects' Questions 1-4 on page 161.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

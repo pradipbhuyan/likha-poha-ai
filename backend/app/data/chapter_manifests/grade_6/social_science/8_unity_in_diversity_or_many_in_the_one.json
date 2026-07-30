@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "8. Unity in Diversity, or 'Many in the One'",
+  "central_question": "How can India's great diversity in people, languages, food, clothing, festivals and stories also reveal a deep underlying cultural unity?",
+  "in_scope_units": [
+    "A Rich Diversity — landscapes, communities, languages, scripts, migration and the idea of unity in diversity",
+    "Food for All — common staple grains and spices used in diverse regional dishes",
+    "Textiles and Clothing — the sari as one form with many fabrics, designs, colours, drapes and uses",
+    "Festivals Galore — similar seasonal festivals celebrated under different regional names",
+    "An Epic Spread — the Pañchatantra, Rāmāyaṇa and Mahābhārata in many languages, arts, regions and tribal traditions",
+    "Unity as enrichment — recognising shared cultural patterns without erasing differences"
+  ],
+  "banned_topics": [
+    "Detailed doctrines of Buddhism, Jainism and Vedic thought from Chapter 7",
+    "A full political history of Indian States or language policy",
+    "Detailed art-history classification beyond the chapter examples"
+  ],
+  "must_include_keywords": [
+    "unity in diversity",
+    "Many in the One",
+    "People of India project",
+    "communities",
+    "languages",
+    "scripts",
+    "migration",
+    "staple grains",
+    "rice",
+    "wheat",
+    "millets",
+    "pulses",
+    "spices",
+    "sari",
+    "Banarasi",
+    "Kanjivaram",
+    "Paithani",
+    "Patan Patola",
+    "Muga",
+    "Mysore",
+    "weaving",
+    "draping",
+    "Makara Sankrānti",
+    "Lohri",
+    "Bihu",
+    "Pongal",
+    "Pañchatantra",
+    "Rāmāyaṇa",
+    "Mahābhārata",
+    "dharma",
+    "regional adaptations",
+    "folk versions",
+    "Bhils",
+    "Gonds",
+    "Mundas",
+    "Pāṇḍavas",
+    "cultural interaction",
+    "underlying unity"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Unity in diversity means all regions follow identical customs.",
+      "correction": "The chapter shows common patterns expressed through different regional forms."
+    },
+    {
+      "claim": "The sari is uniform across India.",
+      "correction": "It is one basic unstitched form with hundreds of varieties, fabrics, designs, colours, drapes and uses."
+    },
+    {
+      "claim": "The epics exist only in their Sanskrit versions.",
+      "correction": "The chapter describes regional, folk and tribal adaptations across India and beyond."
+    }
+  ],
+  "recommended_example_progression": [
+    "Connect classmates' birthplaces and languages to identify diversity.",
+    "Explain unity and diversity through the sari as one cultural object.",
+    "Compare similar harvest festivals under different names using the Makara Sankrānti map.",
+    "Connect one collection of stories with many adaptations using the Pañchatantra.",
+    "Discuss ancient stories in art and Jawaharlal Nehru's observation on the epics."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end 'Questions, activities and projects' Questions 1-5 on page 136.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

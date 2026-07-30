@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "13. The Value of Work",
+  "central_question": "How do economic and non-economic activities differ, and how do both contribute value to individuals, families and society?",
+  "in_scope_units": [
+    "Everyday work around Anu and Kabir — paid employment, family work and volunteering",
+    "Economic and non-economic activities — money, money's worth, market exchange and unpaid care",
+    "Salary and volunteering — one person may perform both economic and non-economic work",
+    "Types of payment — salary, fee, wage and payment in kind",
+    "Value addition — skill, time and effort transforming materials into more valuable goods",
+    "The importance of non-economic activities — care, gratitude, love and respect",
+    "Sevā or selfless service — community kitchens and contributing without expecting return",
+    "Community participation — Swachh Bharat Abhiyan, Van Mahotsav and festival cooperation"
+  ],
+  "banned_topics": [
+    "Primary, secondary and tertiary sector classification from Chapter 14",
+    "Detailed labour laws or taxation",
+    "Measuring national income or gross domestic product"
+  ],
+  "must_include_keywords": [
+    "work",
+    "economic activities",
+    "non-economic activities",
+    "money",
+    "money's worth",
+    "market",
+    "fee",
+    "salary",
+    "wage",
+    "payment in kind",
+    "Geeta Aunty",
+    "Indian Air Force",
+    "Kabir's grandfather",
+    "Rohan",
+    "software engineer",
+    "volunteering",
+    "Kavya",
+    "Kamlapur",
+    "technician",
+    "post office",
+    "Sahil",
+    "farm labourer",
+    "cash",
+    "mangoes",
+    "value addition",
+    "Rajesh",
+    "carpenter",
+    "skill",
+    "time",
+    "effort",
+    "sevā",
+    "selfless service",
+    "langar",
+    "community kitchen",
+    "Swachh Bharat Abhiyan",
+    "Van Mahotsav",
+    "community participation",
+    "social welfare"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Only paid work has value.",
+      "correction": "Unpaid care, volunteering and community service create important social and personal value."
+    },
+    {
+      "claim": "Every activity performed by one person belongs to the same category.",
+      "correction": "Rohan's salaried software job is economic, while his unpaid weekend teaching is non-economic."
+    },
+    {
+      "claim": "Payment must always be cash.",
+      "correction": "The chapter describes salary, fee, wage and payment in kind, such as Sahil receiving mangoes of equal value."
+    }
+  ],
+  "recommended_example_progression": [
+    "Identify and classify activities using the Anu and Kabir story table.",
+    "Compare Kabir's grandfather with school teachers to distinguish purpose and compensation.",
+    "Compare salary, fee, wage and payment in kind using the Kavya story.",
+    "Explain value addition using the Rajesh carpenter example.",
+    "Connect compensation, community service and value."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end 'Questions, activities and projects' Questions 1-4 on page 193.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

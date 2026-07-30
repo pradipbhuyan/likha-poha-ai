@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "12. Grassroots Democracy — Part 3: Local Government in Urban Areas",
+  "central_question": "How do decentralised urban local bodies and responsible citizens work together to govern towns and cities?",
+  "in_scope_units": [
+    "Introduction — participatory democracy in complex and diverse urban areas",
+    "Indian governance pyramid — rural and urban local government beneath State and Union levels",
+    "Urban Local Bodies — decentralisation and local citizen decision-making",
+    "Wards and ward committees — local activities, monitoring and reporting problems",
+    "Functions of urban local bodies — infrastructure, burial grounds, garbage, schemes, taxes, fines and development planning",
+    "Citizen duties — waste segregation, reporting leaks and caring for the neighbourhood",
+    "Municipal history — Greater Mumbai and the Madras or Greater Chennai Corporation",
+    "Indore Municipal Corporation — taxes, charges, licences, grievances and requested services",
+    "Types of urban local bodies — Municipal Corporation, Municipal Council and Nagar Panchayat",
+    "Rural and urban comparison — the Sameer and Anita dialogue and the principle that everyone's voice matters"
+  ],
+  "banned_topics": [
+    "Detailed Panchayati Raj institutions beyond comparison with rural government",
+    "National legislative and judicial structures from Chapter 10",
+    "Urban planning laws not discussed in the chapter"
+  ],
+  "must_include_keywords": [
+    "participatory democracy",
+    "urban local bodies",
+    "decentralised governance",
+    "local communities",
+    "wards",
+    "ward committees",
+    "health camps",
+    "single-use plastics",
+    "water leak",
+    "blocked drain",
+    "damaged road",
+    "infrastructure",
+    "burial ground",
+    "garbage collection",
+    "local taxes",
+    "fines",
+    "waste segregation",
+    "responsible citizens",
+    "Madras Corporation",
+    "Greater Chennai Corporation",
+    "Indore Municipal Corporation",
+    "Citizen Relationship Management",
+    "property tax",
+    "water charges",
+    "trade licences",
+    "grievances",
+    "Swachh Survekshan",
+    "Municipal Corporation",
+    "Mahanagar Nigam",
+    "Municipal Council",
+    "Nagar Palika",
+    "Nagar Panchayat",
+    "elected representatives",
+    "Sameer",
+    "Anita",
+    "everyone's voice matters"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Urban local bodies are controlled entirely from one central authority.",
+      "correction": "The chapter defines them as decentralised bodies giving local communities a direct say."
+    },
+    {
+      "claim": "Citizens have no responsibility once municipal services exist.",
+      "correction": "The chapter stresses waste segregation, reporting leaks and care for the area."
+    },
+    {
+      "claim": "Every town has a Municipal Corporation.",
+      "correction": "The chapter distinguishes Municipal Corporations, Municipal Councils and Nagar Panchayats by population size."
+    }
+  ],
+  "recommended_example_progression": [
+    "Explain why cities are more complex and diverse than villages.",
+    "Compare Panchayati Raj with urban local government.",
+    "Connect municipal services with citizen duties.",
+    "Infer how the Indore Municipal Corporation provides and funds services.",
+    "Apply urban governance to leaks, public expectations and rural-urban comparison."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end 'Questions, activities and projects' Questions 1-5 on pages 181-182.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "7. India's Cultural Roots",
+  "central_question": "How did Vedic, Buddhist, Jain, folk and tribal traditions develop, interact and contribute to the shared cultural roots of India?",
+  "in_scope_units": [
+    "Indian culture as an ancient tree — many branches growing from connected roots",
+    "The Vedas and Vedic culture — the four Vedas, oral transmission, rishis and rishikas, deities, ṛitam and unity",
+    "Vedic society — janas, assemblies and professions",
+    "Vedic schools of thought — yajña, Upaniṣhads, karma, rebirth, brahman, ātman, Vedanta and Yoga",
+    "Upaniṣhad stories — Śhvetaketu, Nachiketa and Gārgī as seekers of knowledge",
+    "Buddhism — Siddhārtha Gautama, enlightenment, suffering, ahimsa, inner discipline and the Sangha",
+    "Jainism — Mahāvīra, ahimsa, anekāntavāda, aparigraha and interdependence",
+    "Stories and wider intellectual diversity — Jātaka tales, Rohineya and the Chārvāka school",
+    "Folk and tribal roots — oral traditions, tribes, sacred nature, exchange with Hindu traditions and mutual enrichment"
+  ],
+  "banned_topics": [
+    "Detailed political history of the Indus civilisation from Chapter 6",
+    "A complete history of later empires or medieval religions",
+    "Modern constitutional administration beyond the brief references in the chapter"
+  ],
+  "must_include_keywords": [
+    "Vedas",
+    "Ṛig Veda",
+    "Yajur Veda",
+    "Sāma Veda",
+    "Atharva Veda",
+    "oral tradition",
+    "UNESCO",
+    "rishi",
+    "rishika",
+    "ṛitam",
+    "ekam sat viprā bahudhā vadanti",
+    "janas",
+    "sabhā",
+    "samiti",
+    "Upaniṣhads",
+    "karma",
+    "rebirth",
+    "brahman",
+    "ātman",
+    "Vedanta",
+    "Yoga",
+    "Śhvetaketu",
+    "Nachiketa",
+    "Gārgī",
+    "Siddhārtha Gautama",
+    "Buddha",
+    "ahimsa",
+    "Sangha",
+    "Mahāvīra",
+    "anekāntavāda",
+    "aparigraha",
+    "Jātaka",
+    "Chārvāka",
+    "folk traditions",
+    "tribal traditions",
+    "Jagannath",
+    "Donyipolo",
+    "Singbonga",
+    "mutual enrichment"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Vedic hymns were originally written in manuscripts.",
+      "correction": "The hymns were recited and transmitted orally for many generations."
+    },
+    {
+      "claim": "Buddhism and Jainism are presented as branches of each other.",
+      "correction": "They emerged as distinct schools of thought and did not accept the authority of the Vedas."
+    },
+    {
+      "claim": "Tribal traditions were isolated from other Indian traditions.",
+      "correction": "There was long interaction, exchange and mutual enrichment between folk, tribal and leading schools of thought."
+    }
+  ],
+  "recommended_example_progression": [
+    "Interpret the Vedic hymn on unity for values of common purpose and agreement.",
+    "Examine Śhvetaketu, Nachiketa and Gārgī as seekers of truth.",
+    "Distinguish outward ritual from inner truth using the Buddha's teaching.",
+    "Discuss right action and a second chance using the Jain story of Rohineya.",
+    "Analyse André Béteille's statement and document local tribal art and beliefs."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end 'Questions, activities and projects' Questions 1-7, True/false items 1-7, and the Class activity on page 123.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "9. Family and Community",
+  "central_question": "How do families and communities support people through shared roles, values, rules, cooperation and interdependence?",
+  "in_scope_units": [
+    "Family — joint and nuclear families and the importance of family relationships",
+    "Family-language terms — how Indian languages express close kinship bonds",
+    "Roles and Responsibilities — love, care, cooperation, interdependence and household duties",
+    "Family values — dharma, ahimsa, dāna, sevā and tyāga",
+    "Stories of Shalini and Tenzing — sharing, household work, discussion and support within joint families",
+    "Community — connected families, festivals, agriculture, shared resources, rules and duties",
+    "Community support in action — halma, Chennai floods and Kamal Parmar's classes",
+    "Modern and varied communities — Residents' Welfare Associations, work, interest, school and regional communities",
+    "Interdependence — how families, occupations and communities depend on one another"
+  ],
+  "banned_topics": [
+    "Detailed structure of Panchayati Raj institutions from Chapters 10-12",
+    "Economic-sector classification from Chapter 14",
+    "Legal definitions of marriage or inheritance not present in this chapter"
+  ],
+  "must_include_keywords": [
+    "family",
+    "joint family",
+    "nuclear family",
+    "kinship terms",
+    "cousin",
+    "love",
+    "care",
+    "cooperation",
+    "interdependence",
+    "roles",
+    "responsibilities",
+    "dharma",
+    "ahimsa",
+    "dāna",
+    "sevā",
+    "tyāga",
+    "Shalini",
+    "Acchamma",
+    "Onam",
+    "Tenzing",
+    "household chores",
+    "community",
+    "shared resources",
+    "rules",
+    "duties",
+    "halma",
+    "Bhil community",
+    "Chennai floods",
+    "Kamal Parmar",
+    "underprivileged children",
+    "Residents' Welfare Associations",
+    "waste management",
+    "school community",
+    "support",
+    "community participation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A joint family is always better than a nuclear family.",
+      "correction": "The chapter asks students to consider possible advantages and disadvantages of both types without declaring one universally superior."
+    },
+    {
+      "claim": "Household responsibilities belong to only one family member.",
+      "correction": "The stories show family members sharing responsibilities according to needs and circumstances."
+    },
+    {
+      "claim": "A community is only a group living in one village.",
+      "correction": "The chapter uses the term flexibly for groups connected by locality, religion, work, interest, school or other shared identities."
+    }
+  ],
+  "recommended_example_progression": [
+    "Compare joint and nuclear families using a family-type survey.",
+    "Analyse sharing and sacrifice during Onam using the Shalini story.",
+    "Examine joint decision-making and household roles using Tenzing's family.",
+    "Compare forms of community support using halma, the Chennai floods and Kamal Parmar.",
+    "Evaluate rules, fairness and the effect of community support."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end 'Questions, activities and projects' Questions 1-3 on page 148.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
