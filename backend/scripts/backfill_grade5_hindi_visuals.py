@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Backfill + curate textbook images for Grade 5 Hindi (Vasant... primary
-reader) chapters 1-10, ingested this session from GPT-5.5 authored
+reader) chapters 1-12, ingested this session from GPT-5.5 authored
 manifests (see gpt_output/grade5_hindi/*.json).
 
 The automatic textbook-image step inside batch_ingest_gpt55_outputs.py
@@ -48,6 +48,8 @@ CHAPTER_PDFS = [
     (576, "ehve108.pdf"),   # 8. काजीरंगा राष्ट्रीय उद्यान की यात्रा
     (577, "ehve109.pdf"),   # 9. न्याय
     (578, "ehve110.pdf"),   # 10. तीन मछलियाँ
+    (579, "ehve111.pdf"),   # 11. हमारे ये कलामंदिर
+    (580, "ehve112.pdf"),   # 12. गंगा की कहानी
 ]
 
 
