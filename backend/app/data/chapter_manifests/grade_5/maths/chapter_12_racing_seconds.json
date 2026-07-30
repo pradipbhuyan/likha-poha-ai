@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 12: Racing Seconds",
+  "central_question": "How can we read, compare, convert, and calculate time accurately using hours, minutes, seconds, and 12-hour or 24-hour formats?",
+  "in_scope_units": [
+    "Reading clock times, finding elapsed time, and comparing durations.",
+    "Writing and matching times in 12-hour and 24-hour formats.",
+    "School Race: using seconds to distinguish short durations precisely.",
+    "Estimating whether everyday activities take seconds or minutes.",
+    "Timing activities and reading or drawing the seconds hand on clocks.",
+    "Conversion of hours to minutes using 1 hour = 60 minutes and double number lines.",
+    "Conversion of minutes to seconds using 1 minute = 60 seconds.",
+    "Solving elapsed-time, start-time, and finish-time word problems orally."
+  ],
+  "banned_topics": [
+    "Calendar calculations involving months and leap years",
+    "Speed, distance, and time formulae",
+    "Time zones and international date lines",
+    "Decimal representation of hours"
+  ],
+  "must_include_keywords": [
+    "time",
+    "elapsed time",
+    "duration",
+    "hour",
+    "minute",
+    "second",
+    "1 hr = 60 min",
+    "1 min = 60 seconds",
+    "seconds hand",
+    "minute hand",
+    "12-hour format",
+    "24-hour format",
+    "a.m.",
+    "p.m.",
+    "hours",
+    "School Race",
+    "estimate",
+    "actual time",
+    "double number line",
+    "conversion",
+    "start time",
+    "finish time",
+    "Raghav",
+    "Rani",
+    "Ritu",
+    "Raghu",
+    "Zainab",
+    "Remo",
+    "short duration",
+    "longest time",
+    "least time",
+    "oral strategy"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "1 minute equals 100 seconds.",
+      "correction": "The chapter states that 1 minute = 60 seconds."
+    },
+    {
+      "claim": "To convert 2 hours to minutes, add 60 only once.",
+      "correction": "Multiply the number of hours by 60, so 2 hours = 2 × 60 = 120 minutes."
+    },
+    {
+      "claim": "02:30 p.m. is written as 02:30 in 24-hour time.",
+      "correction": "For a p.m. time after noon, add 12 to the hour: 02:30 p.m. = 14:30 hours."
+    },
+    {
+      "claim": "The child with the largest race time wins.",
+      "correction": "In a race, the smallest duration is the winning time."
+    },
+    {
+      "claim": "Elapsed time can be found by subtracting the hour numbers only.",
+      "correction": "Minutes and, when present, seconds must also be included."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Let us find out Questions 4-7 on elapsed time and 12-hour or 24-hour formats.",
+    "Use the School Race on pages 156-157 to introduce seconds and compare 01:55, 01:56, and 01:57.",
+    "Use the clock activities on pages 159-160 to read and draw seconds-hand positions.",
+    "Use Conversion of Hours to Minutes, Let Us Do Question 1(a)-(c), on pages 161-162.",
+    "Finish with Let Us Do Questions 2-10 on pages 162-163 for start, finish, and elapsed time."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Let Us Do Questions 4-10 on page 163, covering start times, finish times, and elapsed durations.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

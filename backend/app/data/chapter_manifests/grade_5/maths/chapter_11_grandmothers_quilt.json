@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 11: Grandmother's Quilt",
+  "central_question": "How can we measure and compare the boundary and the covered region of shapes using perimeter, area, square units, and rectangle or square formulas?",
+  "in_scope_units": [
+    "Grandmother's quilt and lace: introducing perimeter as the total length of a shape's border.",
+    "Perimeter of equal-sided shapes and drawing rectangles with specified perimeters.",
+    "Covering rugs and tables with tiles: introducing area through shapes that cover without gaps or overlaps.",
+    "Comparing areas using triangles, rectangles, squares, and unit-square grids.",
+    "Estimating the area of irregular objects such as palms and leaves on a square grid.",
+    "Exploring shapes with the same area but different perimeters, and shapes with the same perimeter but different areas.",
+    "Finding rectangular area by rows and columns: Area of rectangle = Length × Breadth.",
+    "Finding the area and perimeter of squares and rectangles using their side lengths.",
+    "Applying area and perimeter to classroom floors, objects, fields, gardens, composite-looking grids, and tile games."
+  ],
+  "banned_topics": [
+    "Volume and capacity of three-dimensional objects",
+    "Circumference and area of circles",
+    "Algebraic proofs of area formulae",
+    "Unit conversion involving hectares or square kilometres"
+  ],
+  "must_include_keywords": [
+    "perimeter",
+    "border",
+    "lace",
+    "area",
+    "tile",
+    "tessellate",
+    "no gaps",
+    "no overlaps",
+    "unit square",
+    "square grid",
+    "square centimetre",
+    "approximate area",
+    "length",
+    "breadth",
+    "rectangle",
+    "square",
+    "opposite sides",
+    "equal sides",
+    "rows",
+    "columns",
+    "square patches",
+    "same area",
+    "different perimeter",
+    "same perimeter",
+    "different area",
+    "Area of Rectangle",
+    "Perimeter of Rectangle",
+    "Area of Square",
+    "Perimeter of Square",
+    "classroom floor",
+    "rectangular field",
+    "garden",
+    "Let Us Explore",
+    "Let Us Play"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Area and perimeter measure the same feature of a shape.",
+      "correction": "Perimeter measures the length around the border, while area measures the region covered inside the boundary."
+    },
+    {
+      "claim": "Shapes with the same area must have the same perimeter.",
+      "correction": "The chapter's grid explorations show that different arrangements can have the same number of unit squares but different boundary lengths."
+    },
+    {
+      "claim": "Circles can cover a rectangular region without gaps and overlaps.",
+      "correction": "The table activity shows that circles leave gaps, while suitable triangles, rectangles, and squares can tile a region."
+    },
+    {
+      "claim": "The area of a rectangle is found by adding length and breadth.",
+      "correction": "Area of a rectangle is Length × Breadth; adding the side lengths is part of finding perimeter."
+    },
+    {
+      "claim": "Area is written in ordinary centimetres.",
+      "correction": "Area is written in square units, such as square centimetres, because it counts unit squares."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the opening quilt-and-lace situation and NCERT Let Us Do Questions 1-2 on perimeter.",
+    "Use the table-covering and rug activities on pages 143-145 to introduce tiling and unit-square area.",
+    "Use NCERT Let Us Explore Questions 1-2 on pages 147-148 to compare same-area and same-perimeter shapes.",
+    "Use the 6 by 4 patchwork example on page 150 to derive Area of Rectangle = Length × Breadth.",
+    "Use the square example on page 151 and NCERT Questions 4-6 on page 153 for formula-based applications."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with the applied questions on pages 151-153 and the perimeter tile game, Let Us Play, on page 154.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

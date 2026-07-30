@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 11: Grandmother's Quilt",
+    "central_question": "How can we measure and compare the boundary and the covered region of shapes using perimeter, area, square units, and rectangle or square formulas?",
+    "in_scope_units": [
+      "Grandmother's quilt and lace: introducing perimeter as the total length of a shape's border.",
+      "Perimeter of equal-sided shapes and drawing rectangles with specified perimeters.",
+      "Covering rugs and tables with tiles: introducing area through shapes that cover without gaps or overlaps.",
+      "Comparing areas using triangles, rectangles, squares, and unit-square grids.",
+      "Estimating the area of irregular objects such as palms and leaves on a square grid.",
+      "Exploring shapes with the same area but different perimeters, and shapes with the same perimeter but different areas.",
+      "Finding rectangular area by rows and columns: Area of rectangle = Length × Breadth.",
+      "Finding the area and perimeter of squares and rectangles using their side lengths.",
+      "Applying area and perimeter to classroom floors, objects, fields, gardens, composite-looking grids, and tile games."
+    ],
+    "banned_topics": [
+      "Volume and capacity of three-dimensional objects",
+      "Circumference and area of circles",
+      "Algebraic proofs of area formulae",
+      "Unit conversion involving hectares or square kilometres"
+    ],
+    "must_include_keywords": [
+      "perimeter",
+      "border",
+      "lace",
+      "area",
+      "tile",
+      "tessellate",
+      "no gaps",
+      "no overlaps",
+      "unit square",
+      "square grid",
+      "square centimetre",
+      "approximate area",
+      "length",
+      "breadth",
+      "rectangle",
+      "square",
+      "opposite sides",
+      "equal sides",
+      "rows",
+      "columns",
+      "square patches",
+      "same area",
+      "different perimeter",
+      "same perimeter",
+      "different area",
+      "Area of Rectangle",
+      "Perimeter of Rectangle",
+      "Area of Square",
+      "Perimeter of Square",
+      "classroom floor",
+      "rectangular field",
+      "garden",
+      "Let Us Explore",
+      "Let Us Play"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Area and perimeter measure the same feature of a shape.",
+        "correction": "Perimeter measures the length around the border, while area measures the region covered inside the boundary."
+      },
+      {
+        "claim": "Shapes with the same area must have the same perimeter.",
+        "correction": "The chapter's grid explorations show that different arrangements can have the same number of unit squares but different boundary lengths."
+      },
+      {
+        "claim": "Circles can cover a rectangular region without gaps and overlaps.",
+        "correction": "The table activity shows that circles leave gaps, while suitable triangles, rectangles, and squares can tile a region."
+      },
+      {
+        "claim": "The area of a rectangle is found by adding length and breadth.",
+        "correction": "Area of a rectangle is Length × Breadth; adding the side lengths is part of finding perimeter."
+      },
+      {
+        "claim": "Area is written in ordinary centimetres.",
+        "correction": "Area is written in square units, such as square centimetres, because it counts unit squares."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the opening quilt-and-lace situation and NCERT Let Us Do Questions 1-2 on perimeter.",
+      "Use the table-covering and rug activities on pages 143-145 to introduce tiling and unit-square area.",
+      "Use NCERT Let Us Explore Questions 1-2 on pages 147-148 to compare same-area and same-perimeter shapes.",
+      "Use the 6 by 4 patchwork example on page 150 to derive Area of Rectangle = Length × Breadth.",
+      "Use the square example on page 151 and NCERT Questions 4-6 on page 153 for formula-based applications."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter concludes with the applied questions on pages 151-153 and the perimeter tile game, Let Us Play, on page 154."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Grandmother's Quilt\n\n## What you will learn\nYou will understand perimeter as the total length around a shape. You will add side lengths and use equal sides to find how much lace or border material is needed.\n\n## Simple explanation\nA quilt has an inside region and an outside border. The distance all the way around the border is its perimeter. To find it, add the lengths of every outer side once.\n\n## Step-by-step breakdown\n- **Perimeter**: The chapter defines perimeter as the length of the border of a shape.\n- **Quilt and lace**: Grandmother needs enough lace to cover the entire border, so the required lace length must match the quilt's perimeter.\n- **Equal-sided shapes**: If every side has the same length, multiply one side length by the number of sides.\n- **Rectangles**: A rectangle has two equal lengths and two equal breadths, so its perimeter is Length + Length + Breadth + Breadth.\n- **Different rectangles**: Two rectangles can have the same perimeter even when their lengths and breadths are different.\n\n## Worked example\nQuestion: Using NCERT Let Us Do Question 1, find the perimeter of the five-sided shape when each side is 4 cm.\n\nSolution:\n- Step 1: The shape has 5 equal sides.\n- Step 2: Each side is 4 cm.\n- Step 3: Perimeter = 4 + 4 + 4 + 4 + 4.\n- Step 4: Perimeter = 5 × 4 = 20 cm.\n- Final answer: The perimeter is 20 cm.\n\n## Common mistake\nA common mistake is to count an internal line or miss one outer side. Perimeter includes only the complete outer boundary, with each boundary side counted once.\n\n## Quick check question\nQuestion: Using NCERT Let Us Do Question 2(a), give one rectangle with perimeter 26 cm.\nAnswer: A rectangle of length 8 cm and breadth 5 cm has perimeter 26 cm.\nExplanation: Its perimeter is 8 + 8 + 5 + 5 = 26 cm.\n\n## Summary\n- Perimeter is the total border length.\n- Add every outside side exactly once.\n- For equal-sided shapes, multiply side length by number of sides.\n- Different rectangles may share the same perimeter.",
+    "Core explanation": "# Core explanation: Grandmother's Quilt\n\n## What you will learn\nYou will understand area as the region covered by a shape. You will use tiles and square grids to measure area in unit squares.\n\n## Simple explanation\nArea tells how much surface is covered. A good measuring tile must cover the region completely without gaps or overlaps. Square grids make counting and comparing area convenient.\n\n## Step-by-step breakdown\n- **Tiling**: Squares, rectangles, and suitable triangles can cover a region without gaps and overlaps.\n- **Why circles do not tile the table**: The circular pieces in the table activity leave uncovered gaps.\n- **Area units**: The area of a square with side 1 unit is 1 unit square.\n- **Counting squares**: A shape's area on a grid is the number of unit squares it covers.\n- **Comparing shapes**: Placing different rectangles on the same square grid makes their areas directly comparable.\n- **Irregular objects**: A palm or leaf can be traced on a grid and its area estimated by counting fully and partly covered squares.\n\n## Worked example\nQuestion: Using the NCERT patchwork example on page 150, find the area of a rectangle containing 6 rows of 4 square patches.\n\nSolution:\n- Step 1: There are 6 rows.\n- Step 2: Each row contains 4 square patches.\n- Step 3: Number of patches = 6 × 4.\n- Step 4: 6 × 4 = 24.\n- Final answer: The area is 24 square units.\n\n## Common mistake\nA common mistake is to count grid lines instead of grid squares. Area is found by counting the spaces or unit squares, not the boundary lines.\n\n## Quick check question\nQuestion: In the NCERT table activity, which of the shown shapes leaves gaps while covering the table?\nAnswer: The circle leaves gaps.\nExplanation: Circles do not fit edge-to-edge across the rectangular tabletop, while the shown triangles, squares, and rectangles can cover it without gaps and overlaps.\n\n## Summary\n- Area measures the covered region.\n- Tiles must cover without gaps or overlaps.\n- One unit square has area 1 square unit.\n- Square grids help compare and estimate area.",
+    "Worked examples": "# Worked examples: Grandmother's Quilt\n\n## What you will learn\nYou will compare area and perimeter and see that they do not always change together. You will analyse arrangements of equal square patches.\n\n## Simple explanation\nThe same number of square patches can be arranged in different shapes. The area stays the same because the number of patches stays the same, but the perimeter can change because the outside boundary changes.\n\n## Step-by-step breakdown\n- **Same area**: Shapes made from the same number of equal square patches have equal area.\n- **Different perimeter**: A long thin arrangement usually has more exposed boundary than a compact arrangement.\n- **Same perimeter**: Different shapes may have the same outside boundary length but cover different numbers of squares.\n- **Grid checking**: Count unit squares for area and exposed 1 cm edges for perimeter.\n- **Trisha's statement**: Increasing area may increase perimeter in one example, but the chapter asks learners to test whether this is always true.\n\n## Worked example\nQuestion: Using the NCERT 6 by 4 rectangular patchwork, find both its area and perimeter when each patch is a 1 cm square.\n\nSolution:\n- Step 1: Length = 6 cm and breadth = 4 cm.\n- Step 2: Area = Length × Breadth = 6 × 4.\n- Step 3: Area = 24 square cm.\n- Step 4: Perimeter = 2 × Length + 2 × Breadth.\n- Step 5: Perimeter = 2 × 6 + 2 × 4 = 12 + 8 = 20 cm.\n- Final answer: Area = 24 square cm and perimeter = 20 cm.\n\n## Common mistake\nA common mistake is to compare two shapes only by how long or tall they look. Use the unit-square count for area and the outside-edge count for perimeter.\n\n## Quick check question\nQuestion: Can two shapes made from 12 equal square patches have the same area but different perimeters?\nAnswer: Yes.\nExplanation: Both shapes have area 12 square units because each uses 12 patches, but different arrangements can expose different numbers of outside edges.\n\n## Summary\n- Area depends on the number of unit squares covered.\n- Perimeter depends on the outside boundary.\n- Equal area does not guarantee equal perimeter.\n- Equal perimeter does not guarantee equal area.",
+    "Exam-style problems": "# Exam-style problems: Grandmother's Quilt\n\n## What you will learn\nYou will use formulas for the area and perimeter of rectangles and squares. You will write correct units and show every calculation clearly.\n\n## Simple explanation\nRows and columns give a quick way to find rectangular area. A square is a rectangle with all four sides equal, so its formulas use the same side length.\n\n## Step-by-step breakdown\n- **Area of rectangle**: Area = Length × Breadth.\n- **Perimeter of rectangle**: Perimeter = 2 × Length + 2 × Breadth.\n- **Area of square**: Area = Length × Length.\n- **Perimeter of square**: Perimeter = 4 × Length.\n- **Units**: Perimeter uses length units such as cm or m; area uses square units such as square cm or square m.\n- **Unknown breadth**: When area and length are known, breadth can be found by determining how many equal rows of the given length make the total area.\n\n## Worked example\nQuestion: Using NCERT Question 4 on page 153, find the area of a rectangular field whose length is 42 m and breadth is 34 m.\n\nSolution:\n- Step 1: Write the formula: Area = Length × Breadth.\n- Step 2: Substitute the values: Area = 42 × 34.\n- Step 3: Split 34 as 30 + 4: 42 × 34 = 42 × 30 + 42 × 4.\n- Step 4: 42 × 30 = 1,260 and 42 × 4 = 168.\n- Step 5: Add: 1,260 + 168 = 1,428.\n- Final answer: The area of the field is 1,428 square m.\n\n## Common mistake\nA common mistake is to write 1,428 m instead of 1,428 square m. Area must be expressed in square units.\n\n## Quick check question\nQuestion: Using NCERT Question 5 on page 153, a rectangular garden has area 64 square m and length 16 m. What is its breadth?\nAnswer: The breadth is 4 m.\nExplanation: Since 16 × 4 = 64, Area = Length × Breadth gives 64 = 16 × 4.\n\n## Summary\n- Use multiplication for rectangular area.\n- Use addition or the doubled-side formula for perimeter.\n- A square has four equal sides.\n- Always attach the correct unit.",
+    "Revision and recap": "# Revision and recap: Grandmother's Quilt\n\n## What you will learn\nYou will revise perimeter, area, grids, formulas, and practical measurement. You will also use these ideas to judge answers and solve tile-based problems.\n\n## Simple explanation\nBefore solving, decide whether the question asks about the border or the covered region. Then select perimeter or area, identify the measurements, calculate, and check the unit.\n\n## Step-by-step breakdown\n- **Border clue**: Words such as border, lace, fencing, and around point to perimeter.\n- **Covering clue**: Words such as cover, patches, floor, region, and square units point to area.\n- **Measurement activities**: The chapter asks learners to measure a classroom floor, notebook cover, newspaper, blackboard, and Ludo board.\n- **Approximation**: Irregular palms and leaves are measured approximately on grids.\n- **Reasonableness check**: A compact shape can have smaller perimeter than a stretched shape with the same area.\n- **Let Us Play**: Players add square tiles and keep calculating the outside boundary until the perimeter becomes 24.\n\n## Worked example\nQuestion: Using the square example on page 151, find the area and perimeter of a square of side 5 cm.\n\nSolution:\n- Step 1: Area = Length × Length.\n- Step 2: Area = 5 × 5 = 25 square cm.\n- Step 3: Perimeter = 4 × Length.\n- Step 4: Perimeter = 4 × 5 = 20 cm.\n- Final answer: Area = 25 square cm and perimeter = 20 cm.\n\n## Common mistake\nA common mistake is to use 5 × 5 for both area and perimeter. The area is 5 × 5, but the perimeter is 5 + 5 + 5 + 5.\n\n## Quick check question\nQuestion: In the NCERT Let Us Play activity, what part of the tiled figure is counted to find its perimeter?\nAnswer: Only the exposed outside edges are counted.\nExplanation: Edges shared by two tiles lie inside the figure and are not part of the outer boundary.\n\n## Summary\n- Choose perimeter for boundary questions.\n- Choose area for covering questions.\n- Count square units or use the rectangle and square formulas.\n- Check whether the answer needs ordinary or square units.\n- Shared tile edges are not part of the perimeter."
+  }
+}

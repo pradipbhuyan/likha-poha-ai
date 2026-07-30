@@ -1,0 +1,102 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 14: Maps and Locations",
+    "central_question": "How can directions, symbols, routes, distances, grids, rows, columns, and ordered locations help us read and create maps?",
+    "in_scope_units": [
+      "Finding Directions using the rising Sun and the four cardinal directions.",
+      "Bird Watching and Map of a Room: locating objects relative to a reference point.",
+      "Drawing a room map with a direction arrow.",
+      "Zoo Trip and Bus Route: reading streets, turns, stops, distances, and directions.",
+      "Delhi Metro Train Stations: using map keys, coloured routes, interchange stations, and route comparison.",
+      "Let Us Do: creating a school map and a key for symbols.",
+      "Anthill in the Zoo: following directed grid routes and measuring distance in centimetres.",
+      "Locating Animals in the Zoological Park: using columns, rows, and ordered positions such as (1,1)."
+    ],
+    "banned_topics": [
+      "Latitude and longitude",
+      "Map scale expressed as ratios",
+      "Compass bearings in degrees",
+      "Negative coordinates and four-quadrant coordinate geometry"
+    ],
+    "must_include_keywords": [
+      "map",
+      "location",
+      "direction",
+      "north",
+      "south",
+      "east",
+      "west",
+      "rising Sun",
+      "cardinal directions",
+      "compass",
+      "reference point",
+      "Bird Watching",
+      "Map of a Room",
+      "direction arrow",
+      "Zoo Trip",
+      "Bus Route",
+      "right turn",
+      "left turn",
+      "Hospital Road",
+      "Park Road",
+      "Stop 1",
+      "Stop 2",
+      "map key",
+      "symbol",
+      "metro line",
+      "interchange station",
+      "Qutb Minar",
+      "Supreme Court",
+      "Anthill in the Zoo",
+      "grid",
+      "distance",
+      "centimetre",
+      "row",
+      "column",
+      "horizontal",
+      "vertical",
+      "ordered position",
+      "Panda",
+      "Tortoise"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "When facing the rising Sun, north is on the right.",
+        "correction": "Facing the rising Sun means facing east; north is on the left and south is on the right."
+      },
+      {
+        "claim": "A right turn always means east.",
+        "correction": "The direction after a right turn depends on the direction in which the traveller was already facing."
+      },
+      {
+        "claim": "All coloured lines on a metro map show the same route.",
+        "correction": "Different coloured lines represent different metro routes, and interchange stations connect routes."
+      },
+      {
+        "claim": "The position (4,1) means move 1 step horizontally and 4 steps vertically.",
+        "correction": "The chapter instructs learners to move horizontally first, so (4,1) means 4 steps east to column 4 and then 1 step north to row 1."
+      },
+      {
+        "claim": "A map symbol can be understood without a key.",
+        "correction": "A map key explains what each symbol or coloured line represents."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with Finding Directions and Manu facing the rising Sun on page 171.",
+      "Use Bird Watching and Map of a Room on page 172 for relative location.",
+      "Use the Bus Route on page 174 to practise turns, roads, and stops.",
+      "Use the Delhi Metro map on pages 175-176 to interpret keys, routes, and interchange stations.",
+      "Finish with Anthill in the Zoo and Locating the Animals on pages 177-178 for distances and ordered grid positions."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Locating the Animals in the Zoological Park, Questions 1-3 on page 178."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Maps and Locations\n\n## What you will learn\nYou will name the four cardinal directions and use the rising Sun to orient yourself. You will describe where objects are located relative to a person or place.\n\n## Simple explanation\nThe Sun rises in the east. If you face east, north is to your left, south is to your right, and west is behind you.\n\n## Step-by-step breakdown\n- **Cardinal directions**: The four main directions are north, south, east, and west.\n- **Rising Sun**: Facing the rising Sun gives the east direction.\n- **Left and right**: When facing east, the left hand points north and the right hand points south.\n- **Opposite directions**: East is opposite west, and north is opposite south.\n- **Compass**: The teacher note mentions a compass as another way to find directions.\n- **Relative position**: A location is described in relation to a chosen person, object, road, or lake.\n\n## Worked example\nQuestion: Using the NCERT Finding Directions activity, Manu faces the rising Sun. Name the directions in front, to his left, to his right, and behind.\n\nSolution:\n- Step 1: The rising Sun is in the east, so Manu faces east.\n- Step 2: When facing east, north is on the left.\n- Step 3: South is on the right.\n- Step 4: West is opposite east, so it is behind him.\n- Final answer: Front: east; left: north; right: south; behind: west.\n\n## Common mistake\nA common mistake is to use the page's left and right without checking which way the person is facing. Directions are based on orientation.\n\n## Quick check question\nQuestion: If a tent is north of the green tent in the Bird Watching activity, where is the green tent relative to that tent?\nAnswer: The green tent is south of it.\nExplanation: North and south are opposite directions.\n\n## Summary\n- The Sun rises in the east.\n- Facing east puts north on the left and south on the right.\n- Opposite directions describe reverse relationships.\n- Always identify the reference point.",
+    "Core explanation": "# Core explanation: Maps and Locations\n\n## What you will learn\nYou will read simple maps of a camp and a room. You will use direction arrows and clues to identify where objects belong.\n\n## Simple explanation\nA map is a top view that shows where places or objects are. A direction arrow fixes north, south, east, and west so that every clue can be interpreted consistently.\n\n## Step-by-step breakdown\n- **Bird Watching clues**: The tents are coloured using positions relative to the road, lake, and another tent.\n- **West of the road**: The tent on the west side of the road is blue.\n- **Closest to the lake**: Distance clues can be used together with direction clues.\n- **Map of a Room**: The window, bed, cupboard, and bedside table are located relative to the girl.\n- **Personal room map**: Learners draw their own room, stand at the centre as a reference, and label objects in four directions.\n- **Direction arrow**: Every self-made map should show the direction arrow so another reader can understand it.\n\n## Worked example\nQuestion: Using the NCERT Bird Watching activity, describe the required tent colours.\n\nSolution:\n- Step 1: The tent west of the road is blue.\n- Step 2: The tent closest to the lake is green.\n- Step 3: The tent north of the green tent is purple.\n- Step 4: The tent south of the lake is yellow.\n- Final answer: The map should also include a tent drawn east of the lake.\n\n## Common mistake\nA common mistake is to colour a tent only by how it looks in the picture. Each colour must follow the written location clue.\n\n## Quick check question\nQuestion: Where should the new tent be drawn in the Bird Watching activity?\nAnswer: It should be drawn to the east of the lake.\nExplanation: The clue directly states the required direction from the lake.\n\n## Summary\n- Read the direction arrow before using a map.\n- Use the stated reference point for each clue.\n- Combine direction and distance clues carefully.\n- A clear map needs labels or a key.",
+    "Worked examples": "# Worked examples: Maps and Locations\n\n## What you will learn\nYou will follow routes on a street map using roads, turns, and compass directions. You will compare which stop or path is nearer.\n\n## Simple explanation\nA turn changes direction according to the way a traveller is already facing. Trace each road segment in order and check the compass after every turn.\n\n## Step-by-step breakdown\n- **Starting direction**: The bus starts at the parking area and first travels north.\n- **First turn**: From a northward direction, a right turn leads east onto Hospital Road.\n- **Second turn**: From eastward travel, a right turn leads south onto Park Road.\n- **Stops**: Stop 1 is near the hospital, while Stop 2 is near the shopping centre.\n- **Nearby locations**: Lali's house is closer to Stop 1, and Prem's house is north of Stop 2.\n- **Reading houses**: Prem's and Raju's houses lie east of Jaideep's house on the street map.\n\n## Worked example\nQuestion: Using the NCERT Bus Route, complete the bus directions from parking to Stop 1 and then toward Stop 2.\n\nSolution:\n- Step 1: The bus starts at the parking area and moves north.\n- Step 2: Facing north, it turns right onto Hospital Road.\n- Step 3: A right turn from north points east, so it travels east to Stop 1.\n- Step 4: To move toward Stop 2, it turns right onto Park Road.\n- Step 5: A right turn from east points south, so it travels south.\n- Final answer: Hospital Road, east; then right onto Park Road, south.\n\n## Common mistake\nA common mistake is to say every right turn points east. A right turn from east points south, while a right turn from north points east.\n\n## Quick check question\nQuestion: According to the Bus Route map, which stop is closer to Lali's house?\nAnswer: Stop 1 is closer.\nExplanation: Lali's house is near the upper-left part of the map, close to Hospital Road and Stop 1.\n\n## Summary\n- Trace one road segment at a time.\n- Update the facing direction after every turn.\n- Use both distance and direction when comparing routes.\n- Map questions may have more than one possible route.",
+    "Exam-style problems": "# Exam-style problems: Maps and Locations\n\n## What you will learn\nYou will read a transport map using a key, coloured routes, and interchange stations. You will compare possible routes between Qutb Minar and Supreme Court.\n\n## Simple explanation\nA metro map simplifies the transport network. Colours identify lines, circles identify stations, and special interchange symbols show where passengers can change lines.\n\n## Step-by-step breakdown\n- **Map key**: The key explains the Red, Yellow, Blue, Airport Express, Green, Violet, Pink, and Magenta lines and the station symbols.\n- **Starting and destination stations**: Qutb Minar is on the Yellow Line and Supreme Court is on the Blue Line.\n- **Interchange**: Changing from one coloured route to another is possible at an interchange station.\n- **Lali's route**: Lali suggests changing from Yellow to Magenta at Hauz Khas.\n- **Further changes**: Following that suggestion requires later changes through connecting lines before reaching the Blue Line.\n- **Route comparison**: A good route can be judged by the number of stations and the number of line changes.\n\n## Worked example\nQuestion: Using the NCERT metro-map question, give a direct route with one interchange from Qutb Minar to Supreme Court.\n\nSolution:\n- Step 1: Start at Qutb Minar on the Yellow Line.\n- Step 2: Travel north on the Yellow Line to Rajiv Chowk.\n- Step 3: Change at Rajiv Chowk from the Yellow Line to the Blue Line.\n- Step 4: Travel east on the Blue Line to Supreme Court.\n- Final answer: Take the Yellow Line to Rajiv Chowk, change to the Blue Line, and continue to Supreme Court.\n\n## Common mistake\nA common mistake is to follow the shortest-looking line on the page without checking whether the coloured routes actually connect at an interchange station.\n\n## Quick check question\nQuestion: What do the different coloured lines on the NCERT metro map represent?\nAnswer: They represent different metro routes.\nExplanation: The map key assigns a separate colour to each metro line to help passengers identify and navigate routes.\n\n## Summary\n- Read the map key first.\n- Locate the starting and destination stations.\n- Change lines only at interchange stations.\n- Compare routes by stations and interchanges.",
+    "Revision and recap": "# Revision and recap: Maps and Locations\n\n## What you will learn\nYou will use grid distances and ordered positions to describe exact locations. You will move horizontally first and then vertically, as instructed in the zoo grid.\n\n## Simple explanation\nThe anthill grid measures route segments in centimetres. The zoo grid names a position by the meeting point of a numbered column and row.\n\n## Step-by-step breakdown\n- **Anthill grid**: Each grid step is 1 cm, and arrows limit the directions in which the ant can move.\n- **Route description**: A route is written as a sequence of distances and directions.\n- **Shortest route**: Different paths may reach the same food, so their total distances can be compared.\n- **Columns and rows**: Vertical grid lines are columns and horizontal grid lines are rows.\n- **Ordered position**: The chapter moves horizontally from 0 first and then vertically.\n- **Examples**: The panda is at (1,1), the tortoise is at (4,1), and the animal at (1,4) is the crocodile.\n\n## Worked example\nQuestion: Using the NCERT zoo-grid explanation, describe how to reach the tortoise at (4,1).\n\nSolution:\n- Step 1: Start at 0.\n- Step 2: Move 4 steps horizontally east to the fourth column.\n- Step 3: Move 1 step vertically north to the first row.\n- Step 4: The fourth column and first row meet at (4,1).\n- Final answer: Move 4 steps east and then 1 step north.\n\n## Common mistake\nA common mistake is to reverse the two numbers. The chapter explicitly says to move horizontally first and then vertically.\n\n## Quick check question\nQuestion: In the Anthill in the Zoo activity, how far and in which direction must the ant move to reach the laddoos?\nAnswer: The ant must crawl 2 cm east.\nExplanation: This route is given directly in part (a), and each grid step represents 1 cm.\n\n## Summary\n- Grid routes combine distance and direction.\n- Add route segments to compare total distances.\n- A position names a column first and a row second.\n- Move horizontally first, then vertically.\n- Use the compass arrow to interpret east, west, north, and south."
+  }
+}

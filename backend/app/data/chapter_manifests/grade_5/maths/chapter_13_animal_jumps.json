@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 13: Animal Jumps",
+  "central_question": "How can arrays, number-line jumps, factors, multiples, and divisibility help us find common number patterns and solve sharing or repeated-jump problems?",
+  "in_scope_units": [
+    "Hidden-number multiplier box: identifying factors and common factors.",
+    "Arrays for numbers: connecting factor pairs with multiples.",
+    "Prime numbers through arrays with only one factor pair.",
+    "Animal Jumps: finding common multiples on a number line.",
+    "Listing common multiples using times tables.",
+    "Mowgli's trail: using jump lengths to identify common factors.",
+    "Finding common factors of pairs such as 24 and 36.",
+    "True or false statements about factors, multiples, odd, even, consecutive numbers, and zero.",
+    "Word problems involving hunting days and jump lengths.",
+    "Sorting numbers by divisibility by 2, 5, and 10."
+  ],
+  "banned_topics": [
+    "Prime factorisation using factor trees",
+    "Formal HCF and LCM algorithms",
+    "Negative factors and negative multiples",
+    "Divisibility rules for 3, 9, and 11 as a separate topic"
+  ],
+  "must_include_keywords": [
+    "factor",
+    "multiple",
+    "factor pair",
+    "array",
+    "product",
+    "common factor",
+    "common multiple",
+    "prime number",
+    "divide completely",
+    "number line",
+    "jump",
+    "start from 0",
+    "times table",
+    "rabbit",
+    "frog",
+    "spider",
+    "grasshopper",
+    "Robby",
+    "Deeku",
+    "Mowgli",
+    "Sher Khan",
+    "Bagheera",
+    "consecutive numbers",
+    "odd number",
+    "even number",
+    "divisible by 2",
+    "divisible by 5",
+    "divisible by 10",
+    "zero",
+    "true or false",
+    "trail"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A factor is always larger than the number.",
+      "correction": "A factor divides a number completely; for 12 the factors are 1, 2, 3, 4, 6, and 12."
+    },
+    {
+      "claim": "A common multiple must be smaller than both numbers.",
+      "correction": "Common multiples are shared multiples and are usually equal to or greater than the numbers, such as 12 for 3 and 4."
+    },
+    {
+      "claim": "Every factor of an even number is even.",
+      "correction": "The statement is false because 1 is an odd factor of every positive number."
+    },
+    {
+      "claim": "Zero can be a factor of a number.",
+      "correction": "The chapter's true-or-false section states that 0 cannot be a factor of any number."
+    },
+    {
+      "claim": "A prime number has no factors.",
+      "correction": "A prime number has exactly two positive factors: 1 and the number itself."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the hidden-number box and arrays for 15 and 12 on pages 164-165.",
+    "Use the rabbit-and-frog and spider-and-grasshopper number lines to introduce common multiples.",
+    "Use Let Us Do Question 1 on page 166 to list five common multiples.",
+    "Use Mowgli's trail and Let Us Do Questions 4-7 to introduce common factors.",
+    "Finish with Questions 8-11 on pages 169-170 for reasoning, applications, and divisibility sorting."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's final practice is Let Us Do Questions 6-11 on pages 169-170, ending with sorting numbers by divisibility by 2, 5, and 10.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,96 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 13: Animal Jumps",
+    "central_question": "How can arrays, number-line jumps, factors, multiples, and divisibility help us find common number patterns and solve sharing or repeated-jump problems?",
+    "in_scope_units": [
+      "Hidden-number multiplier box: identifying factors and common factors.",
+      "Arrays for numbers: connecting factor pairs with multiples.",
+      "Prime numbers through arrays with only one factor pair.",
+      "Animal Jumps: finding common multiples on a number line.",
+      "Listing common multiples using times tables.",
+      "Mowgli's trail: using jump lengths to identify common factors.",
+      "Finding common factors of pairs such as 24 and 36.",
+      "True or false statements about factors, multiples, odd, even, consecutive numbers, and zero.",
+      "Word problems involving hunting days and jump lengths.",
+      "Sorting numbers by divisibility by 2, 5, and 10."
+    ],
+    "banned_topics": [
+      "Prime factorisation using factor trees",
+      "Formal HCF and LCM algorithms",
+      "Negative factors and negative multiples",
+      "Divisibility rules for 3, 9, and 11 as a separate topic"
+    ],
+    "must_include_keywords": [
+      "factor",
+      "multiple",
+      "factor pair",
+      "array",
+      "product",
+      "common factor",
+      "common multiple",
+      "prime number",
+      "divide completely",
+      "number line",
+      "jump",
+      "start from 0",
+      "times table",
+      "rabbit",
+      "frog",
+      "spider",
+      "grasshopper",
+      "Robby",
+      "Deeku",
+      "Mowgli",
+      "Sher Khan",
+      "Bagheera",
+      "consecutive numbers",
+      "odd number",
+      "even number",
+      "divisible by 2",
+      "divisible by 5",
+      "divisible by 10",
+      "zero",
+      "true or false",
+      "trail"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A factor is always larger than the number.",
+        "correction": "A factor divides a number completely; for 12 the factors are 1, 2, 3, 4, 6, and 12."
+      },
+      {
+        "claim": "A common multiple must be smaller than both numbers.",
+        "correction": "Common multiples are shared multiples and are usually equal to or greater than the numbers, such as 12 for 3 and 4."
+      },
+      {
+        "claim": "Every factor of an even number is even.",
+        "correction": "The statement is false because 1 is an odd factor of every positive number."
+      },
+      {
+        "claim": "Zero can be a factor of a number.",
+        "correction": "The chapter's true-or-false section states that 0 cannot be a factor of any number."
+      },
+      {
+        "claim": "A prime number has no factors.",
+        "correction": "A prime number has exactly two positive factors: 1 and the number itself."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the hidden-number box and arrays for 15 and 12 on pages 164-165.",
+      "Use the rabbit-and-frog and spider-and-grasshopper number lines to introduce common multiples.",
+      "Use Let Us Do Question 1 on page 166 to list five common multiples.",
+      "Use Mowgli's trail and Let Us Do Questions 4-7 to introduce common factors.",
+      "Finish with Questions 8-11 on pages 169-170 for reasoning, applications, and divisibility sorting."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter's final practice is Let Us Do Questions 6-11 on pages 169-170, ending with sorting numbers by divisibility by 2, 5, and 10."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Animal Jumps\n\n## What you will learn\nYou will understand factors and multiples using multiplication facts and arrays. You will identify factor pairs and recognise prime numbers.\n\n## Simple explanation\nWhen two numbers multiply to give a product, the two numbers are factors of the product, and the product is a multiple of each factor. Arrays show these relationships clearly.\n\n## Step-by-step breakdown\n- **Hidden-number box**: The outputs 28, 36, 48, and 72 can all be produced using multipliers such as 1, 2, and 4, which are common factors.\n- **Factor and multiple**: In 3 × 5 = 15, 3 and 5 are factors and 15 is their multiple.\n- **Arrays**: Different row-column arrangements reveal different factor pairs.\n- **Factors of 12**: The chapter lists 1, 2, 3, 4, 6, and 12 as factors of 12.\n- **Number itself**: A number is always a multiple of itself, and 1 and the number itself are always factors.\n- **Prime numbers**: Numbers such as 13 and 37 have only the factor pair 1 and the number itself.\n\n## Worked example\nQuestion: Using the NCERT arrays for 12, list all factors of 12.\n\nSolution:\n- Step 1: The array 1 × 12 gives factors 1 and 12.\n- Step 2: The array 2 × 6 gives factors 2 and 6.\n- Step 3: The array 3 × 4 gives factors 3 and 4.\n- Step 4: Collect all different factors: 1, 2, 3, 4, 6, 12.\n- Final answer: The factors of 12 are 1, 2, 3, 4, 6, and 12.\n\n## Common mistake\nA common mistake is to list only the smaller number in each factor pair. Both numbers in every pair are factors.\n\n## Quick check question\nQuestion: Why is 13 called a prime number in the NCERT activity?\nAnswer: Because its only positive factors are 1 and 13.\nExplanation: No other whole number divides 13 completely, so it has exactly two positive factors.\n\n## Summary\n- Factors multiply to form a multiple.\n- Arrays show factor pairs.\n- A factor divides the number completely.\n- Prime numbers have exactly two positive factors.",
+    "Core explanation": "# Core explanation: Animal Jumps\n\n## What you will learn\nYou will find multiples and common multiples using repeated jumps and times tables. You will identify the first and later meeting points of two jump patterns.\n\n## Simple explanation\nA jump of 4 touches multiples of 4, and a jump of 3 touches multiples of 3. Points touched by both patterns are common multiples.\n\n## Step-by-step breakdown\n- **Rabbit and frog**: The rabbit jumps by 4 and the frog by 3; both first touch 12.\n- **First common multiple**: 12 is the first common multiple of 3 and 4 in the number-line activity.\n- **Spider and grasshopper**: Jumps of 3 and 6 meet at 6, 12, and later multiples of 6.\n- **Times-table method**: Write the multiples of each number and circle the values that appear in both lists.\n- **Continuing pattern**: Once a first meeting point is known, later common multiples follow a repeated pattern.\n\n## Worked example\nQuestion: Using Let Us Do Question 1(a), find five common multiples of 2 and 3.\n\nSolution:\n- Step 1: Write multiples of 2: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 30.\n- Step 2: Write multiples of 3: 3, 6, 9, 12, 15, 18, 21, 24, 27, 30.\n- Step 3: Select values appearing in both lists.\n- Step 4: The first five are 6, 12, 18, 24, and 30.\n- Final answer: Five common multiples are 6, 12, 18, 24, and 30.\n\n## Common mistake\nA common mistake is to include a number that appears in only one times table. A common multiple must appear in both lists.\n\n## Quick check question\nQuestion: What is the first common multiple of 3 and 4 in the rabbit-and-frog activity?\nAnswer: 12.\nExplanation: The jumps of 3 touch 3, 6, 9, 12, and the jumps of 4 touch 4, 8, 12, so 12 is the first shared point.\n\n## Summary\n- Multiples can be shown by equal jumps.\n- Common multiples are shared landing points.\n- Times tables provide another method.\n- The smallest shared positive point is the first common multiple.",
+    "Worked examples": "# Worked examples: Animal Jumps\n\n## What you will learn\nYou will identify common factors using jump lengths. You will test which jump sizes reach two or more marked numbers exactly.\n\n## Simple explanation\nIf equal jumps starting from 0 land exactly on a number, the jump length is a factor of that number. If the same jump length lands on several numbers, it is a common factor.\n\n## Step-by-step breakdown\n- **Mowgli's jumps by 2**: The positions 4, 12, 14, and 50 are all reached because 2 divides each exactly.\n- **Jumps by 3**: The positions 9, 21, 39, and 57 share the factor 3.\n- **Definition**: A common factor exactly divides each of the numbers.\n- **Testing factors**: Try a proposed jump size and check whether both target numbers are reached.\n- **Including 1**: A jump of 1 reaches every whole-number position, so 1 is always a common factor.\n\n## Worked example\nQuestion: Using Let Us Do Question 4, find all common factors of 24 and 36.\n\nSolution:\n- Step 1: Factors of 24 are 1, 2, 3, 4, 6, 8, 12, and 24.\n- Step 2: Factors of 36 are 1, 2, 3, 4, 6, 9, 12, 18, and 36.\n- Step 3: Select the factors that occur in both lists.\n- Step 4: The shared factors are 1, 2, 3, 4, 6, and 12.\n- Final answer: The common factors of 24 and 36 are 1, 2, 3, 4, 6, and 12.\n\n## Common mistake\nA common mistake is to include 8 because it is a factor of 24. It is not a factor of 36, so it is not common.\n\n## Quick check question\nQuestion: Using Let Us Do Question 5, what are the common factors of 12 and 13?\nAnswer: The only common factor is 1.\nExplanation: The factors of 13 are only 1 and 13, and 13 is not a factor of 12.\n\n## Summary\n- A jump length is a factor when it lands exactly on the target.\n- A common factor must divide every given number.\n- List factors systematically to avoid missing values.\n- One is a common factor of all positive whole numbers.",
+    "Exam-style problems": "# Exam-style problems: Animal Jumps\n\n## What you will learn\nYou will apply common multiples and common factors to repeated events and route choices. You will also judge true-or-false statements using examples.\n\n## Simple explanation\nRepeated events happen together on common multiples. A jump length that reaches two locations must be a common factor of both positions.\n\n## Step-by-step breakdown\n- **Hunting days**: Sher Khan hunts every 3rd day and Bagheera every 5th day, so together-days are common multiples of 3 and 5.\n- **Avoiding a location**: To reach 30 but avoid 25, choose a jump length that divides 30 but does not divide 25.\n- **Reaching two friends**: To reach positions 21 and 35, choose a common factor of 21 and 35.\n- **Consecutive numbers**: The chapter asks learners to recognise that consecutive numbers share only the factor 1.\n- **Odd and even reasoning**: Examples can test claims about factors or multiples being odd or even.\n\n## Worked example\nQuestion: Using Let Us Do Question 9, Sher Khan hunts every 3rd day and Bagheera every 5th day. On which days will they hunt together?\n\nSolution:\n- Step 1: Multiples of 3 are 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, and so on.\n- Step 2: Multiples of 5 are 5, 10, 15, 20, 25, 30, and so on.\n- Step 3: The common multiples begin with 15 and 30.\n- Step 4: They hunt together every 15 days.\n- Final answer: They will hunt together on the 15th, 30th, 45th, and later multiples of 15.\n\n## Common mistake\nA common mistake is to add 3 and 5 and say they meet every 8 days. Repeated events meet on common multiples, not on the sum of the intervals.\n\n## Quick check question\nQuestion: Using Let Us Do Question 10(b), which jump lengths can reach both 21 and 35?\nAnswer: Jump lengths of 1 step or 7 steps.\nExplanation: The common factors of 21 and 35 are 1 and 7.\n\n## Summary\n- Repeated schedules meet at common multiples.\n- Shared reachable positions use common factors.\n- A counterexample can disprove a true-or-false claim.\n- Check every condition in a route problem.",
+    "Revision and recap": "# Revision and recap: Animal Jumps\n\n## What you will learn\nYou will revise factors, multiples, prime numbers, common factors, common multiples, and divisibility by 2, 5, and 10. You will classify numbers and justify each placement.\n\n## Simple explanation\nEnding digits help with the final sorting task. Even numbers are divisible by 2, numbers ending in 0 or 5 are divisible by 5, and numbers ending in 0 are divisible by 10.\n\n## Step-by-step breakdown\n- **Divisible by 2**: A number ending in 0, 2, 4, 6, or 8 is divisible by 2.\n- **Divisible by 5**: A number ending in 0 or 5 is divisible by 5.\n- **Divisible by 10**: A number ending in 0 is divisible by 10 and is also divisible by 2 and 5.\n- **Overlap**: The chapter's sorting diagram shows that some numbers belong to more than one divisibility group.\n- **Zero as a factor**: Zero cannot be used as a factor because division by zero is not defined.\n- **Final check**: Use multiplication, division, arrays, or jumps to verify uncertain answers.\n\n## Worked example\nQuestion: Using NCERT Question 11, sort 90, 22, 38, 30, 75, 45, 66, 78, 62, 40, 84, 56, 25, 95, and 55 by divisibility.\n\nSolution:\n- Step 1: Divisible by 2 only: 22, 38, 66, 78, 62, 84, 56.\n- Step 2: Divisible by 5 only: 75, 45, 25, 95, 55.\n- Step 3: Divisible by 2, 5, and 10: 90, 30, 40.\n- Step 4: A number divisible by 10 is automatically divisible by 2 and 5, so the '10 only' region has no number from the list.\n- Final answer: The numbers are sorted as stated above.\n\n## Common mistake\nA common mistake is to place 40 only in the divisible-by-10 group. Since 40 is divisible by 10, it is also divisible by 2 and 5.\n\n## Quick check question\nQuestion: Is the statement 'Factors of odd numbers cannot be even' true or false?\nAnswer: True.\nExplanation: An even factor multiplied by any whole number gives an even product, so an odd number cannot have an even factor.\n\n## Summary\n- Factors divide exactly; multiples come from multiplication.\n- Common means shared by all given numbers.\n- Prime numbers have factors 1 and themselves only.\n- Ending digits help test divisibility by 2, 5, and 10.\n- A multiple of 10 is also a multiple of 2 and 5."
+  }
+}

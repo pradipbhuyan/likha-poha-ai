@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 12: Racing Seconds",
+    "central_question": "How can we read, compare, convert, and calculate time accurately using hours, minutes, seconds, and 12-hour or 24-hour formats?",
+    "in_scope_units": [
+      "Reading clock times, finding elapsed time, and comparing durations.",
+      "Writing and matching times in 12-hour and 24-hour formats.",
+      "School Race: using seconds to distinguish short durations precisely.",
+      "Estimating whether everyday activities take seconds or minutes.",
+      "Timing activities and reading or drawing the seconds hand on clocks.",
+      "Conversion of hours to minutes using 1 hour = 60 minutes and double number lines.",
+      "Conversion of minutes to seconds using 1 minute = 60 seconds.",
+      "Solving elapsed-time, start-time, and finish-time word problems orally."
+    ],
+    "banned_topics": [
+      "Calendar calculations involving months and leap years",
+      "Speed, distance, and time formulae",
+      "Time zones and international date lines",
+      "Decimal representation of hours"
+    ],
+    "must_include_keywords": [
+      "time",
+      "elapsed time",
+      "duration",
+      "hour",
+      "minute",
+      "second",
+      "1 hr = 60 min",
+      "1 min = 60 seconds",
+      "seconds hand",
+      "minute hand",
+      "12-hour format",
+      "24-hour format",
+      "a.m.",
+      "p.m.",
+      "hours",
+      "School Race",
+      "estimate",
+      "actual time",
+      "double number line",
+      "conversion",
+      "start time",
+      "finish time",
+      "Raghav",
+      "Rani",
+      "Ritu",
+      "Raghu",
+      "Zainab",
+      "Remo",
+      "short duration",
+      "longest time",
+      "least time",
+      "oral strategy"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "1 minute equals 100 seconds.",
+        "correction": "The chapter states that 1 minute = 60 seconds."
+      },
+      {
+        "claim": "To convert 2 hours to minutes, add 60 only once.",
+        "correction": "Multiply the number of hours by 60, so 2 hours = 2 × 60 = 120 minutes."
+      },
+      {
+        "claim": "02:30 p.m. is written as 02:30 in 24-hour time.",
+        "correction": "For a p.m. time after noon, add 12 to the hour: 02:30 p.m. = 14:30 hours."
+      },
+      {
+        "claim": "The child with the largest race time wins.",
+        "correction": "In a race, the smallest duration is the winning time."
+      },
+      {
+        "claim": "Elapsed time can be found by subtracting the hour numbers only.",
+        "correction": "Minutes and, when present, seconds must also be included."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with Let us find out Questions 4-7 on elapsed time and 12-hour or 24-hour formats.",
+      "Use the School Race on pages 156-157 to introduce seconds and compare 01:55, 01:56, and 01:57.",
+      "Use the clock activities on pages 159-160 to read and draw seconds-hand positions.",
+      "Use Conversion of Hours to Minutes, Let Us Do Question 1(a)-(c), on pages 161-162.",
+      "Finish with Let Us Do Questions 2-10 on pages 162-163 for start, finish, and elapsed time."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Let Us Do Questions 4-10 on page 163, covering start times, finish times, and elapsed durations."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Racing Seconds\n\n## What you will learn\nYou will read times, compare durations, and find elapsed time. You will also connect clock readings with everyday activities.\n\n## Simple explanation\nTime tells when an activity starts and finishes, while duration tells how long it lasts. A useful strategy is to move from the starting time to a convenient whole hour and then to the finishing time.\n\n## Step-by-step breakdown\n- **Start and finish time**: The yoga activity asks learners to read when Raghav began and ended.\n- **Elapsed time**: Elapsed time is the duration between two clock times.\n- **Comparing durations**: The painting table compares 1 hour 20 minutes, 2 hours 10 minutes, and 1 hour 35 minutes.\n- **Longest and least time**: A larger duration means more time taken; a smaller duration means less time taken.\n- **Bridging strategy**: Break a time interval into easy parts, such as moving to the next hour and then counting the remaining minutes.\n\n## Worked example\nQuestion: Using Let us find out Question 4(a), find the elapsed time from 01:15 p.m. to 01:42 p.m.\n\nSolution:\n- Step 1: Both times are within the same hour.\n- Step 2: Subtract the starting minutes from the finishing minutes.\n- Step 3: 42 - 15 = 27 minutes.\n- Final answer: The elapsed time is 27 minutes.\n\n## Common mistake\nA common mistake is to subtract 15 from 42 and write 27 hours. The hour did not change, so the difference is 27 minutes.\n\n## Quick check question\nQuestion: In Let us find out Question 5, who took the longest time to paint a picture?\nAnswer: Rani took the longest time.\nExplanation: Rani took 2 hours 10 minutes, which is longer than Ritu's 1 hour 35 minutes and Raghav's 1 hour 20 minutes.\n\n## Summary\n- Read both start and finish times carefully.\n- Elapsed time is a duration.\n- Compare hours first and then minutes.\n- Use convenient time jumps when an interval crosses an hour.",
+    "Core explanation": "# Core explanation: Racing Seconds\n\n## What you will learn\nYou will convert between 12-hour and 24-hour time. You will use a.m. and p.m. correctly and recognise the same time in two formats.\n\n## Simple explanation\nThe 12-hour format repeats the hours 1 to 12 and uses a.m. or p.m. The 24-hour format runs from 00:00 to 23:59 and does not need a.m. or p.m.\n\n## Step-by-step breakdown\n- **Morning times**: For most a.m. times, the hour stays the same in 24-hour notation, such as 05:30 a.m. = 05:30 hours.\n- **Afternoon and evening**: For p.m. times after 12 noon, add 12 to the hour.\n- **Example from the chapter**: 02:30 p.m. becomes 14:30 hours.\n- **Matching formats**: The matching activity includes pairs such as 08:45 p.m. and 20:45 hours.\n- **Leading zero**: Single-digit hours in 24-hour format are written with two digits, such as 04:30 hours.\n\n## Worked example\nQuestion: Using Let us find out Question 6, convert 09:35 p.m. to 24-hour format.\n\nSolution:\n- Step 1: The time is p.m. and the hour is 9.\n- Step 2: Add 12 to the hour: 9 + 12 = 21.\n- Step 3: Keep the minutes unchanged at 35.\n- Final answer: 09:35 p.m. = 21:35 hours.\n\n## Common mistake\nA common mistake is to add 12 to the minutes. Only the hour changes when converting a p.m. time after noon.\n\n## Quick check question\nQuestion: Convert 08:35 hours from Let us find out Question 6 to 12-hour format.\nAnswer: 08:35 a.m.\nExplanation: 08:35 hours is before 12:00, so it is a morning time and the hour and minutes remain 08:35.\n\n## Summary\n- Use a.m. and p.m. in 12-hour time.\n- Use 00 to 23 hours in 24-hour time.\n- Add 12 to afternoon or evening hours after noon.\n- Do not change the minutes.",
+    "Worked examples": "# Worked examples: Racing Seconds\n\n## What you will learn\nYou will understand seconds as a precise unit for short durations. You will compare race times and read the movement of the seconds hand.\n\n## Simple explanation\nSeconds help us notice very small differences. The chapter states that 1 minute = 60 seconds, and 60 movements of the seconds hand move the minute hand forward by one minute.\n\n## Step-by-step breakdown\n- **School Race**: The race times are 1 minute 55 seconds, 1 minute 56 seconds, and 1 minute 57 seconds.\n- **Winning time**: The smallest duration is the fastest time.\n- **Short activities**: Blinking, snapping fingers, or switching a light can be estimated in seconds.\n- **Longer short activities**: Activities such as washing hands or making a phone call may be more reasonably estimated in minutes.\n- **Seconds hand**: The clock activities ask learners to find elapsed seconds and draw a missing seconds hand after 20, 30, 40, or 60 seconds.\n- **Estimation and verification**: Learners estimate and then measure actions such as hops, breaths, or skipping in a fixed time.\n\n## Worked example\nQuestion: Using the NCERT School Race, identify the winning duration from 01:55, 01:56, and 01:57.\n\nSolution:\n- Step 1: All three children took 1 minute plus some seconds.\n- Step 2: Compare the seconds: 55, 56, and 57.\n- Step 3: 55 seconds is the smallest extra time.\n- Final answer: The winning duration is 1 minute 55 seconds.\n\n## Common mistake\nA common mistake is to choose 1 minute 57 seconds because 57 is the greatest number. In a race, less time means a faster result.\n\n## Quick check question\nQuestion: According to the chapter, how many seconds are there in 1 minute?\nAnswer: There are 60 seconds in 1 minute.\nExplanation: One complete round of 60 seconds advances the minute count by 1.\n\n## Summary\n- Seconds measure very short durations precisely.\n- 1 minute equals 60 seconds.\n- The smallest race duration wins.\n- Estimate first and verify with a clock or timer.",
+    "Exam-style problems": "# Exam-style problems: Racing Seconds\n\n## What you will learn\nYou will convert hours to minutes and minutes to hours. You will also convert minutes and seconds in both directions using multiplication and grouping by 60.\n\n## Simple explanation\nEvery hour contains 60 minutes, and every minute contains 60 seconds. Multiply when changing a larger unit into a smaller unit, and group into sets of 60 when changing a smaller unit into a larger unit.\n\n## Step-by-step breakdown\n- **Hours to minutes**: Multiply the hours by 60, then add any extra minutes.\n- **Minutes to hours and minutes**: Find complete groups of 60 minutes and keep the remainder as minutes.\n- **Minutes to seconds**: Multiply minutes by 60 and add extra seconds.\n- **Seconds to minutes and seconds**: Find complete groups of 60 seconds and keep the remainder as seconds.\n- **Double number line**: The chapter uses aligned hour-minute and minute-second number lines to show equivalent quantities.\n\n## Worked example\nQuestion: Using Let Us Do Question 1(b)(ii), convert 2 hours 45 minutes into minutes.\n\nSolution:\n- Step 1: Convert 2 hours to minutes: 2 × 60 = 120 minutes.\n- Step 2: Add the extra 45 minutes.\n- Step 3: 120 + 45 = 165 minutes.\n- Final answer: 2 hours 45 minutes = 165 minutes.\n\n## Common mistake\nA common mistake is to write 2 hours 45 minutes as 245 minutes. Hours must first be converted using 1 hour = 60 minutes.\n\n## Quick check question\nQuestion: Using Let Us Do Question 1(c)(i), convert 320 seconds into minutes and seconds.\nAnswer: 320 seconds = 5 minutes 20 seconds.\nExplanation: Five complete groups of 60 seconds make 300 seconds, and 320 - 300 = 20 seconds remain.\n\n## Summary\n- Multiply by 60 when moving to a smaller time unit.\n- Group by 60 when moving to a larger time unit.\n- Add leftover minutes or seconds after conversion.\n- Use double number lines to check equivalence.",
+    "Revision and recap": "# Revision and recap: Racing Seconds\n\n## What you will learn\nYou will solve start-time, finish-time, and elapsed-time word problems. You will combine hours and minutes and recognise when a result moves into the next day.\n\n## Simple explanation\nRead what is known and what is missing. Add a duration to a start time to find a finish time, or move backwards from the finish time to find the start time.\n\n## Step-by-step breakdown\n- **Total study time**: Raghav studies four subjects for 50 minutes each, so repeated addition or multiplication gives the total.\n- **Journey duration**: Raghu travels from 08:00 hours to 09:05 hours, which is 1 hour 5 minutes.\n- **Finding finish time**: Questions about play, a picnic, homework, and lunch add a duration to a start time.\n- **Finding start time**: Ragini's homework problem moves backward from 09:40 p.m. by 1 hour 10 minutes.\n- **Crossing midnight**: The final question adds 8 hours 25 minutes to 08:35 p.m., so the answer is on the next day.\n- **Oral strategies**: The teacher note encourages flexible mental methods rather than column algorithms.\n\n## Worked example\nQuestion: Using Let Us Do Question 10, it is 08:35 p.m. now. What time will it be after 8 hours 25 minutes?\n\nSolution:\n- Step 1: From 08:35 p.m. to 12:00 midnight is 3 hours 25 minutes.\n- Step 2: Subtract this from the full duration: 8 hours 25 minutes - 3 hours 25 minutes = 5 hours.\n- Step 3: Move 5 hours forward from midnight.\n- Final answer: The time is 05:00 a.m. on the next day.\n\n## Common mistake\nA common mistake is to stop at 12:00 midnight and ignore the remaining time. Any unused part of the duration must be added after midnight.\n\n## Quick check question\nQuestion: Using Let Us Do Question 9, lunch starts at 12:30 p.m. and lasts 35 minutes. When does it end?\nAnswer: Lunch ends at 01:05 p.m.\nExplanation: Thirty minutes takes the time to 01:00 p.m., and the remaining 5 minutes takes it to 01:05 p.m.\n\n## Summary\n- Add duration to find a finish time.\n- Subtract duration to find a start time.\n- Break time intervals at whole hours or midnight.\n- Check whether the answer is a.m., p.m., or on the next day."
+  }
+}

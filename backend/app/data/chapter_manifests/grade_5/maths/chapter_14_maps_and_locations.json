@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 14: Maps and Locations",
+  "central_question": "How can directions, symbols, routes, distances, grids, rows, columns, and ordered locations help us read and create maps?",
+  "in_scope_units": [
+    "Finding Directions using the rising Sun and the four cardinal directions.",
+    "Bird Watching and Map of a Room: locating objects relative to a reference point.",
+    "Drawing a room map with a direction arrow.",
+    "Zoo Trip and Bus Route: reading streets, turns, stops, distances, and directions.",
+    "Delhi Metro Train Stations: using map keys, coloured routes, interchange stations, and route comparison.",
+    "Let Us Do: creating a school map and a key for symbols.",
+    "Anthill in the Zoo: following directed grid routes and measuring distance in centimetres.",
+    "Locating Animals in the Zoological Park: using columns, rows, and ordered positions such as (1,1)."
+  ],
+  "banned_topics": [
+    "Latitude and longitude",
+    "Map scale expressed as ratios",
+    "Compass bearings in degrees",
+    "Negative coordinates and four-quadrant coordinate geometry"
+  ],
+  "must_include_keywords": [
+    "map",
+    "location",
+    "direction",
+    "north",
+    "south",
+    "east",
+    "west",
+    "rising Sun",
+    "cardinal directions",
+    "compass",
+    "reference point",
+    "Bird Watching",
+    "Map of a Room",
+    "direction arrow",
+    "Zoo Trip",
+    "Bus Route",
+    "right turn",
+    "left turn",
+    "Hospital Road",
+    "Park Road",
+    "Stop 1",
+    "Stop 2",
+    "map key",
+    "symbol",
+    "metro line",
+    "interchange station",
+    "Qutb Minar",
+    "Supreme Court",
+    "Anthill in the Zoo",
+    "grid",
+    "distance",
+    "centimetre",
+    "row",
+    "column",
+    "horizontal",
+    "vertical",
+    "ordered position",
+    "Panda",
+    "Tortoise"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "When facing the rising Sun, north is on the right.",
+      "correction": "Facing the rising Sun means facing east; north is on the left and south is on the right."
+    },
+    {
+      "claim": "A right turn always means east.",
+      "correction": "The direction after a right turn depends on the direction in which the traveller was already facing."
+    },
+    {
+      "claim": "All coloured lines on a metro map show the same route.",
+      "correction": "Different coloured lines represent different metro routes, and interchange stations connect routes."
+    },
+    {
+      "claim": "The position (4,1) means move 1 step horizontally and 4 steps vertically.",
+      "correction": "The chapter instructs learners to move horizontally first, so (4,1) means 4 steps east to column 4 and then 1 step north to row 1."
+    },
+    {
+      "claim": "A map symbol can be understood without a key.",
+      "correction": "A map key explains what each symbol or coloured line represents."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Finding Directions and Manu facing the rising Sun on page 171.",
+    "Use Bird Watching and Map of a Room on page 172 for relative location.",
+    "Use the Bus Route on page 174 to practise turns, roads, and stops.",
+    "Use the Delhi Metro map on pages 175-176 to interpret keys, routes, and interchange stations.",
+    "Finish with Anthill in the Zoo and Locating the Animals on pages 177-178 for distances and ordered grid positions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Locating the Animals in the Zoological Park, Questions 1-3 on page 178.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

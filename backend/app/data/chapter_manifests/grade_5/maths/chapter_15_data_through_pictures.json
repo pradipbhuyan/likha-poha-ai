@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 15: Data Through Pictures",
+  "central_question": "How can collected information be organised, represented, read, compared, and interpreted using tables, pictographs, scales, bar graphs, and pictures?",
+  "in_scope_units": [
+    "Child TV Reporter: collecting data from 35 friends and organising it in a table.",
+    "Stock-Taking in a Shop: representing many items with a pictograph and a scale.",
+    "Two-wheelers on the Road: reading, comparing, and changing the scale of a pictograph.",
+    "Recording a Day: comparing Raman's pictorial table with Sheela's bar graph.",
+    "Day in My Life: recording a 24-hour routine and drawing a bar graph.",
+    "Whose Index Finger is Longer?: collecting measurement data with paper strips and a graph.",
+    "Food Wastage in the School Canteen: reading a bar graph, finding totals, comparing values, and making a prediction.",
+    "True or False: extracting and checking information directly from a picture."
+  ],
+  "banned_topics": [
+    "Fractions Kit appendix material",
+    "Tessellation and Shapes appendix material",
+    "Number Tokens appendix material",
+    "Nets of an icosahedron or dodecahedron",
+    "Mean, median, mode, and probability"
+  ],
+  "must_include_keywords": [
+    "data",
+    "collect information",
+    "table",
+    "category",
+    "frequency",
+    "pictograph",
+    "picture",
+    "icon",
+    "scale",
+    "key",
+    "one icon",
+    "toys",
+    "board games",
+    "sports items",
+    "two-wheelers",
+    "Monday",
+    "Wednesday",
+    "Friday",
+    "bar graph",
+    "vertical line",
+    "horizontal base",
+    "bar",
+    "number of hours",
+    "daily routine",
+    "Day in My Life",
+    "index finger",
+    "paper strips",
+    "centimetre",
+    "food wastage",
+    "highest",
+    "least",
+    "total",
+    "difference",
+    "prediction",
+    "true or false",
+    "observation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Each icon in a pictograph always represents one object.",
+      "correction": "The key or scale decides the value; in the shop pictograph one icon represents 5 items."
+    },
+    {
+      "claim": "The tallest bar can be read without checking the vertical scale.",
+      "correction": "The bar height must be matched to the numbered vertical line."
+    },
+    {
+      "claim": "A pictograph total is found by counting icons only.",
+      "correction": "Count the icons and multiply by the scale value shown in the key."
+    },
+    {
+      "claim": "A prediction from a graph is guaranteed to happen.",
+      "correction": "A prediction is a reasonable expectation based on the recorded pattern, not a certainty."
+    },
+    {
+      "claim": "The Fractions Kit and solid nets are part of this data chapter.",
+      "correction": "Those pages are appendix materials and are outside Chapter 15's data-handling content."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Child TV Reporter on pages 179-180 to organise collected responses into categories.",
+    "Use Stock-Taking in a Shop on page 181 to explain pictograph keys and a scale of 5.",
+    "Use Two-wheelers on the Road on pages 181-182 to compare three categories using a scale of 3.",
+    "Use Recording a Day and Day in My Life on pages 182-184 to introduce bar graphs.",
+    "Finish with Food Wastage and True or False on pages 185-187 for totals, interpretation, prediction, and visual evidence."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's final activities are Food Wastage in the School Canteen on pages 185-186 and True or False on page 187.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

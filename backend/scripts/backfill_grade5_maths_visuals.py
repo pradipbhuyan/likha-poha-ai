@@ -46,6 +46,11 @@ CHAPTER_PDFS = [
     (561, "eemm108.pdf"),   # Chapter 8: Weight and Capacity
     (562, "eemm109.pdf"),   # Chapter 9: Coconut Farm
     (563, "eemm110.pdf"),   # Chapter 10: Symmetrical Designs
+    (564, "eemm111.pdf"),   # Chapter 11: Grandmother's Quilt
+    (565, "eemm112.pdf"),   # Chapter 12: Racing Seconds
+    (566, "eemm113.pdf"),   # Chapter 13: Animal Jumps
+    (567, "eemm114.pdf"),   # Chapter 14: Maps and Locations
+    (568, "eemm115.pdf"),   # Chapter 15: Data Through Pictures
 ]
 
 

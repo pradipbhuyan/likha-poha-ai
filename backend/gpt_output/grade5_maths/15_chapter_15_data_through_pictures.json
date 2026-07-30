@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 15: Data Through Pictures",
+    "central_question": "How can collected information be organised, represented, read, compared, and interpreted using tables, pictographs, scales, bar graphs, and pictures?",
+    "in_scope_units": [
+      "Child TV Reporter: collecting data from 35 friends and organising it in a table.",
+      "Stock-Taking in a Shop: representing many items with a pictograph and a scale.",
+      "Two-wheelers on the Road: reading, comparing, and changing the scale of a pictograph.",
+      "Recording a Day: comparing Raman's pictorial table with Sheela's bar graph.",
+      "Day in My Life: recording a 24-hour routine and drawing a bar graph.",
+      "Whose Index Finger is Longer?: collecting measurement data with paper strips and a graph.",
+      "Food Wastage in the School Canteen: reading a bar graph, finding totals, comparing values, and making a prediction.",
+      "True or False: extracting and checking information directly from a picture."
+    ],
+    "banned_topics": [
+      "Fractions Kit appendix material",
+      "Tessellation and Shapes appendix material",
+      "Number Tokens appendix material",
+      "Nets of an icosahedron or dodecahedron",
+      "Mean, median, mode, and probability"
+    ],
+    "must_include_keywords": [
+      "data",
+      "collect information",
+      "table",
+      "category",
+      "frequency",
+      "pictograph",
+      "picture",
+      "icon",
+      "scale",
+      "key",
+      "one icon",
+      "toys",
+      "board games",
+      "sports items",
+      "two-wheelers",
+      "Monday",
+      "Wednesday",
+      "Friday",
+      "bar graph",
+      "vertical line",
+      "horizontal base",
+      "bar",
+      "number of hours",
+      "daily routine",
+      "Day in My Life",
+      "index finger",
+      "paper strips",
+      "centimetre",
+      "food wastage",
+      "highest",
+      "least",
+      "total",
+      "difference",
+      "prediction",
+      "true or false",
+      "observation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Each icon in a pictograph always represents one object.",
+        "correction": "The key or scale decides the value; in the shop pictograph one icon represents 5 items."
+      },
+      {
+        "claim": "The tallest bar can be read without checking the vertical scale.",
+        "correction": "The bar height must be matched to the numbered vertical line."
+      },
+      {
+        "claim": "A pictograph total is found by counting icons only.",
+        "correction": "Count the icons and multiply by the scale value shown in the key."
+      },
+      {
+        "claim": "A prediction from a graph is guaranteed to happen.",
+        "correction": "A prediction is a reasonable expectation based on the recorded pattern, not a certainty."
+      },
+      {
+        "claim": "The Fractions Kit and solid nets are part of this data chapter.",
+        "correction": "Those pages are appendix materials and are outside Chapter 15's data-handling content."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with Child TV Reporter on pages 179-180 to organise collected responses into categories.",
+      "Use Stock-Taking in a Shop on page 181 to explain pictograph keys and a scale of 5.",
+      "Use Two-wheelers on the Road on pages 181-182 to compare three categories using a scale of 3.",
+      "Use Recording a Day and Day in My Life on pages 182-184 to introduce bar graphs.",
+      "Finish with Food Wastage and True or False on pages 185-187 for totals, interpretation, prediction, and visual evidence."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter's final activities are Food Wastage in the School Canteen on pages 185-186 and True or False on page 187."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Data Through Pictures\n\n## What you will learn\nYou will collect information, group responses into categories, and record the results in a table. You will answer comparison questions using the organised data.\n\n## Simple explanation\nData is collected information. A table makes many individual answers easier to read by placing similar responses together and showing how many belong to each category.\n\n## Step-by-step breakdown\n- **Child TV Reporter**: Samaira and Kabir collect television-viewing information from 35 friends.\n- **Categories**: The responses are grouped as half an hour, 1 hour, 1 and a half hours, 2 hours, and more than 2 hours.\n- **Frequency**: The number of children in each category is the frequency for that category.\n- **Comparison questions**: The table is used to find more than, less than, highest, and true-or-false relationships.\n- **Health discussion**: The chapter also invites discussion about whether watching television for a long time may harm the eyes.\n\n## Worked example\nQuestion: Using the NCERT Child TV Reporter activity, explain how the 35 individual responses should be turned into the table.\n\nSolution:\n- Step 1: Read each friend's reported viewing time.\n- Step 2: Place the response in one of the five listed time categories.\n- Step 3: Count the number of responses in each category.\n- Step 4: Write each count in the 'No. of Children' column.\n- Final answer: The completed table shows the frequency of every viewing-time category.\n\n## Common mistake\nA common mistake is to count the same response in two categories. Each friend's answer must be recorded once in the most suitable category.\n\n## Quick check question\nQuestion: What does the 'No. of Children' column represent in the TV table?\nAnswer: It represents how many friends belong to each viewing-time category.\nExplanation: The count beside a category is its frequency.\n\n## Summary\n- Data is collected information.\n- Categories group similar responses.\n- A table shows each category and its frequency.\n- Organised data is easier to compare.",
+    "Core explanation": "# Core explanation: Data Through Pictures\n\n## What you will learn\nYou will read and create pictographs that use a scale. You will multiply the number of icons by the value shown in the key.\n\n## Simple explanation\nA pictograph represents data with pictures. When there are many objects, one icon can stand for several objects, so the key must always be read first.\n\n## Step-by-step breakdown\n- **Shop pictograph**: One toy icon represents 5 toys, one board-game icon represents 5 board games, and one sports icon represents 5 sports items.\n- **Scale**: A scale records large quantities with fewer icons.\n- **Reading icons**: Count the icons in one row and multiply by 5.\n- **Changing scale**: The chapter asks learners to choose another scale and redraw the same data.\n- **Two-wheelers**: Deepti's pictograph uses one scooter icon to represent 3 two-wheelers.\n- **Comparing rows**: Longer icon rows show larger counts when the same scale is used.\n\n## Worked example\nQuestion: Using the NCERT Stock-Taking in a Shop pictograph, find the numbers of toys, board games, sports items, and total play items.\n\nSolution:\n- Step 1: The toys row has 8 icons, and each icon represents 5 toys: 8 × 5 = 40 toys.\n- Step 2: The board-games row has 10 icons: 10 × 5 = 50 board games.\n- Step 3: The sports-items row has 12 icons: 12 × 5 = 60 sports items.\n- Step 4: Total = 40 + 50 + 60 = 150.\n- Final answer: There are 40 toys, 50 board games, 60 sports items, and 150 play items in total.\n\n## Common mistake\nA common mistake is to answer 8 toys because there are 8 pictures. The key says each picture represents 5 toys.\n\n## Quick check question\nQuestion: In the Two-wheelers on the Road pictograph, what does one scooter icon represent?\nAnswer: One scooter icon represents 3 two-wheelers.\nExplanation: The scale is printed above the pictograph.\n\n## Summary\n- A pictograph uses pictures to represent data.\n- The key gives the value of one icon.\n- Count icons and multiply by the scale.\n- A new scale must represent the same totals.",
+    "Worked examples": "# Worked examples: Data Through Pictures\n\n## What you will learn\nYou will understand the parts of a bar graph and compare it with a pictorial table. You will read bar heights using the numbered vertical line.\n\n## Simple explanation\nA bar graph uses bars instead of repeated icons. Categories are written along the horizontal base, and numbers are marked on the vertical line.\n\n## Step-by-step breakdown\n- **Raman's record**: Raman uses one square to represent 1 hour in each activity row.\n- **Sheela's record**: Sheela uses vertical bars for sleeping, school, studying, eating and playing, and other activities.\n- **Horizontal base**: The bottom axis names the activities.\n- **Vertical line**: The side axis shows the number of hours.\n- **Bar height**: The top of each bar matches the amount for that category.\n- **Comparison**: Raman sleeps 9 hours, attends school for 6, studies for 2, spends 6 eating and playing, and has 1 hour of other activities; Sheela's bars show 8, 7, 4, 3, and 2 hours.\n\n## Worked example\nQuestion: Using the NCERT Recording a Day graphs, compare Raman and Sheela's study time.\n\nSolution:\n- Step 1: Raman's studying row has 2 one-hour squares, so he studies for 2 hours.\n- Step 2: Sheela's studying bar reaches 4, so she studies for 4 hours.\n- Step 3: Difference = 4 - 2 = 2 hours.\n- Final answer: Sheela spends 2 more hours studying than Raman.\n\n## Common mistake\nA common mistake is to read the category label as a number. The number comes from the bar height on the vertical scale.\n\n## Quick check question\nQuestion: Who spends more hours in school, Raman or Sheela?\nAnswer: Sheela spends more hours in school.\nExplanation: Raman's record shows 6 hours, while Sheela's bar reaches 7 hours.\n\n## Summary\n- Bar graphs use bars instead of repeated pictures.\n- Categories are on the horizontal base.\n- Values are read from the vertical scale.\n- Subtract bar values to find a difference.",
+    "Exam-style problems": "# Exam-style problems: Data Through Pictures\n\n## What you will learn\nYou will use graphs to find the highest, least, total, and difference. You will also use a graph value in a multiplication problem.\n\n## Simple explanation\nA bar graph supports several calculations. Read each bar carefully, record the values, and then add, subtract, or multiply as required.\n\n## Step-by-step breakdown\n- **Food wastage values**: The bars show 5 kg for Sandwich, 6 kg for Paratha, 8 kg for Khichdi, 7 kg for Puri-Sabzi, and 4 kg for Idli-Sambar.\n- **Highest and least**: The tallest bar is 8 kg and the shortest is 4 kg.\n- **Total**: Add all five daily values.\n- **Children who could be fed**: The question states that 1 kg can feed 3 children, so multiply total kilograms by 3.\n- **Prediction**: The largest recorded category provides a reasonable prediction for next week's likely highest wastage.\n- **Responsible action**: The chapter asks learners to discuss reducing waste and using leftover food responsibly.\n\n## Worked example\nQuestion: Using the NCERT Food Wastage graph, find the total food wasted and the number of children it could have fed.\n\nSolution:\n- Step 1: Read the bars: 5, 6, 8, 7, and 4 kg.\n- Step 2: Add: 5 + 6 + 8 + 7 + 4 = 30 kg.\n- Step 3: The question states that 1 kg can feed 3 children.\n- Step 4: Children fed = 30 × 3 = 90.\n- Final answer: Total wastage was 30 kg, which could have fed 90 children.\n\n## Common mistake\nA common mistake is to multiply each bar by 3 and forget to add, or to add correctly but forget the multiplication. Complete both stages.\n\n## Quick check question\nQuestion: Which food item had the highest and which had the least wastage?\nAnswer: Khichdi had the highest wastage at 8 kg, and Idli-Sambar had the least at 4 kg.\nExplanation: Their bars are respectively the tallest and shortest on the graph.\n\n## Summary\n- Read every bar from the same vertical scale.\n- Add values for a total.\n- Subtract values for a difference.\n- Use stated relationships for further calculations.\n- A prediction is based on the observed pattern.",
+    "Revision and recap": "# Revision and recap: Data Through Pictures\n\n## What you will learn\nYou will revise data collection, tables, pictographs, scales, bar graphs, measurement graphs, and picture-based true-or-false questions. You will support every conclusion with visible evidence.\n\n## Simple explanation\nDifferent displays suit different kinds of information. Tables organise categories, pictographs communicate with icons, bar graphs compare quantities, and pictures can be counted directly.\n\n## Step-by-step breakdown\n- **Day in My Life**: Learners record a 24-hour routine and create their own bar graph.\n- **Index-finger activity**: Equal-width paper strips turn real measurements into bars that can be compared in centimetres.\n- **Observation**: The final picture asks learners to count glasses, caps, books, backpacks, boys, girls, and overlaps.\n- **True or false**: Each statement must be checked against the actual picture rather than guessed.\n- **Choosing a display**: Use a pictograph for icon-based representation and a bar graph for clear comparison on a numbered scale.\n- **Checking totals**: Make sure category values, scales, and totals remain consistent.\n\n## Worked example\nQuestion: Using the NCERT Two-wheelers on the Road pictograph, calculate the total when Monday has 8 icons, Wednesday has 4 icons, and Friday has 12 icons, with 1 icon = 3 two-wheelers.\n\nSolution:\n- Step 1: Monday: 8 × 3 = 24 two-wheelers.\n- Step 2: Wednesday: 4 × 3 = 12 two-wheelers.\n- Step 3: Friday: 12 × 3 = 36 two-wheelers.\n- Step 4: Total = 24 + 12 + 36 = 72.\n- Final answer: The total is 72 two-wheelers.\n\n## Common mistake\nA common mistake is to add 8 + 4 + 12 and stop at 24. The icon total must still be multiplied by the scale value 3.\n\n## Quick check question\nQuestion: In the index-finger activity, how is the longest finger identified from the completed graph?\nAnswer: It is represented by the tallest pasted paper strip.\nExplanation: All strips have the same width and are placed on the same centimetre scale, so the tallest strip shows the greatest length.\n\n## Summary\n- Read the key before interpreting a pictograph.\n- Read bar height from the numbered scale.\n- Use the tallest or shortest mark for highest or least.\n- Support true-or-false decisions with counts from the picture.\n- Keep categories and totals consistent."
+  }
+}
