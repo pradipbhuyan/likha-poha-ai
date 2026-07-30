@@ -163,7 +163,7 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
     return () => observer.disconnect();
   }, [doc, isJunior, user.username, grade, mode, subject, chapter]);
 
-  function handleQuickCheckAnswer(blockKey, answerIndex, isCorrect) {
+  function handleQuickCheckAnswer(blockKey, answerIndex, _isCorrect) {
     setProgress((prev) => {
       const next = {
         ...prev,
