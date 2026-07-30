@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 5",
+  "subject": "EVS",
+  "chapter": "Chapter 3: The Mystery of Food",
+  "central_question": "Why does food spoil, how can it be preserved safely, and how do microbes, seasonal choices, chewing and oral hygiene affect health?",
+  "in_scope_units": [
+    "Food Spoilage—The Forgotten Tiffin Box: Disha investigates spoiled uttapam.",
+    "Mysteries 1–2: mould, microbes, microscopes and conditions needed for microbial growth.",
+    "Food Preservation—Drying and Dehydration and Activities 1–2.",
+    "Pickling and Oiling: keeping air away from microbes.",
+    "Refrigeration and Freezing: cold temperature slowing microbial growth.",
+    "Traditional preservation and Activity 3: salt, sugar, spices, ghee and airtight packaging.",
+    "Idli fermentation and useful microbes.",
+    "Indigestion and Home Remedies: curd, buttermilk and medical care.",
+    "My Food, My Pride and Activity 4: selecting fresh produce and seasonal fruits.",
+    "Chew Right and Activity 5: teeth, saliva and digestion.",
+    "Oral Hygiene and The Danger of Choking.",
+    "Final Discovery and Let us reflect, Questions 1–4."
+  ],
+  "banned_topics": [
+    "Water cycle and freshwater habitats from Chapter 1.",
+    "River pollution, floods and droughts from Chapter 2.",
+    "School waste, traffic and fire safety from Chapter 4."
+  ],
+  "must_include_keywords": [
+    "Disha",
+    "uttapam",
+    "mould",
+    "microbes",
+    "microscope",
+    "colony",
+    "moisture",
+    "air",
+    "right temperature",
+    "food preservation",
+    "drying",
+    "dehydration",
+    "chillies",
+    "mustard oil",
+    "pickling",
+    "refrigeration",
+    "freezing",
+    "cold temperature",
+    "salt",
+    "sugar",
+    "spices",
+    "airtight cans",
+    "idli batter",
+    "good microbes",
+    "curd",
+    "buttermilk",
+    "seasonal fruits",
+    "incisors",
+    "canines",
+    "premolars",
+    "molars",
+    "saliva",
+    "digestion",
+    "oral hygiene",
+    "cavity",
+    "choking",
+    "smaller mouthfuls"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All microbes are harmful.",
+      "correction": "Some microbes spoil food, while others make curd, raise idli batter and help digestion."
+    },
+    {
+      "claim": "Drying works because sunlight kills every microbe.",
+      "correction": "The chapter explains that drying removes moisture needed for growth."
+    },
+    {
+      "claim": "Oil is added to pickle only for flavour.",
+      "correction": "Oil keeps air out and helps stop microbial growth."
+    },
+    {
+      "claim": "Chewing only makes food smaller.",
+      "correction": "Chewing also releases saliva, which helps digestion."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 1: list mango products made for longer use.",
+    "NCERT Activity 2: observe sun-dried tomato slices.",
+    "NCERT Activity 3: document a family preservation practice.",
+    "NCERT Activity 4: observe how elders select fresh produce.",
+    "NCERT Activity 5: identify the functions of different teeth.",
+    "NCERT Let us reflect, Question 2: select food for a two-day field trip.",
+    "NCERT Let us reflect, Question 4: match food, preservation methods and products."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is ‘Let us reflect’, Questions 1–4 on pages 53–54.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

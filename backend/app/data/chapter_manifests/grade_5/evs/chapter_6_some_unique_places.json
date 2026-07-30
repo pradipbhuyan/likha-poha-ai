@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 5",
+  "subject": "EVS",
+  "chapter": "Chapter 6: Some Unique Places",
+  "central_question": "What makes India’s islands, mangroves, northeastern hills and Western Ghats unique, and why must people understand and protect these connected places?",
+  "in_scope_units": [
+    "Journey beginning: Shanti’s family plans a trip starting from India’s southernmost tip.",
+    "Islands of India: Indira Point, Andaman and Nicobar Islands, Sri Vijaya Puram and the meaning of an island.",
+    "Activity 1 and island forests: supporting roots, unique birds and animals, ferry safety and life jackets.",
+    "Marine life and North Sentinel Island: corals, sea creatures and nature-based knowledge.",
+    "Sundarbans—Home of the Mangroves: muddy salty land, breathing roots, soil protection, waves and human dependence.",
+    "Northeast India—Green Hills and Great Traditions: bamboo structures, crafts, festivals and wildlife.",
+    "Hargila protection and Activity 2: community action and building a model bird nest.",
+    "Living root bridges and Activity 3: caring for strong roots used across streams.",
+    "Western Ghats: unique wildlife, rivers, medicinal plants and forest-dependent communities.",
+    "Activity 4 and local varieties: documenting fruits or vegetables and the Western Ghats mango survey.",
+    "Silent Valley and protected areas: collective conservation and government-protected places.",
+    "Let us reflect, Questions 1–7: comparison, aquatic animals, mangroves, harmony with nature and collage-making."
+  ],
+  "banned_topics": [
+    "National symbols and currency notes from Chapter 5.",
+    "General energy sources and electricity safety from Chapter 7.",
+    "Day–night rotation and seasonal rhythms from Chapter 9."
+  ],
+  "must_include_keywords": [
+    "Shanti",
+    "Indira Point",
+    "Andaman and Nicobar Islands",
+    "island",
+    "Sri Vijaya Puram",
+    "supporting roots",
+    "Andaman hornbill",
+    "Andaman wood pigeon",
+    "life jacket",
+    "corals",
+    "marine life",
+    "North Sentinel Island",
+    "tsunami",
+    "Sundarbans",
+    "mangroves",
+    "breathing roots",
+    "muddy salt water",
+    "soil",
+    "waves",
+    "Northeast India",
+    "Hargila",
+    "Greater Adjutant Stork",
+    "bird nest",
+    "living root bridges",
+    "nature’s hotspot",
+    "Western Ghats",
+    "lion-tailed macaque",
+    "traditional medicine",
+    "mango survey",
+    "Silent Valley National Park",
+    "Save Silent Valley Movement",
+    "protected areas",
+    "Kanyakumari"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Kanyakumari is the southernmost tip of all Indian territory.",
+      "correction": "Indira Point is the southernmost tip of India; Kanyakumari is the southernmost point of the Indian mainland."
+    },
+    {
+      "claim": "Mangrove roots are useless sticks above the water.",
+      "correction": "They help the trees breathe, hold soil and reduce the washing action of waves."
+    },
+    {
+      "claim": "A nature hotspot is special only because it is scenic.",
+      "correction": "The chapter links hotspots with plants and animals not found anywhere else."
+    },
+    {
+      "claim": "Tree cutting is allowed in protected areas.",
+      "correction": "The chapter says people are not allowed to cut trees or harm animals there."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 1: model how a wider base supports a paper roll like roots support a tree.",
+    "NCERT coral discussion: explain how corals shelter sea creatures.",
+    "NCERT Sundarbans questions: connect mangrove roots with breathing, soil and wave protection.",
+    "NCERT Activity 2: identify the qualities of a safe bird nest.",
+    "NCERT Activity 3: build a model bridge between two supports.",
+    "NCERT Activity 4: document local fruit or vegetable varieties."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is ‘Let us reflect’, Questions 1–7 on pages 109–111.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

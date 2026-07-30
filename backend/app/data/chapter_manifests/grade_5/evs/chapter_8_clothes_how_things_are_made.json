@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 5",
+  "subject": "EVS",
+  "chapter": "Chapter 8: Clothes — How Things are Made",
+  "central_question": "How do fibres become thread and fabric through spinning, weaving and stitching, and how do Indian traditions encourage skill, creativity and reuse?",
+  "in_scope_units": [
+    "Patterns with Threads: natural artists, the baya weaver and the meaning of weaving.",
+    "Activities 1–2: paper-strip weaving and observing the criss-cross pattern in cloth.",
+    "Traditions of Weaving: loom, handloom fabric, regional traditions, livelihood and textile mills.",
+    "Thread and Activity 3: pulling and twisting cotton, spinning, yarn, fibre, charkha and khadi.",
+    "Natural and synthetic fibres: bamboo, cotton, linen, wool, silk, nylon, rayon, polyester and terylene.",
+    "Silk and the silkworm life cycle: eggs, caterpillar, cocoon and moth.",
+    "Activity 4: identifying natural and synthetic materials in everyday items.",
+    "Crafting with Needle and Thread: tailorbird, leaf construction and Activity 5.",
+    "Activities 6–8: finding stitches, learning running stitch and joining cloth pieces.",
+    "Stitch and Decorate: traditional embroideries and their regional origins.",
+    "Recycle and Exhibition: passing on clothes, repurposing scraps, quilts and displaying student work.",
+    "Let us reflect, Questions 1–7: reuse, importance of threads, local traditions, moth life cycle and cloth observation."
+  ],
+  "banned_topics": [
+    "General energy sources and electricity safety from Chapter 7.",
+    "Day–night and seasonal rhythms from Chapter 9.",
+    "Worldwide movement of foods, animals and ideas from Chapter 10."
+  ],
+  "must_include_keywords": [
+    "baya weaver",
+    "weaving",
+    "over and under",
+    "vertical threads",
+    "horizontal threads",
+    "mat",
+    "basket",
+    "Activity 1",
+    "criss-cross pattern",
+    "loom",
+    "handloom fabric",
+    "Kanjeevaram",
+    "Pashmina",
+    "Ikat",
+    "textile mills",
+    "cotton",
+    "spinning",
+    "yarn",
+    "fibre",
+    "charkha",
+    "khadi",
+    "natural fibres",
+    "synthetic fibres",
+    "silk moth",
+    "cocoon",
+    "nylon",
+    "rayon",
+    "polyester",
+    "tailorbird",
+    "needle and thread",
+    "running stitch",
+    "embroidery",
+    "Chikankari",
+    "Kantha",
+    "Phulkari",
+    "recycle",
+    "quilts",
+    "Exhibition"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Weaving means tying a single thread into knots.",
+      "correction": "Weaving crosses one set of strips or threads with another in an over-and-under pattern."
+    },
+    {
+      "claim": "Spinning and weaving are the same process.",
+      "correction": "Spinning twists fibres into yarn; weaving crosses threads to form fabric."
+    },
+    {
+      "claim": "All fibres come from plants or animals.",
+      "correction": "The chapter also includes synthetic fibres made by humans."
+    },
+    {
+      "claim": "Needles may be used freely after the stitching lesson.",
+      "correction": "The chapter requires careful handling and close adult supervision."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 1: demonstrate the over–under structure of weaving.",
+    "NCERT Activity 2: identify the criss-cross pattern in cloth.",
+    "NCERT Activity 3: distinguish fibre, spinning and yarn.",
+    "NCERT Activity 4: classify everyday items as natural or synthetic.",
+    "NCERT Activity 7: explain the sequence of a running stitch.",
+    "NCERT Activity 8: join scraps to create a useful object.",
+    "NCERT Let us reflect, Question 6: order the silk moth life cycle."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is ‘Let us reflect’, Questions 1–7 on pages 143–144.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

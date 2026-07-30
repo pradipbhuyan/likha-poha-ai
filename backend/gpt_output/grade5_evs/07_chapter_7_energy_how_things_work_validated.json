@@ -1,0 +1,99 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "EVS",
+    "chapter": "Chapter 7: Energy — How Things Work",
+    "central_question": "What is energy, where does it come from, how does it make things work and how can we use it safely, efficiently and cleanly?",
+    "in_scope_units": [
+      "What is Energy?: kitchen observations and energy causing movement, light, sound, work and temperature change.",
+      "Activities 1–3: a moving balloon, sound from vibrating rubber bands and heat from sunlight.",
+      "Sources of Energy: food as energy for humans and animals.",
+      "Energy from Fuel and Activity 4: petrol, diesel, cooking gas, wood, coal and oil used in a diya.",
+      "Electricity and Activity 5: devices using electricity for movement, sound, light, heat and cooling.",
+      "Energy efficiency and Safe Use of Electricity: LED bulbs and electrical safety rules.",
+      "Generating Energy from the Sun, Wind and Water and Activities 6–8: pinwheel, focused sunlight and water wheel.",
+      "Clean energy: solar panels, windmills, moving water and electricity without smoke or waste.",
+      "Energy All Around Us and Activity 9: source–type–use energy chains.",
+      "Stored energy, wise use and Vaastu Shastra: bodies, batteries and building design using natural energy.",
+      "Let us reflect, Questions 1–7: power cuts, clean energy, storage, saving energy, vehicle efficiency, object-source matching and an energy diary."
+    ],
+    "banned_topics": [
+      "Detailed cloth, fibre, weaving and stitching processes from Chapter 8.",
+      "Day–night rotation and seasonal rhythms from Chapter 9.",
+      "Worldwide movement of foods, animals and ideas from Chapter 10."
+    ],
+    "must_include_keywords": [
+      "energy",
+      "movement",
+      "light",
+      "sound",
+      "heat",
+      "temperature",
+      "balloon",
+      "moving air",
+      "rubber band guitar",
+      "vibration",
+      "Sun-powered Water Warmer",
+      "food",
+      "fuel",
+      "petrol",
+      "diesel",
+      "cooking gas",
+      "wood",
+      "coal",
+      "oil",
+      "electricity",
+      "fan",
+      "energy efficiency",
+      "LED bulbs",
+      "electrical safety",
+      "pinwheel",
+      "wind",
+      "Sun",
+      "water wheel",
+      "solar panels",
+      "windmills",
+      "clean energy",
+      "Energy Flow Game",
+      "stored energy",
+      "batteries",
+      "Vaastu Shastra",
+      "energy diary"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Energy only means electricity.",
+        "correction": "Energy makes things move, light up, produce sound, do work and change temperature."
+      },
+      {
+        "claim": "The cotton wick is the fuel in Activity 4.",
+        "correction": "The chapter identifies the oil around the wick as the fuel."
+      },
+      {
+        "claim": "A child may repair a broken electrical wire after switching off a nearby device.",
+        "correction": "Children must stay away and tell an adult; they should never try to fix electrical danger themselves."
+      },
+      {
+        "claim": "Clean energy means energy that has been washed or filtered.",
+        "correction": "The chapter uses the term for energy from natural sources such as Sun, wind and water that avoids smoke or waste pollution."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Activity 1: explain how escaping air moves a balloon.",
+      "NCERT Activity 2: connect vibration with sound.",
+      "NCERT Activity 3: compare water in sunlight and shade.",
+      "NCERT Activity 4: identify oil as a fuel.",
+      "NCERT Activity 5: classify the effects produced by electrical devices.",
+      "NCERT Activities 6–8: compare wind, sunlight and moving water.",
+      "NCERT Activity 9: construct source–type–use energy chains."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is ‘Let us reflect’, Questions 1–7 on page 130."
+  },
+  "lessons": {
+    "Concept introduction": "# Recognising Energy in Action: Chapter 7: Energy — How Things Work\n\n## What you will learn\nYou will learn the chapter’s definition of energy and identify its effects. You will observe movement, sound and heating through Activities 1–3.\n\n## Simple explanation\nEnergy may not be seen directly, but its effects can be observed when a balloon moves, a rubber band makes sound or sunlight warms water.\n\n## Step-by-step breakdown\n- **energy**: Energy makes things move, light up, produce sound, do work and change temperature.\n- **movement**: Activity 1 shows a released balloon moving forward.\n- **moving air**: Air rushing out pushes the balloon and can power the balloon air rocket.\n- **rubber band guitar**: Activity 2 uses stretched rubber bands over a box.\n- **vibration**: Plucked bands vibrate and produce sound.\n- **sound**: The chapter calls the sound produced by vibration sound energy.\n- **Sun-powered Water Warmer**: Activity 3 compares water in sunlight with water in shade.\n- **heat**: The water in sunlight becomes warmer because the Sun heats it.\n\n## Worked example\nQuestion: According to NCERT Activity 2, why does a plucked rubber band produce sound?\n\nSolution:\n- Step 1: Plucking makes the stretched band move rapidly back and forth.\n- Step 2: This vibration produces the sound that is heard.\n- Final answer: A plucked rubber band produces sound because it vibrates.\n\n## Common mistake\nEnergy is not only electricity. The opening activities use air, vibration and sunlight.\n\n## Quick check question\nQuestion: What happens when air rushes out of the balloon in Activity 1?\nAnswer: It pushes the balloon forward.\nExplanation: The movement of air produces a push that causes the balloon to move.\n\n## Summary\n- Energy is identified through its effects.\n- Moving air can cause movement.\n- Vibrations produce sound.\n- Sunlight provides heat.",
+    "Core explanation": "# Food and Fuels as Energy Sources: Chapter 7: Energy — How Things Work\n\n## What you will learn\nYou will learn how living things get energy from food and how vehicles and cooking use fuels. You will use the diya activity to identify fuel.\n\n## Simple explanation\nDifferent activities use different energy sources. Food supports living bodies, while petrol, diesel, cooking gas, wood, coal and oil are used for machines, cooking or lamps.\n\n## Step-by-step breakdown\n- **food**: Humans and animals get energy from food to move, fly, swim, find food and protect themselves.\n- **fuel**: A fuel is used as an energy source for an activity.\n- **petrol**: Cars and scooters may use petrol.\n- **diesel**: Diesel is another vehicle fuel named in the chapter.\n- **cooking gas**: It is a common household fuel.\n- **wood and coal**: They may be used for cooking but create smoke and pollution.\n- **oil**: In Activity 4, oil enables the diya wick to burn longer.\n- **stored energy**: The body can use stored energy when needed.\n\n## Worked example\nQuestion: In NCERT Activity 4, which diya burns longer and what acts as its fuel?\n\nSolution:\n- Step 1: Compare the dry cotton wick with the wick surrounded by oil.\n- Step 2: The oil-fed wick keeps burning because oil supplies the fuel.\n- Final answer: The diya containing oil burns longer, and the oil is the fuel.\n\n## Common mistake\nThe wick should not be named as the fuel in this activity; the chapter explicitly identifies the oil.\n\n## Quick check question\nQuestion: What source of energy is common to all living things in the chapter?\nAnswer: Food.\nExplanation: Humans and animals use energy from food for their life activities.\n\n## Summary\n- Food supplies energy to living things.\n- Vehicles use petrol or diesel.\n- Homes may use cooking gas, wood or coal.\n- Oil fuels the diya.\n- Smoke-producing fuels must be used carefully.",
+    "Worked examples": "# Electricity, Efficiency and Safety: Chapter 7: Energy — How Things Work\n\n## What you will learn\nYou will classify what electrical devices do and learn why electricity must be used carefully. You will understand energy efficiency through the LED example.\n\n## Simple explanation\nElectricity can produce movement, sound, light, heat or cooling. It is useful, but unsafe behaviour around wires and sockets can cause harm.\n\n## Step-by-step breakdown\n- **electricity**: Homes, schools and industries use electricity to run many devices and machines.\n- **fan**: Activity 5 gives a fan as a device that blows air and produces movement.\n- **movement, sound, light and heat**: The table asks students to classify the effect produced by each device.\n- **energy efficiency**: It means using less energy to do the same work.\n- **LED bulbs**: They provide the same amount of light while using less electricity than older bulb types.\n- **electrical safety**: Do not touch plugged-in wires, put objects into sockets or play near transformers.\n- **adult help**: Broken wires, fallen poles and unsafe devices must be reported to an adult.\n\n## Worked example\nQuestion: In NCERT Activity 5, how should a fan be described in the device table?\n\nSolution:\n- Step 1: State what it does: it blows air.\n- Step 2: Classify the effect required by the table: movement.\n- Final answer: A fan uses electricity to blow air and produce movement.\n\n## Common mistake\nA damaged wire should never be investigated closely by a child. Stay away and tell an adult.\n\n## Quick check question\nQuestion: What does energy efficiency mean?\nAnswer: Using less energy to do the same work.\nExplanation: The LED example shows that the same lighting task can use less electricity.\n\n## Summary\n- Electricity produces several useful effects.\n- Efficient devices save energy and resources.\n- Electrical safety rules prevent danger.\n- Children should report hazards rather than repair them.",
+    "Exam-style problems": "# Energy from Sun, Wind and Water: Chapter 7: Energy — How Things Work\n\n## What you will learn\nYou will compare three natural sources through the pinwheel, focused-light and water-wheel activities. You will also understand clean energy.\n\n## Simple explanation\nWind can rotate objects, sunlight can provide heat and moving water can turn a wheel. These sources can also generate electricity.\n\n## Step-by-step breakdown\n- **pinwheel**: Activity 6 rotates when exposed to wind or when the student runs with it.\n- **wind**: Windmills spin to generate electricity.\n- **Sun**: Activity 7 focuses sunlight with a magnifying glass under adult supervision.\n- **water wheel**: Activity 8 uses flowing water to spin a model wheel.\n- **solar panels**: They capture sunlight and turn it into electricity.\n- **windmills**: They use moving air to produce electricity.\n- **flowing water**: Fast rivers or falling water can be used for electricity.\n- **clean energy**: The chapter uses this term for energy that avoids smoke and waste pollution.\n\n## Worked example\nQuestion: Across NCERT Activities 6, 7 and 8, what evidence shows that wind, sunlight and water are sources of energy?\n\nSolution:\n- Step 1: Wind rotates the pinwheel, focused sunlight heats the paper and water spins the wheel.\n- Step 2: Each source produces a visible change or performs work.\n- Final answer: The activities show energy through rotation, heating and movement.\n\n## Common mistake\nThe focused-sunlight activity must not be performed without an adult. The chapter explicitly requires supervision.\n\n## Quick check question\nQuestion: Why is electricity from Sun, wind or water called clean energy?\nAnswer: Because it does not pollute the planet with smoke or waste.\nExplanation: This definition follows the examples of solar panels, windmills and moving water.\n\n## Summary\n- Wind can produce movement.\n- Sunlight can provide heat and electricity.\n- Moving water can turn wheels and generate electricity.\n- Clean energy avoids smoke and waste.",
+    "Revision and recap": "# Energy Chains, Storage and Wise Use: Chapter 7: Energy — How Things Work\n\n## What you will learn\nYou will connect an energy source with an energy type and a use. You will also review stored energy and ways to save energy.\n\n## Simple explanation\nAn energy chain shows where energy begins, what effect it produces and how that effect is used.\n\n## Step-by-step breakdown\n- **Energy Flow Game**: Activity 9 matches a source, an energy type and a use.\n- **Sun chain**: Sun → Heat → Helps dry clothes.\n- **wind chain**: Wind → Movement → Turns a turbine to make electricity.\n- **stored energy**: The body stores energy for later use.\n- **batteries**: They contain stored energy for devices.\n- **Vaastu Shastra**: Rooms, doors, windows, courtyards and openings can use natural light, wind and heat.\n- **energy diary**: The reflection asks students to record uses of electricity, fuel and other energy during one day.\n- **wise use**: Students are asked to save energy and prefer clean sources.\n\n## Worked example\nQuestion: In NCERT Activity 9, explain the chain ‘Sun → Heat → Helps dry clothes’.\n\nSolution:\n- Step 1: Identify the source as the Sun.\n- Step 2: Connect the Sun’s heat with the drying of wet clothes.\n- Final answer: The Sun supplies heat energy, and that heat helps clothes dry.\n\n## Common mistake\nA battery does not create unlimited energy. It stores a limited amount that devices use.\n\n## Quick check question\nQuestion: Give two examples of stored energy from the chapter.\nAnswer: Energy stored in the human body and energy stored in batteries.\nExplanation: Both are named in the closing section of the chapter.\n\n## Summary\n- Energy chains connect source, type and use.\n- Bodies and batteries store energy.\n- Building design can use natural energy.\n- Energy should be saved and clean sources preferred."
+  }
+}

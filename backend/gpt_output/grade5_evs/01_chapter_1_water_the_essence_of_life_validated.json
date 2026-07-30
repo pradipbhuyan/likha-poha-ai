@@ -1,0 +1,99 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "EVS",
+    "chapter": "Chapter 1: Water — The Essence of Life",
+    "central_question": "How does water change form, move through nature, shape land and support interconnected life in freshwater habitats?",
+    "in_scope_units": [
+      "Water on Earth: salty ocean water, limited freshwater and dependence of living beings on freshwater.",
+      "Activity 1: identifying freshwater sources.",
+      "Water has Different Forms and Activity 2: liquid water, ice, steam, melting, boiling and droplets on a cold glass.",
+      "Water Cycle and Activity 3: sunlight, vapour, droplets, clouds, rain, snow and hail.",
+      "Groundwater and Activities 4–5: seepage, underground storage, wells and recharge.",
+      "Surface Water and Activity 6: river flow according to land shape.",
+      "Our Lifeline—Rivers in India and Activity 7: rivers flowing towards the Bay of Bengal or Arabian Sea.",
+      "Life in Water and Activity 8: freshwater plants, animals and their features.",
+      "Activity 9: waxy leaf coatings and waterproofing.",
+      "Activity 10: river food chains and interdependence.",
+      "Let us reflect, Questions 1–7: water forms, scarcity, habitats, drought, recharge and conservation."
+    ],
+    "banned_topics": [
+      "Godavari dams, pollution, floods and droughts from Chapter 2.",
+      "Food spoilage and preservation from Chapter 3.",
+      "School waste and fire safety from Chapter 4."
+    ],
+    "must_include_keywords": [
+      "freshwater",
+      "saltwater",
+      "ocean water",
+      "liquid",
+      "solid",
+      "vapour",
+      "ice",
+      "steam",
+      "water droplets",
+      "water cycle",
+      "Sun’s heat",
+      "clouds",
+      "rain",
+      "snow",
+      "hail",
+      "groundwater",
+      "seepage",
+      "wells",
+      "borewells",
+      "handpumps",
+      "groundwater recharge",
+      "surface water",
+      "river",
+      "shape of land",
+      "Bay of Bengal",
+      "Arabian Sea",
+      "freshwater habitat",
+      "dragonfly",
+      "pond heron",
+      "freshwater turtle",
+      "lotus",
+      "water lily",
+      "water hyacinth",
+      "waxy coating",
+      "food chain",
+      "water conservation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Most water on Earth is suitable for drinking.",
+        "correction": "Most Earth water is salty; only a small amount is freshwater."
+      },
+      {
+        "claim": "Droplets outside a cold glass leak through the glass.",
+        "correction": "Water vapour in the air cools and forms droplets on the cold surface."
+      },
+      {
+        "claim": "Concrete roads help groundwater recharge.",
+        "correction": "Open soil and green areas support seepage; cemented surfaces reduce recharge."
+      },
+      {
+        "claim": "All aquatic plants float freely.",
+        "correction": "The chapter includes rooted floating, free-floating, edge and underwater plants."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Activity 2: identify the forms and changes of water.",
+      "NCERT Activity 3: explain the water cycle using the bag model.",
+      "NCERT Activities 4–5: connect seepage with groundwater recharge.",
+      "NCERT Activity 6: model land-guided flow with mustard seeds.",
+      "NCERT Activity 8: classify aquatic animals by features.",
+      "NCERT Activity 9: compare plain and wax-coated paper.",
+      "NCERT Activity 10: trace a freshwater food chain."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is ‘Let us reflect’, Questions 1–7 on page 20."
+  },
+  "lessons": {
+    "Concept introduction": "# Freshwater and the Forms of Water: Chapter 1: Water — The Essence of Life\n\n## What you will learn\nYou will learn why freshwater is limited and essential. You will identify liquid water, ice, steam and droplets.\n\n## Simple explanation\nMost water on Earth is salty ocean water. People, plants and animals depend on a much smaller amount of freshwater.\n\n## Step-by-step breakdown\n- **freshwater**: It is essential for drinking, crops, daily life and habitats.\n- **saltwater and ocean water**: Most Earth water is salty and not suitable for normal drinking or farming.\n- **liquid**: Rain and ordinary water are liquid.\n- **solid**: Ice and snow are solid forms.\n- **vapour**: Steam and water vapour are gaseous forms.\n- **Activity 2**: Ice melts, heated water forms steam and vapour forms droplets on a cold glass.\n\n## Worked example\nQuestion: In NCERT Activity 2, where do the water droplets on the outside of the steel glass come from?\n\nSolution:\n- Step 1: The ice makes the glass cold.\n- Step 2: Water vapour in the air cools and changes into liquid droplets.\n- Final answer: The droplets come from water vapour in the air.\n\n## Common mistake\nNot all visible water is safe to drink; the chapter distinguishes freshwater from salty ocean water.\n\n## Quick check question\nQuestion: What happens to ice cubes left in the glass?\nAnswer: They melt into liquid water.\nExplanation: Heat from the surroundings changes solid ice into liquid water.\n\n## Summary\n- Most Earth water is salty.\n- Freshwater is limited and essential.\n- Water exists as liquid, solid and vapour.\n- Heating and cooling change water’s form.",
+    "Core explanation": "# The Water Cycle: Chapter 1: Water — The Essence of Life\n\n## What you will learn\nYou will follow water as it changes form and moves through nature. You will use the sealed-bag model.\n\n## Simple explanation\nThe Sun heats water into vapour. Cooling changes vapour into droplets that return as rain, snow or hail.\n\n## Step-by-step breakdown\n- **Sun’s heat**: It changes water into vapour.\n- **clouds**: Cooling vapour gathers into droplets and clouds.\n- **rain**: Liquid water falls from clouds.\n- **snow and hail**: Water can also return in solid forms.\n- **water cycle**: It is the constant circular movement of water.\n- **Activity 3**: The sealed bag shows heating, vapour, droplets and falling water.\n\n## Worked example\nQuestion: In NCERT Activity 3, what sequence occurs inside the bag placed in sunlight?\n\nSolution:\n- Step 1: Sunlight heats the coloured water and forms vapour.\n- Step 2: The vapour cools, forms droplets and falls back.\n- Final answer: The bag models heating, evaporation, cooling, droplet formation and return.\n\n## Common mistake\nThe water cycle does not make new water; it moves and changes existing water.\n\n## Quick check question\nQuestion: What causes river and ocean water to become vapour?\nAnswer: The Sun’s heat.\nExplanation: Sunlight provides the heat for the change.\n\n## Summary\n- Sunlight forms water vapour.\n- Cooling forms droplets and clouds.\n- Water returns as rain, snow or hail.\n- Water moves continuously in a cycle.",
+    "Worked examples": "# Groundwater and River Flow: Chapter 1: Water — The Essence of Life\n\n## What you will learn\nYou will learn how rainwater becomes groundwater and how land shape guides rivers.\n\n## Simple explanation\nSome rainwater seeps through soil and rocks. Surface water flows from higher to lower land and follows slopes.\n\n## Step-by-step breakdown\n- **groundwater**: It is water stored deep underground.\n- **seepage**: Activity 4 shows water moving through soil.\n- **wells, borewells and handpumps**: These draw groundwater.\n- **groundwater recharge**: Open soil, lawns, pits, ponds and trees help water return underground.\n- **surface water**: Rivers, ponds and lakes are freshwater sources.\n- **shape of land**: Activity 6 models flow with mustard seeds.\n\n## Worked example\nQuestion: In NCERT Activities 4 and 5, why does a green lawn support recharge better than a concrete road?\n\nSolution:\n- Step 1: Water can enter soil beneath the lawn.\n- Step 2: Concrete blocks seepage.\n- Final answer: The lawn supports groundwater recharge; concrete reduces it.\n\n## Common mistake\nGroundwater is not endless and depends on recharge.\n\n## Quick check question\nQuestion: Why do mustard seeds in NCERT Activity 6 spread in different directions?\nAnswer: They follow the folds and slopes of the paper.\nExplanation: The model shows how land shape guides water.\n\n## Summary\n- Rainwater can seep underground.\n- Open ground supports recharge.\n- Concrete reduces seepage.\n- Land shape guides river flow.",
+    "Exam-style problems": "# Rivers and Freshwater Habitats: Chapter 1: Water — The Essence of Life\n\n## What you will learn\nYou will connect river direction with landforms and study freshwater organisms.\n\n## Simple explanation\nRivers flow towards different seas because land slopes differently. Freshwater habitats support specially adapted plants and animals.\n\n## Step-by-step breakdown\n- **Bay of Bengal and Arabian Sea**: Activity 7 traces rivers towards these seas.\n- **freshwater habitat**: Ponds, lakes and rivers support diverse life.\n- **dragonfly**: It lays eggs near water and eats mosquitoes.\n- **pond heron**: Long legs and a pointed beak help it catch fish.\n- **freshwater turtle**: It lives in ponds and rivers.\n- **lotus and water lily**: Flowers float while roots remain in the pond bed.\n- **water hyacinth**: It is free-floating and fast-growing.\n- **Activity 8**: Students observe mouths, beaks, legs, fins and movement.\n\n## Worked example\nQuestion: In NCERT Activity 8, which features help a pond heron catch fish?\n\nSolution:\n- Step 1: Its long legs allow it to stand in shallow water.\n- Step 2: Its pointed beak helps it catch fish.\n- Final answer: Long legs and a pointed beak help the pond heron feed.\n\n## Common mistake\nLiving near water does not mean an animal can breathe underwater.\n\n## Quick check question\nQuestion: Which plant is free-floating and fast-growing?\nAnswer: Water hyacinth.\nExplanation: The information card identifies it as free-floating.\n\n## Summary\n- Landform affects river direction.\n- Freshwater habitats support many organisms.\n- Animals have useful feeding and movement features.\n- Aquatic plants occupy different positions.",
+    "Revision and recap": "# Waterproof Leaves, Food Chains and Conservation: Chapter 1: Water — The Essence of Life\n\n## What you will learn\nYou will learn how waxy coatings protect leaves and how freshwater food chains connect organisms.\n\n## Simple explanation\nFreshwater habitats are connected systems. Plant structures control water entry, and feeding links make organisms dependent on one another.\n\n## Step-by-step breakdown\n- **waxy coating**: Activity 9 compares water on plain and wax-coated paper.\n- **waterproofing**: The coating prevents too much water entering a leaf.\n- **food chain**: Activity 10 links fish, frogs, birds, humans, crocodiles and otters.\n- **interdependence**: String connects organisms that depend on one another.\n- **water conservation**: Limited freshwater must be shared and used wisely.\n\n## Worked example\nQuestion: In NCERT Activity 10, what could happen if all fish disappear?\n\nSolution:\n- Step 1: Identify animals that eat fish.\n- Step 2: Predict reduced food and disturbance to the habitat.\n- Final answer: Several connected organisms would be affected and the food chain would be disturbed.\n\n## Common mistake\nA food chain is not a list of unrelated animals; each link shows dependence.\n\n## Quick check question\nQuestion: Why does a waxy coating help an aquatic leaf?\nAnswer: It makes the surface waterproof and prevents excess water from entering.\nExplanation: The chapter connects the wax-crayon test with leaf protection.\n\n## Summary\n- Waxy coatings protect leaves.\n- Food chains show interdependence.\n- Removing one organism affects others.\n- Freshwater needs conservation."
+  }
+}

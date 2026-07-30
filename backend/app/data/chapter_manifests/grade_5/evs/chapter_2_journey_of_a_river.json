@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 5",
+  "subject": "EVS",
+  "chapter": "Chapter 2: Journey of a River",
+  "central_question": "How does the Godavari’s journey show the ways a river supports life, culture and livelihoods while also facing dams, pollution, floods and water scarcity?",
+  "in_scope_units": [
+    "Where I Begin, Where I Flow: source, tributaries, route, length and destination of the Godavari.",
+    "Map reading: states, dams, wildlife areas and tributaries.",
+    "Sacred and cultural connections: Dakshina Ganga, Nashik and Godavari Pushkaram.",
+    "The Life I Hold: perennial and seasonal rivers, forests, wildlife, delta and Coringa Mangrove Forests.",
+    "The Many Ways I Support Lives and Activity 1: domestic water, irrigation, factories, livelihoods and ecotourism.",
+    "Dams—Storing My Water, Changing My Flow: reservoirs, benefits, flooding and displacement.",
+    "What Pollutes Me and Activities 2–4: waste, plastic, cleaners, dissolving substances and fertiliser-driven green blankets.",
+    "River protection and Namami Gange.",
+    "When a River Floods and Activities 5–7: impacts, safety tips and emergency role-play.",
+    "When a River Runs Dry: shortage, migration and effects on people and animals.",
+    "National Water Mission, water ATMs and daily water-saving actions.",
+    "Let us reflect, Questions 1–8: local rivers, culture, rules, filters and city planning."
+  ],
+  "banned_topics": [
+    "General water cycle and aquatic adaptations from Chapter 1.",
+    "Food preservation and microbes from Chapter 3.",
+    "School waste and fire safety from Chapter 4."
+  ],
+  "must_include_keywords": [
+    "Godavari",
+    "Trimbakeshwar",
+    "Western Ghats",
+    "tributaries",
+    "1,465 kilometres",
+    "Bay of Bengal",
+    "Dakshina Ganga",
+    "Godavari Pushkaram",
+    "perennial river",
+    "seasonal rivers",
+    "delta",
+    "Coringa Mangrove Forests",
+    "livelihoods",
+    "ecotourism",
+    "dam",
+    "reservoir",
+    "displacement",
+    "pollution",
+    "plastic",
+    "dirty water",
+    "dissolve",
+    "cooking oil",
+    "green blanket",
+    "fertilisers",
+    "Namami Gange",
+    "flood",
+    "flood safety",
+    "emergency bag",
+    "higher ground",
+    "water shortage",
+    "water ATMs",
+    "National Water Mission",
+    "every drop counts"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Godavari begins as a large river at the coast.",
+      "correction": "It begins as a stream at Trimbakeshwar in the Western Ghats and grows as tributaries join."
+    },
+    {
+      "claim": "Dams only benefit people.",
+      "correction": "Dams store useful water but can flood land and displace people and animals."
+    },
+    {
+      "claim": "Clear-looking river water is always safe.",
+      "correction": "Dissolved chemicals or dirty water may remain hidden."
+    },
+    {
+      "claim": "Walking through shallow-looking floodwater is safe.",
+      "correction": "Activity 6 says not to walk or drive in floodwater and to move to higher ground."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT map questions: trace states, tributaries, dams and wildlife areas.",
+    "NCERT Activity 1: make a poster of river benefits.",
+    "NCERT Activity 3: compare sugar and cooking oil in water.",
+    "NCERT Activity 4: analyse a clean river and a green blanket.",
+    "NCERT Activity 5: match flood problems with affected needs.",
+    "NCERT Activity 6: organise actions before, during and after a flood.",
+    "NCERT Activity 7: role-play local leadership for flood safety."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is ‘Let us reflect’, Questions 1–8 on page 37.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

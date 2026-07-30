@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "EVS",
+    "chapter": "Chapter 9: Rhythms of Nature",
+    "central_question": "How can observing changes over a day and a year help us recognise the repeating natural rhythms that shape plants, animals and human life?",
+    "in_scope_units": [
+      "Changes over time: Saba and Aparna compare changes in themselves, school and surroundings.",
+      "Changes at different speeds: years, yearly repetition, days, minutes and seconds.",
+      "Changes Around Us in a Day—Day and Night: the apparent movement of the Sun and the cause of day and night.",
+      "Activity 1 and Day–Night Demonstration: a student model, torch and rotating globe.",
+      "Globe: a model of Earth, land masses, seas and oceans.",
+      "Changes Around Us in a Year—Seasons’ Journal: observing the same surroundings over time.",
+      "Classroom Seasons’ Chart, Steps 1–4: time periods, five themes, posters and seasonal stories.",
+      "Discovering Seasons: repeating yearly patterns and six named seasons.",
+      "Regional differences: winter and monsoon differ across India.",
+      "Celebrating Seasons: songs, crops and festivals linked with seasons.",
+      "Let us reflect, Questions 1–6: experiences, local names, food, clothes, festivals, nature, journaling and drawings."
+    ],
+    "banned_topics": [
+      "Worldwide trade and movement of foods, birds and ideas from Chapter 10.",
+      "Electricity and clean-energy experiments from Chapter 7.",
+      "Detailed unique ecosystems from Chapter 6."
+    ],
+    "must_include_keywords": [
+      "Saba",
+      "Aparna",
+      "change",
+      "years",
+      "minutes",
+      "day",
+      "night",
+      "Sun",
+      "Earth",
+      "rotation",
+      "torch",
+      "globe",
+      "seas",
+      "oceans",
+      "land masses",
+      "Seasons’ Journal",
+      "Seasons’ Chart",
+      "April–June",
+      "July–September",
+      "October–December",
+      "January–March",
+      "plant life",
+      "birds and animals",
+      "air, heat and light",
+      "water and water bodies",
+      "human activities",
+      "natural rhythm",
+      "Vasanta",
+      "Grishma",
+      "Varsha",
+      "Sharad",
+      "Hemant",
+      "Shishir",
+      "seasonal crops",
+      "festivals",
+      "cycles of life"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Day and night happen because the Sun circles Earth every day.",
+        "correction": "The torch-and-globe demonstration shows Earth rotating while the Sun is represented by a steady torch."
+      },
+      {
+        "claim": "A season is any one-time change in weather.",
+        "correction": "A season is a natural pattern that repeats every year."
+      },
+      {
+        "claim": "Every part of India experiences a season in exactly the same way.",
+        "correction": "The chapter compares Kerala with Kashmir and Assam with Rajasthan to show regional differences."
+      },
+      {
+        "claim": "The Seasons’ Chart records only weather.",
+        "correction": "It also records plants, animals, water and human activities."
+      }
+    ],
+    "recommended_example_progression": [
+      "Opening NCERT Write table: classify changes in self, school and surroundings.",
+      "NCERT Activity 1: explain day and night through Earth’s rotation.",
+      "NCERT Classroom Seasons’ Chart, Steps 1–2: organise observations.",
+      "NCERT Steps 3–4: identify patterns by theme and by time period.",
+      "NCERT six-season table: connect local months with six season names.",
+      "NCERT Let us reflect, Question 4: compare food, clothes, festivals and nature."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is ‘Let us reflect’, Questions 1–6 on pages 159–160."
+  },
+  "lessons": {
+    "Concept introduction": "# Changes at Different Speeds: Chapter 9: Rhythms of Nature\n\n## What you will learn\nYou will observe that change may happen over years, every year, in days or within minutes. You will compare changes in yourself, school and surroundings.\n\n## Simple explanation\nNature and people are always changing. Some changes are gradual, while others are quick or repeat in a familiar pattern.\n\n## Step-by-step breakdown\n- **Saba**: She notices changes in Aparna and remembers their shared past.\n- **Aparna**: She notices Saba’s new guitar learning and other changes.\n- **years**: Growing taller and moving through Grades 3–5 take time.\n- **repeating change**: Leaves fall and grow again, and flowers bloom and dry.\n- **day**: The sky and sunlight change during a day.\n- **minutes**: The questions ask students to identify very quick changes.\n- **observation table**: Students organise change under self and friends, school and surrounding area.\n\n## Worked example\nQuestion: Using the opening NCERT Write table, where should ‘new trees planted near the school gate’ be recorded?\n\nSolution:\n- Step 1: Identify the change as part of the physical environment near school.\n- Step 2: Place it under school or surrounding area, not under personal change.\n- Final answer: It belongs in the school or surrounding-area part of the table.\n\n## Common mistake\nA slow change is still a real change. The chapter includes both slow and fast examples.\n\n## Quick check question\nQuestion: Give one repeating natural change named in the chapter.\nAnswer: Leaves fall and grow again, or flowers bloom, dry and bloom again.\nExplanation: Both examples show recurring change.\n\n## Summary\n- Change happens at different speeds.\n- Personal and environmental changes can be recorded.\n- Some natural changes repeat.\n- Comparison reveals patterns.",
+    "Core explanation": "# Earth’s Rotation and Day–Night: Chapter 9: Rhythms of Nature\n\n## What you will learn\nYou will learn how Earth’s rotation causes day and night. You will interpret the student game and torch-and-globe demonstration.\n\n## Simple explanation\nThe Sun appears to move across the sky, but the model shows Earth turning. The side facing light has day and the side facing away has night.\n\n## Step-by-step breakdown\n- **day**: A place has day when it faces sunlight.\n- **night**: A place has night when it is turned away from sunlight.\n- **Sun**: The torch represents the Sun and stays steady.\n- **Earth**: The globe represents Earth.\n- **rotation**: Turning Earth brings places into light and then darkness.\n- **torch**: Its light falls on one side of the globe.\n- **globe**: It is a ball-shaped model of Earth.\n- **seas and oceans**: The blue parts cover about three-fourths of Earth in the chapter.\n- **land masses**: The remaining parts include the countries.\n\n## Worked example\nQuestion: In NCERT Activity 1, when does the student playing Earth say ‘night’?\n\nSolution:\n- Step 1: The student slowly rotates while the student playing the Sun stays at the centre.\n- Step 2: When the rotating student cannot see the Sun, that position represents night.\n- Final answer: The student says ‘night’ while turned away from the Sun.\n\n## Common mistake\nThe apparent rising and setting of the Sun should not be used to conclude that the Sun circles Earth every day.\n\n## Quick check question\nQuestion: Which side of the globe has day in the torch demonstration?\nAnswer: The side on which the torchlight falls.\nExplanation: The unlit side represents night.\n\n## Summary\n- Earth rotates.\n- Sunlight reaches one side at a time.\n- Facing the Sun gives day.\n- Facing away gives night.\n- A globe is a model of Earth.",
+    "Worked examples": "# Building a Seasons’ Chart: Chapter 9: Rhythms of Nature\n\n## What you will learn\nYou will organise Seasons’ Journal observations into a class chart. You will analyse change by theme and by time period.\n\n## Simple explanation\nA year-long chart makes it easier to compare plants, animals, air, water and people’s activities.\n\n## Step-by-step breakdown\n- **Seasons’ Journal**: Students record observations over the year.\n- **Seasons’ Chart**: The class combines journal records on a large chart.\n- **April–June**: This is the first time-period column.\n- **July–September**: This is the second time period.\n- **October–December**: This is the third period.\n- **January–March**: This is the fourth period.\n- **plant life**: Leaves, flowers and fruits may be recorded.\n- **birds and animals**: Presence and behaviour are compared.\n- **air, heat and light**: Students compare how the atmosphere feels.\n- **water and water bodies**: Rain, ponds and puddles are observed.\n- **human activities**: People’s actions are included with nature.\n\n## Worked example\nQuestion: In NCERT Classroom Seasons’ Chart Step 3, what should the water-and-water-bodies group compare?\n\nSolution:\n- Step 1: Read water observations across all four time periods.\n- Step 2: Look for patterns in rain, ponds, puddles or water levels and present them.\n- Final answer: The group should compare how water and water bodies changed across the year.\n\n## Common mistake\nThe chart should not be filled only from guesses when journal observations are available.\n\n## Quick check question\nQuestion: Name the five themes used in the Seasons’ Chart.\nAnswer: Plant life; birds and animals; air, heat and light; water and water bodies; human activities.\nExplanation: These themes organise the whole-year comparison.\n\n## Summary\n- Journals preserve observations.\n- The chart uses four time periods.\n- Five themes connect nature and people.\n- Group analysis reveals seasonal patterns.",
+    "Exam-style problems": "# Discovering and Comparing Seasons: Chapter 9: Rhythms of Nature\n\n## What you will learn\nYou will understand seasons as repeating yearly patterns and name the six seasons in the chapter. You will also explain why regions differ.\n\n## Simple explanation\nThe year moves through warming, heat, rain and cooling in a repeating rhythm. Geography makes the same season feel different in different places.\n\n## Step-by-step breakdown\n- **natural rhythm**: A season is a repeating pattern of change in nature.\n- **Vasanta**: Spring.\n- **Grishma**: Summer.\n- **Varsha**: Monsoon.\n- **Sharad**: Autumn.\n- **Hemant**: Pre-winter.\n- **Shishir**: Winter.\n- **regional variation**: Winter differs between Kerala and Kashmir, and monsoon differs between Assam and Rajasthan.\n- **local names**: Students find regional and local-language season names.\n\n## Worked example\nQuestion: Using the NCERT six-season table, which names match Monsoon and Pre-winter?\n\nSolution:\n- Step 1: Read the name beside Monsoon.\n- Step 2: Read the name beside Pre-winter.\n- Final answer: Varsha is Monsoon, and Hemant is Pre-winter.\n\n## Common mistake\nOne hot or rainy day is not a complete season. A season is a broader repeating pattern.\n\n## Quick check question\nQuestion: Why can winter in Kerala differ from winter in Kashmir valley?\nAnswer: Different regions experience seasonal conditions differently.\nExplanation: The comparison shows that local geography affects seasonal experience.\n\n## Summary\n- Seasons repeat every year.\n- The chapter names six seasons.\n- Local timing and experience vary.\n- Regional comparison improves understanding.",
+    "Revision and recap": "# Seasons, Crops, Festivals and Life: Chapter 9: Rhythms of Nature\n\n## What you will learn\nYou will connect seasons with crops, food, clothes, festivals and living things. You will explain why seasonal change is natural and necessary.\n\n## Simple explanation\nSeasons influence what grows, what people wear and eat, and how communities celebrate.\n\n## Step-by-step breakdown\n- **seasonal crops**: Some crops grow best in winter, some in summer and some need rainy-season water.\n- **songs**: Students are asked to find songs linked with seasons.\n- **festivals**: The chapter includes Pongal, Makar Sankranti, Holi, Diwali, Baisakhi, Gudi Padwa, Vishu and Rongali Bihu.\n- **food and clothes**: The reflection table records what people eat and wear.\n- **nature around you**: Students record how surroundings appear in each season.\n- **cycles of life**: The conclusion says seasons show that life moves in cycles.\n- **comparative drawing**: Students compare Summer, Monsoon and Winters.\n\n## Worked example\nQuestion: In NCERT Let us reflect, Question 4, why are food, clothes, festivals and nature placed in one seasonal table?\n\nSolution:\n- Step 1: Each column records a different part of everyday or natural life.\n- Step 2: Comparing the columns shows that one seasonal rhythm affects many connected activities.\n- Final answer: The table shows that seasons shape nature and human life together.\n\n## Common mistake\nSeasons should not be reduced only to hot, cold or rainy weather; the chapter connects them with crops, clothing, food and festivals.\n\n## Quick check question\nQuestion: What broad lesson does the chapter draw from repeating seasons?\nAnswer: Change is natural and necessary, and life moves in cycles.\nExplanation: This is the chapter’s concluding idea.\n\n## Summary\n- Seasons guide crops and activities.\n- Festivals and songs reflect seasonal rhythms.\n- Food, clothing and nature change together.\n- Observing seasons reveals cycles of life."
+  }
+}

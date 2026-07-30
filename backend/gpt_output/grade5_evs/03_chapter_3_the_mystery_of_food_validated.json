@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "EVS",
+    "chapter": "Chapter 3: The Mystery of Food",
+    "central_question": "Why does food spoil, how can it be preserved safely, and how do microbes, seasonal choices, chewing and oral hygiene affect health?",
+    "in_scope_units": [
+      "Food Spoilage—The Forgotten Tiffin Box: Disha investigates spoiled uttapam.",
+      "Mysteries 1–2: mould, microbes, microscopes and conditions needed for microbial growth.",
+      "Food Preservation—Drying and Dehydration and Activities 1–2.",
+      "Pickling and Oiling: keeping air away from microbes.",
+      "Refrigeration and Freezing: cold temperature slowing microbial growth.",
+      "Traditional preservation and Activity 3: salt, sugar, spices, ghee and airtight packaging.",
+      "Idli fermentation and useful microbes.",
+      "Indigestion and Home Remedies: curd, buttermilk and medical care.",
+      "My Food, My Pride and Activity 4: selecting fresh produce and seasonal fruits.",
+      "Chew Right and Activity 5: teeth, saliva and digestion.",
+      "Oral Hygiene and The Danger of Choking.",
+      "Final Discovery and Let us reflect, Questions 1–4."
+    ],
+    "banned_topics": [
+      "Water cycle and freshwater habitats from Chapter 1.",
+      "River pollution, floods and droughts from Chapter 2.",
+      "School waste, traffic and fire safety from Chapter 4."
+    ],
+    "must_include_keywords": [
+      "Disha",
+      "uttapam",
+      "mould",
+      "microbes",
+      "microscope",
+      "colony",
+      "moisture",
+      "air",
+      "right temperature",
+      "food preservation",
+      "drying",
+      "dehydration",
+      "chillies",
+      "mustard oil",
+      "pickling",
+      "refrigeration",
+      "freezing",
+      "cold temperature",
+      "salt",
+      "sugar",
+      "spices",
+      "airtight cans",
+      "idli batter",
+      "good microbes",
+      "curd",
+      "buttermilk",
+      "seasonal fruits",
+      "incisors",
+      "canines",
+      "premolars",
+      "molars",
+      "saliva",
+      "digestion",
+      "oral hygiene",
+      "cavity",
+      "choking",
+      "smaller mouthfuls"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "All microbes are harmful.",
+        "correction": "Some microbes spoil food, while others make curd, raise idli batter and help digestion."
+      },
+      {
+        "claim": "Drying works because sunlight kills every microbe.",
+        "correction": "The chapter explains that drying removes moisture needed for growth."
+      },
+      {
+        "claim": "Oil is added to pickle only for flavour.",
+        "correction": "Oil keeps air out and helps stop microbial growth."
+      },
+      {
+        "claim": "Chewing only makes food smaller.",
+        "correction": "Chewing also releases saliva, which helps digestion."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Activity 1: list mango products made for longer use.",
+      "NCERT Activity 2: observe sun-dried tomato slices.",
+      "NCERT Activity 3: document a family preservation practice.",
+      "NCERT Activity 4: observe how elders select fresh produce.",
+      "NCERT Activity 5: identify the functions of different teeth.",
+      "NCERT Let us reflect, Question 2: select food for a two-day field trip.",
+      "NCERT Let us reflect, Question 4: match food, preservation methods and products."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is ‘Let us reflect’, Questions 1–4 on pages 53–54."
+  },
+  "lessons": {
+    "Concept introduction": "# Food Spoilage and Microbes: Chapter 3: The Mystery of Food\n\n## What you will learn\nYou will learn what changed Disha’s forgotten uttapam and why foods spoil at different speeds. You will distinguish harmful and useful microbes.\n\n## Simple explanation\nFood changes in smell, taste and appearance when microbes grow on it. Some microbes spoil food, while others help make food or support digestion.\n\n## Step-by-step breakdown\n- **Disha and uttapam**: The three-day-old food had a foul smell and coloured patches.\n- **mould**: The coloured patches were mould.\n- **microbes**: They are tiny living things found in soil, water, air, plants, animals and inside us.\n- **microscope**: Many are too small to see without this instrument.\n- **colony**: Visible mould can contain thousands of microbes.\n- **good microbes**: Some help make curd and help digestion.\n- **growth conditions**: Microbes need moisture, air and the right temperature.\n\n## Worked example\nQuestion: Using NCERT Mystery #1, what evidence showed that Disha’s uttapam had spoiled?\n\nSolution:\n- Step 1: The uttapam had a foul smell and coloured patches.\n- Step 2: The coloured mould was explained as a colony of microbes.\n- Final answer: The changed smell and visible mould showed food spoilage.\n\n## Common mistake\nAll microbes should not be called harmful; the chapter also describes helpful microbes.\n\n## Quick check question\nQuestion: What three conditions do microbes need to grow?\nAnswer: Moisture, air and the right temperature.\nExplanation: Preservation often removes or changes one of these conditions.\n\n## Summary\n- Microbes can change food.\n- Mould contains many microbes.\n- Some microbes are helpful.\n- Moisture, air and temperature affect growth.",
+    "Core explanation": "# Drying, Oil and Cold Preservation: Chapter 3: The Mystery of Food\n\n## What you will learn\nYou will compare removing moisture, blocking air and lowering temperature as preservation methods.\n\n## Simple explanation\nFood preservation makes conditions less suitable for unwanted microbes.\n\n## Step-by-step breakdown\n- **food preservation**: It keeps food usable for longer.\n- **drying and dehydration**: Sun-drying chillies removes moisture.\n- **Activity 1**: Students list mango products made for longer use.\n- **Activity 2**: Tomato slices are placed in sunlight.\n- **pickling**: Green mangoes are preserved in a jar.\n- **mustard oil**: Oil keeps air away from the pickle.\n- **refrigeration and freezing**: Cold conditions slow microbial growth.\n- **cold temperature**: Milk, vegetables, butter and cake are kept in the fridge.\n\n## Worked example\nQuestion: In NCERT Activity 2 and Finding #3, why does drying tomato or chilli help preserve it?\n\nSolution:\n- Step 1: Sunlight removes moisture from the food.\n- Step 2: Without enough moisture, microbes cannot grow easily.\n- Final answer: Drying preserves food by removing moisture needed by microbes.\n\n## Common mistake\nDrying should not be explained only as heating; the stated reason is moisture removal.\n\n## Quick check question\nQuestion: Why is mustard oil added to pickle?\nAnswer: It keeps air out and helps stop microbial growth.\nExplanation: Finding #4 links the oil layer with blocking air.\n\n## Summary\n- Drying removes moisture.\n- Oil keeps air away.\n- Cold slows microbial growth.\n- Different foods use different preservation methods.",
+    "Worked examples": "# Traditional Methods and Good Microbes: Chapter 3: The Mystery of Food\n\n## What you will learn\nYou will explore family preservation practices and useful microbes in fermentation and digestion.\n\n## Simple explanation\nTraditional food knowledge uses salt, sugar, spices, heating, airtight storage and helpful microbes.\n\n## Step-by-step breakdown\n- **salt, sugar and spices**: These are named as traditional preservation materials.\n- **butter and ghee**: Heating butter separates and evaporates water before ghee is formed.\n- **Activity 3**: Students ask elders about a family preservation practice.\n- **airtight cans**: Factories use airtight cans and packaging.\n- **idli batter**: Microbes in the air help it rise.\n- **good microbes**: They help make foods and support digestion.\n- **curd and buttermilk**: Their microbes can support good microbes in the stomach.\n- **medical care**: Severe stomach illness may require a doctor and medicine.\n\n## Worked example\nQuestion: In NCERT Activity 3, how should a student investigate a family food-preservation practice?\n\nSolution:\n- Step 1: Ask an elder which food is preserved and which method is used.\n- Step 2: Record how that method helps food last longer.\n- Final answer: The student should document a real family practice and its preservation purpose.\n\n## Common mistake\nFermentation is not the same as spoilage; microbes make a useful change in idli batter.\n\n## Quick check question\nQuestion: What makes idli batter rise according to Finding #7?\nAnswer: Microbes in the air.\nExplanation: Their activity makes the batter fluffy.\n\n## Summary\n- Families use several preservation methods.\n- Heating butter removes water to make ghee.\n- Airtight packaging keeps microbes away.\n- Some microbes make useful food and support digestion.",
+    "Exam-style problems": "# Fresh, Local and Seasonal Food Choices: Chapter 3: The Mystery of Food\n\n## What you will learn\nYou will learn how people select fresh produce and why seasonal and local foods are valued.\n\n## Simple explanation\nCareful observation helps people choose fruits and vegetables. Seasonal and local foods can be fresh and enjoyable.\n\n## Step-by-step breakdown\n- **Activity 4**: Students observe how elders select produce.\n- **fresh produce**: Disha’s grandfather examines fruits and vegetables carefully.\n- **seasonal fruits**: The family waits for lychees to return in season.\n- **local mangoes**: They are fresh because they did not travel far.\n- **amla and jamun**: The chapter gives amla in winter and jamun in summer.\n- **My Food, My Pride**: Disha records family and local food knowledge.\n- **responsible observation**: Students write one shopping lesson as a finding.\n\n## Worked example\nQuestion: In NCERT Activity 4, what should a student record after visiting the market?\n\nSolution:\n- Step 1: Observe how an elder checks and selects produce.\n- Step 2: Write one lesson in the style of Disha’s findings.\n- Final answer: The student should record one evidence-based lesson about choosing fresh produce.\n\n## Common mistake\nA fruit sold all year should not automatically be described as seasonal; the chapter focuses on local natural seasons.\n\n## Quick check question\nQuestion: Why are the local mangoes described as fresh?\nAnswer: They did not travel far.\nExplanation: The chapter directly connects shorter travel with freshness.\n\n## Summary\n- Market selection uses careful observation.\n- Seasonal foods are linked with time and place.\n- Local food may travel less.\n- Family food knowledge is valuable.",
+    "Revision and recap": "# Teeth, Digestion, Oral Hygiene and Safe Eating: Chapter 3: The Mystery of Food\n\n## What you will learn\nYou will identify the jobs of different teeth and explain how chewing and saliva help digestion. You will review oral hygiene and choking prevention.\n\n## Simple explanation\nTeeth break food down, saliva helps digestion, oral hygiene protects teeth and slow chewing reduces choking risk.\n\n## Step-by-step breakdown\n- **Activity 5**: Students chew food and identify the teeth used.\n- **incisors**: They cut food.\n- **canines**: They tear food.\n- **premolars**: They crush food.\n- **molars**: They grind food.\n- **saliva**: Chewing releases it and supports digestion.\n- **oral hygiene**: Rinse after eating, brush regularly and eat fewer sweets.\n- **cavity**: A hole in a tooth may need a dentist.\n- **choking**: Chew slowly and do not talk or laugh with food in the mouth.\n- **smaller mouthfuls**: The teacher note recommends them for safety.\n\n## Worked example\nQuestion: In NCERT Activity 5, which teeth cut, tear, crush and grind food?\n\nSolution:\n- Step 1: Match incisors with cutting and canines with tearing.\n- Step 2: Match premolars with crushing and molars with grinding.\n- Final answer: Incisors cut, canines tear, premolars crush and molars grind.\n\n## Common mistake\nChewing is not only mechanical; it also releases saliva.\n\n## Quick check question\nQuestion: How can a child reduce choking risk?\nAnswer: Take smaller mouthfuls, chew slowly and avoid talking or laughing with food in the mouth.\nExplanation: These actions follow the chapter’s warning and teacher note.\n\n## Summary\n- Different teeth have different functions.\n- Chewing releases saliva.\n- Oral hygiene protects teeth.\n- Slow careful eating reduces choking."
+  }
+}

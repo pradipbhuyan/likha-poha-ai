@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 5",
+  "subject": "EVS",
+  "chapter": "Chapter 1: Water — The Essence of Life",
+  "central_question": "How does water change form, move through nature, shape land and support interconnected life in freshwater habitats?",
+  "in_scope_units": [
+    "Water on Earth: salty ocean water, limited freshwater and dependence of living beings on freshwater.",
+    "Activity 1: identifying freshwater sources.",
+    "Water has Different Forms and Activity 2: liquid water, ice, steam, melting, boiling and droplets on a cold glass.",
+    "Water Cycle and Activity 3: sunlight, vapour, droplets, clouds, rain, snow and hail.",
+    "Groundwater and Activities 4–5: seepage, underground storage, wells and recharge.",
+    "Surface Water and Activity 6: river flow according to land shape.",
+    "Our Lifeline—Rivers in India and Activity 7: rivers flowing towards the Bay of Bengal or Arabian Sea.",
+    "Life in Water and Activity 8: freshwater plants, animals and their features.",
+    "Activity 9: waxy leaf coatings and waterproofing.",
+    "Activity 10: river food chains and interdependence.",
+    "Let us reflect, Questions 1–7: water forms, scarcity, habitats, drought, recharge and conservation."
+  ],
+  "banned_topics": [
+    "Godavari dams, pollution, floods and droughts from Chapter 2.",
+    "Food spoilage and preservation from Chapter 3.",
+    "School waste and fire safety from Chapter 4."
+  ],
+  "must_include_keywords": [
+    "freshwater",
+    "saltwater",
+    "ocean water",
+    "liquid",
+    "solid",
+    "vapour",
+    "ice",
+    "steam",
+    "water droplets",
+    "water cycle",
+    "Sun’s heat",
+    "clouds",
+    "rain",
+    "snow",
+    "hail",
+    "groundwater",
+    "seepage",
+    "wells",
+    "borewells",
+    "handpumps",
+    "groundwater recharge",
+    "surface water",
+    "river",
+    "shape of land",
+    "Bay of Bengal",
+    "Arabian Sea",
+    "freshwater habitat",
+    "dragonfly",
+    "pond heron",
+    "freshwater turtle",
+    "lotus",
+    "water lily",
+    "water hyacinth",
+    "waxy coating",
+    "food chain",
+    "water conservation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Most water on Earth is suitable for drinking.",
+      "correction": "Most Earth water is salty; only a small amount is freshwater."
+    },
+    {
+      "claim": "Droplets outside a cold glass leak through the glass.",
+      "correction": "Water vapour in the air cools and forms droplets on the cold surface."
+    },
+    {
+      "claim": "Concrete roads help groundwater recharge.",
+      "correction": "Open soil and green areas support seepage; cemented surfaces reduce recharge."
+    },
+    {
+      "claim": "All aquatic plants float freely.",
+      "correction": "The chapter includes rooted floating, free-floating, edge and underwater plants."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 2: identify the forms and changes of water.",
+    "NCERT Activity 3: explain the water cycle using the bag model.",
+    "NCERT Activities 4–5: connect seepage with groundwater recharge.",
+    "NCERT Activity 6: model land-guided flow with mustard seeds.",
+    "NCERT Activity 8: classify aquatic animals by features.",
+    "NCERT Activity 9: compare plain and wax-coated paper.",
+    "NCERT Activity 10: trace a freshwater food chain."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is ‘Let us reflect’, Questions 1–7 on page 20.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

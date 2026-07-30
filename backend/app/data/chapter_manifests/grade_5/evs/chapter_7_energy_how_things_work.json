@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 5",
+  "subject": "EVS",
+  "chapter": "Chapter 7: Energy — How Things Work",
+  "central_question": "What is energy, where does it come from, how does it make things work and how can we use it safely, efficiently and cleanly?",
+  "in_scope_units": [
+    "What is Energy?: kitchen observations and energy causing movement, light, sound, work and temperature change.",
+    "Activities 1–3: a moving balloon, sound from vibrating rubber bands and heat from sunlight.",
+    "Sources of Energy: food as energy for humans and animals.",
+    "Energy from Fuel and Activity 4: petrol, diesel, cooking gas, wood, coal and oil used in a diya.",
+    "Electricity and Activity 5: devices using electricity for movement, sound, light, heat and cooling.",
+    "Energy efficiency and Safe Use of Electricity: LED bulbs and electrical safety rules.",
+    "Generating Energy from the Sun, Wind and Water and Activities 6–8: pinwheel, focused sunlight and water wheel.",
+    "Clean energy: solar panels, windmills, moving water and electricity without smoke or waste.",
+    "Energy All Around Us and Activity 9: source–type–use energy chains.",
+    "Stored energy, wise use and Vaastu Shastra: bodies, batteries and building design using natural energy.",
+    "Let us reflect, Questions 1–7: power cuts, clean energy, storage, saving energy, vehicle efficiency, object-source matching and an energy diary."
+  ],
+  "banned_topics": [
+    "Detailed cloth, fibre, weaving and stitching processes from Chapter 8.",
+    "Day–night rotation and seasonal rhythms from Chapter 9.",
+    "Worldwide movement of foods, animals and ideas from Chapter 10."
+  ],
+  "must_include_keywords": [
+    "energy",
+    "movement",
+    "light",
+    "sound",
+    "heat",
+    "temperature",
+    "balloon",
+    "moving air",
+    "rubber band guitar",
+    "vibration",
+    "Sun-powered Water Warmer",
+    "food",
+    "fuel",
+    "petrol",
+    "diesel",
+    "cooking gas",
+    "wood",
+    "coal",
+    "oil",
+    "electricity",
+    "fan",
+    "energy efficiency",
+    "LED bulbs",
+    "electrical safety",
+    "pinwheel",
+    "wind",
+    "Sun",
+    "water wheel",
+    "solar panels",
+    "windmills",
+    "clean energy",
+    "Energy Flow Game",
+    "stored energy",
+    "batteries",
+    "Vaastu Shastra",
+    "energy diary"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Energy only means electricity.",
+      "correction": "Energy makes things move, light up, produce sound, do work and change temperature."
+    },
+    {
+      "claim": "The cotton wick is the fuel in Activity 4.",
+      "correction": "The chapter identifies the oil around the wick as the fuel."
+    },
+    {
+      "claim": "A child may repair a broken electrical wire after switching off a nearby device.",
+      "correction": "Children must stay away and tell an adult; they should never try to fix electrical danger themselves."
+    },
+    {
+      "claim": "Clean energy means energy that has been washed or filtered.",
+      "correction": "The chapter uses the term for energy from natural sources such as Sun, wind and water that avoids smoke or waste pollution."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 1: explain how escaping air moves a balloon.",
+    "NCERT Activity 2: connect vibration with sound.",
+    "NCERT Activity 3: compare water in sunlight and shade.",
+    "NCERT Activity 4: identify oil as a fuel.",
+    "NCERT Activity 5: classify the effects produced by electrical devices.",
+    "NCERT Activities 6–8: compare wind, sunlight and moving water.",
+    "NCERT Activity 9: construct source–type–use energy chains."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is ‘Let us reflect’, Questions 1–7 on page 130.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

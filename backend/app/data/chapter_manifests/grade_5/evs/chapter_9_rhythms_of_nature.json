@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 5",
+  "subject": "EVS",
+  "chapter": "Chapter 9: Rhythms of Nature",
+  "central_question": "How can observing changes over a day and a year help us recognise the repeating natural rhythms that shape plants, animals and human life?",
+  "in_scope_units": [
+    "Changes over time: Saba and Aparna compare changes in themselves, school and surroundings.",
+    "Changes at different speeds: years, yearly repetition, days, minutes and seconds.",
+    "Changes Around Us in a Day—Day and Night: the apparent movement of the Sun and the cause of day and night.",
+    "Activity 1 and Day–Night Demonstration: a student model, torch and rotating globe.",
+    "Globe: a model of Earth, land masses, seas and oceans.",
+    "Changes Around Us in a Year—Seasons’ Journal: observing the same surroundings over time.",
+    "Classroom Seasons’ Chart, Steps 1–4: time periods, five themes, posters and seasonal stories.",
+    "Discovering Seasons: repeating yearly patterns and six named seasons.",
+    "Regional differences: winter and monsoon differ across India.",
+    "Celebrating Seasons: songs, crops and festivals linked with seasons.",
+    "Let us reflect, Questions 1–6: experiences, local names, food, clothes, festivals, nature, journaling and drawings."
+  ],
+  "banned_topics": [
+    "Worldwide trade and movement of foods, birds and ideas from Chapter 10.",
+    "Electricity and clean-energy experiments from Chapter 7.",
+    "Detailed unique ecosystems from Chapter 6."
+  ],
+  "must_include_keywords": [
+    "Saba",
+    "Aparna",
+    "change",
+    "years",
+    "minutes",
+    "day",
+    "night",
+    "Sun",
+    "Earth",
+    "rotation",
+    "torch",
+    "globe",
+    "seas",
+    "oceans",
+    "land masses",
+    "Seasons’ Journal",
+    "Seasons’ Chart",
+    "April–June",
+    "July–September",
+    "October–December",
+    "January–March",
+    "plant life",
+    "birds and animals",
+    "air, heat and light",
+    "water and water bodies",
+    "human activities",
+    "natural rhythm",
+    "Vasanta",
+    "Grishma",
+    "Varsha",
+    "Sharad",
+    "Hemant",
+    "Shishir",
+    "seasonal crops",
+    "festivals",
+    "cycles of life"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Day and night happen because the Sun circles Earth every day.",
+      "correction": "The torch-and-globe demonstration shows Earth rotating while the Sun is represented by a steady torch."
+    },
+    {
+      "claim": "A season is any one-time change in weather.",
+      "correction": "A season is a natural pattern that repeats every year."
+    },
+    {
+      "claim": "Every part of India experiences a season in exactly the same way.",
+      "correction": "The chapter compares Kerala with Kashmir and Assam with Rajasthan to show regional differences."
+    },
+    {
+      "claim": "The Seasons’ Chart records only weather.",
+      "correction": "It also records plants, animals, water and human activities."
+    }
+  ],
+  "recommended_example_progression": [
+    "Opening NCERT Write table: classify changes in self, school and surroundings.",
+    "NCERT Activity 1: explain day and night through Earth’s rotation.",
+    "NCERT Classroom Seasons’ Chart, Steps 1–2: organise observations.",
+    "NCERT Steps 3–4: identify patterns by theme and by time period.",
+    "NCERT six-season table: connect local months with six season names.",
+    "NCERT Let us reflect, Question 4: compare food, clothes, festivals and nature."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is ‘Let us reflect’, Questions 1–6 on pages 159–160.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
