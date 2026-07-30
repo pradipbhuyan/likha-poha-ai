@@ -1,0 +1,102 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 11: Nature’s Treasures",
+  "central_question": "How do natural resources support life and human needs, and how can we use and conserve them responsibly?",
+  "in_scope_units": [
+    "11.1 Air: oxygen for survival, the composition of air, moving air as wind, and uses of wind energy.",
+    "11.2 Water: uses and sources of water, limited accessible freshwater, water wastage, pollution, conservation, and rainwater harvesting.",
+    "11.3 Energy from the Sun: the Sun as the main source of energy, its heat and light, and uses of solar energy.",
+    "11.4 Forests: forests as habitats and sources of products, their role in biodiversity and soil protection, and the need for forest conservation.",
+    "11.5 Soil, Rocks and Minerals: soil components and formation, uses of rocks, minerals and metals, and responsible use of these slow-forming resources.",
+    "11.6 Fossil Fuels: petroleum, natural gas and coal, their uses and formation, air pollution from burning them, and ways to conserve them.",
+    "11.7 Natural Resources—Renewable and Non-renewable: natural and human-made resources and their classification by how quickly nature can replenish them.",
+    "11.8 Resources We Use: identifying resources used in daily activities and meeting present needs without wasting resources or harming the environment."
+  ],
+  "banned_topics": [
+    "Detailed stages and processes of the water cycle, which belong to the chapter 'A Journey through States of Water'.",
+    "Detailed photosynthesis equations or plant nutrition mechanisms.",
+    "The full rock cycle and advanced classification of igneous, sedimentary and metamorphic rocks.",
+    "Detailed soil-profile horizons and laboratory testing of soil chemistry.",
+    "Detailed combustion reactions, greenhouse-effect calculations or climate modelling."
+  ],
+  "must_include_keywords": [
+    "air",
+    "oxygen",
+    "nitrogen",
+    "wind",
+    "firki",
+    "windmill",
+    "water",
+    "freshwater",
+    "saline water",
+    "water pollution",
+    "water conservation",
+    "rainwater harvesting",
+    "Bawadi",
+    "Vav",
+    "Sun",
+    "solar energy",
+    "solar panel",
+    "solar cooker",
+    "forests",
+    "biodiversity",
+    "Van Mahotsav",
+    "Chipko movement",
+    "soil",
+    "earthworms",
+    "rocks",
+    "minerals",
+    "fossil fuels",
+    "petroleum",
+    "natural gas",
+    "coal",
+    "CNG",
+    "natural resources",
+    "human-made resources",
+    "renewable resources",
+    "non-renewable resources",
+    "conservation",
+    "responsible use"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Air is only oxygen.",
+      "correction": "Air is a mixture of gases: about 78% nitrogen, 21% oxygen, and about 1% argon, carbon dioxide and other gases."
+    },
+    {
+      "claim": "Because most of Earth is covered with water, plenty of usable freshwater is easily available.",
+      "correction": "Most water is saline, and only a very small fraction of freshwater in ponds, rivers, lakes and wells is easily accessible."
+    },
+    {
+      "claim": "A cow gets energy directly merely by standing in sunlight.",
+      "correction": "The cow gets energy from grass; the grass used sunlight to prepare food, so the Sun is the main source of that energy."
+    },
+    {
+      "claim": "A forest can be quickly replaced by planting a few trees.",
+      "correction": "A forest contains diverse plants and animals and takes many years to grow or restore, so lost forests are difficult to replace."
+    },
+    {
+      "claim": "Soil is only broken rock.",
+      "correction": "Soil may contain sand, pebbles, insects, worms, decomposed plant and animal matter, air, and very small organisms."
+    },
+    {
+      "claim": "All natural resources are renewable because they come from nature.",
+      "correction": "Minerals, soil, rocks, coal, petroleum and natural gas are non-renewable because they are not replenished within a reasonable period."
+    },
+    {
+      "claim": "CNG and electric vehicles cause no environmental impact at all.",
+      "correction": "The chapter states that CNG is cleaner than petrol or diesel and that electric vehicles do not release smoke at the vehicle; it does not claim that they have no environmental impact."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Activity 11.1 to reason from the discomfort of holding one's breath to the need for oxygen.",
+    "Use NCERT Activity 11.2 to connect the observed rotation of a firki with wind and then with the working of a windmill.",
+    "Use NCERT Activity 11.3 and Table 11.1 to identify where water is wasted and propose practical conservation actions.",
+    "Use NCERT Activity 11.4 and Table 11.2 to compare soil samples by colour, texture and visible contents before explaining soil formation.",
+    "Use NCERT Activity 11.5, Activity 11.6 and end-of-chapter Questions 4, 5, 7, 12, 13 and 16 to classify resources and plan responsible use."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section 'Let us enhance our learning' contains Questions 1-16, followed by 'Learning further' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

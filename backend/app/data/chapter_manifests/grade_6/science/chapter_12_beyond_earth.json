@@ -1,0 +1,111 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 12: Beyond Earth",
+  "central_question": "What objects and patterns lie beyond Earth, how can we observe them, and how are they organised from the Solar System to the Universe?",
+  "in_scope_units": [
+    "12.1 Stars and Constellations: stars, imagined star patterns, named constellations, Orion, Sirius, the Big and Little Dippers, and the Pole Star.",
+    "12.2 Night Sky Watching: light pollution, safe observation, sky maps, and practical methods for locating the Pole Star, Orion and Sirius.",
+    "12.3 Our Solar System—The Sun: the Sun as the nearest star, its heat and light, its apparent size, and the astronomical unit.",
+    "12.3 Our Solar System—Planets: revolution, the eight planets in order, inner and outer planets, special names and appearances, and observing Venus.",
+    "12.3 Our Solar System—Natural Satellites: objects moving around planets and the moons of planets.",
+    "12.3 Our Solar System—The Moon: revolution, size and distance, craters, lack of substantial atmosphere, and India's Chandrayaan missions.",
+    "12.3 Our Solar System—Asteroids: small rocky irregular objects and the asteroid belt between Mars and Jupiter.",
+    "12.3 Our Solar System—Comets: icy-rocky objects with tails that become visible near the Sun.",
+    "12.4 The Milky Way Galaxy: the faint band of our home galaxy and the Solar System's place within it.",
+    "12.5 The Universe: galaxies beyond the Milky Way and the continuing scientific search for life on exoplanets."
+  ],
+  "banned_topics": [
+    "Detailed causes of day and night, seasons and planetary rotation beyond the brief statements given in this chapter.",
+    "Detailed laws of planetary motion, gravity calculations and orbital mechanics.",
+    "Detailed phases of the Moon, eclipses and tides.",
+    "Advanced stellar evolution, black holes, relativity and cosmology.",
+    "Claims that extraterrestrial life has been discovered."
+  ],
+  "must_include_keywords": [
+    "star",
+    "constellation",
+    "Orion",
+    "Canis Major",
+    "Taurus",
+    "Sirius",
+    "Big Dipper",
+    "Little Dipper",
+    "Pole Star",
+    "Polaris",
+    "Ursa Major",
+    "Ursa Minor",
+    "light pollution",
+    "night sky watching",
+    "Sky Map",
+    "Stellarium",
+    "Sun",
+    "astronomical unit",
+    "Solar System",
+    "revolution",
+    "planet",
+    "Mercury",
+    "Venus",
+    "Earth",
+    "Mars",
+    "Jupiter",
+    "Saturn",
+    "Uranus",
+    "Neptune",
+    "satellite",
+    "Moon",
+    "crater",
+    "Chandrayaan-3",
+    "asteroid",
+    "asteroid belt",
+    "comet",
+    "Milky Way Galaxy",
+    "Ākāśha Gangā",
+    "Universe",
+    "exoplanet"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The imaginary lines joining stars are visible in the sky.",
+      "correction": "The lines are drawn only for easy identification; they are not seen in the sky."
+    },
+    {
+      "claim": "The Pole Star is the brightest star in the night sky.",
+      "correction": "Sirius is the brightest star in the night sky; the Pole Star is useful because it appears nearly stationary in the North."
+    },
+    {
+      "claim": "Venus is a star because it is called the Morning Star or Evening Star.",
+      "correction": "Venus is a planet, even though it is commonly called the Morning Star or Evening Star."
+    },
+    {
+      "claim": "All planets and their distances in textbook diagrams are shown to scale.",
+      "correction": "The chapter explicitly states that the Solar System illustration is not to scale."
+    },
+    {
+      "claim": "Pluto is one of the eight planets.",
+      "correction": "Pluto is classified as a dwarf planet; the eight planets end with Neptune."
+    },
+    {
+      "claim": "Stars disappear during the day.",
+      "correction": "Stars are still present, but the extreme brightness of the Sun prevents us from seeing them from Earth during daytime."
+    },
+    {
+      "claim": "A comet's tail is a permanent rigid structure.",
+      "correction": "The tail forms when frozen material evaporates as the comet approaches the Sun."
+    },
+    {
+      "claim": "Scientists have found life on exoplanets.",
+      "correction": "The chapter states that no evidence of life elsewhere has yet been found and that the search continues."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with NCERT Activity 12.1 to distinguish real stars from the imaginary patterns people draw between them.",
+    "Use NCERT Activity 12.2 to locate the Pole Star from the two end stars of the Big Dipper's cup.",
+    "Use NCERT Activity 12.3 to locate Orion by its three belt stars and then extend the line eastward to Sirius.",
+    "Use NCERT Activity 12.4 to identify Venus at dawn in the east or at dusk in the west and compare planets with twinkling stars.",
+    "Use end-of-chapter Questions 3-10 to classify Solar System members, order the planets, identify star patterns and explain daytime invisibility of stars."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section 'Let us enhance our learning' contains Questions 1-11, followed by 'Learning further' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
