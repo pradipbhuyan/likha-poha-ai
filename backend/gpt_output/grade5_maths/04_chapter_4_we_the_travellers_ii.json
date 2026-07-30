@@ -1,0 +1,112 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 4: We the Travellers — II",
+    "central_question": "How can addition, subtraction, number patterns, and parity be used efficiently to solve travel, money, measurement, and logical problems with numbers up to five digits?",
+    "in_scope_units": [
+      "Making two group sums equal by interchanging numbers with the least number of moves",
+      "Fuel Arithmetic: adding and subtracting two-digit quantities using place value and regrouping",
+      "Relationship between addition and subtraction and checking one operation with its inverse",
+      "Sums and patterns of consecutive numbers",
+      "Adding large numbers in road-distance and journey-expense contexts",
+      "Subtracting large numbers in sea-route, highway, money, and load-capacity contexts",
+      "Quick sums to 100, 1,000, and 10,000 and quick subtraction of 9 or 99",
+      "Palindrome numbers and increasing/decreasing 3×3 number grids",
+      "Even and odd numbers, paired arrangements, and parity of sums",
+      "Multi-step reasoning with coins, repeated ON/OFF presses, mountain-height data, and Math Metric Mela records",
+      "Final Let Us Do practice on addition, subtraction, money, production targets, and cricket scores"
+    ],
+    "banned_topics": [
+      "formal algebraic equations with variables",
+      "negative integers",
+      "decimal arithmetic",
+      "formal divisibility tests beyond even and odd reasoning",
+      "prime and composite numbers",
+      "multiplication and division algorithms as separate chapter topics",
+      "historical or geographical details beyond the numbers and contexts explicitly supplied"
+    ],
+    "must_include_keywords": [
+      "making sums equal",
+      "interchange",
+      "least number of moves",
+      "fuel arithmetic",
+      "regrouping",
+      "addition",
+      "subtraction",
+      "inverse relationship",
+      "check the answer",
+      "consecutive numbers",
+      "successive sums",
+      "even sum",
+      "odd sum",
+      "North–South Corridor",
+      "align digits",
+      "large numbers",
+      "road trip",
+      "sea route",
+      "remaining distance",
+      "estimate",
+      "multi-step problem",
+      "quick sums",
+      "100",
+      "1,000",
+      "10,000",
+      "subtract 9",
+      "subtract 99",
+      "palindrome numbers",
+      "increasing grid",
+      "decreasing grid",
+      "even numbers",
+      "odd numbers",
+      "paired arrangement",
+      "torch ON and OFF",
+      "mountain heights",
+      "Math Metric Mela",
+      "excess",
+      "shortfall"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "When interchanging two numbers between groups, the difference between the group sums changes by only the difference between the swapped numbers.",
+        "correction": "One group gains that difference while the other loses it, so the gap between the sums changes by twice the difference between the swapped numbers."
+      },
+      {
+        "claim": "Addition and subtraction are unrelated procedures.",
+        "correction": "They are inverse operations: if `a + b = c`, then `c − a = b` and `c − b = a`."
+      },
+      {
+        "claim": "Digits may be placed anywhere when adding or subtracting large numbers.",
+        "correction": "Ones must be below ones, tens below tens, hundreds below hundreds, and so on."
+      },
+      {
+        "claim": "Odd plus odd is odd because both numbers are odd.",
+        "correction": "Odd plus odd is even; each odd number has one unpaired item, and the two unpaired items form a pair."
+      },
+      {
+        "claim": "Subtracting 99 is the same as subtracting 100 and then subtracting 1 more.",
+        "correction": "Subtracting 99 can be done as subtract 100 and then add 1."
+      },
+      {
+        "claim": "A number is a palindrome merely because it repeats a digit.",
+        "correction": "A palindrome reads exactly the same from left to right and from right to left."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Making Sums Equal on page 42: analyse group totals and choose a one-swap balance",
+      "NCERT Fuel Arithmetic and More Fuel Arithmetic on pages 43–45: add 28 + 75, subtract 65 − 18, and verify by inverse operations",
+      "NCERT Sums of Consecutive Numbers on pages 45–46: identify parity and constant differences in successive sums",
+      "NCERT large-number examples and Let Us Solve on pages 46–51: add the North–South Corridor segments and subtract Mumbai–Cochin distance from the full sea route",
+      "NCERT Quick Sums and Differences and Let Us Think and Solve on pages 51–53: complements, subtracting 9 or 99, palindromes, and ordered grids",
+      "NCERT Even and Odd Numbers, Let Us Think, Mountain Climbing, Math Metric Mela, and final Let Us Do on pages 54–56"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Math Metric Mela and the Let Us Do section on page 56, Questions 1–5, covering addition, subtraction, money, production shortfall, and cricket-score comparison."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: We the Travellers — II\n\n## What you will learn\nYou will balance two group sums, add and subtract with regrouping, and use the inverse relationship between addition and subtraction. You will learn to check calculations instead of trusting an answer automatically.\n\n## Simple explanation\nAddition combines quantities, subtraction finds what is left or the difference, and interchanging numbers changes two totals at once. Place value keeps each digit in the correct column.\n\n## Step-by-step breakdown\n- **Making sums equal**: In the opening activity, one number is moved from each group. A useful swap raises the smaller sum and lowers the larger sum by matching amounts.\n- **Effect of a swap**: If a smaller group receives a number that is 1 larger than the number it gives away, its sum rises by 1 while the other sum falls by 1. The gap closes by 2.\n- **Addition with regrouping**: For `28 + 75`, ones give `8 + 5 = 13`. Write 3 ones and regroup 10 ones as 1 ten; then add the tens.\n- **Subtraction with regrouping**: For `65 − 18`, 5 ones cannot give away 8 ones, so regroup 1 ten as 10 ones: `65` becomes 5 tens and 15 ones.\n- **Inverse operations**: If `46 + 21 = 67`, then `67 − 21 = 46` and `67 − 46 = 21`.\n- **Checking**: A subtraction answer can be checked by addition, such as `18 + 47 = 65`.\n\n## Worked example\nQuestion: Solve NCERT Making Sums Equal (a): groups `1, 2, 7, 9` and `3, 4, 5, 9` have sums 19 and 21. Which one swap makes the sums equal?\n\nSolution:\n- Step 1: The total of both groups is `19 + 21 = 40`, so equal groups must each total `40 ÷ 2 = 20`.\n- Step 2: The first group needs to increase by 1 and the second needs to decrease by 1.\n- Step 3: Swap 2 from the first group with 3 from the second group. The first gains `3 − 2 = 1`; the second loses 1.\n- Step 4: New first sum: `19 − 2 + 3 = 20`. New second sum: `21 − 3 + 2 = 20`.\n- Final answer: Interchange 2 and 3; both group sums become 20.\n\n## Common mistake\nDo not assume that swapping 2 and 5 will balance the sums. Calculate both new totals because a swap affects both groups.\n\n## Quick check question\nQuestion: Using NCERT Relationship Between Addition and Subtraction Q1(c), if `189 + 98 = 287`, what are `287 − 98` and `287 − 189`?\nAnswer: `287 − 98 = 189` and `287 − 189 = 98`.\nExplanation: Subtraction reverses the addition and recovers either addend.\n\n## Summary\n- A balancing swap changes both totals.\n- Regroup 10 ones as 1 ten in addition.\n- Regroup 1 ten as 10 ones in subtraction.\n- Addition and subtraction are inverse operations.\n- Use the inverse operation to check an answer.",
+    "Core explanation": "# Core Explanation: We the Travellers — II\n\n## What you will learn\nYou will investigate sums of consecutive numbers and then add large numbers by aligning place values. You will use patterns to calculate some sums mentally and written methods for travel distances and expenses.\n\n## Simple explanation\nConsecutive numbers follow one another without gaps. When a block of consecutive numbers moves forward by 1, every term increases by 1, so the total increases by the number of terms.\n\n## Step-by-step breakdown\n- **Consecutive numbers**: Examples include `1, 2, 3, 4, 5`, `29, 30, 31, 32`, and `2023, 2024, 2025`.\n- **Two consecutive numbers**: The sums `1 + 2 = 3`, `2 + 3 = 5`, `3 + 4 = 7`, and `4 + 5 = 9` are odd and rise by 2.\n- **Three consecutive numbers**: The sums `6, 9, 12, 15` rise by 3. A set of three consecutive numbers has its middle number, and the sum equals three times that middle number.\n- **Four consecutive numbers**: The sums `10, 14, 18, 22` rise by 4 and are even.\n- **Five consecutive numbers**: The sum equals five times the middle number, as shown by the chapter patterns.\n- **Six consecutive numbers**: Two middle values can be paired; successive six-number sums differ by 6.\n- **Adding large numbers**: Align ones under ones and continue leftward. Regroup whenever a column total reaches 10 or more.\n- **Travel examples**: The chapter adds `1,855 km + 1,862 km = 3,717 km` and `₹21,880 + ₹38,900 = ₹60,780`.\n\n## Worked example\nQuestion: Use the NCERT consecutive-number pattern to calculate `67 + 68 + 69` without adding all three numbers separately.\n\nSolution:\n- Step 1: The three numbers are consecutive, and 68 is the middle number.\n- Step 2: For three consecutive numbers, the first and third are equally far from the middle: `67 = 68 − 1` and `69 = 68 + 1`.\n- Step 3: The `−1` and `+1` cancel, so the sum is `68 + 68 + 68 = 3 × 68`.\n- Step 4: `3 × 68 = 204`.\n- Final answer: `67 + 68 + 69 = 204`.\n\n## Common mistake\nDo not write a shorter number under the left side of a longer number. Align it from the ones column; otherwise tens may be added to hundreds.\n\n## Quick check question\nQuestion: In NCERT Let Us Solve Q2, what is the total road-trip distance for `1,600 km, 590 km, 670 km, and 1,055 km`?\nAnswer: 3,915 km.\nExplanation: `1,600 + 590 = 2,190`; `2,190 + 670 = 2,860`; `2,860 + 1,055 = 3,915`.\n\n## Summary\n- Consecutive numbers have no gaps.\n- Successive sums of `n` consecutive numbers differ by `n`.\n- Three or five consecutive numbers can be summed using the middle number.\n- Align place values in large-number addition.\n- Regroup column totals of 10 or more.",
+    "Worked examples": "# Worked Examples: We the Travellers — II\n\n## What you will learn\nYou will subtract large numbers, solve multi-step journey and capacity problems, and use estimation before exact calculation. You will check whether a result is reasonable.\n\n## Simple explanation\nSubtraction of large numbers follows the same place-value method as subtraction of smaller numbers. Multi-step problems require deciding the order of additions and subtractions before calculating.\n\n## Step-by-step breakdown\n- **Sea-route subtraction**: The chapter calculates `2,700 − 1,083 = 1,617` km from Cochin to Chennai.\n- **Regrouping across zeros**: In `2,700 − 1,083`, regroup 1 hundred into 10 tens, then 1 ten into 10 ones. Track each changed digit carefully.\n- **Five-digit subtraction**: The chapter finds `15,150 − 10,228 = 4,922` km for the difference between two long roads.\n- **Mary’s money**: Start with ₹12,540, subtract expenses, add the gift, and subtract later expenses in the order they occur.\n- **School council estimate**: Estimate the three purchase costs before exact addition. Then compare their total with ₹70,500.\n- **Truck capacity**: First add cement and steel; then subtract the loaded weight from the maximum 8,250 kg.\n- **Check by addition**: For `total − part = remaining`, verify `part + remaining = total`.\n\n## Worked example\nQuestion: Solve NCERT Let Us Solve Q4 on page 51: a truck carries at most 8,250 kg and is loaded with 3,675 kg cement and 2,850 kg steel.\n\nSolution:\n- Step 1: Add the loaded weights: `3,675 + 2,850`.\n- Step 2: Ones: `5 + 0 = 5`; tens: `7 + 5 = 12`, write 2 and carry 1 hundred.\n- Step 3: Hundreds: `6 + 8 + 1 = 15`, write 5 and carry 1 thousand.\n- Step 4: Thousands: `3 + 2 + 1 = 6`. Total loaded weight is `6,525 kg`.\n- Step 5: Subtract from capacity: `8,250 − 6,525 = 1,725 kg`.\n- Step 6: Check: `6,525 + 1,725 = 8,250`.\n- Final answer: The truck carries 6,525 kg and can carry 1,725 kg more.\n\n## Common mistake\nDo not subtract each load separately from the capacity and then add the remainders. Add all loaded weight first, then subtract once from the maximum capacity.\n\n## Quick check question\nQuestion: Using the NCERT sea-route example, how much farther must the ship travel after 1,083 km of a 2,700 km route?\nAnswer: 1,617 km.\nExplanation: The remaining distance is `2,700 − 1,083 = 1,617`, and `1,083 + 1,617 = 2,700`.\n\n## Summary\n- Align place values before subtracting.\n- Regroup carefully across zero digits.\n- Use the story order for multi-step money problems.\n- Add component loads before finding remaining capacity.\n- Estimate first and verify exact results with the inverse operation.",
+    "Exam-style problems": "# Exam-Style Problems: We the Travellers — II\n\n## What you will learn\nYou will use complements for quick sums, mental strategies for subtracting 9 and 99, and logical rules for palindromes and ordered grids. These methods reduce unnecessary written calculation.\n\n## Simple explanation\nA complement is the amount needed to reach a friendly number such as 100, 1,000, or 10,000. Numbers and grids also have patterns that can be checked logically.\n\n## Step-by-step breakdown\n- **Complement to 100**: For `32 + ___ = 100`, first reach 99 with 67, then add 1 more: the missing number is 68.\n- **Complement to 1,000**: `877 + 123 = 1,000` and `666 + 334 = 1,000`.\n- **Complement to 10,000**: `4,103 + 5,897 = 10,000` and `5,555 + 4,445 = 10,000`.\n- **Units digit zero**: The 99-then-add-1 trick is less direct for numbers ending in 0, but ordinary subtraction from the target works: `1,000 − 180 = 820`.\n- **Subtracting 9**: Subtract 10 and add 1, so `67 − 9 = 57 + 1 = 58`.\n- **Subtracting 99**: Subtract 100 and add 1, so `187 − 99 = 87 + 1 = 88`.\n- **Desired difference**: For `32 − ___ = 9`, subtract 9 from 32 to find the missing subtrahend: `32 − 9 = 23`.\n- **Palindromes**: A palindrome reads the same both ways, such as 22, 363, 404, and 8,558.\n- **Increasing and decreasing grids**: Every row and column must follow the marked order and each number 1–9 is used once. A simple fully increasing grid is `1,2,3 / 4,5,6 / 7,8,9`.\n\n## Worked example\nQuestion: Solve the NCERT Quick Sums problem `4,103 + ___ = 10,000`.\n\nSolution:\n- Step 1: Find the difference: `10,000 − 4,103`.\n- Step 2: Subtract ones: `10 − 3 = 7` after regrouping across the zeros.\n- Step 3: Continue by place value to obtain `5,897`.\n- Step 4: Check: `4,103 + 5,897 = 10,000`.\n- Final answer: The missing number is 5,897.\n\n## Common mistake\nDo not subtract 99 by subtracting 100 and then subtracting another 1. Since 99 is one less than 100, subtract 100 and add 1 back.\n\n## Quick check question\nQuestion: In NCERT Let Us Think and Solve Q1, is 1,001 a palindrome?\nAnswer: Yes.\nExplanation: Reading 1,001 from left to right or right to left gives the same sequence of digits.\n\n## Summary\n- Complements fill missing addends to friendly totals.\n- Subtract 9 as subtract 10, then add 1.\n- Subtract 99 as subtract 100, then add 1.\n- A palindrome reads the same in both directions.\n- Grid entries must satisfy every row and column condition.",
+    "Revision and recap": "# Revision and Recap: We the Travellers — II\n\n## What you will learn\nYou will revise even and odd numbers, alternating patterns, data-based subtraction, and final chapter applications. You will explain results using pairs and verify excess or shortfall in tables.\n\n## Simple explanation\nEven numbers can be arranged completely in pairs; odd numbers leave one unpaired item. This simple idea explains sums, repeated switch patterns, and many final reasoning questions.\n\n## Step-by-step breakdown\n- **Recognising even numbers**: A whole number ending in 0, 2, 4, 6, or 8 is even. The NCERT list includes 498, 724, 100, 846, and 222 as even.\n- **Adding 2**: Adding 2 adds one complete pair, so an even number stays even and an odd number stays odd.\n- **Parity of sums**: Even + even = even; odd + odd = even; odd + even = odd.\n- **Torch pattern**: Presses 1, 3, 5, and other odd counts leave the torch ON; even press counts leave it OFF. Therefore, it is ON after the 23rd press.\n- **Coin combination**: Jincy needs ₹38 from ₹1, ₹2, and ₹5 coins. One valid choice is five ₹5 coins, six ₹2 coins, and one ₹1 coin: `25 + 12 + 1 = 38`, within the available counts.\n- **Mountain data**: Use the table exactly: Mount Everest is highest at 8,848 m; Mount Elbrus is lowest at 5,642 m.\n- **Math Metric Mela**: Compare certificates printed with students attended. More certificates means excess; fewer certificates means shortfall.\n- **Final practice**: The closing Let Us Do mixes addition, subtraction, purchasing decisions, a production shortfall, and finding Sachin Tendulkar’s score by adding the stated difference.\n\n## Worked example\nQuestion: Use the NCERT Mountain Climbing table to find the difference between the highest and lowest peaks.\n\nSolution:\n- Step 1: Identify the highest value: Mount Everest, `8,848 m`.\n- Step 2: Identify the lowest value: Mount Elbrus, `5,642 m`.\n- Step 3: Subtract: `8,848 − 5,642`.\n- Step 4: Ones: `8 − 2 = 6`; tens: `4 − 4 = 0`; hundreds: `8 − 6 = 2`; thousands: `8 − 5 = 3`.\n- Final answer: The difference is 3,206 m.\n\n## Common mistake\nDo not decide whether a sum is even or odd from the size of the numbers. Only the pairing property, or equivalently the last digit, determines parity.\n\n## Quick check question\nQuestion: In the NCERT Math Metric Mela table, how many certificates were short in Jaunpur, U.P.?\nAnswer: 222 certificates.\nExplanation: Students attended were 19,265 and certificates printed were 19,043, so the shortfall is `19,265 − 19,043 = 222`.\n\n## Summary\n- Even numbers form complete pairs; odd numbers leave one unpaired.\n- Odd press counts leave the torch ON and even counts leave it OFF.\n- Use table values carefully before subtracting.\n- Excess means printed minus attended; shortfall means attended minus printed.\n- The final exercises combine all addition, subtraction, estimation, and pattern skills."
+  }
+}

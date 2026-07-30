@@ -1,0 +1,110 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 6: The Dairy Farm",
+  "central_question": "How can we use multiplication properties, place value, mental strategies, and written methods to calculate and reason about products in everyday situations?",
+  "in_scope_units": [
+    "Let Us Think: hidden-number multiplication puzzles, arranging digits for a product near 100, and counting pouch arrays.",
+    "Factor arrangements, the number-clue puzzle, and making numbers from a number-operation grid.",
+    "Order of Numbers in Multiplication: interchanging group size and number of groups without changing the product.",
+    "Patterns in Multiplication by 10s and 100s, extended to multiplication by 1,000.",
+    "Many Ways to Multiply: splitting, doubling, repeated addition, and using nearby friendly numbers.",
+    "Doubling and Halving: changing both factors while keeping the product unchanged.",
+    "Nearest Multiple: replacing a factor by a nearby multiple and adjusting the product.",
+    "Let Us Solve: flexible multiplication strategies in seating, jogging, books, cloth, milk, and fodder problems.",
+    "Waste and Composting: area-model and partial-product methods for two-digit multiplication and money saved.",
+    "Let Us Multiply: Nida's, Kanti's, and John's place-value-based multiplication methods.",
+    "Dairy Cooperative: multiplying larger numbers using expanded form and the standard place-value algorithm.",
+    "Check, Check!: identifying place-value and partial-product errors in children's solutions.",
+    "Let Us Do: equivalent multiplication expressions and efficient methods for products involving 25, 50, 75, 125, and nearby numbers.",
+    "Let Us Think: related products, coloured-box multiplication puzzles, and estimating products.",
+    "The King's Reward: repeated multiplication and comparing growth patterns.",
+    "Multiplication Patterns: effects of doubling or halving factors, special product patterns, and adjacent number pairs.",
+    "Final Let Us Solve: multi-step money, arrangement, and multiplication questions."
+  ],
+  "banned_topics": [
+    "Long division and division with remainders",
+    "Fractions, decimals, and percentages",
+    "Area and perimeter formulae",
+    "Algebraic notation using variables and formal distributive-law proofs",
+    "Powers and exponents as a formal topic"
+  ],
+  "must_include_keywords": [
+    "multiplication fact",
+    "product",
+    "factor",
+    "array",
+    "number of groups",
+    "group size",
+    "order of numbers",
+    "zero",
+    "place value",
+    "tens",
+    "hundreds",
+    "thousands",
+    "multiply by 10",
+    "multiply by 100",
+    "multiply by 1,000",
+    "expanded form",
+    "partial products",
+    "many ways to multiply",
+    "doubling",
+    "halving",
+    "nearest multiple",
+    "estimate",
+    "regrouping",
+    "carry",
+    "zero placeholder",
+    "Nida's method",
+    "Kanti's method",
+    "John's method",
+    "Mili's father's method",
+    "Dairy Cooperative",
+    "Waste and Composting",
+    "equivalent expressions",
+    "related products",
+    "multiplication pattern",
+    "The King's Reward",
+    "word problem"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Changing the order of two factors changes the product.",
+      "correction": "The chapter's packet arrays show that interchanging the number of groups and group size keeps the total unchanged, such as 6 × 13 = 13 × 6."
+    },
+    {
+      "claim": "Multiplying by 10 or 100 means attaching zeros without thinking about place value.",
+      "correction": "The chapter explains that multiplying by 10 shifts every digit one place to the left, while multiplying by 100 shifts every digit two places to the left."
+    },
+    {
+      "claim": "When one factor is doubled and the other is halved, the product also doubles.",
+      "correction": "Doubling one factor and halving the other keeps the product the same, as shown by 3 × 18 = 6 × 9 = 54."
+    },
+    {
+      "claim": "For 4 × 19, subtract 1 because 19 is one less than 20.",
+      "correction": "One whole group of 4 must be subtracted: 4 × 19 = 4 × 20 - 4."
+    },
+    {
+      "claim": "The tens partial product in a written multiplication can be placed in the ones column.",
+      "correction": "A tens factor represents groups of ten, so its partial product must be shifted one place left or written with the correct zero placeholder."
+    },
+    {
+      "claim": "An estimate must equal the exact product.",
+      "correction": "An estimate is a nearby value used to judge size and reasonableness; the exact product may differ."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Let Us Think Question 3 and the 60-pouch arrays to connect multiplication with different groupings.",
+    "Use NCERT Order of Numbers in Multiplication to establish that a × b = b × a through packet arrays.",
+    "Use NCERT Patterns in Multiplication by 10s and 100s and the place-value tables on pages 72-74.",
+    "Use NCERT Many Ways to Multiply for 18 × 5, followed by Doubling and Halving examples 3 × 18 and 22 × 5.",
+    "Use NCERT Nearest Multiple examples 4 × 19 and 14 × 21.",
+    "Use NCERT Waste and Composting Questions 1-2 to compare Nida's, Kanti's, and John's partial-product methods.",
+    "Use NCERT Dairy Cooperative Questions 1-3 for expanded form, larger products, and place-value algorithms.",
+    "Use NCERT Check, Check! to diagnose incorrect partial products and misplaced place values.",
+    "Finish with NCERT The King's Reward, Multiplication Patterns, and final Let Us Solve Questions 1-6."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Let Us Solve, Questions 1-6 on page 91, after the Multiplication Patterns activities on pages 89-90.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 3: Angles as Turns",
+  "central_question": "How can we describe, compare, measure, draw, and follow angles by thinking of them as fractional turns in clockwise or anti-clockwise directions?",
+  "in_scope_units": [
+    "Recognising full, half, and quarter turns through body movement, clocks, giant wheels, and everyday objects",
+    "Relating fractional turns to right, acute, obtuse, straight, three-quarter, and full angles",
+    "Making and using paper fans, straws, cardboard shapes, houses, and gymnasts to identify angle types",
+    "Constructing angle-measuring tools by folding circles into eighths, sixths, and twelfths",
+    "Estimating, measuring, combining, and drawing angles in terms of fractional turns",
+    "Connecting minute-hand movement with fractions of a full turn and elapsed minutes",
+    "Distinguishing clockwise and anti-clockwise movement",
+    "Following sequences of turns from North, South, East, and West in the Fun with Turns activities"
+  ],
+  "banned_topics": [
+    "degree notation and formal protractor measurement",
+    "classification of triangles and quadrilaterals beyond identifying the angles shown",
+    "parallel lines, perpendicular bisectors, and formal geometric constructions",
+    "trigonometry",
+    "reflex-angle terminology not used in the chapter",
+    "bearings measured in degrees"
+  ],
+  "must_include_keywords": [
+    "turn",
+    "starting position",
+    "full turn",
+    "half turn",
+    "quarter turn",
+    "two quarter turns",
+    "right angle",
+    "acute angle",
+    "obtuse angle",
+    "straight angle",
+    "three-quarter turn",
+    "paper fan",
+    "straw",
+    "one side fixed",
+    "angle measuring tool",
+    "tracing paper",
+    "1/8 turn",
+    "2/8 turn",
+    "3/8 turn",
+    "4/8 turn",
+    "1/6 turn",
+    "1/12 turn",
+    "combine measures",
+    "minute hand",
+    "15 minutes",
+    "30 minutes",
+    "45 minutes",
+    "60 minutes",
+    "clockwise",
+    "anti-clockwise",
+    "North",
+    "South",
+    "East",
+    "West",
+    "Fun with Turns"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A quarter turn and a half turn both make a right angle.",
+      "correction": "A quarter turn makes a right angle, while a half turn makes a straight angle."
+    },
+    {
+      "claim": "Any angle smaller than a straight angle is acute.",
+      "correction": "An acute angle is less than a quarter turn; an angle between a quarter turn and a half turn is obtuse."
+    },
+    {
+      "claim": "The end position alone always tells the direction of a turn.",
+      "correction": "Clockwise and anti-clockwise turns can sometimes end at the same position, so the direction and amount of turn must both be stated."
+    },
+    {
+      "claim": "Two acute turns must always combine to make an acute angle.",
+      "correction": "Their total may be acute, right, obtuse, straight, or more than straight depending on their sizes."
+    },
+    {
+      "claim": "A 1/8 turn is the same as a 1/4 turn.",
+      "correction": "A 1/8 turn is half of a quarter turn; two 1/8 turns make 1/4 turn."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Statue game and opening clock/giant-wheel examples on pages 32–33: identify full, half, and quarter turns",
+    "NCERT straw and paper-fan activities on pages 33–36: connect turn size to acute, right, obtuse, and straight angles",
+    "NCERT Angle Measuring Tool and Let Us Think on pages 36–37: build eighth-, sixth-, and twelfth-turn pieces",
+    "NCERT Let Us Do Q1–Q5 on pages 38–39: estimate, measure, combine, and draw turns",
+    "NCERT Let Us Do Q6 and Which direction? on pages 39–40: connect clock minutes to turns and distinguish clockwise from anti-clockwise",
+    "NCERT Fun with Turns Q1–Q2 on pages 40–41: determine ending directions and equivalent ways to face the same place"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The concluding practice consists of Let Us Do Questions 1–6 on pages 38–40 and Fun with Turns Questions 1–2 on pages 40–41.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 9: Coconut Farm",
+  "central_question": "How can division be understood, estimated, calculated, checked, and applied to equal sharing, grouping, rates, and real-life decisions?",
+  "in_scope_units": [
+    "Division facts from arrays and the relationship among dividend, divisor, and quotient.",
+    "Let Us Play and Let Us Do: multiplication-division fact families.",
+    "Patterns in Division and Place Value with tens and hundreds.",
+    "Everyday equal-sharing and grouping word problems.",
+    "Mental Strategies for Division using convenient parts, subtraction, and repeated halving.",
+    "Susie's Farm in Kerala: partial quotients, estimation, bags, and remainders.",
+    "Let Us Learn to Divide: the relationship N = D × Q + R.",
+    "Kalpavruksha Coconut Oil: multi-digit division in farm, sales, and cost contexts.",
+    "Division Using Place Value with regrouping and zero placeholders.",
+    "Let Us Divide: four-digit dividends, one- and two-digit divisors, and comparing methods.",
+    "Missing numbers, quotient relationships, missing information, and limiting resources.",
+    "Vegetable Market: completing a sales table using multiplication and division.",
+    "Mathematical Statements: true or false equations and always, sometimes, or never true claims."
+  ],
+  "banned_topics": [
+    "Fractions and decimal division",
+    "Algebraic long division",
+    "Prime factorisation",
+    "Percentage and profit-loss formulae",
+    "Negative numbers"
+  ],
+  "must_include_keywords": [
+    "array",
+    "multiplication fact",
+    "division fact",
+    "dividend",
+    "divisor",
+    "quotient",
+    "remainder",
+    "equal groups",
+    "place value",
+    "patterns",
+    "mental strategy",
+    "convenient parts",
+    "repeated halving",
+    "estimate",
+    "partial quotients",
+    "regrouping",
+    "zero placeholder",
+    "long division",
+    "N = D × Q + R",
+    "exact division",
+    "bags",
+    "coconut farm",
+    "oil",
+    "coir",
+    "rate",
+    "sales table",
+    "missing information",
+    "true statement",
+    "false statement",
+    "always true",
+    "sometimes true",
+    "never true"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A multiplication fact gives only one related division fact.",
+      "correction": "For non-zero factors, a × b = c gives c ÷ a = b and c ÷ b = a."
+    },
+    {
+      "claim": "The remainder may be equal to or larger than the divisor.",
+      "correction": "A valid remainder must be smaller than the divisor."
+    },
+    {
+      "claim": "If 535 ÷ 25 gives 21 remainder 10, only 21 bags are needed.",
+      "correction": "Twenty-one bags are full, but the 10 remaining coconuts need one more bag, so 22 bags are required."
+    },
+    {
+      "claim": "Zeros in the quotient may be omitted.",
+      "correction": "A zero must be written when a place-value part gives zero groups, as shown in 324 ÷ 3 and 3,005 ÷ 5."
+    },
+    {
+      "claim": "Every word problem contains enough information to solve it.",
+      "correction": "The chapter includes questions where missing information must first be identified."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with the NCERT 5 × 7 = 35 coconut array and derive the two related division facts.",
+    "Use NCERT Patterns in Division and Place Value to connect basic facts with tens and hundreds.",
+    "Use NCERT Mental Strategies examples 1248 ÷ 6, 1992 ÷ 4, and 128 ÷ 4.",
+    "Use NCERT Susie's Farm 582 ÷ 6 and 535 ÷ 25 to introduce partial quotients and remainders.",
+    "Use NCERT Let Us Learn to Divide to establish N = D × Q + R.",
+    "Use NCERT Division Using Place Value examples 62 ÷ 5, 324 ÷ 3, and 136 ÷ 6.",
+    "Use NCERT Let Us Divide and Vegetable Market for multi-digit division, zero placement, rates, and missing values.",
+    "Finish with NCERT Mathematical Statements to test equality and always-sometimes-never reasoning."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The final practice appears in Let Us Solve on pages 132-134, followed by Vegetable Market and Mathematical Statements on page 135.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

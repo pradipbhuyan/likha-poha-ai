@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 5: Far and Near",
+    "central_question": "How can we choose, convert, compare, estimate, and calculate with units of length from millimetres to kilometres, as well as feet and inches?",
+    "in_scope_units": [
+      "Choosing metre or centimetre for familiar lengths",
+      "Recognising equivalent lengths written in metres and centimetres using double number lines",
+      "Comparing mixed-unit lengths and using statue heights",
+      "Measuring long distances with tapes, measuring wheels, rangefinders, and laser distance meters",
+      "Understanding 1,000 metres as 1 kilometre and applying intervals in a 3-km race",
+      "Reading and subtracting distances in the Vivek Express route table",
+      "Measuring small objects in millimetres and reading ruler subdivisions",
+      "Relationships among millimetres, centimetres, metres, and kilometres",
+      "Converting between single-unit and mixed-unit measurements",
+      "Adding and subtracting lengths with regrouping",
+      "Multiplying and dividing lengths in cloth, embroidery, and road-work situations",
+      "Estimating heights and depths using references",
+      "Using feet and inches, measuring height, and solving the final operation-sign grid"
+    ],
+    "banned_topics": [
+      "area, perimeter, volume, and capacity",
+      "mass and weight units",
+      "decimal metric conversions",
+      "formal scale drawing",
+      "speed and time calculations",
+      "Pythagoras theorem",
+      "precise scientific conversion of inches or feet beyond the chapter’s stated approximations"
+    ],
+    "must_include_keywords": [
+      "metre",
+      "centimetre",
+      "millimetre",
+      "kilometre",
+      "appropriate unit",
+      "double number line",
+      "equivalent length",
+      "compare lengths",
+      "Statue of Unity",
+      "long tape",
+      "rodometer",
+      "rangefinder",
+      "laser distance meter",
+      "1,000 m = 1 km",
+      "kilometre race",
+      "500 m intervals",
+      "Vivek Express",
+      "distance from Dibrugarh",
+      "ruler marks",
+      "1 cm = 10 mm",
+      "100 cm = 1 m",
+      "unit conversion",
+      "mixed units",
+      "adding lengths",
+      "subtracting lengths",
+      "regrouping",
+      "1,000 m = 1 km",
+      "multiplying lengths",
+      "dividing lengths",
+      "estimate",
+      "reference length",
+      "inch",
+      "foot",
+      "1 inch = 2 cm 5 mm",
+      "1 foot = 12 inches or 30 cm",
+      "measure your height"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The larger numerical value always represents the longer length.",
+        "correction": "Lengths must first be written in the same unit; for example, 456 cm is less than 5 m because 5 m = 500 cm."
+      },
+      {
+        "claim": "One centimetre contains 100 millimetres.",
+        "correction": "The chapter states `1 cm = 10 mm`; `100 cm = 1 m`."
+      },
+      {
+        "claim": "Mixed units can be added by combining every number without regard to its unit.",
+        "correction": "Add kilometres with kilometres, metres with metres, centimetres with centimetres, and then regroup using the correct unit relationship."
+      },
+      {
+        "claim": "When subtracting 16 m 75 cm from 63 m, the centimetres can be subtracted as `0 − 75` without regrouping.",
+        "correction": "Regroup 1 m as 100 cm, so 63 m becomes 62 m 100 cm before subtracting."
+      },
+      {
+        "claim": "The textbook values `1 inch = 2 cm 5 mm` and `1 foot = 30 cm` are exact scientific conversions.",
+        "correction": "Use them as the chapter’s classroom approximations for this lesson and do not introduce a different conversion system."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Let Us Find and Different Units but Same Measure on pages 57–58: choose m or cm and match equivalent measures",
+      "NCERT Let Us Compare and statue-height questions on page 58: convert before comparing",
+      "NCERT Measuring Long Distances, Kilometre Race, and Vivek Express on pages 59–61: use kilometre relationships, intervals, and route-table differences",
+      "NCERT World of Small Things, Let Us Draw, and conversion exercises on pages 61–64: measure in mm and convert among mm, cm, m, and km",
+      "NCERT adding and subtracting examples and Let Us Do on pages 64–66: regroup mixed units",
+      "NCERT Multiplying and Dividing Lengths, Let Us Estimate, feet and inches, Measure Your Height, and Try This on pages 66–69"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The closing practice spans Let Us Do Questions 1–4 on page 66, Multiplying and Dividing Lengths Questions 1–4 on pages 66–67, Let Us Estimate Questions 1–3, Measure Your Height, and the final Try This grid on pages 68–69."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Far and Near\n\n## What you will learn\nYou will choose sensible units for different lengths and recognise when two measurements written in different forms are equal. You will compare lengths only after bringing them to a common unit.\n\n## Simple explanation\nSmall objects are usually described in centimetres, while taller or longer objects are often measured in metres. Because `1 m = 100 cm`, the same length can be written in more than one way.\n\n## Step-by-step breakdown\n- **Choosing a unit**: The height of India Gate and the depth of a well are naturally expressed in metres, while a handkerchief, mobile phone, and distance between shirt buttons are naturally expressed in centimetres.\n- **Metre-centimetre relationship**: `1 m = 100 cm`, so `2 m = 200 cm`, `4 m = 400 cm`, `5 m = 500 cm`, and `7 m = 700 cm`.\n- **Mixed-unit form**: `2 m 40 cm = 240 cm`, `2 m 4 cm = 204 cm`, and `5 m 40 cm = 540 cm`.\n- **Double number line**: Matching positions on two parallel lines shows equivalent measures, such as 1 m directly below 100 cm.\n- **Comparing lengths**: Convert both lengths to the same unit before using `<`, `=`, or `>`.\n- **Statue heights**: The chapter lists the Statue of Unity at 182 m, Spring Temple Buddha at 128 m, Guanyin of Nanshan at 108 m, Statue of Liberty at 93 m, The Motherland Calls at 91 m, and Christ the Redeemer at 38 m.\n\n## Worked example\nQuestion: Solve NCERT Let Us Compare Q1(a): compare `456 cm` and `5 m`.\n\nSolution:\n- Step 1: Convert 5 m to centimetres: `5 × 100 cm = 500 cm`.\n- Step 2: Compare `456 cm` and `500 cm`.\n- Step 3: Since `456 < 500`, place the less-than sign.\n- Final answer: `456 cm < 5 m`.\n\n## Common mistake\nDo not compare 456 and 5 as plain numbers. The units differ, so first convert both lengths to centimetres or both to metres.\n\n## Quick check question\nQuestion: Using the NCERT matching table, which listed mixed-unit measure equals 404 cm?\nAnswer: 2 m 204 cm.\nExplanation: `2 m = 200 cm`; adding 204 cm gives `404 cm`.\n\n## Summary\n- Choose units that suit the size of the object.\n- `1 m = 100 cm`.\n- Mixed metres and centimetres can be converted to centimetres.\n- Use a common unit before comparing.\n- Double number lines show equivalent measurements.",
+    "Core explanation": "# Core Explanation: Far and Near\n\n## What you will learn\nYou will measure and reason about long distances in metres and kilometres. You will use equal intervals in a race and subtract cumulative route distances from a train table.\n\n## Simple explanation\nA kilometre is used for long distances. Since `1,000 m = 1 km`, a 3-km race is 3,000 m, and positions can be marked at regular metre intervals.\n\n## Step-by-step breakdown\n- **Long-distance tools**: The chapter shows a long tape, rodometer or measuring wheel, rangefinder, and laser distance meter.\n- **Walking and estimating**: After marking 100 m and 200 m, students count steps and use the relationship between steps and distance to estimate other locations.\n- **Kilometre relationship**: `1,000 m = 1 km`; the prefix kilo means thousand.\n- **Ropes to make 1 km**: Ten 100-m ropes, one hundred 10-m ropes, five 200-m ropes, two 500-m ropes, or four 250-m ropes make 1 km.\n- **Race intervals**: For a 3-km race, convert 3 km to 3,000 m before dividing by 500 m, 300 m, or 50 m intervals.\n- **Cumulative route table**: The Vivek Express table gives each station’s distance from Dibrugarh. The distance between two stations is the larger cumulative distance minus the smaller.\n- **Nearest and farthest**: Compare all distances in the same unit and order them from least to greatest.\n\n## Worked example\nQuestion: Answer NCERT Longest Train Journey Q2: find the distance between Vijayawada JN at 2,800 km and Jalpaiguri Road at 983 km from Dibrugarh.\n\nSolution:\n- Step 1: Both values are measured from the same starting point, Dibrugarh.\n- Step 2: Subtract the smaller cumulative distance from the larger: `2,800 − 983`.\n- Step 3: Regroup: `2,800 − 900 = 1,900`; then `1,900 − 83 = 1,817`.\n- Final answer: The distance is 1,817 km.\n\n## Common mistake\nDo not add two cumulative distances when finding the distance between their stations. Because both are measured from Dibrugarh, subtract them.\n\n## Quick check question\nQuestion: In the NCERT Kilometre Race, how many 500-m intervals fit into 3 km?\nAnswer: 6 intervals.\nExplanation: `3 km = 3,000 m`, and `3,000 ÷ 500 = 6`.\n\n## Summary\n- Use kilometres for long distances.\n- `1,000 m = 1 km`.\n- Convert a full route to metres before counting regular intervals.\n- Cumulative station distances are subtracted to find the gap.\n- Long-distance measuring tools suit different situations.",
+    "Worked examples": "# Worked Examples: Far and Near\n\n## What you will learn\nYou will measure small lengths in millimetres and convert among millimetres, centimetres, metres, and kilometres. You will write both single-unit and mixed-unit forms.\n\n## Simple explanation\nEach centimetre on a ruler is split into ten equal millimetres. Moving from a larger unit to a smaller unit multiplies the number; moving from a smaller unit to a larger mixed form groups complete sets and keeps the remainder.\n\n## Step-by-step breakdown\n- **Millimetre**: One centimetre is divided into ten equal parts, so `1 cm = 10 mm`.\n- **Precision**: The small marks between centimetre marks let us measure sprouts, screws, nails, and drawn lines more precisely.\n- **Drawing mixed lengths**: `5 cm 5 mm` means move to 5 cm and then 5 additional millimetre marks.\n- **Core relationships**: `10 mm = 1 cm`, `100 cm = 1 m`, and `1,000 m = 1 km`.\n- **Centimetres to millimetres**: Multiply by 10: `234 cm = 2,340 mm`.\n- **Millimetres to mixed form**: Group by 10: `514 mm = 51 cm 4 mm`.\n- **Metres to centimetres**: Multiply by 100: `6 m 34 cm = 600 cm + 34 cm = 634 cm`.\n- **Centimetres to mixed metres**: Group by 100: `5,792 cm = 57 m 92 cm`.\n- **Metres and kilometres**: Group by 1,000: `6,870 m = 6 km 870 m`; multiply by 1,000 for kilometres to metres.\n\n## Worked example\nQuestion: Solve NCERT conversion Q2(d): convert `514 mm` to centimetres and millimetres.\n\nSolution:\n- Step 1: Use `10 mm = 1 cm`.\n- Step 2: Find complete groups of 10 in 514: `514 = 51 × 10 + 4`.\n- Step 3: The 51 complete groups are 51 cm, and 4 mm remain.\n- Final answer: `514 mm = 51 cm 4 mm`.\n\n## Common mistake\nDo not use 100 when converting centimetres to millimetres. The correct relationship is 10 millimetres in 1 centimetre.\n\n## Quick check question\nQuestion: Using NCERT conversion Q2(k), write `6,870 m` in kilometres and metres.\nAnswer: 6 km 870 m.\nExplanation: Six complete groups of 1,000 m make 6 km, leaving `6,870 − 6,000 = 870 m`.\n\n## Summary\n- A centimetre contains 10 millimetres.\n- A metre contains 100 centimetres.\n- A kilometre contains 1,000 metres.\n- Multiply when converting to a smaller unit.\n- Group and keep the remainder when writing a mixed larger-unit form.",
+    "Exam-style problems": "# Exam-Style Problems: Far and Near\n\n## What you will learn\nYou will add and subtract mixed lengths using two valid methods. You will regroup kilometres, metres, metres, and centimetres whenever a smaller-unit total reaches the next unit or when subtraction requires borrowing.\n\n## Simple explanation\nYou may either keep like units in separate columns or convert everything to one smaller unit. Both methods must give the same result.\n\n## Step-by-step breakdown\n- **Adding like units**: For `3 km 450 m + 4 km 650 m`, add kilometres and metres separately.\n- **Regrouping metres**: `450 m + 650 m = 1,100 m = 1 km 100 m`; combine the extra kilometre with the kilometre total.\n- **Single-unit method**: Convert to metres: `3,450 m + 4,650 m = 8,100 m = 8 km 100 m`.\n- **Subtracting mixed units**: For `63 m − 16 m 75 cm`, write `63 m` as `62 m 100 cm` before subtracting.\n- **Centimetre method**: Convert `63 m = 6,300 cm` and `16 m 75 cm = 1,675 cm`; subtract to get `4,625 cm = 46 m 25 cm`.\n- **Comparing before difference**: In NCERT Let Us Do Q4, convert both lengths to one unit, circle the larger, and subtract the smaller.\n- **Daily-life applications**: Ribbon, road distance, cable car sections, and cable left all use the same unit relationships.\n\n## Worked example\nQuestion: Solve NCERT Let Us Do Q2: Bhopal to Sanchi is `48 km 700 m`, and the waterfall is `17 km 900 m` from Bhopal. How far is Sanchi from the waterfall?\n\nSolution:\n- Step 1: Set up `48 km 700 m − 17 km 900 m`.\n- Step 2: Since 700 m is less than 900 m, regroup 1 km as 1,000 m.\n- Step 3: `48 km 700 m = 47 km 1,700 m`.\n- Step 4: Subtract metres: `1,700 − 900 = 800 m`.\n- Step 5: Subtract kilometres: `47 − 17 = 30 km`.\n- Final answer: Sanchi is 30 km 800 m from the waterfall.\n\n## Common mistake\nDo not borrow 100 metres from 1 kilometre. The correct regrouping is `1 km = 1,000 m`.\n\n## Quick check question\nQuestion: Using the NCERT Saji example, what is `3 km 450 m + 4 km 650 m`?\nAnswer: 8 km 100 m.\nExplanation: The metre sum is 1,100 m, which is 1 km 100 m; adding that extra kilometre to 7 km gives 8 km 100 m.\n\n## Summary\n- Add or subtract only like units.\n- Regroup 1 km as 1,000 m.\n- Regroup 1 m as 100 cm.\n- A single-unit method and mixed-unit method should agree.\n- Convert before comparing lengths written in different units.",
+    "Revision and recap": "# Revision and Recap: Far and Near\n\n## What you will learn\nYou will multiply and divide lengths, estimate using reference objects, and use the chapter’s feet-and-inches relationships. You will finish by reviewing how operation symbols can be arranged under row, column, and box conditions.\n\n## Simple explanation\nLength calculations use the same operations as ordinary numbers, but the units must be carried through every step. Estimation is different from exact measurement because it uses a known reference to judge an unknown height or depth.\n\n## Step-by-step breakdown\n- **Multiplying mixed lengths**: The chapter finds cloth for 20 shirts: `20 × 1 m 80 cm = 20 m + 1,600 cm = 20 m + 16 m = 36 m`.\n- **Unit cost by division**: If 5 m costs ₹100, then 1 m costs `₹100 ÷ 5 = ₹20`.\n- **Scaling embroidery**: A 1 m thread is needed for every 50 cm of sari border. Convert the 5 m border to 500 cm and count ten 50-cm sections.\n- **Equal daily work**: Convert `12 km 600 m` to `12,600 m`, divide by 6, and convert the result back if needed.\n- **Estimation**: Use a single-storeyed house, electric pole, familiar person, or other known reference to estimate a building, tree, well, or pool.\n- **Feet and inches**: For this chapter, use `1 inch = 2 cm 5 mm` and `1 foot = 12 inches or 30 cm`.\n- **Measure your height**: Mark the top of the head on a wall and measure from the floor in feet and inches.\n- **Operation-sign grid**: Place `+`, `−`, `×`, and `÷` so no sign repeats in any row, column, or 4-cell box; every placement must satisfy all three conditions.\n\n## Worked example\nQuestion: Solve NCERT Multiplying and Dividing Lengths Q4: a road `12 km 600 m` long is completed equally in 6 days.\n\nSolution:\n- Step 1: Convert the full length to metres: `12 km 600 m = 12,000 m + 600 m = 12,600 m`.\n- Step 2: Divide by 6: `12,600 ÷ 6 = 2,100 m`.\n- Step 3: Convert to mixed units: `2,100 m = 2 km 100 m`.\n- Final answer: The workers lay 2 km 100 m each day.\n\n## Common mistake\nDo not divide 12 km and 600 m separately and leave the results as `2 km 100 m` unless each division is exact and correctly interpreted. Converting to one unit first is the safest method.\n\n## Quick check question\nQuestion: In the NCERT cloth-cost example, what is the cost of 10 m if 5 m costs ₹100?\nAnswer: ₹200.\nExplanation: Ten metres is twice 5 m, so the cost is twice ₹100; equivalently, 1 m costs ₹20 and `10 × ₹20 = ₹200`.\n\n## Summary\n- Carry units through multiplication and division.\n- Convert to one unit before equal sharing when helpful.\n- Use known references for estimates.\n- Use the chapter’s stated inch and foot relationships.\n- The final grid requires each operation sign once in every row, column, and box.\n- The chapter links exact measurement, conversion, calculation, and estimation."
+  }
+}

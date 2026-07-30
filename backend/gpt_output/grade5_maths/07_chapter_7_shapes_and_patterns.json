@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 7: Shapes and Patterns",
+    "central_question": "How can we recognise, describe, create, and compare repeating patterns and two-dimensional or three-dimensional shapes using their sides, angles, arrangements, and symmetries?",
+    "in_scope_units": [
+      "Weaving Mats: making paper mats and describing repeating under-over row rules.",
+      "Let Us Try: extending a partly drawn design on grid paper.",
+      "Tiling and Tessellation: deciding whether regular shapes or combinations of shapes cover a region without gaps or overlaps.",
+      "Rhombus Pieces and Triangles: forming and classifying isosceles, equilateral, and scalene triangles.",
+      "Quadrilaterals: identifying kites, parallelograms, rectangles, adjacent sides, opposite sides, and equal angles.",
+      "Tangram: comparing pieces and combining them to make new shapes.",
+      "Which Shape Am I?: matching properties with squares, rectangles, rhombuses, and parallelograms.",
+      "Kites: making a kite by paper folding and observing shapes within it.",
+      "Play with Circles and Circle Designs: forming rectangles from diameter endpoints and following point-joining rules.",
+      "Cube Connections: reading cube nets, counting removed cubes, and analysing painted small cubes.",
+      "Puzzle: arranging seven shapes by using positional clues.",
+      "Icosahedron and Dodecahedron: making models from nets and studying faces, edges, and vertices."
+    ],
+    "banned_topics": [
+      "Perimeter and area formulae for polygons",
+      "Volume and surface area formulae for solids",
+      "Coordinate geometry",
+      "Formal angle-sum proofs for polygons"
+    ],
+    "must_include_keywords": [
+      "weaving pattern",
+      "under",
+      "over",
+      "repeat",
+      "grid paper",
+      "tiling",
+      "tessellation",
+      "gap",
+      "overlap",
+      "regular shape",
+      "regular pentagon",
+      "equilateral triangle",
+      "square",
+      "regular hexagon",
+      "regular octagon",
+      "rhombus",
+      "isosceles triangle",
+      "scalene triangle",
+      "equal sides",
+      "equal angles",
+      "quadrilateral",
+      "kite",
+      "adjacent sides",
+      "opposite sides",
+      "parallelogram",
+      "rectangle",
+      "right angles",
+      "tangram",
+      "diameter",
+      "circle design",
+      "cube net",
+      "painted faces",
+      "vertex",
+      "edge",
+      "icosahedron",
+      "dodecahedron"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Any regular polygon will tessellate by itself.",
+        "correction": "The chapter shows that equilateral triangles, squares, and regular hexagons tessellate, while regular pentagons and regular octagons leave gaps and do not tessellate by themselves."
+      },
+      {
+        "claim": "A kite has two pairs of equal opposite sides.",
+        "correction": "In the chapter's kite, the two equal pairs are adjacent sides: Side 1 equals Side 2, and Side 3 equals Side 4."
+      },
+      {
+        "claim": "Every parallelogram is a rectangle.",
+        "correction": "A rectangle is a special parallelogram whose angles are all right angles; a general parallelogram need not have right angles."
+      },
+      {
+        "claim": "A scalene triangle can have two equal sides.",
+        "correction": "A scalene triangle has no equal sides; an isosceles triangle has two equal sides."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Weaving Mats Activity 1 and write the alternating rules for Row 1 and Row 2.",
+      "Use NCERT Weaving Mats Activities 2 and 3 to identify repeat blocks such as 2 over, 1 under.",
+      "Use NCERT Tiling and Tessellation 'Find Out' to test regular triangles, squares, hexagons, pentagons, and octagons.",
+      "Use NCERT rhombus-piece Activities 1-8 to classify triangles and quadrilaterals by equal sides and angles.",
+      "Use NCERT Cube Connections Question 3 to classify the 27 small cubes by the number of painted faces.",
+      "Use NCERT Icosahedron and Dodecahedron activity to count faces, edges, and faces meeting at a vertex."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter does not contain one separately titled end-of-chapter exercise; practice is distributed across numbered activities 1-8 and the sections Let Us Try, Find Out, Try This, Which Shape Am I?, Cube Connections, Puzzle, and Icosahedron and Dodecahedron."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Shapes and Patterns\n\n## What you will learn\nYou will learn how a repeating rule creates a weaving pattern. You will also learn how to continue a design on grid paper by finding the smallest part that repeats.\n\n## Simple explanation\nA pattern is easier to continue when we describe exactly what repeats. In a woven mat, each strip follows an under-over rule, and nearby rows may begin in different ways to create the full design.\n\n## Step-by-step breakdown\n- **Paper mat preparation**: NCERT Weaving Mats Activity 1 uses a 30 cm by 20 cm coloured sheet, slits, and eight strips that are 3 cm wide and slightly longer than 20 cm.\n- **Alternating row rule**: Row 1 repeats 1 under, 1 over, while Row 2 repeats 1 over, 1 under. Changing the starting position creates the alternating design.\n- **Longer repeat blocks**: Activity 2 uses 2 over, 1 under in Row 1 and 2 under, 1 over in Row 2.\n- **Non-repeating starts**: In Activity 3, some rows begin with one instruction that is used only once, such as 1 under, before a longer repeating block begins.\n- **Grid extension**: In Let Us Try, the completed part of the design shows the spacing, direction, and colour sequence that must be continued across the remaining grid.\n\n## Worked example\nQuestion: In NCERT Weaving Mats Activity 3, write the first 10 movements of Row 2: 1 under once, then repeat 3 over and 3 under.\n\nSolution:\n- Step 1: Begin with the instruction that is not repeated: 1 under.\n- Step 2: Write the first repeating block: 3 over, giving over, over, over.\n- Step 3: Write the next part of the repeating block: 3 under, giving under, under, under.\n- Step 4: Start the block again with 3 over until 10 movements are listed.\n- Final answer: The first 10 movements are: under, over, over, over, under, under, under, over, over, over.\n\n## Common mistake\nA common mistake is to repeat the opening 1 under every time. The chapter says '1 under (do not repeat)', so only the 3 over, 3 under block repeats.\n\n## Quick check question\nQuestion: Using NCERT Weaving Mats Activity 2, what is the sixth movement in Row 1: 2 over, 1 under, repeated?\nAnswer: The sixth movement is under.\nExplanation: The sequence is over, over, under, over, over, under. Therefore, the sixth movement is under.\n\n## Summary\n- A repeating pattern has a rule or block that occurs again and again.\n- The first instruction of a row may be different from the repeating block.\n- Neighbouring rows can begin differently to make an alternating weave.\n- A grid design is completed by continuing its spacing, direction, and colour rule.",
+    "Core explanation": "# Core explanation: Shapes and Patterns\n\n## What you will learn\nYou will learn what tessellation means and how to test whether shapes cover a region without gaps or overlaps. You will compare regular triangles, squares, hexagons, pentagons, octagons, and mixed-shape tilings.\n\n## Simple explanation\nA shape tessellates when copies of it fit together to cover a region completely. At every meeting point, the shapes must fit without leaving an empty gap and without lying on top of one another.\n\n## Step-by-step breakdown\n- **Regular shapes**: The chapter calls shapes with equal sides regular shapes and introduces regular pentagons, squares, regular hexagons, and regular octagons.\n- **Tessellation test**: Place copies around a point. If they meet exactly with no gap and no overlap, the arrangement can continue as a tiling.\n- **Shapes that tessellate**: Equilateral triangles tessellate. The chapter also asks learners to verify that squares and regular hexagons fit around a point.\n- **Shapes that do not tessellate alone**: Regular pentagons and regular octagons leave gaps when copies are placed together, so they do not tessellate by themselves.\n- **Mixed-shape tilings**: A region may be covered by more than one kind of shape, such as triangles with hexagons or squares with triangles.\n- **Marked points**: In a repeating tiling, examining the shapes meeting at marked points helps reveal whether the same local rule is being repeated.\n\n## Worked example\nQuestion: Using the NCERT Tiling and Tessellation 'Find Out' activity, determine how many equilateral triangles, squares, and regular hexagons fit around one point.\n\nSolution:\n- Step 1: An equilateral triangle has a 60-degree angle at each corner. Six such corners give 6 × 60 degrees = 360 degrees, so 6 triangles fit.\n- Step 2: A square has a 90-degree angle at each corner. Four such corners give 4 × 90 degrees = 360 degrees, so 4 squares fit.\n- Step 3: A regular hexagon has a 120-degree angle at each corner. Three such corners give 3 × 120 degrees = 360 degrees, so 3 hexagons fit.\n- Step 4: Each arrangement fills the full turn around the point with no gap and no overlap.\n- Final answer: Six equilateral triangles, four squares, and three regular hexagons fit around a point.\n\n## Common mistake\nA common mistake is to decide that equal sides alone guarantee tessellation. Equal sides make a shape regular in the chapter's discussion, but the copies must still fit around points without gaps or overlaps.\n\n## Quick check question\nQuestion: According to the NCERT regular-octagon activity, do regular octagons tessellate by themselves?\nAnswer: No. Regular octagons do not tessellate by themselves.\nExplanation: When regular octagons are placed together, gaps remain. Therefore, they cannot cover a region alone without gaps.\n\n## Summary\n- Tessellation covers a region without gaps or overlaps.\n- Equilateral triangles, squares, and regular hexagons tessellate by themselves.\n- Regular pentagons and regular octagons do not tessellate by themselves.\n- Two or more different shapes can sometimes form a tessellating pattern.\n- Checking the shapes around each meeting point reveals the repeated tiling rule.",
+    "Worked examples": "# Worked examples: Shapes and Patterns\n\n## What you will learn\nYou will classify triangles and quadrilaterals by observing equal sides and equal angles. You will also see how rhombus pieces and tangram pieces can be rearranged to make different shapes.\n\n## Simple explanation\nCutting and fitting pieces helps us discover shape properties. Instead of judging only by appearance, we compare side lengths, identify adjacent or opposite sides, and check angles by folding or measuring.\n\n## Step-by-step breakdown\n- **Rhombus pieces**: The chapter divides a rhombus, which has all equal sides, into four triangles and asks learners to combine two, three, or four pieces.\n- **Isosceles triangle**: A triangle with two equal sides is isosceles; the chapter also states that it has two equal angles.\n- **Equilateral triangle**: A triangle with all three sides equal has equal angles.\n- **Scalene triangle**: A triangle with no equal sides is scalene.\n- **Kite**: The chapter's kite has two pairs of equal adjacent sides: Side 1 = Side 2 and Side 3 = Side 4.\n- **Parallelogram**: A quadrilateral whose opposite sides are equal is a parallelogram, and its opposite angles are equal.\n- **Rectangle**: A rectangle is a special parallelogram in which all angles are equal right angles.\n- **Tangram**: Tangram pieces can be compared by side and angle properties and rearranged in more than one way to form target outlines.\n\n## Worked example\nQuestion: Using NCERT rhombus-piece Questions 4 and 5, explain why quadrilateral B is both a rectangle and a parallelogram.\n\nSolution:\n- Step 1: Observe the opposite sides of quadrilateral B. Each pair of opposite sides is equal.\n- Step 2: A quadrilateral whose opposite sides are equal is called a parallelogram.\n- Step 3: Observe the angles of B. All four angles are equal and are right angles.\n- Step 4: A parallelogram with all right angles is called a rectangle.\n- Final answer: Quadrilateral B is a rectangle, and because a rectangle is a special type of parallelogram, it is also a parallelogram.\n\n## Common mistake\nA common mistake is to call every four-sided shape with two equal sides a kite. The chapter's kite needs two pairs of equal adjacent sides, not just one equal pair.\n\n## Quick check question\nQuestion: In NCERT Try This, an equilateral triangle is cut in half. How many equal sides does each new triangle have?\nAnswer: Each new triangle has two equal sides.\nExplanation: The two halves are mirror-image triangles. In each half, two side lengths are equal, so each new triangle is isosceles.\n\n## Summary\n- Triangle names depend on how many sides are equal.\n- A kite has equal adjacent sides.\n- A parallelogram has equal opposite sides and equal opposite angles.\n- A rectangle is a parallelogram with four right angles.\n- Shape pieces can be combined in several correct ways.",
+    "Exam-style problems": "# Exam-style problems: Shapes and Patterns\n\n## What you will learn\nYou will apply shape properties to circles, cube nets, painted cubes, and a logical arrangement puzzle. These activities connect flat drawings with solid objects and careful reasoning.\n\n## Simple explanation\nGeometry is not only about naming shapes. We can construct a quadrilateral from points on a circle, predict which faces meet when a net folds, count painted faces on a cube, and use clues to arrange objects.\n\n## Step-by-step breakdown\n- **Diameters and rectangles**: In Play with Circles, two diameters provide four endpoints. Joining these points forms a rectangle; changing the pair of diameters still gives a rectangle.\n- **Circle designs**: The chapter marks 24 points and follows a fixed joining rule such as 1 to 11, 11 to 2, 2 to 12, and so on.\n- **Cube net**: The three visible cube views must be transferred to the correct faces of a net while preserving which faces are adjacent.\n- **Removed cubes**: Solid cube frames are analysed by comparing the complete cube with the remaining frame.\n- **Painted 3 by 3 by 3 cube**: Nisha's 27 small cubes form a large cube. Corner cubes have three painted faces, edge-middle cubes have two, face-centre cubes have one, and the central cube has none.\n- **Shape-order puzzle**: The arrangement of two squares, two triangles, one circle, one hexagon, and one rectangle is found by satisfying all five positional clues together.\n\n## Worked example\nQuestion: Solve NCERT Cube Connections Question 3: Nisha paints a large cube made from 27 small cubes. How many small cubes have three, two, one, or no painted faces?\n\nSolution:\n- Step 1: Since 27 = 3 × 3 × 3, the large cube has 3 small cubes along each edge.\n- Step 2: There are 8 corner cubes. Each corner touches three outside faces, so 8 cubes have three painted faces.\n- Step 3: Each of the 12 edges has one middle cube because the edge length is 3. Therefore, 12 cubes have two painted faces.\n- Step 4: Each of the 6 large faces has one centre cube. Therefore, 6 cubes have one painted face.\n- Step 5: The only cube completely inside is the central cube. Therefore, 1 cube has no painted face.\n- Final answer: Three faces: 8; two faces: 12; one face: 6; no faces: 1.\n\n## Common mistake\nA common mistake is to count all cubes on a painted face as having one painted face. Corner and edge cubes belong to more than one outer face, so they must be classified separately.\n\n## Quick check question\nQuestion: Using NCERT Play with Circles, what quadrilateral is formed by joining the endpoints of two diameters?\nAnswer: A rectangle is formed.\nExplanation: The four endpoints lie on the circle, and the chapter asks learners to verify that joining them produces a quadrilateral with right angles; repeating with another pair of diameters again gives a rectangle.\n\n## Summary\n- Two diameters provide four points that form a rectangle when joined in order.\n- A cube net must preserve face adjacency when folded.\n- Painted-cube questions are solved by separating corners, edges, face centres, and the interior.\n- Logical puzzles require every clue to be checked, not only one or two.",
+    "Revision and recap": "# Revision and recap: Shapes and Patterns\n\n## What you will learn\nYou will revise the chapter through solid shapes, their nets, and the main ideas about patterns, tessellations, triangles, quadrilaterals, circles, and cubes. You will also compare an icosahedron and a dodecahedron.\n\n## Simple explanation\nA net is a flat arrangement that folds into a solid. By making the models, we can count faces, edges, and faces meeting at each vertex, just as we earlier counted sides, angles, and repeating parts in flat designs.\n\n## Step-by-step breakdown\n- **Icosahedron**: Its model has 20 triangular faces. Five faces meet at each vertex, and it has 30 edges.\n- **Dodecahedron**: Its model has 12 pentagonal faces. Three faces meet at each vertex, and it has 30 edges.\n- **Consistent vertices**: For each of these solids, the same number of faces meets at every vertex.\n- **Nets and models**: The chapter provides nets at the end of the book and suggests building other 3-D shapes with straws or sticks and clay.\n- **Whole-chapter connection**: Patterns describe repetition; tessellations describe complete coverings; shape properties describe sides and angles; nets and models describe how faces join in space.\n\n## Worked example\nQuestion: Using the NCERT Icosahedron and Dodecahedron activity, compare the two solids by faces, face shape, edges, and faces meeting at each vertex.\n\nSolution:\n- Step 1: For the icosahedron, count 20 faces, and each face is a triangle.\n- Step 2: Five triangular faces meet at each vertex of the icosahedron.\n- Step 3: For the dodecahedron, count 12 faces, and each face is a pentagon.\n- Step 4: Three pentagonal faces meet at each vertex of the dodecahedron.\n- Step 5: Both solids have 30 edges.\n- Final answer: Icosahedron: 20 triangular faces, 30 edges, 5 faces at each vertex. Dodecahedron: 12 pentagonal faces, 30 edges, 3 faces at each vertex.\n\n## Common mistake\nA common mistake is to count each edge once for every face that touches it. Every edge belongs to two faces, so counting face-edges directly would count each edge twice.\n\n## Quick check question\nQuestion: In the NCERT chapter, which two regular polygons are specifically shown not to tessellate by themselves?\nAnswer: Regular pentagons and regular octagons.\nExplanation: The chapter shows that both leave gaps when copies are placed together, so neither covers a region alone without gaps.\n\n## Summary\n- Describe a pattern by stating exactly what repeats.\n- Test tessellation by checking for gaps and overlaps.\n- Use equal sides and angles to classify triangles and quadrilaterals.\n- Use construction, nets, and models to connect 2-D and 3-D geometry.\n- Count painted cube faces by location: corner, edge, face centre, or interior.\n- Icosahedra and dodecahedra have different face shapes and vertex arrangements."
+  }
+}

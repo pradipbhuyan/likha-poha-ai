@@ -1,0 +1,102 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 8: Weight and Capacity",
+    "central_question": "How can we choose suitable units, convert between them, and use the four operations to solve everyday problems involving weight and capacity?",
+    "in_scope_units": [
+      "Check! Check! and reading weighing scales for sensible household weights.",
+      "Different Units but Same Measure: kilograms and grams, conversions, and double number lines.",
+      "Comparison between Different Weights using common units and comparison signs.",
+      "Milligram and the relation between grams and milligrams.",
+      "Quintal and tonne for very large weights.",
+      "From Tiny to Big: the complete chain from milligram to tonne.",
+      "The Grocery Store: addition and subtraction of compound weights.",
+      "More Operations on Weight: multiplication, division, rates, and total cost.",
+      "Measuring Capacity and choosing litres or millilitres.",
+      "Big to Small, Small to Big: litre-millilitre conversions and container readings.",
+      "The Milkman's Delivery: equivalent capacities and double number lines.",
+      "Let Us Compare: capacity comparisons, petrol-pump totals, addition, and subtraction.",
+      "Let Us Solve: multi-step capacity, equal sharing, multiplication, and cost problems."
+    ],
+    "banned_topics": [
+      "Length and distance conversions",
+      "Area and perimeter",
+      "Volume formulae for cuboids and cylinders",
+      "Density",
+      "Temperature measurement"
+    ],
+    "must_include_keywords": [
+      "weighing scale",
+      "zero mark",
+      "kilogram",
+      "gram",
+      "milligram",
+      "quintal",
+      "tonne",
+      "double number line",
+      "conversion",
+      "comparison",
+      "descending order",
+      "less than",
+      "greater than",
+      "equal to",
+      "regrouping",
+      "addition",
+      "subtraction",
+      "multiplication",
+      "division",
+      "rate",
+      "cost per kilogram",
+      "capacity",
+      "litre",
+      "millilitre",
+      "container",
+      "milk delivery",
+      "petrol",
+      "equal sharing",
+      "1,000",
+      "100 kg",
+      "10 quintals"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "5 kg 50 g is 5,500 g.",
+        "correction": "5 kg is 5,000 g, so 5 kg 50 g is 5,050 g."
+      },
+      {
+        "claim": "1 g equals 100 mg.",
+        "correction": "The chapter states that 1 g = 1,000 mg."
+      },
+      {
+        "claim": "A bucket's capacity should normally be written as 20 ml.",
+        "correction": "A bucket is a large container, so litres are the sensible unit; the chapter asks learners to correct 20 ml to a litre-based measure."
+      },
+      {
+        "claim": "Mixed units can always be added or compared directly without conversion.",
+        "correction": "Convert to the same unit or align kilograms with grams and litres with millilitres before operating."
+      },
+      {
+        "claim": "When subtracting 1 kg 750 g from 2 kg 500 g, 500 minus 750 can be done without regrouping.",
+        "correction": "Regroup 1 kg as 1,000 g, making 1 kg 1,500 g before subtracting."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Check! Check! and Let Us Do scale-reading questions to choose sensible units and read marked intervals.",
+      "Use NCERT Shrenu's flour example and Let Us Find Questions 1-2 for kg-g conversions.",
+      "Use NCERT Milligram Questions 1-5 and the quintal-tonne Questions 6-7 for small and large units.",
+      "Use NCERT The Grocery Store example and Let Us Do Questions 1-7 for addition and subtraction of weights.",
+      "Use NCERT More Operations on Weight examples for multiplication, division, rates, and cost.",
+      "Use NCERT Big to Small, Small to Big and The Milkman's Delivery for litre-millilitre conversion.",
+      "Use NCERT Sam and Tina petrol example and Let Us Solve Questions 1-5 for capacity operations."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section Let Us Solve, Questions 1-5 on page 118, while earlier Let Us Do, Let Us Find, Let Us Think, and Let Us Compare sections provide additional practice."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Weight and Capacity\n\n## What you will learn\nYou will learn to choose sensible units for weight, read a weighing scale from its zero mark, and connect kilograms with grams. You will also compare weights after writing them in the same unit.\n\n## Simple explanation\nHeavy objects are usually measured in kilograms, while lighter objects are often measured in grams. A scale must be read by noticing its labelled marks, the equal spaces between them, and where the pointer lies.\n\n## Step-by-step breakdown\n- **Sensible units**: The Check! Check! list contrasts suitable measures such as a 60 kg bed or 5 kg rice bag with unsuitable measures such as a 40 g iron almirah.\n- **Reading the zero**: The scale begins at 0, and the pointer's position is read by counting equal intervals from that mark.\n- **Kilograms and grams**: The chapter shows 2 kg and 2,000 g as the same weight, establishing 1 kg = 1,000 g.\n- **Double number line**: Corresponding points on the kg and g lines show equivalent amounts and make conversion patterns visible.\n- **Mixed measures**: A weight such as 3 kg 500 g combines whole kilograms and extra grams.\n- **Comparison**: Convert both quantities to grams, or compare kilograms first and then grams, before using <, =, or >.\n\n## Worked example\nQuestion: Using NCERT Let Us Find Question 1, convert 5 kg 50 g of sugar into grams and decide whether 5,050 g or 5,500 g is correct.\n\nSolution:\n- Step 1: Use 1 kg = 1,000 g.\n- Step 2: Convert 5 kg: 5 × 1,000 g = 5,000 g.\n- Step 3: Add the remaining 50 g: 5,000 g + 50 g = 5,050 g.\n- Final answer: The correct value is 5,050 g.\n\n## Common mistake\nA common mistake is to read 50 g as 500 g because it follows 5 kg. Write the place values carefully: 5 kg contributes 5,000 g, and the extra part is only 50 g.\n\n## Quick check question\nQuestion: Using NCERT Comparison between Different Weights Question 2(c), compare 10 kg 35 g and 10,035 g.\nAnswer: 10 kg 35 g = 10,035 g.\nExplanation: 10 kg = 10,000 g, and 10,000 g + 35 g = 10,035 g, so the two weights are equal.\n\n## Summary\n- Choose kilograms for heavier objects and grams for lighter objects.\n- Read scales from zero using equal intervals.\n- 1 kg = 1,000 g.\n- Convert mixed measures by converting the kilogram part and then adding the grams.\n- Compare only after the quantities are in compatible units.",
+    "Core explanation": "# Core explanation: Weight and Capacity\n\n## What you will learn\nYou will extend the unit system from milligrams to tonnes. You will convert and compare milligrams, grams, kilograms, quintals, and tonnes.\n\n## Simple explanation\nVery light objects need a smaller unit than a gram, while very heavy loads need units larger than a kilogram. The chapter connects all the units through multiplication or division.\n\n## Step-by-step breakdown\n- **Milligram**: The chapter states that ants weigh between 1 mg and 5 mg and gives 1 g = 1,000 mg.\n- **Gram to milligram**: Multiply the gram part by 1,000 and then add any extra milligrams, as in 4 g 100 mg = 4,100 mg.\n- **Kilogram to gram**: Multiply kilograms by 1,000 and then add extra grams.\n- **Quintal**: 100 kg = 1 quintal.\n- **Tonne**: 1,000 kg = 1 tonne and 10 quintals = 1 tonne.\n- **From Tiny to Big**: The chain is 1,000 mg = 1 g, 1,000 g = 1 kg, 100 kg = 1 quintal, and 10 quintals = 1 tonne.\n- **Comparing units**: Convert both measures to the same unit before deciding which is larger.\n\n## Worked example\nQuestion: Using NCERT Milligram Question 4, convert 10 g 500 mg into milligrams.\n\nSolution:\n- Step 1: Use 1 g = 1,000 mg.\n- Step 2: Convert 10 g: 10 × 1,000 mg = 10,000 mg.\n- Step 3: Add the remaining 500 mg: 10,000 mg + 500 mg = 10,500 mg.\n- Final answer: 10 g 500 mg = 10,500 mg.\n\n## Common mistake\nA common mistake is to multiply the extra milligram part by 1,000 too. Only the gram part is converted; the quantity already written in milligrams is simply added.\n\n## Quick check question\nQuestion: Using NCERT Question 7(a), express 5,000 kg in quintals and tonnes.\nAnswer: 5,000 kg = 50 quintals = 5 tonnes.\nExplanation: Since 100 kg = 1 quintal, 5,000 ÷ 100 = 50 quintals. Since 1,000 kg = 1 tonne, 5,000 ÷ 1,000 = 5 tonnes.\n\n## Summary\n- 1 g = 1,000 mg.\n- 1 kg = 1,000 g.\n- 1 quintal = 100 kg.\n- 1 tonne = 1,000 kg = 10 quintals.\n- Use one common unit before comparing.",
+    "Worked examples": "# Worked examples: Weight and Capacity\n\n## What you will learn\nYou will add, subtract, multiply, and divide weights. You will use mental methods, aligned columns, regrouping, conversion to grams, and double number lines.\n\n## Simple explanation\nWeights behave like numbers, but their units must stay aligned. When the smaller-unit total reaches 1,000, regroup it as one larger unit; when the smaller-unit amount is too small for subtraction, borrow one larger unit.\n\n## Step-by-step breakdown\n- **Adding mixed weights**: The Grocery Store example adds 2 kg 500 g and 1 kg 750 g to get 4 kg 250 g by regrouping 1,250 g as 1 kg 250 g.\n- **Subtracting mixed weights**: To subtract 1 kg 750 g from 2 kg 500 g, regroup one kilogram as 1,000 g, or convert both weights to grams.\n- **Multi-addend problems**: NCERT Let Us Do includes totals over two or three days and requires regrouping when grams total more than 1,000.\n- **Multiplication**: The potato-sack example multiplies kilograms and grams separately: 4 × 10 kg 500 g = 42 kg.\n- **Division**: The nut-box example divides 4 kg 800 g equally among four boxes to get 1 kg 200 g, or 1,200 g each.\n- **Rates and costs**: The chapter uses cost per kilogram and double number lines to scale a weight and its cost by the same factor.\n\n## Worked example\nQuestion: Solve NCERT Let Us Do Question 1: find the total weight of 5 kg 200 g, 8 kg 900 g, and 12 kg 600 g of onions.\n\nSolution:\n- Step 1: Add the kilogram parts: 5 kg + 8 kg + 12 kg = 25 kg.\n- Step 2: Add the gram parts: 200 g + 900 g + 600 g = 1,700 g.\n- Step 3: Regroup 1,700 g as 1 kg 700 g because 1,000 g = 1 kg.\n- Step 4: Add the regrouped kilogram: 25 kg + 1 kg 700 g = 26 kg 700 g.\n- Final answer: The total weight is 26 kg 700 g.\n\n## Common mistake\nA common mistake is to write 25 kg 1,700 g as the final answer. Regroup 1,000 g into 1 kg so that the gram part is less than 1,000.\n\n## Quick check question\nQuestion: Using NCERT More Operations on Weight Question 2, how much rice is needed for 8 people if 4 people need 500 g?\nAnswer: 1,000 g, or 1 kg, of rice is needed.\nExplanation: The number of people doubles from 4 to 8, so the rice also doubles: 500 g × 2 = 1,000 g = 1 kg.\n\n## Summary\n- Align kilograms with kilograms and grams with grams.\n- Regroup every 1,000 g as 1 kg.\n- Borrow 1 kg as 1,000 g when needed in subtraction.\n- Multiplication and division may be done in mixed units or after converting to grams.\n- Scale quantity and cost by the same factor on a double number line.",
+    "Exam-style problems": "# Exam-style problems: Weight and Capacity\n\n## What you will learn\nYou will learn how capacity is measured in litres and millilitres. You will convert, compare, add, and subtract capacities in practical situations involving bottles, milk, and petrol.\n\n## Simple explanation\nCapacity tells how much liquid a container can hold. Litres suit larger amounts, while millilitres suit smaller amounts. The key relation is 1 litre = 1,000 millilitres.\n\n## Step-by-step breakdown\n- **Choosing a unit**: A bucket should be described in litres, not 20 ml, because 20 ml is a very small amount.\n- **Bottle totals**: Two 500 ml bottles contain 1,000 ml, which is 1 l.\n- **Litres to millilitres**: Multiply litres by 1,000 and add extra millilitres, as in 1 l 400 ml = 1,400 ml.\n- **Millilitres to litres**: Separate complete groups of 1,000 ml and write the remainder as millilitres.\n- **Milk delivery**: The Milkman's Delivery table connects weekly amounts such as 8 l with 8,000 ml and 20,000 ml with 20 l.\n- **Comparisons**: Convert to the same unit before using <, =, or >.\n- **Addition and subtraction**: The Sam and Tina example adds 2 l 500 ml and 2 l 800 ml to get 5 l 300 ml, then subtracts this from 9 l to get 3 l 700 ml.\n\n## Worked example\nQuestion: Using NCERT Sam and Tina Question 4, find how much petrol Sam bought and how much petrol was in his bike before refuelling if the final reading was 9 l.\n\nSolution:\n- Step 1: Tina bought 2 l 500 ml. Sam bought 2 l 800 ml more.\n- Step 2: Add: 2 l 500 ml + 2 l 800 ml = 4 l 1,300 ml.\n- Step 3: Regroup 1,300 ml as 1 l 300 ml, so Sam bought 5 l 300 ml.\n- Step 4: To find the earlier fuel, calculate 9 l 0 ml - 5 l 300 ml.\n- Step 5: Regroup 9 l 0 ml as 8 l 1,000 ml.\n- Step 6: Subtract: 8 l 1,000 ml - 5 l 300 ml = 3 l 700 ml.\n- Final answer: Sam bought 5 l 300 ml, and the bike had 3 l 700 ml before refuelling.\n\n## Common mistake\nA common mistake is to treat 1 l as 100 ml while regrouping. The chapter uses 1 l = 1,000 ml.\n\n## Quick check question\nQuestion: Using NCERT Let Us Think Question 1, convert 1 l 400 ml into millilitres.\nAnswer: 1 l 400 ml = 1,400 ml.\nExplanation: One litre is 1,000 ml, and 1,000 ml + 400 ml = 1,400 ml.\n\n## Summary\n- Use litres for larger capacities and millilitres for smaller ones.\n- 1 l = 1,000 ml.\n- Convert before comparing mixed capacities.\n- Regroup 1,000 ml as 1 l in addition.\n- Borrow 1 l as 1,000 ml in subtraction.",
+    "Revision and recap": "# Revision and recap: Weight and Capacity\n\n## What you will learn\nYou will solve multi-step weight and capacity problems involving equal sharing, multiplication, cost, and comparison. You will also revise the complete unit relationships of the chapter.\n\n## Simple explanation\nA good measurement solution follows the same plan: identify the unit, convert if necessary, choose the operation, show every step, and check whether the answer is sensible.\n\n## Step-by-step breakdown\n- **Capacity multiplication**: NCERT Let Us Solve asks for the total in several equal containers, such as eight containers of 1 l 75 ml.\n- **Capacity division**: The factory problem shares 8 l 400 ml equally among seven containers.\n- **Repeated glasses**: A 5 l container and 250 ml glasses require conversion to 5,000 ml before division.\n- **Mixed comparison**: Riya's and Aarav's bottle totals are found separately and then compared.\n- **Cost links**: The chapter combines measurement with prices, such as ₹40 per litre or ₹25 per 250 ml.\n- **Unit ladder**: Weight: mg, g, kg, quintal, tonne. Capacity: ml, l.\n\n## Worked example\nQuestion: Solve NCERT Let Us Solve Question 4: 8 l 400 ml of oil is poured equally into 7 containers. How much does each container hold?\n\nSolution:\n- Step 1: Convert 8 l 400 ml to millilitres: 8 l = 8,000 ml.\n- Step 2: Add 400 ml: 8,000 ml + 400 ml = 8,400 ml.\n- Step 3: Divide equally: 8,400 ml ÷ 7 = 1,200 ml.\n- Step 4: Convert 1,200 ml to litres and millilitres: 1,200 ml = 1 l 200 ml.\n- Final answer: Each container holds 1 l 200 ml.\n\n## Common mistake\nA common mistake is to divide 8 by 7 and 400 by 7 separately even when the parts do not divide conveniently. Converting the whole capacity to millilitres gives a clean division.\n\n## Quick check question\nQuestion: Using NCERT Let Us Solve Question 5, how much buttermilk is in 8 containers if each holds 1 l 75 ml?\nAnswer: 8 l 600 ml.\nExplanation: Convert 1 l 75 ml to 1,075 ml. Then 1,075 × 8 = 8,600 ml, which is 8 l 600 ml.\n\n## Summary\n- Convert to a single smaller unit when it makes an operation easier.\n- Check whether the final smaller-unit part is below 1,000.\n- Use multiplication for equal repeated quantities and division for equal sharing.\n- Keep rates and units together in cost problems.\n- Weight and capacity use different units, but the same operation strategies apply."
+  }
+}

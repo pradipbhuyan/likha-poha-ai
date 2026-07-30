@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 5: Far and Near",
+  "central_question": "How can we choose, convert, compare, estimate, and calculate with units of length from millimetres to kilometres, as well as feet and inches?",
+  "in_scope_units": [
+    "Choosing metre or centimetre for familiar lengths",
+    "Recognising equivalent lengths written in metres and centimetres using double number lines",
+    "Comparing mixed-unit lengths and using statue heights",
+    "Measuring long distances with tapes, measuring wheels, rangefinders, and laser distance meters",
+    "Understanding 1,000 metres as 1 kilometre and applying intervals in a 3-km race",
+    "Reading and subtracting distances in the Vivek Express route table",
+    "Measuring small objects in millimetres and reading ruler subdivisions",
+    "Relationships among millimetres, centimetres, metres, and kilometres",
+    "Converting between single-unit and mixed-unit measurements",
+    "Adding and subtracting lengths with regrouping",
+    "Multiplying and dividing lengths in cloth, embroidery, and road-work situations",
+    "Estimating heights and depths using references",
+    "Using feet and inches, measuring height, and solving the final operation-sign grid"
+  ],
+  "banned_topics": [
+    "area, perimeter, volume, and capacity",
+    "mass and weight units",
+    "decimal metric conversions",
+    "formal scale drawing",
+    "speed and time calculations",
+    "Pythagoras theorem",
+    "precise scientific conversion of inches or feet beyond the chapter’s stated approximations"
+  ],
+  "must_include_keywords": [
+    "metre",
+    "centimetre",
+    "millimetre",
+    "kilometre",
+    "appropriate unit",
+    "double number line",
+    "equivalent length",
+    "compare lengths",
+    "Statue of Unity",
+    "long tape",
+    "rodometer",
+    "rangefinder",
+    "laser distance meter",
+    "1,000 m = 1 km",
+    "kilometre race",
+    "500 m intervals",
+    "Vivek Express",
+    "distance from Dibrugarh",
+    "ruler marks",
+    "1 cm = 10 mm",
+    "100 cm = 1 m",
+    "unit conversion",
+    "mixed units",
+    "adding lengths",
+    "subtracting lengths",
+    "regrouping",
+    "1,000 m = 1 km",
+    "multiplying lengths",
+    "dividing lengths",
+    "estimate",
+    "reference length",
+    "inch",
+    "foot",
+    "1 inch = 2 cm 5 mm",
+    "1 foot = 12 inches or 30 cm",
+    "measure your height"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The larger numerical value always represents the longer length.",
+      "correction": "Lengths must first be written in the same unit; for example, 456 cm is less than 5 m because 5 m = 500 cm."
+    },
+    {
+      "claim": "One centimetre contains 100 millimetres.",
+      "correction": "The chapter states `1 cm = 10 mm`; `100 cm = 1 m`."
+    },
+    {
+      "claim": "Mixed units can be added by combining every number without regard to its unit.",
+      "correction": "Add kilometres with kilometres, metres with metres, centimetres with centimetres, and then regroup using the correct unit relationship."
+    },
+    {
+      "claim": "When subtracting 16 m 75 cm from 63 m, the centimetres can be subtracted as `0 − 75` without regrouping.",
+      "correction": "Regroup 1 m as 100 cm, so 63 m becomes 62 m 100 cm before subtracting."
+    },
+    {
+      "claim": "The textbook values `1 inch = 2 cm 5 mm` and `1 foot = 30 cm` are exact scientific conversions.",
+      "correction": "Use them as the chapter’s classroom approximations for this lesson and do not introduce a different conversion system."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Let Us Find and Different Units but Same Measure on pages 57–58: choose m or cm and match equivalent measures",
+    "NCERT Let Us Compare and statue-height questions on page 58: convert before comparing",
+    "NCERT Measuring Long Distances, Kilometre Race, and Vivek Express on pages 59–61: use kilometre relationships, intervals, and route-table differences",
+    "NCERT World of Small Things, Let Us Draw, and conversion exercises on pages 61–64: measure in mm and convert among mm, cm, m, and km",
+    "NCERT adding and subtracting examples and Let Us Do on pages 64–66: regroup mixed units",
+    "NCERT Multiplying and Dividing Lengths, Let Us Estimate, feet and inches, Measure Your Height, and Try This on pages 66–69"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The closing practice spans Let Us Do Questions 1–4 on page 66, Multiplying and Dividing Lengths Questions 1–4 on pages 66–67, Let Us Estimate Questions 1–3, Measure Your Height, and the final Try This grid on pages 68–69.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

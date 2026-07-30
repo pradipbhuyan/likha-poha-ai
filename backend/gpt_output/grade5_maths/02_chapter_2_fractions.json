@@ -1,0 +1,119 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 2: Fractions",
+    "central_question": "How can we represent, generate, and compare fractions—including fractions greater than one—using equal parts, equivalent forms, and reference points on a number line?",
+    "in_scope_units": [
+      "Opening chocolate comparison: understanding that fractional parts can be compared fairly only when the wholes are the same size",
+      "Playing with a Grid: representing fractions by shading equal parts of rectangular grids",
+      "Equivalent fractions introduction: recognising that 1/3 and 2/6 name the same shaded part",
+      "Fun with Fraction Kit: making wholes and matching pieces such as 1/2 and 2/4",
+      "Making Equivalent Fractions: dividing the same whole into more equal parts to generate patterns such as 1/3 = 2/6 = 3/9 = 4/12",
+      "Comparing Fractions—Same Denominator: comparing the numbers of equal-sized pieces",
+      "Comparing Fractions—Same Numerator: comparing the sizes of pieces when the same number of pieces is taken",
+      "Fractions Greater Than 1: combining halves, fourths, and thirds into wholes and locating the results on number lines",
+      "Comparing Fractions With Reference to 1 (a whole): deciding whether fractions are below, equal to, or above one",
+      "Comparing Fractions with Reference to 1/2: recognising fractions equal to, below, or above half",
+      "Try This: finding the total length of sixteen ants when each is 1/4 cm long",
+      "Fun with Relations: solving the final family-relationship reasoning question"
+    ],
+    "banned_topics": [
+      "formal addition or subtraction of fractions with unlike denominators",
+      "multiplication and division of one fraction by another fraction",
+      "conversion between fractions, decimals, and percentages",
+      "ratio and proportion methods beyond the equivalent-fraction patterns shown in this chapter",
+      "algebraic equations involving fractions",
+      "formal lowest-term or greatest-common-factor procedures not taught in the chapter"
+    ],
+    "must_include_keywords": [
+      "whole",
+      "equal parts",
+      "numerator",
+      "denominator",
+      "same-sized wholes",
+      "Playing with a Grid",
+      "shaded region",
+      "equivalent fractions",
+      "fraction kit",
+      "unit fraction",
+      "make a whole",
+      "1/3 = 2/6",
+      "1/2 = 2/4",
+      "1/3 = 2/6 = 3/9 = 4/12",
+      "2/5 = 4/10",
+      "same denominator",
+      "same numerator",
+      "less than sign",
+      "greater than sign",
+      "fractions greater than 1",
+      "halves",
+      "fourths",
+      "thirds",
+      "number line",
+      "5/2 = 2 1/2",
+      "9/4 = 2 1/4",
+      "4/3 = 1 1/3",
+      "reference to 1",
+      "reference to 1/2",
+      "4/8 = 1/2",
+      "3/6 = 1/2",
+      "paratha",
+      "pizza",
+      "Try This",
+      "1/4 cm",
+      "Fun with Relations"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "One-half is always a larger quantity than one-third, even when the wholes are different sizes.",
+        "correction": "Fractions from different wholes can be compared fairly only when the wholes are the same size; in the opening chocolate picture, 1/3 of the larger chocolate is greater than 1/2 of the smaller chocolate."
+      },
+      {
+        "claim": "Equivalent fractions must have the same numerator and denominator.",
+        "correction": "Equivalent fractions can use different numbers but represent the same part of the same whole, such as 1/3 and 2/6."
+      },
+      {
+        "claim": "To make an equivalent fraction, multiply only the denominator.",
+        "correction": "Multiply both numerator and denominator by the same number; for example, 1/3 becomes 2/6 by multiplying both by 2."
+      },
+      {
+        "claim": "For fractions with the same denominator, the fraction with the smaller numerator is greater.",
+        "correction": "With the same denominator, the fraction with the larger numerator is greater because it contains more equal-sized pieces."
+      },
+      {
+        "claim": "For fractions with the same numerator, the fraction with the larger denominator is greater.",
+        "correction": "With the same numerator, the fraction with the smaller denominator is greater because each piece is larger."
+      },
+      {
+        "claim": "A fraction greater than one must be a whole number.",
+        "correction": "A fraction can be greater than one without being a whole number, such as 5/2 = 2 1/2 or 9/4 = 2 1/4."
+      },
+      {
+        "claim": "Any marks placed between 0 and 1 form a correct fraction number line.",
+        "correction": "The interval between consecutive whole numbers must be divided into equal parts; halves require 2 equal parts and fourths require 4 equal parts."
+      },
+      {
+        "claim": "A larger numerator alone proves that one fraction is greater when denominators differ.",
+        "correction": "When both numerator and denominator differ, use a valid method such as comparing each fraction with 1 or 1/2, as the chapter demonstrates."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the NCERT opening chocolate example on page 17 to show why the wholes must be the same size before fractional parts are compared.",
+      "Use NCERT 'Playing with a Grid' on page 17 to connect fractional notation with equal shaded parts.",
+      "Use NCERT 'Fun with Fraction Kit' on pages 18-20 and 'Let Us Do' page 19 Q2A to establish 1/2 = 2/4 and 1/3 = 2/6.",
+      "Use NCERT 'Making Equivalent Fractions' on pages 20-21 and 'Let Us Do' page 22 Q3 to practise generating and completing equivalent fractions.",
+      "Use NCERT comparison exercises on pages 22-23 to contrast the same-denominator and same-numerator rules.",
+      "Use the NCERT paratha examples on pages 24-26 and pizza example on pages 27-28 to represent fractions greater than one on number lines.",
+      "Finish with NCERT comparison sets on pages 29-31 using 1 and 1/2 as reference points, followed by the page 31 'Try This' ant-length problem."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter has no single separately numbered end-of-chapter exercise; practice is distributed across the 'Let Us Do' sets on pages 19, 22-23, and 28-31, followed by 'Try This' and 'Fun with Relations' on page 31."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Fractions\n\n## What you will learn\nYou will learn why a fraction must always be connected to a particular whole. You will also identify equal parts in pictures and grids, and understand why fractions taken from different-sized wholes cannot be compared only by looking at their numerators and denominators.\n\n## Simple explanation\nA fraction tells us how many equal parts of a whole are being considered. The denominator tells the total number of equal parts, and the numerator tells how many of those parts are chosen. Before comparing two fractions, we must check that the wholes are the same size.\n\n## Step-by-step breakdown\n- **The whole matters**: In the opening chocolate example on NCERT page 17, the two chocolates are different sizes. Therefore, `1/3` of the larger chocolate can be bigger than `1/2` of the smaller chocolate.\n- **Equal parts are necessary**: A shape or object must be divided into equal parts before the parts can be named using fractions.\n- **Numerator**: The top number tells how many equal parts are selected or shaded.\n- **Denominator**: The bottom number tells the total number of equal parts in one whole.\n- **Comparing fractions from different wholes**: We cannot say that `1/2` is always a larger quantity than `1/3` unless both fractions refer to wholes of the same size.\n- **Playing with a Grid**: The grid activity on NCERT page 17 asks students to shade `1/8`, `1/6`, and `1/12` of equal grids. It helps us see a fraction as a selected part of an equally divided whole.\n\n## Worked example\nQuestion: In the NCERT Chapter 2 opening chocolate example on page 17, one chocolate has 4 equal pieces and the other has 9 equal pieces. Compare `1/2` of the 4-piece chocolate with `1/3` of the 9-piece chocolate.\n\nSolution:\n- Step 1: Find `1/2` of the 4-piece chocolate: `4 ÷ 2 = 2` pieces.\n- Step 2: Find `1/3` of the 9-piece chocolate: `9 ÷ 3 = 3` pieces.\n- Step 3: Compare the amounts: `3` pieces are more than `2` pieces.\n- Final answer: `1/3` of the larger 9-piece chocolate is bigger than `1/2` of the smaller 4-piece chocolate. This does not contradict the usual comparison of `1/2` and `1/3`, because the two wholes are different sizes.\n\n## Common mistake\nA common mistake is to say, “`1/2` is always more than `1/3`.” That statement is correct only when the two fractions are taken from the same whole or from equal-sized wholes.\n\n## Quick check question\nQuestion: In the NCERT opening chocolate example on page 17, can you compare `1/2` of one chocolate with `1/3` of another chocolate without checking the sizes of the two chocolates?\nAnswer: No. First check whether the chocolates are the same size.\nExplanation: Fractions describe parts of wholes. When the wholes have different sizes, the actual sizes of the fractional parts may also be different.\n\n## Summary\n- A fraction represents equal parts of a whole.\n- The numerator counts selected parts, and the denominator counts all equal parts.\n- The size of the whole affects the size of a fractional part.\n- Fractions from different wholes can be compared fairly only when the wholes are equal in size.\n- Grids help us see fractions by shading equal parts.",
+    "Core explanation": "# Core Explanation: Fractions\n\n## What you will learn\nYou will learn what equivalent fractions are and how a fraction kit, shaded figures, and multiplication patterns can show them. You will also learn how several smaller fraction pieces can make the same part of a whole or make one complete whole.\n\n## Simple explanation\nEquivalent fractions are different fraction names for the same part of a whole. For example, the shaded region can be written as `1/3` or `2/6`. We can generate an equivalent fraction by multiplying both the numerator and the denominator by the same whole number.\n\n## Step-by-step breakdown\n- **Same part, different names**: The picture on NCERT page 18 shows that `1/3 = 2/6`. Both fractions cover the same shaded part of the same whole.\n- **Fraction-kit relationship**: One `1/2` piece has the same size as two `1/4` pieces, so `1/2 = 2/4`.\n- **Making a whole**: Five pieces of `1/5` make one whole because `5 × 1/5 = 5/5 = 1`.\n- **Counting smaller pieces**: Two `1/6` pieces fit into `1/3`, because `1/3 = 2/6`.\n- **Generating equivalent fractions**: Multiplying the numerator and denominator by the same number keeps the fraction’s value unchanged. For example, `1/3 × 2/2 = 2/6`, `1/3 × 3/3 = 3/9`, and `1/3 × 4/4 = 4/12`.\n- **Same shaded region**: NCERT pages 20-21 show `1/3`, `2/6`, `3/9`, and `4/12` as the same shaded region after the whole is divided into more equal parts.\n- **Equivalent forms of two-fifths**: The chapter similarly begins the pattern `2/5 = 4/10` and asks students to continue it using more equal divisions.\n- **Checking equivalence**: Two fractions are equivalent when they name the same part of the same whole. A reliable numerical check is to see whether the same multiplier has been applied to both numerator and denominator.\n\n## Worked example\nQuestion: NCERT “Let Us Do”, page 19, Q2A asks: How many `1/6` pieces make `1/3`?\n\nSolution:\n- Step 1: Write `1/3` with denominator `6`.\n- Step 2: Multiply both numerator and denominator by `2`: `1/3 = (1 × 2)/(3 × 2)`.\n- Step 3: Calculate: `(1 × 2)/(3 × 2) = 2/6`.\n- Step 4: `2/6` means two pieces of size `1/6`.\n- Final answer: Two `1/6` pieces make `1/3`.\n\n## Common mistake\nA common mistake is to multiply only the denominator. For example, changing `1/3` to `1/6` changes the value. To make an equivalent fraction, multiply both the numerator and denominator by the same number: `1/3 = 2/6`.\n\n## Quick check question\nQuestion: NCERT “Let Us Do”, page 22, Q3(a) asks you to complete `2/5 = __/10`. What number belongs in the box?\nAnswer: `4`, so `2/5 = 4/10`.\nExplanation: The denominator `5` is multiplied by `2` to get `10`, so the numerator `2` must also be multiplied by `2`: `2 × 2 = 4`.\n\n## Summary\n- Equivalent fractions name the same part of the same whole.\n- `1/3 = 2/6 = 3/9 = 4/12`.\n- `1/2 = 2/4` because two fourths have the same size as one half.\n- Multiply both numerator and denominator by the same number to form an equivalent fraction.\n- Fraction kits and shaded figures make equivalence visible.\n- Several equal fraction pieces can combine to make one whole.",
+    "Worked examples": "# Worked Examples: Fractions\n\n## What you will learn\nYou will learn two direct rules for comparing fractions: one for fractions with the same denominator and one for fractions with the same numerator. You will use the symbols `<` and `>` and explain each comparison using the sizes or numbers of equal pieces.\n\n## Simple explanation\nWhen denominators are the same, the pieces have the same size, so the fraction with more pieces is greater. When numerators are the same, both fractions use the same number of pieces, so the fraction made from larger pieces is greater; a smaller denominator gives larger pieces.\n\n## Step-by-step breakdown\n- **Same denominator**: Compare the numerators. The larger numerator gives the larger fraction because more equal-sized pieces are taken.\n- **Chikki example**: On NCERT page 22, Sevi ate `1/3` and Shami ate `2/3`. Since two one-third pieces are more than one one-third piece, `2/3 > 1/3`.\n- **Same numerator**: Compare the denominators. The smaller denominator gives the larger fraction because the whole is divided into fewer, larger pieces.\n- **Paratha example**: On NCERT page 23, `1/6` is smaller than `1/5`, so four sixths are smaller than four fifths: `4/6 < 4/5`.\n- **Meaning of the signs**: The open side of `<` or `>` faces the greater fraction, while the pointed side faces the smaller fraction.\n- **Do not mix the rules**: The same-denominator rule and the same-numerator rule work for different situations and should not be interchanged.\n\n## Worked example\nQuestion: Solve two NCERT comparisons: page 23 “Let Us Do” Q1(d), `7/8 __ 3/8`, and page 23 “Let Us Do” under “Same Numerator” Q1(b), `4/9 __ 4/10`.\n\nSolution:\n- Step 1: For `7/8` and `3/8`, the denominators are the same.\n- Step 2: Compare the numerators: `7 > 3`.\n- Step 3: Therefore, `7/8 > 3/8`.\n- Step 4: For `4/9` and `4/10`, the numerators are the same.\n- Step 5: Compare the unit fractions: a whole divided into `9` equal parts gives larger pieces than a whole divided into `10` equal parts, so `1/9 > 1/10`.\n- Step 6: Four larger ninth-pieces are greater than four smaller tenth-pieces.\n- Final answer: `7/8 > 3/8` and `4/9 > 4/10`.\n\n## Common mistake\nA common mistake is to think that a larger denominator always means a larger fraction. For fractions with the same numerator, the opposite is true: `4/9 > 4/10` because ninths are larger pieces than tenths.\n\n## Quick check question\nQuestion: NCERT page 23, “Comparing Fractions—Same Numerator”, Q1(c): Compare `2/7` and `2/5` using `<` or `>`.\nAnswer: `2/7 < 2/5`.\nExplanation: Both fractions have numerator `2`. Fifths are larger than sevenths because a whole divided into `5` equal parts has larger pieces than the same whole divided into `7` equal parts.\n\n## Summary\n- With the same denominator, compare numerators.\n- With the same numerator, the fraction with the smaller denominator is greater.\n- `2/3 > 1/3` because it contains more one-third pieces.\n- `4/6 < 4/5` because sixths are smaller than fifths.\n- Use `<` and `>` only after deciding which quantity is greater.\n- Always imagine the fractions as parts of equal-sized wholes.",
+    "Exam-style problems": "# Exam-Style Problems: Fractions\n\n## What you will learn\nYou will learn to recognise and represent fractions greater than one. You will combine halves, fourths, and thirds into complete wholes, write the remaining part, and locate the total on a number line.\n\n## Simple explanation\nA fraction is greater than one when it contains more equal parts than are needed to make one whole. Two halves make one whole, four fourths make one whole, and three thirds make one whole. Extra parts can be written as a fraction greater than one or as a whole number plus a fraction.\n\n## Step-by-step breakdown\n- **Halves on a number line**: The interval from `0` to `1` is divided into two equal parts. Each jump is `1/2`, and `2/2 = 1`.\n- **Five halves**: NCERT page 24 shows `5/2 = 2 + 1/2 = 2 1/2`.\n- **Six halves**: NCERT page 25 shows `6/2 = 3`, because three pairs of halves make three wholes.\n- **Fourth-pieces**: Four `1/4` pieces make one whole. Therefore, `9/4` contains two complete groups of four fourths and one extra fourth.\n- **Fractions greater than one**: When the numerator is greater than the denominator, the fraction is greater than one. When numerator and denominator are equal, the fraction equals one.\n- **Number-line representation**: Mark equal jumps of the unit fraction. The denominator tells how many equal jumps fit between consecutive whole numbers.\n- **Pizza thirds**: On NCERT pages 27-28, three one-third slices make `3/3 = 1`, while four one-third slices make `4/3 = 1 + 1/3 = 1 1/3`.\n- **Whole-and-fraction form**: Group as many equal parts as possible into complete wholes, then write the leftover fraction.\n\n## Worked example\nQuestion: In the NCERT “Fractions Greater Than 1” example on page 26, Dadaji took 9 pieces of `1/4` paratha. How many parathas did he eat?\n\nSolution:\n- Step 1: Nine pieces of size `1/4` make `9 × 1/4 = 9/4` parathas.\n- Step 2: Four fourths make one whole: `4/4 = 1`.\n- Step 3: Group the 9 fourths as `4 fourths + 4 fourths + 1 fourth`.\n- Step 4: Write the groups as fractions: `9/4 = 4/4 + 4/4 + 1/4`.\n- Step 5: Replace each `4/4` with `1`: `9/4 = 1 + 1 + 1/4`.\n- Step 6: Add the whole numbers: `1 + 1 + 1/4 = 2 + 1/4 = 2 1/4`.\n- Final answer: Dadaji ate `9/4` parathas, which is `2 1/4` parathas.\n\n## Common mistake\nA common mistake is to read `9/4` as nine whole parathas. The denominator shows that each piece is only one-fourth of a paratha. Four such pieces, not one piece, make one whole.\n\n## Quick check question\nQuestion: From NCERT “Let Us Do”, page 28, identify which of these fractions are greater than one: `7/9`, `5/4`, `7/3`, `13/11`, `12/5`, and `12/8`.\nAnswer: `5/4`, `7/3`, `13/11`, `12/5`, and `12/8` are greater than one. `7/9` is less than one.\nExplanation: A positive fraction is greater than one when its numerator is greater than its denominator. Only `7/9` has a numerator smaller than its denominator.\n\n## Summary\n- A fraction greater than one contains at least one complete whole and an extra part, or several complete wholes.\n- Two halves, four fourths, and three thirds each make one whole.\n- `5/2 = 2 1/2` and `9/4 = 2 1/4`.\n- Equal jumps on a number line show repeated unit fractions.\n- A numerator greater than the denominator gives a fraction greater than one.\n- Group equal parts into wholes before writing the leftover fraction.",
+    "Revision and recap": "# Revision and Recap: Fractions\n\n## What you will learn\nYou will revise how to compare fractions by using the reference points `1` and `1/2`. You will also apply repeated one-fourths in the NCERT ant-length problem and review the chapter’s final logical relationship puzzle.\n\n## Simple explanation\nReference points help us compare fractions even when their numerators and denominators are different. A fraction below `1` is smaller than a fraction above `1`. Similarly, a fraction below `1/2` is smaller than a fraction above `1/2`.\n\n## Step-by-step breakdown\n- **Using 1 as a reference**: A fraction with numerator smaller than denominator is less than `1`; a fraction with numerator greater than denominator is more than `1`; equal numerator and denominator give exactly `1`.\n- **NCERT comparison with 1**: Page 29 compares `7/8` and `8/6`. Since `7/8 < 1` and `8/6 > 1`, we know `7/8 < 8/6`.\n- **Recognising one-half**: The chapter shows `4/8 = 1/2` and `3/6 = 1/2`. In each case, the numerator is half the denominator.\n- **Using 1/2 as a reference**: If a fraction is greater than half, its numerator is more than half of its denominator. If it is less than half, its numerator is less than half of its denominator.\n- **NCERT comparison with 1/2**: Page 30 shows that `3/6 = 1/2`, while `5/8 > 1/2`; therefore, `5/8 > 3/6`.\n- **Repeated one-fourths**: In the “Try This” problem on page 31, sixteen lengths of `1/4 cm` combine to make `16/4 cm`.\n- **Fun with Relations**: The only brother of your father’s sister is your father. A child of that person would be you or one of your siblings. This final item practises careful logical reading rather than fraction calculation.\n\n## Worked example\nQuestion: NCERT “Try This”, page 31: If the length of one ant is `1/4 cm`, what is the total length of 16 such ants walking in a line?\n\nSolution:\n- Step 1: Length of one ant = `1/4 cm`.\n- Step 2: Length of 16 ants = `16 × 1/4 cm`.\n- Step 3: Multiply: `16 × 1/4 = 16/4`.\n- Step 4: Divide: `16 ÷ 4 = 4`.\n- Final answer: The total length is `4 cm`.\n\n## Common mistake\nA common mistake is to compare only the numerators when the denominators are different. For example, `7/20` is not greater than `11/14` merely because both numbers must be considered. Using `1/2` shows that `7/20 < 1/2` while `11/14 > 1/2`.\n\n## Quick check question\nQuestion: NCERT page 31, comparison set: Compare `11/14` and `7/20` using `1/2` as a reference.\nAnswer: `11/14 > 7/20`.\nExplanation: Half of `14` is `7`, and `11 > 7`, so `11/14 > 1/2`. Half of `20` is `10`, and `7 < 10`, so `7/20 < 1/2`. Therefore, `11/14 > 7/20`.\n\n## Summary\n- Use `1` to separate fractions below one, equal to one, and above one.\n- Use `1/2` to compare fractions that lie on different sides of half.\n- `4/8` and `3/6` are both equal to `1/2`.\n- `7/8 < 8/6` because the first is below one and the second is above one.\n- Sixteen one-fourths make `16/4 = 4`.\n- Read relationship puzzles step by step, just as you read fraction problems carefully."
+  }
+}

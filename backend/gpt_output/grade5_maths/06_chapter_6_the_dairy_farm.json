@@ -1,0 +1,117 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 6: The Dairy Farm",
+    "central_question": "How can we use multiplication properties, place value, mental strategies, and written methods to calculate and reason about products in everyday situations?",
+    "in_scope_units": [
+      "Let Us Think: hidden-number multiplication puzzles, arranging digits for a product near 100, and counting pouch arrays.",
+      "Factor arrangements, the number-clue puzzle, and making numbers from a number-operation grid.",
+      "Order of Numbers in Multiplication: interchanging group size and number of groups without changing the product.",
+      "Patterns in Multiplication by 10s and 100s, extended to multiplication by 1,000.",
+      "Many Ways to Multiply: splitting, doubling, repeated addition, and using nearby friendly numbers.",
+      "Doubling and Halving: changing both factors while keeping the product unchanged.",
+      "Nearest Multiple: replacing a factor by a nearby multiple and adjusting the product.",
+      "Let Us Solve: flexible multiplication strategies in seating, jogging, books, cloth, milk, and fodder problems.",
+      "Waste and Composting: area-model and partial-product methods for two-digit multiplication and money saved.",
+      "Let Us Multiply: Nida's, Kanti's, and John's place-value-based multiplication methods.",
+      "Dairy Cooperative: multiplying larger numbers using expanded form and the standard place-value algorithm.",
+      "Check, Check!: identifying place-value and partial-product errors in children's solutions.",
+      "Let Us Do: equivalent multiplication expressions and efficient methods for products involving 25, 50, 75, 125, and nearby numbers.",
+      "Let Us Think: related products, coloured-box multiplication puzzles, and estimating products.",
+      "The King's Reward: repeated multiplication and comparing growth patterns.",
+      "Multiplication Patterns: effects of doubling or halving factors, special product patterns, and adjacent number pairs.",
+      "Final Let Us Solve: multi-step money, arrangement, and multiplication questions."
+    ],
+    "banned_topics": [
+      "Long division and division with remainders",
+      "Fractions, decimals, and percentages",
+      "Area and perimeter formulae",
+      "Algebraic notation using variables and formal distributive-law proofs",
+      "Powers and exponents as a formal topic"
+    ],
+    "must_include_keywords": [
+      "multiplication fact",
+      "product",
+      "factor",
+      "array",
+      "number of groups",
+      "group size",
+      "order of numbers",
+      "zero",
+      "place value",
+      "tens",
+      "hundreds",
+      "thousands",
+      "multiply by 10",
+      "multiply by 100",
+      "multiply by 1,000",
+      "expanded form",
+      "partial products",
+      "many ways to multiply",
+      "doubling",
+      "halving",
+      "nearest multiple",
+      "estimate",
+      "regrouping",
+      "carry",
+      "zero placeholder",
+      "Nida's method",
+      "Kanti's method",
+      "John's method",
+      "Mili's father's method",
+      "Dairy Cooperative",
+      "Waste and Composting",
+      "equivalent expressions",
+      "related products",
+      "multiplication pattern",
+      "The King's Reward",
+      "word problem"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Changing the order of two factors changes the product.",
+        "correction": "The chapter's packet arrays show that interchanging the number of groups and group size keeps the total unchanged, such as 6 × 13 = 13 × 6."
+      },
+      {
+        "claim": "Multiplying by 10 or 100 means attaching zeros without thinking about place value.",
+        "correction": "The chapter explains that multiplying by 10 shifts every digit one place to the left, while multiplying by 100 shifts every digit two places to the left."
+      },
+      {
+        "claim": "When one factor is doubled and the other is halved, the product also doubles.",
+        "correction": "Doubling one factor and halving the other keeps the product the same, as shown by 3 × 18 = 6 × 9 = 54."
+      },
+      {
+        "claim": "For 4 × 19, subtract 1 because 19 is one less than 20.",
+        "correction": "One whole group of 4 must be subtracted: 4 × 19 = 4 × 20 - 4."
+      },
+      {
+        "claim": "The tens partial product in a written multiplication can be placed in the ones column.",
+        "correction": "A tens factor represents groups of ten, so its partial product must be shifted one place left or written with the correct zero placeholder."
+      },
+      {
+        "claim": "An estimate must equal the exact product.",
+        "correction": "An estimate is a nearby value used to judge size and reasonableness; the exact product may differ."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Let Us Think Question 3 and the 60-pouch arrays to connect multiplication with different groupings.",
+      "Use NCERT Order of Numbers in Multiplication to establish that a × b = b × a through packet arrays.",
+      "Use NCERT Patterns in Multiplication by 10s and 100s and the place-value tables on pages 72-74.",
+      "Use NCERT Many Ways to Multiply for 18 × 5, followed by Doubling and Halving examples 3 × 18 and 22 × 5.",
+      "Use NCERT Nearest Multiple examples 4 × 19 and 14 × 21.",
+      "Use NCERT Waste and Composting Questions 1-2 to compare Nida's, Kanti's, and John's partial-product methods.",
+      "Use NCERT Dairy Cooperative Questions 1-3 for expanded form, larger products, and place-value algorithms.",
+      "Use NCERT Check, Check! to diagnose incorrect partial products and misplaced place values.",
+      "Finish with NCERT The King's Reward, Multiplication Patterns, and final Let Us Solve Questions 1-6."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Let Us Solve, Questions 1-6 on page 91, after the Multiplication Patterns activities on pages 89-90."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: The Dairy Farm\n\n## What you will learn\nYou will connect multiplication with equal groups, arrays, factors, and products. You will also see that changing the order of the factors changes the arrangement but not the total.\n\n## Simple explanation\nMultiplication describes equal groups. In an array, one factor can tell the number of groups and the other can tell the size of each group. Turning the array changes which factor has each role, but the number of objects remains the same.\n\n## Step-by-step breakdown\n- **Multiplication facts**: The chapter begins with shape puzzles and butter-milk pouch arrangements that use known multiplication facts to find unknown values and totals.\n- **Arrays and groupings**: The 60 pouches can be arranged as 30 groups of 2, 2 groups of 30, and other factor pairs whose product is 60.\n- **Factors and product**: The numbers being multiplied are factors, and their answer is the product.\n- **Order of factors**: Daljeet Kaur's packet arrangements show examples such as 2 × 3 and 3 × 2, or 6 × 13 and 13 × 6, with the same product.\n- **Multiplication by zero**: The chapter asks learners to compare 9 × 0 and 0 × 9; both products are 0.\n- **Reasoning with clues**: The 'Which number am I?' and number-operation-grid tasks use multiples, odd and even digits, and operations to narrow possible answers.\n\n## Worked example\nQuestion: Using NCERT Order of Numbers in Multiplication, find 6 × 13 and 13 × 6 and explain the pattern.\n\nSolution:\n- Step 1: For 6 × 13, there are 6 groups with 13 packets in each group.\n- Step 2: Calculate 6 × 13 = 6 × (10 + 3).\n- Step 3: 6 × 10 = 60 and 6 × 3 = 18.\n- Step 4: Add the partial products: 60 + 18 = 78.\n- Step 5: For 13 × 6, the number of groups and group size are interchanged, but the same 78 packets are present.\n- Final answer: 6 × 13 = 13 × 6 = 78.\n\n## Common mistake\nA common mistake is to think that 6 × 13 and 13 × 6 describe identical groupings. They describe different arrangements, but their total product is the same.\n\n## Quick check question\nQuestion: Using NCERT Let Us Think Question 3, write another multiplication fact for 60 besides 30 × 2.\nAnswer: One correct fact is 5 × 12 = 60.\nExplanation: Five equal groups of 12 pouches contain 5 × 12 = 60 pouches. Other factor pairs, such as 6 × 10, are also possible.\n\n## Summary\n- Multiplication represents equal groups.\n- An array shows the number of groups and the group size.\n- The factors can be interchanged without changing the product.\n- Any number multiplied by zero has product zero.\n- Factor pairs can make the same product in different arrangements.",
+    "Core explanation": "# Core explanation: The Dairy Farm\n\n## What you will learn\nYou will use place value and mental strategies to multiply efficiently. You will multiply by 10, 100, and 1,000, split numbers into parts, double and halve factors, and use nearby multiples.\n\n## Simple explanation\nThere is no single best method for every multiplication. A good strategy changes a difficult product into easier products while preserving its value.\n\n## Step-by-step breakdown\n- **Multiplying by 10**: Each digit moves one place value to the left, so 45 × 10 = 450.\n- **Multiplying by 100**: Each digit moves two place values to the left, so 3 × 100 = 300.\n- **Multiplying by 1,000**: Each digit moves three place values to the left, as in 5 × 1,000 = 5,000.\n- **Splitting a factor**: The chapter finds 18 × 5 by splitting 18 as 10 + 8, giving 10 × 5 + 8 × 5.\n- **Doubling and halving**: The same product can be formed by doubling one factor and halving the other, such as 3 × 18 = 6 × 9.\n- **Multiplying by 5 or 25**: Halving an even factor and doubling 5 to 10, or repeatedly adjusting 25 toward 50 or 100, often makes the calculation easier.\n- **Nearest multiple**: For 4 × 19, use 4 × 20 - 4; for 14 × 21, use 14 × 20 + 14.\n- **Choosing flexibly**: The chapter encourages learners to compare methods and select a strategy that gives simple partial products.\n\n## Worked example\nQuestion: Using NCERT Doubling and Halving, calculate 22 × 5 by halving one factor and doubling the other.\n\nSolution:\n- Step 1: Halve 22 to get 11.\n- Step 2: Double 5 to get 10.\n- Step 3: The product is unchanged, so 22 × 5 = 11 × 10.\n- Step 4: Calculate 11 × 10 = 110.\n- Final answer: 22 × 5 = 110.\n\n## Common mistake\nA common mistake is to double both factors or halve both factors. To keep the product unchanged, double one factor and halve the other.\n\n## Quick check question\nQuestion: Using NCERT Nearest Multiple Question (d)(3), find 75 × 31.\nAnswer: 75 × 31 = 2,325.\nExplanation: Use the nearby multiple 30: 75 × 31 = 75 × 30 + 75 = 2,250 + 75 = 2,325.\n\n## Summary\n- Multiplying by 10, 100, and 1,000 changes place value.\n- Numbers can be split into convenient parts.\n- Doubling one factor and halving the other preserves the product.\n- A nearby multiple may require adding or subtracting one full group.\n- Choose the strategy that produces the easiest partial products.",
+    "Worked examples": "# Worked examples: The Dairy Farm\n\n## What you will learn\nYou will multiply one-digit and two-digit numbers using expanded form and partial products. You will compare Nida's, Kanti's, and John's methods and use them in practical word problems.\n\n## Simple explanation\nExpanded-form multiplication breaks each factor into tens and ones. Every part multiplies every relevant part, and the partial products are then added.\n\n## Step-by-step breakdown\n- **Nida's grid method**: The Waste and Composting example splits 35 as 30 + 5 and 12 as 10 + 2, then records the four products in a grid.\n- **Kanti's method**: Kanti writes all four partial products separately: 2 × 5, 2 × 30, 10 × 5, and 10 × 30.\n- **John's method**: John first calculates 2 × 35 and 10 × 35, then adds the two larger partial products.\n- **Area or box model**: The Let Us Multiply section uses boxes to organise products such as 32 × 8 and 69 × 45 by place value.\n- **Two-digit by two-digit multiplication**: For 69 × 45, the chapter combines 5 × 69 and 40 × 69.\n- **Word problems**: The chapter applies multiplication to seats, jogging distance, boxes of books, cloth, milk, fodder, compost, shopping, cricket scores, and library shelves.\n\n## Worked example\nQuestion: Using NCERT Waste and Composting Question 1, find the kitchen waste produced in 12 months if the family produces 35 kg each month.\n\nSolution:\n- Step 1: Write 35 = 30 + 5 and 12 = 10 + 2.\n- Step 2: Multiply 10 × 30 = 300.\n- Step 3: Multiply 10 × 5 = 50.\n- Step 4: Multiply 2 × 30 = 60.\n- Step 5: Multiply 2 × 5 = 10.\n- Step 6: Add all partial products: 300 + 50 + 60 + 10 = 420.\n- Final answer: The family produces 420 kg of kitchen waste in a year.\n\n## Common mistake\nA common mistake is to calculate only 10 × 30 and 2 × 5. Every part of one factor must be multiplied by every part of the other factor.\n\n## Quick check question\nQuestion: Using NCERT Waste and Composting Question 2, how much money is saved by making 150 kg of compost when 1 kg costs ₹24?\nAnswer: The family saves ₹3,600.\nExplanation: Calculate ₹24 × 150 = ₹24 × (100 + 50) = ₹2,400 + ₹1,200 = ₹3,600.\n\n## Summary\n- Expanded form separates tens, ones, hundreds, and other place values.\n- All required partial products must be included.\n- Nida, Kanti, and John organise the same mathematics differently.\n- Add partial products only after checking their place values.\n- Multiplication solves repeated-quantity and unit-cost situations.",
+    "Exam-style problems": "# Exam-style problems: The Dairy Farm\n\n## What you will learn\nYou will multiply larger numbers using expanded form and a compact place-value algorithm. You will learn why carrying and zero placeholders must represent their correct place values and how to detect errors in written solutions.\n\n## Simple explanation\nThe compact written method is a shortened form of partial products. Each digit in the multiplier has a place value, so multiplying by 20 is not the same as multiplying by 2, and multiplying by 100 is not the same as multiplying by 1.\n\n## Step-by-step breakdown\n- **One-digit multiplier**: The Dairy Cooperative example uses 268 × 4 and connects carrying with 4 × 8 ones, 4 × 6 tens, and 4 × 2 hundreds.\n- **Two-digit multiplier**: For 453 × 13, the partial products are 3 × 453 = 1,359 and 10 × 453 = 4,530.\n- **Three-digit multiplier**: For 574 × 125, the chapter calculates products for 5 ones, 2 tens, and 1 hundred before adding them.\n- **Place-value zeros**: A tens partial product must begin in the tens place, and a hundreds partial product must begin in the hundreds place.\n- **Carrying**: A carried value belongs to the next place-value product, not to the original digit alone.\n- **Check, Check!**: The chapter asks learners to decide whether solutions are correct, identify omitted place values or wrong partial products, and correct the work.\n- **Equivalent expressions**: Products can be checked by rewriting them, such as 55 × 9 = 50 × 9 + 5 × 9 = 55 × 10 - 55.\n\n## Worked example\nQuestion: Using NCERT Dairy Cooperative Question 2, calculate 453 × 13 litres.\n\nSolution:\n- Step 1: Write 13 = 10 + 3.\n- Step 2: Calculate 3 × 453: 3 × 400 = 1,200, 3 × 50 = 150, and 3 × 3 = 9.\n- Step 3: Add these parts: 1,200 + 150 + 9 = 1,359.\n- Step 4: Calculate 10 × 453 = 4,530.\n- Step 5: Add the two partial products: 1,359 + 4,530 = 5,889.\n- Final answer: The dairy cooperative receives 5,889 litres of milk each day from the Gir cows.\n\n## Common mistake\nA common mistake is to write the partial product for 10 × 453 as 453. The digit 1 is in the tens place, so it represents 10 and gives 4,530.\n\n## Quick check question\nQuestion: In NCERT Check, Check!, is Asma's answer 2,714 for 46 × 59 correct?\nAnswer: Yes, Asma's answer is correct.\nExplanation: Using expanded form, 46 × 59 = 40 × 50 + 6 × 50 + 40 × 9 + 6 × 9 = 2,000 + 300 + 360 + 54 = 2,714.\n\n## Summary\n- The standard method is built from place-value partial products.\n- A tens digit multiplies as tens, not as ones.\n- Zero placeholders keep partial products in the correct columns.\n- Carried values must be added to the next place-value product.\n- Expanded form and equivalent expressions help check answers.",
+    "Revision and recap": "# Revision and recap: The Dairy Farm\n\n## What you will learn\nYou will revise estimation, related products, repeated multiplication, multiplication patterns, and multi-step problems. You will use known products to find nearby products without starting again.\n\n## Simple explanation\nMultiplication facts are connected. If one factor increases by 1, one extra group is added; if it decreases by 1, one group is removed. Doubling or halving factors also changes the product in predictable ways.\n\n## Step-by-step breakdown\n- **Related products**: From 17 × 23 = 391, the chapter finds 17 × 24 by adding 17 and 18 × 23 by adding 23.\n- **Estimation**: Products such as 248 × 49 are matched to nearby values by rounding to friendly factors, such as 250 × 50.\n- **The King's Reward**: The three rewards repeatedly multiply their starting amounts by 2, 3, or 5 for seven days, showing how different growth factors create very different totals.\n- **Doubling and halving patterns**: If one factor is halved and the other doubled, the product stays the same; changing only one factor changes the product accordingly.\n- **Special numerical patterns**: The chapter explores products such as 111 × 111, numbers ending in 5 multiplied by themselves, multiplication by 11, and expressions of the form a number × 9 plus its last part.\n- **Adjacent pairs**: The number-pair grid asks learners to identify the smallest and largest adjacent products by comparing likely pairs before calculating.\n- **Final multi-step questions**: The final Let Us Solve combines multiplication with addition, subtraction, money, rows, students, and known-product reasoning.\n\n## Worked example\nQuestion: Using NCERT final Let Us Solve Question 2(a), find the total money collected from 57 tickets at ₹115 each and participation fees from 3 teams at ₹1,599 each.\n\nSolution:\n- Step 1: Calculate ticket money: 57 × ₹115 = 57 × (₹100 + ₹15).\n- Step 2: 57 × ₹100 = ₹5,700 and 57 × ₹15 = 57 × (₹10 + ₹5) = ₹570 + ₹285 = ₹855.\n- Step 3: Ticket money = ₹5,700 + ₹855 = ₹6,555.\n- Step 4: Calculate participation fees: 3 × ₹1,599 = ₹4,797.\n- Step 5: Add both collections: ₹6,555 + ₹4,797 = ₹11,352.\n- Final answer: The club collected ₹11,352 in total.\n\n## Common mistake\nA common mistake is to use the factor that changed instead of the unchanged factor when finding a related product. From 17 × 23 to 17 × 24, one extra group of 17 is added, not 23.\n\n## Quick check question\nQuestion: Using NCERT final Let Us Solve Question 5, if 67 × 67 = 4,489, find 67 × 68 without full multiplication.\nAnswer: 67 × 68 = 4,556.\nExplanation: The second factor increases from 67 to 68, so add one extra group of 67: 4,489 + 67 = 4,556.\n\n## Summary\n- Use a known product to find a nearby product.\n- Estimation checks whether an exact answer is reasonable.\n- Repeated multiplication can grow very quickly.\n- Factor changes create predictable product changes.\n- Patterns can shorten calculations but should still be checked.\n- Multi-step problems may require multiplication followed by addition or subtraction."
+  }
+}

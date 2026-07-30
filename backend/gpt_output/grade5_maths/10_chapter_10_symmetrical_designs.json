@@ -1,0 +1,90 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 10: Symmetrical Designs",
+    "central_question": "How can we recognise and create designs that remain unchanged after reflection, rotation, or both?",
+    "in_scope_units": [
+      "Alphabet Cutout: reflection symmetry, vertical and horizontal lines of symmetry, and folded-paper cutouts.",
+      "Let Us Make a Windmill Firki: constructing a firki and observing quarter, half, three-quarter, and full turns.",
+      "Rotational symmetry in letters, digits, and multi-digit number designs.",
+      "Making Designs: changing and colouring arrangements to create half-turn and quarter-turn symmetry.",
+      "Symmetrical designs with squares and equilateral triangles.",
+      "Sorting designs into only rotational, only reflection, or both symmetries.",
+      "Wooden Block Print: matching carved blocks with prints and studying repeated rotational arrangements.",
+      "Let Us Do and Project Work: identifying border symmetries and creating vegetable-block patterns."
+    ],
+    "banned_topics": [
+      "Translations and glide reflections",
+      "Coordinate transformations",
+      "Formal angle measurement of rotations in degrees",
+      "Congruence proofs",
+      "Tessellation theory beyond the designs shown"
+    ],
+    "must_include_keywords": [
+      "reflection symmetry",
+      "line of symmetry",
+      "vertical line",
+      "horizontal line",
+      "fold",
+      "half",
+      "quarter",
+      "alphabet cutout",
+      "rotational symmetry",
+      "centre point",
+      "quarter turn",
+      "half turn",
+      "three-quarter turn",
+      "full turn",
+      "firki",
+      "orientation",
+      "tracing paper",
+      "digits",
+      "symmetrical design",
+      "square",
+      "equilateral triangle",
+      "only rotational symmetry",
+      "only reflection symmetry",
+      "both symmetries",
+      "wooden block",
+      "print",
+      "Rajasthan",
+      "vegetable block",
+      "repeating pattern"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A shape has rotational symmetry because it matches after one full turn.",
+        "correction": "Every shape matches after a full turn; rotational symmetry requires a match at a smaller turn such as one-quarter or one-half."
+      },
+      {
+        "claim": "Reflection symmetry and rotational symmetry are the same.",
+        "correction": "Reflection symmetry uses a mirror line, while rotational symmetry uses a turn around a centre point."
+      },
+      {
+        "claim": "If a letter has one line of symmetry, it can always be made from a quarter cutout.",
+        "correction": "One line of symmetry allows a half cutout; two suitable perpendicular lines can allow a quarter cutout."
+      },
+      {
+        "claim": "The location marker or dot can be ignored when checking rotation.",
+        "correction": "The chapter marks dots to track orientation; the entire marked design must match after the turn."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Alphabet Cutout examples A and H to distinguish one line from two lines of symmetry.",
+      "Use NCERT letters E, N, X, T, K, V, and O to test horizontal and vertical reflection symmetry.",
+      "Use NCERT Windmill Firki activity to observe quarter, half, three-quarter, and full turns.",
+      "Use NCERT letter and digit tables to test rotational symmetry with orientation dots.",
+      "Use NCERT Making Designs and Let Us Think to create half-turn and quarter-turn designs.",
+      "Use NCERT Wooden Block Print and Project Work to apply both kinds of symmetry in repeated prints."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter concludes with Let Us Do and Project Work on page 141, following the Wooden Block Print exploration."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Symmetrical Designs\n\n## What you will learn\nYou will revise reflection symmetry and lines of symmetry. You will use folding to make complete alphabet and picture cutouts from a half or a quarter drawing.\n\n## Simple explanation\nA design has reflection symmetry when one side is the mirror image of the other across a line. Folding along that line makes matching parts lie exactly on top of each other.\n\n## Step-by-step breakdown\n- **Vertical line of symmetry**: The letter A in the chapter has a vertical line of symmetry, so half of A can be drawn along a fold and opened into the full letter.\n- **Two lines of symmetry**: The letter H has vertical and horizontal lines of symmetry, so one-fourth can be drawn after folding the paper vertically and horizontally.\n- **Half cutout**: One suitable line of symmetry lets us create the full shape from one half.\n- **Quarter cutout**: Two suitable crossing lines of symmetry can let us create the full shape from one quarter.\n- **Alphabet test**: The letters E, N, X, T, K, V, and O are checked by drawing possible horizontal or vertical symmetry lines.\n- **Picture cutouts**: The Let Us Do activity applies folding to diya, boat, and border designs.\n\n## Worked example\nQuestion: Using the NCERT Alphabet Cutout example, explain how to make the letter H from one-fourth of its shape.\n\nSolution:\n- Step 1: Fold the paper once vertically and once horizontally so it becomes one-fourth of its original size.\n- Step 2: Draw one-fourth of the letter H along the folded edges.\n- Step 3: Cut carefully along the outline while keeping the folds closed.\n- Step 4: Open the paper once and then fully.\n- Final answer: The reflected copies across the vertical and horizontal folds form the complete letter H.\n\n## Common mistake\nA common mistake is to draw the quarter away from the folded edges. The drawn part must touch the correct folds so the opened copies join into one complete letter.\n\n## Quick check question\nQuestion: In the NCERT Alphabet Cutout section, why can the letter A be made by drawing only half?\nAnswer: Because the letter A has a vertical line of symmetry.\nExplanation: Folding along the vertical line makes the left and right halves match, so cutting one half creates the other half when the paper is opened.\n\n## Summary\n- Reflection symmetry is checked by folding or imagining a mirror line.\n- A vertical line divides left and right matching halves.\n- A horizontal line divides top and bottom matching halves.\n- One symmetry line can support a half cutout.\n- Two suitable symmetry lines can support a quarter cutout.",
+    "Core explanation": "# Core explanation: Symmetrical Designs\n\n## What you will learn\nYou will learn rotational symmetry through a windmill firki, letters, and digits. You will identify the turns at which a design returns to its original appearance.\n\n## Simple explanation\nA design has rotational symmetry when it matches itself after turning around a fixed centre by less than one full turn. The chapter uses quarter, half, and three-quarter turns and marks dots to track orientation.\n\n## Step-by-step breakdown\n- **Centre of rotation**: The firki turns around the pin at its centre.\n- **Quarter turn**: A quarter turn is one-fourth of a full turn.\n- **Half turn**: A half turn is two quarter turns.\n- **Three-quarter turn**: A three-quarter turn is three quarter turns.\n- **Firki symmetry**: The chapter states that the firki looks the same after one-quarter, one-half, and three-quarter turns.\n- **Letter H**: H has rotational symmetry because it looks the same after a half turn.\n- **Orientation dots**: Dots prevent us from overlooking whether the marked part has moved to a different orientation.\n- **Digits and numbers**: The Let Us Do activity asks learners to test individual digits and number arrangements such as 11 and 1001 for reflection, rotation, or both.\n\n## Worked example\nQuestion: Using the NCERT Windmill Firki activity, list the turns smaller than a full turn at which the firki looks the same.\n\nSolution:\n- Step 1: Begin from the initial position and turn the firki by one-quarter turn.\n- Step 2: Its four matching arms move into one another's positions, so the outline is unchanged.\n- Step 3: The same happens after a half turn.\n- Step 4: The same happens after a three-quarter turn.\n- Final answer: The firki has rotational symmetry at one-quarter, one-half, and three-quarter turns.\n\n## Common mistake\nA common mistake is to say that matching only after a full turn proves rotational symmetry. Every object returns after a full turn, so a smaller matching turn is required.\n\n## Quick check question\nQuestion: According to the NCERT letter table, at what turn does H match itself?\nAnswer: H matches itself after a half turn.\nExplanation: After rotating H by one-half of a full turn, its horizontal bar and two vertical strokes occupy matching positions.\n\n## Summary\n- Rotational symmetry uses a fixed centre.\n- Quarter, half, and three-quarter turns describe parts of a full turn.\n- The firki matches after each quarter turn.\n- H matches after a half turn.\n- Dots and tracing paper help track orientation accurately.",
+    "Worked examples": "# Worked examples: Symmetrical Designs\n\n## What you will learn\nYou will modify and colour designs to create half-turn or quarter-turn symmetry. You will also check whether a design has reflection symmetry, rotational symmetry, or both.\n\n## Simple explanation\nA symmetric design must repeat its entire arrangement, including shape, position, size, and colour. Adding one matching piece may create half-turn symmetry, while four matching sectors can create quarter-turn symmetry.\n\n## Step-by-step breakdown\n- **Half-turn design**: Opposite positions must match after the design is rotated by one-half turn.\n- **Quarter-turn design**: Each of the four quarter sectors must move into an identical sector after every one-quarter turn.\n- **Colour symmetry**: Colour is part of the design, so matching shapes with different colours may fail the symmetry test.\n- **Reflection test**: Draw a possible mirror line and check whether points and shapes on one side have matching partners on the other.\n- **Combined symmetry**: A design may have reflection symmetry, rotational symmetry, both, or neither.\n- **Shape pieces**: The chapter uses squares and equilateral triangles of the same side length to create and classify new designs.\n\n## Worked example\nQuestion: Using the NCERT Let Us Think two-colour 2 by 2 square, determine whether the shown alternating-colour design matches after a half turn and after a quarter turn.\n\nSolution:\n- Step 1: Label the top-left and bottom-right small squares with the first colour.\n- Step 2: Label the top-right and bottom-left squares with the second colour.\n- Step 3: After a half turn, top-left moves to bottom-right and top-right moves to bottom-left. Each colour lands on the same colour.\n- Step 4: After a quarter turn, top-left moves to top-right, where the colour is different.\n- Final answer: The design matches after a half turn but not after a quarter turn.\n\n## Common mistake\nA common mistake is to check only the outer square. The internal colour arrangement must also match after the turn.\n\n## Quick check question\nQuestion: In the NCERT quarter-turn colouring task, how many matching positions occur during one full turn, including the full-turn return?\nAnswer: Four matching positions occur: after one-quarter, one-half, three-quarter, and one full turn.\nExplanation: A design that matches after every quarter turn repeats four times as the full turn is completed.\n\n## Summary\n- Half-turn symmetry pairs opposite positions.\n- Quarter-turn symmetry repeats the same arrangement in four sectors.\n- Colour must be included in the symmetry check.\n- Reflection and rotation are tested separately.\n- A design can belong to only reflection, only rotation, or both categories.",
+    "Exam-style problems": "# Exam-style problems: Symmetrical Designs\n\n## What you will learn\nYou will apply symmetry ideas to wooden block prints and repeated designs. You will match a block with its partial print and identify how repeated stamping creates rotational symmetry.\n\n## Simple explanation\nA block print repeats the same carved shape. The direction of the partial print reveals the orientation of the block, and arranging repeated prints around a centre can create rotational and reflection symmetry.\n\n## Step-by-step breakdown\n- **Rajasthan block printing**: The chapter describes carved wooden blocks used by artisans to print bright patterns on fabric.\n- **Matching block to print**: A partial print must contain the same outline and internal details as the corresponding wooden block.\n- **Four uses of one block**: The chapter shows a final print produced by using one block four times around a centre.\n- **Design A**: The text states that Design A looks the same after every one-quarter turn.\n- **Design B**: Learners inspect the repeated heart-like motifs and complete the turn and symmetry description.\n- **Border shapes**: The Let Us Do task marks shapes with a tick for reflection symmetry and a star for rotational symmetry.\n\n## Worked example\nQuestion: Using NCERT Wooden Block Print Design A, explain why it has quarter-turn rotational symmetry.\n\nSolution:\n- Step 1: The same leaf-like block impression appears in four directions around one centre.\n- Step 2: Rotate the full print by one-quarter turn.\n- Step 3: The top impression moves to the right, the right moves to the bottom, the bottom moves to the left, and the left moves to the top.\n- Step 4: Because all four impressions are identical, the design is unchanged.\n- Final answer: Design A has rotational symmetry after every one-quarter turn.\n\n## Common mistake\nA common mistake is to match blocks only by the outside boundary. Internal carved lines and their direction must also agree with the print.\n\n## Quick check question\nQuestion: According to NCERT Design A, what is the smallest stated turn that makes the design look the same?\nAnswer: One-quarter turn.\nExplanation: The chapter explicitly states that Design A looks the same after every one-quarter turn.\n\n## Summary\n- A print must match both the outline and internal details of its block.\n- Repeated stamping can create symmetry around a centre.\n- Four identical directions produce quarter-turn rotational symmetry.\n- Reflection and rotational symmetry should be marked independently.\n- Traditional craft patterns provide real examples of mathematical symmetry.",
+    "Revision and recap": "# Revision and recap: Symmetrical Designs\n\n## What you will learn\nYou will revise reflection and rotational symmetry and plan a vegetable-block project. You will classify designs and explain the evidence for each classification.\n\n## Simple explanation\nSymmetry is best checked by an action: fold for reflection, turn around a centre for rotation, or use tracing paper to compare positions. A careful answer names the line or turn that makes the match.\n\n## Step-by-step breakdown\n- **Only reflection symmetry**: The design has at least one mirror line but no matching turn smaller than a full turn.\n- **Only rotational symmetry**: The design matches after a smaller turn but has no mirror line.\n- **Both symmetries**: The design has one or more mirror lines and also matches after a smaller turn.\n- **Project work**: The chapter suggests using vegetable blocks such as okra or potato pieces to stamp repeated symmetrical patterns.\n- **Design planning**: Mark a centre or fold line first, place one print, then repeat it in reflected or rotated positions.\n- **Evidence**: State the exact line of symmetry or the smallest matching turn instead of saying only that a pattern 'looks balanced'.\n\n## Worked example\nQuestion: Using the NCERT Project Work idea, describe a four-print pattern that has quarter-turn rotational symmetry.\n\nSolution:\n- Step 1: Mark one centre point on the paper.\n- Step 2: Place the first vegetable-block print above the centre at a fixed distance.\n- Step 3: Place an identical second print to the right, turned by one-quarter turn.\n- Step 4: Place the third print below, turned by one-half turn from the first.\n- Step 5: Place the fourth print to the left, turned by three-quarter turn from the first.\n- Final answer: After a one-quarter turn, each print moves into the position and orientation of the next, so the whole design matches.\n\n## Common mistake\nA common mistake is to place four prints at equal distances but keep an asymmetric block facing the same direction. For quarter-turn symmetry, each print's orientation must also turn.\n\n## Quick check question\nQuestion: Which test should you use first to check reflection symmetry in an NCERT paper design?\nAnswer: Fold along a possible line of symmetry and check whether the two parts coincide.\nExplanation: Reflection symmetry means the two sides are mirror images across a line, so folding is a direct test of whether corresponding parts overlap.\n\n## Summary\n- Fold or use a mirror line to test reflection symmetry.\n- Turn around a fixed centre to test rotational symmetry.\n- Name the smallest matching turn.\n- Include colour and orientation in the check.\n- Classify designs as only reflection, only rotation, both, or neither.\n- Vegetable and wooden blocks can be used to create mathematical patterns."
+  }
+}

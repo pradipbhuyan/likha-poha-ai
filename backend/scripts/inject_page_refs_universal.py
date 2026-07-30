@@ -80,12 +80,37 @@ def normalize_decorative_headings(text: str) -> str:
 # (or "Example N.N"), "Case Study N", "Figure/Fig. N.N". Each pattern
 # captures a normalized label used both to search lesson content AND
 # to search rag_visual_assets.nearby_text.
+#
+# Grade 5 Maths (and other primary-stage NCERT books) use a DIFFERENT
+# citation grammar with no decimal numbering at all -- section names
+# such as "Let Us Do", "Let Us Solve", "Let Us Think", "Let Us Find",
+# "Let Us Divide", "Let Us Compare", "Let Us Multiply", plain "Activity
+# N" (integer, no decimal), and "Try This" -- confirmed live: 0 of 10
+# Grade 5 Maths chapters matched any pattern above even though every
+# chapter's lesson content repeatedly cites these exact section names
+# (e.g. "NCERT Let Us Solve Question 4", "NCERT Activity 3"). The
+# patterns below capture the BASE heading only (stripping any trailing
+# "Question N"/"Q N" suffix) because that bare heading is what actually
+# appears as the printed page heading in rag_visual_assets.nearby_text
+# -- the question number itself is usually printed as a plain "1." or
+# "4." list marker, not literally the word "Question 4".
 _CITATION_PATTERNS = [
     (re.compile(r"\bActivity\s+(\d+\.\d+)\b", re.IGNORECASE), "Activity {0}"),
     (re.compile(r"\bExercise\s+(\d+\.\d+)\b", re.IGNORECASE), "Exercise {0}"),
     (re.compile(r"\bExample\s+(\d+(?:\.\d+)?)\b", re.IGNORECASE), "Example {0}"),
     (re.compile(r"\bCase\s+Study\s+(\d+)\b", re.IGNORECASE), "Case Study {0}"),
     (re.compile(r"\bFig(?:ure)?\.?\s+(\d+\.\d+)\b", re.IGNORECASE), "Figure {0}"),
+    # Primary-stage (Grade 3-5) NCERT citation grammar -- no decimals.
+    (re.compile(r"\bActivity\s+(\d+)\b(?!\.\d)", re.IGNORECASE), "Activity {0}"),
+    (
+        re.compile(
+            r"\bLet\s+Us\s+(Do|Solve|Think|Find|Divide|Compare|Multiply|"
+            r"Learn(?:\s+to\s+Divide)?|Draw|Estimate|Try)\b",
+            re.IGNORECASE,
+        ),
+        "Let Us {0}",
+    ),
+    (re.compile(r"\bTry\s+This\b", re.IGNORECASE), "Try This"),
 ]
 
 
@@ -95,7 +120,12 @@ def find_citations_in_text(text: str) -> set[str]:
     found = set()
     for pattern, label_fmt in _CITATION_PATTERNS:
         for m in pattern.finditer(text):
-            found.add(label_fmt.format(m.group(1)))
+            # Patterns with no capture group (e.g. "Try This") have a
+            # fixed label_fmt with no {0} placeholder to fill.
+            if m.groups():
+                found.add(label_fmt.format(m.group(1)))
+            else:
+                found.add(label_fmt)
     return found
 
 

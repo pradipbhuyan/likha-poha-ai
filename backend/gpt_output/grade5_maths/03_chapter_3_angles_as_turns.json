@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 3: Angles as Turns",
+    "central_question": "How can we describe, compare, measure, draw, and follow angles by thinking of them as fractional turns in clockwise or anti-clockwise directions?",
+    "in_scope_units": [
+      "Recognising full, half, and quarter turns through body movement, clocks, giant wheels, and everyday objects",
+      "Relating fractional turns to right, acute, obtuse, straight, three-quarter, and full angles",
+      "Making and using paper fans, straws, cardboard shapes, houses, and gymnasts to identify angle types",
+      "Constructing angle-measuring tools by folding circles into eighths, sixths, and twelfths",
+      "Estimating, measuring, combining, and drawing angles in terms of fractional turns",
+      "Connecting minute-hand movement with fractions of a full turn and elapsed minutes",
+      "Distinguishing clockwise and anti-clockwise movement",
+      "Following sequences of turns from North, South, East, and West in the Fun with Turns activities"
+    ],
+    "banned_topics": [
+      "degree notation and formal protractor measurement",
+      "classification of triangles and quadrilaterals beyond identifying the angles shown",
+      "parallel lines, perpendicular bisectors, and formal geometric constructions",
+      "trigonometry",
+      "reflex-angle terminology not used in the chapter",
+      "bearings measured in degrees"
+    ],
+    "must_include_keywords": [
+      "turn",
+      "starting position",
+      "full turn",
+      "half turn",
+      "quarter turn",
+      "two quarter turns",
+      "right angle",
+      "acute angle",
+      "obtuse angle",
+      "straight angle",
+      "three-quarter turn",
+      "paper fan",
+      "straw",
+      "one side fixed",
+      "angle measuring tool",
+      "tracing paper",
+      "1/8 turn",
+      "2/8 turn",
+      "3/8 turn",
+      "4/8 turn",
+      "1/6 turn",
+      "1/12 turn",
+      "combine measures",
+      "minute hand",
+      "15 minutes",
+      "30 minutes",
+      "45 minutes",
+      "60 minutes",
+      "clockwise",
+      "anti-clockwise",
+      "North",
+      "South",
+      "East",
+      "West",
+      "Fun with Turns"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A quarter turn and a half turn both make a right angle.",
+        "correction": "A quarter turn makes a right angle, while a half turn makes a straight angle."
+      },
+      {
+        "claim": "Any angle smaller than a straight angle is acute.",
+        "correction": "An acute angle is less than a quarter turn; an angle between a quarter turn and a half turn is obtuse."
+      },
+      {
+        "claim": "The end position alone always tells the direction of a turn.",
+        "correction": "Clockwise and anti-clockwise turns can sometimes end at the same position, so the direction and amount of turn must both be stated."
+      },
+      {
+        "claim": "Two acute turns must always combine to make an acute angle.",
+        "correction": "Their total may be acute, right, obtuse, straight, or more than straight depending on their sizes."
+      },
+      {
+        "claim": "A 1/8 turn is the same as a 1/4 turn.",
+        "correction": "A 1/8 turn is half of a quarter turn; two 1/8 turns make 1/4 turn."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Statue game and opening clock/giant-wheel examples on pages 32–33: identify full, half, and quarter turns",
+      "NCERT straw and paper-fan activities on pages 33–36: connect turn size to acute, right, obtuse, and straight angles",
+      "NCERT Angle Measuring Tool and Let Us Think on pages 36–37: build eighth-, sixth-, and twelfth-turn pieces",
+      "NCERT Let Us Do Q1–Q5 on pages 38–39: estimate, measure, combine, and draw turns",
+      "NCERT Let Us Do Q6 and Which direction? on pages 39–40: connect clock minutes to turns and distinguish clockwise from anti-clockwise",
+      "NCERT Fun with Turns Q1–Q2 on pages 40–41: determine ending directions and equivalent ways to face the same place"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The concluding practice consists of Let Us Do Questions 1–6 on pages 38–40 and Fun with Turns Questions 1–2 on pages 40–41."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Angles as Turns\n\n## What you will learn\nYou will recognise full, half, and quarter turns using movement and familiar objects. You will also understand that a turn is measured from a fixed starting position.\n\n## Simple explanation\nAn angle can be understood as how much one line, hand, straw, or person turns while another direction stays fixed. A complete return to the starting direction is a full turn.\n\n## Step-by-step breakdown\n- **Starting position**: Every turn is compared with where the movement began. The minute hand makes a full turn only when it returns to its initial position.\n- **Full turn**: Ashutosh completes a circle, and the giant wheel returns to point E. Both show one full turn.\n- **Half turn**: Sahana makes a half-moon shape. Two half turns in the same direction make one full turn.\n- **Quarter turn**: A quarter turn is one of four equal parts of a full turn. Two quarter turns make a half turn, and four quarter turns make a full turn.\n- **Everyday turns**: Taps, hinged doors, clothes clips, tongs, scissors, and file covers involve turning around a fixed point.\n- **Maximum possible turn**: Some objects open less than a quarter turn, some about a quarter turn, and some more than a quarter turn. Their hinge limits the movement.\n\n## Worked example\nQuestion: Use the NCERT questions beside the giant wheel on page 33: what do two half turns, two quarter turns, and four quarter turns make?\n\nSolution:\n- Step 1: Two half turns give `1/2 + 1/2 = 1` full turn.\n- Step 2: Two quarter turns give `1/4 + 1/4 = 2/4 = 1/2` turn.\n- Step 3: Four quarter turns give `1/4 + 1/4 + 1/4 + 1/4 = 4/4 = 1` full turn.\n- Final answer: Two half turns make a full turn; two quarter turns make a half turn; four quarter turns make a full turn.\n\n## Common mistake\nDo not decide the size of a turn only from where an object ends. Always compare the final direction with the marked starting direction.\n\n## Quick check question\nQuestion: In the NCERT opening clock example, what turn does the minute hand make when it returns to its initial position?\nAnswer: One full turn.\nExplanation: The hand has travelled around the entire clock face and ended in the same direction from which it started.\n\n## Summary\n- A turn needs a starting direction.\n- A full turn returns to the starting direction.\n- Two half turns equal one full turn.\n- Two quarter turns equal one half turn.\n- Four quarter turns equal one full turn.",
+    "Core explanation": "# Core Explanation: Angles as Turns\n\n## What you will learn\nYou will connect the size of a turn with acute, right, obtuse, and straight angles. You will use straws, a paper fan, a model house, and body positions to identify angle types.\n\n## Simple explanation\nKeep one side fixed and turn the other side. The amount of turn tells the angle type: less than a quarter, exactly a quarter, between a quarter and a half, or exactly a half.\n\n## Step-by-step breakdown\n- **Acute angle**: A turn less than `1/4` of a full turn forms an acute angle.\n- **Right angle**: A `1/4` turn forms a right angle.\n- **Obtuse angle**: A turn greater than `1/4` but less than `1/2` forms an obtuse angle.\n- **Straight angle**: Two quarter turns make `1/2` turn, which forms a straight angle.\n- **More than straight**: A `3/4` turn is more than a straight angle. The chapter describes the turn without introducing formal degree names.\n- **Paper fan activity**: Keeping one fan stick fixed makes it easy to compare the moving stick with quarter- and half-turn positions.\n- **Angles in objects and poses**: The marked corners of the model house and the angle between gymnasts’ legs can be classified by comparing them with a right or straight angle.\n- **Adding acute turns**: Two acute turns do not have a fixed result. Their sum depends on the amount of each turn.\n\n## Worked example\nQuestion: Based on the NCERT straw explanation on page 34, classify a turn that is more than a quarter turn but less than a half turn.\n\nSolution:\n- Step 1: Use `1/4` turn as the right-angle reference.\n- Step 2: Use `1/2` turn as the straight-angle reference.\n- Step 3: The given turn lies between these two reference turns.\n- Final answer: It is an obtuse angle.\n\n## Common mistake\nDo not call every angle wider than an acute angle a straight angle. An obtuse angle is wider than a right angle but still smaller than a straight angle.\n\n## Quick check question\nQuestion: In NCERT Let Us Do (a), what angle type should a paper fan show when the moving side turns exactly one quarter of a full turn?\nAnswer: A right angle.\nExplanation: The chapter directly identifies a `1/4` turn with a right angle.\n\n## Summary\n- Less than `1/4` turn is acute.\n- Exactly `1/4` turn is right.\n- Between `1/4` and `1/2` turn is obtuse.\n- Exactly `1/2` turn is straight.\n- Models help compare angles without degree measurement.",
+    "Worked examples": "# Worked Examples: Angles as Turns\n\n## What you will learn\nYou will make and use angle-measuring tools based on equal parts of a circle. You will express turns as eighths, sixths, and twelfths and combine pieces when one tool is not enough.\n\n## Simple explanation\nA folded circle is a measuring model. If it is split into eight equal parts, each part is `1/8` turn; if split into six equal parts, each is `1/6` turn. Halving a `1/6` piece gives `1/12` turn.\n\n## Step-by-step breakdown\n- **Eight-part tool**: Fold a tracing-paper circle into 8 equal parts, attach a straw at the centre, and mark a starting point.\n- **Equivalent turn measures**: `2/8 = 1/4`, so two eighth-turn pieces make a right angle. `4/8 = 1/2`, so four eighth-turn pieces make a straight angle.\n- **Three-quarter turn**: `6/8 = 3/4`, so six eighth-turn pieces complete three quarters of a circle.\n- **Full turn**: `8/8 = 1` full turn.\n- **Six-part tool**: Folding a circle into six equal sectors creates `1/6`, `2/6`, and other sixth-turn measures.\n- **Twelfth turn**: Half of `1/6` is `1/12`, because splitting one sixth into two equal parts creates twelve equal parts in the full circle.\n- **Combining tools**: NCERT Let Us Do Q2 shows measures such as `1/4 + 1/8 = 3/8` turn. Add equal fractional parts or rewrite them with a common part size.\n\n## Worked example\nQuestion: Solve the NCERT Angle Measuring Tool questions: what angle is made by `2/8` turn and by `4/8` turn?\n\nSolution:\n- Step 1: Simplify `2/8` by recognising that two eighths make one quarter: `2/8 = 1/4`.\n- Step 2: A quarter turn forms a right angle.\n- Step 3: Simplify `4/8`: four eighths make one half, so `4/8 = 1/2`.\n- Step 4: A half turn forms a straight angle.\n- Final answer: `2/8` turn is a right angle, and `4/8` turn is a straight angle.\n\n## Common mistake\nDo not count only the end marks on the circle. Count the equal sectors travelled from the marked starting point.\n\n## Quick check question\nQuestion: In the NCERT tool-making activity on page 37, what fraction of a full turn is half of `1/6` turn?\nAnswer: `1/12` turn.\nExplanation: Dividing each sixth into two equal pieces makes 12 equal pieces in the full circle, so one half of a sixth is one twelfth.\n\n## Summary\n- Equal sectors of a circle measure fractional turns.\n- `2/8 = 1/4` and `4/8 = 1/2`.\n- `6/8 = 3/4` and `8/8 = 1`.\n- Half of `1/6` is `1/12`.\n- Different tool pieces can be combined to measure one angle.",
+    "Exam-style problems": "# Exam-Style Problems: Angles as Turns\n\n## What you will learn\nYou will draw and combine fractional turns and relate the minute hand’s movement to elapsed time. You will show how a full clock turn of 60 minutes can be divided into equal parts.\n\n## Simple explanation\nA clock face is a full circle. Since the minute hand takes 60 minutes for one full turn, a fraction of the turn represents the same fraction of 60 minutes.\n\n## Step-by-step breakdown\n- **Fifteen minutes**: `15/60 = 1/4`, so 15 minutes is a quarter turn.\n- **Thirty minutes**: `30/60 = 1/2`, so 30 minutes is a half turn.\n- **Forty-five minutes**: `45/60 = 3/4`, so 45 minutes is a three-quarter turn.\n- **One twelfth turn**: `60 ÷ 12 = 5`, so `1/12` turn equals 5 minutes.\n- **One sixth turn**: `60 ÷ 6 = 10`, so `1/6` turn equals 10 minutes.\n- **Four twelfths**: `4/12 = 1/3`; one third of 60 minutes is 20 minutes.\n- **Combining turns**: For NCERT Let Us Do Q5, `1/2 + 1/4 = 2/4 + 1/4 = 3/4` turn. For `1/8 + 1/6`, use twenty-fourths: `3/24 + 4/24 = 7/24` turn.\n- **Drawing**: Keep the given starting ray fixed, choose the stated direction, and draw the second ray after the required fractional turn.\n\n## Worked example\nQuestion: Answer NCERT Let Us Do Q6(c): what turn does the minute hand make in 45 minutes?\n\nSolution:\n- Step 1: One full turn takes 60 minutes.\n- Step 2: Write the fraction of the full turn: `45/60`.\n- Step 3: Simplify by dividing numerator and denominator by 15: `45/60 = 3/4`.\n- Final answer: The minute hand makes a `3/4` turn.\n\n## Common mistake\nDo not treat 45 minutes as `45/100` of a turn. A clock turn is based on 60 minutes, not 100.\n\n## Quick check question\nQuestion: In NCERT Let Us Do Q6(g), how many minutes equal `4/12` of a full turn?\nAnswer: 20 minutes.\nExplanation: `4/12 = 1/3`, and one third of the 60-minute full turn is `60 ÷ 3 = 20` minutes.\n\n## Summary\n- A full minute-hand turn is 60 minutes.\n- 15, 30, and 45 minutes equal `1/4`, `1/2`, and `3/4` turns.\n- `1/12` turn is 5 minutes.\n- `1/6` turn is 10 minutes.\n- Fractional turns can be added by using equal-sized parts.",
+    "Revision and recap": "# Revision and Recap: Angles as Turns\n\n## What you will learn\nYou will revise clockwise and anti-clockwise movement and use turns to find ending directions. You will also see how different routes can lead to the same final facing direction.\n\n## Simple explanation\nClockwise means moving in the same direction as the hands of a clock. Anti-clockwise means moving in the opposite direction. A right-angle turn moves from one main compass direction to the next.\n\n## Step-by-step breakdown\n- **Clockwise movement**: From North, one right-angle clockwise turn faces East; another faces South; another faces West; the fourth returns to North.\n- **Anti-clockwise movement**: From North, one right-angle anti-clockwise turn faces West; then South; then East; then North.\n- **Half turn**: Two right angles make a half turn, so the ending direction is opposite the starting direction.\n- **Full turn**: Four right angles return to the starting direction, whichever way the turn is made.\n- **Turns beyond one full turn**: Five right-angle clockwise turns equal one full turn plus one right angle; from North the final direction is East.\n- **Same ending place**: A half turn clockwise and a half turn anti-clockwise end in the same opposite direction.\n- **Everyday direction**: Opening a tap, unscrewing a lid, or loosening a nut can be observed for clockwise or anti-clockwise movement; the actual opening direction depends on the object and how it is viewed.\n\n## Worked example\nQuestion: Solve the first row of NCERT Fun with Turns Q1: starting North, make two right angles clockwise.\n\nSolution:\n- Step 1: One right-angle clockwise turn from North faces East.\n- Step 2: A second right-angle clockwise turn from East faces South.\n- Step 3: Two right angles equal a half turn.\n- Final answer: The ending direction is South.\n\n## Common mistake\nDo not confuse the viewer’s left and right with clockwise and anti-clockwise. Trace the rotation around the centre in the same direction as, or opposite to, clock hands.\n\n## Quick check question\nQuestion: In NCERT Fun with Turns Q1, starting East and making four right angles anti-clockwise ends in which direction?\nAnswer: East.\nExplanation: Four right angles make one full turn, so the child returns to the starting direction.\n\n## Summary\n- Clockwise follows clock hands; anti-clockwise is the opposite.\n- One right angle moves to the next compass direction.\n- Two right angles make a half turn.\n- Four right angles make a full turn.\n- More than four right-angle turns can be reduced by removing complete groups of four.\n- Both half-turn directions lead to the opposite facing direction."
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 2: Fractions",
+  "central_question": "How can we represent, generate, and compare fractions—including fractions greater than one—using equal parts, equivalent forms, and reference points on a number line?",
+  "in_scope_units": [
+    "Opening chocolate comparison: understanding that fractional parts can be compared fairly only when the wholes are the same size",
+    "Playing with a Grid: representing fractions by shading equal parts of rectangular grids",
+    "Equivalent fractions introduction: recognising that 1/3 and 2/6 name the same shaded part",
+    "Fun with Fraction Kit: making wholes and matching pieces such as 1/2 and 2/4",
+    "Making Equivalent Fractions: dividing the same whole into more equal parts to generate patterns such as 1/3 = 2/6 = 3/9 = 4/12",
+    "Comparing Fractions—Same Denominator: comparing the numbers of equal-sized pieces",
+    "Comparing Fractions—Same Numerator: comparing the sizes of pieces when the same number of pieces is taken",
+    "Fractions Greater Than 1: combining halves, fourths, and thirds into wholes and locating the results on number lines",
+    "Comparing Fractions With Reference to 1 (a whole): deciding whether fractions are below, equal to, or above one",
+    "Comparing Fractions with Reference to 1/2: recognising fractions equal to, below, or above half",
+    "Try This: finding the total length of sixteen ants when each is 1/4 cm long",
+    "Fun with Relations: solving the final family-relationship reasoning question"
+  ],
+  "banned_topics": [
+    "formal addition or subtraction of fractions with unlike denominators",
+    "multiplication and division of one fraction by another fraction",
+    "conversion between fractions, decimals, and percentages",
+    "ratio and proportion methods beyond the equivalent-fraction patterns shown in this chapter",
+    "algebraic equations involving fractions",
+    "formal lowest-term or greatest-common-factor procedures not taught in the chapter"
+  ],
+  "must_include_keywords": [
+    "whole",
+    "equal parts",
+    "numerator",
+    "denominator",
+    "same-sized wholes",
+    "Playing with a Grid",
+    "shaded region",
+    "equivalent fractions",
+    "fraction kit",
+    "unit fraction",
+    "make a whole",
+    "1/3 = 2/6",
+    "1/2 = 2/4",
+    "1/3 = 2/6 = 3/9 = 4/12",
+    "2/5 = 4/10",
+    "same denominator",
+    "same numerator",
+    "less than sign",
+    "greater than sign",
+    "fractions greater than 1",
+    "halves",
+    "fourths",
+    "thirds",
+    "number line",
+    "5/2 = 2 1/2",
+    "9/4 = 2 1/4",
+    "4/3 = 1 1/3",
+    "reference to 1",
+    "reference to 1/2",
+    "4/8 = 1/2",
+    "3/6 = 1/2",
+    "paratha",
+    "pizza",
+    "Try This",
+    "1/4 cm",
+    "Fun with Relations"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "One-half is always a larger quantity than one-third, even when the wholes are different sizes.",
+      "correction": "Fractions from different wholes can be compared fairly only when the wholes are the same size; in the opening chocolate picture, 1/3 of the larger chocolate is greater than 1/2 of the smaller chocolate."
+    },
+    {
+      "claim": "Equivalent fractions must have the same numerator and denominator.",
+      "correction": "Equivalent fractions can use different numbers but represent the same part of the same whole, such as 1/3 and 2/6."
+    },
+    {
+      "claim": "To make an equivalent fraction, multiply only the denominator.",
+      "correction": "Multiply both numerator and denominator by the same number; for example, 1/3 becomes 2/6 by multiplying both by 2."
+    },
+    {
+      "claim": "For fractions with the same denominator, the fraction with the smaller numerator is greater.",
+      "correction": "With the same denominator, the fraction with the larger numerator is greater because it contains more equal-sized pieces."
+    },
+    {
+      "claim": "For fractions with the same numerator, the fraction with the larger denominator is greater.",
+      "correction": "With the same numerator, the fraction with the smaller denominator is greater because each piece is larger."
+    },
+    {
+      "claim": "A fraction greater than one must be a whole number.",
+      "correction": "A fraction can be greater than one without being a whole number, such as 5/2 = 2 1/2 or 9/4 = 2 1/4."
+    },
+    {
+      "claim": "Any marks placed between 0 and 1 form a correct fraction number line.",
+      "correction": "The interval between consecutive whole numbers must be divided into equal parts; halves require 2 equal parts and fourths require 4 equal parts."
+    },
+    {
+      "claim": "A larger numerator alone proves that one fraction is greater when denominators differ.",
+      "correction": "When both numerator and denominator differ, use a valid method such as comparing each fraction with 1 or 1/2, as the chapter demonstrates."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the NCERT opening chocolate example on page 17 to show why the wholes must be the same size before fractional parts are compared.",
+    "Use NCERT 'Playing with a Grid' on page 17 to connect fractional notation with equal shaded parts.",
+    "Use NCERT 'Fun with Fraction Kit' on pages 18-20 and 'Let Us Do' page 19 Q2A to establish 1/2 = 2/4 and 1/3 = 2/6.",
+    "Use NCERT 'Making Equivalent Fractions' on pages 20-21 and 'Let Us Do' page 22 Q3 to practise generating and completing equivalent fractions.",
+    "Use NCERT comparison exercises on pages 22-23 to contrast the same-denominator and same-numerator rules.",
+    "Use the NCERT paratha examples on pages 24-26 and pizza example on pages 27-28 to represent fractions greater than one on number lines.",
+    "Finish with NCERT comparison sets on pages 29-31 using 1 and 1/2 as reference points, followed by the page 31 'Try This' ant-length problem."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter has no single separately numbered end-of-chapter exercise; practice is distributed across the 'Let Us Do' sets on pages 19, 22-23, and 28-31, followed by 'Try This' and 'Fun with Relations' on page 31.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

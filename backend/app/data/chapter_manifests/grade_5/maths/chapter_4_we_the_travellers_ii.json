@@ -1,0 +1,105 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 4: We the Travellers — II",
+  "central_question": "How can addition, subtraction, number patterns, and parity be used efficiently to solve travel, money, measurement, and logical problems with numbers up to five digits?",
+  "in_scope_units": [
+    "Making two group sums equal by interchanging numbers with the least number of moves",
+    "Fuel Arithmetic: adding and subtracting two-digit quantities using place value and regrouping",
+    "Relationship between addition and subtraction and checking one operation with its inverse",
+    "Sums and patterns of consecutive numbers",
+    "Adding large numbers in road-distance and journey-expense contexts",
+    "Subtracting large numbers in sea-route, highway, money, and load-capacity contexts",
+    "Quick sums to 100, 1,000, and 10,000 and quick subtraction of 9 or 99",
+    "Palindrome numbers and increasing/decreasing 3×3 number grids",
+    "Even and odd numbers, paired arrangements, and parity of sums",
+    "Multi-step reasoning with coins, repeated ON/OFF presses, mountain-height data, and Math Metric Mela records",
+    "Final Let Us Do practice on addition, subtraction, money, production targets, and cricket scores"
+  ],
+  "banned_topics": [
+    "formal algebraic equations with variables",
+    "negative integers",
+    "decimal arithmetic",
+    "formal divisibility tests beyond even and odd reasoning",
+    "prime and composite numbers",
+    "multiplication and division algorithms as separate chapter topics",
+    "historical or geographical details beyond the numbers and contexts explicitly supplied"
+  ],
+  "must_include_keywords": [
+    "making sums equal",
+    "interchange",
+    "least number of moves",
+    "fuel arithmetic",
+    "regrouping",
+    "addition",
+    "subtraction",
+    "inverse relationship",
+    "check the answer",
+    "consecutive numbers",
+    "successive sums",
+    "even sum",
+    "odd sum",
+    "North–South Corridor",
+    "align digits",
+    "large numbers",
+    "road trip",
+    "sea route",
+    "remaining distance",
+    "estimate",
+    "multi-step problem",
+    "quick sums",
+    "100",
+    "1,000",
+    "10,000",
+    "subtract 9",
+    "subtract 99",
+    "palindrome numbers",
+    "increasing grid",
+    "decreasing grid",
+    "even numbers",
+    "odd numbers",
+    "paired arrangement",
+    "torch ON and OFF",
+    "mountain heights",
+    "Math Metric Mela",
+    "excess",
+    "shortfall"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "When interchanging two numbers between groups, the difference between the group sums changes by only the difference between the swapped numbers.",
+      "correction": "One group gains that difference while the other loses it, so the gap between the sums changes by twice the difference between the swapped numbers."
+    },
+    {
+      "claim": "Addition and subtraction are unrelated procedures.",
+      "correction": "They are inverse operations: if `a + b = c`, then `c − a = b` and `c − b = a`."
+    },
+    {
+      "claim": "Digits may be placed anywhere when adding or subtracting large numbers.",
+      "correction": "Ones must be below ones, tens below tens, hundreds below hundreds, and so on."
+    },
+    {
+      "claim": "Odd plus odd is odd because both numbers are odd.",
+      "correction": "Odd plus odd is even; each odd number has one unpaired item, and the two unpaired items form a pair."
+    },
+    {
+      "claim": "Subtracting 99 is the same as subtracting 100 and then subtracting 1 more.",
+      "correction": "Subtracting 99 can be done as subtract 100 and then add 1."
+    },
+    {
+      "claim": "A number is a palindrome merely because it repeats a digit.",
+      "correction": "A palindrome reads exactly the same from left to right and from right to left."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Making Sums Equal on page 42: analyse group totals and choose a one-swap balance",
+    "NCERT Fuel Arithmetic and More Fuel Arithmetic on pages 43–45: add 28 + 75, subtract 65 − 18, and verify by inverse operations",
+    "NCERT Sums of Consecutive Numbers on pages 45–46: identify parity and constant differences in successive sums",
+    "NCERT large-number examples and Let Us Solve on pages 46–51: add the North–South Corridor segments and subtract Mumbai–Cochin distance from the full sea route",
+    "NCERT Quick Sums and Differences and Let Us Think and Solve on pages 51–53: complements, subtracting 9 or 99, palindromes, and ordered grids",
+    "NCERT Even and Odd Numbers, Let Us Think, Mountain Climbing, Math Metric Mela, and final Let Us Do on pages 54–56"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Math Metric Mela and the Let Us Do section on page 56, Questions 1–5, covering addition, subtraction, money, production shortfall, and cricket-score comparison.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

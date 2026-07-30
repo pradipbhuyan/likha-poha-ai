@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 7: Shapes and Patterns",
+  "central_question": "How can we recognise, describe, create, and compare repeating patterns and two-dimensional or three-dimensional shapes using their sides, angles, arrangements, and symmetries?",
+  "in_scope_units": [
+    "Weaving Mats: making paper mats and describing repeating under-over row rules.",
+    "Let Us Try: extending a partly drawn design on grid paper.",
+    "Tiling and Tessellation: deciding whether regular shapes or combinations of shapes cover a region without gaps or overlaps.",
+    "Rhombus Pieces and Triangles: forming and classifying isosceles, equilateral, and scalene triangles.",
+    "Quadrilaterals: identifying kites, parallelograms, rectangles, adjacent sides, opposite sides, and equal angles.",
+    "Tangram: comparing pieces and combining them to make new shapes.",
+    "Which Shape Am I?: matching properties with squares, rectangles, rhombuses, and parallelograms.",
+    "Kites: making a kite by paper folding and observing shapes within it.",
+    "Play with Circles and Circle Designs: forming rectangles from diameter endpoints and following point-joining rules.",
+    "Cube Connections: reading cube nets, counting removed cubes, and analysing painted small cubes.",
+    "Puzzle: arranging seven shapes by using positional clues.",
+    "Icosahedron and Dodecahedron: making models from nets and studying faces, edges, and vertices."
+  ],
+  "banned_topics": [
+    "Perimeter and area formulae for polygons",
+    "Volume and surface area formulae for solids",
+    "Coordinate geometry",
+    "Formal angle-sum proofs for polygons"
+  ],
+  "must_include_keywords": [
+    "weaving pattern",
+    "under",
+    "over",
+    "repeat",
+    "grid paper",
+    "tiling",
+    "tessellation",
+    "gap",
+    "overlap",
+    "regular shape",
+    "regular pentagon",
+    "equilateral triangle",
+    "square",
+    "regular hexagon",
+    "regular octagon",
+    "rhombus",
+    "isosceles triangle",
+    "scalene triangle",
+    "equal sides",
+    "equal angles",
+    "quadrilateral",
+    "kite",
+    "adjacent sides",
+    "opposite sides",
+    "parallelogram",
+    "rectangle",
+    "right angles",
+    "tangram",
+    "diameter",
+    "circle design",
+    "cube net",
+    "painted faces",
+    "vertex",
+    "edge",
+    "icosahedron",
+    "dodecahedron"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any regular polygon will tessellate by itself.",
+      "correction": "The chapter shows that equilateral triangles, squares, and regular hexagons tessellate, while regular pentagons and regular octagons leave gaps and do not tessellate by themselves."
+    },
+    {
+      "claim": "A kite has two pairs of equal opposite sides.",
+      "correction": "In the chapter's kite, the two equal pairs are adjacent sides: Side 1 equals Side 2, and Side 3 equals Side 4."
+    },
+    {
+      "claim": "Every parallelogram is a rectangle.",
+      "correction": "A rectangle is a special parallelogram whose angles are all right angles; a general parallelogram need not have right angles."
+    },
+    {
+      "claim": "A scalene triangle can have two equal sides.",
+      "correction": "A scalene triangle has no equal sides; an isosceles triangle has two equal sides."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Weaving Mats Activity 1 and write the alternating rules for Row 1 and Row 2.",
+    "Use NCERT Weaving Mats Activities 2 and 3 to identify repeat blocks such as 2 over, 1 under.",
+    "Use NCERT Tiling and Tessellation 'Find Out' to test regular triangles, squares, hexagons, pentagons, and octagons.",
+    "Use NCERT rhombus-piece Activities 1-8 to classify triangles and quadrilaterals by equal sides and angles.",
+    "Use NCERT Cube Connections Question 3 to classify the 27 small cubes by the number of painted faces.",
+    "Use NCERT Icosahedron and Dodecahedron activity to count faces, edges, and faces meeting at a vertex."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter does not contain one separately titled end-of-chapter exercise; practice is distributed across numbered activities 1-8 and the sections Let Us Try, Find Out, Try This, Which Shape Am I?, Cube Connections, Puzzle, and Icosahedron and Dodecahedron.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

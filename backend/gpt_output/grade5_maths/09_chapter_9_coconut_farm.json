@@ -1,0 +1,104 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 9: Coconut Farm",
+    "central_question": "How can division be understood, estimated, calculated, checked, and applied to equal sharing, grouping, rates, and real-life decisions?",
+    "in_scope_units": [
+      "Division facts from arrays and the relationship among dividend, divisor, and quotient.",
+      "Let Us Play and Let Us Do: multiplication-division fact families.",
+      "Patterns in Division and Place Value with tens and hundreds.",
+      "Everyday equal-sharing and grouping word problems.",
+      "Mental Strategies for Division using convenient parts, subtraction, and repeated halving.",
+      "Susie's Farm in Kerala: partial quotients, estimation, bags, and remainders.",
+      "Let Us Learn to Divide: the relationship N = D × Q + R.",
+      "Kalpavruksha Coconut Oil: multi-digit division in farm, sales, and cost contexts.",
+      "Division Using Place Value with regrouping and zero placeholders.",
+      "Let Us Divide: four-digit dividends, one- and two-digit divisors, and comparing methods.",
+      "Missing numbers, quotient relationships, missing information, and limiting resources.",
+      "Vegetable Market: completing a sales table using multiplication and division.",
+      "Mathematical Statements: true or false equations and always, sometimes, or never true claims."
+    ],
+    "banned_topics": [
+      "Fractions and decimal division",
+      "Algebraic long division",
+      "Prime factorisation",
+      "Percentage and profit-loss formulae",
+      "Negative numbers"
+    ],
+    "must_include_keywords": [
+      "array",
+      "multiplication fact",
+      "division fact",
+      "dividend",
+      "divisor",
+      "quotient",
+      "remainder",
+      "equal groups",
+      "place value",
+      "patterns",
+      "mental strategy",
+      "convenient parts",
+      "repeated halving",
+      "estimate",
+      "partial quotients",
+      "regrouping",
+      "zero placeholder",
+      "long division",
+      "N = D × Q + R",
+      "exact division",
+      "bags",
+      "coconut farm",
+      "oil",
+      "coir",
+      "rate",
+      "sales table",
+      "missing information",
+      "true statement",
+      "false statement",
+      "always true",
+      "sometimes true",
+      "never true"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A multiplication fact gives only one related division fact.",
+        "correction": "For non-zero factors, a × b = c gives c ÷ a = b and c ÷ b = a."
+      },
+      {
+        "claim": "The remainder may be equal to or larger than the divisor.",
+        "correction": "A valid remainder must be smaller than the divisor."
+      },
+      {
+        "claim": "If 535 ÷ 25 gives 21 remainder 10, only 21 bags are needed.",
+        "correction": "Twenty-one bags are full, but the 10 remaining coconuts need one more bag, so 22 bags are required."
+      },
+      {
+        "claim": "Zeros in the quotient may be omitted.",
+        "correction": "A zero must be written when a place-value part gives zero groups, as shown in 324 ÷ 3 and 3,005 ÷ 5."
+      },
+      {
+        "claim": "Every word problem contains enough information to solve it.",
+        "correction": "The chapter includes questions where missing information must first be identified."
+      }
+    ],
+    "recommended_example_progression": [
+      "Start with the NCERT 5 × 7 = 35 coconut array and derive the two related division facts.",
+      "Use NCERT Patterns in Division and Place Value to connect basic facts with tens and hundreds.",
+      "Use NCERT Mental Strategies examples 1248 ÷ 6, 1992 ÷ 4, and 128 ÷ 4.",
+      "Use NCERT Susie's Farm 582 ÷ 6 and 535 ÷ 25 to introduce partial quotients and remainders.",
+      "Use NCERT Let Us Learn to Divide to establish N = D × Q + R.",
+      "Use NCERT Division Using Place Value examples 62 ÷ 5, 324 ÷ 3, and 136 ÷ 6.",
+      "Use NCERT Let Us Divide and Vegetable Market for multi-digit division, zero placement, rates, and missing values.",
+      "Finish with NCERT Mathematical Statements to test equality and always-sometimes-never reasoning."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The final practice appears in Let Us Solve on pages 132-134, followed by Vegetable Market and Mathematical Statements on page 135."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Coconut Farm\n\n## What you will learn\nYou will connect multiplication and division using arrays and fact families. You will identify the dividend, divisor, and quotient and use place-value patterns with tens and hundreds.\n\n## Simple explanation\nDivision can mean splitting a total into equal groups or finding how many equal groups can be made. Multiplication checks the result because divisor × quotient gives the dividend when there is no remainder.\n\n## Step-by-step breakdown\n- **Coconut array**: The 5 × 7 array contains 35 coconuts and gives 35 ÷ 7 = 5 and 35 ÷ 5 = 7.\n- **Dividend**: The dividend is the total being divided.\n- **Divisor**: The divisor tells the number of groups or the size of each group.\n- **Quotient**: The quotient is the answer to the division.\n- **Fact family**: If a × b = c, then c ÷ a = b and c ÷ b = a.\n- **Place-value patterns**: A known fact such as 4 × 10 = 40 supports 400 ÷ 10 = 40 and 4,000 ÷ 10 = 400.\n- **Scaling zeros**: Tens and hundreds problems are solved by using the underlying basic multiplication fact and place value, not by blindly cancelling zeros.\n\n## Worked example\nQuestion: Using NCERT Let Us Do Question 1, solve 30 × 30 and write the two related division statements.\n\nSolution:\n- Step 1: Multiply: 30 × 30 = 900.\n- Step 2: Use the product as the dividend and the first factor as divisor: 900 ÷ 30 = 30.\n- Step 3: Use the product as the dividend and the second factor as divisor: 900 ÷ 30 = 30.\n- Final answer: Because both factors are the same, the two related division statements are identical: 900 ÷ 30 = 30.\n\n## Common mistake\nA common mistake is to swap the dividend with a smaller factor. In a related division fact, the product is the dividend.\n\n## Quick check question\nQuestion: Using NCERT Patterns in Division, what is 3,700 ÷ 37?\nAnswer: 100.\nExplanation: Because 37 × 100 = 3,700, the related division fact is 3,700 ÷ 37 = 100.\n\n## Summary\n- Multiplication and division are inverse operations.\n- The dividend is the total, the divisor divides it, and the quotient is the result.\n- One multiplication fact usually gives two division facts.\n- Place value extends simple facts to tens, hundreds, and thousands.\n- Check exact division by multiplying divisor and quotient.",
+    "Core explanation": "# Core explanation: Coconut Farm\n\n## What you will learn\nYou will use mental strategies to divide by splitting numbers into convenient parts, subtracting from a nearby multiple, and halving repeatedly. You will also estimate before calculating.\n\n## Simple explanation\nA difficult dividend can often be rewritten as parts that are easy to divide by the same divisor. The parts may be added or subtracted after division, provided every part is divisible by the divisor.\n\n## Step-by-step breakdown\n- **Split by addition**: NCERT shows 1,248 = 1,200 + 48, so 1,248 ÷ 6 = 200 + 8 = 208.\n- **Split by subtraction**: NCERT shows 1,992 = 2,000 - 8, so 1,992 ÷ 4 = 500 - 2 = 498.\n- **Repeated halving**: To divide by 4, halve twice; to divide by 8, halve three times when the numbers remain whole.\n- **Estimate first**: Before dividing 582 by 6, the chapter notes that each customer should receive fewer than 100 coconuts because 6 × 100 = 600.\n- **Choose efficient parts**: Sunitha uses 90 + 7 for 582 ÷ 6, while Susie uses several smaller partial quotients. Both are correct, but fewer well-chosen steps are more efficient.\n- **Strategy check**: Add the partial quotients and verify by multiplying the final quotient by the divisor.\n\n## Worked example\nQuestion: Solve NCERT Mental Strategies example 1,248 ÷ 6 by splitting into convenient parts.\n\nSolution:\n- Step 1: Split 1,248 as 1,200 + 48.\n- Step 2: Divide the first part: 1,200 ÷ 6 = 200.\n- Step 3: Divide the second part: 48 ÷ 6 = 8.\n- Step 4: Add the partial answers: 200 + 8 = 208.\n- Step 5: Check: 208 × 6 = 1,248.\n- Final answer: 1,248 ÷ 6 = 208.\n\n## Common mistake\nA common mistake is to split the dividend into parts but divide only one part. Every part in the sum or difference must be divided by the same divisor.\n\n## Quick check question\nQuestion: Using NCERT repeated-halving strategy, find 168 ÷ 8.\nAnswer: 21.\nExplanation: Halve three times because 8 = 2 × 2 × 2: 168 ÷ 2 = 84, 84 ÷ 2 = 42, and 42 ÷ 2 = 21.\n\n## Summary\n- Split a dividend into convenient divisible parts.\n- A nearby multiple may be used with subtraction.\n- Dividing by 4 can be done by halving twice.\n- Dividing by 8 can be done by halving three times.\n- Estimate first and check the quotient by multiplication.",
+    "Worked examples": "# Worked examples: Coconut Farm\n\n## What you will learn\nYou will use partial quotients, interpret remainders, and apply the relation N = D × Q + R. You will decide when a remainder means an extra container is needed.\n\n## Simple explanation\nWhen a divisor does not divide the dividend exactly, some amount remains. The numerical answer is a quotient and remainder, but the situation tells us whether to report only full groups or round up for one more group.\n\n## Step-by-step breakdown\n- **Partial quotients**: Subtract large convenient multiples of the divisor, record each partial quotient, and add the partial quotients.\n- **Remainder**: The leftover after all possible full groups are removed is the remainder, and it must be smaller than the divisor.\n- **Division relation**: The chapter states N = D × Q + R.\n- **Equal sharing**: For 582 ÷ 6, the remainder is zero and each customer gets 97 coconuts.\n- **Packing**: For 535 ÷ 25, the quotient is 21 remainder 10. Twenty-one bags are full, but one extra bag is needed for the remaining coconuts.\n- **Decision from context**: A bus, bag, or show problem may require rounding up because every person or item must be accommodated.\n\n## Worked example\nQuestion: Using NCERT Susie's Farm Question 2, divide 535 coconuts into bags of 25 and determine the number of bags needed.\n\nSolution:\n- Step 1: Take 20 groups of 25: 20 × 25 = 500.\n- Step 2: Subtract: 535 - 500 = 35.\n- Step 3: Take 1 more group of 25: 1 × 25 = 25.\n- Step 4: Subtract: 35 - 25 = 10.\n- Step 5: So 535 ÷ 25 = 21 remainder 10, and 535 = 25 × 21 + 10.\n- Step 6: The 21 full bags hold 525 coconuts. The remaining 10 coconuts need one more bag.\n- Final answer: They need 22 bags in all.\n\n## Common mistake\nA common mistake is to give 21 bags because the quotient is 21. Since 10 coconuts remain unpacked, the context requires one additional bag.\n\n## Quick check question\nQuestion: Using NCERT Let Us Learn to Divide, complete 726 = 4 × 181 + ___.\nAnswer: 726 = 4 × 181 + 2.\nExplanation: 4 × 181 = 724, and 726 - 724 = 2. The remainder 2 is smaller than the divisor 4.\n\n## Summary\n- Partial quotients are added to form the full quotient.\n- The remainder must be less than the divisor.\n- Use N = D × Q + R to check division.\n- An exact division has remainder 0.\n- Interpret the remainder according to the real-life question.",
+    "Exam-style problems": "# Exam-style problems: Coconut Farm\n\n## What you will learn\nYou will divide using place value and regrouping. You will understand why zeros sometimes appear inside the quotient and compare place-value division with partial quotients.\n\n## Simple explanation\nPlace-value division shares thousands, hundreds, tens, and ones in order. When a place cannot form even one group, write 0 in that quotient place and regroup the amount into the next smaller place.\n\n## Step-by-step breakdown\n- **Tens and ones**: In 62 ÷ 5, one ten goes to each group, the remaining ten is regrouped as 10 ones, and 12 ones are divided.\n- **Zero in tens place**: In 324 ÷ 3, 3 hundreds give 1 hundred, 2 tens give 0 tens, and those tens are regrouped to make 24 ones. The quotient is 108.\n- **Regrouping a hundred**: In 136 ÷ 6, 1 hundred cannot be shared directly, so it becomes 10 tens; together with 3 tens, this gives 13 tens.\n- **Four-digit division**: Let Us Divide uses thousands, hundreds, tens, and ones for examples such as 7,032 ÷ 6 and 3,005 ÷ 5.\n- **Two-digit divisors**: Examples such as 2,874 ÷ 14 and 9,805 ÷ 32 use the same estimate-subtract-regroup process.\n- **Zero placeholder**: A zero preserves the place value of later digits and cannot be skipped.\n\n## Worked example\nQuestion: Using NCERT Division Using Place Value example, solve 324 ÷ 3 and explain the zero in the quotient.\n\nSolution:\n- Step 1: Write 324 as 3 hundreds, 2 tens, and 4 ones.\n- Step 2: Divide 3 hundreds by 3: each group gets 1 hundred.\n- Step 3: Divide 2 tens by 3: no complete ten can go to each group, so write 0 in the tens place.\n- Step 4: Regroup the 2 tens as 20 ones and combine with 4 ones to get 24 ones.\n- Step 5: Divide 24 ones by 3: each group gets 8 ones.\n- Step 6: The quotient is 108, and the zero shows that each group gets 0 tens.\n- Final answer: 324 ÷ 3 = 108.\n\n## Common mistake\nA common mistake is to write 18 instead of 108. Omitting the zero changes the place value and gives an incorrect quotient.\n\n## Quick check question\nQuestion: Using NCERT Let Us Divide example, find 3,005 ÷ 5.\nAnswer: 601.\nExplanation: 5 goes into 30 hundreds 6 times, then there are 0 tens, so a zero is written in the tens place; the final 5 ones give 1. Thus the quotient is 601.\n\n## Summary\n- Divide from the greatest place value to the least.\n- Regroup when a place cannot be divided equally.\n- Write 0 when a quotient place has no groups.\n- Estimate multiples for two-digit divisors.\n- Check using divisor × quotient + remainder.",
+    "Revision and recap": "# Revision and recap: Coconut Farm\n\n## What you will learn\nYou will apply division to costs, tables, missing information, limiting resources, and mathematical statements. You will revise how to decide which operation is needed and how to check whether an equation is true.\n\n## Simple explanation\nReal problems may ask for an unknown quantity, rate, total, or number of groups. Some problems cannot be solved until missing information is supplied, and some constructions are limited by whichever material runs out first.\n\n## Step-by-step breakdown\n- **Sales tables**: In Vegetable Market, total amount = cost of 1 kg × quantity, while a missing cost or quantity is found by division.\n- **Missing information**: A mango-sales question needs the price per mango or per basket; a classroom question needs the total number of desks.\n- **Limiting resource**: For the bookshelf problem, divide each stock by the amount needed per bookshelf and choose the smallest whole-number result.\n- **Quotient relationships**: Doubling or halving a divisor or dividend changes the quotient in predictable ways, as explored in the A, B, and C tables.\n- **Equation truth**: A mathematical statement is true only when both sides of the equals sign have the same value.\n- **Always, sometimes, never**: Claims are tested with examples and counterexamples rather than accepted from one example.\n\n## Worked example\nQuestion: Using NCERT Vegetable Market, find the missing quantity of potatoes if potatoes cost ₹20 per kg and the total amount is ₹2,240.\n\nSolution:\n- Step 1: Use quantity = total amount ÷ cost per kilogram.\n- Step 2: Calculate 2,240 ÷ 20.\n- Step 3: Since 20 × 100 = 2,000, the remainder is 240.\n- Step 4: Since 20 × 12 = 240, the total quotient is 100 + 12 = 112.\n- Step 5: Check: 112 × ₹20 = ₹2,240.\n- Final answer: The quantity of potatoes is 112 kg.\n\n## Common mistake\nA common mistake is to multiply ₹2,240 by ₹20. When the total and unit rate are known, division finds the quantity.\n\n## Quick check question\nQuestion: Using NCERT Mathematical Statements Question 1(c), is 48 ÷ 3 = 4 × 4 true or false?\nAnswer: True.\nExplanation: 48 ÷ 3 = 16 and 4 × 4 = 16, so both sides of the equals sign have the same value.\n\n## Summary\n- Use multiplication for total cost and division for missing rate or quantity.\n- Check whether a problem has enough information before calculating.\n- The smallest resource quotient limits how many complete objects can be made.\n- An equation is true only when both sides are equal.\n- Use examples and counterexamples to classify statements as always, sometimes, or never true."
+  }
+}

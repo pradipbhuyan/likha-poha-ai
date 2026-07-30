@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 10: Symmetrical Designs",
+  "central_question": "How can we recognise and create designs that remain unchanged after reflection, rotation, or both?",
+  "in_scope_units": [
+    "Alphabet Cutout: reflection symmetry, vertical and horizontal lines of symmetry, and folded-paper cutouts.",
+    "Let Us Make a Windmill Firki: constructing a firki and observing quarter, half, three-quarter, and full turns.",
+    "Rotational symmetry in letters, digits, and multi-digit number designs.",
+    "Making Designs: changing and colouring arrangements to create half-turn and quarter-turn symmetry.",
+    "Symmetrical designs with squares and equilateral triangles.",
+    "Sorting designs into only rotational, only reflection, or both symmetries.",
+    "Wooden Block Print: matching carved blocks with prints and studying repeated rotational arrangements.",
+    "Let Us Do and Project Work: identifying border symmetries and creating vegetable-block patterns."
+  ],
+  "banned_topics": [
+    "Translations and glide reflections",
+    "Coordinate transformations",
+    "Formal angle measurement of rotations in degrees",
+    "Congruence proofs",
+    "Tessellation theory beyond the designs shown"
+  ],
+  "must_include_keywords": [
+    "reflection symmetry",
+    "line of symmetry",
+    "vertical line",
+    "horizontal line",
+    "fold",
+    "half",
+    "quarter",
+    "alphabet cutout",
+    "rotational symmetry",
+    "centre point",
+    "quarter turn",
+    "half turn",
+    "three-quarter turn",
+    "full turn",
+    "firki",
+    "orientation",
+    "tracing paper",
+    "digits",
+    "symmetrical design",
+    "square",
+    "equilateral triangle",
+    "only rotational symmetry",
+    "only reflection symmetry",
+    "both symmetries",
+    "wooden block",
+    "print",
+    "Rajasthan",
+    "vegetable block",
+    "repeating pattern"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A shape has rotational symmetry because it matches after one full turn.",
+      "correction": "Every shape matches after a full turn; rotational symmetry requires a match at a smaller turn such as one-quarter or one-half."
+    },
+    {
+      "claim": "Reflection symmetry and rotational symmetry are the same.",
+      "correction": "Reflection symmetry uses a mirror line, while rotational symmetry uses a turn around a centre point."
+    },
+    {
+      "claim": "If a letter has one line of symmetry, it can always be made from a quarter cutout.",
+      "correction": "One line of symmetry allows a half cutout; two suitable perpendicular lines can allow a quarter cutout."
+    },
+    {
+      "claim": "The location marker or dot can be ignored when checking rotation.",
+      "correction": "The chapter marks dots to track orientation; the entire marked design must match after the turn."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Alphabet Cutout examples A and H to distinguish one line from two lines of symmetry.",
+    "Use NCERT letters E, N, X, T, K, V, and O to test horizontal and vertical reflection symmetry.",
+    "Use NCERT Windmill Firki activity to observe quarter, half, three-quarter, and full turns.",
+    "Use NCERT letter and digit tables to test rotational symmetry with orientation dots.",
+    "Use NCERT Making Designs and Let Us Think to create half-turn and quarter-turn designs.",
+    "Use NCERT Wooden Block Print and Project Work to apply both kinds of symmetry in repeated prints."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with Let Us Do and Project Work on page 141, following the Wooden Block Print exploration.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

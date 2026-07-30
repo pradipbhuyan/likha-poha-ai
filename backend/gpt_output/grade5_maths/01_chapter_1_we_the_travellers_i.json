@@ -1,0 +1,103 @@
+{
+  "manifest": {
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 1: We the Travellers — I",
+    "central_question": "How can place value, estimation, operations, and logical patterns help us understand large numbers found in travel and everyday life?",
+    "in_scope_units": [
+      "Travel in the past and present as a context for distance, duration, vehicles, and large-number questions",
+      "Reading and writing large numbers up to five digits using the Indian place-value chart TTh, Th, H, T, O",
+      "Number names, commas, expanded form, and regrouping a quantity in different place-value units",
+      "Number sequences and patterns involving increases or decreases by fixed amounts",
+      "Comparing, ordering, locating, and forming large numbers, including digit-swap challenges",
+      "Rounding to the nearest ten, hundred, and thousand using neighbouring multiples and midpoints",
+      "Travelling now and then, hourly travel distances, equal-speed calculations, and vehicle-capacity calculations",
+      "Finding four-digit and five-digit quantities in books, schools, classrooms, trees, and towns",
+      "Pastime Mathematics puzzles: river crossing, pile of pebbles, and repeated subtraction with reversed two-digit numbers",
+      "Final Let Us Do practice on numbers between bounds, distances, prices, populations, expanded form, regrouping, and currency-note counts",
+      "King’s Horses arrangement puzzle and the danger of double-counting corner positions"
+    ],
+    "banned_topics": [
+      "formal study of speed as distance divided by time",
+      "conversion among metres, kilometres, and nautical miles beyond the stated fact 1 km = 1,000 m",
+      "fractions, decimals, percentages, or ratio methods",
+      "long multiplication or long division algorithms as independent topics",
+      "negative numbers and numbers above the five-digit range used in the chapter"
+    ],
+    "must_include_keywords": [
+      "travelling",
+      "large numbers",
+      "Indian place value system",
+      "TTh",
+      "Th",
+      "H",
+      "T",
+      "O",
+      "ten thousand",
+      "10,000",
+      "comma",
+      "number name",
+      "expanded form",
+      "number pattern",
+      "increasing order",
+      "descending order",
+      "number line",
+      "compare",
+      "digit swap",
+      "nearest ten",
+      "nearest hundred",
+      "nearest thousand",
+      "neighbouring tens",
+      "midpoint",
+      "full distance",
+      "vehicle capacity",
+      "four-digit number",
+      "five-digit number",
+      "river crossing puzzle",
+      "pile of pebbles",
+      "reversed digits",
+      "difference of 9",
+      "currency notes",
+      "King’s Horses",
+      "double-counting corners"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "9,990 is greater than 49,014 because its first visible digit 9 is greater than 4.",
+        "correction": "49,014 is greater because it has a ten-thousands digit, while 9,990 is only a four-digit number."
+      },
+      {
+        "claim": "The digit 0 can be left out when writing numbers such as 10,010 or 50,005.",
+        "correction": "Zeros must be kept as place holders; 10,010 and 50,005 have different place values from 1,010 and 5,005."
+      },
+      {
+        "claim": "To round 2,346 to the nearest hundred, look only at the ones digit.",
+        "correction": "Compare 2,346 with neighbouring hundreds 2,300 and 2,400, or inspect the tens digit; it is 46 away from 2,300 and 54 away from 2,400, so the nearest hundred is 2,300."
+      },
+      {
+        "claim": "Five horses on each of four sides always means 20 different horses.",
+        "correction": "Corner horses lie on two sides and may be counted twice, so the total must be checked by counting each horse once."
+      },
+      {
+        "claim": "In the reversed-digit puzzle, any subtraction order gives the same pattern.",
+        "correction": "The smaller two-digit number must be subtracted from the larger one at every step."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT opening examples on pages 2–4: build 10,000 from ten thousands and read 1,380, 9,123, 10,024, 13,520, and 45,867",
+      "NCERT Let Us Do Q1–Q5 on pages 5–7: continue sequences, write number names, order numbers, compare 9,990 and 49,014, and solve digit swaps",
+      "NCERT rabbit examples and table on pages 7–8: round 2,346 and the listed four-digit numbers to tens, hundreds, and thousands",
+      "NCERT Let Us Do Q1–Q2 on page 10: calculate a cyclist’s distance and the number of vehicles for 900 students",
+      "NCERT Pastime Mathematics Q1–Q3 on pages 11–13: reason through safe crossings, winning pebble play, and the reversed-digit subtraction pattern",
+      "NCERT final Let Us Do Q1–Q9 on pages 13–15 and King’s Horses on pages 15–16: practise ordering, expanded form, regrouping, note counts, and careful counting"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The main end practice is the Let Us Do section on pages 13–15, Questions 1–9, followed by the King’s Horses investigation on pages 15–16."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: We the Travellers — I\n\n## What you will learn\nYou will connect travel with the need to read and write large numbers. You will build ten thousand from thousands and use the Indian place-value chart to understand numbers up to five digits.\n\n## Simple explanation\nTravel questions often involve large counts and distances. A number becomes easy to read when each digit is placed correctly in the columns Ten Thousands, Thousands, Hundreds, Tens, and Ones.\n\n## Step-by-step breakdown\n- **Travel as a number context**: The chapter begins with journeys by foot, animals, carts, boats, trains, cars, ships, aeroplanes, submarines, and spacecraft. Distance, duration, and numbers of vehicles create reasons to use large numbers.\n- **Building 10,000**: Starting from 1,000 and adding another 1,000 repeatedly gives 2,000, 3,000, and so on. Adding 1,000 to 9,000 gives 10,000.\n- **Place-value chart**: The columns are `TTh, Th, H, T, O`. The new `TTh` column means ten thousand. Each step to the left is ten times the place to its right.\n- **Use of zero**: Zero keeps an empty place. In `10,024`, the thousands and hundreds places contain zero, but the number still has one ten-thousand, two tens, and four ones.\n- **Number names and commas**: A comma helps us read large numbers. For example, `45,867` is read as forty-five thousand eight hundred sixty-seven.\n- **Expanded form**: A number can be shown as the value of each digit, such as `1,380 = 1,000 + 300 + 80 + 0` and `9,123 = 9,000 + 100 + 20 + 3`.\n\n## Worked example\nQuestion: Using the NCERT table on pages 3–4, write `13,520` in place-value form and expanded form.\n\nSolution:\n- Step 1: Place the digits in the chart: `TTh = 1`, `Th = 3`, `H = 5`, `T = 2`, `O = 0`.\n- Step 2: Convert each digit into its value: `1 × 10,000 = 10,000`, `3 × 1,000 = 3,000`, `5 × 100 = 500`, `2 × 10 = 20`, and `0 × 1 = 0`.\n- Step 3: Add the place values: `10,000 + 3,000 + 500 + 20 + 0 = 13,520`.\n- Final answer: `13,520 = 10,000 + 3,000 + 500 + 20`, read as thirteen thousand five hundred twenty.\n\n## Common mistake\nDo not read `10,024` as one thousand twenty-four. The first digit is in the ten-thousands place, and the zeros preserve the empty thousands and hundreds places.\n\n## Quick check question\nQuestion: In NCERT Let Us Do Q2, what number is named “Ten thousand ten”?\nAnswer: 10,010.\nExplanation: The number has 1 in the ten-thousands place, 1 in the tens place, and 0 in the thousands, hundreds, and ones places.\n\n## Summary\n- Ten thousands are written in the `TTh` column.\n- Ten groups of 1,000 make 10,000.\n- Zeros are essential place holders.\n- Commas and number names help us read large numbers.\n- Expanded form shows the value contributed by every digit.",
+    "Core explanation": "# Core Explanation: We the Travellers — I\n\n## What you will learn\nYou will continue number patterns, compare and order large numbers, and understand how changing a digit’s position changes a number. You will also use number lines and place value to justify comparisons.\n\n## Simple explanation\nLarge numbers can be studied by looking for a fixed change, comparing digits from the greatest place, or moving digits to new places. The first unequal place from the left decides which of two equal-length numbers is greater.\n\n## Step-by-step breakdown\n- **Fixed-step patterns**: In NCERT Let Us Do Q1, each sequence follows a rule such as `+111`, `+1,050`, `+900`, `+100`, `+20`, `+1`, `+2`, `−1,001`, or `+1,000`. Apply the same rule at every arrow.\n- **Comparing digit counts**: A five-digit positive number is greater than a four-digit positive number. Therefore, `49,014 > 9,990`.\n- **Comparing equal-length numbers**: Compare from left to right: ten-thousands first, then thousands, hundreds, tens, and ones. Stop at the first place where the digits differ.\n- **Increasing and descending order**: Increasing order runs from smallest to greatest; descending order runs from greatest to smallest. A number line can help locate approximate positions.\n- **Digit swap**: Interchanging two digits changes their place values. In `48,247`, moving the smallest non-zero digit to the greatest place can reduce or increase the number depending on the swap allowed.\n- **Numbers between bounds**: Any valid answer must be greater than the lower bound and less than the upper bound; check both conditions.\n\n## Worked example\nQuestion: Solve NCERT Let Us Do Q3 on page 6 by arranging `40,347, 34,407, 40,473, 34,740, 73,404, 74,430, 47,340, 18,926` in increasing order.\n\nSolution:\n- Step 1: The only number below 20,000 is `18,926`, so it comes first.\n- Step 2: Among the 34-thousand numbers, compare hundreds: `34,407 < 34,740`.\n- Step 3: Among the 40-thousand numbers, compare hundreds and tens: `40,347 < 40,473`.\n- Step 4: `47,340` is greater than both 40-thousand numbers but less than the 70-thousand numbers.\n- Step 5: Among the 70-thousand numbers, `73,404 < 74,430`.\n- Final answer: `18,926, 34,407, 34,740, 40,347, 40,473, 47,340, 73,404, 74,430`.\n\n## Common mistake\nDo not compare numbers by looking at only one digit, such as saying 9,990 is greater than 49,014 because 9 is greater than 4. First compare the number of digits and then compare corresponding place values.\n\n## Quick check question\nQuestion: In NCERT final Let Us Do Q3, whose car has travelled more: Ravi’s at 56,987 km or Sheetal’s at 67,543 km?\nAnswer: Sheetal’s car.\nExplanation: Both are five-digit numbers, but Sheetal’s number has 6 in the ten-thousands place while Ravi’s has 5, so `67,543 > 56,987`.\n\n## Summary\n- Find and repeat the same change in a sequence.\n- A five-digit positive number is greater than any four-digit positive number.\n- Compare equal-length numbers from the leftmost place.\n- Increasing order means smallest to greatest.\n- A digit swap changes place value and can change the number greatly.",
+    "Worked examples": "# Worked Examples: We the Travellers — I\n\n## What you will learn\nYou will round numbers to the nearest ten, hundred, and thousand. You will also apply multiplication and division in the travel questions about equal speed and vehicle capacity.\n\n## Simple explanation\nRounding means choosing the nearer of two neighbouring multiples. Travel problems then use repeated equal groups: equal distance each hour is multiplication, while equal people in each vehicle is division with enough vehicles for everyone.\n\n## Step-by-step breakdown\n- **Nearest ten**: Find the neighbouring multiples of 10. For `2,346`, they are `2,340` and `2,350`; the distances are 6 and 4, so the nearest ten is `2,350`.\n- **Nearest hundred**: The neighbours of `2,346` are `2,300` and `2,400`. It is 46 from `2,300` and 54 from `2,400`, so it rounds to `2,300`.\n- **Nearest thousand**: The neighbours of `2,346` are `2,000` and `3,000`. It is 346 from `2,000` and 654 from `3,000`, so it rounds to `2,000`.\n- **Midpoint rule**: A number exactly at the halfway point is rounded to the next higher multiple in the usual school convention; the chapter’s diagrams use the midpoint to decide the nearer side.\n- **Distance at a constant rate**: NCERT page 10 states that a cyclist covers 15 km in one hour. For 4 hours at the same speed, multiply 15 by 4.\n- **Vehicle capacity**: The school has `461 + 439 = 900` students. Divide 900 by the capacity of one vehicle; if a remainder occurs, one extra vehicle is required.\n\n## Worked example\nQuestion: Solve NCERT Let Us Do Q2 on page 10 for aeroplanes that carry 180 people each.\n\nSolution:\n- Step 1: Find the total number of students: `461 + 439 = 900`.\n- Step 2: Each aeroplane carries 180 people, so calculate `900 ÷ 180`.\n- Step 3: `180 × 5 = 900`, so there is no remainder.\n- Final answer: The school needs 5 aeroplanes.\n\n## Common mistake\nDo not round each digit separately. Rounding concerns the whole number and its two neighbouring tens, hundreds, or thousands.\n\n## Quick check question\nQuestion: In the NCERT rabbit example, what are the nearest hundred and nearest thousand of 2,346?\nAnswer: Nearest hundred: 2,300; nearest thousand: 2,000.\nExplanation: `2,346` is 46 away from 2,300 but 54 away from 2,400; it is 346 away from 2,000 but 654 away from 3,000.\n\n## Summary\n- Use neighbouring multiples to round.\n- Compare distances from the lower and upper neighbours.\n- Equal distance per hour uses multiplication.\n- Equal capacity per vehicle uses division.\n- Always check whether a remainder requires one more vehicle.",
+    "Exam-style problems": "# Exam-Style Problems: We the Travellers — I\n\n## What you will learn\nYou will solve the final chapter exercises involving numbers between limits, prices, populations, expanded form, alternative regrouping, and currency-note counts. You will show complete place-value reasoning.\n\n## Simple explanation\nThe same large number can be written in standard form, expanded form, or as an unusual combination of thousands, hundreds, tens, and ones. Word problems become easier when the place values are kept aligned.\n\n## Step-by-step breakdown\n- **Numbers between two values**: NCERT final Let Us Do Q1–Q2 accepts many answers, but every chosen number must satisfy both inequalities.\n- **Ascending prices**: For the electric-bike prices in Q4, compare ten-thousands first, then thousands, hundreds, tens, and ones.\n- **Descending populations**: For Q5, place the largest town population first and the smallest last.\n- **Expanded form**: Write only non-zero place values if desired: `70,405 = 70,000 + 400 + 5`. The zeros still matter in standard form.\n- **Alternative regrouping**: The chapter shows that `983 = 90 Tens + 83 Ones`. This is valid because `90 Tens = 900`, and `900 + 83 = 983`.\n- **Counting complete notes**: The number of complete ₹10 or ₹100 notes is the whole-number quotient. For ₹7,934, there are 793 complete ₹10 notes and 79 complete ₹100 notes.\n- **Thousands and ₹500 notes**: `7,934` contains 7 complete thousands. Each thousand equals two ₹500 notes, so 7 complete thousands give 14 complete ₹500 notes, with the remaining ₹934 able to provide one more ₹500 note; therefore the exact count of complete ₹500 notes is `7,934 ÷ 500 = 15` with ₹434 left.\n\n## Worked example\nQuestion: Answer NCERT final Let Us Do Q7(f): write `70,405` in expanded form.\n\nSolution:\n- Step 1: Place the digits: `TTh = 7`, `Th = 0`, `H = 4`, `T = 0`, `O = 5`.\n- Step 2: Convert each non-zero digit to its place value: `7 × 10,000 = 70,000`, `4 × 100 = 400`, and `5 × 1 = 5`.\n- Step 3: Add the values: `70,000 + 400 + 5 = 70,405`.\n- Final answer: `70,405 = 70,000 + 400 + 5`.\n\n## Common mistake\nDo not delete internal zeros when moving between standard and expanded form. `70,405` is not `7,045`; the 7 is in the ten-thousands place.\n\n## Quick check question\nQuestion: Using NCERT final Let Us Do Q9, how many complete ₹100 notes can be made from ₹65,342?\nAnswer: 653 complete ₹100 notes, with ₹42 left.\nExplanation: `65,342 ÷ 100 = 653` remainder `42`, so 653 full ₹100 notes can be formed.\n\n## Summary\n- Check both limits when choosing numbers between two values.\n- Align equal place values before comparing or calculating.\n- Expanded form shows the contribution of each non-zero digit.\n- A number may be regrouped in many correct ways.\n- For note counts, use complete groups and state any remainder when helpful.",
+    "Revision and recap": "# Revision and Recap: We the Travellers — I\n\n## What you will learn\nYou will revise the chapter through its logic puzzles and counting investigations. You will explain safe sequences, winning strategies, reversed-digit subtraction, and why corner objects can be counted twice.\n\n## Simple explanation\nMathematics is not only calculation. The chapter’s final puzzles ask you to plan moves, preserve a safe condition, find an invariant pattern, and check whether a counting argument counts each object exactly once.\n\n## Step-by-step breakdown\n- **River crossing**: In NCERT Pastime Mathematics Q1, the sheep cannot be left alone with either the lion or the grass. Therefore, the sheep must be carried first and must also be brought back during the sequence.\n- **Minimum safe sequence**: Carry sheep across; return alone; carry lion across; bring sheep back; carry grass across; return alone; carry sheep across. This uses seven one-way crossings.\n- **Pile of pebbles**: With two equal piles, a strong strategy is to copy the opponent’s removal from the other pile. After each pair of moves, the piles become equal again, allowing the copying player to take the last pebble.\n- **Reversed-digit subtraction**: For digits 3 and 7, `73 − 37 = 36`, `63 − 36 = 27`, `72 − 27 = 45`, and `54 − 45 = 9`. Each two-digit difference is a multiple of 9.\n- **Digit-difference relationship**: If the digit difference is 4, the number difference is `9 × 4 = 36`; if it is 8, the difference is `72`; if it is 1, the difference is `9`.\n- **King’s Horses**: Five horses counted on each of four sides gives 20 side-counts, not necessarily 20 different horses. Horses in corner positions belong to two sides and are counted twice.\n\n## Worked example\nQuestion: Complete the NCERT reversed-digit example beginning with digits 3 and 7, as shown in Pastime Mathematics Q3.\n\nSolution:\n- Step 1: Form `73` and `37`; subtract: `73 − 37 = 36`.\n- Step 2: Reverse the digits in 36 and subtract: `63 − 36 = 27`.\n- Step 3: Reverse the digits in 27 and subtract: `72 − 27 = 45`.\n- Step 4: Reverse the digits in 45 and subtract: `54 − 45 = 9`.\n- Final answer: The process reaches the one-digit number 9.\n\n## Common mistake\nDo not assume that four sides with five objects on each side contain 20 distinct objects. Corner objects may belong to two sides, so count each physical object once.\n\n## Quick check question\nQuestion: In NCERT Pastime Mathematics Q3(4), what digit difference is needed so that the two reversed numbers differ by 27?\nAnswer: A digit difference of 3; for example, digits 2 and 5 give `52 − 25 = 27`.\nExplanation: The difference between reversed two-digit numbers is nine times the difference between the digits, so `27 ÷ 9 = 3`.\n\n## Summary\n- Logical puzzles require a safe condition or a repeating strategy.\n- The river puzzle is solved in seven one-way crossings.\n- Mirroring moves is a winning strategy for two equal pebble piles.\n- Reversed two-digit differences are multiples of 9.\n- Corner positions can cause double-counting.\n- Place value, rounding, operations, and reasoning work together throughout the chapter."
+  }
+}

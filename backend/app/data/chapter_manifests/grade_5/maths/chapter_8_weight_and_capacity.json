@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 8: Weight and Capacity",
+  "central_question": "How can we choose suitable units, convert between them, and use the four operations to solve everyday problems involving weight and capacity?",
+  "in_scope_units": [
+    "Check! Check! and reading weighing scales for sensible household weights.",
+    "Different Units but Same Measure: kilograms and grams, conversions, and double number lines.",
+    "Comparison between Different Weights using common units and comparison signs.",
+    "Milligram and the relation between grams and milligrams.",
+    "Quintal and tonne for very large weights.",
+    "From Tiny to Big: the complete chain from milligram to tonne.",
+    "The Grocery Store: addition and subtraction of compound weights.",
+    "More Operations on Weight: multiplication, division, rates, and total cost.",
+    "Measuring Capacity and choosing litres or millilitres.",
+    "Big to Small, Small to Big: litre-millilitre conversions and container readings.",
+    "The Milkman's Delivery: equivalent capacities and double number lines.",
+    "Let Us Compare: capacity comparisons, petrol-pump totals, addition, and subtraction.",
+    "Let Us Solve: multi-step capacity, equal sharing, multiplication, and cost problems."
+  ],
+  "banned_topics": [
+    "Length and distance conversions",
+    "Area and perimeter",
+    "Volume formulae for cuboids and cylinders",
+    "Density",
+    "Temperature measurement"
+  ],
+  "must_include_keywords": [
+    "weighing scale",
+    "zero mark",
+    "kilogram",
+    "gram",
+    "milligram",
+    "quintal",
+    "tonne",
+    "double number line",
+    "conversion",
+    "comparison",
+    "descending order",
+    "less than",
+    "greater than",
+    "equal to",
+    "regrouping",
+    "addition",
+    "subtraction",
+    "multiplication",
+    "division",
+    "rate",
+    "cost per kilogram",
+    "capacity",
+    "litre",
+    "millilitre",
+    "container",
+    "milk delivery",
+    "petrol",
+    "equal sharing",
+    "1,000",
+    "100 kg",
+    "10 quintals"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "5 kg 50 g is 5,500 g.",
+      "correction": "5 kg is 5,000 g, so 5 kg 50 g is 5,050 g."
+    },
+    {
+      "claim": "1 g equals 100 mg.",
+      "correction": "The chapter states that 1 g = 1,000 mg."
+    },
+    {
+      "claim": "A bucket's capacity should normally be written as 20 ml.",
+      "correction": "A bucket is a large container, so litres are the sensible unit; the chapter asks learners to correct 20 ml to a litre-based measure."
+    },
+    {
+      "claim": "Mixed units can always be added or compared directly without conversion.",
+      "correction": "Convert to the same unit or align kilograms with grams and litres with millilitres before operating."
+    },
+    {
+      "claim": "When subtracting 1 kg 750 g from 2 kg 500 g, 500 minus 750 can be done without regrouping.",
+      "correction": "Regroup 1 kg as 1,000 g, making 1 kg 1,500 g before subtracting."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Check! Check! and Let Us Do scale-reading questions to choose sensible units and read marked intervals.",
+    "Use NCERT Shrenu's flour example and Let Us Find Questions 1-2 for kg-g conversions.",
+    "Use NCERT Milligram Questions 1-5 and the quintal-tonne Questions 6-7 for small and large units.",
+    "Use NCERT The Grocery Store example and Let Us Do Questions 1-7 for addition and subtraction of weights.",
+    "Use NCERT More Operations on Weight examples for multiplication, division, rates, and cost.",
+    "Use NCERT Big to Small, Small to Big and The Milkman's Delivery for litre-millilitre conversion.",
+    "Use NCERT Sam and Tina petrol example and Let Us Solve Questions 1-5 for capacity operations."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section Let Us Solve, Questions 1-5 on page 118, while earlier Let Us Do, Let Us Find, Let Us Think, and Let Us Compare sections provide additional practice.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
