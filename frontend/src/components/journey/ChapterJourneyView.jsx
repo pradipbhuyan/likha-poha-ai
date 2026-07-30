@@ -46,9 +46,9 @@ function progressKey({ grade, subject, chapter }) {
 function loadProgress(key) {
   try {
     const raw = window.localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : { quizAnswers: {}, xp: 0 };
+    return raw ? JSON.parse(raw) : { quizAnswers: {} };
   } catch {
-    return { quizAnswers: {}, xp: 0 };
+    return { quizAnswers: {} };
   }
 }
 
@@ -168,7 +168,6 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
       const next = {
         ...prev,
         quizAnswers: { ...prev.quizAnswers, [blockKey]: answerIndex },
-        xp: prev.xp + (isCorrect ? 10 : 0),
       };
       try {
         window.localStorage.setItem(storageKey, JSON.stringify(next));
@@ -270,7 +269,6 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
       {isJunior ? (
         <JourneyRenderer
           doc={doc}
-          xp={progress.xp || 0}
           quizAnswers={progress.quizAnswers}
           onQuickCheckAnswer={handleQuickCheckAnswer}
           activeMilestone={activeMilestone}

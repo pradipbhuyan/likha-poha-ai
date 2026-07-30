@@ -12,7 +12,6 @@ import {
   Sparkles,
   Star,
   Trophy,
-  Zap,
 } from "lucide-react";
 
 import LessonMarkdown from "./LessonMarkdown";
@@ -137,7 +136,7 @@ function QuickCheckCard({ block, blockKey, savedAnswer, onAnswer }) {
             ? <CheckCircle2 size={16} strokeWidth={2.4} style={{ flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
             : <AlertTriangle size={16} strokeWidth={2.4} style={{ flexShrink: 0, marginTop: 2 }} aria-hidden="true" />}
           <span>
-            {picked === block.answer_index ? "Correct! +10 XP" : "Not quite — the highlighted answer is correct."}
+            {picked === block.answer_index ? "Correct!" : "Not quite — the highlighted answer is correct."}
             {block.explanation && (
               <span style={{ display: "block", fontWeight: 500, color: "var(--muted, #6b7280)", marginTop: 3 }}>
                 <LessonMarkdown unwrapParagraph>{block.explanation}</LessonMarkdown>
@@ -418,21 +417,8 @@ function ExploreMoreCard({ block }) {
   );
 }
 
-function XpChip({ xp }) {
-  return (
-    <span style={{
-      display: "inline-flex", alignItems: "center", gap: 6,
-      background: "rgba(242,169,34,.14)", border: "1.5px solid rgba(242,169,34,.5)",
-      color: "#b45309", fontWeight: 800, fontSize: ".82rem",
-      borderRadius: 99, padding: "4px 12px",
-    }}>
-      <Zap size={14} strokeWidth={2.6} aria-hidden="true" /> {xp} XP
-    </span>
-  );
-}
-
-function MilestoneRail({ doc, activeMilestone, xp }) {
-  /** Sticky left rail on wide screens: chapter path + XP, always visible. */
+function MilestoneRail({ doc, activeMilestone }) {
+  /** Sticky left rail on wide screens: chapter path, always visible. */
   return (
     <nav className="journey-rail" style={{
       position: "sticky", top: 84, width: 224, flexShrink: 0,
@@ -440,14 +426,13 @@ function MilestoneRail({ doc, activeMilestone, xp }) {
       borderRadius: 16, padding: "14px 0 8px",
       maxHeight: "78vh", overflowY: "auto",
     }}>
-      <div style={{ padding: "0 14px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div style={{ padding: "0 14px 12px" }}>
         <span style={{
           fontSize: ".66rem", fontWeight: 800, letterSpacing: ".11em",
           textTransform: "uppercase", color: "var(--muted, #6b7280)",
         }}>
           Chapter path
         </span>
-        <XpChip xp={xp} />
       </div>
       {doc.milestones.map((milestone, mi) => {
         const isDone = mi < activeMilestone;
@@ -501,10 +486,10 @@ function MilestoneRail({ doc, activeMilestone, xp }) {
   );
 }
 
-function JourneyRenderer({ doc, xp, onQuickCheckAnswer, quizAnswers, activeMilestone = 0, isWide = false }) {
+function JourneyRenderer({ doc, onQuickCheckAnswer, quizAnswers, activeMilestone = 0, isWide = false }) {
   return (
     <div style={isWide ? { display: "flex", gap: 26, alignItems: "flex-start" } : undefined}>
-      {isWide && <MilestoneRail doc={doc} activeMilestone={activeMilestone} xp={xp} />}
+      {isWide && <MilestoneRail doc={doc} activeMilestone={activeMilestone} />}
 
       <div
         className="journey-feed"
@@ -512,13 +497,6 @@ function JourneyRenderer({ doc, xp, onQuickCheckAnswer, quizAnswers, activeMiles
           ? { flex: 1, minWidth: 0, maxWidth: 860 }
           : { maxWidth: 640, margin: "0 auto" }}
       >
-      {/* XP chip inline only on narrow screens — the rail shows it on wide */}
-      {!isWide && (
-        <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 10 }}>
-          <XpChip xp={xp} />
-        </div>
-      )}
-
       {doc.milestones.map((milestone, mi) => (
         <section key={mi} id={`journey-milestone-${mi}`} style={{ scrollMarginTop: 90 }}>
           <div style={{

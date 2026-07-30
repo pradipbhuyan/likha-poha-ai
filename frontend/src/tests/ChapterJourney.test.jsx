@@ -94,7 +94,7 @@ const USER = { username: "test_user" };
 describe("JourneyRenderer (Grades 5-8)", () => {
   test("renders hook, concept, milestone titles, and recap", () => {
     render(
-      <JourneyRenderer doc={SAMPLE_DOC} xp={0} quizAnswers={{}} onQuickCheckAnswer={() => {}} />
+      <JourneyRenderer doc={SAMPLE_DOC} quizAnswers={{}} onQuickCheckAnswer={() => {}} />
     );
     expect(screen.getByText(/same substance/i)).toBeInTheDocument();
     expect(screen.getByText(/solids keep their shape/i)).toBeInTheDocument();
@@ -106,16 +106,16 @@ describe("JourneyRenderer (Grades 5-8)", () => {
   test("quick check gives instant local feedback on correct answer", () => {
     const onAnswer = vi.fn();
     render(
-      <JourneyRenderer doc={SAMPLE_DOC} xp={0} quizAnswers={{}} onQuickCheckAnswer={onAnswer} />
+      <JourneyRenderer doc={SAMPLE_DOC} quizAnswers={{}} onQuickCheckAnswer={onAnswer} />
     );
     fireEvent.click(screen.getByRole("button", { name: "Gas" }));
-    expect(screen.getByText(/correct! \+10 xp/i)).toBeInTheDocument();
+    expect(screen.getByText(/^correct!$/i)).toBeInTheDocument();
     expect(onAnswer).toHaveBeenCalledWith("0:2", 2, true);
   });
 
   test("students_ask answer is hidden until revealed", () => {
     render(
-      <JourneyRenderer doc={SAMPLE_DOC} xp={0} quizAnswers={{}} onQuickCheckAnswer={() => {}} />
+      <JourneyRenderer doc={SAMPLE_DOC} quizAnswers={{}} onQuickCheckAnswer={() => {}} />
     );
     expect(screen.queryByText(/less dense than water/i)).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: /why does ice float/i }));
@@ -166,7 +166,7 @@ describe("StudyRenderer board questions", () => {
     unmount();
 
     render(
-      <JourneyRenderer doc={SAMPLE_DOC} xp={0} quizAnswers={{}} onQuickCheckAnswer={() => {}} />
+      <JourneyRenderer doc={SAMPLE_DOC} quizAnswers={{}} onQuickCheckAnswer={() => {}} />
     );
     expect(screen.queryByText(/board questions/i)).not.toBeInTheDocument();
   });
@@ -223,7 +223,6 @@ describe("ChapterJourneyView", () => {
       window.localStorage.getItem("lp_journey:Grade 6|Science|Chapter 3: Matter Around Us")
     );
     expect(saved.quizAnswers["0:2"]).toBe(2);
-    expect(saved.xp).toBe(10);
   });
 
   test("follow-up box sends question with milestone context", async () => {
