@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "3. Landforms and Life",
+  "central_question": "What are the major types of landforms, and how do they each create different challenges and opportunities for the life and culture of the people living on them?",
+  "in_scope_units": [
+    "Introduction: Chhota Nagpur-Prayagraj-Almora journey and the definition of a landform",
+    "Mountains: definition, hills, snow, mountain ranges, notable peaks, young vs old mountains",
+    "Mountain environment: montane forest, conifer trees, Kalidasa's verses, mountain fauna",
+    "Life in the mountains: terrace farming, herding, tourism, mountain hazards, mountaineers, sacred mountains",
+    "Plateaus: definition, Tibetan and Deccan Plateaus, mining and minerals, plateau soil, plateau waterfalls",
+    "Plains: definition, floodplains and sediments, life in the plains, crops, irrigation vs rainfed, rivers",
+    "Deserts: hot and cold deserts, life and culture in the Thar Desert",
+    "The five tinais of ancient Tamil Sangam poetry and their link between landscape and human occupation"
+  ],
+  "banned_topics": [
+    "Detailed treatment of latitude, longitude, map components and time zones (covered in Chapter 1)",
+    "Detailed naming, sizing and distribution of the world's oceans and continents as a topic in itself (covered in Chapter 2)"
+  ],
+  "must_include_keywords": [
+    "landform",
+    "mountain",
+    "hill",
+    "plateau",
+    "plain",
+    "altitude",
+    "Himalayas",
+    "Alps",
+    "Andes",
+    "Mount Everest",
+    "Kanchenjunga",
+    "Mount Aconcagua",
+    "Mount Kilimanjaro",
+    "Mont Blanc",
+    "Anamudi",
+    "montane forest",
+    "terrace farming",
+    "Bachendri Pal",
+    "Arunima Sinha",
+    "Tibetan Plateau",
+    "Deccan Plateau",
+    "Chhota Nagpur Plateau",
+    "waterfall",
+    "Nohkalikai Falls",
+    "floodplain",
+    "sediments",
+    "Ganga plain",
+    "rainfed",
+    "irrigation",
+    "desert",
+    "Sahara Desert",
+    "Thar Desert",
+    "Gobi Desert",
+    "tinai",
+    "Kurinji",
+    "Mullai",
+    "Marudam",
+    "Neydal",
+    "Palai"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Mountains and hills are the same landform.",
+      "correction": "Mountains have a broad base, steep slopes and a narrow summit; hills are lower, with less steep slopes and rounded tops."
+    },
+    {
+      "claim": "The Himalayas, being very tall, must be one of the oldest mountain ranges.",
+      "correction": "Mountains with tall, sharp peaks like the Himalayas are relatively 'young'; shorter, rounded ranges like the Aravalli Range are much older."
+    },
+    {
+      "claim": "Plateaus are always completely flat with no steep sides.",
+      "correction": "A plateau rises up from surrounding land with a flat surface, but some of its sides are often steep slopes."
+    },
+    {
+      "claim": "All deserts are hot, sandy places.",
+      "correction": "Deserts can be hot (Sahara, Thar) or cold (Gobi); some experts even describe Antarctica as a desert."
+    },
+    {
+      "claim": "The Ganga is a tributary of the Yamuna.",
+      "correction": "The Yamuna and Ghagara are tributaries that join the Ganga, meaning the Ganga is the main river."
+    }
+  ],
+  "recommended_example_progression": [
+    "Reasoning exercise identifying the three landforms in the opening Chhota Nagpur-Prayagraj-Almora journey.",
+    "Comparative reasoning exercise on relative heights of six world mountains.",
+    "Interpretive exercise on Kalidasa's Kumarasambhava verses about the Himalayas.",
+    "Reasoning exercise on mountain-life hazards (landslide, flash flood, avalanche, cloudburst).",
+    "Revision exercise based on true/false statements and a matching-pairs exercise."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's Questions, activities and projects section (numbered 1 to 5) covers identifying your own local landform, the Chhota Nagpur journey, pilgrimage spots by landform, true/false statements, and matching pairs.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

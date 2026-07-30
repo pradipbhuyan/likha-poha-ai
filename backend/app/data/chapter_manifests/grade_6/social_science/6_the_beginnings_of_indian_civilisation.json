@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "6. The Beginnings of Indian Civilisation",
+  "central_question": "What is a civilisation, what was the earliest civilisation of the Indian Subcontinent, and what were its major achievements and eventual fate?",
+  "in_scope_units": [
+    "What Is a Civilisation?: seven characteristics, where/when civilisation began before India's northwest",
+    "From Village to City: the Indus and Sarasvati rivers, growth from villages to towns to cities, names",
+    "The Sarasvati River and major settlements of the Indus-Sarasvati civilisation",
+    "Town-Planning: Harappa and Mohenjo-daro, upper/lower towns, fortifications, streets, Great Bath",
+    "Water Management: drains, wells, reservoirs, Dholavira's reservoir system",
+    "What Did the Harappans Eat?: crops, plough, domesticated animals, fishing, diet evidence",
+    "A Brisk Trade: exports/imports, land/river/maritime trade, Lothal's dockyard, seals",
+    "The Lives of the Ancients: objects of daily use and cultural/symbolic objects",
+    "The End or a New Beginning?: decline around 1900 BCE and likely causes"
+  ],
+  "banned_topics": [
+    "Detailed treatment of how historical time/dates are measured (covered in Chapter 4)",
+    "Detailed treatment of India's many ancient and foreign names, such as Bharata or Hindustan (covered in Chapter 5)"
+  ],
+  "must_include_keywords": [
+    "civilisation",
+    "urbanism",
+    "metallurgy",
+    "Mesopotamia",
+    "Egypt",
+    "Indus River",
+    "Sarasvati River",
+    "Ghaggar-Hakra",
+    "Harappan",
+    "Indus-Sarasvati civilisation",
+    "Sindhu-Sarasvati",
+    "Harappa",
+    "Mohenjo-daro",
+    "Dholavira",
+    "Rakhigarhi",
+    "Kalibangan",
+    "Lothal",
+    "Ganweriwala",
+    "First Urbanisation of India",
+    "fortification",
+    "Great Bath",
+    "water management",
+    "reservoir",
+    "drainage system",
+    "carnelian",
+    "dockyard",
+    "seals",
+    "steatite",
+    "Priest King",
+    "Dancing Girl",
+    "bronze",
+    "copper",
+    "plough",
+    "pulses"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The term 'Indus Valley civilisation' is still the most accurate name for this civilisation.",
+      "correction": "This term is now obsolete, since the civilisation extended much beyond the Indus region, including the Sarasvati basin."
+    },
+    {
+      "claim": "The Harappan civilisation collapsed due to war or invasion.",
+      "correction": "There is no trace of warfare or invasion; the two currently agreed factors are climatic change and the drying up of the Sarasvati River."
+    },
+    {
+      "claim": "Mohenjo-daro's Great Bath was definitely a public bath open to all city residents.",
+      "correction": "This interpretation is now ruled out because most houses in the city had individual bathrooms."
+    },
+    {
+      "claim": "Harappan houses of different sizes were built to very different standards, showing great inequality.",
+      "correction": "The quality of construction was the same for small and big houses, even though house sizes varied."
+    },
+    {
+      "claim": "Harappan trade only exported raw materials like ore or timber.",
+      "correction": "Exports included finished ornaments (like carnelian beads), timber, objects of daily use, probably gold and cotton, and possibly food items."
+    }
+  ],
+  "recommended_example_progression": [
+    "Reasoning exercise on which characteristic of civilisation is most fundamental.",
+    "City-to-region matching exercise (Dholavira/Harappa/Kalibangan/Mohenjo-daro/Rakhigarhi).",
+    "Interpretive class-debate exercise on the purpose of the Great Bath.",
+    "Reasoning exercise on what mindset the system of reservoirs at Dholavira reflects.",
+    "Revision exercise: a report on Harappan achievements and a discussion of Harappan 'civic sense'."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's Questions, activities and projects section (numbered 1 to 8) covers the civilisation's several names, a summary report, a travel-options exercise, a 'kitchen surprises' exercise, spotting familiar objects, the mindset behind Dholavira's reservoirs, wells at Mohenjo-daro, and Harappan 'civic sense'.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "1. Locating Places on the Earth",
+  "central_question": "How can we use maps, coordinates (latitude and longitude), and time zones together to precisely locate any place on the spherical Earth and understand its local time?",
+  "in_scope_units": [
+    "A Map and Its Components",
+    "Scale",
+    "Cardinal and intermediate directions",
+    "Symbols",
+    "Mapping the Earth",
+    "Understanding coordinates",
+    "Latitudes",
+    "Longitudes",
+    "Understanding Time Zones"
+  ],
+  "banned_topics": [
+    "Detailed classification and location of the world's oceans and continents (covered in Chapter 2, Oceans and Continents)",
+    "Detailed description of landforms such as mountains, plateaus and plains (covered in Chapter 3, Landforms and Life)"
+  ],
+  "must_include_keywords": [
+    "map",
+    "atlas",
+    "physical map",
+    "political map",
+    "thematic map",
+    "scale",
+    "distance",
+    "cardinal directions",
+    "intermediate directions",
+    "symbols",
+    "Survey of India",
+    "globe",
+    "sphere",
+    "coordinates",
+    "latitude",
+    "Equator",
+    "parallel of latitude",
+    "torrid",
+    "temperate",
+    "frigid",
+    "longitude",
+    "meridian of longitude",
+    "Prime Meridian",
+    "Greenwich Meridian",
+    "Western Hemisphere",
+    "Eastern Hemisphere",
+    "Northern Hemisphere",
+    "Southern Hemisphere",
+    "Ujjayini meridian",
+    "Varahamihira",
+    "grid lines",
+    "time zones",
+    "local time",
+    "standard time",
+    "Indian Standard Time (IST)",
+    "Greenwich Mean Time (GMT)",
+    "International Date Line"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Equator is a meridian of longitude.",
+      "correction": "The Equator is a parallel of latitude (at 0 degrees), halfway between the poles."
+    },
+    {
+      "claim": "All parallels of latitude are the same length as the Equator.",
+      "correction": "The Equator is the largest circle; the circles marked by the parallels of latitude grow smaller as you move towards the poles."
+    },
+    {
+      "claim": "Greenwich was the world's first prime meridian.",
+      "correction": "India had its own prime meridian, the Ujjayini meridian, many centuries before Europe adopted Greenwich in 1884."
+    },
+    {
+      "claim": "A place needs only its latitude or only its longitude to be located exactly.",
+      "correction": "Latitude and longitude together are the two coordinates of a place - both are needed."
+    },
+    {
+      "claim": "Crossing the International Date Line while travelling eastward means adding a day.",
+      "correction": "Travelling eastward across the International Date Line, you subtract a day; travelling westward, you add a day."
+    }
+  ],
+  "recommended_example_progression": [
+    "Direction-and-symbol reading exercise based on the city map activity.",
+    "Coordinate-reasoning exercise based on the chessboard activity.",
+    "Latitude/longitude identification exercise for Mumbai, Kolkata, Singapore and Paris.",
+    "Local-time reasoning exercise based on the Porbandar-Tinsukia activity.",
+    "Revision exercise based on NCERT Q7 and the crossword (Q8)."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's Questions, activities and projects section (numbered 1 to 8) covers scale-based distance calculation, local vs standard time, map symbols, directions, a true/false set, and a crossword.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

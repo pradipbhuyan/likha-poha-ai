@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "5. India, That Is Bharat",
+  "central_question": "How has the Indian Subcontinent been named across history, both by its own inhabitants and by foreign visitors, and what do these names reveal about its geography and identity?",
+  "in_scope_units": [
+    "Introduction: India as a modern nation versus its ancient, shifting identity as the 'Indian Subcontinent'",
+    "How Indians Named India: the Rig Veda's 'Sapta Sindhava', regional names in the Mahabharata",
+    "The whole-Subcontinent names 'Bharatavarsha' and 'Jambudvipa', Ashoka's inscription",
+    "The name 'Bharata': the Vishnu Purana's definition, continued use as 'Bharat'/'Bharatam'",
+    "'India, that is Bharat' in the Constitution of India",
+    "How Foreigners Named India: Persian, Greek, Chinese names, Xuanzang, 'Hindustan'"
+  ],
+  "banned_topics": [
+    "Detailed description of the Indus-Sarasvati/Harappan civilisation's cities, trade and daily life (covered in Chapter 6)",
+    "Detailed explanation of how historical time is measured (covered in Chapter 4)"
+  ],
+  "must_include_keywords": [
+    "Indian Subcontinent",
+    "Rig Veda",
+    "Sapta Sindhava",
+    "Sindhu",
+    "Indus River",
+    "Mahabharata",
+    "Kashmira",
+    "Kurukshetra",
+    "Vanga",
+    "Pragjyotisha",
+    "Kaccha",
+    "Kerala",
+    "Bharatavarsha",
+    "Jambudvipa",
+    "Bharata",
+    "Ashoka",
+    "Vishnu Purana",
+    "Bharat",
+    "Bharatam",
+    "Constitution of India",
+    "Persian",
+    "Hind",
+    "Hidu",
+    "Hindu",
+    "Greek",
+    "Indoi",
+    "Indike",
+    "Chinese",
+    "Yintu",
+    "Yindu",
+    "Tianzhu",
+    "Xuanzang",
+    "Hindustan"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "India has always had one single, unchanging name throughout history.",
+      "correction": "India has had many different names and shifting boundaries across its long history."
+    },
+    {
+      "claim": "In ancient Persian, the word 'Hindu' referred to the Hindu religion.",
+      "correction": "In ancient Persian, Hindu is a purely geographical term; it does not refer to the Hindu religion."
+    },
+    {
+      "claim": "The name 'India' comes directly from Sanskrit.",
+      "correction": "'India' traces through a chain from 'Sindhu' to the Persian 'Hindu' to the Greek 'Indoi/Indike'."
+    },
+    {
+      "claim": "'Bharata' is a name that foreign travellers gave to India.",
+      "correction": "'Bharata' comes from Indian sources - the Rig Veda and later texts - and means 'the country of the Bharatas'."
+    },
+    {
+      "claim": "'Hindustan' is a very recent (20th-century) term.",
+      "correction": "'Hindustan' was first used in a Persian inscription some 1,800 years ago."
+    }
+  ],
+  "recommended_example_progression": [
+    "Reasoning exercise on the meaning of the Sri Aurobindo quotation.",
+    "Interpretive exercise tracing the word chain from 'Sindhu' to 'Hindu' to 'Indoi/Indike' to 'India'.",
+    "Reasoning exercise interpreting the Vishnu Purana verse defining Bharata.",
+    "True/false revision exercise testing understanding of names and sources.",
+    "Imaginative reasoning exercise on naming and foreign travellers' motivations."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's Questions, activities and projects section (numbered 1 to 4) covers interpreting the opening quotation, a true/false exercise, an imaginative naming exercise, and a discussion of foreign travellers' motivations for visiting ancient India.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

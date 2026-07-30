@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "2. Oceans and Continents",
+  "central_question": "What are oceans and continents, how are they named and distributed across the Earth, and in what ways do they shape climate, life and human activity?",
+  "in_scope_units": [
+    "Introduction: the Earth as the 'blue planet', water/land proportion, ocean/landmass/continent definitions",
+    "Distribution of Water and Land: uneven distribution between hemispheres, saltwater vs freshwater",
+    "Oceans: the five oceans, relative sizes, Indian Ocean boundaries, Arabian Sea/Bay of Bengal, marine flora/fauna",
+    "Oceans and disasters: monsoon, cyclones, tsunamis, 2004 Indian Ocean tsunami, disaster management",
+    "Continents: why continents can be counted as four to seven, Olympic rings, relative sizes",
+    "Islands: definition, Greenland, India's island groups, Indian Antarctica Programme",
+    "Oceans and Life: water cycle, oxygen production, human uses, World Oceans Day, pollution/overfishing threats"
+  ],
+  "banned_topics": [
+    "Detailed treatment of latitude, longitude, map scale/directions/symbols and time zones (covered in Chapter 1)",
+    "Detailed description of mountains, plateaus, plains and other landforms (covered in Chapter 3)"
+  ],
+  "must_include_keywords": [
+    "ocean",
+    "continent",
+    "landmass",
+    "blue planet",
+    "Pacific Ocean",
+    "Atlantic Ocean",
+    "Indian Ocean",
+    "Arctic Ocean",
+    "Southern Ocean",
+    "Arabian Sea",
+    "Bay of Bengal",
+    "marine flora",
+    "marine fauna",
+    "algae",
+    "saltwater",
+    "freshwater",
+    "groundwater",
+    "tsunami",
+    "cyclone",
+    "monsoon",
+    "2004 Indian Ocean tsunami",
+    "Andaman and Nicobar Islands",
+    "National Disaster Management Authority",
+    "Eurasia",
+    "Africa-Eurasia",
+    "Olympic rings",
+    "island",
+    "Greenland",
+    "Lakshadweep Islands",
+    "Antarctica",
+    "Indian Antarctica Programme",
+    "Dakshin Gangotri",
+    "water cycle",
+    "World Oceans Day",
+    "overfishing",
+    "plastic pollution"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "There is a fixed, universally agreed number of continents (always seven).",
+      "correction": "Continents can be counted as four, five, six or seven depending on convention; seven is most widely adopted."
+    },
+    {
+      "claim": "The five oceans are completely separate bodies of water.",
+      "correction": "The lines dividing oceans on maps are conventions - the natural world does not follow such boundaries."
+    },
+    {
+      "claim": "Most of Earth's abundant water is fit for humans and land animals to drink.",
+      "correction": "Seawater is salty and unfit for consumption; freshwater is only a small proportion, in glaciers, rivers, lakes, atmosphere and underground."
+    },
+    {
+      "claim": "The Northern and Southern Hemispheres have an equal share of land and water.",
+      "correction": "The Northern Hemisphere has more land than the Southern Hemisphere."
+    },
+    {
+      "claim": "Only islands are surrounded by water; continents are not.",
+      "correction": "Continents are also surrounded by water, but are too large to be considered islands."
+    }
+  ],
+  "recommended_example_progression": [
+    "Hemisphere-and-ocean identification exercise for the five oceans.",
+    "Continent-counting exercise comparing continent sizes and 'Eurasia'.",
+    "Reasoning exercise on defining Continent, Ocean, Island (NCERT Q1).",
+    "Disaster-awareness discussion on the 2004 Indian Ocean tsunami.",
+    "Revision exercise based on the end-of-chapter crossword on oceans and continents."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's Questions, activities and projects section (numbered 1 to 4) covers defining continent/ocean/island, freehand drawing of continents, labelling a world map, and a crossword.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
