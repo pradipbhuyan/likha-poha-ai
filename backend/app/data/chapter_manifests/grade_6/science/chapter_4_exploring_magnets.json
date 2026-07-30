@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 4: Exploring Magnets",
+  "central_question": "How can experiments reveal which materials are magnetic, where a magnet's poles are, how magnets show direction and how their poles interact?",
+  "in_scope_units": [
+    "Natural lodestones, artificial magnets and common magnet shapes and uses",
+    "Magnetic and non-magnetic materials",
+    "Poles of a magnet and the impossibility of a single isolated pole",
+    "Finding directions using a freely suspended magnet and magnetic compass",
+    "Constructing a simple magnetic compass with a magnetised needle and cork",
+    "Attraction and repulsion between like and unlike magnetic poles",
+    "Using repulsion and compass deflection to identify magnetic behaviour",
+    "Magnetic effect through non-magnetic materials",
+    "Fun applications of magnets and movement without contact",
+    "Safe storage and handling of magnets"
+  ],
+  "banned_topics": [
+    "Detailed atomic or domain theory of magnetism",
+    "Electromagnets, electric motors and electromagnetic induction",
+    "Quantitative magnetic-field calculations"
+  ],
+  "must_include_keywords": [
+    "lodestone",
+    "artificial magnet",
+    "bar magnet",
+    "U-shaped magnet",
+    "ring magnet",
+    "magnetic materials",
+    "non-magnetic materials",
+    "iron",
+    "nickel",
+    "cobalt",
+    "iron filings",
+    "North pole",
+    "South pole",
+    "poles in pairs",
+    "freely suspended magnet",
+    "north-south direction",
+    "Earth as a giant magnet",
+    "magnetic compass",
+    "compass needle",
+    "magnetised needle",
+    "cork",
+    "matsya-yantra",
+    "attraction",
+    "repulsion",
+    "like poles",
+    "unlike poles",
+    "deflection",
+    "property of repulsion",
+    "wood",
+    "cardboard",
+    "plastic",
+    "glass",
+    "magnetic effect through non-magnetic materials",
+    "magnetic garland",
+    "steel paper clip",
+    "storage",
+    "soft iron",
+    "heating",
+    "hammering"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All metals are attracted by magnets.",
+      "correction": "Iron, nickel, cobalt and some of their combinations are magnetic; many other materials, including many metals, are not attracted."
+    },
+    {
+      "claim": "The middle of a bar magnet attracts the most iron filings.",
+      "correction": "The maximum iron filings collect near the two ends or poles."
+    },
+    {
+      "claim": "Breaking a magnet can produce a single North pole.",
+      "correction": "North and South poles always occur together, even in the smallest broken piece."
+    },
+    {
+      "claim": "Attraction proves that an unknown metal bar is a magnet.",
+      "correction": "An iron bar is attracted by both poles; repulsion is the reliable identifying property of a magnet."
+    }
+  ],
+  "recommended_example_progression": [
+    "Predict, test and classify magnetic and non-magnetic materials.",
+    "Locate poles and establish the north-south direction of a freely suspended magnet.",
+    "Construct and test a simple compass.",
+    "Reason about attraction, repulsion and identifying poles.",
+    "Show magnetic action through non-magnetic materials."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end section 'Let us enhance our learning', Questions 1-11, followed by the 'Learning further' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

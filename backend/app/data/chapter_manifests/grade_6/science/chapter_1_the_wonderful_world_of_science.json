@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 1: The Wonderful World of Science",
+  "central_question": "How does curiosity, careful observation and a step-by-step scientific method help us ask questions and understand the world around us?",
+  "in_scope_units": [
+    "Science as a way of thinking, observing and doing things to understand the world and the universe",
+    "Science everywhere — questions arising from nature, daily life, Earth, space, food, water, materials and motion",
+    "Science as an unending and connected jigsaw puzzle in which new discoveries may change earlier understanding",
+    "Overview of the themes and questions that the Grade 6 science book will explore",
+    "Finding answers through the pen example and the step-by-step scientific method",
+    "Scientific thinking in everyday work such as cooking, bicycle repair and electrical repair",
+    "Curiosity, asking why, teamwork and joyful exploration as habits of a science learner"
+  ],
+  "banned_topics": [
+    "Detailed classification of plants and animals from Chapter 2",
+    "Detailed nutrients and balanced diet from Chapter 3",
+    "Detailed properties of magnets from Chapter 4",
+    "Detailed measurement units and types of motion from Chapter 5"
+  ],
+  "must_include_keywords": [
+    "science",
+    "curiosity",
+    "observation",
+    "question",
+    "guess",
+    "test",
+    "experiment",
+    "analyse",
+    "result",
+    "scientific method",
+    "discovery",
+    "jigsaw puzzle",
+    "daily life",
+    "Earth",
+    "environment",
+    "plants",
+    "animals",
+    "food",
+    "water",
+    "materials",
+    "motion",
+    "Sun",
+    "Moon",
+    "stars",
+    "pen example",
+    "dal",
+    "bicycle repair",
+    "electrician",
+    "teamwork",
+    "spirit of inquiry",
+    "why"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Science is only a collection of facts that students must memorise.",
+      "correction": "The chapter presents science as a way of thinking, observing, asking questions, testing guesses and analysing results."
+    },
+    {
+      "claim": "Only professional scientists use the scientific method.",
+      "correction": "Anyone who asks a question, tests possible explanations and studies the result is working like a scientist."
+    },
+    {
+      "claim": "A scientific guess is accepted without testing.",
+      "correction": "A possible answer must be tested through experiments or further observations, and the results must then be analysed."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the pen-stops-writing example and Activity 1.1 to identify the stages of a scientific investigation.",
+    "Use Activity 1.2 to recognise scientific thinking in cooking, bicycle repair or electrical repair.",
+    "Use Activity 1.3 to frame a 'Why?' question and propose a way to find an answer.",
+    "Use the jigsaw-puzzle comparison to explain why new discoveries may lead to more questions or change earlier ideas."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "This introductory chapter has no separate 'Let us enhance our learning' exercise set; its practice is organised through Activities 1.1-1.3.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

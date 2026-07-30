@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 9: Methods of Separation in Everyday Life",
+  "central_question": "How can differences in the properties of mixture components help us choose one or more suitable methods of separation?",
+  "in_scope_units": [
+    "Understanding why useful and unwanted components are separated in everyday life",
+    "Using handpicking to remove visibly different unwanted pieces",
+    "Separating grain from stalks by threshing",
+    "Separating lighter husk from heavier grain by winnowing",
+    "Using sieving when solid particles differ in size",
+    "Recovering dissolved salt from water by evaporation",
+    "Allowing insoluble solids to settle and separating liquid by sedimentation and decantation",
+    "Using cloth, strainers and filter paper for filtration",
+    "Separating butter from curd by churning",
+    "Using a magnet to separate magnetic material from a non-magnetic mixture",
+    "Selecting and combining methods for mixtures with several components"
+  ],
+  "banned_topics": [
+    "Detailed distillation apparatus and fractional distillation",
+    "Chromatography and centrifugation",
+    "Chemical purification and reactions",
+    "Municipal water-treatment processes beyond the simple filter model in the chapter"
+  ],
+  "must_include_keywords": [
+    "mixture",
+    "handpicking",
+    "threshing",
+    "winnowing",
+    "soop",
+    "husk",
+    "grains",
+    "sieving",
+    "sieve",
+    "particle size",
+    "evaporation",
+    "salt solution",
+    "sedimentation",
+    "decantation",
+    "filtration",
+    "filter paper",
+    "residue",
+    "filtrate",
+    "pores",
+    "churning",
+    "butter",
+    "buttermilk",
+    "magnetic separation",
+    "magnetic substance",
+    "iron nails",
+    "sawdust",
+    "useful component",
+    "unwanted component",
+    "combination of methods"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Threshing and winnowing are the same method.",
+      "correction": "Threshing separates grains from stalks, while winnowing uses moving air to separate lighter husk from heavier grain."
+    },
+    {
+      "claim": "Filtration can remove dissolved salt from water.",
+      "correction": "Dissolved salt passes through an ordinary filter with the water; evaporation is used to recover the salt."
+    },
+    {
+      "claim": "Sieving works for any two solid materials.",
+      "correction": "Sieving is useful when the particles have a suitable difference in size so that smaller particles pass through the sieve openings."
+    },
+    {
+      "claim": "A clear filtrate is automatically safe to drink.",
+      "correction": "Filtration can remove visible insoluble particles, but clarity alone does not prove that water is safe for drinking."
+    }
+  ],
+  "recommended_example_progression": [
+    "Distinguish handpicking, threshing and winnowing using the opening grain example.",
+    "Compare sieving and evaporation using the flour-and-bran and salt-from-seawater examples.",
+    "Explain sedimentation, decantation and filtration using the tea, muddy-water and oil-water observations.",
+    "Explain churning and magnetic separation using the curd and iron-nail examples.",
+    "Select and combine methods for multi-component mixtures."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end section 'Let us enhance our learning', Questions 1-10, followed by the 'Learning further' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

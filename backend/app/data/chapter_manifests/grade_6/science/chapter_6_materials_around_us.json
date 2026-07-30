@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 6: Materials Around Us",
+  "central_question": "How can the observable properties of materials help us classify them, choose suitable materials for objects, and understand matter, mass and volume?",
+  "in_scope_units": [
+    "Observing everyday objects and identifying the materials from which they are made",
+    "Grouping objects and materials by common properties and understanding classification",
+    "Choosing materials according to an object's purpose, including tumblers, pens and sports balls",
+    "Comparing the appearance of materials as lustrous or non-lustrous",
+    "Comparing materials as hard or soft and recognising that hardness is relative",
+    "Classifying materials as transparent, translucent or opaque",
+    "Investigating soluble and insoluble materials and liquids or gases that mix with water",
+    "Comparing how heavy or light samples are through the property called mass",
+    "Understanding occupied space as volume and defining matter using mass and volume",
+    "Applying material properties in the chapter exercises and recognising historical systems of classification"
+  ],
+  "banned_topics": [
+    "Detailed atomic and molecular structure of matter",
+    "Density and numerical density calculations",
+    "Chemical reactions and changes in composition",
+    "Detailed heat, electrical or magnetic properties of materials"
+  ],
+  "must_include_keywords": [
+    "material",
+    "object",
+    "classification",
+    "property",
+    "purpose",
+    "lustrous",
+    "non-lustrous",
+    "metal",
+    "hard",
+    "soft",
+    "transparent",
+    "translucent",
+    "opaque",
+    "soluble",
+    "insoluble",
+    "water",
+    "mass",
+    "volume",
+    "matter",
+    "gram",
+    "kilogram",
+    "litre",
+    "millilitre",
+    "air",
+    "ORS",
+    "oxygen gas"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every shiny material is a metal.",
+      "correction": "Metals are usually lustrous, but polishing or coating can make a non-metallic surface shiny, so shine alone does not prove that a material is a metal."
+    },
+    {
+      "claim": "Hard and soft are fixed labels that never depend on comparison.",
+      "correction": "Hardness is relative; rubber is harder than sponge but softer than iron."
+    },
+    {
+      "claim": "A material that disappears in water has ceased to exist.",
+      "correction": "A soluble material dissolves and mixes completely with water; it has not vanished from the mixture."
+    },
+    {
+      "claim": "Mass and volume mean the same thing.",
+      "correction": "Mass tells the quantity of matter, while volume is the space occupied by matter."
+    }
+  ],
+  "recommended_example_progression": [
+    "Identify materials and form groups using observable properties.",
+    "Connect material properties with the purpose of tumblers and sports balls.",
+    "Classify materials by hardness and by transparency.",
+    "Reason about solubility in water.",
+    "Connect mass, volume and matter."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end section 'Let us enhance our learning', Questions 1-10, followed by the 'Learning further' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

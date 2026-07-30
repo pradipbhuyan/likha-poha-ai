@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 3: Mindful Eating: A Path to a Healthy Body",
+  "central_question": "How can understanding food diversity, nutrients, food tests and responsible choices help us build a balanced diet and a healthy body?",
+  "in_scope_units": [
+    "What we eat — recording weekly food choices and recognising variety",
+    "Food in different regions — links among crops, soil, climate, taste, culture and traditions",
+    "Changes in cooking or culinary practices over time",
+    "Components of food — carbohydrates, fats and proteins",
+    "Vitamins and minerals, their functions, sources and deficiency diseases or disorders",
+    "Nutrients, protective nutrients, nutrient loss during cooking, roughage and water",
+    "Testing food for starch, fats and proteins",
+    "Balanced diet and variation in nutritional needs",
+    "Comparing packaged foods, junk food, fortification and FSSAI",
+    "Millets as nutrition-rich cereals",
+    "Food miles, local food, food waste and the farm-to-plate journey"
+  ],
+  "banned_topics": [
+    "Detailed digestion and the human digestive system",
+    "Cellular respiration and biochemical energy pathways",
+    "Medical diagnosis or treatment beyond the chapter's advice to consult a doctor"
+  ],
+  "must_include_keywords": [
+    "food diversity",
+    "locally grown crops",
+    "culinary practices",
+    "chulha",
+    "gas stove",
+    "sil-batta",
+    "electrical grinder",
+    "carbohydrates",
+    "fats",
+    "proteins",
+    "energy-giving foods",
+    "body-building foods",
+    "vitamins",
+    "minerals",
+    "protective nutrients",
+    "Vitamin A",
+    "Vitamin B1",
+    "Vitamin C",
+    "Vitamin D",
+    "calcium",
+    "iodine",
+    "iron",
+    "scurvy",
+    "goitre",
+    "rickets",
+    "anaemia",
+    "roughage",
+    "water",
+    "starch test",
+    "iodine solution",
+    "oily patch",
+    "violet colour",
+    "balanced diet",
+    "junk food",
+    "millets",
+    "nutri-cereals",
+    "food miles",
+    "local producers",
+    "food wastage"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A food item contains only one nutrient.",
+      "correction": "A food item may contain multiple nutrients; peanuts, for example, show both proteins and fats."
+    },
+    {
+      "claim": "All carbohydrates turn blue-black with iodine.",
+      "correction": "Iodine gives a blue-black colour with starch, which is one type of carbohydrate; sugar is a carbohydrate but not starch."
+    },
+    {
+      "claim": "Roughage is a nutrient that supplies energy.",
+      "correction": "Roughage does not provide nutrients or energy, but it is essential for smooth passage of stools."
+    },
+    {
+      "claim": "A balanced diet is identical for every person.",
+      "correction": "Nutritional needs vary with age, gender, physical activity, health status and lifestyle."
+    }
+  ],
+  "recommended_example_progression": [
+    "Connect personal food records, regional crops and changing culinary practices.",
+    "Reason from symptoms to nutrient deficiencies using the James Lind and iodised-salt cases.",
+    "Interpret starch, fat and protein tests from observations.",
+    "Evaluate a balanced diet and packaged-food labels.",
+    "Connect millets, food miles, local food and responsible eating."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end section 'Let us enhance our learning', Questions 1-13, followed by the 'Learning further' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

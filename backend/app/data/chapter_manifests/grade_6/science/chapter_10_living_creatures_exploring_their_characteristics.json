@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 10: Living Creatures: Exploring their Characteristics",
+  "central_question": "Which characteristics distinguish living things from non-living things, and how do plants and animals grow, respond and complete their life cycles?",
+  "in_scope_units": [
+    "Identifying common characteristics of living and non-living things",
+    "Recognising movement, nutrition, growth, respiration, excretion, response, reproduction and death in living organisms",
+    "Investigating the conditions needed for bean-seed germination",
+    "Observing the downward growth of roots and the upward or light-directed growth of shoots",
+    "Understanding the life cycle of a bean plant from seed to new seeds",
+    "Observing the mosquito life cycle and its connection with stagnant water",
+    "Comparing the stages of the frog life cycle and changing habitats",
+    "Applying living-characteristic and life-cycle reasoning in the chapter exercises"
+  ],
+  "banned_topics": [
+    "Detailed cell structure and classification into kingdoms",
+    "Detailed photosynthesis and plant reproduction mechanisms",
+    "Internal anatomy of frogs, mosquitoes or plants",
+    "Medical treatment of mosquito-borne diseases"
+  ],
+  "must_include_keywords": [
+    "living",
+    "non-living",
+    "movement",
+    "nutrition",
+    "growth",
+    "breathing",
+    "respiration",
+    "stomata",
+    "excretion",
+    "stimulus",
+    "response",
+    "reproduction",
+    "death",
+    "Drosera",
+    "touch-me-not",
+    "germination",
+    "seed coat",
+    "embryo",
+    "air",
+    "water",
+    "sunlight",
+    "root",
+    "shoot",
+    "Jagadish Chandra Bose",
+    "crescograph",
+    "life cycle",
+    "bean plant",
+    "mosquito",
+    "egg",
+    "larva",
+    "pupa",
+    "adult",
+    "frog",
+    "spawn",
+    "tadpole",
+    "froglet",
+    "stagnant water"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Only animals move, so plants are non-living.",
+      "correction": "Plants show movement and response through growing shoots and roots, climbers, Drosera and touch-me-not leaves even though they do not walk from place to place."
+    },
+    {
+      "claim": "All seeds need sunlight to germinate.",
+      "correction": "Air and the right amount of water are essential; most bean seeds can germinate without light, though seedlings need light for healthy growth."
+    },
+    {
+      "claim": "A pupa is a non-living stage because it moves very little.",
+      "correction": "The pupa is a living developmental stage in the mosquito life cycle even though its outward movement is limited."
+    },
+    {
+      "claim": "A tadpole is simply a smaller adult frog.",
+      "correction": "A tadpole is a distinct aquatic stage with a tail and different body form that changes gradually into a froglet and adult frog."
+    }
+  ],
+  "recommended_example_progression": [
+    "Compare objects and identify the shared characteristics of living organisms.",
+    "Infer the roles of air, water and light in germination using the four bean-seed setups.",
+    "Observe root and shoot directions and the shoot's response to one-sided light.",
+    "Arrange the bean plant life cycle from seed to new seeds.",
+    "Compare mosquito and frog life cycles."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end section 'Let us enhance our learning', Questions 1-9, followed by the 'Learning further' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

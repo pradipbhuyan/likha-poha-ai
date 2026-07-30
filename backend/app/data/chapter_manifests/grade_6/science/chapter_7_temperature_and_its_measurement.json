@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 7: Temperature and its Measurement",
+  "central_question": "How can temperature be measured reliably and safely for the human body, laboratory substances and the surrounding air?",
+  "in_scope_units": [
+    "Testing whether the sense of touch can reliably distinguish hot and cold",
+    "Defining temperature and identifying thermometers as measuring devices",
+    "Using digital clinical thermometers safely to measure body temperature",
+    "Understanding normal body temperature and the Celsius, Fahrenheit and Kelvin scales",
+    "Observing the construction, range and smallest division of a laboratory thermometer",
+    "Following the correct procedure for measuring a liquid's temperature",
+    "Comparing readings of boiling water and recognising sources of measurement difference",
+    "Recording maximum and minimum air temperature and understanding weather observations",
+    "Applying temperature concepts in the chapter-end exercises"
+  ],
+  "banned_topics": [
+    "Detailed heat transfer by conduction, convection and radiation",
+    "Calorimetry and heat-capacity calculations",
+    "Advanced thermodynamic laws",
+    "Medical diagnosis or treatment based only on thermometer readings"
+  ],
+  "must_include_keywords": [
+    "sense of touch",
+    "temperature",
+    "thermometer",
+    "clinical thermometer",
+    "digital thermometer",
+    "infrared thermometer",
+    "laboratory thermometer",
+    "room thermometer",
+    "Celsius scale",
+    "degree Celsius",
+    "Fahrenheit scale",
+    "degree Fahrenheit",
+    "Kelvin scale",
+    "kelvin",
+    "SI unit",
+    "37.0 °C",
+    "98.6 °F",
+    "range",
+    "smallest division",
+    "bulb",
+    "liquid column",
+    "eye level",
+    "vertically",
+    "immersed",
+    "air temperature",
+    "maximum temperature",
+    "minimum temperature",
+    "Anna Mani"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Touch always tells us correctly which object is hotter.",
+      "correction": "The same tap water can feel warm to one hand and cool to the other, so touch is not always reliable."
+    },
+    {
+      "claim": "Every healthy person must have a body temperature of exactly 37.0 °C.",
+      "correction": "37.0 °C is an average normal temperature; a healthy person's reading may vary slightly with age, time of day and activity."
+    },
+    {
+      "claim": "A clinical thermometer can be used for boiling water.",
+      "correction": "Boiling water lies outside the clinical thermometer's intended range; a suitable laboratory thermometer is required."
+    },
+    {
+      "claim": "A laboratory thermometer should be removed before its reading is taken.",
+      "correction": "Its reading must be taken while the bulb remains immersed because the liquid column begins to fall after removal."
+    }
+  ],
+  "recommended_example_progression": [
+    "Compare prediction and observation to establish that touch is unreliable.",
+    "Measure body temperature and interpret the common temperature scales.",
+    "Find range and smallest division of a laboratory thermometer.",
+    "Practise correct laboratory-thermometer technique.",
+    "Compare, record and analyse temperature data."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end section 'Let us enhance our learning', Questions 1-14, followed by the 'Learning further' investigations.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

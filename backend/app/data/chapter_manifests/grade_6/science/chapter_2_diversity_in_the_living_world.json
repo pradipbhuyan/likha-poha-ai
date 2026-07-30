@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 2: Diversity in the Living World",
+  "central_question": "How can we observe, group and protect the diversity of plants and animals by studying their features, habitats and adaptations?",
+  "in_scope_units": [
+    "Nature walk and diversity in plants and animals around us",
+    "Biodiversity, interdependence and respectful observation of living organisms",
+    "Importance of grouping plants and animals using similarities and differences",
+    "Grouping plants as herbs, shrubs, trees, climbers and creepers",
+    "Leaf venation, root systems and their relationship",
+    "Dicot and monocot seeds and the relation among cotyledons, roots and venation",
+    "Grouping animals by movement and body parts",
+    "Plants and animals in different surroundings and region-specific biodiversity",
+    "Adaptations and habitats, including terrestrial, aquatic and amphibian life",
+    "Habitat damage, biodiversity loss, conservation projects and sacred groves"
+  ],
+  "banned_topics": [
+    "Cell structure and microscopic classification of organisms",
+    "Detailed photosynthesis and plant reproduction",
+    "Taxonomic kingdoms, phyla and scientific nomenclature beyond this chapter"
+  ],
+  "must_include_keywords": [
+    "diversity",
+    "biodiversity",
+    "nature walk",
+    "grouping",
+    "similarities",
+    "differences",
+    "herbs",
+    "shrubs",
+    "trees",
+    "climbers",
+    "creepers",
+    "stem",
+    "venation",
+    "reticulate venation",
+    "parallel venation",
+    "taproot",
+    "fibrous roots",
+    "cotyledon",
+    "dicot",
+    "monocot",
+    "movement",
+    "wings",
+    "legs",
+    "fins",
+    "habitat",
+    "adaptation",
+    "terrestrial",
+    "aquatic",
+    "amphibians",
+    "cactus",
+    "deodar",
+    "camel",
+    "rhododendron",
+    "streamlined body",
+    "habitat damage",
+    "Project Tiger",
+    "sacred groves",
+    "conservation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All plants with green stems are trees.",
+      "correction": "Trees usually have tall, hard, thick, brown woody stems, while herbs are generally short with soft green stems."
+    },
+    {
+      "claim": "Reticulate and parallel venation have no relation to roots.",
+      "correction": "Plants with reticulate venation generally have taproots, while plants with parallel venation generally have fibrous roots."
+    },
+    {
+      "claim": "An adaptation is any temporary action performed by an organism.",
+      "correction": "An adaptation is a special feature that enables a plant or animal to survive in a particular region."
+    },
+    {
+      "claim": "Biodiversity loss affects only the species whose habitat is damaged.",
+      "correction": "Plants and animals are interdependent, so habitat damage can disturb the wider biodiversity of a region."
+    }
+  ],
+  "recommended_example_progression": [
+    "Observe and appreciate local biodiversity without disturbing organisms.",
+    "Classify plants and connect stem type, venation and roots.",
+    "Connect cotyledons with roots and leaf venation.",
+    "Classify animals through movement and body parts.",
+    "Explain habitat, adaptation and conservation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end section 'Let us enhance our learning', Questions 1-10, followed by the 'Learning further' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

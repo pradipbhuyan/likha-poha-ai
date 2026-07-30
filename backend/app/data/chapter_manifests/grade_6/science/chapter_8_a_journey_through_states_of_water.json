@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 8: A Journey through States of Water",
+  "central_question": "How does water exist in different states, change from one state to another, and circulate through evaporation, condensation and the water cycle?",
+  "in_scope_units": [
+    "Recognising ice and liquid water as two states of the same substance",
+    "Investigating evaporation and the apparent disappearance of water",
+    "Explaining condensation and testing the source of droplets on a cold container",
+    "Comparing the shape, flow and spreading of solid, liquid and gaseous water",
+    "Changing states through heating and cooling, including melting and freezing",
+    "Investigating how exposed area, sunlight, air movement and humidity affect evaporation",
+    "Explaining the cooling effect of evaporation and constructing a pot-in-pot cooler",
+    "Explaining cloud formation, rain and the role of dust particles",
+    "Representing the water cycle and connecting it with responsible water use",
+    "Applying the concepts through the chapter-end exercises"
+  ],
+  "banned_topics": [
+    "Detailed molecular or particle theory of states of matter",
+    "Latent heat and numerical heat calculations",
+    "Detailed weather-system dynamics beyond cloud and rain formation in the chapter",
+    "Water purification methods from other chapters"
+  ],
+  "must_include_keywords": [
+    "states of water",
+    "solid",
+    "liquid",
+    "gas",
+    "ice",
+    "water vapour",
+    "evaporation",
+    "condensation",
+    "melting",
+    "freezing",
+    "heating",
+    "cooling",
+    "fixed shape",
+    "flow",
+    "spread",
+    "constant volume",
+    "exposed area",
+    "sunlight",
+    "air movement",
+    "humidity",
+    "cooling effect",
+    "matka",
+    "pot-in-pot cooler",
+    "clouds",
+    "dust particles",
+    "rain",
+    "hail",
+    "snow",
+    "water cycle",
+    "groundwater"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Ice and water are different substances.",
+      "correction": "Ice changes into water, so they are different states of the same substance."
+    },
+    {
+      "claim": "Visible steam is pure water vapour.",
+      "correction": "Water vapour is invisible; the visible part of steam contains tiny liquid-water droplets."
+    },
+    {
+      "claim": "Droplets outside a cold glass have leaked through the glass.",
+      "correction": "Water vapour in air condenses on the cold outer surface while the inside water level does not fall."
+    },
+    {
+      "claim": "Evaporation happens only when water boils.",
+      "correction": "Evaporation occurs continuously, even at room temperature, and its rate changes with conditions."
+    }
+  ],
+  "recommended_example_progression": [
+    "Establish states of water and evaporation.",
+    "Build and test explanations for condensation.",
+    "Compare state properties and complete state-change pathways.",
+    "Investigate evaporation rate and cooling.",
+    "Explain clouds, rain, the water cycle and responsibility."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end section 'Let us enhance our learning', Questions 1-10, followed by the 'Learning further' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

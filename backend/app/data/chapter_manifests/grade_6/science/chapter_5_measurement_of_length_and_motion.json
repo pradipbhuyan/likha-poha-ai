@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 5: Measurement of Length and Motion",
+  "central_question": "How can standard measurement, reference points and patterns of movement help us describe length, position and motion accurately?",
+  "in_scope_units": [
+    "How we measure — body-based units, number and unit, and the need for standardisation",
+    "Standard units — SI unit of length and the relations among kilometre, metre, centimetre and millimetre",
+    "Correct measurement — selecting a suitable device, placing the scale, eye position and using a broken scale",
+    "Measuring curved lines with flexible tape or thread",
+    "Describing position using a fixed reference point",
+    "Moving things — deciding motion or rest relative to a reference point and time",
+    "Linear motion along a straight path",
+    "Circular motion along a circular path",
+    "Oscillatory motion to and fro about a fixed position",
+    "Periodic nature of repeated circular and oscillatory motion"
+  ],
+  "banned_topics": [
+    "Speed, velocity and acceleration calculations",
+    "Force, friction and Newton's laws",
+    "Area, volume and mass measurement",
+    "Graphing distance against time"
+  ],
+  "must_include_keywords": [
+    "measurement",
+    "length",
+    "handspan",
+    "balisht",
+    "angula",
+    "unit",
+    "standard unit",
+    "International System of Units",
+    "SI unit",
+    "metre",
+    "centimetre",
+    "millimetre",
+    "kilometre",
+    "1 km = 1000 m",
+    "1 m = 100 cm",
+    "1 cm = 10 mm",
+    "measuring scale",
+    "measuring tape",
+    "appropriate device",
+    "eye position",
+    "broken scale",
+    "subtraction",
+    "curved line",
+    "thread",
+    "number and unit",
+    "reference point",
+    "position",
+    "motion",
+    "rest",
+    "time",
+    "linear motion",
+    "circular motion",
+    "oscillatory motion",
+    "periodic motion",
+    "straight line",
+    "circular path",
+    "fixed position"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Handspan is a reliable standard unit for everyone.",
+      "correction": "Handspans vary from person to person, so measurements of the same object can differ."
+    },
+    {
+      "claim": "A measurement is complete when only the number is written.",
+      "correction": "A measurement must contain both a number and a unit."
+    },
+    {
+      "claim": "A broken scale cannot be used.",
+      "correction": "An object can start at another clear mark, and its length is the final reading minus the initial reading."
+    },
+    {
+      "claim": "An object is either always at rest or always in motion.",
+      "correction": "Motion and rest depend on whether position changes with time relative to a chosen reference point."
+    }
+  ],
+  "recommended_example_progression": [
+    "Explain why handspan measurements differ and why standard units are needed.",
+    "Practise correct scale reading and measurement with a broken end.",
+    "Measure a curved line with thread.",
+    "Establish reference point, motion and rest using the bus-passenger and kilometre-stone examples.",
+    "Classify linear, circular and oscillatory motion."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the chapter-end section 'Let us enhance our learning', Questions 1-13, followed by the 'Learning further' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
