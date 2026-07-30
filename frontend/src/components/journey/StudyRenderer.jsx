@@ -300,13 +300,13 @@ function StudyBlock({ block, blockKey, savedAnswer, onAnswer }) {
           </div>
           {block.explanation && (
             <div style={{
-              borderLeft: "3px solid var(--border, #d1d5db)", background: "var(--panel-muted, #f8fafc)",
+              borderLeft: "3px solid var(--border, #d1d5db)", background: "var(--panel-soft, #f8fafc)",
               borderRadius: "0 8px 8px 0", padding: "10px 14px",
             }}>
               <div style={{ fontSize: ".7rem", fontWeight: 800, letterSpacing: ".08em", color: "var(--muted, #6b7280)", marginBottom: 4 }}>
                 EXPLANATION
               </div>
-              <div style={{ fontSize: ".86rem", lineHeight: 1.55, color: "var(--muted, #6b7280)" }}>
+              <div style={{ fontSize: ".86rem", lineHeight: 1.55, color: "var(--text, #111827)" }}>
                 <LessonMarkdown unwrapParagraph>{block.explanation}</LessonMarkdown>
               </div>
             </div>

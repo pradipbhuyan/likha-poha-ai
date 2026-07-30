@@ -255,13 +255,13 @@ function JourneyBlock({ block, blockKey, savedAnswer, onAnswer }) {
           </div>
           {block.explanation && (
             <div style={{
-              background: "var(--panel-muted, #f8fafc)", border: "1px solid var(--border, #e5e7eb)",
+              background: "var(--panel-soft, #f8fafc)", border: "1px solid var(--border, #e5e7eb)",
               borderRadius: 10, padding: "10px 13px",
             }}>
               <div style={{ fontSize: ".78rem", fontWeight: 800, letterSpacing: ".03em", color: "var(--muted, #6b7280)", marginBottom: 4 }}>
                 EXPLANATION
               </div>
-              <div style={{ fontSize: ".88rem", lineHeight: 1.55, color: "var(--muted, #6b7280)" }}>
+              <div style={{ fontSize: ".88rem", lineHeight: 1.55, color: "var(--text, #111827)" }}>
                 <LessonMarkdown unwrapParagraph>{block.explanation}</LessonMarkdown>
               </div>
             </div>
