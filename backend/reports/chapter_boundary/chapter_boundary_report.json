@@ -1,93 +1,112 @@
 {
-  "audited_at": "2026-07-29T14:30:05.341052+00:00",
+  "audited_at": "2026-07-29T16:48:46.745237+00:00",
   "manifests_used": 1,
-  "lessons_audited": 7,
+  "lessons_audited": 8,
   "total_critical_findings": 0,
-  "total_high_findings": 0,
+  "total_high_findings": 1,
   "results": [
     {
-      "lesson_cache_id": "2625b740-29d7-419f-b599-1839b9816f2e",
+      "lesson_cache_id": "7ec9b1c9-e4f2-4184-bcf7-30538d5ce727",
       "grade": "Grade 5",
-      "subject": "English",
-      "chapter": "10. Glass Bangles",
-      "step_title": "Recap",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 4244
-    },
-    {
-      "lesson_cache_id": "a6bf7a99-3459-4608-bb01-c240f6086432",
-      "grade": "Grade 5",
-      "subject": "English",
-      "chapter": "10. Glass Bangles",
+      "subject": "Hindi",
+      "chapter": "10. तीन मछलियाँ",
       "step_title": "What We Learn",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 3385
+      "content_length": 4116
     },
     {
-      "lesson_cache_id": "23cc3a18-a02e-4d9e-83bb-911fdd3b1f42",
+      "lesson_cache_id": "bb984a21-7099-4278-8647-af68209cc25a",
       "grade": "Grade 5",
-      "subject": "English",
-      "chapter": "10. Glass Bangles",
-      "step_title": "Worked examples",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "subject": "Hindi",
+      "chapter": "10. तीन मछलियाँ",
+      "step_title": "Recap",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 1954
+      "content_length": 3155
     },
     {
-      "lesson_cache_id": "c206afca-b917-429f-8cea-fe4d32eefee0",
+      "lesson_cache_id": "23ac4fa4-f50d-4d95-ab52-324e0b797a22",
       "grade": "Grade 5",
-      "subject": "English",
-      "chapter": "10. Glass Bangles",
-      "step_title": "Core explanation",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 1976
-    },
-    {
-      "lesson_cache_id": "e115b21d-43cb-47fe-8884-37f4942ae219",
-      "grade": "Grade 5",
-      "subject": "English",
-      "chapter": "10. Glass Bangles",
+      "subject": "Hindi",
+      "chapter": "10. तीन मछलियाँ",
       "step_title": "Revision and recap",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 2472
+      "content_length": 1486
     },
     {
-      "lesson_cache_id": "fa8ca881-9859-4a54-9190-ad3b76e52b0c",
+      "lesson_cache_id": "760baf8c-4d90-4607-93dd-0594c31003db",
       "grade": "Grade 5",
-      "subject": "English",
-      "chapter": "10. Glass Bangles",
+      "subject": "Hindi",
+      "chapter": "10. तीन मछलियाँ",
+      "step_title": "Worked examples",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 1475
+    },
+    {
+      "lesson_cache_id": "e71ca263-9b6e-4f36-9892-8d00c344285c",
+      "grade": "Grade 5",
+      "subject": "Hindi",
+      "chapter": "10. तीन मछलियाँ",
       "step_title": "Concept introduction",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 1791
+      "content_length": 1387
     },
     {
-      "lesson_cache_id": "00921c84-4c17-4433-a1a2-5ff6e6ec16e7",
+      "lesson_cache_id": "b6c03190-22a8-49bb-9b3e-b2af7e5ea7c5",
       "grade": "Grade 5",
-      "subject": "English",
-      "chapter": "10. Glass Bangles",
-      "step_title": "Exam-style problems",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/english/10_glass_bangles.json",
+      "subject": "Hindi",
+      "chapter": "10. तीन मछलियाँ",
+      "step_title": "Core explanation",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 1939
+      "content_length": 1343
+    },
+    {
+      "lesson_cache_id": "eee7b6df-0ea4-4473-a507-7c4460dafd86",
+      "grade": "Grade 5",
+      "subject": "Hindi",
+      "chapter": "10. तीन मछलियाँ",
+      "step_title": "Exam-style problems",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 1369
+    },
+    {
+      "lesson_cache_id": null,
+      "grade": "Grade 5",
+      "subject": "Hindi",
+      "chapter": "10. तीन मछलियाँ",
+      "step_title": "(WHOLE CHAPTER — combined coverage check)",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_5/hindi/10_तन_मछलय.json",
+      "findings": [
+        {
+          "severity": "high",
+          "category": "coverage_gap",
+          "message": "38% of required syllabus keywords are missing across the WHOLE chapter (all steps combined).",
+          "detail": "Missing: गाढ़ी मित्रता, दूसरा सरोवर, निर्जीव बनना, संज्ञा, सर्वनाम, विशेषण, क्रिया, एकवचन, बहुवचन"
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1,
+      "content_length": 14343
     }
   ]
 }
