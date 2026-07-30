@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 6",
+  "subject": "English",
+  "chapter": "Unit 5: Culture and Tradition",
+  "central_question": "How do India's arts, festivals, crafts, inspiring lives, and national memories express unity in diversity, creativity, courage, and shared identity?",
+  "in_scope_units": [
+    "Hamara Bharat—Incredible India: unity in diversity, natural features, culture, responsibility, and national prosperity.",
+    "Kalakritiyon ka Bharat: Ek Bharat, Shreshtha Bharat and the processes behind Aipan, Dhokra, coconut shell craft, Kondapalli toys, and related language skills.",
+    "The Kites: imaginative flight, simile, alliteration, rhyme, kite parts, movement words, cinquain poetry, and kite-festival traditions.",
+    "Ila Sachani—Embroidering Dreams with Her Feet: challenge, family support, Kathiawar embroidery, recognition, independence, and perseverance.",
+    "National War Memorial: a poem of respect, homage, courage, sacrifice, and remembrance.",
+    "Listening, speaking, writing, and exploration: gakkad bharta, local art, Madhubani colours, kite festivals, embroidery, artwork description, and cultural research."
+  ],
+  "banned_topics": [
+    "Detailed political history not present in the unit",
+    "Technical craft instructions beyond the textbook descriptions",
+    "Sports and yoga content from Unit 4"
+  ],
+  "must_include_keywords": [
+    "Bharat",
+    "unity in diversity",
+    "Ek Bharat Shreshtha Bharat",
+    "Aipan",
+    "geru",
+    "Dhokra",
+    "clay",
+    "wax",
+    "brass scrap",
+    "coconut shell craft",
+    "biodegradable",
+    "Kondapalli",
+    "makku",
+    "sequence words",
+    "present tense",
+    "The Kites",
+    "coloured birds",
+    "wind-whipped sky",
+    "simile",
+    "alliteration",
+    "rhyme",
+    "cinquain",
+    "kite line",
+    "reel",
+    "Uttarayan",
+    "Ila Sachani",
+    "Kathiawar embroidery",
+    "determination",
+    "state exhibition",
+    "President's Medal",
+    "independence",
+    "words of quantity",
+    "National War Memorial",
+    "eternal flame",
+    "sacrifice",
+    "homage"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Unity in diversity means all states have the same arts, languages, and customs.",
+      "correction": "The unit celebrates different traditions while emphasising the shared bond of belonging to one nation."
+    },
+    {
+      "claim": "Dhokra and Kondapalli use the same material and process.",
+      "correction": "Dhokra uses clay, wax, fire, and brass scrap, while Kondapalli toys use soft wood, makku, colours, dyes, and enamel paint."
+    },
+    {
+      "claim": "The child in The Kites actually rides a kite.",
+      "correction": "The poem expresses an imaginative wish to become small and light enough to climb on a kite."
+    },
+    {
+      "claim": "Ila Sachani becomes successful without help or practice.",
+      "correction": "Her mother, grandmother, siblings, and parents support her, and she develops skill through determination and repeated effort."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Hamara Bharat discussion and the Ek Bharat, Shreshtha Bharat questions.",
+    "Use NCERT art-form table and reflection questions to compare Aipan, Dhokra, coconut shell craft, and Kondapalli.",
+    "Use NCERT The Kites discussion and reflection tasks to study simile, alliteration, rhyme, and imagination.",
+    "Use NCERT Ila Sachani paragraph-main-idea and reflection activities to analyse perseverance, support, and independence.",
+    "Finish with the National War Memorial poem and the unit's listening, speaking, writing, and cultural exploration tasks."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit concludes with the National War Memorial recitation and exploration on pages 160–161, followed by the three listening transcripts on pages 162–164.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

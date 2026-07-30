@@ -1,0 +1,87 @@
+{
+  "manifest": {
+    "grade": "Grade 6",
+    "subject": "English",
+    "chapter": "Unit 1: Fables and Folk Tales",
+    "central_question": "How do fables and folk tales use memorable characters, clever situations, and language choices to teach practical lessons about hard work, pride, wisdom, and safety?",
+    "in_scope_units": [
+      "A Bottle of Dew: Rama Natha, Madhumati, and Sage Mahipati learn that steady work, not magic, creates wealth.",
+      "The Raven and the Fox: a verse fable about flattery, foolish pride, and the loss of the morsel.",
+      "Rama to the Rescue: a comic-strip folk tale in which a husband and wife cleverly alert the village kotwal to a thief.",
+      "Vocabulary and grammar: homophones, connecting words, alliteration, opposites, contractions, present progressive tense, adverbs, and sentence punctuation.",
+      "Listening, speaking, writing, and exploration: sequencing events, pronunciation of s sounds, retelling, dialogue writing, safety discussion, and creative enactment."
+    ],
+    "banned_topics": [
+      "Friendship stories from Unit 2",
+      "Neem, birds, and healing spices from Unit 3",
+      "Sportsmanship and yoga from Unit 4"
+    ],
+    "must_include_keywords": [
+      "Rama Natha",
+      "Madhumati",
+      "Mahipati",
+      "magic potion",
+      "banana plantation",
+      "hard work",
+      "wealth",
+      "dew",
+      "wisdom",
+      "Raven",
+      "Reynard",
+      "morsel",
+      "flattery",
+      "pride",
+      "croak",
+      "alliteration",
+      "rhyming words",
+      "kotwal",
+      "thief",
+      "rescue",
+      "cleverness",
+      "contractions",
+      "apostrophe",
+      "present progressive",
+      "adverbs",
+      "homophones",
+      "connecting words",
+      "interrogative",
+      "exclamatory",
+      "safety",
+      "listening sequence",
+      "dialogue"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The dew really became a magic potion that produced the gold coins.",
+        "correction": "Sage Mahipati explains that there was no magic potion; Rama Natha's work on the plantation and Madhumati's sale of bananas created the wealth."
+      },
+      {
+        "claim": "The Raven loses the morsel because the Fox physically attacks him.",
+        "correction": "The Fox flatters the Raven into opening his beak to sing, so the morsel falls."
+      },
+      {
+        "claim": "The husband and wife in Rama to the Rescue directly fight the thief.",
+        "correction": "They use a clever plan and repeatedly call the name Rama so that the kotwal hears and comes to help."
+      },
+      {
+        "claim": "Contractions and present progressive forms are the same language feature.",
+        "correction": "Contractions shorten word groups with an apostrophe, while the present progressive uses am, is, or are with a verb ending in -ing."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Let us think and reflect for A Bottle of Dew to connect textual evidence with the lesson on hard work.",
+      "Use NCERT Let us think and reflect for The Raven and the Fox to analyse flattery and foolish pride.",
+      "Use the NCERT story map and reflection questions for Rama to the Rescue to identify problem, plan, and solution.",
+      "Use NCERT Let us learn activities on homophones, contractions, present progressive tense, adverbs, and punctuation.",
+      "Finish with the NCERT listening, speaking, writing, and safety tasks to apply the unit's ideas."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The unit concludes with the listening transcript for Rama to the Rescue on page 38, following the writing and Let us explore safety activities on pages 34–35."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Unit 1: Fables and Folk Tales\n\n## What you will learn\nYou will follow the events of A Bottle of Dew and explain how Rama Natha changes. You will identify the roles of Madhumati and Sage Mahipati and connect the story to the value of hard work.\n\n## Simple explanation\nRama Natha looks for an easy magical way to become rich, but the sage guides him into doing real work. The story shows that patient effort can create results that seem almost magical.\n\n## Step-by-step breakdown\n- **Rama Natha's belief**: He believes that a magic potion can turn objects into gold and spends time and money searching for it.\n- **Madhumati's concern**: She worries that the family will lose its money because Rama Natha ignores the land left by his father.\n- **Mahipati's plan**: The sage asks Rama Natha to grow banana plants, care for them himself, and collect five litres of dew.\n- **Six years of effort**: Rama Natha tends the plantation while Madhumati sells the banana crop in the market.\n- **The real source of wealth**: The gold coins come from the income earned through their plantation, not from the bottle of dew.\n- **Character change**: After understanding the sage's wisdom, Rama Natha works even harder.\n\n## Worked example\nQuestion: Why does Sage Mahipati use a trick instead of simply telling Rama Natha to work hard?\n\nSolution:\n- Step 1: The sage says that Rama Natha would not have listened if the truth had been told earlier.\n- Step 2: The task makes Rama Natha personally clean the fields, plant bananas, and care for them over many years.\n- Step 3: Through experience, Rama Natha sees that work produces crops and income.\n- Final answer: The trick is meant to lead Rama Natha toward useful action so that he discovers the value of hard work for himself.\n\n## Common mistake\nA reader may call the six years wasted because the potion failed. The story presents those years as productive because they created a plantation and wealth.\n\n## Quick check question\nQuestion: How did Rama Natha and Madhumati create wealth?\nAnswer: Rama Natha grew and tended the banana plantation, and Madhumati sold the fruit in the market.\nExplanation: The sage clearly says that their work and the sale of the crop produced the gold coins.\n\n## Summary\n- Rama Natha first depends on a false hope of magic.\n- Mahipati redirects that hope into disciplined work.\n- Madhumati's practical effort is essential to the family's success.\n- The story's main lesson is that hard work creates lasting wealth.",
+    "Core explanation": "# Core explanation: Unit 1: Fables and Folk Tales\n\n## What you will learn\nYou will read The Raven and the Fox as a fable and explain how flattery causes the Raven's loss. You will also notice rhyme, alliteration, and the poem's direct moral.\n\n## Simple explanation\nA fable often uses animals as characters and ends with a lesson. Reynard wants the Raven's morsel, so he praises the bird's appearance and voice until pride overcomes good judgement.\n\n## Step-by-step breakdown\n- **The situation**: The Raven sits on a limb with a morsel in his beak while Reynard looks up at him.\n- **The Fox's method**: Reynard calls the Raven handsome and says the birds would call him king if he sang.\n- **The Raven's weakness**: The Raven forgets that his voice is a croak and opens his beak in foolish pride.\n- **The result**: The morsel falls and the Fox gets what he wanted.\n- **The teaching**: The Fox warns the Raven to ignore sweet words that make him glow and says pride is unwise.\n- **Poetic sound**: Pairs such as limb/him and repeated consonant sounds help make the poem memorable.\n\n## Worked example\nQuestion: How does Reynard make the Raven give up the morsel without touching him?\n\nSolution:\n- Step 1: Reynard notices that the Raven may respond to admiration.\n- Step 2: He praises the Raven's feathers and suggests that singing would make him king.\n- Step 3: The Raven's pride makes him open his beak, causing the food to fall.\n- Final answer: Reynard uses flattering words to control the Raven's behaviour, proving that unwise pride can make a person lose what they already have.\n\n## Common mistake\nA common mistake is to treat every compliment as dishonest. The poem warns specifically against excessive praise used to manipulate someone.\n\n## Quick check question\nQuestion: Why does the Raven open his beak?\nAnswer: He opens his beak because the Fox's praise makes him want to sing.\nExplanation: The Raven is carried away by foolish pride and forgets that his voice is only a croak.\n\n## Summary\n- Reynard is clever and the Raven is easily flattered.\n- The morsel is lost because of pride, not force.\n- The poem gives its moral directly in the final stanza.\n- Rhyme and alliteration strengthen the sound of the fable.",
+    "Worked examples": "# Worked examples: Unit 1: Fables and Folk Tales\n\n## What you will learn\nYou will analyse Rama to the Rescue as a problem-and-solution story. You will explain how quick thinking allows the family to get help without confronting the thief.\n\n## Simple explanation\nThe husband and wife hear someone entering their house. Instead of giving up or attacking the intruder, they create a conversation that repeatedly uses the name Rama, knowing that Rama is the village kotwal.\n\n## Step-by-step breakdown\n- **The problem**: A thief enters the house while the husband and wife are awake.\n- **The hidden listener**: The thief listens because he wants to learn where the couple's jewels are kept.\n- **The clever plan**: The couple pretend to discuss naming a child Rama and call the name softly, loudly, and very loudly.\n- **The rescuer**: Rama, the kotwal, hears his name and runs to the house.\n- **The solution**: The kotwal discovers the thief's way into the house and catches him.\n- **Theme**: The story shows that presence of mind and clever speech can solve a dangerous problem.\n\n## Worked example\nQuestion: How do the husband and wife turn an ordinary name into a signal for help?\n\nSolution:\n- Step 1: They know that the village kotwal is named Rama.\n- Step 2: They speak loudly enough for him to hear while pretending that their conversation is about a future child.\n- Step 3: The thief does not understand the hidden purpose, but Rama recognises his name and comes.\n- Final answer: They use the name Rama as a disguised call for the kotwal, allowing them to seek help without warning the thief.\n\n## Common mistake\nA common mistake is to say the kotwal arrives by chance. He comes because he hears his own name repeatedly called from the house.\n\n## Quick check question\nQuestion: What quality helps the couple most in the story?\nAnswer: Quick thinking and cleverness help them most.\nExplanation: They create a safe plan under pressure instead of directly facing the thief.\n\n## Summary\n- The story has a clear setting, problem, plan, and solution.\n- The thief is defeated through intelligence rather than violence.\n- The name Rama becomes a secret signal.\n- The kotwal responds quickly and does his job well.",
+    "Exam-style problems": "# Exam-style problems: Unit 1: Fables and Folk Tales\n\n## What you will learn\nYou will revise the main grammar and vocabulary skills taught across the unit. You will distinguish homophones, contractions, present progressive verbs, adverbs, and sentence types.\n\n## Simple explanation\nThe language exercises use words and lines from the stories. Understanding the form and function of each word helps you read the texts more accurately and write clearer sentences.\n\n## Step-by-step breakdown\n- **Homophones**: Pairs such as I/eye, dew/due, son/sun, one/won, ate/eight, and see/sea sound alike but differ in spelling and meaning.\n- **Connecting words**: Because gives a reason, while before, as soon as, and as can connect events or causes.\n- **Contractions**: Forms such as I'm, it's, they're, and I'll use an apostrophe to mark missing letters.\n- **Present progressive**: Am, is, or are plus a verb ending in -ing describes an action going on at the time of speaking.\n- **Adverbs**: Words such as closely, softly, and loudly add information about how an action happens.\n- **Sentence types**: Interrogative sentences ask questions and use a question mark; exclamatory sentences express strong feeling and use an exclamation mark.\n\n## Worked example\nQuestion: Explain why 'They are talking about their money' is present progressive and why 'they're' is a contraction.\n\nSolution:\n- Step 1: The verb group 'are talking' uses are plus talking, so it describes an action in progress.\n- Step 2: The form 'they're' shortens 'they are' and uses an apostrophe to replace the missing letter.\n- Step 3: The two labels describe different features: tense and shortened form.\n- Final answer: 'Are talking' is present progressive, while 'they're' is the contracted form of 'they are'.\n\n## Common mistake\nA common mistake is to identify every word ending in -ing as present progressive. The form also needs a helping verb such as am, is, or are.\n\n## Quick check question\nQuestion: Which punctuation mark ends an interrogative sentence?\nAnswer: A question mark ends an interrogative sentence.\nExplanation: Interrogative sentences ask questions, so the unit marks them with '?'.\n\n## Summary\n- Homophones share sound but not spelling or meaning.\n- Apostrophes show missing letters in contractions.\n- Present progressive uses am, is, or are with verb-ing.\n- Adverbs describe actions.\n- Question marks and exclamation marks show different sentence purposes.",
+    "Revision and recap": "# Revision and recap: Unit 1: Fables and Folk Tales\n\n## What you will learn\nYou will bring together the unit's themes, listening tasks, speaking practice, and writing activities. You will compare the lessons taught by the three main texts.\n\n## Simple explanation\nEach text uses a different kind of problem. Rama Natha must overcome laziness and false belief, the Raven must overcome pride, and the family in Rama to the Rescue must respond wisely to danger.\n\n## Step-by-step breakdown\n- **Sequencing**: The listening task about Madhumati arranges her visits to her mother, market, Kalawati, the hungry boy, and the neighbour.\n- **Pronunciation**: The letter s may have /s/ or /z/ sounds in words such as sage, wisdom, trees, and surprise.\n- **Retelling**: The Raven and the Fox can be narrated as a story and rewritten as a conversation with a different ending.\n- **Descriptive writing**: The banana activity organises details about colour, touch, smell, taste, and when it is eaten.\n- **Safety communication**: The final tasks ask learners to discuss home safety, suspicious activity, and whom to contact in an emergency.\n- **Shared values**: Hard work, humility, cleverness, and alertness are the unit's major life lessons.\n\n## Worked example\nQuestion: Compare the lesson of A Bottle of Dew with the lesson of The Raven and the Fox.\n\nSolution:\n- Step 1: A Bottle of Dew shows that useful results come from steady work rather than magical shortcuts.\n- Step 2: The Raven and the Fox shows that pride and flattering words can lead to a foolish loss.\n- Step 3: Both texts warn against allowing an attractive idea to replace careful judgement.\n- Final answer: The first text values effort and practical wisdom, while the second warns against pride and manipulation; both encourage sensible choices.\n\n## Common mistake\nA common mistake is to reduce every text to the same moral. Each selection has a distinct lesson even though all encourage wise behaviour.\n\n## Quick check question\nQuestion: What common ability helps Mahipati and the couple in Rama to the Rescue solve problems?\nAnswer: Both use clever planning.\nExplanation: Mahipati designs a task that changes Rama Natha, while the couple design a hidden call that brings the kotwal.\n\n## Summary\n- The unit contains prose, poetry, and a comic-strip folk tale.\n- Each text teaches a different practical life lesson.\n- Language exercises are connected to words and sentences from the texts.\n- Listening, speaking, and writing tasks apply the lessons in new forms.\n- Good judgement joins hard work, humility, and safety."
+  }
+}

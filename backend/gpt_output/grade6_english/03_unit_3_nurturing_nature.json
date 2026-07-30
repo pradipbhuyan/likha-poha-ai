@@ -1,0 +1,90 @@
+{
+  "manifest": {
+    "grade": "Grade 6",
+    "subject": "English",
+    "chapter": "Unit 3: Nurturing Nature",
+    "central_question": "How can careful observation of trees, birds, herbs, and spices deepen our understanding of nature and encourage responsible, informed use of its gifts?",
+    "in_scope_units": [
+      "Neem Baba: Amber's personified conversation with the neem tree about its names, history, medicinal value, farming uses, and daily uses.",
+      "What a Bird Thought: a poem about the expanding world of a growing bird, from shell to nest, leaves, and the wider world.",
+      "Spices that Heal Us: Daadi's letter about kitchen spices, natural cures, caution, and knowledge passed across generations.",
+      "Language study: compound words, present and past verb forms, personification, rhyme, describing words, and modal verbs.",
+      "Listening, speaking, writing, and exploration: Peepal Baba, Paro, Tulsi, leaf cards, tree descriptions, bird perspectives, spice introductions, remedies, and riddles."
+    ],
+    "banned_topics": [
+      "Clinical medical diagnosis or unsupervised treatment advice beyond the textbook's cautions",
+      "Friendship stories from Unit 2",
+      "Sports and yoga from Unit 4"
+    ],
+    "must_include_keywords": [
+      "Amber",
+      "Neem Baba",
+      "Arishta",
+      "Nimb",
+      "personification",
+      "neem leaves",
+      "neem seed powder",
+      "locusts",
+      "termites",
+      "stagnant water",
+      "stored grains",
+      "purifies the air",
+      "What a Bird Thought",
+      "pale blue shell",
+      "straw nest",
+      "leaves",
+      "fluttered",
+      "grown-up labours",
+      "rhyming words",
+      "describing words",
+      "Daadi",
+      "turmeric",
+      "fenugreek",
+      "cumin",
+      "asafoetida",
+      "cinnamon",
+      "clove",
+      "ginger",
+      "black pepper",
+      "fennel seeds",
+      "cardamom",
+      "modal verbs",
+      "must consult an elder",
+      "Tulsi",
+      "compound words"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The neem tree literally speaks to Amber.",
+        "correction": "The text treats the tree as a speaking person; this is personification."
+      },
+      {
+        "claim": "The poem says the bird becomes physically blind.",
+        "correction": "The line 'I have been very blind' means the bird realises that its earlier view of the world was limited."
+      },
+      {
+        "claim": "The spice remedies may be used freely by children without guidance.",
+        "correction": "Daadi says to consult an elder, and Neem Baba says remedies should be used by trained and experienced people."
+      },
+      {
+        "claim": "All compound words are written as one word.",
+        "correction": "The chapter teaches open, closed, and hyphenated compound words."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Let us think and reflect for Neem Baba and the personification activity.",
+      "Use NCERT stanza-main-idea and reflection tasks for What a Bird Thought.",
+      "Use NCERT Let us think and reflect for Spices that Heal Us, including Daadi's final caution.",
+      "Apply NCERT Let us learn work on compound words, verb forms, rhyme, describing words, and modals.",
+      "Finish with the Peepal Baba, Paro, and Tulsi listening tasks and the related speaking and writing activities."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The unit ends with the spice riddles and sensory exploration on page 100, followed by the Peepal Baba, Paro, and Tulsi transcripts on pages 101–102."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Unit 3: Nurturing Nature\n\n## What you will learn\nYou will learn how Neem Baba presents information through a conversation with Amber. You will identify the tree's names, uses, and the safety warning connected with remedies.\n\n## Simple explanation\nThe text gives the neem tree a human voice so that facts can be shared through questions and answers. Amber's curiosity allows the reader to discover why neem is valued.\n\n## Step-by-step breakdown\n- **Personification**: Amber feels that the tree is whispering and speaks to it as Neem Baba.\n- **Origins and spread**: Neem Baba says the family began millions of years ago in North India or Myanmar and spread to Asian, African, and some American regions.\n- **Names**: The Sanskrit names include Arishta, Nimba, and Nimbaca; the name Neem is said to have been given by Iranians.\n- **Medicinal parts**: Leaves, bark, flowers, fruits, and roots are described as useful for medicines.\n- **Farm protection**: Neem seed powder helps protect crops from locusts, termites, mosquitoes, and other crop-eating insects.\n- **Daily uses**: It protects stored grains, contributes to soaps and toothpaste, resists termites in furniture, and purifies air.\n- **Caution**: Neem Baba says remedies should be used by trained and experienced people.\n\n## Worked example\nQuestion: Why is personification an effective way to present the information in Neem Baba?\n\nSolution:\n- Step 1: Amber asks direct questions about the tree's age, names, spread, and usefulness.\n- Step 2: The tree answers in a warm voice and calls her 'dear Amber' and 'my child'.\n- Step 3: The dialogue makes a fact-filled passage easier to follow while keeping the tree at the centre.\n- Final answer: Personification turns information into a lively conversation and helps the reader connect facts with respect for the tree.\n\n## Common mistake\nA common mistake is to copy every medicinal statement as personal treatment advice. The text itself warns that experienced or trained people and elders should guide use.\n\n## Quick check question\nQuestion: How does neem help farmers according to the text?\nAnswer: Neem seed powder helps protect crops from locusts, termites, mosquitoes, and other insects, and it can help increase crop yield.\nExplanation: These uses are explained in Neem Baba's answer to Amber's question about farmers.\n\n## Summary\n- Neem Baba is a personified tree.\n- The dialogue covers history, names, medicine, farming, and daily life.\n- Many parts of the neem tree are described as useful.\n- The chapter includes an explicit safety warning.",
+    "Core explanation": "# Core explanation: Unit 3: Nurturing Nature\n\n## What you will learn\nYou will interpret the four stages in What a Bird Thought. You will explain how the bird's changing home changes its idea of the world.\n\n## Simple explanation\nThe baby bird first knows only the shell, then the straw nest, then the leaves around the nest, and finally the wider world beyond the tree. Growth brings a larger view and greater humility.\n\n## Step-by-step breakdown\n- **First world**: Inside the egg, the bird thinks the world is small, round, and made of pale blue shell.\n- **Second world**: In the nest, it thinks the world is made of straw and feels nestled by its mother.\n- **First exploration**: After fluttering from the nest, it sees leaves and realises its earlier view was limited.\n- **Adulthood**: When it flies beyond the tree, it is fit for grown-up labours.\n- **Humility**: The bird ends by admitting that neither it nor its neighbours know how the whole world is made.\n- **Poetic craft**: The poem uses rhyme, describing words, and a first-person voice to present the bird's changing perception.\n\n## Worked example\nQuestion: What does the bird mean when it says, 'I have been very blind'?\n\nSolution:\n- Step 1: The bird had believed the world was only the shell, then straw, then leaves.\n- Step 2: Leaving the nest reveals that each earlier view covered only a small part of reality.\n- Step 3: The word blind therefore refers to limited understanding rather than loss of eyesight.\n- Final answer: The bird recognises that its earlier knowledge was narrow and that exploration has expanded its understanding.\n\n## Common mistake\nA common mistake is to describe the bird as unhappy in the straw nest. The poem says it 'needed no other' and was nestled by its mother.\n\n## Quick check question\nQuestion: What quality does the bird show in the last stanza?\nAnswer: Humility.\nExplanation: It admits that it does not know how the world is made and that its neighbours do not know either.\n\n## Summary\n- The bird's world expands in stages.\n- Each home shapes what the bird believes.\n- Exploration corrects limited ideas.\n- The ending values curiosity and humility.\n- Rhyme and descriptive words support the poem's movement.",
+    "Worked examples": "# Worked examples: Unit 3: Nurturing Nature\n\n## What you will learn\nYou will read Daadi's letter as an example of knowledge shared across generations. You will identify the uses attributed to different spices and the caution that closes the letter.\n\n## Simple explanation\nThe letter connects common kitchen spices with traditional home remedies. Its most important practical message is that such knowledge should be remembered but used with adult guidance.\n\n## Step-by-step breakdown\n- **Turmeric**: Daadi says it supports energy and digestion and reduces body pain.\n- **Fenugreek**: She soaks methi seeds overnight and uses the water to help manage sugar level and body weight.\n- **Cumin and asafoetida**: Cumin is linked with digestion and sleeplessness; heeng is linked with gas, cough, and cold.\n- **Cinnamon, clove, and ginger**: Cinnamon and clove give temporary toothache relief; ginger helps with cough, cold, and pain.\n- **Black pepper, fennel, and cardamom**: These are connected with digestion, pain relief, respiratory troubles, or bad breath.\n- **Generational learning**: Daadi learned the cures from her grandmother and shares them with Vikram and Vaibhavi.\n- **Final advice**: The children must consult an elder before using the remedies.\n\n## Worked example\nQuestion: How does the letter show that knowledge of natural cures passes from one generation to another?\n\nSolution:\n- Step 1: Daadi says that she learned the cures from her grandmother when she was a child.\n- Step 2: She now writes the same knowledge to Vikram and Vaibhavi.\n- Step 3: She asks them to remember the cures and share them with friends.\n- Final answer: The letter shows a chain of learning from grandmother to Daadi to the children, while also keeping adult guidance important.\n\n## Common mistake\nA common mistake is to present every spice as curing the same illness. The letter assigns different benefits to different spices.\n\n## Quick check question\nQuestion: What is Daadi's final advice?\nAnswer: Vikram and Vaibhavi must consult an elder before using the herbs and spices.\nExplanation: The warning appears at the end of the letter and limits unsafe self-use.\n\n## Summary\n- The letter links kitchen spices with traditional remedies.\n- Different spices are described with different benefits.\n- Knowledge is passed through family generations.\n- The final instruction stresses adult guidance.",
+    "Exam-style problems": "# Exam-style problems: Unit 3: Nurturing Nature\n\n## What you will learn\nYou will revise compound words, verb forms, personification, rhyme, adjectives, and modals. You will connect each grammar idea to examples from the unit.\n\n## Simple explanation\nThe unit teaches both literary and grammatical ways of using language. Form matters because spacing, verb choice, rhyme, and helping verbs change meaning.\n\n## Step-by-step breakdown\n- **Compound words**: Neem oil and seed powder are open compounds; something, grandmother, and childhood are closed; thought-provoking and well-trained are hyphenated.\n- **Present and past verbs**: Become/became, find/found, make/made, discover/discovered, tell/told, and give/gave show verb change.\n- **Personification**: Neem Baba speaks, leaves whisper, and flowers dance as if they were people.\n- **Rhyme**: The bird poem pairs words such as well/shell and uses end sounds to connect lines.\n- **Describing words**: Pale, blue, round, straw, little, pointed, green, thin, and brown describe homes or objects.\n- **Modals**: May, should, can, must, need to, and used to express functions such as suggestion, advice, ability, compulsion, necessity, or past habit.\n\n## Worked example\nQuestion: Explain the difference between 'grandmother', 'neem oil', and 'thought-provoking' as compound words.\n\nSolution:\n- Step 1: 'Grandmother' is written as one word, so it is a closed compound.\n- Step 2: 'Neem oil' has a space, so it is an open compound.\n- Step 3: 'Thought-provoking' uses a hyphen, so it is a hyphenated compound.\n- Final answer: They illustrate the three forms taught in the chapter: closed, open, and hyphenated compound words.\n\n## Common mistake\nA common mistake is to treat 'must' and 'may' as equally strong. In the chapter, must expresses compulsion, while may expresses a less forceful possibility or suggestion.\n\n## Quick check question\nQuestion: Which figure of speech is used when 'the leaves whispered in the wind'?\nAnswer: Personification.\nExplanation: The leaves are given the human action of whispering.\n\n## Summary\n- Compound words may be open, closed, or hyphenated.\n- Verb forms change between present and past.\n- Personification gives human qualities to non-human things.\n- Rhyme links line endings.\n- Modals express different levels of ability, advice, or necessity.",
+    "Revision and recap": "# Revision and recap: Unit 3: Nurturing Nature\n\n## What you will learn\nYou will connect the reading selections with the unit's listening, speaking, writing, and exploration activities. You will revise the unit's shared message of curiosity, care, and responsible use.\n\n## Simple explanation\nNeem Baba encourages discovery, the bird expands its view by exploring, and Daadi shares inherited knowledge with caution. The skill activities ask learners to observe nature and communicate clearly.\n\n## Step-by-step breakdown\n- **Peepal Baba**: The listening transcript describes a person who plants and saves trees and continues despite being mocked.\n- **Paro**: The listening poem presents a bright parrot flying through blue skies and among trees.\n- **Tulsi**: The fact sheet calls Tulsi the Queen of Herbs and describes its uses, including breathing, digestion, mouth care, and tea.\n- **Speaking**: Learners make leaf cards, speak as a bird, and introduce themselves as a spice.\n- **Writing**: Tasks include a paragraph about a neighbourhood tree, imagined views of a baby or fish, natural-cure completion, and a Tulsi paragraph.\n- **Exploration**: The unit includes nests and homes, house-building workers, spice riddles, and sensory observation.\n\n## Worked example\nQuestion: What common habit links Amber, the baby bird, and the spice activities?\n\nSolution:\n- Step 1: Amber asks questions to learn about neem.\n- Step 2: The bird leaves each limited world and observes something new.\n- Step 3: The spice tasks ask learners to identify, smell, feel, describe, and question natural materials.\n- Final answer: All three parts value curiosity supported by close observation and responsible learning.\n\n## Common mistake\nA common mistake is to treat the unit only as a list of facts. Its literary form, observation tasks, language work, and cautions are equally important.\n\n## Quick check question\nQuestion: What lesson does the Peepal Baba transcript give?\nAnswer: It encourages people to plant and protect trees and to continue useful work even when others make fun of it.\nExplanation: Rahul and his mother conclude that people should learn from Peepal Baba and tell others to plant more trees.\n\n## Summary\n- The unit joins factual prose, poetry, and a personal letter.\n- Nature is observed through curiosity and imagination.\n- Language skills help learners describe and explain clearly.\n- Traditional knowledge is paired with safety and responsibility.\n- Listening and creative tasks extend the readings."
+  }
+}

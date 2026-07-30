@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 6",
+  "subject": "English",
+  "chapter": "Unit 1: Fables and Folk Tales",
+  "central_question": "How do fables and folk tales use memorable characters, clever situations, and language choices to teach practical lessons about hard work, pride, wisdom, and safety?",
+  "in_scope_units": [
+    "A Bottle of Dew: Rama Natha, Madhumati, and Sage Mahipati learn that steady work, not magic, creates wealth.",
+    "The Raven and the Fox: a verse fable about flattery, foolish pride, and the loss of the morsel.",
+    "Rama to the Rescue: a comic-strip folk tale in which a husband and wife cleverly alert the village kotwal to a thief.",
+    "Vocabulary and grammar: homophones, connecting words, alliteration, opposites, contractions, present progressive tense, adverbs, and sentence punctuation.",
+    "Listening, speaking, writing, and exploration: sequencing events, pronunciation of s sounds, retelling, dialogue writing, safety discussion, and creative enactment."
+  ],
+  "banned_topics": [
+    "Friendship stories from Unit 2",
+    "Neem, birds, and healing spices from Unit 3",
+    "Sportsmanship and yoga from Unit 4"
+  ],
+  "must_include_keywords": [
+    "Rama Natha",
+    "Madhumati",
+    "Mahipati",
+    "magic potion",
+    "banana plantation",
+    "hard work",
+    "wealth",
+    "dew",
+    "wisdom",
+    "Raven",
+    "Reynard",
+    "morsel",
+    "flattery",
+    "pride",
+    "croak",
+    "alliteration",
+    "rhyming words",
+    "kotwal",
+    "thief",
+    "rescue",
+    "cleverness",
+    "contractions",
+    "apostrophe",
+    "present progressive",
+    "adverbs",
+    "homophones",
+    "connecting words",
+    "interrogative",
+    "exclamatory",
+    "safety",
+    "listening sequence",
+    "dialogue"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The dew really became a magic potion that produced the gold coins.",
+      "correction": "Sage Mahipati explains that there was no magic potion; Rama Natha's work on the plantation and Madhumati's sale of bananas created the wealth."
+    },
+    {
+      "claim": "The Raven loses the morsel because the Fox physically attacks him.",
+      "correction": "The Fox flatters the Raven into opening his beak to sing, so the morsel falls."
+    },
+    {
+      "claim": "The husband and wife in Rama to the Rescue directly fight the thief.",
+      "correction": "They use a clever plan and repeatedly call the name Rama so that the kotwal hears and comes to help."
+    },
+    {
+      "claim": "Contractions and present progressive forms are the same language feature.",
+      "correction": "Contractions shorten word groups with an apostrophe, while the present progressive uses am, is, or are with a verb ending in -ing."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Let us think and reflect for A Bottle of Dew to connect textual evidence with the lesson on hard work.",
+    "Use NCERT Let us think and reflect for The Raven and the Fox to analyse flattery and foolish pride.",
+    "Use the NCERT story map and reflection questions for Rama to the Rescue to identify problem, plan, and solution.",
+    "Use NCERT Let us learn activities on homophones, contractions, present progressive tense, adverbs, and punctuation.",
+    "Finish with the NCERT listening, speaking, writing, and safety tasks to apply the unit's ideas."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit concludes with the listening transcript for Rama to the Rescue on page 38, following the writing and Let us explore safety activities on pages 34–35.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

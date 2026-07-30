@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 6",
+  "subject": "English",
+  "chapter": "Unit 3: Nurturing Nature",
+  "central_question": "How can careful observation of trees, birds, herbs, and spices deepen our understanding of nature and encourage responsible, informed use of its gifts?",
+  "in_scope_units": [
+    "Neem Baba: Amber's personified conversation with the neem tree about its names, history, medicinal value, farming uses, and daily uses.",
+    "What a Bird Thought: a poem about the expanding world of a growing bird, from shell to nest, leaves, and the wider world.",
+    "Spices that Heal Us: Daadi's letter about kitchen spices, natural cures, caution, and knowledge passed across generations.",
+    "Language study: compound words, present and past verb forms, personification, rhyme, describing words, and modal verbs.",
+    "Listening, speaking, writing, and exploration: Peepal Baba, Paro, Tulsi, leaf cards, tree descriptions, bird perspectives, spice introductions, remedies, and riddles."
+  ],
+  "banned_topics": [
+    "Clinical medical diagnosis or unsupervised treatment advice beyond the textbook's cautions",
+    "Friendship stories from Unit 2",
+    "Sports and yoga from Unit 4"
+  ],
+  "must_include_keywords": [
+    "Amber",
+    "Neem Baba",
+    "Arishta",
+    "Nimb",
+    "personification",
+    "neem leaves",
+    "neem seed powder",
+    "locusts",
+    "termites",
+    "stagnant water",
+    "stored grains",
+    "purifies the air",
+    "What a Bird Thought",
+    "pale blue shell",
+    "straw nest",
+    "leaves",
+    "fluttered",
+    "grown-up labours",
+    "rhyming words",
+    "describing words",
+    "Daadi",
+    "turmeric",
+    "fenugreek",
+    "cumin",
+    "asafoetida",
+    "cinnamon",
+    "clove",
+    "ginger",
+    "black pepper",
+    "fennel seeds",
+    "cardamom",
+    "modal verbs",
+    "must consult an elder",
+    "Tulsi",
+    "compound words"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The neem tree literally speaks to Amber.",
+      "correction": "The text treats the tree as a speaking person; this is personification."
+    },
+    {
+      "claim": "The poem says the bird becomes physically blind.",
+      "correction": "The line 'I have been very blind' means the bird realises that its earlier view of the world was limited."
+    },
+    {
+      "claim": "The spice remedies may be used freely by children without guidance.",
+      "correction": "Daadi says to consult an elder, and Neem Baba says remedies should be used by trained and experienced people."
+    },
+    {
+      "claim": "All compound words are written as one word.",
+      "correction": "The chapter teaches open, closed, and hyphenated compound words."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Let us think and reflect for Neem Baba and the personification activity.",
+    "Use NCERT stanza-main-idea and reflection tasks for What a Bird Thought.",
+    "Use NCERT Let us think and reflect for Spices that Heal Us, including Daadi's final caution.",
+    "Apply NCERT Let us learn work on compound words, verb forms, rhyme, describing words, and modals.",
+    "Finish with the Peepal Baba, Paro, and Tulsi listening tasks and the related speaking and writing activities."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit ends with the spice riddles and sensory exploration on page 100, followed by the Peepal Baba, Paro, and Tulsi transcripts on pages 101–102.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

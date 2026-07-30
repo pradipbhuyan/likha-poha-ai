@@ -19,6 +19,10 @@ RAG_VISUAL_ENABLED_CONTEXTS = {
     # Supabase Storage cost implication of enabling image storage for an
     # additional grade band.
     ("CBSE", "Grade 5"),
+    # Grade 6 added 2026-07-30 per direct user request (Grade 6 English
+    # ingestion session): 'add text book images, add reference pdfs
+    # wherever applicable' -- same cost trade-off acknowledged as Grade 5.
+    ("CBSE", "Grade 6"),
 }
 VISUAL_REQUEST_TERMS = {
     "diagram",

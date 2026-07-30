@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 6",
+  "subject": "English",
+  "chapter": "Unit 2: Friendship",
+  "central_question": "What makes a friendship genuine, caring, accepting, and strong even when friends are very different from one another?",
+  "in_scope_units": [
+    "The Unlikely Best Friends: the friendship of Gajaraj and Buntee and the understanding shown by the mahout and farmer.",
+    "A Friend's Prayer: a poem about valuing friends, supporting their hopes, avoiding judgement, and accepting them as they are.",
+    "The Chair: Mario's invisible-chair test and the discovery that real friends help rather than laugh at misfortune.",
+    "Language study: opposites, past tenses, neither/nor and either/or, suffixes, root words, adjectives, and adjective-noun combinations.",
+    "Listening, speaking, writing, and exploration: friendship conversations, messages, quotations, acrostic writing, and views of friendship across age groups."
+  ],
+  "banned_topics": [
+    "Save Water poster material after Unit 2",
+    "Neem and healing spices from Unit 3",
+    "Sportsmanship and yoga from Unit 4"
+  ],
+  "must_include_keywords": [
+    "Gajaraj",
+    "Buntee",
+    "mahout",
+    "farmer",
+    "unlikely friends",
+    "caretaker",
+    "companionship",
+    "separation",
+    "joyous swing",
+    "A Friend's Prayer",
+    "blessed",
+    "hopes and plans",
+    "no judgements",
+    "acceptance",
+    "Mario",
+    "invisible chair",
+    "Guneet",
+    "Asma",
+    "Deepa",
+    "real friends",
+    "fruit chaat",
+    "past tense",
+    "simple past",
+    "past progressive",
+    "past perfect",
+    "neither nor",
+    "either or",
+    "suffixes",
+    "root words",
+    "adjectives",
+    "loyal",
+    "caring",
+    "message writing"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The mahout is already Gajaraj's close friend at the beginning.",
+      "correction": "The text calls him a good caretaker but not a friend; Gajaraj still feels lonely."
+    },
+    {
+      "claim": "Buntee returns because the farmer no longer wants him.",
+      "correction": "The farmer recognises that Buntee is missing Gajaraj, removes the rope, and allows him to return."
+    },
+    {
+      "claim": "The invisible chair itself magically holds Mario up.",
+      "correction": "Guneet, Asma, and Deepa hold Mario so that he does not fall."
+    },
+    {
+      "claim": "The poem asks people to judge friends from a distance.",
+      "correction": "The speaker prays to make no judgements from afar and to love friends as they are."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Let us think and reflect for The Unlikely Best Friends to analyse care, separation, and reunion.",
+    "Use NCERT Let us think and reflect for A Friend's Prayer to study acceptance and the prayer-like tone.",
+    "Use NCERT Let us think and reflect for The Chair to identify the evidence that reveals Mario's real friends.",
+    "Apply NCERT Let us learn activities on past tenses, paired conjunctions, suffixes, and adjectives.",
+    "Conclude with NCERT messages, conversations, quotations, and acrostic or age-group friendship tasks."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit closes with The Chair's Let us explore activities on pages 69–70 and the three listening transcripts on pages 71–73.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

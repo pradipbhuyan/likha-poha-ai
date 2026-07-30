@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 6",
+  "subject": "English",
+  "chapter": "Unit 4: Sports and Wellness",
+  "central_question": "How can play, sporting spirit, physical activity, and yoga help us develop enjoyment, fairness, health, balance, and well-being?",
+  "in_scope_units": [
+    "Change of Heart: Prabhat's fear of losing, cheating in badminton, observation of Surya, and growth in sporting spirit.",
+    "The Winner: a poem about evening play, breathless running, fading light, cold grass, and night ending the game.",
+    "Yoga—A Way of Life: the meaning, history, benefits, awareness, and international recognition of yoga.",
+    "Language study: consecutive-letter word building, past perfect tense, polite expressions, poetic layout, personification, practice/practise, and advice/advise.",
+    "Listening, speaking, writing, and exploration: match announcements, sports riddles, role-play, diary writing, indigenous games, yoga thoughts, and sportsperson profiles."
+  ],
+  "banned_topics": [
+    "Detailed sports rules not included in the chapter",
+    "Medical treatment claims beyond the yoga passage",
+    "Culture and craft topics from Unit 5"
+  ],
+  "must_include_keywords": [
+    "Prabhat",
+    "Surya",
+    "badminton",
+    "scoreboard",
+    "cheating",
+    "sporting spirit",
+    "friendly match",
+    "opponent",
+    "tally",
+    "basketball",
+    "enjoyment",
+    "Change of Heart",
+    "The Winner",
+    "creek",
+    "catch my breath",
+    "blue dark",
+    "cold grass",
+    "trees creep close",
+    "Night wins",
+    "personification",
+    "indigenous games",
+    "kho-kho",
+    "yoga",
+    "yuj",
+    "Patanjali",
+    "asanas",
+    "breathing techniques",
+    "meditation",
+    "WHO mYoga",
+    "practice",
+    "practise",
+    "past perfect",
+    "please",
+    "sorry",
+    "thank you"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Prabhat's win proves that he is a better player than Surya.",
+      "correction": "Prabhat changes the scoreboard and wins by cheating."
+    },
+    {
+      "claim": "Surya does not care about games because he jokes while playing.",
+      "correction": "Surya plays well, enjoys himself, accepts losing, and shows a healthy sporting attitude."
+    },
+    {
+      "claim": "Night literally competes in the children's ball game.",
+      "correction": "The line 'Night wins!' personifies night to show that darkness ends playtime."
+    },
+    {
+      "claim": "Practice and practise are interchangeable in the chapter.",
+      "correction": "Practice is taught as a noun and practise as a verb."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Let us think and reflect for Change of Heart to compare Prabhat and Surya.",
+    "Use NCERT Let us think and reflect and Let us learn for The Winner to study layout and personification.",
+    "Use NCERT Let us discuss and reflect for Yoga—A Way of Life to connect unity, benefits, and WHO mYoga.",
+    "Apply NCERT language work on past perfect, polite expressions, practice/practise, and advice/advise.",
+    "Finish with match-announcement listening, sports riddles, diary writing, indigenous games, and yoga speaking or writing."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit concludes with Yoga—A Way of Life's writing and Let us explore activities on page 127, followed by the listening transcripts on pages 128–129.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
