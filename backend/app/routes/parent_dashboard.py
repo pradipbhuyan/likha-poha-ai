@@ -83,6 +83,7 @@ class CreateStudentRequest(BaseModel):
     grade: str = "Grade 9"   # required from the parent form — defaults kept for API compat
     avatar: Optional[str] = None  # emoji key (e.g. 'boy1') or data: URL
     cbse_subjects: Optional[list] = None
+    stream: Optional[str] = None   # required for Grade 11/12: PCM|PCB|PCMB|Commerce|Humanities
 
 
 class InviteParentRequest(BaseModel):
@@ -229,6 +230,28 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
     from app.data.product_catalogue import ALL_GRADES_INCLUDING_HIDDEN  # noqa: PLC0415
     grade = data.grade if data.grade in ALL_GRADES_INCLUDING_HIDDEN else "Grade 9"
 
+    # Grade 11/12: validate and save stream (mirrors app/routes/auth.py signup)
+    child_stream = None
+    if grade in ("Grade 11", "Grade 12"):
+        valid_streams = {"PCM", "PCB", "PCMB", "Commerce", "Humanities"}
+        child_stream = (data.stream or "").strip()
+        if child_stream not in valid_streams:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Stream is required for {grade} students. "
+                       f"Choose one of: PCM, PCB, PCMB, Commerce, Humanities",
+            )
+        stream_subjects = {
+            "PCM":        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+            "PCB":        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+            "PCMB":       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+            "Commerce":   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+            "Humanities": ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+        }
+        child_cbse_subjects = stream_subjects.get(child_stream, [])
+    else:
+        child_cbse_subjects = data.cbse_subjects or []
+
     child_profile = {
         "id": auth_user.id,
         # Store the resolved email (real or synthetic) so the username→email
@@ -240,10 +263,11 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
         "family_id": parent_profile["family_id"],
         "board": normalize_board(data.board),
         "grade": grade,
+        "stream": child_stream,
         "subscription_plan": parent_profile.get("subscription_plan", "free"),
         "account_status": "active",
         "access_cbse": parent_profile.get("access_cbse", False),
-        "cbse_subjects": data.cbse_subjects or [],
+        "cbse_subjects": child_cbse_subjects,
         "daily_token_limit": parent_profile.get("daily_token_limit", 50000),
         "monthly_token_limit": parent_profile.get("monthly_token_limit", 1000000),
         "ai_model_preference": "default",

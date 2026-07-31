@@ -13,7 +13,15 @@ import ParentChildWorkspace from "../components/parent/ParentChildWorkspace";
 // ── Design tokens (shared) ────────────────────────────────────────────────────
 var inp={padding:"8px 12px",borderRadius:8,border:"1px solid var(--border,#e5e7eb)",fontFamily:"inherit",fontSize:".85rem",background:"var(--surface2,#f8fafc)",color:"var(--text,#1e293b)",width:"100%"};
 var btn1={padding:"8px 16px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".82rem",fontWeight:700,cursor:"pointer"};
-var GRADES=["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
+var GRADES=["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
+var GRADE_11_12=new Set(["Grade 11","Grade 12"]);
+var STREAM_OPTIONS=[
+  {key:"PCM",label:"Science — PCM",desc:"Physics, Chemistry, Mathematics, English"},
+  {key:"PCB",label:"Science — PCB",desc:"Physics, Chemistry, Biology, English"},
+  {key:"PCMB",label:"Science — PCMB",desc:"Physics, Chemistry, Maths, Biology, English"},
+  {key:"Commerce",label:"Commerce",desc:"Accountancy, Business, Economics, English"},
+  {key:"Humanities",label:"Humanities",desc:"History, Polsci, Geography, Economics, English"},
+];
 
 // ── Skeleton loader ───────────────────────────────────────────────────────────
 function Skel(){
@@ -29,10 +37,11 @@ function Skel(){
 
 // ── Add Child Modal ───────────────────────────────────────────────────────────
 function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
-  var [form,setForm]=useState({username:"",grade:"Grade 9",password:"",email:""});
+  var [form,setForm]=useState({username:"",grade:"Grade 9",stream:"",password:"",email:""});
   var [loading,setLoading]=useState(false);
   var [msg,setMsg]=useState(null);
   var [creds,setCreds]=useState(null); // {login_id, password, login_email}
+  var needsStream=GRADE_11_12.has(form.grade);
 
   function copyToClipboard(text){
     navigator.clipboard&&navigator.clipboard.writeText(text).catch(function(){});
@@ -83,6 +92,7 @@ function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
   async function submit(e){
     e.preventDefault();
     if(!form.username||!form.password){setMsg("Name and password required.");return;}
+    if(needsStream&&!form.stream){setMsg("Please choose an academic stream (PCM / PCB / PCMB / Commerce / Humanities).");return;}
     setLoading(true);
     var d=await createStudent({...form,email:form.email||undefined}).catch(function(e2){return{success:false,error:e2.message};});
     setLoading(false);
@@ -151,8 +161,24 @@ function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Child's Name *</span>
                 <input value={form.username} onChange={function(e){setForm(function(p){return{...p,username:e.target.value};});}} required style={{...inp,marginTop:2}}/></label>
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Grade *</span>
-                <select value={form.grade} onChange={function(e){setForm(function(p){return{...p,grade:e.target.value};});}} style={{...inp,marginTop:2}}>
+                <select value={form.grade} onChange={function(e){setForm(function(p){return{...p,grade:e.target.value,stream:""};});}} style={{...inp,marginTop:2}}>
                   {GRADES.map(function(g){return <option key={g} value={g}>{g}</option>;})}</select></label>
+              {needsStream&&(
+                <label data-testid="add-child-stream-picker"><span style={{fontSize:".78rem",fontWeight:600}}>Stream *</span>
+                  <div style={{display:"flex",flexDirection:"column",gap:6,marginTop:4}}>
+                    {STREAM_OPTIONS.map(function(s){return(
+                      <button key={s.key} type="button" data-testid={"add-child-stream-"+s.key}
+                        onClick={function(){setForm(function(p){return{...p,stream:s.key};});}}
+                        style={{display:"flex",flexDirection:"column",alignItems:"flex-start",textAlign:"left",padding:"7px 10px",borderRadius:7,cursor:"pointer",fontFamily:"inherit",
+                          border:"2px solid "+(form.stream===s.key?"#6366f1":"var(--border,#e2e8f0)"),
+                          background:form.stream===s.key?"rgba(99,102,241,.08)":"var(--surface2,#f8fafc)"}}>
+                        <span style={{fontWeight:700,fontSize:".8rem",color:form.stream===s.key?"#6366f1":"var(--text,#1e293b)"}}>{s.label}</span>
+                        <span style={{fontSize:".68rem",color:"#64748b"}}>{s.desc}</span>
+                      </button>
+                    );})}
+                  </div>
+                </label>
+              )}
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Password *</span>
                 <input type="text" value={form.password} onChange={function(e){setForm(function(p){return{...p,password:e.target.value};});}} required placeholder="Share with child" style={{...inp,marginTop:2}}/></label>
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Email (optional)</span>

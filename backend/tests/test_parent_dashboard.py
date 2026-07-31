@@ -275,6 +275,56 @@ def test_create_student_with_mocked_auth_and_admin_client(monkeypatch):
     assert result["child"]["family_id"] == "family_1"
 
 
+def test_create_student_grade_11_requires_stream(monkeypatch):
+    """
+    A parent creating a Grade 11/12 child must supply a valid stream.
+
+    Expected result:
+    - Missing/invalid stream raises HTTPException 400.
+    - Valid stream succeeds and the child profile carries stream + the
+      stream's CBSE subjects (mirrors app/routes/auth.py signup behavior).
+    """
+
+    def fake_get_children(parent_id):
+        return []
+
+    def fake_create_auth_user(email, password, email_confirm=True):
+        return FakeAuthUser("child_grade11")
+
+    fake_admin_client = FakeAdminClient()
+
+    monkeypatch.setattr(parent_dashboard_route, "get_children", fake_get_children)
+    monkeypatch.setattr(parent_dashboard_route, "create_auth_user", fake_create_auth_user)
+    monkeypatch.setattr(parent_dashboard_route, "admin_client", fake_admin_client)
+
+    missing_stream_request = parent_dashboard_route.CreateStudentRequest(
+        email="grade11@example.com",
+        password="password123",
+        username="grade11_child",
+        grade="Grade 11",
+    )
+
+    with pytest.raises(HTTPException) as error:
+        parent_dashboard_route.create_student(data=missing_stream_request, parent=FAKE_PARENT)
+    assert error.value.status_code == 400
+    assert "Stream is required" in error.value.detail
+
+    valid_request = parent_dashboard_route.CreateStudentRequest(
+        email="grade11@example.com",
+        password="password123",
+        username="grade11_child",
+        grade="Grade 11",
+        stream="PCM",
+    )
+
+    result = parent_dashboard_route.create_student(data=valid_request, parent=FAKE_PARENT)
+
+    assert result["success"] is True
+    assert result["child"]["grade"] == "Grade 11"
+    assert result["child"]["stream"] == "PCM"
+    assert result["child"]["cbse_subjects"] == ["Physics", "Chemistry", "Mathematics", "English", "Hindi"]
+
+
 def test_create_student_rejects_more_than_two_children(monkeypatch):
     """
     Test that a parent cannot create more than two children.

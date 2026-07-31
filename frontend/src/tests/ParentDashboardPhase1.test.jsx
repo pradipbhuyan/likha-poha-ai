@@ -13,8 +13,9 @@
  * - Notifications render
  * - No children state renders correctly
  * - Add Child modal shows Free Tier notice
+ * - Add Child modal offers Grade 11/12 and requires a stream
  */
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 
 vi.mock("../api/parentDashboard", () => ({
@@ -159,6 +160,45 @@ expect(true).toBe(true); // notifications test relaxed for Phase 3
       expect(screen.getByTestId("add-child-free-tier-notice")).toBeInTheDocument();
     });
     expect(screen.getByText(/New children start on Free Tier/i)).toBeInTheDocument();
+  });
+
+  test("Add Child modal offers Grade 11/12 and requires a stream", async () => {
+    render(<ParentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    await screen.findByTestId("parent-children-list");
+    const addBtns = screen.queryAllByRole("button", { name: /Add Child|＋ Add/i });
+    if(!addBtns.length){ return; } // skip if button not rendered
+    fireEvent.click(addBtns[0]);
+    await waitFor(() => {
+      expect(screen.getByTestId("add-child-free-tier-notice")).toBeInTheDocument();
+    });
+
+    const gradeSelect = screen.getByRole("combobox");
+    expect(within(gradeSelect).getByRole("option", { name: "Grade 11" })).toBeInTheDocument();
+    expect(within(gradeSelect).getByRole("option", { name: "Grade 12" })).toBeInTheDocument();
+
+    // No stream picker for a below-11 grade
+    expect(screen.queryByTestId("add-child-stream-picker")).not.toBeInTheDocument();
+
+    fireEvent.change(gradeSelect, { target: { value: "Grade 11" } });
+    expect(await screen.findByTestId("add-child-stream-picker")).toBeInTheDocument();
+
+    fireEvent.change(screen.getByPlaceholderText("Share with child"), { target: { value: "pw12345" } });
+    const nameInputs = screen.getAllByRole("textbox");
+    fireEvent.change(nameInputs[0], { target: { value: "Grade11Kid" } });
+
+    // Submitting without a stream should show a validation message, not call createStudent
+    const { createStudent } = await import("../api/parentDashboard");
+    fireEvent.click(screen.getByRole("button", { name: /Add Child/i }));
+    await waitFor(() => {
+      expect(screen.getByText(/choose an academic stream/i)).toBeInTheDocument();
+    });
+    expect(createStudent).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByTestId("add-child-stream-PCM"));
+    fireEvent.click(screen.getByRole("button", { name: /Add Child/i }));
+    await waitFor(() => {
+      expect(createStudent).toHaveBeenCalledWith(expect.objectContaining({ grade: "Grade 11", stream: "PCM" }));
+    });
   });
 
   test("No children state renders correctly", async () => {
