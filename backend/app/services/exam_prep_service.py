@@ -2018,7 +2018,20 @@ def run_prewarm_job(job_id: str) -> dict:
     publish_mode = job.get("publish_mode", "draft")
     diff_mix = job.get("difficulty_mix") or {"easy": 0.3, "medium": 0.5, "hard": 0.2}
 
-    exam_label = {"jee_main": "JEE Main", "neet_ug": "NEET UG", "cuet_ug": "CUET UG"}.get(exam_type, exam_type)
+    EXAM_LABELS = {
+        "jee_main": "JEE Main", "neet_ug": "NEET UG", "cuet_ug": "CUET UG",
+        "sat": "SAT", "ielts": "IELTS Academic", "toefl_ibt": "TOEFL iBT",
+    }
+    EXAM_STANDARDS = {
+        "JEE Main": "Each question solvable in 60-90 seconds. Moderate calculation, no excessive arithmetic. Tests conceptual understanding + application.",
+        "NEET UG": "NCERT-centric. Biology: exact NCERT terminology. Physics/Chemistry: conceptual clarity over tricks.",
+        "CUET UG": "Conceptual focus. NCERT-based. Minimal lengthy calculations.",
+        "SAT": "Digital SAT format. Reading & Writing: short passages testing craft, structure and evidence-based reasoning. Math: algebra, advanced math, problem-solving/data analysis, geometry/trigonometry. No negative marking.",
+        "IELTS Academic": "IELTS Academic format. Listening & Reading only (Writing/Speaking are not MCQ-based and are out of scope for this question bank). Question types: multiple choice, matching, true/false/not given, sentence completion. No negative marking.",
+        "TOEFL iBT": "TOEFL iBT format. Reading & Listening only (Speaking/Writing are not MCQ-based and are out of scope for this question bank). Academic passages and lectures with comprehension, inference, and vocabulary-in-context questions. No negative marking.",
+    }
+    exam_label = EXAM_LABELS.get(exam_type, exam_type)
+    exam_standard = EXAM_STANDARDS.get(exam_label, "Conceptual focus. Minimal lengthy calculations.")
     chapter_str = chapter or topic or subject
     topic_str = topic or ""
     easy_pct = round(diff_mix.get("easy", 0.3) * 100)
@@ -2062,7 +2075,7 @@ D. DIFFICULTY CALIBRATION for {exam_label}:
    - A "hard" question is NOT just a calculation with big numbers — it requires genuine analytical thinking.
 
 E. EXAM STANDARD for {exam_label}:
-   {"- Each question solvable in 60–90 seconds. - Moderate calculation, no excessive arithmetic. - Tests conceptual understanding + application." if "JEE Main" in exam_label else "- NCERT-centric. - Biology: exact NCERT terminology. - Physics/Chemistry: conceptual clarity over tricks." if "NEET" in exam_label else "- Conceptual focus. - NCERT-based. - Minimal lengthy calculations."}
+   {exam_standard}
 
 F. OPTION QUALITY:
    - 3 plausible distractors — wrong answers that arise from common mistakes.

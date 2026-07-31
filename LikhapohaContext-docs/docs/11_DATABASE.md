@@ -104,6 +104,9 @@ All in `backend/migrations/`, idempotent:
 | `20260707_exam_prep_center.sql` | exam_prep_questions, exam_prep_attempts, exam_prep_simulated_tests, exam_prep_simulated_test_answers, exam_prep_prewarm_jobs tables (Supabase 2) |
 | `20260707_grade1112_stream.sql` | Grade 11/12 stream column for exam eligibility |
 | `20260708_subscription_plan_feature_flags.sql` | Adds duration_days, access_exam_prep, access_exemplar to subscription_plan_settings (Supabase 1) |
+| `20260709_exam_prep_subscriptions.sql` | exam_prep_subscriptions table — per-exam pack purchases (JEE/NEET/CUET), independent of CBSE subscription (Supabase 1) |
+| `20260711_exam_prep_add_sat_ielts_toefl.sql` | Extends exam_prep_questions.exam_type CHECK to accept sat/ielts/toefl_ibt (Supabase 2) |
+| `20260731_exam_prep_subscriptions_add_sat_ielts_toefl.sql` | Extends exam_prep_subscriptions.exam_type CHECK to accept sat/ielts/toefl_ibt, enabling SAT/IELTS/TOEFL pack purchases (Supabase 1) |
 
 ## Safety Rules
 

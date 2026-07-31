@@ -194,6 +194,15 @@ class TestBuildExamEligibility:
         # Should normalize to uppercase and match PCM
         assert e["jee_main"]["eligible"] is True
 
+    def test_global_standardised_tests_eligible_for_all_streams(self):
+        """SAT/IELTS/TOEFL have no stream prerequisite — eligible regardless of academic stream."""
+        from app.services.exam_prep_service import build_exam_eligibility
+        for stream in ("PCM", "PCB", "PCMB", "Commerce", "Humanities", None):
+            e = build_exam_eligibility(stream)
+            for exam_type in ("sat", "ielts", "toefl_ibt"):
+                assert e[exam_type]["eligible"] is True, f"{exam_type} should be eligible for stream={stream}"
+                assert e[exam_type]["reason"] == ""
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # C. check_exam_prep_content_access

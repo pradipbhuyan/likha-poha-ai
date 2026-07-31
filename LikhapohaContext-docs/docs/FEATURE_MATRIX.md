@@ -48,22 +48,31 @@ Admins can access admin console, operations, analytics, support tools, audit vie
 
 ## Exam Prep Center Feature Matrix
 
-| Access Type | JEE Main | NEET UG | CUET UG |
-|---|---|---|---|
-| Grade 5–10 student | ❌ Grade locked | ❌ Grade locked | ❌ Grade locked |
-| Grade 11/12 Free/Nano | 🔒 Preview only | 🔒 Preview only | 🔒 Preview only |
-| Grade 11/12 Premium+ | Stream-dependent | Stream-dependent | ✅ Active |
-| PCM stream | ✅ Eligible | ❌ | ✅ Eligible |
-| PCB stream | ❌ | ✅ Eligible | ✅ Eligible |
-| PCMB stream | ✅ Eligible | ✅ Eligible | ✅ Eligible |
-| Admin role | ✅ Full | ✅ Full | ✅ Full |
-| Test users (akshita.teststudent) | ✅ Full | ✅ Full | ✅ Full |
+Two independent access paths exist for exam prep content, both grade-11/12-gated:
+
+1. **Bundled-in-plan** (`GET /api/exam-prep/access-check`) — Premium/Family Premium subscribers get `EXAM_PREP_CONTENT` automatically via `subscription_plan_settings.access_exam_prep` on their CBSE plan.
+2. **Per-exam packs** (`POST /api/exam-prep/pack-order` + `/pack-verify`) — any Grade 11/12 student (including Free tier) can buy a single exam's pack independently of their CBSE plan, via `exam_prep_subscriptions`. Six packs exist: `exam_prep_jee`, `exam_prep_neet`, `exam_prep_cuet`, `exam_prep_sat`, `exam_prep_ielts`, `exam_prep_toefl` (`backend/app/data/subscription_plans.py`).
+
+| Access Type | JEE Main | NEET UG | CUET UG | SAT | IELTS | TOEFL iBT |
+|---|---|---|---|---|---|---|
+| Grade 5–10 student | ❌ Grade locked | ❌ Grade locked | ❌ Grade locked | ❌ Grade locked | ❌ Grade locked | ❌ Grade locked |
+| Grade 11/12 Free/Nano | 🔒 Preview only (bundled path) — pack purchase available | 🔒 Preview only (bundled path) — pack purchase available | 🔒 Preview only (bundled path) — pack purchase available | 🔒 Preview only (bundled path) — pack purchase available | 🔒 Preview only (bundled path) — pack purchase available | 🔒 Preview only (bundled path) — pack purchase available |
+| Grade 11/12 Premium+ | Stream-dependent | Stream-dependent | ✅ Active | ✅ Active | ✅ Active | ✅ Active |
+| PCM stream | ✅ Eligible | ❌ | ✅ Eligible | ✅ Eligible | ✅ Eligible | ✅ Eligible |
+| PCB stream | ❌ | ✅ Eligible | ✅ Eligible | ✅ Eligible | ✅ Eligible | ✅ Eligible |
+| PCMB stream | ✅ Eligible | ✅ Eligible | ✅ Eligible | ✅ Eligible | ✅ Eligible | ✅ Eligible |
+| Admin role | ✅ Full | ✅ Full | ✅ Full | ✅ Full | ✅ Full | ✅ Full |
+| Test users (akshita.teststudent) | ✅ Full | ✅ Full | ✅ Full | ✅ Full | ✅ Full | ✅ Full |
+
+SAT/IELTS/TOEFL are open to all streams (global standardised tests have no stream prerequisite, unlike JEE/NEET's subject requirements). JEE/NEET/CUET stream eligibility is computed by `build_exam_eligibility()` in `backend/app/services/exam_prep_service.py`.
 
 **Access check endpoint:** `GET /api/exam-prep/access-check` — always call this; never infer from plan string.
 
+**Pack ownership endpoint:** `GET /api/exam-prep/my-packs` — which of the six packs the signed-in user currently owns (independent of CBSE plan).
+
 **Question states:** `draft` (admin only) → `published` (students) → `archived` (hidden)
 
-**Content source:** Admin generates via AI prewarm OR pastes JSON from ChatGPT/Custom GPT.
+**Content source:** Admin generates via AI prewarm OR pastes JSON from ChatGPT/Custom GPT. As of 2026-07-31, JEE/NEET/CUET have populated question banks; **SAT/IELTS/TOEFL have no question bank content yet** — the schema, syllabus taxonomy, purchase flow and eligibility logic all support them, but admin content authoring for these three exams hasn't happened. IELTS/TOEFL packs cover Reading & Listening only — Writing/Speaking are not MCQ-based and are out of scope for this question-bank system.
 
 **CUET UG subjects supported (2026-07-07):**
 English, General Test, Physics (Domain), Chemistry (Domain), Mathematics (Domain), Biology (Domain), History, Geography, Political Science, Economics, Accountancy, Business Studies, Sociology, Psychology, Legal Studies, Hindi (Domain)

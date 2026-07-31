@@ -1,6 +1,6 @@
 """
-exam_prep_packs.py — JEE / NEET / CUET Exam Prep Pack Purchase API
-===================================================================
+exam_prep_packs.py — JEE / NEET / CUET / SAT / IELTS / TOEFL Exam Prep Pack Purchase API
+===========================================================================================
 These packs are independent of the CBSE subscription tiers.
 Any Grade 11/12 student (Free tier or Premium) can purchase them.
 
@@ -33,13 +33,17 @@ router = APIRouter(prefix="/api/exam-prep", tags=["exam-prep-packs"])
 
 # ── Pack plan key → exam type mapping ────────────────────────────────────────
 PACK_TO_EXAM_TYPE = {
-    "exam_prep_jee":  "jee_main",
-    "exam_prep_neet": "neet_ug",
-    "exam_prep_cuet": "cuet_ug",
+    "exam_prep_jee":   "jee_main",
+    "exam_prep_neet":  "neet_ug",
+    "exam_prep_cuet":  "cuet_ug",
+    "exam_prep_sat":   "sat",
+    "exam_prep_ielts": "ielts",
+    "exam_prep_toefl": "toefl_ibt",
 }
 EXAM_TYPE_TO_PACK = {v: k for k, v in PACK_TO_EXAM_TYPE.items()}
 VALID_EXAM_TYPES = set(PACK_TO_EXAM_TYPE.values())
 TEST_USERS = {"akshita.teststudent"}
+_ALL_INACTIVE_PACKS = {exam_type: {"active": False, "expires_at": None} for exam_type in VALID_EXAM_TYPES}
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -84,9 +88,7 @@ def _get_active_packs(user_id: str) -> dict:
     Returns: { "jee_main": {"active": bool, "expires_at": str|None}, ... }
     """
     now = datetime.now(timezone.utc).isoformat()
-    result = {"jee_main": {"active": False, "expires_at": None},
-              "neet_ug":  {"active": False, "expires_at": None},
-              "cuet_ug":  {"active": False, "expires_at": None}}
+    result = {exam_type: {"active": False, "expires_at": None} for exam_type in VALID_EXAM_TYPES}
     try:
         rows = (
             admin_client
@@ -141,20 +143,12 @@ def get_my_packs(user=Depends(get_current_user)):
     if role == "admin" or username in TEST_USERS:
         return {
             "success": True,
-            "packs": {
-                "jee_main": {"active": True, "expires_at": None},
-                "neet_ug":  {"active": True, "expires_at": None},
-                "cuet_ug":  {"active": True, "expires_at": None},
-            },
+            "packs": {exam_type: {"active": True, "expires_at": None} for exam_type in VALID_EXAM_TYPES},
             "grade_eligible": True,
         }
 
     grade_eligible = grade in ("Grade 11", "Grade 12") and role == "student"
-    packs = _get_active_packs(user.id) if grade_eligible else {
-        "jee_main": {"active": False, "expires_at": None},
-        "neet_ug":  {"active": False, "expires_at": None},
-        "cuet_ug":  {"active": False, "expires_at": None},
-    }
+    packs = _get_active_packs(user.id) if grade_eligible else dict(_ALL_INACTIVE_PACKS)
     return {"success": True, "packs": packs, "grade_eligible": grade_eligible}
 
 
@@ -187,7 +181,7 @@ def get_pack_prices():
 
 
 class PackOrderRequest(BaseModel):
-    exam_type: str   # jee_main | neet_ug | cuet_ug
+    exam_type: str   # jee_main | neet_ug | cuet_ug | sat | ielts | toefl_ibt
 
 
 @router.post("/pack-order")
@@ -410,7 +404,7 @@ ADMIN_TEST_CHARGE_RUPEES = 1  # ₹1 real transaction for testing
 
 class AdminTestPackOrderRequest(BaseModel):
     target_user_id: str
-    exam_type: str  # jee_main | neet_ug | cuet_ug
+    exam_type: str  # jee_main | neet_ug | cuet_ug | sat | ielts | toefl_ibt
 
 
 class AdminTestPackVerifyRequest(BaseModel):
