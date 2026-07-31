@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Chapter 4: Laws of Motion",
+    "central_question": "How do forces change motion, and how do Newton's laws, momentum, friction, and equilibrium explain mechanical systems?",
+    "in_scope_units": [
+      "Introduction to force and motion.",
+      "Aristotle's fallacy and friction.",
+      "Galileo's law of inertia.",
+      "Newton's first law.",
+      "Newton's second law, momentum, and impulse.",
+      "Newton's third law.",
+      "Conservation of momentum.",
+      "Equilibrium of a particle.",
+      "Common forces and friction.",
+      "Circular motion on level and banked roads.",
+      "Systematic problem solving using free-body diagrams."
+    ],
+    "banned_topics": [
+      "Detailed collision-energy theory",
+      "Rigid-body torque equilibrium",
+      "Universal orbital gravitation"
+    ],
+    "must_include_keywords": [
+      "force",
+      "net external force",
+      "Aristotle's fallacy",
+      "Galileo",
+      "inertia",
+      "Newton's first law",
+      "momentum",
+      "Newton's second law",
+      "newton",
+      "impulse",
+      "Newton's third law",
+      "action–reaction pair",
+      "conservation of momentum",
+      "isolated system",
+      "equilibrium",
+      "free-body diagram",
+      "weight",
+      "normal reaction",
+      "tension",
+      "spring force",
+      "static friction",
+      "limiting friction",
+      "kinetic friction",
+      "coefficient of friction",
+      "rolling friction",
+      "centripetal force",
+      "level road",
+      "banked road",
+      "system and environment"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Force is needed to maintain constant velocity.",
+        "correction": "Only net force changes velocity; an applied force may merely balance friction."
+      },
+      {
+        "claim": "Action and reaction cancel on one body.",
+        "correction": "They act on different bodies."
+      },
+      {
+        "claim": "ma is an extra force.",
+        "correction": "ma is the acceleration response to net force."
+      },
+      {
+        "claim": "Static friction always equals μsN.",
+        "correction": "It adjusts from zero up to μsN."
+      },
+      {
+        "claim": "Centripetal force is a new force.",
+        "correction": "It is the net inward role played by a real force such as friction or tension."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Example 4.1: astronaut separated from an accelerating spaceship.",
+      "NCERT Example 4.2: bullet stopped in wood.",
+      "NCERT Example 4.4: impulse on a reversed cricket ball.",
+      "NCERT Example 4.8: angle of repose and static friction.",
+      "NCERT Example 4.12: free-body diagrams for a yielding floor."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES beginning with 4.1; use g = 10 m s⁻² where the exercise note directs."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 4: Laws of Motion\n\n## What you will learn\nYou will explain Aristotle's fallacy, Galileo's inertia idea, and Newton's first law.\n\n## Simple explanation\nOrdinary objects stop because friction acts, not because motion needs a continuous net force.\n\n## Step-by-step breakdown\n- **Aristotle's fallacy**: It mistakes the force needed to overcome friction for a force needed to maintain motion.\n- **Galileo's planes**: With less friction and a shallower second plane, a rolling ball travels farther while tending to regain its height.\n- **Inertia**: A body resists changes in rest or uniform straight-line motion.\n- **First law**: Zero net external force means zero acceleration.\n- **Balanced forces**: A resting object may have several forces whose vector sum is zero.\n- **Uniform motion**: A moving body can continue with constant velocity when net force is zero.\n\n## Worked example\nQuestion: Using NCERT Example 4.1, an astronaut leaves a spaceship accelerating at 100 m s⁻² in force-free interstellar space. Find the astronaut's acceleration immediately after separation.\n\nSolution:\n- After separation, the spaceship exerts no contact force.\n- Other gravitational forces are assumed negligible.\n- Net external force is zero.\n- By the first law, acceleration is zero.\n- Final answer: 0 m s⁻².\n\n## Common mistake\nAcceleration is determined by current force, not by the body's previous acceleration.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 4.1(d), what is net force on a car moving with constant velocity on a rough road?\nAnswer: Zero.\nExplanation: Driving and resistive forces balance, so acceleration is zero.\n\n## Summary\n- Friction explains stopping.\n- Inertia covers rest and uniform motion.\n- Net force controls acceleration.\n- Balanced forces can act on a moving body.",
+    "Core explanation": "# Core explanation: Chapter 4: Laws of Motion\n\n## What you will learn\nYou will define momentum, use Newton's second law, and connect impulse with momentum change.\n\n## Simple explanation\nMomentum combines mass and velocity, while force measures how rapidly momentum changes.\n\n## Step-by-step breakdown\n- **Momentum**: p = mv and is a vector.\n- **Second law**: F = dp/dt; for constant mass, F = ma.\n- **Net force**: F is the vector sum of external forces on the selected system.\n- **Components**: The law applies independently along each coordinate axis.\n- **Unit**: 1 N = 1 kg m s⁻².\n- **Impulse**: Impulse equals force × time for a constant force and equals Δp.\n- **Local law**: Force at an instant determines acceleration at that instant.\n\n## Worked example\nQuestion: Using NCERT Example 4.2, a 0.04 kg bullet at 90 m s⁻¹ stops in 0.60 m. Find average resistive force.\n\nSolution:\n- Use 0 = 90² + 2a(0.60).\n- a = −6750 m s⁻².\n- F = ma = 0.04(−6750) N.\n- Final answer: Average resistive force magnitude = 270 N, opposite to motion.\n\n## Common mistake\nThe actual force may vary; this is an average value.\n\n## Quick check question\nQuestion: Using NCERT Example 4.4, what impulse reverses a 0.15 kg ball from 12 m s⁻¹ one way to 12 m s⁻¹ the other?\nAnswer: 3.6 N s.\nExplanation: The velocity change magnitude is 24 m s⁻¹, so Δp = 0.15 × 24.\n\n## Summary\n- Momentum is mv.\n- Force is dp/dt.\n- Impulse is Δp.\n- The second law is vectorial.",
+    "Worked examples": "# Worked examples: Chapter 4: Laws of Motion\n\n## What you will learn\nYou will identify third-law pairs, derive momentum conservation, and solve concurrent-force equilibrium.\n\n## Simple explanation\nForces arise in interactions and occur as simultaneous equal-and-opposite forces on different bodies.\n\n## Step-by-step breakdown\n- **Third law**: FAB = −FBA.\n- **Different bodies**: The two forces never appear on the same free-body diagram.\n- **Simultaneous pair**: Neither force occurs before the other.\n- **Isolated system**: With zero external force, total momentum remains constant.\n- **Recoil and collision**: Internal impulses change individual momenta but cancel in the total.\n- **Equilibrium**: A particle is in equilibrium when the vector sum of forces is zero.\n\n## Worked example\nQuestion: Using NCERT Example 4.6, a 6 kg mass hangs from a rope and a 50 N horizontal force acts at the midpoint. Find the upper rope's angle to vertical with g = 10 m s⁻².\n\nSolution:\n- Lower tension is mg = 60 N.\n- At the midpoint, T cosθ = 60 N.\n- Also T sinθ = 50 N.\n- Thus tanθ = 50/60 and θ ≈ 40°.\n- Final answer: Approximately 40° from the vertical.\n\n## Common mistake\nEqual and opposite forces on different bodies cannot be added to test one body's equilibrium.\n\n## Quick check question\nQuestion: For a gun–bullet system initially at rest with negligible external impulse, what is the final total momentum?\nAnswer: Zero.\nExplanation: Gun recoil momentum is equal and opposite to bullet momentum.\n\n## Summary\n- Third-law forces act on different bodies.\n- Internal impulses cancel in a system.\n- Momentum is conserved when external force is zero.\n- Equilibrium requires vector balance.",
+    "Exam-style problems": "# Exam-style problems: Chapter 4: Laws of Motion\n\n## What you will learn\nYou will identify common forces and apply static and kinetic friction correctly.\n\n## Simple explanation\nA free-body diagram contains only forces on the chosen object. Friction opposes relative slipping or its tendency.\n\n## Step-by-step breakdown\n- **Weight**: Near Earth, weight is mg downward.\n- **Normal reaction**: It is the contact-force component perpendicular to the surface.\n- **Tension**: A light taut string pulls along its length.\n- **Spring force**: An ideal spring exerts −kx.\n- **Static friction**: fs adjusts up to fs,max = μsN.\n- **Kinetic friction**: During sliding, fk = μkN, usually with μk < μs.\n- **Rolling friction**: Rolling resistance is much smaller than sliding resistance.\n\n## Worked example\nQuestion: Using NCERT Example 4.8, a block just begins to slide at an incline angle of 15°. Find μs.\n\nSolution:\n- At limiting equilibrium, mg sinθ = μsN.\n- N = mg cosθ.\n- Thus μs = tanθ = tan15°.\n- Final answer: μs ≈ 0.27.\n\n## Common mistake\nDo not set fs = μsN unless friction is at its limiting value.\n\n## Quick check question\nQuestion: Using NCERT Example 4.7, if μs = 0.15 and g = 10 m s⁻², what maximum train acceleration keeps a box at rest relative to the floor?\nAnswer: 1.5 m s⁻².\nExplanation: Static friction supplies ma and cannot exceed μsmg, so amax = μsg.\n\n## Summary\n- Draw the system's free-body diagram.\n- Normal force need not equal weight.\n- Static friction is self-adjusting.\n- Kinetic friction acts during sliding.",
+    "Revision and recap": "# Revision and recap: Chapter 4: Laws of Motion\n\n## What you will learn\nYou will apply Newton's laws to circular motion on roads and use a systematic free-body-diagram method.\n\n## Simple explanation\nCircular motion requires a real inward net force supplied by friction, normal reaction, tension, gravity, or another interaction.\n\n## Step-by-step breakdown\n- **Centripetal requirement**: Fin = mv²/R.\n- **Level road**: Static friction supplies the inward force; v² ≤ μsRg.\n- **Banked road**: The normal force has a horizontal inward component.\n- **Optimum speed**: With no friction needed, v₀ = √(Rg tanθ).\n- **System choice**: Choose the object or group before listing forces.\n- **Free-body diagram**: Show forces on the system, not forces it exerts.\n- **Components**: Apply Newton's second law along convenient axes.\n\n## Worked example\nQuestion: Using NCERT Example 4.10, a cyclist at 18 km h⁻¹ takes a level turn of radius 3 m with μs = 0.1. Take g = 9.8 m s⁻². Will the cyclist slip?\n\nSolution:\n- Speed = 5 m s⁻¹, so v² = 25.\n- Maximum μsRg = 0.1 × 3 × 9.8 = 2.94.\n- Since 25 > 2.94, friction is insufficient.\n- Final answer: Yes, the cyclist slips.\n\n## Common mistake\nCentripetal force is not added to friction; friction is the inward force here.\n\n## Quick check question\nQuestion: Using NCERT Example 4.11, find optimum speed for R = 300 m and bank angle 15° with g = 9.8 m s⁻².\nAnswer: Approximately 28.1 m s⁻¹.\nExplanation: v₀ = √(Rg tan15°).\n\n## Summary\n- Only net force changes motion.\n- Third-law pairs act on different bodies.\n- Friction has limiting conditions.\n- Circular motion needs inward net force.\n- Free-body diagrams clarify systems."
+  }
+}

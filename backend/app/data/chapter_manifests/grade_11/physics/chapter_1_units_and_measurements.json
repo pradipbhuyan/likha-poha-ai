@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 1: Units and Measurements",
+  "central_question": "How can physical quantities be measured, reported with justified precision, and checked using units and dimensions?",
+  "in_scope_units": [
+    "Introduction to measurement, physical quantities, numerical values, units, base units, derived units, and systems of units.",
+    "The International System of Units, seven SI base quantities and units, plane angle, solid angle, and retained non-SI units.",
+    "Significant figures, scientific notation, order of magnitude, arithmetic rules, rounding, and uncertainty in calculations.",
+    "Dimensions of physical quantities in terms of base quantities.",
+    "Dimensional formulae and dimensional equations.",
+    "Dimensional analysis for checking consistency and deducing relations, together with its limitations."
+  ],
+  "banned_topics": [
+    "Detailed construction and least-count theory of measuring instruments beyond the exercises",
+    "Advanced statistical treatment of experimental errors",
+    "Vector algebra and kinematics"
+  ],
+  "must_include_keywords": [
+    "measurement",
+    "physical quantity",
+    "unit",
+    "base quantity",
+    "derived quantity",
+    "SI units",
+    "metre",
+    "kilogram",
+    "second",
+    "ampere",
+    "kelvin",
+    "mole",
+    "candela",
+    "radian",
+    "steradian",
+    "scientific notation",
+    "order of magnitude",
+    "significant figures",
+    "least count",
+    "rounding off",
+    "uncertainty",
+    "dimensions",
+    "dimensional formula",
+    "dimensional equation",
+    "principle of homogeneity",
+    "dimensional consistency",
+    "dimensionless quantity",
+    "multiplication and division rule",
+    "addition and subtraction rule"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Changing the unit changes the number of significant figures.",
+      "correction": "A unit conversion does not change precision or the number of significant figures."
+    },
+    {
+      "claim": "All trailing zeroes are always significant.",
+      "correction": "Trailing zeroes after a decimal are significant; whole-number trailing zeroes are ambiguous unless scientific notation is used."
+    },
+    {
+      "claim": "Addition uses the least number of significant figures.",
+      "correction": "Addition and subtraction use the least number of decimal places."
+    },
+    {
+      "claim": "A dimensionally correct equation must be physically correct.",
+      "correction": "Dimensional consistency is necessary but cannot confirm numerical constants or the exact physical relation."
+    },
+    {
+      "claim": "The power of ten contributes to significant figures.",
+      "correction": "Only the coefficient in scientific notation determines significant figures."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 1.1: report cube surface area and volume from side 7.203 m.",
+    "NCERT Example 1.2: calculate density from 5.74 g and 1.2 cm³.",
+    "NCERT Example 1.3: test ½mv² = mgh dimensionally.",
+    "NCERT Example 1.4: reject incorrect kinetic-energy formulae by dimensions.",
+    "NCERT Example 1.5: deduce the pendulum-period dependence."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1.1–1.17 and report numerical answers with appropriate significant figures.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

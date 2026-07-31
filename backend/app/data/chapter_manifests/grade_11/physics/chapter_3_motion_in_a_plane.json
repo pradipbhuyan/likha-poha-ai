@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 3: Motion in a Plane",
+  "central_question": "How can vectors describe and predict two-dimensional motion, including projectiles and uniform circular motion?",
+  "in_scope_units": [
+    "Need for vectors in plane motion.",
+    "Scalars, vectors, position, displacement, and equality.",
+    "Multiplication of vectors by real numbers.",
+    "Graphical vector addition, subtraction, and zero vector.",
+    "Resolution into components and unit vectors.",
+    "Analytical vector addition.",
+    "Position, velocity, and acceleration in a plane.",
+    "Constant acceleration in two dimensions.",
+    "Projectile motion.",
+    "Uniform circular motion."
+  ],
+  "banned_topics": [
+    "Forces causing motion",
+    "Rotational dynamics",
+    "Air-resistance models"
+  ],
+  "must_include_keywords": [
+    "scalar",
+    "vector",
+    "magnitude",
+    "direction",
+    "position vector",
+    "displacement vector",
+    "equal vectors",
+    "unit vector",
+    "zero vector",
+    "triangle law",
+    "parallelogram law",
+    "vector subtraction",
+    "resolution of vectors",
+    "components",
+    "unit-vector notation",
+    "resultant",
+    "law of cosines",
+    "average velocity",
+    "instantaneous velocity",
+    "acceleration",
+    "constant acceleration",
+    "independent components",
+    "projectile",
+    "parabolic trajectory",
+    "time of flight",
+    "maximum height",
+    "horizontal range",
+    "uniform circular motion",
+    "angular speed",
+    "centripetal acceleration"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any quantity with direction is a vector.",
+      "correction": "It must also obey vector addition laws."
+    },
+    {
+      "claim": "Displacement magnitude always equals path length.",
+      "correction": "It is less than or equal to path length."
+    },
+    {
+      "claim": "Vector components are vectors.",
+      "correction": "Ax and Ay are scalars; Ax i-hat and Ay j-hat are vectors."
+    },
+    {
+      "claim": "Projectile velocity is zero at maximum height.",
+      "correction": "Only its vertical component is zero."
+    },
+    {
+      "claim": "Uniform circular motion has zero acceleration.",
+      "correction": "Direction changes, so centripetal acceleration is non-zero."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 3.1: rain and wind resultant.",
+    "NCERT Example 3.3: motorboat and current velocities.",
+    "NCERT Example 3.5: constant acceleration in components.",
+    "NCERT Example 3.8: projectile at 28 m s⁻¹ and 30°.",
+    "NCERT Example 3.9: insect in a circular groove."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use end-of-chapter EXERCISES 3.1–3.22.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

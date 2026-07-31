@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Chapter 5: Work, Energy and Power",
+    "central_question": "How are force and motion linked through work, energy, power, conservative forces, and collisions?",
+    "in_scope_units": [
+      "Scalar product.",
+      "Work–energy theorem.",
+      "Work by a constant force.",
+      "Kinetic energy.",
+      "Work by a variable force.",
+      "Variable-force work–energy theorem.",
+      "Potential energy and conservative forces.",
+      "Conservation of mechanical energy.",
+      "Spring potential energy.",
+      "Power.",
+      "Collisions."
+    ],
+    "banned_topics": [
+      "Vector product and torque",
+      "Thermodynamic internal energy",
+      "Detailed simple harmonic motion"
+    ],
+    "must_include_keywords": [
+      "scalar product",
+      "dot product",
+      "work",
+      "kinetic energy",
+      "work–energy theorem",
+      "constant force",
+      "variable force",
+      "force–position graph",
+      "definite integral",
+      "positive work",
+      "negative work",
+      "joule",
+      "potential energy",
+      "conservative force",
+      "non-conservative force",
+      "gravitational potential energy",
+      "mechanical energy",
+      "Hooke's law",
+      "spring constant",
+      "elastic potential energy",
+      "power",
+      "watt",
+      "horsepower",
+      "kilowatt-hour",
+      "momentum conservation",
+      "elastic collision",
+      "inelastic collision",
+      "completely inelastic collision",
+      "one-dimensional collision",
+      "two-dimensional collision"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A force always does work.",
+        "correction": "Work requires displacement and a force component along it."
+      },
+      {
+        "claim": "Third-law forces do equal and opposite work.",
+        "correction": "Their bodies may have different displacements."
+      },
+      {
+        "claim": "Kinetic energy is a vector.",
+        "correction": "It is the scalar ½mv²."
+      },
+      {
+        "claim": "Mechanical energy is always conserved.",
+        "correction": "It is conserved when only conservative forces do work."
+      },
+      {
+        "claim": "Kinetic energy is conserved in every collision.",
+        "correction": "Only elastic collisions conserve total kinetic energy."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Example 5.2: raindrop with gravity and resistance.",
+      "NCERT Example 5.5: areas under force–position graphs.",
+      "NCERT Example 5.6: inverse-position retarding force.",
+      "NCERT Example 5.8: car compressing a spring.",
+      "NCERT Example 5.12: equal billiard balls."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use end-of-chapter EXERCISES 5.1–5.23."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 5: Work, Energy and Power\n\n## What you will learn\nYou will define the scalar product and use it to calculate work by a constant force.\n\n## Simple explanation\nPhysical work is energy transfer by a force through displacement, not simply muscular effort.\n\n## Step-by-step breakdown\n- **Dot product**: A·B = AB cosθ and is a scalar.\n- **Components**: A·B = AxBx + AyBy + AzBz.\n- **Work**: W = F·d = Fd cosθ.\n- **Positive work**: The force component is along displacement.\n- **Negative work**: The force component opposes displacement.\n- **Zero work**: It occurs for zero displacement or perpendicular force.\n- **Unit**: The SI unit is joule.\n\n## Worked example\nQuestion: Using NCERT Example 5.3, a cyclist skids 10 m against a 200 N road force. Find work by road on cycle and by cycle on road.\n\nSolution:\n- For the cycle, θ = 180°, so W = 200 × 10 × cos180° = −2000 J.\n- The road has no displacement, so work on the road is zero.\n- Final answer: −2000 J on the cycle and 0 J on the road.\n\n## Common mistake\nEqual third-law forces need not do equal-and-opposite work.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 5.11, F = −i-hat + 2j-hat + 3k-hat N moves a body 4 m along +z. Find work.\nAnswer: 12 J.\nExplanation: Only the 3 N z-component acts along the 4 m displacement.\n\n## Summary\n- Work is a scalar.\n- Only parallel force component contributes.\n- Work can be negative.\n- Joule is the energy unit.",
+    "Core explanation": "# Core explanation: Chapter 5: Work, Energy and Power\n\n## What you will learn\nYou will define kinetic energy and apply the work–energy theorem to constant and variable forces.\n\n## Simple explanation\nNet work changes kinetic energy, and variable-force work is the signed area under an F–x graph.\n\n## Step-by-step breakdown\n- **Kinetic energy**: K = ½mv².\n- **Theorem**: Kf − Ki = Wnet.\n- **Constant force**: The result follows from F = ma and v² − u² = 2as.\n- **Variable force**: W = ∫F(x)dx.\n- **Graph**: Area above the axis is positive and below is negative.\n- **Scope**: The theorem is scalar and does not preserve all directional or time information.\n\n## Worked example\nQuestion: Using NCERT Example 5.2, a 1.00 g drop falls 1.00 km and reaches 50.0 m s⁻¹. With g = 10 m s⁻², find work by gravity and resistance.\n\nSolution:\n- ΔK = ½(10⁻³)(50)² = 1.25 J.\n- Wg = mgh = 10.0 J.\n- Wr = ΔK − Wg = −8.75 J.\n- Final answer: Wg = 10.0 J and Wr = −8.75 J.\n\n## Common mistake\nWhen several forces act, change in kinetic energy equals their net work, not one force's work.\n\n## Quick check question\nQuestion: From NCERT Example 5.4, if final kinetic energy is 10% of initial, what fraction of speed remains?\nAnswer: √0.10 ≈ 0.316.\nExplanation: For fixed mass, K is proportional to v².\n\n## Summary\n- K = ½mv².\n- Net work changes K.\n- Variable-force work is an integral.\n- Signed graph area represents work.",
+    "Worked examples": "# Worked examples: Chapter 5: Work, Energy and Power\n\n## What you will learn\nYou will define potential energy and apply conservation of mechanical energy for conservative forces.\n\n## Simple explanation\nA conservative force stores recoverable energy whose change depends only on endpoints.\n\n## Step-by-step breakdown\n- **Potential relation**: F = −dV/dx in one dimension.\n- **Conservative work**: Work depends only on endpoints and vanishes over a closed path.\n- **Gravity near Earth**: V = mgh for a chosen ground zero.\n- **Mechanical energy**: E = K + V.\n- **Conservation**: Ki + Vi = Kf + Vf if only conservative forces do work.\n- **Non-conservative work**: Ef − Ei = Wnc.\n- **Reference**: Potential-energy zero is arbitrary but must remain consistent.\n\n## Worked example\nQuestion: From the chapter's falling-ball discussion, find speed at ground for a ball released from rest at height H without air resistance.\n\nSolution:\n- Initial energy is mgH.\n- At ground, energy is ½mv².\n- Set ½mv² = mgH and solve.\n- Final answer: v = √(2gH).\n\n## Common mistake\nPotential-energy values depend on the chosen zero; changes are physically meaningful.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 5.6(a), what happens to potential energy when a conservative force does positive work?\nAnswer: It decreases.\nExplanation: W = −ΔV.\n\n## Summary\n- Conservative work is path independent.\n- Potential energy stores conservative work.\n- K + V is conserved under conservative forces.\n- Friction changes mechanical energy.",
+    "Exam-style problems": "# Exam-style problems: Chapter 5: Work, Energy and Power\n\n## What you will learn\nYou will analyse ideal springs and calculate average and instantaneous power.\n\n## Simple explanation\nA deformed spring stores energy, while power measures how quickly energy is transferred.\n\n## Step-by-step breakdown\n- **Hooke's law**: Fs = −kx.\n- **Spring energy**: V = ½kx².\n- **Spring work**: Ws = ½kxi² − ½kxf².\n- **Average power**: Pavg = W/t.\n- **Instantaneous power**: P = F·v.\n- **Units**: 1 W = 1 J s⁻¹ and 1 hp = 746 W.\n- **kWh**: 1 kWh = 3.6 × 10⁶ J and is energy.\n\n## Worked example\nQuestion: Using NCERT Example 5.8, a 1000 kg car at 18 km h⁻¹ compresses a spring of k = 5.25 × 10³ N m⁻¹. Find maximum compression on a smooth road.\n\nSolution:\n- 18 km h⁻¹ = 5 m s⁻¹.\n- Initial K = ½(1000)(5²) = 1.25 × 10⁴ J.\n- Set ½kx² equal to this energy.\n- Solve x = 2.00 m.\n- Final answer: 2.00 m.\n\n## Common mistake\nWith friction present, include its negative work instead of conserving mechanical energy unchanged.\n\n## Quick check question\nQuestion: Using NCERT Example 5.10, find power for a 1800 kg elevator moving upward at 2 m s⁻¹ against 4000 N friction, with g = 10 m s⁻².\nAnswer: 44,000 W, about 59 hp.\nExplanation: Required force is 18,000 + 4,000 N, and P = Fv.\n\n## Summary\n- Spring energy varies as x².\n- Power is work rate.\n- Instantaneous power is F·v.\n- kWh is energy.",
+    "Revision and recap": "# Revision and recap: Chapter 5: Work, Energy and Power\n\n## What you will learn\nYou will compare elastic, inelastic, and completely inelastic collisions using momentum and energy.\n\n## Simple explanation\nTotal momentum is conserved in an isolated collision; kinetic-energy conservation determines whether the collision is elastic.\n\n## Step-by-step breakdown\n- **Momentum**: Total linear momentum is conserved if external impulse is negligible.\n- **Elastic**: Total kinetic energy before and after is equal.\n- **Inelastic**: Some kinetic energy becomes other forms.\n- **Completely inelastic**: Bodies move together after collision.\n- **One dimension**: Momentum and energy equations determine final speeds for elastic impact.\n- **Equal masses**: A head-on incident mass transfers its speed to an equal stationary mass.\n- **Two dimensions**: Momentum is conserved component by component.\n\n## Worked example\nQuestion: Using NCERT Example 5.12, equal billiard balls collide elastically, one initially at rest. If the target leaves at 37°, find the cue-ball direction.\n\nSolution:\n- Momentum vector conservation and kinetic-energy conservation imply final velocity vectors are perpendicular.\n- Therefore the other angle is 90° − 37°.\n- Final answer: 53°.\n\n## Common mistake\nDo not conserve kinetic energy for an arbitrary inelastic collision.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 5.6(d), what remains conserved in an isolated inelastic collision?\nAnswer: Total linear momentum and total energy, but not necessarily kinetic energy.\nExplanation: Kinetic energy can transform into heat, sound, and deformation.\n\n## Summary\n- Work changes energy.\n- Conservative forces permit potential energy.\n- Power is transfer rate.\n- Momentum is conserved in isolated collisions.\n- Kinetic energy is conserved only elastically."
+  }
+}

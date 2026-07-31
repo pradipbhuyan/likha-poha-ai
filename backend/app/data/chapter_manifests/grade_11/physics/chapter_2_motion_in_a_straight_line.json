@@ -1,0 +1,78 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 2: Motion in a Straight Line",
+  "central_question": "How can position, velocity, acceleration, and relative motion along a straight line be described and predicted?",
+  "in_scope_units": [
+    "Introduction to rectilinear motion, point-object approximation, origin, position, and displacement.",
+    "Instantaneous velocity and speed as limiting rates and graph slopes.",
+    "Average and instantaneous acceleration and velocity–time graphs.",
+    "Kinematic equations for constant acceleration, free fall, stopping distance, and reaction time.",
+    "Relative velocity in one-dimensional motion."
+  ],
+  "banned_topics": [
+    "Forces causing motion",
+    "Two-dimensional projectile motion",
+    "Uniform circular motion"
+  ],
+  "must_include_keywords": [
+    "rectilinear motion",
+    "point object",
+    "origin",
+    "position",
+    "displacement",
+    "distance",
+    "average velocity",
+    "instantaneous velocity",
+    "instantaneous speed",
+    "position–time graph",
+    "slope of tangent",
+    "average acceleration",
+    "instantaneous acceleration",
+    "velocity–time graph",
+    "area under the curve",
+    "uniform acceleration",
+    "kinematic equations",
+    "initial velocity",
+    "final velocity",
+    "free fall",
+    "acceleration due to gravity",
+    "stopping distance",
+    "reaction time",
+    "relative velocity",
+    "sign convention",
+    "Galileo's law of odd numbers"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Negative acceleration always means slowing down.",
+      "correction": "Speed decreases only when acceleration is opposite to velocity."
+    },
+    {
+      "claim": "Zero velocity implies zero acceleration.",
+      "correction": "At a turning point velocity may be zero while acceleration remains non-zero."
+    },
+    {
+      "claim": "Average speed equals magnitude of average velocity.",
+      "correction": "Average speed is greater than or equal to the magnitude of average velocity."
+    },
+    {
+      "claim": "Kinematic equations apply to every motion.",
+      "correction": "The standard equations require constant acceleration."
+    },
+    {
+      "claim": "Area under a speed–time graph is signed displacement.",
+      "correction": "Signed area under a velocity–time graph gives displacement."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 2.1: differentiate x = a + bt².",
+    "NCERT Example 2.3: vertical throw from a 25.0 m building.",
+    "NCERT Example 2.5: Galileo's odd-number rule.",
+    "NCERT Example 2.6: stopping-distance dependence.",
+    "NCERT Example 2.7: ruler reaction-time experiment."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use end-of-chapter EXERCISES 2.1–2.18.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
