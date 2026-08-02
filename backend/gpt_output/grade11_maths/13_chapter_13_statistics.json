@@ -1,0 +1,109 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 13: Statistics",
+    "central_question": "How can we measure and compare the spread of ungrouped and grouped data around a central value?",
+    "in_scope_units": [
+      "Introduction: why measures of central tendency alone do not fully describe data and why dispersion is needed.",
+      "Measures of dispersion and range as a first rough measure of variability.",
+      "Mean deviation about mean or median for ungrouped data.",
+      "Mean deviation for discrete and continuous frequency distributions, including cumulative frequency and median class methods.",
+      "Step-deviation shortcut for computing the mean used in mean-deviation calculations.",
+      "Limitations of mean deviation and the need for a measure based on squared deviations.",
+      "Variance and standard deviation for ungrouped data.",
+      "Variance and standard deviation for discrete and continuous frequency distributions.",
+      "Alternative and shortcut formulas for variance and standard deviation.",
+      "Effects of changing observations, correction of erroneous data, mixed examples and historical note."
+    ],
+    "banned_topics": [
+      "Detailed calculation of quartile deviation, which the chapter explicitly excludes",
+      "Coefficient of variation",
+      "Correlation and regression",
+      "Probability distributions and random variables",
+      "Sampling theory and inferential statistics",
+      "Normal distribution and hypothesis testing"
+    ],
+    "must_include_keywords": [
+      "data",
+      "measure of central tendency",
+      "mean",
+      "median",
+      "mode",
+      "variability",
+      "dispersion",
+      "range",
+      "maximum value",
+      "minimum value",
+      "deviation",
+      "absolute deviation",
+      "mean deviation",
+      "mean deviation about mean",
+      "mean deviation about median",
+      "ungrouped data",
+      "discrete frequency distribution",
+      "continuous frequency distribution",
+      "frequency",
+      "cumulative frequency",
+      "class interval",
+      "class mark",
+      "mid-point",
+      "median class",
+      "assumed mean",
+      "step-deviation",
+      "limitations of mean deviation",
+      "squared deviations",
+      "variance",
+      "standard deviation",
+      "sigma square",
+      "sigma",
+      "shortcut formula",
+      "change of origin",
+      "change of scale",
+      "corrected mean",
+      "corrected standard deviation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Two data sets with the same mean and median have the same variability.",
+        "correction": "The batsmen example shows that equal mean and median can occur with very different spread, so a measure of dispersion is also required."
+      },
+      {
+        "claim": "Range measures how every observation is distributed around the mean.",
+        "correction": "Range uses only the maximum and minimum values and gives only a rough idea of variability."
+      },
+      {
+        "claim": "Mean deviation is the ordinary mean of signed deviations from the mean.",
+        "correction": "Signed deviations from the mean sum to zero; mean deviation uses absolute values of the deviations."
+      },
+      {
+        "claim": "For grouped data, divide by the number of distinct x-values or classes.",
+        "correction": "Grouped-data formulas divide by N, the total frequency, not by the number of rows or classes."
+      },
+      {
+        "claim": "Variance and standard deviation have the same units.",
+        "correction": "Variance is in squared units, while standard deviation is the positive square root of variance and has the same units as the observations."
+      },
+      {
+        "claim": "Adding a constant to every observation changes the variance.",
+        "correction": "Adding or subtracting the same constant shifts the mean by that constant but leaves all deviations from the mean, and hence the variance, unchanged."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the batsmen A and B data in Section 13.1 and the range calculation in Section 13.3.",
+      "Use NCERT Examples 1 and 3 for mean deviation about mean and median in ungrouped data.",
+      "Use NCERT Examples 4–7 for discrete and continuous grouped data, cumulative frequency and the median class.",
+      "Use NCERT Examples 8–10 to introduce variance and standard deviation for ungrouped, discrete and continuous data.",
+      "Use NCERT Examples 11–12 for alternative and step-deviation formulas.",
+      "Finish with NCERT Examples 13–16 for transformations, missing observations and correction of wrong data."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 13.1 on mean deviation, Exercise 13.2 on variance and standard deviation, and the six-question Miscellaneous Exercise on Chapter 13."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Statistics\n\n## What you will learn\nYou will understand why mean, median and mode do not by themselves describe a data set completely. You will learn the meaning of dispersion and use range as a first measure of spread.\n\n## Simple explanation\nA central value tells where observations are centred, but it does not tell how tightly they cluster. The two batsmen in the chapter both have mean and median 53, yet one has scores spread from 0 to 117 while the other stays between 46 and 60.\n\n## Step-by-step breakdown\n- **Central tendency**: Mean, median and mode give representative values around which data are centred.\n- **Need for dispersion**: Data sets with the same central value can have very different scatter, so a second numerical description is needed.\n- **Batsmen comparison**: Batsman A and B both have mean 53 and median 53, but A's scores are much more spread out.\n- **Measure of dispersion**: A single number used to describe variability or scatter is called a measure of dispersion.\n- **Measures named in the chapter**: Range, quartile deviation, mean deviation and standard deviation are listed; quartile deviation is not developed in this chapter.\n- **Range formula**: Range = maximum value − minimum value.\n- **Interpretation**: A larger range indicates a wider total spread, but it uses only two observations and does not measure distances from a central value.\n\n## Worked example\nQuestion: Using the batsmen data in Sections 13.1 and 13.3, compare their ranges.\n\nSolution:\n- For batsman A, maximum = 117 and minimum = 0.\n- Range(A) = 117 − 0 = 117.\n- For batsman B, maximum = 60 and minimum = 46.\n- Range(B) = 60 − 46 = 14.\n- Since 117 > 14, batsman A's scores are more dispersed.\n- Final answer: Range(A) = 117, Range(B) = 14, so A has the greater spread.\n\n## Common mistake\nDo not conclude that range fully describes a distribution. It ignores all observations except the largest and smallest.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 13.1 Q1, what is the range of 4, 7, 8, 9, 10, 12, 13, 17?\nAnswer: 13.\nExplanation: The maximum value is 17 and the minimum value is 4, so the range is 17 − 4 = 13.\n\n## Summary\n- Measures of central tendency describe location, not spread.\n- Dispersion measures variability in data.\n- Equal means can accompany very different scatter.\n- Range is maximum minus minimum.\n- Range is simple but only a rough measure.",
+    "Core explanation": "# Core explanation: Statistics\n\n## What you will learn\nYou will calculate mean deviation about the mean or median for ungrouped and grouped data. You will understand why absolute deviations are used and how frequencies and class mid-points enter the formulas.\n\n## Simple explanation\nSigned deviations can cancel, and the deviations from the arithmetic mean always sum to zero. Mean deviation avoids this cancellation by averaging the absolute distances of observations from a chosen central value.\n\n## Step-by-step breakdown\n- **Deviation from a**: The deviation of xᵢ from a fixed value a is xᵢ − a.\n- **Why absolute values are needed**: Positive and negative deviations may cancel, so |xᵢ − a| is used to measure distance from the central value.\n- **Ungrouped formula**: M.D.(a) = (1/n)Σ|xᵢ − a|.\n- **About the mean**: M.D.(x̄) = (1/n)Σ|xᵢ − x̄|.\n- **About the median**: M.D.(M) = (1/n)Σ|xᵢ − M|.\n- **Discrete grouped mean**: x̄ = (1/N)Σfᵢxᵢ, where N = Σfᵢ.\n- **Discrete grouped mean deviation**: M.D.(x̄) = (1/N)Σfᵢ|xᵢ − x̄| and M.D.(M) = (1/N)Σfᵢ|xᵢ − M|.\n- **Finding the discrete median**: Arrange xᵢ values and use cumulative frequency to locate the observation at or just beyond N/2.\n- **Continuous distribution**: Replace each class interval by its mid-point xᵢ and proceed as for a discrete frequency distribution.\n- **Continuous median**: Identify the median class and use M = l + [(N/2 − C)/f]h before finding mean deviation about the median.\n\n## Worked example\nQuestion: Using NCERT Example 1, find the mean deviation about the mean for 6, 7, 10, 12, 13, 4, 8, 12.\n\nSolution:\n- The sum of the eight observations is 72, so x̄ = 72/8 = 9.\n- The deviations are −3, −2, 1, 3, 4, −5, −1, 3.\n- Their absolute values are 3, 2, 1, 3, 4, 5, 1, 3.\n- The sum of absolute deviations is 22.\n- M.D.(x̄) = 22/8 = 2.75.\n- Final answer: 2.75.\n\n## Common mistake\nDo not omit frequency multipliers in grouped data. Each deviation must be counted as many times as its observation occurs.\n\n## Quick check question\nQuestion: Based on NCERT Example 3, what are the median and mean deviation about the median of 3, 9, 5, 3, 12, 10, 18, 4, 7, 19, 21?\nAnswer: The median is 9 and M.D.(M) = 58/11 = 5.27 approximately.\nExplanation: After arranging the 11 observations, the 6th observation is 9. The absolute deviations from 9 sum to 58, and dividing by 11 gives approximately 5.27.\n\n## Summary\n- Mean deviation averages absolute distances from a central value.\n- Absolute values prevent cancellation of signed deviations.\n- Ungrouped data use n; grouped data use total frequency N.\n- Discrete medians are located through cumulative frequency.\n- Continuous grouped data use class mid-points and a median-class formula.",
+    "Worked examples": "# Worked examples: Statistics\n\n## What you will learn\nYou will apply mean deviation to continuous distributions and use the assumed-mean or step-deviation method to simplify the calculation of the mean. You will also recognise the limitations that motivate standard deviation.\n\n## Simple explanation\nLarge class marks can make arithmetic lengthy. Step-deviation changes the origin and scale for calculating the mean, but the final mean deviation still uses the actual distances of class mid-points from the calculated mean or median.\n\n## Step-by-step breakdown\n- **Class mid-points**: For a class interval, use its mid-point as the representative xᵢ value.\n- **Assumed mean**: Choose a central class mark a to reduce the size of deviations.\n- **Step-deviation variable**: dᵢ = (xᵢ − a)/h, where h is a common class width or common factor.\n- **Mean by step-deviation**: x̄ = a + h(Σfᵢdᵢ/N).\n- **Mean deviation after the shortcut**: Once x̄ is obtained, compute (1/N)Σfᵢ|xᵢ − x̄| in the usual way.\n- **Median for continuous data**: Use cumulative frequencies to identify the class containing the N/2-th item.\n- **Limitation of mean deviation**: Absolute values make mean deviation unsuitable for further algebraic treatment.\n- **Representativeness issue**: In highly variable data, the median may not adequately represent the series, so mean deviation about median may be unsatisfactory.\n- **Transition to standard deviation**: Squaring deviations provides a non-negative measure that supports algebraic analysis.\n\n## Worked example\nQuestion: Using NCERT Example 7, calculate the mean deviation about the median for classes 0–10, 10–20, 20–30, 30–40, 40–50, 50–60 with frequencies 6, 7, 15, 16, 4, 2.\n\nSolution:\n- Total frequency N = 50, so N/2 = 25.\n- The cumulative frequencies are 6, 13, 28, 44, 48, 50, so the median class is 20–30.\n- Here l = 20, C = 13, f = 15 and h = 10.\n- M = 20 + [(25 − 13)/15] × 10 = 28.\n- The class mid-points are 5, 15, 25, 35, 45 and 55.\n- The weighted absolute deviations fᵢ|xᵢ − 28| sum to 508.\n- M.D.(M) = 508/50 = 10.16.\n- Final answer: median = 28 and mean deviation about median = 10.16.\n\n## Common mistake\nDo not treat the midpoint of the median class as the median automatically. The grouped median formula uses the position N/2 within the class.\n\n## Quick check question\nQuestion: Based on NCERT Example 6, what are the mean and mean deviation about the mean for the marks distribution 10–20 to 70–80 with frequencies 2, 3, 8, 14, 8, 3, 2?\nAnswer: The mean is 45 and M.D.(x̄) is 10.\nExplanation: Using class mid-points, Σfᵢxᵢ = 1800 and N = 40, so x̄ = 45. The weighted absolute deviations sum to 400, hence M.D.(x̄) = 400/40 = 10.\n\n## Summary\n- Continuous distributions are represented by class mid-points.\n- Step-deviation changes origin and scale to simplify the mean.\n- The final mean deviation uses actual absolute deviations.\n- The median class is located by cumulative frequency.\n- Mean deviation has limitations because of absolute values and representativeness.",
+    "Exam-style problems": "# Exam-style problems: Statistics\n\n## What you will learn\nYou will define variance and standard deviation and compute them for ungrouped, discrete and continuous grouped data. You will also use the alternative formula based on sums of xᵢ².\n\n## Simple explanation\nSquaring deviations removes signs without using absolute values. The average of squared deviations is variance, and its positive square root is standard deviation, which returns the measure to the original units of the observations.\n\n## Step-by-step breakdown\n- **Variance for ungrouped data**: σ² = (1/n)Σ(xᵢ − x̄)².\n- **Standard deviation for ungrouped data**: σ = √[(1/n)Σ(xᵢ − x̄)²].\n- **Why average the squares**: A raw sum of squared deviations depends on the number of observations; dividing by n or N makes sets comparable.\n- **Discrete grouped variance**: σ² = (1/N)Σfᵢ(xᵢ − x̄)².\n- **Continuous grouped data**: Replace each class by its midpoint and use the same frequency formula.\n- **Alternative variance formula**: σ² = (1/N)Σfᵢxᵢ² − x̄².\n- **Equivalent standard-deviation form**: σ = (1/N)√[NΣfᵢxᵢ² − (Σfᵢxᵢ)²].\n- **Units**: Variance uses squared units; standard deviation uses the original units.\n- **Interpretation**: Smaller standard deviation means observations are, on average, more tightly clustered around the mean.\n\n## Worked example\nQuestion: Using NCERT Example 9, find the variance and standard deviation for xᵢ = 4, 8, 11, 17, 20, 24, 32 with frequencies 3, 5, 9, 5, 4, 3, 1.\n\nSolution:\n- Total frequency N = 30 and Σfᵢxᵢ = 420.\n- The mean is x̄ = 420/30 = 14.\n- From the table, Σfᵢ(xᵢ − x̄)² = 1374.\n- Variance σ² = 1374/30 = 45.8.\n- Standard deviation σ = √45.8 ≈ 6.77.\n- Final answer: variance = 45.8 and standard deviation ≈ 6.77.\n\n## Common mistake\nDo not take the square root before dividing the sum of squared deviations by N. Standard deviation is the square root of the variance, not the average of individual absolute square roots.\n\n## Quick check question\nQuestion: Based on NCERT Example 8, what are the variance and standard deviation of 6, 8, 10, 12, 14, 16, 18, 20, 22, 24?\nAnswer: The variance is 33 and the standard deviation is √33 ≈ 5.74.\nExplanation: The mean is 15 and the squared deviations sum to 330. Dividing by 10 gives variance 33, and taking the positive square root gives approximately 5.74.\n\n## Summary\n- Variance is the mean of squared deviations from the mean.\n- Standard deviation is the positive square root of variance.\n- Grouped formulas use frequencies and total frequency N.\n- Continuous classes are represented by mid-points.\n- The alternative formula can reduce repeated subtraction.\n- Standard deviation has the same units as the observations.",
+    "Revision and recap": "# Revision and recap: Statistics\n\n## What you will learn\nYou will use the shortcut formula for variance and standard deviation and study how shifting, scaling or correcting observations changes the results. You will combine these ideas in mixed NCERT-style problems.\n\n## Simple explanation\nA change of origin does not affect deviations from the mean, while a change of scale multiplies every deviation. These facts explain why adding a constant leaves variance unchanged and multiplying all observations by k multiplies variance by k² and standard deviation by |k|.\n\n## Step-by-step breakdown\n- **Shortcut variable**: yᵢ = (xᵢ − A)/h, where A is an assumed mean and h is a common scale.\n- **Mean from coded values**: x̄ = A + h(Σfᵢyᵢ/N).\n- **Shortcut variance**: σ² = (h²/N²)[NΣfᵢyᵢ² − (Σfᵢyᵢ)²].\n- **Shortcut standard deviation**: σ = (|h|/N)√[NΣfᵢyᵢ² − (Σfᵢyᵢ)²].\n- **Adding a constant**: If yᵢ = xᵢ + a, then the mean becomes x̄ + a but variance and standard deviation remain unchanged.\n- **Multiplying by a constant**: If yᵢ = kxᵢ, the mean becomes kx̄, variance becomes k²σ² and standard deviation becomes |k|σ.\n- **Correcting a wrong observation**: Correct the sum to find the mean, and correct the sum of squares to find the variance or standard deviation.\n- **Missing observations**: Use the given mean to obtain their sum and the given variance to obtain their squared relation.\n- **Exam check**: Distinguish clearly between mean, variance and standard deviation when applying transformations.\n\n## Worked example\nQuestion: Using NCERT Example 16, correct the mean and standard deviation of 100 observations when the calculated values were 40 and 5.1 but one observation 50 should have been 40.\n\nSolution:\n- The incorrect total is 100 × 40 = 4000.\n- Correct total = 4000 − 50 + 40 = 3990, so correct mean = 3990/100 = 39.9.\n- Using σ² = (Σxᵢ²/n) − x̄², the incorrect sum of squares is 100[(5.1)² + 40²] = 162601.\n- Correct sum of squares = 162601 − 50² + 40² = 161701.\n- Correct variance = 161701/100 − (39.9)² = 25.\n- Correct standard deviation = √25 = 5.\n- Final answer: correct mean = 39.9 and correct standard deviation = 5.\n\n## Common mistake\nWhen correcting data, changing only the mean is not enough. Standard deviation also requires correcting the sum of squares.\n\n## Quick check question\nQuestion: Based on NCERT Example 13, if the variance of 20 observations is 5 and every observation is multiplied by 2, what is the new variance?\nAnswer: 20.\nExplanation: Multiplying every observation by k multiplies the variance by k². Here k = 2, so the new variance is 2² × 5 = 20.\n\n## Summary\n- Coding simplifies arithmetic without changing the underlying dispersion.\n- Adding a constant leaves variance and standard deviation unchanged.\n- Multiplying by k scales variance by k² and standard deviation by |k|.\n- Corrected data require corrected sums and sums of squares.\n- Choose the direct, alternative or shortcut formula according to the data format.\n- Always report variance and standard deviation as different quantities."
+  }
+}

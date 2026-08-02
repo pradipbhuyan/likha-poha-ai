@@ -531,6 +531,38 @@ def _fetch_step_rows(db, grade, subject, chapter, mode) -> dict[str, str]:
         except Exception:
             return []
 
+    def _query_suffix(bare_value: str):
+        """Fallback for the recurring 'dropdown sends bare title, but the
+        GPT-5.5 batch-ingest pipeline stores lesson_cache.chapter as the
+        "Chapter N: <title>" prefixed form' mismatch (confirmed live for
+        Grade 11 Mathematics/Biology on 2026-07-31: chapters ingested in
+        that session with NO pre-existing legacy bare-form row -- e.g.
+        Chapter 10-13 Maths, most Grade 11 Biology chapters -- rendered
+        "This chapter isn't available yet" because _strip_display_prefixes
+        only strips 'Text Book -'/'Part N -' style labels, never a
+        "Chapter N: " numeric prefix, so the exact-match candidates above
+        never include the stored prefixed key at all). Uses an ilike
+        suffix match (chapter LIKE '%: <bare>') so this works for any
+        chapter number without having to know N in advance.
+        """
+        if not bare_value:
+            return []
+        try:
+            result = (
+                db.table("lesson_cache")
+                .select("step_title, lesson_content, source_type, created_at")
+                .eq("grade", grade)
+                .eq("subject", subject)
+                .ilike("chapter", f"%: {bare_value}")
+                .eq("mode", mode)
+                .eq("status", "active")
+                .order("created_at", desc=True)
+                .execute()
+            )
+            return result.data or []
+        except Exception:
+            return []
+
     def _latest_created_at(rows: list[dict]) -> str:
         values = [r.get("created_at") or "" for r in rows]
         return max(values) if values else ""
@@ -548,6 +580,48 @@ def _fetch_step_rows(db, grade, subject, chapter, mode) -> dict[str, str]:
         if not data or candidate_latest > best_created_at:
             data = candidate_data
             best_created_at = candidate_latest
+
+    if not data:
+        # No exact match under any candidate key at all -- try the
+        # "Chapter N: <bare>" suffix-match fallback before giving up.
+        data = _query_suffix(bare or chapter)
+
+    if not data:
+        # LAST RESORT: case-insensitive exact match. Confirmed live for
+        # Grade 11 English "The Ailing Planet: the Green Movement's
+        # Role" and "Discovering Tut: the Saga Continues" — the
+        # student-facing chapter dropdown sends these two titles with a
+        # capitalised mid-title "The" (e.g. "...: The Green Movement's
+        # Role"), but the chapter was ingested and stored with NCERT's
+        # own printed lowercase "the" ("...: the Green Movement's
+        # Role"). Every other Grade 11 English chapter title has no
+        # capitalisable word after its colon, so this exact-casing
+        # mismatch invisibly affected only these two specific titles —
+        # both rendered a fully blank "Lessons" page (no content, no
+        # error) because convert_chapter() silently returned None when
+        # _fetch_step_rows() found zero rows under any case-sensitive
+        # candidate key. ilike with no wildcard characters performs an
+        # exact, case-INsensitive match in PostgREST, so this safely
+        # recovers the correct row without ever matching a genuinely
+        # different chapter title.
+        for candidate in candidates:
+            try:
+                result = (
+                    db.table("lesson_cache")
+                    .select("step_title, lesson_content, source_type, created_at")
+                    .eq("grade", grade)
+                    .eq("subject", subject)
+                    .ilike("chapter", candidate)
+                    .eq("mode", mode)
+                    .eq("status", "active")
+                    .order("created_at", desc=True)
+                    .execute()
+                )
+                if result.data:
+                    data = result.data
+                    break
+            except Exception:
+                continue
 
     rows: dict[str, str] = {}
     for row in data:
@@ -845,6 +919,34 @@ def convert_chapter(
         if blocks:
             milestones.append(Milestone(title=step_title, blocks=blocks))
 
+    # Fallback: if this chapter has genuine admin-approved textbook page
+    # images but keyword-overlap matching (_match_visuals_to_milestone)
+    # attached zero of them to ANY milestone, distribute the images
+    # round-robin across milestones instead of silently showing 0 images.
+    # This happens for source PDFs that use a legacy, non-Unicode
+    # glyph-mapped font (confirmed for several older NCERT Hindi "Vitan"
+    # series books) — rag_visual_assets.nearby_text extracts as gibberish
+    # Latin-lookalike characters rather than real Devanagari, so the
+    # Devanagari-aware keyword-overlap scorer in _match_visuals_to_milestone
+    # can never find any term overlap even though real, useful page images
+    # exist and were already verified live in rag_visual_assets.
+    if approved_visuals and not used_visual_ids and milestones:
+        per_milestone = 2
+        vis_iter = iter(approved_visuals)
+        for milestone in milestones:
+            for _ in range(per_milestone):
+                visual = next(vis_iter, None)
+                if visual is None:
+                    break
+                try:
+                    milestone.blocks.append(TextbookImageBlock(
+                        asset_url=visual["asset_url"],
+                        caption=visual.get("caption") or "",
+                        page_number=visual.get("page_number"),
+                    ))
+                except Exception:
+                    continue
+
     if not milestones:
         return None
 
@@ -889,6 +991,23 @@ def get_stored_chapter_doc(board, grade, subject, chapter, mode="CBSE") -> dict 
             .limit(1)
             .execute()
         )
+        if not result.data:
+            # Case-insensitive fallback -- see the matching note in
+            # _fetch_step_rows() above for the confirmed-live scenario
+            # (Grade 11 English titles with a capitalisable word after a
+            # colon) this recovers.
+            result = (
+                db.table("lesson_chapter_doc")
+                .select("id, doc, version, access_count")
+                .eq("grade", grade)
+                .eq("subject", subject)
+                .ilike("chapter", chapter)
+                .eq("mode", mode)
+                .eq("status", "active")
+                .order("version", desc=True)
+                .limit(1)
+                .execute()
+            )
         if not result.data:
             return None
         row = result.data[0]

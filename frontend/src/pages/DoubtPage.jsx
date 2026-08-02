@@ -69,6 +69,7 @@ function DoubtPage({ user, setActivePage }) {
   const [answer, setAnswer] = useState("");
   const [sourceInfo, setSourceInfo] = useState(null);
   const [asking, setAsking] = useState(false);
+  const [dailyLimitReached, setDailyLimitReached] = useState(false);
   const [mentorSuggestions, setMentorSuggestions] = useState([]);
   const [relatedDkbQuestions, setRelatedDkbQuestions] = useState([]);
 
@@ -316,7 +317,7 @@ function DoubtPage({ user, setActivePage }) {
     setAnswer(normalizeTutorMarkdown(item.answer || ""));
     setMentorSuggestions(item.mentor_suggestions || []);
     setSourceInfo({
-      sourceType: item.source_type || "LLM",
+      sourceType: item.source_type || "DOUBT_KB",
       sources: item.sources || [],
     });
     setFollowUpQuestion("");
@@ -324,6 +325,7 @@ function DoubtPage({ user, setActivePage }) {
     setActiveSuggestion("");
     setActionMessage("Loaded saved doubt.");
     setError("");
+    setDailyLimitReached(false);
   }
 
   async function handleAskDoubt() {
@@ -350,6 +352,7 @@ function DoubtPage({ user, setActivePage }) {
     setMentorSuggestions([]);
     setFollowUpQuestion("");
     setFollowUpAnswers({});
+    setDailyLimitReached(false);
 
     try {
       const result = await answerDoubt(
@@ -399,10 +402,14 @@ function DoubtPage({ user, setActivePage }) {
         // the answer the student just received.
       }
     } catch (err) {
-      setError(
-        err.message ||
-          "Could not answer right now. Please check your login and try again."
-      );
+      if (err.status === 429) {
+        setDailyLimitReached(true);
+      } else {
+        setError(
+          err.message ||
+            "Could not answer right now. Please check your login and try again."
+        );
+      }
     } finally {
       setAsking(false);
     }
@@ -456,10 +463,14 @@ Rules:
         [suggestion]: normalizeTutorMarkdown(result.answer || ""),
       }));
     } catch (err) {
-      setError(
-        err.message ||
-          "Could not answer the follow-up right now. Please try again."
-      );
+      if (err.status === 429) {
+        setDailyLimitReached(true);
+      } else {
+        setError(
+          err.message ||
+            "Could not answer the follow-up right now. Please try again."
+        );
+      }
     } finally {
       setFollowUpLoading(false);
     }
@@ -511,10 +522,14 @@ Important:
 
       setFollowUpQuestion("");
     } catch (err) {
-      setError(
-        err.message ||
-          "Could not answer the follow-up right now. Please try again."
-      );
+      if (err.status === 429) {
+        setDailyLimitReached(true);
+      } else {
+        setError(
+          err.message ||
+            "Could not answer the follow-up right now. Please try again."
+        );
+      }
     } finally {
       setFollowUpLoading(false);
     }
@@ -819,9 +834,9 @@ Important:
                 </div>
 
                 <div className="premium-card premium-glow-card glow-purple">
-                  <h3><Book size={18} strokeWidth={2.4} /> RAG + LLM</h3>
+                  <h3><Book size={18} strokeWidth={2.4} /> Textbook Retrieval</h3>
                   <p>
-                    Uses textbook context and general AI knowledge together.
+                    Finds the most relevant passage from your NCERT textbook.
                   </p>
                 </div>
 
@@ -835,7 +850,7 @@ Important:
             </section>
           )}
 
-          {answer && sourceInfo?.sourceType === "OFFER_GATE" && (
+          {dailyLimitReached && (
             <section ref={answerRef} className="premium-section premium-doubt-answer">
               <div style={{
                 background: "rgba(99,102,241,.07)",
@@ -848,12 +863,11 @@ Important:
                   <Lock size={26} strokeWidth={2} />
                 </div>
                 <h3 style={{ margin: "0 0 10px", fontSize: "1.05rem" }}>
-                  This doubt is outside your current access
+                  You've used today's 5 free questions
                 </h3>
                 <p style={{ color: "var(--text-muted)", fontSize: "0.92rem", marginBottom: 20, lineHeight: 1.6 }}>
-                  Your offer gives you a taste of Likha Poha AI across select topics.
-                  To ask the AI anything — any subject, any chapter, any question —
-                  a paid subscription unlocks it all.
+                  Come back tomorrow for 5 more, or upgrade to ask unlimited
+                  questions any time — any subject, any chapter.
                 </p>
                 <button
                   type="button"
@@ -876,13 +890,17 @@ Important:
             </section>
           )}
 
-          {answer && sourceInfo?.sourceType !== "OFFER_GATE" && (
+          {answer && !dailyLimitReached && (
             <section ref={answerRef} className="premium-section lesson-output premium-doubt-answer">
               <div className="premium-header">
                 <p className="eyebrow">
-                  {sourceInfo?.sourceType === "RAG"
-                    ? "Textbook aligned"
-                    : "AI generated"}
+                  {sourceInfo?.sourceType === "TEXTBOOK_EXCERPT"
+                    ? "From your textbook"
+                    : sourceInfo?.sourceType === "DOUBT_KB"
+                    ? "From a previous answer"
+                    : sourceInfo?.sourceType === "NO_MATCH_FALLBACK"
+                    ? "No exact match found"
+                    : "Answer"}
                 </p>
                 <h3>Answer</h3>
                 <p>
@@ -952,7 +970,7 @@ Important:
 
               {/* ── Trust signal: NCERT source + Exemplar link ── */}
               <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: 4 }}>
-                {sourceInfo?.sourceType === "RAG" && (
+                {sourceInfo?.sourceType === "TEXTBOOK_EXCERPT" && (
                   <span style={{
                     display: "inline-flex", alignItems: "center", gap: 6,
                     padding: "9px 14px", background: "white",

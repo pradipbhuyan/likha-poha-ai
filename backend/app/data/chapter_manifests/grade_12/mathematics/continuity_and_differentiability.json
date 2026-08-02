@@ -1,0 +1,68 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Continuity and Differentiability",
+  "central_question": "How do limits and derivatives describe smooth local behaviour, and how can advanced differentiation rules and mean value theorems be applied?",
+  "in_scope_units": [
+    "5.1 Introduction: extension of differentiation from Class XI.",
+    "5.2 Continuity: pointwise continuity, interval continuity and algebra of continuous functions.",
+    "5.3 Differentiability: definition, left and right derivatives, chain rule and inverse-trigonometric derivatives.",
+    "5.4 Exponential and Logarithmic Functions.",
+    "5.5 Logarithmic Differentiation.",
+    "5.6 Derivatives of Functions in Parametric Forms.",
+    "5.7 Second Order Derivative.",
+    "5.8 Mean Value Theorem: Rolle and Lagrange mean value theorems."
+  ],
+  "banned_topics": [
+    "Applications of derivatives to maxima and minima",
+    "Integration",
+    "Differential equations"
+  ],
+  "must_include_keywords": [
+    "continuity",
+    "left hand limit",
+    "right hand limit",
+    "point of discontinuity",
+    "continuous function",
+    "differentiability",
+    "left derivative",
+    "right derivative",
+    "chain rule",
+    "inverse trigonometric derivative",
+    "exponential function",
+    "logarithmic function",
+    "logarithmic differentiation",
+    "parametric form",
+    "second derivative",
+    "Rolle theorem",
+    "Lagrange mean value theorem"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A function is continuous whenever its graph can be drawn without lifting the pen.",
+      "correction": "That picture is informal; the precise condition is lim f(x)=f(c) at each domain point, with one-sided limits at endpoints."
+    },
+    {
+      "claim": "Continuity implies differentiability.",
+      "correction": "Differentiability implies continuity, but a continuous function such as |x| need not be differentiable at 0."
+    },
+    {
+      "claim": "Infinity is a real limit value.",
+      "correction": "+infinity and -infinity are not real numbers."
+    },
+    {
+      "claim": "Rolle theorem applies whenever endpoint values are equal.",
+      "correction": "Continuity on [a,b] and differentiability on (a,b) are also required."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 3 to prove |x| is continuous at 0.",
+    "Use the standard |x| derivative check to show non-differentiability at 0.",
+    "Use an inverse-trigonometric derivative exercise for sin inverse x.",
+    "Use a parametric derivative example followed by a second derivative example.",
+    "Use the Rolle or Lagrange Mean Value Theorem examples from Section 5.8."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 5.1 to 5.8 followed by the Miscellaneous Exercise on Chapter 5.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

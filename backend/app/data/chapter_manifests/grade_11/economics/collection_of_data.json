@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Collection of Data",
+  "central_question": "How should economic data be sourced, collected and sampled so that a survey provides reliable evidence for solving a problem?",
+  "in_scope_units": [
+    "Introduction to data, variables, observations and the purpose of data collection.",
+    "Primary and secondary sources of data.",
+    "Survey method and preparation of questionnaires or interview schedules.",
+    "Open-ended and closed-ended questions and rules for clear, unbiased questions.",
+    "Modes of data collection: personal, mailed and telephone interviews, online methods and pilot surveys.",
+    "Census and sample surveys, population, representative sample and advantages of sampling.",
+    "Random and non-random sampling, lottery method, random-number tables and exit polls.",
+    "Sampling and non-sampling errors.",
+    "Important sources of secondary data, including Census of India and National Sample Survey."
+  ],
+  "banned_topics": [
+    "Detailed tabulation and diagram construction, which belong to Presentation of Data.",
+    "Calculation of mean, median, mode and dispersion, which belong to later Statistics chapters.",
+    "Correlation and index numbers, which belong to later analytical chapters."
+  ],
+  "must_include_keywords": [
+    "data",
+    "variable",
+    "observation",
+    "primary data",
+    "secondary data",
+    "first-hand information",
+    "published source",
+    "survey",
+    "questionnaire",
+    "interview schedule",
+    "respondent",
+    "enumerator",
+    "precise question",
+    "ambiguous question",
+    "double negative",
+    "leading question",
+    "open-ended question",
+    "closed-ended question",
+    "two-way question",
+    "multiple-choice question",
+    "personal interview",
+    "mailing questionnaire",
+    "telephone interview",
+    "online survey",
+    "pilot survey",
+    "pre-testing",
+    "census",
+    "complete enumeration",
+    "population",
+    "universe",
+    "sample",
+    "representative sample",
+    "random sampling",
+    "lottery method",
+    "random number table",
+    "non-random sampling",
+    "sampling frame",
+    "sampling error",
+    "non-sampling error",
+    "Census of India"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Primary data are always more accurate than secondary data.",
+      "correction": "Accuracy depends on collection quality and suitability; primary means first-hand, while secondary means previously collected and processed."
+    },
+    {
+      "claim": "A long questionnaire is necessarily more complete and better.",
+      "correction": "The chapter advises keeping questions to the minimum necessary and making them clear and comfortable to answer."
+    },
+    {
+      "claim": "Leading questions help respondents understand the desired answer.",
+      "correction": "They bias responses and should be avoided."
+    },
+    {
+      "claim": "A sample is reliable simply because it is large.",
+      "correction": "It must be representative and selected using an appropriate method."
+    },
+    {
+      "claim": "Random sampling means selecting whichever units are convenient.",
+      "correction": "Every unit must have an equal chance of selection; convenience selection is non-random."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Table 2.1 on foodgrain production to identify variables, observations and data.",
+    "Use the film-star example to distinguish primary and secondary data.",
+    "Use the Poor Q and Good Q examples to revise ambiguous, leading and double-negative questions.",
+    "Use the remote-village and school-parent Activities to choose an appropriate collection mode and identify interviewer influence.",
+    "Use the Churachandpur and petrol-price examples to distinguish population, sample and random sampling."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with a Recap and EXERCISES covering data sources, questionnaire design, collection modes, census, sampling, errors and official secondary-data sources.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

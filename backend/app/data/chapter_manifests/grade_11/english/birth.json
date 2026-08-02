@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 11",
+  "subject": "English",
+  "chapter": "Birth",
+  "central_question": "How does Andrew Manson’s determined response to a medical crisis transform a routine night call into his first sense of meaningful professional achievement?",
+  "in_scope_units": [
+    "Joe Morgan summons Andrew Manson late at night for Susan Morgan’s long-awaited first childbirth.",
+    "Andrew waits while reflecting gloomily on failed marriages and Christine.",
+    "The baby appears lifeless and Susan collapses, forcing an urgent priority decision.",
+    "Andrew stabilises Susan, identifies the child’s pallor and begins persistent resuscitation.",
+    "The child breathes and cries; Andrew tells Joe both are safe and feels he has done something real.",
+    "The final questions examine achievement, practice versus textbook medicine and life-saving medical help."
+  ],
+  "banned_topics": [
+    "Detailed medical instructions beyond the narrative",
+    "External explanations of organ transplantation or regeneration",
+    "Medical claims not explicitly stated"
+  ],
+  "must_include_keywords": [
+    "Andrew Manson",
+    "Joe Morgan",
+    "Susan Morgan",
+    "Christine",
+    "Dr Edward Page",
+    "Blaenelly",
+    "Bryngower",
+    "Number 12 Blaina Terrace",
+    "midwife",
+    "Mrs Morgan’s mother",
+    "oil lamp",
+    "waiting",
+    "marriage",
+    "professional duty",
+    "chloroform",
+    "anaesthetic",
+    "lifeless child",
+    "dilemma",
+    "mother’s collapse",
+    "hypodermic syringe",
+    "asphyxia pallida",
+    "hot water",
+    "cold water",
+    "special respiration",
+    "persistence",
+    "child’s cry",
+    "third-person narration",
+    "suspense",
+    "real achievement",
+    "practising physician"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Andrew neglects Susan to save the child.",
+      "correction": "He first restores the almost pulseless mother, then returns to the child."
+    },
+    {
+      "claim": "The child is confirmed dead and revived supernaturally.",
+      "correction": "The child is born lifeless; Andrew identifies asphyxia pallida and uses remembered treatment."
+    },
+    {
+      "claim": "Andrew is calm and confident throughout.",
+      "correction": "He begins confused, feels horror and defeat, and acts through instinct and determination."
+    },
+    {
+      "claim": "The chapter is a practical medical guide.",
+      "correction": "It is a literary narrative about duty, judgment and perseverance."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Q1 on “something real at last.”",
+    "Proceed to Q2 on textbook medicine and practice.",
+    "Frame Q3 as discussion without adding procedures not supplied in the chapter."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with three numbered discussion questions on achievement, practical medicine and life-saving help.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

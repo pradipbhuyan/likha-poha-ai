@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Indian Economy 1950–1990",
+  "central_question": "How did India use planning, agricultural reform, industrial policy and trade protection to pursue growth, self-reliance, modernisation and equity from 1950 to 1990?",
+  "in_scope_units": [
+    "Introduction to the condition of the economy after Independence and the decision to adopt planning.",
+    "The goals of Five Year Plans: growth, modernisation, self-reliance and equity.",
+    "Agriculture, land reforms and changes in ownership and tenancy.",
+    "The Green Revolution, food security, marketable surplus and the debate on subsidies.",
+    "Industry and trade, including public and private sectors and Industrial Policy Resolution 1956.",
+    "Small-scale industry and regional development.",
+    "Trade policy, import substitution and protection of domestic industry.",
+    "Conclusion and appraisal of the 1950–1990 development strategy."
+  ],
+  "banned_topics": [
+    "Colonial economic conditions before 1947, which belong to the previous chapter.",
+    "The 1991 balance-of-payments crisis and LPG reforms, which belong to the next chapter.",
+    "Detailed current agricultural-credit systems, which belong to Rural Development."
+  ],
+  "must_include_keywords": [
+    "Planning Commission",
+    "Five Year Plans",
+    "growth",
+    "modernisation",
+    "self-reliance",
+    "equity",
+    "mixed economy",
+    "public sector",
+    "private sector",
+    "land reform",
+    "zamindari abolition",
+    "land ceiling",
+    "tenancy reform",
+    "Green Revolution",
+    "high yielding variety seeds",
+    "irrigation",
+    "fertilisers",
+    "food security",
+    "marketable surplus",
+    "agricultural subsidy",
+    "Industrial Policy Resolution 1956",
+    "commanding heights",
+    "industrial licensing",
+    "small-scale industry",
+    "Karve Committee",
+    "regional equality",
+    "import substitution",
+    "tariff",
+    "quota",
+    "domestic industry",
+    "public investment",
+    "economic planning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Growth was the only goal of the Five Year Plans.",
+      "correction": "The four major goals were growth, modernisation, self-reliance and equity."
+    },
+    {
+      "claim": "India adopted a purely socialist economy.",
+      "correction": "India adopted a mixed economy with both public and private sectors."
+    },
+    {
+      "claim": "The Green Revolution benefited every crop and every region equally.",
+      "correction": "It was initially concentrated in wheat and selected regions with irrigation and other inputs."
+    },
+    {
+      "claim": "Import substitution meant banning all international trade.",
+      "correction": "It aimed to replace selected imports with domestic production through protection such as tariffs and quotas."
+    },
+    {
+      "claim": "Industrial licensing applied only to new public enterprises.",
+      "correction": "Private firms required licences for new units, expansion and diversification."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise questions on the goals of Five Year Plans to distinguish growth, modernisation, self-reliance and equity.",
+    "Use the chapter’s land-reform discussion to analyse abolition of intermediaries and land ceilings.",
+    "Use the Green Revolution questions to compare food security gains with regional and class inequalities.",
+    "Use the IPR 1956 exercise to explain the public sector’s commanding-heights role.",
+    "Use the import-substitution exercise to assess protection of domestic industry."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with an EXERCISES section covering planning goals, agriculture, industrial policy, small-scale industry and import substitution, followed by Suggested Additional Activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

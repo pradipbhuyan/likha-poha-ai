@@ -237,3 +237,68 @@ def test_lesson_follow_up_uses_platform_rag_for_founder_questions(monkeypatch):
     assert data["source_type"] == "PLATFORM_RAG"
     assert "parent-engineer" in data["answer"] or "Bangalore" in data["answer"]
     assert "Indian families" in data["answer"] or "NCERT" in data["answer"]
+
+
+FOLLOW_UP_PAYLOAD = {
+    "username": "test_user",
+    "grade": "Grade 9",
+    "mode": "CBSE",
+    "subject": "Science",
+    "chapter": "Matter in Our Surroundings",
+    "step_title": "What is matter?",
+    "lesson": "Matter is anything that has mass and occupies space.",
+    "question": "Can you explain particles in matter?",
+}
+
+
+def test_free_tier_user_blocked_after_daily_limit(monkeypatch):
+    """The 6th follow-up of the day for a free-tier user must return 429."""
+    mock_lesson_follow_up(monkeypatch)
+    monkeypatch.setattr(lesson_route, "is_free_tier_user", lambda user_id: True)
+    monkeypatch.setattr(
+        lesson_route,
+        "enforce_daily_limit",
+        lambda username, feature, max_requests: {"allowed": False, "message": "capped"},
+    )
+
+    response = client.post("/api/lesson/follow-up", json=FOLLOW_UP_PAYLOAD)
+
+    assert response.status_code == 429
+    assert "5" in response.json()["detail"]
+
+
+def test_free_tier_user_within_limit_gets_answer_and_logs_usage(monkeypatch):
+    """A free-tier user under the cap should be answered normally and counted."""
+    mock_lesson_follow_up(monkeypatch)
+    monkeypatch.setattr(lesson_route, "is_free_tier_user", lambda user_id: True)
+    monkeypatch.setattr(
+        lesson_route,
+        "enforce_daily_limit",
+        lambda username, feature, max_requests: {"allowed": True, "message": "ok"},
+    )
+
+    logged = {}
+    monkeypatch.setattr(lesson_route, "log_ai_usage", lambda **kwargs: logged.update(kwargs))
+
+    response = client.post("/api/lesson/follow-up", json=FOLLOW_UP_PAYLOAD)
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True
+    assert logged.get("feature") == "doubt_answer_free_tier"
+
+
+def test_paid_user_never_capped_on_lesson_follow_up(monkeypatch):
+    """A paid user must never hit the daily-limit gate on lesson follow-ups."""
+    mock_lesson_follow_up(monkeypatch)
+    monkeypatch.setattr(lesson_route, "is_free_tier_user", lambda user_id: False)
+
+    def _boom(*args, **kwargs):
+        raise AssertionError("enforce_daily_limit must not be called for a paid user")
+
+    monkeypatch.setattr(lesson_route, "enforce_daily_limit", _boom)
+    monkeypatch.setattr(lesson_route, "log_ai_usage", _boom)
+
+    response = client.post("/api/lesson/follow-up", json=FOLLOW_UP_PAYLOAD)
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True

@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Climate",
+    "central_question": "How do geographical controls and atmospheric circulation create India’s monsoon climate, seasonal rhythm and regional diversity?",
+    "in_scope_units": [
+      "Weather, climate and unity and diversity of monsoon climate.",
+      "Factors controlling India’s climate.",
+      "Nature, onset and breaks of the monsoon.",
+      "Four meteorological seasons and their weather.",
+      "Monsoon branches, retreating monsoon and cyclones.",
+      "Rainfall distribution, economic importance and global warming."
+    ],
+    "banned_topics": [
+      "Detailed forest classification, which belongs to Natural Vegetation.",
+      "Detailed drainage basins, which belong to Drainage System.",
+      "Plate tectonics, which belongs to Distribution of Oceans and Continents."
+    ],
+    "must_include_keywords": [
+      "weather",
+      "climate",
+      "monsoon",
+      "seasonal reversal",
+      "regional variation",
+      "temperature",
+      "pressure",
+      "humidity",
+      "precipitation",
+      "Tropic of Cancer",
+      "Himalayas",
+      "distance from sea",
+      "altitude",
+      "relief",
+      "ITCZ",
+      "monsoon trough",
+      "Coriolis force",
+      "southwest monsoon",
+      "northeast monsoon",
+      "jet stream",
+      "onset of monsoon",
+      "break in monsoon",
+      "El Niño",
+      "cold weather season",
+      "hot weather season",
+      "Loo",
+      "Mango Shower",
+      "Nor Westers",
+      "Arabian Sea branch",
+      "Bay of Bengal branch",
+      "rain shadow",
+      "retreating monsoon",
+      "October heat",
+      "Mawsynram",
+      "western disturbances",
+      "rainfall distribution",
+      "greenhouse gases",
+      "global warming"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Weather and climate mean the same.",
+        "correction": "Weather is momentary; climate is the average over a long period."
+      },
+      {
+        "claim": "All India receives most rainfall in June–September.",
+        "correction": "Tamil Nadu receives important rain in the retreating and northeast monsoon season."
+      },
+      {
+        "claim": "The Himalayas affect only temperature.",
+        "correction": "They block cold winds and force monsoon winds to shed moisture."
+      },
+      {
+        "claim": "A monsoon break means the rainy season has ended.",
+        "correction": "It is a dry spell within the southwest monsoon season."
+      },
+      {
+        "claim": "Both sides of the Western Ghats receive equal rain.",
+        "correction": "The windward side is wet and the leeward side lies in rain shadow."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise 2(i) to define the ITCZ.",
+      "Use Exercise 2(ii) to explain the burst of monsoon and identify the highest-rainfall place.",
+      "Use Exercise 3(i) to explain climatic unity with regional variation.",
+      "Use the Project/Activity to map winter rain, summer winds, January temperature and the 100 cm isohyet."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–iv), 2(i–iii), 3(i–ii), and a four-part map Project/Activity."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Climate\n\n## What you will learn\nYou will distinguish weather from climate and understand monsoon unity with regional variation.\n\n## Simple explanation\nIndia has one broad monsoon rhythm, yet deserts, mountains, interiors and coasts experience very different temperature and rainfall.\n\n## Step-by-step breakdown\n- **Weather**: The momentary state of the atmosphere can change quickly.\n- **Climate**: The long-period average changes slowly.\n- **Monsoon**: It is associated with seasonal reversal in wind direction.\n- **Temperature diversity**: The chapter contrasts extreme heat in western Rajasthan with very low temperatures near Leh.\n- **Rainfall diversity**: Meghalaya receives very high rainfall while Jaisalmer receives very little.\n- **Unity**: Despite contrasts, the country has a monsoonal rhythm and character.\n\n## Worked example\nQuestion: How can India have one monsoon climate and still show strong diversity?\n\nAnswer:\n- The chapter identifies a common seasonal wind reversal but gives regional contrasts in temperature, rainfall amount and timing.\n- Geographical controls modify the shared atmospheric system.\n- Final answer: India has climatic unity in monsoon rhythm and diversity in regional expression.\n\n## Common mistake\nDo not use one temperature or rainfall example to represent the entire country.\n\n## Quick check question\nQuestion: What is the difference between weather and climate?\nAnswer: Weather is short-term atmospheric condition; climate is its long-term average.\nExplanation: The distinction is based on time scale and stability.\n\n## Summary\n- Weather changes quickly.\n- Climate represents long-term averages.\n- Monsoon involves seasonal wind reversal.\n- India combines unity and regional diversity.",
+    "Core explanation": "# Core explanation: Climate\n\n## What you will learn\nYou will study the main geographical controls of India’s climate.\n\n## Simple explanation\nLatitude, mountains, surrounding seas, distance from sea, altitude and relief work together to shape temperature, winds and rainfall.\n\n## Step-by-step breakdown\n- **Latitude**: The Tropic of Cancer separates tropical southern conditions from subtropical influences in the north.\n- **Himalayas**: They block cold northern winds and trap monsoon moisture.\n- **Land and water**: Differential heating creates seasonal pressure differences.\n- **Distance from sea**: Coastal areas are more equable; interiors have stronger extremes.\n- **Altitude**: Temperature decreases with height.\n- **Relief**: Windward slopes receive more rain and leeward areas may lie in rain shadow.\n\n## Worked example\nQuestion: Why are Agra and Darjiling different in January temperature despite similar latitude?\n\nAnswer:\n- The chapter gives about 16°C for Agra and 4°C for Darjiling and states that temperature falls with height.\n- Darjiling’s greater altitude offsets the similarity in latitude.\n- Final answer: Altitude makes Darjiling much cooler than Agra.\n\n## Common mistake\nLatitude alone cannot explain climate.\n\n## Quick check question\nQuestion: Why are coastal climates more equable?\nAnswer: The sea heats and cools more slowly than land and moderates nearby temperatures.\nExplanation: This reduces seasonal extremes.\n\n## Summary\n- Climate has several interacting controls.\n- The Himalayas are a climatic divide.\n- The sea moderates coasts.\n- Relief creates rain and rain shadow.",
+    "Worked examples": "# Worked examples: Climate\n\n## What you will learn\nYou will understand the ITCZ, cross-equatorial winds, jet streams, onset and breaks.\n\n## Simple explanation\nSummer heating creates low pressure, shifts the ITCZ north and attracts moist winds that cross the equator and become the southwest monsoon.\n\n## Step-by-step breakdown\n- **ITCZ**: It is a low-pressure convergence zone and shifts over the Gangetic plain in July.\n- **Cross-equatorial flow**: Southeast trades cross the equator and turn southwesterly under the Coriolis force.\n- **Jet streams**: Withdrawal of the westerly jet and onset of an easterly jet relate to the monsoon burst.\n- **Onset**: The monsoon reaches Kerala around 1 June and covers India by mid-July.\n- **Break**: Rain may fail for one or more weeks during the rainy season.\n- **El Niño**: The chapter links this ocean–atmosphere event with long-range monsoon forecasting.\n\n## Worked example\nQuestion: Why are the winds called southwest monsoons if they begin as southeast trades?\n\nAnswer:\n- They cross the equator and are deflected in the Northern Hemisphere.\n- Their direction becomes southwesterly after crossing the equator.\n- Final answer: They are named for the direction from which they approach India.\n\n## Common mistake\nDo not describe onset as a slow uniform drizzle; the chapter associates it with a sudden burst.\n\n## Quick check question\nQuestion: What is a break in the monsoon?\nAnswer: A dry spell of one or more weeks during the southwest monsoon period.\nExplanation: Rain-bearing systems may temporarily fail or winds may run parallel to the coast.\n\n## Summary\n- Summer heating shifts the ITCZ.\n- Trades become southwest monsoon winds.\n- Jet streams influence onset.\n- Rainfall has active and break periods.",
+    "Exam-style problems": "# Exam-style problems: Climate\n\n## What you will learn\nYou will follow the cold, hot, southwest monsoon and retreating monsoon seasons.\n\n## Simple explanation\nEach season has a distinct pressure, wind and rainfall pattern.\n\n## Step-by-step breakdown\n- **Cold season**: Northern India is cool and mostly dry; western disturbances bring rain and snow.\n- **Hot season**: Heat and low pressure intensify; Loo and local storms occur.\n- **Local storms**: Mango Showers, Blossom Showers and Nor Westers are regional events.\n- **Southwest monsoon**: Arabian Sea and Bay of Bengal branches bring widespread rain.\n- **Rain shadow**: Descending winds east of the Western Ghats produce low rainfall.\n- **Retreat**: October heat and cyclonic depressions bring rain to the southeastern coast.\n\n## Worked example\nQuestion: Why is Tamil Nadu relatively dry in the southwest monsoon but wet during retreat?\n\nAnswer:\n- It lies parallel to the Bay branch and in the rain shadow of the Arabian Sea branch, but later receives moisture from northeast winds and cyclonic depressions.\n- Its orientation and seasonal circulation change its rainfall exposure.\n- Final answer: Tamil Nadu’s rainfall maximum occurs later because retreating systems favour its coast.\n\n## Common mistake\nThe northeast monsoon is not uniformly rainy across India.\n\n## Quick check question\nQuestion: What is October heat?\nAnswer: Hot and humid oppressive weather during monsoon withdrawal.\nExplanation: The land remains moist while temperatures are still high.\n\n## Summary\n- India has four meteorological seasons.\n- Western disturbances bring winter rain.\n- Two branches distribute summer rain.\n- Retreating monsoon is important for the southeast.",
+    "Revision and recap": "# Revision and recap: Climate\n\n## What you will learn\nYou will review rainfall regions, monsoon economics and global warming.\n\n## Simple explanation\nRainfall strongly affects agriculture, water supply, hazards and everyday life, while greenhouse gases influence long-term climate change.\n\n## Step-by-step breakdown\n- **Rainfall zones**: The chapter groups regions into high, medium, low and inadequate rainfall.\n- **Pattern**: The west coast and northeast are wet; western Rajasthan, Ladakh and parts of the plateau are dry.\n- **Agriculture**: The monsoon sets the agricultural cycle in motion.\n- **Hazards**: Variability causes floods, droughts and soil erosion.\n- **Culture**: Climate influences crops, food, clothing and houses.\n- **Global warming**: Carbon dioxide, methane, CFCs and nitrous oxide enhance the greenhouse effect.\n\n## Worked example\nQuestion: Why is the monsoon called an axis of India’s economic life?\n\nAnswer:\n- The chapter links it with agriculture, groundwater recharge, floods, droughts and areas lacking irrigation.\n- Livelihood and production depend on timely and adequate rainfall.\n- Final answer: Monsoon timing and distribution directly influence agriculture and rural life.\n\n## Common mistake\nHigh annual rainfall does not mean rainfall is evenly distributed throughout the year.\n\n## Quick check question\nQuestion: Which broad regions receive the highest rainfall?\nAnswer: The west coast and Western Ghats and the sub-Himalayan northeast and Meghalaya hills.\nExplanation: Moist winds and relief favour heavy precipitation there.\n\n## Summary\n- Rainfall is uneven.\n- Monsoon timing is crucial to farming.\n- Variability creates opportunity and hazard.\n- Greenhouse gases are linked to warming."
+  }
+}

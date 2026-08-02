@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 12",
+  "subject": "Psychology",
+  "chapter": "Self and Personality",
+  "central_question": "How do the self and personality develop, differ across people and cultures, and how can personality be understood and assessed?",
+  "in_scope_units": [
+    "Self and personality",
+    "Concept of self and identity",
+    "Cognitive and behavioural aspects of self",
+    "Culture and self",
+    "Concept and approaches to personality",
+    "Psychodynamic and post-Freudian theories",
+    "Behavioural, cultural and humanistic approaches",
+    "Assessment of personality"
+  ],
+  "banned_topics": [
+    "Diagnosis and treatment of psychological disorders",
+    "Psychotherapy procedures",
+    "Intelligence and aptitude testing"
+  ],
+  "must_include_keywords": [
+    "personal identity",
+    "social identity",
+    "self as subject",
+    "self as object",
+    "personal self",
+    "social self",
+    "self-concept",
+    "self-esteem",
+    "self-efficacy",
+    "self-regulation",
+    "self-control",
+    "collectivistic",
+    "individualistic",
+    "personality",
+    "type approach",
+    "trait approach",
+    "Allport",
+    "Cattell",
+    "Eysenck",
+    "Big Five",
+    "id",
+    "ego",
+    "superego",
+    "defence mechanisms",
+    "psychosexual stages",
+    "Jung",
+    "Horney",
+    "Adler",
+    "Fromm",
+    "Erikson",
+    "behavioural approach",
+    "cultural approach",
+    "Rogers",
+    "Maslow",
+    "self-report measures",
+    "projective techniques",
+    "behavioural analysis"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Personality means only outward appearance.",
+      "correction": "Psychological personality is a relatively unique and stable pattern of behaviour, thought and emotion."
+    },
+    {
+      "claim": "One test gives a complete, infallible personality profile.",
+      "correction": "Different methods reveal different aspects and require trained, cautious interpretation."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 2.1: identify personal and social identity.",
+    "NCERT Activity 2.2: reflect on a personality aspect to change.",
+    "NCERT Review Questions 4–5: compare trait/type approaches and Freud.",
+    "NCERT Review Questions 8–10: compare assessment methods.",
+    "NCERT Review Question 11: apply Rogers' terminology."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Review Questions contain Questions 1–11, followed by two Project Ideas.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

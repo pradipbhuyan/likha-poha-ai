@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 12",
+  "subject": "Economics",
+  "chapter": "Government Budget and the Economy",
+  "central_question": "How does the government budget allocate resources, redistribute income, stabilise the economy and manage deficits and public debt?",
+  "in_scope_units": [
+    "Meaning of the government budget, the Annual Financial Statement and the revenue and capital accounts",
+    "Allocation, redistribution and stabilisation objectives of the government budget",
+    "Public goods, non-rivalry, non-excludability, free riders, public provision and public production",
+    "Revenue receipts, tax and non-tax revenue, capital receipts and disinvestment",
+    "Revenue expenditure and capital expenditure",
+    "Balanced, surplus and deficit budgets",
+    "Revenue deficit, fiscal deficit and primary deficit",
+    "Fiscal policy, government-expenditure multiplier, tax multiplier and balanced-budget multiplier",
+    "Proportional taxes, automatic stabilisers, discretionary fiscal policy and transfer payments",
+    "Government debt, Ricardian equivalence, inflation, crowding out and future growth",
+    "Deficit reduction, the Fiscal Responsibility and Budget Management Act and Goods and Services Tax"
+  ],
+  "banned_topics": [
+    "Detailed national-income accounting aggregates, which belong to National Income Accounting",
+    "RBI monetary-policy instruments, which belong to Money and Banking",
+    "Balance of payments and exchange-rate systems, which belong to Open Economy Macroeconomics"
+  ],
+  "must_include_keywords": [
+    "Annual Financial Statement",
+    "revenue budget",
+    "capital budget",
+    "allocation function",
+    "redistribution function",
+    "stabilisation function",
+    "public goods",
+    "non-rivalrous",
+    "non-excludable",
+    "free riders",
+    "public provision",
+    "public production",
+    "revenue receipts",
+    "tax revenue",
+    "non-tax revenue",
+    "capital receipts",
+    "disinvestment",
+    "revenue expenditure",
+    "capital expenditure",
+    "balanced budget",
+    "surplus budget",
+    "budget deficit",
+    "revenue deficit",
+    "fiscal deficit",
+    "primary deficit",
+    "fiscal policy",
+    "government expenditure multiplier",
+    "tax multiplier",
+    "balanced budget multiplier",
+    "proportional taxes",
+    "automatic stabiliser",
+    "discretionary fiscal policy",
+    "transfer payments",
+    "government debt",
+    "Ricardian equivalence",
+    "crowding out",
+    "deficit reduction",
+    "FRBMA",
+    "GST"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every service supplied by the government is necessarily produced by the government.",
+      "correction": "Public provision means budget financing and access without direct payment, while public production means the government itself produces the good or service."
+    },
+    {
+      "claim": "Fiscal deficit is the same as revenue deficit.",
+      "correction": "Revenue deficit compares revenue expenditure with revenue receipts; fiscal deficit measures total expenditure over total non-borrowed receipts and therefore shows the government's borrowing requirement."
+    },
+    {
+      "claim": "Every fiscal deficit is automatically inflationary and harmful.",
+      "correction": "The chapter states that effects depend on resource utilisation, the use of borrowing and whether higher demand raises output or only prices."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1 and the public-park and pollution examples to explain why public goods require government provision.",
+    "Use NCERT Exercise 2 to compare revenue and capital expenditure.",
+    "Use Table 5.1 and NCERT Exercises 3–4 to interpret fiscal and revenue deficits.",
+    "Use Example 5.1 and NCERT Exercise 10 to compare government-expenditure and tax multipliers.",
+    "Use Examples 5.2–5.3 and NCERT Exercises 7–9 to examine proportional taxes and transfers.",
+    "Use NCERT Exercises 11–14 to analyse debt, inflation, burden and deficit reduction.",
+    "Use Box 5.2 and Box 5.3 with NCERT Exercise 15 to review FRBMA and GST."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–15.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry – Some Basic Principles and Techniques",
+    "central_question": "How are organic compounds represented, named, classified, purified, analysed, and understood through electronic effects?",
+    "in_scope_units": [
+      "Carbon tetravalence and structure representations.",
+      "Classification, functional groups, and homologous series.",
+      "IUPAC nomenclature.",
+      "Isomerism.",
+      "Bond fission, reagents, intermediates, electronic effects, and reaction types.",
+      "Purification and qualitative and quantitative analysis."
+    ],
+    "banned_topics": [
+      "Detailed functional-group mechanisms",
+      "Advanced stereochemistry",
+      "Spectroscopy",
+      "Polymer chemistry"
+    ],
+    "must_include_keywords": [
+      "tetravalence",
+      "catenation",
+      "structural formula",
+      "wedge-dash formula",
+      "functional group",
+      "homologous series",
+      "IUPAC nomenclature",
+      "parent chain",
+      "substituent",
+      "prefix",
+      "suffix",
+      "structural isomerism",
+      "stereoisomerism",
+      "homolytic fission",
+      "heterolytic fission",
+      "free radical",
+      "carbocation",
+      "carbanion",
+      "electrophile",
+      "nucleophile",
+      "inductive effect",
+      "resonance effect",
+      "electromeric effect",
+      "hyperconjugation",
+      "substitution reaction",
+      "addition reaction",
+      "elimination reaction",
+      "rearrangement reaction",
+      "crystallisation",
+      "distillation",
+      "chromatography",
+      "Lassaigne test",
+      "quantitative analysis"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The visually longest chain is always the parent.",
+        "correction": "IUPAC selection must include the principal group and follow multiple-bond rules."
+      },
+      {
+        "claim": "Homolysis and heterolysis give the same intermediates.",
+        "correction": "Homolysis gives radicals; heterolysis gives ions."
+      },
+      {
+        "claim": "Every electrophile has a full positive charge.",
+        "correction": "Neutral electron-deficient species may be electrophiles."
+      },
+      {
+        "claim": "Resonance structures are isolable compounds.",
+        "correction": "They are contributors to one hybrid."
+      },
+      {
+        "claim": "Chromatography separates only by boiling point.",
+        "correction": "It uses different affinities for stationary and mobile phases."
+      }
+    ],
+    "recommended_example_progression": [
+      "Read structural representations.",
+      "Classify and name compounds.",
+      "Distinguish isomers and bond fission.",
+      "Apply electronic effects and reaction types.",
+      "Choose purification and analysis methods."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use exercises on structures, classification, nomenclature, isomerism, electronic effects, intermediates, reaction types, purification, and elemental analysis."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Organic Chemistry – Some Basic Principles and Techniques\n\n## What you will learn\nExplain carbon tetravalence, catenation, hybridisation, and structural representations.\n\n## Simple explanation\nCarbon forms stable chains and rings and can be represented with formulas of different detail.\n\n## Step-by-step breakdown\n- **Tetravalence**: Carbon commonly forms four covalent bonds.\n- **Catenation**: Strong C–C bonds support chains and rings.\n- **sp3**: Tetrahedral carbon.\n- **sp2**: Trigonal planar carbon.\n- **sp**: Linear carbon.\n- **Condensed formula**: Groups atoms compactly.\n- **Bond-line formula**: Vertices and ends imply carbon.\n- **Wedge–dash**: Shows three-dimensional direction.\n\n## Worked example\nQuestion: A saturated three-segment bond-line chain represents which formula?\n\nSolution:\n- Three segments contain four carbon positions.\n- Acyclic saturated formula is CnH2n+2.\n- For n=4, hydrogen count is 10.\n- Final answer: C4H10.\n\n## Common mistake\nEvery bond-line end and vertex is carbon unless another atom is written.\n\n## Quick check question\nQuestion: Geometry of sp2 carbon?\nAnswer: Trigonal planar.\nExplanation: Three hybrid orbitals lie about 120° apart.\n\n## Summary\n- Tetravalence: Carbon commonly forms four covalent bonds.\n- Catenation: Strong C–C bonds support chains and rings.\n- sp3: Tetrahedral carbon.\n- sp2: Trigonal planar carbon.",
+    "Core explanation": "# Core explanation: Organic Chemistry – Some Basic Principles and Techniques\n\n## What you will learn\nClassify organic compounds and apply IUPAC naming.\n\n## Simple explanation\nA name communicates parent skeleton, substituents, unsaturation, and principal functional group.\n\n## Step-by-step breakdown\n- **Open chain**: Straight or branched acyclic skeleton.\n- **Cyclic**: Alicyclic, aromatic, or heterocyclic ring.\n- **Functional group**: Controls major reactions and suffix priority.\n- **Homologous series**: Members differ by CH2.\n- **Parent**: Selected by IUPAC priority rules.\n- **Numbering**: Provides lowest permitted locants.\n- **Prefixes**: Name substituents.\n- **Suffix**: Names unsaturation and principal group.\n- **Punctuation**: Commas separate numbers; hyphens separate numbers and words.\n\n## Worked example\nQuestion: Name CH3–CH(CH3)–CH2–CH3.\n\nSolution:\n- Longest chain has four carbons.\n- One methyl substituent is present.\n- Number from the nearer end.\n- Final answer: 2-methylbutane.\n\n## Common mistake\nA straighter-looking but shorter chain is not the correct parent.\n\n## Quick check question\nQuestion: Name of –CH2CH3 substituent?\nAnswer: Ethyl.\nExplanation: It is ethane minus one hydrogen.\n\n## Summary\n- Open chain: Straight or branched acyclic skeleton.\n- Cyclic: Alicyclic, aromatic, or heterocyclic ring.\n- Functional group: Controls major reactions and suffix priority.\n- Homologous series: Members differ by CH2.",
+    "Worked examples": "# Worked examples: Organic Chemistry – Some Basic Principles and Techniques\n\n## What you will learn\nDistinguish isomerism, bond fission, and reaction intermediates.\n\n## Simple explanation\nCompounds may share a formula but differ in connectivity or space, and bond cleavage can generate radicals or ions.\n\n## Step-by-step breakdown\n- **Chain isomerism**: Different carbon skeleton.\n- **Position isomerism**: Different location of a group or multiple bond.\n- **Functional isomerism**: Different functional groups.\n- **Stereoisomerism**: Same connectivity, different spatial arrangement.\n- **Homolysis**: One bonding electron to each atom.\n- **Heterolysis**: Both electrons to one atom.\n- **Radical**: Species with an unpaired electron.\n- **Carbocation**: Positively charged carbon.\n- **Carbanion**: Negatively charged carbon.\n- **Electrophile/nucleophile**: Electron-pair acceptor/donor.\n\n## Worked example\nQuestion: Classify CH3CH2OH and CH3OCH3.\n\nSolution:\n- They have the same molecular formula.\n- One is an alcohol.\n- The other is an ether.\n- Final answer: Functional isomers.\n\n## Common mistake\nHomolysis does not form carbocations and carbanions; it forms radicals.\n\n## Quick check question\nQuestion: Products of homolytic Cl–Cl cleavage?\nAnswer: Two Cl radicals.\nExplanation: Each atom takes one bonding electron.\n\n## Summary\n- Chain isomerism: Different carbon skeleton.\n- Position isomerism: Different location of a group or multiple bond.\n- Functional isomerism: Different functional groups.\n- Stereoisomerism: Same connectivity, different spatial arrangement.",
+    "Exam-style problems": "# Exam-style problems: Organic Chemistry – Some Basic Principles and Techniques\n\n## What you will learn\nUse electronic effects to compare stability and classify reactions.\n\n## Simple explanation\nSigma and pi electron shifts control charge distribution, intermediate stability, and reagent attack.\n\n## Step-by-step breakdown\n- **Inductive effect**: Permanent sigma-bond polarisation that decreases with distance.\n- **+I effect**: Alkyl groups release electron density.\n- **−I effect**: Electron-withdrawing groups pull density.\n- **Resonance**: Delocalisation through conjugated p orbitals.\n- **Electromeric effect**: Temporary complete pi-electron shift during attack.\n- **Hyperconjugation**: Adjacent sigma-bond delocalisation.\n- **Substitution**: One group replaces another.\n- **Addition**: Groups add across a multiple bond.\n- **Elimination**: Groups leave and a multiple bond forms.\n- **Rearrangement**: Skeleton or bonding reorganises.\n\n## Worked example\nQuestion: Why is a tertiary carbocation more stable than a primary one?\n\nSolution:\n- Three alkyl groups donate by +I effect.\n- More adjacent C–H bonds allow hyperconjugation.\n- Positive charge becomes more dispersed.\n- Final answer: Greater inductive donation and hyperconjugation stabilise the tertiary carbocation.\n\n## Common mistake\nInductive effect and resonance are different mechanisms and have different distance behaviour.\n\n## Quick check question\nQuestion: Br2 addition to an alkene is what type?\nAnswer: Addition.\nExplanation: The pi bond is replaced by two C–Br sigma bonds.\n\n## Summary\n- Inductive effect: Permanent sigma-bond polarisation that decreases with distance.\n- +I effect: Alkyl groups release electron density.\n- −I effect: Electron-withdrawing groups pull density.\n- Resonance: Delocalisation through conjugated p orbitals.",
+    "Revision and recap": "# Revision and recap: Organic Chemistry – Some Basic Principles and Techniques\n\n## What you will learn\nSelect purification methods and understand organic elemental analysis.\n\n## Simple explanation\nA prepared compound must be separated from impurities and tested for identity and composition.\n\n## Step-by-step breakdown\n- **Crystallisation**: Uses solubility change with temperature.\n- **Sublimation**: Separates a volatile solid.\n- **Simple distillation**: For large boiling-point differences or nonvolatile impurity.\n- **Fractional distillation**: For close-boiling miscible liquids.\n- **Steam distillation**: For steam-volatile water-immiscible substances.\n- **Extraction**: Uses differing solubility in immiscible solvents.\n- **Chromatography**: Uses stationary/mobile phase affinity differences.\n- **Lassaigne test**: Converts covalent N, S, and halogens into ionic salts.\n- **Quantitative analysis**: Calculates elemental percentages from measured products.\n\n## Worked example\nQuestion: How should liquids boiling at 78 °C and 82 °C be separated?\n\nSolution:\n- They are miscible.\n- Their boiling points are close.\n- Repeated vapour–condensation stages are needed.\n- Final answer: Fractional distillation.\n\n## Common mistake\nPhysical state alone is not enough to select a purification method.\n\n## Quick check question\nQuestion: Purpose of sodium fusion in Lassaigne test?\nAnswer: Convert covalent elements into water-soluble ions.\nExplanation: The resulting salts can be detected by inorganic tests.\n\n## Summary\n- Crystallisation: Uses solubility change with temperature.\n- Sublimation: Separates a volatile solid.\n- Simple distillation: For large boiling-point differences or nonvolatile impurity.\n- Fractional distillation: For close-boiling miscible liquids."
+  }
+}

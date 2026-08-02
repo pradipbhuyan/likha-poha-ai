@@ -2,8 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 
 from app.models.schemas import DoubtRequest
 from app.services.tutor_service import answer_doubt
-from app.services.usage_service import enforce_token_limits
-from app.services.model_routing_service import resolve_student_feature_model
+from app.services.usage_service import enforce_daily_limit, log_ai_usage
 from app.services.doubt_history_service import (
     list_doubt_history,
     save_doubt_history,
@@ -14,17 +13,13 @@ from app.services.platform_info_service import (
 )
 from app.services.offer_access_service import (
     is_free_tier_user,
-    build_offer_gate_response,
+    DAILY_LIMIT_MESSAGE,
 )
-
-# Keep legacy alias so existing code continues to work
-is_offer_code_user = is_free_tier_user
 from app.services.doubt_kb_service import search_doubt_kb
 from app.services.academic_guardrail_service import (
     is_non_academic_question,
     build_non_academic_response,
 )
-from app.services.subject_access_service import has_cbse_subject_access
 from app.services.board_service import is_school_board, normalize_board, resolve_request_board
 from app.services.test_account_service import is_all_access_test_user
 
@@ -122,13 +117,16 @@ def enforce_profile_board(profile: dict, requested_board: str):
         )
 
 
-def enforce_learning_access(profile: dict, mode: str, subject: str = ""):
-    """Enforce CBSE doubt access for the authenticated profile."""
+def enforce_account_standing(profile: dict, mode: str):
+    """Block suspended accounts and unrecognized learning modes.
+
+    This is basic account-status/input validation, independent of subject-
+    level access — Ask Doubt no longer gates by subject/topic (see
+    is_free_tier_user usage below), but a suspended account or a nonsense
+    mode value should still be rejected for every tier.
+    """
     if not profile:
-        raise HTTPException(
-            status_code=403,
-            detail="Profile not found",
-        )
+        raise HTTPException(status_code=403, detail="Profile not found")
 
     if profile.get("role") in ["admin", "teacher", "parent"] or is_all_access_test_user(profile):
         return
@@ -139,43 +137,8 @@ def enforce_learning_access(profile: dict, mode: str, subject: str = ""):
             detail="Your account is suspended. Please contact your parent or administrator.",
         )
 
-    if is_school_board(mode):
-        if not profile.get("access_cbse"):
-            access_label = "CBSE" if normalize_board(mode) == "CBSE" else "School-board"
-            raise HTTPException(
-                status_code=403,
-                detail=f"{access_label} access is not enabled.",
-            )
-        if not has_cbse_subject_access(profile, subject):
-            subject_label = (
-                f"CBSE {subject}"
-                if normalize_board(mode) == "CBSE"
-                else f"{normalize_board(mode)} {subject}"
-            )
-            raise HTTPException(
-                status_code=403,
-                detail=f"{subject_label} access is not enabled.",
-            )
-        return
-
-    raise HTTPException(
-        status_code=403,
-        detail="Invalid learning mode.",
-    )
-
-
-def enforce_ai_token_limit(username: str):
-    """Stop doubt generation when the user's plan token limit is exhausted."""
-    if str(username or "").strip().casefold() == "akshita.teststudent":
-        return
-
-    limit_check = enforce_token_limits(username)
-
-    if not limit_check.get("allowed"):
-        raise HTTPException(
-            status_code=403,
-            detail=limit_check.get("message", "AI token limit reached."),
-        )
+    if not is_school_board(mode):
+        raise HTTPException(status_code=403, detail="Invalid learning mode.")
 
 
 @router.post("/answer")
@@ -201,12 +164,12 @@ def answer_student_doubt(
     request_board = resolve_request_board(data.mode, data.board)
     enforce_profile_grade(profile, data.grade)
     enforce_profile_board(profile, request_board)
-    # For ALL users (free or paid), try the DKB BEFORE the LLM access gate.
-    # Pre-loaded suggestion questions have answers in DKB and are free to serve
-    # at zero LLM cost — even free-tier students should see them.
-    # The LLM (paid) gate only fires when DKB has no matching answer.
-    if not is_offer_code_user(user.id):
-        enforce_learning_access(profile, data.mode, data.subject)
+    enforce_account_standing(profile, data.mode)
+    # Ask Doubt never calls an LLM for any tier, so there is no per-topic
+    # access gate any more — free-tier users may ask about any subject or
+    # chapter. The only free-tier control is the shared 5/day cap applied
+    # further below, right before the retrieval pipeline runs.
+    is_free = is_free_tier_user(user.id)
 
     if is_platform_info_question(data.question):
         result = answer_platform_info(data.question)
@@ -324,31 +287,16 @@ def answer_student_doubt(
             "message": "Answered from knowledge base",
         }
 
-    # ── DKB miss: apply LLM access gate ──────────────────────────────────────
-    # Free-tier / offer-code users cannot make LLM calls on a DKB miss.
-    # Paid users continue to the LLM path below.
-    if is_offer_code_user(user.id):
-        gate = build_offer_gate_response()
-        return {
-            "success": True,
-            "answer": gate["answer"],
-            "source_type": gate["source_type"],
-            "sources": [],
-            "textbook_visuals": [],
-            "mentor_suggestions": [],
-            "history_id": None,
-            "message": "Offer gate: upgrade required for full AI access",
-        }
-
-    enforce_ai_token_limit(canonical_username)
+    # ── DKB miss: apply the free-tier daily cap ──────────────────────────────
+    # Free-tier users get a shared 5/day cap across both Ask Doubt surfaces.
+    # Paid users are never capped. Neither tier ever reaches an LLM call —
+    # both fall through to the retrieval-only pipeline below.
+    if is_free:
+        limit = enforce_daily_limit(canonical_username, feature="doubt_answer_free_tier", max_requests=5)
+        if not limit["allowed"]:
+            raise HTTPException(status_code=429, detail=DAILY_LIMIT_MESSAGE)
 
     try:
-        model = resolve_student_feature_model(
-            profile,
-            feature="doubt",
-            question=data.question,
-            mode=data.mode,
-        )
         result = call_with_optional_board(
             answer_doubt,
             grade=data.grade,
@@ -358,7 +306,6 @@ def answer_student_doubt(
             chapter=data.chapter,
             question=data.question,
             username=canonical_username,
-            model=model,
         )
         history_item = None
 
@@ -382,17 +329,20 @@ def answer_student_doubt(
                     question=display_question,
                     prompt_question=data.question,
                     answer=result.get("answer") or "",
-                    source_type=result.get("source_type", "LLM"),
+                    source_type=result.get("source_type", "NO_MATCH_FALLBACK"),
                     sources=result.get("sources", []),
                     mentor_suggestions=result.get("mentor_suggestions", []),
                 )
             except Exception as history_error:
                 print(f"Doubt history save failed: {history_error}")
 
+        if is_free:
+            log_ai_usage(username=canonical_username, feature="doubt_answer_free_tier", model="none")
+
         return {
             "success": True,
             "answer": result.get("answer"),
-            "source_type": result.get("source_type", "LLM"),
+            "source_type": result.get("source_type", "NO_MATCH_FALLBACK"),
             "sources": result.get("sources", []),
             "textbook_visuals": result.get("textbook_visuals", []),
             "mentor_suggestions": result.get("mentor_suggestions", []),
@@ -404,40 +354,8 @@ def answer_student_doubt(
         raise
 
     except Exception as e:
-        # Sanitize error messages — never leak raw provider errors to students.
-        err_str = str(e).lower()
-        if "429" in err_str or "rate" in err_str or "quota" in err_str or "token" in err_str or "too_many" in err_str or "limit" in err_str:
-            user_message = (
-                "Our AI tutoring service is experiencing high demand right now. "
-                "Please try again in a few minutes — your question hasn't been lost."
-            )
-            # Alert admin — fire-and-forget, never blocks response
-            try:
-                from app.services.alert_service import alert_rate_limit  # noqa: PLC0415
-                alert_rate_limit(
-                    feature="doubt",
-                    username=canonical_username if "canonical_username" in dir() else data.username,
-                    error_detail=str(e),
-                    grade=data.grade,
-                    subject=data.subject,
-                    chapter=data.chapter or "",
-                )
-            except Exception:
-                pass
-        elif "timeout" in err_str or "timed out" in err_str:
-            user_message = (
-                "The AI took too long to respond. Please try again."
-            )
-        elif "context" in err_str:
-            user_message = (
-                "Your question or chapter context is too long. "
-                "Try a shorter, more focused question."
-            )
-        else:
-            user_message = (
-                "Something went wrong while answering your doubt. "
-                "Please try again in a moment."
-            )
+        # Sanitize error messages — never leak raw internals to students.
+        print(f"Doubt answer failed: {e}")
         return {
             "success": False,
             "answer": None,
@@ -446,7 +364,7 @@ def answer_student_doubt(
             "textbook_visuals": [],
             "mentor_suggestions": [],
             "history_id": None,
-            "message": user_message,
+            "message": "Something went wrong while answering your doubt. Please try again in a moment.",
         }
 
 

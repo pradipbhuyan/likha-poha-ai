@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 12",
+  "subject": "History",
+  "chapter": "An Imperial Capital: Vijayanagara",
+  "central_question": "How do archaeology, inscriptions, oral traditions and travellers' accounts help reconstruct Vijayanagara's political history, urban design, sacred landscape and everyday life?",
+  "in_scope_units": [
+    "The discovery of Hampi and the combination of historical sources.",
+    "Founders, dynasties, rayas, nayakas and Sultanates.",
+    "Horse trade, markets and Krishnadeva Raya's reign.",
+    "Imperial decline, Talikota and the Aravidu shift.",
+    "The amara-nayaka system.",
+    "The capital's natural setting and water resources.",
+    "Fortifications, roads, agricultural land and the urban core.",
+    "The royal centre, mahanavami dibba and other buildings.",
+    "The sacred centre, Virupaksha and Vitthala temples.",
+    "Gopurams, mandapas and architectural interaction.",
+    "Surveying, mapping and unresolved archaeological questions."
+  ],
+  "banned_topics": [
+    "Detailed Mughal agrarian society, treated in the next chapter.",
+    "The general history of all Deccan Sultanates beyond their relations with Vijayanagara."
+  ],
+  "must_include_keywords": [
+    "Vijayanagara",
+    "Hampi",
+    "Pampadevi",
+    "Colin Mackenzie",
+    "inscriptions",
+    "Harihara",
+    "Bukka",
+    "karnataka samrajyamu",
+    "rayas",
+    "Deccan Sultanates",
+    "Gajapati",
+    "horse trade",
+    "kudirai chettis",
+    "Portuguese",
+    "Krishnadeva Raya",
+    "Raichur doab",
+    "Talikota",
+    "Rama Raya",
+    "amara-nayaka system",
+    "Tungabhadra",
+    "Kamalapuram tank",
+    "Hiriya canal",
+    "fortifications",
+    "agricultural hinterland",
+    "urban core",
+    "royal centre",
+    "mahanavami dibba",
+    "Lotus Mahal",
+    "elephant stables",
+    "sacred centre",
+    "Virupaksha temple",
+    "Vitthala temple",
+    "gopuram",
+    "mandapa",
+    "travellers' accounts",
+    "archaeological mapping"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Vijayanagara-Sultanate relationship was always religious warfare.",
+      "correction": "Conflict, alliance, support for rival claimants and architectural exchange all occurred across religious boundaries."
+    },
+    {
+      "claim": "The royal centre contained only palaces.",
+      "correction": "It included many temples, platforms, halls, water structures and buildings of uncertain function."
+    },
+    {
+      "claim": "The surviving ruins provide a complete picture of ordinary life.",
+      "correction": "Stone monuments survive best, while common dwellings and activities must be reconstructed from partial archaeology and travellers' accounts."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1 on methods of studying Hampi.",
+    "NCERT Exercise 8 on architectural traditions.",
+    "NCERT Exercise 2 on water requirements.",
+    "NCERT Exercise 6 on the royal centre.",
+    "NCERT Exercise 9 on ordinary life."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with questions 1-5 in the 100-150 word section, essay questions 6-9, Map work 10 and Projects 11-12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

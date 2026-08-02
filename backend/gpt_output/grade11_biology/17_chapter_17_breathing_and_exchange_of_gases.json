@@ -1,0 +1,85 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 17: Breathing and Exchange of Gases",
+    "central_question": "How does the human respiratory system move air, exchange gases and transport oxygen and carbon dioxide to support cellular metabolism?",
+    "in_scope_units": [
+      "Respiratory organs and the human respiratory system.",
+      "Mechanism of inspiration and expiration.",
+      "Respiratory volumes and pulmonary capacities.",
+      "Exchange of gases at alveoli and tissues.",
+      "Transport of oxygen and carbon dioxide in blood.",
+      "Neural and chemical regulation of respiration.",
+      "Respiratory disorders."
+    ],
+    "banned_topics": [
+      "Plant glycolysis and fermentation",
+      "Plant Krebs cycle and respiratory quotient",
+      "Photosynthetic carbon fixation"
+    ],
+    "must_include_keywords": [
+      "breathing",
+      "respiratory organs",
+      "nostrils",
+      "pharynx",
+      "larynx",
+      "trachea",
+      "bronchi",
+      "bronchioles",
+      "alveoli",
+      "pleura",
+      "diaphragm",
+      "inspiration",
+      "expiration",
+      "intrapulmonary pressure",
+      "tidal volume",
+      "IRV",
+      "ERV",
+      "residual volume",
+      "vital capacity",
+      "total lung capacity",
+      "partial pressure",
+      "diffusion membrane",
+      "haemoglobin",
+      "oxyhaemoglobin",
+      "oxygen dissociation curve",
+      "carbaminohaemoglobin",
+      "bicarbonate",
+      "carbonic anhydrase",
+      "respiratory rhythm centre",
+      "pneumotaxic centre",
+      "asthma",
+      "emphysema"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The lungs actively pull air inward.",
+        "correction": "Respiratory muscles enlarge the thorax, lowering intrapulmonary pressure so atmospheric pressure drives air in."
+      },
+      {
+        "claim": "Most CO2 is carried bound to haemoglobin.",
+        "correction": "About 70 percent is transported as bicarbonate; 20-25 percent as carbaminohaemoglobin."
+      },
+      {
+        "claim": "Oxygen is the main normal regulator of breathing.",
+        "correction": "CO2 and H+ are the more important chemical signals under normal conditions."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 3 to explain why alveoli are the principal exchange sites.",
+      "Use NCERT Exercise 13 to compare respiratory volumes and capacities.",
+      "Use NCERT Exercise 4 to organise CO2 transport.",
+      "Use NCERT Exercise 7 to trace respiratory regulation.",
+      "Use NCERT Exercise 14 to calculate approximate hourly tidal ventilation."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-14 on capacities, diffusion, gas transport, inspiration, regulation and tidal-volume calculations."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Breathing and Exchange of Gases\n\n## What you will learn\nYou will compare respiratory surfaces and trace the passage of air through the human system. You will distinguish conducting structures from the alveolar exchange region.\n\n## Simple explanation\nAnimals use different surfaces for gas exchange, but all effective systems bring the environment close to body fluids. Human branching airways deliver conditioned air to thin, vascular alveoli.\n\n## Step-by-step breakdown\n- **Animal respiratory surfaces**: Body surfaces, moist cuticle, tracheal tubes, gills and lungs are used according to habitat and organisation.\n- **Air pathway**: Air passes through nostrils, nasal chamber, pharynx, larynx, trachea, bronchi and bronchioles to alveoli.\n- **Protection and sound**: The larynx assists sound production and the epiglottis prevents food entering the airway.\n- **Conducting part**: Structures from nostrils to terminal bronchioles transport, clean, humidify and warm air.\n- **Exchange part**: Alveoli and their ducts permit diffusion between air and blood.\n- **Pleura and thorax**: Pleural fluid reduces friction and the airtight thorax couples thoracic-volume changes to lung volume.\n\n## Worked example\nQuestion: NCERT Exercise 3 asks why diffusion of gases occurs in alveoli and not in other respiratory passages.\n\nSolution:\n- Conducting airways are specialised for transport and conditioning of air.\n- Alveoli provide a large, moist and highly vascular surface.\n- The alveolar epithelium, capillary endothelium and basement substance form an extremely thin barrier.\n- Final answer: Alveoli are the principal diffusion sites because their thin vascular surface and pressure gradients favour rapid exchange.\n\n## Common mistake\nDo not call the trachea or bronchi the main exchange surface; they belong to the conducting part.\n\n## Quick check question\nQuestion: What prevents food from entering the larynx during swallowing?\nAnswer: The epiglottis.\nExplanation: This elastic cartilaginous flap covers the glottis while swallowing.\n\n## Summary\n- Respiratory organs vary with habitat.\n- Human airways branch from nostrils to alveoli.\n- Conducting passages condition air.\n- Alveoli form the gas-exchange surface.\n- Thoracic and pulmonary volumes change together.",
+    "Core explanation": "# Core explanation: Breathing and Exchange of Gases\n\n## What you will learn\nYou will explain pressure changes during inspiration and expiration and organise respiratory volumes and capacities.\n\n## Simple explanation\nAir flows down a pressure gradient. Respiratory muscles change thoracic and lung volume, altering intrapulmonary pressure relative to the atmosphere.\n\n## Step-by-step breakdown\n- **Inspiration**: The diaphragm contracts and external intercostals lift the ribs; volume rises and intrapulmonary pressure falls.\n- **Expiration**: Muscle relaxation reduces volume and raises intrapulmonary pressure, forcing air out.\n- **Tidal volume**: Normal breathing moves about 500 mL per breath.\n- **Reserve and residual volumes**: IRV is about 2500-3000 mL, ERV 1000-1100 mL and RV 1100-1200 mL.\n- **Capacities**: IC = TV + IRV; EC = TV + ERV; FRC = ERV + RV; VC = ERV + TV + IRV; TLC = VC + RV.\n- **Spirometer**: Respiratory volumes can be estimated for clinical pulmonary assessment.\n\n## Worked example\nQuestion: NCERT Exercise 13 asks you to distinguish IRV and ERV, IC and EC, and VC and TLC.\n\nSolution:\n- IRV is additional forced inspiration; ERV is additional forced expiration.\n- IC is TV + IRV after normal expiration; EC is TV + ERV after normal inspiration.\n- VC is the maximum exchangeable volume and equals ERV + TV + IRV.\n- TLC includes residual volume and equals VC + RV.\n- Final answer: The pairs differ by direction or by whether residual volume is included.\n\n## Common mistake\nResidual volume cannot be voluntarily expelled and is not part of vital capacity, but it is included in total lung capacity.\n\n## Quick check question\nQuestion: What initiates normal inspiration mechanically?\nAnswer: Contraction of the diaphragm, assisted by external intercostal contraction.\nExplanation: Thoracic volume increases, intrapulmonary pressure falls and air enters.\n\n## Summary\n- Breathing depends on pressure gradients.\n- Muscle contraction increases thoracic volume during inspiration.\n- Relaxation supports normal expiration.\n- Volumes combine into pulmonary capacities.\n- TLC includes residual volume whereas VC does not.",
+    "Worked examples": "# Worked examples: Breathing and Exchange of Gases\n\n## What you will learn\nYou will use partial-pressure gradients to predict gas diffusion and relate solubility and membrane thickness to efficiency.\n\n## Simple explanation\nAt each exchange surface, gases diffuse from higher to lower partial pressure. Oxygen and CO2 move in opposite directions because their gradients are opposite.\n\n## Step-by-step breakdown\n- **Alveolar oxygen**: Alveolar pO2 is about 104 mm Hg and deoxygenated blood pO2 about 40, so oxygen enters blood.\n- **Tissue oxygen**: Oxygenated blood pO2 is about 95 and tissue pO2 about 40, so oxygen enters tissues.\n- **CO2 gradients**: Tissue pCO2 exceeds blood pCO2, and deoxygenated blood pCO2 exceeds alveolar pCO2, so CO2 moves toward alveoli.\n- **Solubility**: CO2 is 20-25 times more soluble than oxygen and diffuses effectively despite smaller gradients.\n- **Diffusion membrane**: Alveolar epithelium, capillary endothelium and thin basement substance form the barrier.\n\n## Worked example\nQuestion: NCERT Exercise 5 asks how atmospheric pO2 and pCO2 compare with alveolar values.\n\nSolution:\n- Atmospheric pO2 is about 159 mm Hg, higher than alveolar pO2 of about 104.\n- Atmospheric pCO2 is about 0.3 mm Hg, lower than alveolar pCO2 of about 40.\n- Therefore atmospheric pO2 is higher and atmospheric pCO2 is lower.\n- Final answer: The correct choice is pO2 higher and pCO2 lower in atmospheric air.\n\n## Common mistake\nAlveolar air is not identical to atmospheric air because of mixing and continuous gas exchange.\n\n## Quick check question\nQuestion: Why does CO2 diffuse rapidly despite a smaller partial-pressure gradient?\nAnswer: It is 20-25 times more soluble than oxygen.\nExplanation: Higher solubility increases diffusion per unit pressure difference.\n\n## Summary\n- Partial pressures determine diffusion direction.\n- Oxygen moves alveoli to blood to tissues.\n- CO2 moves tissues to blood to alveoli.\n- Thin membranes and CO2 solubility support efficient exchange.",
+    "Exam-style problems": "# Exam-style problems: Breathing and Exchange of Gases\n\n## What you will learn\nYou will compare the transport forms of oxygen and CO2 and explain the oxygen dissociation curve.\n\n## Simple explanation\nBlood transports gases in several forms. Haemoglobin loads oxygen in lungs and unloads it in tissues, while most CO2 is converted reversibly to bicarbonate.\n\n## Step-by-step breakdown\n- **Oxygen carriage**: About 97 percent of oxygen is transported by RBCs and 3 percent dissolved in plasma.\n- **Oxyhaemoglobin**: Each haemoglobin molecule can bind up to four oxygen molecules reversibly.\n- **Loading conditions**: High pO2, low pCO2, lower H+ and lower temperature favour oxygen binding in alveoli.\n- **Unloading conditions**: Low pO2, high pCO2, higher H+ and higher temperature favour release in tissues.\n- **CO2 forms**: About 70 percent travels as bicarbonate, 20-25 percent as carbaminohaemoglobin and about 7 percent dissolved.\n- **Carbonic anhydrase**: This RBC enzyme rapidly catalyses reversible bicarbonate formation.\n\n## Worked example\nQuestion: NCERT Exercise 4 asks for the major transport mechanisms of CO2.\n\nSolution:\n- About 7 percent remains dissolved in plasma.\n- About 20-25 percent binds haemoglobin as carbaminohaemoglobin.\n- About 70 percent is converted to bicarbonate with carbonic anhydrase.\n- At tissues high pCO2 favours uptake; at alveoli the reactions reverse.\n- Final answer: CO2 is carried mainly as bicarbonate, with smaller bound and dissolved fractions.\n\n## Common mistake\nHaemoglobin saturation is not controlled by pO2 alone; pCO2, H+ and temperature also alter affinity.\n\n## Quick check question\nQuestion: What is the shape of the oxygen dissociation curve?\nAnswer: Sigmoidal.\nExplanation: Cooperative oxygen binding creates the S-shaped relation between pO2 and haemoglobin saturation.\n\n## Summary\n- Most oxygen is carried by haemoglobin.\n- Tissue conditions promote oxygen unloading.\n- Most CO2 is transported as bicarbonate.\n- Carbonic anhydrase accelerates reversible CO2 chemistry.",
+    "Revision and recap": "# Revision and recap: Breathing and Exchange of Gases\n\n## What you will learn\nYou will connect respiratory regulation with disorders and perform an NCERT-based ventilation calculation.\n\n## Simple explanation\nThe nervous system adjusts breathing to tissue demands, especially changes in CO2 and H+. Airway inflammation or loss of alveolar surface can reduce respiratory efficiency.\n\n## Step-by-step breakdown\n- **Medullary centre**: The respiratory rhythm centre generates the basic rhythm.\n- **Pneumotaxic centre**: A pons centre modifies inspiration duration and respiratory rate.\n- **Chemosensitivity**: A medullary area and vascular receptors respond mainly to CO2 and H+.\n- **Asthma**: Inflammation of bronchi and bronchioles causes wheezing and difficulty.\n- **Emphysema**: Damage to alveolar walls reduces exchange surface; cigarette smoking is a major cause.\n- **Occupational disorders**: Long dust exposure can cause inflammation and fibrosis; protective masks reduce risk.\n\n## Worked example\nQuestion: NCERT Exercise 14 asks for approximate tidal ventilation in one hour.\n\nSolution:\n- Tidal volume is about 500 mL per breath.\n- A healthy person breathes about 12-16 times per minute.\n- In one hour this is 720-960 breaths.\n- Volume is 500 x 720 to 500 x 960 mL, or 360000-480000 mL.\n- Final answer: The approximate tidal ventilation is 360-480 litres per hour.\n\n## Common mistake\nThis value is total ventilated volume, not oxygen absorbed, and some air remains in conducting dead space.\n\n## Quick check question\nQuestion: Which chemical changes strongly stimulate normal respiratory adjustment?\nAnswer: Increases in CO2 and H+ concentration.\nExplanation: Chemosensitive regions signal the rhythm centre to increase their elimination; oxygen has a smaller normal role.\n\n## Summary\n- Medulla and pons control respiratory rhythm.\n- CO2 and H+ are major chemical signals.\n- Asthma narrows inflamed airways.\n- Emphysema reduces alveolar surface.\n- Breathing, diffusion and transport form one continuous chain."
+  }
+}

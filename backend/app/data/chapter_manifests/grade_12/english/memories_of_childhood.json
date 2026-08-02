@@ -1,0 +1,98 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "Memories of Childhood",
+  "central_question": "How do two girls from marginalised communities recognise cultural and caste oppression in childhood and begin to resist the loss of dignity?",
+  "in_scope_units": [
+    "Before you read: autobiographical episodes by Zitkala-Sa and Bama from distant marginalised communities.",
+    "Background on Zitkala-Sa, the Carlisle Indian school and her writing against oppression.",
+    "Background on Bama, Karukku and the meanings of its title.",
+    "The Cutting of My Long Hair: the land of apples, dining-hall rules and cultural disorientation.",
+    "Judewin’s warning, Zitkala-Sa’s resistance, forced haircut and loss of spirit.",
+    "We Too are Human Beings: Bama’s lively walk through the bazaar and village street.",
+    "The elder carrying the food packet, Annan’s explanation of untouchability and Bama’s anger.",
+    "Annan’s advice to study, Bama’s academic effort and her new friendships.",
+    "Reading with Insight Questions 1–3 comparing themes, childhood rebellion and types of discrimination."
+  ],
+  "banned_topics": [
+    "A complete history of Native American boarding schools beyond information in the chapter.",
+    "A general legal or historical survey of the Indian caste system beyond Bama’s episode.",
+    "Biographical details about Zitkala-Sa or Bama not included in the introductory note."
+  ],
+  "must_include_keywords": [
+    "Zitkala-Sa",
+    "Gertrude Simmons Bonnin",
+    "Native American",
+    "Carlisle Indian school",
+    "oppression",
+    "mainstream culture",
+    "land of apples",
+    "bitter cold",
+    "bells",
+    "unknown tongue",
+    "moccasins",
+    "blanket",
+    "eating by formula",
+    "Judewin",
+    "long hair",
+    "short hair",
+    "mourners",
+    "shingled hair",
+    "cowards",
+    "submit",
+    "resistance",
+    "under the bed",
+    "tied to a chair",
+    "wooden puppet",
+    "little animals driven by a herder",
+    "Bama",
+    "Tamil Dalit",
+    "Karukku",
+    "bazaar",
+    "vadai",
+    "landlord",
+    "elder",
+    "packet by its string",
+    "untouchability",
+    "pollution",
+    "Annan",
+    "caste",
+    "street",
+    "dignity",
+    "respect",
+    "education",
+    "study",
+    "first in class",
+    "autobiographical episode",
+    "childhood rebellion",
+    "discrimination"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Zitkala-Sa resists the haircut because she prefers a fashionable style.",
+      "correction": "In her culture shingled hair is associated with captured cowards, so cutting it is a forced attack on identity and dignity."
+    },
+    {
+      "claim": "Bama first understands the packet-carrying scene as caste humiliation.",
+      "correction": "She initially laughs because it looks comic; Annan explains the practice of untouchability, after which she feels sadness and anger."
+    },
+    {
+      "claim": "Both narrators respond in exactly the same way.",
+      "correction": "Zitkala-Sa physically resists immediate cultural coercion, while Bama turns anger into determined education after Annan’s advice."
+    },
+    {
+      "claim": "Education removes the existence of discrimination in Bama’s account.",
+      "correction": "Study helps her gain progress, achievement and friends, but the episode still exposes structural denial of dignity."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the dining-hall episode to establish Zitkala-Sa’s cultural disorientation.",
+    "Use Reading with Insight Q3 to compare the two kinds of discrimination and the narrators’ responses.",
+    "Use the forced-haircut scene to analyse early rebellion against cultural erasure.",
+    "Use the packet episode to trace Bama’s movement from laughter to anger.",
+    "Finish with Reading with Insight Q1–2 and Annan’s advice on education, dignity and resistance."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The unit ends with Reading with Insight Questions 1–3 on the common theme, childhood recognition of injustice and the different discrimination and responses in the two accounts.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

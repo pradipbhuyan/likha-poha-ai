@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Employment: Growth, Informalisation and Other Issues",
+  "central_question": "How is employment in India measured and organised, and what do participation, sectoral change, informalisation and unemployment reveal about the quality of work?",
+  "in_scope_units": [
+    "Introduction to the meaning and social importance of work.",
+    "Workers, employment, economic activity, GDP, GNP and the size and diversity of the workforce.",
+    "Worker-population ratio and differences by gender and rural–urban residence.",
+    "Self-employed, regular salaried employees and casual wage labourers.",
+    "Employment across primary, secondary and service sectors and rural–urban differences.",
+    "Growth and changing structure of employment, including jobless growth and casualisation.",
+    "Formal and informal sectors and the process of informalisation.",
+    "Meaning and forms of unemployment in rural and urban India.",
+    "Government employment-generation programmes and the chapter’s conclusion."
+  ],
+  "banned_topics": [
+    "Rural banking and agricultural marketing, which belong to Rural Development.",
+    "Human capital institutions and education policy, which belong to Human Capital Formation.",
+    "Questionnaire design and sampling, which belong to Collection of Data."
+  ],
+  "must_include_keywords": [
+    "work",
+    "economic activity",
+    "worker",
+    "workforce",
+    "employment",
+    "gross domestic product",
+    "gross national product",
+    "worker-population ratio",
+    "rural workforce",
+    "urban workforce",
+    "women workers",
+    "unpaid work",
+    "self-employed",
+    "regular salaried employee",
+    "casual wage labourer",
+    "primary sector",
+    "secondary sector",
+    "service sector",
+    "structural change",
+    "employment growth",
+    "GDP growth",
+    "jobless growth",
+    "casualisation",
+    "formal sector",
+    "informal sector",
+    "informalisation",
+    "social security",
+    "unemployment",
+    "disguised unemployment",
+    "seasonal unemployment",
+    "educated unemployment",
+    "employment generation",
+    "public works",
+    "MNREGA",
+    "Viksit Bharat G RAM G",
+    "quality of employment",
+    "labour force"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Only people receiving wages or salaries are workers.",
+      "correction": "Self-employed persons and unpaid helpers in economic activities are also workers."
+    },
+    {
+      "claim": "A high worker-population ratio always means good-quality employment.",
+      "correction": "It measures participation, not wages, security or working conditions."
+    },
+    {
+      "claim": "Self-employment always provides high income and independence.",
+      "correction": "Many people are self-employed because other opportunities are unavailable, and earnings can be low."
+    },
+    {
+      "claim": "The formal sector includes every worker in a registered enterprise.",
+      "correction": "Workers may be hired informally without security or benefits even in formal enterprises."
+    },
+    {
+      "claim": "Unemployment occurs only when a person does no work at all.",
+      "correction": "Disguised and seasonal unemployment involve inadequate or unproductive employment."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the Work These Out classification list to identify self-employed, regular salaried and casual workers.",
+    "Use Table 6.1 to interpret worker-population ratios by gender and residence.",
+    "Use Tables and Charts 6.1–6.3 to compare employment status and industrial sectors.",
+    "Use the chapter’s jobless-growth discussion to compare GDP and employment growth.",
+    "Use the end exercises on informalisation, unemployment and government programmes to build evaluative answers."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with an EXERCISES section covering worker concepts, participation, employment status, sectoral distribution, informalisation, unemployment and employment policy.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

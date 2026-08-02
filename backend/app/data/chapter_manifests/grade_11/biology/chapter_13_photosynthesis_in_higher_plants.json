@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 13: Photosynthesis in Higher Plants",
+  "central_question": "How do green plants capture light energy and use it to make carbohydrates from carbon dioxide and water while releasing oxygen?",
+  "in_scope_units": [
+    "Prior evidence that chlorophyll, light and carbon dioxide are required for photosynthesis.",
+    "Early experiments by Priestley, Ingenhousz, Sachs, Engelmann and van Niel.",
+    "Chloroplast organisation and the locations of light and carbon reactions.",
+    "Photosynthetic pigments, absorption spectra and action spectra.",
+    "Light reactions, photosystems, electron transport and splitting of water.",
+    "Cyclic and non-cyclic photophosphorylation and chemiosmotic ATP synthesis.",
+    "Use of ATP and NADPH in the Calvin cycle.",
+    "C4 pathway, Kranz anatomy and photorespiration.",
+    "Internal and external factors affecting photosynthesis."
+  ],
+  "banned_topics": [
+    "Xylem and phloem transport",
+    "Transpiration pull and pressure-flow translocation",
+    "Mineral uptake and nitrogen metabolism"
+  ],
+  "must_include_keywords": [
+    "photosynthesis",
+    "autotroph",
+    "chlorophyll a",
+    "chlorophyll b",
+    "carotenoid",
+    "xanthophyll",
+    "chloroplast",
+    "grana",
+    "stroma",
+    "photosystem I",
+    "photosystem II",
+    "P700",
+    "P680",
+    "photolysis",
+    "Z scheme",
+    "NADPH",
+    "photophosphorylation",
+    "chemiosmosis",
+    "ATP synthase",
+    "RuBP",
+    "RuBisCO",
+    "3-PGA",
+    "Calvin cycle",
+    "PEP",
+    "PEP carboxylase",
+    "OAA",
+    "Kranz anatomy",
+    "C3 plant",
+    "C4 plant",
+    "photorespiration",
+    "Blackman law"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The oxygen released in photosynthesis comes from carbon dioxide.",
+      "correction": "The oxygen released by green plants comes from water splitting."
+    },
+    {
+      "claim": "Dark reactions occur only in darkness.",
+      "correction": "They are not directly light driven, but they depend on ATP and NADPH produced by light reactions."
+    },
+    {
+      "claim": "C4 plants do not use the Calvin cycle.",
+      "correction": "C4 plants concentrate CO2 first, then run the Calvin cycle in bundle-sheath cells."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 5 to explain why chlorophyll a cannot be replaced by chlorophyll b.",
+    "Use NCERT Exercise 9(b) to compare cyclic and non-cyclic photophosphorylation.",
+    "Use the in-text Calvin-cycle balance to calculate ATP and NADPH per glucose.",
+    "Use NCERT Exercise 8 and Figure 11.10 to interpret limiting factors.",
+    "Use NCERT Exercise 4 to explain why C4 RuBisCO performs more carboxylation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES section contains Questions 1-9 on C3 and C4 plants, pigments, RuBisCO, light limitation and pathway comparisons.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

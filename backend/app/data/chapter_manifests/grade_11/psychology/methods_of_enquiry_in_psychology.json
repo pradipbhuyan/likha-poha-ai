@@ -1,0 +1,98 @@
+{
+  "grade": "Grade 11",
+  "subject": "Psychology",
+  "chapter": "Methods of Enquiry in Psychology",
+  "central_question": "How can psychologists investigate behaviour and experience systematically, analyse evidence responsibly and protect participants?",
+  "in_scope_units": [
+    "Goals of psychological enquiry: description, prediction, explanation, control and application.",
+    "Steps in scientific research: conceptualising a problem, collecting data, drawing conclusions and revising conclusions.",
+    "Scientific and interpretive paradigms.",
+    "Nature of demographic, physical, physiological and psychological data.",
+    "Observational method and its types.",
+    "Experimental method, variables, groups, control, field and quasi experiments.",
+    "Correlational research.",
+    "Survey research through interviews, questionnaires and telephone surveys.",
+    "Psychological testing, reliability, validity and norms.",
+    "Case study.",
+    "Quantitative and qualitative analysis.",
+    "Limitations of psychological enquiry and ethical issues."
+  ],
+  "banned_topics": [
+    "Detailed theories of learning, memory or development beyond their use as examples.",
+    "Advanced statistical calculations not taught in this chapter."
+  ],
+  "must_include_keywords": [
+    "description",
+    "prediction",
+    "explanation",
+    "control",
+    "application",
+    "objectivity",
+    "hypothesis",
+    "research design",
+    "interpretive paradigm",
+    "psychological data",
+    "observation",
+    "naturalistic observation",
+    "participant observation",
+    "independent variable",
+    "dependent variable",
+    "extraneous variable",
+    "experimental group",
+    "control group",
+    "random assignment",
+    "field experiment",
+    "quasi experiment",
+    "correlation coefficient",
+    "positive correlation",
+    "negative correlation",
+    "zero correlation",
+    "survey",
+    "structured interview",
+    "unstructured interview",
+    "questionnaire",
+    "psychological test",
+    "reliability",
+    "validity",
+    "norms",
+    "case study",
+    "quantitative method",
+    "qualitative method",
+    "voluntary participation",
+    "informed consent",
+    "debriefing",
+    "confidentiality"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Correlation proves causation.",
+      "correction": "Correlation shows association and supports prediction but does not by itself establish cause and effect."
+    },
+    {
+      "claim": "The dependent variable is manipulated.",
+      "correction": "The independent variable is manipulated or selected; the dependent variable is measured as the outcome."
+    },
+    {
+      "claim": "Scientific observation is ordinary looking.",
+      "correction": "It requires deliberate selection, systematic recording and analysis."
+    },
+    {
+      "claim": "A reliable test is automatically valid.",
+      "correction": "Reliability is consistency; validity concerns whether the intended attribute is measured."
+    },
+    {
+      "claim": "Qualitative and quantitative methods cannot be combined.",
+      "correction": "The chapter treats them as complementary."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Review Question 2 on research steps.",
+    "NCERT Review Question 7 on naturalistic observation.",
+    "NCERT Review Question 5 on hypothesis and variables.",
+    "NCERT Review Question 10 on standardised tests.",
+    "NCERT Review Question 12 on ethics."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–12 and two Project Ideas.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

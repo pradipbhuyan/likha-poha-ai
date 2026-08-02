@@ -1,0 +1,100 @@
+{
+  "grade": "Grade 11",
+  "subject": "Sociology",
+  "chapter": "Terms, Concepts and their Use in Sociology",
+  "central_question": "How do precise sociological concepts help us analyse social groups, inequality, status, roles and social control beyond everyday common sense?",
+  "in_scope_units": [
+    "Introduction: why sociology needs precise terms and how concepts reflect different theoretical approaches and the transition from pre-modern to modern society.",
+    "Social Groups and Society: aggregates, quasi groups, social groups, social structure and the characteristics of organised collectivities.",
+    "Types of Groups: primary and secondary groups, community and association, in-groups and out-groups, reference groups and peer groups.",
+    "Social Stratification: structured inequalities, slavery, caste, estate and class, including Marxist, Weberian and functionalist views.",
+    "Status and Role: status, role, status set, status sequence, ascribed and achieved status, prestige, role taking, role conflict, role stereotyping and agency.",
+    "Society and Social Control: functionalist and conflict views, formal and informal social control, sanctions, norms and deviance."
+  ],
+  "banned_topics": [
+    "Detailed study of social institutions such as family, marriage, kinship, religion and education, which belongs to the next chapter.",
+    "Full research-method procedures and fieldwork design, which are treated later in the book.",
+    "A comprehensive account of caste, class and gender inequality, which the chapter says will be developed in Understanding Society."
+  ],
+  "must_include_keywords": [
+    "sociological concepts",
+    "common sense",
+    "functionalism",
+    "conflict theories",
+    "microsociology",
+    "macrosociology",
+    "aggregate",
+    "quasi group",
+    "social group",
+    "social structure",
+    "primary group",
+    "secondary group",
+    "community",
+    "association",
+    "in-group",
+    "out-group",
+    "reference group",
+    "peer group",
+    "peer pressure",
+    "social stratification",
+    "slavery",
+    "caste",
+    "class",
+    "estate",
+    "means of production",
+    "life-chances",
+    "status",
+    "role",
+    "status set",
+    "status sequence",
+    "ascribed status",
+    "achieved status",
+    "prestige",
+    "role conflict",
+    "role stereotyping",
+    "socialisation",
+    "agency",
+    "social control",
+    "formal social control",
+    "informal social control",
+    "sanctions",
+    "deviance",
+    "norms"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any collection of people in one place is a social group.",
+      "correction": "An aggregate or quasi group may lack structure, awareness and persistent interaction; a social group has continuity, shared interests, norms, belonging and a definable structure."
+    },
+    {
+      "claim": "Primary groups are always traditional and secondary groups are always modern.",
+      "correction": "The contrast is a useful type, but the chapter warns that a complete contrast is not an accurate description of reality and formal relations may become close over time."
+    },
+    {
+      "claim": "Modern class society provides perfect mobility.",
+      "correction": "Although class is more open and achievement-based than caste, sociological studies remain far from the ideal of perfect mobility."
+    },
+    {
+      "claim": "A role and a status mean the same thing.",
+      "correction": "Status is a social position with rights and duties; role is the dynamic or behavioural aspect of that status."
+    },
+    {
+      "claim": "Only women face role conflict.",
+      "correction": "The chapter uses Khasi matriliny to show intense role conflict for men and also describes strain experienced by women."
+    },
+    {
+      "claim": "Social control is exercised only through law and police.",
+      "correction": "Social control may be formal or informal and includes family, religion, kinship, praise, criticism, ridicule, body language, sanctions and force."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1 to explain why ordinary familiar words require precise sociological definitions.",
+    "Use NCERT Exercise 2 to classify the groups in a student's life sociologically.",
+    "Use NCERT Exercise 3 to analyse how stratification structures individual opportunities.",
+    "Use NCERT Exercise 5 to map a person's status set, roles and changes over time.",
+    "Use NCERT Exercise 4 to compare formal and informal social control in different social spheres."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with an EXERCISES section containing Questions 1–5.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

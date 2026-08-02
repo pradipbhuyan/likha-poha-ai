@@ -1,0 +1,78 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 17: Breathing and Exchange of Gases",
+  "central_question": "How does the human respiratory system move air, exchange gases and transport oxygen and carbon dioxide to support cellular metabolism?",
+  "in_scope_units": [
+    "Respiratory organs and the human respiratory system.",
+    "Mechanism of inspiration and expiration.",
+    "Respiratory volumes and pulmonary capacities.",
+    "Exchange of gases at alveoli and tissues.",
+    "Transport of oxygen and carbon dioxide in blood.",
+    "Neural and chemical regulation of respiration.",
+    "Respiratory disorders."
+  ],
+  "banned_topics": [
+    "Plant glycolysis and fermentation",
+    "Plant Krebs cycle and respiratory quotient",
+    "Photosynthetic carbon fixation"
+  ],
+  "must_include_keywords": [
+    "breathing",
+    "respiratory organs",
+    "nostrils",
+    "pharynx",
+    "larynx",
+    "trachea",
+    "bronchi",
+    "bronchioles",
+    "alveoli",
+    "pleura",
+    "diaphragm",
+    "inspiration",
+    "expiration",
+    "intrapulmonary pressure",
+    "tidal volume",
+    "IRV",
+    "ERV",
+    "residual volume",
+    "vital capacity",
+    "total lung capacity",
+    "partial pressure",
+    "diffusion membrane",
+    "haemoglobin",
+    "oxyhaemoglobin",
+    "oxygen dissociation curve",
+    "carbaminohaemoglobin",
+    "bicarbonate",
+    "carbonic anhydrase",
+    "respiratory rhythm centre",
+    "pneumotaxic centre",
+    "asthma",
+    "emphysema"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The lungs actively pull air inward.",
+      "correction": "Respiratory muscles enlarge the thorax, lowering intrapulmonary pressure so atmospheric pressure drives air in."
+    },
+    {
+      "claim": "Most CO2 is carried bound to haemoglobin.",
+      "correction": "About 70 percent is transported as bicarbonate; 20-25 percent as carbaminohaemoglobin."
+    },
+    {
+      "claim": "Oxygen is the main normal regulator of breathing.",
+      "correction": "CO2 and H+ are the more important chemical signals under normal conditions."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 3 to explain why alveoli are the principal exchange sites.",
+    "Use NCERT Exercise 13 to compare respiratory volumes and capacities.",
+    "Use NCERT Exercise 4 to organise CO2 transport.",
+    "Use NCERT Exercise 7 to trace respiratory regulation.",
+    "Use NCERT Exercise 14 to calculate approximate hourly tidal ventilation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-14 on capacities, diffusion, gas transport, inspiration, regulation and tidal-volume calculations.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

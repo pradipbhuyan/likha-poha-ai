@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 5: Morphology of Flowering Plants",
+  "central_question": "How are the external organs of flowering plants described, modified, and represented systematically for identification and classification?",
+  "in_scope_units": [
+    "Root systems, root functions, root regions, and tap, fibrous, and adventitious roots.",
+    "Stem origin, nodes, internodes, buds, functions, and modified roles.",
+    "Leaf parts, venation, simple and compound leaves, and phyllotaxy.",
+    "Racemose and cymose inflorescences.",
+    "Flower organisation, sexuality, symmetry, floral merosity, ovary position, and floral whorls.",
+    "Calyx, corolla, aestivation, androecium, gynoecium, and placentation.",
+    "Fruit formation, pericarp, drupes, and parthenocarpy.",
+    "Dicotyledonous and monocotyledonous seed structure.",
+    "Semi-technical description, floral formula, and floral diagram.",
+    "Vegetative and floral characteristics and economic importance of Solanaceae."
+  ],
+  "banned_topics": [
+    "Internal tissue anatomy of roots, stems, and leaves",
+    "Detailed physiology of photosynthesis and mineral absorption",
+    "Molecular mechanisms of fertilisation and seed development",
+    "Full taxonomic comparison of multiple flowering-plant families beyond Solanaceae"
+  ],
+  "must_include_keywords": [
+    "tap root",
+    "fibrous root",
+    "adventitious root",
+    "root cap",
+    "meristematic region",
+    "elongation region",
+    "maturation region",
+    "root hair",
+    "node",
+    "internode",
+    "terminal bud",
+    "axillary bud",
+    "leaf base",
+    "petiole",
+    "lamina",
+    "reticulate venation",
+    "parallel venation",
+    "simple leaf",
+    "compound leaf",
+    "pinnately compound",
+    "palmately compound",
+    "phyllotaxy",
+    "racemose",
+    "cymose",
+    "flower",
+    "calyx",
+    "corolla",
+    "androecium",
+    "gynoecium",
+    "aestivation",
+    "placentation",
+    "hypogynous",
+    "perigynous",
+    "epigynous",
+    "fruit",
+    "seed",
+    "floral formula",
+    "floral diagram",
+    "Solanaceae"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every underground plant part is a root.",
+      "correction": "Underground stems can be identified by nodes, internodes, buds, and scale leaves; roots lack these stem characters."
+    },
+    {
+      "claim": "A leaflet of a compound leaf has an axillary bud.",
+      "correction": "The axillary bud occurs at the base of the whole leaf's petiole, not at the base of each leaflet."
+    },
+    {
+      "claim": "Racemose and cymose refer to flower symmetry.",
+      "correction": "They are inflorescence types distinguished by whether the main axis continues growing or ends in a flower."
+    },
+    {
+      "claim": "A superior ovary is positioned below all other floral parts.",
+      "correction": "In a hypogynous flower the ovary is superior because other whorls arise below it."
+    },
+    {
+      "claim": "All fruits form only after fertilisation.",
+      "correction": "Parthenocarpic fruits develop from the ovary without fertilisation."
+    },
+    {
+      "claim": "A monocot seed always lacks endosperm.",
+      "correction": "Most monocot seeds are endospermic, though orchids are a stated exception."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercises 1–2: compare compound leaves and explain alternate, opposite, and whorled phyllotaxy.",
+    "NCERT Exercises 3–4: define flower terms and differentiate racemose versus cymose and apocarpous versus syncarpous conditions.",
+    "NCERT Exercises 7–10: identify placentation, flower parts, inflorescences, and ovary position.",
+    "NCERT Exercise 5: label gram and maize seeds.",
+    "NCERT Exercise 6: prepare a semi-technical description and floral diagram of a Solanaceae flower."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–10 for leaves, flower terminology, inflorescence, placentation, seeds, and Solanaceae.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

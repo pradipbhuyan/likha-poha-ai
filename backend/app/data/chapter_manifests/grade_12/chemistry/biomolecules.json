@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Biomolecules",
+  "central_question": "How do the structures of carbohydrates, proteins, enzymes, vitamins, nucleic acids and hormones enable the chemical processes of life?",
+  "in_scope_units": [
+    "Classification, structure and reactions of carbohydrates.",
+    "Open-chain and cyclic structures of glucose and fructose, including anomers.",
+    "Disaccharides, glycosidic linkage and reducing versus non-reducing sugars.",
+    "Polysaccharides: starch, cellulose and glycogen and their biological roles.",
+    "Amino acids, zwitterions, peptide bonds and classification of proteins.",
+    "Primary, secondary, tertiary and quaternary protein structure and denaturation.",
+    "Enzymes and their catalytic action.",
+    "Classification, sources and deficiency roles of vitamins.",
+    "Nucleosides, nucleotides, DNA, RNA and biological functions of nucleic acids.",
+    "Hormones as intercellular messengers."
+  ],
+  "banned_topics": [
+    "Detailed metabolic pathways such as glycolysis, Krebs cycle and protein synthesis mechanisms beyond the chapter.",
+    "Full stereochemical R/S nomenclature of carbohydrates and amino acids.",
+    "Molecular genetics details beyond the basic DNA/RNA structure and functions presented."
+  ],
+  "must_include_keywords": [
+    "carbohydrate",
+    "monosaccharide",
+    "oligosaccharide",
+    "polysaccharide",
+    "reducing sugar",
+    "non-reducing sugar",
+    "aldose",
+    "ketose",
+    "glucose",
+    "fructose",
+    "D-configuration",
+    "anomer",
+    "pyranose",
+    "furanose",
+    "glycosidic linkage",
+    "sucrose",
+    "maltose",
+    "lactose",
+    "starch",
+    "amylose",
+    "amylopectin",
+    "cellulose",
+    "glycogen",
+    "amino acid",
+    "zwitterion",
+    "peptide bond",
+    "protein",
+    "alpha helix",
+    "beta pleated sheet",
+    "tertiary structure",
+    "quaternary structure",
+    "denaturation",
+    "enzyme",
+    "vitamin",
+    "nucleoside",
+    "nucleotide",
+    "DNA",
+    "RNA",
+    "complementary base pairing",
+    "hormone"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every compound with formula Cₓ(H₂O)ᵧ is a carbohydrate.",
+      "correction": "That empirical pattern is not a sufficient definition; carbohydrates are polyhydroxy aldehydes or ketones, or substances that yield them on hydrolysis."
+    },
+    {
+      "claim": "D and L indicate the direction of optical rotation.",
+      "correction": "D/L describe relative configuration; (+)/(−) separately indicate dextrorotation or laevorotation."
+    },
+    {
+      "claim": "Sucrose is a reducing sugar because it contains glucose and fructose.",
+      "correction": "Both anomeric carbons are involved in its glycosidic bond, so no free reducing group is available."
+    },
+    {
+      "claim": "Denaturation breaks all peptide bonds and converts protein into free amino acids.",
+      "correction": "Denaturation disrupts secondary and tertiary structure while primary covalent peptide-bond sequence generally remains intact."
+    },
+    {
+      "claim": "DNA and RNA differ only in their sugar.",
+      "correction": "They differ in sugar, one pyrimidine base, usual strand structure and major biological roles."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercises 10.1–10.3 on carbohydrate definitions and functions.",
+    "Use NCERT Exercises 10.7–10.10 for disaccharides and glucose structure evidence.",
+    "Use NCERT Exercises 10.11–10.18 for amino acids, protein structure, enzymes and denaturation.",
+    "Use NCERT Exercises 10.19–10.20 for vitamin classification and sources.",
+    "Finish with NCERT Exercises 10.21–10.25 for nucleic acids, nucleotides, DNA complementarity and RNA types."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 10.1 to 10.25 and cover carbohydrates, glucose, proteins, enzymes, vitamins and nucleic acids.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

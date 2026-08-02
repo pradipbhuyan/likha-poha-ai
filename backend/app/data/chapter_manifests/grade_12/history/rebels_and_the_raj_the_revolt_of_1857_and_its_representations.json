@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 12",
+  "subject": "History",
+  "chapter": "Rebels and the Raj: The Revolt of 1857 and Its Representations",
+  "central_question": "How did sepoy mutiny become a broad rebellion in 1857, what did different rebels seek, how was it suppressed, and how have competing images represented it?",
+  "in_scope_units": [
+    "The outbreak at Meerut and the capture of Delhi.",
+    "Patterns, communication and collective decision-making in the uprising.",
+    "Leaders, followers, rumours, prophecies and religious fears.",
+    "Awadh's annexation, taluqdars, peasants, sepoys and courtly society.",
+    "Rebel proclamations, unity, targets and alternative authority.",
+    "British military repression and punishment.",
+    "British visual narratives of saviours, women, vengeance and terror.",
+    "Nationalist images and historical methods for analysing representation."
+  ],
+  "banned_topics": [
+    "The colonial agrarian systems of Bengal and the Deccan before 1857, treated in the previous chapter.",
+    "Later organised nationalism and twentieth-century mass movements."
+  ],
+  "must_include_keywords": [
+    "Revolt of 1857",
+    "Meerut",
+    "Delhi",
+    "Bahadur Shah",
+    "sepoy mutiny",
+    "bell of arms",
+    "firangi",
+    "communication",
+    "regimental panchayats",
+    "Nana Sahib",
+    "Rani Lakshmibai",
+    "Kunwar Singh",
+    "Birjis Qadr",
+    "Shah Mal",
+    "Maulvi Ahmadullah Shah",
+    "Enfield cartridges",
+    "rumours",
+    "prophecy",
+    "chapattis",
+    "Awadh",
+    "Wajid Ali Shah",
+    "annexation",
+    "taluqdars",
+    "Summary Settlement",
+    "peasant grievances",
+    "rebel proclamations",
+    "Hindu-Muslim unity",
+    "alternative power",
+    "repression",
+    "summary trials",
+    "blowing from guns",
+    "British representations",
+    "vengeance",
+    "nationalist imagery",
+    "visual sources",
+    "victor and vanquished"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The revolt was either only a sepoy mutiny or a centrally planned national movement with one command.",
+      "correction": "It began as military mutiny, became a broad civilian rebellion and showed coordination, but no single command has been established for all regions."
+    },
+    {
+      "claim": "Religious rumour alone caused the revolt.",
+      "correction": "Religious fears were powerful, but annexation, military service, revenue, land loss and attacks on social authority also shaped participation."
+    },
+    {
+      "claim": "Paintings of 1857 are direct visual records of events.",
+      "correction": "They are constructed representations shaped by patrons, audiences and political aims and must be analysed critically."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2 on planning and coordination.",
+    "NCERT Exercise 3 on religious belief.",
+    "NCERT Exercise 6 on Awadh.",
+    "NCERT Exercise 7 on rebel aims.",
+    "NCERT Exercise 8 on visual representations."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with questions 1-5 in the 100-150 word section, essay questions 6-9, Map work 10 and Projects 11-12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

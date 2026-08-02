@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Some Basic Concepts of Chemistry",
+  "central_question": "How can chemical substances and reactions be measured, represented, and calculated accurately using fundamental laws and the mole concept?",
+  "in_scope_units": [
+    "Importance and development of chemistry; nature and classification of matter.",
+    "SI units, scientific notation, significant figures, accuracy, precision, and dimensional analysis.",
+    "Laws of chemical combination and Dalton atomic theory.",
+    "Atomic, molecular, and formula masses; mole and molar mass.",
+    "Percentage composition, formula determination, stoichiometry, limiting reagent, and concentration terms."
+  ],
+  "banned_topics": [
+    "Detailed atomic structure",
+    "Chemical bonding and geometry",
+    "Thermodynamic derivations",
+    "Organic reaction mechanisms"
+  ],
+  "must_include_keywords": [
+    "matter",
+    "element",
+    "compound",
+    "mixture",
+    "SI unit",
+    "scientific notation",
+    "significant figures",
+    "accuracy",
+    "precision",
+    "dimensional analysis",
+    "conservation of mass",
+    "definite proportions",
+    "multiple proportions",
+    "Gay Lussac law",
+    "Avogadro law",
+    "Dalton atomic theory",
+    "atomic mass",
+    "molecular mass",
+    "formula mass",
+    "mole",
+    "Avogadro constant",
+    "molar mass",
+    "percentage composition",
+    "empirical formula",
+    "molecular formula",
+    "stoichiometry",
+    "limiting reagent",
+    "molarity",
+    "molality",
+    "mass percent"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Accuracy and precision are identical.",
+      "correction": "Accuracy is closeness to an accepted value; precision is agreement among repeated values."
+    },
+    {
+      "claim": "One mole always weighs one gram.",
+      "correction": "A mole contains 6.022 × 10^23 entities and its mass equals the molar mass in grams."
+    },
+    {
+      "claim": "The smallest reactant mass is always limiting.",
+      "correction": "The limiting reagent is identified from stoichiometric mole ratios."
+    },
+    {
+      "claim": "Molarity and molality are interchangeable.",
+      "correction": "Molarity uses solution volume; molality uses solvent mass."
+    },
+    {
+      "claim": "Percentages can be used directly as formula subscripts.",
+      "correction": "Convert percentages to moles before finding the simplest ratio."
+    }
+  ],
+  "recommended_example_progression": [
+    "Classify samples of matter.",
+    "Apply SI units and significant-figure rules.",
+    "Verify chemical-combination laws.",
+    "Convert among particles, moles, and mass.",
+    "Solve formula, stoichiometric, and concentration problems."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter exercises on measurements, mole calculations, composition, empirical and molecular formulae, stoichiometry, molarity, and molality.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

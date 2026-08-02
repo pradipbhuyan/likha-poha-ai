@@ -1,0 +1,96 @@
+{
+  "manifest": {
+    "grade": "Grade 12",
+    "subject": "Biology",
+    "chapter": "Ecosystem",
+    "central_question": "How do ecosystem structure, productivity, decomposition and trophic energy transfer connect living organisms with their physical environment?",
+    "in_scope_units": [
+      "Ecosystem structure, species composition, stratification and pond ecosystem components.",
+      "Primary and secondary productivity, GPP, respiration and NPP.",
+      "Decomposition processes, humus, mineralisation and controlling factors.",
+      "Energy flow through grazing and detritus food chains, trophic levels and food webs.",
+      "Standing crop, the ten per cent law and limits on trophic levels.",
+      "Pyramids of number, biomass and energy and their limitations."
+    ],
+    "banned_topics": [
+      "Population growth equations and species interactions from Organisms and Populations.",
+      "Detailed biodiversity loss and conservation strategies from Biodiversity and Conservation.",
+      "Detailed global biogeochemical cycles beyond the chapter summary and stated scope."
+    ],
+    "must_include_keywords": [
+      "ecosystem",
+      "abiotic components",
+      "biotic components",
+      "species composition",
+      "stratification",
+      "pond ecosystem",
+      "producers",
+      "consumers",
+      "decomposers",
+      "productivity",
+      "gross primary productivity",
+      "net primary productivity",
+      "GPP",
+      "NPP",
+      "secondary productivity",
+      "detritus",
+      "fragmentation",
+      "leaching",
+      "catabolism",
+      "humification",
+      "humus",
+      "mineralisation",
+      "photosynthetically active radiation",
+      "PAR",
+      "grazing food chain",
+      "detritus food chain",
+      "food web",
+      "trophic level",
+      "standing crop",
+      "ten per cent law",
+      "ecological pyramid",
+      "pyramid of numbers",
+      "pyramid of biomass",
+      "pyramid of energy",
+      "upright pyramid",
+      "inverted pyramid"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "NPP is the total energy fixed before plant respiration.",
+        "correction": "GPP is total photosynthetic production; NPP equals GPP minus respiration losses."
+      },
+      {
+        "claim": "Decomposition is a single step performed only by bacteria.",
+        "correction": "It includes fragmentation, leaching, catabolism, humification and mineralisation, involving detritivores and microbial enzymes."
+      },
+      {
+        "claim": "Energy is recycled through an ecosystem like nutrients.",
+        "correction": "Energy flow is unidirectional and energy is lost as heat at each trophic transfer."
+      },
+      {
+        "claim": "Every ecological pyramid is upright.",
+        "correction": "Pyramids of numbers or biomass may be inverted, but the pyramid of energy is always upright."
+      },
+      {
+        "claim": "A species always occupies one fixed trophic level.",
+        "correction": "Trophic level is a functional feeding position; a species such as a sparrow may occupy more than one level."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Exercise 7 to identify abiotic and biotic ecosystem components.",
+      "Use NCERT Exercise 9 and GPP - R = NPP to explain primary productivity.",
+      "Use NCERT Exercise 10 to sequence decomposition processes and products.",
+      "Use NCERT Exercises 3, 5 and 11 to trace trophic levels, PAR and energy flow.",
+      "Use NCERT Exercise 8 to compare pyramids of number and biomass."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 11 and cover ecosystem components, productivity, decomposition, energy flow, food chains and ecological pyramids."
+  },
+  "lessons": {
+    "Concept introduction": "# Ecosystem structure and the pond model: Ecosystem\n\n## What you will learn\nYou will define an ecosystem and organise its abiotic and biotic components. You will use a pond to connect species composition, stratification, productivity, decomposition, energy flow and nutrient cycling.\n\n## Simple explanation\nAn ecosystem is a functional unit in which organisms interact with one another and with the physical environment. Its structure depends on the identities and vertical arrangement of organisms and on non-living conditions.\n\n## Step-by-step breakdown\n- **Ecosystem types**: Forests, grasslands and deserts are terrestrial; ponds, lakes, wetlands, rivers and estuaries are aquatic; crop fields and aquaria are man-made.\n- **Species composition**: Identification and enumeration of plant and animal species describes the biological composition of an ecosystem.\n- **Stratification**: Vertical distribution forms layers, such as trees above shrubs and herbs in a forest.\n- **Functional aspects**: Productivity, decomposition, energy flow and nutrient cycling show the ecosystem functioning as a unit.\n- **Pond abiotic components**: Water, dissolved inorganic and organic substances, bottom soil, sunlight, temperature and day length regulate the system.\n- **Pond producers**: Phytoplankton, algae and floating, submerged and marginal plants convert inorganic material into organic matter.\n- **Pond consumers**: Zooplankton and free-swimming and bottom-dwelling animals consume producers or other consumers.\n- **Pond decomposers**: Fungi, bacteria and flagellates are especially abundant near the bottom and mineralise dead matter.\n- **Energy direction**: Energy moves toward higher trophic levels and is dissipated as heat, while nutrients are returned for reuse.\n\n## Worked example\nQuestion: Based on NCERT Exercise 7, describe the main components of a pond ecosystem.\n\nSolution:\n- List abiotic water, dissolved substances, bottom soil and climatic inputs such as sunlight and temperature.\n- Identify producers as phytoplankton, algae and aquatic plants.\n- Identify consumers as zooplankton and other swimming or bottom-dwelling animals.\n- Identify fungi, bacteria and flagellates as decomposers.\n- Final answer: Explain that together they support production, consumption, decomposition and recycling.\n\n## Common mistake\nDo not define an ecosystem as only a community of organisms. The physical environment and its interaction with the community are essential.\n\n## Quick check question\nQuestion: What is stratification?\nAnswer: The vertical distribution of species at different levels or layers in an ecosystem.\nExplanation: Forest trees, shrubs and herbs occupy different vertical strata, creating a characteristic physical structure.\n\n## Summary\n- Ecosystems contain interacting abiotic and biotic components.\n- Species composition and stratification describe structure.\n- A pond demonstrates producers, consumers and decomposers.\n- Four major functions are productivity, decomposition, energy flow and nutrient cycling.\n- Energy is lost as heat while materials can be reused.",
+    "Core explanation": "# Productivity and decomposition: Ecosystem\n\n## What you will learn\nYou will distinguish GPP, NPP and secondary productivity and use the equation GPP - R = NPP. You will sequence decomposition and identify the chemical and climatic factors controlling it.\n\n## Simple explanation\nProducers capture solar energy and build biomass, while decomposers return dead organic matter to simpler inorganic forms. These processes connect energy input with nutrient availability.\n\n## Step-by-step breakdown\n- **Primary production**: It is biomass or organic matter produced by plants per unit area over a time period during photosynthesis.\n- **Productivity units**: Productivity is a rate expressed as mass or energy per unit area per unit time.\n- **GPP**: Gross primary productivity is the rate of total organic-matter production during photosynthesis.\n- **NPP**: Net primary productivity is GPP minus plant respiration, so GPP - R = NPP; it is the biomass available to heterotrophs.\n- **Secondary productivity**: This is the rate of new organic-matter formation by consumers.\n- **Detritus**: Dead leaves, bark, flowers, animal remains and faecal matter form the raw material for decomposition.\n- **Fragmentation**: Detritivores such as earthworms break detritus into smaller particles.\n- **Leaching and catabolism**: Water carries soluble nutrients into soil; bacterial and fungal enzymes convert detritus into simpler inorganic substances.\n- **Humification and mineralisation**: Humification forms resistant dark humus, while mineralisation releases inorganic nutrients from humus.\n- **Controls**: Warm, moist, oxygenated conditions favour decomposition; lignin, chitin, low temperature and anaerobiosis slow it.\n\n## Worked example\nQuestion: Based on NCERT Exercise 9, define primary productivity and state the factors that affect it.\n\nSolution:\n- Define it as the rate at which producers form biomass or organic matter per unit area per unit time.\n- Distinguish GPP from NPP by subtracting plant respiration.\n- Identify plant species, environmental conditions, nutrient availability and photosynthetic capacity as major controls.\n- Final answer: State that productivity therefore differs among ecosystems.\n\n## Common mistake\nDo not equate productivity with standing crop. Productivity is a rate; standing crop is the amount of living material present at a particular time.\n\n## Quick check question\nQuestion: What is the relationship between GPP and NPP?\nAnswer: NPP = GPP - R, where R is plant respiration loss.\nExplanation: The portion of gross production used in respiration is not available as new biomass for heterotrophs.\n\n## Summary\n- GPP is total photosynthetic production.\n- NPP is biomass remaining after respiration.\n- Secondary productivity belongs to consumers.\n- Decomposition includes five linked processes.\n- Warm, moist aerobic conditions generally accelerate decomposition.",
+    "Worked examples": "# Food chains, trophic levels and energy transfer: Ecosystem\n\n## What you will learn\nYou will compare grazing and detritus food chains and identify trophic levels. You will apply the ten per cent law and explain why energy transfer is unidirectional.\n\n## Simple explanation\nAlmost all ecosystems depend on solar energy captured by producers. Food chains and webs show how only a fraction of this energy reaches each higher feeding level.\n\n## Step-by-step breakdown\n- **PAR**: Less than 50 per cent of incident solar radiation is photosynthetically active radiation, and plants capture only about 2-10 per cent of PAR.\n- **Producers**: Green plants and photosynthetic bacteria make organic matter; phytoplankton and algae are important aquatic producers.\n- **Grazing food chain**: It begins with living producers, for example grass to goat to human.\n- **Detritus food chain**: It begins with dead organic matter and is dominated by fungi and bacteria called decomposers or saprotrophs.\n- **Food web**: Interconnections among food chains arise because organisms may have multiple foods and feeding roles.\n- **Trophic levels**: Producers occupy the first trophic level, herbivores the second and carnivores higher levels.\n- **Standing crop**: The mass or number of living organisms at a trophic level at a particular time is its standing crop.\n- **Ten per cent law**: Only about 10 per cent of energy at one trophic level is transferred to the next.\n- **Unidirectional flow**: Energy passes from sun to producers and consumers and is lost as heat; it is not recycled back to the sun.\n\n## Worked example\nQuestion: Using the ten per cent law described in Section 12.4, if producers contain 10,000 energy units, estimate the energy available to primary and secondary consumers.\n\nSolution:\n- Primary consumers receive about 10 per cent of producer energy.\n- Calculate 0.10 multiplied by 10,000, giving 1,000 energy units for primary consumers.\n- Secondary consumers receive about 10 per cent of the primary-consumer level.\n- Final answer: Calculate 0.10 multiplied by 1,000, giving 100 energy units for secondary consumers.\n\n## Common mistake\nDo not transfer 10 per cent of the original producer energy to every level. Each transfer is approximately 10 per cent of the immediately preceding level.\n\n## Quick check question\nQuestion: Which trophic level contains zooplankton in a typical lake food chain?\nAnswer: The second trophic level, as primary consumers feeding on phytoplankton.\nExplanation: Producers occupy the first trophic level and herbivorous consumers the second.\n\n## Summary\n- PAR is the usable portion of incident solar radiation.\n- GFC begins with living producers; DFC begins with detritus.\n- Food chains interconnect into food webs.\n- Trophic level describes feeding position.\n- Only about 10 per cent of energy passes to the next level.",
+    "Exam-style problems": "# Ecological pyramids: Ecosystem\n\n## What you will learn\nYou will compare pyramids of number, biomass and energy. You will explain upright and inverted forms and evaluate the limitations of ecological pyramids.\n\n## Simple explanation\nEcological pyramids summarise trophic relationships by number, biomass or energy. Their shapes depend on what is measured, but energy always decreases upward.\n\n## Step-by-step breakdown\n- **Pyramid structure**: Producers form the base and top consumers the apex.\n- **Pyramid of numbers**: It represents the number of organisms at each trophic level and may be upright or inverted, as when one tree supports many insects.\n- **Pyramid of biomass**: It compares standing biomass and is generally upright on land but may be inverted in the sea because a small phytoplankton standing crop supports larger consumer biomass through rapid turnover.\n- **Pyramid of energy**: It shows energy available per unit area per unit time and is always upright.\n- **Reason energy cannot invert**: Some energy is lost as heat during every trophic transfer.\n- **Functional trophic level**: A sparrow is a primary consumer when eating seeds and a secondary consumer when eating insects.\n- **Whole-level accounting**: All organisms at a trophic level must be included; selecting only a few gives misleading conclusions.\n- **Limitations**: Pyramids assume simple chains, do not represent food webs well, struggle with species occupying multiple levels and omit saprophytes despite their importance.\n\n## Worked example\nQuestion: Based on NCERT Exercise 8, compare pyramids of number and biomass with examples.\n\nSolution:\n- A pyramid of numbers counts individuals at successive trophic levels.\n- An upright pyramid occurs in many grasslands, but an inverted pyramid can occur when one large tree supports many insects and birds.\n- A pyramid of biomass compares the mass of organisms at each level.\n- Final answer: It is generally upright in terrestrial systems but often inverted in aquatic systems where phytoplankton biomass is lower than the biomass it supports.\n\n## Common mistake\nDo not infer that an inverted biomass pyramid violates energy laws. Biomass is a standing amount and can be low when producer turnover is rapid; energy flow remains upright.\n\n## Quick check question\nQuestion: Which ecological pyramid can never be inverted?\nAnswer: The pyramid of energy.\nExplanation: Energy is lost as heat at every transfer, so each higher trophic level has less energy than the level below.\n\n## Summary\n- Ecological pyramids represent number, biomass or energy.\n- Number and biomass pyramids can be inverted.\n- Energy pyramids are always upright.\n- Trophic level is a functional role.\n- Pyramids simplify and cannot fully represent food webs.",
+    "Revision and recap": "# Integrated ecosystem functioning: Ecosystem\n\n## What you will learn\nYou will integrate ecosystem structure, production, decomposition and energy transfer. You will use cause-and-effect links to review the whole chapter and avoid common conceptual confusions.\n\n## Simple explanation\nAn ecosystem persists because solar energy enters, producers make biomass, consumers transfer energy and decomposers release inorganic nutrients. Energy is progressively lost, but matter is returned to the environment for reuse.\n\n## Step-by-step breakdown\n- **Input**: Solar radiation supplies energy; nutrient availability and environmental conditions influence primary productivity.\n- **Transformation**: Producers convert inorganic materials into organic biomass through photosynthesis.\n- **Transfer**: Consumers obtain energy through grazing food chains and interconnected food webs.\n- **Detrital pathway**: Death and waste feed the detritus food chain and decomposer community.\n- **Return of nutrients**: Fragmentation, catabolism, humification and mineralisation release materials back to soil and water.\n- **Energy loss**: Respiration and trophic transfer dissipate energy as heat, preventing recycling of energy.\n- **Measurement**: Productivity is a rate, standing crop is an amount, BOD belongs to sewage treatment, and ecological pyramids represent trophic patterns.\n- **System view**: Abiotic and biotic components must be studied together because each ecosystem function depends on their interaction.\n\n## Worked example\nQuestion: Based on NCERT Exercise 11, give an account of energy flow in an ecosystem.\n\nSolution:\n- Sunlight is captured by producers, except in specialised deep-sea chemosynthetic systems.\n- Producers convert a small fraction of PAR into chemical energy and biomass.\n- Primary, secondary and higher consumers obtain energy by feeding at successive trophic levels.\n- Dead organisms and waste enter the detritus food chain and support decomposers.\n- Final answer: Only about 10 per cent passes to each next trophic level, while much energy is lost as heat, so flow is unidirectional.\n\n## Common mistake\nDo not say decomposers recycle energy to producers. They recycle nutrients; the energy they use is also dissipated as heat.\n\n## Quick check question\nQuestion: Why is a constant energy input required for an ecosystem?\nAnswer: Because usable energy is lost as heat during respiration and trophic transfer and cannot be completely recycled.\nExplanation: A continuing solar input offsets the unavoidable dissipation described by thermodynamic principles.\n\n## Summary\n- Ecosystem structure links organisms with physical conditions.\n- Productivity converts solar input into biomass.\n- Decomposition returns nutrients to the abiotic environment.\n- Energy moves through chains and webs and is lost as heat.\n- Matter cycles, but energy flow is one-way."
+  }
+}

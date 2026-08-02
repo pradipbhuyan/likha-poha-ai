@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Secularism",
+  "central_question": "How should a democratic state relate to religion so that individuals and communities enjoy freedom and equality without inter- or intra-religious domination?",
+  "in_scope_units": [
+    "What is Secularism: inter-religious and intra-religious domination, religious freedom and equality.",
+    "Secular State: theocracy, established religion, separation and secular public goals.",
+    "The Western Model of Secularism through mutual exclusion and individual rights.",
+    "The Indian Model of Secularism through diversity, minority rights, reform, Nehru and principled distance.",
+    "Criticisms of Indian Secularism: anti-religiousness, western import, minoritism, interventionism, vote-bank politics and the impossible-project claim."
+  ],
+  "banned_topics": [
+    "Detailed nationalism and national self-determination, which belong to Nationalism.",
+    "Detailed freedom of expression and the harm principle, which belong to Freedom.",
+    "Detailed constitutional institutional structure, which belongs to the Indian Constitution at Work textbook."
+  ],
+  "must_include_keywords": [
+    "secularism",
+    "inter-religious domination",
+    "intra-religious domination",
+    "religious freedom",
+    "religious equality",
+    "religious identity",
+    "secular state",
+    "theocracy",
+    "established religion",
+    "separation of religion and state",
+    "peace",
+    "discrimination",
+    "exclusion",
+    "western model",
+    "mutual exclusion",
+    "individual rights",
+    "community rights",
+    "minority rights",
+    "Indian secularism",
+    "religious diversity",
+    "state-supported reform",
+    "untouchability",
+    "child marriage",
+    "educational institutions",
+    "Nehru",
+    "communalism",
+    "principled distance",
+    "equal protection",
+    "minority community",
+    "anti-religious criticism",
+    "western import",
+    "minoritism",
+    "interventionism",
+    "personal laws",
+    "vote-bank politics",
+    "equal dignity"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Secularism is hostility to religion.",
+      "correction": "It opposes institutionalised religious domination while protecting religious freedom and identity."
+    },
+    {
+      "claim": "Keeping priests out of government is sufficient for a secular state.",
+      "correction": "The state must also avoid an official religious alliance and promote freedom and equality within and between religions."
+    },
+    {
+      "claim": "All secular states must follow strict mutual exclusion.",
+      "correction": "Indian secularism follows principled distance and may engage with religion to protect rights or support reform."
+    },
+    {
+      "claim": "Minority rights are necessarily special privileges.",
+      "correction": "They can protect fundamental interests and provide equal dignity and access where majority structures create disadvantage."
+    },
+    {
+      "claim": "Principled distance gives the state unlimited discretion.",
+      "correction": "Engagement or non-engagement must be justified by consistent secular values such as peace, freedom and equality."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise Q3 on secularism and religious tolerance.",
+    "Use NCERT Exercise Q1 to test which state actions are compatible with secularism.",
+    "Use NCERT Exercise Q2 to compare western and Indian models.",
+    "Use NCERT Exercise Q6 to explain principled distance.",
+    "Conclude with NCERT Exercise Q4 on major criticisms and misconceptions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–6 on compatible practices, western and Indian models, tolerance, criticisms, religion–state relations and principled distance.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

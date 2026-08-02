@@ -1,0 +1,73 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 10: Wave Optics",
+  "central_question": "How does the wave nature of light explain reflection, refraction, interference, diffraction and polarisation?",
+  "in_scope_units": [
+    "Historical wave models",
+    "Huygens’ principle and wavefronts",
+    "Reflection and refraction with wavefronts",
+    "Coherent and incoherent addition",
+    "Young’s double-slit interference",
+    "Single-slit diffraction",
+    "Limits of ray optics",
+    "Polarisation and Malus’ law"
+  ],
+  "banned_topics": [
+    "Detailed mirror, lens and prism calculations from Chapter 9",
+    "Photoelectric-effect quantum theory beyond the chapter comparison",
+    "Electromagnetic spectrum classification from Chapter 8"
+  ],
+  "must_include_keywords": [
+    "wavefront",
+    "Huygens’ principle",
+    "secondary wavelets",
+    "envelope",
+    "plane wavefront",
+    "spherical wavefront",
+    "reflection",
+    "refraction",
+    "superposition principle",
+    "coherent sources",
+    "phase difference",
+    "constructive interference",
+    "destructive interference",
+    "Young’s double-slit experiment",
+    "fringe width",
+    "path difference",
+    "diffraction",
+    "single slit",
+    "central maximum",
+    "resolving limit",
+    "transverse wave",
+    "polarisation",
+    "unpolarised light",
+    "polaroid",
+    "pass-axis",
+    "Malus’ law"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Coherent intensities simply add at every point.",
+      "correction": "Amplitudes superpose first, producing an interference term in intensity."
+    },
+    {
+      "claim": "Diffraction is unrelated to interference.",
+      "correction": "It is interference among wavelets from different parts of an aperture."
+    },
+    {
+      "claim": "Longitudinal waves can be plane polarised like light.",
+      "correction": "Polarisation is characteristic of transverse waves."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 10.1: frequency, speed and intensity concepts",
+    "NCERT Exercise 10.2: wavefront shapes",
+    "NCERT Exercise 10.4: Young-fringe wavelength",
+    "NCERT Exercise 10.5: intensity from path difference",
+    "NCERT Example 10.2: three polaroids"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES begin at 10.1 and cover wavefronts, interference and related wave properties.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

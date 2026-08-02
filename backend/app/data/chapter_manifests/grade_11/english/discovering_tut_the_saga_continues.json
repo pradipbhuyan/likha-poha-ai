@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 11",
+  "subject": "English",
+  "chapter": "Discovering Tut: the Saga Continues",
+  "central_question": "How does the investigation of King Tut’s mummy show the changing relationship between archaeology, technology, historical mystery and respect for the dead?",
+  "in_scope_units": [
+    "King Tut’s mummy is removed from its tomb on 5 January 2005 for a CT scan in the Valley of the Kings.",
+    "Howard Carter’s 1922 discovery reveals extraordinary funerary treasures and hardened ritual resins.",
+    "Carter’s team chisels and dismembers the mummy to separate it from the coffin and gold adornments.",
+    "The chapter contrasts treasure-centred archaeology with later X-ray and computed-tomography methods.",
+    "Tut’s family line, Akhenaten’s religious changes and Tutankhamun’s restoration provide historical context.",
+    "The Egyptian Mummy Project produces detailed cross-sectional images despite a temporary scanner failure.",
+    "The final sections address evidence, scientific intervention, tradition, language extinction, collocations, medical terms, astronomy and plants."
+  ],
+  "banned_topics": [
+    "The adjacent poems The Laburnum Top and The Voice of the Rain",
+    "Later scientific findings about Tut not included in the source",
+    "A definite modern diagnosis of Tut’s cause of death",
+    "Claims that the pharaoh’s curse is established fact"
+  ],
+  "must_include_keywords": [
+    "A. R. Williams",
+    "King Tut",
+    "Tutankhamun",
+    "Tutankhaten",
+    "Valley of the Kings",
+    "mummy",
+    "CT scan",
+    "computed tomography",
+    "forensic reconstruction",
+    "Zahi Hawass",
+    "Howard Carter",
+    "1922 discovery",
+    "funerary treasures",
+    "three nested coffins",
+    "ritual resins",
+    "solid gold coffin",
+    "chiselling",
+    "gold adornments",
+    "archaeology",
+    "1968 X-ray",
+    "breast-bone",
+    "front ribs",
+    "three-dimensional virtual body",
+    "Amenhotep III",
+    "Amenhotep IV",
+    "Akhenaten",
+    "Aten",
+    "Amun",
+    "Smenkhkare",
+    "eighteenth dynasty",
+    "Egyptian Mummy Project",
+    "1,700 images",
+    "eerie detail",
+    "scanner fan",
+    "pharaoh’s curse",
+    "Orion",
+    "Osiris",
+    "scientific intervention",
+    "respect for traditions"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The CT scan solves the mystery of Tut’s death conclusively.",
+      "correction": "The scan supplies detailed data and images, but the chapter does not state a conclusive cause of death."
+    },
+    {
+      "claim": "Howard Carter destroys the mummy simply out of carelessness.",
+      "correction": "The text criticises the damage but also explains that hardened resins and the threat of thieves left him little choice."
+    },
+    {
+      "claim": "Tut is buried only with luxury objects.",
+      "correction": "The tomb contains gold treasures as well as board games, a razor, linen garments, food and wine for the afterlife."
+    },
+    {
+      "claim": "Akhenaten and Tutankhamun promoted the same religious policy.",
+      "correction": "Akhenaten elevated Aten and attacked Amun; Tutankhamun restored the old ways and changed his name accordingly."
+    },
+    {
+      "claim": "The scanner failure proves the pharaoh’s curse.",
+      "correction": "Sand in a cooler fan causes the failure; the guard’s curse remark is a nervous joke."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Understanding the Text Q1(i-iii) on repeated scrutiny, resentment of Carter and the chiselling of resins.",
+    "Use Understanding the Text Q1(iv-v) for funerary treasures and Tut’s change of name.",
+    "Use Understanding the Text Q2(i) for Akhenaten’s deeds and the restoration under Tut.",
+    "Use Understanding the Text Q2(ii-iv) for CT results, technological advances and the phrase “in death, as in life.”",
+    "Conclude with Talking About the Text, Working with Words and Things to Do on scientific intervention, traditions, collocations, medical terms, constellations and plants."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Understanding the Text questions 1(i-v) and 2(i-iv), four Talking About the Text debates, Thinking About Language, two Working with Words tasks and three Things to Do activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

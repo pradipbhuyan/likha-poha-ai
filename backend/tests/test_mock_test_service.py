@@ -60,6 +60,12 @@ def test_cbse_mock_test_reports_preparing_when_bank_empty(monkeypatch):
     monkeypatch.setattr(
         mock_test_service, "get_bank_capacity", lambda *args, **kwargs: 0
     )
+    monkeypatch.setattr(
+        mock_test_service, "get_questions_from_bank_fuzzy", lambda **kwargs: []
+    )
+    monkeypatch.setattr(
+        mock_test_service, "get_bank_capacity_fuzzy", lambda *args, **kwargs: 0
+    )
 
     with pytest.raises(ValueError) as error:
         mock_test_service.generate_cbse_mock_test(
@@ -94,7 +100,7 @@ def test_cbse_mock_test_with_multiple_chapters_uses_multi_chapter_sampler(monkey
         return [_bank_question(i) for i in range(1, 21)]
 
     monkeypatch.setattr(
-        mock_test_service, "get_questions_from_bank_multi_chapter", fake_multi
+        mock_test_service, "get_questions_from_bank_multi_chapter_with_fallback", fake_multi
     )
 
     questions = mock_test_service.generate_cbse_mock_test(
@@ -116,7 +122,7 @@ def test_cbse_mock_test_multi_chapter_reports_combined_shortfall(monkeypatch):
     should see a shortfall message covering the combined selection."""
     _forbid_llm(monkeypatch)
     monkeypatch.setattr(
-        mock_test_service, "get_questions_from_bank_multi_chapter", lambda **kwargs: []
+        mock_test_service, "get_questions_from_bank_multi_chapter_with_fallback", lambda **kwargs: []
     )
     monkeypatch.setattr(
         mock_test_service, "get_bank_capacity_with_fallback", lambda *a, **k: 3

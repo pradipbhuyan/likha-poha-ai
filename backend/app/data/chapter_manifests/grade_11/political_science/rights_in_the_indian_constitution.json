@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Rights in the Indian Constitution",
+  "central_question": "How does the Indian Constitution define, protect, limit and enforce Fundamental Rights while linking them to social welfare and Directive Principles?",
+  "in_scope_units": [
+    "The importance of rights through the Asian Games workers’ case and the long detention of Machal Lalung.",
+    "The meaning of a Bill of Rights and the special constitutional status of Fundamental Rights.",
+    "Right to Equality, non-discrimination, abolition of untouchability, equality of opportunity and reservations.",
+    "Right to Freedom, life and personal liberty, safeguards on arrest, preventive detention and rights of the accused.",
+    "Right against Exploitation and the prohibition of forced labour, trafficking and hazardous child labour.",
+    "Right to Freedom of Religion and the constitutional approach to individual and collective religious freedom.",
+    "Cultural and Educational Rights of minorities.",
+    "Right to Constitutional Remedies, writs and the role of courts in enforcing rights.",
+    "Directive Principles of State Policy, Fundamental Duties and the relationship between rights and welfare goals."
+  ],
+  "banned_topics": [
+    "A complete philosophical theory of negative and positive liberty beyond the rights framework in the supplied source.",
+    "Detailed election systems, executive powers, parliamentary procedure or judicial appointments.",
+    "Rights not mentioned by the supplied chapter presented as expressly listed Fundamental Rights."
+  ],
+  "must_include_keywords": [
+    "Fundamental Rights",
+    "Bill of Rights",
+    "Supreme Court",
+    "right against exploitation",
+    "life and personal liberty",
+    "fair and speedy trial",
+    "Right to Equality",
+    "equality before law",
+    "non-discrimination",
+    "untouchability",
+    "reservation",
+    "Article 16(4)",
+    "Right to Freedom",
+    "speech and expression",
+    "peaceful assembly",
+    "association",
+    "movement",
+    "profession",
+    "Article 21",
+    "preventive detention",
+    "rights of accused",
+    "forced labour",
+    "begar",
+    "trafficking",
+    "child labour",
+    "freedom of religion",
+    "freedom of conscience",
+    "minority rights",
+    "Cultural and Educational Rights",
+    "constitutional remedies",
+    "writs",
+    "Directive Principles of State Policy",
+    "Fundamental Duties",
+    "reasonable restrictions",
+    "judicial protection"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Fundamental Rights are absolute and can never be restricted.",
+      "correction": "They are specially protected but not absolute; government may impose constitutionally reasonable restrictions."
+    },
+    {
+      "claim": "Equality means government can never adopt special measures for disadvantaged groups.",
+      "correction": "Article 16(4) and equality of opportunity permit reservations and measures for inadequately represented or disadvantaged groups."
+    },
+    {
+      "claim": "Right to life protects only physical survival.",
+      "correction": "The chapter explains that judicial interpretation includes human dignity, shelter and livelihood."
+    },
+    {
+      "claim": "Preventive detention occurs only after a person commits an offence.",
+      "correction": "It permits detention based on apprehension of a threat, subject to constitutional procedures, and the chapter warns of misuse."
+    },
+    {
+      "claim": "Directive Principles are enforceable exactly like Fundamental Rights.",
+      "correction": "Directive Principles guide policy but are non-justiciable, while Fundamental Rights can be enforced through courts."
+    },
+    {
+      "claim": "The Right to Constitutional Remedies is unrelated to other rights.",
+      "correction": "It is the means through which courts issue orders and writs to protect and restore Fundamental Rights."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Asian Games construction workers example on minimum wages and forced labour.",
+    "NCERT Machal Lalung example on life, liberty and fair and speedy trial.",
+    "NCERT ‘You are the Judge’ case on caste violence and customary labour.",
+    "NCERT ‘Check your progress’ situations on reasonable restrictions on freedom.",
+    "NCERT Exercise 8 on hunger, stored food grains, public distribution and the expanded meaning of right to life."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section titled ’Exercises’ contains Questions 1‘10 on the Bill of Rights, Fundamental Rights, violations, Directive Principles and constitutional remedies.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

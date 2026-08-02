@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Regional Aspirations",
+  "central_question": "How has Indian democracy tried to accommodate regional identities, autonomy demands and separatist movements while preserving national unity?",
+  "in_scope_units": [
+    "Region and the Nation: the democratic balance between unity and diversity.",
+    "Indian approach and areas of tension: accommodation, federalism and state reorganisation.",
+    "Dravidian movement: democratic regional assertion in Tamil Nadu.",
+    "Jammu and Kashmir: roots, internal and external disputes, insurgency and later political changes.",
+    "Punjab: Anandpur Sahib Resolution, militancy, Operation Blue Star, anti-Sikh violence and the Punjab Accord.",
+    "The North-East: autonomy demands, secessionist movements and opposition to outsiders.",
+    "Mizoram and Nagaland: contrasting outcomes of negotiated settlement and unresolved conflict.",
+    "Assam movement: cultural pride, migration, economic grievances and the Assam Accord.",
+    "Sikkim’s merger and Goa’s liberation: democratic integration and regional identity.",
+    "Accommodation and National Integration: lessons about negotiation, power sharing, development and flexible federalism."
+  ],
+  "banned_topics": [
+    "The causes and consequences of the 1975 Emergency, which belong to the previous chapter.",
+    "Detailed coalition politics after 1989 and the Mandal Commission, which belong to the chapter on Recent Developments in Indian Politics."
+  ],
+  "must_include_keywords": [
+    "regional aspirations",
+    "unity and diversity",
+    "democratic accommodation",
+    "federalism",
+    "linguistic States",
+    "Dravidian movement",
+    "Periyar",
+    "DMK",
+    "AIADMK",
+    "Jammu and Kashmir",
+    "Kashmiriyat",
+    "Sheikh Abdullah",
+    "Instrument of Accession",
+    "Article 370",
+    "insurgency",
+    "Punjab",
+    "Akali Dal",
+    "Anandpur Sahib Resolution",
+    "Operation Blue Star",
+    "Rajiv Gandhi–Longowal Accord",
+    "North-East",
+    "autonomy",
+    "secession",
+    "outsiders",
+    "Mizo National Front",
+    "Laldenga",
+    "Mizoram Accord",
+    "Nagaland",
+    "Angami Zapu Phizo",
+    "AASU",
+    "Assam Accord",
+    "Sikkim",
+    "Goa",
+    "power sharing",
+    "regional imbalance",
+    "Sixth Schedule"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every regional movement demanded separation from India.",
+      "correction": "Regional movements ranged from demands for statehood, language rights and autonomy to secession; many worked within the constitutional and electoral framework."
+    },
+    {
+      "claim": "The Dravidian movement succeeded mainly through armed struggle.",
+      "correction": "It used public debate, agitation and electoral politics rather than armed struggle, and became an example of compatibility between regionalism and nationalism."
+    },
+    {
+      "claim": "The North-East had only one type of regional demand.",
+      "correction": "The chapter identifies three broad issues: autonomy, secession and opposition to outsiders."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 8 to show that regional movements do not necessarily become separatist.",
+    "Use NCERT Exercise 5 to explain internal divisions and multiple aspirations in Jammu and Kashmir.",
+    "Use NCERT Exercise 3 to analyse the provisions and possible tensions of the Punjab Accord.",
+    "Use NCERT Exercise 7 to connect cultural pride and economic backwardness in the Assam movement.",
+    "Use NCERT Exercise 9 to evaluate regional demands through the principle of unity with diversity."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with an EXERCISES section containing Questions 1–10.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 12",
+  "subject": "Psychology",
+  "chapter": "Meeting Life Challenges",
+  "central_question": "How does stress arise from the interaction between people and life demands, and how can coping, life skills and positive health reduce its harmful effects?",
+  "in_scope_units": [
+    "Nature and appraisal of stress",
+    "Types, signs and sources",
+    "Life events, hassles and trauma",
+    "Effects on functioning and health",
+    "GAS and immunity",
+    "Coping and management",
+    "Positive health, life skills and resilience"
+  ],
+  "banned_topics": [
+    "Diagnosis of disorders",
+    "Detailed psychotherapy systems",
+    "Detailed personality theories"
+  ],
+  "must_include_keywords": [
+    "stress",
+    "stressor",
+    "strain",
+    "eustress",
+    "distress",
+    "homeostasis",
+    "primary appraisal",
+    "secondary appraisal",
+    "harm",
+    "threat",
+    "challenge",
+    "physical and environmental stress",
+    "psychological stress",
+    "social stress",
+    "life events",
+    "daily hassles",
+    "traumatic events",
+    "examination anxiety",
+    "burnout",
+    "General Adaptation Syndrome",
+    "alarm reaction",
+    "resistance",
+    "exhaustion",
+    "psychoneuroimmunology",
+    "coping",
+    "task-oriented",
+    "emotion-oriented",
+    "avoidance-oriented",
+    "problem-focused",
+    "emotion-focused",
+    "relaxation",
+    "meditation",
+    "biofeedback",
+    "stress inoculation",
+    "hardiness",
+    "life skills",
+    "resilience",
+    "optimism",
+    "social support"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All stress is harmful.",
+      "correction": "Eustress can energise performance, while distress occurs when demands overwhelm coping."
+    },
+    {
+      "claim": "The same event creates equal stress in everyone.",
+      "correction": "Appraisal, experience, control, health, culture and resources make the response individual."
+    }
+  ],
+  "recommended_example_progression": [
+    "Opening case of Raj: classify stress effects.",
+    "NCERT Activity 3.1: identify warning signs.",
+    "NCERT Activity 3.4: classify coping behaviours.",
+    "NCERT Review Question 3: explain GAS.",
+    "NCERT Review Questions 6–8: connect life skills, health and immunity."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Review Questions contain Questions 1–12, followed by two Project Ideas.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

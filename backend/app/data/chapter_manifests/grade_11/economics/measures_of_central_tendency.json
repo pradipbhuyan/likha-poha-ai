@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Measures of Central Tendency",
+  "central_question": "How can a data set be summarised by an appropriate representative value using arithmetic mean, median, or mode?",
+  "in_scope_units": [
+    "Introduction to central tendency as the summary of a data set through a typical or representative value.",
+    "Arithmetic mean for ungrouped data by direct, assumed-mean, and step-deviation methods.",
+    "Arithmetic mean for grouped discrete and continuous series using frequencies and class midpoints.",
+    "Properties of arithmetic mean and the use of weighted arithmetic mean.",
+    "Median for individual, discrete, and continuous series and its resistance to extreme values.",
+    "Quartiles and percentiles as positional measures that divide ordered data.",
+    "Mode for discrete and continuous series, including unimodal, bimodal, multimodal, and no-mode situations.",
+    "Relative position of arithmetic mean, median, and mode and selection of an average according to purpose.",
+    "Conclusion and recap on the strengths and limitations of the three averages."
+  ],
+  "banned_topics": [
+    "Measures of dispersion such as range and standard deviation",
+    "Correlation analysis",
+    "Construction of index numbers",
+    "Detailed graphical presentation of data"
+  ],
+  "must_include_keywords": [
+    "central tendency",
+    "representative value",
+    "average",
+    "arithmetic mean",
+    "direct method",
+    "assumed mean",
+    "deviation",
+    "step deviation",
+    "common factor",
+    "ungrouped data",
+    "grouped data",
+    "discrete series",
+    "continuous series",
+    "frequency",
+    "class midpoint",
+    "weighted arithmetic mean",
+    "weights",
+    "sum of deviations",
+    "extreme values",
+    "median",
+    "positional value",
+    "ordered array",
+    "cumulative frequency",
+    "median class",
+    "quartiles",
+    "lower quartile",
+    "upper quartile",
+    "percentiles",
+    "mode",
+    "modal class",
+    "unimodal",
+    "bimodal",
+    "multimodal",
+    "open-ended distribution"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Arithmetic mean is a positional average.",
+      "correction": "Arithmetic mean is based on all observation values, while median is a positional value."
+    },
+    {
+      "claim": "The position formula gives the median value directly.",
+      "correction": "For individual data, the position formula identifies the item location in an ordered array; the value at that location is the median."
+    },
+    {
+      "claim": "Median is strongly affected by an extremely large observation.",
+      "correction": "Median depends mainly on position and remains comparatively unaffected by changes in extreme values."
+    },
+    {
+      "claim": "Mode is always unique.",
+      "correction": "A series may be unimodal, bimodal, multimodal, or may have no mode."
+    },
+    {
+      "claim": "One average is best for every purpose.",
+      "correction": "The appropriate average depends on the nature of the data and the purpose of analysis."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the Balapur farmer illustration to compare the meanings of arithmetic mean, median, and mode.",
+    "Use NCERT Example 1 and Example 2 to contrast direct, assumed-mean, and step-deviation methods.",
+    "Use NCERT Example 4 to explain grouped continuous data through class midpoints and frequencies.",
+    "Use NCERT Example 6, Example 7, and Example 8 to develop median from individual to continuous series.",
+    "Use NCERT Example 10 and Example 11 to interpret mode in discrete and continuous distributions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–9 covering the choice of averages, conceptual properties, missing frequency, and mean, median, quartile, and mode calculations.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

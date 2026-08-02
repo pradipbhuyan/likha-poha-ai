@@ -1,0 +1,68 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Relations and Functions",
+  "central_question": "How can relations and functions be classified, combined and inverted using precise set-theoretic conditions?",
+  "in_scope_units": [
+    "1.1 Introduction: relations as subsets of Cartesian products and functions as special relations.",
+    "1.2 Types of Relations: reflexive, symmetric, transitive and equivalence relations.",
+    "1.3 Types of Functions: one-one, many-one, into, onto and bijective functions.",
+    "1.4 Composition of Functions and Invertible Function: composition, identity maps and inverse functions.",
+    "1.5 Binary Operations: closure and binary operations on a set."
+  ],
+  "banned_topics": [
+    "Inverse trigonometric functions",
+    "Matrix algebra",
+    "Limits and continuity"
+  ],
+  "must_include_keywords": [
+    "relation",
+    "Cartesian product",
+    "domain",
+    "co-domain",
+    "range",
+    "reflexive",
+    "symmetric",
+    "transitive",
+    "equivalence relation",
+    "equivalence class",
+    "one-one",
+    "injective",
+    "onto",
+    "surjective",
+    "bijective",
+    "composition",
+    "identity function",
+    "invertible function",
+    "inverse function",
+    "binary operation",
+    "closure"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every symmetric relation is an equivalence relation.",
+      "correction": "An equivalence relation must be reflexive, symmetric and transitive."
+    },
+    {
+      "claim": "A one-one function is automatically onto.",
+      "correction": "One-one and onto are independent in general; on a finite set X, a map X to X that is one-one is onto."
+    },
+    {
+      "claim": "If f and g are invertible, then the inverse of g o f is g inverse o f inverse.",
+      "correction": "The order reverses: (g o f)^(-1) = f^(-1) o g^(-1)."
+    },
+    {
+      "claim": "Any rule on A x A is a binary operation on A.",
+      "correction": "The output must belong to A for every ordered pair in A x A."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 5 to verify that divisibility of a-b by 2 defines an equivalence relation on integers.",
+    "Use NCERT Exercise 1.2 Question 7(i) to classify f(x)=3-4x as one-one and onto.",
+    "Use the NCERT composition example with f(x)=4x+3 to obtain and verify the inverse.",
+    "Use NCERT Exercise 1.4 questions to test whether a stated rule is a binary operation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 1.1 to 1.4 followed by the Miscellaneous Exercise on Chapter 1.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

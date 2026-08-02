@@ -148,7 +148,9 @@ export async function authFetch(path, options = {}) {
       } catch { /* ignore */ }
     }
 
-    throw new Error(message);
+    const err = new Error(message);
+    err.status = response.status;
+    throw err;
   }
 
   return response.json();

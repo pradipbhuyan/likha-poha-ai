@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 11",
+  "subject": "English",
+  "chapter": "The Tale of Melon City",
+  "central_question": "How does the poem use an absurd chain of justice to expose foolish government and show why the people value peace and liberty above the ruler’s identity?",
+  "in_scope_units": [
+    "The King orders a triumphal arch, but its low height knocks off his crown.",
+    "Responsibility is passed from the chief builder to the workmen, masons, architect and finally the King.",
+    "The wisest man blames the arch, while public impatience turns justice into a demand for any immediate hanging.",
+    "The King alone fits the noose and is executed by his own royal decree.",
+    "An idiot’s customary answer leads the ministers to crown a melon as the next ruler.",
+    "The citizens accept the Melon King because they retain peace and liberty.",
+    "The end questions develop narration, political interpretation, humour, irony and verse form."
+  ],
+  "banned_topics": [
+    "Historical claims about an actual Melon City or king",
+    "Modern constitutional theory not discussed in the poem",
+    "Biographical details about Vikram Seth beyond the source introduction"
+  ],
+  "must_include_keywords": [
+    "Vikram Seth",
+    "narrative poem",
+    "just and placid King",
+    "arch",
+    "major thoroughfare",
+    "crown",
+    "chief of builders",
+    "workmen",
+    "bricks",
+    "masons",
+    "architect",
+    "amendments",
+    "wisest man",
+    "culprit",
+    "scaffold",
+    "Councillor",
+    "crowd",
+    "noose",
+    "Royal Decree",
+    "Ministers",
+    "City Gate",
+    "customary choice",
+    "idiot",
+    "melon",
+    "throne",
+    "Peace",
+    "Liberty",
+    "laissez faire",
+    "humour",
+    "irony",
+    "satire",
+    "repetition",
+    "rhyming couplets",
+    "absurd justice"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The King is a wise and fair ruler because he repeatedly calls himself just.",
+      "correction": "His decisions are impulsive and contradictory; the repeated description “just and placid” is ironic."
+    },
+    {
+      "claim": "The architect is executed for the faulty arch.",
+      "correction": "The blame returns to the King because he had altered the plans, and the King is eventually hanged because he alone fits the noose."
+    },
+    {
+      "claim": "The people choose the melon after careful political debate.",
+      "correction": "The next passer-by is an idiot whose standard answer is “A melon,” and custom makes that answer binding."
+    },
+    {
+      "claim": "The poem praises complete political indifference.",
+      "correction": "Its closing reference to laissez faire is satirical and must be read alongside the absurd administration."
+    },
+    {
+      "claim": "The humour is separate from the poem’s message.",
+      "correction": "Humour and irony expose mechanical justice, fearful ministers and passive citizenship."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Q1 by narrating the complete cause-and-effect chain in one’s own words.",
+    "Use NCERT Q2 to analyse the ironic description “just and placid.”",
+    "Use NCERT Q4 to identify humour and irony at the blame-shifting, hanging and coronation stages.",
+    "Conclude with NCERT Q3 and Q5 on peace, liberty and the charm of verse narration."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The poem ends with five numbered questions on narration, the state and its King, peace and liberty, humour and irony, and verse storytelling.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

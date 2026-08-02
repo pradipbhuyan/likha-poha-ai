@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Natural Hazards and Disasters",
+  "central_question": "Why do natural and human-induced hazards become disasters in India, and how can vulnerability, loss and recovery be managed?",
+  "in_scope_units": [
+    "Meaning of hazard, disaster and vulnerability.",
+    "Natural and human causes and classification of disasters.",
+    "Earthquakes, hazard zones, consequences and mitigation.",
+    "Tsunamis and tropical cyclones.",
+    "Floods, droughts and landslides.",
+    "Pre-disaster, during-disaster and post-disaster management."
+  ],
+  "banned_topics": [
+    "Detailed plate-boundary theory, which belongs to Distribution of Oceans and Continents.",
+    "Detailed monsoon seasons, which belong to Climate.",
+    "Detailed geomorphic-process classification, which belongs to Geomorphic Processes."
+  ],
+  "must_include_keywords": [
+    "natural hazard",
+    "disaster",
+    "vulnerability",
+    "human-induced disaster",
+    "mitigation",
+    "preparedness",
+    "Yokohama Strategy",
+    "IDNDR",
+    "earthquake",
+    "tectonic movement",
+    "earthquake hazard zone",
+    "seismological centre",
+    "GPS",
+    "tsunami",
+    "seismic sea wave",
+    "shallow water wave",
+    "tropical cyclone",
+    "latent heat",
+    "Coriolis force",
+    "storm surge",
+    "flood",
+    "floodplain",
+    "National Flood Commission",
+    "drought",
+    "meteorological drought",
+    "agricultural drought",
+    "hydrological drought",
+    "ecological drought",
+    "landslide",
+    "landslide vulnerability zone",
+    "afforestation",
+    "cyclone shelter",
+    "pre-disaster management",
+    "rescue and relief",
+    "rehabilitation",
+    "recovery",
+    "Disaster Management Bill 2005",
+    "National Institute of Disaster Management"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every natural hazard is automatically a disaster.",
+      "correction": "It becomes a disaster when impacts seriously disrupt life and exceed coping capacity."
+    },
+    {
+      "claim": "Disasters are caused only by natural forces.",
+      "correction": "Human actions can directly cause disasters or intensify natural hazards."
+    },
+    {
+      "claim": "Earthquakes can be prevented.",
+      "correction": "They cannot be prevented; preparedness and mitigation reduce loss."
+    },
+    {
+      "claim": "Tsunamis are most dangerous in the deepest ocean.",
+      "correction": "Their height and impact increase near shallow coasts."
+    },
+    {
+      "claim": "Drought means only low rainfall.",
+      "correction": "The chapter includes meteorological, agricultural, hydrological and ecological drought."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 2(i) to explain when a hazard becomes a disaster.",
+    "Use Exercise 2(iii) to state conditions for a tropical cyclone.",
+    "Use Exercise 3(i) to identify landslide-prone regions and mitigation.",
+    "Use Exercise 3(ii) to relate drought vulnerability to management."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–v), 2(i–v), 3(i–iii), and an eight-option Project/Activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

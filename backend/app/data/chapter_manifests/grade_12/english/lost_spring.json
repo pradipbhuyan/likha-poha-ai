@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "Lost Spring",
+  "central_question": "How do poverty, migration, child labour and inherited social systems steal childhood while a few children still try to imagine a different future?",
+  "in_scope_units": [
+    "About Anees Jung and the focus on exploited children.",
+    "Saheb’s migration from Dhaka, rag-picking, lack of schooling and broken promises.",
+    "Bare feet, Seemapuri, garbage as survival and wonder, tennis and the tea-stall job.",
+    "Mukesh’s dream in bangle-making Firozabad.",
+    "Hazards of glass furnaces, caste, custom, middlemen and the loss of initiative.",
+    "Comprehension, figures of speech, paradox, note-making and report-writing tasks."
+  ],
+  "banned_topics": [
+    "A general history of Bangladesh or Delhi not provided in the chapter.",
+    "Technical details of glass manufacture beyond the conditions described in Firozabad."
+  ],
+  "must_include_keywords": [
+    "Anees Jung",
+    "Saheb-e-Alam",
+    "lord of the universe",
+    "Dhaka",
+    "Seemapuri",
+    "rag-picking",
+    "garbage is gold",
+    "barefoot",
+    "perpetual state of poverty",
+    "school",
+    "broken promises",
+    "tennis shoes",
+    "tea stall",
+    "steel canister",
+    "own master",
+    "Mukesh",
+    "Firozabad",
+    "bangle industry",
+    "glass furnaces",
+    "child labour",
+    "Savita",
+    "suhaag",
+    "caste",
+    "karam",
+    "middlemen",
+    "sahukars",
+    "vicious circle",
+    "poverty",
+    "apathy",
+    "injustice",
+    "motor mechanic",
+    "paradox",
+    "metaphor",
+    "simile"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Garbage has the same meaning for children and adults.",
+      "correction": "For elders it is survival; for children it also contains wonder and hope of finding a coin."
+    },
+    {
+      "claim": "Saheb becomes happier after paid work.",
+      "correction": "His carefree look disappears and the canister symbolises service under an owner."
+    },
+    {
+      "claim": "Mukesh has already escaped the industry.",
+      "correction": "He has only expressed a determined dream and willingness to walk to a garage."
+    },
+    {
+      "claim": "Workers remain poor because they do not work hard.",
+      "correction": "The text identifies caste, debt, middlemen, police, bureaucracy, politics and exhausted initiative."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Think as you read Q1 to introduce Saheb’s search and migration.",
+    "Use Q2 to analyse barefoot children and poverty.",
+    "Use Q3 to contrast rag-picking with tea-stall employment.",
+    "Use the Firozabad questions for hazards and Mukesh’s attitude.",
+    "Use Understanding the text Q3 and Thinking about language for systemic exploitation and style."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Understanding the text Questions 1–3, Talking about the text, Thinking about language and Things to do/report-writing activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Land Resources and Agriculture",
+  "central_question": "How are India’s land resources used for agriculture, how do farming systems and crop patterns vary, and what problems and development strategies shape Indian agriculture?",
+  "in_scope_units": [
+    "Land-use categories recorded by the land revenue department and the distinction between reporting area and geographical area",
+    "Changes in India’s land use between 1950–51 and 2019–20 and their economic causes",
+    "Common Property Resources and their importance for rural livelihoods",
+    "Agricultural land use, total cultivable land and cropping intensity",
+    "Cropping seasons in India: kharif, rabi and zaid",
+    "Types of farming: irrigated, rainfed, dryland and wetland farming",
+    "Foodgrains, cereals and pulses, including rice and wheat",
+    "Oilseeds, fibre crops and other crops including cotton, jute, sugarcane, tea and coffee",
+    "Agricultural development after Independence, including irrigation, HYV seeds and the Green Revolution",
+    "Problems of Indian agriculture, including monsoon dependence, low productivity, indebtedness, fragmented holdings and underemployment",
+    "Environmental problems of agriculture, including soil degradation, waterlogging and salinisation"
+  ],
+  "banned_topics": [
+    "Detailed river-basin water-resource management, which belongs to the Water Resources chapter",
+    "Detailed mineral belts and energy resources, which belong to the Mineral and Energy Resources chapter"
+  ],
+  "must_include_keywords": [
+    "reporting area",
+    "geographical area",
+    "net area sown",
+    "gross cropped area",
+    "culturable wasteland",
+    "current fallow",
+    "Common Property Resources",
+    "total cultivable land",
+    "cropping intensity",
+    "kharif",
+    "rabi",
+    "zaid",
+    "irrigated farming",
+    "rainfed farming",
+    "dryland farming",
+    "wetland farming",
+    "rice",
+    "wheat",
+    "pulses",
+    "oilseeds",
+    "cotton",
+    "jute",
+    "sugarcane",
+    "tea",
+    "coffee",
+    "Green Revolution",
+    "high-yielding varieties",
+    "land reforms",
+    "fragmented landholdings",
+    "indebtedness",
+    "underemployment",
+    "salinisation",
+    "waterlogging"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Area classified as forest is always the same as actual forest cover.",
+      "correction": "The chapter distinguishes recorded forest area from actual forest cover; recorded forest area may rise without an equal rise in actual cover."
+    },
+    {
+      "claim": "Net area sown and gross cropped area mean the same thing.",
+      "correction": "Net area sown counts the physical land cultivated, while gross cropped area counts all crop sowings, including land cropped more than once."
+    },
+    {
+      "claim": "Dryland farming means farming without any rainfall.",
+      "correction": "Dryland farming occurs mainly in areas with annual rainfall below 75 cm and depends on moisture conservation and drought-resistant crops."
+    },
+    {
+      "claim": "Agricultural development after Independence removed all regional and social problems.",
+      "correction": "The chapter records gains in output but also continuing problems such as monsoon dependence, low productivity, unequal land distribution and environmental degradation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 2(ii) to distinguish net sown area from gross cropped area.",
+    "Use NCERT Exercise 2(iii) to explain why increasing cropping intensity matters in a land-scarce, labour-abundant country.",
+    "Use NCERT Exercise 2(v) to compare dryland and wetland farming.",
+    "Use NCERT Exercise 3(i) to organise the environmental problems of land resources.",
+    "Use NCERT Exercise 3(ii) to connect post-Independence agricultural strategies with their achievements and limitations."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–3: five MCQs, five short-answer questions and two long-answer questions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

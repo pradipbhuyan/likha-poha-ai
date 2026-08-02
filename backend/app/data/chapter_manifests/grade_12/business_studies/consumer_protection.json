@@ -1,0 +1,102 @@
+{
+  "grade": "Grade 12",
+  "subject": "Business Studies",
+  "chapter": "Consumer Protection",
+  "central_question": "How can consumers be protected from unfair business practices through awareness, rights, responsibilities, legal remedies, and collective action?",
+  "in_scope_units": [
+    "Introduction to consumer protection and the shift from caveat emptor to caveat venditor",
+    "Importance and need for consumer protection from the viewpoints of consumers and business",
+    "Consumer Protection Act, 2019 and the meaning of consumer and related legal terms",
+    "Six consumer rights under the Consumer Protection Act, 2019",
+    "Consumer responsibilities while purchasing, using, and consuming goods and services",
+    "Ways and means of consumer protection through business, associations, awareness, organisations, and government",
+    "Three-tier redressal machinery, mediation, jurisdiction, appeals, and reliefs",
+    "Role of consumer organisations and NGOs in protecting and promoting consumer interests"
+  ],
+  "banned_topics": [
+    "Detailed marketing mix theory beyond the brief exercise reference to product information",
+    "Business finance, staffing, directing, or controlling concepts from other Business Studies chapters",
+    "Consumer law provisions, thresholds, penalties, or procedures not stated in the provided chapter"
+  ],
+  "must_include_keywords": [
+    "consumer protection",
+    "caveat emptor",
+    "caveat venditor",
+    "Consumer Protection Act 2019",
+    "consumer ignorance",
+    "unorganised consumers",
+    "widespread exploitation",
+    "long-term interest of business",
+    "society's resources",
+    "social responsibility",
+    "moral justification",
+    "government intervention",
+    "consumer",
+    "consideration",
+    "complaint",
+    "complainant",
+    "spurious goods",
+    "unfair trade practice",
+    "restrictive trade practice",
+    "defect",
+    "deficiency",
+    "product liability",
+    "right to safety",
+    "right to be informed",
+    "right to be assured",
+    "right to be heard",
+    "right to seek redressal",
+    "right to consumer education",
+    "ISI mark",
+    "FPO mark",
+    "Hallmark",
+    "cash memo",
+    "self-regulation by business",
+    "FICCI",
+    "CII",
+    "Jago Grahak Jago",
+    "Central Consumer Protection Authority",
+    "District Commission",
+    "State Commission",
+    "National Commission",
+    "mediation",
+    "consumer organisations",
+    "NGOs"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every person who buys goods is treated as a consumer under the Act.",
+      "correction": "A person who obtains goods or services for resale or commercial purpose is not treated as a consumer under the chapter's definition."
+    },
+    {
+      "claim": "A defect and a deficiency mean the same thing.",
+      "correction": "A defect relates to goods or products, while a deficiency relates to services and includes negligence, omission, commission, or withholding relevant information causing loss or injury."
+    },
+    {
+      "claim": "Consumer protection is required only because consumers are weak.",
+      "correction": "The chapter explains its importance for consumers as well as businesses, including long-term profit, social responsibility, moral duty, and avoidance of government intervention."
+    },
+    {
+      "claim": "The right to be heard and the right to seek redressal are identical.",
+      "correction": "The right to be heard concerns filing a complaint and having it considered, while the right to seek redressal concerns obtaining relief such as replacement, removal of defect, refund, or compensation."
+    },
+    {
+      "claim": "All consumer complaints are filed directly before the National Commission.",
+      "correction": "The appropriate commission depends on the value of goods or services paid as consideration: District, State, or National Commission as stated in the chapter."
+    },
+    {
+      "claim": "Consumer rights alone are enough to achieve consumer protection.",
+      "correction": "The chapter states that rights become effective only when consumers also understand and fulfil their responsibilities."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the chapter-opening ATM case to distinguish deficiency in service from a mere inconvenience.",
+    "Use NCERT Very Short Answer Type Q1 to connect a consumer grievance cell with the right to be heard.",
+    "Use NCERT Short Answer Type Q4 to identify the right to be informed from the FSSAI menu-disclosure proposal.",
+    "Use NCERT Long Answer Type Q6 on Mrs. Mathur to connect complaint, redressal, evidence, and consumer responsibility.",
+    "Use NCERT Long Answer Type Q4 to organise the complete three-tier redressal mechanism and appeals."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Refer to the EXERCISES section containing Very Short Answer Type Questions 1-5, Short Answer Type Questions 1-5, Long Answer Type Questions 1-6, and Project Work 1-2.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

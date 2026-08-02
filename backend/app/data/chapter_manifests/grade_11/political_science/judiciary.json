@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Judiciary",
+  "central_question": "How does an independent and integrated judiciary protect rights, interpret the Constitution and balance its authority with Parliament and the executive?",
+  "in_scope_units": [
+    "Need for an independent judiciary and the meaning of rule of law.",
+    "Constitutional safeguards for judicial independence.",
+    "Appointment and removal of judges and the evolution of the collegium principle described in the chapter.",
+    "Single integrated judicial structure from subordinate courts to the Supreme Court.",
+    "Original, writ, appellate, advisory and special jurisdiction of the Supreme Court.",
+    "Judicial activism and Public Interest Litigation.",
+    "Judiciary as protector of Fundamental Rights and interpreter of the Constitution.",
+    "Judicial review and the power to examine legislative and executive action.",
+    "Conflicts between Parliament and judiciary over amendments, rights and the basic structure doctrine.",
+    "Limits, accountability and the proper scope of judicial intervention."
+  ],
+  "banned_topics": [
+    "A general theory of citizenship, migration or naturalisation not found in the supplied judiciary chapter.",
+    "Detailed criminal or civil procedure beyond examples used to explain jurisdiction.",
+    "Current judicial appointments or judgments not included in the source."
+  ],
+  "must_include_keywords": [
+    "judiciary",
+    "independence of judiciary",
+    "rule of law",
+    "Supreme Court",
+    "High Court",
+    "subordinate courts",
+    "security of tenure",
+    "removal of judges",
+    "special majority",
+    "Chief Justice of India",
+    "collegium",
+    "integrated judiciary",
+    "original jurisdiction",
+    "writ jurisdiction",
+    "appellate jurisdiction",
+    "advisory jurisdiction",
+    "Habeas Corpus",
+    "Mandamus",
+    "Prohibition",
+    "Certiorari",
+    "Quo Warranto",
+    "judicial review",
+    "Fundamental Rights",
+    "Public Interest Litigation",
+    "PIL",
+    "judicial activism",
+    "Hussainara Khatoon",
+    "Sunil Batra",
+    "constitutional interpretation",
+    "Parliament",
+    "basic structure",
+    "Kesavananda Bharati",
+    "contempt of court",
+    "accountability"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Judicial independence means judges may act arbitrarily and are accountable to no one.",
+      "correction": "Independence prevents improper interference, but the judiciary remains accountable to the Constitution, democratic traditions and the people."
+    },
+    {
+      "claim": "Parliament can remove a judge by ordinary majority.",
+      "correction": "Removal requires proven misbehaviour or incapacity and the difficult special-majority procedure in both Houses."
+    },
+    {
+      "claim": "India has separate and unrelated Union and State court systems.",
+      "correction": "India has a single integrated hierarchy with the Supreme Court at the top, High Courts below and subordinate courts beneath them."
+    },
+    {
+      "claim": "Any ordinary dispute can begin directly in the Supreme Court.",
+      "correction": "Original jurisdiction is limited to specified matters such as federal disputes; other cases reach it through writ, appeal or special procedures."
+    },
+    {
+      "claim": "PIL is simply a private dispute filed by someone else.",
+      "correction": "PIL developed to permit public-spirited persons or organisations to seek relief for public wrongs and disadvantaged persons unable to approach the court."
+    },
+    {
+      "claim": "Judicial review makes the judiciary superior to the Constitution.",
+      "correction": "Courts exercise review under the Constitution to test whether laws and executive actions conform to constitutional limits."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT classroom debate on legitimate constraints affecting judicial decisions.",
+    "NCERT case of the unsuccessful attempt to remove Justice V. Ramaswami.",
+    "NCERT diagram of the integrated hierarchy and Supreme Court jurisdictions.",
+    "NCERT early PIL examples: Hussainara Khatoon and Sunil Batra.",
+    "NCERT discussion of Kesavananda Bharati and the basic structure doctrine."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter ‘Exercises’ ask about independence, appointment and removal, jurisdiction, PIL, judicial review and Parliament’judiciary relations.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

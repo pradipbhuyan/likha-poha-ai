@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 12",
+  "subject": "History",
+  "chapter": "Bricks, Beads and Bones: The Harappan Civilisation",
+  "central_question": "How do archaeologists use material remains to reconstruct Harappan life, organisation, exchange and decline while recognising the limits of interpretation?",
+  "in_scope_units": [
+    "Terminology, chronology, regional distribution and archaeological evidence.",
+    "Beginnings, subsistence strategies and agricultural technologies.",
+    "Mohenjodaro as a planned urban centre: drains, houses, Citadel and Great Bath.",
+    "Burials, artefacts and evidence for social differences.",
+    "Craft production, bead making and identification of production centres.",
+    "Procurement of raw materials and contact with distant lands.",
+    "Seals, undeciphered script and standardised weights.",
+    "Debates about authority, rulers and public structures.",
+    "Transformation and end of the urban civilisation.",
+    "Discovery of Harappa and changing archaeological methods.",
+    "Classification, contextual analysis and problems of interpretation."
+  ],
+  "banned_topics": [
+    "Mahajanapadas, Mauryan administration and Asokan inscriptions, treated in the next chapter.",
+    "Later Vedic social organisation and Mahabharata kinship, treated in subsequent chapters."
+  ],
+  "must_include_keywords": [
+    "Harappan civilisation",
+    "Mature Harappan",
+    "archaeological evidence",
+    "Mohenjodaro",
+    "Harappa",
+    "Dholavira",
+    "Kalibangan",
+    "Citadel",
+    "Lower Town",
+    "Great Bath",
+    "drainage system",
+    "standardised bricks",
+    "courtyard houses",
+    "agricultural technologies",
+    "ploughed field",
+    "burials",
+    "faience",
+    "carnelian",
+    "craft production",
+    "Chanhudaro",
+    "Lothal",
+    "raw materials",
+    "Meluhha",
+    "Oman",
+    "seals",
+    "sealings",
+    "undeciphered script",
+    "chert weights",
+    "social differences",
+    "Cunningham",
+    "John Marshall",
+    "stratigraphy",
+    "archaeogenetics",
+    "Late Harappan",
+    "problems of interpretation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Harappan script has been deciphered and tells us the names of its kings.",
+      "correction": "The script remains undeciphered, and no Harappan ruler has been securely identified from it."
+    },
+    {
+      "claim": "The Great Bath is certainly a temple tank.",
+      "correction": "Its careful construction suggests a special use, possibly ritual, but its exact function is not known."
+    },
+    {
+      "claim": "One environmental disaster caused the collapse of the whole civilisation.",
+      "correction": "Several causes have been proposed, and some may apply locally, but none alone explains change across the entire Harappan region."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1 on reconstructing Harappan food.",
+    "NCERT Exercise 6 on the urban features of Mohenjodaro.",
+    "NCERT Exercise 4 on bead materials and manufacture.",
+    "NCERT Exercise 7 on raw-material procurement.",
+    "NCERT Exercise 8 on archaeological reconstruction."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with questions 1-5 in the 100-150 word section, essay questions 6-9, Map work 10 and Projects 11-12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

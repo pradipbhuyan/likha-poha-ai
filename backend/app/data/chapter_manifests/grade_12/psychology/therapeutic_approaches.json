@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 12",
+  "subject": "Psychology",
+  "chapter": "Therapeutic Approaches",
+  "central_question": "How do trained therapists use different psychological approaches, a therapeutic relationship and rehabilitation to reduce distress and improve functioning?",
+  "in_scope_units": [
+    "Nature and process of psychotherapy",
+    "Therapeutic relationship",
+    "Types and clinical formulation",
+    "Behaviour therapy",
+    "Cognitive and humanistic-existential therapies",
+    "Healing and ethics",
+    "Alternative therapies",
+    "Rehabilitation"
+  ],
+  "banned_topics": [
+    "Untrained diagnosis or treatment",
+    "Detailed disorder classification",
+    "Personality testing"
+  ],
+  "must_include_keywords": [
+    "psychotherapy",
+    "therapeutic relationship",
+    "therapeutic alliance",
+    "empathy",
+    "unconditional positive regard",
+    "confidentiality",
+    "clinical formulation",
+    "psychodynamic therapy",
+    "behaviour therapy",
+    "antecedent factors",
+    "maintaining factors",
+    "negative reinforcement",
+    "positive reinforcement",
+    "aversive conditioning",
+    "token economy",
+    "differential reinforcement",
+    "systematic desensitisation",
+    "reciprocal inhibition",
+    "modelling",
+    "Rational Emotive Therapy",
+    "ABC analysis",
+    "irrational beliefs",
+    "cognitive restructuring",
+    "Cognitive Behaviour Therapy",
+    "self-actualisation",
+    "logotherapy",
+    "client-centred therapy",
+    "Gestalt therapy",
+    "catharsis",
+    "informed consent",
+    "alternative therapies",
+    "yoga",
+    "meditation",
+    "rehabilitation",
+    "occupational therapy",
+    "social skills training",
+    "cognitive retraining",
+    "vocational training"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any sympathetic friend can practise psychotherapy.",
+      "correction": "Psychotherapy requires systematic principles and supervised professional training."
+    },
+    {
+      "claim": "Symptom reduction always restores full functioning.",
+      "correction": "Severe disorders may require rehabilitation after active symptoms decline."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 5.1: practise empathy.",
+    "NCERT Box 5.1: formulate a client problem.",
+    "NCERT Activity 5.3 and Box 5.2: connect breathing and relaxation.",
+    "NCERT Review Questions 3–5: compare therapies.",
+    "NCERT Review Questions 6–9: integrate healing, alternatives, rehabilitation and CBT."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Review Questions contain Questions 1–9, followed by two Project Ideas.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,20 +1,19 @@
 grade,subject,chapter,step_count,overall_score,completeness_score,formula_quality_score,mcq_quality_score,pedagogy_score,student_flow_score,critical,high,medium,low,audited_at
-Grade 10,English,Chapter 2: Nelson Mandela: Long Walk to Freedom,1,93,95,90,80,100,100,0,0,1,0,2026-07-30T15:14:56.767725+00:00
-Grade 10,Science,Exemplar: Heredity and Evolution,1,94,100,90,80,100,100,0,0,0,0,2026-07-30T15:14:56.767909+00:00
-Grade 10,Science,Exemplar: Human Eye and the Colourful World,1,94,100,90,80,100,100,0,0,0,0,2026-07-30T15:14:56.768150+00:00
-Grade 10,Science,Exemplar: Metals and Non-metals,2,94,100,90,80,100,100,0,0,0,0,2026-07-30T15:14:56.768652+00:00
-Grade 10,Hindi,अध्याय 7: स्वयं प्रकाश,1,92,100,90,80,88,100,0,1,0,1,2026-07-30T15:14:56.768783+00:00
-Grade 10,Maths,Chapter 11: Areas Related to Circles,1,94,100,90,80,100,100,0,0,0,0,2026-07-30T15:14:56.768886+00:00
-Grade 10,Hindi,अध्याय 5: नागार्जुन,1,92,100,90,80,90,100,0,1,0,0,2026-07-30T15:14:56.768995+00:00
-Grade 10,English,Grammar: Determiners (Advanced Usage),1,94,100,90,80,100,100,0,0,0,0,2026-07-30T15:14:56.769050+00:00
-Grade 10,Science,Chapter 12: Magnetic Effects of Electric Current,1,94,100,90,80,98,100,0,0,0,1,2026-07-30T15:14:56.769250+00:00
-Grade 10,English,Text Book - Chapter 6: Mijbil the Otter,1,94,100,90,80,100,100,0,0,0,0,2026-07-30T15:14:56.769346+00:00
-Grade 10,Science,Chapter 9: Light – Reflection and Refraction,1,94,100,90,80,100,100,0,0,0,0,2026-07-30T15:14:56.769355+00:00
-Grade 10,Social Science,Chapter 5: Outcomes of Democracy,1,94,100,90,80,100,100,0,0,0,0,2026-07-30T15:14:56.769426+00:00
-Grade 10,English,Grammar: Reported Speech (All Sentence Types),1,94,100,90,80,98,100,0,0,0,1,2026-07-30T15:14:56.769529+00:00
-Grade 10,Science,"Exemplar: Acids, Bases and Salts",1,93,95,90,80,100,100,0,0,1,0,2026-07-30T15:14:56.769822+00:00
-Grade 10,Maths,Exemplar: Real Numbers,1,94,100,90,80,100,100,0,0,0,0,2026-07-30T15:14:56.770094+00:00
-Grade 10,Maths,Chapter 3: Pair of Linear Equations in Two Variables,1,93,95,90,80,100,100,0,0,1,0,2026-07-30T15:14:56.770295+00:00
-Grade 10,Science,Exemplar: Life Processes,1,94,100,90,80,98,100,0,0,0,1,2026-07-30T15:14:56.770462+00:00
-Grade 10,Science,Exemplar: Chemical Reactions and Equations (Advanced),1,94,100,90,80,100,100,0,0,0,0,2026-07-30T15:14:56.770658+00:00
-Grade 10,English,Workbook - Chapter 3: Two Stories About Flying,1,94,100,90,80,100,100,0,0,0,0,2026-07-30T15:14:56.770876+00:00
+Grade 11,Biology,Chapter 6: Anatomy of Flowering Plants,2,94,100,90,80,98,100,0,0,0,1,2026-08-02T13:14:01.624280+00:00
+Grade 10,English,Text Book - Chapter 8: The Sermon at Benares,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.624515+00:00
+Grade 11,Accountancy,Chapter 9: Financial Statements – II,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.624648+00:00
+Grade 10,Social Science,Geography - Chapter 2: Forest and Wildlife Resources,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.625248+00:00
+Grade 10,Social Science,History - Chapter 5: Print Culture and the Modern World,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.625562+00:00
+Grade 10,Science,Chapter 4: Carbon and Its Compounds,2,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.626267+00:00
+Grade 10,Science,Chapter 7: How do Organisms Reproduce?,1,93,95,90,80,100,100,0,0,1,0,2026-08-02T13:14:01.626733+00:00
+Grade 10,English,Supplementary Reader - Chapter 8: Bholi,1,94,100,90,80,98,100,0,0,0,1,2026-08-02T13:14:01.627023+00:00
+Grade 11,Accountancy,Chapter 4: Recording of Transactions – II,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.627239+00:00
+Grade 10,Social Science,History - Chapter 3: The Making of a Global World,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.627315+00:00
+Grade 10,English,Text Book - Chapter 3: Two Stories about Flying,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.627659+00:00
+Grade 11,Accountancy,Chapter 3: Recording of Transactions – I,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.627846+00:00
+Grade 10,English,Workbook - Chapter 1: A Letter to God,1,94,100,90,80,98,100,0,0,0,1,2026-08-02T13:14:01.627956+00:00
+Grade 10,Social Science,History - Chapter 1: The Rise of Nationalism in Europe,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.628184+00:00
+Grade 10,Science,Chapter 10: The Human Eye and the Colourful World,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.628363+00:00
+Grade 11,Biology,Chapter 16: Excretory Products and Their Elimination,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.628677+00:00
+Grade 10,Social Science,Text Book - Chapter 5: Consumer Rights,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.628976+00:00
+Grade 10,English,Grammar: Editing and Omission (Error Correction),1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.629123+00:00

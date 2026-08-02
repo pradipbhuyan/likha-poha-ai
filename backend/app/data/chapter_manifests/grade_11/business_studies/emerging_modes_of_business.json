@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 11",
+  "subject": "Business Studies",
+  "chapter": "Emerging Modes of Business",
+  "central_question": "How are digitisation, e-business and outsourcing changing business processes, transactions, risks and organisational boundaries?",
+  "in_scope_units": [
+    "Emerging modes of business and the forces of digitisation and outsourcing.",
+    "Meaning of e-business and its distinction from e-commerce.",
+    "Scope of e-business through B2B, B2C, intra-B, B2E and C2C interactions.",
+    "Comparison of e-business with traditional business.",
+    "Benefits and limitations of e-business.",
+    "Stages and payment methods in online transactions.",
+    "Security and safety risks in electronic transactions.",
+    "Resources required for successful e-business implementation.",
+    "Business Process Outsourcing, its need, scope, benefits and concerns."
+  ],
+  "banned_topics": [
+    "Detailed banking products, which belong to Business Services.",
+    "Detailed international trade procedures, which belong to International Business.",
+    "Company formation documents, which belong to Formation of a Company."
+  ],
+  "must_include_keywords": [
+    "digitisation",
+    "e-business",
+    "e-commerce",
+    "internet",
+    "intranet",
+    "B2B",
+    "B2C",
+    "C2B",
+    "intra-B",
+    "B2E",
+    "C2C",
+    "Electronic Data Interchange",
+    "VPN",
+    "mass customisation",
+    "e-procurement",
+    "e-bidding",
+    "e-delivery",
+    "e-trading",
+    "convenience",
+    "global reach",
+    "paperless society",
+    "digital divide",
+    "online transaction",
+    "registration",
+    "shopping cart",
+    "cash on delivery",
+    "credit card",
+    "digital cash",
+    "transaction risk",
+    "cookies",
+    "encryption",
+    "Secure Sockets Layer",
+    "virus",
+    "hacking",
+    "privacy",
+    "Business Process Outsourcing",
+    "call centre"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "e-business and e-commerce are identical.",
+      "correction": "e-commerce mainly covers electronic transactions with customers and suppliers, while e-business also includes internal production, inventory, finance and HR processes."
+    },
+    {
+      "claim": "Every stage of an online purchase is electronic.",
+      "correction": "Information and payment may be electronic, but physical products still require physical delivery."
+    },
+    {
+      "claim": "e-business has no location or infrastructure requirements.",
+      "correction": "It reduces the need for customer-facing premises but still requires hardware, networks, software, a website and fulfilment resources."
+    },
+    {
+      "claim": "Anonymity makes online transactions automatically secure.",
+      "correction": "Anonymity and non-traceability increase transaction, data and identity risks."
+    },
+    {
+      "claim": "Outsourcing means that the outsourced activity is unimportant.",
+      "correction": "Firms may outsource important processes to specialists so they can focus on core capabilities and efficiency."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Short Answer Question 1 to compare e-business and traditional business.",
+    "Use Short Answer Question 2 to explain two e-business applications.",
+    "Use Long Answer Question 4 to analyse B2C commerce.",
+    "Use Long Answer Question 2 to sequence online trading.",
+    "Use Long Answer Questions 3 and 5 to evaluate outsourcing and e-business limitations."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with Short Answer Questions 1–3, Long Answer Questions 1–5 and two projects comparing online and physical business.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

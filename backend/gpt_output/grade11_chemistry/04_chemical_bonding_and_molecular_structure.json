@@ -1,0 +1,92 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Chemistry",
+    "chapter": "Chemical Bonding and Molecular Structure",
+    "central_question": "How do valence electrons and orbital interactions determine bond type, geometry, polarity, stability, and magnetism?",
+    "in_scope_units": [
+      "Lewis approach, octet rule, formal charge, and resonance.",
+      "Ionic bonding and lattice enthalpy.",
+      "Bond parameters, polarity, and dipole moment.",
+      "VSEPR geometry.",
+      "Valence bond theory, overlap, sigma and pi bonds, and hybridisation.",
+      "Molecular orbital theory, bond order, and magnetism.",
+      "Hydrogen bonding."
+    ],
+    "banned_topics": [
+      "Detailed crystal structures",
+      "Coordination compounds",
+      "Advanced quantum calculations",
+      "Organic mechanisms"
+    ],
+    "must_include_keywords": [
+      "Lewis symbol",
+      "octet rule",
+      "ionic bond",
+      "covalent bond",
+      "formal charge",
+      "resonance",
+      "lattice enthalpy",
+      "bond length",
+      "bond enthalpy",
+      "bond order",
+      "bond angle",
+      "dipole moment",
+      "polar covalent bond",
+      "VSEPR theory",
+      "lone pair",
+      "bond pair",
+      "valence bond theory",
+      "orbital overlap",
+      "sigma bond",
+      "pi bond",
+      "hybridisation",
+      "sp hybridisation",
+      "sp2 hybridisation",
+      "sp3 hybridisation",
+      "molecular orbital",
+      "bonding orbital",
+      "antibonding orbital",
+      "paramagnetic",
+      "diamagnetic",
+      "hydrogen bond"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The octet rule explains all molecules.",
+        "correction": "It has incomplete, odd-electron, and expanded-octet exceptions."
+      },
+      {
+        "claim": "A double bond is exactly twice as strong.",
+        "correction": "It contains one sigma and one pi bond, with different strengths."
+      },
+      {
+        "claim": "Only bonded atoms determine shape.",
+        "correction": "Lone pairs strongly affect geometry."
+      },
+      {
+        "claim": "Hybrid and molecular orbitals are the same.",
+        "correction": "Hybrid orbitals belong to one atom; MOs extend over a molecule."
+      },
+      {
+        "claim": "O2 is diamagnetic.",
+        "correction": "MO theory predicts two unpaired electrons and paramagnetism."
+      }
+    ],
+    "recommended_example_progression": [
+      "Draw Lewis structures.",
+      "Compare ionic and covalent bonding.",
+      "Predict VSEPR shapes.",
+      "Assign hybridisation and sigma/pi bonds.",
+      "Use MO theory and hydrogen bonding."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use exercises on Lewis structures, formal charge, ionic bonding, geometry, hybridisation, bond parameters, molecular orbitals, magnetism, and hydrogen bonding."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chemical Bonding and Molecular Structure\n\n## What you will learn\nDraw Lewis structures and use formal charge, resonance, and octet exceptions.\n\n## Simple explanation\nLewis theory tracks valence electrons as lone pairs and shared bond pairs.\n\n## Step-by-step breakdown\n- **Lewis symbol**: Dots show valence electrons.\n- **Octet**: Many atoms approach noble-gas configuration.\n- **Single bond**: One shared pair.\n- **Multiple bond**: Two or three shared pairs.\n- **Formal charge**: A bookkeeping charge for comparing structures.\n- **Resonance**: Several contributors describe one delocalised hybrid.\n- **Exceptions**: Electron-deficient, odd-electron, and expanded-valence species occur.\n\n## Worked example\nQuestion: Draw CO2 and state formal charges.\n\nSolution:\n- Count 16 valence electrons.\n- Place carbon centrally.\n- Use two C=O bonds to complete octets.\n- Formal charges are zero.\n- Final answer: O=C=O; all formal charges zero.\n\n## Common mistake\nResonance contributors are not separate rapidly interconverting molecules.\n\n## Quick check question\nQuestion: Formal-charge sum for a neutral molecule?\nAnswer: Zero.\nExplanation: Individual formal charges add to the overall charge.\n\n## Summary\n- Lewis symbol: Dots show valence electrons.\n- Octet: Many atoms approach noble-gas configuration.\n- Single bond: One shared pair.\n- Multiple bond: Two or three shared pairs.",
+    "Core explanation": "# Core explanation: Chemical Bonding and Molecular Structure\n\n## What you will learn\nCompare ionic and covalent bonding, bond parameters, and polarity.\n\n## Simple explanation\nBonding is electrostatic attraction with electron distribution ranging from transfer-like to shared.\n\n## Step-by-step breakdown\n- **Ionic bond**: Attraction between oppositely charged ions.\n- **Lattice enthalpy**: Measures ionic-crystal stabilisation or separation under a stated convention.\n- **Bond length**: Equilibrium internuclear distance.\n- **Bond enthalpy**: Energy to break a mole of specified gaseous bonds.\n- **Bond order**: Greater order generally means shorter stronger bonds.\n- **Electronegativity**: Unequal sharing produces partial charges.\n- **Dipole moment**: Vector measure of charge separation.\n- **Molecular polarity**: Bond dipoles can reinforce or cancel.\n\n## Worked example\nQuestion: Why is CO2 non-polar despite polar C=O bonds?\n\nSolution:\n- Each bond dipole points toward O.\n- The molecule is linear.\n- Equal opposite vectors cancel.\n- Final answer: Net dipole moment is zero.\n\n## Common mistake\nPolar bonds do not guarantee a polar molecule; geometry controls vector cancellation.\n\n## Quick check question\nQuestion: Which is shorter, C–C or C=C?\nAnswer: C=C.\nExplanation: Higher bond order draws nuclei closer.\n\n## Summary\n- Ionic bond: Attraction between oppositely charged ions.\n- Lattice enthalpy: Measures ionic-crystal stabilisation or separation under a stated convention.\n- Bond length: Equilibrium internuclear distance.\n- Bond enthalpy: Energy to break a mole of specified gaseous bonds.",
+    "Worked examples": "# Worked examples: Chemical Bonding and Molecular Structure\n\n## What you will learn\nPredict molecular shape using VSEPR theory.\n\n## Simple explanation\nElectron domains arrange to minimise repulsion, with lone pairs occupying more space than bond pairs.\n\n## Step-by-step breakdown\n- **Domain**: Each bond region or lone pair counts as one domain.\n- **Repulsion order**: LP–LP > LP–BP > BP–BP.\n- **Two domains**: Linear.\n- **Three domains**: Trigonal planar electron geometry.\n- **Four domains**: Tetrahedral electron geometry.\n- **NH3**: Trigonal pyramidal with one lone pair.\n- **H2O**: Bent with two lone pairs.\n- **Shape**: Names atom positions, not lone pairs.\n\n## Worked example\nQuestion: Predict NH3 shape and angle.\n\nSolution:\n- Three N–H bonds plus one lone pair give four domains.\n- Electron geometry is tetrahedral.\n- Atomic shape is trigonal pyramidal.\n- Lone-pair repulsion compresses the angle.\n- Final answer: Trigonal pyramidal, about 107°.\n\n## Common mistake\nNH3 is tetrahedral in electron-pair geometry but not in molecular shape.\n\n## Quick check question\nQuestion: Shape of gaseous BeCl2?\nAnswer: Linear.\nExplanation: Two bond domains arrange 180° apart.\n\n## Summary\n- Domain: Each bond region or lone pair counts as one domain.\n- Repulsion order: LP–LP > LP–BP > BP–BP.\n- Two domains: Linear.\n- Three domains: Trigonal planar electron geometry.",
+    "Exam-style problems": "# Exam-style problems: Chemical Bonding and Molecular Structure\n\n## What you will learn\nAssign hybridisation and count sigma and pi bonds.\n\n## Simple explanation\nValence bond theory describes bonding by directional overlap of atomic or hybrid orbitals.\n\n## Step-by-step breakdown\n- **Sigma**: Head-on overlap along the axis.\n- **Pi**: Sidewise overlap above and below the axis.\n- **sp**: Linear arrangement.\n- **sp2**: Trigonal planar arrangement.\n- **sp3**: Tetrahedral electron arrangement.\n- **Double bond**: One sigma plus one pi.\n- **Triple bond**: One sigma plus two pi.\n- **Rotation**: Pi overlap restricts free rotation.\n\n## Worked example\nQuestion: Give hybridisation and sigma/pi counts in ethene.\n\nSolution:\n- Each carbon has three sigma directions, so it is sp².\n- Four C–H and one C–C sigma bonds total five sigma.\n- Unhybridised p orbitals form one pi bond.\n- Final answer: Each carbon is sp²; five sigma bonds and one pi bond.\n\n## Common mistake\nA double bond is not two sigma bonds.\n\n## Quick check question\nQuestion: Hybridisation of each carbon in ethyne?\nAnswer: sp.\nExplanation: Two domains are linear and two p orbitals remain for pi bonding.\n\n## Summary\n- Sigma: Head-on overlap along the axis.\n- Pi: Sidewise overlap above and below the axis.\n- sp: Linear arrangement.\n- sp2: Trigonal planar arrangement.",
+    "Revision and recap": "# Revision and recap: Chemical Bonding and Molecular Structure\n\n## What you will learn\nUse molecular orbital theory and explain hydrogen bonding.\n\n## Simple explanation\nMolecular orbitals extend over the molecule, and their occupancy predicts net bonding and unpaired electrons.\n\n## Step-by-step breakdown\n- **Bonding MO**: Constructive combination lowers energy.\n- **Antibonding MO**: Destructive combination raises energy.\n- **Bond order**: One-half of bonding minus antibonding electrons.\n- **Stability**: Positive bond order indicates net bonding.\n- **Paramagnetism**: Caused by unpaired electrons.\n- **O2**: Two unpaired electrons explain observed paramagnetism.\n- **Hydrogen bond**: Attraction involving H attached to N, O, or F.\n- **Types**: Intermolecular or intramolecular.\n- **Effects**: Influences boiling point, solubility, and structure.\n\n## Worked example\nQuestion: Find H2 bond order with two electrons in σ1s.\n\nSolution:\n- Bonding electrons = 2.\n- Antibonding electrons = 0.\n- Bond order = (2−0)/2.\n- Final answer: 1.\n\n## Common mistake\nLewis structures may not reveal magnetic behaviour; orbital occupancy must be checked.\n\n## Quick check question\nQuestion: Why does water boil unusually high?\nAnswer: Intermolecular hydrogen bonding.\nExplanation: Extra energy is needed to disrupt the molecular network.\n\n## Summary\n- Bonding MO: Constructive combination lowers energy.\n- Antibonding MO: Destructive combination raises energy.\n- Bond order: One-half of bonding minus antibonding electrons.\n- Stability: Positive bond order indicates net bonding."
+  }
+}

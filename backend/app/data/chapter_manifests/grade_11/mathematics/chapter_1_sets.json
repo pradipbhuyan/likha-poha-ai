@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 1: Sets",
+  "central_question": "How can collections of objects be represented, compared, combined, and counted using precise set language?",
+  "in_scope_units": [
+    "Introduction to well-defined collections and set notation.",
+    "Representation of sets in roster and set-builder forms.",
+    "Empty, finite, infinite, and equal sets.",
+    "Subsets, power sets, universal sets, and intervals.",
+    "Venn diagrams as visual representations.",
+    "Union, intersection, difference, complement, and algebra of sets.",
+    "Practical problems involving cardinality and inclusion–exclusion."
+  ],
+  "banned_topics": [
+    "Cartesian products, relations, and functions, which belong to Chapter 2.",
+    "Probability rules beyond simple set-based counting."
+  ],
+  "must_include_keywords": [
+    "set",
+    "element",
+    "membership",
+    "roster form",
+    "set-builder form",
+    "empty set",
+    "finite set",
+    "infinite set",
+    "equal sets",
+    "subset",
+    "proper subset",
+    "power set",
+    "universal set",
+    "interval",
+    "Venn diagram",
+    "union",
+    "intersection",
+    "disjoint sets",
+    "difference of sets",
+    "complement",
+    "cardinality",
+    "commutative law",
+    "associative law",
+    "distributive law",
+    "De Morgan’s laws",
+    "inclusion–exclusion"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Order changes a set.",
+      "correction": "The order in which elements are written does not change a set."
+    },
+    {
+      "claim": "Repeated elements are counted repeatedly.",
+      "correction": "Repetition does not create new elements in a set."
+    },
+    {
+      "claim": "A∈B and A⊂B mean the same thing.",
+      "correction": "A∈B means A is an element; A⊂B means every element of A lies in B."
+    },
+    {
+      "claim": "A−B=B−A.",
+      "correction": "Set difference is generally not commutative."
+    },
+    {
+      "claim": "The complement of A is fixed without context.",
+      "correction": "A complement is defined relative to a chosen universal set."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 6 for finite, infinite, and empty sets.",
+    "NCERT Exercise 1.2 Question 4 for subsets and power sets.",
+    "NCERT Example 18 for difference of sets.",
+    "NCERT Exercise 1.5 Question 4 for De Morgan’s laws.",
+    "NCERT Miscellaneous Exercise Questions 4 and 7 for equivalent subset conditions and absorption laws."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 1.1 to 1.5 followed by the Miscellaneous Exercise on Chapter 1.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

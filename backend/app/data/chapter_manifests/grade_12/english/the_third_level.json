@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "The Third Level",
+  "central_question": "Is the third level a real passage into 1894, a psychological escape from modern anxiety, or a story that deliberately keeps both possibilities alive?",
+  "in_scope_units": [
+    "Before you read: curious experiences that others find hard to believe.",
+    "Charley’s claim about a third level and the psychiatrist’s explanation of waking-dream wish fulfilment.",
+    "Stamp collecting as a temporary refuge and Charley’s first-person defence of himself.",
+    "Charley’s route through Grand Central and the station’s tree-like corridors.",
+    "The third level’s gaslights, clothing, locomotive and newspaper evidence of 1894.",
+    "Charley’s desire for Galesburg, the ticket clerk and the failure of modern currency.",
+    "The search for old-style money and inability to find the corridor again.",
+    "Sam’s disappearance, the first-day cover, the 1894 letter and the revelation that Sam was the psychiatrist.",
+    "Reading with Insight Questions 1–7 on escape, time and space, philately and fantasy-reality."
+  ],
+  "banned_topics": [
+    "A factual history of Grand Central Station beyond details in the story.",
+    "A clinical diagnosis of Charley or Sam beyond the psychiatrist’s stated waking-dream explanation.",
+    "A full comparison with Jayant Narlikar’s Adventure unless that separate text is supplied."
+  ],
+  "must_include_keywords": [
+    "Jack Finney",
+    "Charley",
+    "Louisa",
+    "Sam Weiner",
+    "psychiatrist",
+    "Grand Central Station",
+    "third level",
+    "waking-dream wish fulfilment",
+    "modern world",
+    "insecurity",
+    "fear",
+    "war",
+    "worry",
+    "escape",
+    "temporary refuge from reality",
+    "stamp collecting",
+    "philately",
+    "first-day cover",
+    "Vanderbilt Avenue",
+    "first level",
+    "second level",
+    "corridors like roots",
+    "gaslights",
+    "brass spittoons",
+    "green eyeshade",
+    "The World",
+    "President Cleveland",
+    "June 11, 1894",
+    "Galesburg",
+    "old-style currency",
+    "ticket clerk",
+    "President Garfield stamp",
+    "July 18, 1894",
+    "Sam’s letter",
+    "time and space",
+    "fantasy and reality",
+    "first-person narrator",
+    "ambiguity",
+    "irony"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The third level is proved to be only a dream.",
+      "correction": "The psychiatrist calls it wish fulfilment, but the 1894 first-day cover and Sam’s letter create evidence that keeps the event ambiguous."
+    },
+    {
+      "claim": "Charley deliberately enters Grand Central to escape his life.",
+      "correction": "He says he only wants to get home to Louisa and becomes lost while heading for the subway."
+    },
+    {
+      "claim": "Sam rejects Charley’s story throughout.",
+      "correction": "Sam first explains it psychologically, but his letter later says he found the third level and is living in Galesburg in 1894."
+    },
+    {
+      "claim": "The old currency purchase allows Charley to return immediately.",
+      "correction": "He buys old-style bills but never again finds the corridor to the third level."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Reading with Insight Q1 to examine the third level as escape.",
+    "Use Reading with Insight Q4 to trace the intersection of time and space through Grand Central.",
+    "Use Reading with Insight Q2 to interpret Sam’s letter and the ending.",
+    "Use Reading with Insight Q6 to discuss philately and movement among past, present and future.",
+    "Use Reading with Insight Q5 to evaluate the story’s apparent illogicality and ambiguity."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The story ends with Reading with Insight Questions 1–7, covering escape, Sam’s letter, modern stress, time-space, futuristic projection, philately and comparison with Adventure.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,90 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Mechanical Properties of Solids",
+    "central_question": "How do solids deform under force, and how do stress, strain, and elastic moduli quantify their response and engineering strength?",
+    "in_scope_units": [
+      "Elasticity, plasticity, and deformation.",
+      "Normal, shearing, and hydraulic stress and corresponding strains.",
+      "Hooke's law.",
+      "Stress–strain curve.",
+      "Young's, shear, and bulk moduli and compressibility.",
+      "Engineering applications of elastic behaviour."
+    ],
+    "banned_topics": [
+      "Atomic crystal structures",
+      "Fluid flow",
+      "Advanced plasticity models",
+      "Rotational dynamics"
+    ],
+    "must_include_keywords": [
+      "elasticity",
+      "plasticity",
+      "deformation",
+      "restoring force",
+      "stress",
+      "normal stress",
+      "tensile stress",
+      "compressive stress",
+      "shearing stress",
+      "hydraulic stress",
+      "strain",
+      "longitudinal strain",
+      "shearing strain",
+      "volume strain",
+      "Hooke's law",
+      "elastic limit",
+      "stress–strain curve",
+      "proportional limit",
+      "yield point",
+      "ultimate tensile strength",
+      "fracture point",
+      "Young's modulus",
+      "shear modulus",
+      "modulus of rigidity",
+      "bulk modulus",
+      "compressibility",
+      "Poisson ratio",
+      "elastic energy",
+      "engineering design"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A rigid-looking solid cannot deform.",
+        "correction": "All real solids deform under sufficiently large force."
+      },
+      {
+        "claim": "Elasticity means easy stretching.",
+        "correction": "Elasticity means recovery; a larger modulus means less deformation for the same stress."
+      },
+      {
+        "claim": "Stress and force are identical.",
+        "correction": "Stress is force per area."
+      },
+      {
+        "claim": "Strain has a unit of length.",
+        "correction": "Strain is dimensionless."
+      },
+      {
+        "claim": "Hooke's law applies at all loads.",
+        "correction": "It applies only within the proportional elastic range."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Example 8.1: stress and extension of a steel rod.",
+      "NCERT Example 8.2: joined copper and steel wires.",
+      "NCERT Example 8.3: compression of thigh bones.",
+      "NCERT Example 8.4: shear displacement of a lead slab.",
+      "NCERT Exercises 8.12–8.16: bulk modulus applications."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use end-of-chapter EXERCISES 8.1–8.16."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 8: Mechanical Properties of Solids\n\n## What you will learn\nYou will distinguish elasticity from plasticity and define stress and strain for different deformations.\n\n## Simple explanation\nExternal forces change a solid's dimensions. Stress measures force intensity and strain measures fractional deformation.\n\n## Step-by-step breakdown\n- **Elasticity**: An elastic body tends to regain its original shape after force removal.\n- **Plasticity**: A plastic body retains permanent deformation.\n- **Normal stress**: Perpendicular force per area causes tension or compression.\n- **Longitudinal strain**: ΔL/L.\n- **Shear**: Tangential stress produces strain Δx/L for small deformation.\n- **Hydraulic stress**: Pressure from all directions produces volume strain ΔV/V.\n- **Units**: Stress is measured in pascals; strain is dimensionless.\n\n## Worked example\nQuestion: Using NCERT Exercise 8.8, a copper cross-section is 15.2 mm × 19.1 mm and force is 44,500 N. Write the tensile stress.\n\nSolution:\n- Area = 15.2 × 19.1 mm².\n- Convert to m² by multiplying by 10⁻⁶.\n- Stress = 44,500 divided by that area.\n- Final answer: σ = 44,500/[(15.2 × 19.1) × 10⁻⁶] Pa.\n\n## Common mistake\nSquare millimetres convert with 10⁻⁶, not 10⁻³.\n\n## Quick check question\nQuestion: Is longitudinal strain measured in metres?\nAnswer: No.\nExplanation: It is a ratio of two lengths.\n\n## Summary\n- Elastic deformation is recoverable.\n- Plastic deformation is permanent.\n- Stress is force per area.\n- Strain is dimensionless.",
+    "Core explanation": "# Core explanation: Chapter 8: Mechanical Properties of Solids\n\n## What you will learn\nYou will state Hooke's law and interpret the regions of a stress–strain curve.\n\n## Simple explanation\nMaterials are linear only at small deformation; beyond the elastic limit, permanent deformation develops.\n\n## Step-by-step breakdown\n- **Hooke's law**: Stress is proportional to strain within the proportional limit.\n- **Proportional limit**: It ends the straight-line graph region.\n- **Elastic limit**: Below it, unloading restores the original dimensions.\n- **Yield**: Large strain can occur with little additional stress.\n- **Ultimate strength**: It is the maximum engineering stress.\n- **Fracture**: The specimen finally breaks.\n- **Material behaviour**: Ductile and brittle materials differ in plastic strain before fracture.\n\n## Worked example\nQuestion: From the NCERT stress–strain curve, what happens when a wire is unloaded after strain beyond the elastic limit?\n\nSolution:\n- The deformation is no longer fully recoverable.\n- The wire does not return to its initial length.\n- A permanent set remains.\n- Final answer: Permanent deformation remains.\n\n## Common mistake\nThe proportional limit, elastic limit, and fracture point are different points.\n\n## Quick check question\nQuestion: Within the Hooke's-law region, what happens to strain if stress doubles?\nAnswer: It doubles.\nExplanation: Stress/strain is constant.\n\n## Summary\n- Hooke's law has a limited range.\n- Elastic recovery ends at the elastic limit.\n- Yielding produces permanent strain.\n- Ultimate stress precedes fracture.",
+    "Worked examples": "# Worked examples: Chapter 8: Mechanical Properties of Solids\n\n## What you will learn\nYou will calculate Young's modulus, extension, and compression.\n\n## Simple explanation\nYoung's modulus compares longitudinal stress with longitudinal strain; larger Y means greater stiffness.\n\n## Step-by-step breakdown\n- **Definition**: Y = (F/A)/(ΔL/L) = FL/(AΔL).\n- **Extension**: ΔL = FL/(AY).\n- **Series wires**: Total extension is the sum of individual extensions under the shared load.\n- **Stiffness**: Greater Y gives smaller strain for the same stress.\n- **Elastic energy**: Gradual stretching stores work as elastic energy.\n- **SI practice**: Use newtons, metres, square metres, and pascals.\n\n## Worked example\nQuestion: Using NCERT Example 8.3, each thigh bone carries 1078 N, with L = 0.5 m, A = 1.26 × 10⁻³ m², and Y = 9.4 × 10⁹ Pa. Find compression.\n\nSolution:\n- Use ΔL = FL/(AY).\n- Substitute the given values.\n- The result is 4.55 × 10⁻⁵ m.\n- Final answer: 4.55 × 10⁻⁵ m.\n\n## Common mistake\nForce alone does not determine deformation; geometry and modulus also matter.\n\n## Quick check question\nQuestion: From NCERT Example 8.1, if stress is 3.18 × 10⁸ Pa and Y = 2.0 × 10¹¹ Pa, find strain.\nAnswer: 1.59 × 10⁻³.\nExplanation: Strain = stress/Y.\n\n## Summary\n- Y relates longitudinal stress and strain.\n- Extension increases with F and L.\n- It decreases with A and Y.\n- Use consistent SI units.",
+    "Exam-style problems": "# Exam-style problems: Chapter 8: Mechanical Properties of Solids\n\n## What you will learn\nYou will apply shear modulus, bulk modulus, and compressibility.\n\n## Simple explanation\nDifferent deformation modes require different moduli.\n\n## Step-by-step breakdown\n- **Shear modulus**: G = (F/A)/(Δx/L).\n- **Shear displacement**: Δx = FL/(AG).\n- **Bulk modulus**: B = −ΔP/(ΔV/V).\n- **Compressibility**: κ = 1/B.\n- **Liquids and gases**: Liquids have much larger B and much smaller compressibility than gases.\n- **Units**: Y, G, and B all have unit Pa.\n\n## Worked example\nQuestion: Using NCERT Example 8.4, a lead slab has A = 0.05 m², L = 0.5 m, F = 9.0 × 10⁴ N, and G = 5.6 × 10⁹ Pa. Find shear displacement.\n\nSolution:\n- Stress = F/A = 1.8 × 10⁶ Pa.\n- Δx = L(stress/G).\n- Δx − 1.6 × 10⁻⁴ m.\n- Final answer: 1.6 × 10⁻⁴ m = 0.16 mm.\n\n## Common mistake\nPositive pressure increase normally gives negative volume change, which explains the minus sign in B.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 8.16, which modulus relates pressure change to a 0.10% water compression?\nAnswer: Bulk modulus.\nExplanation: It relates hydraulic stress to fractional volume change.\n\n## Summary\n- G measures shape resistance.\n- B measures volume resistance.\n- Compressibility is 1/B.\n- Moduli have pressure units.",
+    "Revision and recap": "# Revision and recap: Chapter 8: Mechanical Properties of Solids\n\n## What you will learn\nYou will connect elastic properties with safe structural design.\n\n## Simple explanation\nEngineering design considers stiffness, strength, geometry, load distribution, and safety limits together.\n\n## Step-by-step breakdown\n- **Modulus choice**: Use Y for length, G for shear, and B for volume.\n- **Safe stress**: Working stress must remain below failure stress.\n- **Beams**: Material placed away from the neutral region improves resistance to bending.\n- **Columns**: Long thin columns can buckle.\n- **Cables**: Required area follows from allowable tensile stress.\n- **Stiffness versus strength**: Modulus controls strain; ultimate stress controls failure.\n- **Service range**: Normal loads should remain in the elastic region.\n\n## Worked example\nQuestion: Using NCERT Exercise 8.9, a cable radius is 1.5 cm and allowable stress is 10⁸ Pa. Find maximum force.\n\nSolution:\n- A = π(0.015)² m².\n- Fmax = σA.\n- Fmax ≈ 7.07 × 10⁴ N.\n- Final answer: Approximately 7.1 × 10⁴ N.\n\n## Common mistake\nA stiff material is not automatically the strongest material.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 8.6, which modulus determines a cube face's tangential deflection?\nAnswer: Shear modulus.\nExplanation: The deformation is a shape change caused by tangential force.\n\n## Summary\n- Stress and strain quantify deformation.\n- Hooke's law is range-limited.\n- Y, G, and B serve different modes.\n- Design keeps stress safely elastic."
+  }
+}

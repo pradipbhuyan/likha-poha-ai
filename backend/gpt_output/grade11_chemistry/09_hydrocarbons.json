@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Chemistry",
+    "chapter": "Hydrocarbons",
+    "central_question": "How do carbon–carbon bond type and electron delocalisation determine the structure, preparation, reactions, and uses of hydrocarbons?",
+    "in_scope_units": [
+      "Classification and nomenclature.",
+      "Alkanes: preparation, properties, reactions, and conformations.",
+      "Alkenes: geometry, isomerism, electrophilic addition, ozonolysis, and polymerisation.",
+      "Alkynes: structure, acidity, preparation, and reactions.",
+      "Benzene: aromaticity, preparation, electrophilic substitution, directing effects, and toxicity."
+    ],
+    "banned_topics": [
+      "Oxygen and nitrogen functional-group chemistry",
+      "Advanced aromaticity",
+      "Detailed polymer kinetics",
+      "Petroleum refining detail"
+    ],
+    "must_include_keywords": [
+      "hydrocarbon",
+      "alkane",
+      "alkene",
+      "alkyne",
+      "arene",
+      "saturated",
+      "unsaturated",
+      "homologous series",
+      "chain isomerism",
+      "conformation",
+      "staggered conformation",
+      "eclipsed conformation",
+      "free radical substitution",
+      "combustion",
+      "aromatisation",
+      "sp2 hybridisation",
+      "geometrical isomerism",
+      "electrophilic addition",
+      "Markovnikov rule",
+      "peroxide effect",
+      "ozonolysis",
+      "polymerisation",
+      "sp hybridisation",
+      "terminal alkyne",
+      "acidic hydrogen",
+      "benzene",
+      "resonance",
+      "aromaticity",
+      "Huckel rule",
+      "electrophilic substitution",
+      "nitration",
+      "halogenation",
+      "Friedel-Crafts reaction",
+      "directive influence",
+      "carcinogenic hydrocarbon"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Alkanes are completely inert.",
+        "correction": "They undergo substitution, combustion, oxidation, and aromatisation under suitable conditions."
+      },
+      {
+        "claim": "Markovnikov rule applies to every addition.",
+        "correction": "It applies to suitable unsymmetrical additions; peroxide changes HBr orientation."
+      },
+      {
+        "claim": "Double bonds rotate freely.",
+        "correction": "Rotation would destroy pi overlap."
+      },
+      {
+        "claim": "All alkynes have acidic hydrogen.",
+        "correction": "Only terminal alkynes contain that hydrogen."
+      },
+      {
+        "claim": "Benzene reacts like an ordinary alkene.",
+        "correction": "Aromatic delocalisation makes substitution strongly preferred."
+      }
+    ],
+    "recommended_example_progression": [
+      "Classify and name hydrocarbons.",
+      "Study alkane preparation and conformation.",
+      "Predict alkene additions and ozonolysis.",
+      "Explain alkyne structure and acidity.",
+      "Analyse benzene aromaticity and substitution."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use exercises on nomenclature, isomerism, chlorination, conformations, addition reactions, Markovnikov orientation, ozonolysis, benzene substitution, directing effects, and toxicity."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Hydrocarbons\n\n## What you will learn\nClassify and name saturated, unsaturated, cyclic, and aromatic hydrocarbons.\n\n## Simple explanation\nHydrocarbons contain only carbon and hydrogen, but their bond types create distinct families.\n\n## Step-by-step breakdown\n- **Alkane**: Acyclic saturated hydrocarbon, CnH2n+2.\n- **Alkene**: Contains C=C.\n- **Alkyne**: Contains C≡C.\n- **Alicyclic**: Non-aromatic cyclic hydrocarbon.\n- **Arene**: Aromatic delocalised ring system.\n- **Homologue**: Successive member differs by CH2.\n- **Nomenclature**: Parent and numbering locate multiple bonds.\n- **Uses**: Fuels and feedstocks for polymers, solvents, dyes, and drugs.\n\n## Worked example\nQuestion: Name CH3–CH=CH–CH2–CH3.\n\nSolution:\n- Five-carbon parent gives pent-.\n- Number from the nearer double-bond end.\n- The double bond begins at carbon 2.\n- Final answer: Pent-2-ene.\n\n## Common mistake\nMultiple-bond locants must follow the applicable lowest-number rule.\n\n## Quick check question\nQuestion: General formula of an acyclic alkane?\nAnswer: CnH2n+2.\nExplanation: It is the maximum-hydrogen open-chain formula.\n\n## Summary\n- Alkane: Acyclic saturated hydrocarbon, CnH2n+2.\n- Alkene: Contains C=C.\n- Alkyne: Contains C≡C.\n- Alicyclic: Non-aromatic cyclic hydrocarbon.",
+    "Core explanation": "# Core explanation: Hydrocarbons\n\n## What you will learn\nExplain alkane preparation, reactions, physical trends, and conformations.\n\n## Simple explanation\nStrong non-polar sigma bonds make alkanes less reactive, but heat, light, and catalysts enable important reactions.\n\n## Step-by-step breakdown\n- **Hydrogenation**: Unsaturated hydrocarbons add H2 to form alkanes.\n- **Wurtz reaction**: Alkyl halides couple with sodium in dry ether.\n- **Decarboxylation**: Soda lime gives an alkane with one fewer carbon.\n- **Kolbe electrolysis**: Carboxylate radicals couple.\n- **Boiling point**: Generally rises with molar mass and falls with branching.\n- **Halogenation**: Free-radical substitution.\n- **Combustion**: Forms CO2 and H2O when complete.\n- **Conformation**: Rotation around a sigma bond.\n- **Ethane**: Staggered is lower in torsional strain than eclipsed.\n\n## Worked example\nQuestion: Why is staggered ethane more stable?\n\nSolution:\n- Adjacent C–H bonds are maximally separated.\n- Electron-pair and torsional repulsions are smaller.\n- The eclipsed form aligns bonds.\n- Final answer: Staggered ethane has lower torsional strain.\n\n## Common mistake\nConformations interconvert without bond breaking and are not constitutional isomers.\n\n## Quick check question\nQuestion: What replaces halogen during alkyl-halide reduction?\nAnswer: Hydrogen.\nExplanation: The haloalkane becomes the corresponding alkane.\n\n## Summary\n- Hydrogenation: Unsaturated hydrocarbons add H2 to form alkanes.\n- Wurtz reaction: Alkyl halides couple with sodium in dry ether.\n- Decarboxylation: Soda lime gives an alkane with one fewer carbon.\n- Kolbe electrolysis: Carboxylate radicals couple.",
+    "Worked examples": "# Worked examples: Hydrocarbons\n\n## What you will learn\nPredict alkene isomerism, addition products, oxidation, ozonolysis, and polymerisation.\n\n## Simple explanation\nThe electron-rich pi bond is reactive and its restricted rotation can create geometrical isomers.\n\n## Step-by-step breakdown\n- **Structure**: Each double-bond carbon is sp2 and planar.\n- **Geometrical isomerism**: Restricted rotation permits cis/trans arrangements.\n- **Preparation**: Elimination from alcohols or haloalkanes.\n- **Hydrogenation**: Adds H2.\n- **Halogenation**: Decolourises bromine solution.\n- **Markovnikov rule**: Orientation follows the more stable carbocation.\n- **Peroxide effect**: HBr can add anti-Markovnikov by radicals.\n- **Ozonolysis**: Cleaves C=C to carbonyl compounds.\n- **Polymerisation**: Joins many alkene molecules.\n\n## Worked example\nQuestion: Major product of HBr addition to propene without peroxide?\n\nSolution:\n- Protonation can form primary or secondary carbocation.\n- The secondary carbocation is more stable.\n- Br− attacks that intermediate.\n- Final answer: 2-bromopropane.\n\n## Common mistake\nThe peroxide effect is specifically important for HBr, not automatically HCl or HI.\n\n## Quick check question\nQuestion: What happens to bromine colour with an alkene?\nAnswer: It is discharged.\nExplanation: Bromine is consumed by addition across C=C.\n\n## Summary\n- Structure: Each double-bond carbon is sp2 and planar.\n- Geometrical isomerism: Restricted rotation permits cis/trans arrangements.\n- Preparation: Elimination from alcohols or haloalkanes.\n- Hydrogenation: Adds H2.",
+    "Exam-style problems": "# Exam-style problems: Hydrocarbons\n\n## What you will learn\nExplain alkyne bonding, terminal acidity, preparation, and addition reactions.\n\n## Simple explanation\nA triple bond contains one sigma and two pi bonds, and sp carbon holds electron density relatively close to the nucleus.\n\n## Step-by-step breakdown\n- **Geometry**: sp carbons are linear.\n- **Triple bond**: One sigma and two perpendicular pi bonds.\n- **Preparation**: Double dehydrohalogenation of dihalides.\n- **Ethyne**: Produced from calcium carbide and water.\n- **Terminal acidity**: An sp acetylide ion is comparatively stabilised.\n- **Acetylide**: Terminal alkynes react with strong bases.\n- **Addition**: H2, X2, and HX add in stages.\n- **Hydration**: Produces carbonyl compounds after rearrangement.\n- **Polymerisation**: Ethyne forms polyacetylene or benzene under stated conditions.\n\n## Worked example\nQuestion: Why is ethyne more acidic than ethene?\n\nSolution:\n- Deprotonation places charge in an sp orbital.\n- sp has 50% s character.\n- The negative charge is held closer to the nucleus.\n- Final answer: The sp-hybridised conjugate base is better stabilised.\n\n## Common mistake\nTerminal alkynes are only relatively acidic, not strong mineral acids.\n\n## Quick check question\nQuestion: Geometry around ethyne carbon?\nAnswer: Linear.\nExplanation: sp hybridisation gives 180°.\n\n## Summary\n- Geometry: sp carbons are linear.\n- Triple bond: One sigma and two perpendicular pi bonds.\n- Preparation: Double dehydrohalogenation of dihalides.\n- Ethyne: Produced from calcium carbide and water.",
+    "Revision and recap": "# Revision and recap: Hydrocarbons\n\n## What you will learn\nExplain benzene aromaticity, substitution, directing effects, and toxicity.\n\n## Simple explanation\nSix delocalised pi electrons stabilise benzene and make substitution preferable to ordinary addition.\n\n## Step-by-step breakdown\n- **Equal bonds**: All six C–C bonds have the same intermediate length.\n- **Resonance**: Kekulé forms contribute to one hybrid.\n- **Aromaticity**: Cyclic, planar, conjugated, and 4n+2 pi electrons.\n- **Preparation**: From ethyne, benzoate decarboxylation, or phenol reduction.\n- **Substitution**: Nitration, halogenation, sulphonation, and Friedel–Crafts reactions.\n- **Electrophile**: Attacks the pi system before aromaticity is restored.\n- **Activating group**: Usually increases rate and often directs ortho/para.\n- **Deactivating group**: Usually lowers rate and often directs meta.\n- **Halogen exception**: Deactivating but ortho/para directing.\n- **Toxicity**: Benzene and some fused arenes are carcinogenic.\n\n## Worked example\nQuestion: Why does benzene prefer substitution over addition?\n\nSolution:\n- Delocalisation gives aromatic stabilisation.\n- Addition would destroy continuous conjugation.\n- Substitution restores the aromatic ring after temporary disruption.\n- Final answer: Substitution preserves aromaticity.\n\n## Common mistake\nAromatic is an electronic structural term, not a statement that a compound is safe or pleasantly smelling.\n\n## Quick check question\nQuestion: How many pi electrons are in benzene?\nAnswer: Six.\nExplanation: They satisfy 4n+2 with n=1.\n\n## Summary\n- Equal bonds: All six C–C bonds have the same intermediate length.\n- Resonance: Kekulé forms contribute to one hybrid.\n- Aromaticity: Cyclic, planar, conjugated, and 4n+2 pi electrons.\n- Preparation: From ethyne, benzoate decarboxylation, or phenol reduction."
+  }
+}

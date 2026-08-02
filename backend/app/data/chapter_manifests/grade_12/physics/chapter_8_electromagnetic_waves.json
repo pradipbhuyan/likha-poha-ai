@@ -1,0 +1,69 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 8: Electromagnetic Waves",
+  "central_question": "How do changing electric and magnetic fields sustain electromagnetic waves, and how are spectrum regions produced and used?",
+  "in_scope_units": [
+    "Maxwell’s correction to Ampere’s law",
+    "Displacement current",
+    "Sources of electromagnetic waves",
+    "Transverse field nature",
+    "Wave speed and amplitudes",
+    "Electromagnetic spectrum",
+    "Radio to gamma radiation"
+  ],
+  "banned_topics": [
+    "Detailed capacitor electrostatics from Chapter 2",
+    "Magnetostatic derivations from Chapter 4",
+    "Interference and diffraction from Chapter 10"
+  ],
+  "must_include_keywords": [
+    "Maxwell",
+    "Ampere’s law",
+    "displacement current",
+    "electric flux",
+    "conduction current",
+    "accelerating charge",
+    "electromagnetic wave",
+    "Hertz",
+    "Jagdish Chandra Bose",
+    "Marconi",
+    "transverse wave",
+    "electric field amplitude",
+    "magnetic field amplitude",
+    "speed of light",
+    "electromagnetic spectrum",
+    "radio waves",
+    "microwaves",
+    "infrared",
+    "visible light",
+    "ultraviolet",
+    "X-rays",
+    "gamma rays",
+    "photon"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Current through a capacitor gap is ordinary conduction current.",
+      "correction": "It is displacement current associated with changing electric flux."
+    },
+    {
+      "claim": "E and B point along propagation.",
+      "correction": "Both are transverse and perpendicular to each other."
+    },
+    {
+      "claim": "Spectrum regions have perfectly sharp boundaries.",
+      "correction": "Their ranges overlap and classification is approximate."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 8.1: displacement current",
+    "NCERT Example 8.1: field amplitudes and directions",
+    "NCERT Example 8.2: wave equation",
+    "NCERT Exercise 8.3: common vacuum speed",
+    "NCERT Exercise 8.4: orientation and wavelength"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES run from 8.1 to 8.9.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

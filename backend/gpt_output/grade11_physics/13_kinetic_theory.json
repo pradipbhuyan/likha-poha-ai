@@ -1,0 +1,115 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory",
+    "central_question": "How can the random motion and collisions of molecules explain gas pressure, temperature, heat capacity and mean free path?",
+    "in_scope_units": [
+      "12.1 Introduction − molecular interpretation of gas behaviour and the scope of kinetic theory.",
+      "12.2 Molecular nature of matter − atomic hypothesis, molecular scales and differences among solids, liquids and gases.",
+      "12.3 Behaviour of gases − ideal-gas equation, gas laws, Avogadro hypothesis and Dalton's law of partial pressures.",
+      "12.4 Kinetic theory of an ideal gas − assumptions of random molecular motion and elastic collisions.",
+      "12.4.1 Pressure of an ideal gas − momentum transfer to walls and P = (1/3)nm⟨v²⟩.",
+      "12.4.2 Kinetic interpretation of temperature − average translational kinetic energy and rms speed.",
+      "12.5 Law of equipartition of energy − degrees of freedom and equal average energy per quadratic mode.",
+      "12.6 Specific heat capacity − predictions for monatomic, diatomic, polyatomic gases and solids.",
+      "12.6.1 Monatomic gases − three translational degrees of freedom and Cv = 3R/2.",
+      "12.6.2 Diatomic gases − rotational and possible vibrational modes.",
+      "12.6.3 Polyatomic gases − translational, rotational and vibrational contributions.",
+      "12.6.4 Specific heat capacity of solids − equipartition prediction C = 3R.",
+      "12.7 Mean free path − collision time, molecular diameter, number density and mean free path."
+    ],
+    "banned_topics": [
+      "Carnot engines, entropy and thermodynamic cycles from the Thermodynamics chapter.",
+      "Detailed quantum statistics or Maxwell–Boltzmann distribution beyond the chapter's classical treatment.",
+      "Chemical bonding and periodic-table classification.",
+      "Wave propagation, standing waves and resonance."
+    ],
+    "must_include_keywords": [
+      "atomic hypothesis",
+      "Avogadro number",
+      "Boltzmann constant",
+      "ideal gas",
+      "PV = μRT",
+      "PV = NkBT",
+      "number density",
+      "Boyle's law",
+      "Charles' law",
+      "Dalton's law of partial pressures",
+      "elastic collision",
+      "momentum transfer",
+      "isotropic gas",
+      "P = (1/3)nm⟨v²⟩",
+      "average kinetic energy",
+      "temperature",
+      "root mean square speed",
+      "vrms = √(3kBT/m)",
+      "degrees of freedom",
+      "equipartition of energy",
+      "translational mode",
+      "rotational mode",
+      "vibrational mode",
+      "monatomic gas",
+      "diatomic gas",
+      "polyatomic gas",
+      "Cv",
+      "Cp",
+      "γ",
+      "Cp − Cv = R",
+      "specific heat of solids",
+      "mean free path",
+      "collision time",
+      "molecular diameter",
+      "l = 1/(−2 nπd²)"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "All gas molecules have the same speed.",
+        "correction": "A gas has a distribution of molecular speeds; kinetic theory uses averages such as ⟨v²⟩ and vrms."
+      },
+      {
+        "claim": "At the same temperature, heavier molecules have greater rms speed.",
+        "correction": "At equal temperature, average kinetic energy is the same and vrms is inversely proportional to the square root of molecular mass."
+      },
+      {
+        "claim": "Pressure is caused by static molecular weight on the container floor.",
+        "correction": "Gas pressure arises from momentum transferred in incessant molecular collisions with surfaces in all directions."
+      },
+      {
+        "claim": "The average translational kinetic energy depends on the kind of ideal gas.",
+        "correction": "For every ideal gas molecule at temperature T, average translational kinetic energy is (3/2)kBT."
+      },
+      {
+        "claim": "A vibrational mode contributes only (1/2)kBT.",
+        "correction": "A vibrational mode has kinetic and potential quadratic terms and contributes kBT in classical equipartition."
+      },
+      {
+        "claim": "Cp equals Cv for an ideal gas.",
+        "correction": "For any ideal gas, Cp − Cv = R; constant-pressure heating also supplies expansion work."
+      },
+      {
+        "claim": "Mean free path is the intermolecular separation.",
+        "correction": "Mean free path is the average distance travelled between collisions and is much larger than the typical molecular separation in a gas."
+      },
+      {
+        "claim": "Increasing number density increases mean free path.",
+        "correction": "Mean free path varies inversely with number density and molecular cross-sectional area."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Example 12.4 to connect partial pressure with molecule number and mass density.",
+      "Use NCERT Example 12.5 to compare average kinetic energy and rms speed of different gases.",
+      "Use NCERT Example 12.8 to apply equipartition to the heat capacity of helium.",
+      "Use NCERT Example 12.9 to estimate mean free path in water vapour.",
+      "Use NCERT Exercises 12.6 and 12.9 for integrated molecule-count and rms-speed applications."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The NCERT end-of-chapter EXERCISES run from Question 12.1 to Question 12.10."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Kinetic Theory\n\n## What you will learn\nYou will connect the molecular nature of matter with the measurable gas variables pressure, volume and temperature. You will also revise the ideal-gas equation, Avogadro's hypothesis and partial pressures.\n\n## Simple explanation\nA gas looks uniform and still on the macroscopic scale, but its molecules are in rapid, random motion. Because the molecules are far apart at low pressure and high temperature, interactions are usually negligible except during collisions.\n\n## Step-by-step breakdown\n- **Molecular nature**: Matter is made of atoms and molecules. Atomic dimensions are of order 10–10 m, while gaseous molecules are separated by much larger distances than in solids or liquids.\n- **Dynamic equilibrium**: Molecules continually collide and change velocities, while average macroscopic quantities remain constant.\n- **Ideal-gas equation**: For μ moles, PV = μRT; for N molecules, PV = NkBT; and P = nkBT where n = N/V.\n- **Avogadro hypothesis**: Equal volumes of gases at the same pressure and temperature contain equal numbers of molecules.\n- **Gas laws**: At fixed temperature PV is constant (Boyle's law); at fixed pressure V is proportional to absolute temperature (Charles' law).\n- **Partial pressure**: For non-reacting ideal gases, total pressure equals the sum of the pressures each gas would exert alone at the same V and T.\n\n## Worked example\nQuestion: NCERT Example 12.4: Neon and oxygen have partial pressures in the ratio 3:2. Find the ratio of their molecule numbers and mass densities, given MNe = 20.2 u and MO2 = 32.0 u.\n\nSolution:\n- At common V and T, PiV = μiRT, so PNe/PO2 = μNe/μO2 = 3/2.\n- Since μ = N/NA, NNe/NO2 = 3/2.\n- Density ratio is ρNe/ρO2 = (μNeMNe)/(μO2MO2) = (3/2)(20.2/32.0).\n- Final answer: The number ratio is 3:2 and the density ratio is approximately 0.947.\n\n## Common mistake\nDo not interpret an ideal gas as a real gas with no molecules. It is a model of point-like, non-interacting molecules except for elastic collisions, approached by real gases at low pressure and high temperature.\n\n## Quick check question\nQuestion: NCERT Exercise 12.2 asks for the molar volume at STP. Using R = 8.31 J mol⁻¹ K⁻¹, T = 273 K and P = 1.01 × 10^5 Pa, what volume does one mole occupy?\nAnswer: Approximately 2.24 × 10–2 m³, or 22.4 litres.\nExplanation: For one mole, V = RT/P = (8.31 × 273)/(1.01 × 10^5) − 0.0224 m³ = 22.4 L.\n\n## Summary\n- Kinetic theory treats a gas as a huge collection of rapidly moving molecules.\n- PV = μRT = NkBT connects macroscopic and molecular descriptions.\n- Avogadro's hypothesis follows from the molecular form of the ideal-gas law.\n- Partial pressures add for a mixture of non-reacting ideal gases.",
+    "Core explanation": "# Core explanation: Kinetic Theory\n\n## What you will learn\nYou will derive the kinetic expression for gas pressure and connect temperature to average translational kinetic energy. You will then use rms speed to compare different molecular species.\n\n## Simple explanation\nPressure is produced by innumerable elastic impacts of molecules on the container walls. Each collision transfers momentum, and the combined momentum transfer per unit area per unit time gives pressure.\n\n## Step-by-step breakdown\n- **Elastic-wall collision**: For a molecule striking a wall normal to the x direction, vx reverses while vy and vz remain unchanged, so the momentum delivered to the wall is 2mvx.\n- **Molecules reaching the wall**: In time Δt, molecules within a layer of thickness vxΔt can reach the wall; on average half move toward it.\n- **Pressure expression**: Summing momentum transfer gives P = nm⟨vx²⟩. Isotropy gives ⟨vx²⟩ = ⟨v²⟩/3, hence P = (1/3)nm⟨v²⟩.\n- **Energy relation**: For N molecules, E = N(1/2)m⟨v²⟩ and therefore PV = (2/3)E.\n- **Kinetic temperature**: Combining with PV = NkBT gives (1/2)m⟨v²⟩ = (3/2)kBT.\n- **Rms speed**: vrms = √⟨v²⟩ = √(3kBT/m), so lighter molecules move faster at the same temperature.\n\n## Worked example\nQuestion: NCERT Example 12.5 compares argon and chlorine at the same temperature. Find the ratio of their average kinetic energies and rms speeds, given MAr = 39.9 u and MCl2 = 70.9 u.\n\nSolution:\n- At the same temperature, each molecule has average translational kinetic energy (3/2)kBT, so the energy ratio is 1:1.\n- Because vrms² is proportional to 1/M, (vrms,Ar/vrms,Cl2)² = MCl2/MAr = 70.9/39.9 = 1.77.\n- Taking the square root gives vrms,Ar/vrms,Cl2 − 1.33.\n- Final answer: Average kinetic-energy ratio = 1:1; rms-speed ratio Ar:Cl2 − 1.33:1.\n\n## Common mistake\nDo not replace ⟨v²⟩ by ⟨v²⟩. The mean of the square is generally not the square of the mean, which is why rms speed is defined using √⟨v²⟩.\n\n## Quick check question\nQuestion: NCERT Exercise 12.8 considers equal-volume vessels at the same pressure and temperature containing neon, chlorine and uranium hexafluoride. Do they contain equal molecule numbers, and which gas has the greatest rms speed?\nAnswer: They contain equal numbers of molecules, and neon has the greatest rms speed.\nExplanation: Equal P, V and T imply equal N from PV = NkBT. At the same T, vrms ∝ 1/√M, so the lightest molecules, neon, have the largest rms speed.\n\n## Summary\n- Gas pressure is a consequence of molecular momentum transfer.\n- Isotropy produces the factor 1/3 in P = (1/3)nm⟨v²⟩.\n- Temperature measures average translational kinetic energy.\n- At equal temperature, lighter molecules have higher rms speed.",
+    "Worked examples": "# Worked examples: Kinetic Theory\n\n## What you will learn\nYou will use degrees of freedom and the law of equipartition to predict molar heat capacities. You will compare monatomic, diatomic and polyatomic gases and understand the role of vibration.\n\n## Simple explanation\nEquipartition assigns an average energy of (1/2)kBT to every independent quadratic energy term in thermal equilibrium. Counting translational, rotational and vibrational terms therefore predicts internal energy and specific heat.\n\n## Step-by-step breakdown\n- **Degrees of freedom**: A free molecule has three translational degrees of freedom. A rigid diatomic molecule additionally has two active rotational degrees of freedom at ordinary temperatures.\n- **Equipartition rule**: Each translational or rotational quadratic term contributes (1/2)kBT per molecule.\n- **Vibrational mode**: One vibrational frequency contains both kinetic and potential quadratic terms, so it contributes kBT per molecule when active.\n- **Monatomic gas**: U = (3/2)RT per mole, Cv = (3/2)R, Cp = (5/2)R and γ = 5/3.\n- **Rigid diatomic gas**: U = (5/2)RT, Cv = (5/2)R, Cp = (7/2)R and γ = 7/5.\n- **Polyatomic gas and solids**: For three rotations and f vibrational modes, Cv = (3 + f)R and Cp = (4 + f)R. A classical solid gives molar heat capacity 3R at ordinary temperature.\n\n## Worked example\nQuestion: NCERT Example 12.8: A fixed 44.8 L cylinder contains helium at STP. Find the heat required to raise its temperature by 15.0 K, using R = 8.31 J mol⁻¹ K⁻¹.\n\nSolution:\n- At STP, 22.4 L is one mole, so 44.8 L contains 2 moles.\n- Helium is monatomic and the volume is fixed, so use Cv = (3/2)R.\n- Q = μCvΔT = 2 × (3/2) × 8.31 × 15.0.\n- Final answer: The required heat is about 374 J.\n\n## Common mistake\nDo not count one vibrational frequency as only one half-kBT contribution. It includes both kinetic and potential energy terms and contributes kBT when classical equipartition applies.\n\n## Quick check question\nQuestion: NCERT Exercise 12.7 asks for the average thermal energy of a helium atom at 27 °C. Take T = 300 K and kB = 1.38 × 10–23 J K⁻¹.\nAnswer: Approximately 6.21 × 10–21 J per atom.\nExplanation: For a monatomic ideal gas atom, average translational energy is (3/2)kBT = 1.5 × 1.38 × 10–23 × 300 = 6.21 × 10–21 J.\n\n## Summary\n- Equipartition distributes energy equally among quadratic modes.\n- Translational and rotational degrees each contribute (1/2)kBT.\n- A vibrational frequency contributes kBT when active.\n- Heat capacities follow directly from the number of active degrees of freedom.\n- For every ideal gas, Cp − Cv = R.",
+    "Exam-style problems": "# Exam-style problems: Kinetic Theory\n\n## What you will learn\nYou will estimate molecular sizes, collision times and mean free paths. You will also relate mean free path to number density, molecular diameter and diffusion behaviour.\n\n## Simple explanation\nAlthough gas molecules move rapidly, repeated collisions constantly change their directions. The average straight-line distance between successive collisions is the mean free path.\n\n## Step-by-step breakdown\n- **Collision geometry**: Treat molecules as spheres of diameter d. A moving molecule sweeps a collision cylinder of cross-section πd².\n- **Approximate collision time**: If other molecules were fixed, τ = 1/(nπd²⟨v⟩). Accounting for relative motion introduces the factor −2.\n- **Mean free path**: The more exact result is l = 1/(√2 nπd²).\n- **Dependence**: Mean free path decreases when number density or molecular diameter increases and becomes very large in a highly evacuated tube.\n- **Physical consequence**: Large molecular speed does not imply rapid straight-line diffusion because collisions produce a random zig-zag path.\n- **Molecular estimates**: Relations involving mean free path, viscosity, heat conduction and diffusion allow microscopic molecular sizes to be inferred from bulk measurements.\n\n## Worked example\nQuestion: NCERT Example 12.9 estimates the mean free path of a water molecule in water vapour at 373 K using the STP result. Reproduce the estimate.\n\nSolution:\n- At constant pressure, number density varies inversely with absolute temperature.\n- Using nSTP = 2.7 × 10^25 m⁻³, n373 = 2.7 × 10^25 × 273/373 − 2.0 × 10^25 m⁻³.\n- Using the same molecular diameter as in the preceding estimate in the text, substitute into l = 1/(√2 nπd²).\n- Final answer: The mean free path is approximately 4 × 10–7 m.\n\n## Common mistake\nDo not confuse mean free path with molecular diameter or average separation. Mean free path is the distance travelled between collisions and can be hundreds or thousands of molecular diameters.\n\n## Quick check question\nQuestion: NCERT Exercise 12.10 uses nitrogen at 2.0 atm and 17 °C. If its number density were increased while molecular diameter stayed fixed, what would happen to the mean free path?\nAnswer: The mean free path would decrease in inverse proportion to number density.\nExplanation: The formula l = 1/(−2 nπd²) shows that doubling n halves l when d is unchanged.\n\n## Summary\n- Mean free path is the average distance between successive collisions.\n- It varies as 1/n and 1/d².\n- Collisions explain why diffusion is much slower than molecular speed suggests.\n- Low-density gases have longer mean free paths.",
+    "Revision and recap": "# Revision and recap: Kinetic Theory\n\n## What you will learn\nYou will integrate the ideal-gas law, pressure formula, rms speed, equipartition and mean free path into a single revision map. You will practise selecting the correct molecular relation from the information supplied.\n\n## Simple explanation\nKinetic theory links two scales: macroscopic variables such as P, V and T, and microscopic variables such as molecular mass, speed, collision rate and degrees of freedom. Most exam questions are solved by identifying which bridge equation connects the two scales.\n\n## Step-by-step breakdown\n- **Gas-state bridge**: Use PV = μRT = NkBT and P = nkBT to move between moles, molecule number, density and state variables.\n- **Pressure-energy bridge**: Use P = (1/3)nm⟨v²⟩, PV = (2/3)E and average translational energy (3/2)kBT.\n- **Speed bridge**: Use vrms = √(3kBT/m); at equal T, speed ratios depend only on molecular-mass ratios.\n- **Heat-capacity bridge**: Count active degrees of freedom and apply equipartition, then use Cp − Cv = R.\n- **Collision bridge**: Use l = 1/(−2 nπd²) and collision frequency roughly equal to molecular speed divided by mean free path.\n- **Unit discipline**: Use kelvin temperature, SI pressure and volume, and molecular mass per molecule when using kB-based formulas.\n\n## Worked example\nQuestion: NCERT Exercise 12.9: At what temperature does argon have the same rms speed as helium at −20 °C? Use atomic masses Ar = 39.9 u and He = 4.0 u.\n\nSolution:\n- Convert the helium temperature: THe = 253 K.\n- Equal rms speeds require TAr/MAr = THe/MHe.\n- Thus TAr = 253 × 39.9/4.0 − 2.52 × 10^3 K.\n- Final answer: The required argon temperature is approximately 2.52 × 10^3 K.\n\n## Common mistake\nDo not insert molar mass directly into vrms = √(3kBT/m). In the kB form, m must be the mass of one molecule; alternatively use vrms = √(3RT/M) with molar mass M in kg mol⁻¹.\n\n## Quick check question\nQuestion: NCERT Exercise 12.6: Estimate the number of air molecules in a 25.0 m³ room at 27 °C and 1 atm. Take kB = 1.38 × 10–23 J K⁻¹ and P = 1.013 × 10^5 Pa.\nAnswer: Approximately 6.1 × 10^26 molecules.\nExplanation: From PV = NkBT, N = PV/(kBT) = (1.013 × 10^5 × 25.0)/(1.38 × 10–23 × 300) − 6.12 × 10^26.\n\n## Summary\n- Ideal-gas equations connect macroscopic state variables with molecule number.\n- Pressure follows from collision momentum transfer.\n- Temperature fixes average translational kinetic energy.\n- Equipartition predicts classical heat capacities.\n- Mean free path quantifies the spacing of collisions, not molecular separation."
+  }
+}

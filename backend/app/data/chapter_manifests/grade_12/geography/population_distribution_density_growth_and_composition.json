@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Population: Distribution, Density, Growth and Composition",
+  "central_question": "How are India's people distributed across space, how has the population changed, and what does its social and occupational composition reveal?",
+  "in_scope_units": [
+    "Sources of population data through the Census.",
+    "Spatial distribution of India's population and the factors that shape it.",
+    "Population density, physiological density and agricultural density.",
+    "Population growth, doubling time and four historical phases of growth.",
+    "Regional variation in population growth and the importance of adolescents and youth policy.",
+    "Population composition by rural-urban residence.",
+    "Linguistic and religious composition.",
+    "Composition of the working population and occupational structure."
+  ],
+  "banned_topics": [
+    "World population distribution and demographic transition theory.",
+    "Detailed migration streams and causes beyond their role in Indian population growth and urbanisation.",
+    "Human settlements and the functional classification of towns."
+  ],
+  "must_include_keywords": [
+    "Census",
+    "1872",
+    "1881",
+    "population distribution",
+    "Uttar Pradesh",
+    "physical factors",
+    "socio-economic factors",
+    "historical factors",
+    "population density",
+    "physiological density",
+    "agricultural density",
+    "population growth",
+    "natural growth",
+    "induced growth",
+    "doubling time",
+    "stagnant phase",
+    "steady growth",
+    "population explosion",
+    "slowing growth",
+    "regional variation",
+    "adolescents",
+    "National Youth Policy",
+    "population composition",
+    "rural population",
+    "urban population",
+    "urbanisation",
+    "linguistic composition",
+    "Indo-Aryan",
+    "Dravidian",
+    "religious composition",
+    "occupational composition",
+    "work participation rate",
+    "main workers",
+    "marginal workers",
+    "cultivators",
+    "agricultural labourers",
+    "household industries",
+    "other workers"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Population distribution and population density mean the same thing.",
+      "correction": "Distribution describes the spatial pattern of where people live, whereas density expresses the number of persons per unit area."
+    },
+    {
+      "claim": "India's population grew at the same rate throughout the twentieth century.",
+      "correction": "The chapter identifies four phases: stagnant or stationary, steady growth, population explosion and a high but gradually slowing growth phase."
+    },
+    {
+      "claim": "All workers are counted only as cultivators or agricultural labourers.",
+      "correction": "The Census categories include cultivators, agricultural labourers, household industrial workers and other workers, while economic status also distinguishes main, marginal and non-workers."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2(i) on climate and population distribution.",
+    "NCERT Exercise 3(i) on the spatial pattern of density.",
+    "NCERT Exercise 1(i) on India's 2011 population.",
+    "NCERT Exercise 2(ii) on states with a large rural population.",
+    "NCERT Exercise 3(ii) on occupational structure."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1-3: four multiple-choice questions, four short-answer questions and two long-answer questions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

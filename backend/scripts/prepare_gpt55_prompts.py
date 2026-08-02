@@ -384,13 +384,371 @@ BOOK_SOURCES = {
         "subject_class": "humanities_or_language",
     },
     ("Grade 11", "Geography"): {
-        # Two separate NCERT books, each independently numbered:
-        # "Fundamentals of Physical Geography" (kegy101-106) then
-        # "India — Physical Environment" (kegy201-210).
+        # Two separate NCERT books, each independently numbered. CORRECTED
+        # 2026-07-31: the book-code-to-title assumption below was
+        # originally REVERSED, causing every one of Grade 11 Geography's
+        # 16 chapters to be backfilled with the WRONG PDF's images (a
+        # circular one-book-length shift — e.g. "Geography as a
+        # Discipline" [chapter 1 in get_chapter_list()] received
+        # kegy101.pdf's images [India's "Administrative Divisions" map],
+        # while "India — Location" [chapter 7] received kegy201.pdf's
+        # images [Geography as a Discipline's own diagrams]). Verified
+        # directly against each PDF's own printed content:
+        #   - kegy1*.pdf is actually "INDIA: PHYSICAL ENVIRONMENT" (10
+        #     chapters: kegy101=India--Location page 1 text literally
+        #     begins "INTRODUCTION ... India's place in the world";
+        #     kegy102=Structure and Physiography; kegy103=Drainage
+        #     System; kegy104=Climate; kegy105=Natural Vegetation;
+        #     kegy106=Soils; kegy107=Natural Hazards and Disasters;
+        #     kegy108=Population; kegy109=Migration; kegy110=Human
+        #     Settlements) -- NOT the 6-chapter "Fundamentals" book the
+        #     original comment claimed.
+        #   - kegy2*.pdf is actually "FUNDAMENTALS OF PHYSICAL
+        #     GEOGRAPHY" (6 chapters: kegy201.pdf page 1 literally prints
+        #     "GEOGRAPHY AS A DISCIPLINE"; kegy202=The Origin and
+        #     Evolution of the Earth [confirmed: this file's page 1 is
+        #     only the Unit II divider, but pages 2-6 are headed "THE
+        #     ORIGIN AND EVOLUTION OF THE EARTH"]; kegy203=Interior of
+        #     the Earth; kegy204=Distribution of Oceans and Continents
+        #     [confirmed: opens "In the previous chapter, you have
+        #     studied the interior of the earth"]; kegy205=Minerals and
+        #     Rocks; kegy206=Geomorphic Processes) -- NOT the 10-chapter
+        #     "India" book the original comment claimed.
+        # get_chapter_list() for this (grade, subject) returns exactly
+        # 16 titles in the order: Geography as a Discipline (1) ... 
+        # Geomorphic Processes (6), then India -- Location (7) ...
+        # Human Settlements (16) -- i.e. the FIRST 6 chapters are the
+        # kegy2 book and the REMAINING 10 are the kegy1 book. The "parts"
+        # list below must therefore list kegy2 (6 chapters) FIRST and
+        # kegy1 (10 chapters) SECOND to match that chapter order --
+        # _resolve_pdf_path_for_chapter() consumes "parts" strictly in
+        # list order against the 1-based chapter index, so the part
+        # order here must always mirror get_chapter_list()'s title
+        # order, never the book's own re-used internal numbering.
         "parts": [
-            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Geography", "book_code": "kegy1", "num_chapters": 6},
-            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Geography", "book_code": "kegy2", "num_chapters": 10},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Geography", "book_code": "kegy2", "num_chapters": 6},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Geography", "book_code": "kegy1", "num_chapters": 10},
         ],
+        "subject_class": "humanities_or_language",
+    },
+    # ── Grade 11 English, Hindi, Chemistry (added 2026-07-31) ──────────
+    # Verified directly against each PDF's own printed content: English
+    # is the 5-chapter "Snapshots" supplementary reader (kesp101-105).
+    # Hindi is "Vitan Bhag-1" (khvt101-105) -- confirmed via decoded
+    # legacy Kruti-Dev-encoded text matching 5 real NCERT chapters
+    # (PyMuPDF's raw text extraction is garbled for this font, but the
+    # PDF pages render correctly and GPT-5.5 reads them visually, so
+    # this does not block authoring). Chemistry is the current reduced
+    # 2023 NCERT syllabus (9 units total, NOT the older ~14-unit
+    # edition): kech101-106 = Units 1-6, kech201-203 = Units 7-9.
+    ("Grade 11", "English"): {
+        # Two NCERT sources, confirmed against rag_documents' 11 live
+        # chapters (added 2026-07-31): "Snapshots" supplementary reader
+        # (kesp101-105, 5 stories, order confirmed -- these were already
+        # the first 5 live chapters) then "Hornbill" core reader
+        # (kehb101-106, 6 chapters, downloaded fresh). Previous config only
+        # had the 5-chapter Snapshots part, missing all 6 Hornbill chapters.
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "English", "book_code": "kesp1", "num_chapters": 5},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "English", "book_code": "kehb1", "num_chapters": 6},
+        ],
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 11", "Hindi"): {
+        # Two NCERT sources. Order verified by rendering each PDF's early
+        # pages as an IMAGE and reading the Devanagari directly (this
+        # book uses a legacy Kruti-Dev-encoded font, so PyMuPDF's raw
+        # text extraction is garbled and cannot be substring-matched --
+        # confirmed same issue noted for Grade 11 Hindi Vitan elsewhere in
+        # this file). khvt101/102/103 visually confirmed as rag_documents'
+        # live chapters 1-3 (Bharatiya Gayikaon.../Rajasthan Ki Rajat
+        # Boondein/Alo-Aandhari); khar101's first real content page is a
+        # Premchand author-bio matching live chapter 4 (Namak Ka Daroga) --
+        # so the live order is "Vitan" (3 chapters) THEN "Aroh" (16
+        # chapters), 3+16=19 matching rag_documents exactly. This spot-
+        # checked 4 of 19 positions, not all -- worth a fuller check
+        # before treating the middle of the Aroh sequence as guaranteed
+        # correct. Previous config only had a 5-chapter Vitan-only part
+        # (and even that included 2 extra khvt104/105 files that do NOT
+        # match any of the 19 live titles -- excluded here).
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Hindi", "book_code": "khvt1", "num_chapters": 3},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Hindi", "book_code": "khar1", "num_chapters": 16},
+        ],
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 11", "Chemistry"): {
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Chemistry", "book_code": "kech1", "num_chapters": 6},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Chemistry", "book_code": "kech2", "num_chapters": 3},
+        ],
+        "subject_class": "science_or_maths",
+    },
+    # ── Grade 11 History, Sociology, Psychology from local Downloads
+    # folders (added 2026-08-01) ────────────────────────────────────────
+    # Sociology and Psychology PDFs are clean 1-file-per-chapter (each
+    # file prints its own "CHAPTER N" heading and ends with that
+    # chapter's own review questions) -- verified directly against every
+    # file's first/last page text.
+    #
+    # History's original ~/Downloads/Grade 11 History/ folder (kehs101-
+    # 107.pdf, "Themes in World History", rationalised/reduced 7-theme
+    # CBSE edition) is NOT a clean 1-file-per-chapter split: kehs102.pdf
+    # bundles TWO full themes (Theme 2 "An Empire Across Three
+    # Continents" pages 29-57, then Theme 3 "Nomadic Empires" pages
+    # 58-76 -- confirmed via the "T3HEME" running header at the exact
+    # split point); kehs106.pdf opens with 12 pages of pure Unit-IV
+    # introduction/timeline (no theme number, ends mid-page with a cross-
+    # reference to "Theme 8" of the FULL 11-theme book, which is not
+    # part of this rationalised edition) before Theme 6 "Displacing
+    # Indigenous Peoples" actually begins on its page 13; and kehs103.pdf
+    # (9 pages) is ENTIRELY a Unit-III introduction + Timeline-III, with
+    # no "THEME n" heading, no chapter-specific running header (only the
+    # generic "CHANGING TRADITIONS" unit name throughout) and no
+    # Exercises section -- unlike every real theme file, confirming it
+    # is not itself an addressable chapter and must be excluded rather
+    # than mapped to any Lessons-dropdown title.
+    # Fix: pre-split kehs102.pdf and kehs106.pdf by exact page boundary
+    # (verified via each theme's own "THEME n" heading) into 7 correctly-
+    # bounded single-theme PDFs, written to a new folder so this script's
+    # simple 1-file-per-chapter indexing works; kehs103.pdf's Unit-III
+    # intro content was dropped entirely (page range not reused).
+    ("Grade 11", "History"): {
+        "pdf_dir": Path.home() / "Downloads" / "Grade 11 History (rationalised 7 themes)",
+        "book_code": "kehs1",
+        "num_chapters": 7,
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 11", "Sociology"): {
+        # "Introducing Sociology" (kesy101-105, Ch 1-5) -- confirmed via
+        # each file's own printed "CHAPTER N" heading.
+        "pdf_dir": Path.home() / "Downloads" / "Grade 11 Sociology",
+        "book_code": "kesy1",
+        "num_chapters": 5,
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 11", "Psychology"): {
+        # NCERT "Psychology" (kepy101-108, Ch 1-8) -- confirmed via each
+        # file's own printed chapter heading and "Chapter N • <Title>"
+        # footer. kepy1gl.pdf (Glossary) and kepy1ps.pdf (Prelims) in the
+        # same folder are intentionally excluded (not real chapters).
+        # NOTE: "Psychology" is not yet listed in
+        # GRADE_11_CBSE_SUBJECTS in app/data/syllabus.py, so it will not
+        # appear in the Lessons subject dropdown until added there
+        # separately -- out of scope for this prompt-generation step.
+        "pdf_dir": Path.home() / "Downloads" / "Grade 11 Pyschology",
+        "book_code": "kepy1",
+        "num_chapters": 8,
+        "subject_class": "humanities_or_language",
+    },
+    # ── Grade 12 books from OneDrive cbse_ncert_pdfs collection (added
+    # 2026-07-31) ────────────────────────────────────────────────────────
+    # Verified directly against each PDF's own printed content, same
+    # careful method as Grade 11 above. Sociology has 0 PDFs (not yet
+    # scraped).
+    #
+    # History (fixed 2026-08-02): the "Grade_12/History" folder's own
+    # files (book code "lehe1"/"lehe2") are CONFIRMED WRONG -- they
+    # actually contain "Human Ecology and Family Sciences" content, a
+    # completely different NCERT subject (same bug pattern documented for
+    # Grade 11 History above). The correct current NCERT "Themes in
+    # Indian History" textbook uses book code "lehs1"/"lehs2"/"lehs3"
+    # (verified directly: lehs101.pdf's own first page literally reads
+    # "Bricks, Beads and Bones / The Harappan Civilisation"), freshly
+    # downloaded into a new "History_Correct" subfolder to avoid
+    # colliding with or being confused with the wrong "History" folder.
+    # This is the CURRENT rationalized 12-chapter syllabus, not the
+    # older 14-chapter list that was previously stored in rag_documents
+    # for this subject (3 old chapters -- Kings and Chronicles: The
+    # Mughal Courts; Colonial Cities; Understanding Partition -- were
+    # dropped, and one new chapter -- Framing the Constitution -- was
+    # added).
+    ("Grade 12", "History"): {
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "History_Correct", "book_code": "lehs1", "num_chapters": 4},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "History_Correct", "book_code": "lehs2", "num_chapters": 4},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "History_Correct", "book_code": "lehs3", "num_chapters": 4},
+        ],
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 12", "Accountancy"): {
+        # Two independent NCERT books, each with its own chapter
+        # numbering: "Accounting for Partnership Firms and Companies"
+        # (leac101-104, Ch 1-4: Basic Concepts, Admission, Retirement/
+        # Death, Dissolution) then "Company Accounts and Analysis of
+        # Financial Statements" (leac201-206, Ch 1-6: Share Capital,
+        # Debentures, Financial Statements of a Company, Analysis of
+        # Financial Statements, Accounting Ratios, Cash Flow Statement).
+        # "Accounting for Not-for-Profit Organisations" is NOT part of
+        # this edition -- confirmed via download_ncert_grade11_12.py
+        # --dry-run (leac105.pdf 404s immediately after leac104.pdf, so
+        # book 1 genuinely has only 4 chapters here, not a missing
+        # download). See CHAPTER_NAME_OVERRIDES below for the full
+        # verified title list.
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Accountancy", "book_code": "leac1", "num_chapters": 4},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Accountancy", "book_code": "leac2", "num_chapters": 6},
+        ],
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 12", "Biology"): {
+        "pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Biology",
+        "book_code": "lebo1",
+        "num_chapters": 13,
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 12", "Business Studies"): {
+        # "Principles and Functions of Management" (lebs101-108, Ch 1-8)
+        # then "Business Finance and Marketing" (lebs201-203, Ch 9-11:
+        # Financial Management, Marketing, Consumer Protection -- NOT
+        # "Financial Markets"/"Marketing Management" as previously
+        # assumed; see CHAPTER_NAME_OVERRIDES below, corrected 2026-08-01
+        # after verifying each PDF's own printed chapter heading).
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Business_Studies", "book_code": "lebs1", "num_chapters": 8},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Business_Studies", "book_code": "lebs2", "num_chapters": 3},
+        ],
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 12", "Chemistry"): {
+        # "Chemistry Part 1" (lech101-105, Ch 1-5: Solutions,
+        # Electrochemistry, Chemical Kinetics, d-/f-Block Elements,
+        # Coordination Compounds) then "Chemistry Part 2" (lech201-205,
+        # Ch 6-10: Haloalkanes and Haloarenes, Alcohols/Phenols/Ethers,
+        # Aldehydes/Ketones/Carboxylic Acids, Amines, Biomolecules) --
+        # current reduced 2023 NCERT syllabus. "The Solid State",
+        # "Surface Chemistry", "General Principles and Processes of
+        # Isolation of Elements" and "The p-Block Elements" are NOT part
+        # of this edition (confirmed via each PDF's own "Unit N" heading
+        # and via download_ncert_grade11_12.py --dry-run showing a clean
+        # 404 immediately after the last real file in each part).
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Chemistry", "book_code": "lech1", "num_chapters": 5},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Chemistry", "book_code": "lech2", "num_chapters": 5},
+        ],
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 12", "Economics"): {
+        "pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Economics",
+        "book_code": "leec1",
+        "num_chapters": 6,
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 12", "English"): {
+        # Three NCERT sources, confirmed directly against rag_documents'
+        # 19 live chapters (added 2026-07-31): "Flamingo" prose (lefl101-108,
+        # 8 lessons), "Flamingo" poetry (originally lefl111/112/113/114/115
+        # on the NCERT portal -- NOT a clean 09-13 continuation of the prose
+        # numbering, so the 5 files were copied locally to a contiguous
+        # "lefl3poemsNN" sequence to fit this script's simple pattern), then
+        # "Vistas" supplementary reader (levt101-106, 6 stories). Previous
+        # config only had the 8-chapter prose part, missing 11 chapters.
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "English", "book_code": "lefl1", "num_chapters": 8},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "English", "book_code": "lefl3poems", "num_chapters": 5},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "English", "book_code": "levt1", "num_chapters": 6},
+        ],
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 12", "Geography"): {
+        # FIXED 2026-08-01: previously only "Fundamentals of Human
+        # Geography" (legy1, 8 chapters) was configured -- the second
+        # real NCERT book, "India: People and Economy" (9 chapters in
+        # this edition), was missing entirely (0 PDFs downloaded).
+        # Downloaded fresh via download_ncert_grade11_12.py after fixing
+        # that script's own book-code bug (had "legz1", which 404s; the
+        # real code is "legy2", confirmed via curl).
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Geography", "book_code": "legy1", "num_chapters": 8},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Geography", "book_code": "legy2", "num_chapters": 9},
+        ],
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 12", "Hindi"): {
+        # Two NCERT books, confirmed directly against rag_documents' 18 live
+        # chapters (added 2026-07-31): "Aroh" (lhar101-115, 15 chapters,
+        # downloaded fresh from ncert.nic.in) then "Vitan" supplementary
+        # (lhvt101-103, 3 chapters). Previous config only had the 3-chapter
+        # Vitan part, missing all 15 Aroh chapters.
+        #
+        # FIXED 2026-08-02: this entry was missing "content_language":
+        # "hi", unlike every other Hindi subject entry in this file
+        # (Grade 5/6/7/8/9/11 Hindi all correctly set it). Without it, every
+        # prompt generated for this subject used ENGLISH headings and
+        # instructed GPT-5.5 to write the lesson body in English by default
+        # -- confirmed directly: 9 already-ingested chapters (Jujh, Bhaktin,
+        # Bazaar Darshan, etc.) came back almost entirely in English despite
+        # being Hindi literature chapters. Added the missing flag so all
+        # FUTURE prompts for this subject are correctly generated in Hindi;
+        # the 9 already-ingested English-language chapters still need to be
+        # regenerated with a corrected prompt and re-ingested.
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Hindi", "book_code": "lhar1", "num_chapters": 15},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Hindi", "book_code": "lhvt1", "num_chapters": 3},
+        ],
+        "subject_class": "humanities_or_language",
+        "content_language": "hi",
+    },
+    ("Grade 12", "Mathematics"): {
+        # Part 1 (lemh101-106, Ch 1-6) then Part 2 (lemh201-207, Ch 7-13)
+        # -- continuous numbering across the two physical volumes.
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Mathematics", "book_code": "lemh1", "num_chapters": 6},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Mathematics", "book_code": "lemh2", "num_chapters": 7},
+        ],
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 12", "Physics"): {
+        # Part 1 (leph101-108, Ch 1-8) then Part 2 (leph201-206, Ch 9-14)
+        # -- continuous numbering across the two physical volumes.
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Physics", "book_code": "leph1", "num_chapters": 8},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Physics", "book_code": "leph2", "num_chapters": 6},
+        ],
+        "subject_class": "science_or_maths",
+    },
+    ("Grade 12", "Political Science"): {
+        # "Contemporary World Politics" (leps101-107, Ch 1-7: The End of
+        # Bipolarity, Contemporary Centres of Power, Contemporary South
+        # Asia, International Organisations, Security in the
+        # Contemporary World, Environment and Natural Resources,
+        # Globalisation -- "The Cold War Era" and "US Hegemony in World
+        # Politics" are NOT part of this edition) then "Politics in
+        # India Since Independence" (leps201-208, Ch 1-8, including
+        # "Regional Aspirations" at position 7 which the previous config
+        # omitted entirely). See CHAPTER_NAME_OVERRIDES below for the
+        # full verified title list, corrected 2026-08-01.
+        "parts": [
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Political_Science", "book_code": "leps1", "num_chapters": 7},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_12" / "Political_Science", "book_code": "leps2", "num_chapters": 8},
+        ],
+        "subject_class": "humanities_or_language",
+    },
+    # ── Grade 12 Sociology, Psychology from local Downloads folders
+    # (added 2026-08-01) ────────────────────────────────────────────────
+    ("Grade 12", "Sociology"): {
+        # NCERT "Indian Society" (lesy101-107.pdf). Titles verified
+        # directly against each file's own printed title (positions 1-3,
+        # 7) or opening-paragraph topic (positions 4-6, where the title
+        # itself is a graphic that doesn't extract as text -- same issue
+        # seen elsewhere this session). lesy107.pdf ("Suggestions for
+        # Project Work") is deliberately EXCLUDED: it's a project-work
+        # guide, not examinable chapter content, the same way glossary/
+        # prelims files are excluded for other subjects -- num_chapters
+        # below is 6, not 7. lesy1gs.pdf (glossary) and lesy1ps.pdf
+        # (prelims) also excluded.
+        "pdf_dir": Path.home() / "Downloads" / "Grade12-Sociology",
+        "book_code": "lesy1",
+        "num_chapters": 6,
+        "subject_class": "humanities_or_language",
+    },
+    ("Grade 12", "Psychology"): {
+        # NCERT "Psychology" (lepy101-107.pdf) -- confirmed via each
+        # file's own "Chapter N • <Title>" footer. lepy1gl.pdf (Glossary)
+        # and lepy1ps.pdf (Prelims) excluded (not real chapters).
+        "pdf_dir": Path.home() / "Downloads" / "Grade12-Psychology",
+        "book_code": "lepy1",
+        "num_chapters": 7,
         "subject_class": "humanities_or_language",
     },
 }
@@ -620,11 +978,28 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Chapter 6: The Parliamentary System: Legislature and Executive",
         "Chapter 7: Factors of Production",
     ],
-    # ── Grade 11 overrides (added 2026-07-30) ────────────────────────────
-    # Copied verbatim from each PDF's own printed chapter title (see
-    # BOOK_SOURCES comment above) since syllabus.py has no real chapter
-    # list for either subject yet.
+    # ── Grade 11 & 12 overrides (regenerated 2026-07-31 directly from live
+    # rag_documents -- the PREVIOUS versions of these entries were confirmed
+    # stale/wrong for several subjects: some had a "Chapter N: " prefix that
+    # does not exist on the live canonical chapter key (would create a NEW
+    # mismatched/duplicate chapter on ingestion instead of matching the
+    # existing one -- the same bug class documented repeatedly in
+    # docs/GPT55_LESSON_UPDATE_STATUS.md), and several (Chemistry, Geography,
+    # Political Science, Accountancy, Biology, Physics) had chapters in the
+    # WRONG ORDER relative to the actual source-PDF file sequence, which
+    # would silently pair the wrong chapter title with the wrong PDF content
+    # (run() zips chapter_names[i] with PDF file i by position). Every entry
+    # below is copied verbatim, in rag_documents id order, from the already-
+    # live platform content (Exemplar rows excluded).
     ("Grade 11", "Mathematics"): [
+        # NOTE (2026-07-31): this list was previously silently truncated
+        # to only 10 entries (matching whatever rag_documents happened to
+        # have at the time some earlier session regenerated this block),
+        # which broke textbook-image backfill for chapters 10-13 with
+        # "Could not match manifest chapter ... to any entry in the
+        # syllabus chapter list." Restored to the full, correct 14-chapter
+        # NCERT list, verified directly against each PDF file (kemh101-114)
+        # earlier this session.
         "Chapter 1: Sets", "Chapter 2: Relations and Functions",
         "Chapter 3: Trigonometric Functions",
         "Chapter 4: Complex Numbers and Quadratic Equations",
@@ -637,96 +1012,508 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Chapter 14: Probability",
     ],
     ("Grade 11", "Physics"): [
-        "Chapter 1: Units and Measurements",
-        "Chapter 2: Motion in a Straight Line", "Chapter 3: Motion in a Plane",
-        "Chapter 4: Laws of Motion", "Chapter 5: Work, Energy and Power",
-        "Chapter 6: Systems of Particles and Rotational Motion",
-        "Chapter 7: Gravitation", "Chapter 8: Mechanical Properties of Solids",
-        "Chapter 9: Mechanical Properties of Fluids",
-        "Chapter 10: Thermal Properties of Matter", "Chapter 11: Thermodynamics",
-        "Chapter 12: Kinetic Theory", "Chapter 13: Oscillations",
-        "Chapter 14: Waves",
+        "Physical World",
+        "Units and Measurements",
+        "Motion in a Straight Line",
+        "Motion in a Plane",
+        "Laws of Motion",
+        "Work, Energy and Power",
+        "Systems of Particles and Rotational Motion",
+        "Gravitation",
+        "Mechanical Properties of Solids",
+        "Mechanical Properties of Fluids",
+        "Thermal Properties of Matter",
+        "Thermodynamics",
+        "Kinetic Theory",
+        "Oscillations",
     ],
     ("Grade 11", "Biology"): [
-        "Chapter 1: The Living World", "Chapter 2: Biological Classification",
-        "Chapter 3: Plant Kingdom", "Chapter 4: Animal Kingdom",
-        "Chapter 5: Morphology of Flowering Plants",
-        "Chapter 6: Anatomy of Flowering Plants",
-        "Chapter 7: Structural Organisation in Animals",
-        "Chapter 8: Cell: The Unit of Life", "Chapter 9: Biomolecules",
-        "Chapter 10: Cell Cycle and Cell Division",
-        "Chapter 11: Transport in Plants", "Chapter 12: Mineral Nutrition",
-        "Chapter 13: Photosynthesis in Higher Plants",
-        "Chapter 14: Respiration in Plants",
-        "Chapter 15: Plant Growth and Development",
-        "Chapter 16: Digestion and Absorption",
-        "Chapter 17: Breathing and Exchange of Gases",
-        "Chapter 18: Body Fluids and Circulation",
-        "Chapter 19: Excretory Products and their Elimination",
+        "The Living World",
+        "Biological Classification",
+        "Plant Kingdom",
+        "Animal Kingdom",
+        "Morphology of Flowering Plants",
+        "Anatomy of Flowering Plants",
+        "Structural Organisation in Animals",
+        "Cell: The Unit of Life",
+        "Biomolecules",
+        "Cell Cycle and Cell Division",
+        "Transport in Plants",
+        "Mineral Nutrition",
+        "Photosynthesis in Higher Plants",
+        "Respiration in Plants",
+        "Plant Growth and Development",
+        "Digestion and Absorption",
+        "Breathing and Exchange of Gases",
+        "Body Fluids and Circulation",
+        "Excretory Products and Their Elimination",
+        "Locomotion and Movement",
+        "Neural Control and Coordination",
+        "Chemical Coordination and Integration",
     ],
     ("Grade 11", "Business Studies"): [
-        "Chapter 1: Business, Trade and Commerce",
-        "Chapter 2: Forms of Business Organisation",
-        "Chapter 3: Private, Public and Global Enterprises",
-        "Chapter 4: Business Services", "Chapter 5: Emerging Modes of Business",
-        "Chapter 6: Social Responsibilities of Business and Business Ethics",
-        "Chapter 7: Formation of a Company",
-        "Chapter 8: Sources of Business Finance",
-        "Chapter 9: MSME and Business Entrepreneurship",
-        "Chapter 10: Internal Trade",
+        "Business, Trade and Commerce",
+        "Forms of Business Organisation",
+        "Private, Public and Global Enterprises",
+        "Business Services",
+        "Emerging Modes of Business",
+        "Social Responsibilities of Business and Business Ethics",
+        "Formation of a Company",
+        "Sources of Business Finance",
+        "Small Business",
+        "Internal Trade",
     ],
+    # CORRECTED 2026-08-01: this list was previously corrupted -- it had
+    # 13 entries with "Introduction to Accounting" through "Recording of
+    # Transactions – II" duplicated twice, then jumped straight to "Bank
+    # Reconciliation Statement" onward but ended with a spurious "Bill of
+    # Exchange" entry (never a real chapter in this book/edition) and was
+    # MISSING "Financial Statements – II" entirely. Verified directly
+    # against each PDF's own printed chapter title (keac101-107,
+    # keac201-202): the true, correct 9-chapter list is exactly as below,
+    # matching the GPT-5.5 authored content supplied 2026-08-01 chapter
+    # for chapter. "Bill of Exchange" does not exist in this NCERT
+    # edition at all -- confirmed no PDF file corresponds to it.
     ("Grade 11", "Accountancy"): [
-        "Chapter 1: Introduction to Accounting",
-        "Chapter 2: Theory Base of Accounting",
-        "Chapter 3: Recording of Transactions-I",
-        "Chapter 4: Recording of Transactions-II",
-        "Chapter 5: Bank Reconciliation Statement",
-        "Chapter 6: Trial Balance and Rectification of Errors",
-        "Chapter 7: Depreciation, Provisions and Reserves",
-        "Chapter 8: Financial Statements - I", "Chapter 9: Financial Statements - II",
+        "Introduction to Accounting",
+        "Theory Base of Accounting",
+        "Recording of Transactions – I",
+        "Recording of Transactions – II",
+        "Bank Reconciliation Statement",
+        "Trial Balance and Rectification of Errors",
+        "Depreciation, Provisions and Reserves",
+        "Financial Statements – I",
+        "Financial Statements – II",
     ],
     ("Grade 11", "Political Science"): [
-        "Chapter 1: Introduction (Political Theory)",
-        "Chapter 2: Freedom", "Chapter 3: Equality", "Chapter 4: Social Justice",
-        "Chapter 5: Rights", "Chapter 6: Citizenship", "Chapter 7: Nationalism",
-        "Chapter 8: Secularism",
-        "Chapter 1: Constitution: Why and How?",
-        "Chapter 2: Rights in the Indian Constitution",
-        "Chapter 3: Election and Representation", "Chapter 4: Executive",
-        "Chapter 5: Legislature", "Chapter 6: Judiciary", "Chapter 7: Federalism",
-        "Chapter 8: Local Governments",
-        "Chapter 9: Constitution as a Living Document",
-        "Chapter 10: The Philosophy of the Constitution",
+        "Constitution: Why and How?",
+        "Rights in the Indian Constitution",
+        "Election and Representation",
+        "Executive",
+        "Legislature",
+        "Judiciary",
+        "Federalism",
+        "Local Governments",
+        "Political Theory: An Introduction",
+        "Freedom",
+        "Equality",
+        "Social Justice",
+        "Rights",
+        "Citizenship",
+        "Nationalism",
+        "Secularism",
+        "Peace",
+        "Development",
+    ],
+    ("Grade 11", "History"): [
+        # "Themes in World History" (rationalised 7-theme CBSE edition).
+        # Titles verified directly against each theme's own "THEME n"
+        # heading in the pre-split PDFs (see BOOK_SOURCES comment above).
+        "Writing and City Life",
+        "An Empire Across Three Continents",
+        "Nomadic Empires",
+        "The Three Orders",
+        "Changing Cultural Traditions",
+        "Displacing Indigenous Peoples",
+        "Paths to Modernisation",
+    ],
+    ("Grade 11", "Sociology"): [
+        # "Introducing Sociology" -- titles verified directly against
+        # each file's own printed "CHAPTER N" heading.
+        "Sociology and Society",
+        "Terms, Concepts and their Use in Sociology",
+        "Understanding Social Institutions",
+        "Culture and Socialisation",
+        "Doing Sociology: Research Methods",
+    ],
+    ("Grade 11", "Psychology"): [
+        # NCERT "Psychology" -- titles verified directly against each
+        # file's own printed chapter heading / "Chapter N • <Title>"
+        # footer.
+        "What is Psychology?",
+        "Methods of Enquiry in Psychology",
+        "Human Development",
+        "Sensory, Attentional and Perceptual Processes",
+        "Learning",
+        "Human Memory",
+        "Thinking",
+        "Motivation and Emotion",
     ],
     ("Grade 11", "Economics"): [
-        "Chapter 1: Indian Economy on the Eve of Independence",
-        "Chapter 2: Indian Economy 1950-1990",
-        "Chapter 3: Economic Reforms",
-        "Chapter 4: Current Challenges Facing the Indian Economy",
-        "Chapter 5: Rural Development",
-        "Chapter 6: Indian Economic Development: Some Salient Aspects",
-        "Chapter 7: Environment and Sustainable Development",
-        "Chapter 8: Development Experiences of India: A Comparison with Neighbours",
-        "Chapter 1: Introduction to Statistics", "Chapter 2: Collection of Data",
-        "Chapter 3: Organisation of Data", "Chapter 4: Presentation of Data",
-        "Chapter 5: Measures of Central Tendency",
-        "Chapter 6: Measures of Dispersion", "Chapter 7: Index Numbers",
-        "Chapter 8: Use of Statistical Tools",
+        "Indian Economy on the Eve of Independence",
+        "Indian Economy 1950–1990",
+        "Liberalisation, Privatisation and Globalisation",
+        "Poverty",
+        "Human Capital Formation in India",
+        "Rural Development",
+        "Employment: Growth, Informalisation and Other Issues",
+        "Infrastructure",
+        "Introduction to Statistics",
+        "Collection of Data",
+        "Organisation of Data",
+        "Presentation of Data",
+        "Measures of Central Tendency",
+        "Measures of Dispersion",
+        "Correlation",
+        "Index Numbers",
     ],
     ("Grade 11", "Geography"): [
-        "Chapter 1: Introduction (Fundamentals of Physical Geography)",
-        "Chapter 2: Physiography", "Chapter 3: Drainage System in India",
-        "Chapter 4: Climate and Vegetation",
-        "Chapter 5: Natural Vegetation",
-        "Chapter 6: Natural Hazards and Disasters: Causes, Consequences and Management",
-        "Chapter 1: Geography as a Discipline",
-        "Chapter 2: The Earth", "Chapter 3: Landforms",
-        "Chapter 4: Landforms and their Evolution", "Chapter 5: Climate",
-        "Chapter 6: Solar Radiation, Heat Balance and Temperature",
-        "Chapter 7: Atmospheric Circulation and Weather Systems",
-        "Chapter 8: Water in the Atmosphere",
-        "Chapter 9: World Climate and Climate Change",
-        "Chapter 10: Water (Oceans)",
+        "Geography as a Discipline",
+        "The Origin and Evolution of the Earth",
+        "Interior of the Earth",
+        "Distribution of Oceans and Continents",
+        "Minerals and Rocks",
+        "Geomorphic Processes",
+        "India — Location",
+        "Structure and Physiography",
+        "Drainage System",
+        "Climate",
+        "Natural Vegetation",
+        "Soils",
+        "Natural Hazards and Disasters",
+        "Population",
+        "Migration",
+        "Human Settlements",
+    ],
+    ("Grade 11", "English"): [
+        "The Summer of the Beautiful White Horse",
+        "The Address",
+        "Mother's Day",
+        "Birth",
+        "The Tale of Melon City",
+        "The Portrait of a Lady",
+        "We're Not Afraid to Die",
+        "Discovering Tut: the Saga Continues",
+        "The Ailing Planet: the Green Movement's Role",
+        "The Adventure",
+        "Silk Road",
+    ],
+    ("Grade 11", "Hindi"): [
+        "Bharatiya Gayikaon Mein Bejod Lata Mangeshkar",
+        "Rajasthan Ki Rajat Boondein",
+        "Alo-Aandhari",
+        "Namak Ka Daroga",
+        "Miyan Nasiruddin",
+        "Apu Ke Saath Dhai Saal",
+        "Vidai Sambhashan",
+        "Galta Loha",
+        "Rajni",
+        "Jamun Ka Ped",
+        "Bharat Mata",
+        "Hum Tau Ek Ek Kari Jaana",
+        "Mere To Girdhar Gopal",
+        "Ghar Ki Yaad",
+        "Champa Kaale Kaale Achchar Nahi Cheenhti",
+        "Ghazal",
+        "Hey Bhookh Mat Machal",
+        "Sabse Khatarnak",
+        "Aao Milkar Bachayen",
+    ],
+    ("Grade 11", "Chemistry"): [
+        # Verified 2026-07-31 directly against the actual rationalised
+        # NCERT textbook's own printed table of contents (kech1dd/kech1a1
+        # appendix + kech2dd/kech2ps contents page): Part I = Units 1-6,
+        # Part II = Units 7-9. "States of Matter" and "Hydrogen" (older
+        # chapter list) were REMOVED in the post-2022 content
+        # rationalisation and replaced by Thermodynamics/Equilibrium
+        # moving up and Organic Chemistry/Hydrocarbons being added as the
+        # new final two chapters -- this list previously still had the
+        # OLD pre-rationalisation names, which did not match either the
+        # attached GPT-5.5 content or the actual local PDF files at all.
+        "Some Basic Concepts of Chemistry",
+        "Structure of Atom",
+        "Classification of Elements and Periodicity in Properties",
+        "Chemical Bonding and Molecular Structure",
+        "Thermodynamics",
+        "Equilibrium",
+        "Redox Reactions",
+        "Organic Chemistry – Some Basic Principles and Techniques",
+        "Hydrocarbons",
+    ],
+    ("Grade 12", "History"): [
+        # Current rationalized 12-chapter NCERT "Themes in Indian
+        # History" syllabus (fixed 2026-08-02, replacing the older
+        # 14-chapter list this same key previously held -- 3 old
+        # chapters were dropped and 1 new chapter added; see the
+        # BOOK_SOURCES comment above for the full explanation). Verified
+        # directly against each source PDF's own printed content this
+        # session (lehs101-304).
+        "Bricks, Beads and Bones: The Harappan Civilisation",
+        "Kings, Farmers and Towns: Early States and Economies",
+        "Kinship, Caste and Class: Early Societies",
+        "Thinkers, Beliefs and Buildings: Cultural Developments",
+        "Through the Eyes of Travellers: Perceptions of Society",
+        "Bhakti-Sufi Traditions: Changes in Religious Beliefs and Devotional Texts",
+        "An Imperial Capital: Vijayanagara",
+        "Peasants, Zamindars and the State: Agrarian Society and the Mughal Empire",
+        "Colonialism and the Countryside: Exploring Official Archives",
+        "Rebels and the Raj: The Revolt of 1857 and Its Representations",
+        "Mahatma Gandhi and the Nationalist Movement: Civil Disobedience and Beyond",
+        "Framing the Constitution: The Beginning of a New Era",
+    ],
+    ("Grade 12", "Accountancy"): [
+        # CORRECTED 2026-08-01: previous list assumed "Accounting for
+        # Not-for-Profit Organisations" was chapter 1, causing every one
+        # of the 10 downloaded PDFs to be labeled with the WRONG (one-
+        # chapter-off) title -- e.g. leac104.pdf ("Dissolution of
+        # Partnership Firm") was being labeled "Reconstitution ...
+        # Retirement/Death of a Partner". Verified this is NOT a missing-
+        # PDF issue: download_ncert_grade11_12.py --dry-run confirms
+        # leac105.pdf/leac207.pdf both 404 immediately after the last
+        # real file, i.e. leac101-104 + leac201-206 (10 files) is the
+        # complete, current book -- "Not-for-Profit Organisations" is
+        # not part of this edition at all. Titles below verified
+        # directly from each PDF's own printed chapter heading.
+        "Accounting for Partnership: Basic Concepts",
+        "Reconstitution of a Partnership Firm – Admission of a Partner",
+        "Reconstitution of a Partnership Firm – Retirement/Death of a Partner",
+        "Dissolution of Partnership Firm",
+        "Accounting for Share Capital",
+        "Issue and Redemption of Debentures",
+        "Financial Statements of a Company",
+        "Analysis of Financial Statements",
+        "Accounting Ratios",
+        "Cash Flow Statement",
+    ],
+    ("Grade 12", "Biology"): [
+        # CORRECTED 2026-08-01: previous list used an entirely different
+        # (older/unrationalised) chapter set and order than what's
+        # actually in the downloaded lebo101-113.pdf files -- e.g.
+        # lebo102.pdf's own printed heading is "CHAPTER 2 HUMAN
+        # REPRODUCTION", not "Reproduction in Organisms" as the old list
+        # claimed for position 2 (that chapter isn't in this edition at
+        # all). Verified every position directly against each PDF's own
+        # "CHAPTER N" heading -- this is the current rationalised
+        # 13-chapter book (drops "Reproduction in Organisms" and
+        # "Strategies for Enhancement in Food Production" as standalone
+        # chapters, and KEEPS "Ecosystem"/"Biodiversity and Conservation"
+        # as 12/13, unlike what the old list assumed).
+        "Sexual Reproduction in Flowering Plants",
+        "Human Reproduction",
+        "Reproductive Health",
+        "Principles of Inheritance and Variation",
+        "Molecular Basis of Inheritance",
+        "Evolution",
+        "Human Health and Disease",
+        "Microbes in Human Welfare",
+        "Biotechnology: Principles and Processes",
+        "Biotechnology and its Applications",
+        "Organisms and Populations",
+        "Ecosystem",
+        "Biodiversity and Conservation",
+    ],
+    ("Grade 12", "Business Studies"): [
+        # Positions 1-9 verified correct. Positions 10-11 CORRECTED
+        # 2026-08-01: lebs202.pdf's own heading is "10 Marketing", not
+        # "Financial Markets" (not part of this edition); lebs203.pdf's
+        # own heading is "11 Consumer Protection", not "Marketing
+        # Management" (also not part of this edition). Book 2 ("Business
+        # Finance and Marketing") really has exactly 3 chapters: Financial
+        # Management, Marketing, Consumer Protection.
+        "Nature and Significance of Management",
+        "Principles of Management",
+        "Business Environment",
+        "Planning",
+        "Organising",
+        "Staffing",
+        "Directing",
+        "Controlling",
+        "Financial Management",
+        "Marketing",
+        "Consumer Protection",
+    ],
+    ("Grade 12", "Chemistry"): [
+        # CORRECTED 2026-08-01: previous list (Solid State, Surface
+        # Chemistry, General Principles/Isolation of Elements, p-Block
+        # Elements) does not match the downloaded PDFs AT ALL -- verified
+        # directly against each PDF's own printed "Unit N" heading, e.g.
+        # lech101.pdf is "Unit 1 Solutions" (not "The Solid State"), and
+        # lech202.pdf is "Unit 7 Alcohols, Phenols and Ethers" (an entire
+        # organic-chemistry chapter missing from the old list, which
+        # wrongly claimed p-Block Elements for that position instead).
+        # This edition's real 10 units are Solutions through Biomolecules
+        # -- confirmed complete via download_ncert_grade11_12.py --dry-run
+        # (lech106.pdf/lech206.pdf both 404 immediately after the last
+        # real file, so nothing is missing).
+        "Solutions",
+        "Electrochemistry",
+        "Chemical Kinetics",
+        "The d- and f-Block Elements",
+        "Coordination Compounds",
+        "Haloalkanes and Haloarenes",
+        "Alcohols, Phenols and Ethers",
+        "Aldehydes, Ketones and Carboxylic Acids",
+        "Amines",
+        "Biomolecules",
+    ],
+    ("Grade 12", "Economics"): [
+        "Introduction to Macroeconomics",
+        "National Income Accounting",
+        "Money and Banking",
+        "Determination of Income and Employment",
+        "Government Budget and the Economy",
+        "Open Economy Macroeconomics",
+    ],
+    ("Grade 12", "English"): [
+        "The Last Lesson",
+        "Lost Spring",
+        "Deep Water",
+        "The Rattrap",
+        "Indigo",
+        "Poets and Pancakes",
+        "The Interview",
+        "Going Places",
+        "My Mother at Sixty-six",
+        "Keeping Quiet",
+        "A Thing of Beauty",
+        "A Roadside Stand",
+        "Aunt Jennifer's Tigers",
+        "The Third Level",
+        "The Tiger King",
+        "Journey to the End of the Earth",
+        "The Enemy",
+        "On the Face of It",
+        "Memories of Childhood",
+    ],
+    ("Grade 12", "Geography"): [
+        # Book 1 "Fundamentals of Human Geography" (positions 1-8,
+        # unchanged, already verified correct via each PDF's own
+        # "Chapter-N" heading).
+        "Human Geography: Nature and Scope",
+        "The World Population: Distribution, Density and Growth",
+        "Population Composition",
+        "Human Development",
+        "Primary Activities",
+        "Secondary Activities",
+        "Tertiary and Quaternary Activities",
+        "Transport and Communication",
+        # Book 2 "India: People and Economy" (positions 9-17) ADDED
+        # 2026-08-01 -- this book was missing entirely (0 PDFs
+        # downloaded; the previous BOOK_SOURCES entry only had book 1).
+        # Downloaded fresh via download_ncert_grade11_12.py after fixing
+        # that script's own book-code bug (it had "legz1", which 404s;
+        # the real NCERT code is "legy2", confirmed via curl). Titles
+        # verified against each PDF's own body-text topic (page-1
+        # decorative titles don't extract as plain text in this book,
+        # same issue as Grade 11 Geography) -- content is unambiguous
+        # and matches the standard NCERT "India: People and Economy"
+        # chapter order exactly (Unit I population/settlements/land
+        # through Unit V environmental pollution).
+        "Population: Distribution, Density, Growth and Composition",
+        "Human Settlements",
+        "Land Resources and Agriculture",
+        "Water Resources",
+        "Mineral and Energy Resources",
+        "Planning and Sustainable Development in Indian Context",
+        "Transport and Communication in India",
+        "International Trade",
+        "Geographical Perspective on Selected Issues and Problems",
+    ],
+    ("Grade 12", "Hindi"): [
+        "Jujh",
+        "Ateet Mein Dabe Paon",
+        "Silver Wedding",
+        "Atmaparichay Ek Geet",
+        "Patang",
+        "Kavita Ke Bahane Baat Seedhi Thi Par",
+        "Camera Mein Band Apahij",
+        "Usha",
+        "Baadal Raag",
+        "Kavitavali Uttarkand Se",
+        "Rubaiyan",
+        "Chhota Mera Khet",
+        "Bhaktin",
+        "Bazaar Darshan",
+        "Kale Megha Pani De",
+        "Pahalwan Ki Dholak",
+        "Shirish Ke Phool",
+        "Shram Vibhajan Aur Jati Pratha",
+    ],
+    ("Grade 12", "Mathematics"): [
+        "Relations and Functions",
+        "Inverse Trigonometric Functions",
+        "Matrices",
+        "Determinants",
+        "Continuity and Differentiability",
+        "Application of Derivatives",
+        "Integrals",
+        "Application of Integrals",
+        "Differential Equations",
+        "Vector Algebra",
+        "Three Dimensional Geometry",
+        "Linear Programming",
+        "Probability",
+    ],
+    ("Grade 12", "Physics"): [
+        "Electric Charges and Fields",
+        "Electrostatic Potential and Capacitance",
+        "Current Electricity",
+        "Moving Charges and Magnetism",
+        "Magnetism and Matter",
+        "Electromagnetic Induction",
+        "Alternating Current",
+        "Electromagnetic Waves",
+        "Ray Optics and Optical Instruments",
+        "Wave Optics",
+        "Dual Nature of Radiation and Matter",
+        "Atoms",
+        "Nuclei",
+        "Semiconductor Electronics",
+    ],
+    ("Grade 12", "Political Science"): [
+        # CORRECTED 2026-08-01: previous list assumed "The Cold War Era"
+        # and "US Hegemony in World Politics" were chapters 1 and 3 of
+        # book 1, causing every one of the 15 downloaded PDFs to be
+        # shifted -- verified directly against each PDF's own printed
+        # "Chapter N" heading, e.g. leps101.pdf is "Chapter 1 The End of
+        # Bipolarity" (not "The Cold War Era"). Confirmed via
+        # download_ncert_grade11_12.py --dry-run that book 1 genuinely
+        # has only 7 chapters in this edition (leps108.pdf was never
+        # attempted -- config num_chapters=7 already matched what's on
+        # disk) -- "The Cold War Era" and "US Hegemony in World Politics"
+        # are simply not separate chapters in this edition, not missing
+        # downloads. Book 2 also had a similar one-position shift,
+        # PLUS a chapter the old list omitted entirely ("Regional
+        # Aspirations", leps207.pdf's own heading "7 Regional
+        # Aspirations", confirmed via page 2 since page 1 is a divider).
+        "The End of Bipolarity",
+        "Contemporary Centres of Power",
+        "Contemporary South Asia",
+        "International Organisations",
+        "Security in the Contemporary World",
+        "Environment and Natural Resources",
+        "Globalisation",
+        "Challenges of Nation Building",
+        "Era of One-Party Dominance",
+        "Politics of Planned Development",
+        "India's External Relations",
+        "Challenges to and Restoration of the Congress System",
+        "The Crisis of Democratic Order",
+        "Regional Aspirations",
+        "Rise of Popular Movements",
+    ],
+    ("Grade 12", "Sociology"): [
+        # NCERT "Indian Society" -- titles verified directly against
+        # each file's own printed title (1-3) or opening-paragraph topic
+        # (4-6). "Suggestions for Project Work" (lesy107.pdf) excluded --
+        # not examinable chapter content.
+        "Introducing Indian Society",
+        "The Demographic Structure of the Indian Society",
+        "Social Institutions: Continuity and Change",
+        "The Market as a Social Institution",
+        "Patterns of Social Inequality and Exclusion",
+        "The Challenges of Cultural Diversity",
+    ],
+    ("Grade 12", "Psychology"): [
+        # NCERT "Psychology" -- titles verified directly against each
+        # file's own "Chapter N • <Title>" footer.
+        "Variations in Psychological Attributes",
+        "Self and Personality",
+        "Meeting Life Challenges",
+        "Psychological Disorders",
+        "Therapeutic Approaches",
+        "Attitude and Social Cognition",
+        "Social Influence and Group Processes",
     ],
 }
 

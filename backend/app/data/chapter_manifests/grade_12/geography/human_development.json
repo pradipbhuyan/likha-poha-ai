@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Human Development",
+  "central_question": "What makes development genuinely human, how can it be measured, and why do countries achieve different levels of human well-being?",
+  "in_scope_units": [
+    "Difference between quantitative growth and qualitative, value-positive development.",
+    "Human development as enlargement of people's choices and freedoms, associated with Mahbub-ul-Haq and Amartya Sen.",
+    "Meaningful life and the centrality of health, education and access to resources.",
+    "The four pillars of human development: equity, sustainability, productivity and empowerment.",
+    "Income, welfare, basic-needs and capability approaches to human development.",
+    "Measurement through the Human Development Index and Human Poverty Index.",
+    "Gross National Happiness as an alternative qualitative measure.",
+    "International comparisons and categories of human development.",
+    "Role of social-sector expenditure, political stability, freedom and equitable distribution of resources."
+  ],
+  "banned_topics": [
+    "Detailed world population distribution and demographic transition.",
+    "Detailed sectoral economic activities such as agriculture, manufacturing or trade."
+  ],
+  "must_include_keywords": [
+    "growth",
+    "development",
+    "quantitative",
+    "qualitative change",
+    "value positive",
+    "Mahbub-ul-Haq",
+    "Amartya Sen",
+    "people's choices",
+    "freedom",
+    "meaningful life",
+    "health",
+    "education",
+    "access to resources",
+    "capability",
+    "equity",
+    "sustainability",
+    "productivity",
+    "empowerment",
+    "income approach",
+    "welfare approach",
+    "basic needs approach",
+    "capability approach",
+    "Human Development Index",
+    "life expectancy at birth",
+    "adult literacy rate",
+    "gross enrolment ratio",
+    "purchasing power",
+    "Human Poverty Index",
+    "UNDP",
+    "Human Development Report",
+    "Gross National Happiness",
+    "international comparisons",
+    "social sector",
+    "good governance"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any positive increase is development.",
+      "correction": "Positive growth is necessary but does not become development unless it improves quality."
+    },
+    {
+      "claim": "Human development is measured only by income.",
+      "correction": "The chapter places people, choices, health, education and access to resources at the centre and presents several approaches and indices."
+    },
+    {
+      "claim": "A high HDI score proves that achievements are equally distributed.",
+      "correction": "The chapter warns that HDI measures attainments but does not reveal their distribution."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1(i) on the meaning of development.",
+    "NCERT Exercise 3(i) on human development.",
+    "NCERT Exercise 3(ii) on equity and sustainability.",
+    "NCERT Exercise 2(iii) on HDI categories.",
+    "NCERT Exercise 2(i) on the three basic areas of human development."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–3 and a Project/Activity comparing corruption and human-development scores.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "International Trade",
+  "central_question": "Why does international trade develop, how is it organised, and what benefits and concerns arise from the exchange of goods and services across national boundaries?",
+  "in_scope_units": [
+    "Meaning of trade, barter, money and international exchange.",
+    "Historical development of international trade from local exchange to global commerce.",
+    "Reasons and bases for international trade.",
+    "Balance of trade and its favourable or unfavourable condition.",
+    "Bilateral and multilateral trade.",
+    "Free trade, trade liberalisation and dumping.",
+    "World Trade Organisation and debates about global trade rules.",
+    "Regional trade blocs and concerns related to international trade.",
+    "Ports as gateways of trade and their classification."
+  ],
+  "banned_topics": [
+    "Detailed global transport routes and communication technologies.",
+    "Detailed retail, wholesale and service-sector organisation."
+  ],
+  "must_include_keywords": [
+    "trade",
+    "voluntary exchange",
+    "international trade",
+    "barter system",
+    "money",
+    "Jon Beel Mela",
+    "Silk Route",
+    "colonialism",
+    "slave trade",
+    "Industrial Revolution",
+    "specialisation",
+    "division of labour",
+    "comparative advantage",
+    "complementarity",
+    "transferability",
+    "national resources",
+    "population factors",
+    "economic development",
+    "foreign investment",
+    "transport",
+    "balance of trade",
+    "favourable balance",
+    "unfavourable balance",
+    "bilateral trade",
+    "multilateral trade",
+    "Most Favoured Nation",
+    "free trade",
+    "trade liberalisation",
+    "tariffs",
+    "dumping",
+    "GATT",
+    "World Trade Organisation",
+    "regional trade blocs",
+    "ports",
+    "hinterland",
+    "industrial port",
+    "commercial port",
+    "comprehensive port",
+    "inland port",
+    "out port",
+    "port of call",
+    "entrepot",
+    "naval port"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "International trade is simply the movement of goods between places within one country.",
+      "correction": "International trade is the exchange of goods and services among countries across national boundaries."
+    },
+    {
+      "claim": "A negative balance of trade means a country exports more than it imports.",
+      "correction": "It is unfavourable when the value of imports exceeds the value of exports."
+    },
+    {
+      "claim": "Free trade automatically benefits every producer equally.",
+      "correction": "The chapter warns that unequal conditions and dumping can harm developing economies and domestic producers."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 3(ii) on national gains from international trade.",
+    "NCERT Exercise 2(ii) on an unfavourable balance of payments.",
+    "NCERT Fig. 8.1 note on barter at Jon Beel Mela.",
+    "NCERT Exercise 2(i) and 2(iii) on WTO and regional trade blocs.",
+    "NCERT Exercise 3(i) on ports and their location-based classification."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1-3: two multiple-choice questions, three short-answer questions and two long-answer questions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

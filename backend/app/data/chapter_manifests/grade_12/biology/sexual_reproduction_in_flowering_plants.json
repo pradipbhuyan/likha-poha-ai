@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "central_question": "How do flowering plants (angiosperms) carry out sexual reproduction — from the formation of pollen grains and the embryo sac, through pollination and double fertilisation, to the development of the seed and fruit?",
+  "in_scope_units": [
+    "1.1 Flower — A Fascinating Organ of Angiosperms: introduces the flower as the site of sexual reproduction, with androecium (stamens) as the male reproductive whorl and gynoecium (pistils) as the female reproductive whorl.",
+    "1.2.1 Stamen, Microsporangium and Pollen Grain: structure of the stamen (filament, anther), the dithecous/tetragonal anther with four microsporangia, the four wall layers of the microsporangium (epidermis, endothecium, middle layers, tapetum), microsporogenesis from sporogenous tissue/pollen mother cell to microspore tetrads, and the structure, wall layers (exine/intine) and viability of the mature pollen grain.",
+    "1.2.2 The Pistil, Megasporangium (ovule) and Embryo sac: structure of the pistil (stigma, style, ovary), structure of a typical anatropous ovule (funicle, hilum, integuments, micropyle, chalaza, nucellus), megasporogenesis from the megaspore mother cell, and monosporic development of the 8-nucleate, 7-celled female gametophyte (embryo sac) with egg apparatus, antipodals and polar nuclei.",
+    "1.2.3 Pollination: kinds of pollination (autogamy, geitonogamy, xenogamy), chasmogamous and cleistogamous flowers, abiotic agents (wind, water) and biotic agents (animals) of pollination, outbreeding devices, and pollen-pistil interaction including emasculation and bagging techniques used in plant breeding.",
+    "1.3 Double Fertilisation: entry of the pollen tube into the synergid, discharge of the two male gametes, syngamy (fusion with the egg to form the diploid zygote) and triple fusion (fusion of the second male gamete with the two polar nuclei to form the triploid primary endosperm nucleus), together called double fertilisation.",
+    "1.4.1 Endosperm: free-nuclear endosperm development from the primary endosperm cell, cellularisation, and the fate of endosperm in albuminous versus non-albuminous seeds.",
+    "1.4.2 Embryo: stages of dicot embryogeny (proembryo, globular, heart-shaped, mature embryo), parts of a typical dicot embryo (embryonal axis, cotyledons, epicotyl, plumule, hypocotyl, radicle) and of a monocot embryo (scutellum, coleoptile, coleorrhiza).",
+    "1.4.3 Seed: structure of the seed (seed coat, cotyledons, embryonal axis), albuminous and non-albuminous seeds, perisperm, development of the fruit (pericarp) from the ovary, true fruits versus false fruits, and parthenocarpy.",
+    "1.5 Apomixis and Polyembryony: apomixis as a form of asexual reproduction that produces seeds without fertilisation, polyembryony (more than one embryo in a seed), and their importance in the hybrid seed industry."
+  ],
+  "banned_topics": [
+    "Human male and female reproductive system anatomy, gametogenesis (spermatogenesis/oogenesis), menstrual cycle, fertilisation and implantation in humans, pregnancy and parturition — these belong to Chapter 2, Human Reproduction.",
+    "Reproductive health topics such as contraceptive methods, MTP, STIs and infertility/ART — these belong to Chapter 3, Reproductive Health.",
+    "Mendelian laws of inheritance, monohybrid/dihybrid crosses, chromosomal theory of inheritance and genetic disorders — these belong to Chapter 4, Principles of Inheritance and Variation.",
+    "DNA structure, replication, transcription, translation and the genetic code — these belong to Chapter 5, Molecular Basis of Inheritance."
+  ],
+  "must_include_keywords": [
+    "androecium",
+    "gynoecium",
+    "anther",
+    "microsporangium",
+    "tapetum",
+    "microsporogenesis",
+    "pollen mother cell",
+    "pollen grain",
+    "exine",
+    "sporopollenin",
+    "generative cell",
+    "pistil",
+    "ovule",
+    "micropyle",
+    "chalaza",
+    "nucellus",
+    "megasporogenesis",
+    "embryo sac",
+    "synergid",
+    "polar nuclei",
+    "antipodal",
+    "autogamy",
+    "geitonogamy",
+    "xenogamy",
+    "self-incompatibility",
+    "emasculation",
+    "bagging",
+    "double fertilisation",
+    "syngamy",
+    "triple fusion",
+    "endosperm",
+    "cotyledon",
+    "epicotyl",
+    "hypocotyl",
+    "scutellum",
+    "pericarp",
+    "false fruit",
+    "parthenocarpy",
+    "apomixis",
+    "polyembryony"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Meiosis takes place inside the pollen grain after it is released from the anther.",
+      "correction": "Meiosis (microsporogenesis) occurs earlier, inside the microsporangium, when the diploid pollen mother cell (a sporogenous cell) divides meiotically to form a microspore tetrad. The pollen grain itself is already a haploid product of this division; inside the pollen grain, only mitotic division of the generative cell (to form two male gametes) may occur, never meiosis."
+    },
+    {
+      "claim": "Double fertilisation means two sperms fuse with the egg cell to form the zygote.",
+      "correction": "Double fertilisation refers to two DIFFERENT fusion events happening in the same embryo sac: syngamy, where one male gamete fuses with the egg cell to form the diploid zygote, and triple fusion, where the second male gamete fuses with the two polar nuclei of the central cell to form the triploid primary endosperm nucleus (PEN). Only one male gamete fuses with the egg."
+    },
+    {
+      "claim": "The mature embryo sac is 8-celled because it has 8 nuclei.",
+      "correction": "The mature angiosperm embryo sac is 8-nucleate but only 7-celled, because the two polar nuclei remain together, uncellularised, inside one large central cell rather than becoming two separate cells."
+    },
+    {
+      "claim": "The pollen grain wall is made entirely of cellulose, like a plant cell wall.",
+      "correction": "The pollen grain has a two-layered wall: the hard outer exine is made of sporopollenin, one of the most resistant organic materials known (it can withstand high temperature and strong acids/alkalis), while only the inner wall, the intine, is a thin layer of cellulose and pectin."
+    },
+    {
+      "claim": "A fruit can only form if fertilisation has taken place.",
+      "correction": "While most fruits are the result of fertilisation, some species produce parthenocarpic fruits that develop from the ovary without fertilisation (e.g., banana); such fruits are seedless and parthenocarpy can also be induced artificially using growth hormones."
+    }
+  ],
+  "recommended_example_progression": [
+    "Using the transverse section of a young anther (Figure 1.3a, b), trace the ploidy of cells from sporogenous tissue -> pollen mother cell -> microspore tetrad -> pollen grain.",
+    "Using the diagrammatic anatropous ovule (Figure 1.7d), identify and relate funicle, hilum, integuments, micropyle, chalaza and nucellus.",
+    "Using Figure 1.8 (b, c), trace the free-nuclear divisions of the functional megaspore through the 2-, 4- and 8-nucleate stages to the mature 7-celled embryo sac, based on the chapter's explanation of monosporic development.",
+    "Using Figure 1.13 (fertilised embryo sac showing zygote and PEN), work out the ploidy of the zygote (from syngamy) versus the primary endosperm nucleus (from triple fusion).",
+    "Using end-of-chapter Exercise 3, arrange 'pollen grain, sporogenous tissue, microspore tetrad, pollen mother cell, male gametes' into the correct developmental sequence."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's EXERCISES section (numbered 1-18, pages 24-25) covers gametophyte development, pollination types, self-incompatibility, bagging/emasculation, double/triple fusion, embryo terminology, and false fruits/apomixis.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

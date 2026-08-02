@@ -1,0 +1,69 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Security in the Contemporary World",
+  "central_question": "How should security be understood when states and people face both military and non-military threats?",
+  "in_scope_units": [
+    "Meaning of security and core values",
+    "Traditional external security",
+    "Traditional internal security",
+    "Traditional security and cooperation",
+    "Non-traditional and human security",
+    "New sources of threat",
+    "Cooperative security",
+    "India’s security strategy"
+  ],
+  "banned_topics": [
+    "Detailed United Nations institutional reform",
+    "Environmental resource politics as a separate chapter",
+    "History of South Asian democracies"
+  ],
+  "must_include_keywords": [
+    "security",
+    "core values",
+    "traditional security",
+    "non-traditional security",
+    "military threats",
+    "sovereignty",
+    "territorial integrity",
+    "deterrence",
+    "defence",
+    "balance of power",
+    "alliance",
+    "internal security",
+    "disarmament",
+    "arms control",
+    "confidence building",
+    "BWC",
+    "CWC",
+    "NPT",
+    "human security",
+    "global security",
+    "terrorism",
+    "poverty",
+    "migration",
+    "health epidemics",
+    "cooperative security",
+    "India’s security strategy"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every danger is automatically a security threat.",
+      "correction": "The chapter reserves the term for extremely dangerous threats that could damage core values beyond repair."
+    },
+    {
+      "claim": "Human security makes state security irrelevant.",
+      "correction": "The chapter says protection from foreign attack may be necessary for individuals, but it is not sufficient for their security."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 3: What is the difference between traditional and non-traditional security? Which category would the creation and sustenance of alliances belong to?",
+    "NCERT Exercise 6: What are the choices available to a state when its security is threatened, according to the traditional security perspective?",
+    "NCERT Exercise 1: Match the terms with their meaning: 1. Confidence Building Measures (CBMs) 2. Arms Control 3. Alliance 4. Disarmament.",
+    "NCERT Exercise 9: What are the different types of threats faced by people living in the Third World countries?",
+    "NCERT Exercise 11: Read the cartoon on the next page and write a short note in favour or against the connection between war and terrorism depicted in this cartoon."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with NCERT Exercises 1–12 on traditional, non-traditional, cooperative and Indian approaches to security.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

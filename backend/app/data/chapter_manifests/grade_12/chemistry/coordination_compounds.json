@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Coordination Compounds",
+  "central_question": "How do metal ions bind ligands to form coordination entities with characteristic names, structures, isomerism, bonding, colour and applications?",
+  "in_scope_units": [
+    "Werner’s theory, primary and secondary valences and experimental formulation of cobalt-ammonia compounds.",
+    "Definitions of coordination entity, central atom, ligand, denticity, coordination number, sphere, polyhedron and oxidation number.",
+    "Formulas and IUPAC nomenclature of mononuclear coordination compounds.",
+    "Structural and stereoisomerism: ionisation, hydrate, linkage, coordination, geometrical and optical isomerism.",
+    "Valence Bond Theory, hybridisation, geometry and magnetic behaviour.",
+    "Crystal Field Theory, octahedral and tetrahedral splitting, high-spin and low-spin complexes and colour.",
+    "Bonding in metal carbonyls and applications of coordination compounds."
+  ],
+  "banned_topics": [
+    "Detailed periodic trends of transition metals, which belong to the d- and f-block chapter.",
+    "Full ligand-field molecular-orbital theory beyond the NCERT crystal-field treatment.",
+    "Organometallic catalytic cycles beyond the brief metal-carbonyl discussion."
+  ],
+  "must_include_keywords": [
+    "Werner’s theory",
+    "primary valence",
+    "secondary valence",
+    "coordination entity",
+    "central atom",
+    "ligand",
+    "unidentate",
+    "didentate",
+    "polydentate",
+    "ambidentate ligand",
+    "chelate",
+    "denticity",
+    "coordination number",
+    "coordination sphere",
+    "counter ion",
+    "coordination polyhedron",
+    "oxidation number",
+    "homoleptic",
+    "heteroleptic",
+    "IUPAC nomenclature",
+    "ionisation isomerism",
+    "hydrate isomerism",
+    "linkage isomerism",
+    "coordination isomerism",
+    "geometrical isomerism",
+    "optical isomerism",
+    "Valence Bond Theory",
+    "inner orbital complex",
+    "outer orbital complex",
+    "Crystal Field Theory",
+    "crystal field splitting",
+    "high spin",
+    "low spin",
+    "spectrochemical series",
+    "metal carbonyl",
+    "synergic bonding"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The number of ligands always equals the coordination number.",
+      "correction": "Coordination number counts donor atoms directly bonded to the metal; a polydentate ligand contributes more than one."
+    },
+    {
+      "claim": "Primary and secondary valences in Werner’s theory are both ionisable.",
+      "correction": "Primary valences are normally ionisable; secondary valences are non-ionisable and correspond to coordination number."
+    },
+    {
+      "claim": "All four-coordinate complexes are tetrahedral.",
+      "correction": "Four-coordinate complexes may be tetrahedral or square planar depending on metal, oxidation state and ligand field."
+    },
+    {
+      "claim": "A strong-field ligand always makes every complex diamagnetic.",
+      "correction": "Magnetism depends on d-electron count, geometry and splitting magnitude; strong fields favour pairing only when energetically favourable."
+    },
+    {
+      "claim": "Optical isomerism requires a carbon stereocentre.",
+      "correction": "Coordination complexes can be chiral through their three-dimensional ligand arrangement even without an asymmetric carbon."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 5.1 on secondary valences from AgCl precipitation.",
+    "Use NCERT Examples 5.2 and 5.3 for formula writing and IUPAC naming.",
+    "Use NCERT Examples 5.4–5.6 for geometrical and optical isomerism.",
+    "Apply NCERT Example 5.7 to magnetic moment and VBT/CFT reasoning."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 5.1 to 5.31 and cover Werner’s postulates, terminology, nomenclature, isomerism, VBT, CFT, colour, magnetism, carbonyl bonding and applications.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

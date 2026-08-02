@@ -1,0 +1,103 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Political Science",
+    "chapter": "Federalism",
+    "central_question": "How does Indian federalism combine regional diversity and self-government with national unity, a strong Union and negotiated Centre‘State relations?",
+    "in_scope_units": [
+      "Meaning of federalism and the importance of trust, autonomy and dual levels of government.",
+      "Comparative failures and challenges of federations, including the West Indies and Nigeria examples.",
+      "Federalism in the Indian Constitution and India as a Union of States.",
+      "Division of legislative powers through Union, State, Concurrent and residuary subjects.",
+      "Reasons for and provisions creating a strong central government.",
+      "Centre’State relations, autonomy demands and the role of political practice.",
+      "Governor, President‘s Rule, financial dependence and all-India services as sources of tension.",
+      "Inter-State disputes, especially boundaries and river waters.",
+      "Reorganisation of States on linguistic and regional lines.",
+      "Special provisions for States and regions with distinctive social and historical conditions."
+    ],
+    "banned_topics": [
+      "A complete theory of nationalism, nation-state formation or self-determination beyond the federal issues in the supplied source.",
+      "Current territorial or constitutional changes not stated in the supplied 2026’27 text.",
+      "Detailed local government decentralisation, which belongs to the next source chapter."
+    ],
+    "must_include_keywords": [
+      "federalism",
+      "Union of States",
+      "unity in diversity",
+      "regional government",
+      "national government",
+      "autonomy",
+      "written Constitution",
+      "supremacy of Constitution",
+      "independent judiciary",
+      "single citizenship",
+      "Union List",
+      "State List",
+      "Concurrent List",
+      "residuary powers",
+      "strong central government",
+      "Parliament",
+      "emergency provisions",
+      "financial powers",
+      "Governor",
+      "President‘s Rule",
+      "Article 257",
+      "all-India services",
+      "Centre’State relations",
+      "State autonomy",
+      "Sarkaria Commission",
+      "inter-State disputes",
+      "river water disputes",
+      "linguistic States",
+      "State reorganisation",
+      "special provisions",
+      "Article 371",
+      "trust",
+      "cooperation",
+      "mutual respect",
+      "secession"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Federalism means the centre and States must always have equal powers.",
+        "correction": "Federal systems divide constitutionally protected spheres, but the balance varies; India has a federation with a strong Union."
+      },
+      {
+        "claim": "A written federal constitution automatically guarantees unity.",
+        "correction": "The chapter stresses trust, cooperation, political practice, respect and restraint in addition to formal institutions."
+      },
+      {
+        "claim": "India has dual citizenship because it has Union and State governments.",
+        "correction": "The chapter explicitly states that India has single citizenship."
+      },
+      {
+        "claim": "Only State legislatures can ever make laws on State List subjects.",
+        "correction": "The Constitution provides exceptional routes for Union legislation, including emergencies and a Rajya Sabha national-interest resolution."
+      },
+      {
+        "claim": "The Governor is simply an agent of the State cabinet.",
+        "correction": "The Governor is appointed within the Union framework and has powers that have generated Centre‘State controversy."
+      },
+      {
+        "claim": "Every demand for State autonomy is a legal dispute for courts alone.",
+        "correction": "Courts decide legal disputes, but political demands for autonomy require negotiation and accommodation."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT ’Check your progress’ on who decides powers and resolves Centre‘State disputes.",
+      "NCERT chart of Union, State, Concurrent and residuary powers.",
+      "NCERT Nigeria example on distrust and overlapping divisions.",
+      "NCERT exercise on rewriting federal provisions for powers, finances, disputes and Governors.",
+      "NCERT Exercise 9 evaluating possible grounds for President’s Rule."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The ‘Exercises’ section contains Questions 1’9 on federal design, division of powers, State formation, Governor, autonomy and President‘s Rule."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Federalism\n\n## What you will learn\nYou will understand the core features of federalism and why institutions alone cannot keep a diverse country united. You will connect federalism with autonomy, shared rule, constitutional supremacy and trust.\n\n## Simple explanation\nFederalism allows people to belong to a region and a nation at the same time. Each level governs constitutionally assigned matters, while common institutions manage issues affecting the whole country.\n\n## Step-by-step breakdown\n- **Two levels of polity**: Federalism accommodates national and regional governments, each autonomous within its sphere.\n- **Dual identities**: Citizens may identify with their State or region and with the nation, such as being Gujarati or Jharkhandi and Indian.\n- **Written division of power**: A supreme written constitution identifies powers and responsibilities of each level.\n- **National and regional subjects**: Defence and currency concern the nation, while many regional matters belong to States.\n- **Judicial umpire**: An independent judiciary resolves legal disputes about the division of power.\n- **Single citizenship**: Unlike some federations, India has one citizenship.\n- **Political culture**: Trust, cooperation, mutual respect and restraint determine whether the formal arrangement works smoothly.\n\n## Worked example\nQuestion: Why can a formally federal constitution fail to keep a country united?\n\nAnswer:\n- The chapter cites federations where excessive domination, distrust or competition produced breakdown.\n- A constitution cannot by itself create mutual respect among regions and communities.\n- Parties and governments must practise cooperation and avoid domination by one unit or group.\n- Final answer: Federal success depends on constitutional autonomy and a political culture of trust, accommodation and shared national commitment.\n\n## Common mistake\nA common mistake is to treat federalism as a fixed formula copied identically across countries. The chapter says it evolves differently in different historical conditions.\n\n## Quick check question\nQuestion: What institution settles legal disputes over division of power in a federation?\nAnswer: An independent judiciary.\nExplanation: It interprets the written Constitution and acts as an impartial authority between national and regional governments.\n\n## Summary\n- Federalism combines shared rule and regional self-rule.\n- The Constitution distributes distinct powers.\n- India has single citizenship.\n- Trust and cooperation are essential.",
+    "Core explanation": "# Core explanation: Federalism\n\n## What you will learn\nYou will study Indian federal design and the division of legislative powers. You will distinguish Union, State, Concurrent and residuary subjects.\n\n## Simple explanation\nThe Constitution calls India a Union of States and creates governments at Union and State levels. Their authority comes from the Constitution rather than from one level lending power to the other.\n\n## Step-by-step breakdown\n- **Union of States**: Article 1 describes India, that is Bharat, as a Union of States.\n- **Constitutional status**: Union and State governments each possess constitutionally identified areas of activity.\n- **Union List**: National subjects such as defence, foreign affairs, banking, railways and currency mainly belong to Union legislation.\n- **State List**: Police, public health, agriculture, land and local government normally belong to State legislatures.\n- **Concurrent List**: Both levels may legislate on matters such as education, forests and trade unions, subject to constitutional conflict rules.\n- **Residuary powers**: Matters not listed are assigned to the Union legislature.\n- **Judicial resolution**: Courts decide legal disputes over which list and level applies.\n- **Financial imbalance**: States carry major responsibilities but depend heavily on centrally controlled revenue and assistance.\n\n## Worked example\nQuestion: Why is the list system important to Indian federalism?\n\nAnswer:\n- It identifies in advance which level may legislate on different subjects.\n- It gives States a protected sphere while preserving national authority over common concerns.\n- Concurrent and residuary rules deal with overlap and new subjects.\n- Final answer: The lists turn the general idea of federalism into a workable constitutional allocation of responsibility.\n\n## Common mistake\nDo not assume Concurrent List means Union and State laws can never conflict. The Constitution contains rules for resolving inconsistency.\n\n## Quick check question\nQuestion: Who has legislative authority over residuary matters in India?\nAnswer: The Union Parliament.\nExplanation: The Constitution gives the national legislature authority over subjects not enumerated in the three lists.\n\n## Summary\n- India is a Union of States.\n- The lists divide legislative subjects.\n- Concurrent matters allow both levels to legislate.\n- Residuary power strengthens the Union.",
+    "Worked examples": "# Worked examples: Federalism\n\n## What you will learn\nYou will analyse why the Indian federation has a strong centre. You will connect unity, development and integration with Parliament’s territorial, emergency, financial and administrative powers.\n\n## Simple explanation\nThe makers wanted to accommodate diversity without repeating dangers of partition and disintegration. They combined federal structures with substantial Union authority.\n\n## Step-by-step breakdown\n- **Historical setting**: At independence, British provinces and more than five hundred princely states had to be integrated and reorganised.\n- **Territorial power**: Parliament may form new States and alter State areas, boundaries or names after following the constitutional procedure and seeking the State legislature‘s views.\n- **Emergency provisions**: During a constitutional emergency, powers may become highly centralised and Parliament may legislate on State subjects.\n- **Financial strength**: Many productive revenue sources and grant-making powers lie with the Union, increasing State dependence.\n- **Governor**: The Governor can reserve State bills for presidential consideration and report on constitutional government in a State.\n- **Union directions**: Article 257 permits Union directions so State executive action does not impede Union executive power.\n- **All-India services**: IAS and IPS officers serve in State administration but belong to integrated services with significant Union control.\n- **National-interest legislation**: Rajya Sabha may authorise Parliament to legislate on a State List matter in the national interest.\n\n## Worked example\nQuestion: Why did the Constitution makers create a strong Union while adopting federalism?\n\nAnswer:\n- They needed to preserve unity after partition and integrate numerous princely states.\n- National planning and action were considered necessary against poverty, illiteracy and inequality.\n- They also recognised linguistic and regional diversity, so complete unitary centralisation was unsuitable.\n- Final answer: The strong-centre federation was designed to combine diversity and State government with integration and coordinated social and economic change.\n\n## Common mistake\nA common mistake is to call every strong Union power anti-federal. The chapter presents strong central authority and State autonomy as coexisting features that generate tension.\n\n## Quick check question\nQuestion: Give one provision that creates a strong central government.\nAnswer: Parliament can alter State boundaries, emergencies centralise power, residuary powers belong to the Union, or the Union exercises specified financial and administrative powers.\nExplanation: Each gives national institutions substantial but constitutionally defined authority.\n\n## Summary\n- India’s federalism was shaped by integration and development needs.\n- Parliament has important territorial powers.\n- Emergency, financial and administrative provisions strengthen the Union.\n- Strong central power creates federal tensions.",
+    "Exam-style problems": "# Exam-style problems: Federalism\n\n## What you will learn\nYou will study Centre‘State conflict and political demands for autonomy. You will examine financial relations, Governors, President’s Rule and the changing influence of party competition.\n\n## Simple explanation\nA constitution supplies the framework, but political practice gives federalism its actual character. Relations become more contested when different parties govern the two levels and demand autonomy and fair treatment.\n\n## Step-by-step breakdown\n- **Political phase**: The chapter contrasts early Congress dominance with later periods of opposition-led States and coalition politics.\n- **Autonomy demands**: States have asked for greater control over legislative, administrative and financial matters.\n- **Financial complaints**: States object to dependence on Union grants, discretionary distribution and insufficient resources.\n- **Governor controversy**: States often view Governors as instruments of the Union, especially in government formation, dismissal and reservation of bills.\n- **President‘s Rule**: Article 356 may be invoked when constitutional government cannot be carried on, but political misuse has been a major dispute.\n- **Commissions and negotiation**: Bodies such as the Sarkaria Commission examined Centre’State relations, but political accommodation remains necessary.\n- **Coalition era**: Regional parties and coalition governments increased the bargaining role of States in national politics.\n\n## Worked example\nQuestion: Why can the Governor become a source of conflict between Union and State?\n\nAnswer:\n- The Governor is appointed through the Union framework rather than elected by the State population.\n- The office has discretion in government formation and may report constitutional failure.\n- The Governor may reserve State legislation for the President, allowing Union influence over State decisions.\n- Final answer: The office sits at the intersection of State government and Union authority, so disputed action can appear to undermine State autonomy.\n\n## Common mistake\nDo not treat political opposition between Union and State governments as sufficient for President‘s Rule. The test concerns failure to govern according to the Constitution.\n\n## Quick check question\nQuestion: Are demands for State autonomy resolved only by courts?\nAnswer: No. Courts decide legal disputes, but political demands for more power and resources require negotiation and democratic accommodation.\nExplanation: Federalism is both a legal structure and an ongoing political relationship.\n\n## Summary\n- Party competition shapes Centre’State relations.\n- States demand autonomy and financial fairness.\n- Governors and President‘s Rule generate controversy.\n- Negotiation is as important as litigation.",
+    "Revision and recap": "# Revision and recap: Federalism\n\n## What you will learn\nYou will review inter-State disputes, linguistic reorganisation and special provisions. You will understand how flexible accommodation can strengthen national unity.\n\n## Simple explanation\nFederalism must manage disagreements between Union and States and among States. India has adjusted boundaries, powers and protections to recognise regional identities within the Union.\n\n## Step-by-step breakdown\n- **Boundary disputes**: States may disagree over territory, language and administrative boundaries after reorganisation.\n- **River waters**: Disputes over shared rivers require tribunals, negotiation and cooperation because one State’s use affects another.\n- **Linguistic reorganisation**: Creation of linguistic States answered popular demands without necessarily causing national disintegration.\n- **Unity through recognition**: Allowing regional language and identity within States often gave communities a stake in the Union.\n- **Special provisions**: The Constitution gives distinctive arrangements to some States and regions because of tribal populations, historical agreements or social conditions.\n- **Asymmetrical federalism**: Different units may possess different powers or protections while remaining in the same federation.\n- **Federal lesson**: Durable unity comes from flexibility, democratic bargaining and respect for diversity rather than forced uniformity.\n\n- **Key terms to remember**: unity in diversity, national government, supremacy of Constitution, financial powers, river water disputes, State reorganisation, Article 371.\n\n## Worked example\nQuestion: How can special provisions for particular States be consistent with equality?\n\nAnswer:\n- States differ in history, social composition and circumstances of integration.\n- Identical rules may fail to protect vulnerable communities or honour distinctive arrangements.\n- Special provisions can secure equal respect by responding to relevant differences.\n- Final answer: Federal equality need not mean absolute uniformity; asymmetrical arrangements may preserve unity by protecting legitimate regional needs.\n\n## Common mistake\nA common mistake is to assume linguistic States encourage secession. The chapter presents linguistic reorganisation as accommodation that helped maintain unity.\n\n## Quick check question\nQuestion: What is an inter-State river water dispute?\nAnswer: A conflict between States over use and sharing of water from a river that affects more than one State.\nExplanation: Because the resource is shared, unilateral action is insufficient and constitutional or negotiated mechanisms are required.\n\n## Summary\n- Federal conflict also occurs among States.\n- Linguistic reorganisation accommodated regional identity.\n- Special provisions recognise distinctive conditions.\n- Flexible and asymmetrical arrangements can strengthen unity."
+  }
+}

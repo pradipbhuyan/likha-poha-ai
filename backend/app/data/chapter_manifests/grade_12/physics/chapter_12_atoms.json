@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 12: Atoms",
+  "central_question": "How did scattering and atomic spectra lead from early atomic models to Bohr’s quantised description of the hydrogen atom?",
+  "in_scope_units": [
+    "Introduction to Thomson’s model, characteristic atomic spectra and the need to understand atomic structure.",
+    "Geiger–Marsden alpha-particle scattering experiment and Rutherford’s nuclear model.",
+    "Observed scattering distribution, the small dense nucleus and the largely empty atom.",
+    "Alpha-particle trajectory, impact parameter, scattering angle and distance of closest approach.",
+    "Electron orbits in the Rutherford model, Coulomb attraction, kinetic energy, potential energy and negative total energy.",
+    "Atomic emission and absorption line spectra as element-specific fingerprints.",
+    "Instability and continuous-spectrum predictions of the classical Rutherford atom.",
+    "Bohr’s three postulates for stationary states, angular-momentum quantisation and radiative transitions.",
+    "Allowed radii and quantised energies of hydrogen stationary states.",
+    "Ground state, excited states, ionisation energy and the hydrogen energy-level diagram.",
+    "Hydrogen line spectrum produced by transitions between discrete energy levels.",
+    "de Broglie standing-wave explanation of Bohr’s angular-momentum condition.",
+    "Successes and limitations of Bohr’s model for hydrogenic and multi-electron atoms."
+  ],
+  "banned_topics": [
+    "Detailed nuclear composition, mass defect, radioactivity, fission and fusion, which belong to Chapter 13: Nuclei.",
+    "Detailed photoelectric effect and photon experiments, which belong to Chapter 11.",
+    "Full modern quantum-mechanical orbital theory and probability distributions beyond the chapter’s brief limitations discussion."
+  ],
+  "must_include_keywords": [
+    "Thomson model",
+    "plum pudding model",
+    "alpha-particle scattering",
+    "Geiger–Marsden experiment",
+    "Rutherford nuclear model",
+    "nucleus",
+    "empty space",
+    "impact parameter",
+    "scattering angle",
+    "closest approach",
+    "Coulomb force",
+    "electron orbit",
+    "negative total energy",
+    "atomic spectra",
+    "emission line spectrum",
+    "absorption spectrum",
+    "classical instability",
+    "Bohr model",
+    "stationary states",
+    "angular momentum quantisation",
+    "principal quantum number",
+    "Bohr radius",
+    "ground state",
+    "excited state",
+    "ionisation energy",
+    "energy levels",
+    "hydrogen spectrum",
+    "photon transition",
+    "de Broglie standing wave",
+    "hydrogenic atoms",
+    "limitations of Bohr’s model"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Most alpha particles were strongly deflected because atoms are mostly dense matter.",
+      "correction": "Most alpha particles passed through because the atom is mostly empty space; only close encounters with the tiny nucleus produced large deflections."
+    },
+    {
+      "claim": "The Rutherford model explains atomic stability and line spectra.",
+      "correction": "Classical electrodynamics predicts that its accelerating electron should radiate, spiral into the nucleus and emit a continuous spectrum."
+    },
+    {
+      "claim": "In Bohr’s model an electron radiates continuously while moving in an allowed orbit.",
+      "correction": "A stationary orbit is non-radiating; radiation is emitted or absorbed only during a transition between allowed energy states."
+    },
+    {
+      "claim": "Bohr’s model works for all atoms.",
+      "correction": "It successfully predicts gross features of hydrogenic single-electron atoms but cannot be extended successfully even to helium or explain relative spectral-line intensities."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 12.1 to compare the empty-space proportions of an atom and the solar system.",
+    "Use NCERT Example 12.2 to calculate the distance of closest approach in alpha-particle scattering.",
+    "Use NCERT Example 12.3 to calculate hydrogen’s orbital radius and electron speed from the binding energy.",
+    "Apply NCERT Exercises 12.3 to 12.7 to transitions, kinetic and potential energies, photon wavelength, orbital speeds and radii.",
+    "Finish with NCERT Exercise 12.8 and the de Broglie standing-wave argument to connect energy levels with the hydrogen spectrum."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES are numbered 12.1 to 12.9 and cover atomic models, scattering, energy-level transitions, Bohr radii and speeds, hydrogen wavelengths and angular-momentum quantisation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

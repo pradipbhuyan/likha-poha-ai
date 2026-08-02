@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "On the Face of It",
+  "central_question": "How does Mr Lamb’s open, attentive way of living help Derry challenge the fear, alienation and self-hatred created by other people’s reactions to his scarred face?",
+  "in_scope_units": [
+    "Before you read: the bond between an old man and a withdrawn boy.",
+    "Scene One: Derry enters Mr Lamb’s open garden and reveals his fear of other people’s judgement.",
+    "Mr Lamb’s garden, weeds, flowers, crab apples, bees, open windows and belief in the value of all life.",
+    "The contrast between Derry’s burned face and Mr Lamb’s tin leg.",
+    "Their discussion of beauty, listening, fear, friendship, isolation and personal choice.",
+    "Derry’s decision to return and Mr Lamb’s private sign of loneliness.",
+    "Scene Two: Derry resists his mother’s fear and chooses to go back.",
+    "Scene Three: Mr Lamb’s fall, Derry’s return and grief.",
+    "Reading with Insight Questions 1–4 and the alternative-ending activity."
+  ],
+  "banned_topics": [
+    "A medical account of acid burns or prosthetic limbs beyond the play.",
+    "A clinical diagnosis of Derry’s mental state.",
+    "An invented continuation that is not clearly labelled as the textbook’s imagination activity."
+  ],
+  "must_include_keywords": [
+    "Susan Hill",
+    "play",
+    "Scene One",
+    "Scene Two",
+    "Scene Three",
+    "Mr Lamb",
+    "Derry",
+    "Derek",
+    "garden",
+    "open gate",
+    "garden wall",
+    "burned face",
+    "acid",
+    "tin leg",
+    "Lamey-Lamb",
+    "alienation",
+    "fear",
+    "pity",
+    "staring",
+    "weed garden",
+    "flowers",
+    "all life",
+    "beauty and the beast",
+    "whole face of the world",
+    "bees singing",
+    "open windows",
+    "no curtains",
+    "crab apples",
+    "jelly",
+    "friendship",
+    "choice",
+    "listening",
+    "watching",
+    "thinking",
+    "loneliness",
+    "mother",
+    "seclusion",
+    "ladder",
+    "return",
+    "death",
+    "stage directions",
+    "physical impairment",
+    "acceptance"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Mr Lamb pretends that Derry’s face is not scarred.",
+      "correction": "He recognises the burn directly but refuses to treat it as the whole of Derry."
+    },
+    {
+      "claim": "Mr Lamb has no experience of physical difference.",
+      "correction": "His real leg was blown off and children call him ‘Lamey-Lamb’."
+    },
+    {
+      "claim": "Derry changes only because Mr Lamb pities him.",
+      "correction": "Mr Lamb does not pity him; he challenges Derry’s assumptions and emphasises choice, attention and participation."
+    },
+    {
+      "claim": "Derry fails to return.",
+      "correction": "He defies his mother, runs back and reaches the garden, but finds Mr Lamb after the fatal fall."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Reading with Insight Q1 to explain what draws Derry to Mr Lamb.",
+    "Use Reading with Insight Q3 to examine alienation and the behaviour expected from others.",
+    "Use Reading with Insight Q2 to identify Mr Lamb’s loneliness and his ways of overcoming it.",
+    "Use Reading with Insight Q4 to evaluate the lasting effect of the meeting on Derry.",
+    "Use the How about activity only as an optional, clearly imaginative extension after mastering the given ending."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The play ends with Reading with Insight Questions 1–4 and a How about activity inviting students to imagine another ending.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

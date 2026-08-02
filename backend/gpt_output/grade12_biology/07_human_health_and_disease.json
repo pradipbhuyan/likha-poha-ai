@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "grade": "Grade 12",
+    "subject": "Biology",
+    "chapter": "Human Health and Disease",
+    "central_question": "How do pathogens, immune responses, cancer, HIV and substance abuse affect human health, and how can their risks be prevented or controlled?",
+    "in_scope_units": [
+      "Meaning of health, determinants of health and infectious versus non-infectious disease.",
+      "Common bacterial, viral, protozoan, helminthic and fungal diseases in humans and their prevention.",
+      "Innate and acquired immunity, antibodies, lymphocytes and immune memory.",
+      "Active and passive immunity, vaccination, allergy, autoimmunity and lymphoid organs.",
+      "HIV transmission, replication, immune deficiency, diagnosis and prevention of AIDS.",
+      "Cancer, malignant transformation, metastasis, detection and treatment.",
+      "Opioids, cannabinoids, coca alkaloids, alcohol and tobacco abuse, dependence, effects and prevention."
+    ],
+    "banned_topics": [
+      "Detailed microbial industrial applications from Microbes in Human Welfare.",
+      "Detailed recombinant DNA tools and vaccine manufacturing processes from biotechnology chapters.",
+      "Complete pharmacology or clinical treatment protocols beyond the NCERT chapter."
+    ],
+    "must_include_keywords": [
+      "health",
+      "pathogen",
+      "Salmonella typhi",
+      "Widal test",
+      "pneumonia",
+      "rhinovirus",
+      "Plasmodium",
+      "haemozoin",
+      "female Anopheles",
+      "Entamoeba histolytica",
+      "Ascaris",
+      "Wuchereria",
+      "ringworm",
+      "innate immunity",
+      "physical barriers",
+      "physiological barriers",
+      "cellular barriers",
+      "cytokine barriers",
+      "interferons",
+      "acquired immunity",
+      "primary response",
+      "secondary response",
+      "B-lymphocytes",
+      "T-lymphocytes",
+      "antibody",
+      "humoral immunity",
+      "cell-mediated immunity",
+      "active immunity",
+      "passive immunity",
+      "vaccination",
+      "allergy",
+      "IgE",
+      "autoimmune disease",
+      "MALT",
+      "HIV",
+      "retrovirus",
+      "helper T-lymphocytes",
+      "ELISA",
+      "cancer",
+      "metastasis",
+      "carcinogens",
+      "opioids",
+      "cannabinoids",
+      "cocaine",
+      "adolescence",
+      "addiction",
+      "withdrawal syndrome"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Health means only the absence of disease.",
+        "correction": "Health is a state of complete physical, mental and social well-being, influenced by genetic factors, infections and lifestyle."
+      },
+      {
+        "claim": "Antibiotics can cure common cold and all other infections.",
+        "correction": "Common cold is caused by rhinoviruses; antibiotics act against susceptible bacteria, not viruses."
+      },
+      {
+        "claim": "Acquired immunity is non-specific and has no memory.",
+        "correction": "Acquired immunity is pathogen-specific and is characterised by memory, producing a stronger secondary response."
+      },
+      {
+        "claim": "HIV spreads through ordinary social contact or mosquito bites.",
+        "correction": "The chapter lists sexual contact, contaminated blood, shared infected needles and mother-to-child transmission; casual contact and mosquito transmission are not listed routes."
+      },
+      {
+        "claim": "Every tumour is malignant and metastatic.",
+        "correction": "Benign tumours remain localised, while malignant tumours invade tissues and may spread through metastasis."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 3 to compare transmission of amoebiasis, malaria, ascariasis and pneumonia.",
+      "Use NCERT Exercise 8 to differentiate innate/acquired and active/passive immunity.",
+      "Use NCERT Exercises 10-11 to trace HIV transmission and immune-system damage.",
+      "Use NCERT Exercises 12-13 to distinguish cancer cells and explain metastasis.",
+      "Use NCERT Exercises 14-17 to analyse harmful effects, peer influence, dependence and prevention of drug and alcohol abuse."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 17 and cover public health, transmission, immunity, AIDS, cancer and substance abuse."
+  },
+  "lessons": {
+    "Concept introduction": "# Health, pathogens and common human diseases: Human Health and Disease\n\n## What you will learn\nYou will define health and disease and classify common pathogens. You will connect each representative disease with its causative organism, transmission, symptoms and prevention.\n\n## Simple explanation\nHuman health depends on physical, mental and social well-being. Infectious diseases occur when pathogens enter, multiply and disturb normal functions, while prevention depends on hygiene, clean water, vector control, vaccination and awareness.\n\n## Step-by-step breakdown\n- **Health**: Health is complete physical, mental and social well-being, not merely absence of disease or physical fitness.\n- **Determinants**: Genetic disorders, infections and lifestyle - including food, water, rest, exercise and habits - affect health.\n- **Typhoid**: Salmonella typhi spreads through contaminated food and water, causes sustained high fever and other symptoms, and is confirmed by the Widal test.\n- **Pneumonia**: Streptococcus pneumoniae and Haemophilus influenzae infect alveoli; droplets, aerosols and shared utensils can transmit infection.\n- **Common cold**: Rhinoviruses infect the nose and respiratory passage, not the lungs, and spread through droplets and contaminated objects.\n- **Malaria**: Plasmodium enters as sporozoites through an infected female Anopheles mosquito; RBC rupture releases haemozoin, causing recurrent chills and fever.\n- **Other parasites**: Entamoeba histolytica causes amoebiasis; Ascaris causes ascariasis; Wuchereria causes filariasis or elephantiasis.\n- **Ringworm**: Microsporum, Trichophyton and Epidermophyton cause dry, scaly, itchy lesions favoured by heat and moisture.\n- **Prevention**: Personal and public hygiene, safe food and water, proper waste disposal, avoidance of infected belongings, vaccination and vector control reduce disease transmission.\n\n## Worked example\nQuestion: Based on NCERT Exercise 3, explain how malaria is transmitted.\n\nSolution:\n- An infected female Anopheles mosquito injects Plasmodium sporozoites into a human during a bite.\n- The parasite multiplies first in liver cells and then in red blood cells.\n- When another female Anopheles bites the infected person, it takes up the parasite.\n- The parasite develops in the mosquito and sporozoites accumulate in its salivary glands.\n- Final answer: A later bite transmits sporozoites to another human, completing the cycle between two hosts.\n\n## Common mistake\nDo not call the mosquito the pathogen. Plasmodium is the pathogen; the female Anopheles mosquito is the vector.\n\n## Quick check question\nQuestion: Which substance released during red blood cell rupture produces the recurring chill and fever of malaria?\nAnswer: Haemozoin.\nExplanation: Plasmodium-infected RBCs rupture and release haemozoin, which is associated with recurrent chills and high fever.\n\n## Summary\n- Health has physical, mental and social dimensions.\n- Pathogens include bacteria, viruses, protozoa, helminths and fungi.\n- Disease transmission may be water-borne, air-borne, contact-based or vector-borne.\n- Malaria requires human and mosquito hosts.\n- Hygiene, vaccination and vector control are major preventive measures.",
+    "Core explanation": "# Innate and acquired immunity: Human Health and Disease\n\n## What you will learn\nYou will compare innate and acquired immunity and explain antibody-mediated and cell-mediated responses. You will distinguish active from passive immunity and relate vaccination to immune memory.\n\n## Simple explanation\nThe immune system protects the body through immediate non-specific barriers and through specific lymphocyte responses. The second encounter with a pathogen is usually faster and stronger because acquired immunity has memory.\n\n## Step-by-step breakdown\n- **Innate immunity**: This non-specific defence is present at birth and acts through physical, physiological, cellular and cytokine barriers.\n- **Physical barriers**: Skin and mucus-lined epithelia prevent or trap invading microbes.\n- **Physiological barriers**: Stomach acid, saliva and tears inhibit microbial growth.\n- **Cellular barriers**: Neutrophils, monocytes, macrophages and natural killer cells destroy microbes or infected cells.\n- **Cytokine barriers**: Virus-infected cells secrete interferons that protect non-infected cells from further viral infection.\n- **Acquired immunity**: It is pathogen-specific and has memory; the primary response is weaker and the secondary response, also called the anamnestic response, is stronger.\n- **Humoral immunity**: B-lymphocytes produce antibodies. Each antibody has two heavy and two light chains, represented as H2L2.\n- **Cell-mediated immunity**: T-lymphocytes mediate CMI, help B cells and are responsible for graft rejection through recognition of self and non-self.\n- **Active and passive immunity**: Active immunity follows antigen exposure and takes time; passive immunity gives ready-made antibodies, as in colostrum IgA, placental antibodies, antitoxin and antivenom.\n- **Vaccination**: Vaccines provide antigenic material that generates antibodies and memory B and T cells for a rapid response on later exposure.\n\n## Worked example\nQuestion: Based on NCERT Exercise 8, differentiate active and passive immunity with one example each.\n\nSolution:\n- Active immunity develops when the host’s own immune system responds to antigen from infection or vaccination.\n- It develops more slowly but generates memory cells and a stronger response on later exposure.\n- Passive immunity results when preformed antibodies are supplied directly.\n- Final answer: Colostrum IgA or antivenom is passive because the recipient does not make those protective antibodies initially.\n\n## Common mistake\nDo not describe vaccination as passive immunity. A vaccine normally stimulates the recipient to make antibodies and memory cells, so it produces active immunity.\n\n## Quick check question\nQuestion: Which lymphocytes produce antibodies?\nAnswer: B-lymphocytes produce antibodies, while T-lymphocytes help regulate responses and mediate cell-mediated immunity.\nExplanation: The chapter distinguishes antibody-mediated humoral immunity from T-cell-mediated immunity.\n\n## Summary\n- Innate immunity is non-specific and present at birth.\n- Acquired immunity is specific and has memory.\n- B cells produce antibodies; T cells mediate CMI.\n- Active immunity is generated by the host.\n- Passive immunity supplies ready-made antibodies.",
+    "Worked examples": "# Allergy, autoimmunity and immune-system organs: Human Health and Disease\n\n## What you will learn\nYou will explain allergy and autoimmunity and identify primary and secondary lymphoid organs. You will connect organ structure with lymphocyte production, maturation and activation.\n\n## Simple explanation\nImmune responses must be directed at genuine threats. Allergy is an exaggerated response to environmental antigens, whereas autoimmunity results when the immune system attacks self-cells.\n\n## Step-by-step breakdown\n- **Allergy**: Allergy is an exaggerated immune response to allergens such as pollen, mites and animal dander.\n- **IgE and mast cells**: Allergic responses involve IgE and release of histamine and serotonin from mast cells, producing sneezing, watery eyes, running nose and breathing difficulty.\n- **Allergy management**: Possible allergens may be tested in very small doses; antihistamines, adrenaline and steroids reduce symptoms.\n- **Autoimmune disease**: For genetic or other unknown reasons, the body may attack self-cells; rheumatoid arthritis is the chapter’s example.\n- **Primary lymphoid organs**: Bone marrow and thymus are sites where immature lymphocytes originate and/or mature into antigen-sensitive cells.\n- **Secondary lymphoid organs**: Spleen, lymph nodes, tonsils, Peyer’s patches and appendix provide sites where lymphocytes encounter antigen and proliferate.\n- **MALT**: Mucosa-associated lymphoid tissue is present in respiratory, digestive and urogenital linings and forms about 50 per cent of the body’s lymphoid tissue.\n- **Spleen and lymph nodes**: The spleen filters blood and stores erythrocytes; lymph nodes trap antigens in lymph and tissue fluid and activate lymphocytes.\n\n## Worked example\nQuestion: Based on NCERT Exercise 6, name and classify the primary and secondary lymphoid organs.\n\nSolution:\n- Primary lymphoid organs are bone marrow and thymus.\n- They provide microenvironments for lymphocyte production and maturation.\n- Secondary lymphoid organs include spleen, lymph nodes, tonsils, Peyer’s patches and appendix.\n- Final answer: These are sites where mature lymphocytes interact with antigens and become effector cells.\n\n## Common mistake\nDo not treat allergy and autoimmunity as the same condition. Allergy targets otherwise harmless environmental allergens; autoimmunity targets the body’s own cells.\n\n## Quick check question\nQuestion: What is the role of lymph nodes?\nAnswer: They trap microbes or antigens entering lymph and tissue fluid and provide sites for activation of lymphocytes.\nExplanation: Antigen trapping brings foreign material into contact with immune cells that can mount a specific response.\n\n## Summary\n- Allergy is an exaggerated response involving IgE.\n- Histamine and serotonin contribute to allergy symptoms.\n- Autoimmune disease damages self-tissues.\n- Bone marrow and thymus are primary lymphoid organs.\n- Secondary lymphoid organs support antigen-lymphocyte interaction.",
+    "Exam-style problems": "# AIDS and cancer: Human Health and Disease\n\n## What you will learn\nYou will trace HIV transmission and immune-system damage and distinguish benign from malignant tumours. You will summarise cancer detection and treatment approaches described in the chapter.\n\n## Simple explanation\nAIDS and cancer affect health in different ways. HIV progressively weakens immune defence by attacking helper T-lymphocytes, while cancer arises when normal controls on cell growth and contact inhibition fail.\n\n## Step-by-step breakdown\n- **HIV and AIDS**: AIDS is acquired immune deficiency syndrome caused by HIV, an enveloped retrovirus with an RNA genome.\n- **Transmission**: Major routes are sexual contact, contaminated blood or blood products, shared infected needles and transmission from infected mother to child through the placenta.\n- **HIV replication**: Viral RNA is converted into DNA by reverse transcriptase; viral DNA integrates into host-cell DNA and directs production of new viruses.\n- **Immune damage**: HIV infects macrophages and helper T-lymphocytes. Progressive reduction in helper T cells makes the person vulnerable to opportunistic infections.\n- **Diagnosis and prevention**: ELISA detects HIV infection; prevention includes safe blood, sterile needles, responsible sexual behaviour and public awareness through organisations such as NACO.\n- **Normal and cancer cells**: Normal cells show contact inhibition; cancer cells continue uncontrolled division and form tumours.\n- **Benign and malignant tumours**: Benign tumours remain localised; malignant cells invade neighbouring tissue and may spread to distant sites.\n- **Metastasis**: Cancer cells may reach distant organs through blood or other pathways and establish secondary tumours.\n- **Carcinogens and treatment**: Physical, chemical and biological agents can transform cells. Detection may involve biopsy, imaging and antibodies; treatment includes surgery, radiotherapy, chemotherapy and immunotherapy.\n\n## Worked example\nQuestion: Based on NCERT Exercise 11, explain how HIV causes immune deficiency.\n\nSolution:\n- HIV enters susceptible cells and uses reverse transcriptase to produce viral DNA from its RNA genome.\n- The viral DNA integrates into the host genome and directs formation of new virus particles.\n- Macrophages act as virus factories, and helper T-lymphocytes become infected.\n- The number of helper T cells progressively decreases.\n- Final answer: With weakened immune coordination, ordinarily controlled pathogens produce severe opportunistic infections.\n\n## Common mistake\nDo not equate HIV infection with immediate AIDS. A person may remain without obvious symptoms for a period while immune damage progresses.\n\n## Quick check question\nQuestion: What is metastasis?\nAnswer: Metastasis is the spread of malignant cancer cells from the original tumour to distant sites where they form secondary tumours.\nExplanation: The capacity to invade and spread distinguishes malignant tumours from localised benign tumours.\n\n## Summary\n- HIV is a retrovirus that damages helper T-cell populations.\n- HIV is transmitted through specific exchange routes, not casual contact.\n- ELISA is used in HIV diagnosis.\n- Cancer cells lose normal growth control.\n- Metastasis is the spread of malignant cells to distant sites.",
+    "Revision and recap": "# Drugs, alcohol and prevention of abuse: Human Health and Disease\n\n## What you will learn\nYou will identify major abused drug groups and explain dependence, addiction and withdrawal. You will evaluate biological, psychological and social harms and outline prevention and support.\n\n## Simple explanation\nPsychoactive substances alter the nervous system and behaviour. Adolescence may increase vulnerability through curiosity, stress and peer pressure, but education, family support, counselling and early medical help can reduce harm.\n\n## Step-by-step breakdown\n- **Opioids**: Morphine and heroin act on opioid receptors in the central nervous system and gastrointestinal tract; heroin is a depressant.\n- **Cannabinoids**: Compounds from Cannabis sativa interact with cannabinoid receptors and affect the cardiovascular system.\n- **Coca alkaloids**: Cocaine from Erythroxylum coca interferes with dopamine transport and acts as a powerful central nervous system stimulant.\n- **Alcohol and tobacco**: Alcohol damages health and judgement; tobacco nicotine raises blood pressure and heart rate and is associated with cancers and other diseases.\n- **Addiction and dependence**: Repeated use may produce psychological attachment and physical dependence, encouraging increasing dose and compulsive use.\n- **Withdrawal syndrome**: Stopping a dependent drug may cause anxiety, shakiness, nausea and sweating, which can drive renewed use.\n- **Adolescent vulnerability**: Curiosity, risk-taking, stress, family problems, media influence and peer pressure can promote experimentation.\n- **Prevention**: Avoid undue peer pressure, develop healthy interests, seek help from parents and teachers, recognise warning signs, obtain counselling and use medical rehabilitation when required.\n- **Shared needles**: Intravenous drug abuse also raises the risk of HIV and hepatitis B transmission through contaminated needles.\n\n## Worked example\nQuestion: Based on NCERT Exercise 14, list the harmful effects of alcohol and drug abuse.\n\nSolution:\n- Include impaired judgement, reckless behaviour and accidents.\n- Add damage to nervous, liver, cardiovascular and other body systems depending on the substance.\n- Include dependence, tolerance and withdrawal that reinforce repeated use.\n- Mention family conflict, poor academic or work performance and social isolation.\n- Final answer: For injecting drug use, include transmission risk of HIV and hepatitis B through shared needles.\n\n## Common mistake\nDo not interpret dependence as a moral failure. It is a harmful biological and psychological state that often requires counselling, family support and medical care.\n\n## Quick check question\nQuestion: Why may a dependent person continue taking a drug even after recognising its harm?\nAnswer: Dependence can produce strong craving and withdrawal symptoms when the drug is stopped, encouraging continued use.\nExplanation: Repeated exposure changes behaviour and body responses, so quitting may require structured support and treatment.\n\n## Summary\n- Opioids, cannabinoids and cocaine affect the nervous system differently.\n- Alcohol and tobacco also produce major health risks.\n- Addiction involves compulsive use and dependence.\n- Withdrawal can reinforce continued consumption.\n- Early support, counselling and medical help improve prevention and recovery."
+  }
+}

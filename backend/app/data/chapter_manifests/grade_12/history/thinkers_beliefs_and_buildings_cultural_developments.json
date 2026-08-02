@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 12",
+  "subject": "History",
+  "chapter": "Thinkers, Beliefs and Buildings: Cultural Developments",
+  "central_question": "How did new religious and philosophical ideas develop through debate and become embodied in texts, communities, stupas, sculptures and temples between c. 600 BCE and 600 CE?",
+  "in_scope_units": [
+    "Sanchi in the nineteenth century and its preservation.",
+    "Vedic sacrifice, Upanishadic questions and philosophical debates.",
+    "Ajivika, Lokayata and problems of recovering lost traditions.",
+    "Mahavira, Jainism, ahimsa and monastic discipline.",
+    "The Buddha's life, enlightenment and teachings.",
+    "The Buddhist sangha, women renouncers and Vinaya rules.",
+    "Sacred places, relics and the construction of stupas.",
+    "Discovery, dispersal and preservation of Amaravati and Sanchi.",
+    "Narratives, symbols and popular traditions in sculpture.",
+    "Mahayana Buddhism and Bodhisattas.",
+    "Vaishnavism, Shaivism, bhakti and the Puranas.",
+    "Early temples and rock-cut architecture.",
+    "Problems of interpreting unfamiliar images and unmatched texts."
+  ],
+  "banned_topics": [
+    "Detailed Mauryan political administration, treated in the previous chapter.",
+    "Medieval bhakti and Sufi movements, treated in a later chapter."
+  ],
+  "must_include_keywords": [
+    "Sanchi",
+    "Shahjehan Begum",
+    "Sultan Jehan Begum",
+    "Rigveda",
+    "Upanishads",
+    "debate",
+    "individual agency",
+    "Ajivikas",
+    "Lokayatas",
+    "Mahavira",
+    "tirthankara",
+    "ahimsa",
+    "karma",
+    "Buddha",
+    "enlightenment",
+    "anicca",
+    "anatta",
+    "dukkha",
+    "middle path",
+    "nibbana",
+    "Tipitaka",
+    "Vinaya Pitaka",
+    "Sutta Pitaka",
+    "sangha",
+    "bhikkhu",
+    "bhikkhuni",
+    "Therigatha",
+    "stupa",
+    "relics",
+    "anda",
+    "harmika",
+    "yashti",
+    "circumambulation",
+    "Bodhi tree",
+    "Mahayana",
+    "Bodhisatta",
+    "Theravada",
+    "bhakti",
+    "Vaishnavism",
+    "Shaivism"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Buddhism developed separately from all other traditions.",
+      "correction": "It emerged through debates and exchanges with Vedic, Jaina and other philosophical and popular traditions."
+    },
+    {
+      "claim": "The Buddha taught that extreme penance was the route to enlightenment.",
+      "correction": "He abandoned extreme mortification and taught a middle path between severe penance and self-indulgence."
+    },
+    {
+      "claim": "Every early Buddhist sculpture depicts the Buddha in human form.",
+      "correction": "Early artists often represented his presence through symbols such as an empty seat, tree, wheel or stupa."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 3 on the begums of Bhopal and Sanchi.",
+    "NCERT Exercise 2 on Jainism.",
+    "NCERT Exercise 5 on joining the sangha.",
+    "NCERT Exercise 9 on stupas.",
+    "NCERT Exercise 8 on Vaishnava and Shaiva sculpture and architecture."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with questions 1-5 in the 100-150 word section, essay questions 6-9, Map work 10 and Projects 11-12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

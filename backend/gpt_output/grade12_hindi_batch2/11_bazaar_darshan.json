@@ -1,0 +1,63 @@
+{
+  "manifest": {
+    "grade": "Grade 12",
+    "subject": "Hindi",
+    "chapter": "Bazaar Darshan",
+    "central_question": "How does Jainendra Kumar explain the market’s power and the discipline needed to use it without becoming its slave?",
+    "in_scope_units": [
+      "Friend with many bundles and purchasing power",
+      "Visual magic of the market",
+      "Friend who cannot choose",
+      "Bhagatji’s restraint",
+      "Human need, social exchange and ethical economics"
+    ],
+    "banned_topics": [
+      "Content from adjacent chapters not present in the supplied source.",
+      "Biographical or historical claims not stated in the supplied source.",
+      "Invented incidents, quotations, dates or interpretations unsupported by the text."
+    ],
+    "must_include_keywords": [
+      "जैनेन्द्र कुमार",
+      "बाज़ार",
+      "मनीबैग",
+      "पर्चेजिंग पावर",
+      "बाज़ार का जादू",
+      "भरा जेब",
+      "खाली मन",
+      "आवश्यकता",
+      "असंतोष",
+      "तृष्णा",
+      "ईर्ष्या",
+      "भगतजी",
+      "संयम",
+      "बाज़ारूपन",
+      "अर्थशास्त्र",
+      "नीतिशास्त्र"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The essay says all shopping is wrong.",
+        "correction": "It distinguishes need-based buying from desire created by market display."
+      },
+      {
+        "claim": "An empty hand always proves restraint.",
+        "correction": "The second friend buys nothing because he cannot decide, not because he has conquered desire."
+      }
+    ],
+    "recommended_example_progression": [
+      "Purchasing power",
+      "Market magic",
+      "Indecision",
+      "Bhagatji",
+      "Ethical conclusion"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter questions printed in the supplied NCERT source; answers must be supported by the text."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Bazaar Darshan\n\n## What you will learn\nUnderstand the essay’s central warning about purchasing power and unnecessary consumption.\n\n## Simple explanation\nJainendra Kumar begins with a friend who goes to buy one small item but returns with many bundles, showing how money and display can replace need.\n\n## Step-by-step breakdown\n- **Moneybag**: The friend’s full moneybag creates a sense of power.\n- **Purchasing power**: Goods are bought in proportion to available money, not actual need.\n- **Market influence**: The arranged display of goods silently attracts the buyer.\n\n## Worked example\nQuestion: What does the first friend’s shopping reveal?\n\nAnswer:\n- Textual evidence: He admits that all his money is spent and the narrator concludes that more money would have brought more goods.\n- Interpretation: The purchases are driven by purchasing power and market temptation rather than necessity.\n- Conclusion: The episode introduces the essay’s critique of consumer desire.\n\n## Common mistake\nDo not blame only the friend’s wife; the narrator explicitly identifies the moneybag and the market as deeper causes.\n\n## Quick check question\nQuestion: Why does the narrator mention “purchasing power”?\nAnswer: To show that possession of money encourages display through buying.\nExplanation: The buyer experiences power by converting money into visible goods.\n\n## Summary\n- Need and buying are not always identical.\n- Money can create pride and impulse.\n- The market strengthens this impulse.\n",
+    "Core explanation": "# Core explanation: the magic of the market\n\n## What you will learn\nExplain how the market’s visual appeal acts on an empty mind.\n\n## Simple explanation\nThe essay calls the market’s attraction a kind of magic that enters through the eyes and creates a feeling of lack.\n\n## Step-by-step breakdown\n- **Silent invitation**: The decorated market appears to say that everything is meant for the viewer.\n- **Desire as lack**: Standing in the market makes a person feel that what they possess is insufficient.\n- **Empty mind**: The magic is strongest when the pocket is full and the mind has no clear purpose.\n- **After-effect**: Many acquired things later create inconvenience rather than comfort.\n\n## Worked example\nQuestion: Why is the market’s magic compared with a magnet?\n\nAnswer:\n- Textual evidence: The text says the magic works through appearance and, like a magnet acting on iron, it has a particular condition: a full pocket and empty mind.\n- Interpretation: The image explains that temptation is not equally powerful over everyone; it depends on the buyer’s inner state.\n- Conclusion: A purposeless buyer becomes especially vulnerable to the market.\n\n## Common mistake\nDo not interpret “empty mind” as lack of intelligence; it means absence of a definite need or purpose.\n\n## Quick check question\nQuestion: What protects a person from the market’s magic?\nAnswer: Going to the market with a mind filled by a clear goal or need.\nExplanation: A defined purpose limits the invitation of countless goods.\n\n## Summary\n- The market acts through visual attraction.\n- Desire begins with a sense of deficiency.\n- Clarity of purpose weakens temptation.\n",
+    "Worked examples": "# Worked examples: the second friend\n\n## What you will learn\nAnalyse the friend who returns empty-handed despite wanting everything.\n\n## Simple explanation\nThe second friend sees the whole market, wants many things, but cannot choose because selecting one means giving up the rest.\n\n## Step-by-step breakdown\n- **Indecision**: Every item attracts him.\n- **Fear of exclusion**: Buying one object requires leaving all other objects.\n- **Result**: He buys nothing.\n- **Lesson**: Unclear desire produces distress, not action.\n\n## Worked example\nQuestion: Why does the second friend return empty-handed?\n\nAnswer:\n- Textual evidence: He says that everything seemed worth buying, but choosing one thing meant abandoning the rest, which he did not want to do.\n- Interpretation: Unlimited desire prevents decision because no single need has priority.\n- Conclusion: The episode proves that a person who does not know what they want becomes surrounded by competing desires.\n\n## Common mistake\nDo not call him disciplined; his empty hands result from confusion, not deliberate restraint.\n\n## Quick check question\nQuestion: What is the result of not knowing what one wants?\nAnswer: Desire surrounds the person and produces distress without purposeful action.\nExplanation: The essay directly connects lack of purpose with “त्रास”, no movement and no work.\n\n## Summary\n- Unlimited choice can paralyse.\n- Purpose is necessary for action.\n- Not buying is not always self-control.\n",
+    "Exam-style problems": "# Exam-style problems: Bhagatji and meaningful exchange\n\n## What you will learn\nUnderstand how Bhagatji’s conduct offers an alternative to profit-driven market behaviour.\n\n## Simple explanation\nBhagatji sells churan, limits his daily earnings and refuses to turn popularity into endless accumulation.\n\n## Step-by-step breakdown\n- **Limit**: He does not earn beyond six annas from churan in a day.\n- **Demand**: His churan sells easily and people are eager to buy it.\n- **Refusal**: He does not accept wholesale or advance orders.\n- **Moral effect**: His self-restraint gives him unusual freedom and respect.\n\n## Worked example\nQuestion: How does Bhagatji defeat the market rather than get defeated by it?\n\nAnswer:\n- Textual evidence: Although demand is high, he stops after his fixed earning and does not expand his business for greater profit.\n- Interpretation: He uses the market only for need and service, so money does not control his conduct.\n- Conclusion: Bhagatji represents self-control and a market relation based on necessity rather than greed.\n\n## Common mistake\nDo not describe Bhagatji as economically unsuccessful; the essay values his freedom from limitless profit.\n\n## Quick check question\nQuestion: Why is Bhagatji respected?\nAnswer: Because his honesty, restraint and contentment are greater than his desire to earn.\nExplanation: People value both the churan and the character of the seller.\n\n## Summary\n- Bhagatji places limits on profit.\n- Self-restraint creates freedom.\n- The market can serve need without creating greed.\n",
+    "Revision and recap": "# Revision and recap: market, society and ethics\n\n## What you will learn\nRevise the essay’s distinction between a useful market and destructive market-centred economics.\n\n## Simple explanation\nThe essay does not reject the market itself; it argues that the market is fulfilled when it serves real need and social exchange.\n\n## Step-by-step breakdown\n- **True usefulness**: The market should help at the time of need.\n- **Closed versus full mind**: The author rejects both mindless desire and forced suppression.\n- **Social bond**: Buying and selling should sustain mutual service.\n- **Economic criticism**: An economics that only nourishes the market becomes unethical when it ignores people and social balance.\n\n## Worked example\nQuestion: What is the “real usefulness” of the market?\n\nAnswer:\n- Textual evidence: The text states that the market’s real usefulness is to come to our help at the time of need.\n- Interpretation: This definition places human need above display, accumulation and manipulation.\n- Conclusion: A good market serves purposeful exchange rather than manufacturing endless desire.\n\n## Common mistake\nDo not say the essay advocates withdrawal from all markets; it advocates conscious use.\n\n## Quick check question\nQuestion: Does the essay oppose desire completely?\nAnswer: No. It opposes purposeless desire and artificial suppression alike.\nExplanation: The author asks the mind to remain open but guided, not closed or uncontrolled.\n\n## Summary\n- The essay criticises consumerism, not exchange itself.\n- A clear purpose is the main defence.\n- Ethics must guide economics.\n"
+  }
+}

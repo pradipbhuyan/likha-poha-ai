@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 18: Body Fluids and Circulation",
+    "central_question": "How do blood, lymph, the heart and blood vessels transport substances and maintain circulation throughout the human body?",
+    "in_scope_units": [
+      "Blood plasma and formed elements.",
+      "ABO and Rh blood groups and coagulation.",
+      "Lymph and tissue fluid.",
+      "Open and closed circulatory pathways.",
+      "Human heart, nodal tissue, cardiac cycle, cardiac output and ECG.",
+      "Pulmonary and systemic double circulation.",
+      "Regulation of cardiac activity.",
+      "Circulatory disorders."
+    ],
+    "banned_topics": [
+      "Plant meristems and growth curves",
+      "Plant growth regulators",
+      "Kidney filtration and urine formation"
+    ],
+    "must_include_keywords": [
+      "blood",
+      "plasma",
+      "serum",
+      "fibrinogen",
+      "globulin",
+      "albumin",
+      "erythrocyte",
+      "leucocyte",
+      "platelet",
+      "haemoglobin",
+      "ABO group",
+      "Rh factor",
+      "erythroblastosis foetalis",
+      "coagulation",
+      "fibrin",
+      "thrombin",
+      "lymph",
+      "tissue fluid",
+      "open circulation",
+      "closed circulation",
+      "heart",
+      "atrium",
+      "ventricle",
+      "tricuspid valve",
+      "bicuspid valve",
+      "semilunar valve",
+      "SAN",
+      "AVN",
+      "cardiac cycle",
+      "systole",
+      "diastole",
+      "stroke volume",
+      "cardiac output",
+      "ECG",
+      "P wave",
+      "QRS complex",
+      "T wave",
+      "pulmonary circulation",
+      "systemic circulation",
+      "myogenic"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Serum and plasma are identical.",
+        "correction": "Serum is plasma without clotting factors."
+      },
+      {
+        "claim": "The AV node is the normal pacemaker.",
+        "correction": "The SAN normally sets the pace because it generates the most action potentials."
+      },
+      {
+        "claim": "Heart failure, cardiac arrest and heart attack are identical.",
+        "correction": "They mean inadequate pumping, stopped heartbeat and muscle damage from poor blood supply, respectively."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 1 to connect formed elements with functions.",
+      "Use NCERT Exercise 3 for the matching set.",
+      "Use NCERT Exercise 12 and textbook values to calculate cardiac output.",
+      "Use NCERT Exercise 14 to interpret ECG waves.",
+      "Use NCERT Exercise 6 to explain double circulation."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-14 on blood, lymph, circulation, cardiac cycle, nodal tissue, heart sounds and ECG."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Body Fluids and Circulation\n\n## What you will learn\nYou will describe plasma and formed elements and relate each component to transport, defence or clotting. You will distinguish plasma from serum.\n\n## Simple explanation\nBlood is a specialised connective tissue with a fluid matrix and suspended cells or cell fragments. Its composition permits transport, defence and haemostasis.\n\n## Step-by-step breakdown\n- **Plasma**: About 55 percent of blood; mostly water with proteins, ions, nutrients and clotting factors.\n- **Plasma proteins**: Fibrinogen supports clotting, globulins defence and albumins osmotic balance.\n- **Erythrocytes**: Biconcave haemoglobin-rich cells that transport respiratory gases and survive about 120 days.\n- **Leucocytes**: Granulocytes and agranulocytes perform phagocytic, inflammatory and immune roles.\n- **Platelets**: Megakaryocyte-derived fragments that release clotting substances.\n- **Serum**: Plasma after clotting factors have been removed.\n\n## Worked example\nQuestion: NCERT Exercise 1 asks for formed elements and one major function of each.\n\nSolution:\n- RBCs transport respiratory gases through haemoglobin.\n- WBCs protect through phagocytosis and immune responses.\n- Platelets participate in coagulation and prevent excessive blood loss.\n- Final answer: The formed elements are RBCs, WBCs and platelets, serving gas transport, defence and clotting.\n\n## Common mistake\nWBCs are not a single uniform population; their different types perform distinct functions.\n\n## Quick check question\nQuestion: Which plasma protein mainly supports osmotic balance?\nAnswer: Albumin.\nExplanation: Fibrinogen mainly supports clotting and globulins mainly support defence.\n\n## Summary\n- Blood contains plasma and formed elements.\n- RBCs transport gases.\n- WBCs protect the body.\n- Platelets support clotting.\n- Serum lacks clotting factors.",
+    "Core explanation": "# Core explanation: Body Fluids and Circulation\n\n## What you will learn\nYou will explain ABO and Rh compatibility, Rh incompatibility in pregnancy, coagulation and the role of lymph.\n\n## Simple explanation\nSurface antigens and plasma antibodies determine safe blood matching. Vessel injury activates a cascade that forms a fibrin network, while lymph returns tissue fluid to blood.\n\n## Step-by-step breakdown\n- **ABO system**: Groups differ in RBC antigens and plasma antibodies; incompatible transfusion causes clumping.\n- **ABO donor logic**: The textbook describes O as universal donor and AB as universal recipient within ABO grouping.\n- **Rh system**: An Rh-negative person can form antibodies after exposure to Rh-positive cells.\n- **Erythroblastosis foetalis**: Maternal anti-Rh antibodies may damage a later Rh-positive foetus; anti-Rh treatment after first delivery prevents sensitisation.\n- **Coagulation**: Thrombin converts fibrinogen to fibrin; thrombokinase-linked reactions and calcium are important.\n- **Lymph**: Lymph returns tissue fluid, carries lymphocytes and transports absorbed fats from lacteals.\n\n## Worked example\nQuestion: NCERT Exercise 3 asks you to match eosinophils, RBC, AB group, platelets and systole.\n\nSolution:\n- Eosinophils match resistance to infections.\n- RBC matches gas transport.\n- AB group matches universal recipient.\n- Platelets match coagulation.\n- Systole matches contraction of the heart.\n- Final answer: The completed matches connect each item to its listed function.\n\n## Common mistake\nABO compatibility alone is not enough in practice; Rh type and cross-matching also matter.\n\n## Quick check question\nQuestion: What forms the main thread network of a clot?\nAnswer: Fibrin.\nExplanation: Thrombin converts soluble fibrinogen into insoluble fibrin threads.\n\n## Summary\n- ABO compatibility depends on antigens and antibodies.\n- Rh sensitisation can affect later pregnancies.\n- Coagulation ends in fibrin formation.\n- Lymph returns tissue fluid and transports fats.",
+    "Worked examples": "# Worked examples: Body Fluids and Circulation\n\n## What you will learn\nYou will trace the four-chambered heart and one cardiac cycle and calculate cardiac output.\n\n## Simple explanation\nThe heart is myogenic because nodal tissue produces rhythmic action potentials. Valves and pressure changes maintain one-way flow.\n\n## Step-by-step breakdown\n- **Valves**: Tricuspid guards the right AV opening, bicuspid the left, and semilunar valves guard the pulmonary artery and aorta.\n- **Nodal pathway**: SAN initiates, AVN relays and AV bundle with Purkinje fibres distributes impulses.\n- **Cardiac cycle**: Joint diastole is followed by atrial systole, ventricular systole and ventricular diastole.\n- **Heart sounds**: AV-valve closure gives lub; semilunar-valve closure gives dub.\n- **Stroke volume**: Each ventricle pumps about 70 mL per beat.\n- **Cardiac output**: Stroke volume multiplied by heart rate gives about 5 litres per minute.\n\n## Worked example\nQuestion: NCERT Exercise 12 asks for cardiac cycle and cardiac output; use 70 mL and 72 beats per minute.\n\nSolution:\n- Cardiac output equals stroke volume times heart rate.\n- Use 70 mL per beat and 72 beats per minute.\n- 70 x 72 = 5040 mL per minute.\n- 5040 mL is approximately 5 litres per minute.\n- Final answer: A cardiac cycle is one complete systole-diastole sequence; cardiac output is approximately 5 L per minute.\n\n## Common mistake\nDo not multiply by two ventricles; cardiac output is defined for each ventricle and their normal flows are equal.\n\n## Quick check question\nQuestion: Why is the SAN called the pacemaker?\nAnswer: It generates the highest normal rate of action potentials and initiates rhythmic contraction.\nExplanation: Its intrinsic rate of about 70-75 per minute sets the pace for the nodal system.\n\n## Summary\n- Valves maintain one-way flow.\n- SAN initiates the normal rhythm.\n- A cycle lasts about 0.8 seconds at 72 beats per minute.\n- Stroke volume is about 70 mL.\n- Cardiac output is about 5 L per minute.",
+    "Exam-style problems": "# Exam-style problems: Body Fluids and Circulation\n\n## What you will learn\nYou will interpret ECG waves and trace pulmonary and systemic circulation.\n\n## Simple explanation\nElectrical excitation precedes contraction. ECG records excitation, while circulation diagrams show the separate right- and left-heart routes.\n\n## Step-by-step breakdown\n- **P wave**: Atrial depolarisation followed by atrial contraction.\n- **QRS complex**: Ventricular depolarisation and onset of ventricular systole.\n- **T wave**: Ventricular repolarisation; its end marks the end of systole.\n- **Pulmonary route**: Right ventricle to pulmonary artery to lungs to pulmonary veins to left atrium.\n- **Systemic route**: Left ventricle to aorta to tissues to venae cavae to right atrium.\n- **Special routes**: Hepatic portal blood travels from intestine to liver; coronary vessels serve the heart muscle.\n\n## Worked example\nQuestion: NCERT Exercise 14 asks for a standard ECG and explanation of its segments.\n\nSolution:\n- Label P, QRS and T in sequence.\n- P represents atrial depolarisation.\n- QRS represents ventricular depolarisation and initiation of contraction.\n- T represents ventricular repolarisation.\n- Final answer: A standard ECG links P with atrial excitation, QRS with ventricular excitation and T with ventricular recovery.\n\n## Common mistake\nT wave does not represent ventricular contraction; it represents repolarisation.\n\n## Quick check question\nQuestion: Which circulation begins at the right ventricle?\nAnswer: Pulmonary circulation.\nExplanation: The right ventricle sends deoxygenated blood to lungs and oxygenated blood returns to the left atrium.\n\n## Summary\n- ECG waves represent electrical events.\n- QRS count can estimate heart rate.\n- Pulmonary circulation oxygenates blood.\n- Systemic circulation supplies tissues.\n- Double circulation prevents mixing.",
+    "Revision and recap": "# Revision and recap: Body Fluids and Circulation\n\n## What you will learn\nYou will integrate cardiac regulation with major circulatory disorders and distinguish similar clinical terms.\n\n## Simple explanation\nThe heart generates its own rhythm, but autonomic nerves and adrenal hormones adjust rate and force. Persistent pressure or coronary-flow problems can damage the system.\n\n## Step-by-step breakdown\n- **Intrinsic regulation**: Nodal tissue makes the heart myogenic.\n- **Sympathetic action**: Raises heart rate, contraction strength and cardiac output.\n- **Parasympathetic action**: Lowers rate and conduction speed.\n- **Hypertension**: Repeated pressure of 140/90 mm Hg or higher is described as hypertension in the chapter.\n- **Coronary disease and angina**: Deposits narrow coronary vessels; inadequate oxygen to heart muscle can cause angina.\n- **Heart failure**: The heart cannot pump enough to meet body needs; it differs from arrest and heart attack.\n\n## Worked example\nQuestion: NCERT Exercise 6 asks for the meaning and significance of double circulation.\n\nSolution:\n- Blood passes through the heart twice in one complete circuit.\n- The right side handles deoxygenated blood and the left side oxygenated blood.\n- Pulmonary and systemic routes remain separate.\n- Separation prevents mixing and supports efficient oxygen delivery.\n- Final answer: Double circulation consists of pulmonary and systemic circuits and maintains efficient separated transport.\n\n## Common mistake\nDo not call every chest pain a heart attack; angina specifically reflects inadequate oxygen delivery to cardiac muscle.\n\n## Quick check question\nQuestion: Which autonomic division increases cardiac output?\nAnswer: The sympathetic division.\nExplanation: It increases rate and contraction strength, while parasympathetic signals reduce activity.\n\n## Summary\n- The heart is intrinsically rhythmic but externally modulated.\n- Sympathetic and parasympathetic effects oppose each other.\n- Double circulation maintains separation.\n- Hypertension and coronary narrowing threaten perfusion.\n- Heart failure is inadequate pumping, not stopped heartbeat."
+  }
+}

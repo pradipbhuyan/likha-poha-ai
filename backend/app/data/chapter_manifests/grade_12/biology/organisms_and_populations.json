@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Organisms and Populations",
+  "central_question": "How do population attributes, growth patterns, life-history strategies and interspecific interactions determine the structure and change of populations?",
+  "in_scope_units": [
+    "Ecology at the population level and defining a population.",
+    "Population attributes: density, birth rate, death rate, sex ratio and age structure.",
+    "Natality, mortality, immigration and emigration as determinants of population change.",
+    "Exponential and logistic population growth models and carrying capacity.",
+    "Life-history variation and reproductive fitness.",
+    "Interspecific interactions: predation, competition, parasitism, commensalism, amensalism and mutualism."
+  ],
+  "banned_topics": [
+    "Ecosystem productivity, decomposition, energy flow and ecological pyramids from the next chapter.",
+    "Detailed evolutionary genetics beyond its link to population ecology.",
+    "Human demography policies beyond the population-growth concepts in the chapter."
+  ],
+  "must_include_keywords": [
+    "population",
+    "population density",
+    "birth rate",
+    "death rate",
+    "sex ratio",
+    "age pyramid",
+    "natality",
+    "mortality",
+    "immigration",
+    "emigration",
+    "exponential growth",
+    "intrinsic rate of natural increase",
+    "J-shaped curve",
+    "logistic growth",
+    "carrying capacity",
+    "sigmoid curve",
+    "Verhulst-Pearl",
+    "life-history variation",
+    "reproductive fitness",
+    "mutualism",
+    "competition",
+    "predation",
+    "parasitism",
+    "commensalism",
+    "amensalism",
+    "camouflage",
+    "competitive exclusion",
+    "resource partitioning",
+    "host specificity",
+    "brood parasitism",
+    "orchid",
+    "mango tree",
+    "fig and wasp",
+    "mycorrhiza",
+    "lichen"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Population density must always be counted as number of individuals.",
+      "correction": "It may be measured by number, biomass, percentage cover or a relative index such as catch per trap, depending on the organism and question."
+    },
+    {
+      "claim": "Birth rate is simply the number of young born.",
+      "correction": "Population birth rate is expressed per capita over a time period."
+    },
+    {
+      "claim": "Exponential growth is the most realistic long-term model for natural populations.",
+      "correction": "Resources become limiting, so logistic growth with a carrying capacity is generally more realistic."
+    },
+    {
+      "claim": "Competition occurs only between closely related species when food is scarce.",
+      "correction": "Unrelated species may compete, and interference competition can occur even when resources are not severely limiting."
+    },
+    {
+      "claim": "Commensalism benefits both species.",
+      "correction": "In commensalism one species benefits and the other is neither helped nor harmed; both benefit in mutualism."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1 to separate population attributes from individual traits.",
+    "Use NCERT Exercise 2 to calculate intrinsic rate of increase from doubling time.",
+    "Use NCERT Exercise 8 to draw and interpret the logistic curve.",
+    "Use NCERT Exercises 4 and 7 to classify commensalism and other interactions.",
+    "Use NCERT Exercises 3 and 5 to connect plant defence and biological control with predation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 10 and cover population attributes, exponential and logistic growth and interspecific interactions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

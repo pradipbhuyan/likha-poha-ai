@@ -1,0 +1,89 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Chemistry",
+    "chapter": "Equilibrium",
+    "central_question": "How do reversible processes establish dynamic equilibrium and how can equilibrium constants predict composition and response to change?",
+    "in_scope_units": [
+      "Dynamic physical and chemical equilibrium.",
+      "Kc, Kp, reaction quotient, and heterogeneous equilibrium.",
+      "Le Chatelier principle.",
+      "Acid–base theories, ionisation constants, water, and pH.",
+      "Buffers, common ions, hydrolysis, and solubility product."
+    ],
+    "banned_topics": [
+      "Reaction kinetics",
+      "Electrochemical potentials",
+      "Advanced activities",
+      "Extended thermodynamic derivations"
+    ],
+    "must_include_keywords": [
+      "dynamic equilibrium",
+      "reversible reaction",
+      "equilibrium constant",
+      "Kc",
+      "Kp",
+      "reaction quotient",
+      "homogeneous equilibrium",
+      "heterogeneous equilibrium",
+      "Le Chatelier principle",
+      "partial pressure",
+      "degree of dissociation",
+      "Arrhenius acid",
+      "Brønsted acid",
+      "conjugate acid-base pair",
+      "Lewis acid",
+      "ionisation constant",
+      "Ka",
+      "Kb",
+      "ionic product of water",
+      "Kw",
+      "pH",
+      "pOH",
+      "common ion effect",
+      "buffer solution",
+      "salt hydrolysis",
+      "solubility product",
+      "Ksp",
+      "precipitation",
+      "indicator"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Reactions stop at equilibrium.",
+        "correction": "Forward and reverse reactions continue at equal rates."
+      },
+      {
+        "claim": "K changes when concentrations change.",
+        "correction": "At fixed temperature K is constant; Q changes."
+      },
+      {
+        "claim": "A catalyst shifts equilibrium.",
+        "correction": "It speeds both directions without changing composition."
+      },
+      {
+        "claim": "Strong means concentrated.",
+        "correction": "Strength is ionisation; concentration is amount per volume."
+      },
+      {
+        "claim": "Low Ksp directly equals low molar solubility.",
+        "correction": "Stoichiometry and common ions also control molar solubility."
+      }
+    ],
+    "recommended_example_progression": [
+      "Recognise dynamic equilibrium.",
+      "Write and transform K expressions.",
+      "Predict shifts.",
+      "Calculate acid–base equilibria.",
+      "Apply buffers and Ksp."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use exercises on Kc/Kp, Q, Le Chatelier effects, acid–base concepts, pH, buffers, hydrolysis, common ions, and solubility product."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Equilibrium\n\n## What you will learn\nExplain dynamic equilibrium in physical and chemical systems.\n\n## Simple explanation\nOpposing molecular processes continue at equal rates, producing constant macroscopic properties.\n\n## Step-by-step breakdown\n- **Reversible process**: Products can reform reactants.\n- **Dynamic**: Both directions continue.\n- **Rate equality**: Forward rate equals reverse rate.\n- **Composition**: Concentrations are constant but not necessarily equal.\n- **Closed system**: Matter is retained.\n- **Physical example**: Evaporation and condensation.\n- **Chemical example**: Reactants and products coexist.\n\n## Worked example\nQuestion: What occurs in sealed liquid–vapour water equilibrium?\n\nSolution:\n- Water continues to evaporate.\n- Vapour continues to condense.\n- The two rates are equal.\n- Final answer: Evaporation and condensation continue at equal rates.\n\n## Common mistake\nNo visible change does not mean molecular processes stop.\n\n## Quick check question\nQuestion: Are equilibrium concentrations necessarily equal?\nAnswer: No.\nExplanation: They are constant values determined by K and initial amounts.\n\n## Summary\n- Reversible process: Products can reform reactants.\n- Dynamic: Both directions continue.\n- Rate equality: Forward rate equals reverse rate.\n- Composition: Concentrations are constant but not necessarily equal.",
+    "Core explanation": "# Core explanation: Equilibrium\n\n## What you will learn\nWrite and interpret Kc, Kp, and reaction quotient.\n\n## Simple explanation\nA balanced equation determines an equilibrium expression that quantifies composition at a fixed temperature.\n\n## Step-by-step breakdown\n- **Kc**: Product concentrations over reactant concentrations with coefficient powers.\n- **Pure phases**: Pure solids and liquids are omitted.\n- **Kp**: Uses gas partial pressures.\n- **Relation**: Kp = Kc(RT)^Δng.\n- **Magnitude**: Large K favours products.\n- **Reverse**: Constant becomes 1/K.\n- **Scaled equation**: Multiplying coefficients by n gives K^n.\n- **Q**: Same form using current composition.\n- **Direction**: Q<K forward, Q>K reverse, Q=K equilibrium.\n\n## Worked example\nQuestion: Write Kc for CaCO3(s) ⇌ CaO(s) + CO2(g).\n\nSolution:\n- Pure solids have constant activity.\n- Only CO2 concentration appears.\n- Its coefficient is one.\n- Final answer: Kc = [CO2].\n\n## Common mistake\nDo not include variable-looking concentrations of pure solids in K.\n\n## Quick check question\nQuestion: K for the reverse reaction?\nAnswer: 1/K.\nExplanation: The expression numerator and denominator swap.\n\n## Summary\n- Kc: Product concentrations over reactant concentrations with coefficient powers.\n- Pure phases: Pure solids and liquids are omitted.\n- Kp: Uses gas partial pressures.\n- Relation: Kp = Kc(RT)^Δng.",
+    "Worked examples": "# Worked examples: Equilibrium\n\n## What you will learn\nUse Le Chatelier principle to predict shifts.\n\n## Simple explanation\nAn equilibrium responds in the direction that partially opposes an imposed change.\n\n## Step-by-step breakdown\n- **Concentration**: Added reactant promotes its consumption.\n- **Pressure**: Higher pressure favours fewer gas moles.\n- **Volume**: Lower volume corresponds to higher pressure.\n- **Inert gas**: At constant volume, ideal-gas partial pressures are unchanged.\n- **Temperature**: Heat is treated as reactant or product.\n- **K value**: Only temperature changes K.\n- **Catalyst**: Speeds approach without changing position.\n\n## Worked example\nQuestion: For N2 + 3H2 ⇌ 2NH3, ΔH<0, predict higher pressure and temperature.\n\nSolution:\n- Four gas moles left and two right.\n- Higher pressure favours the right.\n- Heat is a product.\n- Higher temperature favours the reverse direction.\n- Final answer: Pressure shifts right; temperature shifts left.\n\n## Common mistake\nA catalyst cannot improve equilibrium yield.\n\n## Quick check question\nQuestion: Does inert gas at constant volume shift ideal-gas equilibrium?\nAnswer: No.\nExplanation: Reacting partial pressures remain unchanged.\n\n## Summary\n- Concentration: Added reactant promotes its consumption.\n- Pressure: Higher pressure favours fewer gas moles.\n- Volume: Lower volume corresponds to higher pressure.\n- Inert gas: At constant volume, ideal-gas partial pressures are unchanged.",
+    "Exam-style problems": "# Exam-style problems: Equilibrium\n\n## What you will learn\nCompare acid–base theories and calculate pH.\n\n## Simple explanation\nAcids and bases can be described by aqueous ions, proton transfer, or electron-pair transfer.\n\n## Step-by-step breakdown\n- **Arrhenius**: Acids form H3O+ and bases form OH− in water.\n- **Brønsted acid**: Proton donor.\n- **Brønsted base**: Proton acceptor.\n- **Conjugate pair**: Differs by one proton.\n- **Lewis acid**: Electron-pair acceptor.\n- **Lewis base**: Electron-pair donor.\n- **Kw**: [H3O+][OH−] = 10−14 at 298 K.\n- **pH**: −log[H3O+].\n- **Ka and Kb**: Quantify weak acid and base ionisation.\n\n## Worked example\nQuestion: Find pH of 1.0 × 10−3 M HCl.\n\nSolution:\n- Assume complete ionisation.\n- [H3O+] = 1.0 × 10−3 M.\n- Apply pH = −log concentration.\n- Final answer: 3.00.\n\n## Common mistake\nA weak acid requires an equilibrium calculation, not direct use of initial concentration.\n\n## Quick check question\nQuestion: Conjugate base of H2CO3?\nAnswer: HCO3−.\nExplanation: It differs by loss of one proton.\n\n## Summary\n- Arrhenius: Acids form H3O+ and bases form OH− in water.\n- Brønsted acid: Proton donor.\n- Brønsted base: Proton acceptor.\n- Conjugate pair: Differs by one proton.",
+    "Revision and recap": "# Revision and recap: Equilibrium\n\n## What you will learn\nApply buffer, common-ion, hydrolysis, and solubility-product ideas.\n\n## Simple explanation\nCoupled ionic equilibria allow control of pH and selective precipitation.\n\n## Step-by-step breakdown\n- **Common ion**: Suppresses ionisation or solubility.\n- **Acidic buffer**: Weak acid plus conjugate-base salt.\n- **Basic buffer**: Weak base plus conjugate-acid salt.\n- **Buffer action**: Consumes modest added H+ or OH−.\n- **Hydrolysis**: Salt ions react with water and change pH.\n- **Ksp**: Equilibrium constant for sparingly soluble salts.\n- **Ionic product**: Precipitation occurs when Qsp > Ksp.\n- **Saturation**: Qsp = Ksp.\n\n## Worked example\nQuestion: Will AgCl precipitate if [Ag+]=10−5 M, [Cl−]=10−4 M, Ksp=1.8×10−10?\n\nSolution:\n- Qsp = 10−5 × 10−4 = 10−9.\n- Compare Qsp with Ksp.\n- Qsp is larger.\n- Final answer: Yes, AgCl precipitates.\n\n## Common mistake\nForm the complete ionic product before comparing with Ksp.\n\n## Quick check question\nQuestion: Condition for a saturated solution?\nAnswer: Qsp = Ksp.\nExplanation: Dissolution and precipitation are balanced.\n\n## Summary\n- Common ion: Suppresses ionisation or solubility.\n- Acidic buffer: Weak acid plus conjugate-base salt.\n- Basic buffer: Weak base plus conjugate-acid salt.\n- Buffer action: Consumes modest added H+ or OH−."
+  }
+}

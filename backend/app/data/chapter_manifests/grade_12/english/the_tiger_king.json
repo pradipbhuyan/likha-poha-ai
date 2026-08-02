@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "The Tiger King",
+  "central_question": "How does the story use satire and dramatic irony to show that arrogance, political power and human cruelty cannot control fate?",
+  "in_scope_units": [
+    "Before you read: human attitudes towards wild animals.",
+    "Section I: the Tiger King’s grand titles, announced death, miraculous infant speech and astrological prophecy.",
+    "Section II: English upbringing, accession to power, first tiger and warning about the hundredth tiger.",
+    "Section III: hunting monopoly, danger to the throne, British officer and the diamond-ring solution.",
+    "Section IV: extinction of local tigers, a politically chosen marriage and the rise of the tally to ninety-nine.",
+    "Section V: the missing hundredth tiger, the dewan’s old tiger, the missed shot and the hunters’ concealment.",
+    "The wooden tiger, infection, operation and the Maharaja’s ironic death.",
+    "Reading with Insight Questions 1–5 on satire, dramatic irony, minions, wildlife and ecological care."
+  ],
+  "banned_topics": [
+    "Scientific evaluation of astrology beyond its satirical use in the story.",
+    "A general history of princely states or the Indian National Congress beyond references in the narrative.",
+    "Current wildlife cases not supplied in the chapter."
+  ],
+  "must_include_keywords": [
+    "Kalki",
+    "Pratibandapuram",
+    "Maharaja",
+    "Tiger King",
+    "Jilani Jung Jung Bahadur",
+    "astrologers",
+    "Bull",
+    "Tiger",
+    "Let tigers beware",
+    "Court of Wards",
+    "hundredth tiger",
+    "tiger hunt",
+    "proclamation",
+    "conceit",
+    "satire",
+    "dramatic irony",
+    "British officer",
+    "durai",
+    "duraisani",
+    "diamond rings",
+    "three lakh rupees",
+    "dewan",
+    "tiger extinction",
+    "marriage",
+    "ninety-nine skins",
+    "People’s Park",
+    "old tiger",
+    "satyagraha",
+    "missed bullet",
+    "hunters",
+    "wooden tiger",
+    "sliver",
+    "infection",
+    "operation successful",
+    "Maharaja is dead",
+    "final revenge",
+    "minions",
+    "fear",
+    "wildlife",
+    "ecology",
+    "human willfulness"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Maharaja personally kills the hundredth living tiger.",
+      "correction": "His shot misses; the tiger faints and a hunter later kills it."
+    },
+    {
+      "claim": "The prophecy is defeated when ninety-nine tigers are killed.",
+      "correction": "The wooden tiger causes the fatal infection and becomes the ironic hundredth tiger."
+    },
+    {
+      "claim": "The British officer wants only to protect wildlife.",
+      "correction": "He wants to hunt or at least pose with a dead tiger, and the episode satirises imperial privilege."
+    },
+    {
+      "claim": "The Maharaja’s officials obey because they admire his wisdom.",
+      "correction": "Their reactions repeatedly show fear of losing jobs, property or position."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Reading with Insight Q1 to trace satire and dramatic irony from prophecy to death.",
+    "Use Reading with Insight Q2 to examine the treatment of innocent animals.",
+    "Use Reading with Insight Q3 to analyse the Maharaja’s minions and rule by fear.",
+    "Use the embedded Read and find out prompts to follow the changing hundred-tiger plan.",
+    "Finish with Reading with Insight Q5 on care for Earth and all life."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The story ends with Reading with Insight Questions 1–5 on dramatic irony, cruelty to animals, fearful obedience, game hunting and an ecological system of care.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,83 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 7: Binomial Theorem",
+    "central_question": "How does the binomial theorem organise the expansion of positive integral powers and support efficient evaluation, comparison, and divisibility proofs?",
+    "in_scope_units": [
+      "Introduction and the need to expand high powers efficiently.",
+      "Patterns in low-power binomial expansions and Pascal’s triangle or Meru-Prastara.",
+      "Binomial theorem for positive integral indices.",
+      "Proof by mathematical induction and Pascal’s coefficient identity.",
+      "Expansion of algebraic binomials with signs, coefficients, powers, and reciprocals.",
+      "Applications to numerical evaluation, comparison, divisibility, remainders, and coefficient identities."
+    ],
+    "banned_topics": [
+      "Binomial series for negative, fractional, or general real indices.",
+      "Probability applications of binomial coefficients.",
+      "Multinomial theorem beyond the two-term expressions in the chapter."
+    ],
+    "must_include_keywords": [
+      "binomial",
+      "positive integral index",
+      "binomial theorem",
+      "binomial coefficient",
+      "nCr",
+      "Pascal’s triangle",
+      "Meru-Prastara",
+      "Pingala",
+      "general term",
+      "mathematical induction",
+      "Pascal identity",
+      "coefficient symmetry",
+      "expansion",
+      "alternating signs",
+      "numerical evaluation",
+      "approximation",
+      "comparison",
+      "divisibility",
+      "remainder",
+      "coefficient sum",
+      "alternating coefficient sum",
+      "even powers",
+      "odd powers"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "(a+b)^n=a^n+b^n.",
+        "correction": "The binomial expansion includes intermediate terms with binomial coefficients."
+      },
+      {
+        "claim": "The expansion has n terms.",
+        "correction": "It has n+1 terms."
+      },
+      {
+        "claim": "The rth term uses nCr.",
+        "correction": "nCr gives the (r+1)th term."
+      },
+      {
+        "claim": "The exponents of both variables decrease.",
+        "correction": "The first decreases while the second increases, with sum n."
+      },
+      {
+        "claim": "A truncated expansion always gives the exact value.",
+        "correction": "All terms are required for exact evaluation; truncation needs a justified approximation or bound."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Section 7.2 pattern for (a+b)^4.",
+      "NCERT theorem proof for the general term and induction.",
+      "NCERT Example 1 for a binomial containing x² and 3/x.",
+      "NCERT Examples 2 and 3 for evaluation and comparison.",
+      "NCERT Example 4 and Exercise 7.1 Questions 11 and 14 for divisibility and identities."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 7.1 followed by the Miscellaneous Exercise on Chapter 7."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Binomial Theorem\n\n## What you will learn\nYou will recognise patterns in expansions of (a+b)^n and connect them with Pascal’s triangle or Meru-Prastara. You will identify term counts, exponents, signs, and coefficient symmetry.\n\n## Simple explanation\nThe binomial theorem replaces repeated multiplication by a structured expansion. For a positive integer n, the expansion has n+1 terms whose exponents move in opposite directions.\n\n## Step-by-step breakdown\n- **Binomial**: An expression containing two terms, such as a+b or a−b.\n- **Positive integral index**: This chapter develops the theorem for n=1,2,3,….\n- **Number of terms**: The complete expansion of (a+b)^n has n+1 terms.\n- **Exponent pattern**: The power of a falls from n to 0 while the power of b rises from 0 to n.\n- **Total degree**: The exponents in every term add to n.\n- **Coefficient pattern**: Coefficients form rows of Pascal’s triangle, known historically as Meru-Prastara.\n- **Symmetry**: The coefficients read the same from either end.\n\n## Worked example\nQuestion: Using the pattern listed in NCERT Section 7.2, expand (a+b)^4.\n\nSolution:\n- Use the coefficient row 1,4,6,4,1.\n- Decrease the power of a from 4 to 0 and increase the power of b from 0 to 4.\n- Final answer: (a+b)^4=a^4+4a^3b+6a^2b^2+4ab^3+b^4.\n\n## Common mistake\nDo not use the same exponent on both variables; in each term the exponents must sum to n.\n\n## Quick check question\nQuestion: From the NCERT pattern, how many terms are in (a+b)^7?\nAnswer: There are 8 terms.\nExplanation: The expansion of a positive integral power n contains n+1 terms.\n\n## Summary\n- Binomial expansions follow a fixed pattern.\n- Coefficients come from Pascal’s triangle.\n- Each term has total degree n.",
+    "Core explanation": "# Core explanation: Binomial Theorem\n\n## What you will learn\nYou will state the binomial theorem using combination notation and understand its proof by mathematical induction. You will relate adjacent rows through Pascal’s identity.\n\n## Simple explanation\nThe coefficient of a^(n−r)b^r is nCr. Induction proves that the pattern valid for one exponent continues to the next exponent.\n\n## Step-by-step breakdown\n- **The theorem**: (a+b)^n=Σ from r=0 to n of nCr a^(n−r)b^r.\n- **First term**: For r=0, the term is a^n.\n- **Last term**: For r=n, the term is b^n.\n- **General position**: The (r+1)th term is nCr a^(n−r)b^r.\n- **Base case**: For n=1, the formula gives a+b.\n- **Inductive step**: Multiply the expansion for k by a+b and group like terms.\n- **Pascal identity**: kCr+kC(r−1)=(k+1)Cr supplies the next coefficient row.\n\n## Worked example\nQuestion: Using the theorem, find the fourth term of (a+b)^6.\n\nSolution:\n- The fourth term corresponds to r+1=4, so r=3.\n- Use T4=6C3 a^(6−3)b^3.\n- 6C3=20.\n- Final answer: The fourth term is 20a^3b^3.\n\n## Common mistake\nDo not confuse the term number with r; the (r+1)th term uses nCr.\n\n## Quick check question\nQuestion: Using the NCERT theorem, what is the coefficient of a^2b^3 in (a+b)^5?\nAnswer: The coefficient is 5C3=10.\nExplanation: The b exponent is r=3 and the a exponent is 5−3=2.\n\n## Summary\n- Combination numbers are binomial coefficients.\n- The general term controls position and exponents.\n- Induction and Pascal’s identity establish the theorem.",
+    "Worked examples": "# Worked examples: Binomial Theorem\n\n## What you will learn\nYou will expand expressions whose terms contain coefficients, negative signs, or powers of x. You will preserve brackets and signs in every general term.\n\n## Simple explanation\nTreat each whole expression as one binomial term. Substitute it into the theorem before simplifying powers and coefficients.\n\n## Step-by-step breakdown\n- **Substitution**: For (A+B)^n, use nCr A^(n−r)B^r.\n- **Negative term**: For (A−B)^n, write B as −B so signs alternate according to r.\n- **Variable powers**: Multiply exponents when raising x^p to a power.\n- **Reciprocal powers**: Negative powers may appear and should be simplified carefully.\n- **Coefficient check**: The first and last terms are A^n and B^n.\n- **Symmetry check**: Coefficient magnitudes are symmetric.\n\n## Worked example\nQuestion: Using NCERT Example 1, expand (x^2+3/x)^4.\n\nSolution:\n- Apply Σ 4Cr (x²)^(4−r)(3/x)^r.\n- The five terms simplify successively to x^8, 12x^5, 54x^2, 108/x, and 81/x^4.\n- Final answer: (x²+3/x)^4=x^8+12x^5+54x^2+108/x+81/x^4.\n\n## Common mistake\nDo not distribute an outside exponent over a sum; expand the binomial with coefficients and cross terms.\n\n## Quick check question\nQuestion: Using NCERT Exercise 7.1 Question 6, express 96³ in a binomial-friendly form.\nAnswer: 96³=(100−4)³.\nExplanation: Choosing nearby 100 makes the powers easy and the negative second term produces alternating signs.\n\n## Summary\n- Substitute complete binomial terms before simplifying.\n- Negative second terms generate alternating signs.\n- Endpoint and symmetry checks reveal many errors.",
+    "Exam-style problems": "# Exam-style problems: Binomial Theorem\n\n## What you will learn\nYou will use the binomial theorem for numerical evaluation, comparison, and divisibility. You will decide how many terms are needed for a proof or bound.\n\n## Simple explanation\nThe theorem is useful even without writing the full expansion. A few positive terms may prove an inequality, while grouping higher terms by a common factor proves divisibility.\n\n## Step-by-step breakdown\n- **Numerical evaluation**: Rewrite a number near a convenient base, such as 98=100−2.\n- **Comparison**: Retain enough positive terms to establish a strict lower bound.\n- **Divisibility**: Factor a required modulus from all terms after the initial remainder terms.\n- **Remainder**: Write an expression in the form divisor×integer+remainder.\n- **Exactness**: For evaluation, include all terms; for a proof, selected terms may suffice.\n- **Positive terms**: Dropping positive remaining terms gives a valid lower bound.\n\n## Worked example\nQuestion: Using NCERT Example 3, compare (1.01)^1000000 and 10000.\n\nSolution:\n- Write (1+0.01)^1000000.\n- Its first two terms are 1+1000000(0.01)=10001.\n- All remaining terms are positive.\n- Final answer: (1.01)^1000000>10000.\n\n## Common mistake\nDo not drop terms in an exact evaluation; truncation is valid here only because the omitted terms are positive and the task is comparison.\n\n## Quick check question\nQuestion: Using NCERT Example 4, what remainder does 6^n−5n leave when divided by 25?\nAnswer: It leaves remainder 1.\nExplanation: Expanding (1+5)^n gives 6^n−5n=1+25k for an integer k.\n\n## Summary\n- Convenient decompositions simplify large powers.\n- Partial expansions can prove inequalities.\n- Factored higher terms establish divisibility and remainders.",
+    "Revision and recap": "# Revision and recap: Binomial Theorem\n\n## What you will learn\nYou will consolidate coefficient identities and use symmetric substitutions efficiently. You will review the theorem’s structure, checks, and historical context.\n\n## Simple explanation\nThe binomial theorem connects algebra with combinations. Substituting special values for a and b produces identities involving sums of binomial coefficients.\n\n## Step-by-step breakdown\n- **Coefficient sum**: Setting a=b=1 gives Σ nCr=2^n.\n- **Alternating sum**: Setting a=1,b=−1 gives Σ(−1)^r nCr=0 for n>0.\n- **Symmetric pairs**: nCr=nC(n−r).\n- **Even and odd terms**: Adding or subtracting (a+b)^n and (a−b)^n isolates even or odd powers of b.\n- **Historical context**: Meru-Prastara appears in Pingala’s Chhanda Shastra before Pascal’s work.\n- **Error checks**: Count n+1 terms, verify total degree n, and compare endpoint terms.\n\n## Worked example\nQuestion: Using NCERT Exercise 7.1 Question 11, simplify (a+b)^4−(a−b)^4.\n\nSolution:\n- Expand both fourth powers.\n- The even powers of b cancel when subtracting, while odd-power terms double.\n- The surviving terms are 8a^3b and 8ab^3.\n- Final answer: (a+b)^4−(a−b)^4=8ab(a²+b²).\n\n## Common mistake\nDo not assume every coefficient identity is separate; many follow by substituting simple values into the theorem.\n\n## Quick check question\nQuestion: Using NCERT Exercise 7.1 Question 14, evaluate Σ from r=0 to n of 3^r nCr.\nAnswer: The sum is 4^n.\nExplanation: It is the expansion of (1+3)^n.\n\n## Summary\n- The theorem gives a general expansion for positive integral powers.\n- Special substitutions create coefficient identities.\n- Structural checks make expansions reliable."
+  }
+}

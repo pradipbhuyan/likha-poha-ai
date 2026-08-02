@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 11",
+  "subject": "English",
+  "chapter": "The Address",
+  "central_question": "Why does recovering the objects of a lost home fail to restore the life and relationships destroyed by war?",
+  "in_scope_units": [
+    "The narrator’s first post-War visit to Number 46, where Mrs Dorling denies recognition while wearing the narrator’s mother’s cardigan.",
+    "A flashback explains how Mrs Dorling removed silver, plates, vases and other belongings for supposed safekeeping during the War.",
+    "The narrator recalls fear of the stored objects after Liberation and her later curiosity to see, touch and remember them.",
+    "During the second visit, familiar objects appear oppressive and displaced in Mrs Dorling’s strange room.",
+    "The narrator resolves to forget the address because objects severed from their former life have lost their value.",
+    "The final questions examine wartime clues, hardship, memory and the human predicament after war."
+  ],
+  "banned_topics": [
+    "Historical details of the War not explicitly supplied",
+    "A definite account of how the narrator’s mother died or where the narrator lived",
+    "Legal conclusions about ownership beyond the story’s evidence"
+  ],
+  "must_include_keywords": [
+    "unnamed narrator",
+    "Mrs S",
+    "Mrs Dorling",
+    "Marconi Street",
+    "Number 46",
+    "green knitted cardigan",
+    "War",
+    "Liberation",
+    "stored belongings",
+    "table silver",
+    "antique plates",
+    "large vases",
+    "suitcase",
+    "memory",
+    "loss",
+    "displacement",
+    "Hanukkah candle-holder",
+    "woollen table-cloth",
+    "burn mark",
+    "white tea-pot",
+    "pewter plate",
+    "cutlery",
+    "musty smell",
+    "muggy atmosphere",
+    "first-person narration",
+    "flashback",
+    "irony",
+    "human predicament",
+    "letting go"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The narrator goes mainly to reclaim valuable property.",
+      "correction": "She wants to see, touch and remember the possessions, but rejects them when they cannot restore the lost life attached to them."
+    },
+    {
+      "claim": "Mrs Dorling openly welcomes Mrs S’s daughter.",
+      "correction": "She denies recognition, blocks the doorway and says the visit is inconvenient."
+    },
+    {
+      "claim": "The story explicitly explains every wartime event.",
+      "correction": "It gives clues but deliberately leaves many details unstated."
+    },
+    {
+      "claim": "The objects remain comforting wherever placed.",
+      "correction": "In Mrs Dorling’s house they oppress the narrator because they are severed from their original home and relationships."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Q1 on the clue in “I thought that no one had come back.”",
+    "Proceed to Q2 on pre-War and post-War hardship.",
+    "Use Q3 to explain why the narrator forgets Number 46.",
+    "Conclude with Q4 on the human predicament produced by war."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with four numbered interpretive questions focused on wartime clues, hardship, memory and the human predicament after war.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

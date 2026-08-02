@@ -1,0 +1,91 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Chemistry",
+    "chapter": "Classification of Elements and Periodicity in Properties",
+    "central_question": "How do atomic number and electronic configuration generate repeating trends in elemental properties?",
+    "in_scope_units": [
+      "Historical classification and Mendeleev table.",
+      "Modern periodic law, groups, and periods.",
+      "s-, p-, d-, and f-block configurations.",
+      "Atomic and ionic radii.",
+      "Ionisation enthalpy, electron gain enthalpy, and electronegativity.",
+      "Valence, oxidation states, metallic character, and reactivity."
+    ],
+    "banned_topics": [
+      "Detailed family chemistry",
+      "Chemical bonding theory",
+      "Coordination chemistry",
+      "Nuclear chemistry"
+    ],
+    "must_include_keywords": [
+      "periodic law",
+      "Dobereiner triads",
+      "Newlands octaves",
+      "Mendeleev table",
+      "atomic number",
+      "modern periodic table",
+      "group",
+      "period",
+      "s-block",
+      "p-block",
+      "d-block",
+      "f-block",
+      "representative element",
+      "transition element",
+      "inner transition element",
+      "valence shell",
+      "effective nuclear charge",
+      "shielding",
+      "atomic radius",
+      "ionic radius",
+      "isoelectronic species",
+      "ionisation enthalpy",
+      "electron gain enthalpy",
+      "electronegativity",
+      "valence",
+      "oxidation state",
+      "metallic character",
+      "non-metallic character",
+      "periodicity",
+      "reactivity"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Mendeleev used atomic number.",
+        "correction": "He mainly used atomic mass and chemical similarity."
+      },
+      {
+        "claim": "Atomic radius increases across a period.",
+        "correction": "It generally decreases as effective nuclear charge rises."
+      },
+      {
+        "claim": "Cations are larger than their atoms.",
+        "correction": "Cations are generally smaller; anions are generally larger."
+      },
+      {
+        "claim": "Fluorine has the most negative electron gain enthalpy.",
+        "correction": "Chlorine is more negative because fluorine has stronger small-shell repulsion."
+      },
+      {
+        "claim": "Electronegativity equals electron gain enthalpy.",
+        "correction": "One concerns bonded atoms; the other is an isolated-atom energy change."
+      }
+    ],
+    "recommended_example_progression": [
+      "Compare historical systems.",
+      "Locate elements from configurations.",
+      "Classify blocks.",
+      "Arrange sizes and ionisation values.",
+      "Explain reactivity and anomalies."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use exercises on periodic-law history, table position, block configurations, size trends, ionisation, electron gain, and electronegativity."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Classification of Elements and Periodicity in Properties\n\n## What you will learn\nTrace periodic classification from early patterns to the modern law.\n\n## Simple explanation\nChemists organised growing element data to reveal recurring properties and predict undiscovered elements.\n\n## Step-by-step breakdown\n- **Triads**: Dobereiner grouped selected elements in threes.\n- **Octaves**: Newlands observed repetition for lighter elements.\n- **Mendeleev**: Arranged mainly by atomic mass and chemical similarity.\n- **Gaps**: Reserved positions for undiscovered elements.\n- **Limitations**: Isotopes and anomalous mass order were unresolved.\n- **Modern law**: Properties are periodic functions of atomic number.\n- **Long form**: Seven periods and eighteen groups.\n\n## Worked example\nQuestion: Why was Mendeleev table valuable despite limitations?\n\nSolution:\n- It grouped similar elements.\n- It left rational gaps.\n- Predicted properties were later confirmed.\n- Final answer: It was predictive and revealed genuine periodic relationships.\n\n## Common mistake\nOlder classifications can be scientifically valuable even when later refined.\n\n## Quick check question\nQuestion: Basis of the modern periodic law?\nAnswer: Atomic number.\nExplanation: Recurring valence configurations follow atomic number.\n\n## Summary\n- Triads: Dobereiner grouped selected elements in threes.\n- Octaves: Newlands observed repetition for lighter elements.\n- Mendeleev: Arranged mainly by atomic mass and chemical similarity.\n- Gaps: Reserved positions for undiscovered elements.",
+    "Core explanation": "# Core explanation: Classification of Elements and Periodicity in Properties\n\n## What you will learn\nDetermine block, period, and group from electronic configuration.\n\n## Simple explanation\nThe highest occupied shell identifies the period and the differentiating subshell identifies the block.\n\n## Step-by-step breakdown\n- **Period**: Usually the largest n value.\n- **s-block**: Outer ns¹ or ns².\n- **p-block**: Outer ns²np¹ to ns²np⁶.\n- **d-block**: Filling of (n−1)d orbitals.\n- **f-block**: Filling of (n−2)f orbitals.\n- **Group similarity**: Related valence-shell configurations.\n- **Hydrogen**: Special placement due to mixed similarities.\n- **Helium**: Placed with noble gases because its shell is complete.\n\n## Worked example\nQuestion: Locate an element with 3s²3p⁵.\n\nSolution:\n- Highest n=3 gives period 3.\n- Differentiating electron is p-block.\n- ns²np⁵ corresponds to group 17.\n- Final answer: Period 3, group 17, p-block.\n\n## Common mistake\nA single group-number shortcut does not work uniformly for all blocks.\n\n## Quick check question\nQuestion: Which block fills f orbitals?\nAnswer: f-block.\nExplanation: Lanthanoids and actinoids are inner-transition series.\n\n## Summary\n- Period: Usually the largest n value.\n- s-block: Outer ns¹ or ns².\n- p-block: Outer ns²np¹ to ns²np⁶.\n- d-block: Filling of (n−1)d orbitals.",
+    "Worked examples": "# Worked examples: Classification of Elements and Periodicity in Properties\n\n## What you will learn\nExplain atomic and ionic radius trends.\n\n## Simple explanation\nSize depends on shell number, shielding, and effective nuclear charge.\n\n## Step-by-step breakdown\n- **Across period**: Radius generally decreases.\n- **Down group**: Additional shells increase radius.\n- **Cation**: Smaller than parent atom.\n- **Anion**: Larger than parent atom.\n- **Isoelectronic species**: Greater nuclear charge gives smaller size.\n- **Covalent radius**: Half a bond distance between identical atoms.\n- **van der Waals radius**: Half a closest non-bonded distance.\n\n## Worked example\nQuestion: Arrange O²−, F−, Na+, Mg²+ in decreasing size.\n\nSolution:\n- All have ten electrons.\n- Nuclear charge increases O to Mg.\n- Stronger attraction contracts the same electron cloud.\n- Final answer: O²− > F− > Na+ > Mg²+.\n\n## Common mistake\nFor isoelectronic ions, compare nuclear charge rather than ordinary group trends.\n\n## Quick check question\nQuestion: Which is larger, Na or Na+?\nAnswer: Na.\nExplanation: Na+ has lost its outer shell and is more compact.\n\n## Summary\n- Across period: Radius generally decreases.\n- Down group: Additional shells increase radius.\n- Cation: Smaller than parent atom.\n- Anion: Larger than parent atom.",
+    "Exam-style problems": "# Exam-style problems: Classification of Elements and Periodicity in Properties\n\n## What you will learn\nPredict ionisation and electron-gain trends and explain anomalies.\n\n## Simple explanation\nElectron removal or addition reflects size, attraction, shielding, subshell energy, and pairing.\n\n## Step-by-step breakdown\n- **Ionisation enthalpy**: Energy to remove a gaseous electron.\n- **Across**: Generally increases.\n- **Down**: Generally decreases.\n- **Successive values**: Increase and reveal stable cores.\n- **Be/B anomaly**: B loses a higher-energy p electron.\n- **N/O anomaly**: Half-filled N is relatively stable.\n- **Electron gain**: More negative values release more energy.\n- **Noble gases**: Closed shells resist electron gain.\n\n## Worked example\nQuestion: Why is first ionisation enthalpy of N greater than O?\n\nSolution:\n- N has half-filled 2p³.\n- O has one paired p orbital.\n- Pair repulsion makes one O electron easier to remove.\n- Final answer: Nitrogen has the greater value because 2p³ is especially stable.\n\n## Common mistake\nPeriodic trends admit configuration-based exceptions.\n\n## Quick check question\nQuestion: Which is higher, Li or Na first ionisation enthalpy?\nAnswer: Li.\nExplanation: Its valence electron is closer and more strongly attracted.\n\n## Summary\n- Ionisation enthalpy: Energy to remove a gaseous electron.\n- Across: Generally increases.\n- Down: Generally decreases.\n- Successive values: Increase and reveal stable cores.",
+    "Revision and recap": "# Revision and recap: Classification of Elements and Periodicity in Properties\n\n## What you will learn\nConnect electronegativity, metallic character, valence, and reactivity.\n\n## Simple explanation\nPeriodic trends explain whether atoms tend to lose, gain, or attract electrons in bonds.\n\n## Step-by-step breakdown\n- **Electronegativity**: Attraction for shared electrons.\n- **Across**: Electronegativity and non-metal character generally increase.\n- **Down**: Metallic character generally increases.\n- **Valence**: Related to outer-shell electrons.\n- **Oxidation state**: Formal electron loss, gain, or sharing.\n- **Metals**: React readily when electron loss is easy.\n- **Halogens**: React strongly by gaining electrons.\n- **Noble gases**: Closed shells give low reactivity.\n\n## Worked example\nQuestion: Choose the more metallic: Na or Mg; K or Na.\n\nSolution:\n- Across period 3, metallic character decreases, so Na exceeds Mg.\n- Down group 1, electron loss becomes easier.\n- K is therefore more metallic than Na.\n- Final answer: Na > Mg and K > Na in metallic character.\n\n## Common mistake\nMetallic character is an electron-loss tendency, not simply density or lustre.\n\n## Quick check question\nQuestion: Where are the most electronegative elements?\nAnswer: Upper right, excluding noble gases.\nExplanation: Small size and high effective charge strengthen bond-electron attraction.\n\n## Summary\n- Electronegativity: Attraction for shared electrons.\n- Across: Electronegativity and non-metal character generally increase.\n- Down: Metallic character generally increases.\n- Valence: Related to outer-shell electrons."
+  }
+}

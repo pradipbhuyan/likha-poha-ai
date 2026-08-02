@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "Going Places",
+  "central_question": "How do adolescent fantasy, hero worship and limited social opportunity shape Sophie’s dreams, relationships and eventual disappointment?",
+  "in_scope_units": [
+    "About A.R. Barton and the themes of adolescent fantasising and hero worship.",
+    "Sophie and Jansie’s different attitudes to future work and the biscuit factory.",
+    "Sophie’s working-class home, her parents and her attraction to Geoff’s silent unknown world.",
+    "The claimed meeting with Danny Casey and the family’s disbelief.",
+    "The football match, the spread of the story and Sophie’s secret expectations.",
+    "The canal-side wait, Danny’s failure to appear and Sophie’s return to fantasy.",
+    "Character, socio-economic background, metaphorical expressions, present participles, colloquial speech and writing tasks."
+  ],
+  "banned_topics": [
+    "A factual biography of Mary Quant, Tom Finney or Danny Casey beyond references in the story.",
+    "A general history of football or the World Cup beyond Sophie’s family conversations."
+  ],
+  "must_include_keywords": [
+    "A.R. Barton",
+    "Sophie",
+    "Jansie",
+    "Geoff",
+    "Sophie’s father",
+    "Derek",
+    "biscuit factory",
+    "boutique",
+    "actress",
+    "fashion designer",
+    "working-class home",
+    "incongruity",
+    "fantasy",
+    "hero worship",
+    "unknown world",
+    "arcade",
+    "Royce’s window",
+    "Danny Casey",
+    "Irish prodigy",
+    "United",
+    "autograph",
+    "secret",
+    "amber glow",
+    "weekly pilgrimage",
+    "football match",
+    "Jansie’s realism",
+    "canal",
+    "wharf",
+    "solitary elm",
+    "pangs of doubt",
+    "resignation",
+    "disappointment",
+    "metaphorical expressions",
+    "present participle",
+    "simultaneous action",
+    "colloquial speech",
+    "chuffed",
+    "nosey",
+    "gawky"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Sophie and Jansie share the same attitude to the future.",
+      "correction": "Sophie fantasises about glamorous careers; Jansie accepts their likely work at the biscuit factory."
+    },
+    {
+      "claim": "Geoff fully believes Sophie’s story.",
+      "correction": "He wants to believe but repeatedly calls it unlikely and doubts that Casey will come."
+    },
+    {
+      "claim": "Sophie certainly meets Danny Casey in the arcade.",
+      "correction": "The story’s ending and her known fantasising indicate that the meeting is imagined; the match is her only real sight of him."
+    },
+    {
+      "claim": "The story mocks every adolescent dream.",
+      "correction": "It distinguishes creative aspiration from fantasy that ignores reality and produces self-deception."
+    },
+    {
+      "claim": "Sophie’s family is wealthy enough to support a boutique.",
+      "correction": "The cramped home, factory prospects and father’s response show financial limitation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the first Think as you read questions to compare Sophie and Jansie.",
+    "Use Understanding the text Q4 to establish the family’s economic background.",
+    "Use the middle comprehension questions to examine Geoff’s belief and Sophie’s secrecy.",
+    "Use the final Think as you read questions to decide whether the meeting occurred.",
+    "Use Working with words and Noticing form for metaphor, slang and present participles."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Understanding the text Questions 1–4, Talking about the text, Working with words, Noticing form, Thinking about language, Writing and Things to do.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

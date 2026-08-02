@@ -1,0 +1,92 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Population",
+    "central_question": "How is solar energy received, transformed, balanced, redistributed, and expressed in the spatial and vertical distribution of temperature?",
+    "in_scope_units": [
+      "Solar radiation and the meaning and variability of insolation.",
+      "Aphelion, perihelion, angle of incidence, day length, atmospheric transparency, and land configuration.",
+      "Heating and cooling of the atmosphere by conduction, convection, advection, and terrestrial radiation.",
+      "Earth’s albedo and heat budget.",
+      "Latitudinal surplus and deficit of radiation and poleward heat transfer.",
+      "Controls of temperature including latitude, altitude, distance from sea, air masses, currents, and local factors.",
+      "Horizontal and vertical distribution of temperature, isotherms, and annual range.",
+      "Temperature inversion and air drainage."
+    ],
+    "banned_topics": [
+      "Population distribution and density",
+      "Migration streams",
+      "Settlement hierarchy",
+      "Detailed atmospheric fronts and cyclones"
+    ],
+    "must_include_keywords": [
+      "solar radiation",
+      "insolation",
+      "short wave",
+      "aphelion",
+      "perihelion",
+      "angle of incidence",
+      "day length",
+      "atmospheric transparency",
+      "reflection",
+      "scattering",
+      "absorption",
+      "albedo",
+      "terrestrial radiation",
+      "long wave",
+      "conduction",
+      "convection",
+      "advection",
+      "latent heat",
+      "heat budget",
+      "radiation surplus",
+      "radiation deficit",
+      "latitude",
+      "altitude",
+      "continentality",
+      "ocean current",
+      "normal lapse rate",
+      "isotherm",
+      "annual range",
+      "daily range",
+      "temperature inversion",
+      "air drainage",
+      "valley inversion",
+      "frost"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The atmosphere is mainly heated directly by short-wave solar radiation.",
+        "correction": "The chapter emphasises heating from below by long-wave terrestrial radiation."
+      },
+      {
+        "claim": "Aphelion and perihelion alone control the seasons.",
+        "correction": "Their small radiation difference is masked by land–sea distribution and atmospheric circulation; angle and day length are more important."
+      },
+      {
+        "claim": "The equator always records the highest surface temperatures.",
+        "correction": "Subtropical areas can be hotter because they often have less cloud cover."
+      },
+      {
+        "claim": "Temperature always decreases with height.",
+        "correction": "An inversion reverses the normal lapse-rate pattern for a period or within particular settings."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 1(iii): identify the main source of atmospheric heating.",
+      "NCERT Exercise 2(i): explain how unequal heating produces weather and climate variation.",
+      "NCERT Exercise 3(ii): explain the earth–atmosphere heat balance.",
+      "NCERT Exercise 2(ii): organise the controls of temperature.",
+      "NCERT Exercise 3(iii): compare January temperature patterns between hemispheres."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1(i–v), 2(i–iv), 3(i–iii), followed by a meteorological-observatory Project Work and worked New Delhi temperature example."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Population\n\n## What you will learn\nYou will define insolation and explain why it varies across place and time. You will distinguish orbital distance from the stronger controls of sun angle and day length.\n\n## Simple explanation\nThe earth receives short-wave energy from the sun. Because the earth is spherical and tilted, that energy is not distributed equally.\n\n## Step-by-step breakdown\n- **Insolation**: Incoming solar radiation received by the earth is called insolation.\n- **Spherical earth**: Sun rays strike more directly at some latitudes and more obliquely at others.\n- **Aphelion and perihelion**: Earth is farthest from the sun in early July and nearest in early January.\n- **Daily and seasonal controls**: Rotation, angle of incidence, length of day, atmospheric transparency, and land aspect affect received energy.\n- **Axial tilt**: The inclination of the earth’s axis strongly affects latitudinal and seasonal insolation.\n\n## Worked example\nQuestion: Which answer in NCERT Exercise 1(iii) correctly identifies how the atmosphere is mainly heated?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1(iii)\", \"extract_text\": \"The atmosphere is mainly heated by the:\\n(a) Short wave solar radiation\\n(b) Reflected solar radiation\\n(c) Long wave terrestrial radiation\\n(d) Scattered solar radiation\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter says the atmosphere is largely heated indirectly from below after the earth absorbs solar energy and emits long-wave terrestrial radiation.\n- This distinguishes the primary atmospheric heat source from the short-wave energy arriving from the sun.\n- Final answer: The correct answer is long-wave terrestrial radiation.\n\n## Common mistake\nDo not say that most atmospheric heating comes directly from incoming short-wave radiation.\n\n## Quick check question\nQuestion: What is insolation?\nAnswer: Incoming solar radiation received by the earth.\nExplanation: The term describes the energy arriving from the sun at the earth system.\n\n## Summary\n- Insolation is uneven.\n- Sun angle and day length are major controls.\n- The atmosphere is mainly heated from the earth below.",
+    "Core explanation": "# Core explanation: Population\n\n## What you will learn\nYou will distinguish reflection, scattering, absorption, and terrestrial radiation. You will explain conduction, convection, advection, and latent heat.\n\n## Simple explanation\nSolar energy interacts with the atmosphere and surface before being returned to space. Heat then moves vertically and horizontally through several mechanisms.\n\n## Step-by-step breakdown\n- **Reflection and albedo**: Clouds, atmosphere, and the surface return part of incoming radiation; the reflected percentage is albedo.\n- **Scattering**: Particles redirect solar radiation in many directions.\n- **Absorption**: Atmospheric gases and the earth’s surface absorb portions of incoming energy.\n- **Terrestrial radiation**: The warmed earth emits long-wave energy upward.\n- **Conduction**: The surface heats air in direct contact with it.\n- **Convection**: Vertical movement transfers heat upward.\n- **Advection**: Horizontal air movement transfers heat from one region to another.\n- **Latent heat**: Energy is absorbed or released during phase changes of water.\n\n## Worked example\nQuestion: How does unequal heat distribution produce variation in weather and climate, as asked in NCERT Exercise 2(i)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(i)\", \"extract_text\": \"How does the unequal distribution of heat over the planet earth in space and time cause variations in weather and climate?\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The source links unequal heating with pressure differences, wind, and transfer of heat and moisture.\n- These circulation responses differ by place and season and create contrasting temperature and weather conditions.\n- Final answer: Unequal heating creates pressure gradients and atmospheric circulation that redistribute heat and moisture, producing spatial and seasonal variations in weather and climate.\n\n## Common mistake\nDo not explain climate variation only through latitude; circulation and surface conditions also matter.\n\n## Quick check question\nQuestion: What is advection?\nAnswer: The horizontal transfer of heat by moving air.\nExplanation: It differs from convection, which is chiefly vertical movement.\n\n## Summary\n- Radiation is reflected, scattered, absorbed, and re-emitted.\n- The surface heats the atmosphere from below.\n- Heat moves vertically and horizontally.",
+    "Worked examples": "# Worked examples: Population\n\n## What you will learn\nYou will explain the earth’s heat budget and the global redistribution of surplus heat. You will understand why the planet does not continually warm or cool.\n\n## Simple explanation\nOver time, energy received by the earth–atmosphere system is balanced by energy returned to space. Regional surpluses and deficits are redistributed by winds and ocean currents.\n\n## Step-by-step breakdown\n- **Global balance**: Incoming solar energy equals outgoing terrestrial and atmospheric radiation over the whole system.\n- **Atmospheric reflection**: Some incoming energy is returned before reaching the ground.\n- **Surface absorption**: The surface absorbs energy and later emits terrestrial radiation.\n- **Atmospheric absorption**: The atmosphere absorbs solar and terrestrial energy and radiates energy outward.\n- **Latitudinal imbalance**: Low latitudes generally have a surplus, while high latitudes have a deficit.\n- **Redistribution**: Atmospheric and oceanic circulation transfers energy poleward.\n\n## Worked example\nQuestion: What processes should be explained for NCERT Exercise 3(ii) on heat balance?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(ii)\", \"extract_text\": \"Discuss the processes through which the earth-atmosphere system maintains heat balance.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter traces incoming insolation through reflection, scattering, atmospheric and surface absorption, terrestrial radiation, convection, turbulence, and latent heat.\n- The key test is whether total outgoing radiation balances total absorbed incoming radiation.\n- Final answer: The earth–atmosphere system maintains heat balance by returning to space, through surface and atmospheric radiation, the same total energy it absorbs from the sun.\n\n## Common mistake\nDo not treat the illustrative energy units as separate reservoirs that accumulate permanently.\n\n## Quick check question\nQuestion: Why do high latitudes not become permanently colder and colder?\nAnswer: Heat is transferred poleward from radiation-surplus lower latitudes.\nExplanation: Atmospheric and oceanic circulation redistributes energy between surplus and deficit zones.\n\n## Summary\n- The whole earth maintains a radiation balance.\n- Regional balances differ.\n- Circulation prevents unlimited tropical heating and polar cooling.",
+    "Exam-style problems": "# Exam-style problems: Population\n\n## What you will learn\nYou will organise the factors controlling temperature and interpret isotherms. You will connect land–sea contrast and ocean currents with horizontal temperature patterns.\n\n## Simple explanation\nTemperature is not determined by latitude alone. Elevation, continentality, air movement, currents, and local terrain modify the amount of heat a place experiences.\n\n## Step-by-step breakdown\n- **Latitude**: It controls the average angle and duration of received solar radiation.\n- **Altitude**: Because the atmosphere is heated from below, temperature generally falls with height.\n- **Distance from sea**: Land heats and cools faster than water, creating greater extremes in continental interiors.\n- **Air masses**: Movement of warm or cold air changes local temperature.\n- **Ocean currents**: Warm currents raise and cold currents lower nearby coastal temperatures.\n- **Isotherms**: Lines joining equal temperatures reveal horizontal patterns.\n- **Annual range**: The difference between the warmest and coldest monthly means is generally larger over continental interiors.\n\n## Worked example\nQuestion: What factors should be included for NCERT Exercise 2(ii) on temperature distribution?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(ii)\", \"extract_text\": \"What are the factors that control temperature distribution on the surface of the earth?\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter lists latitude, altitude, distance from sea, air-mass circulation, warm and cold ocean currents, and local aspects.\n- A strong answer explains the direction of each influence rather than only listing names.\n- Final answer: Temperature distribution is controlled by latitude, elevation, continentality, air masses, ocean currents, and local relief or aspect.\n\n## Common mistake\nDo not present all places at the same latitude as having the same temperature.\n\n## Quick check question\nQuestion: Why is annual temperature range high in continental interiors?\nAnswer: Land heats and cools rapidly and lacks the moderating influence of a large water body.\nExplanation: Continentality increases seasonal extremes compared with oceanic locations.\n\n## Summary\n- Latitude sets a broad pattern.\n- Altitude and land–sea contrast modify it.\n- Isotherms reveal the combined result.",
+    "Revision and recap": "# Revision and recap: Population\n\n## What you will learn\nYou will explain normal lapse rate, temperature inversion, and air drainage. You will compare hemispheric temperature patterns.\n\n## Simple explanation\nNormally the lower atmosphere becomes cooler with height, but clear, calm nights and valley settings can place colder air below warmer air.\n\n## Step-by-step breakdown\n- **Normal lapse rate**: Temperature generally decreases with altitude because air is heated mainly from below.\n- **Radiation inversion**: On clear, calm, long nights, the ground cools quickly and chills the air nearest it.\n- **Valley inversion**: Dense cold air drains downslope and collects beneath warmer air.\n- **Frost effect**: Cold-air pooling can damage valley-bottom vegetation while higher slopes may remain warmer.\n- **Hemispheric contrast**: The Northern Hemisphere has more land and stronger seasonal bending of isotherms; the Southern Hemisphere has more ocean and smoother patterns.\n- **January pattern**: It is winter in the north and summer in the south, so thermal contrasts differ between hemispheres.\n\n## Worked example\nQuestion: How should NCERT Exercise 3(iii) compare January temperature distribution in the two hemispheres?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(iii)\", \"extract_text\": \"Compare the global distribution of temperature in January over the northern and the southern hemisphere of the earth.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The source shows stronger land–sea contrasts and more irregular isotherms in the land-dominated Northern Hemisphere, while the ocean-dominated Southern Hemisphere has more regular patterns.\n- January also places the Northern Hemisphere in winter and the Southern Hemisphere in summer.\n- Final answer: A complete comparison should relate seasonal position and the unequal distribution of land and ocean to isotherm shape and temperature range.\n\n## Common mistake\nDo not compare the hemispheres without noting both season and land–sea distribution.\n\n## Quick check question\nQuestion: What is temperature inversion?\nAnswer: A condition in which temperature increases with height through a layer instead of following the normal decrease.\nExplanation: It reverses the normal lapse-rate pattern and is often associated with night-time cooling or cold-air drainage.\n\n## Summary\n- The normal lapse rate can be reversed.\n- Cold air pools in valleys.\n- Land–sea distribution makes hemispheric isotherm patterns different."
+  }
+}

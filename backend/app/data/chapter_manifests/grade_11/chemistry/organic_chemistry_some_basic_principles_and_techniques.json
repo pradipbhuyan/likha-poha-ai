@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Organic Chemistry – Some Basic Principles and Techniques",
+  "central_question": "How are organic compounds represented, named, classified, purified, analysed, and understood through electronic effects?",
+  "in_scope_units": [
+    "Carbon tetravalence and structure representations.",
+    "Classification, functional groups, and homologous series.",
+    "IUPAC nomenclature.",
+    "Isomerism.",
+    "Bond fission, reagents, intermediates, electronic effects, and reaction types.",
+    "Purification and qualitative and quantitative analysis."
+  ],
+  "banned_topics": [
+    "Detailed functional-group mechanisms",
+    "Advanced stereochemistry",
+    "Spectroscopy",
+    "Polymer chemistry"
+  ],
+  "must_include_keywords": [
+    "tetravalence",
+    "catenation",
+    "structural formula",
+    "wedge-dash formula",
+    "functional group",
+    "homologous series",
+    "IUPAC nomenclature",
+    "parent chain",
+    "substituent",
+    "prefix",
+    "suffix",
+    "structural isomerism",
+    "stereoisomerism",
+    "homolytic fission",
+    "heterolytic fission",
+    "free radical",
+    "carbocation",
+    "carbanion",
+    "electrophile",
+    "nucleophile",
+    "inductive effect",
+    "resonance effect",
+    "electromeric effect",
+    "hyperconjugation",
+    "substitution reaction",
+    "addition reaction",
+    "elimination reaction",
+    "rearrangement reaction",
+    "crystallisation",
+    "distillation",
+    "chromatography",
+    "Lassaigne test",
+    "quantitative analysis"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The visually longest chain is always the parent.",
+      "correction": "IUPAC selection must include the principal group and follow multiple-bond rules."
+    },
+    {
+      "claim": "Homolysis and heterolysis give the same intermediates.",
+      "correction": "Homolysis gives radicals; heterolysis gives ions."
+    },
+    {
+      "claim": "Every electrophile has a full positive charge.",
+      "correction": "Neutral electron-deficient species may be electrophiles."
+    },
+    {
+      "claim": "Resonance structures are isolable compounds.",
+      "correction": "They are contributors to one hybrid."
+    },
+    {
+      "claim": "Chromatography separates only by boiling point.",
+      "correction": "It uses different affinities for stationary and mobile phases."
+    }
+  ],
+  "recommended_example_progression": [
+    "Read structural representations.",
+    "Classify and name compounds.",
+    "Distinguish isomers and bond fission.",
+    "Apply electronic effects and reaction types.",
+    "Choose purification and analysis methods."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use exercises on structures, classification, nomenclature, isomerism, electronic effects, intermediates, reaction types, purification, and elemental analysis.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

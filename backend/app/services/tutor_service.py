@@ -7,8 +7,6 @@ from app.services.rag_visual_service import (
     get_lesson_step_visual_assets,
 )
 from app.services.mentor_memory_service import (
-    get_recent_mentor_memory,
-    build_memory_context,
     save_mentor_memory,
 )
 from app.services.curriculum_service import (
@@ -48,6 +46,52 @@ STORY_DEPENDENT_SUBJECTS = {
     "social science", "social studies", "history", "geography",
     "economics", "civics", "political science",
 }
+
+# Minimum cosine similarity for a RAG chunk to be shown to a student as a
+# textbook-excerpt answer. search_textbook_content()/match_rag_chunks has no
+# relevance floor of its own -- it always returns its top-K chunks regardless
+# of quality -- so this is the only place answer quality is enforced for the
+# no-LLM doubt pipeline. Tunable: start conservative and recalibrate against
+# real production similarity data, the same way doubt_kb_service's
+# SIMILARITY_THRESHOLD (0.50) was calibrated from live Supabase data.
+RAG_ANSWER_THRESHOLD = 0.35
+
+# Max characters of textbook excerpt shown to the student per answer.
+RAG_EXCERPT_MAX_CHARS = 1500
+
+
+def _filter_relevant_chunks(rag_results, threshold: float = RAG_ANSWER_THRESHOLD):
+    """Keep only RAG chunks whose similarity clears the extractive-answer bar."""
+    return [r for r in (rag_results or []) if float(r.get("similarity") or 0) >= threshold]
+
+
+def build_textbook_excerpt_answer(chunks, max_chunks: int = 3) -> str:
+    """Build a purely extractive answer from the top RAG chunks -- no LLM synthesis."""
+    excerpt = "\n\n".join(
+        c.get("chunk_text", "").strip() for c in chunks[:max_chunks] if c.get("chunk_text")
+    ).strip()
+    if len(excerpt) > RAG_EXCERPT_MAX_CHARS:
+        excerpt = excerpt[:RAG_EXCERPT_MAX_CHARS].rsplit(" ", 1)[0] + "…"
+    return f"Here's what your textbook says about this:\n\n{excerpt}"
+
+
+def build_ncert_fallback_answer(grade: str, subject: str, chapter: str) -> str:
+    """Warm, student-facing fallback when neither the DKB cache nor RAG textbook
+    search finds a relevant match. Never mentions internal mechanics."""
+    where = " ".join(part for part in [subject or "", f"({chapter})" if chapter else ""] if part).strip()
+    context = f"your {grade} {where} textbook" if where else f"your {grade} textbook"
+    return (
+        f"I couldn't find an exact match for this in {context} yet. \U0001F4D6\n\n"
+        f"Here's what I'd try next:\n"
+        f"- Check the NCERT textbook or ncert.nic.in for this chapter — the answer is "
+        f"very likely explained there in detail.\n"
+        f"- Try rephrasing your question with a specific term from the chapter "
+        f"(a definition, a formula name, or a concept word).\n"
+        f"- Ask about one smaller part of the topic at a time — specific questions "
+        f"are much easier for me to match to the right textbook passage.\n\n"
+        f"I'm continuously learning from new questions, so this will get better over time!"
+    )
+
 
 TUTOR_SYSTEM = """
 	You are a patient CBSE tutor for Class 1 to Class 10 students.
@@ -1192,17 +1236,19 @@ def answer_doubt(
     chapter: str,
     question: str,
     username: str = "unknown",
-    model: str = DEFAULT_TEXT_MODEL,
     board: str = "CBSE",
 ):
     """
-    Answer a student doubt with DKB cache-first, then RAG, then LLM.
+    Answer a student doubt purely from retrieval — never calls an LLM.
 
     Flow:
     1. Search Doubt Knowledge Base (DKB) by semantic similarity.
-       On hit → return cached answer instantly (zero token cost).
-    2. On DKB miss → RAG + LLM generation (existing flow).
-    3. Auto-store new LLM-generated answer in DKB for future reuse.
+       On hit → return cached answer instantly.
+    2. On DKB miss → RAG search over textbook content, chapter-scoped then
+       subject-scoped. If any chunk clears RAG_ANSWER_THRESHOLD, return it
+       as an extractive textbook excerpt.
+    3. If nothing relevant is found, return a warm NCERT-reference fallback.
+    4. Auto-store new excerpt answers in DKB for future reuse.
     """
     # ----------------------------------------------------------------- DKB
     try:
@@ -1236,7 +1282,7 @@ def answer_doubt(
             )
             return {
                 "answer": dkb_hit["answer"],
-                "source_type": "LLM",   # shown to student as normal AI answer
+                "source_type": "DOUBT_KB",
                 "sources": [],
                 "textbook_visuals": [],
                 "mentor_suggestions": [
@@ -1246,7 +1292,7 @@ def answer_doubt(
                 ],
             }
     except Exception:
-        pass  # DKB unavailable — fall through to LLM
+        pass  # DKB unavailable — fall through to RAG
     # -------------------------------------------------------------- end DKB
 
     rag_query = f"""
@@ -1284,92 +1330,27 @@ IMPORTANT:
             match_count=6,
         )
 
-    source_type = "RAG" if rag_results else "LLM"
+    good_chunks = _filter_relevant_chunks(rag_results)
 
-    textbook_context = "\n\n".join(
-        item.get("chunk_text", "")
-        for item in rag_results
-    ) if rag_results else ""
-
-    memories = get_recent_mentor_memory(
-        username=username,
-        limit=5,
-    )
-
-    memory_context = build_memory_context(memories)
-
-    prompt = f"""
-Grade: {grade}
-Mode: {mode}
-Subject: {subject if subject else "Open doubt"}
-Chapter: {chapter if chapter else "Open topic"}
-
-CURRENT STUDENT DOUBT:
-{question}
-
-IMPORTANT:
-- Answer ONLY the CURRENT STUDENT DOUBT above.
-- Do not continue any previous topic.
-- Do not answer from earlier conversation memory.
-- If the current doubt is "what is matter", answer matter only.
-- If the current doubt is "what is cell", answer cell only.
-
-Relevant textbook/RAG context:
-{textbook_context if textbook_context else "No uploaded textbook context found."}
-
-	Explain clearly for a {grade} student.
-
-Use uploaded textbook/RAG context when available.
-If RAG context is available, align the answer with it.
-If RAG context is not available, use standard CBSE knowledge.
-
-Do not use markdown tables.
-Use bullet points instead.
-
-{DIAGRAM_HINT}
-
-MATH RULES — CRITICAL, FOLLOW EXACTLY:
-- Every mathematical expression MUST be wrapped in $...$ (inline) or $$...$$ (display).
-- NEVER write math inside plain parentheses ().
-- Bad: (x^2 + 4x + 4), (a + b)^2, (x - 2)(x + 2), (\\frac{{p}}{{q}})
-- Good: $x^2 + 4x + 4$, $(a + b)^2$, $(x - 2)(x + 2)$, $\\frac{{p}}{{q}}$
-- NEVER use $$ inside () like (x - 2$$x + 2) — that is broken syntax.
-- NEVER repeat a variable like "x^2 x 2" — write $x^2$ only.
-- Factored products: $(x - 2)(x + 3)$ — always inside $ not plain text.
-- Once wrapped in $...$ or $$...$$, parentheses INSIDE the expression stay
-  literal ( ) characters — never replace an inner ( ) with another $ or $$.
-  Bad: $$a + b$$^n  |  Bad: \\frac{{n!}}{{r!$n - r$!}}
-  Good: $$(a + b)^n$$  |  Good: $\\binom{{n}}{{r}} = \\frac{{n!}}{{r!(n-r)!}}$
-- ALWAYS put a space between an inline $...$ expression and the word next to
-  it — never let a $ touch the surrounding letters directly.
-  Bad: $a$and$b$are coprime  |  Bad: $p$x$at$x = k$
-  Good: $a$ and $b$ are coprime  |  Good: $p(x)$ at $x = k$
-  Function notation like p(x), f(x) ALWAYS keeps the literal parenthesis
-  inside one $...$ — never write the argument as its own $x$.
-- Interval notation like (0, π), [-1, 1] ALWAYS keeps its literal
-  parentheses/brackets inside ONE $...$ — never drop the opening bracket
-  and leave a bare $$ where it should be.
-  Bad: in$0, \\pi$$  |  Good: in $(0, \\pi)$
-- Fractions: $\\frac{{x^2 - 4}}{{x - 2}}$ — always LaTeX.
-"""
-
-    answer = ask_llm(
-        TUTOR_SYSTEM,
-        prompt,
-        username=username,
-        feature="doubt",
-        model=model,
-    )
+    if good_chunks:
+        answer = build_textbook_excerpt_answer(good_chunks)
+        source_type = "TEXTBOOK_EXCERPT"
+    else:
+        answer = build_ncert_fallback_answer(grade, subject, chapter)
+        source_type = "NO_MATCH_FALLBACK"
 
     answer = remove_mermaid_blocks(answer)
-    textbook_visuals = find_visual_assets_for_question(
-        board=board,
-        grade=grade,
-        subject=subject,
-        chapter=chapter,
-        question=question,
-    )
-    
+
+    if source_type == "TEXTBOOK_EXCERPT":
+        textbook_visuals = find_visual_assets_for_question(
+            board=board,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            question=question,
+        )
+    else:
+        textbook_visuals = []
 
     save_mentor_memory(
         username=username,
@@ -1428,16 +1409,19 @@ MATH RULES — CRITICAL, FOLLOW EXACTLY:
                 }).execute()
             except Exception:
                 pass  # Never block doubt delivery
-            store_in_doubt_kb(
-                question=question,
-                answer=answer,
-                grade=grade,
-                subject=subject,
-                chapter=chapter if chapter else None,
-                mode=mode,
-                board=board,
-                source="llm",
-            )
+            # Only cache genuine textbook-excerpt answers — never cache a
+            # "couldn't find it" fallback message.
+            if source_type == "TEXTBOOK_EXCERPT":
+                store_in_doubt_kb(
+                    question=question,
+                    answer=answer,
+                    grade=grade,
+                    subject=subject,
+                    chapter=chapter if chapter else None,
+                    mode=mode,
+                    board=board,
+                    source="retrieval",
+                )
     except Exception:
         pass  # DKB store failure must never break doubt delivery
 
@@ -1461,14 +1445,14 @@ def answer_lesson_follow_up(
     board: str = "CBSE",
 ):
     """
-    Answer a follow-up about a generated lesson step.
+    Answer a follow-up about a generated lesson step purely from retrieval —
+    never calls an LLM.
 
-    DKB-first: checks the Doubt Knowledge Base for a pre-answered match before
-    calling the LLM.  On a DKB hit the answer is returned instantly at zero
-    token cost.  On a miss the existing RAG + LLM flow runs as normal.
-
-    The lesson text and selected chapter are both included so the response stays
-    tied to the current screen instead of drifting into a generic explanation.
+    DKB-first: checks the Doubt Knowledge Base for a pre-answered match. On a
+    miss, RAG-searches the chapter's textbook content (falling back to the
+    whole subject if the chapter search is empty) and returns the best
+    matching chunk(s) as an extractive excerpt, or a warm NCERT-reference
+    fallback if nothing clears RAG_ANSWER_THRESHOLD.
     """
     # ----------------------------------------------------------------- DKB
     try:
@@ -1493,12 +1477,12 @@ def answer_lesson_follow_up(
             )
             return {
                 "answer": dkb_hit["answer"],
-                "source_type": "LLM",   # shown to student as normal AI answer
+                "source_type": "DOUBT_KB",
                 "sources": [],
                 "textbook_visuals": [],
             }
     except Exception:
-        pass  # DKB unavailable — fall through to LLM
+        pass  # DKB unavailable — fall through to RAG
     # -------------------------------------------------------------- end DKB
 
     rag_query = f"""
@@ -1529,48 +1513,43 @@ Student follow-up question: {question}
             match_count=10,
         )
 
-    source_type = "RAG" if rag_results else "LLM"
+    good_chunks = _filter_relevant_chunks(rag_results)
 
-    textbook_context = "\n\n".join(
-        item.get("chunk_text", "")
-        for item in rag_results
-    ) if rag_results else ""
-
-    prompt = f"""Grade: {grade} | Subject: {subject} | Chapter: {chapter} | Step: {step_title}
-
-Student question: {question}
-
-Relevant textbook context:
-{textbook_context if textbook_context else "Use the lesson content and your knowledge of the NCERT curriculum."}
-
-Current lesson content (for context):
-{lesson[:1200] if lesson else "Not provided."}
-
-RULES:
-- Answer the student's question DIRECTLY and SPECIFICALLY.
-- Do NOT generate a full lesson structure (no "What you will learn", no "Simple explanation" headings).
-- If the question asks to "identify", "list", "find", or "give examples" — provide exactly that with numbered or bullet points.
-- If the question asks "why" or "how" — give a clear 3-5 sentence explanation.
-- Keep the answer focused and concise — match the length to the question's complexity.
-- Use NCERT textbook content and examples from this chapter where possible.
-- End with one short follow-up question only if it adds value.
-"""
-
-    answer = ask_llm(
-        "You are a direct and helpful CBSE tutor. Answer the student's specific question concisely using NCERT content. Do NOT generate lesson structure headings. Give the exact answer asked for.",
-        prompt,
-        username=username,
-        feature="lesson_followup",
-    )
+    if good_chunks:
+        answer = build_textbook_excerpt_answer(good_chunks)
+        source_type = "TEXTBOOK_EXCERPT"
+    else:
+        answer = build_ncert_fallback_answer(grade, subject, chapter)
+        source_type = "NO_MATCH_FALLBACK"
 
     answer = remove_mermaid_blocks(answer)
-    textbook_visuals = find_visual_assets_for_question(
-        board=board,
-        grade=grade,
-        subject=subject,
-        chapter=chapter,
-        question=question,
-    )
+
+    if source_type == "TEXTBOOK_EXCERPT":
+        textbook_visuals = find_visual_assets_for_question(
+            board=board,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            question=question,
+        )
+        # Cache so an identical follow-up question hits the DKB next time
+        # instead of repeating the vector search.
+        try:
+            from app.services.doubt_kb_service import store_in_doubt_kb  # noqa: PLC0415
+            store_in_doubt_kb(
+                question=question,
+                answer=answer,
+                grade=grade,
+                subject=subject,
+                chapter=chapter if chapter else None,
+                mode=mode,
+                board=board,
+                source="retrieval",
+            )
+        except Exception:
+            pass  # DKB store failure must never break doubt delivery
+    else:
+        textbook_visuals = []
 
     return {
         "answer": answer,

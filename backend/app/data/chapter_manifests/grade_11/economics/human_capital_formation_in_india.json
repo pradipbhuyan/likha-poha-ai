@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Human Capital Formation in India",
+  "central_question": "How do education, health and other investments build human capital, contribute to economic growth and support human development in India?",
+  "in_scope_units": [
+    "Introduction to human capital and the transformation of human resources into productive capacity.",
+    "Meaning and sources of human capital formation: education, health, on-the-job training, migration and information.",
+    "Relationship between human capital and economic growth.",
+    "Difference between human capital and human development.",
+    "Human capital formation in India, public policy and institutional responsibilities.",
+    "India’s education sector, expenditure, achievements and inequalities.",
+    "Future prospects, knowledge economy and major challenges.",
+    "Conclusion on education, health and inclusive development."
+  ],
+  "banned_topics": [
+    "Detailed rural credit and agricultural marketing, which belong to Rural Development.",
+    "Worker classification and unemployment measurement, which belong to Employment.",
+    "Statistical sampling methods, which belong to Collection of Data."
+  ],
+  "must_include_keywords": [
+    "human capital",
+    "human resource",
+    "education",
+    "health",
+    "on-the-job training",
+    "migration",
+    "information",
+    "expenditure on education",
+    "expenditure on health",
+    "labour productivity",
+    "income-generating capacity",
+    "economic growth",
+    "innovation",
+    "technology absorption",
+    "human development",
+    "human welfare",
+    "means and ends",
+    "government intervention",
+    "Ministry of Education",
+    "Ministry of Health",
+    "UGC",
+    "NCERT",
+    "AICTE",
+    "literacy",
+    "school enrolment",
+    "higher education",
+    "vocational education",
+    "gender inequality",
+    "regional inequality",
+    "brain drain",
+    "knowledge economy",
+    "National Education Policy 2020",
+    "public expenditure",
+    "quality of education",
+    "future prospects"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Human capital means the number of people in a country.",
+      "correction": "It means the productive skills, education, health and abilities embodied in people."
+    },
+    {
+      "claim": "Only formal schooling creates human capital.",
+      "correction": "Health, on-the-job training, migration and information also contribute."
+    },
+    {
+      "claim": "Human capital and human development are identical.",
+      "correction": "Human capital treats education and health as means to productivity; human development values them as ends that expand well-being and choice."
+    },
+    {
+      "claim": "More years of schooling automatically prove higher educational quality.",
+      "correction": "The chapter notes that enrolment and years of schooling may not fully capture quality."
+    },
+    {
+      "claim": "Government intervention is unnecessary because education and health are private matters.",
+      "correction": "The chapter stresses external benefits, equity concerns and the need for public provision and regulation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise questions on the sources of human capital to classify education, health, training, migration and information.",
+    "Use the chapter’s comparison of human capital and human development to build a two-column analytical answer.",
+    "Use Exercise 16 to trace the two-way relationship between human capital and economic growth.",
+    "Use Exercise 17 to explain the importance of women’s education.",
+    "Use Exercises 18–20 to assess government intervention, major problems and regulation of education and health institutions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter’s EXERCISES contain Questions 1–20, followed by six Suggested Additional Activities on HDI, knowledge economy, data interpretation and public reports.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,70 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 5: Magnetism and Matter",
+  "central_question": "How are bar magnets, magnetic dipoles and the magnetic response of materials described?",
+  "in_scope_units": [
+    "Bar magnets and field lines",
+    "Equivalent solenoid",
+    "Magnetic dipole in a uniform field",
+    "Electrostatic analogy",
+    "Gauss’s law for magnetism",
+    "Magnetisation and magnetic intensity",
+    "Diamagnetic, paramagnetic and ferromagnetic materials",
+    "Permanent magnets and electromagnets"
+  ],
+  "banned_topics": [
+    "Biot–Savart and Ampere-law derivations from Chapter 4",
+    "Electromagnetic induction from Chapter 6",
+    "Advanced quantum theories of magnetism"
+  ],
+  "must_include_keywords": [
+    "bar magnet",
+    "north pole",
+    "south pole",
+    "magnetic field lines",
+    "equivalent solenoid",
+    "magnetic dipole",
+    "magnetic moment",
+    "torque",
+    "potential energy",
+    "stable equilibrium",
+    "unstable equilibrium",
+    "Gauss’s law for magnetism",
+    "magnetic monopole",
+    "magnetisation",
+    "magnetic intensity",
+    "magnetic susceptibility",
+    "relative permeability",
+    "diamagnetism",
+    "paramagnetism",
+    "ferromagnetism",
+    "Curie temperature",
+    "permanent magnet",
+    "electromagnet"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Magnetic field lines begin at north and end at south.",
+      "correction": "They form continuous closed loops."
+    },
+    {
+      "claim": "A uniform field exerts a net force on a small dipole.",
+      "correction": "It produces torque but no net force."
+    },
+    {
+      "claim": "Diamagnetic substances have no response.",
+      "correction": "They develop a weak opposing induced magnetisation."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 5.3: solenoid as a bar magnet",
+    "NCERT Exercise 5.1: moment from torque",
+    "NCERT Exercise 5.2: stable and unstable equilibrium",
+    "NCERT Exercise 5.7: axial and equatorial fields",
+    "NCERT Exercise 5.5: rotational work and torque"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES begin at 5.1 and cover dipole torque, energy, solenoids and bar-magnet fields.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

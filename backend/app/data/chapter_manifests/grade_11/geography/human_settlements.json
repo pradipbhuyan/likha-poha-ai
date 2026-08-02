@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Human Settlements",
+  "central_question": "How does atmospheric moisture move through evaporation, humidity, condensation, clouds, precipitation, rainfall types, and global rainfall distribution?",
+  "in_scope_units": [
+    "Water vapour, atmospheric moisture, absolute humidity, relative humidity, saturation, and dew point.",
+    "Evaporation, transpiration, latent heat, and controls of evaporation.",
+    "Condensation conditions and hygroscopic nuclei.",
+    "Dew, frost, fog, mist, smog, and clouds.",
+    "Cloud types and combinations by height and vertical development.",
+    "Precipitation as rain, snow, sleet, and hail.",
+    "Convectional, orographic, and cyclonic rainfall.",
+    "World distribution and seasonal effectiveness of rainfall."
+  ],
+  "banned_topics": [
+    "Rural and urban settlement classification",
+    "Settlement patterns and functions",
+    "Population density",
+    "Detailed tropical-cyclone dynamics"
+  ],
+  "must_include_keywords": [
+    "water vapour",
+    "humidity",
+    "absolute humidity",
+    "relative humidity",
+    "saturation",
+    "dew point",
+    "evaporation",
+    "transpiration",
+    "latent heat of vaporisation",
+    "condensation",
+    "hygroscopic nuclei",
+    "dew",
+    "frost",
+    "fog",
+    "mist",
+    "smog",
+    "cirrus",
+    "cumulus",
+    "stratus",
+    "nimbus",
+    "cirrostratus",
+    "cumulonimbus",
+    "precipitation",
+    "rainfall",
+    "snowfall",
+    "sleet",
+    "hail",
+    "convectional rain",
+    "orographic rain",
+    "relief rain",
+    "cyclonic rain",
+    "windward",
+    "leeward",
+    "rain shadow",
+    "world distribution of rainfall"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Relative humidity is the actual mass of water vapour per unit volume.",
+      "correction": "That is absolute humidity; relative humidity compares present moisture with the air’s capacity at the same temperature."
+    },
+    {
+      "claim": "Dew and frost form under identical temperature conditions.",
+      "correction": "Dew forms when the dew point is above freezing, while frost forms when condensation or deposition occurs at or below freezing."
+    },
+    {
+      "claim": "Fog and cloud are completely unrelated.",
+      "correction": "Fog is essentially a cloud with its base at or near the ground."
+    },
+    {
+      "claim": "The windward and leeward sides receive equal orographic rainfall.",
+      "correction": "Rising windward air cools and rains; descending leeward air warms and produces a rain shadow."
+    },
+    {
+      "claim": "All precipitation is liquid rain.",
+      "correction": "Precipitation includes rain, snow, sleet, and hail."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1(ii): identify evaporation as liquid-to-vapour transformation.",
+    "NCERT Exercise 2(ii): explain relative humidity.",
+    "NCERT Exercise 2(iv): explain and classify clouds.",
+    "NCERT Exercise 3(ii): compare condensation forms and dew–frost formation.",
+    "NCERT Exercise 3(i): explain world precipitation patterns."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1(i–iv), 2(i–iv), 3(i–ii), followed by Project Work on reports of extreme rainfall.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

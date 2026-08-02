@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 12",
+  "subject": "Business Studies",
+  "chapter": "Directing",
+  "central_question": "How do managers guide, motivate, lead and communicate with employees so that organisational plans are converted into coordinated action?",
+  "in_scope_units": [
+    "Meaning, characteristics and importance",
+    "Principles and elements",
+    "Supervision",
+    "Motivation and Maslow hierarchy",
+    "Financial and non-financial incentives",
+    "Leadership",
+    "Communication and barriers"
+  ],
+  "banned_topics": [
+    "Organisation structure",
+    "Staffing procedures",
+    "Planning types",
+    "Control techniques"
+  ],
+  "must_include_keywords": [
+    "directing",
+    "initiates action",
+    "top to bottom",
+    "maximum individual contribution",
+    "harmony of objectives",
+    "unity of command",
+    "managerial communication",
+    "follow-through",
+    "supervision",
+    "motivation",
+    "motive",
+    "motivator",
+    "Maslow need hierarchy",
+    "physiological needs",
+    "safety needs",
+    "affiliation needs",
+    "esteem needs",
+    "self-actualisation",
+    "financial incentives",
+    "non-financial incentives",
+    "leadership",
+    "autocratic leadership",
+    "democratic leadership",
+    "laissez-faire leadership",
+    "communication",
+    "sender",
+    "encoding",
+    "media",
+    "decoding",
+    "receiver",
+    "feedback",
+    "formal communication",
+    "informal communication",
+    "grapevine",
+    "semantic barriers",
+    "psychological barriers",
+    "organisational barriers",
+    "personal barriers"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Directing means only giving orders.",
+      "correction": "It includes instructing, guiding, counselling, motivating, leading and communicating."
+    },
+    {
+      "claim": "All employees respond to money in the same way.",
+      "correction": "People differ and require suitable financial and non-financial incentives."
+    },
+    {
+      "claim": "Communication ends when a message is sent.",
+      "correction": "It requires understanding by the receiver and feedback."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Short Answer Type 4",
+    "NCERT Long Answer Type 1",
+    "NCERT Long Answer Type 3",
+    "NCERT Very Short Answer Type 2",
+    "NCERT Long Answer Type 2"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Exercises contain Very Short Answer questions 1-4, Short Answer questions 1-6 and Long Answer questions 1-4.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

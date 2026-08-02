@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 12",
+  "subject": "Accountancy",
+  "chapter": "Analysis of Financial Statements",
+  "central_question": "How can raw financial statements be reorganised and interpreted to reveal changes, relationships, strengths and weaknesses in a company’s performance and position?",
+  "in_scope_units": [
+    "Meaning of financial statement analysis and interpretation.",
+    "Significance of analysis for management, investors, lenders, employees, government and other users.",
+    "Objectives of analysis: profitability, operational efficiency, solvency, liquidity and comparative performance.",
+    "Tools of analysis: comparative statements, common-size statements, trend analysis, ratio analysis and cash flow analysis.",
+    "Comparative Statement of Profit and Loss with absolute and percentage changes.",
+    "Comparative Balance Sheet and horizontal analysis of financial position.",
+    "Common-size Statement of Profit and Loss and Balance Sheet using a common base.",
+    "Horizontal, vertical, intra-firm and inter-firm analysis.",
+    "Limitations of financial analysis arising from source data, price changes, accounting methods, window dressing and non-monetary omissions."
+  ],
+  "banned_topics": [
+    "Detailed ratio formulas and interpretation, which belong to Accounting Ratios.",
+    "Full preparation of the Cash Flow Statement, which belongs to Cash Flow Statement.",
+    "Original preparation and Schedule III presentation of company statements, which belong to Financial Statements of a Company."
+  ],
+  "must_include_keywords": [
+    "financial analysis",
+    "analysis and interpretation",
+    "annual report",
+    "Balance Sheet",
+    "Statement of Profit and Loss",
+    "Cash Flow Statement",
+    "comparative statements",
+    "common-size statements",
+    "trend analysis",
+    "ratio analysis",
+    "cash flow analysis",
+    "horizontal analysis",
+    "vertical analysis",
+    "intra-firm comparison",
+    "inter-firm comparison",
+    "absolute change",
+    "percentage change",
+    "common base",
+    "revenue from operations",
+    "total assets",
+    "profitability",
+    "liquidity",
+    "solvency",
+    "operational efficiency",
+    "management",
+    "investors",
+    "lenders",
+    "window dressing",
+    "price level changes",
+    "accounting policies",
+    "non-monetary aspects"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Analysis means merely calculating changes or percentages.",
+      "correction": "Calculation organises information; interpretation explains the causes, significance and implications for decisions."
+    },
+    {
+      "claim": "A rise in every asset automatically proves improved performance.",
+      "correction": "Asset changes must be related to financing, revenue, profit, liquidity and utilisation before a conclusion is drawn."
+    },
+    {
+      "claim": "Common-size statements show absolute rupee growth between years.",
+      "correction": "They express each item as a percentage of a common base and are principally a vertical-analysis tool."
+    },
+    {
+      "claim": "Financial analysis removes the limitations of the original financial statements.",
+      "correction": "Analysis inherits limitations relating to historical cost, policies, estimates, price changes and window dressing."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Test Your Understanding–I to distinguish analysis from interpretation and identify user purposes.",
+    "Use NCERT Illustration 1 to prepare and interpret a Comparative Statement of Profit and Loss.",
+    "Use NCERT Illustrations 2–3 and the numerical exercises to prepare a Comparative Balance Sheet.",
+    "Use the common-size illustrations to express revenue items and Balance Sheet items as percentages of common bases.",
+    "Use Long Answer Questions 2–5 to compare tools and discuss their interpretation.",
+    "Use Section 4.7 and the end questions to evaluate limitations before drawing conclusions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions for Practice containing Short Answer Questions 1–6, Long Answer Questions 1–5 and Numerical Questions on comparative and common-size statements.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

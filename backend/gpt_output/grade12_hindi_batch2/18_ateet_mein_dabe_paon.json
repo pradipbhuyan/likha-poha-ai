@@ -1,0 +1,63 @@
+{
+  "manifest": {
+    "grade": "Grade 12",
+    "subject": "Hindi",
+    "chapter": "Ateet Mein Dabe Paon",
+    "central_question": "How does Om Thanvi combine archaeology and travel writing to make Mohenjo-daro’s planned urban civilisation vivid and intellectually responsible?",
+    "in_scope_units": [
+      "City scale and experiential entry",
+      "Discovery and stupa",
+      "Town planning and citadel",
+      "Great Bath and drainage",
+      "Material culture, inference and style"
+    ],
+    "banned_topics": [
+      "Content from adjacent chapters not present in the supplied source.",
+      "Biographical or historical claims not stated in the supplied source.",
+      "Invented incidents, quotations, dates or interpretations unsupported by the text."
+    ],
+    "must_include_keywords": [
+      "ओम थानवी",
+      "अतीत में दबे पाँव",
+      "मुअनजो-दड़ो",
+      "हड़प्पा",
+      "सिंधु घाटी सभ्यता",
+      "राखालदास बनर्जी",
+      "जॉन मार्शल",
+      "बौद्ध स्तूप",
+      "गढ़",
+      "ग्रिड प्लान",
+      "महाकुंड",
+      "पक्की ईंटें",
+      "जल-निकासी",
+      "कोठार",
+      "पुरातत्त्व",
+      "यात्रावृत्तांत"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The Buddhist stupa belongs to the Indus civilisation.",
+        "correction": "It was built much later on an older mound; excavation around it revealed earlier remains."
+      },
+      {
+        "claim": "Every building’s function is known with certainty.",
+        "correction": "Several functions are archaeological inferences based on structure and finds."
+      }
+    ],
+    "recommended_example_progression": [
+      "Living ruins",
+      "Discovery",
+      "Planning",
+      "Water engineering",
+      "Evidence and uncertainty"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter questions printed in the supplied NCERT source; answers must be supported by the text."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Ateet Mein Dabe Paon\n\n## What you will learn\nUnderstand Mohenjo-daro as an ancient planned city and the writer’s experiential travel perspective.\n\n## Simple explanation\nOm Thanvi presents Mohenjo-daro not as a dead museum object but as a city whose streets, thresholds and walls can still be physically experienced.\n\n## Step-by-step breakdown\n- **Ancient city**: Mohenjo-daro and Harappa are among the oldest planned cities.\n- **Scale**: The source presents Mohenjo-daro as a major urban centre of the mature Indus civilisation.\n- **Raised ground**: Artificial mounds protected settlement from spreading river water.\n- **Travel voice**: The writer asks readers to imagine sounds, smells and movement within the ruins.\n\n## Worked example\nQuestion: What is distinctive about the writer’s way of presenting Mohenjo-daro?\n\nAnswer:\n- Textual evidence: He says visitors can still walk its streets, rest against walls and imaginatively hear a bullock cart on a deserted road.\n- Interpretation: Archaeological remains are converted into sensory and personal experience.\n- Conclusion: The travelogue makes the past present without claiming that imagination is direct evidence.\n\n## Common mistake\nDo not confuse evocative imagination with archaeological fact; the writer clearly uses it as experiential description.\n\n## Quick check question\nQuestion: Why was the ground raised with bricks?\nAnswer: To protect the settlement when the Indus water spread outward.\nExplanation: The raised mounds show planning adapted to the environment.\n\n## Summary\n- Mohenjo-daro is both ruin and living experience.\n- Planning begins with flood protection.\n- The travelogue combines evidence and imagination.\n",
+    "Core explanation": "# Core explanation: discovery and historical importance\n\n## What you will learn\nTrace the discovery around the Buddhist stupa and its significance for Indian history.\n\n## Simple explanation\nRakhaldas Banerji came in 1922 to investigate the stupa; excavation around it revealed much older remains and led to a wider campaign under John Marshall.\n\n## Step-by-step breakdown\n- **Stupa**: It stands on a later mound above the older civilisation.\n- **Discovery**: Excavation revealed pre-Christian remains beneath and around it.\n- **Scientific importance**: The discovery placed India alongside Egypt and Mesopotamia among ancient civilisations.\n- **Travel insight**: Seeing the site gives a different understanding from books and films.\n\n## Worked example\nQuestion: Why is the stupa area historically important?\n\nAnswer:\n- Textual evidence: Investigation of the stupa mound led archaeologists to the buried remains of the Indus Valley civilisation.\n- Interpretation: A later monument became the doorway to a much earlier urban past.\n- Conclusion: The site illustrates how layers of history coexist physically.\n\n## Common mistake\nDo not identify the stupa itself as an Indus structure; it was built much later.\n\n## Quick check question\nQuestion: Who directed the wider excavation campaign?\nAnswer: John Marshall, Director-General of the Archaeological Survey of India.\nExplanation: The source connects his direction with the systematic discovery of the civilisation.\n\n## Summary\n- The site has historical layers.\n- Excavation changed India’s ancient-history claims.\n- Direct observation deepens knowledge.\n",
+    "Worked examples": "# Worked examples: town planning and the citadel\n\n## What you will learn\nAnalyse what the ruins reveal about urban design.\n\n## Simple explanation\nStraight and cross-cutting roads form a grid, while the raised citadel contains major structures and the lower areas contain different residential zones.\n\n## Step-by-step breakdown\n- **Grid plan**: Most roads are straight or intersect at right angles.\n- **Citadel**: Major public or administrative structures stand in the western raised area.\n- **Residential zones**: The text distinguishes higher-status, worker and other settlements.\n- **Limits of evidence**: Only part of the whole site has been excavated, so conclusions remain partial.\n\n## Worked example\nQuestion: How do the ruins support the claim that Mohenjo-daro was carefully planned?\n\nAnswer:\n- Textual evidence: The visible road network, aligned buildings, citadel and organised zones preserve the outline of a coherent city.\n- Interpretation: Even ruined walls are sufficient to show deliberate spatial order.\n- Conclusion: Urban planning is one of the civilisation’s clearest achievements.\n\n## Common mistake\nDo not present every suggested building function as certain; the text often says archaeologists infer usage from remains.\n\n## Quick check question\nQuestion: What modern term is used for the street pattern?\nAnswer: Grid plan.\nExplanation: The roads’ straight and crosswise arrangement resembles a planned grid.\n\n## Summary\n- The city has visible spatial order.\n- The citadel organises important buildings.\n- Archaeological interpretation includes uncertainty.\n",
+    "Exam-style problems": "# Exam-style problems: Great Bath and drainage\n\n## What you will learn\nUnderstand why water architecture is treated as a unique achievement.\n\n## Simple explanation\nThe Great Bath uses baked bricks, lime mortar and bitumen-like waterproofing, while covered drains carry water away.\n\n## Step-by-step breakdown\n- **Bath dimensions**: The source gives a large rectangular tank with steps from north and south.\n- **Waterproofing**: Brick joints and walls were treated to prevent leakage and contamination.\n- **Well**: A nearby double-ringed well supplied water.\n- **Drains**: Baked-brick covered drains managed outflow.\n- **Meaning**: The structure suggests ritual or collective bathing and advanced engineering.\n\n## Worked example\nQuestion: What makes the Great Bath an outstanding architectural example?\n\nAnswer:\n- Textual evidence: Its careful brickwork, waterproofing, stairs, water supply and covered drainage form an integrated system.\n- Interpretation: The design combines public use with technical control of clean and waste water.\n- Conclusion: It demonstrates both architectural planning and sophisticated civic engineering.\n\n## Common mistake\nDo not claim the exact ritual is known with certainty; the text presents collective or ritual bathing as an interpretation.\n\n## Quick check question\nQuestion: What is a distinctive feature of Indus drainage?\nAnswer: It is systematically built with baked bricks and covered drains.\nExplanation: The source calls such water disposal one of the civilisation’s unique features.\n\n## Summary\n- The Great Bath is an integrated system.\n- Waterproofing was carefully engineered.\n- Drainage reflects civic planning.\n",
+    "Revision and recap": "# Revision and recap: civilisation, evidence and travel writing\n\n## What you will learn\nRevise agriculture, trade, artefacts, social organisation and the travelogue’s style.\n\n## Simple explanation\nThe chapter moves through architecture, granaries, transport, farming and material remains while repeatedly reflecting on how a visitor encounters history.\n\n## Step-by-step breakdown\n- **Granary**: Raised platforms and ventilation suggest storage of collected grain.\n- **Agriculture and pastoral life**: Later research challenges the idea that all grain was imported.\n- **Material culture**: Seals, pottery, figures, tools and toys help reconstruct life.\n- **Unfinished knowledge**: Excavation covers only a portion of the site and the script remains a major limit.\n- **Style**: Description, factual reporting, comparison and personal response are interwoven.\n\n## Worked example\nQuestion: Why must conclusions about Mohenjo-daro remain cautious?\n\nAnswer:\n- Textual evidence: Much of the site is still unexcavated, many building functions are inferred, and surviving objects do not answer every question about social life.\n- Interpretation: Archaeology works from partial material evidence rather than a complete written account.\n- Conclusion: The chapter teaches both admiration for achievement and discipline about uncertainty.\n\n## Common mistake\nDo not turn inference into certainty when the source uses words such as “माना जाता है” or “कयास”.\n\n## Quick check question\nQuestion: What two modes are combined in the chapter?\nAnswer: Archaeological information and personal travel experience.\nExplanation: Their combination makes the past both evidence-based and vividly felt.\n\n## Summary\n- The city reveals advanced planning.\n- Material evidence is rich but incomplete.\n- The travelogue joins knowledge with direct observation.\n"
+  }
+}

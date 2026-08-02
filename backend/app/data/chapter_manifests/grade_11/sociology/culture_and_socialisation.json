@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 11",
+  "subject": "Sociology",
+  "chapter": "Culture and Socialisation",
+  "central_question": "What is culture, how is it structured into cognitive, normative and material dimensions, and how does the lifelong process of socialisation make individuals into skilled, self-aware members of their culture?",
+  "in_scope_units": [
+    "Introduction: culture as a common, learned, dynamic understanding; meaning-making as distinctively human; primary versus secondary socialisation introduced",
+    "Diverse Settings, Different Cultures: how natural and social environments shape coping strategies and cultures, illustrated by the 2004 tsunami",
+    "Defining Culture: classic definitions of culture from Edward Tylor, Bronislaw Malinowski, Clifford Geertz and Leslie White",
+    "Dimensions of Culture: the cognitive, normative and material aspects of culture, and the idea of culture lag",
+    "Culture and Identity: social roles, recognition, and sub-cultures",
+    "Ethnocentrism: its definition, the colonial example of Macaulay's Minute, and its contrast with cosmopolitanism (illustrated through Hinglish, English and Hindi film music)",
+    "Cultural Change: internal and external causes, evolutionary versus revolutionary change, and the role of the media",
+    "Socialisation: its definition, the Wolf-children of Midnapore, primary and secondary socialisation, and why socialisation is not passive 'cultural programming'",
+    "Agencies of Socialisation: family, peer groups, schools, mass media, and other agencies such as work",
+    "Socialisation and Individual Freedom: how socialisation is also the source of individuality and free will",
+    "How Gendered is Socialisation?: gendered use of public space (Kumar 1986) and the short story 'The Bell', illustrating ascribed status and gendered norms"
+  ],
+  "banned_topics": [
+    "Detailed content on social institutions such as family/marriage/kinship forms, work, politics, religion and education (belongs to the chapter on Understanding Social Institutions)",
+    "Detailed content on sociological research methods, objectivity, sampling and interviews (belongs to the chapter on Doing Sociology: Research Methods)",
+    "Detailed treatment of social stratification, status, role and social control as free-standing concepts (belongs to the earlier chapter on basic sociological concepts, only referenced here in passing)"
+  ],
+  "must_include_keywords": [
+    "culture",
+    "socialisation",
+    "primary socialisation",
+    "secondary socialisation",
+    "Edward Tylor",
+    "Bronislaw Malinowski",
+    "Clifford Geertz",
+    "Leslie White",
+    "cognitive dimension",
+    "normative dimension",
+    "material dimension",
+    "folkways",
+    "mores",
+    "customs",
+    "laws",
+    "culture lag",
+    "sub-culture",
+    "ethnocentrism",
+    "cosmopolitanism",
+    "cultural change",
+    "evolutionary change",
+    "revolutionary change",
+    "French Revolution",
+    "Wolf-children of Midnapore",
+    "agencies of socialisation",
+    "peer group",
+    "hidden curriculum",
+    "mass media",
+    "ascribed status",
+    "gendered socialisation",
+    "Pierre Bourdieu",
+    "Walter Ong",
+    "orality and literacy",
+    "self-identity"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Culture means having refined taste in classical music, dance or art that distinguishes 'cultured' from 'uncultured' people.",
+      "correction": "The chapter states sociologists look at culture 'not as something that distinguishes individuals, but as a way of life in which all members of society participate.'"
+    },
+    {
+      "claim": "Modern, technologically advanced cultures are superior to tribal cultures.",
+      "correction": "The 2004 tsunami example shows tribal communities like the Onges and Jarawas survived through experiential knowledge while technologically integrated communities did not; the chapter concludes 'cultures cannot be ranked but can be judged adequate or inadequate' in coping with nature."
+    },
+    {
+      "claim": "Norms and laws are the same kind of rule.",
+      "correction": "The chapter distinguishes them: norms are implicit and can vary by family or status, while laws are explicit, formally defined by government, apply to the whole society, and carry penalties for violation."
+    },
+    {
+      "claim": "Cultural borrowing, such as Hinglish words or Hindi film music's use of western pop, means a culture is losing its identity.",
+      "correction": "The chapter states 'the English language despite its foreign inclusions does not become a separate language, nor does Hindi film music lose its character through borrowings' - cosmopolitan borrowing enriches rather than erases identity."
+    },
+    {
+      "claim": "Because socialisation shapes us from birth, it must eliminate free will entirely.",
+      "correction": "The chapter calls this view 'fundamentally mistaken', stating socialisation is also 'at the origin of our very individuality and freedom', since it gives each person 'a sense of self-identity, and the capacity for independent thought and action'."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 2 (natural environment and food, dwelling, clothing, worship) together with the 2004 tsunami account - used to introduce diverse cultures and the idea that cultures cannot be ranked.",
+    "NCERT Activity 4 (comparing the 'Culture is...' (a)-(h) definitions) - used to connect classic definitions to the cognitive, normative and material dimensions.",
+    "Macaulay's 1835 Minute on Education, contrasted with the Hinglish box - used as a worked example on ethnocentrism versus cosmopolitanism.",
+    "The French Revolution (1789) example - used to illustrate revolutionary cultural change.",
+    "The Wolf-children of Midnapore case - used as a worked example on why socialisation is necessary for human behaviour.",
+    "The Shaktimaan serial example and the British television-viewing study - used to examine mass media as a socialising agency.",
+    "NCERT Activity 11 and the story 'The Bell' by Gita Krishnakutty - used as the closing worked example on gendered socialisation, ascribed status, and individual resistance."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's EXERCISES section lists 6 questions (Q1 on culture in social science versus everyday use, through Q6 on the most effective agent of socialisation for one's own generation), placed after the GLOSSARY and before the READINGS.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

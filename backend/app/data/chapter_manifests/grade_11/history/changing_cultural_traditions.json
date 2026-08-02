@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "History",
+  "chapter": "Changing Cultural Traditions",
+  "central_question": "How did urban growth, humanism, artistic and scientific inquiry, printing and religious debate transform European culture while drawing on both older and non-European traditions?",
+  "in_scope_units": [
+    "The concept of the Renaissance, Jacob Burckhardt and cultural history.",
+    "The revival of Italian cities and the political culture of city-states.",
+    "Universities, Petrarch, humanism and debates about historical periodisation.",
+    "Arab and Persian contributions to European science and philosophy.",
+    "Realism in art, anatomy, perspective and classical architecture.",
+    "Printing and the rapid circulation of books and humanist ideas.",
+    "New ideas of individuality, wealth, pleasure and human nature.",
+    "Women’s aspirations, education and limits within humanist society.",
+    "Christian humanism, the Protestant Reformation and Catholic reform.",
+    "The Copernican and Scientific Revolutions.",
+    "Modern historical criticism of a sharp Renaissance break and the separation of public and private spheres."
+  ],
+  "banned_topics": [
+    "Detailed feudal institutions and the three orders, which belong to The Three Orders.",
+    "European overseas conquest and indigenous displacement, which belong to Displacing Indigenous Peoples.",
+    "Detailed political history of the Roman Empire beyond the classical models discussed in this chapter."
+  ],
+  "must_include_keywords": [
+    "Renaissance",
+    "Jacob Burckhardt",
+    "Italian city-states",
+    "Florence",
+    "Venice",
+    "humanism",
+    "Petrarch",
+    "humanitas",
+    "periodisation",
+    "Arab translators",
+    "Ibn Sina",
+    "Ibn Rushd",
+    "realism",
+    "Donatello",
+    "Leonardo da Vinci",
+    "Michelangelo",
+    "perspective",
+    "classical architecture",
+    "printing press",
+    "Gutenberg",
+    "individuality",
+    "Machiavelli",
+    "Cassandra Fedele",
+    "Isabella d’Este",
+    "Christian humanism",
+    "Erasmus",
+    "Thomas More",
+    "Martin Luther",
+    "Protestant Reformation",
+    "Jesuits",
+    "Copernicus",
+    "Kepler",
+    "Galileo",
+    "Newton",
+    "Scientific Revolution",
+    "public sphere",
+    "private sphere"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Renaissance was a complete and sudden rejection of Christianity.",
+      "correction": "Religion remained central, and many humanists and artists were deeply religious even while expanding secular inquiry."
+    },
+    {
+      "claim": "Europe recovered Greek knowledge without help from other cultures.",
+      "correction": "Arab translators and scholars preserved and transmitted Greek works and contributed important writings in science, medicine, mathematics and philosophy."
+    },
+    {
+      "claim": "Humanist individuality automatically produced equality for women.",
+      "correction": "Public life remained male-dominated, although women such as Cassandra Fedele and Isabella d’Este challenged restrictions."
+    },
+    {
+      "claim": "Printing was an entirely independent European invention with no outside connection.",
+      "correction": "The chapter notes European indebtedness to Chinese printing technology and contact through Mongol courts."
+    },
+    {
+      "claim": "The Middle Ages were simply a thousand years of darkness.",
+      "correction": "Recent historians reject such a sharp division and trace many Renaissance elements to the twelfth and thirteenth centuries or earlier."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 1 to compare Venice with a medieval cathedral-town and identify the social basis of city-state citizenship.",
+    "Use NCERT Activity 2 to identify anatomy, geometry, perspective, light and experimentation in sixteenth-century art.",
+    "Use NCERT Activity 3 to compare Cassandra Fedele’s aspirations with Castiglione’s ideal of women.",
+    "Use NCERT Activity 4 to classify Protestant criticisms of Catholic practices.",
+    "Use NCERT Exercise 6 to explain how the world appeared different to seventeenth-century Europeans after printing, exploration and scientific inquiry."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises: Answer in Brief, Questions 1–4, and Answer in a Short Essay, Questions 5–6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,91 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "central_question": "How does universal gravitation explain falling bodies, planetary motion, gravitational energy, escape, and satellite orbits?",
+    "in_scope_units": [
+      "Introduction and historical development.",
+      "Kepler's laws.",
+      "Universal gravitation.",
+      "Gravitational constant.",
+      "Acceleration due to gravity.",
+      "Variation of g with altitude and depth.",
+      "Gravitational potential energy and potential.",
+      "Escape speed.",
+      "Earth satellites and orbit periods.",
+      "Energy of an orbiting satellite."
+    ],
+    "banned_topics": [
+      "Electrostatics",
+      "General relativity",
+      "Detailed atmospheric drag and rocket propulsion"
+    ],
+    "must_include_keywords": [
+      "Kepler's first law",
+      "Kepler's second law",
+      "Kepler's third law",
+      "elliptical orbit",
+      "areal velocity",
+      "universal gravitation",
+      "gravitational constant",
+      "inverse-square law",
+      "superposition",
+      "acceleration due to gravity",
+      "Earth mass",
+      "Earth radius",
+      "variation with altitude",
+      "variation with depth",
+      "gravitational potential energy",
+      "gravitational potential",
+      "conservative force",
+      "escape speed",
+      "orbital speed",
+      "satellite",
+      "time period",
+      "geostationary satellite",
+      "polar satellite",
+      "kinetic energy of satellite",
+      "total energy of satellite",
+      "binding energy",
+      "weightlessness"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Heavier bodies fall faster because gravitational force is greater.",
+        "correction": "Their inertial mass is also greater, so free-fall acceleration is mass independent."
+      },
+      {
+        "claim": "Gravitational potential energy is always mgh.",
+        "correction": "The general expression is −GMm/r; mgh is a near-surface change."
+      },
+      {
+        "claim": "A satellite experiences no gravity.",
+        "correction": "Gravity supplies its centripetal acceleration."
+      },
+      {
+        "claim": "Escape speed depends on spacecraft mass.",
+        "correction": "The mass cancels."
+      },
+      {
+        "claim": "A geostationary orbit may have any plane.",
+        "correction": "It must be equatorial and west-to-east."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Example 7.1: perihelion and aphelion speeds.",
+      "NCERT Example 7.2: superposition in an equilateral-triangle mass system.",
+      "NCERT derivation: g and its variation.",
+      "NCERT derivation: escape speed.",
+      "NCERT derivation: orbital speed, period, and satellite energy."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES beginning with 7.1."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 7: Gravitation\n\n## What you will learn\nYou will state Kepler's laws and relate the area law to angular momentum.\n\n## Simple explanation\nPlanetary observations show elliptical orbits, variable speed, and a precise period–size relation.\n\n## Step-by-step breakdown\n- **First law**: A planet follows an ellipse with the Sun at one focus.\n- **Second law**: The Sun–planet line sweeps equal areas in equal times.\n- **Speed variation**: A planet moves faster near perihelion.\n- **Angular momentum**: A central force has zero torque about the Sun, so angular momentum is conserved.\n- **Third law**: T² is proportional to the cube of the semi-major axis.\n- **Central force**: Gravity acts along the line joining the bodies.\n\n## Worked example\nQuestion: Using NCERT Example 7.1, compare speeds vp and va at perihelion rp and aphelion ra.\n\nSolution:\n- Angular momentum is conserved.\n- At both points velocity is perpendicular to radius.\n- Thus mrpvp = mrava.\n- Final answer: rpvp = rava, so vp/va = ra/rp.\n\n## Common mistake\nEqual areas do not mean constant orbital speed.\n\n## Quick check question\nQuestion: According to Kepler's third law, what happens to period when semi-major axis increases?\nAnswer: It increases.\nExplanation: T² − a³.\n\n## Summary\n- Orbits are elliptical.\n- Equal areas occur in equal times.\n- Planets move faster when nearer.\n- T² − a³.",
+    "Core explanation": "# Core explanation: Chapter 7: Gravitation\n\n## What you will learn\nYou will apply universal gravitation, superposition, and derive surface gravity.\n\n## Simple explanation\nEvery pair of masses attracts with a force proportional to their product and inversely proportional to separation squared.\n\n## Step-by-step breakdown\n- **Universal law**: F = Gm₁m₂/r².\n- **Direction**: Force lies along the line joining the masses.\n- **Third law**: The mutual gravitational forces are equal and opposite.\n- **Superposition**: For many sources, add force vectors.\n- **Constant G**: G is universal and has unit N m² kg⁻².\n- **Surface gravity**: g = GM/R².\n- **Mass independence**: The falling test mass cancels.\n\n## Worked example\nQuestion: Using NCERT Example 7.2, three equal masses lie at an equilateral triangle's vertices. What is the force on a mass at the centroid?\n\nSolution:\n- Each force has equal magnitude.\n- Their directions are separated by 120°.\n- The vector sum is zero.\n- Final answer: Zero.\n\n## Common mistake\nZero resultant does not mean the individual gravitational fields are absent.\n\n## Quick check question\nQuestion: If one vertex mass is doubled in NCERT Example 7.2, where does the net force point?\nAnswer: Toward the doubled mass.\nExplanation: The original equal contributions cancel, leaving the extra contribution.\n\n## Summary\n- Gravity is inverse-square.\n- Forces superpose vectorially.\n- g = GM/R².\n- Free-fall acceleration is test-mass independent.",
+    "Worked examples": "# Worked examples: Chapter 7: Gravitation\n\n## What you will learn\nYou will calculate how g varies with altitude and depth and state the assumptions.\n\n## Simple explanation\nGravity weakens above Earth and, in the uniform-density model, decreases linearly toward zero inside Earth.\n\n## Step-by-step breakdown\n- **Altitude exact**: gh = g[R/(R+h)]².\n- **Small altitude**: For h ≪ R, gh − g(1 − 2h/R).\n- **Depth**: For uniform Earth, gd = g(1 − d/R).\n- **Centre**: At d = R, g = 0.\n- **Comparison**: For equal small fractions, altitude changes g twice as strongly as depth.\n- **Assumption**: The depth formula assumes spherical symmetry and uniform density.\n\n## Worked example\nQuestion: Derive the small-height expression from the chapter.\n\nSolution:\n- gh/g = (1 + h/R)⁻².\n- For h/R ≪ 1, use (1+x)⁻² − 1–2x.\n- Final answer: gh − g(1 − 2h/R).\n\n## Common mistake\nUse the exact formula when height is comparable with Earth's radius.\n\n## Quick check question\nQuestion: What is g at Earth's centre in the uniform-density model?\nAnswer: Zero.\nExplanation: gd = g(1 − R/R).\n\n## Summary\n- Use inverse-square above Earth.\n- Small-height expansion needs h ≪ R.\n- Inside uniform Earth, g decreases linearly.\n- g vanishes at the centre.",
+    "Exam-style problems": "# Exam-style problems: Chapter 7: Gravitation\n\n## What you will learn\nYou will use gravitational potential energy and derive escape speed.\n\n## Simple explanation\nWith zero potential at infinity, a bound gravitational system has negative potential energy.\n\n## Step-by-step breakdown\n- **Potential energy**: U = −GMm/r.\n- **Potential**: V = −GM/r.\n- **Conservative work**: Wgravity = −ΔU.\n- **Near-surface result**: For small height, ΔU − mgh.\n- **Escape condition**: Minimum escape reaches infinity with zero speed.\n- **Escape speed**: ve = √(2GM/R) = √(2gR).\n- **Mass independence**: The escaping mass cancels.\n\n## Worked example\nQuestion: Using the chapter's derivation, obtain escape speed from a spherical body's surface.\n\nSolution:\n- Initial energy is ½mve² − GMm/R.\n- Minimum final energy at infinity is zero.\n- Set initial energy to zero and cancel m.\n- Final answer: ve = √(2GM/R) = √(2gR).\n\n## Common mistake\nEscape speed is −2 times circular orbital speed at the same radius, not the same speed.\n\n## Quick check question\nQuestion: Does doubling spacecraft mass change escape speed?\nAnswer: No.\nExplanation: Mass cancels from energy conservation.\n\n## Summary\n- U is negative with zero at infinity.\n- mgh is local.\n- Escape needs non-negative total energy.\n- Escape speed is mass independent.",
+    "Revision and recap": "# Revision and recap: Chapter 7: Gravitation\n\n## What you will learn\nYou will calculate satellite speed, period, and energy and explain geostationary motion and weightlessness.\n\n## Simple explanation\nA satellite is continuously falling under gravity while its tangential speed carries it around Earth.\n\n## Step-by-step breakdown\n- **Orbital speed**: v = √(GM/r).\n- **Period**: T² = 4π²r³/(GM).\n- **Kinetic energy**: K = GMm/(2r).\n- **Potential energy**: U = −GMm/r.\n- **Total energy**: E = −GMm/(2r).\n- **Geostationary orbit**: It is circular, equatorial, west-to-east, and matches Earth's period.\n- **Weightlessness**: Satellite and contents free-fall together, so support force vanishes.\n\n## Worked example\nQuestion: Find total energy of a satellite of mass m in circular orbit radius r around mass M.\n\nSolution:\n- Use v² = GM/r.\n- K = GMm/(2r).\n- Add U = −GMm/r.\n- Final answer: E = −GMm/(2r).\n\n## Common mistake\nWeightlessness does not mean gravity is zero.\n\n## Quick check question\nQuestion: What plane and direction are required for a geostationary satellite?\nAnswer: Equatorial plane, west-to-east.\nExplanation: Only this motion can remain above the same point on Earth.\n\n## Summary\n- Gravity provides centripetal acceleration.\n- Orbital speed falls with radius.\n- Bound total energy is negative.\n- Geostationary conditions are specific.\n- Weightlessness is free fall."
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Water Resources",
+  "central_question": "How are India’s water resources distributed and used, what problems threaten their quantity and quality, and how can they be conserved and managed sustainably?",
+  "in_scope_units": [
+    "Water scarcity and the limited availability of usable freshwater",
+    "India’s surface-water, groundwater, lagoon and backwater resources",
+    "Spatial variation in river flow and groundwater utilisation",
+    "Sectoral demand for water and the dominance of irrigation",
+    "Need, benefits and consequences of irrigation",
+    "Emerging water problems and deterioration of water quality",
+    "Prevention of water pollution and public action",
+    "Recycling and reuse of water",
+    "Watershed management and community participation",
+    "Ralegan Siddhi watershed-development case study",
+    "Rainwater harvesting and traditional storage systems",
+    "National Water Policy 2012, Jal Kranti Abhiyan, PMKSY and Atal Bhujal Yojana"
+  ],
+  "banned_topics": [
+    "Detailed crop geography and agricultural land-use categories, which belong to Land Resources and Agriculture",
+    "Detailed river drainage patterns, which belong to physical geography chapters"
+  ],
+  "must_include_keywords": [
+    "water scarcity",
+    "cyclic resource",
+    "freshwater",
+    "surface water",
+    "groundwater",
+    "river basin",
+    "catchment area",
+    "lagoons",
+    "backwaters",
+    "irrigation",
+    "PMKSY",
+    "groundwater depletion",
+    "fluoride",
+    "arsenic",
+    "water quality",
+    "industrial effluents",
+    "domestic waste",
+    "agricultural runoff",
+    "CPCB",
+    "recycle and reuse",
+    "watershed management",
+    "percolation tanks",
+    "recharge wells",
+    "community participation",
+    "Haryali",
+    "Atal Bhujal Yojana",
+    "Neeru-Meeru",
+    "Arvary Pani Sansad",
+    "Ralegan Siddhi",
+    "rainwater harvesting",
+    "Kund",
+    "Tanka",
+    "National Water Policy 2012",
+    "Jal Kranti Abhiyan"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Because water is cyclic, usable freshwater cannot become scarce.",
+      "correction": "Freshwater available for human use is a very small and spatially uneven share of total water, and overuse and pollution create scarcity."
+    },
+    {
+      "claim": "India can beneficially use all water received from precipitation.",
+      "correction": "The chapter states that only a part of surface and replenishable groundwater is usable because of topographical, hydrological and other constraints."
+    },
+    {
+      "claim": "Irrigation has only positive effects.",
+      "correction": "Irrigation raises productivity and enables multiple cropping, but excessive groundwater withdrawal and intensive irrigation can cause depletion, salinity and contamination."
+    },
+    {
+      "claim": "Watershed management is only the construction of dams.",
+      "correction": "It includes conservation and efficient management of surface water, groundwater, land, vegetation and human resources, with community participation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1(i) to establish that water is a cyclic resource.",
+    "Use NCERT Exercise 2(i) to identify the causes of rapid depletion of water resources.",
+    "Use NCERT Exercise 2(iv) to analyse the effects of contaminated water on people.",
+    "Use NCERT Exercise 3(i) to connect water availability with spatial distribution.",
+    "Use NCERT Exercise 3(iii) to evaluate watershed management as a tool of sustainable development."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–3: three MCQs, four short-answer questions and three long-answer questions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

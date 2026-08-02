@@ -128,15 +128,12 @@ def test_inactive_student_cannot_generate_lesson(monkeypatch):
     assert response.json()["detail"] == SUSPENDED_ACCOUNT_MESSAGE
 
 
-def test_student_without_cbse_access_cannot_ask_doubt(monkeypatch):
+def test_student_without_cbse_access_can_still_ask_doubt(monkeypatch):
     """
-    A normal student without CBSE access should not be allowed to ask
-    CBSE doubts.
-
-    If this test fails because the error message changed, update the source in:
-        backend/app/routes/doubt.py
-
-    Look for the CBSE access check inside the doubt route access enforcement.
+    Ask Doubt never calls an LLM for any tier, so it no longer gates by
+    subject/topic access — a student without CBSE access must still get a
+    normal (retrieval-only) answer, not a 403. The only free-tier control
+    is the shared 5/day cap, tested elsewhere.
     """
     profile = fake_student_profile(access_cbse=False)
 
@@ -144,6 +141,17 @@ def test_student_without_cbse_access_cannot_ask_doubt(monkeypatch):
         monkeypatch,
         doubt_route,
         profile,
+    )
+    monkeypatch.setattr(
+        doubt_route,
+        "answer_doubt",
+        lambda **kwargs: {
+            "answer": "Matter is anything with mass and volume.",
+            "source_type": "TEXTBOOK_EXCERPT",
+            "sources": [],
+            "textbook_visuals": [],
+            "mentor_suggestions": [],
+        },
     )
 
     response = client.post(
@@ -158,14 +166,15 @@ def test_student_without_cbse_access_cannot_ask_doubt(monkeypatch):
         },
     )
 
-    assert response.status_code == 403
-    assert response.json()["detail"] == "CBSE access is not enabled."
+    assert response.status_code == 200
+    assert response.json()["success"] is True
 
 
-def test_student_without_cbse_subject_access_cannot_ask_doubt(monkeypatch):
+def test_student_without_cbse_subject_access_can_still_ask_doubt(monkeypatch):
     """
-    A custom CBSE plan should block doubts for subjects outside the student's
-    configured subject list.
+    Ask Doubt no longer gates by a student's configured subject list — the
+    only free-tier control is the shared 5/day cap. A custom CBSE plan must
+    not block a doubt for a subject outside the student's subject list.
     """
     profile = fake_student_profile(cbse_subjects=["Science", "Maths"])
 
@@ -173,6 +182,17 @@ def test_student_without_cbse_subject_access_cannot_ask_doubt(monkeypatch):
         monkeypatch,
         doubt_route,
         profile,
+    )
+    monkeypatch.setattr(
+        doubt_route,
+        "answer_doubt",
+        lambda **kwargs: {
+            "answer": "A noun is a naming word.",
+            "source_type": "TEXTBOOK_EXCERPT",
+            "sources": [],
+            "textbook_visuals": [],
+            "mentor_suggestions": [],
+        },
     )
 
     response = client.post(
@@ -187,8 +207,8 @@ def test_student_without_cbse_subject_access_cannot_ask_doubt(monkeypatch):
         },
     )
 
-    assert response.status_code == 403
-    assert response.json()["detail"] == "CBSE English access is not enabled."
+    assert response.status_code == 200
+    assert response.json()["success"] is True
 
 
 def test_inactive_student_cannot_ask_doubt(monkeypatch):

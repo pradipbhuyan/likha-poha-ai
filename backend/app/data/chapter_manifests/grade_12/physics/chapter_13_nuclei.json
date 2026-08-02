@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 13: Nuclei",
+  "central_question": "How are nuclei composed, sized, bound and transformed, and why do radioactive decay, fission and fusion release nuclear energy?",
+  "in_scope_units": [
+    "Introduction to the nucleus as the tiny, positively charged centre containing more than 99.9% of an atom’s mass.",
+    "Atomic masses, the atomic mass unit, isotopic abundance and the composition of nuclei in terms of protons and neutrons.",
+    "Discovery of the neutron, nuclide notation, atomic number, neutron number, mass number, isotopes, isobars and isotones.",
+    "Size of the nucleus, the relation R = R₀A^(1/3), scattering measurements and the near constancy of nuclear density.",
+    "Mass–energy equivalence through E = mc².",
+    "Mass defect, nuclear binding energy, binding energy per nucleon and the binding-energy curve.",
+    "Properties of the short-range, strong and approximately charge-independent nuclear force.",
+    "Radioactivity and the three natural decay modes: alpha, beta and gamma decay.",
+    "Nuclear energy and Q-value as consequences of differences in total binding energy and mass.",
+    "Nuclear fission of heavy nuclei and its energy release.",
+    "Nuclear fusion, the Coulomb barrier and energy generation in stars through the proton–proton cycle.",
+    "Controlled thermonuclear fusion, high-temperature plasma and the challenge of confinement."
+  ],
+  "banned_topics": [
+    "Rutherford’s full atomic model and Bohr energy levels, which belong to the preceding chapter on atoms.",
+    "Detailed exponential radioactive-decay law, decay constant calculations and half-life derivations not developed in the supplied chapter text.",
+    "Semiconductor devices and electronic circuits, which belong to Chapter 14."
+  ],
+  "must_include_keywords": [
+    "atomic mass unit",
+    "isotopes",
+    "isobars",
+    "isotones",
+    "proton",
+    "neutron",
+    "nucleon",
+    "atomic number",
+    "mass number",
+    "nuclide",
+    "nuclear radius",
+    "R = R₀A^(1/3)",
+    "nuclear density",
+    "mass–energy equivalence",
+    "E = mc²",
+    "mass defect",
+    "binding energy",
+    "binding energy per nucleon",
+    "nuclear force",
+    "saturation property",
+    "radioactivity",
+    "alpha decay",
+    "beta decay",
+    "gamma decay",
+    "Q-value",
+    "nuclear fission",
+    "nuclear fusion",
+    "Coulomb barrier",
+    "thermonuclear fusion",
+    "proton–proton cycle",
+    "plasma",
+    "controlled fusion"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The mass of a nucleus is exactly the sum of the separate masses of its protons and neutrons.",
+      "correction": "A bound nucleus has a smaller mass; the difference is the mass defect whose energy equivalent is the binding energy."
+    },
+    {
+      "claim": "All nuclei have the same radius because nuclear density is nearly constant.",
+      "correction": "The radius increases as A^(1/3); constant density follows because nuclear volume is proportional to A."
+    },
+    {
+      "claim": "Nuclear force is a long-range inverse-square force like electrostatic force.",
+      "correction": "Nuclear force is very strong but short-ranged, falls rapidly beyond a few femtometres and has no simple law like Coulomb’s law."
+    },
+    {
+      "claim": "Fusion starts easily whenever two light nuclei collide.",
+      "correction": "Positively charged nuclei must first overcome the Coulomb barrier and approach closely enough for the short-range nuclear force to act."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 13.1 to calculate nuclear density and connect R = R₀A^(1/3) with density independent of mass number.",
+    "Use NCERT Example 13.3 to convert one atomic mass unit to 931.5 MeV/c² and interpret the mass defect of oxygen-16.",
+    "Apply the Q-value method in NCERT Exercise 13.5 to classify reactions as exothermic or endothermic.",
+    "Use NCERT Exercise 13.7 to scale energy released per plutonium fission to all atoms in one kilogram.",
+    "Finish with NCERT Example 13.4 to explain conservation and mass–energy interconversion in nuclear and chemical reactions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES are numbered 13.1 to 13.10 and cover binding energy, nuclear radii, Q-values, fission, fusion and nuclear density.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

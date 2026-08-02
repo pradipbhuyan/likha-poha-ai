@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 10: Cell Cycle and Cell Division",
+  "central_question": "How do cells coordinate genome duplication, growth, chromosome segregation, and cytoplasmic division to produce new cells through mitosis and meiosis?",
+  "in_scope_units": [
+    "Cell cycle and coordination of cell growth, DNA replication, and cell division.",
+    "Interphase phases G1, S, and G2 and the quiescent G0 state.",
+    "M phase and mitotic karyokinesis: prophase, metaphase, anaphase, and telophase.",
+    "Cytokinesis in animal and plant cells and syncytium formation.",
+    "Significance of mitosis in growth, nucleo-cytoplasmic balance, repair, replacement, and plant meristems.",
+    "Meiosis and its key features: one DNA replication followed by two divisions.",
+    "Meiosis I, including the five stages of prophase I, homologous pairing, crossing over, and reductional separation.",
+    "Meiosis II and separation of sister chromatids.",
+    "Significance of meiosis in chromosome-number stability and genetic variation."
+  ],
+  "banned_topics": [
+    "Detailed molecular control checkpoints and cyclin biochemistry",
+    "DNA replication mechanisms",
+    "Mendelian inheritance and chromosomal genetics",
+    "Detailed gametogenesis in specific plant and animal species"
+  ],
+  "must_include_keywords": [
+    "cell cycle",
+    "interphase",
+    "G1 phase",
+    "S phase",
+    "G2 phase",
+    "G0 phase",
+    "DNA replication",
+    "chromosome number",
+    "DNA content",
+    "M phase",
+    "karyokinesis",
+    "cytokinesis",
+    "prophase",
+    "metaphase",
+    "metaphase plate",
+    "kinetochore",
+    "anaphase",
+    "telophase",
+    "cell plate",
+    "equational division",
+    "mitosis",
+    "meiosis",
+    "reduction division",
+    "homologous chromosomes",
+    "sister chromatids",
+    "prophase I",
+    "leptotene",
+    "zygotene",
+    "synapsis",
+    "bivalent",
+    "synaptonemal complex",
+    "pachytene",
+    "crossing over",
+    "recombinase",
+    "diplotene",
+    "chiasma",
+    "diakinesis",
+    "interkinesis",
+    "meiosis II",
+    "genetic variation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Interphase is an inactive resting period.",
+      "correction": "The cell grows, performs metabolism, duplicates DNA, and prepares for division during interphase."
+    },
+    {
+      "claim": "Chromosome number doubles during S phase.",
+      "correction": "DNA content doubles from 2C to 4C, but chromosome number remains 2n because sister chromatids remain joined."
+    },
+    {
+      "claim": "Mitosis and cytokinesis are the same process.",
+      "correction": "Mitosis or karyokinesis divides the nucleus; cytokinesis divides the cytoplasm."
+    },
+    {
+      "claim": "Plant cytokinesis begins at the cell edge and moves inward.",
+      "correction": "A cell plate forms at the centre and grows outward; animal cleavage furrows move inward."
+    },
+    {
+      "claim": "Crossing over occurs during zygotene.",
+      "correction": "Synapsis begins in zygotene, while crossing over occurs during pachytene."
+    },
+    {
+      "claim": "Anaphase I separates sister chromatids.",
+      "correction": "Homologous chromosomes separate in anaphase I; sister chromatids separate in anaphase II."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercises 1, 3, 4, and 16: analyse cell-cycle duration, interphase, G0, chromosome number, and DNA content.",
+    "NCERT Exercises 2, 5, 6, and 8: distinguish karyokinesis and cytokinesis and identify mitotic stages and cytokinesis mechanisms.",
+    "NCERT Exercise 10: compare anaphase of mitosis with anaphase I of meiosis.",
+    "NCERT Exercise 7: define synapsis, bivalent, and chiasmata.",
+    "NCERT Exercises 11–12: compare mitosis and meiosis and explain the significance of meiosis."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–16 for cell-cycle phases, mitosis, cytokinesis, meiosis, chromosome number, DNA content, and biological significance.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

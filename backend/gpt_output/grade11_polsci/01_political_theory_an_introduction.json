@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Political Science",
+    "chapter": "Political Theory: An Introduction",
+    "central_question": "How does political theory help citizens understand politics, clarify contested values and reason about institutions, policies and public life?",
+    "in_scope_units": [
+      "Introduction to human reason, language and the basic questions examined by political theory.",
+      "What is Politics: conflicting views of politics, government, collective decisions and citizen action.",
+      "What Do We Study in Political Theory: values, thinkers, constitutions, institutions and evolving interpretations.",
+      "Putting Political Theory to Practice: everyday meanings of equality, fairness, special treatment and policy.",
+      "Why Should We Study Political Theory: citizenship, vigilance, prejudice, rational debate and democratic participation."
+    ],
+    "banned_topics": [
+      "Detailed constitutional design and Constituent Assembly debates, which belong to the Indian Constitution at Work textbook.",
+      "Detailed electoral systems and Election Commission procedures, which belong to Election and Representation.",
+      "Detailed structures of executive, legislature and judiciary, which belong to separate institutional chapters."
+    ],
+    "must_include_keywords": [
+      "reason",
+      "language",
+      "politics",
+      "political theory",
+      "collective decision-making",
+      "government",
+      "public service",
+      "self-interest",
+      "negotiation",
+      "campaign",
+      "protest",
+      "democracy",
+      "freedom",
+      "equality",
+      "justice",
+      "secularism",
+      "constitution",
+      "Kautilya",
+      "Aristotle",
+      "Rousseau",
+      "Karl Marx",
+      "Mahatma Gandhi",
+      "B. R. Ambedkar",
+      "rule of law",
+      "separation of powers",
+      "judicial review",
+      "right to livelihood",
+      "right to information",
+      "privacy",
+      "Socrates",
+      "equal opportunity",
+      "special treatment",
+      "public policy",
+      "vigilant citizens",
+      "rational argument"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Politics is only what elected politicians do.",
+        "correction": "The chapter includes government action, negotiation, collective decision-making, campaigns, protests and citizens’ attempts to influence decisions."
+      },
+      {
+        "claim": "Political theory gives one fixed definition for every concept.",
+        "correction": "Concepts such as equality and freedom have multiple context-dependent meanings that must be examined systematically."
+      },
+      {
+        "claim": "Political theory is useful only to politicians and lawyers.",
+        "correction": "It is useful to students and all citizens because they must vote, debate and assess public issues."
+      },
+      {
+        "claim": "Equal treatment always means identical treatment.",
+        "correction": "Special provision may be justified when it enables disadvantaged persons to enjoy equal opportunity."
+      },
+      {
+        "claim": "Political theory predicts which political party will win.",
+        "correction": "Its central task is to clarify political ideas, arguments, institutions and values, not electoral forecasting."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Exercise Q2 on why politics is more than what politicians do.",
+      "Use NCERT Exercise Q1 to identify the proper subject matter of political theory.",
+      "Use NCERT Exercise Q6 to compare political theory with mathematics.",
+      "Use NCERT Exercise Q3 to analyse the role of vigilant citizens.",
+      "Conclude with NCERT Exercise Q4 on the practical uses of political theory."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–6 on political theory, politics, vigilant citizenship, usefulness, argument and comparison with mathematics."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Political Theory: An Introduction\n\n## What you will learn\nYou will learn why political theory begins with human reason, reflection and communication. You will also understand why politics cannot be reduced to the actions of politicians alone.\n\n## Simple explanation\nPolitical theory studies how society should be organised and what values should guide public life. Politics appears wherever people negotiate, make collective decisions, disagree about justice or try to influence government.\n\n## Step-by-step breakdown\n- **Human capacity**: People can reason, communicate and debate what they consider good and desirable.\n- **Political questions**: Political theory asks why government is needed, what the best form of government is, whether law limits freedom and what citizens owe one another.\n- **Conflicting images of politics**: Politics may be described as public service, manipulation, intrigue or the pursuit of group interests.\n- **Collective life**: No society can exist without political organisation and collective decision-making.\n- **Government and citizens**: Government policies affect education, employment, security and daily life, while citizens organise, protest and negotiate to influence decisions.\n\n## Worked example\nQuestion: NCERT Exercise Q2: Why does the chapter argue that politics is more than the work of politicians?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q2\", \"extract_text\": \"Politics is more than what politicians do. Do you agree with this statement? Give examples.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter says politics includes what governments do and how they respond to people’s aspirations.\n- It also includes associations, campaigns, protests, negotiations and collective activities through which people influence decisions.\n- Final answer: Politics is a broader social process of negotiation, collective decision-making and public action, not merely the behaviour of office-holders.\n\n## Common mistake\nA common mistake is to equate politics only with elections, scams or political leaders. The chapter treats politics as an integral part of collective social life.\n\n## Quick check question\nQuestion: When do ordinary people engage in political activity?\nAnswer: They engage in political activity when they negotiate, organise collectively, articulate demands or try to influence public decisions.\nExplanation: These activities shape common goals and policies even when the participants do not hold public office.\n\n## Summary\n- Political theory grows from reasoned reflection.\n- Politics concerns collective decisions.\n- Government action affects everyday life.\n- Citizens also participate in politics.",
+    "Core explanation": "# Core explanation: Political Theory: An Introduction\n\n## What you will learn\nYou will study the ideas and principles examined by political theory. You will see how thinkers and constitutions give meaning to freedom, equality, justice, democracy and related concepts.\n\n## Simple explanation\nPolitical theory does not merely list institutions. It examines the values behind them, compares arguments and asks whether those values are actually realised in social and political life.\n\n## Step-by-step breakdown\n- **Ideas behind institutions**: Values such as democracy, freedom and equality guide constitutions and public policies.\n- **Political thinkers**: The chapter refers to Kautilya, Aristotle, Rousseau, Marx, Gandhi and Ambedkar as thinkers whose arguments shaped political ideas.\n- **Concept clarification**: Political theory explains concepts such as freedom, equality, justice, democracy and secularism.\n- **Institutional principles**: It also studies rule of law, separation of powers and judicial review.\n- **Changing interpretation**: Rights and political ideas are reinterpreted as society encounters new situations, such as livelihood, information and online privacy.\n\n## Worked example\nQuestion: NCERT Exercise Q1: Which statements correctly describe political theory, and why?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q1\", \"extract_text\": \"Which of the following statements are true/false about Political Theory?\\n(a) It discusses ideas that form the basis of political institutions.\\n(b) It explains the relationship between different religions.\\n(c) It explains the meanings of concepts like equality and freedom.\\n(d) It predicts the performance of political parties.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Statement (a) is true because political theory studies ideas and principles underlying political institutions.\n- Statement (c) is true because it clarifies concepts such as equality and freedom.\n- Statements (b) and (d) are not presented as the defining tasks of political theory in the chapter.\n- Final answer: Political theory explains the ideas behind institutions and the meanings of political concepts; it does not primarily predict party performance.\n\n## Common mistake\nDo not treat political theory as a collection of fixed definitions. The chapter emphasises competing meanings, arguments and changing interpretations.\n\n## Quick check question\nQuestion: Why do fundamental rights require reinterpretation?\nAnswer: New circumstances create new questions, so courts and governments interpret and expand rights to address new problems.\nExplanation: The chapter gives the right to livelihood and the right to information as examples of evolving interpretation.\n\n## Summary\n- Political theory studies values and principles.\n- Thinkers influence constitutions and policy.\n- Concepts have debated meanings.\n- New circumstances generate new interpretations.",
+    "Worked examples": "# Worked examples: Political Theory: An Introduction\n\n## What you will learn\nYou will learn how political theory is put into practice through everyday examples. You will distinguish identical treatment, equal opportunity, special provision and fairness.\n\n## Simple explanation\nPolitical ideas become meaningful when they are tested against ordinary situations. A queue suggests equal opportunity, while separate facilities for older or disabled persons show why justified differential treatment may promote fairness.\n\n## Step-by-step breakdown\n- **Ordinary language**: Political theorists begin with the ways people understand concepts in daily life.\n- **Equality in a queue**: People resent queue-jumping because they expect equal opportunity to receive services.\n- **Special provision**: Separate counters for older and disabled persons may be justified rather than treated as inequality.\n- **Economic disadvantage**: Formal access is insufficient when people cannot afford basic goods, health care or schooling.\n- **Public policy**: Questions about midday meals, jobs, wages and subsidised hospitals show how theory can guide policy.\n\n## Worked example\nQuestion: NCERT Exercise Q6: Why is studying political theory not exactly like studying mathematics?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q6\", \"extract_text\": \"Do you think studying political theory is like studying mathematics? Give reasons for your answer.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter notes that mathematics may give one definition of a triangle or square.\n- Concepts such as equality, freedom and justice concern human relationships and therefore have multiple interpretations that must be debated and harmonised.\n- Final answer: Political theory uses reason and systematic argument, but unlike mathematics it often evaluates several context-dependent meanings rather than one fixed definition.\n\n## Common mistake\nA common mistake is to think that multiple meanings make political theory vague. The chapter shows that disciplined reasoning helps compare and evaluate those meanings.\n\n## Quick check question\nQuestion: Why might equal opportunity alone be inadequate for a poor child who cannot attend school?\nAnswer: Because formal opportunity does not remove the economic and social conditions preventing the child from using that opportunity.\nExplanation: The chapter therefore considers enabling measures and fair distribution of resources.\n\n## Summary\n- Theory begins with everyday experience.\n- Equality can require special treatment.\n- Formal opportunity may not be usable.\n- Political reasoning helps frame policy.",
+    "Exam-style problems": "# Exam-style problems: Political Theory: An Introduction\n\n## What you will learn\nYou will understand why informed and vigilant citizens matter to democracy. You will connect political theory with voting, public debate, prejudice and the responsible use of new media.\n\n## Simple explanation\nPolitical theory is useful to citizens because democracy depends on people who can examine claims, identify injustice and give reasons for their views. It helps citizens move beyond arbitrary preferences and participate thoughtfully.\n\n## Step-by-step breakdown\n- **Responsible citizenship**: Citizens vote and express views on institutions and public issues.\n- **Vigilance**: A knowledgeable and appreciative citizenry can encourage public-spirited political performance.\n- **Everyday injustice**: Discrimination based on caste, religion, gender or class appears in families, schools and workplaces.\n- **Moderation**: Examining one’s ideas and feelings can reduce prejudice and extreme reactions.\n- **Public reasoning**: Debate requires reasons and arguments directed towards common interests.\n- **Information society**: Websites, polls and new media make informed and mature participation especially important.\n\n## Worked example\nQuestion: NCERT Exercise Q3: How does the chapter justify the need for vigilant citizens?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q3\", \"extract_text\": \"Vigilant citizens are a must for the successful working of a democracy. Comment.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Citizens set agendas, assess representatives, vote and raise demands.\n- Political theory equips them to judge claims rationally rather than accept manipulation or express arbitrary preferences.\n- Final answer: Democracy works better when citizens are informed, watchful and able to hold public actors accountable through reasoned participation.\n\n## Common mistake\nDo not assume that citizenship becomes active only at election time. The chapter includes debate, campaigns, associations and public criticism.\n\n## Quick check question\nQuestion: What comparison does the chapter make between citizens and the audience at a music concert?\nAnswer: Citizens are compared to an informed audience that sets expectations, appreciates good performance and makes new requests.\nExplanation: The comparison shows how knowledgeable citizens can improve the conduct of those who perform politics.\n\n## Summary\n- Political theory prepares responsible citizens.\n- Vigilance improves democratic accountability.\n- Reasoned debate challenges prejudice.\n- Participation extends beyond voting.",
+    "Revision and recap": "# Revision and recap: Political Theory: An Introduction\n\n## What you will learn\nYou will revise the practical value of political theory for students and society. You will bring together politics, concepts, argument, citizenship and public policy.\n\n## Simple explanation\nPolitical theory matters because public life constantly raises questions about freedom, equality, justice and authority. Its purpose is to help people think rationally, communicate effectively and judge institutions and events.\n\n## Step-by-step breakdown\n- **Professional relevance**: Political theory is useful to politicians, bureaucrats, teachers, lawyers, judges, activists and journalists.\n- **Student relevance**: Students will become citizens and may enter any of these fields.\n- **Rational assessment**: Theory helps distinguish a persuasive argument from an unsupported opinion.\n- **Common interests**: Debate should seek reasons that can be discussed with others rather than merely assert private preference.\n- **Democratic improvement**: Theory asks how institutions and practices can become more democratic.\n- **Continuing concepts**: Freedom, citizenship, rights, development, justice, equality, nationalism and secularism remain living political questions.\n\n## Worked example\nQuestion: NCERT Exercise Q4: Identify four uses of political theory described in the chapter.\n```extract-ref\n{\"citation\": \"NCERT Exercise Q4\", \"extract_text\": \"In what ways is the study of political theory useful for us? Identify four ways in which political theory can be useful to us?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- It clarifies political concepts and the ideas behind institutions.\n- It helps citizens understand and assess political events and policies.\n- It encourages critical reflection on prejudice and unequal treatment.\n- It develops reasoned debate and effective communication for democratic participation.\n- Final answer: Political theory equips people to understand values, evaluate institutions, participate responsibly and argue for common interests.\n\n## Common mistake\nDo not present political theory as useful only to specialists. The chapter explicitly explains its value to high-school students and all future citizens.\n\n## Quick check question\nQuestion: What is the main objective of political theory stated in the chapter?\nAnswer: To train citizens to think rationally about political questions and assess the political events of their time.\nExplanation: This objective connects conceptual study with democratic judgement and action.\n\n## Summary\n- Politics is wider than politicians.\n- Political theory clarifies contested concepts.\n- Theory guides public policy and citizenship.\n- Reasoned argument is a democratic skill.\n- The chapter examines self-interest through public reasoning and draws on Karl Marx, Mahatma Gandhi, B. R. Ambedkar and Socrates to develop rational argument."
+  }
+}

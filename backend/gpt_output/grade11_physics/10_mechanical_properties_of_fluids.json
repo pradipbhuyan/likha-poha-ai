@@ -1,0 +1,89 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "central_question": "How do pressure, flow, viscosity, and surface tension govern the mechanical behaviour of liquids and gases?",
+    "in_scope_units": [
+      "Fluids and compressibility.",
+      "Pressure, Pascal's law, hydrostatics, and hydraulic machines.",
+      "Streamline flow and continuity.",
+      "Bernoulli's principle and applications.",
+      "Viscosity, Stokes' law, terminal velocity, and Reynolds number.",
+      "Surface tension, drops, bubbles, and capillarity."
+    ],
+    "banned_topics": [
+      "Kinetic theory",
+      "Thermodynamic equations of state",
+      "Advanced turbulence modelling"
+    ],
+    "must_include_keywords": [
+      "fluid",
+      "pressure",
+      "Pascal's law",
+      "hydrostatic pressure",
+      "atmospheric pressure",
+      "gauge pressure",
+      "hydraulic lift",
+      "buoyancy",
+      "streamline flow",
+      "steady flow",
+      "equation of continuity",
+      "mass conservation",
+      "Bernoulli's principle",
+      "Torricelli's law",
+      "dynamic lift",
+      "viscosity",
+      "velocity gradient",
+      "coefficient of viscosity",
+      "Stokes' law",
+      "terminal velocity",
+      "Reynolds number",
+      "laminar flow",
+      "turbulent flow",
+      "surface tension",
+      "surface energy",
+      "angle of contact",
+      "excess pressure",
+      "capillarity",
+      "capillary rise"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Fluid pressure acts only downward.",
+        "correction": "At rest, pressure acts normally in all directions."
+      },
+      {
+        "claim": "Pressure and force are identical.",
+        "correction": "Pressure is force per area."
+      },
+      {
+        "claim": "Faster ideal flow has higher static pressure.",
+        "correction": "At equal height it has lower static pressure."
+      },
+      {
+        "claim": "Viscosity is density.",
+        "correction": "Viscosity measures resistance to layer motion; density is mass per volume."
+      },
+      {
+        "claim": "A bubble and drop have the same excess pressure.",
+        "correction": "A soap bubble has two surfaces and twice the excess pressure."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Example 9.1: pressure on femurs.",
+      "NCERT Example 9.2: pressure 10 m below water.",
+      "NCERT Example 9.4: deep-ocean pressure and window force.",
+      "NCERT Bernoulli examples: continuity and efflux.",
+      "NCERT surface-tension examples: drops, bubbles, and capillary rise."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES and ADDITIONAL EXERCISES beginning with 9.1."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 9: Mechanical Properties of Fluids\n\n## What you will learn\nYou will define fluids and pressure, calculate pressure with depth, and apply Pascal's law.\n\n## Simple explanation\nA fluid cannot maintain a static shear stress and takes the shape of its container.\n\n## Step-by-step breakdown\n- **Fluid**: Liquids and gases flow.\n- **Pressure**: P = F/A for normal force.\n- **Direction**: Pressure at a point in a static fluid has the same value in all directions.\n- **Hydrostatic relation**: Pressure difference is ρgh.\n- **Absolute pressure**: P = Patm + ρgh below an open surface.\n- **Gauge pressure**: Pgauge = ρgh.\n- **Pascal's law**: An applied pressure change is transmitted throughout an enclosed fluid.\n- **Hydraulics**: F₁/A₁ = F₂/A₂.\n\n## Worked example\nQuestion: Using NCERT Example 9.2, find absolute pressure 10 m below water for Patm = 1.01 × 10⁵ Pa, ρ = 1000 kg m⁻³, and g = 10 m s⁻².\n\nSolution:\n- Gauge pressure = 1000 × 10 × 10 = 1.00 × 10⁵ Pa.\n- Add atmospheric pressure.\n- Final answer: 2.01 × 10⁵ Pa.\n\n## Common mistake\nρgh is gauge pressure, not absolute pressure under an open surface.\n\n## Quick check question\nQuestion: From NCERT Example 9.1, why does standing on one foot roughly double supporting pressure?\nAnswer: The same force acts over half the area.\nExplanation: P = F/A.\n\n## Summary\n- Fluids flow.\n- Pressure is normal force per area.\n- Pressure increases with depth.\n- Pascal's law enables force multiplication.",
+    "Core explanation": "# Core explanation: Chapter 9: Mechanical Properties of Fluids\n\n## What you will learn\nYou will describe streamline flow and apply continuity.\n\n## Simple explanation\nSteady flow conserves mass through every cross-section of a flow tube.\n\n## Step-by-step breakdown\n- **Steady flow**: Flow variables at a fixed point do not change with time.\n- **Streamline**: Its tangent gives local velocity direction.\n- **No crossing**: Streamlines cannot cross because velocity direction is unique.\n- **Mass flow**: ρAv remains constant.\n- **Incompressible form**: A₁v₁ = A₂v₂.\n- **Narrow section**: Smaller area requires larger speed.\n- **Flow regime**: High Reynolds number promotes turbulence.\n\n## Worked example\nQuestion: A steady incompressible flow enters a section of area A/2 from area A. How does speed change?\n\nSolution:\n- Use Av = constant.\n- Av₁ = (A/2)v₂.\n- Thus v₂ = 2v₁.\n- Final answer: The speed doubles.\n\n## Common mistake\nA narrower pipe does not reduce speed when the volume flow rate is fixed.\n\n## Quick check question\nQuestion: Can two streamlines cross?\nAnswer: No.\nExplanation: Crossing would give two velocity directions at one point.\n\n## Summary\n- Streamlines follow velocity.\n- Steady flow is time independent locally.\n- Mass flow is conserved.\n- For incompressible flow, Av is constant.",
+    "Worked examples": "# Worked examples: Chapter 9: Mechanical Properties of Fluids\n\n## What you will learn\nYou will apply Bernoulli's equation and derive Torricelli's law.\n\n## Simple explanation\nBernoulli's equation is mechanical-energy conservation per unit volume for ideal steady flow.\n\n## Step-by-step breakdown\n- **Bernoulli equation**: P + ½ρv² + ρgh is constant along a streamline.\n- **Pressure term**: P is pressure energy per volume.\n- **Kinetic term**: ½ρv² is kinetic energy per volume.\n- **Potential term**: ρgh is gravitational potential energy per volume.\n- **Equal height**: Higher speed corresponds to lower static pressure.\n- **Torricelli**: Ideal efflux speed is √(2gh).\n- **Limits**: Viscosity, turbulence, and pumps require modifications.\n\n## Worked example\nQuestion: Using the chapter's Torricelli derivation, find efflux speed from a large tank opening h below the free surface.\n\nSolution:\n- Apply Bernoulli between surface and opening.\n- Atmospheric pressures cancel.\n- Surface speed is negligible.\n- ρgh = ½ρv².\n- Final answer: v = √(2gh).\n\n## Common mistake\nBernoulli's relation requires steady, incompressible, non-viscous flow along a streamline.\n\n## Quick check question\nQuestion: At equal height in ideal flow, what happens to pressure where speed increases?\nAnswer: It decreases.\nExplanation: P + ½ρv² remains constant.\n\n## Summary\n- Bernoulli expresses ideal-flow energy conservation.\n- Pressure and speed trade at equal height.\n- Torricelli follows from Bernoulli.\n- Real losses limit ideal results.",
+    "Exam-style problems": "# Exam-style problems: Chapter 9: Mechanical Properties of Fluids\n\n## What you will learn\nYou will apply viscosity, Stokes' law, terminal velocity, and Reynolds number.\n\n## Simple explanation\nViscosity is internal friction between fluid layers and dissipates organised motion.\n\n## Step-by-step breakdown\n- **Viscous stress**: F/A = η dv/dx.\n- **Viscosity unit**: η has SI unit Pa s.\n- **Stokes' law**: F = 6πηav for a slowly moving small sphere.\n- **Terminal velocity**: Weight balances buoyancy and drag.\n- **Reynolds number**: Re = ρvd/η.\n- **Laminar flow**: Low Re gives smooth layers.\n- **Turbulent flow**: High Re gives irregular eddies.\n\n## Worked example\nQuestion: State Stokes' drag for a sphere of radius a moving at speed v in viscosity η.\n\nSolution:\n- Use the low-Reynolds-number sphere result.\n- The drag opposes relative motion.\n- Final answer: Fdrag = 6πηav opposite to motion.\n\n## Common mistake\nStokes' law should not be used for turbulent high-Re flow.\n\n## Quick check question\nQuestion: At terminal velocity, what are net force and acceleration?\nAnswer: Both are zero.\nExplanation: Weight is balanced by buoyancy and drag.\n\n## Summary\n- Viscosity opposes layer motion.\n- Stokes drag is linear in speed.\n- Terminal speed is force balance.\n- Reynolds number classifies flow.",
+    "Revision and recap": "# Revision and recap: Chapter 9: Mechanical Properties of Fluids\n\n## What you will learn\nYou will review surface tension, surface energy, excess pressure, and capillary rise.\n\n## Simple explanation\nSurface molecules experience an inward imbalance, so a liquid surface tends to minimise area.\n\n## Step-by-step breakdown\n- **Surface tension**: Force per unit length tangential to the surface.\n- **Surface energy**: Work is required to create new surface area.\n- **Contact angle**: Measured through the liquid and indicates wetting.\n- **Drop pressure**: ΔP = 2S/r.\n- **Soap bubble**: ΔP = 4S/r because it has two surfaces.\n- **Capillary rise**: h = 2S cosθ/(ρgr).\n- **Temperature**: Surface tension generally decreases with temperature.\n\n## Worked example\nQuestion: Compare excess pressure of a liquid drop and soap bubble with the same r and S.\n\nSolution:\n- A drop has one surface: 2S/r.\n- A bubble has two surfaces: 4S/r.\n- Final answer: The bubble has twice the drop's excess pressure.\n\n## Common mistake\nDo not use the one-surface formula for a soap bubble.\n\n## Quick check question\nQuestion: If capillary radius is halved, what happens to rise height?\nAnswer: It doubles.\nExplanation: h is inversely proportional to r.\n\n## Summary\n- Surface tension minimises area.\n- Bubbles have two surfaces.\n- Capillary rise varies as 1/r.\n- Fluid behaviour combines pressure, flow, viscosity, and surfaces."
+  }
+}

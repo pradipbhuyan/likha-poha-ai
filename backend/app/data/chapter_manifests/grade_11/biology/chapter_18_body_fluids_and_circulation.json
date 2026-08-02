@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 18: Body Fluids and Circulation",
+  "central_question": "How do blood, lymph, the heart and blood vessels transport substances and maintain circulation throughout the human body?",
+  "in_scope_units": [
+    "Blood plasma and formed elements.",
+    "ABO and Rh blood groups and coagulation.",
+    "Lymph and tissue fluid.",
+    "Open and closed circulatory pathways.",
+    "Human heart, nodal tissue, cardiac cycle, cardiac output and ECG.",
+    "Pulmonary and systemic double circulation.",
+    "Regulation of cardiac activity.",
+    "Circulatory disorders."
+  ],
+  "banned_topics": [
+    "Plant meristems and growth curves",
+    "Plant growth regulators",
+    "Kidney filtration and urine formation"
+  ],
+  "must_include_keywords": [
+    "blood",
+    "plasma",
+    "serum",
+    "fibrinogen",
+    "globulin",
+    "albumin",
+    "erythrocyte",
+    "leucocyte",
+    "platelet",
+    "haemoglobin",
+    "ABO group",
+    "Rh factor",
+    "erythroblastosis foetalis",
+    "coagulation",
+    "fibrin",
+    "thrombin",
+    "lymph",
+    "tissue fluid",
+    "open circulation",
+    "closed circulation",
+    "heart",
+    "atrium",
+    "ventricle",
+    "tricuspid valve",
+    "bicuspid valve",
+    "semilunar valve",
+    "SAN",
+    "AVN",
+    "cardiac cycle",
+    "systole",
+    "diastole",
+    "stroke volume",
+    "cardiac output",
+    "ECG",
+    "P wave",
+    "QRS complex",
+    "T wave",
+    "pulmonary circulation",
+    "systemic circulation",
+    "myogenic"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Serum and plasma are identical.",
+      "correction": "Serum is plasma without clotting factors."
+    },
+    {
+      "claim": "The AV node is the normal pacemaker.",
+      "correction": "The SAN normally sets the pace because it generates the most action potentials."
+    },
+    {
+      "claim": "Heart failure, cardiac arrest and heart attack are identical.",
+      "correction": "They mean inadequate pumping, stopped heartbeat and muscle damage from poor blood supply, respectively."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1 to connect formed elements with functions.",
+    "Use NCERT Exercise 3 for the matching set.",
+    "Use NCERT Exercise 12 and textbook values to calculate cardiac output.",
+    "Use NCERT Exercise 14 to interpret ECG waves.",
+    "Use NCERT Exercise 6 to explain double circulation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-14 on blood, lymph, circulation, cardiac cycle, nodal tissue, heart sounds and ECG.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

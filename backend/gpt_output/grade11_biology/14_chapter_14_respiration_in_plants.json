@@ -1,0 +1,84 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 14: Respiration in Plants",
+    "central_question": "How do plant cells break down respiratory substrates step by step and capture usable energy in ATP?",
+    "in_scope_units": [
+      "Do plants breathe and how gaseous exchange occurs without specialised organs.",
+      "Glycolysis and the conversion of glucose to pyruvate.",
+      "Alcoholic and lactic acid fermentation.",
+      "Pyruvate oxidation, TCA cycle and aerobic respiration.",
+      "Electron transport and oxidative phosphorylation.",
+      "The respiratory balance sheet and its assumptions.",
+      "Amphibolic nature of respiratory pathways.",
+      "Respiratory quotient and substrate dependence."
+    ],
+    "banned_topics": [
+      "Essential mineral elements and hydroponics",
+      "Mineral deficiency symptoms",
+      "Nitrogen fixation and nitrogen cycle"
+    ],
+    "must_include_keywords": [
+      "cellular respiration",
+      "respiratory substrate",
+      "ATP",
+      "stomata",
+      "lenticels",
+      "glycolysis",
+      "EMP pathway",
+      "cytoplasm",
+      "glucose",
+      "pyruvate",
+      "NADH",
+      "fermentation",
+      "ethanol",
+      "lactic acid",
+      "aerobic respiration",
+      "mitochondrial matrix",
+      "acetyl CoA",
+      "Krebs cycle",
+      "TCA cycle",
+      "oxaloacetate",
+      "FADH2",
+      "electron transport system",
+      "oxygen",
+      "oxidative phosphorylation",
+      "ATP synthase",
+      "respiratory balance sheet",
+      "amphibolic pathway",
+      "catabolism",
+      "anabolism",
+      "respiratory quotient"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Plants do not respire because they photosynthesise.",
+        "correction": "All living plant cells respire; non-green organs depend entirely on transported food."
+      },
+      {
+        "claim": "Oxygen is directly consumed in glycolysis and the TCA cycle.",
+        "correction": "Oxygen acts at the terminal electron-transport stage as the final acceptor."
+      },
+      {
+        "claim": "The respiratory pathway is purely catabolic.",
+        "correction": "Its intermediates are used in both breakdown and biosynthesis, making it amphibolic."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 1 to compare respiration, combustion, aerobic respiration and fermentation.",
+      "Use NCERT Exercise 3 to trace glycolysis and its direct ATP balance.",
+      "Use NCERT Exercise 10 to calculate RQ for fat.",
+      "Use NCERT Exercise 8 to examine assumptions behind the ATP balance.",
+      "Use NCERT Exercise 9 to explain the amphibolic pathway."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-12 on glycolysis, fermentation, aerobic respiration, ETS, ATP balance, amphibolic pathways and RQ."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Respiration in Plants\n\n## What you will learn\nYou will distinguish breathing from cellular respiration and explain why plants need continuous energy release. You will see how plant structure permits gaseous exchange without lungs.\n\n## Simple explanation\nRespiration is controlled oxidation of food inside cells. Energy is released in small enzyme-controlled steps and captured in ATP instead of being lost mainly as heat.\n\n## Step-by-step breakdown\n- **Energy need**: Absorption, transport, movement, growth and reproduction all need ATP.\n- **Respiratory substrates**: Carbohydrates are common, but fats, proteins and organic acids can also be oxidised.\n- **Plant gaseous exchange**: Stomata, lenticels and interconnected air spaces allow diffusion.\n- **No respiratory organs**: Each plant part meets most of its own needs, rates are relatively low and living cells are close to air spaces.\n- **Step-wise oxidation**: Small controlled reactions allow useful coupling to ATP synthesis.\n- **Aerobic and anaerobic routes**: All organisms retain glycolysis; complete oxidation additionally requires mitochondrial aerobic stages.\n\n## Worked example\nQuestion: NCERT Exercise 1(a) asks for a distinction between respiration and combustion.\n\nSolution:\n- Both oxidise substrates and release energy.\n- Combustion is rapid and uncontrolled, with energy largely released as heat.\n- Respiration is enzyme controlled and proceeds through many steps.\n- Respiration captures part of the energy in ATP.\n- Final answer: Respiration is controlled cellular oxidation with ATP capture; combustion is rapid uncontrolled oxidation with energy mainly released as heat.\n\n## Common mistake\nDo not equate visible breathing with the whole process. Cellular respiration is the intracellular release and capture of chemical energy.\n\n## Quick check question\nQuestion: Why can plants function without lungs?\nAnswer: Living cells are near surfaces or air spaces, and stomata and lenticels permit diffusion while each part largely handles its own gas exchange.\nExplanation: Plants have low gas-exchange demand and little need for long-distance movement of respiratory gases.\n\n## Summary\n- Plants respire continuously.\n- Respiration breaks carbon-carbon bonds through controlled oxidation.\n- ATP is the immediate energy currency.\n- Stomata, lenticels and air spaces support diffusion.",
+    "Core explanation": "# Core explanation: Respiration in Plants\n\n## What you will learn\nYou will follow glycolysis from glucose to pyruvate and compare anaerobic fates of pyruvate. You will calculate the direct ATP balance of fermentation.\n\n## Simple explanation\nGlycolysis is a universal cytoplasmic pathway that partially oxidises one glucose into two pyruvate molecules. Fermentation regenerates NAD+ when aerobic oxidation cannot proceed.\n\n## Step-by-step breakdown\n- **EMP pathway**: Glycolysis consists of ten reactions in the cytoplasm and occurs in all living organisms.\n- **Energy investment**: ATP is consumed in the phosphorylation of glucose and fructose-6-phosphate.\n- **Splitting and oxidation**: The six-carbon intermediate splits into three-carbon molecules and PGAL oxidation forms NADH.\n- **Substrate-level phosphorylation**: ATP forms during BPGA to PGA and PEP to pyruvate conversions.\n- **Alcohol fermentation**: Yeast converts pyruvate to CO2 and ethanol.\n- **Lactic fermentation**: Some bacteria and oxygen-limited muscle cells reduce pyruvate to lactate.\n- **NAD+ regeneration**: Both routes reoxidise NADH so glycolysis can continue.\n\n## Worked example\nQuestion: The in-text fermentation question asks for net ATP when one glucose is fermented to alcohol or lactic acid.\n\nSolution:\n- Glycolysis uses two ATP in early phosphorylation steps.\n- Four ATP are later formed because ATP-forming reactions occur twice per glucose.\n- Net ATP is 4 minus 2, or 2.\n- Fermentation reactions regenerate NAD+ but add no further ATP.\n- Final answer: The net gain is two ATP molecules per glucose.\n\n## Common mistake\nFour ATP are formed, but the net yield is only two because two were invested.\n\n## Quick check question\nQuestion: Where does glycolysis occur and what does it produce?\nAnswer: It occurs in the cytoplasm and produces two pyruvate molecules from one glucose.\nExplanation: The six-carbon substrate is split and partially oxidised into two three-carbon products.\n\n## Summary\n- Glycolysis is common to aerobic and anaerobic respiration.\n- Two ATP are invested and four are directly formed.\n- Fermentation yields two net ATP.\n- Fermentation regenerates NAD+ but leaves much energy in its products.",
+    "Worked examples": "# Worked examples: Respiration in Plants\n\n## What you will learn\nYou will connect pyruvate oxidation, the TCA cycle and electron transport. You will explain how oxygen permits extensive ATP formation.\n\n## Simple explanation\nPyruvate enters the mitochondrial matrix, becomes acetyl CoA and is oxidised through the TCA cycle. Reduced coenzymes then transfer electrons to the inner-membrane ETS.\n\n## Step-by-step breakdown\n- **Link reaction**: Pyruvate dehydrogenase forms acetyl CoA, CO2 and NADH.\n- **TCA entry**: Acetyl CoA combines with oxaloacetate to form citrate; oxaloacetate is regenerated.\n- **Reduced coenzymes**: TCA reactions produce NADH and FADH2.\n- **Electron transport**: Inner-membrane complexes pass electrons ultimately to oxygen, forming water.\n- **Proton gradient**: Redox energy drives proton movement and return through F0-F1 ATP synthase.\n- **Oxidative phosphorylation**: ATP synthesis linked to oxidation of reduced coenzymes is oxidative phosphorylation.\n\n## Worked example\nQuestion: NCERT Exercise 4 asks for the main steps in aerobic respiration and their locations.\n\nSolution:\n- Glycolysis in the cytoplasm forms pyruvate.\n- Pyruvate enters the matrix and becomes acetyl CoA.\n- The TCA cycle in the matrix releases CO2 and forms NADH, FADH2 and some ATP.\n- The ETS on the inner membrane passes electrons to oxygen.\n- Proton flow through ATP synthase forms most ATP.\n- Final answer: Aerobic respiration includes cytoplasmic glycolysis, matrix pyruvate oxidation and TCA cycle, followed by inner-membrane ETS and oxidative phosphorylation.\n\n## Common mistake\nOxygen is not the first reactant of the pathway; its vital role is as terminal acceptor in electron transport.\n\n## Quick check question\nQuestion: Where does the TCA cycle occur?\nAnswer: In the mitochondrial matrix.\nExplanation: Pyruvate oxidation and TCA enzymes are in the matrix, while ETS components are in the inner membrane.\n\n## Summary\n- Acetyl CoA connects glycolysis to the TCA cycle.\n- The TCA cycle produces reduced electron carriers.\n- The ETS transfers electrons to oxygen.\n- Chemiosmotic proton flow powers ATP synthesis.",
+    "Exam-style problems": "# Exam-style problems: Respiration in Plants\n\n## What you will learn\nYou will evaluate the theoretical ATP balance and explain why it is idealised. You will compare aerobic respiration with fermentation.\n\n## Simple explanation\nA textbook balance sheet shows potential energy capture, but real cells operate interconnected pathways in which intermediates and ATP are continuously used.\n\n## Step-by-step breakdown\n- **Theoretical total**: Under stated assumptions, complete oxidation of one glucose can show a net gain of 38 ATP.\n- **Sequential assumption**: The calculation assumes glycolysis, TCA and ETS proceed as an orderly sequence.\n- **NADH assumption**: It assumes glycolytic NADH enters mitochondria for oxidative phosphorylation.\n- **No withdrawals**: It assumes intermediates are not used for biosynthesis.\n- **Single substrate**: It assumes only glucose enters the pathway.\n- **Fermentation comparison**: Fermentation gives partial breakdown and two net ATP; aerobic respiration completely oxidises substrate and yields much more energy.\n\n## Worked example\nQuestion: NCERT Exercise 8 asks for assumptions made in calculating net ATP gain.\n\nSolution:\n- Assume a sequential pathway with each product becoming the next substrate.\n- Assume glycolytic NADH reaches mitochondria and is oxidised.\n- Assume no intermediate is withdrawn for another synthesis.\n- Assume glucose is the only substrate entering the pathway.\n- Final answer: The ATP total is theoretical because real cells run interconnected pathways, withdraw intermediates and use ATP continuously.\n\n## Common mistake\nDo not present 38 ATP as an invariant measured output of every cell. The chapter explicitly calls it a theoretical estimate.\n\n## Quick check question\nQuestion: What is the net ATP gain from fermentation?\nAnswer: Two ATP per glucose.\nExplanation: Only glycolytic substrate-level phosphorylation contributes, and two invested ATP must be subtracted from four formed.\n\n## Summary\n- The balance sheet depends on simplifying assumptions.\n- Real pathways exchange intermediates.\n- Fermentation is incomplete and low-yield.\n- Aerobic respiration is complete and high-yield.",
+    "Revision and recap": "# Revision and recap: Respiration in Plants\n\n## What you will learn\nYou will integrate fat and protein metabolism with respiration and use respiratory quotient to infer substrate type.\n\n## Simple explanation\nRespiration is not a glucose-only pathway. Fats and proteins enter at different intermediates, and respiratory intermediates can also be removed for biosynthesis.\n\n## Step-by-step breakdown\n- **Alternative entry points**: Glycerol enters after conversion to PGAL; fatty acids form acetyl CoA; deaminated amino acids enter at pyruvate, acetyl CoA or TCA intermediates.\n- **Amphibolic character**: The pathway participates in both breakdown for energy and synthesis of cellular compounds.\n- **RQ definition**: RQ equals volume of CO2 evolved divided by volume of O2 consumed.\n- **Carbohydrate RQ**: Complete glucose oxidation gives RQ = 1.\n- **Fat and protein RQ**: Tripalmitin gives about 0.7 and proteins about 0.9.\n- **Mixed substrates**: Living organisms usually oxidise mixtures rather than pure fat or protein.\n\n## Worked example\nQuestion: NCERT Exercise 10 asks for the definition of RQ and its value for fats.\n\nSolution:\n- Write RQ = volume of CO2 evolved divided by volume of O2 consumed.\n- For tripalmitin, the chapter gives 102 CO2 and 145 O2.\n- RQ is 102 divided by 145, approximately 0.7.\n- Final answer: Respiratory quotient is the CO2-to-O2 volume ratio; for fats it is less than 1 and is about 0.7 for tripalmitin.\n\n## Common mistake\nDo not assume every measured RQ must be exactly 1, 0.7 or 0.9 because mixed substrates can give intermediate values.\n\n## Quick check question\nQuestion: Why is the respiratory pathway called amphibolic?\nAnswer: Because its intermediates participate in both catabolic breakdown and anabolic synthesis.\nExplanation: Compounds enter for oxidation and also leave the pathway to build fats, proteins and other molecules.\n\n## Summary\n- Respiration connects carbohydrate, fat and protein metabolism.\n- The pathway supports energy release and biosynthesis.\n- RQ relates CO2 production to O2 use.\n- Carbohydrate RQ is 1 and fat RQ is below 1.\n- Respiration links cytoplasm, matrix and inner membrane."
+  }
+}

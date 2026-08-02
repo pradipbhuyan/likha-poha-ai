@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 12",
+  "subject": "Accountancy",
+  "chapter": "Accounting for Partnership: Basic Concepts",
+  "central_question": "How are the legal relationship of partners, their capital accounts and the appropriation of partnership profit recorded fairly under the partnership deed and the Indian Partnership Act, 1932?",
+  "in_scope_units": [
+    "Nature of partnership, its statutory definition and essential features including mutual agency and unlimited liability.",
+    "Partnership deed, its usual clauses and the accounting rules that apply when the deed is silent.",
+    "Special aspects of partnership accounts and maintenance of partners’ capital accounts under fixed and fluctuating methods.",
+    "Distribution of profit through the Profit and Loss Appropriation Account, including salary, commission and interest adjustments.",
+    "Calculation and treatment of interest on capital under additions, withdrawals, insufficient profit and loss.",
+    "Calculation of interest on drawings using average-period and product methods for monthly, quarterly and irregular drawings.",
+    "Guarantee of a minimum profit to a partner and allocation of the resulting deficiency.",
+    "Past adjustments through a Profit and Loss Adjustment Account or direct capital-account adjustment."
+  ],
+  "banned_topics": [
+    "Admission, retirement and death of partners, which are covered in later reconstitution chapters.",
+    "Realisation of assets and settlement on dissolution, which belongs to Dissolution of Partnership Firm.",
+    "Issue of shares or debentures by companies, which belongs to company accounts."
+  ],
+  "must_include_keywords": [
+    "partnership",
+    "Indian Partnership Act 1932",
+    "mutual agency",
+    "partnership deed",
+    "profit sharing ratio",
+    "interest on capital",
+    "interest on drawings",
+    "interest on partner’s loan",
+    "fixed capital method",
+    "fluctuating capital method",
+    "partner’s current account",
+    "Profit and Loss Appropriation Account",
+    "partner’s salary",
+    "partner’s commission",
+    "average period",
+    "product method",
+    "guarantee of profit",
+    "deficiency",
+    "past adjustments",
+    "Profit and Loss Adjustment Account",
+    "unlimited liability",
+    "capital account",
+    "drawings",
+    "share of profit",
+    "6 per cent per annum"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Partners must contribute equal capital and therefore always share profits equally.",
+      "correction": "Capital contribution and profit sharing are separate matters. The deed governs the ratio; only when it is silent are profits and losses shared equally."
+    },
+    {
+      "claim": "A partner is automatically entitled to salary and interest on capital.",
+      "correction": "Salary, commission and interest on capital are allowed only when authorised by the partnership deed and are subject to the chapter’s treatment of available profit."
+    },
+    {
+      "claim": "Under the fixed capital method all partner-related items are posted to the capital account.",
+      "correction": "Only permanent capital additions and withdrawals affect the fixed capital account; drawings, interest, salary, commission and profit share are posted to the current account."
+    },
+    {
+      "claim": "If the deed is silent, no interest is allowed on a partner’s loan.",
+      "correction": "The Act allows interest on a partner’s loan at 6 per cent per annum when the deed is silent."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Test Your Understanding–I to apply the Act when the deed is silent.",
+    "Use NCERT Illustration 1 to compare fixed and fluctuating capital accounts.",
+    "Use NCERT Illustration 2 to prepare the Profit and Loss Appropriation Account.",
+    "Use NCERT Illustration 7 to examine interest on capital when profit is absent or insufficient.",
+    "Use NCERT Illustration 8 for monthly and irregular drawings and NCERT Illustration 10 for a profit guarantee.",
+    "Use NCERT Illustration 14 to pass a single past-adjustment entry."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions for Practice containing Short Answer Questions 1–7, Long Answer Questions 1–5 and Numerical Questions on capital accounts, appropriation, interest, guarantees and past adjustments.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

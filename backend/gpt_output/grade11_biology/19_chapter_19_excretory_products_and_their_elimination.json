@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 19: Excretory Products and Their Elimination",
+    "central_question": "How do human kidneys form concentrated urine, regulate body-fluid composition and eliminate metabolic wastes?",
+    "in_scope_units": [
+      "Nitrogenous wastes and excretory strategies.",
+      "Excretory structures across animals.",
+      "Human excretory system and nephron organisation.",
+      "Glomerular filtration, reabsorption and secretion.",
+      "Functions of nephron tubules.",
+      "Counter-current concentration of urine.",
+      "Hormonal regulation of kidney function.",
+      "Micturition and other excretory organs.",
+      "Renal disorders and treatment."
+    ],
+    "banned_topics": [
+      "Alimentary canal and digestive enzymes",
+      "Absorption of nutrients in intestinal villi",
+      "Detailed circulation beyond renal blood supply"
+    ],
+    "must_include_keywords": [
+      "ammonia",
+      "urea",
+      "uric acid",
+      "ammonotelism",
+      "ureotelism",
+      "uricotelism",
+      "osmoregulation",
+      "kidney",
+      "ureter",
+      "urinary bladder",
+      "urethra",
+      "cortex",
+      "medulla",
+      "nephron",
+      "glomerulus",
+      "Bowman capsule",
+      "PCT",
+      "Henle loop",
+      "DCT",
+      "collecting duct",
+      "cortical nephron",
+      "juxtamedullary nephron",
+      "vasa recta",
+      "glomerular filtration",
+      "GFR",
+      "JGA",
+      "reabsorption",
+      "secretion",
+      "counter-current mechanism",
+      "osmolarity",
+      "ADH",
+      "renin",
+      "angiotensin II",
+      "aldosterone",
+      "ANF",
+      "micturition",
+      "uremia",
+      "haemodialysis",
+      "renal calculi",
+      "glomerulonephritis"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "ADH promotes water elimination.",
+        "correction": "ADH increases water reabsorption and reduces diuresis."
+      },
+      {
+        "claim": "Both limbs of Henle loop have the same permeability.",
+        "correction": "The descending limb is water permeable; the ascending limb is water impermeable and transports salts."
+      },
+      {
+        "claim": "All filtrate becomes urine.",
+        "correction": "Nearly 99 percent of about 180 litres per day is reabsorbed, leaving about 1-1.5 litres of urine."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 1 to define GFR.",
+      "Use NCERT Exercise 3 to correct statements about ADH and nephron function.",
+      "Use NCERT Exercise 4 to explain the counter-current mechanism.",
+      "Use NCERT Exercise 7 to match excretory terms.",
+      "Use NCERT Exercise 12 to complete key permeability and dialysis facts."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-12 on GFR, autoregulation, counter-current concentration, micturition, osmoregulation and renal terminology."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Excretory Products and their Elimination\n\n## What you will learn\nYou will compare nitrogenous waste strategies and identify animal excretory structures. You will map the human urinary system and nephron.\n\n## Simple explanation\nMetabolism produces wastes that must be removed while conserving water and maintaining ions. Different animals solve this according to habitat, while the human kidney combines excretion and osmoregulation.\n\n## Step-by-step breakdown\n- **Nitrogenous wastes**: Ammonia is most toxic and needs much water, urea is less toxic, and uric acid is least toxic and conserves water.\n- **Strategies**: Aquatic forms are often ammonotelic, mammals mainly ureotelic, and birds, reptiles and insects mainly uricotelic.\n- **Other organs**: Flame cells, nephridia, Malpighian tubules and antennal glands occur in different invertebrates.\n- **Human system**: Two kidneys drain through ureters to the bladder, and urine exits through the urethra.\n- **Kidney regions**: An outer cortex surrounds a medulla containing pyramids directed toward calyces and renal pelvis.\n- **Nephron**: The functional unit includes glomerulus, Bowman capsule, PCT, Henle loop, DCT and collecting duct.\n\n## Worked example\nQuestion: NCERT Exercise 7 asks you to match ammonotelism, Bowman capsule, micturition, uricotelism and ADH.\n\nSolution:\n- Ammonotelism matches bony fish.\n- Bowman capsule matches the renal tubule beginning.\n- Micturition matches the urinary bladder.\n- Uricotelism matches birds.\n- ADH matches water reabsorption.\n- Final answer: The completed matches connect each term with its NCERT example or function.\n\n## Common mistake\nDo not compare wastes by toxicity alone; water requirement explains their ecological distribution.\n\n## Quick check question\nQuestion: What is the functional unit of the kidney?\nAnswer: The nephron.\nExplanation: Each kidney contains nearly one million nephrons that filter and process fluid.\n\n## Summary\n- Animals excrete ammonia, urea or uric acid according to water availability.\n- Many invertebrates use specialised tubular organs.\n- The urinary system includes kidneys, ureters, bladder and urethra.\n- Each nephron has a renal corpuscle and tubule.",
+    "Core explanation": "# Core explanation: Excretory Products and their Elimination\n\n## What you will learn\nYou will explain the three processes of urine formation and the specialised work of each nephron segment.\n\n## Simple explanation\nThe glomerulus first filters plasma, but useful substances and most water are reclaimed. Tubular cells then selectively reabsorb and secrete materials.\n\n## Step-by-step breakdown\n- **Glomerular filtration**: Blood pressure filters plasma through capillary endothelium, basement membrane and podocyte slits; most proteins remain in blood.\n- **GFR**: A healthy value is about 125 mL per minute or 180 litres per day.\n- **Reabsorption**: Nearly 99 percent returns to blood; glucose, amino acids and sodium are actively reclaimed and water moves passively.\n- **Secretion**: Tubular cells add H+, K+ and ammonia to support pH and ion balance.\n- **PCT**: Brush border supports reabsorption of almost all nutrients and 70-80 percent of water and electrolytes.\n- **Henle loop**: Descending limb loses water; ascending limb is water impermeable and transports electrolytes.\n- **DCT and collecting duct**: These segments regulate sodium, water, pH, potassium and final concentration.\n\n## Worked example\nQuestion: NCERT Exercise 1 asks for the definition of GFR.\n\nSolution:\n- GFR is the volume of filtrate formed by the kidneys per minute.\n- The healthy approximate value is 125 mL per minute.\n- This is about 180 litres per day.\n- Final answer: Glomerular filtration rate is the filtrate formed each minute, normally about 125 mL per minute.\n\n## Common mistake\nGFR is not urine flow because most filtrate is later reabsorbed.\n\n## Quick check question\nQuestion: If 180 litres are filtered but 1.5 litres excreted, approximately how much is reabsorbed?\nAnswer: About 99 percent.\nExplanation: Only a small fraction remains, so nearly all filtrate returns to blood.\n\n## Summary\n- Urine formation requires filtration, reabsorption and secretion.\n- The barrier retains most proteins.\n- PCT is the main bulk-reabsorption site.\n- Henle loop separates water and salt movement.\n- Later segments fine-tune urine.",
+    "Worked examples": "# Worked examples: Excretory Products and their Elimination\n\n## What you will learn\nYou will trace the counter-current mechanism and explain how a medullary gradient permits concentrated urine.\n\n## Simple explanation\nOpposite flows in Henle loop and vasa recta retain sodium chloride and urea in the medulla. This gradient draws water from collecting ducts.\n\n## Step-by-step breakdown\n- **Counter-current flow**: Filtrate moves in opposite directions in Henle limbs and blood moves oppositely in vasa recta.\n- **Medullary gradient**: Osmolarity rises from about 300 mOsm/L in cortex to 1200 mOsm/L in inner medulla.\n- **NaCl recycling**: The ascending limb moves NaCl to interstitium and vasa recta exchange limits washout.\n- **Urea recycling**: Urea moves between collecting duct, interstitium and thin loop segments.\n- **Water recovery**: The gradient supports water movement from collecting ducts and can concentrate urine about fourfold.\n\n## Worked example\nQuestion: NCERT Exercise 4 asks for a brief account of the counter-current mechanism.\n\nSolution:\n- Filtrate flows oppositely in descending and ascending Henle limbs.\n- Vasa recta blood also flows in opposite directions.\n- NaCl leaves the ascending limb and is exchanged through vasa recta.\n- Urea recycling adds to medullary osmolarity.\n- The resulting 300-to-1200 mOsm/L gradient promotes collecting-duct water reabsorption.\n- Final answer: The counter-current arrangement retains salts and urea in the medulla and enables concentrated urine.\n\n## Common mistake\nVasa recta preserves the gradient; it does not directly form urine.\n\n## Quick check question\nQuestion: Which Henle limb is impermeable to water?\nAnswer: The ascending limb.\nExplanation: Salts leave without water, diluting tubular fluid and strengthening medullary osmolarity.\n\n## Summary\n- Opposing flows create efficient exchange.\n- NaCl and urea maintain medullary osmolarity.\n- Vasa recta limits gradient washout.\n- The gradient supports water recovery.",
+    "Exam-style problems": "# Exam-style problems: Excretory Products and their Elimination\n\n## What you will learn\nYou will compare hormonal mechanisms controlling water, pressure and GFR and explain micturition.\n\n## Simple explanation\nKidney output changes with body-fluid volume and pressure. ADH, renin-angiotensin-aldosterone and ANF form linked feedback controls.\n\n## Step-by-step breakdown\n- **ADH**: Osmoreceptor activation causes ADH release, increasing water reabsorption in later tubules.\n- **JGA and renin**: A fall in renal blood flow, pressure or GFR activates JG cells to release renin.\n- **Angiotensin II**: This vasoconstrictor raises glomerular pressure and stimulates aldosterone.\n- **Aldosterone**: Increases sodium and water reabsorption in distal tubules.\n- **ANF**: Increased atrial filling releases ANF, causing vasodilation and opposing renin-angiotensin action.\n- **Micturition**: Bladder stretch receptors signal the CNS, coordinating bladder contraction and sphincter relaxation.\n\n## Worked example\nQuestion: NCERT Exercise 2 asks for the autoregulatory mechanism of GFR.\n\nSolution:\n- A fall in GFR is detected at the JGA.\n- JG cells release renin.\n- Renin initiates formation of angiotensin II.\n- Angiotensin II raises glomerular pressure and promotes aldosterone-mediated retention.\n- These effects help restore GFR toward normal.\n- Final answer: GFR is autoregulated through JGA activation, renin-angiotensin action and volume-restoring responses.\n\n## Common mistake\nADH and aldosterone are not identical: ADH mainly increases water permeability, whereas aldosterone promotes sodium retention.\n\n## Quick check question\nQuestion: What triggers the micturition reflex?\nAnswer: Stretching of the urinary bladder wall.\nExplanation: Stretch receptors signal the CNS, which coordinates detrusor contraction and sphincter relaxation.\n\n## Summary\n- ADH conserves water.\n- JGA responds to reduced filtration pressure.\n- Angiotensin II and aldosterone restore pressure and volume.\n- ANF opposes excessive retention.\n- Micturition is a neural reflex with voluntary control.",
+    "Revision and recap": "# Revision and recap: Excretory Products and their Elimination\n\n## What you will learn\nYou will connect kidney function with other excretory organs, urine analysis and renal disorders.\n\n## Simple explanation\nKidneys are principal excretory and osmoregulatory organs, but lungs, liver and skin also remove wastes. Failure may require dialysis or transplantation.\n\n## Step-by-step breakdown\n- **Normal urine**: An adult produces about 1-1.5 litres daily; urine is slightly acidic and contains about 25-30 g urea per day.\n- **Clinical indicators**: Glucose and ketone bodies in urine can indicate diabetes mellitus.\n- **Other organs**: Lungs remove CO2 and water, liver excretes bile substances, and skin removes salts and small wastes.\n- **Uremia and dialysis**: Accumulated urea can diffuse across a dialysis membrane into waste-free dialysing fluid.\n- **Transplantation**: A functioning donor kidney may replace failed kidneys, with compatibility reducing rejection.\n- **Other disorders**: Renal calculi are crystallised salts; glomerulonephritis is inflammation of glomeruli.\n\n## Worked example\nQuestion: NCERT Exercise 12 asks for Henle permeability, ADH, dialysis-fluid composition and daily urea output.\n\nSolution:\n- The ascending Henle limb is impermeable to water and the descending limb permeable.\n- ADH facilitates distal water reabsorption.\n- Dialysis fluid resembles plasma except it lacks nitrogenous wastes.\n- A healthy adult excretes about 25-30 g urea per day.\n- Final answer: The completed facts are impermeable/permeable, ADH, nitrogenous wastes and 25-30 g.\n\n## Common mistake\nDialysis fluid is not pure water; it contains useful solutes like plasma but lacks nitrogenous waste.\n\n## Quick check question\nQuestion: What is uremia?\nAnswer: Harmful accumulation of urea in blood due to impaired kidney function.\nExplanation: When filtration fails, urea and other wastes accumulate and may require dialysis or transplantation.\n\n## Summary\n- Kidneys combine excretion with fluid regulation.\n- Urinalysis provides clinical evidence.\n- Lungs, liver and skin also excrete.\n- Dialysis uses diffusion across a membrane.\n- Renal failure may require transplantation."
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Geography as a Discipline",
+  "central_question": "How does geography explain spatial variation and integrate physical and human phenomena to understand the earth as the home of people?",
+  "in_scope_units": [
+    "Purpose, meaning and scope of geography.",
+    "Areal differentiation, causal relationships and nature–human interaction.",
+    "The questions what, where and why and spatial organisation.",
+    "Geography as an integrating discipline.",
+    "Systematic and regional approaches and branches.",
+    "Methods, physical geography and sustainable development."
+  ],
+  "banned_topics": [
+    "Detailed Indian boundaries, which belong to India — Location.",
+    "Detailed monsoon mechanisms, which belong to Climate.",
+    "Detailed landform processes, which belong to Geomorphic Processes."
+  ],
+  "must_include_keywords": [
+    "geography",
+    "Eratosthenes",
+    "geo",
+    "graphos",
+    "areal differentiation",
+    "space",
+    "time",
+    "cause and effect",
+    "what",
+    "where",
+    "why",
+    "nature–human interaction",
+    "adaptation",
+    "modification",
+    "technology",
+    "spatial organisation",
+    "spatial integration",
+    "integrating discipline",
+    "spatial synthesis",
+    "temporal synthesis",
+    "interdependence",
+    "systematic approach",
+    "regional approach",
+    "Alexander von Humboldt",
+    "Karl Ritter",
+    "physical geography",
+    "human geography",
+    "biogeography",
+    "geomorphology",
+    "climatology",
+    "hydrology",
+    "soil geography",
+    "cartography",
+    "remote sensing",
+    "GIS",
+    "GPS",
+    "lithosphere",
+    "atmosphere",
+    "hydrosphere",
+    "biosphere"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Geography only lists places and physical features.",
+      "correction": "It explains distribution, location, association and causal relationships."
+    },
+    {
+      "claim": "Geography belongs only to natural science.",
+      "correction": "It integrates natural and social sciences."
+    },
+    {
+      "claim": "What and where are sufficient for scientific geography.",
+      "correction": "The chapter emphasises why for causal explanation."
+    },
+    {
+      "claim": "Systematic and regional approaches are identical.",
+      "correction": "One studies a phenomenon globally; the other studies many phenomena within a region."
+    },
+    {
+      "claim": "Physical geography has no human relevance.",
+      "correction": "Landforms, climate, water, soils and ecosystems influence resources and development."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 1(iv) to identify why as the cause–effect question.",
+    "Use Exercise 2(i) to decide whether cultural features belong in geography.",
+    "Use Exercise 3(i) to explain areal differentiation.",
+    "Use Exercise 3(ii) to integrate geography with history, civics and economics."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 1(i–v), 2(i–v), 3(i–ii), and a three-part Project Work on forests.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

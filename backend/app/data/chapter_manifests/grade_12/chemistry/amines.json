@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Amines",
+  "central_question": "How does the nitrogen lone pair control the structure, basicity, preparation, reactions and diazonium chemistry of amines?",
+  "in_scope_units": [
+    "Structure, pyramidal geometry and classification of amines.",
+    "Common and IUPAC nomenclature of aliphatic and aromatic amines.",
+    "Preparation by reduction, ammonolysis, nitrile and amide reduction, Gabriel synthesis and Hoffmann bromamide degradation.",
+    "Physical properties and hydrogen bonding.",
+    "Basicity of aliphatic and aromatic amines, including inductive, resonance, solvation and steric effects.",
+    "Chemical reactions of amines and tests distinguishing primary, secondary and tertiary amines.",
+    "Preparation, physical properties and reactions of arenediazonium salts.",
+    "Use of diazonium salts in substitution and azo-coupling synthesis."
+  ],
+  "banned_topics": [
+    "Amide chemistry beyond reduction and Hoffmann degradation.",
+    "Detailed heterocyclic amines and alkaloid structures beyond the introductory examples.",
+    "Full dye technology beyond azo-coupling reactions."
+  ],
+  "must_include_keywords": [
+    "amine",
+    "ammonia derivative",
+    "pyramidal geometry",
+    "lone pair",
+    "primary amine",
+    "secondary amine",
+    "tertiary amine",
+    "alkanamine",
+    "aniline",
+    "ammonolysis",
+    "reduction of nitro compounds",
+    "reduction of nitriles",
+    "reduction of amides",
+    "Gabriel phthalimide synthesis",
+    "Hoffmann bromamide degradation",
+    "hydrogen bonding",
+    "basicity",
+    "pKb",
+    "inductive effect",
+    "resonance effect",
+    "solvation",
+    "steric hindrance",
+    "alkylation",
+    "acylation",
+    "carbylamine reaction",
+    "Hinsberg test",
+    "electrophilic substitution",
+    "diazotisation",
+    "benzenediazonium chloride",
+    "Sandmeyer reaction",
+    "Gattermann reaction",
+    "azo coupling",
+    "azo dye"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Tertiary amines have the highest boiling point because they have three alkyl groups.",
+      "correction": "Among isomeric amines, primary amines usually boil highest because they form the strongest intermolecular hydrogen-bond network; tertiary amines lack N–H bonds."
+    },
+    {
+      "claim": "Aniline is more basic than ammonia because phenyl is a carbon group.",
+      "correction": "Aniline is less basic because the nitrogen lone pair is delocalised into the aromatic ring and is less available for protonation."
+    },
+    {
+      "claim": "Gabriel synthesis prepares aromatic primary amines efficiently.",
+      "correction": "Aryl halides do not undergo the required nucleophilic substitution, so Gabriel synthesis is used for aliphatic primary amines."
+    },
+    {
+      "claim": "Hoffmann bromamide degradation retains the same carbon count.",
+      "correction": "The product primary amine has one carbon less than the starting amide."
+    },
+    {
+      "claim": "Arenediazonium salts are prepared and stored at room temperature.",
+      "correction": "They are prepared at 273–278 K because many are unstable and decompose at higher temperatures."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 9.1 on ammonolysis and successive alkylation.",
+    "Use NCERT Example 9.2 for nitrile-based chain extension conversions.",
+    "Use NCERT Example 9.3 or the adjacent Hoffmann discussion for one-carbon loss.",
+    "Apply NCERT Example 9.4 to basic-strength orders.",
+    "Finish with NCERT Example 9.5 on diazonium-mediated multistep conversion."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 9.1 to 9.14 and cover nomenclature, preparation, basicity, tests, reactions, diazonium salts and conversions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

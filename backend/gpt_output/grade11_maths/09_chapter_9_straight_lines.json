@@ -1,0 +1,87 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 9: Straight Lines",
+    "central_question": "How can coordinates, slopes, equation forms, and distances be used to describe and solve geometric problems involving straight lines?",
+    "in_scope_units": [
+      "Coordinate-geometry recall: distance, section, midpoint, area, and collinearity.",
+      "Slope and inclination of a line.",
+      "Angle between lines and conditions for parallelism and perpendicularity.",
+      "Equations of horizontal and vertical lines.",
+      "Point-slope, two-point, slope-intercept, intercept, and normal forms.",
+      "General equation of a line.",
+      "Distance from a point to a line and distance between parallel lines.",
+      "Applications to reflections, loci, intersections, triangles, and parameter conditions."
+    ],
+    "banned_topics": [
+      "Equations and properties of conic sections, which belong to Chapter 10.",
+      "Three-dimensional line equations.",
+      "Vector forms of lines beyond the coordinate methods in this chapter."
+    ],
+    "must_include_keywords": [
+      "coordinate geometry",
+      "distance formula",
+      "section formula",
+      "midpoint",
+      "slope",
+      "inclination",
+      "horizontal line",
+      "vertical line",
+      "collinearity",
+      "angle between lines",
+      "parallel lines",
+      "perpendicular lines",
+      "point-slope form",
+      "two-point form",
+      "slope-intercept form",
+      "x-intercept form",
+      "intercept form",
+      "normal form",
+      "general equation",
+      "point-line distance",
+      "parallel-line distance",
+      "reflection",
+      "locus",
+      "intersection",
+      "analytical geometry"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A vertical line has slope zero.",
+        "correction": "A horizontal line has slope zero; a vertical line has undefined slope."
+      },
+      {
+        "claim": "Perpendicular lines always have slopes that are reciprocals.",
+        "correction": "For defined non-zero slopes, their product is −1, so they are negative reciprocals."
+      },
+      {
+        "claim": "The angle formula has no absolute value.",
+        "correction": "The acute angle uses the absolute value of the slope expression."
+      },
+      {
+        "claim": "The distance formula may return a negative value.",
+        "correction": "The numerator is inside an absolute value, so distance is non-negative."
+      },
+      {
+        "claim": "Every line can be written in slope-intercept form.",
+        "correction": "Vertical lines cannot; they have equations x=k."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Example 3 for perpendicular slopes.",
+      "NCERT Example 2 for a fixed angle between lines.",
+      "NCERT chapter summary and Exercise 9.2 for equation forms.",
+      "NCERT Example 13 for reflection in a line.",
+      "NCERT Example 16 for an equal-distance locus."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 9.1, 9.2, and 9.3 followed by the Miscellaneous Exercise on Chapter 9."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Straight Lines\n\n## What you will learn\nYou will recall coordinate-geometry formulas and define the slope and inclination of a line. You will identify horizontal and vertical lines and test collinearity.\n\n## Simple explanation\nA straight line can be described by how rapidly y changes as x changes. This rate is its slope, and it is linked to the angle the line makes with the positive x-axis.\n\n## Step-by-step breakdown\n- **Distance**: The distance formula connects two coordinate points.\n- **Section and midpoint**: Coordinates divide a segment internally in a stated ratio.\n- **Slope from points**: m=(y2−y1)/(x2−x1) for x2≠x1.\n- **Inclination**: If a line makes angle α with the positive x-axis, m=tanα.\n- **Horizontal line**: Its slope is 0.\n- **Vertical line**: Its slope is undefined.\n- **Collinearity**: Three points are collinear when the slopes of consecutive segments agree.\n\n## Worked example\nQuestion: Using NCERT Example 3, the line through (−2,6) and (4,8) is perpendicular to the line through (8,12) and (x,24). Find x.\n\nSolution:\n- The first slope is (8−6)/(4−(−2))=1/3.\n- The second slope is (24−12)/(x−8)=12/(x−8).\n- Perpendicular slopes satisfy m1m2=−1.\n- Solve (1/3)(12/(x−8))=−1.\n- Final answer: x=4.\n\n## Common mistake\nDo not assign slope zero to a vertical line; its denominator x2−x1 is zero, so the slope is undefined.\n\n## Quick check question\nQuestion: Using NCERT Exercise 9.1 Question 5, find the slope from the origin to the midpoint of P(0,−4) and B(8,0).\nAnswer: The slope is −1/2.\nExplanation: The midpoint is (4,−2), so the slope from (0,0) is −2/4=−1/2—check the named points carefully: the actual slope is −1/2.\n\n## Summary\n- Slope measures change in y per change in x.\n- Inclination connects slope with tangent.\n- Parallelism, perpendicularity, and collinearity can be tested by slopes.",
+    "Core explanation": "# Core explanation: Straight Lines\n\n## What you will learn\nYou will find angles between lines and use conditions for parallel and perpendicular lines. You will understand why two possible slopes can make a fixed acute angle with a given line.\n\n## Simple explanation\nThe tangent of the acute angle between two non-vertical lines depends on their slopes. Equal slopes mean parallel lines, while a product of −1 means perpendicular lines when both slopes are defined.\n\n## Step-by-step breakdown\n- **Angle formula**: tanθ=|(m2−m1)/(1+m1m2)| when the denominator is non-zero.\n- **Parallel lines**: m1=m2.\n- **Perpendicular lines**: m1m2=−1.\n- **Two orientations**: A line can form a given acute angle on either side of another line.\n- **Undefined slopes**: Vertical-line cases should be handled geometrically or through equations.\n- **Slope sign**: Positive and negative slopes describe rising and falling directions.\n\n## Worked example\nQuestion: Using NCERT Example 2, a line of slope 1/2 makes an angle π/4 with another line. Find the possible slopes of the other line.\n\nSolution:\n- Set |(m−1/2)/(1+m/2)|=tan(π/4)=1.\n- Solve the two equations obtained from the absolute value.\n- Final answer: The possible slopes are 3 and −1/3.\n\n## Common mistake\nDo not remove the absolute value from the acute-angle formula without considering both signs.\n\n## Quick check question\nQuestion: If two non-vertical lines have slopes 2 and −1/2, what relation do they have by the chapter criterion?\nAnswer: They are perpendicular.\nExplanation: Their product is 2(−1/2)=−1.\n\n## Summary\n- Slope formulas describe relative direction.\n- The angle formula can produce two possible lines.\n- Parallel and perpendicular tests are special slope relations.",
+    "Worked examples": "# Worked examples: Straight Lines\n\n## What you will learn\nYou will write equations of lines in point-slope, two-point, slope-intercept, x-intercept, intercept, and normal forms. You will choose a form suited to the given data.\n\n## Simple explanation\nDifferent equation forms encode different geometric information. They describe the same type of object, but one form may make a particular set of data easier to use.\n\n## Step-by-step breakdown\n- **Point-slope form**: y−y0=m(x−x0).\n- **Two-point form**: y−y1=[(y2−y1)/(x2−x1)](x−x1).\n- **Slope-intercept form**: y=mx+c.\n- **x-intercept form**: y=m(x−d).\n- **Intercept form**: x/a+y/b=1.\n- **Normal form**: x cosω+y sinω=p, where p is perpendicular distance from origin.\n- **Axis-parallel lines**: Horizontal lines are y=k and vertical lines are x=k.\n\n## Worked example\nQuestion: Using the line-form summary, find the equation through (−2,3) with slope 4.\n\nSolution:\n- Use point-slope form y−3=4(x−(−2)).\n- Simplify y−3=4x+8.\n- Final answer: The equation is y=4x+11.\n\n## Common mistake\nDo not divide by x2−x1 in the two-point form when the line is vertical; write x=x1 directly.\n\n## Quick check question\nQuestion: Using NCERT Exercise 9.2 style data, find the line with x-intercept 3 and y-intercept 4.\nAnswer: x/3+y/4=1.\nExplanation: The intercept form directly uses the two non-zero intercepts.\n\n## Summary\n- Choose the line form that matches the known data.\n- All valid forms can be converted to general form.\n- Vertical lines need special treatment because their slope is undefined.",
+    "Exam-style problems": "# Exam-style problems: Straight Lines\n\n## What you will learn\nYou will convert to the general equation and calculate perpendicular distances from points and between parallel lines. You will interpret absolute values and common coefficients correctly.\n\n## Simple explanation\nThe general equation Ax+By+C=0 supports a uniform distance formula. Absolute value ensures distance is non-negative.\n\n## Step-by-step breakdown\n- **General form**: Ax+By+C=0, with A and B not both zero.\n- **Point-line distance**: d=|Ax1+By1+C|/√(A²+B²).\n- **Parallel-line distance**: For common A and B, d=|C1−C2|/√(A²+B²).\n- **Coefficient matching**: Scale one equation first if parallel lines do not have matching A and B.\n- **Sign and absolute value**: Changing all signs leaves the same line and distance.\n- **Foot and reflection**: A perpendicular through a point can locate its foot or mirror image.\n\n## Worked example\nQuestion: Using NCERT Example 13, find the image of (1,2) in the line x−3y+4=0.\n\nSolution:\n- Let the image be (h,k); the joining segment is perpendicular to the mirror line.\n- Use the perpendicular-slope condition to get 3h+k=5.\n- The midpoint ((h+1)/2,(k+2)/2) lies on x−3y+4=0, giving h−3k=−3.\n- Solve the two equations.\n- Final answer: The image is (6/5,7/5).\n\n## Common mistake\nDo not use C1−C2 directly for parallel lines until their x and y coefficients have been made identical.\n\n## Quick check question\nQuestion: Using NCERT Miscellaneous Exercise Question 3, what formula finds the distance from a point on the y-axis to x/3+y/4=1?\nAnswer: Use |4x+3y−12|/5 after writing the line as 4x+3y−12=0.\nExplanation: The denominator is √(4²+3²)=5 and a y-axis point has x=0.\n\n## Summary\n- General form unifies line calculations.\n- Absolute values make distances non-negative.\n- Reflection uses a perpendicular segment whose midpoint lies on the mirror line.",
+    "Revision and recap": "# Revision and recap: Straight Lines\n\n## What you will learn\nYou will apply straight-line equations to loci, triangles, intersections, and parameter problems. You will review the full progression from coordinates to slope, equation, and distance.\n\n## Simple explanation\nA locus problem becomes an equation by translating the stated geometric condition into algebra and simplifying the set of all points that satisfy it.\n\n## Step-by-step breakdown\n- **Locus**: Let (h,k) represent an arbitrary moving point.\n- **Equal distances**: Equating point-line distance formulas can produce one or more lines.\n- **Intersection**: Solve simultaneous line equations to locate a common point.\n- **Triangle area**: Find vertices from intersections, then use base-height or determinant methods.\n- **Parameters**: Conditions such as parallel to an axis impose restrictions on coefficients.\n- **Verification**: Substitute points and compare slopes or distances.\n- **Analytical geometry**: Algebra encodes geometric location and relationships.\n\n## Worked example\nQuestion: Using NCERT Example 16, find the locus of points equidistant from 3x−2y=5 and 3x+2y=5.\n\nSolution:\n- For (h,k), equate |3h−2k−5|/√13 and |3h+2k−5|/√13.\n- Remove the equal denominators and split |A|=|B| into A=B or A=−B.\n- The two cases give k=0 or h=5/3.\n- Final answer: The locus is y=0 or x=5/3, both straight lines.\n\n## Common mistake\nWhen |A|=|B|, solving only A=B misses the second case A=−B.\n\n## Quick check question\nQuestion: Using NCERT Miscellaneous Exercise Question 1, when is (k−3)x−(4−k²)y+k²−7k+6=0 parallel to the y-axis?\nAnswer: It is parallel to the y-axis when the y coefficient is zero and x coefficient is non-zero; k=−2 satisfies this.\nExplanation: Set 4−k²=0, test k=±2, and reject any value that makes the remaining equation unsuitable.\n\n## Summary\n- Straight-line conditions translate into algebraic equations.\n- Distance loci may split into two lines.\n- Slope, form, and distance formulas form one coherent toolkit."
+  }
+}

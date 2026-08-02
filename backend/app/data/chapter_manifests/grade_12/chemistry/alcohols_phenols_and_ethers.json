@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Alcohols, Phenols and Ethers",
+  "central_question": "How does the oxygen functional group and its molecular environment determine the preparation, acidity, physical properties and reactions of alcohols, phenols and ethers?",
+  "in_scope_units": [
+    "Classification and nomenclature of alcohols, phenols and ethers.",
+    "Structures and bonding of C–O and O–H functional groups.",
+    "Preparation of alcohols from alkenes, carbonyl compounds, carboxylic acids and Grignard reagents.",
+    "Preparation of phenols from haloarenes, benzene sulphonic acid, diazonium salts and cumene.",
+    "Physical properties of alcohols and phenols, including hydrogen bonding and solubility.",
+    "Chemical reactions of alcohols and phenols, including acidity, substitution, dehydration, oxidation and electrophilic substitution.",
+    "Commercially important alcohols: methanol and ethanol.",
+    "Preparation, physical properties and chemical reactions of ethers."
+  ],
+  "banned_topics": [
+    "Detailed carbonyl-compound chemistry beyond its use in preparing alcohols, which belongs to the following chapter.",
+    "Detailed haloalkane substitution mechanisms beyond Williamson ether synthesis and alcohol conversions.",
+    "Biochemical metabolism of alcohols, which is outside the chapter."
+  ],
+  "must_include_keywords": [
+    "alcohol",
+    "phenol",
+    "ether",
+    "monohydric",
+    "polyhydric",
+    "primary alcohol",
+    "secondary alcohol",
+    "tertiary alcohol",
+    "allylic alcohol",
+    "benzylic alcohol",
+    "symmetrical ether",
+    "unsymmetrical ether",
+    "IUPAC nomenclature",
+    "hydrogen bonding",
+    "acid-catalysed hydration",
+    "hydroboration–oxidation",
+    "reduction",
+    "Grignard reagent",
+    "cumene process",
+    "acidity of phenol",
+    "phenoxide ion",
+    "Lucas reagent",
+    "dehydration",
+    "oxidation",
+    "Kolbe reaction",
+    "Reimer–Tiemann reaction",
+    "Williamson synthesis",
+    "alkoxy group",
+    "anisole",
+    "ether cleavage",
+    "methanol",
+    "ethanol"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Phenol is simply an aromatic alcohol and reacts exactly like an aliphatic alcohol.",
+      "correction": "Phenol has the OH group directly attached to an sp² aromatic carbon; resonance changes its acidity and makes the aryl C–O bond resistant to ordinary substitution."
+    },
+    {
+      "claim": "Tertiary alcohols oxidise easily to ketones without carbon-chain cleavage.",
+      "correction": "Tertiary alcohols lack an alpha hydrogen and resist ordinary oxidation; strong conditions may cause C–C bond cleavage."
+    },
+    {
+      "claim": "All alcohols are freely soluble in water.",
+      "correction": "Solubility decreases as the hydrophobic hydrocarbon part becomes larger, despite the OH group’s hydrogen bonding."
+    },
+    {
+      "claim": "Williamson synthesis is equally suitable with tertiary alkyl halides.",
+      "correction": "Tertiary halides undergo elimination with alkoxide; Williamson synthesis is best with primary alkyl halides in an SN2 reaction."
+    },
+    {
+      "claim": "Ethers cannot react because they lack an O–H bond.",
+      "correction": "They are less reactive but undergo cleavage with concentrated HI or HBr and aromatic ethers undergo ring substitution."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 7.1 on IUPAC names.",
+    "Use NCERT Example 7.2 for alcohol preparation from reduction, hydration and a Grignard reagent.",
+    "Use NCERT Examples 7.3 and 7.4 for boiling-point and acidity orders.",
+    "Use NCERT Example 7.5 for alcohol and phenol reaction products.",
+    "Finish with NCERT Examples 7.6 and 7.7 on Williamson synthesis and ether cleavage."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 7.1 to 7.33 and cover nomenclature, preparation, physical properties, acidity, reaction mechanisms, ethers and multistep conversions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

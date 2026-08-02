@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 11",
+  "subject": "Business Studies",
+  "chapter": "Private, Public and Global Enterprises",
+  "central_question": "How are private, public and global enterprises organised, why has the role of the public sector changed, and how do joint ventures and public-private partnerships combine capabilities?",
+  "in_scope_units": [
+    "Private and public sectors in a mixed economy.",
+    "Forms of organising public sector enterprises.",
+    "Departmental undertakings: features, merits and limitations.",
+    "Statutory corporations: features, merits and limitations.",
+    "Government companies: features, merits and limitations.",
+    "Changing role of the public sector before and after the 1991 reforms.",
+    "Developmental role of public enterprises and disinvestment, sick-unit policy and MoU.",
+    "Global enterprises and their features.",
+    "Meaning, types and benefits of joint ventures.",
+    "Public Private Partnership model and allocation of responsibilities and risks."
+  ],
+  "banned_topics": [
+    "Detailed private-sector forms of organisation, which belong to Chapter 2.",
+    "Formation and incorporation procedure of a company, which belongs to Chapter 7.",
+    "Detailed sources of business finance, which belong to Chapter 8."
+  ],
+  "must_include_keywords": [
+    "mixed economy",
+    "private sector",
+    "public sector",
+    "public accountability",
+    "departmental undertaking",
+    "government treasury",
+    "ministry",
+    "statutory corporation",
+    "Special Act",
+    "government company",
+    "Companies Act 2013",
+    "51 per cent",
+    "infrastructure",
+    "regional balance",
+    "economies of scale",
+    "economic power",
+    "import substitution",
+    "liberalisation",
+    "privatisation",
+    "globalisation",
+    "disinvestment",
+    "Memorandum of Understanding",
+    "global enterprise",
+    "MNC",
+    "foreign collaboration",
+    "advanced technology",
+    "product innovation",
+    "centralised control",
+    "joint venture",
+    "contractual joint venture",
+    "equity-based joint venture",
+    "Public Private Partnership"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every public enterprise is organised as a government department.",
+      "correction": "Public enterprises may be departmental undertakings, statutory corporations or government companies."
+    },
+    {
+      "claim": "A statutory corporation is incorporated under the Companies Act.",
+      "correction": "It is created by a Special Act of Parliament that defines its powers and functions."
+    },
+    {
+      "claim": "Any company with some government investment is a government company.",
+      "correction": "Not less than 51 per cent of paid-up capital must be held by the specified government or governments, including qualifying subsidiaries."
+    },
+    {
+      "claim": "Disinvestment necessarily means immediate closure of a public enterprise.",
+      "correction": "Disinvestment is sale of government equity to the public or private sector; closure is a separate decision for units that cannot be revived."
+    },
+    {
+      "claim": "A joint venture always creates a new company.",
+      "correction": "A contractual joint venture creates no jointly owned entity, while an equity-based joint venture does."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Short Answer Question 3 to classify public-sector organisations.",
+    "Use Long Answer Question 2 to explain the role of the public sector before 1991.",
+    "Use Long Answer Question 1 to analyse Industrial Policy 1991 toward public enterprises.",
+    "Use Long Answer Question 4 to evaluate the strength of global enterprises.",
+    "Use Long Answer Question 5 to compare benefits of joint ventures and PPP."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section contains Short Answer Questions 1–7, Long Answer Questions 1–5 and a project on Indian companies entering joint ventures with foreign companies.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,65 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Contemporary South Asia",
+  "central_question": "How do domestic political developments, conflicts and regional cooperation shape contemporary South Asia?",
+  "in_scope_units": [
+    "Meaning and political diversity of South Asia",
+    "Military and democracy in Pakistan",
+    "Democracy in Bangladesh",
+    "Monarchy and democracy in Nepal",
+    "Ethnic conflict and democracy in Sri Lanka",
+    "India–Pakistan conflicts and peace efforts",
+    "India and its other neighbours",
+    "Peace and cooperation through SAARC and SAFTA",
+    "Role of external powers in South Asia"
+  ],
+  "banned_topics": [
+    "Detailed evolution of the European Union",
+    "United Nations Security Council reform",
+    "India’s domestic party system after Independence"
+  ],
+  "must_include_keywords": [
+    "South Asia",
+    "Bangladesh",
+    "Bhutan",
+    "India",
+    "Maldives",
+    "Nepal",
+    "Pakistan",
+    "Sri Lanka",
+    "democracy",
+    "military rule",
+    "Sheikh Mujib",
+    "Awami League",
+    "Maoists",
+    "LTTE",
+    "Kashmir",
+    "nuclear tests",
+    "Indus Waters Treaty",
+    "SAARC",
+    "SAFTA",
+    "China",
+    "United States"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every South Asian country has followed the same democratic path.",
+      "correction": "The region has a mixed record that includes stable democracy, monarchy, military rule and democratic transitions."
+    },
+    {
+      "claim": "SAARC has removed all political conflicts in the region.",
+      "correction": "SAARC promotes cooperation, but bilateral disputes and political differences have limited its effectiveness."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2: Which among the following statements about South Asia is wrong? a) All the countries in South Asia are democratic. b) Bangladesh and India have signed an agreement on river-water sharing. c) SAFTA was signed at the 12th SAARC Summit in Islamabad. d) The US and China play an influential role in South Asian politics.",
+    "NCERT Exercise 3: What are some of the commonalities and differences between Bangladesh and Pakistan in their democratic experiences?",
+    "NCERT Exercise 5: Name the principal players in the ethnic conflict in Sri Lanka. How do you assess the prospects of the resolution of this conflict?",
+    "NCERT Exercise 10: India’s neighbours often think that the Indian government tries to dominate and interfere in the domestic affairs of the smaller countries of the region. Is this a correct impression?",
+    "NCERT Exercise 9: Write a short note on the role and the limitations of SAARC as a forum for facilitating economic cooperation among the South Asian countries."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with NCERT Exercises 1–10 on South Asian political systems, conflicts, external influence and regional cooperation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Equilibrium",
+  "central_question": "How do reversible processes establish dynamic equilibrium and how can equilibrium constants predict composition and response to change?",
+  "in_scope_units": [
+    "Dynamic physical and chemical equilibrium.",
+    "Kc, Kp, reaction quotient, and heterogeneous equilibrium.",
+    "Le Chatelier principle.",
+    "Acid–base theories, ionisation constants, water, and pH.",
+    "Buffers, common ions, hydrolysis, and solubility product."
+  ],
+  "banned_topics": [
+    "Reaction kinetics",
+    "Electrochemical potentials",
+    "Advanced activities",
+    "Extended thermodynamic derivations"
+  ],
+  "must_include_keywords": [
+    "dynamic equilibrium",
+    "reversible reaction",
+    "equilibrium constant",
+    "Kc",
+    "Kp",
+    "reaction quotient",
+    "homogeneous equilibrium",
+    "heterogeneous equilibrium",
+    "Le Chatelier principle",
+    "partial pressure",
+    "degree of dissociation",
+    "Arrhenius acid",
+    "Brønsted acid",
+    "conjugate acid-base pair",
+    "Lewis acid",
+    "ionisation constant",
+    "Ka",
+    "Kb",
+    "ionic product of water",
+    "Kw",
+    "pH",
+    "pOH",
+    "common ion effect",
+    "buffer solution",
+    "salt hydrolysis",
+    "solubility product",
+    "Ksp",
+    "precipitation",
+    "indicator"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Reactions stop at equilibrium.",
+      "correction": "Forward and reverse reactions continue at equal rates."
+    },
+    {
+      "claim": "K changes when concentrations change.",
+      "correction": "At fixed temperature K is constant; Q changes."
+    },
+    {
+      "claim": "A catalyst shifts equilibrium.",
+      "correction": "It speeds both directions without changing composition."
+    },
+    {
+      "claim": "Strong means concentrated.",
+      "correction": "Strength is ionisation; concentration is amount per volume."
+    },
+    {
+      "claim": "Low Ksp directly equals low molar solubility.",
+      "correction": "Stoichiometry and common ions also control molar solubility."
+    }
+  ],
+  "recommended_example_progression": [
+    "Recognise dynamic equilibrium.",
+    "Write and transform K expressions.",
+    "Predict shifts.",
+    "Calculate acid–base equilibria.",
+    "Apply buffers and Ksp."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use exercises on Kc/Kp, Q, Le Chatelier effects, acid–base concepts, pH, buffers, hydrolysis, common ions, and solubility product.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

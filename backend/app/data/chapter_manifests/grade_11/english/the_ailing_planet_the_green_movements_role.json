@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "English",
+  "chapter": "The Ailing Planet: the Green Movement's Role",
+  "central_question": "Why must humanity replace domination of nature with responsible stewardship, sustainable development and shared responsibility for future generations?",
+  "in_scope_units": [
+    "The Green Movement changes human perception from a mechanistic view to a holistic and ecological view of Earth.",
+    "Sustainable development and the Lusaka mirror establish human responsibility toward the planet and future generations.",
+    "The article examines species, the Brandt Commission and the four principal biological systems supporting the global economy.",
+    "Deforestation, over-fishing, damaged grasslands and deteriorating croplands reveal the planet’s declining health.",
+    "Article 48A and forest-loss evidence expose the gap between environmental law and enforcement in India.",
+    "Population growth, poverty, education, health and voluntary family planning are connected to development.",
+    "The Era of Responsibility assigns roles to industry, citizens and generations, followed by language and environmental activities."
+  ],
+  "banned_topics": [
+    "The adjacent poem Childhood",
+    "Current population or forest statistics presented as updates",
+    "Environmental claims not contained in the article",
+    "Partisan political commentary beyond the text"
+  ],
+  "must_include_keywords": [
+    "Nani Palkhivala",
+    "Green Movement",
+    "New Zealand",
+    "mechanistic view",
+    "holistic and ecological view",
+    "living organism",
+    "ethical obligations",
+    "stewards",
+    "trustees",
+    "sustainable development",
+    "future generations",
+    "Lusaka zoo",
+    "mirror",
+    "most dangerous animal",
+    "partnership",
+    "living species",
+    "Brandt Commission",
+    "L. K. Jha",
+    "Lester R. Brown",
+    "fisheries",
+    "forests",
+    "grasslands",
+    "croplands",
+    "over-fishing",
+    "deforestation",
+    "powerhouse of evolution",
+    "Article 48A",
+    "catastrophic depletion",
+    "population growth",
+    "development",
+    "voluntary family planning",
+    "poverty",
+    "transcending concern",
+    "Era of Responsibility",
+    "industry",
+    "Edgar S. Woolard",
+    "life tenancy",
+    "borrowed from our children",
+    "inter alia",
+    "figurative meaning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The article treats the Earth only as a store of resources.",
+      "correction": "It urges a holistic view of Earth as a living organism whose vital processes must be respected."
+    },
+    {
+      "claim": "Sustainable development means stopping all present development.",
+      "correction": "It means meeting present needs without compromising future generations’ ability to meet theirs."
+    },
+    {
+      "claim": "The mirror in the Lusaka cage blames animals for environmental damage.",
+      "correction": "It shows the human viewer as “the world’s most dangerous animal.”"
+    },
+    {
+      "claim": "The author supports compulsory sterilisation.",
+      "correction": "He explicitly rejects treating people like cattle and argues for voluntary family planning without coercion."
+    },
+    {
+      "claim": "The population and forest figures in the article are current facts.",
+      "correction": "They belong to an article published in 1994 and must be interpreted in that historical context."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Understanding the Text Q1-Q2 on the title and the Lusaka mirror.",
+    "Use Understanding the Text Q3 to organise depletion across fisheries, forests, grasslands and croplands.",
+    "Use Understanding the Text Q4 for the relationship among population growth, development and poverty.",
+    "Use Talking About the Text Q1-Q4 for enforcement, future generations, stewardship and overpopulation.",
+    "Conclude with Thinking About Language, Working with Words and Things to Do on Latin phrases, connotation, literal and figurative meanings, posters and environmental reporting."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The article is followed by Understanding the Text questions 1-4, Talking About the Text questions 1-4, a Latin-phrase language task, Working with Words I-II and two Things to Do activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

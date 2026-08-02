@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 14: Semiconductor Electronics",
+  "central_question": "How do semiconductor energy bands, charge carriers, doping and p–n junctions enable diodes to control and rectify electric current?",
+  "in_scope_units": [
+    "Introduction comparing vacuum-tube devices with compact, low-power and reliable solid-state semiconductor devices.",
+    "Classification of metals, semiconductors and insulators by conductivity, resistivity and energy-band structure.",
+    "Elemental and compound semiconductors, with focus on silicon and germanium.",
+    "Valence band, conduction band and energy gap in metals, insulators and semiconductors.",
+    "Intrinsic semiconductors, covalent bonding, thermal generation of electron–hole pairs, hole motion, current and recombination.",
+    "Extrinsic semiconductors, doping, donor and acceptor impurities, n-type and p-type materials, majority and minority carriers and impurity energy levels.",
+    "Formation of a p–n junction through diffusion and drift, depletion region and barrier potential.",
+    "Semiconductor diode under forward bias and reverse bias.",
+    "Diode V–I characteristics, threshold voltage, reverse saturation current, breakdown voltage and dynamic resistance.",
+    "Half-wave and full-wave rectification of alternating voltage.",
+    "Capacitor filtering of rectified voltage and the role of the RC time constant."
+  ],
+  "banned_topics": [
+    "Detailed transistor operation and amplifier configurations, which are mentioned historically but are not developed in the supplied chapter text.",
+    "Digital logic gates and Boolean algebra, which are outside the supplied chapter.",
+    "Advanced semiconductor quantum mechanics beyond the simplified energy-band and carrier model used here."
+  ],
+  "must_include_keywords": [
+    "solid-state electronics",
+    "resistivity",
+    "conductivity",
+    "valence band",
+    "conduction band",
+    "energy band gap",
+    "silicon",
+    "germanium",
+    "intrinsic semiconductor",
+    "covalent bond",
+    "electron–hole pair",
+    "hole current",
+    "recombination",
+    "extrinsic semiconductor",
+    "doping",
+    "donor impurity",
+    "acceptor impurity",
+    "n-type semiconductor",
+    "p-type semiconductor",
+    "majority carriers",
+    "minority carriers",
+    "mass-action law",
+    "p–n junction",
+    "diffusion current",
+    "drift current",
+    "depletion region",
+    "barrier potential",
+    "forward bias",
+    "reverse bias",
+    "minority carrier injection",
+    "threshold voltage",
+    "reverse saturation current",
+    "breakdown voltage",
+    "dynamic resistance",
+    "half-wave rectifier",
+    "full-wave rectifier",
+    "centre-tap transformer",
+    "capacitor filter",
+    "time constant"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An n-type semiconductor is negatively charged and a p-type semiconductor is positively charged.",
+      "correction": "Both materials remain electrically neutral overall; n-type and p-type identify their majority carriers."
+    },
+    {
+      "claim": "A hole is a separate positive elementary particle inserted into the crystal.",
+      "correction": "A hole is an electron vacancy in a covalent bond that behaves as an effective positive carrier."
+    },
+    {
+      "claim": "A p–n junction can be made by pressing separate p-type and n-type slabs together.",
+      "correction": "A proper junction requires continuous crystal contact at the atomic level and is formed within one semiconductor crystal."
+    },
+    {
+      "claim": "Reverse-biased diode current is exactly zero.",
+      "correction": "A small reverse saturation current flows because of minority carriers until breakdown."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 14.1 to relate the energy gaps of carbon, silicon and germanium to insulating or semiconducting behaviour.",
+    "Use NCERT Example 14.2 to calculate majority and minority carrier concentrations in arsenic-doped silicon.",
+    "Use NCERT Example 14.3 to explain why physically joining separate p-type and n-type slabs does not create a proper junction.",
+    "Use NCERT Example 14.4 to calculate forward and reverse diode resistance from the V–I characteristic.",
+    "Use NCERT Exercise 14.6 to compare the output frequencies of half-wave and full-wave rectifiers."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES are numbered 14.1 to 14.6 and cover carrier type, dopants, band gaps, junction formation, forward bias and rectifier frequency.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

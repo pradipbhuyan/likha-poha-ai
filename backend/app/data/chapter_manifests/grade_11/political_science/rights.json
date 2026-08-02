@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Rights",
+  "central_question": "What makes a claim a right, how do rights protect dignity and well-being, and what obligations do they create for the state and for citizens?",
+  "in_scope_units": [
+    "What Are Rights: entitlement, justified claims, dignity, expression, livelihood, education and well-being.",
+    "Where Do Rights Come From: natural rights, human rights, Kant, universality and expanding claims.",
+    "Legal Rights and the State: constitutional recognition, Fundamental Rights, state duties and limits on authority.",
+    "Kinds of Rights: political rights, civil liberties, economic rights and cultural rights.",
+    "Rights and Responsibilities: common goods, equal rights, conflicting claims, privacy, security and vigilance."
+  ],
+  "banned_topics": [
+    "Detailed negative and positive liberty and the harm principle, which belong to Freedom.",
+    "Detailed theories of justice and the veil of ignorance, which belong to Social Justice.",
+    "Detailed citizenship acquisition and refugee status, which belong to Citizenship."
+  ],
+  "must_include_keywords": [
+    "rights",
+    "entitlement",
+    "justified claim",
+    "dignity",
+    "self-respect",
+    "livelihood",
+    "freedom of expression",
+    "well-being",
+    "education",
+    "natural rights",
+    "inalienable",
+    "life",
+    "liberty",
+    "property",
+    "human rights",
+    "human dignity",
+    "Immanuel Kant",
+    "Universal Declaration of Human Rights",
+    "clean air",
+    "safe drinking water",
+    "legal rights",
+    "Bill of Rights",
+    "Fundamental Rights",
+    "untouchability",
+    "state obligation",
+    "judicial court",
+    "political rights",
+    "civil liberties",
+    "economic rights",
+    "cultural rights",
+    "mother tongue",
+    "common good",
+    "privacy",
+    "national security",
+    "legal counsel",
+    "responsibility"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Anything a person wants is automatically a right.",
+      "correction": "A right is a justified claim necessary for dignity or well-being and recognised as legitimate by society."
+    },
+    {
+      "claim": "Rights exist only when a state grants them.",
+      "correction": "Legal recognition makes rights enforceable, but their moral basis may precede state recognition."
+    },
+    {
+      "claim": "Political rights alone are enough for full democratic participation.",
+      "correction": "Basic material needs and economic rights affect whether people can meaningfully exercise political rights."
+    },
+    {
+      "claim": "Rights place duties only on government.",
+      "correction": "They also require citizens to respect others’ rights, protect common goods and balance conflicting claims."
+    },
+    {
+      "claim": "National security automatically justifies any restriction.",
+      "correction": "Citizens must examine necessity, imminent threat, due process and the danger of authoritarian misuse."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise Q1 on the meaning and basis of rights.",
+    "Use NCERT Exercise Q2 to examine universal human rights.",
+    "Use NCERT Exercise Q5 to analyse limits on state authority.",
+    "Use NCERT Exercise Q4 to classify political, economic and cultural rights.",
+    "Conclude with NCERT Exercise Q3 on emerging rights claims."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–5 on the meaning and basis of rights, universality, new claims, kinds of rights and limits on state authority.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

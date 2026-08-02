@@ -1,0 +1,68 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Challenges of Nation Building",
+  "central_question": "How did independent India preserve unity while responding democratically to Partition, princely-state integration and linguistic diversity?",
+  "in_scope_units": [
+    "Challenges for the new nation-state",
+    "Three challenges after Independence",
+    "Partition process and consequences",
+    "Secularism and minority citizenship",
+    "Integration of princely states",
+    "Cases of Junagadh, Hyderabad and Manipur",
+    "Reorganisation of states on linguistic lines"
+  ],
+  "banned_topics": [
+    "Detailed development planning after 1950",
+    "Congress electoral dominance in the first three elections",
+    "India’s Cold War foreign policy"
+  ],
+  "must_include_keywords": [
+    "nation-building",
+    "national unity",
+    "territorial integrity",
+    "democracy",
+    "development",
+    "Partition",
+    "two-nation theory",
+    "religious majorities",
+    "West Pakistan",
+    "East Pakistan",
+    "Punjab",
+    "Bengal",
+    "refugees",
+    "displacement",
+    "secularism",
+    "minority rights",
+    "princely states",
+    "Instrument of Accession",
+    "Sardar Patel",
+    "V. P. Menon",
+    "Junagadh",
+    "Hyderabad",
+    "Manipur",
+    "linguistic states",
+    "Potti Sriramulu",
+    "States Reorganisation Commission"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Partition automatically made India a Hindu state.",
+      "correction": "India rejected the two-nation theory as the basis of citizenship and committed itself to equal citizenship and protection of religious minorities."
+    },
+    {
+      "claim": "All princely states joined India voluntarily without conflict.",
+      "correction": "Most signed Instruments of Accession, but Junagadh, Hyderabad, Kashmir and Manipur involved distinct difficulties and political disputes."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 5: What are the three challenges that independent India faced after Independence?",
+    "NCERT Exercise 1: Which among the following statements about the partition is incorrect? (a) Partition of India was the outcome of the “two-nation theory.” (b) Punjab and Bengal were the two provinces divided on the basis of religion. (c) East Pakistan and West Pakistan were not contiguous. (d) The scheme of Partition included a plan for transfer of population across the border.",
+    "NCERT Exercise 6: It is said that the nation is to a large extent an “imagined community” held together by common beliefs, history, political aspirations and imaginations. Identify the features that make India a nation.",
+    "NCERT Exercise 4: Here are two opinions – Bismay: “The merger with the Indian State was an extension of democracy to the people of the Princely States.” Inderpreet: “I am not so sure, there was force being used. Democracy comes by creating consensus.” What is your own opinion in the light of accession of Princely States and the responses of the people in these parts?",
+    "NCERT Exercise 8: What was the task of the States Reorganisation Commission? What was its most salient recommendation?"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with NCERT Exercises 1–10 on Partition, secularism, princely-state integration and linguistic reorganisation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

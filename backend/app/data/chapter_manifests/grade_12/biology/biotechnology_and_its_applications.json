@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Biotechnology and its Applications",
+  "central_question": "How can biotechnology improve agriculture and medicine while requiring careful evaluation of safety, ethics, patents and biological ownership?",
+  "in_scope_units": [
+    "Biotechnological applications in agriculture, including tissue culture and genetically modified crops.",
+    "Totipotency, micropropagation, meristem culture, somatic hybridisation and somaclones.",
+    "Bt crops and RNA interference for pest resistance.",
+    "Medical applications including recombinant insulin, gene therapy and molecular diagnosis.",
+    "Uses of transgenic animals in research, disease models, products and safety testing.",
+    "Ethical regulation, GEAC, patents, traditional knowledge and biopiracy."
+  ],
+  "banned_topics": [
+    "Detailed restriction-enzyme, vector and bioreactor procedures from Biotechnology: Principles and Processes.",
+    "Full plant-breeding methods and Mendelian genetics outside the applications described.",
+    "Current legal or regulatory updates beyond the NCERT chapter."
+  ],
+  "must_include_keywords": [
+    "tissue culture",
+    "explant",
+    "totipotency",
+    "micropropagation",
+    "somaclones",
+    "meristem culture",
+    "virus-free plants",
+    "protoplast",
+    "somatic hybridisation",
+    "pomato",
+    "genetically modified organism",
+    "GMO",
+    "Bt toxin",
+    "Bacillus thuringiensis",
+    "protoxin",
+    "alkaline pH",
+    "cryIAc",
+    "cryIIAb",
+    "cryIAb",
+    "RNA interference",
+    "RNAi",
+    "double-stranded RNA",
+    "Meloidogyne incognita",
+    "recombinant insulin",
+    "A chain",
+    "B chain",
+    "C peptide",
+    "Eli Lilly",
+    "gene therapy",
+    "ADA deficiency",
+    "retroviral vector",
+    "PCR",
+    "ELISA",
+    "molecular diagnosis",
+    "transgenic animals",
+    "Rosie",
+    "alpha-lactalbumin",
+    "vaccine safety",
+    "GEAC",
+    "patent",
+    "Basmati",
+    "biopiracy",
+    "traditional knowledge"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All plants produced by tissue culture are genetically different hybrids.",
+      "correction": "Micropropagated plants are generally genetically identical somaclones of the original plant."
+    },
+    {
+      "claim": "Bt toxin is active inside Bacillus thuringiensis and should kill the bacterium.",
+      "correction": "It is produced as an inactive protoxin and becomes active in the alkaline insect gut."
+    },
+    {
+      "claim": "RNA interference kills a nematode by producing a broad chemical pesticide.",
+      "correction": "Complementary double-stranded RNA silences a specific nematode mRNA and blocks expression of an essential gene."
+    },
+    {
+      "claim": "Mature human insulin contains the C peptide.",
+      "correction": "C peptide is present in proinsulin and is removed during maturation; mature insulin contains A and B chains linked by disulphide bonds."
+    },
+    {
+      "claim": "Biopiracy means any scientific study of a biological resource.",
+      "correction": "It refers to unauthorised use of bioresources or traditional knowledge without proper permission or compensatory benefit sharing."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercises 1-3 on meristem culture, micropropagation and tissue-culture medium.",
+    "Use NCERT Exercises 4 and 7 to explain Bt protoxin and Cry proteins.",
+    "Use NCERT Exercise 8 to explain ADA-deficiency gene therapy.",
+    "Use NCERT Exercise 6 to compare advantages and possible concerns of GM crops.",
+    "Use the chapter examples of Rosie, Basmati and biopiracy to discuss transgenic animals and ethics."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 13 and cover tissue culture, Bt crops, GM crops, gene therapy, transgenic bacteria and protein pharmaceuticals.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

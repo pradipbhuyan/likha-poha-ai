@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Rural Development",
+  "central_question": "How can rural India raise productivity, expand livelihoods and improve living conditions through credit, marketing, diversification and sustainable farming?",
+  "in_scope_units": [
+    "Introduction to the importance of rural development for India’s overall progress.",
+    "Meaning and major dimensions of rural development, including human resources, land reform, infrastructure and poverty alleviation.",
+    "Rural credit, institutional banking, NABARD, cooperatives, regional rural banks, commercial banks and self-help groups.",
+    "Agricultural marketing, regulated markets, cooperatives, storage, transport and alternative marketing channels.",
+    "Diversification into animal husbandry, fisheries, horticulture, non-farm activities and information technology.",
+    "Sustainable development through organic farming, including benefits, limitations and transition problems.",
+    "Conclusion on integrated rural transformation."
+  ],
+  "banned_topics": [
+    "Detailed classification of workers and unemployment, which belongs to Employment.",
+    "The Green Revolution’s planning-era history, which belongs to Indian Economy 1950–1990.",
+    "General environmental carrying capacity and pollution policy, which belong to Environment and Sustainable Development."
+  ],
+  "must_include_keywords": [
+    "rural development",
+    "human resources",
+    "female literacy",
+    "public health",
+    "land reform",
+    "rural infrastructure",
+    "productive employment",
+    "rural credit",
+    "moneylender",
+    "debt trap",
+    "social banking",
+    "multi-agency approach",
+    "NABARD",
+    "commercial banks",
+    "regional rural banks",
+    "cooperatives",
+    "land development banks",
+    "Self-Help Groups",
+    "micro-credit",
+    "Kudumbashree",
+    "Jan-Dhan Yojana",
+    "agricultural marketing",
+    "regulated markets",
+    "cooperative marketing",
+    "storage",
+    "transport",
+    "diversification",
+    "animal husbandry",
+    "dairying",
+    "fisheries",
+    "horticulture",
+    "non-farm employment",
+    "information technology",
+    "organic farming",
+    "sustainable development",
+    "food security",
+    "certification"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Rural development means only increasing crop production.",
+      "correction": "It is comprehensive and includes human development, infrastructure, land reform, employment, credit, marketing and poverty reduction."
+    },
+    {
+      "claim": "Formal rural credit has completely replaced moneylenders.",
+      "correction": "Institutional credit expanded, but many rural households still face inadequate access, collateral barriers and informal borrowing."
+    },
+    {
+      "claim": "Self-help groups provide only grants.",
+      "correction": "They mobilise small savings and provide repayable micro-credit to members at reasonable interest."
+    },
+    {
+      "claim": "Diversification means cultivating more varieties of the same crop.",
+      "correction": "The chapter uses it for shifting towards allied and non-farm activities as well as a wider production base."
+    },
+    {
+      "claim": "Organic farming has only advantages and no transition difficulties.",
+      "correction": "It offers ecological and market benefits but faces lower initial yields, certification, marketing and awareness problems."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercises 1–5 to define rural development and explain credit, rural banking and micro-credit.",
+    "Use Exercises 6–10 to analyse agricultural marketing problems and government measures.",
+    "Use Exercises 11–14 to explain diversification, animal husbandry, fisheries, horticulture and information technology.",
+    "Use Exercises 15–17 to evaluate organic farming, its benefits, limitations and initial problems.",
+    "Use Exercise 18 to assess the role of Jan-Dhan Yojana in rural development."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter’s EXERCISES contain Questions 1–18, followed by references and classroom activities embedded throughout the chapter.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 12",
+  "subject": "Business Studies",
+  "chapter": "Financial Management",
+  "central_question": "How should a business procure, invest and distribute finance to maximise shareholders’ wealth while managing cost, liquidity and risk?",
+  "in_scope_units": [
+    "Business finance and financial management",
+    "Objectives and major decisions",
+    "Financial planning and capital structure",
+    "Fixed capital",
+    "Working capital"
+  ],
+  "banned_topics": [
+    "Detailed accounting statements",
+    "Financial markets",
+    "Marketing mix",
+    "Staffing"
+  ],
+  "must_include_keywords": [
+    "business finance",
+    "financial management",
+    "wealth maximisation",
+    "market price of equity shares",
+    "investment decision",
+    "capital budgeting",
+    "working capital decision",
+    "cash flows",
+    "rate of return",
+    "financing decision",
+    "shareholders funds",
+    "borrowed funds",
+    "cost of debt",
+    "financial risk",
+    "floatation cost",
+    "dividend decision",
+    "retained earnings",
+    "financial planning",
+    "capital structure",
+    "debt-equity mix",
+    "trading on equity",
+    "interest coverage ratio",
+    "debt service coverage ratio",
+    "return on investment",
+    "fixed capital",
+    "current assets",
+    "current liabilities",
+    "working capital",
+    "operating cycle",
+    "liquidity",
+    "profitability",
+    "credit policy",
+    "business cycle",
+    "inflation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Financial management aims only at profit maximisation.",
+      "correction": "Its primary objective is wealth maximisation."
+    },
+    {
+      "claim": "Debt is always preferable.",
+      "correction": "Debt can lower cost but creates fixed commitments and financial risk."
+    },
+    {
+      "claim": "More working capital is always better.",
+      "correction": "Excess lowers profitability; shortage threatens liquidity."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Short Answer Type 3",
+    "NCERT Short Answer Type 4",
+    "NCERT Very Short Answer Type 3",
+    "NCERT Long Answer Type 3",
+    "NCERT Long Answer Type 1"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Exercises contain Very Short Answer questions 1-5, Short Answer questions 1-7 and Long Answer questions 1-6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

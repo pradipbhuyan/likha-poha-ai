@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Biotechnology: Principles and Processes",
+  "central_question": "What principles, molecular tools and ordered processes allow scientists to construct, clone, express and recover recombinant DNA products?",
+  "in_scope_units": [
+    "Definition and core principles of modern biotechnology: genetic engineering and bioprocess engineering.",
+    "Construction of recombinant DNA and the roles of plasmids, restriction enzymes and ligase.",
+    "Restriction enzymes, palindromic sites, sticky ends and gel electrophoresis.",
+    "Cloning vectors, origin of replication, selectable markers, cloning sites and insertional inactivation.",
+    "Plant and animal vectors and methods for making host cells competent.",
+    "Isolation, cutting, amplification, ligation and insertion of recombinant DNA.",
+    "Expression of foreign genes, bioreactors and downstream processing."
+  ],
+  "banned_topics": [
+    "Detailed agricultural and medical applications that belong to Biotechnology and its Applications.",
+    "Detailed Mendelian inheritance and gene-expression regulation outside the recombinant-DNA process.",
+    "Unspecified laboratory protocols or reagent concentrations not given in the chapter."
+  ],
+  "must_include_keywords": [
+    "biotechnology",
+    "genetic engineering",
+    "bioprocess engineering",
+    "recombinant DNA",
+    "gene cloning",
+    "gene transfer",
+    "origin of replication",
+    "plasmid",
+    "vector",
+    "restriction enzyme",
+    "restriction endonuclease",
+    "exonuclease",
+    "Hind II",
+    "EcoRI",
+    "recognition sequence",
+    "palindromic sequence",
+    "sticky ends",
+    "DNA ligase",
+    "gel electrophoresis",
+    "agarose",
+    "ethidium bromide",
+    "elution",
+    "selectable marker",
+    "pBR322",
+    "insertional inactivation",
+    "beta-galactosidase",
+    "Agrobacterium tumefaciens",
+    "Ti plasmid",
+    "retrovirus",
+    "competent cells",
+    "calcium ions",
+    "heat shock",
+    "microinjection",
+    "biolistics",
+    "gene gun",
+    "lysozyme",
+    "cellulase",
+    "chitinase",
+    "ribonuclease",
+    "protease",
+    "PCR",
+    "Taq polymerase",
+    "bioreactor",
+    "stirred-tank bioreactor",
+    "downstream processing"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A foreign DNA fragment automatically multiplies after entering any cell.",
+      "correction": "It must be linked to an origin of replication or integrated into replicating host DNA to be inherited and amplified."
+    },
+    {
+      "claim": "Restriction enzymes cut DNA at random.",
+      "correction": "Restriction endonucleases recognise specific sequences, often palindromic, and cut at defined positions."
+    },
+    {
+      "claim": "Larger DNA fragments move farther in agarose gel.",
+      "correction": "Smaller negatively charged DNA fragments move farther through the gel toward the anode."
+    },
+    {
+      "claim": "Every transformed colony is recombinant.",
+      "correction": "Transformation shows DNA uptake; selectable markers and insertional inactivation are used to distinguish recombinants from non-recombinants."
+    },
+    {
+      "claim": "PCR uses ordinary DNA polymerase that is destroyed in every denaturation step.",
+      "correction": "PCR uses a thermostable polymerase such as that from Thermus aquaticus so repeated high-temperature cycles are possible."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise 2 to diagram restriction-enzyme action on a recognition site.",
+    "Use NCERT Exercise 7 to construct and verify palindromic DNA sequences.",
+    "Use NCERT Exercise 9 to explain reporter enzymes and insertional inactivation.",
+    "Use NCERT Exercise 10 to define origin of replication, bioreactors and downstream processing.",
+    "Finish with NCERT Exercise 11 to explain PCR, restriction enzymes and chitinase."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 12 and cover recombinant proteins, restriction enzymes, palindromes, vectors, PCR, bioreactors and downstream processing.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

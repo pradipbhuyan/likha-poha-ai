@@ -1,0 +1,63 @@
+{
+  "manifest": {
+    "grade": "Grade 12",
+    "subject": "Hindi",
+    "chapter": "Jujh",
+    "central_question": "How does the autobiographical narrative present education as a hard-won struggle against poverty, labour and family authority?",
+    "in_scope_units": [
+      "Desire for school",
+      "Mother and Desai",
+      "Confrontation with Dada",
+      "Return under harsh conditions",
+      "Meaning of struggle and narrative style"
+    ],
+    "banned_topics": [
+      "Content from adjacent chapters not present in the supplied source.",
+      "Biographical or historical claims not stated in the supplied source.",
+      "Invented incidents, quotations, dates or interpretations unsupported by the text."
+    ],
+    "must_include_keywords": [
+      "आनंद यादव",
+      "जूझ",
+      "पाठशाला",
+      "दादा",
+      "माँ",
+      "दत्ता जी राव देसाई",
+      "खेती",
+      "कोल्हू",
+      "गुड़",
+      "पाँचवीं",
+      "परीक्षा",
+      "श्रम",
+      "डर",
+      "शिक्षा",
+      "संघर्ष",
+      "आत्मकथात्मक"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The narrator wants to avoid all labour.",
+        "correction": "He continues working but resists the complete sacrifice of education."
+      },
+      {
+        "claim": "Once Desai intervenes, the struggle ends.",
+        "correction": "The narrator still faces farm duties, lost time, humiliation and exhaustion."
+      }
+    ],
+    "recommended_example_progression": [
+      "Motivation",
+      "Strategic support",
+      "Partial victory",
+      "School return",
+      "Title and theme"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter questions printed in the supplied NCERT source; answers must be supported by the text."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Jujh\n\n## What you will learn\nUnderstand the narrator’s desire for education and the agricultural hardship blocking it.\n\n## Simple explanation\nThe young narrator longs to return to school but fears his father, who has pulled him into farm labour. He believes lifelong farming will keep him trapped while education may open a different future.\n\n## Step-by-step breakdown\n- **Longing**: His mind “तड़पता” to attend school.\n- **Fear**: He cannot directly tell Dada that he wants to study.\n- **Farm burden**: Agricultural work consumes his time.\n- **Hope**: Education is linked with employment and independent livelihood.\n\n## Worked example\nQuestion: Why does the narrator see education as necessary?\n\nAnswer:\n- Textual evidence: He believes endless farm work will yield little, whereas study may lead to a job and some economic independence.\n- Interpretation: Education represents escape from inherited hardship, not mere personal preference.\n- Conclusion: The opening establishes education as a struggle for dignity and possibility.\n\n## Common mistake\nDo not describe the narrator as disliking all work; he opposes being denied education and confined to labour.\n\n## Quick check question\nQuestion: What prevents him from speaking directly to Dada?\nAnswer: Fear that Dada will beat him severely.\nExplanation: This fear shows the unequal power inside the household.\n\n## Summary\n- The narrator desires schooling intensely.\n- Poverty and parental control obstruct him.\n- Education symbolises a new future.\n",
+    "Core explanation": "# Core explanation: mother and Datta Ji Rao\n\n## What you will learn\nTrace how the narrator and his mother seek outside help.\n\n## Simple explanation\nThe mother understands his longing but has little power before Dada, so they approach Datta Ji Rao Desai and secretly explain the situation.\n\n## Step-by-step breakdown\n- **Mother’s support**: She agrees to go despite sadness and fear.\n- **Narrator’s plan**: He explains that farm tasks are over and examination preparation is still possible.\n- **Secrecy**: They ask Desai not to reveal that they complained.\n- **Authority**: Desai’s social position gives him power to confront Dada.\n\n## Worked example\nQuestion: What role does the mother play in the narrator’s struggle?\n\nAnswer:\n- Textual evidence: She listens to his desire, accompanies him to Desai and risks Dada’s anger even though she cannot oppose him directly.\n- Interpretation: Her support is emotionally strong but socially constrained.\n- Conclusion: The mother becomes the narrator’s first ally in the struggle for education.\n\n## Common mistake\nDo not call her passive; she acts within the narrow power available to her.\n\n## Quick check question\nQuestion: Why do they approach Datta Ji Rao?\nAnswer: Because he can persuade or command Dada to send the boy back to school.\nExplanation: Outside authority becomes necessary when family authority blocks education.\n\n## Summary\n- The mother shares the boy’s pain.\n- They seek strategic help.\n- Social hierarchy is used to reopen school access.\n",
+    "Worked examples": "# Worked examples: confrontation and conditional permission\n\n## What you will learn\nAnalyse the meeting where Desai questions Dada and orders that the boy be allowed to study.\n\n## Simple explanation\nDesai exposes Dada’s neglect and rejects his excuses, but the permission finally comes with heavy conditions of farm work before and after school.\n\n## Step-by-step breakdown\n- **Interrogation**: Desai asks why the boy no longer attends school.\n- **Dada’s accusations**: He claims the boy has bad habits and avoids work.\n- **Boy’s reply**: The narrator answers clearly and defends himself.\n- **Decision**: Desai orders school attendance.\n- **Conditions**: Dada demands field work before school, after school and absence when farm work increases.\n\n## Worked example\nQuestion: Why is the permission to study only a partial victory?\n\nAnswer:\n- Textual evidence: The narrator may return to school, but he must continue substantial farm labour and may miss class whenever Dada decides work is more urgent.\n- Interpretation: The oppressive structure is weakened but not removed.\n- Conclusion: His education begins under continuous physical and time pressure.\n\n## Common mistake\nDo not describe Desai’s order as solving every problem.\n\n## Quick check question\nQuestion: What does Dada demand in return for school attendance?\nAnswer: Field work in the morning and evening, and absence from school when farm work is heavy.\nExplanation: The conditions show that labour still has priority in Dada’s thinking.\n\n## Summary\n- Desai challenges Dada.\n- The narrator speaks courageously.\n- Schooling is restored under harsh conditions.\n",
+    "Exam-style problems": "# Exam-style problems: return to school and struggle\n\n## What you will learn\nUnderstand the narrator’s emotional and practical difficulties after returning.\n\n## Simple explanation\nHe re-enters the fifth class after losing a year, finds former classmates ahead and must combine study with exhausting work, yet school still feels better than the farm grind.\n\n## Step-by-step breakdown\n- **Lost year**: His record bears the note that he failed fifth, though he had been withdrawn.\n- **Isolation**: Many classmates have moved ahead.\n- **Routine**: He works in fields and attends school despite heat, hunger and fatigue.\n- **Determination**: Even punishment at school feels easier than continuous agricultural labour.\n\n## Worked example\nQuestion: Why does the narrator initially feel diminished on returning to class?\n\nAnswer:\n- Textual evidence: Former classmates have advanced, while he must sit with younger boys whom he once considered less capable.\n- Interpretation: The lost year becomes a visible social and emotional wound.\n- Conclusion: Returning to school demands humility as well as persistence.\n\n## Common mistake\nDo not overlook the psychological cost of interrupted education.\n\n## Quick check question\nQuestion: What makes school preferable to field labour for him?\nAnswer: It gives him a path toward learning and a different future, even when it includes hardship and punishment.\nExplanation: The classroom’s shade and purpose contrast with the relentless farm cycle.\n\n## Summary\n- Return brings joy and shame together.\n- Interrupted schooling affects identity.\n- Persistence overcomes humiliation.\n",
+    "Revision and recap": "# Revision and recap: meaning of “Jujh”\n\n## What you will learn\nRevise the autobiographical voice, social setting and central idea of struggle.\n\n## Simple explanation\nThe title means sustained struggle. The narrator fights poverty, paternal domination, time pressure, educational loss and his own moments of discouragement.\n\n## Step-by-step breakdown\n- **Autobiographical voice**: First-person narration creates immediacy.\n- **Rural detail**: Sugarcane, jaggery, irrigation and seasonal tasks ground the struggle.\n- **Language**: Dialogue preserves social hierarchy and local speech.\n- **Allies**: Mother, Desai and later teachers help at key stages.\n- **Central value**: Determination turns education into an achieved right rather than an easy opportunity.\n\n## Worked example\nQuestion: Why is “Jujh” an appropriate title?\n\nAnswer:\n- Textual evidence: The narrator must repeatedly struggle against labour demands, fear, humiliation and lost time simply to continue studying.\n- Interpretation: The conflict is prolonged and requires courage, strategy and endurance.\n- Conclusion: The title captures education as a hard-won battle for self-development.\n\n## Common mistake\nDo not reduce the struggle to one argument with Dada; it continues throughout school life.\n\n## Quick check question\nQuestion: What is the narrator’s strongest quality?\nAnswer: Persistent determination to study.\nExplanation: He plans, seeks help, accepts difficult conditions and continues despite setbacks.\n\n## Summary\n- The narrative is a struggle memoir.\n- Rural reality is concrete and detailed.\n- Education is won through persistence.\n"
+  }
+}

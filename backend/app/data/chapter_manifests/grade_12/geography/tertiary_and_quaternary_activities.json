@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Tertiary and Quaternary Activities",
+  "central_question": "How do service, knowledge and decision-making activities organise modern economies and connect people, markets and information?",
+  "in_scope_units": [
+    "Meaning and economic role of tertiary activities.",
+    "Trade and commerce, including rural and urban marketing centres, retail and wholesale trade.",
+    "Transport, distance, networks, accessibility and route factors.",
+    "Communication and telecommunications.",
+    "Levels and types of services and employment in the service sector.",
+    "Tourism, tourist regions and attractions.",
+    "Medical tourism and outsourcing of medical services.",
+    "Quaternary activities and the knowledge sector.",
+    "Quinary activities and high-level decision making.",
+    "Outsourcing, offshoring, BPO, KPO and home shoring.",
+    "The digital divide."
+  ],
+  "banned_topics": [
+    "Detailed manufacturing systems and industrial classification.",
+    "Detailed global road, railway, waterway and airway routes, treated in Transport and Communication."
+  ],
+  "must_include_keywords": [
+    "tertiary activities",
+    "service sector",
+    "skilled labour",
+    "production of services",
+    "exchange",
+    "trade",
+    "rural marketing centres",
+    "urban marketing centres",
+    "periodic markets",
+    "retail trading",
+    "wholesale trading",
+    "transport",
+    "kilometre distance",
+    "time distance",
+    "cost distance",
+    "isochrone",
+    "network",
+    "nodes",
+    "links",
+    "communication",
+    "telecommunications",
+    "mass media",
+    "services",
+    "CBD",
+    "dabbawala",
+    "tourism",
+    "medical tourism",
+    "quaternary activities",
+    "knowledge sector",
+    "quinary activities",
+    "gold-collar professions",
+    "outsourcing",
+    "offshoring",
+    "BPO",
+    "KPO",
+    "home shoring",
+    "digital divide"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Tertiary activities produce no economic output because they make no tangible goods.",
+      "correction": "They produce commercial services whose output is measured indirectly through wages and salaries and which support production, exchange and consumption."
+    },
+    {
+      "claim": "Quaternary and quinary activities are identical.",
+      "correction": "Quaternary work centres on information and specialised knowledge, while quinary work involves the highest-level decision makers and policy formulators."
+    },
+    {
+      "claim": "Digital divide exists only between countries.",
+      "correction": "The chapter also identifies divides within countries between well-connected metropolitan areas and peripheral rural regions."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2(i) on retail trading.",
+    "NCERT Exercise 3(ii) on transport and communication services.",
+    "NCERT Exercise 2(ii) on quaternary services.",
+    "NCERT Exercise 1(iv) on quinary activities.",
+    "NCERT Exercise 2(iv) on the digital divide."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–3 and two Project/Activity tasks on BPO activities and documents required for foreign travel.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

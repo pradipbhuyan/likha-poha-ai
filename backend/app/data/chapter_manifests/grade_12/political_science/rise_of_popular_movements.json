@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Rise of Popular Movements",
+  "central_question": "How did coalition politics, caste-based representation, religious mobilisation, economic reform and a new policy consensus reshape Indian politics after 1989?",
+  "in_scope_units": [
+    "Context of the 1990s: five developments that transformed national politics.",
+    "Era of Coalitions: decline of Congress dominance and rise of multi-party governments.",
+    "Alliance politics: National Front, United Front, NDA and UPA arrangements.",
+    "Political Rise of Other Backward Classes: Mandal politics and new representation.",
+    "The Mandal Commission: purpose, recommendations, implementation and judicial review.",
+    "Political fallouts: BAMCEF, BSP and Dalit–Bahujan mobilisation.",
+    "Communalism, Secularism, Democracy: rise of BJP, Hindutva and the Shah Bano controversy.",
+    "Ayodhya issue: legal, political and constitutional resolution.",
+    "Emergence of a new consensus: elections from 2004 to 2019 and broad areas of agreement.",
+    "Growing consensus: economic policy, backward caste claims, regional parties and pragmatic alliances."
+  ],
+  "banned_topics": [
+    "Detailed case studies of Narmada Bachao Andolan, Chipko or farmers’ movements, because they are not present in the supplied chapter text.",
+    "Detailed analysis of the 1975 Emergency, which belongs to an earlier chapter.",
+    "Regional autonomy conflicts in Punjab, Assam, Mizoram and Kashmir, which belong to the chapter on Regional Aspirations."
+  ],
+  "must_include_keywords": [
+    "1989 election",
+    "Congress system",
+    "Mandal issue",
+    "new economic reforms",
+    "Ram Janmabhoomi",
+    "Rajiv Gandhi",
+    "Narasimha Rao",
+    "coalition politics",
+    "National Front",
+    "United Front",
+    "NDA",
+    "UPA",
+    "regional parties",
+    "OBC",
+    "Mandal Commission",
+    "B. P. Mandal",
+    "27 per cent reservation",
+    "Indira Sawhney case",
+    "BAMCEF",
+    "Bahujan Samaj Party",
+    "Kanshi Ram",
+    "BJP",
+    "Hindutva",
+    "Shah Bano case",
+    "Ayodhya issue",
+    "Supreme Court verdict 2019",
+    "Congress decline",
+    "BJP rise",
+    "new consensus",
+    "economic policies",
+    "backward caste representation",
+    "State-level parties",
+    "pragmatic alliances"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The 1989 election immediately replaced Congress dominance with another single-party dominant system.",
+      "correction": "No single party replaced Congress; the result began a multi-party and coalition era in which regional parties became crucial."
+    },
+    {
+      "claim": "The Mandal Commission dealt only with electoral reservations.",
+      "correction": "It investigated social and educational backwardness and recommended measures including reservation in education and government employment, as well as reforms such as land reform."
+    },
+    {
+      "claim": "Coalition politics ended completely after the BJP won majorities in 2014 and 2019.",
+      "correction": "The chapter says the trend changed, but coalition recognition remained relevant and the BJP still formed NDA governments with partners."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 3 to identify the main issues in politics after 1989.",
+    "Use NCERT Exercise 4 to evaluate whether coalitions were based less on ideology and more on power sharing.",
+    "Use NCERT Exercise 5 to trace the rise of BJP after the Emergency.",
+    "Use NCERT Exercise 6 to assess the continuing influence of Congress despite decline.",
+    "Use NCERT Exercise 8 to analyse the challenge of accommodating and aggregating diverse interests."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter ends with an EXERCISES section containing Questions 1–8, followed by a LET US DO IT TOGETHER activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Human Health and Disease",
+  "central_question": "How do pathogens, immune responses, cancer, HIV and substance abuse affect human health, and how can their risks be prevented or controlled?",
+  "in_scope_units": [
+    "Meaning of health, determinants of health and infectious versus non-infectious disease.",
+    "Common bacterial, viral, protozoan, helminthic and fungal diseases in humans and their prevention.",
+    "Innate and acquired immunity, antibodies, lymphocytes and immune memory.",
+    "Active and passive immunity, vaccination, allergy, autoimmunity and lymphoid organs.",
+    "HIV transmission, replication, immune deficiency, diagnosis and prevention of AIDS.",
+    "Cancer, malignant transformation, metastasis, detection and treatment.",
+    "Opioids, cannabinoids, coca alkaloids, alcohol and tobacco abuse, dependence, effects and prevention."
+  ],
+  "banned_topics": [
+    "Detailed microbial industrial applications from Microbes in Human Welfare.",
+    "Detailed recombinant DNA tools and vaccine manufacturing processes from biotechnology chapters.",
+    "Complete pharmacology or clinical treatment protocols beyond the NCERT chapter."
+  ],
+  "must_include_keywords": [
+    "health",
+    "pathogen",
+    "Salmonella typhi",
+    "Widal test",
+    "pneumonia",
+    "rhinovirus",
+    "Plasmodium",
+    "haemozoin",
+    "female Anopheles",
+    "Entamoeba histolytica",
+    "Ascaris",
+    "Wuchereria",
+    "ringworm",
+    "innate immunity",
+    "physical barriers",
+    "physiological barriers",
+    "cellular barriers",
+    "cytokine barriers",
+    "interferons",
+    "acquired immunity",
+    "primary response",
+    "secondary response",
+    "B-lymphocytes",
+    "T-lymphocytes",
+    "antibody",
+    "humoral immunity",
+    "cell-mediated immunity",
+    "active immunity",
+    "passive immunity",
+    "vaccination",
+    "allergy",
+    "IgE",
+    "autoimmune disease",
+    "MALT",
+    "HIV",
+    "retrovirus",
+    "helper T-lymphocytes",
+    "ELISA",
+    "cancer",
+    "metastasis",
+    "carcinogens",
+    "opioids",
+    "cannabinoids",
+    "cocaine",
+    "adolescence",
+    "addiction",
+    "withdrawal syndrome"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Health means only the absence of disease.",
+      "correction": "Health is a state of complete physical, mental and social well-being, influenced by genetic factors, infections and lifestyle."
+    },
+    {
+      "claim": "Antibiotics can cure common cold and all other infections.",
+      "correction": "Common cold is caused by rhinoviruses; antibiotics act against susceptible bacteria, not viruses."
+    },
+    {
+      "claim": "Acquired immunity is non-specific and has no memory.",
+      "correction": "Acquired immunity is pathogen-specific and is characterised by memory, producing a stronger secondary response."
+    },
+    {
+      "claim": "HIV spreads through ordinary social contact or mosquito bites.",
+      "correction": "The chapter lists sexual contact, contaminated blood, shared infected needles and mother-to-child transmission; casual contact and mosquito transmission are not listed routes."
+    },
+    {
+      "claim": "Every tumour is malignant and metastatic.",
+      "correction": "Benign tumours remain localised, while malignant tumours invade tissues and may spread through metastasis."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 3 to compare transmission of amoebiasis, malaria, ascariasis and pneumonia.",
+    "Use NCERT Exercise 8 to differentiate innate/acquired and active/passive immunity.",
+    "Use NCERT Exercises 10-11 to trace HIV transmission and immune-system damage.",
+    "Use NCERT Exercises 12-13 to distinguish cancer cells and explain metastasis.",
+    "Use NCERT Exercises 14-17 to analyse harmful effects, peer influence, dependence and prevention of drug and alcohol abuse."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 17 and cover public health, transmission, immunity, AIDS, cancer and substance abuse.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

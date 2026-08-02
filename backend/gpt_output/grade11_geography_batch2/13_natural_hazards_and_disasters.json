@@ -1,0 +1,91 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Natural Hazards and Disasters",
+    "central_question": "What is the atmosphere made of, how is it vertically organised, and why do its gases, water vapour, dust, and layers matter for weather and life?",
+    "in_scope_units": [
+      "Importance and general character of the atmosphere.",
+      "Composition of atmospheric gases and their changing proportions with altitude.",
+      "Meteorological roles of carbon dioxide, ozone, and water vapour.",
+      "Sources and functions of atmospheric dust particles.",
+      "Vertical structure: troposphere, tropopause, stratosphere, mesosphere, mesopause, ionosphere or thermosphere, and exosphere.",
+      "Elements of weather and climate."
+    ],
+    "banned_topics": [
+      "Hazard-management policy",
+      "Earthquake and tsunami causes",
+      "Detailed tropical-cyclone structure",
+      "Köppen climate classification"
+    ],
+    "must_include_keywords": [
+      "atmosphere",
+      "nitrogen",
+      "oxygen",
+      "argon",
+      "carbon dioxide",
+      "greenhouse effect",
+      "ozone",
+      "ultraviolet radiation",
+      "water vapour",
+      "dust particles",
+      "sea salt",
+      "pollen",
+      "ash",
+      "smoke",
+      "hygroscopic nuclei",
+      "density",
+      "altitude",
+      "troposphere",
+      "tropopause",
+      "stratosphere",
+      "ozone layer",
+      "mesosphere",
+      "mesopause",
+      "ionosphere",
+      "ions",
+      "radio waves",
+      "thermosphere",
+      "exosphere",
+      "temperature",
+      "pressure",
+      "winds",
+      "humidity",
+      "clouds",
+      "precipitation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Oxygen is the largest component of the atmosphere.",
+        "correction": "Nitrogen constitutes the largest proportion."
+      },
+      {
+        "claim": "Carbon dioxide mainly blocks incoming solar radiation.",
+        "correction": "It is comparatively transparent to incoming solar radiation but absorbs outgoing terrestrial radiation."
+      },
+      {
+        "claim": "Weather occurs mainly in the stratosphere.",
+        "correction": "Weather changes occur in the troposphere, which contains most water vapour and dust."
+      },
+      {
+        "claim": "The ozone layer and ionosphere perform the same function.",
+        "correction": "Stratospheric ozone absorbs harmful ultraviolet radiation, while ionised particles in the ionosphere reflect radio waves."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 1(i): identify the atmosphere’s major gas.",
+      "NCERT Exercise 1(v): explain the radiative role of carbon dioxide.",
+      "NCERT Exercise 2(i): define atmosphere.",
+      "NCERT Exercise 2(iv): explain why the troposphere is most important.",
+      "NCERT Exercise 3(ii): construct and describe a labelled vertical profile."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1(i–v), 2(i–iv), and 3(i–ii)."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Natural Hazards and Disasters\n\n## What you will learn\nYou will define the atmosphere and identify its major gaseous components. You will understand why the atmosphere is essential to life.\n\n## Simple explanation\nThe atmosphere is the envelope of gases surrounding the earth. Its mass is concentrated near the surface, where living organisms breathe and weather processes operate.\n\n## Step-by-step breakdown\n- **Atmospheric envelope**: Air surrounds the earth and is part of the earth’s mass.\n- **Near-surface concentration**: Most atmospheric mass lies within a relatively low height above the surface.\n- **Major gases**: Nitrogen is most abundant, followed by oxygen, with smaller amounts of argon, carbon dioxide, and other gases.\n- **Life support**: Oxygen supports animals and humans, while carbon dioxide is used by plants.\n- **Variable components**: Water vapour and dust vary strongly across place and height.\n\n## Worked example\nQuestion: Which gas constitutes the major portion of the atmosphere in NCERT Exercise 1(i)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1(i)\", \"extract_text\": \"Which one of the following gases constitutes the major portion of the atmosphere?\\n(a) Oxygen\\n(b) Nitrogen\\n(c) Argon\\n(d) Carbon dioxide\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The composition table and discussion identify nitrogen as the largest component.\n- Oxygen is biologically crucial but is not the most abundant gas.\n- Final answer: The correct answer is nitrogen.\n\n## Common mistake\nDo not confuse importance to respiration with percentage abundance.\n\n## Quick check question\nQuestion: What is the atmosphere?\nAnswer: The gaseous envelope surrounding the earth.\nExplanation: It is a mixture of gases, water vapour, and dust particles extending around the planet.\n\n## Summary\n- The atmosphere is essential to life.\n- Nitrogen is its largest gaseous component.\n- Composition changes with height and location.",
+    "Core explanation": "# Core explanation: Natural Hazards and Disasters\n\n## What you will learn\nYou will explain the special roles of carbon dioxide, ozone, and water vapour. You will relate atmospheric composition to radiation and temperature.\n\n## Simple explanation\nSome gases occur in small amounts but have major environmental effects because they absorb particular wavelengths or influence heat and moisture.\n\n## Step-by-step breakdown\n- **Carbon dioxide**: It lets much incoming solar radiation pass but absorbs and re-radiates part of outgoing terrestrial radiation.\n- **Greenhouse effect**: This radiative property helps warm the lower atmosphere.\n- **Rising concentration**: Burning fossil fuels has increased carbon dioxide in recent decades.\n- **Ozone**: Concentrated mainly between 10 and 50 km, it absorbs harmful ultraviolet radiation.\n- **Water vapour**: It varies from warm wet to cold dry areas, decreases with altitude, absorbs radiation, and contributes to atmospheric stability and instability.\n\n## Worked example\nQuestion: Which gas fits the description in NCERT Exercise 1(v): transparent to incoming solar radiation and opaque to outgoing terrestrial radiation?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1(v)\", \"extract_text\": \"Which one of the following gases is transparent to incoming solar radiation and opaque to outgoing terrestrial radiation?\\n(a) Oxygen\\n(b) Nitrogen\\n(c) Helium\\n(d) Carbon dioxide\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter assigns this property to carbon dioxide.\n- Its absorption of terrestrial radiation is why it contributes strongly to the greenhouse effect.\n- Final answer: The correct answer is carbon dioxide.\n\n## Common mistake\nDo not attribute the greenhouse role here to nitrogen, which is abundant but not described with this radiative property.\n\n## Quick check question\nQuestion: What is the protective role of ozone?\nAnswer: It absorbs harmful ultraviolet radiation from the sun.\nExplanation: By filtering ultraviolet rays in the stratosphere, ozone protects life at the surface.\n\n## Summary\n- Trace gases can have large effects.\n- Carbon dioxide affects outgoing heat.\n- Ozone filters ultraviolet radiation.",
+    "Worked examples": "# Worked examples: Natural Hazards and Disasters\n\n## What you will learn\nYou will explain atmospheric dust and the lower layers of the atmosphere. You will connect dust particles with cloud formation.\n\n## Simple explanation\nTiny solid particles remain suspended in air. Besides influencing visibility and radiation, some act as surfaces around which water vapour condenses.\n\n## Step-by-step breakdown\n- **Dust sources**: Sea salts, fine soil, smoke-soot, ash, pollen, dust, and meteor particles enter the atmosphere.\n- **Vertical concentration**: Most particles occur in lower layers, though convection can carry them upward.\n- **Regional variation**: Dry subtropical and temperate regions generally contain more dust than equatorial and polar regions.\n- **Condensation nuclei**: Hygroscopic particles assist cloud-droplet formation.\n- **Troposphere**: The lowest layer contains most water vapour and dust and hosts weather and biological activity.\n- **Tropopause**: This nearly isothermal boundary separates the troposphere from the stratosphere.\n\n## Worked example\nQuestion: What should be included in a response to NCERT Exercise 2(i), “What do you understand by atmosphere?”\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(i)\", \"extract_text\": \"What do you understand by atmosphere?\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The source describes an envelope around the earth composed of gases, water vapour, and dust particles, with most mass near the surface.\n- A good definition combines position, composition, and functional importance.\n- Final answer: The atmosphere is the earth’s surrounding gaseous envelope, containing gases, water vapour, and suspended particles that support life and weather.\n\n## Common mistake\nDo not define atmosphere as oxygen alone or as empty space above the earth.\n\n## Quick check question\nQuestion: Why are dust and salt particles important for clouds?\nAnswer: They can act as hygroscopic condensation nuclei.\nExplanation: Water vapour condenses around these particles to form cloud droplets.\n\n## Summary\n- Dust has natural and human sources.\n- Particles are concentrated near the surface.\n- The troposphere contains weather-producing moisture and dust.",
+    "Exam-style problems": "# Exam-style problems: Natural Hazards and Disasters\n\n## What you will learn\nYou will compare the five major atmospheric layers by temperature pattern and function. You will locate the ozone layer and the ionosphere.\n\n## Simple explanation\nThe atmosphere is divided by changes in temperature with height. Each layer has characteristic composition and functions.\n\n## Step-by-step breakdown\n- **Troposphere**: Temperature generally decreases with height, and weather occurs here.\n- **Stratosphere**: It extends above the tropopause and contains the ozone layer; temperature rises where ozone absorbs ultraviolet energy.\n- **Mesosphere**: Temperature decreases again and reaches very low values near the mesopause.\n- **Ionosphere or thermosphere**: Ionised particles occur at high altitude, temperature rises, and radio waves can be reflected.\n- **Exosphere**: The outermost, extremely rarefied layer gradually merges with space.\n- **Density**: Atmospheric density decreases with altitude.\n\n## Worked example\nQuestion: Why is the troposphere the most important layer, as asked in NCERT Exercise 2(iv)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(iv)\", \"extract_text\": \"Why is troposphere the most important of all the layers of the atmosphere?\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- It contains dust particles and water vapour, supports biological activity, and is the layer in which weather and climate changes occur.\n- These features directly connect it to life and day-to-day atmospheric processes.\n- Final answer: The troposphere is most important because it contains the moisture and particles needed for weather and supports biological activity at the earth’s surface.\n\n## Common mistake\nDo not claim that the troposphere contains the ozone maximum; that is characteristic of the stratosphere.\n\n## Quick check question\nQuestion: Which layer reflects radio waves back towards the earth?\nAnswer: The ionosphere.\nExplanation: Its electrically charged particles interact with radio transmissions.\n\n## Summary\n- Temperature does not change in the same direction in every layer.\n- The stratosphere contains ozone.\n- The ionosphere contains charged particles.",
+    "Revision and recap": "# Revision and recap: Natural Hazards and Disasters\n\n## What you will learn\nYou will integrate composition, structure, and the elements of weather and climate. You will practise organising a labelled atmospheric profile.\n\n## Simple explanation\nAtmospheric behaviour depends both on what the air contains and on where a layer lies. Temperature, pressure, wind, humidity, cloud, and precipitation are the changing elements experienced near the surface.\n\n## Step-by-step breakdown\n- **Composition and height**: Oxygen, carbon dioxide, and water vapour diminish strongly in the upper atmosphere.\n- **Protective functions**: Ozone absorbs ultraviolet radiation, and water vapour helps moderate heating and cooling.\n- **Layer boundaries**: Tropopause and mesopause mark important changes in vertical temperature pattern.\n- **Weather elements**: Temperature, pressure, winds, humidity, clouds, and precipitation vary and influence human life.\n- **Diagram logic**: A labelled profile should show the order of layers, major boundaries, approximate vertical extent, and temperature trend.\n\n## Worked example\nQuestion: How should NCERT Exercise 3(ii) be answered without producing an unlabelled sketch?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(ii)\", \"extract_text\": \"Draw a suitable diagram for the structure of the atmosphere and label it and describe it.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter orders the atmosphere as troposphere, stratosphere, mesosphere, ionosphere or thermosphere, and exosphere, with tropopause and mesopause boundaries.\n- A useful diagram must label those layers and explain weather, ozone, declining or rising temperature, ions, and the transition to space.\n- Final answer: The answer should combine a correctly ordered labelled vertical diagram with a short description of each layer’s temperature behaviour and distinctive role.\n\n## Common mistake\nDo not draw five boxes without indicating their order, boundaries, and functions.\n\n## Quick check question\nQuestion: Name the main elements of weather and climate listed in the chapter.\nAnswer: Temperature, pressure, winds, humidity, clouds, and precipitation.\nExplanation: These are the atmospheric elements that change and directly influence life at the surface.\n\n## Summary\n- Composition and vertical structure must be studied together.\n- Different layers have distinct thermal patterns.\n- Weather elements chiefly affect the lower atmosphere."
+  }
+}

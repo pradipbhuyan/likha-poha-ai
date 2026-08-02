@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 12",
+  "subject": "History",
+  "chapter": "Bhakti-Sufi Traditions: Changes in Religious Beliefs and Devotional Texts",
+  "central_question": "How did diverse bhakti and Sufi traditions reshape religious practice, social criticism and devotional expression through regional communities, institutions and languages?",
+  "in_scope_units": [
+    "The mosaic of religious beliefs, integration of cults and conflict.",
+    "Alvars and Nayanars, Tamil hymns, caste and women devotees.",
+    "Royal patronage of temples and devotional traditions.",
+    "Virashaiva teachings and Kannada vachanas.",
+    "Islamic beliefs, mosque architecture and regional practice.",
+    "The growth of Sufism, silsilas, khanqahs and be-shari'a traditions.",
+    "The Chishti khanqah, ziyarat, qawwali, language and political relations.",
+    "Kabir's teachings and textual transmission.",
+    "Baba Guru Nanak, sangat and the Sacred Word.",
+    "Mirabai and personal Krishna devotion.",
+    "Treatises, malfuzat, maktubat, tazkiras and problems of reconstructing devotional histories."
+  ],
+  "banned_topics": [
+    "Early Buddhism, Jainism and stupa architecture, treated in the earlier cultural-developments chapter.",
+    "A complete political history of the Delhi Sultanate and Mughal Empire beyond religious patronage and interaction."
+  ],
+  "must_include_keywords": [
+    "integration of cults",
+    "Puranic traditions",
+    "Alvars",
+    "Nayanars",
+    "Tamil hymns",
+    "caste critique",
+    "Andal",
+    "Karaikkal Ammaiyar",
+    "Chola patronage",
+    "Virashaivas",
+    "Basavanna",
+    "vachanas",
+    "Islam",
+    "mosque",
+    "local traditions",
+    "Sufism",
+    "shaikh",
+    "pir",
+    "murid",
+    "silsila",
+    "khanqah",
+    "ba-shari'a",
+    "be-shari'a",
+    "Chishtis",
+    "Nizamuddin Auliya",
+    "langar",
+    "ziyarat",
+    "barakat",
+    "sama",
+    "qawwali",
+    "Hindavi",
+    "Kabir",
+    "Bijak",
+    "Baba Guru Nanak",
+    "sangat",
+    "Adi Granth",
+    "Mirabai",
+    "malfuzat",
+    "maktubat",
+    "tazkira"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Integration of cults meant that local traditions simply vanished into a uniform religion.",
+      "correction": "Local and Puranic traditions interacted in both directions, and regional identities and practices often remained strong."
+    },
+    {
+      "claim": "All Sufis followed the same institutional and legal path.",
+      "correction": "There were several silsilas and both ba-shari'a and be-shari'a traditions with different relationships to formal law and khanqahs."
+    },
+    {
+      "claim": "Kabir's exact original text survives in one authorised manuscript.",
+      "correction": "His verses circulated orally and were compiled in different collections with significant variations."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1 on integration of cults.",
+    "NCERT Exercise 4 on caste criticism among southern bhaktas.",
+    "NCERT Exercise 3 comparing Sufi traditions.",
+    "NCERT Exercise 6 on Sufi beliefs and practices.",
+    "NCERT Exercise 5 on Kabir or Guru Nanak and transmission."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with questions 1-5 in the 100-150 word section, essay questions 6-9, Map work 10 and Projects 11-12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

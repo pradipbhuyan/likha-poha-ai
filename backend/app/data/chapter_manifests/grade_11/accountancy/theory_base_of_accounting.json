@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 11",
+  "subject": "Accountancy",
+  "chapter": "Theory Base of Accounting",
+  "central_question": "Which principles, concepts, systems, bases and standards make accounting information uniform, reliable and comparable?",
+  "in_scope_units": [
+    "Need for a theory base and the meaning of Generally Accepted Accounting Principles.",
+    "Basic accounting concepts: business entity, money measurement, going concern and accounting period.",
+    "Cost, dual aspect, revenue recognition and matching concepts.",
+    "Full disclosure, consistency, conservatism, materiality and objectivity.",
+    "Double-entry and single-entry systems.",
+    "Cash basis and accrual basis of accounting.",
+    "Meaning, need, benefits and limitations of accounting standards."
+  ],
+  "banned_topics": [
+    "Detailed journal and ledger procedures, which belong to Recording of Transactions – I.",
+    "Trial balance and rectification techniques, which belong to Chapter 6.",
+    "Detailed financial-statement adjustments, which belong to Financial Statements – II."
+  ],
+  "must_include_keywords": [
+    "theory base",
+    "GAAP",
+    "business entity",
+    "money measurement",
+    "going concern",
+    "accounting period",
+    "cost concept",
+    "historical cost",
+    "dual aspect",
+    "accounting equation",
+    "revenue recognition",
+    "matching concept",
+    "full disclosure",
+    "consistency",
+    "conservatism",
+    "prudence",
+    "materiality",
+    "objectivity",
+    "double entry system",
+    "single entry system",
+    "cash basis",
+    "accrual basis",
+    "accounting standards",
+    "ICAI",
+    "recognition",
+    "measurement",
+    "presentation",
+    "disclosure",
+    "comparability",
+    "reliability"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The owner and the business are treated as the same entity in accounting.",
+      "correction": "The business entity concept treats them as separate for recording purposes."
+    },
+    {
+      "claim": "Going concern means that a business will exist forever.",
+      "correction": "It assumes continuity for the foreseeable future, not literal immortality."
+    },
+    {
+      "claim": "Consistency prohibits every change in accounting policy.",
+      "correction": "A justified change is allowed when it is disclosed along with its probable effect."
+    },
+    {
+      "claim": "Conservatism permits deliberate understatement of assets.",
+      "correction": "It requires prudence under uncertainty, not creation of hidden profits or secret reserves."
+    },
+    {
+      "claim": "Cash basis records credit transactions when they occur.",
+      "correction": "Cash basis records receipts and payments when cash changes hands; accrual basis recognises earned revenue and incurred expense."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Test Your Understanding – I to identify accounting period, going concern and comparability.",
+    "Use the Shiva Enterprise plant example in section 2.2.5 to calculate historical cost of ₹50,50,000.",
+    "Use the Ram capital and credit-purchase examples in section 2.2.6 to apply dual aspect and A = L + C.",
+    "Use the March rent and advance-interest examples in section 2.2.7 to apply revenue recognition.",
+    "Use Test Your Understanding – II and the end-of-chapter questions to distinguish matching, conservatism, consistency and objectivity."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter includes Test Your Understanding – I and II, Short Answer Questions, Long Answer Questions and numerical/application questions at the end.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

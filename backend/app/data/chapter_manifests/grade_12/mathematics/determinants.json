@@ -1,0 +1,70 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Determinants",
+  "central_question": "How do determinants encode information about square matrices and support area, inverse and linear-system calculations?",
+  "in_scope_units": [
+    "4.1 Introduction: determinant and uniqueness of linear systems.",
+    "4.2 Determinant: orders one to three and expansion by rows or columns.",
+    "4.3 Area of a Triangle using determinants.",
+    "4.4 Minors and Cofactors.",
+    "4.5 Adjoint and Inverse of a Matrix.",
+    "4.6 Applications of Determinants and Matrices to consistency and solution of linear equations."
+  ],
+  "banned_topics": [
+    "General matrix operations unrelated to determinants",
+    "Differential calculus",
+    "Vector products"
+  ],
+  "must_include_keywords": [
+    "determinant",
+    "square matrix",
+    "order two",
+    "order three",
+    "expansion",
+    "row",
+    "column",
+    "properties of determinants",
+    "area of triangle",
+    "collinear points",
+    "minor",
+    "cofactor",
+    "sign pattern",
+    "adjoint",
+    "inverse",
+    "singular matrix",
+    "non-singular matrix",
+    "consistency",
+    "inconsistency",
+    "unique solution",
+    "inverse matrix method"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The determinant of a matrix is another matrix.",
+      "correction": "A determinant is a scalar number associated with a square matrix."
+    },
+    {
+      "claim": "Any rectangular matrix has a determinant.",
+      "correction": "Only square matrices have determinants."
+    },
+    {
+      "claim": "Row operations affect a determinant exactly as they affect a matrix.",
+      "correction": "Interchanging rows changes sign; multiplying a row by k multiplies the determinant by k; adding a multiple of one row to another leaves it unchanged."
+    },
+    {
+      "claim": "A matrix with determinant zero has an inverse.",
+      "correction": "A square matrix is invertible only when its determinant is nonzero."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 1 for a 2x2 determinant.",
+    "Use NCERT Example 3 to expand a 3x3 determinant along a column containing zeros.",
+    "Use NCERT Example 6 for the area of a triangle.",
+    "Use the minors and cofactors examples to construct adjoint.",
+    "Use the inverse matrix method in the final section to solve a linear system."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 4.1 to 4.6 followed by the Miscellaneous Exercise on Chapter 4.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

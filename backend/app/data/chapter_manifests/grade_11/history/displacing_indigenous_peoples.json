@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "History",
+  "chapter": "Displacing Indigenous Peoples",
+  "central_question": "How did European settler expansion transform North America and Australia by displacing indigenous peoples, and how did native communities later reclaim rights, land and historical voice?",
+  "in_scope_units": [
+    "European imperialism, settler colonies and the changing writing of indigenous history.",
+    "North American geography and the long history and diverse lifeways of native peoples.",
+    "Encounters, trade and contrasting European and native perceptions of land, nature and exchange.",
+    "Expansion of the United States and Canada, environmental change, slavery and the moving frontier.",
+    "Loss of native land, the Cherokee removal, reservations and resistance.",
+    "The Gold Rush, railways, industrial growth and the rise of the United States as an imperial power.",
+    "Constitutional exclusion and later native rights movements in the United States and Canada.",
+    "Australian aboriginal societies, Dreamtime and British settlement.",
+    "Dispossession, penal colonisation, pastoral and mining development and the White Australia policy.",
+    "Historical recognition, multiculturalism, land rights, the Mabo decision and National Sorry Day."
+  ],
+  "banned_topics": [
+    "Spanish and Portuguese conquest of South America in detail, which the chapter identifies as belonging to another theme.",
+    "Industrial Revolution in Britain except for the brief comparison made in the chapter.",
+    "General modernisation of Japan, China and Korea, which belongs to Paths to Modernisation."
+  ],
+  "must_include_keywords": [
+    "settler colonies",
+    "indigenous peoples",
+    "oral history",
+    "European imperialism",
+    "North America",
+    "Bering Straits",
+    "native peoples",
+    "bison",
+    "Wampum belts",
+    "gift exchange",
+    "European traders",
+    "noble savage",
+    "land ownership",
+    "frontier",
+    "Louisiana Purchase",
+    "slavery",
+    "Cherokee",
+    "John Marshall",
+    "Andrew Jackson",
+    "Trail of Tears",
+    "reservations",
+    "Chief Seattle",
+    "Gold Rush",
+    "Chinese workers",
+    "railways",
+    "constitutional rights",
+    "Indian Reorganisation Act",
+    "Declaration of Indian Rights",
+    "aboriginal rights",
+    "Australia",
+    "Dreamtime",
+    "Torres Strait Islanders",
+    "penal colony",
+    "White Australia policy",
+    "multiculturalism",
+    "terra nullius",
+    "Mabo case",
+    "National Sorry Day"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Europeans discovered empty lands in North America and Australia.",
+      "correction": "Indigenous societies had lived there for thousands of years and possessed distinct languages, economies, histories and sacred relationships with land."
+    },
+    {
+      "claim": "Native peoples did not use land because they did not farm commercially.",
+      "correction": "They hunted, fished, gathered, gardened and farmed according to local conditions and often rejected the European idea that land should be privately owned for profit."
+    },
+    {
+      "claim": "European-native trade was understood in the same way by both sides.",
+      "correction": "Native peoples often treated exchange as gift and friendship, while Europeans treated fish and furs as commodities in a distant market."
+    },
+    {
+      "claim": "Democratic rights in the early United States applied equally to everyone.",
+      "correction": "Voting and protected property rights primarily served white men, while natives, enslaved Africans and others were excluded."
+    },
+    {
+      "claim": "Australia was legally and historically terra nullius.",
+      "correction": "The Mabo decision of 1992 declared terra nullius invalid and recognised native claims rooted in occupation before 1770."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 1 to compare European and native images of each other and their different understandings of nature.",
+    "Use NCERT Activity 2 to interpret the population data for the USA and Spanish America without reducing indigenous decline to a single cause.",
+    "Use NCERT Activity 3 to evaluate Howard Spodek’s contrast between settlers’ liberty and indigenous confinement.",
+    "Use NCERT Activity 4 to compare the political position of native peoples when New Delhi and Canberra were announced as capitals.",
+    "Use NCERT Exercise 6 to construct a source-grounded conversation among a former slave, Chinese labourer, German migrant and Hopi person in 1880s California."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises: Answer in Brief, Questions 1–4, and Answer in a Short Essay, Questions 5–6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

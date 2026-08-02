@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Equality",
+  "central_question": "What does it mean to treat people as equals, and which political, social and economic measures can reduce unjust and entrenched inequality?",
+  "in_scope_units": [
+    "Why Does Equality Matter: equal human worth, historical struggles and visible global and Indian inequalities.",
+    "What is Equality: equal respect, equality of opportunity and the distinction between natural and socially produced inequality.",
+    "Three Dimensions of Equality: political, social and economic equality.",
+    "Feminism, Marxism, liberalism and socialism as competing explanations and remedies for inequality.",
+    "How Can We Promote Equality: formal equality, differential treatment and affirmative action."
+  ],
+  "banned_topics": [
+    "The harm principle and negative versus positive liberty, which belong to Freedom.",
+    "Detailed principles of distributive justice and Rawls’ veil of ignorance, which belong to Social Justice.",
+    "Detailed constitutional provisions and remedies, which belong to the Indian Constitution at Work textbook."
+  ],
+  "must_include_keywords": [
+    "equality",
+    "equal worth",
+    "common humanity",
+    "equal consideration",
+    "French Revolution",
+    "anti-colonial struggle",
+    "inequality",
+    "equality of opportunity",
+    "natural inequality",
+    "socially produced inequality",
+    "political equality",
+    "equal citizenship",
+    "social equality",
+    "economic equality",
+    "level playing field",
+    "entrenched inequality",
+    "feminism",
+    "patriarchy",
+    "sex",
+    "gender",
+    "double burden",
+    "Marxism",
+    "private ownership",
+    "liberalism",
+    "competition",
+    "socialism",
+    "Rammanohar Lohia",
+    "formal equality",
+    "differential treatment",
+    "affirmative action",
+    "reservations",
+    "quotas",
+    "discrimination",
+    "untouchability"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Equality requires identical treatment in every circumstance.",
+      "correction": "The chapter allows differential treatment when it is necessary to secure equal rights and opportunities."
+    },
+    {
+      "claim": "All inequalities are natural and therefore unchangeable.",
+      "correction": "Many inequalities result from social power, discrimination and unequal opportunities and can be altered."
+    },
+    {
+      "claim": "Political equality automatically creates social and economic equality.",
+      "correction": "Equal legal rights may coexist with unequal access to education, health, income and social respect."
+    },
+    {
+      "claim": "Feminism treats every difference between women and men as biological.",
+      "correction": "Feminism distinguishes biological sex from socially assigned gender roles and challenges patriarchy."
+    },
+    {
+      "claim": "Affirmative action is always a permanent privilege.",
+      "correction": "It is presented as special, justified assistance intended to overcome entrenched disadvantage and enable fair competition."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise Q1 on natural and socially created inequality.",
+    "Use NCERT Exercise Q5 to distinguish discrimination from justified differential treatment.",
+    "Use NCERT Exercise Q2 to examine economic equality without absolute sameness.",
+    "Use NCERT Exercise Q6 to test arguments for women’s political equality.",
+    "Conclude with NCERT Exercise Q4 on targeted assistance to disadvantaged farmers."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–6 on natural and social inequality, economic gaps, equal rights, opportunity, affirmative action and differential treatment.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

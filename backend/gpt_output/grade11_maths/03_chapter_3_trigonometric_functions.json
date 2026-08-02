@@ -1,0 +1,86 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 3: Trigonometric Functions",
+    "central_question": "How can directed angles and unit-circle coordinates be used to define, analyse, and transform trigonometric functions?",
+    "in_scope_units": [
+      "Directed angles and degree measure.",
+      "Radian measure, degree-radian conversion, and arc length.",
+      "Unit-circle definitions of trigonometric functions.",
+      "Signs, domains, ranges, periodicity, and graphs.",
+      "Trigonometric functions of sums and differences.",
+      "Double-angle, triple-angle, half-angle, and transformation identities."
+    ],
+    "banned_topics": [
+      "Inverse trigonometric functions, which are studied later.",
+      "Applications to heights and distances beyond the historical note."
+    ],
+    "must_include_keywords": [
+      "directed angle",
+      "initial side",
+      "terminal side",
+      "degree measure",
+      "radian measure",
+      "arc length",
+      "unit circle",
+      "sine",
+      "cosine",
+      "tangent",
+      "cotangent",
+      "secant",
+      "cosecant",
+      "quadrantal angle",
+      "fundamental identity",
+      "quadrant signs",
+      "domain",
+      "range",
+      "periodicity",
+      "graph",
+      "sum identity",
+      "difference identity",
+      "double-angle formula",
+      "triple-angle formula",
+      "half-angle formula",
+      "sum-to-product",
+      "product-to-sum"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Radians and degrees can be inserted interchangeably into l=rθ.",
+        "correction": "The formula l=rθ requires θ in radians."
+      },
+      {
+        "claim": "sin(x+y)=sin x+sin y.",
+        "correction": "sin(x+y)=sin x cos y+cos x sin y."
+      },
+      {
+        "claim": "Taking a square root gives only the positive sign.",
+        "correction": "The quadrant or interval decides between positive and negative values."
+      },
+      {
+        "claim": "All six trigonometric functions have period 2π.",
+        "correction": "tan and cot have period π; the other four have period 2π."
+      },
+      {
+        "claim": "Tangent and secant are defined at odd multiples of π/2.",
+        "correction": "They are undefined there because cos x=0."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Example 1 for degree-to-radian conversion.",
+      "NCERT Example 6 for quadrant signs and associated functions.",
+      "NCERT Exercise 3.3 Question 5 for exact sum-and-difference values.",
+      "NCERT Example 21 for half-angle signs.",
+      "NCERT Example 16 for sum-to-product simplification."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 3.1, 3.2, and 3.3 followed by the Miscellaneous Exercise on Chapter 3."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Trigonometric Functions\n\n## What you will learn\nYou will measure directed angles in degrees and radians. You will convert between the units and use the arc-length relation l=rθ.\n\n## Simple explanation\nAn angle records rotation from an initial side to a terminal side. Anticlockwise rotation is positive and clockwise rotation is negative; radians connect angle directly to arc length.\n\n## Step-by-step breakdown\n- **Directed angle**: Its sign depends on the direction of rotation.\n- **Degree measure**: One revolution is 360°, with 1°=60′ and 1′=60″.\n- **Radian measure**: One radian subtends an arc equal in length to the radius.\n- **Full revolution**: 360°=2π radians and 180°=π radians.\n- **Conversion**: Radians=(π/180)×degrees and degrees=(180/π)×radians.\n- **Arc length**: For θ in radians, l=rθ.\n\n## Worked example\nQuestion: Using NCERT Example 1, convert 40°20′ to radian measure.\n\nSolution:\n- Convert 20′ to degrees: 20/60=1/3°, so the angle is 121/3°.\n- Multiply by π/180: (121/3)(π/180).\n- Simplify the fraction.\n- Final answer: 40°20′=121π/540 radians.\n\n## Common mistake\nDo not use l=rθ when θ is still in degrees; convert it to radians first.\n\n## Quick check question\nQuestion: Using NCERT Exercise 3.1 Question 3, how many radians does a wheel turning 360 revolutions per minute turn in one second?\nAnswer: It turns 12π radians.\nExplanation: 360 revolutions per minute is 6 per second, and each revolution is 2π radians.\n\n## Summary\n- Angles are directed rotations.\n- Degrees and radians are convertible units.\n- Arc length is proportional to radius and radian measure.",
+    "Core explanation": "# Core explanation: Trigonometric Functions\n\n## What you will learn\nYou will define all six trigonometric functions using the unit circle. You will determine signs, fundamental identities, domains, ranges, and periods.\n\n## Simple explanation\nOn the unit circle, a point reached by angle x has coordinates (cos x,sin x). The other functions are ratios or reciprocals built from these coordinates.\n\n## Step-by-step breakdown\n- **Unit-circle definition**: For P(a,b), cos x=a and sin x=b.\n- **Fundamental identity**: sin²x+cos²x=1.\n- **Other identities**: 1+tan²x=sec²x and 1+cot²x=cosec²x where defined.\n- **Signs**: Quadrants determine the signs of sine, cosine, tangent, and reciprocals.\n- **Domains**: tan and sec exclude odd multiples of π/2; cot and cosec exclude multiples of π.\n- **Ranges**: sin and cos lie in [−1,1]; tan and cot take all real values.\n- **Periodicity**: sin, cos, sec, cosec have period 2π; tan and cot have period π.\n\n## Worked example\nQuestion: Using NCERT Example 6, if cos x=−3/5 and x lies in quadrant III, find sin x and tan x.\n\nSolution:\n- From sin²x=1−cos²x=1−9/25=16/25, |sin x|=4/5.\n- In quadrant III, sine and cosine are negative, so sin x=−4/5.\n- tan x=sin x/cos x=(−4/5)/(−3/5).\n- Final answer: sin x=−4/5 and tan x=4/3.\n\n## Common mistake\nThe square-root step gives ± values; the quadrant decides the correct sign.\n\n## Quick check question\nQuestion: Using NCERT Example 8, evaluate sin(31π/3).\nAnswer: sin(31π/3)=√3/2.\nExplanation: 31π/3=10π+π/3, and sine repeats every 2π.\n\n## Summary\n- The unit circle extends trigonometry to all real angles.\n- Domains and ranges follow from definitions and zero denominators.\n- Periodicity reduces large angles to familiar ones.",
+    "Worked examples": "# Worked examples: Trigonometric Functions\n\n## What you will learn\nYou will derive and use sum-and-difference identities. You will connect cosine, sine, and tangent formulas and recognise restrictions on tangent expressions.\n\n## Simple explanation\nThe values of trigonometric functions at x±y can be expressed using values at x and y. These identities make exact-angle calculations and proofs possible.\n\n## Step-by-step breakdown\n- **Cosine sum**: cos(x+y)=cos x cos y−sin x sin y.\n- **Cosine difference**: cos(x−y)=cos x cos y+sin x sin y.\n- **Sine sum**: sin(x+y)=sin x cos y+cos x sin y.\n- **Sine difference**: sin(x−y)=sin x cos y−cos x sin y.\n- **Tangent sum**: tan(x+y)=(tan x+tan y)/(1−tan x tan y), where defined.\n- **Tangent difference**: tan(x−y)=(tan x−tan y)/(1+tan x tan y), where defined.\n- **Related angles**: The formulas produce identities involving π/2, π, and 2π.\n\n## Worked example\nQuestion: Using NCERT Exercise 3.3 Question 5(i), find sin75°.\n\nSolution:\n- Write 75°=45°+30°.\n- Use sin(x+y)=sin x cos y+cos x sin y.\n- Substitute sin45°=cos45°=1/√2, cos30°=√3/2, sin30°=1/2.\n- Final answer: sin75°=(√6+√2)/4.\n\n## Common mistake\nDo not use sin(x+y)=sin x+sin y; trigonometric functions do not distribute over addition.\n\n## Quick check question\nQuestion: Using NCERT Exercise 3.3 Question 5(ii), find tan15°.\nAnswer: tan15°=2−√3.\nExplanation: Use tan(45°−30°) and simplify (1−1/√3)/(1+1/√3).\n\n## Summary\n- Sum-and-difference identities are foundational.\n- Exact values can be built from standard angles.\n- Tangent formulas require non-zero denominators.",
+    "Exam-style problems": "# Exam-style problems: Trigonometric Functions\n\n## What you will learn\nYou will use double-angle, triple-angle, and half-angle identities. You will choose signs from the interval or quadrant and simplify expressions systematically.\n\n## Simple explanation\nMultiple-angle identities are consequences of the sum formulas. Half-angle formulas determine squares first, so the sign must be selected from the location of x/2.\n\n## Step-by-step breakdown\n- **Double-angle sine**: sin2x=2sin x cos x.\n- **Double-angle cosine**: cos2x=cos²x−sin²x=2cos²x−1=1−2sin²x.\n- **Double-angle tangent**: tan2x=2tan x/(1−tan²x), where defined.\n- **Triple-angle sine**: sin3x=3sin x−4sin³x.\n- **Triple-angle cosine**: cos3x=4cos³x−3cos x.\n- **Half-angle**: sin²(x/2)=(1−cos x)/2 and cos²(x/2)=(1+cos x)/2.\n- **Sign choice**: The interval containing x/2 determines the signs.\n\n## Worked example\nQuestion: Using NCERT Example 21, if tan x=3/4 and π<x<3π/2, find sin(x/2) and cos(x/2).\n\nSolution:\n- In quadrant III, cos x is negative; with a 3-4-5 triangle, cos x=−4/5.\n- Then sin²(x/2)=(1−cos x)/2=(1+4/5)/2=9/10.\n- Also cos²(x/2)=(1+cos x)/2=(1−4/5)/2=1/10.\n- Since π/2<x/2<3π/4, sine is positive and cosine is negative.\n- Final answer: sin(x/2)=3/√10 and cos(x/2)=−1/√10.\n\n## Common mistake\nHalf-angle formulas first give squared values; omitting the quadrant can produce the wrong signs.\n\n## Quick check question\nQuestion: From the NCERT derivation, express cos3x in terms of cos x.\nAnswer: cos3x=4cos³x−3cos x.\nExplanation: Apply cos(2x+x) and substitute the double-angle identities.\n\n## Summary\n- Multiple-angle identities come from addition formulas.\n- Equivalent forms of cos2x suit different data.\n- Half-angle signs require interval information.",
+    "Revision and recap": "# Revision and recap: Trigonometric Functions\n\n## What you will learn\nYou will convert sums to products and products to sums, and revise graph behaviour, exact values, identities, and restrictions.\n\n## Simple explanation\nTransformation identities reorganise trigonometric expressions into forms that are easier to prove, compare, or evaluate.\n\n## Step-by-step breakdown\n- **Sum to product**: sin x+sin y=2sin((x+y)/2)cos((x−y)/2).\n- **Difference to product**: cos x−cos y=−2sin((x+y)/2)sin((x−y)/2).\n- **Product to sum**: 2cos x cos y=cos(x+y)+cos(x−y), with analogous identities.\n- **Graph awareness**: Zeros, periods, signs, and asymptotic behaviour provide checks.\n- **Identity proof**: Transform one side using known identities rather than assuming the statement.\n- **Restrictions**: Every division step must preserve conditions under which denominators are non-zero.\n\n## Worked example\nQuestion: Using NCERT Example 16, simplify (cos7x+cos5x)/(sin7x−sin5x).\n\nSolution:\n- Use cos7x+cos5x=2cos6x cos x.\n- Use sin7x−sin5x=2cos6x sin x.\n- Cancel the common factor where the expression is defined.\n- Final answer: The expression simplifies to cot x.\n\n## Common mistake\nDo not cancel a factor without noting that the original denominator must be non-zero.\n\n## Quick check question\nQuestion: Using NCERT Exercise 3.3 Question 18, simplify (sin x−sin y)/(cos x+cos y).\nAnswer: It equals tan((x−y)/2), where the original denominator is non-zero.\nExplanation: Apply the sum-to-product formulas to numerator and denominator and cancel the common factor.\n\n## Summary\n- Trigonometric identities form a connected system.\n- Graphs and quadrants check signs and domains.\n- Transformations should preserve all domain restrictions."
+  }
+}

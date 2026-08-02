@@ -1,0 +1,62 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Inverse Trigonometric Functions",
+  "central_question": "How are trigonometric functions restricted so that their inverses exist, and how are principal values and identities used correctly?",
+  "in_scope_units": [
+    "2.1 Introduction: need for domain restrictions before inversion.",
+    "2.2 Basic Concepts: principal value branches, domains, ranges and graphs of inverse trigonometric functions.",
+    "2.3 Properties of Inverse Trigonometric Functions: identities and simplification of expressions."
+  ],
+  "banned_topics": [
+    "Differentiation of inverse trigonometric functions",
+    "General solutions of trigonometric equations",
+    "Integration formulas"
+  ],
+  "must_include_keywords": [
+    "one-one",
+    "onto",
+    "principal value branch",
+    "sin inverse",
+    "cos inverse",
+    "tan inverse",
+    "cot inverse",
+    "sec inverse",
+    "cosec inverse",
+    "domain",
+    "range",
+    "reflection in y=x",
+    "principal value",
+    "sin(sin inverse x)",
+    "sin inverse(sin x)",
+    "complementary identities",
+    "tan inverse addition formula"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "sin^(-1)x means 1/sin x.",
+      "correction": "sin^(-1)x denotes the inverse sine function, not the reciprocal cosec x."
+    },
+    {
+      "claim": "sin^(-1)(sin x)=x for every real x.",
+      "correction": "This equality holds only when x lies in the principal range [-pi/2,pi/2]."
+    },
+    {
+      "claim": "cos^(-1)x has range [-pi/2,pi/2].",
+      "correction": "The principal range of cos^(-1)x is [0,pi]."
+    },
+    {
+      "claim": "tan^(-1)a+tan^(-1)b can always be combined without checking signs.",
+      "correction": "The correct principal value may require an added or subtracted pi depending on signs and the product ab."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 2.1 Question 1 to find principal values of standard inverse trigonometric expressions.",
+    "Use the graph discussion in Section 2.2 to connect inverse graphs with reflection in y=x.",
+    "Use NCERT Exercise 2.2 to simplify expressions using complementary and reciprocal identities.",
+    "Use a Miscellaneous Exercise problem to handle tan inverse addition with principal-value checks."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 2.1 and 2.2 followed by the Miscellaneous Exercise on Chapter 2.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

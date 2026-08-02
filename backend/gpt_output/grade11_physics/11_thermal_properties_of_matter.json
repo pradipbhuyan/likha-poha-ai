@@ -1,0 +1,93 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Thermal Properties of Matter",
+    "central_question": "How do temperature, heat transfer, expansion, heat capacity, and phase changes determine the thermal behaviour of matter?",
+    "in_scope_units": [
+      "Heat, temperature, and thermal equilibrium.",
+      "Temperature measurement and Celsius, Fahrenheit, and Kelvin scales.",
+      "Ideal-gas equation and absolute temperature.",
+      "Thermal expansion of solids and liquids and anomalous expansion of water.",
+      "Specific heat and molar heat capacity.",
+      "Calorimetry.",
+      "Change of state, latent heat, and phase diagrams.",
+      "Heat transfer by conduction, convection, and radiation.",
+      "Newton's law of cooling."
+    ],
+    "banned_topics": [
+      "Kinetic-theory derivation of temperature",
+      "Heat engines and full thermodynamics",
+      "Quantum theory of black-body radiation"
+    ],
+    "must_include_keywords": [
+      "heat",
+      "temperature",
+      "thermal equilibrium",
+      "Celsius scale",
+      "Fahrenheit scale",
+      "Kelvin scale",
+      "absolute temperature",
+      "ideal-gas equation",
+      "thermal expansion",
+      "linear expansion",
+      "area expansion",
+      "volume expansion",
+      "coefficient of expansion",
+      "anomalous expansion of water",
+      "specific heat capacity",
+      "molar specific heat",
+      "calorimetry",
+      "heat capacity",
+      "latent heat",
+      "change of state",
+      "melting point",
+      "boiling point",
+      "triple point",
+      "conduction",
+      "thermal conductivity",
+      "convection",
+      "radiation",
+      "Stefan–Boltzmann law",
+      "emissivity",
+      "Newton's law of cooling"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Heat and temperature are the same.",
+        "correction": "Temperature describes thermal state; heat is energy transferred because of a temperature difference."
+      },
+      {
+        "claim": "A 1 °C change differs from a 1 K change.",
+        "correction": "The interval sizes are equal; only scale zeroes differ."
+      },
+      {
+        "claim": "Every substance expands normally on heating.",
+        "correction": "Expansion differs by material, and water is anomalous between 0 °C and 4 °C."
+      },
+      {
+        "claim": "Temperature rises during melting and boiling.",
+        "correction": "At fixed pressure, temperature remains constant while latent heat changes phase."
+      },
+      {
+        "claim": "All heat transfer needs matter.",
+        "correction": "Radiation travels through vacuum."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Example 10.1: derive area expansion coefficient from linear expansion.",
+      "NCERT Example 10.2: heat an iron ring to fit a larger rim.",
+      "NCERT calorimetry examples: equate heat lost and gained.",
+      "NCERT latent-heat examples: melting and boiling at constant temperature.",
+      "NCERT heat-transfer examples: conduction and Newton cooling."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the chapter's end-of-chapter EXERCISES beginning with 10.1."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 10: Thermal Properties of Matter\n\n## What you will learn\nYou will distinguish heat from temperature, understand thermal equilibrium, and convert temperature scales.\n\n## Simple explanation\nTemperature determines the direction of heat flow. Heat is energy transferred from a hotter body to a colder one until equilibrium.\n\n## Step-by-step breakdown\n- **Thermal equilibrium**: No net heat flows between bodies in equilibrium.\n- **Temperature**: Bodies in thermal equilibrium have the same temperature.\n- **Heat**: Heat is energy transferred because of temperature difference.\n- **Celsius**: The scale uses degree Celsius.\n- **Fahrenheit**: (TF − 32)/180 = TC/100.\n- **Kelvin**: T = t°C + 273.15 and kelvin is the SI unit.\n- **Interval size**: A change of 1 K equals a change of 1 °C.\n- **Absolute zero**: 0 K is the absolute-scale origin.\n\n## Worked example\nQuestion: Using the chapter's scale relation, convert 68 °F to Celsius and kelvin.\n\nSolution:\n- TC = (5/9)(68 − 32) = 20 °C.\n- T = 20 + 273.15 = 293.15 K.\n- Final answer: 68 °F = 20 °C = 293.15 K.\n\n## Common mistake\nDo not add 273.15 to a temperature difference.\n\n## Quick check question\nQuestion: What is a temperature rise of 10 °C in kelvin?\nAnswer: 10 K.\nExplanation: Celsius and kelvin intervals are equal.\n\n## Summary\n- Heat is transferred energy.\n- Temperature is a thermal state measure.\n- Kelvin is the SI scale.\n- Celsius and kelvin intervals match.",
+    "Core explanation": "# Core explanation: Chapter 10: Thermal Properties of Matter\n\n## What you will learn\nYou will use absolute temperature in gas laws and relate linear, area, and volume thermal expansion.\n\n## Simple explanation\nHeating usually increases particle spacing, producing small fractional changes proportional to temperature change.\n\n## Step-by-step breakdown\n- **Ideal gas**: PV = μRT and T must be in kelvin.\n- **Linear expansion**: ΔL = αLΔT.\n- **Area expansion**: ΔA = βAΔT with β − 2α.\n- **Volume expansion**: ΔV = γVΔT with γ − 3α.\n- **Approximation**: Higher-order products are neglected for small expansion.\n- **Constraint**: Preventing thermal expansion can create stress.\n- **Liquids**: Apparent expansion includes the vessel's expansion.\n- **Water anomaly**: Water has maximum density near 4 °C.\n\n## Worked example\nQuestion: Using NCERT Example 10.1, show that area expansion coefficient of an isotropic square is approximately 2α.\n\nSolution:\n- Each side becomes L(1 + αΔT).\n- A' = L²(1 + αΔT)².\n- Neglect α²ΔT².\n- Then ΔA/A ≈ 2αΔT.\n- Final answer: β − 2α.\n\n## Common mistake\nDo not mix the small-expansion approximation with retained second-order terms.\n\n## Quick check question\nQuestion: If α = 1.2 × 10⁻⁵ K⁻¹, what is approximate volume coefficient?\nAnswer: 3.6 × 10⁻⁵ K⁻¹.\nExplanation: γ − 3α.\n\n## Summary\n- Gas laws use kelvin.\n- ΔL/L = αΔT.\n- β − 2α.\n- γ − 3α.\n- Water is anomalous near 4 °C.",
+    "Worked examples": "# Worked examples: Chapter 10: Thermal Properties of Matter\n\n## What you will learn\nYou will calculate heat capacity and specific heat and solve calorimetry by energy conservation.\n\n## Simple explanation\nDifferent materials need different heat amounts for the same mass and temperature rise.\n\n## Step-by-step breakdown\n- **Heat capacity**: C = Q/ΔT for a body.\n- **Specific heat**: c = Q/(mΔT), so Q = mcΔT.\n- **Molar heat**: Cm = Q/(μΔT).\n- **Calorimetry**: In an insulated system, total signed heat exchange is zero.\n- **Heat balance**: Magnitude of heat lost equals heat gained.\n- **Container**: Include calorimeter heat capacity when significant.\n- **Water**: Its high specific heat makes it useful for thermal moderation.\n\n## Worked example\nQuestion: Write the calorimetry balance for hot mass mh, specific heat ch, cooling from Th to Tf, and cold mass mc, cc, warming from Tc to Tf.\n\nSolution:\n- Heat lost = mhch(Th − Tf).\n- Heat gained = mccc(Tf − Tc).\n- Equate them for an insulated system.\n- Final answer: mhch(Th − Tf) = mccc(Tf − Tc).\n\n## Common mistake\nUse either consistent signed heats or positive heat-lost and heat-gained magnitudes, not a mixture.\n\n## Quick check question\nQuestion: For fixed mass and temperature rise, which substance absorbs more heat?\nAnswer: The one with larger specific heat.\nExplanation: Q = mcΔT.\n\n## Summary\n- Heat capacity belongs to a body.\n- Specific heat is per unit mass.\n- Calorimetry conserves energy.\n- Include every heat-absorbing part.",
+    "Exam-style problems": "# Exam-style problems: Chapter 10: Thermal Properties of Matter\n\n## What you will learn\nYou will analyse changes of state, latent heat, heating curves, and phase diagrams.\n\n## Simple explanation\nDuring a phase change at fixed pressure, heat changes molecular arrangement while temperature stays constant.\n\n## Step-by-step breakdown\n- **Latent heat**: Q = mL.\n- **Fusion**: Lf applies to solid–liquid change.\n- **Vaporisation**: Lv applies to liquid–gas change.\n- **Heating curve**: Slopes show temperature change; plateaus show phase change.\n- **Pressure**: Melting and boiling points can depend on pressure.\n- **Triple point**: Solid, liquid, and vapour coexist at one temperature and pressure.\n- **Evaporative cooling**: Higher-energy molecules escaping lowers the remaining liquid's average energy.\n\n## Worked example\nQuestion: A mass m at its melting point is completely melted using latent heat Lf. Find heat and temperature change.\n\nSolution:\n- Use Q = mLf.\n- During the pure transition at fixed pressure, temperature stays at the melting point.\n- Final answer: Q = mLf and ΔT = 0 during melting.\n\n## Common mistake\nDo not use Q = mcΔT on a phase-change plateau.\n\n## Quick check question\nQuestion: What is the triple point?\nAnswer: The unique temperature and pressure where solid, liquid, and vapour coexist in equilibrium.\nExplanation: It is the meeting point of the three phase boundaries.\n\n## Summary\n- Latent heat changes phase.\n- Temperature stays constant during an ideal phase change.\n- Phase temperatures depend on pressure.\n- The triple point has three coexisting phases.",
+    "Revision and recap": "# Revision and recap: Chapter 10: Thermal Properties of Matter\n\n## What you will learn\nYou will compare conduction, convection, radiation, and Newton's law of cooling.\n\n## Simple explanation\nThermal energy moves through particle interactions, bulk fluid motion, or electromagnetic radiation.\n\n## Step-by-step breakdown\n- **Conduction**: For a slab, heat current H = KA(T₀ − T₀)/L.\n- **Conductivity**: Larger K or area increases conduction; greater length reduces it.\n- **Convection**: Bulk motion carries heat in fluids.\n- **Radiation**: Electromagnetic transfer needs no medium.\n- **Stefan–Boltzmann law**: Net power can be εσA(T⁴ − Ts⁴).\n- **Emissivity**: Good absorbers are good emitters under corresponding conditions.\n- **Newton cooling**: For small excess temperature under fixed conditions, cooling rate is proportional to excess temperature.\n- **Cooling curve**: Cooling slows as the body approaches ambient temperature.\n\n## Worked example\nQuestion: Using the steady-conduction relation, what happens to heat-current rate if slab thickness doubles?\n\nSolution:\n- H = KAΔT/L.\n- Replacing L by 2L halves H.\n- Final answer: The heat-current rate is halved.\n\n## Common mistake\nNewton's law does not imply a constant temperature fall per minute.\n\n## Quick check question\nQuestion: Which heat-transfer mode crosses vacuum?\nAnswer: Radiation.\nExplanation: Electromagnetic waves do not require matter.\n\n## Summary\n- Conduction needs a temperature gradient.\n- Convection uses fluid motion.\n- Radiation crosses vacuum.\n- Cooling rate decreases near ambient.\n- Thermal behaviour combines expansion, heat capacity, phase changes, and transfer."
+  }
+}

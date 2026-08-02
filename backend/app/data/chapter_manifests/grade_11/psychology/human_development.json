@@ -1,0 +1,98 @@
+{
+  "grade": "Grade 11",
+  "subject": "Psychology",
+  "chapter": "Human Development",
+  "central_question": "How do biological, cognitive, socio-emotional and contextual processes interact to produce continuity and change across the life-span?",
+  "in_scope_units": [
+    "Meaning of development and interwoven biological, cognitive and socio-emotional processes.",
+    "Life-span perspective.",
+    "Growth, development, maturation and evolution.",
+    "Heredity–environment interaction, genotype and phenotype.",
+    "Bronfenbrenner and Durganand Sinha contextual models.",
+    "Developmental stages and tasks.",
+    "Prenatal development and teratogens.",
+    "Infancy: motor, sensory, cognitive, language and attachment development.",
+    "Childhood: physical, cognitive, self, gender and moral development.",
+    "Adolescence: puberty, egocentrism, identity and challenges.",
+    "Adulthood and old age."
+  ],
+  "banned_topics": [
+    "Detailed mechanisms of sensation, learning and memory treated in later chapters.",
+    "Clinical diagnosis or treatment beyond the chapter’s developmental overview."
+  ],
+  "must_include_keywords": [
+    "development",
+    "growth",
+    "maturation",
+    "evolution",
+    "life-span perspective",
+    "biological processes",
+    "cognitive processes",
+    "socio-emotional processes",
+    "plasticity",
+    "historical conditions",
+    "genotype",
+    "phenotype",
+    "heredity",
+    "environment",
+    "Bronfenbrenner",
+    "microsystem",
+    "mesosystem",
+    "exosystem",
+    "macrosystem",
+    "chronosystem",
+    "Durganand Sinha",
+    "developmental tasks",
+    "prenatal period",
+    "teratogens",
+    "reflexes",
+    "object permanence",
+    "Piaget",
+    "sensorimotor",
+    "preoperational",
+    "concrete operational",
+    "formal operational",
+    "attachment",
+    "Erikson",
+    "gender roles",
+    "Kohlberg",
+    "puberty",
+    "imaginary audience",
+    "personal fable",
+    "identity",
+    "adulthood",
+    "old age"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Development means only physical growth.",
+      "correction": "It includes biological, cognitive and socio-emotional change, with gains and decline."
+    },
+    {
+      "claim": "Genes or environment alone determine characteristics.",
+      "correction": "Phenotypes emerge through interaction between inherited tendencies and environment."
+    },
+    {
+      "claim": "Everyone develops at exactly the same rate.",
+      "correction": "The broad sequence is shared, but timing and rate vary."
+    },
+    {
+      "claim": "Attachment depends only on feeding.",
+      "correction": "Contact comfort and responsive care are central in the chapter’s account."
+    },
+    {
+      "claim": "Old age necessarily means complete incapacity.",
+      "correction": "Ageing varies widely and many older adults remain active and competent."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Review Question 1 on development, growth and maturation.",
+    "NCERT Review Question 5 on socio-cultural context.",
+    "NCERT Review Question 6 on cognitive changes.",
+    "NCERT Review Question 7 on attachment.",
+    "NCERT Review Question 9 on identity."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–10 and two Project Ideas.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

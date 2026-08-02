@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Solutions",
+  "central_question": "How do composition and intermolecular interactions determine the formation, vapour pressure and colligative behaviour of solutions?",
+  "in_scope_units": [
+    "Types of homogeneous solutions and the roles of solute and solvent.",
+    "Quantitative concentration units: mass percentage, volume percentage, mass-by-volume percentage, ppm, mole fraction, molarity and molality.",
+    "Solubility of solids and gases in liquids, including temperature, pressure and dynamic equilibrium.",
+    "Henry’s law, its constant and practical applications.",
+    "Vapour pressure of liquid solutions and Raoult’s law for volatile and non-volatile components.",
+    "Ideal and non-ideal solutions, positive and negative deviations, and azeotropes.",
+    "Colligative properties: relative lowering of vapour pressure, elevation of boiling point, depression of freezing point and osmotic pressure.",
+    "Reverse osmosis and purification of water.",
+    "Abnormal molar masses, association, dissociation and the van’t Hoff factor."
+  ],
+  "banned_topics": [
+    "Electrochemical cells and electrode potentials, which belong to Electrochemistry.",
+    "Rate laws and activation energy, which belong to Chemical Kinetics.",
+    "Acid-base equilibrium and solubility product derivations beyond the examples specifically used in this chapter."
+  ],
+  "must_include_keywords": [
+    "homogeneous solution",
+    "solute",
+    "solvent",
+    "binary solution",
+    "mass percentage",
+    "volume percentage",
+    "mass by volume percentage",
+    "parts per million",
+    "mole fraction",
+    "molarity",
+    "molality",
+    "solubility",
+    "saturated solution",
+    "dynamic equilibrium",
+    "Henry’s law",
+    "Henry’s law constant",
+    "partial pressure",
+    "vapour pressure",
+    "Raoult’s law",
+    "ideal solution",
+    "non-ideal solution",
+    "positive deviation",
+    "negative deviation",
+    "azeotrope",
+    "colligative properties",
+    "relative lowering of vapour pressure",
+    "elevation of boiling point",
+    "depression of freezing point",
+    "osmosis",
+    "osmotic pressure",
+    "semipermeable membrane",
+    "reverse osmosis",
+    "van’t Hoff factor",
+    "association",
+    "dissociation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Molarity and molality are both independent of temperature.",
+      "correction": "Molality depends on masses and is temperature independent, whereas molarity depends on solution volume and therefore changes with temperature."
+    },
+    {
+      "claim": "A larger Henry’s law constant means a gas is more soluble.",
+      "correction": "At a given pressure, a larger Henry’s law constant corresponds to a smaller mole fraction and therefore lower gas solubility."
+    },
+    {
+      "claim": "Every real liquid mixture obeys Raoult’s law over the full composition range.",
+      "correction": "Only ideal solutions obey Raoult’s law throughout; non-ideal solutions show positive or negative deviations."
+    },
+    {
+      "claim": "Colligative properties depend on the chemical identity of solute particles.",
+      "correction": "For dilute solutions, colligative properties depend mainly on the number of solute particles, not their chemical nature."
+    },
+    {
+      "claim": "Osmosis is movement of solute through a semipermeable membrane.",
+      "correction": "Osmosis is the flow of solvent through a semipermeable membrane from pure solvent or dilute solution toward the more concentrated solution."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 1.1 on mole fraction from a 20% by mass ethylene glycol solution.",
+    "Use NCERT Example 1.3 to distinguish molality from molarity.",
+    "Apply NCERT Example 1.7 to Henry’s law and gas solubility.",
+    "Use NCERT Example 1.8 for total vapour pressure of an ideal binary solution.",
+    "Proceed to NCERT Examples 1.9–1.12 for the four colligative properties.",
+    "Finish with NCERT Example 1.13 on van’t Hoff factor and molecular association."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1.1 to 1.41 and cover concentration units, solubility, Henry’s law, Raoult’s law, deviations, colligative properties, osmosis and abnormal molar mass.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

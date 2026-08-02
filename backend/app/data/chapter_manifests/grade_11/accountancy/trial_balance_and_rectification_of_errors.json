@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 11",
+  "subject": "Accountancy",
+  "chapter": "Trial Balance and Rectification of Errors",
+  "central_question": "How does a trial balance test arithmetical accuracy, what errors can remain, and how are errors located and rectified with or without a suspense account?",
+  "in_scope_units": [
+    "Meaning and objectives of a trial balance.",
+    "Methods and steps for preparing a trial balance.",
+    "Significance and limitations of agreement of a trial balance.",
+    "Errors of commission, omission, principle and compensating errors.",
+    "Errors disclosed and not disclosed by a trial balance.",
+    "Procedure for locating errors.",
+    "Rectification of two-sided errors not affecting trial balance.",
+    "Rectification of one-sided errors affecting trial balance.",
+    "Suspense account, its use and disposal."
+  ],
+  "banned_topics": [
+    "Preparation and posting of original transactions, which belong to Chapters 3 and 4.",
+    "Depreciation computation and provisions, which belong to Chapter 7.",
+    "Preparation of final statements, which belongs to Chapters 8 and 9."
+  ],
+  "must_include_keywords": [
+    "trial balance",
+    "ledger balances",
+    "arithmetical accuracy",
+    "balance method",
+    "total method",
+    "total-cum-balance method",
+    "debit column",
+    "credit column",
+    "agreement",
+    "limitations",
+    "error of commission",
+    "error of omission",
+    "complete omission",
+    "partial omission",
+    "error of principle",
+    "compensating error",
+    "casting",
+    "posting",
+    "balancing",
+    "wrong account",
+    "wrong side",
+    "two-sided error",
+    "one-sided error",
+    "rectification",
+    "journal entry",
+    "suspense account",
+    "difference in trial balance",
+    "short debit",
+    "excess debit",
+    "short credit",
+    "excess credit",
+    "disposal of suspense account"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A tallied trial balance proves that all accounts are correct.",
+      "correction": "It provides an arithmetical check but cannot reveal complete omissions, errors of principle, wrong accounts on the correct side or compensating errors."
+    },
+    {
+      "claim": "Every error affects the trial balance.",
+      "correction": "Two-sided errors can preserve equality, while one-sided errors usually disturb it."
+    },
+    {
+      "claim": "A suspense account permanently solves an unexplained difference.",
+      "correction": "It is temporary and must be eliminated as errors are found and rectified."
+    },
+    {
+      "claim": "Rectification means recording only the correct entry.",
+      "correction": "The wrong effect must first be cancelled or adjusted and the correct effect restored."
+    },
+    {
+      "claim": "An error of principle is merely an arithmetic mistake.",
+      "correction": "It arises from incorrect classification, such as treating capital expenditure as revenue expenditure."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the Rawat ledger example to prepare a trial balance by the balance method.",
+    "Use section 6.4 examples to classify commission, omission, principle and compensating errors.",
+    "Use the credit sale to Mohan ₹10,000 omitted example to rectify a two-sided error.",
+    "Use the purchases-book overcasting or undercasting examples to rectify a one-sided error.",
+    "Use the chapter suspense-account illustrations and end questions to close or carry forward the unexplained balance."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Short Answer Questions 1–8, Long Answer Questions and numerical rectification questions, followed by Test Your Understanding – IV.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

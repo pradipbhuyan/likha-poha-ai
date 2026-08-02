@@ -1,0 +1,62 @@
+{
+  "manifest": {
+    "grade": "Grade 12",
+    "subject": "Hindi",
+    "chapter": "Kale Megha Pani De",
+    "central_question": "How does the memoir explore the tension between scientific reasoning, cultural belief and affectionate human relationships?",
+    "in_scope_units": [
+      "Indra Sena/Mendhak Mandali",
+      "Drought and the rain song",
+      "Narrator’s protest",
+      "Jiji’s arguments and seed analogy",
+      "Faith, solidarity and open-ended reflection"
+    ],
+    "banned_topics": [
+      "Content from adjacent chapters not present in the supplied source.",
+      "Biographical or historical claims not stated in the supplied source.",
+      "Invented incidents, quotations, dates or interpretations unsupported by the text."
+    ],
+    "must_include_keywords": [
+      "धर्मवीर भारती",
+      "इंदर सेना",
+      "मेंढक-मंडली",
+      "काले मेघा पानी दे",
+      "अनावृष्टि",
+      "पानी की बर्बादी",
+      "अंधविश्वास",
+      "जिजी",
+      "अर्घ्य",
+      "बीज",
+      "दान",
+      "विज्ञान",
+      "विश्वास",
+      "सहज प्रेम",
+      "लोक-रीति"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The writer proves that the ritual causes rain.",
+        "correction": "The text presents the belief and its social-emotional meaning but gives no causal proof."
+      },
+      {
+        "claim": "The writer simply rejects all tradition.",
+        "correction": "He distinguishes harmful superstition from beliefs that may sustain hope and community."
+      }
+    ],
+    "recommended_example_progression": [
+      "Ritual setting",
+      "Reason versus belief",
+      "Jiji’s analogy",
+      "Social role of faith",
+      "Open conclusion"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter questions printed in the supplied NCERT source; answers must be supported by the text."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Kale Megha Pani De\n\n## What you will learn\nUnderstand the Indra Sena ritual and the drought-stricken setting.\n\n## Simple explanation\nThe memoir opens with boys called Indra Sena or Mendhak Mandali moving from house to house, singing for rain while people pour stored water over them.\n\n## Step-by-step breakdown\n- **Two names**: Supporters call them Indra Sena; irritated observers call them Mendhak Mandali.\n- **Song**: They sing “काले मेघा पानी दे”.\n- **Drought**: Wells dry, fields crack and people suffer from heat and lack of water.\n- **Ritual**: Even scarce household water is poured on the boys in hope of rain.\n\n## Worked example\nQuestion: Why does the narrator initially call the ritual a cruel waste?\n\nAnswer:\n- Textual evidence: He sees families empty scarce stored water over children while wells and fields are already dry.\n- Interpretation: From a rational perspective, using water in a drought appears self-defeating.\n- Conclusion: The child narrator’s first response is scientific doubt and anger at what he calls superstition.\n\n## Common mistake\nDo not discuss the ritual without the drought context; scarcity makes the conflict sharper.\n\n## Quick check question\nQuestion: What are the two names of the group?\nAnswer: Indra Sena and Mendhak Mandali.\nExplanation: The opposite names reflect two opposite attitudes toward the ritual.\n\n## Summary\n- The setting is severe drought.\n- The ritual is collective and dramatic.\n- The narrator begins as a sceptic.\n",
+    "Core explanation": "# Core explanation: the narrator and Jiji\n\n## What you will learn\nExamine the clash between rational argument and affectionate belief.\n\n## Simple explanation\nThe narrator refuses to pour water, but Jiji explains the act as an offering: one must first give what one wishes to receive.\n\n## Step-by-step breakdown\n- **Narrator’s argument**: Water should be saved, not wasted.\n- **Jiji’s response**: The water is an अर्घ्य, an offering made in hope and faith.\n- **Emotional bond**: The narrator resists but cannot remain angry with Jiji for long.\n- **Central tension**: Scientific truth and the sweetness of affection coexist.\n\n## Worked example\nQuestion: How does Jiji justify pouring water?\n\nAnswer:\n- Textual evidence: She says that if people do not give water, how will Indra give them water, and that the act is an offering of the thing they seek.\n- Interpretation: Her explanation is not scientific proof; it expresses reciprocity, faith and cultural meaning.\n- Conclusion: Jiji gives the ritual an ethical and emotional logic of giving before receiving.\n\n## Common mistake\nDo not present Jiji’s belief as established science; the text deliberately leaves the tension unresolved.\n\n## Quick check question\nQuestion: Why does the narrator finally participate in rituals he doubts?\nAnswer: To preserve Jiji’s happiness and affection for him.\nExplanation: His love for Jiji is stronger than his wish to oppose every custom openly.\n\n## Summary\n- Jiji represents lived faith.\n- The narrator represents questioning reason.\n- Affection complicates the conflict.\n",
+    "Worked examples": "# Worked examples: water, seed and sacrifice\n\n## What you will learn\nAnalyse the analogy through which Jiji explains that apparent loss may lead to creation.\n\n## Simple explanation\nJiji argues that sowing grain looks like throwing it away, yet the seed must be given to the earth before a crop can return.\n\n## Step-by-step breakdown\n- **Giving**: The seed is surrendered first.\n- **Trust**: The farmer acts in hope, not with immediate visible gain.\n- **Analogy**: Water offered to Indra is explained through the same principle.\n- **Meaning**: Giving becomes a form of participation in renewal.\n\n## Worked example\nQuestion: What is the purpose of Jiji’s seed analogy?\n\nAnswer:\n- Textual evidence: She compares pouring water with placing grain into the soil: both involve giving up something precious in expectation of future abundance.\n- Interpretation: The analogy transforms “waste” into sacrifice and trust.\n- Conclusion: It explains the cultural imagination behind the ritual, even though it does not scientifically prove rainfall.\n\n## Common mistake\nDo not claim the analogy proves a causal link between ritual and rain.\n\n## Quick check question\nQuestion: What idea connects seed-sowing and the water offering?\nAnswer: The belief that one must give before receiving.\nExplanation: Jiji uses this shared structure to defend the ritual.\n\n## Summary\n- The analogy explains belief from within.\n- Sacrifice and hope are linked.\n- Interpretation is different from scientific proof.\n",
+    "Exam-style problems": "# Exam-style problems: faith as social energy\n\n## What you will learn\nUnderstand the memoir’s suggestion that belief can have a creative social role during crisis.\n\n## Simple explanation\nThe introductory note asks whether harmless beliefs may help remove despair, restrain impatience and unite divided public consciousness.\n\n## Step-by-step breakdown\n- **Emergency**: Drought creates fear and helplessness.\n- **Collective action**: The procession involves children, households and an entire locality.\n- **Emotional relief**: The ritual provides hope and a shared response.\n- **Open question**: The writer does not deliver a final judgement.\n\n## Worked example\nQuestion: What possible creative role of belief does the chapter suggest?\n\nAnswer:\n- Textual evidence: Belief may remove despair in an emergency, hold impatience in check and join divided public consciousness.\n- Interpretation: Even when not scientifically valid, a non-harmful custom may produce solidarity and hope.\n- Conclusion: The text invites evaluation rather than giving a simple verdict.\n\n## Common mistake\nDo not conclude that every belief is acceptable; the introduction rejects beliefs that humiliate communities on the basis of race, caste, religion or gender.\n\n## Quick check question\nQuestion: Does the writer give a final decision on the rain ritual?\nAnswer: No.\nExplanation: The chapter preserves the question: science, love, or both?\n\n## Summary\n- Faith may create solidarity.\n- The text distinguishes harmless custom from oppressive superstition.\n- The conclusion remains deliberately open.\n",
+    "Revision and recap": "# Revision and recap: memoir, language and theme\n\n## What you will learn\nRevise the narrative voice, folk song, childhood memory and central conflict.\n\n## Simple explanation\nThe piece works as a memoir because an adult writer revisits a childhood scene and rethinks his earlier certainty.\n\n## Step-by-step breakdown\n- **Folk element**: The repeated rain song gives rhythm and collective voice.\n- **Child perspective**: The young narrator argues sharply against waste.\n- **Adult reflection**: The mature narrator sees emotional and cultural dimensions.\n- **Jiji**: She embodies affection, custom and persuasive oral reasoning.\n- **Theme**: Reason and faith are held in dialogue rather than reduced to a simple opposition.\n\n## Worked example\nQuestion: Why is the ending question “विज्ञान का सत्य बड़ा है या सहज प्रेम का रस? या दोनों?” important?\n\nAnswer:\n- Textual evidence: It summarises the unresolved experience: the narrator respects reason but also recognises the force of affection and collective belief.\n- Interpretation: The question prevents a one-sided moral and asks readers to hold both dimensions together.\n- Conclusion: The memoir’s deepest meaning lies in thoughtful tension, not a final slogan.\n\n## Common mistake\nDo not answer the final question as though the author has selected only one side.\n\n## Quick check question\nQuestion: What form does the chapter use?\nAnswer: A childhood memoir narrated with later reflection.\nExplanation: The adult perspective gives new meaning to an old conflict.\n\n## Summary\n- The folk song structures the memory.\n- Jiji and the narrator represent different ways of knowing.\n- The chapter ends in balance and inquiry.\n"
+  }
+}

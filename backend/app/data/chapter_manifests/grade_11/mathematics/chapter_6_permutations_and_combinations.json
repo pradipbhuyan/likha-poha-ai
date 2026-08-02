@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 6: Permutations and Combinations",
+  "central_question": "How can arrangements and selections be counted efficiently when order, repetition, identical objects, and restrictions vary?",
+  "in_scope_units": [
+    "Fundamental principle of counting for successive choices.",
+    "Factorial notation and basic identities.",
+    "Permutations of distinct objects without repetition.",
+    "Permutations when repetition is allowed.",
+    "Permutations when some objects are identical.",
+    "Combinations and the relationship nPr=nCr·r!.",
+    "Applications involving roles, words, teams, handshakes, chords, and restrictions."
+  ],
+  "banned_topics": [
+    "Probability calculations, which use these counts in a later chapter.",
+    "Circular permutations, not developed in the provided chapter.",
+    "Binomial coefficients as expansion coefficients, treated in Chapter 7."
+  ],
+  "must_include_keywords": [
+    "fundamental principle of counting",
+    "multiplication principle",
+    "factorial",
+    "zero factorial",
+    "permutation",
+    "arrangement",
+    "order matters",
+    "nPr",
+    "without repetition",
+    "with repetition",
+    "distinct objects",
+    "identical objects",
+    "multiset permutation",
+    "block method",
+    "complementary counting",
+    "combination",
+    "selection",
+    "order does not matter",
+    "nCr",
+    "nPr equals nCr r factorial",
+    "handshake problem",
+    "chord selection",
+    "chairman",
+    "vice-chairman",
+    "ROOT",
+    "INSTITUTE"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Successive choices should always be added.",
+      "correction": "Successive stages are multiplied under the fundamental counting principle."
+    },
+    {
+      "claim": "Permutation and combination are interchangeable.",
+      "correction": "Permutation counts order; combination ignores order."
+    },
+    {
+      "claim": "Repeated objects are handled by dividing by the repetition count.",
+      "correction": "Divide by the factorial of each repetition count."
+    },
+    {
+      "claim": "nPr=nCr.",
+      "correction": "nPr=nCr·r!."
+    },
+    {
+      "claim": "If repetition is allowed, use nPr.",
+      "correction": "For r ordered positions with n reusable choices, the count is n^r."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Section 6.2 clothing and bag examples for the counting principle.",
+    "NCERT chairman and vice-chairman illustration for ordered roles.",
+    "NCERT Section 6.3.4 ROOT example for identical objects.",
+    "NCERT Section 6.4 four-object example for deriving combinations.",
+    "NCERT handshake and chord illustrations for unordered pairs."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains exercises on the fundamental counting principle, permutations, and combinations, followed by the Miscellaneous Exercise on Chapter 6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

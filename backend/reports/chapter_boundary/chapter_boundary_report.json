@@ -1,69 +1,69 @@
 {
-  "audited_at": "2026-07-30T16:42:06.999685+00:00",
+  "audited_at": "2026-08-02T13:51:59.322296+00:00",
   "manifests_used": 1,
   "lessons_audited": 5,
   "total_critical_findings": 0,
   "total_high_findings": 0,
   "results": [
     {
-      "lesson_cache_id": "824d0c53-80c0-4943-8e39-f7cf5d0011ff",
-      "grade": "Grade 8",
-      "subject": "Maths",
-      "chapter": "Chapter 7: Area",
-      "step_title": "Exam-style problems",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_8/maths/chapter_7_area.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 2089
-    },
-    {
-      "lesson_cache_id": "2e247d42-699a-4169-9d84-b15d6aa61292",
-      "grade": "Grade 8",
-      "subject": "Maths",
-      "chapter": "Chapter 7: Area",
+      "lesson_cache_id": "dd540bd9-0c4b-4c32-ac34-7c0c1de80277",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Shram Vibhajan Aur Jati Pratha",
       "step_title": "Core explanation",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_8/maths/chapter_7_area.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/shram_vibhajan_aur_jati_pratha.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 1924
+      "content_length": 2299
     },
     {
-      "lesson_cache_id": "c0549dc6-9904-40af-bbce-d9d46a7f02e6",
-      "grade": "Grade 8",
-      "subject": "Maths",
-      "chapter": "Chapter 7: Area",
+      "lesson_cache_id": "165ae62b-8309-40e3-950f-dab434d4c17d",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Exam-style problems",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2325
+    },
+    {
+      "lesson_cache_id": "d1236b92-cc1c-4233-8fe0-864b981610c4",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Shram Vibhajan Aur Jati Pratha",
       "step_title": "Concept introduction",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_8/maths/chapter_7_area.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/shram_vibhajan_aur_jati_pratha.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 1878
+      "content_length": 2229
     },
     {
-      "lesson_cache_id": "b32ed932-b04f-42f7-ae9e-82ee1e358290",
-      "grade": "Grade 8",
-      "subject": "Maths",
-      "chapter": "Chapter 7: Area",
-      "step_title": "Worked examples",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_8/maths/chapter_7_area.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 2125
-    },
-    {
-      "lesson_cache_id": "f6c2e0e6-8f7d-488e-b45e-b7bb9ea49997",
-      "grade": "Grade 8",
-      "subject": "Maths",
-      "chapter": "Chapter 7: Area",
+      "lesson_cache_id": "d674a09f-b716-4dfa-8758-00b6b8e91758",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Shram Vibhajan Aur Jati Pratha",
       "step_title": "Revision and recap",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_8/maths/chapter_7_area.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/shram_vibhajan_aur_jati_pratha.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 2151
+      "content_length": 3021
+    },
+    {
+      "lesson_cache_id": "4a291df6-1727-49c8-a50a-11dccd09c4d0",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Worked examples",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2256
     }
   ]
 }

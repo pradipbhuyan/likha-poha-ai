@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 12",
+  "subject": "Economics",
+  "chapter": "Determination of Income and Employment",
+  "central_question": "How do planned consumption and investment determine short-run equilibrium income and employment, and why do autonomous spending changes have multiplied effects?",
+  "in_scope_units": [
+    "Macroeconomic models, ceteris paribus and the Keynesian fixed-price framework",
+    "Ex ante and ex post measures of consumption, investment and output",
+    "Consumption function, autonomous and induced consumption, MPC, saving, MPS, APC and APS",
+    "Investment as an autonomous addition to physical capital and inventories",
+    "Two-sector aggregate demand and equilibrium income",
+    "Planned and unplanned inventory changes and the distinction between equilibrium and accounting identity",
+    "Graphical equilibrium using consumption, investment, aggregate demand and the 45-degree line",
+    "Algebraic equilibrium and the effective-demand principle",
+    "Autonomous changes, the investment multiplier and successive spending rounds",
+    "Paradox of thrift",
+    "Full-employment income, deficient demand and excess demand"
+  ],
+  "banned_topics": [
+    "National-income accounting identities as a measurement system, which belong to National Income Accounting",
+    "Detailed fiscal-policy multipliers, deficits and debt, which belong to Government Budget and the Economy",
+    "Open-economy imports, exports and exchange-rate determination, which belong to Open Economy Macroeconomics"
+  ],
+  "must_include_keywords": [
+    "ceteris paribus",
+    "John Maynard Keynes",
+    "fixed price level",
+    "constant rate of interest",
+    "ex ante",
+    "ex post",
+    "aggregate demand",
+    "consumption function",
+    "autonomous consumption",
+    "induced consumption",
+    "marginal propensity to consume",
+    "saving",
+    "marginal propensity to save",
+    "average propensity to consume",
+    "average propensity to save",
+    "autonomous investment",
+    "two-sector model",
+    "planned output",
+    "unplanned inventory investment",
+    "45-degree line",
+    "macroeconomic equilibrium",
+    "effective demand",
+    "autonomous expenditure",
+    "parametric shift",
+    "investment multiplier",
+    "multiplier mechanism",
+    "paradox of thrift",
+    "full employment",
+    "deficient demand",
+    "excess demand"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Ex ante and ex post investment always have the same value.",
+      "correction": "Ex ante investment is planned, while ex post investment includes the actual change in inventories and may differ because sales differ from expectations."
+    },
+    {
+      "claim": "Equilibrium necessarily means full employment.",
+      "correction": "The chapter states that planned aggregate demand can equal planned output at a level below or above full-employment output."
+    },
+    {
+      "claim": "If every household tries to save a larger fraction, aggregate saving must rise.",
+      "correction": "The paradox of thrift shows that lower consumption can reduce equilibrium income so much that total saving remains unchanged or falls."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the chapter's planned-versus-actual inventory illustration and NCERT Exercise 2 to distinguish ex ante from ex post investment.",
+    "Use the Imagenia consumption function to identify autonomous consumption and MPC.",
+    "Use the graphical construction in Figures 4.2–4.6 to build aggregate demand and short-run equilibrium.",
+    "Use the C = 40 + 0.8Y and investment-change example to trace the multiplier mechanism.",
+    "Use NCERT Exercise 4 to explain effective demand and derive the autonomous-expenditure multiplier.",
+    "Use the chapter's change in MPC from 0.8 to 0.5 and NCERT Exercise 6 to explain the paradox of thrift."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

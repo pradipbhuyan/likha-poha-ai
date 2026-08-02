@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "A Roadside Stand",
+  "central_question": "How does the poem expose the neglect of rural people by wealthy travellers and supposedly helpful institutions while expressing the poet’s troubled sympathy?",
+  "in_scope_units": [
+    "About the poet: Robert Frost and his sympathetic presentation of poor, deprived people.",
+    "Before you read: observation of a roadside stand.",
+    "The little house, new shed, handmade signs, country produce and the plea for city money.",
+    "The polished traffic’s indifference and complaints about the marred landscape.",
+    "The rural hope for the life promised by moving pictures and the party in power.",
+    "The satire on ‘greedy good-doers’ and imposed benefits.",
+    "The childish longing for a stopping car and the selfish reasons cars actually stop.",
+    "The country’s unmet need for a lift of spirit and the speaker’s painful, self-correcting final wish.",
+    "Think it out Questions 1–5, Talk about it, Try this out and notes on rhyme and stanza shifts."
+  ],
+  "banned_topics": [
+    "General economic statistics about rural and urban development not present in the poem.",
+    "A policy programme or political party not identified in the chapter."
+  ],
+  "must_include_keywords": [
+    "Robert Frost",
+    "roadside stand",
+    "little old house",
+    "little new shed",
+    "pathetically pled",
+    "dole of bread",
+    "city money",
+    "flower of cities",
+    "polished traffic",
+    "mind ahead",
+    "artless paint",
+    "N turned wrong",
+    "wild berries",
+    "wooden quarts",
+    "golden squash",
+    "beauty rest",
+    "trusting sorrow",
+    "moving-pictures’ promise",
+    "party in power",
+    "pitiful kin",
+    "greedy good-doers",
+    "beneficent beasts of prey",
+    "enforcing benefits",
+    "childish longing",
+    "open prayer",
+    "squeal of brakes",
+    "selfish cars",
+    "farmer’s prices",
+    "country money",
+    "requisite lift of spirit",
+    "voice of the country",
+    "insufferable pain",
+    "balanced development",
+    "rhyme variance",
+    "stanza shift"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The roadside people ask for charity and free bread.",
+      "correction": "The poem explicitly says it would not be fair to call their plea a request for ‘a dole of bread’; they want a share of cash and economic opportunity."
+    },
+    {
+      "claim": "The city drivers stop mainly to buy produce.",
+      "correction": "The cars that stop use the yard to turn, ask directions or request petrol; none provides the hoped-for sale."
+    },
+    {
+      "claim": "The poet praises government resettlement plans.",
+      "correction": "Phrases such as ‘greedy good-doers’ and ‘beneficent beasts of prey’ expose the double standards and control hidden inside supposed benefits."
+    },
+    {
+      "claim": "The final wish to end the villagers’ pain is the poet’s settled moral position.",
+      "correction": "He immediately returns ‘into the sane’ and imagines how he would feel if someone offered to end his own pain."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Think it out Q1 to locate the city folk’s indifference and complaint.",
+    "Use NCERT Think it out Q2 to define the roadside sellers’ actual plea.",
+    "Use NCERT Think it out Q3 to analyse the satire on social agencies.",
+    "Use NCERT Think it out Q4 to interpret the ‘childish longing’.",
+    "Use NCERT Think it out Q5 and the rhyme/stanza notes to examine the speaker’s painful final turn."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The poem is followed by Think it out Questions 1–5, a Talk about it discussion, a Try this out observation activity and notes on rhyme scheme and stanza divisions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

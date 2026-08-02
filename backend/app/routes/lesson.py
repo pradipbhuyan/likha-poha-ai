@@ -11,7 +11,7 @@ from app.models.schemas import (
 )
 
 from app.services.auth_service import get_current_user, admin_client, require_admin
-from app.services.usage_service import enforce_token_limits
+from app.services.usage_service import enforce_token_limits, enforce_daily_limit, log_ai_usage
 
 from app.services.tutor_service import (
     generate_step_lesson,
@@ -29,11 +29,10 @@ from app.services.platform_info_service import (
 from app.services.subject_access_service import has_cbse_subject_access
 from app.services.board_service import is_school_board, normalize_board, resolve_request_board
 from app.services.test_account_service import is_all_access_test_user
-from app.services.offer_access_service import is_free_tier_user, build_offer_gate_response
+from app.services.offer_access_service import is_free_tier_user, DAILY_LIMIT_MESSAGE
 
-# Keep legacy alias so any remaining is_offer_code_user calls still resolve
+# Keep legacy alias — still used by lesson generation routes in this file
 is_offer_code_user = is_free_tier_user
-from app.services.doubt_kb_service import search_doubt_kb
 from app.services.academic_guardrail_service import (
     is_non_academic_question,
     build_non_academic_response,
@@ -206,6 +205,27 @@ def enforce_learning_access(profile: dict, mode: str, subject: str):
         status_code=403,
         detail="Invalid learning mode.",
     )
+
+
+def enforce_account_standing(profile: dict, mode: str):
+    """Block suspended accounts and unrecognized learning modes for Ask Doubt
+    follow-ups. No per-topic restriction here — free-tier users may ask
+    about any subject/chapter; the only free-tier control is the shared
+    5/day cap applied in lesson_follow_up() below."""
+    if not profile:
+        raise HTTPException(status_code=403, detail="Profile not found")
+
+    if profile.get("role") in ["admin", "teacher", "parent"] or is_all_access_test_user(profile):
+        return
+
+    if profile.get("account_status") not in [None, "active", "trial"]:
+        raise HTTPException(
+            status_code=403,
+            detail="Your account is suspended. Please contact your parent or administrator.",
+        )
+
+    if not is_school_board(mode):
+        raise HTTPException(status_code=403, detail="Invalid learning mode.")
 
 
 def enforce_ai_token_limit(username: str):
@@ -481,9 +501,13 @@ def lesson_follow_up(
     request_board = resolve_request_board(data.mode, data.board)
     enforce_profile_grade(profile, data.grade)
     enforce_profile_board(profile, request_board)
-    # Offer-code users bypass the standard CBSE access gate.
-    if not is_offer_code_user(user.id):
-        enforce_learning_access(profile, data.mode, data.subject)
+    enforce_account_standing(profile, data.mode)
+    # Ask Doubt never calls an LLM for any tier, so there is no per-topic
+    # access gate any more — free-tier users may ask about any subject or
+    # chapter. The only free-tier control is the shared 5/day cap applied
+    # further below, right before the retrieval pipeline runs.
+    username_key = profile.get("username") or data.username
+    is_free = is_free_tier_user(user.id)
 
     if is_platform_info_question(data.question):
         result = answer_platform_info(data.question)
@@ -532,38 +556,13 @@ def lesson_follow_up(
             message="Academic guardrail: non-academic question redirected",
         )
 
-    # ── Offer-code gate: DKB-only, no LLM calls ──────────────────────────────
-    if is_offer_code_user(user.id):
-        dkb_result = search_doubt_kb(
-            question=data.question,
-            grade=data.grade,
-            subject=data.subject or "",
-            chapter=data.chapter or None,
-            mode=data.mode,
-            board=request_board,
-        )
-        if dkb_result:
-            return LessonFollowUpResponse(
-                success=True,
-                answer=dkb_result["answer"],
-                source_type="DOUBT_KB",
-                sources=[],
-                textbook_visuals=[],
-                history_id=None,
-                message="Answered from knowledge base",
-            )
-        gate = build_offer_gate_response()
-        return LessonFollowUpResponse(
-            success=True,
-            answer=gate["answer"],
-            source_type=gate["source_type"],
-            sources=[],
-            textbook_visuals=[],
-            history_id=None,
-            message="Offer gate: upgrade required for full AI access",
-        )
-
-    enforce_ai_token_limit(profile.get("username") or data.username)
+    # ── Free-tier daily cap: shared across both Ask Doubt surfaces ───────────
+    # Paid users are never capped. Neither tier ever reaches an LLM call —
+    # both fall through to the retrieval-only pipeline below.
+    if is_free:
+        limit = enforce_daily_limit(username_key, feature="doubt_answer_free_tier", max_requests=5)
+        if not limit["allowed"]:
+            raise HTTPException(status_code=429, detail=DAILY_LIMIT_MESSAGE)
 
     try:
         result = call_with_optional_board(
@@ -578,6 +577,9 @@ def lesson_follow_up(
             question=data.question,
             username=data.username,
         )
+
+        if is_free:
+            log_ai_usage(username=username_key, feature="doubt_answer_free_tier", model="none")
 
         history_item = None
 
@@ -604,7 +606,7 @@ def lesson_follow_up(
         return LessonFollowUpResponse(
             success=True,
             answer=result["answer"],
-            source_type=result.get("source_type", "LLM"),
+            source_type=result.get("source_type", "NO_MATCH_FALLBACK"),
             sources=result.get("sources", []),
             textbook_visuals=result.get("textbook_visuals", []),
             history_id=history_item.get("id") if history_item else None,
@@ -615,33 +617,15 @@ def lesson_follow_up(
         raise
 
     except Exception as e:
-        err_str = str(e).lower()
-        if "429" in err_str or "rate" in err_str or "quota" in err_str or "too_many" in err_str or "limit" in err_str:
-            user_msg = "Our AI tutoring service is experiencing high demand right now. Please try again in a few minutes."
-            try:
-                from app.services.alert_service import alert_rate_limit  # noqa: PLC0415
-                alert_rate_limit(
-                    feature="lesson_followup",
-                    username=profile.get("username") or data.username if profile else data.username,
-                    error_detail=str(e),
-                    grade=data.grade,
-                    subject=data.subject,
-                    chapter=data.chapter or "",
-                )
-            except Exception:
-                pass
-        elif "timeout" in err_str or "timed out" in err_str:
-            user_msg = "The AI took too long to respond. Please try again."
-        else:
-            user_msg = "Something went wrong. Please try again in a moment."
+        print(f"Lesson follow-up failed: {e}")
         return LessonFollowUpResponse(
             success=False,
             answer=None,
-            source_type="LLM",
+            source_type="ERROR",
             sources=[],
             textbook_visuals=[],
             history_id=None,
-            message=user_msg,
+            message="Something went wrong. Please try again in a moment.",
         )
 
 

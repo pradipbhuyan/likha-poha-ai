@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Principles of Inheritance and Variation",
+  "central_question": "How are characters passed from parents to offspring, and how do Mendel's laws, chromosome behaviour, linkage, sex determination, mutation and pedigree analysis together explain patterns of inheritance and genetic disorders in living organisms?",
+  "in_scope_units": [
+    "4.1 Mendel's Laws of Inheritance: Mendel's hybridisation experiments on garden pea using true-breeding lines and seven pairs of contrasting traits.",
+    "4.2 Inheritance of One Gene: the monohybrid cross (F1 and F2 generations), genes/alleles/genotype/phenotype/homozygous/heterozygous, the Punnett square, the Law of Dominance and the Law of Segregation, the test cross, and non-Mendelian patterns (incomplete dominance, co-dominance, multiple alleles via ABO blood grouping, and pleiotropy).",
+    "4.3 Inheritance of Two Genes: the dihybrid cross, the 9:3:3:1 ratio, the Law of Independent Assortment, the Chromosomal Theory of Inheritance (Sutton and Boveri), and linkage and recombination (Morgan's Drosophila experiments).",
+    "4.4 Polygenic Inheritance: traits controlled by three or more genes with additive allele effects, illustrated by human skin colour.",
+    "4.5 Sex Determination: XO type, XY type (including humans), ZW type in birds, male versus female heterogamety, and haplodiploidy in honey bees.",
+    "4.6/4.7 Mutation: point mutations (e.g., sickle-cell anaemia) versus chromosomal-level insertions/deletions, and mutagens.",
+    "4.8 Genetic Disorders: pedigree analysis and its symbols, Mendelian disorders (haemophilia, colour blindness, sickle-cell anaemia, phenylketonuria, thalassemia), and chromosomal disorders (Down's syndrome, Klinefelter's syndrome, Turner's syndrome) arising from aneuploidy or polyploidy."
+  ],
+  "banned_topics": [
+    "Sexual reproduction structures in flowering plants (pollen, embryo sac, double fertilisation) — belongs to Chapter 1, Sexual Reproduction in Flowering Plants.",
+    "Human reproductive anatomy, gametogenesis and the menstrual cycle — belongs to Chapter 2, Human Reproduction.",
+    "Contraception, MTP, STIs and infertility/ART — belong to Chapter 3, Reproductive Health.",
+    "Detailed DNA structure, replication, transcription, translation and the genetic code (though the chapter mentions DNA as the location of genes, the molecular mechanisms belong to Chapter 5, Molecular Basis of Inheritance)."
+  ],
+  "must_include_keywords": [
+    "Mendel",
+    "true-breeding",
+    "monohybrid cross",
+    "F1",
+    "F2",
+    "gene",
+    "allele",
+    "genotype",
+    "phenotype",
+    "homozygous",
+    "heterozygous",
+    "Punnett square",
+    "Law of Dominance",
+    "Law of Segregation",
+    "test cross",
+    "incomplete dominance",
+    "co-dominance",
+    "multiple alleles",
+    "pleiotropy",
+    "dihybrid cross",
+    "Law of Independent Assortment",
+    "chromosomal theory of inheritance",
+    "linkage",
+    "recombination",
+    "polygenic inheritance",
+    "sex determination",
+    "XY type",
+    "XO type",
+    "ZW type",
+    "point mutation",
+    "sickle-cell anaemia",
+    "pedigree analysis",
+    "haemophilia",
+    "colour blindness",
+    "phenylketonuria",
+    "thalassemia",
+    "aneuploidy",
+    "Down's syndrome",
+    "Klinefelter's syndrome",
+    "Turner's syndrome"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A dominant trait is always the more common trait in a population, and recessive traits are rare or 'weaker'.",
+      "correction": "Dominance and recessiveness describe how alleles behave in a heterozygote (the dominant allele's trait is expressed; the recessive trait is masked, not destroyed), not how common a trait is in a population. The chapter also shows dominance is not absolute or 'autonomous' — the same gene can appear completely dominant, incompletely dominant, or co-dominant depending on which phenotype is examined (e.g., the pea starch-grain gene B/b: round vs wrinkled seeds show complete dominance, but starch grain SIZE shows incomplete dominance)."
+    },
+    {
+      "claim": "In a monohybrid F2 generation, the genotypic ratio and phenotypic ratio are always the same, 3:1.",
+      "correction": "The chapter is explicit that the F2 phenotypic ratio (3:1, dominant:recessive) and the F2 genotypic ratio (1:2:1, e.g., TT:Tt:tt) are DIFFERENT, because the TT and Tt genotypes cannot be told apart just by looking at the phenotype — this is exactly why Mendel needed the test cross to determine genotype."
+    },
+    {
+      "claim": "Incomplete dominance and co-dominance are the same phenomenon.",
+      "correction": "In incomplete dominance (e.g., snapdragon flower colour), the F1 heterozygote's phenotype is INTERMEDIATE/blended between the two parents (pink, from RR red x rr white). In co-dominance (e.g., ABO blood groups), the F1/heterozygote instead expresses BOTH parental phenotypes fully and simultaneously (e.g., IAIB individuals express both A and B sugars on red blood cells) — nothing is blended."
+    },
+    {
+      "claim": "Linked genes on the same chromosome always assort together and never separate (100% linkage).",
+      "correction": "Morgan's experiments showed that genes on the same chromosome can be tightly linked (very low recombination, e.g., white and yellow genes at 1.3% recombination) or loosely linked (higher recombination, e.g., white and miniature wing at 37.2% recombination) — linkage is a matter of degree based on physical distance on the chromosome, not an all-or-nothing rule, and recombination (crossing over) can still separate linked genes."
+    },
+    {
+      "claim": "A woman giving birth to a daughter means something about her genetic contribution went 'wrong', or that mothers determine the sex of the child.",
+      "correction": "The chapter explains that in humans, the female produces only X-bearing ova, while the male produces both X-bearing and Y-bearing sperm in equal (50:50) proportion; it is therefore the genetic makeup of the FATHER's sperm that determines the sex of the child, and each pregnancy has an equal (50%) chance of either sex — the chapter explicitly condemns blaming women for the sex of their children as a 'false notion'."
+    }
+  ],
+  "recommended_example_progression": [
+    "Using Figure 4.4 (the Punnett square for TT x tt), derive the F1 genotype/phenotype and then the F2 genotypic ratio (1:2:1) and phenotypic ratio (3:1) for Mendel's tall/dwarf monohybrid cross.",
+    "Using Figure 4.6 (snapdragon cross RR x rr), contrast the F2 phenotypic ratio under incomplete dominance (1:2:1 red:pink:white) with the standard 3:1 Mendelian ratio, to show genotype and phenotype ratios can coincide only under incomplete/co-dominance.",
+    "Using Table 4.2 (ABO blood group genotypes), work out the possible genotypes and blood group phenotypes of offspring from parents of known blood types, directly matching end-of-chapter Q12.",
+    "Using Figure 4.7 (the dihybrid cross RRYY x rryy), derive the 9:3:3:1 F2 phenotypic ratio and connect it to the Law of Independent Assortment, as guided by the chapter's own worked derivation via the binomial-style combination of two 3:1 ratios.",
+    "Using the chapter's account of sickle-cell anaemia (Figure 4.15) as the classic example of point mutation, trace the single base change (GAG to GUG) through to the single amino-acid substitution (Glu to Val) causing the disease phenotype."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's EXERCISES section (numbered 1-16, page 78) covers reasons for choosing pea plants, key term differentiations (dominant/recessive, homozygous/heterozygous, monohybrid/dihybrid), gamete-type calculations, test-cross design, dihybrid-cross phenotype ratios, T.H. Morgan's contribution, pedigree analysis, sex determination, ABO blood-group genotype problems, co-dominance/incomplete dominance, point mutation, and autosomal genetic disorders.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

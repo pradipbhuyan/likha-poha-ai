@@ -1,0 +1,102 @@
+{
+  "grade": "Grade 11",
+  "subject": "Psychology",
+  "chapter": "Sensory, Attentional and Perceptual Processes",
+  "central_question": "How do sensory systems register stimulation, attention select information and perception organise it into a meaningful world?",
+  "in_scope_units": [
+    "Sensation, attention and perception in knowing the world.",
+    "External and internal stimuli and seven sensory systems.",
+    "Sense modalities, psychophysics, absolute and difference thresholds.",
+    "Attention: alertness, concentration, search, focus and fringe.",
+    "Selective attention, determinants and filter theories.",
+    "Divided and sustained attention, vigilance and span.",
+    "Attention Deficit Hyperactivity Disorder as presented in the chapter.",
+    "Perception, bottom-up and top-down processing.",
+    "The perceiver: motivation, expectation, cognitive style and culture.",
+    "Gestalt organisation and figure–ground segregation.",
+    "Space, depth and distance through monocular and binocular cues.",
+    "Size, shape and brightness constancies.",
+    "Illusions.",
+    "Socio-cultural influences on perception."
+  ],
+  "banned_topics": [
+    "Detailed anatomy of sensory organs beyond the chapter’s functional account.",
+    "Clinical treatment recommendations for attention disorders beyond the textbook box."
+  ],
+  "must_include_keywords": [
+    "sensation",
+    "attention",
+    "perception",
+    "cognition",
+    "sensory receptor",
+    "kinesthetic system",
+    "vestibular system",
+    "psychophysics",
+    "absolute threshold",
+    "difference threshold",
+    "alertness",
+    "concentration",
+    "search",
+    "focus",
+    "fringe",
+    "selective attention",
+    "divided attention",
+    "automatic processing",
+    "sustained attention",
+    "vigilance",
+    "span of attention",
+    "Broadbent",
+    "filter theory",
+    "filter-attenuation theory",
+    "multimode theory",
+    "bottom-up processing",
+    "top-down processing",
+    "perceptual set",
+    "field dependence",
+    "Gestalt",
+    "figure-ground segregation",
+    "proximity",
+    "similarity",
+    "continuity",
+    "closure",
+    "monocular cues",
+    "binocular cues",
+    "retinal disparity",
+    "perceptual constancy",
+    "illusion",
+    "phi-phenomenon",
+    "socio-cultural influence"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Sensation and perception are identical.",
+      "correction": "Sensation registers stimulation; perception recognises and constructs meaning."
+    },
+    {
+      "claim": "Absolute threshold is fixed for everyone.",
+      "correction": "It varies across people and situations and is estimated over trials."
+    },
+    {
+      "claim": "Divided attention gives equal attention to two new difficult tasks.",
+      "correction": "It works best when activities are highly practised and relatively automatic."
+    },
+    {
+      "claim": "Perception is a passive copy.",
+      "correction": "Learning, memory, motivation, expectation and culture contribute to construction."
+    },
+    {
+      "claim": "All illusions disappear with practice.",
+      "correction": "Some are universal or permanent while others vary personally and culturally."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Review Question 1 on sensory limits.",
+    "NCERT Review Question 3 on selective and sustained attention.",
+    "NCERT Review Question 4 on Gestalt organisation.",
+    "NCERT Review Question 6 on depth cues.",
+    "NCERT Review Question 8 on socio-cultural influences."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–8 and two Project Ideas.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

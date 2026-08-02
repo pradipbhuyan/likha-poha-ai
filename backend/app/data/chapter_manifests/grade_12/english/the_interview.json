@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "The Interview",
+  "central_question": "How does the chapter present the interview as both a powerful communication form and a potentially intrusive encounter, and what does Mukund Padmanabhan’s interview reveal about Umberto Eco?",
+  "in_scope_units": [
+    "About Christopher Silvester and the history of the interview genre.",
+    "Part I: positive and negative opinions of interviews from writers and celebrities.",
+    "The interviewer’s power and the interview as a source of information.",
+    "Part II: Mukund Padmanabhan’s interview with Umberto Eco.",
+    "Eco’s shared philosophical interests and use of interstices.",
+    "His narrative academic style, late start in fiction and academic identity.",
+    "The popularity and unpredictable success of The Name of the Rose.",
+    "Understanding, discussion, discourse linkers, signallers, report writing and interview practice."
+  ],
+  "banned_topics": [
+    "A complete biography or bibliography of every writer mentioned in Part I.",
+    "A detailed explanation of semiotics, metaphysics or medieval history beyond Eco’s references."
+  ],
+  "must_include_keywords": [
+    "Christopher Silvester",
+    "interview genre",
+    "journalism",
+    "source of truth",
+    "art",
+    "intrusion",
+    "V.S. Naipaul",
+    "Lewis Carroll",
+    "Rudyard Kipling",
+    "H.G. Wells",
+    "Saul Bellow",
+    "thumbprints on his windpipe",
+    "Denis Brian",
+    "power and influence",
+    "Mukund Padmanabhan",
+    "Umberto Eco",
+    "University of Bologna",
+    "semiotics",
+    "interstices",
+    "empty spaces",
+    "non-violence",
+    "peace",
+    "narrative academic style",
+    "trials and errors",
+    "Roland Barthes",
+    "academic community",
+    "novels on Sundays",
+    "The Name of the Rose",
+    "mass audience",
+    "mystery of success",
+    "discourse linkers",
+    "signallers",
+    "interview report"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The chapter presents interviews as entirely beneficial.",
+      "correction": "Part I balances their usefulness against objections about intrusion, injury and loss of privacy."
+    },
+    {
+      "claim": "All writers who criticise interviews refuse to participate.",
+      "correction": "Kipling, Wells and Bellow show contradictions between criticism and actual participation."
+    },
+    {
+      "claim": "Eco’s many books concern unrelated interests.",
+      "correction": "He says the same ethical and philosophical concerns run through academic work, novels and children’s books."
+    },
+    {
+      "claim": "Eco considers himself primarily a novelist.",
+      "correction": "He identifies himself with the academic community and calls himself a professor who writes novels on Sundays."
+    },
+    {
+      "claim": "Eco gives a definite formula for the success of The Name of the Rose.",
+      "correction": "He repeatedly calls the success a mystery that could not be predicted."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Part I Think as you read Q1 for positive views.",
+    "Use Q2 and Q4 for celebrity objections and the windpipe image.",
+    "Use Understanding the text Q2 for Eco’s interstices.",
+    "Use Q3–4 for academic style and identity.",
+    "Use Q5 and the discourse-linker section for success, cohesion and report writing."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Understanding the text Questions 1–5, Talking about the text, Noticing discourse linkers and signallers, Writing and Things to do.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

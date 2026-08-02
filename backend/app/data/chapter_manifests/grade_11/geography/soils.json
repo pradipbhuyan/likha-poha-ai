@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Soils",
+  "central_question": "How do running water, groundwater, glaciers, waves, and wind produce distinctive erosional and depositional landforms and transform landscapes through time?",
+  "in_scope_units": [
+    "Meaning, history, and evolution of landforms and landscapes.",
+    "Running-water erosion and deposition across youthful, mature, and gentler river courses.",
+    "River valleys, potholes, plunge pools, terraces, meanders, floodplains, levees, point bars, deltas, and alluvial fans.",
+    "Groundwater solution in limestone and karst landforms including sinkholes, uvalas, caves, stalactites, and stalagmites.",
+    "Glacial erosion and deposition including cirques, horns, arêtes, valleys, moraines, eskers, outwash plains, and drumlins.",
+    "Wave action and erosional and depositional forms of high rocky and low sedimentary coasts.",
+    "Wind and combined desert processes forming pediments, pediplains, playas, deflation hollows, dunes, and related forms."
+  ],
+  "banned_topics": [
+    "Soil-profile horizons and Indian soil classification",
+    "Atmospheric weather systems",
+    "Interior structure of the earth",
+    "River-water resource management"
+  ],
+  "must_include_keywords": [
+    "landform",
+    "landscape",
+    "evolution",
+    "running water",
+    "overland flow",
+    "stream",
+    "youth",
+    "mature",
+    "old stage",
+    "gorge",
+    "canyon",
+    "pothole",
+    "plunge pool",
+    "river terrace",
+    "alluvial fan",
+    "delta",
+    "floodplain",
+    "natural levee",
+    "point bar",
+    "meander",
+    "ox-bow lake",
+    "groundwater",
+    "karst",
+    "sinkhole",
+    "doline",
+    "uvala",
+    "lapies",
+    "cave",
+    "stalactite",
+    "stalagmite",
+    "glacier",
+    "cirque",
+    "horn",
+    "arête",
+    "moraine",
+    "esker",
+    "outwash plain",
+    "drumlin",
+    "wave-cut cliff",
+    "beach"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A meander is itself a separate landform.",
+      "correction": "The chapter describes a meander as a channel pattern produced by lateral erosion and deposition."
+    },
+    {
+      "claim": "Every limestone depression is formed by mechanical erosion.",
+      "correction": "Solution by groundwater is the dominant process in karst terrain."
+    },
+    {
+      "claim": "All glacial deposits are sorted like river alluvium.",
+      "correction": "Glacial till is generally unsorted, while glacio-fluvial deposits may be sorted by meltwater."
+    },
+    {
+      "claim": "Wind alone creates every desert landform.",
+      "correction": "Running water and sheet flooding also participate in desert landscape evolution."
+    },
+    {
+      "claim": "Coastal erosion and deposition are independent of sediment supply.",
+      "correction": "The chapter stresses the coastal sediment budget and the balance among waves, currents, and supplied material."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1(i): identify the stage dominated by vertical down-cutting.",
+    "NCERT Exercise 2(i): interpret incised meanders and alluvial meanders.",
+    "NCERT Exercise 2(ii): explain the evolution of valley sinks or uvalas.",
+    "NCERT Exercise 2(iv): locate and name linear glacial depositional forms.",
+    "NCERT Exercise 3(i): assess running water as a dominant geomorphic agent."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1(i–v), 2(i–v), 3(i–iii), followed by Project Work on local landforms, materials, and processes.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

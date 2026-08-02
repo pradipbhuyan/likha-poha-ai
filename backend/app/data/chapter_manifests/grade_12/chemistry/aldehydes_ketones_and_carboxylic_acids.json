@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "central_question": "How do the structures of carbonyl and carboxyl groups determine the preparation, physical properties, acidity and reactions of aldehydes, ketones and carboxylic acids?",
+  "in_scope_units": [
+    "Nomenclature and planar, polar structure of aldehyde and ketone carbonyl groups.",
+    "General and selective methods for preparing aldehydes and ketones.",
+    "Physical properties of aldehydes and ketones.",
+    "Nucleophilic addition and important chemical reactions of aldehydes and ketones.",
+    "Oxidation, reduction, alpha-hydrogen reactions, aldol condensation and Cannizzaro reaction.",
+    "Chemical tests distinguishing aldehydes and ketones.",
+    "Nomenclature and structure of carboxylic acids.",
+    "Preparation, physical properties, acidity and substituent effects in carboxylic acids.",
+    "Reactions and uses of carboxylic acids."
+  ],
+  "banned_topics": [
+    "Alcohol chemistry except where used as a precursor or product, which belongs to the previous chapter.",
+    "Detailed mechanisms of every named reaction beyond those selected in the chapter.",
+    "Amides and acyl halides as full independent functional-group chapters; they appear here mainly as derivatives or reagents."
+  ],
+  "must_include_keywords": [
+    "carbonyl group",
+    "aldehyde",
+    "ketone",
+    "carboxylic acid",
+    "IUPAC nomenclature",
+    "sp² hybridisation",
+    "nucleophilic addition",
+    "Rosenmund reduction",
+    "Stephen reaction",
+    "DIBAL-H",
+    "Etard reaction",
+    "Gatterman–Koch reaction",
+    "Friedel–Crafts acylation",
+    "cyanohydrin",
+    "bisulphite addition",
+    "2,4-DNP derivative",
+    "oxime",
+    "hydrazone",
+    "acetal",
+    "hemiacetal",
+    "Tollens’ test",
+    "Fehling’s test",
+    "iodoform test",
+    "Clemmensen reduction",
+    "Wolff–Kishner reduction",
+    "aldol condensation",
+    "Cannizzaro reaction",
+    "alpha hydrogen",
+    "carboxyl group",
+    "resonance",
+    "acidity",
+    "Hell–Volhard–Zelinsky reaction",
+    "decarboxylation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Ketones are more reactive than aldehydes toward nucleophilic addition.",
+      "correction": "Aldehydes are generally more reactive because they have less steric hindrance and less electron donation from alkyl groups."
+    },
+    {
+      "claim": "All aldehydes give Fehling’s test.",
+      "correction": "Aliphatic aldehydes generally reduce Fehling’s solution, whereas aromatic aldehydes such as benzaldehyde usually do not."
+    },
+    {
+      "claim": "Every carbonyl compound undergoes aldol condensation.",
+      "correction": "Aldehydes or ketones need at least one alpha hydrogen to form the enolate required for aldol reaction."
+    },
+    {
+      "claim": "Carboxylic acids are acidic because the neutral acid has many resonance structures.",
+      "correction": "Their acidity is mainly due to resonance stabilisation of the carboxylate conjugate base."
+    },
+    {
+      "claim": "Electron-donating groups increase carboxylic-acid strength.",
+      "correction": "Electron-withdrawing groups stabilise the carboxylate ion and increase acidity; electron-donating groups generally decrease it."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 8.1 on reagent selection for aldehyde and ketone preparations.",
+    "Use NCERT Example 8.2 for boiling-point order and intermolecular forces.",
+    "Apply NCERT Example 8.3 to compare benzaldehyde and propanal reactivity.",
+    "Use NCERT Example 8.4 for structure identification from derivative and oxidation data.",
+    "Finish with NCERT Example 8.5 for carboxylic-acid transformations."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 8.1 to 8.20 and cover nomenclature, preparations, nucleophilic additions, tests, aldol and Cannizzaro reactions, acidity, carboxylic-acid reactions and conversions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,71 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "International Organisations",
+  "central_question": "Why are international organisations necessary, how does the United Nations function, and why is reform difficult?",
+  "in_scope_units": [
+    "Need for international organisations",
+    "Evolution and structure of the United Nations",
+    "UN agencies and specialised organisations",
+    "UN reform after the Cold War",
+    "Security Council reform and representation",
+    "India and UN reform",
+    "The UN in a unipolar world",
+    "Other international and non-governmental organisations"
+  ],
+  "banned_topics": [
+    "Detailed history of the Cold War blocs",
+    "South Asian regional conflicts",
+    "India’s domestic electoral system"
+  ],
+  "must_include_keywords": [
+    "international organisations",
+    "United Nations",
+    "League of Nations",
+    "UN Charter",
+    "General Assembly",
+    "Security Council",
+    "veto",
+    "permanent members",
+    "non-permanent members",
+    "Secretary-General",
+    "António Guterres",
+    "WHO",
+    "UNDP",
+    "UNHCR",
+    "UNICEF",
+    "UNESCO",
+    "reform",
+    "representation",
+    "India",
+    "peacekeeping",
+    "unipolar world",
+    "United States",
+    "IMF",
+    "World Bank",
+    "WTO",
+    "IAEA",
+    "Amnesty International",
+    "Human Rights Watch"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The UN is a world government that can command all states.",
+      "correction": "The UN is created by states and possesses only the authority that its members grant and obey."
+    },
+    {
+      "claim": "The General Assembly and Security Council have identical voting rules.",
+      "correction": "Every state has one vote in the General Assembly, while five permanent Security Council members possess the veto."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 11: How has the United Nations played a significant role in protecting the environment?",
+    "NCERT Exercise 6: Fill in the blanks. a. The prime objective of the UN is ___________________________ b. The highest functionary of the UN is called_________________ c. The UN Security Council has _____ permanent and _____non-permanent members. d. ______________________ is the present UN Secretary-General.",
+    "NCERT Exercise 10: Critically evaluate the difficulties involved in implementing the suggested reforms to reconstruct the UN.",
+    "NCERT Exercise 9: If the UN was not created, can you imagine what would have been the consequences?",
+    "NCERT Exercise 7: Match the principal organs and agencies of the UN with their functions: 1. Economic and Social Council 2. International Court of Justice 3. International Atomic Energy Agency 4. Security Council 5. UN High Commission for Refugees 6. World Trade Organisation 7. International Monetary Fund 8. General Assembly 9. World Health Organisation 10. Secretariat."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with NCERT Exercises 1–12 on the UN, veto power, reform, India’s candidature and other organisations.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

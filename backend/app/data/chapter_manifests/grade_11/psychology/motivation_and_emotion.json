@@ -1,0 +1,104 @@
+{
+  "grade": "Grade 11",
+  "subject": "Psychology",
+  "chapter": "Motivation and Emotion",
+  "central_question": "What drives goal-directed behaviour, how are emotions experienced and expressed, and how can people regulate negative states while strengthening positive ones?",
+  "in_scope_units": [
+    "Nature of motivation and the motivational cycle.",
+    "Biological and psychosocial motives.",
+    "Hunger, thirst and sex motives.",
+    "Affiliation, power, achievement, curiosity and exploration.",
+    "Maslow’s hierarchy of needs.",
+    "Nature of emotion.",
+    "Verbal and non-verbal expression.",
+    "Cultural influences on emotional expression and labeling.",
+    "Managing negative emotions.",
+    "Post-traumatic stress disorder.",
+    "Management of examination anxiety.",
+    "Anger management.",
+    "Enhancing positive emotions."
+  ],
+  "banned_topics": [
+    "Detailed clinical diagnosis and treatment plans for PTSD or anxiety beyond the textbook overview.",
+    "Detailed neuroscience of emotion beyond the chapter’s account."
+  ],
+  "must_include_keywords": [
+    "motivation",
+    "motive",
+    "need",
+    "drive",
+    "arousal",
+    "goal-directed behaviour",
+    "incentive",
+    "motivational cycle",
+    "biological motives",
+    "psychosocial motives",
+    "instinct",
+    "hunger",
+    "feeding-satiety system",
+    "thirst",
+    "osmoreceptors",
+    "sex motive",
+    "affiliation",
+    "power motive",
+    "David McClelland",
+    "achievement motivation",
+    "n-Ach",
+    "curiosity",
+    "exploration",
+    "Maslow",
+    "physiological needs",
+    "safety needs",
+    "belongingness",
+    "esteem",
+    "self-actualisation",
+    "emotion",
+    "feeling",
+    "mood",
+    "basic emotions",
+    "paralanguage",
+    "facial expression",
+    "culture",
+    "emotion labeling",
+    "negative emotions",
+    "PTSD",
+    "examination anxiety",
+    "cognitive restructuring",
+    "anger management",
+    "positive emotions",
+    "optimism",
+    "gratitude"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every motive is purely biological or purely social.",
+      "correction": "The chapter stresses interaction and varying combinations."
+    },
+    {
+      "claim": "A need and a drive are identical.",
+      "correction": "A need is a deficit; a drive is the tension or arousal it produces."
+    },
+    {
+      "claim": "Maslow’s order predicts every action without exception.",
+      "correction": "The chapter notes real actions that contradict a rigid hierarchy."
+    },
+    {
+      "claim": "Emotion, feeling and mood are exact synonyms.",
+      "correction": "Emotion is broader; feeling emphasises pleasure–pain, and mood lasts longer with lower intensity."
+    },
+    {
+      "claim": "Anger is automatically caused by other people.",
+      "correction": "Appraisal and thought influence anger, so it can be regulated."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Review Question 1 on motivation.",
+    "NCERT Review Question 3 on psychosocial motives.",
+    "NCERT Review Question 4 on Maslow.",
+    "NCERT Review Question 5 on culture and emotion.",
+    "NCERT Review Question 6 on managing negative emotions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–6 and two Project Ideas.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

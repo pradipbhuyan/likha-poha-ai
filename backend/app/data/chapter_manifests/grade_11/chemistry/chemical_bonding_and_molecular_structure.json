@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Chemical Bonding and Molecular Structure",
+  "central_question": "How do valence electrons and orbital interactions determine bond type, geometry, polarity, stability, and magnetism?",
+  "in_scope_units": [
+    "Lewis approach, octet rule, formal charge, and resonance.",
+    "Ionic bonding and lattice enthalpy.",
+    "Bond parameters, polarity, and dipole moment.",
+    "VSEPR geometry.",
+    "Valence bond theory, overlap, sigma and pi bonds, and hybridisation.",
+    "Molecular orbital theory, bond order, and magnetism.",
+    "Hydrogen bonding."
+  ],
+  "banned_topics": [
+    "Detailed crystal structures",
+    "Coordination compounds",
+    "Advanced quantum calculations",
+    "Organic mechanisms"
+  ],
+  "must_include_keywords": [
+    "Lewis symbol",
+    "octet rule",
+    "ionic bond",
+    "covalent bond",
+    "formal charge",
+    "resonance",
+    "lattice enthalpy",
+    "bond length",
+    "bond enthalpy",
+    "bond order",
+    "bond angle",
+    "dipole moment",
+    "polar covalent bond",
+    "VSEPR theory",
+    "lone pair",
+    "bond pair",
+    "valence bond theory",
+    "orbital overlap",
+    "sigma bond",
+    "pi bond",
+    "hybridisation",
+    "sp hybridisation",
+    "sp2 hybridisation",
+    "sp3 hybridisation",
+    "molecular orbital",
+    "bonding orbital",
+    "antibonding orbital",
+    "paramagnetic",
+    "diamagnetic",
+    "hydrogen bond"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The octet rule explains all molecules.",
+      "correction": "It has incomplete, odd-electron, and expanded-octet exceptions."
+    },
+    {
+      "claim": "A double bond is exactly twice as strong.",
+      "correction": "It contains one sigma and one pi bond, with different strengths."
+    },
+    {
+      "claim": "Only bonded atoms determine shape.",
+      "correction": "Lone pairs strongly affect geometry."
+    },
+    {
+      "claim": "Hybrid and molecular orbitals are the same.",
+      "correction": "Hybrid orbitals belong to one atom; MOs extend over a molecule."
+    },
+    {
+      "claim": "O2 is diamagnetic.",
+      "correction": "MO theory predicts two unpaired electrons and paramagnetism."
+    }
+  ],
+  "recommended_example_progression": [
+    "Draw Lewis structures.",
+    "Compare ionic and covalent bonding.",
+    "Predict VSEPR shapes.",
+    "Assign hybridisation and sigma/pi bonds.",
+    "Use MO theory and hydrogen bonding."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use exercises on Lewis structures, formal charge, ionic bonding, geometry, hybridisation, bond parameters, molecular orbitals, magnetism, and hydrogen bonding.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

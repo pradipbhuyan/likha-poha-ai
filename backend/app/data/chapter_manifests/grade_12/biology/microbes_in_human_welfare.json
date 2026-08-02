@@ -1,0 +1,100 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Microbes in Human Welfare",
+  "central_question": "How are microbes used in food, industry, waste treatment, energy production, biological control and soil fertility to improve human welfare?",
+  "in_scope_units": [
+    "Diversity and ubiquity of microbes and growth of microbial colonies.",
+    "Microbes in household foods and fermented products.",
+    "Industrial production of beverages, antibiotics, organic acids, enzymes and bioactive molecules.",
+    "Primary and secondary sewage treatment, BOD, activated sludge and anaerobic digestion.",
+    "Methanogens, biogas and the structure and use of biogas plants.",
+    "Biological control of pests and plant diseases using predators, bacteria, fungi and viruses.",
+    "Biofertilisers based on nitrogen-fixing bacteria, mycorrhizae and cyanobacteria."
+  ],
+  "banned_topics": [
+    "Detailed pathogenesis and immunity from Human Health and Disease.",
+    "Detailed recombinant DNA cloning methods and transgenic crop construction.",
+    "Industrial chemical engineering specifications beyond the fermentor and treatment descriptions in the chapter."
+  ],
+  "must_include_keywords": [
+    "microbes",
+    "Lactobacillus",
+    "lactic acid bacteria",
+    "curd",
+    "vitamin B12",
+    "fermentation",
+    "Saccharomyces cerevisiae",
+    "Propionibacterium sharmanii",
+    "fermentor",
+    "ethanol",
+    "antibiotics",
+    "Penicillin",
+    "Penicillium notatum",
+    "Aspergillus niger",
+    "Acetobacter aceti",
+    "Clostridium butylicum",
+    "lipase",
+    "pectinase",
+    "protease",
+    "streptokinase",
+    "cyclosporin A",
+    "Trichoderma polysporum",
+    "statins",
+    "Monascus purpureus",
+    "sewage",
+    "primary treatment",
+    "secondary treatment",
+    "flocs",
+    "BOD",
+    "activated sludge",
+    "anaerobic sludge digester",
+    "biogas",
+    "methanogens",
+    "Methanobacterium",
+    "biocontrol",
+    "Bacillus thuringiensis",
+    "Trichoderma",
+    "baculovirus",
+    "biofertiliser",
+    "Rhizobium",
+    "Azospirillum",
+    "Azotobacter",
+    "mycorrhiza",
+    "Glomus",
+    "Anabaena",
+    "Nostoc"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All microbes are harmful pathogens.",
+      "correction": "Many microbes are useful in food production, industry, sewage treatment, biogas, biocontrol and biofertilisation."
+    },
+    {
+      "claim": "Primary sewage treatment is a microbial process.",
+      "correction": "Primary treatment is mainly physical filtration and sedimentation; secondary treatment is the main biological stage."
+    },
+    {
+      "claim": "A high BOD indicates clean water.",
+      "correction": "Higher BOD means more oxygen would be consumed by microbes and therefore indicates greater organic pollution."
+    },
+    {
+      "claim": "Bt kills every organism in the field.",
+      "correction": "Bacillus thuringiensis is used against particular insect larvae and can leave many non-target organisms unharmed."
+    },
+    {
+      "claim": "Biofertilisers directly supply synthetic fertiliser salts.",
+      "correction": "They are living organisms that enrich soil nutrient quality through processes such as nitrogen fixation or improved phosphorus uptake."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercises 2-4 on gases, LAB and fermented foods.",
+    "Use NCERT Exercises 5-6 and 12 on antibiotics and industrial bioactive products.",
+    "Use NCERT Exercises 7-8 and the BOD data in Exercise 11 for sewage treatment.",
+    "Use NCERT Exercise 9 for methanogens and biogas.",
+    "Finish with NCERT Exercises 10 and 15 for biocontrol and biofertilisers."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 15 and cover household products, industrial products, sewage, BOD, biogas, biocontrol and biofertilisers.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

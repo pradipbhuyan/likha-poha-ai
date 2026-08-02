@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Population",
+  "central_question": "How is solar energy received, transformed, balanced, redistributed, and expressed in the spatial and vertical distribution of temperature?",
+  "in_scope_units": [
+    "Solar radiation and the meaning and variability of insolation.",
+    "Aphelion, perihelion, angle of incidence, day length, atmospheric transparency, and land configuration.",
+    "Heating and cooling of the atmosphere by conduction, convection, advection, and terrestrial radiation.",
+    "Earth’s albedo and heat budget.",
+    "Latitudinal surplus and deficit of radiation and poleward heat transfer.",
+    "Controls of temperature including latitude, altitude, distance from sea, air masses, currents, and local factors.",
+    "Horizontal and vertical distribution of temperature, isotherms, and annual range.",
+    "Temperature inversion and air drainage."
+  ],
+  "banned_topics": [
+    "Population distribution and density",
+    "Migration streams",
+    "Settlement hierarchy",
+    "Detailed atmospheric fronts and cyclones"
+  ],
+  "must_include_keywords": [
+    "solar radiation",
+    "insolation",
+    "short wave",
+    "aphelion",
+    "perihelion",
+    "angle of incidence",
+    "day length",
+    "atmospheric transparency",
+    "reflection",
+    "scattering",
+    "absorption",
+    "albedo",
+    "terrestrial radiation",
+    "long wave",
+    "conduction",
+    "convection",
+    "advection",
+    "latent heat",
+    "heat budget",
+    "radiation surplus",
+    "radiation deficit",
+    "latitude",
+    "altitude",
+    "continentality",
+    "ocean current",
+    "normal lapse rate",
+    "isotherm",
+    "annual range",
+    "daily range",
+    "temperature inversion",
+    "air drainage",
+    "valley inversion",
+    "frost"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The atmosphere is mainly heated directly by short-wave solar radiation.",
+      "correction": "The chapter emphasises heating from below by long-wave terrestrial radiation."
+    },
+    {
+      "claim": "Aphelion and perihelion alone control the seasons.",
+      "correction": "Their small radiation difference is masked by land–sea distribution and atmospheric circulation; angle and day length are more important."
+    },
+    {
+      "claim": "The equator always records the highest surface temperatures.",
+      "correction": "Subtropical areas can be hotter because they often have less cloud cover."
+    },
+    {
+      "claim": "Temperature always decreases with height.",
+      "correction": "An inversion reverses the normal lapse-rate pattern for a period or within particular settings."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1(iii): identify the main source of atmospheric heating.",
+    "NCERT Exercise 2(i): explain how unequal heating produces weather and climate variation.",
+    "NCERT Exercise 3(ii): explain the earth–atmosphere heat balance.",
+    "NCERT Exercise 2(ii): organise the controls of temperature.",
+    "NCERT Exercise 3(iii): compare January temperature patterns between hemispheres."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1(i–v), 2(i–iv), 3(i–iii), followed by a meteorological-observatory Project Work and worked New Delhi temperature example.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

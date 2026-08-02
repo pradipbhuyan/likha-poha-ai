@@ -1,11 +1,14 @@
 import json
+import random
 import re
 
 from app.services.openai_service import ask_llm
 from app.services.question_bank_service import (
     get_questions_from_bank,
     get_bank_capacity,
-    get_questions_from_bank_multi_chapter,
+    get_questions_from_bank_fuzzy,
+    get_bank_capacity_fuzzy,
+    _distribute_across_chapters,
 )
 
 # Display-source prefixes added by the syllabus review UI when multiple books
@@ -18,6 +21,20 @@ _SOURCE_PREFIX_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+# "Chapter N: " / "Chapter N - " style prefix, as now used by rag_documents /
+# the syllabus dropdown after this year's chapter-cleanup work. Older
+# question_bank rows were written without this prefix (bare titles).
+_CHAPTER_LABEL_PREFIX_PATTERN = re.compile(
+    r"^\s*chapter\s*\d+\s*[:\-]\s*", re.IGNORECASE,
+)
+
+# "Part N -" / "Part N:" style prefix (see rag_service.strip_chapter_display_prefix).
+_PART_PREFIX_PATTERN = re.compile(r"^\s*part\s*\d+\s*[-:]\s*", re.IGNORECASE)
+
+# Bare numeric-dot prefix, e.g. "1. Papa's Spectacles" (see
+# rag_service.strip_chapter_number_prefix).
+_NUMERIC_DOT_PREFIX_PATTERN = re.compile(r"^\s*\d+\.\s*")
+
 
 def strip_source_display_prefix(chapter: str) -> str:
     """
@@ -27,6 +44,34 @@ def strip_source_display_prefix(chapter: str) -> str:
          → 'Chapter 7: Madam Rides the Bus'
     """
     return _SOURCE_PREFIX_PATTERN.sub("", chapter or "").strip()
+
+
+def normalize_chapter_core(chapter: str) -> str:
+    """
+    Strip every known display-prefix style down to the bare chapter title.
+
+    Used as a last-resort fuzzy match when question_bank's stored chapter
+    format doesn't exactly match (with or without the book-source prefix)
+    the current syllabus/rag_documents display format.
+
+    Prefixes can be stacked (e.g. "Part 1 - Chapter 1: Title" has both a
+    Part-prefix AND a Chapter-prefix, one wrapping the other), so every
+    pattern is re-applied in a loop until a full pass makes no further
+    change -- a single sequential pass would miss an inner prefix that only
+    becomes exposed after an outer one is stripped (confirmed live: this
+    exact case under-stripped "Part 1 - Chapter 1: ..." down to
+    "Chapter 1: ..." instead of "...", because the Chapter-prefix pattern
+    only ran once, before the Part-prefix in front of it had been removed).
+    """
+    core = chapter or ""
+    while True:
+        next_core = strip_source_display_prefix(core)
+        next_core = _CHAPTER_LABEL_PREFIX_PATTERN.sub("", next_core).strip()
+        next_core = _PART_PREFIX_PATTERN.sub("", next_core).strip()
+        next_core = _NUMERIC_DOT_PREFIX_PATTERN.sub("", next_core).strip()
+        if next_core == core:
+            return core
+        core = next_core
 
 
 def get_questions_from_bank_with_fallback(
@@ -40,35 +85,49 @@ def get_questions_from_bank_with_fallback(
     excluded_ids: list[str] | None = None,
 ) -> list[dict]:
     """
-    Look up bank questions with automatic display-prefix fallback.
+    Look up bank questions with automatic chapter-display-format fallback.
+
+    Tries, in order: (1) the chapter string as given, (2) with the
+    book-source prefix stripped, (3) with every known prefix style stripped
+    down to a bare "core" title, (4) an ILIKE substring match on that core
+    title, for rows stored under a format not covered by the exact-match
+    tiers above.
 
     excluded_ids: DB row IDs of questions already shown in recent tests.
     These are filtered out before sampling to prevent repetition across tests.
     """
     questions = get_questions_from_bank(
-        board=board,
-        grade=grade,
-        subject=subject,
-        chapter=chapter,
-        difficulty=difficulty,
-        num_questions=num_questions,
-        exam_type=exam_type,
-        excluded_ids=excluded_ids,
+        board=board, grade=grade, subject=subject, chapter=chapter,
+        difficulty=difficulty, num_questions=num_questions,
+        exam_type=exam_type, excluded_ids=excluded_ids,
     )
     if questions:
         return questions
 
-    # Fallback: strip book-source display prefix and retry
     stripped = strip_source_display_prefix(chapter)
     if stripped and stripped != chapter:
         questions = get_questions_from_bank(
-            board=board,
-            grade=grade,
-            subject=subject,
-            chapter=stripped,
-            difficulty=difficulty,
-            num_questions=num_questions,
-            exam_type=exam_type,
+            board=board, grade=grade, subject=subject, chapter=stripped,
+            difficulty=difficulty, num_questions=num_questions,
+            exam_type=exam_type, excluded_ids=excluded_ids,
+        )
+        if questions:
+            return questions
+
+    core = normalize_chapter_core(chapter)
+    if core and core not in (chapter, stripped):
+        questions = get_questions_from_bank(
+            board=board, grade=grade, subject=subject, chapter=core,
+            difficulty=difficulty, num_questions=num_questions,
+            exam_type=exam_type, excluded_ids=excluded_ids,
+        )
+        if questions:
+            return questions
+
+    if core:
+        questions = get_questions_from_bank_fuzzy(
+            board=board, grade=grade, subject=subject, chapter_core=core,
+            difficulty=difficulty, num_questions=num_questions,
             excluded_ids=excluded_ids,
         )
 
@@ -82,16 +141,87 @@ def get_bank_capacity_with_fallback(
     chapter: str | None,
     difficulty: str,
 ) -> int:
-    """Bank capacity lookup with the same display-prefix fallback as sampling."""
+    """Bank capacity lookup with the same chapter-format fallback tiers as sampling."""
     capacity = get_bank_capacity(board, grade, subject, chapter, difficulty)
     if capacity:
         return capacity
 
     stripped = strip_source_display_prefix(chapter or "")
     if stripped and stripped != chapter:
-        return get_bank_capacity(board, grade, subject, stripped, difficulty)
+        capacity = get_bank_capacity(board, grade, subject, stripped, difficulty)
+        if capacity:
+            return capacity
+
+    core = normalize_chapter_core(chapter or "")
+    if core and core not in (chapter, stripped):
+        capacity = get_bank_capacity(board, grade, subject, core, difficulty)
+        if capacity:
+            return capacity
+
+    if core:
+        return get_bank_capacity_fuzzy(board, grade, subject, core, difficulty)
 
     return capacity
+
+
+def get_questions_from_bank_multi_chapter_with_fallback(
+    board: str,
+    grade: str,
+    subject: str,
+    chapters: list[str],
+    difficulty: str,
+    num_questions: int,
+    exam_type: str = "General",
+    excluded_ids: list[str] | None = None,
+) -> list[dict]:
+    """
+    Multi-chapter bank sampling (Mid-Term / Annual papers) with the same
+    chapter-display-format fallback tiers as the single-chapter path.
+
+    question_bank_service.get_questions_from_bank_multi_chapter only does
+    exact-match lookups per chapter, so it under-reports capacity for any
+    chapter whose bank rows are stored under a different display-prefix
+    format than the current syllabus/rag_documents naming. This mirrors its
+    distribute-then-sample logic but routes each chapter through the
+    fallback-aware single-chapter functions instead.
+    """
+    unique_chapters = list(dict.fromkeys(c for c in chapters if c))
+    if not unique_chapters:
+        return []
+
+    capacities = {
+        chapter: get_bank_capacity_with_fallback(board, grade, subject, chapter, difficulty)
+        for chapter in unique_chapters
+    }
+
+    counts = _distribute_across_chapters(num_questions, capacities)
+    if counts is None:
+        return []
+
+    sampled: list[dict] = []
+    for chapter, count in counts.items():
+        if count <= 0:
+            continue
+        chapter_questions = get_questions_from_bank_with_fallback(
+            board=board,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            difficulty=difficulty,
+            num_questions=count,
+            exam_type=exam_type,
+            excluded_ids=excluded_ids,
+        )
+        if len(chapter_questions) < count:
+            return []  # bank shrank between the capacity check and sampling
+        sampled.extend(chapter_questions)
+
+    random.shuffle(sampled)
+
+    for index, q in enumerate(sampled, start=1):
+        q["id"] = index
+
+    return sampled
 
 
 def bank_shortfall_message(available: int, num_questions: int, selection: str) -> str:
@@ -218,7 +348,7 @@ def generate_cbse_mock_test(
         )
 
     if selected_chapters:
-        bank_questions = get_questions_from_bank_multi_chapter(
+        bank_questions = get_questions_from_bank_multi_chapter_with_fallback(
             board=board,
             grade=grade,
             subject=subject,

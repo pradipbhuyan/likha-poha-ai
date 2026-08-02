@@ -1,0 +1,86 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 1: Sets",
+    "central_question": "How can collections of objects be represented, compared, combined, and counted using precise set language?",
+    "in_scope_units": [
+      "Introduction to well-defined collections and set notation.",
+      "Representation of sets in roster and set-builder forms.",
+      "Empty, finite, infinite, and equal sets.",
+      "Subsets, power sets, universal sets, and intervals.",
+      "Venn diagrams as visual representations.",
+      "Union, intersection, difference, complement, and algebra of sets.",
+      "Practical problems involving cardinality and inclusion–exclusion."
+    ],
+    "banned_topics": [
+      "Cartesian products, relations, and functions, which belong to Chapter 2.",
+      "Probability rules beyond simple set-based counting."
+    ],
+    "must_include_keywords": [
+      "set",
+      "element",
+      "membership",
+      "roster form",
+      "set-builder form",
+      "empty set",
+      "finite set",
+      "infinite set",
+      "equal sets",
+      "subset",
+      "proper subset",
+      "power set",
+      "universal set",
+      "interval",
+      "Venn diagram",
+      "union",
+      "intersection",
+      "disjoint sets",
+      "difference of sets",
+      "complement",
+      "cardinality",
+      "commutative law",
+      "associative law",
+      "distributive law",
+      "De Morgan’s laws",
+      "inclusion–exclusion"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Order changes a set.",
+        "correction": "The order in which elements are written does not change a set."
+      },
+      {
+        "claim": "Repeated elements are counted repeatedly.",
+        "correction": "Repetition does not create new elements in a set."
+      },
+      {
+        "claim": "A∈B and A⊂B mean the same thing.",
+        "correction": "A∈B means A is an element; A⊂B means every element of A lies in B."
+      },
+      {
+        "claim": "A−B=B−A.",
+        "correction": "Set difference is generally not commutative."
+      },
+      {
+        "claim": "The complement of A is fixed without context.",
+        "correction": "A complement is defined relative to a chosen universal set."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Example 6 for finite, infinite, and empty sets.",
+      "NCERT Exercise 1.2 Question 4 for subsets and power sets.",
+      "NCERT Example 18 for difference of sets.",
+      "NCERT Exercise 1.5 Question 4 for De Morgan’s laws.",
+      "NCERT Miscellaneous Exercise Questions 4 and 7 for equivalent subset conditions and absorption laws."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 1.1 to 1.5 followed by the Miscellaneous Exercise on Chapter 1."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Sets\n\n## What you will learn\nYou will learn what a set is and how sets are described. You will distinguish roster form, set-builder form, empty sets, finite sets, and infinite sets.\n\n## Simple explanation\nA set is a well-defined collection of objects. The same set can often be written by listing its elements or by stating the property that every element satisfies.\n\n## Step-by-step breakdown\n- **Well-defined collection**: Membership must be unambiguous; an object either belongs to the set or does not.\n- **Roster form**: Elements are listed within braces, with repetitions ignored and order not affecting the set.\n- **Set-builder form**: A variable and a defining property describe all members of the set.\n- **Empty set**: A set with no element is denoted by φ or {}.\n- **Finite and infinite sets**: A finite set has a definite number of elements; an infinite set does not end.\n\n## Worked example\nQuestion: Using NCERT Example 6, classify A = {x : x ∈ N and 2x − 1 = 0} as finite or infinite.\n\nSolution:\n- Solving 2x − 1 = 0 gives x = 1/2.\n- Since 1/2 is not a natural number, no element satisfies the condition.\n- Therefore A = φ, and the empty set has zero elements.\n- Final answer: A is a finite set, specifically the empty set φ.\n\n## Common mistake\nDo not write repeated entries as different elements. For example, {1,1,2} and {1,2} are the same set.\n\n## Quick check question\nQuestion: From NCERT Example 6, is the set of prime natural numbers finite or infinite?\nAnswer: It is infinite.\nExplanation: There is no last prime number, so the set cannot be completely counted by a finite list.\n\n## Summary\n- A set must be well defined.\n- Roster and set-builder forms are two standard representations.\n- The empty set is finite because it has zero elements.",
+    "Core explanation": "# Core explanation: Sets\n\n## What you will learn\nYou will understand equal sets, subsets, proper subsets, power sets, universal sets, and intervals. You will also connect the number of subsets with the size of a finite set.\n\n## Simple explanation\nA subset contains only elements already present in a larger set. The power set gathers every possible subset, including the empty set and the original set.\n\n## Step-by-step breakdown\n- **Equal sets**: Two sets are equal when they have exactly the same elements.\n- **Subset**: A ⊂ B means every element of A is an element of B.\n- **Proper subset**: A is a proper subset when A ⊂ B and A ≠ B.\n- **Power set**: P(A) is the set of all subsets of A; if n(A)=m, then n(P(A))=2^m.\n- **Universal set**: The universal set contains all objects being considered in a particular discussion.\n- **Intervals**: Open, closed, and half-open intervals represent subsets of real numbers.\n\n## Worked example\nQuestion: Using NCERT Exercise 1.2 Question 4(ii), list all subsets of {a,b}.\n\nSolution:\n- A two-element set has 2² = 4 subsets.\n- Choose no element: φ; choose one element: {a} or {b}; choose both: {a,b}.\n- Final answer: P({a,b}) = {φ, {a}, {b}, {a,b}}.\n\n## Common mistake\nDo not confuse A ∈ B with A ⊂ B. The first says A is one element of B; the second says every element of A belongs to B.\n\n## Quick check question\nQuestion: Using NCERT Exercise 1.2 Question 4(iv), what is the only subset of φ?\nAnswer: The only subset is φ itself.\nExplanation: There are no elements to select, so the empty set has exactly 2⁰ = 1 subset.\n\n## Summary\n- Equal sets ignore order and repetition.\n- Every set is a subset of itself, and φ is a subset of every set.\n- A finite m-element set has 2^m subsets.",
+    "Worked examples": "# Worked examples: Sets\n\n## What you will learn\nYou will perform union, intersection, and difference of sets. You will interpret each operation using membership conditions and Venn diagrams.\n\n## Simple explanation\nSet operations create new sets. Union keeps elements from either set, intersection keeps common elements, and difference keeps elements in the first set but not the second.\n\n## Step-by-step breakdown\n- **Union**: A ∪ B = {x : x ∈ A or x ∈ B}.\n- **Intersection**: A ∩ B = {x : x ∈ A and x ∈ B}.\n- **Disjoint sets**: A and B are disjoint when A ∩ B = φ.\n- **Difference**: A − B contains elements in A that are not in B.\n- **Order of difference**: In general, A − B ≠ B − A.\n- **Venn diagrams**: Shaded regions provide a visual check of the membership rule.\n\n## Worked example\nQuestion: Using NCERT Example 18, let A={1,2,3,4,5,6} and B={2,4,6,8}. Find A−B and B−A.\n\nSolution:\n- Remove from A every element also in B, leaving 1, 3, and 5.\n- Remove from B every element also in A, leaving 8.\n- Final answer: A−B={1,3,5} and B−A={8}.\n\n## Common mistake\nDifference is not commutative. Reversing the order changes which set supplies the retained elements.\n\n## Quick check question\nQuestion: Using NCERT Example 19, if V={a,e,i,o,u} and B={a,i,k,u}, find V−B.\nAnswer: V−B={e,o}.\nExplanation: a, i, and u occur in both sets, so only e and o remain in V after removing B.\n\n## Summary\n- Union combines membership from either set.\n- Intersection records common membership.\n- Difference depends on order.",
+    "Exam-style problems": "# Exam-style problems: Sets\n\n## What you will learn\nYou will apply the algebra of sets, including commutative, associative, distributive, identity, and complement laws. You will use De Morgan’s laws to simplify expressions.\n\n## Simple explanation\nSet laws work like reliable transformation rules. They allow expressions to be rewritten without listing every element, while a Venn diagram can provide a visual verification.\n\n## Step-by-step breakdown\n- **Commutative laws**: A∪B=B∪A and A∩B=B∩A.\n- **Associative laws**: Grouping does not affect repeated unions or intersections.\n- **Distributive laws**: Intersection distributes over union, and union distributes over intersection.\n- **Identity laws**: A∪φ=A and A∩U=A.\n- **Complement**: A′ contains elements of U not in A.\n- **De Morgan’s laws**: (A∪B)′=A′∩B′ and (A∩B)′=A′∪B′.\n\n## Worked example\nQuestion: Using NCERT Exercise 1.5 Question 4(i), verify (A∪B)′=A′∩B′ for U={1,2,3,4,5,6,7,8,9}, A={2,4,6,8}, B={2,3,5,7}.\n\nSolution:\n- A∪B={2,3,4,5,6,7,8}, so (A∪B)′={1,9}.\n- A′={1,3,5,7,9} and B′={1,4,6,8,9}.\n- Their intersection is A′∩B′={1,9}.\n- Final answer: Both sides equal {1,9}, so De Morgan’s law is verified.\n\n## Common mistake\nComplements cannot be found unless the universal set is known or clearly understood.\n\n## Quick check question\nQuestion: Using the same universal set in NCERT Exercise 1.5 Question 4, what is A∩A′?\nAnswer: A∩A′=φ.\nExplanation: No element can simultaneously belong to A and not belong to A.\n\n## Summary\n- Set identities support symbolic simplification.\n- Complement is always relative to a universal set.\n- De Morgan’s laws interchange union and intersection while complementing each set.",
+    "Revision and recap": "# Revision and recap: Sets\n\n## What you will learn\nYou will connect set notation with practical counting problems. You will revise cardinality formulas and the main ideas of the chapter.\n\n## Simple explanation\nWhen two finite sets overlap, simply adding their sizes counts the common elements twice. The inclusion–exclusion formula corrects this double counting.\n\n## Step-by-step breakdown\n- **Cardinality**: n(A) denotes the number of elements of a finite set A.\n- **Two-set formula**: n(A∪B)=n(A)+n(B)−n(A∩B).\n- **Three-set thinking**: Pairwise overlaps and the triple overlap must be adjusted carefully.\n- **Membership logic**: Words such as “or”, “and”, and “not” translate into union, intersection, and complement.\n- **Proof by elements**: To prove two sets equal, show each is a subset of the other.\n- **Chapter connection**: Set language supports later work on relations, functions, probability, and coordinate geometry.\n\n## Worked example\nQuestion: Using NCERT Miscellaneous Exercise Question 4, explain why A⊂B implies A−B=φ.\n\nSolution:\n- If A⊂B, every element of A also belongs to B.\n- A−B asks for elements in A that are not in B.\n- No such element exists.\n- Final answer: A−B=φ.\n\n## Common mistake\nDo not use n(A∪B)=n(A)+n(B) when the sets overlap; subtract n(A∩B).\n\n## Quick check question\nQuestion: Using NCERT Miscellaneous Exercise Question 7(i), simplify A∪(A∩B).\nAnswer: A∪(A∩B)=A.\nExplanation: Every element of A∩B is already in A, so the union adds nothing new.\n\n## Summary\n- Sets can be represented, compared, and combined systematically.\n- Subset proofs and Venn diagrams support reasoning.\n- Cardinality formulas prevent double counting."
+  }
+}

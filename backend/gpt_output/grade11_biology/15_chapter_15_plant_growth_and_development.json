@@ -1,0 +1,89 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 15: Plant Growth and Development",
+    "central_question": "How do plants grow, differentiate and develop under the combined control of internal regulators and environmental conditions?",
+    "in_scope_units": [
+      "Growth as an irreversible increase and the indeterminate nature of plant growth.",
+      "Measurement and phases of growth.",
+      "Arithmetic and geometric growth, sigmoid curves and growth rates.",
+      "Conditions required for growth.",
+      "Differentiation, dedifferentiation and redifferentiation.",
+      "Development, plasticity and heterophylly.",
+      "Characteristics and discovery of plant growth regulators.",
+      "Effects of auxins, gibberellins, cytokinins, ethylene and ABA."
+    ],
+    "banned_topics": [
+      "Light reactions and Calvin cycle",
+      "Photosynthetic pigments",
+      "Mineral deficiency and nitrogen metabolism"
+    ],
+    "must_include_keywords": [
+      "growth",
+      "irreversible increase",
+      "meristem",
+      "open growth",
+      "root apical meristem",
+      "shoot apical meristem",
+      "vascular cambium",
+      "primary growth",
+      "secondary growth",
+      "meristematic phase",
+      "elongation phase",
+      "maturation phase",
+      "arithmetic growth",
+      "geometric growth",
+      "sigmoid curve",
+      "absolute growth rate",
+      "relative growth rate",
+      "differentiation",
+      "dedifferentiation",
+      "redifferentiation",
+      "development",
+      "plasticity",
+      "heterophylly",
+      "plant growth regulator",
+      "auxin",
+      "gibberellin",
+      "cytokinin",
+      "ethylene",
+      "abscisic acid",
+      "apical dominance",
+      "parthenocarpy",
+      "bolting",
+      "senescence",
+      "dormancy",
+      "stress hormone"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Any increase in size is biological growth.",
+        "correction": "Plant growth is irreversible, permanent and associated with living metabolism."
+      },
+      {
+        "claim": "All daughter cells of a meristem remain capable of division.",
+        "correction": "Many lose division capacity and differentiate into the plant body."
+      },
+      {
+        "claim": "Each PGR has only one fixed effect.",
+        "correction": "PGRs have diverse, overlapping, synergistic and antagonistic actions."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 1 for core definitions.",
+      "Use NCERT Exercise 3 to compare growth patterns and rates.",
+      "Use NCERT Exercise 4 to organise PGR discovery and applications.",
+      "Use NCERT Exercise 8 to select PGRs for practical responses.",
+      "Use NCERT Exercise 10 to predict outcomes of GA3, ethylene and cytokinin changes."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES section contains Questions 1-10 on growth patterns, differentiation, PGRs, photoperiodic responses and applied predictions."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Plant Growth and Development\n\n## What you will learn\nYou will define plant growth and explain why it is generally open or indeterminate. You will identify measurable parameters and the three phases of growth.\n\n## Simple explanation\nA plant forms many tissues and organs through a regulated sequence. Growth adds permanent size, while meristems continue supplying new cells through much of life.\n\n## Step-by-step breakdown\n- **Definition**: Growth is an irreversible permanent increase in size of an organ, part or individual cell and is generally linked with metabolism.\n- **Open growth**: Meristematic cells divide and self-perpetuate, allowing continuing addition of cells.\n- **Primary and secondary growth**: Apical meristems increase length; vascular and cork cambia increase girth.\n- **Measurement**: Fresh mass, dry mass, length, area, volume and cell number can express growth.\n- **Meristematic phase**: Cells divide actively and have dense protoplasm, prominent nuclei and thin primary walls.\n- **Elongation and maturation**: Cells enlarge and vacuolate, then attain final wall thickening and specialised protoplasmic organisation.\n\n## Worked example\nQuestion: NCERT Exercise 1 asks for definitions of growth, meristem and growth rate.\n\nSolution:\n- Growth is an irreversible permanent increase in size.\n- A meristem is a region of cells capable of continued division and self-perpetuation.\n- Growth rate is increase in growth per unit time.\n- Final answer: Growth, meristem and growth rate are defined by permanence, division capacity and change per unit time.\n\n## Common mistake\nTemporary swelling of dead wood in water is not growth because it lacks living metabolism and need not be irreversible.\n\n## Quick check question\nQuestion: Which meristems mainly increase plant length?\nAnswer: Root apical and shoot apical meristems.\nExplanation: Their activity produces primary growth along the plant axis.\n\n## Summary\n- Plant growth is permanent and metabolically supported.\n- Meristems make growth potentially indeterminate.\n- Different organs require different measurement parameters.\n- Growth regions pass through division, elongation and maturation.",
+    "Core explanation": "# Core explanation: Plant Growth and Development\n\n## What you will learn\nYou will compare arithmetic and geometric growth and interpret linear and sigmoid curves. You will distinguish absolute from relative growth rate.\n\n## Simple explanation\nGrowth can proceed at different mathematical rates. A root may lengthen at a nearly constant rate, while a population of dividing cells may grow exponentially before resources become limiting.\n\n## Step-by-step breakdown\n- **Arithmetic growth**: One daughter cell continues dividing while the other differentiates; Lt = L0 + rt and the graph is linear.\n- **Geometric growth**: Both daughter cells retain division capacity; W1 = W0e^rt describes exponential growth.\n- **Sigmoid curve**: Natural growth commonly shows lag, exponential and stationary phases.\n- **Absolute rate**: Total growth per unit time.\n- **Relative rate**: Growth per unit time relative to initial size.\n- **Conditions**: Water, oxygen, nutrients, suitable temperature, light and gravity affect growth.\n\n## Worked example\nQuestion: NCERT Exercise 3 asks for arithmetic growth, geometric growth, sigmoid growth and absolute versus relative rates.\n\nSolution:\n- Arithmetic growth gives a constant increment and a linear curve.\n- Geometric growth occurs when both daughter cells divide and gives exponential increase.\n- Limited resources convert exponential growth to a sigmoid curve with lag, log and stationary phases.\n- Absolute rate measures total increase, while relative rate accounts for initial size.\n- Final answer: Arithmetic growth is linear; geometric growth is exponential before limitation; the sigmoid curve has lag, log and stationary phases; absolute and relative rates answer different questions.\n\n## Common mistake\nEqual absolute growth does not imply equal relative growth; a smaller initial organ may have a higher relative rate.\n\n## Quick check question\nQuestion: What does r represent in W1 = W0e^rt?\nAnswer: The relative growth rate or efficiency index.\nExplanation: It expresses the ability to produce new plant material relative to starting size.\n\n## Summary\n- Arithmetic and geometric growth differ in daughter-cell behaviour.\n- Natural growth often follows a sigmoid curve.\n- Absolute rate measures total increase.\n- Relative rate accounts for starting size.\n- Growth requires suitable internal and external conditions.",
+    "Worked examples": "# Worked examples: Plant Growth and Development\n\n## What you will learn\nYou will relate cell structure to function through differentiation and examine how mature cells may regain division capacity. You will connect these processes to development and plasticity.\n\n## Simple explanation\nGrowth alone cannot explain the mature plant. Cells acquire specialised structures, sometimes return to a dividing state and later specialise again.\n\n## Step-by-step breakdown\n- **Differentiation**: Meristem-derived cells mature for specific functions with changes in walls and protoplasm.\n- **Tracheary example**: Water-conducting cells lose protoplasm and develop strong lignocellulosic walls.\n- **Dedifferentiation**: Living differentiated cells may regain division capacity, as in interfascicular cambium and cork cambium.\n- **Redifferentiation**: Cells produced by such meristems may again lose division capacity and specialise.\n- **Development**: Development includes life-cycle changes and is broadly growth plus differentiation.\n- **Plasticity**: Heterophylly in larkspur and buttercup shows age- and environment-related developmental flexibility.\n\n## Worked example\nQuestion: NCERT Exercise 6 asks you to comment that both growth and differentiation in higher plants are open.\n\nSolution:\n- Growth is open because persistent meristems continue adding cells.\n- Differentiation is open because cells from the same meristem can mature differently according to position.\n- Some differentiated cells can dedifferentiate and later redifferentiate.\n- Final answer: Plant growth and differentiation are open because meristems persist, cell fate is positional and some mature cells can re-enter division.\n\n## Common mistake\nDedifferentiation does not mean a cell becomes a zygote; it specifically regains division capacity.\n\n## Quick check question\nQuestion: What is plasticity?\nAnswer: The ability of a plant to follow different developmental pathways in response to stage or environment.\nExplanation: Heterophylly shows that the same plant can produce different leaf forms under different conditions.\n\n## Summary\n- Differentiation aligns structure with function.\n- Some mature cells can dedifferentiate.\n- Redifferentiation restores specialised function.\n- Development combines growth and differentiation.\n- Plasticity makes development flexible.",
+    "Exam-style problems": "# Exam-style problems: Plant Growth and Development\n\n## What you will learn\nYou will classify the five major PGR groups by discovery, action and application. You will select the correct regulator for practical situations.\n\n## Simple explanation\nPlant growth regulators are small chemical messengers with overlapping and sometimes opposing effects. Correct use depends on the desired physiological response.\n\n## Step-by-step breakdown\n- **Auxins**: IAA and IBA promote rooting; NAA and 2,4-D have horticultural and herbicidal uses; auxins influence apical dominance and parthenocarpy.\n- **Gibberellins**: Promote stem elongation, bolting, fruit elongation, malting and delayed senescence.\n- **Cytokinins**: Promote cell division, lateral shoots, nutrient mobilisation and delayed leaf senescence.\n- **Ethylene**: Promotes fruit ripening, abscission, germination responses and can be supplied through ethephon.\n- **ABA**: Inhibits growth, promotes dormancy, closes stomata and increases stress tolerance.\n- **Interactions**: PGR effects may be complementary, synergistic or antagonistic; ABA often antagonises gibberellins.\n\n## Worked example\nQuestion: NCERT Exercise 8 asks which PGR should be used for rooting, ripening, delayed senescence, axillary-bud growth, bolting and stomatal closure.\n\nSolution:\n- Rooting in a twig: auxin.\n- Quick fruit ripening: ethylene.\n- Delay of leaf senescence: cytokinin.\n- Growth of axillary buds: cytokinin.\n- Bolting of a rosette plant: gibberellin.\n- Immediate stomatal closure: ABA.\n- Final answer: The sequence is auxin, ethylene, cytokinin, cytokinin, gibberellin and ABA.\n\n## Common mistake\nEthylene is not only a growth inhibitor; it also promotes ripening, germination and elongation in deep-water rice.\n\n## Quick check question\nQuestion: Which PGR is called the stress hormone?\nAnswer: Abscisic acid.\nExplanation: ABA promotes stomatal closure, dormancy and tolerance of unfavourable conditions.\n\n## Summary\n- Five major PGR groups regulate development.\n- Auxin, gibberellin and cytokinin are mainly promoters.\n- Ethylene has major roles in ripening and abscission.\n- ABA is a major inhibitor and stress regulator.\n- Applications follow physiological effects.",
+    "Revision and recap": "# Revision and recap: Plant Growth and Development\n\n## What you will learn\nYou will consolidate growth patterns, cell fate, plasticity and PGR actions and use cause-and-effect reasoning to predict responses.\n\n## Simple explanation\nPlant development results from division, enlargement, differentiation and senescence under genetic, hormonal and environmental control.\n\n## Step-by-step breakdown\n- **Intrinsic control**: Genes and PGR signals guide developmental events.\n- **Extrinsic control**: Light, temperature, water, oxygen, nutrition and gravity modify growth.\n- **Developmental sequence**: Division creates cells, elongation increases size, differentiation creates function and senescence completes the sequence.\n- **Regulator balance**: PGRs interact in dormancy, abscission, senescence and apical dominance.\n- **Applied predictions**: GA3 elongates rice seedlings, ethylene from rotten fruit hastens ripening, and lack of cytokinin reduces division in culture.\n\n## Worked example\nQuestion: NCERT Exercise 10 asks what happens after GA3 application, failure of differentiation, mixing rotten and unripe fruit, or omission of cytokinin.\n\nSolution:\n- GA3 causes excessive elongation of rice seedlings.\n- If dividing cells do not differentiate, specialised tissues fail to form normally.\n- Rotten or ripening fruit releases ethylene and hastens nearby fruit ripening.\n- Without cytokinin, cell division and callus or shoot proliferation are reduced.\n- Final answer: The outcomes follow the established roles of gibberellin, differentiation, ethylene and cytokinin.\n\n## Common mistake\nDevelopment is not growth alone; differentiation is equally essential.\n\n## Quick check question\nQuestion: How is development broadly defined?\nAnswer: As the sum of growth and differentiation across the life cycle.\nExplanation: It includes changes from germination to maturation and senescence under intrinsic and extrinsic control.\n\n## Summary\n- Growth adds permanent size.\n- Differentiation creates specialised structures.\n- Development is flexible because plants show plasticity.\n- PGRs act in networks rather than isolation.\n- Environmental conditions modify each stage."
+  }
+}

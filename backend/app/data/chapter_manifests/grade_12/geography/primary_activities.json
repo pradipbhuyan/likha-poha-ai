@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Primary Activities",
+  "central_question": "How do environment, technology, markets and social organisation produce different forms of primary economic activity across the world?",
+  "in_scope_units": [
+    "Meaning and environmental dependence of primary activities.",
+    "Hunting and gathering, including subsistence and market-oriented gathering.",
+    "Pastoralism: nomadic herding, transhumance and commercial livestock rearing.",
+    "Subsistence agriculture: primitive shifting cultivation and intensive subsistence systems.",
+    "Plantation agriculture and extensive commercial grain cultivation.",
+    "Mixed farming, dairy farming, Mediterranean agriculture, market gardening, horticulture, truck farming and factory farming.",
+    "Co-operative and collective farming as forms of farm organisation.",
+    "Mining, factors affecting mining and surface versus underground methods."
+  ],
+  "banned_topics": [
+    "Manufacturing and industrial location, treated in Secondary Activities.",
+    "Trade, transport and service-sector activities, treated in later chapters."
+  ],
+  "must_include_keywords": [
+    "primary activities",
+    "red-collar workers",
+    "hunting",
+    "gathering",
+    "poaching",
+    "subsistence gathering",
+    "pastoralism",
+    "nomadic herding",
+    "pastoral nomadism",
+    "transhumance",
+    "commercial livestock rearing",
+    "carrying capacity",
+    "subsistence agriculture",
+    "primitive subsistence agriculture",
+    "shifting cultivation",
+    "slash and burn",
+    "Jhuming",
+    "Milpa",
+    "Ladang",
+    "intensive subsistence agriculture",
+    "wet paddy",
+    "plantation agriculture",
+    "commercial grain cultivation",
+    "mixed farming",
+    "dairy farming",
+    "Mediterranean agriculture",
+    "viticulture",
+    "market gardening",
+    "horticulture",
+    "truck farming",
+    "factory farming",
+    "co-operative farming",
+    "collective farming",
+    "Kolkhoz",
+    "mining",
+    "open-cast mining",
+    "shaft mining"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All primary activities are primitive and subsistence based.",
+      "correction": "The chapter includes highly organised, capital-intensive commercial livestock rearing, agriculture and mining."
+    },
+    {
+      "claim": "Nomadic herding and commercial livestock rearing are the same.",
+      "correction": "Nomadic herding is mobile and subsistence-oriented, while commercial ranching is permanent, capital-intensive, specialised and market-oriented."
+    },
+    {
+      "claim": "All mining uses underground shafts.",
+      "correction": "Minerals near the surface are extracted by open-cast mining, while deep deposits require underground or shaft mining."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1(vii) on slash-and-burn agriculture.",
+    "NCERT Exercise 3(i) comparing nomadic herding and commercial livestock rearing.",
+    "NCERT Exercise 3(ii) on plantation agriculture.",
+    "NCERT Exercise 2(ii) on the location of market gardening.",
+    "NCERT Exercise 1(ii) on successful co-operative farming."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–3 and a Project/Activity requiring observation of crop cultivation in a nearby village.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

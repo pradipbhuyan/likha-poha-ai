@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 6: Anatomy of Flowering Plants",
+  "central_question": "How are tissues organised internally in flowering-plant roots, stems, and leaves, and how do monocot and dicot structures differ?",
+  "in_scope_units": [
+    "The epidermal tissue system, including epidermis, cuticle, stomata, guard cells, subsidiary cells, root hairs, and trichomes.",
+    "The ground tissue system and the distribution of parenchyma, collenchyma, sclerenchyma, and mesophyll.",
+    "The vascular tissue system, including xylem, phloem, radial and conjoint arrangements, and open and closed vascular bundles.",
+    "Internal organisation of dicotyledonous and monocotyledonous roots.",
+    "Internal organisation of dicotyledonous and monocotyledonous stems.",
+    "Internal organisation of dorsiventral dicot leaves and isobilateral monocot leaves."
+  ],
+  "banned_topics": [
+    "External morphology of plant organs",
+    "Detailed secondary growth beyond the brief references in the chapter",
+    "Physiological mechanisms of transpiration and photosynthesis",
+    "Cell division and molecular differentiation of tissues"
+  ],
+  "must_include_keywords": [
+    "anatomy",
+    "epidermal tissue system",
+    "epidermis",
+    "cuticle",
+    "stoma",
+    "guard cell",
+    "subsidiary cell",
+    "stomatal apparatus",
+    "root hair",
+    "trichome",
+    "ground tissue system",
+    "parenchyma",
+    "collenchyma",
+    "sclerenchyma",
+    "mesophyll",
+    "vascular tissue system",
+    "xylem",
+    "phloem",
+    "cambium",
+    "open vascular bundle",
+    "closed vascular bundle",
+    "radial bundle",
+    "conjoint bundle",
+    "epiblema",
+    "endodermis",
+    "Casparian strip",
+    "pericycle",
+    "stele",
+    "polyarch",
+    "endarch",
+    "medullary ray",
+    "bundle sheath",
+    "dorsiventral leaf",
+    "isobilateral leaf",
+    "palisade parenchyma",
+    "spongy parenchyma",
+    "bulliform cell"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Cuticle is prominent on roots.",
+      "correction": "The cuticle commonly covers aerial epidermis but is absent in roots."
+    },
+    {
+      "claim": "All guard cells are bean-shaped.",
+      "correction": "Dicot guard cells are generally bean-shaped, whereas grasses have dumb-bell-shaped guard cells."
+    },
+    {
+      "claim": "Every vascular bundle containing xylem and phloem is open.",
+      "correction": "Open bundles contain cambium; closed bundles lack cambium."
+    },
+    {
+      "claim": "Dicot and monocot roots differ only externally.",
+      "correction": "They differ anatomically in xylem number, pith development, and secondary-growth potential."
+    },
+    {
+      "claim": "Monocot stems have vascular bundles arranged in a ring.",
+      "correction": "Monocot stem bundles are numerous and scattered; dicot stem bundles form a ring."
+    },
+    {
+      "claim": "Both leaf types have palisade and spongy mesophyll.",
+      "correction": "Dorsiventral dicot leaves are differentiated; isobilateral monocot mesophyll is generally undifferentiated."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 5: name the three tissue systems and their tissue components.",
+    "NCERT Exercise 4: explain and diagram the stomatal apparatus.",
+    "NCERT Exercise 1: compare dicot and monocot root and stem anatomy.",
+    "NCERT Exercises 2–3: identify monocot or dicot stems from vascular-bundle features.",
+    "NCERT Exercise 7: describe the internal structure of a dorsiventral leaf."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–7 for tissue systems and comparative anatomy of roots, stems, and leaves.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,90 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 1: The Living World",
+    "central_question": "How do biologists identify, name, classify, and arrange the immense diversity of living organisms into a meaningful taxonomic hierarchy?",
+    "in_scope_units": [
+      "Diversity in the living world, biodiversity, species discovery, and the need for standardised biological study.",
+      "Identification and nomenclature, including international naming codes and binomial nomenclature.",
+      "Classification, taxa, taxonomy, and the evidence used in modern taxonomic studies.",
+      "Systematics and the inclusion of evolutionary relationships among organisms.",
+      "Taxonomic categories and hierarchy from species through kingdom.",
+      "Species, genus, family, order, class, phylum or division, and kingdom with plant and animal examples."
+    ],
+    "banned_topics": [
+      "Detailed five-kingdom classification, which belongs to Biological Classification",
+      "Detailed descriptions of plant groups and animal phyla",
+      "Molecular mechanisms of evolution",
+      "Ecological population calculations and ecosystem processes"
+    ],
+    "must_include_keywords": [
+      "biodiversity",
+      "species",
+      "identification",
+      "nomenclature",
+      "binomial nomenclature",
+      "generic name",
+      "specific epithet",
+      "ICBN",
+      "ICZN",
+      "Mangifera indica",
+      "classification",
+      "taxon",
+      "taxa",
+      "taxonomy",
+      "systematics",
+      "taxonomic hierarchy",
+      "species category",
+      "genus",
+      "family",
+      "order",
+      "class",
+      "phylum",
+      "division",
+      "kingdom",
+      "Homo sapiens",
+      "Panthera",
+      "Solanum",
+      "evolutionary relationships",
+      "characterisation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The specific epithet alone is the complete scientific name.",
+        "correction": "A binomial scientific name contains both the generic name and the specific epithet, such as Mangifera indica."
+      },
+      {
+        "claim": "Both words of a scientific name begin with capital letters.",
+        "correction": "The genus begins with a capital letter, while the specific epithet begins with a lower-case letter."
+      },
+      {
+        "claim": "Taxonomy and systematics are exact synonyms.",
+        "correction": "Taxonomy covers characterisation, identification, classification, and nomenclature; systematics also considers evolutionary relationships."
+      },
+      {
+        "claim": "A taxon refers only to a species.",
+        "correction": "A taxon is a unit at any rank, such as species, genus, family, or kingdom."
+      },
+      {
+        "claim": "Organisms in higher categories share more characteristics.",
+        "correction": "Common characteristics generally decrease as one moves upward from species to kingdom."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 5: select the correctly written scientific name of mango and explain the formatting rules.",
+      "NCERT Exercise 6: define a taxon and identify examples at different hierarchical levels.",
+      "NCERT Exercise 7: evaluate the sequences of taxonomic categories.",
+      "NCERT Exercise 9: define phylum, class, family, order, and genus.",
+      "NCERT Exercise 10: construct taxonomic hierarchies for one plant and one animal."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–10, especially Questions 5–10 for nomenclature and taxonomic hierarchy."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 1: The Living World\n\n## What you will learn\nYou will understand why the living world requires systematic study and why local names are not enough. You will distinguish biodiversity, identification, and nomenclature.\n\n## Simple explanation\nEarth contains an enormous variety of organisms living in very different habitats. Biologists need shared methods to recognise an organism and communicate its name without confusion.\n\n## Step-by-step breakdown\n- **Living diversity**: The living world includes visible and microscopic organisms across forests, oceans, deserts, fresh water, hot springs, and many other habitats.\n- **Biodiversity**: Biodiversity refers to the number and kinds of organisms present on Earth; about 1.7–1.8 million species are described in the chapter.\n- **Continuing discovery**: New organisms continue to be identified as scientists explore new and familiar areas.\n- **Local-name problem**: The same organism may have different local names in different places, making scientific communication uncertain.\n- **Identification**: An organism must be correctly described and recognised before a name can be attached to it.\n- **Nomenclature**: Nomenclature standardises names so that an organism is known by the same scientific name worldwide.\n- **International codes**: Plant names follow internationally agreed botanical rules, while animal names follow zoological rules.\n\n## Worked example\nQuestion: Based on NCERT Exercise 1, explain why living organisms are classified.\n\nSolution:\n- The chapter describes millions of kinds of organisms with large differences in form, habitat, and organisation.\n- Studying every organism separately would be nearly impossible.\n- Grouping organisms by shared and distinguishing characters makes identification, comparison, and communication manageable.\n- Final answer: Living organisms are classified to organise biodiversity into convenient groups so that organisms can be identified, compared, named, and studied systematically.\n\n## Common mistake\nClassification is not merely giving organisms convenient labels; it is based on characters that permit meaningful comparison.\n\n## Quick check question\nQuestion: Why must identification come before reliable nomenclature?\nAnswer: Because a name can be correctly assigned only after the organism has been accurately described and recognised.\nExplanation: The same scientific name must refer to the same organism everywhere, which requires correct identification first.\n\n## Summary\n- The living world displays immense and still incompletely known diversity.\n- Local names cannot provide universal scientific communication.\n- Identification establishes which organism is being studied.\n- Nomenclature provides a standard name accepted by biologists.",
+    "Core explanation": "# Core explanation: Chapter 1: The Living World\n\n## What you will learn\nYou will learn the rules of binomial nomenclature and connect classification with taxa and taxonomy. You will also distinguish taxonomy from systematics.\n\n## Simple explanation\nScientific names and classifications are tools for organising biological knowledge. They make descriptions reproducible and show how organisms are grouped at different levels.\n\n## Step-by-step breakdown\n- **Binomial nomenclature**: Each scientific name has two components: a generic name and a specific epithet.\n- **Mango example**: In Mangifera indica, Mangifera is the genus and indica is the specific epithet.\n- **Writing convention**: Printed biological names are italicised; handwritten names have the two words separately underlined.\n- **Capitalisation**: The generic name starts with a capital letter and the specific epithet with a small letter.\n- **Author citation**: An abbreviated author's name may follow the binomial, as in Mangifera indica Linn., showing who first described it.\n- **Classification**: Classification groups organisms into convenient categories using observable and other relevant characters.\n- **Taxa**: The categories used in classification are called taxa, and they may occur at very different ranks.\n- **Taxonomy**: Characterisation, identification, classification, and nomenclature are basic taxonomic processes.\n- **Systematics**: Systematics includes identification, nomenclature, and classification while also considering evolutionary relationships.\n\n## Worked example\nQuestion: Based on NCERT Exercise 5, choose the correctly written mango name from Mangifera Indica and Mangifera indica.\n\nSolution:\n- The genus must begin with a capital letter, so Mangifera is correct.\n- The specific epithet must begin with a lower-case letter, so indica is correct.\n- In print, both words should appear in italics; when handwritten, each is separately underlined.\n- Final answer: The correct form is Mangifera indica.\n\n## Common mistake\nWriting Mangifera Indica incorrectly capitalises the specific epithet.\n\n## Quick check question\nQuestion: In Homo sapiens, which word is the generic name and which is the specific epithet?\nAnswer: Homo is the generic name, and sapiens is the specific epithet.\nExplanation: The first component of a binomial denotes the genus, while the second denotes the specific epithet.\n\n## Summary\n- A biological name has two components.\n- Scientific-name typography and capitalisation follow universal rules.\n- Taxa are classification units at many ranks.\n- Systematics extends taxonomy by considering evolutionary relationships.",
+    "Worked examples": "# Worked examples: Chapter 1: The Living World\n\n## What you will learn\nYou will interpret the lower taxonomic ranks—species, genus, and family—and use examples to see how similarities change across ranks.\n\n## Simple explanation\nThe hierarchy begins with closely similar organisms and gradually combines them into broader groups. Each higher rank contains one or more units of the rank below it.\n\n## Step-by-step breakdown\n- **Species**: A species is a group of individual organisms with fundamental similarities that can be distinguished from closely related species by distinct differences.\n- **Specific epithet**: Words such as indica, tuberosum, leo, and sapiens are specific epithets, not complete species names by themselves.\n- **Genus**: A genus contains closely related species that share more characters with one another than with species of other genera.\n- **Plant example**: Potato and brinjal are different species placed in the genus Solanum.\n- **Animal example**: Lion, leopard, and tiger are species of Panthera, whereas cats belong to Felis.\n- **Family**: A family contains related genera and therefore has fewer common characteristics than a genus.\n- **Family examples**: Solanum, Petunia, and Datura are placed in Solanaceae; Panthera and Felis are placed in Felidae.\n\n## Worked example\nQuestion: Based on NCERT Exercise 6, define a taxon and give examples at different hierarchical levels.\n\nSolution:\n- A taxonomic category is a rank in the classification hierarchy.\n- The biological unit occupying a rank is called a taxon.\n- Species Homo sapiens, genus Homo, family Hominidae, class Mammalia, and kingdom Animalia are taxa at different levels.\n- Final answer: A taxon is a unit of classification at any hierarchical rank; examples include Homo sapiens, Homo, Hominidae, Mammalia, and Animalia.\n\n## Common mistake\nA genus and a species are not interchangeable: a genus may include several related species.\n\n## Quick check question\nQuestion: Which rank contains more closely similar organisms: genus or family?\nAnswer: Genus.\nExplanation: A genus groups closely related species, while a family combines related genera and therefore has fewer shared characters.\n\n## Summary\n- Species is the lowest principal category in the hierarchy.\n- A genus combines related species.\n- A family combines related genera.\n- Shared characteristics generally decrease as category breadth increases.",
+    "Exam-style problems": "# Exam-style problems: Chapter 1: The Living World\n\n## What you will learn\nYou will arrange the complete taxonomic hierarchy and explain order, class, phylum or division, and kingdom. You will use both plant and animal examples.\n\n## Simple explanation\nTaxonomic classification is hierarchical: each successive rank contains broader groups and fewer shared characteristics.\n\n## Step-by-step breakdown\n- **Order**: An order is an assemblage of related families; Carnivora includes Felidae and Canidae.\n- **Plant order**: Solanaceae and Convolvulaceae are included in the order Polymoniales in the chapter.\n- **Class**: A class includes related orders; Mammalia includes Primata and Carnivora.\n- **Phylum**: Related animal classes such as fishes, amphibians, reptiles, birds, and mammals are included in Chordata because of major common features.\n- **Division**: For plants, the category corresponding to phylum is called division.\n- **Kingdom**: Animal phyla are included in Animalia, while plant divisions are included in Plantae.\n- **Ascending hierarchy**: The principal ascending sequence is species, genus, family, order, class, phylum or division, kingdom.\n- **Similarity trend**: Lower taxa share more characters; higher taxa include greater diversity and relationships become harder to determine.\n\n## Worked example\nQuestion: Based on NCERT Exercise 7, identify the valid sequence among: (a) Species–Order–Phylum–Kingdom, (b) Genus–Species–Order–Kingdom, and (c) Species–Genus–Order–Phylum.\n\nSolution:\n- A valid partial sequence must move consistently from a lower to a higher category.\n- Species is below order, order is below phylum, and phylum is below kingdom.\n- Option (b) reverses genus and species, while option (c) correctly increases but skips family and class, which the question permits as a partial sequence.\n- Final answer: Both (a) Species–Order–Phylum–Kingdom and (c) Species–Genus–Order–Phylum preserve ascending rank order; option (b) is incorrect because genus is above species.\n\n## Common mistake\nA sequence need not list every intermediate category to be in the correct ascending order, but it must never reverse ranks.\n\n## Quick check question\nQuestion: What is the plant equivalent of the animal category phylum?\nAnswer: Division.\nExplanation: Classes of plants with related characters are assigned to a division, whereas animal classes are assigned to a phylum.\n\n## Summary\n- Orders contain families and classes contain orders.\n- Animal classes form phyla; plant classes form divisions.\n- Kingdom is the broadest principal category in this chapter.\n- The hierarchy becomes less similar and more inclusive upward.",
+    "Revision and recap": "# Revision and recap: Chapter 1: The Living World\n\n## What you will learn\nYou will integrate nomenclature, taxonomy, systematics, and hierarchy using complete examples. You will practise moving from an organism's scientific name to its higher categories.\n\n## Simple explanation\nA complete taxonomic description links an organism's standard binomial name with progressively broader taxa.\n\n## Step-by-step breakdown\n- **Human hierarchy**: Homo sapiens belongs to genus Homo, family Hominidae, order Primata, class Mammalia, phylum Chordata, and kingdom Animalia.\n- **Mango hierarchy**: Mangifera indica belongs to genus Mangifera, family Anacardiaceae, order Sapindales, class Dicotyledonae, division Angiospermae, and kingdom Plantae.\n- **Housefly hierarchy**: Musca domestica belongs to genus Musca, family Muscidae, order Diptera, class Insecta, phylum Arthropoda, and kingdom Animalia.\n- **Wheat hierarchy**: Triticum aestivum belongs to genus Triticum, family Poaceae, order Poales, class Monocotyledonae, division Angiospermae, and kingdom Plantae.\n- **Evidence base**: Modern taxonomy uses external and internal structure, cellular features, development, and ecological information.\n- **Purpose**: Taxonomy supports agriculture, forestry, industry, and knowledge of biological resources and diversity.\n\n## Worked example\nQuestion: Based on NCERT Exercise 10 and Table 1.1, illustrate the hierarchy using mango as a plant and human beings as an animal.\n\nSolution:\n- Begin with each binomial: Mangifera indica and Homo sapiens.\n- Move upward through genus, family, order, class, and division or phylum.\n- End with Plantae for mango and Animalia for humans.\n- Final answer: Mango: Mangifera indica → Mangifera → Anacardiaceae → Sapindales → Dicotyledonae → Angiospermae → Plantae. Human: Homo sapiens → Homo → Hominidae → Primata → Mammalia → Chordata → Animalia.\n\n## Common mistake\nDo not omit the distinction between phylum for animals and division for plants.\n\n## Quick check question\nQuestion: As one moves from species toward kingdom, what happens to the number of shared characteristics?\nAnswer: It generally decreases.\nExplanation: Higher categories contain more diverse organisms, while members of lower taxa share more characteristics.\n\n## Summary\n- Identification and nomenclature ensure consistent recognition and naming.\n- Taxonomy organises organisms into taxa.\n- Systematics incorporates evolutionary relationships.\n- The hierarchy runs from species to kingdom.\n- Complete examples connect every rank to an actual organism."
+  }
+}

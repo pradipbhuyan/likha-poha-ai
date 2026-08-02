@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 12",
+  "subject": "History",
+  "chapter": "Through the Eyes of Travellers: Perceptions of Society",
+  "central_question": "How can historians use the accounts of Al-Biruni, Ibn Battuta and François Bernier to reconstruct Indian society while accounting for each traveller's purposes, comparisons and prejudices?",
+  "in_scope_units": [
+    "Travellers' backgrounds, routes, audiences and purposes.",
+    "Al-Biruni's journey, Sanskrit learning and the Kitab-ul-Hind.",
+    "Barriers to understanding and Al-Biruni's account of caste.",
+    "Ibn Battuta's travels, curiosity and Rihla.",
+    "Coconut, paan and the explanation of unfamiliar customs.",
+    "Urban centres, bazaars, agriculture and postal communication.",
+    "Bernier's East-West comparisons and theory of landownership.",
+    "Mughal towns, merchants, artisans and complex social realities.",
+    "Evidence on slavery and women's lives.",
+    "Bernier's representation of sati and the limits of travel accounts."
+  ],
+  "banned_topics": [
+    "Detailed Mughal agrarian administration and the Ain-i Akbari, treated in a later chapter.",
+    "The political narrative of the Delhi Sultanate and Mughal succession wars beyond what the travellers directly discuss."
+  ],
+  "must_include_keywords": [
+    "travel accounts",
+    "Al-Biruni",
+    "Khwarizm",
+    "Sanskrit",
+    "Kitab-ul-Hind",
+    "comparative method",
+    "caste system",
+    "varna",
+    "pollution",
+    "Ibn Battuta",
+    "Morocco",
+    "Rihla",
+    "qazi",
+    "coconut",
+    "paan",
+    "Delhi",
+    "Daulatabad",
+    "bazaars",
+    "urban centres",
+    "postal system",
+    "horse post",
+    "foot post",
+    "commercial crops",
+    "François Bernier",
+    "Mughal India",
+    "East and West",
+    "landownership",
+    "zamindars",
+    "camp towns",
+    "artisans",
+    "merchants",
+    "slavery",
+    "female slaves",
+    "sati",
+    "audience",
+    "corroboration"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All three travellers described the same India at the same time.",
+      "correction": "They wrote in the eleventh, fourteenth and seventeenth centuries and had different locations, methods and audiences."
+    },
+    {
+      "claim": "Bernier proved that the Mughal emperor privately owned every piece of land.",
+      "correction": "This was Bernier's comparative thesis; Mughal evidence shows more complex and layered agrarian rights."
+    },
+    {
+      "claim": "Travel accounts can be accepted without checking because the writers were eyewitnesses.",
+      "correction": "Eyewitness accounts remain selective and shaped by purpose, memory, comparison and prejudice, so historians corroborate them."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2 comparing Ibn Battuta and Bernier.",
+    "NCERT Exercise 1 on the Kitab-ul-Hind.",
+    "NCERT Exercise 7 on Ibn Battuta and urban centres.",
+    "NCERT Exercise 8 on Bernier and rural society.",
+    "NCERT Exercise 5 on Bernier's account of sati."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with questions 1-5 in the 100-150 word section, essay questions 6-9, Map work 10 and Projects 11-12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Three Dimensional Geometry",
+  "central_question": "How can lines in three-dimensional space be described, compared and separated using direction ratios, vector equations and Cartesian equations?",
+  "in_scope_units": [
+    "11.1 Introduction: using vector algebra to study lines in three-dimensional space.",
+    "11.2 Direction Cosines and Direction Ratios of a Line: direction angles, two possible orientations and conversion between direction ratios and direction cosines.",
+    "11.2.1 Direction Cosines of a Line Passing Through Two Points: coordinate differences, distance PQ and collinearity tests.",
+    "11.3 Equation of a Line in Space: conditions that uniquely determine a line.",
+    "11.3.1 Equation of a Line Through a Given Point and Parallel to a Given Vector: vector, parametric and Cartesian forms.",
+    "11.4 Angle Between Two Lines: dot-product formula and conditions for parallel and perpendicular lines.",
+    "11.5 Shortest Distance Between Two Lines: intersecting, parallel and skew-line cases.",
+    "11.5.1 Distance Between Two Skew Lines: scalar triple-product formula in vector and Cartesian forms.",
+    "11.5.2 Distance Between Parallel Lines: perpendicular distance using a cross product.",
+    "Exercise 11.1, Exercise 11.2 and the Miscellaneous Exercise on Chapter 11."
+  ],
+  "banned_topics": [
+    "Equations of planes, angles between planes and distance of a point from a plane, because no developed plane section is present in the supplied chapter text",
+    "Sphere and conic-surface equations",
+    "Two-dimensional straight-line formulae as a separate topic",
+    "Vector algebra operations unrelated to forming or comparing lines"
+  ],
+  "must_include_keywords": [
+    "three-dimensional space",
+    "directed line",
+    "direction angles",
+    "direction cosines",
+    "direction ratios",
+    "l squared plus m squared plus n squared equals 1",
+    "parallel line through the origin",
+    "line through two points",
+    "coordinate differences",
+    "distance PQ",
+    "collinear points",
+    "position vector",
+    "vector equation of a line",
+    "parameter lambda",
+    "parametric equations",
+    "Cartesian equation",
+    "symmetric form",
+    "direction vector",
+    "acute angle between two lines",
+    "dot product",
+    "parallel lines",
+    "perpendicular lines",
+    "skew lines",
+    "non-coplanar",
+    "shortest distance",
+    "cross product",
+    "scalar triple product",
+    "distance between parallel lines",
+    "corner point not applicable"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A line has only one set of direction cosines even when no direction is specified.",
+      "correction": "An undirected line has two opposite sets of direction cosines; a unique set is obtained only after choosing a direction."
+    },
+    {
+      "claim": "Direction ratios must satisfy a squared sum of 1.",
+      "correction": "Direction cosines satisfy l^2+m^2+n^2=1; direction ratios only need to be proportional to the direction cosines."
+    },
+    {
+      "claim": "Any three denominators in a symmetric line equation are coordinates of a point.",
+      "correction": "They are direction ratios; the point is read from the constants subtracted from x, y and z."
+    },
+    {
+      "claim": "Two lines are perpendicular whenever one pair of direction-ratio components multiplies to zero.",
+      "correction": "Perpendicularity requires a1a2+b1b2+c1c2=0."
+    },
+    {
+      "claim": "The shortest distance formula for skew lines can also be used unchanged for parallel lines.",
+      "correction": "For parallel lines b1 cross b2 is zero, so the separate parallel-line distance formula must be used."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 2 to convert direction ratios 2, -1, -2 into direction cosines.",
+    "Use NCERT Example 3 to obtain direction cosines of the line through two points.",
+    "Use NCERT Example 6 to move from point-plus-direction data to vector and Cartesian line equations.",
+    "Use NCERT Examples 7 and 8 to calculate the acute angle between lines in vector and Cartesian forms.",
+    "Use NCERT Examples 9 and 10 to distinguish shortest distance between skew lines from distance between parallel lines."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter contains Exercise 11.1 with Questions 1-5, Exercise 11.2 with Questions 1-15, and the Miscellaneous Exercise on Chapter 11 with Questions 1-5.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

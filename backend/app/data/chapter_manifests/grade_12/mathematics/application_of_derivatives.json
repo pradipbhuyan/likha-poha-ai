@@ -1,0 +1,68 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Application of Derivatives",
+  "central_question": "How can derivatives be used to describe change, curve behaviour, approximation and optimal values?",
+  "in_scope_units": [
+    "6.1 Introduction: major applications of derivatives.",
+    "6.2 Rate of Change of Quantities.",
+    "6.3 Increasing and Decreasing Functions.",
+    "6.4 Tangents and Normals.",
+    "6.5 Approximations.",
+    "6.6 Maxima and Minima."
+  ],
+  "banned_topics": [
+    "Derivation of basic differentiation formulas",
+    "Integration techniques",
+    "Differential equations"
+  ],
+  "must_include_keywords": [
+    "rate of change",
+    "related rates",
+    "chain rule",
+    "marginal cost",
+    "marginal revenue",
+    "increasing function",
+    "decreasing function",
+    "critical point",
+    "first derivative test",
+    "tangent",
+    "normal",
+    "slope",
+    "approximation",
+    "differential",
+    "local maximum",
+    "local minimum",
+    "absolute maximum",
+    "absolute minimum",
+    "second derivative test"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A negative rate is impossible.",
+      "correction": "A negative derivative indicates decrease with respect to the chosen variable."
+    },
+    {
+      "claim": "f prime(x)=0 always gives a maximum or minimum.",
+      "correction": "A stationary point must be tested; it may be neither."
+    },
+    {
+      "claim": "The slope of the normal is always -f prime(x).",
+      "correction": "When the tangent slope is nonzero, the normal slope is -1/f prime(x)."
+    },
+    {
+      "claim": "The second derivative test works when f double prime(c)=0.",
+      "correction": "If the second derivative is zero, the test is inconclusive."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 3 for the rate of increase of a circular wave area.",
+    "Use NCERT Example 10 to find increasing and decreasing intervals.",
+    "Use a Section 6.4 example to form tangent and normal equations.",
+    "Use a Section 6.5 example to approximate a nearby square root or power.",
+    "Use a Section 6.6 optimisation example and verify the extremum."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 6.1 to 6.5 followed by the Miscellaneous Exercise on Chapter 6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

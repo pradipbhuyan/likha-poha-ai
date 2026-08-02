@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Thermodynamics",
+  "central_question": "How do heat, work, enthalpy, entropy, and Gibbs energy describe energy changes and predict spontaneity?",
+  "in_scope_units": [
+    "Systems, surroundings, state variables, and processes.",
+    "Internal energy, heat, work, and the first law.",
+    "PV work, enthalpy, heat capacity, and calorimetry.",
+    "Reaction enthalpies, Hess law, and bond enthalpy.",
+    "Entropy, Gibbs energy, spontaneity, and equilibrium."
+  ],
+  "banned_topics": [
+    "Statistical mechanics derivations",
+    "Detailed equilibrium calculations",
+    "Electrochemical thermodynamics",
+    "Reaction kinetics"
+  ],
+  "must_include_keywords": [
+    "system",
+    "surroundings",
+    "boundary",
+    "open system",
+    "closed system",
+    "isolated system",
+    "state function",
+    "path function",
+    "internal energy",
+    "heat",
+    "work",
+    "first law",
+    "pressure-volume work",
+    "enthalpy",
+    "heat capacity",
+    "specific heat",
+    "calorimetry",
+    "standard state",
+    "reaction enthalpy",
+    "formation enthalpy",
+    "combustion enthalpy",
+    "atomisation enthalpy",
+    "bond enthalpy",
+    "Hess law",
+    "lattice enthalpy",
+    "spontaneous process",
+    "entropy",
+    "Gibbs energy",
+    "equilibrium"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Heat and temperature are identical.",
+      "correction": "Heat is energy transfer; temperature describes thermal state."
+    },
+    {
+      "claim": "A state function depends on path.",
+      "correction": "It depends only on initial and final states."
+    },
+    {
+      "claim": "Positive work always means work done by the system.",
+      "correction": "In the chemistry convention, work done on the system is positive."
+    },
+    {
+      "claim": "Exothermic means spontaneous.",
+      "correction": "Spontaneity depends on both enthalpy and entropy."
+    },
+    {
+      "claim": "Entropy is merely disorder.",
+      "correction": "It is a thermodynamic measure of energy dispersal and accessible arrangements."
+    }
+  ],
+  "recommended_example_progression": [
+    "Classify systems.",
+    "Apply the first law.",
+    "Relate enthalpy and calorimetry.",
+    "Use Hess law and bond enthalpy.",
+    "Predict spontaneity using Gibbs energy."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use exercises on work, internal energy, enthalpy, calorimetry, Hess law, bond enthalpy, entropy, Gibbs energy, and spontaneity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Classification of Elements and Periodicity in Properties",
+  "central_question": "How do atomic number and electronic configuration generate repeating trends in elemental properties?",
+  "in_scope_units": [
+    "Historical classification and Mendeleev table.",
+    "Modern periodic law, groups, and periods.",
+    "s-, p-, d-, and f-block configurations.",
+    "Atomic and ionic radii.",
+    "Ionisation enthalpy, electron gain enthalpy, and electronegativity.",
+    "Valence, oxidation states, metallic character, and reactivity."
+  ],
+  "banned_topics": [
+    "Detailed family chemistry",
+    "Chemical bonding theory",
+    "Coordination chemistry",
+    "Nuclear chemistry"
+  ],
+  "must_include_keywords": [
+    "periodic law",
+    "Dobereiner triads",
+    "Newlands octaves",
+    "Mendeleev table",
+    "atomic number",
+    "modern periodic table",
+    "group",
+    "period",
+    "s-block",
+    "p-block",
+    "d-block",
+    "f-block",
+    "representative element",
+    "transition element",
+    "inner transition element",
+    "valence shell",
+    "effective nuclear charge",
+    "shielding",
+    "atomic radius",
+    "ionic radius",
+    "isoelectronic species",
+    "ionisation enthalpy",
+    "electron gain enthalpy",
+    "electronegativity",
+    "valence",
+    "oxidation state",
+    "metallic character",
+    "non-metallic character",
+    "periodicity",
+    "reactivity"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Mendeleev used atomic number.",
+      "correction": "He mainly used atomic mass and chemical similarity."
+    },
+    {
+      "claim": "Atomic radius increases across a period.",
+      "correction": "It generally decreases as effective nuclear charge rises."
+    },
+    {
+      "claim": "Cations are larger than their atoms.",
+      "correction": "Cations are generally smaller; anions are generally larger."
+    },
+    {
+      "claim": "Fluorine has the most negative electron gain enthalpy.",
+      "correction": "Chlorine is more negative because fluorine has stronger small-shell repulsion."
+    },
+    {
+      "claim": "Electronegativity equals electron gain enthalpy.",
+      "correction": "One concerns bonded atoms; the other is an isolated-atom energy change."
+    }
+  ],
+  "recommended_example_progression": [
+    "Compare historical systems.",
+    "Locate elements from configurations.",
+    "Classify blocks.",
+    "Arrange sizes and ionisation values.",
+    "Explain reactivity and anomalies."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use exercises on periodic-law history, table position, block configurations, size trends, ionisation, electron gain, and electronegativity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

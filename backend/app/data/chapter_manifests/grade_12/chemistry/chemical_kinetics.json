@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Chemical Kinetics",
+  "central_question": "How can the speed of a chemical reaction be measured, expressed mathematically and controlled by concentration, temperature and catalysts?",
+  "in_scope_units": [
+    "Average and instantaneous rates of reaction and stoichiometric rate expressions.",
+    "Factors influencing reaction rate and the experimental rate law.",
+    "Rate constant, order, molecularity and units of rate constants.",
+    "Integrated rate equations and graphs for zero-order and first-order reactions.",
+    "Half-life relations and pseudo-first-order reactions.",
+    "Temperature dependence, Arrhenius equation and activation energy.",
+    "Catalysis and collision theory, including energy and orientation requirements."
+  ],
+  "banned_topics": [
+    "Thermodynamic feasibility and equilibrium calculations except where contrasted with reaction rate.",
+    "Detailed multistep mechanisms and steady-state approximations beyond the chapter.",
+    "Electrochemical electrode kinetics."
+  ],
+  "must_include_keywords": [
+    "reaction rate",
+    "average rate",
+    "instantaneous rate",
+    "stoichiometric coefficient",
+    "rate law",
+    "rate expression",
+    "rate constant",
+    "order of reaction",
+    "molecularity",
+    "elementary reaction",
+    "complex reaction",
+    "zero-order reaction",
+    "first-order reaction",
+    "integrated rate equation",
+    "half-life",
+    "pseudo-first-order reaction",
+    "concentration",
+    "temperature",
+    "catalyst",
+    "Arrhenius equation",
+    "activation energy",
+    "frequency factor",
+    "collision frequency",
+    "effective collision",
+    "threshold energy",
+    "orientation factor",
+    "Maxwell–Boltzmann distribution"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The exponents in a rate law are always the stoichiometric coefficients.",
+      "correction": "Rate-law exponents are determined experimentally and need not equal stoichiometric coefficients except for an elementary step."
+    },
+    {
+      "claim": "Order and molecularity mean the same thing.",
+      "correction": "Order is the sum of experimental rate-law powers and may be zero or fractional; molecularity is the number of species in an elementary step and is always a positive integer."
+    },
+    {
+      "claim": "The unit of every rate constant is s⁻¹.",
+      "correction": "The unit of k depends on overall reaction order; s⁻¹ is specific to first-order reactions."
+    },
+    {
+      "claim": "A catalyst changes the equilibrium constant.",
+      "correction": "A catalyst lowers activation barriers for forward and reverse reactions and changes the rate of reaching equilibrium, not the equilibrium constant."
+    },
+    {
+      "claim": "All molecular collisions produce reaction.",
+      "correction": "Only collisions with sufficient energy and suitable orientation are effective."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 3.1 on average rates from concentration-time data.",
+    "Use NCERT Example 3.2 to account for stoichiometric coefficients in a rate expression.",
+    "Apply NCERT Examples 3.3 and 3.4 to rate laws, order and units of k.",
+    "Use NCERT Examples 3.5 and 3.6 for first-order time and half-life calculations.",
+    "Finish with NCERT Examples 3.8 and 3.9 for activation energy and collision probability."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 3.1 to 3.30 and cover rate laws, order, integrated equations, half-life, Arrhenius plots, activation energy and temperature effects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -298,12 +298,22 @@ def ensure_textbook_images(manifest: dict, dry_run: bool, force: bool) -> None:
         return
 
     # Resolve rag_documents.id — try exact chapter string, then "Chapter N: "
-    # prefixed, then a bare suffix match, before giving up.
+    # prefixed, then the BARE title with any "Chapter N:"/"Chapter N -"
+    # prefix stripped (confirmed live for Grade 11 Mathematics: its
+    # rag_documents.chapter is stored as the bare "Sets" rather than the
+    # prefixed "Chapter 1: Sets" used in the manifest/GPT-5.5 JSON —
+    # without this candidate the lookup silently fails and textbook
+    # images are skipped for the entire chapter), then a bare suffix
+    # match in both directions, before giving up.
     document_id = None
     try:
         from app.services.auth_service import admin_client  # noqa: PLC0415
-        candidates = [chapter, f"Chapter {chapter_index}: {chapter}"]
+        import re as _re_mod  # noqa: PLC0415
+        bare_chapter = _re_mod.sub(r"^\s*Chapter\s+\d+\s*[:\-]\s*", "", chapter, flags=_re_mod.IGNORECASE).strip()
+        candidates = [chapter, f"Chapter {chapter_index}: {chapter}", bare_chapter]
         for candidate in candidates:
+            if not candidate:
+                continue
             result = (
                 admin_client.table("rag_documents")
                 .select("id")
@@ -318,12 +328,14 @@ def ensure_textbook_images(manifest: dict, dry_run: bool, force: bool) -> None:
                 break
         if document_id is None:
             # Last resort: suffix match against rag_documents.chapter
+            # (handles the case where rag_documents.chapter is LONGER
+            # than our bare title, e.g. stores a book/part suffix).
             result = (
                 admin_client.table("rag_documents")
                 .select("id")
                 .eq("grade", grade)
                 .eq("subject", subject)
-                .ilike("chapter", f"%{chapter}")
+                .ilike("chapter", f"%{bare_chapter}")
                 .limit(1)
                 .execute()
             )

@@ -1,0 +1,63 @@
+{
+  "manifest": {
+    "grade": "Grade 12",
+    "subject": "Hindi",
+    "chapter": "Pahalwan Ki Dholak",
+    "central_question": "How does Phanishwar Nath Renu use Lutthan and his drum to show courage, folk art and the effects of changing social systems?",
+    "in_scope_units": [
+      "Epidemic village and drum",
+      "Lutthan’s early life and wrestling victory",
+      "Royal patronage",
+      "New prince and decline",
+      "Final service, death and symbolism"
+    ],
+    "banned_topics": [
+      "Content from adjacent chapters not present in the supplied source.",
+      "Biographical or historical claims not stated in the supplied source.",
+      "Invented incidents, quotations, dates or interpretations unsupported by the text."
+    ],
+    "must_include_keywords": [
+      "फणीश्वरनाथ रेणु",
+      "लुट्टन सिंह",
+      "पहलवान",
+      "ढोलक",
+      "चट्-धा गिड़-धा",
+      "चाँद सिंह",
+      "शेर का बच्चा",
+      "राजा साहब",
+      "नया राजकुमार",
+      "लोक-कला",
+      "अखाड़ा",
+      "महामारी",
+      "मलेरिया",
+      "हैजा",
+      "संजीवनी शक्ति",
+      "आंचलिकता"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The story is only about a wrestling contest.",
+        "correction": "The contest is one part of a larger story about folk art, patronage, poverty and courage."
+      },
+      {
+        "claim": "The dholak is merely a musical object.",
+        "correction": "Its rhythms guide Lutthan and sustain the epidemic-stricken village."
+      }
+    ],
+    "recommended_example_progression": [
+      "Opening symbol",
+      "Rise of Lutthan",
+      "Systemic change",
+      "Service during epidemic",
+      "Tragic significance"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter questions printed in the supplied NCERT source; answers must be supported by the text."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Pahalwan Ki Dholak\n\n## What you will learn\nUnderstand the epidemic-stricken village and the symbolic role of the drum.\n\n## Simple explanation\nThe story opens on a cold, dark new-moon night. Malaria and cholera have made the village silent, but the wrestler’s drum challenges fear through the night.\n\n## Step-by-step breakdown\n- **Darkness**: The village is compared with a frightened child.\n- **Disease**: Groans, cries and prayers emerge from huts.\n- **Drum rhythm**: “चट्-धा, गिड़-धा” is interpreted as “आ जा भिड़ जा”.\n- **Life force**: The drum fills the dying village with sanjivani-like energy.\n\n## Worked example\nQuestion: How does the opening create a conflict between death and life?\n\nAnswer:\n- Textual evidence: Darkness, illness, silence and cries dominate the village, while the drum beats continuously with the call to fight.\n- Interpretation: The sound becomes an active counterforce to fear and helplessness.\n- Conclusion: The opening turns the dholak into a symbol of courage and collective life.\n\n## Common mistake\nDo not treat the drum as background sound; the narrator translates its beats into commands.\n\n## Quick check question\nQuestion: What message is heard in “चट्-धा, गिड़-धा”?\nAnswer: “आ जा भिड़ जा” — come and fight.\nExplanation: The rhythm encourages resistance against fear and death.\n\n## Summary\n- The opening is dark and epidemic-ridden.\n- The drum breaks the silence.\n- Sound becomes moral strength.\n",
+    "Core explanation": "# Core explanation: Lutthan’s rise\n\n## What you will learn\nTrace Lutthan’s childhood, training and victory over Chand Singh.\n\n## Simple explanation\nOrphaned young and raised by his widowed mother-in-law, Lutthan develops strength through labour and exercise, then challenges the celebrated Chand Singh at the Shyamnagar fair.\n\n## Step-by-step breakdown\n- **Motivation**: Exercise begins partly as a response to those who trouble his mother-in-law.\n- **Challenge**: He enters the arena despite warnings.\n- **Dholak’s guidance**: The beats seem to tell him not to fear and how to attack.\n- **Victory**: He defeats Chand Singh and gains recognition from the king.\n\n## Worked example\nQuestion: How does the dholak participate in Lutthan’s victory?\n\nAnswer:\n- Textual evidence: During the bout its rhythms are heard as “मत डरना” and “उठाकर पटक दे”.\n- Interpretation: The sound gives him courage, timing and a sense of companionship in the arena.\n- Conclusion: The drum is presented as Lutthan’s invisible guru and source of fighting spirit.\n\n## Common mistake\nDo not say Lutthan wins through sound alone; his courage, training and skill are also shown.\n\n## Quick check question\nQuestion: Whom does Lutthan challenge at the fair?\nAnswer: Chand Singh, known as “शेर का बच्चा”.\nExplanation: The challenge establishes Lutthan’s daring and begins his public career.\n\n## Summary\n- Lutthan rises from hardship.\n- He challenges established fame.\n- The dholak becomes his guide.\n",
+    "Worked examples": "# Worked examples: patronage and changing order\n\n## What you will learn\nAnalyse what happens when the old king dies and a new prince changes the court.\n\n## Simple explanation\nUnder Raja Sahib, Lutthan receives patronage and trains young wrestlers. The new prince dismisses wrestlers and replaces traditional practices with modern preferences.\n\n## Step-by-step breakdown\n- **Old order**: The king supports the arena, musicians and wrestlers.\n- **New prince**: He regards these as unnecessary expenses.\n- **Displacement**: Lutthan loses his place and returns to village poverty.\n- **Symbolic change**: The story presents more than a personal change of employer; a whole cultural order is overturned.\n\n## Worked example\nQuestion: Why is the arrival of the new prince a turning point?\n\nAnswer:\n- Textual evidence: He ends royal support for wrestling and removes the artists and performers connected with the old court.\n- Interpretation: Without patronage, Lutthan’s art loses institutional space and economic support.\n- Conclusion: The change exposes the vulnerability of folk artists when systems of support disappear.\n\n## Common mistake\nDo not romanticise every aspect of the old order; focus on the story’s concern for the neglected artist.\n\n## Quick check question\nQuestion: What happens to Lutthan after royal patronage ends?\nAnswer: He returns to the village and struggles in poverty.\nExplanation: His personal decline follows the decline of the cultural institution that sustained him.\n\n## Summary\n- Patronage supports folk art.\n- Systemic change can make artists irrelevant.\n- Lutthan’s fall is social as well as personal.\n",
+    "Exam-style problems": "# Exam-style problems: epidemic and service\n\n## What you will learn\nUnderstand how Lutthan’s drumming becomes service to the village during famine and disease.\n\n## Simple explanation\nEven after losing status and family, Lutthan beats the drum at night so that sick villagers can feel courage and continue fighting death.\n\n## Step-by-step breakdown\n- **Loss**: His sons die during the epidemic.\n- **Duty**: He still plays through the night.\n- **Community effect**: The sound comforts people who cannot see him.\n- **Heroism**: His art becomes an act of public service rather than performance for reward.\n\n## Worked example\nQuestion: Why is Lutthan heroic in the final phase of the story?\n\nAnswer:\n- Textual evidence: After personal bereavement and material ruin, he continues to beat the drum for the frightened village.\n- Interpretation: He transforms private strength into collective encouragement.\n- Conclusion: His heroism lies in sustaining others when he himself has almost nothing left.\n\n## Common mistake\nDo not focus only on his physical wrestling; his final moral courage is greater.\n\n## Quick check question\nQuestion: What does the drum give the sick villagers?\nAnswer: Courage to resist fear and death.\nExplanation: Its repeated challenge makes the village feel that life is still fighting back.\n\n## Summary\n- Lutthan loses family and livelihood.\n- He continues serving others.\n- Art becomes communal courage.\n",
+    "Revision and recap": "# Revision and recap: tragedy, symbolism and regional style\n\n## What you will learn\nRevise the story’s central symbols, language and social questions.\n\n## Simple explanation\nThe story combines regional setting, rhythmic prose and tragedy to ask whether folk art has value independent of powerful patrons.\n\n## Step-by-step breakdown\n- **Dholak**: Symbol of struggle, life and artistic identity.\n- **Lutthan**: A folk artist whose body, art and dignity are inseparable.\n- **Village**: Presented through sounds, diseases, poverty and shared fear.\n- **Changing system**: The transition from Raja Sahib to the prince marginalises traditional art.\n- **Ending**: The final image turns the once-victorious wrestler into a tragic question about society.\n\n## Worked example\nQuestion: What broad question does Lutthan’s fate leave before the reader?\n\nAnswer:\n- Textual evidence: Whether folk art and the artist can survive when social and political systems no longer support them.\n- Interpretation: His dholak remains powerful for the community, yet he is economically and institutionally abandoned.\n- Conclusion: The story separates art’s human value from its market or courtly status.\n\n## Common mistake\nDo not interpret the ending only as an individual death; it is also a critique of cultural neglect.\n\n## Quick check question\nQuestion: What is the most important symbol in the story?\nAnswer: The dholak.\nExplanation: It represents the call to fight, Lutthan’s identity and the life-force of the village.\n\n## Summary\n- The story is both personal tragedy and social critique.\n- Regional language creates authenticity.\n- The dholak unifies the entire narrative.\n"
+  }
+}

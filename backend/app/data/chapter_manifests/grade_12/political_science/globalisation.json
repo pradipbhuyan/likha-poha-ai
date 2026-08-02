@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Globalisation",
+  "central_question": "What is globalisation, what causes it, and how does it reshape politics, economies, cultures and India in uneven ways?",
+  "in_scope_units": [
+    "Concept and flows of globalisation",
+    "Causes of globalisation",
+    "Political consequences",
+    "Economic consequences",
+    "Cultural consequences",
+    "India and globalisation",
+    "Resistance to globalisation"
+  ],
+  "banned_topics": [
+    "Detailed functioning of the UN Security Council",
+    "Classical Cold War military alliances",
+    "India’s Five Year Plans as a separate policy history"
+  ],
+  "must_include_keywords": [
+    "globalisation",
+    "flows",
+    "ideas",
+    "capital",
+    "commodities",
+    "people",
+    "services",
+    "worldwide interconnectedness",
+    "technology",
+    "telegraph",
+    "telephone",
+    "microchip",
+    "state capacity",
+    "welfare state",
+    "minimalist state",
+    "multinational companies",
+    "IMF",
+    "WTO",
+    "economic globalisation",
+    "deregulation",
+    "social safety nets",
+    "cultural homogenisation",
+    "soft power",
+    "McDonaldisation",
+    "cultural heterogenisation",
+    "khadi kurta",
+    "protectionism",
+    "1991 economic reforms",
+    "World Social Forum",
+    "resistance"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Globalisation is only an economic process.",
+      "correction": "The chapter treats it as a multi-dimensional process with political, economic and cultural manifestations."
+    },
+    {
+      "claim": "Globalisation always weakens the state.",
+      "correction": "It may reduce some welfare and regulatory capacities while also strengthening surveillance, information and core state functions."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 6: What is meant by globalisation? Explain in your own words.",
+    "NCERT Exercise 7: What are the factors responsible for the emergence of globalisation?",
+    "NCERT Exercise 8: What are the consequences of globalisation?",
+    "NCERT Exercise 10: What are the cultural consequences of globalisation?",
+    "NCERT Exercise 11: How has globalisation impacted on India and how is India in turn impacting on globalisation?"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with NCERT Exercises 1–11 on the meaning, causes, consequences, Indian experience and resistance to globalisation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

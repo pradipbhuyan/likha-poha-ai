@@ -1,0 +1,55 @@
+{
+  "grade": "Grade 12",
+  "subject": "Hindi",
+  "chapter": "Silver Wedding",
+  "central_question": "How does Manohar Shyam Joshi portray the emotional and generational conflict between inherited values and modern family life?",
+  "in_scope_units": [
+    "Office and old watch",
+    "Silver wedding announcement",
+    "Children and modern careers",
+    "Wife’s adaptation",
+    "Kishan Da, memory and irony"
+  ],
+  "banned_topics": [
+    "Content from adjacent chapters not present in the supplied source.",
+    "Biographical or historical claims not stated in the supplied source.",
+    "Invented incidents, quotations, dates or interpretations unsupported by the text."
+  ],
+  "must_include_keywords": [
+    "मनोहर श्याम जोशी",
+    "यशोधर बाबू",
+    "सिल्वर वैडिंग",
+    "किशनदा",
+    "चड्ढा",
+    "पुरानी घड़ी",
+    "पीढ़ी-अंतराल",
+    "संयुक्त परिवार",
+    "आधुनिकता",
+    "परंपरा",
+    "परायापन",
+    "गोल मार्केट",
+    "बिड़ला मंदिर",
+    "परिवार",
+    "स्मृति"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Yashodhar Babu is only a comic old-fashioned man.",
+      "correction": "His resistance is linked with gratitude, family duty, memory and moral anxiety."
+    },
+    {
+      "claim": "His wife is simply modern.",
+      "correction": "Her adaptation grows partly from painful experience in the old joint family."
+    }
+  ],
+  "recommended_example_progression": [
+    "Office portrait",
+    "Anniversary",
+    "Children",
+    "Wife",
+    "Irony and memory"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter questions printed in the supplied NCERT source; answers must be supported by the text.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

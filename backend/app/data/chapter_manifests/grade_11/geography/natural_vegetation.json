@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Natural Vegetation",
+  "central_question": "How do climate, soil, altitude and human activity shape India’s vegetation, forests, wildlife and conservation strategies?",
+  "in_scope_units": [
+    "Meaning and regional diversity of natural vegetation.",
+    "Evergreen, semi-evergreen, deciduous and thorn forests.",
+    "Northern and southern montane forests.",
+    "Littoral, swamp and mangrove forests and wetlands.",
+    "Forest conservation policy and social forestry.",
+    "Wildlife conservation, species projects and biosphere reserves."
+  ],
+  "banned_topics": [
+    "Detailed monsoon circulation, which belongs to Climate.",
+    "Detailed physiographic divisions, which belong to Structure and Physiography.",
+    "Mineral classification and the rock cycle, which belong to Minerals and Rocks."
+  ],
+  "must_include_keywords": [
+    "natural vegetation",
+    "planted vegetation",
+    "tropical evergreen forest",
+    "semi-evergreen forest",
+    "tropical deciduous forest",
+    "monsoon forest",
+    "moist deciduous",
+    "dry deciduous",
+    "tropical thorn forest",
+    "montane forest",
+    "littoral forest",
+    "swamp forest",
+    "mangrove",
+    "wetland",
+    "Ramsar Convention",
+    "Western Ghats",
+    "Andaman and Nicobar Islands",
+    "Sunderbans",
+    "Sholas",
+    "transhumance",
+    "forest conservation",
+    "Forest Policy 1952",
+    "Forest Policy 1988",
+    "33 per cent",
+    "social forestry",
+    "urban forestry",
+    "rural forestry",
+    "agro-forestry",
+    "community forestry",
+    "farm forestry",
+    "Wildlife Act 1972",
+    "national park",
+    "wildlife sanctuary",
+    "Project Tiger",
+    "Project Elephant",
+    "biosphere reserve",
+    "UNESCO",
+    "Man and Biosphere Programme"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any planted garden tree is natural vegetation.",
+      "correction": "Natural vegetation is a community left undisturbed long enough to adjust to climate and soil."
+    },
+    {
+      "claim": "Evergreen forests never shed leaves.",
+      "correction": "They lack one common leaf-shedding season, so the forest remains green."
+    },
+    {
+      "claim": "All deciduous forests receive the same rainfall.",
+      "correction": "The chapter distinguishes moist and dry deciduous types."
+    },
+    {
+      "claim": "Social forestry means only village tree planting.",
+      "correction": "It includes urban, rural and farm forestry."
+    },
+    {
+      "claim": "A biosphere reserve is identical to a national park.",
+      "correction": "A biosphere reserve is an ecosystem-level area linked with UNESCO’s MAB framework."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 2(i) to define natural vegetation and evergreen conditions.",
+    "Use Exercise 2(ii) to explain social forestry.",
+    "Use Exercise 2(iii) to define biosphere reserves.",
+    "Use Exercise 3(ii) to discuss people’s participation in conservation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter includes Exercises 1(i–v), 2(i–iv), 3(i–ii), and map and local-plant Project/Activity tasks.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Evolution",
+  "central_question": "How did life originate and diversify through variation, inheritance, natural selection and other evolutionary forces over geological time?",
+  "in_scope_units": [
+    "Origin of life, early Earth, chemical evolution and the Miller experiment.",
+    "Darwin and Wallace, natural selection, reproductive fitness and common ancestry.",
+    "Palaeontological, anatomical, embryological, biochemical and selection-based evidence for evolution.",
+    "Adaptive radiation, divergent evolution and convergent evolution.",
+    "Darwinian biological evolution, branching descent and inherited adaptation.",
+    "Mutation theory of Hugo de Vries and saltation.",
+    "Hardy-Weinberg equilibrium and factors that change allele frequencies.",
+    "A brief geological account of the evolution of major life forms.",
+    "Origin and evolutionary stages of human beings."
+  ],
+  "banned_topics": [
+    "Detailed Mendelian crosses and molecular inheritance mechanisms from the genetics chapters.",
+    "Detailed taxonomy and classification of living organisms.",
+    "Population-growth equations and ecological interactions except where directly used to explain evolution."
+  ],
+  "must_include_keywords": [
+    "Big Bang theory",
+    "chemical evolution",
+    "Oparin and Haldane",
+    "Miller experiment",
+    "spontaneous generation",
+    "Louis Pasteur",
+    "natural selection",
+    "reproductive fitness",
+    "Charles Darwin",
+    "Alfred Wallace",
+    "fossils",
+    "palaeontological evidence",
+    "homologous organs",
+    "analogous organs",
+    "divergent evolution",
+    "convergent evolution",
+    "industrial melanism",
+    "adaptive radiation",
+    "Darwin’s finches",
+    "Australian marsupials",
+    "branching descent",
+    "Lamarck",
+    "Hugo de Vries",
+    "mutation",
+    "saltation",
+    "Hardy-Weinberg principle",
+    "genetic equilibrium",
+    "gene flow",
+    "genetic drift",
+    "founder effect",
+    "stabilising selection",
+    "directional selection",
+    "disruptive selection",
+    "Coelacanth",
+    "Homo habilis",
+    "Homo erectus",
+    "Neanderthal man",
+    "Homo sapiens"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Natural selection creates the useful variation needed by an organism.",
+      "correction": "Variations already occur in populations; natural selection favours heritable variants that leave more progeny in a particular environment."
+    },
+    {
+      "claim": "Fitness means physical strength or long life.",
+      "correction": "In Darwinian theory, fitness ultimately means reproductive fitness - the ability to leave more viable progeny."
+    },
+    {
+      "claim": "Homologous organs perform the same function.",
+      "correction": "Homologous organs share a basic structural plan and common ancestry but may perform different functions; analogous organs perform similar functions but have different origins."
+    },
+    {
+      "claim": "Hardy-Weinberg equilibrium describes a population that is rapidly evolving.",
+      "correction": "It describes stable allele frequencies; deviation from expected frequencies indicates evolutionary change."
+    },
+    {
+      "claim": "Human evolution is a straight ladder in which one living ape changed directly into a human.",
+      "correction": "The chapter presents branching evolutionary relationships and fossil stages; modern humans and living apes share ancestral relationships rather than a direct transformation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise 1 to explain antibiotic resistance by Darwinian natural selection.",
+    "Use NCERT Exercise 8 to describe adaptive radiation through Darwin’s finches or Australian marsupials.",
+    "Use NCERT Exercise 3 to frame a careful biological definition of species.",
+    "Use NCERT Exercise 4 to trace changes in brain size, posture, diet and culture during human evolution.",
+    "Finish with NCERT Exercise 9 to judge whether human evolution should be called adaptive radiation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 10 and cover natural selection, fossils, species, adaptive radiation and human evolution.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

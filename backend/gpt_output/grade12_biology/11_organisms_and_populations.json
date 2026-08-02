@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 12",
+    "subject": "Biology",
+    "chapter": "Organisms and Populations",
+    "central_question": "How do population attributes, growth patterns, life-history strategies and interspecific interactions determine the structure and change of populations?",
+    "in_scope_units": [
+      "Ecology at the population level and defining a population.",
+      "Population attributes: density, birth rate, death rate, sex ratio and age structure.",
+      "Natality, mortality, immigration and emigration as determinants of population change.",
+      "Exponential and logistic population growth models and carrying capacity.",
+      "Life-history variation and reproductive fitness.",
+      "Interspecific interactions: predation, competition, parasitism, commensalism, amensalism and mutualism."
+    ],
+    "banned_topics": [
+      "Ecosystem productivity, decomposition, energy flow and ecological pyramids from the next chapter.",
+      "Detailed evolutionary genetics beyond its link to population ecology.",
+      "Human demography policies beyond the population-growth concepts in the chapter."
+    ],
+    "must_include_keywords": [
+      "population",
+      "population density",
+      "birth rate",
+      "death rate",
+      "sex ratio",
+      "age pyramid",
+      "natality",
+      "mortality",
+      "immigration",
+      "emigration",
+      "exponential growth",
+      "intrinsic rate of natural increase",
+      "J-shaped curve",
+      "logistic growth",
+      "carrying capacity",
+      "sigmoid curve",
+      "Verhulst-Pearl",
+      "life-history variation",
+      "reproductive fitness",
+      "mutualism",
+      "competition",
+      "predation",
+      "parasitism",
+      "commensalism",
+      "amensalism",
+      "camouflage",
+      "competitive exclusion",
+      "resource partitioning",
+      "host specificity",
+      "brood parasitism",
+      "orchid",
+      "mango tree",
+      "fig and wasp",
+      "mycorrhiza",
+      "lichen"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Population density must always be counted as number of individuals.",
+        "correction": "It may be measured by number, biomass, percentage cover or a relative index such as catch per trap, depending on the organism and question."
+      },
+      {
+        "claim": "Birth rate is simply the number of young born.",
+        "correction": "Population birth rate is expressed per capita over a time period."
+      },
+      {
+        "claim": "Exponential growth is the most realistic long-term model for natural populations.",
+        "correction": "Resources become limiting, so logistic growth with a carrying capacity is generally more realistic."
+      },
+      {
+        "claim": "Competition occurs only between closely related species when food is scarce.",
+        "correction": "Unrelated species may compete, and interference competition can occur even when resources are not severely limiting."
+      },
+      {
+        "claim": "Commensalism benefits both species.",
+        "correction": "In commensalism one species benefits and the other is neither helped nor harmed; both benefit in mutualism."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 1 to separate population attributes from individual traits.",
+      "Use NCERT Exercise 2 to calculate intrinsic rate of increase from doubling time.",
+      "Use NCERT Exercise 8 to draw and interpret the logistic curve.",
+      "Use NCERT Exercises 4 and 7 to classify commensalism and other interactions.",
+      "Use NCERT Exercises 3 and 5 to connect plant defence and biological control with predation."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 10 and cover population attributes, exponential and logistic growth and interspecific interactions."
+  },
+  "lessons": {
+    "Concept introduction": "# Population attributes and density: Organisms and Populations\n\n## What you will learn\nYou will define a population and distinguish population-level attributes from individual traits. You will calculate per-capita birth and death rates and interpret age structure and density measures.\n\n## Simple explanation\nA population is a group of individuals of the same species living in a defined area and sharing resources, with the potential to interbreed. Ecology studies patterns that appear only at this group level.\n\n## Step-by-step breakdown\n- **Population**: Examples include cormorants in a wetland, rats in an abandoned dwelling, teak trees in a forest, bacteria in a culture plate and lotus plants in a pond.\n- **Population attributes**: A population has birth rate, death rate, sex ratio, age distribution and density; an individual does not.\n- **Birth rate example**: Eight new lotus plants added to an initial 20 give a birth rate of 8/20 = 0.4 offspring per lotus per year.\n- **Death rate example**: Four deaths in 40 fruit flies in one week give a death rate of 4/40 = 0.1 per fruit fly per week.\n- **Sex ratio**: The proportion of males and females is a population property.\n- **Age pyramid**: Pre-reproductive, reproductive and post-reproductive age groups form expanding, stable or declining pyramids.\n- **Population density**: Density N may be measured as count, biomass or percent cover.\n- **Relative density**: Fish caught per trap, tiger pug marks and faecal pellets can estimate population size indirectly.\n- **Context-sensitive measure**: A single large banyan may have greater community importance than many small carrot-grass plants, so biomass or cover can be more meaningful than count.\n\n## Worked example\nQuestion: Based on the lotus example in Section 11.1.1, calculate the birth rate when 8 new plants are added to 20 existing plants in one year.\n\nSolution:\n- Use per-capita birth rate = new individuals divided by the initial population.\n- Substitute 8 new plants and 20 initial plants.\n- Calculate 8/20 = 0.4.\n- Final answer: Express the rate with its population and time basis.\n\n## Common mistake\nDo not divide by the final population of 28 in this NCERT example. The stated per-capita rate uses the initial population of 20.\n\n## Quick check question\nQuestion: What type of age pyramid indicates a declining population?\nAnswer: A pyramid with a narrower pre-reproductive group than the reproductive and older groups.\nExplanation: A small base shows that fewer young individuals are entering the population than would be needed to replace older groups.\n\n## Summary\n- A population is an ecological group, not an isolated individual.\n- Birth and death rates are per-capita measures.\n- Sex ratio and age structure belong to populations.\n- Density can be count, biomass, cover or a relative index.\n- Age pyramids indicate growth status.",
+    "Core explanation": "# Population change and growth models: Organisms and Populations\n\n## What you will learn\nYou will use natality, mortality, immigration and emigration to predict population change. You will compare exponential and logistic growth and interpret r and K.\n\n## Simple explanation\nPopulation density changes because individuals are added by birth and immigration or removed by death and emigration. Growth form depends strongly on whether resources are unlimited or limiting.\n\n## Step-by-step breakdown\n- **Population balance**: Nt+1 = Nt + [(B + I) - (D + E)], where B and I add individuals and D and E remove them.\n- **Natality and mortality**: Births and deaths usually dominate population change under normal conditions.\n- **Migration**: Immigration may be especially important when a new habitat is being colonised; emigration lowers local density.\n- **Exponential growth**: With unlimited resources, dN/dt = rN and Nt = N0e^rt, producing a J-shaped curve.\n- **Intrinsic rate**: r = b - d and measures the intrinsic rate of natural increase.\n- **NCERT values**: The chapter gives r values of 0.015 for Norway rat, 0.12 for flour beetle and 0.0205 for India’s human population in 1981.\n- **Carrying capacity**: A habitat can support a maximum population K under its available resources.\n- **Verhulst-Pearl logistic growth**: dN/dt = rN[(K-N)/K] produces a sigmoid curve with lag, acceleration, deceleration and asymptote phases.\n- **Realism**: Because resources become limiting, the logistic model is generally more realistic for natural populations.\n\n## Worked example\nQuestion: Based on NCERT Exercise 2, a population doubles in 3 years under exponential growth. Calculate r using Nt = N0e^rt.\n\nSolution:\n- For doubling, Nt/N0 = 2.\n- Use 2 = e^(3r).\n- Take natural logarithms: ln 2 = 3r.\n- Final answer: Calculate r = 0.693/3 = approximately 0.231 per year.\n\n## Common mistake\nDo not confuse r with total births. It is a per-capita intrinsic rate derived from birth and death rates.\n\n## Quick check question\nQuestion: What happens to logistic population growth as N approaches K?\nAnswer: The growth rate slows and approaches zero, so the curve levels off near the carrying capacity.\nExplanation: The factor (K-N)/K becomes small as population density approaches K.\n\n## Summary\n- Births and immigration increase density.\n- Deaths and emigration decrease density.\n- Exponential growth assumes unlimited resources.\n- Logistic growth includes carrying capacity K.\n- The intrinsic rate r describes per-capita natural increase.",
+    "Worked examples": "# Life-history strategies and predation: Organisms and Populations\n\n## What you will learn\nYou will relate reproductive strategies to Darwinian fitness and explain ecological roles of predators. You will identify prey and plant defences against herbivory.\n\n## Simple explanation\nSpecies maximise reproductive success in different ways. Predators transfer energy, regulate prey and maintain diversity, while prey evolve defences that reduce the chance of being eaten.\n\n## Step-by-step breakdown\n- **Life-history variation**: Pacific salmon and bamboo reproduce once, whereas most birds and mammals reproduce repeatedly.\n- **Offspring strategy**: Oysters and pelagic fishes produce many small offspring; birds and mammals generally produce fewer, larger offspring.\n- **Fitness**: Life-history traits evolve in relation to abiotic and biotic constraints and affect reproductive fitness.\n- **Predation and energy**: Predators move energy from plants and prey to higher trophic levels and keep prey populations under control.\n- **Invasive species control**: Prickly pear cactus in Australia was controlled by introducing its cactus-feeding moth predator.\n- **Diversity maintenance**: Removal of Pisaster starfish from a rocky intertidal community led to extinction of more than ten invertebrate species through increased competition.\n- **Animal defences**: Camouflage and poisonous or distasteful chemicals reduce predation; monarch butterflies acquire a protective chemical during the caterpillar stage.\n- **Plant defences**: Acacia and cactus have thorns; Calotropis produces cardiac glycosides, and plants produce nicotine, caffeine, quinine, strychnine and opium as chemical defences.\n\n## Worked example\nQuestion: Based on NCERT Exercise 5, what ecological principle supports biological control of pest insects?\n\nSolution:\n- Predators naturally regulate prey populations.\n- A selected predator or pathogen can be used against a pest species.\n- The aim is to reduce pest density and damage rather than rely only on broad chemical killing.\n- Final answer: The prickly pear cactus and its moth predator illustrate this population-control principle.\n\n## Common mistake\nDo not say an ideal predator should eliminate every prey individual. If prey becomes extinct, the predator may also disappear for lack of food.\n\n## Quick check question\nQuestion: Why is camouflage an anti-predator adaptation?\nAnswer: It reduces the chance that a predator detects the prey against its background.\nExplanation: Lower detection increases the prey’s probability of survival and reproduction.\n\n## Summary\n- Life-history strategies differ in timing and number of offspring.\n- Fitness is reproductive success in a particular habitat.\n- Predators transfer energy and regulate prey.\n- Predators can maintain community diversity.\n- Prey and plants use structural and chemical defences.",
+    "Exam-style problems": "# Competition and parasitism: Organisms and Populations\n\n## What you will learn\nYou will define competition in terms of fitness and explain competitive exclusion and resource partitioning. You will identify major parasitic adaptations and host-parasite relationships.\n\n## Simple explanation\nCompetition lowers the success of one or both species, while parasitism benefits one species and harms its host. Both interactions can shape distribution, adaptation and evolution.\n\n## Step-by-step breakdown\n- **Competition**: Competition occurs when the presence of one species significantly lowers the fitness or intrinsic rate of increase of another.\n- **Not only close relatives**: Flamingoes and fishes can compete for zooplankton even though they are not closely related.\n- **Interference competition**: One species can reduce another’s feeding efficiency even when a resource is not completely exhausted.\n- **Competitive exclusion**: Gause’s principle states that two closely related species competing for the same limiting resource cannot coexist indefinitely.\n- **Field evidence**: Goats contributed to extinction of the Abingdon tortoise; Balanus excluded Chthamalus from part of the Scottish intertidal zone.\n- **Resource partitioning**: Competing species can coexist by using different feeding times or foraging locations, as shown by MacArthur’s warblers.\n- **Parasitic adaptations**: Parasites may lose unnecessary sense organs, develop adhesive organs or suckers, lose digestive systems and produce many offspring.\n- **Host specificity and coevolution**: A host evolves resistance and a parasite evolves counter-adaptations.\n- **Examples**: Cuscuta parasitises hedge plants; ticks and lice are ectoparasites; tapeworm and liver fluke are endoparasites; Plasmodium uses mosquito and human hosts.\n- **Brood parasitism**: Cuckoo lays eggs in a crow’s nest, and egg resemblance reduces rejection by the host.\n\n## Worked example\nQuestion: Based on NCERT Exercise 9, select and justify the best statement about parasitism.\n\nSolution:\n- The parasite gains food, shelter or reproductive advantage.\n- The host loses resources, health or reproductive success.\n- Therefore one organism benefits and the other is affected adversely.\n- Final answer: The correct option is (d).\n\n## Common mistake\nDo not define competition only as direct fighting. It can also be indirect exploitation or interference that lowers fitness.\n\n## Quick check question\nQuestion: What is resource partitioning?\nAnswer: It is the division of a shared resource by differences in time, place or method of use, allowing competing species to coexist.\nExplanation: Reducing overlap lowers the intensity of interspecific competition.\n\n## Summary\n- Competition is defined by reduced fitness.\n- Competitive exclusion applies most strongly when resources are limiting.\n- Resource partitioning promotes coexistence.\n- Parasites benefit while hosts are harmed.\n- Host and parasite may coevolve.",
+    "Revision and recap": "# Commensalism, mutualism and interaction classification: Organisms and Populations\n\n## What you will learn\nYou will classify all major population interactions by their effects on two species. You will compare commensalism, amensalism and mutualism using NCERT examples.\n\n## Simple explanation\nInterspecific relationships can benefit, harm or have no measurable effect on each partner. A sign table helps prevent confusion between similar-looking interactions.\n\n## Step-by-step breakdown\n- **Interaction signs**: Mutualism is +/+, competition -/-, predation and parasitism +/-, commensalism +/0 and amensalism -/0.\n- **Commensalism**: One species benefits and the other is unaffected.\n- **Orchid and mango**: An orchid gains support and better light by growing on a mango tree branch, while the mango is neither helped nor harmed.\n- **Other commensals**: Barnacles on whales and cattle egrets feeding near grazing cattle are chapter examples.\n- **Amensalism**: One species is harmed while the other remains unaffected.\n- **Mutualism**: Both species benefit and may become highly dependent on each other.\n- **Lichens**: A fungus provides shelter and mineral support while a photosynthetic partner supplies food.\n- **Mycorrhiza**: Fungal roots improve nutrient absorption and receive carbohydrates from the plant.\n- **Plant-pollinator mutualism**: Fig and wasp show close mutual dependence; orchids may use elaborate flower-pollinator relationships, including sexual deceit.\n- **Classification discipline**: Effect on each species, not physical closeness alone, determines the name of an interaction.\n\n## Worked example\nQuestion: Based on NCERT Exercise 4, classify the interaction between an orchid on a mango branch.\n\nSolution:\n- The orchid obtains physical support and better access to light.\n- It does not take food from the mango as a parasite would.\n- The mango is described as neither benefited nor harmed.\n- Final answer: The interaction is therefore commensalism, represented as +/0.\n\n## Common mistake\nDo not call every close association mutualism. Both species must benefit for an interaction to be mutualistic.\n\n## Quick check question\nQuestion: How does mutualism differ from commensalism?\nAnswer: In mutualism both species benefit, whereas in commensalism one benefits and the other is unaffected.\nExplanation: The sign patterns are +/+ and +/0 respectively.\n\n## Summary\n- Interaction signs summarise ecological effects.\n- Commensalism benefits one species without affecting the other.\n- Amensalism harms one while the other is unaffected.\n- Mutualism benefits both partners.\n- Orchid-mango, lichens, mycorrhiza and fig-wasp are key examples."
+  }
+}

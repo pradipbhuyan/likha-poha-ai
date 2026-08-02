@@ -1,0 +1,76 @@
+{
+  "grade": "Grade 12",
+  "subject": "Accountancy",
+  "chapter": "Reconstitution of a Partnership Firm – Retirement/Death of a Partner",
+  "central_question": "How is the amount due to a retiring or deceased partner measured, adjusted and settled while the continuing partners reconstitute the firm?",
+  "in_scope_units": [
+    "Ascertaining the amount due to a retiring partner, including capital, goodwill, reserves, revaluation, current-year profit and drawings.",
+    "Calculation of the new profit-sharing ratio and the gaining ratio of continuing partners.",
+    "Treatment of goodwill when it does not appear in the books, when it already appears and when its value is hidden.",
+    "Revaluation of assets and liabilities and adjustment of accumulated profits and losses in the old ratio.",
+    "Disposal of the amount due through immediate payment or a retiring partner’s loan account with interest and instalments.",
+    "Adjustment of continuing partners’ capitals according to the new ratio.",
+    "Death of a partner, calculation of profit up to the date of death and transfer to the executor’s account."
+  ],
+  "banned_topics": [
+    "Admission of a new partner, which belongs to the preceding reconstitution chapter.",
+    "Realisation of all assets and closure of the firm, which belongs to dissolution.",
+    "Company share capital, debentures and corporate financial statements."
+  ],
+  "must_include_keywords": [
+    "retirement of a partner",
+    "death of a partner",
+    "amount due",
+    "new profit sharing ratio",
+    "gaining ratio",
+    "old share",
+    "new share",
+    "goodwill adjustment",
+    "hidden goodwill",
+    "revaluation account",
+    "accumulated profits",
+    "accumulated losses",
+    "general reserve",
+    "retiring partner’s loan account",
+    "instalments",
+    "interest on loan",
+    "adjustment of capitals",
+    "profit up to date of death",
+    "time basis",
+    "sales basis",
+    "executor’s account",
+    "old profit sharing ratio",
+    "continuing partners",
+    "share of goodwill",
+    "capital account"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The retiring partner receives only the closing capital balance.",
+      "correction": "The amount due also includes or deducts goodwill, reserves, revaluation, current-year profit, interest, salary, drawings and other agreed items."
+    },
+    {
+      "claim": "The gaining ratio is always the old profit-sharing ratio.",
+      "correction": "Gaining ratio is calculated partner-wise as new share minus old share and depends on how the retiring partner’s share is acquired."
+    },
+    {
+      "claim": "Revaluation profit is transferred to the continuing partners in their new ratio.",
+      "correction": "It arose before retirement and is shared by all old partners, including the retiring partner, in the old ratio."
+    },
+    {
+      "claim": "The deceased partner can share only profit already finalised in accounts.",
+      "correction": "A reasonable share of profit from the last closing date to the date of death is credited according to the deed or an accepted time or sales basis."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Illustrations 1–5 to compute new and gaining ratios.",
+    "Use NCERT Illustrations 6–10 to adjust goodwill, including existing and hidden goodwill.",
+    "Use NCERT Illustration 11 to prepare the retiring partner’s loan account under instalment alternatives.",
+    "Use NCERT Illustrations 12–13 for complete retirement accounts with revaluation and reserves.",
+    "Use NCERT Illustrations 14–17 to adjust capitals of continuing partners.",
+    "Use NCERT Illustrations 18–19 for death of a partner, current-year profit and executor settlement."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions for Practice containing Short Answer, Long Answer and Numerical Questions on retirement, death, gaining ratio, goodwill, revaluation, settlement and capital adjustment.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

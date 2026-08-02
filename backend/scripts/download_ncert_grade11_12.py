@@ -116,7 +116,11 @@ GRADE_12_BOOKS = [
     ("History",          "lehe1",  "Themes in Indian History Part 1",           7),
     ("History",          "lehe2",  "Themes in Indian History Part 2",           7),
     ("Geography",        "legy1",  "Fundamentals of Human Geography",          10),
-    ("Geography",        "legz1",  "India People and Economy",                 10),
+    # Book code was "legz1" -- confirmed WRONG (404s immediately on NCERT's
+    # site). Verified correct code directly via curl: "legy2" (same
+    # book-1/book-2 numbering pattern already used for Grade 11 Geography's
+    # kegy1/kegy2). Fixed 2026-08-01.
+    ("Geography",        "legy2",  "India People and Economy",                 10),
     ("Political_Science","leps1",  "Contemporary World Politics",               7),
     ("Political_Science","leps2",  "Politics in India since Independence",      8),
     # Sociology PDFs not yet on NCERT portal (2024 revised curriculum)

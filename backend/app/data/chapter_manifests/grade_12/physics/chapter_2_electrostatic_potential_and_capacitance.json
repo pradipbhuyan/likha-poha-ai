@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 2: Electrostatic Potential and Capacitance",
+  "central_question": "How do potential, potential energy, conductors and capacitors describe electrostatic systems?",
+  "in_scope_units": [
+    "Potential and potential difference",
+    "Point-charge and dipole potential",
+    "Equipotential surfaces",
+    "Potential energy of charges and dipoles",
+    "Electrostatics of conductors",
+    "Dielectrics and polarisation",
+    "Capacitance and parallel plates",
+    "Capacitor combinations",
+    "Stored energy"
+  ],
+  "banned_topics": [
+    "Coulomb and Gauss-law derivations from Chapter 1",
+    "Current circuits from Chapter 3",
+    "AC capacitor response from Chapter 7"
+  ],
+  "must_include_keywords": [
+    "conservative force",
+    "electric potential",
+    "potential difference",
+    "point charge potential",
+    "dipole potential",
+    "superposition of potentials",
+    "equipotential surface",
+    "electric field gradient",
+    "electron volt",
+    "potential energy of a dipole",
+    "electrostatic equilibrium",
+    "conductor",
+    "surface charge density",
+    "electrostatic shielding",
+    "dielectric",
+    "polarisation",
+    "dielectric constant",
+    "capacitor",
+    "capacitance",
+    "parallel-plate capacitor",
+    "series combination",
+    "parallel combination",
+    "stored energy",
+    "energy density"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Electric potential is a vector.",
+      "correction": "Potential is a scalar and adds algebraically."
+    },
+    {
+      "claim": "Zero potential always means zero field.",
+      "correction": "Field depends on the spatial change of potential."
+    },
+    {
+      "claim": "Capacitance equals QV.",
+      "correction": "Capacitance is C = Q/V."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2.1: zero-potential points",
+    "NCERT Exercise 2.3: equipotential surface",
+    "NCERT Exercise 2.4: conductor field",
+    "NCERT Exercise 2.5: dielectric capacitance",
+    "NCERT Exercise 2.10: stored energy"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES run from 2.1 to 2.11.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

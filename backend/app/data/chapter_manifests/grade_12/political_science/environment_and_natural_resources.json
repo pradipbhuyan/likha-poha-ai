@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Environment and Natural Resources",
+  "central_question": "Why have environmental degradation and competition over natural resources become central political issues requiring unequal but shared responsibilities?",
+  "in_scope_units": [
+    "Environmental concerns in global politics",
+    "Earth Summit and sustainable development",
+    "Protection of global commons",
+    "Common but differentiated responsibilities",
+    "Common property resources",
+    "India’s stand on environmental issues",
+    "Environmental movements",
+    "Resource geopolitics",
+    "Rights of indigenous peoples"
+  ],
+  "banned_topics": [
+    "Detailed biological classification of ecosystems",
+    "Scientific calculation of greenhouse effects",
+    "Traditional military security doctrines"
+  ],
+  "must_include_keywords": [
+    "environmental degradation",
+    "global politics",
+    "Club of Rome",
+    "Limits to Growth",
+    "UNEP",
+    "Earth Summit",
+    "Agenda 21",
+    "sustainable development",
+    "global North",
+    "global South",
+    "global commons",
+    "res communis humanitatis",
+    "Antarctica",
+    "Montreal Protocol",
+    "common but differentiated responsibilities",
+    "UNFCCC",
+    "Kyoto Protocol",
+    "common property resources",
+    "sacred groves",
+    "India",
+    "historical responsibility",
+    "per capita emissions",
+    "environmental movements",
+    "Narmada Bachao Andolan",
+    "resource geopolitics",
+    "oil",
+    "water",
+    "indigenous peoples"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Environmental issues are only scientific and therefore outside politics.",
+      "correction": "They are political because governments allocate resources, distribute costs, regulate behaviour and negotiate international responsibility."
+    },
+    {
+      "claim": "Common but differentiated responsibilities means developing countries have no environmental obligations.",
+      "correction": "All states share responsibility, but developed states are expected to bear a larger burden because of their historical contribution and greater capabilities."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 4: What were the outcomes of the Rio Summit?",
+    "NCERT Exercise 6: What is meant by “common but differentiated responsibilities”? How could we implement the idea?",
+    "NCERT Exercise 8: The most serious challenge before the states is pursuing economic development without causing further damage to the global environment. How could we achieve this? Give a few examples from the chapter.",
+    "NCERT Exercise 9: Identify the commonalities and differences between the environmental movements in the global North and South.",
+    "NCERT Exercise 7: Why have issues related to global environmental protection become the priority concern of states since the 1990s?"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with NCERT Exercises 1–9 on global commons, differentiated responsibilities, India’s position, environmental movements and indigenous rights.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

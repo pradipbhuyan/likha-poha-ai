@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Freedom",
+  "central_question": "How can individuals and societies protect meaningful freedom while accepting only those constraints that prevent serious harm and enable everyone’s development?",
+  "in_scope_units": [
+    "The Ideal of Freedom through Mandela, Aung San Suu Kyi, anti-colonial struggle and Swaraj.",
+    "What is Freedom and the sources of political, social and economic constraints.",
+    "Why Do We Need Constraints and the liberal defence of tolerance and individual liberty.",
+    "The Harm Principle, self-regarding and other-regarding actions, serious harm and reasonable restrictions.",
+    "Negative and Positive Liberty, enabling conditions and freedom of expression."
+  ],
+  "banned_topics": [
+    "Detailed Fundamental Rights and constitutional remedies, which belong to Rights in the Indian Constitution.",
+    "Detailed theories of equality and affirmative action, which belong to Equality.",
+    "Detailed citizenship law and acquisition of citizenship, which belong to Citizenship."
+  ],
+  "must_include_keywords": [
+    "freedom",
+    "Nelson Mandela",
+    "Long Walk to Freedom",
+    "apartheid",
+    "Aung San Suu Kyi",
+    "Freedom from Fear",
+    "dignity",
+    "Swaraj",
+    "Hind Swaraj",
+    "self-rule",
+    "constraints",
+    "coercion",
+    "autonomy",
+    "positive dimension",
+    "sources of constraints",
+    "democratic government",
+    "social inequality",
+    "liberalism",
+    "tolerance",
+    "individual liberty",
+    "J. S. Mill",
+    "harm principle",
+    "self-regarding actions",
+    "other-regarding actions",
+    "serious harm",
+    "social disapproval",
+    "reasonable restrictions",
+    "negative liberty",
+    "positive liberty",
+    "non-interference",
+    "enabling conditions",
+    "freedom of expression",
+    "responsibility"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Freedom means the total absence of every rule.",
+      "correction": "The chapter accepts necessary constraints that prevent violence, settle disputes and protect equal freedom."
+    },
+    {
+      "claim": "Positive liberty and negative liberty are exact opposites that cannot coexist.",
+      "correction": "They usually support each other, though positive-liberty arguments can be misused by tyrants."
+    },
+    {
+      "claim": "The state may interfere whenever an action annoys someone.",
+      "correction": "Mill reserves legal coercion for serious harm to others; minor inconvenience may warrant only social disapproval."
+    },
+    {
+      "claim": "Social inequality has nothing to do with freedom.",
+      "correction": "Caste and extreme economic inequality can restrict real choice and development."
+    },
+    {
+      "claim": "Freedom of expression requires banning every offensive idea.",
+      "correction": "The chapter defends broad expression and asks for restrictions only when justified by serious harm and proportionality."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise Q1 on individual and national freedom.",
+    "Use NCERT Exercise Q2 to distinguish negative and positive liberty.",
+    "Use NCERT Exercise Q3 to analyse social constraints.",
+    "Use NCERT Exercise Q4 to assess the role of the state.",
+    "Conclude with NCERT Exercise Q5 on expression and reasonable restriction."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–5 on freedom, liberty, social constraints, the state and freedom of expression.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

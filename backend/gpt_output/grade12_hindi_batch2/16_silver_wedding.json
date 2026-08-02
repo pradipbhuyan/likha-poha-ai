@@ -1,0 +1,62 @@
+{
+  "manifest": {
+    "grade": "Grade 12",
+    "subject": "Hindi",
+    "chapter": "Silver Wedding",
+    "central_question": "How does Manohar Shyam Joshi portray the emotional and generational conflict between inherited values and modern family life?",
+    "in_scope_units": [
+      "Office and old watch",
+      "Silver wedding announcement",
+      "Children and modern careers",
+      "Wife’s adaptation",
+      "Kishan Da, memory and irony"
+    ],
+    "banned_topics": [
+      "Content from adjacent chapters not present in the supplied source.",
+      "Biographical or historical claims not stated in the supplied source.",
+      "Invented incidents, quotations, dates or interpretations unsupported by the text."
+    ],
+    "must_include_keywords": [
+      "मनोहर श्याम जोशी",
+      "यशोधर बाबू",
+      "सिल्वर वैडिंग",
+      "किशनदा",
+      "चड्ढा",
+      "पुरानी घड़ी",
+      "पीढ़ी-अंतराल",
+      "संयुक्त परिवार",
+      "आधुनिकता",
+      "परंपरा",
+      "परायापन",
+      "गोल मार्केट",
+      "बिड़ला मंदिर",
+      "परिवार",
+      "स्मृति"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Yashodhar Babu is only a comic old-fashioned man.",
+        "correction": "His resistance is linked with gratitude, family duty, memory and moral anxiety."
+      },
+      {
+        "claim": "His wife is simply modern.",
+        "correction": "Her adaptation grows partly from painful experience in the old joint family."
+      }
+    ],
+    "recommended_example_progression": [
+      "Office portrait",
+      "Anniversary",
+      "Children",
+      "Wife",
+      "Irony and memory"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter questions printed in the supplied NCERT source; answers must be supported by the text."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Silver Wedding\n\n## What you will learn\nUnderstand Yashodhar Babu’s office world and his attachment to old habits.\n\n## Simple explanation\nThe story opens with Yashodhar Babu comparing clocks and joking with juniors, while their teasing reveals a generational difference.\n\n## Step-by-step breakdown\n- **Old watch**: He values the watch received at marriage.\n- **Office juniors**: Chaddha recommends a cheap Japanese digital watch.\n- **Mixed speech**: Hindi and English expressions mark office culture.\n- **Kishanda’s influence**: Yashodhar has learned habits, humour and values from Kishan Da.\n\n## Worked example\nQuestion: What does the watch episode reveal about Yashodhar Babu?\n\nAnswer:\n- Textual evidence: He defends the old marriage watch because it still gives the right time, while juniors call it outdated.\n- Interpretation: The object represents emotional memory and his resistance to replacing the old merely because the new is fashionable.\n- Conclusion: Yashodhar Babu values continuity, utility and personal history over modern display.\n\n## Common mistake\nDo not describe him as simply miserly; the watch carries memory and principle.\n\n## Quick check question\nQuestion: From whom has Yashodhar Babu learned many habits?\nAnswer: Kishan Da.\nExplanation: The story repeatedly connects his humour, discipline and outlook with this mentor.\n\n## Summary\n- The office introduces the generation gap.\n- Objects carry emotional history.\n- Kishan Da shapes Yashodhar’s identity.\n",
+    "Core explanation": "# Core explanation: the silver wedding episode\n\n## What you will learn\nExamine Yashodhar Babu’s discomfort with anniversary celebration.\n\n## Simple explanation\nWhen colleagues calculate that twenty-five years of marriage are complete, they insist on tea and snacks, but he calls wedding anniversaries a foreign custom.\n\n## Step-by-step breakdown\n- **Embarrassment**: He is pleased yet shy when the date is announced.\n- **Custom**: He says such anniversaries are “गोरों के चोंचले”.\n- **Compromise**: He contributes money for colleagues but refuses to remain for the party.\n- **Principle**: He distinguishes light office humour from wasteful socialising.\n\n## Worked example\nQuestion: Why does Yashodhar Babu pay for refreshments but leave?\n\nAnswer:\n- Textual evidence: He does not mind giving colleagues tea, but believes sitting with subordinates for extended gossip violates the disciplined tradition he associates with Kishan Da.\n- Interpretation: His action combines generosity with rigidity.\n- Conclusion: The scene shows that he can compromise outwardly without changing his inner code.\n\n## Common mistake\nDo not conclude that he hates colleagues; he participates partly but sets a limit.\n\n## Quick check question\nQuestion: What anniversary has been completed?\nAnswer: Twenty-five years of marriage, the silver wedding.\nExplanation: The discovery gives the story its title and exposes differing cultural attitudes.\n\n## Summary\n- The title event begins in the office.\n- Yashodhar is both pleased and resistant.\n- His values are inherited from Kishan Da.\n",
+    "Worked examples": "# Worked examples: family and generational conflict\n\n## What you will learn\nTrace why Yashodhar Babu feels increasingly alienated from his wife and children.\n\n## Simple explanation\nHis children are educated, ambitious and modern, but their choices, consumption and neglect of poorer relatives trouble him.\n\n## Step-by-step breakdown\n- **Children’s careers**: The sons and daughter pursue high-status modern paths, including plans linked with America.\n- **Father’s doubt**: He cannot fully understand new salaries, career choices and lifestyles.\n- **Social concern**: He dislikes their disregard for poor relations.\n- **Emotional result**: Prosperity produces a feeling of estrangement within the family.\n\n## Worked example\nQuestion: Why does Yashodhar Babu feel that prosperity can create “परायापन”?\n\nAnswer:\n- Textual evidence: His children advance materially but do not share his values regarding family duty, simplicity and poorer relatives.\n- Interpretation: Economic success therefore increases distance rather than intimacy.\n- Conclusion: The story presents modern progress as emotionally incomplete when it breaks intergenerational connection.\n\n## Common mistake\nDo not say he is unhappy with every achievement; the text says he is also pleased by their progress.\n\n## Quick check question\nQuestion: What does he find wrong in his children’s attitude toward poor relatives?\nAnswer: He finds their neglect of those relatives improper.\nExplanation: For him, family responsibility extends beyond the successful nuclear household.\n\n## Summary\n- The children embody modern mobility.\n- The father feels pride and anxiety together.\n- Value conflict creates loneliness.\n",
+    "Exam-style problems": "# Exam-style problems: wife, tradition and adaptation\n\n## What you will learn\nUnderstand why Yashodhar’s wife changes more easily than he does.\n\n## Simple explanation\nAlthough her original upbringing is traditional, she supports the children partly because she remembers the restrictions and lack of support she faced in the old joint family.\n\n## Step-by-step breakdown\n- **Past grievance**: She recalls that her husband did not take her side against elder sisters-in-law.\n- **Maternal sympathy**: She now sides with the children.\n- **Selective modernity**: She accepts change to the extent that it gives comfort and freedom.\n- **Marital conflict**: Yashodhar mocks her adaptation instead of understanding its cause.\n\n## Worked example\nQuestion: Why does Yashodhar’s wife support the children?\n\nAnswer:\n- Textual evidence: Her own youth was constrained by joint-family rules, and she feels sympathy with the children’s wish for convenience and autonomy.\n- Interpretation: Her modern behaviour is not rootless imitation; it is partly a response to remembered oppression.\n- Conclusion: The family conflict contains unresolved pain from the earlier generation.\n\n## Common mistake\nDo not label the wife purely modern; the text says her basic संस्कार remain traditional.\n\n## Quick check question\nQuestion: What experience shapes the wife’s attitude?\nAnswer: Her constrained life in the earlier joint family and her husband’s failure to support her.\nExplanation: This history explains her present alliance with the children.\n\n## Summary\n- The wife adapts for personal reasons.\n- Old family pain shapes new choices.\n- Yashodhar often fails to recognise this.\n",
+    "Revision and recap": "# Revision and recap: Kishan Da, memory and title\n\n## What you will learn\nRevise the role of Kishan Da, the story’s irony and the meaning of the silver wedding.\n\n## Simple explanation\nKishan Da is absent physically but present in Yashodhar’s language, habits and judgements. The anniversary exposes both the durability and the limitations of inherited values.\n\n## Step-by-step breakdown\n- **Mentor memory**: Kishan Da once gave shelter, money and employment guidance.\n- **Imitation**: Yashodhar repeats his gestures, phrases and principles.\n- **Changing city**: Old quarters give way to multi-storey buildings, mirroring social change.\n- **Irony**: A celebration of long marriage reveals distance inside the family.\n- **Central conflict**: The story does not simply choose old or new; it shows the cost of failed dialogue.\n\n## Worked example\nQuestion: Why is the title “Silver Wedding” ironic?\n\nAnswer:\n- Textual evidence: The twenty-fifth anniversary should mark shared intimacy, yet it brings to the surface conflicts between husband, wife and children.\n- Interpretation: The public label of successful duration contrasts with emotional distance at home.\n- Conclusion: The title turns celebration into an examination of marriage, memory and change.\n\n## Common mistake\nDo not interpret the story as a simple victory of modernity or tradition.\n\n## Quick check question\nQuestion: What does Kishan Da represent for Yashodhar Babu?\nAnswer: A mentor and model of disciplined, communal and old-style values.\nExplanation: Yashodhar’s identity is deeply formed by this remembered figure.\n\n## Summary\n- Kishan Da lives through memory.\n- Urban and family change run in parallel.\n- The title contains celebration and irony.\n"
+  }
+}

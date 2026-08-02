@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Federalism",
+  "central_question": "How does Indian federalism combine regional diversity and self-government with national unity, a strong Union and negotiated Centre‘State relations?",
+  "in_scope_units": [
+    "Meaning of federalism and the importance of trust, autonomy and dual levels of government.",
+    "Comparative failures and challenges of federations, including the West Indies and Nigeria examples.",
+    "Federalism in the Indian Constitution and India as a Union of States.",
+    "Division of legislative powers through Union, State, Concurrent and residuary subjects.",
+    "Reasons for and provisions creating a strong central government.",
+    "Centre’State relations, autonomy demands and the role of political practice.",
+    "Governor, President‘s Rule, financial dependence and all-India services as sources of tension.",
+    "Inter-State disputes, especially boundaries and river waters.",
+    "Reorganisation of States on linguistic and regional lines.",
+    "Special provisions for States and regions with distinctive social and historical conditions."
+  ],
+  "banned_topics": [
+    "A complete theory of nationalism, nation-state formation or self-determination beyond the federal issues in the supplied source.",
+    "Current territorial or constitutional changes not stated in the supplied 2026’27 text.",
+    "Detailed local government decentralisation, which belongs to the next source chapter."
+  ],
+  "must_include_keywords": [
+    "federalism",
+    "Union of States",
+    "unity in diversity",
+    "regional government",
+    "national government",
+    "autonomy",
+    "written Constitution",
+    "supremacy of Constitution",
+    "independent judiciary",
+    "single citizenship",
+    "Union List",
+    "State List",
+    "Concurrent List",
+    "residuary powers",
+    "strong central government",
+    "Parliament",
+    "emergency provisions",
+    "financial powers",
+    "Governor",
+    "President‘s Rule",
+    "Article 257",
+    "all-India services",
+    "Centre’State relations",
+    "State autonomy",
+    "Sarkaria Commission",
+    "inter-State disputes",
+    "river water disputes",
+    "linguistic States",
+    "State reorganisation",
+    "special provisions",
+    "Article 371",
+    "trust",
+    "cooperation",
+    "mutual respect",
+    "secession"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Federalism means the centre and States must always have equal powers.",
+      "correction": "Federal systems divide constitutionally protected spheres, but the balance varies; India has a federation with a strong Union."
+    },
+    {
+      "claim": "A written federal constitution automatically guarantees unity.",
+      "correction": "The chapter stresses trust, cooperation, political practice, respect and restraint in addition to formal institutions."
+    },
+    {
+      "claim": "India has dual citizenship because it has Union and State governments.",
+      "correction": "The chapter explicitly states that India has single citizenship."
+    },
+    {
+      "claim": "Only State legislatures can ever make laws on State List subjects.",
+      "correction": "The Constitution provides exceptional routes for Union legislation, including emergencies and a Rajya Sabha national-interest resolution."
+    },
+    {
+      "claim": "The Governor is simply an agent of the State cabinet.",
+      "correction": "The Governor is appointed within the Union framework and has powers that have generated Centre‘State controversy."
+    },
+    {
+      "claim": "Every demand for State autonomy is a legal dispute for courts alone.",
+      "correction": "Courts decide legal disputes, but political demands for autonomy require negotiation and accommodation."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT ’Check your progress’ on who decides powers and resolves Centre‘State disputes.",
+    "NCERT chart of Union, State, Concurrent and residuary powers.",
+    "NCERT Nigeria example on distrust and overlapping divisions.",
+    "NCERT exercise on rewriting federal provisions for powers, finances, disputes and Governors.",
+    "NCERT Exercise 9 evaluating possible grounds for President’s Rule."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The ‘Exercises’ section contains Questions 1’9 on federal design, division of powers, State formation, Governor, autonomy and President‘s Rule.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

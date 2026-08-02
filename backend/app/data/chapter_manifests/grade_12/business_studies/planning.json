@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 12",
+  "subject": "Business Studies",
+  "chapter": "Planning",
+  "central_question": "How does planning convert organisational objectives into rational courses of action while dealing with uncertainty and practical limitations?",
+  "in_scope_units": [
+    "Meaning and importance",
+    "Features and limitations",
+    "Planning process",
+    "Types of plans"
+  ],
+  "banned_topics": [
+    "Organisation structures",
+    "Recruitment and selection",
+    "Motivation theories",
+    "Detailed control techniques"
+  ],
+  "must_include_keywords": [
+    "planning",
+    "objectives",
+    "courses of action",
+    "alternatives",
+    "direction",
+    "uncertainty",
+    "overlapping activities",
+    "innovative ideas",
+    "decision making",
+    "standards for controlling",
+    "primary function",
+    "pervasive",
+    "continuous",
+    "futuristic",
+    "mental exercise",
+    "rigidity",
+    "dynamic environment",
+    "creativity",
+    "cost",
+    "time-consuming",
+    "planning premises",
+    "evaluation of alternatives",
+    "implementation",
+    "follow-up action",
+    "strategy",
+    "policy",
+    "procedure",
+    "method",
+    "rule",
+    "programme",
+    "budget",
+    "standing plan",
+    "single-use plan"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Planning is only forecasting.",
+      "correction": "Planning also sets objectives, evaluates alternatives and selects and implements action."
+    },
+    {
+      "claim": "Planning eliminates uncertainty.",
+      "correction": "It anticipates and prepares for uncertainty but cannot eliminate it."
+    },
+    {
+      "claim": "Rules and policies are the same.",
+      "correction": "A policy guides judgement; a rule prescribes action or prohibition."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Short Answer Type 1",
+    "NCERT Very Short Answer Type 1",
+    "NCERT Long Answer Type 2",
+    "NCERT Very Short Answer Type 3",
+    "NCERT Short Answer Type 4"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Exercises contain Very Short Answer questions 1-5, Short Answer questions 1-6 and Long Answer questions 1-3.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

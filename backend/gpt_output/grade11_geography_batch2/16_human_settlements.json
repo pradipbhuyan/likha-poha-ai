@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Human Settlements",
+    "central_question": "How does atmospheric moisture move through evaporation, humidity, condensation, clouds, precipitation, rainfall types, and global rainfall distribution?",
+    "in_scope_units": [
+      "Water vapour, atmospheric moisture, absolute humidity, relative humidity, saturation, and dew point.",
+      "Evaporation, transpiration, latent heat, and controls of evaporation.",
+      "Condensation conditions and hygroscopic nuclei.",
+      "Dew, frost, fog, mist, smog, and clouds.",
+      "Cloud types and combinations by height and vertical development.",
+      "Precipitation as rain, snow, sleet, and hail.",
+      "Convectional, orographic, and cyclonic rainfall.",
+      "World distribution and seasonal effectiveness of rainfall."
+    ],
+    "banned_topics": [
+      "Rural and urban settlement classification",
+      "Settlement patterns and functions",
+      "Population density",
+      "Detailed tropical-cyclone dynamics"
+    ],
+    "must_include_keywords": [
+      "water vapour",
+      "humidity",
+      "absolute humidity",
+      "relative humidity",
+      "saturation",
+      "dew point",
+      "evaporation",
+      "transpiration",
+      "latent heat of vaporisation",
+      "condensation",
+      "hygroscopic nuclei",
+      "dew",
+      "frost",
+      "fog",
+      "mist",
+      "smog",
+      "cirrus",
+      "cumulus",
+      "stratus",
+      "nimbus",
+      "cirrostratus",
+      "cumulonimbus",
+      "precipitation",
+      "rainfall",
+      "snowfall",
+      "sleet",
+      "hail",
+      "convectional rain",
+      "orographic rain",
+      "relief rain",
+      "cyclonic rain",
+      "windward",
+      "leeward",
+      "rain shadow",
+      "world distribution of rainfall"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Relative humidity is the actual mass of water vapour per unit volume.",
+        "correction": "That is absolute humidity; relative humidity compares present moisture with the air’s capacity at the same temperature."
+      },
+      {
+        "claim": "Dew and frost form under identical temperature conditions.",
+        "correction": "Dew forms when the dew point is above freezing, while frost forms when condensation or deposition occurs at or below freezing."
+      },
+      {
+        "claim": "Fog and cloud are completely unrelated.",
+        "correction": "Fog is essentially a cloud with its base at or near the ground."
+      },
+      {
+        "claim": "The windward and leeward sides receive equal orographic rainfall.",
+        "correction": "Rising windward air cools and rains; descending leeward air warms and produces a rain shadow."
+      },
+      {
+        "claim": "All precipitation is liquid rain.",
+        "correction": "Precipitation includes rain, snow, sleet, and hail."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 1(ii): identify evaporation as liquid-to-vapour transformation.",
+      "NCERT Exercise 2(ii): explain relative humidity.",
+      "NCERT Exercise 2(iv): explain and classify clouds.",
+      "NCERT Exercise 3(ii): compare condensation forms and dew–frost formation.",
+      "NCERT Exercise 3(i): explain world precipitation patterns."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1(i–iv), 2(i–iv), 3(i–ii), followed by Project Work on reports of extreme rainfall."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Human Settlements\n\n## What you will learn\nYou will define humidity, saturation, and dew point. You will distinguish absolute from relative humidity.\n\n## Simple explanation\nWater moves continuously between oceans, continents, plants, and the atmosphere. The amount air can hold changes with temperature, so humidity must be described carefully.\n\n## Step-by-step breakdown\n- **Atmospheric water**: Water occurs in gaseous, liquid, and solid forms and enters air through evaporation and transpiration.\n- **Absolute humidity**: It is the actual mass of water vapour per unit volume of air.\n- **Relative humidity**: It is the percentage of present moisture compared with the air’s full capacity at the same temperature.\n- **Saturated air**: Air at full moisture capacity cannot hold additional vapour at that temperature.\n- **Dew point**: It is the temperature at which a sample becomes saturated.\n\n## Worked example\nQuestion: Which process transforms liquid water into vapour in NCERT Exercise 1(ii)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1(ii)\", \"extract_text\": \"Which one of the following process is responsible for transforming liquid into vapour?\\n(a) Condensation\\n(b) Transpiration\\n(c) Evaporation\\n(d) Precipitation\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter defines evaporation as the change from liquid to gaseous state.\n- Transpiration releases moisture from plants, while condensation is the reverse change from vapour towards liquid.\n- Final answer: The correct answer is evaporation.\n\n## Common mistake\nDo not confuse evaporation with condensation.\n\n## Quick check question\nQuestion: What does relative humidity compare?\nAnswer: The moisture actually present with the air’s full moisture-holding capacity at the same temperature.\nExplanation: Because capacity changes with temperature, relative humidity can change even without adding water vapour.\n\n## Summary\n- Humidity describes atmospheric moisture.\n- Absolute and relative humidity are different measures.\n- Dew point marks saturation.",
+    "Core explanation": "# Core explanation: Human Settlements\n\n## What you will learn\nYou will explain evaporation, condensation, and the factors affecting both. You will connect cooling with saturation and condensation nuclei.\n\n## Simple explanation\nEvaporation needs heat and is favoured by warm, dry, moving air. Condensation begins when moist air loses heat or otherwise reaches saturation.\n\n## Step-by-step breakdown\n- **Latent heat of vaporisation**: It is the heat needed to change a unit mass of liquid into vapour without changing temperature.\n- **Temperature effect**: Warm air has greater capacity to absorb and retain water vapour.\n- **Moisture deficit**: Drier air can accept more vapour.\n- **Air movement**: Wind replaces saturated air near a wet surface with unsaturated air, increasing evaporation.\n- **Condensation**: Cooling reduces moisture capacity until excess vapour changes to liquid or ice.\n- **Nuclei**: Dust, smoke, and sea salt absorb water and provide surfaces for free-air condensation.\n\n## Worked example\nQuestion: How should relative humidity be explained for NCERT Exercise 2(ii)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(ii)\", \"extract_text\": \"Explain relative humidity.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The source defines it as the percentage of moisture present compared with the air’s full capacity at a given temperature.\n- The same amount of vapour can have a different relative humidity when temperature changes because capacity changes.\n- Final answer: Relative humidity is the percentage ratio of actual moisture to the maximum moisture the air can hold at that temperature.\n\n## Common mistake\nDo not define relative humidity as grams of water per cubic metre; that describes absolute humidity.\n\n## Quick check question\nQuestion: What is the most favourable condition for condensation?\nAnswer: A decrease in air temperature to the dew point.\nExplanation: Cooling reduces moisture-holding capacity until the air becomes saturated.\n\n## Summary\n- Heat promotes evaporation.\n- Cooling promotes condensation.\n- Relative humidity depends on both moisture and temperature.",
+    "Worked examples": "# Worked examples: Human Settlements\n\n## What you will learn\nYou will distinguish dew, frost, fog, mist, smog, and the four basic cloud types. You will relate each form to temperature and location.\n\n## Simple explanation\nCondensed moisture takes different forms depending on whether it develops on a surface or in free air, and whether temperature is above or below freezing.\n\n## Step-by-step breakdown\n- **Dew**: Liquid droplets form on cool solid surfaces when the dew point is above freezing.\n- **Frost**: Ice crystals form on cold surfaces when the dew point and surface temperature are at or below freezing.\n- **Fog and mist**: Condensation near the ground reduces visibility; fog is denser and drier than the more moisture-rich mist in the chapter’s distinction.\n- **Smog**: Fog mixed with smoke is called smog.\n- **Cirrus**: High, thin, feathery, white clouds.\n- **Cumulus**: Cotton-like patches with a flat base.\n- **Stratus**: Layered clouds covering large areas.\n- **Nimbus**: Dark, thick, shapeless rain-bearing masses.\n\n## Worked example\nQuestion: How are clouds formed and classified in NCERT Exercise 2(iv)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(iv)\", \"extract_text\": \"How are clouds formed? Classify them.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter defines clouds as minute water droplets or ice crystals formed by condensation in free air and classifies the basic forms as cirrus, cumulus, stratus, and nimbus.\n- Height, shape, extent, density, and transparency distinguish the types and their combinations.\n- Final answer: Clouds form when water vapour condenses in free air; the four basic types are cirrus, cumulus, stratus, and nimbus.\n\n## Common mistake\nDo not classify fog as a high cloud; its base is at or very near the ground.\n\n## Quick check question\nQuestion: What temperature difference separates dew from frost formation?\nAnswer: Dew forms above freezing, while frost forms at or below freezing.\nExplanation: The state of the deposited moisture depends on the dew point and surface temperature.\n\n## Summary\n- Condensation may occur on surfaces or in free air.\n- Dew is liquid; frost is ice.\n- Clouds are classified by form and height.",
+    "Exam-style problems": "# Exam-style problems: Human Settlements\n\n## What you will learn\nYou will distinguish rain, snow, sleet, and hail and explain three rainfall types. You will trace the windward–leeward contrast.\n\n## Simple explanation\nWhen condensed particles grow too heavy for air resistance, they fall as precipitation. Uplift may result from heating, mountains, or frontal convergence.\n\n## Step-by-step breakdown\n- **Rain and snow**: Liquid drops fall as rain; fine ice crystals and flakes fall as snow under colder conditions.\n- **Sleet**: Frozen raindrops or refrozen melted snow reach the ground as small ice pellets.\n- **Hail**: Rounded ice pieces with concentric layers form through movement in colder cloud layers.\n- **Convectional rain**: Heated air rises, expands, cools, condenses, and gives short, heavy rain.\n- **Orographic rain**: Moist air rises over a mountain, cools, and rains on the windward side.\n- **Rain shadow**: Descending leeward air warms and becomes drier.\n- **Cyclonic rain**: Uplift associated with cyclonic and frontal systems produces precipitation.\n\n## Worked example\nQuestion: What forms of condensation should be discussed in NCERT Exercise 3(ii), and how do dew and frost differ?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(ii)\", \"extract_text\": \"What are forms of condensation? Describe the process of dew and frost formation.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The source identifies dew, frost, fog, mist, and clouds after condensation.\n- Dew is liquid deposited when the dew point is above freezing; frost is ice deposited when conditions are at or below freezing.\n- Final answer: The answer should classify condensation forms and explain that temperature relative to freezing determines whether surface moisture appears as dew or frost.\n\n## Common mistake\nDo not say frost is frozen dew formed only after liquid droplets appear; the chapter describes deposition of ice crystals under freezing conditions.\n\n## Quick check question\nQuestion: What is a rain-shadow area?\nAnswer: The comparatively dry leeward side of a mountain after moist air has rained on the windward slope.\nExplanation: Descending leeward air warms and its moisture-holding capacity increases.\n\n## Summary\n- Precipitation may be liquid or solid.\n- Rainfall has convectional, orographic, and cyclonic origins.\n- Mountains create wet windward and dry leeward sides.",
+    "Revision and recap": "# Revision and recap: Human Settlements\n\n## What you will learn\nYou will interpret the broad world distribution of rainfall. You will connect latitude, coasts, prevailing winds, mountains, and seasons with rainfall effectiveness.\n\n## Simple explanation\nRainfall generally decreases from equator towards poles, but oceans, winds, continental position, and relief create major regional departures.\n\n## Step-by-step breakdown\n- **Equator-to-pole tendency**: Average rainfall generally declines poleward.\n- **Coastal contrast**: Coasts usually receive more rain than continental interiors.\n- **Ocean–land contrast**: Oceans are major moisture sources, so rainfall is generally greater over them.\n- **Subtropical east-coast pattern**: In certain lower-middle latitudes, eastern margins receive more rain than western interiors.\n- **Westerly-latitude pattern**: In cool temperate latitudes, western margins receive the first impact of moist westerlies.\n- **Mountain effect**: Windward coastal slopes are wetter, while leeward interiors may be dry.\n- **Seasonal effectiveness**: Even annual rainfall totals have different value depending on whether rain is evenly distributed or concentrated.\n\n## Worked example\nQuestion: What salient features should be included in NCERT Exercise 3(i) on world precipitation distribution?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(i)\", \"extract_text\": \"Discuss the salient features of the world distribution of precipitation.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter describes latitudinal decline, coastal–interior differences, ocean–land contrast, east–west continental patterns, mountain effects, and heavy, moderate, or low rainfall belts.\n- It also stresses seasonal distribution as a measure of effectiveness.\n- Final answer: A complete answer should combine global latitude trends with modifications by ocean proximity, prevailing winds, continental margins, relief, and seasonality.\n\n## Common mistake\nDo not reduce the world pattern to the statement that the equator is wet and the poles are dry.\n\n## Quick check question\nQuestion: Why are windward mountain slopes generally wetter?\nAnswer: Moist air is forced upward, expands, cools, condenses, and precipitates.\nExplanation: Orographic uplift removes moisture before the air descends on the leeward side.\n\n## Summary\n- Rainfall shows broad latitudinal trends.\n- Coasts, winds, and relief modify those trends.\n- Seasonal distribution affects rainfall usefulness."
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "The End of Bipolarity",
+  "central_question": "Why did the Soviet-led bipolar order collapse, and how did its end reshape post-communist societies, world politics and India’s relations with Russia?",
+  "in_scope_units": [
+    "Overview: the Berlin Wall, the end of the Cold War and the collapse of the second world",
+    "What was the Soviet System: socialism, state planning, welfare, one-party rule and the socialist bloc",
+    "Gorbachev and the Disintegration: reforms, East European protests, the 1991 coup and the dissolution of the USSR",
+    "Why did the Soviet Union Disintegrate: economic stagnation, political rigidity, public alienation and nationalism",
+    "Consequences of Disintegration: end of the Cold War, unipolarity, capitalism, liberal democracy and new states",
+    "Shock Therapy in Post-Communist Regimes: rapid transition from socialism to capitalism",
+    "Consequences of Shock Therapy: industrial collapse, inflation, poverty, inequality and weak democratic institutions",
+    "Tensions and Conflicts: secessionism, civil wars, ethnic conflict and outside-power competition",
+    "India and Post-communist Countries: India–Russia relations, multipolarity, defence, energy, science and culture"
+  ],
+  "banned_topics": [
+    "Detailed origins and phases of the Cold War before the Soviet collapse",
+    "A full account of United States hegemony after 1991",
+    "Detailed domestic politics of independent India unrelated to India–USSR or India–Russia relations"
+  ],
+  "must_include_keywords": [
+    "Berlin Wall",
+    "bipolarity",
+    "USSR",
+    "socialism",
+    "Communist Party",
+    "planned economy",
+    "state ownership",
+    "Second World",
+    "Warsaw Pact",
+    "Mikhail Gorbachev",
+    "perestroika",
+    "glasnost",
+    "Boris Yeltsin",
+    "Commonwealth of Independent States",
+    "economic stagnation",
+    "nationalism",
+    "sovereignty",
+    "unipolar system",
+    "multipolar system",
+    "World Bank",
+    "International Monetary Fund",
+    "liberal democracy",
+    "shock therapy",
+    "privatisation",
+    "foreign direct investment",
+    "currency convertibility",
+    "ruble",
+    "Chechnya",
+    "Central Asia",
+    "Yugoslavia",
+    "India–Russia relations",
+    "multipolar world order",
+    "collective security",
+    "Indo-Russian Strategic Agreement"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Soviet Union collapsed only because Gorbachev introduced reforms.",
+      "correction": "The chapter identifies deeper economic stagnation, political rigidity, public alienation and nationalism; Gorbachev’s reforms accelerated forces already present."
+    },
+    {
+      "claim": "The Soviet system had no achievements.",
+      "correction": "It became a great power, built major industrial and infrastructural capacity, and provided subsidised welfare and a minimum standard of living."
+    },
+    {
+      "claim": "Shock therapy simply meant privatisation.",
+      "correction": "It also involved free trade, FDI, deregulation, currency convertibility, private farming and a reorientation towards the Western economic system."
+    },
+    {
+      "claim": "The USSR’s collapse ended India’s close relationship with Russia.",
+      "correction": "India retained strong relations with Russia in defence, energy, nuclear, space, science and diplomacy."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 6 to compare the Soviet economy with a capitalist economy.",
+    "Use NCERT Exercise 7 to organise the economic and political pressures behind Gorbachev’s reforms.",
+    "Use NCERT Exercise 8 to connect Soviet disintegration with changes faced by India.",
+    "Use NCERT Exercise 9 to evaluate shock therapy using evidence from its consequences.",
+    "Use NCERT Exercise 10 to construct a balanced argument about India’s relations with the US and Russia."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The NCERT end-of-chapter Exercises contain Questions 1–10, including objective, chronological, matching, short-answer and essay questions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

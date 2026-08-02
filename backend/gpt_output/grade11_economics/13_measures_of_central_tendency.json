@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Economics",
+    "chapter": "Measures of Central Tendency",
+    "central_question": "How can a data set be summarised by an appropriate representative value using arithmetic mean, median, or mode?",
+    "in_scope_units": [
+      "Introduction to central tendency as the summary of a data set through a typical or representative value.",
+      "Arithmetic mean for ungrouped data by direct, assumed-mean, and step-deviation methods.",
+      "Arithmetic mean for grouped discrete and continuous series using frequencies and class midpoints.",
+      "Properties of arithmetic mean and the use of weighted arithmetic mean.",
+      "Median for individual, discrete, and continuous series and its resistance to extreme values.",
+      "Quartiles and percentiles as positional measures that divide ordered data.",
+      "Mode for discrete and continuous series, including unimodal, bimodal, multimodal, and no-mode situations.",
+      "Relative position of arithmetic mean, median, and mode and selection of an average according to purpose.",
+      "Conclusion and recap on the strengths and limitations of the three averages."
+    ],
+    "banned_topics": [
+      "Measures of dispersion such as range and standard deviation",
+      "Correlation analysis",
+      "Construction of index numbers",
+      "Detailed graphical presentation of data"
+    ],
+    "must_include_keywords": [
+      "central tendency",
+      "representative value",
+      "average",
+      "arithmetic mean",
+      "direct method",
+      "assumed mean",
+      "deviation",
+      "step deviation",
+      "common factor",
+      "ungrouped data",
+      "grouped data",
+      "discrete series",
+      "continuous series",
+      "frequency",
+      "class midpoint",
+      "weighted arithmetic mean",
+      "weights",
+      "sum of deviations",
+      "extreme values",
+      "median",
+      "positional value",
+      "ordered array",
+      "cumulative frequency",
+      "median class",
+      "quartiles",
+      "lower quartile",
+      "upper quartile",
+      "percentiles",
+      "mode",
+      "modal class",
+      "unimodal",
+      "bimodal",
+      "multimodal",
+      "open-ended distribution"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Arithmetic mean is a positional average.",
+        "correction": "Arithmetic mean is based on all observation values, while median is a positional value."
+      },
+      {
+        "claim": "The position formula gives the median value directly.",
+        "correction": "For individual data, the position formula identifies the item location in an ordered array; the value at that location is the median."
+      },
+      {
+        "claim": "Median is strongly affected by an extremely large observation.",
+        "correction": "Median depends mainly on position and remains comparatively unaffected by changes in extreme values."
+      },
+      {
+        "claim": "Mode is always unique.",
+        "correction": "A series may be unimodal, bimodal, multimodal, or may have no mode."
+      },
+      {
+        "claim": "One average is best for every purpose.",
+        "correction": "The appropriate average depends on the nature of the data and the purpose of analysis."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the Balapur farmer illustration to compare the meanings of arithmetic mean, median, and mode.",
+      "Use NCERT Example 1 and Example 2 to contrast direct, assumed-mean, and step-deviation methods.",
+      "Use NCERT Example 4 to explain grouped continuous data through class midpoints and frequencies.",
+      "Use NCERT Example 6, Example 7, and Example 8 to develop median from individual to continuous series.",
+      "Use NCERT Example 10 and Example 11 to interpret mode in discrete and continuous distributions."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–9 covering the choice of averages, conceptual properties, missing frequency, and mean, median, quartile, and mode calculations."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Measures of Central Tendency\n\n## What you will learn\nYou will understand why a large data set is summarised by a single representative value. You will distinguish the ordinary average, the middle position, and the most frequent value.\n\n## Simple explanation\nMeasures of central tendency describe a data set briefly. Arithmetic mean, median, and mode answer different questions, so the same data may need different averages for different purposes.\n\n## Step-by-step breakdown\n- **Central tendency**: It summarises an entire set of data through a typical or representative value.\n- **Arithmetic mean**: It answers the ordinary average question by using the values of all observations.\n- **Median**: It identifies the middle position after the data are arranged in order.\n- **Mode**: It identifies the value or category with the greatest frequency or concentration.\n- **Balapur illustration**: Baiju’s one acre can be compared with the ordinary average holding, the holding below and above which half the farmers lie, or the size most farmers own.\n- **Choice of measure**: The correct average depends on what comparison the investigator wants to make.\n\n## Worked example\nQuestion: Which measure is affected most by extreme items, as asked in NCERT Exercise 2(ii), and why?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(ii)\", \"extract_text\": \"Which average is affected most by the presence of extreme items?\\n(a) median\\n(b) mode\\n(c) arithmetic mean\\n(d) none of the above\", \"note\": \"Multiple-choice exercise\"}\n```\n\nAnswer:\n- The chapter states that arithmetic mean is based on all observations and that a very large or very small value can push it upward or downward.\n- Median depends on central position and mode depends on frequency, so a change in an extreme value does not influence them in the same direct way.\n- Final answer: Arithmetic mean is affected most by extreme items because every observation enters its calculation.\n\n## Common mistake\nDo not use the word average as though it always means arithmetic mean. In the chapter, average also includes median and mode.\n\n## Quick check question\nQuestion: Which measure identifies what most observations are concentrated around?\nAnswer: Mode.\nExplanation: Mode is the most frequently observed value or the value around which maximum concentration occurs.\n\n## Summary\n- Central tendency provides a single representative value.\n- Mean, median, and mode answer different questions.\n- Arithmetic mean uses all observations.\n- Median is positional.\n- Mode is based on frequency.",
+    "Core explanation": "# Core explanation: Measures of Central Tendency\n\n## What you will learn\nYou will organise the methods of calculating arithmetic mean for ungrouped and grouped data. You will also understand its properties and the purpose of weights.\n\n## Simple explanation\nArithmetic mean can be obtained directly or through shortcuts that reduce calculation. For grouped data, values or class midpoints are combined with their frequencies.\n\n## Step-by-step breakdown\n- **Direct method**: For ungrouped data, the sum of observations is divided by their number.\n- **Assumed-mean method**: A convenient value is selected and the average deviation from it is added to the assumed mean.\n- **Step-deviation method**: Deviations are divided by a common factor to simplify large figures before the correction is applied.\n- **Discrete series**: Each value is multiplied by its frequency and the total is divided by the sum of frequencies.\n- **Continuous series**: Class midpoints represent class intervals and are multiplied by frequencies.\n- **Zero-sum property**: The algebraic sum of deviations from the arithmetic mean is always zero.\n- **Extreme values**: Arithmetic mean can move sharply when an extreme observation changes.\n- **Weighted mean**: Weights reflect the unequal importance of items, such as different budget shares.\n\n## Worked example\nQuestion: Why is the algebraic sum of deviations from arithmetic mean zero, as tested in NCERT Exercise 2(iii)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(iii)\", \"extract_text\": \"The algebraic sum of deviation of a set of n values from A.M. is\\n(a) n\\n(b) 0\\n(c) 1\\n(d) none of the above\", \"note\": \"Multiple-choice exercise\"}\n```\n\nAnswer:\n- The chapter lists as a property that the sum of deviations of items about arithmetic mean is always equal to zero.\n- Positive deviations above the mean and negative deviations below the mean balance exactly because the mean is the balancing value of all observations.\n- Final answer: The algebraic sum is zero; this balancing property is a defining feature of arithmetic mean.\n\n## Common mistake\nAn assumed mean is only a calculation aid. It need not equal the final arithmetic mean and may even be a value not present in the data.\n\n## Quick check question\nQuestion: Why are class midpoints used for a continuous series?\nAnswer: They serve as representative values for the observations within each class interval.\nExplanation: The individual observations are not available in grouped data, so each class midpoint is combined with its frequency.\n\n## Summary\n- Direct, assumed-mean, and step-deviation methods produce the same mean.\n- Grouped means use frequencies.\n- Continuous series use class midpoints.\n- Deviations from the mean sum to zero.\n- Weights represent unequal importance.",
+    "Worked examples": "# Worked examples: Measures of Central Tendency\n\n## What you will learn\nYou will understand median as a positional measure and follow its logic for individual, discrete, and continuous series. You will see why it is useful when extremes are present.\n\n## Simple explanation\nMedian is found by ordering observations and locating the central position. In a frequency distribution, cumulative frequency is used to find the value or class containing that position.\n\n## Step-by-step breakdown\n- **Ordered array**: Individual observations must first be arranged from smallest to largest or largest to smallest.\n- **Odd number of observations**: The single central item is the median.\n- **Even number of observations**: The median is the arithmetic mean of the two central observations.\n- **Discrete series**: The median position is located through cumulative frequency and the corresponding variable value is selected.\n- **Continuous series**: The N/2th item identifies the median class, after which the grouped-data formula is applied.\n- **Positional character**: Median concentrates on central items and is not sensitive to every observation.\n- **Extreme values**: Increasing the largest observation does not necessarily change the median because the order and central position may remain unchanged.\n\n## Worked example\nQuestion: Is the statement that median is unduly affected by extreme observations true or false in NCERT Exercise 3(v)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(v)\", \"extract_text\": \"Median is unduly affected by extreme observations.\", \"note\": \"True-or-false exercise\"}\n```\n\nAnswer:\n- The chapter explains that median is determined by position and remains unaffected when, for example, the largest value increases.\n- An extreme value can change greatly without changing which observation occupies the middle position.\n- Final answer: The statement is false; median is comparatively resistant to extreme observations.\n\n## Common mistake\nDo not use the individual-series position rule unchanged for a continuous series. The chapter locates the continuous-series median class using the N/2th item.\n\n## Quick check question\nQuestion: What must be done before finding the median of ungrouped data?\nAnswer: The observations must be arranged in order of magnitude.\nExplanation: Median is a positional value, so the middle cannot be identified until the data are ordered.\n\n## Summary\n- Median divides an ordered distribution into two equal parts.\n- Cumulative frequency locates median position in a discrete series.\n- The N/2th item locates the median class in a continuous series.\n- Median is comparatively unaffected by extreme values.",
+    "Exam-style problems": "# Exam-style problems: Measures of Central Tendency\n\n## What you will learn\nYou will distinguish quartiles, percentiles, and mode. You will interpret modal concentration and recognise distributions with one, two, many, or no modes.\n\n## Simple explanation\nPositional measures divide ordered data, while mode identifies frequency concentration. These tools answer questions that an arithmetic mean cannot answer directly.\n\n## Step-by-step breakdown\n- **Quartiles**: Quartiles divide an ordered distribution into four equal parts.\n- **Lower quartile**: Q1 has 25 percent of observations below it and 75 percent above it.\n- **Second quartile**: Q2 is the median and divides the data into equal halves.\n- **Upper quartile**: Q3 has 75 percent of observations below it and 25 percent above it.\n- **Percentiles**: Percentiles divide the distribution into one hundred equal parts and create ninety-nine dividing positions.\n- **Mode**: Mode is the value occurring most frequently or the value around which maximum concentration occurs.\n- **Modal class**: In a continuous distribution, the class with the largest frequency is the modal class.\n- **Multiplicity**: A distribution may be unimodal, bimodal, multimodal, or may have no mode.\n\n## Worked example\nQuestion: Which average should an adult shoe company use to identify its most popular shoe size in the chapter activity?\n```extract-ref\n{\"citation\": \"NCERT Activity on Mode\", \"extract_text\": \"A shoe company, making shoes for adults only, wants to know the most popular size of shoes. Which average will be most appropriate for it?\", \"note\": \"Activity in the Mode section\"}\n```\n\nAnswer:\n- The chapter defines mode as the most frequently observed value and gives demand for shoe size as a direct example of its usefulness.\n- The company needs the size purchased most often, not the arithmetic average size or the central ordered size.\n- Final answer: Mode is the appropriate average because it identifies the shoe size with maximum demand.\n\n## Common mistake\nA modal class is the class with the largest frequency, not necessarily the class containing the arithmetic mean.\n\n## Quick check question\nQuestion: What is the relationship between Q2 and median?\nAnswer: Q2 is the median.\nExplanation: Both divide the ordered distribution into two equal parts, with half the observations on each side.\n\n## Summary\n- Quartiles divide data into four equal parts.\n- Percentiles divide data into one hundred equal parts.\n- Mode identifies maximum frequency.\n- Mode may be unique, multiple, or absent.\n- The modal class has the largest class frequency.",
+    "Revision and recap": "# Revision and recap: Measures of Central Tendency\n\n## What you will learn\nYou will compare the strengths and limitations of arithmetic mean, median, and mode. You will practise choosing an average according to the purpose and nature of the data.\n\n## Simple explanation\nNo single measure of central tendency is best in every situation. A sound choice depends on whether all values matter, extreme items are present, or the most common category is required.\n\n## Step-by-step breakdown\n- **Arithmetic mean strength**: It is simple, widely used, and based on all observations.\n- **Arithmetic mean limitation**: It is unduly affected by extreme items.\n- **Median strength**: It summarises the central position and is useful when extreme values or open-ended distributions are present.\n- **Mode strength**: It describes the most common value and is especially useful for qualitative or demand-based data.\n- **Relative position**: The chapter states that median lies between arithmetic mean and mode when their magnitudes differ.\n- **Graphical possibilities**: Median and mode can be located graphically in suitable distributions.\n- **Judgement**: An average should be selected according to the purpose of analysis and nature of the distribution.\n\n## Worked example\nQuestion: Why is the statement ‘An average alone is not enough to compare series’ marked true in NCERT Exercise 3(ii)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(ii)\", \"extract_text\": \"An average alone is not enough to compare series.\", \"note\": \"True-or-false exercise\"}\n```\n\nAnswer:\n- The chapter describes an average as a single representative value and separately explains that different averages respond differently to extreme values, position, and frequency.\n- Two series can share a representative value while differing in their structure, concentration, or the appropriateness of the selected average.\n- Final answer: The statement is true because an average is a summary and must be interpreted with the nature of the data and the purpose of comparison.\n\n## Common mistake\nDo not select an average only because its calculation is familiar. The measure must answer the actual question being asked.\n\n## Quick check question\nQuestion: Which measure is generally most suitable for the most frequently demanded garment size?\nAnswer: Mode.\nExplanation: The business needs the size with the highest demand, which is the most frequent value or category.\n\n## Summary\n- Arithmetic mean uses all observations but is sensitive to extremes.\n- Median is positional and resistant to extremes.\n- Mode identifies the most common value or category.\n- Median lies between mean and mode when the three differ.\n- The purpose of analysis determines the appropriate average."
+  }
+}

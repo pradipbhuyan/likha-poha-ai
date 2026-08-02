@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 11",
+  "subject": "Accountancy",
+  "chapter": "Bank Reconciliation Statement",
+  "central_question": "Why do cash-book and bank-statement balances differ, and how can those differences be analysed to determine the correct bank balance?",
+  "in_scope_units": [
+    "Meaning and need for a bank reconciliation statement.",
+    "Cash book and passbook or bank statement perspectives.",
+    "Timing differences caused by cheques issued and deposited.",
+    "Direct bank entries, standing instructions, charges, interest, collection and dishonour.",
+    "Errors in the cash book or bank statement.",
+    "Preparation from favourable cash-book or passbook balances.",
+    "Preparation when the starting balance is an overdraft.",
+    "Preparation after updating the cash book."
+  ],
+  "banned_topics": [
+    "Detailed preparation of cash books, which belongs to Recording of Transactions – II.",
+    "General error rectification through suspense account, which belongs to Chapter 6.",
+    "Final-account adjustments, which belong to Financial Statements – II."
+  ],
+  "must_include_keywords": [
+    "bank reconciliation statement",
+    "cash book",
+    "passbook",
+    "bank statement",
+    "favourable balance",
+    "overdraft",
+    "cheques issued",
+    "cheques presented",
+    "cheques deposited",
+    "cheques collected",
+    "direct deposit",
+    "bank charges",
+    "interest credited",
+    "interest debited",
+    "standing instructions",
+    "dishonoured cheque",
+    "collection by bank",
+    "timing difference",
+    "cash book error",
+    "bank error",
+    "adjusted cash book",
+    "balance as per cash book",
+    "balance as per passbook",
+    "reconciliation",
+    "unpresented cheque",
+    "uncleared cheque"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A debit balance in the passbook means a favourable bank balance.",
+      "correction": "From the customer's viewpoint, a favourable passbook balance is credit; a debit balance represents overdraft."
+    },
+    {
+      "claim": "A cheque issued immediately reduces the passbook balance.",
+      "correction": "The bank records it only when the cheque is presented and paid."
+    },
+    {
+      "claim": "A cheque deposited immediately increases the passbook balance.",
+      "correction": "The bank balance changes only after collection and credit by the bank."
+    },
+    {
+      "claim": "Every difference requires an adjusting journal entry.",
+      "correction": "Timing differences are reconciled but are not errors; only missing or incorrect cash-book entries require correction."
+    },
+    {
+      "claim": "The same add or subtract rule works regardless of the starting balance.",
+      "correction": "The effect must be analysed from the specified cash-book or passbook balance and whether it is favourable or overdraft."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the introductory comparison of cash book and passbook to explain opposite debit and credit viewpoints.",
+    "Use Illustration 1 for Mr Vinod to reconcile ₹50,000 cash-book balance to ₹57,600 passbook balance.",
+    "Use the Anil & Co. and Bose examples to practise timing differences and direct bank entries.",
+    "Use the Rakesh overdraft illustration to practise signs when the starting balance is unfavourable.",
+    "Use the adjusted-cash-book examples and end questions to separate corrections from reconciliation items."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Short Answer Questions, Long Answer Questions and numerical questions requiring preparation of bank reconciliation statements from cash-book, passbook and overdraft balances.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

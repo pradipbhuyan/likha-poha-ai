@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 3: Trigonometric Functions",
+  "central_question": "How can directed angles and unit-circle coordinates be used to define, analyse, and transform trigonometric functions?",
+  "in_scope_units": [
+    "Directed angles and degree measure.",
+    "Radian measure, degree-radian conversion, and arc length.",
+    "Unit-circle definitions of trigonometric functions.",
+    "Signs, domains, ranges, periodicity, and graphs.",
+    "Trigonometric functions of sums and differences.",
+    "Double-angle, triple-angle, half-angle, and transformation identities."
+  ],
+  "banned_topics": [
+    "Inverse trigonometric functions, which are studied later.",
+    "Applications to heights and distances beyond the historical note."
+  ],
+  "must_include_keywords": [
+    "directed angle",
+    "initial side",
+    "terminal side",
+    "degree measure",
+    "radian measure",
+    "arc length",
+    "unit circle",
+    "sine",
+    "cosine",
+    "tangent",
+    "cotangent",
+    "secant",
+    "cosecant",
+    "quadrantal angle",
+    "fundamental identity",
+    "quadrant signs",
+    "domain",
+    "range",
+    "periodicity",
+    "graph",
+    "sum identity",
+    "difference identity",
+    "double-angle formula",
+    "triple-angle formula",
+    "half-angle formula",
+    "sum-to-product",
+    "product-to-sum"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Radians and degrees can be inserted interchangeably into l=rθ.",
+      "correction": "The formula l=rθ requires θ in radians."
+    },
+    {
+      "claim": "sin(x+y)=sin x+sin y.",
+      "correction": "sin(x+y)=sin x cos y+cos x sin y."
+    },
+    {
+      "claim": "Taking a square root gives only the positive sign.",
+      "correction": "The quadrant or interval decides between positive and negative values."
+    },
+    {
+      "claim": "All six trigonometric functions have period 2π.",
+      "correction": "tan and cot have period π; the other four have period 2π."
+    },
+    {
+      "claim": "Tangent and secant are defined at odd multiples of π/2.",
+      "correction": "They are undefined there because cos x=0."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 1 for degree-to-radian conversion.",
+    "NCERT Example 6 for quadrant signs and associated functions.",
+    "NCERT Exercise 3.3 Question 5 for exact sum-and-difference values.",
+    "NCERT Example 21 for half-angle signs.",
+    "NCERT Example 16 for sum-to-product simplification."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 3.1, 3.2, and 3.3 followed by the Miscellaneous Exercise on Chapter 3.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Liberalisation, Privatisation and Globalisation",
+  "central_question": "Why were economic reforms introduced in 1991, what changes did liberalisation, privatisation and globalisation bring, and how should their results be assessed?",
+  "in_scope_units": [
+    "Introduction to the 1991 economic crisis and the need for reform.",
+    "Liberalisation of industrial, financial, tax, foreign-exchange and trade policies.",
+    "Privatisation, disinvestment and greater autonomy for selected public enterprises.",
+    "Globalisation, outsourcing and the role of the World Trade Organization.",
+    "Assessment of reforms through growth, agriculture, industry, services, employment, fiscal management and social justice.",
+    "Conclusion and balanced appraisal of achievements and limitations."
+  ],
+  "banned_topics": [
+    "Pre-1990 planning policy in detail, which belongs to Indian Economy 1950–1990.",
+    "Rural credit institutions and organic farming, which belong to Rural Development.",
+    "Comparative indicators for India, China and Pakistan, which belong to the comparative-development chapter."
+  ],
+  "must_include_keywords": [
+    "economic reforms",
+    "1991 crisis",
+    "foreign exchange",
+    "balance of payments",
+    "World Bank",
+    "International Monetary Fund",
+    "liberalisation",
+    "industrial licensing",
+    "financial sector",
+    "Reserve Bank of India",
+    "tax reforms",
+    "foreign exchange reforms",
+    "trade and investment policy",
+    "tariff",
+    "quantitative restrictions",
+    "privatisation",
+    "disinvestment",
+    "strategic sale",
+    "minority sale",
+    "navaratna",
+    "globalisation",
+    "outsourcing",
+    "BPO",
+    "World Trade Organization",
+    "bilateral trade",
+    "multilateral trade",
+    "service sector",
+    "agriculture",
+    "industrial growth",
+    "public investment",
+    "social justice",
+    "economic disparity",
+    "reform appraisal"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The 1991 reforms were introduced only because India wanted faster growth.",
+      "correction": "The immediate background included a severe foreign-exchange and balance-of-payments crisis, high inflation and external pressure."
+    },
+    {
+      "claim": "Liberalisation means removal of every government rule.",
+      "correction": "It means reducing unnecessary restrictions while retaining regulation where required."
+    },
+    {
+      "claim": "Privatisation always means complete sale of a public enterprise.",
+      "correction": "It can include disinvestment, strategic sale, minority sale and greater managerial autonomy."
+    },
+    {
+      "claim": "Globalisation is the same as importing more goods.",
+      "correction": "It is wider integration with the world economy through trade, investment, technology and services."
+    },
+    {
+      "claim": "The reforms benefited every sector and group equally.",
+      "correction": "The chapter reports stronger service growth but concerns in agriculture, industry, employment, inequality and social welfare."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 1 to explain why reforms were introduced in India.",
+    "Use Exercises 3–8 to interpret financial, foreign-exchange and trade liberalisation.",
+    "Use Exercises 9 and 12 to assess privatisation, profit-making PSUs and the navaratna policy.",
+    "Use Exercises 10 and 11 to evaluate outsourcing and India’s advantages.",
+    "Use Exercises 14–16 to appraise agriculture, industry, social justice and welfare during the reform period."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter’s EXERCISES contain Questions 1–16, followed by Suggested Additional Activities using growth and sectoral data.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

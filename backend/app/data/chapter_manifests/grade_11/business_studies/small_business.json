@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 11",
+  "subject": "Business Studies",
+  "chapter": "Small Business",
+  "central_question": "How do MSMEs and entrepreneurship support inclusive economic development, what problems restrict their growth, and how can innovation and intellectual property strengthen new ventures?",
+  "in_scope_units": [
+    "Introduction to the contribution, diversity and economic significance of Micro, Small and Medium Enterprises in India.",
+    "Meaning and classification of micro, small and medium enterprises using investment and turnover criteria.",
+    "Village industries and cottage industries as traditional and rural forms of enterprise.",
+    "Role of MSMEs in employment, balanced regional development, product diversity, entrepreneurship, low-cost production and timely decision-making.",
+    "Problems associated with MSMEs, including finance, raw materials, managerial skills, marketing, quality, capacity utilisation and global competition.",
+    "Meaning of entrepreneur, entrepreneurship and enterprise.",
+    "Characteristics of entrepreneurship as a systematic, lawful, purposeful, innovative, organising and risk-taking activity.",
+    "Meaning and importance of Intellectual Property Rights for entrepreneurs.",
+    "Copyright, trademark, geographical indication, patent, design, plant variety and semiconductor integrated-circuit layout design.",
+    "Traditional knowledge, trade secrets and the role of IPR in startups and innovation."
+  ],
+  "banned_topics": [
+    "Detailed sources of business finance, which belong to Chapter 8.",
+    "Detailed company incorporation procedures, which belong to Chapter 7.",
+    "General international-trade procedures, which belong to the chapter on International Business."
+  ],
+  "must_include_keywords": [
+    "MSME",
+    "micro enterprise",
+    "small enterprise",
+    "medium enterprise",
+    "MSMED Act 2006",
+    "village industry",
+    "cottage industry",
+    "balanced regional development",
+    "employment",
+    "local resources",
+    "indigenous skills",
+    "finance",
+    "raw materials",
+    "managerial skills",
+    "marketing",
+    "quality",
+    "capacity utilisation",
+    "global competition",
+    "entrepreneur",
+    "entrepreneurship",
+    "enterprise",
+    "systematic activity",
+    "lawful and purposeful activity",
+    "innovation",
+    "organisation of production",
+    "calculated risk",
+    "Intellectual Property Rights",
+    "copyright",
+    "trademark",
+    "geographical indication",
+    "patent",
+    "design",
+    "plant variety",
+    "trade secret",
+    "Startup India"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "MSMEs are important only because they are small in size.",
+      "correction": "Their importance comes from employment generation, regional balance, product diversity, entrepreneurship, local-resource use, exports and links with larger industries."
+    },
+    {
+      "claim": "Every small enterprise is classified only by the number of workers employed.",
+      "correction": "The chapter states that the Government of India classifies MSMEs using investment in plant and machinery and turnover."
+    },
+    {
+      "claim": "Entrepreneurship is an inborn gift that cannot be learned.",
+      "correction": "The chapter describes entrepreneurship as a systematic activity whose skills and competencies can be acquired through education, training, observation and experience."
+    },
+    {
+      "claim": "Entrepreneurs necessarily take the highest possible risks.",
+      "correction": "The chapter presents entrepreneurial risk as calculated risk and notes that entrepreneurs avoid both excessively high and unchallenging low-risk situations."
+    },
+    {
+      "claim": "A patent protects every idea or discovery.",
+      "correction": "A patent protects a qualifying invention that is new, non-obvious and capable of industrial application; a mere discovery is not treated as an invention."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Very Short Answer Questions 1–4 to establish the MSMED Act, micro enterprise, cottage industry and village or khadi industry concepts.",
+    "Use Short Answer Questions 4–7 to analyse the role, measurement parameters and major problems of MSMEs.",
+    "Use Long Answer Questions 1–3 to connect MSMEs with socio-economic and rural development.",
+    "Use Long Answer Questions 5–6 to explain why innovation and creativity are integral to MSMEs.",
+    "Use Project 2 to apply the geographical indication concept to a product associated with a state."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section contains Very Short Answer Questions 1–5, Short Answer Questions 1–7, Long Answer Questions 1–6 and two Projects/Assignments.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

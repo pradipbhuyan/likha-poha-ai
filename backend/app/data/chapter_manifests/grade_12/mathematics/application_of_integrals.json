@@ -1,0 +1,62 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Application of Integrals",
+  "central_question": "How can definite integrals be set up and evaluated to find geometric areas bounded by curves and coordinate lines?",
+  "in_scope_units": [
+    "8.1 Introduction: limits of elementary geometry for curved boundaries.",
+    "8.2 Area under Simple Curves: vertical and horizontal strips, signed integrals and areas bounded by standard curves.",
+    "Exercise 8.1 and Miscellaneous Examples: circles, ellipses, parabolas, lines and trigonometric curves.",
+    "Miscellaneous Exercise on Chapter 8: area problems requiring graphing and interval splitting."
+  ],
+  "banned_topics": [
+    "Volumes of solids of revolution",
+    "Surface area by integration",
+    "Advanced multiple integrals"
+  ],
+  "must_include_keywords": [
+    "elementary area",
+    "vertical strip",
+    "horizontal strip",
+    "area under a curve",
+    "signed integral",
+    "absolute value",
+    "x-axis",
+    "y-axis",
+    "circle",
+    "ellipse",
+    "parabola",
+    "symmetry",
+    "first quadrant",
+    "split interval",
+    "area bounded by curves"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A definite integral below the x-axis is already the positive area.",
+      "correction": "It is negative; geometric area uses its absolute value."
+    },
+    {
+      "claim": "The area of a curve crossing the axis can be found with one unsplit signed integral.",
+      "correction": "For geometric area, split at each crossing and add absolute values."
+    },
+    {
+      "claim": "Vertical strips are always required.",
+      "correction": "Horizontal strips may be easier when x is naturally a function of y."
+    },
+    {
+      "claim": "Symmetry changes the equation of the curve.",
+      "correction": "Symmetry only reduces the region that must be integrated; the same curve equation remains."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 1 to derive the area pi a^2 of a circle.",
+    "Use NCERT Example 2 to derive the area pi ab of an ellipse.",
+    "Use NCERT Example 3 to split the area for y=3x+2 across the x-axis.",
+    "Use NCERT Example 4 for the area under y=cos x from 0 to 2pi.",
+    "Use the Miscellaneous Exercise to practise graph-first interval selection."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 8.1 followed by the Miscellaneous Exercise on Chapter 8.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

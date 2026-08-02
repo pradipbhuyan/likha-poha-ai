@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Probability",
+  "central_question": "How can probabilities be updated, combined and reversed when events occur conditionally, sequentially or through different possible causes?",
+  "in_scope_units": [
+    "13.1 Introduction: conditional probability, multiplication rule, independence, Bayes' theorem and the stated random-variable idea.",
+    "13.2 Conditional Probability: restricting the sample space after receiving information and defining P(E|F).",
+    "13.2.1 Properties of Conditional Probability: certainty, conditional addition and complement rules.",
+    "13.3 Multiplication Theorem on Probability: simultaneous occurrence of two or more events.",
+    "13.4 Independent Events: equivalent definitions, dependent events and the distinction from mutually exclusive events.",
+    "13.5 Bayes' Theorem: reverse probability and hypotheses.",
+    "13.5.1 Partition of a Sample Space: pairwise disjoint, exhaustive events with nonzero probabilities.",
+    "13.5.2 Theorem of Total Probability: combining probabilities across a partition.",
+    "Random-variable remark after Example 21: assigning a real number to each outcome.",
+    "Exercises 13.1, 13.2, 13.3, miscellaneous examples and the Miscellaneous Exercise on Chapter 13."
+  ],
+  "banned_topics": [
+    "Continuous probability density functions and integration-based probability",
+    "Normal, Poisson and other distributions not developed in the supplied text",
+    "Statistical estimation and hypothesis testing",
+    "Counting techniques as a separate permutations-and-combinations chapter",
+    "Markov chains and stochastic processes"
+  ],
+  "must_include_keywords": [
+    "random experiment",
+    "sample space",
+    "equally likely outcomes",
+    "event",
+    "intersection",
+    "conditional probability",
+    "given that",
+    "reduced sample space",
+    "P(E|F)",
+    "P(E intersection F)",
+    "P(F) not equal to zero",
+    "conditional complement",
+    "conditional addition rule",
+    "multiplication theorem",
+    "simultaneous occurrence",
+    "without replacement",
+    "chain rule for three events",
+    "independent events",
+    "dependent events",
+    "mutually exclusive events",
+    "P(E intersection F)=P(E)P(F)",
+    "pairwise independence",
+    "mutual independence",
+    "partition of sample space",
+    "pairwise disjoint",
+    "exhaustive",
+    "nonzero probability",
+    "theorem of total probability",
+    "Bayes' theorem",
+    "prior probability",
+    "posterior probability",
+    "hypothesis",
+    "reverse probability",
+    "tree diagram",
+    "random variable",
+    "real-valued function"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "P(E|F) equals P(F|E).",
+      "correction": "Conditional probability is directional; P(E|F)=P(E∩F)/P(F) while P(F|E)=P(E∩F)/P(E)."
+    },
+    {
+      "claim": "P(E|F) is defined even when P(F)=0.",
+      "correction": "The chapter's formula requires P(F) not equal to zero."
+    },
+    {
+      "claim": "Independent events are the same as mutually exclusive events.",
+      "correction": "Independent nonzero-probability events may occur together, whereas mutually exclusive events have no common outcome and cannot be independent when both probabilities are nonzero."
+    },
+    {
+      "claim": "For draws without replacement, successive probabilities remain unchanged.",
+      "correction": "The composition changes after each draw, so later factors must be conditional probabilities."
+    },
+    {
+      "claim": "Bayes' theorem can be applied without a partition of possible causes.",
+      "correction": "The hypotheses must be pairwise disjoint, exhaustive and of nonzero probability, and the observed event must have nonzero probability."
+    },
+    {
+      "claim": "A random variable is a random outcome itself.",
+      "correction": "It is a real-valued function defined on the sample space, assigning a number to each outcome."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 2 or 3 to introduce conditional probability through a reduced sample space.",
+    "Use NCERT Example 8 to apply the multiplication theorem to sampling without replacement.",
+    "Use NCERT Examples 10-12 to test independence and distinguish independent from dependent pairs.",
+    "Use NCERT Example 15 for the theorem of total probability and Example 16 for Bayes' theorem.",
+    "Use NCERT Exercise 13.3, Question 4 or Example 21 for a reverse-probability application, followed by the random-variable remark after Example 21."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied text contains Exercise 13.1 on conditional probability, Exercise 13.2 on multiplication and independence, Exercise 13.3 on total probability and Bayes' theorem, and a thirteen-question Miscellaneous Exercise on Chapter 13.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

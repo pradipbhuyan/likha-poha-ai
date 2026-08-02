@@ -223,6 +223,7 @@ GRADE_11_CBSE_SUBJECTS = {
     "Geography":        ["Uploaded Chapter Content"],
     "Political Science":["Uploaded Chapter Content"],
     "Sociology":        ["Uploaded Chapter Content"],
+    "Psychology":       ["Uploaded Chapter Content"],
 }
 
 GRADE_12_CBSE_SUBJECTS = {
@@ -239,6 +240,7 @@ GRADE_12_CBSE_SUBJECTS = {
     "Geography":        ["Uploaded Chapter Content"],
     "Political Science":["Uploaded Chapter Content"],
     "Sociology":        ["Uploaded Chapter Content"],
+    "Psychology":       ["Uploaded Chapter Content"],
 }
 
 SYLLABUS = {

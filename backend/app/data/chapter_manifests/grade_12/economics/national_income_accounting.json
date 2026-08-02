@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 12",
+  "subject": "Economics",
+  "chapter": "National Income Accounting",
+  "central_question": "How can the total production, income and expenditure of an economy be measured consistently, compared across time and related cautiously to social welfare?",
+  "in_scope_units": [
+    "Basic concepts of final, intermediate, consumption and capital goods",
+    "Stocks, flows, investment, depreciation and capital formation",
+    "Circular flow of income in a simple economy",
+    "Product or value added method, inventories and Gross Domestic Product",
+    "Expenditure method and the identity GDP = C + I + G + X − M",
+    "Income method and factor-income components",
+    "Factor cost, basic prices and market prices",
+    "Macroeconomic identities from GDP to GNP, NNP, National Income, Personal Income and Personal Disposable Income",
+    "Nominal GDP, real GDP, GDP deflator, Consumer Price Index and Wholesale Price Index",
+    "GDP as an imperfect measure of welfare because of distribution, non-monetary exchanges and externalities"
+  ],
+  "banned_topics": [
+    "Determination of equilibrium output through the multiplier, which belongs to Determination of Income and Employment",
+    "Detailed fiscal-deficit analysis, which belongs to Government Budget and the Economy",
+    "Money demand, banking and monetary policy, which belong to Money and Banking"
+  ],
+  "must_include_keywords": [
+    "final goods",
+    "intermediate goods",
+    "consumption goods",
+    "capital goods",
+    "consumer durables",
+    "stock",
+    "flow",
+    "gross investment",
+    "net investment",
+    "depreciation",
+    "circular flow of income",
+    "product method",
+    "value added",
+    "double counting",
+    "inventories",
+    "Gross Domestic Product",
+    "expenditure method",
+    "income method",
+    "factor cost",
+    "basic prices",
+    "market prices",
+    "Gross National Product",
+    "Net National Product",
+    "National Income",
+    "Personal Income",
+    "Personal Disposable Income",
+    "nominal GDP",
+    "real GDP",
+    "base year",
+    "GDP deflator",
+    "Consumer Price Index",
+    "Wholesale Price Index",
+    "distribution of GDP",
+    "non-monetary exchanges",
+    "externalities"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every good is permanently either final or intermediate by its physical nature.",
+      "correction": "The chapter states that classification depends on economic use: the same item may be final for one purchaser and an intermediate input for another."
+    },
+    {
+      "claim": "Adding the value of all intermediate and final goods gives GDP.",
+      "correction": "Intermediate values are already embodied in final output, so adding both causes double counting; the product method sums value added."
+    },
+    {
+      "claim": "A rise in nominal GDP necessarily means a rise in physical output and welfare.",
+      "correction": "Nominal GDP can rise because prices rise, and GDP does not fully reflect distribution, non-monetary activity or externalities."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the chapter's cotton–yarn–cloth–clothing chain to distinguish final and intermediate goods.",
+    "Use the tank-and-tap illustration and NCERT Exercise 3 to distinguish stock and flow.",
+    "Use the wheat–bread example in Section 2.2.1 to explain value added and double counting.",
+    "Use the two-firm cotton–cloth example in the three-method comparison to show product, expenditure and income equivalence.",
+    "Use NCERT Exercises 7–10 to connect GDP, GNP, NNP, National Income, Personal Income and Personal Disposable Income.",
+    "Use the bread example in Section 2.4 and NCERT Exercise 11 to compare nominal and real output and a deflator.",
+    "Use NCERT Exercise 12 to evaluate GDP as an index of welfare."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

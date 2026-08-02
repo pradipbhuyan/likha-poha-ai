@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 12",
+  "subject": "Accountancy",
+  "chapter": "Cash Flow Statement",
+  "central_question": "How does a cash flow statement explain the change in cash and cash equivalents through operating, investing and financing activities?",
+  "in_scope_units": [
+    "Objectives and benefits of a Cash Flow Statement.",
+    "Meaning of cash, demand deposits and cash equivalents under AS 3.",
+    "Meaning of cash flows and exclusion of movements between cash and cash equivalents.",
+    "Classification of operating, investing and financing activities.",
+    "Treatment of extraordinary items, interest, dividends, income taxes and non-cash transactions.",
+    "Ascertainment of operating cash flow by direct and indirect methods, with emphasis on the indirect method.",
+    "Adjustment of net profit for non-cash, non-operating and working-capital items.",
+    "Ascertainment of investing and financing cash flows from financial statements and additional information.",
+    "Preparation and reconciliation of the complete Cash Flow Statement."
+  ],
+  "banned_topics": [
+    "Accrual-based preparation of the Statement of Profit and Loss, which belongs to Financial Statements of a Company.",
+    "Ratio-based liquidity analysis, which belongs to Accounting Ratios.",
+    "Fund-flow statements and advanced treasury forecasting not included in the chapter."
+  ],
+  "must_include_keywords": [
+    "Cash Flow Statement",
+    "AS 3",
+    "cash",
+    "demand deposits",
+    "cash equivalents",
+    "cash flows",
+    "operating activities",
+    "investing activities",
+    "financing activities",
+    "direct method",
+    "indirect method",
+    "net profit before tax",
+    "non-cash items",
+    "non-operating items",
+    "depreciation",
+    "goodwill written off",
+    "profit on sale of fixed assets",
+    "working capital changes",
+    "trade receivables",
+    "inventories",
+    "trade payables",
+    "income tax",
+    "interest paid",
+    "interest received",
+    "dividend paid",
+    "dividend received",
+    "purchase of fixed assets",
+    "sale of fixed assets",
+    "issue of shares",
+    "redemption of debentures",
+    "bank overdraft",
+    "net increase in cash",
+    "opening cash balance",
+    "closing cash balance"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Profit and cash from operating activities are always equal.",
+      "correction": "Profit is accrual-based and includes non-cash and non-operating items; the indirect method adjusts it to obtain operating cash flow."
+    },
+    {
+      "claim": "Purchase of a cash equivalent is an investing cash outflow.",
+      "correction": "Movements between cash and cash equivalents are part of cash management and are not treated as cash flows in the statement."
+    },
+    {
+      "claim": "An increase in trade receivables is added to operating profit.",
+      "correction": "It is deducted because revenue recognised has not yet produced the corresponding cash."
+    },
+    {
+      "claim": "Conversion of debentures into shares is a financing cash inflow and outflow.",
+      "correction": "It is a non-cash financing transaction and is disclosed separately rather than included in cash-flow totals."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Test Your Understanding–I to classify the listed transactions as operating, investing, financing or cash equivalents.",
+    "Use the Section 6.6 example with profit before tax Rs. 30,000 to learn indirect-method adjustments.",
+    "Use the working-capital rules and Test Your Understanding–II to practise plus, minus and no-change effects.",
+    "Use the fixed-asset-account illustrations to derive purchases and sale proceeds for investing activities.",
+    "Use NCERT Illustrations 7–10 to prepare complete direct or indirect Cash Flow Statements.",
+    "Use Numerical Questions 11–12 to reconcile opening and closing cash and cash equivalents."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions for Practice and Numerical Questions 1–12, followed by answers to Test Your Understanding–I and II.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 12",
+  "subject": "Accountancy",
+  "chapter": "Accounting for Share Capital",
+  "central_question": "How does a company classify its share capital and record the issue, allotment, forfeiture and reissue of equity and preference shares?",
+  "in_scope_units": [
+    "Meaning and features of a company and the kinds of companies introduced in the chapter.",
+    "Meaning and categories of share capital: authorised, issued, subscribed, called-up, paid-up, uncalled and reserve capital.",
+    "Nature and classes of shares, including preference and equity shares and their rights.",
+    "Issue of shares through application, allotment and calls and the basic journal-entry sequence.",
+    "Calls in arrears and calls in advance, including interest and balance-sheet presentation.",
+    "Over-subscription, rejection, full allotment and pro-rata allotment; under-subscription and minimum subscription.",
+    "Issue at par, at premium, restrictions on issue at discount and issue for consideration other than cash.",
+    "Forfeiture of shares for non-payment, treatment of share capital and securities premium and reissue of forfeited shares.",
+    "Transfer of gain on reissue to Capital Reserve."
+  ],
+  "banned_topics": [
+    "Issue and redemption of debentures, which belongs to the next chapter.",
+    "Financial-statement analysis and accounting ratios.",
+    "Buy-back, bonus issue and detailed redemption of preference shares beyond the chapter’s share-issue scope."
+  ],
+  "must_include_keywords": [
+    "company",
+    "shareholder",
+    "share capital",
+    "authorised capital",
+    "issued capital",
+    "subscribed capital",
+    "called-up capital",
+    "paid-up capital",
+    "uncalled capital",
+    "reserve capital",
+    "preference shares",
+    "equity shares",
+    "application money",
+    "allotment money",
+    "calls in arrears",
+    "calls in advance",
+    "securities premium",
+    "over-subscription",
+    "pro-rata allotment",
+    "under-subscription",
+    "minimum subscription",
+    "issue at par",
+    "issue at premium",
+    "issue at discount",
+    "consideration other than cash",
+    "vendors",
+    "forfeiture of shares",
+    "reissue of forfeited shares",
+    "Share Forfeiture Account",
+    "Capital Reserve"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Paid-up capital can exceed called-up capital.",
+      "correction": "Paid-up capital is called-up capital less calls in arrears and therefore cannot exceed the amount called."
+    },
+    {
+      "claim": "Over-subscription increases subscribed capital beyond issued capital in the books.",
+      "correction": "The company can allot only the offered number; excess applications are rejected, refunded or adjusted, so subscribed capital does not exceed issued capital."
+    },
+    {
+      "claim": "Securities premium is part of nominal share capital.",
+      "correction": "Premium is credited separately to Securities Premium Reserve and is not credited to Share Capital Account."
+    },
+    {
+      "claim": "Any discount on reissue is charged to the Statement of Profit and Loss.",
+      "correction": "Discount on reissue is debited to Share Forfeiture Account and cannot exceed the amount forfeited on the shares reissued."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the Sunrise Company Ltd. example in Section 1.3.1 to classify authorised, issued, subscribed, called-up and paid-up capital.",
+    "Use the journal entries and early illustrations in Section 1.6 to record application, allotment and calls.",
+    "Use the chapter’s calls-in-arrears and calls-in-advance illustrations to distinguish unpaid calls from money received early.",
+    "Use the over-subscription illustrations in Section 1.6.3 for rejection, pro-rata allotment and adjustment of excess application money.",
+    "Use the vendor and consideration-other-than-cash illustrations in Section 1.6.7.",
+    "Use the forfeiture and reissue illustrations in Sections 1.7 and 1.7.1 to determine Capital Reserve."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions for Practice containing Short Answer, Long Answer and Numerical Questions on categories of capital, issue entries, over-subscription, calls, forfeiture and reissue.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

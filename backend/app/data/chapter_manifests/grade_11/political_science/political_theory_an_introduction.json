@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Political Theory: An Introduction",
+  "central_question": "How does political theory help citizens understand politics, clarify contested values and reason about institutions, policies and public life?",
+  "in_scope_units": [
+    "Introduction to human reason, language and the basic questions examined by political theory.",
+    "What is Politics: conflicting views of politics, government, collective decisions and citizen action.",
+    "What Do We Study in Political Theory: values, thinkers, constitutions, institutions and evolving interpretations.",
+    "Putting Political Theory to Practice: everyday meanings of equality, fairness, special treatment and policy.",
+    "Why Should We Study Political Theory: citizenship, vigilance, prejudice, rational debate and democratic participation."
+  ],
+  "banned_topics": [
+    "Detailed constitutional design and Constituent Assembly debates, which belong to the Indian Constitution at Work textbook.",
+    "Detailed electoral systems and Election Commission procedures, which belong to Election and Representation.",
+    "Detailed structures of executive, legislature and judiciary, which belong to separate institutional chapters."
+  ],
+  "must_include_keywords": [
+    "reason",
+    "language",
+    "politics",
+    "political theory",
+    "collective decision-making",
+    "government",
+    "public service",
+    "self-interest",
+    "negotiation",
+    "campaign",
+    "protest",
+    "democracy",
+    "freedom",
+    "equality",
+    "justice",
+    "secularism",
+    "constitution",
+    "Kautilya",
+    "Aristotle",
+    "Rousseau",
+    "Karl Marx",
+    "Mahatma Gandhi",
+    "B. R. Ambedkar",
+    "rule of law",
+    "separation of powers",
+    "judicial review",
+    "right to livelihood",
+    "right to information",
+    "privacy",
+    "Socrates",
+    "equal opportunity",
+    "special treatment",
+    "public policy",
+    "vigilant citizens",
+    "rational argument"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Politics is only what elected politicians do.",
+      "correction": "The chapter includes government action, negotiation, collective decision-making, campaigns, protests and citizens’ attempts to influence decisions."
+    },
+    {
+      "claim": "Political theory gives one fixed definition for every concept.",
+      "correction": "Concepts such as equality and freedom have multiple context-dependent meanings that must be examined systematically."
+    },
+    {
+      "claim": "Political theory is useful only to politicians and lawyers.",
+      "correction": "It is useful to students and all citizens because they must vote, debate and assess public issues."
+    },
+    {
+      "claim": "Equal treatment always means identical treatment.",
+      "correction": "Special provision may be justified when it enables disadvantaged persons to enjoy equal opportunity."
+    },
+    {
+      "claim": "Political theory predicts which political party will win.",
+      "correction": "Its central task is to clarify political ideas, arguments, institutions and values, not electoral forecasting."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise Q2 on why politics is more than what politicians do.",
+    "Use NCERT Exercise Q1 to identify the proper subject matter of political theory.",
+    "Use NCERT Exercise Q6 to compare political theory with mathematics.",
+    "Use NCERT Exercise Q3 to analyse the role of vigilant citizens.",
+    "Conclude with NCERT Exercise Q4 on the practical uses of political theory."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–6 on political theory, politics, vigilant citizenship, usefulness, argument and comparison with mathematics.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

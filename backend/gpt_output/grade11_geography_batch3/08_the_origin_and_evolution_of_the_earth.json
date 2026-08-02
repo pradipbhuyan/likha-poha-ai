@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "The Origin and Evolution of the Earth",
+    "central_question": "How did the universe, stars, planets and the earth develop into a layered planet with an atmosphere, oceans and life?",
+    "in_scope_units": [
+      "Early theories of earth and planet formation.",
+      "The Big Bang Theory and expansion of the universe.",
+      "Formation of galaxies and stars and the meaning of light year.",
+      "Planet formation through planetesimals and accretion.",
+      "Evolution and differentiation of the lithosphere.",
+      "Evolution of atmosphere, hydrosphere and life."
+    ],
+    "banned_topics": [
+      "Detailed seismic-wave evidence, which belongs to Interior of the Earth.",
+      "Plate tectonics, which belongs to Distribution of Oceans and Continents.",
+      "Detailed atmospheric structure, which belongs to a later atmosphere chapter."
+    ],
+    "must_include_keywords": [
+      "Nebular Hypothesis",
+      "Immanuel Kant",
+      "Laplace",
+      "Otto Schmidt",
+      "Carl Weizsäcker",
+      "solar nebula",
+      "Big Bang Theory",
+      "expanding universe",
+      "Edwin Hubble",
+      "singularity",
+      "steady state",
+      "galaxy",
+      "nebula",
+      "star formation",
+      "light year",
+      "gravitational force",
+      "rotating disc",
+      "planetesimal",
+      "cohesion",
+      "collision",
+      "accretion",
+      "evolution of the earth",
+      "volatile state",
+      "differentiation",
+      "crust",
+      "mantle",
+      "outer core",
+      "inner core",
+      "primordial atmosphere",
+      "solar winds",
+      "degassing",
+      "water vapour",
+      "condensation",
+      "hydrosphere",
+      "photosynthesis",
+      "oxygen",
+      "origin of life",
+      "fossils",
+      "blue algae"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A light year is a unit of time.",
+        "correction": "It is the distance light travels in one year."
+      },
+      {
+        "claim": "The balloon model proves galaxies themselves expand.",
+        "correction": "It only illustrates increasing space between galaxies."
+      },
+      {
+        "claim": "Planets formed directly as full-sized bodies.",
+        "correction": "They developed through condensation, planetesimals, collision and accretion."
+      },
+      {
+        "claim": "The first atmosphere was like today’s.",
+        "correction": "The primordial atmosphere was lost and a later one evolved through degassing and life."
+      },
+      {
+        "claim": "Life began on land immediately.",
+        "correction": "The chapter states that early life evolved in oceans."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise 2(i) to explain differentiation.",
+      "Use Exercise 2(ii–iii) to describe the early earth and atmosphere.",
+      "Use Exercise 3(i) to explain the Big Bang Theory.",
+      "Use Exercise 3(ii) to organise stages in earth’s evolution."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–iii), 2(i–iii), 3(i–ii), and a three-part Stardust Project Work."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: The Origin and Evolution of the Earth\n\n## What you will learn\nYou will study early explanations for earth and planet formation and compare them with modern cosmic theory.\n\n## Simple explanation\nScientific origin ideas changed as observations broadened from the solar system to the universe.\n\n## Step-by-step breakdown\n- **Kant and Laplace**: The Nebular Hypothesis proposed planets from a slowly rotating cloud associated with a young sun.\n- **Revision**: Schmidt and Weizsäcker described a solar nebula of hydrogen, helium and dust.\n- **Disc**: Friction and collision helped form a disc-shaped cloud.\n- **Accretion idea**: Planets developed gradually from surrounding material.\n- **Modern shift**: Later theories addressed the origin of the whole universe.\n- **Hubble**: His 1920 evidence supported an expanding universe.\n\n## Worked example\nQuestion: Why did discussion move from nebular ideas to modern universe theories?\n\nAnswer:\n- The chapter says later scientists expanded the problem from earth and planets to the universe.\n- New evidence required a broader explanation of galaxies and cosmic expansion.\n- Final answer: Scientific scope widened as better observations became available.\n\n## Common mistake\nThe Nebular Hypothesis and Big Bang Theory explain different stages.\n\n## Quick check question\nQuestion: Who provided evidence for expansion in 1920?\nAnswer: Edwin Hubble.\nExplanation: The chapter links his evidence with galaxies moving farther apart.\n\n## Summary\n- Origin theories changed with evidence.\n- Nebular ideas address planet formation.\n- Big Bang addresses cosmic expansion.\n- Hubble supported expansion.",
+    "Core explanation": "# Core explanation: The Origin and Evolution of the Earth\n\n## What you will learn\nYou will follow the Big Bang sequence and formation of galaxies and stars.\n\n## Simple explanation\nExpansion and cooling changed the early universe, while uneven matter and gravity formed galaxies and stars.\n\n## Step-by-step breakdown\n- **Initial state**: Matter was concentrated in a tiny, extremely hot and dense state.\n- **Expansion**: The event began about 13.7 billion years ago and expansion continues.\n- **Cooling**: Atoms formed as temperature fell and the universe became transparent.\n- **Galaxies**: Density differences and gravity gathered matter.\n- **Stars**: Hydrogen clouds formed nebulae, clumps and dense stars.\n- **Light year**: It is a measure of distance, not time.\n\n## Worked example\nQuestion: Why is the balloon analogy useful but incomplete?\n\nAnswer:\n- Points move apart as the balloon expands, but the points also enlarge, unlike observed galaxies.\n- The model shows increasing separation but wrongly suggests galaxy expansion.\n- Final answer: It illustrates expanding space but is not a perfect physical model.\n\n## Common mistake\nDo not say galaxies expand like drawn dots on a balloon.\n\n## Quick check question\nQuestion: Is a light year time or distance?\nAnswer: Distance.\nExplanation: It measures the distance travelled by light in one year.\n\n## Summary\n- The universe expanded from a hot dense state.\n- Cooling allowed atoms to form.\n- Gravity formed galaxies and stars.\n- Light year measures distance.",
+    "Worked examples": "# Worked examples: The Origin and Evolution of the Earth\n\n## What you will learn\nYou will study the stages of planet formation through planetesimals and accretion.\n\n## Simple explanation\nGas and dust around a young star condensed into small bodies that collided and grew into planets.\n\n## Step-by-step breakdown\n- **Gas core**: Gravity formed a core in a local gas cloud.\n- **Rotating disc**: Gas and dust developed around the core.\n- **Condensation**: Matter formed small rounded objects.\n- **Planetesimals**: Cohesion produced many small bodies.\n- **Growth**: Collision and gravitational attraction joined material.\n- **Accretion**: Many small bodies formed fewer large planets.\n\n## Worked example\nQuestion: Why is accretion central to planet formation?\n\nAnswer:\n- The chapter describes many planetesimals joining through collision and gravity.\n- Planet size grew step by step from accumulated material.\n- Final answer: Accretion explains how dispersed small bodies became planets.\n\n## Common mistake\nA nebula is a gas cloud; a planetesimal is a small condensed body.\n\n## Quick check question\nQuestion: What are planetesimals?\nAnswer: Numerous small bodies formed from condensed matter around a young star.\nExplanation: They later accrete into planets.\n\n## Summary\n- Gravity forms a core and disc.\n- Condensation creates small bodies.\n- Planetesimals grow through collision.\n- Accretion forms planets.",
+    "Exam-style problems": "# Exam-style problems: The Origin and Evolution of the Earth\n\n## What you will learn\nYou will examine how the hot early earth developed layers, an atmosphere and oceans.\n\n## Simple explanation\nCooling and density separation produced internal layers, while gases and water vapour from the interior formed a later atmosphere and hydrosphere.\n\n## Step-by-step breakdown\n- **Early earth**: It was hot, rocky and barren with a thin hydrogen–helium atmosphere.\n- **Differentiation**: Heavy material sank and light material moved upward.\n- **Layers**: Crust, mantle, outer core and inner core developed.\n- **Solar winds**: They stripped away the primordial atmosphere.\n- **Degassing**: The hot interior released water vapour and gases.\n- **Oceans**: Cooling condensed vapour and rain collected in depressions.\n\n## Worked example\nQuestion: How did differentiation produce a layered earth?\n\nAnswer:\n- The chapter says materials separated according to density.\n- Heavy materials moved inward and lighter materials moved towards the surface.\n- Final answer: Density sorting created earth’s internal layers.\n\n## Common mistake\nThe present atmosphere was not produced by volcanic gases alone; biological change also mattered.\n\n## Quick check question\nQuestion: What is degassing?\nAnswer: The release of gases from earth’s interior.\nExplanation: Volcanic activity supplied gases and water vapour to the atmosphere.\n\n## Summary\n- Early earth was hot and volatile.\n- Density separation formed layers.\n- Solar winds removed the first atmosphere.\n- Degassing and condensation formed atmosphere and oceans.",
+    "Revision and recap": "# Revision and recap: The Origin and Evolution of the Earth\n\n## What you will learn\nYou will study the origin of life and the role of photosynthesis and fossils.\n\n## Simple explanation\nChemical processes produced complex organic molecules, early life appeared in oceans and later modified the atmosphere.\n\n## Step-by-step breakdown\n- **Chemical origin**: Complex organic molecules formed and developed self-duplication.\n- **Ocean setting**: Life remained in oceans for a long period.\n- **Timing**: Life began evolving around 3,800 million years ago.\n- **Photosynthesis**: It developed around 2,500–3,000 million years ago.\n- **Oxygen**: Photosynthesis added oxygen to oceans and atmosphere.\n- **Fossils**: Rocks preserve evidence including forms related to blue algae.\n\n## Worked example\nQuestion: How did early life modify the atmosphere?\n\nAnswer:\n- The chapter says photosynthesis added oxygen to oceans and later the atmosphere.\n- Living organisms became agents of atmospheric change.\n- Final answer: Photosynthesis increased oxygen and transformed earth’s environment.\n\n## Common mistake\nDo not place abundant free oxygen in the earliest atmosphere.\n\n## Quick check question\nQuestion: Where is the record of ancient life found?\nAnswer: In rocks as fossils.\nExplanation: Fossils preserve evidence of life from past geological periods.\n\n## Summary\n- Life emerged after long evolution.\n- Early life was oceanic.\n- Photosynthesis increased oxygen.\n- Fossils provide evidence."
+  }
+}

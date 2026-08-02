@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 12",
+  "subject": "Psychology",
+  "chapter": "Attitude and Social Cognition",
+  "central_question": "How are attitudes formed and changed, when do they guide behaviour, and how can prejudice and discrimination be understood and reduced?",
+  "in_scope_units": [
+    "Nature and components",
+    "Properties",
+    "Formation",
+    "Change processes",
+    "Persuasion factors",
+    "Attitude–behaviour relationship",
+    "Prejudice and discrimination",
+    "Reduction strategies"
+  ],
+  "banned_topics": [
+    "Group formation and social loafing",
+    "Clinical treatment",
+    "Personality assessment"
+  ],
+  "must_include_keywords": [
+    "attitude",
+    "attitude object",
+    "affective component",
+    "behavioural component",
+    "cognitive component",
+    "belief",
+    "value",
+    "valence",
+    "extremeness",
+    "multiplexity",
+    "centrality",
+    "association",
+    "reward and punishment",
+    "modelling",
+    "group norms",
+    "reference groups",
+    "media influence",
+    "balance",
+    "P-O-X triangle",
+    "cognitive dissonance",
+    "Leon Festinger",
+    "two-step concept",
+    "S.M. Mohsin",
+    "congruent change",
+    "incongruent change",
+    "source credibility",
+    "message characteristics",
+    "target characteristics",
+    "attitude-behaviour relationship",
+    "prejudice",
+    "stereotype",
+    "discrimination",
+    "ingroup bias",
+    "scapegoating",
+    "kernel of truth",
+    "self-fulfilling prophecy",
+    "intergroup contact"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An attitude is observable behaviour.",
+      "correction": "It is an evaluative state with cognitive, affective and behavioural-tendency components."
+    },
+    {
+      "claim": "Prejudice and discrimination are identical.",
+      "correction": "Prejudice is an attitude; discrimination is behaviour."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Box 6.1: identify ABC components.",
+    "NCERT Box 6.2: explain cognitive dissonance.",
+    "NCERT Activity 6.1: analyse an advertisement.",
+    "LaPiere study: compare attitude and behaviour.",
+    "NCERT Review Questions 5–7: analyse prejudice and change."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Review Questions contain Questions 1–7, followed by two Project Ideas.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

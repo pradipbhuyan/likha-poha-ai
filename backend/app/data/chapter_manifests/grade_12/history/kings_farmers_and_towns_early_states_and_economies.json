@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 12",
+  "subject": "History",
+  "chapter": "Kings, Farmers and Towns: Early States and Economies",
+  "central_question": "How do inscriptions, texts, coins and archaeology help historians explain the growth of early states, agrarian change, towns and trade from c. 600 BCE to 600 CE?",
+  "in_scope_units": [
+    "Prinsep, Piyadassi and the development of epigraphy.",
+    "The sixteen mahajanapadas and the growth of Magadha.",
+    "The Mauryan Empire, its sources, administration and limits.",
+    "Post-Mauryan chiefs, kings, divine claims, samantas and prashastis.",
+    "Popular perceptions of rulers and changing agricultural production.",
+    "Rural differentiation, land grants and new elites.",
+    "New cities, urban populations, crafts and guilds.",
+    "Trade routes, merchants and coinage.",
+    "Decipherment of Brahmi and Kharosthi.",
+    "Historical use and limitations of inscriptional evidence."
+  ],
+  "banned_topics": [
+    "Detailed Harappan urbanism, treated in the previous chapter.",
+    "Detailed kinship, caste and Mahabharata social history, treated in the next chapter."
+  ],
+  "must_include_keywords": [
+    "epigraphy",
+    "James Prinsep",
+    "Brahmi",
+    "Kharosthi",
+    "Piyadassi",
+    "Asoka",
+    "mahajanapadas",
+    "gana",
+    "sangha",
+    "Magadha",
+    "Pataliputra",
+    "Mauryan Empire",
+    "Megasthenes",
+    "Arthashastra",
+    "dhamma",
+    "dhamma mahamatta",
+    "Taxila",
+    "Ujjayini",
+    "chiefdom",
+    "Kushanas",
+    "devaputra",
+    "samanta",
+    "prashasti",
+    "Samudragupta",
+    "iron ploughshare",
+    "transplantation",
+    "irrigation",
+    "gahapati",
+    "land grants",
+    "agrahara",
+    "Prabhavati Gupta",
+    "urbanisation",
+    "shreni",
+    "trade routes",
+    "punch-marked coins",
+    "numismatics",
+    "inscriptional evidence"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All mahajanapadas were monarchies.",
+      "correction": "Some were ruled by kings, while ganas or sanghas shared power among several rajas."
+    },
+    {
+      "claim": "The Mauryan Empire had one uniform administrative system in every region.",
+      "correction": "Its diverse geography and great extent make uniform control unlikely; control was probably strongest near major centres."
+    },
+    {
+      "claim": "Prashastis are neutral factual chronicles.",
+      "correction": "They are praise compositions that project patrons' idealised power and must be checked against other evidence."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2 on mahajanapadas.",
+    "NCERT Exercise 6 on Mauryan administration.",
+    "NCERT Exercise 8 on post-Mauryan kingship.",
+    "NCERT Exercise 9 on agricultural transformation.",
+    "NCERT Exercise 5 on the problems of epigraphy."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with questions 1-5 in the 100-150 word section, essay questions 6-9, Map work 10 and Projects 11-12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

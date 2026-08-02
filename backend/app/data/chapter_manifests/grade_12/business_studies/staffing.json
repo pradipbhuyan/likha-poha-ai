@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 12",
+  "subject": "Business Studies",
+  "chapter": "Staffing",
+  "central_question": "How does the staffing function ensure that an organisation obtains, develops, places and retains the right people for its jobs?",
+  "in_scope_units": [
+    "Meaning and importance",
+    "Staffing and HRM",
+    "Staffing process",
+    "Recruitment sources",
+    "Selection process",
+    "Training and development"
+  ],
+  "banned_topics": [
+    "Detailed organisation design",
+    "Motivation theories",
+    "Marketing decisions",
+    "Control techniques"
+  ],
+  "must_include_keywords": [
+    "staffing",
+    "right person for the right job",
+    "human resource management",
+    "manpower requirements",
+    "workload analysis",
+    "workforce analysis",
+    "recruitment",
+    "selection",
+    "placement",
+    "orientation",
+    "training",
+    "development",
+    "performance appraisal",
+    "promotion",
+    "career planning",
+    "compensation",
+    "internal sources",
+    "transfer",
+    "external sources",
+    "advertisement",
+    "employment exchange",
+    "campus recruitment",
+    "web publishing",
+    "preliminary screening",
+    "selection tests",
+    "employment interview",
+    "reference check",
+    "medical examination",
+    "job offer",
+    "apprenticeship",
+    "coaching",
+    "internship",
+    "job rotation",
+    "vestibule training"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Staffing is recruitment.",
+      "correction": "Recruitment is only one step within staffing."
+    },
+    {
+      "claim": "HR alone performs staffing.",
+      "correction": "All managers perform staffing, supported by HR specialists."
+    },
+    {
+      "claim": "Training and development are identical.",
+      "correction": "Training targets present jobs; development prepares for future roles."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Very Short Answer Type 1",
+    "NCERT Long Answer Type 1",
+    "NCERT Short Answer Type 1",
+    "NCERT Long Answer Type 2",
+    "NCERT Short Answer Type 4"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Exercises contain Very Short Answer questions 1-5, Short Answer questions 1-6 and Long Answer questions 1-7.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

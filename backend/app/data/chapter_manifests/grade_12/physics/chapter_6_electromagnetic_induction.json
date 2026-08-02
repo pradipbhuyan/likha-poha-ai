@@ -1,0 +1,67 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 6: Electromagnetic Induction",
+  "central_question": "How does changing magnetic flux generate emf and current, and how are induction, inductance and generators governed by energy conservation?",
+  "in_scope_units": [
+    "Faraday and Henry experiments",
+    "Magnetic flux",
+    "Faraday’s law",
+    "Lenz’s law",
+    "Motional emf",
+    "Mutual inductance",
+    "Self-inductance and back emf",
+    "Magnetic energy",
+    "AC generator"
+  ],
+  "banned_topics": [
+    "Static magnetic fields from Chapter 4",
+    "Magnetic materials from Chapter 5",
+    "Detailed AC circuits from Chapter 7"
+  ],
+  "must_include_keywords": [
+    "electromagnetic induction",
+    "Faraday",
+    "Henry",
+    "magnetic flux",
+    "Faraday’s law",
+    "Lenz’s law",
+    "induced emf",
+    "induced current",
+    "conservation of energy",
+    "motional emf",
+    "Lorentz force",
+    "mutual inductance",
+    "self-inductance",
+    "back emf",
+    "henry",
+    "magnetic energy",
+    "AC generator",
+    "slip rings",
+    "angular frequency"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A strong constant field always induces current.",
+      "correction": "Induction requires changing magnetic flux."
+    },
+    {
+      "claim": "The minus sign means the magnitude of emf is negative.",
+      "correction": "It encodes Lenz’s opposition to flux change."
+    },
+    {
+      "claim": "Motion alone guarantees induction.",
+      "correction": "The magnetic flux through the circuit must change."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 6.2: emf from changing field",
+    "NCERT Example 6.4: Lenz-law direction",
+    "NCERT Example 6.5: conditions for induction",
+    "NCERT Example 6.6: rotating-rod emf",
+    "NCERT Example 6.3: rotating coil"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES test flux, Lenz’s law, motional emf, inductance and generator concepts.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

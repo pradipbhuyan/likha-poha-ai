@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 9: Biomolecules",
+    "central_question": "How are the chemical constituents of living tissues organised into small molecules, macromolecules, structural polymers, and enzyme-controlled metabolic systems?",
+    "in_scope_units": [
+      "Chemical analysis of living tissue, acid-soluble and acid-insoluble fractions, wet and dry weight, ash, and inorganic constituents.",
+      "Small biomolecules including amino acids, sugars, fatty acids, glycerol, lipids, nitrogen bases, nucleosides, and nucleotides.",
+      "Primary and secondary metabolites and their biological, ecological, and human uses.",
+      "Biomacromolecules and the special behaviour of lipids in the acid-insoluble fraction.",
+      "Proteins and their amino-acid composition and biological functions.",
+      "Polysaccharides, including cellulose, starch, glycogen, inulin, and chitin.",
+      "Nucleic acids and the nucleotide components of DNA and RNA.",
+      "Primary, secondary, tertiary, and quaternary levels of protein structure.",
+      "Enzymes, active sites, reaction rates, activation energy, enzyme action, factors affecting activity, enzyme classes, inhibition, and cofactors."
+    ],
+    "banned_topics": [
+      "Detailed metabolic pathways of respiration and photosynthesis",
+      "DNA replication, transcription, and translation",
+      "Human nutrition and digestion",
+      "Organic reaction mechanisms beyond the chapter's biological classification"
+    ],
+    "must_include_keywords": [
+      "acid-soluble pool",
+      "acid-insoluble fraction",
+      "ash",
+      "biomolecule",
+      "amino acid",
+      "alpha carbon",
+      "zwitterion",
+      "fatty acid",
+      "glycerol",
+      "triglyceride",
+      "phospholipid",
+      "nitrogenous base",
+      "nucleoside",
+      "nucleotide",
+      "primary metabolite",
+      "secondary metabolite",
+      "biomacromolecule",
+      "protein",
+      "peptide bond",
+      "heteropolymer",
+      "polysaccharide",
+      "cellulose",
+      "starch",
+      "glycogen",
+      "chitin",
+      "nucleic acid",
+      "DNA",
+      "RNA",
+      "primary structure",
+      "secondary structure",
+      "tertiary structure",
+      "quaternary structure",
+      "enzyme",
+      "ribozyme",
+      "active site",
+      "substrate",
+      "enzyme-substrate complex",
+      "activation energy",
+      "competitive inhibition",
+      "cofactor"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "All elements found in living matter are unique to life.",
+        "correction": "Living and non-living matter contain many of the same elements, but their relative abundances differ."
+      },
+      {
+        "claim": "Lipids are true high-molecular-weight polymers.",
+        "correction": "Individual lipids are small molecules; they appear in the acid-insoluble fraction because membrane fragments form water-insoluble vesicles."
+      },
+      {
+        "claim": "A nucleoside contains base, sugar, and phosphate.",
+        "correction": "A nucleoside contains a nitrogenous base and sugar; addition of phosphate forms a nucleotide."
+      },
+      {
+        "claim": "All proteins are homopolymers.",
+        "correction": "Proteins are heteropolymers because they contain different amino-acid types."
+      },
+      {
+        "claim": "Every enzyme is a protein.",
+        "correction": "Most enzymes are proteins, but catalytic nucleic acids called ribozymes also exist."
+      },
+      {
+        "claim": "Increasing substrate concentration always increases reaction velocity indefinitely.",
+        "correction": "Velocity reaches Vmax when enzyme active sites become saturated."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 7: draw and interpret the structure of alanine as an alpha-amino acid.",
+      "NCERT Exercises 1 and 5: define macromolecules and explain triglyceride composition.",
+      "NCERT Exercises 2 and 4: explain tertiary protein structure and biological uses of proteins.",
+      "NCERT Exercises 8–10: connect gums, qualitative biomolecule tests, cellulose, and biological materials.",
+      "NCERT Exercise 11: describe enzyme properties, specificity, optimum conditions, activation energy, inhibition, and cofactors."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–11 for macromolecules, protein structure, triglycerides, amino acids, biomolecule tests, cellulose, and enzyme properties."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 9: Biomolecules\n\n## What you will learn\nYou will learn how living tissue is separated and analysed chemically. You will identify small biomolecules and distinguish organic compounds from the inorganic ash of tissue.\n\n## Simple explanation\nLiving matter is made of familiar chemical elements, but their abundance and organisation into biomolecules differ from non-living matter.\n\n## Step-by-step breakdown\n- **Elemental comparison**: Living tissue and Earth's crust contain many of the same elements, but carbon and hydrogen are relatively more abundant in living systems.\n- **Acid fractionation**: Grinding tissue in trichloroacetic acid and filtering produces an acid-soluble filtrate and an acid-insoluble retentate.\n- **Isolation**: Compounds can be separated, purified, and analysed to determine molecular formula and probable structure.\n- **Wet and dry weight**: Drying removes water; the remaining material gives dry weight.\n- **Ash**: Complete burning removes carbon compounds as gases, leaving inorganic elements and salts.\n- **Amino acids**: Protein amino acids contain amino, carboxyl, hydrogen, and variable R groups on the alpha carbon.\n- **Amino-acid classes**: R groups and the number of amino or carboxyl groups create neutral, acidic, basic, and aromatic amino acids.\n- **Lipids**: Fatty acids may be saturated or unsaturated; glycerol esterified with fatty acids forms mono-, di-, or triglycerides.\n- **Nucleosides and nucleotides**: A base plus sugar is a nucleoside; adding phosphate creates a nucleotide.\n- **Genetic molecules**: DNA and RNA are built from nucleotides and function as genetic material.\n\n## Worked example\nQuestion: Based on NCERT Exercise 7 and Figure 9.1, describe the structure of alanine.\n\nSolution:\n- Use the general alpha-amino-acid arrangement around one central carbon.\n- Attach an amino group, carboxyl group, and hydrogen to the alpha carbon.\n- Use a methyl group as alanine's R group.\n- Final answer: Alanine is an alpha-amino acid whose central carbon is bonded to –NH2, –COOH, H, and the R group –CH3.\n\n## Common mistake\nAmino acids are not classified only by the amino and carboxyl groups; the variable R group strongly influences identity and properties.\n\n## Quick check question\nQuestion: What distinguishes a nucleotide from a nucleoside?\nAnswer: A nucleotide contains a phosphate group in addition to the nitrogenous base and sugar of a nucleoside.\nExplanation: Base + sugar forms a nucleoside, while base + sugar + phosphate forms a nucleotide.\n\n## Summary\n- Chemical analysis separates soluble, insoluble, and inorganic fractions.\n- Amino acids contain a common alpha-carbon framework.\n- Lipids include fatty acids, glycerol derivatives, and phospholipids.\n- Nucleotides are the building blocks of DNA and RNA.",
+    "Core explanation": "# Core explanation: Chapter 9: Biomolecules\n\n## What you will learn\nYou will distinguish primary and secondary metabolites and classify micromolecules and biomacromolecules. You will explain why lipids behave unusually during tissue fractionation.\n\n## Simple explanation\nThousands of compounds occur in cells. Some are widespread participants in normal physiology, while others have specialised ecological functions or human uses.\n\n## Step-by-step breakdown\n- **Primary metabolites**: Amino acids, sugars, nucleotides, and related compounds occur widely and have recognisable roles in normal cellular processes.\n- **Secondary metabolites**: Plants, fungi, and microbes produce alkaloids, flavonoids, pigments, terpenoids, essential oils, toxins, drugs, gums, rubber, and other specialised products.\n- **Human value**: Secondary metabolites provide medicines, spices, scents, pigments, rubber, and other useful materials.\n- **Ecological value**: Some secondary metabolites influence defence and interactions in the organism's environment.\n- **Micromolecules**: Acid-soluble compounds commonly have molecular masses from about 18 to 800 Da and are generally below 1000 Da.\n- **Macromolecular fraction**: The acid-insoluble fraction contains proteins, nucleic acids, polysaccharides, and lipids.\n- **True macromolecules**: Proteins, nucleic acids, and polysaccharides commonly have very large molecular masses and are polymeric.\n- **Lipid exception**: Lipids are not strictly macromolecules, but membrane lipids remain in insoluble vesicles after tissue grinding.\n- **Cell composition**: The soluble pool roughly represents cytoplasmic composition; insoluble material includes macromolecules from cytoplasm and organelles.\n- **Water abundance**: Water is the most abundant chemical component of living cells.\n\n## Worked example\nQuestion: Based on NCERT Exercise 1, define macromolecules and give examples, including the lipid qualification.\n\nSolution:\n- Identify high-molecular-weight substances in the acid-insoluble fraction.\n- List proteins, nucleic acids, and polysaccharides as true polymeric macromolecules.\n- Explain that lipids occur in this fraction because membrane fragments are insoluble, not because each lipid is a large polymer.\n- Final answer: Macromolecules are large cellular polymers such as proteins, nucleic acids, and polysaccharides; lipids occur in the macromolecular fraction because of membrane association but are not strictly macromolecules.\n\n## Common mistake\nFinding a substance in the acid-insoluble fraction does not automatically prove it has a high molecular mass.\n\n## Quick check question\nQuestion: Give two examples of secondary metabolites useful to humans.\nAnswer: Rubber and medicinal alkaloids are suitable examples.\nExplanation: The chapter lists rubber, drugs, spices, scents, and pigments among useful secondary metabolites.\n\n## Summary\n- Primary metabolites support common physiological functions.\n- Secondary metabolites often have specialised ecological or human value.\n- True biomacromolecules are large polymers.\n- Membrane association explains the unusual fractionation of lipids.",
+    "Worked examples": "# Worked examples: Chapter 9: Biomolecules\n\n## What you will learn\nYou will compare proteins, polysaccharides, and nucleic acids by their building blocks and functions. You will recognise homopolymers, heteropolymers, storage molecules, structural molecules, and genetic polymers.\n\n## Simple explanation\nCellular macromolecules are assembled from smaller units, but the kinds of monomers and the sequence or branching pattern determine their properties.\n\n## Step-by-step breakdown\n- **Proteins**: Amino acids join by peptide bonds to form polypeptides.\n- **Heteropolymer**: Because proteins use many of the 20 proteinaceous amino acids, they are heteropolymers.\n- **Protein functions**: Examples include collagen for structure, trypsin as an enzyme, insulin as a hormone, antibodies in defence, receptors, and GLUT-4 transport protein.\n- **Abundant proteins**: Collagen is the most abundant animal protein, while RuBisCO is the most abundant protein in the biosphere.\n- **Cellulose**: This glucose homopolymer forms plant cell walls and is present in paper and cotton.\n- **Starch and glycogen**: Starch stores energy in plants and forms helices; glycogen is the branched storage polysaccharide of animals.\n- **Other polysaccharides**: Inulin is a fructose polymer, and chitin occurs in arthropod exoskeletons.\n- **Nucleic acids**: DNA and RNA are polynucleotides.\n- **Nucleotide components**: Each nucleotide contains a nitrogenous base, pentose sugar, and phosphate.\n- **Base classes**: Adenine and guanine are purines; cytosine, thymine, and uracil are pyrimidines.\n- **Sugar distinction**: DNA contains deoxyribose, whereas RNA contains ribose.\n\n## Worked example\nQuestion: Based on NCERT Exercise 5, explain the composition of a triglyceride and place it among the chapter's biomolecules.\n\nSolution:\n- Start with one glycerol molecule, a trihydroxy compound.\n- Attach three fatty acids to glycerol through ester linkages.\n- Recognise that the fatty-acid chains may differ and may be saturated or unsaturated.\n- Classify the product as a lipid rather than a polymeric macromolecule.\n- Final answer: A triglyceride consists of one glycerol molecule esterified with three fatty acids and is a lipid.\n\n## Common mistake\nA triglyceride is not three glycerol molecules joined to one fatty acid; the ratio is one glycerol to three fatty acids.\n\n## Quick check question\nQuestion: Which polysaccharide gives a blue colour with iodine because of its helical structure?\nAnswer: Starch.\nExplanation: Iodine molecules fit into starch helices, producing the characteristic blue starch–iodine complex.\n\n## Summary\n- Proteins are amino-acid heteropolymers.\n- Polysaccharides can store energy or provide structure.\n- Nucleic acids are nucleotide polymers.\n- Building blocks and bonding patterns determine macromolecular function.",
+    "Exam-style problems": "# Exam-style problems: Chapter 9: Biomolecules\n\n## What you will learn\nYou will explain the four levels of protein structure and connect three-dimensional folding with biological activity. You will identify termini, helices, sheets, subunits, and haemoglobin organisation.\n\n## Simple explanation\nA protein is not a rigid straight chain. Its amino-acid sequence folds locally and globally, and some proteins assemble several folded chains.\n\n## Step-by-step breakdown\n- **Primary structure**: The exact amino-acid sequence gives positional information from the N-terminal to the C-terminal end.\n- **Secondary structure**: Local folding produces patterns such as right-handed alpha helices and beta-pleated sheets.\n- **Tertiary structure**: The entire polypeptide folds into a three-dimensional form stabilised by interactions such as hydrogen and disulphide bonds.\n- **Functional importance**: Tertiary structure creates the shapes needed for many biological activities.\n- **Quaternary structure**: Two or more folded polypeptide subunits assemble in a defined architecture.\n- **Haemoglobin example**: Adult human haemoglobin contains four subunits—two alpha and two beta.\n- **Sequence consequence**: Changing the primary sequence can alter higher folding and therefore function.\n- **Active-site connection**: In enzymes, tertiary folding creates crevices or pockets that may function as active sites.\n\n## Worked example\nQuestion: Based on NCERT Exercise 2 and Figure 9.3, explain the tertiary structure of a protein and distinguish it from primary and quaternary structure.\n\nSolution:\n- Primary structure is the linear amino-acid sequence.\n- Tertiary structure is the overall three-dimensional folding of one polypeptide chain.\n- Quaternary structure is the arrangement of more than one polypeptide subunit.\n- State that tertiary conformation is essential for many protein functions.\n- Final answer: Tertiary structure is the complete three-dimensional folding of a single polypeptide; it differs from the amino-acid sequence of primary structure and the multi-subunit arrangement of quaternary structure.\n\n## Common mistake\nSecondary structure is not the same as complete three-dimensional folding; it refers to local patterns such as alpha helices and beta sheets.\n\n## Quick check question\nQuestion: What is the quaternary organisation of adult human haemoglobin?\nAnswer: Four subunits: two alpha and two beta chains.\nExplanation: The chapter uses haemoglobin to illustrate a protein assembled from multiple polypeptide subunits.\n\n## Summary\n- Protein structure is hierarchical.\n- Primary sequence directs higher folding.\n- Tertiary structure creates functional three-dimensional shape.\n- Quaternary structure joins multiple subunits.",
+    "Revision and recap": "# Revision and recap: Chapter 9: Biomolecules\n\n## What you will learn\nYou will explain how enzymes accelerate reactions and how temperature, pH, substrate concentration, inhibitors, and cofactors affect activity. You will identify major enzyme classes.\n\n## Simple explanation\nEnzymes make cellular chemistry fast enough for life by binding substrates at active sites and lowering the activation-energy barrier without being consumed.\n\n## Step-by-step breakdown\n- **Enzyme and ribozyme**: Almost all enzymes are proteins, while some catalytic nucleic acids are ribozymes.\n- **Active site**: A substrate fits into a specific pocket created by the enzyme's three-dimensional structure.\n- **Reaction rate**: Rate is product formed per unit time; carbonic anhydrase accelerates carbonic-acid formation enormously.\n- **Metabolic pathway**: A sequence of enzyme-catalysed reactions converts an initial substrate into products.\n- **Activation energy**: Enzymes lower the energy barrier between substrate and transition state.\n- **Catalytic cycle**: E + S forms ES, proceeds through an enzyme–product complex, releases product, and regenerates free enzyme.\n- **Temperature and pH**: Each enzyme has optimum conditions; high temperature can denature the protein, while low temperature can cause reversible inactivity.\n- **Substrate concentration**: Velocity rises and approaches Vmax as active sites become saturated.\n- **Competitive inhibitor**: A structurally similar molecule competes for the active site, as malonate competes with succinate at succinic dehydrogenase.\n- **Six classes**: Oxidoreductases, transferases, hydrolases, lyases, isomerases, and ligases are classified by reaction type.\n- **Cofactors**: Prosthetic groups bind tightly, coenzymes associate transiently, and metal ions support catalytic activity.\n- **Apoenzyme**: The protein portion without its required cofactor is the apoenzyme.\n\n## Worked example\nQuestion: Based on NCERT Exercise 11, describe the important properties of enzymes.\n\nSolution:\n- Enzymes are highly effective biological catalysts with substrate-specific active sites.\n- They lower activation energy and emerge unchanged after the catalytic cycle.\n- Their activity depends on temperature, pH, and substrate concentration and may be reduced by inhibitors.\n- Some require cofactors such as prosthetic groups, coenzymes, or metal ions.\n- Most are proteins, but ribozymes are catalytic nucleic acids.\n- Final answer: Enzymes are specific catalysts that lower activation energy, function best under optimum conditions, become saturated at high substrate concentration, can be inhibited, and may require cofactors.\n\n## Common mistake\nAn enzyme does not change the energy difference between substrate and product; it lowers the activation barrier and accelerates attainment of products.\n\n## Quick check question\nQuestion: Why does reaction velocity stop increasing after enzyme saturation?\nAnswer: All available active sites are occupied, so additional substrate cannot form more enzyme–substrate complexes at that moment.\nExplanation: The enzyme concentration becomes the limiting factor, producing the maximum velocity Vmax.\n\n## Summary\n- Enzymes bind substrates through active sites.\n- They lower activation energy and are reused.\n- Activity has optimum temperature and pH.\n- Saturation and inhibition regulate velocity.\n- Enzyme classes and cofactors reflect different catalytic requirements."
+  }
+}

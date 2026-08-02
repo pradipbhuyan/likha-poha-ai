@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "Aunt Jennifer's Tigers",
+  "central_question": "How does Aunt Jennifer’s art express the freedom, confidence and endurance that oppressive married life denies her?",
+  "in_scope_units": [
+    "About the poet: Adrienne Rich and the poem’s concern with constraints in married life.",
+    "Before you read: expectations created by the title and tiger imagery.",
+    "First stanza: bright topaz tigers moving fearlessly across a green embroidered screen.",
+    "Second stanza: Aunt Jennifer’s fluttering fingers, ivory needle and the massive weight of the wedding band.",
+    "Third stanza: terrified hands, ordeals, death and the continuing freedom of the embroidered tigers.",
+    "Vocabulary notes on ‘denizen’ and ‘sleek’.",
+    "Think it out Questions 1–8 and the notes on colour and repetitive sounds."
+  ],
+  "banned_topics": [
+    "A general history of the contemporary women’s movement beyond the brief poet note.",
+    "Biographical interpretation of Adrienne Rich’s own marriage not stated in the chapter."
+  ],
+  "must_include_keywords": [
+    "Adrienne Rich",
+    "women’s movement",
+    "constraints of married life",
+    "Aunt Jennifer",
+    "tigers",
+    "prance",
+    "screen",
+    "bright topaz",
+    "denizens",
+    "world of green",
+    "men beneath the tree",
+    "sleek",
+    "chivalric certainty",
+    "fluttering fingers",
+    "wool",
+    "ivory needle",
+    "massive weight",
+    "Uncle’s wedding band",
+    "terrified hands",
+    "ringed",
+    "ordeals",
+    "mastered",
+    "panel",
+    "proud",
+    "unafraid",
+    "contrast",
+    "symbol",
+    "colour imagery",
+    "repetitive sounds",
+    "artistic creation",
+    "freedom",
+    "oppression",
+    "speaker’s sympathy"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The tigers are real animals kept by Aunt Jennifer.",
+      "correction": "They are figures in the embroidered screen or panel that she makes."
+    },
+    {
+      "claim": "The wedding band is physically described as unusually heavy jewellery.",
+      "correction": "Its ‘massive weight’ symbolises the burdens and dominance associated with Aunt Jennifer’s married life."
+    },
+    {
+      "claim": "Aunt Jennifer becomes fearless before she dies.",
+      "correction": "Her hands remain ‘terrified’ and ringed with ordeals; freedom is expressed through her art, not fully achieved in her life."
+    },
+    {
+      "claim": "The tigers die with Aunt Jennifer.",
+      "correction": "The panel survives, and the tigers ‘will go on prancing, proud and unafraid’."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with NCERT Think it out Q1 to establish the tigers’ attitude through ‘denizens’ and ‘chivalric’.",
+    "Use NCERT Think it out Q2 to interpret Aunt Jennifer’s fluttering hands.",
+    "Use NCERT Think it out Q3 to analyse the wedding band symbol.",
+    "Use NCERT Think it out Q5 to examine the double meaning of ‘ringed’.",
+    "Finish with NCERT Think it out Q6–8 and the notes on colours and repeated sounds."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The poem is followed by Think it out Questions 1–8 and prompts to notice colour imagery and the repetitive use of sounds.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 11",
+  "subject": "Business Studies",
+  "chapter": "Sources of Business Finance",
+  "central_question": "How can a business identify, compare and combine suitable sources of finance for fixed capital, working capital, growth and international requirements?",
+  "in_scope_units": [
+    "Meaning, nature and significance of business finance.",
+    "Fixed-capital and working-capital requirements.",
+    "Classification by period, ownership and source of generation.",
+    "Retained earnings and trade credit.",
+    "Factoring and lease financing.",
+    "Public deposits and commercial paper.",
+    "Equity shares and preference shares.",
+    "Debentures, commercial banks and financial institutions.",
+    "International financing through banks, agencies, depository receipts and foreign currency bonds.",
+    "Factors affecting the choice of a source of funds."
+  ],
+  "banned_topics": [
+    "Detailed company incorporation and prospectus procedure, which belong to Formation of a Company.",
+    "Accounting entries for share capital and debentures.",
+    "Personal investment advice or current securities prices."
+  ],
+  "must_include_keywords": [
+    "business finance",
+    "fixed capital",
+    "working capital",
+    "long-term finance",
+    "medium-term finance",
+    "short-term finance",
+    "owner's funds",
+    "borrowed funds",
+    "internal sources",
+    "external sources",
+    "retained earnings",
+    "trade credit",
+    "factoring",
+    "recourse factoring",
+    "non-recourse factoring",
+    "lease financing",
+    "lessor",
+    "lessee",
+    "public deposits",
+    "commercial paper",
+    "equity shares",
+    "preference shares",
+    "debentures",
+    "commercial banks",
+    "financial institutions",
+    "development banks",
+    "international financing",
+    "Global Depository Receipt",
+    "American Depository Receipt",
+    "Indian Depository Receipt",
+    "Foreign Currency Convertible Bond",
+    "cost",
+    "risk profile",
+    "control",
+    "credit worthiness",
+    "flexibility",
+    "tax benefits"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "There is one best source of finance for every business need.",
+      "correction": "Suitability depends on period, purpose, cost, risk, control, legal form and financial position; firms commonly use a combination."
+    },
+    {
+      "claim": "Retained earnings have no cost because no interest is paid.",
+      "correction": "They have an opportunity cost and excessive retention may dissatisfy shareholders."
+    },
+    {
+      "claim": "Equity dividend is a compulsory fixed payment.",
+      "correction": "Equity dividend depends on earnings and declaration; equity holders are residual owners."
+    },
+    {
+      "claim": "Debenture holders are owners of the company.",
+      "correction": "They are creditors entitled to fixed interest and repayment under the issue terms."
+    },
+    {
+      "claim": "Short-term funds are appropriate for permanent long-term expansion.",
+      "correction": "The source period should match the period and purpose of the financing need."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Short Answer Question 1 to distinguish fixed and working capital needs.",
+    "Use Short Answer Questions 2 and 3 to classify sources by period and origin.",
+    "Use Long Answer Question 1 to compare trade credit and bank credit.",
+    "Use Long Answer Questions 3 and 4 to compare securities, deposits and retained earnings.",
+    "Use Project 3 to recommend sources for the restaurant expansion case."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Short Answer Questions 1–6, Long Answer Questions 1–4 and four projects on debentures, financial institutions, the restaurant case and comparative source analysis.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

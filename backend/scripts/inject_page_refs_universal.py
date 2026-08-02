@@ -126,6 +126,20 @@ _CITATION_PATTERNS = [
         "Let Us {0}",
     ),
     (re.compile(r"\bTry\s+This\b", re.IGNORECASE), "Try This"),
+    # NCERT Biology (and some other Science books) number end-of-chapter
+    # questions as plain integers under a single "EXERCISES" heading
+    # ("1. Define...", "2. List...") rather than the decimal "Exercise
+    # N.N" style Mathematics/Physics books use -- confirmed live for
+    # Grade 11 Biology, where GPT-5.5 worked examples cite "NCERT
+    # Exercise 12" but the decimal-only pattern above never matches a
+    # bare integer, so 0 of these citations were ever being linked.
+    # This bare-integer pattern is intentionally NOT reused for
+    # "Activity"/"Case Study" etc. (those already have their own bare
+    # patterns above) and requires the negative lookahead so it never
+    # double-matches the decimal style (e.g. "Exercise 14.2" is left
+    # to the decimal pattern above; only a bare "Exercise 12" with no
+    # following ".digit" is captured here).
+    (re.compile(r"\bExercise\s+(\d+)\b(?!\.\d)", re.IGNORECASE), "Exercise {0}"),
 ]
 
 
@@ -219,6 +233,40 @@ def find_document_ids(grade: str, subject: str, chapter: str, board: str = "CBSE
 
 
 SECTION_CITATION_RE = re.compile(r"^Section\s+(\d+\.\d+)$", re.IGNORECASE)
+BARE_EXERCISE_CITATION_RE = re.compile(r"^Exercise\s+(\d+)$", re.IGNORECASE)
+
+
+def _bare_exercise_page(rows: list[dict], number: str) -> dict | None:
+    """Resolve a bare 'Exercise N' citation (Biology-style: 'EXERCISES'
+    heading followed by plain-numbered questions '1.', '2.', ...) to the
+    page containing that numbered question.
+
+    A literal substring search for "Exercise 12" always fails here
+    because NCERT Biology never prints that phrase -- it prints an
+    "EXERCISES" heading once, then each question as a bare numbered
+    list item ("12. Explain..."). This looks for the numbered item
+    specifically on a page that also contains the word "EXERCISES"
+    (case-insensitive) so a random "12." elsewhere in body text (e.g.
+    a different list, or a figure caption) is not mistaken for the
+    exercise. If the literal "N." marker and "EXERCISES" heading don't
+    co-occur on the exact same page (e.g. the exercises span two
+    pages), falls back to the first page containing "EXERCISES" at all,
+    which is still a materially useful reference point for the
+    student."""
+    item_re = re.compile(r"(?:^|\s)" + re.escape(number) + r"\.\s+[A-Za-z]")
+    first_exercises_page = None
+    for row in rows:
+        nearby = row.get("nearby_text") or ""
+        if not nearby or not row.get("asset_url"):
+            continue
+        normalized = normalize_decorative_headings(nearby)
+        if "exercise" not in normalized.lower():
+            continue
+        if first_exercises_page is None:
+            first_exercises_page = {"page_number": row["page_number"], "asset_url": row["asset_url"]}
+        if item_re.search(normalized):
+            return {"page_number": row["page_number"], "asset_url": row["asset_url"]}
+    return first_exercises_page
 
 
 def _section_heading_page(rows: list[dict], number: str) -> dict | None:
@@ -267,6 +315,13 @@ def build_citation_page_map(document_ids: list[int], citations: set[str]) -> dic
         section_match = SECTION_CITATION_RE.match(citation)
         if section_match:
             match = _section_heading_page(rows, section_match.group(1))
+            if match:
+                result[citation] = match
+            continue
+
+        bare_exercise_match = BARE_EXERCISE_CITATION_RE.match(citation)
+        if bare_exercise_match:
+            match = _bare_exercise_page(rows, bare_exercise_match.group(1))
             if match:
                 result[citation] = match
             continue

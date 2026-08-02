@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Economics",
+    "chapter": "Introduction to Statistics",
+    "central_question": "Why does economics need statistics to describe, analyse and guide decisions about scarce resources, economic activities and public policy?",
+    "in_scope_units": [
+      "Why Economics: ordinary business of life, economic activities, scarcity, choice and alternative uses of resources.",
+      "Consumption, production and distribution as major areas of economics.",
+      "Statistics in Economics: economic data, analysis of problems and policy formulation.",
+      "Meaning of Statistics, including quantitative and qualitative data and stages of statistical work.",
+      "What Statistics does: precision, condensation, relationships, prediction, planning and decision-making.",
+      "Conclusion on the usefulness and limitations of statistical methods and the need for common sense."
+    ],
+    "banned_topics": [
+      "Detailed methods of collecting primary data, which belong to Collection of Data.",
+      "Detailed tabular and graphical presentation methods, which belong to later Statistics chapters.",
+      "Calculation procedures for mean, variance and standard deviation, which belong to later chapters."
+    ],
+    "must_include_keywords": [
+      "economics",
+      "ordinary business of life",
+      "consumer",
+      "seller",
+      "producer",
+      "employee",
+      "employer",
+      "economic activity",
+      "monetary gain",
+      "scarcity",
+      "unlimited wants",
+      "limited resources",
+      "alternative uses",
+      "choice",
+      "consumption",
+      "production",
+      "distribution",
+      "gross domestic product",
+      "national income",
+      "economic data",
+      "statistics",
+      "collection",
+      "analysis",
+      "interpretation",
+      "presentation",
+      "quantitative data",
+      "qualitative data",
+      "mean",
+      "variance",
+      "standard deviation",
+      "precision",
+      "condensation",
+      "economic relationship",
+      "prediction",
+      "policy",
+      "planning",
+      "common sense"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Economics studies only money and markets.",
+        "correction": "The chapter presents economics as the study of people making choices in the ordinary business of life under scarcity."
+      },
+      {
+        "claim": "Every human activity is an economic activity.",
+        "correction": "Economic activities are undertaken for monetary gain and contribute to economic production."
+      },
+      {
+        "claim": "Statistics deals only with quantitative data.",
+        "correction": "Economics also records qualitative attributes such as gender, skill and health condition."
+      },
+      {
+        "claim": "Statistics itself solves economic problems.",
+        "correction": "It provides evidence for analysis and policy, but judgement and appropriate action are still required."
+      },
+      {
+        "claim": "A statistical average can be used without examining the data.",
+        "correction": "The river example shows that misuse of averages without common sense can be dangerous."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise 1 to test statements about qualitative data, problem-solving and the need for data.",
+      "Use Exercise 2 to identify economic activities at a bus stand or market.",
+      "Use Exercise 3 to illustrate how governments use data in policy.",
+      "Use Exercises 4 and 5 to explain scarcity, unlimited wants and choice.",
+      "Use Exercise 7 and the river-average story to show that statistical methods are no substitute for common sense."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with a Recap and EXERCISES 1–7 covering economic activity, scarcity, the uses of statistics, policy and common sense."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Introduction to Statistics\n\n## What you will learn\nYou will understand what economics studies and why scarcity creates the need for choice. You will identify consumers, producers, employees, employers and economic activities.\n\n## Simple explanation\nEconomics studies people in the ordinary business of life. Because wants are many and resources are limited, individuals and society must choose how resources with alternative uses will be employed.\n\n## Step-by-step breakdown\n- **Consumer**: A person who buys goods to satisfy needs is a consumer.\n- **Producer**: A person or enterprise producing goods or services is a producer.\n- **Employee and employer**: An employee works for wages or salary, while an employer hires and pays workers.\n- **Economic activity**: An activity undertaken for monetary gain is an economic activity.\n- **Scarcity**: Wants are unlimited, but the goods and resources that satisfy them are limited.\n- **Alternative uses**: Land, labour, water and other resources can produce different goods.\n- **Choice**: Scarcity and alternative uses require priorities.\n\n## Worked example\nQuestion: Why does limited pocket money illustrate the basic economic problem?\n\nSolution:\n- Step 1: The chapter’s example shows that a student may want many goods but cannot buy all of them with a limited amount.\n- Step 2: The student must rank wants and choose the goods considered most important at current prices.\n- Final answer: The example demonstrates scarcity, choice and the need to allocate limited resources among competing wants.\n\n## Common mistake\nDo not define scarcity as complete absence; it means availability is limited relative to wants.\n\n## Quick check question\nQuestion: Why are resources with alternative uses economically important?\nAnswer: Using a resource for one purpose means it cannot be used simultaneously for another purpose.\nExplanation: This creates the need to choose between competing production possibilities.\n\n## Summary\n- Economics studies ordinary economic life.\n- Scarcity is the root of economic problems.\n- Resources have alternative uses.\n- Choice is unavoidable.",
+    "Core explanation": "# Core explanation: Introduction to Statistics\n\n## What you will learn\nYou will distinguish consumption, production and distribution. You will also understand why reliable facts are needed to study poverty, inequality, education and disasters.\n\n## Simple explanation\nEconomics asks what consumers buy, what producers make and how national income is distributed. Modern economics also studies major social problems, which requires systematic evidence.\n\n## Step-by-step breakdown\n- **Consumption**: It studies how consumers choose goods given income, alternatives and prices.\n- **Production**: It studies what and how producers choose to produce for the market.\n- **Distribution**: It studies how national income is divided through wages, salaries, profits, rent and interest.\n- **GDP**: The chapter uses GDP for total income arising from domestic production.\n- **Social questions**: Economists study poverty, income disparity, literacy, employment and disasters.\n- **Reliable facts**: Policy and personal planning require evidence rather than vague impressions.\n- **Definition of economics**: People and society employ scarce resources with alternative uses to produce and distribute commodities.\n\n## Worked example\nQuestion: Why does the study of poverty require numerical facts rather than only sympathy?\n\nSolution:\n- Step 1: The chapter asks how many people are poor, what factors cause hardship and how income and opportunity are distributed.\n- Step 2: Policies can be designed and evaluated only when the scale and causes of the problem are known.\n- Final answer: Numerical facts turn a social concern into an economic problem that can be analysed and addressed through policy.\n\n## Common mistake\nDo not interpret distribution as physical transport of goods; in this section it means distribution of national income.\n\n## Quick check question\nQuestion: What are the three conventional divisions of economics named in the chapter?\nAnswer: Consumption, production and distribution.\nExplanation: They study consumer choice, producer decisions and the division of national income.\n\n## Summary\n- Consumption studies buyer choice.\n- Production studies what and how to produce.\n- Distribution studies shares of national income.\n- Economic problems require reliable facts.",
+    "Worked examples": "# Worked examples: Introduction to Statistics\n\n## What you will learn\nYou will learn the relationship between economics and statistics and distinguish quantitative from qualitative data. You will recognise the main stages of statistical work.\n\n## Simple explanation\nEconomic facts are called economic data. Statistics collects, presents, summarises, analyses and interprets these facts so that causes can be examined and policies can be formulated.\n\n## Step-by-step breakdown\n- **Economic data**: Facts about production, income, prices, poverty and other economic issues are economic data.\n- **Quantitative data**: Numerical measures such as output, income, marks or taxes are quantitative.\n- **Qualitative data**: Attributes such as gender, skill and health status are qualitative.\n- **Collection**: Relevant information is gathered systematically.\n- **Presentation**: Data may be organised in tabular, diagrammatic and graphic forms.\n- **Summary**: Measures such as mean, variance and standard deviation condense data.\n- **Analysis and interpretation**: Patterns and causes are examined and given economic meaning.\n\n## Worked example\nQuestion: Why is the statement about rice production increasing from 39.58 million tonnes in 1974–75 to 106.5 million tonnes in 2013–14 quantitative data?\n\nSolution:\n- Step 1: The statement records production using numerical quantities and specified years.\n- Step 2: The values can be compared to describe the direction and size of change.\n- Final answer: It is quantitative because the economic fact is expressed through measurable numerical values.\n\n## Common mistake\nDo not classify every non-numerical description as useless; qualitative attributes are important economic information.\n\n## Quick check question\nQuestion: Is skill level qualitative or quantitative in the chapter’s activity?\nAnswer: It is qualitative when described as unskilled, skilled or highly skilled.\nExplanation: These categories record an attribute in ordered degrees rather than a numerical measurement.\n\n## Summary\n- Economic facts become data.\n- Statistics uses quantitative and qualitative information.\n- Data pass through collection, presentation and analysis.\n- Summary measures condense large information.",
+    "Exam-style problems": "# Exam-style problems: Introduction to Statistics\n\n## What you will learn\nYou will study how statistics makes facts precise, summarises mass data and examines relationships. You will also understand its use in forecasting and planning.\n\n## Simple explanation\nStatistics converts broad statements into exact facts, reduces large data sets to meaningful measures and helps economists test how variables are related.\n\n## Step-by-step breakdown\n- **Precision**: A precise count is more informative than saying that hundreds were affected.\n- **Condensation**: An average can summarise many individual observations.\n- **Relationships**: Statistics can examine how demand changes with price or consumption with income.\n- **Testing**: Assumed economic relationships can be checked against data.\n- **Prediction**: Past and recent data can be used to estimate future consumption or production.\n- **Planning**: Expected demand helps planners decide future production.\n- **Policy**: Evidence supports decisions on population, unemployment, poverty and imports.\n\n## Worked example\nQuestion: Why is a precise figure more useful than the statement that hundreds of people died?\n\nSolution:\n- Step 1: The chapter contrasts a specific count with a vague description.\n- Step 2: A precise value supports clearer comparison, analysis and policy response.\n- Final answer: Statistical expression makes an economic or social fact definite and more useful for understanding and decision-making.\n\n## Common mistake\nDo not assume precision guarantees truth; the data must also be collected and interpreted correctly.\n\n## Quick check question\nQuestion: How can statistics help an economic planner?\nAnswer: It can help predict future demand or consumption from past data and support production decisions.\nExplanation: Planning requires an estimate of future needs rather than guesswork alone.\n\n## Summary\n- Statistics makes facts precise.\n- It condenses mass data.\n- It examines and tests relationships.\n- It supports prediction and planning.",
+    "Revision and recap": "# Revision and recap: Introduction to Statistics\n\n## What you will learn\nYou will evaluate both the usefulness and the limitations of statistics. You will explain why methods must be combined with context, judgement and common sense.\n\n## Simple explanation\nStatistics is indispensable for economic analysis, but it is a tool rather than an automatic answer. A correct calculation can still lead to a wrong decision when variation and context are ignored.\n\n## Step-by-step breakdown\n- **Policy evaluation**: Statistical methods can assess whether a policy has achieved its intended effect.\n- **Decision-making**: Import, production and public-policy choices require estimates of demand and supply.\n- **Average-depth story**: A family compared average height with average river depth and ignored the different depths and the children’s heights.\n- **Misuse**: The arithmetic average was not necessarily calculated incorrectly; the conclusion drawn from it was unsafe.\n- **Context**: Distribution and variation matter alongside a summary number.\n- **Common sense**: Economic reasoning must guide the selection and interpretation of statistical tools.\n- **Conclusion**: Statistics supports, but does not replace, judgement.\n\n## Worked example\nQuestion: In the river story, did the tragedy occur because averages are always useless?\n\nSolution:\n- Step 1: The family relied only on average river depth and average height and ignored individual variation and deep portions.\n- Step 2: The problem was the inappropriate use and interpretation of the average, not the existence of the statistical method.\n- Final answer: Averages can be useful, but they must be applied with relevant detail and common sense.\n\n## Common mistake\nDo not blame a statistical method for a decision based on incomplete or inappropriate interpretation.\n\n## Quick check question\nQuestion: Does statistics solve an economic problem by itself?\nAnswer: No. It helps analyse causes, formulate policies and evaluate results, but policy action and judgement are still necessary.\nExplanation: Statistics supplies organised evidence rather than an automatic solution.\n\n## Summary\n- Statistics supports policy and evaluation.\n- Summary measures can hide variation.\n- Correct calculation can be misused.\n- Common sense is essential."
+  }
+}

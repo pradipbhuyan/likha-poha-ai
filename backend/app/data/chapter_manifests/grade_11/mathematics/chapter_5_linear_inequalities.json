@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 5: Linear Inequalities",
+  "central_question": "How can real-world and algebraic constraints be translated, solved, represented, and interpreted as linear inequalities?",
+  "in_scope_units": [
+    "Introduction to inequality statements and symbols.",
+    "Numerical, literal, strict, non-strict, and double inequalities.",
+    "Rules for solving linear inequalities in one variable.",
+    "Solution sets over natural numbers, integers, and real numbers.",
+    "Interval notation and number-line representation.",
+    "Word problems involving averages and consecutive integers.",
+    "Double inequalities, systems, temperature conversion, and mixture applications."
+  ],
+  "banned_topics": [
+    "Quadratic inequalities, explicitly identified but not studied here.",
+    "Full graphical solution of linear inequalities in two variables, not developed in the provided chapter text.",
+    "Linear programming, which belongs to a later course."
+  ],
+  "must_include_keywords": [
+    "inequality",
+    "less than",
+    "greater than",
+    "less than or equal",
+    "greater than or equal",
+    "strict inequality",
+    "non-strict inequality",
+    "literal inequality",
+    "double inequality",
+    "linear inequality",
+    "one variable",
+    "solution set",
+    "natural numbers",
+    "integers",
+    "real numbers",
+    "interval notation",
+    "number line",
+    "open circle",
+    "closed circle",
+    "reversal rule",
+    "system of inequalities",
+    "intersection",
+    "average constraint",
+    "temperature conversion",
+    "mixture problem"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Inequalities are solved exactly like equations in every step.",
+      "correction": "Multiplying or dividing by a negative number reverses the inequality sign."
+    },
+    {
+      "claim": "x<3 includes 3.",
+      "correction": "A strict inequality excludes the boundary value."
+    },
+    {
+      "claim": "The same listed solution set applies in N, Z, and R.",
+      "correction": "The numerical domain changes which values are allowed."
+    },
+    {
+      "claim": "For a system joined by “and”, combine the solution sets by union.",
+      "correction": "The common solutions are found by intersection."
+    },
+    {
+      "claim": "At most means strictly less than.",
+      "correction": "At most means less than or equal to."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Section 5.2 rice and stationery models.",
+    "NCERT Example 3 for sign reversal.",
+    "NCERT Example 7 for an average constraint.",
+    "NCERT Examples 9 and 11 for double inequalities and systems.",
+    "NCERT Examples 12 and 13 for temperature and mixtures."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 5.1 followed by the Miscellaneous Exercise on Chapter 5.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

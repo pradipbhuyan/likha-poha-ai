@@ -1,0 +1,70 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 1: Electric Charges and Fields",
+  "central_question": "How do stationary charges interact and create electric fields and flux?",
+  "in_scope_units": [
+    "Static charge and charging",
+    "Conductors and insulators",
+    "Additivity, conservation and quantisation",
+    "Coulomb’s law",
+    "Superposition and electric field",
+    "Field lines and flux",
+    "Electric dipole and torque",
+    "Continuous charge distributions",
+    "Gauss’s law and symmetric applications"
+  ],
+  "banned_topics": [
+    "Electrostatic potential and capacitance from Chapter 2",
+    "Current electricity from Chapter 3",
+    "Magnetic force from Chapter 4"
+  ],
+  "must_include_keywords": [
+    "electrostatics",
+    "electroscope",
+    "conductors",
+    "insulators",
+    "conservation of charge",
+    "quantisation of charge",
+    "Coulomb’s law",
+    "permittivity of free space",
+    "superposition principle",
+    "electric field",
+    "test charge",
+    "electric field lines",
+    "electric flux",
+    "electric dipole",
+    "dipole moment",
+    "torque",
+    "linear charge density",
+    "surface charge density",
+    "volume charge density",
+    "Gauss’s law",
+    "Gaussian surface",
+    "spherical symmetry"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Rubbing creates electric charge.",
+      "correction": "Rubbing transfers electrons; total charge is conserved."
+    },
+    {
+      "claim": "Zero closed-surface flux means no charge is present inside.",
+      "correction": "It means only that the net enclosed charge is zero."
+    },
+    {
+      "claim": "A dipole has zero field because its net charge is zero.",
+      "correction": "Separated opposite charges produce a non-zero field."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 1.1: quantisation and the size of one coulomb",
+    "NCERT Example 1.4: charge sharing with inverse-square force",
+    "NCERT Example 1.5: superposition and symmetry",
+    "NCERT Example 1.9: axial and equatorial dipole fields",
+    "NCERT Example 1.10: flux and enclosed charge"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES run from 1.1 to 1.23.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

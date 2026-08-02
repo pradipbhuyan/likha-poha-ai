@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Politics of Planned Development",
+  "central_question": "How did political choices about growth, justice, agriculture, industry and state intervention shape India’s early development strategy?",
+  "in_scope_units": [
+    "Political contestation over development",
+    "Competing ideas and models of development",
+    "Planning and the Planning Commission",
+    "Bombay Plan and consensus on planning",
+    "Five Year Plans",
+    "First Five Year Plan and agriculture",
+    "Second Five Year Plan and heavy industry",
+    "Mixed economy, land reform and cooperative farming",
+    "Achievements, limitations and later change"
+  ],
+  "banned_topics": [
+    "Detailed post-1991 globalisation",
+    "Foreign policy of non-alignment",
+    "The 1967 election and Congress split"
+  ],
+  "must_include_keywords": [
+    "development",
+    "political contestation",
+    "economic growth",
+    "social justice",
+    "Left",
+    "Right",
+    "liberal-capitalist model",
+    "socialist model",
+    "planning",
+    "Planning Commission",
+    "Bombay Plan",
+    "Five Year Plans",
+    "mixed economy",
+    "First Five Year Plan",
+    "agriculture",
+    "irrigation",
+    "land reforms",
+    "Bhakra Nangal",
+    "Second Five Year Plan",
+    "P. C. Mahalanobis",
+    "heavy industries",
+    "public sector",
+    "private sector",
+    "self-reliance",
+    "import substitution",
+    "cooperative farming",
+    "Green Revolution",
+    "inequality"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Planning was imposed only by socialists against all business interests.",
+      "correction": "The Bombay Plan was drafted by leading industrialists and also supported a major state role in investment."
+    },
+    {
+      "claim": "The First and Second Plans had the same priority.",
+      "correction": "The First Plan concentrated on agriculture, irrigation and land reform, while the Second emphasised rapid heavy industrialisation."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 5: What were the major differences in the approach towards development at the time of Independence? Has the debate been resolved?",
+    "NCERT Exercise 2: Which of the following ideas did not form part of the early phase of India’s development policy? (a) Planning (b) Liberalisation (c) Cooperative Farming (d) Self sufficiency",
+    "NCERT Exercise 1: Which of these statements about the Bombay Plan is incorrect? (a) It was a blueprint for India’s economic future. (b) It supported state-ownership of industry. (c) It was made by some leading industrialists. (d) It supported strongly the idea of planning.",
+    "NCERT Exercise 6: What was the major thrust of the First Five Year Plan? In which ways did the Second Plan differ from the first one?",
+    "NCERT Exercise 7: Read the following passage and answer the questions below: “In the early years of Independence, two contradictory tendencies were already well advanced inside the Congress party. On the one hand, the national party executive endorsed socialist principles of state ownership, regulation and control over key sectors of the economy in order to improve productivity and at the same time curb economic concentration. On the other hand, the national Congress government pursued liberal economic policies and incentives to private investment that was justified in terms of the sole criterion of achieving maximum increase in production.” — Francine Frankel"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with NCERT Exercises 1–7 on models of development, planning, the Bombay Plan and the first two Five Year Plans.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

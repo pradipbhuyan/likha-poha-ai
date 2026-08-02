@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 19: Excretory Products and Their Elimination",
+  "central_question": "How do human kidneys form concentrated urine, regulate body-fluid composition and eliminate metabolic wastes?",
+  "in_scope_units": [
+    "Nitrogenous wastes and excretory strategies.",
+    "Excretory structures across animals.",
+    "Human excretory system and nephron organisation.",
+    "Glomerular filtration, reabsorption and secretion.",
+    "Functions of nephron tubules.",
+    "Counter-current concentration of urine.",
+    "Hormonal regulation of kidney function.",
+    "Micturition and other excretory organs.",
+    "Renal disorders and treatment."
+  ],
+  "banned_topics": [
+    "Alimentary canal and digestive enzymes",
+    "Absorption of nutrients in intestinal villi",
+    "Detailed circulation beyond renal blood supply"
+  ],
+  "must_include_keywords": [
+    "ammonia",
+    "urea",
+    "uric acid",
+    "ammonotelism",
+    "ureotelism",
+    "uricotelism",
+    "osmoregulation",
+    "kidney",
+    "ureter",
+    "urinary bladder",
+    "urethra",
+    "cortex",
+    "medulla",
+    "nephron",
+    "glomerulus",
+    "Bowman capsule",
+    "PCT",
+    "Henle loop",
+    "DCT",
+    "collecting duct",
+    "cortical nephron",
+    "juxtamedullary nephron",
+    "vasa recta",
+    "glomerular filtration",
+    "GFR",
+    "JGA",
+    "reabsorption",
+    "secretion",
+    "counter-current mechanism",
+    "osmolarity",
+    "ADH",
+    "renin",
+    "angiotensin II",
+    "aldosterone",
+    "ANF",
+    "micturition",
+    "uremia",
+    "haemodialysis",
+    "renal calculi",
+    "glomerulonephritis"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "ADH promotes water elimination.",
+      "correction": "ADH increases water reabsorption and reduces diuresis."
+    },
+    {
+      "claim": "Both limbs of Henle loop have the same permeability.",
+      "correction": "The descending limb is water permeable; the ascending limb is water impermeable and transports salts."
+    },
+    {
+      "claim": "All filtrate becomes urine.",
+      "correction": "Nearly 99 percent of about 180 litres per day is reabsorbed, leaving about 1-1.5 litres of urine."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1 to define GFR.",
+    "Use NCERT Exercise 3 to correct statements about ADH and nephron function.",
+    "Use NCERT Exercise 4 to explain the counter-current mechanism.",
+    "Use NCERT Exercise 7 to match excretory terms.",
+    "Use NCERT Exercise 12 to complete key permeability and dialysis facts."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-12 on GFR, autoregulation, counter-current concentration, micturition, osmoregulation and renal terminology.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

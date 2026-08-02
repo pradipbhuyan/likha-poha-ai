@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 3: Plant Kingdom",
+  "central_question": "How are major plant groups distinguished by body organisation, pigments, reproduction, vascular tissues, spores, seeds, and life-cycle patterns?",
+  "in_scope_units": [
+    "Changing approaches to plant classification, including artificial, natural, phylogenetic, numerical, cytotaxonomic, and chemotaxonomic systems.",
+    "Algae, their organisation, reproduction, economic importance, and the classes Chlorophyceae, Phaeophyceae, and Rhodophyceae.",
+    "Bryophytes, their gametophyte-dominant life cycle, water dependence, ecological roles, liverworts, and mosses.",
+    "Pteridophytes, vascular sporophytes, prothalli, homospory, heterospory, and the evolutionary significance of seed habit.",
+    "Gymnosperms, naked ovules and seeds, cones, reduced gametophytes, pollination, and fertilisation.",
+    "Angiosperms as flowering plants with enclosed seeds and their broad division into dicotyledons and monocotyledons."
+  ],
+  "banned_topics": [
+    "Detailed morphology and anatomy of flowering-plant organs",
+    "Detailed double fertilisation and embryology of angiosperms",
+    "Five-kingdom classification outside the limits needed to define Plantae",
+    "Molecular mechanisms of photosynthesis"
+  ],
+  "must_include_keywords": [
+    "artificial classification",
+    "natural classification",
+    "phylogenetic classification",
+    "numerical taxonomy",
+    "cytotaxonomy",
+    "chemotaxonomy",
+    "algae",
+    "Chlorophyceae",
+    "Phaeophyceae",
+    "Rhodophyceae",
+    "isogamy",
+    "anisogamy",
+    "oogamy",
+    "zoospore",
+    "pyrenoid",
+    "fucoxanthin",
+    "phycoerythrin",
+    "floridean starch",
+    "bryophyte",
+    "gametophyte",
+    "sporophyte",
+    "antheridium",
+    "archegonium",
+    "protonema",
+    "gemma",
+    "pteridophyte",
+    "prothallus",
+    "vascular tissue",
+    "homospory",
+    "heterospory",
+    "microspore",
+    "megaspore",
+    "seed habit",
+    "gymnosperm",
+    "naked seed",
+    "strobilus",
+    "pollen grain",
+    "angiosperm",
+    "monocotyledon",
+    "dicotyledon"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Cyanobacteria are algae within Kingdom Plantae.",
+      "correction": "The chapter explicitly excludes cyanobacteria from Plantae and treats algae here as eukaryotic plant groups."
+    },
+    {
+      "claim": "All algae have the same pigments and stored food.",
+      "correction": "Green, brown, and red algae differ in major pigments, reserve food, wall composition, and flagella."
+    },
+    {
+      "claim": "The bryophyte sporophyte is independent and dominant.",
+      "correction": "The haploid gametophyte is dominant, while the sporophyte remains attached to and nutritionally dependent on it."
+    },
+    {
+      "claim": "All pteridophytes produce one type of spore.",
+      "correction": "Most are homosporous, but Selaginella and Salvinia are heterosporous."
+    },
+    {
+      "claim": "Gymnosperm seeds develop inside fruits.",
+      "correction": "Gymnosperm ovules and seeds are not enclosed by an ovary wall and remain naked."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1: compare algal classes using pigments, reserve food, cell wall, and flagella.",
+    "NCERT Exercise 9: distinguish red algae from brown algae and liverworts from mosses.",
+    "NCERT Exercise 7: explain heterospory and its evolutionary significance using Selaginella and Salvinia.",
+    "NCERT Exercise 6: distinguish gymnosperms from angiosperms despite both producing seeds.",
+    "NCERT Exercise 10: match representative genera to algae, mosses, pteridophytes, and gymnosperms."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–11 for algal classes, life cycles, archegonia, heterospory, seed plants, and gymnosperm characteristics.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

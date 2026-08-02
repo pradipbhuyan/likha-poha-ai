@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Citizenship",
+  "central_question": "How can democratic societies turn formal membership into full and equal citizenship while addressing migration, inequality, diversity, refugees and global interdependence?",
+  "in_scope_units": [
+    "Introduction to citizenship as full and equal membership, rights, identity and obligations.",
+    "Full and Equal Membership through movement, migration, insider–outsider conflicts and democratic dispute resolution.",
+    "Equal Rights through the urban poor, T. H. Marshall, livelihood, shelter and group-specific needs.",
+    "Citizen and Nation through inclusive national identity and India’s constitutional experiment.",
+    "Universal Citizenship and Global Citizenship through refugees, statelessness and cross-border cooperation."
+  ],
+  "banned_topics": [
+    "Detailed theories of national self-determination, which belong to Nationalism.",
+    "Detailed categories and moral origins of rights, which belong to Rights.",
+    "Detailed secular-state models and religious equality, which belong to Secularism."
+  ],
+  "must_include_keywords": [
+    "citizenship",
+    "full membership",
+    "equal membership",
+    "political community",
+    "political rights",
+    "civil rights",
+    "social rights",
+    "obligations",
+    "political identity",
+    "movement",
+    "migration",
+    "insiders",
+    "outsiders",
+    "equal opportunity",
+    "protest",
+    "negotiation",
+    "urban poor",
+    "slum dwellers",
+    "T. H. Marshall",
+    "social class",
+    "Olga Tellis",
+    "right to livelihood",
+    "right to shelter",
+    "tribal people",
+    "nation-state",
+    "inclusive identity",
+    "assimilation",
+    "Part Two",
+    "birth",
+    "descent",
+    "registration",
+    "naturalisation",
+    "refugees",
+    "stateless people",
+    "global citizenship",
+    "interconnected world",
+    "human rights",
+    "cross-border cooperation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Citizenship is only a legal document or nationality label.",
+      "correction": "It includes full and equal membership, rights, identity, protection and obligations towards others."
+    },
+    {
+      "claim": "Every citizen can exercise equal rights equally once law grants them.",
+      "correction": "Poverty, insecure housing, discrimination and lack of resources can obstruct actual exercise."
+    },
+    {
+      "claim": "Migrants contribute nothing and only consume local resources.",
+      "correction": "The chapter describes their labour and skills across technology, nursing, construction, services and small enterprise."
+    },
+    {
+      "claim": "Inclusive national identity requires everyone to abandon cultural differences.",
+      "correction": "India’s constitutional project combines common political membership with protection of language, religion and culture."
+    },
+    {
+      "claim": "Global citizenship has already replaced state citizenship.",
+      "correction": "It is an emerging idea that may supplement national citizenship and support cooperation and basic protection."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise Q1 on rights and obligations of citizenship.",
+    "Use NCERT Exercise Q5 to analyse migration and local contribution.",
+    "Use NCERT Exercise Q2 to distinguish legal rights from their effective exercise.",
+    "Use NCERT Exercise Q6 to explain citizenship as an ongoing project.",
+    "Conclude with NCERT Exercise Q4 on refugees and global citizenship."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–6 on rights and obligations, equal exercise, citizenship struggles, refugees, migration and democratic citizenship as a project.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

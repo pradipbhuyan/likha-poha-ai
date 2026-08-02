@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 9: Biomolecules",
+  "central_question": "How are the chemical constituents of living tissues organised into small molecules, macromolecules, structural polymers, and enzyme-controlled metabolic systems?",
+  "in_scope_units": [
+    "Chemical analysis of living tissue, acid-soluble and acid-insoluble fractions, wet and dry weight, ash, and inorganic constituents.",
+    "Small biomolecules including amino acids, sugars, fatty acids, glycerol, lipids, nitrogen bases, nucleosides, and nucleotides.",
+    "Primary and secondary metabolites and their biological, ecological, and human uses.",
+    "Biomacromolecules and the special behaviour of lipids in the acid-insoluble fraction.",
+    "Proteins and their amino-acid composition and biological functions.",
+    "Polysaccharides, including cellulose, starch, glycogen, inulin, and chitin.",
+    "Nucleic acids and the nucleotide components of DNA and RNA.",
+    "Primary, secondary, tertiary, and quaternary levels of protein structure.",
+    "Enzymes, active sites, reaction rates, activation energy, enzyme action, factors affecting activity, enzyme classes, inhibition, and cofactors."
+  ],
+  "banned_topics": [
+    "Detailed metabolic pathways of respiration and photosynthesis",
+    "DNA replication, transcription, and translation",
+    "Human nutrition and digestion",
+    "Organic reaction mechanisms beyond the chapter's biological classification"
+  ],
+  "must_include_keywords": [
+    "acid-soluble pool",
+    "acid-insoluble fraction",
+    "ash",
+    "biomolecule",
+    "amino acid",
+    "alpha carbon",
+    "zwitterion",
+    "fatty acid",
+    "glycerol",
+    "triglyceride",
+    "phospholipid",
+    "nitrogenous base",
+    "nucleoside",
+    "nucleotide",
+    "primary metabolite",
+    "secondary metabolite",
+    "biomacromolecule",
+    "protein",
+    "peptide bond",
+    "heteropolymer",
+    "polysaccharide",
+    "cellulose",
+    "starch",
+    "glycogen",
+    "chitin",
+    "nucleic acid",
+    "DNA",
+    "RNA",
+    "primary structure",
+    "secondary structure",
+    "tertiary structure",
+    "quaternary structure",
+    "enzyme",
+    "ribozyme",
+    "active site",
+    "substrate",
+    "enzyme-substrate complex",
+    "activation energy",
+    "competitive inhibition",
+    "cofactor"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All elements found in living matter are unique to life.",
+      "correction": "Living and non-living matter contain many of the same elements, but their relative abundances differ."
+    },
+    {
+      "claim": "Lipids are true high-molecular-weight polymers.",
+      "correction": "Individual lipids are small molecules; they appear in the acid-insoluble fraction because membrane fragments form water-insoluble vesicles."
+    },
+    {
+      "claim": "A nucleoside contains base, sugar, and phosphate.",
+      "correction": "A nucleoside contains a nitrogenous base and sugar; addition of phosphate forms a nucleotide."
+    },
+    {
+      "claim": "All proteins are homopolymers.",
+      "correction": "Proteins are heteropolymers because they contain different amino-acid types."
+    },
+    {
+      "claim": "Every enzyme is a protein.",
+      "correction": "Most enzymes are proteins, but catalytic nucleic acids called ribozymes also exist."
+    },
+    {
+      "claim": "Increasing substrate concentration always increases reaction velocity indefinitely.",
+      "correction": "Velocity reaches Vmax when enzyme active sites become saturated."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 7: draw and interpret the structure of alanine as an alpha-amino acid.",
+    "NCERT Exercises 1 and 5: define macromolecules and explain triglyceride composition.",
+    "NCERT Exercises 2 and 4: explain tertiary protein structure and biological uses of proteins.",
+    "NCERT Exercises 8–10: connect gums, qualitative biomolecule tests, cellulose, and biological materials.",
+    "NCERT Exercise 11: describe enzyme properties, specificity, optimum conditions, activation energy, inhibition, and cofactors."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–11 for macromolecules, protein structure, triglycerides, amino acids, biomolecule tests, cellulose, and enzyme properties.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

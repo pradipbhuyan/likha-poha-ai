@@ -1,0 +1,109 @@
+{
+  "grade": "Grade 12",
+  "subject": "Sociology",
+  "chapter": "The Demographic Structure of the Indian Society",
+  "central_question": "What is demography, what theories and concepts help us understand population change, and what do India's population size, growth, age structure, sex ratio, literacy, and rural-urban distribution reveal about Indian society?",
+  "in_scope_units": [
+    "Definition of demography, formal demography versus social demography, and the importance of demography for sociology (including Durkheim's suicide study)",
+    "2.1 Some Theories and Concepts in Demography: the Malthusian Theory of Population Growth",
+    "The Theory of Demographic Transition (three stages of population growth)",
+    "Common Concepts and Indicators: birth rate, death rate, rate of natural increase, replacement level, fertility rate, infant mortality rate, maternal mortality rate, life expectancy, sex ratio, age structure, dependency ratio, demographic dividend",
+    "2.2 Size and Growth of India's Population (Table 1, Chart 1) including the 1918-19 influenza pandemic",
+    "2.3 Age Structure of the Indian Population (Table 2, Charts 3 and 4) and the demographic dividend (Box 2.3)",
+    "2.4 The Declining Sex-ratio in India (Table 3, Map 2) and reasons for the decline in child sex ratio",
+    "2.5 Literacy (Table 4) and gender/regional/social-group variation in literacy",
+    "2.6 Rural-Urban Differences (Table 5) and rural-to-urban migration",
+    "2.7 Population Policy in India: the National Family Planning Programme, the Emergency-era coercive sterilisation, and the National Health Policy 2017"
+  ],
+  "banned_topics": [
+    "Details of the caste system, tribal classification, or family/kinship structures (this belongs to Chapter 3, Social Institutions: Continuity and Change)",
+    "The socio-cultural dimensions of markets (this belongs to Chapter 4)",
+    "Detailed discussion of caste, tribal, gender or disability-based social exclusion movements (this belongs to Chapter 5)",
+    "Detailed discussion of communalism or diversity as a social challenge (this belongs to Chapter 6)"
+  ],
+  "must_include_keywords": [
+    "demography",
+    "demos",
+    "graphein",
+    "formal demography",
+    "social demography",
+    "census",
+    "Emile Durkheim",
+    "suicide rates",
+    "Thomas Robert Malthus",
+    "geometric progression",
+    "arithmetic progression",
+    "preventive checks",
+    "positive checks",
+    "theory of demographic transition",
+    "birth rate",
+    "death rate",
+    "rate of natural increase",
+    "replacement level",
+    "fertility rate",
+    "infant mortality rate",
+    "maternal mortality rate",
+    "life expectancy",
+    "sex ratio",
+    "age structure",
+    "dependency ratio",
+    "demographic dividend",
+    "1921",
+    "influenza epidemic",
+    "1918-19",
+    "child sex ratio",
+    "Beti-Bachao Beti-Padhao",
+    "literacy rate",
+    "rural-urban",
+    "urbanisation",
+    "National Family Planning Programme",
+    "National Emergency",
+    "sterilisation",
+    "National Population Policy",
+    "National Health Policy 2017"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Demography is only a mathematical or statistical field with no connection to sociology.",
+      "correction": "The chapter states demography is of special importance to sociology, and the emergence of sociology as an academic discipline owed a lot to demography; it also distinguishes formal demography (quantitative) from social demography or population studies, which enquires into the wider social causes and consequences of population change."
+    },
+    {
+      "claim": "Malthus believed population and food production both grow at the same steady rate.",
+      "correction": "Malthus argued population rises in geometric progression (like 2, 4, 8, 16, 32) while agricultural production grows only in arithmetic progression (like 2, 4, 6, 8, 10), so population growth always outstrips food production."
+    },
+    {
+      "claim": "Malthus's predictions about famine and poverty being inevitable were proven correct by later European history.",
+      "correction": "The chapter states Malthus's theory was refuted by the historical experience of European countries -- birth rates declined and epidemic diseases were controlled from the late nineteenth century, and food production and standards of living continued to rise despite population growth."
+    },
+    {
+      "claim": "The theory of demographic transition says population growth is steady and constant across all stages of development.",
+      "correction": "The theory describes three stages: low growth in an underdeveloped society (high birth and death rates), a transitional stage with a 'population explosion' (death rates fall faster than birth rates), and low growth again in a developed society (both rates reduced considerably)."
+    },
+    {
+      "claim": "India's population growth rate has been rising continuously and rapidly throughout the twentieth and twenty-first centuries.",
+      "correction": "Table 1 in the chapter shows growth was modest before 1951 (not exceeding 1.33%), even negative between 1911-1921 (-0.03%) due to the influenza epidemic, then rose to 2.2% during 1961-1981, and has since decreased, standing at 1.63% by 2011."
+    },
+    {
+      "claim": "India's declining sex ratio and child sex ratio are worst in the poorest, least developed regions.",
+      "correction": "The chapter explicitly states that the lowest child sex ratios are found in the most prosperous regions of India, such as Maharashtra, Punjab, Haryana, Chandigarh and Delhi, showing the problem of selective abortion is not due to poverty, ignorance or lack of resources."
+    },
+    {
+      "claim": "The overall sex ratio and the child sex ratio in India have moved in the same direction across every decade.",
+      "correction": "Table 3 shows an anomaly in 1991-2001: the overall sex ratio rose by 6 points (927 to 933) even as the child sex ratio fell by 18 points (945 to 927), dropping below the overall sex ratio for the first time."
+    },
+    {
+      "claim": "India's mass sterilisation programme during the Emergency was a voluntary, popular success that continued after 1977.",
+      "correction": "The chapter states the coercive mass sterilisation programme during the National Emergency (1975-76) was forced on mostly poor and powerless people, faced widespread popular opposition, and was abandoned by the new government elected after the Emergency, after which the programme was renamed the National Family Welfare Programme and coercive methods were no longer used."
+    }
+  ],
+  "recommended_example_progression": [
+    "Worked example based on NCERT Activity 2.1 (productivity of agriculture and why Malthus was proved wrong) using the chapter's own explanation of the historical refutation of Malthus.",
+    "Worked example based on NCERT Activity 2.2 (why the birth rate is slow to decline while the death rate falls relatively fast) using the chapter's explanation that birth rate is a sociocultural phenomenon slow to change.",
+    "Worked example based on Table 1 and Chart 1 (population growth during the twentieth century) reasoning through the 1911-1921 negative growth rate caused by the influenza epidemic.",
+    "Worked example based on Table 3 (the declining sex ratio) reasoning through the 1991-2001 anomaly between overall and child sex ratios.",
+    "Worked example based on NCERT end-of-chapter Question 6 on the sex ratio and son preference."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with a numbered 'Questions' section containing six questions (Q1 on demographic transition, Q2 on Malthus, Q3 on birth/death rates, Q4 on regional variation in population growth, Q5 on age structure, Q6 on sex ratio), immediately followed by the References list.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

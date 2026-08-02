@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 10: Conic Sections",
+  "central_question": "How do geometric locus definitions and cone intersections lead to the standard equations and properties of circles, parabolas, ellipses, and hyperbolas?",
+  "in_scope_units": [
+    "Sections of a double-napped right circular cone.",
+    "Circle, ellipse, parabola, and hyperbola from cutting-plane angles.",
+    "Degenerate conic sections at the vertex.",
+    "Circle definition, equation, centre, radius, and completing squares.",
+    "Parabola definition, standard equations, focus, directrix, axis, and latus rectum.",
+    "Ellipse definition, axis relation, eccentricity, standard equations, axes, foci, vertices, and latus rectum.",
+    "Hyperbola definition, axis relation, eccentricity, standard equations, axes, foci, vertices, and latus rectum.",
+    "Applications and locus problems involving mirrors, arches, beams, rods, and flag posts."
+  ],
+  "banned_topics": [
+    "Translated or rotated conics with arbitrary centres or axes, which the chapter states are beyond scope.",
+    "Asymptotes and tangent-normal theory.",
+    "Polar equations of conics."
+  ],
+  "must_include_keywords": [
+    "double-napped cone",
+    "vertex",
+    "axis",
+    "generator",
+    "nappe",
+    "conic section",
+    "degenerate conic",
+    "circle",
+    "centre",
+    "radius",
+    "parabola",
+    "focus",
+    "directrix",
+    "axis of parabola",
+    "latus rectum",
+    "ellipse",
+    "foci",
+    "major axis",
+    "minor axis",
+    "semi-major axis",
+    "semi-minor axis",
+    "eccentricity",
+    "hyperbola",
+    "transverse axis",
+    "conjugate axis",
+    "standard equation",
+    "completing squares",
+    "constant sum",
+    "constant difference"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every plane section of a cone is non-degenerate.",
+      "correction": "A plane through the vertex may produce a point, line, or pair of intersecting lines."
+    },
+    {
+      "claim": "The centre in (x+h)²+(y+k)²=r² is (h,k).",
+      "correction": "The centre is (−h,−k)."
+    },
+    {
+      "claim": "The coefficient in y²=4ax equals a.",
+      "correction": "The coefficient equals 4a."
+    },
+    {
+      "claim": "For an ellipse, a is always under x².",
+      "correction": "a is the semi-major axis and is associated with the larger denominator."
+    },
+    {
+      "claim": "Ellipse and hyperbola both satisfy c²=a²−b².",
+      "correction": "Ellipse: c²=a²−b²; hyperbola: c²=a²+b²."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Section 10.2 for classification of cone sections.",
+    "NCERT Example 3 for completing squares in a circle.",
+    "NCERT Example 5 for reading parabola parameters.",
+    "NCERT Example 9 for ellipse parameters.",
+    "NCERT Examples 14 and 17 for hyperbola parameters and a parabolic-mirror application."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 10.1, 10.2, 10.3, and 10.4 followed by the Miscellaneous Exercise on Chapter 10.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

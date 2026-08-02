@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "India's External Relations",
+  "central_question": "How did India pursue sovereignty, peace and development through non-alignment while responding to conflicts with China and Pakistan and the nuclear question?",
+  "in_scope_units": [
+    "International context after Independence",
+    "Constitutional principles and national interest",
+    "Policy of non-alignment",
+    "Nehru’s role and distance from the two camps",
+    "Afro-Asian unity and NAM",
+    "Peace and conflict with China",
+    "Tibet and the 1962 war",
+    "Wars and peace with Pakistan",
+    "Bangladesh war of 1971",
+    "India’s nuclear policy",
+    "Domestic consensus and debate in foreign policy"
+  ],
+  "banned_topics": [
+    "Detailed history of UN Security Council reform",
+    "Congress electoral dominance as a party system",
+    "Economic planning beyond its influence on foreign relations"
+  ],
+  "must_include_keywords": [
+    "foreign policy",
+    "sovereignty",
+    "territorial integrity",
+    "economic development",
+    "Article 51",
+    "international peace",
+    "Cold War",
+    "non-alignment",
+    "Jawaharlal Nehru",
+    "NATO",
+    "Warsaw Pact",
+    "Suez Canal",
+    "Hungary",
+    "Afro-Asian unity",
+    "Bandung Conference",
+    "Non-Aligned Movement",
+    "Panchsheel",
+    "Zhou Enlai",
+    "Tibet",
+    "Dalai Lama",
+    "Aksai Chin",
+    "NEFA",
+    "1962 war",
+    "Pakistan",
+    "Kashmir",
+    "1965 war",
+    "Tashkent Agreement",
+    "Bangladesh",
+    "Awami League",
+    "1971 war",
+    "Indo-Soviet Treaty",
+    "Simla Agreement",
+    "nuclear policy",
+    "NPT",
+    "1974 nuclear test",
+    "disarmament"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Non-alignment meant neutrality or isolation from world affairs.",
+      "correction": "It meant independent judgment, friendship with both blocs and refusal to join rival military alliances."
+    },
+    {
+      "claim": "India’s wars prove that its foreign policy never valued peace.",
+      "correction": "The policy prioritised peaceful coexistence and negotiation, but unresolved borders, regional conflicts and international circumstances still produced wars."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 3: Why did Nehru regard conduct of foreign relations as an essential indicator of independence? State any two reasons with examples to support your reading.",
+    "NCERT Exercise 10: Read this passage and answer the questions below: “Broadly, non-alignment means not tying yourself off with military blocs….It means trying to view things, as far as possible, not from the military point of view, though that has to come in sometimes, but independently, and trying to maintain friendly relations with all countries.” — Jawaharlal Nehru (a) Why does Nehru want to keep off military blocs? (b) Do you think that the Indo-Soviet friendship treaty violated the principle of non-alignment? Give reasons for your answer. (c) If there were no military blocs, do you think non-alignment would have been unnecessary?",
+    "NCERT Exercise 7: India’s foreign policy was built around the principles of peace and cooperation. But India fought three wars in a space of ten years between 1962 and 1971. Would you say that this was a failure of the foreign policy? Or would you say that this was a result of international situation? Give reasons to support your answer.",
+    "NCERT Exercise 8: Does India’s foreign policy reflect her desire to be an important regional power? Argue your case with the Bangladesh war of 1971 as an example.",
+    "NCERT Exercise 6: Write short notes on the following. (a) India’s Nuclear policy (b) Consensus in foreign policy matters"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with NCERT Exercises 1–10 on non-alignment, China, Pakistan, Bangladesh, nuclear policy and the role of leadership.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

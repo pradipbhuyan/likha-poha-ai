@@ -158,3 +158,20 @@ export async function clearChapterCache({ grade, subject, chapter }, accessToken
     body: JSON.stringify({ grade, subject, chapter }),
   });
 }
+
+export async function clearChapterQuestionBank({ grade, subject, chapter }, accessToken) {
+  /**
+   * Delete all question_bank rows for a specific chapter (admin-only).
+   * Uses the same normalized-core matching as the bank's read-side fallback,
+   * so it catches rows stored under any display-prefix format in one call.
+   * Hard delete — use before "Build 60 Questions" to force a clean rebuild.
+   */
+  return authFetch("/api/cache-management/cache/questions/chapter", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ grade, subject, chapter }),
+  });
+}

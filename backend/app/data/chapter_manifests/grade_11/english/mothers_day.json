@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 11",
+  "subject": "English",
+  "chapter": "Mother's Day",
+  "central_question": "How can a mother who is taken for granted make her family recognise her labour, dignity and right to an independent life?",
+  "in_scope_units": [
+    "The setting and opening dialogue establish Mrs Pearson’s anxious gentleness and Mrs Fitzgerald’s forceful personality.",
+    "Mrs Fitzgerald proposes exchanging personalities so she can confront the family in Mrs Pearson’s body.",
+    "The transformed Mrs Pearson refuses Doris’s demands for tea and ironing.",
+    "She challenges Cyril’s orders and exposes the assumption that her unpaid work is automatic service.",
+    "George is confronted about his club, dependence and the nickname “Pompy-ompy Pearson.”",
+    "The personalities are restored, and Mrs Pearson proposes rummy and shared supper work.",
+    "The final questions examine satire, genuine social issues, modern relevance, drama and performance."
+  ],
+  "banned_topics": [
+    "Claims about legal rights or wages not mentioned in the play",
+    "A supernatural explanation beyond the dramatic device",
+    "Biographical information about J.B. Priestley not supplied"
+  ],
+  "must_include_keywords": [
+    "Mrs Annie Pearson",
+    "Mrs Fitzgerald",
+    "George Pearson",
+    "Doris Pearson",
+    "Cyril Pearson",
+    "London suburb",
+    "living-room",
+    "stage directions",
+    "contrast",
+    "fortune-telling cards",
+    "personality exchange",
+    "put your foot down",
+    "thoughtless",
+    "selfish",
+    "unpaid domestic work",
+    "yellow silk",
+    "Charlie Spence",
+    "tea",
+    "mending",
+    "stout",
+    "Clarendon",
+    "club",
+    "Pompy-ompy Pearson",
+    "satire",
+    "humour",
+    "caricature",
+    "social message",
+    "assertiveness",
+    "rummy",
+    "shared supper",
+    "firm hand"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The family is deliberately cruel.",
+      "correction": "They are spoilt, selfish and thoughtless, taking service for granted rather than planning cruelty."
+    },
+    {
+      "claim": "Mrs Pearson herself behaves boldly throughout.",
+      "correction": "Mrs Fitzgerald’s personality acts through Mrs Pearson’s body during most of the confrontation."
+    },
+    {
+      "claim": "The conflict is resolved by permanently frightening the family.",
+      "correction": "The personalities return, and Mrs Pearson uses firmness to create family time and shared responsibility."
+    },
+    {
+      "claim": "The body exchange should be treated as realistic psychology.",
+      "correction": "It is a comic dramatic device creating a sudden reversal of behaviour and power."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Q1(i) on the issues raised by the satire.",
+    "Continue with Q1(ii) on caricature, genuine problems and the resolution.",
+    "Use Q2 to consider present-day relevance.",
+    "Use Q3-Q5 for drama, enactment and comparison with reform-oriented plays or films."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The play is followed by five numbered discussion and performance tasks, with Q1 divided into two interpretive parts.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

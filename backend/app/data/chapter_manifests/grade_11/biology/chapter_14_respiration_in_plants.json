@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 14: Respiration in Plants",
+  "central_question": "How do plant cells break down respiratory substrates step by step and capture usable energy in ATP?",
+  "in_scope_units": [
+    "Do plants breathe and how gaseous exchange occurs without specialised organs.",
+    "Glycolysis and the conversion of glucose to pyruvate.",
+    "Alcoholic and lactic acid fermentation.",
+    "Pyruvate oxidation, TCA cycle and aerobic respiration.",
+    "Electron transport and oxidative phosphorylation.",
+    "The respiratory balance sheet and its assumptions.",
+    "Amphibolic nature of respiratory pathways.",
+    "Respiratory quotient and substrate dependence."
+  ],
+  "banned_topics": [
+    "Essential mineral elements and hydroponics",
+    "Mineral deficiency symptoms",
+    "Nitrogen fixation and nitrogen cycle"
+  ],
+  "must_include_keywords": [
+    "cellular respiration",
+    "respiratory substrate",
+    "ATP",
+    "stomata",
+    "lenticels",
+    "glycolysis",
+    "EMP pathway",
+    "cytoplasm",
+    "glucose",
+    "pyruvate",
+    "NADH",
+    "fermentation",
+    "ethanol",
+    "lactic acid",
+    "aerobic respiration",
+    "mitochondrial matrix",
+    "acetyl CoA",
+    "Krebs cycle",
+    "TCA cycle",
+    "oxaloacetate",
+    "FADH2",
+    "electron transport system",
+    "oxygen",
+    "oxidative phosphorylation",
+    "ATP synthase",
+    "respiratory balance sheet",
+    "amphibolic pathway",
+    "catabolism",
+    "anabolism",
+    "respiratory quotient"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Plants do not respire because they photosynthesise.",
+      "correction": "All living plant cells respire; non-green organs depend entirely on transported food."
+    },
+    {
+      "claim": "Oxygen is directly consumed in glycolysis and the TCA cycle.",
+      "correction": "Oxygen acts at the terminal electron-transport stage as the final acceptor."
+    },
+    {
+      "claim": "The respiratory pathway is purely catabolic.",
+      "correction": "Its intermediates are used in both breakdown and biosynthesis, making it amphibolic."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1 to compare respiration, combustion, aerobic respiration and fermentation.",
+    "Use NCERT Exercise 3 to trace glycolysis and its direct ATP balance.",
+    "Use NCERT Exercise 10 to calculate RQ for fat.",
+    "Use NCERT Exercise 8 to examine assumptions behind the ATP balance.",
+    "Use NCERT Exercise 9 to explain the amphibolic pathway."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-12 on glycolysis, fermentation, aerobic respiration, ETS, ATP balance, amphibolic pathways and RQ.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

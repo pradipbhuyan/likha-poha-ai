@@ -554,6 +554,17 @@ def fix_and_rewarm(
         # Non-fatal — continue to rewarm even if cache clear partially fails
         pass
 
+    # Step 1b: Flag this chapter's question bank rows for review too — they
+    # were most likely grounded in the same bad content as the lesson. Soft
+    # mark (not delete) so they stop being served but stay available for
+    # admin audit; the rebuild below regenerates fresh ones from scratch
+    # since needs_review rows don't count toward the "already has 60" skip.
+    try:
+        from app.services.question_bank_service import invalidate_bank_for_chapter  # noqa: PLC0415
+        invalidate_bank_for_chapter(board="CBSE", grade=grade, subject=subject, chapter=chapter)
+    except Exception:
+        pass
+
     # Step 2: Trigger rewarm in background
     try:
         from app.services.prewarm_service import prewarm_single_chapter  # noqa: PLC0415
@@ -567,8 +578,21 @@ def fix_and_rewarm(
     except Exception:
         pass
 
+    # Step 2b: Trigger question bank rebuild in background for the same chapter
+    try:
+        from app.services.prewarm_service import build_question_bank_for_chapter  # noqa: PLC0415
+        background_tasks.add_task(
+            build_question_bank_for_chapter,
+            grade,
+            "CBSE",
+            subject,
+            chapter,
+        )
+    except Exception:
+        pass
+
     # Step 3: Mark issue as fixed
-    note_prefix = f"[Auto] Fix-and-Rewarm triggered. Cleared {cleared} cache entries. Chapter '{chapter}' ({grade} {subject}) queued for regeneration."
+    note_prefix = f"[Auto] Fix-and-Rewarm triggered. Cleared {cleared} cache entries. Chapter '{chapter}' ({grade} {subject}) queued for regeneration (lesson + question bank)."
     existing_notes = issue.get("admin_notes") or ""
     combined_notes = (note_prefix + "\n\n" + existing_notes).strip()
 

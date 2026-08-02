@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "The Crisis of Democratic Order",
+  "central_question": "How did the political, economic and constitutional conflicts of the mid-1970s lead to the Emergency, and what did this episode reveal about the strengths and weaknesses of Indian democracy?",
+  "in_scope_units": [
+    "Background to Emergency: political polarisation, economic distress and growing dissatisfaction after 1971.",
+    "Gujarat and Bihar movements: student protests, Jayaprakash Narayan and the call for Total Revolution.",
+    "Railway Strike of 1974: labour unrest, workers’ rights and the government response.",
+    "Conflict with Judiciary: disputes over Fundamental Rights, constitutional amendments and the Kesavananda Bharati case.",
+    "Declaration of Emergency: the Allahabad High Court judgment, political confrontation and invocation of Article 352.",
+    "Consequences: censorship, preventive detention, suspension of rights, constitutional amendments and resistance.",
+    "Lessons of the Emergency: civil liberties, institutional safeguards and the tension between protest and governance.",
+    "Politics after Emergency: the 1977 election, formation of the Janata Party and defeat of the Congress.",
+    "Janata Government and Legacy: instability, return of Congress in 1980 and long-term changes in the party system."
+  ],
+  "banned_topics": [
+    "Detailed history of regional autonomy movements, which belongs to the chapter on Regional Aspirations.",
+    "Detailed post-1989 coalition politics and Mandal politics, which belong to the chapter on Recent Developments in Indian Politics."
+  ],
+  "must_include_keywords": [
+    "garibi hatao",
+    "inflation",
+    "Gujarat movement",
+    "Bihar movement",
+    "Jayaprakash Narayan",
+    "Total Revolution",
+    "Railway Strike of 1974",
+    "George Fernandes",
+    "Kesavananda Bharati case",
+    "A. N. Ray",
+    "Allahabad High Court",
+    "Raj Narain",
+    "Article 352",
+    "internal disturbances",
+    "press censorship",
+    "preventive detention",
+    "habeas corpus",
+    "Fundamental Rights",
+    "Forty-second Amendment",
+    "civil liberties",
+    "Shah Commission",
+    "1977 Lok Sabha election",
+    "Janata Party",
+    "Morarji Desai",
+    "Charan Singh",
+    "Jagjivan Ram",
+    "non-Congressism",
+    "backward castes",
+    "constitutional crisis",
+    "political crisis"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Emergency was imposed only because economic conditions had worsened.",
+      "correction": "Economic distress formed part of the background, but the immediate political confrontation followed the Allahabad High Court judgment, opposition demands for Indira Gandhi’s resignation and the government’s claim of a threat from internal disturbances."
+    },
+    {
+      "claim": "All democratic institutions completely disappeared during the Emergency.",
+      "correction": "Normal democratic politics was severely curtailed, rights were suspended and censorship imposed, but the Emergency was later withdrawn and elections were held in 1977, restoring democratic functioning."
+    },
+    {
+      "claim": "The Congress was defeated uniformly across India in 1977.",
+      "correction": "The anti-Congress wave was strongest in north India, while the Congress retained many seats in Maharashtra, Gujarat and Orissa and performed strongly in the southern States."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 6 to analyse the reasons officially given for declaring the Emergency.",
+    "Use NCERT Exercise 8 to compare the Emergency’s effects on civil liberties, the judiciary, the media, and the police and bureaucracy.",
+    "Use NCERT Exercise 7 to explain why the opposition won power at the Centre in 1977.",
+    "Use NCERT Exercise 9 to trace how the Emergency changed India’s party system.",
+    "Use NCERT Exercise 10 to examine why the 1977 party system appeared close to a two-party system."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with an EXERCISES section containing Questions 1–10.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

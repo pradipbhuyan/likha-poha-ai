@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 12",
+  "subject": "Sociology",
+  "chapter": "Patterns of Social Inequality and Exclusion",
+  "central_question": "In what ways is social inequality and exclusion a systematic, group-based feature of society (rather than a matter of individual merit or effort), and how have caste, tribe, gender and disability produced particular patterns of inequality and struggle in India?",
+  "in_scope_units": [
+    "Introduction: everyday examples of social inequality and exclusion in India, and the mistaken belief that hard work alone explains who is poor or rich",
+    "What is 'social' about social inequality and exclusion: social inequality is about groups (not individuals), forms of capital (economic, cultural, social), and social stratification (its three key principles)",
+    "Prejudice, stereotypes and discrimination as concepts distinct from social exclusion",
+    "Social exclusion as a systematic, structural phenomenon, and introduction of the four groups studied (Dalits, adivasis, women, the differently abled) plus transgender/third gender persons",
+    "Caste and tribe as systems justifying and perpetuating inequality: the caste system as a discriminatory system, and untouchability (its three dimensions and the terms Harijan/Dalit)",
+    "State and non-state initiatives addressing caste and tribe discrimination: reservations, key laws (Caste Disabilities Removal Act 1850, Constitution 1950, Prevention of Atrocities Act 1989, 93rd Amendment 2005), and Dalit political/cultural assertion",
+    "The Other Backward Classes (OBCs): how they are defined, the Kalelkar and Mandal Commissions, and disparities between upper and lower OBCs",
+    "Adivasi struggles: the historical impoverishment and displacement of adivasis under colonialism and after independence, and adivasi movements including the creation of Jharkhand and Chhattisgarh",
+    "Struggle for women's equality and rights: nineteenth-century reform movements (Rammohun Roy, Ranade, Jyotiba Phule, Sir Syed Ahmed Khan), women writers (Tarabai Shinde, Rokeya Sakhawat Hossain), the 1931 Karachi Congress declaration, and the resurgence of women's issues from the 1970s onward including the declining child sex ratio",
+    "The struggles of the disabled: the social construction of disability, common features of public perception of disability in India, the link between disability and poverty, and Census 2011's approach to disability"
+  ],
+  "banned_topics": [
+    "The market as a social institution, commodification, capitalism, or globalisation (these belong to the chapter 'The Market as a Social Institution')",
+    "Detailed discussion of nationalism, communalism, secularism, regionalism or civil society (these belong to the chapter 'The Challenges of Cultural Diversity')",
+    "The general sociological definition/history of caste, tribe and family as kinship institutions (this belongs to Chapter 3 on caste, tribe and family, though this chapter builds on and cites that background)"
+  ],
+  "must_include_keywords": [
+    "social inequality",
+    "social exclusion",
+    "economic capital",
+    "cultural capital",
+    "social capital",
+    "social stratification",
+    "ascribed status",
+    "endogamy",
+    "prejudice",
+    "stereotypes",
+    "discrimination",
+    "untouchability",
+    "purity-pollution",
+    "Harijan",
+    "Dalit",
+    "Scheduled Castes",
+    "Scheduled Tribes",
+    "reservations",
+    "Prevention of Atrocities Act 1989",
+    "Other Backward Classes",
+    "Mandal Commission",
+    "adivasi",
+    "Jharkhand",
+    "Chhattisgarh",
+    "Sardar Sarovar dam",
+    "sati",
+    "Raja Rammohun Roy",
+    "Jyotiba Phule",
+    "Tarabai Shinde",
+    "Stree Purush Tulana",
+    "Rokeya Sakhawat Hossain",
+    "Sultana's Dream",
+    "Karachi Session 1931",
+    "declining sex ratio",
+    "differently abled",
+    "Anita Ghai",
+    "Census 2011 disability"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Poor people remain poor mainly because they do not work hard enough.",
+      "correction": "The chapter explicitly rejects this: 'few work harder than those who are located at the lower ranks of society', citing back-breaking work like stone-breaking, digging and pulling rickshaws done by the poor who 'rarely improve their life chances' — inequality is explained by non-individual, group-based (social) differences, not effort."
+    },
+    {
+      "claim": "Untouchability simply means the literal avoidance of physical touch.",
+      "correction": "The text says untouchability 'refers not just to the avoidance or prohibition of physical contact but to a much broader set of social sanctions', with three equally important dimensions: exclusion, humiliation-subordination, and exploitation (e.g. forced/unpaid labour, prohibition from shared water sources or festivals)."
+    },
+    {
+      "claim": "OBCs are the same as, or just another name for, Dalits/Scheduled Castes.",
+      "correction": "The chapter distinguishes them clearly: untouchability (affecting Dalits) was 'the most visible and comprehensive form of social discrimination', while OBCs are service/artisanal castes subjected to discrimination 'short of untouchability'; OBCs are defined negatively (neither 'forward' castes nor Dalits) and are a much more diverse group, cutting across religions, not defined solely by caste."
+    },
+    {
+      "claim": "Gender inequality between men and women is a natural, biological fact.",
+      "correction": "The chapter argues gender inequality is social, not natural, citing counter-examples such as matrilineal societies (the Nairs of Kerala historically, and the Khasis of Meghalaya still today) and successful women farmers/traders in African societies as evidence that there is 'nothing biological about the inequalities that mark the relations between women and men'."
+    },
+    {
+      "claim": "Disability is purely a biological or medical condition located in the individual's body.",
+      "correction": "The chapter argues disability is also socially constructed: 'The disabled are rendered disabled not because they are biologically disabled but because society renders them so,' citing the example that buildings not designed to admit people with disabilities create disablement in education, employment and social life."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Activity 5.1 (comparing daily routines of the richest and poorest people known to the student) to introduce why hard work alone cannot explain social inequality.",
+    "Use NCERT Activity 5.2 (collecting examples of prejudiced behaviour from films/novels) to work through the distinction between prejudice and discrimination.",
+    "Use Tables 1 and 2 (percentage of population below the poverty line, 2011-12, and percentage that is affluent, 1999-2000, by caste/community group) and the accompanying 'Exercise for Tables 1 and 2' as the core worked example on the relationship between caste and economic inequality today.",
+    "Use Box 5.2 ('The City' by Daya Pawar) as a worked example on Dalit literary/cultural assertion.",
+    "Use Box 5.3 (extract from Tarabai Shinde's Stree Purush Tulana, 1882) and Box 5.4 (extract from Rokeya Sakhawat Hossain's Sultana's Dream, 1905) as worked examples on early women's writing against gender discrimination.",
+    "Close with Box 5.7 (Anita Ghai's quote on disability and schooling) and NCERT Activity 5.10 to discuss how the problems of the disabled are socially constituted."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with a 'Questions' section of 11 numbered questions (Q1 on social inequality vs individual inequality, through Q11 on disability as social vs physical), followed by a References list.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

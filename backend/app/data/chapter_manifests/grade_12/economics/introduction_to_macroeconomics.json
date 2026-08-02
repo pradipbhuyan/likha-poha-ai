@@ -1,0 +1,74 @@
+{
+  "grade": "Grade 12",
+  "subject": "Economics",
+  "chapter": "Introduction to Macroeconomics",
+  "central_question": "How does macroeconomics study the economy as a whole through aggregate output, employment, prices, sectors and the roles of markets and government?",
+  "in_scope_units": [
+    "Meaning and scope of macroeconomics and its focus on aggregate economic variables",
+    "Difference between microeconomics and macroeconomics and the idea of economic agents",
+    "Historical development of macroeconomics, the Great Depression and Keynes's contribution",
+    "Basic features of a capitalist economy, production factors and factor payments",
+    "The four sectors of an economy and their connections with domestic and external activity"
+  ],
+  "banned_topics": [
+    "Detailed national income measurement methods, which belong to National Income Accounting",
+    "Money creation and monetary policy instruments, which belong to Money and Banking",
+    "Detailed equilibrium-income and multiplier calculations, which belong to Determination of Income and Employment"
+  ],
+  "must_include_keywords": [
+    "macroeconomics",
+    "microeconomics",
+    "aggregate output",
+    "general price level",
+    "employment",
+    "economic agents",
+    "market mechanism",
+    "Adam Smith",
+    "John Maynard Keynes",
+    "Great Depression",
+    "General Theory",
+    "capitalist economy",
+    "private ownership",
+    "production for the market",
+    "wage labour",
+    "land",
+    "labour",
+    "capital",
+    "entrepreneurship",
+    "rent",
+    "wages",
+    "interest",
+    "profit",
+    "investment expenditure",
+    "firms",
+    "households",
+    "government",
+    "external sector",
+    "exports",
+    "imports",
+    "capital flows"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Macroeconomics is simply microeconomics applied to a very large firm or household.",
+      "correction": "Macroeconomics studies economy-wide aggregates and relationships that may behave differently from the choices of a single economic agent."
+    },
+    {
+      "claim": "The government has no economic role in a market economy.",
+      "correction": "The chapter explains that governments and statutory bodies pursue public goals and influence production, employment and social welfare even where markets are important."
+    },
+    {
+      "claim": "Capital in economics means only money kept by a business.",
+      "correction": "In the chapter, capital refers to produced means of production such as machinery and equipment, while investment expenditure adds to productive capacity."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1 to compare the subject matter of macroeconomics with microeconomics.",
+    "Use NCERT Exercise 2 to identify the important features of a capitalist economy.",
+    "Use NCERT Exercise 3 to explain the historical conditions in which macroeconomics emerged.",
+    "Use NCERT Exercise 4 to describe the four sectors and their major economic activities."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–4.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

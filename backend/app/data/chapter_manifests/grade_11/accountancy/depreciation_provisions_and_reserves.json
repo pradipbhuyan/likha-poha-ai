@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 11",
+  "subject": "Accountancy",
+  "chapter": "Depreciation, Provisions and Reserves",
+  "central_question": "How should a business allocate the cost of fixed assets, record their disposal, and distinguish prudent provisions from appropriations of profit called reserves?",
+  "in_scope_units": [
+    "Meaning, characteristics and causes of depreciation.",
+    "Need and factors affecting the amount of depreciation.",
+    "Straight-line and written-down-value methods.",
+    "Comparison and choice of depreciation methods.",
+    "Accounting treatment with and without a provision for depreciation account.",
+    "Disposal of assets and asset-disposal account.",
+    "Change in depreciation method.",
+    "Meaning and purpose of provisions and reserves.",
+    "Difference between provisions and reserves.",
+    "Revenue reserves, capital reserves, general reserves, specific reserves and secret reserves."
+  ],
+  "banned_topics": [
+    "Initial classification of assets and accounting concepts, which belong to Chapters 1 and 2.",
+    "General journal and ledger fundamentals, which belong to Chapter 3.",
+    "Final-account adjustments beyond depreciation and provisions, which belong to Chapter 9."
+  ],
+  "must_include_keywords": [
+    "depreciation",
+    "fixed asset",
+    "depletion",
+    "amortisation",
+    "wear and tear",
+    "obsolescence",
+    "efflux of time",
+    "matching principle",
+    "historical cost",
+    "residual value",
+    "useful life",
+    "depreciable amount",
+    "straight line method",
+    "fixed instalment method",
+    "written down value method",
+    "diminishing balance method",
+    "rate of depreciation",
+    "asset account",
+    "provision for depreciation",
+    "accumulated depreciation",
+    "asset disposal account",
+    "profit on sale",
+    "loss on sale",
+    "change in method",
+    "retrospective effect",
+    "provision",
+    "reserve",
+    "charge against profit",
+    "appropriation of profit",
+    "revenue reserve",
+    "capital reserve",
+    "general reserve",
+    "specific reserve",
+    "secret reserve"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Depreciation means setting aside cash to replace an asset.",
+      "correction": "Depreciation allocates depreciable cost as expense; it does not itself create a cash fund."
+    },
+    {
+      "claim": "Land always depreciates in the same way as machinery.",
+      "correction": "Depreciation applies where useful service potential is consumed; freehold land commonly has an unlimited life unless special circumstances apply."
+    },
+    {
+      "claim": "Provision and reserve are interchangeable.",
+      "correction": "A provision is a charge against profit for a known liability or reduction in asset value; a reserve is an appropriation of profit."
+    },
+    {
+      "claim": "Written-down-value depreciation is calculated each year on original cost.",
+      "correction": "It is calculated on the asset's opening book value, so the annual amount declines."
+    },
+    {
+      "claim": "Sale proceeds alone determine profit or loss on asset disposal.",
+      "correction": "Sale proceeds must be compared with the asset's book value after accumulated depreciation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the chapter's straight-line example: cost ₹2,50,000, residual value ₹50,000 and useful life 10 years, giving annual depreciation ₹20,000.",
+    "Use the machine example of ₹1,00,000 and 10-year useful life to explain matching and annual allocation.",
+    "Use the written-down-value Test Your Understanding sequence beginning with ₹1,00,000 and 10 per cent.",
+    "Use Illustrations 7 and 8 on furniture sale to prepare asset, provision for depreciation and disposal accounts.",
+    "Use the end questions on provisions, reserves and secret reserves to compare their purposes and effects."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Short Answer Questions, Long Answer Questions, numerical depreciation and disposal problems, and a Checklist to Test Your Understanding.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

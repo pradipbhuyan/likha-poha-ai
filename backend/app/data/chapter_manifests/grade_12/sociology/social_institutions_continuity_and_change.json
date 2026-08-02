@@ -1,0 +1,118 @@
+{
+  "grade": "Grade 12",
+  "subject": "Sociology",
+  "chapter": "Social Institutions: Continuity and Change",
+  "central_question": "How have the three central institutions of Indian society -- caste, tribe, and family -- been defined, historically transformed by colonialism and post-independence change, and how do they continue to shape identity today?",
+  "in_scope_units": [
+    "3.1 Caste and the Caste System: caste in the past -- varna and jati, the age and defining features of caste (birth, endogamy, food rules, hierarchy, sub-castes, hereditary occupation), purity and pollution",
+    "Colonialism and Caste: British ethnographic surveys, the 1901 Census under Herbert Risley, the Government of India Act 1935 and the creation of Scheduled Castes and Scheduled Tribes",
+    "Caste in the Present: nationalist-era anti-untouchability movements (Phule, Ambedkar, Ayyankali, Sri Narayana Guru, Periyar), the post-Independence state's contradictions, sanskritisation, dominant caste, and the 'invisibility' of caste for the privileged versus its visibility for Scheduled Castes/Tribes",
+    "3.2 Tribal Communities: definitions of tribe, permanent traits (region, language, physical characteristics) and acquired traits (livelihood, assimilation into Hindu society)",
+    "Tribe -- The Career of a Concept: the 1960s-70s scholarly debate on tribe versus caste-peasant continuum, and the critique that tribes are not 'pristine' or untouched by civilisation",
+    "National Development versus Tribal Development: displacement by dams, mines and forest loss; in-migration of non-tribals",
+    "Tribal Identity Today: resistance-based identity, statehood achievements (Jharkhand, Chhattisgarh), the rise of an educated tribal middle class, and land/forest versus ethnic-cultural identity movements",
+    "3.3 Family and Kinship: nuclear versus extended (joint) family, male/female-headed families, matrilineal/patrilineal descent",
+    "The Diverse Forms of the Family: matrilocal/patrilocal residence, matrilineal/patrilineal inheritance, patriarchy versus matriarchy"
+  ],
+  "banned_topics": [
+    "Detailed demographic statistics such as birth rate, death rate, sex ratio, or census population figures (this belongs to Chapter 2, The Demographic Structure of the Indian Society)",
+    "The socio-cultural dimensions of markets and colonial/developmental economic change as a distinct institution (this belongs to Chapter 4)",
+    "The detailed history of movements against caste, tribal or gender-based exclusion, and disability rights (this belongs to Chapter 5, which the chapter itself notes will cover untouchability struggles in more depth)",
+    "Detailed discussion of communalism, regionalism or linguistic chauvinism as challenges to national diversity (this belongs to Chapter 6)"
+  ],
+  "must_include_keywords": [
+    "caste",
+    "varna",
+    "jati",
+    "brahmana",
+    "kshatriya",
+    "vaishya",
+    "shudra",
+    "panchamas",
+    "endogamy",
+    "purity and pollution",
+    "hereditary occupation",
+    "colonialism",
+    "Herbert Risley",
+    "1901 Census",
+    "Government of India Act 1935",
+    "Scheduled Castes",
+    "Scheduled Tribes",
+    "Mahatma Jotiba Phule",
+    "Babasaheb Ambedkar",
+    "Ayyankali",
+    "Sri Narayana Guru",
+    "Periyar",
+    "sanskritisation",
+    "M.N. Srinivas",
+    "dominant caste",
+    "tribe",
+    "permanent traits",
+    "acquired traits",
+    "middle India",
+    "Gonds",
+    "Bhils",
+    "Santhals",
+    "Munda",
+    "adivasi",
+    "national development",
+    "tribal identity",
+    "Jharkhand",
+    "Chattisgarh",
+    "family",
+    "kinship",
+    "nuclear family",
+    "extended family",
+    "joint family",
+    "matrilineal",
+    "patrilineal",
+    "matrilocal",
+    "patrilocal",
+    "patriarchy",
+    "matriarchy"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "'Caste' and 'varna' mean exactly the same thing as 'jati' in Indian languages.",
+      "correction": "The chapter distinguishes varna, the four-fold all-India classification (brahmana, kshatriya, vaishya, shudra, excluding the 'panchamas'), from jati, the term most commonly used in Indian languages, which refers to a much more complex, regional or local sub-classification of hundreds or even thousands of castes and sub-castes."
+    },
+    {
+      "claim": "The caste system has always been a rigid, birth-determined hierarchy for the full three thousand years of its existence.",
+      "correction": "The chapter states that in its earliest phase (the late Vedic period, roughly 900-500 BC), the caste system was really a varna system of only four major divisions that were not very elaborate or rigid and were not determined by birth, with movement across categories possible; it was only in the post-Vedic period that caste became the rigid, birth-determined institution familiar today."
+    },
+    {
+      "claim": "Colonialism had little real effect on the institution of caste, which remained unchanged from ancient times.",
+      "correction": "The chapter states that some scholars argue what we know today as caste is more a product of colonialism than of ancient Indian tradition, citing British ethnographic surveys and especially the 1901 Census under Herbert Risley, which changed caste identities from being fluid and less rigid to being fixed once they began to be counted and officially recorded."
+    },
+    {
+      "claim": "Caste has become equally 'invisible' or equally 'visible' for all Indians in the present day.",
+      "correction": "The chapter explains this differs sharply by group: for the upper caste, urban middle and upper classes, caste has become relatively 'invisible' in public life because it has already done its job of securing them economic and educational advantages; for Scheduled Castes, Scheduled Tribes and backward castes, caste has become 'all too visible', tending to eclipse other dimensions of their identity because it remains their main collective asset and the basis of protective discrimination policies."
+    },
+    {
+      "claim": "Tribes in India are 'pristine' societies that have remained untouched by civilisation since ancient times.",
+      "correction": "The chapter explicitly states this idea is still common but not true; some scholars argue tribes should be seen as 'secondary' phenomena arising from exploitative and colonialist contact between pre-existing states and non-state groups, and gives examples such as Gond kingdoms in Central India and Rajput kingdoms that emerged through stratification among adivasi communities, showing tribes were not always the oppressed, isolated groups they are seen as today."
+    },
+    {
+      "claim": "The tribe-caste distinction was universally accepted by scholars as valid and unproblematic.",
+      "correction": "The chapter states that by the 1970s, all the major definitions of tribe were shown to be faulty; the tribe-peasantry distinction did not hold up against criteria like size, isolation, religion, and means of livelihood, since some 'tribes' like the Santhals, Gonds and Bhils are very large, some tribes have long since turned to settled agriculture, and even some non-tribal 'castes' have turned to hunting and gathering."
+    },
+    {
+      "claim": "Matriarchy (societies dominated by women) and matriliny (societies where property passes through the female line) are the same thing.",
+      "correction": "The chapter is explicit that matriarchy has been a theoretical rather than an empirical concept, with no historical or anthropological evidence of matriarchy (societies where women exercise dominance); however, matrilineal societies do exist, where women inherit property from their mothers but do not necessarily exercise control over it or act as decision makers in public affairs."
+    },
+    {
+      "claim": "The 'joint family' (extended family) has always been, and remains today, the dominant family form across all of India.",
+      "correction": "The chapter states the extended family is often seen as symptomatic of India, 'yet this is by no means the dominant form now or earlier'; it was confined to certain sections and certain regions, and the very term 'joint family' is not a native category -- I.P. Desai notes the words used for joint family in most Indian languages are translations of the English phrase."
+    }
+  ],
+  "recommended_example_progression": [
+    "Worked example based on the chapter's six defining features of caste (birth, endogamy, food rules, hierarchy, sub-castes/segmental organisation, hereditary occupation), reasoning through why caste is described as combining 'difference and separation' with 'wholism and hierarchy'.",
+    "Worked example based on the chapter's account of the 1901 Census under Herbert Risley, reasoning through how the census changed caste from a fluid identity to a fixed, recorded one.",
+    "Worked example based on Box 3.1 (Virginius Xaxa on tribal middle-class identity) reasoning through why the assertion of tribal identity is linked to the emergence of a tribal middle class.",
+    "Worked example citing NCERT end-of-chapter Question 6, reasoning through the evidence the chapter offers against the view that tribes are primitive, isolated, untouched communities.",
+    "Worked example citing NCERT end-of-chapter Question 10, reasoning through the difference between matriliny and matriarchy using the chapter's own definitions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with a numbered 'Questions' section containing ten questions (Q1-Q4 on caste, Q5-Q7 on tribe, Q8-Q10 on family and kinship), immediately followed by the References list.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

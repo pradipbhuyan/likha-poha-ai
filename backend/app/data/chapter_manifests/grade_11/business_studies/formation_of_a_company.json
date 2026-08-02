@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 11",
+  "subject": "Business Studies",
+  "chapter": "Formation of a Company",
+  "central_question": "What legal and managerial steps transform a business idea into an incorporated company that is ready to raise capital and commence operations?",
+  "in_scope_units": [
+    "Meaning and stages of company formation.",
+    "Promotion and the meaning and legal position of promoters.",
+    "Identification of opportunity and technical, financial and economic feasibility studies.",
+    "Name approval, signatories and appointment of professionals.",
+    "Memorandum of Association, its clauses and significance.",
+    "Articles of Association and other documents required for registration.",
+    "Incorporation procedure and the Certificate of Incorporation.",
+    "Effect and conclusiveness of incorporation and preliminary contracts.",
+    "Capital subscription by a public company.",
+    "SEBI approval, prospectus, intermediaries, minimum subscription, stock-exchange application and allotment."
+  ],
+  "banned_topics": [
+    "Comparative merits of sole proprietorship and partnership, which belong to Forms of Business Organisation.",
+    "Detailed merits and limitations of shares and debentures as financing sources, which belong to Sources of Business Finance.",
+    "Routine company management after formation."
+  ],
+  "must_include_keywords": [
+    "company formation",
+    "promotion",
+    "promoter",
+    "business opportunity",
+    "technical feasibility",
+    "financial feasibility",
+    "economic feasibility",
+    "name approval",
+    "Registrar of Companies",
+    "Memorandum of Association",
+    "name clause",
+    "registered office clause",
+    "objects clause",
+    "liability clause",
+    "capital clause",
+    "Articles of Association",
+    "consent of directors",
+    "statutory declaration",
+    "preliminary contract",
+    "fiduciary position",
+    "incorporation",
+    "Certificate of Incorporation",
+    "Corporate Identity Number",
+    "commencement of business",
+    "capital subscription",
+    "SEBI approval",
+    "prospectus",
+    "bankers",
+    "brokers",
+    "underwriters",
+    "minimum subscription",
+    "stock exchange",
+    "allotment of shares",
+    "return of allotment"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A promoter is an agent of the company before incorporation.",
+      "correction": "The company does not yet exist, so the promoter is not its agent and may be personally liable on pre-incorporation contracts."
+    },
+    {
+      "claim": "The Memorandum and Articles serve the same purpose.",
+      "correction": "The Memorandum defines the company's objects and external scope, while the Articles contain internal management rules."
+    },
+    {
+      "claim": "A company may freely undertake activities outside its objects clause.",
+      "correction": "Acts beyond the Memorandum are invalid and cannot be ratified even unanimously."
+    },
+    {
+      "claim": "A preliminary contract automatically binds the company after incorporation.",
+      "correction": "The company cannot ratify it as an existing principal; it may enter a fresh contract on similar terms."
+    },
+    {
+      "claim": "Every private company must issue a prospectus.",
+      "correction": "A private company cannot invite the public to subscribe and does not complete public capital-subscription formalities."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Short Answer Question 1 to sequence the stages of formation.",
+    "Use Long Answer Question 2 to organise the functions performed by promoters.",
+    "Use Long Answer Question 3 to explain the clauses of the Memorandum.",
+    "Use Long Answer Question 4 to distinguish Memorandum and Articles.",
+    "Use Long Answer Question 6 to integrate promotion, incorporation and capital subscription."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section includes Short Answer Questions 1–5, Long Answer Questions 1–6 and a project on the actual Registrar of Companies procedure.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

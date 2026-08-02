@@ -1,0 +1,99 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Distribution of Oceans and Continents",
+    "central_question": "What evidence and mechanisms explain the changing positions of continents and oceans through continental drift, sea-floor spreading and plate tectonics?",
+    "in_scope_units": [
+      "Continental drift, Pangaea, Panthalassa, Laurasia and Gondwanaland.",
+      "Evidence from continental fit, rocks, tillite, placer deposits and fossils.",
+      "Wegener’s proposed forces and post-drift convection ideas.",
+      "Ocean-floor configuration and earthquake and volcano patterns.",
+      "Sea-floor spreading and palaeomagnetism.",
+      "Plate tectonics, plate boundaries and movement of the Indian Plate."
+    ],
+    "banned_topics": [
+      "Detailed seismic-wave structure, which belongs to Interior of the Earth.",
+      "Detailed erosion and weathering, which belong to Geomorphic Processes.",
+      "Detailed Indian physiography, which belongs to Structure and Physiography."
+    ],
+    "must_include_keywords": [
+      "continental drift",
+      "Alfred Wegener",
+      "Pangaea",
+      "Panthalassa",
+      "Laurasia",
+      "Gondwanaland",
+      "jigsaw fit",
+      "Bullard",
+      "radiometric dating",
+      "tillite",
+      "placer deposits",
+      "fossils",
+      "Mesosaurus",
+      "pole-fleeing force",
+      "tidal force",
+      "Arthur Holmes",
+      "convection currents",
+      "ocean floor",
+      "continental margin",
+      "abyssal plain",
+      "mid-oceanic ridge",
+      "deep-sea trench",
+      "rim of fire",
+      "sea-floor spreading",
+      "Harry Hess",
+      "palaeomagnetism",
+      "magnetic polarity",
+      "oceanic crust",
+      "plate tectonics",
+      "lithospheric plate",
+      "asthenosphere",
+      "major plates",
+      "minor plates",
+      "divergent boundary",
+      "convergent boundary",
+      "subduction zone",
+      "transform boundary",
+      "Indian Plate",
+      "Tethys Sea",
+      "Deccan Traps"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Continents have always occupied present positions.",
+        "correction": "Wegener argued that they were once united in Pangaea."
+      },
+      {
+        "claim": "The modern shoreline gives the best fit.",
+        "correction": "Bullard used the 1,000-fathom line."
+      },
+      {
+        "claim": "Wegener’s forces were accepted as adequate.",
+        "correction": "Most scholars considered them too weak."
+      },
+      {
+        "claim": "Sea-floor spreading only creates crust.",
+        "correction": "Hess proposed creation at ridges and consumption at trenches."
+      },
+      {
+        "claim": "Continents move independently over ocean floor.",
+        "correction": "Continents are parts of moving lithospheric plates."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise 2(i) to explain Wegener’s forces.",
+      "Use Exercise 2(iii) to compare boundary types.",
+      "Use Exercise 3(i) to organise drift evidence.",
+      "Use Exercise 3(ii–iii) to compare theories and post-drift discoveries."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–v), 2(i–iv), 3(i–iii), and a Project Work task on earthquake damage."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Distribution of Oceans and Continents\n\n## What you will learn\nYou will understand Wegener’s continental drift theory and the breakup of Pangaea.\n\n## Simple explanation\nContinents and oceans have changed position. Wegener proposed one former supercontinent surrounded by a mega-ocean.\n\n## Step-by-step breakdown\n- **Early proposals**: Ortelius and Pellegrini considered earlier continental joining.\n- **Wegener**: In 1912 he presented a comprehensive drift theory.\n- **Pangaea**: The supercontinent meant all earth.\n- **Panthalassa**: The surrounding mega-ocean meant all water.\n- **First division**: Pangaea split into Laurasia and Gondwanaland.\n- **Later breakup**: These masses divided into today’s smaller continents.\n\n## Worked example\nQuestion: Why did matching Atlantic coastlines encourage continental-drift ideas?\n\nAnswer:\n- The chapter describes a remarkable fit between Africa and South America.\n- Complementary shapes suggest the continents were once adjoining.\n- Final answer: The fit provided an observable clue of earlier connection.\n\n## Common mistake\nWegener was not the first person ever to notice continental matching.\n\n## Quick check question\nQuestion: What were the supercontinent and mega-ocean called?\nAnswer: Pangaea and Panthalassa.\nExplanation: Their names mean all earth and all water.\n\n## Summary\n- Continental positions change.\n- Wegener proposed a supercontinent.\n- Pangaea split into two major masses.\n- Coastline fit was an early clue.",
+    "Core explanation": "# Core explanation: Distribution of Oceans and Continents\n\n## What you will learn\nYou will examine evidence for drift and evaluate Wegener’s proposed forces.\n\n## Simple explanation\nSimilar rocks, glacial deposits, minerals and fossils across separated continents support earlier connection.\n\n## Step-by-step breakdown\n- **Jigsaw fit**: Bullard found a strong fit at the 1,000-fathom line.\n- **Matching rocks**: Ancient belts in Brazil and western Africa correspond.\n- **Tillite**: Related glacial deposits reveal shared palaeoclimatic history.\n- **Placer gold**: Ghana deposits are linked with Brazilian source veins.\n- **Fossils**: Mesosaurus and other organisms occur on continents now separated by ocean.\n- **Forces**: Pole-fleeing and tidal forces were judged inadequate.\n\n## Worked example\nQuestion: Why is Mesosaurus distribution strong evidence for former connection?\n\nAnswer:\n- Its fossils occur in limited parts of South Africa and Brazil across the present Atlantic.\n- A small brackish-water reptile cannot easily explain such separated occurrence across a vast ocean.\n- Final answer: The fossil pattern independently supports earlier continental joining.\n\n## Common mistake\nEvidence shows specific correspondences, not that every feature is identical.\n\n## Quick check question\nQuestion: What is tillite?\nAnswer: A sedimentary rock formed from glacial deposits.\nExplanation: Matching tillite records shared glacial history.\n\n## Summary\n- Several evidence types support drift.\n- Rock and fossil matches cross oceans.\n- Tillite records palaeoclimate.\n- Wegener’s mechanism remained weak.",
+    "Worked examples": "# Worked examples: Distribution of Oceans and Continents\n\n## What you will learn\nYou will study ocean-floor discoveries and Hess’s sea-floor spreading hypothesis.\n\n## Simple explanation\nRidges, trenches and symmetrical rock-age and magnetic patterns supplied a mechanism missing from drift theory.\n\n## Step-by-step breakdown\n- **Ocean relief**: The floor includes margins, abyssal plains, ridges and trenches.\n- **Ridge activity**: Volcanic eruptions add new lava at ridge crests.\n- **Symmetry**: Equidistant rocks on both sides have similar age, composition and magnetism.\n- **Age pattern**: Youngest rocks lie at the crest and age outward.\n- **Sediments**: Ocean-floor sediments are thinner and younger than expected for ancient fixed floors.\n- **Hess**: New crust forms at ridges, moves outward and is consumed at trenches.\n\n## Worked example\nQuestion: How does symmetrical rock age support sea-floor spreading?\n\nAnswer:\n- Rocks equally distant from a ridge have similar ages, and age increases away from the crest.\n- New crust must form centrally and move outward in opposite directions.\n- Final answer: The mirrored pattern records continuous creation and spreading.\n\n## Common mistake\nOceanic crust is not older than continental crust.\n\n## Quick check question\nQuestion: Where is new oceanic crust generated?\nAnswer: At mid-oceanic ridge crests.\nExplanation: Lava erupts, solidifies and pushes older crust outward.\n\n## Summary\n- Ocean floors have major relief.\n- Ridges create crust.\n- Age and magnetic patterns are symmetrical.\n- Trenches consume crust.",
+    "Exam-style problems": "# Exam-style problems: Distribution of Oceans and Continents\n\n## What you will learn\nYou will understand plate tectonics and the three boundary types.\n\n## Simple explanation\nThe lithosphere is divided into rigid plates that move over the asthenosphere and carry continents.\n\n## Step-by-step breakdown\n- **Plate**: A plate is a large irregular slab of continental, oceanic or mixed lithosphere.\n- **Movement**: Plates move as rigid units over the asthenosphere.\n- **Plate groups**: The chapter lists seven major and several minor plates.\n- **Divergent**: Plates separate and new crust forms.\n- **Convergent**: Plates approach and crust is subducted or continents collide.\n- **Transform**: Plates slide past one another without creating or destroying crust.\n- **Rates**: Magnetic strips parallel to ridges help measure speed.\n\n## Worked example\nQuestion: What is the difference between transform and divergent boundaries?\n\nAnswer:\n- Transform boundaries conserve crust during horizontal sliding, while divergent boundaries generate new crust.\n- Their relative motion and effect on crust differ.\n- Final answer: Transform boundaries neither create nor destroy crust; divergent boundaries create it.\n\n## Common mistake\nMany plates contain both continental and oceanic lithosphere.\n\n## Quick check question\nQuestion: Where is crust destroyed as one plate sinks?\nAnswer: At a convergent boundary in a subduction zone.\nExplanation: Convergence can send one plate into the mantle.\n\n## Summary\n- Plates move over the asthenosphere.\n- Continents are carried by plates.\n- Three boundary types have different motions.\n- Magnetic stripes help measure movement.",
+    "Revision and recap": "# Revision and recap: Distribution of Oceans and Continents\n\n## What you will learn\nYou will study mantle convection and the movement of the Indian Plate.\n\n## Simple explanation\nInternal heat drives slow mantle circulation. India moved north across the Tethys Sea, experienced major volcanism and collided with Eurasia.\n\n## Step-by-step breakdown\n- **Convection**: Hot mantle rises, spreads, cools and sinks.\n- **Heat**: Radioactive decay and residual heat supply energy.\n- **Indian Plate**: It includes Peninsular India and Australian continental portions in the chapter’s framework.\n- **Tethys**: The sea once separated India from Asia.\n- **Deccan Traps**: Large lava outpouring occurred while India was still near the equator.\n- **Collision**: India collided with Asia about 40–50 million years ago and uplifted the Himalayas.\n- **Continuation**: The convergence and Himalayan rise continue.\n\n## Worked example\nQuestion: How does Indian Plate history connect volcanism and mountain building?\n\nAnswer:\n- The chapter links northward movement with Deccan lava outpouring and later collision with Eurasia.\n- Different plate settings produced different geological outcomes.\n- Final answer: The Indian Plate record links moving plates with both flood volcanism and continent–continent mountain building.\n\n## Common mistake\nHimalayan formation did not end with the first collision.\n\n## Quick check question\nQuestion: What boundary occurs along the Himalayas?\nAnswer: A continent–continent convergent boundary.\nExplanation: The Indian continental mass collided with Eurasia.\n\n## Summary\n- Mantle convection drives plates.\n- India crossed the Tethys Sea.\n- Deccan volcanism occurred during movement.\n- Collision formed and continues to uplift the Himalayas."
+  }
+}

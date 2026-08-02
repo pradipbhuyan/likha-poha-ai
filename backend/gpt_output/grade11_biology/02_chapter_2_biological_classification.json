@@ -1,0 +1,103 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 2: Biological Classification",
+    "central_question": "How do cell structure, organisation, nutrition, reproduction, and evolutionary relationships support the classification of organisms into major biological kingdoms and special acellular groups?",
+    "in_scope_units": [
+      "Historical change from two-kingdom classification to Whittaker's five-kingdom classification and its criteria.",
+      "Kingdom Monera, including bacterial forms, metabolism, archaebacteria, eubacteria, cyanobacteria, and mycoplasma.",
+      "Kingdom Protista, including chrysophytes, dinoflagellates, euglenoids, slime moulds, and four protozoan groups.",
+      "Kingdom Fungi, fungal organisation, nutrition, reproduction, sexual cycle, and major classes.",
+      "Brief defining features of Kingdom Plantae and Kingdom Animalia.",
+      "Viruses, viroids, prions, and lichens, including their structure, reproduction or association, and significance."
+    ],
+    "banned_topics": [
+      "Detailed classification of plant groups, which belongs to Plant Kingdom",
+      "Detailed animal phyla and vertebrate classes, which belong to Animal Kingdom",
+      "Detailed cell ultrastructure",
+      "Molecular genetics of viral replication"
+    ],
+    "must_include_keywords": [
+      "five-kingdom classification",
+      "R. H. Whittaker",
+      "Monera",
+      "Protista",
+      "Fungi",
+      "Plantae",
+      "Animalia",
+      "prokaryotic",
+      "eukaryotic",
+      "archaebacteria",
+      "halophiles",
+      "thermoacidophiles",
+      "methanogens",
+      "eubacteria",
+      "cyanobacteria",
+      "heterocyst",
+      "mycoplasma",
+      "chrysophytes",
+      "diatoms",
+      "dinoflagellates",
+      "red tide",
+      "euglenoids",
+      "pellicle",
+      "slime moulds",
+      "protozoans",
+      "hyphae",
+      "mycelium",
+      "plasmogamy",
+      "karyogamy",
+      "dikaryon",
+      "phycomycetes",
+      "ascomycetes",
+      "basidiomycetes",
+      "deuteromycetes",
+      "virus",
+      "viroid",
+      "prion",
+      "lichen"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "All organisms with cell walls belong to Plantae.",
+        "correction": "Cell-wall presence alone is insufficient; prokaryotes, fungi, and plants differ in cell structure, nutrition, and wall composition."
+      },
+      {
+        "claim": "All bacteria are heterotrophic pathogens.",
+        "correction": "Bacteria include autotrophs and heterotrophs; many are decomposers, nitrogen fixers, food producers, or nutrient recyclers."
+      },
+      {
+        "claim": "Protists are prokaryotic because they are mostly unicellular.",
+        "correction": "Protists are single-celled eukaryotes with a defined nucleus and membrane-bound organelles."
+      },
+      {
+        "claim": "Every fungus has septate hyphae.",
+        "correction": "Some fungi have aseptate, coenocytic hyphae; yeasts are unicellular."
+      },
+      {
+        "claim": "Viruses contain both DNA and RNA.",
+        "correction": "A virus contains either DNA or RNA as genetic material, never both."
+      },
+      {
+        "claim": "A viroid is a small virus with a protein coat.",
+        "correction": "A viroid is free, low-molecular-weight infectious RNA without a protein coat."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 1: explain why classification systems change with improved criteria and evolutionary knowledge.",
+      "NCERT Exercise 2: identify economically useful roles of heterotrophic bacteria and archaebacteria.",
+      "NCERT Exercise 6: compare the four major protozoan groups.",
+      "NCERT Exercise 9: compare fungal classes by nutrition and reproduction.",
+      "NCERT Exercises 5, 8, 11, and 12: distinguish viroids, viruses, and lichen partners and discuss the living status of viruses."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–12 for classification history, kingdom comparisons, fungi, protists, viruses, viroids, and lichens."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 2: Biological Classification\n\n## What you will learn\nYou will trace why biological classification changed from two kingdoms to five. You will identify the criteria used by Whittaker and understand why classifications are revised.\n\n## Simple explanation\nA useful classification must reflect more than outward appearance. As knowledge of cells, nutrition, reproduction, and evolution improved, organisms that had once been grouped together had to be separated.\n\n## Step-by-step breakdown\n- **Early systems**: Aristotle used simple morphological characters, while Linnaeus placed organisms in Plantae or Animalia.\n- **Two-kingdom limitation**: The system did not separate prokaryotes from eukaryotes, unicellular from multicellular organisms, or photosynthetic algae from non-photosynthetic fungi.\n- **Whittaker's proposal**: R. H. Whittaker proposed Monera, Protista, Fungi, Plantae, and Animalia in 1969.\n- **Classification criteria**: The principal criteria were cell structure, body organisation, mode of nutrition, reproduction, and phylogenetic relationships.\n- **Monera placement**: All prokaryotic organisms were grouped in Monera.\n- **Protista placement**: Unicellular eukaryotes were grouped in Protista.\n- **Fungal separation**: Fungi were separated from green plants because they are heterotrophic and have chitinous rather than cellulosic walls.\n- **Changing systems**: Future classifications may change as biological characteristics and evolutionary relationships become better understood.\n\n## Worked example\nQuestion: Based on NCERT Exercise 1, discuss how classification systems changed over time.\n\nSolution:\n- Early practical classifications and Aristotle's scheme used limited visible characters.\n- The two-kingdom system grouped biologically different organisms together.\n- Whittaker used cellular, organisational, nutritional, reproductive, and phylogenetic criteria to create five kingdoms.\n- The chapter states that classification will continue to change with improved understanding.\n- Final answer: Classification progressed from simple use-based and morphological groupings to a five-kingdom, phylogenetically informed system, and it remains open to revision.\n\n## Common mistake\nA classification is not wrong merely because it was older; it may become inadequate when new distinguishing evidence is discovered.\n\n## Quick check question\nQuestion: Which kingdom contains all prokaryotic organisms in Whittaker's system?\nAnswer: Kingdom Monera.\nExplanation: Whittaker separated prokaryotes from all eukaryotic kingdoms by placing them together in Monera.\n\n## Summary\n- Classification criteria expanded beyond gross morphology.\n- The two-kingdom system could not accommodate many organisms properly.\n- Whittaker proposed five kingdoms in 1969.\n- Classification changes as biological and evolutionary knowledge improves.",
+    "Core explanation": "# Core explanation: Chapter 2: Biological Classification\n\n## What you will learn\nYou will study Kingdom Monera and explain bacterial diversity in form, habitat, nutrition, reproduction, and usefulness. You will compare archaebacteria, eubacteria, cyanobacteria, and mycoplasma.\n\n## Simple explanation\nBacteria have simple prokaryotic organisation but extraordinary metabolic diversity. They occupy ordinary and extreme habitats and may be beneficial, neutral, or pathogenic.\n\n## Step-by-step breakdown\n- **Bacterial shapes**: Coccus is spherical, bacillus rod-shaped, vibrio comma-shaped, and spirillum spiral.\n- **Metabolic diversity**: Bacteria may be photosynthetic autotrophs, chemosynthetic autotrophs, or heterotrophs.\n- **Archaebacteria**: Halophiles, thermoacidophiles, and methanogens survive extreme salty, hot acidic, or marshy habitats because of distinctive cell-wall features.\n- **Methanogens**: They occur in ruminant guts and help generate methane or biogas from dung.\n- **Eubacteria**: True bacteria usually have a rigid cell wall and may possess flagella.\n- **Cyanobacteria**: They contain chlorophyll a; Nostoc and Anabaena may fix atmospheric nitrogen in heterocysts.\n- **Chemosynthesis**: Chemosynthetic bacteria oxidise inorganic substances and support nutrient recycling.\n- **Heterotrophic roles**: They decompose matter, make curd, produce antibiotics, fix nitrogen, or cause diseases.\n- **Reproduction**: Bacteria reproduce mainly by fission, form spores under adverse conditions, and may exchange DNA.\n- **Mycoplasma**: These are the smallest known living cells, lack a cell wall, may survive without oxygen, and many are pathogenic.\n\n## Worked example\nQuestion: Based on NCERT Exercise 2, state two economically important uses each of heterotrophic bacteria and archaebacteria.\n\nSolution:\n- The chapter identifies heterotrophic bacteria used in converting milk to curd and producing antibiotics; some also fix nitrogen in legume roots.\n- Methanogenic archaebacteria occur in ruminant guts and produce methane from dung.\n- Archaebacterial survival in harsh habitats also illustrates biological adaptation, though the clearest economic use stated is biogas production.\n- Final answer: Heterotrophic bacteria are useful in curd formation and antibiotic production; methanogenic archaebacteria are useful in biogas production from cattle dung.\n\n## Common mistake\nCalling every bacterium a disease-causing organism ignores the many decomposer, industrial, and nutrient-cycling roles described in the chapter.\n\n## Quick check question\nQuestion: What specialised cell permits nitrogen fixation in some cyanobacteria?\nAnswer: A heterocyst.\nExplanation: Nostoc and Anabaena may fix atmospheric nitrogen in specialised cells called heterocysts.\n\n## Summary\n- Monerans are prokaryotic and metabolically diverse.\n- Archaebacteria occupy harsh habitats.\n- Cyanobacteria are photosynthetic and some fix nitrogen.\n- Many heterotrophic bacteria are ecologically or economically useful.\n- Mycoplasma lack cell walls.",
+    "Worked examples": "# Worked examples: Chapter 2: Biological Classification\n\n## What you will learn\nYou will compare the major groups of Protista using structure, nutrition, movement, and ecological roles. You will identify how one kingdom connects features formerly assigned to plants, animals, and fungi.\n\n## Simple explanation\nProtista contains primarily aquatic, single-celled eukaryotes. Its members vary from photosynthetic plankton to predators, parasites, and saprophytic slime moulds.\n\n## Step-by-step breakdown\n- **Chrysophytes**: Diatoms and desmids are mainly photosynthetic plankton; silica-embedded diatom walls form diatomaceous earth.\n- **Diatom significance**: Diatoms are major ocean producers, and their deposits are used in polishing and filtration.\n- **Dinoflagellates**: Mostly marine photosynthetic organisms with cellulose plates and two flagella; Gonyaulax blooms may cause toxic red tides.\n- **Euglenoids**: They lack a cell wall and have a flexible pellicle; they photosynthesise in light but become heterotrophic without light.\n- **Slime moulds**: Saprophytic protists form a plasmodium and resistant, air-dispersed spores in adverse conditions.\n- **Amoeboid protozoans**: They move and capture prey using pseudopodia; Entamoeba includes parasitic forms.\n- **Flagellated protozoans**: They move with flagella; Trypanosoma causes sleeping sickness.\n- **Ciliated protozoans**: Numerous cilia direct food-laden water into a gullet, as in Paramoecium.\n- **Sporozoans**: They have an infectious spore-like stage; Plasmodium causes malaria.\n\n## Worked example\nQuestion: Based on NCERT Exercise 6, describe the four major groups of protozoans.\n\nSolution:\n- Classify them by locomotory structures and life-cycle features.\n- Amoeboid forms use pseudopodia, flagellated forms use flagella, and ciliated forms use numerous cilia.\n- Sporozoans are characterised by an infectious spore-like stage rather than a locomotory organ.\n- Use Amoeba or Entamoeba, Trypanosoma, Paramoecium, and Plasmodium as examples.\n- Final answer: The four groups are amoeboid, flagellated, ciliated, and sporozoan protozoans, represented respectively by Amoeba or Entamoeba, Trypanosoma, Paramoecium, and Plasmodium.\n\n## Common mistake\nDo not classify Euglena as a protozoan merely because it can feed heterotrophically; the chapter places euglenoids as a separate protistan group.\n\n## Quick check question\nQuestion: Why can Euglena be described as nutritionally flexible?\nAnswer: It is photosynthetic in sunlight but behaves heterotrophically when deprived of sunlight.\nExplanation: Its pigments support photosynthesis, while absence of light causes it to feed on smaller organisms.\n\n## Summary\n- Protists are unicellular eukaryotes.\n- Photosynthetic protists include diatoms and many dinoflagellates.\n- Euglenoids combine autotrophic and heterotrophic nutrition.\n- Protozoan groups differ mainly in movement and life-cycle traits.",
+    "Exam-style problems": "# Exam-style problems: Chapter 2: Biological Classification\n\n## What you will learn\nYou will explain fungal body organisation, nutrition, reproduction, and the defining features of four fungal classes. You will use spore type and mycelial structure to classify examples.\n\n## Simple explanation\nFungi are absorptive heterotrophs with chitin-containing walls. Most have hyphae forming a mycelium and reproduce through vegetative, asexual, and sexual processes.\n\n## Step-by-step breakdown\n- **Body organisation**: Except for unicellular yeasts, fungi are filamentous; hyphae collectively form a mycelium.\n- **Hyphal types**: Hyphae may be septate or aseptate and coenocytic.\n- **Nutrition**: Saprophytes absorb from dead matter, parasites use living hosts, and symbionts form lichens or mycorrhizae.\n- **Vegetative reproduction**: Fragmentation, fission, and budding occur.\n- **Asexual spores**: Conidia, sporangiospores, and zoospores are formed in characteristic structures.\n- **Sexual cycle**: Plasmogamy is cytoplasmic fusion, karyogamy is nuclear fusion, and meiosis restores haploid spores.\n- **Dikaryophase**: Ascomycetes and basidiomycetes may retain two haploid nuclei per cell before karyogamy.\n- **Phycomycetes**: They usually have aseptate coenocytic mycelia and form zoospores or aplanospores; examples include Mucor, Rhizopus, and Albugo.\n- **Ascomycetes**: Septate sac fungi form conidia and ascospores in asci; examples include yeast, Penicillium, Aspergillus, and Neurospora.\n- **Basidiomycetes**: They form basidiospores on basidia; mushrooms, rusts, and smuts belong here.\n- **Deuteromycetes**: Only asexual or vegetative phases are known, and conidia are produced; examples include Alternaria and Trichoderma.\n\n## Worked example\nQuestion: Based on NCERT Exercise 9, compare the fungal classes by mode of reproduction.\n\nSolution:\n- Phycomycetes form zoospores or aplanospores asexually and zygospores sexually.\n- Ascomycetes form conidia asexually and ascospores in asci sexually.\n- Basidiomycetes commonly reproduce vegetatively by fragmentation and form basidiospores after karyogamy and meiosis in basidia.\n- Deuteromycetes have only known asexual reproduction by conidia.\n- Final answer: Fungal classes are distinguished by mycelial organisation and characteristic spores: phycomycete zoospores or zygospores, ascomycete conidia or ascospores, basidiomycete basidiospores, and deuteromycete conidia.\n\n## Common mistake\nA dikaryon is not diploid; it contains two separate haploid nuclei, written n + n.\n\n## Quick check question\nQuestion: Which fungal class is called imperfect fungi, and why?\nAnswer: Deuteromycetes, because only their asexual or vegetative stages are known.\nExplanation: When a sexual stage is discovered, the organism may be reassigned to the appropriate fungal class.\n\n## Summary\n- Fungal cell walls contain chitin and polysaccharides.\n- Hyphae form the mycelium.\n- Sexual reproduction includes plasmogamy, karyogamy, and meiosis.\n- Spore type and fruiting structures distinguish fungal classes.",
+    "Revision and recap": "# Revision and recap: Chapter 2: Biological Classification\n\n## What you will learn\nYou will review Plantae and Animalia and distinguish viruses, viroids, prions, and lichens. You will evaluate why viruses challenge a simple living versus non-living classification.\n\n## Simple explanation\nSome biological entities do not fit neatly into cellular kingdoms. Viruses are acellular obligate parasites, viroids are infectious RNA, prions are infectious proteins, and lichens are dual-organism symbioses.\n\n## Step-by-step breakdown\n- **Plantae**: It includes eukaryotic, chlorophyll-containing organisms with mainly cellulosic walls; some are partially heterotrophic.\n- **Animalia**: Animals are multicellular heterotrophic eukaryotes without cell walls and generally obtain food by ingestion.\n- **Virus nature**: Viruses are inert and crystallisable outside a host but replicate by taking over host-cell machinery.\n- **Virus composition**: A virus is nucleoprotein containing either RNA or DNA enclosed by a protein capsid made of capsomeres.\n- **Host patterns**: Plant viruses commonly have single-stranded RNA, animal viruses may have RNA or DNA, and bacteriophages are usually double-stranded DNA viruses.\n- **Viroid**: A viroid is low-molecular-weight infectious RNA without a protein coat.\n- **Prion**: A prion is an infectious, abnormally folded protein associated with neurological disease.\n- **Lichen**: A lichen combines an autotrophic algal phycobiont with a heterotrophic fungal mycobiont.\n- **Pollution indicator**: Lichens do not grow well in polluted areas and therefore indicate air quality.\n\n## Worked example\nQuestion: Based on NCERT Exercises 5 and 11, distinguish viroids from viruses and summarise viral structure.\n\nSolution:\n- A virus has genetic material—either DNA or RNA—surrounded by a protein capsid.\n- A viroid consists only of small infectious RNA and lacks the protein coat.\n- Both require living systems for multiplication, but their structures differ fundamentally.\n- Final answer: Viruses are nucleoprotein particles with either DNA or RNA inside a capsid; viroids are smaller infectious RNA molecules without a capsid.\n\n## Common mistake\nDo not state that viruses are ordinary cells: they lack cellular organisation and use host machinery to reproduce.\n\n## Quick check question\nQuestion: What do the terms phycobiont and mycobiont mean in a lichen?\nAnswer: The phycobiont is the autotrophic algal partner, and the mycobiont is the heterotrophic fungal partner.\nExplanation: The alga prepares food, while the fungus provides shelter, water, and mineral nutrients.\n\n## Summary\n- Plantae and Animalia are cellular eukaryotic kingdoms.\n- Viruses are acellular and host-dependent.\n- Viroids are infectious RNA without protein coats.\n- Prions are infectious proteins.\n- Lichens are mutualistic algal–fungal associations."
+  }
+}

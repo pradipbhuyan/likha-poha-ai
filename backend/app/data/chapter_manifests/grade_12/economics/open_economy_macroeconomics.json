@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 12",
+  "subject": "Economics",
+  "chapter": "Open Economy Macroeconomics",
+  "central_question": "How do international trade, financial flows and exchange rates affect a country's external accounts and equilibrium income?",
+  "in_scope_units": [
+    "Meaning of an open economy and output, financial and labour-market linkages",
+    "Balance of payments and the current account",
+    "Balance of trade, services, transfers and net invisibles",
+    "Capital account, asset transactions, FDI, FII and external borrowing",
+    "Balance of payments surplus or deficit, reserve transactions, autonomous and accommodating transactions and errors and omissions",
+    "Foreign exchange market, demand and supply of foreign exchange",
+    "Flexible exchange rates, depreciation, appreciation and exchange-rate influences",
+    "Purchasing power parity and long-run exchange rates",
+    "Fixed exchange rates, devaluation, revaluation and central-bank intervention",
+    "Merits and demerits of fixed and flexible systems and managed floating",
+    "Open-economy national-income identity, import function and the open-economy multiplier"
+  ],
+  "banned_topics": [
+    "Domestic money creation and RBI monetary-policy tools, which belong to Money and Banking",
+    "Government deficit and debt analysis, which belongs to Government Budget and the Economy",
+    "Closed-economy multiplier derivation in detail, which belongs to Determination of Income and Employment"
+  ],
+  "must_include_keywords": [
+    "open economy",
+    "output market",
+    "financial market",
+    "labour market",
+    "imports",
+    "exports",
+    "leakage",
+    "injection",
+    "balance of payments",
+    "current account",
+    "balance of trade",
+    "net invisibles",
+    "transfer payments",
+    "capital account",
+    "Foreign Direct Investment",
+    "Foreign Institutional Investment",
+    "current account deficit",
+    "official reserve transactions",
+    "autonomous transactions",
+    "accommodating transactions",
+    "errors and omissions",
+    "foreign exchange market",
+    "foreign exchange rate",
+    "demand for foreign exchange",
+    "supply of foreign exchange",
+    "flexible exchange rate",
+    "depreciation",
+    "appreciation",
+    "interest rate differential",
+    "purchasing power parity",
+    "fixed exchange rate",
+    "devaluation",
+    "revaluation",
+    "speculative attack",
+    "managed floating",
+    "net exports",
+    "marginal propensity to import",
+    "open economy multiplier"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A current-account deficit means the balance of payments cannot balance.",
+      "correction": "A current-account deficit can be financed by a capital-account surplus or official reserve sales; the accounting balance includes these financing flows."
+    },
+    {
+      "claim": "Depreciation and devaluation are interchangeable terms.",
+      "correction": "Depreciation is a market-driven fall in the domestic currency under flexible rates, while devaluation is an official increase in the exchange rate under a fixed system."
+    },
+    {
+      "claim": "Domestic demand for goods is identical to demand for domestic goods.",
+      "correction": "Domestic demand includes spending on imports, while demand for domestic goods includes exports and excludes imported goods."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Table 6.1 and NCERT Exercises 1–2 to distinguish trade balance, current account, capital account and reserve transactions.",
+    "Use the London-tourist example to explain the foreign exchange market and rate.",
+    "Use the import-demand shift in the flexible-rate diagram and NCERT Exercises 6–7 to distinguish depreciation from devaluation.",
+    "Use Example 6.1 and NCERT Exercises 3–4 and 15 to interpret purchasing power parity and real exchange rates.",
+    "Use the fixed-rate intervention example and NCERT Exercise 8 to explain central-bank reserve operations and managed floating.",
+    "Use Example 6.2 and NCERT Exercises 10–14 to explain the import leakage and open-economy multiplier.",
+    "Use NCERT Exercises 17–19 to evaluate current-account deficits and exchange-rate arrangements."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–19.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

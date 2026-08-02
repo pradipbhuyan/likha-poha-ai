@@ -1,0 +1,91 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 10: Conic Sections",
+    "central_question": "How do geometric locus definitions and cone intersections lead to the standard equations and properties of circles, parabolas, ellipses, and hyperbolas?",
+    "in_scope_units": [
+      "Sections of a double-napped right circular cone.",
+      "Circle, ellipse, parabola, and hyperbola from cutting-plane angles.",
+      "Degenerate conic sections at the vertex.",
+      "Circle definition, equation, centre, radius, and completing squares.",
+      "Parabola definition, standard equations, focus, directrix, axis, and latus rectum.",
+      "Ellipse definition, axis relation, eccentricity, standard equations, axes, foci, vertices, and latus rectum.",
+      "Hyperbola definition, axis relation, eccentricity, standard equations, axes, foci, vertices, and latus rectum.",
+      "Applications and locus problems involving mirrors, arches, beams, rods, and flag posts."
+    ],
+    "banned_topics": [
+      "Translated or rotated conics with arbitrary centres or axes, which the chapter states are beyond scope.",
+      "Asymptotes and tangent-normal theory.",
+      "Polar equations of conics."
+    ],
+    "must_include_keywords": [
+      "double-napped cone",
+      "vertex",
+      "axis",
+      "generator",
+      "nappe",
+      "conic section",
+      "degenerate conic",
+      "circle",
+      "centre",
+      "radius",
+      "parabola",
+      "focus",
+      "directrix",
+      "axis of parabola",
+      "latus rectum",
+      "ellipse",
+      "foci",
+      "major axis",
+      "minor axis",
+      "semi-major axis",
+      "semi-minor axis",
+      "eccentricity",
+      "hyperbola",
+      "transverse axis",
+      "conjugate axis",
+      "standard equation",
+      "completing squares",
+      "constant sum",
+      "constant difference"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every plane section of a cone is non-degenerate.",
+        "correction": "A plane through the vertex may produce a point, line, or pair of intersecting lines."
+      },
+      {
+        "claim": "The centre in (x+h)²+(y+k)²=r² is (h,k).",
+        "correction": "The centre is (−h,−k)."
+      },
+      {
+        "claim": "The coefficient in y²=4ax equals a.",
+        "correction": "The coefficient equals 4a."
+      },
+      {
+        "claim": "For an ellipse, a is always under x².",
+        "correction": "a is the semi-major axis and is associated with the larger denominator."
+      },
+      {
+        "claim": "Ellipse and hyperbola both satisfy c²=a²−b².",
+        "correction": "Ellipse: c²=a²−b²; hyperbola: c²=a²+b²."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Section 10.2 for classification of cone sections.",
+      "NCERT Example 3 for completing squares in a circle.",
+      "NCERT Example 5 for reading parabola parameters.",
+      "NCERT Example 9 for ellipse parameters.",
+      "NCERT Examples 14 and 17 for hyperbola parameters and a parabolic-mirror application."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 10.1, 10.2, 10.3, and 10.4 followed by the Miscellaneous Exercise on Chapter 10."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Conic Sections\n\n## What you will learn\nYou will understand how a plane cuts a double-napped cone to form conic sections. You will classify circle, ellipse, parabola, hyperbola, and degenerate sections using the angles α and β.\n\n## Simple explanation\nA conic is an intersection of a plane with a right circular cone. The plane’s direction and whether it passes through the vertex determine the resulting curve.\n\n## Step-by-step breakdown\n- **Cone parts**: The cone has a vertex, axis, generators, and two nappes.\n- **Circle**: β=90° and the plane cuts one nappe.\n- **Ellipse**: α<β<90° and the plane cuts one nappe.\n- **Parabola**: β=α and the plane is parallel to a generator.\n- **Hyperbola**: 0≤β<α and the plane cuts both nappes.\n- **Degenerate point**: At the vertex with α<β≤90°, the section is a point.\n- **Degenerate lines**: At the vertex, β=α gives a line and β<α gives intersecting lines.\n\n## Worked example\nQuestion: Using NCERT Section 10.2.1, identify the conic when the cutting plane makes β=α with the cone’s axis relation.\n\nSolution:\n- The plane is parallel to a generator of the cone.\n- It cuts entirely across one nappe when not passing through the vertex.\n- Final answer: The section is a parabola.\n\n## Common mistake\nDo not classify a conic only by appearance; the plane’s position relative to the cone is decisive.\n\n## Quick check question\nQuestion: Using NCERT Section 10.2.1, what conic is obtained for 0≤β<α away from the vertex?\nAnswer: A hyperbola.\nExplanation: The plane cuts both nappes of the cone.\n\n## Summary\n- Conics arise as plane sections of a cone.\n- Angle conditions classify the four non-degenerate conics.\n- Passing through the vertex creates degenerate cases.",
+    "Core explanation": "# Core explanation: Conic Sections\n\n## What you will learn\nYou will define a circle geometrically and derive its standard equation. You will find a centre and radius by completing squares and form equations from geometric conditions.\n\n## Simple explanation\nA circle contains all points at the same distance r from a fixed centre (h,k). Applying the distance formula gives its equation.\n\n## Step-by-step breakdown\n- **Definition**: A circle is the locus of points equidistant from a fixed centre.\n- **Standard equation**: (x−h)²+(y−k)²=r².\n- **Origin centre**: For h=k=0, x²+y²=r².\n- **Reading parameters**: The centre and radius are visible after writing the equation in standard form.\n- **Completing squares**: Group x and y terms to convert a general-looking equation.\n- **Point condition**: A point lies on the circle when its coordinates satisfy the equation.\n- **Unknown centre**: Additional point and line conditions determine h,k,r.\n\n## Worked example\nQuestion: Using NCERT Example 3, find the centre and radius of x²+y²+8x+10y−8=0.\n\nSolution:\n- Group terms: (x²+8x)+(y²+10y)=8.\n- Complete squares by adding 16 and 25 to both sides.\n- Obtain (x+4)²+(y+5)²=49.\n- Final answer: Centre=(−4,−5) and radius=7.\n\n## Common mistake\nDo not read the centre as (4,5) from (x+4)²+(y+5)²; standard form uses x−h and y−k.\n\n## Quick check question\nQuestion: Using NCERT Exercise 10.1 Question 15, does (−2.5,3.5) lie inside, outside, or on x²+y²=25?\nAnswer: It lies inside the circle.\nExplanation: (−2.5)²+(3.5)²=18.5<25.\n\n## Summary\n- The circle equation comes from constant distance.\n- Completing squares reveals centre and radius.\n- Comparing squared distance with r² locates a point relative to the circle.",
+    "Worked examples": "# Worked examples: Conic Sections\n\n## What you will learn\nYou will define a parabola by focus and directrix and use its four standard equations. You will find its axis, opening direction, focus, directrix, and latus rectum.\n\n## Simple explanation\nEvery point of a parabola is equally distant from a fixed focus and a fixed directrix. With vertex at the origin, its equation depends on the axis and opening direction.\n\n## Step-by-step breakdown\n- **Definition**: Distance to the focus equals perpendicular distance to the directrix.\n- **Horizontal forms**: y²=4ax opens right and y²=−4ax opens left.\n- **Vertical forms**: x²=4ay opens up and x²=−4ay opens down.\n- **Focus and directrix**: For y²=4ax, focus=(a,0) and directrix x=−a.\n- **Axis**: The squared variable is perpendicular to the axis direction.\n- **Symmetry**: A standard parabola is symmetric about its axis.\n- **Latus rectum**: Its length is 4a.\n\n## Worked example\nQuestion: Using NCERT Example 5, analyse y²=8x.\n\nSolution:\n- Compare y²=8x with y²=4ax, giving 4a=8 and a=2.\n- The positive x coefficient means it opens right along the x-axis.\n- Use the standard focus, directrix, and latus-rectum formulas.\n- Final answer: Focus=(2,0), directrix x=−2, axis is the x-axis, and latus rectum length=8.\n\n## Common mistake\nDo not take a as the coefficient of x; the coefficient is 4a.\n\n## Quick check question\nQuestion: Using NCERT Example 7, find the parabola with vertex (0,0) and focus (0,2).\nAnswer: x²=8y.\nExplanation: The axis is the y-axis, a=2, and the upward standard form is x²=4ay.\n\n## Summary\n- A parabola is defined by equal distances.\n- Four standard forms encode axis and opening direction.\n- The latus rectum length is 4a.",
+    "Exam-style problems": "# Exam-style problems: Conic Sections\n\n## What you will learn\nYou will analyse ellipses using foci, axes, eccentricity, and latus rectum. You will determine orientation from denominators and construct equations from geometric data.\n\n## Simple explanation\nAn ellipse has a constant sum of distances to two foci. In standard form, the larger denominator belongs to the major axis.\n\n## Step-by-step breakdown\n- **Definition**: PF1+PF2 is a constant equal to 2a.\n- **Axis relation**: a²=b²+c², so c=√(a²−b²).\n- **Eccentricity**: e=c/a, with 0<e<1 for a non-circular ellipse.\n- **Horizontal major axis**: x²/a²+y²/b²=1, a>b.\n- **Vertical major axis**: x²/b²+y²/a²=1, a>b.\n- **Vertices and foci**: They lie on the major axis at distance a and c from the centre.\n- **Latus rectum**: Its length is 2b²/a.\n\n## Worked example\nQuestion: Using NCERT Example 9, analyse x²/25+y²/9=1.\n\nSolution:\n- The larger denominator 25 is under x², so the major axis is horizontal.\n- a=5,b=3, and c=√(25−9)=4.\n- Use vertices (±a,0), foci (±c,0), e=c/a, and 2b²/a.\n- Final answer: Foci=(±4,0), vertices=(±5,0), major axis length=10, minor axis length=6, e=4/5, latus rectum=18/5.\n\n## Common mistake\nDo not identify a with the x denominator automatically; a is the semi-major axis and belongs to the larger denominator.\n\n## Quick check question\nQuestion: Using NCERT Example 11, find the ellipse with vertices (±13,0) and foci (±5,0).\nAnswer: x²/169+y²/144=1.\nExplanation: a=13,c=5, so b²=a²−c²=169−25=144.\n\n## Summary\n- An ellipse uses a constant sum of focal distances.\n- The larger denominator identifies the major axis.\n- a²=b²+c² links axes and foci.",
+    "Revision and recap": "# Revision and recap: Conic Sections\n\n## What you will learn\nYou will analyse hyperbolas and compare all four conics. You will apply standard equations, eccentricity, latus rectum, and conic models to NCERT applications.\n\n## Simple explanation\nA hyperbola has a constant difference of distances from two foci. The positive squared term identifies its transverse axis, and its eccentricity is greater than one.\n\n## Step-by-step breakdown\n- **Definition**: The farther focal distance minus the nearer is 2a.\n- **Axis relation**: c²=a²+b², or b²=c²−a².\n- **Horizontal form**: x²/a²−y²/b²=1.\n- **Vertical form**: y²/a²−x²/b²=1.\n- **Eccentricity**: e=c/a≥1, and for a non-degenerate standard hyperbola e>1.\n- **Vertices and foci**: They lie on the transverse axis at distances a and c.\n- **Latus rectum**: Its length is 2b²/a.\n- **Conic comparison**: Circle: one centre/radius; parabola: focus-directrix equality; ellipse: focal sum; hyperbola: focal difference.\n\n## Worked example\nQuestion: Using NCERT Example 14(i), analyse x²/9−y²/16=1.\n\nSolution:\n- The positive term is x²/9, so the transverse axis is horizontal.\n- a=3,b=4, and c=√(a²+b²)=5.\n- Use the standard vertex, focus, eccentricity, and latus-rectum formulas.\n- Final answer: Foci=(±5,0), vertices=(±3,0), e=5/3, and latus rectum length=32/3.\n\n## Common mistake\nDo not use the ellipse relation c²=a²−b² for a hyperbola; use c²=a²+b².\n\n## Quick check question\nQuestion: Using NCERT Example 17, a parabolic mirror has focus 5 cm from its vertex and depth 45 cm. What is its width AB?\nAnswer: AB=60 cm.\nExplanation: The section is y²=20x; at x=45, y=±30, so the full width is 60 cm.\n\n## Summary\n- The positive squared term identifies a hyperbola’s transverse axis.\n- Ellipse and hyperbola use different relations among a,b,c.\n- Standard conics model mirrors, arches, beams, or moving loci."
+  }
+}

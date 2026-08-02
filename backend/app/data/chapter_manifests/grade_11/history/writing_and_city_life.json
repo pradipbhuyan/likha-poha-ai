@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 11",
+  "subject": "History",
+  "chapter": "Writing and City Life",
+  "central_question": "How did geography, specialised urban life, trade, political institutions and writing together shape Mesopotamian civilisation and its legacy?",
+  "in_scope_units": [
+    "Mesopotamia’s geography, archaeology and the environmental foundations of settlement.",
+    "The significance of urbanism, division of labour, organised trade, storage and water transport.",
+    "The movement of goods into cities and Mesopotamia’s dependence on imported raw materials.",
+    "The development, system, literacy and uses of cuneiform writing.",
+    "Urbanisation in southern Mesopotamia through temples, kings, warfare, labour and technological change.",
+    "Urban artefacts and everyday life in Ur, including seals, houses, family and burial practices.",
+    "Mari as a trading town in a pastoral zone and the palace of King Zimrilim.",
+    "Mesopotamian attitudes to cities, the Gilgamesh Epic and the scholarly legacy of writing.",
+    "Assurbanipal’s library and Nabonidus’s efforts to recover and preserve the past."
+  ],
+  "banned_topics": [
+    "Detailed political history of the Roman Empire, which belongs to An Empire Across Three Continents.",
+    "The rise and organisation of the Mongol Empire, which belongs to Nomadic Empires.",
+    "Harappan urbanism except for the limited comparison with Mohenjo-daro made in the chapter."
+  ],
+  "must_include_keywords": [
+    "Mesopotamia",
+    "Euphrates",
+    "Tigris",
+    "urbanism",
+    "division of labour",
+    "water transport",
+    "trade",
+    "Uruk",
+    "cuneiform",
+    "clay tablets",
+    "Sumerian",
+    "Akkadian",
+    "literacy",
+    "temple",
+    "king",
+    "Ur",
+    "cylinder seal",
+    "Mari",
+    "pastoralists",
+    "Zimrilim",
+    "Gilgamesh Epic",
+    "Assurbanipal",
+    "Nineveh",
+    "Nabonidus",
+    "mathematics",
+    "astronomy",
+    "scribes"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Mesopotamian cities arose automatically because the soil was fertile.",
+      "correction": "Productive agriculture was important, but urban life also required specialised labour, organised trade, storage, transport, political coordination and record keeping."
+    },
+    {
+      "claim": "Writing began mainly to produce literature.",
+      "correction": "The earliest tablets around 3200 BCE were lists of goods brought into or distributed from temples; literary and legal uses developed later."
+    },
+    {
+      "claim": "Everyone in Mesopotamia could read cuneiform.",
+      "correction": "Literacy was limited because scribes had to master hundreds of complex syllabic signs and write on wet clay."
+    },
+    {
+      "claim": "Southern Mesopotamia had plentiful wood, stone and metal.",
+      "correction": "The south lacked many raw materials and exchanged textiles and agricultural produce for imports from Turkey, Iran and across the Gulf."
+    },
+    {
+      "claim": "Mari was primarily prosperous because of highly productive southern agriculture.",
+      "correction": "Mari stood upstream in a pastoral zone and prospered especially because of its strategic position on Euphrates trade routes."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 2 to trace the specialists and imported materials needed to produce the Warka Head.",
+    "Use NCERT Exercise 1 to explain why natural fertility alone does not account for urbanisation.",
+    "Use NCERT Exercise 4 to connect the early temple’s domestic form with its identity as the house of a god.",
+    "Use NCERT Activity 3 to interpret the plan and functions of Zimrilim’s palace at Mari.",
+    "Use NCERT Exercise 6 to assess what the Enmerkar and Gilgamesh stories reveal about Mesopotamian civilisation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises: Answer in Brief, Questions 1–4, and Answer in a Short Essay, Questions 5–6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

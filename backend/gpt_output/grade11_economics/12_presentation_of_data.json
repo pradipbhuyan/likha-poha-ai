@@ -1,0 +1,99 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Economics",
+    "chapter": "Presentation of Data",
+    "central_question": "How can collected data be presented in textual, tabular, and diagrammatic forms so that its meaning is communicated clearly and appropriately?",
+    "in_scope_units": [
+      "Introduction to the need for compact, comprehensible presentation of voluminous data.",
+      "Textual or descriptive presentation and its advantages and limitations.",
+      "Tabular presentation through rows, columns, cells, and qualitative, quantitative, temporal, and spatial classification.",
+      "Tabulation and the parts of a statistical table: number, title, captions, stubs, body, units, source, and note.",
+      "Diagrammatic presentation through geometric diagrams, frequency diagrams, and arithmetic line graphs.",
+      "Simple, multiple, and component bar diagrams and the construction and interpretation of pie diagrams.",
+      "Histograms, including unequal class intervals and the distinction between a histogram and a bar diagram.",
+      "Frequency polygon, frequency curve, and less-than and more-than ogives.",
+      "Arithmetic line graphs for presenting and interpreting time-series data.",
+      "Conclusion and recap on selecting a suitable form of data presentation."
+    ],
+    "banned_topics": [
+      "Collection of primary and secondary data",
+      "Detailed construction of frequency distributions",
+      "Calculation of arithmetic mean, median, and mode by algebraic formula",
+      "Correlation coefficients and index numbers"
+    ],
+    "must_include_keywords": [
+      "textual presentation",
+      "tabular presentation",
+      "diagrammatic presentation",
+      "rows",
+      "columns",
+      "cells",
+      "qualitative classification",
+      "quantitative classification",
+      "temporal classification",
+      "spatial classification",
+      "table number",
+      "title",
+      "captions",
+      "column headings",
+      "stubs",
+      "row headings",
+      "body of the table",
+      "unit of measurement",
+      "source",
+      "note",
+      "geometric diagram",
+      "simple bar diagram",
+      "multiple bar diagram",
+      "component bar diagram",
+      "pie diagram",
+      "angular component",
+      "histogram",
+      "frequency density",
+      "frequency polygon",
+      "frequency curve",
+      "ogive",
+      "cumulative frequency",
+      "arithmetic line graph",
+      "time series graph"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Textual presentation is always the best form for a large volume of data.",
+        "correction": "Textual presentation is more suitable when the amount of data is small; large data are generally clearer in tables or diagrams."
+      },
+      {
+        "claim": "A table consists only of rows, columns, and numerical entries.",
+        "correction": "A good table also needs a number, title, captions, stubs, units, source, and notes where necessary."
+      },
+      {
+        "claim": "A bar diagram and a histogram are the same.",
+        "correction": "Bar diagrams leave spaces between separate categories, while histogram rectangles are adjacent and represent continuous class intervals."
+      },
+      {
+        "claim": "Only the height of a histogram rectangle matters.",
+        "correction": "In a histogram the area represents frequency; unequal class widths require frequency density so that areas remain comparable."
+      },
+      {
+        "claim": "Both ogives move in the same direction.",
+        "correction": "A less-than ogive is never decreasing, while a more-than ogive is never increasing."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Case 1 and Case 2 to compare textual description with tabular presentation.",
+      "Use Table 4.5 to identify every essential part of a good statistical table.",
+      "Use NCERT Exercise 11 to choose among line, pie, and component diagrams for different data.",
+      "Use NCERT Exercise 13 to explain why unequal class widths require adjusted histogram heights.",
+      "Use Table 4.11 and Figure 4.9 to interpret trends in exports and imports through an arithmetic line graph."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–15, including objective questions, selection of diagrams, tabulation, histogram construction, and multiple time-series graphs."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Presentation of Data\n\n## What you will learn\nYou will understand why data need presentation and compare textual, tabular, and diagrammatic forms. You will recognise when a short description is useful and when a more structured form is needed.\n\n## Simple explanation\nData do not automatically communicate their meaning. Presentation converts a mass of observations into a form that readers can understand, compare, and use.\n\n## Step-by-step breakdown\n- **Need for presentation**: Voluminous data must be made compact, presentable, and readily comprehensible.\n- **Textual presentation**: Figures are described within sentences and paragraphs, which is suitable when the amount of data is not large.\n- **Strength of text**: Text can emphasise selected points and provide a narrative explanation.\n- **Limitation of text**: The reader may have to examine the entire passage before making comparisons.\n- **Tabular presentation**: Rows and columns arrange larger amounts of data compactly and support statistical treatment.\n- **Diagrammatic presentation**: Diagrams translate abstract numbers into forms that can be understood quickly, although they may be less exact than tables.\n\n## Worked example\nQuestion: Why would a table be preferable when the aim is to emphasise the increase in urban non-workers and the low level of urbanisation, as posed in NCERT Exercise 12?\n```extract-ref\n{\"citation\": \"NCERT Exercise 12\", \"extract_text\": \"Suppose you want to emphasise the increase in the share of urban non-workers and lower level of urbanisation in India as shown in Example 4.2. How would you do it in the tabular form?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Case 2 contains several connected figures for rural and urban population, workers, and non-workers, while the chapter states that tabulation organises data for comparison and decision-making.\n- A table can place urban and rural categories and worker status in aligned rows and columns so that shares and contrasts are visible without rereading a paragraph.\n- Final answer: Tabular presentation is preferable because it makes the urban–rural and worker–non-worker comparisons direct, compact, and easy to emphasise.\n\n## Common mistake\nDo not assume that diagrams are automatically superior to tables. The best form depends on whether the priority is precision, detail, or rapid visual comparison.\n\n## Quick check question\nQuestion: When is textual presentation most suitable?\nAnswer: It is most suitable when the quantity of data is not too large.\nExplanation: A short amount of data can be explained clearly in prose, while a large amount becomes difficult to compare in continuous text.\n\n## Summary\n- Presentation makes data usable and comprehensible.\n- Text is suitable for a small amount of data.\n- Tables support compact and precise comparison.\n- Diagrams provide rapid visual understanding.",
+    "Core explanation": "# Core explanation: Presentation of Data\n\n## What you will learn\nYou will examine four bases of tabular classification and every essential part of a statistical table. You will understand how labels, units, sources, and notes prevent ambiguity.\n\n## Simple explanation\nA table is not just a grid of numbers. Its headings and explanatory details tell the reader exactly what each value means and where the data came from.\n\n## Step-by-step breakdown\n- **Qualitative classification**: Data are classified by attributes such as sex, location, nationality, or social status.\n- **Quantitative classification**: Measurable characteristics such as age, height, production, or income are grouped using class limits.\n- **Temporal classification**: Time is the classifying variable, such as years, months, weeks, or days.\n- **Spatial classification**: Place is the basis of classification, such as village, district, state, or country.\n- **Table number and title**: The number identifies the table and the title clearly describes its contents.\n- **Captions and stubs**: Captions label columns, while stubs label rows.\n- **Body and units**: The body contains the data and the unit states how the figures are measured.\n- **Source and note**: The source identifies where the data came from, while a note explains a feature not otherwise self-explanatory.\n\n## Worked example\nQuestion: Why must a good table include more than numerical cells, as shown by Table 4.5?\n\nAnswer:\n- Table 4.5 separately labels the table number, title, captions, stubs, body, units, source, and note.\n- These parts allow a reader to identify the subject, category, measurement, origin, and any qualification attached to each value.\n- Final answer: A complete table needs explanatory structure because numerical entries are meaningful only when their categories, units, source, and special conditions are clear.\n\n## Common mistake\nA source and a note serve different purposes. The source identifies the origin of the data; the note explains a special feature of the table.\n\n## Quick check question\nQuestion: What are stubs in a statistical table?\nAnswer: Stubs are the row headings, usually shown in the left-hand column.\nExplanation: They identify what each horizontal row represents, just as captions identify columns.\n\n## Summary\n- Tabulation can use qualitative, quantitative, temporal, or spatial classification.\n- Every table needs clear identification and headings.\n- The body contains the actual data.\n- Units, source, and notes support correct interpretation.",
+    "Worked examples": "# Worked examples: Presentation of Data\n\n## What you will learn\nYou will distinguish simple, multiple, and component bar diagrams and learn the logic of pie diagrams. You will choose diagrams according to the comparison required.\n\n## Simple explanation\nGeometric diagrams turn categories and components into lengths or areas. The visual form must match whether the aim is to compare separate values, compare several series, or show parts of a total.\n\n## Step-by-step breakdown\n- **Simple bar diagram**: Equal-width, equally spaced bars represent the magnitudes of separate categories, with lengths beginning from a zero baseline.\n- **Multiple bar diagram**: Two or more related data series are shown side by side for each category.\n- **Component bar diagram**: One total bar is divided into proportional parts to show the relationship between components and the whole.\n- **Pie diagram**: A circle is divided into sectors proportional to the components of a total.\n- **Percentage conversion**: Pie-chart values are first expressed as percentages of the total.\n- **Angular components**: Each percentage point represents 3.6 degrees because the full circle of 360 degrees represents 100 percent.\n- **Diagram choice**: Bars are useful for category comparisons, while component bars and pie charts are useful for composition.\n\n## Worked example\nQuestion: Which diagrams are appropriate for the three situations listed in NCERT Exercise 11, and why?\n```extract-ref\n{\"citation\": \"NCERT Exercise 11\", \"extract_text\": \"What kind of diagrams are more effective in representing the following?\\n(i) Monthly rainfall in a year\\n(ii) Composition of the population of Delhi by religion\\n(iii) Components of cost in a factory\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter uses bars and line graphs for values across time and uses component bars or pie diagrams for parts of a whole.\n- Monthly rainfall requires comparison across months, while religious composition and factory cost components require proportional part-to-whole representation.\n- Final answer: Monthly rainfall is suitably shown by a bar or line graph; population composition by religion is suited to a pie diagram; components of cost are suited to a component bar or pie diagram.\n\n## Common mistake\nThe physical area of a pie drawn on the page does not represent the data total. The proportions of its sectors represent the components.\n\n## Quick check question\nQuestion: What is the main use of a multiple bar diagram?\nAnswer: It compares two or more related sets of data across the same categories.\nExplanation: Placing related bars side by side makes differences between series visible for every category.\n\n## Summary\n- Simple bars compare separate category magnitudes.\n- Multiple bars compare related series.\n- Component bars show parts within totals.\n- Pie sectors represent percentage shares of a whole.\n- Diagram selection depends on the intended comparison.",
+    "Exam-style problems": "# Exam-style problems: Presentation of Data\n\n## What you will learn\nYou will distinguish histograms from bar diagrams and understand frequency polygons, frequency curves, and ogives. You will also see why unequal class intervals need frequency density.\n\n## Simple explanation\nFrequency diagrams represent grouped distributions. Their shapes reveal concentration, continuity, cumulative totals, and graphical measures such as mode or median.\n\n## Step-by-step breakdown\n- **Histogram**: Adjacent rectangles represent continuous class intervals and their areas are proportional to frequencies.\n- **Unequal intervals**: When class widths differ, frequency density rather than raw frequency is used for rectangle height.\n- **Bar versus histogram**: Bars represent separate categories and have spaces; histogram rectangles touch because class boundaries are continuous.\n- **Frequency polygon**: Points at class midpoints and corresponding frequencies are joined by straight lines, often using a histogram as a base.\n- **Frequency curve**: A smooth freehand curve passes as closely as possible through the frequency-polygon points.\n- **Less-than ogive**: Cumulative frequencies are plotted against upper class limits and the curve does not decrease.\n- **More-than ogive**: Cumulative frequencies are plotted against lower class limits and the curve does not increase.\n- **Graphical measures**: A histogram can locate mode graphically, while the intersection of two ogives gives the median.\n\n## Worked example\nQuestion: How does drawing a histogram differ when class intervals are unequal, as asked in NCERT Exercise 13?\n```extract-ref\n{\"citation\": \"NCERT Exercise 13\", \"extract_text\": \"How does the procedure of drawing a histogram differ when class intervals are unequal in comparison to equal class intervals in a frequency table?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter states that histogram area must remain proportional to class frequency and introduces frequency density as class frequency divided by class width.\n- If unequal widths used raw frequencies as heights, wider rectangles would appear to carry more frequency merely because their bases are wider.\n- Final answer: For unequal class intervals, rectangle heights must be adjusted using frequency density so that each rectangle’s area, not merely its height, represents frequency.\n\n## Common mistake\nDo not leave spaces between histogram rectangles. Gaps are appropriate in a bar diagram but not for continuous histogram classes.\n\n## Quick check question\nQuestion: What does the intersection of the less-than and more-than ogives locate?\nAnswer: It locates the median of the frequency distribution.\nExplanation: The two cumulative curves meet at the value that divides the distribution into two equal parts.\n\n## Summary\n- Histogram area represents frequency.\n- Unequal widths require frequency-density adjustment.\n- Frequency polygons use joined midpoint-frequency points.\n- Frequency curves smooth the polygon.\n- Ogives display cumulative frequencies and locate the median.",
+    "Revision and recap": "# Revision and recap: Presentation of Data\n\n## What you will learn\nYou will interpret arithmetic line graphs and revise how to select among all forms of presentation. You will connect time-series graphs with trend, cyclicity, and seasonality.\n\n## Simple explanation\nA time-series graph arranges time on the horizontal axis and the variable on the vertical axis. Joining the plotted values shows how the variable changes through time.\n\n## Step-by-step breakdown\n- **Arithmetic line graph**: Time is plotted on the x-axis and the value of the variable on the y-axis.\n- **Time-series interpretation**: The line helps identify long-term trend, periodicity, and changes in the gap between related series.\n- **Figure 4.9**: The chapter’s exports and imports graph shows imports above exports through the period and a widening gap after 2001–02.\n- **Choosing text**: Use text when the quantity is small and emphasis through narrative is useful.\n- **Choosing tables**: Use tables when precise values and several classifications must be compared.\n- **Choosing diagrams**: Use diagrams when quick comprehension, pattern, trend, or composition is the priority.\n\n## Worked example\nQuestion: What can an arithmetic line graph help a reader understand, as tested in NCERT Exercise 4?\n```extract-ref\n{\"citation\": \"NCERT Exercise 4\", \"extract_text\": \"Data represented through arithmetic line graph help in understanding\\n(i) long term trend\\n(ii) cyclicity in data\\n(iii) seasonality in data\\n(iv) all the above\", \"note\": \"Objective exercise\"}\n```\n\nAnswer:\n- The chapter calls an arithmetic line graph a time-series graph and states that it helps in understanding trend and periodicity over a long period.\n- Because values are shown in chronological order, repeated and long-term patterns become visible in a way that a simple list may hide.\n- Final answer: An arithmetic line graph can help reveal long-term trend, cyclicity, and seasonality; therefore the inclusive choice is correct.\n\n## Common mistake\nDo not place time on the vertical axis in the chapter’s standard arithmetic line graph. Time is plotted along the x-axis.\n\n## Quick check question\nQuestion: What distinguishes an arithmetic line graph from a bar diagram?\nAnswer: An arithmetic line graph joins time-ordered observations to show change and trend, while a bar diagram compares category magnitudes through separate bars.\nExplanation: The connected sequence is important in a time series because the order of observations carries meaning.\n\n## Summary\n- Arithmetic line graphs present time-series data.\n- Connected points reveal trend and periodicity.\n- Text, tables, and diagrams serve different communication needs.\n- A suitable presentation is meaningful, comprehensive, and purposeful."
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 5: Linear Inequalities",
+    "central_question": "How can real-world and algebraic constraints be translated, solved, represented, and interpreted as linear inequalities?",
+    "in_scope_units": [
+      "Introduction to inequality statements and symbols.",
+      "Numerical, literal, strict, non-strict, and double inequalities.",
+      "Rules for solving linear inequalities in one variable.",
+      "Solution sets over natural numbers, integers, and real numbers.",
+      "Interval notation and number-line representation.",
+      "Word problems involving averages and consecutive integers.",
+      "Double inequalities, systems, temperature conversion, and mixture applications."
+    ],
+    "banned_topics": [
+      "Quadratic inequalities, explicitly identified but not studied here.",
+      "Full graphical solution of linear inequalities in two variables, not developed in the provided chapter text.",
+      "Linear programming, which belongs to a later course."
+    ],
+    "must_include_keywords": [
+      "inequality",
+      "less than",
+      "greater than",
+      "less than or equal",
+      "greater than or equal",
+      "strict inequality",
+      "non-strict inequality",
+      "literal inequality",
+      "double inequality",
+      "linear inequality",
+      "one variable",
+      "solution set",
+      "natural numbers",
+      "integers",
+      "real numbers",
+      "interval notation",
+      "number line",
+      "open circle",
+      "closed circle",
+      "reversal rule",
+      "system of inequalities",
+      "intersection",
+      "average constraint",
+      "temperature conversion",
+      "mixture problem"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Inequalities are solved exactly like equations in every step.",
+        "correction": "Multiplying or dividing by a negative number reverses the inequality sign."
+      },
+      {
+        "claim": "x<3 includes 3.",
+        "correction": "A strict inequality excludes the boundary value."
+      },
+      {
+        "claim": "The same listed solution set applies in N, Z, and R.",
+        "correction": "The numerical domain changes which values are allowed."
+      },
+      {
+        "claim": "For a system joined by “and”, combine the solution sets by union.",
+        "correction": "The common solutions are found by intersection."
+      },
+      {
+        "claim": "At most means strictly less than.",
+        "correction": "At most means less than or equal to."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Section 5.2 rice and stationery models.",
+      "NCERT Example 3 for sign reversal.",
+      "NCERT Example 7 for an average constraint.",
+      "NCERT Examples 9 and 11 for double inequalities and systems.",
+      "NCERT Examples 12 and 13 for temperature and mixtures."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 5.1 followed by the Miscellaneous Exercise on Chapter 5."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Linear Inequalities\n\n## What you will learn\nYou will distinguish inequalities from equations and recognise strict, non-strict, numerical, literal, and double inequalities. You will translate simple constraints into symbols.\n\n## Simple explanation\nAn inequality compares quantities that need not be equal. The symbols <, >, ≤, and ≥ describe ranges of possible values rather than a single equality.\n\n## Step-by-step breakdown\n- **Inequality**: Two real numbers or algebraic expressions related by <,>,≤,≥.\n- **Strict inequality**: Uses < or > and excludes the boundary.\n- **Non-strict inequality**: Uses ≤ or ≥ and includes the boundary.\n- **One variable**: Examples have the form ax+b<0 or related forms.\n- **Two variables**: Expressions such as ax+by≤c are introduced as inequalities in two variables.\n- **Double inequality**: A compact form such as a≤x<b represents two simultaneous conditions.\n- **Modelling**: Words like “less than”, “at most”, and “at least” determine the symbol.\n\n## Worked example\nQuestion: Using the NCERT rice-packet situation in Section 5.2, translate the condition for x packets costing ₹30 each when Ravi has ₹200.\n\nSolution:\n- The expenditure is 30x.\n- Because packets are whole and he may not spend the entire ₹200, the text models the amount as less than ₹200.\n- Final answer: 30x<200.\n\n## Common mistake\n“At most” means ≤, not <; “at least” means ≥, not >.\n\n## Quick check question\nQuestion: Using the NCERT Reshma situation, write the constraint for x registers at ₹40 and y pens at ₹20 with ₹120 available.\nAnswer: 40x+20y≤120.\nExplanation: The total may equal ₹120, so the boundary is included.\n\n## Summary\n- Inequalities describe allowed ranges.\n- Words in a statement determine strict or inclusive signs.\n- Double inequalities combine two conditions.",
+    "Core explanation": "# Core explanation: Linear Inequalities\n\n## What you will learn\nYou will solve linear inequalities in one variable and understand how operations affect the sign. You will distinguish solution sets over natural numbers, integers, and real numbers.\n\n## Simple explanation\nSolving an inequality resembles solving an equation, except multiplication or division by a negative number reverses the inequality sign.\n\n## Step-by-step breakdown\n- **Addition rule**: Adding or subtracting the same number on both sides preserves the sign.\n- **Positive scaling**: Multiplying or dividing by a positive number preserves the sign.\n- **Negative scaling**: Multiplying or dividing by a negative number reverses the sign.\n- **Solution**: A value that makes the inequality true.\n- **Domain effect**: The same bound gives different listed solutions in N, Z, and R.\n- **Interval notation**: Real solution sets may be written with parentheses or brackets.\n\n## Worked example\nQuestion: Using NCERT Example 3, solve 4x+3<6x+7.\n\nSolution:\n- Move x-terms together: 4x−6x<7−3.\n- This gives −2x<4.\n- Divide by −2 and reverse the sign.\n- Final answer: x>−2, or (−2,∞).\n\n## Common mistake\nForgetting to reverse the sign after dividing by a negative number changes the answer.\n\n## Quick check question\nQuestion: Using NCERT Example 1, solve 30x<200 when x is a natural number.\nAnswer: The solution set is {1,2,3,4,5,6}.\nExplanation: The inequality gives x<20/3, and the natural numbers satisfying it are 1 through 6.\n\n## Summary\n- Algebraic operations preserve or reverse order according to their sign.\n- The assumed number system affects the solution set.\n- Intervals provide a compact notation for real solutions.",
+    "Worked examples": "# Worked examples: Linear Inequalities\n\n## What you will learn\nYou will represent solutions on a number line and solve practical one-variable inequalities. You will interpret open and closed boundary points correctly.\n\n## Simple explanation\nA number-line graph shows every real value in a solution set. Open circles exclude endpoints; filled circles include them.\n\n## Step-by-step breakdown\n- **Open boundary**: Use an open circle for < or >.\n- **Closed boundary**: Use a filled circle for ≤ or ≥.\n- **Direction**: Shade left for values below a boundary and right for values above it.\n- **Average model**: An “average of at least” condition becomes a ≥ inequality.\n- **Integer filtering**: After solving a real bound, retain only integers of the required type.\n- **Verification**: Test a value inside and outside the proposed region.\n\n## Worked example\nQuestion: Using NCERT Example 7, a student scored 62 and 48 in two examinations. Find the minimum third score for an average of at least 60.\n\nSolution:\n- Let the third score be x and write (62+48+x)/3≥60.\n- Multiply by 3: 110+x≥180.\n- Subtract 110: x≥70.\n- Final answer: The minimum score is 70.\n\n## Common mistake\nDo not round a boundary without considering whether the variable is integral and whether equality is allowed.\n\n## Quick check question\nQuestion: Using NCERT Example 5, solve 7x+3<5x+9 and state the boundary style.\nAnswer: x<3, shown with an open circle at 3 and shading to the left.\nExplanation: The inequality is strict, so 3 itself is excluded.\n\n## Summary\n- Number-line endpoints encode strictness.\n- Word problems require an appropriate variable and inequality.\n- Interpret the final mathematical set in the original context.",
+    "Exam-style problems": "# Exam-style problems: Linear Inequalities\n\n## What you will learn\nYou will solve double inequalities and systems by finding common solutions. You will preserve all parts of a compound inequality through each algebraic step.\n\n## Simple explanation\nA system requires values satisfying every inequality. On a number line, the answer is the overlap of the individual solution regions.\n\n## Step-by-step breakdown\n- **Double inequality**: Perform the same valid operation on all three parts.\n- **Reversal**: If all parts are divided by a negative number, reverse both inequality signs.\n- **System**: Solve each inequality separately.\n- **Intersection**: Keep only values common to every solution set.\n- **Mixed endpoints**: A result such as 2≤x<6 includes 2 but excludes 6.\n- **Graphical check**: Overlap on the number line confirms the algebra.\n\n## Worked example\nQuestion: Using NCERT Example 11, solve 3x−7<5+x and 11−5x≤1.\n\nSolution:\n- The first inequality gives 2x<12, so x<6.\n- The second gives −5x≤−10, so x≥2 after reversing the sign.\n- Intersect the two sets.\n- Final answer: 2≤x<6.\n\n## Common mistake\nDo not take the union of solutions when the word “and” requires both conditions.\n\n## Quick check question\nQuestion: Using NCERT Example 9, solve −8≤5x−3<7.\nAnswer: −1≤x<2.\nExplanation: Add 3 to all parts and divide all parts by positive 5.\n\n## Summary\n- Compound inequalities describe intersections.\n- Every endpoint must be checked for inclusion.\n- Number-line overlap is an effective verification tool.",
+    "Revision and recap": "# Revision and recap: Linear Inequalities\n\n## What you will learn\nYou will apply inequalities to temperature and mixture problems and revise the complete workflow from modelling to interpretation.\n\n## Simple explanation\nApplications often produce two-sided constraints. Translate each requirement, solve accurately, and state the result with units and boundary meaning.\n\n## Step-by-step breakdown\n- **Temperature conversion**: Substitute a linear conversion formula into the allowed interval.\n- **Mixture concentration**: Compare the amount of solute with percentages of the total mixture.\n- **Two conditions**: “More than” and “less than” form a system.\n- **Units**: Keep litres, degrees, marks, or lengths consistent.\n- **Reasonableness**: Check that the result matches the context.\n- **Workflow**: Define variable, form inequality, solve, graph if useful, and interpret.\n\n## Worked example\nQuestion: Using NCERT Example 13, 600 L of 12% acid is mixed with x L of 30% acid so the result is more than 15% but less than 18%. Find x.\n\nSolution:\n- For the lower bound: 0.30x+0.12(600)>0.15(x+600), giving x>120.\n- For the upper bound: 0.30x+0.12(600)<0.18(x+600), giving x<300.\n- Combine the conditions.\n- Final answer: 120<x<300 litres.\n\n## Common mistake\nDo not compare percentages without multiplying each percentage by the appropriate total volume.\n\n## Quick check question\nQuestion: Using NCERT Example 12, convert 30<C<35 with C=(5/9)(F−32) to a Fahrenheit interval.\nAnswer: 86<F<95.\nExplanation: Multiply all parts by 9/5 and then add 32, both of which preserve the inequality directions.\n\n## Summary\n- Inequalities model limits and acceptable ranges.\n- Negative multiplication or division reverses signs.\n- The final answer must retain units and endpoint conditions."
+  }
+}

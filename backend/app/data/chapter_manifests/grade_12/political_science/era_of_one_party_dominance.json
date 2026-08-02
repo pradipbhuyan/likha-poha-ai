@@ -1,0 +1,73 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Era of One-Party Dominance",
+  "central_question": "How did India establish competitive elections while the Congress remained dominant and opposition parties continued to develop?",
+  "in_scope_units": [
+    "Challenge of building democracy",
+    "The first general election",
+    "Changing methods of voting",
+    "Congress dominance in the first three elections",
+    "Electoral system and vote-seat relationship",
+    "Communist victory in Kerala",
+    "Nature of Congress dominance",
+    "Congress as a social and ideological coalition",
+    "Factional competition",
+    "Emergence and role of opposition parties"
+  ],
+  "banned_topics": [
+    "The 1969 Congress split",
+    "Emergency and its aftermath",
+    "Detailed economic planning beyond its party-political context"
+  ],
+  "must_include_keywords": [
+    "democratic politics",
+    "Election Commission",
+    "Sukumar Sen",
+    "universal adult franchise",
+    "delimitation",
+    "electoral rolls",
+    "first general election",
+    "1952 election",
+    "ballot boxes",
+    "EVM",
+    "Congress",
+    "Jawaharlal Nehru",
+    "first-past-the-post",
+    "vote share",
+    "seat share",
+    "Communist Party of India",
+    "Kerala",
+    "E. M. S. Namboodiripad",
+    "one-party dominance",
+    "Congress system",
+    "social coalition",
+    "ideological coalition",
+    "factions",
+    "opposition parties",
+    "Socialist Party",
+    "Bharatiya Jana Sangh",
+    "Swatantra Party",
+    "Minoo Masani"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "One-party dominance meant that India was a one-party state.",
+      "correction": "The Congress won repeated free and fair competitive elections while opposition parties remained legal and active."
+    },
+    {
+      "claim": "The Congress won three-fourths of the seats because it received three-fourths of the votes.",
+      "correction": "Under first-past-the-post, divided opposition votes translated a plurality of votes into a much larger seat share."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1: Choose the correct option to fill in the blanks. (a) The First General Elections in 1952 involved simultaneous elections to the Lok Sabha and ………………….(The President of India/ State Assemblies/ Rajya Sabha/ The Prime Minister) (b) The party that won the second largest number of Lok Sabha seats in the first elections was the………………….(Praja Socialist Party/ Bharatiya Jana Sangh/ Communist Party of India/Bharatiya Janata Party) (c) One of the guiding principles of the ideology of the Swatantra Party was………………….(Working class interests/ protection of Princely States / economy free from State control / Autonomy of States within the Union)",
+    "NCERT Exercise 3: Four statements regarding one-party dominance are given below. Mark each of them as true or false. (a) One-party dominance is rooted in the absence of strong alternative political parties. (b) One-party dominance occurs because of weak public opinion. (c) One-party dominance is linked to the nation’s colonial past. (d) One-party dominance reflects the absence of democratic ideals in a country.",
+    "NCERT Exercise 5: Read the following passage and answer the questions below: “Patel, the organisational man of the Congress, wanted to purge the Congress of other political groups and sought to make of it a cohesive and disciplined political party. He …. sought to take the Congress away from its all-embracing character and turn it into a close-knit party of disciplined cadres. Being a ‘realist’ he looked more for discipline than for comprehension. While Gandhi took too romantic a view of “carrying on the movement,” Patel’s idea of transforming the Congress into strictly political party with one ideology and one programme, and disciplined and cohesive membership was also susceptible to the danger of losing its very character as a movement.”",
+    "NCERT Exercise 2: Match the following leaders listed in List A with the parties in List B. List A: (a) S. A. Dange (b) Shyama Prasad Mukherjee (c) Minoo Masani (d) Asoka Mehta. List B: i. Bharatiya Jana Sangh ii. Swatantra Party iii. Praja Socialist Party iv. Communist Party of India.",
+    "NCERT Exercise 4: Take a political map of India (with State outlines) and mark: (a) two states where Congress was not in power at some point during 1952-67. (b) two states where the Congress remained in power through this period."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with NCERT Exercises 1–5 on elections, Congress dominance, opposition leaders and the Congress system.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

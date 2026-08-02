@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 9: Ray Optics and Optical Instruments",
+  "central_question": "How do reflection and refraction form images, and how are mirrors, lenses, prisms and optical instruments analysed with rays?",
+  "in_scope_units": [
+    "Ray model and Cartesian sign convention",
+    "Spherical mirrors and mirror equation",
+    "Refraction and Snell’s law",
+    "Total internal reflection",
+    "Spherical refracting surfaces",
+    "Thin lenses and lens maker’s formula",
+    "Power and lens combinations",
+    "Prisms and dispersion",
+    "Human eye",
+    "Simple and compound microscopes",
+    "Telescope"
+  ],
+  "banned_topics": [
+    "Wavefront, interference and diffraction from Chapter 10",
+    "Electromagnetic spectrum from Chapter 8",
+    "Medical physiology beyond the optical model"
+  ],
+  "must_include_keywords": [
+    "ray of light",
+    "beam of light",
+    "reflection",
+    "spherical mirror",
+    "Cartesian sign convention",
+    "pole",
+    "centre of curvature",
+    "principal focus",
+    "mirror equation",
+    "magnification",
+    "refraction",
+    "Snell’s law",
+    "refractive index",
+    "total internal reflection",
+    "critical angle",
+    "optical fibre",
+    "spherical refracting surface",
+    "thin lens formula",
+    "lens maker’s formula",
+    "power of a lens",
+    "prism",
+    "minimum deviation",
+    "dispersion",
+    "human eye",
+    "near point",
+    "simple microscope",
+    "compound microscope",
+    "telescope",
+    "angular magnification"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every image behind a mirror or lens is real.",
+      "correction": "Virtual images arise from apparent, not actual, ray convergence."
+    },
+    {
+      "claim": "Total internal reflection occurs from a rarer to a denser medium.",
+      "correction": "It requires denser-to-rarer incidence above the critical angle."
+    },
+    {
+      "claim": "Linear magnification and angular magnifying power are identical.",
+      "correction": "They compare different quantities."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 9.3: concave-mirror images",
+    "NCERT Exercise 9.21: total internal reflection in a prism",
+    "NCERT Exercise 9.18: maximum focal length",
+    "NCERT Exercise 9.19: lens displacement method",
+    "NCERT Example 9.4: image speed in a convex mirror"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES extend through the 9.1–9.24 range.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

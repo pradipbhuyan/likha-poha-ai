@@ -1,0 +1,74 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Vector Algebra",
+  "central_question": "How can quantities with magnitude and direction be represented and combined through vector operations in three-dimensional space?",
+  "in_scope_units": [
+    "10.1 Introduction: scalar and vector quantities.",
+    "10.2 Some Basic Concepts: directed segments, magnitude, position vectors and direction cosines.",
+    "10.3 Types of Vectors.",
+    "10.4 Addition of Vectors: triangle and parallelogram laws.",
+    "10.5 Multiplication of a Vector by a Scalar and components of a vector.",
+    "Section formula and vector joining two points.",
+    "10.6 Product of Two Vectors: scalar product, projections and vector product."
+  ],
+  "banned_topics": [
+    "Three-dimensional line and plane equations",
+    "Matrices and determinants as separate chapters",
+    "Calculus applications"
+  ],
+  "must_include_keywords": [
+    "scalar",
+    "vector",
+    "magnitude",
+    "direction",
+    "initial point",
+    "terminal point",
+    "position vector",
+    "direction cosines",
+    "direction ratios",
+    "zero vector",
+    "unit vector",
+    "coinitial",
+    "collinear",
+    "equal vectors",
+    "negative vector",
+    "triangle law",
+    "parallelogram law",
+    "scalar multiplication",
+    "components",
+    "section formula",
+    "dot product",
+    "projection",
+    "cross product",
+    "right handed system"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any quantity with a numerical value is a vector.",
+      "correction": "A vector must have both magnitude and direction; a scalar has magnitude only."
+    },
+    {
+      "claim": "Equal vectors must have the same initial point.",
+      "correction": "Equal vectors need only have the same magnitude and direction because the chapter treats free vectors."
+    },
+    {
+      "claim": "The dot product is a vector.",
+      "correction": "The scalar product is a scalar."
+    },
+    {
+      "claim": "The cross product is commutative.",
+      "correction": "a cross b=-(b cross a)."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 2 to classify scalar and vector quantities.",
+    "Use NCERT Example 6 to find a unit vector from components.",
+    "Use the section-formula example to divide a line segment internally.",
+    "Use a scalar-product example to find an angle or projection.",
+    "Use a vector-product example to find area or a perpendicular vector."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 10.1 to 10.4 followed by the Miscellaneous Exercise on Chapter 10.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

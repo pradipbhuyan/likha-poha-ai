@@ -1,0 +1,100 @@
+{
+  "grade": "Grade 11",
+  "subject": "History",
+  "chapter": "Paths to Modernisation",
+  "central_question": "Why did Japan, China, Taiwan and South Korea follow different paths to sovereignty, industrialisation, social change and democracy in the modern era?",
+  "in_scope_units": [
+    "East Asian contrasts, historical sources and debates about modernisation.",
+    "Japan under the Tokugawa: political order, urbanisation, commerce, literacy and cultural change.",
+    "The Meiji Restoration, nation-building, education, military reform and constitutional tension.",
+    "Japanese industrialisation, workers, environmental protest, nationalism and everyday life.",
+    "Japanese empire, war, defeat, US occupation, democratisation and post-war economic recovery.",
+    "China’s encounter with Western imperialism, the Opium Wars and Qing reform.",
+    "The 1911 Republic, Sun Yat-sen, May Fourth movement, Guomindang and social change.",
+    "The rise of the Communist Party, Mao’s peasant strategy, Long March and victory in 1949.",
+    "New Democracy, Great Leap Forward, Cultural Revolution and market reforms after 1978.",
+    "Taiwan’s authoritarian development, land reform, economic growth and democratisation.",
+    "Korean colonial rule, division, war and dependence.",
+    "South Korea’s export-led industrialisation, authoritarian governments, democratisation and the IMF crisis.",
+    "Comparison of East Asian paths to modernity, tradition, nationalism, state power and political participation."
+  ],
+  "banned_topics": [
+    "Detailed European Renaissance and Reformation, which belong to Changing Cultural Traditions.",
+    "European settler colonisation of America and Australia, which belongs to Displacing Indigenous Peoples.",
+    "Detailed ancient Chinese or Japanese history beyond the background explicitly used in this chapter."
+  ],
+  "must_include_keywords": [
+    "modernisation",
+    "Qing dynasty",
+    "Tokugawa shogunate",
+    "daimyo",
+    "samurai",
+    "Meiji Restoration",
+    "fukoku kyohei",
+    "emperor system",
+    "compulsory education",
+    "zaibatsu",
+    "Tanaka Shozo",
+    "aggressive nationalism",
+    "Westernisation",
+    "Fukuzawa Yukichi",
+    "US Occupation",
+    "Article 9",
+    "post-war miracle",
+    "Opium War",
+    "triangular trade",
+    "Kang Youwei",
+    "Liang Qichao",
+    "Sun Yat-sen",
+    "Three Principles",
+    "May Fourth Movement",
+    "Guomindang",
+    "Communist Party of China",
+    "Mao Zedong",
+    "Long March",
+    "Great Leap Forward",
+    "Cultural Revolution",
+    "Deng Xiaoping",
+    "Four Modernisations",
+    "Taiwan",
+    "Joseon Dynasty",
+    "Korean War",
+    "Park Chung-hee",
+    "Saemaul Movement",
+    "Gwangju Democratisation Movement",
+    "June Democracy Movement",
+    "IMF crisis"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Japan was completely isolated before 1853.",
+      "correction": "Tokugawa Japan restricted Western contact but remained involved in East Asian trade and received knowledge through Dutch and Chinese links."
+    },
+    {
+      "claim": "Meiji modernisation simply copied the West.",
+      "correction": "Japan adopted foreign institutions and technology while reshaping them through imperial loyalty, existing skills and indigenous traditions."
+    },
+    {
+      "claim": "China’s modern history was only a conflict between communists and nationalists.",
+      "correction": "It also involved Qing reformers, republican revolutionaries, foreign imperialism, social movements, regional inequality and changing ideas about tradition."
+    },
+    {
+      "claim": "Mao’s communist programme was based mainly on urban industrial workers.",
+      "correction": "Mao departed from orthodox Marxist expectations and built the revolution around the peasantry."
+    },
+    {
+      "claim": "South Korean economic growth automatically produced democracy.",
+      "correction": "Growth expanded education, urbanisation and political awareness, but democracy resulted from prolonged citizen, student and middle-class movements against authoritarian rule."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 1 to compare Japan’s encounter with Western pressure to the Aztec encounter with Europeans.",
+    "Use NCERT Activity 2 to evaluate Nishitani’s definition of modernity and Japan’s attempt to overcome Western modernity.",
+    "Use NCERT Activity 3 to assess what the Opium War painting reveals and conceals about coercive trade.",
+    "Use NCERT Activity 4 to analyse how shared discrimination connected Buck Clayton with Chinese observers.",
+    "Use NCERT Exercises 6–8 to evaluate Japanese industrialisation, Maoist revolution and the relationship between South Korean growth and democratisation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises: Answer in Brief, Questions 1–5, and Answer in a Short Essay, Questions 6–8.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

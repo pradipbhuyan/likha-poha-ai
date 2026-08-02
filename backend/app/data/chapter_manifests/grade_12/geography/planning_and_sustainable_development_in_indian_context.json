@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Planning and Sustainable Development in Indian Context",
+  "central_question": "How can planning reduce regional inequality and promote development that improves present well-being without damaging ecological, social and economic prospects for future generations?",
+  "in_scope_units": [
+    "Meaning of planning and the shift from the Planning Commission to NITI Aayog",
+    "Sectoral planning and regional planning",
+    "Target-area and target-group planning",
+    "Hill Area Development Programme",
+    "Drought Prone Area Programme",
+    "Integrated Tribal Development Project in Bharmaur",
+    "Changing meaning of development and emergence of sustainable development",
+    "Brundtland Report definition of sustainable development",
+    "Indira Gandhi Canal Command Area: location, stages and transformation",
+    "Positive and negative impacts of canal irrigation",
+    "Measures for ecological, social and economic sustainability in the command area"
+  ],
+  "banned_topics": [
+    "General business-management planning, which is not the economic and regional planning used in this chapter",
+    "Detailed national water-resource policy, which belongs to Water Resources"
+  ],
+  "must_include_keywords": [
+    "planning",
+    "NITI Aayog",
+    "sectoral planning",
+    "regional planning",
+    "regional imbalance",
+    "target area planning",
+    "target group planning",
+    "Hill Area Development Programme",
+    "Drought Prone Area Programme",
+    "integrated watershed development",
+    "Bharmaur",
+    "Gaddis",
+    "ITDP",
+    "transhumance",
+    "infrastructure",
+    "development",
+    "GNP",
+    "growth and equity",
+    "sustainable development",
+    "WCED",
+    "Brundtland Report",
+    "Our Common Future",
+    "Indira Gandhi Canal",
+    "Rajasthan Canal",
+    "Harike barrage",
+    "flow system",
+    "lift system",
+    "waterlogging",
+    "soil salinity",
+    "protective irrigation",
+    "warabandi",
+    "afforestation",
+    "economic diversification"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Sectoral planning and regional planning are identical.",
+      "correction": "Sectoral planning targets economic sectors, while regional planning uses an area-specific spatial approach to reduce regional imbalance."
+    },
+    {
+      "claim": "Resource-rich regions automatically become developed.",
+      "correction": "The chapter states that technology and investment are also necessary, so even resource-rich regions may remain backward."
+    },
+    {
+      "claim": "Development means only growth in GNP or per capita income.",
+      "correction": "The chapter presents development as multidimensional, including equity, well-being, health, education, rights and environmental sustainability."
+    },
+    {
+      "claim": "Canal irrigation in the Indira Gandhi Canal area produced only benefits.",
+      "correction": "It increased moisture, cultivated area and productivity but also caused waterlogging and soil salinity through intensive irrigation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1(i) to distinguish regional planning from sectoral planning.",
+    "Use NCERT Exercise 2(i) to assess the social benefits of ITDP in Bharmaur.",
+    "Use NCERT Exercise 2(ii) to state the Brundtland definition of sustainable development.",
+    "Use NCERT Exercise 3(i) to analyse the Drought Prone Area Programme.",
+    "Use NCERT Exercise 3(ii) to structure sustainability measures for the Indira Gandhi Canal Command Area."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–3 and a PROJECT section: three MCQs, three short answers, two long answers and two field-based projects.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

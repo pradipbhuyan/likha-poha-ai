@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 9: Straight Lines",
+  "central_question": "How can coordinates, slopes, equation forms, and distances be used to describe and solve geometric problems involving straight lines?",
+  "in_scope_units": [
+    "Coordinate-geometry recall: distance, section, midpoint, area, and collinearity.",
+    "Slope and inclination of a line.",
+    "Angle between lines and conditions for parallelism and perpendicularity.",
+    "Equations of horizontal and vertical lines.",
+    "Point-slope, two-point, slope-intercept, intercept, and normal forms.",
+    "General equation of a line.",
+    "Distance from a point to a line and distance between parallel lines.",
+    "Applications to reflections, loci, intersections, triangles, and parameter conditions."
+  ],
+  "banned_topics": [
+    "Equations and properties of conic sections, which belong to Chapter 10.",
+    "Three-dimensional line equations.",
+    "Vector forms of lines beyond the coordinate methods in this chapter."
+  ],
+  "must_include_keywords": [
+    "coordinate geometry",
+    "distance formula",
+    "section formula",
+    "midpoint",
+    "slope",
+    "inclination",
+    "horizontal line",
+    "vertical line",
+    "collinearity",
+    "angle between lines",
+    "parallel lines",
+    "perpendicular lines",
+    "point-slope form",
+    "two-point form",
+    "slope-intercept form",
+    "x-intercept form",
+    "intercept form",
+    "normal form",
+    "general equation",
+    "point-line distance",
+    "parallel-line distance",
+    "reflection",
+    "locus",
+    "intersection",
+    "analytical geometry"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A vertical line has slope zero.",
+      "correction": "A horizontal line has slope zero; a vertical line has undefined slope."
+    },
+    {
+      "claim": "Perpendicular lines always have slopes that are reciprocals.",
+      "correction": "For defined non-zero slopes, their product is −1, so they are negative reciprocals."
+    },
+    {
+      "claim": "The angle formula has no absolute value.",
+      "correction": "The acute angle uses the absolute value of the slope expression."
+    },
+    {
+      "claim": "The distance formula may return a negative value.",
+      "correction": "The numerator is inside an absolute value, so distance is non-negative."
+    },
+    {
+      "claim": "Every line can be written in slope-intercept form.",
+      "correction": "Vertical lines cannot; they have equations x=k."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 3 for perpendicular slopes.",
+    "NCERT Example 2 for a fixed angle between lines.",
+    "NCERT chapter summary and Exercise 9.2 for equation forms.",
+    "NCERT Example 13 for reflection in a line.",
+    "NCERT Example 16 for an equal-distance locus."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 9.1, 9.2, and 9.3 followed by the Miscellaneous Exercise on Chapter 9.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

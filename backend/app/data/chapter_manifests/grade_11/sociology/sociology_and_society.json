@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "Sociology",
+  "chapter": "Sociology and Society",
+  "central_question": "How does sociology systematically connect individual lives with wider social structures, historical change, inequality and other social sciences?",
+  "in_scope_units": [
+    "Introduction: how individual choices such as subject and job choices are shaped by economic, political, family, gender and cultural factors.",
+    "The Sociological Imagination: the Personal Problem and the Public Issue, including C. Wright Mills on biography, history, personal troubles and public issues.",
+    "Pluralities and Inequalities among Societies: multiple meanings of society, cultural diversity and unequal access to wealth, education, power, respect and opportunity.",
+    "Introducing Sociology: sociology as the systematic and empirical study of human social life, groups and societies.",
+    "Sociology and Common Sense Knowledge: the difference between naturalistic or individualistic explanations and reflective, evidence-based sociological explanations.",
+    "The Intellectual Ideas that Went into the Making of Sociology: evolutionary thought, Enlightenment reason, natural science, social surveys and early sociologists.",
+    "The Material Issues that Went into the Making of Sociology: capitalism, the Industrial Revolution, urbanisation, factory labour and clock-time.",
+    "Why Study the Beginning and Growth of Sociology in Europe: the global relevance of European capitalism, industrialisation and colonialism.",
+    "The Growth of Sociology in India: colonialism, uneven industrialisation, western representations of Indian society and the close relationship of sociology and social anthropology in India.",
+    "The Scope of Sociology and its Relationship to Other Social Science Disciplines: links with economics, political science, history, psychology and social anthropology."
+  ],
+  "banned_topics": [
+    "Detailed research-method procedures such as questionnaire design, sampling and fieldwork protocols, which are reserved for Chapter 5.",
+    "A full treatment of social institutions and culture, which the chapter explicitly leaves to later chapters.",
+    "Detailed theories of caste, class and gender stratification beyond the introductory references made in this chapter."
+  ],
+  "must_include_keywords": [
+    "sociological imagination",
+    "C. Wright Mills",
+    "personal troubles",
+    "public issues",
+    "history and biography",
+    "society and individual",
+    "dialectic",
+    "social constraint",
+    "plurality",
+    "inequality",
+    "Satyajit Ray",
+    "Amartya Sen",
+    "empirical investigation",
+    "common sense",
+    "naturalistic explanation",
+    "Peter Berger",
+    "scientific canons",
+    "Auguste Comte",
+    "Karl Marx",
+    "Herbert Spencer",
+    "Darwin",
+    "Enlightenment",
+    "social survey",
+    "capitalism",
+    "Industrial Revolution",
+    "industrialisation",
+    "urbanisation",
+    "clock-time",
+    "colonialism",
+    "indentured labour",
+    "M.N. Srinivas",
+    "sociology",
+    "social anthropology",
+    "economics",
+    "political science",
+    "history",
+    "psychology",
+    "interdisciplinary approach"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Sociology explains outcomes only through an individual's effort or personality.",
+      "correction": "The chapter shows that individual effort matters but outcomes are also structured by the job market, government policy, gender, family and socioeconomic background."
+    },
+    {
+      "claim": "A personal problem and a public issue are completely separate.",
+      "correction": "The sociological imagination connects personal troubles with wider social structures and historical conditions."
+    },
+    {
+      "claim": "Sociology is simply common sense written in technical language.",
+      "correction": "Sociology follows systematic procedures, evidence and concepts that can be checked, unlike unreflective common sense."
+    },
+    {
+      "claim": "Industrialisation had the same social effect in Britain and India.",
+      "correction": "The chapter stresses uneven effects: Britain urbanised rapidly, while British manufactured goods ruined many Indian handicraftsmen and pushed more people into agriculture."
+    },
+    {
+      "claim": "Sociology and social anthropology are rigidly separate in India.",
+      "correction": "The chapter states that no rigid divide exists between them in India and that methods and subject matter increasingly overlap."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise 4 to connect a personal problem with public issues using the sociological imagination.",
+    "Use NCERT Activity 3 to contrast naturalistic and sociological explanations of poverty.",
+    "Use NCERT Activity 4 to compare the effects of industrialisation and urbanisation in Britain and India.",
+    "Use NCERT Exercise 1 to explain why the origin and growth of sociology matter.",
+    "Finish with NCERT Exercise 3 to analyse the growing give and take among social science disciplines."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with an EXERCISES section containing Questions 1–4.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

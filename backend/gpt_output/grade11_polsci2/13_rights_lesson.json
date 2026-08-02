@@ -1,0 +1,103 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Political Science",
+    "chapter": "Legislature",
+    "central_question": "Why is Parliament indispensable to representative democracy, and how do its two Houses make laws, control the executive and regulate their own members?",
+    "in_scope_units": [
+      "Why a representative, deliberative and accountable legislature is necessary.",
+      "Bicameralism and the purposes of Lok Sabha and Rajya Sabha.",
+      "Composition, election, tenure and representation in the two Houses.",
+      "Legislative, executive-control, financial, representative, debating, constituent, electoral and judicial functions of Parliament.",
+      "Special powers of Lok Sabha and Rajya Sabha.",
+      "Types of bills and stages of the legislative process.",
+      "Money bills, non-money bills, constitutional amendment bills and joint sittings.",
+      "Parliamentary devices for controlling the executive, including questions, motions and financial control.",
+      "Parliamentary committees and detailed scrutiny.",
+      "Presiding officers, privileges, discipline and the anti-defection law."
+    ],
+    "banned_topics": [
+      "A general philosophical catalogue of rights unrelated to the legislature.",
+      "Detailed Fundamental Rights and writ remedies, which belong to a different chapter.",
+      "Current composition of Parliament or live legislative business not present in the source."
+    ],
+    "must_include_keywords": [
+      "legislature",
+      "Parliament",
+      "representative democracy",
+      "accountability",
+      "bicameral legislature",
+      "Lok Sabha",
+      "Rajya Sabha",
+      "Council of States",
+      "House of the People",
+      "direct election",
+      "indirect election",
+      "permanent House",
+      "universal adult suffrage",
+      "legislative function",
+      "financial function",
+      "debating function",
+      "constituent function",
+      "electoral function",
+      "judicial function",
+      "money bill",
+      "non-money bill",
+      "private member‘s bill",
+      "government bill",
+      "constitutional amendment bill",
+      "joint session",
+      "Question Hour",
+      "no-confidence motion",
+      "budget",
+      "parliamentary committees",
+      "Public Accounts Committee",
+      "Speaker",
+      "Chairman",
+      "parliamentary privileges",
+      "anti-defection law",
+      "party whip"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Parliament exists only to make laws.",
+        "correction": "It also represents, debates, controls finance and the executive, amends the Constitution, elects office-holders and performs certain judicial functions."
+      },
+      {
+        "claim": "Lok Sabha and Rajya Sabha have identical powers in every matter.",
+        "correction": "They are largely co-equal on non-money bills and amendments, but Lok Sabha is decisive over money bills and government survival, while Rajya Sabha has special federal powers."
+      },
+      {
+        "claim": "Rajya Sabha is dissolved every five years.",
+        "correction": "It is a permanent House; one-third of its members retire at regular intervals."
+      },
+      {
+        "claim": "A bill becomes law immediately after introduction in one House.",
+        "correction": "It must complete the required stages in both Houses or the special procedure for its type and receive presidential assent."
+      },
+      {
+        "claim": "A strong majority makes parliamentary control unnecessary.",
+        "correction": "Questions, debates, committees, financial approval and confidence remain central accountability devices."
+      },
+      {
+        "claim": "The anti-defection law prohibits every disagreement with party leadership.",
+        "correction": "It addresses specified forms of defection and voting against authorised party direction, while the chapter also notes its effect on independent debate."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Activity using newspaper reports on fertilizer prices and parliamentary pressure on the executive.",
+      "NCERT comparison chart of Lok Sabha and Rajya Sabha powers.",
+      "NCERT flow diagram tracing a bill through Parliament.",
+      "NCERT examples of questions, debates and no-confidence as control devices.",
+      "NCERT exercises on bicameralism, money bills, committees and anti-defection."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter ’Exercises’ section contains questions on Parliament‘s need, the two Houses, law-making, executive accountability, committees and anti-defection."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Legislature\n\n## What you will learn\nYou will understand why a legislature is the centre of representative democracy rather than merely a law-making office. You will see how debate, protest and accountability connect government to the people.\n\n## Simple explanation\nA legislature converts public disagreement into organised debate and decision. It gives representatives a forum to question government, express different interests and determine whether the executive may continue in office.\n\n## Step-by-step breakdown\n- **Representative institution**: Parliament brings together members from different regions, communities, parties and social groups.\n- **Open debate**: Speeches, questions, protests, walkouts, agreement and disagreement reveal public conflict rather than hiding it.\n- **Executive accountability**: Even a strong Cabinet must retain legislative confidence and answer questions about its actions.\n- **Choice and dismissal of government**: In the parliamentary system, the elected House can sustain or remove the Council of Ministers.\n- **Democratic potential**: The chapter describes Parliament as one of the most open and representative forums of national debate.\n- **Beyond law-making**: Financial approval, representation, constitutional change and scrutiny are all part of legislative work.\n\n## Worked example\nQuestion: How can walkouts and protests contribute to democracy rather than simply obstruct Parliament?\n\nAnswer:\n- They may draw public attention to policies the opposition considers unjust or insufficiently debated.\n- The chapter’s examples show that pressure inside the House can force ministers to explain, reconsider or withdraw proposals.\n- Such methods serve democracy when they remain part of accountable political debate rather than replacing all deliberation.\n- Final answer: Parliamentary protest can be a legitimate form of scrutiny because it exposes disagreement and increases the political cost of unresponsive executive action.\n\n## Common mistake\nA common mistake is to evaluate Parliament only by the number of laws passed. Deliberation, scrutiny and representation are equally central.\n\n## Quick check question\nQuestion: Why is a genuine democracy difficult to imagine without a legislature?\nAnswer: Because citizens need elected representatives who debate policy, approve public money and hold the executive accountable.\nExplanation: Without a legislature, executive power would lack an open representative forum for questioning and removal.\n\n## Summary\n- Parliament represents diverse interests.\n- Debate and protest can support accountability.\n- The executive depends on legislative confidence.\n- Law-making is only one parliamentary function.",
+    "Core explanation": "# Core explanation: Legislature\n\n## What you will learn\nYou will learn why India has two Houses and how Lok Sabha and Rajya Sabha are constituted. You will compare direct and indirect representation, tenure and federal purpose.\n\n## Simple explanation\nBicameralism allows a second examination of decisions and gives States a distinct place in national law-making. The two Houses represent the people and the States through different methods.\n\n## Step-by-step breakdown\n- **Bicameral legislature**: India‘s Parliament consists of Lok Sabha and Rajya Sabha.\n- **Double check**: A second House allows bills and policies to be reconsidered rather than decided in haste by one chamber.\n- **Rajya Sabha**: It represents the States and is elected indirectly by elected members of State Legislative Assemblies.\n- **Population-based representation**: Unlike equal State representation in the United States Senate, Indian States receive different numbers of Rajya Sabha seats broadly according to population.\n- **Permanent House**: Rajya Sabha is not dissolved; members serve staggered terms and a portion retire periodically.\n- **Nominated members**: The President nominates persons with distinction in literature, science, art and social service.\n- **Lok Sabha**: Members are directly elected from territorial constituencies through universal adult suffrage for the normal constitutional term.\n\n## Worked example\nQuestion: Why can bicameralism improve the quality of law-making?\n\nAnswer:\n- A proposal approved by one House must usually face examination in the other.\n- The Houses have different bases of representation, so the second debate may reveal regional or political concerns missed in the first.\n- Reconsideration can correct haste and require broader agreement.\n- Final answer: Bicameralism creates a constitutional double check and combines representation of the population with representation of the States.\n\n## Common mistake\nDo not call Rajya Sabha a weaker copy of Lok Sabha. It has a distinct federal purpose and important powers even though Lok Sabha is decisive in confidence and money matters.\n\n## Quick check question\nQuestion: Why is Rajya Sabha called a permanent House?\nAnswer: Because it is never dissolved; members retire in rotation and the House continues to exist.\nExplanation: This continuity permits parliamentary business even when Lok Sabha has been dissolved.\n\n## Summary\n- India has a bicameral national legislature.\n- Lok Sabha represents people through direct election.\n- Rajya Sabha represents States through indirect election.\n- The second House provides continuity and reconsideration.",
+    "Worked examples": "# Worked examples: Legislature\n\n## What you will learn\nYou will examine the full range of parliamentary functions and the unequal powers of the two Houses in selected matters. You will connect popular authority with control over finance and government survival.\n\n## Simple explanation\nParliament legislates, authorises taxation, debates national problems, amends the Constitution and performs electoral and removal functions. The directly elected House receives special power where popular accountability is strongest.\n\n## Step-by-step breakdown\n- **Legislative function**: Parliament enacts laws, though ministers and the bureaucracy usually prepare major government bills.\n- **Financial function**: No new tax or public expenditure can operate without the constitutional approval process, and government must account for spending.\n- **Executive control**: Questions, motions, debates and confidence procedures keep ministers answerable.\n- **Representation and debate**: Members express divergent regional, social, economic and political views.\n- **Constituent function**: Both Houses must approve constitutional amendments with the required special majority.\n- **Electoral and judicial functions**: Parliament participates in electing high constitutional offices and in removal procedures for specified office-holders and judges.\n- **Lok Sabha priority**: It controls money bills and can remove the Council of Ministers through loss of confidence.\n- **Rajya Sabha special powers**: It can authorise Parliament to legislate on a State List matter in the national interest and can initiate removal of the Vice-President.\n\n## Worked example\nQuestion: Why does Lok Sabha have the decisive role over money bills and government survival?\n\nAnswer:\n- Lok Sabha is directly elected by the people.\n- The parliamentary executive is collectively responsible to it.\n- Control over taxation, expenditure and confidence is therefore placed with the chamber closest to direct popular authority.\n- Final answer: The Constitution gives Lok Sabha decisive financial and confidence powers because democratic government depends on representatives directly elected by citizens.\n\n## Common mistake\nA common mistake is to say Rajya Sabha has no role in financial matters. It can discuss a money bill and recommend changes, though it cannot block or amend it like Lok Sabha.\n\n## Quick check question\nQuestion: Name one special power of Rajya Sabha.\nAnswer: It may pass the constitutional resolution permitting Parliament to make laws on a State List subject in the national interest.\nExplanation: This reflects its role as the Council of States within the federal system.\n\n## Summary\n- Parliament performs legislative, financial and deliberative functions.\n- It controls the executive.\n- Both Houses share many constitutional functions.\n- Each House also has distinct special powers.",
+    "Exam-style problems": "# Exam-style problems: Legislature\n\n## What you will learn\nYou will follow a bill through Parliament and distinguish government, private member, money, ordinary and constitutional amendment bills. You will understand why law-making is both legal procedure and political process.\n\n## Simple explanation\nA bill begins as a proposed law, but its fate depends on public pressure, Cabinet support, House debate, committees, agreement between chambers and presidential assent.\n\n## Step-by-step breakdown\n- **Government bill**: A minister introduces it on behalf of government, usually after Cabinet approval.\n- **Private member’s bill**: A member who is not a minister introduces it; such bills rarely pass without government support.\n- **Introduction and debate**: The House considers the principle of the bill and may refer it for detailed examination.\n- **Committee scrutiny**: A committee can hear evidence, examine clauses and report recommended changes.\n- **Second House**: A non-money bill must be approved by both Houses; disagreement may lead to a joint sitting where permitted.\n- **Presidential assent**: After parliamentary approval, the bill goes to the President and becomes law under the applicable procedure.\n- **Money bills**: They originate in Lok Sabha and follow a special procedure in which Rajya Sabha can recommend but not veto changes.\n- **Amendment bills**: Constitutional amendment bills require special majorities and do not use a joint sitting to overcome disagreement.\n\n## Worked example\nQuestion: Why is committee scrutiny valuable even after a bill is debated in the House?\n\nAnswer:\n- The full House has limited time and many competing matters.\n- Committees permit detailed clause-by-clause examination and study technical evidence.\n- Their reports help identify unintended effects and improve the draft.\n- Final answer: Committees strengthen law-making by adding focused and technically detailed scrutiny to public floor debate.\n\n## Common mistake\nDo not assume every disagreement between Houses can be solved by joint sitting. Amendment bills and money bills follow different procedures.\n\n## Quick check question\nQuestion: What is a bill?\nAnswer: A draft of a proposed law placed before the legislature for consideration.\nExplanation: It has no force as law until it completes the required parliamentary and assent procedures.\n\n## Summary\n- Bills are proposed laws.\n- Different bill types follow different procedures.\n- Committees provide detailed scrutiny.\n- Both legal rules and political support shape law-making.",
+    "Revision and recap": "# Revision and recap: Legislature\n\n## What you will learn\nYou will revise how Parliament controls the executive and regulates its proceedings and members. You will evaluate the tension between party discipline and representatives’ freedom.\n\n## Simple explanation\nParliamentary accountability works through questioning, financial approval, debates, committees and possible removal. Parliament also needs rules that preserve order and integrity without silencing genuine deliberation.\n\n## Step-by-step breakdown\n- **Question Hour**: Members ask ministers for facts, explanations and responsibility for departmental action.\n- **Motions and debates**: Calling-attention devices, censure and no-confidence procedures raise political accountability.\n- **Financial control**: Government cannot raise or spend public money without parliamentary authorisation and audit scrutiny.\n- **Committees**: Committees such as the Public Accounts Committee examine expenditure and administration in greater detail.\n- **Presiding officers**: The Speaker of Lok Sabha and Chairman of Rajya Sabha maintain order and interpret procedure.\n- **Privileges**: Members receive limited protections necessary for free legislative speech and functioning, not personal exemption from law.\n- **Anti-defection law**: Members may be disqualified for specified forms of defection or violating authorised party direction.\n- **Debate over party control**: Strong party discipline can reduce the independent deliberative role of legislators.\n\n- **Key terms to remember**: House of the People, debating function, electoral function, joint session, no-confidence motion, budget, parliamentary committees, parliamentary privileges, party whip.\n\n## Worked example\nQuestion: How does Question Hour control the executive even when government has a majority?\n\nAnswer:\n- Ministers must publicly answer questions about decisions and administration.\n- Questions can reveal errors, delays or contradictions and generate public scrutiny.\n- A majority may protect government from removal but not from the political cost of unanswered criticism.\n- Final answer: Question Hour turns information and explanation into regular instruments of accountability, not merely a test of numbers.\n\n## Common mistake\nA common mistake is to treat parliamentary privilege as a personal favour. Privileges exist only to protect legislative functioning.\n\n## Quick check question\nQuestion: What is the purpose of the anti-defection law?\nAnswer: To discourage members from changing party allegiance or voting contrary to specified party directions in cases covered by the law.\nExplanation: It seeks stability, though excessive party control may weaken independent debate.\n\n## Summary\n- Parliament uses questions, motions and finance to control government.\n- Committees deepen scrutiny.\n- Presiding officers protect orderly proceedings.\n- Privileges and anti-defection rules must be balanced with deliberation."
+  }
+}

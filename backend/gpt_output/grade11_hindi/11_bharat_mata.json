@@ -1,0 +1,93 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Hindi",
+    "chapter": "Bharat Mata",
+    "central_question": "How does Jawaharlal Nehru lead ordinary people from a narrow idea of land to an inclusive understanding of India as its millions of interconnected people?",
+    "in_scope_units": [
+      "Jawaharlal Nehru: author background, freedom struggle, nation-building, peace, and the source of the excerpt from Hindustan Ki Kahani.",
+      "Nehru’s public meetings with peasants and his effort to explain India’s geographical unity and the meaning of swaraj.",
+      "Common agrarian suffering across regions and its connection with colonial rule.",
+      "How epics, pilgrimages, military travel, the world economic depression, and international events widened rural understanding.",
+      "The question ‘Who is Bharat Mata?’ and the movement from village land to the whole country.",
+      "Nehru’s conclusion that rivers, mountains, forests, and fields matter, but India is ultimately its millions of people.",
+      "End-of-chapter sections: पाठ के साथ, पाठ के आस-पास, भाषा की बात, and शब्द-छवि."
+    ],
+    "banned_topics": [
+      "A complete political biography of Jawaharlal Nehru",
+      "A detailed history of every international conflict named in the passage",
+      "Post-independence agricultural policy not discussed in the chapter",
+      "A purely geographical description of India without the people-centred argument"
+    ],
+    "must_include_keywords": [
+      "Jawaharlal Nehru",
+      "Hindustan Ki Kahani",
+      "public meetings",
+      "peasants",
+      "swaraj",
+      "unity",
+      "Khyber Pass",
+      "Kanyakumari",
+      "poverty",
+      "debt",
+      "capitalists",
+      "zamindars",
+      "moneylenders",
+      "land revenue",
+      "interest",
+      "police oppression",
+      "foreign government",
+      "epics",
+      "Puranas",
+      "pilgrimage",
+      "soldiers",
+      "economic depression",
+      "Bharat Mata",
+      "land",
+      "rivers",
+      "mountains",
+      "forests",
+      "fields",
+      "millions of people",
+      "collective destiny",
+      "people’s victory"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Bharat Mata means only the physical soil of India.",
+        "correction": "The passage includes land, rivers, mountains, forests, and fields, but Nehru’s final emphasis is that Bharat Mata is the millions of people spread across the country."
+      },
+      {
+        "claim": "Nehru spoke about India mainly to city audiences.",
+        "correction": "He says he rarely explained India in this manner in cities; he especially discussed it with peasants whose viewpoint was limited by local experience."
+      },
+      {
+        "claim": "Farmers in different regions had completely different problems.",
+        "correction": "Nehru stresses that from north to south and east to west their basic troubles were similar and tied to a common colonial structure."
+      },
+      {
+        "claim": "The slogan ‘Bharat Mata ki Jai’ is only a patriotic chant.",
+        "correction": "Nehru questions the slogan and gives it a specific democratic meaning: victory of the country’s millions of people."
+      },
+      {
+        "claim": "Rural listeners could not understand events beyond India.",
+        "correction": "The passage says epics, pilgrimages, soldiers‘ travels, and the economic depression gave them reference points for understanding the wider world."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT पाठ के साथ Q1-Q2: reconstruct when Nehru discussed India and the recurring question he asked peasants.",
+      "NCERT पाठ के साथ Q3 and Q6: connect rural knowledge of the world with the shared economic suffering of peasants.",
+      "NCERT पाठ के साथ Q4-Q5: compare the farmers’ initial meaning of Bharat Mata with Nehru’s people-centred definition.",
+      "NCERT पाठ के आस-पास Q3: formulate an evidence-based personal concept of Bharat Mata and Hindustan.",
+      "NCERT भाषा की बात Q1-Q2: interpret contextual vocabulary and derive adjective forms from nouns."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with अभ्यास sections titled 'पाठ के साथ' (Q1-Q6), 'पाठ के आस-पास' (Q1-Q5), 'भाषा की बात' (Q1-Q2), and 'शब्द-छवि'."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Bharat Mata\n\n## What you will learn\nYou will understand why Nehru discussed India differently with peasants and city audiences. You will also identify the essay’s central concern: how a vast and divided-looking land can still form one country.\n\n## Simple explanation\nNehru recalls travelling from one public meeting to another during the freedom struggle. With peasants, he begins from their immediate lives and gradually expands their thinking from village and province to the whole of India.\n\n## Step-by-step breakdown\n- **Author and source**: The passage is taken from the fifth chapter of Hindustan Ki Kahani, translated into Hindi by Haribhau Upadhyay.\n- **Audience**: Nehru says city listeners were more informed and needed a different kind of intellectual material, while peasants often viewed the world through local experience.\n- **Purpose of discussion**: He wanted peasants to understand the large country whose freedom they were struggling for.\n- **Unity across distance**: He explained that even when one part of India was far from another, the country remained connected.\n- **Meaning of swaraj**: Swaraj was not meant for a few people; it could benefit everyone.\n- **Method**: Nehru used travel stories, questions, and familiar suffering rather than delivering an abstract definition of nationhood.\n\n## Worked example\nQuestion: Why does Nehru begin his explanation of India with the everyday experience of peasants?\n\nAnswer:\n- The passage says their viewpoint was limited and that Nehru spoke of problems that were ‘यक-साँ’ from north to south and east to west.\n- He connects national freedom with familiar issues such as poverty, debt, landlords, moneylenders, revenue, interest, and police oppression.\n- Beginning with lived experience makes the idea of India concrete rather than distant.\n- It also shows that national unity is rooted in shared conditions and a shared need for freedom.\n- Final answer: Nehru begins with peasant experience because common suffering provides a truthful bridge from local life to national consciousness.\n\n## Common mistake\nA common mistake is to think that Nehru treats peasants as incapable of thought; the passage instead shows that he respects their experience and builds wider understanding from it.\n\n## Quick check question\nQuestion: What benefit of swaraj does Nehru emphasise?\nAnswer: That swaraj should benefit all people, not merely a small group.\nExplanation: This statement links political freedom with social inclusion and shared welfare.\n\n## Summary\n- The passage is autobiographical and reflective.\n- Peasants are Nehru’s main audience in these meetings.\n- Local experience becomes the starting point for national awareness.\n- Swaraj is presented as a benefit for all.",
+    "Core explanation": "# Core explanation: Bharat Mata\n\n## What you will learn\nYou will examine the shared problems of peasants across India. You will explain how these problems supported Nehru’s argument that the destinies of different regions were connected.\n\n## Simple explanation\nNehru’s idea of unity is not based only on maps or slogans. He points to a common structure of poverty and exploitation that affected cultivators in distant regions in similar ways.\n\n## Step-by-step breakdown\n- **Geographical span**: Nehru refers to journeys from the Khyber Pass in the north-west to Kanyakumari in the far south.\n- **Repeated questions**: Farmers everywhere asked similar questions because their troubles were similar.\n- **Economic pressure**: The passage names poverty, indebtedness, capitalists, zamindars, moneylenders, heavy revenue, and interest.\n- **Administrative oppression**: Police oppression is included among the hardships.\n- **Colonial framework**: These problems are described as interwoven with a system imposed by a foreign government.\n- **Common liberation**: Because the structure was common, freedom from it also had to be achieved collectively.\n- **Collective destiny**: The well-being of one part of India could not be separated from the rest.\n\n## Worked example\nQuestion: How do the peasants‘ common hardships become evidence for Indian unity?\n\nAnswer:\n- Nehru lists the same kinds of poverty, debt, revenue pressure, moneylending, landlordism, and police oppression across distant regions.\n- He says these problems were woven into the same structure imposed by foreign rule.\n- The similarity of suffering reveals a common political and economic condition.\n- This makes unity a lived reality, not merely a cultural slogan.\n- Final answer: The peasants’ common hardships prove that India’s regions share a connected destiny and therefore require collective freedom.\n\n## Common mistake\nDo not describe unity as complete sameness; Nehru recognises regional separation but argues that common problems and shared destiny bind the regions together.\n\n## Quick check question\nQuestion: Which political structure links the peasants‘ different problems in Nehru’s account?\nAnswer: The system imposed by the foreign colonial government.\nExplanation: Nehru presents poverty, debt, revenue, and police oppression as interwoven with that larger structure.\n\n## Summary\n- Unity is grounded in common material conditions.\n- The same exploitative forces appear across regions.\n- Colonial rule links local problems into one system.\n- Collective suffering supports collective struggle.",
+    "Worked examples": "# Worked examples: Bharat Mata\n\n## What you will learn\nYou will analyse why Nehru found it possible to discuss distant countries and international change with rural audiences. You will see how cultural memory and travel widened their imagination.\n\n## Simple explanation\nAlthough many peasants had not travelled far, they were not mentally cut off from the wider world. Stories, pilgrimage routes, military service, and economic crisis gave them frameworks for understanding places beyond their villages.\n\n## Step-by-step breakdown\n- **Epics and Puranas**: Familiar stories had already created an imagination of India as a large cultural space.\n- **Pilgrimage**: Some listeners had travelled to major sacred places located in different corners of the country.\n- **Soldiers**: Former soldiers had served abroad during war and other campaigns and carried geographical experience back home.\n- **Economic depression**: The depression after the 1930s helped villagers understand that events in other countries could affect their lives.\n- **International references**: Nehru mentioned China, Spain, Abyssinia, Central Europe, Egypt, West Asia, the Soviet Union, and the progress of America.\n- **Pedagogic strategy**: He connected unfamiliar facts with knowledge already present in the audience’s memory.\n\n## Worked example\nQuestion: Why was discussing the wider world with peasants ’not as difficult‘ as Nehru had expected?\n\nAnswer:\n- The passage says epics and Puranic stories had already given listeners an image of the country.\n- Pilgrims and former soldiers possessed travel experience, while the economic depression made foreign events understandable through their effects.\n- Rural knowledge existed in cultural, practical, and economic forms rather than only in formal schooling.\n- Nehru’s success came from recognising and using these existing forms of knowledge.\n- Final answer: It was possible because peasants already possessed cultural maps, travel memories, and economic experience that connected local life with the wider world.\n\n## Common mistake\nA common mistake is to equate limited formal education with absence of knowledge; the passage demonstrates several non-school sources of geographical and political understanding.\n\n## Quick check question\nQuestion: Name one cultural source that helped villagers imagine the whole country.\nAnswer: The old epics and stories of the Puranas.\nExplanation: Nehru says these familiar narratives had already helped them form an idea of the country.\n\n## Summary\n- Cultural memory widened geographical imagination.\n- Pilgrimage and military travel supplied direct experience.\n- Economic crisis connected villages with international events.\n- Nehru taught by linking new ideas with existing knowledge.",
+    "Exam-style problems": "# Exam-style problems: Bharat Mata\n\n## What you will learn\nYou will interpret the dialogue around the slogan ’Bharat Mata ki Jai.‘ You will compare the farmers’ initial answer with Nehru’s final definition.\n\n## Simple explanation\nWhen crowds welcome Nehru with the slogan, he interrupts the emotional moment with a question: who exactly is Bharat Mata? The repeated questioning turns a familiar slogan into a democratic inquiry.\n\n## Step-by-step breakdown\n- **Initial uncertainty**: The listeners become curious and surprised because they have repeated the slogan without fully defining it.\n- **The Jat farmer’s answer**: A strong farmer says Bharat Mata means the land.\n- **Expansion of scale**: Nehru asks whether this means the village land, district, province, or the land of all Hindustan.\n- **Natural features**: He accepts that rivers, mountains, forests, and food-giving fields are precious parts of India.\n- **Human centre**: He then says the people spread across the country are what finally count.\n- **Democratic slogan**: Victory of Bharat Mata therefore means victory of those millions of people.\n- **Personal inclusion**: Nehru tells listeners that each of them is a part of Bharat Mata and, in a sense, is Bharat Mata.\n\n## Worked example\nQuestion: How does Nehru transform ‘Bharat Mata’ from a geographical image into a democratic idea?\n\nAnswer:\n- He first questions whether Bharat Mata means the land of a village, district, province, or the whole country.\n- He includes rivers, mountains, forests, and fields but concludes that the millions of people are the decisive reality.\n- The questioning does not reject the land; it prevents the nation from being reduced to territory alone.\n- By placing people at the centre, the slogan becomes a promise of their dignity and victory.\n- Final answer: Nehru transforms Bharat Mata into a democratic idea by defining the nation as a living community of millions whose welfare gives meaning to the land and the slogan.\n\n## Common mistake\nDo not say that Nehru considers geography unimportant; he calls natural features precious, but he gives final priority to the people.\n\n## Quick check question\nQuestion: What does ‘Bharat Mata ki Jai’ mean in Nehru’s conclusion?\nAnswer: It means the victory and well-being of India’s millions of people.\nExplanation: The slogan gains meaning only when the people themselves are recognised as Bharat Mata.\n\n## Summary\n- Questioning gives precise meaning to a familiar slogan.\n- The farmers initially connect Bharat Mata with land.\n- Nehru includes nature but centres people.\n- Every listener becomes a participant in the national identity.",
+    "Revision and recap": "# Revision and recap: Bharat Mata\n\n## What you will learn\nYou will consolidate the chapter’s argument about unity, shared destiny, and people-centred nationalism. You will also review the language and vocabulary sections attached to the lesson.\n\n## Simple explanation\nThe essay moves in a clear progression: local hardship, national unity, wider world awareness, questioning of a slogan, and discovery of the people as the real Bharat Mata.\n\n## Step-by-step breakdown\n- **Argument structure**: Nehru begins with public meetings and ends with a transformed understanding in the listeners‘ eyes.\n- **Unity**: India is one because distant regions are connected by shared problems, memories, travel, and destiny.\n- **Nationalism**: The nation is not for a few; swaraj and national victory must belong to all.\n- **Dialogue**: Questions and answers allow listeners to reach the conclusion rather than receive it passively.\n- **Key vocabulary**: Words such as सयाने, नहरिया, महदूद, यक-साँ, ढाँचे, तब्दीलियां, भूख़, कशमकश, कुतूहल, and ताज्जुब support the essay’s conversational historical style.\n- **Language work**: The exercises ask for contextual meanings and adjective forms of nouns such as आज़ादी, हिंदुस्तान, विदेश, सरकार, यात्रा, पुराण, and भारत.\n- **Final image**: The चमक in the listeners’ eyes shows the emotional power of recognising themselves within the nation.\n\n## Worked example\nQuestion: Why does the chapter end with a ‘चमक’ in the peasants‘ eyes?\n\nAnswer:\n- Nehru tells them that they are parts of Bharat Mata and, in a sense, are Bharat Mata themselves.\n- The passage says the idea settles in their minds as though they have made a great discovery.\n- The चमक expresses both understanding and self-respect.\n- They no longer stand outside the nation as spectators; they recognise themselves as its living substance.\n- Final answer: The चमक signifies the discovery that ordinary people are not merely subjects of the nation but its central identity and rightful beneficiaries.\n\n## Common mistake\nDo not treat the ending as sentimental decoration; it completes the argument by showing an intellectual idea becoming personal dignity.\n\n## Quick check question\nQuestion: Which narrative method dominates the central section of the essay?\nAnswer: Question-and-answer dialogue with public listeners.\nExplanation: Nehru repeatedly asks what Bharat Mata means and gradually expands the answer through discussion.\n\n## Summary\n- The essay moves from local life to national identity.\n- Shared problems support the idea of unity.\n- Bharat Mata includes nature but is ultimately the people.\n- Dialogue makes national consciousness participatory.\n- Vocabulary and language exercises reinforce contextual reading."
+  }
+}

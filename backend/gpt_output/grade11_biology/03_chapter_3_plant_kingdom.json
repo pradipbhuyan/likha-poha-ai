@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 3: Plant Kingdom",
+    "central_question": "How are major plant groups distinguished by body organisation, pigments, reproduction, vascular tissues, spores, seeds, and life-cycle patterns?",
+    "in_scope_units": [
+      "Changing approaches to plant classification, including artificial, natural, phylogenetic, numerical, cytotaxonomic, and chemotaxonomic systems.",
+      "Algae, their organisation, reproduction, economic importance, and the classes Chlorophyceae, Phaeophyceae, and Rhodophyceae.",
+      "Bryophytes, their gametophyte-dominant life cycle, water dependence, ecological roles, liverworts, and mosses.",
+      "Pteridophytes, vascular sporophytes, prothalli, homospory, heterospory, and the evolutionary significance of seed habit.",
+      "Gymnosperms, naked ovules and seeds, cones, reduced gametophytes, pollination, and fertilisation.",
+      "Angiosperms as flowering plants with enclosed seeds and their broad division into dicotyledons and monocotyledons."
+    ],
+    "banned_topics": [
+      "Detailed morphology and anatomy of flowering-plant organs",
+      "Detailed double fertilisation and embryology of angiosperms",
+      "Five-kingdom classification outside the limits needed to define Plantae",
+      "Molecular mechanisms of photosynthesis"
+    ],
+    "must_include_keywords": [
+      "artificial classification",
+      "natural classification",
+      "phylogenetic classification",
+      "numerical taxonomy",
+      "cytotaxonomy",
+      "chemotaxonomy",
+      "algae",
+      "Chlorophyceae",
+      "Phaeophyceae",
+      "Rhodophyceae",
+      "isogamy",
+      "anisogamy",
+      "oogamy",
+      "zoospore",
+      "pyrenoid",
+      "fucoxanthin",
+      "phycoerythrin",
+      "floridean starch",
+      "bryophyte",
+      "gametophyte",
+      "sporophyte",
+      "antheridium",
+      "archegonium",
+      "protonema",
+      "gemma",
+      "pteridophyte",
+      "prothallus",
+      "vascular tissue",
+      "homospory",
+      "heterospory",
+      "microspore",
+      "megaspore",
+      "seed habit",
+      "gymnosperm",
+      "naked seed",
+      "strobilus",
+      "pollen grain",
+      "angiosperm",
+      "monocotyledon",
+      "dicotyledon"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Cyanobacteria are algae within Kingdom Plantae.",
+        "correction": "The chapter explicitly excludes cyanobacteria from Plantae and treats algae here as eukaryotic plant groups."
+      },
+      {
+        "claim": "All algae have the same pigments and stored food.",
+        "correction": "Green, brown, and red algae differ in major pigments, reserve food, wall composition, and flagella."
+      },
+      {
+        "claim": "The bryophyte sporophyte is independent and dominant.",
+        "correction": "The haploid gametophyte is dominant, while the sporophyte remains attached to and nutritionally dependent on it."
+      },
+      {
+        "claim": "All pteridophytes produce one type of spore.",
+        "correction": "Most are homosporous, but Selaginella and Salvinia are heterosporous."
+      },
+      {
+        "claim": "Gymnosperm seeds develop inside fruits.",
+        "correction": "Gymnosperm ovules and seeds are not enclosed by an ovary wall and remain naked."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 1: compare algal classes using pigments, reserve food, cell wall, and flagella.",
+      "NCERT Exercise 9: distinguish red algae from brown algae and liverworts from mosses.",
+      "NCERT Exercise 7: explain heterospory and its evolutionary significance using Selaginella and Salvinia.",
+      "NCERT Exercise 6: distinguish gymnosperms from angiosperms despite both producing seeds.",
+      "NCERT Exercise 10: match representative genera to algae, mosses, pteridophytes, and gymnosperms."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–11 for algal classes, life cycles, archegonia, heterospory, seed plants, and gymnosperm characteristics."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 3: Plant Kingdom\n\n## What you will learn\nYou will understand why plant classification has changed and how modern systems use several kinds of evidence. You will then recognise the broad plant groups covered in the chapter.\n\n## Simple explanation\nA useful plant classification should reflect natural and evolutionary relationships, not merely a few easily observed features.\n\n## Step-by-step breakdown\n- **Earlier placement**: Fungi, cyanobacteria, and some protists with cell walls were once grouped with plants but are excluded from modern Plantae.\n- **Artificial systems**: Early systems used a few superficial vegetative or floral characters and could separate closely related species.\n- **Natural systems**: They consider external and internal features, including anatomy, embryology, ultrastructure, and phytochemistry.\n- **Phylogenetic systems**: These arrange organisms according to evolutionary relationships and common ancestry.\n- **Numerical taxonomy**: Observable characters are coded and processed, allowing many characters to receive equal consideration.\n- **Cytotaxonomy**: Chromosome number, structure, and behaviour help resolve classification problems.\n- **Chemotaxonomy**: Chemical constituents provide additional taxonomic evidence.\n- **Groups in the chapter**: Plantae is discussed through algae, bryophytes, pteridophytes, gymnosperms, and angiosperms.\n\n## Worked example\nQuestion: Based on the chapter introduction and NCERT Exercise 1, identify the main evidence used to classify algae and explain why one superficial character is insufficient.\n\nSolution:\n- The chapter's algal table compares major pigments, stored food, cell-wall materials, flagella, and habitat.\n- These characters reveal consistent differences among Chlorophyceae, Phaeophyceae, and Rhodophyceae.\n- A single visible trait such as colour may be useful, but classification is more reliable when several correlated characters are considered.\n- Final answer: Algae are classified using a combination of pigments, reserve food, cell wall, flagella, habitat, and reproductive traits rather than one superficial feature.\n\n## Common mistake\nModern classification does not give automatic priority to easily seen vegetative characters because they can be strongly influenced by the environment.\n\n## Quick check question\nQuestion: Which modern approach uses chromosome information in plant classification?\nAnswer: Cytotaxonomy.\nExplanation: Cytotaxonomy uses chromosome number, structure, and behaviour to resolve taxonomic relationships.\n\n## Summary\n- Plant classification has changed as evidence has improved.\n- Artificial systems use limited characters.\n- Natural and phylogenetic systems consider broader relationships.\n- Numerical, cytological, and chemical evidence support modern taxonomy.",
+    "Core explanation": "# Core explanation: Chapter 3: Plant Kingdom\n\n## What you will learn\nYou will compare the three principal algal classes and their reproductive patterns. You will also explain the ecological and economic importance of algae.\n\n## Simple explanation\nAlgae are simple, chlorophyll-bearing, thalloid autotrophs that are mostly aquatic, but their pigments, reserve foods, walls, and reproductive structures differ.\n\n## Step-by-step breakdown\n- **General organisation**: Algae range from unicellular and colonial forms to filaments and large marine kelps.\n- **Reproduction**: Fragmentation is vegetative; zoospores are common asexual spores; sexual fusion may be isogamous, anisogamous, or oogamous.\n- **Green algae**: Chlorophyceae contain chlorophyll a and b, usually store starch in pyrenoids, and commonly have cellulosic walls and equal apical flagella.\n- **Brown algae**: Phaeophyceae contain chlorophyll a and c with fucoxanthin, store laminarin or mannitol, and generally have two unequal lateral flagella.\n- **Brown-algal body**: A typical larger thallus may be differentiated into holdfast, stipe, and frond.\n- **Red algae**: Rhodophyceae contain chlorophyll a and d with phycoerythrin, store floridean starch, and lack flagellated stages.\n- **Aquatic productivity**: Algae fix a major share of carbon dioxide and form the base of aquatic food cycles.\n- **Commercial products**: Brown and red algae yield algin, carrageen, and agar; Porphyra, Laminaria, and Sargassum are used as food.\n- **Protein source**: Chlorella is protein-rich and used as a food supplement.\n\n## Worked example\nQuestion: Based on NCERT Exercise 9(i), differentiate red algae and brown algae.\n\nSolution:\n- Compare the dominant pigments: red algae contain phycoerythrin, while brown algae contain fucoxanthin with chlorophyll a and c.\n- Compare reserve food: red algae store floridean starch, while brown algae store laminarin or mannitol.\n- Compare motile stages: red algae lack flagella, while brown algae commonly have two unequal lateral flagella.\n- Both are largely marine, but red algae are especially common in warmer seas and may occur at greater depths.\n- Final answer: Red algae are phycoerythrin-rich, store floridean starch, and lack flagella; brown algae are fucoxanthin-rich, store laminarin or mannitol, and commonly have two unequal lateral flagella.\n\n## Common mistake\nThe names green, brown, and red algae reflect dominant pigments, but classification also uses reserve food, wall material, flagella, and reproduction.\n\n## Quick check question\nQuestion: Which algal product from Gelidium and Gracilaria is used in microbial culture and food preparations?\nAnswer: Agar.\nExplanation: The chapter identifies agar as a commercial product used to grow microbes and in ice-creams and jellies.\n\n## Summary\n- Algae show vegetative, asexual, and sexual reproduction.\n- The three classes differ in pigments and reserve food.\n- Flagella are absent in red algae.\n- Algae are major aquatic producers and yield useful products.",
+    "Worked examples": "# Worked examples: Chapter 3: Plant Kingdom\n\n## What you will learn\nYou will compare bryophytes and pteridophytes and trace their alternation between gametophyte and sporophyte. You will explain why water remains necessary for fertilisation.\n\n## Simple explanation\nBryophytes and pteridophytes both form multicellular sex organs and require water for male gametes to reach the egg, but they differ greatly in dominant generation and vascular organisation.\n\n## Step-by-step breakdown\n- **Bryophyte habitat**: Bryophytes occur mainly in damp, shaded places and are called amphibians of the plant kingdom because they live on land but need water for sexual reproduction.\n- **Bryophyte gametophyte**: The main haploid plant bears antheridia and archegonia.\n- **Bryophyte sporophyte**: The zygote forms a multicellular sporophyte attached to the gametophyte; meiosis produces haploid spores.\n- **Liverworts**: Marchantia has a thalloid body and may reproduce through gemmae in gemma cups.\n- **Mosses**: The gametophyte develops through protonema and leafy stages; Funaria, Polytrichum, and Sphagnum are examples.\n- **Pteridophyte advance**: The dominant sporophyte has true roots, stem, leaves, xylem, and phloem.\n- **Sporangia**: Sporophytes bear sporangia on sporophylls, sometimes organised into strobili.\n- **Prothallus**: Spores germinate into small, free-living, usually photosynthetic gametophytes called prothalli.\n- **Ecological restriction**: The need for cool, damp gametophyte habitats and water for fertilisation limits many pteridophytes.\n\n## Worked example\nQuestion: Based on NCERT Exercise 9(ii), differentiate liverworts and mosses.\n\nSolution:\n- Liverworts such as Marchantia commonly have a dorsiventral thalloid body closely appressed to the substrate.\n- Moss gametophytes have a filamentous protonema followed by an upright leafy stage.\n- Liverworts commonly reproduce asexually by gemmae, while mosses reproduce vegetatively by fragmentation and budding in secondary protonema.\n- Both form a dependent sporophyte with foot, seta, and capsule, but the moss sporophyte is more elaborate.\n- Final answer: Liverworts are commonly thalloid and may form gemma cups, whereas mosses have protonema and leafy gametophyte stages with a more elaborate sporophyte.\n\n## Common mistake\nDo not call the bryophyte sporophyte the independent dominant plant; it remains attached to the gametophyte.\n\n## Quick check question\nQuestion: What is the dominant plant body in pteridophytes?\nAnswer: The sporophyte.\nExplanation: It is a well-differentiated vascular plant with true roots, stem, and leaves.\n\n## Summary\n- Bryophytes have dominant gametophytes and dependent sporophytes.\n- Mosses pass through protonema and leafy stages.\n- Pteridophytes are the first terrestrial vascular plants in the chapter.\n- Pteridophyte spores form prothalli.",
+    "Exam-style problems": "# Exam-style problems: Chapter 3: Plant Kingdom\n\n## What you will learn\nYou will analyse homospory, heterospory, and the seed-habit precursor. You will then explain gymnosperm reproduction and why gymnosperm seeds are called naked.\n\n## Simple explanation\nThe production of separate microspores and megaspores, retention of the female gametophyte, and embryo development within it mark an important evolutionary transition toward seed habit.\n\n## Step-by-step breakdown\n- **Homospory**: Most pteridophytes produce one kind of spore.\n- **Heterospory**: Selaginella and Salvinia produce small microspores and large megaspores.\n- **Separate gametophytes**: Microspores produce male gametophytes and megaspores produce female gametophytes.\n- **Seed-habit precursor**: Retention of the female gametophyte on the parent sporophyte and development of the young embryo within it anticipate seed habit.\n- **Gymnosperm ovules**: Ovules are exposed because they are not enclosed by an ovary wall.\n- **Cones**: Microsporophylls form male cones, and megasporophylls bearing ovules form female cones.\n- **Reduced gametophytes**: Pollen grains and female gametophytes remain associated with sporangia on the sporophyte rather than living independently.\n- **Pollination**: Air currents carry pollen to the ovule, and a pollen tube delivers male gametes toward the archegonia.\n- **Naked seeds**: After fertilisation, the ovule becomes a seed that remains uncovered by fruit.\n- **Adaptations**: Needle-like leaves, thick cuticle, and sunken stomata reduce water loss in many conifers.\n\n## Worked example\nQuestion: Based on NCERT Exercise 7, define heterospory, give two examples, and state its significance.\n\nSolution:\n- Heterospory is the production of two spore types: microspores and megaspores.\n- Selaginella and Salvinia are the examples given in the chapter.\n- The spores form male and female gametophytes respectively.\n- Retention of the female gametophyte and embryo development within it is a precursor to seed habit.\n- Final answer: Heterospory is the production of microspores and megaspores, as in Selaginella and Salvinia; it is significant because it leads toward separate gametophytes, female-gametophyte retention, and seed habit.\n\n## Common mistake\nHeterospory does not itself mean that a pteridophyte has true seeds; it represents an evolutionary precursor.\n\n## Quick check question\nQuestion: Why are gymnosperms called naked-seeded plants?\nAnswer: Their ovules and later their seeds are not enclosed by an ovary wall or fruit.\nExplanation: The gymnosperm megasporangium remains exposed on the megasporophyll.\n\n## Summary\n- Heterospory separates male and female spore pathways.\n- Female-gametophyte retention anticipates seed habit.\n- Gymnosperms bear cones and reduced gametophytes.\n- Gymnosperm seeds are not enclosed in fruits.",
+    "Revision and recap": "# Revision and recap: Chapter 3: Plant Kingdom\n\n## What you will learn\nYou will place angiosperms beside gymnosperms and review the evolutionary progression across major plant groups. You will match representative genera with their correct groups.\n\n## Simple explanation\nAcross the chapter, plant organisation progresses from simple aquatic thalli to vascular sporophytes and finally seed plants with highly reduced gametophytes.\n\n## Step-by-step breakdown\n- **Angiosperm distinction**: Pollen grains and ovules develop in flowers, and seeds become enclosed within fruits.\n- **Angiosperm diversity**: Flowering plants range from tiny Wolffia to Eucalyptus trees over 100 metres tall.\n- **Broad classes**: Angiosperms are divided into dicotyledons and monocotyledons.\n- **Algal level**: The dominant plant body is a thallus, usually aquatic and non-vascular.\n- **Bryophyte level**: The gametophyte dominates, and the sporophyte remains dependent.\n- **Pteridophyte level**: The vascular sporophyte dominates but fertilisation still requires external water.\n- **Gymnosperm level**: Seeds appear, but ovules and seeds remain exposed.\n- **Angiosperm level**: Flowers enclose reproductive structures and fruits enclose seeds.\n- **Representative examples**: Chlamydomonas is an alga, Sphagnum a moss, Selaginella a pteridophyte, and Cycas a gymnosperm.\n\n## Worked example\nQuestion: Based on NCERT Exercises 6 and 10, explain why gymnosperms and angiosperms are classified separately and match Chlamydomonas, Cycas, Selaginella, and Sphagnum to their groups.\n\nSolution:\n- Both groups form seeds, but gymnosperm ovules and seeds are exposed while angiosperm ovules occur in flowers and seeds are enclosed in fruits.\n- Use the chapter examples to assign each genus.\n- Chlamydomonas belongs to algae, Cycas to gymnosperms, Selaginella to pteridophytes, and Sphagnum to mosses.\n- Final answer: Gymnosperms have naked seeds, whereas angiosperms have seeds enclosed in fruits; Chlamydomonas–algae, Cycas–gymnosperm, Selaginella–pteridophyte, and Sphagnum–moss.\n\n## Common mistake\nSeed production alone does not make gymnosperms and angiosperms identical; ovule enclosure and reproductive organisation differ.\n\n## Quick check question\nQuestion: Which plant group in the chapter has flowers and fruits?\nAnswer: Angiosperms.\nExplanation: Their reproductive organs occur in flowers, and the ovary develops into a fruit enclosing the seeds.\n\n## Summary\n- Major plant groups differ in body organisation and life cycle.\n- Dominance shifts from gametophyte to sporophyte.\n- Vascular tissue appears in pteridophytes.\n- Seeds appear in gymnosperms and angiosperms.\n- Only angiosperms enclose seeds in fruits."
+  }
+}

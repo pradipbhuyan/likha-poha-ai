@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Electrochemistry",
+  "central_question": "How are spontaneous redox reactions converted into electrical energy, and how can electrical measurements predict and drive chemical change?",
+  "in_scope_units": [
+    "Electrochemical cells and conversion between galvanic and electrolytic operation.",
+    "Galvanic cells, half-cells, salt bridge, cell notation, electrode potential and cell emf.",
+    "Standard hydrogen electrode and standard electrode potentials.",
+    "Nernst equation for electrode and cell potentials under non-standard conditions.",
+    "Relations among cell potential, Gibbs energy and equilibrium constant.",
+    "Conductance of electrolytic solutions: resistance, resistivity, conductivity and molar conductivity.",
+    "Measurement of conductivity, concentration dependence and Kohlrausch’s law.",
+    "Electrolytic cells, Faraday’s laws and products of electrolysis.",
+    "Primary and secondary batteries, fuel cells and corrosion."
+  ],
+  "banned_topics": [
+    "Detailed redox balancing methods outside the cell reactions used here.",
+    "Chemical kinetics of electrode reactions and overpotential, which are beyond the chapter.",
+    "Semiconductor conductivity, which belongs to solid-state electronics rather than ionic solutions."
+  ],
+  "must_include_keywords": [
+    "electrochemical cell",
+    "galvanic cell",
+    "electrolytic cell",
+    "Daniell cell",
+    "anode",
+    "cathode",
+    "oxidation",
+    "reduction",
+    "salt bridge",
+    "cell notation",
+    "cell potential",
+    "electromotive force",
+    "standard electrode potential",
+    "standard hydrogen electrode",
+    "Nernst equation",
+    "reaction quotient",
+    "Gibbs energy",
+    "equilibrium constant",
+    "resistance",
+    "resistivity",
+    "conductivity",
+    "cell constant",
+    "molar conductivity",
+    "infinite dilution",
+    "strong electrolyte",
+    "weak electrolyte",
+    "Kohlrausch’s law",
+    "electrolysis",
+    "Faraday constant",
+    "Faraday’s laws",
+    "primary battery",
+    "secondary battery",
+    "dry cell",
+    "mercury cell",
+    "lead storage battery",
+    "nickel-cadmium cell",
+    "fuel cell",
+    "corrosion"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Oxidation always occurs at the positive electrode.",
+      "correction": "Oxidation occurs at the anode; the anode is negative in a galvanic cell but positive in an electrolytic cell."
+    },
+    {
+      "claim": "The potential of a single isolated half-cell can be measured absolutely.",
+      "correction": "Only a potential difference can be measured; electrode potentials are assigned relative to the standard hydrogen electrode."
+    },
+    {
+      "claim": "Conductivity and molar conductivity both decrease on dilution.",
+      "correction": "Conductivity decreases on dilution, but molar conductivity increases because ions move more freely and weak electrolytes ionise more."
+    },
+    {
+      "claim": "Multiplying a half-reaction multiplies its electrode potential.",
+      "correction": "Electrode potential is an intensive quantity and is not multiplied when the equation is multiplied."
+    },
+    {
+      "claim": "A positive standard cell potential means the reverse reaction is spontaneous.",
+      "correction": "A positive E°cell corresponds to negative ΔG° and spontaneity of the cell reaction as written."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the Daniell-cell calculation in the text: E°cell = 0.34 − (−0.76) = 1.10 V.",
+    "Use NCERT Example 2.2 to apply the Nernst equation to a complete cell.",
+    "Use NCERT Example 2.3 to connect E°cell with ΔG° and K.",
+    "Apply NCERT Examples 2.4–2.6 to conductivity, molar conductivity and Kohlrausch’s law.",
+    "Use NCERT Examples 2.7–2.10 for Faraday-law and electrolysis calculations."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 2.1 to 2.18 and cover electrode potentials, Nernst equation, equilibrium, conductivity, Kohlrausch’s law, electrolysis, batteries and corrosion.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

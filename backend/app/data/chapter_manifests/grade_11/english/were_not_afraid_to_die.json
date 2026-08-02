@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 11",
+  "subject": "English",
+  "chapter": "We're Not Afraid to Die",
+  "central_question": "How do skilled action, shared courage and family unity enable the voyagers to survive a catastrophic storm and reach Ile Amsterdam?",
+  "in_scope_units": [
+    "The narrator, Mary, Jonathan and Suzanne begin a carefully prepared round-the-world voyage in Wavewalker.",
+    "Larry Vigil and Herb Seigler join before the crew faces continuous gales in the southern Indian Ocean.",
+    "A gigantic wave strikes on 2 January, injuring the narrator and severely damaging the boat.",
+    "The crew makes emergency repairs, operates pumps and works without answers to Mayday calls.",
+    "With the hull failing, the voyagers aim for Ile Amsterdam while the children show exceptional courage.",
+    "Navigation, teamwork and persistence bring Wavewalker within sight of the island and its inhabitants.",
+    "The language and activity sections cover nautical vocabulary, word meanings, yacht parts and information about Ile Amsterdam."
+  ],
+  "banned_topics": [
+    "Current sailing or weather advice",
+    "Medical treatment recommendations for the injuries",
+    "Updated demographic or geographic facts about Ile Amsterdam",
+    "Events outside the voyage described in the source"
+  ],
+  "must_include_keywords": [
+    "Gordon Cook",
+    "Alan East",
+    "first-person account",
+    "Wavewalker",
+    "Plymouth",
+    "Mary",
+    "Jonathan",
+    "Suzanne",
+    "Larry Vigil",
+    "Herb Seigler",
+    "Cape Town",
+    "southern Indian Ocean",
+    "seafaring skills",
+    "gales",
+    "storm jib",
+    "mooring rope",
+    "lifelines",
+    "ominous silence",
+    "gigantic wave",
+    "lifeline",
+    "starboard side",
+    "canvas repairs",
+    "hand pumps",
+    "electric pump",
+    "Mayday calls",
+    "Ile Amsterdam",
+    "pinpricks in the vast ocean",
+    "heave-to",
+    "sea anchor",
+    "sextant",
+    "spare compass",
+    "magnetic variation",
+    "westerly currents",
+    "tousled head",
+    "optimism",
+    "teamwork",
+    "courage",
+    "family unity",
+    "nautical terminology"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The family begins the voyage without adequate preparation.",
+      "correction": "Mary and the narrator spend sixteen years honing seafaring skills, and Wavewalker is professionally built, fitted and tested."
+    },
+    {
+      "claim": "Only the narrator saves the boat.",
+      "correction": "Mary, Larry, Herb and the children all contribute through steering, pumping, endurance and emotional courage."
+    },
+    {
+      "claim": "Sue hides her injuries because they are minor.",
+      "correction": "Her head swells alarmingly and she has a deep cut, but she stays quiet to avoid worrying the adults."
+    },
+    {
+      "claim": "Jonathan says he wants to die.",
+      "correction": "He says the children are not afraid of dying if the whole family can be together, expressing unity rather than a wish for death."
+    },
+    {
+      "claim": "Ile Amsterdam is considered beautiful because it is lush.",
+      "correction": "The narrator calls the bleak volcanic rock the most beautiful island because it represents safety."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Understanding the Text Q1 by listing preparations against rough weather and steps used to check flooding.",
+    "Use Understanding the Text Q2 to track the voyagers’ changing mental condition on 4 and 5 January.",
+    "Use Understanding the Text Q3 to divide the account into the approach of disaster, the struggle for survival and the final navigation.",
+    "Use Talking About the Text Q1-Q4 for adult-child responses, optimism, lessons from danger and motives for adventure.",
+    "Conclude with Working with Words and Things to Do on nautical homonyms, -ship compounds, “take on,” yacht labels and Ile Amsterdam."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The account is followed by Understanding the Text questions 1-3, Talking About the Text questions 1-4, Thinking About Language, Working with Words questions 1-3 and three Things to Do activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

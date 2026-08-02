@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Secondary Activities",
+  "central_question": "How does manufacturing add value to resources, why do industries choose particular locations, and how are manufacturing systems classified?",
+  "in_scope_units": [
+    "Meaning of secondary activities and manufacturing as value addition.",
+    "Characteristics of modern large-scale manufacturing.",
+    "Industrial-location factors and agglomeration economies.",
+    "Footloose industries.",
+    "Classification by size: household, small-scale and large-scale manufacturing.",
+    "Classification by raw material: agro, mineral, chemical, forest and animal based industries.",
+    "Classification by output into basic and consumer goods industries.",
+    "Classification by ownership into public, private and joint sectors.",
+    "High-technology industry and technopolies.",
+    "Major world manufacturing industries."
+  ],
+  "banned_topics": [
+    "Detailed farming and mining systems, treated in Primary Activities.",
+    "Detailed trade, transport and communication networks, treated in later chapters."
+  ],
+  "must_include_keywords": [
+    "secondary activities",
+    "value addition",
+    "manufacturing",
+    "processing",
+    "construction",
+    "specialisation",
+    "mass production",
+    "standardised commodities",
+    "mechanisation",
+    "automation",
+    "technological innovation",
+    "organisational structure",
+    "uneven geographic distribution",
+    "market",
+    "raw material",
+    "labour",
+    "energy",
+    "transport",
+    "communication",
+    "government policy",
+    "agglomeration economies",
+    "footloose industries",
+    "household industry",
+    "cottage manufacturing",
+    "small-scale manufacturing",
+    "large-scale manufacturing",
+    "agro-based industries",
+    "mineral-based industries",
+    "chemical-based industries",
+    "forest-based industries",
+    "animal-based industries",
+    "basic industries",
+    "consumer goods",
+    "public sector",
+    "private sector",
+    "joint sector",
+    "high-technology industry",
+    "technopolies",
+    "Silicon Valley",
+    "Silicon Forest"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Manufacturing means only goods made by hand.",
+      "correction": "Although the word literally means to make by hand, the chapter includes machine production and defines manufacturing as transforming raw materials into higher-value finished goods."
+    },
+    {
+      "claim": "An industry is located near only one factor such as raw material.",
+      "correction": "Market, raw material, labour, energy, transport, communication, policy and agglomeration operate together."
+    },
+    {
+      "claim": "Footloose industries can be placed anywhere without conditions.",
+      "correction": "They are less tied to specific raw materials but still depend strongly on component supply and road accessibility."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2(ii) on manufacturing.",
+    "NCERT Exercise 2(iii) on footloose industries.",
+    "NCERT Exercise 1(iii) on basic industries.",
+    "NCERT Exercise 2(i) on high-tech industry.",
+    "NCERT Exercise 3(ii) on trends in modern industrial activity."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–3 and three Project/Activity tasks on manufactured goods, biodegradable materials and global brands.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

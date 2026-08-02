@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 11",
+  "subject": "Accountancy",
+  "chapter": "Financial Statements – I",
+  "central_question": "How are trial-balance items classified and assembled into trading and profit and loss account and balance sheet to report performance and financial position?",
+  "in_scope_units": [
+    "Stakeholders and their information requirements.",
+    "Capital and revenue expenditure and receipts.",
+    "Meaning, nature and objectives of financial statements.",
+    "Trading account and calculation of gross profit or gross loss.",
+    "Profit and loss account and calculation of net and operating profit.",
+    "Closing entries for nominal accounts.",
+    "Balance sheet and classification of assets and liabilities.",
+    "Grouping and marshalling in order of liquidity or permanence.",
+    "Preparation of financial statements of a sole proprietor.",
+    "Opening entry."
+  ],
+  "banned_topics": [
+    "Adjustments such as outstanding expenses, prepaid expenses and provisions, which belong to Financial Statements – II.",
+    "Trial-balance error correction, which belongs to Chapter 6.",
+    "Company financial-statement formats, which are outside this sole-proprietor chapter."
+  ],
+  "must_include_keywords": [
+    "financial statements",
+    "stakeholders",
+    "internal users",
+    "external users",
+    "capital expenditure",
+    "revenue expenditure",
+    "deferred revenue expenditure",
+    "capital receipt",
+    "revenue receipt",
+    "trading account",
+    "opening stock",
+    "purchases",
+    "purchase returns",
+    "direct expenses",
+    "wages",
+    "carriage inward",
+    "sales",
+    "sales returns",
+    "closing stock",
+    "gross profit",
+    "gross loss",
+    "profit and loss account",
+    "indirect expenses",
+    "indirect income",
+    "net profit",
+    "net loss",
+    "operating profit",
+    "closing entries",
+    "balance sheet",
+    "assets",
+    "liabilities",
+    "current assets",
+    "non-current assets",
+    "current liabilities",
+    "grouping",
+    "marshalling",
+    "liquidity",
+    "permanence",
+    "opening entry"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every large payment is capital expenditure.",
+      "correction": "Classification depends on purpose and benefit period, not merely amount."
+    },
+    {
+      "claim": "Purchase of goods for resale is shown as an asset purchase in the balance sheet.",
+      "correction": "It enters the trading account as purchases; unsold goods become closing stock."
+    },
+    {
+      "claim": "Gross profit and net profit are the same.",
+      "correction": "Gross profit arises from trading activities before indirect expenses and incomes; net profit is determined after them."
+    },
+    {
+      "claim": "A balance sheet is an account covering a period.",
+      "correction": "It is a statement of financial position at a particular date."
+    },
+    {
+      "claim": "Closing stock always appears only in the balance sheet.",
+      "correction": "When supplied as additional information, it is normally credited in trading account and shown as a current asset."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the stakeholder table and questions to match owners, managers, lenders and government with information needs.",
+    "Use the chapter illustration where repairs of ₹20,000 are incorrectly capitalised to show profit overstatement from capital-revenue misclassification.",
+    "Use Ankit's trial balance to prepare a simple trading and profit and loss account.",
+    "Use the same Ankit figures to prepare a balance sheet by grouping assets and liabilities.",
+    "Use end questions to practise order of liquidity, order of permanence, closing entries and opening entry."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Short Answer Questions, Long Answer Questions and numerical problems on capital and revenue classification and preparation of financial statements without adjustments.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 12",
+  "subject": "History",
+  "chapter": "Peasants, Zamindars and the State: Agrarian Society and the Mughal Empire",
+  "central_question": "How were production, community, power and revenue organised in Mughal rural society, and how can the Ain-i Akbari and regional records be used to reconstruct them?",
+  "in_scope_units": [
+    "Sources for Mughal agrarian history and the viewpoint of the Ain-i Akbari.",
+    "Peasant categories, mobility, landholding and village production.",
+    "Irrigation, tools, crops and commercial agriculture.",
+    "Caste, panchayats, headmen, artisans and women in the village community.",
+    "Forest dwellers, shifting cultivation and agrarian expansion.",
+    "Zamindar rights, revenue collection and local authority.",
+    "Mughal land-revenue assessment and collection.",
+    "Monetary transactions, markets, credit and the flow of silver.",
+    "Organisation, statistical content and limitations of the Ain-i Akbari."
+  ],
+  "banned_topics": [
+    "Permanent Settlement and colonial revenue auctions, treated in the next chapter.",
+    "A general political narrative of Mughal emperors beyond agrarian administration."
+  ],
+  "must_include_keywords": [
+    "agrarian society",
+    "Ain-i Akbari",
+    "Abu'l Fazl",
+    "raiyat",
+    "khud-kashta",
+    "pahi-kashta",
+    "individual possession",
+    "monsoon",
+    "irrigation",
+    "Persian wheel",
+    "wooden plough",
+    "kharif",
+    "rabi",
+    "do-fasla",
+    "jins-i kamil",
+    "cash crops",
+    "village community",
+    "caste hierarchy",
+    "panchayat",
+    "muqaddam",
+    "mandal",
+    "patwari",
+    "village artisans",
+    "women's labour",
+    "forest dwellers",
+    "jangli",
+    "agrarian expansion",
+    "zamindars",
+    "armed retainers",
+    "land revenue",
+    "jama",
+    "hasil",
+    "revenue assessment",
+    "monetisation",
+    "silver flow",
+    "markets",
+    "Mughal fiscal system"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Ain gives a neutral peasant account of rural society.",
+      "correction": "It is a courtly administrative text presenting an imperial view and must be compared with regional records and evidence of conflict."
+    },
+    {
+      "claim": "Mughal agriculture was only subsistence farming.",
+      "correction": "Staples were combined with cash crops, multiple cropping, markets and monetary revenue demands."
+    },
+    {
+      "claim": "A zamindar privately owned all village land in the modern sense.",
+      "correction": "Zamindars held superior fiscal and social rights, while peasants also possessed and transferred their fields."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1 on using the Ain.",
+    "NCERT Exercise 2 on subsistence and commercial agriculture.",
+    "NCERT Exercise 9 on panchayats and headmen.",
+    "NCERT Exercise 8 on zamindars.",
+    "NCERT Exercise 5 on land revenue and Mughal finance."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with questions 1-5 in the 100-150 word section, essay questions 6-9, Map work 10 and Projects 11-12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

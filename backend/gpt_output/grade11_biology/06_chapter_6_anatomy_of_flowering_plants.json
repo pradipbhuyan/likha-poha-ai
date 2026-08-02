@@ -1,0 +1,102 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 6: Anatomy of Flowering Plants",
+    "central_question": "How are tissues organised internally in flowering-plant roots, stems, and leaves, and how do monocot and dicot structures differ?",
+    "in_scope_units": [
+      "The epidermal tissue system, including epidermis, cuticle, stomata, guard cells, subsidiary cells, root hairs, and trichomes.",
+      "The ground tissue system and the distribution of parenchyma, collenchyma, sclerenchyma, and mesophyll.",
+      "The vascular tissue system, including xylem, phloem, radial and conjoint arrangements, and open and closed vascular bundles.",
+      "Internal organisation of dicotyledonous and monocotyledonous roots.",
+      "Internal organisation of dicotyledonous and monocotyledonous stems.",
+      "Internal organisation of dorsiventral dicot leaves and isobilateral monocot leaves."
+    ],
+    "banned_topics": [
+      "External morphology of plant organs",
+      "Detailed secondary growth beyond the brief references in the chapter",
+      "Physiological mechanisms of transpiration and photosynthesis",
+      "Cell division and molecular differentiation of tissues"
+    ],
+    "must_include_keywords": [
+      "anatomy",
+      "epidermal tissue system",
+      "epidermis",
+      "cuticle",
+      "stoma",
+      "guard cell",
+      "subsidiary cell",
+      "stomatal apparatus",
+      "root hair",
+      "trichome",
+      "ground tissue system",
+      "parenchyma",
+      "collenchyma",
+      "sclerenchyma",
+      "mesophyll",
+      "vascular tissue system",
+      "xylem",
+      "phloem",
+      "cambium",
+      "open vascular bundle",
+      "closed vascular bundle",
+      "radial bundle",
+      "conjoint bundle",
+      "epiblema",
+      "endodermis",
+      "Casparian strip",
+      "pericycle",
+      "stele",
+      "polyarch",
+      "endarch",
+      "medullary ray",
+      "bundle sheath",
+      "dorsiventral leaf",
+      "isobilateral leaf",
+      "palisade parenchyma",
+      "spongy parenchyma",
+      "bulliform cell"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Cuticle is prominent on roots.",
+        "correction": "The cuticle commonly covers aerial epidermis but is absent in roots."
+      },
+      {
+        "claim": "All guard cells are bean-shaped.",
+        "correction": "Dicot guard cells are generally bean-shaped, whereas grasses have dumb-bell-shaped guard cells."
+      },
+      {
+        "claim": "Every vascular bundle containing xylem and phloem is open.",
+        "correction": "Open bundles contain cambium; closed bundles lack cambium."
+      },
+      {
+        "claim": "Dicot and monocot roots differ only externally.",
+        "correction": "They differ anatomically in xylem number, pith development, and secondary-growth potential."
+      },
+      {
+        "claim": "Monocot stems have vascular bundles arranged in a ring.",
+        "correction": "Monocot stem bundles are numerous and scattered; dicot stem bundles form a ring."
+      },
+      {
+        "claim": "Both leaf types have palisade and spongy mesophyll.",
+        "correction": "Dorsiventral dicot leaves are differentiated; isobilateral monocot mesophyll is generally undifferentiated."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 5: name the three tissue systems and their tissue components.",
+      "NCERT Exercise 4: explain and diagram the stomatal apparatus.",
+      "NCERT Exercise 1: compare dicot and monocot root and stem anatomy.",
+      "NCERT Exercises 2–3: identify monocot or dicot stems from vascular-bundle features.",
+      "NCERT Exercise 7: describe the internal structure of a dorsiventral leaf."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–7 for tissue systems and comparative anatomy of roots, stems, and leaves."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 6: Anatomy of Flowering Plants\n\n## What you will learn\nYou will identify the three tissue systems of flowering plants and explain how the epidermal system protects and exchanges materials with the environment.\n\n## Simple explanation\nAnatomy studies internal plant structure. Tissues are grouped into systems according to their position, structure, and function.\n\n## Step-by-step breakdown\n- **Three systems**: Flowering plants contain epidermal, ground or fundamental, and vascular or conducting tissue systems.\n- **Epidermis**: The outermost primary covering is usually a single compact layer of parenchymatous cells with a large vacuole.\n- **Cuticle**: A waxy cuticle reduces water loss on aerial parts and is absent from roots.\n- **Stomata**: Stomatal pores regulate gaseous exchange and transpiration.\n- **Guard cells**: Two chloroplast-containing guard cells control the pore; they are bean-shaped in many plants and dumb-bell-shaped in grasses.\n- **Subsidiary cells**: Specialised epidermal cells may surround the guard cells.\n- **Stomatal apparatus**: The pore, guard cells, and surrounding subsidiary cells together form the stomatal apparatus.\n- **Root hairs**: Unicellular epidermal elongations absorb water and minerals.\n- **Trichomes**: Usually multicellular shoot hairs may be branched, unbranched, stiff, soft, or secretory and help reduce water loss.\n\n## Worked example\nQuestion: Based on NCERT Exercises 4 and 5, define the stomatal apparatus and place it within the correct tissue system.\n\nSolution:\n- Identify the stomatal aperture in the leaf epidermis.\n- Include the two guard cells that regulate the opening.\n- Include any specialised surrounding subsidiary cells.\n- Classify all these structures under the epidermal tissue system.\n- Final answer: The stomatal apparatus consists of the stomatal pore, guard cells, and surrounding subsidiary cells and belongs to the epidermal tissue system.\n\n## Common mistake\nA stoma is not only the empty pore; the functional apparatus includes guard and subsidiary cells.\n\n## Quick check question\nQuestion: Why is the cuticle absent from roots?\nAnswer: Roots must absorb water and minerals efficiently from the soil.\nExplanation: A water-resistant waxy layer would obstruct the absorptive role of the root epidermis.\n\n## Summary\n- Tissue systems reflect structure, location, and function.\n- The epidermis protects the primary plant body.\n- Stomata regulate exchange and water loss.\n- Root hairs absorb, while trichomes commonly protect aerial organs.",
+    "Core explanation": "# Core explanation: Chapter 6: Anatomy of Flowering Plants\n\n## What you will learn\nYou will describe the ground and vascular tissue systems and classify vascular bundles by position and cambium. You will connect each arrangement with plant organs.\n\n## Simple explanation\nGround tissues fill much of the plant body, while xylem and phloem form conducting bundles that may be arranged differently in roots, stems, and leaves.\n\n## Step-by-step breakdown\n- **Ground tissues**: All tissues other than epidermis and vascular bundles form the ground system.\n- **Simple tissues**: Parenchyma, collenchyma, and sclerenchyma contribute storage, assimilation, filling, and mechanical support.\n- **Locations**: Parenchyma occurs in cortex, pericycle, pith, and medullary rays; chloroplast-containing leaf ground tissue is mesophyll.\n- **Vascular tissues**: Xylem and phloem together form vascular bundles.\n- **Open bundles**: Cambium lies between xylem and phloem and permits secondary xylem and phloem formation, as in dicot stems.\n- **Closed bundles**: Cambium is absent, so no secondary vascular tissue forms, as in monocot stems.\n- **Radial bundles**: Xylem and phloem occupy alternate radii, a typical root arrangement.\n- **Conjoint bundles**: Xylem and phloem occur on the same radius, typical of stems and leaves.\n- **Phloem position**: In the usual conjoint bundle, phloem lies outside the xylem.\n\n## Worked example\nQuestion: Based on NCERT Exercise 5 and Figure 6.2, classify radial, conjoint open, and conjoint closed vascular bundles.\n\nSolution:\n- In radial bundles, xylem and phloem lie on alternate radii, as in roots.\n- In conjoint bundles, both tissues lie on the same radius.\n- A conjoint open bundle has cambium between them and can form secondary tissues.\n- A conjoint closed bundle lacks cambium and cannot form secondary vascular tissues.\n- Final answer: Radial bundles have alternate xylem and phloem radii; conjoint open bundles share a radius and contain cambium; conjoint closed bundles share a radius but lack cambium.\n\n## Common mistake\nOpen and closed refer to cambium presence, not whether the bundle is exposed to the outside.\n\n## Quick check question\nQuestion: Which vascular-bundle arrangement is typical of roots?\nAnswer: Radial.\nExplanation: Root xylem and phloem occur on alternate radii.\n\n## Summary\n- Ground tissue forms most non-epidermal, non-vascular tissue.\n- Xylem and phloem form vascular bundles.\n- Cambium distinguishes open from closed bundles.\n- Roots are radial; stems and leaves are usually conjoint.",
+    "Worked examples": "# Worked examples: Chapter 6: Anatomy of Flowering Plants\n\n## What you will learn\nYou will compare the internal structure of dicot and monocot roots. You will identify tissues from the outside inward and recognise diagnostic differences.\n\n## Simple explanation\nBoth root types share epidermis, cortex, endodermis, pericycle, vascular tissue, and pith, but their xylem number and pith size differ.\n\n## Step-by-step breakdown\n- **Epiblema**: The outermost root layer bears unicellular root hairs.\n- **Cortex**: Several layers of thin-walled parenchyma with intercellular spaces lie beneath the epiblema.\n- **Endodermis**: Its compact barrel-shaped cells have suberin in radial and tangential walls as Casparian strips.\n- **Pericycle**: It lies inside the endodermis and gives rise to lateral roots; in dicots it also contributes to vascular cambium during secondary growth.\n- **Conjunctive tissue**: Parenchyma occurs between xylem and phloem patches.\n- **Stele**: Pericycle, vascular bundles, and pith together form tissues internal to the endodermis.\n- **Dicot root**: It usually has two to four xylem and phloem patches, a small or inconspicuous pith, and may develop secondary growth.\n- **Monocot root**: It is usually polyarch with more than six xylem bundles, has a large pith, and does not undergo secondary growth.\n\n## Worked example\nQuestion: Based on NCERT Exercise 1(a), bring out the anatomical differences between a monocot root and a dicot root.\n\nSolution:\n- Compare the number of xylem bundles: few in dicot, usually more than six in monocot.\n- Compare pith: small or inconspicuous in dicot, large and well developed in monocot.\n- Compare secondary growth: possible in many dicot roots but absent in monocot roots.\n- Note that both retain radial vascular bundles and the same main tissue zones.\n- Final answer: Dicot roots usually have few xylem poles, small pith, and secondary-growth potential; monocot roots are polyarch, have large pith, and lack secondary growth.\n\n## Common mistake\nDo not distinguish roots using bundle arrangement alone because both monocot and dicot roots have radial bundles.\n\n## Quick check question\nQuestion: What is the waxy material deposited in endodermal Casparian strips?\nAnswer: Suberin.\nExplanation: Suberin makes the radial and tangential walls of endodermal cells water-impermeable.\n\n## Summary\n- Root tissues occur in a consistent outside-to-inside sequence.\n- Endodermis bears Casparian strips.\n- Pericycle initiates lateral roots.\n- Xylem number, pith, and secondary growth distinguish monocot from dicot roots.",
+    "Exam-style problems": "# Exam-style problems: Chapter 6: Anatomy of Flowering Plants\n\n## What you will learn\nYou will identify dicot and monocot stems from transverse sections. You will use hypodermis, vascular-bundle arrangement, cambium, ground-tissue differentiation, and protoxylem orientation.\n\n## Simple explanation\nStem sections can be classified reliably from the distribution and structure of their vascular bundles and surrounding ground tissues.\n\n## Step-by-step breakdown\n- **Dicot epidermis**: A cuticle-covered epidermis may bear trichomes and a few stomata.\n- **Dicot cortex**: Collenchymatous hypodermis is followed by parenchymatous cortex and a starch-rich endodermis.\n- **Dicot pericycle**: Sclerenchymatous semi-lunar patches occur above the phloem.\n- **Dicot bundles**: Conjoint open bundles are arranged in a ring and possess endarch protoxylem.\n- **Medullary rays and pith**: Parenchymatous rays occur between bundles, and a distinct central pith is present.\n- **Monocot hypodermis**: It is sclerenchymatous.\n- **Monocot bundles**: Numerous conjoint closed bundles are scattered and surrounded by sclerenchymatous bundle sheaths.\n- **Monocot ground tissue**: It is large and undifferentiated, and peripheral bundles are generally smaller.\n- **Additional monocot features**: Phloem parenchyma is absent and protoxylem water cavities occur.\n\n## Worked example\nQuestion: Based on NCERT Exercises 2 and 3, identify a stem section with scattered conjoint closed bundles, sclerenchymatous bundle sheaths, and no phloem parenchyma.\n\nSolution:\n- Scattered bundles rule out the ring arrangement of a dicot stem.\n- The absence of cambium makes the bundles closed.\n- Sclerenchymatous bundle sheaths and absent phloem parenchyma are stated monocot features.\n- Final answer: The specimen is a monocotyledonous stem.\n\n## Common mistake\nDo not use bundle number alone; arrangement, cambium, bundle sheath, and ground-tissue organisation provide the stronger diagnosis.\n\n## Quick check question\nQuestion: What type of vascular bundle is characteristic of a young dicot stem?\nAnswer: Conjoint, open, and endarch.\nExplanation: Xylem and phloem share a radius, cambium is present, and protoxylem lies toward the centre.\n\n## Summary\n- Dicot stem bundles form a ring.\n- Monocot stem bundles are scattered.\n- Cambium makes dicot bundles open.\n- Monocot bundles have sclerenchymatous sheaths and protoxylem cavities.",
+    "Revision and recap": "# Revision and recap: Chapter 6: Anatomy of Flowering Plants\n\n## What you will learn\nYou will compare dorsiventral dicot leaves with isobilateral monocot leaves. You will connect stomatal distribution, mesophyll organisation, venation, and bulliform cells with leaf function.\n\n## Simple explanation\nLeaf anatomy reflects whether the two surfaces are structurally different or similar and how the plant manages light capture and water stress.\n\n## Step-by-step breakdown\n- **Dorsiventral epidermis**: Upper adaxial and lower abaxial epidermises are cutinised; the lower side generally bears more stomata.\n- **Dorsiventral mesophyll**: Palisade parenchyma lies beneath the upper surface, while loosely arranged spongy parenchyma with air spaces lies below.\n- **Vascular bundles**: Bundles occur in veins and midrib and are surrounded by bundle-sheath cells.\n- **Dicot venation**: Reticulate venation produces bundles of varying sizes.\n- **Isobilateral stomata**: Monocot leaves generally bear stomata on both surfaces.\n- **Isobilateral mesophyll**: It is not differentiated into palisade and spongy tissues.\n- **Bulliform cells**: Large colourless adaxial cells in grasses become turgid when watered and flaccid during water stress.\n- **Leaf rolling**: Flaccid bulliform cells cause inward curling, reducing exposed surface and water loss.\n- **Monocot venation**: Parallel venation produces vascular bundles of nearly similar sizes except in main veins.\n\n## Worked example\nQuestion: Based on NCERT Exercise 7, describe the internal structure of a dorsiventral leaf and contrast it with an isobilateral leaf.\n\nSolution:\n- A dorsiventral leaf has upper and lower epidermises with more stomata on the lower side.\n- Its mesophyll is differentiated into palisade and spongy parenchyma.\n- An isobilateral leaf has stomata on both surfaces and undifferentiated mesophyll.\n- Grass isobilateral leaves may contain bulliform cells that promote rolling under water stress.\n- Final answer: Dorsiventral leaves have unequal surfaces and differentiated palisade–spongy mesophyll; isobilateral leaves have similar surfaces, stomata on both sides, undifferentiated mesophyll, and may possess bulliform cells.\n\n## Common mistake\nBulliform cells are not stomata; they are modified epidermal cells involved in leaf rolling.\n\n## Quick check question\nQuestion: Which mesophyll tissue lies just below the upper epidermis of a dorsiventral leaf?\nAnswer: Palisade parenchyma.\nExplanation: Its elongated chloroplast-rich cells are arranged vertically beneath the adaxial epidermis.\n\n## Summary\n- Dorsiventral leaves have differentiated mesophyll.\n- Isobilateral leaves usually have stomata on both surfaces.\n- Bulliform cells reduce water loss through leaf rolling.\n- Internal anatomy helps distinguish monocot and dicot organs."
+  }
+}

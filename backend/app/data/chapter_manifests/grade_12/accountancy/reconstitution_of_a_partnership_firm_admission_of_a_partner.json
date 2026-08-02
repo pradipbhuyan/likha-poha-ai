@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 12",
+  "subject": "Accountancy",
+  "chapter": "Reconstitution of a Partnership Firm – Admission of a Partner",
+  "central_question": "How are profit-sharing rights, goodwill, reserves, asset values and capitals adjusted fairly when a new partner is admitted or the existing partners change their ratio?",
+  "in_scope_units": [
+    "Modes of reconstitution and the meaning, rights and consent requirements of admission.",
+    "Calculation of the new profit-sharing ratio and the sacrificing ratio.",
+    "Meaning, factors, need and methods of valuation of goodwill.",
+    "Treatment of goodwill when premium is brought fully, partly or not at all and when goodwill already appears in the books.",
+    "Accounting Standard 26 implications and calculation of hidden goodwill.",
+    "Adjustment of accumulated profits, losses and reserves in the old ratio.",
+    "Revaluation of assets, reassessment of liabilities and treatment of unrecorded items.",
+    "Adjustment of partners’ capitals in the new ratio.",
+    "Change in profit-sharing ratio among existing partners, including gaining and sacrificing adjustments."
+  ],
+  "banned_topics": [
+    "Settlement of a retiring or deceased partner, which belongs to the next reconstitution chapter.",
+    "Realisation Account and closure of the firm, which belong to dissolution.",
+    "Company goodwill arising from business combinations beyond the partnership treatment in this chapter."
+  ],
+  "must_include_keywords": [
+    "reconstitution",
+    "admission of a partner",
+    "new profit sharing ratio",
+    "sacrificing ratio",
+    "old share",
+    "new share",
+    "goodwill",
+    "super profits",
+    "average profits method",
+    "weighted average profits",
+    "super profits method",
+    "normal profit",
+    "capitalisation method",
+    "premium for goodwill",
+    "Accounting Standard 26",
+    "hidden goodwill",
+    "accumulated profits",
+    "general reserve",
+    "revaluation account",
+    "reassessment of liabilities",
+    "unrecorded asset",
+    "unrecorded liability",
+    "old profit sharing ratio",
+    "adjustment of capitals",
+    "current account",
+    "change in profit sharing ratio"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Admission dissolves and closes the partnership firm.",
+      "correction": "Admission reconstitutes the partnership agreement; the firm continues with a changed composition and a new agreement."
+    },
+    {
+      "claim": "The incoming partner’s goodwill premium is credited to all partners in the new ratio.",
+      "correction": "It compensates the old partners who sacrifice profit share and is credited to them in the sacrificing ratio."
+    },
+    {
+      "claim": "Revaluation profit belongs to all partners including the incoming partner.",
+      "correction": "It arose before admission and is transferred only to old partners in their old profit-sharing ratio."
+    },
+    {
+      "claim": "Internally generated goodwill should remain as an asset after reconstitution.",
+      "correction": "The chapter’s AS 26 discussion states that internally generated goodwill is not recognised; book goodwill is written off at reconstitution."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Illustrations 1–5 to calculate new profit-sharing ratios under different acquisition terms.",
+    "Use NCERT Illustrations 6–8 to calculate sacrifice or gain from old and new shares.",
+    "Use NCERT Illustrations 9–15 to value goodwill by average profit, super profit and capitalisation methods.",
+    "Use NCERT Illustrations 16–21 to record premium, book goodwill, goodwill not brought and hidden goodwill.",
+    "Use NCERT Illustrations 22–24 to adjust reserves and prepare the Revaluation Account.",
+    "Use NCERT Illustrations 25–27 to align capital balances with the new ratio and prepare the reconstituted balance sheet."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions for Practice containing Short Answer, Long Answer and Numerical Questions on admission, ratios, goodwill, revaluation, reserves and capital adjustment.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

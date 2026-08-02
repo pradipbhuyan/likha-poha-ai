@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 11: Introduction to Three Dimensional Geometry",
+  "central_question": "How can we locate points in three-dimensional space and use their coordinates to measure distances and solve basic geometric problems?",
+  "in_scope_units": [
+    "Introduction: why a point in space requires three coordinates rather than two.",
+    "Coordinate axes and coordinate planes in three-dimensional space: the rectangular coordinate system, origin, signs and eight octants.",
+    "Coordinates of a point in space: ordered triplets, locating a point, coordinates on axes and planes, and octant identification.",
+    "Distance between two points: derivation and use of the three-dimensional distance formula and distance from the origin.",
+    "Applications of distance and coordinates: collinearity, triangle and parallelogram checks, loci defined by distances, and centroid-based problems.",
+    "Summary and historical note: key facts and the development of three-dimensional coordinate geometry."
+  ],
+  "banned_topics": [
+    "Direction cosines and direction ratios of a line",
+    "Equations of lines and planes in space",
+    "Vector algebra and vector products",
+    "Section formula as a separate general theorem",
+    "Angles between lines or planes",
+    "Sphere equations beyond the distance-based loci explicitly given in this chapter"
+  ],
+  "must_include_keywords": [
+    "three-dimensional space",
+    "rectangular coordinate system",
+    "x-axis",
+    "y-axis",
+    "z-axis",
+    "origin",
+    "XY-plane",
+    "YZ-plane",
+    "ZX-plane",
+    "mutually perpendicular",
+    "coordinate planes",
+    "octants",
+    "ordered triplet",
+    "P(x, y, z)",
+    "one-to-one correspondence",
+    "perpendicular distance",
+    "sign of coordinates",
+    "first octant",
+    "second octant",
+    "sixth octant",
+    "point on an axis",
+    "point in a coordinate plane",
+    "distance formula",
+    "distance from the origin",
+    "rectangular parallelepiped",
+    "Pythagoras theorem",
+    "collinear points",
+    "right-angled triangle",
+    "isosceles triangle",
+    "parallelogram",
+    "equal distances",
+    "locus",
+    "centroid"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The coordinate x is the distance of P from the XY-plane.",
+      "correction": "For P(x, y, z), x, y and z are the directed perpendicular distances from the YZ-plane, ZX-plane and XY-plane, respectively."
+    },
+    {
+      "claim": "A point in the XY-plane may have any value of z.",
+      "correction": "Every point in the XY-plane has z-coordinate 0 and is of the form (x, y, 0)."
+    },
+    {
+      "claim": "The octant depends on the magnitudes of x, y and z.",
+      "correction": "The octant is determined only by the signs of x, y and z; their magnitudes do not affect the octant."
+    },
+    {
+      "claim": "The distance formula is the sum of coordinate differences.",
+      "correction": "The distance is the square root of the sum of the squares of the three coordinate differences."
+    },
+    {
+      "claim": "If three pairwise distances are different, the points cannot be collinear.",
+      "correction": "Three points are collinear when the largest of the three distances equals the sum of the other two, as in NCERT Example 4."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 1 to identify the missing coordinate of a point lying on a face parallel to a coordinate plane.",
+    "Use NCERT Example 2 and Exercise 11.1 Q3 to practise octant identification from coordinate signs.",
+    "Use NCERT Example 3 to apply the distance formula directly.",
+    "Use NCERT Example 4 and Exercise 11.2 Q2 to test collinearity through distances.",
+    "Use NCERT Example 5 and Exercise 11.2 Q3 to classify triangles and verify a parallelogram.",
+    "Finish with NCERT Examples 6, 8 and 9 for distance loci and a centroid-based coordinate problem."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 11.1, Exercise 11.2, and the four-question Miscellaneous Exercise on Chapter 11.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

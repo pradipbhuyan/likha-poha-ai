@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Hydrocarbons",
+  "central_question": "How do carbon–carbon bond type and electron delocalisation determine the structure, preparation, reactions, and uses of hydrocarbons?",
+  "in_scope_units": [
+    "Classification and nomenclature.",
+    "Alkanes: preparation, properties, reactions, and conformations.",
+    "Alkenes: geometry, isomerism, electrophilic addition, ozonolysis, and polymerisation.",
+    "Alkynes: structure, acidity, preparation, and reactions.",
+    "Benzene: aromaticity, preparation, electrophilic substitution, directing effects, and toxicity."
+  ],
+  "banned_topics": [
+    "Oxygen and nitrogen functional-group chemistry",
+    "Advanced aromaticity",
+    "Detailed polymer kinetics",
+    "Petroleum refining detail"
+  ],
+  "must_include_keywords": [
+    "hydrocarbon",
+    "alkane",
+    "alkene",
+    "alkyne",
+    "arene",
+    "saturated",
+    "unsaturated",
+    "homologous series",
+    "chain isomerism",
+    "conformation",
+    "staggered conformation",
+    "eclipsed conformation",
+    "free radical substitution",
+    "combustion",
+    "aromatisation",
+    "sp2 hybridisation",
+    "geometrical isomerism",
+    "electrophilic addition",
+    "Markovnikov rule",
+    "peroxide effect",
+    "ozonolysis",
+    "polymerisation",
+    "sp hybridisation",
+    "terminal alkyne",
+    "acidic hydrogen",
+    "benzene",
+    "resonance",
+    "aromaticity",
+    "Huckel rule",
+    "electrophilic substitution",
+    "nitration",
+    "halogenation",
+    "Friedel-Crafts reaction",
+    "directive influence",
+    "carcinogenic hydrocarbon"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Alkanes are completely inert.",
+      "correction": "They undergo substitution, combustion, oxidation, and aromatisation under suitable conditions."
+    },
+    {
+      "claim": "Markovnikov rule applies to every addition.",
+      "correction": "It applies to suitable unsymmetrical additions; peroxide changes HBr orientation."
+    },
+    {
+      "claim": "Double bonds rotate freely.",
+      "correction": "Rotation would destroy pi overlap."
+    },
+    {
+      "claim": "All alkynes have acidic hydrogen.",
+      "correction": "Only terminal alkynes contain that hydrogen."
+    },
+    {
+      "claim": "Benzene reacts like an ordinary alkene.",
+      "correction": "Aromatic delocalisation makes substitution strongly preferred."
+    }
+  ],
+  "recommended_example_progression": [
+    "Classify and name hydrocarbons.",
+    "Study alkane preparation and conformation.",
+    "Predict alkene additions and ozonolysis.",
+    "Explain alkyne structure and acidity.",
+    "Analyse benzene aromaticity and substitution."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use exercises on nomenclature, isomerism, chlorination, conformations, addition reactions, Markovnikov orientation, ozonolysis, benzene substitution, directing effects, and toxicity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

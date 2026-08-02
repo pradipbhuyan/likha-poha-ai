@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 7: Alternating Current",
+  "central_question": "How do sinusoidal voltages and currents behave in resistive, inductive and capacitive circuits, and how are resonance, power and transformers analysed?",
+  "in_scope_units": [
+    "Sinusoidal alternating current",
+    "RMS values",
+    "Phasor representation",
+    "Pure resistor",
+    "Pure inductor",
+    "Pure capacitor",
+    "Series LCR circuit",
+    "Resonance",
+    "Power factor",
+    "LC oscillations",
+    "Transformers"
+  ],
+  "banned_topics": [
+    "Microscopic DC resistance from Chapter 3",
+    "Electromagnetic induction derivations from Chapter 6",
+    "Electromagnetic waves from Chapter 8"
+  ],
+  "must_include_keywords": [
+    "alternating current",
+    "sinusoidal voltage",
+    "peak value",
+    "rms value",
+    "phasor",
+    "phase difference",
+    "resistor",
+    "inductor",
+    "inductive reactance",
+    "capacitor",
+    "capacitive reactance",
+    "series LCR circuit",
+    "impedance",
+    "resonance",
+    "resonant frequency",
+    "power factor",
+    "average power",
+    "wattless current",
+    "LC oscillations",
+    "transformer",
+    "step-up transformer",
+    "step-down transformer"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The useful AC rating is its full-cycle average.",
+      "correction": "The full-cycle average is zero; ratings use rms value."
+    },
+    {
+      "claim": "An ideal inductor or capacitor consumes average power.",
+      "correction": "Its voltage and current differ by 90°, giving zero average power."
+    },
+    {
+      "claim": "A step-up transformer creates energy.",
+      "correction": "Ideally current falls as voltage rises, conserving power."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 7.1: resistor rms current and power",
+    "NCERT Exercise 7.2: peak-rms conversion",
+    "NCERT Exercise 7.3: inductive reactance",
+    "NCERT Exercise 7.4: capacitive reactance",
+    "NCERT Exercise 7.7: resonance and power"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES begin at 7.1 and cover rms values, pure R/L/C circuits, resonance and power.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -3,9 +3,15 @@ offer_access_service.py
 ───────────────────────
 Helpers for determining whether a user is on Free Tier (limited access).
 
-Free Tier users get DKB-only lesson and doubt answers.  If the DKB cannot
-answer, the platform returns an upgrade prompt instead of calling the LLM,
-keeping token cost at zero for free users.
+Ask Doubt (both the in-lesson widget and the standalone Doubt page) never
+calls an LLM for either tier — every answer comes from the Doubt Knowledge
+Base (DKB) cache or an extractive textbook (RAG) excerpt, with a warm
+NCERT-reference fallback when neither finds a match. There is no per-topic
+restriction any more: free-tier users may ask about any subject/chapter.
+The only free-tier control is a shared cap of 5 doubt questions per day,
+counted with one counter across both surfaces (see enforce_daily_limit in
+usage_service.py, feature="doubt_answer_free_tier"). Paid users have no
+daily cap.
 
 Free Tier = any user who does NOT have an active paid subscription:
   - No access_cbse flag set from payment
@@ -150,6 +156,31 @@ def build_offer_gate_response() -> dict:
     return {
         "answer": OFFER_GATE_MESSAGE,
         "source_type": OFFER_GATE_SOURCE_TYPE,
+        "sources": [],
+        "textbook_visuals": [],
+        "mentor_suggestions": [],
+    }
+
+
+# Message shown to a free-tier user who has used all 5 of today's doubt
+# questions (shared cap across the in-lesson widget and the standalone
+# Doubt page — see enforce_daily_limit(feature="doubt_answer_free_tier")).
+DAILY_LIMIT_MESSAGE = (
+    "🎉 You've used all 5 of your free questions for today!\n\n"
+    "Come back tomorrow for 5 more, or upgrade to ask unlimited questions "
+    "any time — any subject, any chapter."
+)
+
+DAILY_LIMIT_SOURCE_TYPE = "DAILY_LIMIT_REACHED"
+
+
+def build_daily_limit_response() -> dict:
+    """Return the standard payload for a free-tier student who has used all
+    5 daily doubt questions. Shared by /api/doubt/answer and
+    /api/lesson/follow-up so both surfaces show identical copy."""
+    return {
+        "answer": DAILY_LIMIT_MESSAGE,
+        "source_type": DAILY_LIMIT_SOURCE_TYPE,
         "sources": [],
         "textbook_visuals": [],
         "mentor_suggestions": [],

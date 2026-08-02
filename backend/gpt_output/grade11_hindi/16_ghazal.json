@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Hindi",
+    "chapter": "Ghazal",
+    "central_question": "How does Dushyant Kumar use the independent couplets of the ghazal to expose failed promises, social deprivation, censorship, and the urgent search for humane change?",
+    "in_scope_units": [
+      "Dushyant Kumar: literary contribution, establishment of the Hindi ghazal, popular public language, and the source collection Saaye Mein Dhoop.",
+      "Formal note on the ghazal: absence of title, independence of each sher, rhyme pattern, and continuity of overall mizaj.",
+      "First sher: promised lamps for every house versus the unavailability of even one lamp for the city.",
+      "Second sher: sunlight beneath tree shade and the decision to leave an impossible place permanently.",
+      "Third and fourth shers: extreme deprivation, suitability for a harsh journey, and the value of a human dream when divine certainty is absent.",
+      "Fifth and sixth shers: confidence that stone can melt, impatience for the voice to have effect, censorship, silence, and caution required by the poetic metre and the regime.",
+      "Final sher: living under one’s own gulmohar and dying in others‘ streets for a symbolic gulmohar.",
+      "End-of-chapter sections: ग़ज़ल के साथ, ग़ज़ल के आस-पास, and शब्द-छवि."
+    ],
+    "banned_topics": [
+      "A complete technical manual of Urdu prosody",
+      "Political events not named in the ghazal",
+      "A biography of Ghalib beyond the comparative exercise",
+      "A literal botanical lesson on gulmohar"
+    ],
+    "must_include_keywords": [
+      "Dushyant Kumar",
+      "Saaye Mein Dhoop",
+      "Hindi ghazal",
+      "sher",
+      "independence of couplets",
+      "rhyme",
+      "mizaj",
+      "change",
+      "lamp",
+      "every house",
+      "city",
+      "tree shade",
+      "sunlight",
+      "journey",
+      "shirt",
+      "feet",
+      "stomach",
+      "deprivation",
+      "God",
+      "human dream",
+      "beautiful scene",
+      "stone",
+      "voice",
+      "effect",
+      "regime",
+      "poet’s tongue",
+      "caution",
+      "bahr",
+      "gulmohar",
+      "symbol",
+      "failed promise",
+      "social inequality",
+      "censorship",
+      "resistance",
+      "alternative"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "All shers of a ghazal must narrate one continuous story.",
+        "correction": "The introductory note says every sher is complete and independent, though rhyme and a shared mizaj bind the composition."
+      },
+      {
+        "claim": "The lamps in the first sher are only household objects.",
+        "correction": "They symbolise promised development or welfare, whose failure is exposed by the contrast between every house and the whole city."
+      },
+      {
+        "claim": "The third sher praises the poor for being naturally suited to hardship.",
+        "correction": "Its irony exposes deprivation so extreme that people cover their stomachs with their feet when they lack a shirt."
+      },
+      {
+        "claim": "The sixth sher advises poets to remain safely silent.",
+        "correction": "It exposes censorship and the pressure of a regime that would seal the poet’s tongue; ’caution‘ is politically charged."
+      },
+      {
+        "claim": "Gulmohar has only a literal floral meaning.",
+        "correction": "The exercise invites a symbolic reading connected with beauty, dignity, memory, sacrifice, and the public world beyond one’s private garden."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT ग़ज़ल के साथ Q2: analyse singular and plural uses of ’चिराग‘ in the first sher.",
+      "NCERT ग़ज़ल के साथ Q3: identify the people targeted by the irony of the third sher.",
+      "NCERT ग़ज़ल के साथ Q4: interpret the line about the regime sealing the poet’s tongue.",
+      "NCERT ग़ज़ल के साथ Q1: examine the symbolic meaning of gulmohar in the final sher.",
+      "NCERT ग़ज़ल के आस-पास Q1-Q2: discuss the ghazal’s pro-change mizaj and compare its fourth sher with the quoted Ghalib sher."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with 'ग़ज़ल के साथ' (Q1-Q4), 'ग़ज़ल के आस-पास' (Q1-Q2), and 'शब्द-छवि'."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Ghazal\n\n## What you will learn\nYou will understand Dushyant Kumar’s role in the Hindi ghazal and the basic formal features described in the chapter. You will distinguish the independence of each sher from the shared mood that unites the poem.\n\n## Simple explanation\nThe chapter presents the ghazal as a sequence of self-contained couplets. They need not be read as one continuous story, but rhyme and a common emotional-political mizaj give the composition unity.\n\n## Step-by-step breakdown\n- **Poet**: Dushyant Kumar is credited with establishing the ghazal form in Hindi while maintaining literary quality and public accessibility.\n- **Source**: The prescribed ghazal is taken from the collection Saaye Mein Dhoop.\n- **No title**: The note says ghazals are generally not given titles, so the poem appears simply as ’ग़ज़ल.‘\n- **Sher independence**: Each sher is complete and independent in meaning.\n- **Rhyme pattern**: The first sher’s two lines rhyme, and the same rhyme is maintained in the second line of later shers.\n- **Mizaj**: Despite thematic independence, the shers share a mood of rejecting the present political-social condition and searching for an alternative.\n- **Public force**: The poet’s shers are described as being repeated like proverbs in literary and political gatherings.\n\n## Worked example\nQuestion: How can the ghazal be one composition if each sher is independent?\n\nAnswer:\n- The introductory note says every sher is complete in itself and need not follow a narrative order.\n- It also says rhyme at the level of form and mizaj at the level of content bind the shers together.\n- Unity does not require a continuous plot.\n- Recurring sound and a common mood create coherence across separate insights.\n- Final answer: The ghazal becomes one composition because formal rhyme and a shared critical mood connect otherwise independent couplets.\n\n## Common mistake\nDo not force the shers into a single chronological storyline; their connection is tonal and formal rather than narrative.\n\n## Quick check question\nQuestion: From which collection is the prescribed ghazal taken?\nAnswer: Saaye Mein Dhoop.\nExplanation: The introductory note explicitly identifies this collection as the source.\n\n## Summary\n- Dushyant helped establish the Hindi ghazal.\n- Each sher is independently complete.\n- Rhyme and mizaj create unity.\n- The shared mood favours criticism and change.",
+    "Core explanation": "# Core explanation: Ghazal\n\n## What you will learn\nYou will interpret the first two shers as images of failed public promises and an unlivable social environment. You will analyse contrast and irony.\n\n## Simple explanation\nThe ghazal opens with a promise of light for every household and immediately exposes its failure. The second sher deepens the crisis: even the shade of trees feels like sunlight, so departure appears necessary.\n\n## Step-by-step breakdown\n- **Promised abundance**: ’तय था चिरागां हरेक घर के लिए‘ recalls an official or collective promise of light and well-being for every home.\n- **Actual scarcity**: ’चिराग मयस्सर नहीं शहर के लिए‘ reduces abundance to the inability to secure even one lamp for the city.\n- **Singular-plural contrast**: The plural atmosphere of चिरागां is set against the single unavailable चिराग.\n- **Political irony**: The difference between promise and reality exposes failed governance or development.\n- **Reversed shade**: ’दरख्तों के साये में धूप लगती है‘ turns a place of relief into a place of discomfort.\n- **Decision to leave**: ’चलो यहाँ से चलें‘ expresses rejection of conditions that violate natural expectation.\n- **Permanent tone**: ’उम्र भर के लिए‘ gives the departure emotional finality.\n\n## Worked example\nQuestion: Why is the movement from ’चिरागां हरेक घर‘ to ’चिराग मयस्सर नहीं शहर‘ so powerful?\n\nAnswer:\n- The first line imagines many lamps available to every house.\n- The second line says even a single lamp is unavailable for the whole city.\n- The grammatical movement from abundance to singular scarcity compresses a large political failure into one contrast.\n- It transforms a broken promise into a memorable public image.\n- Final answer: The contrast is powerful because it measures the distance between universal promise and near-total deprivation through the shrinking image of the lamp.\n\n## Common mistake\nDo not treat ’चिराग‘ only as electricity; it symbolises promised welfare, hope, and the basic benefits of public life.\n\n## Quick check question\nQuestion: What is unnatural about the second sher’s setting?\nAnswer: Tree shade feels like sunlight instead of relief.\nExplanation: This reversal symbolises a social environment in which even expected shelter has become painful.\n\n## Summary\n- The first sher exposes failed promises.\n- Singular and plural sharpen the irony.\n- The second sher reverses shade and sunlight.\n- Departure expresses rejection of an unbearable condition.",
+    "Worked examples": "# Worked examples: Ghazal\n\n## What you will learn\nYou will analyse the third and fourth shers. You will explain how bodily deprivation and the ’human dream‘ create both satire and hope.\n\n## Simple explanation\nThe third sher uses a shocking image of people without shirts covering their stomachs with their feet. The fourth refuses to wait for divine certainty and preserves a beautiful human dream as a possible horizon.\n\n## Step-by-step breakdown\n- **No shirt**: ’न हो कमीज़‘ identifies extreme material deprivation.\n- **Covering the stomach with feet**: The impossible-looking posture exaggerates hardship to reveal how the poor are expected to adjust endlessly.\n- **Ironic suitability**: ’ये लोग कितने मुनासिब हैं इस सफर के लिए‘ mocks a system that treats deprivation as fitness for struggle.\n- **Journey**: The सफर suggests a difficult collective historical or social passage.\n- **No God, then human dream**: ’खुदा नहीं, न सही, आदमी का ख्वाब सही‘ refuses complete hopelessness.\n- **Beautiful scene**: A human dream becomes ’कुछ हसीन नज़ारा‘ that gives the eye a direction.\n- **Alternative**: The sher validates imagined human possibility when established certainties fail.\n\n## Worked example\nQuestion: How does the third sher turn the poor people’s endurance into an accusation against society?\n\nAnswer:\n- The people lack even a shirt and must supposedly cover the stomach with their feet.\n- The speaker then calls them ’मुनासिब‘ for the journey.\n- The praise is ironic because their ’fitness‘ is produced by deprivation, not choice.\n- Society benefits from their capacity to endure while failing to provide basic dignity.\n- Final answer: The sher accuses society by showing that the poor are considered suitable for hardship precisely because they have been denied the means to resist it.\n\n## Common mistake\nDo not read ’मुनासिब‘ as sincere praise; the grotesque image makes the line sharply ironic.\n\n## Quick check question\nQuestion: What remains valuable when the sher says ’खुदा नहीं, न सही‘?\nAnswer: The dream of a human being and the possibility of a beautiful future.\nExplanation: The sher protects hope by shifting from unavailable divine certainty to human imagination.\n\n## Summary\n- The third sher exposes extreme deprivation.\n- Its apparent praise is ironic.\n- The journey symbolises collective hardship.\n- The fourth sher preserves hope through the human dream.",
+    "Exam-style problems": "# Exam-style problems: Ghazal\n\n## What you will learn\nYou will interpret the fifth and sixth shers as statements about resistance, voice, censorship, and poetic caution. You will connect stone, effect, regime, tongue, and bahr.\n\n## Simple explanation\nThe speaker rejects the calm belief that stone cannot melt and becomes restless for the voice to have effect. The next sher reveals why speech is dangerous: the regime is ready to seal the poet’s tongue.\n\n## Step-by-step breakdown\n- **Complacency**: ’वो मुतमइन हैं‘ describes those comfortably convinced that stone cannot melt.\n- **Stone**: The stone symbolises hardened structures or seemingly unchangeable reality.\n- **Restlessness**: ’मैं बेकरार हूँ‘ places the speaker on the side of transformation.\n- **Voice**: The desired change must begin with an आवाज़ capable of producing असर.\n- **Regime**: ’तेरा निज़ाम‘ names an order that fears or controls dissent.\n- **Silenced tongue**: ’सिल दी ज़ुबान शायर की‘ presents censorship as physical violence.\n- **Caution**: The poet must speak carefully under repression.\n- **Double meaning of bahr**: ’बहर‘ is the metre of the ghazal, but caution is also necessary in the dangerous political environment of the sher.\n\n## Worked example\nQuestion: How does ’ये एहतियात ज़रूरी है इस बहर के लिए‘ combine poetic form with political danger?\n\nAnswer:\n- The line follows the threat that the regime may sew up the poet’s tongue.\n- ’बहर‘ names the metrical structure of the ghazal, while ’एहतियात‘ also responds to the danger of censorship.\n- The language works simultaneously at the technical and political levels.\n- The poet must maintain metre and survive the regime’s attempt to silence speech.\n- Final answer: The line uses bahr as a formal term and a political context, making poetic caution an image of speaking under censorship.\n\n## Common mistake\nDo not conclude that the sher endorses silence; the preceding restlessness for the voice to have effect shows commitment to speech despite danger.\n\n## Quick check question\nQuestion: What change does the speaker desire in the fifth sher?\nAnswer: He wants the voice to have enough effect to melt what appears as hard and unchangeable as stone.\nExplanation: His restlessness opposes the complacency of those who assume transformation is impossible.\n\n## Summary\n- Stone represents hardened reality.\n- The speaker believes change is possible.\n- Voice must create effect.\n- The regime threatens the poet’s tongue.\n- Bahr carries both formal and political meaning.",
+    "Revision and recap": "# Revision and recap: Ghazal\n\n## What you will learn\nYou will interpret the final gulmohar image and review the ghazal’s pro-change mizaj. You will consolidate form, symbolism, vocabulary, and the movement from public failure to sacrifice.\n\n## Simple explanation\nThe last sher contrasts living under the gulmohar in one’s own garden with dying in strangers’ streets for the sake of gulmohar. The flower-tree becomes more than scenery: it represents beauty, dignity, hope, or a public ideal worth carrying beyond private comfort.\n\n## Step-by-step breakdown\n- **Private garden**: ‘अपने बगीचे’ suggests personal safety, ownership, and limited comfort.\n- **Others‘ streets**: ’गैर की गलियों‘ moves the speaker into a wider and less secure public space.\n- **Living and dying**: The contrast raises the cost of commitment from private enjoyment to sacrifice.\n- **Gulmohar**: Its bright flowering quality supports symbolic meanings of beauty, hope, memory, and desired transformation.\n- **Shared ideal**: The speaker is willing to leave private possession so that the value represented by gulmohar reaches beyond the self.\n- **Mizaj**: Across the ghazal, broken promises, painful shelter, poverty, human dreaming, resistant voice, censorship, and sacrifice support change.\n- **Vocabulary**: मयस्सर means available; दरख्त tree; मुतमइन assured; बेकरार restless; निज़ाम regime; एहतियात caution; बहर metre; असर effect.\n- **Formal unity**: The final sher remains independent yet participates in the same oppositional and hopeful mood.\n\n## Worked example\nQuestion: Why is gulmohar best read symbolically in the final sher?\n\nAnswer:\n- The sher contrasts living beneath it in one’s own garden with dying in strangers’ streets ‘for’ it.\n- The willingness to die cannot be adequately explained by the literal value of one flowering tree alone.\n- Gulmohar therefore gathers meanings of beauty, dignity, hope, and a shared ideal.\n- The movement from private garden to others‘ streets turns it into a public ethical symbol.\n- Final answer: Gulmohar symbolises a beautiful and humane ideal for which the speaker is willing to move beyond private comfort and accept sacrifice.\n\n## Common mistake\nDo not assign only one fixed symbolic meaning; the poem supports a cluster of connected meanings rather than a dictionary equation.\n\n## Quick check question\nQuestion: What common mood binds the independent shers?\nAnswer: A mood of rejecting present injustice and searching for change, human dignity, and an alternative.\nExplanation: The chapter introduction explicitly identifies this oppositional, pro-change mizaj as the central thread.\n\n## Summary\n- Gulmohar expands from private beauty to public ideal.\n- The final sher introduces sacrifice.\n- The ghazal’s shers remain independent but share one mood.\n- The composition moves between satire, resistance, hope, and caution.\n- Vocabulary and rhyme support its public memorability."
+  }
+}

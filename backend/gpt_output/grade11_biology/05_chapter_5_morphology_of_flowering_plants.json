@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 5: Morphology of Flowering Plants",
+    "central_question": "How are the external organs of flowering plants described, modified, and represented systematically for identification and classification?",
+    "in_scope_units": [
+      "Root systems, root functions, root regions, and tap, fibrous, and adventitious roots.",
+      "Stem origin, nodes, internodes, buds, functions, and modified roles.",
+      "Leaf parts, venation, simple and compound leaves, and phyllotaxy.",
+      "Racemose and cymose inflorescences.",
+      "Flower organisation, sexuality, symmetry, floral merosity, ovary position, and floral whorls.",
+      "Calyx, corolla, aestivation, androecium, gynoecium, and placentation.",
+      "Fruit formation, pericarp, drupes, and parthenocarpy.",
+      "Dicotyledonous and monocotyledonous seed structure.",
+      "Semi-technical description, floral formula, and floral diagram.",
+      "Vegetative and floral characteristics and economic importance of Solanaceae."
+    ],
+    "banned_topics": [
+      "Internal tissue anatomy of roots, stems, and leaves",
+      "Detailed physiology of photosynthesis and mineral absorption",
+      "Molecular mechanisms of fertilisation and seed development",
+      "Full taxonomic comparison of multiple flowering-plant families beyond Solanaceae"
+    ],
+    "must_include_keywords": [
+      "tap root",
+      "fibrous root",
+      "adventitious root",
+      "root cap",
+      "meristematic region",
+      "elongation region",
+      "maturation region",
+      "root hair",
+      "node",
+      "internode",
+      "terminal bud",
+      "axillary bud",
+      "leaf base",
+      "petiole",
+      "lamina",
+      "reticulate venation",
+      "parallel venation",
+      "simple leaf",
+      "compound leaf",
+      "pinnately compound",
+      "palmately compound",
+      "phyllotaxy",
+      "racemose",
+      "cymose",
+      "flower",
+      "calyx",
+      "corolla",
+      "androecium",
+      "gynoecium",
+      "aestivation",
+      "placentation",
+      "hypogynous",
+      "perigynous",
+      "epigynous",
+      "fruit",
+      "seed",
+      "floral formula",
+      "floral diagram",
+      "Solanaceae"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every underground plant part is a root.",
+        "correction": "Underground stems can be identified by nodes, internodes, buds, and scale leaves; roots lack these stem characters."
+      },
+      {
+        "claim": "A leaflet of a compound leaf has an axillary bud.",
+        "correction": "The axillary bud occurs at the base of the whole leaf's petiole, not at the base of each leaflet."
+      },
+      {
+        "claim": "Racemose and cymose refer to flower symmetry.",
+        "correction": "They are inflorescence types distinguished by whether the main axis continues growing or ends in a flower."
+      },
+      {
+        "claim": "A superior ovary is positioned below all other floral parts.",
+        "correction": "In a hypogynous flower the ovary is superior because other whorls arise below it."
+      },
+      {
+        "claim": "All fruits form only after fertilisation.",
+        "correction": "Parthenocarpic fruits develop from the ovary without fertilisation."
+      },
+      {
+        "claim": "A monocot seed always lacks endosperm.",
+        "correction": "Most monocot seeds are endospermic, though orchids are a stated exception."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercises 1–2: compare compound leaves and explain alternate, opposite, and whorled phyllotaxy.",
+      "NCERT Exercises 3–4: define flower terms and differentiate racemose versus cymose and apocarpous versus syncarpous conditions.",
+      "NCERT Exercises 7–10: identify placentation, flower parts, inflorescences, and ovary position.",
+      "NCERT Exercise 5: label gram and maize seeds.",
+      "NCERT Exercise 6: prepare a semi-technical description and floral diagram of a Solanaceae flower."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–10 for leaves, flower terminology, inflorescence, placentation, seeds, and Solanaceae."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 5: Morphology of Flowering Plants\n\n## What you will learn\nYou will identify the root and shoot systems and describe the main external features of roots and stems. You will connect each structure with its principal functions.\n\n## Simple explanation\nA flowering plant has an underground root system and an above-ground shoot system, but some organs are modified and may not occur in their usual location.\n\n## Step-by-step breakdown\n- **Tap root system**: In most dicots, the radicle forms a persistent primary root with secondary and tertiary branches, as in mustard.\n- **Fibrous root system**: In monocots, the primary root is short-lived and is replaced by many roots from the stem base, as in wheat.\n- **Adventitious roots**: These arise from plant parts other than the radicle, as in grass, Monstera, and banyan.\n- **Root functions**: Roots absorb water and minerals, anchor the plant, store reserve food, and synthesise plant growth regulators.\n- **Root cap**: The thimble-like cap protects the tender root apex while it pushes through soil.\n- **Root zones**: Meristematic cells divide, cells in the elongation zone lengthen, and cells in the maturation zone differentiate.\n- **Root hairs**: Fine extensions of epidermal cells in the maturation region absorb water and minerals.\n- **Stem identity**: The stem develops from the plumule and bears nodes, internodes, terminal buds, and axillary buds.\n- **Stem functions**: It spreads leaves, flowers, and fruits and conducts water, minerals, and photosynthates; some stems store, protect, support, or propagate.\n\n## Worked example\nQuestion: Using Figure 5.1 and the descriptions in Sections 5.1 and 5.2, explain how you would distinguish a root from a stem.\n\nSolution:\n- Check for nodes and internodes; these are stem characters.\n- Look for terminal or axillary buds and leaves, which occur on stems.\n- Look for a root cap and root hairs, which identify roots.\n- Relate origin to the embryo: root from radicle, stem from plumule.\n- Final answer: A stem bears nodes, internodes, leaves, and buds and develops from the plumule; a root develops from the radicle or adventitiously and shows a root cap, growth zones, and root hairs.\n\n## Common mistake\nLocation alone is not enough to identify an organ because some stems are underground and some roots arise above ground.\n\n## Quick check question\nQuestion: In which root region do root hairs arise?\nAnswer: The region of maturation.\nExplanation: Cells in this region differentiate, and some epidermal cells form the fine root hairs used for absorption.\n\n## Summary\n- Flowering plants have root and shoot systems.\n- Tap, fibrous, and adventitious roots differ in origin.\n- Root zones support protection, growth, and absorption.\n- Nodes, internodes, and buds are diagnostic stem features.",
+    "Core explanation": "# Core explanation: Chapter 5: Morphology of Flowering Plants\n\n## What you will learn\nYou will describe a typical leaf and distinguish venation, simple and compound leaves, and the major phyllotaxy patterns. You will also relate leaf features to function.\n\n## Simple explanation\nLeaves are lateral organs produced at nodes and normally bear an axillary bud at the base of the petiole. Their arrangement and blade organisation provide important identification characters.\n\n## Step-by-step breakdown\n- **Leaf parts**: A typical leaf has a leaf base, petiole, and lamina; stipules may occur at the leaf base.\n- **Special leaf bases**: Monocot leaf bases may form sheaths, and some legumes possess a swollen pulvinus.\n- **Petiole**: It holds the lamina toward light, permits fluttering, cools the leaf, and exposes it to fresh air.\n- **Lamina**: The expanded blade bears the midrib, veins, and veinlets, which provide rigidity and conduct materials.\n- **Venation**: Reticulate venation forms a network and is common in dicots; parallel venation is common in monocots.\n- **Simple leaf**: Incisions, if present, do not reach the midrib.\n- **Compound leaf**: Incisions reach the midrib and divide the lamina into leaflets.\n- **Pinnately compound**: Leaflets lie along a common rachis, as in neem.\n- **Palmately compound**: Leaflets arise from one point at the petiole tip, as in silk cotton.\n- **Phyllotaxy**: Alternate has one leaf per node, opposite has a pair, and whorled has more than two leaves per node.\n\n## Worked example\nQuestion: Based on NCERT Exercises 1 and 2, distinguish pinnately and palmately compound leaves and explain the three phyllotaxy types.\n\nSolution:\n- In a pinnately compound leaf, leaflets are arranged along the rachis, as in neem.\n- In a palmately compound leaf, leaflets arise from one point at the petiole tip, as in silk cotton.\n- Alternate phyllotaxy has one leaf per node, opposite has two, and whorled has more than two.\n- Use china rose, guava, and Alstonia as the respective examples from the chapter.\n- Final answer: Pinnate leaflets lie along a rachis; palmate leaflets meet at one point. Alternate, opposite, and whorled phyllotaxy have one, two, and more than two leaves per node respectively.\n\n## Common mistake\nA leaflet is not an independent leaf because it lacks an axillary bud at its base.\n\n## Quick check question\nQuestion: Which type of venation is generally associated with monocotyledonous leaves?\nAnswer: Parallel venation.\nExplanation: The veins run approximately parallel across the lamina in most monocots.\n\n## Summary\n- A leaf has base, petiole, and lamina.\n- Venation may be reticulate or parallel.\n- Compound leaves divide into leaflets.\n- Phyllotaxy describes leaf arrangement on the stem.",
+    "Worked examples": "# Worked examples: Chapter 5: Morphology of Flowering Plants\n\n## What you will learn\nYou will distinguish inflorescence types and classify flowers by sexuality, symmetry, merosity, and ovary position. You will use the thalamus as the reference point for ovary descriptions.\n\n## Simple explanation\nA flower is a modified shoot, while an inflorescence is the arrangement of flowers on the floral axis. The position and growth of the axis create recognisable patterns.\n\n## Step-by-step breakdown\n- **Racemose inflorescence**: The main axis continues growing and bears flowers laterally in acropetal order.\n- **Cymose inflorescence**: The main axis terminates in a flower and flowers occur in basipetal order.\n- **Four whorls**: A typical flower bears calyx, corolla, androecium, and gynoecium on the thalamus.\n- **Accessory and reproductive**: Calyx and corolla are accessory; androecium and gynoecium are reproductive.\n- **Sexuality**: A bisexual flower has both androecium and gynoecium; a unisexual flower has one.\n- **Symmetry**: Actinomorphic flowers have radial symmetry, zygomorphic flowers have one plane of bilateral symmetry, and asymmetric flowers have no such plane.\n- **Merosity**: Trimerous, tetramerous, and pentamerous flowers have floral parts in multiples of three, four, and five.\n- **Hypogynous**: Other whorls arise below a superior ovary.\n- **Perigynous**: Whorls arise on the rim of a cup-like thalamus around a half-inferior ovary.\n- **Epigynous**: Whorls arise above an inferior ovary enclosed and fused with the thalamus.\n\n## Worked example\nQuestion: Based on NCERT Exercises 4(a), 9, and 10, distinguish racemose and cymose inflorescences and relate hypogynous, perigynous, and epigynous conditions to ovary position.\n\nSolution:\n- Racemose has an indefinitely growing main axis and acropetal flower order.\n- Cymose has a terminal flower, limited axis growth, and basipetal order.\n- In hypogyny, the ovary is superior; in perigyny, it is half inferior; in epigyny, it is inferior.\n- Examples include mustard for hypogyny, rose for perigyny, and guava for epigyny.\n- Final answer: Racemose and cymose differ in axis growth and flower order; hypogynous, perigynous, and epigynous flowers possess superior, half-inferior, and inferior ovaries respectively.\n\n## Common mistake\nSuperior and inferior describe the ovary's position relative to the insertion of other floral whorls, not its physical height alone.\n\n## Quick check question\nQuestion: A pea flower can be divided into equal halves in one vertical plane. What symmetry is this?\nAnswer: Zygomorphic symmetry.\nExplanation: A zygomorphic flower has bilateral symmetry in only one particular vertical plane.\n\n## Summary\n- Inflorescence depends on main-axis growth.\n- A flower contains accessory and reproductive whorls.\n- Flowers may be actinomorphic, zygomorphic, or asymmetric.\n- Ovary position is described from whorl insertion on the thalamus.",
+    "Exam-style problems": "# Exam-style problems: Chapter 5: Morphology of Flowering Plants\n\n## What you will learn\nYou will analyse the four floral whorls, aestivation, stamen relationships, carpel fusion, and placentation. You will use precise terms to interpret a flower.\n\n## Simple explanation\nFloral description depends on how members within a whorl touch or fuse, how different whorls attach, and where ovules are arranged inside the ovary.\n\n## Step-by-step breakdown\n- **Calyx**: Sepals may be united as gamosepalous or free as polysepalous.\n- **Corolla**: Petals may be gamopetalous or polypetalous and commonly attract pollinators.\n- **Aestivation**: Valvate parts touch without overlap; twisted parts overlap regularly; imbricate overlap lacks a fixed direction; vexillary has standard, wings, and keel.\n- **Androecium**: Each stamen has filament and anther; anthers generally contain pollen sacs.\n- **Adhesion**: Epipetalous stamens attach to petals, while epiphyllous stamens attach to the perianth.\n- **Cohesion**: Stamens may be monadelphous, diadelphous, polyadelphous, or free.\n- **Gynoecium**: A carpel has stigma, style, and ovary, and the ovary contains ovules on placentae.\n- **Carpel fusion**: Free carpels are apocarpous; fused carpels are syncarpous.\n- **Placentation**: Marginal, axile, parietal, free central, and basal types differ in the location of placentae and ovules.\n- **Post-fertilisation**: Ovules become seeds and the ovary becomes a fruit.\n\n## Worked example\nQuestion: Based on NCERT Exercises 3, 4(b), and 7, define aestivation and placentation, distinguish apocarpous and syncarpous gynoecia, and identify pea and tomato placentation.\n\nSolution:\n- Aestivation is the arrangement of sepals or petals relative to one another in the floral bud.\n- Placentation is the arrangement of ovules inside the ovary.\n- Free carpels form an apocarpous gynoecium; fused carpels form a syncarpous gynoecium.\n- Pea shows marginal placentation, while tomato shows axile placentation.\n- Final answer: Aestivation concerns perianth-member arrangement; placentation concerns ovule arrangement. Apocarpous carpels are free, syncarpous carpels are fused; pea is marginal and tomato is axile.\n\n## Common mistake\nDo not confuse cohesion with adhesion: cohesion joins members of the same whorl, while adhesion joins different whorls.\n\n## Quick check question\nQuestion: Which aestivation is characteristic of pea and bean?\nAnswer: Vexillary or papilionaceous aestivation.\nExplanation: The standard overlaps the wings, which overlap the two keel petals.\n\n## Summary\n- Floral whorls are described by fusion and attachment.\n- Aestivation concerns bud arrangement.\n- The gynoecium may be apocarpous or syncarpous.\n- Placentation identifies the position of ovules in the ovary.",
+    "Revision and recap": "# Revision and recap: Chapter 5: Morphology of Flowering Plants\n\n## What you will learn\nYou will connect fertilisation with fruit and seed formation and learn the sequence of a semi-technical plant description. You will apply this sequence to Solanaceae.\n\n## Simple explanation\nMorphological terminology becomes most useful when it is assembled into a concise, standard description supported by a floral formula and diagram.\n\n## Step-by-step breakdown\n- **Fruit**: A fruit is generally the mature ovary; the fruit wall is the pericarp, which may be dry or fleshy.\n- **Drupe**: Mango and coconut are one-seeded drupes; mango has fleshy mesocarp, while coconut has fibrous mesocarp.\n- **Parthenocarpy**: A parthenocarpic fruit develops without fertilisation.\n- **Dicot seed**: It usually has two cotyledons, seed coat with testa and tegmen, hilum, micropyle, embryonal axis, plumule, and radicle.\n- **Monocot seed**: Maize has a large endosperm, aleurone layer, one cotyledon called scutellum, coleoptile around the plumule, and coleorhiza around the radicle.\n- **Description order**: Begin with habit and vegetative characters, then inflorescence and floral characters, followed by fruit, seed, floral formula, and floral diagram.\n- **Solanaceae habit**: Members are mostly herbs or shrubs with alternate, usually simple, exstipulate leaves and reticulate venation.\n- **Solanaceae flower**: Flowers are bisexual and actinomorphic with five united sepals, five united petals, five epipetalous stamens, and a superior bicarpellary syncarpous ovary with axile placentation.\n- **Solanaceae uses**: The family provides food, spices, medicines, tobacco, and ornamental plants.\n\n## Worked example\nQuestion: Based on NCERT Exercises 5 and 6, identify key labels of gram and maize seeds and give the essential semi-technical floral description of Solanaceae.\n\nSolution:\n- For gram, label testa, tegmen, hilum, micropyle, two cotyledons, plumule, radicle, and embryonal axis.\n- For maize, label fused seed coat and fruit wall, endosperm, aleurone layer, scutellum, plumule, radicle, coleoptile, and coleorhiza.\n- For Solanaceae, record actinomorphic bisexual flowers, united calyx and corolla, five epipetalous stamens, and a superior syncarpous ovary with axile placentation.\n- Add berry or capsule fruit and many endospermous seeds.\n- Final answer: Gram is a dicot seed with two cotyledons; maize is a monocot seed with scutellum and large endosperm. Solanaceae has bisexual actinomorphic pentamerous flowers, epipetalous stamens, and a superior syncarpous ovary with axile placentation.\n\n## Common mistake\nA floral formula is not a substitute for observation; it summarises features that must first be identified and described accurately.\n\n## Quick check question\nQuestion: What is the shield-shaped cotyledon of maize called?\nAnswer: Scutellum.\nExplanation: The monocot embryo has one large cotyledon called the scutellum.\n\n## Summary\n- Fruits usually arise from ovaries and seeds from ovules.\n- Dicot and monocot seeds differ in cotyledon and endosperm organisation.\n- A semi-technical description follows a fixed sequence.\n- Floral formulae and diagrams summarise floral structure.\n- Solanaceae illustrates the use of standard morphological terminology."
+  }
+}

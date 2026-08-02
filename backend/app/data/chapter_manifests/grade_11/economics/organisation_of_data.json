@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Organisation of Data",
+  "central_question": "How can raw data be classified and arranged so that patterns, comparisons, and statistical analysis become manageable and meaningful?",
+  "in_scope_units": [
+    "Introduction to classification as a way of bringing order to collected data.",
+    "Raw data, its disorganised character, and the need to summarise it before analysis.",
+    "Chronological, spatial, qualitative, and quantitative classification according to the purpose of study.",
+    "Continuous and discrete variables and the different values each type can take.",
+    "Meaning and structure of a frequency distribution, including class frequency, class limits, class interval, and class mark.",
+    "Decisions involved in preparing a frequency distribution, including number and size of classes and inclusive or exclusive limits.",
+    "Adjustment of class intervals, tally marking, loss of information, unequal class intervals, and frequency arrays.",
+    "Bivariate frequency distribution for jointly classifying two variables.",
+    "Conclusion and recap on classification and the construction of useful frequency distributions."
+  ],
+  "banned_topics": [
+    "Detailed diagrammatic presentation such as histograms, ogives, and pie charts",
+    "Calculation of arithmetic mean, median, or mode",
+    "Karl Pearson and Spearman correlation coefficients",
+    "Index-number construction"
+  ],
+  "must_include_keywords": [
+    "classification",
+    "raw data",
+    "observation",
+    "variable",
+    "chronological classification",
+    "spatial classification",
+    "qualitative classification",
+    "quantitative classification",
+    "attribute",
+    "continuous variable",
+    "discrete variable",
+    "frequency distribution",
+    "class frequency",
+    "class limits",
+    "lower class limit",
+    "upper class limit",
+    "class interval",
+    "class width",
+    "class midpoint",
+    "class mark",
+    "range",
+    "equal class intervals",
+    "unequal class intervals",
+    "inclusive method",
+    "exclusive method",
+    "tally marking",
+    "relative frequency",
+    "loss of information",
+    "frequency array",
+    "univariate distribution",
+    "bivariate frequency distribution"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Raw data are already suitable for easy statistical analysis.",
+      "correction": "Raw data are unclassified and often cumbersome; classification is needed to make comparison and analysis manageable."
+    },
+    {
+      "claim": "A discrete variable can never take fractional values.",
+      "correction": "A discrete variable may take fractional values, but it cannot take every intermediate value between adjacent permitted values."
+    },
+    {
+      "claim": "Both limits are always included in every class interval.",
+      "correction": "In the exclusive method, either the upper or lower class limit is excluded; in the inclusive method both limits belong to the stated class."
+    },
+    {
+      "claim": "Grouping data preserves every original observation for later calculations.",
+      "correction": "Grouping causes loss of information because later calculations use class marks rather than the individual observations within each class."
+    },
+    {
+      "claim": "A bivariate distribution classifies only one variable.",
+      "correction": "A bivariate frequency distribution jointly classifies two variables and records frequencies for combinations of their values or classes."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the kabadiwallah illustration in the Introduction to show why classification brings order.",
+    "Use NCERT Example 1 and Example 2 to compare chronological and spatial classification.",
+    "Use NCERT Example 4 and Table 3.3 to introduce class frequency, class limits, class interval, and class mark.",
+    "Use NCERT Table 3.6 to explain tally marking and the construction of a frequency distribution.",
+    "Use NCERT Exercise 9 and Table 3.9 to distinguish univariate from bivariate frequency distributions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–11 and a Suggested Activity based on arranging earlier mathematics marks year-wise.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

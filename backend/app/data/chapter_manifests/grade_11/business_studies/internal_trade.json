@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 11",
+  "subject": "Business Studies",
+  "chapter": "Internal Trade",
+  "central_question": "How do wholesalers, retailers, taxation systems and trade associations enable the efficient distribution of goods and services within a country?",
+  "in_scope_units": [
+    "Meaning and types of trade and the definition of internal trade.",
+    "Wholesale trade and services provided by wholesalers to manufacturers.",
+    "Services provided by wholesalers to retailers.",
+    "Meaning of retail trade and services of retailers to manufacturers, wholesalers and consumers.",
+    "Classification and characteristics of itinerant and fixed-shop retailers.",
+    "Peddlers and hawkers, market traders, street traders and cheap jacks.",
+    "General stores, speciality shops, street stalls and second-hand-goods shops.",
+    "Departmental stores and chain stores or multiple shops, including advantages, limitations and differences.",
+    "Mail-order houses, consumer cooperative stores, supermarkets and vending machines.",
+    "Goods and Services Tax, including destination basis, input tax credit, CGST, SGST and IGST.",
+    "Role of Chambers of Commerce and Industry in promoting internal trade."
+  ],
+  "banned_topics": [
+    "International trade documentation and customs procedures, which belong to International Business.",
+    "Detailed e-commerce models, which belong to Emerging Modes of Business.",
+    "General marketing-management theory beyond the distribution functions in this chapter."
+  ],
+  "must_include_keywords": [
+    "internal trade",
+    "external trade",
+    "wholesale trade",
+    "retail trade",
+    "wholesaler",
+    "retailer",
+    "time utility",
+    "place utility",
+    "large-scale production",
+    "market information",
+    "itinerant retailers",
+    "peddlers and hawkers",
+    "market traders",
+    "street traders",
+    "cheap jacks",
+    "fixed shop retailers",
+    "general stores",
+    "speciality shops",
+    "departmental stores",
+    "chain stores",
+    "multiple shops",
+    "mail order houses",
+    "consumer cooperative store",
+    "super market",
+    "vending machines",
+    "Goods and Services Tax",
+    "CGST",
+    "SGST",
+    "IGST",
+    "input tax credit",
+    "destination-based tax",
+    "Chambers of Commerce",
+    "FICCI",
+    "CII",
+    "ASSOCHAM"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Internal trade means only transactions within one city or state.",
+      "correction": "It includes buying and selling anywhere within the national boundaries, whether local or inter-state."
+    },
+    {
+      "claim": "Wholesalers merely increase prices without performing necessary functions.",
+      "correction": "They aggregate orders, buy in bulk, bear risk, finance stock, store goods, provide market information and distribute smaller quantities to retailers."
+    },
+    {
+      "claim": "Every retailer must operate from a permanent shop.",
+      "correction": "Itinerant retailers have no fixed place and move or operate temporarily to reach customers."
+    },
+    {
+      "claim": "Departmental stores and chain stores are the same because both operate on a large scale.",
+      "correction": "Departmental stores offer many product lines under one central roof, while chain stores operate similar branches at multiple locations, usually with a limited standardised range."
+    },
+    {
+      "claim": "GST is an origin-based tax charged only where goods are manufactured.",
+      "correction": "The chapter describes GST as a destination-based consumption tax on supply, with credit for tax paid at previous stages."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Short Answer Questions 1, 3, 4 and 5 to establish internal trade and the distribution functions of wholesalers.",
+    "Use Short Answer Questions 8–9 to compare services of wholesalers and retailers.",
+    "Use Long Answer Question 1 to analyse the survival of itinerant retailers.",
+    "Use Long Answer Questions 2, 3 and 5 to compare large-scale retail forms and mail-order houses.",
+    "Use Project 5 to classify goods and services under the GST-rate activity provided in the chapter."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section contains Short Answer Questions 1–9, Long Answer Questions 1–5 and five Projects/Assignments, including a GST-rate classification activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

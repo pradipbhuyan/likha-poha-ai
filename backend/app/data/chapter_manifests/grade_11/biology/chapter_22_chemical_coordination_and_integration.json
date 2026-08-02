@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 22: Chemical Coordination and Integration",
+  "central_question": "How do hormones from endocrine glands and other tissues coordinate metabolism, growth, reproduction and homeostasis in humans?",
+  "in_scope_units": [
+    "Endocrine glands and hormones as intercellular messengers.",
+    "Hypothalamic releasing and inhibiting hormones.",
+    "Pituitary organisation and hormones.",
+    "Pineal, thyroid, parathyroid and thymus glands.",
+    "Adrenal medulla and cortex.",
+    "Endocrine pancreas and glucose homeostasis.",
+    "Testicular and ovarian hormones.",
+    "Hormones of heart, kidney and gastrointestinal tract.",
+    "Membrane-bound and intracellular receptor mechanisms."
+  ],
+  "banned_topics": [
+    "Nephron structure and urine formation",
+    "Counter-current concentration of urine",
+    "Neural impulse conduction"
+  ],
+  "must_include_keywords": [
+    "endocrine gland",
+    "hormone",
+    "intercellular messenger",
+    "hypothalamus",
+    "releasing hormone",
+    "inhibiting hormone",
+    "GnRH",
+    "somatostatin",
+    "pituitary",
+    "adenohypophysis",
+    "neurohypophysis",
+    "growth hormone",
+    "prolactin",
+    "TSH",
+    "ACTH",
+    "LH",
+    "FSH",
+    "MSH",
+    "oxytocin",
+    "vasopressin",
+    "melatonin",
+    "thyroxine",
+    "PTH",
+    "thymosin",
+    "adrenaline",
+    "noradrenaline",
+    "cortisol",
+    "aldosterone",
+    "glucagon",
+    "insulin",
+    "androgen",
+    "estrogen",
+    "progesterone",
+    "ANF",
+    "erythropoietin",
+    "gastrin",
+    "secretin",
+    "CCK",
+    "GIP",
+    "hormone receptor"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The posterior pituitary synthesises oxytocin and vasopressin.",
+      "correction": "They are synthesised in the hypothalamus and stored and released by the neurohypophysis."
+    },
+    {
+      "claim": "Insulin raises blood glucose.",
+      "correction": "Insulin lowers blood glucose; glucagon raises it."
+    },
+    {
+      "claim": "All hormones enter cells and act directly on DNA.",
+      "correction": "Many peptide hormones use membrane receptors and second messengers; steroid and thyroid hormones commonly use intracellular receptors."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1 to distinguish exocrine glands, endocrine glands and hormones.",
+    "Use NCERT Exercise 3 to map glands to hormones.",
+    "Use NCERT Exercise 6 to classify hormones by physiological effects.",
+    "Use NCERT Exercise 7 to connect deficiencies with disorders.",
+    "Use NCERT Exercise 8 to explain receptor-mediated FSH action."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-9 on gland definitions, hormone lists, targets, functions, deficiencies and mechanism of action.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

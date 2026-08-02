@@ -1,0 +1,71 @@
+{
+  "grade": "Grade 12",
+  "subject": "Business Studies",
+  "chapter": "Organising",
+  "central_question": "How does organising create structures, relationships and authority systems that enable people and resources to implement plans effectively?",
+  "in_scope_units": [
+    "Meaning, process and importance",
+    "Organisation structure and span",
+    "Functional and divisional structures",
+    "Formal and informal organisation",
+    "Delegation",
+    "Decentralisation"
+  ],
+  "banned_topics": [
+    "Planning process",
+    "Staffing procedures",
+    "Motivation theories",
+    "Control techniques"
+  ],
+  "must_include_keywords": [
+    "organising",
+    "division of work",
+    "departmentalisation",
+    "assignment of duties",
+    "authority relationships",
+    "reporting relationships",
+    "specialisation",
+    "optimum utilisation",
+    "adaptation to change",
+    "organisation structure",
+    "span of management",
+    "functional structure",
+    "divisional structure",
+    "formal organisation",
+    "informal organisation",
+    "grapevine",
+    "delegation",
+    "authority",
+    "responsibility",
+    "accountability",
+    "decentralisation",
+    "centralisation",
+    "initiative",
+    "managerial development",
+    "quick decision making"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Organising only means dividing work.",
+      "correction": "It also groups activities, assigns duties and establishes authority and reporting relationships."
+    },
+    {
+      "claim": "Informal organisation is created by management.",
+      "correction": "It arises spontaneously from social interaction."
+    },
+    {
+      "claim": "Delegation removes the superior’s accountability.",
+      "correction": "The superior remains ultimately accountable."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Short Answer Type 1",
+    "NCERT Long Answer Type 5",
+    "NCERT Short Answer Type 3",
+    "NCERT Short Answer Type 2",
+    "NCERT Short Answer Type 5"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Exercises contain Very Short Answer questions 1-5, Short Answer questions 1-7 and Long Answer questions 1-8.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

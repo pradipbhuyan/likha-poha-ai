@@ -1,0 +1,84 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "English",
+    "chapter": "Birth",
+    "central_question": "How does Andrew Manson’s determined response to a medical crisis transform a routine night call into his first sense of meaningful professional achievement?",
+    "in_scope_units": [
+      "Joe Morgan summons Andrew Manson late at night for Susan Morgan’s long-awaited first childbirth.",
+      "Andrew waits while reflecting gloomily on failed marriages and Christine.",
+      "The baby appears lifeless and Susan collapses, forcing an urgent priority decision.",
+      "Andrew stabilises Susan, identifies the child’s pallor and begins persistent resuscitation.",
+      "The child breathes and cries; Andrew tells Joe both are safe and feels he has done something real.",
+      "The final questions examine achievement, practice versus textbook medicine and life-saving medical help."
+    ],
+    "banned_topics": [
+      "Detailed medical instructions beyond the narrative",
+      "External explanations of organ transplantation or regeneration",
+      "Medical claims not explicitly stated"
+    ],
+    "must_include_keywords": [
+      "Andrew Manson",
+      "Joe Morgan",
+      "Susan Morgan",
+      "Christine",
+      "Dr Edward Page",
+      "Blaenelly",
+      "Bryngower",
+      "Number 12 Blaina Terrace",
+      "midwife",
+      "Mrs Morgan’s mother",
+      "oil lamp",
+      "waiting",
+      "marriage",
+      "professional duty",
+      "chloroform",
+      "anaesthetic",
+      "lifeless child",
+      "dilemma",
+      "mother’s collapse",
+      "hypodermic syringe",
+      "asphyxia pallida",
+      "hot water",
+      "cold water",
+      "special respiration",
+      "persistence",
+      "child’s cry",
+      "third-person narration",
+      "suspense",
+      "real achievement",
+      "practising physician"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Andrew neglects Susan to save the child.",
+        "correction": "He first restores the almost pulseless mother, then returns to the child."
+      },
+      {
+        "claim": "The child is confirmed dead and revived supernaturally.",
+        "correction": "The child is born lifeless; Andrew identifies asphyxia pallida and uses remembered treatment."
+      },
+      {
+        "claim": "Andrew is calm and confident throughout.",
+        "correction": "He begins confused, feels horror and defeat, and acts through instinct and determination."
+      },
+      {
+        "claim": "The chapter is a practical medical guide.",
+        "correction": "It is a literary narrative about duty, judgment and perseverance."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Q1 on “something real at last.”",
+      "Proceed to Q2 on textbook medicine and practice.",
+      "Frame Q3 as discussion without adding procedures not supplied in the chapter."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter concludes with three numbered discussion questions on achievement, practical medicine and life-saving help."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Birth\n\n## What you will learn\nYou will understand Andrew’s situation before the emergency and the atmosphere of the late-night call. You will see the contrast between personal disappointment and professional responsibility.\n\n## Simple explanation\nAndrew is newly out of medical school and working in Blaenelly. Returning from a disappointing evening connected with Christine, he meets Joe Morgan, whose wife is about to give birth to their first child after nearly twenty years of marriage.\n\n## Step-by-step breakdown\n- **Young practitioner**: Andrew has only recently begun practice as Dr Edward Page’s assistant.\n- **Joe’s trust**: The anxious driller says, “I know ye’ll do well for us.”\n- **Change of focus**: Andrew is recalled from his own affairs and takes his bag to Number 12.\n- **Atmosphere**: The cool night and poorly furnished room lit by an oil lamp create stillness.\n- **Foreshadowing**: The narrator says the call will influence Andrew’s future in Blaenelly.\n\n## Worked example\nQuestion: Why is Joe’s statement important?\n\nAnswer:\n- His pacing and strained voice show anxiety.\n- He expresses complete confidence in an inexperienced and distracted doctor.\n- The trust raises the moral and professional stakes.\n- Final answer: Joe’s statement makes the call a personal responsibility: Andrew must justify a family’s faith.\n\n## Common mistake\nDo not describe the opening only as an immediate emergency; a long period of waiting and reflection follows.\n\n## Quick check question\nQuestion: Why does Andrew remain instead of going home?\nAnswer: He knows he cannot sleep and recognises that the case will demand all his attention.\nExplanation: Remaining shows movement from private confusion toward professional commitment.\n\n## Summary\n- Andrew begins young and troubled.\n- Joe’s trust creates pressure and purpose.\n- The quiet setting builds suspense.\n- The narrator foreshadows transformation.",
+    "Core explanation": "# Core explanation: Birth\n\n## What you will learn\nYou will examine Andrew’s thoughts during the wait and contrast private doubt with the family’s hope. You will understand how interior reflection deepens the medical plot.\n\n## Simple explanation\nAndrew sits by the kitchen fire thinking about unhappy marriages. His reason sees failure, while love for Christine makes him want to believe marriage is idyllic; Susan’s mother thinks only of the long-awaited child.\n\n## Step-by-step breakdown\n- **Waiting sounds**: The clock, cinder and Joe’s footsteps stretch time.\n- **Failed marriages**: Andrew recalls Bramwell, Edward Page and Denny.\n- **Reason versus heart**: His doubting mind conflicts with his overflowing heart.\n- **Grandmother’s focus**: She asks that chloroform not harm the baby and says the whole family wants the child.\n- **Professional reassurance**: Andrew collects himself and promises the anaesthetic will not harm them.\n\n## Worked example\nQuestion: How does the old woman’s concern interrupt Andrew’s brooding?\n\nAnswer:\n- He is absorbed in abstract doubts about marriage.\n- She speaks about Susan’s fear and the family’s longing.\n- Her practical hope recalls him to the human reality of the case.\n- Final answer: Her concern shifts Andrew from self-centred reflection to responsibility for Susan and the child.\n\n## Common mistake\nDo not treat the marriage reflections as padding; they make his later sense of real achievement more significant.\n\n## Quick check question\nQuestion: What sound reminds Andrew that Joe is still waiting?\nAnswer: The beat of Joe Morgan’s footsteps as he paces outside.\nExplanation: The footsteps express helpless anxiety and sustain suspense.\n\n## Summary\n- The wait is filled with sound, silence and thought.\n- Andrew’s mind and heart disagree.\n- The grandmother represents family hope.\n- The case displaces personal confusion.",
+    "Worked examples": "# Worked examples: Birth\n\n## What you will learn\nYou will analyse the double emergency and Andrew’s instinctive decision-making. You will explain duty through the sequence of actions.\n\n## Simple explanation\nThe child is born lifeless while Susan is collapsed and almost pulseless. Andrew gives the child to the nurse, restores Susan and then turns immediately to the baby.\n\n## Step-by-step breakdown\n- **Dilemma**: He is torn between resuscitating the child and saving the mother.\n- **Instinctive priority**: He injects medicine and works until Susan’s heart strengthens.\n- **Recovering the child**: The midwife has placed the baby beneath the bed.\n- **Observation and memory**: The white, limp body suggests asphyxia pallida and recalls a previous case.\n- **Command**: His repeated “Quick!” shows decisive action replacing lethargy.\n\n## Worked example\nQuestion: Why is treating Susan first not a rejection of the child?\n\nAnswer:\n- Susan is almost pulseless, so delay may cost her life.\n- Andrew works until her heart strengthens and she can safely be left.\n- He then turns at once to the child.\n- Final answer: He secures the mother’s immediate survival so he can devote himself to the child without abandoning her.\n\n## Common mistake\nDo not claim he makes a long calculated choice; the text stresses urgency and instinct.\n\n## Quick check question\nQuestion: What observation leads to the remembered treatment?\nAnswer: The unusual whiteness of the baby’s limp body, identified as asphyxia pallida.\nExplanation: The observation connects practice with memory of a case at the Samaritan.\n\n## Summary\n- The birth creates two urgent responsibilities.\n- Andrew first stabilises Susan.\n- Observation activates training.\n- Decisiveness replaces lethargy.",
+    "Exam-style problems": "# Exam-style problems: Birth\n\n## What you will learn\nYou will trace the resuscitation and understand how suspense grows through repeated failure. You will analyse perseverance as decisive.\n\n## Simple explanation\nAndrew alternates hot and cold water, applies respiration and continues after the midwife calls the child stillborn. Tiny changes finally signal returning life.\n\n## Step-by-step breakdown\n- **Physical struggle**: Sweat blinds him and the floor becomes a mess of water and equipment.\n- **Apparent defeat**: No breath comes and he feels raging hopelessness.\n- **Refusal to stop**: He rubs the child and compresses and releases the chest.\n- **Incremental signs**: A convulsive heave, gasps, firmer limbs and pink skin appear.\n- **Climax**: The child’s cry ends the silence.\n\n## Worked example\nQuestion: How does the author make the first cry feel like victory?\n\nAnswer:\n- The narrative accumulates evidence of failure.\n- Andrew continues despite exhaustion, so each small sign matters.\n- The “exquisite” cry transforms the room’s disorder into proof of life.\n- Final answer: The cry feels victorious because it follows sustained effort and repeated apparent failure.\n\n## Common mistake\nDo not call the success purely miraculous; the narrative records observation, remembered treatment and persistence.\n\n## Quick check question\nQuestion: Which visible change shows life returning?\nAnswer: The blanched skin turns pink and the limbs and head gain firmness.\nExplanation: These changes accompany deeper gasping and lead to the cry.\n\n## Summary\n- Suspense grows through failure.\n- Andrew persists after others give up.\n- Small changes create the climax.\n- The cry releases tension.",
+    "Revision and recap": "# Revision and recap: Birth\n\n## What you will learn\nYou will consolidate Andrew’s development and the idea of meaningful professional work. You will distinguish textbook knowledge from judgment under pressure.\n\n## Simple explanation\nAfter telling Joe that mother and child are safe, Andrew walks into morning exhausted but transformed. “I’ve done something real at last” expresses the direct human result of knowledge, responsibility and persistence.\n\n## Step-by-step breakdown\n- **Meaning of real**: The work saves two lives and answers the family’s trust.\n- **Theory and practice**: Knowledge becomes effective through observation, priority, improvisation and endurance.\n- **Character arc**: Andrew moves from confusion to focused action and profound satisfaction.\n- **Narrative technique**: Third-person narration stays close to his thoughts.\n- **Title**: “Birth” also suggests the birth of Andrew’s professional confidence.\n- **Key terms for revision**: Andrew Manson, Susan Morgan, Bryngower, Number 12 Blaina Terrace, Mrs Morgan’s mother, professional duty, lifeless child, mother’s collapse, hypodermic syringe, hot water, special respiration, practising physician.\n\n## Worked example\nQuestion: Why does Andrew say he has done something real?\n\nAnswer:\n- Both Susan and the child were in danger.\n- He used knowledge under pressure and persisted after apparent defeat.\n- The outcome changes how he sees his work in Blaenelly.\n- Final answer: The statement expresses his first deep conviction that medical work has achieved a tangible, life-giving purpose.\n\n## Common mistake\nDo not mention only the baby; include Susan’s rescue, the difficult judgment and Andrew’s transformation.\n\n## Quick check question\nQuestion: What does Andrew tell Joe?\nAnswer: “Both all right.”\nExplanation: The brief assurance resolves Joe’s long anxiety and compresses the night’s result.\n\n## Summary\n- Andrew saves Susan before the child.\n- Observation links knowledge with action.\n- Persistence produces the cry.\n- The experience creates a professional identity."
+  }
+}

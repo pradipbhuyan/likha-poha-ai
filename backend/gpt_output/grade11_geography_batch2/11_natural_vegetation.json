@@ -1,0 +1,103 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Natural Vegetation",
+    "central_question": "How do endogenic and exogenic processes, weathering, gravity, mass movement, erosion, deposition, and soil formation continually reshape the earth’s surface?",
+    "in_scope_units": [
+      "Unevenness of the earth’s surface and the opposing roles of endogenic and exogenic forces.",
+      "Geomorphic processes, geomorphic agents, gradients, and gravity.",
+      "Endogenic processes: diastrophism, orogeny, epeirogeny, earthquakes, plate tectonics, and volcanism.",
+      "Exogenic processes, denudation, climatic controls, rock structure, and differential rates.",
+      "Chemical, physical, and biological weathering and the significance of weathering.",
+      "Mass movements and landslides, their controls, causes, and types.",
+      "Erosion, transportation, deposition, and geomorphic agents.",
+      "Soil formation, pedology, and the factors controlling soil development."
+    ],
+    "banned_topics": [
+      "Classification of Indian forest types",
+      "Wildlife conservation policy",
+      "Detailed landforms made by individual agents",
+      "Plate-boundary theory in full"
+    ],
+    "must_include_keywords": [
+      "endogenic forces",
+      "exogenic forces",
+      "degradation",
+      "aggradation",
+      "gradation",
+      "geomorphic process",
+      "geomorphic agent",
+      "gravity",
+      "gradient",
+      "diastrophism",
+      "orogeny",
+      "epeirogeny",
+      "volcanism",
+      "denudation",
+      "weathering",
+      "in situ",
+      "chemical weathering",
+      "solution",
+      "carbonation",
+      "hydration",
+      "oxidation",
+      "physical weathering",
+      "thermal expansion",
+      "pressure release",
+      "biological weathering",
+      "exfoliation",
+      "regolith",
+      "mass movement",
+      "creep",
+      "flow",
+      "slide",
+      "fall",
+      "slump",
+      "debris slide",
+      "rockslide",
+      "rock fall",
+      "erosion",
+      "transportation",
+      "deposition",
+      "pedology"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A geomorphic process and a geomorphic agent always mean exactly the same thing.",
+        "correction": "A process is the applied force or action; an agent is the mobile medium that removes, transports, and deposits material."
+      },
+      {
+        "claim": "Weathering necessarily transports rock fragments.",
+        "correction": "Weathering is chiefly an in-situ process with little or no movement."
+      },
+      {
+        "claim": "Mass movement is a form of erosion by running water or ice.",
+        "correction": "Mass movement is the gravity-driven downslope transfer of material without a transporting geomorphic agent."
+      },
+      {
+        "claim": "Weathering is always a prerequisite for erosion or mass movement.",
+        "correction": "Weathering aids both, but the chapter states that neither requires prior weathering in every case."
+      },
+      {
+        "claim": "Deposition is an independent transporting action.",
+        "correction": "Deposition occurs when an erosional agent loses velocity and energy and its load settles."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT in-text question: distinguish geomorphic processes from geomorphic agents.",
+      "NCERT in-text question: distinguish epeirogeny from orogeny.",
+      "NCERT in-text question: decide whether small motion during weathering is transportation.",
+      "NCERT in-text question: compare mass wasting with mass movement.",
+      "NCERT in-text question: decide whether weathering alone forms soil."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The supplied chapter text is followed by its NCERT exercise section; these lesson examples reuse the chapter’s labelled in-text questions and activity prompts."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Natural Vegetation\n\n## What you will learn\nYou will distinguish endogenic and exogenic forces and understand why relief remains uneven. You will also distinguish a geomorphic process from a geomorphic agent.\n\n## Simple explanation\nInternal forces build or elevate relief, while external processes wear it down and fill depressions. Their continuing opposition keeps the earth’s surface dynamic.\n\n## Step-by-step breakdown\n- **Endogenic forces**: Energy from within the earth builds, uplifts, folds, faults, and deforms the crust.\n- **Exogenic forces**: Atmospheric and surface processes generally lower relief and fill basins.\n- **Degradation and aggradation**: Wearing down relief is degradation; filling depressions is aggradation.\n- **Geomorphic process**: It is a physical stress or chemical action that changes earth material.\n- **Geomorphic agent**: It is a mobile medium such as running water, groundwater, glacier, wind, wave, or current.\n\n## Worked example\nQuestion: NCERT asks whether it is essential to distinguish geomorphic agents and geomorphic processes. Why is the distinction useful?\n\nAnswer:\n- The chapter defines a process as a force or action on earth materials and an agent as a mobile medium that removes, transports, and deposits them.\n- The distinction separates the cause or action from the material carrier through which the action is expressed.\n- Final answer: Yes. A process describes the action changing earth material, whereas an agent is the moving medium that performs erosion, transport, or deposition.\n\n## Common mistake\nDo not call gravity a transporting agent like a river; it is a directional force that activates movement.\n\n## Quick check question\nQuestion: Give one geomorphic agent.\nAnswer: Running water.\nExplanation: Running water is mobile and can erode, transport, and deposit earth material.\n\n## Summary\n- Internal and external forces oppose one another.\n- Processes are actions; agents are mobile media.\n- The earth’s surface remains dynamic.",
+    "Core explanation": "# Core explanation: Natural Vegetation\n\n## What you will learn\nYou will explain endogenic processes and the role of gradients and gravity. You will distinguish orogeny from epeirogeny.\n\n## Simple explanation\nMovement begins because energy and gradients exist. Inside the earth, heat and other energy sources produce crustal deformation and volcanism.\n\n## Step-by-step breakdown\n- **Gravity and gradients**: Materials move from higher to lower levels or from high to low pressure, and gravity activates downslope movement.\n- **Diastrophism**: It includes processes that move, elevate, or build portions of the crust.\n- **Orogeny**: Severe folding and deformation build mountains in long, narrow belts.\n- **Epeirogeny**: Broad uplift or warping affects large continental areas.\n- **Other crustal movement**: Earthquakes and plate tectonics also belong to diastrophic movement.\n- **Volcanism**: Magma moves towards or onto the surface and forms intrusive and extrusive bodies.\n\n## Worked example\nQuestion: NCERT asks for the difference between epeirogeny and orogeny. How should it be stated?\n\nAnswer:\n- The source calls orogeny a mountain-building process involving severe folding, and epeirogeny a continental-building process involving broad uplift or warping.\n- The distinction concerns both scale and style of deformation.\n- Final answer: Orogeny intensely deforms narrow belts to build mountains, while epeirogeny broadly uplifts or warps large continental areas.\n\n## Common mistake\nDo not define both merely as uplift; orogeny emphasises severe deformation and mountain building.\n\n## Quick check question\nQuestion: What force activates all downslope movement?\nAnswer: Gravity.\nExplanation: Gravity supplies the directional pull that moves material from higher to lower levels.\n\n## Summary\n- Endogenic energy deforms the crust.\n- Orogeny and epeirogeny differ in scale and deformation.\n- Gravity and gradients are fundamental to movement.",
+    "Worked examples": "# Worked examples: Natural Vegetation\n\n## What you will learn\nYou will classify chemical, physical, and biological weathering and explain why weathering is an in-situ process. You will evaluate its wider significance.\n\n## Simple explanation\nWeathering breaks down or decomposes rock where it lies. Different processes often operate together, though one may dominate under particular climatic and material conditions.\n\n## Step-by-step breakdown\n- **Chemical weathering**: Solution, carbonation, hydration, oxidation, and reduction alter minerals through reactions involving water, oxygen, carbon dioxide, and acids.\n- **Physical weathering**: Pressure release, thermal expansion, crystal growth, and wetting–drying fracture rock without chemical decomposition.\n- **Biological weathering**: Roots, burrowing organisms, decay, and human cultivation change materials physically and chemically.\n- **In-situ character**: Very little or no transport occurs during weathering.\n- **Significance**: Weathering prepares regolith and soil, aids erosion and mass movement, and can concentrate valuable minerals.\n- **Exfoliation**: Curved sheets flake from rock as a result of processes such as unloading and thermal expansion.\n\n## Worked example\nQuestion: NCERT asks whether the small movement possible during weathering is synonymous with transportation. What is the correct reasoning?\n\nAnswer:\n- Weathering is defined as mechanical disintegration and chemical decomposition with very little or no movement of material.\n- Transportation requires an agent to carry debris from one place to another, whereas weathering chiefly alters it on site.\n- Final answer: No. Minor displacement during weathering does not become transportation because the material is not carried away by a geomorphic agent.\n\n## Common mistake\nDo not assume every movement of a grain is transport; location change by an agent is the key distinction.\n\n## Quick check question\nQuestion: Which weathering group includes carbonation and oxidation?\nAnswer: Chemical weathering.\nExplanation: Both processes change mineral composition through chemical reaction.\n\n## Summary\n- Weathering is mainly in situ.\n- Chemical, physical, and biological processes often interact.\n- Weathering supports soil formation and later denudation.",
+    "Exam-style problems": "# Exam-style problems: Natural Vegetation\n\n## What you will learn\nYou will explain mass movements and landslides and distinguish them from erosion. You will connect slope conditions and activating causes with movement types.\n\n## Simple explanation\nMass movement transfers rock and debris downslope under gravity. Water may add weight or lubrication, but it is not acting as a transporting river or glacier.\n\n## Step-by-step breakdown\n- **Mass movement**: It ranges from slow creep to rapid flow, slide, and fall.\n- **Resistance and failure**: Material moves when disturbing force exceeds shearing resistance.\n- **Favourable conditions**: Steep slopes, weak or unconsolidated material, faults, heavy rain, saturation, and sparse vegetation encourage failure.\n- **Activating causes**: Undercutting, overloading, earthquakes, seepage, drawdown, and vegetation removal can trigger movement.\n- **Slump**: A unit slips with backward rotation.\n- **Debris slide and fall**: Debris may slide without rotation or fall freely from a steep face.\n- **Rockslide and rock fall**: Rockslides follow discontinuities; rock falls detach from superficial layers and fall clear of the slope.\n\n## Worked example\nQuestion: NCERT asks which term is more appropriate, mass wasting or mass movement. How can the choice be justified?\n\nAnswer:\n- The chapter describes a gravity-driven transfer that can be slow or rapid and includes several modes rather than simple disappearance or waste.\n- The word movement directly identifies the defining action, while wasting can misleadingly suggest destruction of matter.\n- Final answer: Mass movement is the clearer term because material is displaced downslope under gravity rather than being destroyed.\n\n## Common mistake\nDo not classify all landslides as one identical process; slump, slide, fall, and flow have different movement styles.\n\n## Quick check question\nQuestion: Why is mass movement not classified as erosion in the chapter?\nAnswer: Because no geomorphic agent such as running water, wind, glacier, wave, or current transports the material; gravity directly drives the shift.\nExplanation: The presence of water as weight or lubricant does not turn the event into fluvial erosion.\n\n## Summary\n- Mass movement is gravity-driven.\n- Slope resistance and triggers control failure.\n- Landslide types differ by material and movement.",
+    "Revision and recap": "# Revision and recap: Natural Vegetation\n\n## What you will learn\nYou will connect erosion, transportation, deposition, and soil formation. You will review the controls that make geomorphic rates differ from place to place.\n\n## Simple explanation\nAgents acquire and carry rock debris while they have energy. When velocity falls, their load settles, and long-term interaction of parent material, climate, relief, organisms, and time forms soil.\n\n## Step-by-step breakdown\n- **Erosion**: Running water, groundwater, glaciers, wind, and waves acquire and transport material.\n- **Climatic agents**: Wind, running water, and glaciers correspond to gaseous, liquid, and solid states and are strongly climate-controlled.\n- **Other controls**: Groundwater work depends strongly on lithology, while wave work depends on the coastal interface.\n- **Deposition**: Coarse material settles first when an agent loses velocity; finer material settles later.\n- **Soil formation**: Weathered parent material is only the starting point; climate, relief, biological activity, and time also matter.\n- **Pedology**: Pedology is the science of soils, and a pedologist studies soils.\n\n## Worked example\nQuestion: NCERT asks whether weathering is solely responsible for soil formation. What is the reasoned answer?\n\nAnswer:\n- The chapter treats weathering as the source of regolith but also identifies other soil-forming controls.\n- Soil development requires transformation and organisation of parent material under climate, relief, organisms, and time.\n- Final answer: No. Weathering supplies altered material, but soil formation also depends on parent material, topography, climate, biological activity, and time.\n\n## Common mistake\nDo not equate loose weathered rock automatically with a mature soil profile.\n\n## Quick check question\nQuestion: What happens when an erosional agent loses velocity and energy?\nAnswer: Its load begins to settle, producing deposition.\nExplanation: Reduced carrying capacity causes coarser material to be deposited before finer material.\n\n## Summary\n- Erosion acquires and transports debris.\n- Deposition follows energy loss.\n- Soil formation involves several interacting factors."
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 11",
+  "subject": "Sociology",
+  "chapter": "Doing Sociology: Research Methods",
+  "central_question": "What research methods do sociologists use to produce knowledge about society, and how do they try to manage the special problem of objectivity that arises from studying the very social world they themselves live in?",
+  "in_scope_units": [
+    "Introduction: why sociology needs a scientific method, and the importance of understanding both insider and outsider perspectives",
+    "Some Methodological Issues - Objectivity and Subjectivity in Sociology: the meaning of objectivity and subjectivity, the problem of bias, reflexivity, documentation, multiple truths, and sociology as a multi-paradigmatic science",
+    "Multiple Methods and Choice of Methods: quantitative/qualitative, primary/secondary and micro/macro classifications of method, and the idea of triangulation",
+    "Field Work in Social Anthropology: the shift from armchair scholarship to first-hand observation, the Malinowski story, and techniques such as the census, genealogy and informants",
+    "Field Work in Sociology: William Foote Whyte's Street Corner Society, Michael Burawoy's factory study, and Indian village studies (Wiser, Srinivas, Dube, the Cornell Village Study Project)",
+    "Some Limitations of Participant Observation: representativeness, whose voice is represented, and dialogic formats",
+    "Surveys: definition, the main advantage of generalising from a sample, sampling theory (stratification and randomisation), the Census and the National Statistical Organisation, sampling error, and the disadvantages of the survey method",
+    "Interview: definition, flexibility as both advantage and disadvantage, styles of interviewing and recording, and its use alongside other methods"
+  ],
+  "banned_topics": [
+    "Detailed content on social institutions such as family, marriage, work, politics, religion and education (belongs to the chapter on Understanding Social Institutions)",
+    "Detailed content on the dimensions of culture, ethnocentrism, cosmopolitanism, cultural change, and agencies of socialisation as topics in themselves (belongs to the chapter on Culture and Socialisation)",
+    "Detailed treatment of the sociological concept of stratification, status, role and social control (belongs to the earlier chapter on basic sociological concepts; only the statistical concept of stratification used in sampling is discussed here)"
+  ],
+  "must_include_keywords": [
+    "methodology",
+    "objectivity",
+    "subjectivity",
+    "bias",
+    "reflexivity",
+    "multi-paradigmatic",
+    "triangulation",
+    "quantitative method",
+    "qualitative method",
+    "primary data",
+    "secondary data",
+    "micro method",
+    "macro method",
+    "participant observation",
+    "field work",
+    "Bronislaw Malinowski",
+    "genealogy",
+    "informant",
+    "census",
+    "William Foote Whyte",
+    "Street Corner Society",
+    "Michael Burawoy",
+    "village studies",
+    "M.N. Srinivas",
+    "S.C. Dube",
+    "survey",
+    "respondent",
+    "sample",
+    "stratification",
+    "randomisation",
+    "probability",
+    "sampling error",
+    "non-sampling error",
+    "National Statistical Organisation",
+    "interview",
+    "questionnaire"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Sociology can be just as fully 'objective' as a natural science like geology, simply by reporting facts without bias.",
+      "correction": "The chapter explains this is much harder in sociology because, unlike a geologist studying rocks, sociologists 'study the world in which they themselves live', making them members of the society they study, with the same likes, dislikes and biases as anyone else."
+    },
+    {
+      "claim": "Reflexivity means a sociologist must avoid any personal involvement with their research topic.",
+      "correction": "The chapter defines reflexivity as rigorously and continuously examining and documenting one's own possible biases and social background, not avoiding involvement altogether."
+    },
+    {
+      "claim": "Field work just means visiting a community briefly to observe and take some notes.",
+      "correction": "The chapter states that field work or participant observation typically involves 'many months - usually about a year or sometimes more - living among the people being studied as one of them', as shown by Malinowski's year and a half in the Trobriand Islands."
+    },
+    {
+      "claim": "A larger survey sample is automatically more accurate, regardless of how it was chosen.",
+      "correction": "The chapter states 'it is not only the size of the sample that matters; its mode of selection is even more important' - a large but non-random 'purposive' sample is not representative, no matter its size."
+    },
+    {
+      "claim": "An interview is basically the same thing as a survey questionnaire, just asked aloud.",
+      "correction": "The chapter distinguishes them: a survey questionnaire is fixed and must be asked 'in exactly the same way' to every respondent, while an interview is a flexible 'guided conversation' where questions can be rephrased and reordered."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 1 (describing yourself from a friend's, a rival's, and a teacher's point of view) - used as a worked example on reflexivity.",
+    "NCERT Activity 2 (locating famous field work sites: Radcliffe-Brown, Evans Pritchard, Boas, Mead, Geertz) - used as a worked example on the challenges of field work.",
+    "The Whyte, Street Corner Society extract - used as a worked example on the ethical responsibilities of sociological field work.",
+    "The Indian village studies (Wiser, Srinivas, Dube, the Cornell Project) - used to illustrate different styles of field work in sociology.",
+    "NCERT Activity 5 (designing a representative sample for a school survey) - used as a worked example on stratification and randomisation.",
+    "The Census/NSO box and the Aggregate Statistics box on the declining sex ratio - used to illustrate survey scale and aggregate, or macro, variables.",
+    "NCERT Q10, end-of-chapter Exercises (features of the interview method) - used as the closing worked example comparing interview, survey and participant observation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's EXERCISES section lists 10 questions (Q1 on why scientific method matters in sociology, through Q10 on the main features of the interview method), placed after the GLOSSARY and before the READINGS.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

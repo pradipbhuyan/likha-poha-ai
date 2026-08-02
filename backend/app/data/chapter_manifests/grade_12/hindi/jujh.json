@@ -1,0 +1,56 @@
+{
+  "grade": "Grade 12",
+  "subject": "Hindi",
+  "chapter": "Jujh",
+  "central_question": "How does the autobiographical narrative present education as a hard-won struggle against poverty, labour and family authority?",
+  "in_scope_units": [
+    "Desire for school",
+    "Mother and Desai",
+    "Confrontation with Dada",
+    "Return under harsh conditions",
+    "Meaning of struggle and narrative style"
+  ],
+  "banned_topics": [
+    "Content from adjacent chapters not present in the supplied source.",
+    "Biographical or historical claims not stated in the supplied source.",
+    "Invented incidents, quotations, dates or interpretations unsupported by the text."
+  ],
+  "must_include_keywords": [
+    "आनंद यादव",
+    "जूझ",
+    "पाठशाला",
+    "दादा",
+    "माँ",
+    "दत्ता जी राव देसाई",
+    "खेती",
+    "कोल्हू",
+    "गुड़",
+    "पाँचवीं",
+    "परीक्षा",
+    "श्रम",
+    "डर",
+    "शिक्षा",
+    "संघर्ष",
+    "आत्मकथात्मक"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The narrator wants to avoid all labour.",
+      "correction": "He continues working but resists the complete sacrifice of education."
+    },
+    {
+      "claim": "Once Desai intervenes, the struggle ends.",
+      "correction": "The narrator still faces farm duties, lost time, humiliation and exhaustion."
+    }
+  ],
+  "recommended_example_progression": [
+    "Motivation",
+    "Strategic support",
+    "Partial victory",
+    "School return",
+    "Title and theme"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter questions printed in the supplied NCERT source; answers must be supported by the text.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,102 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 13: Statistics",
+  "central_question": "How can we measure and compare the spread of ungrouped and grouped data around a central value?",
+  "in_scope_units": [
+    "Introduction: why measures of central tendency alone do not fully describe data and why dispersion is needed.",
+    "Measures of dispersion and range as a first rough measure of variability.",
+    "Mean deviation about mean or median for ungrouped data.",
+    "Mean deviation for discrete and continuous frequency distributions, including cumulative frequency and median class methods.",
+    "Step-deviation shortcut for computing the mean used in mean-deviation calculations.",
+    "Limitations of mean deviation and the need for a measure based on squared deviations.",
+    "Variance and standard deviation for ungrouped data.",
+    "Variance and standard deviation for discrete and continuous frequency distributions.",
+    "Alternative and shortcut formulas for variance and standard deviation.",
+    "Effects of changing observations, correction of erroneous data, mixed examples and historical note."
+  ],
+  "banned_topics": [
+    "Detailed calculation of quartile deviation, which the chapter explicitly excludes",
+    "Coefficient of variation",
+    "Correlation and regression",
+    "Probability distributions and random variables",
+    "Sampling theory and inferential statistics",
+    "Normal distribution and hypothesis testing"
+  ],
+  "must_include_keywords": [
+    "data",
+    "measure of central tendency",
+    "mean",
+    "median",
+    "mode",
+    "variability",
+    "dispersion",
+    "range",
+    "maximum value",
+    "minimum value",
+    "deviation",
+    "absolute deviation",
+    "mean deviation",
+    "mean deviation about mean",
+    "mean deviation about median",
+    "ungrouped data",
+    "discrete frequency distribution",
+    "continuous frequency distribution",
+    "frequency",
+    "cumulative frequency",
+    "class interval",
+    "class mark",
+    "mid-point",
+    "median class",
+    "assumed mean",
+    "step-deviation",
+    "limitations of mean deviation",
+    "squared deviations",
+    "variance",
+    "standard deviation",
+    "sigma square",
+    "sigma",
+    "shortcut formula",
+    "change of origin",
+    "change of scale",
+    "corrected mean",
+    "corrected standard deviation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Two data sets with the same mean and median have the same variability.",
+      "correction": "The batsmen example shows that equal mean and median can occur with very different spread, so a measure of dispersion is also required."
+    },
+    {
+      "claim": "Range measures how every observation is distributed around the mean.",
+      "correction": "Range uses only the maximum and minimum values and gives only a rough idea of variability."
+    },
+    {
+      "claim": "Mean deviation is the ordinary mean of signed deviations from the mean.",
+      "correction": "Signed deviations from the mean sum to zero; mean deviation uses absolute values of the deviations."
+    },
+    {
+      "claim": "For grouped data, divide by the number of distinct x-values or classes.",
+      "correction": "Grouped-data formulas divide by N, the total frequency, not by the number of rows or classes."
+    },
+    {
+      "claim": "Variance and standard deviation have the same units.",
+      "correction": "Variance is in squared units, while standard deviation is the positive square root of variance and has the same units as the observations."
+    },
+    {
+      "claim": "Adding a constant to every observation changes the variance.",
+      "correction": "Adding or subtracting the same constant shifts the mean by that constant but leaves all deviations from the mean, and hence the variance, unchanged."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the batsmen A and B data in Section 13.1 and the range calculation in Section 13.3.",
+    "Use NCERT Examples 1 and 3 for mean deviation about mean and median in ungrouped data.",
+    "Use NCERT Examples 4–7 for discrete and continuous grouped data, cumulative frequency and the median class.",
+    "Use NCERT Examples 8–10 to introduce variance and standard deviation for ungrouped, discrete and continuous data.",
+    "Use NCERT Examples 11–12 for alternative and step-deviation formulas.",
+    "Finish with NCERT Examples 13–16 for transformations, missing observations and correction of wrong data."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 13.1 on mean deviation, Exercise 13.2 on variance and standard deviation, and the six-question Miscellaneous Exercise on Chapter 13.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

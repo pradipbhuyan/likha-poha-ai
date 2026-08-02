@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Physical World",
+    "central_question": "How do physicists express measurements reliably using standard units, significant figures, dimensions, and dimensional analysis?",
+    "in_scope_units": [
+      "Introduction: physical quantities, measurement, units, base quantities, derived quantities, and systems of units.",
+      "The International System of Units: CGS, FPS, MKS, SI, seven SI base units, plane angle, solid angle, and selected non-SI units retained for use.",
+      "Significant figures: reliable and uncertain digits, rules for zeros, scientific notation, and order of magnitude.",
+      "Rules for arithmetic operations with significant figures: multiplication, division, addition, subtraction, and rounding off.",
+      "Uncertainty in arithmetic calculations: absolute and relative uncertainty, propagation in products, subtraction, and use of guard digits.",
+      "Dimensions of physical quantities: seven base dimensions and dimensional representation of volume, speed, force, acceleration, and density.",
+      "Dimensional formulae and dimensional equations.",
+      "Dimensional analysis and its applications: dimensional homogeneity, checking equations, rejecting impossible formulae, and deducing relations among quantities.",
+      "Summary and Exercises 1.1–1.17."
+    ],
+    "banned_topics": [
+      "Detailed theory of measurement instruments such as vernier callipers and screw gauge beyond the end-of-chapter exercise references.",
+      "Detailed kinematics, work-energy theory, relativity, atomic structure, and gravitation beyond their use as examples in this chapter.",
+      "A philosophical survey of the scope and nature of physics that is not present in the supplied source text."
+    ],
+    "must_include_keywords": [
+      "physical quantity",
+      "measurement",
+      "unit",
+      "base quantity",
+      "base unit",
+      "derived unit",
+      "system of units",
+      "CGS",
+      "FPS",
+      "MKS",
+      "SI",
+      "metre",
+      "kilogram",
+      "second",
+      "ampere",
+      "kelvin",
+      "mole",
+      "candela",
+      "radian",
+      "steradian",
+      "dimensionless quantity",
+      "significant figures",
+      "scientific notation",
+      "order of magnitude",
+      "rounding off",
+      "uncertainty",
+      "relative error",
+      "dimensions",
+      "dimensional formula",
+      "dimensional equation",
+      "principle of homogeneity",
+      "dimensional consistency",
+      "dimensionless constant",
+      "simple pendulum"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Changing the unit of a measured quantity changes its number of significant figures.",
+        "correction": "A change of units does not change the number of significant figures; for example, 2.308 cm, 0.02308 m, 23.08 mm, and 23080 μm all represent four significant figures."
+      },
+      {
+        "claim": "Every zero in a measured number is insignificant.",
+        "correction": "Zeros between non-zero digits are significant, and trailing zeros are significant when a decimal point is present; only leading zeros before the first non-zero digit are not significant."
+      },
+      {
+        "claim": "Multiplication and addition use the same significant-figure rule.",
+        "correction": "Multiplication and division are limited by the least number of significant figures, whereas addition and subtraction are limited by the least number of decimal places."
+      },
+      {
+        "claim": "A dimensionally correct equation must be physically correct.",
+        "correction": "Dimensional correctness is only a necessary test; an equation that fails is wrong, but one that passes is not automatically exact or physically correct."
+      },
+      {
+        "claim": "Dimensional analysis can determine numerical constants such as 2π.",
+        "correction": "Dimensional analysis cannot determine dimensionless numerical constants; for a simple pendulum it gives T = k√(l/g), but not k = 2π."
+      },
+      {
+        "claim": "Quantities with different dimensions can be added if their numerical values are similar.",
+        "correction": "Only quantities with the same dimensions can be added or subtracted, according to the principle of homogeneity."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Example 1.1 to practise rounding calculated area and volume to the significant figures allowed by a measured side.",
+      "Use NCERT Example 1.2 to apply the multiplication/division rule to density.",
+      "Use NCERT Example 1.3 to check dimensional consistency of 1/2 mv² = mgh.",
+      "Use NCERT Example 1.4 to rule out impossible kinetic-energy formulae using dimensions.",
+      "Use NCERT Example 1.5 to deduce the dependence of the time period of a simple pendulum on l, g, and m."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES section contains Questions 1.1–1.17 on unit conversion, precision, significant figures, dimensional analysis, scale estimates, and order-of-magnitude reasoning."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Physical World\n\n## What you will learn\nYou will understand why every measurement needs both a number and a unit. You will also learn the difference between base quantities, derived quantities, and systems of units.\n\n## Simple explanation\nPhysics is quantitative, so measurements must be expressed using agreed standards. A statement such as 'the length is 5' is incomplete until a unit is attached. A small set of base units can be combined to express a very large number of physical quantities.\n\n## Step-by-step breakdown\n- **Measurement**: Measurement means comparing a physical quantity with an accepted reference standard called a unit.\n- **Numerical value and unit**: Every measured result is written as a number accompanied by a unit.\n- **Base quantities**: Length, mass, time, electric current, thermodynamic temperature, amount of substance, and luminous intensity are the seven SI base quantities.\n- **Derived quantities**: Quantities such as speed, force, density, and volume are expressed using combinations of base quantities and therefore use derived units.\n- **System of units**: A complete collection of base and derived units is called a system of units.\n- **Earlier systems**: CGS uses centimetre, gram, second; FPS uses foot, pound, second; MKS uses metre, kilogram, second.\n- **SI system**: The internationally accepted system is SI, based on the decimal system and seven base units.\n- **Angle units**: Plane angle is measured in radians and solid angle in steradians; both are dimensionless because they are ratios of like geometrical quantities.\n\n## Worked example\nQuestion: Solve NCERT Exercise 1.1(c): A vehicle moving with a speed of 18 km h⁻¹ covers how many metres in 1 s?\n\nSolution:\n- Convert kilometres to metres: 18 km h⁻¹ = 18,000 m h⁻¹.\n- Convert hours to seconds: 1 h = 3600 s.\n- Speed = 18,000/3600 m s⁻¹ = 5 m s⁻¹.\n- In 1 s, distance = speed × time = 5 × 1 m.\n- Final answer: The vehicle covers 5 m in 1 s.\n\n## Common mistake\nDo not write only the numerical value after a calculation. A physical measurement is incomplete without the correct unit.\n\n## Quick check question\nQuestion: What are the SI base units of mass, electric current, and amount of substance?\nAnswer: Kilogram (kg), ampere (A), and mole (mol).\nExplanation: These are three of the seven internationally accepted SI base units.\n\n## Summary\n- A measurement is a comparison with a standard unit.\n- Every result needs both a number and a unit.\n- Base quantities have base units; derived quantities use combinations of base units.\n- SI is the internationally accepted decimal system.\n- Radian and steradian are dimensionless angle units.",
+    "Core explanation": "# Core explanation: Physical World\n\n## What you will learn\nYou will learn how significant figures express the precision of measurement. You will practise the rules for zeros, scientific notation, arithmetic operations, and rounding.\n\n## Simple explanation\nMeasured values are never infinitely precise. Significant figures include all reliably known digits plus the first uncertain digit. Correct reporting prevents a calculation from appearing more accurate than the measurements used.\n\n## Step-by-step breakdown\n- **Meaning of significant figures**: The reliable digits and the first uncertain digit together form the significant figures.\n- **Non-zero digits**: Every non-zero digit is significant.\n- **Zeros between non-zero digits**: Such zeros are always significant.\n- **Leading zeros**: Zeros before the first non-zero digit in a number less than one are not significant.\n- **Trailing zeros**: Without a decimal point they are usually not significant; with a decimal point they are significant.\n- **Unit conversion**: Changing the unit does not change the number of significant figures.\n- **Scientific notation**: Writing a number as a × 10ᵐ removes ambiguity about trailing zeros; the power of ten does not affect the significant-figure count.\n- **Order of magnitude**: It gives an approximate power of ten for the size of a quantity.\n- **Multiplication and division**: The result keeps as many significant figures as the input with the fewest significant figures.\n- **Addition and subtraction**: The result keeps as many decimal places as the least precise input.\n- **Rounding rule**: If the discarded digit is above 5, increase the previous digit; if below 5, leave it. If it is exactly 5, keep the previous digit unchanged when even and raise it when odd.\n- **Guard digit**: In multistep work, retain one extra digit in intermediate calculations and round only at the end.\n\n## Worked example\nQuestion: Solve NCERT Example 1.2: 5.74 g of a substance occupies 1.2 cm³. Express its density using correct significant figures.\n\nSolution:\n- Density = mass/volume = 5.74 g ÷ 1.2 cm³.\n- The calculator value is approximately 4.7833 g cm⁻³.\n- The mass has three significant figures, but the volume has only two.\n- The final result must therefore contain two significant figures.\n- Final answer: Density = 4.8 g cm⁻³.\n\n## Common mistake\nDo not use the −least significant figures' rule for addition or subtraction. Those operations are controlled by the least number of decimal places.\n\n## Quick check question\nQuestion: How many significant figures are present in 0.06900?\nAnswer: Four significant figures.\nExplanation: The leading zeros are not significant, but 6, 9, and the two trailing zeros after the decimal point are significant.\n\n## Summary\n- Significant figures communicate measurement precision.\n- Unit conversion does not change their number.\n- Scientific notation removes ambiguity.\n- Multiplication and division use the least-significant-figures rule.\n- Addition and subtraction use the least-decimal-places rule.\n- Final rounding should normally be done only once.",
+    "Worked examples": "# Worked examples: Physical World\n\n## What you will learn\nYou will apply significant-figure rules to area, volume, addition, subtraction, and uncertainty. You will also distinguish absolute uncertainty from relative uncertainty.\n\n## Simple explanation\nA calculated result cannot be more precise than the measurements from which it is obtained. Experimental uncertainty must therefore be carried into results in a controlled way.\n\n## Step-by-step breakdown\n- **Calculated area and volume**: Powers and products are limited by the least precise measured input.\n- **Absolute uncertainty**: A value such as 16.2 ± 0.1 cm gives the uncertainty in the same unit as the measurement.\n- **Relative uncertainty**: The absolute uncertainty divided by the measured value, often expressed as a percentage.\n- **Products**: Percentage uncertainties are combined for multiplication, as shown for a 16.2 cm by 10.1 cm rectangular sheet.\n- **Subtraction**: The number of significant figures may fall sharply when close values are subtracted.\n- **Intermediate calculations**: Keeping one extra significant digit reduces accumulated rounding error.\n- **Exact numbers**: Counting numbers and exact numerical factors are treated as having infinitely many significant figures.\n\n## Worked example\nQuestion: Solve NCERT Example 1.1: Each side of a cube is measured as 7.203 m. Find its total surface area and volume with appropriate significant figures.\n\nSolution:\n- The measured side 7.203 m has four significant figures.\n- Surface area = 6(7.203)² m² = 311.299254 m².\n- Rounded to four significant figures, surface area = 311.3 m².\n- Volume = (7.203)³ m³ = 373.714754 m³.\n- Rounded to four significant figures, volume = 373.7 m³.\n- Final answer: Total surface area = 311.3 m² and volume = 373.7 m³.\n\n## Common mistake\nDo not round intermediate values too early. Premature rounding can change the final answer, especially in multistep calculations.\n\n## Quick check question\nQuestion: A measurement is written as 16.2 ± 0.1 cm. What is its approximate percentage uncertainty?\nAnswer: About 0.6%.\nExplanation: Relative uncertainty = (0.1/16.2) × 100%, which is approximately 0.6%.\n\n## Summary\n- A result inherits the limitations of its measured inputs.\n- Absolute uncertainty carries the same unit as the quantity.\n- Relative uncertainty compares uncertainty with the measured value.\n- Products combine percentage uncertainties.\n- Close-value subtraction can reduce precision.\n- Guard digits help prevent rounding error.",
+    "Exam-style problems": "# Exam-style problems: Physical World\n\n## What you will learn\nYou will represent physical quantities through dimensions and use dimensional homogeneity to test equations. You will also learn what dimensional analysis can and cannot prove.\n\n## Simple explanation\nDimensions describe the physical nature of a quantity in terms of base quantities such as mass, length, and time. An equation can only be valid if all added terms and both sides have compatible dimensions.\n\n## Step-by-step breakdown\n- **Seven dimensions**: [L], [M], [T], [A], [K], [cd], and [mol] represent the seven SI base quantities.\n- **Mechanical quantities**: Most mechanics quantities can be expressed using [M], [L], and [T].\n- **Volume**: Since volume is length × breadth × height, its dimensions are [L³] or [M⁰L³T⁰].\n- **Speed**: Speed has dimensions [LT⁻¹].\n- **Acceleration**: Acceleration has dimensions [LT⁻²].\n- **Force**: From force = mass × acceleration, [F] = [MLT⁻²].\n- **Density**: Mass density has dimensions [ML⁻³].\n- **Dimensional formula**: It shows the powers of base quantities in a physical quantity.\n- **Dimensional equation**: It equates the symbol of a physical quantity with its dimensional formula.\n- **Homogeneity**: Only quantities with the same dimensions may be added or subtracted.\n- **Consistency test**: If an equation fails dimensional consistency, it is wrong; if it passes, it is not necessarily fully correct.\n- **Dimensionless quantities**: Pure numbers, ratios of like quantities, angle, and refractive index have no dimensions.\n\n## Worked example\nQuestion: Solve NCERT Example 1.4 by identifying which proposed kinetic-energy formulae are ruled out dimensionally: (a) K = m²v³, (b) K = ½mv², (c) K = ma, (d) K = 3/16 mv², (e) K = ½mv² + ma.\n\nSolution:\n- Kinetic energy has dimensions [ML²T⁻²].\n- For (a), [m²v³] = [M²L³T⁻³], so it is incorrect.\n- For (b), [mv²] = [ML²T⁻²], so it is dimensionally possible.\n- For (c), [ma] = [MLT⁻²], so it is incorrect.\n- For (d), the dimensionless factor 3/16 does not alter [mv²], so it is dimensionally possible.\n- For (e), [mv²] and [ma] have different dimensions and cannot be added, so it is incorrect.\n- Final answer: Formulae (a), (c), and (e) are ruled out; dimensions alone cannot choose between (b) and (d).\n\n## Common mistake\nPassing the dimensional test does not prove that a numerical coefficient is correct. Dimensional analysis cannot distinguish ½mv² from 3/16 mv².\n\n## Quick check question\nQuestion: What is the dimensional formula of force?\nAnswer: [MLT⁻²].\nExplanation: Force equals mass multiplied by acceleration, and acceleration has dimensions [LT⁻²].\n\n## Summary\n- Dimensions describe the type of a physical quantity.\n- A dimensional formula uses powers of base quantities.\n- Only like-dimensional quantities can be added or subtracted.\n- Dimensional inconsistency proves an equation wrong.\n- Dimensional consistency does not prove an equation exactly correct.\n- Dimensionless constants cannot be determined by this test.",
+    "Revision and recap": "# Revision and recap: Physical World\n\n## What you will learn\nYou will consolidate unit systems, significant figures, uncertainty, dimensions, and dimensional analysis. You will also use dimensions to deduce a relation among physical quantities.\n\n## Simple explanation\nThis chapter builds a complete language for quantitative physics. Units tell us the standard used, significant figures tell us the precision, and dimensions tell us the physical type of a quantity and help test equations.\n\n## Step-by-step breakdown\n- **Units**: Base and derived units provide a standard language for all measurements.\n- **SI base set**: metre, kilogram, second, ampere, kelvin, mole, and candela.\n- **Precision**: Significant figures prevent over-reporting of measured results.\n- **Scientific notation**: It is the clearest way to show magnitude and significant zeros.\n- **Arithmetic rules**: Use least significant figures for multiplication/division and least decimal places for addition/subtraction.\n- **Uncertainty**: Absolute and relative errors describe the reliability of measurements and calculations.\n- **Dimensions**: Base dimensions combine to represent derived physical quantities.\n- **Dimensional checking**: Every term in a valid equation must have the same dimensions where addition or subtraction occurs.\n- **Deducing relations**: Dimensions can determine exponents in a product-type dependence.\n- **Limitation**: Dimensional analysis cannot obtain dimensionless constants or distinguish different quantities having the same dimensions.\n\n## Worked example\nQuestion: Reproduce the result of NCERT Example 1.5 by using dimensions to determine how the time period T of a simple pendulum depends on length l, mass m, and gravitational acceleration g.\n\nSolution:\n- Assume T = k lˣ gʸ mᶻ, where k is dimensionless.\n- Write dimensions: [T] = [L]ˣ[LT⁻²]ʸ[M]ᶻ.\n- Therefore [L⁰M⁰T¹] = [Lˣ⁺ʸ T⁻²ʸ Mᶻ].\n- Equating powers gives x + y = 0, -2y = 1, and z = 0.\n- Hence y = -1/2, x = 1/2, and z = 0.\n- Therefore T = k l^(1/2) g^(-1/2) = k√(l/g).\n- Dimensional analysis cannot determine k; the chapter states that the actual value is 2π.\n- Final answer: T − √(l/g), independent of the mass of the bob.\n\n## Common mistake\nDo not assume that every variable listed in a problem must appear in the final relation. Here the exponent of mass is zero, so the period is independent of bob mass.\n\n## Quick check question\nQuestion: Why can dimensional analysis not determine the factor 2π in the pendulum formula?\nAnswer: Because 2π is dimensionless and does not affect the dimensions on either side.\nExplanation: Dimensional analysis determines only how dimensional quantities depend on one another, not pure numerical constants.\n\n## Summary\n- Measurement requires standard units.\n- Significant figures and uncertainty express precision.\n- Dimensions identify the physical nature of quantities.\n- Homogeneity is a necessary condition for valid equations.\n- Dimensional analysis can test formulae and deduce exponent relations.\n- It cannot determine dimensionless constants or guarantee complete physical correctness."
+  }
+}

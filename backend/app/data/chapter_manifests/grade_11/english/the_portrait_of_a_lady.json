@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 11",
+  "subject": "English",
+  "chapter": "The Portrait of a Lady",
+  "central_question": "How does the narrator’s changing companionship with his grandmother reveal enduring love, spiritual strength and a dignified acceptance of separation and death?",
+  "in_scope_units": [
+    "The narrator describes his grandmother’s aged appearance, serenity and constant prayer.",
+    "In the village, grandmother and grandson share daily routines, temple school and the feeding of dogs.",
+    "Moving to the city creates distance through English education, science, music and changed routines.",
+    "At university she accepts seclusion, spins, prays and finds joy in feeding sparrows.",
+    "The narrator leaves for five years; she parts and receives him without outward sentimentality.",
+    "Her unusual celebration, brief illness and peaceful death complete her character portrait.",
+    "The silent sparrows mourn her, and the language sections examine vocabulary, walking verbs and past perfect form."
+  ],
+  "banned_topics": [
+    "The adjacent poem A Photograph",
+    "External biography of Khushwant Singh or his family",
+    "Scientific explanations of animal mourning beyond the story",
+    "General theories of ageing not presented in the chapter"
+  ],
+  "must_include_keywords": [
+    "Khushwant Singh",
+    "first-person narration",
+    "grandmother",
+    "grandfather’s portrait",
+    "wrinkles",
+    "spotless white",
+    "rosary",
+    "inaudible prayer",
+    "pure white serenity",
+    "village school",
+    "temple",
+    "scriptures",
+    "wooden slate",
+    "stale chapattis",
+    "village dogs",
+    "turning-point",
+    "city school",
+    "motor bus",
+    "western science",
+    "music lessons",
+    "silence",
+    "university",
+    "spinning-wheel",
+    "seclusion",
+    "sparrows",
+    "bedlam of chirrupings",
+    "railway station",
+    "five years",
+    "home-coming of warriors",
+    "dilapidated drum",
+    "mild fever",
+    "red shroud",
+    "silent mourning",
+    "past perfect",
+    "tell",
+    "take",
+    "hobble"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The narrator considers his grandmother ugly.",
+      "correction": "He says she could never have been pretty but was always beautiful, comparing her with a peaceful winter landscape."
+    },
+    {
+      "claim": "Their affection ends when he attends city school.",
+      "correction": "Their daily companionship decreases, but their love and respect remain."
+    },
+    {
+      "claim": "She openly argues with him about science and music.",
+      "correction": "She becomes unhappy and expresses disapproval mainly through silence."
+    },
+    {
+      "claim": "She celebrates his return in her usual way of praying.",
+      "correction": "For the first time known to him, she stops praying, beats a drum and sings of warriors’ homecoming."
+    },
+    {
+      "claim": "The sparrows eat the crumbs placed for them after her death.",
+      "correction": "They remain silent, ignore the bread and fly away quietly after the corpse is carried out."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Understanding the Text Q1 by organising the relationship into village, city school and university phases.",
+    "Use Understanding the Text Q2 and Q3 to connect education, withdrawal, prayer, spinning and sparrows.",
+    "Use Talking About the Text Q1-Q3 for religiousness, changing companionship and strength of character.",
+    "Use Understanding the Text Q4-Q5 to analyse the final celebration, death and sparrows.",
+    "Conclude with Working with Words and Noticing Form exercises on tell, take, walking verbs and past perfect."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The prose is followed by Understanding the Text questions 1-5, Talking About the Text questions 1-4, Thinking About Language, Working with Words I-III, Noticing Form and Things to Do.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

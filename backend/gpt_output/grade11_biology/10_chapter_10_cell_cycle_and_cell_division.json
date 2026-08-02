@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 10: Cell Cycle and Cell Division",
+    "central_question": "How do cells coordinate genome duplication, growth, chromosome segregation, and cytoplasmic division to produce new cells through mitosis and meiosis?",
+    "in_scope_units": [
+      "Cell cycle and coordination of cell growth, DNA replication, and cell division.",
+      "Interphase phases G1, S, and G2 and the quiescent G0 state.",
+      "M phase and mitotic karyokinesis: prophase, metaphase, anaphase, and telophase.",
+      "Cytokinesis in animal and plant cells and syncytium formation.",
+      "Significance of mitosis in growth, nucleo-cytoplasmic balance, repair, replacement, and plant meristems.",
+      "Meiosis and its key features: one DNA replication followed by two divisions.",
+      "Meiosis I, including the five stages of prophase I, homologous pairing, crossing over, and reductional separation.",
+      "Meiosis II and separation of sister chromatids.",
+      "Significance of meiosis in chromosome-number stability and genetic variation."
+    ],
+    "banned_topics": [
+      "Detailed molecular control checkpoints and cyclin biochemistry",
+      "DNA replication mechanisms",
+      "Mendelian inheritance and chromosomal genetics",
+      "Detailed gametogenesis in specific plant and animal species"
+    ],
+    "must_include_keywords": [
+      "cell cycle",
+      "interphase",
+      "G1 phase",
+      "S phase",
+      "G2 phase",
+      "G0 phase",
+      "DNA replication",
+      "chromosome number",
+      "DNA content",
+      "M phase",
+      "karyokinesis",
+      "cytokinesis",
+      "prophase",
+      "metaphase",
+      "metaphase plate",
+      "kinetochore",
+      "anaphase",
+      "telophase",
+      "cell plate",
+      "equational division",
+      "mitosis",
+      "meiosis",
+      "reduction division",
+      "homologous chromosomes",
+      "sister chromatids",
+      "prophase I",
+      "leptotene",
+      "zygotene",
+      "synapsis",
+      "bivalent",
+      "synaptonemal complex",
+      "pachytene",
+      "crossing over",
+      "recombinase",
+      "diplotene",
+      "chiasma",
+      "diakinesis",
+      "interkinesis",
+      "meiosis II",
+      "genetic variation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Interphase is an inactive resting period.",
+        "correction": "The cell grows, performs metabolism, duplicates DNA, and prepares for division during interphase."
+      },
+      {
+        "claim": "Chromosome number doubles during S phase.",
+        "correction": "DNA content doubles from 2C to 4C, but chromosome number remains 2n because sister chromatids remain joined."
+      },
+      {
+        "claim": "Mitosis and cytokinesis are the same process.",
+        "correction": "Mitosis or karyokinesis divides the nucleus; cytokinesis divides the cytoplasm."
+      },
+      {
+        "claim": "Plant cytokinesis begins at the cell edge and moves inward.",
+        "correction": "A cell plate forms at the centre and grows outward; animal cleavage furrows move inward."
+      },
+      {
+        "claim": "Crossing over occurs during zygotene.",
+        "correction": "Synapsis begins in zygotene, while crossing over occurs during pachytene."
+      },
+      {
+        "claim": "Anaphase I separates sister chromatids.",
+        "correction": "Homologous chromosomes separate in anaphase I; sister chromatids separate in anaphase II."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercises 1, 3, 4, and 16: analyse cell-cycle duration, interphase, G0, chromosome number, and DNA content.",
+      "NCERT Exercises 2, 5, 6, and 8: distinguish karyokinesis and cytokinesis and identify mitotic stages and cytokinesis mechanisms.",
+      "NCERT Exercise 10: compare anaphase of mitosis with anaphase I of meiosis.",
+      "NCERT Exercise 7: define synapsis, bivalent, and chiasmata.",
+      "NCERT Exercises 11–12: compare mitosis and meiosis and explain the significance of meiosis."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–16 for cell-cycle phases, mitosis, cytokinesis, meiosis, chromosome number, DNA content, and biological significance."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 10: Cell Cycle and Cell Division\n\n## What you will learn\nYou will define the cell cycle and analyse interphase, including G1, S, G2, and G0. You will distinguish chromosome number from DNA content.\n\n## Simple explanation\nA cell must grow, duplicate its genome, prepare division machinery, and distribute genetic material in an orderly sequence before producing daughter cells.\n\n## Step-by-step breakdown\n- **Cell cycle**: It is the sequence by which a cell duplicates its genome and other constituents and divides into two daughter cells.\n- **Two broad phases**: Interphase separates successive divisions, while M phase carries out nuclear and usually cytoplasmic division.\n- **Duration**: A cultured human cell cycle averages about 24 hours, while yeast may complete it in about 90 minutes.\n- **Interphase proportion**: In a typical 24-hour human-cell cycle, interphase occupies more than 95 percent of the duration.\n- **G1 phase**: The cell is metabolically active, grows, and duplicates many organelles without replicating DNA.\n- **S phase**: DNA replication doubles DNA content from 2C to 4C, but chromosome number remains 2n.\n- **Animal S phase**: Nuclear DNA replicates and the centriole duplicates in the cytoplasm.\n- **G2 phase**: Growth continues and proteins needed for mitosis are synthesised.\n- **G0 phase**: Some cells exit G1 into a metabolically active but non-proliferating quiescent state and may re-enter division when required.\n- **Cell-type variation**: Some adult cells rarely divide, while replacement cells and plant meristems retain division capacity.\n\n## Worked example\nQuestion: Based on NCERT Exercises 1, 3, 4, and 16, describe interphase and track chromosome number and DNA content through S phase.\n\nSolution:\n- The average mammalian cell-cycle example is approximately 24 hours.\n- During G1 the diploid cell is 2n with 2C DNA.\n- S phase replicates DNA, so content becomes 4C while chromosome number remains 2n.\n- G2 retains 2n and 4C while the cell prepares for mitosis.\n- G0 cells are metabolically active but temporarily or permanently non-proliferating.\n- Final answer: Interphase consists of G1 growth, S-phase DNA replication, and G2 preparation; S phase changes DNA from 2C to 4C without changing the 2n chromosome count, and G0 is quiescent.\n\n## Common mistake\nCounting chromatids as chromosomes during S or G2 incorrectly doubles the chromosome number; centromere number defines the chromosome count.\n\n## Quick check question\nQuestion: During which phase does DNA content double?\nAnswer: S phase.\nExplanation: S stands for synthesis, when DNA replication converts 2C DNA to 4C while chromosome number remains unchanged.\n\n## Summary\n- The cell cycle coordinates growth and genome inheritance.\n- Interphase is active, not resting.\n- DNA replication occurs specifically in S phase.\n- G0 cells remain metabolically active without proliferating.",
+    "Core explanation": "# Core explanation: Chapter 10: Cell Cycle and Cell Division\n\n## What you will learn\nYou will follow the four stages of mitotic nuclear division and identify the events used to recognise each stage. You will connect spindle attachment with equal chromosome segregation.\n\n## Simple explanation\nMitosis is a continuous process divided into stages for study. It preserves chromosome number by separating duplicated sister chromatids into two nuclei.\n\n## Step-by-step breakdown\n- **Prophase condensation**: Chromatin condenses into chromosomes, each with two sister chromatids joined at a centromere.\n- **Mitotic apparatus**: Duplicated centrosomes move toward opposite poles, and asters and spindle fibres form.\n- **Prophase disappearance**: Golgi complexes, ER, nucleolus, and nuclear envelope are not visible by late prophase.\n- **Metaphase access**: Nuclear-envelope breakdown allows chromosomes to interact with spindle fibres.\n- **Kinetochores**: Disc-shaped structures at centromeres provide spindle attachment sites.\n- **Metaphase plate**: Chromosomes align at the equator with sister kinetochores attached to opposite poles.\n- **Anaphase**: Centromeres split, sister chromatids become daughter chromosomes, and move centromere-first toward opposite poles.\n- **Telophase**: Chromosomes arrive, decondense, and lose individuality; nuclear envelopes and nucleoli reform.\n- **Organelle recovery**: Golgi complexes and ER reappear during telophase.\n- **Equational division**: Each daughter nucleus receives the same chromosome number as the parent nucleus.\n\n## Worked example\nQuestion: Based on NCERT Exercises 5 and 6, explain why mitosis is equational and identify the stages of chromosome alignment and chromatid separation.\n\nSolution:\n- At metaphase, duplicated chromosomes align on the metaphase plate.\n- At anaphase, centromeres split and sister chromatids move to opposite poles.\n- Each chromatid becomes a daughter chromosome.\n- Equal sets are enclosed in the two telophase nuclei, preserving chromosome number.\n- Final answer: Mitosis is equational because metaphase alignment and anaphase sister-chromatid separation give each daughter nucleus the same chromosome number; alignment occurs in metaphase and separation in anaphase.\n\n## Common mistake\nChromosome condensation begins in prophase but is completed by metaphase, when chromosome morphology is most clearly studied.\n\n## Quick check question\nQuestion: What structure on the centromere binds spindle fibres?\nAnswer: The kinetochore.\nExplanation: Kinetochores on sister chromatids attach to spindle fibres from opposite poles.\n\n## Summary\n- Prophase condenses chromosomes and forms the spindle.\n- Metaphase aligns chromosomes.\n- Anaphase separates sister chromatids.\n- Telophase reconstructs daughter nuclei.",
+    "Worked examples": "# Worked examples: Chapter 10: Cell Cycle and Cell Division\n\n## What you will learn\nYou will distinguish karyokinesis from cytokinesis and compare animal and plant cytokinesis. You will explain the biological significance of mitosis.\n\n## Simple explanation\nEqual nuclear division is completed by partitioning the cytoplasm, but rigid plant walls require a different mechanism from flexible animal membranes.\n\n## Step-by-step breakdown\n- **Karyokinesis**: Nuclear division distributes duplicated chromosomes into daughter nuclei.\n- **Cytokinesis**: Cytoplasmic division separates the parent cell into daughter cells.\n- **Animal mechanism**: A plasma-membrane furrow deepens from the outside toward the centre.\n- **Plant mechanism**: A central cell plate forms and grows outward to meet existing side walls.\n- **Middle lamella**: The cell plate represents the middle lamella between the new daughter-cell walls.\n- **Organelle distribution**: Mitochondria, plastids, and other organelles are apportioned during cytoplasmic division.\n- **Syncytium**: If karyokinesis is not followed by cytokinesis, a multinucleate condition results, as in liquid coconut endosperm.\n- **Growth**: Repeated mitosis increases cell number in multicellular organisms.\n- **Repair and replacement**: Epidermal, gut-lining, and blood cells are renewed through mitosis.\n- **Plant growth**: Apical and lateral meristems divide mitotically throughout plant life.\n- **Nucleo-cytoplasmic balance**: Division restores a workable relationship between nuclear and cytoplasmic volumes after cell growth.\n\n## Worked example\nQuestion: Based on NCERT Exercises 2 and 8, distinguish karyokinesis from cytokinesis and compare plant and animal cytokinesis.\n\nSolution:\n- Karyokinesis separates chromosome sets and forms daughter nuclei.\n- Cytokinesis separates the cytoplasm after or alongside nuclear division.\n- Animal cells form a cleavage furrow that moves inward.\n- Plant cells form a central cell plate that grows outward because the existing wall is inextensible.\n- Final answer: Karyokinesis divides the nucleus; cytokinesis divides the cytoplasm. Animal cells use an inward cleavage furrow, while plant cells build an outward-growing cell plate.\n\n## Common mistake\nA cell plate does not begin at the old cell wall; it starts centrally and extends toward the lateral walls.\n\n## Quick check question\nQuestion: Why is mitosis essential in adult tissues even after overall body growth slows?\nAnswer: It replaces lost or damaged cells and supports tissue repair.\nExplanation: Epidermal, gut-lining, and blood cells require continuous or periodic renewal.\n\n## Summary\n- Karyokinesis and cytokinesis are distinct.\n- Animal and plant cytokinesis proceed in opposite spatial directions.\n- Failure of cytokinesis can create a syncytium.\n- Mitosis supports growth, repair, replacement, and meristem activity.",
+    "Exam-style problems": "# Exam-style problems: Chapter 10: Cell Cycle and Cell Division\n\n## What you will learn\nYou will analyse meiosis I, especially the five stages of prophase I. You will distinguish homologous pairing, crossing over, chiasmata, and reductional segregation.\n\n## Simple explanation\nMeiosis I brings homologous chromosomes together, recombines non-sister chromatids, and then separates homologues to halve chromosome number.\n\n## Step-by-step breakdown\n- **Single replication**: DNA is replicated once before meiosis I, but two successive nuclear divisions follow.\n- **Leptotene**: Chromosomes become gradually visible and continue condensing.\n- **Zygotene**: Homologous chromosomes pair by synapsis and form a synaptonemal complex.\n- **Bivalent or tetrad**: A synapsed homologous pair contains four chromatids.\n- **Pachytene**: Recombination nodules appear and crossing over occurs between non-sister chromatids through recombinase.\n- **Diplotene**: The synaptonemal complex dissolves and homologues separate except at X-shaped chiasmata.\n- **Diakinesis**: Chiasmata terminalise, chromosomes fully condense, spindle forms, and nucleolus and nuclear envelope disappear.\n- **Metaphase I**: Bivalents align at the equator and homologous kinetochores attach to opposite poles.\n- **Anaphase I**: Homologous chromosomes separate while sister chromatids remain joined at centromeres.\n- **Telophase I**: Two nuclei or a dyad may form, followed by a brief interkinesis without DNA replication.\n\n## Worked example\nQuestion: Based on NCERT Exercises 6 and 7, identify where pairing and crossing over occur and define synapsis, bivalent, and chiasma.\n\nSolution:\n- Homologous pairing or synapsis begins in zygotene.\n- The paired homologues form a bivalent or tetrad.\n- Crossing over between non-sister chromatids occurs in pachytene.\n- Chiasmata are the visible crossover connections retained as homologues begin separating in diplotene.\n- Final answer: Synapsis occurs in zygotene, crossing over in pachytene; a bivalent is a paired homologous-chromosome unit, and a chiasma is the visible crossover connection.\n\n## Common mistake\nDo not place crossing over in diplotene merely because chiasmata are visible there; recombination occurs in pachytene.\n\n## Quick check question\nQuestion: What separates during anaphase I?\nAnswer: Homologous chromosomes.\nExplanation: Sister chromatids remain connected at their centromeres until anaphase II.\n\n## Summary\n- Meiosis I is reductional.\n- Prophase I has five distinct stages.\n- Synapsis creates bivalents.\n- Crossing over generates recombination.\n- Anaphase I separates homologues, not sister chromatids.",
+    "Revision and recap": "# Revision and recap: Chapter 10: Cell Cycle and Cell Division\n\n## What you will learn\nYou will follow meiosis II, compare mitosis with meiosis, and explain why meiosis is essential for sexual reproduction and variation. You will track the final chromosome outcome.\n\n## Simple explanation\nMeiosis II resembles mitosis because sister chromatids separate, but it begins with haploid products of meiosis I and produces four haploid cells overall.\n\n## Step-by-step breakdown\n- **Interkinesis**: The interval between meiotic divisions is short and contains no DNA replication.\n- **Prophase II**: Chromosomes recondense and the nuclear membrane disappears.\n- **Metaphase II**: Chromosomes align at the equator and sister kinetochores attach to opposite poles.\n- **Anaphase II**: Centromeres split and sister chromatids separate.\n- **Telophase II**: Nuclear envelopes reform, and cytokinesis produces four haploid daughter cells.\n- **Mitosis outcome**: One division usually produces two genetically similar daughter cells while maintaining chromosome number.\n- **Meiosis outcome**: Two divisions after one replication produce four haploid cells and halve chromosome number.\n- **Variation**: Crossing over and meiotic chromosome behaviour increase genetic variability.\n- **Chromosome stability**: Haploid gametes fuse at fertilisation to restore diploidy, maintaining the species chromosome number across generations.\n- **Anaphase comparison**: Mitosis splits centromeres and separates sister chromatids; anaphase I separates homologues without centromere division.\n\n## Worked example\nQuestion: Based on NCERT Exercises 10, 11, and 12, distinguish mitotic anaphase from anaphase I and state the significance of meiosis.\n\nSolution:\n- In mitotic anaphase, centromeres split and sister chromatids move apart.\n- In anaphase I, homologous chromosomes move apart while sister chromatids remain joined.\n- Meiosis produces haploid gametes, allowing fertilisation to restore the diploid number.\n- Crossing over and chromosome assortment create variation important for evolution.\n- Final answer: Mitotic anaphase separates sister chromatids; anaphase I separates homologous chromosomes. Meiosis maintains chromosome number across sexual generations and generates genetic variation.\n\n## Common mistake\nMeiosis II is not another DNA-replication cycle; no DNA replication occurs during interkinesis.\n\n## Quick check question\nQuestion: How many haploid daughter cells normally result at the end of meiosis II?\nAnswer: Four.\nExplanation: Two products of meiosis I each divide again, separating sister chromatids and producing a tetrad of haploid cells.\n\n## Summary\n- Meiosis II separates sister chromatids.\n- Mitosis has one division; meiosis has two.\n- Meiosis halves chromosome number.\n- Fertilisation restores diploidy.\n- Recombination and segregation increase genetic variation."
+  }
+}

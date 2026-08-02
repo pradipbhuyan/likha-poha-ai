@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Integrals",
+  "central_question": "How can antiderivatives and definite integrals be found systematically using standard formulas, integration techniques and the Fundamental Theorem of Calculus?",
+  "in_scope_units": [
+    "7.1 Introduction: indefinite and definite integrals as the two parts of integral calculus.",
+    "7.2 Integration as an Inverse Process of Differentiation and properties of indefinite integrals.",
+    "7.3 Methods of Integration: inspection and substitution.",
+    "7.4 Integrals of Some Particular Functions.",
+    "7.5 Integration by Partial Fractions.",
+    "7.6 Integration by Parts.",
+    "7.7 Integrals involving standard quadratic radical forms.",
+    "7.8 Definite Integral and area interpretation as a limit of sums.",
+    "7.9 Fundamental Theorem of Calculus.",
+    "7.10 Evaluation of Definite Integrals by Substitution.",
+    "7.11 Properties of Definite Integrals."
+  ],
+  "banned_topics": [
+    "Area between curves as a separate application chapter",
+    "Differential equations",
+    "Advanced improper integrals"
+  ],
+  "must_include_keywords": [
+    "antiderivative",
+    "primitive",
+    "indefinite integral",
+    "constant of integration",
+    "integrand",
+    "variable of integration",
+    "standard integrals",
+    "linearity",
+    "inspection",
+    "substitution",
+    "partial fractions",
+    "integration by parts",
+    "definite integral",
+    "limit of sum",
+    "Fundamental Theorem of Calculus",
+    "upper limit",
+    "lower limit",
+    "properties of definite integrals"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An indefinite integral has one unique answer.",
+      "correction": "It represents a family F(x)+C of antiderivatives."
+    },
+    {
+      "claim": "The constant of integration can be omitted.",
+      "correction": "It is essential in indefinite integrals because functions with the same derivative differ by a constant."
+    },
+    {
+      "claim": "Integration by parts is product rule without order considerations.",
+      "correction": "The choice of first and second factors strongly affects the work."
+    },
+    {
+      "claim": "A definite integral always equals geometric area.",
+      "correction": "It gives signed accumulation; portions below the x-axis contribute negatively."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 1 in Section 7.2 to integrate by inspection.",
+    "Use a substitution example from Section 7.3.",
+    "Use an Exercise 7.4 partial-fraction integral.",
+    "Use an Exercise 7.6 integration-by-parts problem.",
+    "Use the Fundamental Theorem and a property of definite integrals for final evaluation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 7.1 to 7.11 followed by the Miscellaneous Exercise on Chapter 7.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

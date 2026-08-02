@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Political Science",
+    "chapter": "Social Justice",
+    "central_question": "Which principles and institutions can distribute rights, rewards, resources and opportunities fairly while protecting the dignity and prospects of the least advantaged?",
+    "in_scope_units": [
+      "What is Justice: traditions, Socrates, well-being, giving each person their due and human dignity.",
+      "Equal Treatment for Equals, Proportionate Justice and Recognition of Special Needs.",
+      "Just Distribution, redistribution and equal life conditions.",
+      "John Rawls’ Theory of Justice and the veil of ignorance.",
+      "Pursuing Social Justice through a basic minimum and the debate between free markets and state intervention."
+    ],
+    "banned_topics": [
+      "Detailed affirmative action and competing ideologies of equality, which belong to Equality.",
+      "Detailed categories of political, economic and cultural rights, which belong to Rights.",
+      "Detailed economic policy instruments and development planning, which belong to Economics."
+    ],
+    "must_include_keywords": [
+      "justice",
+      "social justice",
+      "dharma",
+      "Confucius",
+      "Plato",
+      "Socrates",
+      "well-being",
+      "giving each person due",
+      "Immanuel Kant",
+      "human dignity",
+      "equal treatment",
+      "non-discrimination",
+      "proportionate justice",
+      "effort",
+      "skill",
+      "special needs",
+      "disability",
+      "minimum standard of living",
+      "equal opportunity",
+      "just distribution",
+      "redistribution",
+      "untouchability",
+      "land reform",
+      "John Rawls",
+      "veil of ignorance",
+      "worst-off",
+      "rational choice",
+      "basic minimum",
+      "nourishment",
+      "clean drinking water",
+      "education",
+      "minimum wage",
+      "free market",
+      "state intervention",
+      "public responsibility"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Justice means helping friends and harming enemies.",
+        "correction": "The chapter rejects this narrow idea and connects justice with the well-being and due of all people."
+      },
+      {
+        "claim": "Equal treatment always requires equal rewards regardless of effort or skill.",
+        "correction": "Proportionate justice allows relevant differences in reward while maintaining equal basic rights."
+      },
+      {
+        "claim": "Special support necessarily violates equality.",
+        "correction": "It may extend equality when a relevant disadvantage blocks equal participation or opportunity."
+      },
+      {
+        "claim": "Rawls depends on extraordinary charity.",
+        "correction": "The veil of ignorance is designed to make fair rules follow from ordinary rational self-interest."
+      },
+      {
+        "claim": "Social justice requires absolute equality of lifestyle.",
+        "correction": "The chapter seeks basic conditions, fair opportunity and reduction of deep deprivation rather than complete sameness."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Exercise Q1 on giving each person their due.",
+      "Use NCERT Exercise Q2 to compare the three principles of justice.",
+      "Use NCERT Exercise Q3 to test special needs against equal treatment.",
+      "Use NCERT Exercise Q4 to explain Rawls’ veil of ignorance.",
+      "Conclude with NCERT Exercise Q5 on the basic minimum and government responsibility."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–6 on due, principles of justice, special needs, Rawls, basic minimum conditions and state action."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Social Justice\n\n## What you will learn\nYou will understand why justice concerns the organisation of public life and the distribution of social goods and duties. You will trace the meaning of giving each person their due.\n\n## Simple explanation\nJustice is not merely helping friends or pursuing personal interest. It concerns the well-being of all people and requires society and government to give equal consideration to persons as human beings with dignity.\n\n## Step-by-step breakdown\n- **Justice in traditions**: The chapter refers to dharma in ancient India, Confucius in China and Plato’s discussion in The Republic.\n- **Socrates’ argument**: If everyone manipulates rules for private gain, nobody is secure, so justice is in the long-term interest of all.\n- **Public well-being**: A just ruler or government must be concerned with the well-being of the people.\n- **Giving each their due**: This remains central to justice, but the meaning of what is due has changed.\n- **Kant and dignity**: Each person possesses dignity and should have the opportunity to develop talents and pursue chosen goals.\n- **Equal consideration**: Modern justice requires due and equal consideration for all individuals.\n\n## Worked example\nQuestion: NCERT Exercise Q1: How has the chapter’s understanding of what is due to a person changed?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q1\", \"extract_text\": \"What does it mean to give each person his/her due? How has the meaning of ‘giving each his due’ changed over time?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Earlier accounts could connect justice with maintaining an established social order or rewarding virtue and punishing wrongdoing.\n- The modern account links what is due to each person with human dignity, equal consideration and opportunities to develop.\n- Final answer: Giving each person their due now means recognising every person’s dignity and providing fair conditions for development, not merely preserving inherited rank or order.\n\n## Common mistake\nDo not reduce justice to obeying every existing rule. The chapter asks whether rules and distributions promote the well-being and dignity of all.\n\n## Quick check question\nQuestion: Why does Socrates argue that universal injustice would harm everyone?\nAnswer: If everyone manipulated rules for private advantage, no person could be secure or reliably benefit from injustice.\nExplanation: Justice supports a stable social order in which the well-being of all is considered.\n\n## Summary\n- Justice organises public life.\n- It concerns the well-being of all.\n- Giving due changes with social understanding.\n- Human dignity grounds equal consideration.",
+    "Core explanation": "# Core explanation: Social Justice\n\n## What you will learn\nYou will study three principles of justice: equal treatment, proportional reward and recognition of special needs. You will understand why they must be balanced.\n\n## Simple explanation\nJustice sometimes requires equal treatment, sometimes proportionate rewards and sometimes special help. No single rule can resolve every situation without considering relevant differences and unequal starting conditions.\n\n## Step-by-step breakdown\n- **Equal treatment**: People should receive equal rights and should not be discriminated against by caste, class, race or gender.\n- **Same work**: People performing the same work should not receive unequal rewards because of group identity.\n- **Proportionate justice**: Different effort, skill, danger or quality of work can justify different rewards.\n- **Special needs**: Disability, age and lack of access to education or health may justify additional support.\n- **Extension of equality**: Special treatment does not necessarily contradict equality; it may enable people with relevant disadvantages to participate.\n- **Policy tension**: Governments must harmonise equality, merit, minimum living standards and opportunity.\n\n## Worked example\nQuestion: NCERT Exercise Q2: What are the three principles of justice presented in the chapter?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q2\", \"extract_text\": \"Briefly discuss the three principles of justice outlined in the chapter? Explain each with examples.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Equal treatment for equals requires equal rights, non-discrimination and equal reward for the same work.\n- Proportionate justice connects reward with effort, skill, quality or risk.\n- Recognition of special needs permits additional help where disadvantage prevents meaningful equality.\n- Final answer: A just society balances equal treatment, proportionate reward and justified support for special needs.\n\n## Common mistake\nA common mistake is to treat equal marks for every exam answer as justice. The chapter uses this example to show why quality and effort can make proportional treatment fair.\n\n## Quick check question\nQuestion: Why may a visually impaired student receive additional examination time?\nAnswer: Because a relevant disability creates a special need, and additional time can enable a fair opportunity to complete the task.\nExplanation: The different treatment extends rather than rejects the principle of equality.\n\n## Summary\n- Equal rights prohibit irrelevant discrimination.\n- Rewards can reflect relevant effort and skill.\n- Special needs can justify assistance.\n- Justice requires balancing principles.",
+    "Worked examples": "# Worked examples: Social Justice\n\n## What you will learn\nYou will understand distributive justice and why fair laws alone may not create a just society. You will examine redistribution, basic conditions and equal opportunity.\n\n## Simple explanation\nSocial justice concerns how important goods, services, opportunities and burdens are distributed. Where serious social and economic inequalities exist, public action may be required to create a more level field.\n\n## Step-by-step breakdown\n- **Just distribution**: Justice applies to resources and services between groups and individuals, not only to legal treatment.\n- **Basic equality**: People require some equality of life conditions to pursue goals and express themselves.\n- **Untouchability**: Its abolition sought to open access to temples, jobs, water and necessities.\n- **Land reform**: The chapter cites redistribution of land as an attempt to distribute resources more fairly.\n- **Disadvantage**: Schemes for weaker sections can be defended when unequal access blocks opportunity.\n- **Political disagreement**: Distribution and reservations arouse strong conflict, so students must examine competing claims through principles of justice.\n\n## Worked example\nQuestion: NCERT Exercise Q3: Why can recognition of special need be consistent with equal treatment?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q3\", \"extract_text\": \"Does the principle of considering the special needs of people conflict with the principle of equal treatment for all?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter explains that treating equals equally also permits different treatment where people are unequal in a relevant respect.\n- Without special help, people deprived of basic education, health or physical access may remain unable to enjoy equal opportunity.\n- Final answer: Special-needs measures are compatible with equality when they remove a relevant obstacle and enable people to enjoy equal status and opportunity.\n\n## Common mistake\nDo not treat redistribution as a demand for identical living standards. The chapter explicitly says justice does not require absolute sameness.\n\n## Quick check question\nQuestion: What is distributive justice?\nAnswer: The just allocation of important goods, services, opportunities and burdens among people and groups.\nExplanation: It extends justice beyond fair laws to the actual social and economic conditions of life.\n\n## Summary\n- Justice includes distribution.\n- Basic conditions enable freedom and opportunity.\n- Redistribution may correct severe inequality.\n- Special help can support equal status.",
+    "Exam-style problems": "# Exam-style problems: Social Justice\n\n## What you will learn\nYou will study John Rawls’ veil of ignorance and understand how rational self-interest can support fair rules. You will reason from the position of the worst-off.\n\n## Simple explanation\nRawls asks people to choose social rules without knowing their future caste, class, wealth or advantage. Because anyone might occupy the weakest position, rational persons would support arrangements that protect the disadvantaged and benefit society as a whole.\n\n## Step-by-step breakdown\n- **Problem of bias**: People who know their social position may design rules that preserve their own privilege.\n- **Veil of ignorance**: Decision-makers imagine that they do not know the family, caste, class or opportunities into which they will be born.\n- **Worst-off perspective**: Uncertainty encourages each person to protect themselves in case they occupy the least privileged position.\n- **Basic resources**: Education, health and shelter should be available to all.\n- **Whole society**: Rules should benefit society rather than weaken the better-off merely to favour one section.\n- **Rational fairness**: Rawls argues that impartial distribution can follow from rational choice, not extraordinary generosity.\n\n## Worked example\nQuestion: NCERT Exercise Q4: Why does uncertainty about one’s future position encourage fair rules?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q4\", \"extract_text\": \"How does Rawls use the idea of a veil of ignorance to argue that fair and just distribution can be defended on rational grounds?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Behind the veil, no one knows whether they will be rich or poor, privileged or disadvantaged.\n- Rational self-interest therefore supports rules that guarantee reasonable opportunities and resources even to the worst-off.\n- Final answer: The veil of ignorance makes impartiality rational because every chooser must protect against the possibility of occupying the most disadvantaged position.\n\n## Common mistake\nDo not describe Rawls’ argument as an appeal only to charity or self-sacrifice. Its distinctive claim is that fairness can follow from rational self-interest.\n\n## Quick check question\nQuestion: What information is hidden by the veil of ignorance?\nAnswer: A person’s future family, caste, wealth, privilege, disadvantage and available opportunities.\nExplanation: Without this knowledge, rules cannot be designed safely for one’s known social position.\n\n## Summary\n- Rawls removes knowledge that creates bias.\n- Choosers consider the worst-off.\n- Basic resources receive protection.\n- Fairness is defended through rational choice.",
+    "Revision and recap": "# Revision and recap: Social Justice\n\n## What you will learn\nYou will evaluate the basic minimum needed for a healthy life and the debate between free markets and state intervention. You will revise the chapter’s overall approach to social justice.\n\n## Simple explanation\nA just society need not make everyone identical, but it must prevent deprivation so severe that people cannot live securely or improve their condition. The chapter weighs market choice and competition against the state’s responsibility to ensure accessible basic services.\n\n## Step-by-step breakdown\n- **Basic minimum**: Nourishment, housing, clean drinking water, education and a minimum wage are identified as important basic conditions.\n- **Democratic responsibility**: Providing basic needs is treated as a responsibility of democratic government.\n- **Free-market case**: Supporters stress property, contracts, competition, merit, consumer choice and limited state interference.\n- **Market limitation**: Private providers may avoid unprofitable areas or charge prices beyond the reach of the poor.\n- **Unequal starting points**: Markets may favour people who are already strong, wealthy and powerful.\n- **State intervention**: Government may need to make basic facilities available and protect the disadvantaged.\n- **Democratic debate**: Disagreement about distribution is healthy when competing views are rationally defended and negotiated.\n\n## Worked example\nQuestion: NCERT Exercise Q5: What minimum conditions and public responsibility does the chapter identify?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q5\", \"extract_text\": \"What are generally considered to be the basic minimum requirements of people for living a healthy and productive life? What is the responsibility of governments in trying to ensure this minimum to all?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter names nourishment, housing, clean drinking water, education and a minimum wage as important requirements.\n- It states that democratic governments have responsibility for helping all citizens secure these conditions, especially when market access is unequal.\n- Final answer: Government should work to ensure basic conditions that enable every person to live a healthy, secure and productive life.\n\n## Common mistake\nDo not claim that the chapter rejects every market arrangement. It presents arguments on both sides while warning that markets can exclude the poor from essential services.\n\n## Quick check question\nQuestion: Why might the state need to provide services in remote or poor areas?\nAnswer: Private agencies may not find those areas profitable or may provide unaffordable or low-quality services.\nExplanation: State action may therefore be needed to ensure that basic education, health care and housing are genuinely accessible.\n\n## Summary\n- Justice requires a basic social minimum.\n- Markets provide choice but can exclude.\n- State action can protect equal opportunity.\n- Democratic debate helps negotiate distribution.\n- Giving each person due is linked by Immanuel Kant to dignity, while justice also protects a minimum standard of living."
+  }
+}

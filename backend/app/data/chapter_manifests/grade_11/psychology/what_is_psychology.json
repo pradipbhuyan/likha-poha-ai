@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 11",
+  "subject": "Psychology",
+  "chapter": "What is Psychology?",
+  "central_question": "How does psychology scientifically study mind, experience and behaviour, and apply this knowledge across disciplines and everyday life?",
+  "in_scope_units": [
+    "Introduction and psychology as the study of mental processes, experiences and behaviour.",
+    "Psychology as a discipline and as both a natural science and a social science.",
+    "Understanding mind and behaviour, including overt and covert behaviour.",
+    "Popular notions and the difference between common beliefs and scientific evidence.",
+    "Evolution through structuralism, functionalism, Gestalt psychology, behaviourism, psychoanalysis, humanistic and cognitive perspectives.",
+    "Development of psychology in India.",
+    "Branches of psychology and professional roles.",
+    "Psychology and other disciplines.",
+    "Psychology in everyday life."
+  ],
+  "banned_topics": [
+    "Detailed research designs and ethical procedures, which belong to Methods of Enquiry in Psychology.",
+    "Detailed theories of learning, memory and perception treated in later chapters."
+  ],
+  "must_include_keywords": [
+    "mental processes",
+    "experience",
+    "behaviour",
+    "overt behaviour",
+    "covert behaviour",
+    "natural science",
+    "social science",
+    "mind–body relationship",
+    "scientific psychology",
+    "popular notions",
+    "Wilhelm Wundt",
+    "structuralism",
+    "functionalism",
+    "Gestalt psychology",
+    "behaviourism",
+    "John Watson",
+    "psychoanalysis",
+    "Sigmund Freud",
+    "humanistic psychology",
+    "cognitive perspective",
+    "development of psychology in India",
+    "cognitive psychology",
+    "biological psychology",
+    "developmental psychology",
+    "social psychology",
+    "cultural psychology",
+    "environmental psychology",
+    "health psychology",
+    "clinical psychology",
+    "counselling psychology",
+    "industrial and organisational psychology",
+    "educational psychology",
+    "sports psychology",
+    "interdisciplinary approach"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Psychology is only the study of the mind.",
+      "correction": "The chapter defines psychology through mental processes, experiences and behaviour."
+    },
+    {
+      "claim": "A psychiatrist and a clinical psychologist have the same training and authority.",
+      "correction": "A psychiatrist has medical training and can prescribe medication; a clinical psychologist is trained in psychology and cannot prescribe it."
+    },
+    {
+      "claim": "Popular beliefs are automatically psychological facts.",
+      "correction": "Scientific psychology relies on systematic observation and evidence."
+    },
+    {
+      "claim": "Psychology is exclusively a natural science.",
+      "correction": "It shares methods and concerns with both natural and social sciences."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Review Question 1 on overt and covert behaviour.",
+    "NCERT Review Question 2 on scientific psychology and popular notions.",
+    "NCERT Review Question 3 on the evolution of psychology.",
+    "NCERT Review Question 5 on professional roles.",
+    "NCERT Review Question 7 on environmental psychology."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–8 and two Project Ideas.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

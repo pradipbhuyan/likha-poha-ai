@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 8: Sequences and Series",
+  "central_question": "How can ordered numerical patterns and their sums be described, analysed, and applied, especially when successive terms form a geometric progression?",
+  "in_scope_units": [
+    "Introduction to ordered patterns and applications.",
+    "Sequences as functions, with finite and infinite forms and term-generation rules.",
+    "Series and sigma notation.",
+    "Geometric progressions, common ratio, and nth term.",
+    "Sum of the first n terms of a geometric progression.",
+    "Geometric mean and insertion of geometric means.",
+    "Applications involving repeated multiplication, digit patterns, ancestry, and depreciation."
+  ],
+  "banned_topics": [
+    "Infinite-series convergence, not developed in this chapter.",
+    "Detailed arithmetic-progression formulas from earlier classes.",
+    "Calculus-based sequence limits."
+  ],
+  "must_include_keywords": [
+    "sequence",
+    "ordered list",
+    "term",
+    "nth term",
+    "finite sequence",
+    "infinite sequence",
+    "sequence as a function",
+    "explicit rule",
+    "recursive rule",
+    "series",
+    "finite series",
+    "sigma notation",
+    "summation index",
+    "geometric progression",
+    "first term",
+    "common ratio",
+    "general term",
+    "a_n equals ar power n minus 1",
+    "sum of n terms",
+    "geometric series",
+    "geometric mean",
+    "inserting geometric means",
+    "ancestor sequence",
+    "depreciation",
+    "Fibonacci"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A sequence and a set are the same.",
+      "correction": "A sequence is ordered, while the order of elements does not matter in a set."
+    },
+    {
+      "claim": "A sequence and a series are interchangeable words.",
+      "correction": "A sequence lists terms; a series adds them."
+    },
+    {
+      "claim": "The nth term of a G.P. is ar^n.",
+      "correction": "It is ar^(n−1)."
+    },
+    {
+      "claim": "The G.P. sum formula applies unchanged when r=1.",
+      "correction": "For r=1, S_n=na."
+    },
+    {
+      "claim": "The geometric mean of a and b is (a+b)/2.",
+      "correction": "For positive a and b, the geometric mean is √(ab)."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 1 for generating sequence terms.",
+    "NCERT Section 8.3 example 1+3+5+7 for series and sums.",
+    "NCERT Examples 4 and 5 for the nth term of a G.P.",
+    "NCERT Examples 8 and 11 for G.P. sums and applications.",
+    "NCERT Example 12 for inserting geometric means."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains its section exercises followed by the Miscellaneous Exercise on Chapter 8.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

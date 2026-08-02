@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 11",
+  "subject": "Psychology",
+  "chapter": "Learning",
+  "central_question": "How does experience produce relatively lasting changes through conditioning, observation, cognition, verbal organisation and practice?",
+  "in_scope_units": [
+    "Nature and features of learning and distinction from temporary change or performance.",
+    "Classical conditioning and its determinants.",
+    "Operant conditioning, reinforcement, punishment, schedules and delay.",
+    "Differences between classical and operant conditioning.",
+    "Reinforcement, shaping, extinction, generalisation, discrimination and spontaneous recovery.",
+    "Learned helplessness.",
+    "Observational learning.",
+    "Insight and latent learning.",
+    "Verbal learning.",
+    "Skill learning.",
+    "Factors facilitating learning.",
+    "Learning disabilities and remedial teaching."
+  ],
+  "banned_topics": [
+    "Detailed memory-system models and forgetting theories, which belong to Human Memory.",
+    "Detailed motivational theories beyond motivation as a facilitator of learning."
+  ],
+  "must_include_keywords": [
+    "learning",
+    "experience",
+    "behavioural potential",
+    "performance",
+    "habituation",
+    "conditioning",
+    "Ivan Pavlov",
+    "unconditioned stimulus",
+    "unconditioned response",
+    "conditioned stimulus",
+    "conditioned response",
+    "delayed conditioning",
+    "B.F. Skinner",
+    "operant",
+    "reinforcement",
+    "positive reinforcement",
+    "negative reinforcement",
+    "punishment",
+    "continuous reinforcement",
+    "partial reinforcement",
+    "extinction",
+    "generalisation",
+    "discrimination",
+    "spontaneous recovery",
+    "learned helplessness",
+    "observational learning",
+    "modeling",
+    "Bandura",
+    "insight learning",
+    "Köhler",
+    "latent learning",
+    "Tolman",
+    "cognitive map",
+    "paired associates",
+    "serial learning",
+    "free recall",
+    "skill learning",
+    "cognitive phase",
+    "associative phase",
+    "autonomous phase",
+    "preparedness",
+    "learning disabilities",
+    "dyslexia"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every behavioural change is learning.",
+      "correction": "Learning is a relatively permanent change produced by experience; fatigue, drugs and habituation are excluded."
+    },
+    {
+      "claim": "Negative reinforcement is punishment.",
+      "correction": "Negative reinforcement increases avoidance or escape by removing an unpleasant event; punishment suppresses a response."
+    },
+    {
+      "claim": "Classical and operant conditioning condition the same responses.",
+      "correction": "Classical conditioning concerns elicited reflexes; operant conditioning concerns voluntary actions shaped by consequences."
+    },
+    {
+      "claim": "Observational learning is only copying.",
+      "correction": "Models transmit behaviour, while consequences affect performance."
+    },
+    {
+      "claim": "Learning disability means low intelligence.",
+      "correction": "It can occur with average or superior intelligence and adequate opportunity."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Review Question 1 on definition and features.",
+    "NCERT Review Question 2 on classical conditioning.",
+    "NCERT Review Question 3 on operant conditioning.",
+    "NCERT Review Question 10 on cognitive learning.",
+    "NCERT Review Question 11 on learning disabilities."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–11 and one Project Idea.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 12",
+  "subject": "Business Studies",
+  "chapter": "Marketing",
+  "central_question": "How does marketing identify and satisfy customer needs through a coordinated product, price, place and promotion strategy while considering social welfare?",
+  "in_scope_units": [
+    "Meaning and features",
+    "Marketing management and philosophies",
+    "Functions and role",
+    "Marketing mix and product decisions",
+    "Pricing and distribution",
+    "Promotion and public relations"
+  ],
+  "banned_topics": [
+    "Consumer redressal machinery",
+    "Financial management",
+    "Staffing",
+    "Delegation"
+  ],
+  "must_include_keywords": [
+    "marketing",
+    "needs",
+    "wants",
+    "market offering",
+    "customer value",
+    "exchange mechanism",
+    "marketing management",
+    "target market",
+    "production concept",
+    "product concept",
+    "selling concept",
+    "marketing concept",
+    "societal marketing concept",
+    "marketing versus selling",
+    "marketing functions",
+    "marketing mix",
+    "product",
+    "price",
+    "place",
+    "promotion",
+    "consumer products",
+    "industrial products",
+    "convenience products",
+    "shopping products",
+    "speciality products",
+    "branding",
+    "brand name",
+    "brand mark",
+    "packaging",
+    "labelling",
+    "price determination",
+    "channels of distribution",
+    "physical distribution",
+    "order processing",
+    "transportation",
+    "warehousing",
+    "inventory control",
+    "advertising",
+    "personal selling",
+    "sales promotion",
+    "publicity",
+    "public relations"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Marketing is selling.",
+      "correction": "Selling is one part of marketing, which starts before production and continues after sale."
+    },
+    {
+      "claim": "Lowest price always gives highest value.",
+      "correction": "Customer value compares total benefits with cost and alternatives."
+    },
+    {
+      "claim": "Publicity is paid advertising.",
+      "correction": "Publicity is generally unpaid and comes through an independent source."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Short Answer Type 1",
+    "NCERT Short Answer Type 2",
+    "NCERT Long Answer Type 2",
+    "NCERT Long Answer Type 4",
+    "NCERT Long Answer Type 7"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Exercises contain Very Short Answer questions 1-6, Short Answer questions 1-12, Long Answer questions 1-8 and Project Work.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

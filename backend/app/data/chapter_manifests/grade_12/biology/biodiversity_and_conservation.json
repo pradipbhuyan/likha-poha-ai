@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Biodiversity and Conservation",
+  "central_question": "What patterns, values and threats characterise biodiversity, and how can species and ecosystems be conserved in situ and ex situ?",
+  "in_scope_units": [
+    "Genetic, species and ecological diversity and estimates of global and Indian biodiversity.",
+    "Latitudinal gradients and species-area relationships.",
+    "Effects of species richness on ecosystem stability and productivity.",
+    "Loss of biodiversity, extinction rates and the evil quartet of causes.",
+    "Narrowly utilitarian, broadly utilitarian and ethical reasons for conservation.",
+    "In situ conservation, hotspots, protected areas and sacred groves.",
+    "Ex situ conservation, zoos, botanical gardens, cryopreservation, tissue culture and seed banks."
+  ],
+  "banned_topics": [
+    "Detailed ecosystem energy-flow and productivity equations from the previous chapter.",
+    "Detailed evolutionary mechanisms and human evolution from Evolution.",
+    "Current biodiversity statistics or protected-area counts not contained in the supplied NCERT edition."
+  ],
+  "must_include_keywords": [
+    "biodiversity",
+    "Edward Wilson",
+    "genetic diversity",
+    "species diversity",
+    "ecological diversity",
+    "Rauwolfia vomitoria",
+    "IUCN",
+    "Robert May",
+    "mega-diversity country",
+    "latitudinal gradient",
+    "tropics",
+    "species-area relationship",
+    "Alexander von Humboldt",
+    "log S",
+    "Z value",
+    "David Tilman",
+    "rivet popper hypothesis",
+    "Paul Ehrlich",
+    "mass extinction",
+    "sixth extinction",
+    "evil quartet",
+    "habitat loss and fragmentation",
+    "over-exploitation",
+    "alien species invasion",
+    "co-extinction",
+    "Nile perch",
+    "Parthenium",
+    "narrowly utilitarian",
+    "broadly utilitarian",
+    "ethical argument",
+    "bioprospecting",
+    "in situ conservation",
+    "ex situ conservation",
+    "biodiversity hotspot",
+    "endemism",
+    "biosphere reserve",
+    "national park",
+    "wildlife sanctuary",
+    "sacred grove",
+    "cryopreservation",
+    "seed bank",
+    "Earth Summit"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Biodiversity means only the number of species.",
+      "correction": "It includes genetic, species and ecological diversity."
+    },
+    {
+      "claim": "Species richness is uniform across the globe.",
+      "correction": "It generally decreases from the tropics toward the poles and increases with area up to a limit."
+    },
+    {
+      "claim": "The present extinction episode is simply another natural mass extinction.",
+      "correction": "The chapter attributes the current greatly accelerated rate mainly to human activities and calls it the sixth extinction."
+    },
+    {
+      "claim": "In situ conservation means keeping organisms in zoos or seed banks.",
+      "correction": "In situ protects species in their natural ecosystems; zoos, botanical gardens, cryopreservation and seed banks are ex situ."
+    },
+    {
+      "claim": "Only species with immediate economic value deserve conservation.",
+      "correction": "The chapter gives direct, ecosystem-service and ethical reasons, including intrinsic value and responsibility to future generations."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise 1 to classify genetic, species and ecological diversity.",
+    "Use NCERT Exercises 3-4 to explain tropical richness and the species-area regression slope.",
+    "Use NCERT Exercises 5-6 to analyse the evil quartet and ecosystem consequences of species loss.",
+    "Use NCERT Exercise 7 to explain sacred groves as in situ conservation.",
+    "Use NCERT Exercise 8 to connect biodiversity with ecosystem services such as flood and erosion control."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 10 and cover biodiversity components, patterns, species loss, ecosystem function and conservation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

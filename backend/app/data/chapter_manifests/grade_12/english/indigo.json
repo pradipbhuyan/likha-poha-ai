@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "Indigo",
+  "central_question": "How did Gandhi combine investigation, civil disobedience, negotiation and self-reliance to free the Champaran peasants from fear and exploitation?",
+  "in_scope_units": [
+    "About Louis Fischer and the biographical account of Gandhi.",
+    "Rajkumar Shukla’s persistence and the journey from Lucknow to Champaran.",
+    "The indigo sharecropping system, the fifteen per cent arrangement and synthetic indigo compensation.",
+    "Gandhi’s fact-finding, official notice, court appearance and non-violent civil disobedience.",
+    "The lawyers’ change, inquiry commission, refund settlement and decline of planter prestige.",
+    "Education, health and sanitation work in Champaran.",
+    "Self-reliance, C.F. Andrews and the turning-point in Gandhi’s politics.",
+    "Legal vocabulary, direct speech, comma use and issue-investigation activities."
+  ],
+  "banned_topics": [
+    "A complete history of the Indian freedom movement beyond Champaran.",
+    "Scientific chemistry of natural and synthetic indigo beyond the economic fact in the chapter."
+  ],
+  "must_include_keywords": [
+    "Louis Fischer",
+    "Mahatma Gandhi",
+    "Rajkumar Shukla",
+    "Champaran",
+    "Lucknow Congress",
+    "sharecropper",
+    "resolute",
+    "Patna",
+    "Rajendra Prasad",
+    "Muzaffarpur",
+    "J.B. Kripalani",
+    "Professor Malkani",
+    "indigo",
+    "fifteen per cent",
+    "synthetic indigo",
+    "landlords",
+    "Motihari",
+    "official notice",
+    "summons",
+    "conflict of duties",
+    "conscience",
+    "civil disobedience",
+    "satyagraha",
+    "non-violence",
+    "freedom from fear",
+    "depositions",
+    "commission of inquiry",
+    "twenty-five per cent refund",
+    "prestige",
+    "self-reliance",
+    "Charles Freer Andrews",
+    "education",
+    "sanitation",
+    "direct speech",
+    "legal vocabulary"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Rajkumar Shukla is powerful and educated.",
+      "correction": "He is poor and illiterate, but persistence makes him effective."
+    },
+    {
+      "claim": "Gandhi’s main aim is the largest refund.",
+      "correction": "He says the amount matters less than the landlords surrendering prestige and recognising rights."
+    },
+    {
+      "claim": "Civil disobedience means hostility to officials.",
+      "correction": "Gandhi disobeys openly while remaining polite and willing to accept punishment."
+    },
+    {
+      "claim": "Champaran is only a political protest.",
+      "correction": "Gandhi also organises schools, health care, cleanliness and self-reliance."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Think as you read Q2 for Shukla’s resoluteness.",
+    "Use the indigo-rent question for the economic dispute.",
+    "Use the satyagraha prompt for Gandhi’s method.",
+    "Use the twenty-five per cent settlement question for symbolic victory.",
+    "Use Understanding the text Q1 and language tasks for leadership, direct speech and legal vocabulary."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Understanding the text Questions 1–4, Talking about the text, Working with words, Thinking about language and Things to do.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

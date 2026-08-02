@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 2: Biological Classification",
+  "central_question": "How do cell structure, organisation, nutrition, reproduction, and evolutionary relationships support the classification of organisms into major biological kingdoms and special acellular groups?",
+  "in_scope_units": [
+    "Historical change from two-kingdom classification to Whittaker's five-kingdom classification and its criteria.",
+    "Kingdom Monera, including bacterial forms, metabolism, archaebacteria, eubacteria, cyanobacteria, and mycoplasma.",
+    "Kingdom Protista, including chrysophytes, dinoflagellates, euglenoids, slime moulds, and four protozoan groups.",
+    "Kingdom Fungi, fungal organisation, nutrition, reproduction, sexual cycle, and major classes.",
+    "Brief defining features of Kingdom Plantae and Kingdom Animalia.",
+    "Viruses, viroids, prions, and lichens, including their structure, reproduction or association, and significance."
+  ],
+  "banned_topics": [
+    "Detailed classification of plant groups, which belongs to Plant Kingdom",
+    "Detailed animal phyla and vertebrate classes, which belong to Animal Kingdom",
+    "Detailed cell ultrastructure",
+    "Molecular genetics of viral replication"
+  ],
+  "must_include_keywords": [
+    "five-kingdom classification",
+    "R. H. Whittaker",
+    "Monera",
+    "Protista",
+    "Fungi",
+    "Plantae",
+    "Animalia",
+    "prokaryotic",
+    "eukaryotic",
+    "archaebacteria",
+    "halophiles",
+    "thermoacidophiles",
+    "methanogens",
+    "eubacteria",
+    "cyanobacteria",
+    "heterocyst",
+    "mycoplasma",
+    "chrysophytes",
+    "diatoms",
+    "dinoflagellates",
+    "red tide",
+    "euglenoids",
+    "pellicle",
+    "slime moulds",
+    "protozoans",
+    "hyphae",
+    "mycelium",
+    "plasmogamy",
+    "karyogamy",
+    "dikaryon",
+    "phycomycetes",
+    "ascomycetes",
+    "basidiomycetes",
+    "deuteromycetes",
+    "virus",
+    "viroid",
+    "prion",
+    "lichen"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All organisms with cell walls belong to Plantae.",
+      "correction": "Cell-wall presence alone is insufficient; prokaryotes, fungi, and plants differ in cell structure, nutrition, and wall composition."
+    },
+    {
+      "claim": "All bacteria are heterotrophic pathogens.",
+      "correction": "Bacteria include autotrophs and heterotrophs; many are decomposers, nitrogen fixers, food producers, or nutrient recyclers."
+    },
+    {
+      "claim": "Protists are prokaryotic because they are mostly unicellular.",
+      "correction": "Protists are single-celled eukaryotes with a defined nucleus and membrane-bound organelles."
+    },
+    {
+      "claim": "Every fungus has septate hyphae.",
+      "correction": "Some fungi have aseptate, coenocytic hyphae; yeasts are unicellular."
+    },
+    {
+      "claim": "Viruses contain both DNA and RNA.",
+      "correction": "A virus contains either DNA or RNA as genetic material, never both."
+    },
+    {
+      "claim": "A viroid is a small virus with a protein coat.",
+      "correction": "A viroid is free, low-molecular-weight infectious RNA without a protein coat."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1: explain why classification systems change with improved criteria and evolutionary knowledge.",
+    "NCERT Exercise 2: identify economically useful roles of heterotrophic bacteria and archaebacteria.",
+    "NCERT Exercise 6: compare the four major protozoan groups.",
+    "NCERT Exercise 9: compare fungal classes by nutrition and reproduction.",
+    "NCERT Exercises 5, 8, 11, and 12: distinguish viroids, viruses, and lichen partners and discuss the living status of viruses."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–12 for classification history, kingdom comparisons, fungi, protists, viruses, viroids, and lichens.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

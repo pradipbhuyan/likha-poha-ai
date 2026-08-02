@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 11: Dual Nature of Radiation and Matter",
+  "central_question": "How do experiments show that radiation and matter can each display both particle-like and wave-like behaviour?",
+  "in_scope_units": [
+    "Introduction to cathode rays, the universal electron, specific charge and quantisation of electric charge.",
+    "Electron emission, work function and thermionic, field and photoelectric emission.",
+    "Discovery of the photoelectric effect through the observations of Hertz, Hallwachs and Lenard.",
+    "Experimental arrangement for studying photoelectric current.",
+    "Effect of incident-light intensity on photocurrent and saturation current.",
+    "Effect of collector potential on photocurrent, stopping potential and maximum kinetic energy.",
+    "Effect of radiation frequency on stopping potential, threshold frequency and instantaneous emission.",
+    "Failure of the classical wave theory to explain the observed photoelectric effect.",
+    "Einstein’s photoelectric equation and the quantum or photon explanation of radiation.",
+    "Particle nature of light, photon energy, momentum and conservation principles.",
+    "Wave nature of matter, de Broglie hypothesis and de Broglie wavelength.",
+    "Comparison of measurable matter waves for microscopic particles with unobservably small wavelengths for macroscopic objects."
+  ],
+  "banned_topics": [
+    "Detailed Bohr atomic model and hydrogen energy levels, which belong to Chapter 12: Atoms.",
+    "Detailed Compton-scattering derivation, which is mentioned as supporting evidence but is not developed in this chapter.",
+    "Quantum-mechanical wave functions, uncertainty principle and Schrödinger equation, which are beyond the supplied chapter."
+  ],
+  "must_include_keywords": [
+    "cathode rays",
+    "electron",
+    "specific charge",
+    "quantised charge",
+    "work function",
+    "electron volt",
+    "thermionic emission",
+    "field emission",
+    "photoelectric emission",
+    "photoelectric effect",
+    "Hertz",
+    "Hallwachs",
+    "Lenard",
+    "photocurrent",
+    "saturation current",
+    "stopping potential",
+    "maximum kinetic energy",
+    "threshold frequency",
+    "instantaneous emission",
+    "classical wave theory",
+    "Einstein’s photoelectric equation",
+    "Planck’s constant",
+    "photon",
+    "photon energy",
+    "photon momentum",
+    "intensity",
+    "wave-particle duality",
+    "de Broglie hypothesis",
+    "matter waves",
+    "de Broglie wavelength"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Increasing light intensity increases the maximum kinetic energy of emitted photoelectrons.",
+      "correction": "For fixed frequency and emitter material, intensity increases photocurrent and saturation current but does not change stopping potential or maximum kinetic energy."
+    },
+    {
+      "claim": "Any sufficiently intense light can produce photoelectric emission from a metal.",
+      "correction": "No emission occurs below the metal’s threshold frequency, however large the intensity or exposure time."
+    },
+    {
+      "claim": "All electrons emitted from a metal have the same kinetic energy.",
+      "correction": "Photoelectrons have a distribution of kinetic energies; the stopping potential corresponds to the most energetic electrons."
+    },
+    {
+      "claim": "A larger object has an easily observable de Broglie wavelength if it moves fast.",
+      "correction": "Because λ = h/p, macroscopic momenta make de Broglie wavelengths extremely small and experimentally unobservable."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 11.1 to calculate photon energy and photon rate from laser frequency and power.",
+    "Use NCERT Example 11.2 to connect work function, threshold frequency, stopping potential and wavelength.",
+    "Apply NCERT Exercise 11.2 to calculate maximum kinetic energy, stopping potential and maximum photoelectron speed.",
+    "Use NCERT Exercise 11.5 to obtain Planck’s constant from the slope of the stopping-potential versus frequency graph.",
+    "Finish with NCERT Example 11.3 or Exercise 11.10 to compare de Broglie wavelengths of microscopic and macroscopic objects."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES are numbered 11.1 to 11.11 and cover X-ray limits, photoelectric calculations, photon energy and momentum, Planck’s constant, work function and de Broglie wavelength.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

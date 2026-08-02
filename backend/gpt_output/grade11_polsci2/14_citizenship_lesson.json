@@ -1,0 +1,102 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Political Science",
+    "chapter": "Judiciary",
+    "central_question": "How does an independent and integrated judiciary protect rights, interpret the Constitution and balance its authority with Parliament and the executive?",
+    "in_scope_units": [
+      "Need for an independent judiciary and the meaning of rule of law.",
+      "Constitutional safeguards for judicial independence.",
+      "Appointment and removal of judges and the evolution of the collegium principle described in the chapter.",
+      "Single integrated judicial structure from subordinate courts to the Supreme Court.",
+      "Original, writ, appellate, advisory and special jurisdiction of the Supreme Court.",
+      "Judicial activism and Public Interest Litigation.",
+      "Judiciary as protector of Fundamental Rights and interpreter of the Constitution.",
+      "Judicial review and the power to examine legislative and executive action.",
+      "Conflicts between Parliament and judiciary over amendments, rights and the basic structure doctrine.",
+      "Limits, accountability and the proper scope of judicial intervention."
+    ],
+    "banned_topics": [
+      "A general theory of citizenship, migration or naturalisation not found in the supplied judiciary chapter.",
+      "Detailed criminal or civil procedure beyond examples used to explain jurisdiction.",
+      "Current judicial appointments or judgments not included in the source."
+    ],
+    "must_include_keywords": [
+      "judiciary",
+      "independence of judiciary",
+      "rule of law",
+      "Supreme Court",
+      "High Court",
+      "subordinate courts",
+      "security of tenure",
+      "removal of judges",
+      "special majority",
+      "Chief Justice of India",
+      "collegium",
+      "integrated judiciary",
+      "original jurisdiction",
+      "writ jurisdiction",
+      "appellate jurisdiction",
+      "advisory jurisdiction",
+      "Habeas Corpus",
+      "Mandamus",
+      "Prohibition",
+      "Certiorari",
+      "Quo Warranto",
+      "judicial review",
+      "Fundamental Rights",
+      "Public Interest Litigation",
+      "PIL",
+      "judicial activism",
+      "Hussainara Khatoon",
+      "Sunil Batra",
+      "constitutional interpretation",
+      "Parliament",
+      "basic structure",
+      "Kesavananda Bharati",
+      "contempt of court",
+      "accountability"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Judicial independence means judges may act arbitrarily and are accountable to no one.",
+        "correction": "Independence prevents improper interference, but the judiciary remains accountable to the Constitution, democratic traditions and the people."
+      },
+      {
+        "claim": "Parliament can remove a judge by ordinary majority.",
+        "correction": "Removal requires proven misbehaviour or incapacity and the difficult special-majority procedure in both Houses."
+      },
+      {
+        "claim": "India has separate and unrelated Union and State court systems.",
+        "correction": "India has a single integrated hierarchy with the Supreme Court at the top, High Courts below and subordinate courts beneath them."
+      },
+      {
+        "claim": "Any ordinary dispute can begin directly in the Supreme Court.",
+        "correction": "Original jurisdiction is limited to specified matters such as federal disputes; other cases reach it through writ, appeal or special procedures."
+      },
+      {
+        "claim": "PIL is simply a private dispute filed by someone else.",
+        "correction": "PIL developed to permit public-spirited persons or organisations to seek relief for public wrongs and disadvantaged persons unable to approach the court."
+      },
+      {
+        "claim": "Judicial review makes the judiciary superior to the Constitution.",
+        "correction": "Courts exercise review under the Constitution to test whether laws and executive actions conform to constitutional limits."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT classroom debate on legitimate constraints affecting judicial decisions.",
+      "NCERT case of the unsuccessful attempt to remove Justice V. Ramaswami.",
+      "NCERT diagram of the integrated hierarchy and Supreme Court jurisdictions.",
+      "NCERT early PIL examples: Hussainara Khatoon and Sunil Batra.",
+      "NCERT discussion of Kesavananda Bharati and the basic structure doctrine."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter ‘Exercises’ ask about independence, appointment and removal, jurisdiction, PIL, judicial review and Parliament’judiciary relations."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Judiciary\n\n## What you will learn\nYou will understand why democracy requires a judiciary independent of political pressure. You will connect independence with rule of law, rights and peaceful settlement of disputes.\n\n## Simple explanation\nCourts must decide according to law even when a powerful government or majority dislikes the result. Independence protects decision-making, but it does not permit judges to ignore the Constitution.\n\n## Step-by-step breakdown\n- **Rule of law**: Rich and poor, men and women and members of all social groups are subject to the same law.\n- **Core judicial role**: The judiciary settles disputes, protects individual rights and prevents democracy from becoming individual or group dictatorship.\n- **Non-interference**: The executive and legislature must not restrain courts or dictate their decisions.\n- **Freedom from fear or favour**: Judges need institutional security to decide according to law rather than political reward or punishment.\n- **Accountability remains**: Judicial independence does not mean arbitrariness; courts remain bound by the Constitution and legal reasoning.\n\n## Worked example\nQuestion: Why would rights be insecure if the judiciary depended on the executive for every decision?\n\nAnswer:\n- The executive is often a party to disputes about arrest, administration or rights violations.\n- A dependent court could fear retaliation or favour the authority controlling it.\n- An independent court can apply law even against government and order a remedy.\n- Final answer: Rights require an adjudicator institutionally capable of ruling against public power without fear or favour.\n\n## Common mistake\nA common mistake is to define independence as isolation from all criticism or law. Judges must be protected from interference while remaining constitutionally accountable.\n\n## Quick check question\nQuestion: What is the principal purpose of judicial independence?\nAnswer: To allow courts and judges to decide according to law without improper interference, fear or favour.\nExplanation: This protects rule of law, individual rights and constitutional government.\n\n## Summary\n- Judicial independence supports rule of law.\n- Courts protect rights and settle disputes.\n- Other organs must not dictate outcomes.\n- Independence and accountability coexist.",
+    "Core explanation": "# Core explanation: Judiciary\n\n## What you will learn\nYou will study safeguards for independence and the processes for appointment and removal of judges. You will understand why these processes distribute influence among institutions.\n\n## Simple explanation\nJudges need secure tenure and financial protection, but appointment cannot be completely detached from constitutional government. India‘s system evolved through interaction between the executive and senior judiciary.\n\n## Step-by-step breakdown\n- **Professional qualification**: Judicial appointment is tied to legal experience and knowledge rather than party loyalty.\n- **Security of tenure**: Judges hold office until the prescribed retirement age and cannot be removed at government pleasure.\n- **Financial independence**: Salaries and allowances are protected from ordinary political bargaining.\n- **Contempt and discussion**: Courts may act against contempt, and Parliament cannot discuss judicial conduct except during removal proceedings.\n- **Appointment evolution**: The President formally appoints judges after constitutionally required consultation.\n- **Collegium principle**: Supreme Court decisions gave greater weight to recommendations made by the Chief Justice in consultation with senior judges.\n- **Removal**: A judge may be removed only for proven misbehaviour or incapacity through special majorities in both Houses.\n- **Ramaswami example**: The unsuccessful removal attempt shows how demanding the threshold is.\n\n## Worked example\nQuestion: Why is removal of a judge deliberately difficult?\n\nAnswer:\n- Easy removal would let a government threaten judges for unpopular decisions.\n- Security of tenure enables decisions against powerful interests without fear of losing office.\n- The special-majority requirement demands broad agreement before removal.\n- Final answer: The difficult procedure protects independence while preserving a constitutional remedy for proven misbehaviour or incapacity.\n\n## Common mistake\nDo not say judges can never be removed. The Constitution permits removal, but only on specified grounds and through a demanding process.\n\n## Quick check question\nQuestion: On what grounds may a Supreme Court or High Court judge be removed?\nAnswer: Proven misbehaviour or incapacity.\nExplanation: The grounds and special-majority procedure prevent removal from becoming an ordinary political weapon.\n\n## Summary\n- Tenure and financial protection support independence.\n- Appointments involve the judiciary and executive.\n- The collegium emerged through interpretation.\n- Removal is possible but intentionally difficult.",
+    "Worked examples": "# Worked examples: Judiciary\n\n## What you will learn\nYou will learn the integrated structure of Indian courts and the jurisdictions of the Supreme Court. You will distinguish original, writ, appellate and advisory powers.\n\n## Simple explanation\nThe Supreme Court is at the top of one national hierarchy, but it does not hear every matter in the same way. Different jurisdictions identify how and why a case reaches it.\n\n## Step-by-step breakdown\n- **Integrated hierarchy**: Subordinate courts function under High Courts, and the Supreme Court stands at the apex with decisions binding on other courts.\n- **Original jurisdiction**: Specified disputes between the Union and States or among States can begin directly in the Supreme Court.\n- **Writ jurisdiction**: A person whose Fundamental Rights are violated may approach the Supreme Court, while High Courts also issue writs.\n- **Appellate jurisdiction**: The Court hears appeals in serious civil, criminal and constitutional matters under stated conditions.\n- **Advisory jurisdiction**: The President may seek the Court’s opinion on a public matter or constitutional interpretation; the Court may decline and the advice need not be accepted.\n- **Special leave and review**: The Court may grant special leave to appeal and review its own judgments.\n- **Writs**: Habeas Corpus, Mandamus, Prohibition, Certiorari and Quo Warranto are identified as constitutional remedies.\n\n## Worked example\nQuestion: A dispute arises between a State and the Union over constitutional division of power. Why can it begin in the Supreme Court?\n\nAnswer:\n- The dispute concerns federal relations between constitutionally recognised governments.\n- The chapter assigns such disputes to the Supreme Court‘s original jurisdiction.\n- The Court acts as a constitutional umpire and interprets Union and State powers.\n- Final answer: It falls within original jurisdiction because the Constitution entrusts the Supreme Court with specified federal disputes at first instance.\n\n## Common mistake\nA common mistake is to treat advisory opinions as identical to binding judgments. The President may seek advice, but the Court may decline and the advice need not be accepted.\n\n## Quick check question\nQuestion: Which jurisdiction allows direct protection of a Fundamental Right?\nAnswer: Writ jurisdiction.\nExplanation: The Court may issue constitutional writs directing authorities to release, act, stop proceedings or justify public office and detention.\n\n## Summary\n- India has one integrated hierarchy.\n- Original jurisdiction covers specified federal disputes.\n- Writ jurisdiction protects Fundamental Rights.\n- Appellate and advisory jurisdictions serve different purposes.",
+    "Exam-style problems": "# Exam-style problems: Judiciary\n\n## What you will learn\nYou will examine judicial activism and Public Interest Litigation. You will understand how procedural flexibility expanded access to justice for prisoners, workers, poor communities and environmental causes.\n\n## Simple explanation\nOrdinary litigation usually requires the affected person to approach court. PIL allowed public-spirited citizens and organisations to raise public wrongs on behalf of people unable to seek justice themselves.\n\n## Step-by-step breakdown\n- **Origin of PIL**: Around the late 1970s, courts began accepting petitions brought on behalf of disadvantaged persons and issues of public interest.\n- **Hussainara Khatoon**: Reports about undertrial prisoners who had spent excessive periods in jail led to an early PIL.\n- **Sunil Batra**: A prisoner’s communication about torture was treated as a petition, illustrating procedural innovation.\n- **Relaxed standing**: The directly affected person did not always need to file personally.\n- **Judicial activism**: Courts began acting on letters, reports and broader constitutional claims instead of waiting only for conventional litigation.\n- **Rights expansion**: PIL contributed to interpretation of life and liberty in relation to humane conditions, livelihood, environment and public responsibility.\n- **Institutional concern**: The chapter also raises the issue of courts entering policy areas and the need to respect institutional limits.\n\n## Worked example\nQuestion: Why did PIL make the judiciary more accessible to disadvantaged groups?\n\nAnswer:\n- Many affected persons lacked money, information or freedom to file formal petitions.\n- PIL allowed others to approach court on their behalf and sometimes accepted less formal communications.\n- The Court could investigate public violations and order authorities to act.\n- Final answer: PIL lowered barriers of standing and procedure so constitutional remedies could reach people unable to use ordinary litigation.\n\n## Common mistake\nDo not define PIL as a licence to present any private grievance as public interest. Its justification lies in genuine public wrong and access to justice.\n\n## Quick check question\nQuestion: What does PIL stand for?\nAnswer: Public Interest Litigation.\nExplanation: It permits litigation in the public interest, especially where affected persons cannot approach the court directly.\n\n## Summary\n- PIL expanded access to courts.\n- Early cases concerned prisoners and serious public wrongs.\n- Judicial activism made procedure more flexible.\n- Courts must still respect constitutional limits.",
+    "Revision and recap": "# Revision and recap: Judiciary\n\n## What you will learn\nYou will revise judicial review, constitutional interpretation and the relationship between Parliament and judiciary. You will understand the basic structure limitation on amendment.\n\n## Simple explanation\nParliament makes laws and amends the Constitution, while courts interpret constitutional limits. Their relationship contains conflict, but the purpose is to preserve democratic authority without allowing an institution to destroy the Constitution‘s identity.\n\n## Step-by-step breakdown\n- **Judicial review**: Courts may examine whether legislation or executive action violates the Constitution and may declare unconstitutional action invalid.\n- **Rights protection**: Review gives practical force to Fundamental Rights against legislative and executive violation.\n- **Constitutional amendments**: Parliament has constituent power, but disputes arose over whether it could remove rights and foundational principles.\n- **Basic structure doctrine**: In Kesavananda Bharati, the Supreme Court held that Parliament may amend the Constitution but cannot destroy its basic structure.\n- **Institutional balance**: Neither parliamentary majority nor judicial interpretation is unlimited; both operate within constitutional roles.\n- **Continuing debate**: Questions remain about activism, appointments, accountability and the boundary between interpretation and policy-making.\n\n- **Key terms to remember**: independence of judiciary, special majority, Chief Justice of India, integrated judiciary, contempt of court.\n\n## Worked example\nQuestion: How does the basic structure doctrine balance amendment power with constitutional supremacy?\n\nAnswer:\n- It accepts that elected representatives may amend provisions in response to change.\n- It denies power to abolish the fundamental identity or basic structure of the Constitution.\n- The judiciary reviews whether an amendment crosses that outer limit.\n- Final answer: The doctrine preserves democratic change while preventing a temporary majority from legally dismantling the constitutional order.\n\n## Common mistake\nA common mistake is to say judicial review allows judges to replace every policy choice with their preference. Review asks whether action is constitutionally valid.\n\n## Quick check question\nQuestion: What is judicial review?\nAnswer: The power of courts to examine laws and executive actions and determine whether they conform to the Constitution.\nExplanation: It enforces constitutional supremacy and protects rights and institutional limits.\n\n## Summary\n- Judicial review protects constitutional supremacy.\n- Courts interpret and enforce Fundamental Rights.\n- Parliament’s amendment power is broad but not unlimited.\n- The basic structure doctrine preserves foundational identity."
+  }
+}

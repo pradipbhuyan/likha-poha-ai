@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 11",
+  "subject": "History",
+  "chapter": "The Three Orders",
+  "central_question": "How did land, religion, labour, technology, towns, crisis and monarchy reshape the relationships among clergy, nobles and peasants in medieval western Europe?",
+  "in_scope_units": [
+    "Sources for medieval European social and economic history and Marc Bloch’s approach.",
+    "Meaning and scope of feudalism in France and England.",
+    "The three orders and the ideology of social hierarchy.",
+    "Nobility, vassalage, manorial estates and knights.",
+    "The clergy, Church wealth, monasteries and Christian social practices.",
+    "Free peasants, serfs, labour services, dues and restrictions.",
+    "England after the Norman Conquest.",
+    "Environmental change, land use and new agricultural technology.",
+    "Population growth, money relations, towns, guilds and cathedral-towns.",
+    "The fourteenth-century crisis, Black Death and peasant unrest.",
+    "New monarchies, standing armies, taxation and changing relations with aristocracy and representative institutions."
+  ],
+  "banned_topics": [
+    "Detailed Roman imperial social hierarchy, which belongs to An Empire Across Three Continents.",
+    "Renaissance humanism and the Scientific Revolution, which belong to Changing Cultural Traditions.",
+    "Industrial capitalism and factory production, which belong to later modern history."
+  ],
+  "must_include_keywords": [
+    "feudalism",
+    "Marc Bloch",
+    "three orders",
+    "clergy",
+    "nobility",
+    "peasantry",
+    "vassalage",
+    "seigneur",
+    "manor",
+    "feudal levies",
+    "knights",
+    "fief",
+    "Catholic Church",
+    "tithe",
+    "monasteries",
+    "monks",
+    "nuns",
+    "friars",
+    "serfs",
+    "labour-rent",
+    "taille",
+    "Norman Conquest",
+    "environment",
+    "heavy iron-tipped plough",
+    "shoulder-harness",
+    "three-field system",
+    "money economy",
+    "towns",
+    "guild",
+    "cathedral",
+    "Black Death",
+    "peasant revolts",
+    "new monarchs",
+    "standing armies",
+    "national taxation",
+    "Parliament"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Feudalism was only an economic system.",
+      "correction": "It included agricultural production, landholding, labour services, protection, judicial power and political relationships."
+    },
+    {
+      "claim": "All peasants were serfs.",
+      "correction": "Cultivators included both free tenants and unfree serfs, with different obligations and freedoms."
+    },
+    {
+      "claim": "A manor was completely self-sufficient.",
+      "correction": "Salt, millstones, metalware and luxury goods had to be acquired from outside."
+    },
+    {
+      "claim": "The Church stood outside landholding and political power.",
+      "correction": "It owned extensive estates, levied tithes, had its own laws and exercised major political influence."
+    },
+    {
+      "claim": "The Black Death simply strengthened feudal lords.",
+      "correction": "Mass death caused labour shortages and higher wages, weakened lordly income and helped peasants resist restored labour services."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 1 to compare medieval hierarchy with Mesopotamian and Roman systems.",
+    "Use NCERT Exercise 3 to explain why knights emerged and how wider political change reduced their role.",
+    "Use NCERT Exercise 4 to identify the religious, educational, economic and cultural functions of monasteries.",
+    "Use NCERT Activity 3 to infer the distinctive physical and social features of medieval towns.",
+    "Use NCERT Activity 4 to connect famine, plague, revolt and political centralisation in a chronological narrative."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises: Answer in Brief, Questions 1–4, and Answer in a Short Essay, Questions 5–6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

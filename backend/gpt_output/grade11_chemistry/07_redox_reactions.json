@@ -1,0 +1,87 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "central_question": "How can oxidation and reduction be identified, quantified, balanced, and interpreted as coupled electron-transfer processes?",
+    "in_scope_units": [
+      "Classical and electronic definitions.",
+      "Oxidising and reducing agents.",
+      "Oxidation-number rules.",
+      "Combination, decomposition, displacement, and disproportionation.",
+      "Oxidation-number and ion–electron balancing.",
+      "Redox couples and electrode processes."
+    ],
+    "banned_topics": [
+      "Full electrochemistry",
+      "Electrolysis calculations",
+      "Organic oxidation mechanisms",
+      "Biochemical electron transport"
+    ],
+    "must_include_keywords": [
+      "oxidation",
+      "reduction",
+      "redox reaction",
+      "electron transfer",
+      "oxidising agent",
+      "reducing agent",
+      "oxidation number",
+      "oxidation state",
+      "combination reaction",
+      "decomposition reaction",
+      "displacement reaction",
+      "metal displacement",
+      "non-metal displacement",
+      "disproportionation",
+      "oxidation-number method",
+      "ion-electron method",
+      "half-reaction",
+      "acidic medium",
+      "basic medium",
+      "electron balance",
+      "charge balance",
+      "redox couple",
+      "electrode process",
+      "peroxide",
+      "hydride",
+      "fractional oxidation number"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Oxidation occurs alone.",
+        "correction": "Oxidation and reduction are coupled."
+      },
+      {
+        "claim": "Oxidation always adds oxygen.",
+        "correction": "The general definition is electron loss or oxidation-number increase."
+      },
+      {
+        "claim": "The oxidising agent is oxidised.",
+        "correction": "It is reduced while oxidising another species."
+      },
+      {
+        "claim": "Oxygen is always −2.",
+        "correction": "Peroxides, superoxides, and OF2 are exceptions."
+      },
+      {
+        "claim": "Balanced atoms guarantee a redox balance.",
+        "correction": "Total charge and electron transfer must also balance."
+      }
+    ],
+    "recommended_example_progression": [
+      "Identify redox changes.",
+      "Assign oxidation numbers.",
+      "Classify reaction patterns.",
+      "Balance in acidic and basic media.",
+      "Interpret redox couples."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use exercises on oxidation numbers, agents, reaction types, balancing methods, disproportionation, and electrode half-reactions."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Redox Reactions\n\n## What you will learn\nRecognise oxidation, reduction, and their agents.\n\n## Simple explanation\nElectrons lost by one species are gained by another, so redox changes always occur together.\n\n## Step-by-step breakdown\n- **Classical oxidation**: Addition of oxygen or removal of hydrogen.\n- **Classical reduction**: Removal of oxygen or addition of hydrogen.\n- **Oxidation**: Loss of electrons.\n- **Reduction**: Gain of electrons.\n- **Oxidising agent**: Accepts electrons and is reduced.\n- **Reducing agent**: Donates electrons and is oxidised.\n- **Half-reaction**: Separates one electron-change process.\n\n## Worked example\nQuestion: Analyse Zn + Cu2+ → Zn2+ + Cu.\n\nSolution:\n- Zn loses two electrons and is oxidised.\n- Cu2+ gains two electrons and is reduced.\n- Zn is reducing agent; Cu2+ is oxidising agent.\n- Final answer: Zn is oxidised/reducing agent; Cu2+ is reduced/oxidising agent.\n\n## Common mistake\nAgent names describe what they cause, not the change they undergo.\n\n## Quick check question\nQuestion: What occurs during reduction?\nAnswer: Electron gain.\nExplanation: Reduction lowers oxidation number.\n\n## Summary\n- Classical oxidation: Addition of oxygen or removal of hydrogen.\n- Classical reduction: Removal of oxygen or addition of hydrogen.\n- Oxidation: Loss of electrons.\n- Reduction: Gain of electrons.",
+    "Core explanation": "# Core explanation: Redox Reactions\n\n## What you will learn\nAssign oxidation numbers correctly.\n\n## Simple explanation\nOxidation number is a formal bookkeeping charge used to track redox changes.\n\n## Step-by-step breakdown\n- **Free element**: Oxidation number zero.\n- **Monatomic ion**: Equals ionic charge.\n- **Fluorine**: Always −1 in compounds.\n- **Oxygen**: Usually −2, with exceptions.\n- **Hydrogen**: Usually +1; −1 in metal hydrides.\n- **Sum rule**: Values sum to total species charge.\n- **Increase**: Indicates oxidation.\n- **Decrease**: Indicates reduction.\n\n## Worked example\nQuestion: Find Mn oxidation number in KMnO4.\n\nSolution:\n- K is +1.\n- Four oxygen atoms total −8.\n- Set +1 + x − 8 = 0.\n- Final answer: Mn is +7.\n\n## Common mistake\nOxidation number is a formal assignment, not always an actual local charge.\n\n## Quick check question\nQuestion: Oxygen oxidation number in H2O2?\nAnswer: −1.\nExplanation: Peroxide oxygen is an exception.\n\n## Summary\n- Free element: Oxidation number zero.\n- Monatomic ion: Equals ionic charge.\n- Fluorine: Always −1 in compounds.\n- Oxygen: Usually −2, with exceptions.",
+    "Worked examples": "# Worked examples: Redox Reactions\n\n## What you will learn\nClassify common redox reaction patterns.\n\n## Simple explanation\nRedox reactions often fit combination, decomposition, displacement, or disproportionation patterns.\n\n## Step-by-step breakdown\n- **Combination**: Several reactants form one product.\n- **Decomposition**: One reactant forms several products.\n- **Metal displacement**: A more reactive metal displaces another ion.\n- **Non-metal displacement**: A more reactive non-metal displaces another.\n- **Disproportionation**: One oxidation state becomes both higher and lower.\n- **Comproportionation**: Different states combine to an intermediate state.\n- **Activity**: Controls displacement feasibility.\n\n## Worked example\nQuestion: Classify 2H2O2 → 2H2O + O2.\n\nSolution:\n- O in peroxide is −1.\n- It becomes −2 in water.\n- It becomes 0 in O2.\n- The same element is both reduced and oxidised.\n- Final answer: Disproportionation.\n\n## Common mistake\nAlthough it is also decomposition, disproportionation is the more specific redox classification.\n\n## Quick check question\nQuestion: Type of Zn + CuSO4 → ZnSO4 + Cu?\nAnswer: Metal displacement.\nExplanation: Zinc donates electrons to Cu2+.\n\n## Summary\n- Combination: Several reactants form one product.\n- Decomposition: One reactant forms several products.\n- Metal displacement: A more reactive metal displaces another ion.\n- Non-metal displacement: A more reactive non-metal displaces another.",
+    "Exam-style problems": "# Exam-style problems: Redox Reactions\n\n## What you will learn\nBalance redox equations by oxidation-number change.\n\n## Simple explanation\nA correct equation conserves atoms, charge, and total electron-equivalent change.\n\n## Step-by-step breakdown\n- **Skeleton**: Write correct species.\n- **Assign numbers**: Identify changing atoms.\n- **Change**: Calculate oxidation-number increase and decrease.\n- **Equalise**: Choose coefficients that balance electron equivalents.\n- **Oxygen**: Balance with H2O.\n- **Hydrogen**: Balance with H+ in acid.\n- **Charge**: Verify total charge.\n- **Basic medium**: Neutralise H+ with OH− and simplify.\n\n## Worked example\nQuestion: Balance Fe2+ + MnO4− + H+ → Fe3+ + Mn2+ + H2O.\n\nSolution:\n- Fe loses one electron; Mn gains five.\n- Use five Fe2+ per permanganate.\n- Balance four O with four H2O.\n- Balance H with eight H+.\n- Check charge.\n- Final answer: 5Fe2+ + MnO4− + 8H+ → 5Fe3+ + Mn2+ + 4H2O.\n\n## Common mistake\nElectron-equivalent change should be equalised before final charge checking.\n\n## Quick check question\nQuestion: Why must oxidation increase equal reduction decrease?\nAnswer: Electrons lost equal electrons gained.\nExplanation: Charge conservation couples the two changes.\n\n## Summary\n- Skeleton: Write correct species.\n- Assign numbers: Identify changing atoms.\n- Change: Calculate oxidation-number increase and decrease.\n- Equalise: Choose coefficients that balance electron equivalents.",
+    "Revision and recap": "# Revision and recap: Redox Reactions\n\n## What you will learn\nUse the ion–electron method and interpret redox couples.\n\n## Simple explanation\nHalf-reactions make electron transfer explicit and connect directly with electrode chemistry.\n\n## Step-by-step breakdown\n- **Separate halves**: Write oxidation and reduction reactions.\n- **Balance atoms**: Other than O and H first.\n- **Acidic medium**: Use H2O, H+, and electrons.\n- **Equal electrons**: Multiply halves before adding.\n- **Cancel**: Remove common species.\n- **Basic medium**: Use OH− to neutralise H+.\n- **Redox couple**: Oxidised and reduced forms of one species.\n- **Electrode**: Provides or accepts electrons.\n\n## Worked example\nQuestion: Write half-reactions for Zn/Cu2+ displacement.\n\nSolution:\n- Oxidation: Zn → Zn2+ + 2e−.\n- Reduction: Cu2+ + 2e− → Cu.\n- Electrons cancel in the sum.\n- Final answer: Zn → Zn2+ + 2e−; Cu2+ + 2e− → Cu.\n\n## Common mistake\nElectrons must cancel from the final overall equation.\n\n## Quick check question\nQuestion: Oxidised form in Fe3+/Fe2+?\nAnswer: Fe3+.\nExplanation: It has the higher oxidation state.\n\n## Summary\n- Separate halves: Write oxidation and reduction reactions.\n- Balance atoms: Other than O and H first.\n- Acidic medium: Use H2O, H+, and electrons.\n- Equal electrons: Multiply halves before adding."
+  }
+}

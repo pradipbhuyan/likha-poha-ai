@@ -1,0 +1,99 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Interior of the Earth",
+    "central_question": "How do direct materials, seismic waves and other indirect evidence reveal the structure and processes of earth’s inaccessible interior?",
+    "in_scope_units": [
+      "Direct and indirect sources of information about earth’s interior.",
+      "Earthquakes, faults, focus, epicentre and seismic waves.",
+      "Propagation of P, S and surface waves and shadow zones.",
+      "Earthquake measurement and effects.",
+      "Crust, mantle, asthenosphere, lithosphere and core.",
+      "Volcanic and intrusive igneous forms."
+    ],
+    "banned_topics": [
+      "Detailed plate-boundary theory, which belongs to Distribution of Oceans and Continents.",
+      "Origin of the universe, which belongs to The Origin and Evolution of the Earth.",
+      "Detailed weathering and erosion, which belong to Geomorphic Processes."
+    ],
+    "must_include_keywords": [
+      "earth’s interior",
+      "direct sources",
+      "surface rocks",
+      "mining",
+      "drilling",
+      "volcanic material",
+      "indirect sources",
+      "temperature",
+      "pressure",
+      "density",
+      "meteorites",
+      "gravity anomaly",
+      "magnetic field",
+      "earthquake",
+      "fault",
+      "focus",
+      "hypocentre",
+      "epicentre",
+      "seismic waves",
+      "body waves",
+      "surface waves",
+      "P-waves",
+      "S-waves",
+      "shadow zone",
+      "Richter scale",
+      "Mercalli scale",
+      "crust",
+      "continental crust",
+      "oceanic crust",
+      "mantle",
+      "asthenosphere",
+      "lithosphere",
+      "core",
+      "nife",
+      "shield volcano",
+      "composite volcano",
+      "caldera",
+      "flood basalt",
+      "batholith",
+      "laccolith"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Scientists have travelled to earth’s centre.",
+        "correction": "Most deep knowledge comes from indirect evidence because direct access is extremely limited."
+      },
+      {
+        "claim": "P and S waves travel through all materials alike.",
+        "correction": "P-waves pass through solids and fluids; S-waves pass only through solids."
+      },
+      {
+        "claim": "Focus and epicentre are the same point.",
+        "correction": "The focus is inside earth; the epicentre is directly above it on the surface."
+      },
+      {
+        "claim": "The lithosphere is only the crust.",
+        "correction": "It includes the crust and rigid uppermost mantle."
+      },
+      {
+        "claim": "All magma reaches the surface.",
+        "correction": "Some cools underground as intrusive bodies."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise 2(ii) to distinguish direct sources.",
+      "Use Exercise 2(iii) to explain the shadow zone.",
+      "Use Exercise 3(i) to explain wave effects on rock masses.",
+      "Use Exercise 3(ii) to describe intrusive forms."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–iv), 2(i–iv), and 3(i–ii)."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Interior of the Earth\n\n## What you will learn\nYou will examine why earth’s interior cannot be directly observed and how scientists use evidence.\n\n## Simple explanation\nDirect samples come from shallow rocks and volcanic material, while deep structure is inferred from heat, pressure, gravity, magnetism and seismic waves.\n\n## Step-by-step breakdown\n- **Access limit**: No one can reach the centre, and deep conditions are extremely hot and pressurised.\n- **Surface rocks and mines**: These provide direct shallow samples.\n- **Drilling**: Scientific projects explore deeper crustal portions.\n- **Volcanic material**: Eruptions bring material from below to the surface.\n- **Physical trends**: Temperature, pressure and density increase with depth.\n- **Other evidence**: Meteorites, gravity, magnetism and seismic waves provide indirect information.\n\n## Worked example\nQuestion: Why are earthquake waves valuable for studying earth’s interior?\n\nAnswer:\n- Their speed and path change with the density and physical state of the material they cross.\n- Wave changes reveal internal boundaries and solid or liquid conditions.\n- Final answer: Seismic waves act as probes of otherwise inaccessible layers.\n\n## Common mistake\nSeismic waves are an indirect, not direct, source.\n\n## Quick check question\nQuestion: Name one direct source of interior information.\nAnswer: Rocks from mining or material brought out by volcanoes.\nExplanation: These are actual materials obtained from within the solid earth.\n\n## Summary\n- Direct access is limited.\n- Direct sources provide shallow samples.\n- Most deep knowledge is indirect.\n- Seismic waves are key probes.",
+    "Core explanation": "# Core explanation: Interior of the Earth\n\n## What you will learn\nYou will understand earthquake origin, focus, epicentre and wave types.\n\n## Simple explanation\nStress causes rocks to slip along faults and release energy that travels through the earth and across its surface.\n\n## Step-by-step breakdown\n- **Faulting**: Rocks break or slip and release stored energy.\n- **Focus**: The internal point of release is the focus or hypocentre.\n- **Epicentre**: The surface point directly above is the epicentre.\n- **Body waves**: P and S waves travel through the interior.\n- **P-waves**: They are faster and pass through solids, liquids and gases.\n- **S-waves**: They pass only through solid material.\n- **Surface waves**: They move along the surface and are highly destructive.\n\n## Worked example\nQuestion: How can P-waves without S-waves reveal a liquid layer?\n\nAnswer:\n- P-waves can travel through fluids, while S-waves cannot.\n- Continued P-wave travel with missing S-waves indicates fluid material.\n- Final answer: The contrast supports a liquid outer core.\n\n## Common mistake\nFaster arrival does not make P-waves the most destructive; surface waves usually cause more damage.\n\n## Quick check question\nQuestion: What is the surface point above the focus called?\nAnswer: The epicentre.\nExplanation: The focus lies inside earth and the epicentre is its surface projection.\n\n## Summary\n- Earthquakes release fault energy.\n- Focus and epicentre differ.\n- P and S are body waves.\n- Surface waves are destructive.",
+    "Worked examples": "# Worked examples: Interior of the Earth\n\n## What you will learn\nYou will study refraction, shadow zones, earthquake scales and effects.\n\n## Simple explanation\nSeismic rays bend or stop at boundaries between materials, producing wave gaps that reveal internal layering.\n\n## Step-by-step breakdown\n- **Velocity change**: Wave speed changes with density and elasticity.\n- **Refraction**: Waves bend at material boundaries.\n- **P-wave shadow**: Strong refraction by the core creates a zone without direct P-waves.\n- **S-wave shadow**: S-waves disappear because they cannot cross the liquid outer core.\n- **Magnitude**: The Richter scale measures released energy.\n- **Intensity**: The Mercalli scale describes observed effects.\n- **Effects**: Shaking, fissures, landslides, collapse and tsunamis may occur.\n\n## Worked example\nQuestion: Why does a shadow zone support the idea of a layered earth?\n\nAnswer:\n- The chapter links missing and deflected waves with changes in material and the liquid outer core.\n- A uniform solid sphere would not create systematic wave gaps.\n- Final answer: Shadow zones demonstrate distinct internal layers with different properties.\n\n## Common mistake\nDo not confuse magnitude with intensity.\n\n## Quick check question\nQuestion: Why is there a large S-wave shadow zone?\nAnswer: S-waves cannot travel through the liquid outer core.\nExplanation: Their absence beyond the core boundary reveals fluid material.\n\n## Summary\n- Waves change speed and direction.\n- Shadow zones reveal structure.\n- Richter measures magnitude.\n- Mercalli describes effects.",
+    "Exam-style problems": "# Exam-style problems: Interior of the Earth\n\n## What you will learn\nYou will identify the crust, mantle, asthenosphere, lithosphere and core.\n\n## Simple explanation\nEarth is layered: a thin crust overlies the mantle, a weaker asthenosphere lies below the rigid lithosphere, and a dense core occupies the centre.\n\n## Step-by-step breakdown\n- **Crust**: The outermost solid layer is thicker beneath continents than oceans.\n- **Crust types**: Continental crust is commonly granitic; oceanic crust is denser and basaltic.\n- **Mantle**: It extends below the crust and contains denser material.\n- **Asthenosphere**: A weak zone in the upper mantle provides magma and permits movement.\n- **Lithosphere**: The crust and rigid uppermost mantle form the lithosphere.\n- **Core**: The nickel–iron core includes liquid outer and solid inner parts inferred from waves.\n\n## Worked example\nQuestion: Why is the lithosphere not the same as the crust?\n\nAnswer:\n- The chapter defines it as the crust plus the rigid upper part of the mantle.\n- The boundary is based on mechanical behaviour, not only composition.\n- Final answer: The lithosphere is thicker because it includes rigid upper-mantle material.\n\n## Common mistake\nDo not describe the entire mantle as molten.\n\n## Quick check question\nQuestion: What does nife refer to?\nAnswer: The nickel-and-iron composition associated with the core.\nExplanation: The name combines nickel and iron.\n\n## Summary\n- Earth has crust, mantle and core.\n- Lithosphere includes rigid upper mantle.\n- Asthenosphere is weaker.\n- Seismic evidence distinguishes core states.",
+    "Revision and recap": "# Revision and recap: Interior of the Earth\n\n## What you will learn\nYou will compare volcanic types and intrusive igneous forms.\n\n## Simple explanation\nMagma may erupt to form volcanoes or cool below the surface in bodies whose shapes depend on surrounding structures.\n\n## Step-by-step breakdown\n- **Shield volcanoes**: Fluid basaltic lava builds broad gentle slopes.\n- **Composite volcanoes**: Lava and pyroclastic layers form steeper cones.\n- **Caldera**: Summit collapse creates a large depression.\n- **Flood basalt**: Repeated fluid lava sheets spread over large areas, as in the Deccan Traps.\n- **Batholith and laccolith**: Batholiths are large deep bodies; laccoliths are dome-shaped intrusions.\n- **Sills and dykes**: Sills are near-horizontal, while dykes cut more vertically across structures.\n\n## Worked example\nQuestion: How does a sill differ from a dyke?\n\nAnswer:\n- The chapter describes sills as near-horizontal sheets and dykes as wall-like bodies in steep cracks.\n- Orientation relative to surrounding rock is the key distinction.\n- Final answer: A sill is broadly horizontal, while a dyke cuts across layers more vertically.\n\n## Common mistake\nUnderground magma bodies are intrusive forms, not surface volcanoes.\n\n## Quick check question\nQuestion: Which eruption type formed the Deccan Traps?\nAnswer: Flood-basalt or flood-type eruptions.\nExplanation: Repeated fluid lava flows covered a large area.\n\n## Summary\n- Volcano form reflects eruption style.\n- Flood basalt covers wide regions.\n- Intrusions cool underground.\n- Orientation distinguishes sills and dykes."
+  }
+}

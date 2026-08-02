@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 22: Chemical Coordination and Integration",
+    "central_question": "How do hormones from endocrine glands and other tissues coordinate metabolism, growth, reproduction and homeostasis in humans?",
+    "in_scope_units": [
+      "Endocrine glands and hormones as intercellular messengers.",
+      "Hypothalamic releasing and inhibiting hormones.",
+      "Pituitary organisation and hormones.",
+      "Pineal, thyroid, parathyroid and thymus glands.",
+      "Adrenal medulla and cortex.",
+      "Endocrine pancreas and glucose homeostasis.",
+      "Testicular and ovarian hormones.",
+      "Hormones of heart, kidney and gastrointestinal tract.",
+      "Membrane-bound and intracellular receptor mechanisms."
+    ],
+    "banned_topics": [
+      "Nephron structure and urine formation",
+      "Counter-current concentration of urine",
+      "Neural impulse conduction"
+    ],
+    "must_include_keywords": [
+      "endocrine gland",
+      "hormone",
+      "intercellular messenger",
+      "hypothalamus",
+      "releasing hormone",
+      "inhibiting hormone",
+      "GnRH",
+      "somatostatin",
+      "pituitary",
+      "adenohypophysis",
+      "neurohypophysis",
+      "growth hormone",
+      "prolactin",
+      "TSH",
+      "ACTH",
+      "LH",
+      "FSH",
+      "MSH",
+      "oxytocin",
+      "vasopressin",
+      "melatonin",
+      "thyroxine",
+      "PTH",
+      "thymosin",
+      "adrenaline",
+      "noradrenaline",
+      "cortisol",
+      "aldosterone",
+      "glucagon",
+      "insulin",
+      "androgen",
+      "estrogen",
+      "progesterone",
+      "ANF",
+      "erythropoietin",
+      "gastrin",
+      "secretin",
+      "CCK",
+      "GIP",
+      "hormone receptor"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The posterior pituitary synthesises oxytocin and vasopressin.",
+        "correction": "They are synthesised in the hypothalamus and stored and released by the neurohypophysis."
+      },
+      {
+        "claim": "Insulin raises blood glucose.",
+        "correction": "Insulin lowers blood glucose; glucagon raises it."
+      },
+      {
+        "claim": "All hormones enter cells and act directly on DNA.",
+        "correction": "Many peptide hormones use membrane receptors and second messengers; steroid and thyroid hormones commonly use intracellular receptors."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 1 to distinguish exocrine glands, endocrine glands and hormones.",
+      "Use NCERT Exercise 3 to map glands to hormones.",
+      "Use NCERT Exercise 6 to classify hormones by physiological effects.",
+      "Use NCERT Exercise 7 to connect deficiencies with disorders.",
+      "Use NCERT Exercise 8 to explain receptor-mediated FSH action."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-9 on gland definitions, hormone lists, targets, functions, deficiencies and mechanism of action."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chemical Coordination and Integration\n\n## What you will learn\nYou will define endocrine glands and hormones and explain hypothalamic control of the pituitary. You will distinguish chemical coordination from rapid neural signalling.\n\n## Simple explanation\nHormones are trace non-nutrient chemicals acting as intercellular messengers. They affect only target cells with suitable receptors.\n\n## Step-by-step breakdown\n- **Endocrine glands**: Ductless glands release hormones into internal fluids.\n- **Hormone definition**: Hormones are trace non-nutrient chemical messengers.\n- **Hypothalamus**: Neurosecretory nuclei make releasing and inhibiting hormones.\n- **Portal control**: Hypothalamic hormones reach the anterior pituitary through portal circulation.\n- **Posterior control**: Hypothalamic neurons directly regulate neurohypophyseal release.\n- **Examples**: GnRH stimulates gonadotrophins and somatostatin inhibits growth hormone release.\n\n## Worked example\nQuestion: NCERT Exercise 1 asks for definitions of exocrine gland, endocrine gland and hormone.\n\nSolution:\n- An exocrine gland releases secretion through a duct.\n- An endocrine gland is ductless and releases hormones internally.\n- A hormone is a trace non-nutrient chemical intercellular messenger.\n- Final answer: Exocrine and endocrine glands differ by ducts and route; hormones are trace chemical messengers.\n\n## Common mistake\nA hormone need not act only on a very distant organ; the modern definition emphasises intercellular messaging.\n\n## Quick check question\nQuestion: Which hypothalamic hormone stimulates gonadotrophin release?\nAnswer: Gonadotrophin-releasing hormone, or GnRH.\nExplanation: GnRH acts on the anterior pituitary to stimulate LH and FSH release.\n\n## Summary\n- Hormones provide chemical coordination.\n- Endocrine glands are ductless.\n- Target specificity depends on receptors.\n- The hypothalamus controls pituitary secretion.",
+    "Core explanation": "# Core explanation: Chemical Coordination and Integration\n\n## What you will learn\nYou will organise pituitary, pineal, thyroid, parathyroid and thymus hormones and connect them with effects and disorders.\n\n## Simple explanation\nThe pituitary links hypothalamic control to peripheral glands, while other endocrine organs regulate rhythms, metabolism, calcium and immunity.\n\n## Step-by-step breakdown\n- **Anterior pituitary**: Pars distalis secretes GH, PRL, TSH, ACTH, LH and FSH; pars intermedia secretes MSH.\n- **Posterior pituitary**: Neurohypophysis stores and releases hypothalamic oxytocin and vasopressin.\n- **GH disorders**: Excess causes gigantism in children or acromegaly in adults; deficiency causes pituitary dwarfism.\n- **Pineal**: Melatonin helps regulate 24-hour sleep-wake and temperature rhythms.\n- **Thyroid**: T3 and T4 require iodine and regulate metabolism and development; deficiency can cause goitre and cretinism.\n- **Parathyroid**: PTH raises blood Ca2+.\n- **Thymus**: Thymosins support T-lymphocyte differentiation and immunity.\n\n## Worked example\nQuestion: NCERT Exercise 7 asks which deficiencies cause diabetes mellitus, goitre and cretinism.\n\nSolution:\n- Diabetes mellitus is associated with insulin deficiency or ineffective insulin action.\n- Iodine deficiency can reduce thyroid hormone synthesis and cause hypothyroid goitre.\n- Thyroid hormone deficiency during development causes cretinism.\n- Final answer: The associations are insulin deficiency for diabetes mellitus and thyroid hormone deficiency, often from iodine deficiency, for goitre and cretinism.\n\n## Common mistake\nDiabetes insipidus and diabetes mellitus differ: the first involves ADH and water balance, the second glucose regulation.\n\n## Quick check question\nQuestion: Which pituitary hormone stimulates the thyroid?\nAnswer: Thyroid-stimulating hormone, or TSH.\nExplanation: TSH promotes thyroid hormone synthesis and secretion.\n\n## Summary\n- Pituitary hormones control growth and target glands.\n- Melatonin regulates daily rhythms.\n- Thyroid hormones regulate metabolism and development.\n- PTH raises blood calcium.\n- Thymosins support immunity.",
+    "Worked examples": "# Worked examples: Chemical Coordination and Integration\n\n## What you will learn\nYou will compare adrenal hormones and explain pancreatic control of blood glucose. You will identify opposing hormonal actions.\n\n## Simple explanation\nThe adrenal medulla supports rapid emergency responses, the cortex regulates metabolism and salts, and pancreatic islets stabilise glucose with insulin and glucagon.\n\n## Step-by-step breakdown\n- **Catecholamines**: Adrenaline and noradrenaline increase alertness, heart activity, respiration and fuel mobilisation.\n- **Glucocorticoids**: Cortisol promotes gluconeogenesis, lipolysis and proteolysis and suppresses inflammation.\n- **Mineralocorticoids**: Aldosterone increases renal sodium and water reabsorption and potassium excretion.\n- **Glucagon**: Alpha cells secrete glucagon, promoting glycogenolysis and gluconeogenesis and raising glucose.\n- **Insulin**: Beta cells secrete insulin, promoting glucose uptake and glycogenesis and lowering glucose.\n- **Homeostasis**: Insulin and glucagon act antagonistically to stabilise blood glucose.\n\n## Worked example\nQuestion: NCERT Exercise 6(a) asks for hyperglycaemic and hypoglycaemic hormones.\n\nSolution:\n- Glucagon stimulates glycogen breakdown and gluconeogenesis.\n- These actions raise blood glucose, so glucagon is hyperglycaemic.\n- Insulin promotes uptake and glycogen formation.\n- These actions lower blood glucose, so insulin is hypoglycaemic.\n- Final answer: Glucagon is the hyperglycaemic hormone and insulin is the hypoglycaemic hormone.\n\n## Common mistake\nInsulin does more than convert glucose to glycogen; it also promotes cellular uptake and utilisation.\n\n## Quick check question\nQuestion: What is the main mineralocorticoid in humans?\nAnswer: Aldosterone.\nExplanation: It controls electrolyte and body-fluid balance through renal sodium retention and potassium excretion.\n\n## Summary\n- Adrenal medulla produces fight-or-flight hormones.\n- Adrenal cortex produces glucocorticoids and mineralocorticoids.\n- Glucagon raises blood glucose.\n- Insulin lowers blood glucose.\n- Opposing hormones maintain homeostasis.",
+    "Exam-style problems": "# Exam-style problems: Chemical Coordination and Integration\n\n## What you will learn\nYou will organise gonadal hormones and hormones from heart, kidney and gastrointestinal tract and link each with a response.\n\n## Simple explanation\nEndocrine signalling is not limited to classical glands. Gonads and several other organs release hormones regulating reproduction, pressure, blood-cell formation and digestion.\n\n## Step-by-step breakdown\n- **Testis**: Leydig cells secrete androgens that support male organs, secondary characters and spermatogenesis.\n- **Ovary**: Follicles secrete estrogens; corpus luteum secretes progesterone, which supports pregnancy and mammary development.\n- **Heart**: Atrial natriuretic factor dilates vessels and lowers blood pressure.\n- **Kidney**: Juxtaglomerular cells produce erythropoietin, stimulating RBC formation.\n- **Gastrin and secretin**: Gastrin stimulates gastric acid and pepsinogen; secretin stimulates pancreatic water and bicarbonate.\n- **CCK and GIP**: CCK stimulates pancreatic enzymes and bile release; GIP inhibits gastric secretion and motility.\n\n## Worked example\nQuestion: NCERT Exercise 6 asks for a progestational hormone and a blood-pressure-lowering hormone.\n\nSolution:\n- Progesterone supports and maintains pregnancy and is the progestational hormone.\n- ANF is released from atrial walls when filling or pressure rises.\n- ANF dilates blood vessels and lowers pressure.\n- Final answer: Progesterone is the progestational hormone; ANF is the blood-pressure-lowering hormone.\n\n## Common mistake\nErythropoietin is made by the kidney but its principal action is stimulation of erythropoiesis, not urine formation.\n\n## Quick check question\nQuestion: Which GI hormone stimulates pancreatic enzymes and bile release?\nAnswer: Cholecystokinin, or CCK.\nExplanation: CCK acts on the pancreas and gall bladder.\n\n## Summary\n- Androgens and ovarian steroids regulate reproduction.\n- ANF lowers blood pressure.\n- Erythropoietin increases RBC production.\n- GI hormones coordinate secretions.\n- Non-classical endocrine tissues produce important hormones.",
+    "Revision and recap": "# Revision and recap: Chemical Coordination and Integration\n\n## What you will learn\nYou will compare membrane-bound and intracellular receptor mechanisms and use FSH as a model of receptor specificity.\n\n## Simple explanation\nA hormone affects only cells with its receptor. Peptide hormones usually signal through membrane receptors and second messengers, whereas steroid and thyroid hormones commonly use intracellular receptors.\n\n## Step-by-step breakdown\n- **Receptor specificity**: A hormone-receptor complex forms only in responsive target cells.\n- **Membrane receptors**: Peptide and protein hormones bind at the surface and generate second messengers such as cyclic AMP, IP3 or Ca2+.\n- **Intracellular receptors**: Steroid and iodothyronine hormones form intracellular complexes that regulate genome activity.\n- **Chemical classes**: Hormones include peptides or proteins, steroids, iodothyronines and amino-acid derivatives.\n- **Outcome**: Receptor signalling changes metabolism, gene expression and development.\n\n## Worked example\nQuestion: NCERT Exercise 8 asks for the mechanism of action of FSH.\n\nSolution:\n- FSH is a peptide glycoprotein hormone and does not freely cross the lipid membrane.\n- It binds specific membrane receptors on target gonadal cells.\n- The hormone-receptor complex activates a second-messenger pathway.\n- This changes enzyme activity and gene expression, producing follicular development or support of spermatogenesis.\n- Final answer: FSH acts through a specific membrane receptor and an intracellular second-messenger cascade.\n\n## Common mistake\nA circulating hormone does not affect every cell; cells without the receptor do not produce the characteristic response.\n\n## Quick check question\nQuestion: Which hormone classes commonly use intracellular receptors?\nAnswer: Steroid hormones and iodothyronines.\nExplanation: Their complexes regulate gene or chromosome function inside target cells.\n\n## Summary\n- Receptors determine target specificity.\n- Peptide hormones commonly use membrane receptors.\n- Steroid and thyroid hormones commonly use intracellular receptors.\n- Hormonal coordination integrates metabolism, growth and reproduction.\n- Disorders arise from excess, deficiency or altered response."
+  }
+}

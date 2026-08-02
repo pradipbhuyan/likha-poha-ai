@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "My Mother at Sixty-six",
+  "central_question": "How does Kamala Das express a daughter’s fear of separation from her ageing mother while outwardly maintaining hope and composure?",
+  "in_scope_units": [
+    "About Kamala Das and her sensitive treatment of human relationships.",
+    "The journey from the parent’s home to Cochin and the first sight of the dozing mother.",
+    "The contrast between the ageing mother, sprinting trees and merry children.",
+    "The airport separation, late-winter-moon image and childhood fear.",
+    "The parting words, repeated smile and restrained emotion.",
+    "Think it out Questions 1–5 and the note on the poem’s single-sentence structure."
+  ],
+  "banned_topics": [
+    "Biographical details about Kamala Das not included in the chapter.",
+    "Medical explanations of ageing or the mother’s condition beyond the poem.",
+    "Analysis of other poems listed on the poetry contents page."
+  ],
+  "must_include_keywords": [
+    "Kamala Das",
+    "Madhavikutty",
+    "ageing",
+    "elderly parents",
+    "Cochin",
+    "last Friday morning",
+    "doze",
+    "open mouthed",
+    "ashen",
+    "corpse",
+    "pain",
+    "put that thought away",
+    "young trees",
+    "sprinting",
+    "merry children",
+    "spilling out",
+    "airport security check",
+    "wan",
+    "pale",
+    "late winter’s moon",
+    "old familiar ache",
+    "childhood fear",
+    "see you soon Amma",
+    "smile and smile and smile",
+    "contrast",
+    "simile",
+    "personification",
+    "imagery",
+    "repetition",
+    "single sentence",
+    "commas",
+    "stream of thought",
+    "separation",
+    "love",
+    "mortality",
+    "restrained tone"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The poet’s mother is already dead.",
+      "correction": "The mother is alive but appears aged and pale; the corpse comparison expresses the daughter’s fear of mortality."
+    },
+    {
+      "claim": "The trees literally run beside the car.",
+      "correction": "Their apparent sprinting is created by the moving car and personifies youthful energy."
+    },
+    {
+      "claim": "The merry children are unrelated background detail.",
+      "correction": "They form a deliberate contrast with the mother’s age, stillness and weakness."
+    },
+    {
+      "claim": "The repeated smile proves the poet is carefree.",
+      "correction": "It conceals pain, reassures the mother and tries to preserve hope at parting."
+    },
+    {
+      "claim": "The poem is made of disconnected fragments.",
+      "correction": "The whole poem is a single sentence joined by commas, reflecting one continuous thread of thought and observation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Think it out Q1 to identify the old familiar ache.",
+    "Use Q2 for personification and apparent movement.",
+    "Use Q3 for the contrast created by the children.",
+    "Use Q4 for the late-winter-moon simile.",
+    "Use Q5 and the structural note for parting, repetition and the single-sentence form."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The poem is followed by Think it out Questions 1–5 and a note explaining that the whole poem is one sentence punctuated by commas.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

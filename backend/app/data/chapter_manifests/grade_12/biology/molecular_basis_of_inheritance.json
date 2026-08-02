@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Molecular Basis of Inheritance",
+  "central_question": "What is the molecular nature of the gene — how is DNA structured and packaged, how was it proven to be the genetic material, how does it replicate, transcribe and translate to produce proteins, how is gene expression regulated, and how have the Human Genome Project and DNA fingerprinting built on this molecular understanding?",
+  "in_scope_units": [
+    "5.1 The DNA: structure of the polynucleotide chain, Watson-Crick double helix features, packaging of DNA into nucleosomes/chromatin/euchromatin/heterochromatin.",
+    "5.2 The Search for Genetic Material: Griffith's transforming principle experiment, Avery-MacLeod-McCarty's biochemical characterisation, the Hershey-Chase bacteriophage experiment, and the properties required of genetic material (comparing DNA and RNA).",
+    "5.3 RNA World: RNA as the first genetic material and catalyst, and why DNA evolved as a more stable alternative.",
+    "5.4 Replication: the semiconservative model proposed by Watson and Crick, the Meselson-Stahl experiment, and the replication machinery (DNA polymerase, replication fork, continuous/discontinuous synthesis, DNA ligase, origin of replication).",
+    "5.5 Transcription: the transcription unit (promoter, structural gene, terminator; template vs coding strand), types of RNA (mRNA, tRNA, rRNA) and the process of transcription in bacteria versus the added complexities in eukaryotes (multiple RNA polymerases, splicing, capping, tailing).",
+    "5.6 Genetic Code: the properties of the genetic code (triplet, degenerate, unambiguous, universal, AUG as start codon, stop codons), the history of deciphering it, mutations and frameshift, and tRNA as the adapter molecule.",
+    "5.7 Translation: the process of translation (charging of tRNA, initiation, elongation, termination) and the role of the ribosome.",
+    "5.8 Regulation of Gene Expression: levels of regulation in eukaryotes, and the lac operon as the prototype example of negative regulation in bacteria.",
+    "5.9 Human Genome Project: goals, methodologies (ESTs, sequence annotation, BAC/YAC vectors, Sanger sequencing), and salient features of the human genome.",
+    "5.10 DNA Fingerprinting: repetitive/satellite DNA, VNTR, the technique developed by Alec Jeffreys, and its applications in forensics and paternity testing."
+  ],
+  "banned_topics": [
+    "Sexual reproduction in flowering plants (pollen, embryo sac, fertilisation) — belongs to Chapter 1, Sexual Reproduction in Flowering Plants.",
+    "Human reproductive anatomy, gametogenesis and the menstrual cycle — belongs to Chapter 2, Human Reproduction.",
+    "Contraception, MTP, STIs and infertility/ART — belong to Chapter 3, Reproductive Health.",
+    "Mendel's laws, monohybrid/dihybrid crosses, and classical pedigree-based genetic disorders (Down's, Klinefelter's, Turner's syndromes) — these belong to Chapter 4, Principles of Inheritance and Variation, even though this chapter also discusses mutation and sickle-cell anaemia at the molecular level."
+  ],
+  "must_include_keywords": [
+    "nucleotide",
+    "double helix",
+    "base pairing",
+    "Watson and Crick",
+    "nucleosome",
+    "histone",
+    "chromatin",
+    "Griffith",
+    "transforming principle",
+    "Hershey-Chase",
+    "bacteriophage",
+    "semiconservative replication",
+    "Meselson and Stahl",
+    "DNA polymerase",
+    "replication fork",
+    "DNA ligase",
+    "promoter",
+    "template strand",
+    "coding strand",
+    "mRNA",
+    "tRNA",
+    "rRNA",
+    "splicing",
+    "exon",
+    "intron",
+    "genetic code",
+    "codon",
+    "start codon",
+    "stop codon",
+    "translation",
+    "ribosome",
+    "lac operon",
+    "repressor",
+    "inducer",
+    "Human Genome Project",
+    "DNA fingerprinting",
+    "VNTR",
+    "satellite DNA",
+    "polymorphism"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Griffith's experiment directly proved that DNA is the genetic material.",
+      "correction": "Griffith's 1928 experiment only proved that SOME 'transforming principle' from heat-killed S-strain bacteria could transform live R-strain bacteria into virulent S-strain bacteria — it did NOT identify the biochemical nature of that principle. It was Avery, MacLeod and McCarty (1933-44) who biochemically showed DNA (not protein or RNA) was responsible, and Hershey and Chase (1952), using radioactively labelled bacteriophage DNA versus protein, who gave the final unequivocal proof that DNA is the genetic material."
+    },
+    {
+      "claim": "DNA replication is discontinuous on both strands equally, or continuous on both strands equally.",
+      "correction": "Because DNA polymerase can only catalyse polymerisation in the 5' to 3' direction, and the two template strands run antiparallel, replication is CONTINUOUS on the strand with 3'->5' template polarity, but DISCONTINUOUS on the strand with 5'->3' template polarity (this strand's fragments are later joined by DNA ligase) — the two strands are not replicated in the same way."
+    },
+    {
+      "claim": "The coding strand of a transcription unit is the strand that is actually copied ('read') by RNA polymerase to make RNA.",
+      "correction": "The chapter explicitly calls this convention 'strange': the TEMPLATE strand (polarity 3'->5') is the one actually read/copied by RNA polymerase; the CODING strand (polarity 5'->3') has the same sequence as the RNA (except T instead of U) but is displaced during transcription and does not itself code for anything directly — it is simply used as the reference point for describing the transcription unit."
+    },
+    {
+      "claim": "Introns are the coding, expressed parts of a eukaryotic gene.",
+      "correction": "It is the opposite: EXONS are the coding/expressed sequences that appear in the mature/processed RNA, while INTRONS (intervening sequences) do NOT appear in the mature RNA and are removed during splicing, with exons then joined together in a defined order."
+    },
+    {
+      "claim": "The lac operon is switched on by glucose or by galactose being present in the medium.",
+      "correction": "The chapter specifically states that glucose or galactose CANNOT act as inducers for the lac operon — only lactose (or its isomer allolactose) can act as the inducer, by inactivating the repressor protein bound to the operator region, thereby allowing RNA polymerase to transcribe the operon."
+    }
+  ],
+  "recommended_example_progression": [
+    "Using Figure 5.2/5.3 (double stranded polynucleotide chain and DNA double helix) and Chargaff's rule (A=T, G=C), work out a complementary DNA strand sequence, as directly tested in end-of-chapter Q2 and Q3.",
+    "Using the Meselson-Stahl experiment (Figure 5.7) and the 15N/14N density-gradient logic, work out the proportion of light versus hybrid density DNA after multiple generations of E. coli growth, as posed in the chapter's own follow-up question after Figure 5.7.",
+    "Using the chapter's template-strand/coding-strand example sequence in section 5.5.1, write out the corresponding mRNA sequence, matching end-of-chapter Q4.",
+    "Using Table 5.1 (the codon table) and the chapter's own AUG UUU UUC UUC UUU UUU UUC example, translate a given mRNA sequence into its amino acid sequence, and then attempt the reverse (amino acid sequence to nucleotide sequence) to discover why the reverse is ambiguous due to the degeneracy of the code.",
+    "Using the chapter's RAM HAS RED CAP analogy for reading frames, demonstrate how inserting or deleting 1-2 bases causes a frameshift mutation, versus inserting/deleting 3 bases (or a multiple of 3) which preserves the reading frame."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's EXERCISES section (numbered 1-14, page 109) covers classifying nitrogenous bases/nucleosides, base-percentage calculations, complementary/mRNA strand writing, semiconservative replication reasoning, nucleic acid polymerase types, the Hershey-Chase experiment, term differentiations (repetitive/satellite DNA, mRNA/tRNA, template/coding strand), ribosome functions in translation, lac operon shut-down reasoning, and short descriptions of promoter/tRNA/exons, the Human Genome Project, DNA fingerprinting, transcription, polymorphism, translation and bioinformatics.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

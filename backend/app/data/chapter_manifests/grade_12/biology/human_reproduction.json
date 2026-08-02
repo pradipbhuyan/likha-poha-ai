@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Human Reproduction",
+  "central_question": "How do the human male and female reproductive systems produce gametes, and how do those events (gametogenesis, the menstrual cycle, fertilisation, implantation, pregnancy and parturition) together bring about the birth of a baby?",
+  "in_scope_units": [
+    "2.1 The Male Reproductive System: structure and location of the testes, testicular lobules, seminiferous tubules (spermatogonia, Sertoli cells), Leydig cells and androgens, the male accessory ducts (rete testis, vasa efferentia, epididymis, vas deferens, urethra), the penis, and the male accessory glands (seminal vesicles, prostate, bulbourethral glands).",
+    "2.2 The Female Reproductive System: structure of the ovaries, the female accessory ducts (fallopian tubes with infundibulum/fimbriae/ampulla/isthmus, uterus with perimetrium/myometrium/endometrium, cervix and vagina), the female external genitalia (mons pubis, labia majora, labia minora, hymen, clitoris), and the structure of the mammary glands.",
+    "2.3 Gametogenesis: spermatogenesis (spermatogonia to primary and secondary spermatocytes to spermatids, spermiogenesis and spermiation), hormonal regulation via GnRH, LH and FSH, structure of the sperm, composition of semen, and oogenesis (oogonia to primary oocytes/primary follicles to secondary/tertiary/Graafian follicles, formation of the secondary oocyte and first polar body, and ovulation).",
+    "2.4 Menstrual Cycle: menarche and menopause, the menstrual/follicular/ovulatory/luteal phases, hormonal regulation by LH, FSH, estrogen and progesterone, the LH surge, the corpus luteum, and menstrual hygiene.",
+    "2.5 Fertilisation and Implantation: insemination, transport of sperm and ovum to the ampullary region, fusion of gametes to form the zygote, the block to polyspermy, determination of the baby's sex by the sperm's sex chromosome, cleavage, morula, blastocyst (trophoblast and inner cell mass), and implantation.",
+    "2.6 Pregnancy and Embryonic Development: formation of chorionic villi and the placenta, the umbilical cord, placental hormones (hCG, hPL, estrogens, progestogens, relaxin), formation of the three germ layers (ectoderm, mesoderm, endoderm) and stem cells, and month-by-month milestones of foetal development over the 9-month gestation period.",
+    "2.7 Parturition and Lactation: the gestation period, the neuroendocrine mechanism of parturition (foetal ejection reflex and oxytocin), and lactation including the mammary gland's differentiation and colostrum."
+  ],
+  "banned_topics": [
+    "Flower structure, pollen grain and embryo sac formation, pollination, and double fertilisation in plants — these belong to Chapter 1, Sexual Reproduction in Flowering Plants.",
+    "Contraceptive methods, MTP, sexually transmitted infections and infertility/assisted reproductive technology — these belong to Chapter 3, Reproductive Health.",
+    "Mendelian laws of inheritance, monohybrid/dihybrid crosses and genetic disorders (though sex determination by X/Y chromosome is touched on here, detailed chromosomal theory belongs to Chapter 4, Principles of Inheritance and Variation).",
+    "DNA structure, replication, transcription and translation — these belong to Chapter 5, Molecular Basis of Inheritance."
+  ],
+  "must_include_keywords": [
+    "scrotum",
+    "testis",
+    "seminiferous tubule",
+    "spermatogonia",
+    "Sertoli cells",
+    "Leydig cells",
+    "androgens",
+    "epididymis",
+    "vas deferens",
+    "seminal vesicle",
+    "ovary",
+    "fallopian tube",
+    "fimbriae",
+    "uterus",
+    "endometrium",
+    "mammary gland",
+    "spermatogenesis",
+    "spermiogenesis",
+    "GnRH",
+    "LH",
+    "FSH",
+    "acrosome",
+    "oogenesis",
+    "Graafian follicle",
+    "polar body",
+    "ovulation",
+    "menstrual cycle",
+    "menarche",
+    "corpus luteum",
+    "fertilisation",
+    "zygote",
+    "blastocyst",
+    "trophoblast",
+    "implantation",
+    "placenta",
+    "hCG",
+    "gestation",
+    "parturition",
+    "oxytocin",
+    "colostrum"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Androgens are produced by the Sertoli cells inside the seminiferous tubules.",
+      "correction": "Androgens are synthesised and secreted by the Leydig cells (interstitial cells), which lie in the interstitial spaces OUTSIDE the seminiferous tubules; Sertoli cells instead provide nutrition to the germ cells inside the tubule. This exact confusion is directly tested as a True/False item in the chapter's exercises."
+    },
+    {
+      "claim": "The mother determines the sex of the baby.",
+      "correction": "The chapter explicitly states this is scientifically incorrect: all ova carry an X chromosome, but sperm are 50% X-bearing and 50% Y-bearing; a zygote becomes XX (female) or XY (male) depending on whether an X-bearing or Y-bearing sperm fertilises the ovum, so the sex of the baby is determined by the father, not the mother."
+    },
+    {
+      "claim": "Menstruation happens every cycle regardless of whether the ovum is fertilised.",
+      "correction": "Menstruation only occurs if the released ovum is NOT fertilised; if fertilisation and implantation occur, the corpus luteum is maintained, progesterone keeps the endometrium intact, and all events of the menstrual cycle (including menstruation) stop for the duration of pregnancy."
+    },
+    {
+      "claim": "The primary oocyte divides equally during meiosis I, like the primary spermatocyte does.",
+      "correction": "Unlike spermatogenesis (where meiosis I gives two equal secondary spermatocytes), meiosis I in oogenesis is an UNEQUAL division: it produces one large haploid secondary oocyte (retaining almost all the nutrient-rich cytoplasm) and one tiny first polar body."
+    },
+    {
+      "claim": "The embryo sac / zygote is nourished directly by the mother's blood mixing with foetal blood.",
+      "correction": "The chapter specifies that the placenta is the structural and functional unit between the embryo and the mother, formed by interdigitation of chorionic villi and uterine tissue; maternal and foetal blood do not simply mix — the placenta facilitates supply of oxygen/nutrients and removal of carbon dioxide/waste across this interface, connected to the embryo via the umbilical cord."
+    }
+  ],
+  "recommended_example_progression": [
+    "Using the chapter's account of spermatogenesis (Figure 2.5, 2.8a), trace chromosome number from spermatogonium (diploid) through primary spermatocyte, secondary spermatocytes, and spermatids.",
+    "Using the chapter's account of oogenesis (Figure 2.7, 2.8b), contrast the unequal first meiotic division (secondary oocyte + first polar body) with the equal divisions of spermatogenesis.",
+    "Using Figure 2.9 (menstrual cycle events), work through the four phases (menstrual, follicular, ovulatory, luteal) in relation to LH/FSH/estrogen/progesterone levels and the LH surge at mid-cycle (~day 14).",
+    "Using the chapter's explanation of X/Y sperm and fertilisation, reason out why the sex of the baby is determined by the father's sperm rather than the mother's ovum — directly addressing end-of-chapter Q19.",
+    "Using end-of-chapter Q20-21 style reasoning, work out how many eggs must have been released by an ovary for a mother to give birth to identical twins versus fraternal twins, or for a dog to give birth to 6 puppies."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's EXERCISES section (numbered 1-21, pages 39-40) covers fill-in-the-blanks on reproductive terms, labelled-diagram questions for the male/female reproductive systems, spermatogenesis/oogenesis, True/False items on hormone sources, and reasoning questions on sex determination and twinning.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Introduction to Statistics",
+  "central_question": "Why does economics need statistics to describe, analyse and guide decisions about scarce resources, economic activities and public policy?",
+  "in_scope_units": [
+    "Why Economics: ordinary business of life, economic activities, scarcity, choice and alternative uses of resources.",
+    "Consumption, production and distribution as major areas of economics.",
+    "Statistics in Economics: economic data, analysis of problems and policy formulation.",
+    "Meaning of Statistics, including quantitative and qualitative data and stages of statistical work.",
+    "What Statistics does: precision, condensation, relationships, prediction, planning and decision-making.",
+    "Conclusion on the usefulness and limitations of statistical methods and the need for common sense."
+  ],
+  "banned_topics": [
+    "Detailed methods of collecting primary data, which belong to Collection of Data.",
+    "Detailed tabular and graphical presentation methods, which belong to later Statistics chapters.",
+    "Calculation procedures for mean, variance and standard deviation, which belong to later chapters."
+  ],
+  "must_include_keywords": [
+    "economics",
+    "ordinary business of life",
+    "consumer",
+    "seller",
+    "producer",
+    "employee",
+    "employer",
+    "economic activity",
+    "monetary gain",
+    "scarcity",
+    "unlimited wants",
+    "limited resources",
+    "alternative uses",
+    "choice",
+    "consumption",
+    "production",
+    "distribution",
+    "gross domestic product",
+    "national income",
+    "economic data",
+    "statistics",
+    "collection",
+    "analysis",
+    "interpretation",
+    "presentation",
+    "quantitative data",
+    "qualitative data",
+    "mean",
+    "variance",
+    "standard deviation",
+    "precision",
+    "condensation",
+    "economic relationship",
+    "prediction",
+    "policy",
+    "planning",
+    "common sense"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Economics studies only money and markets.",
+      "correction": "The chapter presents economics as the study of people making choices in the ordinary business of life under scarcity."
+    },
+    {
+      "claim": "Every human activity is an economic activity.",
+      "correction": "Economic activities are undertaken for monetary gain and contribute to economic production."
+    },
+    {
+      "claim": "Statistics deals only with quantitative data.",
+      "correction": "Economics also records qualitative attributes such as gender, skill and health condition."
+    },
+    {
+      "claim": "Statistics itself solves economic problems.",
+      "correction": "It provides evidence for analysis and policy, but judgement and appropriate action are still required."
+    },
+    {
+      "claim": "A statistical average can be used without examining the data.",
+      "correction": "The river example shows that misuse of averages without common sense can be dangerous."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 1 to test statements about qualitative data, problem-solving and the need for data.",
+    "Use Exercise 2 to identify economic activities at a bus stand or market.",
+    "Use Exercise 3 to illustrate how governments use data in policy.",
+    "Use Exercises 4 and 5 to explain scarcity, unlimited wants and choice.",
+    "Use Exercise 7 and the river-average story to show that statistical methods are no substitute for common sense."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with a Recap and EXERCISES 1–7 covering economic activity, scarcity, the uses of statistics, policy and common sense.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

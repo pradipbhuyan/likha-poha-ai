@@ -1,0 +1,66 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Differential Equations",
+  "central_question": "How can ordinary differential equations be classified and solved to obtain general or condition-specific functions?",
+  "in_scope_units": [
+    "9.1 Introduction: differential equations as equations involving derivatives.",
+    "9.2 Basic Concepts: ordinary differential equations, order and degree.",
+    "9.3 General and Particular Solutions of a Differential Equation.",
+    "9.4 Methods of Solving First Order, First Degree Differential Equations.",
+    "9.4.1 Differential Equations with Variables Separable.",
+    "9.4.2 Homogeneous Differential Equations.",
+    "9.4.3 Linear Differential Equations."
+  ],
+  "banned_topics": [
+    "Partial differential equations",
+    "Higher-order solution techniques",
+    "Laplace transforms"
+  ],
+  "must_include_keywords": [
+    "differential equation",
+    "ordinary differential equation",
+    "dependent variable",
+    "independent variable",
+    "order",
+    "degree",
+    "polynomial in derivatives",
+    "general solution",
+    "particular solution",
+    "arbitrary constant",
+    "solution curve",
+    "variable separable",
+    "homogeneous differential equation",
+    "substitution y=vx",
+    "linear differential equation",
+    "integrating factor"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Order is the highest power of a derivative.",
+      "correction": "Order is the order of the highest derivative present."
+    },
+    {
+      "claim": "Degree is always defined.",
+      "correction": "Degree is defined only when the equation is polynomial in derivatives."
+    },
+    {
+      "claim": "A particular solution contains arbitrary constants.",
+      "correction": "A particular solution is free from arbitrary constants after conditions determine them."
+    },
+    {
+      "claim": "Every first-order equation is separable.",
+      "correction": "Separation works only when the equation can be rearranged into a function of y times dy equal to a function of x times dx."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 1 to identify order and degree.",
+    "Use NCERT Example 2 or 3 to verify a proposed solution.",
+    "Use NCERT Example 4 for a variable-separable general solution.",
+    "Use the homogeneous-equation substitution y=vx.",
+    "Use a linear-equation example with integrating factor e^(integral P dx)."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 9.1 onward for classification, verification and first-order solution methods, followed by the Miscellaneous Exercise on Chapter 9.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

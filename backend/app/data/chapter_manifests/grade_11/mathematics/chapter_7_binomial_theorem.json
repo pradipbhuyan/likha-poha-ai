@@ -1,0 +1,76 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 7: Binomial Theorem",
+  "central_question": "How does the binomial theorem organise the expansion of positive integral powers and support efficient evaluation, comparison, and divisibility proofs?",
+  "in_scope_units": [
+    "Introduction and the need to expand high powers efficiently.",
+    "Patterns in low-power binomial expansions and Pascal’s triangle or Meru-Prastara.",
+    "Binomial theorem for positive integral indices.",
+    "Proof by mathematical induction and Pascal’s coefficient identity.",
+    "Expansion of algebraic binomials with signs, coefficients, powers, and reciprocals.",
+    "Applications to numerical evaluation, comparison, divisibility, remainders, and coefficient identities."
+  ],
+  "banned_topics": [
+    "Binomial series for negative, fractional, or general real indices.",
+    "Probability applications of binomial coefficients.",
+    "Multinomial theorem beyond the two-term expressions in the chapter."
+  ],
+  "must_include_keywords": [
+    "binomial",
+    "positive integral index",
+    "binomial theorem",
+    "binomial coefficient",
+    "nCr",
+    "Pascal’s triangle",
+    "Meru-Prastara",
+    "Pingala",
+    "general term",
+    "mathematical induction",
+    "Pascal identity",
+    "coefficient symmetry",
+    "expansion",
+    "alternating signs",
+    "numerical evaluation",
+    "approximation",
+    "comparison",
+    "divisibility",
+    "remainder",
+    "coefficient sum",
+    "alternating coefficient sum",
+    "even powers",
+    "odd powers"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "(a+b)^n=a^n+b^n.",
+      "correction": "The binomial expansion includes intermediate terms with binomial coefficients."
+    },
+    {
+      "claim": "The expansion has n terms.",
+      "correction": "It has n+1 terms."
+    },
+    {
+      "claim": "The rth term uses nCr.",
+      "correction": "nCr gives the (r+1)th term."
+    },
+    {
+      "claim": "The exponents of both variables decrease.",
+      "correction": "The first decreases while the second increases, with sum n."
+    },
+    {
+      "claim": "A truncated expansion always gives the exact value.",
+      "correction": "All terms are required for exact evaluation; truncation needs a justified approximation or bound."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Section 7.2 pattern for (a+b)^4.",
+    "NCERT theorem proof for the general term and induction.",
+    "NCERT Example 1 for a binomial containing x² and 3/x.",
+    "NCERT Examples 2 and 3 for evaluation and comparison.",
+    "NCERT Example 4 and Exercise 7.1 Questions 11 and 14 for divisibility and identities."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 7.1 followed by the Miscellaneous Exercise on Chapter 7.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

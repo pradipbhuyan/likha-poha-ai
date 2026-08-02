@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 11",
+  "subject": "Business Studies",
+  "chapter": "Social Responsibilities of Business and Business Ethics",
+  "central_question": "Why must business balance profit with responsibilities to stakeholders, the environment and ethical standards, and how can this responsibility be put into practice?",
+  "in_scope_units": [
+    "Meaning of social responsibility and its distinction from legal responsibility.",
+    "Arguments for and against social responsibility.",
+    "Forces that make social responsibility a practical business reality.",
+    "Economic, legal, ethical and discretionary responsibilities.",
+    "Responsibilities toward owners, workers, consumers, government and community.",
+    "Business and environmental protection.",
+    "Causes and types of pollution and the need for pollution control.",
+    "Role of business in environmental protection.",
+    "Meaning and importance of business ethics.",
+    "Elements required to build an ethical business organisation."
+  ],
+  "banned_topics": [
+    "Detailed forms of business organisation, which belong to Chapter 2.",
+    "Detailed environmental science beyond the business responsibility context.",
+    "Financial accounting and statutory reporting procedures."
+  ],
+  "must_include_keywords": [
+    "social responsibility",
+    "legal responsibility",
+    "voluntary action",
+    "Corporate Social Responsibility",
+    "profit maximisation",
+    "long-term interest",
+    "government regulation",
+    "consumer consciousness",
+    "labour movement",
+    "economic responsibility",
+    "legal responsibility",
+    "ethical responsibility",
+    "discretionary responsibility",
+    "shareholders",
+    "workers",
+    "consumers",
+    "government",
+    "community",
+    "environment",
+    "pollution",
+    "air pollution",
+    "water pollution",
+    "land pollution",
+    "noise pollution",
+    "pollution control",
+    "health hazards",
+    "public image",
+    "environmental protection",
+    "business ethics",
+    "moral principles",
+    "code of ethics",
+    "top management commitment",
+    "compliance mechanism",
+    "employee involvement",
+    "measurement of results"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A business is socially responsible whenever it obeys the law.",
+      "correction": "Legal compliance is part of responsibility, but social responsibility also includes voluntary and ethical obligations beyond law."
+    },
+    {
+      "claim": "Social responsibility and profitability always conflict.",
+      "correction": "The chapter argues that responsible conduct can strengthen long-term cooperation, image, survival and profit."
+    },
+    {
+      "claim": "Only government is responsible for environmental protection.",
+      "correction": "Government, consumers, workers and business share responsibility, with business expected to take a leading preventive role."
+    },
+    {
+      "claim": "Business ethics means following written law.",
+      "correction": "Ethics concerns socially approved moral conduct and often demands behaviour beyond legal minimums."
+    },
+    {
+      "claim": "Publishing a code is sufficient to make a company ethical.",
+      "correction": "Leadership, compliance systems, employee involvement and measurement are also required."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Short Answer Question 1 to distinguish social and legal responsibility.",
+    "Use Long Answer Question 1 to build arguments for and against social responsibility.",
+    "Use Short Answer Question 5 to classify responsibility toward stakeholder groups.",
+    "Use Long Answer Questions 4 and 5 to evaluate pollution control and business action.",
+    "Use Long Answer Question 6 and Project 1 to design and implement a code of ethics."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section contains Short Answer Questions 1–6, Long Answer Questions 1–7 and three projects on codes of ethics and corporate social responsibility.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 4: Moving Charges and Magnetism",
+  "central_question": "How do moving charges and currents create magnetic fields, and how do magnetic fields act on charges, conductors and loops?",
+  "in_scope_units": [
+    "Oersted’s observation",
+    "Magnetic and Lorentz force",
+    "Force on a current-carrying conductor",
+    "Charged-particle motion",
+    "Biot–Savart law",
+    "Field of a circular loop",
+    "Ampere’s circuital law",
+    "Long solenoid",
+    "Parallel currents",
+    "Torque on a current loop",
+    "Moving-coil galvanometer"
+  ],
+  "banned_topics": [
+    "Magnetic material response from Chapter 5",
+    "Electromagnetic induction from Chapter 6",
+    "Alternating-current circuits from Chapter 7"
+  ],
+  "must_include_keywords": [
+    "Oersted",
+    "magnetic field",
+    "Lorentz force",
+    "tesla",
+    "force on a current-carrying conductor",
+    "circular motion",
+    "helical motion",
+    "cyclotron frequency",
+    "Biot–Savart law",
+    "current element",
+    "right-hand rule",
+    "circular current loop",
+    "Ampere’s circuital law",
+    "long straight wire",
+    "solenoid",
+    "parallel currents",
+    "definition of ampere",
+    "magnetic dipole moment",
+    "torque",
+    "moving-coil galvanometer",
+    "ammeter",
+    "voltmeter"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A magnetic field changes a charge’s kinetic energy.",
+      "correction": "Magnetic force is perpendicular to velocity and does no work."
+    },
+    {
+      "claim": "Positive and negative charges deflect in the same direction.",
+      "correction": "The sign of q reverses q(v × B)."
+    },
+    {
+      "claim": "Magnetic vector products can be treated as ordinary scalar products.",
+      "correction": "Direction from the cross product is essential."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 4.1: wire suspended by magnetic force",
+    "NCERT Example 4.2: Lorentz-force direction",
+    "NCERT Example 4.3: circular motion",
+    "NCERT Example 4.5: semicircular conductor",
+    "NCERT Example 4.6: multi-turn coil"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES cover Lorentz force, charged-particle motion, current-produced fields, loop torque and galvanometers.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Natural Vegetation",
+    "central_question": "How do climate, soil, altitude and human activity shape India’s vegetation, forests, wildlife and conservation strategies?",
+    "in_scope_units": [
+      "Meaning and regional diversity of natural vegetation.",
+      "Evergreen, semi-evergreen, deciduous and thorn forests.",
+      "Northern and southern montane forests.",
+      "Littoral, swamp and mangrove forests and wetlands.",
+      "Forest conservation policy and social forestry.",
+      "Wildlife conservation, species projects and biosphere reserves."
+    ],
+    "banned_topics": [
+      "Detailed monsoon circulation, which belongs to Climate.",
+      "Detailed physiographic divisions, which belong to Structure and Physiography.",
+      "Mineral classification and the rock cycle, which belong to Minerals and Rocks."
+    ],
+    "must_include_keywords": [
+      "natural vegetation",
+      "planted vegetation",
+      "tropical evergreen forest",
+      "semi-evergreen forest",
+      "tropical deciduous forest",
+      "monsoon forest",
+      "moist deciduous",
+      "dry deciduous",
+      "tropical thorn forest",
+      "montane forest",
+      "littoral forest",
+      "swamp forest",
+      "mangrove",
+      "wetland",
+      "Ramsar Convention",
+      "Western Ghats",
+      "Andaman and Nicobar Islands",
+      "Sunderbans",
+      "Sholas",
+      "transhumance",
+      "forest conservation",
+      "Forest Policy 1952",
+      "Forest Policy 1988",
+      "33 per cent",
+      "social forestry",
+      "urban forestry",
+      "rural forestry",
+      "agro-forestry",
+      "community forestry",
+      "farm forestry",
+      "Wildlife Act 1972",
+      "national park",
+      "wildlife sanctuary",
+      "Project Tiger",
+      "Project Elephant",
+      "biosphere reserve",
+      "UNESCO",
+      "Man and Biosphere Programme"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Any planted garden tree is natural vegetation.",
+        "correction": "Natural vegetation is a community left undisturbed long enough to adjust to climate and soil."
+      },
+      {
+        "claim": "Evergreen forests never shed leaves.",
+        "correction": "They lack one common leaf-shedding season, so the forest remains green."
+      },
+      {
+        "claim": "All deciduous forests receive the same rainfall.",
+        "correction": "The chapter distinguishes moist and dry deciduous types."
+      },
+      {
+        "claim": "Social forestry means only village tree planting.",
+        "correction": "It includes urban, rural and farm forestry."
+      },
+      {
+        "claim": "A biosphere reserve is identical to a national park.",
+        "correction": "A biosphere reserve is an ecosystem-level area linked with UNESCO’s MAB framework."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise 2(i) to define natural vegetation and evergreen conditions.",
+      "Use Exercise 2(ii) to explain social forestry.",
+      "Use Exercise 2(iii) to define biosphere reserves.",
+      "Use Exercise 3(ii) to discuss people’s participation in conservation."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter includes Exercises 1(i–v), 2(i–iv), 3(i–ii), and map and local-plant Project/Activity tasks."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Natural Vegetation\n\n## What you will learn\nYou will define natural vegetation and study evergreen, semi-evergreen and deciduous forests.\n\n## Simple explanation\nNatural vegetation develops through long adjustment to local climate and soil. India’s varied environment produces distinct forest structures.\n\n## Step-by-step breakdown\n- **Natural vegetation**: It is a plant community left undisturbed over a long period.\n- **Evergreen distribution**: It occurs in the Western Ghats, northeastern hills and Andaman and Nicobar Islands.\n- **Evergreen climate**: Warm humid areas receive over 200 cm rain and have mean annual temperature above 22°C.\n- **Structure**: The forests are stratified and have no common leaf-shedding season.\n- **Semi-evergreen**: These occur in less rainy parts and mix evergreen and moist deciduous trees.\n- **Deciduous**: Monsoon forests occur in regions receiving about 70–200 cm rainfall.\n\n## Worked example\nQuestion: Why do tropical evergreen forests remain green throughout the year?\n\nAnswer:\n- The chapter states that trees do not share one definite leaf-shedding season.\n- Different species renew leaves at different times.\n- Final answer: The canopy stays green because shedding is not simultaneous.\n\n## Common mistake\nEvergreen does not mean that an individual leaf lives forever.\n\n## Quick check question\nQuestion: Which forest is also called the monsoon forest?\nAnswer: The tropical deciduous forest.\nExplanation: Its seasonal leaf fall is closely linked with monsoon rainfall.\n\n## Summary\n- Natural and planted vegetation differ.\n- Evergreen forests need warm humid conditions.\n- Semi-evergreen is transitional.\n- Deciduous forests have moist and dry forms.",
+    "Core explanation": "# Core explanation: Natural Vegetation\n\n## What you will learn\nYou will examine thorn, montane, littoral and swamp forests.\n\n## Simple explanation\nDryness, altitude, salinity and tidal action create distinctive vegetation types.\n\n## Step-by-step breakdown\n- **Thorn forests**: They occur below 50 cm rainfall and contain grasses, shrubs and drought-adapted plants.\n- **Montane sequence**: Himalayan vegetation changes from tropical to temperate, alpine and tundra with height.\n- **Southern mountains**: Temperate forests called Sholas occur in high parts of the Nilgiris, Anaimalai and Palani hills.\n- **Wetlands**: The chapter includes lakes, reservoirs, lagoons, marshes, floodplains and island wetlands.\n- **Mangroves**: Salt-tolerant plants grow along tidal creeks, mudflats and estuaries.\n- **Important areas**: They are extensive in the Andaman and Nicobar Islands, Sunderbans and east-coast deltas.\n\n## Worked example\nQuestion: Why does Himalayan vegetation change with altitude?\n\nAnswer:\n- The chapter links increasing height with decreasing temperature and successive vegetation belts.\n- Each plant community occupies the climatic range it can tolerate.\n- Final answer: The vertical sequence reflects climatic change with altitude.\n\n## Common mistake\nMangroves are not ordinary freshwater forests; they are salt-tolerant tidal vegetation.\n\n## Quick check question\nQuestion: What are Sholas?\nAnswer: Temperate forests in higher southern mountain regions.\nExplanation: The chapter identifies them in the Nilgiris, Anaimalai and Palani hills.\n\n## Summary\n- Thorn forests develop under low rainfall.\n- Montane vegetation changes with height.\n- Wetlands have several forms.\n- Mangroves occupy saline tidal habitats.",
+    "Worked examples": "# Worked examples: Natural Vegetation\n\n## What you will learn\nYou will understand forest conservation policy and forms of social forestry.\n\n## Simple explanation\nForests support ecology, resources and livelihoods, so conservation combines protection, restoration and community tree planting.\n\n## Step-by-step breakdown\n- **Historical exploitation**: Commercial use changed forest structure and cleared forests for plantations and construction.\n- **Policy**: A national policy was adopted in 1952 and modified in 1988.\n- **Goals**: The policy aimed at 33 per cent forest cover, ecological stability and participation.\n- **Social forestry**: It manages forests and plants barren land for environmental and social development.\n- **Urban and rural forestry**: Urban forestry covers towns; rural forestry includes agro-forestry and community forestry.\n- **Farm forestry**: Farmers grow trees on their own land for commercial or non-commercial purposes.\n\n## Worked example\nQuestion: How does community forestry differ from farm forestry?\n\nAnswer:\n- Community forestry uses shared or public land for collective benefit, while farm forestry uses individual farm holdings.\n- The distinction is based on ownership and beneficiaries.\n- Final answer: Community forestry serves the wider community; farm forestry is undertaken by farmers on their land.\n\n## Common mistake\nConservation does not mean banning every form of forest use; the chapter supports sustainable management.\n\n## Quick check question\nQuestion: What forest-cover target is stated in the policy discussion?\nAnswer: Thirty-three per cent of the geographical area.\nExplanation: It is listed among the policy objectives.\n\n## Summary\n- Forest policy combines conservation and human needs.\n- The 1988 policy stresses sustainability.\n- Social forestry has several forms.\n- Community participation is central.",
+    "Exam-style problems": "# Exam-style problems: Natural Vegetation\n\n## What you will learn\nYou will study wildlife decline, legal protection and species projects.\n\n## Simple explanation\nHabitat loss, resource pressure, grazing, hunting, poaching and fire have reduced wildlife, requiring law and protected areas.\n\n## Step-by-step breakdown\n- **Wildlife heritage**: India’s varied ecosystems support rich plant and animal diversity.\n- **Decline**: Land clearance, exploitation, grazing, hunting, poaching and fire damage wildlife.\n- **Wildlife Act**: The 1972 Act created a legal framework and was comprehensively amended in 1991.\n- **Protected areas**: National parks and sanctuaries provide legal protection.\n- **Project Tiger**: Launched in 1973 to maintain viable tiger populations and protect important habitats.\n- **Project Elephant**: Launched in 1992 to support free-ranging elephants in natural habitats.\n\n## Worked example\nQuestion: Why is habitat protection as important as protecting individual animals?\n\nAnswer:\n- The chapter links wildlife decline to clearance and disturbance of habitat.\n- Animals require food, shelter, breeding space and ecological relationships.\n- Final answer: Long-term wildlife survival requires functioning habitats, not only protection of individual animals.\n\n## Common mistake\nKeeping animals in zoos alone does not fulfil the chapter’s conservation approach.\n\n## Quick check question\nQuestion: When was Project Elephant launched?\nAnswer: In 1992.\nExplanation: It supports long-term survival of free-ranging elephant populations.\n\n## Summary\n- Wildlife decline is linked with habitat disturbance.\n- Law provides protection.\n- Protected areas conserve ecosystems.\n- Tiger and elephant projects focus on species and habitat.",
+    "Revision and recap": "# Revision and recap: Natural Vegetation\n\n## What you will learn\nYou will understand biosphere reserves and integrate the chapter’s conservation themes.\n\n## Simple explanation\nA biosphere reserve protects a representative terrestrial or coastal ecosystem and combines conservation, development and learning.\n\n## Step-by-step breakdown\n- **Definition**: It is a representative ecosystem recognised under UNESCO’s Man and Biosphere framework.\n- **Functions**: It supports conservation, sustainable development, research, education and monitoring.\n- **Indian network**: The chapter lists 18 reserves and states that 12 are recognised in UNESCO’s World Network.\n- **Examples**: Nilgiri, Nanda Devi, Sunderban, Gulf of Mannar and Great Nicobar are listed.\n- **Ecosystem view**: Reserves connect habitats, species, landscapes and human use.\n- **Integration**: Forest types, policy, wildlife law and reserves address connected but distinct questions.\n\n## Worked example\nQuestion: Why is a biosphere reserve broader than a single-species project?\n\nAnswer:\n- The chapter defines it as a representative ecosystem with conservation, development and learning functions.\n- Its concern extends to ecological processes and human–environment relationships.\n- Final answer: A biosphere reserve has ecosystem-wide goals, while a species project focuses on one animal and its habitat.\n\n## Common mistake\nDo not memorise reserve names without understanding their combined ecological and developmental purpose.\n\n## Quick check question\nQuestion: Which UNESCO programme is associated with biosphere reserves?\nAnswer: The Man and Biosphere Programme.\nExplanation: The chapter places biosphere reserves within this framework.\n\n## Summary\n- Biosphere reserves protect representative ecosystems.\n- They combine conservation and sustainable development.\n- India has a national and UNESCO-linked network.\n- Conservation requires ecosystem thinking."
+  }
+}

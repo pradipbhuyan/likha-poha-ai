@@ -1,0 +1,92 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Psychology",
+    "chapter": "What is Psychology?",
+    "central_question": "How does psychology scientifically study mind, experience and behaviour, and apply this knowledge across disciplines and everyday life?",
+    "in_scope_units": [
+      "Introduction and psychology as the study of mental processes, experiences and behaviour.",
+      "Psychology as a discipline and as both a natural science and a social science.",
+      "Understanding mind and behaviour, including overt and covert behaviour.",
+      "Popular notions and the difference between common beliefs and scientific evidence.",
+      "Evolution through structuralism, functionalism, Gestalt psychology, behaviourism, psychoanalysis, humanistic and cognitive perspectives.",
+      "Development of psychology in India.",
+      "Branches of psychology and professional roles.",
+      "Psychology and other disciplines.",
+      "Psychology in everyday life."
+    ],
+    "banned_topics": [
+      "Detailed research designs and ethical procedures, which belong to Methods of Enquiry in Psychology.",
+      "Detailed theories of learning, memory and perception treated in later chapters."
+    ],
+    "must_include_keywords": [
+      "mental processes",
+      "experience",
+      "behaviour",
+      "overt behaviour",
+      "covert behaviour",
+      "natural science",
+      "social science",
+      "mind–body relationship",
+      "scientific psychology",
+      "popular notions",
+      "Wilhelm Wundt",
+      "structuralism",
+      "functionalism",
+      "Gestalt psychology",
+      "behaviourism",
+      "John Watson",
+      "psychoanalysis",
+      "Sigmund Freud",
+      "humanistic psychology",
+      "cognitive perspective",
+      "development of psychology in India",
+      "cognitive psychology",
+      "biological psychology",
+      "developmental psychology",
+      "social psychology",
+      "cultural psychology",
+      "environmental psychology",
+      "health psychology",
+      "clinical psychology",
+      "counselling psychology",
+      "industrial and organisational psychology",
+      "educational psychology",
+      "sports psychology",
+      "interdisciplinary approach"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Psychology is only the study of the mind.",
+        "correction": "The chapter defines psychology through mental processes, experiences and behaviour."
+      },
+      {
+        "claim": "A psychiatrist and a clinical psychologist have the same training and authority.",
+        "correction": "A psychiatrist has medical training and can prescribe medication; a clinical psychologist is trained in psychology and cannot prescribe it."
+      },
+      {
+        "claim": "Popular beliefs are automatically psychological facts.",
+        "correction": "Scientific psychology relies on systematic observation and evidence."
+      },
+      {
+        "claim": "Psychology is exclusively a natural science.",
+        "correction": "It shares methods and concerns with both natural and social sciences."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Review Question 1 on overt and covert behaviour.",
+      "NCERT Review Question 2 on scientific psychology and popular notions.",
+      "NCERT Review Question 3 on the evolution of psychology.",
+      "NCERT Review Question 5 on professional roles.",
+      "NCERT Review Question 7 on environmental psychology."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–8 and two Project Ideas."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: What is Psychology?\n\n## What you will learn\nYou will learn the chapter’s definition of psychology and distinguish overt from covert behaviour. You will see why experience, mental processes and behaviour must be studied together.\n\n## Simple explanation\nPsychology investigates what people do, what they experience and the processes involved in knowing, feeling and acting.\n\n## Step-by-step breakdown\n- **Psychology**: It studies mental processes, experiences and behaviour in context.\n- **Experience**: Experience is subjective and shaped by internal and external conditions.\n- **Mental processes**: Thinking, remembering, learning and feeling help people understand and respond.\n- **Overt behaviour**: Speaking, walking and writing are directly observable.\n- **Covert behaviour**: Thinking and silently worrying are inferred rather than directly seen.\n\n## Worked example\nQuestion: Using NCERT Review Question 1, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 1\", \"extract_text\": \"What is behaviour? Give examples of overt and covert behaviour.\", \"note\": \"From the Review Questions section of What is Psychology?.\"}\n```\n\nAnswer:\n- Behaviour includes responses or activities of a person or organism.\n- Visible acts such as speaking are overt; internal activities such as thinking are covert.\n- Both are relevant because psychology studies behaviour together with mental processes and experience.\n- Final answer: Behaviour includes observable actions and internal responses; overt behaviour is directly seen, while covert behaviour is inferred.\n\n## Common mistake\nA common mistake is to call only visible actions behaviour. Psychology also studies covert activity through suitable evidence.\n\n## Quick check question\nQuestion: Why does the chapter define psychology using three terms?\nAnswer: Because mental processes, experience and behaviour capture different but connected parts of psychological functioning.\nExplanation: No one term alone describes the whole subject matter.\n\n## Summary\n- Psychology studies processes, experience and behaviour.\n- Behaviour can be overt or covert.\n- Psychological explanations seek systematic evidence.",
+    "Core explanation": "# Core explanation: What is Psychology?\n\n## What you will learn\nYou will understand why psychology is both a natural and a social science. You will examine mind–body relations and the importance of context.\n\n## Simple explanation\nHuman behaviour has biological foundations but is also shaped by culture, relationships and meaning.\n\n## Step-by-step breakdown\n- **Natural-science orientation**: Psychology examines brain, biology and observable relations systematically.\n- **Social-science orientation**: Behaviour is embedded in society, culture and history.\n- **Mind and body**: Mental events are related to bodily and brain processes.\n- **Context**: The same person may behave differently in different settings.\n- **Interdisciplinary character**: Psychology shares questions with biology, medicine, sociology, anthropology and the humanities.\n\n## Worked example\nQuestion: Using NCERT Review Question 4, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 4\", \"extract_text\": \"What are the problems for which collaboration of psychologists with other disciplines can be fruitful? Take any two problems to explain.\", \"note\": \"From the Review Questions section of What is Psychology?.\"}\n```\n\nAnswer:\n- Brain and behaviour connect psychology with biology, medicine and neurology.\n- Behaviour in socio-cultural settings connects psychology with sociology, anthropology and economics.\n- Health, education, environmental conduct and workplace functioning have several interacting dimensions.\n- Final answer: Collaboration is fruitful when a problem has biological, psychological and social dimensions that no single discipline can explain fully.\n\n## Common mistake\nA common mistake is to force psychology into only one category of science. The chapter gives it natural- and social-science dimensions.\n\n## Quick check question\nQuestion: Why is context important?\nAnswer: Because physical, social and cultural settings influence behaviour and experience.\nExplanation: A response may be misunderstood when separated from the conditions in which it occurs.\n\n## Summary\n- Psychology spans natural and social science.\n- Mind, body and behaviour are interrelated.\n- Context shapes meaning.\n- Complex problems benefit from interdisciplinary work.",
+    "Worked examples": "# Worked examples: What is Psychology?\n\n## What you will learn\nYou will trace the major perspectives that shaped modern psychology. You will compare what each perspective treated as the proper subject of study.\n\n## Simple explanation\nPsychology developed through debate about consciousness, function, wholes, observable behaviour, unconscious processes, human potential and cognition.\n\n## Step-by-step breakdown\n- **Wundt and structuralism**: Early experimental work analysed conscious experience.\n- **Functionalism**: It asked how mental processes and behaviour help adaptation.\n- **Gestalt psychology**: It emphasised organised wholes rather than isolated elements.\n- **Behaviourism**: Watson focused on observable behaviour and environmental conditions.\n- **Psychoanalysis**: Freud emphasised unconscious forces and conflicts.\n- **Humanistic and cognitive views**: They restored attention to growth, choice and mental processes.\n\n## Worked example\nQuestion: Using NCERT Review Question 3, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 3\", \"extract_text\": \"Give a brief account of the evolution of psychology.\", \"note\": \"From the Review Questions section of What is Psychology?.\"}\n```\n\nAnswer:\n- Modern psychology began with experimental study of conscious experience.\n- Functionalism, Gestalt, behaviourism and psychoanalysis changed its central questions.\n- Humanistic and cognitive approaches expanded attention to potential and information processing.\n- Final answer: Modern psychology emerged through several perspectives, each contributing concepts and methods rather than one school explaining everything.\n\n## Common mistake\nA common mistake is to memorise school names without their conceptual differences.\n\n## Quick check question\nQuestion: What was behaviourism’s main methodological emphasis?\nAnswer: The objective study of observable behaviour.\nExplanation: It shifted attention from unverifiable introspection toward measurable relations between conditions and responses.\n\n## Summary\n- Psychology evolved through several schools.\n- Each school changed the focus of enquiry.\n- Gestalt stressed wholes.\n- Behaviourism, psychoanalysis, humanism and cognition broadened explanation.",
+    "Exam-style problems": "# Exam-style problems: What is Psychology?\n\n## What you will learn\nYou will review the development of psychology in India and the range of modern branches. You will distinguish related professional roles.\n\n## Simple explanation\nAs psychology expanded, specialised branches developed for cognition, development, society, health, work, education and psychological difficulties.\n\n## Step-by-step breakdown\n- **Psychology in India**: The discipline grew through teaching, laboratories, research and applied work.\n- **Cognitive and biological psychology**: They study mental processes and biological bases.\n- **Developmental, social and cultural psychology**: They study change across life and social-cultural influence.\n- **Clinical and counselling psychology**: They address disorders and adjustment, with overlapping but different emphases.\n- **Organisational and educational psychology**: They apply psychology to work and learning.\n- **Environmental, health and sports psychology**: They study surroundings, health behaviour and performance.\n\n## Worked example\nQuestion: Using NCERT Review Question 5, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 5\", \"extract_text\": \"Differentiate between (a) a psychologist and a psychiatrist (b) a counsellor and a clinical psychologist.\", \"note\": \"From the Review Questions section of What is Psychology?.\"}\n```\n\nAnswer:\n- A psychologist is trained in psychology; a psychiatrist has medical training.\n- Psychiatrists can prescribe medication, while clinical psychologists cannot.\n- Counselling often addresses everyday adjustment and career concerns; clinical psychology more directly addresses psychological disorders, though work overlaps.\n- Final answer: These professions share the aim of helping people but differ in training, medical authority and typical problems handled.\n\n## Common mistake\nA common mistake is to call every psychological helper a psychiatrist.\n\n## Quick check question\nQuestion: Which branch studies the effect of pollution and natural disasters on behaviour?\nAnswer: Environmental psychology.\nExplanation: It studies interactions between physical conditions and human behaviour.\n\n## Summary\n- Psychology has many specialised branches.\n- Branches differ by questions and settings.\n- Professional roles overlap but are not identical.\n- Indian psychology includes academic and applied development.",
+    "Revision and recap": "# Revision and recap: What is Psychology?\n\n## What you will learn\nYou will integrate psychology’s links with other disciplines and its usefulness in everyday life. You will apply psychological knowledge responsibly.\n\n## Simple explanation\nPsychology contributes to education, health, work, relationships, environmental action and social welfare through evidence-based understanding.\n\n## Step-by-step breakdown\n- **Self-understanding**: Psychological knowledge supports reflection on learning, emotion and relationships.\n- **Education**: It informs teaching, guidance and support for different learners.\n- **Health**: It helps explain stress, coping and health behaviour.\n- **Work**: It contributes to selection, motivation, leadership and communication.\n- **Environment and society**: It can promote responsible conduct and analyse social problems.\n- **Responsible application**: Concepts must be applied with evidence and sensitivity to context.\n\n## Worked example\nQuestion: Using NCERT Review Question 7, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 7\", \"extract_text\": \"How can knowledge of the field of environmental psychology be used to promote environment friendly behaviour?\", \"note\": \"From the Review Questions section of What is Psychology?.\"}\n```\n\nAnswer:\n- Environmental psychology studies how physical conditions and behaviour influence one another.\n- Attitudes, habits, incentives and social influence help explain conservation or waste.\n- Interventions can therefore be designed for specific settings and practices.\n- Final answer: Environmental psychology promotes environment-friendly behaviour by identifying behavioural causes and changing awareness, habits and social practices.\n\n## Common mistake\nA common mistake is to treat psychology as instant advice rather than evidence-based knowledge.\n\n## Quick check question\nQuestion: What makes psychology useful in solving a social problem?\nAnswer: It provides concepts and methods for understanding behaviour and designing informed interventions.\nExplanation: Social problems involve people, institutions and contexts that psychology can investigate.\n\n## Summary\n- Psychology links with many disciplines.\n- Applications range from personal life to public problems.\n- Evidence and context guide responsible use.\n- The chapter provides a foundation for later topics."
+  }
+}

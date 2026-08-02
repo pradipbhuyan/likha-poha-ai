@@ -1,0 +1,111 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Psychology",
+    "chapter": "Motivation and Emotion",
+    "central_question": "What drives goal-directed behaviour, how are emotions experienced and expressed, and how can people regulate negative states while strengthening positive ones?",
+    "in_scope_units": [
+      "Nature of motivation and the motivational cycle.",
+      "Biological and psychosocial motives.",
+      "Hunger, thirst and sex motives.",
+      "Affiliation, power, achievement, curiosity and exploration.",
+      "Maslow’s hierarchy of needs.",
+      "Nature of emotion.",
+      "Verbal and non-verbal expression.",
+      "Cultural influences on emotional expression and labeling.",
+      "Managing negative emotions.",
+      "Post-traumatic stress disorder.",
+      "Management of examination anxiety.",
+      "Anger management.",
+      "Enhancing positive emotions."
+    ],
+    "banned_topics": [
+      "Detailed clinical diagnosis and treatment plans for PTSD or anxiety beyond the textbook overview.",
+      "Detailed neuroscience of emotion beyond the chapter’s account."
+    ],
+    "must_include_keywords": [
+      "motivation",
+      "motive",
+      "need",
+      "drive",
+      "arousal",
+      "goal-directed behaviour",
+      "incentive",
+      "motivational cycle",
+      "biological motives",
+      "psychosocial motives",
+      "instinct",
+      "hunger",
+      "feeding-satiety system",
+      "thirst",
+      "osmoreceptors",
+      "sex motive",
+      "affiliation",
+      "power motive",
+      "David McClelland",
+      "achievement motivation",
+      "n-Ach",
+      "curiosity",
+      "exploration",
+      "Maslow",
+      "physiological needs",
+      "safety needs",
+      "belongingness",
+      "esteem",
+      "self-actualisation",
+      "emotion",
+      "feeling",
+      "mood",
+      "basic emotions",
+      "paralanguage",
+      "facial expression",
+      "culture",
+      "emotion labeling",
+      "negative emotions",
+      "PTSD",
+      "examination anxiety",
+      "cognitive restructuring",
+      "anger management",
+      "positive emotions",
+      "optimism",
+      "gratitude"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every motive is purely biological or purely social.",
+        "correction": "The chapter stresses interaction and varying combinations."
+      },
+      {
+        "claim": "A need and a drive are identical.",
+        "correction": "A need is a deficit; a drive is the tension or arousal it produces."
+      },
+      {
+        "claim": "Maslow’s order predicts every action without exception.",
+        "correction": "The chapter notes real actions that contradict a rigid hierarchy."
+      },
+      {
+        "claim": "Emotion, feeling and mood are exact synonyms.",
+        "correction": "Emotion is broader; feeling emphasises pleasure–pain, and mood lasts longer with lower intensity."
+      },
+      {
+        "claim": "Anger is automatically caused by other people.",
+        "correction": "Appraisal and thought influence anger, so it can be regulated."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Review Question 1 on motivation.",
+      "NCERT Review Question 3 on psychosocial motives.",
+      "NCERT Review Question 4 on Maslow.",
+      "NCERT Review Question 5 on culture and emotion.",
+      "NCERT Review Question 6 on managing negative emotions."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–6 and two Project Ideas."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Motivation and Emotion\n\n## What you will learn\nYou will define motivation and follow the motivational cycle. You will distinguish need, drive, goal and incentive.\n\n## Simple explanation\nMotivation explains what energises, directs and sustains behaviour until a goal is reached.\n\n## Step-by-step breakdown\n- **Motivation**: Driving forces behind persistent goal-directed behaviour.\n- **Need**: A lack or deficit of a necessity.\n- **Drive**: Tension or arousal produced by a need.\n- **Goal-directed behaviour**: Activity is organised toward an outcome that can reduce the drive.\n- **Achievement and reduction**: Attaining the goal reduces arousal and restores balance.\n- **Prediction**: A strong motive helps predict effort across situations.\n- **Broad cluster**: Instincts, drives, needs, goals and incentives are motivational concepts.\n\n## Worked example\nQuestion: Using NCERT Review Question 1, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 1\", \"extract_text\": \"Explain the concept of motivation.\", \"note\": \"From the Review Questions section of Motivation and Emotion.\"}\n```\n\nAnswer:\n- Motivation explains what moves behaviour.\n- Motives are general states that help predict persistent effort.\n- The motivational cycle runs from need through drive and arousal to goal-directed action and reduction.\n- Final answer: Motivation is the set of forces that energise, direct and sustain behaviour toward goals.\n\n## Common mistake\nMotivation is not only conscious desire; biological drives and incentives also belong to the concept.\n\n## Quick check question\nQuestion: How does a drive differ from a need?\nAnswer: A need is the deficit; a drive is the aroused tension produced by it.\nExplanation: The drive energises behaviour that may reduce the need.\n\n## Summary\n- Motivation energises and directs behaviour.\n- Needs produce drives.\n- Goals organise action.\n- Achievement reduces arousal.",
+    "Core explanation": "# Core explanation: Motivation and Emotion\n\n## What you will learn\nYou will compare biological and psychosocial motives. You will study hunger, thirst, sex, affiliation, power, achievement and curiosity.\n\n## Simple explanation\nBodily regulation and social learning work together in motivating behaviour.\n\n## Step-by-step breakdown\n- **Hunger**: Internal fuel signals interact with sight, smell, taste and social cues.\n- **Thirst**: Cellular dehydration and reduced blood volume activate regulation including osmoreceptors.\n- **Sex motive**: It is biologically regulated but is not required for individual survival or simple homeostasis.\n- **Affiliation**: The need for physical and psychological closeness and friendly relations.\n- **Power**: The motive to influence, control, lead or strengthen reputation.\n- **Achievement**: n-Ach directs effort toward excellence, moderate challenge and feedback.\n- **Curiosity**: Novelty and information can be rewarding and motivate exploration.\n\n## Worked example\nQuestion: Using NCERT Review Question 3, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 3\", \"extract_text\": \"How do the needs for achievement, affiliation, and power influence the behaviour of adolescents? Explain with examples.\", \"note\": \"From the Review Questions section of Motivation and Emotion.\"}\n```\n\nAnswer:\n- Achievement directs effort toward standards, challenge and feedback.\n- Affiliation directs adolescents toward companionship, acceptance and friendly relations.\n- Power directs attempts to influence, lead, compete or enhance reputation.\n- Final answer: These motives organise behaviour around mastery, belonging or influence, and differences in their strength produce different patterns of action.\n\n## Common mistake\nSex cannot be classified as only a simple homeostatic drive.\n\n## Quick check question\nQuestion: Why are biological and psychosocial motives not completely separate?\nAnswer: Bodily and environmental influences combine in arousing and directing behaviour.\nExplanation: Hunger itself reflects internal regulation and external food cues.\n\n## Summary\n- Biological and psychosocial motives interact.\n- Hunger and thirst have complex regulation.\n- Affiliation, power and achievement organise social goals.\n- Curiosity motivates exploration.",
+    "Worked examples": "# Worked examples: Motivation and Emotion\n\n## What you will learn\nYou will explain Maslow’s hierarchy and define emotion, feeling and mood.\n\n## Simple explanation\nMaslow orders needs from survival to full development, but actual behaviour does not always follow a rigid ladder.\n\n## Step-by-step breakdown\n- **Physiological needs**: Survival needs such as hunger and thirst form the base.\n- **Safety**: Physical and psychological protection.\n- **Belongingness and esteem**: Connection, love, self-worth and recognition.\n- **Self-actualisation**: Fullest development of potential, creativity and openness.\n- **Limits of hierarchy**: People may risk safety for other values or persons.\n- **Emotion**: A complex pattern of arousal, subjective feeling and cognitive interpretation.\n- **Feeling**: The pleasure–pain aspect of emotion.\n- **Mood**: A longer-lasting, generally less intense affective state.\n- **Basic emotions**: The chapter discusses widely recognised states including anger, fear, happiness, sadness, disgust and surprise.\n\n## Worked example\nQuestion: Using NCERT Review Question 4, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 4\", \"extract_text\": \"What is the basic idea behind Maslow’s hierarchy of needs? Explain with suitable examples.\", \"note\": \"From the Review Questions section of Motivation and Emotion.\"}\n```\n\nAnswer:\n- Maslow orders needs from physiological through safety, belongingness and esteem to self-actualisation.\n- Lower unsatisfied needs generally dominate before higher needs become prominent.\n- The chapter cautions that real actions may contradict a rigid sequence.\n- Final answer: Maslow proposes an ascending organisation in which basic deficits generally take priority and self-actualisation represents fuller development.\n\n## Common mistake\nThe hierarchy is a broad model, not an inflexible law, and few people reach the highest level.\n\n## Quick check question\nQuestion: What components make up emotion?\nAnswer: Physiological arousal, subjective feeling and cognitive interpretation.\nExplanation: Emotion integrates bodily and psychological processes.\n\n## Summary\n- Maslow orders several levels of need.\n- The order is not absolute.\n- Self-actualisation concerns potential.\n- Emotion is broader than feeling or mood.",
+    "Exam-style problems": "# Exam-style problems: Motivation and Emotion\n\n## What you will learn\nYou will examine verbal and non-verbal emotional expression and cultural influence.\n\n## Simple explanation\nOther people infer internal emotion from words, voice, face, body movement and distance, all shaped partly by culture.\n\n## Step-by-step breakdown\n- **Verbal expression**: Spoken content communicates emotion.\n- **Paralanguage**: Pitch, loudness and timing convey emotional meaning.\n- **Facial expression**: The face communicates intensity and pleasantness.\n- **Kinetic and proximal channels**: Gesture, posture, movement and physical distance contribute.\n- **Classical dance**: Trained eye, hand, leg and body movements express emotional states.\n- **Gaze**: The chapter describes cultural differences in direct and peripheral gaze.\n- **Labels**: Languages differ in the categories and number of labels used.\n- **Shared and specific aspects**: Some basic expressions are widely recognised, while other display practices are culture-specific.\n\n## Worked example\nQuestion: Using NCERT Review Question 5, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 5\", \"extract_text\": \"How does culture influence the expression of emotions?\", \"note\": \"From the Review Questions section of Motivation and Emotion.\"}\n```\n\nAnswer:\n- Culture shapes gaze, gesture, posture, distance and accepted display.\n- Languages and traditions differ in emotional labels.\n- Several basic facial expressions nevertheless have broad recognition.\n- Final answer: Culture regulates channels, display rules and categories of emotion while some basic patterns remain widely shared.\n\n## Common mistake\nFacial expression is neither wholly universal nor wholly cultural.\n\n## Quick check question\nQuestion: What is paralanguage?\nAnswer: The non-verbal vocal aspect of speech, including pitch, loudness and temporal characteristics.\nExplanation: It conveys emotional meaning beyond literal words.\n\n## Summary\n- Emotion is expressed verbally and non-verbally.\n- Face and body are major channels.\n- Culture shapes gaze and labels.\n- Shared and culture-specific patterns coexist.",
+    "Revision and recap": "# Revision and recap: Motivation and Emotion\n\n## What you will learn\nYou will apply strategies for managing negative emotions, examination anxiety and anger while strengthening positive emotions.\n\n## Simple explanation\nEmotions are necessary, but awareness, realistic appraisal, support and constructive action prevent them from overwhelming behaviour.\n\n## Step-by-step breakdown\n- **Self-awareness and appraisal**: Identify feelings and evaluate events objectively.\n- **Cognitive restructuring**: Replace negative interpretations by considering another side of the event.\n- **Relationships and empathy**: Support and mutual understanding improve coping.\n- **Examination anxiety**: Preparation, rehearsal, positive thinking, support, relaxation and exercise are useful.\n- **PTSD**: Severe trauma may produce persistent flashbacks, overwhelming thoughts and maladaptive arousal.\n- **Anger management**: Control self-talk, reject irrational assumptions and express anger constructively.\n- **Positive emotions**: Hope, joy, optimism, contentment and gratitude broaden perceived options.\n- **Enhancement**: Positive meaning, mastery, close relationships and purpose support well-being.\n\n## Worked example\nQuestion: Using NCERT Review Question 6, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 6\", \"extract_text\": \"Why is it important to manage negative emotions? Suggest ways to manage negative emotions.\", \"note\": \"From the Review Questions section of Motivation and Emotion.\"}\n```\n\nAnswer:\n- Excessive negative emotion can impair health, relationships, concentration and effective action.\n- The chapter recommends awareness, objective appraisal, restructuring, creative activity, support, empathy and community service.\n- For anxiety and anger it adds preparation, rehearsal, relaxation, exercise and constructive thought control.\n- Final answer: Negative emotions should be regulated through awareness, realistic thinking, support and constructive behaviour so that they protect rather than overwhelm the person.\n\n## Common mistake\nNot all anxiety is harmful; a moderate level may motivate preparation, while high anxiety impairs performance.\n\n## Quick check question\nQuestion: How do positive emotions support coping?\nAnswer: They broaden the range of actions and ideas and help recovery after adversity.\nExplanation: Hope and optimism encourage planning, problem solving and resilience.\n\n## Summary\n- Management begins with awareness and appraisal.\n- Thoughts can be restructured.\n- Preparation and relaxation help anxiety.\n- Anger can be expressed constructively.\n- Positive emotions strengthen coping."
+  }
+}

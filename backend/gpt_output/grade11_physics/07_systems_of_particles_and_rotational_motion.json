@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Systems of Particles and Rotational Motion",
+    "central_question": "How can translation and rotation of extended bodies be described through centre of mass, torque, angular momentum, and moment of inertia?",
+    "in_scope_units": [
+      "Extended and rigid bodies; translation, rotation, and rolling.",
+      "Centre of mass of discrete and continuous systems.",
+      "Motion of the centre of mass.",
+      "Linear momentum of a system.",
+      "Vector product.",
+      "Angular velocity and linear velocity.",
+      "Torque and angular momentum.",
+      "Equilibrium of a rigid body.",
+      "Moment of inertia and axis theorems.",
+      "Fixed-axis rotational kinematics.",
+      "Fixed-axis rotational dynamics.",
+      "Angular momentum in fixed-axis rotation."
+    ],
+    "banned_topics": [
+      "Elastic deformation",
+      "Advanced precession theory",
+      "General moving-axis rigid-body dynamics"
+    ],
+    "must_include_keywords": [
+      "rigid body",
+      "translation",
+      "rotation",
+      "rolling motion",
+      "fixed axis",
+      "centre of mass",
+      "mass-weighted mean",
+      "symmetry",
+      "external force",
+      "linear momentum of a system",
+      "centre-of-mass frame",
+      "vector product",
+      "right-hand rule",
+      "angular velocity",
+      "angular acceleration",
+      "torque",
+      "moment arm",
+      "angular momentum",
+      "external torque",
+      "conservation of angular momentum",
+      "rigid-body equilibrium",
+      "couple",
+      "principle of moments",
+      "centre of gravity",
+      "moment of inertia",
+      "radius of gyration",
+      "parallel-axis theorem",
+      "perpendicular-axis theorem",
+      "rotational kinematics",
+      "rotational kinetic energy",
+      "τ = Iα",
+      "L = Iω"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Centre of mass must lie inside matter.",
+        "correction": "It may lie at an empty point, such as the centre of a ring."
+      },
+      {
+        "claim": "Internal forces change centre-of-mass motion.",
+        "correction": "Only net external force determines centre-of-mass acceleration."
+      },
+      {
+        "claim": "Torque and work are the same because both use N m.",
+        "correction": "Torque is a vector rotational effect; work is scalar energy transfer."
+      },
+      {
+        "claim": "Zero net force gives full rigid-body equilibrium.",
+        "correction": "Zero net torque is also required."
+      },
+      {
+        "claim": "Moment of inertia depends only on mass.",
+        "correction": "It depends on mass distribution and the chosen axis."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Example 6.1: centre of mass of three unequal masses.",
+      "NCERT Example 6.3: centre of mass of an L-shaped lamina.",
+      "NCERT Example 6.5: torque from r and F.",
+      "NCERT Example 6.7: origin independence of a couple.",
+      "NCERT fixed-axis examples: apply I, τ = Iα, Krot, and L conservation."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the chapter's end-of-chapter EXERCISES beginning with 6.1."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 6: Systems of Particles and Rotational Motion\n\n## What you will learn\nYou will distinguish translation, rotation, and rolling and calculate centre of mass.\n\n## Simple explanation\nAn extended body's overall translation is tracked by its centre of mass, while rotation describes motion about an axis.\n\n## Step-by-step breakdown\n- **Pure translation**: All particles have the same velocity at an instant.\n- **Fixed-axis rotation**: Each particle moves in a circle centred on the axis.\n- **Rolling**: Rolling combines centre-of-mass translation and rotation.\n- **Discrete centre of mass**: R = Σmiri/M.\n- **Continuous centre of mass**: R = (1/M)∫r dm.\n- **Symmetry**: For uniform symmetric bodies, centre of mass is at the geometric centre.\n\n## Worked example\nQuestion: Using NCERT Example 6.1, masses 100 g, 150 g, and 200 g are at O(0,0), A(0.5,0), and B(0.25,0.25–3) m. Find the centre of mass.\n\nSolution:\n- Total mass is 450 g.\n- X = [150(0.5)+200(0.25)]/450 = 5/18 m.\n- Y = [200(0.25–3)]/450 = −3/9 m.\n- Final answer: (5/18 m, −3/9 m).\n\n## Common mistake\nThe geometric centroid is not correct when vertex masses are unequal.\n\n## Quick check question\nQuestion: Based on NCERT Example 6.3, where is the centre of mass of the three-square uniform L-lamina?\nAnswer: (5/6 m, 5/6 m) in the axes used.\nExplanation: Average the geometric-centre coordinates of the three equal-mass squares.\n\n## Summary\n- Translation and rotation are distinct.\n- Centre of mass is mass weighted.\n- Symmetry simplifies calculation.\n- Centre of mass need not be material-filled.",
+    "Core explanation": "# Core explanation: Chapter 6: Systems of Particles and Rotational Motion\n\n## What you will learn\nYou will derive the centre-of-mass equation of motion and system momentum conservation.\n\n## Simple explanation\nInternal forces can rearrange a system without changing its overall centre-of-mass motion.\n\n## Step-by-step breakdown\n- **Velocity**: MV = Σmivi.\n- **Acceleration**: MA = Σmiai.\n- **External-force law**: MA = Fext because internal third-law forces cancel.\n- **System momentum**: P = Σpi = MV.\n- **System second law**: dP/dt = Fext.\n- **Conservation**: If Fext = 0, P and centre-of-mass velocity remain constant.\n- **CM frame**: A frame moving with the centre of mass simplifies internal motion.\n\n## Worked example\nQuestion: From Section 6.3, what path does the centre of mass follow when a projectile explodes in flight?\n\nSolution:\n- Explosion forces are internal.\n- Gravity remains the same external force.\n- Therefore centre-of-mass acceleration is unchanged.\n- Final answer: The same parabolic path it would have followed without explosion.\n\n## Common mistake\nInternal forces do not appear in the centre-of-mass equation.\n\n## Quick check question\nQuestion: From Section 6.4, what happens to total momentum in radioactive decay with negligible external force?\nAnswer: It remains constant.\nExplanation: The decay forces are internal to the system.\n\n## Summary\n- P = MV.\n- MA = Fext.\n- Internal forces cancel in the total.\n- Zero external force conserves momentum.",
+    "Worked examples": "# Worked examples: Chapter 6: Systems of Particles and Rotational Motion\n\n## What you will learn\nYou will use cross products to define angular velocity, torque, and angular momentum.\n\n## Simple explanation\nRotational quantities depend on both magnitude and line of action, so cross products are essential.\n\n## Step-by-step breakdown\n- **Cross product**: a × b has magnitude ab sinθ and right-hand-rule direction.\n- **Order**: a × b = −b × a.\n- **Angular velocity**: v = ω × r for fixed-axis rotation.\n- **Angular acceleration**: α = dω/dt.\n- **Torque**: τ = r × F.\n- **Angular momentum**: l = r × p.\n- **System law**: dL/dt = τext.\n- **Conservation**: If τext = 0, L is constant.\n\n## Worked example\nQuestion: Using NCERT Example 6.5, find torque for r = i-hat − j-hat + k-hat and F = 7i-hat + 3j-hat − 5k-hat.\n\nSolution:\n- τx = ryFz − rzFy = 2.\n- τy = rzFx − rxFz = 12.\n- τz = rxFy − ryFx = 10.\n- Final answer: τ = 2i-hat + 12j-hat + 10k-hat N m.\n\n## Common mistake\nReversing cross-product order reverses the result.\n\n## Quick check question\nQuestion: From v = ω × r, what is velocity of a point on the fixed axis?\nAnswer: Zero.\nExplanation: Its perpendicular distance from the axis is zero.\n\n## Summary\n- Cross products give perpendicular direction.\n- Torque is moment of force.\n- Angular momentum is moment of momentum.\n- External torque changes L.",
+    "Exam-style problems": "# Exam-style problems: Chapter 6: Systems of Particles and Rotational Motion\n\n## What you will learn\nYou will apply force and torque balance, couples, and the principle of moments.\n\n## Simple explanation\nA rigid body needs both translational and rotational balance for complete equilibrium.\n\n## Step-by-step breakdown\n- **Translational equilibrium**: ΣF = 0.\n- **Rotational equilibrium**: Στ = 0.\n- **Coplanar case**: Use two force equations and one torque equation.\n- **Couple**: Equal opposite non-collinear forces give zero net force but non-zero torque.\n- **Couple moment**: It equals force times perpendicular separation.\n- **Principle of moments**: Load × load arm = effort × effort arm.\n- **Centre of gravity**: In uniform gravity it coincides with centre of mass.\n\n## Worked example\nQuestion: Using NCERT Example 6.7, show that a couple's moment is independent of origin.\n\nSolution:\n- Total torque is r₀ × F + r₀ × (−F).\n- This equals (r₀ − r₀) × F.\n- The separation vector is independent of the origin.\n- Final answer: The moment is AB × F and is origin independent.\n\n## Common mistake\nZero net force does not ensure zero torque.\n\n## Quick check question\nQuestion: If effort arm is three times load arm, what is the lever's mechanical advantage?\nAnswer: 3.\nExplanation: From load × load arm = effort × effort arm.\n\n## Summary\n- Equilibrium needs ΣF and Στ zero.\n- A couple rotates without translating.\n- Couple moment is origin independent.\n- Levers trade effort for distance.",
+    "Revision and recap": "# Revision and recap: Chapter 6: Systems of Particles and Rotational Motion\n\n## What you will learn\nYou will consolidate moment of inertia, rotational kinematics, dynamics, energy, and angular-momentum conservation.\n\n## Simple explanation\nMoment of inertia is rotational inertia and depends on how mass is distributed around the axis.\n\n## Step-by-step breakdown\n- **Moment of inertia**: I = Σmiri².\n- **Radius of gyration**: I = Mk².\n- **Parallel-axis theorem**: I = ICM + Md².\n- **Perpendicular-axis theorem**: For a planar lamina, Iz = Ix + Iy.\n- **Kinematics**: For constant α: ω = ω₀ + αt, θ = ω₀t + ½αt², and ω² = ω₀² + 2αθ.\n- **Dynamics**: τ = Iα.\n- **Energy**: Krot = ½Iω².\n- **Angular momentum**: For fixed-axis rotation, L = Iω.\n\n## Worked example\nQuestion: A rotating person halves moment of inertia with negligible external torque. What happens to angular speed?\n\nSolution:\n- Conserve I₁ω₁ = I₂ω₂.\n- Set I₂ = I₁/2.\n- Then ω₂ = 2ω₁.\n- Final answer: Angular speed doubles.\n\n## Common mistake\nAngular-momentum conservation does not automatically conserve rotational kinetic energy.\n\n## Quick check question\nQuestion: If net torque is zero and I is constant, what is angular acceleration?\nAnswer: Zero.\nExplanation: τ = Iα.\n\n## Summary\n- Centre of mass describes translation.\n- Torque governs rotation.\n- Moment of inertia depends on axis.\n- Fixed-axis equations parallel linear motion.\n- Zero external torque conserves L."
+  }
+}

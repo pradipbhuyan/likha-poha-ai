@@ -1,0 +1,92 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Political Science",
+    "chapter": "Freedom",
+    "central_question": "How can individuals and societies protect meaningful freedom while accepting only those constraints that prevent serious harm and enable everyone’s development?",
+    "in_scope_units": [
+      "The Ideal of Freedom through Mandela, Aung San Suu Kyi, anti-colonial struggle and Swaraj.",
+      "What is Freedom and the sources of political, social and economic constraints.",
+      "Why Do We Need Constraints and the liberal defence of tolerance and individual liberty.",
+      "The Harm Principle, self-regarding and other-regarding actions, serious harm and reasonable restrictions.",
+      "Negative and Positive Liberty, enabling conditions and freedom of expression."
+    ],
+    "banned_topics": [
+      "Detailed Fundamental Rights and constitutional remedies, which belong to Rights in the Indian Constitution.",
+      "Detailed theories of equality and affirmative action, which belong to Equality.",
+      "Detailed citizenship law and acquisition of citizenship, which belong to Citizenship."
+    ],
+    "must_include_keywords": [
+      "freedom",
+      "Nelson Mandela",
+      "Long Walk to Freedom",
+      "apartheid",
+      "Aung San Suu Kyi",
+      "Freedom from Fear",
+      "dignity",
+      "Swaraj",
+      "Hind Swaraj",
+      "self-rule",
+      "constraints",
+      "coercion",
+      "autonomy",
+      "positive dimension",
+      "sources of constraints",
+      "democratic government",
+      "social inequality",
+      "liberalism",
+      "tolerance",
+      "individual liberty",
+      "J. S. Mill",
+      "harm principle",
+      "self-regarding actions",
+      "other-regarding actions",
+      "serious harm",
+      "social disapproval",
+      "reasonable restrictions",
+      "negative liberty",
+      "positive liberty",
+      "non-interference",
+      "enabling conditions",
+      "freedom of expression",
+      "responsibility"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Freedom means the total absence of every rule.",
+        "correction": "The chapter accepts necessary constraints that prevent violence, settle disputes and protect equal freedom."
+      },
+      {
+        "claim": "Positive liberty and negative liberty are exact opposites that cannot coexist.",
+        "correction": "They usually support each other, though positive-liberty arguments can be misused by tyrants."
+      },
+      {
+        "claim": "The state may interfere whenever an action annoys someone.",
+        "correction": "Mill reserves legal coercion for serious harm to others; minor inconvenience may warrant only social disapproval."
+      },
+      {
+        "claim": "Social inequality has nothing to do with freedom.",
+        "correction": "Caste and extreme economic inequality can restrict real choice and development."
+      },
+      {
+        "claim": "Freedom of expression requires banning every offensive idea.",
+        "correction": "The chapter defends broad expression and asks for restrictions only when justified by serious harm and proportionality."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Exercise Q1 on individual and national freedom.",
+      "Use NCERT Exercise Q2 to distinguish negative and positive liberty.",
+      "Use NCERT Exercise Q3 to analyse social constraints.",
+      "Use NCERT Exercise Q4 to assess the role of the state.",
+      "Conclude with NCERT Exercise Q5 on expression and reasonable restriction."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–5 on freedom, liberty, social constraints, the state and freedom of expression."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Freedom\n\n## What you will learn\nYou will learn why freedom has inspired personal and collective struggle. You will study the examples of Nelson Mandela, Aung San Suu Kyi and Swaraj.\n\n## Simple explanation\nFreedom involves control over one’s life, the ability to express oneself and resistance to unjust domination. Its value becomes clear when people accept great sacrifice to remove constraints imposed on themselves or their communities.\n\n## Step-by-step breakdown\n- **Mandela**: His Long Walk to Freedom opposed apartheid, racial segregation and constraints on movement and personal choice.\n- **Aung San Suu Kyi**: Freedom from Fear connected dignity with overcoming fear of authority, public opinion and social pressure.\n- **Collective freedom**: Both individuals and societies value control over their destiny, culture and future.\n- **Swaraj**: Swaraj combines rule of the self and rule over the self.\n- **Self-realisation**: Gandhi linked Swaraj with self-respect, self-responsibility and liberation from dehumanising institutions.\n\n## Worked example\nQuestion: NCERT Exercise Q1: How are individual freedom and national freedom connected in the chapter?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q1\", \"extract_text\": \"What is meant by freedom? Is there a relationship between freedom for the individual and freedom for the nation?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Mandela and Aung San Suu Kyi understood their own freedom as connected with the freedom of their people.\n- The chapter presents freedom as both personal autonomy and the capacity of societies to determine their future.\n- Final answer: Individual and national freedom are linked because unjust domination of a people also restricts the choices, dignity and development of its members.\n\n## Common mistake\nDo not define freedom only as independence of a nation; the chapter also emphasises personal choice, dignity and development of capabilities.\n\n## Quick check question\nQuestion: What did Aung San Suu Kyi describe as real freedom?\nAnswer: Freedom from fear.\nExplanation: She argued that a dignified human life is impossible when fear prevents people from speaking or acting according to their judgement.\n\n## Summary\n- Freedom opposes unjust domination.\n- Personal and collective freedom are connected.\n- Dignity requires freedom from fear.\n- Swaraj includes self-rule and self-discipline.",
+    "Core explanation": "# Core explanation: Freedom\n\n## What you will learn\nYou will understand the negative and positive dimensions of freedom. You will also identify the different sources from which constraints can arise.\n\n## Simple explanation\nFreedom means reducing unjust external controls, but it also requires conditions in which people can develop creativity and capability. A free society therefore protects choice and widens the real opportunities available to its members.\n\n## Step-by-step breakdown\n- **Absence of constraints**: A person is free when not subjected to coercion or unnecessary external control.\n- **Development of potential**: Freedom also requires opportunities to express oneself and develop talents.\n- **Individual and society**: Political theory asks which social constraints are justified and which should be removed.\n- **Governmental domination**: Colonial rule and apartheid show constraints backed by law and force.\n- **Social inequality**: Caste and extreme economic inequality can limit freedom even without a direct government prohibition.\n- **Democracy**: Democratic government protects freedom by giving people some control over rulers.\n\n## Worked example\nQuestion: NCERT Exercise Q2: Distinguish negative liberty from positive liberty.\n```extract-ref\n{\"citation\": \"NCERT Exercise Q2\", \"extract_text\": \"What is the difference between the negative and positive conception of liberty?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Negative liberty protects a minimum area of non-interference where the individual is unobstructed.\n- Positive liberty asks who governs and what material, social and political conditions allow a person to govern and develop oneself.\n- Final answer: Negative liberty is freedom from interference, while positive liberty is freedom to develop and act through enabling conditions and self-government.\n\n## Common mistake\nDo not describe positive liberty as unlimited state control. The chapter warns that tyrants may misuse positive-liberty arguments.\n\n## Quick check question\nQuestion: Which question is associated with negative liberty?\nAnswer: Over what area am I the master?\nExplanation: Negative liberty identifies and defends an inviolable area of non-interference.\n\n## Summary\n- Freedom has negative and positive dimensions.\n- Constraints may be political, social or economic.\n- Democracy can protect freedom.\n- Capability requires enabling conditions.",
+    "Worked examples": "# Worked examples: Freedom\n\n## What you will learn\nYou will learn why some constraints are necessary for social life. You will distinguish restraints that prevent conflict from restrictions that merely impose one group’s beliefs on others.\n\n## Simple explanation\nA society without any rules could descend into conflict because people have different views and compete for scarce resources. Justifiable constraints protect people from violence and coercion while leaving room for diverse ways of life.\n\n## Step-by-step breakdown\n- **Conflict**: Disagreement over ideas, land, housing, films or everyday conduct can become violent.\n- **Dispute settlement**: Society requires mechanisms to control violence and settle disputes.\n- **Respect for difference**: People should be able to hold their views without forcing them on others.\n- **Legal protection**: Law may be needed against bullying, harassment and coercive imposition.\n- **Liberalism**: The chapter links liberalism with tolerance, individual liberty and suspicion of excessive authority.\n- **Welfare role**: Present-day liberalism accepts measures to reduce social and economic inequality.\n\n## Worked example\nQuestion: NCERT Exercise Q3: Why can some social constraints support rather than destroy freedom?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q3\", \"extract_text\": \"What is meant by social constraints? Are constraints of any kind necessary for enjoying freedom?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter explains that conflicts and coercion can make people insecure and prevent them from pursuing their choices.\n- Rules that control violence, settle disputes and stop one group from imposing its views can create a protected sphere of freedom.\n- Final answer: Social constraints are restrictions arising from social life; some are necessary when they prevent coercion and secure equal freedom, but unnecessary or excessive restrictions should be removed.\n\n## Common mistake\nA common mistake is to assume that every rule is the enemy of freedom. The chapter asks whether a rule is necessary, proportionate and protective.\n\n## Quick check question\nQuestion: What minimum attitude is required for a free society with diverse beliefs?\nAnswer: Willingness to respect differences of views, opinions and beliefs.\nExplanation: Without such respect, disagreement can turn into coercion and conflict.\n\n## Summary\n- Some constraints prevent chaos.\n- Rules should protect diversity and safety.\n- Law may restrain coercion.\n- Necessary constraints must be distinguished from domination.",
+    "Exam-style problems": "# Exam-style problems: Freedom\n\n## What you will learn\nYou will understand J. S. Mill’s harm principle, self-regarding and other-regarding actions, serious harm and reasonable restrictions.\n\n## Simple explanation\nMill argues that power may be used against a person’s will to prevent harm to others. Because freedom is central to dignity, legal punishment should be reserved for serious harm rather than minor inconvenience.\n\n## Step-by-step breakdown\n- **Harm principle**: Interference is justified for self-protection and prevention of harm to others.\n- **Self-regarding action**: An action affecting only the actor should normally remain free from external interference.\n- **Other-regarding action**: An action with harmful consequences for others may justify restraint.\n- **Minor harm**: Loud music in an apartment is presented as an inconvenience suited to social disapproval rather than police punishment.\n- **Serious harm**: Hate campaigns can endanger others and may justify legal restrictions.\n- **Reasonable restriction**: A restriction must be defensible by reason, not excessive and proportionate to the action restricted.\n\n## Worked example\nQuestion: NCERT Exercise Q4: How should the state uphold freedom without becoming oppressive?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q4\", \"extract_text\": \"What is the role of the state in upholding freedom of its citizens?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The state should protect citizens from serious harm, coercion and domination.\n- At the same time, it should leave self-regarding choices free and ensure that restrictions are reasonable and proportionate.\n- Final answer: The state must secure a protected sphere of liberty and intervene only where justified, especially to prevent serious harm to others.\n\n## Common mistake\nDo not treat every inconvenience as serious harm. Mill recommends social disapproval rather than law for minor harm.\n\n## Quick check question\nQuestion: When may the state interfere with an other-regarding action?\nAnswer: When the action causes or threatens serious harm to definite others.\nExplanation: The justification comes from protecting others, not from forcing a preferred way of life on the actor.\n\n## Summary\n- Mill limits coercion through the harm principle.\n- Self-regarding actions receive strong protection.\n- Serious harm can justify law.\n- Restrictions must be reasonable and proportionate.",
+    "Revision and recap": "# Revision and recap: Freedom\n\n## What you will learn\nYou will revise freedom of expression and the responsibility attached to choice. You will examine why banning ideas can damage the long-term prospects of freedom.\n\n## Simple explanation\nFreedom of expression belongs to the protected area of non-interference, yet demands for bans arise when books, films or plays offend sections of society. The chapter asks students to test restrictions through harm, procedure and moral justification.\n\n## Step-by-step breakdown\n- **Expression**: The chapter discusses demands to ban books, films, plays and academic articles.\n- **Examples**: It refers to Deepa Mehta’s film, Ramayana Retold, The Satanic Verses, The Last Temptation of Christ and Me Nathuram Boltey.\n- **Mill’s defence**: Opposing ideas may contain part of the truth and help prevent accepted truth from becoming an unthinking clichÃ©.\n- **Risk of banning**: Repeated bans can create a habit that weakens freedom over time.\n- **Voluntary limits**: Restrictions accepted without coercion for a chosen goal do not limit freedom in the same way as state or organised social force.\n- **Responsibility**: Choice requires education, judgement and acceptance of the consequences of one’s actions.\n\n## Worked example\nQuestion: NCERT Exercise Q5: How should a reasonable restriction on expression be judged?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q5\", \"extract_text\": \"What is meant by freedom of expression? What in your view would be a reasonable restriction on this freedom? Give examples.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter treats expression as a fundamental freedom and insists that society bear some inconvenience to protect it.\n- It also allows proportionate restraint where expression produces serious harm, such as a hate campaign that endangers others.\n- Final answer: A reasonable restriction is one justified by serious harm, proper procedure and proportionality; mere disagreement or offence is not enough.\n\n## Common mistake\nDo not claim that freedom of expression is absolute or that banning is always justified. The chapter requires careful reasoning in both directions.\n\n## Quick check question\nQuestion: Why does Mill defend even ideas that appear false?\nAnswer: Because they may contain an element of truth and their contest with opposing views helps truth emerge and remain alive.\nExplanation: Suppressing all currently unacceptable ideas risks losing valuable knowledge.\n\n## Summary\n- Expression is central to liberty.\n- Bans can create damaging habits.\n- Opposing views test truth.\n- Freedom requires judgement and responsibility.\n- Hind Swaraj explains Swaraj, while the sources of constraints include political, social and economic domination."
+  }
+}

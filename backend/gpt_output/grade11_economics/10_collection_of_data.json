@@ -1,0 +1,103 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Economics",
+    "chapter": "Collection of Data",
+    "central_question": "How should economic data be sourced, collected and sampled so that a survey provides reliable evidence for solving a problem?",
+    "in_scope_units": [
+      "Introduction to data, variables, observations and the purpose of data collection.",
+      "Primary and secondary sources of data.",
+      "Survey method and preparation of questionnaires or interview schedules.",
+      "Open-ended and closed-ended questions and rules for clear, unbiased questions.",
+      "Modes of data collection: personal, mailed and telephone interviews, online methods and pilot surveys.",
+      "Census and sample surveys, population, representative sample and advantages of sampling.",
+      "Random and non-random sampling, lottery method, random-number tables and exit polls.",
+      "Sampling and non-sampling errors.",
+      "Important sources of secondary data, including Census of India and National Sample Survey."
+    ],
+    "banned_topics": [
+      "Detailed tabulation and diagram construction, which belong to Presentation of Data.",
+      "Calculation of mean, median, mode and dispersion, which belong to later Statistics chapters.",
+      "Correlation and index numbers, which belong to later analytical chapters."
+    ],
+    "must_include_keywords": [
+      "data",
+      "variable",
+      "observation",
+      "primary data",
+      "secondary data",
+      "first-hand information",
+      "published source",
+      "survey",
+      "questionnaire",
+      "interview schedule",
+      "respondent",
+      "enumerator",
+      "precise question",
+      "ambiguous question",
+      "double negative",
+      "leading question",
+      "open-ended question",
+      "closed-ended question",
+      "two-way question",
+      "multiple-choice question",
+      "personal interview",
+      "mailing questionnaire",
+      "telephone interview",
+      "online survey",
+      "pilot survey",
+      "pre-testing",
+      "census",
+      "complete enumeration",
+      "population",
+      "universe",
+      "sample",
+      "representative sample",
+      "random sampling",
+      "lottery method",
+      "random number table",
+      "non-random sampling",
+      "sampling frame",
+      "sampling error",
+      "non-sampling error",
+      "Census of India"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Primary data are always more accurate than secondary data.",
+        "correction": "Accuracy depends on collection quality and suitability; primary means first-hand, while secondary means previously collected and processed."
+      },
+      {
+        "claim": "A long questionnaire is necessarily more complete and better.",
+        "correction": "The chapter advises keeping questions to the minimum necessary and making them clear and comfortable to answer."
+      },
+      {
+        "claim": "Leading questions help respondents understand the desired answer.",
+        "correction": "They bias responses and should be avoided."
+      },
+      {
+        "claim": "A sample is reliable simply because it is large.",
+        "correction": "It must be representative and selected using an appropriate method."
+      },
+      {
+        "claim": "Random sampling means selecting whichever units are convenient.",
+        "correction": "Every unit must have an equal chance of selection; convenience selection is non-random."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Table 2.1 on foodgrain production to identify variables, observations and data.",
+      "Use the film-star example to distinguish primary and secondary data.",
+      "Use the Poor Q and Good Q examples to revise ambiguous, leading and double-negative questions.",
+      "Use the remote-village and school-parent Activities to choose an appropriate collection mode and identify interviewer influence.",
+      "Use the Churachandpur and petrol-price examples to distinguish population, sample and random sampling."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with a Recap and EXERCISES covering data sources, questionnaire design, collection modes, census, sampling, errors and official secondary-data sources."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Collection of Data\n\n## What you will learn\nYou will understand data, variables and observations and distinguish primary from secondary data. You will see why data collection begins with a clearly defined problem.\n\n## Simple explanation\nData are facts used to understand a problem. A variable can take different values, and each recorded value is an observation. The same information may be primary for the original collector and secondary for a later user.\n\n## Step-by-step breakdown\n- **Variable**: A characteristic such as year or foodgrain production that takes different values is a variable.\n- **Observation**: Each recorded value of a variable is an observation.\n- **Data**: The collection of observations provides information about a problem.\n- **Primary data**: A researcher collects first-hand information through an enquiry.\n- **Secondary data**: Another agency has already collected, scrutinised and tabulated the information.\n- **Sources**: Government reports, books, newspapers and websites may provide secondary data.\n- **Trade-off**: Secondary data save time and cost, but their suitability and reliability must be checked.\n\n## Worked example\nQuestion: When does the film-star popularity information become secondary data?\n\nSolution:\n- Step 1: It is primary for the researcher who directly asks school students and processes the responses.\n- Step 2: When another person later uses the published results for a similar study, the same information is secondary for that user.\n- Final answer: The classification depends on the relationship between the user and the original collection process.\n\n## Common mistake\nDo not classify data as primary or secondary solely by whether it appears in printed form.\n\n## Quick check question\nQuestion: What is an observation?\nAnswer: A particular recorded value of a variable.\nExplanation: In Table 2.1, each year and corresponding foodgrain-production value contributes observations.\n\n## Summary\n- Data provide evidence.\n- Variables take different values.\n- Primary data are first-hand.\n- Secondary data are reused from earlier collection.",
+    "Core explanation": "# Core explanation: Collection of Data\n\n## What you will learn\nYou will learn how to prepare a questionnaire that is short, clear, ordered and unbiased. You will distinguish open-ended and closed-ended questions.\n\n## Simple explanation\nA survey gathers information from individuals through questions. Poor wording can produce misunderstanding or biased answers, so the instrument must be carefully designed.\n\n## Step-by-step breakdown\n- **Length**: The questionnaire should contain only the necessary questions.\n- **Order**: Questions should move from general to specific and keep respondents comfortable.\n- **Clarity**: Wording should be precise and avoid difficult or ambiguous expressions.\n- **Double negatives**: Forms such as ‘Don’t you think’ should be avoided.\n- **Leading questions**: Words such as ‘high-quality tea’ suggest a desired answer and create bias.\n- **Open-ended**: Respondents answer in their own words, providing detail but making coding difficult.\n- **Closed-ended**: Two-way or multiple-choice questions are easier to code but may restrict the true response.\n- **Any Other**: An additional option allows unanticipated responses.\n\n## Worked example\nQuestion: Why is ‘How do you like the flavour of this high-quality tea?’ a poor survey question?\n\nSolution:\n- Step 1: The words ‘high-quality’ communicate the researcher’s favourable judgement before the respondent answers.\n- Step 2: This can influence the response and prevent neutral measurement of opinion.\n- Final answer: It is a leading question and should be replaced with neutral wording such as ‘How do you like the flavour of this tea?’\n\n## Common mistake\nDo not confuse a precise question with a leading one; precision must remain neutral.\n\n## Quick check question\nQuestion: What is one advantage of a closed-ended question?\nAnswer: It is easier to answer, score, code and compare across respondents.\nExplanation: The fixed alternatives create standardised responses.\n\n## Summary\n- Question wording affects data quality.\n- Questions should be clear and neutral.\n- Open questions give detail.\n- Closed questions simplify coding but may restrict answers.",
+    "Worked examples": "# Worked examples: Collection of Data\n\n## What you will learn\nYou will compare personal, mailed and telephone interviews and understand the purpose of a pilot survey. You will select a mode according to access, cost, literacy and sensitivity.\n\n## Simple explanation\nNo single mode is best for every survey. Personal interviews provide explanation and observation, mail reaches remote areas cheaply, and telephone interviews save time when respondents can be contacted.\n\n## Step-by-step breakdown\n- **Personal interview**: Face-to-face contact allows clarification, probing and observation of reactions.\n- **Personal limitation**: It is expensive, time-consuming and may influence respondents.\n- **Mail survey**: It is inexpensive, reaches remote areas and gives respondents time and anonymity.\n- **Mail limitation**: It may have low response, misunderstanding and cannot easily serve illiterate respondents.\n- **Telephone interview**: It is faster and cheaper than personal interviews and allows clarification.\n- **Telephone limitation**: Coverage is restricted to people with access and reactions cannot be observed.\n- **Online and SMS**: The chapter notes their growing popularity.\n- **Pilot survey**: A small pre-test checks wording, instructions, enumerator performance, time and cost.\n\n## Worked example\nQuestion: Which method is suitable for a literate respondent in a remote village when personal and telephone contact are difficult?\n\nSolution:\n- Step 1: The chapter identifies mailed questionnaires as the only method among the listed modes that can reach some remote areas without personal or telephone access.\n- Step 2: The respondent must be able to understand and return the questionnaire, and the researcher must accept the risk of low response.\n- Final answer: A mailed questionnaire may be appropriate, provided literacy and response limitations are considered.\n\n## Common mistake\nDo not choose a method only because it is cheapest; suitability to respondents matters.\n\n## Quick check question\nQuestion: Why is a pilot survey conducted?\nAnswer: To pre-test the questionnaire and assess clarity, instructions, enumerator performance, cost and time.\nExplanation: It reveals shortcomings before the full survey begins.\n\n## Summary\n- Collection modes have different strengths.\n- Personal contact improves clarification.\n- Mail supports reach and anonymity.\n- Pilot surveys improve the instrument before full use.",
+    "Exam-style problems": "# Exam-style problems: Collection of Data\n\n## What you will learn\nYou will distinguish a census from a sample survey and identify population, universe and representative sample. You will understand why many studies use samples.\n\n## Simple explanation\nA census studies every unit in the population, while a sample survey studies a selected part and uses it to infer about the whole. The sample must represent the relevant characteristics of the population.\n\n## Step-by-step breakdown\n- **Census**: Complete enumeration covers every element of the population.\n- **Population or universe**: It is the total group to which the study’s conclusions are intended to apply.\n- **Sample**: It is the group or section from which information is collected.\n- **Representative sample**: It is smaller than the population but reflects the population well enough for reasonably accurate estimates.\n- **Cost and time**: Samples require fewer investigators and less expenditure.\n- **Depth**: A smaller study can collect more detailed information.\n- **Supervision**: A smaller enumerator team can be trained and monitored more effectively.\n- **Census of India**: The chapter describes a decennial house-to-house operation and cites the 2011 Census.\n\n## Worked example\nQuestion: In the Churachandpur agricultural-labourer example, what are the population and sample?\n\nSolution:\n- Step 1: The population is all agricultural labourers in Churachandpur district.\n- Step 2: The sample is the selected ten per cent of those agricultural labourers.\n- Final answer: Population means the full target group, while the sample is the selected subset actually studied.\n\n## Common mistake\nDo not define population as only the total number of citizens in a country; in statistics it depends on the study.\n\n## Quick check question\nQuestion: Why are sample surveys commonly preferred?\nAnswer: They can provide reasonably reliable information at lower cost and in less time and permit more intensive enquiry.\nExplanation: Their value depends on selecting a representative sample.\n\n## Summary\n- A census covers every unit.\n- A sample covers a subset.\n- Population is defined by the research purpose.\n- Representative sampling saves cost and time.",
+    "Revision and recap": "# Revision and recap: Collection of Data\n\n## What you will learn\nYou will compare random and non-random sampling and understand sampling and non-sampling errors. You will also identify major official secondary-data sources.\n\n## Simple explanation\nRandom sampling gives every unit an equal chance of selection, while non-random methods rely on judgement, convenience, purpose or quota. Survey error can arise from sample selection or from collection, recording and response problems.\n\n## Step-by-step breakdown\n- **Random sampling**: Units are selected by chance and each has an equal opportunity of inclusion.\n- **Lottery method**: Names or numbers are mixed and selected one by one.\n- **Random-number method**: Tables or computer programs can select units without investigator preference.\n- **Exit poll**: A random sample of voters leaving polling booths is used to predict results, though predictions may be wrong.\n- **Non-random sampling**: Convenience or judgement influences selection and not every unit has equal chance.\n- **Sampling error**: A sample estimate differs from the true population value because only part of the population is observed.\n- **Non-sampling error**: Errors arise from non-response, misunderstanding, biased questions, recording or processing.\n- **Official sources**: The Census of India and National Sample Survey provide important secondary data.\n\n## Worked example\nQuestion: Why is selecting households known to the investigator a non-random method?\n\nSolution:\n- Step 1: The investigator’s convenience and judgement determine which households are included.\n- Step 2: Other units do not receive an equal chance of selection, so the sample may be biased.\n- Final answer: The method is non-random because selection depends on personal choice rather than chance.\n\n## Common mistake\nDo not assume that random sampling eliminates every survey error.\n\n## Quick check question\nQuestion: What is the basic difference between sampling and non-sampling error?\nAnswer: Sampling error arises because a sample rather than the entire population is studied; non-sampling error arises from collection, response, recording or processing problems.\nExplanation: Non-sampling errors can occur in both sample surveys and censuses.\n\n## Summary\n- Random selection gives equal chance.\n- Convenience selection is non-random.\n- Sampling and non-sampling errors have different sources.\n- Official surveys provide major secondary data."
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Contemporary Centres of Power",
+  "central_question": "How have regional organisations and rising Asian economies emerged as alternative centres of political and economic power in the post-bipolar world?",
+  "in_scope_units": [
+    "Overview: alternative centres of power after the end of bipolarity",
+    "European Union: post-war integration, institutions, influence and limits",
+    "Association of South East Asian Nations: origins, ASEAN Way, community pillars and regional role",
+    "The Rise of the Chinese Economy: command economy, gradual reforms, global integration and consequences",
+    "India–China Relations: historical background, border conflict, cooperation, trade and strategic tensions",
+    "Japan: economic, technological, diplomatic and security influence",
+    "South Korea: the Miracle on the Han River, human development and regional influence"
+  ],
+  "banned_topics": [
+    "A detailed history of US hegemony unrelated to the alternative centres discussed in this chapter",
+    "The full history of the Cold War and Soviet disintegration",
+    "A comprehensive history of SAARC beyond its limited use as a comparison in classroom activities"
+  ],
+  "must_include_keywords": [
+    "European Union",
+    "Marshall Plan",
+    "OEEC",
+    "European Economic Community",
+    "Treaty of Maastricht",
+    "euro",
+    "Schengen Agreement",
+    "supranational organisation",
+    "Euro-skepticism",
+    "ASEAN",
+    "Bangkok Declaration",
+    "ASEAN Way",
+    "national sovereignty",
+    "ASEAN Security Community",
+    "ASEAN Economic Community",
+    "ASEAN Socio-Cultural Community",
+    "ASEAN Regional Forum",
+    "Vision 2020",
+    "Free Trade Area",
+    "Look East Policy",
+    "Act East Policy",
+    "ASEAN–India FTA",
+    "China",
+    "Mao",
+    "Zhou Enlai",
+    "four modernisations",
+    "Deng Xiaoping",
+    "open door policy",
+    "Special Economic Zones",
+    "foreign direct investment",
+    "WTO",
+    "India–China relations",
+    "Arunachal Pradesh",
+    "Aksai Chin",
+    "Rajiv Gandhi",
+    "Japan",
+    "South Korea",
+    "Miracle on the Han River"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The European Union is a single nation state with one foreign policy.",
+      "correction": "The EU has supranational features, but member states retain separate foreign and defence policies in many areas."
+    },
+    {
+      "claim": "The ASEAN Way means adopting EU-style supranational institutions.",
+      "correction": "It is informal, non-confrontationist and cooperative and places strong emphasis on sovereignty and non-interference."
+    },
+    {
+      "claim": "China used shock therapy to become a market economy.",
+      "correction": "China opened its economy gradually, privatised step by step and retained a central role for the state."
+    },
+    {
+      "claim": "India–China relations are defined only by the 1962 conflict.",
+      "correction": "The chapter also records decades of talks, trade growth, cultural and scientific cooperation, border-management measures and common positions in economic institutions."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 10 to reconstruct the sequence that produced the European Union.",
+    "Use NCERT Exercise 8 to explain the three pillars and objectives of the ASEAN Community.",
+    "Use NCERT Exercise 9 to compare China’s present economy with its earlier command economy.",
+    "Use NCERT Exercise 14 to organise contention and cooperation in India–China relations.",
+    "Use NCERT Exercise 13 to evaluate regional organisations as instruments of peace and prosperity."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The NCERT end-of-chapter Exercises contain Questions 1–14 covering chronology, MCQs, fill-in-the-blanks and analytical questions on the EU, ASEAN, China and India–China relations.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

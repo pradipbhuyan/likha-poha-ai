@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Legislature",
+  "central_question": "Why is Parliament indispensable to representative democracy, and how do its two Houses make laws, control the executive and regulate their own members?",
+  "in_scope_units": [
+    "Why a representative, deliberative and accountable legislature is necessary.",
+    "Bicameralism and the purposes of Lok Sabha and Rajya Sabha.",
+    "Composition, election, tenure and representation in the two Houses.",
+    "Legislative, executive-control, financial, representative, debating, constituent, electoral and judicial functions of Parliament.",
+    "Special powers of Lok Sabha and Rajya Sabha.",
+    "Types of bills and stages of the legislative process.",
+    "Money bills, non-money bills, constitutional amendment bills and joint sittings.",
+    "Parliamentary devices for controlling the executive, including questions, motions and financial control.",
+    "Parliamentary committees and detailed scrutiny.",
+    "Presiding officers, privileges, discipline and the anti-defection law."
+  ],
+  "banned_topics": [
+    "A general philosophical catalogue of rights unrelated to the legislature.",
+    "Detailed Fundamental Rights and writ remedies, which belong to a different chapter.",
+    "Current composition of Parliament or live legislative business not present in the source."
+  ],
+  "must_include_keywords": [
+    "legislature",
+    "Parliament",
+    "representative democracy",
+    "accountability",
+    "bicameral legislature",
+    "Lok Sabha",
+    "Rajya Sabha",
+    "Council of States",
+    "House of the People",
+    "direct election",
+    "indirect election",
+    "permanent House",
+    "universal adult suffrage",
+    "legislative function",
+    "financial function",
+    "debating function",
+    "constituent function",
+    "electoral function",
+    "judicial function",
+    "money bill",
+    "non-money bill",
+    "private member‘s bill",
+    "government bill",
+    "constitutional amendment bill",
+    "joint session",
+    "Question Hour",
+    "no-confidence motion",
+    "budget",
+    "parliamentary committees",
+    "Public Accounts Committee",
+    "Speaker",
+    "Chairman",
+    "parliamentary privileges",
+    "anti-defection law",
+    "party whip"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Parliament exists only to make laws.",
+      "correction": "It also represents, debates, controls finance and the executive, amends the Constitution, elects office-holders and performs certain judicial functions."
+    },
+    {
+      "claim": "Lok Sabha and Rajya Sabha have identical powers in every matter.",
+      "correction": "They are largely co-equal on non-money bills and amendments, but Lok Sabha is decisive over money bills and government survival, while Rajya Sabha has special federal powers."
+    },
+    {
+      "claim": "Rajya Sabha is dissolved every five years.",
+      "correction": "It is a permanent House; one-third of its members retire at regular intervals."
+    },
+    {
+      "claim": "A bill becomes law immediately after introduction in one House.",
+      "correction": "It must complete the required stages in both Houses or the special procedure for its type and receive presidential assent."
+    },
+    {
+      "claim": "A strong majority makes parliamentary control unnecessary.",
+      "correction": "Questions, debates, committees, financial approval and confidence remain central accountability devices."
+    },
+    {
+      "claim": "The anti-defection law prohibits every disagreement with party leadership.",
+      "correction": "It addresses specified forms of defection and voting against authorised party direction, while the chapter also notes its effect on independent debate."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity using newspaper reports on fertilizer prices and parliamentary pressure on the executive.",
+    "NCERT comparison chart of Lok Sabha and Rajya Sabha powers.",
+    "NCERT flow diagram tracing a bill through Parliament.",
+    "NCERT examples of questions, debates and no-confidence as control devices.",
+    "NCERT exercises on bicameralism, money bills, committees and anti-defection."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter ’Exercises’ section contains questions on Parliament‘s need, the two Houses, law-making, executive accountability, committees and anti-defection.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

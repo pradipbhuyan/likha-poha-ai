@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 12",
+  "subject": "Business Studies",
+  "chapter": "Business Environment",
+  "central_question": "How do external forces shape business decisions, and how should enterprises respond to environmental change and economic policy reforms?",
+  "in_scope_units": [
+    "Meaning and features",
+    "Importance",
+    "Economic, social, technological, political and legal dimensions",
+    "Liberalisation, privatisation and globalisation",
+    "Impact of government policy changes"
+  ],
+  "banned_topics": [
+    "Internal structure and delegation",
+    "Staffing process",
+    "Marketing mix",
+    "Capital structure"
+  ],
+  "must_include_keywords": [
+    "business environment",
+    "external forces",
+    "specific forces",
+    "general forces",
+    "inter-relatedness",
+    "dynamic nature",
+    "uncertainty",
+    "complexity",
+    "relativity",
+    "opportunities",
+    "first-mover advantage",
+    "threats",
+    "early warning signals",
+    "resources",
+    "planning and policy",
+    "economic environment",
+    "social environment",
+    "technological environment",
+    "political environment",
+    "legal environment",
+    "liberalisation",
+    "privatisation",
+    "globalisation",
+    "Industrial Policy 1991",
+    "competition",
+    "market orientation",
+    "technological change"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Business environment means only economic conditions.",
+      "correction": "It includes economic, social, technological, political, legal and other external forces."
+    },
+    {
+      "claim": "A firm can control its environment.",
+      "correction": "A firm usually cannot control external forces and must monitor and adapt."
+    },
+    {
+      "claim": "Liberalisation, privatisation and globalisation are identical.",
+      "correction": "They concern different changes in controls, ownership and international integration."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Very Short Answer Type 1",
+    "NCERT Short Answer Type 1",
+    "NCERT Long Answer Type 3",
+    "NCERT Short Answer Type 4",
+    "NCERT Long Answer Type 5"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Exercises contain Very Short Answer questions 1-5, Short Answer questions 1-4 and Long Answer questions 1-5.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

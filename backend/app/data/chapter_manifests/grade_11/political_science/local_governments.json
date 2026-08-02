@@ -1,0 +1,98 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Local Governments",
+  "central_question": "How do constitutionally empowered local governments deepen democracy through decentralisation, participation, representation and control over local development?",
+  "in_scope_units": [
+    "Why local government is necessary for participation, accountability and protection of local interests.",
+    "Historical growth of village bodies and local boards before and after independence.",
+    "Debates over decentralisation in the national movement and Constituent Assembly.",
+    "Weaknesses of local bodies before constitutional reform.",
+    "The 73rd Amendment and the three-tier Panchayati Raj structure.",
+    "Gram Sabha, direct elections, tenure and mandatory elections after dissolution.",
+    "Reservations for women, Scheduled Castes, Scheduled Tribes and other backward classes.",
+    "Transfer of subjects, State Election Commission and State Finance Commission.",
+    "The 74th Amendment and forms of urban local government.",
+    "Implementation, finance, devolution, participation and continuing limitations of local government."
+  ],
+  "banned_topics": [
+    "A philosophical comparison of Indian and western secularism not present in the supplied source chapter.",
+    "Detailed Union‘State federal relations except where they affect decentralisation.",
+    "Current municipal laws of a particular State not contained in the source."
+  ],
+  "must_include_keywords": [
+    "local government",
+    "decentralisation",
+    "participation",
+    "accountability",
+    "Gram Panchayat",
+    "Gram Sabha",
+    "Mandal Panchayat",
+    "Taluka Panchayat",
+    "Zilla Panchayat",
+    "Panchayati Raj",
+    "73rd Amendment",
+    "74th Amendment",
+    "constitutional status",
+    "direct elections",
+    "five-year term",
+    "reservations",
+    "women",
+    "Scheduled Castes",
+    "Scheduled Tribes",
+    "Other Backward Classes",
+    "Eleventh Schedule",
+    "twenty-nine subjects",
+    "State Election Commissioner",
+    "State Finance Commission",
+    "urban local bodies",
+    "Nagarpalika",
+    "Nagar Panchayat",
+    "Municipal Council",
+    "Municipal Corporation",
+    "Ward Committees",
+    "Twelfth Schedule",
+    "devolution",
+    "local development",
+    "PESA",
+    "Adivasi communities",
+    "Vengaivasal",
+    "Geeta Rathore"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Local government is merely an administrative branch of the State government.",
+      "correction": "After the amendments, local bodies have elected status, protected tenure and constitutionally required institutions, though actual powers still depend on State devolution."
+    },
+    {
+      "claim": "Holding local elections alone creates decentralisation.",
+      "correction": "Effective decentralisation also requires functions, funds, staff, local decision-making and accountability."
+    },
+    {
+      "claim": "The Gram Sabha consists only of elected Panchayat members.",
+      "correction": "It comprises all adult persons registered as voters in the Panchayat area."
+    },
+    {
+      "claim": "Reservations apply only to ordinary Panchayat seats.",
+      "correction": "They also apply to chairperson positions, and women’s reservation operates within reserved social categories."
+    },
+    {
+      "claim": "The Election Commission of India conducts Panchayat elections.",
+      "correction": "An autonomous State Election Commissioner is responsible for Panchayati Raj and urban local body elections."
+    },
+    {
+      "claim": "All twenty-nine Eleventh Schedule subjects transfer identically to every Panchayat.",
+      "correction": "The Constitution identifies subjects, but actual transfer depends on State legislation and devolution."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Geeta Rathore example on participation and local development leadership.",
+    "NCERT Vengaivasal Gram Panchayat case on constitutional status and local land decisions.",
+    "NCERT ‘Check your progress’ on how local government strengthens democracy.",
+    "NCERT Exercise 1 scenarios testing whether State action strengthens or weakens self-government.",
+    "NCERT Exercise 9 Gram Sabha planning problem on primary education and meaningful participation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter ’Exercises’ section contains Questions 1‘9 on self-government, powers, reservations, the 73rd Amendment, decentralisation and Gram Sabha participation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,105 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Psychology",
+    "chapter": "Methods of Enquiry in Psychology",
+    "central_question": "How can psychologists investigate behaviour and experience systematically, analyse evidence responsibly and protect participants?",
+    "in_scope_units": [
+      "Goals of psychological enquiry: description, prediction, explanation, control and application.",
+      "Steps in scientific research: conceptualising a problem, collecting data, drawing conclusions and revising conclusions.",
+      "Scientific and interpretive paradigms.",
+      "Nature of demographic, physical, physiological and psychological data.",
+      "Observational method and its types.",
+      "Experimental method, variables, groups, control, field and quasi experiments.",
+      "Correlational research.",
+      "Survey research through interviews, questionnaires and telephone surveys.",
+      "Psychological testing, reliability, validity and norms.",
+      "Case study.",
+      "Quantitative and qualitative analysis.",
+      "Limitations of psychological enquiry and ethical issues."
+    ],
+    "banned_topics": [
+      "Detailed theories of learning, memory or development beyond their use as examples.",
+      "Advanced statistical calculations not taught in this chapter."
+    ],
+    "must_include_keywords": [
+      "description",
+      "prediction",
+      "explanation",
+      "control",
+      "application",
+      "objectivity",
+      "hypothesis",
+      "research design",
+      "interpretive paradigm",
+      "psychological data",
+      "observation",
+      "naturalistic observation",
+      "participant observation",
+      "independent variable",
+      "dependent variable",
+      "extraneous variable",
+      "experimental group",
+      "control group",
+      "random assignment",
+      "field experiment",
+      "quasi experiment",
+      "correlation coefficient",
+      "positive correlation",
+      "negative correlation",
+      "zero correlation",
+      "survey",
+      "structured interview",
+      "unstructured interview",
+      "questionnaire",
+      "psychological test",
+      "reliability",
+      "validity",
+      "norms",
+      "case study",
+      "quantitative method",
+      "qualitative method",
+      "voluntary participation",
+      "informed consent",
+      "debriefing",
+      "confidentiality"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Correlation proves causation.",
+        "correction": "Correlation shows association and supports prediction but does not by itself establish cause and effect."
+      },
+      {
+        "claim": "The dependent variable is manipulated.",
+        "correction": "The independent variable is manipulated or selected; the dependent variable is measured as the outcome."
+      },
+      {
+        "claim": "Scientific observation is ordinary looking.",
+        "correction": "It requires deliberate selection, systematic recording and analysis."
+      },
+      {
+        "claim": "A reliable test is automatically valid.",
+        "correction": "Reliability is consistency; validity concerns whether the intended attribute is measured."
+      },
+      {
+        "claim": "Qualitative and quantitative methods cannot be combined.",
+        "correction": "The chapter treats them as complementary."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Review Question 2 on research steps.",
+      "NCERT Review Question 7 on naturalistic observation.",
+      "NCERT Review Question 5 on hypothesis and variables.",
+      "NCERT Review Question 10 on standardised tests.",
+      "NCERT Review Question 12 on ethics."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–12 and two Project Ideas."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Methods of Enquiry in Psychology\n\n## What you will learn\nYou will learn the goals and sequence of psychological enquiry. You will see why research must be objective, systematic, testable and revisable.\n\n## Simple explanation\nPsychological research begins with a clear problem, collects relevant evidence and changes its conclusions when the evidence does not support the original idea.\n\n## Step-by-step breakdown\n- **Description**: A behaviour is defined and recorded accurately.\n- **Prediction**: Known relationships permit forecasts within a margin of error.\n- **Explanation**: Researchers seek antecedent conditions and causal factors.\n- **Control and application**: Knowledge may be used to produce, reduce or enhance behaviour and improve life.\n- **Conceptualisation**: A topic is narrowed into a question and a tentative hypothesis.\n- **Data and conclusions**: A design specifies participants, tools and procedure; analysis tests the hypothesis and supports revision.\n\n## Worked example\nQuestion: Using NCERT Review Question 2, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 2\", \"extract_text\": \"Describe the various steps involved in conducting a scientific enquiry.\", \"note\": \"From the Review Questions section of Methods of Enquiry in Psychology.\"}\n```\n\nAnswer:\n- Figure 2.1 gives conceptualising a problem, collecting data, drawing conclusions and revising research conclusions.\n- Conceptualising includes selecting a topic and forming a hypothesis.\n- Collection requires participants, methods, tools and procedure; analysis verifies the hypothesis and revision keeps research continuous.\n- Final answer: Scientific enquiry moves from a defined problem to evidence-based conclusions that are confirmed, modified or replaced.\n\n## Common mistake\nA hypothesis is not a proven answer; it is a tentative statement to be tested.\n\n## Quick check question\nQuestion: What makes research objective?\nAnswer: Independent investigators using the same appropriate procedures should reach broadly similar conclusions.\nExplanation: Objectivity depends on explicit procedures and evidence rather than one person’s preference.\n\n## Summary\n- Enquiry has goals of description, prediction, explanation, control and application.\n- Research follows a systematic cycle.\n- Hypotheses are tested.\n- Conclusions remain open to revision.",
+    "Core explanation": "# Core explanation: Methods of Enquiry in Psychology\n\n## What you will learn\nYou will compare scientific and interpretive approaches and examine the nature of psychological data. You will learn why data must be understood in context.\n\n## Simple explanation\nPsychologists collect evidence about behaviour, experience and mental processes. Measurement is useful for some questions, while contextual understanding is necessary for others.\n\n## Step-by-step breakdown\n- **Scientific paradigm**: It assumes behaviour can be observed, measured, predicted and sometimes controlled.\n- **Interpretive paradigm**: It seeks the subjective meanings people give to events in context.\n- **Self-reflection**: Psychological enquiry may also examine one’s own experiences and insights.\n- **Contextual data**: Data depend on the situation, people, time, theory and method.\n- **Types of data**: The chapter distinguishes demographic, physical, physiological and psychological information.\n- **Inference**: Data do not explain themselves; the researcher places them in context.\n\n## Worked example\nQuestion: Using NCERT Review Question 3, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 3\", \"extract_text\": \"Explain the nature of psychological data.\", \"note\": \"From the Review Questions section of Methods of Enquiry in Psychology.\"}\n```\n\nAnswer:\n- Data concern overt or covert behaviour, subjective experience and mental processes.\n- They approximate reality and are tied to context, theory and method.\n- They may appear as categories, ranks, scores, reports, observations, diaries, field notes or archives.\n- Final answer: Psychological data are varied, contextual and method-dependent evidence from which justified inferences must be made.\n\n## Common mistake\nA score or statement does not have a fixed meaning outside the conditions in which it was obtained.\n\n## Quick check question\nQuestion: When is an interpretive approach useful?\nAnswer: When the aim is to understand subjective meaning and experience in a particular context.\nExplanation: Complex suffering may not be captured adequately by objective measurement alone.\n\n## Summary\n- Scientific and interpretive approaches answer different questions.\n- Psychological data may be numerical or descriptive.\n- Context and method shape evidence.\n- Interpretation must be justified.",
+    "Worked examples": "# Worked examples: Methods of Enquiry in Psychology\n\n## What you will learn\nYou will distinguish observation, experiments and correlational research. You will identify variables and understand comparison and control.\n\n## Simple explanation\nObservation describes behaviour, experiments manipulate a condition to examine its effect and correlation measures association without manipulation.\n\n## Step-by-step breakdown\n- **Scientific observation**: It involves selection, recording and analysis.\n- **Observation types**: Naturalistic and controlled settings differ; participant and non-participant forms differ in observer involvement.\n- **Independent variable**: It is manipulated or selected as a possible cause.\n- **Dependent variable**: It is the measured outcome.\n- **Experimental and control groups**: The experimental group receives the manipulation; the comparison group does not.\n- **Extraneous control**: Elimination, constancy, matching, counter-balancing and random assignment improve causal inference.\n- **Correlation**: A coefficient represents positive, negative or zero association from +1 through 0 to –1.\n\n## Worked example\nQuestion: Using NCERT Review Question 5, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 5\", \"extract_text\": \"A researcher is studying the relationship between speed of cycling and the presence of people. Formulate a relevant hypothesis and identify the independent and dependent variables.\", \"note\": \"From the Review Questions section of Methods of Enquiry in Psychology.\"}\n```\n\nAnswer:\n- The chapter notes that cycling performance may differ before a group and when alone.\n- Presence or absence of people is the condition varied, so it is independent.\n- Cycling speed is measured, so it is dependent.\n- Final answer: A suitable hypothesis is that the presence of people affects cycling speed; presence is the independent variable and speed is the dependent variable.\n\n## Common mistake\nDo not reverse the variables: the presumed influencing condition is independent and the measured result is dependent.\n\n## Quick check question\nQuestion: Why is an experiment stronger for causal inference than a correlation?\nAnswer: It manipulates a condition, compares groups and controls relevant alternatives.\nExplanation: Correlation observes covariation without establishing which variable caused the other.\n\n## Summary\n- Observation, experiment and correlation serve different purposes.\n- Experiments require variables and controls.\n- Field and quasi experiments trade some control for natural relevance.\n- Correlation does not prove causation.",
+    "Exam-style problems": "# Exam-style problems: Methods of Enquiry in Psychology\n\n## What you will learn\nYou will compare surveys, psychological tests and case studies. You will examine strengths and limitations of each.\n\n## Simple explanation\nSurveys study many respondents, tests assess defined individual differences and case studies provide intensive accounts of distinctive cases.\n\n## Step-by-step breakdown\n- **Interview**: Structured interviews follow a fixed schedule; unstructured interviews permit flexible probing.\n- **Questionnaire**: Respondents record answers to predetermined open- or closed-ended questions.\n- **Survey limits**: Responses may be inaccurate, selective or shaped by social desirability.\n- **Standardised test**: It is an objective instrument for comparing standing on a defined attribute.\n- **Reliability and validity**: Reliability is consistency; validity is measurement of the intended characteristic.\n- **Norms**: Reference-group averages give meaning to an individual score.\n- **Case study**: Multiple sources create an in-depth account, but generalisation requires caution.\n\n## Worked example\nQuestion: Using NCERT Review Question 10, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 10\", \"extract_text\": \"Explain the characteristics of a standardised test.\", \"note\": \"From the Review Questions section of Methods of Enquiry in Psychology.\"}\n```\n\nAnswer:\n- Items, instructions, administration and scoring must be sufficiently uniform.\n- The test needs evidence of reliability and validity.\n- Norms from an appropriate group are required for interpreting scores.\n- Final answer: A standardised test uses objective, uniform procedures and has adequate reliability, validity and norms.\n\n## Common mistake\nNot every questionnaire is a standardised psychological test.\n\n## Quick check question\nQuestion: Why avoid relying on one test score?\nAnswer: One test provides limited, context-sensitive evidence.\nExplanation: The chapter recommends combining it with background, interests and performance information.\n\n## Summary\n- Surveys use interviews and questionnaires.\n- Tests require objectivity, reliability, validity and norms.\n- Case studies offer depth.\n- Method choice follows the research purpose.",
+    "Revision and recap": "# Revision and recap: Methods of Enquiry in Psychology\n\n## What you will learn\nYou will distinguish quantitative and qualitative analysis, identify limitations and apply ethical guidelines.\n\n## Simple explanation\nEvidence may be analysed as scores or as meanings and themes, but all research must recognise measurement limits and protect participants.\n\n## Step-by-step breakdown\n- **Quantitative analysis**: Scores and statistical procedures show magnitude and relations.\n- **Qualitative analysis**: Narratives, notes and interviews are organised through narrative or content analysis.\n- **No true zero**: Psychological attributes usually lack an absolute zero, so scores are relative.\n- **Context-bound tools**: A test created in one setting may require adaptation elsewhere.\n- **Subjective interpretation**: Multiple investigators and participant involvement can strengthen meaning-making.\n- **Participant rights**: Voluntary participation and informed consent protect choice.\n- **After participation**: Debriefing, sharing results and confidentiality protect welfare and privacy.\n\n## Worked example\nQuestion: Using NCERT Review Question 12, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 12\", \"extract_text\": \"What are the ethical guidelines that a psychologist needs to follow while conducting a psychological enquiry?\", \"note\": \"From the Review Questions section of Methods of Enquiry in Psychology.\"}\n```\n\nAnswer:\n- Participants should freely choose and may withdraw without penalty.\n- They require information for informed consent; deception requires debriefing and removal of adverse effects.\n- Researchers should protect confidentiality and share results appropriately.\n- Final answer: Ethical research respects voluntary choice, informed understanding, welfare, debriefing, appropriate access to results and confidentiality.\n\n## Common mistake\nEthics is not paperwork added after the study; it guides the entire design and data handling.\n\n## Quick check question\nQuestion: Why are quantitative and qualitative methods complementary?\nAnswer: One shows magnitude and patterns while the other preserves contextual meaning and complexity.\nExplanation: A suitable combination can provide a fuller account.\n\n## Summary\n- Analysis may be quantitative or qualitative.\n- Measurement is relative and context-sensitive.\n- Interpretation requires caution.\n- Ethical principles protect choice, welfare and privacy."
+  }
+}

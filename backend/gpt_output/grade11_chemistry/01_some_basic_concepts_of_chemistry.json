@@ -1,0 +1,90 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Chemistry",
+    "chapter": "Some Basic Concepts of Chemistry",
+    "central_question": "How can chemical substances and reactions be measured, represented, and calculated accurately using fundamental laws and the mole concept?",
+    "in_scope_units": [
+      "Importance and development of chemistry; nature and classification of matter.",
+      "SI units, scientific notation, significant figures, accuracy, precision, and dimensional analysis.",
+      "Laws of chemical combination and Dalton atomic theory.",
+      "Atomic, molecular, and formula masses; mole and molar mass.",
+      "Percentage composition, formula determination, stoichiometry, limiting reagent, and concentration terms."
+    ],
+    "banned_topics": [
+      "Detailed atomic structure",
+      "Chemical bonding and geometry",
+      "Thermodynamic derivations",
+      "Organic reaction mechanisms"
+    ],
+    "must_include_keywords": [
+      "matter",
+      "element",
+      "compound",
+      "mixture",
+      "SI unit",
+      "scientific notation",
+      "significant figures",
+      "accuracy",
+      "precision",
+      "dimensional analysis",
+      "conservation of mass",
+      "definite proportions",
+      "multiple proportions",
+      "Gay Lussac law",
+      "Avogadro law",
+      "Dalton atomic theory",
+      "atomic mass",
+      "molecular mass",
+      "formula mass",
+      "mole",
+      "Avogadro constant",
+      "molar mass",
+      "percentage composition",
+      "empirical formula",
+      "molecular formula",
+      "stoichiometry",
+      "limiting reagent",
+      "molarity",
+      "molality",
+      "mass percent"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Accuracy and precision are identical.",
+        "correction": "Accuracy is closeness to an accepted value; precision is agreement among repeated values."
+      },
+      {
+        "claim": "One mole always weighs one gram.",
+        "correction": "A mole contains 6.022 × 10^23 entities and its mass equals the molar mass in grams."
+      },
+      {
+        "claim": "The smallest reactant mass is always limiting.",
+        "correction": "The limiting reagent is identified from stoichiometric mole ratios."
+      },
+      {
+        "claim": "Molarity and molality are interchangeable.",
+        "correction": "Molarity uses solution volume; molality uses solvent mass."
+      },
+      {
+        "claim": "Percentages can be used directly as formula subscripts.",
+        "correction": "Convert percentages to moles before finding the simplest ratio."
+      }
+    ],
+    "recommended_example_progression": [
+      "Classify samples of matter.",
+      "Apply SI units and significant-figure rules.",
+      "Verify chemical-combination laws.",
+      "Convert among particles, moles, and mass.",
+      "Solve formula, stoichiometric, and concentration problems."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter exercises on measurements, mole calculations, composition, empirical and molecular formulae, stoichiometry, molarity, and molality."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Some Basic Concepts of Chemistry\n\n## What you will learn\nClassify matter and explain why measurement is essential in chemistry.\n\n## Simple explanation\nChemistry studies substances and their transformations. Reliable comparison requires agreed classifications, numerical values, and units.\n\n## Step-by-step breakdown\n- **Matter**: Anything with mass and volume is matter.\n- **States**: Solids have fixed shape and volume, liquids fixed volume, and gases fill containers.\n- **Pure substances**: Elements contain one type of atom; compounds have fixed composition.\n- **Mixtures**: Homogeneous mixtures are uniform, while heterogeneous mixtures are non-uniform.\n- **Measurement**: A physical quantity requires a number and a unit.\n\n## Worked example\nQuestion: Classify air, copper, distilled water, and sand mixed with salt.\n\nSolution:\n- Air is uniform but contains several gases.\n- Copper contains one element.\n- Distilled water has hydrogen and oxygen in a fixed ratio.\n- Sand and salt remain distinguishable.\n- Final answer: Air—homogeneous mixture; copper—element; water—compound; sand and salt—heterogeneous mixture.\n\n## Common mistake\nA uniform-looking sample is not automatically a pure substance; solutions are homogeneous mixtures.\n\n## Quick check question\nQuestion: Which type of pure substance has elements in a fixed mass ratio?\nAnswer: A compound.\nExplanation: Chemical bonding produces a definite composition.\n\n## Summary\n- Matter: Anything with mass and volume is matter.\n- States: Solids have fixed shape and volume, liquids fixed volume, and gases fill containers.\n- Pure substances: Elements contain one type of atom; compounds have fixed composition.\n- Mixtures: Homogeneous mixtures are uniform, while heterogeneous mixtures are non-uniform.",
+    "Core explanation": "# Core explanation: Some Basic Concepts of Chemistry\n\n## What you will learn\nUse scientific notation, significant figures, accuracy, precision, and unit conversion.\n\n## Simple explanation\nMeasured values have limited certainty. Chemistry records only justified digits and checks calculations by tracking units.\n\n## Step-by-step breakdown\n- **Scientific notation**: Write values as N × 10^n with 1 ≤ N < 10.\n- **Significant figures**: All certain digits plus the first uncertain digit are reported.\n- **Addition rule**: Retain the least number of decimal places.\n- **Multiplication rule**: Retain the least number of significant figures.\n- **Accuracy**: Closeness to the accepted value.\n- **Precision**: Agreement among repeated measurements.\n- **Dimensional analysis**: Conversion factors change units without changing quantity.\n\n## Worked example\nQuestion: Calculate 12.11 + 18.0 + 1.013 with correct reporting.\n\nSolution:\n- The unrounded sum is 31.123.\n- The least precise term has one decimal place.\n- Round the result to one decimal place.\n- Final answer: 31.1\n\n## Common mistake\nUsing the multiplication significant-figure rule for addition gives an incorrectly reported value.\n\n## Quick check question\nQuestion: How many significant figures are in 0.00450?\nAnswer: Three.\nExplanation: Leading zeros are not significant; the final zero after the decimal is significant.\n\n## Summary\n- Scientific notation: Write values as N × 10^n with 1 ≤ N < 10.\n- Significant figures: All certain digits plus the first uncertain digit are reported.\n- Addition rule: Retain the least number of decimal places.\n- Multiplication rule: Retain the least number of significant figures.",
+    "Worked examples": "# Worked examples: Some Basic Concepts of Chemistry\n\n## What you will learn\nConnect laws of chemical combination with Dalton atomic theory.\n\n## Simple explanation\nFixed whole-number mass and volume relationships led chemists to infer that matter contains discrete atoms that combine in simple ratios.\n\n## Step-by-step breakdown\n- **Conservation**: Total mass remains constant in a chemical reaction.\n- **Definite proportions**: A compound has the same elemental mass ratio regardless of source.\n- **Multiple proportions**: Different compounds of two elements use small whole-number mass ratios.\n- **Gaseous volumes**: Reacting gases combine in simple volume ratios at the same temperature and pressure.\n- **Avogadro law**: Equal gas volumes under the same conditions contain equal numbers of molecules.\n- **Dalton theory**: Atoms combine in simple whole-number ratios.\n\n## Worked example\nQuestion: Two compounds contain 2 g hydrogen with 16 g and 32 g oxygen. Identify the law.\n\nSolution:\n- Keep hydrogen fixed at 2 g.\n- Compare oxygen masses, 16:32.\n- Reduce to the small whole-number ratio 1:2.\n- Final answer: Law of multiple proportions.\n\n## Common mistake\nThe law of definite proportions concerns samples of the same compound, not two different compounds.\n\n## Quick check question\nQuestion: What volume ratio follows 2H2 + O2 → 2H2O(g)?\nAnswer: 2:1:2.\nExplanation: At equal temperature and pressure, coefficients give gas-volume ratios.\n\n## Summary\n- Conservation: Total mass remains constant in a chemical reaction.\n- Definite proportions: A compound has the same elemental mass ratio regardless of source.\n- Multiple proportions: Different compounds of two elements use small whole-number mass ratios.\n- Gaseous volumes: Reacting gases combine in simple volume ratios at the same temperature and pressure.",
+    "Exam-style problems": "# Exam-style problems: Some Basic Concepts of Chemistry\n\n## What you will learn\nConvert among particles, moles, and mass and use balanced equations quantitatively.\n\n## Simple explanation\nThe mole connects microscopic entities to measurable laboratory quantities.\n\n## Step-by-step breakdown\n- **Avogadro constant**: One mole contains 6.022 × 10^23 specified entities.\n- **Molar mass**: Mass of one mole in g mol−1.\n- **Mass conversion**: n = mass divided by molar mass.\n- **Particle conversion**: Entities = moles × Avogadro constant.\n- **Stoichiometry**: Equation coefficients provide mole ratios.\n- **Limiting reagent**: The reactant allowing less product is consumed first.\n\n## Worked example\nQuestion: How many water molecules are in 9.0 g H2O?\n\nSolution:\n- Molar mass of H2O is 18.0 g mol−1.\n- Moles = 9.0/18.0 = 0.50 mol.\n- Molecules = 0.50 × 6.022 × 10^23.\n- Final answer: 3.01 × 10^23 molecules.\n\n## Common mistake\nAlways state whether the counted entities are atoms, molecules, ions, or formula units.\n\n## Quick check question\nQuestion: How many moles are in 44 g CO2?\nAnswer: 1.0 mol.\nExplanation: CO2 has molar mass 44 g mol−1.\n\n## Summary\n- Avogadro constant: One mole contains 6.\n- Molar mass: Mass of one mole in g mol−1.\n- Mass conversion: n = mass divided by molar mass.\n- Particle conversion: Entities = moles × Avogadro constant.",
+    "Revision and recap": "# Revision and recap: Some Basic Concepts of Chemistry\n\n## What you will learn\nDetermine formulas and describe solution concentration.\n\n## Simple explanation\nComposition data reveal simplest atom ratios, while concentration expresses solute relative to solution or solvent.\n\n## Step-by-step breakdown\n- **Mass percent**: Component mass divided by total mass multiplied by 100.\n- **Empirical formula**: Simplest whole-number mole ratio of elements.\n- **Molecular formula**: A whole-number multiple of the empirical formula.\n- **Molarity**: Moles of solute per litre of solution.\n- **Molality**: Moles of solute per kilogram of solvent.\n- **Temperature**: Molarity varies with volume; molality is mass based.\n\n## Worked example\nQuestion: A compound is 40.0% C, 6.7% H, and 53.3% O. Find its empirical formula.\n\nSolution:\n- Assume 100 g of compound.\n- Convert to moles: C ≈3.33, H ≈6.7, O ≈3.33.\n- Divide by 3.33 to obtain approximately 1:2:1.\n- Final answer: CH2O.\n\n## Common mistake\nDo not convert percentages directly into subscripts; convert masses to moles first.\n\n## Quick check question\nQuestion: Which concentration unit uses kilograms of solvent?\nAnswer: Molality.\nExplanation: Molality is amount of solute per unit mass of solvent.\n\n## Summary\n- Mass percent: Component mass divided by total mass multiplied by 100.\n- Empirical formula: Simplest whole-number mole ratio of elements.\n- Molecular formula: A whole-number multiple of the empirical formula.\n- Molarity: Moles of solute per litre of solution."
+  }
+}

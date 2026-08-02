@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Climate",
+  "central_question": "How do geographical controls and atmospheric circulation create India’s monsoon climate, seasonal rhythm and regional diversity?",
+  "in_scope_units": [
+    "Weather, climate and unity and diversity of monsoon climate.",
+    "Factors controlling India’s climate.",
+    "Nature, onset and breaks of the monsoon.",
+    "Four meteorological seasons and their weather.",
+    "Monsoon branches, retreating monsoon and cyclones.",
+    "Rainfall distribution, economic importance and global warming."
+  ],
+  "banned_topics": [
+    "Detailed forest classification, which belongs to Natural Vegetation.",
+    "Detailed drainage basins, which belong to Drainage System.",
+    "Plate tectonics, which belongs to Distribution of Oceans and Continents."
+  ],
+  "must_include_keywords": [
+    "weather",
+    "climate",
+    "monsoon",
+    "seasonal reversal",
+    "regional variation",
+    "temperature",
+    "pressure",
+    "humidity",
+    "precipitation",
+    "Tropic of Cancer",
+    "Himalayas",
+    "distance from sea",
+    "altitude",
+    "relief",
+    "ITCZ",
+    "monsoon trough",
+    "Coriolis force",
+    "southwest monsoon",
+    "northeast monsoon",
+    "jet stream",
+    "onset of monsoon",
+    "break in monsoon",
+    "El Niño",
+    "cold weather season",
+    "hot weather season",
+    "Loo",
+    "Mango Shower",
+    "Nor Westers",
+    "Arabian Sea branch",
+    "Bay of Bengal branch",
+    "rain shadow",
+    "retreating monsoon",
+    "October heat",
+    "Mawsynram",
+    "western disturbances",
+    "rainfall distribution",
+    "greenhouse gases",
+    "global warming"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Weather and climate mean the same.",
+      "correction": "Weather is momentary; climate is the average over a long period."
+    },
+    {
+      "claim": "All India receives most rainfall in June–September.",
+      "correction": "Tamil Nadu receives important rain in the retreating and northeast monsoon season."
+    },
+    {
+      "claim": "The Himalayas affect only temperature.",
+      "correction": "They block cold winds and force monsoon winds to shed moisture."
+    },
+    {
+      "claim": "A monsoon break means the rainy season has ended.",
+      "correction": "It is a dry spell within the southwest monsoon season."
+    },
+    {
+      "claim": "Both sides of the Western Ghats receive equal rain.",
+      "correction": "The windward side is wet and the leeward side lies in rain shadow."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 2(i) to define the ITCZ.",
+    "Use Exercise 2(ii) to explain the burst of monsoon and identify the highest-rainfall place.",
+    "Use Exercise 3(i) to explain climatic unity with regional variation.",
+    "Use the Project/Activity to map winter rain, summer winds, January temperature and the 100 cm isohyet."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–iv), 2(i–iii), 3(i–ii), and a four-part map Project/Activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Haloalkanes and Haloarenes",
+  "central_question": "How does the structure of the carbon–halogen bond control the preparation, physical properties, substitution, elimination and environmental behaviour of haloalkanes and haloarenes?",
+  "in_scope_units": [
+    "Classification of mono-, di- and polyhalogen compounds and distinction among alkyl, allylic, benzylic, vinylic and aryl halides.",
+    "Common and IUPAC nomenclature, including geminal and vicinal dihalides.",
+    "Nature, polarity, bond length and bond enthalpy of the carbon–halogen bond.",
+    "Preparation of haloalkanes from alcohols, hydrocarbons and halogen exchange.",
+    "Preparation of haloarenes by electrophilic substitution and diazonium-salt reactions.",
+    "Physical properties of organohalogen compounds.",
+    "Reactions of haloalkanes: nucleophilic substitution, SN1, SN2, stereochemistry, elimination and reactions with metals.",
+    "Reactions of haloarenes and the low reactivity of aryl halides toward nucleophilic substitution.",
+    "Uses and environmental effects of dichloromethane, chloroform, iodoform, carbon tetrachloride, freons and DDT."
+  ],
+  "banned_topics": [
+    "Alcohol and phenol chemistry beyond their use as precursors, which belongs to the next chapter.",
+    "Detailed aromatic diazonium chemistry beyond its use in preparing haloarenes, which belongs to Amines.",
+    "Full atmospheric photochemistry of ozone depletion beyond the chapter’s environmental account."
+  ],
+  "must_include_keywords": [
+    "haloalkane",
+    "haloarene",
+    "alkyl halide",
+    "aryl halide",
+    "allylic halide",
+    "benzylic halide",
+    "vinylic halide",
+    "primary halide",
+    "secondary halide",
+    "tertiary halide",
+    "geminal dihalide",
+    "vicinal dihalide",
+    "IUPAC nomenclature",
+    "carbon–halogen bond",
+    "bond enthalpy",
+    "thionyl chloride",
+    "Finkelstein reaction",
+    "Swarts reaction",
+    "free-radical halogenation",
+    "Markovnikov addition",
+    "Sandmeyer reaction",
+    "nucleophilic substitution",
+    "SN1 mechanism",
+    "SN2 mechanism",
+    "carbocation",
+    "Walden inversion",
+    "racemisation",
+    "elimination reaction",
+    "Zaitsev rule",
+    "Grignard reagent",
+    "aryl halide resonance",
+    "electrophilic substitution",
+    "dichloromethane",
+    "chloroform",
+    "iodoform",
+    "carbon tetrachloride",
+    "freons",
+    "DDT"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Aryl halides undergo SN1 and SN2 reactions as readily as alkyl halides.",
+      "correction": "Aryl C–X bonds have partial double-bond character and the carbon is sp²-hybridised, so ordinary SN1 and SN2 pathways are strongly disfavoured."
+    },
+    {
+      "claim": "SN2 substitution gives racemisation at a chiral carbon.",
+      "correction": "SN2 attack occurs from the back side and gives inversion of configuration."
+    },
+    {
+      "claim": "SN1 substitution is a single concerted step.",
+      "correction": "SN1 proceeds through slow ionisation to a carbocation followed by nucleophile attack and may give racemisation."
+    },
+    {
+      "claim": "Aqueous KOH and alcoholic KOH give the same major product.",
+      "correction": "Aqueous KOH favours substitution to alcohol, whereas alcoholic KOH favours beta-elimination to an alkene."
+    },
+    {
+      "claim": "Chlorobenzene is strongly activating in electrophilic substitution.",
+      "correction": "Halogen is deactivating by its −I effect but ortho/para directing through resonance donation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 6.1 on the eight C₅H₁₁Br structural isomers.",
+    "Use NCERT Example 6.3 for monochlorination and hydrogen equivalence.",
+    "Apply NCERT Example 6.5 to distinguish KCN and AgCN products.",
+    "Use NCERT Examples 6.6–6.8 for SN1/SN2 reactivity and chirality.",
+    "Finish with NCERT Example 6.9 on the deactivating yet ortho/para-directing effect of chlorine."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 6.1 to 6.22 and cover structures, preparations, reaction mechanisms, stereochemistry, haloarene reactivity, conversions and polyhalogen compounds.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

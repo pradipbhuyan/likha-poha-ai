@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Drainage System",
+  "central_question": "How do relief, geological history, rainfall and river processes organise India’s drainage systems and affect the use of river water?",
+  "in_scope_units": [
+    "Meaning of drainage, drainage system, catchment, drainage basin and watershed.",
+    "Drainage patterns and classification by outlet and basin size.",
+    "The Himalayan drainage, its evolution and major river systems.",
+    "The Peninsular drainage, its evolution and major rivers.",
+    "River-water use, inter-basin transfer and pollution."
+  ],
+  "banned_topics": [
+    "Detailed monsoon mechanism, which belongs to Climate.",
+    "Detailed physiographic divisions, which belong to Structure and Physiography.",
+    "Earthquake-wave theory, which belongs to Interior of the Earth."
+  ],
+  "must_include_keywords": [
+    "drainage",
+    "drainage system",
+    "catchment area",
+    "drainage basin",
+    "watershed",
+    "dendritic",
+    "radial",
+    "trellis",
+    "centripetal",
+    "Arabian Sea drainage",
+    "Bay of Bengal drainage",
+    "major river basin",
+    "medium river basin",
+    "minor river basin",
+    "Himalayan drainage",
+    "Peninsular drainage",
+    "Indus",
+    "Ganga",
+    "Brahmaputra",
+    "perennial",
+    "gorge",
+    "meander",
+    "ox-bow lake",
+    "braided channel",
+    "delta",
+    "Indo-Brahma",
+    "Panjnad",
+    "Bhagirathi",
+    "Alaknanda",
+    "Tsangpo",
+    "Godavari",
+    "Krishna",
+    "Kaveri",
+    "Mahanadi",
+    "Narmada",
+    "Tapi",
+    "rift valley",
+    "estuary",
+    "inter-basin linkage",
+    "river pollution"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A watershed and river basin are always identical in scale.",
+      "correction": "The chapter generally uses watershed for a smaller area and river basin for a larger drainage area."
+    },
+    {
+      "claim": "All Peninsular rivers flow eastward.",
+      "correction": "The Narmada and Tapi are major west-flowing exceptions."
+    },
+    {
+      "claim": "Himalayan rivers depend only on rainfall.",
+      "correction": "They are fed by snowmelt and precipitation and are generally perennial."
+    },
+    {
+      "claim": "The Ganga begins with that name at Gangotri.",
+      "correction": "The Bhagirathi becomes the Ganga after meeting the Alaknanda at Devprayag."
+    },
+    {
+      "claim": "A delta and an estuary are the same.",
+      "correction": "A delta is depositional; an estuary is a tidal river mouth where fresh and saline water mix."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 2(i) to distinguish river basin and watershed.",
+    "Use Exercise 2(ii–iii) to compare drainage patterns.",
+    "Use Exercise 3(ii) to state characteristics of Peninsular rivers.",
+    "Use Exercise 4(i) to compare north Indian and Peninsular rivers."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter includes Exercises 1(i–v), 2(i–iv), 3(i–ii), and 4(i–ii).",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

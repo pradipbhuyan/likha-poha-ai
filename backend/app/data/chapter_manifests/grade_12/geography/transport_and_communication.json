@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Transport and Communication",
+  "central_question": "How do transport and communication connect producing centres, consuming centres and people across the world?",
+  "in_scope_units": [
+    "Role of transport, communication and trade in linking places.",
+    "Transport networks, modes and the development of land transport.",
+    "Roads, highways, traffic flows and border roads.",
+    "Railways and major regional and trans-continental railway systems.",
+    "Water transport, sea routes, shipping canals and inland waterways.",
+    "Air transport and inter-continental air routes.",
+    "Pipelines for liquids and gases.",
+    "Communications, optic fibre, satellites, the internet and cyberspace."
+  ],
+  "banned_topics": [
+    "Detailed organisation of retail and wholesale trade as tertiary activities.",
+    "Balance of trade, WTO and classification of ports by trade function."
+  ],
+  "must_include_keywords": [
+    "transport",
+    "communication",
+    "trade",
+    "transport network",
+    "nodes",
+    "links",
+    "land transport",
+    "roads",
+    "railways",
+    "water transport",
+    "air transport",
+    "pipelines",
+    "door-to-door service",
+    "highways",
+    "traffic congestion",
+    "border roads",
+    "Golden Quadrilateral",
+    "railway gauge",
+    "commuter trains",
+    "trans-continental railway",
+    "Trans-Siberian Railway",
+    "Trans-Canadian Railway",
+    "Union and Pacific Railway",
+    "Australian Trans-Continental Railway",
+    "Orient Express",
+    "sea routes",
+    "North Atlantic Sea Route",
+    "Mediterranean-Indian Ocean route",
+    "Cape of Good Hope route",
+    "Panama Canal",
+    "Suez Canal",
+    "inland waterways",
+    "airways",
+    "Big Inch pipeline",
+    "satellite communication",
+    "internet",
+    "cyberspace"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "One transport mode is always superior to all others.",
+      "correction": "The suitable mode depends on the goods, distance, cost and available facilities; in a well-managed system the modes complement one another."
+    },
+    {
+      "claim": "A transport network consists only of roads or railway lines.",
+      "correction": "A network is a pattern of places or nodes joined by routes or links and can be formed by several transport modes."
+    },
+    {
+      "claim": "Communication still always requires physical transport of messages.",
+      "correction": "Mobile telephony, optic fibre, satellites and the internet transmit information without physically moving the sender and receiver."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 3(i) on complementary transport modes.",
+    "NCERT Exercise 2(i) on road transport difficulties.",
+    "NCERT Exercise 2(ii) on trans-continental railways.",
+    "NCERT Exercise 2(iii) on water transport advantages.",
+    "NCERT Exercise 3(iii) on the expansion of cyberspace."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1-3, including five multiple-choice items, three short-answer questions and three long-answer questions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

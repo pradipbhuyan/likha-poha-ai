@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 11",
+  "subject": "Accountancy",
+  "chapter": "Recording of Transactions – II",
+  "central_question": "How do special-purpose books record repetitive transactions efficiently and how are their entries posted to ledger accounts?",
+  "in_scope_units": [
+    "Need for special-purpose books or subsidiary books.",
+    "Cash book as both a book of original entry and a ledger account.",
+    "Single-column, double-column and petty cash books, including contra entries and imprest system.",
+    "Purchases book and purchases return book.",
+    "Sales book and sales return book.",
+    "Journal proper and entries not recorded in special journals.",
+    "Posting from subsidiary books and balancing ledger accounts."
+  ],
+  "banned_topics": [
+    "Basic source documents, accounting equation and general journal rules, which belong to Recording of Transactions – I.",
+    "Bank reconciliation statement, which belongs to Chapter 5.",
+    "Trial balance and rectification, which belong to Chapter 6."
+  ],
+  "must_include_keywords": [
+    "subsidiary books",
+    "special journals",
+    "daybooks",
+    "cash book",
+    "single column cash book",
+    "double column cash book",
+    "cash column",
+    "bank column",
+    "discount column",
+    "contra entry",
+    "cheque",
+    "bank overdraft",
+    "petty cash book",
+    "imprest system",
+    "purchases book",
+    "credit purchases",
+    "purchases return book",
+    "debit note",
+    "sales book",
+    "credit sales",
+    "sales return book",
+    "credit note",
+    "journal proper",
+    "opening entry",
+    "closing entry",
+    "adjusting entry",
+    "transfer entry",
+    "rectification entry",
+    "posting",
+    "ledger",
+    "balancing"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All purchases are recorded in the purchases book.",
+      "correction": "Only credit purchases of goods in which the business deals are recorded there; cash purchases and asset purchases are excluded."
+    },
+    {
+      "claim": "All sales are recorded in the sales book.",
+      "correction": "Only credit sales of goods are entered; cash sales and sale of assets are recorded elsewhere."
+    },
+    {
+      "claim": "A contra entry is posted to separate cash and bank ledger accounts.",
+      "correction": "When cash and bank columns are maintained in the cash book, the cash book itself serves as both accounts and contra entries are not posted to ledger."
+    },
+    {
+      "claim": "The discount columns of a cash book are balanced like cash and bank columns.",
+      "correction": "Discount columns are totalled and posted, but they are not balanced."
+    },
+    {
+      "claim": "A bank overdraft is shown on the debit side of the cash book.",
+      "correction": "An overdraft is a credit balance in the bank column."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the Roopa Traders illustration to prepare and post a single-column cash book.",
+    "Use the double-column cash-book illustration to identify cash, bank and contra entries.",
+    "Use the petty-cash illustration to apply the imprest system.",
+    "Use Illustration 7 for Veneet Stores to prepare sales and sales return books.",
+    "Use end Question 18 on M/s Marble Traders to journalise transactions and post them to ledger."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with Test Your Understanding – I and II and Questions 1–18 covering cash books, subsidiary books, journal proper and ledger posting.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

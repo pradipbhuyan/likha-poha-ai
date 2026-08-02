@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "Business Studies",
+  "chapter": "Business Services",
+  "central_question": "How do specialised services such as banking, insurance, communication, transportation and warehousing support business operations and differ from physical goods?",
+  "in_scope_units": [
+    "Meaning and nature of services and the five distinguishing characteristics.",
+    "Difference between services and goods.",
+    "Classification into business, social and personal services.",
+    "Banking, types of banks and functions of commercial banks.",
+    "e-Banking, its services and benefits.",
+    "Insurance, its functions and fundamental principles.",
+    "Life, fire and marine insurance and their policy types and differences.",
+    "Postal and telecom communication services.",
+    "Transportation as a business service.",
+    "Warehousing, types of warehouses and their functions."
+  ],
+  "banned_topics": [
+    "Detailed sources of company finance, which belong to Sources of Business Finance.",
+    "Detailed e-business transaction models, which belong to Emerging Modes of Business.",
+    "Internal wholesale and retail structures, which belong to Internal Trade."
+  ],
+  "must_include_keywords": [
+    "services",
+    "intangibility",
+    "inconsistency",
+    "inseparability",
+    "inventory less",
+    "involvement",
+    "business services",
+    "social services",
+    "personal services",
+    "commercial bank",
+    "cooperative bank",
+    "specialised bank",
+    "central bank",
+    "Reserve Bank of India",
+    "deposits",
+    "loans and advances",
+    "e-banking",
+    "ATM",
+    "NEFT",
+    "RTGS",
+    "insurance",
+    "premium",
+    "insured",
+    "insurer",
+    "utmost good faith",
+    "insurable interest",
+    "indemnity",
+    "proximate cause",
+    "subrogation",
+    "contribution",
+    "mitigation",
+    "life insurance",
+    "fire insurance",
+    "marine insurance",
+    "postal services",
+    "telecom services",
+    "transportation",
+    "warehousing"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A service transfers ownership in the same way as a good.",
+      "correction": "A service is an intangible activity or process; its purchase does not transfer ownership of a physical object."
+    },
+    {
+      "claim": "Services can be produced today and stored for future sale.",
+      "correction": "Services are generally perishable and must be performed when demanded, though associated goods may be stored."
+    },
+    {
+      "claim": "Life insurance is a contract of indemnity.",
+      "correction": "Human life cannot be measured as an actual financial loss, so life insurance pays the agreed sum and is not a contract of indemnity."
+    },
+    {
+      "claim": "Insurance prevents the insured event from occurring.",
+      "correction": "Insurance does not stop the event; it provides certainty and financial protection by spreading and compensating loss."
+    },
+    {
+      "claim": "Warehouses only store goods.",
+      "correction": "Modern warehouses also consolidate, break bulk, stockpile, add value, stabilise prices and support financing."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Short Answer Question 1 to distinguish services from goods.",
+    "Use Long Answer Question 2 to organise functions of commercial banks.",
+    "Use Short Answer Question 4 to apply the principles of insurance.",
+    "Use Long Answer Question 4 to compare life, fire and marine insurance.",
+    "Use Short Answer Question 5 and Long Answer Question 5 to explain warehousing and its functions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section contains Short Answer Questions 1–5, Long Answer Questions 1–5 and three projects on services and banking accounts.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

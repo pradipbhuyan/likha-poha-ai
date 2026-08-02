@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Natural Hazards and Disasters",
+    "central_question": "Why do natural and human-induced hazards become disasters in India, and how can vulnerability, loss and recovery be managed?",
+    "in_scope_units": [
+      "Meaning of hazard, disaster and vulnerability.",
+      "Natural and human causes and classification of disasters.",
+      "Earthquakes, hazard zones, consequences and mitigation.",
+      "Tsunamis and tropical cyclones.",
+      "Floods, droughts and landslides.",
+      "Pre-disaster, during-disaster and post-disaster management."
+    ],
+    "banned_topics": [
+      "Detailed plate-boundary theory, which belongs to Distribution of Oceans and Continents.",
+      "Detailed monsoon seasons, which belong to Climate.",
+      "Detailed geomorphic-process classification, which belongs to Geomorphic Processes."
+    ],
+    "must_include_keywords": [
+      "natural hazard",
+      "disaster",
+      "vulnerability",
+      "human-induced disaster",
+      "mitigation",
+      "preparedness",
+      "Yokohama Strategy",
+      "IDNDR",
+      "earthquake",
+      "tectonic movement",
+      "earthquake hazard zone",
+      "seismological centre",
+      "GPS",
+      "tsunami",
+      "seismic sea wave",
+      "shallow water wave",
+      "tropical cyclone",
+      "latent heat",
+      "Coriolis force",
+      "storm surge",
+      "flood",
+      "floodplain",
+      "National Flood Commission",
+      "drought",
+      "meteorological drought",
+      "agricultural drought",
+      "hydrological drought",
+      "ecological drought",
+      "landslide",
+      "landslide vulnerability zone",
+      "afforestation",
+      "cyclone shelter",
+      "pre-disaster management",
+      "rescue and relief",
+      "rehabilitation",
+      "recovery",
+      "Disaster Management Bill 2005",
+      "National Institute of Disaster Management"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every natural hazard is automatically a disaster.",
+        "correction": "It becomes a disaster when impacts seriously disrupt life and exceed coping capacity."
+      },
+      {
+        "claim": "Disasters are caused only by natural forces.",
+        "correction": "Human actions can directly cause disasters or intensify natural hazards."
+      },
+      {
+        "claim": "Earthquakes can be prevented.",
+        "correction": "They cannot be prevented; preparedness and mitigation reduce loss."
+      },
+      {
+        "claim": "Tsunamis are most dangerous in the deepest ocean.",
+        "correction": "Their height and impact increase near shallow coasts."
+      },
+      {
+        "claim": "Drought means only low rainfall.",
+        "correction": "The chapter includes meteorological, agricultural, hydrological and ecological drought."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise 2(i) to explain when a hazard becomes a disaster.",
+      "Use Exercise 2(iii) to state conditions for a tropical cyclone.",
+      "Use Exercise 3(i) to identify landslide-prone regions and mitigation.",
+      "Use Exercise 3(ii) to relate drought vulnerability to management."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–v), 2(i–v), 3(i–iii), and an eight-option Project/Activity."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Natural Hazards and Disasters\n\n## What you will learn\nYou will distinguish hazard from disaster and understand vulnerability and human influence.\n\n## Simple explanation\nA hazard has potential to harm, while a disaster is severe realised disruption. Outcomes depend on exposure, preparation and environment.\n\n## Step-by-step breakdown\n- **Disaster**: A damaging occurrence seriously disrupts life and property beyond ordinary emergency capacity.\n- **Hazard**: A natural condition has potential to harm people or property.\n- **Human causes**: Industrial accidents, war, pollution and greenhouse-gas release may directly cause disasters.\n- **Human intensification**: Deforestation, poor land use and fragile-area construction worsen hazards.\n- **Vulnerability**: Settlement and weak coping capacity increase potential loss.\n- **Mitigation**: Planning and preparedness reduce consequences.\n\n## Worked example\nQuestion: Why can the same physical event be a hazard in one place and a disaster in another?\n\nAnswer:\n- The chapter links disaster status with scale of damage, exposure and local socio-environmental factors.\n- A dense, unprepared settlement suffers more than an unoccupied area.\n- Final answer: Vulnerability and exposure turn potential harm into major loss.\n\n## Common mistake\nDo not use hazard and disaster as exact synonyms.\n\n## Quick check question\nQuestion: Can human activity intensify natural disasters?\nAnswer: Yes; deforestation, poor land use and construction in fragile areas can increase damage.\nExplanation: Human actions change vulnerability and the severity of impact.\n\n## Summary\n- Hazard means potential harm.\n- Disaster means severe disruption.\n- Vulnerability shapes loss.\n- Human action can increase risk.",
+    "Core explanation": "# Core explanation: Natural Hazards and Disasters\n\n## What you will learn\nYou will study earthquake causes, Indian risk zones, effects and mitigation.\n\n## Simple explanation\nTectonic earthquakes release accumulated energy, while weak construction and dense settlement increase damage.\n\n## Step-by-step breakdown\n- **Cause**: Sudden energy release during crustal movement produces earthquakes.\n- **Indian setting**: The Indian plate presses against the Eurasian plate and builds stress along the Himalayas.\n- **Zones**: India is divided into very high, high, moderate, low and very low damage-risk zones.\n- **Effects**: Fissures, landslides, liquefaction, collapse and communication breakdown occur.\n- **Monitoring**: Seismological centres and GPS help observe activity.\n- **Mitigation**: Vulnerability maps, education and earthquake-resistant design reduce risk.\n\n## Worked example\nQuestion: Why does the chapter emphasise earthquake-resistant construction rather than prevention?\n\nAnswer:\n- It states that earthquakes cannot be prevented and that building collapse causes devastating loss.\n- Risk reduction must focus on how structures withstand shaking.\n- Final answer: Safer design is essential because prevention is impossible but damage can be reduced.\n\n## Common mistake\nThe Peninsular Plateau is not entirely earthquake-free.\n\n## Quick check question\nQuestion: Which broad region is most vulnerable to tectonic earthquakes?\nAnswer: The Himalayan and northeastern region, with other high-risk areas such as Kachchh.\nExplanation: These areas are associated with active plate stress or significant faults.\n\n## Summary\n- Tectonic stress drives major earthquakes.\n- Risk is mapped into zones.\n- Effects include ground and structural damage.\n- Preparedness and design reduce loss.",
+    "Worked examples": "# Worked examples: Natural Hazards and Disasters\n\n## What you will learn\nYou will compare tsunamis and tropical cyclones as coastal hazards.\n\n## Simple explanation\nTsunamis begin with sudden sea-floor displacement; cyclones draw energy from warm moist oceanic air.\n\n## Step-by-step breakdown\n- **Tsunami origin**: Earthquakes or volcanic eruptions may abruptly displace ocean water.\n- **Shallow-water effect**: Wave height rises near coasts as wavelength shortens.\n- **Tsunami impact**: Turbulent coastal inundation destroys settlements and infrastructure.\n- **Cyclone conditions**: Warm moist air, Coriolis force, instability and weak vertical wind shear are required.\n- **Distribution**: Indian cyclones originate over the Bay of Bengal and Arabian Sea.\n- **Storm surge**: Strong winds and pressure gradients push sea water across the coast.\n\n## Worked example\nQuestion: Why may a tsunami have little effect on a deep-sea ship but devastate a coast?\n\nAnswer:\n- The chapter says the wave has low height in deep water and grows higher in shallow water.\n- Wave energy becomes concentrated vertically near the shore.\n- Final answer: Coastal shallowing increases tsunami height and destructive power.\n\n## Common mistake\nDo not confuse tsunami inundation with cyclone-driven storm surge.\n\n## Quick check question\nQuestion: What powers a tropical cyclone?\nAnswer: Latent heat released when moisture condenses.\nExplanation: The cyclone acts like a heat engine over warm ocean water.\n\n## Summary\n- Tsunamis and cyclones have different origins.\n- Tsunami height grows near shore.\n- Cyclones need warm moist air.\n- Both threaten densely settled coasts.",
+    "Exam-style problems": "# Exam-style problems: Natural Hazards and Disasters\n\n## What you will learn\nYou will examine floods and droughts, their causes, effects and controls.\n\n## Simple explanation\nFloods result from excess water, while droughts reflect prolonged shortage. Monsoon variability and land use influence both.\n\n## Step-by-step breakdown\n- **Flood causes**: Heavy rain, snowmelt, storm surge, poor infiltration and reduced channel capacity produce floods.\n- **Human role**: Deforestation, blocked drainage and floodplain occupation increase flood severity.\n- **Flood effects**: Crops, infrastructure and settlements are damaged, though fertile silt may be deposited.\n- **Drought**: Water shortage may result from deficient rain, high evaporation or excessive use.\n- **Types**: Meteorological, agricultural, hydrological and ecological drought are distinguished.\n- **Management**: Embankments, afforestation, reservoirs, groundwater planning and rainwater harvesting are discussed.\n\n## Worked example\nQuestion: Why can floods and drought occur in different parts of India during the same season?\n\nAnswer:\n- The chapter stresses large spatial and temporal variation in monsoon rainfall.\n- Rainfall may be excessive in one basin and deficient in another.\n- Final answer: Uneven monsoon distribution and water management allow both hazards to occur together.\n\n## Common mistake\nFlood control is not limited to building embankments.\n\n## Quick check question\nQuestion: What is agricultural drought?\nAnswer: A shortage of soil moisture needed to support crops.\nExplanation: It can result in crop failure even when other water indicators differ.\n\n## Summary\n- Floods exceed channel capacity.\n- Drought has several forms.\n- Human action intensifies both.\n- Management needs immediate and long-term measures.",
+    "Revision and recap": "# Revision and recap: Natural Hazards and Disasters\n\n## What you will learn\nYou will study landslide vulnerability and the stages of disaster management.\n\n## Simple explanation\nLandslides depend on local slope, geology, rainfall, vegetation and construction, so management must be place-specific.\n\n## Step-by-step breakdown\n- **Landslide**: Rapid downslope movement of bedrock or debris.\n- **Vulnerability**: Young mountains, steep rainy slopes and intense construction have high risk.\n- **Consequences**: Road and rail blockage, river diversion and loss of life occur.\n- **Mitigation**: Construction limits, afforestation, bunds and terrace farming are recommended.\n- **Pre-disaster**: Data, hazard maps, awareness and preparedness come before impact.\n- **During and after**: Rescue and relief are followed by rehabilitation, recovery and capacity building.\n\n## Worked example\nQuestion: Why must landslide mitigation be area-specific?\n\nAnswer:\n- The chapter links landslides with local combinations of geology, slope, rainfall, land use and vegetation.\n- The dominant cause differs from one slope to another.\n- Final answer: Local conditions must determine the appropriate mitigation measure.\n\n## Common mistake\nDisaster management should not begin only after impact.\n\n## Quick check question\nQuestion: What are the three broad management stages?\nAnswer: Pre-disaster management, operations during disaster, and post-disaster rehabilitation and recovery.\nExplanation: Together they cover preparedness, response and restoration.\n\n## Summary\n- Landslide risk is highly local.\n- Land use can increase vulnerability.\n- Management begins before an event.\n- Recovery should build future capacity."
+  }
+}

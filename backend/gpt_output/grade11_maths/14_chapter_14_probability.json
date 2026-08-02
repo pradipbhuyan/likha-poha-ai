@@ -1,0 +1,114 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 14: Probability",
+    "central_question": "How are events represented as subsets of a sample space and how are valid probabilities assigned and combined using axioms?",
+    "in_scope_units": [
+      "Events as subsets of a sample space and the occurrence of an event.",
+      "Impossible, sure, simple and compound events.",
+      "Algebra of events using complement, union, intersection and difference.",
+      "Mutually exclusive, exhaustive, and mutually exclusive and exhaustive events.",
+      "Axiomatic approach to probability and valid assignments to sample points.",
+      "Probability of an event as the sum of probabilities of its outcomes.",
+      "Probability for finite sample spaces with equally likely outcomes.",
+      "Addition rule for the event A or B and its mutually exclusive special case.",
+      "Complement rule for the event not A.",
+      "Applications to coins, dice, cards, committees, arrangements and combinations.",
+      "Miscellaneous examples, exercise problems, summary and historical note."
+    ],
+    "banned_topics": [
+      "Conditional probability",
+      "Independent events and multiplication theorem",
+      "Bayes' theorem",
+      "Random variables and probability distributions",
+      "Binomial distribution",
+      "Expectation and variance of random variables",
+      "Continuous probability models"
+    ],
+    "must_include_keywords": [
+      "random experiment",
+      "sample space",
+      "sample point",
+      "event",
+      "subset",
+      "occurrence of an event",
+      "impossible event",
+      "sure event",
+      "simple event",
+      "elementary event",
+      "compound event",
+      "complementary event",
+      "not A",
+      "union",
+      "A or B",
+      "intersection",
+      "A and B",
+      "A but not B",
+      "mutually exclusive events",
+      "disjoint events",
+      "exhaustive events",
+      "pairwise disjoint",
+      "axiomatic probability",
+      "power set",
+      "P(S) = 1",
+      "P(φ) = 0",
+      "non-negative probability",
+      "probability assignment",
+      "equally likely outcomes",
+      "favourable outcomes",
+      "addition rule",
+      "P(A ∪ B)",
+      "P(A ∩ B)",
+      "complement rule",
+      "P(A′)",
+      "coins",
+      "dice",
+      "deck of 52 cards",
+      "combinations"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "An event is a single outcome only.",
+        "correction": "Any subset of the sample space is an event; a one-outcome event is specifically a simple or elementary event."
+      },
+      {
+        "claim": "Mutually exclusive events must together cover the sample space.",
+        "correction": "Mutually exclusive means only that their intersection is empty; covering the sample space is the separate condition of exhaustiveness."
+      },
+      {
+        "claim": "P(A ∪ B) always equals P(A) + P(B).",
+        "correction": "For general events, P(A ∪ B) = P(A) + P(B) − P(A ∩ B); direct addition applies only when A and B are mutually exclusive."
+      },
+      {
+        "claim": "Every sample point must have the same probability.",
+        "correction": "The axioms allow unequal assignments as long as each probability lies in [0,1] and the probabilities of all sample points sum to 1."
+      },
+      {
+        "claim": "The classical formula favourable outcomes divided by total outcomes works for every experiment.",
+        "correction": "That formula is used when the finite sample points are equally likely."
+      },
+      {
+        "claim": "P(not A) = −P(A).",
+        "correction": "Since A and A′ are mutually exclusive and exhaustive, P(A′) = 1 − P(A)."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the two-coin sample space in Section 14.1 to represent verbal events as subsets.",
+      "Use NCERT Example 1 for complement, union, intersection and difference of events.",
+      "Use NCERT Examples 2 and 3 to distinguish mutually exclusive and exhaustive events.",
+      "Use NCERT Example 4 to test whether probability assignments satisfy the axioms.",
+      "Use the pens and two-toss examples in Section 14.2.1 to add sample-point probabilities.",
+      "Use NCERT Examples 5–8 for complement, union and equally likely outcomes.",
+      "Finish with NCERT Examples 9–12 for arrangements, card combinations and the three-event addition formula."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 14.1 on events, Exercise 14.2 on probability calculations, and the ten-question Miscellaneous Exercise on Chapter 14."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Probability\n\n## What you will learn\nYou will represent events as subsets of a sample space and decide whether an event has occurred. You will also classify events as impossible, sure, simple or compound.\n\n## Simple explanation\nA random experiment can produce several possible outcomes, collected in a sample space. An event is simply the set of outcomes that satisfy a stated condition, so the language of probability begins with the language of sets.\n\n## Step-by-step breakdown\n- **Random experiment**: An experiment has outcomes that cannot be predicted with certainty in advance.\n- **Sample space**: The set S contains all possible outcomes and acts as the universal set for the experiment.\n- **Event**: Any subset E of S is called an event.\n- **Occurrence**: Event E occurs when the observed outcome ω belongs to E; it does not occur when ω ∉ E.\n- **Impossible event**: The empty set φ contains no outcome and can never occur.\n- **Sure event**: The whole sample space S must occur because every possible outcome lies in it.\n- **Simple event**: An event containing exactly one sample point is simple or elementary.\n- **Compound event**: An event containing more than one sample point is compound.\n- **Two-coin example**: For S = {HH, HT, TH, TT}, exactly one head is the event {HT, TH}.\n\n## Worked example\nQuestion: Using the opening example in Section 14.1, write the events for exactly two tails, at least one tail and more than two tails when a coin is tossed twice.\n\nSolution:\n- The sample space is S = {HH, HT, TH, TT}.\n- Exactly two tails occurs only for TT, so the event is {TT}.\n- At least one tail occurs for HT, TH and TT, so the event is {HT, TH, TT}.\n- More than two tails is impossible in two tosses, so the event is φ.\n- Final answer: {TT}, {HT, TH, TT}, and φ respectively.\n\n## Common mistake\nDo not list outcomes outside the chosen sample space. For two tosses, outcomes such as H or HHH are not sample points of S.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 14.1 Q1, are E = {4} and F = {2, 4, 6} mutually exclusive when a die is rolled?\nAnswer: No.\nExplanation: Their intersection is E ∩ F = {4}, which is not empty, so both events can occur together when the die shows 4.\n\n## Summary\n- A sample space contains all possible outcomes.\n- Every event is a subset of the sample space.\n- Membership of the observed outcome determines occurrence.\n- φ is impossible and S is sure.\n- One sample point gives a simple event; more than one gives a compound event.",
+    "Core explanation": "# Core explanation: Probability\n\n## What you will learn\nYou will combine events using set operations and distinguish mutually exclusive from exhaustive events. You will translate the phrases not, or, and, and but not into precise set notation.\n\n## Simple explanation\nBecause events are sets, their combinations follow the same rules as union, intersection, difference and complement. This makes verbal probability statements exact and prevents double counting later.\n\n## Step-by-step breakdown\n- **Complementary event**: A′ = S − A represents not A.\n- **A or B**: A ∪ B contains outcomes in A, in B, or in both.\n- **A and B**: A ∩ B contains outcomes common to both A and B.\n- **A but not B**: A − B = A ∩ B′.\n- **Mutually exclusive events**: A and B are mutually exclusive when A ∩ B = φ, so they cannot occur simultaneously.\n- **Simple events**: Distinct simple events of the same sample space are mutually exclusive.\n- **Exhaustive events**: E₁, E₂, …, Eₙ are exhaustive when their union is S, so at least one must occur.\n- **Mutually exclusive and exhaustive**: The events must be pairwise disjoint and their union must be the whole sample space.\n- **Logical distinction**: Events may be mutually exclusive but not exhaustive, exhaustive but overlapping, both, or neither.\n\n## Worked example\nQuestion: Using NCERT Example 1, for a die let A be getting a prime number and B be getting an odd number. Find A ∪ B, A ∩ B, A − B and A′.\n\nSolution:\n- The sample space is S = {1, 2, 3, 4, 5, 6}.\n- A = {2, 3, 5} and B = {1, 3, 5}.\n- A ∪ B = {1, 2, 3, 5}.\n- A ∩ B = {3, 5}.\n- A − B = {2}.\n- A′ = S − A = {1, 4, 6}.\n- Final answer: {1, 2, 3, 5}, {3, 5}, {2}, and {1, 4, 6}.\n\n## Common mistake\nThe word or in event algebra is inclusive: A or B includes outcomes in both A and B unless the events are known to be mutually exclusive.\n\n## Quick check question\nQuestion: Based on NCERT Example 3, do the events no head, exactly one head and at least two heads in three coin tosses form mutually exclusive and exhaustive events?\nAnswer: Yes.\nExplanation: Their pairwise intersections are empty, and their union contains all eight outcomes of the three-toss sample space.\n\n## Summary\n- Complement means not A and is written A′.\n- Union represents A or B; intersection represents A and B.\n- Difference represents A but not B.\n- Mutually exclusive events have empty intersection.\n- Exhaustive events have union equal to S.\n- Both conditions are required for a mutually exclusive and exhaustive partition.",
+    "Worked examples": "# Worked examples: Probability\n\n## What you will learn\nYou will learn the axiomatic definition of probability, test assignments to sample points and calculate event probabilities by summing outcome probabilities. You will also derive the equally likely outcomes formula.\n\n## Simple explanation\nProbability is a real-valued function on events. The axioms restrict every probability to be non-negative, give total probability 1 to the sample space, and make probabilities additive for disjoint events.\n\n## Step-by-step breakdown\n- **Domain and range**: Probability P is defined on the power set of S and takes values in [0, 1].\n- **First axiom**: For every event E, P(E) ≥ 0.\n- **Second axiom**: P(S) = 1.\n- **Third axiom**: If E and F are mutually exclusive, P(E ∪ F) = P(E) + P(F).\n- **Impossible-event probability**: Taking one event as φ gives P(φ) = 0.\n- **Finite sample space**: Each sample-point probability lies in [0,1], and all sample-point probabilities sum to 1.\n- **Event probability**: P(A) is the sum of P(ωᵢ) over all sample points ωᵢ in A.\n- **Unequal assignments are allowed**: A coin can be assigned probabilities p and 1 − p whenever 0 ≤ p ≤ 1; equal probabilities are not an axiom.\n- **Equally likely outcomes**: If S has n equally likely sample points, each has probability 1/n.\n- **Classical formula**: For n(E) favourable outcomes among n(S) equally likely outcomes, P(E) = n(E)/n(S).\n\n## Worked example\nQuestion: Using NCERT Example 4, determine whether the assignment (0.1, 0.2, 0.3, 0.4, 0.5, 0.6) to six outcomes is valid.\n\nSolution:\n- Each listed number is non-negative and no individual number exceeds 1.\n- Add the six probabilities: 0.1 + 0.2 + 0.3 + 0.4 + 0.5 + 0.6 = 2.1.\n- A valid assignment must have total probability 1 over the sample space.\n- Since 2.1 ≠ 1, the assignment violates the normalization axiom.\n- Final answer: The assignment is not valid.\n\n## Common mistake\nChecking only that each number lies between 0 and 1 is not enough. The complete list must also sum exactly to 1.\n\n## Quick check question\nQuestion: Based on the pens example in Section 14.2.1, if all eight outcomes are assigned probability 1/8, what is the probability of exactly one defective pen?\nAnswer: 3/8.\nExplanation: Exactly one defective pen corresponds to BGG, GBG and GGB. Adding their three probabilities gives 1/8 + 1/8 + 1/8 = 3/8.\n\n## Summary\n- Probabilities are non-negative and at most 1.\n- The sample-space probability is 1 and P(φ) = 0.\n- Disjoint event probabilities add.\n- An event probability is the sum over its sample points.\n- Equal likelihood is an additional condition, not a universal assumption.\n- For equally likely finite outcomes, use favourable divided by total.",
+    "Exam-style problems": "# Exam-style problems: Probability\n\n## What you will learn\nYou will apply the addition rule for A or B and the complement rule for not A. You will recognise overlap, avoid double counting and solve card, disc and examination-event problems.\n\n## Simple explanation\nAdding P(A) and P(B) counts outcomes in A ∩ B twice. The addition rule subtracts that overlap once, while the complement rule often replaces a difficult event by the easier event that it does not occur.\n\n## Step-by-step breakdown\n- **General addition rule**: P(A ∪ B) = P(A) + P(B) − P(A ∩ B).\n- **Why subtract the intersection**: Outcomes common to A and B appear once in each of P(A) and P(B), so they were counted twice.\n- **Mutually exclusive special case**: If A ∩ B = φ, then P(A ∪ B) = P(A) + P(B).\n- **Complementary events**: A and A′ are mutually exclusive and exhaustive.\n- **Complement rule**: P(A′) = 1 − P(A).\n- **Neither A nor B**: By De Morgan's law, A′ ∩ B′ = (A ∪ B)′.\n- **At least one**: Often compute 1 minus the probability of none.\n- **Only one of two events**: Use the disjoint union (A ∩ B′) ∪ (A′ ∩ B).\n- **Consistency check**: P(A ∩ B) cannot exceed either P(A) or P(B), and P(A ∪ B) cannot exceed 1.\n\n## Worked example\nQuestion: Using NCERT Example 7, P(E) = 0.05, P(F) = 0.10 and P(E ∩ F) = 0.02 for Anil and Ashima qualifying. Find the probability that neither qualifies.\n\nSolution:\n- First find P(E ∪ F) using the addition rule.\n- P(E ∪ F) = 0.05 + 0.10 − 0.02 = 0.13.\n- Neither qualifies is E′ ∩ F′, which equals (E ∪ F)′.\n- Apply the complement rule: P(E′ ∩ F′) = 1 − 0.13.\n- Final answer: 0.87.\n\n## Common mistake\nDo not interpret mutually exclusive as independent. This chapter uses mutually exclusive to mean that the events cannot occur together; independence is not part of this chapter.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 14.2 Q17, if P(A) = 0.42, P(B) = 0.48 and P(A ∩ B) = 0.16, find P(A ∪ B).\nAnswer: 0.74.\nExplanation: Use the addition rule: 0.42 + 0.48 − 0.16 = 0.74.\n\n## Summary\n- Subtract intersection probability when events overlap.\n- Direct addition is valid for mutually exclusive events.\n- The complement probability is 1 minus the event probability.\n- De Morgan's law helps with neither-event questions.\n- At-least-one problems are often easiest by complements.\n- Check that final probabilities stay within [0,1].",
+    "Revision and recap": "# Revision and recap: Probability\n\n## What you will learn\nYou will combine event algebra, axioms, equally likely outcomes and counting methods in mixed problems. You will also review how arrangements and combinations determine sample-space and favourable-event sizes.\n\n## Simple explanation\nA complete probability solution first defines the sample space or its size, then describes the event, and finally applies either sample-point addition or the equally likely formula. Counting must match the experiment: use arrangements when order matters and combinations when only selection matters.\n\n## Step-by-step breakdown\n- **Solution sequence**: Identify S, define the event E, determine whether outcomes are equally likely, count or add probabilities, and simplify.\n- **Ordered outcomes**: Two dice use ordered pairs, so (1, 2) and (2, 1) are different sample points.\n- **Unordered selections**: Card hands and committees use combinations because selection order is irrelevant.\n- **Arrangement problems**: Visiting cities or finishing positions use permutations when order changes the outcome.\n- **Card deck facts used in the chapter**: A standard deck has 52 cards, 13 diamonds, 4 aces and 26 black cards.\n- **At least r cases**: Split into mutually exclusive exact cases and add their probabilities, as with at least three kings.\n- **Three-event addition**: P(A ∪ B ∪ C) equals the sum of single-event probabilities minus pairwise intersections plus the triple intersection.\n- **Non-uniform experiments**: If sample points have different assigned probabilities, add those probabilities rather than using simple counting.\n- **Final checks**: Ensure the event is a subset of S, favourable cases are not duplicated, and the result lies between 0 and 1.\n\n## Worked example\nQuestion: Using NCERT Example 10, find the probability that a seven-card hand from a well-shuffled deck contains at least three kings.\n\nSolution:\n- At least three kings means exactly three kings or all four kings; these cases are mutually exclusive.\n- Total seven-card hands = C(52, 7).\n- Hands with exactly three kings = C(4, 3)C(48, 4).\n- Hands with four kings = C(4, 4)C(48, 3).\n- Add the two probabilities: 9/1547 + 1/7735.\n- Convert to a common denominator to obtain 45/7735 + 1/7735 = 46/7735.\n- Final answer: 46/7735.\n\n## Common mistake\nDo not use permutations for a card hand when the order of drawing is not recorded. The same seven cards form one hand regardless of their order.\n\n## Quick check question\nQuestion: Based on NCERT Example 12, five relay teams finish in an equally likely order. What is the probability that A, B and C are the first three finishers in any order?\nAnswer: 1/10.\nExplanation: There are 5P3 = 60 ordered first-three outcomes. A, B and C can occupy those places in 3! = 6 orders, so the probability is 6/60 = 1/10.\n\n## Summary\n- Define events as subsets before calculating probability.\n- Use axioms for assigned probabilities and counting only for equally likely outcomes.\n- Addition and complement rules handle combined events.\n- Ordered experiments use permutations; unordered selections use combinations.\n- Break at-least problems into disjoint exact cases.\n- Check sample-space coverage, overlap and numerical bounds."
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "grade": "Grade 11",
+  "subject": "Psychology",
+  "chapter": "Thinking",
+  "central_question": "How do mental representations support problem solving, reasoning, decision-making, creativity and language, and how can these processes improve?",
+  "in_scope_units": [
+    "Nature of thinking as organised, goal-directed internal manipulation.",
+    "Mental images and concepts.",
+    "Culture and analytical or holistic thinking.",
+    "Problem solving and obstacles.",
+    "Deductive and inductive reasoning and analogies.",
+    "Judgment and decision-making.",
+    "Creative thinking, convergent and divergent thought.",
+    "Lateral thinking and six thinking hats.",
+    "Preparation, incubation, illumination and verification.",
+    "Strategies including brainstorming.",
+    "Thought and language: Whorf, Piaget and Vygotsky.",
+    "Language as symbols, rules and communication.",
+    "Language development, acquisition and use.",
+    "Bilingualism and multilingualism."
+  ],
+  "banned_topics": [
+    "Detailed memory models, which belong to Human Memory.",
+    "Detailed conditioning experiments, which belong to Learning."
+  ],
+  "must_include_keywords": [
+    "thinking",
+    "mental representation",
+    "mental image",
+    "concept",
+    "categorisation",
+    "analytical thinking",
+    "holistic thinking",
+    "problem solving",
+    "initial state",
+    "goal state",
+    "mental set",
+    "functional fixedness",
+    "motivation",
+    "reasoning",
+    "deductive reasoning",
+    "inductive reasoning",
+    "analogy",
+    "judgment",
+    "decision-making",
+    "creative thinking",
+    "convergent thinking",
+    "divergent thinking",
+    "fluency",
+    "flexibility",
+    "originality",
+    "elaboration",
+    "lateral thinking",
+    "Edward de Bono",
+    "preparation",
+    "incubation",
+    "illumination",
+    "verification",
+    "brainstorming",
+    "thought and language",
+    "linguistic relativity",
+    "Benjamin Lee Whorf",
+    "Piaget",
+    "Vygotsky",
+    "symbols",
+    "syntax",
+    "babbling",
+    "telegraphic speech",
+    "Skinner",
+    "Chomsky",
+    "bilingualism",
+    "multilingualism"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Thinking is directly observable.",
+      "correction": "It is an internal process inferred from behaviour."
+    },
+    {
+      "claim": "A concept is only a word.",
+      "correction": "It is a mental representation of a category; words are one way to represent it."
+    },
+    {
+      "claim": "Mental set is always harmful.",
+      "correction": "It may speed familiar solutions but becomes an obstacle when conditions change."
+    },
+    {
+      "claim": "Anything unusual is creative.",
+      "correction": "Creative ideas must also be appropriate, constructive and reality-oriented."
+    },
+    {
+      "claim": "One theory settles the relation between language and thought.",
+      "correction": "The chapter presents competing views and evidence."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Review Question 2 on concepts.",
+    "NCERT Review Question 3 on problem-solving obstacles.",
+    "NCERT Review Question 5 on judgment and decision-making.",
+    "NCERT Review Question 6 on divergent thinking.",
+    "NCERT Review Question 8 on thought without language."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–9, one Project Idea and answers to Activity 7.2.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

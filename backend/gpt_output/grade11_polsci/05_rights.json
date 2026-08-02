@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Political Science",
+    "chapter": "Rights",
+    "central_question": "What makes a claim a right, how do rights protect dignity and well-being, and what obligations do they create for the state and for citizens?",
+    "in_scope_units": [
+      "What Are Rights: entitlement, justified claims, dignity, expression, livelihood, education and well-being.",
+      "Where Do Rights Come From: natural rights, human rights, Kant, universality and expanding claims.",
+      "Legal Rights and the State: constitutional recognition, Fundamental Rights, state duties and limits on authority.",
+      "Kinds of Rights: political rights, civil liberties, economic rights and cultural rights.",
+      "Rights and Responsibilities: common goods, equal rights, conflicting claims, privacy, security and vigilance."
+    ],
+    "banned_topics": [
+      "Detailed negative and positive liberty and the harm principle, which belong to Freedom.",
+      "Detailed theories of justice and the veil of ignorance, which belong to Social Justice.",
+      "Detailed citizenship acquisition and refugee status, which belong to Citizenship."
+    ],
+    "must_include_keywords": [
+      "rights",
+      "entitlement",
+      "justified claim",
+      "dignity",
+      "self-respect",
+      "livelihood",
+      "freedom of expression",
+      "well-being",
+      "education",
+      "natural rights",
+      "inalienable",
+      "life",
+      "liberty",
+      "property",
+      "human rights",
+      "human dignity",
+      "Immanuel Kant",
+      "Universal Declaration of Human Rights",
+      "clean air",
+      "safe drinking water",
+      "legal rights",
+      "Bill of Rights",
+      "Fundamental Rights",
+      "untouchability",
+      "state obligation",
+      "judicial court",
+      "political rights",
+      "civil liberties",
+      "economic rights",
+      "cultural rights",
+      "mother tongue",
+      "common good",
+      "privacy",
+      "national security",
+      "legal counsel",
+      "responsibility"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Anything a person wants is automatically a right.",
+        "correction": "A right is a justified claim necessary for dignity or well-being and recognised as legitimate by society."
+      },
+      {
+        "claim": "Rights exist only when a state grants them.",
+        "correction": "Legal recognition makes rights enforceable, but their moral basis may precede state recognition."
+      },
+      {
+        "claim": "Political rights alone are enough for full democratic participation.",
+        "correction": "Basic material needs and economic rights affect whether people can meaningfully exercise political rights."
+      },
+      {
+        "claim": "Rights place duties only on government.",
+        "correction": "They also require citizens to respect others’ rights, protect common goods and balance conflicting claims."
+      },
+      {
+        "claim": "National security automatically justifies any restriction.",
+        "correction": "Citizens must examine necessity, imminent threat, due process and the danger of authoritarian misuse."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Exercise Q1 on the meaning and basis of rights.",
+      "Use NCERT Exercise Q2 to examine universal human rights.",
+      "Use NCERT Exercise Q5 to analyse limits on state authority.",
+      "Use NCERT Exercise Q4 to classify political, economic and cultural rights.",
+      "Conclude with NCERT Exercise Q3 on emerging rights claims."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–5 on the meaning and basis of rights, universality, new claims, kinds of rights and limits on state authority."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Rights\n\n## What you will learn\nYou will understand rights as entitlements or justified claims rather than every personal desire. You will connect rights with dignity, self-respect, well-being and human development.\n\n## Simple explanation\nA claim becomes a right when it is recognised as necessary for a life of dignity and well-being and can be defended as legitimate for people in society. Rights protect conditions that allow individuals to develop their abilities and participate as equals.\n\n## Step-by-step breakdown\n- **Entitlement**: A right denotes something due to a person as a citizen, individual or human being.\n- **Justified claim**: Not every want, preference or convenience can be designated a right.\n- **Dignity**: The right to livelihood supports economic independence and self-respect.\n- **Expression**: Freedom of expression encourages creativity and allows beliefs and opinions to be voiced in a democracy.\n- **Well-being**: Education develops reason, skills and informed choice.\n- **Limits**: An activity injurious to health or others, such as taking prohibited drugs, cannot be justified merely by calling it a right.\n\n## Worked example\nQuestion: NCERT Exercise Q1: What distinguishes a right from an ordinary desire?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q1\", \"extract_text\": \"What are rights and why are they important? What are the bases on which claims to rights can be made?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter defines a right as an entitlement or justified claim that society recognises as legitimate.\n- Claims are grounded in conditions necessary for dignity, self-respect, well-being and the development of human abilities.\n- Final answer: A right is a socially defensible claim to conditions necessary for a dignified and worthwhile life, not simply anything a person wants.\n\n## Common mistake\nA common mistake is to describe every preferred choice as a right. The chapter asks whether the claim protects dignity, well-being and equal human development.\n\n## Quick check question\nQuestion: Why is the right to education treated as a universal right?\nAnswer: Because education develops the capacity to reason, provides useful skills and enables informed choices.\nExplanation: These benefits are necessary for human development and a minimally good life.\n\n## Summary\n- Rights are justified claims.\n- They are linked with dignity and well-being.\n- They enable development and participation.\n- Personal desire alone does not create a right.",
+    "Core explanation": "# Core explanation: Rights\n\n## What you will learn\nYou will study how natural-rights arguments developed into the modern language of human rights. You will understand Kant’s idea of human dignity and the expansion of rights claims.\n\n## Simple explanation\nEarlier theorists described life, liberty and property as rights given by nature or God. Modern human-rights language instead emphasises that every person is unique, equally valuable and entitled to conditions needed for dignity.\n\n## Step-by-step breakdown\n- **Natural rights**: Seventeenth- and eighteenth-century thinkers regarded life, liberty and property as inalienable rights not conferred by rulers.\n- **Human rights**: Modern thinking describes rights as guarantees people seek in order to lead a minimally good life.\n- **Equal human value**: No person is born to serve another, and everyone should have opportunities to be free and develop.\n- **Kant**: Human beings possess dignity and must not be treated merely as means to another person’s ends.\n- **Universal Declaration**: The United Nations declaration expresses claims recognised by the world community as important to dignity and self-respect.\n- **Expanding claims**: Environmental protection, clean air, water, sustainable development, livelihood and children’s rights respond to new threats and exclusions.\n- **Struggle**: Oppressed and excluded groups have changed the interpretation and reach of rights.\n\n## Worked example\nQuestion: NCERT Exercise Q2: On what basis does the chapter describe some rights as universal?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q2\", \"extract_text\": \"On what grounds are some rights considered to be universal in nature? Identify three rights which you consider universal. Give reasons.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Universal rights are connected with needs and capacities shared by all human beings, including dignity, well-being, freedom and development.\n- The chapter itself presents livelihood, expression and education as claims important to human beings generally.\n- Final answer: Rights are universal when their protection is necessary for every person to live with dignity, develop abilities and participate as a free and equal human being.\n\n## Common mistake\nDo not claim that a right is universal only because a government has enacted it. Legal recognition strengthens a right, but the moral basis lies in human dignity and well-being.\n\n## Quick check question\nQuestion: What is Kant’s central rule for treating persons with dignity?\nAnswer: People should not be treated merely as means to another person’s ends.\nExplanation: Every person has intrinsic value and deserves respect because they are human.\n\n## Summary\n- Natural rights resisted arbitrary rule.\n- Human rights rest on equal human value.\n- Kant connects rights with dignity.\n- New challenges generate new rights claims.",
+    "Worked examples": "# Worked examples: Rights\n\n## What you will learn\nYou will understand why legal and constitutional recognition matters and how rights create obligations and limits for the state. You will distinguish the moral basis of rights from their legal enforcement.\n\n## Simple explanation\nMoral claims become more effective when laws and constitutions recognise them. Rights tell the state both what it must do to protect and provide, and what it must not do to individual life and liberty.\n\n## Step-by-step breakdown\n- **Bill of Rights**: Many constitutions give certain claims primary legal importance.\n- **Fundamental Rights**: India’s Constitution recognises basic rights and also bans untouchability in response to the country’s history.\n- **Legal recognition**: Law gives rights special status but is not the original moral basis on which every right is claimed.\n- **Positive obligation**: The right to education requires the state to make provision for basic education.\n- **Protection**: The right to life requires laws against injury and policies that may support a healthy environment and quality of life.\n- **Restraint**: The state cannot arrest a person at will and must justify curtailment of liberty before a court.\n- **Accountability**: State authority exists for people’s well-being and must be exercised without violating life and liberty.\n\n## Worked example\nQuestion: NCERT Exercise Q5: How do rights both direct and restrict state action?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q5\", \"extract_text\": \"Rights place some limits on the authority of the state. Explain with examples.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- A right can require positive action, such as providing education or protecting a person from harm.\n- It can also prevent arbitrary action, such as arrest without reasons, warrant or judicial scrutiny.\n- Final answer: Rights make government responsible for protecting and enabling human well-being while limiting arbitrary or unjust use of sovereign power.\n\n## Common mistake\nDo not define rights only as claims recognised by the state. The chapter states that rights have been expanded by moral struggle even before full legal recognition.\n\n## Quick check question\nQuestion: Why must the state give reasons before curtailing personal liberty?\nAnswer: Because the right to liberty places limits on arbitrary arrest and requires state action to be legally justified before a judicial authority.\nExplanation: This ensures that sovereign power is exercised for people rather than at the ruler’s will.\n\n## Summary\n- Law makes rights enforceable.\n- Rights create positive state duties.\n- Rights restrain arbitrary authority.\n- Rulers remain accountable to human well-being.",
+    "Exam-style problems": "# Exam-style problems: Rights\n\n## What you will learn\nYou will distinguish political rights, civil liberties, economic rights and cultural rights. You will understand why democratic participation depends on both liberty and basic material conditions.\n\n## Simple explanation\nDifferent rights protect different aspects of a good life. Political and civil rights create accountable government, economic rights help meet basic needs and cultural rights allow communities and individuals to preserve language and ways of life.\n\n## Step-by-step breakdown\n- **Political rights**: These include equality before law, voting, electing representatives, contesting elections and forming or joining political parties.\n- **Civil liberties**: These include free and fair trial, expression, protest and dissent.\n- **Democratic foundation**: Political rights and civil liberties enable people to influence government and hold rulers accountable.\n- **Economic rights**: Adequate wages, reasonable working conditions, housing, medical support and employment measures help meet basic needs.\n- **Material conditions**: Political participation has limited practical value to a person struggling for food, shelter, clothing and health.\n- **Cultural rights**: Mother-tongue education and institutions for language and culture protect conditions needed for a good life.\n- **Priority**: Life, liberty, equal treatment and political participation are basic, while further justified claims continue to expand.\n\n## Worked example\nQuestion: NCERT Exercise Q4: How do the three categories protect different dimensions of human life?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q4\", \"extract_text\": \"Differentiate between political, economic and cultural rights. Give examples of each kind of right.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Political rights enable legal equality and participation in choosing and influencing government.\n- Economic rights support basic material security, while cultural rights protect language, education and community identity.\n- Final answer: Political, economic and cultural rights are distinct but complementary conditions for participation, material well-being and the preservation of valued ways of life.\n\n## Common mistake\nDo not assume that voting rights alone guarantee a dignified life. The chapter explains that basic needs and economic security affect the real exercise of political rights.\n\n## Quick check question\nQuestion: Give one example of a cultural right from the chapter.\nAnswer: The right to receive primary education in one’s mother tongue.\nExplanation: The chapter also mentions the right to establish institutions for teaching one’s language and culture.\n\n## Summary\n- Political rights enable participation.\n- Civil liberties protect dissent.\n- Economic rights support basic needs.\n- Cultural rights preserve language and community life.",
+    "Revision and recap": "# Revision and recap: Rights\n\n## What you will learn\nYou will revise the responsibilities that accompany rights. You will learn how equal rights, common goods, privacy and national security create limits and conflicts that citizens must judge carefully.\n\n## Simple explanation\nRights protect individuals, but they cannot be exercised by denying the same rights to others. Citizens must defend common goods, balance competing claims and remain vigilant when governments restrict liberty in the name of security.\n\n## Step-by-step breakdown\n- **Common good**: Protecting the environment, forests, water and ecological balance serves present and future generations.\n- **Reciprocity**: A person claiming expression or personal choice must grant comparable freedom to others.\n- **Equal rights**: Free speech cannot be used to incite a crowd to kill another person.\n- **Conflicting rights**: Taking and posting a private image without consent pits expression against privacy.\n- **Security debate**: Governments may seek wider powers against terrorism, but arrest on suspicion, surveillance and torture threaten civil liberties.\n- **Due process**: Even arrested persons should receive legal counsel and an opportunity to present their case before a magistrate or court.\n- **Vigilance**: Rights are not absolute, but unrestricted state powers can be misused and become authoritarian.\n\n## Worked example\nQuestion: NCERT Exercise Q3: Why do new rights claims emerge over time?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q3\", \"extract_text\": \"Discuss briefly some of the new rights claims which are being put forward in our country today — for example the rights of tribal peoples to protect their habitat and way of life, or the rights of children against bonded labour.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter explains that new threats and forms of exclusion reveal conditions required for dignity that were previously neglected.\n- Claims concerning habitat, environment, children, livelihood and vulnerable groups seek to extend protection to people whose needs were not adequately recognised.\n- Final answer: New rights claims arise when changing conditions or social struggles reveal fresh threats to dignity, well-being and equal freedom.\n\n## Common mistake\nDo not treat responsibilities as obedience to every government restriction. Citizens also have a responsibility to remain vigilant against unjust limits on rights.\n\n## Quick check question\nQuestion: How are a person’s rights limited by the rights of others?\nAnswer: A person may exercise freedom only in ways that do not deprive others of equal rights, safety, dignity or privacy.\nExplanation: The principle of equal and same rights for all requires reciprocal respect.\n\n## Summary\n- Rights protect common as well as individual goods.\n- Equal freedom requires reciprocity.\n- Rights may conflict and need balancing.\n- Citizens must guard against authoritarian restrictions.\n- Immanuel Kant grounds dignity; the Universal Declaration of Human Rights supports universal claims; legal rights create a state obligation enforceable before a judicial court, including claims linked to safe drinking water."
+  }
+}

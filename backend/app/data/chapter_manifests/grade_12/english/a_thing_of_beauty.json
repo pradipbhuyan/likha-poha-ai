@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "A Thing of Beauty",
+  "central_question": "How does lasting beauty help human beings remain attached to life despite suffering, gloom and disappointment?",
+  "in_scope_units": [
+    "About the poet: John Keats, the Romantic poet, and the extract from Endymion.",
+    "Before you read: reflection on the pleasure and value of beautiful things.",
+    "The poem’s opening claim that beauty gives permanent joy, rest, health and quiet breathing.",
+    "The flowery band image and the contrast between beauty and despondence, gloomy days and unhealthy ways.",
+    "The catalogue of natural and imaginative beauty: sun, moon, trees, sheep, daffodils, rills, forest brake, musk-roses, mighty dead and lovely tales.",
+    "The final image of an endless fountain of immortal drink from heaven.",
+    "Think it out Questions 1–7 and the note on rhyme scheme, line length and balanced syntax."
+  ],
+  "banned_topics": [
+    "A detailed retelling of the complete Greek legend of Endymion beyond the information in the chapter.",
+    "Biographical details about John Keats not supplied in the chapter."
+  ],
+  "must_include_keywords": [
+    "John Keats",
+    "British Romantic poet",
+    "Endymion",
+    "Cynthia",
+    "joy forever",
+    "loveliness",
+    "nothingness",
+    "bower",
+    "sweet dreams",
+    "health",
+    "quiet breathing",
+    "flowery band",
+    "despondence",
+    "inhuman dearth",
+    "noble natures",
+    "gloomy days",
+    "o’er-darkened ways",
+    "pall",
+    "dark spirits",
+    "sun",
+    "moon",
+    "old and young trees",
+    "shady boon",
+    "daffodils",
+    "clear rills",
+    "cooling covert",
+    "forest brake",
+    "musk-rose blooms",
+    "mighty dead",
+    "lovely tales",
+    "endless fountain",
+    "immortal drink",
+    "rhyme scheme",
+    "line length",
+    "balanced sentence"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The poem says beautiful things give only brief pleasure.",
+      "correction": "The opening says beauty is ‘a joy forever’ and that its loveliness increases rather than passing into nothingness."
+    },
+    {
+      "claim": "The ‘flowery band’ is a literal rope made by people every morning.",
+      "correction": "It is an image for the continuing bond of beauty and hope that attaches human beings to earthly life."
+    },
+    {
+      "claim": "The poem ignores suffering.",
+      "correction": "It directly names despondence, the lack of noble natures, gloomy days and unhealthy, darkened ways before showing how beauty lifts the pall."
+    },
+    {
+      "claim": "The ‘immortal drink’ is an actual beverage.",
+      "correction": "It is the concluding metaphor for the endless spiritual nourishment supplied by beauty."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Think it out Q1 to identify the poem’s full catalogue of beautiful objects.",
+    "Use NCERT Think it out Q2 to establish the poem’s opposing field of suffering and pain.",
+    "Use NCERT Think it out Q3 to interpret the ‘flowery band’ metaphor.",
+    "Use NCERT Think it out Q5 to connect the mighty dead with imagined grandeur.",
+    "Finish with NCERT Think it out Q7 and the textbook note on rhyme, line length and sentence balance."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The poem is followed by the Think it out section, Questions 1–7, and a note asking students to notice rhyme scheme, line length and sentence balance.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

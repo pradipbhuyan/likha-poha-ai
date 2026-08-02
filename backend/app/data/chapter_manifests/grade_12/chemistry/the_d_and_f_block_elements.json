@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "The d- and f-Block Elements",
+  "central_question": "How do partially filled d and f subshells explain the characteristic trends, variable oxidation states and chemistry of transition and inner-transition elements?",
+  "in_scope_units": [
+    "Position and electronic configurations of d-block transition elements.",
+    "General physical properties, atomic and ionic sizes, ionisation enthalpies and enthalpies of atomisation.",
+    "Variable oxidation states and their stability in relation to electrode potentials.",
+    "Coloured ions, magnetic behaviour, complex formation, catalysis, interstitial compounds and alloys.",
+    "Preparation, properties and oxidising action of potassium dichromate and potassium permanganate.",
+    "Electronic configurations, oxidation states and chemical behaviour of lanthanoids and actinoids.",
+    "Lanthanoid contraction and comparison of lanthanoids with actinoids."
+  ],
+  "banned_topics": [
+    "Detailed coordination-compound nomenclature and crystal-field splitting, which belong to Coordination Compounds.",
+    "Full extraction metallurgy of transition metals except the preparation routes specifically included for K₂Cr₂O₇ and KMnO₄.",
+    "Nuclear reactions of actinoids, which are outside this chemistry chapter."
+  ],
+  "must_include_keywords": [
+    "d-block",
+    "f-block",
+    "transition element",
+    "inner transition element",
+    "3d series",
+    "electronic configuration",
+    "incomplete d subshell",
+    "chromium anomaly",
+    "copper anomaly",
+    "enthalpy of atomisation",
+    "atomic radius",
+    "ionic radius",
+    "lanthanoid contraction",
+    "ionisation enthalpy",
+    "oxidation state",
+    "standard electrode potential",
+    "disproportionation",
+    "coloured ions",
+    "d–d transition",
+    "paramagnetism",
+    "magnetic moment",
+    "unpaired electrons",
+    "catalytic activity",
+    "complex formation",
+    "interstitial compound",
+    "alloy",
+    "potassium dichromate",
+    "chromate",
+    "dichromate",
+    "potassium permanganate",
+    "manganate",
+    "lanthanoids",
+    "actinoids",
+    "actinoid contraction"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every d-block element is a transition element.",
+      "correction": "A transition element must have an incomplete d subshell in its atom or in at least one common ion; Zn, Cd and Hg have d¹⁰ configurations in their common states and are not transition elements."
+    },
+    {
+      "claim": "The 4s electrons are always removed after 3d electrons.",
+      "correction": "On ionisation of first-row transition metals, 4s electrons are generally removed before 3d electrons."
+    },
+    {
+      "claim": "All transition-metal ions are coloured and paramagnetic.",
+      "correction": "d⁰ and d¹⁰ ions are generally colourless and diamagnetic because they lack partially filled d levels or unpaired electrons."
+    },
+    {
+      "claim": "Lanthanoid contraction is caused by strong shielding by 4f electrons.",
+      "correction": "It results from poor shielding of increasing nuclear charge by 4f electrons, causing a gradual decrease in size."
+    },
+    {
+      "claim": "KMnO₄ and K₂Cr₂O₇ have the same reduction products in every medium.",
+      "correction": "Their reduction products depend on the medium; for example, permanganate gives Mn²⁺ in acid, MnO₂ in neutral or weakly alkaline medium and manganate in strongly alkaline medium."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with NCERT Example 4.1 on why Sc is a transition element but Zn is not.",
+    "Use NCERT Example 4.2 to relate unpaired electrons to enthalpy of atomisation.",
+    "Apply NCERT Examples 4.3–4.7 to oxidation-state stability and electrode potentials.",
+    "Use NCERT Example 4.8 to calculate spin-only magnetic moment.",
+    "Finish with NCERT Examples 4.9 and 4.10 on disproportionation and lanthanoid oxidation states."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 4.1 to 4.38 and cover configurations, oxidation states, electrode potentials, magnetic moments, dichromate, permanganate, lanthanoid contraction and actinoid chemistry.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

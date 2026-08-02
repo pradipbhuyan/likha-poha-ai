@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Psychology",
+    "chapter": "Learning",
+    "central_question": "How does experience produce relatively lasting changes through conditioning, observation, cognition, verbal organisation and practice?",
+    "in_scope_units": [
+      "Nature and features of learning and distinction from temporary change or performance.",
+      "Classical conditioning and its determinants.",
+      "Operant conditioning, reinforcement, punishment, schedules and delay.",
+      "Differences between classical and operant conditioning.",
+      "Reinforcement, shaping, extinction, generalisation, discrimination and spontaneous recovery.",
+      "Learned helplessness.",
+      "Observational learning.",
+      "Insight and latent learning.",
+      "Verbal learning.",
+      "Skill learning.",
+      "Factors facilitating learning.",
+      "Learning disabilities and remedial teaching."
+    ],
+    "banned_topics": [
+      "Detailed memory-system models and forgetting theories, which belong to Human Memory.",
+      "Detailed motivational theories beyond motivation as a facilitator of learning."
+    ],
+    "must_include_keywords": [
+      "learning",
+      "experience",
+      "behavioural potential",
+      "performance",
+      "habituation",
+      "conditioning",
+      "Ivan Pavlov",
+      "unconditioned stimulus",
+      "unconditioned response",
+      "conditioned stimulus",
+      "conditioned response",
+      "delayed conditioning",
+      "B.F. Skinner",
+      "operant",
+      "reinforcement",
+      "positive reinforcement",
+      "negative reinforcement",
+      "punishment",
+      "continuous reinforcement",
+      "partial reinforcement",
+      "extinction",
+      "generalisation",
+      "discrimination",
+      "spontaneous recovery",
+      "learned helplessness",
+      "observational learning",
+      "modeling",
+      "Bandura",
+      "insight learning",
+      "Köhler",
+      "latent learning",
+      "Tolman",
+      "cognitive map",
+      "paired associates",
+      "serial learning",
+      "free recall",
+      "skill learning",
+      "cognitive phase",
+      "associative phase",
+      "autonomous phase",
+      "preparedness",
+      "learning disabilities",
+      "dyslexia"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every behavioural change is learning.",
+        "correction": "Learning is a relatively permanent change produced by experience; fatigue, drugs and habituation are excluded."
+      },
+      {
+        "claim": "Negative reinforcement is punishment.",
+        "correction": "Negative reinforcement increases avoidance or escape by removing an unpleasant event; punishment suppresses a response."
+      },
+      {
+        "claim": "Classical and operant conditioning condition the same responses.",
+        "correction": "Classical conditioning concerns elicited reflexes; operant conditioning concerns voluntary actions shaped by consequences."
+      },
+      {
+        "claim": "Observational learning is only copying.",
+        "correction": "Models transmit behaviour, while consequences affect performance."
+      },
+      {
+        "claim": "Learning disability means low intelligence.",
+        "correction": "It can occur with average or superior intelligence and adequate opportunity."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Review Question 1 on definition and features.",
+      "NCERT Review Question 2 on classical conditioning.",
+      "NCERT Review Question 3 on operant conditioning.",
+      "NCERT Review Question 10 on cognitive learning.",
+      "NCERT Review Question 11 on learning disabilities."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–11 and one Project Idea."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Learning\n\n## What you will learn\nYou will define learning and distinguish it from temporary change, habituation and performance. You will survey the main learning paradigms.\n\n## Simple explanation\nLearning is inferred when experience produces a relatively lasting change in behaviour or behavioural potential.\n\n## Step-by-step breakdown\n- **Definition**: A relatively permanent change in behaviour or potential produced by experience.\n- **Experience and practice**: Repeated or powerful single experiences can change later behaviour.\n- **Temporary change**: Fatigue and drug effects disappear and are not learning.\n- **Habituation**: Reduced orienting after repeated stimulation is distinguished from learning in the chapter.\n- **Inference and performance**: Learning is inferred; performance is the observed response.\n- **Paradigms**: Conditioning, observation, cognition, verbal learning and skill acquisition explain different changes.\n\n## Worked example\nQuestion: Using NCERT Review Question 1, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 1\", \"extract_text\": \"What is learning? What are its distinguishing features?\", \"note\": \"From the Review Questions section of Learning.\"}\n```\n\nAnswer:\n- Learning is a relatively permanent change in behaviour or behavioural potential produced by experience.\n- Temporary change due to fatigue or drugs does not qualify.\n- Learning is inferred from performance but is not identical with it.\n- Final answer: Learning is a relatively lasting, experience-produced change that must be distinguished from temporary states and observed performance.\n\n## Common mistake\nOne poor performance does not necessarily mean that no learning occurred.\n\n## Quick check question\nQuestion: Why is learning inferred?\nAnswer: Because the process is not directly observed; it is concluded from changes in behaviour or potential.\nExplanation: The recitation is performance, while the teacher infers that the poem was learned.\n\n## Summary\n- Learning depends on experience.\n- The change is relatively permanent.\n- Temporary states are excluded.\n- Learning and performance differ.",
+    "Core explanation": "# Core explanation: Learning\n\n## What you will learn\nYou will study classical conditioning and its determinants. You will correctly identify US, UR, CS and CR.\n\n## Simple explanation\nA neutral signal begins to elicit a response after being paired with a stimulus that naturally produces that response.\n\n## Step-by-step breakdown\n- **Pavlov’s experiment**: Dogs salivated to food and later to the bell that preceded food.\n- **US and UR**: Food is the unconditioned stimulus and salivation to food is the unconditioned response.\n- **CS and CR**: The bell becomes conditioned and salivation to it becomes the conditioned response.\n- **S–S learning**: One stimulus predicts another.\n- **Time relations**: Simultaneous, delayed, trace and backward procedures differ; delayed is most effective.\n- **Appetitive and aversive US**: They produce approach or avoidance and differ in acquisition speed.\n- **Intensity**: A more intense CS can accelerate acquisition.\n\n## Worked example\nQuestion: Using NCERT Review Question 2, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 2\", \"extract_text\": \"How does classical conditioning demonstrate learning by association?\", \"note\": \"From the Review Questions section of Learning.\"}\n```\n\nAnswer:\n- Before conditioning, food elicits salivation and the bell has no specific salivary effect.\n- Repeated bell–food pairing creates an association.\n- After conditioning, the bell alone elicits salivation.\n- Final answer: Classical conditioning shows association because a neutral signal gains response-producing power after systematic pairing with an unconditioned stimulus.\n\n## Common mistake\nThe bell is not the unconditioned stimulus; its function is acquired.\n\n## Quick check question\nQuestion: Which timing is most effective?\nAnswer: Delayed conditioning.\nExplanation: The CS starts before and overlaps the US, making it an effective predictor.\n\n## Summary\n- Classical conditioning is stimulus association.\n- US naturally elicits UR.\n- CS acquires CR.\n- Timing, US type and intensity influence learning.",
+    "Worked examples": "# Worked examples: Learning\n\n## What you will learn\nYou will examine operant conditioning and distinguish reinforcement from punishment. You will understand schedules and delay.\n\n## Simple explanation\nVoluntary actions become more or less likely because of their consequences.\n\n## Step-by-step breakdown\n- **Skinner box**: A hungry rat learns lever pressing because it produces food.\n- **Operant**: A voluntarily emitted response under the organism’s control.\n- **Reinforcer**: An event that increases the preceding response.\n- **Positive reinforcement**: A pleasant consequence strengthens behaviour.\n- **Negative reinforcement**: Removal or avoidance of an unpleasant condition strengthens escape or avoidance.\n- **Punishment**: It suppresses behaviour but does not permanently erase it.\n- **Schedules**: Continuous reinforcement produces rapid learning; partial reinforcement produces greater resistance to extinction.\n- **Delay**: Immediate reinforcement is generally more effective than delayed reinforcement.\n\n## Worked example\nQuestion: Using NCERT Review Question 3, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 3\", \"extract_text\": \"Define operant conditioning. Discuss the factors that influence the course of operant conditioning.\", \"note\": \"From the Review Questions section of Learning.\"}\n```\n\nAnswer:\n- Operant conditioning changes voluntary behaviour through consequences.\n- Type, number, amount and quality of reinforcement affect acquisition.\n- Schedules, response characteristics and delay also matter.\n- Final answer: Operant conditioning is consequence-based learning whose course depends on reinforcement properties, schedule and timing.\n\n## Common mistake\nNegative reinforcement increases behaviour; it is not punishment.\n\n## Quick check question\nQuestion: Why does partial reinforcement resist extinction?\nAnswer: Because non-reinforced trials were already part of acquisition.\nExplanation: The absence of reward does not immediately signal that reinforcement has ended.\n\n## Summary\n- Operants are voluntary.\n- Reinforcement increases responding.\n- Negative reinforcement differs from punishment.\n- Schedules and delay shape performance.",
+    "Exam-style problems": "# Exam-style problems: Learning\n\n## What you will learn\nYou will connect key learning processes with observational and cognitive learning.\n\n## Simple explanation\nResponses may weaken, spread, become selective or return, while learning may also occur through models and cognitive relations.\n\n## Step-by-step breakdown\n- **Extinction**: A response weakens when the expected US or reinforcer is removed.\n- **Generalisation**: A learned response spreads to similar stimuli.\n- **Discrimination**: Relevant differences are learned and responses become selective.\n- **Spontaneous recovery**: An extinguished response may reappear after a rest.\n- **Learned helplessness**: Repeated uncontrollability reduces later persistence and escape.\n- **Observational learning**: Bandura showed acquisition from models and performance effects of model reward or punishment.\n- **Insight**: Köhler’s chimpanzees perceived means–end relations.\n- **Latent learning**: Tolman’s rats acquired cognitive maps before reward revealed performance.\n\n## Worked example\nQuestion: Using NCERT Review Question 10, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 10\", \"extract_text\": \"Explain the different forms of cognitive learning?\", \"note\": \"From the Review Questions section of Learning.\"}\n```\n\nAnswer:\n- Insight is sudden understanding of the relation between a problem and its solution.\n- Köhler’s chimpanzees reorganised the situation to use boxes or poles.\n- Latent learning is acquired before reinforcement makes it visible, as in Tolman’s cognitive maps.\n- Final answer: Cognitive learning includes insight and latent learning, both of which show knowledge beyond gradual reinforced response formation.\n\n## Common mistake\nNo immediate performance does not prove absence of learning.\n\n## Quick check question\nQuestion: How do generalisation and discrimination differ?\nAnswer: Generalisation responds to similarity; discrimination responds to learned differences.\nExplanation: Adaptive learning requires transfer to relevant similarities and sensitivity to important distinctions.\n\n## Summary\n- Extinction is not erasure.\n- Generalisation and discrimination are complementary.\n- Models transmit behaviour.\n- Insight and latent learning emphasise cognition.",
+    "Revision and recap": "# Revision and recap: Learning\n\n## What you will learn\nYou will compare verbal and skill learning, facilitators and learning disabilities.\n\n## Simple explanation\nWords are learned through association and organisation; skills become automatic through prolonged practice.\n\n## Step-by-step breakdown\n- **Paired associates**: A stimulus item is learned with a response item.\n- **Serial learning**: Items are anticipated in a fixed order.\n- **Free recall**: Items are recalled in any order and often organised into clusters.\n- **Skill phases**: Cognitive, associative and autonomous phases show declining errors and attentional demand.\n- **Motivation and preparedness**: Goal-directed effort and biological readiness influence learning.\n- **Learning disabilities**: Persistent reading, writing, speaking, reasoning or mathematics difficulties may occur despite adequate intelligence.\n- **Remediation**: Appropriate remedial teaching can address many difficulties.\n\n## Worked example\nQuestion: Using NCERT Review Question 11, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 11\", \"extract_text\": \"How can we identify students with learning disabilities?\", \"note\": \"From the Review Questions section of Learning.\"}\n```\n\nAnswer:\n- The chapter lists persistent problems in reading, writing, speaking and following oral directions.\n- It also notes distractibility, poor orientation, coordination and perceptual problems.\n- Dyslexia may involve reversals or confusion despite adequate intelligence and sensory acuity.\n- Final answer: Identification depends on a pattern of specific, persistent learning difficulties not explained simply by low intelligence, poor motivation or lack of opportunity.\n\n## Common mistake\nDo not label a student lazy from reading or writing errors; investigate specific learning needs.\n\n## Quick check question\nQuestion: What marks the autonomous phase?\nAnswer: Skilled performance becomes largely automatic and needs little conscious effort.\nExplanation: Practice has organised smaller responses into a smooth sequence.\n\n## Summary\n- Verbal learning can be paired, serial or freely recalled.\n- Skills pass through three phases.\n- Motivation and preparedness facilitate learning.\n- Learning disabilities require identification and remediation."
+  }
+}

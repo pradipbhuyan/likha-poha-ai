@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Distribution of Oceans and Continents",
+  "central_question": "What evidence and mechanisms explain the changing positions of continents and oceans through continental drift, sea-floor spreading and plate tectonics?",
+  "in_scope_units": [
+    "Continental drift, Pangaea, Panthalassa, Laurasia and Gondwanaland.",
+    "Evidence from continental fit, rocks, tillite, placer deposits and fossils.",
+    "Wegener’s proposed forces and post-drift convection ideas.",
+    "Ocean-floor configuration and earthquake and volcano patterns.",
+    "Sea-floor spreading and palaeomagnetism.",
+    "Plate tectonics, plate boundaries and movement of the Indian Plate."
+  ],
+  "banned_topics": [
+    "Detailed seismic-wave structure, which belongs to Interior of the Earth.",
+    "Detailed erosion and weathering, which belong to Geomorphic Processes.",
+    "Detailed Indian physiography, which belongs to Structure and Physiography."
+  ],
+  "must_include_keywords": [
+    "continental drift",
+    "Alfred Wegener",
+    "Pangaea",
+    "Panthalassa",
+    "Laurasia",
+    "Gondwanaland",
+    "jigsaw fit",
+    "Bullard",
+    "radiometric dating",
+    "tillite",
+    "placer deposits",
+    "fossils",
+    "Mesosaurus",
+    "pole-fleeing force",
+    "tidal force",
+    "Arthur Holmes",
+    "convection currents",
+    "ocean floor",
+    "continental margin",
+    "abyssal plain",
+    "mid-oceanic ridge",
+    "deep-sea trench",
+    "rim of fire",
+    "sea-floor spreading",
+    "Harry Hess",
+    "palaeomagnetism",
+    "magnetic polarity",
+    "oceanic crust",
+    "plate tectonics",
+    "lithospheric plate",
+    "asthenosphere",
+    "major plates",
+    "minor plates",
+    "divergent boundary",
+    "convergent boundary",
+    "subduction zone",
+    "transform boundary",
+    "Indian Plate",
+    "Tethys Sea",
+    "Deccan Traps"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Continents have always occupied present positions.",
+      "correction": "Wegener argued that they were once united in Pangaea."
+    },
+    {
+      "claim": "The modern shoreline gives the best fit.",
+      "correction": "Bullard used the 1,000-fathom line."
+    },
+    {
+      "claim": "Wegener’s forces were accepted as adequate.",
+      "correction": "Most scholars considered them too weak."
+    },
+    {
+      "claim": "Sea-floor spreading only creates crust.",
+      "correction": "Hess proposed creation at ridges and consumption at trenches."
+    },
+    {
+      "claim": "Continents move independently over ocean floor.",
+      "correction": "Continents are parts of moving lithospheric plates."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 2(i) to explain Wegener’s forces.",
+    "Use Exercise 2(iii) to compare boundary types.",
+    "Use Exercise 3(i) to organise drift evidence.",
+    "Use Exercise 3(ii–iii) to compare theories and post-drift discoveries."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–v), 2(i–iv), 3(i–iii), and a Project Work task on earthquake damage.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

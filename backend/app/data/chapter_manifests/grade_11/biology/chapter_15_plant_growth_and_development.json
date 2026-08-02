@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 15: Plant Growth and Development",
+  "central_question": "How do plants grow, differentiate and develop under the combined control of internal regulators and environmental conditions?",
+  "in_scope_units": [
+    "Growth as an irreversible increase and the indeterminate nature of plant growth.",
+    "Measurement and phases of growth.",
+    "Arithmetic and geometric growth, sigmoid curves and growth rates.",
+    "Conditions required for growth.",
+    "Differentiation, dedifferentiation and redifferentiation.",
+    "Development, plasticity and heterophylly.",
+    "Characteristics and discovery of plant growth regulators.",
+    "Effects of auxins, gibberellins, cytokinins, ethylene and ABA."
+  ],
+  "banned_topics": [
+    "Light reactions and Calvin cycle",
+    "Photosynthetic pigments",
+    "Mineral deficiency and nitrogen metabolism"
+  ],
+  "must_include_keywords": [
+    "growth",
+    "irreversible increase",
+    "meristem",
+    "open growth",
+    "root apical meristem",
+    "shoot apical meristem",
+    "vascular cambium",
+    "primary growth",
+    "secondary growth",
+    "meristematic phase",
+    "elongation phase",
+    "maturation phase",
+    "arithmetic growth",
+    "geometric growth",
+    "sigmoid curve",
+    "absolute growth rate",
+    "relative growth rate",
+    "differentiation",
+    "dedifferentiation",
+    "redifferentiation",
+    "development",
+    "plasticity",
+    "heterophylly",
+    "plant growth regulator",
+    "auxin",
+    "gibberellin",
+    "cytokinin",
+    "ethylene",
+    "abscisic acid",
+    "apical dominance",
+    "parthenocarpy",
+    "bolting",
+    "senescence",
+    "dormancy",
+    "stress hormone"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any increase in size is biological growth.",
+      "correction": "Plant growth is irreversible, permanent and associated with living metabolism."
+    },
+    {
+      "claim": "All daughter cells of a meristem remain capable of division.",
+      "correction": "Many lose division capacity and differentiate into the plant body."
+    },
+    {
+      "claim": "Each PGR has only one fixed effect.",
+      "correction": "PGRs have diverse, overlapping, synergistic and antagonistic actions."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1 for core definitions.",
+    "Use NCERT Exercise 3 to compare growth patterns and rates.",
+    "Use NCERT Exercise 4 to organise PGR discovery and applications.",
+    "Use NCERT Exercise 8 to select PGRs for practical responses.",
+    "Use NCERT Exercise 10 to predict outcomes of GA3, ethylene and cytokinin changes."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES section contains Questions 1-10 on growth patterns, differentiation, PGRs, photoperiodic responses and applied predictions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

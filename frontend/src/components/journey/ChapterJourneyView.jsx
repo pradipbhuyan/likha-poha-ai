@@ -208,10 +208,11 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
         },
       ]);
     } catch (error) {
-      setFollowUpMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: error.message || "Follow-up failed. Check backend." },
-      ]);
+      const content =
+        error.status === 429
+          ? "You've used today's 5 free questions. Come back tomorrow, or upgrade for unlimited doubt-asking."
+          : error.message || "Follow-up failed. Please try again.";
+      setFollowUpMessages((prev) => [...prev, { role: "assistant", content }]);
     } finally {
       setFollowUpLoading(false);
       setTimeout(() => threadEndRef.current?.scrollIntoView({ behavior: "smooth" }), 80);

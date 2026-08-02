@@ -1,0 +1,74 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Challenges to and Restoration of the Congress System",
+  "central_question": "How did succession, opposition unity, electoral defeat and an internal split challenge Congress dominance, and how did Indira Gandhi rebuild it in a new form?",
+  "in_scope_units": [
+    "Political succession after Nehru",
+    "Lal Bahadur Shastri’s leadership",
+    "Indira Gandhi’s selection",
+    "Fourth general election of 1967",
+    "Non-Congressism",
+    "Coalition governments and defections",
+    "Syndicate and internal conflict",
+    "Presidential election and Congress split of 1969",
+    "Indira Gandhi’s policy initiatives",
+    "1971 election and Garibi Hatao",
+    "Restoration through transformation"
+  ],
+  "banned_topics": [
+    "Emergency of 1975 as a detailed chapter",
+    "First general election administration",
+    "Princely-state integration"
+  ],
+  "must_include_keywords": [
+    "political succession",
+    "Jawaharlal Nehru",
+    "Lal Bahadur Shastri",
+    "Jai Jawan Jai Kisan",
+    "Indira Gandhi",
+    "Morarji Desai",
+    "1967 elections",
+    "economic crisis",
+    "non-Congressism",
+    "Ram Manohar Lohia",
+    "coalition governments",
+    "Samyukt Vidhayak Dal",
+    "defection",
+    "Aya Ram Gaya Ram",
+    "Syndicate",
+    "K. Kamaraj",
+    "1969 presidential election",
+    "V. V. Giri",
+    "Congress split",
+    "Congress Organisation",
+    "Congress Requisitionists",
+    "bank nationalisation",
+    "privy purse",
+    "Grand Alliance",
+    "Garibi Hatao",
+    "1971 election",
+    "restoration of Congress system",
+    "populist politics"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Congress lost power at the Centre in the 1967 Lok Sabha election.",
+      "correction": "It retained a reduced majority at the Centre but lost power in many states."
+    },
+    {
+      "claim": "The restored Congress system was identical to the earlier Nehru-era organisation.",
+      "correction": "Indira Gandhi rebuilt dominance through centralised leadership, populist appeals and a new social coalition."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 3: Whom would you identify with the following slogans/phrases? (a) Jai Jawan, Jai Kisan (b) Indira Hatao! (c) Garibi Hatao!",
+    "NCERT Exercise 6: State which of these were reasons for the defeat of the Congress in 1967. Give reasons for your answer. (a) The absence of a charismatic leader in the Congress party (b) Split within the Congress party (c) Increased mobilisation of regional, ethnic and communal groups (d) Increasing unity among non-Congress parties (e) Internal differences within the Congress party",
+    "NCERT Exercise 9: Discuss the major issue which led to the formal split of the Congress Party in 1969.",
+    "NCERT Exercise 4: Which of the following statement about the Grand Alliance of 1971 is correct? The Grand Alliance ….. (a) was formed by non-Communist, non-Congress parties. (b) had a clear political and ideological programme. (c) was formed by all non-Congress parties.",
+    "NCERT Exercise 10: Read the passage and answer the questions below: “…Indira Gandhi changed the Congress into highly centralised and undemocratic party organisation, from the earlier federal, democratic and ideological formation that Nehru had led…..But this… could not have happened had not Indira Gandhi changed the entire nature of politics. This new, populist politics turned political ideology ……. into a mere electoral discourse, use of various slogans not meant to be translated into government policies…… During its great electoral victories in early 1970s, amidst the celebration, the Congress party as a political organisation died…..” — Sudipta Kaviraj"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with NCERT Exercises 1–10 on succession, the 1967 verdict, non-Congressism, the Syndicate, the split and the 1971 restoration.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

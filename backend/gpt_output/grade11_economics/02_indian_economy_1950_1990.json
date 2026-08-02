@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Economics",
+    "chapter": "Indian Economy 1950–1990",
+    "central_question": "How did India use planning, agricultural reform, industrial policy and trade protection to pursue growth, self-reliance, modernisation and equity from 1950 to 1990?",
+    "in_scope_units": [
+      "Introduction to the condition of the economy after Independence and the decision to adopt planning.",
+      "The goals of Five Year Plans: growth, modernisation, self-reliance and equity.",
+      "Agriculture, land reforms and changes in ownership and tenancy.",
+      "The Green Revolution, food security, marketable surplus and the debate on subsidies.",
+      "Industry and trade, including public and private sectors and Industrial Policy Resolution 1956.",
+      "Small-scale industry and regional development.",
+      "Trade policy, import substitution and protection of domestic industry.",
+      "Conclusion and appraisal of the 1950–1990 development strategy."
+    ],
+    "banned_topics": [
+      "Colonial economic conditions before 1947, which belong to the previous chapter.",
+      "The 1991 balance-of-payments crisis and LPG reforms, which belong to the next chapter.",
+      "Detailed current agricultural-credit systems, which belong to Rural Development."
+    ],
+    "must_include_keywords": [
+      "Planning Commission",
+      "Five Year Plans",
+      "growth",
+      "modernisation",
+      "self-reliance",
+      "equity",
+      "mixed economy",
+      "public sector",
+      "private sector",
+      "land reform",
+      "zamindari abolition",
+      "land ceiling",
+      "tenancy reform",
+      "Green Revolution",
+      "high yielding variety seeds",
+      "irrigation",
+      "fertilisers",
+      "food security",
+      "marketable surplus",
+      "agricultural subsidy",
+      "Industrial Policy Resolution 1956",
+      "commanding heights",
+      "industrial licensing",
+      "small-scale industry",
+      "Karve Committee",
+      "regional equality",
+      "import substitution",
+      "tariff",
+      "quota",
+      "domestic industry",
+      "public investment",
+      "economic planning"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Growth was the only goal of the Five Year Plans.",
+        "correction": "The four major goals were growth, modernisation, self-reliance and equity."
+      },
+      {
+        "claim": "India adopted a purely socialist economy.",
+        "correction": "India adopted a mixed economy with both public and private sectors."
+      },
+      {
+        "claim": "The Green Revolution benefited every crop and every region equally.",
+        "correction": "It was initially concentrated in wheat and selected regions with irrigation and other inputs."
+      },
+      {
+        "claim": "Import substitution meant banning all international trade.",
+        "correction": "It aimed to replace selected imports with domestic production through protection such as tariffs and quotas."
+      },
+      {
+        "claim": "Industrial licensing applied only to new public enterprises.",
+        "correction": "Private firms required licences for new units, expansion and diversification."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise questions on the goals of Five Year Plans to distinguish growth, modernisation, self-reliance and equity.",
+      "Use the chapter’s land-reform discussion to analyse abolition of intermediaries and land ceilings.",
+      "Use the Green Revolution questions to compare food security gains with regional and class inequalities.",
+      "Use the IPR 1956 exercise to explain the public sector’s commanding-heights role.",
+      "Use the import-substitution exercise to assess protection of domestic industry."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with an EXERCISES section covering planning goals, agriculture, industrial policy, small-scale industry and import substitution, followed by Suggested Additional Activities."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Indian Economy 1950–1990\n\n## What you will learn\nYou will understand why India adopted planning and the meaning of the four major plan goals. You will also see why policy makers had to balance goals that could sometimes conflict.\n\n## Simple explanation\nAt Independence, India needed to rebuild agriculture, expand industry and raise living standards. Planning was chosen to coordinate scarce resources and set national priorities.\n\n## Step-by-step breakdown\n- **Planning**: The Planning Commission was established and Five Year Plans became the main development framework.\n- **Growth**: Growth meant increasing the country’s capacity to produce goods and services.\n- **Modernisation**: Modernisation involved new technology and changes in social outlook, including recognition of women’s equality.\n- **Self-reliance**: India sought to reduce dependence on imports and foreign aid.\n- **Equity**: The benefits of growth were expected to reach poorer and weaker sections.\n- **Trade-offs**: A policy that promotes one goal may sometimes slow another, so priorities require judgement.\n\n## Worked example\nQuestion: Why was equity included as a separate goal when growth could increase total output?\n\nSolution:\n- Step 1: Growth measures the expansion of production but does not show who receives the benefits.\n- Step 2: The chapter stresses that development should improve the condition of the poor and reduce inequality.\n- Final answer: Equity was necessary because higher output alone could coexist with concentration of income and continued deprivation.\n\n## Common mistake\nDo not treat growth and development as identical; distribution and social change matter.\n\n## Quick check question\nQuestion: Name the four major goals of the Five Year Plans.\nAnswer: Growth, modernisation, self-reliance and equity.\nExplanation: These goals organised India’s planning strategy during the period.\n\n## Summary\n- Planning coordinated national development priorities.\n- Growth increased productive capacity.\n- Modernisation and self-reliance shaped structural change.\n- Equity focused on distribution.",
+    "Core explanation": "# Core explanation: Indian Economy 1950–1990\n\n## What you will learn\nYou will study land reform and the reasons for changing agrarian relations. You will distinguish abolition of intermediaries, tenancy reform and land ceilings.\n\n## Simple explanation\nAt Independence, many cultivators lacked ownership and security. Land reform tried to transfer rights to actual tillers, regulate rent and prevent excessive concentration of land.\n\n## Step-by-step breakdown\n- **Abolition of intermediaries**: The zamindari system was removed in many areas to establish a direct relationship between the state and cultivators.\n- **Tenancy reform**: Policy sought fair rents and greater security for tenants.\n- **Land ceilings**: Maximum landholding limits were intended to redistribute surplus land.\n- **Implementation**: Success varied because of legal loopholes, weak records and resistance by powerful landowners.\n- **Productivity link**: Ownership and security could encourage cultivators to invest and improve land.\n- **Equity link**: Redistribution was intended to reduce rural inequality.\n\n## Worked example\nQuestion: How were land reforms expected to promote both equity and productivity?\n\nSolution:\n- Step 1: They aimed to reduce concentration and give cultivators stronger rights or ownership.\n- Step 2: Secure cultivators had a greater incentive to invest labour and resources in their holdings.\n- Final answer: Land reform linked equity with productivity by redistributing rights and improving the cultivator’s incentive to raise output.\n\n## Common mistake\nDo not assume that passing a land-reform law automatically ensured full implementation.\n\n## Quick check question\nQuestion: What was the purpose of land ceilings?\nAnswer: To place a maximum limit on landholdings and make surplus land available for redistribution.\nExplanation: The measure addressed concentration of agricultural land.\n\n## Summary\n- Land reform changed agrarian relations.\n- Intermediaries were abolished in many regions.\n- Tenancy security and ceilings supported equity.\n- Implementation remained uneven.",
+    "Worked examples": "# Worked examples: Indian Economy 1950–1990\n\n## What you will learn\nYou will understand the Green Revolution, food security and marketable surplus. You will examine why the programme increased output but also created new inequalities.\n\n## Simple explanation\nThe Green Revolution used high-yielding variety seeds with irrigation, fertilisers and other inputs. It reduced dependence on food imports, but early benefits were concentrated in selected crops, regions and better-off farmers.\n\n## Step-by-step breakdown\n- **Technology package**: HYV seeds required reliable irrigation, fertilisers, pesticides and credit.\n- **Crop focus**: The first phase concentrated mainly on wheat.\n- **Regional focus**: Punjab, Haryana and western Uttar Pradesh were among the major beneficiaries.\n- **Food security**: Higher production reduced dependence on imported foodgrains.\n- **Marketable surplus**: Farm output sold in the market after meeting family consumption increased.\n- **Inequality concern**: Large farmers and well-irrigated regions were better placed to adopt the new technology.\n- **Subsidy debate**: Subsidies encouraged adoption, but questions arose about cost, targeting and long-term dependence.\n\n## Worked example\nQuestion: Why did the Green Revolution improve food security but not eliminate rural inequality?\n\nSolution:\n- Step 1: The technology raised foodgrain output and reduced import dependence.\n- Step 2: Access to irrigation, credit and inputs was unequal, so larger farmers and selected regions gained more.\n- Final answer: The Green Revolution strengthened food security while its uneven access produced regional and class disparities.\n\n## Common mistake\nDo not describe HYV seeds as a stand-alone solution; the chapter presents them as part of an input package.\n\n## Quick check question\nQuestion: What is marketable surplus?\nAnswer: The portion of agricultural produce left for sale after the farmer meets family consumption needs.\nExplanation: It links farm production with supply in the market.\n\n## Summary\n- The Green Revolution was a package of inputs.\n- It raised foodgrain production.\n- Food security improved.\n- Benefits were uneven across crops, classes and regions.",
+    "Exam-style problems": "# Exam-style problems: Indian Economy 1950–1990\n\n## What you will learn\nYou will study the mixed economy, Industrial Policy Resolution 1956 and industrial licensing. You will also understand the role assigned to small-scale industries.\n\n## Simple explanation\nIndia wanted a broad industrial base but private capital was limited. The state therefore took responsibility for strategic and heavy industries while allowing private production under regulation.\n\n## Step-by-step breakdown\n- **Mixed economy**: Public and private sectors both operated in the economy.\n- **Commanding heights**: The public sector led industries considered vital for long-term development.\n- **IPR 1956**: Industries were divided into categories with different roles for state and private ownership.\n- **Industrial licensing**: Private firms needed licences to establish, expand or diversify production.\n- **Regional policy**: Licensing and concessions encouraged units in backward regions.\n- **Small-scale industry**: The Karve Committee linked small industry with employment and rural development.\n- **Protection**: Some products were reserved and small firms received support.\n\n## Worked example\nQuestion: Why did the government assign a leading role to the public sector?\n\nSolution:\n- Step 1: Heavy and strategic industries required large capital and long gestation periods that private firms were not ready to undertake.\n- Step 2: Planning also aimed to place vital industries under public control and guide the economy towards social goals.\n- Final answer: The public sector led industrialisation because it could mobilise large investment and pursue long-term national priorities.\n\n## Common mistake\nDo not interpret the mixed economy as the exclusion of private firms.\n\n## Quick check question\nQuestion: What was one purpose of industrial licensing in backward regions?\nAnswer: To promote regional equality by encouraging industrial units to locate there.\nExplanation: Licences and concessions were used to influence the geographical pattern of industrialisation.\n\n## Summary\n- India adopted a mixed economy.\n- The public sector controlled major industries.\n- Licensing regulated private expansion.\n- Small-scale industry supported jobs and regional development.",
+    "Revision and recap": "# Revision and recap: Indian Economy 1950–1990\n\n## What you will learn\nYou will evaluate import substitution and the achievements and limitations of the 1950–1990 strategy. You will connect trade protection with self-reliance.\n\n## Simple explanation\nTariffs and quotas protected Indian producers from foreign competition so that domestic industry could grow. This helped create industrial capacity, but prolonged protection also reduced competitive pressure and could encourage inefficiency.\n\n## Step-by-step breakdown\n- **Import substitution**: Domestic production was encouraged to replace goods previously imported.\n- **Tariffs**: Taxes on imports made foreign goods more expensive.\n- **Quotas**: Quantitative limits restricted the volume of imports.\n- **Self-reliance**: Protection reduced dependence on foreign goods in important sectors.\n- **Achievements**: India developed a diversified industrial base, food security and scientific and technical capacity.\n- **Limitations**: Agricultural inequality, public-sector inefficiency, licensing controls and weak export competitiveness remained concerns.\n- **Transition**: These limitations formed part of the background to later reform, though the 1991 reforms belong to the next chapter.\n\n## Worked example\nQuestion: Why could the same import-substitution policy support early industrialisation but later create inefficiency?\n\nSolution:\n- Step 1: Protection gave new domestic industries time to develop without being overwhelmed by established foreign producers.\n- Step 2: If protection continued without performance pressure, firms had less incentive to reduce cost, improve quality or innovate.\n- Final answer: Import substitution supported infant industries and self-reliance, but excessive long-term protection could weaken efficiency and competitiveness.\n\n## Common mistake\nDo not treat tariffs and quotas as identical: one raises import price, while the other limits quantity.\n\n## Quick check question\nQuestion: What was the main purpose of import substitution?\nAnswer: To replace selected imports with domestically produced goods and promote self-reliance.\nExplanation: Protection was used to help Indian industries develop.\n\n## Summary\n- Import substitution protected domestic producers.\n- Tariffs and quotas worked differently.\n- The strategy built capacity and self-reliance.\n- Protection and controls also produced inefficiencies."
+  }
+}

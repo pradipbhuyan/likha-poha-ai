@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Constitution: Why and How?",
+  "central_question": "Why does a diverse society need a constitution, what gives a constitution authority, and how was the Indian Constitution made effective and legitimate?",
+  "in_scope_units": [
+    "Why a constitution is needed to provide publicly known and enforceable rules for coordination and assurance.",
+    "How a constitution allocates decision-making powers and constitutes the institutions of government.",
+    "How constitutional limits and fundamental rights restrain government power.",
+    "How enabling provisions allow government to pursue social aspirations, welfare and a just society.",
+    "How a constitution expresses the political, moral and national identity of a people.",
+    "The authority of a constitution through its mode of promulgation, substantive provisions and balanced institutional design.",
+    "The making of the Indian Constitution through the Constituent Assembly, deliberation, consensus and nationalist inheritance.",
+    "The Objectives Resolution, Drafting Committee and adaptation of institutional arrangements from different constitutional traditions."
+  ],
+  "banned_topics": [
+    "Negative and positive liberty as a standalone theory of freedom, which belongs to a different Political Theory chapter.",
+    "Detailed theories of equality, citizenship, nationalism or secularism not developed in the supplied source.",
+    "Detailed functioning of elections, executive, legislature or judiciary beyond their role in constitutional design."
+  ],
+  "must_include_keywords": [
+    "constitution",
+    "coordination",
+    "assurance",
+    "basic rules",
+    "legally enforceable",
+    "allocation of power",
+    "decision-making powers",
+    "government",
+    "fundamental rights",
+    "limitations on government",
+    "aspirations",
+    "just society",
+    "welfare measures",
+    "collective identity",
+    "political identity",
+    "moral identity",
+    "authority of a constitution",
+    "mode of promulgation",
+    "substantive provisions",
+    "balanced institutional design",
+    "Constituent Assembly",
+    "national movement",
+    "popular legitimacy",
+    "deliberation",
+    "consensus",
+    "Objectives Resolution",
+    "Drafting Committee",
+    "B. R. Ambedkar",
+    "institutional arrangements",
+    "Parliament",
+    "judiciary",
+    "federalism",
+    "social revolution"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A constitution is only a collection of legal rules.",
+      "correction": "The chapter presents it as a framework that coordinates society, allocates power, limits government, enables social goals and expresses political and moral identity."
+    },
+    {
+      "claim": "Once a government is elected, constitutional limits are unnecessary.",
+      "correction": "Even a procedurally chosen government can enact unjust laws, so rights and fundamental limits remain necessary."
+    },
+    {
+      "claim": "A constitution gains authority merely because it is written.",
+      "correction": "Authority depends on how it was made, whether its provisions are just and whether its institutional design prevents concentration of power."
+    },
+    {
+      "claim": "The Indian Constitution lacked legitimacy because it was not approved by referendum.",
+      "correction": "The chapter explains that it drew public authority from credible leaders, broad consensus and the nationalist movement."
+    },
+    {
+      "claim": "Borrowing provisions proves the Indian Constitution was unoriginal.",
+      "correction": "The makers adapted comparative provisions to Indian needs and combined them with principles developed through the freedom struggle and Assembly debates."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT classroom Activity under ‘Constitution allows coordination and assurance’: frame and revise common class rules.",
+    "NCERT ‘Check your progress’ on matching constitutional provisions with their functions.",
+    "NCERT Exercise 6 on why demarcation of powers and responsibilities is necessary.",
+    "NCERT Exercise 8 comparing Japanese and Indian constitution-making.",
+    "NCERT Exercise 10 evaluating whether the Constitution or its implementation has failed."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section titled ’Exercises’ contains Questions 1‘10 on constitutional functions, authority, constitution-making and the working of the Indian Constitution.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

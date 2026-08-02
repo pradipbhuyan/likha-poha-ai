@@ -1,0 +1,92 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "India — Location",
+    "central_question": "How do India’s location, extent, size and relations with neighbouring regions shape its physical diversity and geographical importance?",
+    "in_scope_units": [
+      "India’s latitudinal and longitudinal extent and their implications.",
+      "Indian Standard Time and the purpose of the standard meridian.",
+      "India’s size, coastline, islands and physical diversity.",
+      "The Indian subcontinent and the role of surrounding mountains and seas.",
+      "India’s position in Asia and its land and maritime neighbours.",
+      "Map-based exercises on location, boundaries and administrative divisions."
+    ],
+    "banned_topics": [
+      "Detailed physiographic divisions, which belong to Structure and Physiography.",
+      "The mechanism and seasons of the monsoon, which belong to Climate.",
+      "Detailed river systems, which belong to Drainage System."
+    ],
+    "must_include_keywords": [
+      "latitude",
+      "longitude",
+      "Kashmir",
+      "Kanniyakumari",
+      "Arunachal Pradesh",
+      "Gujarat",
+      "territorial limit",
+      "nautical mile",
+      "6°45′ N",
+      "latitudinal extent",
+      "longitudinal extent",
+      "Indian Standard Time",
+      "82°30′ E",
+      "Greenwich Mean Time",
+      "standard meridian",
+      "3.28 million sq km",
+      "2.4 per cent",
+      "seventh largest country",
+      "Indian subcontinent",
+      "Himalayas",
+      "Hindukush",
+      "Sulaiman ranges",
+      "Purvachal",
+      "Indian Ocean",
+      "Bay of Bengal",
+      "Arabian Sea",
+      "Andaman and Nicobar Islands",
+      "Lakshadweep",
+      "Gulf of Mannar",
+      "Palk Strait",
+      "Sri Lanka",
+      "Maldives",
+      "School Bhuvan NCERT"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "India uses the local solar time of every city as official time.",
+        "correction": "India follows one Indian Standard Time based on 82°30′ E longitude."
+      },
+      {
+        "claim": "Equal angular north–south and east–west spans give equal ground distances.",
+        "correction": "The north–south distance is 3,214 km and the east–west distance is 2,933 km because meridians converge poleward."
+      },
+      {
+        "claim": "India’s territorial limit ends at the coastline.",
+        "correction": "It extends 12 nautical miles, about 21.9 km, from the coast."
+      },
+      {
+        "claim": "Sri Lanka shares a land boundary with India.",
+        "correction": "It is separated from India by the Gulf of Mannar and Palk Strait."
+      },
+      {
+        "claim": "The Indian subcontinent consists only of India.",
+        "correction": "The chapter includes Pakistan, Nepal, Bhutan, Bangladesh and India."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Figure 1.1 to identify India’s extreme latitudes and longitudes.",
+      "Use Exercise 1(iv) to recognise 82°30′ E as India’s standard meridian.",
+      "Use Exercise 2(iv) to explain why watches in Kohima and New Delhi show the same time.",
+      "Use Project/Activity items (iii)–(v) to identify coastal states, land-boundary states and coastal Union Territories."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section contains Exercises 1(i–iv), 2(i–iv), and a seven-part Project/Activity based on maps, an atlas and census data."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: India — Location\n\n## What you will learn\nYou will understand India’s position on the globe and the meaning of its latitudinal and longitudinal extent. You will also see why similar angular extents do not produce equal ground distances.\n\n## Simple explanation\nIndia stretches from Kashmir to Kanniyakumari and from Arunachal Pradesh to Gujarat. Its position across tropical and subtropical latitudes influences physical conditions.\n\n## Step-by-step breakdown\n- **Mainland extent**: The mainland extends from Kashmir in the north to Kanniyakumari in the south and from Arunachal Pradesh in the east to Gujarat in the west.\n- **Southern boundary**: The southern boundary reaches 6°45′ N in the Bay of Bengal.\n- **Territorial sea**: The territorial limit extends 12 nautical miles, about 21.9 km, from the coast.\n- **Ground distances**: The north–south distance is 3,214 km, while the east–west distance is 2,933 km.\n- **Latitudinal implication**: The south lies in the tropics and the north in the subtropical or warm temperate zone.\n\n## Worked example\nQuestion: Why is India’s north–south distance greater than its east–west distance although both angular extents are roughly 30 degrees?\n\nAnswer:\n- The chapter states that the distance between two longitudes decreases towards the poles, whereas the distance between two latitudes remains the same.\n- Equal longitude spans do not represent equal ground distances at all latitudes because meridians converge.\n- Final answer: India’s east–west distance is shorter because its longitudinal spread is measured across converging meridians.\n\n## Common mistake\nDo not assume that equal angular spans automatically mean equal distances on a curved earth.\n\n## Quick check question\nQuestion: How far does India’s territorial limit extend into the sea?\nAnswer: Up to 12 nautical miles, about 21.9 km, from the coast.\nExplanation: This is the figure stated in the chapter while describing India’s boundary.\n\n## Summary\n- India has a wide latitudinal and longitudinal extent.\n- Meridians converge towards the poles.\n- Latitude contributes to tropical and subtropical conditions.\n- The territorial boundary extends beyond the shoreline.",
+    "Core explanation": "# Core explanation: India — Location\n\n## What you will learn\nYou will learn why India uses a standard meridian and how Indian Standard Time creates one official time across the country.\n\n## Simple explanation\nThe sun rises earlier in India’s east than in its west, but official clocks agree because India follows one standard time.\n\n## Step-by-step breakdown\n- **Longitudinal spread**: The nearly 30-degree east–west spread creates a local-time difference of nearly two hours.\n- **Standard meridian**: 82°30′ E is India’s standard meridian.\n- **Indian Standard Time**: IST is 5 hours and 30 minutes ahead of Greenwich Mean Time.\n- **Uniform clocks**: Dibrugarh, Imphal, Jaisalmer, Bhopal and Chennai follow the same official time.\n- **Convention**: The chapter notes the practice of selecting standard meridians in multiples of 7°30′.\n\n## Worked example\nQuestion: Why do northeastern and western Indian cities show the same clock time even though sunrise is earlier in the northeast?\n\nAnswer:\n- The chapter identifies 82°30′ E as the standard meridian and states that the whole country follows IST.\n- Official time is standardised for coordination rather than based on each city’s local solar time.\n- Final answer: The clocks agree because all Indian locations follow IST.\n\n## Common mistake\nEarlier sunrise in the east does not mean eastern states officially use a separate time.\n\n## Quick check question\nQuestion: Which longitude is India’s standard meridian?\nAnswer: 82°30′ E.\nExplanation: Indian Standard Time is calculated with reference to this longitude.\n\n## Summary\n- Longitude affects local solar time.\n- India’s east and west differ by nearly two hours in local solar time.\n- One standard meridian creates a common official time.\n- IST is GMT plus 5 hours and 30 minutes.",
+    "Worked examples": "# Worked examples: India — Location\n\n## What you will learn\nYou will examine how India’s size and shape support physical diversity and understand the idea of the Indian subcontinent.\n\n## Simple explanation\nIndia is large enough to contain mountains, river plains, forests, plateaus, deserts, coasts and island groups.\n\n## Step-by-step breakdown\n- **Area and rank**: India covers 3.28 million sq km, 2.4 per cent of the world’s land surface, and ranks seventh in size.\n- **Physical diversity**: The chapter names lofty mountains, large rivers, forested hills and Marusthali.\n- **Subcontinent**: The Himalayas, Hindukush, Sulaiman ranges, Purvachal and Indian Ocean help form a distinct geographical entity.\n- **Peninsular extension**: Peninsular India projects into the Indian Ocean between the Arabian Sea and Bay of Bengal.\n- **Coastline**: The mainland coastline is 6,100 km; with islands, the geographical coast is 7,517 km.\n\n## Worked example\nQuestion: How does India’s size contribute to its physical diversity?\n\nAnswer:\n- The chapter lists contrasting mountains, rivers, forests, desert, coasts and islands within the country.\n- A large area extending across varied relief and latitude permits many environmental conditions.\n- Final answer: India’s size supports a wide range of landforms, climates, vegetation and resources.\n\n## Common mistake\nDo not confuse the mainland coastline with the total coastline including island groups.\n\n## Quick check question\nQuestion: What share of the world’s land surface does India occupy?\nAnswer: About 2.4 per cent.\nExplanation: The chapter gives this value while explaining India’s area and world rank.\n\n## Summary\n- India is the seventh largest country in the chapter.\n- Its size supports physical diversity.\n- The peninsula and islands are major geographical components.\n- India is central to the Indian subcontinent.",
+    "Exam-style problems": "# Exam-style problems: India — Location\n\n## What you will learn\nYou will explore India’s position in south-central Asia and identify its land and island neighbours.\n\n## Simple explanation\nMountains restricted movement in the past, while passes, seas and modern routes connected India with surrounding regions.\n\n## Step-by-step breakdown\n- **Asian position**: India lies in the south-central part of Asia and borders the Indian Ocean.\n- **Island neighbours**: Sri Lanka and Maldives are India’s island neighbours.\n- **Sri Lankan separation**: Sri Lanka is separated by the Gulf of Mannar and Palk Strait.\n- **Barriers**: The Himalayas and associated ranges formed formidable barriers.\n- **Passes**: Khyber, Bolan, Shipkila, Nathula and Bomdila provided routes across mountains.\n- **Maritime links**: The peninsular location provided links through sea and air routes.\n\n## Worked example\nQuestion: Why can India’s location be described as both protective and connective?\n\nAnswer:\n- The chapter describes high mountain barriers but also names passes and maritime routes.\n- Relief restricted movement in some directions while passes and seas enabled contact.\n- Final answer: India’s position protected it through barriers and connected it through passes, coasts and the Indian Ocean.\n\n## Common mistake\nA physical barrier restricts movement but does not make interaction impossible.\n\n## Quick check question\nQuestion: Which two water bodies separate Sri Lanka from India?\nAnswer: The Gulf of Mannar and Palk Strait.\nExplanation: Both are specifically named in the chapter.\n\n## Summary\n- India occupies a central position in the northern Indian Ocean.\n- Mountains and passes shaped accessibility.\n- The peninsula supports maritime contact.\n- Sri Lanka and Maldives are island neighbours.",
+    "Revision and recap": "# Revision and recap: India — Location\n\n## What you will learn\nYou will consolidate the chapter through map interpretation and evidence-based answers.\n\n## Simple explanation\nA strong answer combines a location fact with its geographical implication for time, diversity, communication or neighbourhood.\n\n## Step-by-step breakdown\n- **Map evidence**: Use maps to identify extreme points, boundaries, coastal states, islands and neighbours.\n- **Latitude**: Relate latitude to tropical and subtropical conditions.\n- **Longitude**: Relate longitude to local-time differences and IST.\n- **Size**: Relate area and coastline to diversity and resources.\n- **Accuracy**: Keep area, coastlines, territorial sea and standard meridian figures distinct.\n\n## Worked example\nQuestion: How should a student explain the importance of India’s long coastline using only this chapter?\n\nAnswer:\n- The chapter links Peninsular India and its coast to the Indian Ocean, Arabian Sea, Bay of Bengal, islands, resources and maritime routes.\n- The coastline increases sea access and strengthens connections with neighbouring regions.\n- Final answer: India’s coastline is important for maritime links, geographical diversity and access to surrounding seas.\n\n## Common mistake\nDo not answer a location question with unrelated details from climate or drainage chapters.\n\n## Quick check question\nQuestion: Why is 82°30′ E important?\nAnswer: It is India’s standard meridian and the basis of Indian Standard Time.\nExplanation: It provides one official time despite longitudinal differences.\n\n## Summary\n- Location questions require both position and implication.\n- Maps are central evidence.\n- Time, size, coastline and neighbours are distinct concepts.\n- Use only chapter-supplied numerical values."
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Structure and Physiography",
+    "central_question": "How have geological history and geomorphic processes produced India’s major structural and physiographic divisions?",
+    "in_scope_units": [
+      "Geological history and the three broad geological divisions of India.",
+      "The Peninsular Block, Himalayas and Indo-Ganga-Brahmaputra Plain.",
+      "The concept of physiography and India’s six major divisions.",
+      "The Northern and Northeastern Mountains and Northern Plain.",
+      "The Peninsular Plateau and its subdivisions.",
+      "The Indian Desert, Coastal Plains and island groups."
+    ],
+    "banned_topics": [
+      "Detailed river-basin descriptions, which belong to Drainage System.",
+      "Detailed monsoon mechanisms, which belong to Climate.",
+      "Earth’s internal layers and seismic waves, which belong to Interior of the Earth."
+    ],
+    "must_include_keywords": [
+      "endogenic forces",
+      "exogenic forces",
+      "Indian plate",
+      "Peninsular Block",
+      "Himalayas",
+      "Indo-Ganga-Brahmaputra Plain",
+      "gneiss",
+      "granite",
+      "rift valley",
+      "Narmada",
+      "Tapi",
+      "young fold mountains",
+      "physiography",
+      "Northern Mountains",
+      "Northern Plain",
+      "Peninsular Plateau",
+      "Indian Desert",
+      "Coastal Plains",
+      "Islands",
+      "Bhabar",
+      "Tarai",
+      "Bhangar",
+      "Khadar",
+      "Deccan Plateau",
+      "Central Highlands",
+      "Northeastern Plateau",
+      "Western Ghats",
+      "Eastern Ghats",
+      "Marusthali",
+      "submerged coast",
+      "emergent coast",
+      "Kayals",
+      "Andaman and Nicobar Islands",
+      "Ten Degree Channel",
+      "Lakshadweep",
+      "coral deposits"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The Himalayas and Peninsular Block have the same geological character.",
+        "correction": "The Peninsular Block is ancient, rigid and stable; the Himalayas are young, weak and flexible."
+      },
+      {
+        "claim": "Bhabar and Tarai are identical.",
+        "correction": "Streams may disappear in coarse Bhabar deposits and re-emerge in marshy Tarai."
+      },
+      {
+        "claim": "The two coastal plains have the same origin and width.",
+        "correction": "The western plain is narrow and submerged; the eastern plain is broader and emergent."
+      },
+      {
+        "claim": "All Indian islands are volcanic.",
+        "correction": "Lakshadweep is built of coral deposits; only some Bay of Bengal islands are volcanic."
+      },
+      {
+        "claim": "The Eastern Ghats form an unbroken wall.",
+        "correction": "They are discontinuous and deeply cut by rivers."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise 2(ii) to identify India’s cold desert.",
+      "Use Exercise 2(iii) to explain why the western coastal plain lacks deltas.",
+      "Use Exercise 3(i) to compare the Arabian Sea and Bay of Bengal island groups.",
+      "Use Exercise 3(iii) to trace geomorphological features from Badrinath to the Sunderbans."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–ii), 2(i–iii), 3(i–iii), and a two-part Project/Activity."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Structure and Physiography\n\n## What you will learn\nYou will see how India’s geological history produced three broad structural divisions.\n\n## Simple explanation\nIndia’s present relief reflects long interaction between endogenic and exogenic forces and the northward movement of the Indian plate.\n\n## Step-by-step breakdown\n- **Geological history**: India’s landforms evolved over a long period under internal and external forces.\n- **Indian plate**: Its northward movement continues to influence the physical environment.\n- **Three divisions**: The chapter identifies the Peninsular Block, Himalayas and other mountains, and Indo-Ganga-Brahmaputra Plain.\n- **Structural control**: Geological structure influences physiography and relief.\n- **Physiography**: It is the outcome of structure, process and stage of development.\n\n## Worked example\nQuestion: Why does the chapter introduce geological divisions before physiographic divisions?\n\nAnswer:\n- It states that major geological regions follow differences in structure and formations.\n- The geological foundation explains why some regions are stable plateaus, some young mountains and others sediment-filled plains.\n- Final answer: Geological divisions provide the structural basis for understanding physiography.\n\n## Common mistake\nDo not treat geological and physiographic divisions as identical classifications.\n\n## Quick check question\nQuestion: Which three broad geological divisions are identified?\nAnswer: The Peninsular Block, the Himalayas and other Peninsular Mountains, and the Indo-Ganga-Brahmaputra Plain.\nExplanation: They are based on geological structure and formations.\n\n## Summary\n- India’s relief has a long history.\n- Plate movement and geomorphic forces shaped it.\n- Three geological divisions form the framework.\n- Physiography builds on that framework.",
+    "Core explanation": "# Core explanation: Structure and Physiography\n\n## What you will learn\nYou will compare the Peninsular Block, the Himalayas and the northern depositional plain.\n\n## Simple explanation\nThe Peninsular Block is old and stable, the Himalayas are young and active, and the northern plain is filled with river-borne sediments.\n\n## Step-by-step breakdown\n- **Peninsular Block**: It consists largely of ancient gneiss and granite and behaved as a rigid block.\n- **Tectonic modification**: Rift valleys of Narmada, Tapi and Mahanadi show faulting and vertical movement.\n- **Himalayas**: They are young, weak and flexible and remain affected by folds, faults and thrusts.\n- **Mountain landforms**: Youthful rivers form gorges, V-shaped valleys, rapids and waterfalls.\n- **Northern plain**: The former depression was filled by sediments from Himalayan and Peninsular rivers.\n\n## Worked example\nQuestion: How does geological age explain the contrast between the Peninsular Block and Himalayas?\n\nAnswer:\n- The chapter calls the Peninsular Block ancient and rigid, and the Himalayas young, weak and flexible.\n- Older stable rocks show relict relief, while young mountains show active deformation and youthful valleys.\n- Final answer: Different ages and structures explain the contrasting stability and landforms.\n\n## Common mistake\nThe Peninsular Block is not completely unchanged; faulting and vertical movement occurred.\n\n## Quick check question\nQuestion: What formed the Indo-Ganga-Brahmaputra Plain?\nAnswer: Alluvial sediments brought by Himalayan and Peninsular rivers.\nExplanation: The former depression was gradually filled by river-borne material.\n\n## Summary\n- Ancient rocks dominate the peninsula.\n- The Himalayas are young tectonic mountains.\n- The northern plain is depositional.\n- Structure controls relief.",
+    "Worked examples": "# Worked examples: Structure and Physiography\n\n## What you will learn\nYou will study the Northern Mountains and Northern Plain and distinguish Bhabar, Tarai, Bhangar and Khadar.\n\n## Simple explanation\nThe Himalayas form a series of ranges, and south of them lies a wide alluvial plain built by the Indus, Ganga and Brahmaputra systems.\n\n## Step-by-step breakdown\n- **Mountain orientation**: Himalayan ranges change direction in different regional sectors.\n- **Multiple divide**: The Himalayas act as physical, climatic, drainage and cultural divides.\n- **Bhabar**: Coarse material is deposited and streams may disappear.\n- **Tarai**: Streams re-emerge and create marshy conditions.\n- **Bhangar and Khadar**: These are old and new alluvial deposits respectively.\n- **Fluvial forms**: The plains contain meanders, ox-bow lakes, sand bars and braided channels.\n\n## Worked example\nQuestion: Why is Tarai marshy while streams may disappear in Bhabar?\n\nAnswer:\n- The chapter describes coarse Bhabar deposits and re-emerging streams immediately to the south in Tarai.\n- Water infiltrates the coarse belt and returns to the surface where drainage is poorly defined.\n- Final answer: Different deposits and drainage behaviour produce the contrast.\n\n## Common mistake\nDo not reverse Bhangar and Khadar: Bhangar is old alluvium and Khadar is new.\n\n## Quick check question\nQuestion: Which belt lies immediately south of Bhabar?\nAnswer: The Tarai belt.\nExplanation: It is the marshy zone where streams re-emerge.\n\n## Summary\n- The Himalayas contain several ranges.\n- The Northern Plain is alluvial.\n- Bhabar and Tarai have different drainage behaviour.\n- Bhangar and Khadar are old and new alluvium.",
+    "Exam-style problems": "# Exam-style problems: Structure and Physiography\n\n## What you will learn\nYou will examine the Peninsular Plateau and its main subdivisions.\n\n## Simple explanation\nThe old plateau contains the Deccan Plateau, Central Highlands and Northeastern Plateau, each with distinctive relief.\n\n## Step-by-step breakdown\n- **Plateau extent**: Delhi ridge, Rajmahal hills, Gir and Cardamom hills help mark its outer extent.\n- **Deccan Plateau**: It is bordered by the Western Ghats, Eastern Ghats and northern ranges.\n- **Ghats**: The Western Ghats are higher and more continuous; the Eastern Ghats are lower and discontinuous.\n- **Central Highlands**: They include denuded ranges, plateaus and extensions towards Rajasthan and Rajmahal.\n- **Northeastern Plateau**: Meghalaya and Karbi Anglong are detached extensions.\n- **Relief forms**: Tors, rift valleys, block mountains, ravines, gorges and dykes occur.\n\n## Worked example\nQuestion: Why are the Eastern Ghats less continuous than the Western Ghats?\n\nAnswer:\n- The chapter describes them as low, discontinuous and highly eroded by major east-flowing rivers.\n- River erosion has cut across the hill system.\n- Final answer: The Eastern Ghats are discontinuous because rivers have deeply dissected them.\n\n## Common mistake\nDo not place the Meghalaya Plateau outside the Peninsular system.\n\n## Quick check question\nQuestion: What are the three broad plateau groups?\nAnswer: The Deccan Plateau, Central Highlands and Northeastern Plateau.\nExplanation: The chapter divides them by prominent relief features.\n\n## Summary\n- The plateau is old but diverse.\n- The Western Ghats are higher and more continuous.\n- Faulting and erosion created varied relief.\n- The northeastern plateau is a detached extension.",
+    "Revision and recap": "# Revision and recap: Structure and Physiography\n\n## What you will learn\nYou will complete the chapter with the Indian Desert, Coastal Plains and Islands.\n\n## Simple explanation\nAridity, coastal submergence or emergence, river deposition, coral growth and submarine mountains produce contrasting landforms.\n\n## Step-by-step breakdown\n- **Indian Desert**: Marusthali contains dunes, barchans, playas, ephemeral streams and the Luni.\n- **Western coast**: It is a narrow submerged plain with natural ports and Kayals.\n- **Eastern coast**: It is broader and emergent, with large river deltas.\n- **Andaman and Nicobar**: They are separated by the Ten Degree Channel and are largely elevated submarine mountains.\n- **Lakshadweep**: These Arabian Sea islands are built of coral deposits.\n- **Integration**: India’s six physiographic divisions show the link between structure and surface form.\n\n## Worked example\nQuestion: Why are large deltas common on the eastern coast but generally absent from the western coastal plain?\n\nAnswer:\n- The chapter identifies the west coast as narrow and submerged and the east coast as broad, emergent and crossed by major east-flowing rivers.\n- The broader eastern plain favours deposition and delta building.\n- Final answer: Contrasting coastal form and river pattern concentrate large deltas on the east coast.\n\n## Common mistake\nDo not confuse the Ten Degree Channel with the Nine Degree Channel of Lakshadweep.\n\n## Quick check question\nQuestion: What is the origin of Lakshadweep?\nAnswer: It is built of coral deposits.\nExplanation: The chapter distinguishes these coral islands from the Bay of Bengal group.\n\n## Summary\n- The desert contains dunes, playas and ephemeral drainage.\n- The west coast is submerged and narrow.\n- The east coast is emergent and deltaic.\n- The two island groups have different origins."
+  }
+}

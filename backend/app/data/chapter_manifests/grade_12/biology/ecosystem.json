@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Ecosystem",
+  "central_question": "How do ecosystem structure, productivity, decomposition and trophic energy transfer connect living organisms with their physical environment?",
+  "in_scope_units": [
+    "Ecosystem structure, species composition, stratification and pond ecosystem components.",
+    "Primary and secondary productivity, GPP, respiration and NPP.",
+    "Decomposition processes, humus, mineralisation and controlling factors.",
+    "Energy flow through grazing and detritus food chains, trophic levels and food webs.",
+    "Standing crop, the ten per cent law and limits on trophic levels.",
+    "Pyramids of number, biomass and energy and their limitations."
+  ],
+  "banned_topics": [
+    "Population growth equations and species interactions from Organisms and Populations.",
+    "Detailed biodiversity loss and conservation strategies from Biodiversity and Conservation.",
+    "Detailed global biogeochemical cycles beyond the chapter summary and stated scope."
+  ],
+  "must_include_keywords": [
+    "ecosystem",
+    "abiotic components",
+    "biotic components",
+    "species composition",
+    "stratification",
+    "pond ecosystem",
+    "producers",
+    "consumers",
+    "decomposers",
+    "productivity",
+    "gross primary productivity",
+    "net primary productivity",
+    "GPP",
+    "NPP",
+    "secondary productivity",
+    "detritus",
+    "fragmentation",
+    "leaching",
+    "catabolism",
+    "humification",
+    "humus",
+    "mineralisation",
+    "photosynthetically active radiation",
+    "PAR",
+    "grazing food chain",
+    "detritus food chain",
+    "food web",
+    "trophic level",
+    "standing crop",
+    "ten per cent law",
+    "ecological pyramid",
+    "pyramid of numbers",
+    "pyramid of biomass",
+    "pyramid of energy",
+    "upright pyramid",
+    "inverted pyramid"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "NPP is the total energy fixed before plant respiration.",
+      "correction": "GPP is total photosynthetic production; NPP equals GPP minus respiration losses."
+    },
+    {
+      "claim": "Decomposition is a single step performed only by bacteria.",
+      "correction": "It includes fragmentation, leaching, catabolism, humification and mineralisation, involving detritivores and microbial enzymes."
+    },
+    {
+      "claim": "Energy is recycled through an ecosystem like nutrients.",
+      "correction": "Energy flow is unidirectional and energy is lost as heat at each trophic transfer."
+    },
+    {
+      "claim": "Every ecological pyramid is upright.",
+      "correction": "Pyramids of numbers or biomass may be inverted, but the pyramid of energy is always upright."
+    },
+    {
+      "claim": "A species always occupies one fixed trophic level.",
+      "correction": "Trophic level is a functional feeding position; a species such as a sparrow may occupy more than one level."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise 7 to identify abiotic and biotic ecosystem components.",
+    "Use NCERT Exercise 9 and GPP - R = NPP to explain primary productivity.",
+    "Use NCERT Exercise 10 to sequence decomposition processes and products.",
+    "Use NCERT Exercises 3, 5 and 11 to trace trophic levels, PAR and energy flow.",
+    "Use NCERT Exercise 8 to compare pyramids of number and biomass."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 11 and cover ecosystem components, productivity, decomposition, energy flow, food chains and ecological pyramids.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

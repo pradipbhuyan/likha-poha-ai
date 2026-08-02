@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 8: Cell: The Unit of Life",
+  "central_question": "How do cellular structures and organelles together make the cell the fundamental structural and functional unit of life?",
+  "in_scope_units": [
+    "Definition of a cell, unicellular and multicellular organisation, and the development of microscopy.",
+    "Cell theory from Schleiden, Schwann, and Virchow.",
+    "Overview of prokaryotic and eukaryotic cells, cytoplasm, nucleus, organelles, and cellular variation.",
+    "Prokaryotic cell organisation, cell envelope, mesosome, chromatophore, flagella, pili, fimbriae, ribosomes, plasmids, and inclusion bodies.",
+    "Eukaryotic cell membrane, fluid mosaic model, passive and active transport, and osmosis.",
+    "Plant cell wall, middle lamella, and plasmodesmata.",
+    "Endomembrane system: ER, Golgi apparatus, lysosomes, and vacuoles.",
+    "Mitochondria, plastids, ribosomes, cytoskeleton, cilia, flagella, centrosome, and centrioles.",
+    "Nucleus, nuclear envelope, pores, nucleolus, chromatin, chromosomes, centromere positions, and microbodies."
+  ],
+  "banned_topics": [
+    "Detailed biomolecular chemistry, which belongs to Biomolecules",
+    "Cell-cycle stages and chromosome segregation, which belong to the next chapter",
+    "Detailed photosynthetic and respiratory pathways",
+    "DNA replication and gene expression mechanisms"
+  ],
+  "must_include_keywords": [
+    "cell",
+    "cell theory",
+    "Schleiden",
+    "Schwann",
+    "Virchow",
+    "prokaryotic cell",
+    "eukaryotic cell",
+    "cytoplasm",
+    "nucleus",
+    "plasmid",
+    "glycocalyx",
+    "cell wall",
+    "plasma membrane",
+    "mesosome",
+    "chromatophore",
+    "flagellum",
+    "pili",
+    "fimbriae",
+    "70S ribosome",
+    "polysome",
+    "inclusion body",
+    "fluid mosaic model",
+    "phospholipid bilayer",
+    "passive transport",
+    "osmosis",
+    "active transport",
+    "endomembrane system",
+    "rough ER",
+    "smooth ER",
+    "Golgi apparatus",
+    "lysosome",
+    "vacuole",
+    "mitochondrion",
+    "cristae",
+    "plastid",
+    "chloroplast",
+    "cytoskeleton",
+    "9+2 array",
+    "nuclear pore",
+    "centromere"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Robert Brown discovered the cell.",
+      "correction": "Robert Brown discovered the nucleus; Antonie van Leeuwenhoek first saw and described a live cell."
+    },
+    {
+      "claim": "Cell theory states that cells arise spontaneously.",
+      "correction": "Virchow added that all cells arise from pre-existing cells."
+    },
+    {
+      "claim": "All cells possess a membrane-bound nucleus.",
+      "correction": "Prokaryotic cells lack a membrane-bound nucleus, and some mature eukaryotic cells also lack a nucleus."
+    },
+    {
+      "claim": "Prokaryotes have no organelles at all.",
+      "correction": "They lack membrane-bound organelles but contain ribosomes and may possess inclusions and specialised membrane structures."
+    },
+    {
+      "claim": "Polar molecules freely cross the lipid bilayer by simple diffusion.",
+      "correction": "They generally require carrier proteins, while active transport uses ATP to move substances against gradients."
+    },
+    {
+      "claim": "Mitochondria and chloroplasts are part of the endomembrane system.",
+      "correction": "The endomembrane system includes ER, Golgi, lysosomes, and vacuoles; mitochondria, chloroplasts, and peroxisomes are excluded."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercises 1–2 and 10: evaluate cell theory and why the cell is the basic unit of life.",
+    "NCERT Exercises 4–5 and 8: identify prokaryotic features and explain mesosome functions.",
+    "NCERT Exercise 6: analyse passive, carrier-mediated, osmotic, and active membrane transport.",
+    "NCERT Exercises 7 and 12: compare double-membrane organelles and endomembrane structures.",
+    "NCERT Exercises 11, 13, and 14: explain nuclear pores, nucleus, centrosome, centromere, and chromosome types."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–14 for cell theory, prokaryotes, membrane transport, organelles, nucleus, and chromosome structure.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

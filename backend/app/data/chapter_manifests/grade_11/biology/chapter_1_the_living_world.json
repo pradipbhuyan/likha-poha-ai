@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 1: The Living World",
+  "central_question": "How do biologists identify, name, classify, and arrange the immense diversity of living organisms into a meaningful taxonomic hierarchy?",
+  "in_scope_units": [
+    "Diversity in the living world, biodiversity, species discovery, and the need for standardised biological study.",
+    "Identification and nomenclature, including international naming codes and binomial nomenclature.",
+    "Classification, taxa, taxonomy, and the evidence used in modern taxonomic studies.",
+    "Systematics and the inclusion of evolutionary relationships among organisms.",
+    "Taxonomic categories and hierarchy from species through kingdom.",
+    "Species, genus, family, order, class, phylum or division, and kingdom with plant and animal examples."
+  ],
+  "banned_topics": [
+    "Detailed five-kingdom classification, which belongs to Biological Classification",
+    "Detailed descriptions of plant groups and animal phyla",
+    "Molecular mechanisms of evolution",
+    "Ecological population calculations and ecosystem processes"
+  ],
+  "must_include_keywords": [
+    "biodiversity",
+    "species",
+    "identification",
+    "nomenclature",
+    "binomial nomenclature",
+    "generic name",
+    "specific epithet",
+    "ICBN",
+    "ICZN",
+    "Mangifera indica",
+    "classification",
+    "taxon",
+    "taxa",
+    "taxonomy",
+    "systematics",
+    "taxonomic hierarchy",
+    "species category",
+    "genus",
+    "family",
+    "order",
+    "class",
+    "phylum",
+    "division",
+    "kingdom",
+    "Homo sapiens",
+    "Panthera",
+    "Solanum",
+    "evolutionary relationships",
+    "characterisation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The specific epithet alone is the complete scientific name.",
+      "correction": "A binomial scientific name contains both the generic name and the specific epithet, such as Mangifera indica."
+    },
+    {
+      "claim": "Both words of a scientific name begin with capital letters.",
+      "correction": "The genus begins with a capital letter, while the specific epithet begins with a lower-case letter."
+    },
+    {
+      "claim": "Taxonomy and systematics are exact synonyms.",
+      "correction": "Taxonomy covers characterisation, identification, classification, and nomenclature; systematics also considers evolutionary relationships."
+    },
+    {
+      "claim": "A taxon refers only to a species.",
+      "correction": "A taxon is a unit at any rank, such as species, genus, family, or kingdom."
+    },
+    {
+      "claim": "Organisms in higher categories share more characteristics.",
+      "correction": "Common characteristics generally decrease as one moves upward from species to kingdom."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 5: select the correctly written scientific name of mango and explain the formatting rules.",
+    "NCERT Exercise 6: define a taxon and identify examples at different hierarchical levels.",
+    "NCERT Exercise 7: evaluate the sequences of taxonomic categories.",
+    "NCERT Exercise 9: define phylum, class, family, order, and genus.",
+    "NCERT Exercise 10: construct taxonomic hierarchies for one plant and one animal."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–10, especially Questions 5–10 for nomenclature and taxonomic hierarchy.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

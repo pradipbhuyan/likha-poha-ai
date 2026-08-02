@@ -1,0 +1,105 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 7: Structural Organisation in Animals",
+    "central_question": "How does division of labour among cells, tissues, organs, and organ systems create the coordinated structure and function of a vertebrate such as the frog?",
+    "in_scope_units": [
+      "Organisation from cells to tissues, organs, and organ systems and the resulting division of labour.",
+      "Frog habitat, poikilothermy, camouflage, aestivation, and hibernation.",
+      "External morphology of the frog, including skin, body regions, limbs, sense structures, and sexual dimorphism.",
+      "Digestive system and digestion in the frog.",
+      "Respiratory system and cutaneous, buccal, and pulmonary respiration.",
+      "Closed blood vascular and lymphatic systems, heart, circulation, blood, and portal systems.",
+      "Excretory system, kidneys, ureters, urinary bladder, cloaca, and ureotelism.",
+      "Neural and endocrine coordination and sense organs.",
+      "Male and female reproductive systems, external fertilisation, tadpole development, and ecological importance."
+    ],
+    "banned_topics": [
+      "Detailed histology of the four animal tissue types",
+      "Comparative anatomy of other vertebrate classes",
+      "Human physiology and disease",
+      "Molecular mechanisms of hormones and nerve impulses"
+    ],
+    "must_include_keywords": [
+      "tissue",
+      "organ",
+      "organ system",
+      "division of labour",
+      "morphology",
+      "anatomy",
+      "Rana tigrina",
+      "Amphibia",
+      "poikilotherm",
+      "camouflage",
+      "aestivation",
+      "hibernation",
+      "mucus",
+      "nictitating membrane",
+      "tympanum",
+      "sexual dimorphism",
+      "cloaca",
+      "bilobed tongue",
+      "villi",
+      "cutaneous respiration",
+      "pulmonary respiration",
+      "three-chambered heart",
+      "sinus venosus",
+      "conus arteriosus",
+      "hepatic portal system",
+      "renal portal system",
+      "nucleated RBC",
+      "kidney",
+      "nephron",
+      "ureter",
+      "ureotelic",
+      "cranial nerves",
+      "testis",
+      "ovary",
+      "external fertilisation",
+      "tadpole",
+      "metamorphosis"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A tissue is simply a group of identical cells.",
+        "correction": "A tissue is a group of similar cells together with intercellular substances performing one or more functions."
+      },
+      {
+        "claim": "Frogs maintain a constant internal body temperature.",
+        "correction": "Frogs are poikilotherms, so body temperature varies with environmental temperature."
+      },
+      {
+        "claim": "A frog drinks water through its mouth.",
+        "correction": "The chapter states that a frog absorbs water through its moist skin."
+      },
+      {
+        "claim": "Frogs respire only through lungs on land and gills in water.",
+        "correction": "Adult frogs use skin in water and skin, buccal cavity, and lungs on land; skin is especially important during dormancy."
+      },
+      {
+        "claim": "The frog heart has four chambers.",
+        "correction": "It has two atria and one ventricle."
+      },
+      {
+        "claim": "Male and female frog ureters have exactly the same reproductive role.",
+        "correction": "Male ureters function as urinogenital ducts, while female ureters carry urine and the oviducts open separately into the cloaca."
+      }
+    ],
+    "recommended_example_progression": [
+      "Figure 7.1: identify external features and sexual dimorphism in a frog.",
+      "NCERT Exercise 1 and Figure 7.2: trace and label the digestive system.",
+      "Section 7.2.2: compare cutaneous, buccal, and pulmonary respiration.",
+      "NCERT Exercise 2: explain the function of ureters in male and female frogs.",
+      "Figures 7.3 and 7.4: compare male and female reproductive systems and trace external fertilisation and metamorphosis."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–2, supported by Figures 7.1–7.4 for morphology and organ-system interpretation."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 7: Structural Organisation in Animals\n\n## What you will learn\nYou will understand how cells form tissues, tissues form organs, and organs cooperate in organ systems. You will also distinguish morphology from anatomy.\n\n## Simple explanation\nMulticellular animals function efficiently because different structures specialise and coordinate rather than every cell performing every life process alone.\n\n## Step-by-step breakdown\n- **Unicellular organisation**: A single cell carries out digestion, respiration, reproduction, and other essential activities.\n- **Tissue**: Similar cells with intercellular substances work together to perform one or more functions.\n- **Four basic tissues**: Complex animals are built from epithelial, connective, muscular, and neural tissues.\n- **Organ**: Different tissues occur in a characteristic arrangement to form a structure such as the heart, stomach, lung, or kidney.\n- **Organ system**: Two or more organs interacting physically or chemically perform a common function.\n- **Division of labour**: Specialisation distributes work among cells, tissues, organs, and systems and improves coordination.\n- **Morphology**: In animals, morphology refers to externally visible form and features.\n- **Anatomy**: Animal anatomy conventionally describes the structure of internal organs.\n- **Frog model**: The chapter uses the frog as a representative vertebrate for connecting external form with internal organisation.\n\n## Worked example\nQuestion: Using the organ-system discussion in Section 7.1, arrange cell, tissue, organ, and organ system from simplest to most complex and illustrate the progression with the heart.\n\nSolution:\n- Begin with specialised cells and their intercellular material forming tissues.\n- Recognise that the heart contains epithelial, connective, muscular, and neural tissues.\n- These tissues form the heart as an organ.\n- The heart interacts with blood vessels and blood as part of the circulatory system.\n- Final answer: Cell → tissue → organ → organ system; the heart is an organ made of several tissues and functions within the circulatory system.\n\n## Common mistake\nAn organ is not made from only one tissue type; the heart contains all four basic tissue types.\n\n## Quick check question\nQuestion: What principle explains why different organs perform different parts of a body's work?\nAnswer: Division of labour.\nExplanation: Specialised structures share tasks and coordinate them for survival of the organism.\n\n## Summary\n- Multicellular organisation is hierarchical.\n- Tissues combine cells and intercellular material.\n- Organs contain one or more tissue types.\n- Organ systems coordinate several organs.",
+    "Core explanation": "# Core explanation: Chapter 7: Structural Organisation in Animals\n\n## What you will learn\nYou will describe the frog's habitat, temperature regulation, seasonal dormancy, skin, body regions, limbs, and sexual dimorphism. You will connect each external feature with its function.\n\n## Simple explanation\nThe frog's external form reflects its amphibious life and need to move, respire, sense danger, and reproduce in both aquatic and terrestrial settings.\n\n## Step-by-step breakdown\n- **Classification**: The common Indian frog Rana tigrina belongs to class Amphibia of phylum Chordata.\n- **Poikilothermy**: Its body temperature changes with environmental temperature.\n- **Camouflage**: Colour changes help the frog blend with grass or dry land and avoid enemies.\n- **Dormancy**: Aestivation protects against extreme summer heat, while hibernation protects against winter cold.\n- **Skin**: The smooth, mucus-covered, vascular, moist skin supports water absorption and gas exchange.\n- **Body regions**: The adult body has a head and trunk but no neck or tail.\n- **Sense structures**: Bulging eyes have nictitating membranes, nostrils open above the mouth, and the tympanum receives sound.\n- **Locomotion**: Forelimbs and powerful hind limbs support walking, swimming, leaping, and burrowing; webbed hind digits aid swimming.\n- **Sexual dimorphism**: Males possess vocal sacs and a copulatory pad on the first forelimb digit, which females lack.\n\n## Worked example\nQuestion: Using Figure 7.1, identify the external features that support aquatic movement, eye protection, hearing, and recognition of a male frog.\n\nSolution:\n- Webbed digits and muscular hind limbs support swimming.\n- The nictitating membrane protects the eyes in water.\n- The visible tympanum receives sound signals.\n- Vocal sacs and a copulatory pad distinguish the male.\n- Final answer: Aquatic movement–webbed muscular hind limbs; eye protection–nictitating membrane; hearing–tympanum; male identification–vocal sacs and copulatory pad.\n\n## Common mistake\nThe chapter uses the term mimicry for the frog's protective colour change, but the immediate function described is camouflage from enemies.\n\n## Quick check question\nQuestion: How does an adult frog obtain water?\nAnswer: It absorbs water through its skin.\nExplanation: Its moist skin is permeable, and the chapter states that the frog does not drink water.\n\n## Summary\n- Frogs are amphibious and poikilothermic.\n- Aestivation and hibernation protect against seasonal extremes.\n- Moist skin supports absorption and respiration.\n- Limbs and sensory structures suit an amphibious lifestyle.",
+    "Worked examples": "# Worked examples: Chapter 7: Structural Organisation in Animals\n\n## What you will learn\nYou will trace food through the frog digestive system and explain the roles of the liver, gall bladder, pancreas, intestine, villi, and cloaca. You will also compare respiratory routes.\n\n## Simple explanation\nThe frog's relatively short alimentary canal reflects its carnivorous diet, while its respiratory surfaces change with habitat and activity.\n\n## Step-by-step breakdown\n- **Food capture**: The bilobed muscular tongue captures prey.\n- **Alimentary route**: Mouth leads to buccal cavity, pharynx, oesophagus, stomach, intestine, rectum, cloaca, and cloacal aperture.\n- **Stomach digestion**: Hydrochloric acid and gastric juice act on food and produce partly digested chyme.\n- **Duodenum**: The first small-intestinal part receives bile and pancreatic juice through a common bile duct.\n- **Digestive glands**: The liver produces bile stored in the gall bladder, while the pancreas produces enzymes that digest carbohydrates and proteins.\n- **Absorption**: Villi and microvilli increase the intestinal surface for absorption.\n- **Waste removal**: Undigested material passes to the rectum and leaves through the cloaca.\n- **Cutaneous respiration**: Dissolved oxygen diffuses through the moist skin in water and during aestivation or hibernation.\n- **Pulmonary and buccal respiration**: On land, the buccal cavity, skin, and sac-like lungs participate in gas exchange.\n\n## Worked example\nQuestion: Based on NCERT Exercise 1 and Figure 7.2, trace the digestive system of a frog and label the major digestive glands.\n\nSolution:\n- Trace the alimentary canal from mouth and buccal cavity to pharynx and oesophagus.\n- Continue through stomach, duodenum and intestine, rectum, and cloaca.\n- Label the liver and gall bladder, which supply bile.\n- Label the pancreas, which supplies pancreatic juice to the duodenum.\n- Final answer: Mouth → buccal cavity → pharynx → oesophagus → stomach → duodenum and intestine → rectum → cloaca; the principal digestive glands are liver and pancreas, with bile stored in the gall bladder.\n\n## Common mistake\nThe cloaca is not exclusively a digestive opening; it receives digestive, urinary, and reproductive products.\n\n## Quick check question\nQuestion: Which respiratory surface is especially important during aestivation and hibernation?\nAnswer: The skin.\nExplanation: During dormancy, gaseous exchange continues through the moist vascular skin.\n\n## Summary\n- The frog has a short carnivore alimentary canal.\n- Liver and pancreas contribute digestive secretions.\n- Villi and microvilli support absorption.\n- Frogs use different respiratory surfaces in water, on land, and during dormancy.",
+    "Exam-style problems": "# Exam-style problems: Chapter 7: Structural Organisation in Animals\n\n## What you will learn\nYou will explain the frog's circulatory, lymphatic, and excretory systems. You will distinguish arterial, venous, hepatic portal, and renal portal connections and interpret the role of ureters.\n\n## Simple explanation\nA closed blood system transports materials, while kidneys remove nitrogenous wastes and maintain the body's internal fluid environment.\n\n## Step-by-step breakdown\n- **Heart**: The muscular heart has right and left atria and one ventricle and is enclosed by pericardium.\n- **Sinus venosus**: This triangular chamber receives blood from major venae cavae and opens into the right atrium.\n- **Conus arteriosus**: The ventricle opens into this ventral sac-like outflow structure.\n- **Closed circulation**: Arteries carry blood away from the heart and veins return it.\n- **Portal systems**: The hepatic portal system links intestine and liver; the renal portal system links lower body regions with kidneys.\n- **Blood**: Plasma contains nucleated red blood cells with haemoglobin, white blood cells, and platelets.\n- **Lymph**: Lymph lacks red blood cells and contains fewer proteins than blood.\n- **Excretory organs**: Two kidneys, ureters, urinary bladder, and cloaca form the excretory system.\n- **Nephrons**: Uriniferous tubules or nephrons are structural and functional kidney units.\n- **Ureotelism**: The frog excretes nitrogen mainly as urea.\n- **Sex difference**: Male ureters also carry sperm as urinogenital ducts, whereas female ureters and oviducts open separately into the cloaca.\n\n## Worked example\nQuestion: Based on NCERT Exercise 2, mention the function of ureters in male and female frogs.\n\nSolution:\n- In both sexes, ureters carry urine from the kidneys toward the cloaca.\n- In males, the ureter also receives sperm through the reproductive ducts and acts as a urinogenital duct.\n- In females, urine passes through ureters while ova pass through separate oviducts.\n- Final answer: Male ureters function as urinogenital ducts carrying urine and sperm; female ureters carry urine only, while separate oviducts carry ova.\n\n## Common mistake\nDo not call a frog's red blood cells non-nucleated; the chapter specifically describes them as nucleated.\n\n## Quick check question\nQuestion: What is the functional unit of the frog kidney?\nAnswer: The uriniferous tubule or nephron.\nExplanation: Each kidney consists of many such structural and functional units.\n\n## Summary\n- The frog has closed blood circulation and a lymphatic system.\n- Its heart has three chambers.\n- Portal systems provide specialised venous connections.\n- Kidneys and ureters remove urea-containing waste.",
+    "Revision and recap": "# Revision and recap: Chapter 7: Structural Organisation in Animals\n\n## What you will learn\nYou will integrate neural, endocrine, sensory, and reproductive organisation and explain frog development and ecological importance. You will compare male and female reproductive pathways.\n\n## Simple explanation\nControl systems coordinate the frog's organs, while reproductive systems produce gametes that unite externally in water and develop through a tadpole stage.\n\n## Step-by-step breakdown\n- **Endocrine glands**: Pituitary, thyroid, parathyroid, thymus, pineal body, pancreatic islets, adrenals, and gonads produce hormones.\n- **Nervous divisions**: The nervous system includes central, peripheral, and autonomic divisions.\n- **Brain**: Forebrain, midbrain, and hindbrain are enclosed in the cranium; ten pairs of cranial nerves arise from the brain.\n- **Sense organs**: Touch, taste, smell, vision, and hearing are represented; the tympanum and internal ear support hearing and equilibrium.\n- **Male system**: Paired testes attach near kidneys; vasa efferentia communicate through the kidney with the urinogenital duct and cloaca.\n- **Female system**: Paired ovaries lie near kidneys but have no functional connection with them; separate oviducts open into the cloaca.\n- **Fertilisation**: It is external and occurs in water.\n- **Development**: Eggs hatch into tadpoles, which undergo metamorphosis into adults.\n- **Ecological role**: Frogs eat crop-damaging insects and form important links in food chains and food webs.\n\n## Worked example\nQuestion: Using Figures 7.3 and 7.4, compare the male and female reproductive systems and trace development after fertilisation.\n\nSolution:\n- Male frogs possess paired testes and vasa efferentia connected through kidneys to urinogenital ducts.\n- Females possess paired ovaries and separate oviducts that open into the cloaca.\n- Gametes are released into water, where external fertilisation occurs.\n- The embryo develops into a tadpole, followed by metamorphosis into an adult frog.\n- Final answer: Male and female frogs have separate reproductive ducts; fertilisation and early development occur externally in water, producing a tadpole that metamorphoses into an adult.\n\n## Common mistake\nThe female ovary lies near the kidney but is not functionally connected to it.\n\n## Quick check question\nQuestion: Why are frogs beneficial in agricultural ecosystems?\nAnswer: They consume insects and help maintain food-chain and food-web balance.\nExplanation: Predation on insects can protect crops, and frogs serve as important prey and predators in ecosystems.\n\n## Summary\n- Neural and endocrine systems coordinate body functions.\n- Eyes and ears are well-developed sense organs.\n- Male and female reproductive pathways differ anatomically.\n- Fertilisation is external and development includes a tadpole.\n- Frogs contribute to crop protection and ecological balance."
+  }
+}

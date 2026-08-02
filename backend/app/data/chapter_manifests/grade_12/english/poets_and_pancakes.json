@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "Poets and Pancakes",
+  "central_question": "How does Asokamitran use gentle humour and a rambling memoir style to reveal the people, hierarchy, politics and literary confusions of Gemini Studios?",
+  "in_scope_units": [
+    "About Asokamitran, My Years with Boss and Gemini Studios.",
+    "The Pancake make-up department, studio hierarchy, national integration and the office boy.",
+    "The narrator’s cubicle, the office boy’s frustration and Kothamangalam Subbu’s many abilities.",
+    "The Story Department, legal adviser and the actress whose career ends.",
+    "Gemini poets, vague anti-Communism and the Moral Re-Armament visit.",
+    "The unexplained visit of the English poet-editor and the communication gap.",
+    "The later discovery of Stephen Spender through The Encounter and The God That Failed.",
+    "Questions on humour, transitions, character and humorous writing."
+  ],
+  "banned_topics": [
+    "A complete history of Indian cinema beyond the chapter’s Gemini Studios memoir.",
+    "A detailed political history of Communism or Moral Re-Armament beyond the narrator’s account."
+  ],
+  "must_include_keywords": [
+    "Asokamitran",
+    "Gemini Studios",
+    "S.S. Vasan",
+    "My Years with Boss",
+    "Pancake",
+    "make-up department",
+    "fiery misery",
+    "national integration",
+    "office boy",
+    "crowd-shooting",
+    "French windows",
+    "frustration",
+    "Kothamangalam Subbu",
+    "No. 2",
+    "loyalty",
+    "creativity",
+    "story poems",
+    "Thillana Mohanambal",
+    "Story Department",
+    "legal adviser",
+    "actress",
+    "coat of mail",
+    "khadi",
+    "poets",
+    "Communism",
+    "Moral Re-Armament",
+    "Jotham Valley",
+    "The Forgotten Factor",
+    "English poet",
+    "Stephen Spender",
+    "The Encounter",
+    "The God That Failed",
+    "gentle humour",
+    "human foibles",
+    "chatty rambling style",
+    "transitions",
+    "incongruity"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The office boy is a young beginner.",
+      "correction": "He is in his early forties and is called an office boy because of his position in the hierarchy."
+    },
+    {
+      "claim": "Subbu succeeds only through flattery.",
+      "correction": "The narrator also presents him as loyal, inventive, literary, talented in acting and personally generous."
+    },
+    {
+      "claim": "The legal adviser deliberately destroys the actress’s career.",
+      "correction": "His recording has that effect, but the narrator says he brought it about unwittingly."
+    },
+    {
+      "claim": "The Gemini staff clearly understands the politics of MRA and Stephen Spender.",
+      "correction": "Their political knowledge is vague, and Spender’s visit remains a mystery until the narrator’s later discovery."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the first Think as you read questions for make-up, national integration and the office boy.",
+    "Use the second set for Subbu and the legal adviser.",
+    "Use the MRA questions for studio politics and theatrical influence.",
+    "Use Understanding the text Q3 for the incongruous English-poet visit.",
+    "Use the Stephen Spender questions and Noticing transitions for the final connection and narrative method."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Understanding the text Questions 1–4, Talking about the text, Noticing transitions and a humorous writing task.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

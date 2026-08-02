@@ -1,0 +1,103 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Migration",
+    "central_question": "How do pressure differences, wind-driving forces, global and local circulation, air masses, fronts, and storms organise weather systems?",
+    "in_scope_units": [
+      "Atmospheric pressure and its vertical and horizontal distribution.",
+      "World pressure belts and their seasonal movement.",
+      "Pressure-gradient, frictional, Coriolis, and gravitational forces controlling winds.",
+      "Geostrophic wind, convergence, divergence, cyclonic and anticyclonic circulation.",
+      "General atmospheric circulation, planetary cells, and the Inter Tropical Convergence Zone.",
+      "Seasonal and local winds including monsoonal tendencies, land–sea breezes, and mountain–valley winds.",
+      "Air masses, source regions, and fronts.",
+      "Extra-tropical cyclones, tropical cyclones, thunderstorms, tornadoes, and water spouts."
+    ],
+    "banned_topics": [
+      "Human migration causes and streams",
+      "Population redistribution",
+      "Settlement systems",
+      "Detailed water-vapour and rainfall classification"
+    ],
+    "must_include_keywords": [
+      "atmospheric pressure",
+      "millibar",
+      "barometer",
+      "isobar",
+      "equatorial low",
+      "subtropical high",
+      "subpolar low",
+      "polar high",
+      "pressure gradient force",
+      "frictional force",
+      "Coriolis force",
+      "geostrophic wind",
+      "convergence",
+      "divergence",
+      "cyclonic circulation",
+      "anticyclonic circulation",
+      "Hadley cell",
+      "Ferrel cell",
+      "polar cell",
+      "ITCZ",
+      "trade winds",
+      "westerlies",
+      "polar easterlies",
+      "sea breeze",
+      "land breeze",
+      "valley breeze",
+      "mountain wind",
+      "katabatic wind",
+      "air mass",
+      "source region",
+      "frontogenesis",
+      "warm front",
+      "cold front",
+      "occluded front",
+      "extra-tropical cyclone",
+      "tropical cyclone",
+      "eye",
+      "eyewall",
+      "landfall",
+      "storm surge"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Wind direction is controlled only by the pressure gradient.",
+        "correction": "Near the surface, pressure gradient, friction, and Coriolis force combine, while gravity acts vertically."
+      },
+      {
+        "claim": "Coriolis force is strongest at the equator.",
+        "correction": "It is absent at the equator and increases towards the poles."
+      },
+      {
+        "claim": "A sea breeze blows from land to sea during the day.",
+        "correction": "Daytime heating creates lower pressure over land, so the sea breeze blows from sea to land."
+      },
+      {
+        "claim": "Tropical and extra-tropical cyclones have the same structure and origin.",
+        "correction": "Extra-tropical cyclones are frontal systems; tropical cyclones form over warm tropical seas and lack a frontal structure."
+      },
+      {
+        "claim": "The calm eye is the zone of maximum wind and rain.",
+        "correction": "Maximum winds and torrential rain occur in the eyewall around the calm eye."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 1(ii): locate the normal Inter Tropical Convergence Zone.",
+      "NCERT Exercise 2(ii): explain why tropical winds are north-easterly in the Northern Hemisphere.",
+      "NCERT Exercise 2(iv): explain land and sea breezes.",
+      "NCERT Exercise 3(i): discuss factors affecting wind speed and direction.",
+      "NCERT Exercise 3(iii): explain tropical-cyclone origin and the eyewall."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1(i–iv), 2(i–iv), 3(i–iii), followed by Project Work using media weather information."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Migration\n\n## What you will learn\nYou will define atmospheric pressure and read pressure patterns using isobars. You will locate the major global pressure belts.\n\n## Simple explanation\nAir moves because pressure differs from place to place. Pressure decreases upward and is reduced to sea level on weather maps so stations can be compared.\n\n## Step-by-step breakdown\n- **Atmospheric pressure**: It is the weight of a column of air over a unit area and is expressed in millibars.\n- **Vertical change**: Pressure generally decreases rapidly with height.\n- **Isobars**: Lines joining places of equal pressure show horizontal pressure distribution.\n- **Equatorial low**: Low pressure normally occurs near the equator.\n- **Subtropical highs**: High-pressure belts occur near 30° north and south.\n- **Subpolar lows and polar highs**: Low pressure occurs near 60°, with high pressure near the poles.\n- **Seasonal shift**: Pressure belts move with the apparent seasonal movement of the sun.\n\n## Worked example\nQuestion: Where does the ITCZ normally occur in NCERT Exercise 1(ii)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1(ii)\", \"extract_text\": \"The Inter Tropical Convergence Zone normally occurs:\\n(a) near the Equator\\n(b) near the Tropic of Cancer\\n(c) near the Tropic of Capricorn\\n(d) near the Arctic Circle\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter places the Inter Tropical Convergence Zone near the equator, where trade winds converge and air rises.\n- Its exact position migrates seasonally, but its normal belt is equatorial.\n- Final answer: The correct answer is near the Equator.\n\n## Common mistake\nDo not confuse the normal ITCZ with the subtropical high-pressure belts near 30°.\n\n## Quick check question\nQuestion: What is an isobar?\nAnswer: A line joining places with equal atmospheric pressure.\nExplanation: Isobars make pressure gradients and pressure systems visible on weather maps.\n\n## Summary\n- Pressure differences set air in motion.\n- Isobars map equal pressure.\n- Global pressure belts shift seasonally.",
+    "Core explanation": "# Core explanation: Migration\n\n## What you will learn\nYou will explain the forces controlling wind speed and direction. You will distinguish surface wind from geostrophic wind.\n\n## Simple explanation\nWind begins with a pressure gradient, but its actual path is modified by surface friction and the earth’s rotation.\n\n## Step-by-step breakdown\n- **Pressure-gradient force**: It acts from high towards low pressure and is stronger where isobars are closer.\n- **Friction**: It slows surface wind and is weaker over smooth ocean surfaces.\n- **Coriolis force**: Earth’s rotation deflects moving air right in the Northern Hemisphere and left in the Southern Hemisphere.\n- **Latitude effect**: Coriolis deflection is zero at the equator and strongest near the poles.\n- **Geostrophic wind**: Above strong surface friction, balance between pressure-gradient and Coriolis forces makes wind flow parallel to straight isobars.\n- **Convergence and divergence**: Air converges and rises around lows and generally subsides and diverges around highs.\n\n## Worked example\nQuestion: Why are the tropical winds north-easterlies in the Northern Hemisphere, as asked in NCERT Exercise 2(ii)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(ii)\", \"extract_text\": \"While the pressure gradient force is from north to south, i.e. from the subtropical high pressure to the equator in the northern hemisphere, why are the winds north easterlies in the tropics.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- Air moves equatorward from the subtropical high towards the equatorial low, while Coriolis force deflects it to the right.\n- A southward-moving wind deflected to its right acquires an easterly component and arrives as a north-easterly.\n- Final answer: Northern tropical trade winds are north-easterlies because pressure-gradient flow towards the equator is deflected right by the Coriolis force.\n\n## Common mistake\nDo not reverse the Coriolis rule: Northern Hemisphere deflection is to the right.\n\n## Quick check question\nQuestion: When is a wind called geostrophic?\nAnswer: When pressure-gradient and Coriolis forces balance and the wind flows parallel to isobars with negligible friction.\nExplanation: This balance is most closely approached in the free atmosphere above strong surface friction.\n\n## Summary\n- Wind is a result of several forces.\n- Coriolis changes direction, not the pressure source.\n- Geostrophic wind flows parallel to isobars.",
+    "Worked examples": "# Worked examples: Migration\n\n## What you will learn\nYou will connect global circulation cells with local thermal winds. You will explain land–sea and mountain–valley reversals.\n\n## Simple explanation\nPlanetary circulation transfers heat between latitudes, while local differences in daily heating create smaller wind systems that reverse between day and night.\n\n## Step-by-step breakdown\n- **Hadley cell**: Air rises near the equatorial convergence zone and subsides in the subtropics.\n- **Ferrel cell**: A middle-latitude cell links subtropical and subpolar circulation.\n- **Polar cell**: Cold air subsides near the poles and flows towards lower latitudes.\n- **Sea breeze**: Daytime land heating creates low pressure over land, drawing cooler air from sea.\n- **Land breeze**: At night land cools faster, and air flows from higher pressure over land towards the sea.\n- **Valley and mountain winds**: Daytime upslope heating creates valley breeze; night-time cooling produces downslope mountain wind.\n- **Katabatic wind**: Dense cold air drains from high plateaus or ice fields into valleys.\n\n## Worked example\nQuestion: How should land and sea breezes be explained for NCERT Exercise 2(iv)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(iv)\", \"extract_text\": \"Explain the land and sea breezes.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The source contrasts the faster heating and cooling of land with the slower response of the sea.\n- That thermal contrast reverses the pressure gradient from day to night.\n- Final answer: A sea breeze blows from sea to land by day because land is warmer and lower in pressure; a land breeze blows from land to sea at night because land cools faster and becomes higher in pressure.\n\n## Common mistake\nDo not explain both breezes as blowing in the same direction.\n\n## Quick check question\nQuestion: Which local wind moves upslope during the day?\nAnswer: The valley breeze.\nExplanation: Sun-heated slopes warm the adjacent air, which rises along the slope.\n\n## Summary\n- Global cells redistribute heat.\n- Local winds respond to differential heating.\n- Land–sea and mountain–valley winds reverse daily.",
+    "Exam-style problems": "# Exam-style problems: Migration\n\n## What you will learn\nYou will classify air masses and fronts and trace the life cycle of an extra-tropical cyclone. You will distinguish warm, cold, and occluded fronts.\n\n## Simple explanation\nLarge air bodies acquire the temperature and humidity of uniform source regions. When contrasting air masses meet, the boundary becomes a front and can organise a middle-latitude cyclone.\n\n## Step-by-step breakdown\n- **Air mass**: A large body of air with little horizontal variation in temperature and moisture.\n- **Source regions**: Large uniform oceans, deserts, snow-covered continents, and ice sheets create characteristic air masses.\n- **Classification**: Maritime or continental and tropical, polar, or arctic labels describe moisture and temperature.\n- **Frontogenesis**: A front forms where unlike air masses meet.\n- **Warm front**: Warm air advances and glides over colder air.\n- **Cold front**: Cold air advances and forces warm air upward more abruptly.\n- **Occlusion**: A faster cold front overtakes the warm front and lifts warm air from the surface.\n- **Extra-tropical cyclone**: It develops along the polar front and has a clear frontal system.\n\n## Worked example\nQuestion: What factors should be discussed in NCERT Exercise 3(i) on wind speed and direction?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(i)\", \"extract_text\": \"Discuss the factors affecting the speed and direction of wind.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter identifies pressure-gradient force, friction, Coriolis force, and the surface or upper-air setting; gravity also acts downward.\n- Speed increases with a stronger pressure gradient and lower friction, while direction reflects Coriolis deflection and pressure-pattern geometry.\n- Final answer: Wind speed and direction result from the combined action of pressure gradient, friction, Coriolis deflection, and the circulation setting.\n\n## Common mistake\nDo not answer with pressure difference alone.\n\n## Quick check question\nQuestion: What is an occluded front?\nAnswer: A front formed when a cold front overtakes a warm front and lifts the warm air above the surface.\nExplanation: The cold front moves faster, eventually removing the warm sector from ground contact.\n\n## Summary\n- Air masses reflect their source regions.\n- Fronts form where air masses meet.\n- Extra-tropical cyclones evolve through frontal interaction.",
+    "Revision and recap": "# Revision and recap: Migration\n\n## What you will learn\nYou will compare tropical and extra-tropical cyclones and explain the eye, eyewall, landfall, thunderstorms, and tornadoes.\n\n## Simple explanation\nTropical cyclones draw energy from condensation over warm seas. Their most violent weather surrounds the central calm eye, and they weaken after losing oceanic moisture supply.\n\n## Step-by-step breakdown\n- **Formation conditions**: Warm ocean water, Coriolis force, weak vertical wind variation, a pre-existing low, and upper-level divergence favour tropical cyclones.\n- **Energy source**: Condensation in towering cumulonimbus clouds releases energy and intensifies the storm.\n- **Eye**: The centre contains subsiding air and relative calm.\n- **Eyewall**: Strong ascent, maximum wind, and torrential rain occur around the eye.\n- **Landfall and decay**: The storm crosses the coast at landfall and weakens when its moisture supply is cut off.\n- **Storm surge**: Cyclonic winds and low pressure raise sea water over coastal lowlands.\n- **Thunderstorm and tornado**: Strong convection can produce hail, dust storms, and a violently rotating funnel; over water it is called a water spout.\n\n## Worked example\nQuestion: Why do tropical cyclones originate over seas, and where are their strongest winds and rain, as asked in NCERT Exercise 3(iii)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(iii)\", \"extract_text\": \"Why does tropical cyclone originate over the seas? In which part of the tropical cyclone do torrential rains and high velocity winds blow and why?\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter states that warm ocean surfaces supply continuous moisture and that condensation releases the energy intensifying the storm.\n- It identifies the eyewall, not the calm eye, as the region of maximum spiralling ascent, wind, and torrential rain.\n- Final answer: Tropical cyclones form over warm seas because ocean moisture sustains condensation energy; their strongest winds and heaviest rain occur in the eyewall.\n\n## Common mistake\nDo not place maximum wind at the centre of the calm eye.\n\n## Quick check question\nQuestion: Why does a tropical cyclone weaken over land?\nAnswer: Its continuous moisture supply from the warm sea is cut off.\nExplanation: Without that supply, condensation no longer sustains the storm at the same intensity.\n\n## Summary\n- Warm seas supply cyclone moisture and energy.\n- The eye is calm; the eyewall is violent.\n- Landfall cuts the storm off from its main energy supply."
+  }
+}

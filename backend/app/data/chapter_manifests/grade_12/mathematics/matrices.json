@@ -1,0 +1,71 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Matrices",
+  "central_question": "How can rectangular arrays be classified and manipulated to represent information and perform algebraic operations?",
+  "in_scope_units": [
+    "3.1 Introduction: uses of matrices in mathematics and applications.",
+    "3.2 Matrix and Order of a Matrix: entries, rows, columns and notation.",
+    "3.3 Types of Matrices and Equality of Matrices.",
+    "3.4 Operations on Matrices: addition, scalar multiplication, negatives and differences.",
+    "3.5 Multiplication of Matrices and its properties.",
+    "3.6 Transpose of a Matrix and transpose properties.",
+    "3.7 Symmetric and Skew Symmetric Matrices and decomposition of a square matrix."
+  ],
+  "banned_topics": [
+    "Determinants and cofactors",
+    "Inverse by adjoint",
+    "Solving linear equations by determinants"
+  ],
+  "must_include_keywords": [
+    "matrix",
+    "entry",
+    "row",
+    "column",
+    "order",
+    "row matrix",
+    "column matrix",
+    "square matrix",
+    "diagonal matrix",
+    "scalar matrix",
+    "identity matrix",
+    "zero matrix",
+    "equality",
+    "matrix addition",
+    "scalar multiplication",
+    "matrix multiplication",
+    "conformability",
+    "identity",
+    "transpose",
+    "symmetric matrix",
+    "skew symmetric matrix"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Matrices can be multiplied entry by entry.",
+      "correction": "Matrix multiplication uses row-by-column products and requires the inner orders to match."
+    },
+    {
+      "claim": "AB=BA for all matrices.",
+      "correction": "Matrix multiplication is generally not commutative."
+    },
+    {
+      "claim": "Equal numbers of elements make matrices equal.",
+      "correction": "Equal matrices must have the same order and equal corresponding entries."
+    },
+    {
+      "claim": "Every square matrix is symmetric.",
+      "correction": "A is symmetric only when A^T=A; it is skew symmetric when A^T=-A."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Example 2 to list possible orders of a matrix with 8 elements.",
+    "Use NCERT Example 4 to solve unknown entries from equality of matrices.",
+    "Use an Exercise 3.2 problem for matrix addition and scalar multiplication.",
+    "Use an Exercise 3.3 problem to compute a conformable matrix product and compare AB with BA.",
+    "Use the decomposition theorem A=1/2(A+A^T)+1/2(A-A^T)."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 3.1 to 3.4 followed by the Miscellaneous Exercise on Chapter 3.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

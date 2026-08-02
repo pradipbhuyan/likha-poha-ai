@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Transport and Communication in India",
+  "central_question": "How do India’s transport and communication networks move people, goods, information and ideas, and how do their forms and spatial patterns support national integration and economic development?",
+  "in_scope_units": [
+    "Meaning and major modes of transport and communication",
+    "Road transport and classification of roads",
+    "National Highways, NHAI, Golden Quadrilateral, corridors, Bharatmala and Border Roads",
+    "Rail transport, zones, gauges, modernisation, metro systems and Konkan Railway",
+    "Water transport, inland waterways and oceanic routes",
+    "Air transport, Airport Authority of India, UDAN and Pawan Hans",
+    "Oil and gas pipelines",
+    "Personal communication and the internet",
+    "Mass communication through radio and television",
+    "Satellite communication through INSAT, IRS, PSLV and NRSC"
+  ],
+  "banned_topics": [
+    "Detailed composition of exports and imports, which belongs to International Trade",
+    "Detailed mineral and petroleum distribution, which belongs to Mineral and Energy Resources"
+  ],
+  "must_include_keywords": [
+    "transportation",
+    "communication",
+    "land transport",
+    "road transport",
+    "National Highways",
+    "NHAI",
+    "Golden Quadrilateral",
+    "North-South Corridor",
+    "East-West Corridor",
+    "State Highways",
+    "rural roads",
+    "Border Roads Organisation",
+    "Bharatmala Pariyojana",
+    "rail transport",
+    "broad gauge",
+    "metre gauge",
+    "narrow gauge",
+    "Konkan Railway",
+    "metro rail",
+    "water transport",
+    "inland waterways",
+    "National Waterway 1",
+    "oceanic routes",
+    "air transport",
+    "Airport Authority of India",
+    "UDAN",
+    "Pawan Hans",
+    "pipelines",
+    "OIL",
+    "GAIL",
+    "HVJ pipeline",
+    "internet",
+    "All India Radio",
+    "Doordarshan",
+    "satellite communication",
+    "INSAT",
+    "IRS",
+    "PSLV",
+    "NRSC"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Transport and communication perform the same function.",
+      "correction": "Transport moves people and material goods, while communication moves ideas, views, messages and information."
+    },
+    {
+      "claim": "National Highways form most of India’s road length.",
+      "correction": "They form a small share of total road length but carry a large share of road traffic."
+    },
+    {
+      "claim": "Water transport is the fastest mode.",
+      "correction": "Air transport is the fastest; waterways are valued for low cost, fuel efficiency and heavy, bulky cargo."
+    },
+    {
+      "claim": "Satellites are used only for television.",
+      "correction": "The chapter includes telecommunications, weather observation, disaster monitoring, border surveillance and natural-resource management."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 2(i) to define transportation and name its major modes.",
+    "Use NCERT Exercise 1(i) to recall the number of railway zones stated in the chapter.",
+    "Use NCERT Exercise 1(ii) to identify National Waterway No. 1.",
+    "Use NCERT Exercise 2(iii) to define communication.",
+    "Use NCERT Exercise 3(ii) to write a connected account of railway development and importance."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–3 and a PROJECT: three MCQs, three short-answer questions, three long-answer questions and one railway-passenger-facilities project.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

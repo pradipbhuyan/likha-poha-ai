@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Structure and Physiography",
+  "central_question": "How have geological history and geomorphic processes produced India’s major structural and physiographic divisions?",
+  "in_scope_units": [
+    "Geological history and the three broad geological divisions of India.",
+    "The Peninsular Block, Himalayas and Indo-Ganga-Brahmaputra Plain.",
+    "The concept of physiography and India’s six major divisions.",
+    "The Northern and Northeastern Mountains and Northern Plain.",
+    "The Peninsular Plateau and its subdivisions.",
+    "The Indian Desert, Coastal Plains and island groups."
+  ],
+  "banned_topics": [
+    "Detailed river-basin descriptions, which belong to Drainage System.",
+    "Detailed monsoon mechanisms, which belong to Climate.",
+    "Earth’s internal layers and seismic waves, which belong to Interior of the Earth."
+  ],
+  "must_include_keywords": [
+    "endogenic forces",
+    "exogenic forces",
+    "Indian plate",
+    "Peninsular Block",
+    "Himalayas",
+    "Indo-Ganga-Brahmaputra Plain",
+    "gneiss",
+    "granite",
+    "rift valley",
+    "Narmada",
+    "Tapi",
+    "young fold mountains",
+    "physiography",
+    "Northern Mountains",
+    "Northern Plain",
+    "Peninsular Plateau",
+    "Indian Desert",
+    "Coastal Plains",
+    "Islands",
+    "Bhabar",
+    "Tarai",
+    "Bhangar",
+    "Khadar",
+    "Deccan Plateau",
+    "Central Highlands",
+    "Northeastern Plateau",
+    "Western Ghats",
+    "Eastern Ghats",
+    "Marusthali",
+    "submerged coast",
+    "emergent coast",
+    "Kayals",
+    "Andaman and Nicobar Islands",
+    "Ten Degree Channel",
+    "Lakshadweep",
+    "coral deposits"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Himalayas and Peninsular Block have the same geological character.",
+      "correction": "The Peninsular Block is ancient, rigid and stable; the Himalayas are young, weak and flexible."
+    },
+    {
+      "claim": "Bhabar and Tarai are identical.",
+      "correction": "Streams may disappear in coarse Bhabar deposits and re-emerge in marshy Tarai."
+    },
+    {
+      "claim": "The two coastal plains have the same origin and width.",
+      "correction": "The western plain is narrow and submerged; the eastern plain is broader and emergent."
+    },
+    {
+      "claim": "All Indian islands are volcanic.",
+      "correction": "Lakshadweep is built of coral deposits; only some Bay of Bengal islands are volcanic."
+    },
+    {
+      "claim": "The Eastern Ghats form an unbroken wall.",
+      "correction": "They are discontinuous and deeply cut by rivers."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 2(ii) to identify India’s cold desert.",
+    "Use Exercise 2(iii) to explain why the western coastal plain lacks deltas.",
+    "Use Exercise 3(i) to compare the Arabian Sea and Bay of Bengal island groups.",
+    "Use Exercise 3(iii) to trace geomorphological features from Badrinath to the Sunderbans."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–ii), 2(i–iii), 3(i–iii), and a two-part Project/Activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

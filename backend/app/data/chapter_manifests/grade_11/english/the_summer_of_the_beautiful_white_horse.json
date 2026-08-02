@@ -1,0 +1,76 @@
+{
+  "grade": "Grade 11",
+  "subject": "English",
+  "chapter": "The Summer of the Beautiful White Horse",
+  "central_question": "How do Aram and Mourad balance their irresistible love of freedom and horses with the Garoghlanian family tradition of honesty?",
+  "in_scope_units": [
+    "Aram recalls the magical summer dawn when Mourad appears at his window on a beautiful white horse.",
+    "Aram confronts the contradiction between the family’s poverty, its centuries-old reputation for honesty, and the clearly stolen horse.",
+    "The cousins ride through the countryside, while the story introduces Mourad’s wild spirit and Uncle Khosrove’s comic temper.",
+    "Aram struggles to ride alone, the boys hide the horse in Fetvajian’s deserted barn, and Mourad claims a special understanding with animals.",
+    "John Byro reports his loss, meets the boys with the horse, trusts their family name over his own eyes, and receives the horse back improved.",
+    "The end questions explore interest without conventional action, conscience versus fear, nostalgia, family traits and visual imagination."
+  ],
+  "banned_topics": [
+    "A factual history of Armenia or Assyria beyond details in the story",
+    "Horse-care or horse-riding instructions not given in the chapter",
+    "Biographical details about William Saroyan not present in the text"
+  ],
+  "must_include_keywords": [
+    "Aram",
+    "Mourad",
+    "Garoghlanian family",
+    "beautiful white horse",
+    "poverty",
+    "honesty",
+    "trust",
+    "nostalgia",
+    "first-person narration",
+    "moral conflict",
+    "Walnut Avenue",
+    "Olive Avenue",
+    "vineyards",
+    "irrigation ditch",
+    "Uncle Khosrove",
+    "Zorab",
+    "Arak",
+    "crazy streak",
+    "Vazire",
+    "Fetvajian’s deserted vineyard",
+    "John Byro",
+    "surrey",
+    "My Heart",
+    "robin",
+    "conscience",
+    "humour",
+    "irony",
+    "family reputation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Mourad bought or legally borrowed the horse.",
+      "correction": "The family was too poor to buy it, and the text makes clear that it belonged to John Byro and was taken without permission."
+    },
+    {
+      "claim": "Aram is morally uninvolved because Mourad brought the horse.",
+      "correction": "Aram knowingly joins the rides, helps hide the horse and rationalises the act, so he shares the moral conflict."
+    },
+    {
+      "claim": "The boys return the horse because John Byro threatens them.",
+      "correction": "John Byro never threatens them; his trust in the Garoghlanian name awakens their conscience."
+    },
+    {
+      "claim": "Khosrove literally believes every loss is harmless.",
+      "correction": "His refrain is a comic expression of his explosive temper and homesickness, not a reasoned judgment."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT end-of-chapter Q1 on why a story without breathless action remains interesting.",
+    "Move to Q2 on whether conscience or fear causes the horse’s return.",
+    "Use Q3 to examine the nostalgic opening and first-person storytelling.",
+    "Conclude with Q4 and “Try This Out” on family traits and visual imagery."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with four numbered comprehension/discussion questions followed by a “Try This Out” drawing activity.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

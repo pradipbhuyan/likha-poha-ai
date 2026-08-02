@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 12",
+  "subject": "Accountancy",
+  "chapter": "Dissolution of Partnership Firm",
+  "central_question": "How are a partnership firm’s assets realised, liabilities settled and partners’ final claims closed when the business is dissolved?",
+  "in_scope_units": [
+    "Difference between dissolution of partnership and dissolution of the partnership firm.",
+    "Modes of dissolution by agreement, compulsory dissolution, contingencies, notice and court order.",
+    "Settlement of accounts under Section 48 and application of firm and private property.",
+    "Preparation of the Realisation Account and transfer of assets and outside liabilities.",
+    "Accounting for asset sales, assets or liabilities taken over by partners and creditors accepting assets.",
+    "Realisation expenses, partner remuneration, unrecorded assets and unrecorded liabilities.",
+    "Transfer of realisation profit or loss, reserves, fictitious assets, partner loans and final capital balances.",
+    "Closure of the Bank Account and the books of the dissolved firm."
+  ],
+  "banned_topics": [
+    "Revaluation while a firm continues, which belongs to admission or retirement.",
+    "Admission, retirement and death where the business is not closed.",
+    "Insolvency of partners and Garner v. Murray beyond the treatment expressly retained in this chapter."
+  ],
+  "must_include_keywords": [
+    "dissolution of partnership",
+    "dissolution of firm",
+    "partnership at will",
+    "compulsory dissolution",
+    "dissolution by notice",
+    "court order",
+    "Section 48",
+    "realisation account",
+    "realisation expenses",
+    "unrecorded asset",
+    "unrecorded liability",
+    "outside liabilities",
+    "partner’s loan",
+    "partners’ capital accounts",
+    "bank account",
+    "profit on realisation",
+    "loss on realisation",
+    "private debts",
+    "firm debts",
+    "assets taken over",
+    "liability taken over",
+    "creditor accepts asset",
+    "accumulated profits",
+    "fictitious assets",
+    "order of settlement"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every change in partners dissolves the partnership firm and closes the business.",
+      "correction": "A partnership may dissolve and be reconstituted without dissolution of the firm; dissolution of the firm closes the business and economic relations among all partners."
+    },
+    {
+      "claim": "Cash, bank and fictitious assets are transferred to Realisation Account with the other assets.",
+      "correction": "Cash and bank are used for settlement, while fictitious assets are transferred to partners’ capital accounts, not to Realisation Account."
+    },
+    {
+      "claim": "Partners’ capital is paid before outside creditors.",
+      "correction": "Outside liabilities are settled first, then partner loans, and only thereafter partners’ capital balances."
+    },
+    {
+      "claim": "An unrecorded asset realised has no accounting entry.",
+      "correction": "Bank or the taking-over partner is debited and Realisation Account is credited because the receipt creates a realisation gain."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the distinction and modes in Sections 4.1–4.2 with the chapter’s conceptual questions.",
+    "Use Section 4.3 to sequence losses and the application of assets under Section 48.",
+    "Use NCERT Illustration 1 to prepare Realisation, Capital and Bank Accounts.",
+    "Use NCERT Illustration 2 for reserves, unrecorded items and liabilities taken over.",
+    "Use NCERT Illustration 3 for alternative treatments of realisation expenses and partner remuneration.",
+    "Use NCERT Illustrations 5–11 for comprehensive dissolution problems and final settlement."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions for Practice containing Short Answer Questions 1–6, Long Answer Questions and Numerical Questions on Realisation, Capital and Bank Accounts.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

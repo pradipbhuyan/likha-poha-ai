@@ -53,10 +53,10 @@ def _fetch_question_pool(
     result = query.limit(1000).execute()
     questions = result.data or []
 
-    # Filter out malformed questions (< 4 options, short explanation, bad answer)
+    # Filter out malformed questions (not exactly 4 options, short explanation, bad answer)
     questions = [
         q for q in questions
-        if q.get("options") and isinstance(q["options"], dict) and len(q["options"]) >= 4
+        if q.get("options") and isinstance(q["options"], dict) and len(q["options"]) == 4
         and all(str(v).strip() for v in q["options"].values())
         and q.get("answer") in ("A", "B", "C", "D")
         and q.get("question") and len(str(q.get("question", ""))) >= 10
@@ -65,6 +65,61 @@ def _fetch_question_pool(
 
     # Deduplicate by question text (keep first occurrence) to prevent
     # the same question appearing twice in one test when the bank has duplicates.
+    seen_texts: set = set()
+    deduped: list = []
+    for q in questions:
+        text_key = str(q.get("question", "")).strip().lower()[:120]
+        if text_key not in seen_texts:
+            seen_texts.add(text_key)
+            deduped.append(q)
+
+    return deduped
+
+
+def _fetch_question_pool_fuzzy(
+    board: str,
+    grade: str,
+    subject: str,
+    chapter_core: str,
+    difficulty: str,
+) -> list[dict]:
+    """
+    Same as _fetch_question_pool, but matches chapter via an ILIKE substring
+    on an already-normalized "core" chapter title instead of an exact match.
+
+    Last-resort fallback for legacy rows whose stored chapter format (e.g. a
+    bare title) doesn't exactly match any current display-prefixed variant
+    (e.g. "Chapter N: Title") -- see normalize_chapter_core() in
+    mock_test_service.py, which callers use to compute chapter_core.
+    """
+    supabase = get_content_db(grade)
+    if not chapter_core:
+        return []
+
+    query = (
+        supabase
+        .table("question_bank")
+        .select("id, section, question, options, answer, explanation, marks")
+        .eq("board", board)
+        .eq("grade", grade)
+        .eq("subject", subject)
+        .eq("difficulty", difficulty)
+        .eq("status", "active")
+        .ilike("chapter", f"%{chapter_core}%")
+    )
+
+    result = query.limit(1000).execute()
+    questions = result.data or []
+
+    questions = [
+        q for q in questions
+        if q.get("options") and isinstance(q["options"], dict) and len(q["options"]) == 4
+        and all(str(v).strip() for v in q["options"].values())
+        and q.get("answer") in ("A", "B", "C", "D")
+        and q.get("question") and len(str(q.get("question", ""))) >= 10
+        and q.get("explanation") and len(str(q.get("explanation", ""))) >= 15
+    ]
+
     seen_texts: set = set()
     deduped: list = []
     for q in questions:
@@ -95,6 +150,55 @@ def get_bank_capacity(
         return 0
 
 
+def _sample_pool(
+    pool: list[dict],
+    grade: str,
+    num_questions: int,
+    excluded_ids: list[str] | None,
+) -> list[dict]:
+    """
+    Sample num_questions from an already-fetched pool, preferring unseen
+    (excluded_ids) questions, and increment times_shown fire-and-forget.
+
+    Returns [] if the pool is too small — caller reports the shortfall.
+    """
+    if len(pool) < num_questions:
+        return []
+
+    excluded_set = {str(eid) for eid in (excluded_ids or [])}
+    fresh = [q for q in pool if str(q.get("id", "")) not in excluded_set]
+
+    if len(fresh) >= num_questions:
+        sampled = random.sample(fresh, num_questions)
+    else:
+        # Not enough unseen questions — keep all fresh ones and top up
+        # with previously seen ones so the test still has no internal dupes.
+        seen = [q for q in pool if str(q.get("id", "")) in excluded_set]
+        sampled = fresh + random.sample(seen, num_questions - len(fresh))
+        random.shuffle(sampled)
+
+    # Store original DB ids BEFORE renumbering so the frontend can send them
+    # back as excluded_ids in the next test request.
+    for q in sampled:
+        q["db_id"] = str(q.get("id", ""))
+
+    # Renumber questions for the test (1-based id expected by frontend UI)
+    for index, q in enumerate(sampled, start=1):
+        q["id"] = index
+
+    # Increment times_shown fire-and-forget (fixed: use rpc or raw update)
+    try:
+        db_ids = [q.get("db_id") for q in sampled if q.get("db_id")]
+        if db_ids:
+            # Use SQL expression via RPC to safely increment the counter
+            supabase = get_content_db(grade)
+            supabase.rpc("increment_times_shown", {"question_ids": db_ids}).execute()
+    except Exception:
+        pass  # times_shown is advisory — never fail the test for this
+
+    return sampled
+
+
 def get_questions_from_bank(
     board: str,
     grade: str,
@@ -120,45 +224,40 @@ def get_questions_from_bank(
     """
     try:
         pool = _fetch_question_pool(board, grade, subject, chapter, difficulty)
-
-        if len(pool) < num_questions:
-            return []  # Bank too small — caller reports capacity to the user
-
-        excluded_set = {str(eid) for eid in (excluded_ids or [])}
-        fresh = [q for q in pool if str(q.get("id", "")) not in excluded_set]
-
-        if len(fresh) >= num_questions:
-            sampled = random.sample(fresh, num_questions)
-        else:
-            # Not enough unseen questions — keep all fresh ones and top up
-            # with previously seen ones so the test still has no internal dupes.
-            seen = [q for q in pool if str(q.get("id", "")) in excluded_set]
-            sampled = fresh + random.sample(seen, num_questions - len(fresh))
-            random.shuffle(sampled)
-
-        # Store original DB ids BEFORE renumbering so the frontend can send them
-        # back as excluded_ids in the next test request.
-        for q in sampled:
-            q["db_id"] = str(q.get("id", ""))
-
-        # Renumber questions for the test (1-based id expected by frontend UI)
-        for index, q in enumerate(sampled, start=1):
-            q["id"] = index
-
-        # Increment times_shown fire-and-forget (fixed: use rpc or raw update)
-        try:
-            db_ids = [q.get("db_id") for q in sampled if q.get("db_id")]
-            if db_ids:
-                # Use SQL expression via RPC to safely increment the counter
-                supabase = get_content_db(grade)
-                supabase.rpc("increment_times_shown", {"question_ids": db_ids}).execute()
-        except Exception:
-            pass  # times_shown is advisory — never fail the test for this
-
-        return sampled
-
+        return _sample_pool(pool, grade, num_questions, excluded_ids)
     except Exception:
         return []  # Table may not exist yet — fall back to LLM
+
+
+def get_bank_capacity_fuzzy(
+    board: str,
+    grade: str,
+    subject: str,
+    chapter_core: str,
+    difficulty: str,
+) -> int:
+    """Capacity lookup via ILIKE substring match on a normalized chapter core."""
+    try:
+        return len(_fetch_question_pool_fuzzy(board, grade, subject, chapter_core, difficulty))
+    except Exception:
+        return 0
+
+
+def get_questions_from_bank_fuzzy(
+    board: str,
+    grade: str,
+    subject: str,
+    chapter_core: str,
+    difficulty: str,
+    num_questions: int,
+    excluded_ids: list[str] | None = None,
+) -> list[dict]:
+    """Sample questions via ILIKE substring match on a normalized chapter core."""
+    try:
+        pool = _fetch_question_pool_fuzzy(board, grade, subject, chapter_core, difficulty)
+        return _sample_pool(pool, grade, num_questions, excluded_ids)
+    except Exception:
+        return []
 
 
 def _distribute_across_chapters(
@@ -285,13 +384,14 @@ def add_questions_to_bank(
     try:
         clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
 
-        # Only insert well-formed questions with 4 complete options
+        # Only insert well-formed questions with exactly 4 complete options
         valid_questions = [
             q for q in questions
-            if q.get("options") and isinstance(q.get("options"), dict) and len(q["options"]) >= 4
+            if q.get("options") and isinstance(q.get("options"), dict) and len(q["options"]) == 4
             and all(str(v).strip() for v in q["options"].values())
             and q.get("answer") in ("A", "B", "C", "D")
             and q.get("question") and len(str(q.get("question", ""))) >= 10
+            and q.get("explanation") and len(str(q.get("explanation", ""))) >= 15
         ]
 
         if not valid_questions:

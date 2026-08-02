@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 11",
+  "subject": "English",
+  "chapter": "The Adventure",
+  "central_question": "How does Professor Gaitonde’s encounter with an alternative present connect a turning point in history with catastrophe theory, quantum uncertainty and the possibility of different realities?",
+  "in_scope_units": [
+    "Professor Gaitonde travels through an unfamiliar Pune-Bombay route and discovers that British territory still exists in Bombay.",
+    "The Asiatic Society library reveals an alternative history in which the Marathas win the Battle of Panipat.",
+    "The alternate account traces political, technological and democratic consequences of the Maratha victory.",
+    "Bhausahebanchi Bakhar identifies Vishwasrao’s survival as the battle’s decisive divergence.",
+    "At Azad Maidan, Gaitonde clashes with an audience over an unoccupied presidential chair and disappears.",
+    "Back in his familiar world, a torn page provides material evidence for his experience.",
+    "Rajendra uses catastrophe theory, quantum indeterminism and transitions between possible worlds to explain the event.",
+    "The end exercises connect history, science, language, idioms, unreal conditions and popular scientific theories."
+  ],
+  "banned_topics": [
+    "The adjacent travel chapter Silk Road",
+    "A claim that the alternate history is factual Indian history",
+    "Advanced quantum physics beyond Rajendra’s explanation",
+    "Scientific proof that parallel worlds or brain-triggered transitions occur"
+  ],
+  "must_include_keywords": [
+    "Jayant Narlikar",
+    "Professor Gaitonde",
+    "Gangadharpant",
+    "Rajendra Deshpande",
+    "Jijamata Express",
+    "Pune-Bombay route",
+    "Sarhad",
+    "British Raj",
+    "Khan Sahib",
+    "GBMR",
+    "Victoria Terminus",
+    "East India House",
+    "East India Company",
+    "Asiatic Society",
+    "Battle of Panipat",
+    "Marathas",
+    "Abdali",
+    "Sadashivrao Bhau",
+    "Vishwasrao",
+    "Madhavrao",
+    "morale booster",
+    "de facto rulers",
+    "political acumen",
+    "Bhausahebanchi Bakhar",
+    "doctored accounts",
+    "torn page",
+    "Azad Maidan",
+    "presidential chair",
+    "catastrophe theory",
+    "bifurcation",
+    "quantum theory",
+    "lack of determinism",
+    "alternative worlds",
+    "transition",
+    "interaction",
+    "collision",
+    "unreal conditionals",
+    "history and science"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The story reports a real historical discovery.",
+      "correction": "It is fiction built around a real historical event and an imagined alternative result."
+    },
+    {
+      "claim": "Rajendra Deshpande is a historian.",
+      "correction": "Professor Gaitonde is the historian; Rajendra provides the scientific explanation."
+    },
+    {
+      "claim": "Gaitonde travels into the past.",
+      "correction": "Rajendra says he remains in the present but experiences a different world with another history."
+    },
+    {
+      "claim": "The torn page scientifically proves parallel worlds.",
+      "correction": "It makes Rajendra take the experience seriously within the story, but his explanation remains a theory and guess."
+    },
+    {
+      "claim": "The Maratha victory account is the history of Gaitonde’s normal world.",
+      "correction": "In his familiar world Vishwasrao is hit; in the alternative world the bullet misses and the Marathas win."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Understanding the Text I by identifying the story as fiction centred on a real historical turning point and linking history with science.",
+    "Use Understanding the Text II.1-3 for the alternative present, catastrophic experience and comparison of the two Indias.",
+    "Use Understanding the Text II.4-5 for quantum indeterminism and the need for interaction in a transition.",
+    "Use Talking About the Text Q1-Q2 for single historical events, reality, methods of inquiry and comparison with the sea adventure.",
+    "Conclude with Working with Words, Noticing Form and Things to Do on idioms, confusing word pairs, unreal conditionals, catastrophe theory and other scientific theories."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The story ends with Understanding the Text I.1-5 and II.1-5, Talking About the Text questions 1-2, Thinking About Language, Working with Words I-II, Noticing Form and two Things to Do sections.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 12",
+  "subject": "Accountancy",
+  "chapter": "Issue and Redemption of Debentures",
+  "central_question": "How does a company recognise debenture debt from issue through interest and loss allocation to its eventual redemption?",
+  "in_scope_units": [
+    "Meaning of debentures and distinction between debenture holders and shareholders.",
+    "Types of debentures by security, tenure, convertibility, coupon rate and registration.",
+    "Issue of debentures for cash at par, discount or premium and treatment of over-subscription.",
+    "Issue for consideration other than cash and issue as collateral security.",
+    "Terms of issue and redemption, including premium on redemption and loss on issue.",
+    "Interest on debentures, deduction of tax at source and presentation as a finance cost.",
+    "Writing off discount or loss on issue of debentures.",
+    "Redemption by lump-sum payment, instalments or draw of lots and the chapter’s reserve/investment requirements.",
+    "Redemption by purchase in the open market and by conversion into shares or new debentures."
+  ],
+  "banned_topics": [
+    "Equity-share forfeiture and reissue, which belong to Accounting for Share Capital.",
+    "General cash-flow classification of financing activities, which belongs to Cash Flow Statement.",
+    "Advanced bond valuation and market-yield calculations not included in the chapter."
+  ],
+  "must_include_keywords": [
+    "debenture",
+    "debenture holder",
+    "loan capital",
+    "fixed rate of interest",
+    "secured debentures",
+    "unsecured debentures",
+    "redeemable debentures",
+    "convertible debentures",
+    "zero coupon rate",
+    "registered debentures",
+    "bearer debentures",
+    "issue at par",
+    "issue at discount",
+    "issue at premium",
+    "over-subscription",
+    "consideration other than cash",
+    "collateral security",
+    "premium on redemption",
+    "loss on issue of debentures",
+    "interest on debentures",
+    "tax deducted at source",
+    "discount written off",
+    "redemption of debentures",
+    "Debenture Redemption Reserve",
+    "Debenture Redemption Investment",
+    "lump sum",
+    "instalments",
+    "draw of lots",
+    "open market purchase",
+    "own debentures",
+    "profit on redemption",
+    "conversion"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A debenture holder is an owner with voting rights like an equity shareholder.",
+      "correction": "A debenture holder is a creditor; interest is a charge against profit and the holder normally has no ownership voting rights."
+    },
+    {
+      "claim": "Issue at discount and redemption at premium affect only the cash received or paid.",
+      "correction": "The shortfall and redemption premium create discount or loss on issue that must be recognised and written off."
+    },
+    {
+      "claim": "Debentures issued as collateral security always require a separate journal entry.",
+      "correction": "The chapter permits either a journal-entry method or disclosure by note without an entry, depending on the method adopted."
+    },
+    {
+      "claim": "Purchase of own debentures below face value creates revenue from operations.",
+      "correction": "The difference is profit on redemption and is transferred to Capital Reserve."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Illustrations 1–3 to record cash issue at par, discount and premium.",
+    "Use the over-subscription illustration to allocate applications and refund or adjust excess money.",
+    "Use the vendor and collateral-security illustrations in Sections 2.6–2.7.",
+    "Use the six term combinations in Section 2.8 to distinguish issue price, face value and redemption liability.",
+    "Use the interest and loss-write-off illustrations in Sections 2.9–2.10.",
+    "Use the redemption illustrations in Sections 2.12–2.14, including NCERT Illustration 28 for open-market cancellation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions for Practice and Do It Yourself problems covering issue, collateral security, interest, loss on issue and redemption by the prescribed methods.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

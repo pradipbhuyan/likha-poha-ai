@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "The Enemy",
+  "central_question": "When professional duty, human compassion and national loyalty conflict during war, what choices allow Dr Sadao and Hana to preserve life without ignoring danger?",
+  "in_scope_units": [
+    "Before you Read: the wartime dilemma of a Japanese doctor finding an American prisoner.",
+    "Dr Sadao’s coastal home, his father’s influence, medical education in America and marriage to Hana.",
+    "The wounded American sailor on the beach and the decision to carry him inside.",
+    "The servants’ resistance, Hana’s assistance and Sadao’s operation.",
+    "The prisoner’s recovery, the servants’ departure and Sadao’s unresolved report to the police.",
+    "Sadao’s disclosure to the General and the promised private assassination.",
+    "The General’s failure to act, Sadao’s escape plan and the prisoner’s departure by boat.",
+    "The General’s self-absorbed explanation and Sadao’s final question about why he could not kill the man.",
+    "Reading with Insight Questions 1–8 on hard choices, Hana, the soldier, the General, prejudice and the final solution."
+  ],
+  "banned_topics": [
+    "A general history of the Second World War beyond the wartime setting in the story.",
+    "Legal rules for prisoners of war not stated in the chapter.",
+    "Medical instructions for surgery or anaesthesia beyond the narrated operation."
+  ],
+  "must_include_keywords": [
+    "Pearl S. Buck",
+    "Dr Sadao Hoki",
+    "Hana",
+    "Japanese coast",
+    "Sadao’s father",
+    "America",
+    "surgeon",
+    "scientist",
+    "General",
+    "World War",
+    "American prisoner of war",
+    "U.S. Navy",
+    "gun wound",
+    "enemy",
+    "patriot",
+    "doctor’s duty",
+    "humanity",
+    "national loyalty",
+    "sea moss",
+    "operation",
+    "anaesthetic",
+    "bullet",
+    "Tom",
+    "Yumi",
+    "gardener",
+    "cook",
+    "servants",
+    "prejudice",
+    "unfinished police report",
+    "private assassins",
+    "self-absorption",
+    "boat",
+    "Korean fishing boat",
+    "island",
+    "flashlight",
+    "escape",
+    "hard choices",
+    "narrow prejudice",
+    "professional ethics",
+    "third-person narration",
+    "moral conflict"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Sadao saves the prisoner because he supports America.",
+      "correction": "He repeatedly calls Americans enemies; he acts because his training and humanity will not let a wounded man die."
+    },
+    {
+      "claim": "Hana immediately accepts the prisoner without fear or prejudice.",
+      "correction": "She feels fear and repulsion, yet washes, assists and feeds him because he is wounded and helpless."
+    },
+    {
+      "claim": "The General forgets the assassination plan out of mercy.",
+      "correction": "He admits that he thought only of himself while ill and forgot his promise."
+    },
+    {
+      "claim": "Sadao hands Tom directly to the police after recovery.",
+      "correction": "He eventually supplies a boat, food, clothing and directions so Tom can escape."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Reading with Insight Q1 to establish the conflict between private humanity and national loyalty.",
+    "Use Reading with Insight Q2 to analyse Hana’s sympathy despite the servants’ defiance.",
+    "Use Reading with Insight Q4 to examine the General’s self-absorption.",
+    "Use Reading with Insight Q6 to evaluate Sadao’s escape plan.",
+    "Use Reading with Insight Q5 to interpret the final movement beyond racial prejudice."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with Reading with Insight Questions 1–8 on role conflict, Hana, the soldier, the General, prejudice, Sadao’s solution and thematic comparisons.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

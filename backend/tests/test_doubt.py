@@ -1,7 +1,6 @@
 from fastapi.testclient import TestClient
 
 from app.main import app
-from app.services.openai_service import GPT5_MINI_TEXT_MODEL
 import app.routes.doubt as doubt_route
 
 client = TestClient(app)
@@ -299,49 +298,6 @@ def test_get_doubt_history_returns_authenticated_student_rows(monkeypatch):
     assert captured["limit"] == 5
 
 
-def test_admin_selected_gpt5_mini_is_used_for_doubt(monkeypatch):
-    """Admin model override should win over the default/family plan routing."""
-    from tests.conftest import fake_student_profile, patch_route_profile
-
-    captured = {}
-    profile = fake_student_profile(ai_model_preference="gpt-5-mini")
-    patch_route_profile(monkeypatch, doubt_route, profile)
-
-    def fake_answer_doubt(
-        grade,
-        mode,
-        subject,
-        chapter,
-        question,
-        username,
-        model=None,
-    ):
-        captured["model"] = model
-        return {
-            "answer": "Step-wise answer",
-            "source_type": "MOCK",
-            "sources": [],
-            "mentor_suggestions": [],
-        }
-
-    monkeypatch.setattr(doubt_route, "search_doubt_kb", lambda **kwargs: None)
-    monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
-
-    response = client.post(
-        "/api/doubt/answer",
-        json={
-            "username": "test_user",
-            "grade": "Grade 9",
-            "mode": "CBSE",
-            "subject": "Science",
-            "chapter": "Motion",
-            "question": "What is motion?",
-        },
-    )
-
-    assert response.status_code == 200
-    assert captured["model"] == GPT5_MINI_TEXT_MODEL
-
 
 def test_answer_doubt_rejects_unsupported_mode():
     payload = {
@@ -357,3 +313,96 @@ def test_answer_doubt_rejects_unsupported_mode():
 
     assert response.status_code == 403
     assert "Invalid learning mode" in response.json()["detail"]
+
+
+def _mock_doubt_answer(monkeypatch):
+    monkeypatch.setattr(doubt_route, "search_doubt_kb", lambda **kwargs: None)
+    monkeypatch.setattr(
+        doubt_route,
+        "answer_doubt",
+        lambda **kwargs: {
+            "answer": "Matter is anything with mass and volume.",
+            "source_type": "TEXTBOOK_EXCERPT",
+            "sources": [],
+            "textbook_visuals": [],
+            "mentor_suggestions": [],
+        },
+    )
+
+
+def test_free_tier_user_blocked_after_daily_limit(monkeypatch):
+    """The 6th doubt of the day for a free-tier user must return 429, not an answer."""
+    _mock_doubt_answer(monkeypatch)
+    monkeypatch.setattr(doubt_route, "is_free_tier_user", lambda user_id: True)
+    monkeypatch.setattr(
+        doubt_route,
+        "enforce_daily_limit",
+        lambda username, feature, max_requests: {"allowed": False, "message": "capped"},
+    )
+
+    response = client.post("/api/doubt/answer", json={
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "CBSE",
+        "subject": "Science",
+        "chapter": "Matter",
+        "question": "What is matter?",
+    })
+
+    assert response.status_code == 429
+    assert "5" in response.json()["detail"]
+
+
+def test_free_tier_user_within_limit_gets_answer_and_logs_usage(monkeypatch):
+    """A free-tier user under the cap should be answered normally and counted."""
+    _mock_doubt_answer(monkeypatch)
+    monkeypatch.setattr(doubt_route, "is_free_tier_user", lambda user_id: True)
+    monkeypatch.setattr(
+        doubt_route,
+        "enforce_daily_limit",
+        lambda username, feature, max_requests: {"allowed": True, "message": "ok"},
+    )
+
+    logged = {}
+    monkeypatch.setattr(
+        doubt_route,
+        "log_ai_usage",
+        lambda **kwargs: logged.update(kwargs),
+    )
+
+    response = client.post("/api/doubt/answer", json={
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "CBSE",
+        "subject": "Science",
+        "chapter": "Matter",
+        "question": "What is matter?",
+    })
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True
+    assert logged.get("feature") == "doubt_answer_free_tier"
+
+
+def test_paid_user_never_capped(monkeypatch):
+    """A paid user must never hit the daily-limit gate, no matter the usage."""
+    _mock_doubt_answer(monkeypatch)
+    monkeypatch.setattr(doubt_route, "is_free_tier_user", lambda user_id: False)
+
+    def _boom(*args, **kwargs):
+        raise AssertionError("enforce_daily_limit must not be called for a paid user")
+
+    monkeypatch.setattr(doubt_route, "enforce_daily_limit", _boom)
+    monkeypatch.setattr(doubt_route, "log_ai_usage", _boom)
+
+    response = client.post("/api/doubt/answer", json={
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "CBSE",
+        "subject": "Science",
+        "chapter": "Matter",
+        "question": "What is matter?",
+    })
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True

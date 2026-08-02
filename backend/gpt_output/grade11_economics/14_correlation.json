@@ -1,0 +1,96 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Economics",
+    "chapter": "Correlation",
+    "central_question": "How can the direction and intensity of association between two variables be examined visually and measured through correlation coefficients?",
+    "in_scope_units": [
+      "Introduction to relationships between two variables and the questions addressed by correlation analysis.",
+      "Types of relationship, third-variable effects, coincidence, and the distinction between covariation and causation.",
+      "Positive, negative, zero, perfect, linear, and non-linear forms of correlation.",
+      "Scatter diagrams as a visual technique for examining the direction, form, and closeness of association.",
+      "Karl Pearson’s coefficient of correlation, covariance, standard deviations, formulae, and interpretation.",
+      "Properties of the correlation coefficient, including its range, lack of units, and independence from change of origin and scale.",
+      "Direct and step-deviation calculation of Karl Pearson’s coefficient and interpretation of weak and strong values.",
+      "Spearman’s rank correlation for ranks, attributes, imprecisely measured variables, extreme values, and some non-linear relations.",
+      "Rank-correlation calculation when ranks are given, not given, or repeated, including correction for tied ranks.",
+      "Conclusion and recap on selecting a method and avoiding causal interpretation."
+    ],
+    "banned_topics": [
+      "Range, quartile deviation, mean deviation, and standard deviation as measures of dispersion",
+      "Regression equations",
+      "Time-series analysis",
+      "Construction of index numbers"
+    ],
+    "must_include_keywords": [
+      "correlation",
+      "relationship",
+      "covariation",
+      "causation",
+      "third variable",
+      "positive correlation",
+      "negative correlation",
+      "zero correlation",
+      "perfect correlation",
+      "linear relationship",
+      "non-linear relationship",
+      "scatter diagram",
+      "Karl Pearson",
+      "product moment correlation",
+      "covariance",
+      "standard deviation",
+      "correlation coefficient",
+      "pure number",
+      "minus one",
+      "plus one",
+      "change of origin",
+      "change of scale",
+      "step deviation",
+      "strong relationship",
+      "weak relationship",
+      "Spearman",
+      "rank correlation",
+      "attributes",
+      "ranks",
+      "repeated ranks",
+      "correction factor"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Correlation proves that one variable causes the other.",
+        "correction": "Correlation measures covariation, not causation; coincidence or a third variable may explain the observed association."
+      },
+      {
+        "claim": "Karl Pearson’s coefficient is appropriate for every form of relationship.",
+        "correction": "Karl Pearson’s coefficient measures linear relationship and can be misleading when the true relationship is non-linear."
+      },
+      {
+        "claim": "A zero coefficient proves that two variables are independent.",
+        "correction": "A zero coefficient means no linear relation; a non-linear relation may still exist."
+      },
+      {
+        "claim": "The correlation coefficient has the combined units of the two variables.",
+        "correction": "The correlation coefficient has no unit and is a pure number."
+      },
+      {
+        "claim": "Repeated ranks can be ignored in Spearman’s method.",
+        "correction": "Repeated ranks receive average ranks and require correction factors in the rank-correlation formula."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the ice-cream, temperature, and drowning illustration to separate correlation from causation.",
+      "Use Figures 6.1–6.7 to classify positive, negative, zero, perfect, and non-linear relationships.",
+      "Use NCERT Example 1 to interpret Karl Pearson’s coefficient for schooling and yield.",
+      "Use NCERT Example 2 to explain change of origin and scale through the step-deviation method.",
+      "Use NCERT Examples 3–5 to calculate Spearman’s rank correlation with given, derived, and repeated ranks."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The embedded source chapter ends with EXERCISES 1–20 and an activity on calculating correlation between India’s national income and exports."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Correlation\n\n## What you will learn\nYou will understand what correlation measures and why association must not be confused with cause and effect. You will identify coincidence and third-variable explanations.\n\n## Simple explanation\nTwo variables may change together, but their movement alone does not prove that one produces the other. Correlation describes direction and intensity of covariation.\n\n## Step-by-step breakdown\n- **Correlation analysis**: It examines whether two variables are related, whether they change together, in which direction they move, and how strong the relationship is.\n- **Covariation**: Correlation records systematic joint variation between variables.\n- **Causation warning**: The chapter explicitly states that correlation should never by itself be interpreted as cause and effect.\n- **Coincidence**: Some associations, such as migratory birds and local birth rates, may have no meaningful causal explanation.\n- **Third variable**: Temperature can increase both ice-cream sales and swimming activity, creating an association between ice-cream sales and drowning deaths without one causing the other.\n- **Context and judgement**: Statistical results require common sense and knowledge of the situation.\n\n## Worked example\nQuestion: Does correlation imply causation, as asked in NCERT Exercise 9?\n```extract-ref\n{\"citation\": \"NCERT Exercise 9\", \"extract_text\": \"Does correlation imply causation?\", \"note\": \"End-of-chapter exercise in the embedded Correlation source\"}\n```\n\nAnswer:\n- The chapter states that correlation measures covariation, not causation, and gives examples of coincidence and a third variable affecting both observed variables.\n- A measured association can arise without a direct causal link and may be explained by another factor or by the timing and context of the data.\n- Final answer: No. Correlation indicates that variables move together in a systematic way, but it does not establish that one variable causes the other.\n\n## Common mistake\nDo not write a causal conclusion merely because the coefficient is high. Strength of association and proof of causation are different matters.\n\n## Quick check question\nQuestion: What two aspects of a relationship does correlation measure?\nAnswer: Its direction and intensity.\nExplanation: Direction shows whether variables move together or oppositely, while intensity shows how strong the association is.\n\n## Summary\n- Correlation studies relationships between variables.\n- It measures covariation, not causation.\n- Coincidence can create an apparent association.\n- A third variable may influence both variables.\n- Interpretation requires context and judgement.",
+    "Core explanation": "# Core explanation: Correlation\n\n## What you will learn\nYou will classify positive, negative, zero, perfect, linear, and non-linear relationships. You will use scatter diagrams to examine form and strength before selecting a numerical method.\n\n## Simple explanation\nA scatter diagram plots paired values as points. The direction and closeness of the point pattern reveal the broad nature of the relationship without producing a coefficient.\n\n## Step-by-step breakdown\n- **Positive correlation**: The variables move in the same direction; both rise together or fall together.\n- **Negative correlation**: The variables move in opposite directions; one rises while the other falls.\n- **No linear correlation**: No upward or downward straight-line pattern is visible.\n- **Perfect positive correlation**: All points lie exactly on an upward-rising straight line.\n- **Perfect negative correlation**: All points lie exactly on a downward-sloping straight line.\n- **Non-linear relation**: The points may form a clear curved pattern that a straight-line coefficient does not describe well.\n- **Scatter diagram**: The overall direction and closeness of points provide a visual idea of the relationship’s form and intensity.\n- **Method selection**: The chapter advises examining the scatter diagram before calculating Karl Pearson’s coefficient.\n\n## Worked example\nQuestion: Which of the listed techniques can display any type of relationship, as asked in NCERT Exercise 5?\n```extract-ref\n{\"citation\": \"NCERT Exercise 5\", \"extract_text\": \"Of the following three measures which can measure any type of relationship\\n(i) Karl Pearson’s coefficient of correlation\\n(ii) Spearman’s rank correlation\\n(iii) Scatter diagram\", \"note\": \"End-of-chapter exercise in the embedded Correlation source\"}\n```\n\nAnswer:\n- The chapter states that scatter diagrams visually present the form of relationship and include linear and non-linear examples.\n- Pearson and Spearman coefficients are numerical measures of linear association, while a scatter plot can reveal curved as well as straight patterns.\n- Final answer: The scatter diagram is the appropriate choice because it can visually display linear, non-linear, positive, negative, or absent patterns.\n\n## Common mistake\nA widely scattered pattern does not automatically mean complete independence. It indicates weak or absent visible association, especially of the linear kind.\n\n## Quick check question\nQuestion: What does an upward-rising scatter pattern indicate?\nAnswer: Positive correlation.\nExplanation: As one variable increases, the other tends to increase, so the plotted points follow an upward direction.\n\n## Summary\n- Positive and negative correlation describe direction.\n- Perfect correlation places all points on a straight line.\n- Zero linear correlation may still hide a curved relation.\n- Scatter diagrams reveal form without a numerical coefficient.\n- Visual inspection should precede Pearson calculation.",
+    "Worked examples": "# Worked examples: Correlation\n\n## What you will learn\nYou will understand the logic and properties of Karl Pearson’s coefficient. You will connect covariance, standard deviations, sign, magnitude, and the permitted range of the coefficient.\n\n## Simple explanation\nKarl Pearson’s coefficient gives a precise numerical measure of linear association. It standardises covariance so that the result is a unit-free number between minus one and plus one.\n\n## Step-by-step breakdown\n- **Karl Pearson’s coefficient**: It is also called the product moment or simple correlation coefficient.\n- **Covariance**: Its sign shows whether deviations of the two variables tend to move together or in opposite directions.\n- **Standardisation**: Covariance is divided by the product of the variables’ standard deviations.\n- **No unit**: The coefficient is a pure number and does not carry the measurement units of X or Y.\n- **Permitted range**: The value must lie from minus one to plus one.\n- **Sign**: A positive value indicates same-direction movement and a negative value indicates inverse movement.\n- **Magnitude**: Values close to plus or minus one indicate a strong linear relationship; values close to zero indicate a weak linear relationship.\n- **Zero**: A value of zero indicates no linear relationship, though another form may exist.\n\n## Worked example\nQuestion: Why is the unit of a correlation coefficient described as non-existent in NCERT Exercise 1?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1\", \"extract_text\": \"The unit of correlation coefficient between height in feet and weight in kgs is\\n(i) kg/feet\\n(ii) percentage\\n(iii)non-existent\", \"note\": \"End-of-chapter exercise in the embedded Correlation source\"}\n```\n\nAnswer:\n- The chapter lists as a property that r has no unit and is a pure number.\n- Standard deviations in the denominator remove the measurement scale from covariance, allowing relationships measured in different units to be compared.\n- Final answer: The unit is non-existent because the correlation coefficient is dimensionless.\n\n## Common mistake\nA coefficient outside the range from minus one to plus one is not an unusual relationship; it signals an error in calculation.\n\n## Quick check question\nQuestion: What does a coefficient close to minus one indicate?\nAnswer: A strong negative linear relationship.\nExplanation: The negative sign shows opposite movement and the magnitude close to one shows strong linear association.\n\n## Summary\n- Pearson’s r measures linear association numerically.\n- Covariance determines its sign.\n- Standardisation makes r unit-free.\n- The coefficient lies between minus one and plus one.\n- Magnitude measures strength and sign measures direction.",
+    "Exam-style problems": "# Exam-style problems: Correlation\n\n## What you will learn\nYou will interpret special values of r and understand the step-deviation property. You will see why origin and scale transformations can simplify calculation without changing correlation.\n\n## Simple explanation\nChanging the numerical origin or measuring scale of both variables does not alter the underlying linear association. This allows large values to be transformed into simpler values for calculation.\n\n## Step-by-step breakdown\n- **Change of origin**: Subtracting assumed means from X and Y does not change the coefficient.\n- **Change of scale**: Dividing by common factors of the same sign does not change the coefficient.\n- **Step-deviation method**: Transformed variables reduce the burden of calculation when original figures are large.\n- **r equals plus one**: There is an exact positive straight-line relationship.\n- **r equals minus one**: There is an exact negative straight-line relationship.\n- **r equals zero**: There is no linear relationship, although a non-linear relation may remain.\n- **Interpretive caution**: The coefficient must be connected with the data context and not read mechanically.\n\n## Worked example\nQuestion: How should the values r = 1, r = −1, and r = 0 be interpreted in NCERT Exercise 16?\n```extract-ref\n{\"citation\": \"NCERT Exercise 16\", \"extract_text\": \"Interpret the values of r as 1, −1 and 0.\", \"note\": \"End-of-chapter exercise in the embedded Correlation source\"}\n```\n\nAnswer:\n- The properties section states that plus or minus one represents perfect exact linear relation and zero represents no linear relation.\n- The sign distinguishes same-direction from opposite-direction movement, while zero removes the straight-line association but does not rule out every possible form.\n- Final answer: r = 1 means perfect positive linear correlation, r = −1 means perfect negative linear correlation, and r = 0 means no linear correlation.\n\n## Common mistake\nDo not describe r = 0 as proof that the variables are independent. The source explicitly allows the possibility of a non-linear relationship.\n\n## Quick check question\nQuestion: Why is step deviation useful?\nAnswer: It reduces large numerical values to simpler transformed values without changing the correlation coefficient.\nExplanation: The coefficient is unaffected by change of origin and scale when the common factors have the same sign.\n\n## Summary\n- Origin and scale transformations leave r unchanged.\n- Step deviation simplifies calculation.\n- Plus one and minus one indicate perfect linear relationships.\n- Zero means no linear relation, not necessarily independence.\n- Interpretation must remain tied to context.",
+    "Revision and recap": "# Revision and recap: Correlation\n\n## What you will learn\nYou will decide when Spearman’s rank correlation is preferable and understand how ranks are handled. You will revise cases with given, derived, and repeated ranks.\n\n## Simple explanation\nRank correlation is useful when exact measurement is unavailable or inappropriate. It replaces original values with ranks and compares the ordering of the same units under two variables.\n\n## Step-by-step breakdown\n- **C. E. Spearman**: Spearman developed the rank-correlation method described in the chapter.\n- **Imprecise measurement**: Ranks can be used when heights, weights, or other quantities cannot be measured accurately.\n- **Attributes**: Qualities such as honesty, fairness, or beauty may be ranked even though they cannot be measured numerically in the ordinary way.\n- **Extreme values**: Rank correlation is not affected by extreme magnitudes in the same way as Pearson’s coefficient.\n- **Given ranks**: Differences between the two sets of ranks are squared and entered in the rank formula.\n- **Ranks not given**: Original values are first ordered and assigned ranks.\n- **Repeated ranks**: Tied items receive the average of the ranks they would occupy.\n- **Correction factor**: Repeated ranks require an additional correction in the formula.\n- **Information limitation**: Rank correlation generally uses less information than the ordinary coefficient and may be less accurate with precisely measured data.\n\n## Worked example\nQuestion: When is rank correlation more precise than simple correlation coefficient, as asked in NCERT Exercise 10?\n```extract-ref\n{\"citation\": \"NCERT Exercise 10\", \"extract_text\": \"When is rank correlation more precise than simple correlation coefficient?\", \"note\": \"End-of-chapter exercise in the embedded Correlation source\"}\n```\n\nAnswer:\n- The chapter recommends rank correlation for attributes, imprecisely measured data, and data containing extreme values.\n- When exact numerical magnitudes are unavailable or unreliable, ranks can represent the ordering more meaningfully than a coefficient based on doubtful measurements.\n- Final answer: Rank correlation is preferable when variables can only be ranked, measurement is imprecise, or extreme values make rank-based comparison more useful.\n\n## Common mistake\nRepeated values must not be assigned arbitrary consecutive ranks. They receive their common average rank and the tie correction must be included.\n\n## Quick check question\nQuestion: What does Spearman’s coefficient measure?\nAnswer: It measures the linear association between ranks assigned to the same units under two variables.\nExplanation: The method compares the ordering rather than the original measured magnitudes.\n\n## Summary\n- Spearman’s method uses ranks instead of original values.\n- It suits attributes and imprecise measurements.\n- Ranks may be given or derived from data.\n- Tied ranks receive averages and correction factors.\n- Correlation methods describe association, not causation."
+  }
+}

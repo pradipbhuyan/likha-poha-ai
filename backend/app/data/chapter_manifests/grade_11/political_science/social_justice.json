@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Social Justice",
+  "central_question": "Which principles and institutions can distribute rights, rewards, resources and opportunities fairly while protecting the dignity and prospects of the least advantaged?",
+  "in_scope_units": [
+    "What is Justice: traditions, Socrates, well-being, giving each person their due and human dignity.",
+    "Equal Treatment for Equals, Proportionate Justice and Recognition of Special Needs.",
+    "Just Distribution, redistribution and equal life conditions.",
+    "John Rawls’ Theory of Justice and the veil of ignorance.",
+    "Pursuing Social Justice through a basic minimum and the debate between free markets and state intervention."
+  ],
+  "banned_topics": [
+    "Detailed affirmative action and competing ideologies of equality, which belong to Equality.",
+    "Detailed categories of political, economic and cultural rights, which belong to Rights.",
+    "Detailed economic policy instruments and development planning, which belong to Economics."
+  ],
+  "must_include_keywords": [
+    "justice",
+    "social justice",
+    "dharma",
+    "Confucius",
+    "Plato",
+    "Socrates",
+    "well-being",
+    "giving each person due",
+    "Immanuel Kant",
+    "human dignity",
+    "equal treatment",
+    "non-discrimination",
+    "proportionate justice",
+    "effort",
+    "skill",
+    "special needs",
+    "disability",
+    "minimum standard of living",
+    "equal opportunity",
+    "just distribution",
+    "redistribution",
+    "untouchability",
+    "land reform",
+    "John Rawls",
+    "veil of ignorance",
+    "worst-off",
+    "rational choice",
+    "basic minimum",
+    "nourishment",
+    "clean drinking water",
+    "education",
+    "minimum wage",
+    "free market",
+    "state intervention",
+    "public responsibility"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Justice means helping friends and harming enemies.",
+      "correction": "The chapter rejects this narrow idea and connects justice with the well-being and due of all people."
+    },
+    {
+      "claim": "Equal treatment always requires equal rewards regardless of effort or skill.",
+      "correction": "Proportionate justice allows relevant differences in reward while maintaining equal basic rights."
+    },
+    {
+      "claim": "Special support necessarily violates equality.",
+      "correction": "It may extend equality when a relevant disadvantage blocks equal participation or opportunity."
+    },
+    {
+      "claim": "Rawls depends on extraordinary charity.",
+      "correction": "The veil of ignorance is designed to make fair rules follow from ordinary rational self-interest."
+    },
+    {
+      "claim": "Social justice requires absolute equality of lifestyle.",
+      "correction": "The chapter seeks basic conditions, fair opportunity and reduction of deep deprivation rather than complete sameness."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise Q1 on giving each person their due.",
+    "Use NCERT Exercise Q2 to compare the three principles of justice.",
+    "Use NCERT Exercise Q3 to test special needs against equal treatment.",
+    "Use NCERT Exercise Q4 to explain Rawls’ veil of ignorance.",
+    "Conclude with NCERT Exercise Q5 on the basic minimum and government responsibility."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–6 on due, principles of justice, special needs, Rawls, basic minimum conditions and state action.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

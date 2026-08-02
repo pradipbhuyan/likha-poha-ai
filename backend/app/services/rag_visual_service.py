@@ -33,6 +33,28 @@ RAG_VISUAL_ENABLED_CONTEXTS = {
     # before extending the allow-list) -- same cost trade-off acknowledged
     # as Grade 5/6/7.
     ("CBSE", "Grade 8"),
+    # Grade 11 added 2026-07-31 per direct user request (Grade 11 Maths
+    # ingestion session): "process Grade 11 Maths as per GPT55 doc
+    # guideline. Ensure that images exist for each chapter and also pdf
+    # ref link." -- same cost trade-off acknowledged as Grade 5/6/7/8.
+    # This unblocked a real live bug: without this entry,
+    # backfill_visual_assets_for_document() silently returned 0 visuals
+    # created for every Grade 11 chapter, which made downstream curation
+    # find "No rag_visual_assets rows found" and skip images entirely
+    # even for figure-heavy chapters like Straight Lines and Conic
+    # Sections.
+    ("CBSE", "Grade 11"),
+    # Grade 12 added 2026-08-01 per direct user request (Grade 12 English
+    # remaining-chapters ingestion session): "process these remaining
+    # Grade 12 English lessons. Text book images and reference pdf popup
+    # is a must have." -- same cost trade-off acknowledged as
+    # Grade 5/6/7/8/11. Without this entry, the 10 Grade 12 English
+    # chapters processed earlier the same day (The Last Lesson, Lost
+    # Spring, etc.) had backfill_visual_assets_for_document() silently
+    # return 0 visuals for every chapter, forcing the plain-text
+    # extract_text citation fallback -- this entry is required before
+    # any Grade 12 chapter can get real page-image citations.
+    ("CBSE", "Grade 12"),
 }
 VISUAL_REQUEST_TERMS = {
     "diagram",
@@ -502,7 +524,24 @@ def backfill_visual_assets_for_document(
                 "asset_url": public_url,
                 "storage_path": storage_path,
                 "caption": f"{chapter or title} - page {page_number}",
-                "nearby_text": page_text[:1200],
+                # Store the FULL page text, not a truncated slice.
+                # 1200 chars was found to silently cut off genuine figure
+                # captions that appear partway through a page's extracted
+                # text -- confirmed live for Grade 11 Biology's "Chemical
+                # Coordination and Integration" chapter: kebo119.pdf page
+                # 2's real caption "Figure 19.1 Location of endocrine
+                # glands" sits at character ~1250 of the raw PDF text
+                # (the multi-column NCERT layout interleaves the caption
+                # into the middle of body text), so every one of this
+                # chapter's 5 genuine figures was invisible to the
+                # caption-detection regex in curate_textbook_visuals.py,
+                # and all 14 pages were stuck at "needs_review" with 0
+                # active images despite the PDF being genuinely
+                # image-rich. A full NCERT page's extracted text is
+                # rarely more than a few thousand characters, so storing
+                # it in full costs negligible extra storage while fixing
+                # this class of bug for every future backfill.
+                "nearby_text": page_text,
                 "status": "needs_review",
                 "uploaded_by": uploaded_by,
             })

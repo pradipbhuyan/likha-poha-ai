@@ -1,0 +1,109 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Psychology",
+    "chapter": "Sensory, Attentional and Perceptual Processes",
+    "central_question": "How do sensory systems register stimulation, attention select information and perception organise it into a meaningful world?",
+    "in_scope_units": [
+      "Sensation, attention and perception in knowing the world.",
+      "External and internal stimuli and seven sensory systems.",
+      "Sense modalities, psychophysics, absolute and difference thresholds.",
+      "Attention: alertness, concentration, search, focus and fringe.",
+      "Selective attention, determinants and filter theories.",
+      "Divided and sustained attention, vigilance and span.",
+      "Attention Deficit Hyperactivity Disorder as presented in the chapter.",
+      "Perception, bottom-up and top-down processing.",
+      "The perceiver: motivation, expectation, cognitive style and culture.",
+      "Gestalt organisation and figure–ground segregation.",
+      "Space, depth and distance through monocular and binocular cues.",
+      "Size, shape and brightness constancies.",
+      "Illusions.",
+      "Socio-cultural influences on perception."
+    ],
+    "banned_topics": [
+      "Detailed anatomy of sensory organs beyond the chapter’s functional account.",
+      "Clinical treatment recommendations for attention disorders beyond the textbook box."
+    ],
+    "must_include_keywords": [
+      "sensation",
+      "attention",
+      "perception",
+      "cognition",
+      "sensory receptor",
+      "kinesthetic system",
+      "vestibular system",
+      "psychophysics",
+      "absolute threshold",
+      "difference threshold",
+      "alertness",
+      "concentration",
+      "search",
+      "focus",
+      "fringe",
+      "selective attention",
+      "divided attention",
+      "automatic processing",
+      "sustained attention",
+      "vigilance",
+      "span of attention",
+      "Broadbent",
+      "filter theory",
+      "filter-attenuation theory",
+      "multimode theory",
+      "bottom-up processing",
+      "top-down processing",
+      "perceptual set",
+      "field dependence",
+      "Gestalt",
+      "figure-ground segregation",
+      "proximity",
+      "similarity",
+      "continuity",
+      "closure",
+      "monocular cues",
+      "binocular cues",
+      "retinal disparity",
+      "perceptual constancy",
+      "illusion",
+      "phi-phenomenon",
+      "socio-cultural influence"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Sensation and perception are identical.",
+        "correction": "Sensation registers stimulation; perception recognises and constructs meaning."
+      },
+      {
+        "claim": "Absolute threshold is fixed for everyone.",
+        "correction": "It varies across people and situations and is estimated over trials."
+      },
+      {
+        "claim": "Divided attention gives equal attention to two new difficult tasks.",
+        "correction": "It works best when activities are highly practised and relatively automatic."
+      },
+      {
+        "claim": "Perception is a passive copy.",
+        "correction": "Learning, memory, motivation, expectation and culture contribute to construction."
+      },
+      {
+        "claim": "All illusions disappear with practice.",
+        "correction": "Some are universal or permanent while others vary personally and culturally."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Review Question 1 on sensory limits.",
+      "NCERT Review Question 3 on selective and sustained attention.",
+      "NCERT Review Question 4 on Gestalt organisation.",
+      "NCERT Review Question 6 on depth cues.",
+      "NCERT Review Question 8 on socio-cultural influences."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–8 and two Project Ideas."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Sensory, Attentional and Perceptual Processes\n\n## What you will learn\nYou will connect sensation, attention and perception and examine sensory limits. You will distinguish absolute and difference thresholds.\n\n## Simple explanation\nSense organs gather information, attention selects some of it and perception gives it meaning.\n\n## Step-by-step breakdown\n- **Sensation**: Initial detection and encoding of stimulation.\n- **Seven systems**: Five external senses plus kinesthetic and vestibular systems.\n- **Sense modality**: A system specialised for a form of information.\n- **Psychophysics**: Study of relations between stimuli and sensations.\n- **Absolute threshold**: Minimum stimulus detected on half the trials.\n- **Difference threshold**: Minimum change noticed as different on half the trials.\n- **Neural pathway**: Receptors must encode and transmit impulses to relevant brain centres.\n\n## Worked example\nQuestion: Using NCERT Review Question 1, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 1\", \"extract_text\": \"Explain the functional limitations of sense organs.\", \"note\": \"From the Review Questions section of Sensory, Attentional and Perceptual Processes.\"}\n```\n\nAnswer:\n- Eyes and ears cannot register stimulation outside their effective ranges.\n- A stimulus must cross an absolute threshold and a difference must cross a difference threshold.\n- Damage to receptor, pathway or brain area can reduce or eliminate sensation.\n- Final answer: Sense organs work within limited ranges and depend on sufficient intensity, detectable change and intact neural pathways.\n\n## Common mistake\nThresholds are not fixed physical constants; they vary with person and condition.\n\n## Quick check question\nQuestion: How does AL differ from DL?\nAnswer: AL concerns detecting a stimulus; DL concerns noticing a change between stimuli.\nExplanation: One asks whether stimulation is present and the other whether two levels differ.\n\n## Summary\n- Sensation starts knowledge of the world.\n- Sensory systems are specialised and limited.\n- AL is detection; DL is discrimination.\n- Neural transmission is essential.",
+    "Core explanation": "# Core explanation: Sensory, Attentional and Perceptual Processes\n\n## What you will learn\nYou will study attention as selection, alertness, concentration and search. You will compare selective, divided and sustained attention.\n\n## Simple explanation\nMany inputs arrive at once, but limited processing capacity forces the person to select and maintain only some.\n\n## Step-by-step breakdown\n- **Focus and fringe**: The centre of awareness is focal; vaguely noticed events remain at the fringe.\n- **External factors**: Size, intensity, motion, novelty and suddenness attract attention.\n- **Internal factors**: Needs, interests, attitudes and preparatory set guide selection.\n- **Filter theory**: Broadbent proposed an early bottleneck.\n- **Attenuation**: Treisman proposed that unattended input is weakened, not completely blocked.\n- **Multimode theory**: Selection can occur at sensory, semantic or conscious stages.\n- **Divided attention**: Practised activities become automatic and require less attention.\n- **Sustained attention**: Vigilance is maintained concentration influenced by signal clarity and uncertainty.\n\n## Worked example\nQuestion: Using NCERT Review Question 3, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 3\", \"extract_text\": \"State the determinants of selective attention. How does selective attention differ from sustained attention?\", \"note\": \"From the Review Questions section of Sensory, Attentional and Perceptual Processes.\"}\n```\n\nAnswer:\n- Selective attention depends on stimulus features and internal motivational or cognitive factors.\n- It chooses a limited number of inputs.\n- Sustained attention maintains concentration over time.\n- Final answer: Selective attention determines what enters focus, while sustained attention determines how long and effectively focus is maintained.\n\n## Common mistake\nAttention is not only concentration; it also includes selection, alertness and search.\n\n## Quick check question\nQuestion: Why can a person notice their name in an unattended conversation?\nAnswer: Attenuation theory says unattended material is weakened rather than fully blocked.\nExplanation: A personally relevant stimulus can retain enough strength for further processing.\n\n## Summary\n- Attention has several properties.\n- Selection depends on external and internal factors.\n- Theories differ on where filtering occurs.\n- Practice supports divided attention.\n- Vigilance is sustained attention.",
+    "Worked examples": "# Worked examples: Sensory, Attentional and Perceptual Processes\n\n## What you will learn\nYou will define perception and compare bottom-up and top-down processing. You will examine how the perceiver shapes meaning.\n\n## Simple explanation\nPerception is not a photograph; it combines stimulus features with knowledge, needs and expectations.\n\n## Step-by-step breakdown\n- **Perception**: Recognition, interpretation and construction of meaning.\n- **Bottom-up processing**: Parts and features build recognition of the whole.\n- **Top-down processing**: Knowledge or the whole guides recognition of parts.\n- **Motivation**: Needs can bias ambiguous interpretation.\n- **Perceptual set**: Expectation creates readiness to perceive a familiar event.\n- **Cognitive style**: Field-dependent processing is global; field-independent processing is analytic.\n- **Culture**: Learning opportunities and repeated environmental distinctions tune perception.\n\n## Worked example\nQuestion: Using NCERT Review Question 8, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 8\", \"extract_text\": \"How do socio-cultural factors influence our perceptions?\", \"note\": \"From the Review Questions section of Sensory, Attentional and Perceptual Processes.\"}\n```\n\nAnswer:\n- Experience shapes which distinctions are familiar and salient.\n- Limited exposure to pictures can make object or depth interpretation difficult.\n- Cross-cultural differences in illusion susceptibility show learned perceptual habits.\n- Final answer: Socio-cultural settings shape familiarity, expectations and habits of inference, so the same stimulation may be interpreted differently.\n\n## Common mistake\nCultural influence does not make perception arbitrary; stimulus information and shared biology still contribute.\n\n## Quick check question\nQuestion: How do bottom-up and top-down processing interact?\nAnswer: Bottom-up supplies features; top-down uses knowledge and expectation.\nExplanation: Normal recognition combines incoming evidence with the perceiver’s framework.\n\n## Summary\n- Perception constructs meaning.\n- Bottom-up and top-down processes interact.\n- Needs and expectations matter.\n- Culture tunes perceptual habits.",
+    "Exam-style problems": "# Exam-style problems: Sensory, Attentional and Perceptual Processes\n\n## What you will learn\nYou will study Gestalt principles and figure–ground segregation. You will explain how visual elements become organised forms.\n\n## Simple explanation\nThe visual field contains separate elements, yet people normally experience coherent objects.\n\n## Step-by-step breakdown\n- **Gestalt position**: The whole has properties not explained by adding isolated parts.\n- **Prägnanz**: Perception tends toward a good and stable form.\n- **Figure and ground**: The organised figure stands out against a less formed background.\n- **Proximity**: Nearby elements are grouped.\n- **Similarity**: Elements sharing features are grouped.\n- **Continuity**: Smooth patterns are experienced as connected.\n- **Smallness, symmetry and surroundedness**: These properties often determine figure assignment.\n- **Closure**: The perceptual system completes gaps.\n\n## Worked example\nQuestion: Using NCERT Review Question 4, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 4\", \"extract_text\": \"What is the main proposition of Gestalt psychologists with respect to perception of the visual field?\", \"note\": \"From the Review Questions section of Sensory, Attentional and Perceptual Processes.\"}\n```\n\nAnswer:\n- Visual elements are experienced as organised wholes.\n- The whole is different from the mere sum of its parts.\n- Figure–ground segregation and grouping principles explain organisation.\n- Final answer: Gestalt psychologists propose that the visual system actively organises stimulation into coherent good forms.\n\n## Common mistake\nClosure is not random guessing; it is a regular tendency to complete a partially specified form.\n\n## Quick check question\nQuestion: Why can Rubin’s vase alternate between vase and faces?\nAnswer: The same boundary can assign one region as figure and the other as ground.\nExplanation: An ambiguous display permits reversible figure–ground organisation.\n\n## Summary\n- Gestalt perception is holistic.\n- Figure–ground segregation is basic.\n- Grouping follows regular principles.\n- Closure supports complete form.",
+    "Revision and recap": "# Revision and recap: Sensory, Attentional and Perceptual Processes\n\n## What you will learn\nYou will explain depth, constancies and illusions. You will connect them with sensory cues and learned experience.\n\n## Simple explanation\nFlat retinal images are experienced as a stable three-dimensional world, but constructive processes can also create systematic errors.\n\n## Step-by-step breakdown\n- **Monocular cues**: Relative size, overlap, perspective, light, height, texture and motion parallax work with one eye.\n- **Binocular cues**: Retinal disparity, convergence and accommodation provide distance information.\n- **Size constancy**: Perceived size remains stable despite retinal changes.\n- **Shape and brightness constancy**: Form and apparent lightness remain relatively stable.\n- **Illusion**: Misinterpretation creates a mismatch with physical stimulation.\n- **Geometrical illusions**: Müller-Lyer and vertical–horizontal figures produce systematic errors.\n- **Phi-phenomenon**: Successive stationary stimulation is experienced as movement.\n- **Cultural variation**: Experience affects some illusion effects and picture interpretation.\n\n## Worked example\nQuestion: Using NCERT Review Question 6, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 6\", \"extract_text\": \"What are the monocular cues of depth perception? Explain the role of binocular cues in the perception of depth?\", \"note\": \"From the Review Questions section of Sensory, Attentional and Perceptual Processes.\"}\n```\n\nAnswer:\n- Monocular cues include relative size, interposition, linear and aerial perspective, light and shade, relative height, texture gradient and motion parallax.\n- Retinal disparity uses slightly different images in the two eyes.\n- Convergence and accommodation provide muscular information about distance.\n- Final answer: Depth perception combines monocular information with binocular disparity and eye or lens adjustments.\n\n## Common mistake\nRetinal images are two-dimensional; three-dimensional depth is perceptually constructed.\n\n## Quick check question\nQuestion: Why is an illusion a genuine perceptual experience?\nAnswer: The observer actually experiences it even though it mismatches the physical stimulus.\nExplanation: Illusions reveal normal organisational and inferential processes.\n\n## Summary\n- Depth uses monocular and binocular cues.\n- Constancies stabilise perception.\n- Illusions reveal systematic construction.\n- Experience and culture can affect perception."
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Election and Representation",
+  "central_question": "How do constitutional election rules translate popular choice into representation while protecting free, fair and inclusive democratic competition?",
+  "in_scope_units": [
+    "The relationship between elections, direct democracy, indirect democracy and representative government.",
+    "Constitutional rules concerning voter eligibility, candidature, supervision, voting and counting.",
+    "First Past the Post electoral system and its effects on votes and seats.",
+    "Proportional Representation, party-list systems and the Single Transferable Vote used in indirect elections.",
+    "Reasons for India‘s adoption of FPTP for Lok Sabha and Assembly elections.",
+    "Reservation of constituencies for Scheduled Castes and Scheduled Tribes.",
+    "Universal adult franchise, right to contest and constitutional qualifications.",
+    "The independent Election Commission of India and its powers.",
+    "Problems in electoral competition and proposals for electoral reform."
+  ],
+  "banned_topics": [
+    "A general philosophical account of equality unrelated to elections and representation.",
+    "Detailed parliamentary law-making or executive formation except where electoral rules affect representation.",
+    "Current election results or laws not contained in the supplied source."
+  ],
+  "must_include_keywords": [
+    "elections",
+    "democracy",
+    "representation",
+    "direct democracy",
+    "indirect democracy",
+    "constituency",
+    "First Past the Post",
+    "FPTP",
+    "plurality system",
+    "Proportional Representation",
+    "PR",
+    "party list",
+    "Single Transferable Vote",
+    "STV",
+    "Rajya Sabha",
+    "Lok Sabha",
+    "vote share",
+    "seat share",
+    "accountability",
+    "stable government",
+    "reservation of constituencies",
+    "Scheduled Castes",
+    "Scheduled Tribes",
+    "universal adult franchise",
+    "right to vote",
+    "right to contest",
+    "Election Commission of India",
+    "electoral rolls",
+    "model code of conduct",
+    "free and fair elections",
+    "Chief Election Commissioner",
+    "special majority",
+    "electoral reforms",
+    "criminalisation",
+    "money power",
+    "women’s representation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every election is democratic.",
+      "correction": "Non-democratic rulers may also hold elections; democratic elections require genuine choice, fairness and representation."
+    },
+    {
+      "claim": "The FPTP winner must receive more than half of all votes.",
+      "correction": "The winner needs more votes than every rival and may win with less than a majority."
+    },
+    {
+      "claim": "In PR, voters always choose an individual constituency candidate.",
+      "correction": "In the party-list forms discussed, voters choose a party and seats are distributed in proportion to vote share."
+    },
+    {
+      "claim": "The Election Commission supervises Panchayat elections.",
+      "correction": "The Election Commission of India handles national and State legislative elections; local elections are under State Election Commissions."
+    },
+    {
+      "claim": "Reserved constituencies give some voters extra votes.",
+      "correction": "All eligible voters vote once; reservation changes who may contest, not the number or value of votes."
+    },
+    {
+      "claim": "The right to vote is described as an unrestricted Fundamental Right.",
+      "correction": "The chapter treats voting and contesting through constitutional and legal provisions, including qualifications."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT mock-election Activity comparing three methods of electing class representatives.",
+    "NCERT 1984 Lok Sabha table comparing vote shares and seat shares under FPTP.",
+    "NCERT box on Proportional Representation in Israel and the Knesset.",
+    "NCERT explanation of Single Transferable Vote for Rajya Sabha elections.",
+    "NCERT Exercise 9 comparing FPTP and PR for a diverse new country."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The ‘Exercises’ section contains Questions 1’11 on democratic elections, Election Commission functions, FPTP, PR, reservations and electoral reform.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 11",
+  "subject": "Sociology",
+  "chapter": "Understanding Social Institutions",
+  "central_question": "What are social institutions, and how do institutions such as family, work, politics, religion and education both constrain individuals and offer them opportunities?",
+  "in_scope_units": [
+    "Introduction: what a social institution is, and the functionalist versus conflict perspectives on why institutions exist",
+    "Family, Marriage and Kinship: variation in family forms (nuclear, joint, female headed households), rules of residence and authority (matrilocal/patrilocal, patriarchal/matriarchal), how families link to other social spheres and change, gendered patterns in the family (sex ratio), forms and rules of marriage (monogamy, polygamy, endogamy, exogamy), and basic concepts of family, kinship and marriage",
+    "Work and Economic Life: defining work (including the informal economy), modern forms of work and division of labour, and the transformation of work through industrialisation and globalisation (flexible production)",
+    "Politics: the concepts of power and authority, stateless societies, the concept of the modern state, citizenship rights (civil, political, social) and the welfare state, and nationalism",
+    "Religion: how sociology studies religion differently from theology, the shared characteristics of religion, the sacred and the profane, religion's relationship with power and economic life (Weber and Calvinism), and secularisation",
+    "Education: education as transmission of a group's heritage, formal versus informal education, the functionalist view (Durkheim), and education as a stratifying agent linked to gender and caste inequality"
+  ],
+  "banned_topics": [
+    "Detailed theories of social stratification, status, role and social control as free-standing topics (belongs to the earlier chapter on basic sociological concepts, only referenced here in passing)",
+    "Dimensions of culture, ethnocentrism, cosmopolitanism and agencies of socialisation (belongs to the chapter on Culture and Socialisation)",
+    "Research methodology, objectivity, sampling, interviews and field work techniques (belongs to the chapter on Doing Sociology: Research Methods)"
+  ],
+  "must_include_keywords": [
+    "social institution",
+    "functionalist perspective",
+    "conflict perspective",
+    "formal institution",
+    "informal institution",
+    "family",
+    "marriage",
+    "kinship",
+    "nuclear family",
+    "joint family",
+    "female headed household",
+    "matrilocal",
+    "patrilocal",
+    "patriarchal",
+    "matriarchal",
+    "monogamy",
+    "polygamy",
+    "polygyny",
+    "polyandry",
+    "endogamy",
+    "exogamy",
+    "family of orientation",
+    "family of procreation",
+    "consanguineous kin",
+    "affines",
+    "informal economy",
+    "division of labour",
+    "flexible production",
+    "power",
+    "authority",
+    "legitimacy",
+    "stateless society",
+    "sovereignty",
+    "citizenship rights",
+    "welfare state",
+    "nationalism",
+    "sacred and profane",
+    "secularisation",
+    "Max Weber",
+    "stratifying agent"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The joint family is steadily disappearing in India as industrialisation spreads the nuclear family pattern.",
+      "correction": "The chapter cites sociologist A.M. Shah's finding that the joint family 'has steadily increased' in post-independence India, linked to rising life expectancy, and Yogendra Singh's point that the nuclear family need not become the universal industrial pattern in India."
+    },
+    {
+      "claim": "Power and authority mean the same thing.",
+      "correction": "The chapter distinguishes them: power is the general ability to carry out one's will even against opposition, while authority is specifically 'that form of power, which is accepted as legitimate, that is, as right and just'."
+    },
+    {
+      "claim": "All religions must involve belief in supernatural beings or forces.",
+      "correction": "The chapter notes that 'some religions like early Buddhism and Confucianism had no conception of the supernatural, but did allow sufficient reverence for things and persons which they considered sacred.'"
+    },
+    {
+      "claim": "Education is a purely neutral, equalising institution that gives every student the same chances.",
+      "correction": "The chapter states education also functions as 'a main stratifying agent', citing Pathak (2002) on schooling intensifying the elite-mass divide and the Pratichi (2002) report on unequal school attendance among SC/ST children."
+    },
+    {
+      "claim": "The family is a single, universal, 'natural' unit that looks the same in every society.",
+      "correction": "The chapter states that although family, marriage and kinship are important in all societies, sociology and social anthropology have shown 'their character is different in different societies', citing variation such as matrilocal/patrilocal residence and female headed households."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 1 (examples of how people sacrifice for family, religion or the state) - used to introduce the functionalist versus conflict lens on institutions.",
+    "The Female Headed Households box and A.M. Shah's joint-family research - used to examine variation in family forms.",
+    "NCERT Activities 2-5 (sayings about daughters, marriage customs, wedding songs, matrimonial advertisements) - used to explore forms and rules of marriage.",
+    "The Bangalore garment industry account (Roy Choudhury 2005) - used as a worked example on flexible production and globalisation.",
+    "NCERT Activity 10 (women's political representation) - used as a worked example on power, authority and citizenship rights.",
+    "Weber's account of Calvinism and capitalism - used as a worked example on religion's relationship with economic life.",
+    "NCERT Activity 13 (the kindergarten study) and the Pratichi 2002 report - used to examine education as a stratifying agent.",
+    "NCERT Exercise 7 (how social institutions interact) - used as the closing worked example tying all five institutions together."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's EXERCISES section lists 7 questions (Q1 on marriage rules through Q7 on how social institutions interact), placed after the GLOSSARY and before the READINGS.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

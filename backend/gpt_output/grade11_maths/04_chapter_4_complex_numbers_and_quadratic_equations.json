@@ -1,0 +1,84 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 4: Complex Numbers and Quadratic Equations",
+    "central_question": "How does extending real numbers to a+ib make negative square roots and quadratic equations with negative discriminant meaningful?",
+    "in_scope_units": [
+      "Motivation from quadratic equations with negative discriminant.",
+      "Definition, standard form, real part, imaginary part, and equality of complex numbers.",
+      "Algebra of complex numbers and powers of i.",
+      "Conjugate, modulus, multiplicative inverse, and division.",
+      "Argand-plane representation and polar form.",
+      "Use of complex numbers in solving quadratic equations."
+    ],
+    "banned_topics": [
+      "De Moivre’s theorem and roots of complex numbers, which are beyond this chapter.",
+      "Detailed theory of polynomial equations of higher degree."
+    ],
+    "must_include_keywords": [
+      "imaginary unit",
+      "i squared",
+      "complex number",
+      "standard form",
+      "real part",
+      "imaginary part",
+      "equality",
+      "addition",
+      "subtraction",
+      "multiplication",
+      "division",
+      "powers of i",
+      "conjugate",
+      "modulus",
+      "multiplicative inverse",
+      "Argand plane",
+      "real axis",
+      "imaginary axis",
+      "argument",
+      "polar form",
+      "quadratic equation",
+      "discriminant",
+      "negative discriminant",
+      "quadratic formula",
+      "conjugate roots"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The imaginary part of a+ib is ib.",
+        "correction": "The imaginary part is the real coefficient b."
+      },
+      {
+        "claim": "i²=1.",
+        "correction": "By definition, i²=−1."
+      },
+      {
+        "claim": "The inverse of a+ib is 1/a+i/b.",
+        "correction": "For non-zero z, z⁻¹=z̄/|z|²."
+      },
+      {
+        "claim": "The modulus of a+ib is a+b.",
+        "correction": "The modulus is √(a²+b²)."
+      },
+      {
+        "claim": "A quadratic with negative discriminant has no solutions at all.",
+        "correction": "It has no real roots but has two complex roots given by the quadratic formula."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Section 4.2 for the motivating equation x²+1=0.",
+      "NCERT Example 6 for powers of i and simplification.",
+      "NCERT Example 5 for a multiplicative inverse.",
+      "NCERT Section 4.5 for Argand-plane and polar representation.",
+      "NCERT Exercise 4.1 and the chapter introduction for complex quadratic roots."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 4.1 followed by the Miscellaneous Exercise on Chapter 4."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Complex Numbers and Quadratic Equations\n\n## What you will learn\nYou will understand why complex numbers extend the real number system. You will identify real and imaginary parts and use equality of complex numbers.\n\n## Simple explanation\nThe symbol i is defined by i²=−1. A complex number a+ib combines two real components and allows equations such as x²+1=0 to have solutions.\n\n## Step-by-step breakdown\n- **Need for extension**: A real square cannot be negative, so x²=−1 has no real solution.\n- **Imaginary unit**: i=√−1 and i²=−1.\n- **Standard form**: z=a+ib, where a,b∈R.\n- **Real part**: Re z=a.\n- **Imaginary part**: Im z=b, not ib.\n- **Equality**: a+ib=c+id exactly when a=c and b=d.\n- **Quadratic motivation**: Complex numbers allow roots when the discriminant b²−4ac is negative.\n\n## Worked example\nQuestion: Using the definition in NCERT Section 4.2, solve x²+1=0 in the complex number system.\n\nSolution:\n- Rewrite as x²=−1.\n- Since i²=−1, both i and −i square to −1.\n- Final answer: x=i or x=−i.\n\n## Common mistake\nDo not say the imaginary part of a+ib is ib; the imaginary part is the real coefficient b.\n\n## Quick check question\nQuestion: From the NCERT example z=2+5i, state Re z and Im z.\nAnswer: Re z=2 and Im z=5.\nExplanation: The real part is the non-i term and the imaginary part is the coefficient of i.\n\n## Summary\n- Complex numbers extend real numbers.\n- Every complex number has a unique form a+ib.\n- Equality is componentwise.",
+    "Core explanation": "# Core explanation: Complex Numbers and Quadratic Equations\n\n## What you will learn\nYou will add, subtract, multiply, and divide complex numbers. You will use powers of i and simplify square roots of negative real numbers.\n\n## Simple explanation\nComplex arithmetic follows ordinary algebra together with i²=−1. Division is made real in the denominator by multiplying by a conjugate.\n\n## Step-by-step breakdown\n- **Addition**: Add corresponding real and imaginary parts.\n- **Subtraction**: Subtract corresponding components.\n- **Multiplication**: Expand distributively and replace i² by −1.\n- **Powers of i**: They repeat in a cycle: i,i²=−1,i³=−i,i⁴=1.\n- **Negative radicands**: √(−a)=i√a for a>0 in the conventions used here.\n- **Division**: Multiply numerator and denominator by the conjugate of the denominator.\n- **Field properties**: Addition and multiplication are commutative and associative, with distributivity.\n\n## Worked example\nQuestion: Using NCERT Example 6(ii), simplify i^(−35).\n\nSolution:\n- Since i⁴=1, powers repeat modulo 4.\n- i^(−35)=1/i³⁵; because 35≡3 (mod 4), i³⁵=i³=−i.\n- Thus 1/(−i)=i.\n- Final answer: i^(−35)=i.\n\n## Common mistake\nDo not treat √a√b=√(ab) without care when both a and b are negative; rewrite using i first.\n\n## Quick check question\nQuestion: Using the power cycle from NCERT Section 4.3, evaluate i^20.\nAnswer: i^20=1.\nExplanation: 20 is divisible by 4, so i^20=(i⁴)^5=1.\n\n## Summary\n- Use i²=−1 after algebraic expansion.\n- Powers of i repeat every four exponents.\n- Conjugates simplify complex division.",
+    "Worked examples": "# Worked examples: Complex Numbers and Quadratic Equations\n\n## What you will learn\nYou will work with conjugates, modulus, and multiplicative inverses. You will understand identities linking a complex number with its conjugate.\n\n## Simple explanation\nThe conjugate changes the sign of the imaginary part. Multiplying a number by its conjugate gives the non-negative real number equal to the square of its modulus.\n\n## Step-by-step breakdown\n- **Conjugate**: If z=a+ib, then z̄=a−ib.\n- **Modulus**: |z|=√(a²+b²).\n- **Key product**: z z̄=a²+b²=|z|².\n- **Inverse**: For z≠0, z⁻¹=z̄/|z|².\n- **Conjugate rules**: Conjugation distributes over sums and products.\n- **Division**: z₁/z₂=(z₁ z̄₂)/|z₂|² for z₂≠0.\n\n## Worked example\nQuestion: Using NCERT Example 5, find the multiplicative inverse of z=2−3i.\n\nSolution:\n- The conjugate is 2+3i.\n- |z|²=2²+(−3)²=13.\n- Use z⁻¹=z̄/|z|².\n- Final answer: z⁻¹=(2+3i)/13.\n\n## Common mistake\nThe inverse of a+ib is not simply 1/a+i/b; use the conjugate and modulus squared.\n\n## Quick check question\nQuestion: For z=3+4i, use the chapter formula to find |z|.\nAnswer: |z|=5.\nExplanation: |z|=√(3²+4²)=√25=5.\n\n## Summary\n- Conjugation reverses the sign of the imaginary part.\n- The modulus is a non-negative real number.\n- Conjugates make inverses and quotients manageable.",
+    "Exam-style problems": "# Exam-style problems: Complex Numbers and Quadratic Equations\n\n## What you will learn\nYou will represent complex numbers geometrically in the Argand plane and use polar form. You will interpret modulus as distance and argument as direction.\n\n## Simple explanation\nA complex number x+iy corresponds to the point (x,y). Its polar description uses distance from the origin and an angle measured from the positive real axis.\n\n## Step-by-step breakdown\n- **Argand plane**: The horizontal axis represents real parts and the vertical axis imaginary parts.\n- **Point representation**: z=x+iy corresponds to P(x,y).\n- **Modulus as distance**: |z| is OP.\n- **Argument**: An angle θ giving the direction of OP is an argument of z.\n- **Polar form**: z=r(cosθ+i sinθ), where r=|z|.\n- **Non-uniqueness**: Arguments differ by integral multiples of 2π.\n- **Zero**: The argument of zero is not defined.\n\n## Worked example\nQuestion: Using the Argand-plane definitions in NCERT Section 4.5, write z=1+i in polar form with principal angle π/4.\n\nSolution:\n- Compute r=√(1²+1²)=√2.\n- The point lies in quadrant I and makes angle π/4 with the positive real axis.\n- Substitute r and θ in r(cosθ+i sinθ).\n- Final answer: z=√2(cos(π/4)+i sin(π/4)).\n\n## Common mistake\nDo not identify the argument using tan⁻¹(y/x) alone without checking the quadrant.\n\n## Quick check question\nQuestion: For the chapter point z=−1+i√3, what is its modulus?\nAnswer: Its modulus is 2.\nExplanation: √[(-1)²+(√3)²]=√4=2.\n\n## Summary\n- The Argand plane turns complex numbers into points.\n- Modulus measures distance from the origin.\n- Polar form records magnitude and direction.",
+    "Revision and recap": "# Revision and recap: Complex Numbers and Quadratic Equations\n\n## What you will learn\nYou will connect complex arithmetic with equations having negative discriminants. You will revise the chapter’s structural identities and geometric interpretation.\n\n## Simple explanation\nComplex numbers make the quadratic formula meaningful even when b²−4ac<0. The two roots then occur as conjugates when the coefficients are real.\n\n## Step-by-step breakdown\n- **Quadratic formula**: For ax²+bx+c=0, roots are (−b±√(b²−4ac))/(2a).\n- **Negative discriminant**: If D<0, write √D=i√(−D).\n- **Conjugate roots**: Real-coefficient quadratics with non-real roots have conjugate roots.\n- **Algebraic check**: Substitution confirms a proposed complex root.\n- **Geometric check**: Conjugate numbers are reflections across the real axis.\n- **Complete toolkit**: Standard form, operations, conjugate, modulus, inverse, and polar form work together.\n\n## Worked example\nQuestion: Using the chapter’s motivating equation x²+1=0 and the quadratic formula, find its roots.\n\nSolution:\n- Here a=1,b=0,c=1, so D=−4.\n- x=(0±√−4)/2=(±2i)/2.\n- Final answer: The roots are i and −i.\n\n## Common mistake\nDo not stop by saying “no solution” when the domain is the complex numbers.\n\n## Quick check question\nQuestion: Using NCERT Exercise 4.1 reasoning, if z+z̄=6 and z−z̄=8i, find z.\nAnswer: z=3+4i.\nExplanation: Adding the two equations gives 2z=6+8i, so z=3+4i.\n\n## Summary\n- Complex numbers solve equations beyond the real system.\n- Non-real roots of real quadratics occur in conjugate pairs.\n- Algebraic and geometric viewpoints reinforce each other."
+  }
+}

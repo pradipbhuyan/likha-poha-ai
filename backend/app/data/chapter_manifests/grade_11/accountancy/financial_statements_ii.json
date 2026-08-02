@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 11",
+  "subject": "Accountancy",
+  "chapter": "Financial Statements – II",
+  "central_question": "How are accrual-based adjustments incorporated at two places in final accounts so that profit and financial position present a true and fair view?",
+  "in_scope_units": [
+    "Need for adjustments under the accrual basis.",
+    "Closing stock.",
+    "Outstanding and prepaid expenses.",
+    "Accrued income and income received in advance.",
+    "Depreciation.",
+    "Bad debts and further bad debts.",
+    "Provision for doubtful debts.",
+    "Provision for discount on debtors.",
+    "Manager's commission before or after charging commission.",
+    "Interest on capital.",
+    "Preparation of adjusted trading and profit and loss account and balance sheet."
+  ],
+  "banned_topics": [
+    "Simple final accounts without adjustments, which belong to Financial Statements – I.",
+    "Detailed depreciation methods and asset disposal, which belong to Chapter 7.",
+    "Trial-balance rectification and suspense account, which belong to Chapter 6."
+  ],
+  "must_include_keywords": [
+    "accrual basis",
+    "adjustments",
+    "true and fair view",
+    "closing stock",
+    "outstanding expense",
+    "prepaid expense",
+    "accrued income",
+    "income received in advance",
+    "depreciation",
+    "bad debts",
+    "further bad debts",
+    "sundry debtors",
+    "provision for doubtful debts",
+    "old provision",
+    "new provision",
+    "provision for discount on debtors",
+    "manager's commission",
+    "commission before charging",
+    "commission after charging",
+    "interest on capital",
+    "trading account",
+    "profit and loss account",
+    "balance sheet",
+    "adjustment entry",
+    "current asset",
+    "current liability",
+    "twofold effect",
+    "net profit",
+    "closing capital"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An adjustment is shown only in the profit and loss account.",
+      "correction": "Every adjustment has a double effect and normally appears at two places in final accounts."
+    },
+    {
+      "claim": "Outstanding expense is deducted from the expense.",
+      "correction": "It is added to the expense and shown as a current liability."
+    },
+    {
+      "claim": "Prepaid expense is added to the current expense.",
+      "correction": "It is deducted from expense and shown as a current asset."
+    },
+    {
+      "claim": "The provision percentage is applied before writing off further bad debts.",
+      "correction": "Further bad debts are deducted from debtors first; the provision is calculated on the remaining balance."
+    },
+    {
+      "claim": "Manager's commission formula is the same whether profit is before or after commission.",
+      "correction": "Commission on profit after charging commission requires a denominator of 100 plus the rate."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Ankit's trial balance and closing stock ₹15,000 to show the first two-place adjustment.",
+    "Use outstanding wages ₹500, prepaid salary ₹5,000, accrued commission ₹1,500 and rent received in advance ₹3,000 to practise accrual adjustments.",
+    "Use furniture depreciation ₹1,500 and further bad debts ₹2,500 to revise non-cash and debtor adjustments.",
+    "Use the chapter's provision and manager's commission illustrations to calculate revised expenses and liabilities.",
+    "Use the comprehensive Shri R. Lal illustration and end questions to prepare complete adjusted final accounts."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Short Answer Questions, Long Answer Questions and comprehensive numerical problems on adjusted final accounts, including provisions and manager's commission.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

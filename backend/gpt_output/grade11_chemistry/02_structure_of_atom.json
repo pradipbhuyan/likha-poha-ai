@@ -1,0 +1,90 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Chemistry",
+    "chapter": "Structure of Atom",
+    "central_question": "How did experimental evidence lead from early atomic models to the quantum-mechanical description of electrons?",
+    "in_scope_units": [
+      "Discovery of electron, proton, and neutron.",
+      "Thomson and Rutherford atomic models.",
+      "Electromagnetic radiation, quantisation, photoelectric effect, and spectra.",
+      "Bohr model and hydrogen spectrum.",
+      "Dual nature, uncertainty, orbitals, and quantum numbers.",
+      "Electronic configurations and filling rules."
+    ],
+    "banned_topics": [
+      "Detailed nuclear reactions",
+      "Chemical bonding",
+      "Relativistic quantum mechanics",
+      "Advanced spectral term symbols"
+    ],
+    "must_include_keywords": [
+      "electron",
+      "proton",
+      "neutron",
+      "cathode rays",
+      "Thomson model",
+      "Rutherford model",
+      "nucleus",
+      "electromagnetic radiation",
+      "wavelength",
+      "frequency",
+      "Planck constant",
+      "photon",
+      "photoelectric effect",
+      "atomic spectrum",
+      "Bohr model",
+      "hydrogen spectrum",
+      "de Broglie wavelength",
+      "uncertainty principle",
+      "wave function",
+      "orbital",
+      "probability density",
+      "principal quantum number",
+      "azimuthal quantum number",
+      "magnetic quantum number",
+      "spin quantum number",
+      "Aufbau principle",
+      "Pauli exclusion principle",
+      "Hund rule",
+      "electronic configuration"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "An orbit and an orbital are identical.",
+        "correction": "An orbit is a fixed Bohr path; an orbital is a probability distribution."
+      },
+      {
+        "claim": "Rutherford explained atomic stability.",
+        "correction": "Classical orbiting electrons would radiate energy, so stability remained unexplained."
+      },
+      {
+        "claim": "Uncertainty is caused only by poor instruments.",
+        "correction": "It is a fundamental quantum limit."
+      },
+      {
+        "claim": "A 2p subshell holds two electrons.",
+        "correction": "Three p orbitals together hold six electrons."
+      },
+      {
+        "claim": "The 4s orbital is always below 3d.",
+        "correction": "Orbital energies can reorder after occupation."
+      }
+    ],
+    "recommended_example_progression": [
+      "Interpret particle-discovery experiments.",
+      "Calculate radiation and photon quantities.",
+      "Use Bohr energies and spectra.",
+      "Apply quantum-number rules.",
+      "Write electronic configurations."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use exercises on subatomic particles, radiation, photoelectric effect, Bohr transitions, de Broglie wavelength, quantum numbers, and configurations."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Structure of Atom\n\n## What you will learn\nRelate atomic experiments to subatomic particles and early models.\n\n## Simple explanation\nAtoms contain electrons and a small dense nucleus made of protons and neutrons.\n\n## Step-by-step breakdown\n- **Cathode rays**: Showed negatively charged particles common to matter.\n- **Electron**: Thomson measured charge-to-mass ratio.\n- **Positive rays**: Supported positively charged particles.\n- **Neutron**: Chadwick identified the neutral nuclear particle.\n- **Thomson model**: Electrons embedded in diffuse positive charge.\n- **Rutherford scattering**: Most alpha particles passed through; a few deflected strongly.\n- **Nuclear atom**: Most mass and positive charge occupy a tiny nucleus.\n\n## Worked example\nQuestion: What conclusions follow from Rutherford scattering?\n\nSolution:\n- Most particles passed through, showing mostly empty space.\n- Deflections showed concentrated positive charge.\n- Rare backscattering showed a tiny dense centre.\n- Final answer: The atom is mostly empty space with a small dense positive nucleus.\n\n## Common mistake\nThe nucleus contains most mass but occupies only a tiny fraction of atomic volume.\n\n## Quick check question\nQuestion: Which subatomic particle is neutral?\nAnswer: The neutron.\nExplanation: It has nearly proton mass but no electrical charge.\n\n## Summary\n- Cathode rays: Showed negatively charged particles common to matter.\n- Electron: Thomson measured charge-to-mass ratio.\n- Positive rays: Supported positively charged particles.\n- Neutron: Chadwick identified the neutral nuclear particle.",
+    "Core explanation": "# Core explanation: Structure of Atom\n\n## What you will learn\nRelate wavelength, frequency, photons, and the photoelectric effect.\n\n## Simple explanation\nRadiation propagates as waves but exchanges energy in discrete photons.\n\n## Step-by-step breakdown\n- **Wave relation**: c = νλ.\n- **Planck relation**: Photon energy E = hν.\n- **Photon**: One quantum of electromagnetic radiation.\n- **Threshold frequency**: Photoemission begins only above a minimum frequency.\n- **Work function**: Minimum energy needed to remove an electron.\n- **Line spectrum**: Atoms emit selected wavelengths from quantised transitions.\n\n## Worked example\nQuestion: Find photon energy for ν = 5.0 × 10^14 s−1 and h = 6.626 × 10−34 J s.\n\nSolution:\n- Use E = hν.\n- Multiply 6.626 × 5.0 and combine powers.\n- Report with suitable significant figures.\n- Final answer: 3.31 × 10−19 J.\n\n## Common mistake\nIncreasing intensity adds photons but does not increase the energy of each photon at fixed frequency.\n\n## Quick check question\nQuestion: What happens to photon energy when frequency doubles?\nAnswer: It doubles.\nExplanation: E is directly proportional to ν.\n\n## Summary\n- Wave relation: c = νλ.\n- Planck relation: Photon energy E = hν.\n- Photon: One quantum of electromagnetic radiation.\n- Threshold frequency: Photoemission begins only above a minimum frequency.",
+    "Worked examples": "# Worked examples: Structure of Atom\n\n## What you will learn\nUse Bohr energy levels to explain hydrogen spectra.\n\n## Simple explanation\nBohr allowed only selected stationary states and associated radiation with transitions between them.\n\n## Step-by-step breakdown\n- **Stationary state**: An allowed orbit has fixed energy.\n- **Energy levels**: For hydrogen, En is proportional to −1/n².\n- **Ground state**: n = 1.\n- **Excited state**: n greater than 1.\n- **Emission**: A downward transition releases a photon.\n- **Absorption**: An upward transition requires exact energy.\n- **Series**: Balmer lines terminate at n = 2.\n- **Limitation**: The model works best for one-electron species.\n\n## Worked example\nQuestion: Find excitation energy from n=1, −13.6 eV, to n=2, −3.4 eV.\n\nSolution:\n- Use E2 − E1.\n- Calculate −3.4 − (−13.6).\n- A positive value is absorbed.\n- Final answer: 10.2 eV.\n\n## Common mistake\nNegative level energy means a bound state, not negative kinetic energy.\n\n## Quick check question\nQuestion: Which series ends at n = 2?\nAnswer: Balmer series.\nExplanation: All Balmer transitions terminate at the second level.\n\n## Summary\n- Stationary state: An allowed orbit has fixed energy.\n- Energy levels: For hydrogen, En is proportional to −1/n².\n- Ground state: n = 1.\n- Excited state: n greater than 1.",
+    "Exam-style problems": "# Exam-style problems: Structure of Atom\n\n## What you will learn\nApply matter-wave, uncertainty, orbital, and quantum-number ideas.\n\n## Simple explanation\nQuantum mechanics replaces exact electron paths with wave functions and probability distributions.\n\n## Step-by-step breakdown\n- **Matter wave**: λ = h/p.\n- **Macroscopic limit**: Large mass makes wavelength unobservably small.\n- **Uncertainty**: Position and momentum cannot both be exact.\n- **Orbital**: High-probability region derived from a wave function.\n- **n**: Shell, size, and broad energy.\n- **l**: Subshell and shape.\n- **ml**: Orbital orientation.\n- **ms**: Electron spin, +1/2 or −1/2.\n- **Capacity**: A shell has n² orbitals and 2n² electron capacity.\n\n## Worked example\nQuestion: How many orbitals and electrons can n = 3 contain?\n\nSolution:\n- Orbitals = n² = 9.\n- Each orbital holds two electrons.\n- Maximum electrons = 18.\n- Final answer: 9 orbitals and 18 electrons.\n\n## Common mistake\nA shell has n subshells but n² orbitals.\n\n## Quick check question\nQuestion: What l values are allowed for n = 4?\nAnswer: 0, 1, 2, and 3.\nExplanation: l ranges from 0 to n−1.\n\n## Summary\n- Matter wave: λ = h/p.\n- Macroscopic limit: Large mass makes wavelength unobservably small.\n- Uncertainty: Position and momentum cannot both be exact.\n- Orbital: High-probability region derived from a wave function.",
+    "Revision and recap": "# Revision and recap: Structure of Atom\n\n## What you will learn\nWrite ground-state configurations using Aufbau, Pauli, and Hund rules.\n\n## Simple explanation\nElectrons occupy the lowest allowed energy arrangement while obeying exclusion and maximum multiplicity.\n\n## Step-by-step breakdown\n- **Aufbau**: Lower-energy orbitals fill first.\n- **n+l rule**: Lower n+l fills first; ties use lower n.\n- **Pauli**: An orbital holds at most two opposite-spin electrons.\n- **Hund**: Degenerate orbitals fill singly before pairing.\n- **Stability**: Half-filled and filled subshells may be especially stable.\n- **Ion formation**: Electrons are removed from the outermost shell first.\n\n## Worked example\nQuestion: Write the configuration of nitrogen, Z=7.\n\nSolution:\n- Fill 1s² and 2s².\n- Place three remaining electrons in 2p.\n- Hund rule gives one electron in each p orbital.\n- Final answer: 1s² 2s² 2p³.\n\n## Common mistake\nPairing in one p orbital before all p orbitals are singly occupied violates Hund rule.\n\n## Quick check question\nQuestion: Maximum electrons in a d subshell?\nAnswer: Ten.\nExplanation: Five d orbitals each hold two electrons.\n\n## Summary\n- Aufbau: Lower-energy orbitals fill first.\n- n+l rule: Lower n+l fills first; ties use lower n.\n- Pauli: An orbital holds at most two opposite-spin electrons.\n- Hund: Degenerate orbitals fill singly before pairing."
+  }
+}

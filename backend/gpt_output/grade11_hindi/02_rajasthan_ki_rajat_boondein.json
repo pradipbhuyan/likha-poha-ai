@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Hindi",
+    "chapter": "Rajasthan Ki Rajat Boondein",
+    "central_question": "How did desert communities use environmental knowledge, specialised labour, and collective rules to collect sweet rainwater through the कुंई?",
+    "in_scope_units": [
+      "Dangerous specialist work inside a narrow कुंई.",
+      "Difference from a well and the role of khadiya stone.",
+      "Desert sand, moisture, and three water forms.",
+      "Masonry, rope, and wooden construction systems.",
+      "Small mouth, lifting devices, covers, ownership, and community control.",
+      "Regional distribution and local terminology."
+    ],
+    "banned_topics": [
+      "Modern dam engineering",
+      "General geography of all deserts",
+      "Chemical desalination",
+      "Urban water-supply systems"
+    ],
+    "must_include_keywords": [
+      "Anupam Mishra",
+      "Rajasthan",
+      "मरुभूमि",
+      "कुंई",
+      "कुंई",
+      "chelwanji",
+      "chejaro",
+      "cheja",
+      "basoli",
+      "khadiya stone",
+      "sand",
+      "moisture",
+      "sweet water",
+      "salty groundwater",
+      "palarpani",
+      "patalpani",
+      "rejani pani",
+      "रेजा",
+      "kheenp grass",
+      "rope lining",
+      "wooden supports",
+      "sapni",
+      "masonry",
+      "small mouth",
+      "charas",
+      "pulley",
+      "odak",
+      "cover",
+      "aach tradition",
+      "village society",
+      "public land",
+      "Churu",
+      "Bikaner",
+      "Jaisalmer",
+      "Barmer",
+      "par"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A कुंई is simply a small well.",
+        "correction": "It accesses a different water source and has a different design."
+      },
+      {
+        "claim": "Khadiya creates fresh water.",
+        "correction": "It prevents rainwater from mixing with saline groundwater."
+      },
+      {
+        "claim": "Desert sand loses all rain immediately.",
+        "correction": "Its structure can retain moisture below the surface."
+      },
+      {
+        "claim": "A कुंई is entirely private.",
+        "correction": "Use may be private, but shared moisture brings community control."
+      },
+      {
+        "claim": "The narrow mouth only saves cost.",
+        "correction": "It also aids collection, covering, and evaporation control."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT अभ्यास: distinguish कुंई and well.",
+      "NCERT अभ्यास: connect the chapter with water scarcity.",
+      "NCERT अभ्यास: compare old and present treatment of chejaros.",
+      "NCERT अभ्यास: explain community control.",
+      "NCERT अभ्यास: define the three water forms."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Refer to the end-of-chapter 'अभ्यास' questions 1‘5."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Rajasthan Ki Rajat Boondein\n\n## What you will learn\nYou will understand what a कुंई is and why its construction demands courage, skill, and cooperation. You will identify the worker, tools, and immediate dangers described in the opening.\n\n## Simple explanation\nThe chapter begins inside a hot, narrow excavation where a chelwanji works with little room to move. Water conservation is introduced through difficult human labour rather than through an abstract definition.\n\n## Step-by-step breakdown\n- **Narrow shaft**: The worker crouches with the walls close to the body, making large tools unusable.\n- **Basoli**: A short-handled, small spade-like tool allows controlled digging.\n- **Ventilation**: People above throw handfuls of sand so fresh air moves down and hot air rises.\n- **Head protection**: A metal vessel is worn like a helmet against falling debris.\n- **Debris removal**: A small bucket is lowered and raised carefully by rope.\n- **Chejaro**: The specialist combines excavation knowledge with masonry skill.\n\n## Worked example\nQuestion: How does the opening create respect for the chejaro's work?\n\nAnswer:\n- It places the worker deep in a confined, hot, poorly ventilated shaft.\n- It describes protective methods, specialised tools, and support from people above.\n- The danger and precision are shown through concrete work rather than general praise.\n- Final answer: The opening presents कुंई construction as skilled, risky, and collective labour.\n\n## Common mistake\nDo not describe the chejaro as an unskilled digger; the text presents a technical specialist.\n\n## Quick check question\nQuestion: Why is a large spade unsuitable?\nAnswer: The shaft is too narrow for safe movement of a large tool.\nExplanation: A short-handled basoli is required for controlled excavation.\n\n## Summary\n- Construction begins with hazardous deep digging.\n- Tools are adapted to the space.\n- Workers above maintain air and remove debris.\n- The chejaro possesses specialised knowledge.",
+    "Core explanation": "# Core explanation: Rajasthan Ki Rajat Boondein\n\n## What you will learn\nYou will distinguish a कुंई from an ordinary well and explain the role of the underground khadiya stone layer. You will trace how sweet rainwater remains separate from salty groundwater.\n\n## Simple explanation\nAn ordinary well reaches deep groundwater, often saline in the desert. A कुंई gathers rainwater that has entered the sand but is stopped above the groundwater by a natural stone barrier.\n\n## Step-by-step breakdown\n- **Ordinary well**: It is dug to reach patalpani or groundwater.\n- **कुंई**: It collects moisture-derived water above the groundwater body.\n- **Khadiya layer**: The underground stone band stops descending rainwater from mixing with deeper saline water.\n- **Site knowledge**: Experienced people detect suitable ground through changes in soil and rain behaviour.\n- **Sweet-water zone**: Moisture spreads between the sandy surface and the stone layer.\n- **Slow seepage**: Droplets gradually enter the empty कुंई from the surrounding moist sand.\n\n## Worked example\nQuestion: Why can a कुंई contain sweet water where nearby groundwater is salty?\n\nAnswer:\n- Rainwater is held above the groundwater by the khadiya layer.\n- The structure intercepts this separate moisture before it joins the saline patalpani.\n- The system does not remove salt from groundwater; it accesses a different water source.\n- Final answer: A कुंई yields sweet water because it gathers protected rainwater above saline groundwater.\n\n## Common mistake\nDo not say that the stone creates fresh water; it preserves separation.\n\n## Quick check question\nQuestion: What happens if the protective layer is absent?\nAnswer: Rejani water can descend and mix with the patalpani.\nExplanation: In a saline region it then loses its separate sweet character.\n\n## Summary\n- Wells and कुंई reach different water sources.\n- Khadiya stone acts as a natural barrier.\n- Rainwater remains as moisture above groundwater.\n- Local geology determines suitable sites.",
+    "Worked examples": "# Worked examples: Rajasthan Ki Rajat Boondein\n\n## What you will learn\nYou will explain how desert sand conserves moisture and distinguish palarpani, patalpani, and rejani pani. You will connect local vocabulary with ecological observation.\n\n## Simple explanation\nThe community classifies water by where it is found and how it moves. The terms record direct rain, deep groundwater, and infiltrated water held between the two.\n\n## Step-by-step breakdown\n- **Palarpani**: Water obtained directly from rain and collected at the surface in ponds, rivers, and related structures.\n- **Patalpani**: Groundwater drawn from ordinary wells.\n- **Rejani pani**: Rainwater that has entered below the surface but has not reached deep groundwater.\n- **Reja**: The measure concerns how far rain has entered the ground, not only surface rainfall.\n- **Sand grains**: Fine grains remain evenly spread and do not form large drying cracks like cohesive soils.\n- **Moisture guard**: Sand above and stone below together protect the infiltrated water.\n\n## Worked example\nQuestion: How does the three-part water classification show scientific observation?\n\nAnswer:\n- Each term identifies a different location and movement of water.\n- The text connects the categories with taste, storage, and the structure used to collect them.\n- The vocabulary is based on observable environmental processes and guides practical decisions.\n- Final answer: The three terms form a working ecological system linking rainfall, soil, geology, and use.\n\n## Common mistake\nDo not define rejani pani as surface runoff; it has entered the ground but not the deep water table.\n\n## Quick check question\nQuestion: Which water form is collected by a कुंई?\nAnswer: Rejani pani.\nExplanation: The structure gathers infiltrated rainwater held above patalpani.\n\n## Summary\n- Local vocabulary is precise environmental knowledge.\n- Rejani water occupies an intermediate zone.\n- Sand structure helps retain moisture.\n- The classification guides water management.",
+    "Exam-style problems": "# Exam-style problems: Rajasthan Ki Rajat Boondein\n\n## What you will learn\nYou will analyse the construction systems that stabilise a deep, narrow कुंई. You will compare masonry, kheenp-grass rope, and wooden-support methods.\n\n## Simple explanation\nThe walls cannot remain unsupported. Builders select a method according to soil and available materials, but every method prevents collapse while excavation continues.\n\n## Step-by-step breakdown\n- **Staged masonry**: Only a limited depth is dug before the completed part is lined.\n- **Kheenp rope**: A thick rough rope is coiled against the inner wall and successive loops press one another.\n- **Lowering the coil**: As digging deepens, the earlier rope structure is moved downward and new rope is added.\n- **Wooden supports**: Where rope or stone is unsuitable, branches are interlocked vertically.\n- **Sapni**: The rope-bound wooden arrangement takes a coiled form and receives this local name.\n- **Reaching the layer**: Work stops at the khadiya band, and successful water access becomes a celebration.\n\n## Worked example\nQuestion: What does the variety of lining methods reveal about traditional engineering?\n\nAnswer:\n- Different soils and available materials require different structural solutions.\n- Every method controls wall pressure while preserving the narrow shaft.\n- Builders follow a common functional principle but adapt technique to local conditions.\n- Final answer: Traditional कुंई construction is an adaptive engineering system based on material, depth, soil, and experience.\n\n## Common mistake\nDo not assume rope is used only to draw water; it can also support the walls.\n\n## Quick check question\nQuestion: Why is excavation paused for lining?\nAnswer: To prevent freshly exposed soil from collapsing.\nExplanation: Stabilisation in stages protects both structure and workers.\n\n## Summary\n- Wall stability is essential.\n- Masonry, rope, and wood are alternative systems.\n- Local materials shape design.\n- Completion is marked by reaching the water-bearing layer.",
+    "Revision and recap": "# Revision and recap: Rajasthan Ki Rajat Boondein\n\n## What you will learn\nYou will explain the small mouth, drawing devices, covers, ownership rules, and community relationships around the कुंई. You will connect technology with social organisation.\n\n## Simple explanation\nA कुंई stores only slowly seeping water. Its size, use, protection, and number must therefore be controlled so a limited shared moisture reserve is not exhausted.\n\n## Step-by-step breakdown\n- **Small diameter**: A little water can rise to usable depth instead of spreading too thinly.\n- **Evaporation control**: The narrow opening and cover reduce loss in intense heat.\n- **Drawing devices**: Small charas, pulleys, charkhi, and odak supports lift water without spilling.\n- **Cleanliness**: Wooden or grass covers protect the water; some locations also use locks.\n- **Private use**: A family may build and draw from a particular कुंई.\n- **Public control**: The moisture lies beneath common village land, so new construction requires social approval.\n- **Aach tradition**: Chejaros were honoured through gifts, grain, and festival relationships beyond wages.\n- **Regional spread**: The structures occur especially in Churu, Bikaner, Jaisalmer, and Barmer and may also be called par.\n\n## Worked example\nQuestion: Why does village society retain authority over a privately used कुंई?\n\nAnswer:\n- Each new shaft draws from moisture already stored under shared land.\n- Uncontrolled construction would divide a finite reserve and reduce existing access.\n- Ownership of the access structure does not create ownership of an unlimited water source.\n- Final answer: Community control protects fairness and ecological balance within a shared reserve.\n\n## Common mistake\nDo not reduce the relationship with chejaros to wages; the text describes continuing honour and social bonds.\n\n## Quick check question\nQuestion: Why is the mouth covered?\nAnswer: To reduce evaporation, prevent contamination, and protect the narrow opening.\nExplanation: The cover is part of the conservation system.\n\n## Summary\n- Design matches slow seepage.\n- Drawing devices protect scarce water.\n- Covers preserve quantity and cleanliness.\n- Shared moisture requires collective regulation.\n- The tradition joins ecology, technology, and social ethics."
+  }
+}

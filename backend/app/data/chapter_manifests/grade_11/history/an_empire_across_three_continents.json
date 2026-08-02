@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 11",
+  "subject": "History",
+  "chapter": "An Empire Across Three Continents",
+  "central_question": "How did the Roman Empire govern a culturally diverse Mediterranean world, sustain its economy and social hierarchy, and transform through crisis, Christianity and regional fragmentation?",
+  "in_scope_units": [
+    "Sources for Roman history and the geographical setting of Rome and Iran.",
+    "The early empire, Principate, Senate, army, succession and provincial government.",
+    "Cities, local elites, citizenship and the administration of the provinces.",
+    "The third-century crisis and pressures on the Roman frontiers.",
+    "Gender, family, literacy, language and cultural diversity.",
+    "Economic expansion, amphora evidence, regional production and technological sophistication.",
+    "Slavery, wage labour, debt bondage and methods of controlling workers.",
+    "Social hierarchies, wealth, bureaucracy, coinage, law and corruption.",
+    "Late antiquity: Diocletian, Constantine, Constantinople, Christianity and economic change.",
+    "Political fragmentation in the West, eastern continuity and the expansion of Islam."
+  ],
+  "banned_topics": [
+    "Detailed institutions of medieval European feudalism, which belong to The Three Orders.",
+    "The history of the central Islamic lands after the Roman period, except where the chapter briefly connects the Arab conquests to Rome’s eastern provinces.",
+    "Detailed Mongol imperial organisation, which belongs to Nomadic Empires."
+  ],
+  "must_include_keywords": [
+    "Roman Empire",
+    "Mediterranean",
+    "Iran",
+    "Principate",
+    "Augustus",
+    "Senate",
+    "professional army",
+    "provinces",
+    "urbanisation",
+    "local elites",
+    "citizenship",
+    "third-century crisis",
+    "Sasanians",
+    "nuclear family",
+    "Roman women",
+    "casual literacy",
+    "cultural diversity",
+    "amphorae",
+    "Dressel 20",
+    "slavery",
+    "wage labour",
+    "debt bondage",
+    "social hierarchies",
+    "humiliores",
+    "gold coinage",
+    "solidus",
+    "late antiquity",
+    "Diocletian",
+    "Constantine",
+    "Constantinople",
+    "Christianisation",
+    "Justinian",
+    "Germanic kingdoms",
+    "Arab conquests"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Roman Empire was culturally uniform because it had one emperor.",
+      "correction": "It was a mosaic of territories, languages, religions and local cultures, held together chiefly by common government and the administrative use of Latin and Greek."
+    },
+    {
+      "claim": "The Senate alone governed the empire.",
+      "correction": "The emperor, aristocracy and professional army were the three principal political players, while provincial elites administered cities and helped collect taxes."
+    },
+    {
+      "claim": "Most labour everywhere in the Roman Empire was performed by slaves.",
+      "correction": "Slavery was deeply rooted, but its importance varied; wage labour, tenants, freedmen and other workers were also extensive."
+    },
+    {
+      "claim": "The western empire’s collapse meant that the entire Roman world ended in the fifth century.",
+      "correction": "The West fragmented into post-Roman kingdoms, while the eastern empire remained united and prosperous."
+    },
+    {
+      "claim": "Christianisation was immediate and complete after Constantine.",
+      "correction": "It was gradual and complex; polytheism and diverse practices continued, especially in western provinces."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 1 to identify the emperor, aristocracy and army and explain how local elites helped govern the provinces.",
+    "Use NCERT Activity 2 to assess Roman women’s legal independence and its limits.",
+    "Use NCERT Activity 3 to treat amphora fragments as evidence for Mediterranean production and trade.",
+    "Use NCERT Activity 4 to identify Roman writers on labour and methods used to control workers.",
+    "Use NCERT Exercise 6 to select features of Roman society and economy that appear comparatively modern."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises: Answer in Brief, Questions 1–4, and Answer in a Short Essay, Questions 5–6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Interior of the Earth",
+  "central_question": "How do direct materials, seismic waves and other indirect evidence reveal the structure and processes of earth’s inaccessible interior?",
+  "in_scope_units": [
+    "Direct and indirect sources of information about earth’s interior.",
+    "Earthquakes, faults, focus, epicentre and seismic waves.",
+    "Propagation of P, S and surface waves and shadow zones.",
+    "Earthquake measurement and effects.",
+    "Crust, mantle, asthenosphere, lithosphere and core.",
+    "Volcanic and intrusive igneous forms."
+  ],
+  "banned_topics": [
+    "Detailed plate-boundary theory, which belongs to Distribution of Oceans and Continents.",
+    "Origin of the universe, which belongs to The Origin and Evolution of the Earth.",
+    "Detailed weathering and erosion, which belong to Geomorphic Processes."
+  ],
+  "must_include_keywords": [
+    "earth’s interior",
+    "direct sources",
+    "surface rocks",
+    "mining",
+    "drilling",
+    "volcanic material",
+    "indirect sources",
+    "temperature",
+    "pressure",
+    "density",
+    "meteorites",
+    "gravity anomaly",
+    "magnetic field",
+    "earthquake",
+    "fault",
+    "focus",
+    "hypocentre",
+    "epicentre",
+    "seismic waves",
+    "body waves",
+    "surface waves",
+    "P-waves",
+    "S-waves",
+    "shadow zone",
+    "Richter scale",
+    "Mercalli scale",
+    "crust",
+    "continental crust",
+    "oceanic crust",
+    "mantle",
+    "asthenosphere",
+    "lithosphere",
+    "core",
+    "nife",
+    "shield volcano",
+    "composite volcano",
+    "caldera",
+    "flood basalt",
+    "batholith",
+    "laccolith"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Scientists have travelled to earth’s centre.",
+      "correction": "Most deep knowledge comes from indirect evidence because direct access is extremely limited."
+    },
+    {
+      "claim": "P and S waves travel through all materials alike.",
+      "correction": "P-waves pass through solids and fluids; S-waves pass only through solids."
+    },
+    {
+      "claim": "Focus and epicentre are the same point.",
+      "correction": "The focus is inside earth; the epicentre is directly above it on the surface."
+    },
+    {
+      "claim": "The lithosphere is only the crust.",
+      "correction": "It includes the crust and rigid uppermost mantle."
+    },
+    {
+      "claim": "All magma reaches the surface.",
+      "correction": "Some cools underground as intrusive bodies."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 2(ii) to distinguish direct sources.",
+    "Use Exercise 2(iii) to explain the shadow zone.",
+    "Use Exercise 3(i) to explain wave effects on rock masses.",
+    "Use Exercise 3(ii) to describe intrusive forms."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–iv), 2(i–iv), and 3(i–ii).",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

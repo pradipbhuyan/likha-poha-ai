@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Executive",
+  "central_question": "How is executive authority organised in different systems, and how does India combine a formal President, a responsible Council of Ministers and a permanent bureaucracy?",
+  "in_scope_units": [
+    "Meaning and functions of the executive, including political and permanent executives.",
+    "Presidential, parliamentary and semi-presidential forms of executive.",
+    "India‘s choice of a parliamentary executive and its accountability to the legislature.",
+    "Election, constitutional position, powers and impeachment of the President.",
+    "Binding ministerial advice and the President’s discretionary powers.",
+    "The Vice-President and succession to the office of President.",
+    "Prime Minister, Council of Ministers, Cabinet and collective responsibility.",
+    "The effect of coalition politics on the Prime Minister and President.",
+    "Permanent executive, civil services, political neutrality, reservations and administrative accountability."
+  ],
+  "banned_topics": [
+    "A philosophical theory of distributive or social justice not discussed in the supplied chapter.",
+    "Detailed legislative procedure or judicial review beyond their relationship with executive accountability.",
+    "Current office-holders or present coalition arrangements not contained in the source."
+  ],
+  "must_include_keywords": [
+    "executive",
+    "administration",
+    "implementation",
+    "political executive",
+    "permanent executive",
+    "civil servants",
+    "presidential system",
+    "parliamentary system",
+    "semi-presidential system",
+    "head of state",
+    "head of government",
+    "President of India",
+    "Prime Minister",
+    "Council of Ministers",
+    "Cabinet",
+    "collective responsibility",
+    "Lok Sabha",
+    "Article 74",
+    "aid and advise",
+    "impeachment",
+    "discretionary powers",
+    "veto",
+    "pocket veto",
+    "majority",
+    "coalition government",
+    "Vice-President",
+    "Rajya Sabha",
+    "bureaucracy",
+    "IAS",
+    "IPS",
+    "political neutrality",
+    "accountability",
+    "reservation in services",
+    "parliamentary control"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any country with a President has a presidential system.",
+      "correction": "The type depends on where effective power lies and to whom the executive is accountable; India has a President but follows a parliamentary system."
+    },
+    {
+      "claim": "The President of India normally governs independently of ministers.",
+      "correction": "The President is the formal head and ordinarily acts on the binding advice of the Council of Ministers headed by the Prime Minister."
+    },
+    {
+      "claim": "The President has no discretion under any circumstances.",
+      "correction": "The chapter identifies limited discretion, including returning advice once, handling assent and choosing a Prime Minister when no clear majority exists."
+    },
+    {
+      "claim": "The Rajya Sabha can remove the Council of Ministers through no-confidence.",
+      "correction": "The Council is collectively responsible to the Lok Sabha."
+    },
+    {
+      "claim": "Civil servants are the political executive.",
+      "correction": "Ministers form the political executive; civil servants form the permanent executive."
+    },
+    {
+      "claim": "Bureaucratic neutrality means civil servants are unaccountable.",
+      "correction": "They must serve governments impartially but remain subject to law, ministerial control and democratic accountability."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity identifying heads of government at a SAARC or G-7 meeting.",
+    "NCERT comparison of presidential, parliamentary and semi-presidential executives.",
+    "NCERT box on the Sri Lankan semi-presidential executive.",
+    "NCERT Indian Post Office Amendment Bill example on pocket veto.",
+    "NCERT ‘Check your progress’ situation on presidential reconsideration of advice about President’s Rule."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The ‘Exercises’ section contains Questions 1’10 on types of executive, presidential discretion, the Prime Minister, collective responsibility and bureaucracy.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

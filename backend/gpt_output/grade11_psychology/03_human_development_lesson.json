@@ -1,0 +1,105 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Psychology",
+    "chapter": "Human Development",
+    "central_question": "How do biological, cognitive, socio-emotional and contextual processes interact to produce continuity and change across the life-span?",
+    "in_scope_units": [
+      "Meaning of development and interwoven biological, cognitive and socio-emotional processes.",
+      "Life-span perspective.",
+      "Growth, development, maturation and evolution.",
+      "Heredity–environment interaction, genotype and phenotype.",
+      "Bronfenbrenner and Durganand Sinha contextual models.",
+      "Developmental stages and tasks.",
+      "Prenatal development and teratogens.",
+      "Infancy: motor, sensory, cognitive, language and attachment development.",
+      "Childhood: physical, cognitive, self, gender and moral development.",
+      "Adolescence: puberty, egocentrism, identity and challenges.",
+      "Adulthood and old age."
+    ],
+    "banned_topics": [
+      "Detailed mechanisms of sensation, learning and memory treated in later chapters.",
+      "Clinical diagnosis or treatment beyond the chapter’s developmental overview."
+    ],
+    "must_include_keywords": [
+      "development",
+      "growth",
+      "maturation",
+      "evolution",
+      "life-span perspective",
+      "biological processes",
+      "cognitive processes",
+      "socio-emotional processes",
+      "plasticity",
+      "historical conditions",
+      "genotype",
+      "phenotype",
+      "heredity",
+      "environment",
+      "Bronfenbrenner",
+      "microsystem",
+      "mesosystem",
+      "exosystem",
+      "macrosystem",
+      "chronosystem",
+      "Durganand Sinha",
+      "developmental tasks",
+      "prenatal period",
+      "teratogens",
+      "reflexes",
+      "object permanence",
+      "Piaget",
+      "sensorimotor",
+      "preoperational",
+      "concrete operational",
+      "formal operational",
+      "attachment",
+      "Erikson",
+      "gender roles",
+      "Kohlberg",
+      "puberty",
+      "imaginary audience",
+      "personal fable",
+      "identity",
+      "adulthood",
+      "old age"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Development means only physical growth.",
+        "correction": "It includes biological, cognitive and socio-emotional change, with gains and decline."
+      },
+      {
+        "claim": "Genes or environment alone determine characteristics.",
+        "correction": "Phenotypes emerge through interaction between inherited tendencies and environment."
+      },
+      {
+        "claim": "Everyone develops at exactly the same rate.",
+        "correction": "The broad sequence is shared, but timing and rate vary."
+      },
+      {
+        "claim": "Attachment depends only on feeding.",
+        "correction": "Contact comfort and responsive care are central in the chapter’s account."
+      },
+      {
+        "claim": "Old age necessarily means complete incapacity.",
+        "correction": "Ageing varies widely and many older adults remain active and competent."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Review Question 1 on development, growth and maturation.",
+      "NCERT Review Question 5 on socio-cultural context.",
+      "NCERT Review Question 6 on cognitive changes.",
+      "NCERT Review Question 7 on attachment.",
+      "NCERT Review Question 9 on identity."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–10 and two Project Ideas."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Human Development\n\n## What you will learn\nYou will define development and distinguish it from growth, maturation and evolution. You will learn the assumptions of the life-span perspective.\n\n## Simple explanation\nDevelopment begins at conception and continues through old age, combining gains and losses in interwoven domains.\n\n## Step-by-step breakdown\n- **Development**: Progressive, orderly and predictable change across the life-span.\n- **Growth**: Measurable increase in body size and one aspect of development.\n- **Maturation**: An orderly, largely genetically guided sequence that depends on readiness.\n- **Evolution**: Species-specific change across generations.\n- **Life-long and multidirectional**: Change continues at all ages and different abilities may move in different directions.\n- **Plasticity**: Abilities can be modified, though not equally in every person.\n- **History and context**: Culture, period and life events influence the course of development.\n\n## Worked example\nQuestion: Using NCERT Review Question 1, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 1\", \"extract_text\": \"What is development? How is it different from growth and maturation?\", \"note\": \"From the Review Questions section of Human Development.\"}\n```\n\nAnswer:\n- Development is progressive, orderly change from conception throughout life.\n- Growth is quantitative increase in size.\n- Maturation is genetically guided readiness and orderly unfolding.\n- Final answer: Development is the broad life-long process; growth is quantitative size change, and maturation is biologically guided readiness.\n\n## Common mistake\nA temporary change due to illness is not necessarily development.\n\n## Quick check question\nQuestion: What does multidirectional development mean?\nAnswer: Some abilities may increase while others decline in the same period.\nExplanation: Adults may gain wisdom while speed on some tasks decreases.\n\n## Summary\n- Development spans the life course.\n- Its domains are interwoven.\n- Growth and maturation are distinct concepts.\n- Development is plastic and contextual.",
+    "Core explanation": "# Core explanation: Human Development\n\n## What you will learn\nYou will examine heredity–environment interaction and layered social settings. You will compare Bronfenbrenner and Durganand Sinha.\n\n## Simple explanation\nGenes provide possibilities, but they operate through environments that people experience, evoke and select.\n\n## Step-by-step breakdown\n- **Genotype**: Inherited genetic material.\n- **Phenotype**: Observable expression produced through genotype–environment interaction.\n- **Gene–environment interaction**: Parents provide genes and settings, while children evoke responses and choose activities.\n- **Microsystem and mesosystem**: Direct settings and relations among them.\n- **Exosystem**: Indirect settings that affect the child without direct participation.\n- **Macrosystem and chronosystem**: Culture and life-course or historical time.\n- **Indian ecology**: Durganand Sinha links visible home-school-peer settings with geography, institutions and amenities.\n\n## Worked example\nQuestion: Using NCERT Review Question 5, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 5\", \"extract_text\": \"How do socio-cultural factors influence development?\", \"note\": \"From the Review Questions section of Human Development.\"}\n```\n\nAnswer:\n- Bronfenbrenner places the individual within direct, interrelated, indirect, cultural and historical systems.\n- Schooling, neighbourhood, caste, class, family relations and resources shape opportunity.\n- Durganand Sinha shows that visible and surrounding ecological layers interact.\n- Final answer: Socio-cultural factors organise relationships, resources, expectations and life events across interacting settings.\n\n## Common mistake\nEnvironment is not only the physical home; it includes relationships, institutions, culture and historical time.\n\n## Quick check question\nQuestion: How does an exosystem differ from a microsystem?\nAnswer: A microsystem is directly experienced; an exosystem influences the child indirectly.\nExplanation: A parent’s workplace transfer may affect the child even though the child is not part of that workplace.\n\n## Summary\n- Heredity and environment interact.\n- Genotype differs from phenotype.\n- Development occurs in nested systems.\n- Indian ecology includes visible and surrounding layers.",
+    "Worked examples": "# Worked examples: Human Development\n\n## What you will learn\nYou will study prenatal development and infancy, connecting readiness, sensory capacities, cognition and caregiving.\n\n## Simple explanation\nEarly development is rapid and depends on biological conditions, stimulation and relationships.\n\n## Step-by-step breakdown\n- **Prenatal period**: Development from conception to birth is affected by genetic and environmental conditions.\n- **Maternal influences**: Nutrition, emotional state, disease, drugs, alcohol, tobacco, radiation and pollution may affect the foetus.\n- **Teratogens**: Environmental agents that cause deviations in normal development.\n- **Reflexes and motor growth**: Rooting, Moro, grasp and Babinski support early adaptation and later yield to voluntary control.\n- **Sensory abilities**: Newborns hear, respond to touch, taste and smell, and vision improves.\n- **Object permanence**: Infants gradually realise that hidden objects continue to exist.\n- **Attachment**: Responsive and affectionate care supports trust and secure exploration.\n\n## Worked example\nQuestion: Using NCERT Review Question 7, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 7\", \"extract_text\": \"Attachment bonds formed in childhood years have long-term effects. Explain taking examples from daily life.\", \"note\": \"From the Review Questions section of Human Development.\"}\n```\n\nAnswer:\n- Attachment is a close emotional bond between infant and caregiver.\n- The Harlow findings show the importance of contact comfort beyond feeding.\n- Erikson links responsive care with trust, confidence and exploration.\n- Final answer: Early attachment shapes security, exploration and later relationships because it teaches whether caregivers and the world are dependable.\n\n## Common mistake\nFeeding is not the only basis of attachment; comfort, sensitivity and reliable response matter.\n\n## Quick check question\nQuestion: What is object permanence?\nAnswer: Awareness that an object continues to exist when it is not perceived.\nExplanation: It develops in the sensorimotor period as infants begin searching for hidden objects.\n\n## Summary\n- Prenatal development is vulnerable to environmental conditions.\n- Infancy includes reflexive, sensory and cognitive change.\n- Object permanence develops gradually.\n- Responsive care supports attachment.",
+    "Exam-style problems": "# Exam-style problems: Human Development\n\n## What you will learn\nYou will analyse childhood physical, cognitive and socio-emotional development. You will compare Piaget’s stages and examine self, gender and morality.\n\n## Simple explanation\nChildren do not merely know less than adults; their thinking is organised in different ways at different stages.\n\n## Step-by-step breakdown\n- **Directional growth**: Control develops from head downward and from the body centre outward.\n- **Preoperational thought**: Symbols expand, but egocentrism, animism and centration limit reasoning.\n- **Concrete operations**: Children coordinate attributes and use reversible logic for concrete situations.\n- **Self-development**: Descriptions move from physical features toward psychological traits and social comparison.\n- **Gender roles**: Biological sex is distinguished from socially shaped gender roles and typing.\n- **Moral development**: Kohlberg describes movement from external consequences toward internalised principles.\n- **Peers and school**: The social world expands and affects identity and competence.\n\n## Worked example\nQuestion: Using NCERT Review Question 6, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 6\", \"extract_text\": \"Discuss the cognitive changes taking place in a developing child.\", \"note\": \"From the Review Questions section of Human Development.\"}\n```\n\nAnswer:\n- Sensorimotor thought coordinates senses and actions and develops object permanence.\n- Preoperational thought uses symbols but is egocentric and centred.\n- Concrete operations enable reversible logic, and formal operations enable abstract and hypothetical reasoning.\n- Final answer: Cognitive development proceeds through qualitatively different forms of thought from action to symbols, concrete logic and abstraction.\n\n## Common mistake\nA preoperational child has symbolic thought; the limitation is not absence of thought but egocentrism and centration.\n\n## Quick check question\nQuestion: Why does the tall-glass task reveal centration?\nAnswer: The child focuses on height and ignores width.\nExplanation: Centration is attention to one prominent feature instead of coordinating relevant dimensions.\n\n## Summary\n- Physical development follows directional patterns.\n- Piaget’s stages differ qualitatively.\n- Self, gender and morality develop socially.\n- School and peers become important.",
+    "Revision and recap": "# Revision and recap: Human Development\n\n## What you will learn\nYou will connect adolescence, adulthood and old age in a life-span account. You will examine identity, relationships, work, retirement and loss.\n\n## Simple explanation\nLater development combines biological transitions with changing roles and expectations, but outcomes vary greatly among people.\n\n## Step-by-step breakdown\n- **Puberty and formal thought**: Adolescence includes sexual maturation and more abstract, idealistic reasoning.\n- **Adolescent egocentrism**: Imaginary audience and personal fable heighten self-consciousness and uniqueness.\n- **Identity**: Adolescents seek commitments and a distinct sense of self.\n- **Challenges**: Peer pressure, substance abuse, delinquency and eating difficulties have interacting personal and social roots.\n- **Adulthood**: Work, marriage, parenting and physical or cognitive changes require adjustment.\n- **Old age**: Retirement, health, dependency and bereavement vary with support and resources.\n- **Successful ageing**: Activity, relationships and health challenge stereotypes of universal decline.\n\n## Worked example\nQuestion: Using NCERT Review Question 9, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 9\", \"extract_text\": \"What are the factors influencing the formation of identity during adolescence? Support your answer with examples.\", \"note\": \"From the Review Questions section of Human Development.\"}\n```\n\nAnswer:\n- Identity includes values, commitments and beliefs and the task of becoming distinct from parents.\n- Culture, family, ethnicity, socioeconomic status, peers and vocational choices influence it.\n- Support and realistic opportunities help organise conflicting possibilities into a coherent self.\n- Final answer: Adolescent identity develops through negotiation among abilities, family, peers, culture and future commitments.\n\n## Common mistake\nIndependence does not simply mean rejecting parents; parents and peers may provide complementary support.\n\n## Quick check question\nQuestion: Why is old age not only a chronological category?\nAnswer: Health, longevity, retirement and social roles vary.\nExplanation: The experience and meaning of old age depend on individual and cultural conditions.\n\n## Summary\n- Adolescence involves puberty, formal thought and identity.\n- Egocentrism includes imaginary audience and personal fable.\n- Adulthood brings work and family transitions.\n- Ageing depends on health, support and context."
+  }
+}

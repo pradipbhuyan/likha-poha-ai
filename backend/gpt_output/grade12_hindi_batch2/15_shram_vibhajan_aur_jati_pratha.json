@@ -1,0 +1,63 @@
+{
+  "manifest": {
+    "grade": "Grade 12",
+    "subject": "Hindi",
+    "chapter": "Shram Vibhajan Aur Jati Pratha",
+    "central_question": "Why does B. R. Ambedkar reject caste as a form of labour division, and what democratic social order does he propose instead?",
+    "in_scope_units": [
+      "Division of labour versus division of labourers",
+      "Hereditary occupation",
+      "Economic consequences",
+      "Freedom, equality and fraternity",
+      "Democracy as associated living"
+    ],
+    "banned_topics": [
+      "Content from adjacent chapters not present in the supplied source.",
+      "Biographical or historical claims not stated in the supplied source.",
+      "Invented incidents, quotations, dates or interpretations unsupported by the text."
+    ],
+    "must_include_keywords": [
+      "बाबा साहेब भीमराव आंबेडकर",
+      "श्रम विभाजन",
+      "श्रमिक-विभाजन",
+      "जाति-प्रथा",
+      "ऊँच-नीच",
+      "रुचि",
+      "क्षमता",
+      "पेशा",
+      "पूर्व-लेख",
+      "बेरोज़गारी",
+      "कार्य-कुशलता",
+      "स्वतंत्रता",
+      "समता",
+      "भ्रातृता",
+      "लोकतंत्र",
+      "सामूहिक जीवनचर्या"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Ambedkar opposes division of labour.",
+        "correction": "He accepts its necessity but rejects hereditary division and ranking of labourers."
+      },
+      {
+        "claim": "His criticism is only moral.",
+        "correction": "He also explains economic inefficiency, unemployment and lack of mobility."
+      }
+    ],
+    "recommended_example_progression": [
+      "Basic distinction",
+      "Freedom of occupation",
+      "Economic critique",
+      "Ideal society",
+      "Argumentative recap"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter questions printed in the supplied NCERT source; answers must be supported by the text."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Shram Vibhajan Aur Jati Pratha\n\n## What you will learn\nUnderstand Ambedkar’s basic distinction between division of labour and caste.\n\n## Simple explanation\nAmbedkar accepts that a civil society needs division of labour, but argues that caste is not merely division of work; it is an unnatural division of workers into ranked groups.\n\n## Step-by-step breakdown\n- **Division of labour**: A functional arrangement of tasks.\n- **Division of labourers**: Caste fixes people into separate social groups.\n- **Hierarchy**: These groups are declared high and low.\n- **Main objection**: This graded inequality is not found as a necessary feature of labour division.\n\n## Worked example\nQuestion: Why does Ambedkar reject the claim that caste is simply division of labour?\n\nAnswer:\n- Textual evidence: He states that caste divides not only work but workers, and ranks the separated groups as high and low.\n- Interpretation: A practical distribution of tasks does not require hereditary social hierarchy.\n- Conclusion: Caste cannot be defended as efficient labour organisation because it is a system of unequal human classification.\n\n## Common mistake\nDo not confuse occupational diversity with hereditary caste ranking.\n\n## Quick check question\nQuestion: What is caste in addition to division of labour?\nAnswer: A division of labourers into unequal and unnatural classes.\nExplanation: This is Ambedkar’s first decisive objection.\n\n## Summary\n- Labour division may be necessary.\n- Caste adds hereditary human division.\n- Hierarchy makes caste fundamentally different.\n",
+    "Core explanation": "# Core explanation: heredity versus choice\n\n## What you will learn\nExplain why caste prevents efficient and humane allocation of work.\n\n## Simple explanation\nA capable society should develop people’s abilities and allow them to choose occupations, but caste predetermines work through parental social status.\n\n## Step-by-step breakdown\n- **No choice**: Occupation is assigned before individual capacity is known.\n- **No training basis**: Personal talent and preparation are ignored.\n- **Hereditary rule**: The parental occupation becomes destiny.\n- **Human cost**: People may remain trapped even when the work is unsuitable.\n\n## Worked example\nQuestion: How does caste violate occupational freedom?\n\nAnswer:\n- Textual evidence: It determines a person’s profession by birth rather than by interest, capacity or training.\n- Interpretation: This prevents individuals from developing and using their abilities effectively.\n- Conclusion: Caste suppresses both personal freedom and social efficiency.\n\n## Common mistake\nDo not say Ambedkar opposes all inherited skills; his objection is compulsory and irreversible assignment.\n\n## Quick check question\nQuestion: On what should occupational choice depend?\nAnswer: The individual’s capacity, interest and developed ability.\nExplanation: These conditions support both freedom and competence.\n\n## Summary\n- Caste ignores aptitude.\n- Birth replaces choice.\n- Compulsion harms the worker and society.\n",
+    "Worked examples": "# Worked examples: economic harm\n\n## What you will learn\nAnalyse Ambedkar’s argument that caste contributes to unemployment and poor work.\n\n## Simple explanation\nModern industry changes, so workers may need to change occupations. Caste forbids movement away from hereditary work and thus creates unemployment or reluctant labour.\n\n## Step-by-step breakdown\n- **Changing economy**: Processes and techniques continually change.\n- **Need for mobility**: Workers may need a new occupation.\n- **Caste restriction**: A non-hereditary profession is forbidden even when a person is skilled in it.\n- **Work attitude**: Forced, disliked labour encourages evasion and low efficiency.\n\n## Worked example\nQuestion: Why does Ambedkar call caste economically harmful?\n\nAnswer:\n- Textual evidence: It prevents occupational change and forces people to perform predetermined work without interest, even when technology or circumstances change.\n- Interpretation: A worker whose heart and mind are absent cannot produce high skill or efficiency.\n- Conclusion: Caste damages the economy by suppressing mobility, motivation and आत्म-शक्ति.\n\n## Common mistake\nDo not treat the argument as only moral; the passage explicitly develops an economic critique.\n\n## Quick check question\nQuestion: How can caste become a cause of unemployment?\nAnswer: By preventing a person from entering a suitable non-hereditary occupation when the inherited one no longer provides work.\nExplanation: Occupational rigidity makes adaptation impossible.\n\n## Summary\n- Modern economies require mobility.\n- Caste blocks adaptation.\n- Disliked compulsory work reduces efficiency.\n",
+    "Exam-style problems": "# Exam-style problems: Ambedkar’s ideal society\n\n## What you will learn\nUnderstand the values of freedom, equality and fraternity in the ideal society.\n\n## Simple explanation\nAfter criticising caste, Ambedkar proposes a dynamic society in which shared interests, communication and mutual respect connect people.\n\n## Step-by-step breakdown\n- **Fraternity**: Real brotherhood mixes people like milk and water.\n- **Democracy**: Not merely a form of government but a mode of associated living and shared experience.\n- **Mobility**: Desired change should pass from one part of society to another.\n- **Respect**: Companions must be treated with reverence and dignity.\n\n## Worked example\nQuestion: Why does Ambedkar call fraternity another name for democracy?\n\nAnswer:\n- Textual evidence: He defines democracy as a way of collective life and the exchange of shared experiences, not merely a system of government.\n- Interpretation: Fraternity creates the social communication and mutual respect required for democratic life.\n- Conclusion: Political democracy remains incomplete without social brotherhood.\n\n## Common mistake\nDo not restrict democracy to elections or institutions in this answer.\n\n## Quick check question\nQuestion: What three values form Ambedkar’s ideal society?\nAnswer: Freedom, equality and fraternity.\nExplanation: The text presents them as interdependent foundations of social democracy.\n\n## Summary\n- The ideal society is dynamic.\n- Democracy is shared life.\n- Fraternity gives social reality to equality and freedom.\n",
+    "Revision and recap": "# Revision and recap: argumentative structure\n\n## What you will learn\nRevise the sequence, style and relevance of Ambedkar’s reasoning.\n\n## Simple explanation\nThe essay proceeds by taking a common defence of caste, testing it logically, showing its social and economic defects, and then offering a constructive ideal.\n\n## Step-by-step breakdown\n- **Counter-argument**: Caste supporters invoke कार्य-कुशलता.\n- **Refutation**: Ambedkar distinguishes work from workers and choice from heredity.\n- **Consequences**: Hierarchy, unemployment, dislike of work and suppressed ability.\n- **Positive vision**: Freedom, equality, fraternity and democracy.\n- **Style**: Direct, analytical and question-driven.\n\n## Worked example\nQuestion: How is the essay more than a negative criticism of caste?\n\nAnswer:\n- Textual evidence: After exposing caste’s defects, Ambedkar describes an ideal society based on liberty, equality, fraternity, mobility and shared experience.\n- Interpretation: The constructive section shows the social order that should replace hereditary hierarchy.\n- Conclusion: The essay combines demolition of injustice with a democratic alternative.\n\n## Common mistake\nDo not stop an answer after listing caste’s faults; include the positive social vision where relevant.\n\n## Quick check question\nQuestion: What is the foundation of caste-based occupational allocation?\nAnswer: पूर्व-लेख, or predetermined status by birth.\nExplanation: Ambedkar contrasts this with free development and choice.\n\n## Summary\n- The reasoning is systematic.\n- Moral and economic objections reinforce each other.\n- The conclusion offers democratic reconstruction.\n"
+  }
+}

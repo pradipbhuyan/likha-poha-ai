@@ -1,0 +1,92 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 21: Neural Control and Coordination",
+    "central_question": "How does the human neural system receive information, conduct impulses and coordinate responses through nerves, synapses and the brain?",
+    "in_scope_units": [
+      "General organisation of neural systems.",
+      "Central and peripheral neural systems.",
+      "Somatic and autonomic divisions.",
+      "Neuron structure and neuron types.",
+      "Resting potential, action potential and conduction.",
+      "Electrical and chemical synapses.",
+      "Central neural system and brain regions."
+    ],
+    "banned_topics": [
+      "Blood composition and blood groups",
+      "Cardiac cycle and double circulation",
+      "Muscle contraction beyond neuromuscular signalling"
+    ],
+    "must_include_keywords": [
+      "neural system",
+      "coordination",
+      "neuron",
+      "CNS",
+      "PNS",
+      "afferent fibre",
+      "efferent fibre",
+      "somatic neural system",
+      "autonomic neural system",
+      "sympathetic",
+      "parasympathetic",
+      "cell body",
+      "dendrite",
+      "axon",
+      "Nissl granules",
+      "synaptic knob",
+      "neurotransmitter",
+      "multipolar neuron",
+      "bipolar neuron",
+      "unipolar neuron",
+      "myelin sheath",
+      "Schwann cell",
+      "node of Ranvier",
+      "resting potential",
+      "sodium-potassium pump",
+      "depolarisation",
+      "action potential",
+      "repolarisation",
+      "synapse",
+      "synaptic cleft",
+      "cerebrum",
+      "corpus callosum",
+      "thalamus",
+      "hypothalamus",
+      "limbic system",
+      "midbrain",
+      "pons",
+      "cerebellum",
+      "medulla oblongata"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Dendrites carry impulses away from the cell body.",
+        "correction": "Dendrites generally carry impulses toward the cell body; the axon carries them away."
+      },
+      {
+        "claim": "The sodium-potassium pump moves equal numbers of ions.",
+        "correction": "It moves three Na+ outward for every two K+ inward."
+      },
+      {
+        "claim": "Chemical synapses are faster than electrical synapses.",
+        "correction": "Electrical synapses are faster because current passes directly between cells."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 2 to compare CNS/PNS and resting/action potentials.",
+      "Use NCERT Exercise 3 to explain polarisation, depolarisation and chemical synapses.",
+      "Use NCERT Exercise 7 to trace the role of sodium.",
+      "Use NCERT Exercise 8 for paired distinctions.",
+      "Use NCERT Exercise 1 to organise brain regions."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-10 on brain structure, neural divisions, membrane potentials, synapses and neuron comparisons."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Neural Control and Coordination\n\n## What you will learn\nYou will organise the human neural system into central, peripheral, somatic and autonomic divisions and distinguish afferent from efferent pathways.\n\n## Simple explanation\nNeural coordination provides rapid point-to-point signalling. The CNS processes information, while peripheral nerves carry input toward it and commands away from it.\n\n## Step-by-step breakdown\n- **CNS**: Brain and spinal cord form the central processing and control system.\n- **PNS**: All nerves associated with the CNS form the peripheral system.\n- **Afferent fibres**: Carry impulses from tissues and organs toward the CNS.\n- **Efferent fibres**: Carry regulatory impulses from the CNS to effectors.\n- **Somatic division**: Relays CNS commands to skeletal muscles.\n- **Autonomic division**: Controls involuntary organs and smooth muscle through sympathetic and parasympathetic systems.\n- **Visceral system**: Nerves, fibres, ganglia and plexuses connect the CNS and viscera in both directions.\n\n## Worked example\nQuestion: NCERT Exercise 10(a) asks you to distinguish afferent and efferent fibres.\n\nSolution:\n- Afferent pathways begin at receptors or peripheral tissues and carry information toward the CNS.\n- Efferent pathways begin in the CNS and carry commands to muscles, glands or organs.\n- Their directions and functions are opposite.\n- Final answer: Afferent fibres carry sensory input to the CNS; efferent fibres carry CNS commands to effectors.\n\n## Common mistake\nThe key distinction is direction relative to the CNS, not simply the everyday labels incoming and outgoing without a reference point.\n\n## Quick check question\nQuestion: Which division controls involuntary organs?\nAnswer: The autonomic neural system.\nExplanation: It regulates smooth muscle and visceral organs through sympathetic and parasympathetic pathways.\n\n## Summary\n- CNS processes and controls.\n- PNS connects CNS to the body.\n- Afferent pathways carry input inward.\n- Efferent pathways carry commands outward.\n- Somatic and autonomic divisions serve different effectors.",
+    "Core explanation": "# Core explanation: Neural Control and Coordination\n\n## What you will learn\nYou will label the major parts of a neuron and compare neuron and axon types. You will explain myelin organisation.\n\n## Simple explanation\nThe neuron is the structural and functional unit of the neural system. Dendrites receive signals, the cell body integrates them and the axon carries output.\n\n## Step-by-step breakdown\n- **Cell body**: Contains organelles and Nissl granules.\n- **Dendrites**: Short branched processes carrying impulses toward the cell body.\n- **Axon**: A long process carrying impulses away and ending in synaptic knobs with neurotransmitter vesicles.\n- **Neuron forms**: Multipolar, bipolar and unipolar neurons differ in the number of processes.\n- **Myelinated fibres**: Schwann cells form myelin interrupted by nodes of Ranvier.\n- **Non-myelinated fibres**: Schwann cells enclose the axon without forming a myelin sheath.\n\n## Worked example\nQuestion: NCERT Exercise 8(b) asks you to differentiate dendrites and axons.\n\nSolution:\n- Dendrites are usually short, numerous and highly branched; an axon is generally single and long.\n- Dendrites contain Nissl granules, while the axon does not.\n- Dendrites conduct toward the cell body; the axon conducts away.\n- Final answer: Dendrites are receptive processes, whereas the axon is the principal output process.\n\n## Common mistake\nDistal axon branches are not dendrites; they remain parts of the axon and end in synaptic knobs.\n\n## Quick check question\nQuestion: What are gaps between adjacent myelin segments called?\nAnswer: Nodes of Ranvier.\nExplanation: They interrupt the Schwann-cell myelin covering and are important in myelinated conduction.\n\n## Summary\n- Neurons have cell body, dendrites and axon.\n- Dendrites receive and axons transmit away.\n- Synaptic knobs store neurotransmitters.\n- Neuron types differ in process number.\n- Myelin is formed by Schwann cells.",
+    "Worked examples": "# Worked examples: Neural Control and Coordination\n\n## What you will learn\nYou will explain resting potential, depolarisation, action-potential conduction and repolarisation and track sodium and potassium movement.\n\n## Simple explanation\nA resting neuron maintains unequal ion distributions. A stimulus briefly raises sodium permeability and reverses local polarity, and local currents depolarise the next segment.\n\n## Step-by-step breakdown\n- **Resting gradients**: Axoplasm has high K+ and negative proteins but low Na+; extracellular fluid has high Na+.\n- **Sodium-potassium pump**: Active transport moves three Na+ out for two K+ in.\n- **Resting potential**: The outer surface is relatively positive and the inner surface negative.\n- **Depolarisation**: Stimulus-induced Na+ entry reverses polarity locally.\n- **Propagation**: Local currents generate a new action potential ahead.\n- **Repolarisation**: Later K+ efflux restores resting polarity.\n\n## Worked example\nQuestion: NCERT Exercise 7 asks for the role of Na+ in generating an action potential.\n\nSolution:\n- At rest the membrane is nearly impermeable to Na+ and Na+ concentration is higher outside.\n- A stimulus opens sodium pathways.\n- Na+ rapidly enters down its electrochemical gradient.\n- The inner surface becomes positive and the outer surface negative.\n- This reversal is the action potential and drives local current to the next region.\n- Final answer: Rapid Na+ influx produces depolarisation and initiates the action potential.\n\n## Common mistake\nThe pump maintains the gradient, but fast gated permeability changes generate the action potential.\n\n## Quick check question\nQuestion: Which ion movement mainly restores the membrane?\nAnswer: Potassium moves outward.\nExplanation: A delayed rise in K+ permeability allows efflux and restores the resting state.\n\n## Summary\n- Ion gradients make neurons excitable.\n- The pump moves three Na+ out and two K+ in.\n- Na+ influx causes depolarisation.\n- Local currents propagate the impulse.\n- K+ efflux restores resting potential.",
+    "Exam-style problems": "# Exam-style problems: Neural Control and Coordination\n\n## What you will learn\nYou will compare electrical and chemical synapses and trace neurotransmitter-mediated signalling.\n\n## Simple explanation\nA synapse connects neurons. Electrical synapses pass current directly; chemical synapses convert an electrical signal to transmitter release and then to a new electrical response.\n\n## Step-by-step breakdown\n- **Electrical synapse**: Membranes are extremely close and current passes directly, making transmission rapid.\n- **Chemical synapse**: A fluid-filled synaptic cleft separates the cells.\n- **Vesicle release**: An arriving action potential causes synaptic vesicles to fuse and release transmitter.\n- **Receptor binding**: Transmitter binds specific postsynaptic receptors.\n- **Ion channels**: Receptor action changes ion flow and membrane potential.\n- **Excitation or inhibition**: The postsynaptic potential may promote or suppress action-potential generation.\n\n## Worked example\nQuestion: NCERT Exercise 6 asks for the mechanism of synaptic transmission.\n\nSolution:\n- An action potential reaches the presynaptic terminal.\n- Synaptic vesicles fuse with the membrane.\n- Neurotransmitter enters the synaptic cleft.\n- The transmitter binds postsynaptic receptors.\n- Ion channels open and create an excitatory or inhibitory potential.\n- Final answer: Chemical transmission proceeds through release, diffusion, receptor binding and an ion-channel response.\n\n## Common mistake\nNeurotransmitters do not carry the original electrical current; they trigger a new electrical change in the postsynaptic cell.\n\n## Quick check question\nQuestion: Which synapse type is faster?\nAnswer: An electrical synapse.\nExplanation: Current passes directly without vesicle release and receptor steps.\n\n## Summary\n- Synapses transmit information between neurons.\n- Electrical synapses are direct and fast.\n- Chemical synapses use neurotransmitters.\n- Postsynaptic receptors control ion channels.\n- The response can excite or inhibit.",
+    "Revision and recap": "# Revision and recap: Neural Control and Coordination\n\n## What you will learn\nYou will map forebrain, midbrain and hindbrain and connect each region with its major functions.\n\n## Simple explanation\nThe brain is protected by the skull and meninges and acts as the central command system. Its regions specialise in cognition, integration, homeostasis and vital reflexes.\n\n## Step-by-step breakdown\n- **Protection**: Dura mater, arachnoid and pia mater cover the brain.\n- **Cerebrum**: Two hemispheres joined by corpus callosum contain motor, sensory and association areas.\n- **Thalamus and hypothalamus**: Thalamus coordinates sensory and motor signalling; hypothalamus regulates temperature, hunger, thirst and hormones.\n- **Limbic system**: Associated structures contribute to emotion, motivation and sexual behaviour.\n- **Midbrain**: Contains the cerebral aqueduct and corpora quadrigemina between forebrain and pons.\n- **Hindbrain**: Pons connects regions, cerebellum coordinates and medulla controls respiration and cardiovascular reflexes.\n\n## Worked example\nQuestion: NCERT Exercise 1 asks for a brief description of brain structure.\n\nSolution:\n- Begin with skull and three cranial meninges.\n- Divide the brain into forebrain, midbrain and hindbrain.\n- Describe forebrain as cerebrum, thalamus and hypothalamus.\n- Describe midbrain with cerebral aqueduct and corpora quadrigemina.\n- Describe hindbrain as pons, cerebellum and medulla and identify the brain stem.\n- Final answer: The brain is a protected, regionally specialised CNS organ with forebrain, midbrain and hindbrain.\n\n## Common mistake\nCerebrum and cerebellum are not interchangeable: the cerebrum supports higher processing, while the cerebellum is central to coordination and balance.\n\n## Quick check question\nQuestion: Which region controls temperature, hunger and thirst?\nAnswer: The hypothalamus.\nExplanation: It contains homeostatic centres and neurosecretory cells.\n\n## Summary\n- Forebrain includes cerebrum, thalamus and hypothalamus.\n- Corpus callosum links hemispheres.\n- Midbrain contains corpora quadrigemina.\n- Hindbrain includes pons, cerebellum and medulla.\n- Medulla contains vital centres."
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Reproductive Health",
+  "central_question": "What does 'reproductive health' mean, and what strategies (awareness, contraception, medical termination of pregnancy, STI prevention, and infertility treatment) does India use to help individuals and society achieve total reproductive well-being?",
+  "in_scope_units": [
+    "3.1 Reproductive Health — Problems and Strategies: the WHO definition of reproductive health, India's Reproductive and Child Health Care (RCH) programmes, the role of awareness/education/sex education, amniocentesis and its statutory ban for sex determination, and the indigenous contraceptive 'Saheli'.",
+    "3.2 Population Stabilisation and Birth Control: population growth trends in India and the world, measures like the 'Hum Do Hamare Do' slogan and statutory marriageable age, and the categories of contraceptive methods (natural/traditional, barrier, IUDs, oral contraceptives, injectables, implants, surgical) with their mechanisms and possible side-effects.",
+    "3.3 Medical Termination of Pregnancy (MTP): definition of induced abortion, the legal history (1971 legalisation, 2017 Amendment Act and its grounds/time limits), reasons for MTP, and the risks of illegal/unsafe abortion and misuse of amniocentesis for sex-selective abortion.",
+    "3.4 Sexually Transmitted Infections (STIs): the common STIs (gonorrhoea, syphilis, genital herpes, chlamydiasis, genital warts, trichomoniasis, hepatitis-B, HIV/AIDS), modes of transmission, curability, symptoms, complications, and preventive principles.",
+    "3.5 Infertility: definition of infertility, its causes, and assisted reproductive technologies (ART) including IVF/ET (test-tube baby), ZIFT, IUT, GIFT, ICSI, and artificial insemination (AI/IUI), along with adoption as an alternative."
+  ],
+  "banned_topics": [
+    "Flower structure and sexual reproduction in plants — belongs to Chapter 1, Sexual Reproduction in Flowering Plants.",
+    "Detailed anatomy of the human male/female reproductive systems, gametogenesis, the menstrual cycle mechanism, and normal fertilisation/pregnancy/parturition — these belong to Chapter 2, Human Reproduction (this chapter assumes that knowledge and builds on it).",
+    "Mendelian genetics, chromosomal disorders like Down's/Turner's/Klinefelter's syndrome, and pedigree analysis — these belong to Chapter 4, Principles of Inheritance and Variation.",
+    "Detailed molecular/genetic basis of DNA-level testing — belongs to Chapter 5, Molecular Basis of Inheritance."
+  ],
+  "must_include_keywords": [
+    "reproductive health",
+    "RCH programme",
+    "amniocentesis",
+    "Saheli",
+    "population stabilisation",
+    "contraceptive",
+    "natural methods",
+    "periodic abstinence",
+    "barrier methods",
+    "condom",
+    "IUD",
+    "Copper-T",
+    "oral contraceptive pills",
+    "emergency contraceptives",
+    "vasectomy",
+    "tubectomy",
+    "sterilisation",
+    "medical termination of pregnancy",
+    "MTP",
+    "induced abortion",
+    "sexually transmitted infections",
+    "STI",
+    "gonorrhoea",
+    "HIV",
+    "AIDS",
+    "pelvic inflammatory disease",
+    "infertility",
+    "assisted reproductive technology",
+    "in vitro fertilisation",
+    "test tube baby",
+    "ZIFT",
+    "GIFT",
+    "ICSI",
+    "artificial insemination",
+    "IUI"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Amniocentesis is a contraceptive or family-planning method.",
+      "correction": "Amniocentesis is a diagnostic procedure in which some amniotic fluid is analysed for foetal cells and dissolved substances, used to test for genetic disorders (e.g., Down syndrome, haemophilia, sickle-cell anaemia) and survivability of the foetus — it is NOT a contraceptive. The chapter also notes it has been statutorily banned for sex-determination specifically, to check female foeticide."
+    },
+    {
+      "claim": "All contraceptive methods work the same way, by simply killing sperm.",
+      "correction": "The chapter groups contraceptives into distinct mechanisms: natural methods avoid ovum-sperm contact (timing/withdrawal/lactational amenorrhea); barrier methods physically block gametes (condoms, diaphragms); IUDs increase phagocytosis of sperm and release Cu ions that suppress sperm motility (or release hormones that alter the uterus/cervix); pills/injectables/implants use hormones to inhibit ovulation and alter cervical mucus; and surgical methods (vasectomy/tubectomy) block gamete transport entirely."
+    },
+    {
+      "claim": "Vasectomy and tubectomy prevent gamete formation.",
+      "correction": "Surgical sterilisation methods do NOT stop gamete formation; they block gamete TRANSPORT. In vasectomy, a part of the vas deferens is removed/tied, and in tubectomy, a part of the fallopian tube is removed/tied — sperm and ova are still produced, but cannot travel to meet each other. This exact correction is asked directly in end-of-chapter Q7."
+    },
+    {
+      "claim": "All sexually transmitted infections (STIs) are completely curable.",
+      "correction": "The chapter states that EXCEPT for hepatitis-B, genital herpes and HIV infections, other common STIs are completely curable if detected early and treated properly — meaning hepatitis-B, genital herpes and HIV are important exceptions to full curability. This exact correction is also asked in end-of-chapter Q12(b)."
+    },
+    {
+      "claim": "Infertility in a couple is always the woman's fault.",
+      "correction": "The chapter explicitly states that in India the female is often blamed for a couple being childless, but more often than not, the problem actually lies in the male partner; infertility causes can be physical, congenital, disease-related, drug-related, immunological or psychological in either partner."
+    }
+  ],
+  "recommended_example_progression": [
+    "Using the chapter's list of contraceptive categories (natural/traditional, barrier, IUDs, oral contraceptives, injectables, implants, surgical), classify a given method (e.g., Copper-T, condom, vasectomy) into its correct category and mechanism.",
+    "Using the chapter's account of the menstrual cycle's fertile period (Day 10 to Day 17), reason through why periodic abstinence during that window is used as a natural contraceptive method.",
+    "Using the chapter's MTP section, work through the reasons MTP might be medically necessary versus the risks of illegal/unsafe MTP performed by unqualified practitioners.",
+    "Using end-of-chapter Q7 style reasoning ('Removal of gonads cannot be considered a contraceptive option'), distinguish surgical sterilisation (blocking gamete transport) from gonad removal (which would stop hormone production and gamete formation entirely).",
+    "Using the ART section, match each technique (IVF/ET, ZIFT, GIFT, ICSI, AI/IUI) to what specifically is being done and for which type of infertility it helps, based on end-of-chapter Q9."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's EXERCISES section (numbered 1-12, page 50) covers the significance of reproductive health, sex education, population growth, contraceptive justification, amniocentesis, infertility assistance, STI prevention, True/False items, and statement-correction questions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

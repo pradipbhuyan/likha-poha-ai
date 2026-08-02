@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Geographical Perspective on Selected Issues and Problems",
+  "central_question": "How do pollution, urban waste, migration, slums and land degradation arise from uneven human-environment relations, and what community and policy responses can reduce their impacts?",
+  "in_scope_units": [
+    "Environmental pollution and classification by medium",
+    "Water pollution: sources, river examples, health effects and Namami Gange",
+    "Air pollution, urban smog, acid rain and health effects",
+    "Noise pollution, sources, measurement and spatial decline",
+    "Urban waste disposal, health hazards and the Daurala restoration case",
+    "Rural–urban migration and the Ramesh case study",
+    "Problems of slums and the Dharavi description",
+    "Land degradation, wastelands and natural and human causes",
+    "Jhabua watershed-management case study and community participation"
+  ],
+  "banned_topics": [
+    "Detailed national water-resource availability and irrigation demand, which belong to Water Resources",
+    "Detailed urban-settlement classification, which belongs to Settlement Geography"
+  ],
+  "must_include_keywords": [
+    "environmental pollution",
+    "pollutants",
+    "water pollution",
+    "industrial effluents",
+    "agricultural runoff",
+    "Ganga",
+    "Yamuna",
+    "water-borne diseases",
+    "Namami Gange",
+    "air pollution",
+    "fossil fuels",
+    "urban smog",
+    "acid rain",
+    "noise pollution",
+    "decibels",
+    "traffic noise",
+    "urban waste",
+    "solid waste",
+    "landfill",
+    "methane",
+    "polluter pays",
+    "Daurala",
+    "rural–urban migration",
+    "push factors",
+    "pull factors",
+    "remittances",
+    "informal sector",
+    "slums",
+    "Dharavi",
+    "social exclusion",
+    "land degradation",
+    "soil erosion",
+    "waterlogging",
+    "salinisation",
+    "alkalinisation",
+    "wasteland",
+    "Jhabua",
+    "watershed management",
+    "community participation",
+    "common property resources"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Pollution and pollutant mean the same thing.",
+      "correction": "Pollution is the degraded environmental condition or process, while pollutants are the substances or forms of energy causing it."
+    },
+    {
+      "claim": "Natural sources are the main concern in India’s water pollution.",
+      "correction": "The chapter states that human industrial, agricultural and cultural activities are the real causes of concern, with industry the most significant contributor."
+    },
+    {
+      "claim": "All urban waste is worthless.",
+      "correction": "The chapter argues that waste can be treated as a resource for energy and compost, and ragpickers recover items with value."
+    },
+    {
+      "claim": "Every degraded land parcel is already wasteland.",
+      "correction": "All degraded land is not necessarily wasteland, but unchecked degradation may convert land into wasteland."
+    },
+    {
+      "claim": "Rural–urban migration has only economic benefits.",
+      "correction": "Remittances may improve family welfare, but migrants may face low wages, temporary work, cultural adjustment and family separation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 2(i) to distinguish pollution from pollutants.",
+    "Use NCERT Exercise 3(i) to describe water pollution in India.",
+    "Use NCERT Exercise 2(iii) to organise urban-waste problems.",
+    "Use NCERT Exercise 1(iv) to connect push and pull factors with migration.",
+    "Use NCERT Exercise 3(iii) to propose measures for reducing land degradation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–3: four MCQs, four short-answer questions and three long-answer questions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

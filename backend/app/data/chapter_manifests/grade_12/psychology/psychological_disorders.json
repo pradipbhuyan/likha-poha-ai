@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 12",
+  "subject": "Psychology",
+  "chapter": "Psychological Disorders",
+  "central_question": "How are abnormal behaviour and psychological disorders identified, explained, classified and distinguished through their characteristic symptoms?",
+  "in_scope_units": [
+    "Concepts of abnormality",
+    "Historical and bio-psycho-social perspectives",
+    "Classification",
+    "Models of abnormal behaviour",
+    "Anxiety and related disorders",
+    "Mood and psychotic disorders",
+    "Neurodevelopmental, disruptive, eating and substance-related disorders"
+  ],
+  "banned_topics": [
+    "Detailed psychotherapy techniques",
+    "Independent self-diagnosis",
+    "Medical treatment recommendations beyond the source"
+  ],
+  "must_include_keywords": [
+    "four Ds",
+    "deviance",
+    "distress",
+    "dysfunction",
+    "danger",
+    "maladaptive",
+    "stigma",
+    "DSM-5",
+    "ICD-10",
+    "bio-psycho-social approach",
+    "humanistic-existential model",
+    "socio-cultural model",
+    "diathesis-stress model",
+    "generalised anxiety disorder",
+    "panic disorder",
+    "phobia",
+    "separation anxiety disorder",
+    "obsession",
+    "compulsion",
+    "PTSD",
+    "somatic symptom disorder",
+    "illness anxiety disorder",
+    "conversion disorder",
+    "dissociative amnesia",
+    "dissociative identity disorder",
+    "depression",
+    "bipolar disorder",
+    "schizophrenia",
+    "delusion",
+    "hallucination",
+    "ADHD",
+    "autism spectrum disorder",
+    "intellectual disability",
+    "specific learning disorder",
+    "conduct disorder",
+    "anorexia nervosa",
+    "bulimia nervosa",
+    "substance-related disorder"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any unusual behaviour is a disorder.",
+      "correction": "Context, culture, maladaptation and the four Ds must be considered."
+    },
+    {
+      "claim": "Reading symptoms is enough to diagnose.",
+      "correction": "Diagnosis and treatment require specialised professional training."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 4.2: analyse context.",
+    "NCERT Activity 4.3 and Table 4.1: compare anxiety patterns.",
+    "NCERT Box 4.1: compare somatic and dissociative disorders.",
+    "NCERT Activity 4.5: classify delusions.",
+    "NCERT Review Questions 9–11: analyse dissociation, phobia and anxiety."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Review Questions contain Questions 1–11, followed by three Project Ideas.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

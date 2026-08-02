@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 12",
+  "subject": "Accountancy",
+  "chapter": "Accounting Ratios",
+  "central_question": "How can relationships between accounting figures be calculated and interpreted to assess a company’s liquidity, long-term solvency, operating efficiency and profitability?",
+  "in_scope_units": [
+    "Meaning, expression and interpretation of accounting ratios.",
+    "Objectives, advantages and limitations of ratio analysis.",
+    "Traditional and functional classification of ratios.",
+    "Liquidity ratios: current ratio and quick or liquid ratio.",
+    "Solvency ratios: debt-equity, debt to capital employed, proprietary, total assets to debt and interest coverage ratios.",
+    "Activity ratios: inventory, trade receivables, trade payables and net-assets or capital-employed turnover.",
+    "Profitability ratios related to revenue: gross profit, operating, operating profit and net profit ratios.",
+    "Return ratios: return on capital employed and return on shareholders’ funds.",
+    "Equity-share measures: earnings per share, book value per share, dividend payout and price-earnings ratio.",
+    "Interpretation through intra-firm, inter-firm and standard comparisons."
+  ],
+  "banned_topics": [
+    "Preparation of comparative and common-size statements, which belongs to Analysis of Financial Statements.",
+    "Preparation of a cash flow statement, which belongs to Cash Flow Statement.",
+    "Market valuation models or investment recommendations beyond the textbook ratio definitions."
+  ],
+  "must_include_keywords": [
+    "accounting ratio",
+    "ratio analysis",
+    "liquidity ratios",
+    "solvency ratios",
+    "activity ratios",
+    "profitability ratios",
+    "current ratio",
+    "current assets",
+    "current liabilities",
+    "quick ratio",
+    "quick assets",
+    "debt-equity ratio",
+    "debt to capital employed ratio",
+    "proprietary ratio",
+    "total assets to debt ratio",
+    "interest coverage ratio",
+    "inventory turnover ratio",
+    "average inventory",
+    "trade receivables turnover ratio",
+    "average collection period",
+    "trade payables turnover ratio",
+    "net assets turnover ratio",
+    "gross profit ratio",
+    "operating ratio",
+    "operating profit ratio",
+    "net profit ratio",
+    "return on capital employed",
+    "return on shareholders’ funds",
+    "earnings per share",
+    "book value per share",
+    "dividend payout ratio",
+    "price earning ratio",
+    "intra-firm comparison",
+    "inter-firm comparison",
+    "SWOT analysis"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A ratio has a fixed good or bad meaning in every industry and year.",
+      "correction": "Ratios are indicators whose meaning depends on trend, industry, accounting policies, composition and the business context."
+    },
+    {
+      "claim": "Quick assets include inventory and prepaid expenses because both are current assets.",
+      "correction": "Quick assets exclude inventory and prepaid expenses because they are not treated as immediately liquid for the quick ratio."
+    },
+    {
+      "claim": "A high inventory turnover is always favourable.",
+      "correction": "It may reflect efficiency, but can also result from low stock levels or low-margin selling; interpretation requires context."
+    },
+    {
+      "claim": "Earnings per share uses total shareholders’ funds as the denominator.",
+      "correction": "EPS divides profit available for equity shareholders by the number of equity shares."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the opening gross-profit example and Test Your Understanding–I to identify forms and purposes of ratios.",
+    "Use NCERT Illustrations 1–4 for current and quick ratios and their interrelationships.",
+    "Use the solvency illustrations in Section 5.7 to calculate debt, equity, assets and interest coverage measures.",
+    "Use NCERT Illustrations 12 onward for inventory, receivable, payable and capital-employed turnover.",
+    "Use the profitability illustrations in Section 5.9 for margins and returns.",
+    "Use the final equity-share illustration for EPS, book value, dividend payout and price-earnings ratio."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions for Practice containing Short Answer Questions 1–5, Long Answer Questions 1–4 and Numerical Questions 1–22.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

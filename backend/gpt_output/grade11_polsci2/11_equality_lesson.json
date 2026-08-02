@@ -1,0 +1,103 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Political Science",
+    "chapter": "Election and Representation",
+    "central_question": "How do constitutional election rules translate popular choice into representation while protecting free, fair and inclusive democratic competition?",
+    "in_scope_units": [
+      "The relationship between elections, direct democracy, indirect democracy and representative government.",
+      "Constitutional rules concerning voter eligibility, candidature, supervision, voting and counting.",
+      "First Past the Post electoral system and its effects on votes and seats.",
+      "Proportional Representation, party-list systems and the Single Transferable Vote used in indirect elections.",
+      "Reasons for India‘s adoption of FPTP for Lok Sabha and Assembly elections.",
+      "Reservation of constituencies for Scheduled Castes and Scheduled Tribes.",
+      "Universal adult franchise, right to contest and constitutional qualifications.",
+      "The independent Election Commission of India and its powers.",
+      "Problems in electoral competition and proposals for electoral reform."
+    ],
+    "banned_topics": [
+      "A general philosophical account of equality unrelated to elections and representation.",
+      "Detailed parliamentary law-making or executive formation except where electoral rules affect representation.",
+      "Current election results or laws not contained in the supplied source."
+    ],
+    "must_include_keywords": [
+      "elections",
+      "democracy",
+      "representation",
+      "direct democracy",
+      "indirect democracy",
+      "constituency",
+      "First Past the Post",
+      "FPTP",
+      "plurality system",
+      "Proportional Representation",
+      "PR",
+      "party list",
+      "Single Transferable Vote",
+      "STV",
+      "Rajya Sabha",
+      "Lok Sabha",
+      "vote share",
+      "seat share",
+      "accountability",
+      "stable government",
+      "reservation of constituencies",
+      "Scheduled Castes",
+      "Scheduled Tribes",
+      "universal adult franchise",
+      "right to vote",
+      "right to contest",
+      "Election Commission of India",
+      "electoral rolls",
+      "model code of conduct",
+      "free and fair elections",
+      "Chief Election Commissioner",
+      "special majority",
+      "electoral reforms",
+      "criminalisation",
+      "money power",
+      "women’s representation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every election is democratic.",
+        "correction": "Non-democratic rulers may also hold elections; democratic elections require genuine choice, fairness and representation."
+      },
+      {
+        "claim": "The FPTP winner must receive more than half of all votes.",
+        "correction": "The winner needs more votes than every rival and may win with less than a majority."
+      },
+      {
+        "claim": "In PR, voters always choose an individual constituency candidate.",
+        "correction": "In the party-list forms discussed, voters choose a party and seats are distributed in proportion to vote share."
+      },
+      {
+        "claim": "The Election Commission supervises Panchayat elections.",
+        "correction": "The Election Commission of India handles national and State legislative elections; local elections are under State Election Commissions."
+      },
+      {
+        "claim": "Reserved constituencies give some voters extra votes.",
+        "correction": "All eligible voters vote once; reservation changes who may contest, not the number or value of votes."
+      },
+      {
+        "claim": "The right to vote is described as an unrestricted Fundamental Right.",
+        "correction": "The chapter treats voting and contesting through constitutional and legal provisions, including qualifications."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT mock-election Activity comparing three methods of electing class representatives.",
+      "NCERT 1984 Lok Sabha table comparing vote shares and seat shares under FPTP.",
+      "NCERT box on Proportional Representation in Israel and the Knesset.",
+      "NCERT explanation of Single Transferable Vote for Rajya Sabha elections.",
+      "NCERT Exercise 9 comparing FPTP and PR for a diverse new country."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The ‘Exercises’ section contains Questions 1’11 on democratic elections, Election Commission functions, FPTP, PR, reservations and electoral reform."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Election and Representation\n\n## What you will learn\nYou will understand why elections are necessary in a large democracy and why merely holding an election does not make a system democratic. You will identify the basic constitutional questions settled before competition begins.\n\n## Simple explanation\nIn a small setting people may decide directly, but a large country usually governs through elected representatives. Fair representation depends on rules fixed before parties know whether those rules will help them.\n\n## Step-by-step breakdown\n- **Direct democracy**: Citizens participate directly in day-to-day decisions; the chapter points to ancient Greek city-states and Gram Sabhas as examples or approximations.\n- **Indirect democracy**: Citizens elect representatives who make major decisions and administer the country.\n- **Why elections matter**: Elections are the method by which citizens choose representatives and make government indirectly accountable.\n- **Elections can be non-democratic**: Authoritarian rulers may organise controlled elections that do not threaten their power.\n- **Constitutional rules**: A democratic constitution settles who may vote, who may contest, who supervises, how preferences are expressed and how votes produce winners.\n- **Fairness and representation**: Some rules protect free and fair competition; others determine how preferences are represented.\n\n## Worked example\nQuestion: Why should basic election rules be placed in the Constitution instead of being decided by the government before each election?\n\nAnswer:\n- The government or ruling party has an interest in rules that may preserve its own power.\n- Rules fixed in advance create a common framework accepted by competitors.\n- Constitutional status makes temporary manipulation of eligibility, supervision or counting more difficult.\n- Final answer: Election rules belong in the Constitution because democratic competition requires a neutral and stable framework no contestant may redesign for immediate advantage.\n\n## Common mistake\nDo not assume citizens in representative democracy make every policy themselves. Their primary role is to choose representatives and hold them accountable.\n\n## Quick check question\nQuestion: Can elections exist without democracy?\nAnswer: Yes. Non-democratic rulers may hold elections designed to prevent genuine competition or change of power.\nExplanation: Democratic quality depends on free choice, fair rules, impartial supervision and meaningful representation, not voting alone.\n\n## Summary\n- Large democracies rely mainly on representation.\n- Elections connect citizens to government.\n- Not all elections are democratic.\n- Constitutions establish neutral electoral rules.",
+    "Core explanation": "# Core explanation: Election and Representation\n\n## What you will learn\nYou will learn how First Past the Post works and why votes and seats can differ sharply. You will compare it with proportional representation.\n\n## Simple explanation\nDifferent counting rules can produce different winners from the same preferences. FPTP rewards the leading candidate in each constituency, while PR tries to match seat share with vote share.\n\n## Step-by-step breakdown\n- **FPTP constituencies**: The country is divided into territorial constituencies and each elects one representative.\n- **Plurality winner**: The candidate with more votes than every rival wins, even without more than half the votes.\n- **Vote-seat difference**: The 1984 example shows how a party could receive less than half the votes but win a very large majority of seats because results are counted constituency by constituency.\n- **Losing votes**: Votes for losing candidates do not produce a seat in that constituency.\n- **PR principle**: Parties receive seats broadly in proportion to the percentage of votes they obtain.\n- **Party-list variation**: Countries such as Israel treat the country as one large constituency and distribute seats among party lists.\n- **Multi-member variation**: Other countries use multi-member constituencies in which representatives from different parties may be elected.\n\n## Worked example\nQuestion: Why can a party win a much larger share of seats than its vote share under FPTP?\n\nAnswer:\n- Seats are awarded separately in each constituency rather than proportionally from national votes.\n- A candidate needs only to finish ahead of rivals, not win an absolute majority.\n- A party that narrowly leads in many constituencies can win many seats while large numbers of votes for losing candidates yield none.\n- Final answer: FPTP magnifies repeated local pluralities into seats, while losing votes do not contribute to representation.\n\n## Common mistake\nA common mistake is to call losing votes invalid. They are valid but do not help elect a representative in that constituency.\n\n## Quick check question\nQuestion: What is the defining rule of FPTP?\nAnswer: The candidate with more votes than every other candidate in a single-member constituency is declared elected.\nExplanation: The method is based on plurality, not on fifty per cent plus one.\n\n## Summary\n- FPTP elects one member per constituency.\n- Its winner needs only a plurality.\n- Vote and seat shares may differ greatly.\n- PR links seat share more closely to vote share.",
+    "Worked examples": "# Worked examples: Election and Representation\n\n## What you will learn\nYou will examine Single Transferable Vote and the reasons India adopted different systems for direct and indirect elections. You will connect design with simplicity, accountability and stability.\n\n## Simple explanation\nIndia does not use one method for every office. FPTP is used for direct constituency elections, while proportional methods are used where representation of several groups is important.\n\n## Step-by-step breakdown\n- **STV preferences**: In Rajya Sabha elections, MLAs rank candidates in order of preference.\n- **Quota and transfer**: A candidate must reach the required quota, and votes are transferred according to later preferences under the procedure described.\n- **Indirect elections**: PR with STV is used for the President, Vice-President, Rajya Sabha and Legislative Councils in the forms described.\n- **Simplicity of FPTP**: Ordinary voters can understand choosing one candidate and identifying the local winner.\n- **Local accountability**: Each constituency has a recognisable representative whom voters can approach.\n- **Stable government**: FPTP often gives the leading party or coalition more seats than its vote share, making a legislative majority more likely.\n- **Social coalition**: Candidates often need support across different local social groups to win.\n\n## Worked example\nQuestion: Why did the Constitution makers prefer FPTP for Lok Sabha elections even though PR reflects vote share more closely?\n\nAnswer:\n- The chapter emphasises the simplicity of FPTP for a large and diverse electorate.\n- It provides a clear local representative who can be held accountable.\n- It is more likely to produce a stable majority in a parliamentary system.\n- Territorial competition encourages broader local coalitions.\n- Final answer: The makers accepted less proportionality in order to secure simplicity, local accountability, coalition-building and a workable parliamentary majority.\n\n## Common mistake\nDo not assume the same electoral method must serve every institution. Different offices can require different forms of representation.\n\n## Quick check question\nQuestion: Where does India use proportional representation on a limited scale?\nAnswer: In indirect elections such as those for the President, Vice-President, Rajya Sabha and Legislative Councils.\nExplanation: These elections use preference and proportional methods rather than a single local plurality winner.\n\n## Summary\n- STV uses ranked preferences.\n- Different offices use different electoral methods.\n- FPTP is simple and constituency-based.\n- PR is used selectively for indirect representation.",
+    "Exam-style problems": "# Exam-style problems: Election and Representation\n\n## What you will learn\nYou will understand reserved constituencies, universal adult franchise and the right to contest. You will distinguish political inclusion from unequal voting power.\n\n## Simple explanation\nFormal voting equality can coexist with social exclusion from legislatures. Reservation is intended to ensure historically marginalised communities are present in representative institutions.\n\n## Step-by-step breakdown\n- **Reason for reservation**: Scheduled Castes and Scheduled Tribes could remain under-represented because of social disadvantage and local majorities.\n- **How it works**: Only a candidate belonging to the specified community may contest the reserved seat, but every eligible voter in the constituency votes.\n- **Proportional allocation**: The number of reserved constituencies is linked to the population of the community under the constitutional scheme.\n- **Delimitation**: Reserved areas are identified through the delimitation process described in the chapter.\n- **Universal adult franchise**: Adult citizens received voting rights without property, education, gender or similar social qualifications.\n- **Right to contest**: Legal qualifications and disqualifications regulate candidature within representative competition.\n\n## Worked example\nQuestion: Does reservation violate the equality of voters who do not belong to the reserved community?\n\nAnswer:\n- All eligible voters retain one vote of equal value.\n- Reservation limits the candidate pool so an under-represented community is assured a voice.\n- It addresses inequality in representation rather than granting extra votes.\n- Final answer: Reserved constituencies preserve equal voting while using candidate eligibility to correct systematic exclusion.\n\n## Common mistake\nA common mistake is to think only members of the reserved community may vote. The restriction concerns candidature, not the electorate.\n\n## Quick check question\nQuestion: Who may vote in a constituency reserved for Scheduled Castes?\nAnswer: Every eligible voter registered in that constituency, regardless of caste.\nExplanation: Reservation ensures the elected candidate belongs to the specified community; it does not exclude voters.\n\n## Summary\n- Universal adult franchise gives equal voting status.\n- Reserved constituencies promote inclusive representation.\n- All eligible voters participate in reserved constituencies.\n- Candidature remains subject to constitutional and legal rules.",
+    "Revision and recap": "# Revision and recap: Election and Representation\n\n## What you will learn\nYou will review the Election Commission, safeguards for free and fair elections and the debate over electoral reform. You will distinguish institutional independence from perfect electoral equality.\n\n## Simple explanation\nElection laws need an impartial authority capable of preparing rolls, conducting polls and enforcing rules. Yet institutions alone cannot remove every problem created by money, criminal influence or weak internal party democracy.\n\n## Step-by-step breakdown\n- **Independent Commission**: The Constitution establishes the Election Commission of India to supervise, direct and control national and State elections within its jurisdiction.\n- **Core functions**: Its work includes electoral rolls, schedules, recognition and symbols, polling arrangements, counting and the model code in the manner described.\n- **Security of tenure**: The Chief Election Commissioner has special protection from arbitrary removal.\n- **Assertive role**: The chapter describes how the Commission has increasingly used its powers to insist on fair procedures and repolling where necessary.\n- **Limits**: The Commission cannot by itself cure every weakness of parties, campaign finance or social inequality.\n- **Reform debates**: Suggested reforms concern criminalisation, money power, affidavits, internal democracy, women‘s representation and alternative electoral rules.\n\n- **Key terms to remember**: plurality system, reservation of constituencies, right to vote, model code of conduct, special majority, electoral reforms.\n\n## Worked example\nQuestion: Why is an independent Election Commission necessary even when detailed election laws exist?\n\nAnswer:\n- Rules require a neutral institution to apply them to competing parties and governments.\n- The executive in office is an interested contestant and cannot be the sole judge of fairness.\n- The Commission can organise polling and respond to violations uniformly.\n- Final answer: Election laws become credible only when administered by an institution sufficiently independent of the government and all competitors.\n\n## Common mistake\nDo not describe the Election Commission as all-powerful. It operates within constitutional and legal authority and cannot solve every political problem.\n\n## Quick check question\nQuestion: What is the Commission’s central democratic purpose?\nAnswer: To supervise and conduct elections so competition is free, fair and governed by common rules.\nExplanation: Impartial administration protects voter choice and the legitimacy of elected representatives.\n\n## Summary\n- Free and fair elections require impartial supervision.\n- The Election Commission administers major parts of the process.\n- Institutional independence needs constitutional protection.\n- Electoral reform remains necessary."
+  }
+}

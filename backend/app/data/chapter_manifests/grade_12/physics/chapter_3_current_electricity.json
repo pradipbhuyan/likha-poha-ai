@@ -1,0 +1,71 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 3: Current Electricity",
+  "central_question": "How do charge carriers produce steady current, and how are voltage, resistance, energy sources and network laws used to analyse circuits?",
+  "in_scope_units": [
+    "Electric current and current density",
+    "Currents in conductors",
+    "Ohm’s law and resistance",
+    "Drift of electrons and mobility",
+    "Resistivity and temperature dependence",
+    "Electrical energy and power",
+    "Cells, emf and internal resistance",
+    "Cells in series and parallel",
+    "Kirchhoff’s rules",
+    "Wheatstone bridge"
+  ],
+  "banned_topics": [
+    "Electrostatic capacitance from Chapter 2",
+    "Magnetic fields produced by currents from Chapter 4",
+    "Alternating-current response from Chapter 7"
+  ],
+  "must_include_keywords": [
+    "electric current",
+    "current density",
+    "drift velocity",
+    "relaxation time",
+    "mobility",
+    "Ohm’s law",
+    "resistance",
+    "resistivity",
+    "conductivity",
+    "temperature coefficient",
+    "non-ohmic device",
+    "electrical power",
+    "Joule heating",
+    "electromotive force",
+    "emf",
+    "internal resistance",
+    "terminal voltage",
+    "cells in series",
+    "cells in parallel",
+    "Kirchhoff’s junction rule",
+    "Kirchhoff’s loop rule",
+    "Wheatstone bridge"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Electrons cross a long circuit nearly at the speed of light.",
+      "correction": "The electric field is established rapidly, but electron drift speed is small."
+    },
+    {
+      "claim": "Every conductor has a constant resistance at all voltages and temperatures.",
+      "correction": "Ohm’s law holds only over ranges where physical conditions and resistance remain effectively fixed."
+    },
+    {
+      "claim": "Emf is a mechanical force.",
+      "correction": "Emf is energy supplied per unit charge and is measured in volts."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 3.9: electron drift time",
+    "NCERT Exercise 3.4: resistivity from geometry",
+    "NCERT Exercise 3.3: temperature dependence",
+    "NCERT Exercise 3.1: maximum current from a cell",
+    "NCERT Exercise 3.2: terminal voltage and load resistance"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES begin at 3.1 and cover cells, resistivity, temperature, drift and circuit networks.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

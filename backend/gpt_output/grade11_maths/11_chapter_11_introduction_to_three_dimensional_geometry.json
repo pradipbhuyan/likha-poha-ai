@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 11: Introduction to Three Dimensional Geometry",
+    "central_question": "How can we locate points in three-dimensional space and use their coordinates to measure distances and solve basic geometric problems?",
+    "in_scope_units": [
+      "Introduction: why a point in space requires three coordinates rather than two.",
+      "Coordinate axes and coordinate planes in three-dimensional space: the rectangular coordinate system, origin, signs and eight octants.",
+      "Coordinates of a point in space: ordered triplets, locating a point, coordinates on axes and planes, and octant identification.",
+      "Distance between two points: derivation and use of the three-dimensional distance formula and distance from the origin.",
+      "Applications of distance and coordinates: collinearity, triangle and parallelogram checks, loci defined by distances, and centroid-based problems.",
+      "Summary and historical note: key facts and the development of three-dimensional coordinate geometry."
+    ],
+    "banned_topics": [
+      "Direction cosines and direction ratios of a line",
+      "Equations of lines and planes in space",
+      "Vector algebra and vector products",
+      "Section formula as a separate general theorem",
+      "Angles between lines or planes",
+      "Sphere equations beyond the distance-based loci explicitly given in this chapter"
+    ],
+    "must_include_keywords": [
+      "three-dimensional space",
+      "rectangular coordinate system",
+      "x-axis",
+      "y-axis",
+      "z-axis",
+      "origin",
+      "XY-plane",
+      "YZ-plane",
+      "ZX-plane",
+      "mutually perpendicular",
+      "coordinate planes",
+      "octants",
+      "ordered triplet",
+      "P(x, y, z)",
+      "one-to-one correspondence",
+      "perpendicular distance",
+      "sign of coordinates",
+      "first octant",
+      "second octant",
+      "sixth octant",
+      "point on an axis",
+      "point in a coordinate plane",
+      "distance formula",
+      "distance from the origin",
+      "rectangular parallelepiped",
+      "Pythagoras theorem",
+      "collinear points",
+      "right-angled triangle",
+      "isosceles triangle",
+      "parallelogram",
+      "equal distances",
+      "locus",
+      "centroid"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The coordinate x is the distance of P from the XY-plane.",
+        "correction": "For P(x, y, z), x, y and z are the directed perpendicular distances from the YZ-plane, ZX-plane and XY-plane, respectively."
+      },
+      {
+        "claim": "A point in the XY-plane may have any value of z.",
+        "correction": "Every point in the XY-plane has z-coordinate 0 and is of the form (x, y, 0)."
+      },
+      {
+        "claim": "The octant depends on the magnitudes of x, y and z.",
+        "correction": "The octant is determined only by the signs of x, y and z; their magnitudes do not affect the octant."
+      },
+      {
+        "claim": "The distance formula is the sum of coordinate differences.",
+        "correction": "The distance is the square root of the sum of the squares of the three coordinate differences."
+      },
+      {
+        "claim": "If three pairwise distances are different, the points cannot be collinear.",
+        "correction": "Three points are collinear when the largest of the three distances equals the sum of the other two, as in NCERT Example 4."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Example 1 to identify the missing coordinate of a point lying on a face parallel to a coordinate plane.",
+      "Use NCERT Example 2 and Exercise 11.1 Q3 to practise octant identification from coordinate signs.",
+      "Use NCERT Example 3 to apply the distance formula directly.",
+      "Use NCERT Example 4 and Exercise 11.2 Q2 to test collinearity through distances.",
+      "Use NCERT Example 5 and Exercise 11.2 Q3 to classify triangles and verify a parallelogram.",
+      "Finish with NCERT Examples 6, 8 and 9 for distance loci and a centroid-based coordinate problem."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 11.1, Exercise 11.2, and the four-question Miscellaneous Exercise on Chapter 11."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Introduction to Three Dimensional Geometry\n\n## What you will learn\nYou will understand why three numbers are needed to locate a point in space. You will also learn the three mutually perpendicular coordinate axes, the three coordinate planes, the origin and the eight octants.\n\n## Simple explanation\nA point on a sheet of paper needs two coordinates, but a point in a room also needs height. Three mutually perpendicular planes provide three directed distances, so every point in space is represented by an ordered triplet (x, y, z).\n\n## Step-by-step breakdown\n- **Need for three coordinates**: Two coordinates locate a point in a plane, while a point in space needs a third coordinate to record its directed height or depth relative to a third perpendicular plane.\n- **Coordinate axes**: The mutually perpendicular lines X′OX, Y′OY and Z′OZ are called the x-axis, y-axis and z-axis.\n- **Coordinate planes**: The pairs of axes determine the XY-plane, YZ-plane and ZX-plane.\n- **Origin**: The three axes and three coordinate planes meet at O, whose coordinates are (0, 0, 0).\n- **Positive and negative directions**: Upward along OZ, rightward along OY and forward along OX are positive; the opposite directions are negative.\n- **Octants**: The three coordinate planes divide space into eight regions called octants, numbered I to VIII.\n\n## Worked example\nQuestion: Using NCERT Exercise 11.1 Q4, fill in: (i) the plane determined by the x-axis and y-axis, (ii) the general form of a point in that plane, and (iii) the number of octants.\n\nSolution:\n- The x-axis and y-axis together determine the XY-plane.\n- Any point in the XY-plane has zero perpendicular distance from that plane, so its z-coordinate is 0.\n- The coordinate planes divide space into eight octants.\n- Final answer: (i) XY-plane, (ii) (x, y, 0), (iii) 8.\n\n## Common mistake\nDo not think of the z-axis as being contained in the XY-plane. It is perpendicular to the XY-plane and passes through the origin.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 11.1 Q1, what are the y-coordinate and z-coordinate of a point on the x-axis?\nAnswer: Both are 0; the point has the form (x, 0, 0).\nExplanation: A point on the x-axis has no displacement along the y-direction or z-direction, so the second and third coordinates vanish.\n\n## Summary\n- A point in space is represented by three coordinates.\n- The x, y and z axes are mutually perpendicular.\n- The coordinate planes are XY, YZ and ZX.\n- Their common point is the origin (0, 0, 0).\n- The coordinate planes divide space into eight octants.",
+    "Core explanation": "# Core explanation: Introduction to Three Dimensional Geometry\n\n## What you will learn\nYou will learn how an ordered triplet is attached to a point in space and how a point is constructed from a given triplet. You will also use zero coordinates and sign patterns to identify axes, planes and octants.\n\n## Simple explanation\nFor P(x, y, z), each coordinate is a directed perpendicular distance from a coordinate plane: x from the YZ-plane, y from the ZX-plane and z from the XY-plane. The order matters because each number refers to a different direction.\n\n## Step-by-step breakdown\n- **Constructing coordinates from a point**: Drop a perpendicular from P to the XY-plane, locate its projection M, and use directed lengths along the coordinate directions to obtain x, y and z.\n- **Constructing a point from coordinates**: Locate (x, y) in the XY-plane and then move perpendicular to that plane through the directed distance z.\n- **One-to-one correspondence**: Every point in space determines exactly one ordered triplet of real numbers, and every ordered triplet determines exactly one point.\n- **Distances from planes**: In P(x, y, z), x, y and z correspond to directed perpendicular distances from the YZ, ZX and XY planes respectively.\n- **Points on axes**: Points on the x, y and z axes have forms (x, 0, 0), (0, y, 0) and (0, 0, z).\n- **Points in planes**: A point in the YZ-plane has x = 0, in the ZX-plane has y = 0, and in the XY-plane has z = 0.\n- **Octant signs**: Octants I to IV have z positive; octants V to VIII have z negative. Within each group, the signs of x and y distinguish the octants.\n\n## Worked example\nQuestion: Using NCERT Example 2, identify the octants of the points (−3, 1, 2) and (−3, 1, −2).\n\nSolution:\n- For (−3, 1, 2), the sign pattern is (−, +, +).\n- Table 11.1 assigns the sign pattern (−, +, +) to octant II.\n- For (−3, 1, −2), the sign pattern is (−, +, −).\n- Table 11.1 assigns the sign pattern (−, +, −) to octant VI.\n- Final answer: (−3, 1, 2) lies in octant II and (−3, 1, −2) lies in octant VI.\n\n## Common mistake\nDo not identify an octant when one or more coordinates are zero. Such a point lies on a coordinate plane, an axis or the origin rather than strictly inside an octant.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 11.1 Q2, what can be said about the y-coordinate of a point in the XZ-plane?\nAnswer: Its y-coordinate is 0.\nExplanation: The XZ-plane is the same coordinate plane as the ZX-plane, and y measures directed distance from that plane; hence y = 0.\n\n## Summary\n- Coordinates are always written in the ordered form (x, y, z).\n- x, y and z correspond to the YZ, ZX and XY planes respectively.\n- A zero coordinate places a point on the corresponding coordinate plane.\n- The sign pattern of three non-zero coordinates identifies the octant.\n- Points and ordered triplets are in one-to-one correspondence.",
+    "Worked examples": "# Worked examples: Introduction to Three Dimensional Geometry\n\n## What you will learn\nYou will derive and apply the distance formula in three dimensions. You will also see how the formula reduces to the distance of a point from the origin.\n\n## Simple explanation\nThe displacement from one point to another has changes in three mutually perpendicular directions. Applying the Pythagoras theorem twice gives one formula that combines all three coordinate differences.\n\n## Step-by-step breakdown\n- **Two points**: Let P(x₁, y₁, z₁) and Q(x₂, y₂, z₂) be points in a rectangular coordinate system.\n- **Rectangular parallelepiped**: Planes through P and Q parallel to the coordinate planes form a rectangular parallelepiped with PQ as a diagonal.\n- **First right triangle**: The square of PQ equals the square of one edge plus the square of a face diagonal.\n- **Second right triangle**: The square of the face diagonal equals the sum of the squares of the remaining two perpendicular edge differences.\n- **Distance formula**: PQ = √[(x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²].\n- **Distance from origin**: For O(0, 0, 0) and Q(x, y, z), OQ = √(x² + y² + z²).\n- **Order independence**: Reversing the subtraction does not change the distance because each difference is squared.\n\n## Worked example\nQuestion: Using NCERT Example 3, find the distance between P(1, −3, 4) and Q(−4, 1, 2).\n\nSolution:\n- Substitute x₁ = 1, y₁ = −3, z₁ = 4 and x₂ = −4, y₂ = 1, z₂ = 2.\n- PQ = √[(−4 − 1)² + (1 − (−3))² + (2 − 4)²].\n- PQ = √[25 + 16 + 4] = √45.\n- Simplify √45 = √(9 × 5) = 3√5.\n- Final answer: PQ = 3√5 units.\n\n## Common mistake\nA frequent sign error is to write 1 − 3 instead of 1 − (−3). Always place negative coordinates inside brackets before subtracting.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 11.2 Q1(i), find the distance between (2, 3, 5) and (4, 3, 1).\nAnswer: The distance is 2√5 units.\nExplanation: The coordinate differences are 2, 0 and −4, so the distance is √(2² + 0² + (−4)²) = √20 = 2√5.\n\n## Summary\n- Three-dimensional distance extends the two-dimensional Pythagorean formula.\n- Square each coordinate difference before adding.\n- Distance is always non-negative.\n- The distance from the origin is √(x² + y² + z²).\n- Brackets prevent mistakes when coordinates are negative.",
+    "Exam-style problems": "# Exam-style problems: Introduction to Three Dimensional Geometry\n\n## What you will learn\nYou will use distances to test collinearity, classify triangles and verify quadrilaterals. You will also translate conditions involving distances into equations of loci.\n\n## Simple explanation\nCoordinate geometry turns geometric statements into equalities between calculated lengths. The main skill is deciding which equality represents the property being tested, then applying the distance formula accurately.\n\n## Step-by-step breakdown\n- **Collinearity by distances**: If one of three points lies between the other two, the largest pairwise distance equals the sum of the other two.\n- **Right-angled triangle test**: For the largest side c, check whether c² = a² + b². If not, the triangle is not right-angled.\n- **Isosceles triangle test**: Compute the three squared side lengths and check whether any two are equal.\n- **Parallelogram test**: Opposite sides may be shown equal, or the diagonals may be shown to bisect each other.\n- **Rectangle test**: A parallelogram is a rectangle if its diagonals are equal; unequal diagonals prove it is not a rectangle.\n- **Equidistant locus**: For P(x, y, z), write PA = PB, square both sides and simplify.\n- **Sum-of-squares locus**: Conditions such as PA² + PB² = constant are converted by expanding the two squared-distance expressions.\n\n## Worked example\nQuestion: Using NCERT Exercise 11.2 Q4, find the equation of the set of points equidistant from A(1, 2, 3) and B(3, 2, −1).\n\nSolution:\n- Let P(x, y, z) be any point in the required set.\n- Equidistance gives PA = PB, so PA² = PB².\n- Write (x − 1)² + (y − 2)² + (z − 3)² = (x − 3)² + (y − 2)² + (z + 1)².\n- Cancel the common (y − 2)² terms and expand the remaining squares.\n- x² − 2x + 1 + z² − 6z + 9 = x² − 6x + 9 + z² + 2z + 1.\n- Simplification gives 4x − 8z = 0.\n- Final answer: x − 2z = 0.\n\n## Common mistake\nDo not keep square roots when two distances are equal. Squaring both sides removes the roots without changing the equality because distances are non-negative.\n\n## Quick check question\nQuestion: Based on NCERT Example 4, what distance relation proves that P(−2, 3, 5), Q(1, 2, 3) and R(7, 0, −1) are collinear?\nAnswer: PQ + QR = PR, namely √14 + 2√14 = 3√14.\nExplanation: The equality shows that Q lies on the straight segment joining P and R, so the three points are collinear.\n\n## Summary\n- Match each geometric property with the correct length relation.\n- Squared distances are often sufficient for triangle and quadrilateral checks.\n- Collinearity can be verified through an additive distance relation.\n- Equidistant loci are obtained from PA² = PB².\n- Expand carefully and cancel equal terms before simplifying.",
+    "Revision and recap": "# Revision and recap: Introduction to Three Dimensional Geometry\n\n## What you will learn\nYou will consolidate coordinate forms, octant signs, distance applications and centroid calculations. You will also connect the chapter's ideas through mixed NCERT-style reasoning.\n\n## Simple explanation\nMost problems in this chapter follow a short decision path: identify where the point lies, write the correct coordinate or distance relation, and simplify. A final check of signs and zero coordinates catches many mistakes.\n\n## Step-by-step breakdown\n- **Coordinate checklist**: On the x-axis use (x, 0, 0); in the YZ-plane use (0, y, z); at the origin use (0, 0, 0).\n- **Octant checklist**: Use the ordered sign pattern of (x, y, z), not the names of axes seen in a diagram.\n- **Distance checklist**: Subtract corresponding coordinates, square, add, and take the positive square root.\n- **Geometry checklist**: Use side-length relations for collinearity and triangle type; use opposite sides or diagonal properties for parallelograms.\n- **Locus checklist**: Represent the moving point as P(x, y, z), express the stated distance condition, then expand.\n- **Centroid**: For triangle vertices (x₁, y₁, z₁), (x₂, y₂, z₂), (x₃, y₃, z₃), the centroid coordinates are the averages of corresponding coordinates; this relation is used in NCERT Example 9 and the Miscellaneous Exercise.\n\n## Worked example\nQuestion: Using NCERT Example 9, the centroid of triangle ABC is (1, 1, 1), A is (3, −5, 7) and B is (−1, 7, −6). Find C.\n\nSolution:\n- Let C = (x, y, z).\n- From the x-coordinate of the centroid, (3 − 1 + x)/3 = 1, so x = 1.\n- From the y-coordinate, (−5 + 7 + y)/3 = 1, so y = 1.\n- From the z-coordinate, (7 − 6 + z)/3 = 1, so z = 2.\n- Final answer: C = (1, 1, 2).\n\n## Common mistake\nDo not average all nine coordinate numbers together. Average x-coordinates, y-coordinates and z-coordinates separately.\n\n## Quick check question\nQuestion: Based on the Miscellaneous Exercise Q3, if the origin is the centroid of P(2a, 2, 6), Q(−4, 3b, −10) and R(8, 14, 2c), what are a, b and c?\nAnswer: a = −2, b = −16/3 and c = 2.\nExplanation: The sums of the corresponding coordinates must each be 0: 2a − 4 + 8 = 0, 2 + 3b + 14 = 0, and 6 − 10 + 2c = 0.\n\n## Summary\n- Zero coordinates identify coordinate planes and axes.\n- Coordinate signs identify octants only when all coordinates are non-zero.\n- The distance formula supports collinearity, triangle and quadrilateral tests.\n- Locus equations come directly from stated distance conditions.\n- Centroid coordinates are component-wise averages.\n- A final sign and substitution check improves accuracy."
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 12",
+  "subject": "Business Studies",
+  "chapter": "Controlling",
+  "central_question": "How does controlling compare actual performance with plans and guide corrective action so that organisational goals are achieved?",
+  "in_scope_units": [
+    "Meaning, importance and limitations",
+    "Planning-control relationship",
+    "Controlling process",
+    "Critical point and exception control",
+    "Traditional and modern techniques"
+  ],
+  "banned_topics": [
+    "Detailed planning types",
+    "Organisation structures",
+    "Staffing methods",
+    "Motivation theories"
+  ],
+  "must_include_keywords": [
+    "controlling",
+    "performance standards",
+    "actual performance",
+    "deviation",
+    "corrective action",
+    "goal-oriented",
+    "pervasive",
+    "continuous",
+    "organisational goals",
+    "accuracy of standards",
+    "efficient use of resources",
+    "employee motivation",
+    "order and discipline",
+    "coordination",
+    "limitations of controlling",
+    "planning and controlling",
+    "quantitative standards",
+    "qualitative standards",
+    "measurement",
+    "comparison",
+    "critical point control",
+    "key result areas",
+    "management by exception",
+    "personal observation",
+    "statistical reports",
+    "break-even analysis",
+    "budgetary control",
+    "return on investment",
+    "ratio analysis",
+    "responsibility accounting",
+    "management audit",
+    "PERT",
+    "CPM",
+    "management information system"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Controlling means punishing employees.",
+      "correction": "It measures performance against standards and supports corrective action."
+    },
+    {
+      "claim": "Controlling is an isolated final function.",
+      "correction": "It feeds information back to planning."
+    },
+    {
+      "claim": "Every activity should receive equal control attention.",
+      "correction": "Critical points and significant deviations receive priority."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Very Short Answer Type 1",
+    "NCERT Short Answer Type 1",
+    "NCERT Long Answer Type 1",
+    "NCERT Short Answer Type 2",
+    "NCERT Long Answer Type 2"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Exercises contain Very Short Answer questions 1-5, Short Answer questions 1-4 and Long Answer questions 1-6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

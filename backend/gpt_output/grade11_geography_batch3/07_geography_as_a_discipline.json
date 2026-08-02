@@ -1,0 +1,99 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Geography as a Discipline",
+    "central_question": "How does geography explain spatial variation and integrate physical and human phenomena to understand the earth as the home of people?",
+    "in_scope_units": [
+      "Purpose, meaning and scope of geography.",
+      "Areal differentiation, causal relationships and nature–human interaction.",
+      "The questions what, where and why and spatial organisation.",
+      "Geography as an integrating discipline.",
+      "Systematic and regional approaches and branches.",
+      "Methods, physical geography and sustainable development."
+    ],
+    "banned_topics": [
+      "Detailed Indian boundaries, which belong to India — Location.",
+      "Detailed monsoon mechanisms, which belong to Climate.",
+      "Detailed landform processes, which belong to Geomorphic Processes."
+    ],
+    "must_include_keywords": [
+      "geography",
+      "Eratosthenes",
+      "geo",
+      "graphos",
+      "areal differentiation",
+      "space",
+      "time",
+      "cause and effect",
+      "what",
+      "where",
+      "why",
+      "nature–human interaction",
+      "adaptation",
+      "modification",
+      "technology",
+      "spatial organisation",
+      "spatial integration",
+      "integrating discipline",
+      "spatial synthesis",
+      "temporal synthesis",
+      "interdependence",
+      "systematic approach",
+      "regional approach",
+      "Alexander von Humboldt",
+      "Karl Ritter",
+      "physical geography",
+      "human geography",
+      "biogeography",
+      "geomorphology",
+      "climatology",
+      "hydrology",
+      "soil geography",
+      "cartography",
+      "remote sensing",
+      "GIS",
+      "GPS",
+      "lithosphere",
+      "atmosphere",
+      "hydrosphere",
+      "biosphere"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Geography only lists places and physical features.",
+        "correction": "It explains distribution, location, association and causal relationships."
+      },
+      {
+        "claim": "Geography belongs only to natural science.",
+        "correction": "It integrates natural and social sciences."
+      },
+      {
+        "claim": "What and where are sufficient for scientific geography.",
+        "correction": "The chapter emphasises why for causal explanation."
+      },
+      {
+        "claim": "Systematic and regional approaches are identical.",
+        "correction": "One studies a phenomenon globally; the other studies many phenomena within a region."
+      },
+      {
+        "claim": "Physical geography has no human relevance.",
+        "correction": "Landforms, climate, water, soils and ecosystems influence resources and development."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise 1(iv) to identify why as the cause–effect question.",
+      "Use Exercise 2(i) to decide whether cultural features belong in geography.",
+      "Use Exercise 3(i) to explain areal differentiation.",
+      "Use Exercise 3(ii) to integrate geography with history, civics and economics."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 1(i–v), 2(i–v), 3(i–ii), and a three-part Project Work on forests."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Geography as a Discipline\n\n## What you will learn\nYou will understand why geography is studied and how the term is defined.\n\n## Simple explanation\nGeography studies the earth as the home of people and investigates physical and cultural variation across space and time.\n\n## Step-by-step breakdown\n- **Why study geography**: Human life depends on resources, weather, technology and surroundings.\n- **Meaning**: Geo means earth and graphos means description.\n- **Eratosthenes**: The chapter credits him with coining the term geography.\n- **Areal differentiation**: Geography studies variations over the earth’s surface.\n- **Dynamic character**: Physical and human phenomena change through time.\n- **Skills**: Maps, GIS and computer cartography support geographical understanding.\n\n## Worked example\nQuestion: Why is geography more than a description of the earth?\n\nAnswer:\n- The chapter says geographers study variation, association and causes, not only feature names and locations.\n- Description identifies features; geographical reasoning explains patterns and change.\n- Final answer: Geography is explanatory and integrative because it studies spatial relationships and processes.\n\n## Common mistake\nDo not stop at the literal meaning of the word geography.\n\n## Quick check question\nQuestion: Who coined the term geography?\nAnswer: Eratosthenes.\nExplanation: The chapter derives the term from the Greek roots geo and graphos.\n\n## Summary\n- Geography studies earth as the home of people.\n- It covers physical and cultural variation.\n- Areal differentiation is central.\n- Modern tools support spatial study.",
+    "Core explanation": "# Core explanation: Geography as a Discipline\n\n## What you will learn\nYou will examine nature–human interaction and the questions what, where and why.\n\n## Simple explanation\nNature influences life, while human beings modify nature through technology. Geography studies this two-way interaction in organised space.\n\n## Step-by-step breakdown\n- **Nature’s influence**: Food, clothing, shelter and occupation reflect environmental conditions.\n- **Human modification**: Technology expands the ability to use and transform resources.\n- **What**: This question identifies features and patterns.\n- **Where**: This question locates their distribution.\n- **Why**: This question explains causal relationships.\n- **Spatial organisation**: Routes and nodes such as transport links and settlements integrate space.\n\n## Worked example\nQuestion: Why is the question why essential to scientific geography?\n\nAnswer:\n- The chapter says what and where provide inventory and location, while why explains causes and processes.\n- Explanation converts an observed pattern into geographical understanding.\n- Final answer: Why makes geography analytical by connecting spatial patterns with their causes.\n\n## Common mistake\nTechnology does not make people independent of nature.\n\n## Quick check question\nQuestion: Which question is related to cause and effect?\nAnswer: Why?\nExplanation: It asks for the process or relationship that explains a pattern.\n\n## Summary\n- Nature and humans influence each other.\n- What identifies and where locates.\n- Why explains.\n- Transport and communication organise space.",
+    "Worked examples": "# Worked examples: Geography as a Discipline\n\n## What you will learn\nYou will understand geography as a discipline of synthesis linked with history and other sciences.\n\n## Simple explanation\nGeographical phenomena are interconnected, so geography combines findings from natural and social disciplines in spatial perspective.\n\n## Step-by-step breakdown\n- **Spatial synthesis**: Geography integrates phenomena across space.\n- **Temporal synthesis**: History interprets change through time.\n- **Interdependence**: The world is treated as a connected system.\n- **Natural sciences**: Geology, pedology, oceanography, botany, zoology and meteorology contribute.\n- **Social sciences**: Economics, history, sociology, political science and anthropology connect with geography.\n- **Historical role**: Mountains, passes, seas, distance and navigation influenced defence, contact and colonisation.\n\n## Worked example\nQuestion: How can a historical event be interpreted geographically?\n\nAnswer:\n- The chapter shows that barriers, routes, distance, sea access and technology affected migration, defence and colonial expansion.\n- Historical outcomes are partly shaped by spatial relationships.\n- Final answer: A geographical interpretation explains how location, terrain and accessibility influenced the event.\n\n## Common mistake\nIntegration does not mean geography replaces other disciplines.\n\n## Quick check question\nQuestion: Which discipline attempts temporal synthesis?\nAnswer: History.\nExplanation: The chapter contrasts history’s temporal synthesis with geography’s spatial synthesis.\n\n## Summary\n- Geography is an integrating discipline.\n- It connects natural and social sciences.\n- Spatial and temporal views complement each other.\n- Geographical factors influence history.",
+    "Exam-style problems": "# Exam-style problems: Geography as a Discipline\n\n## What you will learn\nYou will compare systematic and regional approaches and organise the branches of geography.\n\n## Simple explanation\nSystematic geography studies one phenomenon across the world; regional geography studies many phenomena together in one region.\n\n## Step-by-step breakdown\n- **Systematic approach**: Alexander von Humboldt is associated with global study of phenomena and spatial types.\n- **Regional approach**: Karl Ritter is associated with holistic study of regions.\n- **Physical branches**: Geomorphology, climatology, hydrology and soil geography are included.\n- **Human branches**: Social, population, settlement, economic, historical and political geography are included.\n- **Biogeography**: Plant geography, zoogeography, ecology and environmental geography form the interface.\n- **Regional fields**: Regional studies, planning, development and analysis operate at different scales.\n\n## Worked example\nQuestion: How would a study of monsoon forests differ under systematic and regional approaches?\n\nAnswer:\n- The chapter says systematic study compares one phenomenon widely, while regional study examines many phenomena within one region.\n- The first would compare forest patterns; the second would connect forests with relief, climate and people in one region.\n- Final answer: The approaches differ in whether the organising focus is a phenomenon or a region.\n\n## Common mistake\nPhysical and human geography are not completely isolated branches.\n\n## Quick check question\nQuestion: Who is associated with the regional approach?\nAnswer: Karl Ritter.\nExplanation: The chapter contrasts Ritter with Humboldt’s systematic approach.\n\n## Summary\n- The two approaches organise knowledge differently.\n- Physical and human geography have several branches.\n- Biogeography forms an interface.\n- Regional work supports planning.",
+    "Revision and recap": "# Revision and recap: Geography as a Discipline\n\n## What you will learn\nYou will review geographical methods and the importance of physical geography.\n\n## Simple explanation\nMaps, fieldwork and geospatial technology strengthen analysis, while physical geography explains the environmental base of resources and development.\n\n## Step-by-step breakdown\n- **Methods**: Cartography, quantitative techniques, field surveys, remote sensing, GIS and GPS are used.\n- **Lithosphere**: Landforms and drainage provide sites and resources.\n- **Atmosphere**: Weather and climate affect crops, houses, clothing and vegetation.\n- **Hydrosphere**: Oceans, rivers and lakes provide water, food, transport and minerals.\n- **Biosphere and soils**: Life forms, ecological balance and soil fertility support ecosystems and agriculture.\n- **Sustainability**: Rapid resource use can create ecological imbalance.\n\n## Worked example\nQuestion: Why is physical geography important for sustainable development?\n\nAnswer:\n- The chapter links land, climate, water, soil and ecosystems with resources and warns about ecological imbalance.\n- Development decisions require knowledge of environmental capacity and interdependence.\n- Final answer: Physical geography helps society use resources while protecting the systems that sustain them.\n\n## Common mistake\nGIS and GPS support, but do not replace, geographical reasoning.\n\n## Quick check question\nQuestion: Which four major spheres are studied in physical geography?\nAnswer: Lithosphere, atmosphere, hydrosphere and biosphere.\nExplanation: The chapter also discusses soils as an important connecting resource.\n\n## Summary\n- Geography uses traditional and digital methods.\n- Physical systems support human activity.\n- Resource use may create imbalance.\n- Understanding supports sustainability."
+  }
+}

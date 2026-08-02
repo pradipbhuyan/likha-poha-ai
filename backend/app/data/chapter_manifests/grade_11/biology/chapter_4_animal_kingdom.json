@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 4: Animal Kingdom",
+  "central_question": "How can animals be classified using fundamental body-plan features and the distinctive characters of major non-chordate and chordate groups?",
+  "in_scope_units": [
+    "Basis of classification: levels of organisation, digestive and circulatory patterns, symmetry, germ layers, coelom, segmentation, and notochord.",
+    "Porifera, Cnidaria, Ctenophora, Platyhelminthes, and Aschelminthes.",
+    "Annelida, Arthropoda, Mollusca, Echinodermata, and Hemichordata.",
+    "Chordata, comparison with non-chordates, and the subphyla Urochordata, Cephalochordata, and Vertebrata.",
+    "Vertebrate classification into Cyclostomata, Chondrichthyes, Osteichthyes, Amphibia, Reptilia, Aves, and Mammalia."
+  ],
+  "banned_topics": [
+    "Detailed anatomy and physiology of individual animal species",
+    "Human organ-system physiology",
+    "Evolutionary genetics and cladistic reconstruction",
+    "Ecological population and community processes"
+  ],
+  "must_include_keywords": [
+    "cellular level",
+    "tissue level",
+    "organ level",
+    "organ-system level",
+    "radial symmetry",
+    "bilateral symmetry",
+    "diploblastic",
+    "triploblastic",
+    "acoelomate",
+    "pseudocoelomate",
+    "coelomate",
+    "metamerism",
+    "notochord",
+    "Porifera",
+    "choanocyte",
+    "Cnidaria",
+    "cnidoblast",
+    "Ctenophora",
+    "comb plate",
+    "Platyhelminthes",
+    "flame cell",
+    "Aschelminthes",
+    "Annelida",
+    "Arthropoda",
+    "Mollusca",
+    "radula",
+    "Echinodermata",
+    "water vascular system",
+    "Hemichordata",
+    "Chordata",
+    "dorsal hollow nerve cord",
+    "Cyclostomata",
+    "Chondrichthyes",
+    "Osteichthyes",
+    "Amphibia",
+    "Reptilia",
+    "Aves",
+    "Mammalia"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All multicellular animals have organ-system organisation.",
+      "correction": "Sponges have cellular organisation, cnidarians and ctenophores have tissue organisation, and higher groups show organ or organ-system levels."
+    },
+    {
+      "claim": "Radial symmetry means only one plane divides the body into equal halves.",
+      "correction": "Radial symmetry permits several planes through the central axis; bilateral symmetry permits one principal plane."
+    },
+    {
+      "claim": "A pseudocoelom is completely lined by mesoderm.",
+      "correction": "A true coelom is mesoderm-lined; a pseudocoelom is not fully lined by mesoderm."
+    },
+    {
+      "claim": "All chordates are vertebrates.",
+      "correction": "All vertebrates are chordates, but urochordates and cephalochordates are chordates without a vertebral column."
+    },
+    {
+      "claim": "Adult echinoderms and their larvae have the same symmetry.",
+      "correction": "Adults are radially symmetrical, whereas larvae are bilaterally symmetrical."
+    },
+    {
+      "claim": "Every mammal gives birth to live young.",
+      "correction": "Most mammals are viviparous, but Ornithorhynchus is an oviparous exception."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercises 1–3: classify a specimen using body-plan features, especially coelom.",
+    "NCERT Exercise 8: identify Echinodermata from the water vascular system.",
+    "NCERT Exercise 9: justify why all vertebrates are chordates but not all chordates are vertebrates.",
+    "NCERT Exercises 10–11: connect air bladder and avian flight modifications to vertebrate classes.",
+    "NCERT Exercises 13–14: identify first metameric segmentation and match operculum, parapodia, scales, comb plates, radula, hairs, choanocytes, and gill slits."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–15 for body-plan classification, phylum characters, chordates, vertebrates, and parasite examples.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

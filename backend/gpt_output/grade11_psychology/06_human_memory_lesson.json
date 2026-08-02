@@ -1,0 +1,109 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Psychology",
+    "chapter": "Human Memory",
+    "central_question": "How is information encoded, retained and retrieved through different memory systems, why does forgetting occur and how can memory improve?",
+    "in_scope_units": [
+      "Encoding, storage and retrieval.",
+      "Atkinson and Shiffrin’s information-processing stage model.",
+      "Sensory, short-term and long-term memory.",
+      "Working memory and its components.",
+      "Attention, maintenance rehearsal, chunking and elaborative rehearsal.",
+      "Levels of processing.",
+      "Declarative, procedural, episodic and semantic memory.",
+      "Flashbulb, autobiographical and implicit memory.",
+      "Recall, recognition, sentence verification and priming.",
+      "Forgetting curve and trace decay, interference and retrieval failure.",
+      "Proactive and retroactive interference and repressed memories.",
+      "Mnemonics, organisation, deep processing, retrieval cues and PQRST."
+    ],
+    "banned_topics": [
+      "Detailed conditioning procedures, which belong to Learning.",
+      "Clinical diagnosis and treatment of amnesia beyond the chapter’s examples."
+    ],
+    "must_include_keywords": [
+      "memory",
+      "encoding",
+      "storage",
+      "retrieval",
+      "Hermann Ebbinghaus",
+      "information-processing approach",
+      "Atkinson and Shiffrin",
+      "stage model",
+      "sensory memory",
+      "iconic memory",
+      "echoic memory",
+      "short-term memory",
+      "long-term memory",
+      "working memory",
+      "Baddeley",
+      "phonological loop",
+      "visuospatial sketchpad",
+      "central executive",
+      "maintenance rehearsal",
+      "chunking",
+      "elaborative rehearsal",
+      "levels of processing",
+      "Craik and Lockhart",
+      "structural processing",
+      "phonetic processing",
+      "semantic processing",
+      "declarative memory",
+      "procedural memory",
+      "episodic memory",
+      "semantic memory",
+      "flashbulb memory",
+      "implicit memory",
+      "recall",
+      "recognition",
+      "priming",
+      "trace decay",
+      "interference",
+      "proactive interference",
+      "retroactive interference",
+      "retrieval cues",
+      "mnemonics",
+      "keyword method",
+      "method of loci",
+      "PQRST"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Memory is one storage box.",
+        "correction": "The chapter presents several processes, systems and long-term memory types."
+      },
+      {
+        "claim": "Short-term memory is passive storage.",
+        "correction": "Working memory actively manipulates information."
+      },
+      {
+        "claim": "Rote repetition always gives the best retention.",
+        "correction": "Semantic and elaborative processing creates stronger associations."
+      },
+      {
+        "claim": "Forgetting always means a trace disappeared.",
+        "correction": "Interference or missing retrieval cues may make stored information inaccessible."
+      },
+      {
+        "claim": "Recognition and recall are the same.",
+        "correction": "Recall generates information; recognition identifies previously encountered items."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Review Question 1 on encoding, storage and retrieval.",
+      "NCERT Review Question 3 on rehearsal.",
+      "NCERT Review Question 4 on long-term memory types.",
+      "NCERT Review Question 6 on forgetting.",
+      "NCERT Review Question 7 on memory improvement."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–7 and one Project Idea."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Human Memory\n\n## What you will learn\nYou will define encoding, storage and retrieval and compare sensory, short-term and long-term memory.\n\n## Simple explanation\nInformation must be represented, retained and brought back into awareness before it can be used.\n\n## Step-by-step breakdown\n- **Encoding**: Recording incoming information in a usable form.\n- **Storage**: Holding encoded information over time.\n- **Retrieval**: Recovering stored information into awareness.\n- **Sensory memory**: Large capacity, near-exact input and duration under a second.\n- **Short-term memory**: Small amount held for roughly thirty seconds or less without rehearsal.\n- **Long-term memory**: Very large, relatively permanent store.\n- **Stage model**: Atkinson and Shiffrin proposed linked stores and control processes.\n\n## Worked example\nQuestion: Using NCERT Review Question 1, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 1\", \"extract_text\": \"What is the meaning of the terms ‘encoding’, ‘storage’ and ‘retrieval’?\", \"note\": \"From the Review Questions section of Human Memory.\"}\n```\n\nAnswer:\n- Encoding registers and represents information.\n- Storage retains it over time.\n- Retrieval brings it to awareness for use.\n- Final answer: Encoding, storage and retrieval are interdependent stages, and failure at any stage can produce apparent forgetting.\n\n## Common mistake\nNot every recall failure is a storage failure; encoding or retrieval may be the problem.\n\n## Quick check question\nQuestion: Which store has the shortest duration?\nAnswer: Sensory memory.\nExplanation: It briefly registers sensory input before unattended traces fade.\n\n## Summary\n- Memory includes encoding, storage and retrieval.\n- The stage model proposes three systems.\n- Systems differ in capacity and duration.\n- Failure can occur at several points.",
+    "Core explanation": "# Core explanation: Human Memory\n\n## What you will learn\nYou will examine working memory and control processes. You will distinguish maintenance from elaborative rehearsal and understand chunking.\n\n## Simple explanation\nShort-term memory is an active workbench whose success depends on attention, organisation and links to knowledge.\n\n## Step-by-step breakdown\n- **Working memory**: Baddeley’s system holds and manipulates information.\n- **Phonological loop**: Temporarily handles sound-based material.\n- **Visuospatial sketchpad**: Temporarily handles visual and spatial material.\n- **Central executive**: Coordinates components and allocates attention.\n- **Selective attention**: Determines which sensory information enters short-term processing.\n- **Maintenance rehearsal**: Simple repetition keeps information active.\n- **Chunking**: Groups units into larger meaningful units.\n- **Elaborative rehearsal**: Links new information with existing knowledge and images.\n\n## Worked example\nQuestion: Using NCERT Review Question 3, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 3\", \"extract_text\": \"How are maintenance rehearsals different from elaborative rehearsals?\", \"note\": \"From the Review Questions section of Human Memory.\"}\n```\n\nAnswer:\n- Maintenance rehearsal uses repetition to keep material active.\n- The material may be lost when repetition stops.\n- Elaborative rehearsal analyses meaning and creates associations with long-term knowledge.\n- Final answer: Maintenance provides temporary activation, while elaboration supports durable retention through meaning and organisation.\n\n## Common mistake\nChunking improves effective capacity but does not make working memory unlimited.\n\n## Quick check question\nQuestion: What does the central executive do?\nAnswer: It coordinates information and allocates attentional resources.\nExplanation: It monitors, plans and controls operations involving working and long-term memory.\n\n## Summary\n- Working memory is active.\n- Its components handle sound, space and control.\n- Maintenance repeats.\n- Elaboration creates meaning.\n- Chunking reorganises units.",
+    "Worked examples": "# Worked examples: Human Memory\n\n## What you will learn\nYou will compare levels of processing and classify long-term memories.\n\n## Simple explanation\nAttention to appearance or sound is shallower than understanding meaning and connecting it to experience.\n\n## Step-by-step breakdown\n- **Structural processing**: Focus on physical form and is shallow.\n- **Phonetic processing**: Focus on sound and is intermediate.\n- **Semantic processing**: Focus on meaning and produces stronger retention.\n- **Declarative memory**: Facts and events that can generally be stated.\n- **Procedural memory**: How to perform skills that may be difficult to verbalise.\n- **Episodic memory**: Personal, dated and often emotional experience.\n- **Semantic memory**: General concepts, rules and knowledge.\n- **Other forms**: Flashbulb, autobiographical and implicit memories show further complexity.\n\n## Worked example\nQuestion: Using NCERT Review Question 4, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 4\", \"extract_text\": \"Differenciate between declarative and procedural memories?\", \"note\": \"From the Review Questions section of Human Memory.\"}\n```\n\nAnswer:\n- Declarative memory stores facts, names, dates and events available to verbal description.\n- Procedural memory stores how to carry out skills and procedures.\n- A fact can be stated, while the complete movements of bicycle riding are difficult to describe.\n- Final answer: Declarative memory is knowledge of what that can be reported; procedural memory is knowledge of how expressed in skilled action.\n\n## Common mistake\nPersonal biographical events are episodic, not semantic.\n\n## Quick check question\nQuestion: Which level produces the most durable retention?\nAnswer: Semantic processing.\nExplanation: Meaning and association create richer representations than surface form or sound alone.\n\n## Summary\n- Depth of encoding matters.\n- Semantic processing is deepest.\n- Long-term memory has several types.\n- Declarative differs from procedural.\n- Episodic differs from semantic.",
+    "Exam-style problems": "# Exam-style problems: Human Memory\n\n## What you will learn\nYou will compare memory measurement and theories of forgetting. You will distinguish proactive, retroactive and retrieval-related forgetting.\n\n## Simple explanation\nFailure may reflect weakened traces, competing associations or absent cues rather than one single cause.\n\n## Step-by-step breakdown\n- **Recall and recognition**: Recall generates material; recognition identifies old items among distracters.\n- **Sentence verification**: Response speed measures access to semantic knowledge.\n- **Priming**: Prior exposure facilitates processing without conscious recall.\n- **Ebbinghaus curve**: Forgetting is rapid soon after learning and later becomes gradual.\n- **Trace decay**: Disuse proposes fading traces but does not explain all findings.\n- **Interference**: Competing associations disrupt retrieval.\n- **Proactive and retroactive**: Earlier learning disrupts later recall, or later learning disrupts earlier recall.\n- **Retrieval failure**: Information remains stored but appropriate cues are unavailable.\n\n## Worked example\nQuestion: Using NCERT Review Question 6, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 6\", \"extract_text\": \"How is retrieval related forgetting different from forgetting due to interference?\", \"note\": \"From the Review Questions section of Human Memory.\"}\n```\n\nAnswer:\n- Interference is competition among learned associations.\n- Proactive interference moves from earlier to later learning; retroactive interference moves from later learning back to earlier material.\n- Retrieval failure occurs when suitable cues are absent or inappropriate.\n- Final answer: Interference is competition between memories, whereas retrieval failure is inaccessibility caused by inadequate cues.\n\n## Common mistake\nDo not reverse proactive and retroactive interference: proactive acts forward and retroactive acts backward.\n\n## Quick check question\nQuestion: What pattern did Ebbinghaus observe?\nAnswer: A sharp initial drop followed by a slower decline.\nExplanation: Forgetting is not evenly distributed across time.\n\n## Summary\n- Different tasks measure different memory forms.\n- Forgetting is initially rapid.\n- Interference can move in two directions.\n- Retrieval cues can restore access.",
+    "Revision and recap": "# Revision and recap: Human Memory\n\n## What you will learn\nYou will apply image and organisation mnemonics and design a memory-improvement plan.\n\n## Simple explanation\nMeaning, organisation, imagery, reduced interference and retrieval practice make learning more dependable.\n\n## Step-by-step breakdown\n- **Keyword method**: A familiar sound-alike word is linked through an interacting image.\n- **Method of loci**: Items are imagined at familiar locations in a known route.\n- **Chunking**: Small units are organised into meaningful groups.\n- **First-letter technique**: Initial letters form a memorable word or sentence.\n- **Deep processing**: Meaning and links with existing knowledge improve encoding.\n- **Minimising interference**: Separate similar material and distribute practice.\n- **Retrieval cues**: Encode cues that can later guide recall.\n- **PQRST**: Preview, Question, Read, Self-recitation and Test support active study.\n\n## Worked example\nQuestion: Using NCERT Review Question 7, answer the question with evidence from the chapter.\n```extract-ref\n{\"citation\": \"NCERT Review Question 7\", \"extract_text\": \"Define mnemonics? Suggest a plan to improve your own memory.\", \"note\": \"From the Review Questions section of Human Memory.\"}\n```\n\nAnswer:\n- Mnemonics improve memory through imagery or organisation.\n- A plan should use semantic processing, associations, chunking or imagery suited to the material.\n- It should minimise interference, create retrieval cues and use PQRST with self-testing.\n- Final answer: An effective plan combines meaning, organisation, suitable imagery, spaced study, retrieval cues and self-testing.\n\n## Common mistake\nA mnemonic does not replace understanding and no one technique suits every task.\n\n## Quick check question\nQuestion: Why is self-testing important?\nAnswer: It checks whether information can be retrieved rather than merely recognised during rereading.\nExplanation: It reveals gaps and strengthens accessible organisation.\n\n## Summary\n- Mnemonics use imagery or organisation.\n- Deep processing supports durability.\n- Interference should be reduced.\n- Cues should be encoded.\n- PQRST includes active recall."
+  }
+}

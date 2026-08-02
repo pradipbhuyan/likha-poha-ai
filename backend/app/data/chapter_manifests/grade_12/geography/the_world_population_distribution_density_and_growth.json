@@ -1,0 +1,79 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "The World Population: Distribution, Density and Growth",
+  "central_question": "Why is the world's population unevenly distributed, how does it change, and what processes explain different population-growth patterns?",
+  "in_scope_units": [
+    "Patterns of population distribution in the world.",
+    "Meaning and measurement of population density.",
+    "Geographical, economic, social and cultural factors influencing population distribution.",
+    "Population growth and basic concepts of natural, actual, positive and negative growth.",
+    "Components of population change: births, deaths and migration.",
+    "Migration, immigration, emigration and push-pull factors.",
+    "Demographic transition theory and its three stages.",
+    "Population control measures and Malthus's view on population and food supply."
+  ],
+  "banned_topics": [
+    "Detailed population composition by age, sex, occupation or literacy, treated in other chapters.",
+    "India-specific state-wise population patterns, treated in Population: Distribution, Density, Growth and Composition."
+  ],
+  "must_include_keywords": [
+    "population distribution",
+    "population density",
+    "persons per sq km",
+    "availability of water",
+    "landforms",
+    "climate",
+    "fertile soils",
+    "minerals",
+    "urbanisation",
+    "industrialisation",
+    "social and cultural factors",
+    "population growth",
+    "growth rate",
+    "natural growth",
+    "actual growth",
+    "positive growth",
+    "negative growth",
+    "crude birth rate",
+    "crude death rate",
+    "migration",
+    "place of origin",
+    "place of destination",
+    "immigration",
+    "emigration",
+    "push factors",
+    "pull factors",
+    "demographic transition",
+    "demographic cycle",
+    "high fertility",
+    "mortality",
+    "population control",
+    "family planning",
+    "Thomas Malthus"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Population distribution and population density mean the same thing.",
+      "correction": "Distribution describes how people are spaced over the earth, while density expresses the ratio of population to land area."
+    },
+    {
+      "claim": "Migration changes only the destination's population.",
+      "correction": "The place of origin loses population while the place of destination gains population; the same migrant is an emigrant from one place and an immigrant to another."
+    },
+    {
+      "claim": "The first stage of demographic transition has rapid population growth.",
+      "correction": "High fertility is offset by high mortality, so growth is slow in the first stage."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2(i) on geographical factors influencing distribution.",
+    "NCERT Exercise 2(iii) on components of population change.",
+    "NCERT Exercise 3(ii) on push and pull factors.",
+    "NCERT Exercise 4(ii) on the stages of demographic transition.",
+    "NCERT Exercise 4(i) on factors influencing world population distribution and density."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–4, followed by a Map Skill and two Project/Activity tasks.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

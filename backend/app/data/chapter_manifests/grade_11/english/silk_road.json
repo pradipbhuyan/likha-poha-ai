@@ -1,0 +1,104 @@
+{
+  "grade": "Grade 11",
+  "subject": "English",
+  "chapter": "Silk Road",
+  "central_question": "How does a demanding journey towards Mount Kailash reveal the landscape, people, risks, beliefs, and unexpected companionship of the Tibetan plateau?",
+  "in_scope_units": [
+    "Departure from Ravu: Lhamo’s farewell gift, the author’s plan to complete the kora, and the beginning of the south-west journey towards Mount Kailash.",
+    "Crossing the Changtang: gazelles, kyang, drokbas, nomadic tents, Tibetan mastiffs, and the wide rocky landscape.",
+    "Climbing the mountain passes: icy tracks, snow blockages, Tsetan’s careful driving, altitude discomfort, and the cairn at the top of the pass.",
+    "Descent across the plateau: salt flats, brackish lakes, the Tethys Ocean reference, the workcamp, and arrival at Hor.",
+    "Hor and Lake Manasarovar: the grim reality of the town contrasted with the reverent accounts of Ekai Kawaguchi and Sven Hedin.",
+    "Darchen and the author’s illness: breathing difficulty, sleeplessness, the Tibetan doctor, medicine, and recovery.",
+    "Waiting for the pilgrimage: the absence of pilgrims, the seasonal kora route, limited communication, and the author’s uncertainty.",
+    "Meeting Norbu: shared academic interests, plans to undertake the kora together, practical limitations, humour, and renewed optimism.",
+    "Understanding the text: reasons, brief comments, character support, physical condition, title, setting, and the author’s positive-thinking strategy.",
+    "Talking about the text: hill-folk, difficult journeys, and the contrast between legendary accounts and lived reality.",
+    "Thinking about language: Tsetan’s English, communication through interpreters, and contextual meanings of kora, drokba, and kyang.",
+    "Working with words: picturesque mountain descriptions and the force of adjectives such as shaggy, brackish, rickety, hairpin, and rudimentary.",
+    "Noticing form: the predominance of active voice and the construction used in “Tsetan was eager to have them fixed.”",
+    "Things to do: the supplied account of the Tethys Ocean and the geological formation of the Himalayas."
+  ],
+  "banned_topics": [
+    "Detailed history of the ancient Silk Road beyond the references made in this travelogue.",
+    "The poem “Father to Son”, which follows this chapter but is a separate text.",
+    "Medical advice or diagnosis beyond the Tibetan doctor’s explanation that the author had a cold and was suffering from the effects of altitude.",
+    "Geological claims beyond the Tethys Ocean information supplied in the chapter’s “Things to do” section."
+  ],
+  "must_include_keywords": [
+    "Nick Middleton",
+    "Ravu",
+    "Lhamo",
+    "Tsetan",
+    "Daniel",
+    "Mount Kailash",
+    "kora",
+    "Changtang",
+    "drokba",
+    "kyang",
+    "Tibetan mastiff",
+    "Silk Road",
+    "snow blockage",
+    "hairpin bend",
+    "cairn of rocks",
+    "prayer flags",
+    "altitude",
+    "salt flats",
+    "brackish lakes",
+    "Tethys Ocean",
+    "Hor",
+    "Lake Manasarovar",
+    "Ekai Kawaguchi",
+    "Sven Hedin",
+    "Darchen",
+    "Tibetan medicine",
+    "Gurla Mandhata",
+    "pilgrimage season",
+    "Norbu",
+    "Chinese Academy of Social Sciences",
+    "positive thinking",
+    "picturesque phrases",
+    "active voice",
+    "have them fixed"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The title “Silk Road” means that the chapter gives a full historical account of the ancient trade route.",
+      "correction": "The chapter is a modern travelogue towards Mount Kailash; it connects with the Silk Road through the old Lhasa–Kashmir trade route, the mastiffs once sent as tribute, and the narrator’s humorous reference to modern plastic exports."
+    },
+    {
+      "claim": "The author travelled alone throughout the journey.",
+      "correction": "He left Ravu with Tsetan and Daniel, travelled on with Tsetan after Daniel departed at Hor, and later met Norbu in Darchen as a possible companion for the kora."
+    },
+    {
+      "claim": "Hor impressed the author because of its sacred location beside Lake Manasarovar.",
+      "correction": "The author found Hor grim, dusty, rocky, and littered with refuse; this sharply contrasted with the deeply emotional accounts of Ekai Kawaguchi and Sven Hedin."
+    },
+    {
+      "claim": "The first snow patch was dangerous mainly because it was very deep.",
+      "correction": "Daniel explains that the danger lay chiefly in the icy top layer, because the vehicle could slip and turn over."
+    },
+    {
+      "claim": "The author immediately began the kora after reaching Darchen.",
+      "correction": "He first suffered a troubled night and sought treatment; later he had to wait because no pilgrims had arrived and he did not want to attempt the seasonal route alone."
+    },
+    {
+      "claim": "Norbu was an experienced pilgrim fully prepared for the journey.",
+      "correction": "Norbu had written about the Kailash kora but had never completed it; he admitted that he was unfit, disliked the thought of prostrating himself, and suggested hiring yaks."
+    },
+    {
+      "claim": "The travelogue mainly uses passive voice to give an impersonal description.",
+      "correction": "The chapter notes that only a few passive constructions occur; the predominant active voice makes the journey immediate, energetic, and personal."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Understanding the text I.2 to explain why Tibetan mastiffs were valued in China’s imperial courts.",
+    "Use NCERT Understanding the text I.3 to compare the author’s actual experience of Hor with the accounts of Ekai Kawaguchi and Sven Hedin.",
+    "Use NCERT Understanding the text II.2 to trace the author’s physical condition and recovery in Darchen.",
+    "Use NCERT Understanding the text I.5 to show why meeting Norbu makes the author feel that his positive-thinking strategy has worked.",
+    "Use NCERT Noticing form 1 to explain how active voice strengthens the travelogue’s pace and immediacy."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “Understanding the text” I.1–5 and II.1–5, followed by “Talking about the text” 1–3, “Thinking about language” 1–3, “Working with words” 1–2, “Noticing form” 1–2, and “Things to do”.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

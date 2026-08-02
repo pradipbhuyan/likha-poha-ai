@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 12",
+  "subject": "Business Studies",
+  "chapter": "Principles of Management",
+  "central_question": "How do general management principles and the contributions of Taylor and Fayol guide efficient and responsible managerial action?",
+  "in_scope_units": [
+    "Meaning, nature and significance of principles",
+    "Taylor and scientific management",
+    "Techniques of scientific management",
+    "Fayol administrative principles",
+    "Comparison and relevance of Taylor and Fayol"
+  ],
+  "banned_topics": [
+    "Detailed management levels",
+    "Planning process",
+    "Organisation structures",
+    "Staffing procedures"
+  ],
+  "must_include_keywords": [
+    "principles of management",
+    "universal applicability",
+    "general guidelines",
+    "practice and experimentation",
+    "flexibility",
+    "behavioural",
+    "cause and effect",
+    "contingent",
+    "scientific decisions",
+    "social responsibility",
+    "F.W. Taylor",
+    "scientific management",
+    "science not rule of thumb",
+    "harmony not discord",
+    "cooperation not individualism",
+    "development of each person",
+    "mental revolution",
+    "functional foremanship",
+    "standardisation",
+    "simplification",
+    "method study",
+    "motion study",
+    "time study",
+    "fatigue study",
+    "differential piece wage system",
+    "Henri Fayol",
+    "division of work",
+    "authority and responsibility",
+    "unity of command",
+    "unity of direction",
+    "scalar chain",
+    "gang plank",
+    "equity",
+    "initiative",
+    "esprit de corps"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Principles are rigid laws.",
+      "correction": "They are flexible guidelines applied according to the situation."
+    },
+    {
+      "claim": "Unity of command and unity of direction are identical.",
+      "correction": "Unity of command concerns one boss; unity of direction concerns one head and one plan for the same objective."
+    },
+    {
+      "claim": "Taylor focused only on wages.",
+      "correction": "Taylor also stressed scientific study, cooperation, selection, training and standardisation."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Very Short Answer Type 1",
+    "NCERT Short Answer Type 2",
+    "NCERT Long Answer Type 3",
+    "NCERT Long Answer Type 2",
+    "NCERT Long Answer Type 4"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Exercises contain Very Short Answer questions 1-6, Short Answer questions 1-6 and Long Answer/Essay questions 1-7.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

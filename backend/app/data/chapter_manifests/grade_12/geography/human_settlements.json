@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Human Settlements",
+  "central_question": "How do rural and urban settlements differ in form, origin and function, and what factors shape their patterns in India?",
+  "in_scope_units": [
+    "Meaning, size and economic basis of human settlements.",
+    "Differences and functional links between rural and urban settlements.",
+    "Factors and types of rural settlements: clustered, semi-clustered, hamleted and dispersed.",
+    "Characteristics and Census definition of urban settlements.",
+    "Evolution of ancient, medieval and modern towns in India.",
+    "Urbanisation trends in India.",
+    "Functional classification of towns and cities.",
+    "Smart Cities Mission and the multifunctional character of growing cities."
+  ],
+  "banned_topics": [
+    "Detailed world population distribution and demographic transition.",
+    "Detailed transport routes and international trade networks.",
+    "Urban environmental problems not discussed in this chapter."
+  ],
+  "must_include_keywords": [
+    "human settlement",
+    "cluster of dwellings",
+    "resource base",
+    "rural settlement",
+    "urban settlement",
+    "hinterland",
+    "transport and communication",
+    "clustered settlement",
+    "nucleated",
+    "semi-clustered",
+    "fragmented",
+    "hamleted",
+    "panna",
+    "para",
+    "palli",
+    "nagla",
+    "dhani",
+    "dispersed settlement",
+    "terrain",
+    "water availability",
+    "caste",
+    "security",
+    "Census definition",
+    "ancient towns",
+    "medieval towns",
+    "modern towns",
+    "urbanisation",
+    "administrative towns",
+    "industrial towns",
+    "transport cities",
+    "commercial towns",
+    "mining towns",
+    "garrison towns",
+    "educational towns",
+    "religious towns",
+    "tourist towns",
+    "Smart Cities Mission",
+    "multifunctional city"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every rural settlement is dispersed and every urban settlement is densely clustered.",
+      "correction": "Rural settlements include clustered, semi-clustered, hamleted and dispersed forms, while urban settlements are generally compact and larger."
+    },
+    {
+      "claim": "A place is urban merely because it has a large population.",
+      "correction": "The Census definition also uses an urban local body or notified status, occupational structure and population density criteria."
+    },
+    {
+      "claim": "A town permanently performs only one function.",
+      "correction": "A town may have a dominant specialised function, but growing cities become multifunctional as industry, trade, administration, transport and services become intertwined."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2(ii) on village location in desert regions.",
+    "NCERT Exercise 3(i) on rural settlement types and physical factors.",
+    "NCERT Exercise 1(ii) on the Census definition of a town.",
+    "NCERT Exercise 2(i) on garrison towns.",
+    "NCERT Exercise 3(ii) on the multifunctional character of cities."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1-3: three multiple-choice questions, two short-answer questions and two long-answer questions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

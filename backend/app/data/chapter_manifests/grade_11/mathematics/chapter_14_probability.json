@@ -1,0 +1,107 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 14: Probability",
+  "central_question": "How are events represented as subsets of a sample space and how are valid probabilities assigned and combined using axioms?",
+  "in_scope_units": [
+    "Events as subsets of a sample space and the occurrence of an event.",
+    "Impossible, sure, simple and compound events.",
+    "Algebra of events using complement, union, intersection and difference.",
+    "Mutually exclusive, exhaustive, and mutually exclusive and exhaustive events.",
+    "Axiomatic approach to probability and valid assignments to sample points.",
+    "Probability of an event as the sum of probabilities of its outcomes.",
+    "Probability for finite sample spaces with equally likely outcomes.",
+    "Addition rule for the event A or B and its mutually exclusive special case.",
+    "Complement rule for the event not A.",
+    "Applications to coins, dice, cards, committees, arrangements and combinations.",
+    "Miscellaneous examples, exercise problems, summary and historical note."
+  ],
+  "banned_topics": [
+    "Conditional probability",
+    "Independent events and multiplication theorem",
+    "Bayes' theorem",
+    "Random variables and probability distributions",
+    "Binomial distribution",
+    "Expectation and variance of random variables",
+    "Continuous probability models"
+  ],
+  "must_include_keywords": [
+    "random experiment",
+    "sample space",
+    "sample point",
+    "event",
+    "subset",
+    "occurrence of an event",
+    "impossible event",
+    "sure event",
+    "simple event",
+    "elementary event",
+    "compound event",
+    "complementary event",
+    "not A",
+    "union",
+    "A or B",
+    "intersection",
+    "A and B",
+    "A but not B",
+    "mutually exclusive events",
+    "disjoint events",
+    "exhaustive events",
+    "pairwise disjoint",
+    "axiomatic probability",
+    "power set",
+    "P(S) = 1",
+    "P(φ) = 0",
+    "non-negative probability",
+    "probability assignment",
+    "equally likely outcomes",
+    "favourable outcomes",
+    "addition rule",
+    "P(A ∪ B)",
+    "P(A ∩ B)",
+    "complement rule",
+    "P(A′)",
+    "coins",
+    "dice",
+    "deck of 52 cards",
+    "combinations"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An event is a single outcome only.",
+      "correction": "Any subset of the sample space is an event; a one-outcome event is specifically a simple or elementary event."
+    },
+    {
+      "claim": "Mutually exclusive events must together cover the sample space.",
+      "correction": "Mutually exclusive means only that their intersection is empty; covering the sample space is the separate condition of exhaustiveness."
+    },
+    {
+      "claim": "P(A ∪ B) always equals P(A) + P(B).",
+      "correction": "For general events, P(A ∪ B) = P(A) + P(B) − P(A ∩ B); direct addition applies only when A and B are mutually exclusive."
+    },
+    {
+      "claim": "Every sample point must have the same probability.",
+      "correction": "The axioms allow unequal assignments as long as each probability lies in [0,1] and the probabilities of all sample points sum to 1."
+    },
+    {
+      "claim": "The classical formula favourable outcomes divided by total outcomes works for every experiment.",
+      "correction": "That formula is used when the finite sample points are equally likely."
+    },
+    {
+      "claim": "P(not A) = −P(A).",
+      "correction": "Since A and A′ are mutually exclusive and exhaustive, P(A′) = 1 − P(A)."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the two-coin sample space in Section 14.1 to represent verbal events as subsets.",
+    "Use NCERT Example 1 for complement, union, intersection and difference of events.",
+    "Use NCERT Examples 2 and 3 to distinguish mutually exclusive and exhaustive events.",
+    "Use NCERT Example 4 to test whether probability assignments satisfy the axioms.",
+    "Use the pens and two-toss examples in Section 14.2.1 to add sample-point probabilities.",
+    "Use NCERT Examples 5–8 for complement, union and equally likely outcomes.",
+    "Finish with NCERT Examples 9–12 for arrangements, card combinations and the three-event addition formula."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 14.1 on events, Exercise 14.2 on probability calculations, and the ten-question Miscellaneous Exercise on Chapter 14.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

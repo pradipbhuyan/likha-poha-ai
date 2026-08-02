@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Political Science",
+    "chapter": "Executive",
+    "central_question": "How is executive authority organised in different systems, and how does India combine a formal President, a responsible Council of Ministers and a permanent bureaucracy?",
+    "in_scope_units": [
+      "Meaning and functions of the executive, including political and permanent executives.",
+      "Presidential, parliamentary and semi-presidential forms of executive.",
+      "India‘s choice of a parliamentary executive and its accountability to the legislature.",
+      "Election, constitutional position, powers and impeachment of the President.",
+      "Binding ministerial advice and the President’s discretionary powers.",
+      "The Vice-President and succession to the office of President.",
+      "Prime Minister, Council of Ministers, Cabinet and collective responsibility.",
+      "The effect of coalition politics on the Prime Minister and President.",
+      "Permanent executive, civil services, political neutrality, reservations and administrative accountability."
+    ],
+    "banned_topics": [
+      "A philosophical theory of distributive or social justice not discussed in the supplied chapter.",
+      "Detailed legislative procedure or judicial review beyond their relationship with executive accountability.",
+      "Current office-holders or present coalition arrangements not contained in the source."
+    ],
+    "must_include_keywords": [
+      "executive",
+      "administration",
+      "implementation",
+      "political executive",
+      "permanent executive",
+      "civil servants",
+      "presidential system",
+      "parliamentary system",
+      "semi-presidential system",
+      "head of state",
+      "head of government",
+      "President of India",
+      "Prime Minister",
+      "Council of Ministers",
+      "Cabinet",
+      "collective responsibility",
+      "Lok Sabha",
+      "Article 74",
+      "aid and advise",
+      "impeachment",
+      "discretionary powers",
+      "veto",
+      "pocket veto",
+      "majority",
+      "coalition government",
+      "Vice-President",
+      "Rajya Sabha",
+      "bureaucracy",
+      "IAS",
+      "IPS",
+      "political neutrality",
+      "accountability",
+      "reservation in services",
+      "parliamentary control"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Any country with a President has a presidential system.",
+        "correction": "The type depends on where effective power lies and to whom the executive is accountable; India has a President but follows a parliamentary system."
+      },
+      {
+        "claim": "The President of India normally governs independently of ministers.",
+        "correction": "The President is the formal head and ordinarily acts on the binding advice of the Council of Ministers headed by the Prime Minister."
+      },
+      {
+        "claim": "The President has no discretion under any circumstances.",
+        "correction": "The chapter identifies limited discretion, including returning advice once, handling assent and choosing a Prime Minister when no clear majority exists."
+      },
+      {
+        "claim": "The Rajya Sabha can remove the Council of Ministers through no-confidence.",
+        "correction": "The Council is collectively responsible to the Lok Sabha."
+      },
+      {
+        "claim": "Civil servants are the political executive.",
+        "correction": "Ministers form the political executive; civil servants form the permanent executive."
+      },
+      {
+        "claim": "Bureaucratic neutrality means civil servants are unaccountable.",
+        "correction": "They must serve governments impartially but remain subject to law, ministerial control and democratic accountability."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Activity identifying heads of government at a SAARC or G-7 meeting.",
+      "NCERT comparison of presidential, parliamentary and semi-presidential executives.",
+      "NCERT box on the Sri Lankan semi-presidential executive.",
+      "NCERT Indian Post Office Amendment Bill example on pocket veto.",
+      "NCERT ‘Check your progress’ situation on presidential reconsideration of advice about President’s Rule."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The ‘Exercises’ section contains Questions 1’10 on types of executive, presidential discretion, the Prime Minister, collective responsibility and bureaucracy."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Executive\n\n## What you will learn\nYou will understand the meaning of the executive and distinguish policy leadership from routine administration. You will see why modern government includes ministers and a permanent administrative machinery.\n\n## Simple explanation\nLaws do not implement themselves. An executive decides policy, coordinates departments and ensures that decisions are carried out in daily administration.\n\n## Step-by-step breakdown\n- **Meaning of executive**: The executive is the organ primarily responsible for implementing laws and policies adopted through the constitutional system.\n- **Policy role**: Executives do not only execute; they are often involved in framing policy and making major administrative decisions.\n- **Political executive**: Heads of government and ministers carry overall responsibility for policy and are politically answerable.\n- **Permanent executive**: Civil servants perform continuing day-to-day administration even when elected governments change.\n- **Different designations**: Countries may call effective leaders presidents, prime ministers or chancellors, so titles alone do not reveal the constitutional system.\n\n## Worked example\nQuestion: Why does the chapter separate the political executive from the permanent executive?\n\nAnswer:\n- Ministers derive authority from the political process and accept responsibility for policy.\n- Civil servants provide expertise and continuity in routine administration.\n- The distinction allows elected leadership to set direction while a professional service implements decisions across changes of government.\n- Final answer: The two parts perform complementary roles: ministers provide democratic policy leadership, while civil servants supply continuity and administration.\n\n## Common mistake\nA common mistake is to use ‘executive’ only for the President or Prime Minister. The chapter includes ministers and the administrative machinery.\n\n## Quick check question\nQuestion: Who belongs to the permanent executive?\nAnswer: Civil servants and officials responsible for continuing day-to-day administration.\nExplanation: They remain in service across changes in political leadership and implement policy under lawful direction.\n\n## Summary\n- The executive implements laws and policies.\n- It also contributes to policy formation.\n- Ministers form the political executive.\n- Civil servants form the permanent executive.",
+    "Core explanation": "# Core explanation: Executive\n\n## What you will learn\nYou will compare presidential, parliamentary and semi-presidential systems. You will focus on the relationship between head of state, head of government and legislative accountability.\n\n## Simple explanation\nThe same title can conceal very different powers. The key question is whether effective authority is concentrated in a president or exercised by a ministry responsible to the legislature.\n\n## Step-by-step breakdown\n- **Presidential executive**: The President is both head of state and head of government and normally possesses substantial independent authority.\n- **Parliamentary executive**: A President or monarch is usually nominal head of state, while the Prime Minister and Cabinet exercise effective power and remain responsible to the legislature.\n- **Semi-presidential executive**: Both a President and Prime Minister exist, and the President may exercise significant day-to-day powers.\n- **Comparative examples**: The chapter discusses the United States, United Kingdom, Germany, Italy, Japan, France, Russia and Sri Lanka.\n- **Sri Lankan case**: The directly elected President has extensive powers and selects the Prime Minister, illustrating a stronger presidency than India‘s.\n- **Accountability test**: A country with a President may still be parliamentary if the ministry exercises real power and depends on legislative confidence.\n\n## Worked example\nQuestion: Why is the statement ’a country with a President has a presidential executive‘ incorrect?\n\nAnswer:\n- India has a President but effective power is normally exercised by the Prime Minister and Council of Ministers.\n- The Indian ministry is collectively responsible to the Lok Sabha.\n- Classification depends on the location and accountability of real power, not the title of the head of state.\n- Final answer: A President can be a ceremonial head in a parliamentary republic; institutional relationships, not labels, determine the type of executive.\n\n## Common mistake\nDo not assume all parliamentary systems have a monarch. India and Germany are parliamentary systems with presidents as formal heads of state.\n\n## Quick check question\nQuestion: What is the key feature of a parliamentary executive?\nAnswer: The effective executive led by the Prime Minister is responsible to the legislature and remains in office only while it retains confidence.\nExplanation: This responsibility allows elected representatives to question and remove the government.\n\n## Summary\n- Presidential and parliamentary systems distribute power differently.\n- Semi-presidential systems combine two centres.\n- Titles do not determine the system.\n- Legislative responsibility is the key parliamentary feature.",
+    "Worked examples": "# Worked examples: Executive\n\n## What you will learn\nYou will understand India’s parliamentary executive and the constitutional position of the President. You will examine ministerial advice, assent to bills and discretion during uncertain majorities.\n\n## Simple explanation\nIndia needs a dignified head of state who represents continuity, but policy power belongs to a ministry that commands the confidence of the Lok Sabha.\n\n## Step-by-step breakdown\n- **Formal vesting of power**: The Constitution formally vests Union executive power in the President.\n- **Binding advice**: Article 74 requires a Council of Ministers with the Prime Minister at its head to aid and advise the President, and the President acts according to that advice after any permitted reconsideration.\n- **Real executive**: The Prime Minister and Council of Ministers exercise effective power because they have the support of the Lok Sabha majority.\n- **Return for reconsideration**: The President may ask the Council to reconsider advice once, but must accept the reconsidered advice.\n- **Veto and assent**: The President may return a non-money bill for reconsideration; if Parliament passes it again, assent must be given.\n- **Pocket veto**: Because no time limit is specified for assent, delay can operate as an informal pocket veto, illustrated by the Indian Post Office Amendment Bill.\n- **Hung Lok Sabha**: When no leader has a clear majority, the President uses judgment to appoint the person most likely to command confidence.\n\n## Worked example\nQuestion: When does appointment of the Prime Minister involve real presidential discretion?\n\nAnswer:\n- Normally the leader of a clear Lok Sabha majority must be appointed.\n- After an election with no clear majority, several leaders may claim support.\n- The President must assess who can form a government and prove confidence in the House.\n- Final answer: Presidential discretion arises from political uncertainty, not from a general power to replace parliamentary government with personal rule.\n\n## Common mistake\nA common mistake is to call every presidential action discretionary. Most powers are exercised on ministerial advice.\n\n## Quick check question\nQuestion: Can the President permanently reject ministerial advice merely by returning it?\nAnswer: No. The President may require reconsideration but must act on the advice tendered after reconsideration.\nExplanation: The power invites reflection but does not transfer final policy authority away from the responsible ministry.\n\n## Summary\n- The President is the formal head.\n- Ministerial advice is normally binding.\n- The Prime Minister and Council are the real executive.\n- Limited discretion appears in specific situations.",
+    "Exam-style problems": "# Exam-style problems: Executive\n\n## What you will learn\nYou will study the Prime Minister, Council of Ministers and Cabinet. You will understand collective responsibility and the effect of majority and coalition politics on leadership.\n\n## Simple explanation\nThe parliamentary executive acts as a team. The Prime Minister leads that team, links it with the President and Parliament, and must maintain Lok Sabha support.\n\n## Step-by-step breakdown\n- **Appointment of ministers**: The President appoints ministers on the advice of the Prime Minister.\n- **Prime Ministerial leadership**: The Prime Minister allocates portfolios, coordinates departments, chairs Cabinet meetings and communicates decisions to the President.\n- **Council and Cabinet**: The Council of Ministers is the larger body, while the Cabinet is the smaller core taking major decisions.\n- **Collective responsibility**: The ministry is collectively responsible to the Lok Sabha and stands or falls together on major policy and confidence.\n- **Individual responsibility**: Ministers administer departments but remain under Prime Ministerial leadership and may be required to resign.\n- **Majority context**: A Prime Minister with a strong single-party majority often has greater control over ministers and policy.\n- **Coalition context**: Coalition partners, common programmes and legislative bargaining can constrain the Prime Minister.\n\n## Worked example\nQuestion: Why must the whole Council resign after losing confidence of the Lok Sabha?\n\nAnswer:\n- The Constitution treats the ministry as collectively responsible for government policy.\n- The government remains in office because the Lok Sabha supports the team, not separate ministers.\n- Loss of confidence removes the democratic basis of the entire executive.\n- Final answer: Collective responsibility makes the Council a united political executive answerable to the elected House as a whole.\n\n## Common mistake\nDo not equate the Cabinet with the entire Council of Ministers. The Cabinet is the smaller decision-making core.\n\n## Quick check question\nQuestion: To which House is the Union Council collectively responsible?\nAnswer: The Lok Sabha.\nExplanation: The government‘s continuation depends on confidence in the directly elected House of the People.\n\n## Summary\n- The Prime Minister coordinates the executive.\n- The Cabinet is the inner decision-making body.\n- Collective responsibility ties the ministry to Lok Sabha.\n- Coalitions can limit Prime Ministerial dominance.",
+    "Revision and recap": "# Revision and recap: Executive\n\n## What you will learn\nYou will revise the permanent executive and its democratic role. You will examine neutrality, expertise, reservations and control of bureaucratic power.\n\n## Simple explanation\nElected governments need a stable civil service to turn policy into action. Officials must still remain answerable to constitutional authority and responsive to citizens.\n\n## Step-by-step breakdown\n- **Continuity**: Civil servants remain when ministers change, preserving institutional memory and administrative capacity.\n- **Expert advice**: They collect information, prepare options and advise ministers, though elected leaders take political responsibility.\n- **Political neutrality**: Officials are expected to serve different elected governments impartially and not become agents of one party.\n- **All India Services**: The chapter refers to services such as the IAS and IPS that work in Union and State administration.\n- **Social representation**: Reservation in public employment seeks to make bureaucracy more representative of historically disadvantaged communities.\n- **Accountability problem**: Secrecy, delay, hierarchy and distance from citizens can weaken responsiveness.\n- **Democratic control**: Ministers, legislatures, courts and public scrutiny ensure permanent officials implement lawful policy rather than dominate it.\n\n- **Key terms to remember**: implementation, President of India, impeachment, discretionary powers, coalition government, Vice-President, Rajya Sabha, reservation in services, parliamentary control.\n\n## Worked example\nQuestion: Why is a politically neutral civil service valuable in democracy?\n\nAnswer:\n- Governments may change after elections, but administration must continue.\n- Officials must implement the lawful programme of whichever elected government holds office.\n- Neutrality supports continuity, equal treatment and professional advice.\n- Final answer: Political neutrality permits stable administration under changing governments while preserving constitutional and ministerial accountability.\n\n## Common mistake\nDo not confuse neutrality with indifference to constitutional values. Officials must be impartial between parties while upholding law and equality.\n\n## Quick check question\nQuestion: Who takes final political responsibility for policy: ministers or civil servants?\nAnswer: Ministers and the political executive.\nExplanation: Civil servants advise and implement, but elected ministers answer to the legislature and public for policy choices.\n\n## Summary\n- The permanent executive supplies continuity and expertise.\n- Neutrality means impartial service to elected governments.\n- Reservations broaden social representation.\n- Bureaucracy must remain under democratic and legal control."
+  }
+}

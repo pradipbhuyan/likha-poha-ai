@@ -1,0 +1,74 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "The Last Lesson",
+  "central_question": "How does the loss of the right to learn one’s language transform an ordinary school day into a lesson about identity, regret and freedom?",
+  "in_scope_units": [
+    "About the author and the Franco-Prussian War setting in Alsace and Lorraine.",
+    "Franz’s late journey to school, fear of participles and the unusual silence in the classroom.",
+    "The order from Berlin and the reactions of Franz, M. Hamel and the villagers.",
+    "M. Hamel’s teaching on shared responsibility, language and freedom.",
+    "The writing and history lessons and the final “Vive La France!” scene.",
+    "Understanding, discussion, vocabulary, past-perfect and writing activities."
+  ],
+  "banned_topics": [
+    "A detailed military history of the Franco-Prussian War beyond the setting supplied in the chapter.",
+    "Modern constitutional law on language rights beyond the chapter’s extension activities."
+  ],
+  "must_include_keywords": [
+    "Alphonse Daudet",
+    "Franz",
+    "M. Hamel",
+    "Alsace",
+    "Lorraine",
+    "Berlin order",
+    "Franco-Prussian War",
+    "participles",
+    "bulletin-board",
+    "last French lesson",
+    "old Hauser",
+    "village people",
+    "mother tongue",
+    "language and freedom",
+    "key to their prison",
+    "regret",
+    "patriotism",
+    "Vive La France",
+    "first-person narration",
+    "irony",
+    "symbolism",
+    "pigeons",
+    "past perfect",
+    "linguistic minority",
+    "linguistic chauvinism",
+    "borrowed words"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Franz dislikes French throughout the story.",
+      "correction": "He begins carelessly but values his books, teacher and language once he learns that this is the last French lesson."
+    },
+    {
+      "claim": "M. Hamel blames only the students.",
+      "correction": "He includes parents and himself when he says that everyone has something to reproach themselves with."
+    },
+    {
+      "claim": "The villagers attend an ordinary ceremony.",
+      "correction": "They attend to show regret, gratitude for M. Hamel and respect for their lost country."
+    },
+    {
+      "claim": "The pigeons literally begin speaking German.",
+      "correction": "Franz’s question is a rhetorical protest against controlling language and identity."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Think as you read Q1 to establish Franz’s initial attitude.",
+    "Use the later Think as you read question to trace changes caused by the Berlin order.",
+    "Use Understanding the text Q1 to connect language with identity.",
+    "Use Understanding the text Q2 to interpret the pigeons.",
+    "Use Noticing form to explain the past perfect."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Understanding the text Questions 1–2, Talking about the text, Working with words, Noticing form, Writing and Things to do.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

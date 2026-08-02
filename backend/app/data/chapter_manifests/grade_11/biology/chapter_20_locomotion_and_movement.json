@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 20: Locomotion and Movement",
+  "central_question": "How do muscles, bones and joints work together to produce movement and locomotion in the human body?",
+  "in_scope_units": [
+    "Amoeboid, ciliary and muscular movements.",
+    "Skeletal, visceral and cardiac muscles.",
+    "Organisation of skeletal muscle fibres and sarcomeres.",
+    "Actin, myosin and regulatory proteins.",
+    "Sliding-filament mechanism of contraction.",
+    "Red and white muscle fibres.",
+    "Axial and appendicular skeleton.",
+    "Fibrous, cartilaginous and synovial joints.",
+    "Muscular and skeletal disorders."
+  ],
+  "banned_topics": [
+    "Lung anatomy and alveolar gas exchange",
+    "Respiratory volumes and capacities",
+    "Blood circulation and cardiac cycle"
+  ],
+  "must_include_keywords": [
+    "movement",
+    "locomotion",
+    "amoeboid movement",
+    "ciliary movement",
+    "muscular movement",
+    "skeletal muscle",
+    "smooth muscle",
+    "cardiac muscle",
+    "fascia",
+    "muscle fibre",
+    "sarcolemma",
+    "sarcoplasm",
+    "sarcoplasmic reticulum",
+    "myofibril",
+    "actin",
+    "myosin",
+    "I band",
+    "A band",
+    "Z line",
+    "M line",
+    "H zone",
+    "sarcomere",
+    "troponin",
+    "tropomyosin",
+    "meromyosin",
+    "sliding filament theory",
+    "motor unit",
+    "neuromuscular junction",
+    "acetylcholine",
+    "calcium ion",
+    "ATP",
+    "cross bridge",
+    "red fibre",
+    "white fibre",
+    "axial skeleton",
+    "appendicular skeleton",
+    "joint",
+    "myasthenia gravis",
+    "osteoporosis",
+    "gout"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All movements are locomotion.",
+      "correction": "All locomotion is movement, but many movements do not change the location of the whole organism."
+    },
+    {
+      "claim": "The H zone contains actin and myosin.",
+      "correction": "The H zone contains thick filaments not overlapped by thin filaments."
+    },
+    {
+      "claim": "The A band shortens during contraction.",
+      "correction": "The A band retains its length while the I band and H zone narrow."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 7 to classify movement types.",
+    "Use NCERT Exercise 5 to compare proteins, fibres and girdles.",
+    "Use NCERT Exercise 4 to correct H-zone and skeletal statements.",
+    "Use NCERT Exercise 9 to classify joints.",
+    "Use NCERT Exercise 10 to consolidate skeletal and muscle facts."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-10 on sarcomeres, sliding-filament theory, muscles, skeleton, joints and disorders.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

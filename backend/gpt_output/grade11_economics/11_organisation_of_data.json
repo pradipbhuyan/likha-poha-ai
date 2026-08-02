@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Economics",
+    "chapter": "Organisation of Data",
+    "central_question": "How can raw data be classified and arranged so that patterns, comparisons, and statistical analysis become manageable and meaningful?",
+    "in_scope_units": [
+      "Introduction to classification as a way of bringing order to collected data.",
+      "Raw data, its disorganised character, and the need to summarise it before analysis.",
+      "Chronological, spatial, qualitative, and quantitative classification according to the purpose of study.",
+      "Continuous and discrete variables and the different values each type can take.",
+      "Meaning and structure of a frequency distribution, including class frequency, class limits, class interval, and class mark.",
+      "Decisions involved in preparing a frequency distribution, including number and size of classes and inclusive or exclusive limits.",
+      "Adjustment of class intervals, tally marking, loss of information, unequal class intervals, and frequency arrays.",
+      "Bivariate frequency distribution for jointly classifying two variables.",
+      "Conclusion and recap on classification and the construction of useful frequency distributions."
+    ],
+    "banned_topics": [
+      "Detailed diagrammatic presentation such as histograms, ogives, and pie charts",
+      "Calculation of arithmetic mean, median, or mode",
+      "Karl Pearson and Spearman correlation coefficients",
+      "Index-number construction"
+    ],
+    "must_include_keywords": [
+      "classification",
+      "raw data",
+      "observation",
+      "variable",
+      "chronological classification",
+      "spatial classification",
+      "qualitative classification",
+      "quantitative classification",
+      "attribute",
+      "continuous variable",
+      "discrete variable",
+      "frequency distribution",
+      "class frequency",
+      "class limits",
+      "lower class limit",
+      "upper class limit",
+      "class interval",
+      "class width",
+      "class midpoint",
+      "class mark",
+      "range",
+      "equal class intervals",
+      "unequal class intervals",
+      "inclusive method",
+      "exclusive method",
+      "tally marking",
+      "relative frequency",
+      "loss of information",
+      "frequency array",
+      "univariate distribution",
+      "bivariate frequency distribution"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Raw data are already suitable for easy statistical analysis.",
+        "correction": "Raw data are unclassified and often cumbersome; classification is needed to make comparison and analysis manageable."
+      },
+      {
+        "claim": "A discrete variable can never take fractional values.",
+        "correction": "A discrete variable may take fractional values, but it cannot take every intermediate value between adjacent permitted values."
+      },
+      {
+        "claim": "Both limits are always included in every class interval.",
+        "correction": "In the exclusive method, either the upper or lower class limit is excluded; in the inclusive method both limits belong to the stated class."
+      },
+      {
+        "claim": "Grouping data preserves every original observation for later calculations.",
+        "correction": "Grouping causes loss of information because later calculations use class marks rather than the individual observations within each class."
+      },
+      {
+        "claim": "A bivariate distribution classifies only one variable.",
+        "correction": "A bivariate frequency distribution jointly classifies two variables and records frequencies for combinations of their values or classes."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with the kabadiwallah illustration in the Introduction to show why classification brings order.",
+      "Use NCERT Example 1 and Example 2 to compare chronological and spatial classification.",
+      "Use NCERT Example 4 and Table 3.3 to introduce class frequency, class limits, class interval, and class mark.",
+      "Use NCERT Table 3.6 to explain tally marking and the construction of a frequency distribution.",
+      "Use NCERT Exercise 9 and Table 3.9 to distinguish univariate from bivariate frequency distributions."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–11 and a Suggested Activity based on arranging earlier mathematics marks year-wise."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Organisation of Data\n\n## What you will learn\nYou will understand why classification is required after data collection. You will distinguish raw data from organised data and connect classification with easier comparison and inference.\n\n## Simple explanation\nA large collection of figures may contain useful information but still be difficult to read. Classification places similar observations together so that the data become concise, searchable, and suitable for further analysis.\n\n## Step-by-step breakdown\n- **Classification**: Classification means arranging or organising things into groups or classes according to stated criteria.\n- **Everyday analogy**: The kabadiwallah separates newspapers, plastics, glass, and metals so that each item can be found and sold more easily.\n- **Raw data**: Unclassified observations are called raw data; they are often large, disorganised, and difficult to interpret directly.\n- **Purpose matters**: The way data are classified depends on the question being investigated.\n- **Benefit of organisation**: Classification makes comparison easier and allows meaningful conclusions to be drawn from a large body of observations.\n\n## Worked example\nQuestion: Why can classification be useful in daily life, as asked in NCERT Exercise 2?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2\", \"extract_text\": \"Can there be any advantage in classifying things? Explain with an example from your daily life.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter shows that the kabadiwallah groups different kinds of junk and that schoolbooks can be arranged by subject.\n- These examples show that grouping reduces the effort needed to locate a particular item and prevents unlike items from being mixed.\n- Final answer: Classification is advantageous because it brings order, saves time, and makes a large collection easier to understand and use.\n\n## Common mistake\nA common mistake is to group observations arbitrarily. The chapter stresses that the criterion must suit the purpose of the study.\n\n## Quick check question\nQuestion: What is meant by raw data?\nAnswer: Raw data are collected observations that have not yet been classified or organised.\nExplanation: They may contain all the original information, but their unorganised form makes direct comparison and analysis difficult.\n\n## Summary\n- Classification brings order to collected observations.\n- Raw data are unclassified and can be cumbersome.\n- Groups must be formed according to a clear purpose.\n- Organisation makes comparison and inference easier.",
+    "Core explanation": "# Core explanation: Organisation of Data\n\n## What you will learn\nYou will compare the four main bases of classification and distinguish qualitative attributes from quantitative variables. You will also separate continuous variables from discrete variables.\n\n## Simple explanation\nData can be grouped by time, place, qualities, or measurable quantities. Quantitative variables also differ in whether they can take every value in an interval or only selected values.\n\n## Step-by-step breakdown\n- **Chronological classification**: Data are arranged with reference to time, such as years, quarters, months, or weeks.\n- **Spatial classification**: Data are grouped according to geographical locations such as countries, states, cities, or districts.\n- **Qualitative classification**: Data are grouped by attributes such as gender, literacy, religion, nationality, or marital status.\n- **Quantitative classification**: Measurable characteristics such as age, income, height, weight, or marks are grouped into classes.\n- **Continuous variable**: A continuous variable can take any value within a range, including intermediate fractional values.\n- **Discrete variable**: A discrete variable takes only specified values and changes through finite jumps, even when some allowed values are fractional.\n\n## Worked example\nQuestion: How should a student distinguish a discrete variable from a continuous variable in NCERT Exercise 3?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3\", \"extract_text\": \"What is a variable? Distinguish between a discrete and a continuous variable.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter defines a variable as a quantity used to measure a characteristic and contrasts height with the number of students in a class.\n- Height can take any intermediate value, while the number of students changes in whole-number jumps and cannot take every value between two adjacent counts.\n- Final answer: A continuous variable can take every value in an interval, whereas a discrete variable takes only distinct permitted values separated by jumps.\n\n## Common mistake\nDo not decide that a variable is discrete merely because its recorded values are whole numbers. The deciding point is whether intermediate values are possible in principle.\n\n## Quick check question\nQuestion: Is the number of students in a class continuous or discrete?\nAnswer: It is a discrete variable.\nExplanation: The number changes in countable jumps and cannot take an intermediate value such as half a student.\n\n## Summary\n- Time gives chronological classification.\n- Place gives spatial classification.\n- Attributes give qualitative classification.\n- Measured quantities give quantitative classification.\n- Continuous and discrete variables differ in the values they can take.",
+    "Worked examples": "# Worked examples: Organisation of Data\n\n## What you will learn\nYou will learn the essential parts of a frequency distribution. You will understand class frequency, class limits, class interval, range, and class mark.\n\n## Simple explanation\nA frequency distribution does more than list observations. It shows how many observations fall in each class and uses clearly defined class boundaries and representative midpoints.\n\n## Step-by-step breakdown\n- **Frequency distribution**: It shows how the values of a quantitative variable are distributed among classes with corresponding frequencies.\n- **Class frequency**: Class frequency is the number of observations lying in a particular class.\n- **Class limits**: The lower and upper class limits are the two ends of a class.\n- **Class interval**: Class interval or class width is the difference between the upper and lower class limits.\n- **Class midpoint**: The class midpoint or class mark is the average of the upper and lower class limits.\n- **Representative value**: After grouping, the class mark is used to represent the observations in that class for later calculations.\n- **Range**: Range is the difference between the largest and smallest observations and helps in deciding class construction.\n\n## Worked example\nQuestion: Why are class midpoints used for statistical calculations in classified data, as tested in NCERT Exercise 1(iii)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1(iii)\", \"extract_text\": \"Statistical calculations in classified data are based on\\n(a) the actual values of observations\\n(b) the upper class limits\\n(c) the lower class limits\\n(d) the class midpoints\", \"note\": \"Multiple-choice exercise\"}\n```\n\nAnswer:\n- The chapter states that once raw data are grouped into classes, individual observations are not used in further calculations and the class mark represents the class.\n- Grouping replaces many separate values by one representative midpoint, making the distribution concise but less detailed.\n- Final answer: Statistical calculations in classified data are based on class midpoints because each class mark represents all observations within that class.\n\n## Common mistake\nDo not confuse class interval with class midpoint. The interval is the class width, while the midpoint is the representative value halfway between the limits.\n\n## Quick check question\nQuestion: How is a class mark found?\nAnswer: It is found by adding the upper and lower class limits and dividing the sum by two.\nExplanation: The midpoint lies halfway between the two class limits and is used as the representative value of the class.\n\n## Summary\n- A frequency distribution connects classes with frequencies.\n- Class limits define the ends of each class.\n- Class width measures the span of a class.\n- Class marks represent grouped observations.\n- Range helps guide the construction of classes.",
+    "Exam-style problems": "# Exam-style problems: Organisation of Data\n\n## What you will learn\nYou will examine the practical decisions required to build a frequency distribution. You will compare inclusive and exclusive class intervals, adjustment of class limits, and tally marking.\n\n## Simple explanation\nA useful frequency table needs classes that are clear, suitable in number, and free from ambiguity. The method chosen must ensure that every observation is placed in one appropriate class.\n\n## Step-by-step breakdown\n- **Number of classes**: The chapter states that the number of classes is usually between six and fifteen.\n- **Equal and unequal intervals**: Equal intervals are generally used, while unequal intervals may be useful when values are concentrated in a small part of a very wide range.\n- **Open-ended classes**: Classes such as less than a value or a value and over are generally avoided when definite limits can be used.\n- **Inclusive method**: Both the lower and upper stated limits are included in the class.\n- **Exclusive method**: An observation equal to a boundary is assigned according to a rule that excludes one of the limits from that class.\n- **Adjustment for continuity**: Inclusive-looking limits for continuous data can be adjusted by half the gap to remove discontinuities between neighbouring classes.\n- **Tally marking**: A tally is entered for each observation in its class, and tallies are grouped in fives to make counting easier.\n- **Loss of information**: Grouping hides the original values and later calculations rely on class marks.\n\n## Worked example\nQuestion: How should the inclusive and exclusive methods be distinguished in NCERT Exercise 4?\n```extract-ref\n{\"citation\": \"NCERT Exercise 4\", \"extract_text\": \"Explain the ‘exclusive’ and ‘inclusive’ methods used in classification of data.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter states that both class limits belong to a class in the inclusive method, while one boundary is excluded in the exclusive method.\n- The distinction determines where an observation equal to a class boundary is placed and prevents double counting.\n- Final answer: The inclusive method includes both stated limits in a class, whereas the exclusive method assigns boundary values by excluding one limit according to a consistent rule.\n\n## Common mistake\nA boundary value must not be counted in two adjacent classes. The class convention must place every observation once and only once.\n\n## Quick check question\nQuestion: Why are tally marks grouped in fives?\nAnswer: They are grouped in fives to make the counting of class frequencies quicker and less error-prone.\nExplanation: Four tallies are written separately and the fifth crosses them, creating an easily recognised group of five.\n\n## Summary\n- Class construction requires clear limits and a suitable number of classes.\n- Inclusive and exclusive methods handle boundary values differently.\n- Continuous classes may need adjustment to restore continuity.\n- Tally marking converts raw observations into class frequencies.\n- Grouping gains simplicity but loses detail.",
+    "Revision and recap": "# Revision and recap: Organisation of Data\n\n## What you will learn\nYou will consolidate frequency arrays, unequal class intervals, and bivariate frequency distributions. You will understand when one-variable and two-variable summaries are appropriate.\n\n## Simple explanation\nNot every variable needs grouped intervals. Discrete values can be listed with their frequencies, while two related variables can be organised together in a two-way frequency table.\n\n## Step-by-step breakdown\n- **Frequency array**: For a discrete variable, each permitted value can be shown with its corresponding frequency.\n- **Unequal classes**: Narrower classes can be used where observations are concentrated so that class marks better represent the data.\n- **Univariate distribution**: A univariate distribution describes the frequency distribution of one variable.\n- **Bivariate data**: A sample may provide two kinds of information about each unit, such as sales and advertisement expenditure.\n- **Bivariate frequency distribution**: Rows and columns classify the two variables and each cell records the frequency for a particular combination.\n- **Overall purpose**: The choice of classification should make the data concise without hiding the relationships needed for analysis.\n\n## Worked example\nQuestion: How should univariate and bivariate frequency distributions be distinguished in NCERT Exercise 9?\n```extract-ref\n{\"citation\": \"NCERT Exercise 9\", \"extract_text\": \"Distinguish between univariate and bivariate frequency distribution.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter defines a bivariate frequency distribution as the frequency distribution of two variables and illustrates it with sales and advertisement expenditure.\n- A univariate table organises one characteristic, while a bivariate table reveals how two characteristics occur together.\n- Final answer: A univariate frequency distribution summarises one variable; a bivariate frequency distribution jointly classifies two variables and records their combined frequencies.\n\n## Common mistake\nDo not call every two-column table bivariate. It is bivariate only when it classifies two variables jointly rather than merely listing a variable and its frequency.\n\n## Quick check question\nQuestion: What is a frequency array?\nAnswer: It is a classification of a discrete variable that lists each permitted value with its corresponding frequency.\nExplanation: Discrete variables take distinct values, so separate class intervals are not always needed.\n\n## Summary\n- Frequency arrays suit discrete variables.\n- Unequal intervals may improve representation where values cluster.\n- Univariate distributions describe one variable.\n- Bivariate distributions show the joint distribution of two variables.\n- Classification must balance simplicity with information needs."
+  }
+}

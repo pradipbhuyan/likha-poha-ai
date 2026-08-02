@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 12: Limits and Derivatives",
+    "central_question": "How do limits describe the value approached by a function and lead to derivatives that measure instantaneous rate of change and slope?",
+    "in_scope_units": [
+      "Introduction to calculus as the study of change in function values.",
+      "Intuitive idea of derivatives through average velocity, instantaneous velocity and slope of a tangent.",
+      "Limits, left-hand and right-hand limits, and the distinction between a function value and its limit.",
+      "Algebra of limits and evaluation of limits of polynomial and rational functions.",
+      "Limits of trigonometric functions, inequalities, the sandwich theorem and standard trigonometric limits.",
+      "Derivative at a point and derivative as a function, including first-principle and geometric interpretations.",
+      "Algebra of derivatives: sum, difference, product and quotient rules.",
+      "Derivatives of powers, polynomials and elementary trigonometric functions.",
+      "Mixed examples, exercises, summary and historical development of calculus."
+    ],
+    "banned_topics": [
+      "Formal epsilon-delta definition of a limit",
+      "Continuity and differentiability theorems beyond the chapter's intuitive discussion",
+      "Chain rule and derivatives of composite functions as a general rule",
+      "Derivatives of exponential and logarithmic functions",
+      "Second and higher order derivatives",
+      "Applications of derivatives to maxima, minima, tangents and normals beyond slope interpretation",
+      "Integration and antiderivatives"
+    ],
+    "must_include_keywords": [
+      "calculus",
+      "rate of change",
+      "average velocity",
+      "instantaneous velocity",
+      "distance function",
+      "s = 4.9t²",
+      "slope of a chord",
+      "slope of a tangent",
+      "limit",
+      "x tends to a",
+      "left-hand limit",
+      "right-hand limit",
+      "limit does not exist",
+      "function value",
+      "algebra of limits",
+      "polynomial function",
+      "rational function",
+      "indeterminate form 0/0",
+      "factor cancellation",
+      "sandwich theorem",
+      "sin x/x",
+      "(1 − cos x)/x",
+      "radians",
+      "derivative at a point",
+      "first principle",
+      "difference quotient",
+      "f′(a)",
+      "f′(x)",
+      "dy/dx",
+      "product rule",
+      "quotient rule",
+      "power rule",
+      "polynomial derivative",
+      "derivative of sin x",
+      "derivative of cos x",
+      "derivative of tan x"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The limit of f(x) at x = a must equal f(a).",
+        "correction": "A limit is dictated by values near a; f(a) and lim f(x) may differ, and either one may exist without the other."
+      },
+      {
+        "claim": "A two-sided limit exists if either the left-hand or right-hand limit exists.",
+        "correction": "The two-sided limit exists only when both one-sided limits exist and are equal."
+      },
+      {
+        "claim": "Direct substitution giving 0/0 means the limit is zero.",
+        "correction": "The form 0/0 is indeterminate; the expression must usually be simplified, often by factoring and cancelling a common factor for x ≠ a."
+      },
+      {
+        "claim": "The derivative at a is f(a + h) − f(a).",
+        "correction": "The derivative is the limit of the quotient [f(a + h) − f(a)]/h as h tends to 0, provided the limit exists."
+      },
+      {
+        "claim": "The derivative of a product is the product of the derivatives.",
+        "correction": "The product rule is (uv)′ = u′v + uv′, not u′v′."
+      },
+      {
+        "claim": "The standard limit lim sin x/x = 1 is valid when angles are measured in degrees.",
+        "correction": "The chapter states and uses this limit with angles measured in radians."
+      }
+    ],
+    "recommended_example_progression": [
+      "Start with Tables 12.1–12.3 and Fig. 12.1 to connect average velocity with instantaneous velocity and tangent slope.",
+      "Use Illustrations 1, 9 and 10 to compare one-sided limits, non-existent limits and limits different from function values.",
+      "Use NCERT Examples 1–3 in the limits section for polynomial, rational and standard algebraic limits.",
+      "Use Theorems 4–5 and NCERT Example 4 for the sandwich theorem and trigonometric limits.",
+      "Use NCERT Examples 5–12 to introduce derivatives at a point and from first principles.",
+      "Use NCERT Examples 13–18 and Exercise 12.2 for power, product, quotient and trigonometric derivative rules."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 12.1 on limits, Exercise 12.2 on derivatives, and the Miscellaneous Exercise on Chapter 12."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Limits and Derivatives\n\n## What you will learn\nYou will see how calculus begins with the study of change. Using the falling-body model s = 4.9t², you will connect average velocity over shrinking intervals with instantaneous velocity and the slope of a tangent.\n\n## Simple explanation\nAverage velocity is easy to calculate over a time interval, but velocity at one exact instant needs a limiting process. As the interval around t = 2 becomes smaller from both sides, the average velocities approach a common value, which represents the derivative of the distance function at that instant.\n\n## Step-by-step breakdown\n- **Calculus and change**: Calculus studies how the value of a function changes as its input changes.\n- **Distance model**: For the body dropped from a cliff, distance after t seconds is s = 4.9t² metres.\n- **Average velocity**: Between t₁ and t₂, average velocity equals [s(t₂) − s(t₁)]/(t₂ − t₁).\n- **Approach from before t = 2**: Table 12.2 shows average velocities increasing from 9.8 to 19.551 m/s as t₁ approaches 2 from the left.\n- **Approach from after t = 2**: Table 12.3 shows average velocities decreasing from 29.4 to 19.649 m/s as t₂ approaches 2 from the right.\n- **Instantaneous velocity**: The common limiting value is the velocity at t = 2; the tables locate it between 19.551 m/s and 19.649 m/s.\n- **Geometric meaning**: Secant slopes approach the slope of the tangent to the curve s = 4.9t² at the point corresponding to t = 2.\n- **Derivative idea**: The derivative measures the instantaneous rate of change of one quantity with respect to another.\n\n## Worked example\nQuestion: Using the calculation in Section 12.2, find the average velocity of the body between t = 1 second and t = 2 seconds when s = 4.9t².\n\nSolution:\n- The distance at t = 2 is s(2) = 4.9(2)² = 19.6 metres.\n- The distance at t = 1 is s(1) = 4.9(1)² = 4.9 metres.\n- Average velocity = [19.6 − 4.9]/[2 − 1].\n- Average velocity = 14.7/1 = 14.7 m/s.\n- Final answer: 14.7 m/s.\n\n## Common mistake\nDo not call an average velocity over a non-zero interval the exact instantaneous velocity. It is an approximation that improves as the interval shrinks.\n\n## Quick check question\nQuestion: Using Table 12.2, what average velocity is obtained for the interval from t = 1.99 to t = 2?\nAnswer: 19.551 m/s.\nExplanation: Table 12.2 lists the average velocity for each left endpoint t₁, and the entry corresponding to t₁ = 1.99 is 19.551 m/s.\n\n## Summary\n- Calculus begins by studying change in functions.\n- Average velocity is a difference quotient over an interval.\n- Shrinking intervals give better estimates of instantaneous velocity.\n- The derivative is an instantaneous rate of change.\n- Geometrically, it is the slope of the tangent to the graph.",
+    "Core explanation": "# Core explanation: Limits and Derivatives\n\n## What you will learn\nYou will understand limits from tables and graphs, distinguish left-hand and right-hand limits, and decide when a two-sided limit exists. You will then apply the algebra of limits to polynomial and rational functions.\n\n## Simple explanation\nA limit describes the value a function approaches when x comes close to a point, whether or not the function actually takes that value there. The approach must agree from both the left and the right for an ordinary two-sided limit to exist.\n\n## Step-by-step breakdown\n- **Limit notation**: If f(x) approaches l as x approaches a, write lim(x→a) f(x) = l.\n- **Nearby values, not necessarily the point**: The value f(a) is not what defines the limit; values of f(x) near a do.\n- **Left-hand limit**: lim(x→a⁻) f(x) is dictated by values with x < a.\n- **Right-hand limit**: lim(x→a⁺) f(x) is dictated by values with x > a.\n- **Existence test**: lim(x→a) f(x) exists exactly when the left-hand and right-hand limits are equal.\n- **Function value versus limit**: Illustration 10 has lim(x→1) f(x) = 3 although f(1) = 0; Illustration 9 has f(0) = 0 but no limit at 0.\n- **Algebra of limits**: Limits respect addition, subtraction, multiplication and division, provided the relevant limits exist and the denominator limit is non-zero.\n- **Polynomial limits**: For a polynomial f, lim(x→a) f(x) = f(a), so direct substitution works.\n- **Rational limits**: Direct substitution works if the denominator is non-zero at a. If substitution gives 0/0, factor and simplify for x ≠ a before taking the limit.\n- **Important algebraic limit**: For positive integer n, lim(x→a) [(xⁿ − aⁿ)/(x − a)] = naⁿ⁻¹.\n\n## Worked example\nQuestion: Using NCERT Example 2(iv), evaluate lim(x→2) [(x³ − 2x²)/(x² − 5x + 6)].\n\nSolution:\n- Direct substitution gives 0/0, so factor numerator and denominator.\n- x³ − 2x² = x²(x − 2).\n- x² − 5x + 6 = (x − 2)(x − 3).\n- For x ≠ 2, cancel the common factor (x − 2).\n- The limit becomes lim(x→2) [x²/(x − 3)].\n- Substitute x = 2 to get 4/(−1) = −4.\n- Final answer: −4.\n\n## Common mistake\nCancelling x − a is allowed only after noting that limit calculations use x near a with x ≠ a. Do not cancel a factor that is not common to the whole numerator and denominator.\n\n## Quick check question\nQuestion: Based on NCERT Illustration 9, does lim(x→0) f(x) exist when f(x) = x − 2 for x < 0, f(0) = 0 and f(x) = x + 2 for x > 0?\nAnswer: No. The left-hand limit is −2 and the right-hand limit is 2.\nExplanation: A two-sided limit requires equality of the two one-sided limits. Since −2 ≠ 2, the limit does not exist even though f(0) is defined.\n\n## Summary\n- Limits depend on nearby function values.\n- Left-hand and right-hand limits must agree.\n- A function value and its limit can be different.\n- Polynomial limits are evaluated by substitution.\n- A 0/0 form requires simplification, not an automatic answer.\n- Limit laws justify algebraic combinations of functions.",
+    "Worked examples": "# Worked examples: Limits and Derivatives\n\n## What you will learn\nYou will learn the sandwich theorem and the two standard trigonometric limits used throughout the chapter. You will apply them to evaluate related trigonometric expressions.\n\n## Simple explanation\nTrigonometric limits near zero cannot always be found by direct substitution. A geometric inequality traps sin x/x between two functions with the same limit, and the sandwich theorem forces the middle expression to have that limit too.\n\n## Step-by-step breakdown\n- **Order property of limits**: If f(x) ≤ g(x) and both limits exist, then the limiting values preserve the inequality.\n- **Sandwich theorem**: If f(x) ≤ g(x) ≤ h(x) and the outer functions have the same limit l, then g(x) also has limit l.\n- **Geometric inequality**: For 0 < x < π/2 in radians, cos x < sin x/x < 1.\n- **First standard limit**: Since cos x tends to 1 as x tends to 0, lim(x→0) sin x/x = 1.\n- **Second standard limit**: Using 1 − cos x = 2sin²(x/2), lim(x→0) (1 − cos x)/x = 0.\n- **Scaled arguments**: If kx tends to 0 with x, rewrite sin(kx)/(kx) so the standard limit can be used.\n- **Tangent limit**: tan x/x = [sin x/x][1/cos x], so its limit at 0 is 1.\n- **Radians requirement**: The standard limits in this section assume radian measure.\n\n## Worked example\nQuestion: Using NCERT Example 4(i), evaluate lim(x→0) [sin 4x/sin 2x].\n\nSolution:\n- Multiply and divide to create standard-limit forms.\n- sin 4x/sin 2x = 2 × [sin 4x/(4x)] ÷ [sin 2x/(2x)].\n- As x tends to 0, both 4x and 2x tend to 0.\n- lim sin 4x/(4x) = 1 and lim sin 2x/(2x) = 1.\n- Therefore the required limit is 2 × 1 ÷ 1.\n- Final answer: 2.\n\n## Common mistake\nDo not replace sin x by x as an exact identity. The statement sin x/x → 1 is a limit relation near zero, not equality for every non-zero x.\n\n## Quick check question\nQuestion: Based on NCERT Example 4(ii), evaluate lim(x→0) tan x/x.\nAnswer: 1.\nExplanation: Since tan x/x = (sin x/x)(1/cos x), the two factors tend to 1 and 1 respectively, so the product tends to 1.\n\n## Summary\n- The sandwich theorem evaluates a function trapped between two others.\n- lim(x→0) sin x/x = 1 in radians.\n- lim(x→0) (1 − cos x)/x = 0.\n- Scaled sine limits require matching the angle in numerator and denominator.\n- tan x/x tends to 1 by combining sine and cosine limits.",
+    "Exam-style problems": "# Exam-style problems: Limits and Derivatives\n\n## What you will learn\nYou will define the derivative at a point and as a function using first principles. You will also connect the difference quotient with tangent slope and carry out exact derivative calculations.\n\n## Simple explanation\nA derivative replaces an interval-based average change with its limiting value as the interval h shrinks to zero. The same quotient is the slope of a secant line, so its limit is the slope of the tangent.\n\n## Step-by-step breakdown\n- **Derivative at a point**: f′(a) = lim(h→0) [f(a + h) − f(a)]/h, provided this limit exists.\n- **Derivative function**: f′(x) = lim(h→0) [f(x + h) − f(x)]/h wherever the limit exists.\n- **First principle**: The above definition is called the first principle of derivative.\n- **Geometric interpretation**: [f(a + h) − f(a)]/h is the slope of chord PQ; as Q approaches P, it tends to the slope of the tangent.\n- **Rate interpretation**: f′(a) measures the instantaneous change in f with respect to x at x = a.\n- **Notation**: f′(x), dy/dx and D(f(x)) denote the derivative function.\n- **Constant function**: A constant has derivative 0 because its numerator f(x + h) − f(x) is always 0.\n- **Linear function**: The derivative of kx is k.\n- **Reciprocal function**: First principles gives d(1/x)/dx = −1/x² for x ≠ 0.\n\n## Worked example\nQuestion: Using NCERT Example 6, find the derivative of f(x) = 2x² + 3x − 5 at x = −1 and verify f′(0) + 3f′(−1) = 0.\n\nSolution:\n- By first principle at a = −1, form [f(−1 + h) − f(−1)]/h.\n- Expansion and simplification give [2h² − h]/h = 2h − 1.\n- Taking h → 0 gives f′(−1) = −1.\n- At a = 0, [f(h) − f(0)]/h = [2h² + 3h]/h = 2h + 3.\n- Taking h → 0 gives f′(0) = 3.\n- Therefore f′(0) + 3f′(−1) = 3 + 3(−1) = 0.\n- Final answer: f′(−1) = −1, f′(0) = 3, and the required identity is verified.\n\n## Common mistake\nDo not substitute h = 0 before simplifying the difference quotient; that would create division by zero. Simplify first, then take the limit as h tends to 0.\n\n## Quick check question\nQuestion: Based on NCERT Example 7, what is the derivative of sin x at x = 0?\nAnswer: 1.\nExplanation: The first-principle quotient becomes sin h/h, whose limit as h tends to 0 is 1.\n\n## Summary\n- A derivative is a limit of a difference quotient.\n- It measures instantaneous rate of change.\n- The same limit gives the slope of the tangent.\n- First-principle work requires algebra before letting h approach zero.\n- Constants have derivative 0 and linear functions have constant derivative.",
+    "Revision and recap": "# Revision and recap: Limits and Derivatives\n\n## What you will learn\nYou will organise the algebraic rules of differentiation and the standard derivatives developed in the chapter. You will practise combining power, sum, product and quotient rules with elementary trigonometric derivatives.\n\n## Simple explanation\nOnce first principles establishes basic derivatives, algebraic rules make larger expressions manageable. The key is to identify the outer structure of the expression—sum, product or quotient—before differentiating its parts.\n\n## Step-by-step breakdown\n- **Sum and difference rules**: (u ± v)′ = u′ ± v′.\n- **Product rule**: (uv)′ = u′v + uv′.\n- **Quotient rule**: (u/v)′ = (u′v − uv′)/v², where v ≠ 0.\n- **Power rule**: d(xⁿ)/dx = nxⁿ⁻¹; the chapter proves it for positive integers and remarks that it extends more generally.\n- **Polynomial rule**: Differentiate each term separately and multiply each coefficient by its exponent.\n- **Basic derivatives**: d(x)/dx = 1, d(c)/dx = 0, d(sin x)/dx = cos x and d(cos x)/dx = −sin x.\n- **Derived trigonometric result**: d(tan x)/dx = sec²x, obtained from first principles in NCERT Example 17.\n- **Domain awareness**: Quotients and reciprocal functions are differentiated only where their denominators are non-zero.\n- **Final checking**: Verify signs, exponents and whether the product or quotient rule was applied in the correct order.\n\n## Worked example\nQuestion: Using NCERT Example 18, differentiate f(x) = sin²x.\n\nSolution:\n- Write sin²x as the product sin x · sin x.\n- Apply the product rule: f′(x) = (sin x)′sin x + sin x(sin x)′.\n- Since (sin x)′ = cos x, f′(x) = cos x sin x + sin x cos x.\n- Combine the two equal terms to obtain 2sin x cos x.\n- Use the identity 2sin x cos x = sin 2x.\n- Final answer: f′(x) = 2sin x cos x = sin 2x.\n\n## Common mistake\nDo not use the power rule alone on sin²x as though sin x were x. In this chapter, rewrite it as a product and apply the product rule.\n\n## Quick check question\nQuestion: Based on NCERT Example 15, find the derivative of (x + 1)/x for x ≠ 0.\nAnswer: −1/x².\nExplanation: With u = x + 1 and v = x, the quotient rule gives [1·x − (x + 1)·1]/x² = −1/x².\n\n## Summary\n- Limit laws support the corresponding derivative rules.\n- Identify sums, products and quotients before differentiating.\n- The power rule gives d(xⁿ)/dx = nxⁿ⁻¹.\n- Polynomial derivatives are found term by term.\n- The chapter establishes derivatives of sin x, cos x and tan x.\n- Always respect the domain of the original function."
+  }
+}

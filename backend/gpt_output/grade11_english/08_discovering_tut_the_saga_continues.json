@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "English",
+    "chapter": "Discovering Tut: the Saga Continues",
+    "central_question": "How does the investigation of King Tut’s mummy show the changing relationship between archaeology, technology, historical mystery and respect for the dead?",
+    "in_scope_units": [
+      "King Tut’s mummy is removed from its tomb on 5 January 2005 for a CT scan in the Valley of the Kings.",
+      "Howard Carter’s 1922 discovery reveals extraordinary funerary treasures and hardened ritual resins.",
+      "Carter’s team chisels and dismembers the mummy to separate it from the coffin and gold adornments.",
+      "The chapter contrasts treasure-centred archaeology with later X-ray and computed-tomography methods.",
+      "Tut’s family line, Akhenaten’s religious changes and Tutankhamun’s restoration provide historical context.",
+      "The Egyptian Mummy Project produces detailed cross-sectional images despite a temporary scanner failure.",
+      "The final sections address evidence, scientific intervention, tradition, language extinction, collocations, medical terms, astronomy and plants."
+    ],
+    "banned_topics": [
+      "The adjacent poems The Laburnum Top and The Voice of the Rain",
+      "Later scientific findings about Tut not included in the source",
+      "A definite modern diagnosis of Tut’s cause of death",
+      "Claims that the pharaoh’s curse is established fact"
+    ],
+    "must_include_keywords": [
+      "A. R. Williams",
+      "King Tut",
+      "Tutankhamun",
+      "Tutankhaten",
+      "Valley of the Kings",
+      "mummy",
+      "CT scan",
+      "computed tomography",
+      "forensic reconstruction",
+      "Zahi Hawass",
+      "Howard Carter",
+      "1922 discovery",
+      "funerary treasures",
+      "three nested coffins",
+      "ritual resins",
+      "solid gold coffin",
+      "chiselling",
+      "gold adornments",
+      "archaeology",
+      "1968 X-ray",
+      "breast-bone",
+      "front ribs",
+      "three-dimensional virtual body",
+      "Amenhotep III",
+      "Amenhotep IV",
+      "Akhenaten",
+      "Aten",
+      "Amun",
+      "Smenkhkare",
+      "eighteenth dynasty",
+      "Egyptian Mummy Project",
+      "1,700 images",
+      "eerie detail",
+      "scanner fan",
+      "pharaoh’s curse",
+      "Orion",
+      "Osiris",
+      "scientific intervention",
+      "respect for traditions"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The CT scan solves the mystery of Tut’s death conclusively.",
+        "correction": "The scan supplies detailed data and images, but the chapter does not state a conclusive cause of death."
+      },
+      {
+        "claim": "Howard Carter destroys the mummy simply out of carelessness.",
+        "correction": "The text criticises the damage but also explains that hardened resins and the threat of thieves left him little choice."
+      },
+      {
+        "claim": "Tut is buried only with luxury objects.",
+        "correction": "The tomb contains gold treasures as well as board games, a razor, linen garments, food and wine for the afterlife."
+      },
+      {
+        "claim": "Akhenaten and Tutankhamun promoted the same religious policy.",
+        "correction": "Akhenaten elevated Aten and attacked Amun; Tutankhamun restored the old ways and changed his name accordingly."
+      },
+      {
+        "claim": "The scanner failure proves the pharaoh’s curse.",
+        "correction": "Sand in a cooler fan causes the failure; the guard’s curse remark is a nervous joke."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with Understanding the Text Q1(i-iii) on repeated scrutiny, resentment of Carter and the chiselling of resins.",
+      "Use Understanding the Text Q1(iv-v) for funerary treasures and Tut’s change of name.",
+      "Use Understanding the Text Q2(i) for Akhenaten’s deeds and the restoration under Tut.",
+      "Use Understanding the Text Q2(ii-iv) for CT results, technological advances and the phrase “in death, as in life.”",
+      "Conclude with Talking About the Text, Working with Words and Things to Do on scientific intervention, traditions, collocations, medical terms, constellations and plants."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with Understanding the Text questions 1(i-v) and 2(i-iv), four Talking About the Text debates, Thinking About Language, two Working with Words tasks and three Things to Do activities."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Discovering Tut: the Saga Continues\n\n## What you will learn\nYou will understand why Tut’s body remains a subject of investigation and how the opening creates a mysterious atmosphere. You will distinguish speculation from evidence.\n\n## Simple explanation\nKing Tut dies in his late teens and is forgotten until his tomb is found in 1922. In 2005, his mummy leaves the tomb briefly for a CT scan intended to provide new clues and a more accurate forensic reconstruction.\n\n## Step-by-step breakdown\n- **Unresolved death**: Tut is the last heir of a powerful family, and the modern world speculates about his early death.\n- **Atmosphere**: Angry wind, ghostly dust devils and casket-grey clouds surround the removal of the mummy.\n- **Precise occasion**: The scan begins at 6 p.m. on 5 January 2005 in the Valley of the Kings.\n- **Tourist response**: Visitors study murals, the gilded coffin face and the possibility of a pharaoh’s curse.\n- **Purpose**: The scanner is used to probe medical mysteries and create exact anatomical data.\n- **Reportage**: The chapter combines historical narration, eyewitness description, quotations and technical explanation.\n\n## Worked example\nQuestion: Why does the opening combine scientific purpose with ghostly imagery?\n\nAnswer:\n- The CT scan represents modern investigation and precise data.\n- The desert, tomb, clouds and ancient curse create emotional mystery.\n- Placing them together shows science entering a space shaped by death, legend and ritual.\n- Final answer: The contrast makes the investigation dramatic while reminding readers that modern evidence is being sought from an ancient and culturally charged burial.\n\n## Common mistake\nDo not present murder or the curse as facts; the text identifies murder as an extreme possibility and the curse as a visitor’s question.\n\n## Quick check question\nQuestion: What is the immediate purpose of taking Tut from the tomb in 2005?\nAnswer: To pass the mummy through a CT scanner for detailed medical images and forensic reconstruction.\nExplanation: The procedure aims to add evidence about his body, age and possible death rather than to display treasure.\n\n## Summary\n- Tut’s early death remains mysterious.\n- The opening balances science and atmosphere.\n- The scan is a modern attempt to gather evidence.\n- Speculation must not be confused with conclusion.",
+    "Core explanation": "# Core explanation: Discovering Tut: the Saga Continues\n\n## What you will learn\nYou will examine Carter’s discovery, the burial objects and the damage caused while freeing the mummy. You will evaluate the episode with both criticism and context.\n\n## Simple explanation\nHoward Carter finds the tomb in 1922 after years of searching. The collection is unusually complete, but hardened resins fix the mummy to the gold coffin and lead to invasive removal methods.\n\n## Step-by-step breakdown\n- **Rich collection**: Gold artefacts are meant to guarantee resurrection and become central to Tut’s modern fame.\n- **Everyday afterlife**: Board games, a bronze razor, linen undergarments, food and wine accompany the royal objects.\n- **Burial season**: Garlands of willow, olive, celery, lotus and cornflower suggest burial in March or April.\n- **Hardened resin**: Sunlight heated the mummy but could not loosen the material that cemented it to the coffin.\n- **Physical damage**: Carter’s men remove the head and sever major joints to separate the body from adornments.\n- **Contextual defence**: The account says thieves might otherwise have evaded guards and torn the body apart for gold.\n\n## Worked example\nQuestion: Why is Carter’s treatment both resented and partly defended in the chapter?\n\nAnswer:\n- His methods leave the mummy badly damaged and conflict with later standards of preservation.\n- The resins make ordinary removal impossible even after prolonged heating.\n- The valuable gold creates a serious danger of robbery and further destruction.\n- Final answer: The treatment is resented because it mutilates the mummy, yet the text partly defends Carter by presenting the material and security pressures he faced.\n\n## Common mistake\nDo not say Carter alone discovered an untouched tomb; its contents had been hastily ransacked in antiquity, although the collection remained surprisingly complete.\n\n## Quick check question\nQuestion: Why are both gold and everyday objects placed in the tomb?\nAnswer: They are intended to accompany and support Tut in the afterlife.\nExplanation: The mixture reflects funerary belief: the dead ruler is supplied with royal splendour and ordinary necessities.\n\n## Summary\n- The tomb joins treasure with daily objects.\n- Resin creates the central physical problem.\n- Carter’s methods damage the body.\n- The chapter presents criticism and historical context together.",
+    "Worked examples": "# Worked examples: Discovering Tut: the Saga Continues\n\n## What you will learn\nYou will understand the shift from early treasure hunting to medical imaging. You will also connect Tut’s body with the political history of his dynasty.\n\n## Simple explanation\nLater archaeology pays greater attention to life and death rather than gold alone. An X-ray reveals missing chest bones, and CT technology can assemble many cross-sections into a virtual body.\n\n## Step-by-step breakdown\n- **Changing archaeology**: The discipline moves toward detailed questions about life, death and preservation.\n- **1968 X-ray**: An anatomy professor finds that the breast-bone and front ribs are missing beneath the resin.\n- **Computed tomography**: Hundreds of cross-sectional X-rays are combined like slices of bread into a three-dimensional body.\n- **Dynastic end**: Tut is the last of his family line, so his death is called the death rattle of a dynasty.\n- **Akhenaten**: Amenhotep IV changes his name, promotes Aten, moves the capital and attacks Amun’s images and temples.\n- **Restoration**: The young Tutankhaten becomes Tutankhamun, restores the old ways and reigns for about nine years.\n\n## Worked example\nQuestion: How does Tut’s change of name express a political and religious change?\n\nAnswer:\n- Tutankhaten links the boy king with Aten, the deity promoted by Akhenaten.\n- Tutankhamun means “living image of Amun.”\n- The new name accompanies his restoration of the older religious order.\n- Final answer: The change of name publicly marks a reversal from Akhenaten’s Aten-centred policy to renewed recognition of Amun and the old ways.\n\n## Common mistake\nDo not state with certainty whether Amenhotep III is Tut’s father or grandfather; the text leaves both possibilities open.\n\n## Quick check question\nQuestion: What advantage does CT have over a single X-ray image?\nAnswer: It combines many cross-sectional images to create a detailed three-dimensional virtual body.\nExplanation: This allows specialists to inspect structures from numerous angles without physically cutting the mummy.\n\n## Summary\n- Archaeology becomes less treasure-centred.\n- X-ray and CT provide different levels of imaging.\n- Tut’s death ends a ruling line.\n- His new name signals religious restoration.",
+    "Exam-style problems": "# Exam-style problems: Discovering Tut: the Saga Continues\n\n## What you will learn\nYou will analyse the 2005 scanning procedure, its temporary failure and the evidence produced. You will distinguish technological detail from dramatic legend.\n\n## Simple explanation\nThe Egyptian Mummy Project uses a portable CT machine to scan Tut from head to toe. The machine stops because of sand in a fan, but substitute fans allow the team to complete the procedure.\n\n## Step-by-step breakdown\n- **National project**: An inventory begun in 2003 records hundreds of mummies and plans portable scanning.\n- **Image production**: The machine creates 1,700 digital X-ray images in cross-section.\n- **Head slices**: The head is scanned in 0.62-millimetre slices for intricate detail.\n- **Specialist team**: Experts in radiology, forensics and anatomy study the digital body.\n- **Mechanical interruption**: Sand in a cooler fan stops the scanner until plastic substitute fans are brought.\n- **Safe return**: After checking the data, workmen carry Tut back to the tomb less than three hours after removal.\n\n## Worked example\nQuestion: Why does the guard’s “curse of the pharaoh” remark create irony?\n\nAnswer:\n- A machine unexpectedly fails during the scan of a mummy associated with a curse legend.\n- The actual cause is ordinary sand in a cooling fan.\n- A technical problem is humorously interpreted through an ancient superstition.\n- Final answer: The remark is ironic because the apparently supernatural interruption has a practical mechanical explanation and is soon overcome.\n\n## Common mistake\nDo not say the CT scan physically reconstructs the mummy; it records digital images for virtual examination and forensic reconstruction.\n\n## Quick check question\nQuestion: What confirms that the procedure can continue after the breakdown?\nAnswer: The substitute fans work well enough to finish the scan without loss of data.\nExplanation: The technicians check the information before the mummy is returned to its coffin.\n\n## Summary\n- The scan is part of a wider mummy project.\n- CT produces numerous detailed sections.\n- A sand-filled fan causes the failure.\n- Technical work defeats the curse joke.\n- Tut is returned quickly and safely.",
+    "Revision and recap": "# Revision and recap: Discovering Tut: the Saga Continues\n\n## What you will learn\nYou will connect the final images with the chapter’s larger questions about knowledge, evidence and respect. You will also revise the associated language tasks.\n\n## Simple explanation\nOn the computer, Tut’s head, vertebrae, hand, ribs and skull sections appear in precise detail. Hawass feels relief, while the final image of Orion above the tomb returns the account from technology to ancient belief.\n\n## Step-by-step breakdown\n- **Visible anatomy**: Pixels form a grey head that can be spun and tilted, while other views reveal bones and sections.\n- **Relief**: Hawass can finally rest because the procedure ends without serious damage.\n- **Orion and Osiris**: The constellation known to Egyptians as the soul of Osiris appears above the tomb.\n- **Open questions**: The chapter presents better evidence but does not announce a final answer to how Tut died.\n- **Debate**: Students are asked to balance scientific intervention, limits of technology, funerary respect and the value of the past.\n- **Language work**: Adjectival combinations such as “ghostly dust devils” and “casket grey” build atmosphere; medical terms include CT scan, tomography, autopsy and biopsy.\n- **Wider activities**: The tasks connect the chapter with endangered languages, constellations and funeral plants.\n- **Key terms for revision**: A. R. Williams, Zahi Hawass, 1922 discovery, funerary treasures, three nested coffins, ritual resins, solid gold coffin, chiselling, gold adornments, Smenkhkare, eighteenth dynasty, 1,700 images, eerie detail, scanner fan, respect for traditions.\n\n## Worked example\nQuestion: What does the final appearance of Orion add to the account?\n\nAnswer:\n- The chapter has just shown modern digital images inside the scanner trailer.\n- Outside, the ancient constellation associated with Osiris appears over the tomb.\n- The ending places scientific discovery beside the beliefs through which Egyptians understood death and afterlife.\n- Final answer: Orion gives the close a reflective balance: modern technology examines Tut, while ancient cultural meaning continues to watch over the boy king.\n\n## Common mistake\nDo not assume advanced technology always produces conclusive history; the chapter itself frames certainty as a topic for debate.\n\n## Quick check question\nQuestion: Which two kinds of expertise study the CT images besides radiology?\nAnswer: Forensics and anatomy.\nExplanation: The mixed team shows that interpreting the mummy requires several specialised perspectives.\n\n## Summary\n- CT reveals detailed virtual anatomy.\n- The procedure ends with relief rather than a final diagnosis.\n- Orion reconnects technology with belief.\n- The chapter invites debate about science and respect.\n- Language and cross-curricular tasks extend the inquiry."
+  }
+}

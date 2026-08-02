@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 12",
+  "subject": "History",
+  "chapter": "Colonialism and the Countryside: Exploring Official Archives",
+  "central_question": "How did colonial revenue systems transform rural Bengal, the Rajmahal hills and the Deccan, and how should historians read official archives alongside peasant resistance?",
+  "in_scope_units": [
+    "Permanent Settlement, Burdwan auction and revenue default.",
+    "Jotedars, zamindars, fictitious sales and the Fifth Report.",
+    "Paharia livelihoods and Company pacification in the Rajmahal hills.",
+    "Santhal settlement, Damin-i-Koh and rebellion.",
+    "Ryotwari revenue assessment in the Bombay Deccan.",
+    "Peasant debt, moneylenders and the burning of account books.",
+    "The American Civil War, cotton boom and collapse of credit.",
+    "The Deccan Riots Commission and the interpretation of official archives."
+  ],
+  "banned_topics": [
+    "Mughal revenue administration under the Ain-i Akbari, treated in the previous chapter.",
+    "The military and political history of the Revolt of 1857, treated in the next chapter."
+  ],
+  "must_include_keywords": [
+    "colonial countryside",
+    "Permanent Settlement",
+    "Burdwan auction",
+    "zamindar",
+    "Sunset Law",
+    "Collector",
+    "jotedar",
+    "adhiyar",
+    "benami purchase",
+    "lathyal",
+    "Fifth Report",
+    "Rajmahal hills",
+    "Paharias",
+    "shifting cultivation",
+    "pacification",
+    "Santhals",
+    "Damin-i-Koh",
+    "forest clearance",
+    "Santhal rebellion",
+    "ryotwari system",
+    "Bombay Deccan",
+    "revenue demand",
+    "moneylender",
+    "sahukar",
+    "debt bond",
+    "account books",
+    "Deccan riots",
+    "American Civil War",
+    "cotton boom",
+    "credit crisis",
+    "Deccan Riots Commission",
+    "official archives",
+    "Francis Buchanan",
+    "peasant testimony",
+    "reading against the grain"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Permanent Settlement made zamindars secure private owners who always improved agriculture.",
+      "correction": "High rigid revenue, low prices, collection problems and auctions destabilised many estates, while investment did not follow automatically."
+    },
+    {
+      "claim": "The Rajmahal hills were empty until Santhals cleared them.",
+      "correction": "Paharias and other communities already used the forests through shifting cultivation, hunting, gathering and seasonal mobility."
+    },
+    {
+      "claim": "Official reports reproduce peasant experience without mediation.",
+      "correction": "Officials selected questions, translated testimony and wrote for administrative purposes, so the records must be critically corroborated."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 6 on auctions after Permanent Settlement.",
+    "NCERT Exercise 7 comparing Paharias and Santhals.",
+    "NCERT Exercise 5 on Deccan moneylenders.",
+    "NCERT Exercise 8 on the American Civil War and ryots.",
+    "NCERT Exercise 9 on official sources."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with questions 1-5 in the 100-150 word section, essay questions 6-9, Map work 10 and Projects 11-12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

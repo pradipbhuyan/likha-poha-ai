@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Business Studies",
+  "chapter": "Business, Trade and Commerce",
+  "central_question": "How do business, industry and commerce create value, support economic development, manage risk and guide the establishment of a new enterprise?",
+  "in_scope_units": [
+    "Introduction to business as the system connecting production, exchange, distribution and consumption.",
+    "Role of business in economic development, including ancient Indian trade, indigenous banking and major trade centres.",
+    "Concept and characteristics of business and the distinction between economic and non-economic activities.",
+    "Comparison of business, profession and employment.",
+    "Classification of business activities into industry and commerce.",
+    "Primary, secondary and tertiary industries and their sub-types.",
+    "Trade and auxiliaries to trade, including transport, banking, insurance, warehousing, communication, advertising and public relations.",
+    "Objectives of business, including profit, market standing, innovation, productivity, resources and social responsibility.",
+    "Meaning, nature and causes of business risk.",
+    "Basic factors considered while starting a business."
+  ],
+  "banned_topics": [
+    "Detailed legal forms of business organisation, which belong to the next chapter.",
+    "Detailed banking and insurance products, which belong to Business Services.",
+    "International trade procedures, which belong to the chapter on International Business."
+  ],
+  "must_include_keywords": [
+    "business",
+    "economic activity",
+    "non-economic activity",
+    "industry",
+    "commerce",
+    "trade",
+    "profession",
+    "employment",
+    "Hundi",
+    "Silk Route",
+    "favourable balance of trade",
+    "primary industry",
+    "extractive industry",
+    "genetic industry",
+    "secondary industry",
+    "manufacturing industry",
+    "construction industry",
+    "tertiary industry",
+    "auxiliaries to trade",
+    "transport",
+    "banking",
+    "insurance",
+    "warehousing",
+    "advertising",
+    "profit",
+    "innovation",
+    "productivity",
+    "social responsibility",
+    "business risk",
+    "speculative risk",
+    "pure risk",
+    "entrepreneurship",
+    "entrepreneur"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every activity that produces a useful result is a business activity.",
+      "correction": "Business is an economic activity involving regular production or sale of goods or services with a profit motive and an element of risk."
+    },
+    {
+      "claim": "A single profitable sale of a personal item is business.",
+      "correction": "Business requires regular dealings; an isolated sale does not constitute business."
+    },
+    {
+      "claim": "Commerce and trade mean exactly the same thing.",
+      "correction": "Trade is buying and selling, while commerce includes trade plus auxiliaries that remove hindrances of person, place, time, risk, finance and information."
+    },
+    {
+      "claim": "Profit is the only objective of business.",
+      "correction": "Profit is essential, but business also pursues market standing, innovation, productivity, efficient resource use and social responsibility."
+    },
+    {
+      "claim": "Business risk can be completely eliminated.",
+      "correction": "Risk is an essential part of business; it can be reduced but not eliminated."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the chapter Activity on whether barter is an economic activity to distinguish motive and exchange.",
+    "Use Short Answer Question 5 to classify business activities into industry and commerce.",
+    "Use Long Answer Question 4 to classify industries with examples from the chapter.",
+    "Use Long Answer Question 7 to analyse business risk and its causes.",
+    "Use Long Answer Question 8 and Activity 1 to evaluate factors for starting a business."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end section contains Short Answer Questions 1–10, Long Answer Questions 1–8 and Activities 1–6 with a case on Dipak Bharali and the Chaneki innovation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 8: Cell: The Unit of Life",
+    "central_question": "How do cellular structures and organelles together make the cell the fundamental structural and functional unit of life?",
+    "in_scope_units": [
+      "Definition of a cell, unicellular and multicellular organisation, and the development of microscopy.",
+      "Cell theory from Schleiden, Schwann, and Virchow.",
+      "Overview of prokaryotic and eukaryotic cells, cytoplasm, nucleus, organelles, and cellular variation.",
+      "Prokaryotic cell organisation, cell envelope, mesosome, chromatophore, flagella, pili, fimbriae, ribosomes, plasmids, and inclusion bodies.",
+      "Eukaryotic cell membrane, fluid mosaic model, passive and active transport, and osmosis.",
+      "Plant cell wall, middle lamella, and plasmodesmata.",
+      "Endomembrane system: ER, Golgi apparatus, lysosomes, and vacuoles.",
+      "Mitochondria, plastids, ribosomes, cytoskeleton, cilia, flagella, centrosome, and centrioles.",
+      "Nucleus, nuclear envelope, pores, nucleolus, chromatin, chromosomes, centromere positions, and microbodies."
+    ],
+    "banned_topics": [
+      "Detailed biomolecular chemistry, which belongs to Biomolecules",
+      "Cell-cycle stages and chromosome segregation, which belong to the next chapter",
+      "Detailed photosynthetic and respiratory pathways",
+      "DNA replication and gene expression mechanisms"
+    ],
+    "must_include_keywords": [
+      "cell",
+      "cell theory",
+      "Schleiden",
+      "Schwann",
+      "Virchow",
+      "prokaryotic cell",
+      "eukaryotic cell",
+      "cytoplasm",
+      "nucleus",
+      "plasmid",
+      "glycocalyx",
+      "cell wall",
+      "plasma membrane",
+      "mesosome",
+      "chromatophore",
+      "flagellum",
+      "pili",
+      "fimbriae",
+      "70S ribosome",
+      "polysome",
+      "inclusion body",
+      "fluid mosaic model",
+      "phospholipid bilayer",
+      "passive transport",
+      "osmosis",
+      "active transport",
+      "endomembrane system",
+      "rough ER",
+      "smooth ER",
+      "Golgi apparatus",
+      "lysosome",
+      "vacuole",
+      "mitochondrion",
+      "cristae",
+      "plastid",
+      "chloroplast",
+      "cytoskeleton",
+      "9+2 array",
+      "nuclear pore",
+      "centromere"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Robert Brown discovered the cell.",
+        "correction": "Robert Brown discovered the nucleus; Antonie van Leeuwenhoek first saw and described a live cell."
+      },
+      {
+        "claim": "Cell theory states that cells arise spontaneously.",
+        "correction": "Virchow added that all cells arise from pre-existing cells."
+      },
+      {
+        "claim": "All cells possess a membrane-bound nucleus.",
+        "correction": "Prokaryotic cells lack a membrane-bound nucleus, and some mature eukaryotic cells also lack a nucleus."
+      },
+      {
+        "claim": "Prokaryotes have no organelles at all.",
+        "correction": "They lack membrane-bound organelles but contain ribosomes and may possess inclusions and specialised membrane structures."
+      },
+      {
+        "claim": "Polar molecules freely cross the lipid bilayer by simple diffusion.",
+        "correction": "They generally require carrier proteins, while active transport uses ATP to move substances against gradients."
+      },
+      {
+        "claim": "Mitochondria and chloroplasts are part of the endomembrane system.",
+        "correction": "The endomembrane system includes ER, Golgi, lysosomes, and vacuoles; mitochondria, chloroplasts, and peroxisomes are excluded."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercises 1–2 and 10: evaluate cell theory and why the cell is the basic unit of life.",
+      "NCERT Exercises 4–5 and 8: identify prokaryotic features and explain mesosome functions.",
+      "NCERT Exercise 6: analyse passive, carrier-mediated, osmotic, and active membrane transport.",
+      "NCERT Exercises 7 and 12: compare double-membrane organelles and endomembrane structures.",
+      "NCERT Exercises 11, 13, and 14: explain nuclear pores, nucleus, centrosome, centromere, and chromosome types."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–14 for cell theory, prokaryotes, membrane transport, organelles, nucleus, and chromosome structure."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 8: Cell: The Unit of Life\n\n## What you will learn\nYou will define the cell and explain the modern cell theory. You will distinguish unicellular and multicellular organisation and connect cell structure with independent life.\n\n## Simple explanation\nA complete cell is the smallest structure capable of independent existence and essential life functions. Larger organisms are built from many specialised cells but still depend on cellular organisation.\n\n## Step-by-step breakdown\n- **Fundamental unit**: The cell is the structural and functional unit of all living organisms.\n- **Unicellular organisms**: A single cell performs all essential life activities and can exist independently.\n- **Multicellular organisms**: Many cells divide labour and form tissues while remaining basic living units.\n- **Early observation**: Antonie van Leeuwenhoek first saw and described a live cell.\n- **Nucleus discovery**: Robert Brown described the nucleus.\n- **Schleiden**: He concluded that plants are composed of cells that form tissues.\n- **Schwann**: He studied animal cells and recognised the plasma membrane and the distinctive plant cell wall.\n- **Original theory**: Schleiden and Schwann proposed that plants and animals consist of cells and cell products.\n- **Virchow's addition**: Omnis cellula-e cellula means new cells arise from pre-existing cells.\n- **Modern cell theory**: All living organisms consist of cells and products of cells, and all cells arise from pre-existing cells.\n\n## Worked example\nQuestion: Based on NCERT Exercises 1, 2, and 10, correct the statement 'Robert Brown discovered the cell' and state the central claims of cell theory.\n\nSolution:\n- Antonie van Leeuwenhoek first saw and described a live cell.\n- Robert Brown discovered the nucleus, not the cell.\n- Schleiden and Schwann established cellular composition of organisms.\n- Virchow explained that new cells arise from pre-existing cells.\n- Final answer: The statement is incorrect: Brown discovered the nucleus. Modern cell theory states that organisms are composed of cells and cell products and that new cells arise from pre-existing cells.\n\n## Common mistake\nCell theory does not claim that every mature cell necessarily contains a nucleus; it describes cellular origin and organisation.\n\n## Quick check question\nQuestion: Who added the principle that new cells arise from pre-existing cells?\nAnswer: Rudolf Virchow.\nExplanation: He modified the earlier theory with the statement Omnis cellula-e cellula.\n\n## Summary\n- A complete cell is capable of essential life functions.\n- Cells form both unicellular and multicellular organisms.\n- Schleiden and Schwann formulated cell theory.\n- Virchow explained cellular continuity.",
+    "Core explanation": "# Core explanation: Chapter 8: Cell: The Unit of Life\n\n## What you will learn\nYou will compare prokaryotic and eukaryotic cells and describe the specialised structures of a bacterial cell. You will distinguish surface structures used for movement from those used for attachment.\n\n## Simple explanation\nProkaryotes are smaller and structurally simpler than eukaryotes, but they possess organised envelopes, genetic material, ribosomes, surface appendages, and metabolic specialisations.\n\n## Step-by-step breakdown\n- **Nuclear organisation**: Prokaryotic DNA is not enclosed by a nuclear membrane; eukaryotic DNA occurs in a membrane-bound nucleus.\n- **Plasmids**: Small circular DNA molecules outside the main bacterial chromosome can confer traits such as antibiotic resistance.\n- **Cell envelope**: Glycocalyx, cell wall, and plasma membrane form a protective three-layered unit in most bacteria.\n- **Glycocalyx forms**: A loose glycocalyx is a slime layer; a thick tough form is a capsule.\n- **Gram response**: Differences in bacterial envelopes underlie Gram-positive and Gram-negative staining.\n- **Mesosome**: Plasma-membrane infoldings assist cell-wall formation, DNA replication and distribution, respiration, secretion, and increased membrane area.\n- **Chromatophores**: Pigment-containing membrane extensions occur in cyanobacteria and some other photosynthetic prokaryotes.\n- **Flagellum**: The bacterial flagellum has filament, hook, and basal body and supports motility.\n- **Pili and fimbriae**: These non-motile surface structures support attachment and related functions.\n- **Ribosomes**: 50S and 30S subunits combine as 70S ribosomes for protein synthesis; multiple ribosomes on one mRNA form a polysome.\n- **Inclusions**: Non-membranous storage granules and gas vacuoles occur in the cytoplasm.\n\n## Worked example\nQuestion: Based on NCERT Exercises 4, 5, and 8, identify the correct prokaryotic statement and explain mesosome functions.\n\nSolution:\n- Prokaryotes lack membrane-bound organelles and a membrane-bound nucleus but possess ribosomes.\n- Mesosomes are extensions or infoldings of the plasma membrane.\n- They participate in respiration, cell-wall formation, DNA replication and distribution, secretion, and enlargement of membrane surface.\n- Other prokaryotic features include plasmids, 70S ribosomes, and inclusion bodies.\n- Final answer: The correct statement is that prokaryotes lack membrane-bound organelles; mesosomes are plasma-membrane infoldings with roles in respiration, wall formation, DNA handling, secretion, and surface-area increase.\n\n## Common mistake\nThe 70S and 80S labels are sedimentation coefficients and should not be added arithmetically from their subunits.\n\n## Quick check question\nQuestion: Which bacterial structures aid attachment but not motility?\nAnswer: Pili and fimbriae.\nExplanation: The chapter distinguishes them from flagella, which provide motility.\n\n## Summary\n- Prokaryotes lack a true nucleus and membrane-bound organelles.\n- Their envelope contains glycocalyx, wall, and membrane.\n- Mesosomes and chromatophores are membrane specialisations.\n- Ribosomes make proteins, and surface appendages have distinct roles.",
+    "Worked examples": "# Worked examples: Chapter 8: Cell: The Unit of Life\n\n## What you will learn\nYou will explain plasma-membrane structure and transport and describe the plant cell wall. You will distinguish passive diffusion, osmosis, carrier-mediated movement, and active transport.\n\n## Simple explanation\nThe plasma membrane is a dynamic lipid–protein mosaic that controls exchange, while the plant cell wall provides external support and communication pathways.\n\n## Step-by-step breakdown\n- **Phospholipid bilayer**: Polar heads face aqueous surfaces and hydrophobic tails face inward.\n- **Membrane proteins**: Peripheral proteins lie on surfaces, while integral proteins are partly or fully embedded.\n- **Fluid mosaic model**: Singer and Nicolson described a quasi-fluid bilayer in which proteins can move laterally.\n- **Selective permeability**: The membrane allows some substances to cross more readily than others.\n- **Simple diffusion**: Neutral solutes move down their concentration gradient without energy.\n- **Osmosis**: Water moves by diffusion across the membrane.\n- **Facilitated movement**: Polar molecules generally require membrane carrier proteins because the bilayer interior is non-polar.\n- **Active transport**: ATP moves ions or molecules against their concentration gradient, as in the Na+/K+ pump.\n- **Cell wall**: The non-living wall gives shape and mechanical and infection protection and restricts unwanted macromolecules.\n- **Middle lamella**: Calcium pectate glues neighbouring cells.\n- **Plasmodesmata**: Channels across walls connect the cytoplasm of adjacent plant cells.\n\n## Worked example\nQuestion: Based on NCERT Exercise 6, explain how neutral solutes and polar molecules cross the plasma membrane.\n\nSolution:\n- Neutral solutes can diffuse from higher to lower concentration through the membrane without energy.\n- Water crosses by osmosis.\n- Polar molecules cannot readily pass through the hydrophobic lipid core and use carrier proteins.\n- Movement against a concentration gradient requires ATP-dependent active transport.\n- Final answer: Neutral solutes move by simple diffusion, water by osmosis, polar solutes commonly through carriers, and substances moved against a gradient by ATP-dependent active transport.\n\n## Common mistake\nOsmosis is not movement of every solute; it specifically describes diffusion of water across a selectively permeable membrane.\n\n## Quick check question\nQuestion: What feature of the membrane permits lateral movement of proteins?\nAnswer: The quasi-fluid nature of the lipid bilayer.\nExplanation: Membrane fluidity underlies protein movement and supports growth, secretion, endocytosis, junction formation, and division.\n\n## Summary\n- The membrane is a phospholipid–protein fluid mosaic.\n- Transport depends on polarity and concentration gradient.\n- Active transport consumes ATP.\n- The plant wall supports, protects, and connects cells.",
+    "Exam-style problems": "# Exam-style problems: Chapter 8: Cell: The Unit of Life\n\n## What you will learn\nYou will organise eukaryotic membrane-bound organelles into functional systems and compare mitochondria and chloroplasts. You will distinguish the endomembrane system from semi-autonomous organelles.\n\n## Simple explanation\nCompartmentalisation allows different biochemical tasks to occur in specialised locations while organelles exchange materials in coordinated pathways.\n\n## Step-by-step breakdown\n- **Endomembrane membership**: The system includes ER, Golgi apparatus, lysosomes, and vacuoles.\n- **Rough ER**: Ribosome-bearing RER supports protein synthesis and secretion and is continuous with the outer nuclear membrane.\n- **Smooth ER**: SER synthesises lipids and steroid-like hormones.\n- **Golgi apparatus**: Cis cisternae receive ER vesicles, materials are modified and packaged, and the trans face releases them.\n- **Lysosomes**: Golgi-derived vesicles contain acidic hydrolases that digest carbohydrates, proteins, lipids, and nucleic acids.\n- **Vacuoles**: Tonoplast-bound spaces store sap and materials; contractile vacuoles support osmoregulation, and food vacuoles contain engulfed food.\n- **Mitochondria**: Double membranes enclose intermembrane space and matrix; cristae increase inner-membrane area, and ATP is produced during aerobic respiration.\n- **Mitochondrial autonomy**: The matrix contains circular DNA, RNA, and 70S ribosomes, and mitochondria divide by fission.\n- **Chloroplasts**: Double membranes enclose stroma with DNA and 70S ribosomes; chlorophyll-bearing thylakoids form grana connected by stroma lamellae.\n- **Plastid types**: Chloroplasts photosynthesise, chromoplasts contain coloured carotenoids, and leucoplasts store starch, oils, or proteins.\n\n## Worked example\nQuestion: Based on NCERT Exercises 7 and 12, compare mitochondria and chloroplasts and distinguish lysosomes from vacuoles.\n\nSolution:\n- Both mitochondria and chloroplasts are double-membrane organelles with circular DNA and 70S ribosomes.\n- Mitochondria contain cristae and matrix and generate ATP through aerobic respiration.\n- Chloroplasts contain stroma, thylakoids, grana, and photosynthetic pigments.\n- Lysosomes contain digestive hydrolases, while vacuoles mainly store materials or perform osmoregulation and food handling.\n- Final answer: Mitochondria and chloroplasts are double-membrane, DNA-containing organelles with different energy functions; lysosomes digest macromolecules, whereas vacuoles primarily store or regulate cellular contents.\n\n## Common mistake\nDo not include mitochondria or chloroplasts in the endomembrane system simply because they possess membranes; their functions are not coordinated with ER–Golgi–lysosome–vacuole trafficking.\n\n## Quick check question\nQuestion: Which Golgi face receives material from the ER?\nAnswer: The cis or forming face.\nExplanation: ER-derived vesicles fuse with the cis face and move toward the trans or maturing face.\n\n## Summary\n- ER and Golgi coordinate synthesis, modification, and packaging.\n- Lysosomes digest and vacuoles store or regulate.\n- Mitochondria generate ATP.\n- Chloroplasts organise photosynthetic membranes in grana.",
+    "Revision and recap": "# Revision and recap: Chapter 8: Cell: The Unit of Life\n\n## What you will learn\nYou will review non-membranous structures, motility organelles, the nucleus, and chromosome classification. You will connect structural details with protein synthesis, movement, cell shape, heredity, and division.\n\n## Simple explanation\nSeveral essential cell structures lack surrounding membranes but perform precise mechanical or informational functions.\n\n## Step-by-step breakdown\n- **Ribosomes**: Cytoplasmic eukaryotic ribosomes are 80S with 60S and 40S subunits; prokaryotic, mitochondrial, and chloroplast ribosomes are 70S.\n- **Cytoskeleton**: Microtubules, microfilaments, and intermediate filaments support shape, movement, and mechanical organisation.\n- **Cilia and flagella**: Their membrane-covered axoneme usually has nine peripheral microtubule doublets and two central microtubules—the 9+2 array.\n- **Centrioles**: Each has nine peripheral triplet fibrils; centrioles form basal bodies and help organise spindle fibres in animal cells.\n- **Nuclear envelope**: Two membranes enclose a perinuclear space; the outer membrane is continuous with ER.\n- **Nuclear pores**: Fusion points of the two membranes allow RNA and protein movement between nucleus and cytoplasm.\n- **Nucleolus**: This non-membranous nuclear body is a site of active ribosomal RNA synthesis.\n- **Chromatin**: DNA, histones, non-histone proteins, and RNA form an extended network in interphase.\n- **Centromere**: The primary constriction holds sister chromatids and bears kinetochores.\n- **Chromosome types**: Metacentric, submetacentric, acrocentric, and telocentric chromosomes differ by centromere position.\n- **Microbodies**: Small membrane-bound enzyme-containing vesicles occur in plant and animal cells.\n\n## Worked example\nQuestion: Based on NCERT Exercises 11, 13, and 14, explain nuclear pores and classify chromosomes by centromere position.\n\nSolution:\n- Nuclear pores are openings where the two nuclear-envelope membranes fuse.\n- They permit bidirectional transport of RNA and proteins.\n- A central centromere gives a metacentric chromosome; a slightly off-centre position gives submetacentric.\n- A near-terminal centromere gives acrocentric, while a terminal centromere gives telocentric.\n- Final answer: Nuclear pores exchange RNA and proteins; chromosomes are metacentric, submetacentric, acrocentric, or telocentric according to centromere position.\n\n## Common mistake\nA nucleolus is not surrounded by a membrane even though it lies inside the membrane-bound nucleus.\n\n## Quick check question\nQuestion: What is the usual microtubule arrangement in a eukaryotic cilium or flagellum?\nAnswer: A 9+2 array.\nExplanation: Nine peripheral doublets surround a pair of central microtubules in the axoneme.\n\n## Summary\n- Ribosomes synthesise proteins.\n- The cytoskeleton supports shape and motility.\n- Cilia and flagella have a 9+2 axoneme.\n- The nucleus controls information exchange through pores.\n- Centromere position determines chromosome shape categories."
+  }
+}

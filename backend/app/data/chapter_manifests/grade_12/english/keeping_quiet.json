@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "Keeping Quiet",
+  "central_question": "How can a brief shared pause from speech, movement, violence and restless activity create self-understanding, human solidarity and renewed respect for life?",
+  "in_scope_units": [
+    "About Pablo Neruda and the poem’s call for quiet introspection and mutual understanding.",
+    "Counting to twelve, universal stillness and the exotic moment without rush or engines.",
+    "Fishermen, whales and the salt gatherer as images of non-harm and awareness of labour.",
+    "Green wars, clean clothes and brotherhood as a rejection of destructive victory.",
+    "The distinction between quiet introspection, total inactivity and death.",
+    "The sadness of self-ignorance and self-destruction and the Earth’s lesson of hidden life.",
+    "Think it out Questions 1–4, Try this out and the note on varying line lengths and shifts of thought."
+  ],
+  "banned_topics": [
+    "A political history of particular wars not named in the poem.",
+    "A scientific explanation of seasons or biological dormancy beyond the Earth image.",
+    "The other poems listed in the Flamingo poetry section."
+  ],
+  "must_include_keywords": [
+    "Pablo Neruda",
+    "Neftali Ricardo Reyes Basoalto",
+    "count to twelve",
+    "keep still",
+    "face of the Earth",
+    "not speak in any language",
+    "one second",
+    "exotic moment",
+    "without rush",
+    "without engines",
+    "sudden strangeness",
+    "fishermen",
+    "cold sea",
+    "whales",
+    "man gathering salt",
+    "hurt hands",
+    "green wars",
+    "wars with gas",
+    "wars with fire",
+    "victory with no survivors",
+    "clean clothes",
+    "brothers",
+    "shade",
+    "total inactivity",
+    "life",
+    "no truck with death",
+    "single-minded",
+    "huge silence",
+    "sadness",
+    "never understanding ourselves",
+    "threatening ourselves with death",
+    "Earth",
+    "apparent stillness",
+    "later proves to be alive",
+    "quiet introspection",
+    "mutual understanding",
+    "free verse",
+    "differing line lengths",
+    "shift in thought"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The poet asks everyone to remain silent forever.",
+      "correction": "He proposes a brief pause for reflection and ends by leaving after counting to twelve."
+    },
+    {
+      "claim": "Keeping quiet means total inactivity and death.",
+      "correction": "He explicitly says his wish should not be confused with total inactivity and that life is what the poem is about."
+    },
+    {
+      "claim": "The poem asks people to abandon work permanently.",
+      "correction": "The salt gatherer pauses to notice hurt hands; the pause creates awareness rather than permanent withdrawal."
+    },
+    {
+      "claim": "“Victory with no survivors” celebrates military success.",
+      "correction": "The phrase exposes the absurdity of a victory that destroys everyone."
+    },
+    {
+      "claim": "The Earth is dead during periods of stillness.",
+      "correction": "The Earth teaches that apparent death may contain hidden life and renewal."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Think it out Q1 for the purpose of counting and stillness.",
+    "Use the fishermen and salt-gatherer images to analyse non-harm and self-awareness.",
+    "Use Think it out Q2 for the distinction between introspection and death.",
+    "Use Q3–4 for sadness and the Earth symbol.",
+    "Use Try this out and the structural note for personal reflection, varying line lengths and shifts of thought."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The poem is followed by Think it out Questions 1–4, Try this out and a note on differing line lengths and shifts in thought from stanza to stanza.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

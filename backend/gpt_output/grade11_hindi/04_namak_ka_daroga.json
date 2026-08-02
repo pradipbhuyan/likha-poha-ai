@@ -1,0 +1,89 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Hindi",
+    "chapter": "Namak Ka Daroga",
+    "central_question": "How does Vanshidhar's uncompromising honesty confront a corrupt system, and why does even the powerful Alopidin ultimately recognise the value of integrity?",
+    "in_scope_units": [
+      "Salt department and normalised extra income.",
+      "Father's advice and social compromise.",
+      "Illegal salt carts, bribe refusal, and arrest.",
+      "Court, influence, acquittal, and suspension.",
+      "Alopidin's later offer and recognition of integrity.",
+      "Realism, idealism, irony, and social satire."
+    ],
+    "banned_topics": [
+      "A general history of salt taxation",
+      "Modern anti-corruption law",
+      "A full biography of Premchand",
+      "Events after the stated ending"
+    ],
+    "must_include_keywords": [
+      "Premchand",
+      "Vanshidhar",
+      "Pandit Alopidin",
+      "salt department",
+      "illegal salt trade",
+      "upper income",
+      "salary",
+      "father's advice",
+      "duty",
+      "honesty",
+      "bribe",
+      "temptation",
+      "authority",
+      "arrest",
+      "court",
+      "lawyer",
+      "influence",
+      "wealth",
+      "suspension",
+      "public opinion",
+      "dharma",
+      "integrity",
+      "moral courage",
+      "permanent manager",
+      "character",
+      "irony",
+      "social satire",
+      "ideal-oriented realism"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Vanshidhar is naive.",
+        "correction": "His refusal is conscious moral courage despite known cost."
+      },
+      {
+        "claim": "Alopidin is defeated only in court.",
+        "correction": "He wins legally but admits moral defeat later."
+      },
+      {
+        "claim": "The father teaches honesty.",
+        "correction": "He recommends attention to unofficial income."
+      },
+      {
+        "claim": "The court is impartial.",
+        "correction": "The episode exposes the power of wealth and reputation."
+      },
+      {
+        "claim": "The ending is arbitrary reward.",
+        "correction": "The appointment follows recognition of trustworthy character."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT अभ्यास: explain salary and upper income.",
+      "NCERT अभ्यास: analyse the bribe refusal.",
+      "NCERT अभ्यास: evaluate courtroom satire.",
+      "NCERT अभ्यास: explain Alopidin's change.",
+      "NCERT अभ्यास: discuss realism and idealism."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Refer to the end-of-chapter अभ्यास questions on character, corruption, court, ending, and social message."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Namak Ka Daroga\n\n## What you will learn\nYou will understand the corrupt social world in which Vanshidhar enters service. You will analyse the father's advice and the story's ironic opening.\n\n## Simple explanation\nThe new salt department becomes known as an opportunity for unofficial income. Vanshidhar's father treats corruption as practical wisdom, revealing how deeply dishonesty has entered ordinary ideas of success.\n\n## Step-by-step breakdown\n- **Salt department**: Law enforcement creates opportunities for illegal trade and bribery.\n- **Normalisation**: People speak of extra income as a natural advantage of office.\n- **Father's advice**: He tells Vanshidhar to look beyond fixed salary.\n- **Salary and upper income**: One is limited; the other is imagined as flexible and growing.\n- **Irony**: Respectable language disguises moral compromise.\n- **Moral background**: Vanshidhar will be tested against an entire social value system.\n\n## Worked example\nQuestion: What does the father's advice reveal about society?\n\nAnswer:\n- He presents unofficial earnings as the real path to prosperity.\n- The advice is offered openly as experienced worldly wisdom.\n- Corruption has become culturally normal rather than merely secret individual wrongdoing.\n- Final answer: The opening shows a society in which dishonesty appears practical and honesty appears foolish.\n\n## Common mistake\nDo not assume the narrator endorses the advice; its ironic presentation invites criticism.\n\n## Quick check question\nQuestion: What does 'upper income' mean here?\nAnswer: Unofficial money obtained through misuse of office or bribes.\nExplanation: The softened phrase reveals social acceptance of corruption.\n\n## Summary\n- The setting is institutionally corrupt.\n- The father voices accepted compromise.\n- Irony exposes moral failure.\n- Vanshidhar's character will oppose this norm.",
+    "Core explanation": "# Core explanation: Namak Ka Daroga\n\n## What you will learn\nYou will analyse the discovery of Alopidin's salt carts and the escalating bribe. You will explain the clash between wealth and duty.\n\n## Simple explanation\nVanshidhar investigates suspicious carts and learns that they carry illegal salt. Alopidin assumes money can settle the matter, but Vanshidhar refuses every offer and orders arrest.\n\n## Step-by-step breakdown\n- **Alertness**: Vanshidhar does not ignore suspicious movement.\n- **Alopidin's confidence**: Past experience has taught him that officials can be managed through wealth.\n- **Escalation**: The bribe rises, testing whether honesty has a price.\n- **Refusal**: Vanshidhar separates public duty from private gain.\n- **Arrest**: The powerful trader meets an unfamiliar limit.\n- **Central conflict**: Purchasable influence confronts an incorruptible conscience.\n\n## Worked example\nQuestion: Why does Alopidin initially fail to understand Vanshidhar?\n\nAnswer:\n- He assumes every official will respond to a sufficiently large payment.\n- Vanshidhar treats the offence as law, not negotiation.\n- Alopidin mistakes widespread corruption for a universal human rule.\n- Final answer: He fails because integrity lies outside his usual logic of purchase.\n\n## Common mistake\nDo not portray the refusal as impulsive anger; it is a disciplined decision about duty.\n\n## Quick check question\nQuestion: What is the deeper conflict in the bridge episode?\nAnswer: Purchasable power versus incorruptible duty.\nExplanation: The salt carts are the event, but conscience is the real battleground.\n\n## Summary\n- Vanshidhar investigates actively.\n- Alopidin relies on wealth.\n- The bribe tests character.\n- Arrest marks a temporary victory of duty.",
+    "Worked examples": "# Worked examples: Namak Ka Daroga\n\n## What you will learn\nYou will examine the courtroom episode as satire on law and social power. You will explain how legal defeat can coexist with moral victory.\n\n## Simple explanation\nAlopidin's wealth, reputation, lawyers, and influence reshape the proceedings. Vanshidhar, despite enforcing the law, becomes isolated and is later suspended.\n\n## Step-by-step breakdown\n- **Reputation**: Officials hesitate to treat a respected wealthy man as an ordinary offender.\n- **Legal influence**: Arguments and networks weaken the practical force of the evidence.\n- **Isolation**: The honest officer receives little institutional support.\n- **Acquittal**: Alopidin escapes punishment.\n- **Suspension**: Vanshidhar pays a professional price for integrity.\n- **Satire**: The system protects prestige while punishing inconvenient honesty.\n\n## Worked example\nQuestion: How does the court reverse the expected relation between law and justice?\n\nAnswer:\n- The officer who enforces the law is humiliated and suspended.\n- The influential offender leaves protected by status and argument.\n- Procedure becomes separated from moral truth.\n- Final answer: The courtroom turns integrity into a practical offence and influence into protection.\n\n## Common mistake\nDo not conclude that honesty is meaningless; the later recognition depends on this moral defeat of wealth.\n\n## Quick check question\nQuestion: Who suffers professionally after the case?\nAnswer: Vanshidhar.\nExplanation: He is suspended even though he refused corruption and enforced the law.\n\n## Summary\n- Wealth shapes the court atmosphere.\n- Vanshidhar stands alone.\n- Acquittal is legal success for Alopidin.\n- Suspension exposes institutional injustice.",
+    "Exam-style problems": "# Exam-style problems: Namak Ka Daroga\n\n## What you will learn\nYou will analyse Alopidin's later visit and his offer of permanent management. You will distinguish legal victory from moral defeat.\n\n## Simple explanation\nAfter winning in court, Alopidin visits Vanshidhar and asks him to manage his estate. He recognises that the person who could not be bought is the person most fit to be trusted.\n\n## Step-by-step breakdown\n- **Unexpected visit**: The former accused enters the honest officer's modest home.\n- **Admission**: Alopidin accepts that money failed before Vanshidhar's character.\n- **Offer**: He proposes permanent managerial responsibility.\n- **Trust**: Incorruptibility becomes more valuable than obedient cleverness.\n- **Reversal**: The bribe-giver now seeks the moral strength he could not purchase.\n- **Recognition**: The ending makes an earlier moral victory publicly visible.\n\n## Worked example\nQuestion: Why does Alopidin choose Vanshidhar as manager?\n\nAnswer:\n- Vanshidhar proved he would not sell duty even under great temptation.\n- Such a person can be trusted with wealth and responsibility.\n- Alopidin's practical intelligence finally recognises the value of integrity.\n- Final answer: He appoints Vanshidhar because incorruptibility is the rarest qualification for stewardship.\n\n## Common mistake\nDo not claim that the story proves complete reform of Alopidin's whole life; it shows recognition of one moral truth.\n\n## Quick check question\nQuestion: What quality does Alopidin value at the end?\nAnswer: Unpurchasable honesty.\nExplanation: The failed bribe proves Vanshidhar's reliability.\n\n## Summary\n- The visit reverses the earlier hierarchy.\n- Alopidin admits moral defeat.\n- Honesty becomes practical trust.\n- The offer recognises character.",
+    "Revision and recap": "# Revision and recap: Namak Ka Daroga\n\n## What you will learn\nYou will integrate corruption, duty, social power, irony, and ideal-oriented realism. You will compare the central characters and clarify the story's message.\n\n## Simple explanation\nThe story is realistic in its portrayal of bribery, influence, and compromised institutions. Its ideal element is the belief that character can command recognition even after the system punishes it.\n\n## Step-by-step breakdown\n- **Vanshidhar**: He represents duty, courage, and willingness to accept personal loss.\n- **Alopidin**: He represents wealth and influence but also the capacity to recognise integrity.\n- **Father**: He voices socially accepted compromise.\n- **System**: The department and court show structural corruption.\n- **Irony**: Official respectability repeatedly conceals moral failure.\n- **Ideal-oriented realism**: The corrupt world is not denied, but honesty receives final ethical recognition.\n\n## Worked example\nQuestion: In what sense does Vanshidhar win before receiving the appointment?\n\nAnswer:\n- He preserves his conscience during the bribe attempt.\n- Even Alopidin's legal success cannot erase the fact that wealth failed to buy him.\n- Moral victory occurs at refusal; the later job only makes it visible.\n- Final answer: Vanshidhar wins by remaining honest when honesty brings immediate loss.\n\n## Common mistake\nDo not reduce the message to 'honesty always brings wealth'; integrity has value even before reward.\n\n## Quick check question\nQuestion: Who voices the ordinary logic of compromise?\nAnswer: Vanshidhar's father.\nExplanation: His advice about upper income shows how corruption enters family ideas of success.\n\n## Summary\n- The story attacks normalised corruption.\n- Honesty survives legal defeat.\n- Wealth has moral limits.\n- Irony and reversal shape the plot.\n- Realism and ideal moral faith coexist."
+  }
+}

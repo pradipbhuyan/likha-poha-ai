@@ -345,11 +345,18 @@ class TestCbseAccessControl:
         assert "cbse" in r.json().get("detail", "").lower() or \
                "access" in r.json().get("detail", "").lower()
 
-    def test_student_without_cbse_access_cannot_ask_doubt(self, monkeypatch):
+    def test_student_without_cbse_access_can_still_ask_doubt(self, monkeypatch):
+        """
+        Ask Doubt never calls an LLM for any tier, so it no longer gates by
+        subject/topic access — a free-tier student without access_cbse must
+        still get a normal (retrieval-only) answer, not a 403. The only
+        free-tier control is the shared 5/day cap (tested separately).
+        """
         no_cbse = fake_student_profile(access_cbse=False)
         patch_route_profile(monkeypatch, doubt_route, no_cbse)
         r = client.post("/api/doubt/answer", json=DOUBT_PAYLOAD)
-        assert r.status_code == 403
+        assert r.status_code == 200
+        assert r.json()["success"] is True
 
     def test_student_without_cbse_access_cannot_take_mock_test(self, monkeypatch):
         no_cbse = fake_student_profile(access_cbse=False)

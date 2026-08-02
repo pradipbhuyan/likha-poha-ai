@@ -1,0 +1,110 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "central_question": "How do heat, work, temperature and internal energy describe energy transfer and determine the direction and limits of thermodynamic processes?",
+    "in_scope_units": [
+      "11.1 Introduction − thermodynamics as the macroscopic study of heat, temperature and energy conversion.",
+      "11.2 Thermal equilibrium − equilibrium states, adiabatic and diathermic walls, and equality of temperature.",
+      "11.3 Zeroth law of thermodynamics − the transitive property of thermal equilibrium and the definition of temperature.",
+      "11.4 Heat, internal energy and work − internal energy as a state variable and heat and work as modes of energy transfer.",
+      "11.5 First law of thermodynamics − conservation of energy with the sign convention ΔQ = ΔU + ΔW.",
+      "11.6 Specific heat capacity − heat capacity, specific heat, molar heat capacity and the relation Cp − Cv = R for an ideal gas.",
+      "11.7 Thermodynamic state variables and equation of state − equilibrium variables, ideal-gas equation, and intensive versus extensive variables.",
+      "11.8 Thermodynamic processes − quasi-static, isothermal, adiabatic, isochoric, isobaric and cyclic processes.",
+      "11.9 Second law of thermodynamics − Kelvin–Planck and Clausius statements and limits on engines and refrigerators.",
+      "11.10 Reversible and irreversible processes − quasi-static reversibility, dissipation and spontaneous irreversibility.",
+      "11.11 Carnot engine − Carnot cycle, maximum efficiency and the universal efficiency relation."
+    ],
+    "banned_topics": [
+      "Detailed molecular derivation of gas pressure and rms speed, which belongs to Kinetic Theory.",
+      "Maxwell–Boltzmann speed distribution and mean free path, which belong to Kinetic Theory.",
+      "Thermal expansion formulae and heat-transfer mechanisms beyond what is needed for this chapter.",
+      "Wave motion, oscillations and resonance."
+    ],
+    "must_include_keywords": [
+      "thermodynamic equilibrium",
+      "adiabatic wall",
+      "diathermic wall",
+      "Zeroth law",
+      "temperature",
+      "internal energy",
+      "state variable",
+      "heat",
+      "work",
+      "first law of thermodynamics",
+      "ΔQ = ΔU + ΔW",
+      "specific heat capacity",
+      "molar specific heat",
+      "Cp − Cv = R",
+      "equation of state",
+      "PV = μRT",
+      "intensive variable",
+      "extensive variable",
+      "quasi-static process",
+      "isothermal process",
+      "adiabatic process",
+      "isochoric process",
+      "isobaric process",
+      "cyclic process",
+      "second law of thermodynamics",
+      "Kelvin–Planck statement",
+      "Clausius statement",
+      "reversible process",
+      "irreversible process",
+      "Carnot cycle",
+      "Carnot engine",
+      "efficiency η = 1 − T2/T1"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A body contains heat as a state property.",
+        "correction": "A body has internal energy; heat is energy transferred because of a temperature difference and is not a state variable."
+      },
+      {
+        "claim": "Work done on a gas is positive in the chapter's sign convention.",
+        "correction": "The chapter defines ΔW as work done by the system; work done on the system therefore makes ΔW negative."
+      },
+      {
+        "claim": "Two bodies at different temperatures always reach the arithmetic mean temperature.",
+        "correction": "The final temperature depends on their masses, heat capacities, phase changes and heat exchange with surroundings, not merely on the two initial temperatures."
+      },
+      {
+        "claim": "Isothermal means no heat transfer.",
+        "correction": "For an ideal gas in an isothermal process ΔU = 0, but heat can enter or leave and equals the work done by or on the gas."
+      },
+      {
+        "claim": "Adiabatic means constant temperature.",
+        "correction": "Adiabatic means Q = 0; the temperature generally changes when work is done."
+      },
+      {
+        "claim": "Every slow process is reversible.",
+        "correction": "A reversible process must be quasi-static and free from dissipative effects such as friction and viscosity."
+      },
+      {
+        "claim": "A heat engine can convert all absorbed heat into work.",
+        "correction": "The Kelvin–Planck statement rules out complete conversion of heat from a single reservoir into work in a cyclic process."
+      },
+      {
+        "claim": "Carnot efficiency depends on the working substance.",
+        "correction": "For reservoirs at T1 and T2, Carnot efficiency is η = 1 − T2/T1 and is independent of the working substance."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 11.3(a) to explain why thermal equilibrium need not occur at the arithmetic mean temperature.",
+      "Use NCERT Exercise 11.7 to apply the first law as a rate equation.",
+      "Use NCERT Exercise 11.4 to apply the adiabatic relation PV^γ = constant.",
+      "Use NCERT Exercise 11.6 to analyse free expansion and irreversibility.",
+      "Use NCERT Exercises 11.1 and 11.2 for integrated heat-capacity and energy calculations."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The NCERT end-of-chapter section is titled EXERCISES and contains Questions 11.1 to 11.8."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Thermodynamics\n\n## What you will learn\nYou will distinguish thermodynamic equilibrium from mechanical equilibrium and understand how temperature emerges from the Zeroth law. You will also separate the meanings of internal energy, heat and work.\n\n## Simple explanation\nThermodynamics describes bulk systems using measurable variables such as pressure, volume and temperature. It focuses on the internal macroscopic state of a system and on energy transferred as heat or work, rather than on the motion of the system as a whole.\n\n## Step-by-step breakdown\n- **Macroscopic description**: A thermodynamic state is described using variables such as pressure, volume, temperature, mass and composition rather than the positions and velocities of individual molecules.\n- **Thermal equilibrium**: When two systems separated by a diathermic wall stop exchanging heat, their macroscopic variables become steady and their temperatures are equal.\n- **Zeroth law**: If systems A and B are each in thermal equilibrium with a third system C, then A and B are in thermal equilibrium with each other. This identifies temperature as the common thermodynamic variable.\n- **Internal energy**: Internal energy U is the sum of molecular kinetic and potential energies measured in the centre-of-mass frame. It is a state variable because its value depends only on the state.\n- **Heat and work**: Heat is energy transfer caused by a temperature difference; work is energy transfer by other means, such as moving a piston. Neither heat nor work is a state variable.\n\n## Worked example\nQuestion: Based on NCERT Exercise 11.3(a), explain why two bodies initially at temperatures T1 and T2 do not necessarily settle at (T1 + T2)/2 when brought into thermal contact.\n\nSolution:\n- Let the bodies have heat capacities C1 and C2 and assume no heat is lost to the surroundings.\n- Energy conservation gives C1(T1 − Tf) = C2(Tf − T2) when T1 > T2.\n- Solving gives Tf = (C1T1 + C2T2)/(C1 + C2), which equals the arithmetic mean only when C1 = C2 and no phase change occurs.\n- Final answer: The equilibrium temperature is a heat-capacity-weighted value, not necessarily (T1 + T2)/2.\n\n## Common mistake\nDo not say that a system 'contains heat'. The system contains internal energy; heat describes energy crossing the boundary because of a temperature difference.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 11.3(b), why should a coolant used in a chemical or nuclear plant have a high specific heat capacity?\nAnswer: A high-specific-heat coolant can absorb a large amount of heat for a relatively small rise in its own temperature.\nExplanation: Since Q = mcΔT, a larger c gives a smaller ΔT for the same absorbed heat, helping prevent plant components from becoming excessively hot.\n\n## Summary\n- Thermal equilibrium means equal temperature and no net heat flow.\n- The Zeroth law provides the logical basis for temperature measurement.\n- Internal energy is a state variable; heat and work are path-dependent energy transfers.\n- Thermodynamics studies bulk states rather than individual molecular trajectories.",
+    "Core explanation": "# Core explanation: Thermodynamics\n\n## What you will learn\nYou will apply the first law with the chapter's sign convention and connect heat capacity to changes in temperature. You will also understand why Cp exceeds Cv for an ideal gas.\n\n## Simple explanation\nThe first law is conservation of energy for a thermodynamic system. Heat supplied can increase internal energy, be used by the system to do work, or be divided between both effects.\n\n## Step-by-step breakdown\n- **First-law equation**: With ΔQ as heat supplied to the system and ΔW as work done by the system, the law is ΔQ = ΔU + ΔW, or ΔU = ΔQ − ΔW.\n- **Sign convention**: Q > 0 means heat enters the system; Q < 0 means heat leaves. W > 0 means the system does work; W < 0 means work is done on it.\n- **Constant-pressure work**: For a gas expanding against constant pressure P, ΔW = PΔV, so ΔQ = ΔU + PΔV.\n- **Heat capacities**: Heat capacity is S = ΔQ/ΔT; specific heat capacity is s = (1/m)(ΔQ/ΔT); molar specific heat is C = (1/μ)(ΔQ/ΔT).\n- **Cp and Cv**: At constant volume no expansion work is done, while at constant pressure some heat also supplies expansion work. For one mole of an ideal gas, Cp − Cv = R.\n\n## Worked example\nQuestion: NCERT Exercise 11.7 states that a heater supplies heat at 100 W while the system performs work at 75 J s⁻¹. At what rate does internal energy increase?\n\nSolution:\n- Write the first law in rate form: dQ/dt = dU/dt + dW/dt.\n- Substitute dQ/dt = 100 W and dW/dt = 75 W.\n- Therefore dU/dt = 100 − 75 = 25 W.\n- Final answer: The internal energy increases at 25 J s⁻¹, or 25 W.\n\n## Common mistake\nA frequent sign error is to add work done by the system to ΔU. With this chapter's convention, ΔU = ΔQ − ΔW because positive work carries energy out of the system.\n\n## Quick check question\nQuestion: In NCERT Exercise 11.5, 22.3 J of work is done on a gas adiabatically from A to B. Along another path it absorbs 9.35 cal. Taking 1 cal = 4.19 J, what work is done by the gas on the second path?\nAnswer: Approximately 16.9 J is done by the gas.\nExplanation: For the adiabatic path Q = 0 and Wby = −22.3 J, so ΔU = 22.3 J. On the second path Q = 9.35 × 4.19 = 39.18 J; hence Wby = Q − ΔU = 16.88 J.\n\n## Summary\n- The first law is energy conservation: ΔQ = ΔU + ΔW.\n- Positive W means work done by the system.\n- Specific and molar heat capacities measure heat needed per unit temperature rise.\n- For an ideal gas, Cp − Cv = R because constant-pressure heating includes expansion work.",
+    "Worked examples": "# Worked examples: Thermodynamics\n\n## What you will learn\nYou will classify thermodynamic variables and processes and use the characteristic equations of ideal-gas transformations. The focus is on isothermal, adiabatic, isochoric, isobaric and cyclic paths.\n\n## Simple explanation\nA thermodynamic process is a path connecting equilibrium states. The process condition tells us which quantity is fixed and therefore how heat, work, internal energy, pressure, volume and temperature are related.\n\n## Step-by-step breakdown\n- **State variables**: Pressure, volume, temperature and internal energy describe an equilibrium state. Heat and work depend on the path between states.\n- **Intensive and extensive**: Pressure, temperature and density are intensive; internal energy, volume and mass are extensive.\n- **Quasi-static process**: The process is carried out infinitely slowly so that the system remains arbitrarily close to thermal and mechanical equilibrium.\n- **Isothermal ideal gas**: T is constant, PV is constant, ΔU = 0 and Q = W = μRT ln(V2/V1).\n- **Adiabatic ideal gas**: Q = 0 and PV^γ is constant. Expansion lowers the internal energy and temperature; compression raises them.\n- **Isochoric, isobaric and cyclic**: Isochoric means V constant and W = 0; isobaric means P constant and W = P(V2 − V1); in a cycle ΔU = 0 and net Q equals net W.\n\n## Worked example\nQuestion: NCERT Exercise 11.4 asks for the pressure increase when hydrogen is compressed adiabatically to half its original volume. Treat hydrogen at ordinary temperature as a diatomic gas with γ = 7/5.\n\nSolution:\n- Use P1V1^γ = P2V2^γ.\n- With V2 = V1/2, P2/P1 = (V1/V2)^γ = 2^(7/5).\n- Numerically, 2^1.4 − 2.64.\n- Final answer: The pressure increases by a factor of about 2.64.\n\n## Common mistake\nDo not identify every slow change as isothermal. Isothermal specifically requires constant temperature; a slow insulated compression can still be adiabatic and raise the temperature.\n\n## Quick check question\nQuestion: Using the data in NCERT Exercise 11.5, is the change in internal energy from A to B path dependent?\nAnswer: No. The change in internal energy is 22.3 J for every path from A to B.\nExplanation: Internal energy is a state variable, so ΔU depends only on the initial and final states. Heat and work can differ between paths, but Q − W remains equal to the same ΔU.\n\n## Summary\n- An equation of state connects state variables such as P, V and T.\n- Quasi-static processes remain near equilibrium at every stage.\n- Isothermal ideal-gas work is logarithmic in the volume ratio.\n- Adiabatic changes satisfy PV^γ = constant.\n- In a cyclic process, the net change in internal energy is zero.",
+    "Exam-style problems": "# Exam-style problems: Thermodynamics\n\n## What you will learn\nYou will use the second law to identify impossible processes and distinguish reversible from irreversible changes. You will then connect reversibility to the Carnot cycle and maximum engine efficiency.\n\n## Simple explanation\nThe first law tells us how much energy is conserved, but not which direction a process can occur spontaneously. The second law supplies this direction and sets a strict upper limit on conversion of heat into work.\n\n## Step-by-step breakdown\n- **Kelvin–Planck statement**: No cyclic process can have as its sole result the absorption of heat from one reservoir and its complete conversion into work.\n- **Clausius statement**: No process can have as its sole result the transfer of heat from a colder body to a hotter body.\n- **Irreversibility**: Free expansion, diffusion, friction, viscosity and explosive reactions do not spontaneously reverse and restore both system and surroundings.\n- **Reversible process**: An ideal reversible process is quasi-static and non-dissipative, so an infinitesimal reversal restores system and surroundings without any other change.\n- **Carnot cycle**: A reversible engine between T1 and T2 uses two isothermal and two adiabatic processes.\n- **Maximum efficiency**: For absolute temperatures T1 > T2, ηCarnot = 1 − T2/T1. No engine operating between the same reservoirs can be more efficient.\n\n## Worked example\nQuestion: Using NCERT Exercise 11.6, analyse the sudden free expansion of an ideal gas from one cylinder into an identical evacuated cylinder in a thermally insulated system.\n\nSolution:\n- The gas expands into vacuum, so the external pressure is zero and no work is done: W = 0.\n- The system is insulated, so Q = 0.\n- From the first law, ΔU = Q − W = 0; for an ideal gas U depends only on T, so ΔT = 0.\n- The final volume doubles, so the final equilibrium pressure is half the initial pressure. Intermediate states are non-equilibrium states and cannot be represented by single P, V and T values.\n- Final answer: The process is irreversible even though Q = W = ΔU = 0.\n\n## Common mistake\nDo not equate 'adiabatic' with 'reversible'. Sudden free expansion is adiabatic but irreversible because the gas passes through non-equilibrium states.\n\n## Quick check question\nQuestion: Based on NCERT Exercise 11.3(d), why is the climate of a harbour town usually more moderate than that of a desert town at the same latitude?\nAnswer: Water's high specific heat capacity reduces the rate and size of temperature changes near the coast.\nExplanation: For the same heat exchange, a large heat capacity gives a smaller temperature change. The sea absorbs and releases large amounts of heat with relatively small temperature variation, moderating nearby air temperatures.\n\n## Summary\n- The second law determines the allowed direction of spontaneous processes.\n- Reversibility requires both quasi-static evolution and absence of dissipation.\n- Free expansion is a standard irreversible process.\n- A Carnot engine gives the maximum possible efficiency between two reservoirs.\n- Carnot efficiency depends only on absolute reservoir temperatures.",
+    "Revision and recap": "# Revision and recap: Thermodynamics\n\n## What you will learn\nYou will connect the chapter's laws and process equations in a single problem-solving framework. You will also revise the most important sign conventions, formulas and physical interpretations.\n\n## Simple explanation\nA reliable thermodynamics solution begins by defining the system, identifying the process, writing the correct sign convention and then applying energy conservation. The second law is used afterward to judge direction, reversibility and efficiency.\n\n## Step-by-step breakdown\n- **Equilibrium checklist**: Check whether pressure and temperature are well defined and time independent before using equilibrium state variables.\n- **Energy checklist**: Write ΔQ = ΔU + ΔW and mark the signs of heat and work before substituting numbers.\n- **Process checklist**: Use T constant for isothermal, Q = 0 for adiabatic, V constant for isochoric, P constant for isobaric and ΔU = 0 for a complete cycle.\n- **Heat-capacity checklist**: Use Q = mcΔT or Q = μCΔT only with the correct process-specific heat capacity.\n- **Second-law checklist**: Reject perfect heat engines, spontaneous cold-to-hot heat transfer and exact reversal of dissipative processes.\n- **Carnot benchmark**: Compare any engine with ηCarnot = 1 − T2/T1, using kelvin temperatures.\n\n## Worked example\nQuestion: NCERT Exercise 11.1: Water flows through a geyser at 3.0 litres per minute and is heated from 27 °C to 77 °C. If the fuel has heat of combustion 4.0 × 10^4 J g⁻¹, find the fuel-consumption rate. Take water density as 1 kg L⁻¹ and c = 4186 J kg⁻¹ K⁻¹.\n\nSolution:\n- The mass flow rate is 3.0 kg min⁻¹ = 0.050 kg s⁻¹.\n- The temperature rise is 50 K, so the required heating power is mcΔT per second = 0.050 × 4186 × 50 = 10465 J s⁻¹.\n- Divide by the heat released per gram: 10465/(4.0 × 10^4) = 0.262 g s⁻¹.\n- Final answer: The fuel-consumption rate is about 0.262 g s⁻¹, or 15.7 g min⁻¹.\n\n## Common mistake\nNever use Celsius temperatures in a Carnot-efficiency ratio. Temperature ratios in thermodynamics must use the absolute kelvin scale.\n\n## Quick check question\nQuestion: NCERT Exercise 11.2: How much heat is required to raise 2.0 × 10–2 kg of nitrogen by 45 K at constant pressure? Use molar mass 28 g mol⁻¹, R = 8.3 J mol⁻¹ K⁻¹ and Cp = 7R/2 for a diatomic ideal gas at room temperature.\nAnswer: Approximately 9.34 × 10^2 J.\nExplanation: The amount is μ = 0.020/0.028 = 0.714 mol. Then Q = μCpΔT = 0.714 × (7/2 × 8.3) × 45 − 934 J.\n\n## Summary\n- Temperature follows from the Zeroth law and equilibrium.\n- The first law accounts for heat, work and internal-energy change.\n- State variables are path independent; heat and work are path dependent.\n- Special processes impose different constraints and equations.\n- The second law sets direction and limits efficiency.\n- The Carnot engine is the reversible upper benchmark."
+  }
+}

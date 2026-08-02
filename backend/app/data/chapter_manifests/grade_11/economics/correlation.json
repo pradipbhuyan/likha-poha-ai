@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Correlation",
+  "central_question": "How can the direction and intensity of association between two variables be examined visually and measured through correlation coefficients?",
+  "in_scope_units": [
+    "Introduction to relationships between two variables and the questions addressed by correlation analysis.",
+    "Types of relationship, third-variable effects, coincidence, and the distinction between covariation and causation.",
+    "Positive, negative, zero, perfect, linear, and non-linear forms of correlation.",
+    "Scatter diagrams as a visual technique for examining the direction, form, and closeness of association.",
+    "Karl Pearson’s coefficient of correlation, covariance, standard deviations, formulae, and interpretation.",
+    "Properties of the correlation coefficient, including its range, lack of units, and independence from change of origin and scale.",
+    "Direct and step-deviation calculation of Karl Pearson’s coefficient and interpretation of weak and strong values.",
+    "Spearman’s rank correlation for ranks, attributes, imprecisely measured variables, extreme values, and some non-linear relations.",
+    "Rank-correlation calculation when ranks are given, not given, or repeated, including correction for tied ranks.",
+    "Conclusion and recap on selecting a method and avoiding causal interpretation."
+  ],
+  "banned_topics": [
+    "Range, quartile deviation, mean deviation, and standard deviation as measures of dispersion",
+    "Regression equations",
+    "Time-series analysis",
+    "Construction of index numbers"
+  ],
+  "must_include_keywords": [
+    "correlation",
+    "relationship",
+    "covariation",
+    "causation",
+    "third variable",
+    "positive correlation",
+    "negative correlation",
+    "zero correlation",
+    "perfect correlation",
+    "linear relationship",
+    "non-linear relationship",
+    "scatter diagram",
+    "Karl Pearson",
+    "product moment correlation",
+    "covariance",
+    "standard deviation",
+    "correlation coefficient",
+    "pure number",
+    "minus one",
+    "plus one",
+    "change of origin",
+    "change of scale",
+    "step deviation",
+    "strong relationship",
+    "weak relationship",
+    "Spearman",
+    "rank correlation",
+    "attributes",
+    "ranks",
+    "repeated ranks",
+    "correction factor"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Correlation proves that one variable causes the other.",
+      "correction": "Correlation measures covariation, not causation; coincidence or a third variable may explain the observed association."
+    },
+    {
+      "claim": "Karl Pearson’s coefficient is appropriate for every form of relationship.",
+      "correction": "Karl Pearson’s coefficient measures linear relationship and can be misleading when the true relationship is non-linear."
+    },
+    {
+      "claim": "A zero coefficient proves that two variables are independent.",
+      "correction": "A zero coefficient means no linear relation; a non-linear relation may still exist."
+    },
+    {
+      "claim": "The correlation coefficient has the combined units of the two variables.",
+      "correction": "The correlation coefficient has no unit and is a pure number."
+    },
+    {
+      "claim": "Repeated ranks can be ignored in Spearman’s method.",
+      "correction": "Repeated ranks receive average ranks and require correction factors in the rank-correlation formula."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the ice-cream, temperature, and drowning illustration to separate correlation from causation.",
+    "Use Figures 6.1–6.7 to classify positive, negative, zero, perfect, and non-linear relationships.",
+    "Use NCERT Example 1 to interpret Karl Pearson’s coefficient for schooling and yield.",
+    "Use NCERT Example 2 to explain change of origin and scale through the step-deviation method.",
+    "Use NCERT Examples 3–5 to calculate Spearman’s rank correlation with given, derived, and repeated ranks."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The embedded source chapter ends with EXERCISES 1–20 and an activity on calculating correlation between India’s national income and exports.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

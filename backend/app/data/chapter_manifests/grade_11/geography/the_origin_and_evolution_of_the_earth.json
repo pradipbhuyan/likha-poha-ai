@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "The Origin and Evolution of the Earth",
+  "central_question": "How did the universe, stars, planets and the earth develop into a layered planet with an atmosphere, oceans and life?",
+  "in_scope_units": [
+    "Early theories of earth and planet formation.",
+    "The Big Bang Theory and expansion of the universe.",
+    "Formation of galaxies and stars and the meaning of light year.",
+    "Planet formation through planetesimals and accretion.",
+    "Evolution and differentiation of the lithosphere.",
+    "Evolution of atmosphere, hydrosphere and life."
+  ],
+  "banned_topics": [
+    "Detailed seismic-wave evidence, which belongs to Interior of the Earth.",
+    "Plate tectonics, which belongs to Distribution of Oceans and Continents.",
+    "Detailed atmospheric structure, which belongs to a later atmosphere chapter."
+  ],
+  "must_include_keywords": [
+    "Nebular Hypothesis",
+    "Immanuel Kant",
+    "Laplace",
+    "Otto Schmidt",
+    "Carl Weizsäcker",
+    "solar nebula",
+    "Big Bang Theory",
+    "expanding universe",
+    "Edwin Hubble",
+    "singularity",
+    "steady state",
+    "galaxy",
+    "nebula",
+    "star formation",
+    "light year",
+    "gravitational force",
+    "rotating disc",
+    "planetesimal",
+    "cohesion",
+    "collision",
+    "accretion",
+    "evolution of the earth",
+    "volatile state",
+    "differentiation",
+    "crust",
+    "mantle",
+    "outer core",
+    "inner core",
+    "primordial atmosphere",
+    "solar winds",
+    "degassing",
+    "water vapour",
+    "condensation",
+    "hydrosphere",
+    "photosynthesis",
+    "oxygen",
+    "origin of life",
+    "fossils",
+    "blue algae"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A light year is a unit of time.",
+      "correction": "It is the distance light travels in one year."
+    },
+    {
+      "claim": "The balloon model proves galaxies themselves expand.",
+      "correction": "It only illustrates increasing space between galaxies."
+    },
+    {
+      "claim": "Planets formed directly as full-sized bodies.",
+      "correction": "They developed through condensation, planetesimals, collision and accretion."
+    },
+    {
+      "claim": "The first atmosphere was like today’s.",
+      "correction": "The primordial atmosphere was lost and a later one evolved through degassing and life."
+    },
+    {
+      "claim": "Life began on land immediately.",
+      "correction": "The chapter states that early life evolved in oceans."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 2(i) to explain differentiation.",
+    "Use Exercise 2(ii–iii) to describe the early earth and atmosphere.",
+    "Use Exercise 3(i) to explain the Big Bang Theory.",
+    "Use Exercise 3(ii) to organise stages in earth’s evolution."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1(i–iii), 2(i–iii), 3(i–ii), and a three-part Stardust Project Work.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

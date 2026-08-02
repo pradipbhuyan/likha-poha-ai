@@ -1,0 +1,89 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics",
+    "central_question": "How do heat, work, enthalpy, entropy, and Gibbs energy describe energy changes and predict spontaneity?",
+    "in_scope_units": [
+      "Systems, surroundings, state variables, and processes.",
+      "Internal energy, heat, work, and the first law.",
+      "PV work, enthalpy, heat capacity, and calorimetry.",
+      "Reaction enthalpies, Hess law, and bond enthalpy.",
+      "Entropy, Gibbs energy, spontaneity, and equilibrium."
+    ],
+    "banned_topics": [
+      "Statistical mechanics derivations",
+      "Detailed equilibrium calculations",
+      "Electrochemical thermodynamics",
+      "Reaction kinetics"
+    ],
+    "must_include_keywords": [
+      "system",
+      "surroundings",
+      "boundary",
+      "open system",
+      "closed system",
+      "isolated system",
+      "state function",
+      "path function",
+      "internal energy",
+      "heat",
+      "work",
+      "first law",
+      "pressure-volume work",
+      "enthalpy",
+      "heat capacity",
+      "specific heat",
+      "calorimetry",
+      "standard state",
+      "reaction enthalpy",
+      "formation enthalpy",
+      "combustion enthalpy",
+      "atomisation enthalpy",
+      "bond enthalpy",
+      "Hess law",
+      "lattice enthalpy",
+      "spontaneous process",
+      "entropy",
+      "Gibbs energy",
+      "equilibrium"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Heat and temperature are identical.",
+        "correction": "Heat is energy transfer; temperature describes thermal state."
+      },
+      {
+        "claim": "A state function depends on path.",
+        "correction": "It depends only on initial and final states."
+      },
+      {
+        "claim": "Positive work always means work done by the system.",
+        "correction": "In the chemistry convention, work done on the system is positive."
+      },
+      {
+        "claim": "Exothermic means spontaneous.",
+        "correction": "Spontaneity depends on both enthalpy and entropy."
+      },
+      {
+        "claim": "Entropy is merely disorder.",
+        "correction": "It is a thermodynamic measure of energy dispersal and accessible arrangements."
+      }
+    ],
+    "recommended_example_progression": [
+      "Classify systems.",
+      "Apply the first law.",
+      "Relate enthalpy and calorimetry.",
+      "Use Hess law and bond enthalpy.",
+      "Predict spontaneity using Gibbs energy."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use exercises on work, internal energy, enthalpy, calorimetry, Hess law, bond enthalpy, entropy, Gibbs energy, and spontaneity."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Thermodynamics\n\n## What you will learn\nDefine systems and distinguish state from path functions.\n\n## Simple explanation\nThermodynamics begins by choosing a system and specifying its condition.\n\n## Step-by-step breakdown\n- **System**: Part of the universe under study.\n- **Surroundings**: Everything outside it.\n- **Boundary**: Separates system and surroundings.\n- **Open**: Exchanges matter and energy.\n- **Closed**: Exchanges energy but not matter.\n- **Isolated**: Exchanges neither.\n- **State function**: Depends only on endpoints.\n- **Path function**: Heat and work depend on route.\n\n## Worked example\nQuestion: Classify a sealed, thermally conducting vessel.\n\nSolution:\n- The seal blocks matter exchange.\n- Thermal conduction permits energy exchange.\n- It is therefore closed, not isolated.\n- Final answer: A closed system.\n\n## Common mistake\nClosed does not mean thermally insulated.\n\n## Quick check question\nQuestion: Is heat a state function?\nAnswer: No.\nExplanation: Its value depends on the path.\n\n## Summary\n- System: Part of the universe under study.\n- Surroundings: Everything outside it.\n- Boundary: Separates system and surroundings.\n- Open: Exchanges matter and energy.",
+    "Core explanation": "# Core explanation: Thermodynamics\n\n## What you will learn\nApply the first law and chemistry sign conventions.\n\n## Simple explanation\nInternal-energy change equals energy transferred as heat and work.\n\n## Step-by-step breakdown\n- **First law**: ΔU = q + w.\n- **Heat sign**: Positive into the system.\n- **Work sign**: Positive when done on the system.\n- **PV work**: w = −PextΔV.\n- **Expansion**: Negative work.\n- **Compression**: Positive work.\n- **Cycle**: ΔU = 0 for return to the initial state.\n\n## Worked example\nQuestion: A gas absorbs 500 J and does 200 J work. Find ΔU.\n\nSolution:\n- q = +500 J.\n- Work done by the gas means w = −200 J.\n- ΔU = 500 − 200.\n- Final answer: +300 J.\n\n## Common mistake\nMixing physics and chemistry work conventions creates sign errors.\n\n## Quick check question\nQuestion: Sign of work during compression?\nAnswer: Positive.\nExplanation: Surroundings do work on the system.\n\n## Summary\n- First law: ΔU = q + w.\n- Heat sign: Positive into the system.\n- Work sign: Positive when done on the system.\n- PV work: w = −PextΔV.",
+    "Worked examples": "# Worked examples: Thermodynamics\n\n## What you will learn\nRelate enthalpy, internal energy, heat capacity, and calorimetry.\n\n## Simple explanation\nEnthalpy is convenient for constant-pressure reactions and calorimetry measures heat from temperature change.\n\n## Step-by-step breakdown\n- **Enthalpy**: H = U + PV.\n- **Constant pressure**: qp = ΔH for PV work.\n- **Constant volume**: qv = ΔU.\n- **Gas relation**: ΔH = ΔU + ΔngRT.\n- **Heat capacity**: C = q/ΔT.\n- **Specific heat**: Heat per mass per kelvin.\n- **Calorimetry**: Heat lost equals heat gained in an insulated setup.\n\n## Worked example\nQuestion: Heat 100 g water by 10 K; c = 4.18 J g−1 K−1.\n\nSolution:\n- Use q = mcΔT.\n- Substitute 100 × 4.18 × 10.\n- Cancel units.\n- Final answer: 4.18 × 10^3 J.\n\n## Common mistake\nUse temperature change, not the absolute Celsius temperature.\n\n## Quick check question\nQuestion: At constant volume, measured heat equals what?\nAnswer: ΔU.\nExplanation: No PV expansion work occurs.\n\n## Summary\n- Enthalpy: H = U + PV.\n- Constant pressure: qp = ΔH for PV work.\n- Constant volume: qv = ΔU.\n- Gas relation: ΔH = ΔU + ΔngRT.",
+    "Exam-style problems": "# Exam-style problems: Thermodynamics\n\n## What you will learn\nCalculate reaction enthalpy with Hess law and bond enthalpies.\n\n## Simple explanation\nEnthalpy is a state function, so reaction routes can be combined algebraically.\n\n## Step-by-step breakdown\n- **Formation enthalpy**: Forms one mole from standard-state elements.\n- **Reaction enthalpy**: Products minus reactants formation sums.\n- **Combustion**: Complete burning of one mole.\n- **Hess law**: Add equations and their enthalpies.\n- **Bond estimate**: Bonds broken minus bonds formed.\n- **Lattice cycle**: Connects ionic formation steps.\n\n## Worked example\nQuestion: Estimate H2 + Cl2 → 2HCl using 436, 243, and 431 kJ mol−1 bond values.\n\nSolution:\n- Break H–H and Cl–Cl: 679 kJ mol−1.\n- Form two H–Cl bonds: 862 kJ mol−1 released.\n- ΔH = 679 − 862.\n- Final answer: Approximately −183 kJ mol−1.\n\n## Common mistake\nAverage bond enthalpies give estimates, not always exact experimental values.\n\n## Quick check question\nQuestion: What happens to ΔH when an equation is reversed?\nAnswer: Its sign reverses.\nExplanation: Initial and final states exchange.\n\n## Summary\n- Formation enthalpy: Forms one mole from standard-state elements.\n- Reaction enthalpy: Products minus reactants formation sums.\n- Combustion: Complete burning of one mole.\n- Hess law: Add equations and their enthalpies.",
+    "Revision and recap": "# Revision and recap: Thermodynamics\n\n## What you will learn\nPredict spontaneity using entropy and Gibbs energy.\n\n## Simple explanation\nAt constant temperature and pressure, Gibbs energy combines enthalpy and entropy into a direction criterion.\n\n## Step-by-step breakdown\n- **Spontaneous**: Can proceed without continuous external driving.\n- **Entropy**: State function for energy dispersal and arrangements.\n- **Second law**: Total entropy increases for a spontaneous process.\n- **Gibbs energy**: G = H − TS.\n- **Criterion**: ΔG < 0 spontaneous; =0 equilibrium; >0 non-spontaneous forward.\n- **Temperature**: TΔS can change feasibility.\n- **Equilibrium relation**: ΔG° = −RT ln K.\n\n## Worked example\nQuestion: ΔH = −40 kJ mol−1, ΔS = −100 J mol−1 K−1 at 298 K. Find ΔG.\n\nSolution:\n- Convert ΔS to −0.100 kJ mol−1 K−1.\n- TΔS = −29.8 kJ mol−1.\n- ΔG = −40 − (−29.8).\n- Final answer: −10.2 kJ mol−1; spontaneous under these conditions.\n\n## Common mistake\nConvert joules and kilojoules before combining terms.\n\n## Quick check question\nQuestion: Value of ΔG at equilibrium?\nAnswer: Zero.\nExplanation: There is no net driving force.\n\n## Summary\n- Spontaneous: Can proceed without continuous external driving.\n- Entropy: State function for energy dispersal and arrangements.\n- Second law: Total entropy increases for a spontaneous process.\n- Gibbs energy: G = H − TS."
+  }
+}

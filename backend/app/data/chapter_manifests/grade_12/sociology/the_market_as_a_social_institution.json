@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 12",
+  "subject": "Sociology",
+  "chapter": "The Market as a Social Institution",
+  "central_question": "How is the market, which is usually seen as a purely economic institution, also a social institution shaped by culture, caste, community, colonial history and globalisation?",
+  "in_scope_units": [
+    "Everyday meanings of 'market' (a place, a gathering of buyers and sellers, a category of trade, a demand for a product/service) and the broader sense in which 'the market' is almost equivalent to 'the economy'",
+    "Sociological perspectives on markets and the economy: Adam Smith and political economy, and the sociological idea that markets are social institutions that are culturally constructed and 'embedded' in society",
+    "A weekly 'tribal market' in Dhorai village, Bastar, Chhattisgarh, showing how the haat is both an economic and a social/kinship institution, and how it changed under colonialism",
+    "Caste-based markets and trading networks in precolonial and colonial India, including the hundi system of credit and the caste-based banking of the Nakarattars",
+    "Social organisation of markets - 'traditional business communities' such as Vaisyas/banias, Parsis, Sindhis, Bohras, Jains and Banjaras, and how caste and kinship networks create trust and specialisation in business",
+    "Colonialism and the emergence of new markets, including the decline of the handloom industry and the rise of the Marwaris as a business community",
+    "Understanding capitalism as a social system: Karl Marx's view of commodity production, wage labour, class structure and surplus value",
+    "Commoditisation and consumption: how things not previously traded become commodities, and Max Weber's idea of the 'status symbol'",
+    "Globalisation - the interlinking of local, regional, national and international markets, including software/BPO industries and the Pushkar camel fair as a market that itself became a tourist commodity",
+    "The debate on liberalisation - market versus state, including privatisation, deregulation, marketisation, and the mixed impact of liberalisation on different sectors such as agriculture and industry"
+  ],
+  "banned_topics": [
+    "Details of untouchability and caste-based discrimination/exclusion (this belongs to the chapter 'Patterns of Social Inequality and Exclusion')",
+    "The sociological definition and history of 'tribe' as a concept (this belongs to Chapter 3 on kinship, caste and tribe)",
+    "Cultural diversity, nationalism, communalism and secularism (this belongs to the chapter 'The Challenges of Cultural Diversity')",
+    "Detailed discussion of gender inequality, disability, or OBC reservation policy (these belong to the chapter on social inequality and exclusion, not this market chapter)"
+  ],
+  "must_include_keywords": [
+    "market as a social institution",
+    "political economy",
+    "Adam Smith",
+    "The Wealth of Nations",
+    "socially embedded economies",
+    "weekly haat",
+    "Dhorai village",
+    "Bastar",
+    "Gonds",
+    "adivasis",
+    "hundi",
+    "Nakarattars",
+    "caste-based banking",
+    "Vaisyas",
+    "banias",
+    "Parsis",
+    "Sindhis",
+    "Bohras",
+    "Jains",
+    "Banjaras",
+    "Marwaris",
+    "Birlas",
+    "Karl Marx",
+    "commodity production",
+    "wage labour",
+    "surplus value",
+    "commoditisation/commodification",
+    "Max Weber",
+    "status symbol",
+    "globalisation",
+    "liberalisation",
+    "marketisation",
+    "BPO industries",
+    "Pushkar camel fair",
+    "support prices",
+    "subsidies",
+    "jajmani system"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The market is only an economic institution and sociology has nothing distinctive to say about it.",
+      "correction": "The chapter's central point, following the discussion of Adam Smith and political economy, is that sociologists view markets as social institutions that are 'culturally specific' and 'embedded' in society, connected to institutions like caste, and comparable to family or tribe."
+    },
+    {
+      "claim": "Caste-based trading networks and a monetised economy in India were entirely a creation of British colonialism.",
+      "correction": "The text explicitly states that recent historical research shows India's economy was 'already extensively monetised... in the late pre-colonial period' and that pre-colonial India had 'well-organised manufacturing centres as well as indigenous merchant groups, trading networks, and banking systems' including the hundi system, well before colonial rule."
+    },
+    {
+      "claim": "The Marwaris have always been India's dominant business community throughout history.",
+      "correction": "The text states the Marwaris 'became a successful business community only during the colonial period', when they took advantage of new opportunities in colonial cities such as Calcutta, later becoming moneylenders, bankers and then industrialists."
+    },
+    {
+      "claim": "Commodification only refers to physical objects being bought and sold.",
+      "correction": "The chapter explicitly notes that 'a commodity need not only be a thing or object; it can also be a service', giving examples such as marriage bureaus, personality-development courses, private schooling, and even human labour and organs."
+    },
+    {
+      "claim": "Liberalisation and globalisation have had a uniformly positive impact on every part of the Indian economy.",
+      "correction": "The text says the impact of liberalisation 'has been mixed': sectors like software/IT and fish/fruit exports may benefit from global market access, while sectors like automobiles, electronics, oilseeds, and small farmers/manufacturers exposed to foreign competition (with reduced support prices and subsidies) may lose out."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with NCERT Activity 4.1 (visiting a local market/shopping area to identify which communities control which businesses, e.g. jewellery, kirana, hardware) to introduce the idea of caste-based specialisation in trade.",
+    "Use NCERT Activity 4.2 (the bottled-water example) as the core worked example for explaining commoditisation/commodification.",
+    "Use NCERT Activity 4.3 (interpretation of advertisements) to work through Max Weber's concept of the 'status symbol'.",
+    "Use NCERT Box 4.3 and its 'Exercise for Box 4.3' (the Pushkar camel fair passage from the Lonely Planet guidebook) as a worked example of how a market/fair itself becomes a commodity through globalisation and tourism.",
+    "Close with NCERT end-of-chapter Question 1 ('What is meant by the phrase invisible hand?'), reasoned from Adam Smith's description of the market economy in the text."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with a 'Questions' section of 10 numbered questions (Q1 on the 'invisible hand' through Q10 on the long-term costs and benefits of liberalisation), followed by a References list.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

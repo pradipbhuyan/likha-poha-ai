@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 12",
+  "subject": "Economics",
+  "chapter": "Money and Banking",
+  "central_question": "How does money facilitate exchange, why is it demanded, how do banks create it and how does the Reserve Bank of India regulate its supply?",
+  "in_scope_units": [
+    "Barter exchange, double coincidence of wants and the functions of money",
+    "Demand for money through transaction and speculative motives",
+    "Supply of money, the central bank and commercial banks",
+    "Bank balance sheets, reserves, credit creation and the money multiplier",
+    "Reserve requirements and other monetary-policy tools used by the Reserve Bank of India",
+    "Transaction demand, velocity of circulation, bond prices, interest rates and the liquidity trap",
+    "Currency, deposits, fiat money, legal tender and the measures M1, M2, M3 and M4",
+    "Demonetisation and the movement towards formal and electronic payments"
+  ],
+  "banned_topics": [
+    "Government-budget deficits and public debt, which belong to Government Budget and the Economy",
+    "Balance of payments and foreign exchange, which belong to Open Economy Macroeconomics",
+    "Detailed determination of equilibrium income, which belongs to Determination of Income and Employment"
+  ],
+  "must_include_keywords": [
+    "barter exchange",
+    "double coincidence of wants",
+    "medium of exchange",
+    "unit of account",
+    "store of value",
+    "purchasing power",
+    "cashless society",
+    "demand for money",
+    "transaction motive",
+    "speculative motive",
+    "liquidity preference",
+    "velocity of circulation",
+    "bonds",
+    "rate of interest",
+    "liquidity trap",
+    "supply of money",
+    "Reserve Bank of India",
+    "high-powered money",
+    "commercial banks",
+    "spread",
+    "balance sheet",
+    "reserves",
+    "loans",
+    "deposits",
+    "Cash Reserve Ratio",
+    "Statutory Liquidity Ratio",
+    "money multiplier",
+    "lender of last resort",
+    "open market operations",
+    "repo rate",
+    "reverse repo rate",
+    "bank rate",
+    "moral suasion",
+    "fiat money",
+    "legal tender",
+    "narrow money",
+    "broad money",
+    "M1",
+    "M3",
+    "demonetisation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Money is useful only because it has valuable material content.",
+      "correction": "Modern notes and coins are fiat money whose acceptability comes from the guarantee of the issuing authority and their legal-tender status, not from intrinsic material value."
+    },
+    {
+      "claim": "A commercial bank can create unlimited credit.",
+      "correction": "Credit creation is limited by reserve requirements, the need to meet withdrawals and central-bank regulation."
+    },
+    {
+      "claim": "A higher market interest rate increases speculative demand for money.",
+      "correction": "The chapter states that speculative demand for money is inversely related to the rate of interest because high interest rates make bonds more attractive."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the rice-for-clothing barter illustration and NCERT Exercises 1–2 to explain double coincidence of wants and the functions of money.",
+    "Use the Lala goldsmith story to introduce deposit and credit creation.",
+    "Use the fictional bank balance sheet and Table 3.2 to trace the money-multiplier process.",
+    "Use the bond present-value illustration in Box 3.1 to explain the inverse relation between bond price and interest rate.",
+    "Use NCERT Exercises 4–6 to compare money-supply measures, legal tender, fiat money and high-powered money.",
+    "Use NCERT Exercises 8–11 to explain the money multiplier, monetary-policy instruments and lender of last resort."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–11.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

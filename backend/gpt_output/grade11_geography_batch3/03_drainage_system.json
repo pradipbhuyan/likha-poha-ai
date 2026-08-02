@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Drainage System",
+    "central_question": "How do relief, geological history, rainfall and river processes organise India’s drainage systems and affect the use of river water?",
+    "in_scope_units": [
+      "Meaning of drainage, drainage system, catchment, drainage basin and watershed.",
+      "Drainage patterns and classification by outlet and basin size.",
+      "The Himalayan drainage, its evolution and major river systems.",
+      "The Peninsular drainage, its evolution and major rivers.",
+      "River-water use, inter-basin transfer and pollution."
+    ],
+    "banned_topics": [
+      "Detailed monsoon mechanism, which belongs to Climate.",
+      "Detailed physiographic divisions, which belong to Structure and Physiography.",
+      "Earthquake-wave theory, which belongs to Interior of the Earth."
+    ],
+    "must_include_keywords": [
+      "drainage",
+      "drainage system",
+      "catchment area",
+      "drainage basin",
+      "watershed",
+      "dendritic",
+      "radial",
+      "trellis",
+      "centripetal",
+      "Arabian Sea drainage",
+      "Bay of Bengal drainage",
+      "major river basin",
+      "medium river basin",
+      "minor river basin",
+      "Himalayan drainage",
+      "Peninsular drainage",
+      "Indus",
+      "Ganga",
+      "Brahmaputra",
+      "perennial",
+      "gorge",
+      "meander",
+      "ox-bow lake",
+      "braided channel",
+      "delta",
+      "Indo-Brahma",
+      "Panjnad",
+      "Bhagirathi",
+      "Alaknanda",
+      "Tsangpo",
+      "Godavari",
+      "Krishna",
+      "Kaveri",
+      "Mahanadi",
+      "Narmada",
+      "Tapi",
+      "rift valley",
+      "estuary",
+      "inter-basin linkage",
+      "river pollution"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A watershed and river basin are always identical in scale.",
+        "correction": "The chapter generally uses watershed for a smaller area and river basin for a larger drainage area."
+      },
+      {
+        "claim": "All Peninsular rivers flow eastward.",
+        "correction": "The Narmada and Tapi are major west-flowing exceptions."
+      },
+      {
+        "claim": "Himalayan rivers depend only on rainfall.",
+        "correction": "They are fed by snowmelt and precipitation and are generally perennial."
+      },
+      {
+        "claim": "The Ganga begins with that name at Gangotri.",
+        "correction": "The Bhagirathi becomes the Ganga after meeting the Alaknanda at Devprayag."
+      },
+      {
+        "claim": "A delta and an estuary are the same.",
+        "correction": "A delta is depositional; an estuary is a tidal river mouth where fresh and saline water mix."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise 2(i) to distinguish river basin and watershed.",
+      "Use Exercise 2(ii–iii) to compare drainage patterns.",
+      "Use Exercise 3(ii) to state characteristics of Peninsular rivers.",
+      "Use Exercise 4(i) to compare north Indian and Peninsular rivers."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter includes Exercises 1(i–v), 2(i–iv), 3(i–ii), and 4(i–ii)."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Drainage System\n\n## What you will learn\nYou will learn the basic vocabulary of drainage geography and recognise four drainage patterns.\n\n## Simple explanation\nWater moves downslope through channels. The network, the land drained and the channel pattern reflect relief, rocks, slope and water supply.\n\n## Step-by-step breakdown\n- **Drainage**: The flow of water through well-defined channels is drainage.\n- **Drainage system**: The connected network of channels is a drainage system.\n- **Catchment and basin**: A river collects water from a catchment, and a river with its tributaries drains a basin.\n- **Watershed**: The boundary separating basins is a watershed; the term is often used for smaller drainage areas.\n- **Patterns**: The chapter describes dendritic, radial, trellis and centripetal patterns.\n- **Controls**: Geological history, rock structure, topography, slope and flow determine the pattern.\n\n## Worked example\nQuestion: How can radial and centripetal drainage be distinguished by flow direction?\n\nAnswer:\n- Radial rivers flow outward from a hill, while centripetal rivers flow inward towards a lake or depression.\n- The first diverges from a high point and the second converges towards a low centre.\n- Final answer: Outward flow indicates radial drainage; inward flow indicates centripetal drainage.\n\n## Common mistake\nDo not define a watershed only as the full area drained by a large river.\n\n## Quick check question\nQuestion: Which pattern resembles the branches of a tree?\nAnswer: The dendritic pattern.\nExplanation: Its tributaries branch in a tree-like arrangement.\n\n## Summary\n- Drainage is channelised flow.\n- A drainage system is a network.\n- Basins and watersheds organise drainage areas.\n- Patterns reflect relief and rock structure.",
+    "Core explanation": "# Core explanation: Drainage System\n\n## What you will learn\nYou will classify Indian drainage by sea outlet, basin size and mode of origin.\n\n## Simple explanation\nIndia’s rivers can be grouped in several ways, but the Himalayan–Peninsular division best explains differences in age and behaviour.\n\n## Step-by-step breakdown\n- **Sea outlet**: Arabian Sea and Bay of Bengal systems are separated by major water divides.\n- **Area share**: About 77 per cent of the drainage area is oriented to the Bay of Bengal and 23 per cent to the Arabian Sea.\n- **Basin size**: Basins are classified as major, medium and minor by catchment area.\n- **Origin**: The accepted broad division is Himalayan and Peninsular drainage.\n- **Himalayan character**: These rivers are generally perennial and form gorges in mountains and depositional features in plains.\n- **Peninsular character**: These rivers are older, often seasonal and commonly follow fixed courses.\n\n## Worked example\nQuestion: Why is the Himalayan–Peninsular classification more explanatory than grouping rivers only by sea outlet?\n\nAnswer:\n- The chapter links the two systems with different origin, age, valley form and flow characteristics.\n- Sea outlet shows direction, but origin explains how the river behaves.\n- Final answer: The Himalayan–Peninsular division connects drainage with geological and physiographic history.\n\n## Common mistake\nDo not assume every Bay of Bengal river is Himalayan or every Arabian Sea river is Peninsular.\n\n## Quick check question\nQuestion: Which drainage side covers the larger area?\nAnswer: The Bay of Bengal drainage.\nExplanation: The chapter assigns it about 77 per cent of India’s drainage area.\n\n## Summary\n- Drainage can be classified in several ways.\n- Bay of Bengal drainage covers the larger share.\n- Himalayan rivers are generally perennial.\n- Peninsular drainage is older.",
+    "Worked examples": "# Worked examples: Drainage System\n\n## What you will learn\nYou will study the Indus, Ganga and Brahmaputra systems and their mountain and plain landforms.\n\n## Simple explanation\nHimalayan rivers rise in high mountains, cross gorges and enter broad plains where they meander, deposit sediment and form floodplains and deltas.\n\n## Step-by-step breakdown\n- **Evolution**: The chapter discusses an earlier Indo-Brahma river later divided into three systems.\n- **Indus**: It rises in Tibet, receives Himalayan tributaries and the Panjnad group, and reaches the Arabian Sea.\n- **Ganga**: The Bhagirathi meets the Alaknanda at Devprayag and is then called the Ganga.\n- **Ganga tributaries**: The system includes Himalayan and Peninsular tributaries and reaches the Bay of Bengal.\n- **Brahmaputra**: It is called Tsangpo in Tibet and Siang or Dihang on entering India before becoming Brahmaputra.\n- **Plain forms**: Meanders, ox-bow lakes, braided channels, floodplains and deltas develop.\n\n## Worked example\nQuestion: Why does the Kosi frequently change its course in the plains?\n\nAnswer:\n- The chapter says it carries a large sediment load and deposits it in the plains, blocking its channel.\n- A blocked low-gradient channel causes the river to seek another route.\n- Final answer: Heavy deposition repeatedly obstructs the Kosi and produces course shifting.\n\n## Common mistake\nPanjnad is not a separate source river; it is the collective name of five Punjab rivers.\n\n## Quick check question\nQuestion: Where do the Bhagirathi and Alaknanda meet?\nAnswer: At Devprayag.\nExplanation: Below the confluence, the combined river is known as the Ganga.\n\n## Summary\n- The Himalayan drainage has three major systems.\n- Mountain erosion is followed by plain deposition.\n- River names may change along the course.\n- Sediment contributes to floods and channel shifting.",
+    "Exam-style problems": "# Exam-style problems: Drainage System\n\n## What you will learn\nYou will examine the older Peninsular drainage and its east- and west-flowing rivers.\n\n## Simple explanation\nMost major Peninsular rivers flow towards the Bay of Bengal, while Narmada and Tapi occupy rift valleys and flow west.\n\n## Step-by-step breakdown\n- **Older system**: Broad shallow valleys and mature rivers indicate greater age.\n- **Water divide**: The Western Ghats separate east-flowing rivers from short west-flowing streams.\n- **East-flowing systems**: Mahanadi, Godavari, Krishna and Kaveri reach the Bay of Bengal.\n- **West-flowing exceptions**: Narmada and Tapi flow in structural troughs to the Arabian Sea.\n- **Evolution**: Subsidence, Himalayan uplift and southeastward tilting influenced drainage.\n- **Flow character**: Many rivers have fixed courses and seasonal flow.\n\n## Worked example\nQuestion: Why do Narmada and Tapi differ from most major Peninsular rivers?\n\nAnswer:\n- The chapter states that they occupy trough faults and flow westward.\n- Rift-valley structure controls their route rather than the general eastward slope.\n- Final answer: They are structural exceptions guided westward by rift valleys.\n\n## Common mistake\nNot every Peninsular river has identical seasonality; the Kaveri has less fluctuation.\n\n## Quick check question\nQuestion: Which is the largest Peninsular river system?\nAnswer: The Godavari system.\nExplanation: The chapter also calls it the Dakshin Ganga.\n\n## Summary\n- Peninsular drainage is older.\n- Most major rivers flow east.\n- Narmada and Tapi are rift-valley exceptions.\n- The Western Ghats form a major divide.",
+    "Revision and recap": "# Revision and recap: Drainage System\n\n## What you will learn\nYou will evaluate river-water use, floods, droughts, pollution and inter-basin transfer.\n\n## Simple explanation\nIndia has large river flows, but water is unevenly distributed in time and space and is affected by terrain, storage and pollution.\n\n## Step-by-step breakdown\n- **Uneven availability**: Perennial and seasonal rivers distribute water unevenly.\n- **Flood and drought**: Different regions may face excess and shortage at the same time.\n- **Inter-basin transfer**: The chapter raises questions of terrain, lifting water and dependable surplus.\n- **Pollution**: Sewage, industrial effluent, ritual immersion, washing and bathing pollute rivers.\n- **Other issues**: Silt, seasonal flow, disputes, shrinking channels and settlements affect use.\n- **Basin planning**: Changes in one part of a basin affect the whole system.\n\n## Worked example\nQuestion: Why is digging a canal alone not enough to link a northern river with a Peninsular basin?\n\nAnswer:\n- The chapter asks students to consider uneven terrain, lifting water to plateaus and whether surplus flow is dependable.\n- A transfer scheme needs elevation, energy, reliable supply and wider planning.\n- Final answer: Inter-basin transfer is a complex geographical and management task, not only canal construction.\n\n## Common mistake\nA flood does not prove that permanently surplus water is always available.\n\n## Quick check question\nQuestion: Why are river basins useful planning regions?\nAnswer: Because actions in one part affect other parts and the basin functions as an interconnected unit.\nExplanation: The chapter stresses the unity of basins and watersheds.\n\n## Summary\n- Water is unevenly distributed.\n- Floods, droughts and pollution limit use.\n- River links face terrain and supply constraints.\n- Basin-wide planning is essential."
+  }
+}

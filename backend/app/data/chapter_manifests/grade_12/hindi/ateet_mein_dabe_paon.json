@@ -1,0 +1,56 @@
+{
+  "grade": "Grade 12",
+  "subject": "Hindi",
+  "chapter": "Ateet Mein Dabe Paon",
+  "central_question": "How does Om Thanvi combine archaeology and travel writing to make Mohenjo-daro’s planned urban civilisation vivid and intellectually responsible?",
+  "in_scope_units": [
+    "City scale and experiential entry",
+    "Discovery and stupa",
+    "Town planning and citadel",
+    "Great Bath and drainage",
+    "Material culture, inference and style"
+  ],
+  "banned_topics": [
+    "Content from adjacent chapters not present in the supplied source.",
+    "Biographical or historical claims not stated in the supplied source.",
+    "Invented incidents, quotations, dates or interpretations unsupported by the text."
+  ],
+  "must_include_keywords": [
+    "ओम थानवी",
+    "अतीत में दबे पाँव",
+    "मुअनजो-दड़ो",
+    "हड़प्पा",
+    "सिंधु घाटी सभ्यता",
+    "राखालदास बनर्जी",
+    "जॉन मार्शल",
+    "बौद्ध स्तूप",
+    "गढ़",
+    "ग्रिड प्लान",
+    "महाकुंड",
+    "पक्की ईंटें",
+    "जल-निकासी",
+    "कोठार",
+    "पुरातत्त्व",
+    "यात्रावृत्तांत"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Buddhist stupa belongs to the Indus civilisation.",
+      "correction": "It was built much later on an older mound; excavation around it revealed earlier remains."
+    },
+    {
+      "claim": "Every building’s function is known with certainty.",
+      "correction": "Several functions are archaeological inferences based on structure and finds."
+    }
+  ],
+  "recommended_example_progression": [
+    "Living ruins",
+    "Discovery",
+    "Planning",
+    "Water engineering",
+    "Evidence and uncertainty"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter questions printed in the supplied NCERT source; answers must be supported by the text.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

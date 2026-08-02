@@ -18,6 +18,7 @@ import {
   getAudioOverview,
   startAudioPrewarm,
   clearChapterCache,
+  clearChapterQuestionBank,
 } from "../api/cacheManagement";
 import { adminGetQBStatus, adminPrewarm, runExamPrepMigration, adminImportBulk } from "../api/examPrep";
 
@@ -1010,6 +1011,9 @@ function ClearChapterCacheSection({ user }) {
   const [clearing, setClearing] = useState(false);
   const [clearMsg, setClearMsg] = useState("");
   const [clearErr, setClearErr] = useState("");
+  const [clearingQBank, setClearingQBank] = useState(false);
+  const [clearQBankMsg, setClearQBankMsg] = useState("");
+  const [clearQBankErr, setClearQBankErr] = useState("");
 
   async function loadClearChapters(grade) {
     setClearLoading(true);
@@ -1061,16 +1065,41 @@ function ClearChapterCacheSection({ user }) {
     }
   }
 
+  async function handleClearChapterQuestionBank() {
+    if (!clearSubject || !clearChapter) return;
+    if (!window.confirm(
+      `Delete ALL question bank entries for:\n\nGrade: ${clearGrade}\nSubject: ${clearSubject}\nChapter: ${clearChapter}\n\nThis is a hard delete (unlike the lesson cache clear above). ` +
+      `Use "🎯 Build 60 Questions" afterward to regenerate. Do this after fixing this chapter's lesson content so stale/mis-grounded questions don't keep being served.`
+    )) return;
+
+    setClearingQBank(true);
+    setClearQBankMsg("");
+    setClearQBankErr("");
+    try {
+      const result = await clearChapterQuestionBank(
+        { grade: clearGrade, subject: clearSubject, chapter: clearChapter },
+        user.accessToken
+      );
+      setClearQBankMsg(result.message || `Question bank cleared for ${clearChapter}.`);
+    } catch (err) {
+      setClearQBankErr(err.message || "Failed to clear chapter question bank.");
+    } finally {
+      setClearingQBank(false);
+    }
+  }
+
   return (
     <section className="premium-section">
       <div className="premium-header">
-        <p className="eyebrow">Fix Stale or Incorrect Lessons</p>
-        <h3>🧹 Clear Lesson Cache — Selected Chapter</h3>
+        <p className="eyebrow">Fix Stale or Incorrect Content</p>
+        <h3>🧹 Clear Cache — Selected Chapter</h3>
         <p>
           Use this after renaming a chapter, updating its RAG content, or when a
-          lesson shows wrong or outdated content. Marks the cached lesson steps
-          as stale so the next request regenerates fresh from the uploaded textbook.
-          Works across all grades and subjects. Does not affect other chapters.
+          lesson or mock test shows wrong or outdated content. The lesson-cache
+          clear marks cached steps as stale (recoverable) so the next request
+          regenerates fresh; the question-bank delete is a hard delete — follow
+          it with "🎯 Build 60 Questions" to regenerate. Works across all grades
+          and subjects. Does not affect other chapters.
         </p>
       </div>
 
@@ -1131,14 +1160,22 @@ function ClearChapterCacheSection({ user }) {
           </p>
         )}
 
-        <div style={{ marginTop: 16 }}>
+        <div style={{ marginTop: 16, display: "flex", gap: 10, flexWrap: "wrap" }}>
           <button
             className="secondary-btn"
             onClick={handleClearChapterCache}
             disabled={clearing || clearLoading || !clearChapter}
             style={{ background: "#fef2f2", color: "#991b1b", border: "1px solid #fecaca" }}
           >
-            {clearing ? "⏳ Clearing cache…" : "🧹 Clear Cache for This Chapter"}
+            {clearing ? "⏳ Clearing cache…" : "🧹 Clear Lesson Cache for This Chapter"}
+          </button>
+          <button
+            className="secondary-btn"
+            onClick={handleClearChapterQuestionBank}
+            disabled={clearingQBank || clearLoading || !clearChapter}
+            style={{ background: "#fef2f2", color: "#991b1b", border: "1px solid #fecaca" }}
+          >
+            {clearingQBank ? "⏳ Deleting questions…" : "🗑️ Delete Question Bank for This Chapter"}
           </button>
         </div>
 
@@ -1147,6 +1184,12 @@ function ClearChapterCacheSection({ user }) {
         )}
         {clearErr && (
           <div className="error-box" style={{ marginTop: 12 }}>{clearErr}</div>
+        )}
+        {clearQBankMsg && (
+          <div className="info-box" style={{ marginTop: 12 }}>{clearQBankMsg}</div>
+        )}
+        {clearQBankErr && (
+          <div className="error-box" style={{ marginTop: 12 }}>{clearQBankErr}</div>
         )}
 
         <div style={{ marginTop: 12, fontSize: "0.8rem", color: "#888", lineHeight: 1.5 }}>

@@ -356,6 +356,38 @@ def clear_question_bank_for_grade(grade: str) -> int:
         return 0
 
 
+def clear_question_bank_for_chapter(grade: str, subject: str, chapter: str) -> int:
+    """
+    Delete all question bank rows for one chapter, regardless of which
+    display-prefix format they were stored under (e.g. bare title vs
+    "Chapter N: Title" vs "Text Book - Chapter N: Title").
+
+    Matches via an ILIKE substring on the normalized chapter core, the same
+    fallback strategy used for read-side lookups (see
+    mock_test_service.normalize_chapter_core). Hard-delete, mirroring
+    clear_question_bank_for_grade's semantics, so a rebuild starts fresh.
+    Returns the number of rows deleted.
+    """
+    from app.services.mock_test_service import normalize_chapter_core  # noqa: PLC0415
+
+    core = normalize_chapter_core(chapter)
+    if not core:
+        return 0
+    try:
+        result = (
+            _get_db(grade)
+            .table("question_bank")
+            .delete()
+            .eq("grade", grade)
+            .eq("subject", subject)
+            .ilike("chapter", f"%{core}%")
+            .execute()
+        )
+        return len(result.data or [])
+    except Exception:
+        return 0
+
+
 # ------------------------------------------------------- background jobs
 
 def prewarm_lessons_for_grade(grade: str) -> None:
@@ -421,6 +453,49 @@ def prewarm_lessons_for_grade(grade: str) -> None:
         set_job_status(job_key, "idle")
 
 
+def _get_grounding_context(grade: str, subject: str, chapter: str, mode: str = "CBSE") -> str:
+    """
+    Best-available grounding text for question generation.
+
+    Prefers the authored lesson_cache content for this chapter (already
+    corrected/de-mojibaked by the GPT-5.5 lesson pipeline, and richer than a
+    raw chunk join) and falls back to raw RAG textbook chunks only when no
+    lesson has been authored yet for this chapter.
+    """
+    try:
+        db = _get_db(grade)
+        rows = (
+            db.table("lesson_cache")
+            .select("lesson_content")
+            .eq("grade", grade)
+            .eq("subject", subject)
+            .eq("chapter", chapter)
+            .eq("mode", mode)
+            .eq("status", "active")
+            .execute()
+        )
+        lesson_texts = [
+            r.get("lesson_content", "") for r in (rows.data or []) if r.get("lesson_content")
+        ]
+        if lesson_texts:
+            return "\n\n".join(lesson_texts)
+    except Exception:
+        pass
+
+    try:
+        from app.services.rag_service import search_textbook_content  # noqa: PLC0415
+        rag_results = search_textbook_content(
+            query=f"{subject} {chapter} concepts definitions formulas",
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            match_count=8,
+        )
+        return "\n\n".join(r.get("chunk_text", "") for r in rag_results)
+    except Exception:
+        return ""
+
+
 def build_question_bank_for_grade(grade: str) -> None:
     """
     Background task: generate question bank for all CBSE chapters of a grade.
@@ -436,19 +511,9 @@ def build_question_bank_for_grade(grade: str) -> None:
 
         for subject, chapters in cbse_data.items():
             for chapter in chapters:
-                # Fetch RAG context once per chapter for all difficulty batches
-                try:
-                    from app.services.rag_service import search_textbook_content  # noqa: PLC0415
-                    rag_results = search_textbook_content(
-                        query=f"{subject} {chapter} concepts definitions formulas",
-                        grade=grade,
-                        subject=subject,
-                        chapter=chapter,
-                        match_count=8,
-                    )
-                    rag_context = "\n\n".join(r.get("chunk_text", "") for r in rag_results)
-                except Exception:
-                    rag_context = ""
+                # Ground once per chapter for all difficulty batches — prefers
+                # authored lesson_cache content, falls back to raw RAG chunks.
+                rag_context = _get_grounding_context(grade, subject, chapter, mode="CBSE")
 
                 for difficulty in DIFFICULTIES:
                     target = QUESTIONS_PER_BATCH * BATCHES_PER_CHAPTER
@@ -730,19 +795,9 @@ def build_question_bank_for_chapter(
     set_job_status(job_key, "running")
 
     try:
-        # Fetch RAG context once for all batches
-        try:
-            from app.services.rag_service import search_textbook_content  # noqa: PLC0415
-            rag_results = search_textbook_content(
-                query=f"{subject} {chapter} concepts definitions formulas",
-                grade=grade,
-                subject=subject,
-                chapter=chapter,
-                match_count=8,
-            )
-            rag_context = "\n\n".join(r.get("chunk_text", "") for r in rag_results)
-        except Exception:
-            rag_context = ""
+        # Ground once for all batches — prefers authored lesson_cache content,
+        # falls back to raw RAG chunks.
+        rag_context = _get_grounding_context(grade, subject, chapter, mode=mode)
 
         for difficulty in DIFFICULTIES:
             # Skip if already enough questions for this chapter/difficulty

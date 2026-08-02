@@ -1,0 +1,87 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 6: Permutations and Combinations",
+    "central_question": "How can arrangements and selections be counted efficiently when order, repetition, identical objects, and restrictions vary?",
+    "in_scope_units": [
+      "Fundamental principle of counting for successive choices.",
+      "Factorial notation and basic identities.",
+      "Permutations of distinct objects without repetition.",
+      "Permutations when repetition is allowed.",
+      "Permutations when some objects are identical.",
+      "Combinations and the relationship nPr=nCr·r!.",
+      "Applications involving roles, words, teams, handshakes, chords, and restrictions."
+    ],
+    "banned_topics": [
+      "Probability calculations, which use these counts in a later chapter.",
+      "Circular permutations, not developed in the provided chapter.",
+      "Binomial coefficients as expansion coefficients, treated in Chapter 7."
+    ],
+    "must_include_keywords": [
+      "fundamental principle of counting",
+      "multiplication principle",
+      "factorial",
+      "zero factorial",
+      "permutation",
+      "arrangement",
+      "order matters",
+      "nPr",
+      "without repetition",
+      "with repetition",
+      "distinct objects",
+      "identical objects",
+      "multiset permutation",
+      "block method",
+      "complementary counting",
+      "combination",
+      "selection",
+      "order does not matter",
+      "nCr",
+      "nPr equals nCr r factorial",
+      "handshake problem",
+      "chord selection",
+      "chairman",
+      "vice-chairman",
+      "ROOT",
+      "INSTITUTE"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Successive choices should always be added.",
+        "correction": "Successive stages are multiplied under the fundamental counting principle."
+      },
+      {
+        "claim": "Permutation and combination are interchangeable.",
+        "correction": "Permutation counts order; combination ignores order."
+      },
+      {
+        "claim": "Repeated objects are handled by dividing by the repetition count.",
+        "correction": "Divide by the factorial of each repetition count."
+      },
+      {
+        "claim": "nPr=nCr.",
+        "correction": "nPr=nCr·r!."
+      },
+      {
+        "claim": "If repetition is allowed, use nPr.",
+        "correction": "For r ordered positions with n reusable choices, the count is n^r."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Section 6.2 clothing and bag examples for the counting principle.",
+      "NCERT chairman and vice-chairman illustration for ordered roles.",
+      "NCERT Section 6.3.4 ROOT example for identical objects.",
+      "NCERT Section 6.4 four-object example for deriving combinations.",
+      "NCERT handshake and chord illustrations for unordered pairs."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains exercises on the fundamental counting principle, permutations, and combinations, followed by the Miscellaneous Exercise on Chapter 6."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Permutations and Combinations\n\n## What you will learn\nYou will use the fundamental principle of counting to count multi-stage choices without listing every outcome. You will distinguish sequential choices from alternatives.\n\n## Simple explanation\nWhen a task is completed through successive stages, multiply the number of choices at each stage. This principle is the foundation for permutations and combinations.\n\n## Step-by-step breakdown\n- **Multiplication principle**: If one stage has m choices and the next has n choices for each first choice, the two stages have mn outcomes.\n- **Successive stages**: Extend the product across three or more stages.\n- **Choice restrictions**: Recalculate the number of options after each choice when repetition is forbidden.\n- **Number lock**: Once the first digit is fixed as 7, the remaining positions use distinct choices from the other nine digits.\n- **Outcome tree**: A diagram may display branches, but multiplication gives the same total efficiently.\n- **Counting without listing**: The goal is to determine the number of outcomes, not to write them all.\n\n## Worked example\nQuestion: Using the NCERT Section 6.2 clothing example, Mohan has 3 pants and 2 shirts. How many outfits contain one of each?\n\nSolution:\n- Choose a pant in 3 ways.\n- For each pant, choose a shirt in 2 ways.\n- Apply the multiplication principle: 3×2.\n- Final answer: There are 6 outfits.\n\n## Common mistake\nDo not add 3+2 for successive choices. Addition would count choosing either a pant or a shirt, not an outfit containing both.\n\n## Quick check question\nQuestion: Using the NCERT Sabnam illustration, how many ways can she choose one of 2 bags, one of 3 tiffin boxes, and one of 2 bottles?\nAnswer: There are 12 ways.\nExplanation: The choices are successive and independent, so 2×3×2=12.\n\n## Summary\n- Multiply the choices in successive stages.\n- Restrictions can reduce later choices.\n- Counting principles avoid exhaustive lists.",
+    "Core explanation": "# Core explanation: Permutations and Combinations\n\n## What you will learn\nYou will define factorials and permutations of distinct objects. You will distinguish arrangements with and without repetition and use nPr.\n\n## Simple explanation\nA permutation is an arrangement in which order matters. The number of available objects decreases after each selection when repetition is not allowed.\n\n## Step-by-step breakdown\n- **Permutation**: An ordered arrangement of some or all objects.\n- **Factorial**: n!=1×2×…×n, with 0!=1.\n- **All objects**: n distinct objects can be arranged in n! ways.\n- **Taken r at a time**: nPr=n!/(n−r)! for 0≤r≤n.\n- **No repetition**: The choices are n,n−1,…,n−r+1.\n- **Repetition allowed**: For r positions and n choices at every position, the count is n^r.\n- **Order matters**: AB and BA are different permutations when A≠B.\n\n## Worked example\nQuestion: Using the NCERT chairman and vice-chairman illustration, choose the two posts from 12 people, with no person holding both.\n\nSolution:\n- The chairman can be chosen in 12 ways.\n- After that, the vice-chairman can be chosen in 11 ways.\n- Equivalently, compute 12P2=12!/(10!).\n- Final answer: There are 132 ordered choices.\n\n## Common mistake\nDo not use a combination when the roles are different; swapping chairman and vice-chairman creates a different outcome.\n\n## Quick check question\nQuestion: Using NCERT Exercise 6.2 Question 4, how many 4-digit arrangements can be formed from 1,2,3,4,5 with no repetition?\nAnswer: There are 5P4=120 arrangements.\nExplanation: The four positions are ordered and use four of five distinct digits.\n\n## Summary\n- Factorial compresses descending products.\n- Permutations count ordered selections.\n- Repetition changes nPr to n^r.",
+    "Worked examples": "# Worked examples: Permutations and Combinations\n\n## What you will learn\nYou will count permutations when some objects are identical. You will apply division by factorials of repeated multiplicities and handle positional restrictions.\n\n## Simple explanation\nIf identical objects are temporarily labelled, ordinary factorial counting overcounts each visible arrangement. Divide by the ways the identical labels can be interchanged.\n\n## Step-by-step breakdown\n- **Repeated objects**: For n objects with multiplicities p1,…,pk, the count is n!/(p1!…pk!).\n- **Why divide**: Interchanging identical objects does not create a new visible arrangement.\n- **ROOT**: Four letters include two identical O’s, so divide 4! by 2!.\n- **INSTITUTE**: The text uses repeated I’s and T’s to illustrate multiple multiplicities.\n- **Fixed positions**: Place required letters first, then arrange the remaining objects.\n- **Together condition**: Treat a required group as a single block before arranging internally.\n- **Not together**: Count all arrangements and subtract those with the forbidden block.\n\n## Worked example\nQuestion: Using the NCERT ROOT illustration in Section 6.3.4, find the number of distinct rearrangements.\n\nSolution:\n- Treat the two O’s as distinct temporarily: 4! arrangements.\n- Each visible word is counted 2! times by swapping the two O labels.\n- Divide by 2!.\n- Final answer: The number is 4!/2!=12.\n\n## Common mistake\nDo not divide by the number of repeated letters; divide by the factorial of each repetition count.\n\n## Quick check question\nQuestion: Using NCERT Exercise 6.2 Question 8, how many arrangements use all letters of EQUATION exactly once?\nAnswer: There are 8!=40320 arrangements.\nExplanation: All eight letters are distinct, so no repeated-letter divisor is needed.\n\n## Summary\n- Identical objects reduce the number of distinct arrangements.\n- Blocks model “together” restrictions.\n- Complementary counting handles “not together” conditions.",
+    "Exam-style problems": "# Exam-style problems: Permutations and Combinations\n\n## What you will learn\nYou will recognise when order does not matter and calculate combinations. You will derive nCr from permutations and use selection models such as teams, handshakes, and chords.\n\n## Simple explanation\nA combination is a selection, not an arrangement. Every r-element selection produces r! permutations, which explains the relation nPr=nCr·r!.\n\n## Step-by-step breakdown\n- **Combination**: A selection in which order is irrelevant.\n- **Formula**: nCr=n!/[r!(n−r)!].\n- **Permutation relation**: nPr=nCr r!.\n- **Symmetry**: nCr=nC(n−r), reflecting choosing members or those left out.\n- **Teams**: XY and YX are the same two-person team.\n- **Handshakes**: Each unordered pair of people creates one handshake.\n- **Chords**: Each unordered pair of points on a circle determines one chord.\n\n## Worked example\nQuestion: Using the NCERT illustration with 4 objects A,B,C,D taken 2 at a time, calculate 4C2.\n\nSolution:\n- The ordered count is 4P2=4×3=12.\n- Each two-object selection has 2!=2 orders.\n- Divide 12 by 2.\n- Final answer: 4C2=6.\n\n## Common mistake\nDo not use nPr for an unordered team; it counts every selection r! times.\n\n## Quick check question\nQuestion: Using the NCERT handshake illustration, how many handshakes occur among 12 people if each pair shakes once?\nAnswer: There are 12C2=66 handshakes.\nExplanation: A handshake is determined by an unordered pair, and XY is the same as YX.\n\n## Summary\n- Combinations ignore order.\n- nPr and nCr differ by a factor of r!.\n- Pair-selection models naturally use nC2.",
+    "Revision and recap": "# Revision and recap: Permutations and Combinations\n\n## What you will learn\nYou will choose the correct counting model for mixed restrictions and review the complete chapter. You will use a decision process based on stages, order, repetition, and identical objects.\n\n## Simple explanation\nThe hardest part of a counting problem is often selecting the right model. Ask whether choices occur in stages, whether order matters, whether repetition is allowed, and whether objects are identical.\n\n## Step-by-step breakdown\n- **Stage test**: Use the fundamental principle for consecutive choices.\n- **Order test**: Use permutations when positions or roles distinguish outcomes.\n- **Selection test**: Use combinations when only the chosen group matters.\n- **Repetition test**: Use n^r when every ordered position may reuse an object.\n- **Identity test**: Divide by factorials for indistinguishable repetitions.\n- **Restriction strategy**: Fix compulsory positions, form blocks, or use total minus forbidden.\n- **Validation**: Check small cases or compare nPr=nCr r!.\n\n## Worked example\nQuestion: Using NCERT Exercise 6.2 Question 5, choose a chairman and vice-chairman from 8 people.\n\nSolution:\n- The posts are distinct, so order matters.\n- Choose chairman in 8 ways and vice-chairman in 7 ways.\n- Compute 8P2=8×7.\n- Final answer: There are 56 ways.\n\n## Common mistake\nDo not decide from the word “choose” alone; identify whether the selected positions are distinguishable.\n\n## Quick check question\nQuestion: In the NCERT seven-points-on-a-circle illustration, how many chords are possible?\nAnswer: There are 7C2=21 chords.\nExplanation: Each chord is determined by choosing an unordered pair of points.\n\n## Summary\n- Counting begins with a structural decision.\n- Permutations arrange; combinations select.\n- Restrictions determine whether to multiply, divide, block, or subtract."
+  }
+}

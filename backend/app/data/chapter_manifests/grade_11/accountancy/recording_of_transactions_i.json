@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 11",
+  "subject": "Accountancy",
+  "chapter": "Recording of Transactions – I",
+  "central_question": "How are business transactions supported by documents, analysed through the accounting equation and recorded through debit, credit, journal and ledger?",
+  "in_scope_units": [
+    "Business transactions, source documents and vouchers.",
+    "Preparation and essential elements of transaction, debit, credit and journal vouchers.",
+    "Accounting equation and its application to transactions.",
+    "Rules of debit and credit for assets, liabilities, capital, expenses, losses, revenues and gains.",
+    "Journal as the book of original entry, journalising, narration and compound entries.",
+    "Ledger as the principal book, posting and balancing of accounts."
+  ],
+  "banned_topics": [
+    "Special-purpose books and cash-book variants, which belong to Recording of Transactions – II.",
+    "Trial balance and rectification of errors, which belong to Chapter 6.",
+    "Preparation of final accounts, which belongs to Chapters 8 and 9."
+  ],
+  "must_include_keywords": [
+    "business transaction",
+    "source document",
+    "voucher",
+    "cash memo",
+    "invoice",
+    "pay-in-slip",
+    "cheque",
+    "transaction voucher",
+    "debit voucher",
+    "credit voucher",
+    "journal voucher",
+    "accounting equation",
+    "assets",
+    "liabilities",
+    "capital",
+    "A = L + C",
+    "debit",
+    "credit",
+    "T-account",
+    "expenses",
+    "losses",
+    "revenues",
+    "gains",
+    "journal",
+    "book of original entry",
+    "journalising",
+    "narration",
+    "compound entry",
+    "ledger",
+    "principal book",
+    "posting",
+    "balancing",
+    "debit balance",
+    "credit balance"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Debit always means increase and credit always means decrease.",
+      "correction": "Debit increases assets and expenses but decreases liabilities, capital and revenue; credit has the opposite effects."
+    },
+    {
+      "claim": "A transaction voucher and source document are always the same physical document.",
+      "correction": "A source document evidences the transaction; an accounting voucher may be prepared from that evidence for recording."
+    },
+    {
+      "claim": "The accounting equation changes only when cash changes.",
+      "correction": "Every measurable transaction may affect assets, liabilities or capital even without cash movement."
+    },
+    {
+      "claim": "Journal and ledger perform the same function.",
+      "correction": "The journal records transactions chronologically; the ledger classifies them account-wise."
+    },
+    {
+      "claim": "A compound entry can contain only one debit and one credit.",
+      "correction": "A compound entry involves more than two accounts while total debits still equal total credits."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the ₹35,000 computer cash memo example in section 3.1 to identify a transaction and source document.",
+    "Use Example 1 on Rohit to trace the accounting equation from capital ₹5,00,000 to the final equation ₹6,80,000 = ₹1,70,000 + ₹5,10,000.",
+    "Use Illustration 1 to practise ten effects on A = L + C.",
+    "Use the Rohit transactions for furniture, plant, purchases, sales, rent and salary to apply debit and credit rules.",
+    "Use the chapter journal and ledger illustrations to practise journalising, narration, posting and balancing."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Short Answer Questions, Long Answer Questions, numerical exercises on the accounting equation, journalising and ledger posting, and a Checklist to Test Your Understanding.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

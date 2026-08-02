@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 4: Complex Numbers and Quadratic Equations",
+  "central_question": "How does extending real numbers to a+ib make negative square roots and quadratic equations with negative discriminant meaningful?",
+  "in_scope_units": [
+    "Motivation from quadratic equations with negative discriminant.",
+    "Definition, standard form, real part, imaginary part, and equality of complex numbers.",
+    "Algebra of complex numbers and powers of i.",
+    "Conjugate, modulus, multiplicative inverse, and division.",
+    "Argand-plane representation and polar form.",
+    "Use of complex numbers in solving quadratic equations."
+  ],
+  "banned_topics": [
+    "De Moivre’s theorem and roots of complex numbers, which are beyond this chapter.",
+    "Detailed theory of polynomial equations of higher degree."
+  ],
+  "must_include_keywords": [
+    "imaginary unit",
+    "i squared",
+    "complex number",
+    "standard form",
+    "real part",
+    "imaginary part",
+    "equality",
+    "addition",
+    "subtraction",
+    "multiplication",
+    "division",
+    "powers of i",
+    "conjugate",
+    "modulus",
+    "multiplicative inverse",
+    "Argand plane",
+    "real axis",
+    "imaginary axis",
+    "argument",
+    "polar form",
+    "quadratic equation",
+    "discriminant",
+    "negative discriminant",
+    "quadratic formula",
+    "conjugate roots"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The imaginary part of a+ib is ib.",
+      "correction": "The imaginary part is the real coefficient b."
+    },
+    {
+      "claim": "i²=1.",
+      "correction": "By definition, i²=−1."
+    },
+    {
+      "claim": "The inverse of a+ib is 1/a+i/b.",
+      "correction": "For non-zero z, z⁻¹=z̄/|z|²."
+    },
+    {
+      "claim": "The modulus of a+ib is a+b.",
+      "correction": "The modulus is √(a²+b²)."
+    },
+    {
+      "claim": "A quadratic with negative discriminant has no solutions at all.",
+      "correction": "It has no real roots but has two complex roots given by the quadratic formula."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Section 4.2 for the motivating equation x²+1=0.",
+    "NCERT Example 6 for powers of i and simplification.",
+    "NCERT Example 5 for a multiplicative inverse.",
+    "NCERT Section 4.5 for Argand-plane and polar representation.",
+    "NCERT Exercise 4.1 and the chapter introduction for complex quadratic roots."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise 4.1 followed by the Miscellaneous Exercise on Chapter 4.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "Journey to the End of the Earth",
+  "central_question": "How does an Antarctic journey reveal Earth’s geological history, the scale of human impact and the urgent interdependence of all life?",
+  "in_scope_units": [
+    "Before you read and the journey aboard the Akademik Shokalskiy from Madras to Antarctica.",
+    "Part of history: Gondwana, continental separation, geological processes and Antarctica’s scale.",
+    "Human impact: population, fossil fuels, carbon dioxide, climate change and ice-core records.",
+    "Students on Ice and Geoff Green’s educational purpose.",
+    "Antarctica’s simple ecosystem, phytoplankton, ozone depletion, food chain and carbon cycle.",
+    "Walk on the ocean: the ice-pack experience near Tadpole Island and the revelation that everything connects.",
+    "Reading with Insight Questions 1–4 on geological history, students, small changes and past-present-future."
+  ],
+  "banned_topics": [
+    "Climate data, scientific predictions or Antarctic facts not included in the chapter.",
+    "A full scientific account of plate tectonics or photosynthesis beyond the explanations in the text.",
+    "Current information from the Students on Ice website."
+  ],
+  "must_include_keywords": [
+    "Tishani Doshi",
+    "Akademik Shokalskiy",
+    "Antarctica",
+    "Madras",
+    "coldest driest windiest continent",
+    "Gondwana",
+    "flora and fauna",
+    "dinosaurs",
+    "mammals",
+    "Cordilleran folds",
+    "pre-Cambrian granite shields",
+    "ozone",
+    "carbon",
+    "evolution",
+    "extinction",
+    "Himalayas",
+    "Drake Passage",
+    "circumpolar current",
+    "ice volumes",
+    "austral summer",
+    "geological clock",
+    "human civilisations",
+    "fossil fuels",
+    "carbon dioxide",
+    "global temperature",
+    "climate change",
+    "West Antarctic ice sheet",
+    "Gulf Stream",
+    "pristine",
+    "ice-cores",
+    "Students on Ice",
+    "Geoff Green",
+    "policy-makers",
+    "glaciers retreating",
+    "ice shelves collapsing",
+    "phytoplankton",
+    "Southern Ocean food chain",
+    "photosynthesis",
+    "global carbon cycle",
+    "Tadpole Island",
+    "Crabeater seals",
+    "balance",
+    "everything connects"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Antarctica has always been cold and separate from India.",
+      "correction": "The chapter says India and Antarctica were once part of Gondwana, when the climate was warmer."
+    },
+    {
+      "claim": "The chapter gives a certain prediction that the West Antarctic ice sheet will melt completely.",
+      "correction": "It asks uncertain questions—‘Maybe. Maybe not’—while presenting climate change as a real threat."
+    },
+    {
+      "claim": "Phytoplankton are unimportant because they are microscopic.",
+      "correction": "They nourish the Southern Ocean food chain and influence marine life and the global carbon cycle."
+    },
+    {
+      "claim": "Students on Ice is mainly a holiday for celebrities.",
+      "correction": "Geoff Green shifted from wealthy curiosity-seekers to high school students who can learn and act as future policy-makers."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Reading with Insight Q1 to connect geological records with human understanding.",
+    "Use Reading with Insight Q4 to integrate Antarctica’s past, present and future.",
+    "Use Reading with Insight Q2 to analyse Geoff Green’s choice of students.",
+    "Use Reading with Insight Q3 to interpret the phytoplankton metaphor.",
+    "Use the Walk on the ocean episode to conclude with interdependence and planetary balance."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Reading with Insight Questions 1–4 on geological history, Students on Ice, small environmental changes and Antarctica’s record of Earth’s past, present and future.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 11",
+  "subject": "History",
+  "chapter": "Nomadic Empires",
+  "central_question": "How did Genghis Khan and his successors transform mobile steppe societies into a durable, plural and transcontinental Mongol Empire?",
+  "in_scope_units": [
+    "Problems of sources, city-based bias and modern historiography concerning nomadic societies.",
+    "The rise of Genghis Khan and the Mongol vision of universal rule.",
+    "The social, environmental and political background of Mongol pastoralists and hunter-gatherers.",
+    "Relations of trade, conflict and exchange between steppe nomads and sedentary China.",
+    "Temujin’s career, unification of the tribes and campaigns in China and Central Asia.",
+    "Mongol military skills, mobility, siege methods and the destruction caused by conquest.",
+    "Expansion and fragmentation after Genghis Khan.",
+    "Decimal military organisation, new loyalties, ulus, quriltai and the courier system.",
+    "Pax Mongolica, Silk Route travel, taxation and the changing relationship with conquered peasants.",
+    "Sedentarisation, civil administrators, successor dynasties, the changing meaning of yasa and the Mongol legacy."
+  ],
+  "banned_topics": [
+    "Detailed history of Bedouin state formation and the central Islamic lands, which belongs to a different theme.",
+    "The Roman Mediterranean imperial system, which belongs to An Empire Across Three Continents.",
+    "Detailed history of the Mughal Empire in India beyond the chapter’s brief reference to later Genghis Khanid influence."
+  ],
+  "must_include_keywords": [
+    "nomadic empire",
+    "Mongols",
+    "Central Asia",
+    "Genghis Khan",
+    "Temujin",
+    "pastoralists",
+    "hunter-gatherers",
+    "steppe",
+    "patrilineal lineages",
+    "trade",
+    "Great Wall of China",
+    "quriltai",
+    "Qa’an",
+    "Bukhara",
+    "Juwaini",
+    "cavalry",
+    "siege engines",
+    "decimal units",
+    "tuman",
+    "noyan",
+    "anda",
+    "naukar",
+    "ulus",
+    "yam",
+    "qubcur tax",
+    "Pax Mongolica",
+    "Silk Route",
+    "paiza",
+    "baj tax",
+    "Qubilai Khan",
+    "Ghazan Khan",
+    "Yuan dynasty",
+    "Il-Khanid",
+    "Golden Horde",
+    "yasa",
+    "pluralism"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Nomadic societies were isolated from settled civilisations.",
+      "correction": "Mongols traded, fought, exchanged technologies and recruited administrators from China, Iran and other sedentary societies."
+    },
+    {
+      "claim": "The Mongols left their old tribal organisation unchanged after unification.",
+      "correction": "Genghis Khan broke up tribal groupings and redistributed people into decimal military units to create new loyalties."
+    },
+    {
+      "claim": "Every casualty figure in medieval chronicles is reliable.",
+      "correction": "The chapter warns that city-based chroniclers often exaggerated destruction and that historians must examine how such figures were produced."
+    },
+    {
+      "claim": "Pax Mongolica erased the violence of conquest.",
+      "correction": "Mongol peace later encouraged travel and trade, but it followed severe destruction, enslavement and ecological damage in conquered regions."
+    },
+    {
+      "claim": "Yasa was certainly a complete written legal code personally issued by Genghis Khan in 1206.",
+      "correction": "The earliest yasaq referred mainly to orders and regulations; later descendants expanded its meaning into a sacred code associated with Genghis Khan."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Activity 1 to infer the emotional and political effect of Genghis Khan’s address after the capture of Bukhara.",
+    "Use NCERT Exercise 1 to explain why trade was essential to a resource-poor pastoral economy.",
+    "Use NCERT Exercise 2 to analyse why Genghis Khan fragmented old tribes into new military and social units.",
+    "Use NCERT Activity 3 to compare pastoral and peasant interests through Ghazan Khan’s speech.",
+    "Use NCERT Exercise 6 to interpret William of Rubruck’s account as evidence for Pax Mongolica and religious pluralism."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises: Answer in Brief, Questions 1–4, and Answer in a Short Essay, Questions 5–6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

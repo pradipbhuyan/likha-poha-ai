@@ -1,0 +1,102 @@
+{
+  "grade": "Grade 12",
+  "subject": "Sociology",
+  "chapter": "Introducing Indian Society",
+  "central_question": "Why is sociology a unique subject to study, and what is the roadmap this book will follow to introduce the structure of Indian society?",
+  "in_scope_units": [
+    "Sociology as a subject where no one starts from zero, since everyone already has some prior knowledge of society",
+    "The advantage and disadvantage of this prior knowledge, and the need to 'unlearn' partial (incomplete and biased) common sense",
+    "Self-reflexivity: sociology's ability to help you see yourself 'from the outside'",
+    "The idea of a 'social map': locating yourself through age, region/language, economic class, religion, caste or tribe",
+    "C. Wright Mills' distinction between 'personal troubles' and 'social issues'",
+    "1.2 A Preview of this Book: introduction to the two-textbook structure (this book on basic structure, the second on social change and development)",
+    "Preview of Chapter 2: the demographic structure of the Indian population",
+    "Preview of Chapter 3: the institutions of caste, tribe and family",
+    "Preview of Chapter 4: the socio-cultural dimensions of the market",
+    "Preview of Chapter 5: inequality and exclusion (caste, tribe, gender, the disabled)",
+    "Preview of Chapter 6: the challenges of India's immense diversity",
+    "Preview of Chapter 7: the practical component of the course"
+  ],
+  "banned_topics": [
+    "Detailed birth rate, death rate, sex ratio or census figures (this belongs to Chapter 2, The Demographic Structure of the Indian Society)",
+    "The detailed rules, history or features of the caste system, tribe classification, or family/kinship structures (this belongs to Chapter 3, Social Institutions: Continuity and Change)",
+    "The socio-cultural dimensions of markets and colonial/developmental economic change (this belongs to Chapter 4)",
+    "Details of caste, tribal, gender or disability-based exclusion movements (this belongs to Chapter 5)",
+    "Detailed discussion of communalism, regionalism or linguistic chauvinism as social issues (this belongs to Chapter 6)"
+  ],
+  "must_include_keywords": [
+    "Sociology",
+    "no one starts from zero",
+    "common sense",
+    "unlearning",
+    "partial",
+    "incomplete",
+    "biased",
+    "self-reflexivity",
+    "reflexivity",
+    "social map",
+    "young people",
+    "forty per cent",
+    "Gujarati",
+    "Telugu",
+    "economic class",
+    "religious community",
+    "caste",
+    "tribe",
+    "C. Wright Mills",
+    "personal troubles",
+    "social issues",
+    "A Preview of this Book",
+    "demographic structure",
+    "Chapter 2",
+    "Chapter 3",
+    "caste, tribe and family",
+    "Chapter 4",
+    "market",
+    "colonialism",
+    "Chapter 5",
+    "inequality and exclusion",
+    "disabled",
+    "women's movement",
+    "Chapter 6",
+    "unity in diversity",
+    "communal conflict",
+    "casteism",
+    "Chapter 7",
+    "practical component"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Sociology is like other school subjects such as History or Geography, where students start out knowing nothing about the subject matter.",
+      "correction": "The chapter explicitly says sociology is unlike any other subject because no one starts from zero -- everyone already knows something about society, even a six year old, whereas no child is expected to already know something about History, Geography, Psychology or Economics when they come to school."
+    },
+    {
+      "claim": "Having prior knowledge of society before studying sociology is purely helpful for students.",
+      "correction": "The text says this prior knowledge is both an advantage and a disadvantage: it makes students unafraid of the subject, but it also means they must 'unlearn' what they already know, since common-sense knowledge of society is partial."
+    },
+    {
+      "claim": "'Partial' knowledge in this chapter just means knowledge that is biased or unfair.",
+      "correction": "The chapter uses 'partial' in two distinct senses: incomplete (the opposite of whole) and biased (the opposite of impartial) -- common-sense knowledge suffers from both problems at once."
+    },
+    {
+      "claim": "'Self-reflexivity' means being self-critical in a general emotional sense.",
+      "correction": "The text defines self-reflexivity/reflexivity precisely as the ability to reflect upon yourself, to turn your gaze (usually directed outward) back towards yourself, and this self-inspection must be critical -- quick to criticise and slow to praise oneself."
+    },
+    {
+      "claim": "A 'personal trouble' and a 'social issue' are essentially the same kind of problem, just described at different scales.",
+      "correction": "Mills' distinction, as given in the chapter, is that personal troubles are individual worries, problems or concerns of one person and derive meaning from a personalised perspective, while a social issue is about large groups and not about the individuals who make them up."
+    },
+    {
+      "claim": "This NCERT book covers everything about Indian society, including social change and development, in full detail.",
+      "correction": "The chapter states this is the first of two textbooks on sociology: this book introduces the basic structure of Indian society, while the second textbook focuses specifically on social change and development in India."
+    }
+  ],
+  "recommended_example_progression": [
+    "Worked example based on the chapter's discussion of the 'social map' (age group of 'young people' at about forty per cent of India's population, regional/linguistic community such as a Gujarati or Telugu speaker, economic class, religious community, caste or tribe) to reason out how a student's own identities would locate them on a social map.",
+    "Worked example based on C. Wright Mills' distinction between 'personal troubles' and 'social issues' as described in the chapter, applied to reason through a hypothetical worry mentioned in the text (such as being unhappy about how elders or siblings treat you, or worry about a future job).",
+    "Worked example based on Section 1.2, 'A Preview of this Book', asking the student to reason out why the book is organised in the specific order of Chapters 2 to 7 as described in the text."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "This chapter (Chapter 1: Introducing Indian Society) contains no numbered end-of-chapter Exercises section in the source text; it consists only of the introductory essay on sociology and Section 1.2, 'A Preview of this Book'.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Linear Programming",
+  "central_question": "How can a real-life optimisation problem with two decision variables and linear constraints be formulated and solved graphically?",
+  "in_scope_units": [
+    "12.1 Introduction: optimisation problems and the role of linear programming.",
+    "12.2 Linear Programming Problem and its Mathematical Formulation: decision variables, resource constraints and objective functions.",
+    "12.2.1 Mathematical Formulation of the Problem: translating the furniture-dealer situation into inequalities and a profit function.",
+    "12.2.2 Graphical Method of Solving Linear Programming Problems: feasible region, feasible and infeasible solutions, bounded and unbounded regions, corner-point theorems and the Corner Point Method.",
+    "Bounded optimisation examples for maximum, minimum and multiple optimal solutions.",
+    "Unbounded feasible regions and tests for the existence of an optimum.",
+    "Inconsistent constraints leading to no feasible region and no feasible solution.",
+    "Exercise 12.1 and the chapter summary and historical note."
+  ],
+  "banned_topics": [
+    "Simplex method as a worked solution procedure, because the supplied chapter explicitly uses the graphical method only",
+    "Linear programming in three or more decision variables",
+    "Nonlinear objective functions or nonlinear constraints",
+    "Integer programming and transportation algorithms",
+    "Differential-calculus optimisation"
+  ],
+  "must_include_keywords": [
+    "optimisation problem",
+    "linear programming problem",
+    "decision variables",
+    "objective function",
+    "linear constraints",
+    "non-negative restrictions",
+    "maximise",
+    "minimise",
+    "profit",
+    "cost",
+    "resource limitation",
+    "mathematical formulation",
+    "linear inequalities",
+    "graphical method",
+    "half plane",
+    "feasible region",
+    "solution region",
+    "feasible solution",
+    "infeasible solution",
+    "optimal solution",
+    "convex region",
+    "corner point",
+    "vertex",
+    "bounded feasible region",
+    "unbounded feasible region",
+    "Corner Point Method",
+    "largest value M",
+    "smallest value m",
+    "open half plane",
+    "multiple optimal solutions",
+    "no feasible region",
+    "no feasible solution"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The objective function is one of the constraints.",
+      "correction": "The objective function is the linear expression to maximise or minimise; constraints restrict the allowable values of the decision variables."
+    },
+    {
+      "claim": "Only points strictly inside the shaded region are feasible.",
+      "correction": "Points inside and on the boundary of the feasible region are feasible solutions."
+    },
+    {
+      "claim": "The largest or smallest corner-point value is always the optimum even for an unbounded region.",
+      "correction": "For an unbounded region, an additional open-half-plane test is required because an optimum may not exist."
+    },
+    {
+      "claim": "If two corner points give the same optimum, only those two points are optimal.",
+      "correction": "Every point on the line segment joining those corner points also gives the same optimal value."
+    },
+    {
+      "claim": "A graph must always contain a feasible region.",
+      "correction": "The constraints may have no common point, giving no feasible region and hence no feasible solution."
+    }
+  ],
+  "recommended_example_progression": [
+    "Start with the NCERT furniture-dealer problem in Sections 12.1-12.2.1 to formulate variables, constraints and the profit objective.",
+    "Use NCERT Example 1 for a bounded maximisation problem solved by the Corner Point Method.",
+    "Use NCERT Example 2 for a bounded minimisation problem.",
+    "Use NCERT Example 3 to demonstrate multiple optimal solutions along a boundary segment.",
+    "Use NCERT Examples 4 and 5 to contrast an unbounded problem with no minimum and an inconsistent problem with no feasible solution."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Exercise 12.1 contains ten graphical linear-programming problems covering maximisation, minimisation, multiple optima, unbounded regions and infeasible systems.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

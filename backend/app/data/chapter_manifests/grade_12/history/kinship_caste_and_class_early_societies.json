@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 12",
+  "subject": "History",
+  "chapter": "Kinship, Caste and Class: Early Societies",
+  "central_question": "How do texts, inscriptions and archaeology reveal both social norms and the varied practices of kinship, caste, gender and class in early Indian societies?",
+  "in_scope_units": [
+    "The Critical Edition of the Mahabharata and textual variation.",
+    "Families, kinship terminology and the ideal of patriliny.",
+    "Marriage rules, forms of marriage and women's gotra.",
+    "Satavahana metronymics and variations in kinship practice.",
+    "Varna occupations, non-Kshatriya rulers, jatis and social mobility.",
+    "Integration and exclusion beyond the four-varna framework.",
+    "Chandalas, subordination and counter-perspectives.",
+    "Gendered access to property, varna and wealth.",
+    "Generosity and alternative forms of social status.",
+    "The Buddhist social contract.",
+    "Historical analysis, composition and archaeology of the Mahabharata.",
+    "The epic as a dynamic text through regional and modern retellings."
+  ],
+  "banned_topics": [
+    "Detailed formation of mahajanapadas and Mauryan administration, treated in the previous chapter.",
+    "Doctrines and monuments of Buddhism and Jainism, treated in the next chapter."
+  ],
+  "must_include_keywords": [
+    "Mahabharata",
+    "Critical Edition",
+    "V.S. Sukthankar",
+    "normative texts",
+    "patriliny",
+    "matriliny",
+    "kula",
+    "jnati",
+    "vamsha",
+    "exogamy",
+    "endogamy",
+    "polygyny",
+    "polyandry",
+    "kanyadana",
+    "gotra",
+    "Satavahanas",
+    "metronymics",
+    "varna",
+    "Dharmashastra",
+    "Kshatriya",
+    "jati",
+    "shreni",
+    "Mandasor silk weavers",
+    "nishada",
+    "mlechchha",
+    "chandala",
+    "purity and pollution",
+    "Matanga Jataka",
+    "Draupadi",
+    "stridhana",
+    "gendered property",
+    "Buddhist critique",
+    "social contract",
+    "mahasammata",
+    "sutas",
+    "narrative",
+    "didactic",
+    "Hastinapura",
+    "dynamic text"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Brahmanical prescriptions describe exactly how everyone lived.",
+      "correction": "They express norms; inscriptions, other texts and stories show substantial regional and social variation."
+    },
+    {
+      "claim": "Satavahana metronymics prove that succession was matrilineal.",
+      "correction": "Rulers used names derived from mothers, but succession was generally patrilineal."
+    },
+    {
+      "claim": "All early kings were Kshatriyas by birth.",
+      "correction": "Several ruling lineages had other or contested origins, and power depended on support and resources rather than only prescribed varna."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 7 on the Mahabharata's authorship.",
+    "NCERT Exercise 1 on elite patriliny.",
+    "NCERT Exercise 2 on non-Kshatriya kings.",
+    "NCERT Exercise 8 on gender differences.",
+    "NCERT Exercise 4 on the Buddhist social contract."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with questions 1-5 in the 100-150 word section, essay questions 6-9, Map work 10 and Projects 11-12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

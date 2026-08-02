@@ -20,6 +20,7 @@ from app.services.prewarm_service import (
     get_chapters_for_grade,
     clear_lesson_cache_for_grade,
     clear_question_bank_for_grade,
+    clear_question_bank_for_chapter,
     is_job_running,
     set_job_status,
 )
@@ -724,6 +725,37 @@ def clear_questions(
         "message": f"Cleared question bank for {grade}.",
         "deleted": deleted,
         "grade": grade,
+    }
+
+
+@router.delete("/cache/questions/chapter")
+def clear_chapter_questions(
+    data: ClearChapterCacheRequest,
+    admin=Depends(require_admin),
+):
+    """
+    Delete all question bank entries for one chapter (admin-only).
+
+    Uses the same normalized-core ILIKE matching as the bank's read-side
+    fallback lookups, so it catches rows stored under any display-prefix
+    format (bare title, "Chapter N: Title", book-source-prefixed, etc.) for
+    this chapter in one call.
+
+    Use this to force a clean re-generation for a single chapter after its
+    lesson content has been corrected, without wiping the whole grade's bank.
+    """
+    if data.grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {data.grade}")
+
+    deleted = clear_question_bank_for_chapter(data.grade, data.subject, data.chapter)
+
+    return {
+        "success": True,
+        "message": f"Deleted {deleted} question bank row(s) for '{data.chapter}'.",
+        "deleted": deleted,
+        "grade": data.grade,
+        "subject": data.subject,
+        "chapter": data.chapter,
     }
 
 

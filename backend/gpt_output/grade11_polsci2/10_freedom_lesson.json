@@ -1,0 +1,102 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Political Science",
+    "chapter": "Rights in the Indian Constitution",
+    "central_question": "How does the Indian Constitution define, protect, limit and enforce Fundamental Rights while linking them to social welfare and Directive Principles?",
+    "in_scope_units": [
+      "The importance of rights through the Asian Games workers’ case and the long detention of Machal Lalung.",
+      "The meaning of a Bill of Rights and the special constitutional status of Fundamental Rights.",
+      "Right to Equality, non-discrimination, abolition of untouchability, equality of opportunity and reservations.",
+      "Right to Freedom, life and personal liberty, safeguards on arrest, preventive detention and rights of the accused.",
+      "Right against Exploitation and the prohibition of forced labour, trafficking and hazardous child labour.",
+      "Right to Freedom of Religion and the constitutional approach to individual and collective religious freedom.",
+      "Cultural and Educational Rights of minorities.",
+      "Right to Constitutional Remedies, writs and the role of courts in enforcing rights.",
+      "Directive Principles of State Policy, Fundamental Duties and the relationship between rights and welfare goals."
+    ],
+    "banned_topics": [
+      "A complete philosophical theory of negative and positive liberty beyond the rights framework in the supplied source.",
+      "Detailed election systems, executive powers, parliamentary procedure or judicial appointments.",
+      "Rights not mentioned by the supplied chapter presented as expressly listed Fundamental Rights."
+    ],
+    "must_include_keywords": [
+      "Fundamental Rights",
+      "Bill of Rights",
+      "Supreme Court",
+      "right against exploitation",
+      "life and personal liberty",
+      "fair and speedy trial",
+      "Right to Equality",
+      "equality before law",
+      "non-discrimination",
+      "untouchability",
+      "reservation",
+      "Article 16(4)",
+      "Right to Freedom",
+      "speech and expression",
+      "peaceful assembly",
+      "association",
+      "movement",
+      "profession",
+      "Article 21",
+      "preventive detention",
+      "rights of accused",
+      "forced labour",
+      "begar",
+      "trafficking",
+      "child labour",
+      "freedom of religion",
+      "freedom of conscience",
+      "minority rights",
+      "Cultural and Educational Rights",
+      "constitutional remedies",
+      "writs",
+      "Directive Principles of State Policy",
+      "Fundamental Duties",
+      "reasonable restrictions",
+      "judicial protection"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Fundamental Rights are absolute and can never be restricted.",
+        "correction": "They are specially protected but not absolute; government may impose constitutionally reasonable restrictions."
+      },
+      {
+        "claim": "Equality means government can never adopt special measures for disadvantaged groups.",
+        "correction": "Article 16(4) and equality of opportunity permit reservations and measures for inadequately represented or disadvantaged groups."
+      },
+      {
+        "claim": "Right to life protects only physical survival.",
+        "correction": "The chapter explains that judicial interpretation includes human dignity, shelter and livelihood."
+      },
+      {
+        "claim": "Preventive detention occurs only after a person commits an offence.",
+        "correction": "It permits detention based on apprehension of a threat, subject to constitutional procedures, and the chapter warns of misuse."
+      },
+      {
+        "claim": "Directive Principles are enforceable exactly like Fundamental Rights.",
+        "correction": "Directive Principles guide policy but are non-justiciable, while Fundamental Rights can be enforced through courts."
+      },
+      {
+        "claim": "The Right to Constitutional Remedies is unrelated to other rights.",
+        "correction": "It is the means through which courts issue orders and writs to protect and restore Fundamental Rights."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Asian Games construction workers example on minimum wages and forced labour.",
+      "NCERT Machal Lalung example on life, liberty and fair and speedy trial.",
+      "NCERT ‘You are the Judge’ case on caste violence and customary labour.",
+      "NCERT ‘Check your progress’ situations on reasonable restrictions on freedom.",
+      "NCERT Exercise 8 on hunger, stored food grains, public distribution and the expanded meaning of right to life."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section titled ’Exercises’ contains Questions 1‘10 on the Bill of Rights, Fundamental Rights, violations, Directive Principles and constitutional remedies."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Rights in the Indian Constitution\n\n## What you will learn\nYou will understand why constitutional rights matter only when they are implemented. The experiences of underpaid workers and Machal Lalung show how courts and public institutions can protect or fail individual dignity.\n\n## Simple explanation\nRights give individuals claims that government must recognise. A written guarantee becomes meaningful when people can seek a remedy and public authorities are compelled to respect it.\n\n## Step-by-step breakdown\n- **Asian Games workers**: Workers employed through contractors were paid less than the prescribed minimum wage. The Supreme Court treated this as forced labour and directed payment of lawful wages.\n- **Machal Lalung**: He remained in custody for decades without his case being heard even after doctors found him fit to stand trial, showing a grave failure of life, liberty and fair trial.\n- **Implementation matters**: The examples contrast a violation that was judicially remedied with one that continued because institutions did not act in time.\n- **Bill of Rights**: A constitutional list of protected rights restrains government and provides a remedy when rights are violated.\n- **Government’s double role**: Government must protect people from private threats, but its own organs may also violate rights.\n\n## Worked example\nQuestion: What common lesson do the workers’ case and Machal Lalung‘s case teach?\n\nAnswer:\n- Both involve rights guaranteed by the Constitution being denied in practice.\n- The workers obtained relief because the violation reached the Supreme Court.\n- Machal’s prolonged detention shows the human cost when institutions fail to enforce liberty promptly.\n- Final answer: Rights need recognition, accessible remedies and timely enforcement; a right that exists only on paper cannot protect dignity.\n\n## Common mistake\nA common mistake is to believe that listing rights automatically prevents violations. The chapter distinguishes formal guarantee from actual implementation.\n\n## Quick check question\nQuestion: What is a Bill of Rights?\nAnswer: A list of rights mentioned and protected by a constitution, together with a remedy against their violation.\nExplanation: It binds government to recognise protected liberties and allows individuals to challenge unlawful action.\n\n## Summary\n- Rights are essential to democracy.\n- Implementation matters as much as recognition.\n- Courts can provide remedies.\n- A Bill of Rights limits government and protects individuals.",
+    "Core explanation": "# Core explanation: Rights in the Indian Constitution\n\n## What you will learn\nYou will study the constitutional meaning of equality and freedom. You will understand non-discrimination, equality of opportunity, reservations, personal liberty and reasonable restrictions.\n\n## Simple explanation\nEquality does not mean ignoring real disadvantage, and freedom does not mean permission to harm others. The Constitution combines equal status with carefully defined liberties and restrictions.\n\n## Step-by-step breakdown\n- **Equality before law**: All persons are entitled to equal protection of laws and equal access to public places without discrimination on listed grounds.\n- **Untouchability and titles**: The Right to Equality abolishes untouchability and prevents the state from conferring titles except recognised military or academic distinctions.\n- **Equality of opportunity**: Public employment cannot discriminate on religion, race, caste, sex or place of birth.\n- **Special provisions**: Measures for children, women and socially and educationally backward classes, including reservation, may realise equality of opportunity.\n- **Liberty**: Rights in the Indian Constitution covers thought, expression and action but is structured so one person does not destroy the freedom of others or public order.\n- **Life and personal liberty**: No person may be deprived of life or liberty except according to law, and arrest safeguards require reasons, access to a lawyer and production before a magistrate.\n- **Expanded dignity**: Supreme Court judgments connect right to life with human dignity, shelter and livelihood.\n\n## Worked example\nQuestion: Why can reservation be consistent with the Right to Equality?\n\nAnswer:\n- The chapter distinguishes formal sameness from real equality of opportunity in a society marked by social inequality.\n- Article 16(4) permits reservation for backward classes not adequately represented in state services.\n- Special measures remove barriers that prevent disadvantaged groups from enjoying genuine opportunity.\n- Final answer: Reservation can support equality because identical treatment of unequally placed groups may preserve old disadvantage.\n\n## Common mistake\nDo not define liberty as freedom to do anything one desires. Freedoms are framed so everyone can enjoy them without threatening others or law and order.\n\n## Quick check question\nQuestion: Does the Constitution allow restrictions on speech and assembly?\nAnswer: Yes. Restrictions may be imposed for constitutionally recognised reasons, and assemblies must be peaceful and without arms.\nExplanation: Fundamental freedoms are protected but not unlimited; restrictions must be connected to legitimate constitutional concerns.\n\n## Summary\n- Equality rejects caste and gender discrimination.\n- Reservations may advance equality of opportunity.\n- Liberty is compatible with reasonable restrictions.\n- Life and liberty include procedure and human dignity.",
+    "Worked examples": "# Worked examples: Rights in the Indian Constitution\n\n## What you will learn\nYou will examine preventive detention, protections for accused persons and the Right against Exploitation. You will reason about the tension between public security and personal liberty.\n\n## Simple explanation\nThe Constitution gives government powers to maintain order, but those powers can threaten liberty. It therefore protects accused persons and prohibits exploitation of vulnerability.\n\n## Step-by-step breakdown\n- **Preventive detention**: A person may be detained on apprehension of unlawful activity rather than after a reported offence. The chapter recognises its claimed security purpose but warns of misuse.\n- **Review requirement**: Preventive detention can initially continue only for the stated period before review by an advisory board.\n- **Rights of accused**: No person may be punished twice for the same offence, punished under a retrospectively applied criminal law, or compelled to give evidence against himself or herself.\n- **Forced labour**: Begar and labour without lawful payment are prohibited because economic weakness cannot justify coercion.\n- **Trafficking**: Buying and selling human beings and using them as slaves violate the Right against Exploitation.\n- **Hazardous child labour**: Employment of children in hazardous work is prohibited as described in the chapter.\n\n## Worked example\nQuestion: Why does preventive detention create tension with life and personal liberty?\n\nAnswer:\n- It permits confinement before ordinary trial based on anticipated conduct.\n- It may address genuine security concerns but removes ordinary safeguards from a person not proved guilty.\n- The chapter notes misuse and the need for safeguards.\n- Final answer: The tension exists because preventive detention gives the state exceptional power over liberty and can become arbitrary imprisonment.\n\n## Common mistake\nA common mistake is to assume anyone accused or detained is already guilty. Guilt must be established by a court after fair opportunity to defend.\n\n## Quick check question\nQuestion: Name one constitutional protection available to an accused person.\nAnswer: A person cannot be punished twice for the same offence, under a retrospectively criminal law, or compelled to testify against himself or herself.\nExplanation: These safeguards protect fairness and limit coercive state power.\n\n## Summary\n- Preventive detention is exceptional and open to misuse.\n- Accused persons retain constitutional protections.\n- Forced labour and trafficking are prohibited.\n- Weakness cannot justify exploitation.",
+    "Exam-style problems": "# Exam-style problems: Rights in the Indian Constitution\n\n## What you will learn\nYou will study religious freedom, minority cultural rights and constitutional remedies. You will see how the Constitution protects individual conscience and community institutions while permitting reform and regulation.\n\n## Simple explanation\nReligious and cultural freedom must be protected without allowing domination or harmful practices to escape constitutional scrutiny. Courts provide the enforcement mechanism.\n\n## Step-by-step breakdown\n- **Freedom of conscience**: Every person has freedom of conscience and the freedom to profess, practise and propagate religion within constitutional limits.\n- **Religious affairs**: Religious groups may manage their affairs, but government can regulate secular activities associated with religion and pursue social reform.\n- **Equal treatment of religions**: The state cannot establish an official religion or discriminate between religions.\n- **Cultural rights**: Minorities may conserve their language and culture.\n- **Educational rights**: Religious and linguistic minorities can establish and administer educational institutions.\n- **Constitutional remedies**: Individuals may approach courts for enforcement of Fundamental Rights.\n- **Writs**: Courts may issue special orders directing authorities, releasing unlawful detainees or examining the legal basis of public action.\n\n## Worked example\nQuestion: A minority community wants to preserve its language through an educational institution. Which protection is relevant?\n\nAnswer:\n- The chapter protects minority language and culture.\n- It recognises the right to establish and administer educational institutions.\n- These protections prevent a numerical majority from erasing minority cultural identity.\n- Final answer: Cultural and Educational Rights permit the community to preserve language and organise education subject to the Constitution and lawful regulation.\n\n## Common mistake\nDo not assume every religiously associated activity is beyond regulation. The chapter distinguishes belief and worship from secular activity and reformable practice.\n\n## Quick check question\nQuestion: Why is the Right to Constitutional Remedies central?\nAnswer: Because it allows a person to move courts for orders and writs enforcing Fundamental Rights.\nExplanation: Without a remedy, other rights could remain declarations with no effective protection.\n\n## Summary\n- Religious freedom protects conscience and practice.\n- The state may regulate secular activity and pursue reform.\n- Minority communities receive cultural and educational protection.\n- Courts and writs make rights enforceable.",
+    "Revision and recap": "# Revision and recap: Rights in the Indian Constitution\n\n## What you will learn\nYou will revise Directive Principles, Fundamental Duties and the debate over rights and welfare. You will understand why the Constitution combines enforceable rights with non-justiciable social and economic goals.\n\n## Simple explanation\nFundamental Rights protect individuals and communities from unlawful power, while Directive Principles tell governments what social order they should work toward. The two can conflict but are meant to complement each other.\n\n## Step-by-step breakdown\n- **Directive Principles**: They are policy guidelines directing government toward social and economic welfare, though courts cannot enforce them like Fundamental Rights.\n- **Welfare goals**: The chapter includes livelihood, equal pay, education, public health, village panchayats and protection of weaker sections.\n- **Fundamental Duties**: Citizens are expected to respect the Constitution, national symbols, harmony, scientific temper, the environment and other listed duties.\n- **Rights and directives**: Rights chiefly protect freedoms and legal claims, while directives seek conditions in which freedoms can be meaningful.\n- **Conflict over property**: The former Fundamental Right to Property illustrates conflict between rights, land reform and welfare measures.\n- **Evolving balance**: The relationship developed through amendments and court decisions rather than permanent victory of one side.\n\n- **Key terms to remember**: fair and speedy trial, Right to Freedom, speech and expression, peaceful assembly, association, movement, profession, Article 21, freedom of religion, minority rights, Directive Principles of State Policy, judicial protection.\n\n## Worked example\nQuestion: Why were many socio-economic goals placed in Directive Principles rather than made immediately enforceable rights?\n\nAnswer:\n- They require legislation, policy, resources and gradual governmental action.\n- Their non-justiciable form guides governments without allowing courts alone to administer every welfare programme.\n- Fundamental Rights still protect individuals while democratic institutions pursue transformation.\n- Final answer: Directive Principles express constitutional goals for governance even though individuals cannot demand direct enforcement in the same way as Fundamental Rights.\n\n## Common mistake\nA common mistake is to call Directive Principles unimportant because they are non-justiciable. The chapter treats them as central to social transformation.\n\n## Quick check question\nQuestion: What is the basic difference between Fundamental Rights and Directive Principles?\nAnswer: Fundamental Rights are enforceable through courts, while Directive Principles are non-justiciable guidelines for government policy.\nExplanation: The difference concerns legal enforceability, not moral or political importance.\n\n## Summary\n- Rights and Directive Principles serve connected roles.\n- Directive Principles guide welfare and transformation.\n- Fundamental Duties identify citizen responsibilities.\n- Constitutional interpretation balances liberty and social justice."
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 20: Locomotion and Movement",
+    "central_question": "How do muscles, bones and joints work together to produce movement and locomotion in the human body?",
+    "in_scope_units": [
+      "Amoeboid, ciliary and muscular movements.",
+      "Skeletal, visceral and cardiac muscles.",
+      "Organisation of skeletal muscle fibres and sarcomeres.",
+      "Actin, myosin and regulatory proteins.",
+      "Sliding-filament mechanism of contraction.",
+      "Red and white muscle fibres.",
+      "Axial and appendicular skeleton.",
+      "Fibrous, cartilaginous and synovial joints.",
+      "Muscular and skeletal disorders."
+    ],
+    "banned_topics": [
+      "Lung anatomy and alveolar gas exchange",
+      "Respiratory volumes and capacities",
+      "Blood circulation and cardiac cycle"
+    ],
+    "must_include_keywords": [
+      "movement",
+      "locomotion",
+      "amoeboid movement",
+      "ciliary movement",
+      "muscular movement",
+      "skeletal muscle",
+      "smooth muscle",
+      "cardiac muscle",
+      "fascia",
+      "muscle fibre",
+      "sarcolemma",
+      "sarcoplasm",
+      "sarcoplasmic reticulum",
+      "myofibril",
+      "actin",
+      "myosin",
+      "I band",
+      "A band",
+      "Z line",
+      "M line",
+      "H zone",
+      "sarcomere",
+      "troponin",
+      "tropomyosin",
+      "meromyosin",
+      "sliding filament theory",
+      "motor unit",
+      "neuromuscular junction",
+      "acetylcholine",
+      "calcium ion",
+      "ATP",
+      "cross bridge",
+      "red fibre",
+      "white fibre",
+      "axial skeleton",
+      "appendicular skeleton",
+      "joint",
+      "myasthenia gravis",
+      "osteoporosis",
+      "gout"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "All movements are locomotion.",
+        "correction": "All locomotion is movement, but many movements do not change the location of the whole organism."
+      },
+      {
+        "claim": "The H zone contains actin and myosin.",
+        "correction": "The H zone contains thick filaments not overlapped by thin filaments."
+      },
+      {
+        "claim": "The A band shortens during contraction.",
+        "correction": "The A band retains its length while the I band and H zone narrow."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 7 to classify movement types.",
+      "Use NCERT Exercise 5 to compare proteins, fibres and girdles.",
+      "Use NCERT Exercise 4 to correct H-zone and skeletal statements.",
+      "Use NCERT Exercise 9 to classify joints.",
+      "Use NCERT Exercise 10 to consolidate skeletal and muscle facts."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-10 on sarcomeres, sliding-filament theory, muscles, skeleton, joints and disorders."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Locomotion and Movement\n\n## What you will learn\nYou will distinguish movement from locomotion and classify amoeboid, ciliary and muscular movements. You will compare the three major muscle types.\n\n## Simple explanation\nMovement is a general feature of living cells, while locomotion changes place. Human locomotion requires coordinated neural, muscular and skeletal activity.\n\n## Step-by-step breakdown\n- **Movement and locomotion**: Walking changes location, while jaw or eyelid movement may not; all locomotion is movement but not all movement is locomotion.\n- **Amoeboid movement**: Macrophages and leucocytes use pseudopodia and cytoskeletal microfilaments.\n- **Ciliary movement**: Cilia remove dust from the trachea and help move ova through the female tract.\n- **Muscular movement**: Contractile tissue moves limbs, jaws and tongue and maintains posture.\n- **Skeletal muscle**: Striated, voluntary muscle associated with bones.\n- **Smooth and cardiac muscle**: Smooth muscle is non-striated and involuntary; cardiac muscle is branched, striated and involuntary.\n\n## Worked example\nQuestion: NCERT Exercise 7 asks for the types of movement shown by cells of the human body.\n\nSolution:\n- Amoeboid movement is shown by macrophages and leucocytes through pseudopodia.\n- Ciliary movement occurs in ciliated epithelia such as trachea and oviduct.\n- Muscular movement results from muscle-fibre contraction.\n- Final answer: Human cells exhibit amoeboid, ciliary and muscular movements.\n\n## Common mistake\nCardiac muscle is striated but involuntary; appearance and control are separate classification criteria.\n\n## Quick check question\nQuestion: State the relationship between movement and locomotion.\nAnswer: All locomotion is movement, but all movement is not locomotion.\nExplanation: Locomotion changes the place of the organism, whereas many movements occur without whole-body displacement.\n\n## Summary\n- Locomotion is a subset of movement.\n- Human cells show three main movement types.\n- Skeletal muscle is voluntary.\n- Smooth and cardiac muscle are involuntary.\n- Locomotion requires coordinated systems.",
+    "Core explanation": "# Core explanation: Locomotion and Movement\n\n## What you will learn\nYou will examine skeletal-muscle organisation from fascicle to sarcomere and identify bands, lines and contractile proteins.\n\n## Simple explanation\nA skeletal muscle is built as nested bundles. Repeating sarcomeres align actin and myosin so force can be generated along the fibre.\n\n## Step-by-step breakdown\n- **Organisation**: Fascia encloses fascicles; each fascicle contains fibres surrounded by sarcolemma and filled with sarcoplasm.\n- **Calcium store**: The sarcoplasmic reticulum stores calcium ions.\n- **Myofibrils**: Parallel myofibrils contain alternating light I bands and dark A bands.\n- **Sarcomere**: The region between two Z lines is the functional unit of contraction.\n- **Thin filament**: Actin attaches to Z lines and is associated with tropomyosin and troponin.\n- **Thick filament**: Myosin meromyosin heads possess ATPase activity and binding sites for ATP and actin.\n- **H zone and M line**: The H zone contains unoverlapped thick filament; the M line holds thick filaments centrally.\n\n## Worked example\nQuestion: NCERT Exercise 4(b) asks whether the H zone contains both thick and thin filaments.\n\nSolution:\n- The H zone lies in the centre of the A band.\n- It is the portion of thick filament not overlapped by thin filament.\n- Therefore the statement is false.\n- Final answer: The corrected statement is that the H zone contains only thick myosin filaments.\n\n## Common mistake\nDo not confuse I band with A band: I contains thin filaments, while A corresponds to the full length of thick filaments.\n\n## Quick check question\nQuestion: What defines one sarcomere?\nAnswer: The region between two successive Z lines.\nExplanation: The repeating Z-to-Z unit shortens as thin filaments slide inward.\n\n## Summary\n- Muscle fibres contain many myofibrils.\n- Sarcomeres repeat between Z lines.\n- Actin is thin and myosin is thick.\n- Troponin and tropomyosin regulate actin sites.\n- Myosin heads bind ATP and actin.",
+    "Worked examples": "# Worked examples: Locomotion and Movement\n\n## What you will learn\nYou will follow the sliding-filament mechanism from motor-neuron signal to contraction and relaxation and track acetylcholine, calcium and ATP.\n\n## Simple explanation\nContraction does not shorten actin or myosin. Thin filaments slide over thick filaments as repeated cross bridges pull actin toward the sarcomere centre.\n\n## Step-by-step breakdown\n- **Neural signal**: A motor neuron releases acetylcholine at the neuromuscular junction and generates a muscle action potential.\n- **Calcium release**: The signal causes calcium release from the sarcoplasmic reticulum.\n- **Site exposure**: Calcium binds troponin and exposes myosin-binding sites on actin.\n- **Cross-bridge cycle**: ATP-energised myosin heads bind actin and pull thin filaments inward.\n- **Band changes**: Z lines move closer; I bands and H zones narrow, but A-band length remains constant.\n- **Relaxation**: Calcium is pumped back, actin sites are remasked and cross-bridge cycling stops.\n\n## Worked example\nQuestion: NCERT Exercise 3 asks for the important steps in muscle contraction.\n\nSolution:\n- A motor-neuron signal reaches the motor end plate and acetylcholine starts a muscle action potential.\n- The signal releases calcium into the sarcoplasm.\n- Calcium binds troponin and exposes active sites on actin.\n- ATP-powered myosin heads form cross bridges and pull actin inward.\n- New ATP breaks cross bridges and permits repeated cycles.\n- Calcium reuptake restores masking and relaxation.\n- Final answer: Contraction is an ATP-driven, calcium-regulated cycle of actin-myosin cross bridges and sliding.\n\n## Common mistake\nATP is required to energise myosin and to detach cross bridges, not only for the power stroke.\n\n## Quick check question\nQuestion: Which band retains its length during contraction?\nAnswer: The A band.\nExplanation: Thick filament length does not change; overlap increases and the I band and H zone narrow.\n\n## Summary\n- Acetylcholine links nerve and muscle.\n- Calcium exposes actin sites.\n- Myosin heads use ATP.\n- Thin filaments slide rather than shrink.\n- Relaxation requires calcium removal.",
+    "Exam-style problems": "# Exam-style problems: Locomotion and Movement\n\n## What you will learn\nYou will organise the axial and appendicular skeleton and classify joints from anatomical examples.\n\n## Simple explanation\nBones provide rigid levers and joints provide contact points with different mobility. Muscles apply force across joints to produce movement.\n\n## Step-by-step breakdown\n- **Axial skeleton**: Its 80 bones include skull, vertebral column, sternum and ribs.\n- **Skull and spine**: The skull has 22 cranial and facial bones; the vertebral column has 26 units and seven cervical vertebrae.\n- **Ribs**: There are 12 pairs: seven true, three vertebrochondral and two floating pairs.\n- **Appendicular skeleton**: Limb bones and pectoral and pelvic girdles connect limbs to the axial skeleton.\n- **Fibrous and cartilaginous joints**: Skull sutures are immovable fibrous joints; adjacent vertebrae have limited-movement cartilaginous joints.\n- **Synovial joints**: Ball-and-socket, hinge, pivot, gliding and saddle joints allow considerable movement.\n\n## Worked example\nQuestion: NCERT Exercise 9 asks for joint types at atlas-axis, thumb, phalanges, hip, cranial bones and pubic bones.\n\nSolution:\n- Atlas-axis is a pivot joint.\n- Thumb carpal-metacarpal is a saddle joint.\n- Between phalanges is a hinge joint.\n- Femur-acetabulum is a ball-and-socket joint.\n- Cranial bones form fibrous sutures.\n- Pubic bones meet at a cartilaginous joint.\n- Final answer: The types follow the movement permitted at each anatomical site.\n\n## Common mistake\nNot every joint is synovial; skull sutures are fibrous and the pubic symphysis is cartilaginous.\n\n## Quick check question\nQuestion: Which rib pairs are floating?\nAnswer: The 11th and 12th pairs.\nExplanation: They lack ventral attachment to the sternum.\n\n## Summary\n- The axial skeleton supports and protects the body axis.\n- The appendicular skeleton includes limbs and girdles.\n- There are 12 rib pairs.\n- Joint structure determines mobility.\n- Synovial joints allow the greatest movement.",
+    "Revision and recap": "# Revision and recap: Locomotion and Movement\n\n## What you will learn\nYou will compare red and white fibres and distinguish major muscular and skeletal disorders. You will consolidate key factual relationships.\n\n## Simple explanation\nMuscle performance depends on oxygen storage, mitochondria, calcium handling and neural activation. Disorders can affect neuromuscular junctions, muscle, bone or joints.\n\n## Step-by-step breakdown\n- **Red fibres**: High myoglobin and many mitochondria support aerobic ATP production.\n- **White fibres**: Low myoglobin, fewer mitochondria and abundant sarcoplasmic reticulum favour rapid anaerobic work.\n- **Fatigue**: Repeated activation can cause lactic acid accumulation from anaerobic glycogen breakdown.\n- **Muscle disorders**: Myasthenia gravis affects the neuromuscular junction; muscular dystrophy causes degeneration; tetany involves low-calcium spasms.\n- **Skeletal disorders**: Arthritis inflames joints, osteoporosis reduces bone mass and gout deposits uric acid crystals.\n\n## Worked example\nQuestion: NCERT Exercise 10 asks for cervical vertebrae, phalanges, thin-filament proteins, calcium storage, floating ribs and cranial bones.\n\nSolution:\n- Most mammals have seven cervical vertebrae.\n- Each human limb has fourteen phalanges.\n- Thin filaments contain F-actin, tropomyosin and troponin.\n- Calcium is stored in the sarcoplasmic reticulum.\n- The 11th and 12th pairs are floating ribs.\n- The cranium has eight bones.\n- Final answer: The completed values are 7, 14, tropomyosin and troponin, sarcoplasmic reticulum, 11th and 12th, and 8.\n\n## Common mistake\nRed fibres are red mainly because of myoglobin, not haemoglobin.\n\n## Quick check question\nQuestion: Which disorder results from uric acid crystals in joints?\nAnswer: Gout.\nExplanation: The crystals cause joint inflammation, distinguishing gout from osteoporosis or muscular dystrophy.\n\n## Summary\n- Red fibres are oxidative and myoglobin-rich.\n- White fibres rely more on anaerobic metabolism.\n- Muscle contraction depends on nerve, calcium and ATP.\n- Bones and joints act as levers and fulcrums.\n- Disorders may affect muscle, bone or joints."
+  }
+}

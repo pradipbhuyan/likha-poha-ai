@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Nationalism",
+  "central_question": "How can nationalism create collective identity and political freedom without turning cultural difference into exclusion, separatism or conflict?",
+  "in_scope_units": [
+    "Introducing Nationalism through unification, anti-colonial liberation, empire break-up and separatist conflict.",
+    "Nations and Nationalism through imagined community, shared beliefs, history, territory and political ideals.",
+    "Common Political Identity and the democratic case against compulsory cultural uniformity.",
+    "National Self-Determination, statehood, one-culture–one-state, the Basque example and minority problems.",
+    "Nationalism and Pluralism through group rights, inclusive identity, democracy and Tagore’s critique."
+  ],
+  "banned_topics": [
+    "Detailed citizenship acquisition and refugee law, which belong to Citizenship.",
+    "Detailed religious domination and models of secularism, which belong to Secularism.",
+    "Detailed constitutional division of powers, which belongs to Federalism in the Indian Constitution at Work textbook."
+  ],
+  "must_include_keywords": [
+    "nationalism",
+    "nation",
+    "patriotism",
+    "nation-state",
+    "unification",
+    "anti-colonial struggle",
+    "separatist movement",
+    "imagined community",
+    "shared beliefs",
+    "collective identity",
+    "history",
+    "collective memory",
+    "territory",
+    "homeland",
+    "political ideals",
+    "democracy",
+    "secularism",
+    "liberalism",
+    "political identity",
+    "cultural identity",
+    "language",
+    "religion",
+    "self-determination",
+    "statehood",
+    "one culture–one state",
+    "Treaty of Versailles",
+    "Basque",
+    "minority",
+    "national liberation",
+    "pluralism",
+    "group rights",
+    "inclusive nation",
+    "multiple identities",
+    "Rabindranath Tagore",
+    "humanity",
+    "constitutional values"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Nationalism always unites and liberates people.",
+      "correction": "It can also divide, exclude, displace and generate bitterness, war and separatist conflict."
+    },
+    {
+      "claim": "Every nation must share one language, religion or descent.",
+      "correction": "No single cultural feature is common to all nations; nations are imagined communities built through shared beliefs and aspirations."
+    },
+    {
+      "claim": "Democratic nationhood requires cultural uniformity.",
+      "correction": "The chapter favours shared political ideals and equal citizenship over compulsory religion, race or language."
+    },
+    {
+      "claim": "Self-determination always requires a separate sovereign state.",
+      "correction": "It can be reinterpreted through democratic rights, autonomy, recognition and equality within an existing state."
+    },
+    {
+      "claim": "Patriotism should override every other moral concern.",
+      "correction": "Tagore supports independence but warns that patriotism must not triumph over humanity."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise Q3 on nationalism’s unifying and divisive effects.",
+    "Use NCERT Exercise Q1 to distinguish a nation from family, clan and other groups.",
+    "Use NCERT Exercise Q4 to reject one universal cultural test of nationhood.",
+    "Use NCERT Exercise Q2 to assess national self-determination and statehood.",
+    "Conclude with NCERT Exercise Q6 on democratic responses to nationalist aspirations."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–7 on nationhood, self-determination, nationalism’s effects, cultural factors, nationalist feeling, democracy and limitations.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

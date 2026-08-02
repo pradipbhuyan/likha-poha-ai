@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Political Science",
+    "chapter": "Citizenship",
+    "central_question": "How can democratic societies turn formal membership into full and equal citizenship while addressing migration, inequality, diversity, refugees and global interdependence?",
+    "in_scope_units": [
+      "Introduction to citizenship as full and equal membership, rights, identity and obligations.",
+      "Full and Equal Membership through movement, migration, insider–outsider conflicts and democratic dispute resolution.",
+      "Equal Rights through the urban poor, T. H. Marshall, livelihood, shelter and group-specific needs.",
+      "Citizen and Nation through inclusive national identity and India’s constitutional experiment.",
+      "Universal Citizenship and Global Citizenship through refugees, statelessness and cross-border cooperation."
+    ],
+    "banned_topics": [
+      "Detailed theories of national self-determination, which belong to Nationalism.",
+      "Detailed categories and moral origins of rights, which belong to Rights.",
+      "Detailed secular-state models and religious equality, which belong to Secularism."
+    ],
+    "must_include_keywords": [
+      "citizenship",
+      "full membership",
+      "equal membership",
+      "political community",
+      "political rights",
+      "civil rights",
+      "social rights",
+      "obligations",
+      "political identity",
+      "movement",
+      "migration",
+      "insiders",
+      "outsiders",
+      "equal opportunity",
+      "protest",
+      "negotiation",
+      "urban poor",
+      "slum dwellers",
+      "T. H. Marshall",
+      "social class",
+      "Olga Tellis",
+      "right to livelihood",
+      "right to shelter",
+      "tribal people",
+      "nation-state",
+      "inclusive identity",
+      "assimilation",
+      "Part Two",
+      "birth",
+      "descent",
+      "registration",
+      "naturalisation",
+      "refugees",
+      "stateless people",
+      "global citizenship",
+      "interconnected world",
+      "human rights",
+      "cross-border cooperation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Citizenship is only a legal document or nationality label.",
+        "correction": "It includes full and equal membership, rights, identity, protection and obligations towards others."
+      },
+      {
+        "claim": "Every citizen can exercise equal rights equally once law grants them.",
+        "correction": "Poverty, insecure housing, discrimination and lack of resources can obstruct actual exercise."
+      },
+      {
+        "claim": "Migrants contribute nothing and only consume local resources.",
+        "correction": "The chapter describes their labour and skills across technology, nursing, construction, services and small enterprise."
+      },
+      {
+        "claim": "Inclusive national identity requires everyone to abandon cultural differences.",
+        "correction": "India’s constitutional project combines common political membership with protection of language, religion and culture."
+      },
+      {
+        "claim": "Global citizenship has already replaced state citizenship.",
+        "correction": "It is an emerging idea that may supplement national citizenship and support cooperation and basic protection."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Exercise Q1 on rights and obligations of citizenship.",
+      "Use NCERT Exercise Q5 to analyse migration and local contribution.",
+      "Use NCERT Exercise Q2 to distinguish legal rights from their effective exercise.",
+      "Use NCERT Exercise Q6 to explain citizenship as an ongoing project.",
+      "Conclude with NCERT Exercise Q4 on refugees and global citizenship."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises contain Questions 1–6 on rights and obligations, equal exercise, citizenship struggles, refugees, migration and democratic citizenship as a project."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Citizenship\n\n## What you will learn\nYou will understand citizenship as full and equal membership of a political community. You will identify the rights, protections and obligations associated with membership.\n\n## Simple explanation\nCitizenship gives people a political identity and a recognised relationship with a state. It includes rights and protection, but also obligations towards fellow citizens, shared community life, culture and natural resources.\n\n## Step-by-step breakdown\n- **Full membership**: Citizenship provides recognised membership of a state and a collective political identity.\n- **Rights**: Democratic citizenship commonly includes political, civil and socio-economic rights.\n- **Equality of status**: Equal rights and status are basic to citizenship.\n- **Historical struggle**: Citizenship rights were won through struggles against monarchy, colonialism, racial rule and social exclusion.\n- **Citizen relations**: Citizenship concerns relations among citizens, not only the individual’s relation to the state.\n- **Obligations**: Citizens should contribute to shared life and act as trustees of culture and natural resources.\n\n## Worked example\nQuestion: NCERT Exercise Q1: What combination of rights and obligations defines democratic citizenship?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q1\", \"extract_text\": \"Citizenship as full and equal membership of a political community involves both rights and obligations. Which rights could citizens expect to enjoy in most democratic state today? What kind of obligation will they have to their state and fellow citizens?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter identifies voting, freedom of speech or belief, minimum wage and education among rights citizens may expect.\n- It also stresses moral participation in community life, respect for fellow citizens and stewardship of shared resources.\n- Final answer: Citizenship combines equal political, civil and social rights with duties to participate responsibly and contribute to the community.\n\n## Common mistake\nDo not define citizenship merely as possession of a passport. The chapter treats it as a relationship of equal status, rights, identity and shared obligation.\n\n## Quick check question\nQuestion: Why is the condition of refugees used to explain the importance of citizenship?\nAnswer: People without recognised state membership may lack guaranteed rights, protection and security.\nExplanation: Their precarious condition shows the value of full membership in a political community.\n\n## Summary\n- Citizenship is full and equal membership.\n- It provides identity, rights and protection.\n- Rights have been won through struggle.\n- Citizens owe duties to one another.",
+    "Core explanation": "# Core explanation: Citizenship\n\n## What you will learn\nYou will examine disputes over freedom of movement, work and access to scarce resources. You will understand the tension between insiders, outsiders and equal national citizenship.\n\n## Simple explanation\nCitizens may formally have the right to move and work throughout a country, yet local residents can resist migrants when jobs, education, land or water are scarce. Democracy requires such disputes to be addressed by negotiation rather than violence.\n\n## Step-by-step breakdown\n- **Insiders and outsiders**: Scarcity can encourage people already inside a region to exclude other citizens.\n- **Movement**: Workers migrate when jobs are unavailable near their homes.\n- **Different migrants**: I.T. workers, nurses, construction workers and road workers illustrate mobility across regions.\n- **Local resistance**: Residents may demand job preference, language requirements or restrictions on outsiders.\n- **Unequal reception**: Poor and unskilled migrants are often treated less favourably than affluent skilled migrants.\n- **Democratic protest**: Citizens may form groups, demonstrate, use media, approach parties or go to court.\n- **Obligation of citizenship**: Disputes should be settled through discussion and negotiation rather than force.\n\n## Worked example\nQuestion: NCERT Exercise Q5: Why should the contribution of migrants be considered when judging resistance to them?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q5\", \"extract_text\": \"Migration of people to different regions within the country is often resisted by the local inhabitants. What are some of the contributions that the migrants could make to the local economy?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- The chapter describes migrants working in information technology, nursing, construction, road building and many other occupations.\n- Their labour fills economic needs and contributes to the functioning and development of the region.\n- Final answer: Migrants are not merely competitors for resources; they contribute skills, services and labour to the local economy and should be considered within the principle of equal citizenship.\n\n## Common mistake\nA common mistake is to think that freedom of movement removes every local concern. The chapter recognises scarcity but requires democratic, non-violent resolution consistent with full membership.\n\n## Quick check question\nQuestion: What democratic methods may citizens use to influence policy?\nAnswer: They may form groups, hold demonstrations, use the media, appeal to political parties or approach the courts.\nExplanation: These methods allow disagreement to be expressed without violence.\n\n## Summary\n- Citizenship raises insider–outsider tensions.\n- Migration supports many sectors.\n- Poor migrants face particular prejudice.\n- Democratic negotiation should replace force.",
+    "Worked examples": "# Worked examples: Citizenship\n\n## What you will learn\nYou will study why equal legal rights may not be equally usable by all citizens. You will examine urban poverty, T. H. Marshall’s three kinds of rights and evolving claims to livelihood and shelter.\n\n## Simple explanation\nCitizenship is connected to equality because civil and political rights can be difficult to exercise without social rights and basic living conditions. The urban poor contribute essential labour but often lack housing, sanitation and even the documents required to vote.\n\n## Step-by-step breakdown\n- **Urban poor**: Slum dwellers and squatters perform necessary work but are often treated as unwelcome.\n- **Living conditions**: Many lack secure housing, toilets, running water and sanitation.\n- **Economic contribution**: The chapter lists hawkers, traders, domestic workers, plumbers, mechanics and small businesses.\n- **Marshall**: T. H. Marshall defines citizenship as a status of equal rights and duties.\n- **Three rights**: Civil rights protect life, liberty and property; political rights support governance participation; social rights provide education and employment.\n- **Olga Tellis case**: The Supreme Court connected Article 21 and the right to life with livelihood and alternative accommodation before eviction.\n- **Different needs**: Uniform policy may fail when groups such as tribal and forest communities depend on distinct habitats and resources.\n\n## Worked example\nQuestion: NCERT Exercise Q2: Why can formal equality fail to produce equal citizenship in practice?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q2\", \"extract_text\": \"All citizens may be granted equal rights but all may not be able to equally exercise them. Explain.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Poor citizens may lack housing, sanitation, education, employment or a fixed address required for effective use of rights.\n- Social and economic conditions therefore influence whether civil and political rights can actually be exercised.\n- Final answer: Equal legal rights must be supported by social rights, material security and policies responsive to different needs if citizenship is to be genuinely equal.\n\n## Common mistake\nDo not assume uniform policy is always equal policy. The chapter states that different groups may require different measures to become more equal.\n\n## Quick check question\nQuestion: What three types of rights does T. H. Marshall associate with citizenship?\nAnswer: Civil, political and social rights.\nExplanation: Together they protect liberty and property, enable participation and provide access to education and employment.\n\n## Summary\n- Legal equality may be unusable without resources.\n- Urban workers contribute despite deprivation.\n- Citizenship includes civil, political and social rights.\n- Equal policy may require attention to different needs.",
+    "Exam-style problems": "# Exam-style problems: Citizenship\n\n## What you will learn\nYou will understand the relationship between citizens and the nation. You will compare exclusive national identities with India’s attempt to build inclusive citizenship in a diverse society.\n\n## Simple explanation\nNation-states create a shared political identity, but language, religion and culture can make belonging easier for some groups than others. A democratic state should define membership as inclusively as possible.\n\n## Step-by-step breakdown\n- **Nation-state**: National identity may be represented through territory, history, flag, anthem, language and ceremonies.\n- **Diversity**: Most modern states include several religions, languages and cultural traditions.\n- **Assimilation**: France illustrates disputes over whether religious symbols belong in public institutions.\n- **Citizenship criteria**: Countries differ in the weight they give religion, ethnicity, birth and other factors.\n- **Indian project**: The independence movement attempted to bind together different regions, religions and cultures.\n- **Inclusive Constitution**: India sought equal citizenship without forcing people to abandon language, belief or cultural practice.\n- **Acquisition**: The chapter lists birth, descent, registration, naturalisation and inclusion of territory as modes of Indian citizenship.\n- **Continuing struggle**: Women, dalits and people displaced by development show that citizenship remains an unfinished democratic project.\n\n## Worked example\nQuestion: NCERT Exercise Q6: Why does the chapter call democratic citizenship a project?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q6\", \"extract_text\": \"‘Democratic citizenship is a project rather than an accomplished fact even in countries like India which grant equal citizenship’. Discuss some of the issues regarding citizenship being raised in India today.\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Formal constitutional inclusion does not end marginalisation or every dispute over movement, culture, livelihood and equal protection.\n- New social conditions and claims from excluded groups require laws and policies to be continually interpreted and negotiated.\n- Final answer: Democratic citizenship is an ongoing effort to make equal membership real as society changes and previously marginalised groups raise new demands.\n\n## Common mistake\nDo not confuse inclusive citizenship with cultural uniformity. India’s constitutional experiment sought common political membership while protecting diversity.\n\n## Quick check question\nQuestion: Where are the constitutional provisions on citizenship found according to the chapter?\nAnswer: In Part Two of the Constitution and in subsequent laws passed by Parliament.\nExplanation: The chapter uses these provisions to explain India’s democratic and inclusive approach.\n\n## Summary\n- National identity should include diverse citizens.\n- Assimilation can burden some groups more than others.\n- India protects equal membership and diversity.\n- Citizenship remains an evolving democratic project.",
+    "Revision and recap": "# Revision and recap: Citizenship\n\n## What you will learn\nYou will examine universal and global citizenship through the problems of refugees and stateless people. You will consider why national citizenship remains vital but may need to be supplemented by cross-border cooperation.\n\n## Simple explanation\nWars, persecution and famine can leave people without a state willing to recognise them. Global citizenship responds to an interconnected world in which some problems and duties cross national boundaries.\n\n## Step-by-step breakdown\n- **Refugees**: People displaced by war, persecution or famine may live in camps or as illegal migrants.\n- **Statelessness**: Without recognised membership they may be unable to work legally, educate children or acquire property.\n- **State dilemma**: Governments balance humanitarian protection, capacity and security concerns.\n- **India**: The chapter refers to refuge given to the Dalai Lama and followers in 1959.\n- **Interconnected world**: Communication, disasters, disease and international networks connect people across borders.\n- **Global citizenship**: Supporters see shared concern and cooperation as signs of an emerging global society.\n- **Supplement, not replacement**: Cross-border awareness may protect migrants and address common problems, but equal national membership remains essential.\n\n## Worked example\nQuestion: NCERT Exercise Q4: How might global citizenship improve the condition of refugees?\n```extract-ref\n{\"citation\": \"NCERT Exercise Q4\", \"extract_text\": \"What are some of the problems faced by refugees? In what ways could the concept of global citizenship benefit them?\", \"note\": \"End-of-chapter exercise\"}\n```\n\nAnswer:\n- Refugees may lack legal work, education, property, security and guaranteed rights because no state accepts them as full members.\n- Global citizenship encourages cooperation and basic protection across borders even when national citizenship is unavailable.\n- Final answer: Global citizenship could support universal protection and cooperative solutions for refugees, while national citizenship remains the main source of full rights and membership.\n\n## Common mistake\nDo not state that global citizenship already replaces national citizenship. The chapter presents it as an emerging idea that may supplement national membership.\n\n## Quick check question\nQuestion: What does statelessness mean in the chapter?\nAnswer: A condition in which a person lacks accepted membership and protection from any state and cannot safely return home.\nExplanation: Such persons may remain in camps or live as illegal migrants without secure rights.\n\n## Summary\n- Refugees often lack basic legal protection.\n- States face humanitarian and political dilemmas.\n- Global problems require cooperation.\n- Global awareness supplements national citizenship.\n- Equal opportunity requires social rights; T. H. Marshall links citizenship and social class; the right to livelihood and right to shelter support the urban poor, while tribal people and human rights test inclusive identity."
+  }
+}

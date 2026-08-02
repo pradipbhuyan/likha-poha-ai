@@ -1,0 +1,74 @@
+{
+  "grade": "Grade 12",
+  "subject": "Business Studies",
+  "chapter": "Nature and Significance of Management",
+  "central_question": "How does management enable people and resources to achieve organisational goals effectively, efficiently and in a coordinated manner?",
+  "in_scope_units": [
+    "Concept, effectiveness and efficiency",
+    "Characteristics of management",
+    "Objectives and importance of management",
+    "Management as art, science and profession",
+    "Levels and functions of management",
+    "Coordination and twenty-first century management"
+  ],
+  "banned_topics": [
+    "Taylor and Fayol principles",
+    "Planning process and plan types",
+    "Organisation structures and delegation",
+    "Recruitment and selection"
+  ],
+  "must_include_keywords": [
+    "management",
+    "effectiveness",
+    "efficiency",
+    "goal-oriented process",
+    "all pervasive",
+    "multidimensional",
+    "continuous process",
+    "group activity",
+    "dynamic function",
+    "intangible force",
+    "organisational objectives",
+    "social objectives",
+    "personal objectives",
+    "survival",
+    "profit",
+    "growth",
+    "art",
+    "science",
+    "profession",
+    "top management",
+    "middle management",
+    "supervisory management",
+    "planning",
+    "organising",
+    "staffing",
+    "directing",
+    "controlling",
+    "coordination"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Management means only giving orders.",
+      "correction": "Management includes planning, organising, staffing, directing and controlling."
+    },
+    {
+      "claim": "Efficiency and effectiveness are identical.",
+      "correction": "Effectiveness concerns achieving goals; efficiency concerns achieving them with minimum resources."
+    },
+    {
+      "claim": "Coordination is a separate specialist function.",
+      "correction": "Coordination is the essence of all managerial functions and the responsibility of every manager."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Very Short Answer Type 1",
+    "NCERT Very Short Answer Type 5",
+    "NCERT Long Answer Type 1",
+    "NCERT Short Answer Type 1",
+    "NCERT Short Answer Type 5"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Exercises contain Very Short Answer questions 1-5, Short Answer questions 1-6 and Long Answer questions 1-6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

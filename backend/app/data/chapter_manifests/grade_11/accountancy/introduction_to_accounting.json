@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 11",
+  "subject": "Accountancy",
+  "chapter": "Introduction to Accounting",
+  "central_question": "How does accounting identify, measure, record and communicate financial information so that different users can make informed decisions?",
+  "in_scope_units": [
+    "Meaning of accounting and its development from record keeping into an information system.",
+    "Economic events and the stages of identification, measurement, recording and communication.",
+    "Organisations and internal and external users of accounting information.",
+    "Accounting as a source of information, its branches and qualitative characteristics.",
+    "Objectives and changing role of accounting.",
+    "Limitations of accounting.",
+    "Basic accounting terms including entity, transaction, assets, liabilities, capital, drawings, revenue, expenses, gains, profit, loss, purchases, sales, stock, debtors, creditors, vouchers and discounts."
+  ],
+  "banned_topics": [
+    "Detailed accounting concepts and conventions, which belong to Theory Base of Accounting.",
+    "Journal entries, ledger posting and accounting equations, which belong to Recording of Transactions – I.",
+    "Preparation of trading, profit and loss account and balance sheet, which belongs to Financial Statements."
+  ],
+  "must_include_keywords": [
+    "accounting",
+    "book-keeping",
+    "information system",
+    "economic event",
+    "identification",
+    "measurement",
+    "recording",
+    "communication",
+    "internal users",
+    "external users",
+    "financial accounting",
+    "cost accounting",
+    "management accounting",
+    "reliability",
+    "relevance",
+    "understandability",
+    "comparability",
+    "profit",
+    "loss",
+    "financial position",
+    "assets",
+    "liabilities",
+    "capital",
+    "drawings",
+    "revenue",
+    "expenses",
+    "gain",
+    "purchases",
+    "sales",
+    "stock",
+    "debtors",
+    "creditors",
+    "voucher",
+    "trade discount",
+    "cash discount"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Accounting and book-keeping are exactly the same.",
+      "correction": "Book-keeping mainly records transactions, while accounting also identifies, measures, summarises, analyses, interprets and communicates information."
+    },
+    {
+      "claim": "Every important event is recorded in financial accounts.",
+      "correction": "Only events of financial character that can be measured in money are recorded."
+    },
+    {
+      "claim": "Only owners and managers use accounting information.",
+      "correction": "External users such as investors, lenders, suppliers, government, customers and regulators also use it."
+    },
+    {
+      "claim": "Reliable information only means that the arithmetic is correct.",
+      "correction": "Reliability also requires faithful representation, neutrality, freedom from bias and verifiability."
+    },
+    {
+      "claim": "Profit and cash balance are the same.",
+      "correction": "Profit is excess of revenue over expenses for a period; cash is only one asset."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Test Your Understanding – I to connect the accounting process, users, monetary measurement and chronological recording.",
+    "Use Test Your Understanding – II on Ramona Enterprises to apply reliability, relevance, understandability and comparability.",
+    "Use the chapter example where revenue is ₹6,00,000 and expenses are ₹5,40,000 to calculate profit.",
+    "Use Test Your Understanding – III to match stakeholder groups with their information needs.",
+    "Use Activity 1 to classify current and non-current assets and liabilities."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Short Answer Questions 1–15, Long Answer Questions 1–7, a Checklist to Test Your Understanding and Activity 1.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

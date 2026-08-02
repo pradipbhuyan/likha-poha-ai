@@ -1,0 +1,88 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 2: Relations and Functions",
+    "central_question": "How do ordered pairs build relations, and what extra condition turns a relation into a function?",
+    "in_scope_units": [
+      "Cartesian products of sets, ordered pairs, counting, and ordered triplets.",
+      "Relations as subsets of Cartesian products, with domain, range, codomain, and representations.",
+      "Functions as relations assigning one and only one image to each input.",
+      "Real-valued and real functions.",
+      "Identity, constant, polynomial, rational, modulus, signum, and greatest integer functions and graphs.",
+      "Algebra of real functions: sum, difference, scalar multiple, product, and quotient."
+    ],
+    "banned_topics": [
+      "Composition and inverse functions, which are not developed in this chapter.",
+      "Equivalence-relation classification beyond the miscellaneous examples."
+    ],
+    "must_include_keywords": [
+      "ordered pair",
+      "Cartesian product",
+      "ordered triplet",
+      "equality of ordered pairs",
+      "relation",
+      "domain",
+      "range",
+      "codomain",
+      "image",
+      "arrow diagram",
+      "roster form",
+      "set-builder form",
+      "number of relations",
+      "function",
+      "mapping",
+      "preimage",
+      "real-valued function",
+      "real function",
+      "identity function",
+      "constant function",
+      "polynomial function",
+      "rational function",
+      "modulus function",
+      "signum function",
+      "greatest integer function",
+      "graph",
+      "algebra of functions",
+      "pointwise multiplication",
+      "quotient function"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A×B always equals B×A.",
+        "correction": "Order matters, so the two products are generally unequal."
+      },
+      {
+        "claim": "Range and codomain are always equal.",
+        "correction": "The range consists only of actual images and is a subset of the codomain."
+      },
+      {
+        "claim": "Any relation is a function.",
+        "correction": "A function must assign every input exactly one image."
+      },
+      {
+        "claim": "Different inputs cannot share an output.",
+        "correction": "Different inputs may have the same image in a function."
+      },
+      {
+        "claim": "f/g is defined on the whole common domain.",
+        "correction": "Points where g(x)=0 must also be excluded."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Example 1 for equality of ordered pairs.",
+      "NCERT Example 7 for domain, codomain, and range of a relation.",
+      "NCERT Example 11 for the function test.",
+      "NCERT Examples 13 and 15 for graphs, domains, and ranges.",
+      "NCERT Example 16 for algebra of real functions."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercises 2.1, 2.2, and 2.3 followed by the Miscellaneous Exercise on Chapter 2."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Relations and Functions\n\n## What you will learn\nYou will form ordered pairs and Cartesian products. You will learn why order matters and how the number of ordered pairs is calculated.\n\n## Simple explanation\nA Cartesian product combines each element of one set with every element of another set in a fixed order. The first coordinate comes from the first set and the second from the second set.\n\n## Step-by-step breakdown\n- **Ordered pair**: (p,q) has a first and second component, so generally (p,q)≠(q,p).\n- **Equality**: (a,b)=(x,y) exactly when a=x and b=y.\n- **Cartesian product**: P×Q={(p,q):p∈P,q∈Q}.\n- **Empty factor**: If either factor is φ, then the product is φ.\n- **Counting**: If n(A)=p and n(B)=q, then n(A×B)=pq.\n- **Triples**: A×A×A consists of ordered triplets.\n\n## Worked example\nQuestion: Using NCERT Example 1, if (x+1,y−2)=(3,1), find x and y.\n\nSolution:\n- Equate first components: x+1=3, so x=2.\n- Equate second components: y−2=1, so y=3.\n- Final answer: x=2 and y=3.\n\n## Common mistake\nDo not equate a first component with a second component; corresponding positions must match.\n\n## Quick check question\nQuestion: Using NCERT Example 2, if P={a,b,c} and Q={r}, are P×Q and Q×P equal?\nAnswer: No. P×Q={(a,r),(b,r),(c,r)} while Q×P={(r,a),(r,b),(r,c)}.\nExplanation: Their cardinalities match, but the ordered pairs have reversed coordinates.\n\n## Summary\n- Order is essential in an ordered pair.\n- A Cartesian product contains every allowed ordered pair.\n- Finite product size is the product of the set sizes.",
+    "Core explanation": "# Core explanation: Relations and Functions\n\n## What you will learn\nYou will define relations as subsets of Cartesian products. You will identify domain, range, codomain, images, and representations of a relation.\n\n## Simple explanation\nA relation selects some ordered pairs from A×B according to a stated rule. Its domain and range record the coordinates that actually appear.\n\n## Step-by-step breakdown\n- **Relation**: A relation R from A to B is any subset of A×B.\n- **Image**: If (x,y)∈R, then y is an image of x under R.\n- **Domain**: The set of first components occurring in R.\n- **Range**: The set of second components occurring in R.\n- **Codomain**: The entire target set B; the range is contained in the codomain.\n- **Representations**: Relations can be written in roster form, set-builder form, or by an arrow diagram.\n- **Counting relations**: If n(A)=p and n(B)=q, then there are 2^(pq) relations from A to B.\n\n## Worked example\nQuestion: Using NCERT Example 7, for A={1,2,3,4,5,6} and R={(x,y):y=x+1}, find R, its domain, and range.\n\nSolution:\n- List pairs that stay inside A: (1,2),(2,3),(3,4),(4,5),(5,6).\n- The first components are 1 through 5.\n- The second components are 2 through 6.\n- Final answer: R={(1,2),(2,3),(3,4),(4,5),(5,6)}, domain={1,2,3,4,5}, range={2,3,4,5,6}.\n\n## Common mistake\nDo not automatically call the whole codomain the range; only actual images belong to the range.\n\n## Quick check question\nQuestion: Using NCERT Example 9, how many relations are there from A={1,2} to B={3,4}?\nAnswer: There are 16 relations.\nExplanation: A×B has 4 ordered pairs, and each relation is one of its 2⁴ subsets.\n\n## Summary\n- A relation is a subset of a Cartesian product.\n- Domain and range come from coordinates that occur.\n- The codomain may contain elements not in the range.",
+    "Worked examples": "# Worked examples: Relations and Functions\n\n## What you will learn\nYou will distinguish functions from general relations. You will use the “one and only one image” condition and identify image, preimage, domain, codomain, and range.\n\n## Simple explanation\nA function is a relation with a stricter rule: every input in its domain must be assigned exactly one output. Different inputs may share an output.\n\n## Step-by-step breakdown\n- **Function condition**: Every element of A must have one and only one image in B.\n- **Notation**: f:A→B and f(a)=b when (a,b) belongs to f.\n- **Image and preimage**: b is the image of a; a is a preimage of b.\n- **Allowed sharing**: Two different inputs may have the same image.\n- **Not allowed**: One input cannot have two distinct images.\n- **Real function**: Its domain and range are R or subsets of R.\n\n## Worked example\nQuestion: Using NCERT Example 11(ii), decide whether R={(2,2),(2,4),(3,3),(4,4)} is a function.\n\nSolution:\n- The first element 2 occurs in two ordered pairs.\n- It is assigned the two distinct images 2 and 4.\n- This violates the uniqueness requirement.\n- Final answer: R is not a function.\n\n## Common mistake\nA repeated output is allowed; a repeated input with different outputs is not.\n\n## Quick check question\nQuestion: Using NCERT Example 10, is R={(x,y):y=2x, x,y∈N} a function from N to N?\nAnswer: Yes; every natural number x has exactly one image 2x.\nExplanation: Its domain and codomain are N, and its range is the set of even natural numbers.\n\n## Summary\n- Every function is a relation, but not every relation is a function.\n- All inputs must be used exactly once as first components.\n- Range and codomain need not be equal.",
+    "Exam-style problems": "# Exam-style problems: Relations and Functions\n\n## What you will learn\nYou will recognise and interpret standard real functions and their graphs. You will connect formulas with domains, ranges, symmetry, and excluded values.\n\n## Simple explanation\nA graph shows all ordered pairs (x,f(x)). The formula and its domain together determine which points are permitted.\n\n## Step-by-step breakdown\n- **Identity**: f(x)=x has domain and range R and is a line through the origin.\n- **Constant**: f(x)=c has range {c} and a horizontal graph.\n- **Polynomial**: A finite sum of non-negative integral powers of x with real coefficients.\n- **Rational**: f(x)/g(x), with values where g(x)≠0.\n- **Modulus**: |x|=x for x≥0 and −x for x<0.\n- **Signum**: Its outputs are −1,0,1 according as x<0,x=0,x>0.\n- **Greatest integer**: [x] is the greatest integer less than or equal to x.\n\n## Worked example\nQuestion: Using NCERT Example 15, state the domain and range of f(x)=1/x.\n\nSolution:\n- The denominator cannot be zero, so x=0 is excluded.\n- The value 1/x can never equal zero.\n- Every non-zero real y occurs by choosing x=1/y.\n- Final answer: Domain=R−{0} and range=R−{0}.\n\n## Common mistake\nDo not assume a function’s declared codomain is automatically its actual range.\n\n## Quick check question\nQuestion: Using NCERT Example 13, what are the domain and range of f(x)=x² for x∈R?\nAnswer: Domain=R and range=[0,∞).\nExplanation: Every real input is allowed, but a square is never negative and every non-negative value has a real square root.\n\n## Summary\n- Standard functions have characteristic formulas and graphs.\n- Denominators impose domain restrictions.\n- A range must be derived from possible output values.",
+    "Revision and recap": "# Revision and recap: Relations and Functions\n\n## What you will learn\nYou will perform algebra on real functions and review the chapter as one connected system. You will pay special attention to domain restrictions in quotients.\n\n## Simple explanation\nFunction operations are performed pointwise: evaluate both functions at the same input and then add, subtract, multiply, scale, or divide their values.\n\n## Step-by-step breakdown\n- **Addition**: (f+g)(x)=f(x)+g(x).\n- **Subtraction**: (f−g)(x)=f(x)−g(x).\n- **Scalar multiplication**: (αf)(x)=αf(x).\n- **Product**: (fg)(x)=f(x)g(x).\n- **Quotient**: (f/g)(x)=f(x)/g(x), only where g(x)≠0.\n- **Common domain**: Operations are defined where all required component functions are defined.\n- **Full chain**: Sets lead to products, products to relations, and special relations to functions.\n\n## Worked example\nQuestion: Using NCERT Example 16, let f(x)=x² and g(x)=2x+1. Find (f/g)(x) and its restriction.\n\nSolution:\n- Substitute the two values into the quotient: (f/g)(x)=x²/(2x+1).\n- Require 2x+1≠0.\n- Thus x≠−1/2.\n- Final answer: (f/g)(x)=x²/(2x+1), x≠−1/2.\n\n## Common mistake\nDo not give a quotient function without excluding zeros of its denominator.\n\n## Quick check question\nQuestion: Using NCERT Exercise 2.3 Question 3, if f(x)=2x−5, find f(−3).\nAnswer: f(−3)=−11.\nExplanation: Substitution gives 2(−3)−5=−6−5=−11.\n\n## Summary\n- Cartesian products organise ordered data.\n- Relations select pairs; functions assign one output to every input.\n- Function algebra is pointwise and must respect domains."
+  }
+}

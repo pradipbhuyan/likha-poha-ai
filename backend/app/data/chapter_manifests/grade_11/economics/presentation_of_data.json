@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Presentation of Data",
+  "central_question": "How can collected data be presented in textual, tabular, and diagrammatic forms so that its meaning is communicated clearly and appropriately?",
+  "in_scope_units": [
+    "Introduction to the need for compact, comprehensible presentation of voluminous data.",
+    "Textual or descriptive presentation and its advantages and limitations.",
+    "Tabular presentation through rows, columns, cells, and qualitative, quantitative, temporal, and spatial classification.",
+    "Tabulation and the parts of a statistical table: number, title, captions, stubs, body, units, source, and note.",
+    "Diagrammatic presentation through geometric diagrams, frequency diagrams, and arithmetic line graphs.",
+    "Simple, multiple, and component bar diagrams and the construction and interpretation of pie diagrams.",
+    "Histograms, including unequal class intervals and the distinction between a histogram and a bar diagram.",
+    "Frequency polygon, frequency curve, and less-than and more-than ogives.",
+    "Arithmetic line graphs for presenting and interpreting time-series data.",
+    "Conclusion and recap on selecting a suitable form of data presentation."
+  ],
+  "banned_topics": [
+    "Collection of primary and secondary data",
+    "Detailed construction of frequency distributions",
+    "Calculation of arithmetic mean, median, and mode by algebraic formula",
+    "Correlation coefficients and index numbers"
+  ],
+  "must_include_keywords": [
+    "textual presentation",
+    "tabular presentation",
+    "diagrammatic presentation",
+    "rows",
+    "columns",
+    "cells",
+    "qualitative classification",
+    "quantitative classification",
+    "temporal classification",
+    "spatial classification",
+    "table number",
+    "title",
+    "captions",
+    "column headings",
+    "stubs",
+    "row headings",
+    "body of the table",
+    "unit of measurement",
+    "source",
+    "note",
+    "geometric diagram",
+    "simple bar diagram",
+    "multiple bar diagram",
+    "component bar diagram",
+    "pie diagram",
+    "angular component",
+    "histogram",
+    "frequency density",
+    "frequency polygon",
+    "frequency curve",
+    "ogive",
+    "cumulative frequency",
+    "arithmetic line graph",
+    "time series graph"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Textual presentation is always the best form for a large volume of data.",
+      "correction": "Textual presentation is more suitable when the amount of data is small; large data are generally clearer in tables or diagrams."
+    },
+    {
+      "claim": "A table consists only of rows, columns, and numerical entries.",
+      "correction": "A good table also needs a number, title, captions, stubs, units, source, and notes where necessary."
+    },
+    {
+      "claim": "A bar diagram and a histogram are the same.",
+      "correction": "Bar diagrams leave spaces between separate categories, while histogram rectangles are adjacent and represent continuous class intervals."
+    },
+    {
+      "claim": "Only the height of a histogram rectangle matters.",
+      "correction": "In a histogram the area represents frequency; unequal class widths require frequency density so that areas remain comparable."
+    },
+    {
+      "claim": "Both ogives move in the same direction.",
+      "correction": "A less-than ogive is never decreasing, while a more-than ogive is never increasing."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Case 1 and Case 2 to compare textual description with tabular presentation.",
+    "Use Table 4.5 to identify every essential part of a good statistical table.",
+    "Use NCERT Exercise 11 to choose among line, pie, and component diagrams for different data.",
+    "Use NCERT Exercise 13 to explain why unequal class widths require adjusted histogram heights.",
+    "Use Table 4.11 and Figure 4.9 to interpret trends in exports and imports through an arithmetic line graph."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1–15, including objective questions, selection of diagrams, tabulation, histogram construction, and multiple time-series graphs.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

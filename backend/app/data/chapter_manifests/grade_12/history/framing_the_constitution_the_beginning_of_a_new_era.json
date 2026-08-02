@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 12",
+  "subject": "History",
+  "chapter": "Framing the Constitution: The Beginning of a New Era",
+  "central_question": "How did the Constituent Assembly negotiate division, diversity and conflicting claims to create a democratic Constitution for independent India?",
+  "in_scope_units": [
+    "A Tumultuous Time: Independence, Partition, refugees, princely states and the political setting of constitution-making.",
+    "The Making of the Constituent Assembly and Dominant Voices: election, composition, public participation, committees and leading members.",
+    "The Vision of the Constitution: the Objectives Resolution, sovereignty, democracy, justice and the will of the people.",
+    "Defining Rights: separate electorates, minority claims, tribal protection, Depressed Castes, women and social justice.",
+    "The Powers of the State: Union, State and Concurrent Lists, fiscal federalism and the debate over a strong Centre.",
+    "The Language of the Nation: Hindustani, Hindi, Urdu, fears of domination and the compromise on official language.",
+    "Constitutional Outcomes: universal adult franchise, Fundamental Rights and Indian secularism."
+  ],
+  "banned_topics": [
+    "Detailed functioning of the present-day Constitution beyond what the chapter states.",
+    "A complete narrative of Partition violence, which belongs to the preceding chapter.",
+    "Post-1950 constitutional amendments and contemporary court judgments."
+  ],
+  "must_include_keywords": [
+    "Constituent Assembly",
+    "Partition",
+    "princely states",
+    "provincial legislatures",
+    "Congress",
+    "Muslim League",
+    "Jawaharlal Nehru",
+    "Vallabhbhai Patel",
+    "Rajendra Prasad",
+    "B.R. Ambedkar",
+    "Drafting Committee",
+    "B.N. Rau",
+    "Objectives Resolution",
+    "Independent Sovereign Republic",
+    "justice",
+    "equality",
+    "freedom",
+    "Somnath Lahiri",
+    "will of the people",
+    "separate electorates",
+    "B. Pocker Bahadur",
+    "Govind Ballabh Pant",
+    "N.G. Ranga",
+    "Jaipal Singh",
+    "Depressed Castes",
+    "reservation",
+    "Union List",
+    "State List",
+    "Concurrent List",
+    "Article 356",
+    "fiscal federalism",
+    "K. Santhanam",
+    "strong Centre",
+    "Hindustani",
+    "R.V. Dhulekar",
+    "G. Durgabai",
+    "official language",
+    "universal adult franchise",
+    "secularism",
+    "Fundamental Rights"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Constituent Assembly was elected directly by universal adult franchise.",
+      "correction": "Its members were chosen by Provincial Legislatures elected in 1945-46; universal adult franchise was not used."
+    },
+    {
+      "claim": "Because Congress members dominated the Assembly, all of them held the same views.",
+      "correction": "Congress members disagreed on socialism, landlordism, secularism, minority rights, federalism and language."
+    },
+    {
+      "claim": "All minority representatives supported separate electorates.",
+      "correction": "Many opposed them, including Begum Aizaz Rasul; by 1949 most Muslim members regarded separate electorates as harmful."
+    },
+    {
+      "claim": "The Constitution adopted Hindi immediately as the sole national language.",
+      "correction": "Hindi in Devanagari was accepted as the official language, English continued for official purposes during a transition, and provinces could use regional languages."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Q1: Explain the ideals expressed in the Objectives Resolution.",
+    "NCERT Q2: Compare how different groups defined the term minority.",
+    "NCERT Q3: Analyse arguments for greater power to the provinces.",
+    "NCERT Q6: Discuss arguments for protection of oppressed groups.",
+    "NCERT Q8: Explain how the Assembly resolved the language controversy."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions 1-8, Map Work Question 9, and Projects 10-11.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

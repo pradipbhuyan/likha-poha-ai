@@ -1,0 +1,102 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Soils",
+    "central_question": "How do running water, groundwater, glaciers, waves, and wind produce distinctive erosional and depositional landforms and transform landscapes through time?",
+    "in_scope_units": [
+      "Meaning, history, and evolution of landforms and landscapes.",
+      "Running-water erosion and deposition across youthful, mature, and gentler river courses.",
+      "River valleys, potholes, plunge pools, terraces, meanders, floodplains, levees, point bars, deltas, and alluvial fans.",
+      "Groundwater solution in limestone and karst landforms including sinkholes, uvalas, caves, stalactites, and stalagmites.",
+      "Glacial erosion and deposition including cirques, horns, arêtes, valleys, moraines, eskers, outwash plains, and drumlins.",
+      "Wave action and erosional and depositional forms of high rocky and low sedimentary coasts.",
+      "Wind and combined desert processes forming pediments, pediplains, playas, deflation hollows, dunes, and related forms."
+    ],
+    "banned_topics": [
+      "Soil-profile horizons and Indian soil classification",
+      "Atmospheric weather systems",
+      "Interior structure of the earth",
+      "River-water resource management"
+    ],
+    "must_include_keywords": [
+      "landform",
+      "landscape",
+      "evolution",
+      "running water",
+      "overland flow",
+      "stream",
+      "youth",
+      "mature",
+      "old stage",
+      "gorge",
+      "canyon",
+      "pothole",
+      "plunge pool",
+      "river terrace",
+      "alluvial fan",
+      "delta",
+      "floodplain",
+      "natural levee",
+      "point bar",
+      "meander",
+      "ox-bow lake",
+      "groundwater",
+      "karst",
+      "sinkhole",
+      "doline",
+      "uvala",
+      "lapies",
+      "cave",
+      "stalactite",
+      "stalagmite",
+      "glacier",
+      "cirque",
+      "horn",
+      "arête",
+      "moraine",
+      "esker",
+      "outwash plain",
+      "drumlin",
+      "wave-cut cliff",
+      "beach"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A meander is itself a separate landform.",
+        "correction": "The chapter describes a meander as a channel pattern produced by lateral erosion and deposition."
+      },
+      {
+        "claim": "Every limestone depression is formed by mechanical erosion.",
+        "correction": "Solution by groundwater is the dominant process in karst terrain."
+      },
+      {
+        "claim": "All glacial deposits are sorted like river alluvium.",
+        "correction": "Glacial till is generally unsorted, while glacio-fluvial deposits may be sorted by meltwater."
+      },
+      {
+        "claim": "Wind alone creates every desert landform.",
+        "correction": "Running water and sheet flooding also participate in desert landscape evolution."
+      },
+      {
+        "claim": "Coastal erosion and deposition are independent of sediment supply.",
+        "correction": "The chapter stresses the coastal sediment budget and the balance among waves, currents, and supplied material."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 1(i): identify the stage dominated by vertical down-cutting.",
+      "NCERT Exercise 2(i): interpret incised meanders and alluvial meanders.",
+      "NCERT Exercise 2(ii): explain the evolution of valley sinks or uvalas.",
+      "NCERT Exercise 2(iv): locate and name linear glacial depositional forms.",
+      "NCERT Exercise 3(i): assess running water as a dominant geomorphic agent."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1(i–v), 2(i–v), 3(i–iii), followed by Project Work on local landforms, materials, and processes."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Soils\n\n## What you will learn\nYou will define landform, landscape, and landform evolution. You will connect river gradient with the balance between vertical erosion and deposition.\n\n## Simple explanation\nLandforms have a history. As processes continue and conditions change, a landform’s shape, size, and material may be transformed.\n\n## Step-by-step breakdown\n- **Landform and landscape**: A landform is a small-to-medium tract with a distinct shape; related landforms together form a landscape.\n- **Evolution**: Landforms pass through stages of transformation under continuing geomorphic action.\n- **Running-water components**: Water acts as overland sheet flow and as linear flow in streams and rivers.\n- **Steep gradients**: Youthful streams have greater velocity and strong vertical erosion.\n- **Gentle gradients**: Lower velocity favours lateral activity and deposition.\n\n## Worked example\nQuestion: Which stage in NCERT Exercise 1(i) is dominated by downward cutting?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1(i)\", \"extract_text\": \"In which of the following stages of landform development, downward cutting is dominated?\\n(a) Youth stage\\n(b) Late mature stage\\n(c) Early mature stage\\n(d) Old stage\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The text associates vigorous vertical erosion and steep gradients with youthful rivers.\n- As channels become gentler, vertical cutting declines and lateral erosion and deposition become more important.\n- Final answer: The correct answer is the youth stage.\n\n## Common mistake\nDo not assume old rivers cut deepest merely because they have flowed longest; gradient and energy control the dominant process.\n\n## Quick check question\nQuestion: What is a landscape?\nAnswer: A large tract made up of several related landforms.\nExplanation: The chapter distinguishes individual landforms from the wider landscape they collectively compose.\n\n## Summary\n- Every landform has a developmental history.\n- Gradient controls river energy.\n- Youthful rivers mainly cut downward.",
+    "Core explanation": "# Core explanation: Soils\n\n## What you will learn\nYou will classify major river erosional and depositional forms. You will explain how lateral erosion and deposition create meanders and ox-bow lakes.\n\n## Simple explanation\nRunning water cuts valleys on steep slopes and builds depositional forms where gradients become gentler and carrying capacity falls.\n\n## Step-by-step breakdown\n- **Valleys**: V-shaped valleys, gorges, and canyons result from strong down-cutting, with canyon sides often showing step-like slopes.\n- **Potholes and plunge pools**: Rotating debris and falling water abrade hollows in stream beds.\n- **River terraces**: Former floodplain levels remain as steps along valley sides after renewed down-cutting.\n- **Alluvial fans and deltas**: Sediment spreads where streams leave confined slopes or enter standing water.\n- **Floodplains and levees**: Repeated flooding deposits fine material across plains and coarser material near channel banks.\n- **Point bars**: Sediment accumulates on the inner, convex side of a river bend.\n- **Meanders and ox-bow lakes**: Outer-bank erosion and inner-bank deposition enlarge loops until a cut-off leaves an ox-bow lake.\n\n## Worked example\nQuestion: What do incised meanders in rock and meanders in alluvial plains indicate in NCERT Exercise 2(i)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(i)\", \"extract_text\": \"What do incised meanders in rocks and meanders in plains of alluvium indicate?\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter distinguishes entrenched channel patterns in resistant rock from freely shifting loops on gentle alluvial plains.\n- Incised meanders record renewed down-cutting of an inherited winding course, whereas alluvial meanders show active lateral erosion and deposition.\n- Final answer: They indicate different river histories and controls: rejuvenated vertical erosion in rock and lateral channel adjustment in loose alluvium.\n\n## Common mistake\nDo not explain both forms only through the Coriolis force; gradient, material, erosion, and deposition are central.\n\n## Quick check question\nQuestion: On which side of a meander is a point bar deposited?\nAnswer: On the inner or convex side.\nExplanation: Flow is slower there, while the outer concave bank is more strongly undercut.\n\n## Summary\n- Steep streams erode vertically.\n- Gentle rivers build floodplains and meanders.\n- Erosion and deposition operate together along bends.",
+    "Worked examples": "# Worked examples: Soils\n\n## What you will learn\nYou will explain solution landforms in limestone. You will trace sinkholes through uvalas, caves, stalactites, stalagmites, and columns.\n\n## Simple explanation\nGroundwater containing dissolved carbon dioxide moves through joints and bedding planes in limestone. Solution enlarges openings and creates a mainly underground drainage system.\n\n## Step-by-step breakdown\n- **Karst process**: Chemical solution is dominant where rocks are soluble and permeable.\n- **Sinkholes and dolines**: Solution and collapse create circular or funnel-shaped depressions.\n- **Uvalas**: Adjacent sinkholes join through marginal slumping or cave-roof collapse.\n- **Lapies**: Differential solution along joints creates sharp grooves and ridges.\n- **Caves and tunnels**: Water dissolves limestone along bedding planes; caves with openings at both ends are tunnels.\n- **Stalactites and stalagmites**: Deposits grow downward from roofs and upward from floors and may join into columns.\n\n## Worked example\nQuestion: How do valley sinks or uvalas evolve, as asked in NCERT Exercise 2(ii)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(ii)\", \"extract_text\": \"Explain the evolution of valley sinks or uvalas.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The text states that sinkholes and dolines join because material slumps along their margins or cave roofs collapse.\n- Repeated joining changes separate depressions into longer and wider trenches.\n- Final answer: Uvalas form when neighbouring sinkholes or dolines coalesce through slumping and roof collapse.\n\n## Common mistake\nDo not confuse an uvala with a single small sinkhole.\n\n## Quick check question\nQuestion: Why is underground flow common in limestone?\nAnswer: Water enters joints, cracks, and bedding planes and enlarges them by solution.\nExplanation: Permeability and solubility divert water below the surface.\n\n## Summary\n- Karst forms mainly through solution.\n- Uvalas are compound depressions.\n- Cave deposits can grow into columns.",
+    "Exam-style problems": "# Exam-style problems: Soils\n\n## What you will learn\nYou will distinguish glacial erosional and depositional forms. You will use moraine position, esker shape, and drumlin orientation as evidence of former ice movement.\n\n## Simple explanation\nMoving ice abrades and plucks bedrock, while debris is deposited directly by ice or reworked by meltwater.\n\n## Step-by-step breakdown\n- **Cirques and tarns**: Ice cuts steep-walled basins at valley heads; lakes may remain after melting.\n- **Horns and arêtes**: Headward erosion by several cirques creates sharp peaks and serrated divides.\n- **Glacial valleys**: Broad trough-like valleys, hanging valleys, and fjords reflect glacial erosion.\n- **Moraines**: Terminal, lateral, medial, and ground moraines are distinguished by location.\n- **Eskers**: Subglacial meltwater deposits form sinuous ridges.\n- **Outwash plains**: Meltwater spreads sorted gravel, sand, silt, and clay beyond ice margins.\n- **Drumlins**: Streamlined till ridges align with ice movement, with a blunt stoss end.\n\n## Worked example\nQuestion: What are the locations and names of linear depositional forms in glacial valleys in NCERT Exercise 2(iv)?\n```extract-ref\n{\"citation\": \"NCERT Exercise 2(iv)\", \"extract_text\": \"Glacial valleys show up many linear depositional forms. Give their locations and names.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter describes lateral moraines along valley sides, terminal moraines at glacier ends, medial moraines near the centre, and sinuous eskers beneath former ice channels.\n- Their positions reveal whether debris accumulated at the side, centre, end, or beneath the glacier.\n- Final answer: The principal linear forms are lateral, medial, and terminal moraines and eskers, each identified by its position relative to the former ice.\n\n## Common mistake\nDo not call every ridge a drumlin; drumlins are streamlined till ridges, not simply any linear glacial deposit.\n\n## Quick check question\nQuestion: Which end of a drumlin is blunter and steeper?\nAnswer: The stoss end facing the former glacier.\nExplanation: Moving ice pushes and blunts the upstream end.\n\n## Summary\n- Glaciers erode by abrasion and plucking.\n- Moraine names indicate position.\n- Eskers and drumlins reveal former ice and meltwater movement.",
+    "Revision and recap": "# Revision and recap: Soils\n\n## What you will learn\nYou will compare coastal and desert landform systems and integrate the chapter’s agents. You will explain why climate and material determine which process dominates.\n\n## Simple explanation\nWaves reshape coastlines at the land–sea boundary, while wind and episodic water jointly shape deserts. Erosional and depositional forms depend on energy, sediment supply, rock, and slope.\n\n## Step-by-step breakdown\n- **Rocky coasts**: Wave attack creates cliffs, caves, arches, stacks, and wave-cut platforms.\n- **Sedimentary coasts**: Beaches, bars, barriers, spits, and lagoons develop where deposition is strong.\n- **Sediment budget**: Coastal stability depends on the balance of supplied, transported, and removed sediment.\n- **Pediments and pediplains**: Lateral erosion and sheet flooding cause mountain fronts to retreat and pediments to merge.\n- **Playas**: Temporary desert lakes may leave salt deposits after evaporation.\n- **Wind erosion**: Deflation, abrasion, and turbulence produce hollows and sculpted forms.\n- **Dunes**: Barchans, seifs, and longitudinal or transverse dunes reflect sand supply and wind regime.\n\n## Worked example\nQuestion: Why does NCERT Exercise 3(i) describe running water as a dominant agent in both humid and arid climates?\n```extract-ref\n{\"citation\": \"NCERT Exercise 3(i)\", \"extract_text\": \"Running water is by far the most dominating geomorphic agent in shaping the earth’s surface in humid as well as in arid climates. Explain.\", \"note\": \"NCERT exercise from the supplied chapter text\"}\n```\n\nAnswer:\n- The chapter shows continuous river action in humid regions and episodic but powerful sheet floods and streams in deserts.\n- Running water can therefore erode, transport, and deposit under contrasting climates, though its frequency and forms differ.\n- Final answer: Running water is widely dominant because it operates persistently in humid areas and intermittently but strongly in arid areas, producing major erosional and depositional landforms in both.\n\n## Common mistake\nDo not describe deserts as landscapes made exclusively by wind.\n\n## Quick check question\nQuestion: What is a pediplain?\nAnswer: A broad low-relief surface formed as neighbouring pediments extend and merge.\nExplanation: Parallel retreat of mountain fronts enlarges pediments until they coalesce.\n\n## Summary\n- Waves both erode and deposit along coasts.\n- Deserts are shaped by wind and running water.\n- Landforms record the interaction of agent, material, energy, and time."
+  }
+}

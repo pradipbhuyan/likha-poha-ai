@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 12",
+  "subject": "Accountancy",
+  "chapter": "Financial Statements of a Company",
+  "central_question": "How do companies present their financial position and performance in a standard form that is useful to shareholders, creditors, management and other users?",
+  "in_scope_units": [
+    "Meaning of financial statements as summarised reports of financial position and operating performance.",
+    "Nature of financial statements as a combination of recorded facts, accounting conventions, postulates and personal judgements.",
+    "Objectives of financial statements and the information required by users.",
+    "Types of financial statements: Balance Sheet, Statement of Profit and Loss, Notes to Accounts and Cash Flow Statement.",
+    "Form and content of the Balance Sheet under Schedule III, including equity and liabilities, assets and current/non-current classification.",
+    "Form and content of the Statement of Profit and Loss and major heads of revenue, expenses and tax.",
+    "Notes to Accounts and disclosure of share capital, reserves, borrowings, fixed assets and other items.",
+    "Uses and importance of financial statements for management, shareholders, investors, lenders, employees, government and the public.",
+    "Limitations arising from historical cost, monetary measurement, accounting policies, estimates, aggregation and absence of qualitative information."
+  ],
+  "banned_topics": [
+    "Comparative and common-size analysis, which belongs to Analysis of Financial Statements.",
+    "Calculation and interpretation of accounting ratios, which belongs to Accounting Ratios.",
+    "Preparation of a cash flow statement, which belongs to Cash Flow Statement."
+  ],
+  "must_include_keywords": [
+    "financial statements",
+    "Balance Sheet",
+    "Statement of Profit and Loss",
+    "Notes to Accounts",
+    "Cash Flow Statement",
+    "recorded facts",
+    "accounting conventions",
+    "postulates",
+    "personal judgements",
+    "historical cost",
+    "going concern",
+    "money measurement",
+    "realisation postulate",
+    "Schedule III",
+    "Companies Act 2013",
+    "shareholders’ funds",
+    "share capital",
+    "reserves and surplus",
+    "non-current liabilities",
+    "current liabilities",
+    "non-current assets",
+    "current assets",
+    "revenue from operations",
+    "other income",
+    "finance costs",
+    "depreciation",
+    "profit before tax",
+    "comparative figures",
+    "management",
+    "shareholders",
+    "creditors",
+    "investors",
+    "government",
+    "limitations of financial statements"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Financial statements show the current market value of every asset.",
+      "correction": "They are mainly based on recorded historical costs, accounting conventions and estimates, so they do not automatically show current market values."
+    },
+    {
+      "claim": "The Balance Sheet reports profit earned over the year.",
+      "correction": "The Balance Sheet shows financial position at a point in time; the Statement of Profit and Loss reports performance for a period."
+    },
+    {
+      "claim": "All resources and strengths of a company appear in monetary statements.",
+      "correction": "Qualitative factors such as employee skill, labour relations and reputation may not be recorded because financial statements focus on measurable monetary information."
+    },
+    {
+      "claim": "Notes to Accounts are optional explanations separate from the financial statements.",
+      "correction": "The chapter treats notes as an integral part that supplies classifications, details and accounting-policy information needed to understand the statements."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the chapter’s opening discussion and Short Answer Question 1 to define financial statements.",
+    "Use Long Answer Question 7 to analyse recorded facts, conventions and personal judgements.",
+    "Use the Schedule III formats and Numerical Questions 1–3 to classify items in the Balance Sheet.",
+    "Use the Statement of Profit and Loss format and its illustrations to calculate profit before tax.",
+    "Use Short Answer Question 4 and Long Answer Question 6 to match statements with user needs.",
+    "Use Long Answer Question 3 to organise the limitations of financial statements."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Questions for Practice containing Short Answer Questions 1–5, Long Answer Questions 1–8 and Numerical Questions 1–7.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

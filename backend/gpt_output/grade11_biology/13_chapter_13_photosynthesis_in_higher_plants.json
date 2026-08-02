@@ -1,0 +1,86 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 13: Photosynthesis in Higher Plants",
+    "central_question": "How do green plants capture light energy and use it to make carbohydrates from carbon dioxide and water while releasing oxygen?",
+    "in_scope_units": [
+      "Prior evidence that chlorophyll, light and carbon dioxide are required for photosynthesis.",
+      "Early experiments by Priestley, Ingenhousz, Sachs, Engelmann and van Niel.",
+      "Chloroplast organisation and the locations of light and carbon reactions.",
+      "Photosynthetic pigments, absorption spectra and action spectra.",
+      "Light reactions, photosystems, electron transport and splitting of water.",
+      "Cyclic and non-cyclic photophosphorylation and chemiosmotic ATP synthesis.",
+      "Use of ATP and NADPH in the Calvin cycle.",
+      "C4 pathway, Kranz anatomy and photorespiration.",
+      "Internal and external factors affecting photosynthesis."
+    ],
+    "banned_topics": [
+      "Xylem and phloem transport",
+      "Transpiration pull and pressure-flow translocation",
+      "Mineral uptake and nitrogen metabolism"
+    ],
+    "must_include_keywords": [
+      "photosynthesis",
+      "autotroph",
+      "chlorophyll a",
+      "chlorophyll b",
+      "carotenoid",
+      "xanthophyll",
+      "chloroplast",
+      "grana",
+      "stroma",
+      "photosystem I",
+      "photosystem II",
+      "P700",
+      "P680",
+      "photolysis",
+      "Z scheme",
+      "NADPH",
+      "photophosphorylation",
+      "chemiosmosis",
+      "ATP synthase",
+      "RuBP",
+      "RuBisCO",
+      "3-PGA",
+      "Calvin cycle",
+      "PEP",
+      "PEP carboxylase",
+      "OAA",
+      "Kranz anatomy",
+      "C3 plant",
+      "C4 plant",
+      "photorespiration",
+      "Blackman law"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The oxygen released in photosynthesis comes from carbon dioxide.",
+        "correction": "The oxygen released by green plants comes from water splitting."
+      },
+      {
+        "claim": "Dark reactions occur only in darkness.",
+        "correction": "They are not directly light driven, but they depend on ATP and NADPH produced by light reactions."
+      },
+      {
+        "claim": "C4 plants do not use the Calvin cycle.",
+        "correction": "C4 plants concentrate CO2 first, then run the Calvin cycle in bundle-sheath cells."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Exercise 5 to explain why chlorophyll a cannot be replaced by chlorophyll b.",
+      "Use NCERT Exercise 9(b) to compare cyclic and non-cyclic photophosphorylation.",
+      "Use the in-text Calvin-cycle balance to calculate ATP and NADPH per glucose.",
+      "Use NCERT Exercise 8 and Figure 11.10 to interpret limiting factors.",
+      "Use NCERT Exercise 4 to explain why C4 RuBisCO performs more carboxylation."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter EXERCISES section contains Questions 1-9 on C3 and C4 plants, pigments, RuBisCO, light limitation and pathway comparisons."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Photosynthesis in Higher Plants\n\n## What you will learn\nYou will connect simple starch tests with the historical experiments that established the requirements and products of photosynthesis. You will also locate the process inside the leaf and chloroplast.\n\n## Simple explanation\nPhotosynthesis is a multistep physico-chemical process. Green cells use light energy to build organic compounds, and the chapter develops this idea through observations, experiments and chloroplast structure.\n\n## Step-by-step breakdown\n- **Starch tests**: A variegated or partly covered leaf forms starch only in green areas exposed to light, showing the need for chlorophyll and light.\n- **Carbon dioxide test**: A leaf portion enclosed with KOH fails to form starch because KOH absorbs CO2.\n- **Priestley and Ingenhousz**: Priestley showed that plants restore air damaged by candles or animals; Ingenhousz showed that sunlight and green parts are required.\n- **Sachs and Engelmann**: Sachs connected chloroplasts with glucose and starch formation, while Engelmann showed maximum oxygen evolution in blue and red light.\n- **van Niel**: Studies of photosynthetic bacteria led to the conclusion that oxygen evolved by green plants comes from water.\n- **Chloroplast division of labour**: Thylakoid membranes trap light and form ATP and NADPH; stroma enzymes fix carbon and form sugars.\n\n## Worked example\nQuestion: NCERT Exercise 5 asks whether a plant rich in chlorophyll b but lacking chlorophyll a could photosynthesise, and why accessory pigments are present.\n\nSolution:\n- Chlorophyll a is the reaction-centre pigment directly involved in photochemical energy conversion.\n- Chlorophyll b, carotenoids and xanthophylls absorb additional wavelengths and transfer energy to chlorophyll a.\n- Accessory pigments also protect chlorophyll a from photo-oxidation.\n- Final answer: A plant lacking chlorophyll a would not carry out normal photosynthesis; accessory pigments widen light absorption but cannot replace the chief reaction-centre pigment.\n\n## Common mistake\nIt is incorrect to assume that every leaf pigment can serve as the reaction centre. Chlorophyll a is the chief pigment; the others mainly collect and transfer energy.\n\n## Quick check question\nQuestion: Which chloroplast region contains the enzymes of the Calvin cycle?\nAnswer: The stroma.\nExplanation: The thylakoid membrane houses photosystems and electron carriers, whereas carbon-fixation enzymes are located in the stroma.\n\n## Summary\n- Light, chlorophyll and CO2 are required for starch formation.\n- Historical experiments identified oxygen evolution and carbohydrate formation.\n- Photosynthesis occurs mainly in mesophyll chloroplasts.\n- Thylakoids perform light reactions and the stroma performs carbon fixation.",
+    "Core explanation": "# Core explanation: Photosynthesis in Higher Plants\n\n## What you will learn\nYou will examine pigments, photosystems and the movement of electrons in the light reaction. You will distinguish water splitting, cyclic flow, non-cyclic flow and ATP synthesis by chemiosmosis.\n\n## Simple explanation\nPigments arranged in two photosystems capture light. Excited electrons move through carriers, creating NADPH and a proton gradient whose breakdown drives ATP formation.\n\n## Step-by-step breakdown\n- **Pigment systems**: Chlorophyll a, chlorophyll b, xanthophylls and carotenoids absorb different wavelengths; photosynthesis is strongest in blue and red regions.\n- **Reaction centres**: PS II contains P680 and PS I contains P700, named for their absorption maxima.\n- **Z scheme**: Electrons excited in PS II move through an electron-transport chain to PS I, are re-excited and finally reduce NADP+.\n- **Water splitting**: The PS II-associated complex replaces lost electrons and produces protons and oxygen.\n- **Non-cyclic flow**: PS II and PS I work in series and form ATP, NADPH and oxygen.\n- **Cyclic flow**: Only PS I functions; electrons return to PS I, forming ATP but not NADPH or oxygen.\n- **Chemiosmosis**: Protons accumulate in the thylakoid lumen and return through CF0-CF1 ATP synthase to power ATP formation.\n\n## Worked example\nQuestion: NCERT Exercise 9(b) asks for a comparison of cyclic and non-cyclic photophosphorylation.\n\nSolution:\n- Cyclic flow uses PS I only; non-cyclic flow uses PS II and PS I.\n- In cyclic flow the electron returns to PS I; in non-cyclic flow electrons reduce NADP+.\n- Cyclic flow produces ATP only and does not split water.\n- Non-cyclic flow produces ATP and NADPH and releases oxygen through water splitting.\n- Final answer: Cyclic photophosphorylation uses PS I and forms ATP only; non-cyclic photophosphorylation uses both photosystems and forms ATP, NADPH and oxygen.\n\n## Common mistake\nDo not place PS I before PS II because of the numbering. The names reflect discovery order, not functional sequence.\n\n## Quick check question\nQuestion: Why does cyclic electron flow not form NADPH?\nAnswer: Because the excited electron returns to PS I instead of being transferred to NADP+.\nExplanation: Without terminal transfer to NADP+, reduction of NADP+ cannot occur.\n\n## Summary\n- Accessory pigments broaden usable wavelengths.\n- PS II starts non-cyclic electron flow and receives electrons from water.\n- PS I supplies electrons for NADP+ reduction.\n- A thylakoid proton gradient drives ATP synthase.\n- Cyclic flow supplements ATP without NADPH or oxygen.",
+    "Worked examples": "# Worked examples: Photosynthesis in Higher Plants\n\n## What you will learn\nYou will follow the three phases of the Calvin cycle and calculate its ATP and NADPH requirement. You will connect the cycle to the carbon-concentrating mechanism of C4 plants.\n\n## Simple explanation\nATP and NADPH from the light reaction are consumed in the stroma. CO2 is fixed into a stable compound, reduced toward carbohydrate and the CO2 acceptor is regenerated.\n\n## Step-by-step breakdown\n- **Primary acceptor**: RuBP is a five-carbon sugar that accepts CO2.\n- **Carboxylation**: RuBisCO adds CO2 to RuBP, yielding two molecules of 3-PGA.\n- **Reduction**: Two ATP and two NADPH are used per CO2 in reactions leading to carbohydrate.\n- **Regeneration**: One additional ATP per CO2 regenerates RuBP.\n- **Cycle balance**: Each CO2 requires three ATP and two NADPH; six turns require 18 ATP and 12 NADPH.\n- **C4 entry pathway**: PEP carboxylase fixes CO2 in mesophyll cells to form OAA; C4 acids deliver CO2 to bundle-sheath cells.\n\n## Worked example\nQuestion: The in-text Calvin-cycle question asks how many ATP and NADPH molecules are required to make one glucose molecule.\n\nSolution:\n- One CO2 entering the cycle requires three ATP and two NADPH.\n- One glucose requires fixation of six CO2 and six turns.\n- ATP requirement is 6 x 3 = 18.\n- NADPH requirement is 6 x 2 = 12.\n- Final answer: Eighteen ATP and twelve NADPH are required for one glucose through the Calvin pathway.\n\n## Common mistake\nDo not count only the two ATP used in reduction; RuBP regeneration uses one more ATP per CO2.\n\n## Quick check question\nQuestion: What is the first stable product in C3 and C4 plants?\nAnswer: C3 plants form 3-PGA, while C4 plants first form OAA.\nExplanation: The pathway names reflect the number of carbons in the first stable fixation product.\n\n## Summary\n- RuBP is the five-carbon CO2 acceptor.\n- The Calvin cycle has carboxylation, reduction and regeneration.\n- Six turns consume 18 ATP and 12 NADPH per glucose.\n- C4 plants separate initial fixation from the Calvin cycle.",
+    "Exam-style problems": "# Exam-style problems: Photosynthesis in Higher Plants\n\n## What you will learn\nYou will compare C3 and C4 plants, explain photorespiration and interpret factors that limit photosynthetic rate.\n\n## Simple explanation\nC4 plants concentrate CO2 around RuBisCO and suppress its oxygenase reaction. Even so, the actual rate of photosynthesis is controlled by whichever factor is most limiting.\n\n## Step-by-step breakdown\n- **Kranz anatomy**: C4 leaves have large bundle-sheath cells with many chloroplasts, thick walls and little intercellular space.\n- **Photorespiration**: In C3 plants RuBisCO may bind oxygen, producing phosphoglycolate; the pathway uses energy, releases CO2 and forms no sugar.\n- **C4 advantage**: C4-acid decarboxylation raises CO2 near RuBisCO and minimises oxygenation.\n- **Blackman law**: The rate is determined by the factor nearest its minimum.\n- **Light**: At low intensity rate rises with light; after saturation another factor limits the process, and excessive light can damage chlorophyll.\n- **CO2, temperature and water**: CO2 is often limiting; temperature affects enzyme reactions and water stress closes stomata and reduces activity.\n\n## Worked example\nQuestion: NCERT Exercise 8 asks how to interpret Figure 11.10, which plots photosynthetic rate against light intensity.\n\nSolution:\n- On the initial rising region, added light increases CO2 fixation, so light is limiting.\n- When the curve levels, light is no longer the main limiting factor.\n- CO2 concentration, temperature or an internal factor can then limit the rate.\n- Final answer: Light limits the rising region; after light saturation, another factor controls the rate.\n\n## Common mistake\nIncreasing light does not always increase photosynthesis. Beyond saturation, other factors limit the rate and extreme light may reduce it.\n\n## Quick check question\nQuestion: Why is photorespiration negligible in C4 plants?\nAnswer: C4 plants concentrate CO2 in bundle-sheath cells, causing RuBisCO to act mainly as a carboxylase.\nExplanation: PEP carboxylase captures CO2 in mesophyll cells and C4 acids release it close to RuBisCO.\n\n## Summary\n- Kranz anatomy supports a CO2-concentrating mechanism.\n- Photorespiration wastes fixed carbon and energy in C3 plants.\n- The limiting factor controls the realised rate.\n- Light, CO2, temperature and water interact.",
+    "Revision and recap": "# Revision and recap: Photosynthesis in Higher Plants\n\n## What you will learn\nYou will consolidate the chapter as one linked energy-and-carbon pathway and practise connecting structures, molecules and environmental responses.\n\n## Simple explanation\nThe light reaction converts solar energy into ATP and NADPH. The Calvin cycle uses them to reduce CO2, while the C4 pathway adds a concentration step that improves performance in hot, bright conditions.\n\n## Step-by-step breakdown\n- **Inputs and outputs**: Water supplies electrons and oxygen, CO2 supplies carbon, light supplies energy and sugars store chemical energy.\n- **Structural map**: Thylakoid membranes house light reactions; the stroma houses carbon fixation.\n- **Energy map**: Non-cyclic flow makes ATP and NADPH; cyclic flow provides additional ATP.\n- **Carbon map**: RuBisCO fixes CO2 into 3-PGA and the cycle regenerates RuBP.\n- **C3-C4 map**: C4 plants use PEP carboxylase, OAA, Kranz anatomy and bundle-sheath decarboxylation.\n- **Rate map**: Photosynthesis responds to light, CO2, temperature, water and internal leaf traits.\n\n## Worked example\nQuestion: NCERT Exercise 4 asks why RuBisCO carries out more carboxylation in C4 plants.\n\nSolution:\n- PEP carboxylase fixes CO2 in C4 mesophyll cells and forms a four-carbon acid.\n- The acid moves to bundle-sheath cells and releases CO2.\n- This creates a high CO2 concentration around RuBisCO.\n- High CO2 suppresses competition from oxygen.\n- Final answer: RuBisCO performs more carboxylation in C4 plants because the pathway concentrates CO2 at its site and minimises oxygenase activity.\n\n## Common mistake\nDo not describe RuBisCO as absent from C4 plants. It is abundant in bundle-sheath cells but generally absent from their mesophyll cells.\n\n## Quick check question\nQuestion: Which light-reaction products directly drive the Calvin cycle?\nAnswer: ATP and NADPH.\nExplanation: ATP supplies energy and NADPH supplies reducing power for carbon reduction and regeneration.\n\n## Summary\n- Photosynthesis couples photochemistry to carbon assimilation.\n- Water splitting, electron transport and chemiosmosis form light-reaction products.\n- The Calvin cycle fixes carbon and regenerates RuBP.\n- C4 plants reduce photorespiration.\n- Environmental factors determine photosynthetic rate."
+  }
+}

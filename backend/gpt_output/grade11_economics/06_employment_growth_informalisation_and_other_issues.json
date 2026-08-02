@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Economics",
+    "chapter": "Employment: Growth, Informalisation and Other Issues",
+    "central_question": "How is employment in India measured and organised, and what do participation, sectoral change, informalisation and unemployment reveal about the quality of work?",
+    "in_scope_units": [
+      "Introduction to the meaning and social importance of work.",
+      "Workers, employment, economic activity, GDP, GNP and the size and diversity of the workforce.",
+      "Worker-population ratio and differences by gender and rural–urban residence.",
+      "Self-employed, regular salaried employees and casual wage labourers.",
+      "Employment across primary, secondary and service sectors and rural–urban differences.",
+      "Growth and changing structure of employment, including jobless growth and casualisation.",
+      "Formal and informal sectors and the process of informalisation.",
+      "Meaning and forms of unemployment in rural and urban India.",
+      "Government employment-generation programmes and the chapter’s conclusion."
+    ],
+    "banned_topics": [
+      "Rural banking and agricultural marketing, which belong to Rural Development.",
+      "Human capital institutions and education policy, which belong to Human Capital Formation.",
+      "Questionnaire design and sampling, which belong to Collection of Data."
+    ],
+    "must_include_keywords": [
+      "work",
+      "economic activity",
+      "worker",
+      "workforce",
+      "employment",
+      "gross domestic product",
+      "gross national product",
+      "worker-population ratio",
+      "rural workforce",
+      "urban workforce",
+      "women workers",
+      "unpaid work",
+      "self-employed",
+      "regular salaried employee",
+      "casual wage labourer",
+      "primary sector",
+      "secondary sector",
+      "service sector",
+      "structural change",
+      "employment growth",
+      "GDP growth",
+      "jobless growth",
+      "casualisation",
+      "formal sector",
+      "informal sector",
+      "informalisation",
+      "social security",
+      "unemployment",
+      "disguised unemployment",
+      "seasonal unemployment",
+      "educated unemployment",
+      "employment generation",
+      "public works",
+      "MNREGA",
+      "Viksit Bharat G RAM G",
+      "quality of employment",
+      "labour force"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Only people receiving wages or salaries are workers.",
+        "correction": "Self-employed persons and unpaid helpers in economic activities are also workers."
+      },
+      {
+        "claim": "A high worker-population ratio always means good-quality employment.",
+        "correction": "It measures participation, not wages, security or working conditions."
+      },
+      {
+        "claim": "Self-employment always provides high income and independence.",
+        "correction": "Many people are self-employed because other opportunities are unavailable, and earnings can be low."
+      },
+      {
+        "claim": "The formal sector includes every worker in a registered enterprise.",
+        "correction": "Workers may be hired informally without security or benefits even in formal enterprises."
+      },
+      {
+        "claim": "Unemployment occurs only when a person does no work at all.",
+        "correction": "Disguised and seasonal unemployment involve inadequate or unproductive employment."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the Work These Out classification list to identify self-employed, regular salaried and casual workers.",
+      "Use Table 6.1 to interpret worker-population ratios by gender and residence.",
+      "Use Tables and Charts 6.1–6.3 to compare employment status and industrial sectors.",
+      "Use the chapter’s jobless-growth discussion to compare GDP and employment growth.",
+      "Use the end exercises on informalisation, unemployment and government programmes to build evaluative answers."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with an EXERCISES section covering worker concepts, participation, employment status, sectoral distribution, informalisation, unemployment and employment policy."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Employment: Growth, Informalisation and Other Issues\n\n## What you will learn\nYou will understand what counts as work, economic activity, employment and a worker. You will also learn why the study of employment matters for national income and social welfare.\n\n## Simple explanation\nPeople work on farms, in factories, offices, shops and homes. Work gives income and self-worth, contributes to national production and helps society understand exploitation, child labour and human-resource needs.\n\n## Step-by-step breakdown\n- **Economic activity**: An activity contributing to gross national product is treated as economic activity.\n- **Worker**: Anyone engaged in an economic activity, whether paid, self-employed or helping another worker, is included.\n- **Temporary absence**: A person may remain a worker during short absence caused by illness, bad weather or social events.\n- **GDP and GNP**: GDP measures final goods and services produced domestically; GNP adjusts for net foreign earnings.\n- **Employment diversity**: Some people work throughout the year, some only for a few months and many receive unfair wages.\n- **Social significance**: Work supports self-worth, dependants and national development.\n\n## Worked example\nQuestion: Why is a self-employed shop owner counted as a worker even without an employer?\n\nSolution:\n- Step 1: The chapter defines workers by participation in economic activity rather than by receiving wages from another person.\n- Step 2: The shop owner operates an enterprise and produces or distributes goods or services for income.\n- Final answer: Self-employed people are workers because they engage directly in economic activity.\n\n## Common mistake\nDo not restrict the word worker to factory labourers or salaried employees.\n\n## Quick check question\nQuestion: Can a person temporarily absent because of illness still be counted as a worker?\nAnswer: Yes, if the person normally remains engaged in the economic activity.\nExplanation: Temporary absence does not necessarily end the person’s employment status.\n\n## Summary\n- Work has economic and social importance.\n- Workers include paid, self-employed and helping persons.\n- Employment can be regular or intermittent.\n- Employment study helps plan human resources.",
+    "Core explanation": "# Core explanation: Employment: Growth, Informalisation and Other Issues\n\n## What you will learn\nYou will learn the worker-population ratio and analyse rural–urban and gender differences. You will also examine why unpaid household and farm work by women is often undercounted.\n\n## Simple explanation\nThe worker-population ratio shows how many people out of the population are engaged in economic activity. It is useful for participation analysis but does not by itself measure job quality.\n\n## Step-by-step breakdown\n- **Ratio**: The number of workers is divided by population and multiplied by 100.\n- **National pattern**: Table 6.1 reports a total ratio of 43.7 in 2023–24.\n- **Rural–urban contrast**: The rural ratio is 45.6 and the urban ratio is 38.9.\n- **Gender contrast**: The total male ratio is 56.4 and the female ratio is 30.7.\n- **Women’s unpaid work**: Cooking, fetching water and fuelwood and family-farm work may not be recognised when unpaid.\n- **Interpretation**: Education, income need, social norms and opportunity influence participation.\n\n## Worked example\nQuestion: Why can a higher rural worker-population ratio coexist with rural poverty?\n\nSolution:\n- Step 1: The ratio records participation, not the income, productivity or security of the work.\n- Step 2: Rural people may enter low-paid or seasonal work because they cannot afford to remain outside the workforce.\n- Final answer: A high rural ratio may reflect economic necessity rather than abundant high-quality employment.\n\n## Common mistake\nDo not interpret a low ratio automatically as laziness; education and social restrictions can also reduce participation.\n\n## Quick check question\nQuestion: What does the worker-population ratio measure?\nAnswer: The proportion of the population actively engaged in producing goods and services.\nExplanation: It is a participation indicator, not a complete measure of employment quality.\n\n## Summary\n- The ratio measures workforce participation.\n- Rural participation is higher than urban participation in the table.\n- Male participation is higher than female participation.\n- Unpaid women’s work may be underestimated.",
+    "Worked examples": "# Worked examples: Employment: Growth, Informalisation and Other Issues\n\n## What you will learn\nYou will classify workers by employment status and compare self-employment, regular salaried work and casual wage labour. You will connect status with security and control over work.\n\n## Simple explanation\nThe same industry can contain different employment relationships. A shop owner, construction labourer and company engineer perform work but differ in ownership, payment regularity and job security.\n\n## Step-by-step breakdown\n- **Self-employed**: Workers own and operate an enterprise or work independently for livelihood.\n- **Casual wage labour**: Workers are hired as needed and paid for the work done, often without continuity.\n- **Regular salaried**: Workers are engaged regularly and receive wages or salary on a regular basis.\n- **Distribution**: The chapter identifies self-employment as the largest category in India.\n- **Gender pattern**: Casual work has a larger role among women, while men have a somewhat higher share of regular salaried employment.\n- **Regional pattern**: Rural employment has a larger self-employed share; urban areas have more regular salaried work.\n- **Quality**: Security, earnings, authority, benefits and attachment to the job differ.\n\n## Worked example\nQuestion: Why are casual wage labourers described as especially vulnerable?\n\nSolution:\n- Step 1: They are hired only when work is available and usually lack regular income, job security and social protection.\n- Step 2: Their weak bargaining position makes them more exposed to wage loss and unemployment.\n- Final answer: Casual labour is vulnerable because employment and earnings are uncertain and worker protection is limited.\n\n## Common mistake\nDo not assume that every self-employed worker earns more than a salaried worker.\n\n## Quick check question\nQuestion: Which employment status describes a person who owns and operates a small shop?\nAnswer: Self-employed.\nExplanation: The person controls and operates the enterprise to earn a livelihood.\n\n## Summary\n- Employment status reveals job relationships.\n- Self-employment is the largest category.\n- Casual labour is insecure.\n- Regular salaried work is more common in urban enterprises.",
+    "Exam-style problems": "# Exam-style problems: Employment: Growth, Informalisation and Other Issues\n\n## What you will learn\nYou will study employment by industrial sector and the changing relationship between output and jobs. You will understand structural change and jobless growth.\n\n## Simple explanation\nEconomic development usually shifts workers from agriculture towards industry and services. In India, the primary sector still employs a large share, while service output and employment have expanded.\n\n## Step-by-step breakdown\n- **Primary sector**: Agriculture, mining and related activities form the primary sector in the chapter’s grouping.\n- **Secondary sector**: Manufacturing, electricity, gas, water supply and construction are included.\n- **Service sector**: Trade, transport, storage and other services form the tertiary sector.\n- **Residence pattern**: Rural workers are concentrated in the primary sector; urban workers are concentrated in services.\n- **Gender pattern**: Women are more heavily concentrated in the primary sector.\n- **Structural change**: Labour gradually shifts across sectors as development proceeds.\n- **Jobless growth**: Output may grow faster than employment, widening the gap between GDP and job growth.\n\n## Worked example\nQuestion: What does jobless growth mean in the chapter?\n\nSolution:\n- Step 1: The chapter observes periods when production of goods and services increased without a corresponding rise in employment.\n- Step 2: This creates a widening gap between GDP growth and employment growth.\n- Final answer: Jobless growth means output expands while adequate new work opportunities are not generated.\n\n## Common mistake\nDo not interpret service-sector growth as proof that every worker can easily move out of agriculture.\n\n## Quick check question\nQuestion: Which sector employs the largest share of rural workers?\nAnswer: The primary sector, especially agriculture, forestry and fishing.\nExplanation: The chapter’s table shows strong rural concentration in primary activities.\n\n## Summary\n- Employment remains concentrated in the primary sector.\n- Urban employment is service-oriented.\n- Structural change shifts labour across sectors.\n- GDP can grow faster than employment.",
+    "Revision and recap": "# Revision and recap: Employment: Growth, Informalisation and Other Issues\n\n## What you will learn\nYou will distinguish formal and informal employment, understand unemployment types and evaluate government employment programmes. You will connect job quantity with security and social protection.\n\n## Simple explanation\nMost Indian workers are in informal employment, where written contracts, paid leave, provident fund and job security are often absent. India also faces open, seasonal, disguised and educated unemployment.\n\n## Step-by-step breakdown\n- **Formal sector**: Government establishments and larger registered enterprises form the organised or formal sector.\n- **Informal sector**: Small and unregistered units dominate employment and often lack legal protection.\n- **Informalisation**: Even formal enterprises may increasingly hire workers without regular benefits or security.\n- **Disguised unemployment**: More people work in an activity than are required, so some have near-zero additional contribution.\n- **Seasonal unemployment**: Work is available only during particular parts of the year.\n- **Educated unemployment**: Qualified persons may be unable to find suitable work.\n- **Government action**: Public works and programmes such as MNREGA, now referred to in the text as Viksit Bharat–Guarantee for Rozgar and Ajeevika Mission (Gramin), seek rural employment and income support.\n\n## Worked example\nQuestion: Why is informalisation a concern even when a person is technically employed?\n\nSolution:\n- Step 1: Informal workers may have work but lack stable contracts, social security, paid leave and protection against dismissal.\n- Step 2: Employment quantity therefore does not guarantee acceptable quality or security.\n- Final answer: Informalisation is a concern because it converts work into insecure employment with limited rights and benefits.\n\n## Common mistake\nDo not use informal employment and unemployment as synonyms; an informal worker is employed but lacks protection.\n\n## Quick check question\nQuestion: What is disguised unemployment?\nAnswer: A situation in which more people are engaged in an activity than are needed, so removing some workers would not reduce output.\nExplanation: It is commonly associated with overcrowding of labour in agriculture.\n\n## Summary\n- Formal and informal work differ in protection.\n- Informalisation can occur inside formal enterprises.\n- India faces several forms of unemployment.\n- Employment policy must address both job creation and job quality."
+  }
+}

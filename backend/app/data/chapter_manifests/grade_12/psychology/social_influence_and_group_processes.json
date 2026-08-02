@@ -1,0 +1,78 @@
+{
+  "grade": "Grade 12",
+  "subject": "Psychology",
+  "chapter": "Social Influence and Group Processes",
+  "central_question": "How do groups form and develop, what structures and identities organise them, and how does group presence influence individual performance and judgment?",
+  "in_scope_units": [
+    "Nature of groups",
+    "Reasons and formation",
+    "Tuckman's stages",
+    "Group structure and groupthink",
+    "Types and minimal groups",
+    "Social facilitation",
+    "Social loafing",
+    "Group polarisation"
+  ],
+  "banned_topics": [
+    "Attitude-change theory",
+    "Organisational theories outside the chapter",
+    "Clinical group psychotherapy"
+  ],
+  "must_include_keywords": [
+    "group",
+    "interdependence",
+    "common motives",
+    "roles",
+    "norms",
+    "status",
+    "cohesiveness",
+    "crowd",
+    "audience",
+    "mob",
+    "team",
+    "security",
+    "self-esteem",
+    "proximity",
+    "similarity",
+    "common goals",
+    "forming",
+    "storming",
+    "norming",
+    "performing",
+    "adjourning",
+    "groupthink",
+    "primary group",
+    "secondary group",
+    "formal group",
+    "informal group",
+    "ingroup",
+    "outgroup",
+    "Tajfel",
+    "minimal group paradigm",
+    "social facilitation",
+    "arousal",
+    "social loafing",
+    "identifiability",
+    "group polarisation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any collection of people is a group.",
+      "correction": "A group requires organised interaction, identity, common motives, roles, norms and interdependence."
+    },
+    {
+      "claim": "Working in a group always increases individual effort.",
+      "correction": "Pooled, unidentifiable contributions may produce social loafing."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 7.1: identify formation stages.",
+    "NCERT Box 7.1: analyse groupthink.",
+    "NCERT Activity 7.2 and Box 7.2: analyse ingroup favouritism.",
+    "Noise study and tug-of-war: explain social loafing.",
+    "NCERT Review Questions 4–5: analyse group influence and reduce loafing."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Review Questions contain Questions 1–5, followed by one Project Idea.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

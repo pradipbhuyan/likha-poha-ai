@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "Deep Water",
+  "central_question": "How does William Douglas transform a childhood experience of near-drowning into a disciplined conquest of fear and a larger affirmation of life?",
+  "in_scope_units": [
+    "About William Douglas and the autobiographical purpose of the extract.",
+    "Early fear at the California beach and the decision to learn swimming at the Y.M.C.A. pool.",
+    "The boy’s action of throwing Douglas into the deep end and the detailed near-drowning experience.",
+    "The lasting psychological and physical effects of fear.",
+    "The instructor’s step-by-step method of building a swimmer.",
+    "Independent tests in the pool, Lake Wentworth and Warm Lake.",
+    "The larger meaning of fear, death, courage and freedom.",
+    "First-person narration, discussion and personal-writing activities."
+  ],
+  "banned_topics": [
+    "A technical swimming manual beyond the movements named in the text.",
+    "A medical diagnosis of phobias or drowning injuries not given in the chapter."
+  ],
+  "must_include_keywords": [
+    "William Douglas",
+    "autobiographical narrative",
+    "Yakima River",
+    "Y.M.C.A. pool",
+    "California beach",
+    "water wings",
+    "aversion",
+    "misadventure",
+    "deep end",
+    "panic",
+    "yellow water",
+    "stark terror",
+    "curtain of life fell",
+    "haunting fear",
+    "Cascades",
+    "instructor",
+    "belt and pulley",
+    "breathing",
+    "kicking",
+    "integrated whole",
+    "crawl",
+    "breast stroke",
+    "side stroke",
+    "back stroke",
+    "Lake Wentworth",
+    "Warm Lake",
+    "residual doubts",
+    "Mr Terror",
+    "fear of death",
+    "will to live",
+    "first-person narration",
+    "vivid sensory detail"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Douglas was fearless before the pool incident.",
+      "correction": "The California beach experience had already created an aversion to water."
+    },
+    {
+      "claim": "The instructor removed fear in one dramatic lesson.",
+      "correction": "He used repeated, gradual training over months and Douglas continued testing himself."
+    },
+    {
+      "claim": "Douglas never felt fear after learning the strokes.",
+      "correction": "Tiny vestiges and residual doubts returned, but he faced and dismissed them."
+    },
+    {
+      "claim": "The chapter says death itself is terrifying.",
+      "correction": "Douglas concludes that terror lies in the fear of death."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Think as you read Q1 to identify the misadventure.",
+    "Use Q2 to reconstruct panic and attempted plans.",
+    "Use Q3 to trace long-term effects.",
+    "Use the later questions on how the instructor built a swimmer and how Douglas tested himself.",
+    "Use Understanding the text Q3 and Thinking about language for the larger meaning and first-person narration."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Understanding the text Questions 1–3, Talking about the text, Thinking about language, Writing and Things to do.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

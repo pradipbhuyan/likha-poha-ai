@@ -1,0 +1,102 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Biology",
+    "chapter": "Chapter 4: Animal Kingdom",
+    "central_question": "How can animals be classified using fundamental body-plan features and the distinctive characters of major non-chordate and chordate groups?",
+    "in_scope_units": [
+      "Basis of classification: levels of organisation, digestive and circulatory patterns, symmetry, germ layers, coelom, segmentation, and notochord.",
+      "Porifera, Cnidaria, Ctenophora, Platyhelminthes, and Aschelminthes.",
+      "Annelida, Arthropoda, Mollusca, Echinodermata, and Hemichordata.",
+      "Chordata, comparison with non-chordates, and the subphyla Urochordata, Cephalochordata, and Vertebrata.",
+      "Vertebrate classification into Cyclostomata, Chondrichthyes, Osteichthyes, Amphibia, Reptilia, Aves, and Mammalia."
+    ],
+    "banned_topics": [
+      "Detailed anatomy and physiology of individual animal species",
+      "Human organ-system physiology",
+      "Evolutionary genetics and cladistic reconstruction",
+      "Ecological population and community processes"
+    ],
+    "must_include_keywords": [
+      "cellular level",
+      "tissue level",
+      "organ level",
+      "organ-system level",
+      "radial symmetry",
+      "bilateral symmetry",
+      "diploblastic",
+      "triploblastic",
+      "acoelomate",
+      "pseudocoelomate",
+      "coelomate",
+      "metamerism",
+      "notochord",
+      "Porifera",
+      "choanocyte",
+      "Cnidaria",
+      "cnidoblast",
+      "Ctenophora",
+      "comb plate",
+      "Platyhelminthes",
+      "flame cell",
+      "Aschelminthes",
+      "Annelida",
+      "Arthropoda",
+      "Mollusca",
+      "radula",
+      "Echinodermata",
+      "water vascular system",
+      "Hemichordata",
+      "Chordata",
+      "dorsal hollow nerve cord",
+      "Cyclostomata",
+      "Chondrichthyes",
+      "Osteichthyes",
+      "Amphibia",
+      "Reptilia",
+      "Aves",
+      "Mammalia"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "All multicellular animals have organ-system organisation.",
+        "correction": "Sponges have cellular organisation, cnidarians and ctenophores have tissue organisation, and higher groups show organ or organ-system levels."
+      },
+      {
+        "claim": "Radial symmetry means only one plane divides the body into equal halves.",
+        "correction": "Radial symmetry permits several planes through the central axis; bilateral symmetry permits one principal plane."
+      },
+      {
+        "claim": "A pseudocoelom is completely lined by mesoderm.",
+        "correction": "A true coelom is mesoderm-lined; a pseudocoelom is not fully lined by mesoderm."
+      },
+      {
+        "claim": "All chordates are vertebrates.",
+        "correction": "All vertebrates are chordates, but urochordates and cephalochordates are chordates without a vertebral column."
+      },
+      {
+        "claim": "Adult echinoderms and their larvae have the same symmetry.",
+        "correction": "Adults are radially symmetrical, whereas larvae are bilaterally symmetrical."
+      },
+      {
+        "claim": "Every mammal gives birth to live young.",
+        "correction": "Most mammals are viviparous, but Ornithorhynchus is an oviparous exception."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercises 1–3: classify a specimen using body-plan features, especially coelom.",
+      "NCERT Exercise 8: identify Echinodermata from the water vascular system.",
+      "NCERT Exercise 9: justify why all vertebrates are chordates but not all chordates are vertebrates.",
+      "NCERT Exercises 10–11: connect air bladder and avian flight modifications to vertebrate classes.",
+      "NCERT Exercises 13–14: identify first metameric segmentation and match operculum, parapodia, scales, comb plates, radula, hairs, choanocytes, and gill slits."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–15 for body-plan classification, phylum characters, chordates, vertebrates, and parasite examples."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Chapter 4: Animal Kingdom\n\n## What you will learn\nYou will learn the fundamental characters used to classify animals before memorising individual phyla. You will distinguish organisation levels, symmetry, germ layers, body cavities, segmentation, and notochord.\n\n## Simple explanation\nAnimal classification becomes manageable when the same structural questions are asked of every specimen: how cells are organised, how the body is divided, which embryonic layers occur, and whether a coelom, segmentation, or notochord is present.\n\n## Step-by-step breakdown\n- **Levels of organisation**: Poriferans show cellular organisation; cnidarians and ctenophores show tissue organisation; platyhelminths show organ level; many higher phyla show organ-system level.\n- **Digestive pattern**: An incomplete digestive system has one opening, while a complete system has separate mouth and anus.\n- **Circulation**: In an open system tissues are directly bathed by circulating fluid; in a closed system blood remains within vessels.\n- **Asymmetry**: Most sponges cannot be divided into equal halves by a plane through the centre.\n- **Radial symmetry**: Several planes through the central axis can produce similar halves.\n- **Bilateral symmetry**: Only one plane produces equivalent left and right halves.\n- **Germ layers**: Diploblastic animals have ectoderm and endoderm with mesoglea between; triploblastic animals also have mesoderm.\n- **Coelom**: A true coelom is a mesoderm-lined cavity; pseudocoelomates lack complete mesodermal lining; acoelomates lack a body cavity.\n- **Metamerism**: Serial repetition of body segments and some organs is metameric segmentation.\n- **Notochord**: This dorsal mesodermal rod distinguishes chordates from non-chordates.\n\n## Worked example\nQuestion: Based on NCERT Exercise 2, outline the steps for classifying an unknown animal specimen.\n\nSolution:\n- Determine its level of organisation and the nature of its digestive and circulatory systems.\n- Observe body symmetry and establish whether it is diploblastic or triploblastic.\n- Check for coelom, segmentation, and notochord.\n- Use distinctive structures such as pores, cnidoblasts, jointed appendages, radula, water vascular system, or chordate features to assign the phylum or class.\n- Final answer: Classify the specimen by moving from general body-plan features to distinctive phylum- and class-level characters.\n\n## Common mistake\nBeginning with an animal's habitat or colour alone is unreliable because unrelated groups can occupy similar habitats or look superficially alike.\n\n## Quick check question\nQuestion: Which body cavity is fully lined by mesoderm?\nAnswer: A true coelom.\nExplanation: Complete mesodermal lining defines coelomates; pseudocoelomates lack that complete lining.\n\n## Summary\n- Classification begins with shared fundamental features.\n- Organisation and symmetry reveal body-plan complexity.\n- Germ layers and coelom are major embryological criteria.\n- Segmentation and notochord separate important groups.",
+    "Core explanation": "# Core explanation: Chapter 4: Animal Kingdom\n\n## What you will learn\nYou will compare the early-diverging animal phyla from Porifera through Aschelminthes. You will connect each group with its distinctive structure and mode of organisation.\n\n## Simple explanation\nThese phyla illustrate increasing organisation from porous cellular aggregates to triploblastic animals with organ systems and a complete digestive tract.\n\n## Step-by-step breakdown\n- **Porifera**: Sponges are mainly marine, mostly asymmetrical, and organised at the cellular level.\n- **Canal system**: Water passes through ostia, spongocoel, and osculum; choanocytes support feeding and water movement.\n- **Sponge support**: Spicules or spongin fibres form the skeleton, and digestion is intracellular.\n- **Cnidaria**: Cnidarians are aquatic, radially symmetrical, diploblastic animals with tissue organisation and a gastrovascular cavity.\n- **Cnidoblasts**: Stinging cells aid anchorage, defence, and prey capture; polyp and medusa are common body forms.\n- **Ctenophora**: Comb jellies are exclusively marine, radially symmetrical, diploblastic, and move with eight rows of ciliated comb plates; bioluminescence is prominent.\n- **Platyhelminthes**: Flatworms are bilateral, triploblastic, acoelomate animals; parasitic forms may have hooks and suckers, and flame cells perform excretion and osmoregulation.\n- **Aschelminthes**: Roundworms are bilateral, triploblastic pseudocoelomates with a complete digestive system and separate sexes.\n- **Examples**: Sycon, Hydra or Adamsia, Pleurobrachia, Taenia, and Ascaris represent the successive groups.\n\n## Worked example\nQuestion: Based on NCERT Exercise 6, explain the adaptations of parasitic platyhelminths.\n\nSolution:\n- Hooks and suckers provide firm attachment within the host.\n- Some absorb nutrients directly through the body surface.\n- Their reproductive systems support production and transmission of offspring through complex life cycles.\n- The flattened body and specialised flame cells fit their organisation as acoelomate flatworms.\n- Final answer: Parasitic platyhelminths possess attachment organs such as hooks and suckers, may absorb food through the body surface, and show reproductive and developmental adaptations to life within hosts.\n\n## Common mistake\nCnidoblasts and comb plates are not interchangeable: cnidoblasts are stinging cells of cnidarians, whereas comb plates move ctenophores.\n\n## Quick check question\nQuestion: Which phylum is pseudocoelomate and has a complete alimentary canal?\nAnswer: Aschelminthes.\nExplanation: Roundworms have a body cavity not fully lined by mesoderm and separate mouth and anus.\n\n## Summary\n- Porifera possess pores and a canal system.\n- Cnidaria possess cnidoblasts.\n- Ctenophores use comb plates.\n- Platyhelminths are acoelomate flatworms.\n- Aschelminths are pseudocoelomate roundworms.",
+    "Worked examples": "# Worked examples: Chapter 4: Animal Kingdom\n\n## What you will learn\nYou will distinguish Annelida, Arthropoda, Mollusca, Echinodermata, and Hemichordata. You will use segmentation, appendages, shells, water vascular systems, and body regions as diagnostic features.\n\n## Simple explanation\nThese organ-system-level animals share bilateral or radial body plans but differ sharply in locomotion, circulation, excretion, and support.\n\n## Step-by-step breakdown\n- **Annelida**: Annelids are bilateral, triploblastic, coelomate, and metamerically segmented; they have closed circulation and nephridia.\n- **Parapodia**: Nereis uses lateral parapodia for swimming; earthworms and leeches are other annelids.\n- **Arthropoda**: The largest animal phylum has a chitinous exoskeleton, segmented body, jointed appendages, open circulation, and specialised respiratory and excretory organs.\n- **Mollusca**: The unsegmented body usually has head, muscular foot, visceral hump, mantle, mantle cavity, and a radula.\n- **Echinodermata**: Adults are radially symmetrical marine coelomates with calcareous ossicles and a water vascular system; larvae are bilateral.\n- **Water vascular roles**: It supports locomotion, feeding, transport, and respiration.\n- **Hemichordata**: Worm-like marine animals have proboscis, collar, and trunk, with a stomochord rather than a true notochord.\n- **Comparison**: Segmentation identifies annelids and arthropods, but jointed appendages and chitinous exoskeleton uniquely point to arthropods.\n\n## Worked example\nQuestion: Based on NCERT Exercises 8, 13, and 14, identify the phylum with a water vascular system, the first phylum showing segmentation, and the groups associated with parapodia and radula.\n\nSolution:\n- The water vascular system is the defining feature of Echinodermata.\n- Metameric segmentation is first observed among the listed choices in Annelida.\n- Parapodia occur in annelids such as Nereis.\n- Radula is the rasping feeding organ of molluscs.\n- Final answer: Water vascular system–Echinodermata; first segmentation–Annelida; parapodia–Annelida; radula–Mollusca.\n\n## Common mistake\nAn arthropod's segmented body does not mean segmentation first appeared there; the exercise identifies Annelida as the earlier listed phylum with metamerism.\n\n## Quick check question\nQuestion: Which phylum has a proboscis, collar, and trunk?\nAnswer: Hemichordata.\nExplanation: Its cylindrical body is divided into those three regions, and it bears a stomochord in the collar.\n\n## Summary\n- Annelids are segmented coelomates with closed circulation.\n- Arthropods have jointed appendages and a chitinous exoskeleton.\n- Molluscs possess a mantle and commonly a radula.\n- Echinoderms have a water vascular system.\n- Hemichordates have proboscis, collar, and trunk.",
+    "Exam-style problems": "# Exam-style problems: Chapter 4: Animal Kingdom\n\n## What you will learn\nYou will identify chordates and explain why vertebrates form only one chordate subgroup. You will compare protochordates, jawless vertebrates, and fishes.\n\n## Simple explanation\nChordates share a developmental body plan, but the notochord's extent and replacement determine whether an animal is a protochordate or vertebrate.\n\n## Step-by-step breakdown\n- **Chordate characters**: Chordates possess a notochord, dorsal hollow single nerve cord, paired pharyngeal gill slits, post-anal tail, and closed circulation.\n- **Non-chordate contrast**: Non-chordates lack a notochord and generally have a ventral, solid, double nerve cord; gill slits and post-anal tail are absent.\n- **Urochordata**: The notochord occurs only in the larval tail.\n- **Cephalochordata**: The notochord extends from head to tail and persists throughout life.\n- **Vertebrata**: The embryonic notochord is replaced by a cartilaginous or bony vertebral column in the adult.\n- **Cyclostomata**: Jawless ectoparasitic vertebrates have a circular sucking mouth, multiple gill slits, and no paired fins.\n- **Chondrichthyes**: Cartilaginous marine fishes have placoid scales, separate uncovered gill slits, no air bladder, and internal fertilisation.\n- **Osteichthyes**: Bony fishes have an operculum over four pairs of gills and commonly an air bladder for buoyancy.\n\n## Worked example\nQuestion: Based on NCERT Exercises 9 and 10, justify the statement about vertebrates and explain the importance of the air bladder in Pisces.\n\nSolution:\n- All vertebrates possess the fundamental chordate characters at least during development.\n- Urochordates and cephalochordates are chordates but do not develop a vertebral column, so all chordates are not vertebrates.\n- In bony fishes, the air bladder regulates buoyancy.\n- Cartilaginous fishes lack it and must keep swimming to avoid sinking.\n- Final answer: All vertebrates are chordates because they show chordate features, but protochordates are not vertebrates; the air bladder helps bony fishes maintain buoyancy.\n\n## Common mistake\nThe notochord and vertebral column are not identical structures: the vertebral column replaces the embryonic notochord in vertebrates.\n\n## Quick check question\nQuestion: Which fish class has an operculum and an air bladder?\nAnswer: Osteichthyes.\nExplanation: Bony fishes have covered gills and usually an air bladder, unlike chondrichthyans.\n\n## Summary\n- Notochord is the defining chordate structure.\n- Protochordates lack an adult vertebral column.\n- Cyclostomes are jawless vertebrates.\n- Cartilaginous and bony fishes differ in skeleton, gill cover, and buoyancy organ.",
+    "Revision and recap": "# Revision and recap: Chapter 4: Animal Kingdom\n\n## What you will learn\nYou will compare Amphibia, Reptilia, Aves, and Mammalia and connect their structures with habitat, reproduction, temperature regulation, and locomotion.\n\n## Simple explanation\nTetrapod classes share paired limbs ancestrally but differ in skin, respiration, heart, reproduction, and thermal biology.\n\n## Step-by-step breakdown\n- **Amphibia**: Moist scaleless skin, respiration by gills, lungs, or skin, a three-chambered heart, external fertilisation, and indirect development support life in water and on land.\n- **Reptilia**: Dry cornified skin with scales, internal fertilisation, shelled eggs, and direct development support mainly terrestrial life; crocodiles have four-chambered hearts.\n- **Aves**: Feathers, wings, pneumatic bones, crop, gizzard, lungs with air sacs, and a four-chambered heart support flight and high activity.\n- **Mammalia**: Hair, mammary glands, pinnae, differentiated teeth, lungs, and a four-chambered heart are characteristic.\n- **Temperature**: Fishes, amphibians, and reptiles are poikilothermous; birds and mammals are homoiothermous.\n- **Reproduction**: Birds are oviparous; mammals are mostly viviparous, with the platypus as an oviparous exception.\n- **Flight modifications**: Forelimbs form wings, feathers streamline and support lift, pneumatic bones reduce mass, and air sacs supplement respiration.\n- **Parasites**: Human parasites cited across the chapter include Taenia, Fasciola, Ascaris, Wuchereria, and Ancylostoma.\n\n## Worked example\nQuestion: Based on NCERT Exercises 11, 12, and 15, summarise bird flight adaptations, compare reproductive output generally, and list human parasites from the chapter.\n\nSolution:\n- Birds possess feathers, wings, pneumatic bones, powerful locomotor adaptations, lungs with air sacs, and a four-chambered heart.\n- Oviparous animals commonly produce more eggs because exposed offspring face greater loss, while viviparous young receive greater parental investment; exact numbers vary by species.\n- The listed human parasites include tapeworm, liver fluke, roundworm, filarial worm, and hookworm.\n- Final answer: Bird flight is supported by wings, feathers, pneumatic bones, and air-sac-assisted respiration; oviparous and viviparous reproductive numbers are generally unequal; examples of human parasites are Taenia, Fasciola, Ascaris, Wuchereria, and Ancylostoma.\n\n## Common mistake\nDo not claim every reptile has a three-chambered heart; crocodiles are the stated four-chambered exception.\n\n## Quick check question\nQuestion: Which two vertebrate classes are warm-blooded in this chapter?\nAnswer: Aves and Mammalia.\nExplanation: Birds and mammals maintain a relatively constant body temperature and are described as homoiothermous.\n\n## Summary\n- Amphibians bridge aquatic and terrestrial habitats.\n- Reptiles possess dry, cornified skin.\n- Birds have flight and respiratory specialisations.\n- Mammals have hair and mammary glands.\n- Body-plan criteria and distinctive features together support animal classification."
+  }
+}

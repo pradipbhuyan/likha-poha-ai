@@ -1,0 +1,98 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 7: Structural Organisation in Animals",
+  "central_question": "How does division of labour among cells, tissues, organs, and organ systems create the coordinated structure and function of a vertebrate such as the frog?",
+  "in_scope_units": [
+    "Organisation from cells to tissues, organs, and organ systems and the resulting division of labour.",
+    "Frog habitat, poikilothermy, camouflage, aestivation, and hibernation.",
+    "External morphology of the frog, including skin, body regions, limbs, sense structures, and sexual dimorphism.",
+    "Digestive system and digestion in the frog.",
+    "Respiratory system and cutaneous, buccal, and pulmonary respiration.",
+    "Closed blood vascular and lymphatic systems, heart, circulation, blood, and portal systems.",
+    "Excretory system, kidneys, ureters, urinary bladder, cloaca, and ureotelism.",
+    "Neural and endocrine coordination and sense organs.",
+    "Male and female reproductive systems, external fertilisation, tadpole development, and ecological importance."
+  ],
+  "banned_topics": [
+    "Detailed histology of the four animal tissue types",
+    "Comparative anatomy of other vertebrate classes",
+    "Human physiology and disease",
+    "Molecular mechanisms of hormones and nerve impulses"
+  ],
+  "must_include_keywords": [
+    "tissue",
+    "organ",
+    "organ system",
+    "division of labour",
+    "morphology",
+    "anatomy",
+    "Rana tigrina",
+    "Amphibia",
+    "poikilotherm",
+    "camouflage",
+    "aestivation",
+    "hibernation",
+    "mucus",
+    "nictitating membrane",
+    "tympanum",
+    "sexual dimorphism",
+    "cloaca",
+    "bilobed tongue",
+    "villi",
+    "cutaneous respiration",
+    "pulmonary respiration",
+    "three-chambered heart",
+    "sinus venosus",
+    "conus arteriosus",
+    "hepatic portal system",
+    "renal portal system",
+    "nucleated RBC",
+    "kidney",
+    "nephron",
+    "ureter",
+    "ureotelic",
+    "cranial nerves",
+    "testis",
+    "ovary",
+    "external fertilisation",
+    "tadpole",
+    "metamorphosis"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A tissue is simply a group of identical cells.",
+      "correction": "A tissue is a group of similar cells together with intercellular substances performing one or more functions."
+    },
+    {
+      "claim": "Frogs maintain a constant internal body temperature.",
+      "correction": "Frogs are poikilotherms, so body temperature varies with environmental temperature."
+    },
+    {
+      "claim": "A frog drinks water through its mouth.",
+      "correction": "The chapter states that a frog absorbs water through its moist skin."
+    },
+    {
+      "claim": "Frogs respire only through lungs on land and gills in water.",
+      "correction": "Adult frogs use skin in water and skin, buccal cavity, and lungs on land; skin is especially important during dormancy."
+    },
+    {
+      "claim": "The frog heart has four chambers.",
+      "correction": "It has two atria and one ventricle."
+    },
+    {
+      "claim": "Male and female frog ureters have exactly the same reproductive role.",
+      "correction": "Male ureters function as urinogenital ducts, while female ureters carry urine and the oviducts open separately into the cloaca."
+    }
+  ],
+  "recommended_example_progression": [
+    "Figure 7.1: identify external features and sexual dimorphism in a frog.",
+    "NCERT Exercise 1 and Figure 7.2: trace and label the digestive system.",
+    "Section 7.2.2: compare cutaneous, buccal, and pulmonary respiration.",
+    "NCERT Exercise 2: explain the function of ureters in male and female frogs.",
+    "Figures 7.3 and 7.4: compare male and female reproductive systems and trace external fertilisation and metamorphosis."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 1–2, supported by Figures 7.1–7.4 for morphology and organ-system interpretation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

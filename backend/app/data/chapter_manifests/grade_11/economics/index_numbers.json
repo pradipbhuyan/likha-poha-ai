@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Index Numbers",
+  "central_question": "How can one statistical index summarise relative change across a group of related prices, quantities, or other economic variables?",
+  "in_scope_units": [
+    "Introduction to the need for a single summary measure of change in a group of related variables.",
+    "Meaning of an index number, base period, current period, price index, and quantity index.",
+    "Construction of simple and weighted price indexes through aggregative methods.",
+    "Laspeyres and Paasche weighted aggregative price indexes and the role of base-period and current-period quantities.",
+    "Simple and weighted methods of averaging price relatives.",
+    "Consumer Price Index, Wholesale Price Index, Index of Industrial Production, Human Development Index, and Sensex.",
+    "Issues in constructing an index number, including purpose, item selection, base year, formula, weights, and data reliability.",
+    "Economic uses of CPI, WPI, IIP, agricultural production index, Sensex, purchasing power, and real wages.",
+    "Conclusion and recap on careful interpretation and policy use of index numbers."
+  ],
+  "banned_topics": [
+    "Scatter diagrams and coefficients of correlation",
+    "Measures of central tendency",
+    "Measures of dispersion",
+    "Regression and time-series forecasting"
+  ],
+  "must_include_keywords": [
+    "index number",
+    "relative change",
+    "base period",
+    "current period",
+    "base value 100",
+    "price index",
+    "quantity index",
+    "simple aggregative index",
+    "weighted index",
+    "basket of commodities",
+    "weights",
+    "Laspeyres price index",
+    "Paasche price index",
+    "price relative",
+    "averaging relatives",
+    "Consumer Price Index",
+    "cost of living index",
+    "Wholesale Price Index",
+    "headline inflation",
+    "core inflation",
+    "Index of Industrial Production",
+    "quantity relatives",
+    "Human Development Index",
+    "Sensex",
+    "representative items",
+    "normal base year",
+    "data reliability",
+    "purchasing power of money",
+    "real wage",
+    "economic policy"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An index number of 250 means a rise of 250 percent from the base.",
+      "correction": "With a base of 100, an index of 250 means the level is two and a half times the base, which is 150 percent above the base."
+    },
+    {
+      "claim": "Every item in a simple index receives importance according to expenditure share.",
+      "correction": "A simple unweighted index treats items as equally important; a weighted index reflects relative importance."
+    },
+    {
+      "claim": "Laspeyres and Paasche indexes use the same quantity weights.",
+      "correction": "Laspeyres uses base-period quantities, while Paasche uses current-period quantities."
+    },
+    {
+      "claim": "CPI and WPI measure the same price concept for the same users.",
+      "correction": "CPI measures average change in retail prices for a consumer category, while WPI measures changes in wholesale goods prices and has no reference consumer category."
+    },
+    {
+      "claim": "Any convenient year is suitable as a base year.",
+      "correction": "The base year should be normal, reasonably recent, and free from extreme or abnormal values."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Cases 1–3 from the Introduction to motivate cost-of-living, Sensex, and inflation indexes.",
+    "Use NCERT Example 1 to introduce a simple aggregative price index and its limitations.",
+    "Use NCERT Example 2 to contrast Laspeyres and Paasche quantity weights.",
+    "Use NCERT Example 3 and Example 4 to compare weighted price relatives and CPI construction.",
+    "Use NCERT Exercise 21 to discuss why index series with different bases and consumer groups are not directly comparable."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The embedded source chapter ends with EXERCISES 1–22 and activities on widely used indexes and purchasing power.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

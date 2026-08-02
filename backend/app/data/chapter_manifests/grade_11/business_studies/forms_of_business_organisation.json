@@ -1,0 +1,89 @@
+{
+  "grade": "Grade 11",
+  "subject": "Business Studies",
+  "chapter": "Forms of Business Organisation",
+  "central_question": "What are the features, merits and limitations of the major forms of business organisation, and how should an entrepreneur choose the most suitable form?",
+  "in_scope_units": [
+    "Introduction to the choice of organisational form.",
+    "Sole proprietorship: meaning, features, merits, limitations and suitability.",
+    "Joint Hindu family business: formation, karta, coparceners, merits and limitations.",
+    "Partnership: meaning, features, merits and limitations.",
+    "Types of partners, minor admitted to benefits and types of partnerships.",
+    "Partnership deed and registration of a firm.",
+    "Cooperative society: features, merits, limitations and types.",
+    "Joint stock company: features, merits and limitations.",
+    "Private and public companies and their differences.",
+    "Factors affecting the choice of form of business organisation."
+  ],
+  "banned_topics": [
+    "Detailed stages in formation of a company, which belong to Chapter 7.",
+    "Sources of business finance and securities, which belong to Chapter 8.",
+    "Public sector enterprise forms, which belong to Chapter 3."
+  ],
+  "must_include_keywords": [
+    "sole proprietorship",
+    "unlimited liability",
+    "separate legal entity",
+    "continuity",
+    "Joint Hindu family business",
+    "karta",
+    "coparcener",
+    "partnership",
+    "mutual agency",
+    "partnership deed",
+    "registration",
+    "active partner",
+    "sleeping partner",
+    "nominal partner",
+    "partner by estoppel",
+    "partnership at will",
+    "particular partnership",
+    "limited partnership",
+    "cooperative society",
+    "one member one vote",
+    "service motive",
+    "consumer cooperative",
+    "producer cooperative",
+    "joint stock company",
+    "artificial person",
+    "perpetual succession",
+    "limited liability",
+    "Board of Directors",
+    "private company",
+    "public company",
+    "transfer of shares",
+    "choice of organisation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A sole proprietorship has a separate legal identity from its owner.",
+      "correction": "The law does not distinguish the sole proprietor from the business."
+    },
+    {
+      "claim": "Every member of a Joint Hindu family business has unlimited liability.",
+      "correction": "Only the karta has unlimited liability; other coparceners' liability is limited to their share in coparcenary property."
+    },
+    {
+      "claim": "A sleeping partner has no liability because the partner does not manage the firm.",
+      "correction": "A sleeping partner contributes capital, shares profit and loss and has unlimited liability."
+    },
+    {
+      "claim": "Registration of a partnership firm is compulsory.",
+      "correction": "Registration is optional, but non-registration creates serious restrictions on the right to sue."
+    },
+    {
+      "claim": "Shareholders manage the daily operations of a company.",
+      "correction": "The Board of Directors and appointed management run the company; shareholders exercise indirect control."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Application Question 2 to compare unlimited liability in sole proprietorship and partnership.",
+    "Use Short Answer Question 1 to compare a minor in Joint Hindu family business and partnership.",
+    "Use Short Answer Question 5 to explain partner by estoppel.",
+    "Use Long Answer Question 4 to examine cooperative societies and their types.",
+    "Use Application Question 3 to recommend a form for Kiran's expanding retail chain."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Short Answer Questions 1–6, Long Answer Questions 1–6, Application Questions 1–3, projects and a partnership-deed assignment.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

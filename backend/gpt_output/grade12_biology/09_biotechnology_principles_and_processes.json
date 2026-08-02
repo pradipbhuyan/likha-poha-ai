@@ -1,0 +1,106 @@
+{
+  "manifest": {
+    "grade": "Grade 12",
+    "subject": "Biology",
+    "chapter": "Biotechnology: Principles and Processes",
+    "central_question": "What principles, molecular tools and ordered processes allow scientists to construct, clone, express and recover recombinant DNA products?",
+    "in_scope_units": [
+      "Definition and core principles of modern biotechnology: genetic engineering and bioprocess engineering.",
+      "Construction of recombinant DNA and the roles of plasmids, restriction enzymes and ligase.",
+      "Restriction enzymes, palindromic sites, sticky ends and gel electrophoresis.",
+      "Cloning vectors, origin of replication, selectable markers, cloning sites and insertional inactivation.",
+      "Plant and animal vectors and methods for making host cells competent.",
+      "Isolation, cutting, amplification, ligation and insertion of recombinant DNA.",
+      "Expression of foreign genes, bioreactors and downstream processing."
+    ],
+    "banned_topics": [
+      "Detailed agricultural and medical applications that belong to Biotechnology and its Applications.",
+      "Detailed Mendelian inheritance and gene-expression regulation outside the recombinant-DNA process.",
+      "Unspecified laboratory protocols or reagent concentrations not given in the chapter."
+    ],
+    "must_include_keywords": [
+      "biotechnology",
+      "genetic engineering",
+      "bioprocess engineering",
+      "recombinant DNA",
+      "gene cloning",
+      "gene transfer",
+      "origin of replication",
+      "plasmid",
+      "vector",
+      "restriction enzyme",
+      "restriction endonuclease",
+      "exonuclease",
+      "Hind II",
+      "EcoRI",
+      "recognition sequence",
+      "palindromic sequence",
+      "sticky ends",
+      "DNA ligase",
+      "gel electrophoresis",
+      "agarose",
+      "ethidium bromide",
+      "elution",
+      "selectable marker",
+      "pBR322",
+      "insertional inactivation",
+      "beta-galactosidase",
+      "Agrobacterium tumefaciens",
+      "Ti plasmid",
+      "retrovirus",
+      "competent cells",
+      "calcium ions",
+      "heat shock",
+      "microinjection",
+      "biolistics",
+      "gene gun",
+      "lysozyme",
+      "cellulase",
+      "chitinase",
+      "ribonuclease",
+      "protease",
+      "PCR",
+      "Taq polymerase",
+      "bioreactor",
+      "stirred-tank bioreactor",
+      "downstream processing"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A foreign DNA fragment automatically multiplies after entering any cell.",
+        "correction": "It must be linked to an origin of replication or integrated into replicating host DNA to be inherited and amplified."
+      },
+      {
+        "claim": "Restriction enzymes cut DNA at random.",
+        "correction": "Restriction endonucleases recognise specific sequences, often palindromic, and cut at defined positions."
+      },
+      {
+        "claim": "Larger DNA fragments move farther in agarose gel.",
+        "correction": "Smaller negatively charged DNA fragments move farther through the gel toward the anode."
+      },
+      {
+        "claim": "Every transformed colony is recombinant.",
+        "correction": "Transformation shows DNA uptake; selectable markers and insertional inactivation are used to distinguish recombinants from non-recombinants."
+      },
+      {
+        "claim": "PCR uses ordinary DNA polymerase that is destroyed in every denaturation step.",
+        "correction": "PCR uses a thermostable polymerase such as that from Thermus aquaticus so repeated high-temperature cycles are possible."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with NCERT Exercise 2 to diagram restriction-enzyme action on a recognition site.",
+      "Use NCERT Exercise 7 to construct and verify palindromic DNA sequences.",
+      "Use NCERT Exercise 9 to explain reporter enzymes and insertional inactivation.",
+      "Use NCERT Exercise 10 to define origin of replication, bioreactors and downstream processing.",
+      "Finish with NCERT Exercise 11 to explain PCR, restriction enzymes and chitinase."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The end-of-chapter Exercises are numbered 1 to 12 and cover recombinant proteins, restriction enzymes, palindromes, vectors, PCR, bioreactors and downstream processing."
+  },
+  "lessons": {
+    "Concept introduction": "# Principles and construction of recombinant DNA: Biotechnology: Principles and Processes\n\n## What you will learn\nYou will define biotechnology and explain its two core techniques. You will trace the first recombinant DNA construction and identify the three basic steps in genetic modification.\n\n## Simple explanation\nModern biotechnology combines the deliberate alteration of genetic material with sterile large-scale production. Recombinant DNA is created by cutting and joining DNA from different sources and maintaining it in a host that can replicate it.\n\n## Step-by-step breakdown\n- **Biotechnology**: It uses living organisms, cells, enzymes or molecular components to create useful products and services.\n- **Genetic engineering**: It alters DNA or RNA and uses recombinant DNA, gene cloning and gene transfer to introduce selected material into a host and change its phenotype.\n- **Bioprocess engineering**: It maintains sterile conditions for large-scale growth of a desired microbe or cell to manufacture products such as antibiotics, vaccines and enzymes.\n- **Origin of replication**: An alien DNA fragment must be linked to a replicating sequence or integrated into a chromosome so it can be copied and inherited.\n- **First recombinant DNA**: In 1972, Stanley Cohen and Herbert Boyer linked an antibiotic-resistance gene with a Salmonella typhimurium plasmid.\n- **Molecular scissors**: Restriction enzymes cut DNA at specific sites; a plasmid acts as a vector.\n- **DNA ligase**: Ligase joins the cut foreign DNA and plasmid ends to create recombinant DNA.\n- **Cloning in E. coli**: The recombinant plasmid replicates in Escherichia coli, producing multiple copies of the antibiotic-resistance gene.\n- **Three basic steps**: Identify desirable DNA, introduce it into a host, and maintain and transmit it to progeny.\n\n## Worked example\nQuestion: Based on NCERT Exercise 10(a), explain why the origin of replication is essential in a cloning vector.\n\nSolution:\n- Replication begins at the origin of replication, or ori.\n- Any foreign DNA linked to ori can be copied as the vector replicates in the host.\n- The type of ori also influences copy number and therefore how many copies of the target DNA can be recovered.\n- Final answer: Without a functioning ori or integration into host DNA, the inserted fragment would generally not be stably amplified.\n\n## Common mistake\nDo not confuse cloning with producing a whole animal. In this chapter, cloning often means making many identical copies of a DNA fragment in a host.\n\n## Quick check question\nQuestion: What are the two core techniques of modern biotechnology named in the chapter?\nAnswer: Genetic engineering and bioprocess engineering.\nExplanation: Genetic engineering changes and transfers genetic material, while bioprocess engineering supports sterile large-scale production by desired cells.\n\n## Summary\n- Biotechnology integrates biological systems with useful production.\n- Genetic engineering changes genetic material.\n- Bioprocess engineering enables sterile large-scale manufacture.\n- An origin of replication allows DNA amplification.\n- Restriction enzymes, vectors and ligase create recombinant DNA.",
+    "Core explanation": "# Restriction enzymes and DNA fragment separation: Biotechnology: Principles and Processes\n\n## What you will learn\nYou will distinguish exonucleases from endonucleases and explain recognition sequences, DNA palindromes and sticky ends. You will trace agarose gel electrophoresis and elution.\n\n## Simple explanation\nRestriction enzymes cut DNA reproducibly at selected sequences. The resulting fragments can be separated by size in agarose gel, visualised and recovered for ligation into a vector.\n\n## Step-by-step breakdown\n- **Nucleases**: Exonucleases remove nucleotides from DNA ends, while endonucleases cut at positions within DNA.\n- **Restriction endonuclease**: The first sequence-specific enzyme described was Hind II; hundreds of bacterial restriction enzymes recognise different sites.\n- **Naming**: EcoRI is named from Escherichia coli strain RY13; the Roman numeral indicates the order of isolation from that strain.\n- **Palindromic sequence**: A DNA palindrome reads the same on both strands when read in the same 5-prime to 3-prime orientation, such as GAATTC/CTTAAG.\n- **Sticky ends**: Staggered cutting leaves complementary single-stranded overhangs that hydrogen-bond and facilitate DNA ligase action.\n- **Same enzyme requirement**: Source DNA and vector are commonly cut with the same restriction enzyme so their sticky ends are compatible.\n- **Gel electrophoresis**: Negatively charged DNA fragments move through agarose toward the anode; smaller fragments travel farther.\n- **Visualisation**: Ethidium bromide staining and UV exposure reveal bright orange DNA bands.\n- **Elution**: A desired band is cut from the gel and the DNA fragment is extracted for recombinant-DNA construction.\n\n## Worked example\nQuestion: Based on NCERT Exercise 2, show how EcoRI generates a ligatable DNA product.\n\nSolution:\n- Write the recognition site as 5-prime-GAATTC-3-prime paired with 3-prime-CTTAAG-5-prime.\n- EcoRI recognises this palindromic sequence and cuts the two strands at staggered positions.\n- The cut produces complementary AATT single-stranded overhangs called sticky ends.\n- DNA fragments cut by the same enzyme can base-pair through these complementary ends.\n- Final answer: DNA ligase seals the sugar-phosphate backbones to make a stable recombinant molecule.\n\n## Common mistake\nDo not say DNA moves toward the cathode. DNA is negatively charged and migrates toward the positive electrode, the anode.\n\n## Quick check question\nQuestion: Why do smaller DNA fragments move farther in agarose gel?\nAnswer: They pass more easily through the gel’s molecular sieve and therefore migrate faster and farther under the electric field.\nExplanation: Agarose separates fragments according to size while all DNA fragments move toward the anode.\n\n## Summary\n- Restriction enzymes recognise specific DNA sequences.\n- Palindromic sites can generate compatible sticky ends.\n- Ligase joins compatible DNA fragments.\n- Agarose gel separates DNA by size.\n- Elution recovers a selected DNA band.",
+    "Worked examples": "# Cloning vectors and selection of recombinants: Biotechnology: Principles and Processes\n\n## What you will learn\nYou will identify the essential features of a cloning vector and explain antibiotic selection and insertional inactivation. You will distinguish transformants, recombinants and non-recombinants.\n\n## Simple explanation\nA useful vector must replicate, accept foreign DNA and help scientists find cells containing the desired recombinant molecule. Plasmids and bacteriophages are engineered to provide these functions.\n\n## Step-by-step breakdown\n- **Origin of replication**: Ori starts replication and controls the copy number of the linked DNA.\n- **Selectable marker**: Antibiotic-resistance genes allow transformants to grow while non-transformants are eliminated.\n- **Cloning site**: A vector should have very few, preferably one, recognition site for a restriction enzyme to avoid unnecessary fragmentation.\n- **pBR322**: This E. coli vector contains ori, ampR, tetR and several restriction sites.\n- **Antibiotic insertional inactivation**: Insertion at the BamHI site in tetR can disrupt tetracycline resistance; recombinants remain ampicillin resistant but become tetracycline sensitive.\n- **Colour selection**: Insertion within the beta-galactosidase coding sequence prevents blue colour formation in the presence of a chromogenic substrate.\n- **Blue and white colonies**: Non-recombinants with active beta-galactosidase are blue; recombinants with insertional inactivation remain colourless or white.\n- **Plant vector**: The disarmed Ti plasmid of Agrobacterium tumefaciens can deliver desired genes to plants.\n- **Animal vector**: Disarmed retroviruses can deliver desirable genes into animal cells.\n\n## Worked example\nQuestion: Based on NCERT Exercise 9, explain how a reporter enzyme helps monitor transformation by foreign DNA.\n\nSolution:\n- Insert foreign DNA into the coding sequence of a reporter enzyme such as beta-galactosidase.\n- The insertion disrupts the reporter gene, a process called insertional inactivation.\n- On a chromogenic substrate, bacteria with non-recombinant plasmids produce blue colonies.\n- Bacteria with recombinant plasmids cannot produce the active reporter enzyme and form colourless colonies.\n- Final answer: The colour difference identifies recombinants in addition to the selectable marker used for transformation.\n\n## Common mistake\nDo not use the words transformant and recombinant as synonyms. A transformant has taken up vector DNA; only some transformants contain the foreign insert.\n\n## Quick check question\nQuestion: What is the function of a selectable marker?\nAnswer: It identifies and permits growth of transformants while eliminating or distinguishing non-transformants.\nExplanation: A marker such as antibiotic resistance links survival under selective conditions to uptake of vector DNA.\n\n## Summary\n- Vectors require ori, markers and suitable cloning sites.\n- pBR322 uses antibiotic-resistance genes for selection.\n- Insertional inactivation distinguishes recombinants.\n- Reporter enzymes can produce blue-white selection.\n- Ti plasmids and retroviruses can be disarmed as vectors.",
+    "Exam-style problems": "# Competent hosts and the recombinant-DNA workflow: Biotechnology: Principles and Processes\n\n## What you will learn\nYou will explain methods for introducing DNA into bacterial, plant and animal cells. You will trace isolation, restriction digestion, ligation, PCR and selection in their correct sequence.\n\n## Simple explanation\nDNA is hydrophilic and does not easily cross cell membranes. Host cells therefore must be made competent or receive DNA through specialised physical or biological delivery methods.\n\n## Step-by-step breakdown\n- **Competent cells and calcium ions**: Divalent calcium ions increase bacterial competence, producing competent cells that can take up DNA.\n- **Heat shock**: Cells are incubated with recombinant DNA on ice, briefly placed at 42 degrees C and returned to ice.\n- **Microinjection**: Recombinant DNA can be injected directly into the nucleus of an animal cell.\n- **Biolistics**: Gold or tungsten microparticles coated with DNA are shot into plant cells using a gene gun.\n- **Disarmed pathogens**: Modified bacterial or viral vectors transfer recombinant DNA without causing their original disease.\n- **DNA isolation**: Lysozyme breaks bacterial walls, cellulase plant walls and chitinase fungal walls; ribonuclease and protease remove RNA and proteins.\n- **DNA precipitation**: Purified DNA precipitates in chilled ethanol as visible fine threads.\n- **PCR**: Denaturation, primer annealing and extension repeatedly amplify a selected DNA segment.\n- **Taq polymerase**: Thermostable DNA polymerase from Thermus aquaticus remains active through high-temperature denaturation cycles.\n- **Selection**: A recombinant vector carrying antibiotic resistance allows transformed host cells to grow on selective medium.\n\n## Worked example\nQuestion: Based on NCERT Exercise 11(a), explain PCR and why a thermostable polymerase is required.\n\nSolution:\n- Denaturation separates the two DNA strands at high temperature.\n- Primers anneal to complementary sequences flanking the target region.\n- DNA polymerase extends each primer using supplied nucleotides and the template strand.\n- Repeating the cycle produces an enormous increase in target-DNA copies, approaching a billion copies after many cycles.\n- Final answer: A thermostable enzyme such as Taq polymerase survives repeated denaturation and continues extension in subsequent cycles.\n\n## Common mistake\nDo not place ligation before cutting. Source DNA and vector must first be cut at compatible sites before ligase can join them.\n\n## Quick check question\nQuestion: Which enzyme is used to break the cell wall of fungi during DNA isolation?\nAnswer: Chitinase.\nExplanation: Fungal cell walls contain chitin, so chitinase helps release cellular contents and DNA.\n\n## Summary\n- Bacteria can be made competent by calcium treatment and heat shock.\n- Microinjection, biolistics and vectors deliver DNA to other cells.\n- DNA isolation requires removal of cell walls, RNA and protein.\n- PCR amplifies a target sequence through repeated cycles.\n- Selective media identify transformed cells.",
+    "Revision and recap": "# Expression, bioreactors and downstream processing: Biotechnology: Principles and Processes\n\n## What you will learn\nYou will explain how a cloned foreign gene becomes a useful product. You will compare small-scale culture with bioreactor production and outline downstream processing and quality control.\n\n## Simple explanation\nCloning a gene is not the final objective. The gene must be expressed under suitable conditions, the host must be grown at scale and the desired product must be separated, purified and prepared for use.\n\n## Step-by-step breakdown\n- **Foreign gene product**: A cloned gene must be expressed in the host to produce its encoded protein; a protein expressed in a heterologous host is a recombinant protein.\n- **Small-scale culture**: Cells can be grown in laboratory culture, but commercial demand requires much larger volumes and controlled conditions.\n- **Bioreactor**: A bioreactor provides optimum temperature, pH, substrate, salts, vitamins and oxygen for conversion of raw material into a specific product.\n- **Stirred-tank bioreactor**: A cylindrical vessel with a curved base, stirrer and sparger supports mixing and oxygen availability.\n- **Monitoring**: Bioreactors may include systems for temperature, pH, foam control, oxygen delivery, sampling and agitation.\n- **Downstream processing**: After biosynthesis, the product is separated and purified and may be formulated with preservatives.\n- **Quality control**: Products, especially drugs, undergo strict quality testing before marketing.\n- **Complete process**: Isolation, cutting, amplification, ligation, transfer, culture, expression and downstream recovery form one connected workflow.\n\n## Worked example\nQuestion: Based on NCERT Exercise 10(b-c), describe bioreactors and downstream processing.\n\nSolution:\n- A bioreactor is a large controlled vessel in which desired cells convert raw materials into a useful biological product.\n- Stirring and aeration maintain mixing and oxygen supply, while sensors control temperature, pH and other conditions.\n- After production, cells or broth are processed to separate the desired molecule.\n- Final answer: Purification, formulation, preservation and quality testing together constitute downstream processing.\n\n## Common mistake\nDo not define downstream processing as gene cloning. It begins after the biological product has been synthesised and concerns recovery, purification and formulation.\n\n## Quick check question\nQuestion: Why are sterile conditions important in bioprocess engineering?\nAnswer: They prevent contaminating microbes from competing with the desired culture or altering the product.\nExplanation: Controlled growth of only the selected organism improves yield, consistency and safety.\n\n## Summary\n- Gene expression produces the desired recombinant protein.\n- Bioreactors maintain controlled large-scale growth.\n- Stirring and aeration improve mixing and oxygen transfer.\n- Downstream processing recovers and purifies the product.\n- Quality control is essential before commercial use."
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 21: Neural Control and Coordination",
+  "central_question": "How does the human neural system receive information, conduct impulses and coordinate responses through nerves, synapses and the brain?",
+  "in_scope_units": [
+    "General organisation of neural systems.",
+    "Central and peripheral neural systems.",
+    "Somatic and autonomic divisions.",
+    "Neuron structure and neuron types.",
+    "Resting potential, action potential and conduction.",
+    "Electrical and chemical synapses.",
+    "Central neural system and brain regions."
+  ],
+  "banned_topics": [
+    "Blood composition and blood groups",
+    "Cardiac cycle and double circulation",
+    "Muscle contraction beyond neuromuscular signalling"
+  ],
+  "must_include_keywords": [
+    "neural system",
+    "coordination",
+    "neuron",
+    "CNS",
+    "PNS",
+    "afferent fibre",
+    "efferent fibre",
+    "somatic neural system",
+    "autonomic neural system",
+    "sympathetic",
+    "parasympathetic",
+    "cell body",
+    "dendrite",
+    "axon",
+    "Nissl granules",
+    "synaptic knob",
+    "neurotransmitter",
+    "multipolar neuron",
+    "bipolar neuron",
+    "unipolar neuron",
+    "myelin sheath",
+    "Schwann cell",
+    "node of Ranvier",
+    "resting potential",
+    "sodium-potassium pump",
+    "depolarisation",
+    "action potential",
+    "repolarisation",
+    "synapse",
+    "synaptic cleft",
+    "cerebrum",
+    "corpus callosum",
+    "thalamus",
+    "hypothalamus",
+    "limbic system",
+    "midbrain",
+    "pons",
+    "cerebellum",
+    "medulla oblongata"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Dendrites carry impulses away from the cell body.",
+      "correction": "Dendrites generally carry impulses toward the cell body; the axon carries them away."
+    },
+    {
+      "claim": "The sodium-potassium pump moves equal numbers of ions.",
+      "correction": "It moves three Na+ outward for every two K+ inward."
+    },
+    {
+      "claim": "Chemical synapses are faster than electrical synapses.",
+      "correction": "Electrical synapses are faster because current passes directly between cells."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 2 to compare CNS/PNS and resting/action potentials.",
+    "Use NCERT Exercise 3 to explain polarisation, depolarisation and chemical synapses.",
+    "Use NCERT Exercise 7 to trace the role of sodium.",
+    "Use NCERT Exercise 8 for paired distinctions.",
+    "Use NCERT Exercise 1 to organise brain regions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The EXERCISES section contains Questions 1-10 on brain structure, neural divisions, membrane potentials, synapses and neuron comparisons.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,93 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Economics",
+    "chapter": "Liberalisation, Privatisation and Globalisation",
+    "central_question": "Why were economic reforms introduced in 1991, what changes did liberalisation, privatisation and globalisation bring, and how should their results be assessed?",
+    "in_scope_units": [
+      "Introduction to the 1991 economic crisis and the need for reform.",
+      "Liberalisation of industrial, financial, tax, foreign-exchange and trade policies.",
+      "Privatisation, disinvestment and greater autonomy for selected public enterprises.",
+      "Globalisation, outsourcing and the role of the World Trade Organization.",
+      "Assessment of reforms through growth, agriculture, industry, services, employment, fiscal management and social justice.",
+      "Conclusion and balanced appraisal of achievements and limitations."
+    ],
+    "banned_topics": [
+      "Pre-1990 planning policy in detail, which belongs to Indian Economy 1950–1990.",
+      "Rural credit institutions and organic farming, which belong to Rural Development.",
+      "Comparative indicators for India, China and Pakistan, which belong to the comparative-development chapter."
+    ],
+    "must_include_keywords": [
+      "economic reforms",
+      "1991 crisis",
+      "foreign exchange",
+      "balance of payments",
+      "World Bank",
+      "International Monetary Fund",
+      "liberalisation",
+      "industrial licensing",
+      "financial sector",
+      "Reserve Bank of India",
+      "tax reforms",
+      "foreign exchange reforms",
+      "trade and investment policy",
+      "tariff",
+      "quantitative restrictions",
+      "privatisation",
+      "disinvestment",
+      "strategic sale",
+      "minority sale",
+      "navaratna",
+      "globalisation",
+      "outsourcing",
+      "BPO",
+      "World Trade Organization",
+      "bilateral trade",
+      "multilateral trade",
+      "service sector",
+      "agriculture",
+      "industrial growth",
+      "public investment",
+      "social justice",
+      "economic disparity",
+      "reform appraisal"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The 1991 reforms were introduced only because India wanted faster growth.",
+        "correction": "The immediate background included a severe foreign-exchange and balance-of-payments crisis, high inflation and external pressure."
+      },
+      {
+        "claim": "Liberalisation means removal of every government rule.",
+        "correction": "It means reducing unnecessary restrictions while retaining regulation where required."
+      },
+      {
+        "claim": "Privatisation always means complete sale of a public enterprise.",
+        "correction": "It can include disinvestment, strategic sale, minority sale and greater managerial autonomy."
+      },
+      {
+        "claim": "Globalisation is the same as importing more goods.",
+        "correction": "It is wider integration with the world economy through trade, investment, technology and services."
+      },
+      {
+        "claim": "The reforms benefited every sector and group equally.",
+        "correction": "The chapter reports stronger service growth but concerns in agriculture, industry, employment, inequality and social welfare."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Exercise 1 to explain why reforms were introduced in India.",
+      "Use Exercises 3–8 to interpret financial, foreign-exchange and trade liberalisation.",
+      "Use Exercises 9 and 12 to assess privatisation, profit-making PSUs and the navaratna policy.",
+      "Use Exercises 10 and 11 to evaluate outsourcing and India’s advantages.",
+      "Use Exercises 14–16 to appraise agriculture, industry, social justice and welfare during the reform period."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter’s EXERCISES contain Questions 1–16, followed by Suggested Additional Activities using growth and sectoral data."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Liberalisation, Privatisation and Globalisation\n\n## What you will learn\nYou will understand the economic crisis that led India to change policy in 1991. You will connect declining foreign-exchange reserves, import pressure, inflation and external borrowing with the reform package.\n\n## Simple explanation\nBy 1991, India did not have enough foreign exchange to finance essential imports and meet external payment obligations. The government approached international institutions and introduced a programme of stabilisation and structural reform.\n\n## Step-by-step breakdown\n- **Foreign-exchange pressure**: Imports had grown without a matching rise in exports, reducing the ability to pay for external transactions.\n- **Balance-of-payments crisis**: India faced difficulty meeting international payment obligations.\n- **Inflation**: Rising prices added to domestic economic stress.\n- **External assistance**: The World Bank and IMF provided support linked with policy changes.\n- **Stabilisation**: Short-term measures aimed to control the crisis.\n- **Structural reform**: Longer-term changes sought to improve efficiency, competition and integration.\n\n## Worked example\nQuestion: Why were the 1991 reforms more than an optional policy experiment?\n\nSolution:\n- Step 1: The chapter identifies a severe foreign-exchange and payment crisis, along with inflation and weak export performance.\n- Step 2: These conditions made it difficult to continue the existing policy framework without immediate adjustment and external assistance.\n- Final answer: The reforms were introduced as a response to an urgent macroeconomic crisis and as a longer-term effort to restructure the economy.\n\n## Common mistake\nDo not explain the reforms only as a desire to copy foreign countries; begin with the domestic crisis described in the chapter.\n\n## Quick check question\nQuestion: Which two international institutions are associated with the reform package?\nAnswer: The World Bank and the International Monetary Fund.\nExplanation: India approached them for assistance during the crisis and accepted a policy package linked with reform.\n\n## Summary\n- The 1991 crisis involved foreign exchange and external payments.\n- Inflation and weak export growth deepened the problem.\n- Stabilisation addressed immediate stress.\n- Structural reforms changed the policy framework.",
+    "Core explanation": "# Core explanation: Liberalisation, Privatisation and Globalisation\n\n## What you will learn\nYou will study liberalisation in industry, finance, taxation, foreign exchange and trade. You will understand how the state’s role changed from direct control towards regulation and facilitation.\n\n## Simple explanation\nLiberalisation reduced licensing and restrictions so that firms could make more production and investment decisions. It also changed banking rules, tax policy, exchange-rate management and import controls.\n\n## Step-by-step breakdown\n- **Industrial reform**: Most industrial licensing was abolished, and private entry was permitted in more areas.\n- **Financial reform**: The RBI’s role moved from detailed controller towards facilitator, while banks received greater operational freedom.\n- **Tax reform**: Rates were reduced and the tax system was simplified to encourage compliance.\n- **Foreign exchange**: The rupee was devalued and the exchange-rate system became more market-oriented.\n- **Trade reform**: Tariffs were reduced and quantitative restrictions on imports were progressively removed.\n- **Investment policy**: Foreign investment and technology participation were encouraged.\n\n## Worked example\nQuestion: How did liberalisation change the role of the RBI in the financial sector?\n\nSolution:\n- Step 1: Earlier, the RBI exercised extensive control over banks through detailed rules and allocation of credit.\n- Step 2: Reforms gave financial institutions greater freedom while the RBI increasingly supervised and facilitated the system.\n- Final answer: The RBI shifted from direct micro-control towards regulation, supervision and facilitation, although it continued to control monetary and banking conditions.\n\n## Common mistake\nLiberalisation did not remove the RBI or eliminate financial regulation.\n\n## Quick check question\nQuestion: What is a quantitative restriction?\nAnswer: A direct limit on the quantity or value of goods that may be imported.\nExplanation: It differs from a tariff, which raises the price of imports through a tax.\n\n## Summary\n- Industrial licensing was substantially reduced.\n- Financial institutions gained more freedom.\n- Tax and exchange-rate policies changed.\n- Trade barriers were lowered.",
+    "Worked examples": "# Worked examples: Liberalisation, Privatisation and Globalisation\n\n## What you will learn\nYou will understand privatisation and the methods used to change public-sector management. You will distinguish disinvestment, strategic sale, minority sale and navaratna autonomy.\n\n## Simple explanation\nPrivatisation aimed to improve efficiency by reducing direct government ownership or control and by exposing public enterprises to competition. The government also granted greater autonomy to selected profitable enterprises.\n\n## Step-by-step breakdown\n- **Disinvestment**: The government sold part of its equity in public enterprises.\n- **Minority sale**: A smaller share was sold while government retained management control.\n- **Strategic sale**: A substantial stake and management control could pass to a private buyer.\n- **Navaratna policy**: Selected public enterprises received greater managerial and financial autonomy.\n- **Competition**: Public enterprises were expected to improve performance in a more competitive environment.\n- **Debate**: Supporters stressed efficiency, while critics raised concerns about public assets, employment and social objectives.\n\n## Worked example\nQuestion: Why is every disinvestment not equal to complete privatisation?\n\nSolution:\n- Step 1: Disinvestment refers to sale of government equity, which may involve only a minority share.\n- Step 2: If government retains majority ownership and management control, the enterprise remains public even after partial sale.\n- Final answer: Disinvestment can be a step towards privatisation, but its effect depends on the size of the sale and whether control changes.\n\n## Common mistake\nDo not use strategic sale and minority sale as interchangeable terms.\n\n## Quick check question\nQuestion: What was the purpose of the navaratna policy?\nAnswer: To give selected public enterprises greater managerial and financial autonomy so that they could improve performance.\nExplanation: The policy sought reform within the public sector rather than immediate sale of every enterprise.\n\n## Summary\n- Privatisation has several forms.\n- Disinvestment may be partial.\n- Strategic sale can transfer control.\n- Navaratna status expanded enterprise autonomy.",
+    "Exam-style problems": "# Exam-style problems: Liberalisation, Privatisation and Globalisation\n\n## What you will learn\nYou will study globalisation, outsourcing and the WTO. You will distinguish bilateral from multilateral trade and examine why India became an outsourcing destination.\n\n## Simple explanation\nGlobalisation connects an economy with international flows of goods, services, investment and technology. Information technology made it possible for firms to obtain services from other countries, while WTO rules shaped international trade.\n\n## Step-by-step breakdown\n- **Globalisation**: It integrates the domestic economy with the world economy.\n- **Outsourcing**: A company contracts services or production activities to an external provider, often in another country.\n- **Indian advantages**: Availability of skilled labour, lower costs, English proficiency and information technology supported outsourcing.\n- **BPO services**: Call centres, record keeping, accounting and other services became important examples.\n- **WTO**: The organisation seeks a rule-based international trade system covering goods and services.\n- **Trade forms**: Bilateral trade involves two countries; multilateral trade involves several countries.\n\n## Worked example\nQuestion: Why did outsourcing expand rapidly in India?\n\nSolution:\n- Step 1: The chapter points to the availability of skilled workers, lower wage costs, English-language ability and modern communication technology.\n- Step 2: These factors allowed foreign firms to obtain services efficiently from Indian providers.\n- Final answer: India became a major outsourcing destination because it combined human skills, cost advantages and information-technology connectivity.\n\n## Common mistake\nOutsourcing is not limited to call centres; it includes many business and professional services.\n\n## Quick check question\nQuestion: What is the main objective of the WTO described in the chapter?\nAnswer: To establish a rule-based trade regime and facilitate international trade in goods and services.\nExplanation: Its agreements seek lower tariff and non-tariff barriers and wider market access.\n\n## Summary\n- Globalisation increases international integration.\n- Outsourcing uses external providers.\n- India had cost and skill advantages.\n- The WTO frames multilateral trade rules.",
+    "Revision and recap": "# Revision and recap: Liberalisation, Privatisation and Globalisation\n\n## What you will learn\nYou will appraise the results of reforms across sectors and social groups. You will practise giving a balanced answer rather than treating the reform period as either complete success or complete failure.\n\n## Simple explanation\nThe reform period recorded higher overall growth and strong service-sector expansion. At the same time, the chapter raises concerns about agriculture, industrial competition, public investment, employment, fiscal outcomes and unequal distribution of gains.\n\n## Step-by-step breakdown\n- **Growth pattern**: Services became an important driver of GDP growth.\n- **Agriculture**: Growth slowed and public investment declined, while farmers faced import competition and infrastructure gaps.\n- **Industry**: Cheaper imports, infrastructure constraints and lower investment affected performance.\n- **Employment**: Higher output did not always create adequate secure employment.\n- **Fiscal issue**: Tax reduction did not automatically produce the expected rise in revenue.\n- **Inequality**: Benefits were concentrated in selected regions, sectors and higher-income groups.\n- **Balanced appraisal**: Reforms improved competition and integration but did not remove the need for public investment and social policy.\n\n## Worked example\nQuestion: How should the reforms be evaluated in the light of social justice?\n\nSolution:\n- Step 1: Identify the achievements noted in the chapter, including higher growth, service expansion and greater competition.\n- Step 2: Compare them with concerns about agriculture, employment, small producers, regional concentration and unequal access to benefits.\n- Final answer: A social-justice appraisal recognises reform gains but asks whether growth created livelihoods and improved welfare across sectors and income groups.\n\n## Common mistake\nDo not evaluate reforms only through the GDP growth rate.\n\n## Quick check question\nQuestion: Which sector became the main driver of growth during the reform period?\nAnswer: The service sector.\nExplanation: The chapter notes stronger service growth while agriculture slowed and industry fluctuated.\n\n## Summary\n- Reform outcomes differed by sector.\n- Services grew strongly.\n- Agriculture and industry faced important constraints.\n- Growth benefits were uneven, requiring continued public policy."
+  }
+}

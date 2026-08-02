@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Redox Reactions",
+  "central_question": "How can oxidation and reduction be identified, quantified, balanced, and interpreted as coupled electron-transfer processes?",
+  "in_scope_units": [
+    "Classical and electronic definitions.",
+    "Oxidising and reducing agents.",
+    "Oxidation-number rules.",
+    "Combination, decomposition, displacement, and disproportionation.",
+    "Oxidation-number and ion–electron balancing.",
+    "Redox couples and electrode processes."
+  ],
+  "banned_topics": [
+    "Full electrochemistry",
+    "Electrolysis calculations",
+    "Organic oxidation mechanisms",
+    "Biochemical electron transport"
+  ],
+  "must_include_keywords": [
+    "oxidation",
+    "reduction",
+    "redox reaction",
+    "electron transfer",
+    "oxidising agent",
+    "reducing agent",
+    "oxidation number",
+    "oxidation state",
+    "combination reaction",
+    "decomposition reaction",
+    "displacement reaction",
+    "metal displacement",
+    "non-metal displacement",
+    "disproportionation",
+    "oxidation-number method",
+    "ion-electron method",
+    "half-reaction",
+    "acidic medium",
+    "basic medium",
+    "electron balance",
+    "charge balance",
+    "redox couple",
+    "electrode process",
+    "peroxide",
+    "hydride",
+    "fractional oxidation number"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Oxidation occurs alone.",
+      "correction": "Oxidation and reduction are coupled."
+    },
+    {
+      "claim": "Oxidation always adds oxygen.",
+      "correction": "The general definition is electron loss or oxidation-number increase."
+    },
+    {
+      "claim": "The oxidising agent is oxidised.",
+      "correction": "It is reduced while oxidising another species."
+    },
+    {
+      "claim": "Oxygen is always −2.",
+      "correction": "Peroxides, superoxides, and OF2 are exceptions."
+    },
+    {
+      "claim": "Balanced atoms guarantee a redox balance.",
+      "correction": "Total charge and electron transfer must also balance."
+    }
+  ],
+  "recommended_example_progression": [
+    "Identify redox changes.",
+    "Assign oxidation numbers.",
+    "Classify reaction patterns.",
+    "Balance in acidic and basic media.",
+    "Interpret redox couples."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use exercises on oxidation numbers, agents, reaction types, balancing methods, disproportionation, and electrode half-reactions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

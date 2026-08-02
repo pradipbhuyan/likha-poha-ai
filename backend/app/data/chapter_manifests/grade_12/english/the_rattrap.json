@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 12",
+  "subject": "English",
+  "chapter": "The Rattrap",
+  "central_question": "How can a person trapped by temptation and distrust recover dignity when another human being responds with understanding, respect and love?",
+  "in_scope_units": [
+    "About Selma Lagerlöf, the Swedish ironworks setting and fairy-tale manner.",
+    "The peddler’s poverty and idea that the world is a giant rattrap.",
+    "The crofter’s hospitality, theft of thirty kronor and the forest as a trap.",
+    "The forge, ironmaster’s mistaken recognition and the peddler’s fear.",
+    "Edla’s invitation and her decision to honour Christmas hospitality.",
+    "The returned money, gift, letter and signature as Captain von Stahle.",
+    "Questions on kindness, character, surprise, redemption and metaphor."
+  ],
+  "banned_topics": [
+    "A factual history of Swedish mining beyond the story.",
+    "A legal analysis of theft or punishment not developed in the chapter."
+  ],
+  "must_include_keywords": [
+    "Selma Lagerlöf",
+    "fairy tale",
+    "rattrap peddler",
+    "vagabond",
+    "begging",
+    "petty thievery",
+    "world as rattrap",
+    "bait",
+    "cheese and pork",
+    "crofter",
+    "loneliness",
+    "thirty kronor",
+    "betrayal",
+    "forest",
+    "impenetrable prison",
+    "Ramsjö Ironworks",
+    "forge",
+    "ironmaster",
+    "Nils Olof",
+    "Captain von Stahle",
+    "lion’s den",
+    "Edla Willmansson",
+    "compassion",
+    "Christmas Eve",
+    "hospitality",
+    "human dignity",
+    "redemption",
+    "gift",
+    "letter",
+    "essential goodness",
+    "metaphor",
+    "irony",
+    "unexpected reactions"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The rattrap theory applies only to others.",
+      "correction": "After stealing the money and becoming lost, the peddler recognises that he too took the bait."
+    },
+    {
+      "claim": "The ironmaster knowingly invites a thief.",
+      "correction": "He initially mistakes the peddler for an old regimental comrade."
+    },
+    {
+      "claim": "Edla is unaware of danger.",
+      "correction": "She notices his fear and suspects theft or escape, yet offers safety and hospitality."
+    },
+    {
+      "claim": "The peddler changes only because he fears police.",
+      "correction": "His final action is linked to Edla’s respectful treatment and the identity of “Captain”."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Think as you read Q1–2 for the central metaphor.",
+    "Use Q6 to examine the crofter’s trust and betrayal.",
+    "Use the forge questions for mistaken identity and fear.",
+    "Use the Edla question for compassionate hospitality after the truth.",
+    "Use Understanding the text Q4–5 for redemption and metaphor."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with Understanding the text questions on kindness, character, surprises, change and the rattrap metaphor, followed by discussion and language activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Economics",
+    "chapter": "Index Numbers",
+    "central_question": "How can one statistical index summarise relative change across a group of related prices, quantities, or other economic variables?",
+    "in_scope_units": [
+      "Introduction to the need for a single summary measure of change in a group of related variables.",
+      "Meaning of an index number, base period, current period, price index, and quantity index.",
+      "Construction of simple and weighted price indexes through aggregative methods.",
+      "Laspeyres and Paasche weighted aggregative price indexes and the role of base-period and current-period quantities.",
+      "Simple and weighted methods of averaging price relatives.",
+      "Consumer Price Index, Wholesale Price Index, Index of Industrial Production, Human Development Index, and Sensex.",
+      "Issues in constructing an index number, including purpose, item selection, base year, formula, weights, and data reliability.",
+      "Economic uses of CPI, WPI, IIP, agricultural production index, Sensex, purchasing power, and real wages.",
+      "Conclusion and recap on careful interpretation and policy use of index numbers."
+    ],
+    "banned_topics": [
+      "Scatter diagrams and coefficients of correlation",
+      "Measures of central tendency",
+      "Measures of dispersion",
+      "Regression and time-series forecasting"
+    ],
+    "must_include_keywords": [
+      "index number",
+      "relative change",
+      "base period",
+      "current period",
+      "base value 100",
+      "price index",
+      "quantity index",
+      "simple aggregative index",
+      "weighted index",
+      "basket of commodities",
+      "weights",
+      "Laspeyres price index",
+      "Paasche price index",
+      "price relative",
+      "averaging relatives",
+      "Consumer Price Index",
+      "cost of living index",
+      "Wholesale Price Index",
+      "headline inflation",
+      "core inflation",
+      "Index of Industrial Production",
+      "quantity relatives",
+      "Human Development Index",
+      "Sensex",
+      "representative items",
+      "normal base year",
+      "data reliability",
+      "purchasing power of money",
+      "real wage",
+      "economic policy"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "An index number of 250 means a rise of 250 percent from the base.",
+        "correction": "With a base of 100, an index of 250 means the level is two and a half times the base, which is 150 percent above the base."
+      },
+      {
+        "claim": "Every item in a simple index receives importance according to expenditure share.",
+        "correction": "A simple unweighted index treats items as equally important; a weighted index reflects relative importance."
+      },
+      {
+        "claim": "Laspeyres and Paasche indexes use the same quantity weights.",
+        "correction": "Laspeyres uses base-period quantities, while Paasche uses current-period quantities."
+      },
+      {
+        "claim": "CPI and WPI measure the same price concept for the same users.",
+        "correction": "CPI measures average change in retail prices for a consumer category, while WPI measures changes in wholesale goods prices and has no reference consumer category."
+      },
+      {
+        "claim": "Any convenient year is suitable as a base year.",
+        "correction": "The base year should be normal, reasonably recent, and free from extreme or abnormal values."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Cases 1–3 from the Introduction to motivate cost-of-living, Sensex, and inflation indexes.",
+      "Use NCERT Example 1 to introduce a simple aggregative price index and its limitations.",
+      "Use NCERT Example 2 to contrast Laspeyres and Paasche quantity weights.",
+      "Use NCERT Example 3 and Example 4 to compare weighted price relatives and CPI construction.",
+      "Use NCERT Exercise 21 to discuss why index series with different bases and consumer groups are not directly comparable."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The embedded source chapter ends with EXERCISES 1–22 and activities on widely used indexes and purchasing power."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Index Numbers\n\n## What you will learn\nYou will understand why an index number is needed and how a base period makes relative comparison possible. You will distinguish price indexes from quantity indexes.\n\n## Simple explanation\nWhen many related items change by different amounts, listing every change can be confusing. An index number combines them into one summary measure relative to a chosen base.\n\n## Step-by-step breakdown\n- **Index number**: It is a statistical device for measuring average change in the magnitude of a group of related variables.\n- **Base period**: The comparison period is assigned an index value of 100.\n- **Current period**: The index for another period is expressed in proportion to the base.\n- **Relative interpretation**: An index shows how the current level compares with the base level rather than giving the original unit of measurement.\n- **Price index**: It measures and compares changes in the prices of selected goods.\n- **Quantity index**: It measures change in the physical volume of production, construction, or employment.\n- **Need for summary**: A single index makes non-uniform changes across many commodities or industrial subsectors easier to understand.\n\n## Worked example\nQuestion: Why do we need an index number, as asked in NCERT Exercise 7?\n```extract-ref\n{\"citation\": \"NCERT Exercise 7\", \"extract_text\": \"Why do we need an index number?\", \"note\": \"End-of-chapter exercise in the embedded Index Numbers source\"}\n```\n\nAnswer:\n- The chapter describes markets and industries in which many related prices or outputs change by different amounts.\n- A separate percentage for each item becomes difficult to comprehend, while one index represents the general trend of the group.\n- Final answer: An index number is needed to summarise relative change across many related variables in a single comparable measure.\n\n## Common mistake\nDo not treat an index value as the original price or quantity. It is a relative measure built around a base value of 100.\n\n## Quick check question\nQuestion: What value is conventionally assigned to the base period?\nAnswer: 100.\nExplanation: All other index values are interpreted in proportion to this base-period value.\n\n## Summary\n- Index numbers summarise group change.\n- The base period is assigned 100.\n- Current values are compared proportionally with the base.\n- Price and quantity indexes measure different kinds of change.",
+    "Core explanation": "# Core explanation: Index Numbers\n\n## What you will learn\nYou will compare simple and weighted construction methods. You will distinguish Laspeyres, Paasche, and price-relative approaches.\n\n## Simple explanation\nAn index can combine prices directly or average individual price relatives. Weights are added when items differ in importance.\n\n## Step-by-step breakdown\n- **Simple aggregative method**: Current prices are summed and compared with the sum of base-period prices.\n- **Limitation of simple aggregation**: Different units and equal treatment of items can make an unweighted result less meaningful.\n- **Weighted aggregative method**: Prices are combined with quantities so that important items influence the index more strongly.\n- **Fixed basket**: A specified basket allows the changing value of the same aggregate of goods to be compared.\n- **Laspeyres index**: Base-period quantities are used as weights.\n- **Paasche index**: Current-period quantities are used as weights.\n- **Price relatives**: Each current price is expressed as a percentage of its base-period price.\n- **Weighted price relatives**: Price relatives are averaged using expenditure or value shares as weights.\n\n## Worked example\nQuestion: What makes an index a weighted index in NCERT Exercise 1?\n```extract-ref\n{\"citation\": \"NCERT Exercise 1\", \"extract_text\": \"An index number which accounts for the relative importance of the items is known as\\n(i) weighted index\\n(ii) simple aggregative index\\n(iii)simple average of relatives\", \"note\": \"Objective exercise in the embedded Index Numbers source\"}\n```\n\nAnswer:\n- The chapter states that an index becomes weighted when the relative importance of items is taken care of.\n- Items with larger budget or quantity significance should have more influence than items with little importance.\n- Final answer: A weighted index is the correct choice because it explicitly accounts for the relative importance of the items.\n\n## Common mistake\nDo not confuse the weight with the current price. A weight represents relative importance, often through quantity or expenditure share.\n\n## Quick check question\nQuestion: Which quantities are used in Laspeyres price index?\nAnswer: Base-period quantities.\nExplanation: Laspeyres asks how much the base-period basket would cost at current prices compared with its cost at base prices.\n\n## Summary\n- Simple indexes do not reflect unequal importance.\n- Weighted indexes use quantities or value shares.\n- Laspeyres uses base-period quantities.\n- Paasche uses current-period quantities.\n- Price relatives compare each item with its own base price.",
+    "Worked examples": "# Worked examples: Index Numbers\n\n## What you will learn\nYou will distinguish major index numbers used in economic analysis. You will connect CPI, WPI, IIP, HDI, and Sensex with the different changes they summarise.\n\n## Simple explanation\nDifferent indexes are designed for different purposes. An index is meaningful only when the user knows the population, market level, items, and variable it represents.\n\n## Step-by-step breakdown\n- **Consumer Price Index**: CPI or the cost-of-living index measures average change in retail prices for a specified consumer category and basket.\n- **Consumer Food Price Index**: CFPI focuses on food and beverages with the exclusions stated in the chapter.\n- **Wholesale Price Index**: WPI indicates change in the general wholesale price level of goods and has no reference consumer category.\n- **Headline inflation**: The all-commodities WPI inflation rate is commonly referred to as headline inflation in the chapter.\n- **Core inflation**: The chapter describes a focus on manufactured goods excluding food articles and fuel.\n- **Index of Industrial Production**: IIP is a weighted average of quantity relatives and measures industrial output.\n- **Human Development Index**: HDI is mentioned as an index used to assess a country’s development.\n- **Sensex**: Sensex is the Bombay Stock Exchange Sensitive Index and serves as a benchmark indicator for the Indian stock market.\n\n## Worked example\nQuestion: What is the difference between a price index and a quantity index, as asked in NCERT Exercise 11?\n```extract-ref\n{\"citation\": \"NCERT Exercise 11\", \"extract_text\": \"What is the difference between a price index and a quantity index?\", \"note\": \"End-of-chapter exercise in the embedded Index Numbers source\"}\n```\n\nAnswer:\n- The chapter says price indexes measure changes in prices, while quantity indexes measure changes in physical volume such as production or employment.\n- The two indexes may use similar index logic but summarise different variables and answer different economic questions.\n- Final answer: A price index measures relative price change; a quantity index measures relative change in physical volume.\n\n## Common mistake\nDo not interpret IIP as a retail or wholesale price index. It is designed to measure quantities of industrial production.\n\n## Quick check question\nQuestion: What does CPI primarily measure?\nAnswer: Average change in retail prices for a specified consumer basket and category.\nExplanation: It is also called the cost-of-living index because it indicates how the cost of buying the basket changes.\n\n## Summary\n- CPI measures retail consumer prices.\n- WPI measures wholesale goods prices.\n- IIP measures industrial quantities.\n- HDI summarises development indicators.\n- Sensex summarises selected stock-market movements.",
+    "Exam-style problems": "# Exam-style problems: Index Numbers\n\n## What you will learn\nYou will evaluate the choices that determine whether an index is meaningful. You will examine purpose, item selection, base year, formula, weights, and data reliability.\n\n## Simple explanation\nAn index is constructed, not discovered. Different choices can produce different results, so each choice must fit the intended use.\n\n## Step-by-step breakdown\n- **Purpose**: A price, quantity, or value index must match the question being studied.\n- **Representative items**: The selected basket should reflect the group or economic activity for which the index is intended.\n- **Different consumer groups**: The same price change may affect groups differently because their expenditure patterns differ.\n- **Normal base year**: The base should not contain extreme values or abnormal conditions.\n- **Recent base**: A very old basket may include obsolete items and omit new important items.\n- **Formula choice**: Laspeyres and Paasche give different results because they use different weights.\n- **Reliable data**: Poor-quality primary or secondary data can make the resulting index misleading.\n- **Routine revision**: Base years and baskets are updated as production and consumption patterns change.\n\n## Worked example\nQuestion: What are the desirable properties of a base period, as asked in NCERT Exercise 8?\n```extract-ref\n{\"citation\": \"NCERT Exercise 8\", \"extract_text\": \"What are the desirable properties of the base period?\", \"note\": \"End-of-chapter exercise in the embedded Index Numbers source\"}\n```\n\nAnswer:\n- The chapter says the base year should be normal, should not contain extreme values, and should not lie too far in the past.\n- A normal and reasonably recent base makes the comparison representative of current patterns and avoids distortion from exceptional events or obsolete baskets.\n- Final answer: A desirable base period is normal, free from extreme conditions, reasonably recent, and suitable for the purpose of comparison.\n\n## Common mistake\nChanging the base year is not a cosmetic alteration. It changes the reference basket and therefore affects interpretation and comparability.\n\n## Quick check question\nQuestion: Why must the items in a CPI basket be selected carefully?\nAnswer: They must represent the consumption pattern of the consumer group for whom the index is constructed.\nExplanation: Different groups spend differently, so an unrepresentative basket would give a misleading picture of their cost of living.\n\n## Summary\n- The index purpose determines the variable and formula.\n- Items and weights must be representative.\n- The base year should be normal and recent.\n- Reliable data are essential.\n- Different construction choices require careful interpretation.",
+    "Revision and recap": "# Revision and recap: Index Numbers\n\n## What you will learn\nYou will connect index numbers with economic policy, inflation, purchasing power, real wages, production, and investment. You will revise why different CPI series are required.\n\n## Simple explanation\nIndexes are used to convert complex economic changes into signals for policy and decision-making. Their value lies in correct interpretation for the group and purpose they represent.\n\n## Step-by-step breakdown\n- **Wage and income policy**: CPI supports wage negotiation, income policy, rent control, taxation, and broader economic policy.\n- **Inflation**: WPI is used in the chapter to measure a general and continuing increase in prices.\n- **Purchasing power**: The purchasing power of money moves inversely with the cost-of-living index.\n- **Real wage**: Money wage is adjusted by the cost-of-living index to compare purchasing power.\n- **Production performance**: IIP and agricultural production indexes summarise sectoral output performance.\n- **Stock-market guidance**: Sensex movements are used as a guide to investor expectations and confidence.\n- **Different CPI series**: Consumer groups require different baskets and weights because their expenditure patterns are not identical.\n- **Careful conclusion**: Index numbers are indispensable but must be interpreted with their base, basket, weights, formula, and source.\n\n## Worked example\nQuestion: Why is it essential to have different CPI for different categories of consumers, as asked in NCERT Exercise 9?\n```extract-ref\n{\"citation\": \"NCERT Exercise 9\", \"extract_text\": \"Why is it essential to have different CPI for different categories of consumers?\", \"note\": \"End-of-chapter exercise in the embedded Index Numbers source\"}\n```\n\nAnswer:\n- The chapter states that items are not equally important for different consumer groups and gives the example that a petrol-price rise may not directly affect poor agricultural labourers in the same way.\n- Each consumer group has a different expenditure basket and weighting pattern, so one CPI cannot represent every group accurately.\n- Final answer: Different CPI series are essential because the cost-of-living impact of price changes depends on each consumer group’s consumption pattern and item weights.\n\n## Common mistake\nA rise in one item’s price does not automatically produce the same effect on every index. Its impact depends on whether the item is included and how much weight it carries.\n\n## Quick check question\nQuestion: What happens to the purchasing power of money when the cost-of-living index rises?\nAnswer: The purchasing power of money falls.\nExplanation: A higher cost-of-living index means the same amount of money buys a smaller quantity of the representative basket.\n\n## Summary\n- CPI supports cost-of-living and wage decisions.\n- WPI is used for inflation and price adjustment.\n- IIP summarises industrial output change.\n- Sensex guides stock-market interpretation.\n- Different groups require different CPI baskets and weights.\n- Every index must be read with its construction details."
+  }
+}

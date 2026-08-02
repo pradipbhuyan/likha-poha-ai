@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "India — Location",
+  "central_question": "How do India’s location, extent, size and relations with neighbouring regions shape its physical diversity and geographical importance?",
+  "in_scope_units": [
+    "India’s latitudinal and longitudinal extent and their implications.",
+    "Indian Standard Time and the purpose of the standard meridian.",
+    "India’s size, coastline, islands and physical diversity.",
+    "The Indian subcontinent and the role of surrounding mountains and seas.",
+    "India’s position in Asia and its land and maritime neighbours.",
+    "Map-based exercises on location, boundaries and administrative divisions."
+  ],
+  "banned_topics": [
+    "Detailed physiographic divisions, which belong to Structure and Physiography.",
+    "The mechanism and seasons of the monsoon, which belong to Climate.",
+    "Detailed river systems, which belong to Drainage System."
+  ],
+  "must_include_keywords": [
+    "latitude",
+    "longitude",
+    "Kashmir",
+    "Kanniyakumari",
+    "Arunachal Pradesh",
+    "Gujarat",
+    "territorial limit",
+    "nautical mile",
+    "6°45′ N",
+    "latitudinal extent",
+    "longitudinal extent",
+    "Indian Standard Time",
+    "82°30′ E",
+    "Greenwich Mean Time",
+    "standard meridian",
+    "3.28 million sq km",
+    "2.4 per cent",
+    "seventh largest country",
+    "Indian subcontinent",
+    "Himalayas",
+    "Hindukush",
+    "Sulaiman ranges",
+    "Purvachal",
+    "Indian Ocean",
+    "Bay of Bengal",
+    "Arabian Sea",
+    "Andaman and Nicobar Islands",
+    "Lakshadweep",
+    "Gulf of Mannar",
+    "Palk Strait",
+    "Sri Lanka",
+    "Maldives",
+    "School Bhuvan NCERT"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "India uses the local solar time of every city as official time.",
+      "correction": "India follows one Indian Standard Time based on 82°30′ E longitude."
+    },
+    {
+      "claim": "Equal angular north–south and east–west spans give equal ground distances.",
+      "correction": "The north–south distance is 3,214 km and the east–west distance is 2,933 km because meridians converge poleward."
+    },
+    {
+      "claim": "India’s territorial limit ends at the coastline.",
+      "correction": "It extends 12 nautical miles, about 21.9 km, from the coast."
+    },
+    {
+      "claim": "Sri Lanka shares a land boundary with India.",
+      "correction": "It is separated from India by the Gulf of Mannar and Palk Strait."
+    },
+    {
+      "claim": "The Indian subcontinent consists only of India.",
+      "correction": "The chapter includes Pakistan, Nepal, Bhutan, Bangladesh and India."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Figure 1.1 to identify India’s extreme latitudes and longitudes.",
+    "Use Exercise 1(iv) to recognise 82°30′ E as India’s standard meridian.",
+    "Use Exercise 2(iv) to explain why watches in Kohima and New Delhi show the same time.",
+    "Use Project/Activity items (iii)–(v) to identify coastal states, land-boundary states and coastal Union Territories."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section contains Exercises 1(i–iv), 2(i–iv), and a seven-part Project/Activity based on maps, an atlas and census data.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

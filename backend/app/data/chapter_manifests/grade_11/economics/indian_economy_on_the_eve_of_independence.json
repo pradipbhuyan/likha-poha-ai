@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Indian Economy on the Eve of Independence",
+  "central_question": "How did British colonial policies shape the structure, stagnation and major economic challenges of India at the time of Independence?",
+  "in_scope_units": [
+    "Introduction to the purpose of studying the pre-Independence economy and the colonial economic relationship.",
+    "Low level of economic development under colonial rule, including limited national and per capita income growth.",
+    "Agricultural stagnation, land settlement systems, low productivity and commercialisation.",
+    "Industrial decline, deindustrialisation and the weak modern industrial base.",
+    "Foreign trade pattern, export surplus, Suez Canal and the drain of Indian wealth.",
+    "Demographic condition, literacy, health, mortality and life expectancy.",
+    "Occupational structure and regional variation in employment.",
+    "Infrastructure under colonial rule, including roads, railways, ports, waterways, posts and telegraphs.",
+    "Conclusion on the economic and social challenges inherited at Independence."
+  ],
+  "banned_topics": [
+    "Post-Independence Five Year Plans and planning goals, which belong to Indian Economy 1950–1990.",
+    "The 1991 economic reforms, which belong to Liberalisation, Privatisation and Globalisation.",
+    "Current poverty measurement methods, which belong to later chapters."
+  ],
+  "must_include_keywords": [
+    "colonial rule",
+    "British economic interests",
+    "raw materials",
+    "finished goods",
+    "national income",
+    "per capita income",
+    "Dadabhai Naoroji",
+    "V.K.R.V. Rao",
+    "agricultural stagnation",
+    "zamindari system",
+    "land settlement",
+    "commercialisation of agriculture",
+    "deindustrialisation",
+    "handicraft industries",
+    "modern industry",
+    "foreign trade",
+    "export surplus",
+    "drain of wealth",
+    "Suez Canal",
+    "census 1881",
+    "demographic transition",
+    "literacy",
+    "infant mortality",
+    "life expectancy",
+    "occupational structure",
+    "railways",
+    "ports",
+    "posts and telegraphs",
+    "infrastructure",
+    "poverty",
+    "unemployment"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Colonial economic policy was designed mainly to develop India.",
+      "correction": "The chapter states that it primarily protected and promoted British economic interests."
+    },
+    {
+      "claim": "Agricultural output never increased under colonial rule.",
+      "correction": "Some output growth occurred through expansion of cultivated area, but productivity remained very low and the sector stagnated."
+    },
+    {
+      "claim": "The destruction of handicrafts was matched by rapid modern industrialisation.",
+      "correction": "Traditional industries declined without an adequate modern industrial base replacing them."
+    },
+    {
+      "claim": "India’s export surplus enriched the Indian people.",
+      "correction": "The surplus financed colonial expenses, wars and invisible imports and contributed to the drain of wealth."
+    },
+    {
+      "claim": "Railways were built only for public welfare.",
+      "correction": "They had social benefits, but their main colonial purposes included troop movement, raw-material extraction and export expansion."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Exercise 1 to analyse the focus and effects of colonial economic policies.",
+    "Use Exercise 3 to explain the causes of agricultural stagnation.",
+    "Use Exercises 5 and 6 to examine deindustrialisation and the decline of handicrafts.",
+    "Use Exercise 9 to explain the drain of wealth.",
+    "Use Exercises 11, 12 and 16 to evaluate demographic conditions, occupational structure and the mixed legacy of infrastructure."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter’s end-of-chapter EXERCISES contain Questions 1–16, followed by four Suggested Additional Activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

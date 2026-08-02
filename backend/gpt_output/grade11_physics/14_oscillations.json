@@ -1,0 +1,108 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Oscillations",
+    "central_question": "How can periodic to-and-fro motion be described mathematically and related to restoring force, energy and the simple pendulum?",
+    "in_scope_units": [
+      "13.1 Introduction − everyday oscillations and the physical importance of repetitive motion.",
+      "13.2 Periodic and oscillatory motions − definitions, equilibrium position and distinction between periodic and oscillatory motion.",
+      "13.2.1 Period and frequency − repetition time, frequency and hertz.",
+      "13.2.2 Displacement − generalized displacement variables and periodic functions.",
+      "13.3 Simple harmonic motion − sinusoidal displacement, amplitude, phase and angular frequency.",
+      "13.4 Simple harmonic motion and uniform circular motion − SHM as projection of uniform circular motion.",
+      "13.5 Velocity and acceleration in simple harmonic motion − time dependence, maxima and phase relations.",
+      "13.6 Force law for simple harmonic motion − restoring force F = −kx and linear harmonic oscillators.",
+      "13.7 Energy in simple harmonic motion − kinetic, potential and conserved total energy.",
+      "13.8 The simple pendulum − small-angle SHM and period T = 2π√(L/g)."
+    ],
+    "banned_topics": [
+      "Progressive and standing wave equations, which belong to the Waves chapter.",
+      "Detailed sound-wave harmonics, organ pipes and beats.",
+      "Full theory of damped, driven and resonant oscillations beyond the brief contextual remarks in this chapter.",
+      "Planetary-orbit derivations and Kepler-law calculations."
+    ],
+    "must_include_keywords": [
+      "periodic motion",
+      "oscillatory motion",
+      "equilibrium position",
+      "restoring force",
+      "period",
+      "frequency",
+      "hertz",
+      "displacement",
+      "amplitude",
+      "phase",
+      "phase constant",
+      "angular frequency",
+      "x = A cos(ωt + φ)",
+      "simple harmonic motion",
+      "uniform circular motion",
+      "reference circle",
+      "velocity",
+      "v = −ωA sin(ωt + φ)",
+      "acceleration",
+      "a = −ω²x",
+      "F = −kx",
+      "linear harmonic oscillator",
+      "spring constant",
+      "kinetic energy",
+      "potential energy",
+      "total energy",
+      "E = (1/2)kA²",
+      "simple pendulum",
+      "small-angle approximation",
+      "sin θ − θ",
+      "T = 2π√(L/g)"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Every periodic motion is oscillatory.",
+        "correction": "Every oscillatory motion is periodic, but uniform circular motion is periodic without being to-and-fro about a mean position."
+      },
+      {
+        "claim": "Every oscillation is simple harmonic.",
+        "correction": "SHM specifically requires sinusoidal displacement or a restoring acceleration proportional to and opposite the displacement."
+      },
+      {
+        "claim": "Amplitude can be negative.",
+        "correction": "Amplitude is the positive magnitude of maximum displacement; the displacement itself can be positive or negative."
+      },
+      {
+        "claim": "Velocity is maximum at the extreme positions.",
+        "correction": "Velocity is zero at x = ±A and maximum in magnitude at the mean position x = 0."
+      },
+      {
+        "claim": "Acceleration and displacement have the same direction.",
+        "correction": "In SHM a = −ω²x, so acceleration is always directed toward the mean position."
+      },
+      {
+        "claim": "Kinetic and potential energies have period T.",
+        "correction": "Each depends on sin² or cos² and therefore repeats after T/2, while total energy remains constant."
+      },
+      {
+        "claim": "The simple-pendulum formula is exact for every angle.",
+        "correction": "T = 2π√(L/g) follows from sin θ − θ and is valid for small angular displacements."
+      },
+      {
+        "claim": "The period of ideal SHM depends on amplitude.",
+        "correction": "For a linear oscillator, the period depends on system parameters such as m and k, not on amplitude or phase."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use NCERT Example 13.1 to calculate period and frequency from heartbeat data.",
+      "Use NCERT Example 13.3 or Exercise 13.4 to classify harmonic and non-harmonic periodic functions.",
+      "Use NCERT Example 13.5 to calculate displacement, velocity and acceleration from an SHM equation.",
+      "Use NCERT Example 13.7 and Exercise 13.9 to connect spring motion with energy and maxima.",
+      "Use NCERT Example 13.8 and Exercise 13.15 to apply the simple-pendulum period."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The NCERT Exercises section contains Questions 13.1 to 13.18."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Oscillations\n\n## What you will learn\nYou will distinguish periodic, oscillatory and simple harmonic motion. You will define period, frequency, equilibrium position and displacement using physical examples and graphs.\n\n## Simple explanation\nA motion is periodic when it repeats after equal time intervals. Oscillatory motion is a periodic to-and-fro motion about an equilibrium position, where a restoring influence acts after displacement.\n\n## Step-by-step breakdown\n- **Periodic motion**: The motion repeats after the least interval T, called the period.\n- **Frequency**: Frequency ν is the number of repetitions per unit time and ν = 1/T. Its SI unit is hertz.\n- **Oscillatory motion**: The object repeatedly moves on both sides of a mean or equilibrium position.\n- **Equilibrium and restoring action**: At equilibrium the net force is zero. A small displacement can produce a force directed back toward equilibrium.\n- **Generalized displacement**: The changing quantity need not be linear position; angular displacement, voltage or pressure variation may also describe an oscillation.\n- **Periodic functions**: Sine and cosine functions repeat after their arguments change by 2π and are basic mathematical models of periodic motion.\n\n## Worked example\nQuestion: NCERT Example 13.1: A human heart beats 75 times per minute. Calculate its frequency and period.\n\nSolution:\n- Convert the rate to beats per second: 75/60 = 1.25 s⁻¹.\n- Thus the frequency is ν = 1.25 Hz.\n- The period is T = 1/ν = 1/1.25 = 0.8 s.\n- Final answer: Frequency = 1.25 Hz and period = 0.8 s.\n\n## Common mistake\nDo not call every repeating motion oscillatory. Uniform circular motion repeats, but it does not move to and fro along the same path about a mean position.\n\n## Quick check question\nQuestion: NCERT Exercise 13.1 lists a swimmer making one return trip, a displaced suspended bar magnet, a rotating hydrogen molecule and an arrow released from a bow. Which are periodic motions?\nAnswer: The freely oscillating bar magnet and the rotating hydrogen molecule are periodic; the single swimmer trip and the released arrow are not periodic motions as stated.\nExplanation: The magnet and rotating molecule repeat their states after regular intervals. A single trip or one projectile flight does not continue repeating automatically.\n\n## Summary\n- Period is the least repetition time and frequency is its reciprocal.\n- Oscillations occur about an equilibrium position.\n- Every oscillatory motion is periodic, but not every periodic motion is oscillatory.\n- Displacement can represent any changing physical variable used to describe the motion.",
+    "Core explanation": "# Core explanation: Oscillations\n\n## What you will learn\nYou will interpret the SHM equation in terms of amplitude, phase and angular frequency. You will also understand SHM as the projection of uniform circular motion on a diameter.\n\n## Simple explanation\nSimple harmonic motion is the simplest oscillation because its displacement varies sinusoidally. The three constants A, ω and φ specify its size, rate and initial state.\n\n## Step-by-step breakdown\n- **Defining equation**: SHM can be written x(t) = A cos(ωt + φ), where displacement ranges from −A to +A.\n- **Amplitude**: A is the positive maximum magnitude of displacement from equilibrium.\n- **Phase**: The quantity ωt + φ tells the instantaneous state of the oscillator; φ is the phase at t = 0.\n- **Angular frequency**: ω = 2π/T = 2πν and is measured in rad s⁻¹.\n- **Reference circle**: A particle moving uniformly on a circle of radius A has x projection A cos(ωt + φ), which executes SHM.\n- **Perpendicular projections**: The x and y projections are SHMs of equal amplitude and frequency that differ in phase by π/2.\n\n## Worked example\nQuestion: NCERT Example 13.3: Classify sin ωt − cos ωt and sin²ωt as simple harmonic or periodic but not simple harmonic, and give their periods.\n\nSolution:\n- Rewrite sin ωt − cos ωt = √2 sin(ωt − π/4), which is a single sinusoid about zero.\n- Its period is 2π/ω, so it is SHM.\n- Rewrite sin²ωt = 1/2 − (1/2)cos 2ωt.\n- It is sinusoidal about the shifted equilibrium value 1/2 and has period π/ω; relative to that equilibrium it is harmonic.\n- Final answer: The first has amplitude √2 and period 2π/ω; the second oscillates about 1/2 with amplitude 1/2 and period π/ω.\n\n## Common mistake\nDo not identify the coefficient multiplying t as the ordinary frequency. It is angular frequency ω; the frequency is ν = ω/(2π).\n\n## Quick check question\nQuestion: NCERT Exercise 13.4(c) gives x(t) = 3 cos(π/4 − 2πt). Is it SHM, and what is its period?\nAnswer: Yes. It is SHM with amplitude 3 and period π/π.\nExplanation: The argument has angular-frequency magnitude 2π, so T = 2π/(2π) = π/π. Reversing the sign inside the cosine changes phase evolution, not harmonic character.\n\n## Summary\n- SHM is sinusoidal motion about an equilibrium position.\n- Amplitude, angular frequency and phase fully characterize the motion.\n- ω = 2π/T and ν = 1/T.\n- The projection of uniform circular motion on any diameter is SHM.",
+    "Worked examples": "# Worked examples: Oscillations\n\n## What you will learn\nYou will calculate instantaneous velocity and acceleration in SHM and interpret their phase relations. You will also connect acceleration to the restoring-force law F = −kx.\n\n## Simple explanation\nDifferentiating the displacement once gives velocity and twice gives acceleration. The negative relation between acceleration and displacement is the defining dynamical signature of SHM.\n\n## Step-by-step breakdown\n- **Velocity**: For x = A cos(ωt + φ), v = −ωA sin(ωt + φ). Its maximum magnitude is ωA at the mean position.\n- **Acceleration**: a = −ω²A cos(ωt + φ) = −ω²x. Its maximum magnitude is ω²A at the extremes.\n- **Phase relations**: Velocity differs in phase from displacement by π/2, while acceleration differs by π.\n- **Restoring force**: Newton's second law gives F = ma = −mω²x = −kx, with k = mω².\n- **Linear oscillator**: A system obeying F = −kx executes ideal linear SHM with ω = √(k/m) and T = 2π√(m/k).\n- **Two-spring system**: Two identical springs acting on opposite sides give net restoring force −2kx and period 2π√(m/2k).\n\n## Worked example\nQuestion: NCERT Example 13.5: For x = 5 cos(2ωt + π/4) in SI units, calculate displacement, velocity and acceleration at t = 1.5 s.\n\nSolution:\n- Here A = 5 m and ω = 2π s⁻¹.\n- At t = 1.5 s, phase = 3π + π/4, so x = 5 cos(13π/4) = −3.535 m.\n- v = −ωA sin(13π/4) = 10π(0.707) − 22 m s⁻¹.\n- a = −ω²x = (2π)²(−3.535) ≈ 140 m s⁻².\n- Final answer: x = −3.535 m, speed − 22 m s⁻¹ and acceleration − +140 m s⁻².\n\n## Common mistake\nDo not use a = +ω²x. The minus sign is essential because acceleration must point toward equilibrium, opposite to the displacement.\n\n## Quick check question\nQuestion: NCERT Exercise 13.6 gives four acceleration–displacement relations. Which represents SHM: a = 0.7x, a = −200x², a = −10x, or a = 100x³?\nAnswer: Only a = −10x represents SHM.\nExplanation: SHM requires acceleration to be directly proportional to displacement and oppositely directed: a = −ω²x. The quadratic and cubic relations are nonlinear, and +0.7x points away from equilibrium.\n\n## Summary\n- Velocity is greatest at equilibrium and zero at the extremes.\n- Acceleration is zero at equilibrium and greatest at the extremes.\n- The relation a = −ω²x proves that acceleration is restoring.\n- A Hooke-law force F = −kx produces SHM with ω = √(k/m).",
+    "Exam-style problems": "# Exam-style problems: Oscillations\n\n## What you will learn\nYou will analyse the exchange of kinetic and potential energy in SHM. You will use energy conservation to calculate speed, displacement and maximum values in a spring oscillator.\n\n## Simple explanation\nIn ideal SHM, energy continually changes form but the total remains constant. At the mean position energy is entirely kinetic; at the extreme positions it is entirely potential.\n\n## Step-by-step breakdown\n- **Kinetic energy**: K = (1/2)mv² = (1/2)kA² sin²(ωt + φ), so K is maximum at x = 0 and zero at x = ±A.\n- **Potential energy**: U = (1/2)kx² = (1/2)kA² cos²(ωt + φ), so U is zero at x = 0 and maximum at x = ±A.\n- **Total energy**: E = K + U = (1/2)kA², independent of time for an undamped oscillator.\n- **Energy period**: K and U repeat after T/2 because they depend on squared sine and cosine functions.\n- **Speed from energy**: At displacement x, (1/2)mv² = (1/2)k(A² − x²), so v = ω√(A² − x²).\n- **Maximum values**: vmax = ωA and amax = ω²A.\n\n## Worked example\nQuestion: NCERT Example 13.7: A 1 kg block is attached to a 50 N m⁻¹ spring and released from rest at amplitude 10 cm. Find K, U and total energy when x = 5 cm.\n\nSolution:\n- Total energy E = (1/2)kA² = 0.5 × 50 × (0.10)² = 0.25 J.\n- Potential energy U = (1/2)kx² = 0.5 × 50 × (0.05)² = 0.0625 J.\n- Kinetic energy K = E − U = 0.25 − 0.0625 = 0.1875 J − 0.19 J.\n- Final answer: K − 0.19 J, U = 0.0625 J and E = 0.25 J.\n\n## Common mistake\nDo not assume kinetic and potential energies can be negative. With the standard zero of spring potential at equilibrium, both are non-negative and their sum is constant.\n\n## Quick check question\nQuestion: NCERT Exercise 13.9: A 3 kg mass on a spring of constant 1200 N m⁻¹ oscillates with amplitude 2.0 cm. Find frequency, maximum acceleration and maximum speed.\nAnswer: Frequency − 3.18 Hz, maximum acceleration = 8.0 m s⁻² and maximum speed = 0.40 m s⁻¹.\nExplanation: ω = √(k/m) = √(1200/3) = 20 rad s⁻¹, so ν = 20/(2π) = 3.18 Hz. With A = 0.020 m, amax = ω²A = 400 × 0.020 = 8.0 m s⁻² and vmax = ωA = 0.40 m s⁻¹.\n\n## Summary\n- K and U exchange continuously during SHM.\n- The total energy is E = (1/2)kA².\n- Energy conservation gives speed at any displacement.\n- K and U each repeat twice per oscillation.",
+    "Revision and recap": "# Revision and recap: Oscillations\n\n## What you will learn\nYou will derive the small-angle simple-pendulum result and revise the full SHM formula set. You will identify which equations describe kinematics, dynamics and energy.\n\n## Simple explanation\nA simple pendulum is approximately a harmonic oscillator when its angular displacement is small. Then the restoring torque is proportional to the angle, creating the same mathematical form as linear SHM.\n\n## Step-by-step breakdown\n- **Pendulum model**: A bob of mass m hangs from a massless inextensible string of length L and oscillates in a vertical plane.\n- **Restoring torque**: About the support, τ = −mgL sin θ. The negative sign shows the torque reduces the displacement.\n- **Small-angle approximation**: For small θ measured in radians, sin θ − θ, so angular acceleration is proportional to −θ.\n- **Pendulum frequency**: With I = mL², α = −(g/L)θ, hence ω = √(g/L).\n- **Pendulum period**: T = 2π√(L/g); it is independent of bob mass and approximately independent of small amplitude.\n- **Formula map**: Use x(t) for position, derivatives for v and a, F = −kx for dynamics, and E = (1/2)kA² for energy.\n\n## Worked example\nQuestion: NCERT Example 13.8: Find the length of a simple pendulum that ticks seconds, meaning one full oscillation takes 2 s. Use g = 9.8 m s⁻².\n\nSolution:\n- Use T = 2π√(L/g).\n- Rearrange to L = gT²/(4π²).\n- Substitute T = 2 s and g = 9.8 m s⁻²: L = 9.8 × 4/(4π²) ≈ 0.99 m.\n- Final answer: The length is approximately 1.0 m.\n\n## Common mistake\nDo not use the simple-pendulum formula for large amplitudes without qualification. It follows from sin θ − θ and is an approximation for small angular displacement.\n\n## Quick check question\nQuestion: NCERT Exercise 13.15: A pendulum has period 3.5 s on Earth where g = 9.8 m s⁻². What is its period on the Moon where g = 1.7 m s⁻²?\nAnswer: Approximately 8.4 s.\nExplanation: For the same length, T ∝ 1/√g. Therefore TMoon = 3.5√(9.8/1.7) − 8.4 s.\n\n## Summary\n- Periodic and oscillatory motion are not identical categories.\n- SHM is defined by sinusoidal displacement or a = −ω²x.\n- Velocity, acceleration and force have fixed phase relations.\n- Total mechanical energy remains constant in ideal SHM.\n- A small-angle simple pendulum has period 2π√(L/g)."
+  }
+}

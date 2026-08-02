@@ -1,0 +1,102 @@
+{
+  "grade": "Grade 11",
+  "subject": "Psychology",
+  "chapter": "Human Memory",
+  "central_question": "How is information encoded, retained and retrieved through different memory systems, why does forgetting occur and how can memory improve?",
+  "in_scope_units": [
+    "Encoding, storage and retrieval.",
+    "Atkinson and Shiffrin’s information-processing stage model.",
+    "Sensory, short-term and long-term memory.",
+    "Working memory and its components.",
+    "Attention, maintenance rehearsal, chunking and elaborative rehearsal.",
+    "Levels of processing.",
+    "Declarative, procedural, episodic and semantic memory.",
+    "Flashbulb, autobiographical and implicit memory.",
+    "Recall, recognition, sentence verification and priming.",
+    "Forgetting curve and trace decay, interference and retrieval failure.",
+    "Proactive and retroactive interference and repressed memories.",
+    "Mnemonics, organisation, deep processing, retrieval cues and PQRST."
+  ],
+  "banned_topics": [
+    "Detailed conditioning procedures, which belong to Learning.",
+    "Clinical diagnosis and treatment of amnesia beyond the chapter’s examples."
+  ],
+  "must_include_keywords": [
+    "memory",
+    "encoding",
+    "storage",
+    "retrieval",
+    "Hermann Ebbinghaus",
+    "information-processing approach",
+    "Atkinson and Shiffrin",
+    "stage model",
+    "sensory memory",
+    "iconic memory",
+    "echoic memory",
+    "short-term memory",
+    "long-term memory",
+    "working memory",
+    "Baddeley",
+    "phonological loop",
+    "visuospatial sketchpad",
+    "central executive",
+    "maintenance rehearsal",
+    "chunking",
+    "elaborative rehearsal",
+    "levels of processing",
+    "Craik and Lockhart",
+    "structural processing",
+    "phonetic processing",
+    "semantic processing",
+    "declarative memory",
+    "procedural memory",
+    "episodic memory",
+    "semantic memory",
+    "flashbulb memory",
+    "implicit memory",
+    "recall",
+    "recognition",
+    "priming",
+    "trace decay",
+    "interference",
+    "proactive interference",
+    "retroactive interference",
+    "retrieval cues",
+    "mnemonics",
+    "keyword method",
+    "method of loci",
+    "PQRST"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Memory is one storage box.",
+      "correction": "The chapter presents several processes, systems and long-term memory types."
+    },
+    {
+      "claim": "Short-term memory is passive storage.",
+      "correction": "Working memory actively manipulates information."
+    },
+    {
+      "claim": "Rote repetition always gives the best retention.",
+      "correction": "Semantic and elaborative processing creates stronger associations."
+    },
+    {
+      "claim": "Forgetting always means a trace disappeared.",
+      "correction": "Interference or missing retrieval cues may make stored information inaccessible."
+    },
+    {
+      "claim": "Recognition and recall are the same.",
+      "correction": "Recall generates information; recognition identifies previously encountered items."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Review Question 1 on encoding, storage and retrieval.",
+    "NCERT Review Question 3 on rehearsal.",
+    "NCERT Review Question 4 on long-term memory types.",
+    "NCERT Review Question 6 on forgetting.",
+    "NCERT Review Question 7 on memory improvement."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Review Questions 1–7 and one Project Idea.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
