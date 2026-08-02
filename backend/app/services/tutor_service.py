@@ -1352,15 +1352,18 @@ IMPORTANT:
     else:
         textbook_visuals = []
 
-    save_mentor_memory(
-        username=username,
-        grade=grade,
-        mode=mode,
-        subject=subject,
-        chapter=chapter,
-        question=question,
-        answer=answer,
-    )
+    try:
+        save_mentor_memory(
+            username=username,
+            grade=grade,
+            mode=mode,
+            subject=subject,
+            chapter=chapter,
+            question=question,
+            answer=answer,
+        )
+    except Exception:
+        pass  # Never let mentor-memory logging block doubt delivery
 
     suggestions = []
 
