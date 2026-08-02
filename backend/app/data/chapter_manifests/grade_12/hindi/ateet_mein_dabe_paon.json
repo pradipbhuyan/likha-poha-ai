@@ -2,18 +2,22 @@
   "grade": "Grade 12",
   "subject": "Hindi",
   "chapter": "Ateet Mein Dabe Paon",
-  "central_question": "How does Om Thanvi combine archaeology and travel writing to make Mohenjo-daro’s planned urban civilisation vivid and intellectually responsible?",
+  "central_question": "मुअनजो-दड़ो के नगर-नियोजन, जल-व्यवस्था, शिल्प और दैनिक जीवन के अवशेष सिंधु सभ्यता को समझ, अनुशासन और सौंदर्य पर आधारित सभ्यता कैसे सिद्ध करते हैं?",
   "in_scope_units": [
-    "City scale and experiential entry",
-    "Discovery and stupa",
-    "Town planning and citadel",
-    "Great Bath and drainage",
-    "Material culture, inference and style"
+    "ओम थानवी की यात्रा-दृष्टि और मुअनजो-दड़ो-हड़प्पा का परिचय",
+    "कृत्रिम टीलों पर बसा नगर, बाढ़ से सुरक्षा और जीवित खंडहर का अनुभव",
+    "बौद्ध स्तूप से पुरातात्त्विक खोज तथा राखालदास बनर्जी और जॉन मार्शल की भूमिका",
+    "गढ़, निचला नगर, सीधी-आड़ी सड़कें और ग्रिड योजना",
+    "महाकुंड, स्नानघर, कुएँ और उन्नत ढकी नालियों की जल-व्यवस्था",
+    "कोठार, खेती, कपास, कताई-बुनाई, रंगाई और दूरस्थ व्यापार",
+    "मकानों, मुहरों, मूर्तियों, आभूषणों और दैनिक उपयोग की वस्तुओं से सामाजिक जीवन",
+    "राजसत्ता के भव्य प्रदर्शन का अभाव और समझ से अनुशासित सभ्यता का संकेत",
+    "अभ्यास—नगर-नियोजन, जल-संस्कृति, सौंदर्य-बोध और सामाजिक अनुशासन"
   ],
   "banned_topics": [
-    "Content from adjacent chapters not present in the supplied source.",
-    "Biographical or historical claims not stated in the supplied source.",
-    "Invented incidents, quotations, dates or interpretations unsupported by the text."
+    "डॉ. आंबेडकर का निबंध “श्रम विभाजन और जाति-प्रथा”",
+    "जाति द्वारा पेशे का पूर्वनिर्धारण",
+    "स्वतंत्रता, समता और भ्रातृता पर आदर्श समाज"
   ],
   "must_include_keywords": [
     "ओम थानवी",
@@ -21,36 +25,55 @@
     "मुअनजो-दड़ो",
     "हड़प्पा",
     "सिंधु घाटी सभ्यता",
+    "नियोजित नगर",
+    "ताम्रकाल",
+    "कृत्रिम टीले",
+    "बौद्ध स्तूप",
     "राखालदास बनर्जी",
     "जॉन मार्शल",
-    "बौद्ध स्तूप",
     "गढ़",
-    "ग्रिड प्लान",
+    "ग्रिड योजना",
     "महाकुंड",
     "पक्की ईंटें",
-    "जल-निकासी",
+    "जल निकासी",
+    "ढकी नालियाँ",
+    "कुएँ",
+    "स्नानघर",
     "कोठार",
-    "पुरातत्त्व",
-    "यात्रावृत्तांत"
+    "खेती",
+    "कपास",
+    "कताई-बुनाई",
+    "रंगाई",
+    "मेलुहा",
+    "मुहरें",
+    "मूर्तियाँ",
+    "आभूषण",
+    "सौंदर्य-बोध",
+    "जल-संस्कृति",
+    "समझ से अनुशासन",
+    "जीवित खंडहर"
   ],
   "known_pitfalls": [
     {
-      "claim": "The Buddhist stupa belongs to the Indus civilisation.",
-      "correction": "It was built much later on an older mound; excavation around it revealed earlier remains."
+      "claim": "मुअनजो-दड़ो केवल मृत खंडहर है और वहाँ से जीवन की कोई कल्पना नहीं की जा सकती।",
+      "correction": "लेखक उसकी गलियों, देहरियों, रसोई और अधूरी सीढ़ियों में आज भी प्राचीन जीवन की ध्वनि, गंध और गति अनुभव करता है।"
     },
     {
-      "claim": "Every building’s function is known with certainty.",
-      "correction": "Several functions are archaeological inferences based on structure and finds."
+      "claim": "महाकुंड साधारण निजी स्नानघर था।",
+      "correction": "उसकी विशालता, पक्की जलरोधी संरचना, आसपास के कक्ष, कुएँ और निकासी के आधार पर उसे सामूहिक तथा संभवतः अनुष्ठानिक स्नान से जोड़ा गया है।"
+    },
+    {
+      "claim": "सिंधु सभ्यता की विशेषता विशाल राजमहल और युद्ध-स्मारक हैं।",
+      "correction": "पाठ में भव्य महल, राजकीय समाधि या सैन्य प्रदर्शन का अभाव रेखांकित है; नगर-व्यवस्था और नागरिक सुविधाएँ अधिक प्रमुख हैं।"
     }
   ],
   "recommended_example_progression": [
-    "Living ruins",
-    "Discovery",
-    "Planning",
-    "Water engineering",
-    "Evidence and uncertainty"
+    "NCERT आरंभिक यात्रा-वर्णन—खंडहर में जीवित नगर का अनुभव और पुरातात्त्विक कल्पना समझना।",
+    "NCERT नगर-नियोजन प्रसंग—गढ़, ग्रिड योजना और सामाजिक संगठन का विश्लेषण।",
+    "NCERT महाकुंड तथा नाली प्रसंग—जल-संस्कृति और तकनीकी समझ का प्रमाण प्रस्तुत करना।",
+    "NCERT अभ्यास, प्रश्न 3—ताकत के बजाय समझ से अनुशासित सभ्यता होने के पुरातात्त्विक चिह्नों का समेकित उत्तर।"
   ],
-  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter questions printed in the supplied NCERT source; answers must be supported by the text.",
+  "ncert_end_of_chapter_exercises_reference": "स्रोत के अंत में “अभ्यास” के अंतर्गत मुअनजो-दड़ो की विशेषताओं, नगर-योजना, जल-संस्कृति, सौंदर्य-बोध और समझ से अनुशासित सभ्यता पर प्रश्न दिए गए हैं।",
   "manifest_version": "1.0",
   "manifest_status": "gpt55_generated"
 }

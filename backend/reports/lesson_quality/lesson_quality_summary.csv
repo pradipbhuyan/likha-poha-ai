@@ -1,19 +1,20 @@
 grade,subject,chapter,step_count,overall_score,completeness_score,formula_quality_score,mcq_quality_score,pedagogy_score,student_flow_score,critical,high,medium,low,audited_at
-Grade 11,Biology,Chapter 6: Anatomy of Flowering Plants,2,94,100,90,80,98,100,0,0,0,1,2026-08-02T13:14:01.624280+00:00
-Grade 10,English,Text Book - Chapter 8: The Sermon at Benares,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.624515+00:00
-Grade 11,Accountancy,Chapter 9: Financial Statements – II,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.624648+00:00
-Grade 10,Social Science,Geography - Chapter 2: Forest and Wildlife Resources,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.625248+00:00
-Grade 10,Social Science,History - Chapter 5: Print Culture and the Modern World,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.625562+00:00
-Grade 10,Science,Chapter 4: Carbon and Its Compounds,2,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.626267+00:00
-Grade 10,Science,Chapter 7: How do Organisms Reproduce?,1,93,95,90,80,100,100,0,0,1,0,2026-08-02T13:14:01.626733+00:00
-Grade 10,English,Supplementary Reader - Chapter 8: Bholi,1,94,100,90,80,98,100,0,0,0,1,2026-08-02T13:14:01.627023+00:00
-Grade 11,Accountancy,Chapter 4: Recording of Transactions – II,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.627239+00:00
-Grade 10,Social Science,History - Chapter 3: The Making of a Global World,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.627315+00:00
-Grade 10,English,Text Book - Chapter 3: Two Stories about Flying,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.627659+00:00
-Grade 11,Accountancy,Chapter 3: Recording of Transactions – I,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.627846+00:00
-Grade 10,English,Workbook - Chapter 1: A Letter to God,1,94,100,90,80,98,100,0,0,0,1,2026-08-02T13:14:01.627956+00:00
-Grade 10,Social Science,History - Chapter 1: The Rise of Nationalism in Europe,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.628184+00:00
-Grade 10,Science,Chapter 10: The Human Eye and the Colourful World,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.628363+00:00
-Grade 11,Biology,Chapter 16: Excretory Products and Their Elimination,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.628677+00:00
-Grade 10,Social Science,Text Book - Chapter 5: Consumer Rights,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.628976+00:00
-Grade 10,English,Grammar: Editing and Omission (Error Correction),1,94,100,90,80,100,100,0,0,0,0,2026-08-02T13:14:01.629123+00:00
+Grade 10,English,Chapter 1: A Triumph of Surgery,1,94,100,90,80,98,100,0,0,0,1,2026-08-02T15:24:30.242081+00:00
+Grade 10,Science,Chapter 5: Life Processes,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.242252+00:00
+Grade 11,Accountancy,Chapter 2: Theory Base of Accounting,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.242381+00:00
+Grade 10,Social Science,Geography - Chapter 5: Minerals and Energy Resources,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.242572+00:00
+Grade 10,Maths,Chapter 3: Pair of Linear Equations in Two Variables,2,93,95,90,80,100,100,0,0,1,0,2026-08-02T15:24:30.243044+00:00
+Grade 11,Biology,Chapter 19: Excretory Products and Their Elimination,1,94,100,90,80,98,100,0,0,0,1,2026-08-02T15:24:30.243213+00:00
+Grade 11,Biology,Chapter 14: Respiration in Plants,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.243337+00:00
+Grade 10,English,Text Book - Chapter 3: Two Stories about Flying,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.243529+00:00
+Grade 10,Maths,Chapter 5: Arithmetic Progressions,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.243652+00:00
+Grade 11,Biology,Chapter 4: Animal Kingdom,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.244174+00:00
+Grade 10,English,Workbook - Chapter 5: Glimpses of India,1,94,100,90,80,98,100,0,0,0,1,2026-08-02T15:24:30.244297+00:00
+Grade 10,Social Science,Political Science - Chapter 1: Power-sharing,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.244317+00:00
+Grade 10,Social Science,Chapter 7: Lifelines of National Economy,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.244479+00:00
+Grade 10,English,Text Book - Chapter 5: Glimpses of India,1,94,100,90,80,98,100,0,0,0,1,2026-08-02T15:24:30.244608+00:00
+Grade 10,English,Workbook - Chapter 1: A Letter to God,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.244682+00:00
+Grade 11,Accountancy,Chapter 9: Financial Statements – II,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.244781+00:00
+Grade 10,Hindi,अध्याय 6: मंगलेश डबराल,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.244936+00:00
+Grade 11,Biology,Chapter 16: Excretory Products and Their Elimination,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.245110+00:00
+Grade 10,Maths,Chapter 11: Areas Related to Circles,1,94,100,90,80,100,100,0,0,0,0,2026-08-02T15:24:30.245225+00:00

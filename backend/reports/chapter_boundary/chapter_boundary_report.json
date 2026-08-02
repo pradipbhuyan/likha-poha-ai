@@ -1,69 +1,69 @@
 {
-  "audited_at": "2026-08-02T13:51:59.322296+00:00",
+  "audited_at": "2026-08-02T15:32:19.267916+00:00",
   "manifests_used": 1,
   "lessons_audited": 5,
   "total_critical_findings": 0,
   "total_high_findings": 0,
   "results": [
     {
-      "lesson_cache_id": "dd540bd9-0c4b-4c32-ac34-7c0c1de80277",
+      "lesson_cache_id": "84ca7baf-0d41-4a54-8960-fac8a1c85f87",
       "grade": "Grade 12",
       "subject": "Hindi",
-      "chapter": "Shram Vibhajan Aur Jati Pratha",
-      "step_title": "Core explanation",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/shram_vibhajan_aur_jati_pratha.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 2299
-    },
-    {
-      "lesson_cache_id": "165ae62b-8309-40e3-950f-dab434d4c17d",
-      "grade": "Grade 12",
-      "subject": "Hindi",
-      "chapter": "Shram Vibhajan Aur Jati Pratha",
-      "step_title": "Exam-style problems",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/shram_vibhajan_aur_jati_pratha.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 2325
-    },
-    {
-      "lesson_cache_id": "d1236b92-cc1c-4233-8fe0-864b981610c4",
-      "grade": "Grade 12",
-      "subject": "Hindi",
-      "chapter": "Shram Vibhajan Aur Jati Pratha",
+      "chapter": "Ateet Mein Dabe Paon",
       "step_title": "Concept introduction",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/shram_vibhajan_aur_jati_pratha.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/ateet_mein_dabe_paon.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 2229
+      "content_length": 2221
     },
     {
-      "lesson_cache_id": "d674a09f-b716-4dfa-8758-00b6b8e91758",
+      "lesson_cache_id": "7ca8f3da-4d41-4796-84c9-03be6e01198c",
       "grade": "Grade 12",
       "subject": "Hindi",
-      "chapter": "Shram Vibhajan Aur Jati Pratha",
-      "step_title": "Revision and recap",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/shram_vibhajan_aur_jati_pratha.json",
+      "chapter": "Ateet Mein Dabe Paon",
+      "step_title": "Core explanation",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/ateet_mein_dabe_paon.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 3021
+      "content_length": 2291
     },
     {
-      "lesson_cache_id": "4a291df6-1727-49c8-a50a-11dccd09c4d0",
+      "lesson_cache_id": "028d3b1c-aad7-4e0a-bcfa-9e943ac5c8e3",
       "grade": "Grade 12",
       "subject": "Hindi",
-      "chapter": "Shram Vibhajan Aur Jati Pratha",
+      "chapter": "Ateet Mein Dabe Paon",
       "step_title": "Worked examples",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/shram_vibhajan_aur_jati_pratha.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/ateet_mein_dabe_paon.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 2256
+      "content_length": 2248
+    },
+    {
+      "lesson_cache_id": "7e452f4d-1cd5-4fbb-9680-33c622c71a8c",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Ateet Mein Dabe Paon",
+      "step_title": "Exam-style problems",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/ateet_mein_dabe_paon.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2317
+    },
+    {
+      "lesson_cache_id": "778e9aa9-ce3e-4ef4-8f1d-ec992d92ef7e",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Ateet Mein Dabe Paon",
+      "step_title": "Revision and recap",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/ateet_mein_dabe_paon.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 3013
     }
   ]
 }
