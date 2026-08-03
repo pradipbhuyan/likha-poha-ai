@@ -162,19 +162,19 @@ describe("ExamPrepPage — access control", () => {
     });
   });
 
-  it("shows premium gate with a working Upgrade to Unlock CTA for free-tier Grade 11 student", async () => {
+  it("shows premium gate with a working Unlock CTA for free-tier Grade 11 student", async () => {
     mockFetch(ACCESS_FREE_PREVIEW);
     render(<ExamPrepPage user={grade11FreeUser} />);
     await waitFor(() => {
-      expect(screen.getByText(/Upgrade to Unlock/i)).toBeTruthy();
+      expect(screen.getByText(/Unlock for/i)).toBeTruthy();
     });
   });
 
-  it("shows nano plan message with a working Upgrade to Unlock CTA for Nano-tier Grade 11 student", async () => {
+  it("shows nano plan message with a working Unlock CTA for Nano-tier Grade 11 student", async () => {
     mockFetch(ACCESS_NANO_PREVIEW);
     render(<ExamPrepPage user={grade11NanoUser} />);
     await waitFor(() => {
-      expect(screen.getByText(/Upgrade to Unlock/i)).toBeTruthy();
+      expect(screen.getByText(/Unlock for/i)).toBeTruthy();
     });
   });
 

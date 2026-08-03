@@ -14,7 +14,15 @@
  */
 
 import React, { useEffect, useState, useRef } from "react";
-import { Loader, CheckCircle, XCircle } from "lucide-react";
+import {
+  Loader, CheckCircle, XCircle, Lock, Ruler, Microscope, Landmark,
+  GraduationCap, Globe, SatelliteDish, BarChart3, Bot, Target, Rocket, Radar,
+  ClipboardList, SkipForward, Calendar, HelpCircle, BookOpen, Atom, Settings,
+  PenLine, Puzzle, FlaskConical, Leaf, MapPin, Wallet, Briefcase, Users, Brain,
+  Scale, Languages, Sprout, PawPrint, Headphones, FileText, Trophy, Dumbbell, ScrollText,
+  TrendingUp, TrendingDown, Minus, Key, AlertTriangle, Zap, Flag, Calculator,
+  Inbox, Lightbulb, Repeat, Clock, X, Award, Sparkles, Check,
+} from "lucide-react";
 import {
   getExamPrepDashboard,
   getExamPrepSubjects,
@@ -26,7 +34,12 @@ import {
   submitSimulatedTest,
   getSimTestHistory,
 } from "../api/examPrep";
-import { getPackPrices, createPackOrder, verifyPackPayment } from "../api/examPrepPacks";
+import {
+  createStudentPaymentOrder,
+  getStudentPaymentConfig,
+  verifyStudentPayment,
+} from "../api/payments";
+import { SUBSCRIPTION_PLANS } from "../config/subscriptionPlans";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -36,12 +49,12 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 const TEST_ACCESS_USERS = new Set(["akshita.teststudent"]);
 
 const EXAMS = {
-  jee_main:   { label: "JEE Main",   icon: "📐",  color: "#6366f1", active: true },
-  neet_ug:    { label: "NEET UG",    icon: "🔬",  color: "#10b981", active: true },
-  cuet_ug:    { label: "CUET UG",    icon: "🏛️",  color: "#f59e0b", active: true },
-  sat:        { label: "SAT",        icon: "🎓",  color: "#3b82f6", active: true },
-  ielts:      { label: "IELTS",      icon: "🌐",  color: "#8b5cf6", active: true },
-  toefl_ibt:  { label: "TOEFL iBT", icon: "📡",  color: "#06b6d4", active: true },
+  jee_main:   { label: "JEE Main",   icon: Ruler,          color: "#6366f1", active: true },
+  neet_ug:    { label: "NEET UG",    icon: Microscope,     color: "#10b981", active: true },
+  cuet_ug:    { label: "CUET UG",    icon: Landmark,       color: "#f59e0b", active: true },
+  sat:        { label: "SAT",        icon: GraduationCap,  color: "#3b82f6", active: true },
+  ielts:      { label: "IELTS",      icon: Globe,          color: "#8b5cf6", active: true },
+  toefl_ibt:  { label: "TOEFL iBT", icon: SatelliteDish,  color: "#06b6d4", active: true },
 };
 
 // Exam-specific simulation config — aligned to NTA 2024–2026 official patterns
@@ -67,31 +80,31 @@ const CUET_DOMAIN_SUBJECTS = [
   "English (Domain)", "Hindi (Domain)",
 ];
 const CUET_PRESETS = [
-  { id: "science_pcm",  label: "Science — PCM",  icon: "📐", color: "#6366f1", popular: true,
+  { id: "science_pcm",  label: "Science — PCM",  icon: Ruler, color: "#6366f1", popular: true,
     desc: "Physics, Chemistry, Mathematics + English + General Test",
     subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "General Test"] },
-  { id: "science_pcb",  label: "Science — PCB",  icon: "🔬", color: "#10b981", popular: true,
+  { id: "science_pcb",  label: "Science — PCB",  icon: Microscope, color: "#10b981", popular: true,
     desc: "Physics, Chemistry, Biology + English + General Test",
     subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Biology (Domain)", "General Test"] },
-  { id: "science_pcmb", label: "Science — PCMB", icon: "⚛️", color: "#8b5cf6", popular: false,
+  { id: "science_pcmb", label: "Science — PCMB", icon: Atom, color: "#8b5cf6", popular: false,
     desc: "Physics, Chemistry, Maths, Biology + English + General Test",
     subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "Biology (Domain)", "General Test"] },
-  { id: "commerce",     label: "Commerce",        icon: "📊", color: "#f59e0b", popular: true,
+  { id: "commerce",     label: "Commerce",        icon: BarChart3, color: "#f59e0b", popular: true,
     desc: "Accountancy, Business Studies, Economics + English + General Test",
     subjects: ["English", "Accountancy", "Business Studies", "Economics", "General Test"] },
-  { id: "humanities",   label: "Humanities",      icon: "🏛️", color: "#ec4899", popular: true,
+  { id: "humanities",   label: "Humanities",      icon: Landmark, color: "#ec4899", popular: true,
     desc: "History, Geography, Political Science + English + General Test",
     subjects: ["English", "History", "Geography", "Political Science", "General Test"] },
-  { id: "custom",       label: "Custom",          icon: "⚙️", color: "#64748b", popular: false,
+  { id: "custom",       label: "Custom",          icon: Settings, color: "#64748b", popular: false,
     desc: "Choose your own subject combination",
     subjects: [] },
 ];
 const CUET_SUBJECT_ICONS = {
-  "English": "📝", "General Test": "🧩",
-  "Physics (Domain)": "⚛️", "Chemistry (Domain)": "🧪", "Mathematics (Domain)": "📐", "Biology (Domain)": "🌿",
-  "History": "🏺", "Geography": "🌍", "Political Science": "🏛️", "Economics": "📊",
-  "Accountancy": "📒", "Business Studies": "💼", "Sociology": "👥", "Psychology": "🧠", "Legal Studies": "⚖️",
-  "English (Domain)": "📖", "Hindi (Domain)": "📜",
+  "English": PenLine, "General Test": Puzzle,
+  "Physics (Domain)": Atom, "Chemistry (Domain)": FlaskConical, "Mathematics (Domain)": Ruler, "Biology (Domain)": Leaf,
+  "History": ScrollText, "Geography": MapPin, "Political Science": Landmark, "Economics": BarChart3,
+  "Accountancy": Wallet, "Business Studies": Briefcase, "Sociology": Users, "Psychology": Brain, "Legal Studies": Scale,
+  "English (Domain)": BookOpen, "Hindi (Domain)": Languages,
 };
 
 // ── Content protection — invisible zero-width character watermarking ───────────
@@ -192,12 +205,17 @@ if (typeof document !== "undefined" && !document.getElementById("_qp_print_block
 }
 
 const SUBJECT_ICONS = {
-  Physics: "⚛️", Chemistry: "🧪", Mathematics: "📐",
-  Biology: "🌿", Botany: "🌱", Zoology: "🦎",
-  "Reading & Writing": "✍️",
-  "Listening": "🎧", "Reading": "📖",
-  "Vocabulary & Grammar": "📝", "Integrated Skills": "🌐",
+  Physics: Atom, Chemistry: FlaskConical, Mathematics: Ruler,
+  Biology: Leaf, Botany: Sprout, Zoology: PawPrint,
+  "Reading & Writing": PenLine,
+  "Listening": Headphones, "Reading": BookOpen,
+  "Vocabulary & Grammar": FileText, "Integrated Skills": Globe,
 };
+function SubjectIcon({ name, map = SUBJECT_ICONS, size = 18, style }) {
+  const Icon = map[name] || BookOpen;
+  return <Icon size={size} strokeWidth={2} style={style} />;
+}
+
 const SUBJECT_COLORS = {
   Physics: "#6366f1", Chemistry: "#10b981", Mathematics: "#f59e0b",
   Biology: "#22c55e", Botany: "#16a34a", Zoology: "#0891b2",
@@ -210,12 +228,12 @@ const DIFFICULTY_COLORS = { easy: "#22c55e", medium: "#f59e0b", hard: "#ef4444" 
 
 // ── Sub-components ─────────────────────────────────────────────────────────────
 
-function StatCard({ value, label, icon, color = "#6366f1" }) {
+function StatCard({ value, label, icon: Icon, color = "#6366f1" }) {
   return (
     <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: "14px 16px", display: "flex", flexDirection: "column", gap: 4 }}>
       <div style={{ fontSize: "1.6rem", fontWeight: 800, color }}>{value}</div>
       <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)", display: "flex", alignItems: "center", gap: 4 }}>
-        {icon && <span>{icon}</span>}
+        {Icon && <Icon size={13} strokeWidth={2.25} />}
         {label}
       </div>
     </div>
@@ -232,7 +250,7 @@ function SubjectCard({ subject, onClick, selected, examType }) {
   return (
     <div onClick={onClick} className="premium-card" style={{ background: selected ? `${color}18` : undefined, border: `2px solid ${selected ? color : "var(--border,#334155)"}`, borderRadius: 12, padding: "16px", cursor: "pointer", transition: "all .15s", marginBottom: 0 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
-        <span style={{ fontSize: "1.6rem" }}>{SUBJECT_ICONS[subject.name] || "📚"}</span>
+        <SubjectIcon name={subject.name} size={22} />
         {subject.weightage_pct > 0 && (
           <span style={{ fontSize: ".65rem", fontWeight: 700, background: `${color}22`, color, padding: "2px 8px", borderRadius: 20 }}>{subject.weightage_pct}%</span>
         )}
@@ -325,7 +343,7 @@ function QuestionCard({ question, selectedOption, onSelect, feedback, showFeedba
         })}
       </div>
       {question.ncert_reference && (
-        <div style={{ marginTop: 8, fontSize: ".62rem", color: "var(--muted,#64748b)" }}>📖 {question.ncert_reference}</div>
+        <div style={{ marginTop: 8, fontSize: ".62rem", color: "var(--muted,#64748b)", display: "flex", alignItems: "center", gap: 4 }}><BookOpen size={11} strokeWidth={2.25} /> {question.ncert_reference}</div>
       )}
     </div>
   );
@@ -357,7 +375,7 @@ function AIPanel({ question, feedback, user }) {
   if (!question) {
     return (
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", padding: 24, color: "var(--muted,#64748b)", fontSize: ".78rem", textAlign: "center", gap: 12 }}>
-        <div style={{ fontSize: "2.5rem" }}>🤖</div>
+        <Bot size={40} strokeWidth={1.5} />
         <div>Select a question to get AI step-by-step explanation</div>
       </div>
     );
@@ -374,7 +392,9 @@ function AIPanel({ question, feedback, user }) {
       {feedback && (
         <>
           <div style={{ background: feedback.is_correct ? "rgba(34,197,94,.1)" : "rgba(239,68,68,.08)", border: `1px solid ${feedback.is_correct ? "rgba(34,197,94,.3)" : "rgba(239,68,68,.25)"}`, borderRadius: 8, padding: "8px 12px", marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: "1rem" }}>{feedback.is_correct ? "✅" : "❌"}</span>
+            {feedback.is_correct
+              ? <CheckCircle size={16} strokeWidth={2.25} color="#22c55e" />
+              : <XCircle size={16} strokeWidth={2.25} color="#ef4444" />}
             <div>
               <div style={{ fontWeight: 700, fontSize: ".75rem", color: feedback.is_correct ? "#4ade80" : "#f87171" }}>
                 {feedback.is_correct ? "Correct!" : "Incorrect"} · {feedback.marks_awarded > 0 ? "+" : ""}{feedback.marks_awarded} marks
@@ -418,8 +438,8 @@ function AIPanel({ question, feedback, user }) {
               placeholder="Ask AI: Why does this apply here?"
               style={{ flex: 1, background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e2e8f0)", borderRadius: 6, padding: "6px 9px", color: "var(--text,#1e293b)", fontSize: ".72rem", fontFamily: "inherit" }} />
             <button type="submit" disabled={fuLoading || !followUp.trim()}
-              style={{ padding: "6px 11px", background: "#6366f1", border: "none", borderRadius: 6, color: "#fff", fontWeight: 700, fontSize: ".72rem", cursor: "pointer", opacity: fuLoading ? .6 : 1, fontFamily: "inherit" }}>
-              {fuLoading ? <Loader size={12} /> : "Ask ✦"}
+              style={{ padding: "6px 11px", background: "#6366f1", border: "none", borderRadius: 6, color: "#fff", fontWeight: 700, fontSize: ".72rem", cursor: "pointer", opacity: fuLoading ? .6 : 1, fontFamily: "inherit", display: "inline-flex", alignItems: "center", gap: 4 }}>
+              {fuLoading ? <Loader size={12} /> : <><Sparkles size={12} strokeWidth={2.25} /> Ask</>}
             </button>
           </form>
           {fuAnswer && (
@@ -478,7 +498,7 @@ function OnScreenCalc({ onClose }) {
       boxShadow:"0 12px 40px rgba(0,0,0,.85)" }}>
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
         <span style={{ fontSize:".7rem", fontWeight:700, color:"#8e8e93" }}>Calculator (basic — no scientific in JEE)</span>
-        <button onClick={onClose} style={{ background:"none", border:"none", color:"#8e8e93", cursor:"pointer", fontSize:"1rem", lineHeight:1 }}>✕</button>
+        <button onClick={onClose} style={{ background:"none", border:"none", color:"#8e8e93", cursor:"pointer", lineHeight:1, display: "flex" }}><X size={15} strokeWidth={2.25} /></button>
       </div>
       <div style={{ background:"#000", borderRadius:10, padding:"8px 12px", marginBottom:10, textAlign:"right" }}>
         <div style={{ fontSize:".62rem", color:"#8e8e93", minHeight:16 }}>{op ? String(p) + " " + op : ""}</div>
@@ -557,7 +577,7 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
 
   if (!questions.length) return (
     <div style={{ textAlign:"center", padding:48, color:"var(--muted,#64748b)" }}>
-      <div style={{ fontSize:"2rem", marginBottom:12 }}>📭</div>
+      <div style={{ marginBottom:12 }}><Inbox size={32} strokeWidth={1.5} /></div>
       <div style={{ fontWeight:700, marginBottom:6 }}>No questions yet</div>
       <button onClick={onSubmit} style={{ marginTop:16, padding:"10px 22px", background:"#6366f1", border:"none", borderRadius:8, color:"#fff", fontWeight:700, cursor:"pointer", fontFamily:"inherit" }}>End Test</button>
     </div>
@@ -580,7 +600,7 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
           return (
             <button key={s} onClick={()=>setSection(s)}
               style={{ padding:"7px 14px", borderRadius:10, border:"2px solid "+(act?sc:"var(--border,#334155)"), background:act?sc+"18":"var(--panel,#1e293b)", color:act?sc:"var(--muted,#94a3b8)", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit", display:"flex", alignItems:"center", gap:6 }}>
-              <span>{SUBJECT_ICONS[s]||"📚"}</span><span>{s}</span>
+              <SubjectIcon name={s} size={16} /><span>{s}</span>
               <span style={{ fontSize:".6rem", background:act?sc+"22":"rgba(255,255,255,.06)", color:act?sc:"var(--muted,#64748b)", padding:"1px 6px", borderRadius:10 }}>{ans}/{cnt}</span>
             </button>
           );
@@ -597,9 +617,9 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
             <div style={{ display:"flex", alignItems:"center", gap:10 }}>
               <span style={{ fontSize:".82rem", fontWeight:800 }}>Q {qIdx+1}</span>
               <span style={{ fontSize:".65rem", color:"var(--muted,#64748b)" }}>of {questions.length}</span>
-              {marked[q?.id] && <span style={{ fontSize:".6rem", background:"rgba(139,92,246,.2)", color:"#a78bfa", padding:"1px 7px", borderRadius:20 }}>🚩 Marked</span>}
+              {marked[q?.id] && <span style={{ fontSize:".6rem", background:"rgba(139,92,246,.2)", color:"#a78bfa", padding:"1px 7px", borderRadius:20, display:"inline-flex", alignItems:"center", gap:3 }}><Flag size={9} strokeWidth={2.5} /> Marked</span>}
             </div>
-            <div style={{ fontSize:".65rem", color:"var(--muted,#64748b)" }}>✅ {answered} / {questions.length} answered</div>
+            <div style={{ fontSize:".65rem", color:"var(--muted,#64748b)", display:"flex", alignItems:"center", gap:4 }}><CheckCircle size={12} strokeWidth={2.25} /> {answered} / {questions.length} answered</div>
           </div>
 
           {/* Question body — copy protected */}
@@ -632,11 +652,11 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
           <div style={{ padding:"12px 16px", borderTop:"1px solid var(--border,#334155)", display:"flex", gap:8, flexWrap:"wrap", background:"var(--panel,#1e293b)", alignItems:"center" }}>
             {qIdx > 0 && <button onClick={()=>goTo(qIdx-1)} style={{ padding:"8px 14px", background:"rgba(255,255,255,.06)", border:"1px solid var(--border,#334155)", borderRadius:8, color:"var(--muted,#94a3b8)", fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>← Prev</button>}
             <button onClick={clearAns} style={{ padding:"8px 14px", background:"transparent", border:"1px solid rgba(239,68,68,.3)", borderRadius:8, color:"#f87171", fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>Clear</button>
-            <button onClick={markNext} style={{ padding:"8px 14px", background:"rgba(139,92,246,.12)", border:"1px solid rgba(139,92,246,.3)", borderRadius:8, color:"#a78bfa", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>🚩 Mark & Next</button>
+            <button onClick={markNext} style={{ padding:"8px 14px", background:"rgba(139,92,246,.12)", border:"1px solid rgba(139,92,246,.3)", borderRadius:8, color:"#a78bfa", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit", display:"inline-flex", alignItems:"center", gap:6 }}><Flag size={13} strokeWidth={2.25} /> Mark & Next</button>
             {/* Calculator button — inline so it's never hidden by other widgets */}
             <button onClick={()=>setShowCalc(v=>!v)} title="Basic Calculator"
-              style={{ padding:"8px 13px", background:showCalc?"rgba(245,158,11,.15)":"rgba(99,102,241,.1)", border:"1px solid "+(showCalc?"rgba(245,158,11,.4)":"rgba(99,102,241,.3)"), borderRadius:8, color:showCalc?"#f59e0b":"#a5b4fc", fontWeight:700, fontSize:".82rem", cursor:"pointer", fontFamily:"inherit" }}>
-              🔢 Calc
+              style={{ padding:"8px 13px", background:showCalc?"rgba(245,158,11,.15)":"rgba(99,102,241,.1)", border:"1px solid "+(showCalc?"rgba(245,158,11,.4)":"rgba(99,102,241,.3)"), borderRadius:8, color:showCalc?"#f59e0b":"#a5b4fc", fontWeight:700, fontSize:".82rem", cursor:"pointer", fontFamily:"inherit", display:"inline-flex", alignItems:"center", gap:6 }}>
+              <Calculator size={14} strokeWidth={2.25} /> Calc
             </button>
             <button onClick={saveNext} style={{ padding:"8px 18px", background:"linear-gradient(135deg,#6366f1,#8b5cf6)", border:"none", borderRadius:8, color:"#fff", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit", marginLeft:"auto" }}>Save & Next →</button>
           </div>
@@ -669,8 +689,8 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
           {/* Submit */}
           <div style={{ padding:"12px" }}>
             <button onClick={doSubmit} disabled={testLoading}
-              style={{ width:"100%", padding:"10px 0", background:"#22c55e", border:"none", borderRadius:9, color:"#fff", fontWeight:800, fontSize:".82rem", cursor:"pointer", fontFamily:"inherit", opacity:testLoading?.6:1 }}>
-              {testLoading ? "Submitting…" : "Submit Test ✓"}
+              style={{ width:"100%", padding:"10px 0", background:"#22c55e", border:"none", borderRadius:9, color:"#fff", fontWeight:800, fontSize:".82rem", cursor:"pointer", fontFamily:"inherit", opacity:testLoading?.6:1, display:"inline-flex", alignItems:"center", justifyContent:"center", gap:6 }}>
+              {testLoading ? "Submitting…" : <><Check size={15} strokeWidth={2.5} /> Submit Test</>}
             </button>
           </div>
         </div>
@@ -697,7 +717,7 @@ function FloatingTimer({ startTime, durationMins, onExpire }) {
   return (
     <div style={{ position:"fixed", top:68, right:16, zIndex:9999, background:"var(--panel,#1e293b)", border:"2px solid "+clr, borderRadius:14, padding:"9px 15px", display:"flex", alignItems:"center", gap:10, boxShadow:"0 4px 20px "+clr+"55", animation:pct<0.15?"_btimer 1s infinite":undefined }}>
       <style>{"@keyframes _btimer{0%,100%{opacity:1}50%{opacity:.6}}"}</style>
-      <span style={{ fontSize:"1.3rem" }}>⏱</span>
+      <Clock size={21} strokeWidth={2} color={clr} />
       <div>
         <div style={{ fontSize:"1.1rem", fontWeight:900, color:clr, letterSpacing:".04em" }}>{String(m).padStart(2,"0")}:{String(s).padStart(2,"0")}</div>
         <div style={{ fontSize:".55rem", color:"var(--muted,#64748b)" }}>Remaining</div>
@@ -715,7 +735,9 @@ function TestResultPage({ result, onRetake, onClose }) {
   return (
     <div className="premium-section" style={{ maxWidth: 720, margin: "0 auto" }}>
       <div style={{ textAlign: "center", marginBottom: 28 }}>
-        <div style={{ fontSize: "3rem", marginBottom: 8 }}>{score >= 60 ? "🏆" : score >= 40 ? "💪" : "📚"}</div>
+        <div style={{ marginBottom: 8, color: scoreColor, display: "flex", justifyContent: "center" }}>
+          {score >= 60 ? <Trophy size={44} strokeWidth={1.5} /> : score >= 40 ? <Dumbbell size={44} strokeWidth={1.5} /> : <BookOpen size={44} strokeWidth={1.5} />}
+        </div>
         <h3 style={{ margin: "0 0 4px", fontSize: "1.3rem", fontWeight: 800 }}>Test Complete!</h3>
         <p style={{ color: "var(--muted,#64748b)", fontSize: ".85rem" }}>{result?.exam_type?.replace("_", " ").toUpperCase()} Simulated Test</p>
       </div>
@@ -730,10 +752,10 @@ function TestResultPage({ result, onRetake, onClose }) {
 
       {/* Stats grid */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 20 }}>
-        <StatCard value={result?.total_questions || 0} label="Questions" icon="📋" color="#6366f1" />
-        <StatCard value={result?.correct || 0} label="Correct" icon="✅" color="#22c55e" />
-        <StatCard value={result?.wrong || 0} label="Wrong" icon="❌" color="#ef4444" />
-        <StatCard value={result?.skipped || 0} label="Skipped" icon="⏭️" color="#94a3b8" />
+        <StatCard value={result?.total_questions || 0} label="Questions" icon={ClipboardList} color="#6366f1" />
+        <StatCard value={result?.correct || 0} label="Correct" icon={CheckCircle} color="#22c55e" />
+        <StatCard value={result?.wrong || 0} label="Wrong" icon={XCircle} color="#ef4444" />
+        <StatCard value={result?.skipped || 0} label="Skipped" icon={SkipForward} color="#94a3b8" />
       </div>
 
       {/* Subject scores */}
@@ -749,7 +771,9 @@ function TestResultPage({ result, onRetake, onClose }) {
               <div key={subj} style={{ marginBottom: 10 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
                   <span style={{ fontSize: ".75rem", fontWeight: 600 }}>{subj}</span>
-                  <span style={{ fontSize: ".72rem", color: "var(--muted,#64748b)" }}>{data.correct}✓ {data.wrong}✗ | {subjectScore.toFixed(1)} / {maxScore.toFixed(1)}</span>
+                  <span style={{ fontSize: ".72rem", color: "var(--muted,#64748b)", display: "inline-flex", alignItems: "center", gap: 3 }}>
+                    {data.correct}<CheckCircle size={10} strokeWidth={2.5} color="#22c55e" /> {data.wrong}<XCircle size={10} strokeWidth={2.5} color="#ef4444" /> | {subjectScore.toFixed(1)} / {maxScore.toFixed(1)}
+                  </span>
                 </div>
                 <div style={{ background: "var(--surface2,rgba(0,0,0,.07))", borderRadius: 6, height: 6 }}>
                   <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg, ${color}, ${color}88)`, borderRadius: 6, transition: "width .5s" }} />
@@ -763,7 +787,7 @@ function TestResultPage({ result, onRetake, onClose }) {
       {/* Weak topics */}
       {result?.weak_topics?.length > 0 && (
         <div style={{ background: "rgba(239,68,68,.05)", border: "1px solid rgba(239,68,68,.2)", borderRadius: 10, padding: 14, marginBottom: 16 }}>
-          <div style={{ fontSize: ".75rem", fontWeight: 700, color: "#f87171", marginBottom: 8 }}>⚠️ Weak Topics — Needs Revision</div>
+          <div style={{ fontSize: ".75rem", fontWeight: 700, color: "#f87171", marginBottom: 8, display: "flex", alignItems: "center", gap: 5 }}><AlertTriangle size={14} strokeWidth={2.25} /> Weak Topics — Needs Revision</div>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
             {result.weak_topics.map(t => (
               <span key={t} style={{ fontSize: ".65rem", background: "rgba(239,68,68,.1)", color: "#f87171", padding: "3px 9px", borderRadius: 20 }}>{t}</span>
@@ -775,7 +799,7 @@ function TestResultPage({ result, onRetake, onClose }) {
       {/* AI recommendations */}
       {result?.ai_recommendations?.length > 0 && (
         <div style={{ background: "rgba(99,102,241,.05)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 10, padding: 14, marginBottom: 20 }}>
-          <div style={{ fontSize: ".75rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 8 }}>🤖 AI Recommendations</div>
+          <div style={{ fontSize: ".75rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 8, display: "flex", alignItems: "center", gap: 5 }}><Bot size={14} strokeWidth={2.25} /> AI Recommendations</div>
           <ul style={{ margin: 0, paddingLeft: 16 }}>
             {result.ai_recommendations.map((r, i) => (
               <li key={i} style={{ fontSize: ".75rem", color: "var(--text,#1e293b)", marginBottom: 4, lineHeight: 1.5 }}>{r}</li>
@@ -815,7 +839,7 @@ function CUETTestSetup({ onStart, testLoading }) {
   return (
     <div style={{ maxWidth: 680, margin: "0 auto", padding: "10px 0 20px" }}>
       <div style={{ textAlign: "center", marginBottom: 20 }}>
-        <div style={{ fontSize: "2.2rem", marginBottom: 6 }}>🏛️</div>
+        <Landmark size={36} strokeWidth={1.5} style={{ marginBottom: 6 }} />
         <h3 style={{ fontSize: "1.1rem", fontWeight: 800, margin: "0 0 4px" }}>CUET UG — Choose Your Subject Combination</h3>
         <p style={{ color: "var(--muted,#64748b)", fontSize: ".78rem", margin: 0 }}>
           Based on NTA CUET UG structure · English (mandatory) + Domain Subjects + General Test · <strong>+5 / -1</strong> marking
@@ -824,9 +848,9 @@ function CUETTestSetup({ onStart, testLoading }) {
 
       {/* Section info */}
       <div style={{ background: "rgba(245,158,11,.06)", border: "1px solid rgba(245,158,11,.2)", borderRadius: 9, padding: "8px 14px", marginBottom: 18, display: "flex", gap: 14, flexWrap: "wrap", fontSize: ".7rem", color: "var(--muted,#64748b)" }}>
-        <span>📝 <strong style={{ color: "#f59e0b" }}>Section IA</strong> — Language (English, mandatory)</span>
-        <span>📚 <strong style={{ color: "#6366f1" }}>Section II</strong> — Domain Subjects (2–6)</span>
-        <span>🧩 <strong style={{ color: "#8b5cf6" }}>Section III</strong> — General Test (most universities require)</span>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}><PenLine size={13} strokeWidth={2.25} /> <strong style={{ color: "#f59e0b" }}>Section IA</strong> — Language (English, mandatory)</span>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}><BookOpen size={13} strokeWidth={2.25} /> <strong style={{ color: "#6366f1" }}>Section II</strong> — Domain Subjects (2–6)</span>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}><Puzzle size={13} strokeWidth={2.25} /> <strong style={{ color: "#8b5cf6" }}>Section III</strong> — General Test (most universities require)</span>
       </div>
 
       {/* Preset step */}
@@ -843,7 +867,7 @@ function CUETTestSetup({ onStart, testLoading }) {
                   {preset.popular && (
                     <span style={{ position: "absolute", top: 7, right: 7, fontSize: ".52rem", background: "#22c55e22", color: "#22c55e", padding: "1px 5px", borderRadius: 8, fontWeight: 700 }}>Popular</span>
                   )}
-                  <div style={{ fontSize: "1.3rem", marginBottom: 5 }}>{preset.icon}</div>
+                  <div style={{ marginBottom: 5, color: preset.color }}><preset.icon size={22} strokeWidth={2} /></div>
                   <div style={{ fontWeight: 800, fontSize: ".82rem", marginBottom: 3, color: sel ? preset.color : "var(--text,#1e293b)" }}>{preset.label}</div>
                   <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)", lineHeight: 1.4 }}>{preset.desc}</div>
                 </div>
@@ -857,17 +881,17 @@ function CUETTestSetup({ onStart, testLoading }) {
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
                 {activePreset.subjects.map(s => (
                   <div key={s} style={{ display: "flex", alignItems: "center", gap: 5, background: s === "English" ? "rgba(99,102,241,.1)" : s === "General Test" ? "rgba(139,92,246,.1)" : "rgba(245,158,11,.07)", border: `1px solid ${s === "English" ? "rgba(99,102,241,.25)" : s === "General Test" ? "rgba(139,92,246,.25)" : "rgba(245,158,11,.2)"}`, borderRadius: 7, padding: "5px 9px", fontSize: ".7rem", fontWeight: 600 }}>
-                    <span>{CUET_SUBJECT_ICONS[s] || "📚"}</span>
+                    <SubjectIcon name={s} map={CUET_SUBJECT_ICONS} size={16} />
                     <span>{s}</span>
                     <span style={{ fontSize: ".58rem", color: "var(--muted,#64748b)" }}>{s === "General Test" ? "50Q" : "40Q"}</span>
                   </div>
                 ))}
               </div>
               <div style={{ display: "flex", gap: 14, fontSize: ".68rem", color: "var(--muted,#64748b)" }}>
-                <span>⏱ <strong>{duration} min</strong></span>
-                <span>📋 <strong>~{finalSubjects.length * 40} questions</strong></span>
-                <span>📊 <strong>+5 / -1</strong></span>
-                <span>🎯 <strong>{activePreset.subjects.length} sections</strong></span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}><Clock size={12} strokeWidth={2.25} /> <strong>{duration} min</strong></span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}><ClipboardList size={12} strokeWidth={2.25} /> <strong>~{finalSubjects.length * 40} questions</strong></span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}><BarChart3 size={12} strokeWidth={2.25} /> <strong>+5 / -1</strong></span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}><Target size={12} strokeWidth={2.25} /> <strong>{activePreset.subjects.length} sections</strong></span>
               </div>
             </div>
           )}
@@ -885,7 +909,7 @@ function CUETTestSetup({ onStart, testLoading }) {
           <div style={{ marginBottom: 12 }}>
             <div style={{ fontSize: ".68rem", fontWeight: 700, color: "#6366f1", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 6 }}>Section IA — Language (Mandatory)</div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(99,102,241,.1)", border: "1px solid rgba(99,102,241,.25)", borderRadius: 7, padding: "8px 12px" }}>
-              <span>📝</span><span style={{ fontSize: ".8rem", fontWeight: 700 }}>English</span>
+              <PenLine size={15} strokeWidth={2.25} /><span style={{ fontSize: ".8rem", fontWeight: 700 }}>English</span>
               <span style={{ fontSize: ".62rem", color: "#6366f1", marginLeft: "auto" }}>Required · 40 Qs · 45 min</span>
             </div>
           </div>
@@ -899,9 +923,9 @@ function CUETTestSetup({ onStart, testLoading }) {
                   <div key={s} onClick={() => toggleCustom(s)}
                     style={{ display: "flex", alignItems: "center", gap: 7, background: chk ? "rgba(245,158,11,.08)" : "var(--panel,#1e293b)", border: `1px solid ${chk ? "rgba(245,158,11,.35)" : "var(--border,#334155)"}`, borderRadius: 7, padding: "7px 10px", cursor: "pointer" }}>
                     <div style={{ width: 13, height: 13, borderRadius: 3, border: `2px solid ${chk ? "#f59e0b" : "#64748b"}`, background: chk ? "#f59e0b" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      {chk && <span style={{ color: "#fff", fontSize: ".55rem", fontWeight: 900 }}>✓</span>}
+                      {chk && <Check size={9} strokeWidth={3.5} color="#fff" />}
                     </div>
-                    <span style={{ fontSize: ".68rem", fontWeight: chk ? 700 : 400 }}>{CUET_SUBJECT_ICONS[s] || "📚"} {s}</span>
+                    <span style={{ fontSize: ".68rem", fontWeight: chk ? 700 : 400, display: "inline-flex", alignItems: "center", gap: 4 }}><SubjectIcon name={s} map={CUET_SUBJECT_ICONS} size={13} /> {s}</span>
                   </div>
                 );
               })}
@@ -913,9 +937,9 @@ function CUETTestSetup({ onStart, testLoading }) {
             <div onClick={() => toggleCustom("General Test")}
               style={{ display: "flex", alignItems: "center", gap: 8, background: customSubjs.includes("General Test") ? "rgba(139,92,246,.08)" : "var(--panel,#1e293b)", border: `1px solid ${customSubjs.includes("General Test") ? "rgba(139,92,246,.35)" : "var(--border,#334155)"}`, borderRadius: 7, padding: "8px 12px", cursor: "pointer" }}>
               <div style={{ width: 13, height: 13, borderRadius: 3, border: `2px solid ${customSubjs.includes("General Test") ? "#8b5cf6" : "#64748b"}`, background: customSubjs.includes("General Test") ? "#8b5cf6" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                {customSubjs.includes("General Test") && <span style={{ color: "#fff", fontSize: ".55rem", fontWeight: 900 }}>✓</span>}
+                {customSubjs.includes("General Test") && <Check size={9} strokeWidth={3.5} color="#fff" />}
               </div>
-              <span style={{ fontSize: ".8rem", fontWeight: 700 }}>🧩 General Test</span>
+              <span style={{ fontSize: ".8rem", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}><Puzzle size={15} strokeWidth={2.25} /> General Test</span>
               <span style={{ fontSize: ".62rem", color: "var(--muted,#64748b)", marginLeft: "auto" }}>50 Qs · 60 min</span>
             </div>
           </div>
@@ -932,7 +956,7 @@ function CUETTestSetup({ onStart, testLoading }) {
         onClick={() => canStart && onStart(finalSubjects)}
         disabled={testLoading || !canStart}
         style={{ padding: "12px 28px", background: canStart ? "linear-gradient(135deg,#f59e0b,#d97706)" : "var(--border,#334155)", border: "none", borderRadius: 10, color: canStart ? "#fff" : "var(--muted,#64748b)", fontWeight: 800, fontSize: ".9rem", cursor: canStart ? "pointer" : "not-allowed", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 10, opacity: testLoading ? .7 : 1 }}>
-        {testLoading ? <><Loader size={16} style={{ animation: "spin 1s linear infinite" }} /> Starting…</> : `🚀 Start CUET Simulation (${finalSubjects.length} sections · ${duration} min)`}
+        {testLoading ? <><Loader size={16} style={{ animation: "spin 1s linear infinite" }} /> Starting…</> : <><Rocket size={16} strokeWidth={2.25} /> {`Start CUET Simulation (${finalSubjects.length} sections · ${duration} min)`}</>}
       </button>
       {!canStart && !testLoading && (
         <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)", marginTop: 6 }}>Select at least 2 subjects (English is mandatory)</div>
@@ -1620,83 +1644,17 @@ const QUICK_REFERENCE = {
 
 // ── Resource Links ─────────────────────────────────────────────────────────────
 const RESOURCES = [
-  { icon: "📖", label: "NCERT Chapters", desc: "Grade 11 & 12 textbooks", color: "#6366f1", onClick: null },
-  { icon: "📐", label: "Formula Sheets", desc: "Chapter-wise formulas", color: "#10b981", onClick: "formulaSheet" },
-  { icon: "🧪", label: "Topic Tests", desc: "Quick 10-question tests", color: "#f59e0b", onClick: null },
-  { icon: "🤖", label: "Ask AI Tutor", desc: "Instant doubt solving", color: "#8b5cf6", onClick: "doubt" },
-  { icon: "📝", label: "Mock Tests", desc: "CBSE-style full tests", color: "#06b6d4", onClick: "mockTest" },
-  { icon: "📅", label: "Study Planner", desc: "AI-driven revision plan", color: "#ec4899", onClick: "studyPlanner" },
+  { icon: BookOpen, label: "NCERT Chapters", desc: "Grade 11 & 12 textbooks", color: "#6366f1", onClick: null },
+  { icon: Ruler, label: "Formula Sheets", desc: "Chapter-wise formulas", color: "#10b981", onClick: "formulaSheet" },
+  { icon: FlaskConical, label: "Topic Tests", desc: "Quick 10-question tests", color: "#f59e0b", onClick: null },
+  { icon: Bot, label: "Ask AI Tutor", desc: "Instant doubt solving", color: "#8b5cf6", onClick: "doubt" },
+  { icon: ClipboardList, label: "Mock Tests", desc: "CBSE-style full tests", color: "#06b6d4", onClick: "mockTest" },
+  { icon: Calendar, label: "Study Planner", desc: "AI-driven revision plan", color: "#ec4899", onClick: "studyPlanner" },
 ];
 
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
-// Lazily inject Razorpay Checkout script — same pattern as SubscriptionPlansPage.
-function loadRazorpayCheckout() {
-  return new Promise((resolve, reject) => {
-    if (window.Razorpay) { resolve(true); return; }
-    const s = document.createElement("script");
-    s.src = "https://checkout.razorpay.com/v1/checkout.js";
-    s.async = true;
-    s.onload = () => resolve(true);
-    s.onerror = () => reject(new Error("Failed to load payment gateway."));
-    document.body.appendChild(s);
-  });
-}
-
-// ── Exam Prep Pack purchase card — used inside the locked-preview screen.
-// Independent, one-time pack purchase (JEE/NEET/CUET) unrelated to the CBSE
-// subscription tiers. See backend/app/routes/exam_prep_packs.py.
-function PackPurchaseCard({ examKey, plan, owned, onBuy, buying }) {
-  const info = EXAMS[examKey];
-  if (!plan) return null;
-  const discounted = plan.discount_pct > 0;
-  return (
-    <div style={{
-      background: owned ? "rgba(34,197,94,.07)" : "var(--panel,#1e293b)",
-      border: `2px solid ${owned ? "#22c55e" : info.color + "40"}`,
-      borderRadius: 14, padding: "18px 16px", textAlign: "center",
-      display: "flex", flexDirection: "column", gap: 8,
-    }}>
-      <div style={{ fontSize: "1.8rem" }}>{info.icon}</div>
-      <div style={{ fontWeight: 800, fontSize: ".95rem" }}>{info.label}</div>
-      <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)" }}>{plan.duration_days}-day access · Full question bank & simulated tests</div>
-      {!owned && (
-        <div style={{ margin: "6px 0" }}>
-          {discounted && (
-            <span style={{ fontSize: ".72rem", color: "var(--muted,#94a3b8)", textDecoration: "line-through", marginRight: 6 }}>
-              ₹{plan.price}
-            </span>
-          )}
-          <span style={{ fontSize: "1.3rem", fontWeight: 900, color: info.color }}>₹{plan.charge}</span>
-          {discounted && (
-            <span style={{ fontSize: ".65rem", color: "#22c55e", marginLeft: 6, fontWeight: 700 }}>
-              {plan.discount_pct}% off
-            </span>
-          )}
-        </div>
-      )}
-      {owned ? (
-        <div style={{ padding: "9px 0", background: "rgba(34,197,94,.15)", borderRadius: 8, color: "#22c55e", fontWeight: 800, fontSize: ".82rem" }}>
-          ✅ Active
-        </div>
-      ) : (
-        <button
-          onClick={() => onBuy(examKey)}
-          disabled={buying}
-          style={{
-            padding: "10px 0", background: `linear-gradient(135deg,${info.color},${info.color}cc)`,
-            border: "none", borderRadius: 8, color: "#fff", fontWeight: 800, fontSize: ".85rem",
-            cursor: buying ? "default" : "pointer", opacity: buying ? .7 : 1, fontFamily: "inherit",
-          }}
-        >
-          {buying ? "Processing…" : "Buy This Pack →"}
-        </button>
-      )}
-    </div>
-  );
-}
-
-export default function ExamPrepPage({ user, setActivePage }) {
+export default function ExamPrepPage({ user, setActivePage, onSubscriptionComplete }) {
   const [selectedExam, setSelectedExam] = useState("jee_main");
   const [dashboard, setDashboard] = useState(null);
   const [subjects, setSubjects] = useState([]);
@@ -1755,6 +1713,87 @@ export default function ExamPrepPage({ user, setActivePage }) {
   const isTestUser = TEST_ACCESS_USERS.has(user?.username);
   const isAdmin = user?.role === "admin";
 
+  // Self-checkout for the ₹1999 Exam Prep Center plan is only offered to
+  // standalone students (no parentId) — mirrors SubscriptionPlansPage, where
+  // parent-linked students must ask their parent to activate a plan instead.
+  const isStandaloneStudent = !user?.parentId;
+  const [examPrepPaymentConfig, setExamPrepPaymentConfig] = useState({ configured: false });
+  const [examPrepPaymentProcessing, setExamPrepPaymentProcessing] = useState(false);
+  const [examPrepPaymentMessage, setExamPrepPaymentMessage] = useState("");
+  const [examPrepPaymentError, setExamPrepPaymentError] = useState("");
+
+  useEffect(() => {
+    if (!isStandaloneStudent) return;
+    getStudentPaymentConfig()
+      .then(setExamPrepPaymentConfig)
+      .catch(() => setExamPrepPaymentConfig({ configured: false }));
+  }, [isStandaloneStudent]);
+
+  function loadRazorpayScript() {
+    return new Promise((resolve, reject) => {
+      if (window.Razorpay) { resolve(true); return; }
+      const s = document.createElement("script");
+      s.src = "https://checkout.razorpay.com/v1/checkout.js";
+      s.async = true;
+      s.onload = () => resolve(true);
+      s.onerror = () => reject(new Error("Unable to load payment checkout."));
+      document.body.appendChild(s);
+    });
+  }
+
+  async function handleUnlockExamPrepCenter() {
+    const plan = SUBSCRIPTION_PLANS.exam_prep_center;
+
+    if (!examPrepPaymentConfig.configured) {
+      setExamPrepPaymentError(
+        `Online UPI payment is not enabled yet. Contact us to activate ${plan.label}.`
+      );
+      return;
+    }
+
+    setExamPrepPaymentProcessing(true);
+    setExamPrepPaymentMessage("");
+    setExamPrepPaymentError("");
+
+    try {
+      await loadRazorpayScript();
+      const orderResult = await createStudentPaymentOrder({ plan_key: plan.key });
+
+      const checkout = new window.Razorpay({
+        key: orderResult.key_id,
+        amount: orderResult.order.amount,
+        currency: orderResult.order.currency,
+        name: "Likha Poha AI",
+        description: `${plan.label} subscription`,
+        order_id: orderResult.order.id,
+        prefill: { email: user?.email || "", name: user?.username || "" },
+        handler: async (response) => {
+          try {
+            await verifyStudentPayment({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            });
+            setExamPrepPaymentMessage(`${plan.label} activated! Reloading your access…`);
+            if (typeof onSubscriptionComplete === "function") {
+              setTimeout(onSubscriptionComplete, 1200);
+            }
+          } catch (err) {
+            setExamPrepPaymentError(err.message || "Payment verification failed.");
+          } finally {
+            setExamPrepPaymentProcessing(false);
+          }
+        },
+        modal: { ondismiss: () => setExamPrepPaymentProcessing(false) },
+        method: { upi: true },
+      });
+      checkout.open();
+    } catch (err) {
+      setExamPrepPaymentError(err.message || "Unable to start payment.");
+      setExamPrepPaymentProcessing(false);
+    }
+  }
+
   // ── Canonical access check from backend ────────────────────────────────────
   const [accessCheck, setAccessCheck] = useState(null);  // null = loading
   const refreshAccessCheck = React.useCallback(() => {
@@ -1780,63 +1819,12 @@ export default function ExamPrepPage({ user, setActivePage }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessCheck]);
 
-  // ── Exam Prep Pack purchase state ──────────────────────────────────────────
-  // Packs (jee_main / neet_ug / cuet_ug) are independent one-time purchases —
-  // separate from the CBSE Premium subscription tiers. Free/Nano students who
-  // buy a pack get full Exam Prep Center access via accessCheck.owned_packs
-  // (see backend/app/services/exam_prep_service.py::get_access_check_response).
-  const [packPrices, setPackPrices] = useState({});
-  const [buyingPack, setBuyingPack] = useState(null); // examKey currently processing payment
+  // ── Exam Prep Pack ownership (existing purchases only — new pack sales were
+  // removed; students should use the Exam Prep Center bundle instead). Kept so
+  // anyone who already bought a pack still sees their unlocked exam(s) and the
+  // "Pack Access" banner below.
   const ownedPacks = accessCheck?.owned_packs || {};
   const isPackAccessOnly = accessCheck?.reason === "pack_access";
-
-  useEffect(() => {
-    getPackPrices()
-      .then(d => setPackPrices(d.prices || {}))
-      .catch(() => setPackPrices({}));
-  }, []);
-
-  async function handleBuyPack(examKey) {
-    if (!user?.accessToken) return;
-    setBuyingPack(examKey);
-    try {
-      await loadRazorpayCheckout();
-      const orderResult = await createPackOrder(examKey, user.accessToken);
-
-      const checkout = new window.Razorpay({
-        key: orderResult.key_id,
-        amount: orderResult.amount * 100,
-        currency: orderResult.currency,
-        name: "Likha Poha AI",
-        description: `${orderResult.plan_label || EXAMS[examKey]?.label} — Exam Prep Pack`,
-        order_id: orderResult.order_id,
-        prefill: { email: user?.email || "", name: user?.username || "" },
-        notes: { exam_type: examKey },
-        handler: async (response) => {
-          try {
-            await verifyPackPayment({
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature,
-              exam_type: examKey,
-            }, user.accessToken);
-            await refreshAccessCheck();
-            setSelectedExam(examKey);
-          } catch (err) {
-            alert(err.message || "Payment verification failed.");
-          } finally {
-            setBuyingPack(null);
-          }
-        },
-        modal: { ondismiss: () => setBuyingPack(null) },
-        method: { upi: true },
-      });
-      checkout.open();
-    } catch (err) {
-      alert(err.message || "Unable to start payment.");
-      setBuyingPack(null);
-    }
-  }
 
   // ── Fetch sim history when oracle tab is active ────────────────────────────
   useEffect(() => {
@@ -1988,7 +1976,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
     return (
       <div className="premium-page">
         <section className="premium-section" style={{ textAlign: "center", padding: "60px 20px" }}>
-          <div style={{ fontSize: "3rem", marginBottom: 16 }}>🔒</div>
+          <Lock size={44} strokeWidth={1.5} style={{ marginBottom: 16, color: "#8b5cf6" }} />
           <h3 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: 8 }}>Exam Prep Center</h3>
           <p style={{ color: "var(--muted,#64748b)", maxWidth: 380, margin: "0 auto 0" }}>
             JEE Main · NEET UG · CUET UG · SAT · IELTS · TOEFL iBT prep is available for Grade 11 & 12 students only.
@@ -2003,25 +1991,12 @@ export default function ExamPrepPage({ user, setActivePage }) {
     const isNano = accessCheck.reason === "nano";
     return (
       <div className="premium-page">
-        <section className="premium-section" style={{ paddingBottom: 0 }}>
-          <div style={{ background: "rgba(99,102,241,.07)", border: "1px solid rgba(99,102,241,.3)", borderRadius: 10, padding: "9px 14px", fontSize: ".8rem", marginBottom: 16, display: "flex", alignItems: "center", gap: 9 }}>
-            <span>🎓</span>
-            <span><strong>Grade 11 & 12 — Competitive Exam Prep.</strong> JEE Main · NEET UG · CUET UG · SAT · IELTS · TOEFL iBT</span>
-          </div>
-          {/* Exam tabs (disabled visual only) */}
-          <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap", opacity: 0.5, pointerEvents: "none" }}>
-            {Object.entries(EXAMS).map(([key, exam]) => (
-              <button key={key} style={{ padding: "9px 18px", borderRadius: 10, border: `2px solid ${key === "jee_main" ? exam.color : "var(--border,#334155)"}`, background: key === "jee_main" ? `${exam.color}18` : "var(--panel,#1e293b)", color: key === "jee_main" ? exam.color : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".82rem", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 7 }}>
-                <span>{exam.icon}</span><span>{exam.label}</span>
-              </button>
-            ))}
-          </div>
-        </section>
-
         {/* Lock screen */}
-        <section className="premium-section" style={{ paddingTop: 0 }}>
+        <section className="premium-section">
           <div style={{ background: "linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.06))", border: "1px solid rgba(99,102,241,.25)", borderRadius: 16, padding: "40px 32px", textAlign: "center", maxWidth: 560, margin: "0 auto" }}>
-            <div style={{ fontSize: "3rem", marginBottom: 16 }}>🔐</div>
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: 16, color: "#8b5cf6" }}>
+              <Lock size={44} strokeWidth={1.75} />
+            </div>
             <h3 style={{ fontSize: "1.25rem", fontWeight: 800, marginBottom: 8, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               Exam Prep Center — Premium Feature
             </h3>
@@ -2033,18 +2008,19 @@ export default function ExamPrepPage({ user, setActivePage }) {
             {/* Feature preview */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 28, textAlign: "left" }}>
               {[
-                { icon: "📐", label: "JEE Main prep", desc: "Physics, Chem, Maths" },
-                { icon: "🔬", label: "NEET UG prep", desc: "Physics, Chem, Biology" },
-                { icon: "🏛️", label: "CUET UG prep", desc: "All streams" },
-                { icon: "🎓", label: "SAT prep", desc: "Reading, Writing, Maths" },
-                { icon: "🌐", label: "IELTS prep", desc: "Listening, Reading, Grammar" },
-                { icon: "📡", label: "TOEFL iBT prep", desc: "Reading, Listening, Integrated Skills" },
-                { icon: "📊", label: "Simulated tests", desc: "Full-length timed test series" },
-                { icon: "🤖", label: "AI explanations", desc: "Step-by-step solutions" },
-                { icon: "🎯", label: "Weak topic tracker", desc: "Personalized analytics" },
+                { icon: Ruler, color: "#6366f1", label: "JEE Main prep", desc: "Physics, Chem, Maths" },
+                { icon: Microscope, color: "#10b981", label: "NEET UG prep", desc: "Physics, Chem, Biology" },
+                { icon: Landmark, color: "#f59e0b", label: "CUET UG prep", desc: "All streams" },
+                { icon: GraduationCap, color: "#3b82f6", label: "SAT prep", desc: "Reading, Writing, Maths" },
+                { icon: Globe, color: "#8b5cf6", label: "IELTS prep", desc: "Listening, Reading, Grammar" },
+                { icon: SatelliteDish, color: "#06b6d4", label: "TOEFL iBT prep", desc: "Reading, Listening, Integrated Skills" },
+                { icon: BarChart3, color: "#6366f1", label: "Simulated tests", desc: "Full-length timed test series" },
+                { icon: Bot, color: "#8b5cf6", label: "AI explanations", desc: "Step-by-step solutions" },
+                { icon: Target, color: "#f43f5e", label: "Weak topic tracker", desc: "Personalized analytics" },
+                { icon: Radar, color: "#eab308", label: "Cutoff Oracle", desc: "5-year cutoff trends" },
               ].map(f => (
                 <div key={f.label} style={{ display: "flex", gap: 8, alignItems: "center", background: "rgba(255,255,255,.03)", borderRadius: 8, padding: "8px 10px" }}>
-                  <span style={{ fontSize: "1.1rem" }}>{f.icon}</span>
+                  <f.icon size={18} strokeWidth={2} style={{ flexShrink: 0, color: f.color }} />
                   <div>
                     <div style={{ fontSize: ".75rem", fontWeight: 700 }}>{f.label}</div>
                     <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>{f.desc}</div>
@@ -2052,52 +2028,31 @@ export default function ExamPrepPage({ user, setActivePage }) {
                 </div>
               ))}
             </div>
-            {/* Upgrade CTA — links to the real subscription/payment flow.
-                Previously a permanently-disabled "Coming Soon" button, even
-                though this feature is fully built (question bank, simulated
-                tests, AI explanations, Quick Reference, Cutoff Oracle) and
-                already gated correctly by the backend's canonical
-                authorize_feature(EXAM_PREP_CONTENT) check. Mirrors the
-                Exemplar-lock CTA pattern in LessonsPage.jsx. */}
+            {/* Upgrade CTA — standalone students pay directly with Razorpay
+                (same self-checkout flow as SubscriptionPlansPage); parent-linked
+                students are routed to the Subscription page instead, since only
+                their parent can activate a plan. */}
             <button
-              onClick={() => setActivePage?.("subscriptionPlans")}
-              style={{ padding: "13px 32px", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", border: "none", borderRadius: 12, color: "#fff", fontWeight: 800, fontSize: ".95rem", cursor: "pointer", fontFamily: "inherit", marginBottom: 10 }}
+              onClick={isStandaloneStudent ? handleUnlockExamPrepCenter : () => setActivePage?.("subscriptionPlans")}
+              disabled={examPrepPaymentProcessing}
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 32px", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", border: "none", borderRadius: 12, color: "#fff", fontWeight: 800, fontSize: ".95rem", cursor: examPrepPaymentProcessing ? "default" : "pointer", opacity: examPrepPaymentProcessing ? 0.75 : 1, fontFamily: "inherit", marginBottom: 10 }}
             >
-              🚀 Upgrade to Unlock
+              <Rocket size={18} strokeWidth={2.25} />
+              {examPrepPaymentProcessing ? "Opening Payment..." : "Unlock for ₹1999"}
             </button>
+            {isStandaloneStudent && examPrepPaymentMessage && (
+              <div className="info-box" style={{ maxWidth: 420, margin: "0 auto 10px", textAlign: "left", display: "flex", alignItems: "center", gap: 8 }}>
+                <CheckCircle size={15} strokeWidth={2.25} style={{ flexShrink: 0, color: "#22c55e" }} /> {examPrepPaymentMessage}
+              </div>
+            )}
+            {isStandaloneStudent && examPrepPaymentError && (
+              <div className="error-box" style={{ maxWidth: 420, margin: "0 auto 10px", textAlign: "left" }}>
+                {examPrepPaymentError}
+              </div>
+            )}
           </div>
         </section>
 
-        {/* ── Or buy a standalone Exam Prep Pack ──────────────────────────────
-            Independent one-time purchase (JEE Main / NEET UG / CUET UG) that
-            unlocks the FULL Exam Prep Center for that exam, regardless of
-            CBSE subscription tier — no Premium upgrade required. */}
-        <section className="premium-section" style={{ paddingTop: 0 }}>
-          <div style={{ textAlign: "center", marginBottom: 18 }}>
-            <div style={{ fontSize: ".72rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 6 }}>
-              — OR —
-            </div>
-            <h4 style={{ fontSize: "1.05rem", fontWeight: 800, margin: "0 0 6px" }}>
-              🎯 Buy a Single Exam Prep Pack
-            </h4>
-            <p style={{ color: "var(--muted,#64748b)", fontSize: ".8rem", maxWidth: 460, margin: "0 auto" }}>
-              Don't want to upgrade your whole plan? Purchase access to just JEE Main, NEET UG, or CUET UG —
-              full question bank, simulated tests, and AI explanations for that exam only.
-            </p>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 14, maxWidth: 640, margin: "0 auto" }}>
-            {["jee_main", "neet_ug", "cuet_ug"].map(examKey => (
-              <PackPurchaseCard
-                key={examKey}
-                examKey={examKey}
-                plan={packPrices[examKey]}
-                owned={!!ownedPacks[examKey]}
-                onBuy={handleBuyPack}
-                buying={buyingPack === examKey}
-              />
-            ))}
-          </div>
-        </section>
       </div>
     );
   }
@@ -2119,16 +2074,20 @@ export default function ExamPrepPage({ user, setActivePage }) {
 
   return (
     <div className="premium-page">
-      {/* Access banner */}
+      {/* Access banner — only for states the page header doesn't already cover
+          (Test Access / Admin Preview). The regular-student case duplicated
+          the page header's own title/description, so it's intentionally
+          omitted here rather than repeated. */}
       <section className="premium-section" style={{ paddingBottom: 0 }}>
-        <div style={{ background: isTestUser ? "rgba(99,102,241,.07)" : "rgba(245,158,11,.07)", border: `1px solid ${isTestUser ? "rgba(99,102,241,.3)" : "rgba(245,158,11,.3)"}`, borderRadius: 10, padding: "9px 14px", fontSize: ".8rem", marginBottom: 16, display: "flex", alignItems: "center", gap: 9 }}>
-          <span>{isTestUser ? "🧪" : isAdmin ? "🔒" : "🎓"}</span>
-          <span>
-            {isTestUser ? <><strong>Test Access.</strong> Early access before student launch.</> :
-             isAdmin ? <><strong>Admin Preview.</strong> Not yet visible to students.</> :
-             <><strong>Grade 11 & 12 — Competitive Exam Prep.</strong> JEE Main · NEET UG · CUET UG · SAT · IELTS · TOEFL iBT</>}
-          </span>
-        </div>
+        {(isTestUser || isAdmin) && (
+          <div style={{ background: isTestUser ? "rgba(99,102,241,.07)" : "rgba(245,158,11,.07)", border: `1px solid ${isTestUser ? "rgba(99,102,241,.3)" : "rgba(245,158,11,.3)"}`, borderRadius: 10, padding: "9px 14px", fontSize: ".8rem", marginBottom: 16, display: "flex", alignItems: "center", gap: 9 }}>
+            {isTestUser ? <FlaskConical size={16} strokeWidth={2.25} /> : <Lock size={16} strokeWidth={2.25} />}
+            <span>
+              {isTestUser ? <><strong>Test Access.</strong> Early access before student launch.</> :
+               <><strong>Admin Preview.</strong> Not yet visible to students.</>}
+            </span>
+          </div>
+        )}
 
         {/* Exam tabs — stream-aware: JEE for PCM/PCMB, NEET for PCB/PCMB.
             Pack-only access (Free/Nano student who bought a single-exam pack)
@@ -2157,10 +2116,10 @@ export default function ExamPrepPage({ user, setActivePage }) {
                   opacity: ineligible ? 0.4 : comingSoon ? 0.55 : 1,
                   display: "flex", alignItems: "center", gap: 7,
                 }}>
-                <span>{exam.icon}</span>
+                <exam.icon size={15} strokeWidth={2.25} />
                 <span>{exam.label}</span>
                 {comingSoon && <span style={{ fontSize: ".6rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 6px", borderRadius: 10 }}>Soon</span>}
-                {packLocked && <span style={{ fontSize: ".6rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 6px", borderRadius: 10 }}>🔒 Pack</span>}
+                {packLocked && <span style={{ fontSize: ".6rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 6px", borderRadius: 10, display: "inline-flex", alignItems: "center", gap: 3 }}><Lock size={9} strokeWidth={2.5} /> Pack</span>}
                 {!packLocked && streamIneligible && <span style={{ fontSize: ".6rem", background: "rgba(100,116,139,.2)", color: "#64748b", padding: "1px 6px", borderRadius: 10 }}>N/A</span>}
               </button>
             );
@@ -2170,7 +2129,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
         {/* Pack-only access banner — shown when accessing via a purchased pack, not Premium */}
         {isPackAccessOnly && (
           <div style={{ background: "rgba(34,197,94,.07)", border: "1px solid rgba(34,197,94,.25)", borderRadius: 10, padding: "9px 14px", fontSize: ".78rem", marginBottom: 16, display: "flex", alignItems: "center", gap: 9 }}>
-            <span>🎯</span>
+            <Target size={16} strokeWidth={2.25} />
             <span>
               <strong>Pack Access.</strong> You've unlocked {Object.entries(ownedPacks).filter(([, v]) => v).map(([k]) => EXAMS[k]?.label).join(", ")} via a standalone pack purchase.
               {" "}Upgrade to Premium for access to all exams, all CBSE lessons, and more.
@@ -2186,22 +2145,22 @@ export default function ExamPrepPage({ user, setActivePage }) {
           </div>
         ) : dashboard && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(130px,1fr))", gap: 10, marginBottom: 24 }}>
-            <StatCard value={`${dashboard.weeks_to_exam}w`} label={`Weeks to ${examInfo.label}`} icon="📅" color="#6366f1" />
-            <StatCard value={dashboard.total_questions} label="Questions Available" icon="❓" color="#10b981" />
-            <StatCard value={dashboard.questions_attempted} label="Practiced" icon="✅" color="#f59e0b" />
-            <StatCard value={`${dashboard.accuracy_pct}%`} label="Accuracy" icon="🎯" color={dashboard.accuracy_pct >= 60 ? "#22c55e" : "#ef4444"} />
-            <StatCard value={dashboard.total_topics} label="Topics" icon="📚" color="#8b5cf6" />
+            <StatCard value={`${dashboard.weeks_to_exam}w`} label={`Weeks to ${examInfo.label}`} icon={Calendar} color="#6366f1" />
+            <StatCard value={dashboard.total_questions} label="Questions Available" icon={HelpCircle} color="#10b981" />
+            <StatCard value={dashboard.questions_attempted} label="Practiced" icon={CheckCircle} color="#f59e0b" />
+            <StatCard value={`${dashboard.accuracy_pct}%`} label="Accuracy" icon={Target} color={dashboard.accuracy_pct >= 60 ? "#22c55e" : "#ef4444"} />
+            <StatCard value={dashboard.total_topics} label="Topics" icon={BookOpen} color="#8b5cf6" />
           </div>
         )}
 
         {/* Mode tabs — 5 tabs */}
         <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
           {[
-            { key: "learn",     label: "Structured Learning", icon: "📖" },
-            { key: "practice",  label: "Practice",            icon: "⚡" },
-            { key: "test",      label: "Simulated Test",      icon: "📝" },
-            { key: "reference", label: "Quick Reference",     icon: "📋" },
-            { key: "oracle",    label: "Cutoff Oracle",       icon: "🔮" },
+            { key: "learn",     label: "Structured Learning", icon: BookOpen },
+            { key: "practice",  label: "Practice",            icon: Zap },
+            { key: "test",      label: "Simulated Test",      icon: FileText },
+            { key: "reference", label: "Quick Reference",     icon: ClipboardList },
+            { key: "oracle",    label: "Cutoff Oracle",       icon: Radar },
           ].map(m => (
             <button key={m.key}
               onClick={() => {
@@ -2212,8 +2171,8 @@ export default function ExamPrepPage({ user, setActivePage }) {
                   if (examRef) setRefSubject(examRef.subjects?.[0] || "");
                 }
               }}
-              style={{ padding: "8px 16px", borderRadius: 8, border: `1px solid ${activeMode === m.key ? (m.key === "oracle" ? "#8b5cf6" : m.key === "reference" ? "#10b981" : "#6366f1") : "var(--border,#334155)"}`, background: activeMode === m.key ? (m.key === "oracle" ? "rgba(139,92,246,.12)" : m.key === "reference" ? "rgba(16,185,129,.12)" : "rgba(99,102,241,.12)") : "var(--panel,#1e293b)", color: activeMode === m.key ? (m.key === "oracle" ? "#a78bfa" : m.key === "reference" ? "#34d399" : "#a5b4fc") : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit" }}>
-              {m.icon} {m.label}
+              style={{ padding: "8px 16px", borderRadius: 8, border: `1px solid ${activeMode === m.key ? (m.key === "oracle" ? "#8b5cf6" : m.key === "reference" ? "#10b981" : "#6366f1") : "var(--border,#334155)"}`, background: activeMode === m.key ? (m.key === "oracle" ? "rgba(139,92,246,.12)" : m.key === "reference" ? "rgba(16,185,129,.12)" : "rgba(99,102,241,.12)") : "var(--panel,#1e293b)", color: activeMode === m.key ? (m.key === "oracle" ? "#a78bfa" : m.key === "reference" ? "#34d399" : "#a5b4fc") : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit", display: "inline-flex", alignItems: "center", gap: 6 }}>
+              <m.icon size={14} strokeWidth={2.25} /> {m.label}
             </button>
           ))}
         </div>
@@ -2230,22 +2189,22 @@ export default function ExamPrepPage({ user, setActivePage }) {
             scoreKey: "Score (out of 300)",
             maxScore: 300,
             bands: [
-              { range: "270–300", label: "Elite", color: "#22c55e", emoji: "🏆",
+              { range: "270–300", label: "Elite", color: "#22c55e", icon: Trophy,
                 colleges: ["NIT Trichy – CSE", "NIT Warangal – CSE", "NIT Surathkal – CSE", "IIIT Hyderabad – CSE", "NIT Calicut – CSE"],
                 percentile: "99.5–100", rank: "Top 1,000 (CRL)", tip: "JEE Advanced qualifier range" },
-              { range: "230–270", label: "Top-Tier", color: "#3b82f6", emoji: "🎯",
+              { range: "230–270", label: "Top-Tier", color: "#3b82f6", icon: Target,
                 colleges: ["NIT Trichy – ECE/Mech", "NIT Warangal – ECE", "IIIT Allahabad – CSE", "NIT Rourkela – CSE", "NIT Calicut – ECE"],
                 percentile: "99.0–99.5", rank: "1,000–5,000 (CRL)", tip: "Target top NITs for non-CS branches" },
-              { range: "190–230", label: "Strong", color: "#f59e0b", emoji: "💪",
+              { range: "190–230", label: "Strong", color: "#f59e0b", icon: Dumbbell,
                 colleges: ["NIT Bhopal – CSE", "NIT Durgapur – CSE", "NIT Jamshedpur – CSE", "IIIT Jabalpur – CSE", "MNIT Jaipur – ECE"],
                 percentile: "97–99", rank: "5,000–20,000 (CRL)", tip: "Good range for mid-tier NITs CSE" },
-              { range: "150–190", label: "Moderate", color: "#f97316", emoji: "📈",
+              { range: "150–190", label: "Moderate", color: "#f97316", icon: TrendingUp,
                 colleges: ["NIT Agartala – CSE", "IIIT Vadodara", "NIT Manipur – CSE", "GFTIs – CSE", "DTU Delhi (state quota)"],
                 percentile: "93–97", rank: "20,000–60,000 (CRL)", tip: "Explore GFTIs and state-level NITs" },
-              { range: "100–150", label: "Qualifying", color: "#ef4444", emoji: "🔑",
+              { range: "100–150", label: "Qualifying", color: "#ef4444", icon: Key,
                 colleges: ["GFTIs – Non-CS branches", "State engineering colleges (top tier)", "IIIT Una / Kurnool – ECE"],
                 percentile: "83–93", rank: "60,000–1,50,000 (CRL)", tip: "Qualify for lower GFTIs; focus on state counselling" },
-              { range: "Below 100", label: "Limited", color: "#94a3b8", emoji: "📚",
+              { range: "Below 100", label: "Limited", color: "#94a3b8", icon: BookOpen,
                 colleges: ["State engineering colleges", "Private colleges", "Repeat for better score"],
                 percentile: "Below 83", rank: "1,50,000+ (CRL)", tip: "Consider state-level JOSAA alternatives or repeat" },
             ],
@@ -2264,22 +2223,22 @@ export default function ExamPrepPage({ user, setActivePage }) {
             scoreKey: "Score (out of 720)",
             maxScore: 720,
             bands: [
-              { range: "650–720", label: "Elite", color: "#22c55e", emoji: "🏆",
+              { range: "650–720", label: "Elite", color: "#22c55e", icon: Trophy,
                 colleges: ["AIIMS Delhi", "AIIMS Jodhpur/Bhopal/Patna", "JIPMER Puducherry", "Maulana Azad (MAMC) Delhi"],
                 percentile: "99.9+", rank: "Top 500 (AIR)", tip: "AIIMS cutoff General: ~695–715 (varies by year)" },
-              { range: "610–650", label: "Top-Tier", color: "#3b82f6", emoji: "🎯",
+              { range: "610–650", label: "Top-Tier", color: "#3b82f6", icon: Target,
                 colleges: ["State AIIMS (Rishikesh/Nagpur/Raipur)", "JNMC Aligarh", "Seth GS Medical Mumbai", "Grant Medical College"],
                 percentile: "99.5–99.9", rank: "500–3,000 (AIR)", tip: "Top government medical colleges accessible" },
-              { range: "550–610", label: "Strong", color: "#f59e0b", emoji: "💪",
+              { range: "550–610", label: "Strong", color: "#f59e0b", icon: Dumbbell,
                 colleges: ["State government MBBS (top states)", "BHU MBBS", "Lady Hardinge Medical College", "Safdarjung Hospital"],
                 percentile: "98.5–99.5", rank: "3,000–15,000 (AIR)", tip: "Strong govt MBBS range. State counselling important." },
-              { range: "500–550", label: "Moderate", color: "#f97316", emoji: "📈",
+              { range: "500–550", label: "Moderate", color: "#f97316", icon: TrendingUp,
                 colleges: ["Government MBBS (state quota)", "Top private medical colleges (management quota)", "ESIC Medical Colleges"],
                 percentile: "95–98.5", rank: "15,000–50,000 (AIR)", tip: "Government MBBS in some states; explore private govt-aided" },
-              { range: "450–500", label: "Borderline", color: "#ef4444", emoji: "⚠️",
+              { range: "450–500", label: "Borderline", color: "#ef4444", icon: AlertTriangle,
                 colleges: ["Private MBBS (high fees ~50L–1Cr)", "BDS (Dental) in government colleges", "AYUSH (BAMS/BHMS) govt colleges"],
                 percentile: "85–95", rank: "50,000–1,20,000 (AIR)", tip: "Minimum NEET qualifying cutoff is 50th percentile (General)" },
-              { range: "Below 450", label: "Limited", color: "#94a3b8", emoji: "📚",
+              { range: "Below 450", label: "Limited", color: "#94a3b8", icon: BookOpen,
                 colleges: ["BDS / BAMS / BHMS private", "Veterinary (BVSC)", "Consider re-attempting NEET"],
                 percentile: "Below 85", rank: "1,20,000+ (AIR)", tip: "Minimum qualifying percentile: 50th (General), 40th (SC/ST)" },
             ],
@@ -2297,22 +2256,22 @@ export default function ExamPrepPage({ user, setActivePage }) {
             scoreKey: "Score per subject (out of 200)",
             maxScore: 200,
             bands: [
-              { range: "185–200", label: "Elite", color: "#22c55e", emoji: "🏆",
+              { range: "185–200", label: "Elite", color: "#22c55e", icon: Trophy,
                 colleges: ["Miranda House – English / Eco / Hist", "Lady Shri Ram – Eco/Psych", "Hindu College – B.Sc./B.A.", "SRCC – B.Com(H)"],
                 percentile: "Top 1%", rank: "Open/Unreserved seats", tip: "DU's top colleges require near-perfect scores for popular courses" },
-              { range: "165–185", label: "Top-Tier", color: "#3b82f6", emoji: "🎯",
+              { range: "165–185", label: "Top-Tier", color: "#3b82f6", icon: Target,
                 colleges: ["Hansraj College – Sciences", "Ramjas College – English/Eco", "Kirori Mal – Maths/Physics", "JMC (Journalism) DU"],
                 percentile: "Top 5%", rank: "Good DU colleges", tip: "Most DU college/course combinations open at this range" },
-              { range: "140–165", label: "Strong", color: "#f59e0b", emoji: "💪",
+              { range: "140–165", label: "Strong", color: "#f59e0b", icon: Dumbbell,
                 colleges: ["BHU – BA/B.Sc./B.Com", "Jamia Millia Islamia – BA/B.Sc.", "Dyal Singh / Zakir Husain – DU", "Gargi College DU"],
                 percentile: "Top 15%", rank: "Mid-range central universities", tip: "BHU and Jamia accessible; some DU evening colleges" },
-              { range: "110–140", label: "Moderate", color: "#f97316", emoji: "📈",
+              { range: "110–140", label: "Moderate", color: "#f97316", icon: TrendingUp,
                 colleges: ["JNU – BA (Hons) some programmes", "Hyderabad Central University", "Pondicherry University", "EFLU Hyderabad"],
                 percentile: "Top 30%", rank: "Good central universities outside DU", tip: "Many central universities have good programmes at this range" },
-              { range: "80–110", label: "Qualifying", color: "#ef4444", emoji: "🔑",
+              { range: "80–110", label: "Qualifying", color: "#ef4444", icon: Key,
                 colleges: ["Various central universities", "Banaras Hindu University (some courses)", "North-East central universities"],
                 percentile: "Top 50%", rank: "General qualifying range", tip: "Minimum qualifying score is typically 50–60 out of 200" },
-              { range: "Below 80", label: "Limited", color: "#94a3b8", emoji: "📚",
+              { range: "Below 80", label: "Limited", color: "#94a3b8", icon: BookOpen,
                 colleges: ["Private universities", "State universities", "Consider re-attempting CUET"],
                 percentile: "Below 50%", rank: "Borderline", tip: "Most central universities set minimum at 40–60 marks per subject" },
             ],
@@ -2330,22 +2289,22 @@ export default function ExamPrepPage({ user, setActivePage }) {
             scoreKey: "SAT Score (400–1600)",
             maxScore: 1600,
             bands: [
-              { range: "1500–1600", label: "Elite", color: "#22c55e", emoji: "🏆",
+              { range: "1500–1600", label: "Elite", color: "#22c55e", icon: Trophy,
                 colleges: ["MIT", "Harvard", "Stanford", "Princeton", "Yale", "Columbia", "University of Chicago"],
                 percentile: "99th+", rank: "Top ~500 scorers globally", tip: "1600 is perfect score. These universities look beyond SAT — also need top GPA, essays, ECs." },
-              { range: "1400–1499", label: "Top-Tier", color: "#3b82f6", emoji: "🎯",
+              { range: "1400–1499", label: "Top-Tier", color: "#3b82f6", icon: Target,
                 colleges: ["UC Berkeley", "UCLA", "University of Michigan", "NYU", "Boston University", "Purdue (CS/Engg)"],
                 percentile: "96th–99th", rank: "Top 4%", tip: "Strong scores for top 50 US universities. Merit scholarships often require 1400+." },
-              { range: "1300–1399", label: "Strong", color: "#f59e0b", emoji: "💪",
+              { range: "1300–1399", label: "Strong", color: "#f59e0b", icon: Dumbbell,
                 colleges: ["Penn State", "University of Wisconsin", "Arizona State", "Florida International", "Singapore (NUS/NTU — international SAT accepted)"],
                 percentile: "88th–96th", rank: "Top 12%", tip: "Good for admission to many well-ranked US public universities. Apply broadly." },
-              { range: "1200–1299", label: "Moderate", color: "#f97316", emoji: "📈",
+              { range: "1200–1299", label: "Moderate", color: "#f97316", icon: TrendingUp,
                 colleges: ["Many US mid-range universities", "Community college transfer track", "UK/Australia universities (some use SAT)"],
                 percentile: "74th–88th", rank: "Top 26%", tip: "Above average score. Accepted by many US universities. Strengthen GPA and extracurriculars." },
-              { range: "1100–1199", label: "Qualifying", color: "#ef4444", emoji: "🔑",
+              { range: "1100–1199", label: "Qualifying", color: "#ef4444", icon: Key,
                 colleges: ["Regional US universities", "Test-optional universities (may not need SAT)", "State colleges"],
                 percentile: "56th–74th", rank: "Above average", tip: "Many universities are test-optional (post-COVID). A strong application may outweigh a moderate SAT." },
-              { range: "Below 1100", label: "Consider Retaking", color: "#94a3b8", emoji: "📚",
+              { range: "Below 1100", label: "Consider Retaking", color: "#94a3b8", icon: BookOpen,
                 colleges: ["Test-optional universities", "Community colleges", "Non-US alternatives (IELTS/TOEFL pathway)"],
                 percentile: "Below 56th", rank: "Average", tip: "Digital SAT can be taken multiple times. Khan Academy free prep. Target 1200+ with focused study." },
             ],
@@ -2363,22 +2322,22 @@ export default function ExamPrepPage({ user, setActivePage }) {
             scoreKey: "Overall Band Score (0–9)",
             maxScore: 9,
             bands: [
-              { range: "8.0–9.0", label: "Expert/Very Good", color: "#22c55e", emoji: "🏆",
+              { range: "8.0–9.0", label: "Expert/Very Good", color: "#22c55e", icon: Trophy,
                 colleges: ["Oxford / Cambridge", "Imperial College London", "UCL", "LSE", "University of Toronto", "NUS Singapore"],
                 percentile: "Top 5%", rank: "Expert user", tip: "Band 9 is very rare. Most top UK universities require Band 7.5–8.0 minimum for competitive programmes." },
-              { range: "7.0–7.5", label: "Good", color: "#3b82f6", emoji: "🎯",
+              { range: "7.0–7.5", label: "Good", color: "#3b82f6", icon: Target,
                 colleges: ["Most UK Russell Group universities", "Australian Group of 8", "McGill / UBC Canada", "ETH Zurich", "TU Munich (English programmes)"],
                 percentile: "Top 15%", rank: "Good user", tip: "Band 7.0 is the most common minimum for postgraduate programmes. Many UK master's require 7.0 overall, 6.5 in each component." },
-              { range: "6.5", label: "Competent+", color: "#f59e0b", emoji: "💪",
+              { range: "6.5", label: "Competent+", color: "#f59e0b", icon: Dumbbell,
                 colleges: ["Many UK / Australian / Canadian universities", "Ireland universities", "Netherlands English-taught programmes"],
                 percentile: "Top 25%", rank: "Competent user", tip: "The most widely accepted minimum overall. Often paired with a minimum of 6.0 per band." },
-              { range: "6.0", label: "Competent", color: "#f97316", emoji: "📈",
+              { range: "6.0", label: "Competent", color: "#f97316", icon: TrendingUp,
                 colleges: ["Entry-level UK / Australian / Canadian universities", "Many pathway programmes", "Foundation Year entry"],
                 percentile: "Top 40%", rank: "Competent user", tip: "Minimum for most undergraduate international admissions. Some universities accept 6.0 with conditions." },
-              { range: "5.5", label: "Modest", color: "#ef4444", emoji: "⚠️",
+              { range: "5.5", label: "Modest", color: "#ef4444", icon: AlertTriangle,
                 colleges: ["Pre-sessional / Foundation entry", "Some universities with conditional offers", "English language courses"],
                 percentile: "Top 55%", rank: "Modest user", tip: "Often only sufficient for pre-sessional English courses before university. Most universities require 6.0+." },
-              { range: "Below 5.5", label: "Limited", color: "#94a3b8", emoji: "📚",
+              { range: "Below 5.5", label: "Limited", color: "#94a3b8", icon: BookOpen,
                 colleges: ["English language schools", "IELTS preparation institutes", "Foundation programmes"],
                 percentile: "Below 55%", rank: "Limited user", tip: "Retake recommended. Study for 2–4 months. Focus on Listening and Reading for quickest improvement." },
             ],
@@ -2397,22 +2356,22 @@ export default function ExamPrepPage({ user, setActivePage }) {
             scoreKey: "TOEFL iBT Score (0–120)",
             maxScore: 120,
             bands: [
-              { range: "110–120", label: "Elite", color: "#22c55e", emoji: "🏆",
+              { range: "110–120", label: "Elite", color: "#22c55e", icon: Trophy,
                 colleges: ["MIT", "Harvard", "Yale", "Stanford", "Princeton", "Top US research universities"],
                 percentile: "Top 5%", rank: "Expert Level", tip: "Most Ivy League and T20 US universities require 100+ for admission. 110+ is competitive for top programmes." },
-              { range: "100–109", label: "Top-Tier", color: "#3b82f6", emoji: "🎯",
+              { range: "100–109", label: "Top-Tier", color: "#3b82f6", icon: Target,
                 colleges: ["Top 50 US universities", "University of Toronto", "McGill", "Australian Group of 8 (many accept TOEFL)"],
                 percentile: "Top 15%", rank: "Advanced", tip: "100+ is the most common minimum for competitive graduate programmes in the US." },
-              { range: "90–99", label: "Strong", color: "#f59e0b", emoji: "💪",
+              { range: "90–99", label: "Strong", color: "#f59e0b", icon: Dumbbell,
                 colleges: ["Most top 100 US universities", "University of Edinburgh", "Some UK universities", "European English-taught programmes"],
                 percentile: "Top 30%", rank: "High Intermediate", tip: "90+ accepted by most US universities. Graduate programmes often require 90–100." },
-              { range: "80–89", label: "Moderate", color: "#f97316", emoji: "📈",
+              { range: "80–89", label: "Moderate", color: "#f97316", icon: TrendingUp,
                 colleges: ["Many US state universities", "UK universities (some)", "Canada (conditional admission)"],
                 percentile: "Top 45%", rank: "Intermediate", tip: "80+ is sufficient for many undergraduate US admissions. Graduate programmes may require higher." },
-              { range: "60–79", label: "Qualifying", color: "#ef4444", emoji: "🔑",
+              { range: "60–79", label: "Qualifying", color: "#ef4444", icon: Key,
                 colleges: ["Community colleges and transfer pathways", "ESL bridge programmes", "Conditional university admissions"],
                 percentile: "Top 60%", rank: "Low-Intermediate", tip: "Below minimum for most 4-year universities. Retake recommended or consider IELTS alternative." },
-              { range: "Below 60", label: "Limited", color: "#94a3b8", emoji: "📚",
+              { range: "Below 60", label: "Limited", color: "#94a3b8", icon: BookOpen,
                 colleges: ["Intensive English programmes", "Foundation courses", "TOEFL preparation institutes"],
                 percentile: "Below 60%", rank: "Basic", tip: "Significant improvement needed. ETS official prep materials + daily academic reading in English recommended." },
             ],
@@ -2446,7 +2405,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
           ? (simHistory[0].score_normalized > simHistory[1].score_normalized ? "up"
             : simHistory[0].score_normalized < simHistory[1].score_normalized ? "down" : "same")
           : "none";
-        const trendIcon = trend === "up" ? "↗️" : trend === "down" ? "↘️" : trend === "same" ? "→" : "";
+        const TrendIcon = trend === "up" ? TrendingUp : trend === "down" ? TrendingDown : trend === "same" ? Minus : null;
         const trendColor = trend === "up" ? "#22c55e" : trend === "down" ? "#ef4444" : "#94a3b8";
 
         return (
@@ -2462,7 +2421,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
             {!simHistoryLoading && simHistory.length === 0 && (
               <div style={{ background: "rgba(139,92,246,.06)", border: "1px dashed rgba(139,92,246,.35)", borderRadius: 12, padding: "16px 20px", marginBottom: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
-                  <span style={{ fontSize: "1.4rem" }}>📊</span>
+                  <BarChart3 size={22} strokeWidth={2} color="#a78bfa" />
                   <div style={{ fontWeight: 800, fontSize: ".88rem", color: "#a78bfa" }}>Your Standing</div>
                 </div>
                 <div style={{ fontSize: ".75rem", color: "var(--muted,#64748b)", lineHeight: 1.6 }}>
@@ -2475,7 +2434,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
             {!simHistoryLoading && simHistory.length > 0 && latestRawScore != null && (
               <div style={{ background: "linear-gradient(135deg,rgba(139,92,246,.1),rgba(99,102,241,.07))", border: "2px solid rgba(139,92,246,.35)", borderRadius: 14, padding: "18px 20px", marginBottom: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-                  <span style={{ fontSize: "1.6rem" }}>📊</span>
+                  <BarChart3 size={26} strokeWidth={1.75} color="#a78bfa" />
                   <div>
                     <div style={{ fontWeight: 800, fontSize: ".95rem", color: "#a78bfa" }}>Your Standing — {examInfo.label}</div>
                     <div style={{ fontSize: ".7rem", color: "var(--muted,#64748b)" }}>Based on your last {simHistory.length} simulated test{simHistory.length > 1 ? "s" : ""}</div>
@@ -2492,13 +2451,16 @@ export default function ExamPrepPage({ user, setActivePage }) {
                     <div style={{ fontSize: ".6rem", color: "var(--muted,#64748b)", marginTop: 2 }}>Latest Score<br />{data.scoreKey.split("(")[1]?.replace(")", "") || ""}</div>
                   </div>
                   {/* Percentile/band */}
-                  {activeBandIdx >= 0 && (
-                    <div style={{ background: `${data.bands[activeBandIdx].color}14`, border: `1px solid ${data.bands[activeBandIdx].color}40`, borderRadius: 10, padding: "10px 12px", textAlign: "center" }}>
-                      <div style={{ fontSize: "1.1rem", marginBottom: 2 }}>{data.bands[activeBandIdx].emoji}</div>
-                      <div style={{ fontSize: ".75rem", fontWeight: 800, color: data.bands[activeBandIdx].color }}>{data.bands[activeBandIdx].label}</div>
-                      <div style={{ fontSize: ".58rem", color: "var(--muted,#64748b)" }}>{data.bands[activeBandIdx].percentile}</div>
-                    </div>
-                  )}
+                  {activeBandIdx >= 0 && (() => {
+                    const activeBand = data.bands[activeBandIdx];
+                    return (
+                      <div style={{ background: `${activeBand.color}14`, border: `1px solid ${activeBand.color}40`, borderRadius: 10, padding: "10px 12px", textAlign: "center" }}>
+                        <div style={{ marginBottom: 2, color: activeBand.color }}><activeBand.icon size={18} strokeWidth={2.25} /></div>
+                        <div style={{ fontSize: ".75rem", fontWeight: 800, color: activeBand.color }}>{activeBand.label}</div>
+                        <div style={{ fontSize: ".58rem", color: "var(--muted,#64748b)" }}>{activeBand.percentile}</div>
+                      </div>
+                    );
+                  })()}
                   {/* Tests taken */}
                   <div style={{ background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 10, padding: "10px 12px", textAlign: "center" }}>
                     <div style={{ fontSize: "1.4rem", fontWeight: 900, color: "#a5b4fc" }}>{simHistory.length}</div>
@@ -2507,7 +2469,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                   {/* Trend */}
                   {trend !== "none" && (
                     <div style={{ background: `${trendColor}12`, border: `1px solid ${trendColor}35`, borderRadius: 10, padding: "10px 12px", textAlign: "center" }}>
-                      <div style={{ fontSize: "1.4rem" }}>{trendIcon}</div>
+                      <div style={{ color: trendColor }}>{TrendIcon && <TrendIcon size={20} strokeWidth={2.25} />}</div>
                       <div style={{ fontSize: ".65rem", fontWeight: 700, color: trendColor, marginTop: 2 }}>
                         {trend === "up" ? "Improving" : trend === "down" ? "Declining" : "Stable"}
                       </div>
@@ -2549,12 +2511,12 @@ export default function ExamPrepPage({ user, setActivePage }) {
                   const nextBandIdx = activeBandIdx > 0 ? activeBandIdx - 1 : -1;
                   return (
                     <div style={{ display: "flex", gap: 10, flexWrap: "wrap", fontSize: ".7rem" }}>
-                      <div style={{ background: "rgba(34,197,94,.08)", border: "1px solid rgba(34,197,94,.2)", borderRadius: 7, padding: "5px 10px", color: "#4ade80" }}>
-                        🏅 Best: <strong>{bestRaw}</strong> / {data.maxScore}
+                      <div style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "rgba(34,197,94,.08)", border: "1px solid rgba(34,197,94,.2)", borderRadius: 7, padding: "5px 10px", color: "#4ade80" }}>
+                        <Award size={13} strokeWidth={2.25} /> Best: <strong>{bestRaw}</strong> / {data.maxScore}
                       </div>
                       {nextBandIdx >= 0 && (
-                        <div style={{ background: "rgba(251,191,36,.08)", border: "1px solid rgba(251,191,36,.2)", borderRadius: 7, padding: "5px 10px", color: "#fbbf24" }}>
-                          🎯 Next band: <strong>{data.bands[nextBandIdx].label}</strong> — aim for {data.bands[nextBandIdx].range}
+                        <div style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "rgba(251,191,36,.08)", border: "1px solid rgba(251,191,36,.2)", borderRadius: 7, padding: "5px 10px", color: "#fbbf24" }}>
+                          <Target size={13} strokeWidth={2.25} /> Next band: <strong>{data.bands[nextBandIdx].label}</strong> — aim for {data.bands[nextBandIdx].range}
                         </div>
                       )}
                     </div>
@@ -2562,8 +2524,8 @@ export default function ExamPrepPage({ user, setActivePage }) {
                 })()}
 
                 <button onClick={() => setActiveMode("test")}
-                  style={{ marginTop: 14, padding: "8px 18px", background: "linear-gradient(135deg,#8b5cf6,#6366f1)", border: "none", borderRadius: 8, color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
-                  📝 Take Another Test →
+                  style={{ marginTop: 14, padding: "8px 18px", background: "linear-gradient(135deg,#8b5cf6,#6366f1)", border: "none", borderRadius: 8, color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit", display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  <FileText size={14} strokeWidth={2.25} /> Take Another Test →
                 </button>
               </div>
             )}
@@ -2571,11 +2533,11 @@ export default function ExamPrepPage({ user, setActivePage }) {
             {/* Header */}
             <div style={{ background: `linear-gradient(135deg,rgba(139,92,246,.1),rgba(99,102,241,.06))`, border: "1px solid rgba(139,92,246,.25)", borderRadius: 12, padding: "16px 20px", marginBottom: 20 }}>
               <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
-                <span style={{ fontSize: "2rem" }}>🔮</span>
+                <Radar size={32} strokeWidth={1.75} style={{ flexShrink: 0, color: "#a78bfa" }} />
                 <div>
                   <div style={{ fontWeight: 800, fontSize: ".95rem", marginBottom: 3 }}>{data.title}</div>
                   <div style={{ fontSize: ".78rem", color: "var(--muted,#94a3b8)", marginBottom: 4 }}>{data.subtitle}</div>
-                  <div style={{ fontSize: ".72rem", color: "#fbbf24", background: "rgba(245,158,11,.08)", borderRadius: 6, padding: "4px 10px", display: "inline-block" }}>⚠️ {data.note}</div>
+                  <div style={{ fontSize: ".72rem", color: "#fbbf24", background: "rgba(245,158,11,.08)", borderRadius: 6, padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 5 }}><AlertTriangle size={13} strokeWidth={2.25} /> {data.note}</div>
                 </div>
               </div>
             </div>
@@ -2588,7 +2550,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                   <div style={{ textAlign: "center" }}>
                     <div style={{ fontSize: ".6rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 4 }}>{data.scoreKey.split("(")[0].trim()}</div>
                     <div style={{ fontSize: "1.1rem", fontWeight: 900, color: band.color }}>{band.range}</div>
-                    <div style={{ fontSize: ".65rem", marginTop: 4 }}>{band.emoji} <span style={{ fontWeight: 700, color: band.color }}>{band.label}</span></div>
+                    <div style={{ fontSize: ".65rem", marginTop: 4, display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}><band.icon size={13} strokeWidth={2.25} style={{ color: band.color }} /> <span style={{ fontWeight: 700, color: band.color }}>{band.label}</span></div>
                     <div style={{ fontSize: ".58rem", color: "var(--muted,#64748b)", marginTop: 2 }}>{band.percentile}</div>
                     <div style={{ fontSize: ".55rem", color: "var(--muted,#475569)" }}>{band.rank}</div>
                   </div>
@@ -2602,8 +2564,8 @@ export default function ExamPrepPage({ user, setActivePage }) {
                     </div>
                   </div>
                   {/* Tip */}
-                  <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)", fontStyle: "italic", maxWidth: 180, lineHeight: 1.4 }}>
-                    💡 {band.tip}
+                  <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)", fontStyle: "italic", maxWidth: 180, lineHeight: 1.4, display: "flex", gap: 4 }}>
+                    <Lightbulb size={12} strokeWidth={2.25} style={{ flexShrink: 0 }} /> {band.tip}
                   </div>
                 </div>
               ))}
@@ -2611,7 +2573,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
 
             {/* Category guide */}
             <div style={{ background: "var(--panel,#1e293b)", border: "1px solid rgba(139,92,246,.25)", borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
-              <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#a78bfa", marginBottom: 10 }}>📊 Category-wise Cutoff Guide</div>
+              <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#a78bfa", marginBottom: 10, display: "flex", alignItems: "center", gap: 5 }}><BarChart3 size={14} strokeWidth={2.25} /> Category-wise Cutoff Guide</div>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 {data.categories.map((cat, i) => (
                   <div key={i} style={{ background: "rgba(139,92,246,.06)", border: "1px solid rgba(139,92,246,.18)", borderRadius: 7, padding: "7px 12px", flex: "1 1 200px" }}>
@@ -2623,8 +2585,8 @@ export default function ExamPrepPage({ user, setActivePage }) {
             </div>
 
             {/* Footer */}
-            <div style={{ fontSize: ".65rem", color: "var(--muted,#475569)", fontStyle: "italic", textAlign: "center" }}>
-              🔮 {data.footer}
+            <div style={{ fontSize: ".65rem", color: "var(--muted,#475569)", fontStyle: "italic", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", gap: 5 }}>
+              <Radar size={12} strokeWidth={2.25} /> {data.footer}
             </div>
           </section>
         );
@@ -2640,7 +2602,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
         return (
           <section className="premium-section" style={{ paddingTop: 0 }}>
             <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 14 }}>
-              📋 {examInfo.label} — Quick Reference · Formulas · Traps · Mnemonics
+              <ClipboardList size={16} strokeWidth={2.25} style={{ verticalAlign: "-3px", marginRight: 6 }} /> {examInfo.label} — Quick Reference · Formulas · Traps · Mnemonics
             </div>
 
             {/* Subject tabs */}
@@ -2651,7 +2613,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                 return (
                   <button key={s} onClick={() => setRefSubject(s)}
                     style={{ padding: "7px 16px", borderRadius: 8, border: `2px solid ${isActive ? sc : "var(--border,#334155)"}`, background: isActive ? `${sc}18` : "var(--panel,#1e293b)", color: isActive ? sc : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 6 }}>
-                    <span>{SUBJECT_ICONS[s] || "📚"}</span><span>{s}</span>
+                    <SubjectIcon name={s} size={16} /><span>{s}</span>
                   </button>
                 );
               })}
@@ -2664,7 +2626,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
               {subjData.formulas?.length > 0 && (
                 <div style={{ background: "var(--panel,#1e293b)", border: `1px solid ${subjColor}33`, borderRadius: 12, overflow: "hidden" }}>
                   <div style={{ background: `${subjColor}10`, padding: "10px 16px", fontWeight: 700, fontSize: ".78rem", color: subjColor, borderBottom: `1px solid ${subjColor}22` }}>
-                    📐 Key Formulas
+                    <Ruler size={14} strokeWidth={2.25} style={{ verticalAlign: "-2px", marginRight: 5 }} /> Key Formulas
                   </div>
                   <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 6 }}>
                     {subjData.formulas.map((f, i) => (
@@ -2681,7 +2643,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
               {subjData.constants?.length > 0 && (
                 <div style={{ background: "var(--panel,#1e293b)", border: "1px solid rgba(16,185,129,.25)", borderRadius: 12, overflow: "hidden" }}>
                   <div style={{ background: "rgba(16,185,129,.08)", padding: "10px 16px", fontWeight: 700, fontSize: ".78rem", color: "#34d399", borderBottom: "1px solid rgba(16,185,129,.18)" }}>
-                    ⚡ Important Constants & Facts
+                    <Zap size={14} strokeWidth={2.25} style={{ verticalAlign: "-2px", marginRight: 5 }} /> Important Constants & Facts
                   </div>
                   <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 5 }}>
                     {subjData.constants.map((c, i) => (
@@ -2698,7 +2660,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
               {subjData.traps?.length > 0 && (
                 <div style={{ background: "var(--panel,#1e293b)", border: "1px solid rgba(239,68,68,.25)", borderRadius: 12, overflow: "hidden" }}>
                   <div style={{ background: "rgba(239,68,68,.07)", padding: "10px 16px", fontWeight: 700, fontSize: ".78rem", color: "#f87171", borderBottom: "1px solid rgba(239,68,68,.18)" }}>
-                    ⚠️ Common Exam Traps — Students Lose Marks Here
+                    <AlertTriangle size={14} strokeWidth={2.25} style={{ verticalAlign: "-2px", marginRight: 5 }} /> Common Exam Traps — Students Lose Marks Here
                   </div>
                   <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 5 }}>
                     {subjData.traps.map((t, i) => (
@@ -2714,7 +2676,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
               {subjData.mnemonics?.length > 0 && (
                 <div style={{ background: "var(--panel,#1e293b)", border: "1px solid rgba(139,92,246,.25)", borderRadius: 12, overflow: "hidden" }}>
                   <div style={{ background: "rgba(139,92,246,.07)", padding: "10px 16px", fontWeight: 700, fontSize: ".78rem", color: "#a78bfa", borderBottom: "1px solid rgba(139,92,246,.18)" }}>
-                    🧠 Memory Mnemonics
+                    <Brain size={14} strokeWidth={2.25} style={{ verticalAlign: "-2px", marginRight: 5 }} /> Memory Mnemonics
                   </div>
                   <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 5 }}>
                     {subjData.mnemonics.map((m, i) => (
@@ -2730,7 +2692,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
               {subjData.revision?.length > 0 && (
                 <div style={{ background: "var(--panel,#1e293b)", border: "1px solid rgba(245,158,11,.25)", borderRadius: 12, overflow: "hidden" }}>
                   <div style={{ background: "rgba(245,158,11,.07)", padding: "10px 16px", fontWeight: 700, fontSize: ".78rem", color: "#fbbf24", borderBottom: "1px solid rgba(245,158,11,.18)" }}>
-                    🎯 Last-minute Revision Bullets
+                    <Target size={14} strokeWidth={2.25} style={{ verticalAlign: "-2px", marginRight: 5 }} /> Last-minute Revision Bullets
                   </div>
                   <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 4 }}>
                     {subjData.revision.map((r, i) => (
@@ -2755,7 +2717,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
       {activeMode === "learn" && (
         <section className="premium-section" style={{ paddingTop: 0 }}>
           <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 16 }}>
-            📖 {examInfo.label} — Structured Chapter-wise Study Plan
+            <BookOpen size={16} strokeWidth={2.25} style={{ verticalAlign: "-3px", marginRight: 6 }} /> {examInfo.label} — Structured Chapter-wise Study Plan
           </div>
           {subjects.length === 0 ? (
             <div style={{ color: "var(--muted,#64748b)", fontSize: ".82rem" }}>Loading subjects…</div>
@@ -2767,7 +2729,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                   <div key={subj.name} style={{ background: "var(--panel,#1e293b)", border: `1px solid ${color}44`, borderRadius: 14, overflow: "hidden" }}>
                     {/* Subject header */}
                     <div style={{ background: `${color}12`, padding: "14px 18px", display: "flex", alignItems: "center", gap: 12 }}>
-                      <span style={{ fontSize: "1.6rem" }}>{SUBJECT_ICONS[subj.name] || "📚"}</span>
+                      <SubjectIcon name={subj.name} size={22} />
                       <div>
                         <div style={{ fontWeight: 800, fontSize: "1rem" }}>{subj.name}</div>
                         <div style={{ fontSize: ".72rem", color: "var(--muted,#64748b)" }}>
@@ -2795,7 +2757,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
 
                         const phases = [
                           {
-                            phase: "Phase 1", icon: "📘", label: "Read NCERT",
+                            phase: "Phase 1", icon: BookOpen, label: "Read NCERT",
                             desc: "Cover all theory, definitions, and solved examples from your textbook",
                             color: "#6366f1", actionLabel: "Open Lessons →",
                             done: visitedNcert,
@@ -2806,7 +2768,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                             },
                           },
                           {
-                            phase: "Phase 2", icon: "📝", label: "Note Key Concepts",
+                            phase: "Phase 2", icon: FileText, label: "Note Key Concepts",
                             desc: "Formulas, constants, mnemonics and exam traps — your personalised revision notebook",
                             color: "#8b5cf6", actionLabel: "Open Quick Reference →",
                             done: visitedReference,
@@ -2819,14 +2781,14 @@ export default function ExamPrepPage({ user, setActivePage }) {
                             },
                           },
                           {
-                            phase: "Phase 3", icon: "⚡", label: "Practice Questions",
+                            phase: "Phase 3", icon: Zap, label: "Practice Questions",
                             desc: "Use the Practice tab — work chapter-wise from easy to hard",
                             color: "#10b981", actionLabel: "Go to Practice →",
                             done: (dashboard?.questions_attempted ?? 0) > 0,
                             onClick: () => { setSelectedSubject(subj.name); setActiveMode("practice"); handleSelectSubject(subj.name); },
                           },
                           {
-                            phase: "Phase 4", icon: "🔁", label: "Revise Weak Topics",
+                            phase: "Phase 4", icon: Repeat, label: "Revise Weak Topics",
                             desc: weakTopics.length > 0
                               ? `You have ${weakTopics.length} topic${weakTopics.length > 1 ? "s" : ""} to revise: ${weakTopics.slice(0, 3).join(", ")}${weakTopics.length > 3 ? "…" : ""}`
                               : "Your weak topics will appear here as you practise — review incorrect answers and re-read those NCERT sections.",
@@ -2848,7 +2810,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                               : null,
                           },
                           {
-                            phase: "Phase 5", icon: "📊", label: "Full Test Simulation",
+                            phase: "Phase 5", icon: BarChart3, label: "Full Test Simulation",
                             desc: "Take the Simulated Test to gauge readiness under timed conditions",
                             color: "#ef4444", actionLabel: "Start Simulation →",
                             done: visitedSimTest,
@@ -2877,7 +2839,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                         });
 
                         const statusChip = {
-                          done: { label: "✓ Done", bg: "rgba(16,185,129,.15)", fg: "#059669" },
+                          done: { label: "Done", bg: "rgba(16,185,129,.15)", fg: "#059669" },
                           upcoming: { label: "Upcoming", bg: "var(--panel-soft, rgba(148,163,184,.12))", fg: "var(--muted,#64748b)" },
                         };
 
@@ -2910,7 +2872,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                                 >
                                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8, marginBottom: 6 }}>
                                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                                      <span style={{ fontSize: "1.1rem" }}>{p.icon}</span>
+                                      <p.icon size={18} strokeWidth={2} style={{ color: p.color, flexShrink: 0 }} />
                                       <div>
                                         <div style={{ fontSize: ".6rem", fontWeight: 700, color: p.color, textTransform: "uppercase", letterSpacing: ".05em" }}>{p.phase}</div>
                                         <div style={{ fontSize: ".78rem", fontWeight: 700 }}>{p.label}</div>
@@ -2926,7 +2888,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                                   )}
                                   {p.phase === "Phase 4" && weakTopics.length === 0 && (
                                     <div style={{ fontSize: ".6rem", color: "var(--muted,#475569)", marginTop: 6, fontStyle: "italic" }}>
-                                      🕐 Builds as you study
+                                      <Clock size={11} strokeWidth={2.25} style={{ verticalAlign: "-2px", marginRight: 4 }} /> Builds as you study
                                     </div>
                                   )}
                                 </div>
@@ -2944,7 +2906,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                         <button
                           onClick={() => { setSelectedSubject(subj.name); setActiveMode("practice"); handleSelectSubject(subj.name); }}
                           style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 16px", background: `linear-gradient(135deg,${color},${color}cc)`, border: "none", borderRadius: 8, color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
-                          <span>⚡</span> Start Practising {subj.name} →
+                          <Zap size={14} strokeWidth={2.25} /> Start Practising {subj.name} →
                         </button>
                       </div>
                     </div>
@@ -2956,7 +2918,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
 
           {/* Exam-level strategy box */}
           <div style={{ marginTop: 24, background: "rgba(99,102,241,.06)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 12, padding: "18px 20px" }}>
-            <div style={{ fontWeight: 800, fontSize: ".9rem", marginBottom: 10 }}>🎯 {examInfo.label} — Exam Strategy</div>
+            <div style={{ fontWeight: 800, fontSize: ".9rem", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}><Target size={16} strokeWidth={2.25} /> {examInfo.label} — Exam Strategy</div>
             {selectedExam === "jee_main" && (
               <ul style={{ fontSize: ".78rem", color: "var(--muted,#94a3b8)", lineHeight: 2, margin: 0, paddingLeft: 18 }}>
                 <li><strong style={{color:"#a5b4fc"}}>75 questions · 3 hours · 300 marks · +4/−1 (MCQ & Numerical)</strong></li>
@@ -3050,7 +3012,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
             {selectedSubject && (
               <div style={{ marginTop: 16 }}>
                 <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 12 }}>
-                  {SUBJECT_ICONS[selectedSubject]} {selectedSubject} — Priority Topics
+                  <SubjectIcon name={selectedSubject} size={18} style={{ verticalAlign: "-3px", marginRight: 4 }} /> {selectedSubject} — Priority Topics
                 </div>
                 {loadingTopics ? (
                   <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)", fontSize: ".78rem" }}>
@@ -3077,8 +3039,8 @@ export default function ExamPrepPage({ user, setActivePage }) {
                   </div>
                   {filterTopic && (
                     <button onClick={() => { setFilterTopic(null); loadQuestions(selectedSubject, null); }}
-                      style={{ fontSize: ".65rem", color: "#6366f1", background: "none", border: "none", cursor: "pointer", padding: 0, marginTop: 2 }}>
-                      ✕ Clear filter
+                      style={{ fontSize: ".65rem", color: "#6366f1", background: "none", border: "none", cursor: "pointer", padding: 0, marginTop: 2, display: "inline-flex", alignItems: "center", gap: 3 }}>
+                      <X size={11} strokeWidth={2.5} /> Clear filter
                     </button>
                   )}
                 </div>
@@ -3091,7 +3053,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                 </div>
               ) : questions.length === 0 ? (
                 <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: 24, textAlign: "center" }}>
-                  <div style={{ fontSize: "2rem", marginBottom: 10 }}>📭</div>
+                  <div style={{ marginBottom: 10 }}><Inbox size={32} strokeWidth={1.5} /></div>
                   <div style={{ fontSize: ".85rem", fontWeight: 700, marginBottom: 6 }}>No questions available yet</div>
                   <div style={{ fontSize: ".75rem", color: "var(--muted,#64748b)" }}>
                     {isAdmin ? "Use the Admin → Exam Prep Question Bank to generate questions." : "Check back soon — questions are being added!"}
@@ -3121,7 +3083,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                   {/* AI panel */}
                   <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 12, overflow: "hidden", display: "flex", flexDirection: "column", maxHeight: 500 }}>
                     <div style={{ padding: "10px 14px", borderBottom: "1px solid var(--border,#334155)", background: "rgba(99,102,241,.06)", display: "flex", alignItems: "center", gap: 8 }}>
-                      <div style={{ width: 22, height: 22, borderRadius: "50%", background: "linear-gradient(135deg,#6366f1,#10b981)", display: "grid", placeItems: "center", fontSize: ".7rem", flexShrink: 0 }}>🤖</div>
+                      <div style={{ width: 22, height: 22, borderRadius: "50%", background: "linear-gradient(135deg,#6366f1,#10b981)", display: "grid", placeItems: "center", flexShrink: 0, color: "#fff" }}><Bot size={13} strokeWidth={2.25} /></div>
                       <div style={{ fontSize: ".8rem", fontWeight: 700, color: "#a5b4fc" }}>
                         {selectedQuestion ? `AI Explanation — ${selectedQuestion.topic || ""}` : "AI Explanation"}
                       </div>
@@ -3163,7 +3125,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                     <div style={{ display: "grid", gridTemplateColumns: `repeat(${cfg.subjects.length},1fr)`, gap: 10, marginBottom: 28 }}>
                       {cfg.subjects.map(s => (
                         <div key={s} style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: "12px 10px", textAlign: "center" }}>
-                          <div style={{ fontSize: "1.3rem", marginBottom: 4 }}>{SUBJECT_ICONS[s] || "📚"}</div>
+                          <div style={{ marginBottom: 4 }}><SubjectIcon name={s} size={20} /></div>
                           <div style={{ fontSize: ".75rem", fontWeight: 700 }}>{s}</div>
                           <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>{cfg.questionsPerSubject || Math.round(cfg.questions / cfg.subjects.length)} Qs</div>
                         </div>
@@ -3174,7 +3136,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
               })()}
               <button onClick={handleStartTest} disabled={testLoading}
                 style={{ padding: "13px 32px", background: `linear-gradient(135deg,${examInfo.color},${examInfo.color}cc)`, border: "none", borderRadius: 12, color: "#fff", fontWeight: 800, fontSize: ".95rem", cursor: "pointer", fontFamily: "inherit", opacity: testLoading ? .7 : 1, display: "flex", alignItems: "center", gap: 10, margin: "0 auto" }}>
-                {testLoading ? <><Loader size={16} style={{ animation: "spin 1s linear infinite" }} /> Starting…</> : `🚀 Start ${examInfo.label} Simulation`}
+                {testLoading ? <><Loader size={16} style={{ animation: "spin 1s linear infinite" }} /> Starting…</> : <><Rocket size={16} strokeWidth={2.25} /> {`Start ${examInfo.label} Simulation`}</>}
               </button>
             </div>
             )
@@ -3199,7 +3161,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
       {/* ── Resource links ── */}
       <section className="premium-section">
         <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 14 }}>
-          📚 Resources & Tools
+          <BookOpen size={16} strokeWidth={2.25} style={{ verticalAlign: "-3px", marginRight: 6 }} /> Resources & Tools
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(160px,1fr))", gap: 10 }}>
           {RESOURCES.map(r => (
@@ -3207,7 +3169,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
               onClick={() => r.onClick && setActivePage && setActivePage(r.onClick)}
               className="premium-card"
               style={{ border: `1px solid ${r.onClick ? r.color + "40" : "var(--border,#334155)"}`, borderRadius: 10, padding: "14px 14px", cursor: r.onClick ? "pointer" : "default", transition: "all .12s", marginBottom: 0 }}>
-              <div style={{ fontSize: "1.4rem", marginBottom: 6 }}>{r.icon}</div>
+              <div style={{ marginBottom: 6, color: r.color }}><r.icon size={22} strokeWidth={2} /></div>
               <div style={{ fontWeight: 700, fontSize: ".8rem", marginBottom: 3 }}>{r.label}</div>
               <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)" }}>{r.desc}</div>
               {r.onClick && <div style={{ fontSize: ".62rem", color: r.color, marginTop: 6, fontWeight: 600 }}>Open →</div>}

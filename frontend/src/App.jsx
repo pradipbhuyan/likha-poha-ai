@@ -1723,7 +1723,7 @@ function App() {
       case "adminChat":
         return <AdminChatPage user={user} />;
       case "examPrep":
-        return <ExamPrepPage user={user} setActivePage={handlePageChange} />;
+        return <ExamPrepPage user={user} setActivePage={handlePageChange} onSubscriptionComplete={handleSubscriptionComplete} />;
       case "studyPlanner":
         return <StudyPlannerPage user={user} setActivePage={handlePageChange} />;
       default:
