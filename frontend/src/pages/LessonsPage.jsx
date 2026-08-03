@@ -12,6 +12,7 @@ import {
 } from "../utils/syllabusDefaults";
 import { filterAllowedSubjects } from "../utils/subjectAccess";
 import { hasPaidAccess } from "../utils/resolveSubscription";
+import { isAllAccessTestUser } from "../utils/testAccounts";
 
 // ── Chapter Journey rollout ────────────────────────────────────────────────
 // Grades listed here try the typed-block Chapter Journey experience: one GET,
@@ -322,44 +323,50 @@ function LessonsPage({ user, setActivePage }) {
               this server-side cache table. See §4o of the plan doc.
               Sticky-positioned so it stays reachable while scrolling
               through a long chapter, instead of only being visible at the
-              very top of the page. */}
-          <div
-            style={{
-              position: "sticky",
-              top: 8,
-              zIndex: 40,
-              display: "flex",
-              justifyContent: "flex-end",
-              marginBottom: 8,
-              pointerEvents: "none",
-            }}
-          >
-            <button
-              type="button"
-              onClick={handleRefreshLesson}
-              disabled={chapterDocRefreshing}
-              title="Reload this chapter's content from the latest source — fixes 'I updated the lesson but it still shows old text'"
+              very top of the page.
+              Restricted to the internal QA test account only (2026-08-03) —
+              this is a content-debugging tool, not a student-facing
+              feature, so it must not appear for any real student/teacher
+              account. */}
+          {isAllAccessTestUser(user) && (
+            <div
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                padding: "6px 14px",
-                fontSize: "0.8rem",
-                fontWeight: 600,
-                borderRadius: 8,
-                border: "1px solid var(--border, #d1d5db)",
-                background: "var(--panel, #ffffff)",
-                color: "var(--text, #374151)",
-                cursor: chapterDocRefreshing ? "default" : "pointer",
-                opacity: chapterDocRefreshing ? 0.6 : 1,
-                boxShadow: "0 2px 8px rgba(0,0,0,.12)",
-                pointerEvents: "auto",
+                position: "sticky",
+                top: 8,
+                zIndex: 40,
+                display: "flex",
+                justifyContent: "flex-end",
+                marginBottom: 8,
+                pointerEvents: "none",
               }}
             >
-              <RotateCcw size={14} strokeWidth={2.4} />
-              {chapterDocRefreshing ? "Refreshing…" : "Refresh lesson"}
-            </button>
-          </div>
+              <button
+                type="button"
+                onClick={handleRefreshLesson}
+                disabled={chapterDocRefreshing}
+                title="Reload this chapter's content from the latest source — fixes 'I updated the lesson but it still shows old text'"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  padding: "6px 14px",
+                  fontSize: "0.8rem",
+                  fontWeight: 600,
+                  borderRadius: 8,
+                  border: "1px solid var(--border, #d1d5db)",
+                  background: "var(--panel, #ffffff)",
+                  color: "var(--text, #374151)",
+                  cursor: chapterDocRefreshing ? "default" : "pointer",
+                  opacity: chapterDocRefreshing ? 0.6 : 1,
+                  boxShadow: "0 2px 8px rgba(0,0,0,.12)",
+                  pointerEvents: "auto",
+                }}
+              >
+                <RotateCcw size={14} strokeWidth={2.4} />
+                {chapterDocRefreshing ? "Refreshing…" : "Refresh lesson"}
+              </button>
+            </div>
+          )}
           <ChapterJourneyView
             doc={chapterDoc}
             user={user}
