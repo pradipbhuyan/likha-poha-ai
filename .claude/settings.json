@@ -25,7 +25,11 @@
       "Bash(curl -s \"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=fIhjFWk5P1Y&format=json\")",
       "Bash(curl -s \"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=zEqiasdszEk&format=json\")",
       "Bash(npx tsc *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(.venv/bin/ruff check *)",
+      "Bash(npm test *)",
+      "mcp__Claude_Browser__read_page",
+      "mcp__Claude_Browser__navigate"
     ]
   }
 }
