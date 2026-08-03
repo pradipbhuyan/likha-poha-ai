@@ -141,8 +141,8 @@ function CardShell({ palette, type, title, children }: {
 }
 
 // ── Quick check (typed options — no text parsing) ─────────────────────────────
-function QuickCheck({ block, accent, junior, onCorrect }: {
-  block: ChapterBlock; accent: string; junior: boolean; onCorrect: () => void;
+function QuickCheck({ block, accent, junior, onCorrect, renderMarkdown }: {
+  block: ChapterBlock; accent: string; junior: boolean; onCorrect: () => void; renderMarkdown: RenderMarkdown;
 }) {
   const [picked, setPicked] = useState<number | null>(null);
   const answered = picked !== null;
@@ -156,7 +156,7 @@ function QuickCheck({ block, accent, junior, onCorrect }: {
 
   return (
     <View>
-      <Text style={cjStyles.question}>{block.question}</Text>
+      <View style={cjStyles.questionWrap}>{renderMarkdown(block.question ?? "", accent)}</View>
       {(block.options ?? []).map((option, index) => {
         const isRight = index === block.answer_index;
         const isPicked = picked === index;
@@ -203,7 +203,7 @@ function StudentsAsk({ block, accent, renderMarkdown }: {
   return (
     <View>
       <TouchableOpacity onPress={() => setOpen(o => !o)} style={cjStyles.revealRow} activeOpacity={0.7}>
-        <Text style={cjStyles.question}>{block.question}</Text>
+        <View style={cjStyles.questionWrap}>{renderMarkdown(block.question ?? "", accent)}</View>
         <Text style={[cjStyles.revealTag, { color: accent }]}>{open ? "HIDE" : "REVEAL"}</Text>
       </TouchableOpacity>
       {open && <View style={{ marginTop: 6 }}>{renderMarkdown(block.answer_md ?? "", accent)}</View>}
@@ -218,7 +218,7 @@ function ExampleBlockView({ block, accent, junior, renderMarkdown }: {
   const [revealed, setRevealed] = useState(junior);
   return (
     <View>
-      <Text style={cjStyles.question}>Question: {block.question}</Text>
+      <View style={cjStyles.questionWrap}>{renderMarkdown(`Question: ${block.question ?? ""}`, accent)}</View>
       {revealed ? (
         renderMarkdown(block.body_md ?? "", accent)
       ) : (
@@ -461,7 +461,7 @@ function TextbookImageCard({ block }: { block: ChapterBlock }) {
 function FreeTextQACard({ block, renderMarkdown }: { block: ChapterBlock; renderMarkdown: RenderMarkdown }) {
   return (
     <View>
-      <Text style={cjStyles.question}>Question: {block.question}</Text>
+      <View style={cjStyles.questionWrap}>{renderMarkdown(`Question: ${block.question ?? ""}`, "#3b82f6")}</View>
       <View style={cjStyles.freetextAnswerBox}>
         <Text style={cjStyles.freetextLabelAnswer}>ANSWER</Text>
         <View style={{ marginTop: 2 }}>{renderMarkdown(block.answer ?? "", "#15803d")}</View>
@@ -566,7 +566,7 @@ function ExamQACard({ item, renderMarkdown }: { item: ExamQAItem; renderMarkdown
           </View>
         ) : null}
       </View>
-      <Text style={cjStyles.question}>{item.question}</Text>
+      <View style={cjStyles.questionWrap}>{renderMarkdown(item.question ?? "", "#2d4a8a")}</View>
       {revealed ? (
         <View style={cjStyles.examAnswer}>{renderMarkdown(item.model_answer_md, "#2d4a8a")}</View>
       ) : (
@@ -645,6 +645,7 @@ export default function ChapterJourney({ doc, grade, renderMarkdown }: {
               accent={accent}
               junior={junior}
               onCorrect={() => { handleCorrect(); setChecksDone(c => c + 1); }}
+              renderMarkdown={renderBody}
             />
           </CardShell>
         );
@@ -779,6 +780,13 @@ const cjStyles = StyleSheet.create({
   cardTitle: { fontSize: 15, fontWeight: "700", color: "#111827", lineHeight: 20, marginTop: 2 },
   hookText: { fontSize: 16, fontWeight: "700", color: "#0f766e", lineHeight: 24 },
   question: { fontSize: 15, fontWeight: "600", color: "#111827", lineHeight: 22, marginBottom: 10, flex: 1 },
+  // Wraps question text rendered through renderMarkdown (so extract-ref
+  // citation fences and visual-json embedded in a question string get
+  // stripped into pills/cards instead of showing as literal text — see
+  // the bug this fixes: Grade 11 Maths "From NCERT Example 6..." and
+  // Grade 7 English worked-example questions showing raw ```extract-ref```
+  // JSON blocks inline in the question, reported 2026-08-03).
+  questionWrap: { marginBottom: 10 },
   optionBtn: { flexDirection: "row", alignItems: "center", borderWidth: 1.5, borderRadius: 10, padding: 11, marginBottom: 8, gap: 10 },
   optionKeyBox: { width: 28, height: 28, borderRadius: 7, alignItems: "center", justifyContent: "center", flexShrink: 0 },
   optionKey: { fontSize: 13, fontWeight: "800" },
