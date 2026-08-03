@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { resolveSubscription, ACCESS_SOURCE } from "../utils/resolveSubscription";
+import NoticeboardPricingTable from "../components/NoticeboardPricingTable";
 
 import {
   getParentChildren,
@@ -31,8 +32,6 @@ import {
   getSubscriptionPlan,
   mergeSubscriptionPlans,
   SUBSCRIPTION_PLANS,
-  COMPARISON_PLAN_ORDER,
-  COMPARISON_TABLE_ROWS,
 } from "../config/subscriptionPlans";
 
 const DEFAULT_SUBSCRIPTION_CONTACT = {
@@ -396,116 +395,39 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
         <div className="error-box" style={{ marginBottom: 16 }}>{paymentError}</div>
       )}
 
-      {/* Plan cards */}
-      <section className="subscription-plan-grid">
-        {planOrder.map((planKey) => {
-          const plan = plans[planKey];
-          if (!plan) return null;
-          const displayPrice = getPlanDisplayPrice(plan);
-          const hasDiscount = Number(plan.discountPercent || 0) > 0;
-          const isSelected = selectedPlanKey === plan.key;
+      {/* Parent-linked (non-standalone): no selectable cards or CTAs — just a
+          static notice to ask their parent, plus the read-only comparison
+          table below. Standalone students select a plan directly from the
+          comparison table's CTA row (see the NoticeboardPricingTable call
+          below), which replaced the old separate plan-card grid. */}
+      {!isStandaloneStudent && (
+        <div style={{
+          padding: "10px 14px",
+          background: "rgba(99,102,241,.06)",
+          borderRadius: 8,
+          fontSize: ".82rem",
+          color: "var(--text-muted)",
+          textAlign: "center",
+          marginBottom: 20,
+        }}>
+          🔒 Ask your parent to activate a plan
+        </div>
+      )}
 
-          return (
-            <article
-              key={plan.key}
-              className={[
-                "subscription-plan-card",
-                plan.recommended ? "recommended" : "",
-                isStandaloneStudent && isSelected ? "selected" : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-            >
-              <div className="subscription-plan-topline">
-                <div>
-                  <h3>{plan.label}</h3>
-                  <p>{plan.audience}</p>
-                </div>
-                {plan.badge && <span className="plan-badge">{plan.badge}</span>}
-              </div>
-
-              <div className="subscription-price-row">
-                <strong>{formatPlanPrice(displayPrice)}</strong>
-                <span>/ {plan.billingLabel}</span>
-              </div>
-
-              {hasDiscount && (
-                <div className="subscription-discount-row">
-                  <span>{formatPlanPrice(plan.price)}</span>
-                  <strong>
-                    {plan.discountLabel || `${plan.discountPercent}% off`}
-                  </strong>
-                </div>
-              )}
-
-              <ul className="subscription-feature-list">
-                {(Array.isArray(plan.included) ? plan.included : []).map((feature) => (
-                  <li key={feature}>
-                    <Check size={18} strokeWidth={2.6} />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-                {(Array.isArray(plan.notIncluded) ? plan.notIncluded : []).map((feature) => (
-                  <li key={feature} className="muted-feature">
-                    <Minus size={18} strokeWidth={2.6} />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {isStandaloneStudent ? (
-                <button
-                  className={plan.recommended ? "primary-btn" : "secondary-btn"}
-                  onClick={() => setSelectedPlanKey(plan.key)}
-                >
-                  {isSelected ? `✓ ${plan.shortLabel} Selected` : `Choose ${plan.shortLabel}`}
-                </button>
-              ) : (
-                <div style={{
-                  padding: "10px 14px",
-                  background: "rgba(99,102,241,.06)",
-                  borderRadius: 8,
-                  fontSize: ".82rem",
-                  color: "var(--text-muted)",
-                  textAlign: "center",
-                }}>
-                  🔒 Ask your parent to activate this plan
-                </div>
-              )}
-            </article>
-          );
-        })}
-      </section>
-
-      {/* Standalone student: payment panel */}
+      {/* Standalone student: full plan comparison + payment panel */}
       {isStandaloneStudent && (
-        <section className="subscription-bottom-grid">
+        <section className="subscription-bottom-grid subscription-bottom-grid--stacked">
           <div className="premium-section subscription-compare">
             <div className="subscription-section-heading">
               <ShieldCheck size={22} strokeWidth={2.4} />
-              <h3>What you get</h3>
+              <h3>Compare plans</h3>
             </div>
-            <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 14 }}>
-              <div className="premium-card premium-glow-card glow-blue">
-                <h3>📚 All Lessons</h3>
-                <p>5-step AI lessons for every CBSE chapter, Grade 5–12. Audio, visuals, and practice included.</p>
-              </div>
-              <div className="premium-card premium-glow-card glow-purple">
-                <h3>❓ Unlimited Ask Doubts</h3>
-                <p>Ask any question, any chapter, any subject — unlimited AI answers, textbook-aligned, instantly.</p>
-              </div>
-              <div className="premium-card premium-glow-card glow-green">
-                <h3>🧪 Unlimited Mock Tests</h3>
-                <p>Unlimited chapter-wise timed tests with scoring, review, and difficulty guidance. No daily cap.</p>
-              </div>
-              <div className="premium-card premium-glow-card glow-red">
-                <h3>🔬 Exemplar Research</h3>
-                <p>AI explanations for hard & tricky Science and Maths topics from NCERT Exemplar — Class 8, 9 & 10.</p>
-              </div>
-              <div className="premium-card premium-glow-card glow-blue">
-                <h3>📖 Exemplar Lessons</h3>
-                <p>Generate full 5-step AI lessons for all NCERT Exemplar chapters (Class 8, 9, 10) — locked on free plan.</p>
-              </div>
+            <div style={{ marginTop: 12 }}>
+              <NoticeboardPricingTable
+                theme="light"
+                showFreeCta={false}
+                onChoosePlan={(planKey) => { if (plans[planKey]) setSelectedPlanKey(planKey); }}
+              />
             </div>
           </div>
 
@@ -1105,72 +1027,8 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
             <ShieldCheck size={22} strokeWidth={2.4} />
             <h3>Compare plans</h3>
           </div>
-
-          {/* Comparison table always shows all 4 tiers using COMPARISON_PLAN_ORDER:
-              Feature | Free Tier | Nano | Premium | Family Premium
-              free_tier is display-only (isPublic=false) — never a purchasable card. */}
-          <div className="subscription-table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th style={{ textAlign: "left" }}>Feature</th>
-                  {COMPARISON_PLAN_ORDER.map((planKey) => {
-                    const p = plans[planKey] || SUBSCRIPTION_PLANS[planKey];
-                    const isFree = planKey === "free_tier";
-                    return (
-                      <th
-                        key={planKey}
-                        style={{
-                          textAlign: "center",
-                          color: isFree ? "var(--text-muted, #94a3b8)" : undefined,
-                          fontWeight: isFree ? 500 : 700,
-                        }}
-                      >
-                        {p?.shortLabel ?? planKey}
-                        {!isFree && (
-                          <div style={{ fontSize: "0.72rem", fontWeight: 500, color: "#94a3b8", marginTop: 2 }}>
-                            {planKey === "free" ? "₹99 / 8 days"
-                              : planKey === "starter" ? "₹299 / mo"
-                              : planKey === "family_premium" ? "₹499 / mo"
-                              : ""}
-                          </div>
-                        )}
-                      </th>
-                    );
-                  })}
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON_TABLE_ROWS.map(([label, key]) => (
-                  <tr key={key}>
-                    <td>{label}</td>
-                    {COMPARISON_PLAN_ORDER.map((planKey) => {
-                      const p = plans[planKey] || SUBSCRIPTION_PLANS[planKey];
-                      const value = p?.comparison?.[key] ?? "—";
-                      const isLocked = String(value).startsWith("❌");
-                      const isGood = String(value).startsWith("✅");
-                      const isLimited = value === "Limited" || value === "5/day";
-                      return (
-                        <td
-                          key={planKey}
-                          style={{
-                            textAlign: "center",
-                            color: isLocked ? "#ef4444"
-                              : isGood ? "#10b981"
-                              : isLimited ? "#f59e0b"
-                              : undefined,
-                            fontWeight: isGood ? 600 : undefined,
-                            fontSize: ".88rem",
-                          }}
-                        >
-                          {value}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div style={{ marginTop: 12 }}>
+            <NoticeboardPricingTable theme="light" showCta={false} />
           </div>
         </div>
 

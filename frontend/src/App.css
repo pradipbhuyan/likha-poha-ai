@@ -12540,6 +12540,18 @@ body.dark-mode .selected-child-badge {
   align-items: start;
 }
 
+/* Full-width Compare plans with Payment summary below, instead of a narrow
+   side-by-side sidebar — keeps all plan columns visible without horizontal
+   scroll regardless of viewport width. */
+.subscription-bottom-grid--stacked {
+  grid-template-columns: 1fr;
+}
+
+.subscription-bottom-grid--stacked .subscription-payment-panel {
+  position: static;
+  max-width: 480px;
+}
+
 .subscription-section-heading {
   display: flex;
   align-items: center;

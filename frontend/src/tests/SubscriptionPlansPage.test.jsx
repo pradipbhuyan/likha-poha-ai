@@ -375,4 +375,73 @@ describe("SubscriptionPlansPage — non-array included/notIncluded regression", 
       expect(body.length).toBeGreaterThan(0);
     });
   });
+
+  test("standalone student can pick a plan via the Noticeboard comparison table", async () => {
+    /**
+     * The plan-selection cards were removed from the Subscription page; the
+     * Noticeboard comparison table's CTA row is now the only plan picker for
+     * a standalone student (no parentId). Clicking a real plan's button
+     * there must update the selected plan reflected in the payment summary.
+     */
+    const { getParentSubscriptionPlans } = await import("../api/parentDashboard");
+    getParentSubscriptionPlans.mockResolvedValueOnce({
+      success: true,
+      persisted: true,
+      source: "database",
+      plans: {
+        starter: {
+          key: "starter",
+          label: "Premium",
+          short_label: "Premium",
+          price: 499,
+          billing_label: "month",
+          is_public: true,
+          display_order: 1,
+          access_cbse: true,
+          included: ["Everything in Free Trial"],
+          not_included: [],
+          comparison: {},
+        },
+        family_premium: {
+          key: "family_premium",
+          label: "Family Premium",
+          short_label: "Family",
+          price: 799,
+          billing_label: "month",
+          is_public: true,
+          display_order: 2,
+          access_cbse: true,
+          included: ["Everything in Premium"],
+          not_included: [],
+          comparison: {},
+        },
+      },
+      plan_order: ["starter", "family_premium"],
+      contact: {},
+    });
+
+    render(
+      <SubscriptionPlansPage
+        user={{
+          role: "student",
+          email: "student@example.com",
+          username: "Test Student",
+        }}
+      />
+    );
+
+    // "Start Free" is a dead end for students (free_tier is never a real
+    // fetched plan here), so it must not be offered in this view.
+    await screen.findByRole("button", { name: /choose premium/i });
+    expect(
+      screen.queryByRole("button", { name: /start free/i })
+    ).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /get family premium/i }));
+
+    await waitFor(() => {
+      expect(screen.getAllByText(/family premium/i).length).toBeGreaterThan(0);
+    });
+    expect(screen.getAllByText("₹799").length).toBeGreaterThan(0);
+  });
 });
