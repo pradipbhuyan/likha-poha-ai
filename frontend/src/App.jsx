@@ -324,7 +324,7 @@ const PAGE_META = {
   },
   examPrep: {
     title: "Exam Prep Center",
-    subtitle: "JEE Main · NEET UG · CUET UG — Practice questions, simulated tests, and AI explanations for Grade 11 & 12.",
+    subtitle: "JEE Main · NEET UG · CUET UG · SAT · IELTS · TOEFL iBT — Practice questions, simulated tests, and AI explanations for Grade 11 & 12.",
     icon: "🎯",
   },
   studyPlanner: {

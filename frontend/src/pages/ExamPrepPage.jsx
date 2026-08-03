@@ -1853,7 +1853,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
           <div style={{ fontSize: "3rem", marginBottom: 16 }}>🔒</div>
           <h3 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: 8 }}>Exam Prep Center</h3>
           <p style={{ color: "var(--muted,#64748b)", maxWidth: 380, margin: "0 auto 0" }}>
-            Available for Grade 11 & 12 students only. Check back soon!
+            JEE Main · NEET UG · CUET UG · SAT · IELTS · TOEFL iBT prep is available for Grade 11 & 12 students only.
           </p>
         </section>
       </div>
@@ -1868,7 +1868,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
         <section className="premium-section" style={{ paddingBottom: 0 }}>
           <div style={{ background: "rgba(99,102,241,.07)", border: "1px solid rgba(99,102,241,.3)", borderRadius: 10, padding: "9px 14px", fontSize: ".8rem", marginBottom: 16, display: "flex", alignItems: "center", gap: 9 }}>
             <span>🎓</span>
-            <span><strong>Grade 11 & 12 — Competitive Exam Prep.</strong> JEE Main · NEET UG · CUET UG</span>
+            <span><strong>Grade 11 & 12 — Competitive Exam Prep.</strong> JEE Main · NEET UG · CUET UG · SAT · IELTS · TOEFL iBT</span>
           </div>
           {/* Exam tabs (disabled visual only) */}
           <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap", opacity: 0.5, pointerEvents: "none" }}>
@@ -1889,8 +1889,8 @@ export default function ExamPrepPage({ user, setActivePage }) {
             </h3>
             <p style={{ color: "var(--muted,#64748b)", fontSize: ".88rem", lineHeight: 1.6, marginBottom: 24, maxWidth: 420, margin: "0 auto 24px" }}>
               {isNano
-                ? "The Exam Prep Center is available on Premium and higher plans. Your current Premium Nano plan includes CBSE lessons for Grade 5–10 but not JEE/NEET/CUET prep."
-                : "JEE Main, NEET UG & CUET UG preparation — AI-powered practice questions, simulated full tests, topic-wise analysis, and instant AI explanations. Upgrade to access."}
+                ? "The Exam Prep Center is available on Premium and higher plans. Your current Premium Nano plan includes CBSE lessons for Grade 5–10 but not JEE/NEET/CUET/SAT/IELTS/TOEFL prep."
+                : "JEE Main, NEET UG, CUET UG, SAT, IELTS & TOEFL iBT preparation — AI-powered practice questions, simulated full tests, topic-wise analysis, and instant AI explanations. Upgrade to access."}
             </p>
             {/* Feature preview */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 28, textAlign: "left" }}>
@@ -1898,7 +1898,10 @@ export default function ExamPrepPage({ user, setActivePage }) {
                 { icon: "📐", label: "JEE Main prep", desc: "Physics, Chem, Maths" },
                 { icon: "🔬", label: "NEET UG prep", desc: "Physics, Chem, Biology" },
                 { icon: "🏛️", label: "CUET UG prep", desc: "All streams" },
-                { icon: "📊", label: "Simulated tests", desc: "Full 3-hour test series" },
+                { icon: "🎓", label: "SAT prep", desc: "Reading, Writing, Maths" },
+                { icon: "🌐", label: "IELTS prep", desc: "Listening, Reading, Grammar" },
+                { icon: "📡", label: "TOEFL iBT prep", desc: "Reading, Listening, Integrated Skills" },
+                { icon: "📊", label: "Simulated tests", desc: "Full-length timed test series" },
                 { icon: "🤖", label: "AI explanations", desc: "Step-by-step solutions" },
                 { icon: "🎯", label: "Weak topic tracker", desc: "Personalized analytics" },
               ].map(f => (
@@ -1911,11 +1914,18 @@ export default function ExamPrepPage({ user, setActivePage }) {
                 </div>
               ))}
             </div>
+            {/* Upgrade CTA — links to the real subscription/payment flow.
+                Previously a permanently-disabled "Coming Soon" button, even
+                though this feature is fully built (question bank, simulated
+                tests, AI explanations, Quick Reference, Cutoff Oracle) and
+                already gated correctly by the backend's canonical
+                authorize_feature(EXAM_PREP_CONTENT) check. Mirrors the
+                Exemplar-lock CTA pattern in LessonsPage.jsx. */}
             <button
-              disabled
-              style={{ padding: "13px 32px", background: "var(--border,#334155)", border: "none", borderRadius: 12, color: "var(--muted,#64748b)", fontWeight: 800, fontSize: ".95rem", cursor: "not-allowed", fontFamily: "inherit", marginBottom: 10 }}
+              onClick={() => setActivePage?.("subscriptionPlans")}
+              style={{ padding: "13px 32px", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", border: "none", borderRadius: 12, color: "#fff", fontWeight: 800, fontSize: ".95rem", cursor: "pointer", fontFamily: "inherit", marginBottom: 10 }}
             >
-              Coming Soon
+              🚀 Upgrade to Unlock
             </button>
           </div>
         </section>
@@ -1947,7 +1957,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
           <span>
             {isTestUser ? <><strong>Test Access.</strong> Early access before student launch.</> :
              isAdmin ? <><strong>Admin Preview.</strong> Not yet visible to students.</> :
-             <><strong>Grade 11 & 12 — Competitive Exam Prep.</strong> JEE Main · NEET UG · CUET UG</>}
+             <><strong>Grade 11 & 12 — Competitive Exam Prep.</strong> JEE Main · NEET UG · CUET UG · SAT · IELTS · TOEFL iBT</>}
           </span>
         </div>
 
