@@ -496,7 +496,9 @@ useEffect(() => {
                 <div className="ait-input-row">
                   <span className="ait-input-icon"><User size={20} strokeWidth={2} /></span>
 
+                  <label htmlFor="login-fullname" className="sr-only">Full name</label>
                   <input
+                    id="login-fullname"
                     type="text"
                     placeholder="Enter your full name"
                     value={fullName}
@@ -509,9 +511,13 @@ useEffect(() => {
               <div className="ait-input-row">
                 <span className="ait-input-icon"><AtSign size={20} strokeWidth={2} /></span>
 
+                <label htmlFor="login-username" className="sr-only">
+                  {isSignupMode ? "Email address" : "Username or email"}
+                </label>
                 <input
-                  type="text"
-                  placeholder="Username or email"
+                  id="login-username"
+                  type={isSignupMode ? "email" : "text"}
+                  placeholder={isSignupMode ? "Email address" : "Username or email"}
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
@@ -521,7 +527,9 @@ useEffect(() => {
               <div className="ait-input-row">
                 <span className="ait-input-icon"><Lock size={20} strokeWidth={2} /></span>
 
+                <label htmlFor="login-password" className="sr-only">Password</label>
                 <input
+                  id="login-password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   value={password}
