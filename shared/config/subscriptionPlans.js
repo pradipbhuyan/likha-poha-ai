@@ -278,6 +278,61 @@ export const SUBSCRIPTION_PLANS = {
     },
   },
 
+  // ── EXAM PREP CENTER ──────────────────────────────────────────────────────
+  // Bundled Grade 11–12 annual plan covering JEE Main, NEET UG, CUET UG, SAT,
+  // IELTS & TOEFL iBT together. Independent of the CBSE subscription tiers
+  // above — does NOT include access_cbse or Exemplar.
+  exam_prep_center: {
+    key: "exam_prep_center",
+    label: "Exam Prep Center",
+    shortLabel: "Exam Prep",
+    price: 1999,
+    billingLabel: "year",
+    audience:
+      "Grade 11–12 competitive & global exam prep — JEE Main, NEET UG, CUET UG, SAT, IELTS & TOEFL iBT, all in one annual plan.",
+    badge: "NEW",
+    recommended: false,
+    discountPercent: 0,
+    discountLabel: "",
+    isPublic: true,
+    displayOrder: 6,
+    accessLevel: ACCESS_LEVEL.FULL,
+    access_cbse: false,
+    access_sof_science: false,
+    access_sof_maths: false,
+    access_sof_english: false,
+    daily_token_limit: 100000,
+    monthly_token_limit: 3000000,
+    included: [
+      "JEE Main — Study Plan + Test Simulation",
+      "NEET UG — Study Plan + Test Simulation",
+      "CUET UG — Study Plan + Test Simulation",
+      "SAT — Study Plan + Test Simulation",
+      "IELTS — Study Plan + Test Simulation",
+      "TOEFL iBT — Study Plan + Test Simulation",
+      "AI step-by-step explanations",
+      "Weak topic tracker",
+    ],
+    notIncluded: [
+      "CBSE lessons (Grade 5–10)",
+      "Ask Doubt",
+      "Exemplar Research & Lessons",
+    ],
+    comparison: {
+      children: "1",
+      lessons: "❌ Not included",
+      mockTests: "❌ Not included",
+      askDoubts: "❌ Not included",
+      cbse: "Grade 11–12 only",
+      exemplarResearch: "❌ Locked",
+      exemplarLessons: "❌ Locked",
+      parentDashboard: "Full + alerts",
+      fullAccess: "✅ Exam Prep only (Gr 11–12)",
+      planDuration: "Annual",
+      billingType: "₹1,999 / year",
+    },
+  },
+
   // ── Extended plans (hidden from public plan cards, admin use) ─────────────
   standard_6month: {
     key: "standard_6month",
@@ -444,6 +499,7 @@ export const SUBSCRIPTION_PLAN_ORDER = [
   "standard_annual",
   "family_premium",
   "family_annual",
+  "exam_prep_center",
 ];
 
 export const PARENT_PLAN_ORDER = [
@@ -452,6 +508,7 @@ export const PARENT_PLAN_ORDER = [
   "standard_annual",
   "family_premium",
   "family_annual",
+  "exam_prep_center",
 ];
 
 /**

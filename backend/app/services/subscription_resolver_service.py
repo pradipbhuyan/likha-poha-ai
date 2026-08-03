@@ -76,6 +76,15 @@ _PLAN_LIMITS: dict[str, dict] = {
         "student_limit": None,
         "restrictions": [],
     },
+    # Bundled Grade 11–12 annual exam-prep plan (₹1,999/yr) — JEE Main, NEET UG,
+    # CUET UG, SAT, IELTS & TOEFL iBT together. Deliberately excludes CBSE
+    # lessons/doubts/mock tests/exemplar — see feature_authorization_service.py
+    # where EXAM_PREP_CENTER is added to `limited_on` for those CBSE features.
+    "EXAM_PREP_CENTER": {
+        "child_limit": 1,
+        "student_limit": None,
+        "restrictions": ["no_cbse_lessons", "no_exemplar"],
+    },
 }
 
 
@@ -292,6 +301,7 @@ def _paid_plan_name(plan_key: str) -> str:
         "family_annual": "Family Premium — Annual",
         "standard_6month": "Premium — 6 Months",
         "standard_annual": "Premium — Annual",
+        "exam_prep_center": "Exam Prep Center",
     }
     return names.get(plan_key, "Premium")
 
@@ -314,5 +324,6 @@ def _canonical_plan_key(plan_key: str) -> str:
         "family_annual": "FAMILY_ANNUAL",
         "standard_6month": "PREMIUM_6MONTH",
         "standard_annual": "PREMIUM_ANNUAL",
+        "exam_prep_center": "EXAM_PREP_CENTER",
     }
     return mapping.get(plan_key, "PREMIUM")

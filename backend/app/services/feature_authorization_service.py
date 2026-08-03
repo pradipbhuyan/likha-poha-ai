@@ -147,6 +147,9 @@ _FEATURE_MATRIX: dict[str, dict] = {
     Feature.LESSONS: {
         "allowed_plans": None,   # all plans may access lessons
         "limited_on": {"FREE_TIER"},  # DKB-only for free
+        # EXAM_PREP_CENTER (₹1,999/yr bundle) grants JEE/NEET/CUET/SAT/IELTS/TOEFL
+        # only — it deliberately excludes CBSE lessons per the plan definition.
+        "denied_plans": {"EXAM_PREP_CENTER"},
         "upgrade_message": "Upgrade to access unlimited AI-powered lessons.",
     },
     Feature.LESSON_DOWNLOAD: {
@@ -170,6 +173,7 @@ _FEATURE_MATRIX: dict[str, dict] = {
     Feature.MOCK_TEST: {
         "allowed_plans": None,   # all plans may take mock tests
         "limited_on": {"FREE_TIER"},  # limited to 5/day for free
+        "denied_plans": {"EXAM_PREP_CENTER"},
         "upgrade_message": "Upgrade for unlimited mock tests.",
     },
     Feature.MOCK_TEST_UNLIMITED: {
@@ -181,21 +185,25 @@ _FEATURE_MATRIX: dict[str, dict] = {
     Feature.ASK_DOUBTS: {
         "allowed_plans": None,   # all plans may ask doubts
         "limited_on": {"FREE_TIER"},  # DKB-only for free
+        "denied_plans": {"EXAM_PREP_CENTER"},
         "upgrade_message": "Upgrade for unlimited AI doubt solving.",
     },
     Feature.AI_ASSISTANT: {
         "allowed_plans": None,
         "limited_on": {"FREE_TIER"},
+        "denied_plans": {"EXAM_PREP_CENTER"},
         "upgrade_message": "Upgrade for full AI assistant access.",
     },
     Feature.AI_CHAT: {
         "allowed_plans": None,
         "limited_on": {"FREE_TIER"},
+        "denied_plans": {"EXAM_PREP_CENTER"},
         "upgrade_message": "Upgrade for full AI chat access.",
     },
     Feature.AI_SOLUTIONS: {
         "allowed_plans": None,
         "limited_on": {"FREE_TIER"},
+        "denied_plans": {"EXAM_PREP_CENTER"},
         "upgrade_message": "Upgrade for AI-powered solutions.",
     },
     Feature.FORMULA_SHEET_PREMIUM: {
@@ -219,17 +227,22 @@ _FEATURE_MATRIX: dict[str, dict] = {
     Feature.EXAM_PREP_CONTENT: {
         # Actual content: questions, topic details, simulated tests, AI follow-up.
         # Premium Nano explicitly EXCLUDED (per spec: Nano can only preview).
+        # EXAM_PREP_CENTER (₹1,999/yr bundle) IS allowed here — it's the whole
+        # point of that plan — covering all 6 exams (JEE/NEET/CUET/SAT/IELTS/TOEFL).
         "allowed_plans": {"PREMIUM", "PREMIUM_6MONTH", "PREMIUM_ANNUAL",
-                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT"},
+                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT",
+                          "EXAM_PREP_CENTER"},
         "limited_on": set(),
         "upgrade_message": (
-            "Upgrade to Premium or Family Premium to access "
-            "JEE/NEET/CUET practice questions, simulated tests, and AI explanations."
+            "Upgrade to Premium or Family Premium, or purchase the Exam Prep "
+            "Center plan, to access JEE/NEET/CUET/SAT/IELTS/TOEFL practice "
+            "questions, simulated tests, and AI explanations."
         ),
     },
     Feature.QUESTION_BANK: {
         "allowed_plans": None,
         "limited_on": {"FREE_TIER"},
+        "denied_plans": {"EXAM_PREP_CENTER"},  # CBSE question bank only — exam-prep Qs are separate
         "upgrade_message": "Upgrade for full question bank access.",
     },
     Feature.PROGRESS_ANALYTICS: {
@@ -303,7 +316,19 @@ def authorize_feature(
 
     allowed_plans = matrix["allowed_plans"]
     limited_on    = matrix["limited_on"]
+    denied_plans  = matrix.get("denied_plans") or set()
     upgrade_msg   = matrix["upgrade_message"]
+
+    # Explicit denial takes precedence even for "available to all" features.
+    # Used by plans that intentionally exclude certain feature groups — e.g.
+    # EXAM_PREP_CENTER (₹1,999/yr bundle) grants exam-prep access only and
+    # must NOT unlock CBSE lessons/doubts/mock tests/exemplar.
+    if cpk in denied_plans:
+        return _denied(
+            feature, cpk, plan_name,
+            f"{_feature_display_name(feature)} is not included in your current plan.",
+            upgrade_msg,
+        )
 
     # Feature available to ALL plans → check if this plan is in limited_on
     if allowed_plans is None:

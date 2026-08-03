@@ -329,6 +329,57 @@ DEFAULT_SUBSCRIPTION_PLANS = {
             "parentDashboard": "Full + analytics",
         },
     },
+    # ── EXAM PREP CENTER — bundled Grade 11–12 annual plan ────────────────────
+    # Single ₹1,999/year plan covering ALL 6 exams together (JEE Main, NEET UG,
+    # CUET UG, SAT, IELTS, TOEFL iBT) — independent of the CBSE subscription
+    # tiers above. Grade 11–12 students only. Distinct from the standalone
+    # per-exam packs below (exam_prep_jee/neet/cuet), which remain available
+    # for students who only want ONE specific exam rather than the full bundle.
+    "exam_prep_center": {
+        "duration_days": 366,
+        "access_exam_prep": True,
+        "access_exemplar": False,
+        "key": "exam_prep_center",
+        "label": "Exam Prep Center",
+        "short_label": "Exam Prep",
+        "price": 1999,
+        "billing_label": "year",
+        "audience": (
+            "Grade 11–12 competitive & global exam prep — JEE Main, NEET UG, "
+            "CUET UG, SAT, IELTS & TOEFL iBT, all in one annual plan."
+        ),
+        "badge": "NEW",
+        "recommended": False,
+        "discount_percent": 0,
+        "discount_label": "",
+        "is_public": True,
+        "display_order": 6,
+        "access_cbse": False,
+        "daily_token_limit": 100000,
+        "monthly_token_limit": 3000000,
+        "included": [
+            "JEE Main — Study Plan + Test Simulation",
+            "NEET UG — Study Plan + Test Simulation",
+            "CUET UG — Study Plan + Test Simulation",
+            "SAT — Study Plan + Test Simulation",
+            "IELTS — Study Plan + Test Simulation",
+            "TOEFL iBT — Study Plan + Test Simulation",
+            "AI step-by-step explanations",
+            "Weak topic tracker",
+        ],
+        "not_included": [
+            "CBSE lessons (Grade 5–10)",
+            "Ask Doubt",
+            "Exemplar Research & Lessons",
+        ],
+        "comparison": {
+            "children": "1",
+            "aiUsage": "Unlimited (Gr 11–12 exam prep only)",
+            "cbse": "Grade 11–12 only",
+            "parentDashboard": "Full + alerts",
+        },
+        "exam_type": None,  # bundle — not a single exam_type like the packs below
+    },
     # ── EXAM PREP PACKS — independent of CBSE subscription ───────────────────
     # These plans are for the exam prep add-on packs sold separately.
     # A student on Free tier can buy them; Premium students also need to buy separately.

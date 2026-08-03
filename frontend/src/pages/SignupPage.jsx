@@ -38,6 +38,7 @@ const GRADE_11_12 = new Set(["Grade 11", "Grade 12"]);
 const SELECTED_PLAN_LABELS = {
   starter: { label: "Premium", price: "₹299/month" },
   family_premium: { label: "Family Premium", price: "₹499/month" },
+  exam_prep_center: { label: "Exam Prep Center", price: "₹1,999/year" },
 };
 
 export default function SignupPage({ onLogin, onBack, onBackToLogin, initialPlan }) {
