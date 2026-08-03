@@ -1529,6 +1529,7 @@ function App() {
           setShowSignup(true);
           setSignupInitialPlan("free");
         }}
+        onShowLanding={() => setShowLanding(true)}
       />
     );
   }

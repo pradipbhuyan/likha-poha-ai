@@ -23,7 +23,7 @@ const PASSWORD_RESET_REDIRECT_URL =
   import.meta.env.VITE_PASSWORD_RESET_REDIRECT_URL ||
   `${window.location.origin}/reset-password`;
 
-function LoginPage({ onLogin, onShowSignup }) {
+function LoginPage({ onLogin, onShowSignup, onShowLanding }) {
   /** Handles Supabase authentication and parent signup for the app entry point. */
   const [isSignupMode, setIsSignupMode] = useState(false);
   const [username, setUsername] = useState("");
@@ -448,7 +448,18 @@ useEffect(() => {
     <div className="ait-login-page">
       <div className="ait-login-shell">
         <div className="ait-login-left">
-          <img src={logo} alt="AI Tutor" className="ait-login-logo" />
+          {onShowLanding ? (
+            <button
+              type="button"
+              onClick={onShowLanding}
+              aria-label="Back to home"
+              className="ait-logo-home-btn"
+            >
+              <img src={logo} alt="AI Tutor" className="ait-login-logo" />
+            </button>
+          ) : (
+            <img src={logo} alt="AI Tutor" className="ait-login-logo" />
+          )}
 
           <h1>Learn smarter with AI.</h1>
 

@@ -65,6 +65,11 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       <div id="home" style={{ position: "absolute" }} aria-hidden="true" />
       <nav className="lp-nav">
         <div className="lp-logo"><img src={logoImg} alt="LikhaPoha AI" /><span>LikhaPoha AI</span></div>
+        <div className="lp-nav-links">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
         <div className="lp-nav-r">
           <button className="lp-btn-ghost" onClick={onShowLogin}>Login</button>
           <button className="lp-btn-cta" onClick={() => handleCta("free")}>Try for Free</button>
@@ -198,7 +203,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         <div className="lp-sh"><div className="lp-ey">Simple Pricing</div><h2>Choose Your Plan</h2><p>Start free &middot; No hidden charges</p></div>
         <div className="lp-pg">
           <div className="lp-prc pop"><div className="lp-popb" style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5}}><Star size={13} strokeWidth={2} fill="currentColor"/> Most Popular</div><div className="lp-prname">Premium</div><div className="lp-pramount">&#8377;299<span>/month</span></div><div className="lp-prdesc">Everything you need for serious CBSE exam prep — unlimited AI access every month.</div><div className="lp-prf">All CBSE subjects &middot; All grades</div><div className="lp-prf">Unlimited AI lessons, doubts & mock tests</div><div className="lp-prf">Exemplar Research & Lessons</div><div className="lp-prf">Formula & Concepts library</div><div className="lp-prf">10 Years of Board Papers with answers</div><div className="lp-prf">Learn More curated video library</div><div className="lp-prf">Parent dashboard + alerts</div><div className="lp-prf">Priority support</div><button className="lp-bpro lp-bpfill" onClick={() => handleCta("starter")}>Choose Premium</button></div>
-          <div className="lp-prc"><div className="lp-prname">Family Premium</div><div className="lp-pramount">&#8377;499<span>/month</span></div><div className="lp-prdesc">Everything in Premium for up to 2 children — one shared family plan.</div><div className="lp-prf">Everything in Premium</div><div className="lp-prf">Up to 2 children with separate progress</div><div className="lp-prf">Exemplar Research & Lessons</div><div className="lp-prf">Formula & Concepts library</div><div className="lp-prf">10 Years of Board Papers with answers</div><div className="lp-prf">Learn More curated video library</div><div className="lp-prf">Parent dashboard + analytics</div><div className="lp-prf">Family learning management</div><button className="lp-bpro lp-bpout" onClick={() => handleCta("family_premium")}>Get Family Premium</button></div>
+          <div className="lp-prc"><div className="lp-prname">Family Premium</div><div className="lp-pramount">&#8377;499<span>/month</span></div><div className="lp-prsave">Save &#8377;99/month vs. 2 separate Premium plans</div><div className="lp-prdesc">Everything in Premium for up to 2 children — one shared family plan.</div><div className="lp-prf">Everything in Premium</div><div className="lp-prf">Up to 2 children with separate progress</div><div className="lp-prf">Exemplar Research & Lessons</div><div className="lp-prf">Formula & Concepts library</div><div className="lp-prf">10 Years of Board Papers with answers</div><div className="lp-prf">Learn More curated video library</div><div className="lp-prf">Parent dashboard + analytics</div><div className="lp-prf">Family learning management</div><button className="lp-bpro lp-bpout" onClick={() => handleCta("family_premium")}>Get Family Premium</button></div>
         </div>
         <p className="lp-prnote">No hidden charges &middot; Plans expire at end of period</p>
       </div>
@@ -220,7 +225,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         </div>
       </div>
       */}
-      <div className="lp-sf"><div className="lp-si"><div className="lp-sh"><h2>Frequently Asked Questions</h2></div>
+      <div className="lp-sf" id="faq"><div className="lp-si"><div className="lp-sh"><h2>Frequently Asked Questions</h2></div>
         {faqs.map((faq, i) => (
           <div key={i} className={"lp-faq-item" + (openFaq === i ? " open" : "")}>
             <button className="lp-faq-q" onClick={() => toggleFaq(i)}>{faq.q}<span className="lp-faq-icon">+</span></button>
