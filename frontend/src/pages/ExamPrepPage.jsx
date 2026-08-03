@@ -26,6 +26,7 @@ import {
   submitSimulatedTest,
   getSimTestHistory,
 } from "../api/examPrep";
+import { getPackPrices, createPackOrder, verifyPackPayment } from "../api/examPrepPacks";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -1629,6 +1630,72 @@ const RESOURCES = [
 
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
+// Lazily inject Razorpay Checkout script — same pattern as SubscriptionPlansPage.
+function loadRazorpayCheckout() {
+  return new Promise((resolve, reject) => {
+    if (window.Razorpay) { resolve(true); return; }
+    const s = document.createElement("script");
+    s.src = "https://checkout.razorpay.com/v1/checkout.js";
+    s.async = true;
+    s.onload = () => resolve(true);
+    s.onerror = () => reject(new Error("Failed to load payment gateway."));
+    document.body.appendChild(s);
+  });
+}
+
+// ── Exam Prep Pack purchase card — used inside the locked-preview screen.
+// Independent, one-time pack purchase (JEE/NEET/CUET) unrelated to the CBSE
+// subscription tiers. See backend/app/routes/exam_prep_packs.py.
+function PackPurchaseCard({ examKey, plan, owned, onBuy, buying }) {
+  const info = EXAMS[examKey];
+  if (!plan) return null;
+  const discounted = plan.discount_pct > 0;
+  return (
+    <div style={{
+      background: owned ? "rgba(34,197,94,.07)" : "var(--panel,#1e293b)",
+      border: `2px solid ${owned ? "#22c55e" : info.color + "40"}`,
+      borderRadius: 14, padding: "18px 16px", textAlign: "center",
+      display: "flex", flexDirection: "column", gap: 8,
+    }}>
+      <div style={{ fontSize: "1.8rem" }}>{info.icon}</div>
+      <div style={{ fontWeight: 800, fontSize: ".95rem" }}>{info.label}</div>
+      <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)" }}>{plan.duration_days}-day access · Full question bank & simulated tests</div>
+      {!owned && (
+        <div style={{ margin: "6px 0" }}>
+          {discounted && (
+            <span style={{ fontSize: ".72rem", color: "var(--muted,#94a3b8)", textDecoration: "line-through", marginRight: 6 }}>
+              ₹{plan.price}
+            </span>
+          )}
+          <span style={{ fontSize: "1.3rem", fontWeight: 900, color: info.color }}>₹{plan.charge}</span>
+          {discounted && (
+            <span style={{ fontSize: ".65rem", color: "#22c55e", marginLeft: 6, fontWeight: 700 }}>
+              {plan.discount_pct}% off
+            </span>
+          )}
+        </div>
+      )}
+      {owned ? (
+        <div style={{ padding: "9px 0", background: "rgba(34,197,94,.15)", borderRadius: 8, color: "#22c55e", fontWeight: 800, fontSize: ".82rem" }}>
+          ✅ Active
+        </div>
+      ) : (
+        <button
+          onClick={() => onBuy(examKey)}
+          disabled={buying}
+          style={{
+            padding: "10px 0", background: `linear-gradient(135deg,${info.color},${info.color}cc)`,
+            border: "none", borderRadius: 8, color: "#fff", fontWeight: 800, fontSize: ".85rem",
+            cursor: buying ? "default" : "pointer", opacity: buying ? .7 : 1, fontFamily: "inherit",
+          }}
+        >
+          {buying ? "Processing…" : "Buy This Pack →"}
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function ExamPrepPage({ user, setActivePage }) {
   const [selectedExam, setSelectedExam] = useState("jee_main");
   const [dashboard, setDashboard] = useState(null);
@@ -1690,15 +1757,86 @@ export default function ExamPrepPage({ user, setActivePage }) {
 
   // ── Canonical access check from backend ────────────────────────────────────
   const [accessCheck, setAccessCheck] = useState(null);  // null = loading
-  useEffect(() => {
+  const refreshAccessCheck = React.useCallback(() => {
     if (!user?.accessToken) return;
-    fetch(`${API_BASE}/api/exam-prep/access-check`, {
+    return fetch(`${API_BASE}/api/exam-prep/access-check`, {
       headers: { Authorization: `Bearer ${user.accessToken}` },
     })
       .then(r => r.json())
       .then(d => setAccessCheck(d))
       .catch(() => setAccessCheck({ grade_eligible: false, has_access: false, preview_only: true, reason: "error" }));
-  }, [user?.accessToken]);
+  }, [user]);
+  useEffect(() => { refreshAccessCheck(); }, [refreshAccessCheck]);
+
+  // Pack-only users: auto-switch the default exam tab to one they've actually
+  // purchased, since "jee_main" (the hardcoded default) may not be owned.
+  useEffect(() => {
+    if (accessCheck?.reason !== "pack_access") return;
+    const owned = accessCheck?.owned_packs || {};
+    if (!owned[selectedExam] && Object.values(owned).some(Boolean)) {
+      const firstOwned = Object.keys(owned).find(k => owned[k]);
+      if (firstOwned) setSelectedExam(firstOwned);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [accessCheck]);
+
+  // ── Exam Prep Pack purchase state ──────────────────────────────────────────
+  // Packs (jee_main / neet_ug / cuet_ug) are independent one-time purchases —
+  // separate from the CBSE Premium subscription tiers. Free/Nano students who
+  // buy a pack get full Exam Prep Center access via accessCheck.owned_packs
+  // (see backend/app/services/exam_prep_service.py::get_access_check_response).
+  const [packPrices, setPackPrices] = useState({});
+  const [buyingPack, setBuyingPack] = useState(null); // examKey currently processing payment
+  const ownedPacks = accessCheck?.owned_packs || {};
+  const isPackAccessOnly = accessCheck?.reason === "pack_access";
+
+  useEffect(() => {
+    getPackPrices()
+      .then(d => setPackPrices(d.prices || {}))
+      .catch(() => setPackPrices({}));
+  }, []);
+
+  async function handleBuyPack(examKey) {
+    if (!user?.accessToken) return;
+    setBuyingPack(examKey);
+    try {
+      await loadRazorpayCheckout();
+      const orderResult = await createPackOrder(examKey, user.accessToken);
+
+      const checkout = new window.Razorpay({
+        key: orderResult.key_id,
+        amount: orderResult.amount * 100,
+        currency: orderResult.currency,
+        name: "Likha Poha AI",
+        description: `${orderResult.plan_label || EXAMS[examKey]?.label} — Exam Prep Pack`,
+        order_id: orderResult.order_id,
+        prefill: { email: user?.email || "", name: user?.username || "" },
+        notes: { exam_type: examKey },
+        handler: async (response) => {
+          try {
+            await verifyPackPayment({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              exam_type: examKey,
+            }, user.accessToken);
+            await refreshAccessCheck();
+            setSelectedExam(examKey);
+          } catch (err) {
+            alert(err.message || "Payment verification failed.");
+          } finally {
+            setBuyingPack(null);
+          }
+        },
+        modal: { ondismiss: () => setBuyingPack(null) },
+        method: { upi: true },
+      });
+      checkout.open();
+    } catch (err) {
+      alert(err.message || "Unable to start payment.");
+      setBuyingPack(null);
+    }
+  }
 
   // ── Fetch sim history when oracle tab is active ────────────────────────────
   useEffect(() => {
@@ -1929,6 +2067,37 @@ export default function ExamPrepPage({ user, setActivePage }) {
             </button>
           </div>
         </section>
+
+        {/* ── Or buy a standalone Exam Prep Pack ──────────────────────────────
+            Independent one-time purchase (JEE Main / NEET UG / CUET UG) that
+            unlocks the FULL Exam Prep Center for that exam, regardless of
+            CBSE subscription tier — no Premium upgrade required. */}
+        <section className="premium-section" style={{ paddingTop: 0 }}>
+          <div style={{ textAlign: "center", marginBottom: 18 }}>
+            <div style={{ fontSize: ".72rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 6 }}>
+              — OR —
+            </div>
+            <h4 style={{ fontSize: "1.05rem", fontWeight: 800, margin: "0 0 6px" }}>
+              🎯 Buy a Single Exam Prep Pack
+            </h4>
+            <p style={{ color: "var(--muted,#64748b)", fontSize: ".8rem", maxWidth: 460, margin: "0 auto" }}>
+              Don't want to upgrade your whole plan? Purchase access to just JEE Main, NEET UG, or CUET UG —
+              full question bank, simulated tests, and AI explanations for that exam only.
+            </p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 14, maxWidth: 640, margin: "0 auto" }}>
+            {["jee_main", "neet_ug", "cuet_ug"].map(examKey => (
+              <PackPurchaseCard
+                key={examKey}
+                examKey={examKey}
+                plan={packPrices[examKey]}
+                owned={!!ownedPacks[examKey]}
+                onBuy={handleBuyPack}
+                buying={buyingPack === examKey}
+              />
+            ))}
+          </div>
+        </section>
       </div>
     );
   }
@@ -1961,16 +2130,22 @@ export default function ExamPrepPage({ user, setActivePage }) {
           </span>
         </div>
 
-        {/* Exam tabs — stream-aware: JEE for PCM/PCMB, NEET for PCB/PCMB */}
+        {/* Exam tabs — stream-aware: JEE for PCM/PCMB, NEET for PCB/PCMB.
+            Pack-only access (Free/Nano student who bought a single-exam pack)
+            further restricts tabs to ONLY the exam(s) they purchased — packs
+            exist for jee_main/neet_ug/cuet_ug only; sat/ielts/toefl_ibt are
+            never unlocked by a pack. */}
         <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
           {Object.entries(EXAMS).map(([key, exam]) => {
             const elig = accessCheck?.exam_eligibility?.[key];
-            const ineligible = elig && !elig.eligible && !elig.coming_soon;
+            const streamIneligible = elig && !elig.eligible && !elig.coming_soon;
             const comingSoon = elig?.coming_soon;
+            const packLocked = isPackAccessOnly && !ownedPacks[key];
+            const ineligible = streamIneligible || packLocked;
             return (
               <button key={key}
                 onClick={() => !comingSoon && !ineligible && setSelectedExam(key)}
-                title={ineligible ? elig.reason : comingSoon ? "Coming Soon" : ""}
+                title={packLocked ? "Buy this exam's pack to unlock" : streamIneligible ? elig.reason : comingSoon ? "Coming Soon" : ""}
                 style={{
                   padding: "9px 18px", borderRadius: 10,
                   border: `2px solid ${selectedExam === key ? exam.color : ineligible ? "var(--border,#1e293b)" : "var(--border,#334155)"}`,
@@ -1985,11 +2160,23 @@ export default function ExamPrepPage({ user, setActivePage }) {
                 <span>{exam.icon}</span>
                 <span>{exam.label}</span>
                 {comingSoon && <span style={{ fontSize: ".6rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 6px", borderRadius: 10 }}>Soon</span>}
-                {ineligible && <span style={{ fontSize: ".6rem", background: "rgba(100,116,139,.2)", color: "#64748b", padding: "1px 6px", borderRadius: 10 }}>N/A</span>}
+                {packLocked && <span style={{ fontSize: ".6rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 6px", borderRadius: 10 }}>🔒 Pack</span>}
+                {!packLocked && streamIneligible && <span style={{ fontSize: ".6rem", background: "rgba(100,116,139,.2)", color: "#64748b", padding: "1px 6px", borderRadius: 10 }}>N/A</span>}
               </button>
             );
           })}
         </div>
+
+        {/* Pack-only access banner — shown when accessing via a purchased pack, not Premium */}
+        {isPackAccessOnly && (
+          <div style={{ background: "rgba(34,197,94,.07)", border: "1px solid rgba(34,197,94,.25)", borderRadius: 10, padding: "9px 14px", fontSize: ".78rem", marginBottom: 16, display: "flex", alignItems: "center", gap: 9 }}>
+            <span>🎯</span>
+            <span>
+              <strong>Pack Access.</strong> You've unlocked {Object.entries(ownedPacks).filter(([, v]) => v).map(([k]) => EXAMS[k]?.label).join(", ")} via a standalone pack purchase.
+              {" "}Upgrade to Premium for access to all exams, all CBSE lessons, and more.
+            </span>
+          </div>
+        )}
 
         {/* Stats row */}
         {loadingDash ? (

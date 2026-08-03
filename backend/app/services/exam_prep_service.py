@@ -150,17 +150,120 @@ def check_exam_prep_content_access(profile: dict) -> dict:
     return result
 
 
+# Packs (jee_main / neet_ug / cuet_ug) are a separate, standalone purchase —
+# independent of the CBSE subscription tiers (see routes/exam_prep_packs.py).
+# A student on Free/Nano who buys a pack must get full Exam Prep Center
+# access, exactly like a Premium subscriber — this helper is the single
+# source of truth both here (access-check) and in exam_prep_packs.py.
+_PACK_EXAM_TYPES = ("jee_main", "neet_ug", "cuet_ug")
+
+
+def get_active_packs(user_id: str) -> dict:
+    """
+    Return which of the 3 exam-prep packs (jee_main/neet_ug/cuet_ug) the
+    given user currently has active (paid & not expired).
+
+    Returns: {"jee_main": bool, "neet_ug": bool, "cuet_ug": bool}
+    """
+    result = {et: False for et in _PACK_EXAM_TYPES}
+    try:
+        db = _get_db()
+        now = datetime.now(timezone.utc).isoformat()
+        rows = (
+            db.table("exam_prep_subscriptions")
+            .select("exam_type, status, expires_at")
+            .eq("user_id", user_id)
+            .execute()
+        ).data or []
+        for row in rows:
+            et = row.get("exam_type")
+            if et not in result or row.get("status") != "active":
+                continue
+            exp = row.get("expires_at")
+            if exp and exp < now:
+                continue  # expired — treated as not owned
+            result[et] = True
+    except Exception as exc:
+        _log.warning("exam_prep.get_active_packs.failed", error=str(exc))
+    return result
+
+
+def check_exam_content_access_with_packs(profile: dict, exam_type: str) -> dict:
+    """
+    Raise HTTP 403 if the user cannot access content for a SPECIFIC exam.
+
+    Unlike check_exam_prep_content_access() (subscription-only gate used by
+    ask-followup/legacy endpoints), this variant also grants access when the
+    student owns an active standalone pack for the given exam_type — so a
+    Free/Nano student who purchased e.g. the JEE pack can use
+    dashboard/subjects/topics/questions/simulated-tests for jee_main, while
+    still being blocked from neet_ug/cuet_ug/sat/ielts/toefl_ibt (which they
+    did not pay for) unless they separately hold Premium+.
+
+    Returns the same shape as check_exam_prep_content_access() on success.
+    """
+    # First enforce grade/role gate
+    check_exam_prep_access(profile)
+
+    role = profile.get("role", "")
+    username = profile.get("username", "")
+    if role == "admin" or username in EXAM_PREP_TEST_USERS:
+        return {"allowed": True, "limited": False, "canonical_plan_key": "ADMIN_GRANT"}
+
+    # Canonical subscription check via feature authorization service
+    from app.services.feature_authorization_service import authorize_feature, Feature  # noqa: PLC0415
+    user_id = profile.get("id", "")
+    result = authorize_feature(user_id, Feature.EXAM_PREP_CONTENT)
+
+    if result["allowed"]:
+        return result
+
+    # Subscription doesn't grant access — check pack ownership for this exam.
+    # Packs only exist for jee_main/neet_ug/cuet_ug; other exams have no pack.
+    if exam_type in _PACK_EXAM_TYPES:
+        owned = get_active_packs(user_id)
+        if owned.get(exam_type):
+            return {"allowed": True, "limited": False, "canonical_plan_key": "PACK_ACCESS"}
+
+    cpk = result.get("canonical_plan_key", "FREE_TIER")
+    is_nano = "NANO" in cpk.upper()
+    restriction_type = "nano" if is_nano else "free"
+    msg = (
+        "Exam Prep Center is available on Premium, Family Premium, Admin Grant, "
+        "or by purchasing a standalone exam pack for this exam. "
+        "Your current Premium Nano plan does not include Exam Prep."
+        if is_nano
+        else result["restriction_message"]
+    )
+    raise HTTPException(
+        status_code=403,
+        detail={
+            "feature": "EXAM_PREP_CONTENT",
+            "exam_type": exam_type,
+            "current_plan": result["plan_name"],
+            "canonical_plan_key": cpk,
+            "restriction_type": restriction_type,
+            "message": msg,
+            "upgrade_message": result["upgrade_recommendation"],
+        },
+    )
+
+
 def get_access_check_response(user_id: str, profile: dict) -> dict:
     """
     Build the canonical access-check response for GET /api/exam-prep/access-check.
 
     Returns a JSON-safe dict consumed by the frontend to determine whether
     to render the full Exam Prep Center or the locked preview shell.
+
+    NOTE: `owned_packs` is always included so the frontend can show pack
+    purchase/ownership status regardless of subscription tier.
     """
     role = profile.get("role", "")
     username = profile.get("username", "")
     grade = profile.get("grade", "")
     stream = profile.get("stream") or profile.get("academic_stream") or None
+    owned_packs = get_active_packs(user_id)
 
     # Admin: full access, no subscription check
     if role == "admin":
@@ -174,6 +277,7 @@ def get_access_check_response(user_id: str, profile: dict) -> dict:
             "exam_eligibility": build_exam_eligibility(stream),
             "canonical_plan_key": "ADMIN_GRANT",
             "plan_name": "Admin",
+            "owned_packs": owned_packs,
         }
 
     # Test users: full access to all exams regardless of stream
@@ -195,6 +299,7 @@ def get_access_check_response(user_id: str, profile: dict) -> dict:
             },
             "canonical_plan_key": "ADMIN_GRANT",
             "plan_name": "Test Access",
+            "owned_packs": owned_packs,
         }
 
     # Grade ineligible (not Grade 11/12)
@@ -209,6 +314,7 @@ def get_access_check_response(user_id: str, profile: dict) -> dict:
             "exam_eligibility": None,
             "canonical_plan_key": None,
             "plan_name": None,
+            "owned_packs": owned_packs,
         }
 
     # Grade 11/12 student — check subscription via canonical feature auth
@@ -228,21 +334,29 @@ def get_access_check_response(user_id: str, profile: dict) -> dict:
             "exam_eligibility": build_exam_eligibility(stream),
             "canonical_plan_key": cpk,
             "plan_name": result.get("plan_name", "Premium"),
+            "owned_packs": owned_packs,
         }
 
-    # Locked — Free or Nano
+    # Free/Nano tier — normally locked, UNLESS the student owns at least
+    # one active exam-prep pack. Pack ownership grants full page access
+    # (has_access=True) so the Exam Prep Center renders; the individual
+    # exam tabs the student did NOT pay for are separately restricted by
+    # the frontend using `owned_packs`, similar to how `exam_eligibility`
+    # already restricts JEE/NEET tabs by academic stream.
+    has_any_pack = any(owned_packs.values())
     restriction_type = "nano" if is_nano else "free"
     return {
         "grade_eligible": True,
-        "has_access": False,
-        "preview_only": True,
-        "reason": restriction_type,
+        "has_access": has_any_pack,
+        "preview_only": not has_any_pack,
+        "reason": "pack_access" if has_any_pack else restriction_type,
         "stream": stream,
         "stream_missing": stream is None,
         "exam_eligibility": build_exam_eligibility(stream),
         "canonical_plan_key": cpk,
         "plan_name": result.get("plan_name", "Free Tier"),
         "upgrade_message": result.get("upgrade_recommendation", ""),
+        "owned_packs": owned_packs,
     }
 
 

@@ -84,6 +84,17 @@ def _require_exam_prep_content(user=Depends(get_current_user)):
     return {"user": user, "profile": profile}
 
 
+def _require_exam_content_for(exam: str, user, profile):
+    """
+    Enforce content access for a SPECIFIC exam, honoring standalone pack
+    ownership (jee_main/neet_ug/cuet_ug) as an alternative to a Premium+
+    subscription. Call this explicitly inside content endpoints that take
+    an `exam` query/body param, since FastAPI Depends() cannot see other
+    parameters' values.
+    """
+    svc.check_exam_content_access_with_packs(profile, exam)
+
+
 # ── Canonical access-check endpoint (called by frontend on page load) ──────────
 
 @router.get("/access-check")
@@ -149,8 +160,9 @@ def get_dashboard(
     exam: str = "jee_main",
     ctx=Depends(_require_exam_prep_access),
 ):
-    """Return dashboard stats for the given exam. Grade/role gate only — stats are visible to all Grade 11/12."""
-    user = ctx["user"]
+    """Return dashboard stats for the given exam. Requires Premium+ or an active pack for this exam."""
+    user, profile = ctx["user"], ctx["profile"]
+    _require_exam_content_for(exam, user, profile)
     data = svc.get_dashboard(exam_type=exam, user_id=user.id)
     return {"success": True, **data}
 
@@ -162,8 +174,9 @@ def get_subjects(
     exam: str = "jee_main",
     ctx=Depends(_require_exam_prep_access),
 ):
-    """Return subject cards for the given exam."""
-    user = ctx["user"]
+    """Return subject cards for the given exam. Requires Premium+ or an active pack for this exam."""
+    user, profile = ctx["user"], ctx["profile"]
+    _require_exam_content_for(exam, user, profile)
     subjects = svc.get_subjects(exam_type=exam, user_id=user.id)
     return {"success": True, "subjects": subjects, "count": len(subjects)}
 
@@ -176,7 +189,9 @@ def get_topics(
     subject: str = "Physics",
     ctx=Depends(_require_exam_prep_access),
 ):
-    """Return topic priority cards for a subject."""
+    """Return topic priority cards for a subject. Requires Premium+ or an active pack for this exam."""
+    user, profile = ctx["user"], ctx["profile"]
+    _require_exam_content_for(exam, user, profile)
     topics = svc.get_topics(exam_type=exam, subject=subject)
     return {"success": True, "topics": topics, "count": len(topics)}
 
@@ -191,7 +206,9 @@ def list_questions(
     limit: int = 20,
     ctx=Depends(_require_exam_prep_access),
 ):
-    """Return published questions for practice."""
+    """Return published questions for practice. Requires Premium+ or an active pack for this exam."""
+    user, profile = ctx["user"], ctx["profile"]
+    _require_exam_content_for(exam, user, profile)
     questions = svc.get_questions(
         exam_type=exam,
         subject=subject,
@@ -204,9 +221,9 @@ def list_questions(
 @router.get("/questions/{question_id}")
 def get_question(
     question_id: str,
-    ctx=Depends(_require_exam_prep_access),
+    ctx=Depends(_require_exam_prep_content),
 ):
-    """Return a single published question with full details."""
+    """Return a single published question with full details. Requires Premium+ (question exam type not known ahead of fetch, so we enforce the general content gate here)."""
     question = svc.get_question_by_id(question_id)
     return {"success": True, "question": question}
 
@@ -289,9 +306,10 @@ def start_simulated_test(
     req: StartTestRequest,
     ctx=Depends(_require_exam_prep_access),
 ):
-    """Start a new simulated test."""
+    """Start a new simulated test. Requires Premium+ or an active pack for this exam."""
     user = ctx["user"]
     profile = ctx["profile"]
+    _require_exam_content_for(req.exam, user, profile)
     grade = profile.get("grade", "Grade 12")
     result = svc.start_simulated_test(
         user_id=user.id,
