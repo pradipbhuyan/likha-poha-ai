@@ -47,6 +47,7 @@ CONTENT_TABLES = [
     "rag_chunks",
     "question_bank",
     "doubt_kb",
+    "lesson_kb",
     "lesson_cache",
     "rag_visual_assets",
     "syllabus_chapter_overrides",
