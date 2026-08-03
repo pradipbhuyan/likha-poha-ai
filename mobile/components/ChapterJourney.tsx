@@ -830,7 +830,11 @@ const cjStyles = StyleSheet.create({
   examYearText: { fontSize: 11, fontWeight: "700", color: "#64748b" },
   examAnswer: { borderTopWidth: 1, borderTopColor: "#e2e8f0", marginTop: 10, paddingTop: 10 },
   textbookImageCard: { borderRadius: 14, borderWidth: 1, borderColor: "#e5e7eb", backgroundColor: "#fff", overflow: "hidden", marginBottom: 12 },
-  textbookImage: { width: "100%", height: 220, backgroundColor: "#f3f4f6" },
+  // Real NCERT textbook page images (never AI-generated) — sized 25% larger
+  // than the original 220px per explicit request (2026-08-03) so scanned
+  // page detail (diagrams, small print, figure labels) is easier to read
+  // on a phone screen.
+  textbookImage: { width: "100%", height: 275, backgroundColor: "#f3f4f6" },
   textbookImageCaptionRow: { flexDirection: "row", alignItems: "center", gap: 6, padding: 12 },
   textbookImageCaption: { fontSize: 12, color: "#6b7280", flex: 1, lineHeight: 17 },
   finishCard: { borderRadius: 16, padding: 20, alignItems: "center", marginTop: 6, marginBottom: 10 },
@@ -860,8 +864,11 @@ const cjStyles = StyleSheet.create({
   },
   extractModalTitle: { fontSize: 15, fontWeight: "800", color: "#1f2937" },
   extractModalNote: { fontSize: 12, color: "#64748b", fontStyle: "italic", marginBottom: 10 },
+  // Real NCERT textbook page image shown when tapping a citation pill —
+  // sized 25% larger than the original 340px per explicit request
+  // (2026-08-03), matching textbookImage above.
   extractModalImage: {
-    width: "100%", height: 340, borderRadius: 8, backgroundColor: "#f8fafc", marginBottom: 10,
+    width: "100%", height: 425, borderRadius: 8, backgroundColor: "#f8fafc", marginBottom: 10,
   },
   extractModalOpenLink: {
     fontSize: 13, fontWeight: "700", color: "#6366f1", textAlign: "center", marginBottom: 12,
