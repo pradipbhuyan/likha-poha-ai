@@ -28,7 +28,7 @@ export interface VisualSpec {
   note?: string;
 }
 export interface ChapterBlock {
-  type: "hook" | "concept" | "example" | "quickcheck" | "watchout" | "vocab" | "students_ask" | "recap" | "visual" | "textbook_image";
+  type: "hook" | "concept" | "example" | "quickcheck" | "freetext_qa" | "watchout" | "vocab" | "students_ask" | "recap" | "visual" | "textbook_image";
   // visual
   visual?: VisualSpec;
   // hook
@@ -37,13 +37,17 @@ export interface ChapterBlock {
   title?: string;
   body_md?: string;
   key_terms?: KeyTerm[];
-  // example / quickcheck / students_ask
+  // example / quickcheck / students_ask / freetext_qa
   question?: string;
   // quickcheck
   format?: "mcq" | "truefalse";
   options?: string[];
   answer_index?: number;
   explanation?: string;
+  // freetext_qa — open-ended Question/Answer/Explanation triple that
+  // doesn't fit the lettered-options QuickCheck shape (mirrors web
+  // JourneyRenderer.jsx case "freetext_qa", fixed 2026-07-29).
+  answer?: string;
   // vocab
   words?: KeyTerm[];
   // students_ask
@@ -60,6 +64,24 @@ export interface ExamQAItem {
   question: string;
   model_answer_md: string;
 }
+// SuggestedImage / ExploreMoreBlock — mirror backend app/models/lesson_blocks.py.
+// "beyond the textbook" enrichment section (currently authored for Grade 9
+// Advanced Maths/Science chapters) shown after Wrap-up / Board questions.
+export interface SuggestedImage {
+  topic?: string;
+  search_description?: string;
+  suggested_source?: string;
+  alt_text?: string;
+  resolved_image_url?: string;
+  thumb_url?: string;
+  source_page_url?: string;
+  license?: string;
+  attribution?: string;
+}
+export interface ExploreMoreData {
+  beyond_the_textbook?: string[];
+  suggested_web_images?: SuggestedImage[];
+}
 export interface ChapterDocData {
   grade: string;
   subject: string;
@@ -67,6 +89,7 @@ export interface ChapterDocData {
   milestones: ChapterMilestone[];
   recap?: { body_md: string } | null;
   exam?: ExamQAItem[];
+  explore_more?: ExploreMoreData | null;
 }
 
 type RenderMarkdown = (content: string, accent: string) => ReactNode;
@@ -431,6 +454,103 @@ function TextbookImageCard({ block }: { block: ChapterBlock }) {
   );
 }
 
+// ── Freetext QA — open-ended Question/Answer/Explanation triple that does
+// not fit the lettered-options QuickCheck shape (mirrors web
+// JourneyRenderer.jsx case "freetext_qa": three clearly separated
+// lines/panels instead of one run-on paragraph). ─────────────────────────────
+function FreeTextQACard({ block, renderMarkdown }: { block: ChapterBlock; renderMarkdown: RenderMarkdown }) {
+  return (
+    <View>
+      <Text style={cjStyles.question}>Question: {block.question}</Text>
+      <View style={cjStyles.freetextAnswerBox}>
+        <Text style={cjStyles.freetextLabelAnswer}>ANSWER</Text>
+        <View style={{ marginTop: 2 }}>{renderMarkdown(block.answer ?? "", "#15803d")}</View>
+      </View>
+      {block.explanation ? (
+        <View style={cjStyles.freetextExplanationBox}>
+          <Text style={cjStyles.freetextLabelExplanation}>EXPLANATION</Text>
+          <View style={{ marginTop: 2 }}>{renderMarkdown(block.explanation, "#6b7280")}</View>
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
+// ── Explore more (beyond the textbook) — optional chapter-level enrichment
+// section: real-world context notes + free/open-licence image suggestions.
+// Mirrors web JourneyRenderer.jsx ExploreMoreCard; shown after Wrap-up /
+// Board questions on both Journey and Study renderers. ───────────────────────
+function ExploreMoreCard({ data }: { data: ExploreMoreData }) {
+  const notes = data.beyond_the_textbook ?? [];
+  const images = data.suggested_web_images ?? [];
+  if (notes.length === 0 && images.length === 0) return null;
+  return (
+    <View style={cjStyles.exploreMoreCard}>
+      <View style={cjStyles.exploreMoreHeaderRow}>
+        <View style={cjStyles.exploreMoreIconBox}>
+          <Feather name="compass" size={15} color="#fff" />
+        </View>
+        <Text style={cjStyles.exploreMoreHeaderText}>Explore more (beyond the textbook)</Text>
+      </View>
+
+      {notes.length > 0 && (
+        <View style={{ marginBottom: images.length > 0 ? 14 : 0 }}>
+          {notes.map((note, i) => (
+            <View key={i} style={cjStyles.exploreMoreNoteRow}>
+              <Text style={cjStyles.exploreMoreBullet}>•</Text>
+              <Text style={cjStyles.exploreMoreNoteText}>{note}</Text>
+            </View>
+          ))}
+        </View>
+      )}
+
+      {images.length > 0 && (
+        <View>
+          <View style={cjStyles.exploreMoreImagesLabelRow}>
+            <Feather name="image" size={13} color="#6b7280" />
+            <Text style={cjStyles.exploreMoreImagesLabel}>Pictures worth looking up</Text>
+          </View>
+          {images.map((img, i) => (
+            <View key={i} style={cjStyles.exploreMoreImageCard}>
+              {img.resolved_image_url ? (
+                <>
+                  <Image
+                    source={{ uri: img.thumb_url || img.resolved_image_url }}
+                    style={cjStyles.exploreMoreImage}
+                    resizeMode="cover"
+                  />
+                  <View style={cjStyles.exploreMoreImageCaption}>
+                    {img.topic ? <Text style={cjStyles.exploreMoreImageTopic}>{img.topic}</Text> : null}
+                    <Text style={cjStyles.exploreMoreImageMeta}>
+                      {img.license || "Wikimedia Commons"}
+                      {img.attribution ? ` — ${img.attribution}` : ""}
+                    </Text>
+                    {img.source_page_url ? (
+                      <TouchableOpacity onPress={() => Linking.openURL(img.source_page_url!)}>
+                        <Text style={cjStyles.exploreMoreImageSourceLink}>Source ↗</Text>
+                      </TouchableOpacity>
+                    ) : null}
+                  </View>
+                </>
+              ) : (
+                <View style={cjStyles.exploreMoreImageCaption}>
+                  {img.topic ? <Text style={cjStyles.exploreMoreImageTopic}>{img.topic}</Text> : null}
+                  {img.search_description ? (
+                    <Text style={cjStyles.exploreMoreImageMeta}>
+                      Search: "{img.search_description}"
+                      {img.suggested_source ? ` (try ${img.suggested_source})` : ""}
+                    </Text>
+                  ) : null}
+                </View>
+              )}
+            </View>
+          ))}
+        </View>
+      )}
+    </View>
+  );
+}
+
 // ── Board question (Grades 9-12) — attempt-first model answer ────────────────
 function ExamQACard({ item, renderMarkdown }: { item: ExamQAItem; renderMarkdown: RenderMarkdown }) {
   const [revealed, setRevealed] = useState(false);
@@ -551,6 +671,12 @@ export default function ChapterJourney({ doc, grade, renderMarkdown }: {
         ) : null;
       case "textbook_image":
         return <TextbookImageCard key={key} block={block} />;
+      case "freetext_qa":
+        return (
+          <CardShell key={key} palette={palette} type="concept" title="Quick check question">
+            <FreeTextQACard block={block} renderMarkdown={renderBody} />
+          </CardShell>
+        );
       case "students_ask":
         return (
           <CardShell key={key} palette={palette} type="students_ask">
@@ -626,6 +752,10 @@ export default function ChapterJourney({ doc, grade, renderMarkdown }: {
           ))}
         </View>
       )}
+
+      {/* Explore more (beyond the textbook) — optional, currently authored
+          for Grade 9 Advanced Maths/Science chapters */}
+      {doc.explore_more ? <ExploreMoreCard data={doc.explore_more} /> : null}
 
       {/* Finish card */}
       <View style={[cjStyles.finishCard, { backgroundColor: junior ? "#0e9488" : "#2d4a8a" }]}>
@@ -736,4 +866,41 @@ const cjStyles = StyleSheet.create({
     backgroundColor: "#6366f1", borderRadius: 8, paddingVertical: 11, alignItems: "center",
   },
   extractModalCloseBtnText: { color: "#fff", fontWeight: "700", fontSize: 14 },
+  // Freetext QA — mirrors web's green ANSWER panel + muted EXPLANATION panel
+  freetextAnswerBox: {
+    backgroundColor: "rgba(34,197,94,.08)", borderWidth: 1, borderColor: "rgba(34,197,94,.25)",
+    borderRadius: 10, padding: 12, marginTop: -4, marginBottom: 8,
+  },
+  freetextLabelAnswer: { fontSize: 11, fontWeight: "800", letterSpacing: 0.6, color: "#15803d", marginBottom: 4 },
+  freetextExplanationBox: {
+    backgroundColor: "#f8fafc", borderWidth: 1, borderColor: "#e5e7eb", borderRadius: 10, padding: 12,
+  },
+  freetextLabelExplanation: { fontSize: 11, fontWeight: "800", letterSpacing: 0.6, color: "#6b7280", marginBottom: 4 },
+  // Explore more (beyond the textbook) — mirrors web ExploreMoreCard
+  exploreMoreCard: {
+    backgroundColor: "rgba(59,130,246,.06)", borderWidth: 1.5, borderColor: "rgba(59,130,246,.3)",
+    borderRadius: 16, padding: 16, marginTop: 6, marginBottom: 10,
+  },
+  exploreMoreHeaderRow: { flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 12 },
+  exploreMoreIconBox: {
+    width: 28, height: 28, borderRadius: 8, backgroundColor: "rgba(59,130,246,.35)",
+    alignItems: "center", justifyContent: "center",
+  },
+  exploreMoreHeaderText: {
+    fontSize: 11, fontWeight: "800", textTransform: "uppercase", letterSpacing: 0.8, color: "#3b82f6", flex: 1,
+  },
+  exploreMoreNoteRow: { flexDirection: "row", gap: 8, marginBottom: 8 },
+  exploreMoreBullet: { fontSize: 14, color: "#3b82f6", lineHeight: 20 },
+  exploreMoreNoteText: { flex: 1, fontSize: 14, color: "#1f2937", lineHeight: 20 },
+  exploreMoreImagesLabelRow: { flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 8 },
+  exploreMoreImagesLabel: { fontSize: 11, fontWeight: "800", textTransform: "uppercase", letterSpacing: 0.6, color: "#6b7280" },
+  exploreMoreImageCard: {
+    backgroundColor: "#fff", borderWidth: 1, borderColor: "#e5e7eb", borderRadius: 10,
+    overflow: "hidden", marginBottom: 10,
+  },
+  exploreMoreImage: { width: "100%", height: 160, backgroundColor: "#f3f4f6" },
+  exploreMoreImageCaption: { padding: 10 },
+  exploreMoreImageTopic: { fontSize: 13, fontWeight: "700", color: "#111827", marginBottom: 2 },
+  exploreMoreImageMeta: { fontSize: 12, color: "#6b7280", lineHeight: 17 },
+  exploreMoreImageSourceLink: { fontSize: 12, fontWeight: "700", color: "#3b82f6", marginTop: 4 },
 });
