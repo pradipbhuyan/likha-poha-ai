@@ -81,6 +81,7 @@ class CreateStudentRequest(BaseModel):
     username: str
     board: str = "CBSE"
     grade: str = "Grade 9"   # required from the parent form — defaults kept for API compat
+    stream: Optional[str] = None  # required for Grade 11/12: PCM|PCB|PCMB|Commerce|Humanities
     avatar: Optional[str] = None  # emoji key (e.g. 'boy1') or data: URL
     cbse_subjects: Optional[list] = None
 
@@ -248,6 +249,28 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
         "monthly_token_limit": parent_profile.get("monthly_token_limit", 1000000),
         "ai_model_preference": "default",
     }
+
+    # Grade 11/12: stream is required and cbse_subjects is derived server-side
+    # from it — mirrors the same rule enforced in auth.py's signup_free route,
+    # so a parent-created child gets the same subject access as a self-signup.
+    if grade in ("Grade 11", "Grade 12"):
+        valid_streams = {"PCM", "PCB", "PCMB", "Commerce", "Humanities"}
+        stream = (data.stream or "").strip()
+        if stream not in valid_streams:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Stream is required for {grade} students. "
+                       f"Choose one of: PCM, PCB, PCMB, Commerce, Humanities",
+            )
+        stream_subjects = {
+            "PCM":        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+            "PCB":        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+            "PCMB":       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+            "Commerce":   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+            "Humanities": ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+        }
+        child_profile["stream"] = stream
+        child_profile["cbse_subjects"] = stream_subjects.get(stream, [])
 
     # Save avatar if provided (emoji key or data: URL)
     if data.avatar:

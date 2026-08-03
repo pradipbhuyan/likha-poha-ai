@@ -179,6 +179,51 @@ expect(true).toBe(true); // notifications test relaxed for Phase 3
     const noChildTexts=screen.getAllByText(/No children linked yet/i); expect(noChildTexts.length).toBeGreaterThanOrEqual(1);
   });
 
+  test("Add Child shows a Stream picker for Grade 11/12 and requires it before submitting", async () => {
+    const { getParentDashboardSummary, createStudent } = await import("../api/parentDashboard");
+    getParentDashboardSummary.mockResolvedValueOnce({
+      success: true,
+      parent: { id: "parent-4", username: "New Parent" },
+      parent_plan: { canonical_plan_key: "FREE_TIER", plan_name: "Free Tier", has_full_access: false, status_label: "Free Tier — Restricted", status_color: "restricted" },
+      parent_canonical_plan_key: "FREE_TIER",
+      child_limit: 1,
+      children_count: 0,
+      can_add_child: true,
+      children: [],
+      notifications: [],
+    });
+    render(<ParentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    await screen.findByTestId("parent-no-children");
+
+    fireEvent.click(screen.getAllByRole("button", { name: /Add Child|＋ Add/i })[0]);
+    const gradeSelect = await screen.findByLabelText(/Grade \*/i);
+
+    // Grade 5-10 (default Grade 9): no Stream field.
+    expect(screen.queryByLabelText(/Stream \*/i)).not.toBeInTheDocument();
+
+    fireEvent.change(gradeSelect, { target: { value: "Grade 11" } });
+    const streamSelect = await screen.findByLabelText(/Stream \*/i);
+
+    fireEvent.change(screen.getByLabelText(/Child's Name \*/i), { target: { value: "Kavya" } });
+    fireEvent.change(screen.getByLabelText(/Password \*/i), { target: { value: "temp1234" } });
+
+    // Submitting without a stream should be blocked client-side.
+    fireEvent.click(screen.getByRole("button", { name: /^Add Child$/i }));
+    await waitFor(() => {
+      expect(screen.getByText(/please choose a stream/i)).toBeInTheDocument();
+    });
+    expect(createStudent).not.toHaveBeenCalled();
+
+    // Picking a stream and resubmitting goes through, with stream in the payload.
+    fireEvent.change(streamSelect, { target: { value: "PCM" } });
+    fireEvent.click(screen.getByRole("button", { name: /^Add Child$/i }));
+    await waitFor(() => {
+      expect(createStudent).toHaveBeenCalledWith(
+        expect.objectContaining({ grade: "Grade 11", stream: "PCM", username: "Kavya" })
+      );
+    });
+  });
+
   test("Child detail drawer opens on View click", async () => {
     render(<ParentDashboardPage user={USER} setActivePage={vi.fn()} />);
     await screen.findByTestId("parent-children-list");

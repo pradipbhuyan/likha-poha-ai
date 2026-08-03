@@ -13,7 +13,14 @@ import ParentChildWorkspace from "../components/parent/ParentChildWorkspace";
 // ── Design tokens (shared) ────────────────────────────────────────────────────
 var inp={padding:"8px 12px",borderRadius:8,border:"1px solid var(--border,#e5e7eb)",fontFamily:"inherit",fontSize:".85rem",background:"var(--surface2,#f8fafc)",color:"var(--text,#1e293b)",width:"100%"};
 var btn1={padding:"8px 16px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".82rem",fontWeight:700,cursor:"pointer"};
-var GRADES=["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
+var GRADES=["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
+var STREAMS=[
+  {key:"PCM",label:"Science (PCM)"},
+  {key:"PCB",label:"Science (PCB)"},
+  {key:"PCMB",label:"Science (PCMB)"},
+  {key:"Commerce",label:"Commerce"},
+  {key:"Humanities",label:"Arts / Humanities"},
+];
 
 // ── Skeleton loader ───────────────────────────────────────────────────────────
 function Skel(){
@@ -29,7 +36,8 @@ function Skel(){
 
 // ── Add Child Modal ───────────────────────────────────────────────────────────
 function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
-  var [form,setForm]=useState({username:"",grade:"Grade 9",password:"",email:""});
+  var [form,setForm]=useState({username:"",grade:"Grade 9",password:"",email:"",stream:""});
+  var needsStream = form.grade==="Grade 11"||form.grade==="Grade 12";
   var [loading,setLoading]=useState(false);
   var [msg,setMsg]=useState(null);
   var [creds,setCreds]=useState(null); // {login_id, password, login_email}
@@ -83,6 +91,7 @@ function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
   async function submit(e){
     e.preventDefault();
     if(!form.username||!form.password){setMsg("Name and password required.");return;}
+    if(needsStream&&!form.stream){setMsg("Please choose a stream for Grade 11/12.");return;}
     setLoading(true);
     var d=await createStudent({...form,email:form.email||undefined}).catch(function(e2){return{success:false,error:e2.message};});
     setLoading(false);
@@ -153,6 +162,12 @@ function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Grade *</span>
                 <select value={form.grade} onChange={function(e){setForm(function(p){return{...p,grade:e.target.value};});}} style={{...inp,marginTop:2}}>
                   {GRADES.map(function(g){return <option key={g} value={g}>{g}</option>;})}</select></label>
+              {needsStream&&(
+                <label><span style={{fontSize:".78rem",fontWeight:600}}>Stream *</span>
+                  <select value={form.stream} onChange={function(e){setForm(function(p){return{...p,stream:e.target.value};});}} style={{...inp,marginTop:2}}>
+                    <option value="">Choose a stream…</option>
+                    {STREAMS.map(function(s){return <option key={s.key} value={s.key}>{s.label}</option>;})}</select></label>
+              )}
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Password *</span>
                 <input type="text" value={form.password} onChange={function(e){setForm(function(p){return{...p,password:e.target.value};});}} required placeholder="Share with child" style={{...inp,marginTop:2}}/></label>
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Email (optional)</span>
