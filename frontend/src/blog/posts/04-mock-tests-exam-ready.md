@@ -9,7 +9,7 @@ tags: ["Mock Tests", "CBSE", "Exam Preparation", "Practice Questions"]
 
 There's a big difference between understanding a topic and being able to answer questions about it under exam conditions. Students who only study without practising often find themselves unable to recall or apply what they've learned when it matters most.
 
-Mock tests close that gap. Here's why — and how Likha Poha AI's Mock Test Studio is designed specifically for CBSE students.
+Mock tests close that gap. Here's why — and how Likha Poha AI's Mock Tests feature is designed specifically for CBSE students.
 
 ## Why Studying Alone Is Not Enough
 
@@ -32,7 +32,7 @@ CBSE exams do not ask the same question twice. The board deliberately tests the 
 
 If you've only practised one type, you'll be caught off guard by the others.
 
-## How Likha Poha AI's Mock Test Studio Covers All Types
+## How Likha Poha AI's Mock Tests Cover All Types
 
 Likha Poha AI has **140,000+ practice questions** across all grades (5–10) and subjects, covering multiple question formats. When you create a mock test, you can:
 

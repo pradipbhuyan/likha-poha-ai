@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import logoImg from "../assets/AITutorLogo1.png";
-import { BookOpen, MessageCircle, ClipboardList, Users, TrendingUp, Zap, Leaf, ShieldCheck, Globe, GraduationCap, HelpCircle, BarChart2, Trophy, Award, Target, Monitor, FlaskConical, Landmark, Star, Heart, Calculator, Languages, Headphones } from "lucide-react";
+import { BookOpen, MessageCircle, ClipboardList, Users, TrendingUp, Zap, Leaf, ShieldCheck, Globe, GraduationCap, HelpCircle, BarChart2, Trophy, Award, Target, Monitor, FlaskConical, Landmark, Star, Heart, Calculator, Languages, Headphones, Check, X } from "lucide-react";
 import "./LandingPage.css";
 
 export default function LandingPage({ onShowLogin, onShowSignup }) {
@@ -113,24 +113,24 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         <div className="lp-pvs">
           {/* Problem column */}
           <div className="lp-pcard prob"><div className="lp-ptitle bad">The Problem</div>
-            <div className="lp-pitem"><span>&#10007;</span> Tuition is expensive &mdash; &#8377;2,000&ndash;8,000/month per subject</div>
-            <div className="lp-pitem"><span>&#10007;</span> Parents cannot track what the child actually studied</div>
-            <div className="lp-pitem"><span>&#10007;</span> Generic YouTube videos do not follow the CBSE syllabus</div>
-            <div className="lp-pitem"><span>&#10007;</span> No personalised feedback on weak areas</div>
-            <div className="lp-pitem"><span>&#10007;</span> Practice questions often do not match actual exam patterns</div>
-            <div className="lp-pitem"><span>&#10007;</span> Students lose motivation when they don&rsquo;t understand concepts immediately</div>
-            <div className="lp-pitem"><span>&#10007;</span> Teachers cannot provide one-on-one attention to every child</div>
+            <div className="lp-pitem"><X size={16} strokeWidth={2.5} color="#ef4444" style={{flexShrink:0,marginTop:2}} /> Tuition is expensive &mdash; &#8377;2,000&ndash;8,000/month per subject</div>
+            <div className="lp-pitem"><X size={16} strokeWidth={2.5} color="#ef4444" style={{flexShrink:0,marginTop:2}} /> Parents cannot track what the child actually studied</div>
+            <div className="lp-pitem"><X size={16} strokeWidth={2.5} color="#ef4444" style={{flexShrink:0,marginTop:2}} /> Generic YouTube videos do not follow the CBSE syllabus</div>
+            <div className="lp-pitem"><X size={16} strokeWidth={2.5} color="#ef4444" style={{flexShrink:0,marginTop:2}} /> No personalised feedback on weak areas</div>
+            <div className="lp-pitem"><X size={16} strokeWidth={2.5} color="#ef4444" style={{flexShrink:0,marginTop:2}} /> Practice questions often do not match actual exam patterns</div>
+            <div className="lp-pitem"><X size={16} strokeWidth={2.5} color="#ef4444" style={{flexShrink:0,marginTop:2}} /> Students lose motivation when they don&rsquo;t understand concepts immediately</div>
+            <div className="lp-pitem"><X size={16} strokeWidth={2.5} color="#ef4444" style={{flexShrink:0,marginTop:2}} /> Teachers cannot provide one-on-one attention to every child</div>
           </div>
           {/* Solution column */}
           <div className="lp-pcard sol"><div className="lp-ptitle good">LikhaPoha AI Solution</div>
-            <div className="lp-pitem"><span>&#10003;</span> AI lesson for every chapter &mdash; instant and accessible</div>
-            <div className="lp-pitem"><span>&#10003;</span> Parent dashboard shows daily progress and weak areas</div>
-            <div className="lp-pitem"><span>&#10003;</span> Lessons grounded in uploaded NCERT textbooks</div>
-            <div className="lp-pitem"><span>&#10003;</span> Smart evaluation automatically identifies revision topics</div>
-            <div className="lp-pitem"><span>&#10003;</span> Personalised learning path based on each student&rsquo;s performance</div>
-            <div className="lp-pitem"><span>&#10003;</span> CBSE-aligned practice questions and mock tests</div>
-            <div className="lp-pitem"><span>&#10003;</span> Available 24&times;7 &mdash; learn anytime, anywhere</div>
-            <div className="lp-pitem"><span>&#10003;</span> Instant doubt-solving with AI tutor support</div>
+            <div className="lp-pitem"><Check size={16} strokeWidth={2.5} color="#10b981" style={{flexShrink:0,marginTop:2}} /> AI lesson for every chapter &mdash; instant and accessible</div>
+            <div className="lp-pitem"><Check size={16} strokeWidth={2.5} color="#10b981" style={{flexShrink:0,marginTop:2}} /> Parent dashboard shows daily progress and weak areas</div>
+            <div className="lp-pitem"><Check size={16} strokeWidth={2.5} color="#10b981" style={{flexShrink:0,marginTop:2}} /> Lessons grounded in uploaded NCERT textbooks</div>
+            <div className="lp-pitem"><Check size={16} strokeWidth={2.5} color="#10b981" style={{flexShrink:0,marginTop:2}} /> Smart evaluation automatically identifies revision topics</div>
+            <div className="lp-pitem"><Check size={16} strokeWidth={2.5} color="#10b981" style={{flexShrink:0,marginTop:2}} /> Personalised learning path based on each student&rsquo;s performance</div>
+            <div className="lp-pitem"><Check size={16} strokeWidth={2.5} color="#10b981" style={{flexShrink:0,marginTop:2}} /> CBSE-aligned practice questions and mock tests</div>
+            <div className="lp-pitem"><Check size={16} strokeWidth={2.5} color="#10b981" style={{flexShrink:0,marginTop:2}} /> Available 24&times;7 &mdash; learn anytime, anywhere</div>
+            <div className="lp-pitem"><Check size={16} strokeWidth={2.5} color="#10b981" style={{flexShrink:0,marginTop:2}} /> Instant doubt-solving with AI tutor support</div>
           </div>
         </div>
 

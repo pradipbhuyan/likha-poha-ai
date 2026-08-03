@@ -75,7 +75,7 @@ export default function TermsOfServicePage({ onBackToHome }) {
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li style={{ marginBottom: 6 }}>AI-generated step-by-step lessons aligned to the NCERT curriculum</li>
             <li style={{ marginBottom: 6 }}>Ask Doubt — conversational AI answers to student questions</li>
-            <li style={{ marginBottom: 6 }}>Mock Test Studio — customisable CBSE practice tests with 140,000+ questions</li>
+            <li style={{ marginBottom: 6 }}>Mock Tests — customisable CBSE practice tests with 140,000+ questions</li>
             <li style={{ marginBottom: 6 }}>Exemplar Research & Lessons — NCERT Exemplar-level deep-dive for Science and Maths</li>
             <li style={{ marginBottom: 6 }}>Formula & Concepts library — chapter-wise formula sheets with worked examples</li>
             <li style={{ marginBottom: 6 }}>Board Papers — 10 years of past CBSE board exam papers with full AI-generated answers</li>
