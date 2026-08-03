@@ -303,11 +303,11 @@ describe("ExamPrepPage — Access Control", () => {
     });
   });
 
-  it("Grade 11 FREE-tier landing shows Coming Soon button", async () => {
+  it("Grade 11 FREE-tier landing shows Unlock CTA button", async () => {
     mockFetch(ACCESS_FREE_PREVIEW);
     render(<ExamPrepPage user={grade11FreeTier} />);
     await waitFor(() => {
-      expect(screen.getByText(/Coming Soon/i)).toBeTruthy();
+      expect(screen.getByText(/Unlock for/i)).toBeTruthy();
     });
   });
 
@@ -316,7 +316,7 @@ describe("ExamPrepPage — Access Control", () => {
     render(<ExamPrepPage user={grade11Nano} />);
     await waitFor(() => {
       expect(screen.queryByText(/Available for Grade 11 & 12 students only/i)).toBeNull();
-      expect(screen.getByText(/Coming Soon/i)).toBeTruthy();
+      expect(screen.getByText(/Unlock for/i)).toBeTruthy();
     });
   });
 

@@ -172,9 +172,14 @@ class TestExamPrepDashboard:
             lambda uid: GRADE_12_PROFILE,
             raising=False,
         )
-        # Mock content access — dashboard requires Premium subscription check
+        # Mock content access — dashboard requires Premium subscription check.
+        # authorize_feature is imported locally inside
+        # check_exam_content_access_with_packs(), so it must be patched on its
+        # defining module (feature_authorization_service), not exam_prep_service,
+        # or the real function still runs and hits the network via
+        # resolve_user_subscription().
         monkeypatch.setattr(
-            "app.services.exam_prep_service.authorize_feature",
+            "app.services.feature_authorization_service.authorize_feature",
             lambda uid, feat: {"allowed": True, "limited": False, "canonical_plan_key": "PREMIUM"},
             raising=False,
         )
@@ -221,6 +226,13 @@ class TestExamPrepSubjects:
             lambda uid: GRADE_12_PROFILE,
             raising=False,
         )
+        # Requires Premium+ content access — see comment in
+        # test_dashboard_returns_jee_data for why this must be patched here.
+        monkeypatch.setattr(
+            "app.services.feature_authorization_service.authorize_feature",
+            lambda uid, feat: {"allowed": True, "limited": False, "canonical_plan_key": "PREMIUM"},
+            raising=False,
+        )
 
         mock_db = MagicMock()
         mock_db.table.return_value.select.return_value.eq.return_value.eq.return_value.execute.return_value.data = []
@@ -251,6 +263,13 @@ class TestExamPrepTopics:
             lambda uid: GRADE_12_PROFILE,
             raising=False,
         )
+        # Requires Premium+ content access — see comment in
+        # test_dashboard_returns_jee_data for why this must be patched here.
+        monkeypatch.setattr(
+            "app.services.feature_authorization_service.authorize_feature",
+            lambda uid, feat: {"allowed": True, "limited": False, "canonical_plan_key": "PREMIUM"},
+            raising=False,
+        )
         r = client.get("/api/exam-prep/topics?exam=jee_main&subject=Physics")
         assert r.status_code == 200
         data = r.json()
@@ -272,6 +291,13 @@ class TestExamPrepQuestions:
         monkeypatch.setattr(
             "app.routes.exam_prep.get_user_profile",
             lambda uid: GRADE_12_PROFILE,
+            raising=False,
+        )
+        # Requires Premium+ content access — see comment in
+        # test_dashboard_returns_jee_data for why this must be patched here.
+        monkeypatch.setattr(
+            "app.services.feature_authorization_service.authorize_feature",
+            lambda uid, feat: {"allowed": True, "limited": False, "canonical_plan_key": "PREMIUM"},
             raising=False,
         )
 
@@ -378,6 +404,13 @@ class TestSimulatedTest:
         monkeypatch.setattr(
             "app.routes.exam_prep.get_user_profile",
             lambda uid: GRADE_12_PROFILE,
+            raising=False,
+        )
+        # Requires Premium+ content access — see comment in
+        # test_dashboard_returns_jee_data for why this must be patched here.
+        monkeypatch.setattr(
+            "app.services.feature_authorization_service.authorize_feature",
+            lambda uid, feat: {"allowed": True, "limited": False, "canonical_plan_key": "PREMIUM"},
             raising=False,
         )
 
