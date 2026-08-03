@@ -4443,6 +4443,18 @@ body.dark-mode .login-logo {
   font-size: 22px;
 }
 
+.ait-input-icon {
+  display: inline-flex;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.ait-input-row .password-toggle {
+  display: inline-flex;
+  align-items: center;
+  color: #94a3b8;
+}
+
 .ait-login-options {
   display: flex;
   justify-content: space-between;
@@ -4542,7 +4554,7 @@ body.dark-mode .login-logo {
   color: white;
   font-size: 20px;
   font-weight: 900;
-  background: linear-gradient(135deg, #2563eb, #9333ea);
+  background: linear-gradient(135deg, #4d41c5, #5a84e6);
 }
 
 .ait-divider {
@@ -4557,12 +4569,16 @@ body.dark-mode .login-logo {
 }
 
 .ait-create-account span {
-  color: #3b82f6;
+  color: #5a84e6;
 }
 
 @media (max-width: 900px) {
   .ait-login-shell {
     grid-template-columns: 1fr;
+  }
+
+  .ait-login-right {
+    order: -1;
   }
 }
 

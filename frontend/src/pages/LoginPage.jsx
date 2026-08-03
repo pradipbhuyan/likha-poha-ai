@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import logo from "../assets/AITutorLogo1.png";
 
-import { BookOpen, Brain, ClipboardList, BarChart3 } from "lucide-react";
+import { BookOpen, Brain, ClipboardList, BarChart3, User, AtSign, Lock, Eye, EyeOff } from "lucide-react";
 
 import { supabase } from "../api/supabaseClient";
 
@@ -494,7 +494,7 @@ useEffect(() => {
             <form onSubmit={isSignupMode ? handleSignup : handleLogin}>
               {isSignupMode && (
                 <div className="ait-input-row">
-                  <span>🧑</span>
+                  <span className="ait-input-icon"><User size={20} strokeWidth={2} /></span>
 
                   <input
                     type="text"
@@ -507,7 +507,7 @@ useEffect(() => {
               )}
 
               <div className="ait-input-row">
-                <span>👤</span>
+                <span className="ait-input-icon"><AtSign size={20} strokeWidth={2} /></span>
 
                 <input
                   type="text"
@@ -519,7 +519,7 @@ useEffect(() => {
               </div>
 
               <div className="ait-input-row">
-                <span>🔒</span>
+                <span className="ait-input-icon"><Lock size={20} strokeWidth={2} /></span>
 
                 <input
                   type={showPassword ? "text" : "password"}
@@ -533,8 +533,9 @@ useEffect(() => {
                   type="button"
                   className="password-toggle"
                   onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? "🙈" : "👁️"}
+                  {showPassword ? <EyeOff size={20} strokeWidth={2} /> : <Eye size={20} strokeWidth={2} />}
                 </button>
               </div>
 
