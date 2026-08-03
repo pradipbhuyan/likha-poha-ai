@@ -56,20 +56,6 @@
 .lp-ri{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0;color:#5a84e6;margin-top:1px}
 .lp-fc h3{font-size:1rem;font-weight:700;margin-bottom:8px}
 .lp-fc p{font-size:.88rem;color:#cbd5e1}
-.lp-pg{display:grid;grid-template-columns:repeat(2,minmax(280px,380px));gap:20px;align-items:start;justify-content:center}
-.lp-prc{background:#0f172a;border:1px solid #334155;border-radius:18px;padding:32px;position:relative}
-.lp-prc.pop{border-color:#4d41c5}
-.lp-popb{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#4d41c5;color:#fff;font-size:.72rem;font-weight:700;padding:4px 14px;border-radius:99px;white-space:nowrap}
-.lp-prname{font-size:1rem;font-weight:700;margin-bottom:8px;color:#cbd5e1}
-.lp-pramount{font-size:2.4rem;font-weight:900;margin-bottom:4px}
-.lp-pramount span{font-size:1rem;color:#cbd5e1;font-weight:400}
-.lp-prsave{display:inline-block;background:rgba(16,185,129,.12);color:#10b981;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:10px}
-.lp-prdesc{font-size:.83rem;color:#cbd5e1;margin-bottom:24px}
-.lp-prf{display:flex;gap:10px;font-size:.88rem;margin-bottom:10px;color:#cbd5e1}
-.lp-prf::before{content:"✓";color:#10b981;font-weight:700;flex-shrink:0}
-.lp-bpro{display:block;text-align:center;padding:12px;border-radius:10px;font-weight:700;font-size:.95rem;margin-top:24px;cursor:pointer;border:none;font-family:inherit;width:100%}
-.lp-bpout{background:transparent;border:1px solid #334155;color:#f8fafc}
-.lp-bpfill{background:#4d41c5;color:#fff}
 .lp-prnote{text-align:center;margin-top:20px;font-size:.8rem;color:#cbd5e1}
 .lp-tgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .lp-tc{background:#0f172a;border:1px solid #334155;border-radius:18px;padding:24px}
@@ -113,7 +99,7 @@
 .lp-nav{padding:14px 20px}
   .lp-nav-links{display:none}
   .lp-hero{padding:72px 20px 48px}
-  .lp-pvs,.lp-demo,.lp-fg,.lp-pg,.lp-tgrid,.lp-skg,.lp-2col,.lp-results,.lp-examgrid{grid-template-columns:1fr}
+  .lp-pvs,.lp-demo,.lp-fg,.lp-tgrid,.lp-skg,.lp-2col,.lp-results,.lp-examgrid{grid-template-columns:1fr}
 }
 @media(max-width:480px){
   .lp-nav{padding:12px 14px;gap:8px}

@@ -152,6 +152,7 @@ export const SUBSCRIPTION_PLANS = {
     displayOrder: 2,
     accessLevel: ACCESS_LEVEL.FULL,
     access_cbse: true,
+    access_exam_prep: false,  // Exam Prep Center's 6-exam bundle is NOT included in Premium/Family Premium
     access_sof_science: false,
     access_sof_maths: false,
     access_sof_english: false,
@@ -200,6 +201,7 @@ export const SUBSCRIPTION_PLANS = {
     displayOrder: 3,
     accessLevel: ACCESS_LEVEL.FULL,
     access_cbse: true,
+    access_exam_prep: false,  // Exam Prep Center's 6-exam bundle is NOT included in Premium/Family Premium
     access_sof_science: false,
     access_sof_maths: false,
     access_sof_english: false,
@@ -248,6 +250,7 @@ export const SUBSCRIPTION_PLANS = {
     displayOrder: 4,
     accessLevel: ACCESS_LEVEL.FULL,
     access_cbse: true,
+    access_exam_prep: false,  // Exam Prep Center's 6-exam bundle is NOT included in Premium/Family Premium
     access_sof_science: false,
     access_sof_maths: false,
     access_sof_english: false,
@@ -279,9 +282,12 @@ export const SUBSCRIPTION_PLANS = {
   },
 
   // ── EXAM PREP CENTER ──────────────────────────────────────────────────────
-  // Bundled Grade 11–12 annual plan covering JEE Main, NEET UG, CUET UG, SAT,
-  // IELTS & TOEFL iBT together. Independent of the CBSE subscription tiers
-  // above — does NOT include access_cbse or Exemplar.
+  // Grade 11–12 annual plan covering JEE Main, NEET UG, CUET UG, SAT, IELTS &
+  // TOEFL iBT, PLUS full CBSE Grade 11–12 content (lessons, doubts, mock
+  // tests, exemplar, formula sheet, board papers) — effectively "Premium
+  // scoped to Gr 11–12" plus the exam bundle. Premium/Family Premium do NOT
+  // include this exam bundle — it is exclusive to this plan (see
+  // "This term's plans" notebook spec).
   exam_prep_center: {
     key: "exam_prep_center",
     label: "Exam Prep Center",
@@ -289,7 +295,7 @@ export const SUBSCRIPTION_PLANS = {
     price: 1999,
     billingLabel: "year",
     audience:
-      "Grade 11–12 competitive & global exam prep — JEE Main, NEET UG, CUET UG, SAT, IELTS & TOEFL iBT, all in one annual plan.",
+      "Grade 11–12 competitive & global exam prep — JEE Main, NEET UG, CUET UG, SAT, IELTS & TOEFL iBT, all in one annual plan — plus full CBSE Grade 11–12 lessons, doubts, and mock tests.",
     badge: "NEW",
     recommended: false,
     discountPercent: 0,
@@ -297,7 +303,7 @@ export const SUBSCRIPTION_PLANS = {
     isPublic: true,
     displayOrder: 6,
     accessLevel: ACCESS_LEVEL.FULL,
-    access_cbse: false,
+    access_cbse: true,
     access_sof_science: false,
     access_sof_maths: false,
     access_sof_english: false,
@@ -312,22 +318,24 @@ export const SUBSCRIPTION_PLANS = {
       "TOEFL iBT — Study Plan + Test Simulation",
       "AI step-by-step explanations",
       "Weak topic tracker",
+      "Full CBSE Grade 11–12 lessons, doubts & mock tests",
+      "Exemplar Research & Lessons",
+      "Formula & Concepts library",
+      "10 Years of Board Papers with answers",
     ],
     notIncluded: [
       "CBSE lessons (Grade 5–10)",
-      "Ask Doubt",
-      "Exemplar Research & Lessons",
     ],
     comparison: {
       children: "1",
-      lessons: "❌ Not included",
-      mockTests: "❌ Not included",
-      askDoubts: "❌ Not included",
+      lessons: "✅ Unlimited (Gr 11–12)",
+      mockTests: "✅ Unlimited (Gr 11–12)",
+      askDoubts: "✅ Unlimited (Gr 11–12)",
       cbse: "Grade 11–12 only",
-      exemplarResearch: "❌ Locked",
-      exemplarLessons: "❌ Locked",
-      parentDashboard: "Full + alerts",
-      fullAccess: "✅ Exam Prep only (Gr 11–12)",
+      exemplarResearch: "✅ Full access",
+      exemplarLessons: "✅ Full access",
+      parentDashboard: "Full + analytics",
+      fullAccess: "✅ Full access (Gr 11–12) + all 6 exams",
       planDuration: "Annual",
       billingType: "₹1,999 / year",
     },
@@ -350,6 +358,7 @@ export const SUBSCRIPTION_PLANS = {
     displayOrder: 5,
     accessLevel: ACCESS_LEVEL.FULL,
     access_cbse: true,
+    access_exam_prep: false,  // Exam Prep Center's 6-exam bundle is NOT included in Premium/Family Premium
     access_sof_science: false,
     access_sof_maths: false,
     access_sof_english: false,
@@ -397,6 +406,7 @@ export const SUBSCRIPTION_PLANS = {
     displayOrder: 6,
     accessLevel: ACCESS_LEVEL.FULL,
     access_cbse: true,
+    access_exam_prep: false,  // Exam Prep Center's 6-exam bundle is NOT included in Premium/Family Premium
     access_sof_science: false,
     access_sof_maths: false,
     access_sof_english: false,
@@ -444,6 +454,7 @@ export const SUBSCRIPTION_PLANS = {
     displayOrder: 7,
     accessLevel: ACCESS_LEVEL.FULL,
     access_cbse: true,
+    access_exam_prep: false,  // Exam Prep Center's 6-exam bundle is NOT included in Premium/Family Premium
     access_sof_science: false,
     access_sof_maths: false,
     access_sof_english: false,

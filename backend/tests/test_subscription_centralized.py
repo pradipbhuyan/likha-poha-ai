@@ -318,11 +318,27 @@ class TestDefaultSubscriptionPlans:
         """Free tier should NOT include exemplar."""
         assert DEFAULT_SUBSCRIPTION_PLANS["free_tier"]["access_exemplar"] is False
 
-    def test_paid_plans_access_exam_prep_true(self):
-        """All paid plans should include exam prep by default."""
-        for key in self.PAID_PLAN_KEYS:
+    def test_cbse_paid_plans_access_exam_prep_false(self):
+        """
+        CBSE-tier paid plans (Premium, Family Premium and their variants) do
+        NOT include Exam Prep Center's exam bundle — that's exclusive to the
+        exam_prep_center plan itself. Per the "This term's plans" spec.
+        "free" (Premium Nano) keeps its legacy True — Nano is excluded from
+        exam prep content at the feature-matrix level regardless of this flag.
+        """
+        cbse_tier_keys = ["starter", "premium", "family_premium",
+                           "standard_6month", "standard_annual", "family_annual"]
+        for key in cbse_tier_keys:
             plan = DEFAULT_SUBSCRIPTION_PLANS[key]
-            assert plan["access_exam_prep"] is True, f"Plan '{key}' access_exam_prep should be True"
+            assert plan["access_exam_prep"] is False, f"Plan '{key}' access_exam_prep should be False"
+
+    def test_exam_prep_center_access_exam_prep_true(self):
+        """The Exam Prep Center plan itself must include exam prep content."""
+        assert DEFAULT_SUBSCRIPTION_PLANS["exam_prep_center"]["access_exam_prep"] is True
+
+    def test_exam_prep_center_access_cbse_true(self):
+        """Exam Prep Center bundles full CBSE Grade 11-12 access, not just the exams."""
+        assert DEFAULT_SUBSCRIPTION_PLANS["exam_prep_center"]["access_cbse"] is True
 
     def test_paid_plans_access_exemplar_true(self):
         """All paid plans should include exemplar by default."""

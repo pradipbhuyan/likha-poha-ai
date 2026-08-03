@@ -18,26 +18,38 @@ Usage (in any route):
         return {"error": result["restriction_message"]}
 
 Feature Matrix (canonical, single source of truth):
-────────────────────────────────────────────────────────────────────────
-Feature                  FREE_TIER  NANO   PREMIUM  FAMILY  ADMIN_GRANT
-────────────────────────────────────────────────────────────────────────
-LESSONS                  Limited    Full   Full     Full    Full
-LESSON_DOWNLOAD          No         Yes    Yes      Yes     Yes
-EXEMPLAR                 No         Yes    Yes      Yes     Yes
-EXEMPLAR_RESEARCH        No         Yes    Yes      Yes     Yes
-MOCK_TEST                Limited    Full   Full     Full    Full
-MOCK_TEST_UNLIMITED      No         Yes    Yes      Yes     Yes
-ASK_DOUBTS               Limited    Full   Full     Full    Full
-AI_ASSISTANT             Limited    Full   Full     Full    Full
-AI_CHAT                  Limited    Full   Full     Full    Full
-PARENT_DASHBOARD         Yes        Yes    Yes      Yes     Yes
+─────────────────────────────────────────────────────────────────────────────────────
+Feature                  FREE_TIER  NANO   PREMIUM  FAMILY  ADMIN_GRANT  EXAM_PREP_CENTER
+─────────────────────────────────────────────────────────────────────────────────────
+LESSONS                  Limited    Full   Full     Full    Full         Full (Gr 11-12)
+LESSON_DOWNLOAD          No         Yes    Yes      Yes     Yes          Yes
+EXEMPLAR                 No         Yes    Yes      Yes     Yes          Yes
+EXEMPLAR_RESEARCH        No         Yes    Yes      Yes     Yes          Yes
+MOCK_TEST                Limited    Full   Full     Full    Full         Full (Gr 11-12)
+MOCK_TEST_UNLIMITED      No         Yes    Yes      Yes     Yes          Yes
+ASK_DOUBTS               Limited    Full   Full     Full    Full         Full (Gr 11-12)
+AI_ASSISTANT             Limited    Full   Full     Full    Full         Full
+AI_CHAT                  Limited    Full   Full     Full    Full         Full
+QUESTION_BANK            Limited    Full   Full     Full    Full         Full
+FORMULA_SHEET_PREMIUM    No         Yes    Yes      Yes     Yes          Yes
+EXAM_PREP_CONTENT        No         No     No       No      Yes          Yes
+PARENT_DASHBOARD         Yes        Yes    Yes      Yes     Yes          Yes
 TEACHER_DASHBOARD        TeacherOnly (checked separately)
 ADMIN_PANEL              AdminOnly
-────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────
 
 "Limited" = DKB-only, no LLM call.
 "Full"    = DKB + LLM, unrestricted.
 "No"      = 403 with upgrade message.
+
+Plan split (per "This term's plans" notebook spec — strictly followed):
+- PREMIUM / FAMILY_PREMIUM: full CBSE (all grades) + Exemplar + Formula Sheet +
+  Board Papers. Do NOT get Exam Prep Center content (JEE/NEET/CUET/SAT/IELTS/TOEFL)
+  — that is EXAM_PREP_CENTER's exclusive content, not a Premium perk.
+- EXAM_PREP_CENTER (₹1,999/yr, Grade 11-12 only): full CBSE for Grade 11-12
+  (lessons/doubts/mock tests/question bank) + Exemplar + Formula Sheet + Board
+  Papers + all six exams. Effectively "Premium scoped to Gr 11-12" plus the
+  exam bundle, not a narrow exam-only add-on.
 
 Security principles:
 - Backend NEVER trusts frontend claims about subscription.
@@ -92,14 +104,15 @@ def _get_plan_feature_flag(db_plan_key: str | None, flag_name: str, default: boo
 
 # Map canonical plan keys → DB plan keys (raw subscription_plan column values)
 _CANONICAL_TO_DB_PLAN_KEY: dict[str, str] = {
-    "NANO":           "free",
-    "PREMIUM":        "starter",
-    "PREMIUM_6MONTH": "standard_6month",
-    "PREMIUM_ANNUAL": "standard_annual",
-    "FAMILY_PREMIUM": "family_premium",
-    "FAMILY_ANNUAL":  "family_annual",
-    "FREE_TIER":      "free_tier",
-    "ADMIN_GRANT":    "starter",  # admin grants use premium defaults
+    "NANO":             "free",
+    "PREMIUM":          "starter",
+    "PREMIUM_6MONTH":   "standard_6month",
+    "PREMIUM_ANNUAL":   "standard_annual",
+    "FAMILY_PREMIUM":   "family_premium",
+    "FAMILY_ANNUAL":    "family_annual",
+    "FREE_TIER":        "free_tier",
+    "ADMIN_GRANT":      "starter",  # admin grants use premium defaults
+    "EXAM_PREP_CENTER": "exam_prep_center",
 }
 
 
@@ -147,9 +160,8 @@ _FEATURE_MATRIX: dict[str, dict] = {
     Feature.LESSONS: {
         "allowed_plans": None,   # all plans may access lessons
         "limited_on": {"FREE_TIER"},  # DKB-only for free
-        # EXAM_PREP_CENTER (₹1,999/yr bundle) grants JEE/NEET/CUET/SAT/IELTS/TOEFL
-        # only — it deliberately excludes CBSE lessons per the plan definition.
-        "denied_plans": {"EXAM_PREP_CENTER"},
+        # EXAM_PREP_CENTER (₹1,999/yr bundle) includes full CBSE lessons for
+        # Grade 11-12 — the grade gate (not this matrix) keeps it out of Gr 5-10.
         "upgrade_message": "Upgrade to access unlimited AI-powered lessons.",
     },
     Feature.LESSON_DOWNLOAD: {
@@ -160,20 +172,21 @@ _FEATURE_MATRIX: dict[str, dict] = {
     },
     Feature.EXEMPLAR: {
         "allowed_plans": {"NANO", "PREMIUM", "PREMIUM_6MONTH", "PREMIUM_ANNUAL",
-                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT"},
+                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT",
+                          "EXAM_PREP_CENTER"},
         "limited_on": set(),
         "upgrade_message": "Exemplar access is available with a paid subscription.",
     },
     Feature.EXEMPLAR_RESEARCH: {
         "allowed_plans": {"NANO", "PREMIUM", "PREMIUM_6MONTH", "PREMIUM_ANNUAL",
-                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT"},
+                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT",
+                          "EXAM_PREP_CENTER"},
         "limited_on": set(),
         "upgrade_message": "Exemplar Research is available with a paid subscription.",
     },
     Feature.MOCK_TEST: {
         "allowed_plans": None,   # all plans may take mock tests
         "limited_on": {"FREE_TIER"},  # limited to 5/day for free
-        "denied_plans": {"EXAM_PREP_CENTER"},
         "upgrade_message": "Upgrade for unlimited mock tests.",
     },
     Feature.MOCK_TEST_UNLIMITED: {
@@ -185,30 +198,27 @@ _FEATURE_MATRIX: dict[str, dict] = {
     Feature.ASK_DOUBTS: {
         "allowed_plans": None,   # all plans may ask doubts
         "limited_on": {"FREE_TIER"},  # DKB-only for free
-        "denied_plans": {"EXAM_PREP_CENTER"},
         "upgrade_message": "Upgrade for unlimited AI doubt solving.",
     },
     Feature.AI_ASSISTANT: {
         "allowed_plans": None,
         "limited_on": {"FREE_TIER"},
-        "denied_plans": {"EXAM_PREP_CENTER"},
         "upgrade_message": "Upgrade for full AI assistant access.",
     },
     Feature.AI_CHAT: {
         "allowed_plans": None,
         "limited_on": {"FREE_TIER"},
-        "denied_plans": {"EXAM_PREP_CENTER"},
         "upgrade_message": "Upgrade for full AI chat access.",
     },
     Feature.AI_SOLUTIONS: {
         "allowed_plans": None,
         "limited_on": {"FREE_TIER"},
-        "denied_plans": {"EXAM_PREP_CENTER"},
         "upgrade_message": "Upgrade for AI-powered solutions.",
     },
     Feature.FORMULA_SHEET_PREMIUM: {
         "allowed_plans": {"NANO", "PREMIUM", "PREMIUM_6MONTH", "PREMIUM_ANNUAL",
-                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT"},
+                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT",
+                          "EXAM_PREP_CENTER"},
         "limited_on": set(),
         "upgrade_message": "Upgrade to unlock solved examples, memory tips and full formula library.",
     },
@@ -219,30 +229,28 @@ _FEATURE_MATRIX: dict[str, dict] = {
         "allowed_plans": None,          # page accessible to all tiers
         "limited_on": {"FREE_TIER", "NANO"},   # FREE/NANO: preview only, no real content
         "upgrade_message": (
-            "Upgrade to Premium to unlock Exam Prep Center — "
-            "JEE Main, NEET UG & CUET UG practice questions, "
-            "simulated tests, and AI explanations."
+            "Purchase Exam Prep Center to unlock JEE Main, NEET UG, CUET UG, "
+            "SAT, IELTS & TOEFL iBT practice questions, simulated tests, "
+            "and AI explanations."
         ),
     },
     Feature.EXAM_PREP_CONTENT: {
-        # Actual content: questions, topic details, simulated tests, AI follow-up.
-        # Premium Nano explicitly EXCLUDED (per spec: Nano can only preview).
-        # EXAM_PREP_CENTER (₹1,999/yr bundle) IS allowed here — it's the whole
-        # point of that plan — covering all 6 exams (JEE/NEET/CUET/SAT/IELTS/TOEFL).
-        "allowed_plans": {"PREMIUM", "PREMIUM_6MONTH", "PREMIUM_ANNUAL",
-                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT",
-                          "EXAM_PREP_CENTER"},
+        # Actual content: questions, topic details, simulated tests, AI follow-up
+        # for the six exams (JEE/NEET/CUET/SAT/IELTS/TOEFL). This is EXAM_PREP_
+        # CENTER's exclusive content, NOT a Premium/Family Premium perk — per the
+        # "This term's plans" spec, Premium/Family are false across this entire
+        # group. Only purchasing Exam Prep Center (or an admin grant) unlocks it.
+        "allowed_plans": {"ADMIN_GRANT", "EXAM_PREP_CENTER"},
         "limited_on": set(),
         "upgrade_message": (
-            "Upgrade to Premium or Family Premium, or purchase the Exam Prep "
-            "Center plan, to access JEE/NEET/CUET/SAT/IELTS/TOEFL practice "
-            "questions, simulated tests, and AI explanations."
+            "Purchase the Exam Prep Center plan to access JEE/NEET/CUET/SAT/"
+            "IELTS/TOEFL practice questions, simulated tests, and AI "
+            "explanations — this isn't included in Premium or Family Premium."
         ),
     },
     Feature.QUESTION_BANK: {
         "allowed_plans": None,
         "limited_on": {"FREE_TIER"},
-        "denied_plans": {"EXAM_PREP_CENTER"},  # CBSE question bank only — exam-prep Qs are separate
         "upgrade_message": "Upgrade for full question bank access.",
     },
     Feature.PROGRESS_ANALYTICS: {
@@ -321,8 +329,8 @@ def authorize_feature(
 
     # Explicit denial takes precedence even for "available to all" features.
     # Used by plans that intentionally exclude certain feature groups — e.g.
-    # EXAM_PREP_CENTER (₹1,999/yr bundle) grants exam-prep access only and
-    # must NOT unlock CBSE lessons/doubts/mock tests/exemplar.
+    # Premium/Family Premium are denied EXAM_PREP_CONTENT via allowed_plans
+    # (not denied_plans) since that plan's exams are EXAM_PREP_CENTER-exclusive.
     if cpk in denied_plans:
         return _denied(
             feature, cpk, plan_name,

@@ -33,15 +33,50 @@ class TestFeatureMatrixConstants:
         assert "FREE_TIER" in m["limited_on"]    # free → preview only
         assert "NANO" in m["limited_on"]          # nano → preview only
 
-    def test_exam_prep_content_premium_only(self):
+    def test_exam_prep_content_is_exam_prep_center_exclusive(self):
+        """
+        Per the "This term's plans" notebook spec: the six exams
+        (JEE/NEET/CUET/SAT/IELTS/TOEFL) are EXAM_PREP_CENTER-exclusive
+        content, NOT a Premium/Family Premium perk. Premium/Family Premium
+        get full CBSE instead — a different, non-overlapping benefit.
+        """
         from app.services.feature_authorization_service import _FEATURE_MATRIX, Feature
         m = _FEATURE_MATRIX[Feature.EXAM_PREP_CONTENT]
         allowed = m["allowed_plans"]
-        assert "NANO" not in allowed       # Nano explicitly excluded per spec
+        assert "NANO" not in allowed
         assert "FREE_TIER" not in allowed
+        assert "EXAM_PREP_CENTER" in allowed
+        assert "ADMIN_GRANT" in allowed
         for plan in ("PREMIUM", "PREMIUM_6MONTH", "PREMIUM_ANNUAL",
-                     "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT"):
-            assert plan in allowed, f"{plan} must be in EXAM_PREP_CONTENT allowed_plans"
+                     "FAMILY_PREMIUM", "FAMILY_ANNUAL"):
+            assert plan not in allowed, (
+                f"{plan} must NOT be in EXAM_PREP_CONTENT allowed_plans — "
+                "the six exams are Exam Prep Center exclusive."
+            )
+
+    def test_exam_prep_center_gets_cbse_features(self):
+        """
+        Exam Prep Center subscribers get full CBSE Gr 11-12 content
+        (lessons/mock tests/doubts/AI/question bank/exemplar/formula sheet) —
+        none of these features should deny or omit EXAM_PREP_CENTER.
+        """
+        from app.services.feature_authorization_service import _FEATURE_MATRIX, Feature
+        cbse_features = (
+            Feature.LESSONS, Feature.MOCK_TEST, Feature.ASK_DOUBTS,
+            Feature.AI_ASSISTANT, Feature.AI_CHAT, Feature.AI_SOLUTIONS,
+            Feature.QUESTION_BANK,
+        )
+        for feature in cbse_features:
+            m = _FEATURE_MATRIX[feature]
+            denied = m.get("denied_plans") or set()
+            assert "EXAM_PREP_CENTER" not in denied, (
+                f"{feature}: EXAM_PREP_CENTER must not be denied — "
+                "Exam Prep Center includes full CBSE Gr 11-12 access."
+            )
+
+        for feature in (Feature.EXEMPLAR, Feature.EXEMPLAR_RESEARCH, Feature.FORMULA_SHEET_PREMIUM):
+            allowed = _FEATURE_MATRIX[feature]["allowed_plans"]
+            assert "EXAM_PREP_CENTER" in allowed, f"{feature}: EXAM_PREP_CENTER must be allowed"
 
     def test_exam_prep_content_has_upgrade_message(self):
         from app.services.feature_authorization_service import _FEATURE_MATRIX, Feature
@@ -92,7 +127,14 @@ class TestAuthorizeFeatureExamPrep:
 
     @patch("app.services.feature_authorization_service._get_plan_feature_flag", return_value=True)
     @patch("app.services.feature_authorization_service.resolve_user_subscription")
-    def test_premium_content_allowed(self, mock_sub, _mock_flag):
+    def test_premium_content_allowed_via_admin_override_only(self, mock_sub, _mock_flag):
+        """
+        Premium is NOT in EXAM_PREP_CONTENT's allowed_plans by default (see
+        test_exam_prep_content_is_exam_prep_center_exclusive). This test
+        force-mocks the DB-driven override flag to True to prove the admin
+        override path itself still works — it does NOT represent the
+        default, out-of-the-box behavior for a Premium subscriber.
+        """
         mock_sub.return_value = {"canonical_plan_key": "PREMIUM", "plan_name": "Premium", "has_full_access": True}
         from app.services.feature_authorization_service import authorize_feature, Feature
         r = authorize_feature("uid", Feature.EXAM_PREP_CONTENT)
@@ -101,11 +143,50 @@ class TestAuthorizeFeatureExamPrep:
 
     @patch("app.services.feature_authorization_service._get_plan_feature_flag", return_value=True)
     @patch("app.services.feature_authorization_service.resolve_user_subscription")
-    def test_family_premium_content_allowed(self, mock_sub, _mock_flag):
+    def test_family_premium_content_allowed_via_admin_override_only(self, mock_sub, _mock_flag):
+        """See test_premium_content_allowed_via_admin_override_only — same caveat."""
         mock_sub.return_value = {"canonical_plan_key": "FAMILY_PREMIUM", "plan_name": "Family Premium", "has_full_access": True}
         from app.services.feature_authorization_service import authorize_feature, Feature
         r = authorize_feature("uid", Feature.EXAM_PREP_CONTENT)
         assert r["allowed"] is True
+
+    @patch("app.services.feature_authorization_service.resolve_user_subscription")
+    def test_premium_content_denied_by_default(self, mock_sub):
+        """
+        Real default state, no mocked override: a Premium subscriber does
+        NOT get Exam Prep Center content. This is the actual behavior a
+        real Premium user hits — Exam Prep Center content is exclusive to
+        the Exam Prep Center plan.
+        """
+        mock_sub.return_value = {"canonical_plan_key": "PREMIUM", "plan_name": "Premium", "has_full_access": True}
+        from app.services.feature_authorization_service import authorize_feature, Feature
+        r = authorize_feature("uid", Feature.EXAM_PREP_CONTENT)
+        assert r["allowed"] is False
+
+    @patch("app.services.feature_authorization_service.resolve_user_subscription")
+    def test_family_premium_content_denied_by_default(self, mock_sub):
+        """Real default state — see test_premium_content_denied_by_default."""
+        mock_sub.return_value = {"canonical_plan_key": "FAMILY_PREMIUM", "plan_name": "Family Premium", "has_full_access": True}
+        from app.services.feature_authorization_service import authorize_feature, Feature
+        r = authorize_feature("uid", Feature.EXAM_PREP_CONTENT)
+        assert r["allowed"] is False
+
+    @patch("app.services.feature_authorization_service.resolve_user_subscription")
+    def test_exam_prep_center_content_allowed_by_default(self, mock_sub):
+        """An actual Exam Prep Center subscriber gets the content, no override needed."""
+        mock_sub.return_value = {"canonical_plan_key": "EXAM_PREP_CENTER", "plan_name": "Exam Prep Center", "has_full_access": True}
+        from app.services.feature_authorization_service import authorize_feature, Feature
+        r = authorize_feature("uid", Feature.EXAM_PREP_CONTENT)
+        assert r["allowed"] is True
+
+    @patch("app.services.feature_authorization_service.resolve_user_subscription")
+    def test_exam_prep_center_gets_cbse_lessons_by_default(self, mock_sub):
+        """An actual Exam Prep Center subscriber gets full CBSE lessons, no override needed."""
+        mock_sub.return_value = {"canonical_plan_key": "EXAM_PREP_CENTER", "plan_name": "Exam Prep Center", "has_full_access": True}
+        from app.services.feature_authorization_service import authorize_feature, Feature
+        r = authorize_feature("uid", Feature.LESSONS)
+        assert r["allowed"] is True
+        assert r["limited"] is False
 
     @patch("app.services.feature_authorization_service._get_plan_feature_flag", return_value=True)
     @patch("app.services.feature_authorization_service.resolve_user_subscription")

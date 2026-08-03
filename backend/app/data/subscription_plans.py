@@ -96,7 +96,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     "starter": {
         # Centralized feature flags — overridden by subscription_plan_settings DB
         "duration_days": 30,
-        "access_exam_prep": True,
+        "access_exam_prep": False,
         "access_exemplar": True,
         "key": "starter",
         "label": "Premium",
@@ -138,7 +138,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     "premium": {
         # Centralized feature flags — overridden by subscription_plan_settings DB
         "duration_days": 30,
-        "access_exam_prep": True,
+        "access_exam_prep": False,
         "access_exemplar": True,
         "key": "premium",
         "label": "Premium",
@@ -176,7 +176,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     "family_premium": {
         # Centralized feature flags — overridden by subscription_plan_settings DB
         "duration_days": 30,
-        "access_exam_prep": True,
+        "access_exam_prep": False,
         "access_exemplar": True,
         "key": "family_premium",
         "label": "Family Premium",
@@ -216,7 +216,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     "standard_6month": {
         # Centralized feature flags — overridden by subscription_plan_settings DB
         "duration_days": 184,
-        "access_exam_prep": True,
+        "access_exam_prep": False,
         "access_exemplar": True,
         "key": "standard_6month",
         "label": "Premium — 6 Months",
@@ -255,7 +255,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     "standard_annual": {
         # Centralized feature flags — overridden by subscription_plan_settings DB
         "duration_days": 366,
-        "access_exam_prep": True,
+        "access_exam_prep": False,
         "access_exemplar": True,
         "key": "standard_annual",
         "label": "Premium — Annual",
@@ -294,7 +294,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     "family_annual": {
         # Centralized feature flags — overridden by subscription_plan_settings DB
         "duration_days": 366,
-        "access_exam_prep": True,
+        "access_exam_prep": False,
         "access_exemplar": True,
         "key": "family_annual",
         "label": "Family Premium — Annual",
@@ -338,7 +338,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     "exam_prep_center": {
         "duration_days": 366,
         "access_exam_prep": True,
-        "access_exemplar": False,
+        "access_exemplar": True,
         "key": "exam_prep_center",
         "label": "Exam Prep Center",
         "short_label": "Exam Prep",
@@ -346,7 +346,8 @@ DEFAULT_SUBSCRIPTION_PLANS = {
         "billing_label": "year",
         "audience": (
             "Grade 11–12 competitive & global exam prep — JEE Main, NEET UG, "
-            "CUET UG, SAT, IELTS & TOEFL iBT, all in one annual plan."
+            "CUET UG, SAT, IELTS & TOEFL iBT, all in one annual plan — plus "
+            "full CBSE Grade 11–12 lessons, doubts, and mock tests."
         ),
         "badge": "NEW",
         "recommended": False,
@@ -354,7 +355,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
         "discount_label": "",
         "is_public": True,
         "display_order": 6,
-        "access_cbse": False,
+        "access_cbse": True,
         "daily_token_limit": 100000,
         "monthly_token_limit": 3000000,
         "included": [
@@ -366,17 +367,19 @@ DEFAULT_SUBSCRIPTION_PLANS = {
             "TOEFL iBT — Study Plan + Test Simulation",
             "AI step-by-step explanations",
             "Weak topic tracker",
+            "Full CBSE Grade 11–12 lessons, doubts & mock tests",
+            "Exemplar Research & Lessons",
+            "Formula & Concepts library",
+            "10 Years of Board Papers with answers",
         ],
         "not_included": [
             "CBSE lessons (Grade 5–10)",
-            "Ask Doubt",
-            "Exemplar Research & Lessons",
         ],
         "comparison": {
             "children": "1",
-            "aiUsage": "Unlimited (Gr 11–12 exam prep only)",
+            "aiUsage": "Unlimited (Gr 11–12)",
             "cbse": "Grade 11–12 only",
-            "parentDashboard": "Full + alerts",
+            "parentDashboard": "Full + analytics",
         },
         "exam_type": None,  # bundle — not a single exam_type like the packs below
     },
