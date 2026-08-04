@@ -202,8 +202,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
 
       <div className="lp-sw" id="pricing">
         <div className="lp-sh"><div className="lp-ey">Class Noticeboard</div><h2>This term&rsquo;s learning plans</h2><p>Pinned up for parents & students &mdash; what each plan gets you, subject by subject.</p></div>
-        <NoticeboardPricingTable theme="dark" onChoosePlan={handleCta} />
-        <p className="lp-prnote">No hidden charges &middot; Plans expire at end of period</p>
+        <NoticeboardPricingTable theme="dark" showCta={false} />
       </div>
       {/* Testimonials + score improvements hidden until we have real customer feedback
       <div className="lp-sf"><div className="lp-si">
