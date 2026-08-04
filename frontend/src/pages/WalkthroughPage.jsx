@@ -1,33 +1,29 @@
 import { useState } from "react";
 
+const WALKTHROUGH_BUCKET_URL =
+  "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/platform-walkthrough-videos";
+
 const VIDEOS = {
   english: {
     label: "🇬🇧 English",
-    embedId: "N82gfHBJm00",
+    src: `${WALKTHROUGH_BUCKET_URL}/walkthrough-en.mp4`,
     title: "Likha Poha AI — Student Platform Walkthrough (English)",
   },
   hindi: {
     label: "🇮🇳 Hindi",
-    embedId: "y0YHnMrmR3k",
+    src: `${WALKTHROUGH_BUCKET_URL}/walkthrough-hi.mp4`,
     title: "Likha Poha AI — Student Platform Walkthrough (Hindi)",
   },
 };
 
 function WalkthroughPage() {
-  /** Platform Walkthrough — embedded YouTube videos with English / Hindi toggle. */
+  /** Platform Walkthrough — self-hosted videos (Supabase Storage) with English / Hindi toggle. */
   const [lang, setLang] = useState("english");
   const video = VIDEOS[lang];
 
   return (
     <div className="premium-page">
       <section className="premium-section">
-        {/* Compact context bar — removes redundant page title duplication */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20, flexWrap: "wrap" }}>
-          <span style={{ fontSize: "0.82rem", color: "var(--muted)", fontStyle: "italic" }}>
-            🎬 Watch the platform walkthrough — lessons, doubts, mock tests, analytics, and more
-          </span>
-        </div>
-
         {/* Language toggle */}
         <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
           {Object.entries(VIDEOS).map(([key, v]) => (
@@ -57,7 +53,7 @@ function WalkthroughPage() {
           ))}
         </div>
 
-        {/* YouTube embed */}
+        {/* Self-hosted video (Supabase Storage) */}
         <div
           style={{
             maxWidth: 900,
@@ -70,86 +66,19 @@ function WalkthroughPage() {
             background: "#000",
           }}
         >
-          <iframe
-            key={video.embedId}
+          <video
+            key={video.src}
             width="100%"
             height="100%"
-            src={`https://www.youtube.com/embed/${video.embedId}?rel=0&modestbranding=1`}
+            src={video.src}
             title={video.title}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
+            controls
+            playsInline
+            preload="metadata"
             style={{ display: "block", width: "100%", height: "100%" }}
-          />
-        </div>
-
-        {/* Quick tips */}
-        <div
-          className="premium-card"
-          style={{ maxWidth: 900, padding: "28px 32px" }}
-        >
-          <h4 style={{ marginBottom: 16 }}>📋 Quick Tips to Get Started</h4>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 12 }}>
-            {[
-              {
-                icon: "📚",
-                title: "Start with Lessons",
-                desc: "Go to Lessons → pick your subject and chapter → AI generates a step-by-step lesson.",
-              },
-              {
-                icon: "🤔",
-                title: "Ask a Doubt",
-                desc: "Stuck on a concept? Use Ask Doubt — type your question and get an instant AI answer.",
-              },
-              {
-                icon: "📝",
-                title: "Take a Mock Test",
-                desc: "Practice with Mock Tests — choose chapter, difficulty, and number of questions.",
-              },
-              {
-                icon: "📊",
-                title: "Track Progress",
-                desc: "Check Analytics to see lessons completed, doubts asked, and mock test scores.",
-              },
-              {
-                icon: "✅",
-                title: "Mark Steps Complete",
-                desc: "Read each lesson section and click Mark Step Complete to unlock the next step.",
-              },
-              {
-                icon: "🔑",
-                title: "Login Tip",
-                desc: "You can sign in using your username OR email address — both work at likhapoha.in.",
-              },
-            ].map((tip) => (
-              <div
-                key={tip.title}
-                style={{
-                  display: "flex",
-                  gap: 12,
-                  background: "var(--surface2, rgba(0,0,0,.06))",
-                  borderRadius: 10,
-                  padding: "10px 14px",
-                }}
-              >
-                <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>
-                  {tip.icon}
-                </span>
-                <div>
-                  <strong style={{ fontSize: ".88rem" }}>{tip.title}</strong>
-                  <p
-                    style={{
-                      margin: "2px 0 0",
-                      fontSize: ".82rem",
-                      color: "var(--muted)",
-                    }}
-                  >
-                    {tip.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          >
+            Sorry, your browser doesn't support embedded videos.
+          </video>
         </div>
       </section>
     </div>
