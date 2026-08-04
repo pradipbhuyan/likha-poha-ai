@@ -1430,6 +1430,35 @@ def _get_db():
     return admin_client
 
 
+def _get_exam_attempts(exam_type: str, user_id: str) -> list[dict]:
+    """
+    Return this user's practice attempts for the given exam only, each
+    annotated with its question's subject via the exam_prep_attempts ->
+    exam_prep_questions foreign key.
+
+    exam_prep_attempts has no exam_type/subject column of its own (only
+    question_id), so without this join, "questions attempted" is either a
+    lifetime count across every exam the user has ever practiced (dashboard)
+    or unavailable per-subject at all (subject cards) — both were true
+    before this fix, which is why e.g. Physics, Chemistry and Maths in the
+    Structured Learning tab all showed Phase 3 as "Done" simultaneously as
+    soon as the student practiced any ONE of them, in any exam.
+    """
+    db = _get_db()
+    try:
+        result = (
+            db.table("exam_prep_attempts")
+            .select("id, is_correct, exam_prep_questions!inner(subject, exam_type)")
+            .eq("user_id", user_id)
+            .eq("exam_prep_questions.exam_type", exam_type)
+            .execute()
+        )
+        return result.data or []
+    except Exception as exc:
+        _log.warning("exam_prep.attempts_fetch_failed", error=str(exc))
+        return []
+
+
 # ── Dashboard ──────────────────────────────────────────────────────────────────
 
 def get_dashboard(exam_type: str, user_id: str) -> dict:
@@ -1449,17 +1478,9 @@ def get_dashboard(exam_type: str, user_id: str) -> dict:
     except Exception as exc:
         _log.warning("exam_prep.dashboard.q_fetch", error=str(exc))
 
-    attempts = []
-    try:
-        a_result = (
-            db.table("exam_prep_attempts")
-            .select("id, is_correct, question_id")
-            .eq("user_id", user_id)
-            .execute()
-        )
-        attempts = a_result.data or []
-    except Exception:
-        pass
+    # Scoped to this exam only — previously this counted the user's attempts
+    # across every exam they'd ever practiced (see _get_exam_attempts docstring).
+    attempts = _get_exam_attempts(exam_type, user_id)
 
     correct_count = sum(1 for a in attempts if a.get("is_correct"))
     accuracy_pct = round(correct_count / len(attempts) * 100) if attempts else 0
@@ -1513,6 +1534,15 @@ def get_subjects(exam_type: str, user_id: str) -> list[dict]:
     except Exception as exc:
         _log.warning("exam_prep.subjects.q_fetch", error=str(exc))
 
+    # Per-subject attempted count, so the Structured Learning tab's "Practice
+    # Questions" phase can be marked done independently for each subject
+    # instead of all subjects going "Done" together off one exam-wide count.
+    attempted_by_subject: dict[str, int] = {}
+    for attempt in _get_exam_attempts(exam_type, user_id):
+        s = (attempt.get("exam_prep_questions") or {}).get("subject")
+        if s:
+            attempted_by_subject[s] = attempted_by_subject.get(s, 0) + 1
+
     result = []
     for name, data in subjects_map.items():
         result.append({
@@ -1523,6 +1553,7 @@ def get_subjects(exam_type: str, user_id: str) -> list[dict]:
             "weightage_pct": data.get("weightage_pct", 0),
             "topic_count": len(data.get("topics", [])),
             "question_count": q_by_subject.get(name, 0),
+            "questions_attempted": attempted_by_subject.get(name, 0),
         })
     return result
 
@@ -1609,7 +1640,7 @@ def submit_answer(
     try:
         q_result = (
             db.table("exam_prep_questions")
-            .select("correct_option, detailed_explanation, solution_steps_json, formula_used, ncert_reference, marks, negative_marks")
+            .select("correct_option, detailed_explanation, solution_steps_json, formula_used, ncert_reference, marks, negative_marks, subject, topic")
             .eq("id", question_id)
             .single()
             .execute()
@@ -1653,6 +1684,11 @@ def submit_answer(
         "solution_steps": question.get("solution_steps_json") or [],
         "formula_used": question.get("formula_used", ""),
         "ncert_reference": question.get("ncert_reference", ""),
+        # subject/topic — the frontend's "Revise Weak Topics" study-plan phase
+        # groups incorrect answers by these to build its topic list. Without
+        # them here, that feature silently never had anything to show.
+        "subject": question.get("subject", ""),
+        "topic": question.get("topic", ""),
     }
 
 

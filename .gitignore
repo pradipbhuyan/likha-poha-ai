@@ -45,8 +45,22 @@ docs/
 .idea/
 
 # Claude Code local state
-.claude/settings.local.json
-.claude/scheduled_tasks.lock
+**/.claude/settings.local.json
+**/.claude/scheduled_tasks.lock
+
+# E2E sim generated/scratch data (tooling scripts + failure_classification.json
+# stay tracked; run output, test-account tokens, and one-off scan dumps do not)
+backend/scripts/e2e_sim/*.jsonl
+backend/scripts/e2e_sim/students.json
+backend/scripts/e2e_sim/report_data.json
+backend/scripts/e2e_sim/e2e_report.html
+backend/scripts/e2e_sim/corrupted_options_scan.json
+backend/scripts/e2e_sim/tier2_trimmable.json
+backend/scripts/e2e_sim/tier2_unrecoverable.json
+backend/scripts/e2e_sim/still_missing_now.json
+backend/scripts/e2e_sim/failing_class_test_chapters.json
+backend/scripts/e2e_sim/baseline_*/
+backend/scripts/e2e_sim/final_incremental_*/
 
 # Local textbook/RAG files
 RAG DB/

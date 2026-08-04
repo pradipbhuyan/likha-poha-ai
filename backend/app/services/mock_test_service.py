@@ -2,6 +2,7 @@ import json
 import random
 import re
 
+from app.services.logger_service import get_logger
 from app.services.openai_service import ask_llm
 from app.services.question_bank_service import (
     get_questions_from_bank,
@@ -10,6 +11,8 @@ from app.services.question_bank_service import (
     get_bank_capacity_fuzzy,
     _distribute_across_chapters,
 )
+
+_log = get_logger("services.mock_test")
 
 # Display-source prefixes added by the syllabus review UI when multiple books
 # are uploaded for one subject (e.g. "Text Book - ", "Supplementary Reader - ").
@@ -504,8 +507,23 @@ Return ONLY valid JSON:
         feature="cbse_written_test",
     )
 
+    # LLMs sometimes wrap JSON in a markdown code fence despite being told not
+    # to — strip one defensively before parsing.
+    cleaned = raw.strip()
+    if cleaned.startswith("```"):
+        cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned)
+        cleaned = re.sub(r"\s*```$", "", cleaned)
+
     try:
-        data = json.loads(raw)
+        data = json.loads(cleaned)
         return data.get("questions", [])
-    except Exception:
-        return []
+    except Exception as e:
+        _log.error(
+            "mock_test.written_generation.parse_failed",
+            grade=grade, subject=subject, chapter=chapter[:80] if chapter else "",
+            error=str(e), raw_response=raw[:2000],
+        )
+        raise RuntimeError(
+            f"Written question generation returned an unparseable response for "
+            f"'{chapter}'. Please try again."
+        ) from e

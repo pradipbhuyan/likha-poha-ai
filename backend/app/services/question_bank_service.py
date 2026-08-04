@@ -53,10 +53,10 @@ def _fetch_question_pool(
     result = query.limit(1000).execute()
     questions = result.data or []
 
-    # Filter out malformed questions (not exactly 4 options, short explanation, bad answer)
+    # Filter out malformed questions (not exactly options A-D, short explanation, bad answer)
     questions = [
         q for q in questions
-        if q.get("options") and isinstance(q["options"], dict) and len(q["options"]) == 4
+        if q.get("options") and isinstance(q["options"], dict) and set(q["options"].keys()) == {"A", "B", "C", "D"}
         and all(str(v).strip() for v in q["options"].values())
         and q.get("answer") in ("A", "B", "C", "D")
         and q.get("question") and len(str(q.get("question", ""))) >= 10
@@ -113,7 +113,7 @@ def _fetch_question_pool_fuzzy(
 
     questions = [
         q for q in questions
-        if q.get("options") and isinstance(q["options"], dict) and len(q["options"]) == 4
+        if q.get("options") and isinstance(q["options"], dict) and set(q["options"].keys()) == {"A", "B", "C", "D"}
         and all(str(v).strip() for v in q["options"].values())
         and q.get("answer") in ("A", "B", "C", "D")
         and q.get("question") and len(str(q.get("question", ""))) >= 10
@@ -384,10 +384,10 @@ def add_questions_to_bank(
     try:
         clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
 
-        # Only insert well-formed questions with exactly 4 complete options
+        # Only insert well-formed questions with exactly options A-D, all present
         valid_questions = [
             q for q in questions
-            if q.get("options") and isinstance(q.get("options"), dict) and len(q["options"]) == 4
+            if q.get("options") and isinstance(q.get("options"), dict) and set(q["options"].keys()) == {"A", "B", "C", "D"}
             and all(str(v).strip() for v in q["options"].values())
             and q.get("answer") in ("A", "B", "C", "D")
             and q.get("question") and len(str(q.get("question", ""))) >= 10

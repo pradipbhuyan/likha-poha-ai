@@ -1,0 +1,1042 @@
+{
+  "has_candidate_elsewhere": [
+    {
+      "grade": "Grade 5",
+      "subject": "English",
+      "chapter": "1. Papa's Spectacles",
+      "candidate": "1. Papa\u2019s Spectacles",
+      "overlap": 1.0
+    },
+    {
+      "grade": "Grade 7",
+      "subject": "English",
+      "chapter": "Unit 4: Travel and Adventure",
+      "candidate": "Chapter Travel and Adventure",
+      "overlap": 0.67
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Science",
+      "chapter": "Matter in Our Surroundings",
+      "candidate": "Exemplar: Matter in Our Surroundings",
+      "overlap": 1.0
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 4: Namak Ka Daroga",
+      "candidate": "Namak",
+      "overlap": 0.5
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Geography",
+      "chapter": "Chapter 10: Climate",
+      "candidate": "Chapter 10: Climate",
+      "overlap": 1.0
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Accountancy",
+      "chapter": "Chapter 9: Financial Statements \u2013 II",
+      "candidate": "Chapter 8: Financial Statements \u2013 I",
+      "overlap": 1.0
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Chemistry",
+      "chapter": "Chapter 8: Organic Chemistry \u2013 Some Basic Principles and Techniques",
+      "candidate": "Chapter 1: Some Basic Concepts of Chemistry",
+      "overlap": 0.5
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Geography",
+      "chapter": "Chapter 10: Human Settlements",
+      "candidate": "Chapter 1: Human Geography: Nature and Scope",
+      "overlap": 0.5
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Geography",
+      "chapter": "Chapter 15: Transport and Communication in India",
+      "candidate": "Chapter 8: Transport and Communication",
+      "overlap": 0.67
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Geography",
+      "chapter": "Chapter 9: Population: Distribution, Density, Growth and Composition",
+      "candidate": "Chapter 2: The World Population: Distribution, Density and Growth",
+      "overlap": 0.8
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "History",
+      "chapter": "Chapter 5: Through the Eyes of Travellers: Perceptions of Society",
+      "candidate": "Chapter 5: Through the Eyes of Travellers: Perceptions of Society",
+      "overlap": 1.0
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "History",
+      "chapter": "Chapter 6: Bhakti-Sufi Traditions: Changes in Religious Beliefs and Devotional Texts",
+      "candidate": "Bhakti-Sufi Traditions: Changes in Religious Beliefs",
+      "overlap": 0.75
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "English",
+      "chapter": "Chapter 17: The Enemy",
+      "candidate": "Chapter 17: The Enemy",
+      "overlap": 1.0
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "English",
+      "chapter": "Chapter 18: On the Face of It",
+      "candidate": "Chapter 18: On the Face of It",
+      "overlap": 1.0
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Political Science",
+      "chapter": "Chapter 2: Contemporary Centres of Power",
+      "candidate": "Alternative Centres of Power",
+      "overlap": 0.67
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 2: Ateet Mein Dabe Paon",
+      "candidate": "Ateet Mein Dab Paon",
+      "overlap": 0.75
+    }
+  ],
+  "truly_empty_subject_area": [
+    {
+      "grade": "Grade 6",
+      "subject": "Hindi",
+      "chapter": "10. \u092a\u0930\u0940\u0915\u094d\u0937\u093e",
+      "bank_rows_in_subject": 3788
+    },
+    {
+      "grade": "Grade 6",
+      "subject": "Hindi",
+      "chapter": "8. \u0938\u0924\u094d\u0930\u093f\u092f\u093e \u0914\u0930 \u092c\u093f\u0939\u0942 \u0928\u0943\u0924\u094d\u092f",
+      "bank_rows_in_subject": 3788
+    },
+    {
+      "grade": "Grade 6",
+      "subject": "Hindi",
+      "chapter": "9. \u092e\u0948\u092f\u093e \u092e\u0948\u0902 \u0928\u0939\u093f\u0902 \u092e\u093e\u0916\u0928 \u0916\u093e\u092f\u094b",
+      "bank_rows_in_subject": 3788
+    },
+    {
+      "grade": "Grade 7",
+      "subject": "Hindi",
+      "chapter": "\u092a\u093e\u0920 10: \u092e\u0940\u0930\u093e \u0915\u0947 \u092a\u0926",
+      "bank_rows_in_subject": 1899
+    },
+    {
+      "grade": "Grade 7",
+      "subject": "Hindi",
+      "chapter": "\u092a\u093e\u0920 6: \u0917\u093f\u0930\u0927\u0930 \u0915\u0935\u093f\u0930\u093e\u092f \u0915\u0940 \u0915\u0941\u0902\u0921\u0932\u093f\u092f\u093e\u0901",
+      "bank_rows_in_subject": 1899
+    },
+    {
+      "grade": "Grade 7",
+      "subject": "Hindi",
+      "chapter": "\u092a\u093e\u0920 7: \u0935\u0930\u094d\u0937\u093e-\u092c\u0939\u093e\u0930",
+      "bank_rows_in_subject": 1899
+    },
+    {
+      "grade": "Grade 7",
+      "subject": "Hindi",
+      "chapter": "\u092a\u093e\u0920 8: \u092c\u093f\u0930\u091c\u0942 \u092e\u0939\u093e\u0930\u093e\u091c \u0938\u0947 \u0938\u093e\u0915\u094d\u0937\u093e\u0924\u094d\u0915\u093e\u0930",
+      "bank_rows_in_subject": 1899
+    },
+    {
+      "grade": "Grade 7",
+      "subject": "Hindi",
+      "chapter": "\u092a\u093e\u0920 9: \u091a\u093f\u0921\u093c\u093f\u092f\u093e",
+      "bank_rows_in_subject": 1899
+    },
+    {
+      "grade": "Grade 8",
+      "subject": "Hindi",
+      "chapter": "Chapter 10: \u0924\u0930\u0941\u0923 \u0915\u0947 \u0938\u094d\u0935\u092a\u094d\u0928",
+      "bank_rows_in_subject": 2964
+    },
+    {
+      "grade": "Grade 8",
+      "subject": "Hindi",
+      "chapter": "Chapter 6: \u090f\u0915 \u091f\u094b\u0915\u0930\u0940 \u092d\u0930 \u092e\u093f\u091f\u094d\u091f\u0940",
+      "bank_rows_in_subject": 2964
+    },
+    {
+      "grade": "Grade 8",
+      "subject": "Hindi",
+      "chapter": "Chapter 8: \u0928\u090f \u092e\u0947\u0939\u092e\u093e\u0928",
+      "bank_rows_in_subject": 2964
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 10: Kathmandu",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 11: If I Were You",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 12: A Visit to Kaziranga and Sivasagar",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 1: The Fun They Had",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 2: The Sound of Music",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 3: The Little Girl",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 4: A Truly Beautiful Mind",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 5: The Snake and the Mirror",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 6: My Childhood",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 7: Packing",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 8: Reach for the Top",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Chapter 9: The Bond of Love",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Grammar: Modals",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Grammar: Subject-Verb Concord",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English",
+      "chapter": "Grammar: Tenses",
+      "bank_rows_in_subject": 2845
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Hindi",
+      "chapter": "\u0905\u0927\u094d\u092f\u093e\u092f 10: \u092d\u093e\u0930\u0924\u093f, \u091c\u092f, \u0935\u093f\u091c\u092f \u0915\u0930\u094b!",
+      "bank_rows_in_subject": 2671
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Hindi",
+      "chapter": "\u0905\u0927\u094d\u092f\u093e\u092f 2: \u0915\u094d\u092f\u093e \u0932\u093f\u0916\u0942\u0901?",
+      "bank_rows_in_subject": 2671
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Hindi",
+      "chapter": "\u0905\u0927\u094d\u092f\u093e\u092f 4: \u0910\u0938\u0940 \u092d\u0940 \u092c\u093e\u0924\u0947\u0902 \u0939\u094b\u0924\u0940 \u0939\u0948\u0902",
+      "bank_rows_in_subject": 2671
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Hindi",
+      "chapter": "\u0905\u0927\u094d\u092f\u093e\u092f 5: \u0906\u0916\u093f\u0930\u0940 \u091a\u091f\u094d\u091f\u093e\u0928 \u0924\u0915",
+      "bank_rows_in_subject": 2671
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Hindi",
+      "chapter": "\u0905\u0927\u094d\u092f\u093e\u092f 9: \u0930\u093e\u092e-\u0932\u0915\u094d\u0937\u094d\u092e\u0923-\u092a\u0930\u0936\u0941\u0930\u093e\u092e \u0938\u0902\u0935\u093e\u0926",
+      "bank_rows_in_subject": 2671
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English Supplementary Reader",
+      "chapter": "Chapter 10: The Beggar",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English Supplementary Reader",
+      "chapter": "Chapter 1: The Lost Child",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English Supplementary Reader",
+      "chapter": "Chapter 2: The Adventures of Toto",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English Supplementary Reader",
+      "chapter": "Chapter 3: Iswaran the Storyteller",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English Supplementary Reader",
+      "chapter": "Chapter 4: In the Kingdom of Fools",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English Supplementary Reader",
+      "chapter": "Chapter 5: The Happy Prince",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English Supplementary Reader",
+      "chapter": "Chapter 6: Weathering the Storm in Ersama",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English Supplementary Reader",
+      "chapter": "Chapter 7: The Last Leaf",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English Supplementary Reader",
+      "chapter": "Chapter 8: A House Is Not a Home",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "English Supplementary Reader",
+      "chapter": "Chapter 9: The Accidental Tourist",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Social Science",
+      "chapter": "Chapter 1: Understanding Social Science",
+      "bank_rows_in_subject": 300
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Social Science",
+      "chapter": "Chapter 2: Shaping of the Earth's Surface",
+      "bank_rows_in_subject": 300
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Social Science",
+      "chapter": "Chapter 3: Atmosphere and Climate",
+      "bank_rows_in_subject": 300
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Social Science",
+      "chapter": "Chapter 4: Early Humans and Beginning of Civilisation",
+      "bank_rows_in_subject": 300
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Social Science",
+      "chapter": "Chapter 5: State and Society up to 1000 CE",
+      "bank_rows_in_subject": 300
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Social Science",
+      "chapter": "Chapter 6: Democracy",
+      "bank_rows_in_subject": 300
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Social Science",
+      "chapter": "Chapter 7: Elections",
+      "bank_rows_in_subject": 300
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Social Science",
+      "chapter": "Chapter 8: Building Blocks in Economics: The Problem of Choice",
+      "bank_rows_in_subject": 300
+    },
+    {
+      "grade": "Grade 9",
+      "subject": "Social Science",
+      "chapter": "Chapter 9: The Price Puzzle: What Drives the Market",
+      "bank_rows_in_subject": 300
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Grammar: Active and Passive Voice (Advanced Usage)",
+      "bank_rows_in_subject": 5055
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Grammar: Clauses and Sentence Transformation",
+      "bank_rows_in_subject": 5055
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Grammar: Determiners (Advanced Usage)",
+      "bank_rows_in_subject": 5055
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Grammar: Editing and Omission (Error Correction)",
+      "bank_rows_in_subject": 5055
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Grammar: Modals (Advanced Usage)",
+      "bank_rows_in_subject": 5055
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Grammar: Reported Speech (All Sentence Types)",
+      "bank_rows_in_subject": 5055
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Grammar: Subject-Verb Concord (Advanced Rules)",
+      "bank_rows_in_subject": 5055
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Grammar: Tenses (Advanced Usage)",
+      "bank_rows_in_subject": 5055
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 10: Jamun Ka Ped",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 11: Bharat Mata",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 12: Hum Tau Ek Ek Kari Jaana",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 13: Mere To Girdhar Gopal",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 14: Ghar Ki Yaad",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Champa Kaale Kaale Achchar Nahi Cheenhti",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 16: Ghazal",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 17: Hey Bhookh Mat Machal",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 18: Sabse Khatarnak",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 19: Aao Milkar Bachayen",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 1: Bharatiya Gayikaon Mein Bejod Lata Mangeshkar",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 2: Rajasthan Ki Rajat Boondein",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 3: Alo-Aandhari",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 5: Miyan Nasiruddin",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 6: Apu Ke Saath Dhai Saal",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 7: Vidai Sambhashan",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 8: Galta Loha",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Chapter 9: Rajni",
+      "bank_rows_in_subject": 900
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 2nd Apr 2026 Shift 1",
+      "bank_rows_in_subject": 2520
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 2nd Apr 2026 Shift 2",
+      "bank_rows_in_subject": 2520
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 4th Apr 2026 Shift 1",
+      "bank_rows_in_subject": 2520
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 4th Apr 2026 Shift 2",
+      "bank_rows_in_subject": 2520
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 5th Apr 2026 Shift 1",
+      "bank_rows_in_subject": 2520
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 5th Apr 2026 Shift 2",
+      "bank_rows_in_subject": 2520
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 6th Apr 2026 Shift 1",
+      "bank_rows_in_subject": 2520
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 6th Apr 2026 Shift 2",
+      "bank_rows_in_subject": 2520
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 8th Apr 2026 Shift 2",
+      "bank_rows_in_subject": 2520
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "Uploaded Book Content",
+      "bank_rows_in_subject": 2520
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Sociology",
+      "chapter": "Chapter 1: Sociology and Society",
+      "bank_rows_in_subject": 180
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Sociology",
+      "chapter": "Chapter 2: Terms, Concepts and their Use in Sociology",
+      "bank_rows_in_subject": 180
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Sociology",
+      "chapter": "Chapter 3: Understanding Social Institutions",
+      "bank_rows_in_subject": 180
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Sociology",
+      "chapter": "Culture and Socialisation",
+      "bank_rows_in_subject": 180
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Sociology",
+      "chapter": "Doing Sociology: Research Methods",
+      "bank_rows_in_subject": 180
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Psychology",
+      "chapter": "Chapter 1: What is Psychology?",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Psychology",
+      "chapter": "Chapter 2: Methods of Enquiry in Psychology",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Psychology",
+      "chapter": "Chapter 3: Human Development",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Psychology",
+      "chapter": "Chapter 4: Sensory, Attentional and Perceptual Processes",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Psychology",
+      "chapter": "Chapter 5: Learning",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Psychology",
+      "chapter": "Chapter 6: Human Memory",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Psychology",
+      "chapter": "Chapter 7: Thinking",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Psychology",
+      "chapter": "Chapter 8: Motivation and Emotion",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Chemistry",
+      "chapter": "Chapter 9: Hydrocarbons",
+      "bank_rows_in_subject": 1620
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Business Studies",
+      "chapter": "Chapter 11: Consumer Protection",
+      "bank_rows_in_subject": 1980
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 2nd Apr 2026 Shift 1",
+      "bank_rows_in_subject": 5220
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 2nd Apr 2026 Shift 2",
+      "bank_rows_in_subject": 5220
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 4th Apr 2026 Shift 1",
+      "bank_rows_in_subject": 5220
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 4th Apr 2026 Shift 2",
+      "bank_rows_in_subject": 5220
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 5th Apr 2026 Shift 1",
+      "bank_rows_in_subject": 5220
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 5th Apr 2026 Shift 2",
+      "bank_rows_in_subject": 5220
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 6th Apr 2026 Shift 1",
+      "bank_rows_in_subject": 5220
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 6th Apr 2026 Shift 2",
+      "bank_rows_in_subject": 5220
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Physics",
+      "chapter": "PYQ: B Tech 8th Apr 2026 Shift 2",
+      "bank_rows_in_subject": 5220
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Physics",
+      "chapter": "Uploaded Book Content",
+      "bank_rows_in_subject": 5220
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Geography",
+      "chapter": "Chapter 11: Land Resources and Agriculture",
+      "bank_rows_in_subject": 1419
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Geography",
+      "chapter": "Chapter 12: Water Resources",
+      "bank_rows_in_subject": 1419
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Geography",
+      "chapter": "Chapter 13: Mineral and Energy Resources",
+      "bank_rows_in_subject": 1419
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Geography",
+      "chapter": "Chapter 14: Planning and Sustainable Development in Indian Context",
+      "bank_rows_in_subject": 1419
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Geography",
+      "chapter": "Chapter 16: International Trade",
+      "bank_rows_in_subject": 1419
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Geography",
+      "chapter": "Chapter 17: Geographical Perspective on Selected Issues and Problems",
+      "bank_rows_in_subject": 1419
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "History",
+      "chapter": "Chapter 12: Framing the Constitution: The Beginning of a New Era",
+      "bank_rows_in_subject": 2516
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Political Science",
+      "chapter": "Chapter 14: Regional Aspirations",
+      "bank_rows_in_subject": 2668
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Political Science",
+      "chapter": "Chapter 7: Globalisation",
+      "bank_rows_in_subject": 2668
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Accountancy",
+      "chapter": "Chapter 10: Cash Flow Statement",
+      "bank_rows_in_subject": 1755
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Chemistry",
+      "chapter": "Chapter 10: Biomolecules",
+      "bank_rows_in_subject": 1800
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Chemistry",
+      "chapter": "Chapter 7: Alcohols, Phenols and Ethers",
+      "bank_rows_in_subject": 1800
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Chemistry",
+      "chapter": "Chapter 8: Aldehydes, Ketones and Carboxylic Acids",
+      "bank_rows_in_subject": 1800
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Chemistry",
+      "chapter": "Chapter 9: Amines",
+      "bank_rows_in_subject": 1800
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Psychology",
+      "chapter": "Chapter 1: Variations in Psychological Attributes",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Psychology",
+      "chapter": "Chapter 2: Self and Personality",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Psychology",
+      "chapter": "Chapter 3: Meeting Life Challenges",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Psychology",
+      "chapter": "Chapter 4: Psychological Disorders",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Psychology",
+      "chapter": "Chapter 5: Therapeutic Approaches",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Psychology",
+      "chapter": "Chapter 6: Attitude and Social Cognition",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Psychology",
+      "chapter": "Chapter 7: Social Influence and Group Processes",
+      "bank_rows_in_subject": 0
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 10: Kavitavali Uttarkand Se",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 11: Rubaiyan",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 12: Chhota Mera Khet",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 13: Bhaktin",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 14: Bazaar Darshan",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Kale Megha Pani De",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 16: Pahalwan Ki Dholak",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 17: Shirish Ke Phool",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 18: Shram Vibhajan Aur Jati Pratha",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 1: Jujh",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 4: Atmaparichay Ek Geet",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 5: Patang",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 6: Kavita Ke Bahane Baat Seedhi Thi Par",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 7: Camera Mein Band Apahij",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 8: Usha",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 9: Baadal Raag",
+      "bank_rows_in_subject": 540
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Sociology",
+      "chapter": "Chapter 1: Introducing Indian Society",
+      "bank_rows_in_subject": 180
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Sociology",
+      "chapter": "Chapter 2: The Demographic Structure of the Indian Society",
+      "bank_rows_in_subject": 180
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Sociology",
+      "chapter": "Chapter 3: Social Institutions: Continuity and Change",
+      "bank_rows_in_subject": 180
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Sociology",
+      "chapter": "Chapter 4: The Market as a Social Institution",
+      "bank_rows_in_subject": 180
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Sociology",
+      "chapter": "Chapter 5: Patterns of Social Inequality and Exclusion",
+      "bank_rows_in_subject": 180
+    },
+    {
+      "grade": "Grade 12",
+      "subject": "Sociology",
+      "chapter": "Chapter 6: The Challenges of Cultural Diversity",
+      "bank_rows_in_subject": 180
+    }
+  ]
+}

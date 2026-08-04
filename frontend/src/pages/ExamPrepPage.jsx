@@ -1644,7 +1644,7 @@ const QUICK_REFERENCE = {
 
 // ── Resource Links ─────────────────────────────────────────────────────────────
 const RESOURCES = [
-  { icon: BookOpen, label: "NCERT Chapters", desc: "Grade 11 & 12 textbooks", color: "#6366f1", onClick: null },
+  { icon: BookOpen, label: "NCERT Chapters", desc: "Grade 11 & 12 textbooks", color: "#6366f1", onClick: "lessons" },
   { icon: Ruler, label: "Formula Sheets", desc: "Chapter-wise formulas", color: "#10b981", onClick: "formulaSheet" },
   { icon: FlaskConical, label: "Topic Tests", desc: "Quick 10-question tests", color: "#f59e0b", onClick: null },
   { icon: Bot, label: "Ask AI Tutor", desc: "Instant doubt solving", color: "#8b5cf6", onClick: "doubt" },
@@ -1851,17 +1851,26 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
   }, [selectedExam, user?.accessToken]);
 
   // ── Select subject ─────────────────────────────────────────────────────────
-  async function handleSelectSubject(subjectName) {
-    if (selectedSubject === subjectName) { setSelectedSubject(null); setTopics([]); setQuestions([]); setFilterTopic(null); return; }
+  // forceSelect skips the toggle-off branch — used by "jump to Practice" entry
+  // points (Structured Learning phase cards, "Start Practising" button) that
+  // must always land on this subject, even if it's already selected from a
+  // previous visit. Without it, clicking e.g. "Start Practising Physics" a
+  // second time toggled the subject OFF instead of loading it, since
+  // `selectedSubject` was already "Physics" from the earlier visit.
+  async function handleSelectSubject(subjectName, { forceSelect = false, topic = null } = {}) {
+    if (!forceSelect && selectedSubject === subjectName) {
+      setSelectedSubject(null); setTopics([]); setQuestions([]); setFilterTopic(null);
+      return;
+    }
     setSelectedSubject(subjectName);
-    setFilterTopic(null);
+    setFilterTopic(topic);
     setLoadingTopics(true);
     try {
       const data = await getExamPrepTopics(user.accessToken, selectedExam, subjectName);
       setTopics(data.topics || []);
     } catch { setTopics([]); }
     finally { setLoadingTopics(false); }
-    loadQuestions(subjectName, null);
+    loadQuestions(subjectName, topic);
   }
 
   // ── Load questions ─────────────────────────────────────────────────────────
@@ -2063,8 +2072,8 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
       <div className="premium-page">
         <TestResultPage
           result={testResult}
-          onRetake={() => { setActiveMode("practice"); setTestResult(null); setTestSession(null); }}
-          onClose={() => { setActiveMode("practice"); setTestResult(null); setTestSession(null); }}
+          onRetake={() => { setTestResult(null); handleStartTest(); }}
+          onClose={() => { setActiveMode("learn"); setTestResult(null); setTestSession(null); }}
         />
       </div>
     );
@@ -2749,9 +2758,11 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
                         Recommended Study Sequence
                       </div>
                       {(() => {
-                        // Derive weak topics from feedbacks (questions answered incorrectly in Practice)
+                        // Derive weak topics from feedbacks (questions answered incorrectly in
+                        // Practice), scoped to this subject only — otherwise a Chemistry mistake
+                        // could surface under Physics' "Revise Weak Topics" card.
                         const weakTopics = Object.entries(feedbacks)
-                          .filter(([, fb]) => !fb.is_correct && fb.topic)
+                          .filter(([, fb]) => !fb.is_correct && fb.topic && fb.subject === subj.name)
                           .map(([, fb]) => fb.topic)
                           .filter((t, i, arr) => arr.indexOf(t) === i); // unique
 
@@ -2784,8 +2795,8 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
                             phase: "Phase 3", icon: Zap, label: "Practice Questions",
                             desc: "Use the Practice tab — work chapter-wise from easy to hard",
                             color: "#10b981", actionLabel: "Go to Practice →",
-                            done: (dashboard?.questions_attempted ?? 0) > 0,
-                            onClick: () => { setSelectedSubject(subj.name); setActiveMode("practice"); handleSelectSubject(subj.name); },
+                            done: (subj.questions_attempted ?? 0) > 0,
+                            onClick: () => { setActiveMode("practice"); handleSelectSubject(subj.name, { forceSelect: true }); },
                           },
                           {
                             phase: "Phase 4", icon: Repeat, label: "Revise Weak Topics",
@@ -2797,15 +2808,8 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
                             done: false, // no persisted "revision complete" signal — only ever current/upcoming
                             onClick: weakTopics.length > 0
                               ? () => {
-                                  setSelectedSubject(subj.name);
                                   setActiveMode("practice");
-                                  // Load questions filtered to the first weak topic
-                                  handleSelectSubject(subj.name).then?.(() => {
-                                    setFilterTopic(weakTopics[0]);
-                                    loadQuestions(subj.name, weakTopics[0]);
-                                  });
-                                  setFilterTopic(weakTopics[0]);
-                                  loadQuestions(subj.name, weakTopics[0]);
+                                  handleSelectSubject(subj.name, { forceSelect: true, topic: weakTopics[0] });
                                 }
                               : null,
                           },
@@ -2904,7 +2908,7 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
                           High-Priority Topics to Cover First
                         </div>
                         <button
-                          onClick={() => { setSelectedSubject(subj.name); setActiveMode("practice"); handleSelectSubject(subj.name); }}
+                          onClick={() => { setActiveMode("practice"); handleSelectSubject(subj.name, { forceSelect: true }); }}
                           style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 16px", background: `linear-gradient(135deg,${color},${color}cc)`, border: "none", borderRadius: 8, color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
                           <Zap size={14} strokeWidth={2.25} /> Start Practising {subj.name} →
                         </button>
