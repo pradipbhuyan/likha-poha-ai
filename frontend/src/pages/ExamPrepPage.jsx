@@ -3000,7 +3000,7 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
           {/* Subject cards */}
           <section className="premium-section" style={{ paddingTop: 0 }}>
             <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 12 }}>
-              {examInfo.icon} {examInfo.label} — Subjects
+              <examInfo.icon size={14} strokeWidth={2.25} style={{ verticalAlign: "-2px", marginRight: 5 }} /> {examInfo.label} — Subjects
             </div>
             {subjects.length === 0 ? (
               <div style={{ color: "var(--muted,#64748b)", fontSize: ".82rem" }}>Loading subjects…</div>
@@ -3117,7 +3117,7 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
               <CUETTestSetup onStart={(subjects) => handleStartTest(subjects)} testLoading={testLoading} />
             ) : (
             <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center", padding: "40px 20px" }}>
-              <div style={{ fontSize: "3rem", marginBottom: 16 }}>{examInfo.icon}</div>
+              <examInfo.icon size={44} strokeWidth={1.5} style={{ marginBottom: 16, color: examInfo.color }} />
               <h3 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: 8 }}>Start {examInfo.label} Simulation</h3>
               {(() => {
                 const cfg = EXAM_SIM_CONFIG[selectedExam] || EXAM_SIM_CONFIG.jee_main;

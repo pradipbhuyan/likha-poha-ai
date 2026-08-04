@@ -14,7 +14,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import ExamPrepPage from "../pages/ExamPrepPage";
 
 // ── Mock API modules ──────────────────────────────────────────────────────────
@@ -235,6 +235,31 @@ describe("ExamPrepPage — 5 mode tabs", () => {
     render(<ExamPrepPage user={grade11PremiumUser} />);
     await waitFor(() => {
       expect(screen.getByText(/Exam Strategy/i)).toBeTruthy();
+    });
+  });
+
+  it("Practice tab renders without crashing (regression: bare icon-component render)", async () => {
+    // Previously the "{examInfo.label} — Subjects" heading rendered the exam
+    // icon as {examInfo.icon} instead of <examInfo.icon />. Since the emoji ->
+    // Lucide-icon conversion, that field holds a component reference, not a
+    // string, so React threw "Objects are not valid as a React child" the
+    // instant this tab rendered — crashing the whole page for every exam.
+    render(<ExamPrepPage user={grade11PremiumUser} />);
+    await waitFor(() => expect(screen.getByText(/Structured Learning/i)).toBeTruthy());
+    fireEvent.click(screen.getByRole("button", { name: /^Practice$/i }));
+    await waitFor(() => {
+      expect(screen.getAllByText(/Subjects/i).length).toBeGreaterThan(0);
+    });
+  });
+
+  it("Simulated Test tab renders without crashing (regression: bare icon-component render)", async () => {
+    // Same bug, same fix, second call site: the "Start {exam} Simulation"
+    // landing screen shown before a test session exists.
+    render(<ExamPrepPage user={grade11PremiumUser} />);
+    await waitFor(() => expect(screen.getByText(/Structured Learning/i)).toBeTruthy());
+    fireEvent.click(screen.getByRole("button", { name: /Simulated Test/i }));
+    await waitFor(() => {
+      expect(screen.getAllByText(/Start .*Simulation/i).length).toBeGreaterThan(0);
     });
   });
 });

@@ -250,6 +250,86 @@ class TestExamPrepSubjects:
         clear_overrides()
 
 
+# ── Per-subject / per-exam attempt scoping (regression) ──────────────────────────
+# Previously "questions attempted" was a single lifetime count across every
+# exam AND subject the student had ever practiced, with no subject or
+# exam_type on exam_prep_attempts itself (only question_id). That made every
+# subject's "Practice Questions" phase in the Structured Learning tab show
+# "Done" simultaneously as soon as the student practiced any ONE subject in
+# any exam. These tests exercise the service functions directly (no HTTP
+# layer) against the join-based fix.
+
+class TestDashboardExamScoping:
+    def test_dashboard_only_counts_attempts_joined_to_this_exam(self):
+        """questions_attempted/correct_count must come from the exam-scoped join."""
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+
+        mock_db = MagicMock()
+        mock_db.table.return_value.select.return_value.eq.return_value.eq.return_value.execute.return_value.count = 10
+        mock_db.table.return_value.select.return_value.eq.return_value.eq.return_value.execute.return_value.data = [
+            {"id": "a1", "is_correct": True, "exam_prep_questions": {"subject": "Physics", "exam_type": "jee_main"}},
+            {"id": "a2", "is_correct": False, "exam_prep_questions": {"subject": "Chemistry", "exam_type": "jee_main"}},
+        ]
+
+        with patch("app.services.exam_prep_service._get_db", return_value=mock_db):
+            data = ep_svc.get_dashboard(exam_type="jee_main", user_id="g12-1")
+
+        assert data["questions_attempted"] == 2
+        assert data["correct_count"] == 1
+        assert data["accuracy_pct"] == 50
+
+
+class TestSubjectsPerSubjectAttempts:
+    def test_each_subject_has_its_own_attempted_count(self):
+        """A subject with no attempts must not inherit another subject's count."""
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+
+        mock_db = MagicMock()
+        mock_db.table.return_value.select.return_value.eq.return_value.eq.return_value.execute.return_value.data = [
+            {"id": "a1", "is_correct": True, "exam_prep_questions": {"subject": "Physics", "exam_type": "jee_main"}},
+            {"id": "a2", "is_correct": True, "exam_prep_questions": {"subject": "Physics", "exam_type": "jee_main"}},
+            {"id": "a3", "is_correct": False, "exam_prep_questions": {"subject": "Chemistry", "exam_type": "jee_main"}},
+        ]
+
+        with patch("app.services.exam_prep_service._get_db", return_value=mock_db):
+            subjects = ep_svc.get_subjects(exam_type="jee_main", user_id="g12-1")
+
+        by_name = {s["name"]: s for s in subjects}
+        assert by_name["Physics"]["questions_attempted"] == 2
+        assert by_name["Chemistry"]["questions_attempted"] == 1
+        assert by_name["Mathematics"]["questions_attempted"] == 0
+
+
+class TestSubmitAnswerIncludesTopic:
+    def test_submit_answer_response_includes_subject_and_topic(self):
+        """
+        The frontend's "Revise Weak Topics" phase groups incorrect answers by
+        subject/topic from this response. Before this fix, submit_answer's
+        DB select and return dict both omitted subject/topic, so the feature
+        silently never had anything to show, for any student.
+        """
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+
+        mock_db = MagicMock()
+        mock_db.table.return_value.select.return_value.eq.return_value.single.return_value.execute.return_value.data = {
+            "correct_option": "B",
+            "detailed_explanation": "",
+            "solution_steps_json": [],
+            "formula_used": "",
+            "ncert_reference": "",
+            "marks": 4,
+            "negative_marks": 1,
+            "subject": "Physics",
+            "topic": "Kinematics",
+        }
+
+        with patch("app.services.exam_prep_service._get_db", return_value=mock_db):
+            result = ep_svc.submit_answer(user_id="g12-1", question_id="q-1", selected_option="A")
+
+        assert result["subject"] == "Physics"
+        assert result["topic"] == "Kinematics"
+
+
 # ── Topics tests ────────────────────────────────────────────────────────────────
 
 class TestExamPrepTopics:
