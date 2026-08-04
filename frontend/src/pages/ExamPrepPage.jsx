@@ -64,8 +64,12 @@ const EXAM_SIM_CONFIG = {
   ielts:     { subjects: ["Listening", "Reading", "Vocabulary & Grammar"], duration: 100, questions: 80, questionsPerSubject: null, marking: "+1 / 0 (Band 0–9)", totalMarks: 9 },
   toefl_ibt: { subjects: ["Reading", "Listening", "Integrated Skills"], duration: 71, questions: 48, questionsPerSubject: null, marking: "+1 / 0 (Score 0–120)", totalMarks: 120 },
   jee_main: { subjects: ["Physics", "Chemistry", "Mathematics"], duration: 180, questions: 75, questionsPerSubject: 25, marking: "+4 / −1 (MCQ & Numerical)", totalMarks: 300 },
-  // NEET UG: 180 questions (45/subject), 180 min, 720 marks, +4/−1, Botany & Zoology separate
-  neet_ug:  { subjects: ["Physics", "Chemistry", "Botany", "Zoology"], duration: 180, questions: 180, questionsPerSubject: 45, marking: "+4 / −1", totalMarks: 720 },
+  // NEET UG: 180 questions — 45 Physics + 45 Chemistry + 90 Biology, 180 min,
+  // 720 marks, +4/−1. Biology is one subject (Botany+Zoology combined) both
+  // in the database and in EXAM_SUBJECTS_MAP/get_subjects() — there's no
+  // separate Botany/Zoology subject to query, so it gets double the share
+  // instead of being split into two subjects that don't exist.
+  neet_ug:  { subjects: ["Physics", "Chemistry", "Biology"], duration: 180, questions: 180, subjectCounts: { Physics: 45, Chemistry: 45, Biology: 90 }, marking: "+4 / −1", totalMarks: 720 },
   // CUET UG: varies by subject selection, +5/−1
   cuet_ug:  { subjects: ["English", "General Test", "Domain Subject"], duration: 195, questions: 150, marking: "+5 / −1", totalMarks: null },
 };
@@ -73,22 +77,28 @@ const EXAM_SIM_CONFIG = {
 // ── CUET UG — NTA 2024 subject combination presets ────────────────────────────
 // Section IA: Language (English mandatory) · Section II: Domain Subjects (2–6)
 // Section III: General Test · Marking: +5 / -1
+// Names here must match exam_prep_questions.subject exactly (real DB rows
+// have no "(Domain)" suffix) — they previously did, which meant Physics,
+// Mathematics, and Biology domain content (already written, 10/9/38
+// questions respectively) was completely unreachable through this picker,
+// and Chemistry (Domain) masked the fact that CUET has zero Chemistry
+// content at all rather than surfacing it as a real gap.
 const CUET_DOMAIN_SUBJECTS = [
-  "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "Biology (Domain)",
+  "Physics", "Chemistry", "Mathematics", "Biology",
   "History", "Geography", "Political Science", "Economics",
   "Accountancy", "Business Studies", "Sociology", "Psychology", "Legal Studies",
-  "English (Domain)", "Hindi (Domain)",
+  "English", "Hindi",
 ];
 const CUET_PRESETS = [
   { id: "science_pcm",  label: "Science — PCM",  icon: Ruler, color: "#6366f1", popular: true,
     desc: "Physics, Chemistry, Mathematics + English + General Test",
-    subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "General Test"] },
+    subjects: ["English", "Physics", "Chemistry", "Mathematics", "General Test"] },
   { id: "science_pcb",  label: "Science — PCB",  icon: Microscope, color: "#10b981", popular: true,
     desc: "Physics, Chemistry, Biology + English + General Test",
-    subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Biology (Domain)", "General Test"] },
+    subjects: ["English", "Physics", "Chemistry", "Biology", "General Test"] },
   { id: "science_pcmb", label: "Science — PCMB", icon: Atom, color: "#8b5cf6", popular: false,
     desc: "Physics, Chemistry, Maths, Biology + English + General Test",
-    subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "Biology (Domain)", "General Test"] },
+    subjects: ["English", "Physics", "Chemistry", "Mathematics", "Biology", "General Test"] },
   { id: "commerce",     label: "Commerce",        icon: BarChart3, color: "#f59e0b", popular: true,
     desc: "Accountancy, Business Studies, Economics + English + General Test",
     subjects: ["English", "Accountancy", "Business Studies", "Economics", "General Test"] },
@@ -101,10 +111,10 @@ const CUET_PRESETS = [
 ];
 const CUET_SUBJECT_ICONS = {
   "English": PenLine, "General Test": Puzzle,
-  "Physics (Domain)": Atom, "Chemistry (Domain)": FlaskConical, "Mathematics (Domain)": Ruler, "Biology (Domain)": Leaf,
+  "Physics": Atom, "Chemistry": FlaskConical, "Mathematics": Ruler, "Biology": Leaf,
   "History": ScrollText, "Geography": MapPin, "Political Science": Landmark, "Economics": BarChart3,
   "Accountancy": Wallet, "Business Studies": Briefcase, "Sociology": Users, "Psychology": Brain, "Legal Studies": Scale,
-  "English (Domain)": BookOpen, "Hindi (Domain)": Languages,
+  "Hindi": Languages,
 };
 
 // ── Content protection — invisible zero-width character watermarking ───────────
@@ -266,6 +276,12 @@ function SubjectCard({ subject, onClick, selected, examType }) {
         <span>{subject.question_count} questions</span>
         <span style={{ color: selected ? color : "var(--muted,#64748b)" }}>{selected ? "▾ Topics" : "See topics →"}</span>
       </div>
+      {(subject.no_content || subject.thin_bank) && (
+        <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 7, fontSize: ".6rem", fontWeight: 700, color: subject.no_content ? "#dc2626" : "#b45309" }}>
+          <AlertTriangle size={11} strokeWidth={2.25} />
+          {subject.no_content ? "No questions yet" : "Limited bank — same questions every time"}
+        </div>
+      )}
     </div>
   );
 }
@@ -524,22 +540,15 @@ function OnScreenCalc({ onClose }) {
 
 // ── NTA-style Test View (one question at a time + palette + section tabs) ───────
 
-function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSubmit, testLoading, startTimestamp, examLabel: _examLabel, examColor: _examColor, cuetSubjects, username }) {
-  // For CUET: use the subjects the student actually selected (passed via cuetSubjects).
-  // For JEE/NEET: derive from EXAM_SIM_CONFIG by exam type (use examLabel to identify).
-  // Fallback: match by duration — but note JEE (180min) and CUET (195min) differ, so this is safer.
-  const isCuet = cuetSubjects && cuetSubjects.length > 0;
-  const cfg = isCuet ? null : (
-    _examLabel === "NEET UG"   ? EXAM_SIM_CONFIG.neet_ug   :
-    _examLabel === "JEE Main"  ? EXAM_SIM_CONFIG.jee_main  :
-    _examLabel === "SAT"       ? EXAM_SIM_CONFIG.sat        :
-    _examLabel === "IELTS"     ? EXAM_SIM_CONFIG.ielts      :
-    _examLabel === "TOEFL iBT" ? EXAM_SIM_CONFIG.toefl_ibt :
-    Object.values(EXAM_SIM_CONFIG).find(c => c.duration === testSession?.duration_minutes)
-    || EXAM_SIM_CONFIG.jee_main
-  );
-  const subjects = isCuet ? cuetSubjects : cfg.subjects;
-  const perSubj = Math.max(1, Math.ceil(questions.length / subjects.length));
+function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSubmit, testLoading, startTimestamp, examLabel: _examLabel, examColor: _examColor, cuetSubjects: _cuetSubjects, username }) {
+  // Sections are derived directly from each question's own `subject` field,
+  // in first-appearance order — not from a fixed per-subject question count.
+  // The previous approach divided questions.length evenly by subject count
+  // (questions.length / subjects.length), which silently misattributed
+  // questions to the wrong section tab whenever an exam's subjects aren't
+  // equal-sized — e.g. NEET's real split is 45 Physics + 45 Chemistry + 90
+  // Biology, not 60/60/60.
+  const subjects = [...new Set(questions.map(q => q.subject).filter(Boolean))];
   const [qIdx, setQIdx] = React.useState(0);
   const [marked, setMarked] = React.useState({});
   const [section, setSection] = React.useState(subjects[0]);
@@ -547,8 +556,7 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
   const startTime = startTimestamp;
 
   function subjOf(i) {
-    for (let s = 0; s < subjects.length; s++) if (i < (s+1)*perSubj || s === subjects.length-1) return subjects[s];
-    return subjects[0];
+    return questions[i]?.subject || subjects[0];
   }
 
   const q = questions[qIdx];
@@ -598,7 +606,7 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
           const act = section===s;
           const sc = SUBJECT_COLORS[s]||"#6366f1";
           return (
-            <button key={s} onClick={()=>setSection(s)}
+            <button key={s} onClick={()=>goTo(questions.findIndex(q => q.subject === s))}
               style={{ padding:"7px 14px", borderRadius:10, border:"2px solid "+(act?sc:"var(--border,#334155)"), background:act?sc+"18":"var(--panel,#1e293b)", color:act?sc:"var(--muted,#94a3b8)", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit", display:"flex", alignItems:"center", gap:6 }}>
               <SubjectIcon name={s} size={16} /><span>{s}</span>
               <span style={{ fontSize:".6rem", background:act?sc+"22":"rgba(255,255,255,.06)", color:act?sc:"var(--muted,#64748b)", padding:"1px 6px", borderRadius:10 }}>{ans}/{cnt}</span>
@@ -821,10 +829,19 @@ function TestResultPage({ result, onRetake, onClose }) {
 }
 
 // ── CUET Test Setup ───────────────────────────────────────────────────────────
-function CUETTestSetup({ onStart, testLoading }) {
+function CUETTestSetup({ onStart, testLoading, subjectStats }) {
   const [presetId, setPresetId] = React.useState("science_pcm");
   const [customSubjs, setCustomSubjs] = React.useState(["English", "General Test"]);
   const [step, setStep] = React.useState("preset");
+
+  // Real per-subject question-bank stats (from the Practice tab's subject
+  // fetch, reused here) — lets us warn before a student commits to a
+  // combination whose domain subjects have little or no written content,
+  // instead of them only discovering it once the test has already started.
+  const statsByName = React.useMemo(
+    () => Object.fromEntries((subjectStats || []).map(s => [s.name, s])),
+    [subjectStats]
+  );
 
   const activePreset = CUET_PRESETS.find(p => p.id === presetId);
   const finalSubjects = presetId === "custom" ? customSubjs : (activePreset?.subjects || []);
@@ -860,6 +877,8 @@ function CUETTestSetup({ onStart, testLoading }) {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(190px,1fr))", gap: 9, marginBottom: 18 }}>
             {CUET_PRESETS.map(preset => {
               const sel = presetId === preset.id;
+              const missingContent = preset.subjects.some(s => statsByName[s]?.no_content);
+              const limitedContent = !missingContent && preset.subjects.some(s => statsByName[s]?.thin_bank);
               return (
                 <div key={preset.id}
                   onClick={() => { setPresetId(preset.id); if (preset.id === "custom") setStep("custom"); }}
@@ -870,6 +889,12 @@ function CUETTestSetup({ onStart, testLoading }) {
                   <div style={{ marginBottom: 5, color: preset.color }}><preset.icon size={22} strokeWidth={2} /></div>
                   <div style={{ fontWeight: 800, fontSize: ".82rem", marginBottom: 3, color: sel ? preset.color : "var(--text,#1e293b)" }}>{preset.label}</div>
                   <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)", lineHeight: 1.4 }}>{preset.desc}</div>
+                  {(missingContent || limitedContent) && (
+                    <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 6, fontSize: ".58rem", fontWeight: 700, color: missingContent ? "#dc2626" : "#b45309" }}>
+                      <AlertTriangle size={10} strokeWidth={2.5} />
+                      {missingContent ? "Some subjects have no questions yet" : "Limited question bank"}
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -879,13 +904,18 @@ function CUETTestSetup({ onStart, testLoading }) {
             <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 9, padding: "12px 14px", marginBottom: 18 }}>
               <div style={{ fontSize: ".68rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 8 }}>{activePreset.label} — Sections in This Simulation</div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
-                {activePreset.subjects.map(s => (
-                  <div key={s} style={{ display: "flex", alignItems: "center", gap: 5, background: s === "English" ? "rgba(99,102,241,.1)" : s === "General Test" ? "rgba(139,92,246,.1)" : "rgba(245,158,11,.07)", border: `1px solid ${s === "English" ? "rgba(99,102,241,.25)" : s === "General Test" ? "rgba(139,92,246,.25)" : "rgba(245,158,11,.2)"}`, borderRadius: 7, padding: "5px 9px", fontSize: ".7rem", fontWeight: 600 }}>
-                    <SubjectIcon name={s} map={CUET_SUBJECT_ICONS} size={16} />
-                    <span>{s}</span>
-                    <span style={{ fontSize: ".58rem", color: "var(--muted,#64748b)" }}>{s === "General Test" ? "50Q" : "40Q"}</span>
-                  </div>
-                ))}
+                {activePreset.subjects.map(s => {
+                  const stat = statsByName[s];
+                  return (
+                    <div key={s} style={{ display: "flex", alignItems: "center", gap: 5, background: s === "English" ? "rgba(99,102,241,.1)" : s === "General Test" ? "rgba(139,92,246,.1)" : "rgba(245,158,11,.07)", border: `1px solid ${s === "English" ? "rgba(99,102,241,.25)" : s === "General Test" ? "rgba(139,92,246,.25)" : "rgba(245,158,11,.2)"}`, borderRadius: 7, padding: "5px 9px", fontSize: ".7rem", fontWeight: 600 }}>
+                      <SubjectIcon name={s} map={CUET_SUBJECT_ICONS} size={16} />
+                      <span>{s}</span>
+                      <span style={{ fontSize: ".58rem", color: "var(--muted,#64748b)" }}>{s === "General Test" ? "50Q" : "40Q"}</span>
+                      {stat?.no_content && <AlertTriangle size={11} strokeWidth={2.5} color="#dc2626" />}
+                      {!stat?.no_content && stat?.thin_bank && <AlertTriangle size={11} strokeWidth={2.5} color="#b45309" />}
+                    </div>
+                  );
+                })}
               </div>
               <div style={{ display: "flex", gap: 14, fontSize: ".68rem", color: "var(--muted,#64748b)" }}>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}><Clock size={12} strokeWidth={2.25} /> <strong>{duration} min</strong></span>
@@ -919,6 +949,7 @@ function CUETTestSetup({ onStart, testLoading }) {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(185px,1fr))", gap: 5 }}>
               {CUET_DOMAIN_SUBJECTS.map(s => {
                 const chk = customSubjs.includes(s);
+                const stat = statsByName[s];
                 return (
                   <div key={s} onClick={() => toggleCustom(s)}
                     style={{ display: "flex", alignItems: "center", gap: 7, background: chk ? "rgba(245,158,11,.08)" : "var(--panel,#1e293b)", border: `1px solid ${chk ? "rgba(245,158,11,.35)" : "var(--border,#334155)"}`, borderRadius: 7, padding: "7px 10px", cursor: "pointer" }}>
@@ -926,6 +957,8 @@ function CUETTestSetup({ onStart, testLoading }) {
                       {chk && <Check size={9} strokeWidth={3.5} color="#fff" />}
                     </div>
                     <span style={{ fontSize: ".68rem", fontWeight: chk ? 700 : 400, display: "inline-flex", alignItems: "center", gap: 4 }}><SubjectIcon name={s} map={CUET_SUBJECT_ICONS} size={13} /> {s}</span>
+                    {stat?.no_content && <AlertTriangle size={11} strokeWidth={2.5} color="#dc2626" style={{ marginLeft: "auto" }} />}
+                    {!stat?.no_content && stat?.thin_bank && <AlertTriangle size={11} strokeWidth={2.5} color="#b45309" style={{ marginLeft: "auto" }} />}
                   </div>
                 );
               })}
@@ -1912,38 +1945,27 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
     const subjsToUse = subjects && subjects.length > 0 ? subjects : cuetSelectedSubjects;
     if (subjects) setCuetSelectedSubjects(subjects);
     try {
-      const data = await startSimulatedTest(user.accessToken, selectedExam);
+      // The backend now picks (randomized, excluding already-attempted
+      // questions) and returns the full question set directly — it's the
+      // single source of truth for both what's displayed and what
+      // submit_simulated_test scores against. Previously this re-fetched
+      // questions independently per subject here, which only happened to
+      // match the backend's own question_ids because neither side
+      // randomized; adding rotation to just one side would have made the
+      // displayed test and the scored test diverge.
+      const isCuet = selectedExam === "cuet_ug";
+      const data = await startSimulatedTest(
+        user.accessToken,
+        selectedExam,
+        isCuet && subjsToUse.length > 0 ? subjsToUse : null
+      );
       setTestSession(data);
       const now = Date.now();
       testStartRef.current = now;
       setTestStartTimestamp(now);
       setTestAnswers({});
+      setQuestions(data.questions || []);
       setActiveMode("test");
-      // For CUET: fetch questions per selected subject so only chosen subjects appear
-      if (selectedExam === "cuet_ug" && subjsToUse.length > 0) {
-        const allQ = [];
-        for (const subj of subjsToUse) {
-          const qData = await getExamPrepQuestions(user.accessToken, {
-            exam: selectedExam, subject: subj, limit: 40,
-          });
-          allQ.push(...(qData.questions || []));
-        }
-        setQuestions(allQ);
-      } else if (data.question_ids?.length > 0) {
-        // Fetch per-subject to match the real exam structure (JEE: 25/subj, NEET: 45/subj)
-        const cfg = EXAM_SIM_CONFIG[selectedExam] || EXAM_SIM_CONFIG.jee_main;
-        const allQ = [];
-        for (const subj of cfg.subjects) {
-          const perSubjLimit = cfg.questionsPerSubject || Math.round(cfg.questions / cfg.subjects.length);
-          const qData = await getExamPrepQuestions(user.accessToken, {
-            exam: selectedExam, subject: subj, limit: perSubjLimit,
-          });
-          allQ.push(...(qData.questions || []));
-        }
-        setQuestions(allQ);
-      } else {
-        setQuestions([]);
-      }
     } catch (e) {
       alert(e.message || "Failed to start test");
     } finally { setTestLoading(false); }
@@ -2937,8 +2959,8 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
             {selectedExam === "neet_ug" && (
               <ul style={{ fontSize: ".78rem", color: "var(--muted,#94a3b8)", lineHeight: 2, margin: 0, paddingLeft: 18 }}>
                 <li><strong style={{color:"#34d399"}}>180 questions · 3 hours · 720 marks · +4/−1 · Pen & Paper (OMR)</strong></li>
-                <li>4 subjects: Physics (45 Qs) · Chemistry (45 Qs) · Botany (45 Qs) · Zoology (45 Qs)</li>
-                <li>Biology (Botany + Zoology) = 90 questions = 360 marks — most weightage!</li>
+                <li>3 subjects: Physics (45 Qs) · Chemistry (45 Qs) · Biology (90 Qs)</li>
+                <li>Biology (Botany + Zoology combined) = 90 questions = 360 marks — most weightage!</li>
                 <li>Difficulty mix: ~30% easy · ~50% moderate · ~20% hard · Average time: 1.0 min/question</li>
                 <li>90–95% of Biology questions come directly from NCERT text — read every line</li>
                 <li>High-weight Biology chapters: Genetics · Human Physiology · Ecology · Biotechnology</li>
@@ -3114,7 +3136,7 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
           {!testSession ? (
             selectedExam === "cuet_ug" ? (
               // CUET: show realistic subject combination selector
-              <CUETTestSetup onStart={(subjects) => handleStartTest(subjects)} testLoading={testLoading} />
+              <CUETTestSetup onStart={(subjects) => handleStartTest(subjects)} testLoading={testLoading} subjectStats={subjects} />
             ) : (
             <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center", padding: "40px 20px" }}>
               <examInfo.icon size={44} strokeWidth={1.5} style={{ marginBottom: 16, color: examInfo.color }} />
@@ -3131,7 +3153,7 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
                         <div key={s} style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: "12px 10px", textAlign: "center" }}>
                           <div style={{ marginBottom: 4 }}><SubjectIcon name={s} size={20} /></div>
                           <div style={{ fontSize: ".75rem", fontWeight: 700 }}>{s}</div>
-                          <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>{cfg.questionsPerSubject || Math.round(cfg.questions / cfg.subjects.length)} Qs</div>
+                          <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>{cfg.subjectCounts?.[s] ?? cfg.questionsPerSubject ?? Math.round(cfg.questions / cfg.subjects.length)} Qs</div>
                         </div>
                       ))}
                     </div>

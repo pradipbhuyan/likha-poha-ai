@@ -262,6 +262,49 @@ describe("ExamPrepPage — 5 mode tabs", () => {
       expect(screen.getAllByText(/Start .*Simulation/i).length).toBeGreaterThan(0);
     });
   });
+
+  it("starting a simulation renders the backend's returned questions directly, without a second per-subject fetch", async () => {
+    // Regression: this used to re-fetch questions independently per subject
+    // via getExamPrepQuestions after starting a test, using its own
+    // unordered query — a second, disconnected fetch from the one the
+    // backend used to build question_ids for scoring. They only happened to
+    // return the same questions because neither side randomized; adding
+    // rotation to just one side would make the displayed test diverge from
+    // what submit_simulated_test actually scores. Now the frontend renders
+    // exactly what start_simulated_test returns, and nothing else is fetched.
+    const { startSimulatedTest, getExamPrepQuestions } = await import("../api/examPrep");
+    startSimulatedTest.mockResolvedValueOnce({
+      test_id: "t-rotation",
+      duration_minutes: 180,
+      question_ids: ["q-unique-1"],
+      questions: [
+        {
+          id: "q-unique-1",
+          subject: "Physics",
+          topic: "Kinematics",
+          question_text: "A distinctive rotation-fix regression question about velocity",
+          options_json: [
+            { key: "A", text: "1" }, { key: "B", text: "2" },
+            { key: "C", text: "3" }, { key: "D", text: "4" },
+          ],
+          difficulty: "medium",
+          marks: 4,
+          negative_marks: 1,
+        },
+      ],
+    });
+
+    render(<ExamPrepPage user={grade11PremiumUser} />);
+    await waitFor(() => expect(screen.getByText(/Structured Learning/i)).toBeTruthy());
+    fireEvent.click(screen.getByRole("button", { name: /Simulated Test/i }));
+    await waitFor(() => screen.getByRole("button", { name: /Start .*Simulation/i }));
+    fireEvent.click(screen.getByRole("button", { name: /Start .*Simulation/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText(/distinctive rotation-fix regression question/i)).toBeTruthy();
+    });
+    expect(getExamPrepQuestions).not.toHaveBeenCalled();
+  });
 });
 
 describe("ExamPrepPage — premium gate content", () => {

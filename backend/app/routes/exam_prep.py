@@ -214,6 +214,7 @@ def list_questions(
         subject=subject,
         topic=topic,
         limit=min(limit, 50),
+        user_id=user.id,
     )
     return {"success": True, "questions": questions, "count": len(questions)}
 
@@ -299,6 +300,7 @@ def ask_followup(
 
 class StartTestRequest(BaseModel):
     exam: str = "jee_main"
+    subjects: Optional[list[str]] = None
 
 
 @router.post("/simulated-tests/start")
@@ -315,6 +317,7 @@ def start_simulated_test(
         user_id=user.id,
         exam_type=req.exam,
         grade=grade,
+        subjects=req.subjects,
     )
     return {"success": True, **result}
 

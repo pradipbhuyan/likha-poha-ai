@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import math
+import random
 from datetime import datetime, timezone
 from typing import Optional
 
@@ -24,6 +25,25 @@ _log = get_logger("exam_prep_service")
 
 EXAM_PREP_TEST_USERS: set[str] = {"akshita.teststudent"}
 EXAM_PREP_GRADES: set[str] = {"Grade 11", "Grade 12"}
+
+# ── Upgrade discount ──────────────────────────────────────────────────────────
+# ₹200 loyalty discount for an existing Premium/Family Premium Grade 11/12
+# subscriber upgrading to Exam Prep Center. Scoped literally to "starter" and
+# "family_premium" (not the 6-month/annual variants) per product decision.
+EXAM_PREP_UPGRADE_DISCOUNT_RUPEES = 200
+_DISCOUNT_ELIGIBLE_CURRENT_PLANS: set[str] = {"starter", "family_premium"}
+
+
+def exam_prep_upgrade_discount_rupees(current_plan_key: str | None, grade: str | None) -> int:
+    """
+    ₹200 loyalty discount amount for a Grade 11/12 student currently on Premium
+    or Family Premium upgrading to Exam Prep Center. Applied on top of any admin
+    global discount_percent; the caller is responsible for flooring at 0.
+    """
+    if current_plan_key in _DISCOUNT_ELIGIBLE_CURRENT_PLANS and grade in EXAM_PREP_GRADES:
+        return EXAM_PREP_UPGRADE_DISCOUNT_RUPEES
+    return 0
+
 
 # Streams that are eligible for each entrance exam
 JEE_ELIGIBLE_STREAMS: set[str] = {"PCM", "PCMB"}
@@ -1448,7 +1468,7 @@ def _get_exam_attempts(exam_type: str, user_id: str) -> list[dict]:
     try:
         result = (
             db.table("exam_prep_attempts")
-            .select("id, is_correct, exam_prep_questions!inner(subject, exam_type)")
+            .select("id, question_id, is_correct, exam_prep_questions!inner(subject, exam_type)")
             .eq("user_id", user_id)
             .eq("exam_prep_questions.exam_type", exam_type)
             .execute()
@@ -1457,6 +1477,30 @@ def _get_exam_attempts(exam_type: str, user_id: str) -> list[dict]:
     except Exception as exc:
         _log.warning("exam_prep.attempts_fetch_failed", error=str(exc))
         return []
+
+
+def _get_seen_question_ids(exam_type: str, user_id: str) -> set[str]:
+    """Question IDs this user has already attempted, anywhere, for this exam."""
+    if not user_id:
+        return set()
+    return {a["question_id"] for a in _get_exam_attempts(exam_type, user_id) if a.get("question_id")}
+
+
+def _pick_questions(rows: list[dict], limit: int, seen_ids: set[str]) -> list[dict]:
+    """
+    Randomly select up to `limit` rows, preferring ones this user hasn't
+    attempted yet. Falls back to the full pool (including seen rows) once
+    there aren't enough unseen ones left to fill the request, so a student
+    who has exhausted a subject's bank keeps practicing instead of getting a
+    short or empty set.
+    """
+    if not rows:
+        return []
+    unseen = [r for r in rows if r.get("id") not in seen_ids]
+    pool = unseen if len(unseen) >= min(limit, len(rows)) else rows
+    pool = list(pool)
+    random.shuffle(pool)
+    return pool[:limit]
 
 
 # ── Dashboard ──────────────────────────────────────────────────────────────────
@@ -1543,8 +1587,14 @@ def get_subjects(exam_type: str, user_id: str) -> list[dict]:
         if s:
             attempted_by_subject[s] = attempted_by_subject.get(s, 0) + 1
 
+    exam_targets = _EXAM_SUBJECT_TARGETS.get(exam_type, {})
+
     result = []
     for name, data in subjects_map.items():
+        target = exam_targets.get(
+            name,
+            _CUET_DEFAULT_PER_SUBJECT if exam_type == "cuet_ug" else max(10, 90 // max(1, len(subjects_map))),
+        )
         result.append({
             "name": name,
             "icon": data.get("icon", "📚"),
@@ -1553,6 +1603,14 @@ def get_subjects(exam_type: str, user_id: str) -> list[dict]:
             "weightage_pct": data.get("weightage_pct", 0),
             "topic_count": len(data.get("topics", [])),
             "question_count": q_by_subject.get(name, 0),
+            # How many questions a single Practice/Simulated Test session
+            # tries to pull for this subject. When question_count is at or
+            # below this, the session already shows the entire bank every
+            # time — there's no rotation headroom left to fix with more
+            # exclusion logic, only with more written questions.
+            "target_per_session": target,
+            "thin_bank": 0 < q_by_subject.get(name, 0) <= target,
+            "no_content": q_by_subject.get(name, 0) == 0,
             "questions_attempted": attempted_by_subject.get(name, 0),
         })
     return result
@@ -1576,17 +1634,22 @@ def get_questions(
     subject: Optional[str],
     topic: Optional[str],
     limit: int = 20,
+    user_id: Optional[str] = None,
 ) -> list[dict]:
-    """Return published questions from DB. Falls back to empty list gracefully."""
+    """
+    Return published questions from DB, randomized and excluding ones this
+    user has already attempted (falling back to the full pool once every
+    matching question has been seen). Without user_id, just shuffles.
+
+    Previously this was a bare `LIMIT N` with no ORDER BY, so the same fixed
+    subset was returned in the same order on every single visit — a subject
+    with 100+ questions would only ever show the first 20 of them, forever.
+    """
     db = _get_db()
     try:
         query = (
             db.table("exam_prep_questions")
-            .select(
-                "id, subject, chapter, topic, subtopic, question_text, "
-                "options_json, correct_option, difficulty, marks, negative_marks, "
-                "estimated_time_seconds, ncert_reference, formula_used, source_type"
-            )
+            .select(_QUESTION_FIELDS)
             .eq("exam_type", exam_type)
             .eq("status", "published")
         )
@@ -1597,8 +1660,9 @@ def get_questions(
             # e.g. "Reading Comprehension" matches "SAT Reading Comprehension" and vice versa.
             # Falls back to all subject questions if no exact/partial match exists.
             query = query.ilike("topic", f"%{topic}%")
-        result = query.limit(limit).execute()
-        return result.data or []
+        rows = query.limit(2000).execute().data or []
+        seen_ids = _get_seen_question_ids(exam_type, user_id) if user_id else set()
+        return _pick_questions(rows, limit, seen_ids)
     except Exception as exc:
         _log.warning("exam_prep.questions.fetch", error=str(exc))
         return []
@@ -1694,39 +1758,83 @@ def submit_answer(
 
 # ── Simulated tests ─────────────────────────────────────────────────────────────
 
+# Per-subject question targets for a simulated test, per NTA 2024-2026 official
+# patterns. NEET's Biology entry covers Botany+Zoology combined (real DB rows
+# are all tagged "Biology" — matching EXAM_SUBJECTS_MAP/get_subjects() above —
+# there is no separate Botany/Zoology subject, so this is 2x a single-subject
+# share rather than two 45-question subjects).
+#   JEE Main: 25/subject x 3 = 75 total
+#   NEET UG:  45 + 45 + 90 = 180 total
+_EXAM_SUBJECT_TARGETS: dict[str, dict[str, int]] = {
+    "jee_main": {"Physics": 25, "Chemistry": 25, "Mathematics": 25},
+    "neet_ug": {"Physics": 45, "Chemistry": 45, "Biology": 90},
+    "sat": {"Reading & Writing": 49, "Mathematics": 49},
+    "ielts": {"Listening": 27, "Reading": 27, "Vocabulary & Grammar": 27},
+    "toefl_ibt": {"Reading": 16, "Listening": 16, "Integrated Skills": 16},
+}
+_CUET_DEFAULT_PER_SUBJECT = 40
+
+_QUESTION_FIELDS = (
+    "id, subject, chapter, topic, subtopic, question_text, "
+    "options_json, correct_option, difficulty, marks, negative_marks, "
+    "estimated_time_seconds, ncert_reference, formula_used, source_type"
+)
+
+
 def start_simulated_test(
     user_id: str,
     exam_type: str,
     grade: str,
+    subjects: Optional[list[str]] = None,
 ) -> dict:
-    """Start a new simulated test session. Picks published questions from DB."""
+    """
+    Start a new simulated test session. Picks published questions from DB,
+    randomized and excluding ones this user has already attempted anywhere in
+    this exam (falling back to the full pool once exhausted) — previously
+    this was a bare per-subject LIMIT with no ORDER BY, so every attempt
+    served the identical fixed set of questions.
+
+    Returns the full question objects (not just IDs) so the caller can
+    render the test directly from this response instead of re-fetching —
+    that re-fetch used to be a *second*, independent, equally-unordered
+    query, which only happened to line up with this function's own
+    question_ids (used later for scoring) because neither side randomized.
+    Randomizing one without the other would have made them diverge and
+    broken scoring, so both now go through the same selection here.
+
+    `subjects` lets the caller override the default subject list (used by
+    CUET, where the student picks their own subject combination); other
+    exams use the fixed per-subject targets in _EXAM_SUBJECT_TARGETS.
+    """
     db = _get_db()
 
-    subjects_map = EXAM_SUBJECTS_MAP.get(exam_type, {})
-    subject_names = list(subjects_map.keys())
+    if subjects:
+        subject_targets = {s: _CUET_DEFAULT_PER_SUBJECT for s in subjects}
+    else:
+        subject_targets = _EXAM_SUBJECT_TARGETS.get(exam_type)
+        if not subject_targets:
+            subjects_map = EXAM_SUBJECTS_MAP.get(exam_type, {})
+            per_subject = max(10, 90 // max(1, len(subjects_map)))
+            subject_targets = {s: per_subject for s in subjects_map}
 
-    # Build question list — per NTA 2024-2026 official patterns:
-    #   JEE Main: 25/subject × 3 = 75 total
-    #   NEET UG:  45/subject × 3 = 135 (Biology covers Botany+Zoology)
-    #   CUET UG:  40/subject × varies
-    _PER_SUBJECT = {"jee_main": 25, "neet_ug": 45, "cuet_ug": 40}
-    per_subject = _PER_SUBJECT.get(exam_type, max(10, 90 // max(1, len(subject_names))))
-    question_ids = []
+    seen_ids = _get_seen_question_ids(exam_type, user_id)
+    questions: list[dict] = []
     try:
-        for subj in subject_names:
-            q_result = (
+        for subj, target in subject_targets.items():
+            rows = (
                 db.table("exam_prep_questions")
-                .select("id")
+                .select(_QUESTION_FIELDS)
                 .eq("exam_type", exam_type)
                 .eq("subject", subj)
                 .eq("status", "published")
-                .limit(per_subject)
+                .limit(2000)
                 .execute()
-            )
-            question_ids.extend([r["id"] for r in (q_result.data or [])])
+            ).data or []
+            questions.extend(_pick_questions(rows, target, seen_ids))
     except Exception as exc:
         _log.warning("exam_prep.start_test.q_fetch", error=str(exc))
 
+    question_ids = [q["id"] for q in questions]
     total_questions = len(question_ids)
 
     # Create test record
@@ -1750,6 +1858,7 @@ def start_simulated_test(
         "exam_type": exam_type,
         "grade": grade,
         "question_ids": question_ids,
+        "questions": questions,
         "total_questions": total_questions,
         "duration_minutes": 180,
         "status": "active",

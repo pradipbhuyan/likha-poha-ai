@@ -120,11 +120,11 @@ export async function askFollowUp(accessToken, { questionText, subject, exam, fo
 
 // ── Simulated Tests ────────────────────────────────────────────────────────────
 
-export async function startSimulatedTest(accessToken, exam = "jee_main") {
+export async function startSimulatedTest(accessToken, exam = "jee_main", subjects = null) {
   const res = await fetch(`${API_BASE}/api/exam-prep/simulated-tests/start`, {
     method: "POST",
     headers: authHeaders(accessToken),
-    body: JSON.stringify({ exam }),
+    body: JSON.stringify({ exam, subjects }),
   });
   return handleResponse(res);
 }

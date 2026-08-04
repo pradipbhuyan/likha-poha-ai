@@ -300,6 +300,69 @@ class TestSubjectsPerSubjectAttempts:
         assert by_name["Mathematics"]["questions_attempted"] == 0
 
 
+class TestSubjectsThinBankFlag:
+    """
+    Subjects at or below their per-session target have zero rotation
+    headroom — every attempt already shows the whole bank, no amount of
+    exclusion/shuffling logic can fix that, only more written questions can.
+    Subjects with zero published questions get a distinct no_content flag
+    instead (there's nothing to rotate through at all).
+    """
+
+    def test_flags_thin_and_empty_subjects_relative_to_session_target(self):
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+
+        # JEE's target is 25/subject: Physics gets plenty of headroom (100),
+        # Chemistry sits exactly at the target (25, thin), Mathematics none.
+        question_rows = [{"subject": "Physics"}] * 100 + [{"subject": "Chemistry"}] * 25
+
+        def fake_table(name):
+            if name == "exam_prep_questions":
+                return _FakeTable(question_rows)
+            return _FakeTable([])
+
+        mock_db = MagicMock()
+        mock_db.table.side_effect = fake_table
+
+        with patch("app.services.exam_prep_service._get_db", return_value=mock_db):
+            subjects = ep_svc.get_subjects(exam_type="jee_main", user_id="g12-1")
+
+        by_name = {s["name"]: s for s in subjects}
+        assert by_name["Physics"]["target_per_session"] == 25
+        assert by_name["Physics"]["thin_bank"] is False
+        assert by_name["Physics"]["no_content"] is False
+
+        assert by_name["Chemistry"]["thin_bank"] is True
+        assert by_name["Chemistry"]["no_content"] is False
+
+        assert by_name["Mathematics"]["question_count"] == 0
+        assert by_name["Mathematics"]["no_content"] is True
+        assert by_name["Mathematics"]["thin_bank"] is False
+
+    def test_cuet_subject_without_explicit_target_uses_cuet_default(self):
+        """CUET subjects aren't in the fixed per-exam target map (student
+        picks their own combination) — they fall back to the flat 40/subject
+        CUET default instead."""
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+
+        question_rows = [{"subject": "Business Studies"}] * 12
+
+        def fake_table(name):
+            if name == "exam_prep_questions":
+                return _FakeTable(question_rows)
+            return _FakeTable([])
+
+        mock_db = MagicMock()
+        mock_db.table.side_effect = fake_table
+
+        with patch("app.services.exam_prep_service._get_db", return_value=mock_db):
+            subjects = ep_svc.get_subjects(exam_type="cuet_ug", user_id="g12-1")
+
+        by_name = {s["name"]: s for s in subjects}
+        assert by_name["Business Studies"]["target_per_session"] == 40
+        assert by_name["Business Studies"]["thin_bank"] is True
+
+
 class TestSubmitAnswerIncludesTopic:
     def test_submit_answer_response_includes_subject_and_topic(self):
         """
@@ -328,6 +391,218 @@ class TestSubmitAnswerIncludesTopic:
 
         assert result["subject"] == "Physics"
         assert result["topic"] == "Kinematics"
+
+
+# ── Question rotation / exclusion (regression) ───────────────────────────────────
+# Previously every question fetch (Practice tab and Simulated Test) was a bare
+# `LIMIT N` with no ORDER BY and no exclusion of already-attempted questions,
+# so the same fixed subset was served in the same order on every single
+# attempt, forever — "how many unique questions before it repeats" was
+# effectively "one." These tests exercise the new _pick_questions() helper
+# directly, and get_questions()/start_simulated_test() through it.
+
+def _mk_question_row(qid, subject, topic="Topic A"):
+    return {
+        "id": qid, "subject": subject, "chapter": "Ch1", "topic": topic, "subtopic": "",
+        "question_text": f"Question {qid}",
+        "options_json": {"A": "1", "B": "2", "C": "3", "D": "4"},
+        "correct_option": "A", "difficulty": "medium", "marks": 4, "negative_marks": 1,
+        "estimated_time_seconds": 60, "ncert_reference": "", "formula_used": "", "source_type": "llm_generated",
+    }
+
+
+class _FakeTable:
+    """Minimal chainable fake matching this codebase's existing test convention
+    (see test_admin_payment_upgrade.py) — every builder method returns self,
+    .execute() returns the fixed rows this table was built with."""
+
+    def __init__(self, rows):
+        self._rows = rows
+
+    def select(self, *_a, **_k): return self
+    def eq(self, *_a, **_k): return self
+    def ilike(self, *_a, **_k): return self
+    def limit(self, *_a, **_k): return self
+    def insert(self, data):
+        self._inserted = data
+        return self
+    def execute(self):
+        from types import SimpleNamespace
+        return SimpleNamespace(data=self._rows)
+
+
+class TestPickQuestions:
+    """Pure unit tests for the exclude-seen + shuffle + fallback helper."""
+
+    def test_excludes_seen_when_enough_unseen_remain(self):
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+        rows = [{"id": f"q{i}"} for i in range(10)]
+        seen = {"q0", "q1", "q2"}
+        picked = ep_svc._pick_questions(rows, limit=5, seen_ids=seen)
+        picked_ids = {r["id"] for r in picked}
+        assert len(picked) == 5
+        assert picked_ids.isdisjoint(seen)
+
+    def test_falls_back_to_full_pool_once_exhausted(self):
+        """A student who has seen every question in the pool keeps
+        practicing from the full set instead of getting a short/empty one."""
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+        rows = [{"id": f"q{i}"} for i in range(5)]
+        seen = {"q0", "q1", "q2", "q3", "q4"}
+        picked = ep_svc._pick_questions(rows, limit=3, seen_ids=seen)
+        assert len(picked) == 3
+
+    def test_never_returns_more_than_available(self):
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+        rows = [{"id": "q1"}, {"id": "q2"}]
+        picked = ep_svc._pick_questions(rows, limit=10, seen_ids=set())
+        assert len(picked) == 2
+
+    def test_order_is_randomized_not_a_fixed_top_n(self):
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+        rows = [{"id": f"q{i}"} for i in range(30)]
+        orders = {tuple(r["id"] for r in ep_svc._pick_questions(rows, limit=30, seen_ids=set())) for _ in range(8)}
+        assert len(orders) > 1
+
+
+class TestGetQuestionsExclusion:
+    def test_excludes_previously_attempted_questions(self):
+        """A question this user already attempted must not reappear while
+        there are still enough unattempted ones to fill the request."""
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+
+        all_questions = [_mk_question_row(f"q{i}", "Physics") for i in range(10)]
+        attempted = [
+            {"question_id": "q0", "is_correct": True, "exam_prep_questions": {"subject": "Physics", "exam_type": "jee_main"}},
+            {"question_id": "q1", "is_correct": False, "exam_prep_questions": {"subject": "Physics", "exam_type": "jee_main"}},
+        ]
+
+        def fake_table(name):
+            if name == "exam_prep_questions":
+                return _FakeTable(all_questions)
+            if name == "exam_prep_attempts":
+                return _FakeTable(attempted)
+            return _FakeTable([])
+
+        mock_db = MagicMock()
+        mock_db.table.side_effect = fake_table
+
+        with patch("app.services.exam_prep_service._get_db", return_value=mock_db):
+            result = ep_svc.get_questions(exam_type="jee_main", subject="Physics", topic=None, limit=5, user_id="g12-1")
+
+        result_ids = {r["id"] for r in result}
+        assert "q0" not in result_ids
+        assert "q1" not in result_ids
+        assert len(result) == 5
+
+
+class TestStartSimulatedTestNeetBiology:
+    def test_neet_uses_biology_not_botany_zoology(self):
+        """
+        Regression: the simulator used to request subjects "Botany" and
+        "Zoology", which don't exist in the database — every real Biology
+        question is tagged just "Biology" (matching Practice mode and
+        EXAM_SUBJECTS_MAP). Both queries returned zero rows, so every NEET
+        simulated test silently dropped from 180 to 90 questions with no
+        Biology at all. Biology now gets double the per-subject share
+        (90) in a single "Biology" entry instead of two subjects that
+        return nothing.
+        """
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+
+        physics = [_mk_question_row(f"phy{i}", "Physics") for i in range(60)]
+        chemistry = [_mk_question_row(f"chem{i}", "Chemistry") for i in range(60)]
+        biology = [_mk_question_row(f"bio{i}", "Biology") for i in range(120)]
+        by_subject = {"Physics": physics, "Chemistry": chemistry, "Biology": biology}
+
+        def fake_table(name):
+            if name == "exam_prep_questions":
+                # The fake needs to know which subject was asked for; since
+                # _FakeTable.eq() is a no-op, route by returning a table that
+                # inspects the most recent .eq("subject", ...) call instead.
+                return _SubjectAwareQuestionsTable(by_subject)
+            if name == "exam_prep_attempts":
+                return _FakeTable([])
+            if name == "exam_prep_simulated_tests":
+                return _FakeTable([{"id": "test-1", "status": "active", "started_at": "2026-01-01T00:00:00Z"}])
+            return _FakeTable([])
+
+        mock_db = MagicMock()
+        mock_db.table.side_effect = fake_table
+
+        with patch("app.services.exam_prep_service._get_db", return_value=mock_db):
+            result = ep_svc.start_simulated_test(user_id="g12-1", exam_type="neet_ug", grade="Grade 12")
+
+        subjects_shown = {q["subject"] for q in result["questions"]}
+        assert subjects_shown == {"Physics", "Chemistry", "Biology"}
+        assert "Botany" not in subjects_shown
+        assert "Zoology" not in subjects_shown
+
+        by_result_subject = {}
+        for q in result["questions"]:
+            by_result_subject.setdefault(q["subject"], 0)
+            by_result_subject[q["subject"]] += 1
+        assert by_result_subject["Physics"] == 45
+        assert by_result_subject["Chemistry"] == 45
+        assert by_result_subject["Biology"] == 90
+        assert result["total_questions"] == 180
+
+
+class _SubjectAwareQuestionsTable:
+    """Like _FakeTable, but returns rows for whichever subject was filtered
+    via .eq("subject", <value>) — needed when a test issues several
+    per-subject queries against the same mocked table in one call."""
+
+    def __init__(self, rows_by_subject):
+        self._rows_by_subject = rows_by_subject
+        self._subject = None
+
+    def select(self, *_a, **_k): return self
+    def limit(self, *_a, **_k): return self
+    def ilike(self, *_a, **_k): return self
+
+    def eq(self, field, value):
+        if field == "subject":
+            self._subject = value
+        return self
+
+    def execute(self):
+        from types import SimpleNamespace
+        return SimpleNamespace(data=self._rows_by_subject.get(self._subject, []))
+
+
+class TestStartSimulatedTestCuetSubjects:
+    def test_subjects_param_overrides_default_subject_list(self):
+        """CUET students pick their own subject combination — start_simulated_test
+        must fetch exactly those subjects, each capped at the CUET default of 40,
+        instead of the fixed per-exam target map used by other exams."""
+        import app.services.exam_prep_service as ep_svc  # noqa: PLC0415
+
+        history = [_mk_question_row(f"hist{i}", "History") for i in range(50)]
+        geography = [_mk_question_row(f"geo{i}", "Geography") for i in range(50)]
+        by_subject = {"History": history, "Geography": geography}
+
+        def fake_table(name):
+            if name == "exam_prep_questions":
+                return _SubjectAwareQuestionsTable(by_subject)
+            if name == "exam_prep_attempts":
+                return _FakeTable([])
+            if name == "exam_prep_simulated_tests":
+                return _FakeTable([{"id": "test-2", "status": "active", "started_at": "2026-01-01T00:00:00Z"}])
+            return _FakeTable([])
+
+        mock_db = MagicMock()
+        mock_db.table.side_effect = fake_table
+
+        with patch("app.services.exam_prep_service._get_db", return_value=mock_db):
+            result = ep_svc.start_simulated_test(
+                user_id="g12-1", exam_type="cuet_ug", grade="Grade 12",
+                subjects=["History", "Geography"],
+            )
+
+        subjects_shown = {q["subject"] for q in result["questions"]}
+        assert subjects_shown == {"History", "Geography"}
+        assert result["total_questions"] == 80  # 40 + 40
 
 
 # ── Topics tests ────────────────────────────────────────────────────────────────
