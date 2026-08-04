@@ -756,6 +756,54 @@ CUET_SUBJECTS = {
             },
         ],
     },
+    "Hindi": {
+        "icon": "अ",
+        "color": "#f97316",
+        "chapters": 10,
+        "weightage_pct": 20,
+        "topics": [
+            {
+                "name": "Gadya — Prose Comprehension",
+                "priority": "HIGH",
+                "subtopics": ["Factual Inference", "Author's Viewpoint", "Unseen Prose Passages"],
+                "weightage_pct": 25,
+                "chapter": "Gadya — Prose Comprehension",
+                "ncert_chapter": "NCERT Hindi Class 11 & 12 (Aroh/Antra)",
+            },
+            {
+                "name": "Padya — Poetry Comprehension",
+                "priority": "HIGH",
+                "subtopics": ["Meaning", "Bhav-Arth", "Alankar (Figures of Speech)"],
+                "weightage_pct": 20,
+                "chapter": "Padya — Poetry Comprehension",
+                "ncert_chapter": "NCERT Hindi Class 11 & 12 (Aroh/Antra)",
+            },
+            {
+                "name": "Vyakaran — Grammar",
+                "priority": "HIGH",
+                "subtopics": ["Sandhi", "Samas", "Vakya-Shuddhi", "Muhavare aur Lokoktiyan"],
+                "weightage_pct": 20,
+                "chapter": "Vyakaran — Grammar",
+                "ncert_chapter": "NCERT Hindi Vyakaran Class 11 & 12",
+            },
+            {
+                "name": "Applied Hindi — Vocabulary and Usage",
+                "priority": "MED",
+                "subtopics": ["Paryayvachi", "Vilom Shabd", "Anekarthi", "Tatsam-Tadbhav"],
+                "weightage_pct": 15,
+                "chapter": "Applied Hindi — Vocabulary and Usage",
+                "ncert_chapter": "NCERT Hindi Vyakaran Class 11 & 12",
+            },
+            {
+                "name": "Sahitya — Literary Knowledge",
+                "priority": "MED",
+                "subtopics": ["Kaal Vibhajan", "Major Writers", "Chhayavad", "Pragativad", "Prayogvad"],
+                "weightage_pct": 20,
+                "chapter": "Sahitya — Literary Knowledge",
+                "ncert_chapter": "NCERT Hindi Class 11 & 12 (Antra)",
+            },
+        ],
+    },
     "General Test": {
         "icon": "🧩",
         "color": "#8b5cf6",
@@ -1562,19 +1610,39 @@ def get_subjects(exam_type: str, user_id: str) -> list[dict]:
     db = _get_db()
     subjects_map = EXAM_SUBJECTS_MAP.get(exam_type, {})
 
-    # Fetch per-subject question counts from DB
+    # Fetch per-subject question counts from DB.
+    #
+    # Keyset-paginated (not a single unpaginated .execute()) — Supabase/
+    # PostgREST silently caps an unpaginated select at 1000 rows. CUET UG
+    # alone has passed that (1,279 published rows as of writing), which
+    # made this undercount every subject whose rows fell past the cutoff —
+    # confirmed live: get_subjects() reported far fewer than the true count
+    # after a large ingestion batch, while a direct DB count showed the
+    # real total. See admin_import_bulk's dedup fetch for the same fix.
     q_by_subject: dict[str, int] = {}
     try:
-        q_rows = (
-            db.table("exam_prep_questions")
-            .select("subject")
-            .eq("exam_type", exam_type)
-            .eq("status", "published")
-            .execute()
-        )
-        for row in (q_rows.data or []):
-            s = row["subject"]
-            q_by_subject[s] = q_by_subject.get(s, 0) + 1
+        last_id = None
+        page_size = 1000
+        while True:
+            query = (
+                db.table("exam_prep_questions")
+                .select("id, subject")
+                .eq("exam_type", exam_type)
+                .eq("status", "published")
+                .order("id")
+                .limit(page_size)
+            )
+            if last_id is not None:
+                query = query.gt("id", last_id)
+            page = query.execute().data or []
+            if not page:
+                break
+            for row in page:
+                s = row["subject"]
+                q_by_subject[s] = q_by_subject.get(s, 0) + 1
+            if len(page) < page_size:
+                break
+            last_id = page[-1]["id"]
     except Exception as exc:
         _log.warning("exam_prep.subjects.q_fetch", error=str(exc))
 
@@ -2148,11 +2216,31 @@ def get_sim_test_history(user_id: str, exam_type: str, limit: int = 10) -> list:
 def get_question_bank_status(exam_type: Optional[str] = None) -> dict:
     """Return question bank stats for admin dashboard."""
     db = _get_db()
+    rows: list[dict] = []
     try:
-        query = db.table("exam_prep_questions").select("exam_type, subject, status")
-        if exam_type:
-            query = query.eq("exam_type", exam_type)
-        rows = query.execute().data or []
+        # Keyset-paginated — see get_subjects() for why an unpaginated
+        # .execute() silently caps at 1000 rows on Supabase/PostgREST,
+        # which the whole-table case here (exam_type=None) hits easily.
+        last_id = None
+        page_size = 1000
+        while True:
+            query = (
+                db.table("exam_prep_questions")
+                .select("id, exam_type, subject, status")
+                .order("id")
+                .limit(page_size)
+            )
+            if exam_type:
+                query = query.eq("exam_type", exam_type)
+            if last_id is not None:
+                query = query.gt("id", last_id)
+            page = query.execute().data or []
+            if not page:
+                break
+            rows.extend(page)
+            if len(page) < page_size:
+                break
+            last_id = page[-1]["id"]
     except Exception as exc:
         _log.warning("exam_prep.qb_status.failed", error=str(exc))
         rows = []
@@ -2202,6 +2290,18 @@ def create_prewarm_job(
         raise HTTPException(400, "question_count must be between 1 and 100")
     if publish_mode not in ("draft", "auto_publish"):
         raise HTTPException(400, "publish_mode must be 'draft' or 'auto_publish'")
+
+    # Mapping-integrity check: `subject` must be a key the app actually reads
+    # (EXAM_SUBJECTS_MAP[exam_type]) or generated questions are silently
+    # unreachable to students regardless of how valid the content itself is.
+    if subject:
+        valid_subjects = set(EXAM_SUBJECTS_MAP.get(exam_type, {}).keys())
+        if valid_subjects and subject not in valid_subjects:
+            raise HTTPException(
+                400,
+                f"Unknown subject '{subject}' for exam_type '{exam_type}'. "
+                f"Must be one of: {sorted(valid_subjects)}",
+            )
 
     job_data = {
         "triggered_by": triggered_by,

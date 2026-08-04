@@ -563,6 +563,24 @@ export function getPlanDisplayPrice(plan) {
   return Math.max(0, Math.round(price * (100 - discountPercent) / 100));
 }
 
+export const EXAM_PREP_UPGRADE_DISCOUNT_RUPEES = 200;
+export const EXAM_PREP_ELIGIBLE_GRADES = new Set(["Grade 11", "Grade 12"]);
+const _DISCOUNT_ELIGIBLE_CURRENT_PLANS = new Set(["starter", "family_premium"]);
+
+/**
+ * Display-only mirror of the backend's exam_prep_upgrade_discount_rupees()
+ * (backend/app/services/exam_prep_service.py) — used to preview the ₹200
+ * loyalty discount before checkout. The real charge is always computed
+ * server-side in the order-creation response; this never drives an actual
+ * payment amount.
+ */
+export function getExamPrepUpgradeDiscount(currentPlanKey, grade) {
+  if (_DISCOUNT_ELIGIBLE_CURRENT_PLANS.has(currentPlanKey) && EXAM_PREP_ELIGIBLE_GRADES.has(grade)) {
+    return EXAM_PREP_UPGRADE_DISCOUNT_RUPEES;
+  }
+  return 0;
+}
+
 /**
  * Returns true if the plan grants full platform access (Nano, Premium, Family).
  * Free Tier always returns false regardless of any comparison data.

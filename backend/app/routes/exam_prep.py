@@ -903,13 +903,31 @@ def admin_import_bulk(
         "report": [],
     }
 
-    # Fetch existing fingerprints to check duplicates
+    # Fetch existing fingerprints to check duplicates.
+    #
+    # Keyset-paginated (not a single unpaginated .execute()) — Supabase/
+    # PostgREST silently caps an unpaginated select at 1000 rows, which on
+    # this table (2,000+ rows) meant dedup only ever saw a partial slice and
+    # missed real duplicates outside it. Confirmed live: re-importing an
+    # already-published batch inserted 135 duplicate draft rows because the
+    # single-shot fetch didn't include them.
     existing_fingerprints: set = set()
     try:
-        rows = db.table("exam_prep_questions").select("question_text").execute()
-        for row in (rows.data or []):
-            fp = hashlib.md5((row["question_text"] or "").lower().strip().encode()).hexdigest()
-            existing_fingerprints.add(fp)
+        last_id = None
+        page_size = 1000
+        while True:
+            query = db.table("exam_prep_questions").select("id, question_text").order("id").limit(page_size)
+            if last_id is not None:
+                query = query.gt("id", last_id)
+            page = query.execute().data or []
+            if not page:
+                break
+            for row in page:
+                fp = hashlib.md5((row["question_text"] or "").lower().strip().encode()).hexdigest()
+                existing_fingerprints.add(fp)
+            if len(page) < page_size:
+                break
+            last_id = page[-1]["id"]
     except Exception:
         pass  # If fetch fails, skip dedup (don't block import)
 
@@ -946,6 +964,19 @@ def admin_import_bulk(
 
         if q.get("difficulty") not in VALID_DIFFICULTIES:
             issues.append(f"Invalid difficulty '{q.get('difficulty')}'. Must be: easy, medium, hard")
+
+        # Mapping-integrity check: `subject` must be a key the app actually
+        # reads (EXAM_SUBJECTS_MAP[exam_type]) or the question is silently
+        # unreachable — e.g. "Physics" was written when the declared CUET key
+        # is "Physics (Domain)", leaving 60 valid questions invisible to
+        # students until this check existed.
+        if q.get("exam_type") in VALID_EXAM_TYPES:
+            valid_subjects = set(svc.EXAM_SUBJECTS_MAP.get(q["exam_type"], {}).keys())
+            if valid_subjects and q.get("subject") not in valid_subjects:
+                issues.append(
+                    f"Unknown subject '{q.get('subject')}' for exam_type '{q['exam_type']}'. "
+                    f"Must be one of: {sorted(valid_subjects)}"
+                )
 
         if q.get("correct_option") not in VALID_CORRECT_OPTIONS:
             issues.append(f"Invalid correct_option '{q.get('correct_option')}'. Must be A, B, C, or D")

@@ -830,6 +830,15 @@ const UPGRADE_SCENARIOS = [
     description: "Full CBSE access · 30 days · 2 child profiles",
     color: "#f59e0b",
   },
+  {
+    planKey: "exam_prep_center",
+    label: "Exam Prep Center",
+    actualPrice: "₹1,999 (or ₹1,799 with loyalty discount)",
+    validity: "12 months",
+    childLimit: 1,
+    description: "Full CBSE Gr 11-12 + JEE/NEET/CUET/SAT/IELTS/TOEFL · 12 months",
+    color: "#3b82f6",
+  },
 ];
 
 function PlanUpgradeTestSection({ user }) {
@@ -954,9 +963,16 @@ function PlanUpgradeTestSection({ user }) {
               });
               const vd = await verifyResp.json();
               if (verifyResp.ok && vd.success) {
+                // Prefer the server-computed amount (reflects any loyalty
+                // discount) over the scenario's static display string.
+                const actualPriceLabel = typeof vd.intended_amount === "number"
+                  ? `₹${vd.intended_amount}` + (vd.discount_applied_rupees > 0
+                      ? ` (₹${vd.discount_applied_rupees} loyalty discount applied)`
+                      : "")
+                  : selectedScenario.actualPrice;
                 setStatus(
                   `✅ Test upgrade PASSED! ${selectedUser.username} → ${selectedScenario.label} · ` +
-                  `₹1 charged · ${selectedScenario.actualPrice} plan activated · Valid ${selectedScenario.validity}`
+                  `₹1 charged · ${actualPriceLabel} plan activated · Valid ${selectedScenario.validity}`
                 );
                 await fetchUserStatus(selectedUser.id);
               } else {

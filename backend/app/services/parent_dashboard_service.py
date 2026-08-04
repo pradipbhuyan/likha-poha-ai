@@ -1,16 +1,21 @@
 from app.services.auth_service import admin_client
 
+# Shared profile column list for parent/child lookups. Includes `grade` so
+# callers (e.g. payments.py's discount eligibility check) don't need a
+# separate fetch.
+_PROFILE_COLUMNS = (
+    "id, email, username, role, parent_id, family_id, "
+    "subscription_plan, account_status, access_cbse, grade, "
+    "daily_token_limit, monthly_token_limit, avatar"
+)
+
 
 def get_family_profile(user_id: str):
     """Load one parent/student profile with subscription and access fields."""
     response = (
         admin_client
         .table("profiles")
-        .select(
-            "id, email, username, role, parent_id, family_id, "
-            "subscription_plan, account_status, access_cbse, "
-            "daily_token_limit, monthly_token_limit, avatar"
-        )
+        .select(_PROFILE_COLUMNS)
         .eq("id", user_id)
         .single()
         .execute()
@@ -35,11 +40,7 @@ def get_family_members(user_id: str):
     response = (
         admin_client
         .table("profiles")
-        .select(
-            "id, email, username, role, parent_id, family_id, "
-            "subscription_plan, account_status, access_cbse, "
-            "daily_token_limit, monthly_token_limit, avatar"
-        )
+        .select(_PROFILE_COLUMNS)
         .eq("family_id", family_id)
         .execute()
     )
@@ -74,11 +75,7 @@ def get_child_by_id(parent_user_id: str, child_id: str):
     response = (
         admin_client
         .table("profiles")
-        .select(
-            "id, email, username, role, parent_id, family_id, "
-            "subscription_plan, account_status, access_cbse, "
-            "daily_token_limit, monthly_token_limit, avatar"
-        )
+        .select(_PROFILE_COLUMNS)
         .eq("id", child_id)
         .eq("family_id", family_id)
         .eq("role", "student")

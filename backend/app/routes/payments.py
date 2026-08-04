@@ -13,6 +13,7 @@ from app.config import settings
 from app.services.subscription_settings_service import list_subscription_contact_settings, list_subscription_plan_settings
 from app.services.auth_service import admin_client, require_parent, require_admin, get_current_user
 from app.services.parent_dashboard_service import get_child_by_id, get_children
+from app.services.exam_prep_service import exam_prep_upgrade_discount_rupees
 from app.services.rate_limit_service import (
     rate_limit_dependency,
     PAYMENT_CREATE_LIMITER,
@@ -326,6 +327,12 @@ def create_payment_order(
 
     plan = get_public_plan(data.plan_key)
     amount_rupees = plan_display_amount(plan)
+    discount_applied = 0
+    if plan["key"] == "exam_prep_center":
+        discount_applied = exam_prep_upgrade_discount_rupees(
+            child.get("subscription_plan"), child.get("grade")
+        )
+        amount_rupees = max(0, amount_rupees - discount_applied)
 
     if amount_rupees <= 0:
         raise HTTPException(
@@ -359,6 +366,7 @@ def create_payment_order(
             "plan_label": plan.get("label"),
             "discount_percent": plan.get("discount_percent"),
             "discount_label": plan.get("discount_label"),
+            "discount_applied_rupees": discount_applied,
         },
     })
 
@@ -557,7 +565,7 @@ def student_create_payment_order(
     profile_resp = (
         admin_client
         .table("profiles")
-        .select("id, role, parent_id, email, username")
+        .select("id, role, parent_id, email, username, subscription_plan, grade")
         .eq("id", user.id)
         .single()
         .execute()
@@ -575,6 +583,12 @@ def student_create_payment_order(
 
     plan = get_public_plan(data.plan_key)
     amount_rupees = plan_display_amount(plan)
+    discount_applied = 0
+    if plan["key"] == "exam_prep_center":
+        discount_applied = exam_prep_upgrade_discount_rupees(
+            profile.get("subscription_plan"), profile.get("grade")
+        )
+        amount_rupees = max(0, amount_rupees - discount_applied)
 
     if amount_rupees <= 0:
         raise HTTPException(status_code=400, detail="Free plans do not need payment.")
@@ -606,6 +620,7 @@ def student_create_payment_order(
             "plan_label": plan.get("label"),
             "source": "student_self_service",
             "student_username": profile.get("username"),
+            "discount_applied_rupees": discount_applied,
         },
     })
 
@@ -834,6 +849,12 @@ ADMIN_TEST_UPGRADE_PLANS = {
         "validity_label": "30 days",
         "child_limit": 2,
     },
+    "exam_prep_center": {
+        "label": "Exam Prep Center",
+        "test_description": "₹1,999 / yr (₹1,799 with loyalty discount)",
+        "validity_label": "12 months",
+        "child_limit": 1,
+    },
 }
 
 ADMIN_TEST_CHARGE_RUPEES = 1   # ₹1 — the only override vs the real flow
@@ -897,7 +918,7 @@ def admin_test_create_order(
     target_resp = (
         admin_client
         .table("profiles")
-        .select("id, username, email, role, subscription_plan, access_cbse")
+        .select("id, username, email, role, subscription_plan, access_cbse, grade")
         .eq("id", data.target_user_id)
         .limit(1)
         .execute()
@@ -916,6 +937,12 @@ def admin_test_create_order(
     # Look up the INTENDED plan (to store its real price in metadata for audit)
     intended_plan = get_plan_any(intended_plan_key)
     intended_amount = plan_display_amount(intended_plan)
+    discount_applied = 0
+    if intended_plan_key == "exam_prep_center":
+        discount_applied = exam_prep_upgrade_discount_rupees(
+            target.get("subscription_plan"), target.get("grade")
+        )
+        intended_amount = max(0, intended_amount - discount_applied)
     plan_meta = ADMIN_TEST_UPGRADE_PLANS[intended_plan_key]
 
     admin_id = admin["profile"]["id"]
@@ -950,6 +977,7 @@ def admin_test_create_order(
             "intendedPlanKey": intended_plan_key,
             "intendedPlanLabel": plan_meta["label"],
             "intendedPlanAmount": intended_amount,
+            "discountAppliedRupees": discount_applied,
             "chargedAmount": ADMIN_TEST_CHARGE_RUPEES,
             "receipt": receipt,
         },
@@ -969,6 +997,7 @@ def admin_test_create_order(
             "validity": plan_meta["validity_label"],
             "child_limit": plan_meta["child_limit"],
             "actual_price": intended_amount,
+            "discount_applied_rupees": discount_applied,
         },
         "charged_amount": ADMIN_TEST_CHARGE_RUPEES,
         "target_user": {
@@ -1028,6 +1057,7 @@ def admin_test_verify(
             "target_user_id": payment.get("child_id"),
             "charged_amount": meta.get("chargedAmount", 1),
             "intended_amount": meta.get("intendedPlanAmount"),
+            "discount_applied_rupees": meta.get("discountAppliedRupees", 0),
             "idempotent": True,
         }
 
@@ -1113,6 +1143,7 @@ def admin_test_verify(
         "target_user_id": target_user_id,
         "charged_amount": meta.get("chargedAmount", 1),
         "intended_amount": meta.get("intendedPlanAmount"),
+        "discount_applied_rupees": meta.get("discountAppliedRupees", 0),
     }
 
 

@@ -32,6 +32,8 @@ import {
   getSubscriptionPlan,
   mergeSubscriptionPlans,
   SUBSCRIPTION_PLANS,
+  getExamPrepUpgradeDiscount,
+  EXAM_PREP_ELIGIBLE_GRADES,
 } from "../config/subscriptionPlans";
 
 const DEFAULT_SUBSCRIPTION_CONTACT = {
@@ -160,6 +162,17 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
   const [paymentProcessing, setPaymentProcessing] = useState(false);
   const [paymentMessage, setPaymentMessage] = useState("");
   const [paymentError, setPaymentError] = useState("");
+
+  // Exam Prep Center upgrade nudge (feature: notify free-tier Gr 11/12 students
+  // picking Premium) + loyalty discount preview (feature: ₹200 off for existing
+  // Premium/Family Premium Gr 11/12 subscribers upgrading to Exam Prep Center).
+  const isFreeTierPlan = !user?.subscriptionPlan || user.subscriptionPlan === "free_tier";
+  const examPrepNudgeVisible =
+    selectedPlanKey === "starter" && isFreeTierPlan && EXAM_PREP_ELIGIBLE_GRADES.has(user?.grade);
+  const examPrepDiscount =
+    selectedPlanKey === "exam_prep_center"
+      ? getExamPrepUpgradeDiscount(user?.subscriptionPlan, user?.grade)
+      : 0;
 
   useEffect(() => {
     if (!isStandaloneStudent) return;
@@ -432,6 +445,28 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
           </div>
 
           <aside className="premium-section subscription-payment-panel">
+            {examPrepNudgeVisible && (
+              <div style={{
+                marginBottom: 16, padding: "12px 14px", borderRadius: 10,
+                background: "rgba(59,130,246,.1)", border: "1px solid rgba(59,130,246,.35)",
+              }}>
+                <strong style={{ display: "block", marginBottom: 4, color: "#60a5fa" }}>
+                  💡 Better value available
+                </strong>
+                <p style={{ margin: "0 0 8px", fontSize: ".82rem", color: "var(--text-muted)" }}>
+                  Exam Prep Center gives you 12 months of Premium-equivalent access
+                  <strong> plus</strong> JEE, NEET, CUET, SAT, IELTS & TOEFL prep —
+                  not included in Premium — for ₹1,999/year.
+                </p>
+                <button
+                  className="secondary-btn"
+                  style={{ fontSize: ".78rem", padding: "6px 12px" }}
+                  onClick={() => setSelectedPlanKey("exam_prep_center")}
+                >
+                  Switch to Exam Prep Center
+                </button>
+              </div>
+            )}
             <div className="subscription-section-heading">
               <CreditCard size={22} strokeWidth={2.4} />
               <h3>Payment summary</h3>
@@ -440,10 +475,21 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
               <span>Selected plan</span>
               <strong>{plans[selectedPlanKey]?.label || "—"}</strong>
             </div>
+            {examPrepDiscount > 0 && (
+              <div className="subscription-summary-line">
+                <span>🎉 Loyalty discount</span>
+                <strong style={{ color: "#10b981" }}>-{formatPlanPrice(examPrepDiscount)}</strong>
+              </div>
+            )}
             <div className="subscription-summary-line total">
               <span>Total today</span>
               <strong>
-                {formatPlanPrice(getPlanDisplayPrice(plans[selectedPlanKey] || {}))}
+                {examPrepDiscount > 0 && (
+                  <span style={{ textDecoration: "line-through", color: "var(--text-muted)", fontWeight: 400, marginRight: 8 }}>
+                    {formatPlanPrice(getPlanDisplayPrice(plans[selectedPlanKey] || {}))}
+                  </span>
+                )}
+                {formatPlanPrice(Math.max(0, getPlanDisplayPrice(plans[selectedPlanKey] || {}) - examPrepDiscount))}
               </strong>
             </div>
             <button
@@ -657,6 +703,19 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
   const supportEmail = contact.email || DEFAULT_SUBSCRIPTION_CONTACT.email;
   const supportPhone = cleanContactNumber(contact.phone);
   const supportWhatsapp = cleanContactNumber(contact.whatsapp);
+
+  // Exam Prep Center upgrade nudge + loyalty discount preview (see
+  // StudentSubscriptionView above for the standalone-student equivalent).
+  const childIsFreeTierPlan =
+    !selectedChild?.subscription_plan || selectedChild.subscription_plan === "free_tier";
+  const examPrepNudgeVisible =
+    selectedPlanKey === "starter"
+    && childIsFreeTierPlan
+    && EXAM_PREP_ELIGIBLE_GRADES.has(selectedChild?.grade);
+  const examPrepDiscount =
+    selectedPlanKey === "exam_prep_center"
+      ? getExamPrepUpgradeDiscount(selectedChild?.subscription_plan, selectedChild?.grade)
+      : 0;
 
   function handlePlanClick(planKey) {
     /** Select the plan card the parent wants to review or purchase. */
@@ -1033,6 +1092,28 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
         </div>
 
         <aside className="premium-section subscription-payment-panel">
+          {examPrepNudgeVisible && (
+            <div style={{
+              marginBottom: 16, padding: "12px 14px", borderRadius: 10,
+              background: "rgba(59,130,246,.1)", border: "1px solid rgba(59,130,246,.35)",
+            }}>
+              <strong style={{ display: "block", marginBottom: 4, color: "#60a5fa" }}>
+                💡 Better value available
+              </strong>
+              <p style={{ margin: "0 0 8px", fontSize: ".82rem", color: "var(--text-muted)" }}>
+                Exam Prep Center gives {selectedChild?.username || "your child"} 12 months
+                of Premium-equivalent access <strong>plus</strong> JEE, NEET, CUET, SAT,
+                IELTS & TOEFL prep — not included in Premium — for ₹1,999/year.
+              </p>
+              <button
+                className="secondary-btn"
+                style={{ fontSize: ".78rem", padding: "6px 12px" }}
+                onClick={() => handlePlanClick("exam_prep_center")}
+              >
+                Switch to Exam Prep Center
+              </button>
+            </div>
+          )}
           <div className="subscription-section-heading">
             <CreditCard size={22} strokeWidth={2.4} />
             <h3>Payment preview</h3>
@@ -1057,9 +1138,23 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
             </strong>
           </div>
 
+          {examPrepDiscount > 0 && (
+            <div className="subscription-summary-line">
+              <span>🎉 Loyalty discount</span>
+              <strong style={{ color: "#10b981" }}>-{formatPlanPrice(examPrepDiscount)}</strong>
+            </div>
+          )}
+
           <div className="subscription-summary-line total">
             <span>Total today</span>
-            <strong>{formatPlanPrice(getPlanDisplayPrice(selectedPlan))}</strong>
+            <strong>
+              {examPrepDiscount > 0 && (
+                <span style={{ textDecoration: "line-through", color: "var(--text-muted)", fontWeight: 400, marginRight: 8 }}>
+                  {formatPlanPrice(getPlanDisplayPrice(selectedPlan))}
+                </span>
+              )}
+              {formatPlanPrice(Math.max(0, getPlanDisplayPrice(selectedPlan) - examPrepDiscount))}
+            </strong>
           </div>
 
           <button

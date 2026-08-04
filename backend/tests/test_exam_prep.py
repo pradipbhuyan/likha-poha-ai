@@ -423,6 +423,8 @@ class _FakeTable:
     def eq(self, *_a, **_k): return self
     def ilike(self, *_a, **_k): return self
     def limit(self, *_a, **_k): return self
+    def order(self, *_a, **_k): return self
+    def gt(self, *_a, **_k): return self
     def insert(self, data):
         self._inserted = data
         return self
