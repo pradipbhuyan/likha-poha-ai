@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import logoImg from "../assets/AITutorLogo1.png";
-import { BookOpen, MessageCircle, ClipboardList, Users, TrendingUp, Zap, Leaf, ShieldCheck, Globe, GraduationCap, HelpCircle, BarChart2, Trophy, Award, Target, Monitor, FlaskConical, Landmark, Heart, Calculator, Languages, Headphones, Check, X } from "lucide-react";
+import { BookOpen, MessageCircle, ClipboardList, Users, TrendingUp, Zap, Leaf, ShieldCheck, Globe, GraduationCap, HelpCircle, BarChart2, Trophy, Award, Target, Monitor, FlaskConical, Landmark, Heart, Calculator, Languages, Headphones, Check, X, FileText } from "lucide-react";
 import NoticeboardPricingTable from "../components/NoticeboardPricingTable";
 import "./LandingPage.css";
 
@@ -159,9 +159,9 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       <div className="lp-sw">
         <div className="lp-sh"><div className="lp-ey">See It In Action</div><h2>A Glimpse of What Students Experience Daily</h2><p>Everything works on phone &mdash; no app download needed</p></div>
         <div className="lp-demo">
-          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(124,58,237,.2)"}}><BookOpen size={16} strokeWidth={2}/></div>AI LESSON</div><img src="/screenshots/S05-lesson-content.png" alt="AI Lesson" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Step-wise chapter lesson grounded in your NCERT textbook</div></div>
-          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(6,182,212,.2)"}}><ClipboardList size={16} strokeWidth={2}/></div>MOCK TEST</div><img src="/screenshots/S07-mock-test-question.png" alt="Mock Test" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">CBSE mock tests with instant scoring and AI explanations</div></div>
-          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}><Users size={16} strokeWidth={2}/></div>PARENT DASHBOARD</div><img src="/screenshots/S13-parent-dashboard-top.png" alt="Parent Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Real-time progress, score trends and weak area alerts for parents</div></div>
+          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(124,58,237,.2)"}}><BookOpen size={16} strokeWidth={2}/></div>AI LESSON</div><img src="/screenshots/2026-08-lessons.png" alt="AI Lesson" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Step-wise chapter lesson grounded in your NCERT textbook</div></div>
+          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(6,182,212,.2)"}}><ClipboardList size={16} strokeWidth={2}/></div>MOCK TEST</div><img src="/screenshots/2026-08-mocktest.png" alt="Mock Test" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">CBSE mock tests with instant scoring and AI explanations</div></div>
+          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}><Users size={16} strokeWidth={2}/></div>PARENT DASHBOARD</div><img src="/screenshots/2026-08-parentdashboard.png" alt="Parent Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Real-time progress, score trends and weak area alerts for parents</div></div>
         </div>
       </div>
       <div className="lp-sf" id="features"><div className="lp-si">
@@ -174,16 +174,16 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
             <div className="lp-fc" style={{background:"linear-gradient(180deg,rgba(239,68,68,.05),transparent 60%),#0f172a",borderColor:"rgba(239,68,68,.25)"}}><div className="lp-fi" style={{background:"rgba(239,68,68,.15)"}}><Users size={22} strokeWidth={2} /></div><h3>Parent Dashboard</h3><p>Track daily study time, test scores, weak area alerts, and AI usage. Two children per family account.</p></div>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:"16px"}}>
-            <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}><HelpCircle size={16} strokeWidth={2}/></div>INSTANT DOUBT SOLVING</div><img src="/screenshots/S06-ask-doubt-answer.png" alt="Doubt Solving" style={{width:"100%",display:"block"}} loading="lazy" /></div>
-            <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(99,102,241,.2)"}}><BarChart2 size={16} strokeWidth={2}/></div>STUDENT ANALYTICS</div><img src="/screenshots/S11-analytics-top.png" alt="Student Analytics" style={{width:"100%",display:"block"}} loading="lazy" /></div>
+            <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}><HelpCircle size={16} strokeWidth={2}/></div>INSTANT DOUBT SOLVING</div><img src="/screenshots/2026-08-askdoubt.png" alt="Doubt Solving" style={{width:"100%",display:"block"}} loading="lazy" /></div>
+            <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(99,102,241,.2)"}}><BarChart2 size={16} strokeWidth={2}/></div>STUDENT ANALYTICS</div><img src="/screenshots/2026-08-analytics.png" alt="Student Analytics" style={{width:"100%",display:"block"}} loading="lazy" /></div>
           </div>
         </div>
       </div></div>
       <div className="lp-sf lp-gamified"><div className="lp-si">
         <div className="lp-sh"><div className="lp-ey">Kids Love It</div><h2>Gamified Learning Dashboard</h2><p>Badges, leaderboards and achievement streaks keep students motivated every day</p></div>
         <div className="lp-2col">
-          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(245,158,11,.2)"}}><Trophy size={16} strokeWidth={2}/></div>ACHIEVEMENTS AND BADGES</div><img src="/screenshots/S04-dash-xp-streak.png" alt="Gamified Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
-          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(99,102,241,.2)"}}><Award size={16} strokeWidth={2}/></div>CLASS LEADERBOARD</div><img src="/screenshots/S12-leaderboard.png" alt="Leaderboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
+          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(245,158,11,.2)"}}><Trophy size={16} strokeWidth={2}/></div>ACHIEVEMENTS AND BADGES</div><img src="/screenshots/2026-08-dashboard.png" alt="Gamified Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
+          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(99,102,241,.2)"}}><Award size={16} strokeWidth={2}/></div>CLASS LEADERBOARD</div><img src="/screenshots/2026-08-leaderboard.png" alt="Leaderboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
         </div>
       </div></div>
       {/* Exam Prep Center — Grade 11 & 12 */}
@@ -199,6 +199,15 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           ))}
         </div>
       </div>
+
+      {/* Board Papers + JEE Main Simulator — proof screenshots */}
+      <div className="lp-sf"><div className="lp-si">
+        <div className="lp-sh"><div className="lp-ey">Real Exam Practice</div><h2>Practice Exactly What Gets Asked</h2><p>A decade of official board papers, and an exam-authentic JEE simulator for Grade 11&ndash;12</p></div>
+        <div className="lp-2col">
+          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(59,130,246,.2)"}}><FileText size={16} strokeWidth={2}/></div>BOARD PAPERS</div><img src="/screenshots/2026-08-boardpapers.png" alt="Board Papers" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">A decade of real CBSE board papers (2015&ndash;2026), every one with official answers</div></div>
+          <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(99,102,241,.2)"}}><Monitor size={16} strokeWidth={2}/></div>JEE MAIN SIMULATOR</div><img src="/screenshots/2026-08-jee-simulator.png" alt="JEE Main Simulator" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">NTA-style exam interface &mdash; live countdown timer, subject-wise tabs, and a full question palette</div></div>
+        </div>
+      </div></div>
 
       <div className="lp-sw" id="pricing">
         <div className="lp-sh"><div className="lp-ey">Class Noticeboard</div><h2>This term&rsquo;s learning plans</h2><p>Pinned up for parents & students &mdash; what each plan gets you, subject by subject.</p></div>
