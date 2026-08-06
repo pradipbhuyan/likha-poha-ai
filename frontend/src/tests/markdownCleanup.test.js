@@ -556,4 +556,88 @@ describe("markdownCleanup", () => {
       expect(result).toMatch(/\$[^$]+\$/);
     }
   });
+
+  // ── Regression: defect ff21a08c — "Formula needs to display correctly" ───
+  // Grade 11, Lessons route, reported on mobile (360×652). Root cause:
+  // normalizeLatexParentheses' first regex pass (wraps parenthesized LaTeX
+  // commands like "(\frac{p}{q})" into "$...$") matched bare "(...)" content
+  // ANYWHERE in the string, with no check for whether it was already inside
+  // a math span produced by an EARLIER pipeline step. Two distinct ways this
+  // fired on real content:
+  //
+  // 1. normalizeEscapedBracketMath (step 1) converts "\[ (6.4 \times 10^6)^2
+  //    = ... \]" into a clean "$$(6.4 \times 10^6)^2 = ...$$" display block.
+  //    normalizeLatexParentheses (step 8) then matched the inner
+  //    "(6.4 \times 10^6)" — a bare "(...)" containing a LaTeX command,
+  //    with no awareness it was inside an already-complete "$$...$$" span —
+  //    and re-wrapped it in its own "$...$", corrupting the whole block:
+  //    "$$$6.4 \times $10^6$ $^2 = 4.096 \times 10^{13}$$".
+  //    Seen on Grade 11 Physics, Gravitation, numeric worked examples.
+  //
+  // 2. A parenthetical mixing prose with an already-formed "$...$" span —
+  //    "(for $r \neq 1$)" — has its LaTeX command detected via the stray
+  //    backslash still present inside the nested "$...$" (e.g. "\neq"), and
+  //    hasProseAroundLatex undercounts prose because single-letter math
+  //    variables like "r" don't count as a 2+-letter "word". The whole
+  //    parenthetical (prose AND the already-valid inner span) then gets
+  //    blindly re-wrapped: "(for $r \neq 1$)" → "$for $r \neq 1$$".
+  //    Seen on Grade 11 Mathematics, Sequences and Series, formula lists —
+  //    and this corruption cascades: the resulting malformed "$" run throws
+  //    off transformOutsideInlineMath's span-detection for the REST of the
+  //    document, causing normalizePlainExponents to also wrongly reach
+  //    inside a later, otherwise-untouched "$$a_{10} = ...$$" block further
+  //    down the same lesson.
+  //
+  // Fix: normalizeLatexParentheses now (a) pre-computes math-span ranges
+  // from the ORIGINAL content before its first regex pass runs, skipping
+  // any match whose opening "(" falls inside one, and (b) skips any match
+  // whose captured expression already contains a "$" — signalling its
+  // LaTeX is already correctly delimited by an earlier step.
+  test("does not corrupt a $$...$$ display block whose content has a parenthesized LaTeX command (defect ff21a08c)", () => {
+    const input =
+      "Step 3: Calculate denominator:\n  \\[\n  (6.4 \\times 10^6)^2 = 4.096 \\times 10^{13}\n  \\]\n";
+
+    const result = normalizeTutorMarkdown(input);
+
+    // Must not contain the corrupted triple-dollar / split-span shape.
+    expect(result).not.toMatch(/\${3}/);
+    // The formula must render as one clean, parseable math span.
+    expect(result).toMatch(/\$\(?6\.4 \\times 10\^6\)?\^2 = 4\.096 \\times 10\^\{13\}\$/);
+  });
+
+  test("leaves a prose parenthetical containing an already-formed $...$ span untouched", () => {
+    const input =
+      "General term: \\( a_n = a r^{n-1} \\).\n" +
+      "Sum of first n terms: \\( S_n = \\frac{a(1 - r^n)}{1 - r} \\) (for \\( r \\neq 1 \\)).";
+
+    const result = normalizeTutorMarkdown(input);
+
+    // The "(for ... )" parenthetical must stay intact around the math span,
+    // not get re-wrapped into a second, nested "$" pair.
+    expect(result).toContain("(for $r \\neq 1$)");
+    expect(result).not.toMatch(/\$for/);
+  });
+
+  test("full pipeline renders Grade 11 Sequences and Series formula list without corrupting later formulas", () => {
+    // Reproduces the exact cascade: an earlier corrupted parenthetical threw
+    // off span-detection for a LATER, otherwise-unrelated $$...$$ block
+    // further down the same lesson content.
+    const input = [
+      "5. **Important formulas**:",
+      "   - \\( a_n = a r^{n-1} \\)",
+      "   - \\( S_n = \\frac{a(1 - r^n)}{1 - r} \\) (for \\( r \\neq 1 \\))",
+      "",
+      "**Step 1:** Find the 10th term:",
+      "\\[",
+      "a_{10} = a r^{10-1} = 3 \\times 2^{9} = 3 \\times 512 = 1536",
+      "\\]",
+    ].join("\n");
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).not.toMatch(/\$for/);
+    expect(result).toContain(
+      "$$a_{10} = a r^{10-1} = 3 \\times 2^{9} = 3 \\times 512 = 1536$$"
+    );
+  });
 });

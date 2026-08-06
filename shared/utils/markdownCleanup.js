@@ -229,6 +229,30 @@ export function normalizeLatexParentheses(text) {
   if (!text) return "";
 
   return transformOutsideCodeFences(text, (content) => {
+    // Ranges already inside a $...$ / $$...$$ math span in the ORIGINAL
+    // content — computed before the LaTeX-command paren pass below runs, so
+    // that pass can skip them. Without this guard, a display block already
+    // produced earlier in the pipeline (e.g. normalizeEscapedBracketMath
+    // converting "\[ (6.4 \times 10^6)^2 = ... \]" to
+    // "$$(6.4 \times 10^6)^2 = ...$$") has its inner "(6.4 \times 10^6)"
+    // matched as if it were a bare parenthetical containing a LaTeX command,
+    // and gets re-wrapped in its own nested "$...$" — corrupting the whole
+    // display block into unparseable, garbled source
+    // ("$$$6.4 \times $10^6$ $^2 = ...$$") instead of leaving the
+    // already-correct "$$...$$" block untouched. Seen on Grade 11 Physics
+    // Gravitation numeric worked examples (bug ff21a08c).
+    const preExistingMathRanges = [];
+    const preExistingMathPattern = /\$\$[\s\S]*?\$\$|\$[^$\n]*\$/g;
+    let preExistingMatch;
+    while ((preExistingMatch = preExistingMathPattern.exec(content))) {
+      preExistingMathRanges.push([
+        preExistingMatch.index,
+        preExistingMatch.index + preExistingMatch[0].length,
+      ]);
+    }
+    const isInsidePreExistingMath = (pos) =>
+      preExistingMathRanges.some(([start, end]) => pos >= start && pos < end);
+
     const withLatexCommands = content.replace(
       // (?<!\\) — skip when the "(" is itself part of a "\(" LaTeX inline-math
       // escape sequence. Without this, "\(\sqrt{2},\sqrt{3},\sqrt{5}\)" gets
@@ -247,7 +271,28 @@ export function normalizeLatexParentheses(text) {
       // delimiter bug normalizeLeftRightDelimiters exists to fix, just from
       // the opposite direction.
       /(?<!\\)(?<!\\left)\(([^()\n]*\\[^()\n]*)\)/g,
-      (match, expression) => {
+      (match, expression, offset) => {
+        if (isInsidePreExistingMath(offset)) {
+          return match;
+        }
+
+        // The captured expression itself already contains a "$" — its LaTeX
+        // command is already correctly delimited by an earlier pipeline step
+        // (e.g. "\( r \neq 1 \)" → "$r \neq 1$" from normalizeEscapedBracketMath),
+        // and the surrounding "(...)" is just ordinary prose punctuation, not
+        // unwrapped LaTeX — e.g. "(for $r \neq 1$)" means "(for r≠1)". Without
+        // this guard, hasProseAroundLatex undercounts single-letter math
+        // variables like "r" (requires 2+ letters to count as a "word"), so
+        // "(for $r \neq 1$)" reads as only one prose word ("for") and falls
+        // through to the blind-wrap branch, nesting a NEW "$...$" pair around
+        // the prose AND the already-valid inner span:
+        // "(for $r \neq 1$)" → "$for $r \neq 1$$" — mismatched dollar nesting
+        // that breaks KaTeX for the rest of the document. Seen on Grade 11
+        // Mathematics Sequences and Series formula lists (bug ff21a08c).
+        if (expression.includes("$")) {
+          return match;
+        }
+
         if (!LATEX_COMMAND_PATTERN.test(expression)) {
           return match;
         }
