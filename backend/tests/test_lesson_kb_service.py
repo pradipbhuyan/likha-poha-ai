@@ -26,7 +26,11 @@ Also added: chip count now scales with how much RAG content came back
 supports a couple of distinct, well-grounded questions, and forcing 5 just
 pressures the model to pad with repetitive or weakly-grounded filler.
 """
-from app.services.lesson_kb_service import _generate_chips, _target_chip_count
+from app.services.lesson_kb_service import (
+    _generate_chips,
+    _is_ungrounded_answer,
+    _target_chip_count,
+)
 import app.services.lesson_kb_service as lesson_kb_service
 
 
@@ -113,3 +117,94 @@ class TestGraduatedChipCount:
         chips = _generate_chips("Grade 9", "Science", "Rich Chapter", "Core explanation")
 
         assert len(chips) == 5
+
+
+class TestUngroundedAnswerGuard:
+    """Third anti-hallucination guard. Regression coverage for the LKB
+    "Not mentioned" bug: Grade 5 English / "Vocation" / a lesson step showed
+    a "students also ask" card, "What vocations are the following people
+    associated with?", with all five bullets reading "<Name>: Not mentioned".
+
+    Root cause: that question was lifted verbatim from the chapter's "Let us
+    Write" section — an open-ended research/writing prompt naming five real
+    public figures (A.P.J. Abdul Kalam, M. Visvesvaraya, Janaki Ammal, M.S.
+    Subbulakshmi, Salim Ali) whose vocations are never stated in the Tagore
+    poem itself. The RAG-grounding guard didn't catch this because RAG
+    grounding for the chapter WAS present (the question text itself is in
+    the chapter) — the LLM just had no factual answer to give and, instead
+    of skipping the question, filled every bullet with a placeholder.
+    """
+
+    def test_is_ungrounded_answer_detects_the_exact_bug_scenario(self):
+        answer = (
+            "- A.P.J. Abdul Kalam: Not mentioned\n"
+            "- M. Visvesvaraya: Not mentioned\n"
+            "- Janaki Ammal: Not mentioned\n"
+            "- M.S. Subbulakshmi: Not mentioned\n"
+            "- Salim Ali: Not mentioned"
+        )
+        assert _is_ungrounded_answer(answer) is True
+
+    def test_is_ungrounded_answer_ignores_normal_case(self):
+        answer = (
+            "- The hawker sells bangles in the morning\n"
+            "- The gardener digs the ground with his spade\n"
+            "- The watchman walks up and down all night\n"
+            "- The poet wishes he could do these vocations too"
+        )
+        assert _is_ungrounded_answer(answer) is False
+
+    def test_is_ungrounded_answer_tolerates_a_single_stray_bullet(self):
+        # A well-grounded answer with ONE bullet noting a minor gap should
+        # not be discarded wholesale — only when it dominates the chip.
+        answer = (
+            "- The hawker sells bangles in the morning\n"
+            "- The gardener digs the ground with his spade\n"
+            "- The watchman walks up and down all night\n"
+            "- His exact age is not mentioned in the poem"
+        )
+        assert _is_ungrounded_answer(answer) is False
+
+    def test_is_ungrounded_answer_handles_empty_string(self):
+        assert _is_ungrounded_answer("") is False
+
+    def test_is_ungrounded_answer_detects_hedged_phrasing(self):
+        # Seen live on the same chapter, a different lesson step: a single
+        # bullet hedging with "not directly answerable" rather than the
+        # blunter "Not mentioned".
+        answer = (
+            "- This question is not directly answerable from the given "
+            "content. However, it is mentioned that the speaker observes "
+            "people with different vocations on his way to school and back home."
+        )
+        assert _is_ungrounded_answer(answer) is True
+
+    def test_generate_chips_drops_a_chip_whose_answer_is_mostly_ungrounded(self, monkeypatch):
+        """Full regression: RAG grounding present (the writing-prompt text
+        itself IS in the chapter), LLM still answers with all "Not
+        mentioned" bullets — the chip must be dropped, not stored."""
+        monkeypatch.setattr(
+            lesson_kb_service, "_get_rag_context",
+            lambda *a, **kw: "word " * 600,  # rich enough for full CHIPS_PER_STEP
+        )
+        bad_chip = (
+            '{"question": "What vocations are the following people associated with?", '
+            '"answer": "- A.P.J. Abdul Kalam: Not mentioned\\n'
+            '- M. Visvesvaraya: Not mentioned\\n'
+            '- Janaki Ammal: Not mentioned\\n'
+            '- M.S. Subbulakshmi: Not mentioned\\n'
+            '- Salim Ali: Not mentioned"}'
+        )
+        good_chip = (
+            '{"question": "What does the hawker sell?", '
+            '"answer": "- Bangles\\n- Other trinkets\\n- Goods carried in a basket"}'
+        )
+        monkeypatch.setattr(
+            lesson_kb_service, "ask_llm",
+            lambda *a, **kw: f"[{bad_chip}, {good_chip}]",
+        )
+
+        chips = _generate_chips("Grade 5", "English", "9. Vocation", "What We Learn")
+
+        assert len(chips) == 1
+        assert chips[0]["question"] == "What does the hawker sell?"

@@ -362,6 +362,46 @@ def _target_chip_count(rag_context: str) -> int:
     return CHIPS_PER_STEP
 
 
+# Third anti-hallucination guard (see test_lesson_kb_service.py for the other
+# two): even WITH real RAG grounding, the LLM can still be handed a question
+# it has no factual answer for — most commonly because the "question" it
+# generated was actually lifted from an open-ended "Let us Write"/"Let us
+# Talk"/discussion/research-activity prompt in the textbook (which by design
+# has no answer stated in the chapter) rather than a real comprehension
+# question. Rather than admitting it can't answer and skipping the question
+# (as instructed in the prompt — LLMs don't reliably follow that instruction),
+# it answers every bullet with a "no information" placeholder instead — e.g.
+# Grade 5 English "Vocation": "What vocations are the following people
+# associated with?" (a Tagore-poem writing prompt naming five real public
+# figures) produced five bullets that each just said "<Name>: Not mentioned".
+# That is a useless card masquerading as an answered doubt, so the whole chip
+# must be dropped rather than stored.
+_UNGROUNDED_BULLET_PATTERN = re.compile(
+    r"\bnot\s+(?:directly\s+|clearly\s+|explicitly\s+)?"
+    r"(?:mentioned|stated|specified|given|covered|found|discussed|"
+    r"described|applicable|answered|answerable|available|provided)\b"
+    r"|\bno\s+information\b"
+    r"|\bcannot\s+be\s+determined\b"
+    r"|\bnot\s+(?:in|part\s+of)\s+the\s+(?:text|chapter|story|poem|passage|lesson)\b",
+    re.IGNORECASE,
+)
+
+
+def _is_ungrounded_answer(answer: str) -> bool:
+    """True when HALF OR MORE of an answer's bullets are "no information"
+    non-answers rather than actual textbook facts — signals the question
+    itself was never answerable from the chapter (see module-level comment
+    above _UNGROUNDED_BULLET_PATTERN). A single stray bullet acknowledging
+    a minor gap in an otherwise well-grounded answer should not trigger
+    this — only when it dominates the whole chip.
+    """
+    bullets = [b for b in answer.split("\n") if b.strip()]
+    if not bullets:
+        return False
+    ungrounded = sum(1 for b in bullets if _UNGROUNDED_BULLET_PATTERN.search(b))
+    return ungrounded / len(bullets) >= 0.5
+
+
 def _generate_chips(
     grade: str,
     subject: str,
@@ -432,6 +472,14 @@ def _generate_chips(
             "- Do NOT use general subject knowledge not present in the retrieved text.\n"
             "- Do NOT invent examples, characters, or facts not in the textbook chunks.\n"
             "- If the retrieved content covers only some topics, generate questions only for those topics.\n"
+            "- Do NOT turn 'Let us Write', 'Let us Talk', 'Let us Discuss', or any other "
+            "open-ended activity/homework/research prompt into a question — these ask the "
+            "STUDENT to go find or write something themselves and have no answer stated in "
+            "the textbook (e.g. 'What vocations are the following people associated with?' "
+            "listing real people is a research task, not a comprehension question).\n"
+            "- If you cannot find a real, factual answer for a question in the textbook "
+            "content, SKIP that question entirely. NEVER write an answer bullet like "
+            "'Not mentioned', 'Not stated', 'Not specified', or similar placeholder text.\n"
         )
 
         user_prompt = f"""Chapter: "{chapter}" | Lesson step: "{step_title}" | Grade: {grade}{context_section}
@@ -491,7 +539,7 @@ Respond ONLY with JSON array:
         for chip in chips:
             q = (chip.get("question") or "").strip()
             a = (chip.get("answer") or "").strip()
-            if q and a and ("•" in a or "- " in a):
+            if q and a and ("•" in a or "- " in a) and not _is_ungrounded_answer(a):
                 validated.append({"question": q, "answer": a})
 
         return validated[:target_count]
