@@ -1,0 +1,79 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Composition and Structure of Atmosphere",
+    "central_question": "What is the atmosphere made of, how is it vertically structured, and which parts of it matter most for weather, climate and life?",
+    "in_scope_units": [
+      "The atmosphere as a life-supporting envelope of gases",
+      "Composition: gases, water vapour and dust particles",
+      "Structure: troposphere, tropopause, stratosphere, mesosphere, ionosphere or thermosphere, and exosphere",
+      "Elements of weather and climate",
+      "NCERT exercises"
+    ],
+    "banned_topics": [
+      "Detailed insolation and heat budget from Chapter 8",
+      "Pressure belts and planetary circulation from Chapter 9",
+      "Detailed condensation and rainfall from Chapter 10"
+    ],
+    "must_include_keywords": [
+      "atmosphere",
+      "gases",
+      "oxygen",
+      "carbon dioxide",
+      "ozone",
+      "greenhouse effect",
+      "water vapour",
+      "dust particles",
+      "hygroscopic nuclei",
+      "density",
+      "troposphere",
+      "tropopause",
+      "stratosphere",
+      "ozone layer",
+      "ultra-violet radiation",
+      "mesosphere",
+      "mesopause",
+      "ionosphere",
+      "ions",
+      "radio waves",
+      "thermosphere",
+      "exosphere",
+      "temperature",
+      "pressure",
+      "winds",
+      "humidity",
+      "clouds",
+      "precipitation"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Ozone is concentrated mainly in the troposphere.",
+        "correction": "The chapter places the ozone layer in the stratosphere and says it absorbs harmful ultra-violet radiation."
+      },
+      {
+        "claim": "Atmospheric density increases with altitude.",
+        "correction": "Density is highest near the surface and decreases upward."
+      },
+      {
+        "claim": "All atmospheric layers are equally central to daily weather.",
+        "correction": "Weather and climate changes occur in the troposphere, and the chapter says geographers focus especially on the first two layers."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 1(v): identify the gas transparent to incoming but opaque to outgoing radiation",
+      "NCERT Exercise 1(iii): classify sea salt, pollen, ash, smoke-soot and fine soil",
+      "NCERT Exercise 2(iii): describe atmospheric composition",
+      "NCERT Exercise 2(iv): explain the importance of the troposphere",
+      "NCERT Exercise 3(ii): draw, label and describe atmospheric structure"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 on atmospheric composition and structure."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Composition and Structure of Atmosphere\n\n## What you will learn\nYou will define the atmosphere and identify its major constituents. You will focus on the roles of oxygen, carbon dioxide and ozone.\n\n## Simple explanation\nThe atmosphere is the mixture of gases surrounding the earth. It supports life, interacts with radiation and changes in composition with height.\n\n## Step-by-step breakdown\n- **Atmospheric envelope**: Air surrounds the earth, is colourless and odourless, and is felt directly when it moves as wind.\n- **Gases**: The atmosphere contains life-giving gases, including oxygen for humans and animals and carbon dioxide for plants.\n- **Carbon dioxide**: Carbon dioxide is transparent to incoming solar radiation but absorbs outgoing terrestrial radiation and contributes to the greenhouse effect.\n- **Ozone**: Ozone absorbs ultra-violet radiation and protects life from harmful solar energy.\n- **Vertical change**: The proportions of some gases change in the higher atmosphere, and carbon dioxide and water vapour are confined to lower levels compared with the full atmospheric column.\n\n## Worked example\nQuestion: Why is carbon dioxide meteorologically important even though it is not the major atmospheric gas?\n\nAnswer:\n- The source says carbon dioxide lets incoming solar radiation pass but absorbs part of outgoing terrestrial radiation.\n- This radiative behaviour affects atmospheric heating and contributes to the greenhouse effect.\n- Final answer: Carbon dioxide is meteorologically important because it helps retain terrestrial heat even though other gases make up more of the atmosphere.\n\n## Common mistake\nDo not equate “important” with “most abundant.” A gas can be climatically important because of what it does, not because it forms the largest share.\n\n## Quick check question\nQuestion: Which gas filters harmful ultra-violet rays?\nAnswer: Ozone.\nExplanation: The chapter identifies ozone as the atmospheric component that absorbs ultra-violet radiation and prevents much of it from reaching the surface.\n\n## Summary\n- The atmosphere is a mixture of gases around the earth.\n- Different gases perform different life-supporting and radiative roles.\n- Carbon dioxide contributes to the greenhouse effect.\n- Ozone absorbs harmful ultra-violet radiation.",
+    "Core explanation": "# Core explanation: Composition and Structure of Atmosphere\n\n## What you will learn\nYou will examine water vapour and dust particles as variable constituents. You will see how they affect heat and cloud formation.\n\n## Simple explanation\nWater vapour and dust are less uniform than the major gases. Their distribution changes with place and height, yet both have important meteorological functions.\n\n## Step-by-step breakdown\n- **Water vapour**: Water vapour decreases with altitude and generally from equator toward poles; it is much greater in warm wet air than in dry cold air.\n- **Thermal role**: Water vapour absorbs some insolation and preserves radiated heat, acting like a blanket against extreme heating and cooling.\n- **Dust sources**: Dust includes sea salts, fine soil, smoke-soot, ash, pollen and disintegrated meteor particles.\n- **Dust distribution**: Dust is concentrated mainly in the lower atmosphere, though convection can carry it upward; subtropical and temperate dry winds favour higher concentrations.\n- **Hygroscopic nuclei**: Dust and salt particles act as hygroscopic nuclei around which water vapour condenses to produce clouds.\n\n## Worked example\nQuestion: Why are dust and salt particles important to cloud formation?\n\nAnswer:\n- The chapter states that they act as hygroscopic nuclei around which water vapour condenses.\n- Condensation is assisted when vapour has minute particles on which droplets can form.\n- Final answer: Dust and salt aid cloud formation by providing condensation nuclei.\n\n## Common mistake\nA common mistake is to treat dust only as unwanted material. In this chapter it also has a direct role in condensation.\n\n## Quick check question\nQuestion: How does water vapour generally change with altitude?\nAnswer: It decreases with altitude.\nExplanation: The chapter describes water vapour as a variable gas whose amount becomes smaller upward.\n\n## Summary\n- Water vapour varies strongly in space and height.\n- It helps absorb and retain heat.\n- Dust has many natural and human-related sources.\n- Hygroscopic dust and salt particles assist cloud formation.",
+    "Worked examples": "# Worked examples: Composition and Structure of Atmosphere\n\n## What you will learn\nYou will trace the troposphere, tropopause and stratosphere. You will understand why the lower layers receive special attention in geography.\n\n## Simple explanation\nThe atmosphere is divided into layers mainly by temperature conditions, while density is greatest near the surface and decreases with altitude.\n\n## Step-by-step breakdown\n- **Troposphere**: The troposphere is the lowermost layer, contains dust and water vapour, hosts weather and climate changes and supports biological activity.\n- **Thickness**: The troposphere is thicker near the equator because strong convection carries heat to greater heights.\n- **Tropopause**: The tropopause separates the troposphere and stratosphere, and its temperature is nearly constant.\n- **Stratosphere**: The stratosphere lies above the tropopause and contains the ozone layer.\n- **Ozone layer**: The ozone layer absorbs harmful ultra-violet radiation and shields life on earth.\n\n## Worked example\nQuestion: Why is the troposphere the most important layer for human beings?\n\nAnswer:\n- The text says the troposphere contains dust and water vapour, is the zone of weather and climate changes, and is the most important layer for biological activity.\n- These features place the processes most directly experienced by life in the lowest atmospheric layer.\n- Final answer: The troposphere is most important because it contains key near-surface constituents and hosts weather, climate changes and biological activity.\n\n## Common mistake\nDo not assume temperature follows one uniform trend through all layers; changing temperature behaviour helps define the layers.\n\n## Quick check question\nQuestion: What is the boundary between the troposphere and stratosphere?\nAnswer: The tropopause.\nExplanation: The chapter names this nearly constant-temperature transition zone between the two layers.\n\n## Summary\n- Atmospheric density decreases with height.\n- The troposphere hosts weather and biological activity.\n- The tropopause separates the lowest two major layers.\n- The stratosphere contains the ozone layer.",
+    "Exam-style problems": "# Exam-style problems: Composition and Structure of Atmosphere\n\n## What you will learn\nYou will complete the upper atmospheric structure. You will distinguish the mesosphere, ionosphere or thermosphere, and exosphere.\n\n## Simple explanation\nThe upper atmosphere contains layers with different temperature trends and physical properties. Charged particles become important in the ionosphere, while the exosphere becomes extremely thin.\n\n## Step-by-step breakdown\n- **Mesosphere**: The mesosphere lies above the stratosphere, temperature decreases with height, and its upper boundary is the mesopause.\n- **Ionosphere**: The ionosphere contains electrically charged ions and reflects radio waves transmitted from the earth.\n- **Thermosphere**: The chapter’s sequence places the thermosphere above the mesosphere, with increasing temperature in the ionospheric region.\n- **Exosphere**: The exosphere is the highest layer, extremely rarefied and gradually merging with outer space.\n- **Layer focus**: Although all layers influence us, geographers are especially concerned with the troposphere and stratosphere.\n\n## Worked example\nQuestion: How can the ionosphere be distinguished from the mesosphere below it?\n\nAnswer:\n- The source identifies charged ions, radio-wave reflection and increasing temperature with height in the ionosphere.\n- The mesosphere instead has decreasing temperature upward and ends at the mesopause.\n- Final answer: The ionosphere is distinguished by its charged particles, radio-wave reflection and rising temperature trend.\n\n## Common mistake\nDo not confuse the mesopause with the tropopause: the first ends the mesosphere, while the second separates troposphere and stratosphere.\n\n## Quick check question\nQuestion: Which upper layer gradually merges with outer space?\nAnswer: The exosphere.\nExplanation: The chapter describes the exosphere as the highest and extremely rarefied layer.\n\n## Summary\n- The mesosphere lies above the stratosphere and ends at the mesopause.\n- The ionosphere contains ions and reflects radio waves.\n- Temperature behaviour differs between layers.\n- The exosphere gradually merges with outer space.",
+    "Revision and recap": "# Revision and recap: Composition and Structure of Atmosphere\n\n## What you will learn\nYou will connect composition and structure to the elements of weather and climate. You will organise the chapter into a final revision framework.\n\n## Simple explanation\nThe atmosphere provides the setting in which weather and climate occur. Its gases, moisture, particles and layers each contribute different functions.\n\n## Step-by-step breakdown\n- **Elements of weather and climate**: The chapter lists temperature, pressure, winds, humidity, clouds and precipitation as the main atmospheric elements affecting human life.\n- **Composition review**: Gases, water vapour and dust particles are the three broad components of atmospheric composition.\n- **Structure review**: Troposphere, stratosphere, mesosphere, thermosphere and exosphere form the main vertical layers.\n- **Functional links**: Water vapour and dust help condensation; ozone filters ultra-violet radiation; the troposphere hosts weather; the ionosphere reflects radio waves.\n\n## Worked example\nQuestion: How should a labelled description of atmospheric structure be organised so it explains rather than merely lists layers?\n\nAnswer:\n- The source gives each layer a distinguishing temperature trend or function.\n- A useful answer therefore moves upward in order and pairs each layer with its defining characteristic.\n- Final answer: A strong description should name the layers in vertical order and explain the temperature behaviour or function that separates them.\n\n## Common mistake\nDo not import the detailed mechanisms of later climate chapters; this chapter names weather elements but defers their full treatment.\n\n## Quick check question\nQuestion: Name the main elements of weather and climate listed here.\nAnswer: Temperature, pressure, winds, humidity, clouds and precipitation.\nExplanation: These are the changeable atmospheric elements the chapter identifies as influencing life.\n\n## Summary\n- Atmospheric composition includes gases, water vapour and dust.\n- Vertical structure contains distinct temperature-based layers.\n- The troposphere and stratosphere are especially important to geography.\n- Weather and climate are expressed through temperature, pressure, winds, humidity, clouds and precipitation."
+  }
+}

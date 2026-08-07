@@ -1,0 +1,123 @@
+{
+  "overall": "PASS",
+  "pairs": [
+    {
+      "prompt": "06_landforms_and_their_evolution_PROMPT.txt",
+      "source_pdf": "06_landforms_and_their_evolution_source.pdf",
+      "output": "06_landforms_and_their_evolution.json",
+      "chapter": "Landforms and their Evolution",
+      "pdf_pages": 16,
+      "prompt_sha256": "e1b89b000edb86ce546d1ddaab3d2fb3a80e06f08ee0921909e0cae06795f7ce",
+      "source_pdf_sha256": "b4ee5756b0be9b4930b9b655ce2565e026ffe260f04841d5a0a4385a5877eee9",
+      "output_sha256": "f333f81c828957613cd41ae38cb3c62bfa92cf491648ca200f13f97f294986cf",
+      "prompt_embedded_source_text": true,
+      "pdf_title_token_match": true,
+      "status": "PASS"
+    },
+    {
+      "prompt": "07_composition_and_structure_of_atmosphere_PROMPT.txt",
+      "source_pdf": "07_composition_and_structure_of_atmosphere_source.pdf",
+      "output": "07_composition_and_structure_of_atmosphere.json",
+      "chapter": "Composition and Structure of Atmosphere",
+      "pdf_pages": 4,
+      "prompt_sha256": "067b9abb0923186bd2a78ba74bc93aff4f83b8c7dc522df54a5447709641e6a1",
+      "source_pdf_sha256": "12be052bd8131959db293d3f930fc26980a87d6d5be794f46f6add69e79187d1",
+      "output_sha256": "408a9853b7f54b92227dc8ddf4c6e5876b974ff2d69e3c7832b7886a14241d15",
+      "prompt_embedded_source_text": true,
+      "pdf_title_token_match": true,
+      "status": "PASS"
+    },
+    {
+      "prompt": "08_solar_radiation_heat_balance_and_temperature_PROMPT.txt",
+      "source_pdf": "08_solar_radiation_heat_balance_and_temperature_source.pdf",
+      "output": "08_solar_radiation_heat_balance_and_temperature.json",
+      "chapter": "Solar Radiation, Heat Balance and Temperature",
+      "pdf_pages": 9,
+      "prompt_sha256": "1dce89dd7c95faa7ef42d5e4d26b7a74fc8be72278939343ec875c8dd10bc715",
+      "source_pdf_sha256": "c22781bcfff5d61bc9095f60b1d031b956b43419d47f26e2795be192df12096d",
+      "output_sha256": "023a34f8227475213d7ce41068b14df521ad1a3ef0e425a73d128500247d170d",
+      "prompt_embedded_source_text": true,
+      "pdf_title_token_match": true,
+      "status": "PASS"
+    },
+    {
+      "prompt": "09_atmospheric_circulation_and_weather_systems_PROMPT.txt",
+      "source_pdf": "09_atmospheric_circulation_and_weather_systems_source.pdf",
+      "output": "09_atmospheric_circulation_and_weather_systems.json",
+      "chapter": "Atmospheric Circulation and Weather Systems",
+      "pdf_pages": 10,
+      "prompt_sha256": "34faff4568183f6b9074b5caf01d45e0e9207a4958c3afdcf577145e58ae7f88",
+      "source_pdf_sha256": "b9a4e8c70c561d8567da198b4257232d9c1851d033898786fa32b06940e18977",
+      "output_sha256": "552db8a0740e9cba1bc1009436178b74e676e7b7b7f29c21ba96058102ab9e34",
+      "prompt_embedded_source_text": true,
+      "pdf_title_token_match": true,
+      "status": "PASS"
+    },
+    {
+      "prompt": "10_water_in_the_atmosphere_PROMPT.txt",
+      "source_pdf": "10_water_in_the_atmosphere_source.pdf",
+      "output": "10_water_in_the_atmosphere.json",
+      "chapter": "Water in the Atmosphere",
+      "pdf_pages": 5,
+      "prompt_sha256": "f0f0af95064e35e91abf3e33e09503170d4e243db59bb396f46d657d3aa45a1a",
+      "source_pdf_sha256": "171ab307034a0d936b1eaf8b82acc6bb56cd6614773fb54c483cb0e13fd2825b",
+      "output_sha256": "5107316eb23f5bb2a8986ca60a96ff64f9bc28eaf07d0c066b344f9fccd02002",
+      "prompt_embedded_source_text": true,
+      "pdf_title_token_match": true,
+      "status": "PASS"
+    },
+    {
+      "prompt": "11_world_climate_and_climate_change_PROMPT.txt",
+      "source_pdf": "11_world_climate_and_climate_change_source.pdf",
+      "output": "11_world_climate_and_climate_change.json",
+      "chapter": "World Climate and Climate Change",
+      "pdf_pages": 8,
+      "prompt_sha256": "35b130e71f3f2837eb53e8238b3b9527de4edb2e46e330882f3755cf464f604e",
+      "source_pdf_sha256": "20ac162c580faacbb73102120b03a51bea11c467f4fce5abf7ded36b299e5785",
+      "output_sha256": "bfea92cc93c28ff18be516537cf27c41f5ca19c54530d67e6316285c40f2b631",
+      "prompt_embedded_source_text": true,
+      "pdf_title_token_match": true,
+      "status": "PASS"
+    },
+    {
+      "prompt": "12_water_oceans_PROMPT.txt",
+      "source_pdf": "12_water_oceans_source.pdf",
+      "output": "12_water_oceans.json",
+      "chapter": "Water (Oceans)",
+      "pdf_pages": 9,
+      "prompt_sha256": "223e31c24191b3cf4199cc5a45e9fcc1cb73d1c00cf82a0543bbe5491f4199c8",
+      "source_pdf_sha256": "74f700bdc96725b5f9dd5d8d3f3ee374cb0019aef9c54a2158f6595f99e6ae64",
+      "output_sha256": "c9f1e431b63b25118d8d51426cf80a225376eb2bef0e683cf7818c9581658cba",
+      "prompt_embedded_source_text": true,
+      "pdf_title_token_match": true,
+      "status": "PASS"
+    },
+    {
+      "prompt": "13_movements_of_ocean_water_PROMPT.txt",
+      "source_pdf": "13_movements_of_ocean_water_source.pdf",
+      "output": "13_movements_of_ocean_water.json",
+      "chapter": "Movements of Ocean Water",
+      "pdf_pages": 6,
+      "prompt_sha256": "524039810bacf6d56ac092acc05ae0b7bd85b54eb6035b3f28b40a109df19269",
+      "source_pdf_sha256": "218cff4f32fd25d437dd1457e6c62a94bcd7395087888a9a7ff4a9cb7727c52e",
+      "output_sha256": "25ef94cf2321b200380741e1b2b1c814ede10ab5c0f04f3eada313f4f8734e83",
+      "prompt_embedded_source_text": true,
+      "pdf_title_token_match": true,
+      "status": "PASS"
+    },
+    {
+      "prompt": "14_biodiversity_and_conservation_PROMPT.txt",
+      "source_pdf": "14_biodiversity_and_conservation_source.pdf",
+      "output": "14_biodiversity_and_conservation.json",
+      "chapter": "Biodiversity and Conservation",
+      "pdf_pages": 7,
+      "prompt_sha256": "4823bf134a8768442cb3160b83bb78bdbc09f7750ca27f8a854b8eb9fee67a05",
+      "source_pdf_sha256": "d393ffd6192625ad51baaff08b8041622c3e1a286c66e555128a964d33d4e7a2",
+      "output_sha256": "3795a619d3faa18b696520cb2bf2109fe4077550be428c7c8d88efe179004a71",
+      "prompt_embedded_source_text": true,
+      "pdf_title_token_match": true,
+      "status": "PASS"
+    }
+  ],
+  "issues": []
+}

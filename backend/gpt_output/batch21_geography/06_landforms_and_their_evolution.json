@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Landforms and their Evolution",
+    "central_question": "How do geomorphic agents erode, transport and deposit material to create and transform landforms through time?",
+    "in_scope_units": [
+      "Landforms, landscapes and landform evolution",
+      "Running water: landscape stages, erosional and depositional landforms",
+      "Groundwater: karst topography, solution landforms, caves and cave deposits",
+      "Glaciers: erosion and deposition",
+      "Waves and currents: high rocky and low sedimentary coasts",
+      "Winds and sheet wash in deserts",
+      "NCERT exercises and project work"
+    ],
+    "banned_topics": [
+      "Detailed internal earth structure and plate tectonic theory",
+      "Ocean-water wave mechanics, tides and currents as a separate oceanography topic",
+      "Groundwater as a water resource rather than as a geomorphic agent"
+    ],
+    "must_include_keywords": [
+      "landform",
+      "landscape",
+      "running water",
+      "peneplain",
+      "monadnock",
+      "V-shaped valley",
+      "gorge",
+      "canyon",
+      "potholes",
+      "plunge pools",
+      "incised meanders",
+      "river terraces",
+      "alluvial fans",
+      "floodplains",
+      "natural levees",
+      "point bars",
+      "ox-bow lakes",
+      "karst topography",
+      "sinkholes",
+      "lapies",
+      "caves",
+      "stalactites",
+      "stalagmites",
+      "glaciers",
+      "cirque",
+      "horn",
+      "arête",
+      "U-shaped",
+      "moraines",
+      "esker",
+      "outwash plains",
+      "drumlins",
+      "wave-cut cliff",
+      "sea caves",
+      "sea stacks",
+      "beaches",
+      "spit",
+      "lagoon",
+      "pediment",
+      "barchan"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A meander is itself a depositional landform.",
+        "correction": "The chapter explicitly calls a meander a channel pattern, not a landform in itself."
+      },
+      {
+        "claim": "Groundwater creates karst mainly by mechanical erosion.",
+        "correction": "Mechanical removal is insignificant; solution and precipitation in limestone or dolomite produce karst landforms."
+      },
+      {
+        "claim": "Wind alone creates desert erosional landforms.",
+        "correction": "The chapter also gives major roles to sheet floods, mass wasting and weathering."
+      },
+      {
+        "claim": "All glacial deposits are sorted.",
+        "correction": "Glacial till is unassorted, whereas glacio-fluvial outwash is roughly stratified and assorted."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 2(i): interpret incised meanders and alluvial-plain meanders",
+      "NCERT Exercise 2(ii): explain valley sinks or uvalas",
+      "NCERT Exercise 2(iv): locate and name glacial linear depositional forms",
+      "NCERT Exercise 2(v): explain wind action and other desert agents",
+      "NCERT Exercise 3(i): explain the dominance of running water"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 followed by Project Work on local landforms, materials and processes."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Landforms and their Evolution\n\n## What you will learn\nYou will distinguish a landform from a landscape and see why landforms have histories of development. You will follow running water from youthful down-cutting to later lateral erosion and deposition.\n\n## Simple explanation\nA landform is a small to medium parcel of the earth’s surface, while several related landforms together make a landscape. Continued geomorphic action changes landforms through time, so evolution is a sequence of transformations.\n\n## Step-by-step breakdown\n- **Landform and landscape**: Each landform has a physical shape, size and material linked to geomorphic processes and agents; related landforms together form a landscape.\n- **Running water**: In humid regions, overland flow and streams are major agents. Steep youthful streams mainly erode downward, while gentler channels increasingly erode laterally and deposit material.\n- **Landscape stages**: Youth has few poorly integrated streams and shallow V-shaped valleys; maturity brings better integration and wider floodplains; old age has gentle gradients, broad floodplains, natural levees and ox-bow lakes.\n- **Peneplain and monadnock**: Continued lowering of valleys and divides can leave a lowland of faint relief called a peneplain, with resistant remnants called monadnocks.\n- **River erosional forms**: V-shaped valleys, gorges, canyons, potholes, plunge pools, incised meanders and river terraces record different combinations of river erosion.\n\n## Worked example\nQuestion: Why does the chapter associate youthful running-water landscapes more strongly with downward cutting than with extensive deposition?\n\nAnswer:\n- The source states that vigorous youthful rivers flow over steep gradients and that down-cutting dominates in early stages.\n- A steep gradient favours bed erosion; as gradients become gentler, velocity falls, lateral erosion increases and deposition becomes more important.\n- Final answer: Youthful landscapes are dominated by vertical incision because steep streams focus erosion on their beds before later stages develop broad floodplains and greater deposition.\n\n## Common mistake\nA common mistake is to assume a river follows the same erosional style throughout its development. The chapter instead describes a shift from down-cutting toward lateral erosion and deposition.\n\n## Quick check question\nQuestion: Which valley form has steep step-like side slopes and is wider at the top than at the bottom?\nAnswer: A canyon.\nExplanation: The chapter contrasts a canyon with a gorge: a gorge is nearly equal in width at top and bottom, while a canyon has steep step-like sides and a wider top.\n\n## Summary\n- Landforms evolve under continuing geomorphic action.\n- Running water shifts from vertical cutting toward lateral erosion and deposition as gradients decline.\n- Youth, mature and old stages have contrasting drainage and floodplain features.\n- River erosion produces valleys, potholes, plunge pools, incised meanders and terraces.",
+    "Core explanation": "# Core explanation: Landforms and their Evolution\n\n## What you will learn\nYou will examine river depositional forms and then connect them with groundwater solution in limestone terrain. You will learn how running water and groundwater create different landform families.\n\n## Simple explanation\nRunning water builds depositional forms where carrying power declines, while groundwater in limestone works mainly by solution and later precipitation. Together they create floodplain and karst landscapes.\n\n## Step-by-step breakdown\n- **Alluvial fans and deltas**: Alluvial fans form where coarse load is dumped as streams leave higher slopes for gentler foot-slope plains; deltas form where river load is deposited into the sea and distributaries extend seaward.\n- **Floodplains and levees**: Floodplains grow through deposition. Natural levees are low ridges along river banks, while point bars are deposits on meander bends.\n- **Meanders and ox-bow lakes**: On very gentle gradients rivers work laterally; outer-bank erosion and inner-bank deposition deepen loops until cut-offs can leave ox-bow lakes.\n- **Karst topography**: In limestone and dolomite, solution and precipitation produce swallow holes, sinkholes, uvalas, lapies and limestone pavements.\n- **Caves and deposits**: Solution along bedding planes and joints forms caves; calcium carbonate can later be deposited as stalactites, stalagmites and pillars.\n\n## Worked example\nQuestion: Why is underground flow especially important in limestone areas?\n\nAnswer:\n- The source explains that water moves through joints and bedding planes in limestone and dolomite, where solution is active.\n- These rocks are permeable, jointed and chemically susceptible, so water enlarges subsurface openings rather than remaining mainly as surface runoff.\n- Final answer: Underground flow is common in limestone because percolating water follows cracks and bedding planes and dissolves calcium-carbonate rock, creating karst topography.\n\n## Common mistake\nDo not treat sinkholes, caves and stalactites as products of the same process. Sinkholes and caves are mainly solution features, while stalactites and stalagmites are depositional.\n\n## Quick check question\nQuestion: How can joined sinkholes and dolines develop into an uvala?\nAnswer: By enlargement and joining through slumping of margins or collapse of cave roofs.\nExplanation: The chapter describes uvalas as joined sinkholes or dolines formed through margin slumping or roof collapse.\n\n## Summary\n- River deposition creates alluvial fans, deltas, floodplains, natural levees and point bars.\n- Meander growth combines outer-bank erosion with inner-bank deposition.\n- Karst terrain develops where solution is effective in limestone or dolomite.\n- Caves are solution features, while stalactites and stalagmites are cave deposits.",
+    "Worked examples": "# Worked examples: Landforms and their Evolution\n\n## What you will learn\nYou will trace how glaciers reshape mountains and how their deposits differ from river alluvium. You will connect glacial movement, erosion and deposition to recognisable landforms.\n\n## Simple explanation\nGlaciers are moving masses of ice driven mainly by gravity. Their great weight allows abrasion and plucking, while melting ice leaves both unsorted till and sorted glacio-fluvial deposits.\n\n## Step-by-step breakdown\n- **Glacial erosion**: Abrasion and plucking under the great weight of ice can damage even unweathered rock and lower high relief.\n- **Cirque, horn and arête**: Cirques are steep-walled basins at glacier heads; headward erosion of several cirques can form sharp horns, while narrowing divides become arêtes.\n- **U-shaped valleys**: Glacial valleys are broad-floored, steep-sided U-shaped troughs; submerged troughs along high-latitude coasts form fjords.\n- **Till and moraines**: Unassorted debris dropped by melting ice is till. Terminal, lateral, medial and ground moraines are major arrangements of it.\n- **Esker, outwash plains and drumlins**: Meltwater can build sinuous eskers and broad outwash plains; drumlins are smooth oval ridges aligned with ice movement.\n\n## Worked example\nQuestion: How do glaciers reduce high mountains into lower relief?\n\nAnswer:\n- The text says glaciers abrade and pluck rock, lower divides, remove debris and eventually leave low hills and outwash plains as slopes become gentler.\n- Glacial erosion attacks valley floors, sides and divides, while the moving ice carries away debris and later deposits it during melting.\n- Final answer: Glaciers reduce high relief through persistent abrasion and plucking followed by removal and deposition of debris.\n\n## Common mistake\nA common mistake is to use till and outwash as synonyms. Till is directly ice-deposited and unassorted; outwash is carried by meltwater and is more stratified and sorted.\n\n## Quick check question\nQuestion: Which glacial depositional feature indicates former ice direction because its long axis lies parallel to movement?\nAnswer: A drumlin.\nExplanation: The chapter notes that drumlins are smooth oval ridges whose long axes parallel ice movement.\n\n## Summary\n- Glaciers erode by abrasion and plucking.\n- Cirques, horns, arêtes and U-shaped valleys are key erosional forms.\n- Till is unassorted while meltwater outwash is more sorted.\n- Moraines, eskers, outwash plains and drumlins are major deposits.",
+    "Exam-style problems": "# Exam-style problems: Landforms and their Evolution\n\n## What you will learn\nYou will compare high rocky and low sedimentary coasts and identify wave-built and wave-cut forms. You will see why a coast may alternate between erosion and deposition.\n\n## Simple explanation\nCoasts are dynamic because breaking waves attack shore material while currents redistribute debris. The balance between erosion, sediment supply and coastal configuration determines whether erosional or depositional forms dominate.\n\n## Step-by-step breakdown\n- **High rocky coasts**: These coasts are strongly erosional: waves cut cliffs, retreating cliffs leave wave-cut platforms or terraces, and continued attack can enlarge hollows into sea caves and isolate sea stacks.\n- **Low sedimentary coasts**: These gentle coasts are dominated by deposition, including beaches, dunes, bars, spits and lagoons.\n- **Beaches and dunes**: Beach sediment comes mainly from land or wave erosion; sand lifted from beaches can form dunes parallel to the coast.\n- **Bars and spits**: An offshore bar lies roughly parallel to the coast; if exposed it becomes a barrier bar, and if keyed to one end of a bay it forms a spit.\n- **Lagoons**: Bars and spits can partly close bays to form lagoons, which may later fill with sediment.\n\n## Worked example\nQuestion: Why do erosional forms dominate on a high rocky coast while depositional forms dominate on a low sedimentary coast?\n\nAnswer:\n- The chapter describes high rocky coasts as steep and strongly attacked by waves, whereas low sedimentary coasts are gentle and contain abundant movable sediment.\n- Steep rocky margins concentrate wave attack and cliff retreat; gentle sediment-rich shores favour accumulation.\n- Final answer: High rocky coasts favour wave erosion, while low sedimentary coasts favour beaches, bars, spits and lagoons.\n\n## Common mistake\nDo not assume a beach is permanent. The chapter calls beaches temporary features because wave conditions can narrow or rebuild them.\n\n## Quick check question\nQuestion: What is the difference between a barrier bar and a spit?\nAnswer: A barrier bar is an exposed offshore bar; a spit is a barrier bar attached to land at one end.\nExplanation: Both are depositional ridges, but a spit is distinguished by its attachment to land.\n\n## Summary\n- High rocky coasts are dominated by wave-cut cliff, sea caves and sea stacks.\n- Low sedimentary coasts are dominated by beaches, dunes, bars, spit and lagoon forms.\n- Coastal forms reflect both wave action and sediment supply.\n- Coasts can change rapidly during storms and tsunami waves.",
+    "Revision and recap": "# Revision and recap: Landforms and their Evolution\n\n## What you will learn\nYou will complete the chapter with desert erosion and deposition by wind and sheet wash. You will connect the main agents to the landforms that best reveal their work.\n\n## Simple explanation\nIn hot deserts, wind is important but not the only agent. Wind deflates, abrades and impacts exposed rock, while torrential rain, sheet wash, weathering and mass wasting also help lower desert relief.\n\n## Step-by-step breakdown\n- **Pediment and pediplain**: A pediment is a gently inclined rocky floor at a mountain foot. Backward retreat can extend pediments until residual mountains remain and broad pediplains develop.\n- **Playas**: Interior basins can collect shallow temporary water and sediment; evaporation may leave salt-rich playa plains.\n- **Deflation and abrasion**: Persistent wind creates deflation hollows, blow-outs, caves and polished mushroom, table or pedestal rocks.\n- **Wind deposition**: Wind sorts sediment during transport; when velocity falls, grains settle.\n- **Sand dunes**: A barchan is a crescent-shaped dune under constant moderate wind and limited sand; parabolic, seif, longitudinal and transverse dunes reflect other wind and sand conditions.\n\n## Worked example\nQuestion: Is wind the only agent responsible for erosional features in deserts?\n\nAnswer:\n- The chapter notes that desert landforms also owe much to mass wasting, weathering, torrential rain and sheet floods.\n- Short intense rainfall can move weathered debris effectively, so landscape lowering is shared among several processes.\n- Final answer: Wind is a major desert agent through deflation, abrasion and impact, but desert erosion also depends on weathering, mass wasting and sheet wash.\n\n## Common mistake\nA common mistake is to describe barchans as pointing into the wind. Their wings point downwind.\n\n## Quick check question\nQuestion: Why is wind described as a good sorting agent?\nAnswer: Different grain sizes require different velocities for transport and settling, so changing wind speed separates material.\nExplanation: The chapter explicitly links wind transport and deposition to the critical velocities of different grain sizes.\n\n## Summary\n- Wind erodes by deflation, abrasion and impact.\n- Sheet wash and mass wasting also shape deserts.\n- Pediments can expand into pediplains.\n- Playas and several dune forms are important desert features.\n- Each geomorphic agent leaves a distinctive combination of erosional and depositional landforms."
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 12: Citizenship: Rights and Duties",
+  "central_question": "What does responsible citizenship require when legal rights, civic duties, equality, non-discrimination and inclusion are practised together in everyday life?",
+  "in_scope_units": [
+    "Citizenship as legal membership, political participation and social responsibility",
+    "Rights, duties, discrimination and inclusion as connected ideas",
+    "Fundamental Rights and access to courts when rights are violated",
+    "Right to equality, equity and reasonable support for different needs",
+    "Right to freedom, right to life and dignity, and limits on freedom",
+    "Right against exploitation and protection of children",
+    "Freedom of religion and cultural and educational rights",
+    "Right to constitutional remedies and key constitutional articles",
+    "Fundamental Duties under Article 51A and responsible civic behaviour",
+    "Rights and duties as mutually supporting parts of citizenship",
+    "Visible and invisible discrimination",
+    "Inclusion and removal of barriers to participation"
+  ],
+  "banned_topics": [
+    "Detailed citizenship-acquisition procedures beyond the Acts briefly named in the chapter",
+    "Advanced constitutional law not included in the Grade 8 text",
+    "Partisan political debate about contemporary citizenship policy"
+  ],
+  "must_include_keywords": [
+    "citizen",
+    "resident",
+    "citizenship",
+    "legal identity",
+    "social responsibility",
+    "rights",
+    "duties",
+    "discrimination",
+    "inclusion",
+    "Fundamental Rights",
+    "right to equality",
+    "equity",
+    "right to freedom",
+    "right to life",
+    "dignity",
+    "right against exploitation",
+    "child labour",
+    "freedom of religion",
+    "cultural and educational rights",
+    "constitutional remedies",
+    "Article 32",
+    "Articles 14-18",
+    "Articles 19-22",
+    "Articles 23-24",
+    "Articles 25-28",
+    "Articles 29-30",
+    "Article 51A",
+    "Fundamental Duties",
+    "unity and integrity",
+    "environment",
+    "scientific temper",
+    "public property",
+    "right to education",
+    "Savitribai Phule",
+    "Anandibai Joshi",
+    "visible discrimination",
+    "invisible discrimination",
+    "accessibility",
+    "belonging",
+    "active participation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Anyone who lives in a country is automatically a citizen of that country.",
+      "correction": "The chapter distinguishes residence from citizenship: citizenship is formal legal membership, and a resident need not be a citizen."
+    },
+    {
+      "claim": "A right is anything a person wants to do.",
+      "correction": "The chapter defines rights as justified claims connected with dignity, safety and wellbeing, and says actions that harm others cannot simply be claimed as rights."
+    },
+    {
+      "claim": "Equality always means giving every person exactly the same support.",
+      "correction": "The chapter distinguishes equality from equity and explains that fair support may need to differ when people face different barriers."
+    },
+    {
+      "claim": "Citizenship is only about claiming rights from the state.",
+      "correction": "The chapter presents citizenship as both legal identity and social responsibility, linking rights with duties, participation, respect and inclusion."
+    }
+  ],
+  "recommended_example_progression": [
+    "Questions and activities 1: explain why respecting other religions is part of responsible citizenship",
+    "Questions and activities 3: reason why discrimination may continue even when rights are constitutionally guaranteed",
+    "Questions and activities 4: analyse a possible conflict between rights and duties",
+    "Questions and activities 8: propose ways students can practise inclusion in everyday school life",
+    "Questions and activities 9: apply rights and duties to exclusion of girls from a club and a child being forced to work"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “Questions and activities” 1-10, focusing on rights, duties, discrimination, diversity, technology, inclusion and a classroom citizenship charter.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,103 @@
+{
+  "grade": "Grade 11",
+  "subject": "Business Studies",
+  "chapter": "International Business",
+  "central_question": "Why do nations and firms conduct business across national frontiers, and how do they choose, document and manage international business operations?",
+  "in_scope_units": [
+    "11.1 Introduction — the shift toward cross-border interdependence and the global business setting",
+    "11.1.1 Meaning of International Business — domestic business, international business and the breadth beyond trade",
+    "11.1.2 Reason for International Business — resource differences, productivity, specialisation and trade",
+    "11.1.3 International Business vs. Domestic Business — environmental, stakeholder, mobility, regulation and currency differences",
+    "11.1.4 Scope of International Business — merchandise trade, service trade, licensing/franchising and foreign investment",
+    "11.1.5 Benefits of International Business — benefits to countries and to firms",
+    "11.2 Modes of Entry into International Business — choosing among different foreign-market entry routes",
+    "11.2.1 Exporting and Importing — direct and indirect routes, advantages and limitations",
+    "11.2.2 Contract Manufacturing — forms, advantages and limitations of outsourcing production",
+    "11.2.3 Licensing and Franchising — contractual rights, royalty, advantages and limitations",
+    "11.2.4 Joint Ventures — shared ownership, forms, advantages and limitations",
+    "11.2.5 Wholly Owned Subsidiaries — full control, establishment routes, advantages and limitations",
+    "11.3 Export-Import Procedures and Documentation — why foreign trade requires added formalities",
+    "11.3.1 Export Procedure — the typical sequence from enquiry and quotation to securing payment",
+    "Major Documents needed in Connection with Export Transaction — goods, shipment and payment documents",
+    "11.3.2 Import Procedure — the typical sequence from trade enquiry to customs clearance and release",
+    "Major Documents used in an Import Transaction — commercial, banking, transport and customs documents",
+    "Key Terms, Summary and Exercises — consolidation and assessment of the chapter content",
+    "Supplementary Form No. INC-1 pages — reproduced application for reservation of name appearing after the exercises"
+  ],
+  "banned_topics": [],
+  "must_include_keywords": [
+    "International business",
+    "domestic business",
+    "international trade",
+    "global village",
+    "geographical specialisation",
+    "merchandise exports and imports",
+    "invisible trade",
+    "foreign investment",
+    "FDI",
+    "portfolio investment",
+    "foreign exchange",
+    "exporting",
+    "importing",
+    "contract manufacturing",
+    "outsourcing",
+    "licensing",
+    "franchising",
+    "royalty",
+    "joint venture",
+    "wholly owned subsidiary",
+    "proforma invoice",
+    "IEC number",
+    "letter of credit",
+    "pre-shipment finance",
+    "pre-shipment inspection",
+    "certificate of origin",
+    "shipping bill",
+    "mate's receipt",
+    "bill of lading",
+    "bill of exchange",
+    "sight draft",
+    "usance draft",
+    "trade enquiry",
+    "bill of entry",
+    "import general manifest",
+    "C&F agent",
+    "duty drawback"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "International business and international trade mean exactly the same thing.",
+      "correction": "The chapter says international trade is an important component of international business, but international business is broader because it also includes services, foreign investment and overseas production and marketing."
+    },
+    {
+      "claim": "Portfolio investment gives the investor direct control over foreign production and marketing.",
+      "correction": "The chapter contrasts portfolio investment with direct investment: the portfolio investor earns income from financial assets or loans and does not directly participate in production and marketing operations."
+    },
+    {
+      "claim": "A wholly owned subsidiary is automatically the best entry mode because it gives full control.",
+      "correction": "The chapter also emphasises its full equity requirement, full exposure to losses and higher political risk, so its suitability depends on the firm and market situation."
+    },
+    {
+      "claim": "A shipping bill and a bill of lading perform the same function.",
+      "correction": "The shipping bill is the main customs document for export permission, whereas the bill of lading is the shipping company’s receipt and undertaking to carry the goods and serves as a document of title."
+    },
+    {
+      "claim": "A bill of entry proves that export cargo has been loaded on a ship.",
+      "correction": "The chapter defines bill of entry as a customs form completed by the importer for receiving imported goods and assessment of import duty."
+    },
+    {
+      "claim": "The supplied chapter body explains the objectives and functions of IMF and WTO and the full details of export-promotion incentives and organisations.",
+      "correction": "Those topics are named in learning objectives, key terms or exercises, but detailed explanatory sections for them are not present in the supplied chapter body, so no outside details should be invented."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Short Answer Question 1 on the difference between international trade and international business.",
+    "Use NCERT Long Answer Question 2 to organise the benefits that firms derive from international business.",
+    "Compare entry modes through NCERT Short Answer Question 4 on contract manufacturing versus a wholly owned production subsidiary.",
+    "Apply export documentation through NCERT Short Answer Question 8 on the process of securing payment for exports.",
+    "Finish with NCERT Long Answer Question 5 on the procedure for importing textile machinery from Canada."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter ends its instructional content with EXERCISES containing Short Answer Questions 1–8 and Long Answer Questions 1–7, followed by reproduced Form No. INC-1 pages.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

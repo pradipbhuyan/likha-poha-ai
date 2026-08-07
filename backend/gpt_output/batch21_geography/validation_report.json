@@ -1,0 +1,529 @@
+{
+  "overall": "PASS",
+  "bank_count": 9,
+  "lesson_step_count": 45,
+  "keyword_total": 328,
+  "checks": {
+    "bank_count_exactly_9": true,
+    "lesson_steps_exactly_45": true,
+    "all_328_manifest_keywords_present_in_lessons": true,
+    "no_exact_duplicate_long_blocks_across_chapters": true,
+    "all_source_pairs_passed": true
+  },
+  "banks": [
+    {
+      "file": "06_landforms_and_their_evolution.json",
+      "chapter": "Landforms and their Evolution",
+      "status": "PASS",
+      "keyword_count": 40,
+      "missing_keywords": [],
+      "lesson_checks": [
+        {
+          "step": "Concept introduction",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Core explanation",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Worked examples",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Exam-style problems",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Revision and recap",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        }
+      ],
+      "unsupported_lesson_numerals": [],
+      "source_vocabulary_overlap": 0.7007,
+      "output_sha256": "f333f81c828957613cd41ae38cb3c62bfa92cf491648ca200f13f97f294986cf"
+    },
+    {
+      "file": "07_composition_and_structure_of_atmosphere.json",
+      "chapter": "Composition and Structure of Atmosphere",
+      "status": "PASS",
+      "keyword_count": 28,
+      "missing_keywords": [],
+      "lesson_checks": [
+        {
+          "step": "Concept introduction",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Core explanation",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Worked examples",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Exam-style problems",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Revision and recap",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        }
+      ],
+      "unsupported_lesson_numerals": [],
+      "source_vocabulary_overlap": 0.4688,
+      "output_sha256": "408a9853b7f54b92227dc8ddf4c6e5876b974ff2d69e3c7832b7886a14241d15"
+    },
+    {
+      "file": "08_solar_radiation_heat_balance_and_temperature.json",
+      "chapter": "Solar Radiation, Heat Balance and Temperature",
+      "status": "PASS",
+      "keyword_count": 31,
+      "missing_keywords": [],
+      "lesson_checks": [
+        {
+          "step": "Concept introduction",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Core explanation",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Worked examples",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Exam-style problems",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Revision and recap",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        }
+      ],
+      "unsupported_lesson_numerals": [],
+      "source_vocabulary_overlap": 0.5777,
+      "output_sha256": "023a34f8227475213d7ce41068b14df521ad1a3ef0e425a73d128500247d170d"
+    },
+    {
+      "file": "09_atmospheric_circulation_and_weather_systems.json",
+      "chapter": "Atmospheric Circulation and Weather Systems",
+      "status": "PASS",
+      "keyword_count": 40,
+      "missing_keywords": [],
+      "lesson_checks": [
+        {
+          "step": "Concept introduction",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Core explanation",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Worked examples",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Exam-style problems",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Revision and recap",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        }
+      ],
+      "unsupported_lesson_numerals": [],
+      "source_vocabulary_overlap": 0.5977,
+      "output_sha256": "552db8a0740e9cba1bc1009436178b74e676e7b7b7f29c21ba96058102ab9e34"
+    },
+    {
+      "file": "10_water_in_the_atmosphere.json",
+      "chapter": "Water in the Atmosphere",
+      "status": "PASS",
+      "keyword_count": 30,
+      "missing_keywords": [],
+      "lesson_checks": [
+        {
+          "step": "Concept introduction",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Core explanation",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Worked examples",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Exam-style problems",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Revision and recap",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        }
+      ],
+      "unsupported_lesson_numerals": [],
+      "source_vocabulary_overlap": 0.5408,
+      "output_sha256": "5107316eb23f5bb2a8986ca60a96ff64f9bc28eaf07d0c066b344f9fccd02002"
+    },
+    {
+      "file": "11_world_climate_and_climate_change.json",
+      "chapter": "World Climate and Climate Change",
+      "status": "PASS",
+      "keyword_count": 40,
+      "missing_keywords": [],
+      "lesson_checks": [
+        {
+          "step": "Concept introduction",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Core explanation",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Worked examples",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Exam-style problems",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Revision and recap",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        }
+      ],
+      "unsupported_lesson_numerals": [],
+      "source_vocabulary_overlap": 0.5704,
+      "output_sha256": "bfea92cc93c28ff18be516537cf27c41f5ca19c54530d67e6316285c40f2b631"
+    },
+    {
+      "file": "12_water_oceans.json",
+      "chapter": "Water (Oceans)",
+      "status": "PASS",
+      "keyword_count": 40,
+      "missing_keywords": [],
+      "lesson_checks": [
+        {
+          "step": "Concept introduction",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Core explanation",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Worked examples",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Exam-style problems",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Revision and recap",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        }
+      ],
+      "unsupported_lesson_numerals": [],
+      "source_vocabulary_overlap": 0.5931,
+      "output_sha256": "c9f1e431b63b25118d8d51426cf80a225376eb2bef0e683cf7818c9581658cba"
+    },
+    {
+      "file": "13_movements_of_ocean_water.json",
+      "chapter": "Movements of Ocean Water",
+      "status": "PASS",
+      "keyword_count": 40,
+      "missing_keywords": [],
+      "lesson_checks": [
+        {
+          "step": "Concept introduction",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Core explanation",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Worked examples",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Exam-style problems",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Revision and recap",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        }
+      ],
+      "unsupported_lesson_numerals": [],
+      "source_vocabulary_overlap": 0.5561,
+      "output_sha256": "25ef94cf2321b200380741e1b2b1c814ede10ab5c0f04f3eada313f4f8734e83"
+    },
+    {
+      "file": "14_biodiversity_and_conservation.json",
+      "chapter": "Biodiversity and Conservation",
+      "status": "PASS",
+      "keyword_count": 39,
+      "missing_keywords": [],
+      "lesson_checks": [
+        {
+          "step": "Concept introduction",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Core explanation",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Worked examples",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Exam-style problems",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        },
+        {
+          "step": "Revision and recap",
+          "title": true,
+          "headings": true,
+          "worked_example": true,
+          "quick_check": true,
+          "no_placeholders": true,
+          "no_unrequired_extract_ref": true
+        }
+      ],
+      "unsupported_lesson_numerals": [],
+      "source_vocabulary_overlap": 0.596,
+      "output_sha256": "3795a619d3faa18b696520cb2bf2109fe4077550be428c7c8d88efe179004a71"
+    }
+  ],
+  "issues": []
+}

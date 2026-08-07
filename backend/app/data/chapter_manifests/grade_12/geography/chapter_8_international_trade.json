@@ -1,0 +1,103 @@
+{
+  "grade": "Grade 12",
+  "subject": "Geography",
+  "chapter": "Chapter 8: International Trade",
+  "central_question": "Why does international trade develop between countries, how is it organised and regulated, and what role do ports play as its gateways?",
+  "in_scope_units": [
+    "Introduction to trade and barter — voluntary exchange, national and international trade, barter and the introduction of money",
+    "History of International Trade — long-distance trade, the Silk Route, colonial trade, slave trade, industrialisation and post-war tariff reduction",
+    "Why Does International Trade Exist? — specialisation, division of labour and the principles underlying mutually beneficial trade",
+    "Basis of International Trade — national resources, population factors, stage of economic development, foreign investment and transport",
+    "Balance of Trade — favourable and unfavourable balances and their economic implications",
+    "Types of International Trade — bilateral and multi-lateral trade",
+    "Case for Free Trade and Dumping — trade liberalisation, tariffs, unequal conditions and risks to domestic producers",
+    "World Trade Organisation — origins in GATT, global trade rules, dispute resolution and criticisms described in the chapter",
+    "Regional Trade Blocs — reasons for their formation, intra-regional trade and possible barriers between blocs",
+    "Concerns Related to International Trade — benefits, dependence, uneven development, exploitation and environmental and health concerns",
+    "Gateways of International Trade: Ports — port functions, cargo handling and the link with hinterland development",
+    "Types of Port — classification by cargo handled, location and specialised functions",
+    "Exercises — end-of-chapter questions on WTO, trade balance, trading blocs, ports and gains from international trade"
+  ],
+  "banned_topics": [
+    "Detailed teaching of tertiary activities beyond the brief trade reference carried over from the preceding chapter",
+    "Transport networks as a separate chapter topic except where this chapter directly links transport to trade and ports"
+  ],
+  "must_include_keywords": [
+    "international trade",
+    "barter system",
+    "money",
+    "Jon Beel Mela",
+    "Silk Route",
+    "slave trade",
+    "specialisation",
+    "division of labour",
+    "comparative advantage",
+    "complimentarity",
+    "transferability",
+    "national resources",
+    "population factors",
+    "stage of economic development",
+    "foreign investment",
+    "transport",
+    "balance of trade",
+    "favourable balance of trade",
+    "unfavourable balance of trade",
+    "bilateral trade",
+    "multi-lateral trade",
+    "Most Favoured Nation",
+    "free trade",
+    "trade liberalisation",
+    "tariffs",
+    "dumping",
+    "GATT",
+    "World Trade Organisation",
+    "regional trade blocs",
+    "hinterland",
+    "Industrial Ports",
+    "Commercial Ports",
+    "Comprehensive Ports",
+    "Inland Ports",
+    "Out Ports",
+    "Oil Ports",
+    "Ports of Call",
+    "Packet Station",
+    "Entrepot Ports",
+    "Naval Ports"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "International trade means only the exchange of physical goods.",
+      "correction": "The chapter defines international trade as the exchange of goods and services among countries across national boundaries."
+    },
+    {
+      "claim": "A negative balance of trade means exports are worth more than imports.",
+      "correction": "The chapter calls the balance negative or unfavourable when the value of imports is greater than the value of exports."
+    },
+    {
+      "claim": "Bilateral and multi-lateral trade are the same arrangement.",
+      "correction": "Bilateral trade is conducted between two countries, while multi-lateral trade involves trade with many countries."
+    },
+    {
+      "claim": "Free trade automatically creates equal conditions for developing countries.",
+      "correction": "The chapter warns that globalisation with free trade can adversely affect developing economies when conditions are unequal or when developed countries keep their own markets protected."
+    },
+    {
+      "claim": "Dumping simply means selling goods cheaply.",
+      "correction": "The chapter defines dumping as selling a commodity in two countries at different prices for reasons not related to costs."
+    },
+    {
+      "claim": "All ports are classified in only one way.",
+      "correction": "The chapter classifies ports by cargo handled, by location and by specialised functions."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise 3(ii), using specialisation and the stated benefits and concerns to explain how nations gain from international trade.",
+    "Use NCERT Exercise 2(iii) to connect regional trade blocs with geographical proximity, complementarities and reduced intra-bloc tariffs.",
+    "Use NCERT Exercise 2(i) to explain the basic function of the World Trade Organisation from the chapter's description of global trade rules and dispute resolution.",
+    "Use NCERT Exercise 3(i) to explain how ports facilitate trade and then classify ports by location.",
+    "Finish with NCERT Exercise 2(ii), carefully using only the chapter's stated explanation of why a negative balance has serious economic implications."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1-3: two multiple-choice items, three about-30-word questions, and two not-more-than-150-word questions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

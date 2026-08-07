@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 11: The Role of the Judiciary in Our Society",
+  "central_question": "How does an independent judicial system connect law with justice, protect constitutional rights and resolve disputes fairly in India?",
+  "in_scope_units": [
+    "Justice, fairness and the connection between law and justice",
+    "Substantive and procedural justice and the need for an independent judiciary",
+    "The unified hierarchy of courts in India",
+    "The Supreme Court: constitutional position, judges and writ jurisdiction",
+    "Public Interest Litigation and major forms of Supreme Court jurisdiction",
+    "High Courts: structure, appointments, writ, appellate and supervisory jurisdiction",
+    "Subordinate courts and their importance in access to justice",
+    "Specialised tribunals and quasi-judicial dispute resolution",
+    "Legal reform, technology and digital access to judicial information",
+    "Alternate dispute resolution through arbitration, mediation, Lok Adalats and Gram Nyayalayas"
+  ],
+  "banned_topics": [
+    "Detailed criminal or civil procedure not presented in the chapter",
+    "Current political controversies or judgments not included in the supplied source",
+    "Legal advice about a real individual dispute"
+  ],
+  "must_include_keywords": [
+    "justice",
+    "judiciary",
+    "independent judiciary",
+    "law",
+    "substantive justice",
+    "procedural justice",
+    "Supreme Court",
+    "High Courts",
+    "Subordinate Courts",
+    "Article 124",
+    "Article 32",
+    "Article 226",
+    "writ petition",
+    "Fundamental Rights",
+    "Public Interest Litigation",
+    "Article 21",
+    "Kapila Hingorani",
+    "original jurisdiction",
+    "Article 131",
+    "appellate jurisdiction",
+    "advisory jurisdiction",
+    "Article 143",
+    "Special Leave Petition",
+    "Article 136",
+    "Article 141",
+    "High Court",
+    "Article 214",
+    "Article 227",
+    "District Courts",
+    "tribunals",
+    "National Green Tribunal",
+    "digital technology",
+    "e-Filing",
+    "National Judicial Data Grid",
+    "alternate dispute resolution",
+    "arbitration",
+    "mediation",
+    "Lok Adalats",
+    "Gram Nyayalayas",
+    "access to justice"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Justice means only punishing someone who is accused of wrongdoing.",
+      "correction": "The chapter distinguishes substantive justice, concerning a fair outcome, from procedural justice, which requires a fair hearing and presumes innocence until guilt is proved."
+    },
+    {
+      "claim": "The judiciary is controlled by the legislature and executive.",
+      "correction": "The chapter presents judicial independence from the legislature and executive as essential to fair adjudication and constitutional government."
+    },
+    {
+      "claim": "Only the Supreme Court can enforce Fundamental Rights through writ jurisdiction.",
+      "correction": "The chapter explains writ petitions to the Supreme Court under Article 32 and to High Courts under Article 226."
+    },
+    {
+      "claim": "A mediator decides the dispute for the parties.",
+      "correction": "A mediator helps parties reach a mutual settlement but does not impose a decision."
+    }
+  ],
+  "recommended_example_progression": [
+    "Questions and Activities 3(i): use the equal-pay factory dispute to identify considerations relevant to a just outcome",
+    "Questions and Activities 3(ii): use the polluted-river dispute to reason about legal remedies and public concern",
+    "Questions and Activities 1: draft a model communication bringing a social issue to the notice of a constitutional court",
+    "Questions and Activities 2: propose institutional responses to the large number of pending cases",
+    "Chapter examples on alternate dispute resolution: compare when mediation, arbitration or Lok Adalat may avoid formal adjudication"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “Questions and Activities” 1-5, including model-letter writing, institutional problem solving, moot-court cases and field interaction with the judicial system.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

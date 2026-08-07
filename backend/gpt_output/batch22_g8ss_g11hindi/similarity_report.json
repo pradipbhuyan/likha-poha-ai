@@ -1,0 +1,6 @@
+{
+  "overall": "PASS",
+  "method": "normalized exact paragraph comparison plus cross-file 7-word shingle Jaccard screening",
+  "exact_duplicate_long_paragraphs": [],
+  "pairwise_similarity_flags_at_or_above_0_025": []
+}

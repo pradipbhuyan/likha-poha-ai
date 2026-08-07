@@ -1,0 +1,65 @@
+{
+  "grade": "Grade 9",
+  "subject": "English",
+  "chapter": "Grammar: Active and Passive Voice",
+  "central_question": "How can a student correctly change transitive sentences between active and passive voice while preserving tense and meaning?",
+  "in_scope_units": [
+    "Active voice: subject + verb + object",
+    "Passive voice: object becomes subject + be + past participle + optional by-agent",
+    "Simple present passive",
+    "Simple past passive",
+    "Present continuous passive",
+    "Present perfect passive",
+    "Modal passive",
+    "Optional omission of by + agent",
+    "Transitive verbs only for passive transformation",
+    "Common passive-voice errors"
+  ],
+  "banned_topics": [
+    "Reported Speech",
+    "Clauses",
+    "Determiners"
+  ],
+  "must_include_keywords": [
+    "active voice",
+    "passive voice",
+    "subject",
+    "object",
+    "transitive verb",
+    "intransitive verb",
+    "form of be",
+    "past participle",
+    "simple present",
+    "simple past",
+    "present continuous",
+    "present perfect",
+    "modal",
+    "being",
+    "been",
+    "by + agent"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Using the base verb after be, as in \"is write\".",
+      "correction": "Use a form of be followed by the past participle, as in \"is written\"."
+    },
+    {
+      "claim": "Using a present passive with a past-time expression such as yesterday.",
+      "correction": "Preserve the original tense; simple past passive uses was/were + past participle."
+    },
+    {
+      "claim": "Trying to passivise an intransitive verb such as sleep.",
+      "correction": "Only verbs with a direct object can normally be changed into passive voice."
+    }
+  ],
+  "recommended_example_progression": [
+    "Identify active and passive structures",
+    "Transform simple present and simple past sentences",
+    "Transform present continuous and present perfect sentences",
+    "Transform modal sentences and omit unnecessary agents",
+    "Correct mixed passive-voice errors"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes changing the voice of sentences, completing passive verb forms, and identifying or correcting tense and participle errors.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

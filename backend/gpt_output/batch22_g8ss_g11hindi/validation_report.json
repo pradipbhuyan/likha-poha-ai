@@ -1,0 +1,103 @@
+{
+  "batch": "cbse_lesson_rewrites_batch22_aug07",
+  "overall": "PASS",
+  "files_checked": 9,
+  "lesson_steps_checked": 45,
+  "total_must_include_keywords": 354,
+  "checks": [
+    "valid JSON",
+    "exact top-level and manifest schema/order",
+    "exact five lesson keys/order",
+    "exact seven headings in each lesson",
+    "required Question/Answer/Explanation/Final answer markers",
+    "15-40 must_include_keywords",
+    "every must_include keyword appears in lesson content",
+    "no lesson digit token absent from supplied prompt/source text",
+    "Hindi lesson body uses Devanagari apart from required UI markers",
+    "no unexpected extract-ref blocks"
+  ],
+  "files": [
+    {
+      "file": "08_chapter_8_world_geography_some_glimpses.json",
+      "status": "PASS",
+      "issues": [],
+      "keyword_count": 35,
+      "lesson_steps": 5,
+      "required_headings_per_step": 7,
+      "new_digit_tokens": []
+    },
+    {
+      "file": "09_chapter_9_indias_long_road_to_independence.json",
+      "status": "PASS",
+      "issues": [],
+      "keyword_count": 40,
+      "lesson_steps": 5,
+      "required_headings_per_step": 7,
+      "new_digit_tokens": []
+    },
+    {
+      "file": "10_chapter_10_a_journey_through_indian_architecture.json",
+      "status": "PASS",
+      "issues": [],
+      "keyword_count": 40,
+      "lesson_steps": 5,
+      "required_headings_per_step": 7,
+      "new_digit_tokens": []
+    },
+    {
+      "file": "11_chapter_11_the_role_of_the_judiciary_in_our_society.json",
+      "status": "PASS",
+      "issues": [],
+      "keyword_count": 40,
+      "lesson_steps": 5,
+      "required_headings_per_step": 7,
+      "new_digit_tokens": []
+    },
+    {
+      "file": "12_chapter_12_citizenship_rights_and_duties.json",
+      "status": "PASS",
+      "issues": [],
+      "keyword_count": 40,
+      "lesson_steps": 5,
+      "required_headings_per_step": 7,
+      "new_digit_tokens": []
+    },
+    {
+      "file": "13_chapter_13_dynamics_of_population.json",
+      "status": "PASS",
+      "issues": [],
+      "keyword_count": 39,
+      "lesson_steps": 5,
+      "required_headings_per_step": 7,
+      "new_digit_tokens": []
+    },
+    {
+      "file": "14_chapter_14_indias_urban_landscape.json",
+      "status": "PASS",
+      "issues": [],
+      "keyword_count": 40,
+      "lesson_steps": 5,
+      "required_headings_per_step": 7,
+      "new_digit_tokens": []
+    },
+    {
+      "file": "15_chapter_15_cultural_currents_13th_to_17th_centuries.json",
+      "status": "PASS",
+      "issues": [],
+      "keyword_count": 40,
+      "lesson_steps": 5,
+      "required_headings_per_step": 7,
+      "new_digit_tokens": []
+    },
+    {
+      "file": "20_bharatiya_kalayen.json",
+      "status": "PASS",
+      "issues": [],
+      "keyword_count": 40,
+      "lesson_steps": 5,
+      "required_headings_per_step": 7,
+      "new_digit_tokens": []
+    }
+  ],
+  "cross_file_exact_long_paragraph_duplicates": []
+}

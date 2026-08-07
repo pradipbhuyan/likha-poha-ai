@@ -2,98 +2,77 @@
   "grade": "Grade 9",
   "subject": "English",
   "chapter": "Winds of Change",
-  "central_question": "How can a traditional craft such as the Indian pankha adapt to changing times while preserving its cultural identity and supporting the artisans who make it?",
+  "central_question": "How can a traditional object carry regional identity, adapt to changing times and still support the artisans who make it?",
   "in_scope_units": [
-    "Reflect and Respond: recognising regional hand fans, their shapes and materials, and learning key vocabulary such as indigenous, innovative, industrious, intricate, invoked, and initiatives.",
-    "Reading for Meaning: tracing the origin, history, uses, regional varieties, materials, designs, cultural role, commercial transformation, and preservation of the Indian pankha.",
-    "Check Your Understanding: completing the state–fan–material table for regional pankhas.",
-    "Critical Reflection: distinguishing fact from opinion, drawing inferences, explaining cultural identity, technology-driven change, commercialisation, and craft-preservation initiatives.",
-    "Vocabulary and Structures in Context: classifying word pairs, forming fixed expressions with 'and', using collocations, and applying the present perfect tense.",
-    "Listen and Respond: identifying details in a dialogue about selecting a pankha as a gift for Grandma.",
-    "Speaking Activity: speaking in the first person as a hand fan, ceiling fan, table fan, or handheld fan and describing features, strengths, weaknesses, and uniqueness.",
-    "Writing Task: producing a factual description of an artefact without adding personal opinion.",
-    "Learning Beyond the Text: presenting a regional craft, making and describing a hand fan, and reading O. Henry's 'The Last Leaf' as a story about art, hope, friendship, and sacrifice."
+    "Reflect and Respond on hand fans, materials and craft vocabulary",
+    "Reading for Meaning: origin, history and cultural uses of pankha and pankhi",
+    "Regional pankha traditions from Rajasthan, Gujarat, Bengal, Uttar Pradesh, Odisha, Bihar and tribal communities",
+    "Technology, commercialisation, preservation, workshops and sustainable livelihood",
+    "Critical Reflection on culture, design, changing use and artisan support",
+    "Vocabulary and Structures in Context: fixed word pairs, collocations and present perfect tense",
+    "Listening, fan role-play, factual description and craft-based Learning Beyond the Text",
+    "The Last Leaf and Reading for Appreciation: Canvas of Soil with its treatment of art, care and cultivation"
   ],
   "banned_topics": [
-    "The poem 'Canvas of Soil' and its garden-as-painting imagery, poetic devices, colour vocabulary, garden listening activity, garden writing task, and mini-project, because these belong to the next chapter.",
-    "The poem 'A Sea of Foliage Girds Our Garden Round', because it appears under the next chapter's Learning Beyond the Text section."
+    "External history of fans or regional crafts not stated in the supplied text",
+    "Technical climate science about electric fans or air-conditioning"
   ],
   "must_include_keywords": [
     "pankha",
-    "pankhi",
     "pankh",
+    "pankhi",
     "Ajanta",
-    "2nd century CE",
     "trade routes",
-    "cultural goods",
-    "indigenous",
-    "intricate designs",
-    "appliqué hand fan",
-    "zardozi hand fan",
-    "temple hand fan",
+    "applique hand fan",
+    "zardozi",
     "mirror work",
-    "beads hand fan",
-    "Kutch leather hand fan",
-    "sola",
     "Tal Patar Pankha",
-    "Phadh hand fan",
-    "bamboo hand fan",
-    "geometrical patterns",
+    "Phadh hand fans",
+    "bamboo hand fans",
+    "tribes",
     "technology",
     "commercial business",
-    "artisans",
     "sustainable livelihood",
     "pankha-making workshops",
-    "fixed expressions",
     "collocations",
     "present perfect tense",
-    "factual description",
     "The Last Leaf",
     "Sue",
     "Johnsy",
     "Behrman",
     "ivy creeper",
-    "masterpiece",
-    "will to live"
+    "Canvas of Soil",
+    "palette",
+    "canvas",
+    "gardener",
+    "diversity and harmony"
   ],
   "known_pitfalls": [
     {
-      "claim": "Pankha and pankhi mean exactly the same thing.",
-      "correction": "Pankha is used for fans generally, while pankhi denotes a small plumed fan used in ancient India."
+      "claim": "All pankhas in India are made from the same material and design.",
+      "correction": "The chapter emphasises regional variation in materials, decoration and form."
     },
     {
-      "claim": "The chapter proves that pankhas were among the most popular commercial items.",
-      "correction": "The chapter states that pankhas became significant cultural goods distributed through trade routes; it does not establish that they were among the most popular items of commerce."
+      "claim": "Modern change has completely ended pankha making.",
+      "correction": "The text says the craft risks losing presence, but it has also become a commercial business and different versions have increased demand."
     },
     {
-      "claim": "All regional pankhas were made from the same materials and differed only in colour.",
-      "correction": "Regional pankhas differed in materials, structure, decoration, and design, using items such as fabric, gold thread, brass, cotton, mirrors, beads, leather, sola, palm leaf, bamboo, silk, and silver."
+      "claim": "Pankhas have only a practical cooling role in the unit.",
+      "correction": "The text discusses religious, courtly, decorative, cultural and livelihood roles as well as earlier practical use."
     },
     {
-      "claim": "Technology has completely ended pankha-making in India.",
-      "correction": "Technology has placed the craft at risk of losing its presence, but pankha-making continues as a commercial craft and provides livelihood to artisans."
-    },
-    {
-      "claim": "Modern pankhas are used only for cooling.",
-      "correction": "The chapter says that in modern times their use has largely been restricted to decorative purposes and they have become traditional craft items."
-    },
-    {
-      "claim": "The last ivy leaf in 'The Last Leaf' survives naturally through the storms.",
-      "correction": "The real last leaf falls; Behrman paints a leaf on the wall during the storm, and the painted leaf helps Johnsy regain her will to live."
-    },
-    {
-      "claim": "Behrman's masterpiece is valuable mainly because it is technically beautiful.",
-      "correction": "Its deepest value lies in its life-saving effect: it restores Johnsy's hope, while Behrman sacrifices himself by painting it during the storm."
+      "claim": "The Last Leaf is evidence that illness can be cured by a painting.",
+      "correction": "The story uses the leaf and Behrmans sacrifice to restore Johnsys hope; it does not establish a medical cure by art."
     }
   ],
   "recommended_example_progression": [
-    "Begin with Reflect and Respond III: match indigenous, innovative, industrious, intricate, invoked, and initiatives with their meanings.",
-    "Move to Check Your Understanding I: complete the table linking Rajasthan, Gujarat, West Bengal, Uttar Pradesh, and Bihar with fan types and materials.",
-    "Use Critical Reflection I.1: distinguish fact from opinion and infer why regional pankhas could be distinguished from one another.",
-    "Use Vocabulary and Structures in Context II–IV: form fixed expressions, choose correct collocations, and complete the present perfect paragraph on puppetry.",
-    "Conclude with Learning Beyond the Text III: explain why Behrman's painted ivy leaf is called his masterpiece in 'The Last Leaf'."
+    "Check Your Understanding: classify regional pankhas and their materials",
+    "Critical Reflection: explain why pankha is described as a culture as well as an object",
+    "Vocabulary and Structures in Context: identify collocations and present perfect forms",
+    "The Last Leaf: analyse why the final ivy leaf changes Johnsys outlook",
+    "Canvas of Soil: interpret the garden as an artistic canvas"
   ],
-  "ncert_end_of_chapter_exercises_reference": "The chapter exercises run from Check Your Understanding and Critical Reflection through Vocabulary and Structures in Context, Listen and Respond, Speaking Activity, Writing Task, and Learning Beyond the Text on textbook pages 73–85.",
+  "ncert_end_of_chapter_exercises_reference": "The informational text is followed by Check Your Understanding, Critical Reflection, language, listening, speaking, factual writing and craft activities; the later literary texts have their own appreciation and reflection sections.",
   "manifest_version": "1.0",
   "manifest_status": "gpt55_generated"
 }

@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Environment and Sustainable Development",
+  "central_question": "How can economic development meet present needs while protecting environmental functions, resources, and the quality of life of future generations?",
+  "in_scope_units": [
+    "Introduction: the environmental cost of past development and the need to choose a sustainable path",
+    "Environment - definition and functions: biotic and abiotic components, resources, waste assimilation, life support, and aesthetic services",
+    "Environmental crisis: carrying capacity, absorptive capacity, resource depletion, pollution, global warming, ozone depletion, and opportunity costs",
+    "State of India's environment: natural-resource endowment, land degradation, biodiversity loss, urban air pollution, freshwater management, and solid waste",
+    "Sustainable development: intergenerational equity, basic needs, poverty reduction, and Herman Daly's conditions",
+    "Strategies for sustainable development: cleaner fuels, alternative energy, traditional knowledge, biocomposting, and biopest control",
+    "Conclusion, recap, exercises, and suggested activities linking environmental protection with lasting welfare"
+  ],
+  "banned_topics": [
+    "Detailed measurement of national income and sectoral output",
+    "A full account of economic reforms, liberalisation, and privatisation",
+    "Detailed poverty-estimation methods from other development chapters",
+    "Scientific derivations of atmospheric chemistry beyond the chapter descriptions"
+  ],
+  "must_include_keywords": [
+    "biotic components",
+    "abiotic components",
+    "renewable resources",
+    "non-renewable resources",
+    "carrying capacity",
+    "absorptive capacity",
+    "resource regeneration",
+    "waste assimilation",
+    "environmental crisis",
+    "opportunity cost",
+    "global warming",
+    "ozone depletion",
+    "land degradation",
+    "biodiversity loss",
+    "vehicular pollution",
+    "Central Pollution Control Board",
+    "sustainable development",
+    "intergenerational equity",
+    "basic needs",
+    "Herman Daly",
+    "non-conventional sources of energy",
+    "LPG",
+    "gobar gas",
+    "CNG",
+    "wind power",
+    "solar power",
+    "mini-hydel plants",
+    "traditional knowledge",
+    "biocomposting",
+    "biopest control"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Renewable resources can never be exhausted under any level of use.",
+      "correction": "The chapter treats renewable resources as continuously available only when extraction does not exceed their rate of regeneration."
+    },
+    {
+      "claim": "The environment performs only the function of supplying raw materials.",
+      "correction": "It supplies resources, assimilates waste, sustains life through genetic and biological diversity, and provides aesthetic services."
+    },
+    {
+      "claim": "Environmental crisis is caused only by population growth in developing countries.",
+      "correction": "The chapter links the crisis both to rising population and to affluent consumption and production standards, along with industrialisation and overuse."
+    },
+    {
+      "claim": "Sustainable development is simply slower economic growth.",
+      "correction": "It means meeting present needs without compromising future generations and includes lasting livelihoods, poverty reduction, and conservation of ecological capacity."
+    },
+    {
+      "claim": "Government pollution-control measures alone are sufficient.",
+      "correction": "The chapter states that such measures may not yield results unless society consciously adopts sustainable-development practices."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise 1 and Exercise 6 to define environment and identify its four functions.",
+    "Use NCERT Exercise 2 and Exercise 15 to connect extraction, regeneration, absorptive capacity, and the supply-demand reversal.",
+    "Use NCERT Exercise 8 and Exercise 14 to reason about the opportunity costs of environmental damage.",
+    "Use NCERT Exercise 17 and Exercise 19 to explain sustainable development and intergenerational equity.",
+    "Finish with NCERT Exercise 18 and Suggested Additional Activity 6 to compare practical strategies and stakeholder viewpoints."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1-19, followed by Suggested Additional Activities 1-6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

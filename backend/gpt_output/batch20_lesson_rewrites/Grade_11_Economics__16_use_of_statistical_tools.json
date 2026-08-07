@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Economics",
+    "chapter": "Use of Statistical Tools",
+    "central_question": "How can a student design a sound economic project, collect and present data, apply statistical tools, and draw evidence-based conclusions?",
+    "in_scope_units": [
+      "Introduction: the role of statistical tools in economic analysis and project work",
+      "Steps towards making a project: identifying a problem or area of study",
+      "Choice of target group",
+      "Collection of primary and secondary data and the suitability of sampling",
+      "Organisation and presentation of data through tables and diagrams",
+      "Analysis and interpretation using central tendency, dispersion, and correlation",
+      "Conclusion and bibliography",
+      "Suggested list of projects 1-12",
+      "Sample project: a toothpaste-market survey and questionnaire design",
+      "Data analysis and simplified project report with tables, diagrams, mean, standard deviation, preferences, and media influence",
+      "Recap, glossary of statistical terms, table of two-digit random numbers, and cautionary quotations about statistics"
+    ],
+    "banned_topics": [
+      "Full derivations of mean, standard deviation, and correlation already taught in earlier chapters",
+      "Detailed index-number construction",
+      "Detailed time-series analysis beyond glossary references",
+      "Invented survey results or numerical examples not found in the source",
+      "A general business plan that omits data collection and statistical analysis"
+    ],
+    "must_include_keywords": [
+      "project objective",
+      "target group",
+      "primary data",
+      "secondary data",
+      "questionnaire",
+      "interview schedule",
+      "sampling",
+      "organisation of data",
+      "tabulation",
+      "bar diagram",
+      "pie diagram",
+      "histogram",
+      "mean",
+      "standard deviation",
+      "correlation",
+      "analysis",
+      "interpretation",
+      "conclusion",
+      "bibliography",
+      "sample survey method",
+      "population",
+      "informant",
+      "random sampling",
+      "sampling error",
+      "non-sampling error",
+      "toothpaste survey",
+      "sample size",
+      "family income",
+      "family expenditure",
+      "occupational status",
+      "consumer preference",
+      "media influence",
+      "two-digit random numbers",
+      "judgement"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A project should begin by collecting any data that are easy to obtain.",
+        "correction": "The chapter begins with a clear problem and objective, which determine the target group, questions, data type, and method."
+      },
+      {
+        "claim": "The same target group is suitable for every survey.",
+        "correction": "Target groups depend on the topic; cars, soap, and safe drinking water require different populations."
+      },
+      {
+        "claim": "Secondary data are always inferior to primary data.",
+        "correction": "Secondary data can be suitable when they meet the objective and save time, money, and manpower."
+      },
+      {
+        "claim": "A questionnaire is good if it contains many questions.",
+        "correction": "It must generate the specific information needed for the study and should be tested or suitably modified."
+      },
+      {
+        "claim": "Statistical calculation alone produces a complete conclusion.",
+        "correction": "The chapter requires organisation, interpretation, contextual judgement, conclusions, suggestions, and acknowledgement of sources."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Suggested Project 3 to plan a study of how advertising affects sales.",
+      "Use Suggested Project 5 to design evidence collection for an overcharging complaint.",
+      "Use Suggested Project 11 to connect income, expenditure, and saving habits.",
+      "Use the Sample Project: Toothpaste Survey to examine questionnaire design and target information.",
+      "Use the Simplified Project Report tables and diagrams to interpret income, expenditure, brand preference, and media influence without inventing data."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter has no conventional exercise set; it provides Suggested Projects 1-12, a detailed sample toothpaste project, a recap, and statistical appendices."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Use of Statistical Tools\n\n## What you will learn\nYou will learn why statistical tools are used in economic project work and how to begin with a clear problem. You will connect the objective of a study with the target group and the information that must be collected.\n\n## Simple explanation\nStatistics helps organise evidence about production, consumption, distribution, banking, insurance, trade, transport, and other economic activities. A project makes these tools meaningful by applying them to a focused problem and using the results to suggest improvements.\n\n## Step-by-step breakdown\n- **Project objective**: The study must begin with a clear statement of what is to be investigated.\n- **Area of study**: Possible topics include product sales, consumer awareness, water or electricity problems, and the spread of information technology.\n- **Target group**: The people selected for attention must match the project: car studies focus mainly on middle- and higher-income groups, while soap or drinking-water studies require broader groups.\n- **Question design**: The target group and objective guide the wording and relevance of questions.\n- **Economic relevance**: A useful project concerns an economic issue and aims to analyse information rather than merely collect facts.\n- **Project logic**: Objective, target group, data collection, analysis, interpretation, and suggestions form a connected sequence.\n\n## Worked example\nQuestion: Why must the project objective be decided before the questionnaire is prepared?\n\nAnswer:\n- The chapter states that the objective determines what is to be studied, what data are needed, and which target group should be approached.\n- Without a clear objective, questions may collect information that does not help analyse the chosen problem.\n- Final answer: The objective must come first because it gives direction to the target group, questionnaire, data method, and final analysis.\n\n## Common mistake\nA common mistake is to select a familiar group first and then invent a topic around it. The chapter requires the problem and objective to guide the choice of people and questions.\n\n## Quick check question\nQuestion: What is a target group?\nAnswer: It is the group of persons on whom the investigator focuses while collecting information for the project.\nExplanation: Its characteristics must suit the topic so that the responses are relevant to the objective.\n\n## Summary\n- Statistical tools become useful when applied to a clear economic problem.\n- The objective determines the information required.\n- The target group must match the subject of the survey.\n- Project design is a sequence of connected decisions.",
+    "Core explanation": "# Core explanation: Use of Statistical Tools\n\n## What you will learn\nYou will learn how to choose between primary data, secondary data, or both. You will also understand how data are organised, presented, analysed, interpreted, and documented.\n\n## Simple explanation\nGood project work depends on fit: the source of data, sampling method, table, diagram, and statistical measure should all suit the question being asked. The final report must explain what the evidence means, not just display numbers.\n\n## Step-by-step breakdown\n- **Primary data**: First-hand information may be collected through a questionnaire or interview schedule using personal interviews, post, phone, email, or related methods.\n- **Covering letter**: A postal questionnaire should include a letter explaining the purpose of the inquiry.\n- **Secondary data**: Existing information can be used when it suits the requirement and is especially useful when time, money, or manpower are limited.\n- **Sampling**: When a sample is used, the method must be suitable for the population and objective.\n- **Organisation of data**: Collected information is processed through classification and tabulation.\n- **Presentation**: Bar diagrams, pie diagrams, histograms, and other suitable displays make patterns easier to see.\n- **Analysis**: Mean measures average, standard deviation measures variability, and correlation examines relationship between variables.\n- **Interpretation and conclusion**: Results must be explained, used to draw meaningful conclusions, and where possible linked to future prospects or policy suggestions.\n- **Bibliography**: All magazines, newspapers, research reports, and other secondary sources used in the project should be acknowledged.\n\n## Worked example\nQuestion: Why can a secondary source be appropriate even when the investigator could collect primary data?\n\nAnswer:\n- The chapter says secondary data may be used if they suit the requirement and are easily available, especially when time, money, and manpower are limited.\n- The decision depends on relevance and adequacy, not on the belief that one source type is always superior.\n- Final answer: Secondary data are appropriate when they answer the project objective reliably and make efficient use of available resources.\n\n## Common mistake\nA common mistake is to use a diagram because it looks attractive. The chapter requires a suitable diagram chosen according to the type of information being presented.\n\n## Quick check question\nQuestion: What is the purpose of a bibliography in a project report?\nAnswer: It records the details of secondary sources used to develop the project.\nExplanation: This allows readers to identify the evidence base and distinguishes collected information from the investigator's own analysis.\n\n## Summary\n- Primary and secondary data should be chosen according to the objective.\n- Sampling must suit the target population.\n- Tables and diagrams organise evidence for analysis.\n- Mean, standard deviation, and correlation answer different questions.\n- Interpretation, conclusion, and bibliography complete the report.",
+    "Worked examples": "# Worked examples: Use of Statistical Tools\n\n## What you will learn\nYou will learn how a questionnaire turns a broad project idea into specific information. You will use the chapter's toothpaste survey to connect questions with expenditure, brands, preferences, income, satisfaction, and media influence.\n\n## Simple explanation\nThe sample project advises a young entrepreneur who wants to produce toothpaste. Instead of guessing what consumers want, the study gathers primary data through a questionnaire designed around explicit information needs.\n\n## Step-by-step breakdown\n- **Research purpose**: The survey studies tastes, monthly expenditure, brands in demand, attitudes, preferred ingredients, media influence, and links with income.\n- **Tested questionnaire**: An existing questionnaire may be used after suitable modification if it has already been tried and tested for a similar study.\n- **Household profile**: Questions record family age, size, income, residence, and the occupation of the main bread-winner.\n- **Product use**: The form asks whether toothpaste is used, which brand is chosen, and how many packs are consumed.\n- **Product qualities**: Respondents can identify preferred features such as plain, gel, antiseptic, flavoured, protection, or fluoride.\n- **Satisfaction and innovation**: Questions test satisfaction with the current brand and willingness to try a new toothpaste.\n- **Media influence**: The questionnaire records sources such as cinema, exhibitions, internet, magazines, newspapers, radio, sales representatives, and television.\n- **Question relevance**: Every item is linked to a decision the entrepreneur may make about product design, market demand, or communication.\n\n## Worked example\nQuestion: Why does the toothpaste questionnaire ask both household income and preferred product features?\n\nAnswer:\n- The stated project objectives include studying the relation between income and expenditure, brand demand, preferences, and media influence.\n- Collecting both kinds of information allows the investigator to examine whether customer choices vary with economic circumstances.\n- Final answer: The two questions belong together because the project aims to analyse relationships among consumer characteristics and product preferences rather than list preferences alone.\n\n## Common mistake\nA common mistake is to copy a questionnaire without modification. The chapter says a tested questionnaire must still be adapted to the requirements of the new study.\n\n## Quick check question\nQuestion: What makes a questionnaire suitable for a project?\nAnswer: It asks for all the information required by the objective and avoids irrelevant questions.\nExplanation: Suitability comes from the connection between each question and the analysis the investigator plans to perform.\n\n## Summary\n- A questionnaire translates objectives into answerable items.\n- Household profile and consumer behaviour can be studied together.\n- Questions should support decisions about demand, features, and communication.\n- Even a tested questionnaire must be modified for the present purpose.",
+    "Exam-style problems": "# Exam-style problems: Use of Statistical Tools\n\n## What you will learn\nYou will interpret the sample project tables, diagrams, mean, and standard deviation without inventing new data. You will learn how observations are drawn from distributions of age, family size, income, expenditure, occupation, brand choice, preferences, and media influence.\n\n## Simple explanation\nThe simplified report turns questionnaire responses into organised evidence. Each table or diagram supports a specific observation, while mean and standard deviation summarise the centre and spread of numerical distributions.\n\n## Step-by-step breakdown\n- **Sample size and location**: The report covers 100 households, with 67 per cent urban and 33 per cent rural.\n- **Age and family size**: The tables identify the most common age ranges and show that most surveyed families have three to six members.\n- **Family income**: Most households fall between Rs 10,000 and Rs 30,000 per month; the reported mean income is Rs 18,000 and standard deviation is Rs 9,000.\n- **Family expenditure on toothpaste**: The reported mean family expenditure on toothpaste is Rs 104 per household per month with a standard deviation of Rs 35.60.\n- **Occupational status**: Service and trading households form the largest groups in the sample.\n- **Basis of selection**: Standardised marking, quality, price, and company brand name are prominent reasons for choosing toothpaste.\n- **Brand preference**: Pepsodent, Colgate, and Close-up are the most preferred brands in the reported sample.\n- **Consumer preference**: The consumer preference table shows gel and antiseptic options receiving more responses than the other listed features.\n- **Media influence**: Television has the largest reported influence, followed by newspaper among the listed media.\n\n## Worked example\nQuestion: What does standard deviation add to the reported mean monthly toothpaste expenditure?\n\nAnswer:\n- The mean of Rs 104 gives the average monthly expenditure, while the standard deviation of Rs 35.60 indicates how much household expenditure varies around that average.\n- Two samples could have the same mean but different spreads, so the measure of variability adds information that the mean alone cannot provide.\n- Final answer: Standard deviation helps judge whether expenditure is closely grouped near the mean or widely dispersed across households.\n\n## Common mistake\nA common mistake is to read the largest category as if it describes every respondent. The chapter uses the word majority and keeps conclusions tied to the surveyed sample.\n\n## Quick check question\nQuestion: Which medium influenced the largest number of families in the sample report?\nAnswer: Television, with 47 families influenced.\nExplanation: The bar diagram and table show television above newspaper, cinema, magazine, radio, sales representatives, and exhibition stalls.\n\n## Summary\n- The simplified report links each display to an observation.\n- Mean summarises average and standard deviation summarises variability.\n- Consumer conclusions must remain limited to the surveyed sample.\n- Tables and diagrams reveal patterns in income, occupation, preferences, brands, and media.",
+    "Revision and recap": "# Revision and recap: Use of Statistical Tools\n\n## What you will learn\nYou will revise the complete project cycle and key statistical terms in the appendices. You will also consider the chapter's reminder that statistical evidence supports judgement but does not replace it.\n\n## Simple explanation\nA strong project moves from a precise objective to suitable evidence and then to a reasoned conclusion. Definitions in the glossary and the table of two-digit random numbers support accurate method, while the closing quotations warn against careless interpretation of averages and probabilities.\n\n## Step-by-step breakdown\n- **Complete project cycle**: Identify the objective, choose the population and sample, select the data type, prepare the questionnaire or interview schedule, organise the data, apply statistical tools, interpret results, conclude, and cite sources.\n- **Population and sample survey method**: Population means all units for which information is required, while a sample survey studies a representative set selected from that population.\n- **Informant**: An informant is the individual or unit from whom information is obtained.\n- **Random sampling**: Every individual is given an equal chance of selection.\n- **Sampling error**: This is the numerical difference between a sample estimate and the corresponding true population value.\n- **Non-sampling error**: The glossary links it to sampling bias, non-response, and errors in data acquisition.\n- **Questionnaire**: It is a list of questions on the subject of inquiry that respondents are required to answer.\n- **Two-digit random numbers**: The appendix provides a table that can support random selection.\n- **Judgement**: The closing statements emphasise that averages and probabilities can mislead when used without context, so statistics are no substitute for judgement.\n\n## Worked example\nQuestion: Why should a project conclusion not rely on statistical calculation alone?\n\nAnswer:\n- The chapter requires results to be interpreted in relation to the objective and used for meaningful conclusions, future prospects, and suggestions.\n- Its closing quotations also warn that averages and probabilities can hide individual conditions or be misunderstood without context.\n- Final answer: Calculation is necessary, but sound judgement is required to explain what the figures mean, how far they apply, and what decisions they support.\n\n## Common mistake\nA common mistake is to confuse sampling error with all errors in a survey. The glossary separates numerical sample-estimation error from non-sampling problems such as bias, non-response, and data-acquisition mistakes.\n\n## Quick check question\nQuestion: What is random sampling?\nAnswer: It is a method in which every individual in the population is given an equal chance of being selected as an informant.\nExplanation: The equal-chance rule supports representative selection and can be implemented with tools such as the table of two-digit random numbers.\n\n## Summary\n- A project is a connected cycle from objective to conclusion.\n- Population, sample, informant, and questionnaire are distinct concepts.\n- Random sampling gives each individual an equal selection chance.\n- Sampling and non-sampling errors have different sources.\n- Statistics must be interpreted with context and judgement."
+  }
+}

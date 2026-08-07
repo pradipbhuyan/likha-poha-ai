@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 8: World Geography: Some Glimpses",
+  "central_question": "How do major physical features of the world shape climate, ecosystems, resources, trade and human life, and why must people understand and protect them?",
+  "in_scope_units": [
+    "The complexity of mapping the Earth and the limits of map projections",
+    "The oceans: water, currents, trenches, coral reefs and smaller water bodies and waterways",
+    "Asia: the Tibetan Plateau, Gobi Desert, Eurasian Steppes and Ural Mountains",
+    "Europe: the European Plain and major mountain landscapes",
+    "Africa: the Sahara, savannah and River Nile",
+    "South America: the Andes, Amazon basin and Atacama Desert",
+    "North America: the Colorado Plateau, Rocky Mountains and related physical features",
+    "Australia and Antarctica: deserts, distinctive ecosystems and human adaptation",
+    "Environmental pressures, interdependence and sustainable management of major landscapes"
+  ],
+  "banned_topics": [
+    "Detailed Indian physical geography covered in the preceding part of the textbook",
+    "Political boundaries or country histories unrelated to the chapter’s physical-geography tour",
+    "Detailed plate-tectonics theory beyond the chapter’s use of tectonic movement to explain selected landforms"
+  ],
+  "must_include_keywords": [
+    "oblate spheroid",
+    "map projection",
+    "Mercator Projection",
+    "Robinson Projection",
+    "latitude and longitude",
+    "blue planet",
+    "plankton",
+    "ocean currents",
+    "Gulf Stream",
+    "Mariana Trench",
+    "Challenger Deep",
+    "Great Barrier Reef",
+    "coral bleaching",
+    "Suez Canal",
+    "Tibetan Plateau",
+    "Third Pole",
+    "Gobi Desert",
+    "Eurasian Steppes",
+    "carbon sink",
+    "Ural Mountains",
+    "European Plain",
+    "Sahara Desert",
+    "savannah",
+    "River Nile",
+    "Andes Mountains",
+    "Amazon River",
+    "Amazon Rainforest",
+    "deforestation",
+    "Atacama Desert",
+    "Colorado Plateau",
+    "Rocky Mountains",
+    "Yellowstone National Park",
+    "Great Australian Desert",
+    "Antarctica",
+    "desertification"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A flat world map can reproduce the Earth perfectly without distortion.",
+      "correction": "The Earth is an oblate spheroid, so every flat map projection involves some compromise in size, shape or other spatial relationships."
+    },
+    {
+      "claim": "The ocean floor is a flat plain.",
+      "correction": "The chapter states that the ocean floor, like land, contains mountains, valleys, plains and very deep trenches."
+    },
+    {
+      "claim": "All deserts are hot.",
+      "correction": "The chapter includes both hot deserts and cold deserts and identifies Antarctica as the largest desert on Earth."
+    },
+    {
+      "claim": "Coral reefs are threatened only by natural causes.",
+      "correction": "The chapter links threats to reefs with human activities such as overfishing, pollution and climate change, and discusses coral bleaching."
+    }
+  ],
+  "recommended_example_progression": [
+    "Questions and activities 1: explain why all map projections contain some distortion",
+    "Questions and activities 4: explain how oceans regulate the Earth’s climate",
+    "Questions and activities 2: explain what makes the Tibetan Plateau unique",
+    "Questions and activities 6: analyse why the Amazon Rainforest is often called the “Lungs of the Earth”",
+    "Questions and activities 9: trace causes, impacts and possible solutions for deforestation, reef bleaching or desertification"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section “Questions and activities”, containing questions and applied tasks 1-11.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

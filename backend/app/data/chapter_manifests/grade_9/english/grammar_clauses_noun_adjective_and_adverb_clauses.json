@@ -1,0 +1,66 @@
+{
+  "grade": "Grade 9",
+  "subject": "English",
+  "chapter": "Grammar: Clauses (Noun, Adjective and Adverb Clauses)",
+  "central_question": "How can a student identify and use noun, adjective and adverb clauses according to the grammatical function each clause performs?",
+  "in_scope_units": [
+    "Clause, independent clause and dependent clause",
+    "Noun clauses as subject, object or complement",
+    "Adjective or relative clauses describing nouns",
+    "Adverb clauses of time, place, reason, condition, purpose and contrast",
+    "Common clause errors including misclassification, missing subordinators and comma splices"
+  ],
+  "banned_topics": [
+    "Active and Passive Voice",
+    "Determiners",
+    "Reported Speech"
+  ],
+  "must_include_keywords": [
+    "clause",
+    "subject",
+    "verb",
+    "independent clause",
+    "main clause",
+    "dependent clause",
+    "subordinate clause",
+    "noun clause",
+    "subject clause",
+    "object clause",
+    "complement",
+    "adjective clause",
+    "relative clause",
+    "adverb clause",
+    "that",
+    "who",
+    "which",
+    "where",
+    "because",
+    "if",
+    "although",
+    "so that"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Calling every clause beginning with that a noun clause.",
+      "correction": "Classify by function; if the clause describes a noun, it is an adjective clause."
+    },
+    {
+      "claim": "Writing an incomplete subordinate structure such as \"He said he honest.\"",
+      "correction": "Use a complete clause with subject and verb, for example \"He said that he was honest.\""
+    },
+    {
+      "claim": "Joining two independent clauses with only a comma.",
+      "correction": "Use a conjunction or make one clause subordinate."
+    }
+  ],
+  "recommended_example_progression": [
+    "Distinguish main and subordinate clauses",
+    "Complete sentences with noun clauses",
+    "Combine sentences with adjective clauses",
+    "Combine ideas with adverb clauses of reason, purpose or contrast",
+    "Classify mixed clauses and correct comma splices"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes identifying clause types, combining sentences with suitable clauses, completing subordinate clauses, and correcting clause or punctuation errors.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -78,8 +78,11 @@ def _extract_worked_example(lesson_markdown: str) -> tuple[str, str] | None:
         - Final answer: ...
     Returns (question, answer) or None if the section/pattern isn't found.
     """
+    # Hindi lessons translate the section header ("हल किया गया उदाहरण")
+    # but keep the internal Question:/Answer:/Solution: labels in English --
+    # confirmed by direct inspection across Grades 6, 7, 8, 9, 12 Hindi content.
     match = re.search(
-        r"##\s*Worked example\s*\n(.*?)(?=\n##\s|\Z)",
+        r"##\s*(?:Worked example|हल किया गया उदाहरण)\s*\n(.*?)(?=\n##\s|\Z)",
         lesson_markdown,
         re.DOTALL | re.IGNORECASE,
     )
@@ -114,7 +117,7 @@ def _extract_quick_check(lesson_markdown: str) -> tuple[str, str] | None:
     gets both the direct answer and the reasoning behind it.
     """
     match = re.search(
-        r"##\s*Quick check question\s*\n(.*?)(?=\n##\s|\Z)",
+        r"##\s*(?:Quick check question|शीघ्र जाँच प्रश्न)\s*\n(.*?)(?=\n##\s|\Z)",
         lesson_markdown,
         re.DOTALL | re.IGNORECASE,
     )

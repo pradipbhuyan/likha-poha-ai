@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "World Climate and Climate Change",
+    "central_question": "How can world climates be classified from temperature and precipitation, and what evidence and processes explain climate change?",
+    "in_scope_units": [
+      "Empirical, genetic and applied climate classification",
+      "Koeppen climate-classification scheme and letter codes",
+      "Tropical humid climates",
+      "Dry climates",
+      "Warm temperate climates",
+      "Cold snow-forest climates",
+      "Polar climates",
+      "Climate change evidence",
+      "Astronomical, terrestrial and anthropogenic causes",
+      "Global warming, greenhouse gases, ozone depletion and international response",
+      "NCERT exercises and project work"
+    ],
+    "banned_topics": [
+      "Detailed daily weather-system mechanics from Chapter 9",
+      "Detailed cloud and precipitation processes from Chapter 10",
+      "A modern classification replacing the supplied Koeppen scheme"
+    ],
+    "must_include_keywords": [
+      "empirical classification",
+      "genetic classification",
+      "applied classification",
+      "V. Koeppen",
+      "vegetation",
+      "A-Tropical",
+      "B-Dry",
+      "C-Warm Temperate",
+      "D-Cold Snow Forest",
+      "E-Cold",
+      "Af",
+      "Am",
+      "Aw",
+      "BSh",
+      "BWh",
+      "Cfa",
+      "Cs",
+      "Cfb",
+      "Df",
+      "Dw",
+      "ET",
+      "EF",
+      "ITCZ",
+      "permafrost",
+      "climate change",
+      "glacial",
+      "inter-glacial",
+      "sunspots",
+      "Millankovitch oscillations",
+      "volcanism",
+      "aerosols",
+      "global warming",
+      "greenhouse effect",
+      "greenhouse gases",
+      "carbon dioxide",
+      "CFCs",
+      "methane",
+      "nitrous oxide",
+      "ozone",
+      "Kyoto protocol"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Koeppen classification is mainly genetic.",
+        "correction": "The chapter calls it empirical because it is based on observed temperature and precipitation related to vegetation."
+      },
+      {
+        "claim": "All five major groups are based only on temperature.",
+        "correction": "Four are temperature-based, while B-Dry is distinguished by precipitation relative to potential evaporation."
+      },
+      {
+        "claim": "Climate change is presented only as modern human-caused warming.",
+        "correction": "The chapter presents long natural variability as well as anthropogenic greenhouse-gas forcing."
+      },
+      {
+        "claim": "All greenhouse gases behave identically.",
+        "correction": "Their effectiveness depends on concentration change, atmospheric lifetime and wavelengths absorbed."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 1(ii): identify Koeppen as empirical",
+      "NCERT Exercise 2(i): name the two climatic variables used by Koeppen",
+      "NCERT Exercise 3(i): compare A and B climates",
+      "NCERT Exercise 2(iv): interpret the chapter’s sunspot discussion",
+      "NCERT Exercise 3(iii): define and list greenhouse gases"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work on the Kyoto declaration related to global climate changes."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: World Climate and Climate Change\n\n## What you will learn\nYou will compare empirical, genetic and applied approaches to climate classification. You will learn how V. Koeppen used temperature, precipitation and vegetation relationships.\n\n## Simple explanation\nClimate classification reduces large amounts of information into groups that are easier to describe and compare. The chapter centres on Koeppen’s empirical classification and its letter codes.\n\n## Step-by-step breakdown\n- **Three approaches**: Empirical classification uses observed data, genetic classification organises climates by causes, and applied classification serves specific purposes.\n- **V. Koeppen**: V. Koeppen related vegetation distribution to selected values of temperature and precipitation.\n- **Major groups**: A-Tropical, B-Dry, C-Warm Temperate, D-Cold Snow Forest and E-Cold are the five major groups.\n- **Letter codes**: Small letters refine precipitation seasonality and temperature characteristics.\n- **Dry-climate codes**: Within B-Dry climates, S marks steppe or semi-arid conditions and W marks deserts.\n\n## Worked example\nQuestion: Why is Koeppen’s system empirical rather than genetic?\n\nAnswer:\n- The chapter says Koeppen selected observed mean annual and monthly temperature and precipitation values and related them to vegetation.\n- The system begins from measurable climatic outcomes rather than the atmospheric causes that produce them.\n- Final answer: Koeppen’s scheme is empirical because it is built from observed temperature and precipitation data linked to vegetation.\n\n## Common mistake\nDo not treat every letter in a Koeppen code as a separate major group; capital letters identify major groups and smaller letters refine types.\n\n## Quick check question\nQuestion: Which two main climatic variables does Koeppen use?\nAnswer: Temperature and precipitation.\nExplanation: The chapter explicitly bases the scheme on mean temperature and precipitation data.\n\n## Summary\n- Climate classification can be empirical, genetic or applied.\n- Koeppen’s scheme is empirical.\n- The five major groups are A, B, C, D and E.\n- Letter combinations refine rainfall seasonality and temperature characteristics.",
+    "Core explanation": "# Core explanation: World Climate and Climate Change\n\n## What you will learn\nYou will compare Tropical Humid and Dry climates. You will use Af, Am, Aw, BSh and BWh to connect codes with climate patterns.\n\n## Simple explanation\nThe A group is broadly hot and humid, while the B group is defined by moisture deficiency. This contrast shows that the classification uses both thermal and precipitation criteria.\n\n## Step-by-step breakdown\n- **A-Tropical**: Tropical humid climates lie between the tropics, with ITCZ influence, low annual temperature range and generally high rainfall.\n- **Af**: Af tropical wet climate has no dry season, year-round precipitation and dense evergreen vegetation.\n- **Am and Aw**: Am has heavy summer monsoon rainfall with a short dry season, while Aw has a winter dry season and lower rainfall than Af and Am.\n- **B-Dry**: B-Dry climates have precipitation insufficient for plant growth and occur in subtropical highs, continental interiors and other dry settings.\n- **BSh and BWh**: BSh is subtropical steppe or semi-arid climate; BWh is subtropical desert, with lower and highly variable rainfall.\n\n## Worked example\nQuestion: How do A-Tropical and B-Dry climates differ?\n\nAnswer:\n- The source characterises A climates by high temperature and generally abundant rainfall, whereas B climates are defined where potential evaporation exceeds precipitation.\n- The essential B criterion is moisture deficiency rather than simply lower temperature.\n- Final answer: A climates are warm and humid, while B climates are organised around insufficient precipitation relative to evaporation.\n\n## Common mistake\nA common mistake is to treat all tropical climates as continuously wet; Aw has winter drought and Am has a short dry season.\n\n## Quick check question\nQuestion: Which tropical type has no dry season?\nAnswer: Af.\nExplanation: The Koeppen table identifies Af as tropical wet with no dry season.\n\n## Summary\n- A climates are tropical and generally hot.\n- Af, Am and Aw differ mainly in rainfall seasonality.\n- B climates are defined by dryness.\n- Steppe climates are semi-arid and deserts more arid.",
+    "Worked examples": "# Worked examples: World Climate and Climate Change\n\n## What you will learn\nYou will compare warm temperate, cold snow-forest and polar climates. You will link C, D and E groups with maritime influence, continentality and latitude.\n\n## Simple explanation\nPoleward from tropical and dry regions, the C, D and E groups show stronger cold-season influence. Their patterns vary with continental margin, interior location and latitude.\n\n## Step-by-step breakdown\n- **C-Warm Temperate**: C climates occupy many mid-latitude continental margins and include humid subtropical, Mediterranean and marine west coast types.\n- **Cs**: Mediterranean Cs has hot dry summers and mild rainy winters under shifting subtropical highs and westerlies.\n- **Cfa and Cfb**: Cfa has no dry season and warm summers; Cfb is marine west coast with year-round precipitation and strong oceanic moderation.\n- **D-Cold Snow Forest**: Df has humid cold winters, while Dw has dry winters and especially severe continental cold.\n- **E-Cold**: ET tundra has permafrost, a short growing season and low vegetation, while EF ice cap remains below freezing even in summer.\n\n## Worked example\nQuestion: What broad contrast would you expect between Cfb and an interior D climate?\n\nAnswer:\n- The source describes Cfb as ocean-moderated with small temperature ranges, while D climates occupy large northern continental interiors with severe winters and large ranges.\n- Maritime influence reduces seasonal extremes, whereas continental interiors cool strongly.\n- Final answer: Cfb has a milder maritime annual cycle, while D climates show much stronger continental cold.\n\n## Common mistake\nDo not assume every C climate has the same rainfall season: Cs is summer dry, while Cfa and Cfb have no dry season.\n\n## Quick check question\nQuestion: Which polar type is associated with permafrost?\nAnswer: ET, the tundra climate.\nExplanation: The chapter links ET with permanently frozen subsoil and low-growing vegetation.\n\n## Summary\n- C climates include several mid-latitude regimes.\n- D climates are strongly continental cold-snow climates.\n- ET tundra has permafrost.\n- EF ice cap remains below freezing even in summer.",
+    "Exam-style problems": "# Exam-style problems: World Climate and Climate Change\n\n## What you will learn\nYou will identify evidence that climate has changed through time. You will distinguish astronomical, volcanic and human-related causes.\n\n## Simple explanation\nClimate change is presented as a long-running feature of earth history. The chapter uses geological, geomorphological, biological and historical evidence, then examines natural and anthropogenic causes.\n\n## Step-by-step breakdown\n- **Past evidence**: Glacial and inter-glacial records, glacier advances and retreats, lake sediments, tree rings, archaeology and historical records reveal earlier warm, cold, wet and dry periods.\n- **Sunspots**: Cyclical sunspots are discussed as a possible solar influence, though the chapter notes that some claimed relationships are not statistically significant.\n- **Millankovitch oscillations**: Variations in orbit, wobble and axial tilt alter insolation and may influence climate.\n- **Volcanism**: Volcanic aerosols can reduce solar radiation reaching the surface and produce temporary cooling.\n- **Anthropogenic effect**: The chapter identifies rising greenhouse gases as the most important human influence likely to cause global warming.\n\n## Worked example\nQuestion: How does the chapter recognise both natural climate variability and modern human influence?\n\nAnswer:\n- The source cites long-term glacial, sediment, tree-ring and historical evidence, then separately identifies rising greenhouse gases as a major anthropogenic effect.\n- Natural variability and human forcing are presented as different mechanisms rather than mutually exclusive explanations.\n- Final answer: Climate change is both a natural long-term process and, in the modern period, increasingly affected by human greenhouse-gas emissions.\n\n## Common mistake\nA common mistake is to use natural variability to dismiss greenhouse forcing; the chapter explicitly includes both.\n\n## Quick check question\nQuestion: What two broad groups of natural causes are identified?\nAnswer: Astronomical and terrestrial causes.\nExplanation: Orbital and solar changes are astronomical, while volcanism is a terrestrial example in the chapter.\n\n## Summary\n- Past climate change is recorded in many independent forms of evidence.\n- Sunspots and orbital changes are astronomical influences.\n- Volcanic aerosols can reduce incoming solar radiation.\n- Human greenhouse-gas increases are identified as a major modern forcing.",
+    "Revision and recap": "# Revision and recap: World Climate and Climate Change\n\n## What you will learn\nYou will explain the greenhouse effect, greenhouse gases, ozone depletion and global warming. You will note the chapter’s discussion of the Kyoto protocol.\n\n## Simple explanation\nThe atmosphere transmits much incoming short-wave radiation but absorbs much outgoing long-wave radiation. Gases that absorb this terrestrial energy create the greenhouse effect, and rising concentrations can strengthen warming.\n\n## Step-by-step breakdown\n- **Greenhouse effect**: Greenhouse gases absorb long-wave terrestrial radiation and warm the atmosphere.\n- **Greenhouse gases**: The chapter names carbon dioxide, CFCs, methane, nitrous oxide and ozone among the primary greenhouse gases.\n- **Carbon dioxide**: Fossil-fuel combustion raises carbon dioxide, while forests and oceans act as sinks; deforestation weakens the land sink.\n- **CFCs and ozone**: CFCs can destroy stratospheric ozone, and major depletion creates an ozone hole.\n- **Kyoto protocol**: The Kyoto protocol is presented as an international effort to reduce greenhouse-gas emissions.\n- **Global warming**: Possible effects include melting glaciers and ice caps, thermal expansion of seawater, sea-level rise and risks to coasts and islands.\n\n## Worked example\nQuestion: What are greenhouse gases and why can increasing them contribute to global warming?\n\nAnswer:\n- The source defines greenhouse gases as gases that absorb outgoing long-wave radiation and lists carbon dioxide, CFCs, methane, nitrous oxide and ozone.\n- Greater absorption of terrestrial radiation increases heat retained within the atmospheric system.\n- Final answer: Greenhouse gases contribute to warming by absorbing outgoing long-wave radiation, so rising concentration can strengthen the greenhouse effect.\n\n## Common mistake\nDo not confuse stratospheric ozone protection with the greenhouse role of ozone in lower layers; the chapter distinguishes these effects.\n\n## Quick check question\nQuestion: Name the major greenhouse gases listed.\nAnswer: Carbon dioxide, CFCs, methane, nitrous oxide and ozone.\nExplanation: These gases are explicitly named in the greenhouse-gas section.\n\n## Summary\n- The greenhouse effect depends on absorption of terrestrial long-wave radiation.\n- Carbon dioxide receives special attention among greenhouse gases.\n- CFCs are also linked with ozone depletion.\n- Global warming may raise sea level and affect coasts.\n- The Kyoto protocol represents international response in the chapter."
+  }
+}

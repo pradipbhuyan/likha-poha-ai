@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Landforms and their Evolution",
+  "central_question": "How do geomorphic agents erode, transport and deposit material to create and transform landforms through time?",
+  "in_scope_units": [
+    "Landforms, landscapes and landform evolution",
+    "Running water: landscape stages, erosional and depositional landforms",
+    "Groundwater: karst topography, solution landforms, caves and cave deposits",
+    "Glaciers: erosion and deposition",
+    "Waves and currents: high rocky and low sedimentary coasts",
+    "Winds and sheet wash in deserts",
+    "NCERT exercises and project work"
+  ],
+  "banned_topics": [
+    "Detailed internal earth structure and plate tectonic theory",
+    "Ocean-water wave mechanics, tides and currents as a separate oceanography topic",
+    "Groundwater as a water resource rather than as a geomorphic agent"
+  ],
+  "must_include_keywords": [
+    "landform",
+    "landscape",
+    "running water",
+    "peneplain",
+    "monadnock",
+    "V-shaped valley",
+    "gorge",
+    "canyon",
+    "potholes",
+    "plunge pools",
+    "incised meanders",
+    "river terraces",
+    "alluvial fans",
+    "floodplains",
+    "natural levees",
+    "point bars",
+    "ox-bow lakes",
+    "karst topography",
+    "sinkholes",
+    "lapies",
+    "caves",
+    "stalactites",
+    "stalagmites",
+    "glaciers",
+    "cirque",
+    "horn",
+    "arête",
+    "U-shaped",
+    "moraines",
+    "esker",
+    "outwash plains",
+    "drumlins",
+    "wave-cut cliff",
+    "sea caves",
+    "sea stacks",
+    "beaches",
+    "spit",
+    "lagoon",
+    "pediment",
+    "barchan"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A meander is itself a depositional landform.",
+      "correction": "The chapter explicitly calls a meander a channel pattern, not a landform in itself."
+    },
+    {
+      "claim": "Groundwater creates karst mainly by mechanical erosion.",
+      "correction": "Mechanical removal is insignificant; solution and precipitation in limestone or dolomite produce karst landforms."
+    },
+    {
+      "claim": "Wind alone creates desert erosional landforms.",
+      "correction": "The chapter also gives major roles to sheet floods, mass wasting and weathering."
+    },
+    {
+      "claim": "All glacial deposits are sorted.",
+      "correction": "Glacial till is unassorted, whereas glacio-fluvial outwash is roughly stratified and assorted."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2(i): interpret incised meanders and alluvial-plain meanders",
+    "NCERT Exercise 2(ii): explain valley sinks or uvalas",
+    "NCERT Exercise 2(iv): locate and name glacial linear depositional forms",
+    "NCERT Exercise 2(v): explain wind action and other desert agents",
+    "NCERT Exercise 3(i): explain the dominance of running water"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 followed by Project Work on local landforms, materials and processes.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

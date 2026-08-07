@@ -1,0 +1,81 @@
+{
+  "batch": "cbse_lesson_rewrites_batch22_aug07",
+  "generated_on": "2026-08-07",
+  "bank_count": 9,
+  "total_lesson_steps": 45,
+  "total_must_include_keywords": 354,
+  "outputs": [
+    {
+      "file": "08_chapter_8_world_geography_some_glimpses.json",
+      "grade": "Grade 8",
+      "subject": "Social Science",
+      "chapter": "Chapter 8: World Geography: Some Glimpses",
+      "lesson_steps": 5,
+      "must_include_keywords": 35
+    },
+    {
+      "file": "09_chapter_9_indias_long_road_to_independence.json",
+      "grade": "Grade 8",
+      "subject": "Social Science",
+      "chapter": "Chapter 9: India's Long Road to Independence",
+      "lesson_steps": 5,
+      "must_include_keywords": 40
+    },
+    {
+      "file": "10_chapter_10_a_journey_through_indian_architecture.json",
+      "grade": "Grade 8",
+      "subject": "Social Science",
+      "chapter": "Chapter 10: A Journey Through Indian Architecture",
+      "lesson_steps": 5,
+      "must_include_keywords": 40
+    },
+    {
+      "file": "11_chapter_11_the_role_of_the_judiciary_in_our_society.json",
+      "grade": "Grade 8",
+      "subject": "Social Science",
+      "chapter": "Chapter 11: The Role of the Judiciary in Our Society",
+      "lesson_steps": 5,
+      "must_include_keywords": 40
+    },
+    {
+      "file": "12_chapter_12_citizenship_rights_and_duties.json",
+      "grade": "Grade 8",
+      "subject": "Social Science",
+      "chapter": "Chapter 12: Citizenship: Rights and Duties",
+      "lesson_steps": 5,
+      "must_include_keywords": 40
+    },
+    {
+      "file": "13_chapter_13_dynamics_of_population.json",
+      "grade": "Grade 8",
+      "subject": "Social Science",
+      "chapter": "Chapter 13: Dynamics of Population",
+      "lesson_steps": 5,
+      "must_include_keywords": 39
+    },
+    {
+      "file": "14_chapter_14_indias_urban_landscape.json",
+      "grade": "Grade 8",
+      "subject": "Social Science",
+      "chapter": "Chapter 14: India's Urban Landscape",
+      "lesson_steps": 5,
+      "must_include_keywords": 40
+    },
+    {
+      "file": "15_chapter_15_cultural_currents_13th_to_17th_centuries.json",
+      "grade": "Grade 8",
+      "subject": "Social Science",
+      "chapter": "Chapter 15: Cultural Currents: 13th to 17th Centuries",
+      "lesson_steps": 5,
+      "must_include_keywords": 40
+    },
+    {
+      "file": "20_bharatiya_kalayen.json",
+      "grade": "Grade 11",
+      "subject": "Hindi",
+      "chapter": "Bharatiya Kalayen",
+      "lesson_steps": 5,
+      "must_include_keywords": 40
+    }
+  ]
+}

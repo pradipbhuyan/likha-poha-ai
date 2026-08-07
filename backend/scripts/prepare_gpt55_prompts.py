@@ -290,9 +290,20 @@ BOOK_SOURCES = {
         "subject_class": "science_or_maths",
     },
     ("Grade 8", "Social Science"): {
-        "pdf_dir": REPO_ROOT / "RAG DB" / "Class 8" / "Social",
-        "book_code": "hees1",
-        "num_chapters": 7,
+        # "Exploring Society: India and Beyond" is published in two
+        # parts -- Part I (hees1, 7 chapters, already live) and Part II
+        # (hees2, 8 chapters -- World Geography: Some Glimpses .. Cultural
+        # Currents: 13th to 17th Centuries), which was missing from the
+        # platform entirely until 2026-08-07, confirmed against an
+        # ncert.nic.in audit. NCERT itself restarts Part II's numbering
+        # at 1, but this platform's convention (matching Grade 7
+        # Maths/Social Science and Grade 8 Maths, which use the same
+        # two-part NCERT structure) is continuous combined numbering, so
+        # Part II is placed at combined positions 8-15.
+        "parts": [
+            {"pdf_dir": REPO_ROOT / "RAG DB" / "Class 8" / "Social", "book_code": "hees1", "num_chapters": 7},
+            {"pdf_dir": REPO_ROOT / "RAG DB" / "Class 8" / "Social", "book_code": "hees2", "num_chapters": 8},
+        ],
         "subject_class": "humanities_or_language",
     },
     # ── Grade 11 books (added 2026-07-30) ────────────────────────────────
@@ -346,9 +357,17 @@ BOOK_SOURCES = {
         "subject_class": "science_or_maths",
     },
     ("Grade 11", "Business Studies"): {
+        # Corrected 2026-08-07: an ncert.nic.in audit found the current
+        # official book has 11 chapters, not 10 -- "International
+        # Business" (kebs111.pdf) is the real final chapter, confirmed
+        # via its own printed "Chapter 11" heading. Chapter 9's platform
+        # title was also stale ("Small Business"), but its lesson content
+        # was already correctly about MSMEs (kebs109.pdf's own heading is
+        # "Chapter 9 MSME and Business Entrepreneurship") -- only the
+        # title needed fixing there, not the content.
         "pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Business_Studies",
         "book_code": "kebs1",
-        "num_chapters": 10,
+        "num_chapters": 11,
         "subject_class": "humanities_or_language",
     },
     ("Grade 11", "Accountancy"): {
@@ -362,13 +381,18 @@ BOOK_SOURCES = {
         "subject_class": "science_or_maths",
     },
     ("Grade 11", "Political Science"): {
-        # Two separate NCERT books, each independently numbered
-        # Chapter 1-8 / 1-10 (confirmed from each PDF's own printed
-        # chapter number/title): "Political Theory" (keps101-108) then
-        # "Indian Constitution at Work" (keps201-210).
+        # Two separate NCERT books, each independently numbered.
+        # "Indian Constitution at Work" (keps201-210, 10 chapters as of
+        # the 2023 rationalisation -- adds "Constitution as a Living
+        # Document" and "The Philosophy of the Constitution") comes FIRST
+        # to match the platform's existing combined chapter numbering
+        # (Chapter 1-10 = Constitution, Chapter 11-18 = Political Theory)
+        # -- confirmed 2026-08-06 against the platform's own rag_documents
+        # rows, which already used this order before this fix. "Political
+        # Theory" (keps101-108, 8 chapters) comes second.
         "parts": [
-            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Political_Science", "book_code": "keps1", "num_chapters": 8},
             {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Political_Science", "book_code": "keps2", "num_chapters": 10},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Political_Science", "book_code": "keps1", "num_chapters": 8},
         ],
         "subject_class": "humanities_or_language",
     },
@@ -384,50 +408,41 @@ BOOK_SOURCES = {
         "subject_class": "humanities_or_language",
     },
     ("Grade 11", "Geography"): {
-        # Two separate NCERT books, each independently numbered. CORRECTED
-        # 2026-07-31: the book-code-to-title assumption below was
-        # originally REVERSED, causing every one of Grade 11 Geography's
-        # 16 chapters to be backfilled with the WRONG PDF's images (a
-        # circular one-book-length shift — e.g. "Geography as a
-        # Discipline" [chapter 1 in get_chapter_list()] received
-        # kegy101.pdf's images [India's "Administrative Divisions" map],
-        # while "India — Location" [chapter 7] received kegy201.pdf's
-        # images [Geography as a Discipline's own diagrams]). Verified
-        # directly against each PDF's own printed content:
-        #   - kegy1*.pdf is actually "INDIA: PHYSICAL ENVIRONMENT" (10
-        #     chapters: kegy101=India--Location page 1 text literally
-        #     begins "INTRODUCTION ... India's place in the world";
-        #     kegy102=Structure and Physiography; kegy103=Drainage
-        #     System; kegy104=Climate; kegy105=Natural Vegetation;
-        #     kegy106=Soils; kegy107=Natural Hazards and Disasters;
-        #     kegy108=Population; kegy109=Migration; kegy110=Human
-        #     Settlements) -- NOT the 6-chapter "Fundamentals" book the
-        #     original comment claimed.
-        #   - kegy2*.pdf is actually "FUNDAMENTALS OF PHYSICAL
-        #     GEOGRAPHY" (6 chapters: kegy201.pdf page 1 literally prints
-        #     "GEOGRAPHY AS A DISCIPLINE"; kegy202=The Origin and
-        #     Evolution of the Earth [confirmed: this file's page 1 is
-        #     only the Unit II divider, but pages 2-6 are headed "THE
-        #     ORIGIN AND EVOLUTION OF THE EARTH"]; kegy203=Interior of
-        #     the Earth; kegy204=Distribution of Oceans and Continents
-        #     [confirmed: opens "In the previous chapter, you have
-        #     studied the interior of the earth"]; kegy205=Minerals and
-        #     Rocks; kegy206=Geomorphic Processes) -- NOT the 10-chapter
-        #     "India" book the original comment claimed.
-        # get_chapter_list() for this (grade, subject) returns exactly
-        # 16 titles in the order: Geography as a Discipline (1) ... 
-        # Geomorphic Processes (6), then India -- Location (7) ...
-        # Human Settlements (16) -- i.e. the FIRST 6 chapters are the
-        # kegy2 book and the REMAINING 10 are the kegy1 book. The "parts"
-        # list below must therefore list kegy2 (6 chapters) FIRST and
-        # kegy1 (10 chapters) SECOND to match that chapter order --
-        # _resolve_pdf_path_for_chapter() consumes "parts" strictly in
-        # list order against the 1-based chapter index, so the part
-        # order here must always mirror get_chapter_list()'s title
-        # order, never the book's own re-used internal numbering.
+        # Two separate NCERT books, each independently numbered.
+        # CORRECTED AGAIN 2026-08-07: an earlier audit against
+        # ncert.nic.in found "Fundamentals of Physical Geography" (kegy2)
+        # was rationalized from 6 to 14 chapters (adding Landforms and
+        # their Evolution, Composition and Structure of Atmosphere, Solar
+        # Radiation/Heat Balance/Temperature, Atmospheric Circulation and
+        # Weather Systems, Water in the Atmosphere, World Climate and
+        # Climate Change, Water (Oceans), Movements of Ocean Water, and
+        # Biodiversity and Conservation), and "India: Physical
+        # Environment" (kegy1) was cut from 10 to 6 chapters (dropping
+        # Soils, Population, Migration, and Human Settlements). The
+        # previous comment here claiming kegy205="Minerals and Rocks" was
+        # WRONG -- verified 2026-08-07 directly against the PDF's own
+        # page headers that kegy205 is actually "GEOMORPHIC PROCESSES"
+        # (page 1 is a Unit III divider blurb, pages 2-11 carry the real
+        # "GEOMORPHIC PROCESSES" running header). Every kegy2 file was
+        # re-verified the same way (each file's page 1 is a unit-divider
+        # blurb, real chapter content with its own running header follows
+        # from page 2 onward): kegy201=Geography as a Discipline,
+        # kegy202=The Origin and Evolution of the Earth, kegy203=Interior
+        # of the Earth, kegy204=Distribution of Oceans and Continents,
+        # kegy205=Geomorphic Processes, kegy206=Landforms and their
+        # Evolution, kegy207=Composition and Structure of Atmosphere,
+        # kegy208=Solar Radiation Heat Balance and Temperature,
+        # kegy209=Atmospheric Circulation and Weather Systems,
+        # kegy210=Water in the Atmosphere, kegy211=World Climate and
+        # Climate Change, kegy212=Water (Oceans), kegy213=Movements of
+        # Ocean Water, kegy214=Biodiversity and Conservation.
+        # get_chapter_list() for this (grade, subject) now returns 20
+        # titles: kegy2's 14 chapters FIRST, then kegy1's 6 chapters
+        # (India -- Location .. Natural Hazards and Disasters) SECOND --
+        # confirmed against the platform's live rag_documents rows.
         "parts": [
-            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Geography", "book_code": "kegy2", "num_chapters": 6},
-            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Geography", "book_code": "kegy1", "num_chapters": 10},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Geography", "book_code": "kegy2", "num_chapters": 14},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Geography", "book_code": "kegy1", "num_chapters": 6},
         ],
         "subject_class": "humanities_or_language",
     },
@@ -455,27 +470,32 @@ BOOK_SOURCES = {
         "subject_class": "humanities_or_language",
     },
     ("Grade 11", "Hindi"): {
-        # Two NCERT sources. Order verified by rendering each PDF's early
-        # pages as an IMAGE and reading the Devanagari directly (this
-        # book uses a legacy Kruti-Dev-encoded font, so PyMuPDF's raw
-        # text extraction is garbled and cannot be substring-matched --
-        # confirmed same issue noted for Grade 11 Hindi Vitan elsewhere in
-        # this file). khvt101/102/103 visually confirmed as rag_documents'
-        # live chapters 1-3 (Bharatiya Gayikaon.../Rajasthan Ki Rajat
-        # Boondein/Alo-Aandhari); khar101's first real content page is a
-        # Premchand author-bio matching live chapter 4 (Namak Ka Daroga) --
-        # so the live order is "Vitan" (3 chapters) THEN "Aroh" (16
-        # chapters), 3+16=19 matching rag_documents exactly. This spot-
-        # checked 4 of 19 positions, not all -- worth a fuller check
-        # before treating the middle of the Aroh sequence as guaranteed
-        # correct. Previous config only had a 5-chapter Vitan-only part
-        # (and even that included 2 extra khvt104/105 files that do NOT
-        # match any of the 19 live titles -- excluded here).
+        # Two NCERT sources: "Aroh Bhag 1" (core textbook, khar1, 16
+        # chapters) FIRST, then "Vitan Bhag 1" (supplementary reader,
+        # khvt1) SECOND -- CORRECTED 2026-08-07 against an ncert.nic.in
+        # audit: the previous config had these reversed (Vitan first),
+        # which is backwards -- Vitan's own prelims explicitly label it
+        # "पूरक" (supplementary), Aroh has no such qualifier. Also
+        # corrected: Vitan actually has 4 chapters, not 3 -- "Bharatiya
+        # Kalayen" (Indian Arts) is the real 4th chapter (khvt104.pdf +
+        # khvt105.pdf, both share the running header "भारतीय कलाएँ" with
+        # continuing page numbers 59→71; khvt105 is a short biographical
+        # sidebar on the same chapter, not a separate chapter -- merged
+        # into a single khvt104.pdf, the original single-file version
+        # preserved as khvt104_orig_ch4only.pdf). This book uses a legacy
+        # Kruti-Dev-encoded font -- PyMuPDF's raw text extraction is
+        # garbled and cannot be substring-matched, but the printed page
+        # headers/numbers are still legible enough to confirm boundaries.
         "parts": [
-            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Hindi", "book_code": "khvt1", "num_chapters": 3},
             {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Hindi", "book_code": "khar1", "num_chapters": 16},
+            {"pdf_dir": Path.home() / "Library" / "CloudStorage" / "OneDrive-NTTDATA,Inc" / "Desktop" / "cbse_ncert_pdfs" / "Grade_11" / "Hindi", "book_code": "khvt1", "num_chapters": 4},
         ],
         "subject_class": "humanities_or_language",
+        # Was missing "content_language": "hi" (same bug fixed for Grade
+        # 12 Hindi on 2026-08-02) -- added 2026-08-07 so this new prompt
+        # (and any future re-runs) generate Hindi-language lesson body
+        # text instead of defaulting to English.
+        "content_language": "hi",
     },
     ("Grade 11", "Chemistry"): {
         "parts": [
@@ -977,6 +997,16 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Chapter 5: Universal Franchise and India’s Electoral System",
         "Chapter 6: The Parliamentary System: Legislature and Executive",
         "Chapter 7: Factors of Production",
+        # Part II (hees2), added 2026-08-07 -- was missing from the
+        # platform entirely, confirmed against an ncert.nic.in audit.
+        "Chapter 8: World Geography: Some Glimpses",
+        "Chapter 9: India's Long Road to Independence",
+        "Chapter 10: A Journey Through Indian Architecture",
+        "Chapter 11: The Role of the Judiciary in Our Society",
+        "Chapter 12: Citizenship: Rights and Duties",
+        "Chapter 13: Dynamics of Population",
+        "Chapter 14: India's Urban Landscape",
+        "Chapter 15: Cultural Currents: 13th to 17th Centuries",
     ],
     # ── Grade 11 & 12 overrides (regenerated 2026-07-31 directly from live
     # rag_documents -- the PREVIOUS versions of these entries were confirmed
@@ -1052,6 +1082,10 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Chemical Coordination and Integration",
     ],
     ("Grade 11", "Business Studies"): [
+        # Corrected 2026-08-07: "Small Business" renamed to its current
+        # official title, "International Business" appended as the real
+        # 11th chapter (both confirmed against ncert.nic.in, see
+        # BOOK_SOURCES comment above).
         "Business, Trade and Commerce",
         "Forms of Business Organisation",
         "Private, Public and Global Enterprises",
@@ -1060,8 +1094,9 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Social Responsibilities of Business and Business Ethics",
         "Formation of a Company",
         "Sources of Business Finance",
-        "Small Business",
+        "MSME and Business Entrepreneurship",
         "Internal Trade",
+        "International Business",
     ],
     # CORRECTED 2026-08-01: this list was previously corrupted -- it had
     # 13 entries with "Introduction to Accounting" through "Recording of
@@ -1086,6 +1121,14 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Financial Statements – II",
     ],
     ("Grade 11", "Political Science"): [
+        # Corrected 2026-08-06 against the official ncert.nic.in "Indian
+        # Constitution at Work" (keps2ps.pdf) and "Political Theory"
+        # (keps1ps.pdf) contents pages. The pre-2023 list here had
+        # "Peace" and "Development" as the final two Political Theory
+        # chapters -- both dropped in the 2023 rationalisation -- and was
+        # missing "Constitution as a Living Document" and "The
+        # Philosophy of the Constitution", which were added to Indian
+        # Constitution at Work as its new final two chapters.
         "Constitution: Why and How?",
         "Rights in the Indian Constitution",
         "Election and Representation",
@@ -1094,6 +1137,8 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Judiciary",
         "Federalism",
         "Local Governments",
+        "Constitution as a Living Document",
+        "The Philosophy of the Constitution",
         "Political Theory: An Introduction",
         "Freedom",
         "Equality",
@@ -1102,8 +1147,6 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Citizenship",
         "Nationalism",
         "Secularism",
-        "Peace",
-        "Development",
     ],
     ("Grade 11", "History"): [
         # "Themes in World History" (rationalised 7-theme CBSE edition).
@@ -1140,40 +1183,60 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Motivation and Emotion",
     ],
     ("Grade 11", "Economics"): [
+        # Corrected 2026-08-06 against the official ncert.nic.in "Indian
+        # Economic Development" (keec1ps.pdf) and "Statistics for
+        # Economics" (kest1ps.pdf) contents pages. The pre-2023 list here
+        # had "Poverty", "Infrastructure" and "Measures of Dispersion" --
+        # all three dropped in the 2023 rationalisation -- and was
+        # missing "Environment and Sustainable Development",
+        # "Comparative Development Experiences of India and its
+        # Neighbours" and "Use of Statistical Tools", which replaced them.
         "Indian Economy on the Eve of Independence",
         "Indian Economy 1950–1990",
         "Liberalisation, Privatisation and Globalisation",
-        "Poverty",
         "Human Capital Formation in India",
         "Rural Development",
         "Employment: Growth, Informalisation and Other Issues",
-        "Infrastructure",
+        "Environment and Sustainable Development",
+        "Comparative Development Experiences of India and its Neighbours",
         "Introduction to Statistics",
         "Collection of Data",
         "Organisation of Data",
         "Presentation of Data",
         "Measures of Central Tendency",
-        "Measures of Dispersion",
         "Correlation",
         "Index Numbers",
+        "Use of Statistical Tools",
     ],
     ("Grade 11", "Geography"): [
+        # Corrected 2026-08-07 against the official ncert.nic.in
+        # "Fundamentals of Physical Geography" (kegy2, rationalized from
+        # 6 to 14 chapters) and "India: Physical Environment" (kegy1,
+        # rationalized from 10 to 6 chapters) contents pages. The old
+        # list here had "Minerals and Rocks" -- never a real kegy2
+        # chapter, confirmed by reading the actual PDF -- and "Soils",
+        # "Population", "Migration", "Human Settlements", all dropped
+        # from India: Physical Environment in the 2023 rationalisation.
         "Geography as a Discipline",
         "The Origin and Evolution of the Earth",
         "Interior of the Earth",
         "Distribution of Oceans and Continents",
-        "Minerals and Rocks",
         "Geomorphic Processes",
+        "Landforms and their Evolution",
+        "Composition and Structure of Atmosphere",
+        "Solar Radiation, Heat Balance and Temperature",
+        "Atmospheric Circulation and Weather Systems",
+        "Water in the Atmosphere",
+        "World Climate and Climate Change",
+        "Water (Oceans)",
+        "Movements of Ocean Water",
+        "Biodiversity and Conservation",
         "India — Location",
         "Structure and Physiography",
         "Drainage System",
         "Climate",
         "Natural Vegetation",
-        "Soils",
         "Natural Hazards and Disasters",
-        "Population",
-        "Migration",
-        "Human Settlements",
     ],
     ("Grade 11", "English"): [
         "The Summer of the Beautiful White Horse",
@@ -1189,9 +1252,10 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Silk Road",
     ],
     ("Grade 11", "Hindi"): [
-        "Bharatiya Gayikaon Mein Bejod Lata Mangeshkar",
-        "Rajasthan Ki Rajat Boondein",
-        "Alo-Aandhari",
+        # Reordered 2026-08-07: Aroh (core textbook) now comes first,
+        # matching the corrected "parts" order above and the live
+        # rag_documents rows. "Bharatiya Kalayen" (Indian Arts) appended
+        # as Vitan's real 4th chapter, previously missing entirely.
         "Namak Ka Daroga",
         "Miyan Nasiruddin",
         "Apu Ke Saath Dhai Saal",
@@ -1208,6 +1272,10 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Hey Bhookh Mat Machal",
         "Sabse Khatarnak",
         "Aao Milkar Bachayen",
+        "Bharatiya Gayikaon Mein Bejod Lata Mangeshkar",
+        "Rajasthan Ki Rajat Boondein",
+        "Alo-Aandhari",
+        "Bharatiya Kalayen",
     ],
     ("Grade 11", "Chemistry"): [
         # Verified 2026-07-31 directly against the actual rationalised
@@ -1376,17 +1444,23 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Memories of Childhood",
     ],
     ("Grade 12", "Geography"): [
-        # Book 1 "Fundamentals of Human Geography" (positions 1-8,
-        # unchanged, already verified correct via each PDF's own
-        # "Chapter-N" heading).
+        # Book 1 "Fundamentals of Human Geography" (positions 1-8).
+        # CORRECTED 2026-08-07: the previous list here had "Population
+        # Composition" at position 3, which the "already verified
+        # correct" claim turned out to be wrong -- an ncert.nic.in audit
+        # found this chapter doesn't exist in the current edition, and
+        # legy103.pdf's own printed heading was directly re-checked to
+        # confirm. The book's real Chapter 8, "International Trade"
+        # (legy108.pdf, own heading "Chapter-8 International Trade"),
+        # was missing from this list entirely.
         "Human Geography: Nature and Scope",
         "The World Population: Distribution, Density and Growth",
-        "Population Composition",
         "Human Development",
         "Primary Activities",
         "Secondary Activities",
         "Tertiary and Quaternary Activities",
         "Transport and Communication",
+        "International Trade",
         # Book 2 "India: People and Economy" (positions 9-17) ADDED
         # 2026-08-01 -- this book was missing entirely (0 PDFs
         # downloaded; the previous BOOK_SOURCES entry only had book 1).
@@ -1410,9 +1484,21 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Geographical Perspective on Selected Issues and Problems",
     ],
     ("Grade 12", "Hindi"): [
-        "Jujh",
-        "Ateet Mein Dabe Paon",
-        "Silver Wedding",
+        # CORRECTED 2026-08-07: this list was in Vitan-first order (Jujh,
+        # Ateet, Silver Wedding, then the 15 Aroh titles), but BOOK_SOURCES'
+        # "parts" for this subject lists lhar1 (Aroh, 15 chapters) FIRST and
+        # lhvt1 (Vitan, 3 chapters) SECOND -- get_chapter_list() pairs list
+        # position N with the Nth PDF in parts order, so position 3
+        # ("Silver Wedding") was resolving to lhar103.pdf ("Kavita Ke Bahane
+        # Baat Seedhi Thi Par", a completely different Aroh poem) instead of
+        # lhvt101.pdf. Caught when the GPT-5.5 pipeline's own validation
+        # flagged the source-text mismatch and refused to fabricate Silver
+        # Wedding content. Verified directly against each Vitan PDF's own
+        # text: lhvt101.pdf is "सिल्वर वेडिंग" (Silver Wedding, Manohar Shyam
+        # Joshi), lhvt102.pdf is "जूझ" (Jujh), lhvt103.pdf is "अतीत में दबे
+        # पाँव" (Ateet Mein Dabe Paon) -- matching the already-correctly-
+        # ingested content for the latter two. Reordered to Aroh-first
+        # (15) then Vitan-in-lhvt101/102/103-order (3), matching parts.
         "Atmaparichay Ek Geet",
         "Patang",
         "Kavita Ke Bahane Baat Seedhi Thi Par",
@@ -1428,6 +1514,9 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Pahalwan Ki Dholak",
         "Shirish Ke Phool",
         "Shram Vibhajan Aur Jati Pratha",
+        "Silver Wedding",
+        "Jujh",
+        "Ateet Mein Dabe Paon",
     ],
     ("Grade 12", "Mathematics"): [
         "Relations and Functions",
@@ -1490,7 +1579,14 @@ CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
         "Challenges to and Restoration of the Congress System",
         "The Crisis of Democratic Order",
         "Regional Aspirations",
-        "Rise of Popular Movements",
+        # CORRECTED 2026-08-07: "Rise of Popular Movements" is a retired
+        # chapter, not part of the current edition -- leps208.pdf's own
+        # text opens "In this last chapter we take a synoptic view of
+        # the last two decades of politics in India," confirming
+        # position 15 is actually "Recent Developments in Indian
+        # Politics." Verified against ncert.nic.in; student_progress
+        # checked and had zero rows referencing the old chapter.
+        "Recent Developments in Indian Politics",
     ],
     ("Grade 12", "Sociology"): [
         # NCERT "Indian Society" -- titles verified directly against

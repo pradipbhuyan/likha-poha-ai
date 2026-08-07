@@ -1,21 +1,17 @@
 grade,subject,chapter,step_count,overall_score,completeness_score,formula_quality_score,mcq_quality_score,pedagogy_score,student_flow_score,critical,high,medium,low,audited_at
-Grade 10,Science,Chapter 1: Chemical Reactions and Equations,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.268615+00:00
-Grade 10,Maths,Chapter 1: Real Numbers,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.268821+00:00
-Grade 10,Social Science,Chapter 2: Nationalism in India,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.268886+00:00
-Grade 11,Biology,Chapter 14: Breathing and Exchange of Gases,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.269066+00:00
-Grade 10,Science,Chapter 11: Electricity,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.269271+00:00
-Grade 11,Biology,Chapter 8: Cell: The Unit of Life,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.269499+00:00
-Grade 10,English,Chapter 2: Nelson Mandela: Long Walk to Freedom,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.269648+00:00
-Grade 10,English,Chapter 3: Two Stories about Flying,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.269743+00:00
-Grade 10,Social Science,Geography - Chapter 4: Agriculture,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.269905+00:00
-Grade 10,Social Science,Chapter 4: Political Parties,1,93,95,90,80,100,100,0,0,1,0,2026-08-04T13:57:28.270243+00:00
-Grade 10,English,Text Book - Chapter 4: From the Diary of Anne Frank,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.270464+00:00
-Grade 11,Accountancy,Chapter 3: Recording of Transactions – I,1,93,95,90,80,100,100,0,0,1,0,2026-08-04T13:57:28.270652+00:00
-Grade 10,English,Workbook - Chapter 4: From the Diary of Anne Frank,1,94,100,90,80,98,100,0,0,0,1,2026-08-04T13:57:28.270827+00:00
-Grade 11,Accountancy,Chapter 8: Financial Statements – I,1,94,100,90,80,98,100,0,0,0,1,2026-08-04T13:57:28.270955+00:00
-Grade 10,Social Science,History - Chapter 4: The Age of Industrialisation,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.271090+00:00
-Grade 11,Biology,Chapter 7: Structural Organisation in Animals,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.271195+00:00
-Grade 10,Social Science,Political Science - Chapter 5: Outcomes of Democracy,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.271232+00:00
-Grade 10,English,Chapter 3: The Midnight Visitor,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.271363+00:00
-Grade 10,Social Science,Chapter 5: Outcomes of Democracy,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.271519+00:00
-Grade 10,English,Supplementary Reader - Chapter 7: The Necklace,1,94,100,90,80,100,100,0,0,0,0,2026-08-04T13:57:28.271756+00:00
+Grade 10,English,Chapter 9: The Book That Saved the Earth,1,94,100,90,80,100,100,0,0,0,0,2026-08-07T15:21:55.510297+00:00
+Grade 10,Social Science,Chapter 1: The Rise of Nationalism in Europe,1,94,100,90,80,100,100,0,0,0,0,2026-08-07T15:21:55.510332+00:00
+Grade 10,English,Text Book - Chapter 1: A Letter to God,2,94,100,90,80,98,100,0,0,0,1,2026-08-07T15:21:55.510541+00:00
+Grade 10,English,Supplementary Reader - Chapter 6: The Making of a Scientist,1,94,100,90,80,100,100,0,0,0,0,2026-08-07T15:21:55.510692+00:00
+Grade 10,Science,Chapter 7: How do Organisms Reproduce?,1,94,100,90,80,98,100,0,0,0,1,2026-08-07T15:21:55.510836+00:00
+Grade 11,Accountancy,"Chapter 7: Depreciation, Provisions and Reserves",2,94,100,90,80,100,100,0,0,0,0,2026-08-07T15:21:55.511087+00:00
+Grade 10,Hindi,अध्याय 12: भदंत आनंद कौसल्यायन,1,94,100,90,80,100,100,0,0,0,0,2026-08-07T15:21:55.511253+00:00
+Grade 10,Social Science,Chapter 2: Nationalism in India,1,94,100,90,80,100,100,0,0,0,0,2026-08-07T15:21:55.511473+00:00
+Grade 10,Social Science,Political Science - Chapter 1: Power-sharing,2,93,95,90,80,98,100,0,0,1,1,2026-08-07T15:21:55.511778+00:00
+Grade 10,English,Text Book - Chapter 7: Madam Rides the Bus,1,94,100,90,80,100,100,0,0,0,0,2026-08-07T15:21:55.511954+00:00
+Grade 10,Science,Chapter 11: Electricity,1,93,95,90,80,100,100,0,0,1,0,2026-08-07T15:21:55.512222+00:00
+Grade 10,Maths,Chapter 12: Surface Areas and Volumes,2,94,100,90,80,98,100,0,0,0,1,2026-08-07T15:21:55.512493+00:00
+Grade 10,English,Chapter 2: Nelson Mandela: Long Walk to Freedom,1,94,100,90,80,98,100,0,0,0,1,2026-08-07T15:21:55.512660+00:00
+Grade 11,Biology,Chapter 5: Morphology of Flowering Plants,1,94,100,90,80,100,100,0,0,0,0,2026-08-07T15:21:55.512804+00:00
+Grade 10,English,Supplementary Reader - Chapter 5: Footprints without Feet,1,94,100,90,80,100,100,0,0,0,0,2026-08-07T15:21:55.513052+00:00
+Grade 10,Social Science,Chapter 4: Globalisation and the Indian Economy,1,94,100,90,80,100,100,0,0,0,0,2026-08-07T15:21:55.513160+00:00

@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 13: Dynamics of Population",
+  "central_question": "How do births, deaths, migration and population structure change societies over time, and what opportunities and challenges do those changes create?",
+  "in_scope_units": [
+    "Demography, population structure and the use of population information",
+    "Census and broad trends in India and world population",
+    "Birth rate, fertility rate, death rate and migration as demographic indicators",
+    "Fertility decline, health improvements and migration as causes of population change",
+    "The demographic transition from high birth and death rates toward lower rates",
+    "India’s population distribution, sex ratio and population composition",
+    "Population pyramids and changes in India’s age structure",
+    "Youth bulge and demographic dividend",
+    "Population ageing, dependency and policy responses in developing and developed countries"
+  ],
+  "banned_topics": [
+    "Detailed urbanisation challenges reserved for the following chapter",
+    "Advanced statistical demography beyond the definitions and graphs supplied in the chapter",
+    "Current population statistics or projections not present in the supplied source"
+  ],
+  "must_include_keywords": [
+    "demography",
+    "population structure",
+    "population composition",
+    "working-age population",
+    "census",
+    "projection",
+    "population growth",
+    "birth rate",
+    "fertility rate",
+    "replacement level fertility",
+    "death rate",
+    "mortality rate",
+    "migration",
+    "life expectancy",
+    "child mortality",
+    "One-Child Policy",
+    "literacy",
+    "demographic transition",
+    "Stage 1",
+    "Stage 2",
+    "Stage 3",
+    "India’s population",
+    "sex ratio",
+    "population pyramid",
+    "age structure",
+    "young population",
+    "ageing population",
+    "youth bulge",
+    "demographic dividend",
+    "median age",
+    "human capital",
+    "education",
+    "skilling",
+    "healthcare",
+    "productivity",
+    "pensions",
+    "women in the workforce",
+    "childcare infrastructure",
+    "resource allocation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Demography means only counting how many people live in a country.",
+      "correction": "The chapter defines demography as the study of population size, structure, composition, patterns and changes over time."
+    },
+    {
+      "claim": "Birth rate and fertility rate are the same measure.",
+      "correction": "Birth rate counts live births relative to population in a period, while fertility rate concerns the average number of children a woman is expected to have."
+    },
+    {
+      "claim": "Population growth is determined only by births.",
+      "correction": "The chapter explains population change through births, deaths and migration."
+    },
+    {
+      "claim": "A large young population automatically guarantees economic growth.",
+      "correction": "The chapter says demographic dividend is a limited opportunity that depends on education, skilling, healthcare and productive employment."
+    }
+  ],
+  "recommended_example_progression": [
+    "Questions and activities 1: explain why governments study population through demography",
+    "Questions and activities 2: analyse how low fertility can affect the future economy and workforce",
+    "Questions and activities 5: connect age structure with jobs and public services",
+    "Questions and activities 7: interpret the chapter’s life-expectancy graph rather than treating it as a simple memorisation task",
+    "Questions and activities 8: explain demographic dividend and the conditions needed to benefit from it"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “Questions and activities”, including conceptual questions and graph-based interpretation of life expectancy and demographic dividend.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

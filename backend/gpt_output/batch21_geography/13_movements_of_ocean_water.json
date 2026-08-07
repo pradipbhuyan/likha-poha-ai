@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Movements of Ocean Water",
+    "central_question": "What drives waves, tides and ocean currents, how do these movements differ, and how do they affect coasts, climate and human activity?",
+    "in_scope_units": [
+      "Horizontal and vertical movements of ocean water",
+      "Waves and wave characteristics",
+      "Tides and tide-generating forces",
+      "Types of tides by frequency and earth-moon-sun position",
+      "Importance of tides",
+      "Ocean currents and controlling forces",
+      "Characteristics and types of currents",
+      "Major current circulation",
+      "Effects on climate and fisheries",
+      "NCERT exercises and project work"
+    ],
+    "banned_topics": [
+      "Detailed ocean-floor relief and salinity distribution from Chapter 12 except where they control currents",
+      "Detailed coastal landforms from Chapter 6",
+      "Detailed atmospheric circulation beyond wind controls used here"
+    ],
+    "must_include_keywords": [
+      "waves",
+      "wave energy",
+      "crest",
+      "trough",
+      "wave height",
+      "amplitude",
+      "wave period",
+      "wavelength",
+      "wave speed",
+      "wave frequency",
+      "tides",
+      "surges",
+      "gravitational pull",
+      "centrifugal force",
+      "tidal bulges",
+      "tidal currents",
+      "semi-diurnal tide",
+      "diurnal tide",
+      "mixed tide",
+      "spring tides",
+      "neap tides",
+      "perigee",
+      "apogee",
+      "perihelion",
+      "aphelion",
+      "ebb",
+      "flow",
+      "ocean currents",
+      "solar heating",
+      "wind",
+      "Coriolis force",
+      "gyres",
+      "density",
+      "surface currents",
+      "deep water currents",
+      "cold currents",
+      "warm currents",
+      "drift",
+      "prevailing winds",
+      "fishing grounds"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The same mass of water travels forward with a wave over long distances.",
+        "correction": "The chapter says wave energy moves forward while water particles mainly move in small circles."
+      },
+      {
+        "claim": "Tides and surges are the same.",
+        "correction": "Tides are regular astronomical changes; surges are irregular and meteorological."
+      },
+      {
+        "claim": "Spring tides occur only in spring.",
+        "correction": "They occur when sun, moon and earth align, around new and full moon."
+      },
+      {
+        "claim": "Ocean currents are driven only by wind.",
+        "correction": "Solar heating, gravity, Coriolis force and density differences also matter."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 2(i): define waves",
+      "NCERT Exercise 2(iv): explain how tides are caused",
+      "NCERT Exercise 2(v): relate tides to navigation",
+      "NCERT Exercise 3(ii): explain causes of currents",
+      "NCERT Exercise 3(i): explain current effects on temperature and coastal climate"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work on observing waves and interpreting ocean-current maps."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Movements of Ocean Water\n\n## What you will learn\nYou will distinguish waves, tides and currents as different ocean-water movements. You will analyse wave energy and the main wave characteristics.\n\n## Simple explanation\nOcean water is dynamic because temperature, salinity, density and external forces from the sun, moon and wind influence movement. Waves and currents are mainly horizontal motions, while tides involve the rise and fall of sea level.\n\n## Step-by-step breakdown\n- **Waves and currents**: Ocean currents move large volumes of water along definite paths, while waves mainly transmit wave energy and water particles move in small circles.\n- **Wind energy**: Most waves gain energy from wind; stronger, longer-lasting wind over a larger area can build larger waves.\n- **Breaking waves**: As a wave approaches shallow water it slows because of friction with the sea floor and eventually breaks.\n- **Crest and trough**: The crest is the highest point and the trough the lowest point of a wave.\n- **Wave height and amplitude**: Wave height is the vertical distance from trough to crest; amplitude is half of wave height.\n- **Wave period, wavelength, speed and frequency**: Wave period is the time between successive crests, wavelength is horizontal crest-to-crest distance, wave speed is movement rate and wave frequency counts waves passing a point in a unit time.\n\n## Worked example\nQuestion: What are waves and where do they obtain their energy?\n\nAnswer:\n- The source says waves are mainly the movement of energy rather than forward movement of water, and wind supplies energy to most ocean waves.\n- Water particles move in small circles while the wave train and energy travel across the surface.\n- Final answer: Waves carry energy across the ocean, usually supplied by wind, while individual water particles have mainly local circular motion.\n\n## Common mistake\nDo not say waves carry the same water parcel from open ocean to shore; the chapter separates moving energy from the small circular motion of water particles.\n\n## Quick check question\nQuestion: What is wavelength?\nAnswer: The horizontal distance between two successive crests.\nExplanation: It is one of the standard wave characteristics listed in the chapter.\n\n## Summary\n- Waves carry energy more than water mass.\n- Wind is the main energy source for most waves.\n- Shallow-water friction slows and breaks waves.\n- Crest, trough, wave height, amplitude, wave period, wavelength, wave speed and wave frequency describe wave form and motion.",
+    "Core explanation": "# Core explanation: Movements of Ocean Water\n\n## What you will learn\nYou will explain the astronomical causes of tides and distinguish tides from surges. You will interpret the two tidal bulges and coastal modification of tides.\n\n## Simple explanation\nTides are periodic rises and falls of sea level caused mainly by the moon’s gravitational pull, with a smaller solar contribution, together with centrifugal force. Their regularity distinguishes them from surges.\n\n## Step-by-step breakdown\n- **Tides and surges**: Tides are regular sea-level changes mainly from astronomical forces, while surges are irregular changes caused by wind and atmospheric pressure.\n- **Gravitational pull**: The moon’s gravitational pull is the major cause of tides, with the sun having a smaller influence.\n- **Centrifugal force**: Centrifugal force acts with gravity to create the two major tidal bulges.\n- **Tidal bulges**: The near-side bulge forms where lunar attraction is stronger; the far-side bulge occurs where centrifugal effect is relatively stronger.\n- **Coastal form**: Wide shelves and funnel-shaped bays can magnify tides, while mid-ocean islands may experience lower bulges.\n- **Tidal currents**: When tidal water is channelled through islands, bays or estuaries, tidal currents form.\n\n## Worked example\nQuestion: How are tides caused and why are there two major tidal bulges?\n\nAnswer:\n- The chapter combines lunar and solar gravitational attraction with centrifugal force; lunar attraction dominates the near side and centrifugal effect is relatively stronger on the far side.\n- These unequal forces create a bulge toward the moon and another on the opposite side.\n- Final answer: Tides arise from the combined gravitational and centrifugal system, producing two major bulges on opposite sides of the earth.\n\n## Common mistake\nA common mistake is to explain both bulges as direct lunar pulling; the far-side bulge is explained through the relative dominance of centrifugal force.\n\n## Quick check question\nQuestion: How do tides differ from surges?\nAnswer: Tides are regular and mainly astronomical, while surges are irregular and meteorological.\nExplanation: The chapter explicitly distinguishes periodic tides from wind- and pressure-driven surges.\n\n## Summary\n- Tides are periodic sea-level changes.\n- Lunar gravity is the strongest astronomical influence.\n- Centrifugal force helps create the second bulge.\n- Coastal geometry can magnify tides and produce tidal currents.",
+    "Worked examples": "# Worked examples: Movements of Ocean Water\n\n## What you will learn\nYou will classify tides by frequency and by earth-moon-sun geometry. You will explain spring and neap tides, perigee and apogee effects, and ebb and flow.\n\n## Simple explanation\nTidal patterns differ in daily frequency and tidal range. The positions of the sun, moon and earth modify the combined tide-generating force.\n\n## Step-by-step breakdown\n- **Semi-diurnal tide**: A semi-diurnal tide has two high tides and two low tides each day with similar successive heights.\n- **Diurnal tide**: A diurnal tide has one high tide and one low tide each day.\n- **Mixed tide**: A mixed tide has unequal heights and occurs on parts of the Pacific margin.\n- **Spring tides**: Sun, moon and earth align and their effects reinforce, giving a larger tidal range.\n- **Neap tides**: Sun and moon are at right angles and partly counteract, giving a smaller range.\n- **Perigee and apogee**: Tidal range is greater when the moon is at perigee and smaller at apogee; the chapter also notes perihelion and aphelion effects involving earth-sun distance.\n- **Ebb and flow**: Ebb is falling water from high to low tide; flow is rising water from low to high tide.\n\n## Worked example\nQuestion: Why are spring tides higher than neap tides?\n\nAnswer:\n- The source explains that sun, moon and earth align during spring tides so their gravitational effects reinforce, while at neap tides the sun and moon are at right angles and partly counteract.\n- The geometry changes the combined tide-generating force and therefore the tidal range.\n- Final answer: Spring tides have greater range because solar and lunar effects reinforce; neap tides have smaller range because the forces partly oppose each other.\n\n## Common mistake\nDo not connect spring tides with the spring season; the term refers to the larger tidal range associated with alignment.\n\n## Quick check question\nQuestion: What is the difference between ebb and flow?\nAnswer: Ebb is the falling stage and flow is the rising stage of the tide.\nExplanation: These are opposite phases of the regular tidal cycle.\n\n## Summary\n- Semi-diurnal, diurnal and mixed tide patterns differ in daily frequency and height.\n- Spring tides occur during alignment and have larger range.\n- Neap tides occur near right-angle geometry and have smaller range.\n- Perigee and apogee alter lunar tidal strength.\n- Ebb is falling water and flow is rising water.",
+    "Exam-style problems": "# Exam-style problems: Movements of Ocean Water\n\n## What you will learn\nYou will explain the importance of tides and the causes of ocean currents. You will connect current movement with density, depth and Coriolis deflection.\n\n## Simple explanation\nTides can be predicted and therefore matter to navigation, fishing and shallow harbour access. Ocean currents are more continuous flows driven by several forces and density differences.\n\n## Step-by-step breakdown\n- **Navigation**: Predicted tidal heights help navigators and fishermen plan movement through shallow entrances and estuaries.\n- **Other tidal uses**: Tides help desilt sediments, remove polluted estuarine water and generate electrical power.\n- **Current forces**: Solar heating, wind, gravity and Coriolis force initiate and shape ocean currents.\n- **Gyres**: Large water accumulations and deflected flow form circular systems called gyres.\n- **Density**: Cold or high-salinity water is denser and tends to sink, while lighter water tends to rise.\n- **Surface currents**: Surface currents occupy the upper ocean and are strongly influenced by wind.\n- **Deep water currents**: Deep water currents involve most ocean water and are strongly linked to density and gravity.\n\n## Worked example\nQuestion: What are the main causes of ocean currents?\n\nAnswer:\n- The source lists solar heating, wind, gravity and Coriolis force, and also explains density differences caused by temperature and salinity.\n- These forces create gradients, transfer momentum, deflect moving water and cause sinking or rising.\n- Final answer: Ocean currents result from the combined action of solar heating, wind, gravity, Coriolis force and density contrasts.\n\n## Common mistake\nA common mistake is to classify all currents as wind-driven surface drift; the chapter distinguishes surface and deep water currents.\n\n## Quick check question\nQuestion: Why are tides useful for navigation?\nAnswer: Predictable tidal heights help determine when shallow harbour entrances and estuaries can be used safely.\nExplanation: The chapter links tide prediction directly to navigation and fishing.\n\n## Summary\n- Tides are predictable and useful for navigation.\n- Ocean currents are regular flows in definite paths.\n- Wind, solar heating, gravity, Coriolis force and density all influence currents.\n- Surface currents and deep water currents differ in depth and dominant controls.",
+    "Revision and recap": "# Revision and recap: Movements of Ocean Water\n\n## What you will learn\nYou will classify currents by temperature and interpret their effects on climate and fisheries. You will connect current circulation to prevailing winds and global heat transfer.\n\n## Simple explanation\nOcean currents transport heat between latitude belts and modify coastal climates. Where warm and cold currents meet, biological productivity can also become important.\n\n## Step-by-step breakdown\n- **Warm currents and cold currents**: Warm currents carry warm water into colder regions, while cold currents bring cold water into warmer regions.\n- **Drift**: Current speed is called drift; currents are generally strongest near the surface and weaker at depth.\n- **Prevailing winds**: Major current systems broadly correspond to atmospheric circulation and prevailing winds.\n- **Coriolis pattern**: Coriolis force deflects currents and helps organise basin-scale circulation.\n- **Climate effects**: Cool currents can favour cool, foggy and arid subtropical western coasts, while warm currents can moderate high-latitude coasts and produce milder marine conditions.\n- **Fishing grounds**: Mixing of warm and cold currents replenishes oxygen and favours plankton, supporting major fishing grounds.\n\n## Worked example\nQuestion: How do ocean currents affect coastal temperature and climate?\n\nAnswer:\n- The chapter explains that warm currents carry heat into colder regions while cold currents lower temperature in warmer regions.\n- Currents change the temperature of overlying air and therefore influence adjacent coasts.\n- Final answer: Ocean currents modify coastal climate by transporting heat: warm currents raise and moderate temperatures, while cold currents cool nearby coasts and may favour fog and aridity.\n\n## Common mistake\nDo not define warm and cold currents only by absolute water temperature; the terms describe the thermal character of the water relative to the regions it enters.\n\n## Quick check question\nQuestion: Why are major fishing grounds often found where warm and cold currents meet?\nAnswer: Mixing replenishes oxygen and favours plankton growth.\nExplanation: The chapter identifies plankton as primary food for fish and links productive fishing zones to current-mixing areas.\n\n## Summary\n- Currents transport heat across latitude belts.\n- Warm and cold currents modify coastal temperature and weather.\n- Current patterns reflect prevailing winds and Coriolis deflection.\n- Current mixing can support rich fishing grounds.\n- Waves, tides and currents differ in causes and effects but together make ocean water dynamic."
+  }
+}

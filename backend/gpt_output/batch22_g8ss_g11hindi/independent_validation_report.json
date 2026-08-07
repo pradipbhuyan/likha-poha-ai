@@ -1,0 +1,84 @@
+{
+  "overall": "PASS",
+  "validator": "independent structural/source-grounding pass",
+  "files_checked": 9,
+  "lesson_steps_checked": 45,
+  "keyword_occurrences_required": 354,
+  "checks": [
+    "prompt metadata independently re-parsed",
+    "exact lesson keys/headings independently checked",
+    "UI marker counts checked",
+    "keyword occurrence checked",
+    "numeric atoms checked against supplied prompt/source",
+    "Hindi Devanagari requirement checked",
+    "exact cross-file question duplication checked",
+    "exact long-block duplication checked"
+  ],
+  "files": [
+    {
+      "file": "08_chapter_8_world_geography_some_glimpses.json",
+      "status": "PASS",
+      "issues": [],
+      "lesson_steps": 5,
+      "keywords": 35
+    },
+    {
+      "file": "09_chapter_9_indias_long_road_to_independence.json",
+      "status": "PASS",
+      "issues": [],
+      "lesson_steps": 5,
+      "keywords": 40
+    },
+    {
+      "file": "10_chapter_10_a_journey_through_indian_architecture.json",
+      "status": "PASS",
+      "issues": [],
+      "lesson_steps": 5,
+      "keywords": 40
+    },
+    {
+      "file": "11_chapter_11_the_role_of_the_judiciary_in_our_society.json",
+      "status": "PASS",
+      "issues": [],
+      "lesson_steps": 5,
+      "keywords": 40
+    },
+    {
+      "file": "12_chapter_12_citizenship_rights_and_duties.json",
+      "status": "PASS",
+      "issues": [],
+      "lesson_steps": 5,
+      "keywords": 40
+    },
+    {
+      "file": "13_chapter_13_dynamics_of_population.json",
+      "status": "PASS",
+      "issues": [],
+      "lesson_steps": 5,
+      "keywords": 39
+    },
+    {
+      "file": "14_chapter_14_indias_urban_landscape.json",
+      "status": "PASS",
+      "issues": [],
+      "lesson_steps": 5,
+      "keywords": 40
+    },
+    {
+      "file": "15_chapter_15_cultural_currents_13th_to_17th_centuries.json",
+      "status": "PASS",
+      "issues": [],
+      "lesson_steps": 5,
+      "keywords": 40
+    },
+    {
+      "file": "20_bharatiya_kalayen.json",
+      "status": "PASS",
+      "issues": [],
+      "lesson_steps": 5,
+      "keywords": 40
+    }
+  ],
+  "cross_file_exact_question_duplicates": [],
+  "issues": []
+}

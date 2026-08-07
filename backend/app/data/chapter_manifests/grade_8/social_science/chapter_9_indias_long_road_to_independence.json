@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 9: India's Long Road to Independence",
+  "central_question": "How did diverse Indians, using different ideas and methods, turn resistance to colonial rule into a broad national struggle that ended in independence and Partition?",
+  "in_scope_units": [
+    "British Crown rule after the Great Uprising, colonial discrimination and continuing economic exploitation",
+    "Reform movements and cultural influences that contributed to national awakening",
+    "The rise of the Indian National Congress and early political demands",
+    "Growing discontent, the Partition of Bengal, Swadeshi, boycott and the Nationalist agenda",
+    "The All-India Muslim League, the Surat split and debates over political strategy",
+    "Revolutionary organisations and armed resistance, including the Ghadar Movement",
+    "Home Rule, the Lucknow Pact and Gandhi’s emergence through satyagraha",
+    "Rowlatt Act, Jallianwala Bagh, Non-Cooperation and the Khilafat alliance",
+    "Simon Commission, revolutionary action, Purna Swaraj and Civil Disobedience",
+    "Gandhi-Irwin Pact, debates over representation and the Poona Pact",
+    "World War II, Subhas Chandra Bose, the INA and Quit India",
+    "End of British authority, communal conflict, the Cabinet Mission, Independence and Partition"
+  ],
+  "banned_topics": [
+    "A detailed retelling of the Great Uprising of 1857 already covered in the previous textbook part",
+    "Post-independence nation-building beyond the immediate transition of 1947",
+    "Biographical details about leaders that are not supplied in the chapter"
+  ],
+  "must_include_keywords": [
+    "Royal Proclamation",
+    "paramountcy",
+    "Vernacular Press Act",
+    "reform movements",
+    "Bankim Chandra Chattopadhyay",
+    "Vande Mataram",
+    "Swami Vivekananda",
+    "Indian National Congress",
+    "Dadabhai Naoroji",
+    "Bal Gangadhar Tilak",
+    "Kesari",
+    "Partition of Bengal",
+    "Swadeshi",
+    "boycott",
+    "Bande Mataram",
+    "Aurobindo Ghose",
+    "All-India Muslim League",
+    "Surat split",
+    "Anushilan Samiti",
+    "Abhinav Bharat",
+    "Khudiram Bose",
+    "Ghadar Movement",
+    "Home Rule Movement",
+    "Lucknow Pact",
+    "satyagraha",
+    "Rowlatt Act",
+    "Jallianwala Bagh",
+    "Non-Cooperation Movement",
+    "Khilafat Movement",
+    "Simon Commission",
+    "Bhagat Singh",
+    "Purna Swaraj",
+    "Civil Disobedience Movement",
+    "Dandi March",
+    "Gandhi-Irwin Pact",
+    "Poona Pact",
+    "Subhas Chandra Bose",
+    "Indian National Army",
+    "Quit India Movement",
+    "Partition"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Indian National Congress demanded complete independence from the moment it was founded.",
+      "correction": "The chapter distinguishes the early Congress approach from the later demand for Swaraj and eventually Purna Swaraj."
+    },
+    {
+      "claim": "All freedom fighters agreed on one method for ending British rule.",
+      "correction": "The chapter repeatedly shows disagreements among Moderates, Nationalists, revolutionaries, Gandhians and other political groups even though they opposed colonial domination."
+    },
+    {
+      "claim": "The Non-Cooperation Movement and the Civil Disobedience Movement were the same campaign.",
+      "correction": "They were separate mass movements launched in different contexts; Civil Disobedience began with the Salt March after the demand for Purna Swaraj."
+    },
+    {
+      "claim": "Independence in 1947 occurred without a major political and human cost.",
+      "correction": "The chapter ends with Independence alongside Partition, communal violence and mass displacement."
+    }
+  ],
+  "recommended_example_progression": [
+    "Questions and activities, True or False 1: test whether the Congress demanded independence from its inception",
+    "Questions and activities, “Who Am I?” 2: identify Tilak through Swaraj, Kesari and public festivals",
+    "Questions and activities on peasants, workers, tribals and students: compare forms of participation in the national movement",
+    "Questions and activities on Nehru’s 15 August 1947 speech: interpret “redeem our pledge” and the “soul of a nation”",
+    "Questions and activities, freedom-fighter task: justify a method for achieving freedom using evidence from the chapter"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “Questions and activities”, including True or False, “Who Am I?”, source interpretation and extended discussion or role-based tasks.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

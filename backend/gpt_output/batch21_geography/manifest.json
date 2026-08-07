@@ -1,0 +1,90 @@
+{
+  "batch": "CBSE lesson rewrites batch 21",
+  "created_for": "Grade 11 Geography",
+  "bank_count": 9,
+  "lesson_step_count": 45,
+  "files": [
+    {
+      "file": "06_landforms_and_their_evolution.json",
+      "grade": "Grade 11",
+      "subject": "Geography",
+      "chapter": "Landforms and their Evolution",
+      "lesson_steps": 5,
+      "keyword_count": 40
+    },
+    {
+      "file": "07_composition_and_structure_of_atmosphere.json",
+      "grade": "Grade 11",
+      "subject": "Geography",
+      "chapter": "Composition and Structure of Atmosphere",
+      "lesson_steps": 5,
+      "keyword_count": 28
+    },
+    {
+      "file": "08_solar_radiation_heat_balance_and_temperature.json",
+      "grade": "Grade 11",
+      "subject": "Geography",
+      "chapter": "Solar Radiation, Heat Balance and Temperature",
+      "lesson_steps": 5,
+      "keyword_count": 31
+    },
+    {
+      "file": "09_atmospheric_circulation_and_weather_systems.json",
+      "grade": "Grade 11",
+      "subject": "Geography",
+      "chapter": "Atmospheric Circulation and Weather Systems",
+      "lesson_steps": 5,
+      "keyword_count": 40
+    },
+    {
+      "file": "10_water_in_the_atmosphere.json",
+      "grade": "Grade 11",
+      "subject": "Geography",
+      "chapter": "Water in the Atmosphere",
+      "lesson_steps": 5,
+      "keyword_count": 30
+    },
+    {
+      "file": "11_world_climate_and_climate_change.json",
+      "grade": "Grade 11",
+      "subject": "Geography",
+      "chapter": "World Climate and Climate Change",
+      "lesson_steps": 5,
+      "keyword_count": 40
+    },
+    {
+      "file": "12_water_oceans.json",
+      "grade": "Grade 11",
+      "subject": "Geography",
+      "chapter": "Water (Oceans)",
+      "lesson_steps": 5,
+      "keyword_count": 40
+    },
+    {
+      "file": "13_movements_of_ocean_water.json",
+      "grade": "Grade 11",
+      "subject": "Geography",
+      "chapter": "Movements of Ocean Water",
+      "lesson_steps": 5,
+      "keyword_count": 40
+    },
+    {
+      "file": "14_biodiversity_and_conservation.json",
+      "grade": "Grade 11",
+      "subject": "Geography",
+      "chapter": "Biodiversity and Conservation",
+      "lesson_steps": 5,
+      "keyword_count": 39
+    }
+  ],
+  "reports": [
+    "manifest.json",
+    "validation_report.json",
+    "independent_validation_report.json",
+    "final_audit_report.json",
+    "content_review_report.json",
+    "similarity_report.json",
+    "source_selection_audit.json",
+    "SHA256SUMS.txt"
+  ]
+}

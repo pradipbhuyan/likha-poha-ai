@@ -1,0 +1,98 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Water (Oceans)",
+    "central_question": "How is water circulated through the hydrological cycle, and how are ocean-floor relief, temperature and salinity organised across the world’s oceans?",
+    "in_scope_units": [
+      "Hydrological cycle and planetary water distribution",
+      "Major divisions of ocean-floor relief",
+      "Minor ocean-floor relief",
+      "Ocean temperature and its controls",
+      "Horizontal and vertical temperature distribution and thermocline",
+      "Salinity and its controls",
+      "Horizontal and vertical salinity distribution and halocline",
+      "NCERT exercises and atlas project work"
+    ],
+    "banned_topics": [
+      "Detailed waves, tides and current mechanics from Chapter 13",
+      "Detailed atmospheric humidity and rainfall from Chapter 10",
+      "Detailed plate-tectonic theory beyond the stated ocean-floor features"
+    ],
+    "must_include_keywords": [
+      "Blue Planet",
+      "hydrological cycle",
+      "evaporation",
+      "condensation",
+      "precipitation",
+      "surface runoff",
+      "infiltration",
+      "groundwater",
+      "continental shelf",
+      "shelf break",
+      "continental slope",
+      "deep sea plain",
+      "oceanic deeps",
+      "trenches",
+      "mid-oceanic ridges",
+      "seamount",
+      "submarine canyons",
+      "guyot",
+      "atoll",
+      "ocean temperature",
+      "latitude",
+      "prevailing wind",
+      "ocean currents",
+      "thermocline",
+      "surface layer",
+      "deep layer",
+      "salinity",
+      "evaporation and precipitation",
+      "river water",
+      "freezing and thawing",
+      "Atlantic Ocean",
+      "Pacific Ocean",
+      "Indian Ocean",
+      "Red Sea",
+      "Baltic Sea",
+      "Mediterranean Sea",
+      "Bay of Bengal",
+      "Arabian Sea",
+      "halocline",
+      "density"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The hydrological cycle permanently consumes water.",
+        "correction": "The chapter calls water a cyclic resource used and reused through continuous exchange."
+      },
+      {
+        "claim": "The continental shelf is the steep transition into the deep ocean.",
+        "correction": "The shelf is shallow and gentle; the continental slope is the steep descent beyond the shelf break."
+      },
+      {
+        "claim": "Ocean temperature decreases uniformly with depth.",
+        "correction": "The rate is not uniform; the thermocline is the zone of rapid decrease."
+      },
+      {
+        "claim": "Salinity depends only on evaporation.",
+        "correction": "Precipitation, river inflow, freezing and thawing, wind and currents also matter."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 2(i): explain Blue Planet",
+      "NCERT Exercise 3(i): interrelate the hydrological cycle",
+      "NCERT Exercise 2(iv): define thermocline",
+      "NCERT Exercise 3(ii): explain ocean-temperature controls",
+      "NCERT Exercise 2(vi): define salinity"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work using an atlas to map ocean-floor relief and ridges."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Water (Oceans)\n\n## What you will learn\nYou will explain the hydrological cycle as continuous movement among ocean, atmosphere, land and subsurface. You will connect the cycle to uneven water distribution and reuse.\n\n## Simple explanation\nEarth is called the Blue Planet because of its abundant surface water. Yet usable water is unevenly distributed, making the hydrological cycle important to understanding availability.\n\n## Step-by-step breakdown\n- **Cyclic resource**: Water is used and reused as it changes among liquid, solid and gaseous phases.\n- **Hydrological cycle**: The hydrological cycle is continuous exchange among oceans, atmosphere, land surface, subsurface and organisms.\n- **Processes**: Evaporation, condensation, precipitation, surface runoff, infiltration, groundwater discharge and other transfers link the stores.\n- **Planetary storage**: Most planetary water is in the oceans, while freshwater is distributed among ice, groundwater, lakes, soil moisture, atmosphere and streams.\n- **Water crisis**: The chapter notes renewable water is broadly constant while demand increases and pollution reduces usable supply.\n\n## Worked example\nQuestion: How are hydrological-cycle elements interrelated?\n\nAnswer:\n- The source connects ocean, atmosphere, ice, surface water and groundwater through evaporation, condensation, precipitation, runoff, infiltration and discharge.\n- Water leaving one store becomes an input to another, while phase changes link pathways.\n- Final answer: The hydrological cycle is an interconnected circulation in which water continually moves between stores and phases.\n\n## Common mistake\nDo not describe the hydrological cycle as only evaporation and rain; it also includes surface runoff, infiltration and groundwater.\n\n## Quick check question\nQuestion: Why is earth called the Blue Planet?\nAnswer: Because it has an abundant supply of water on its surface.\nExplanation: The chapter uses this name when contrasting earth’s abundant water with the rarity described elsewhere in the solar system.\n\n## Summary\n- Water is a reusable cyclic resource.\n- The hydrological cycle links ocean, atmosphere, land and subsurface.\n- Water occurs in liquid, solid and gaseous phases.\n- Uneven distribution, demand and pollution create water stress.",
+    "Core explanation": "# Core explanation: Water (Oceans)\n\n## What you will learn\nYou will map the major divisions of the ocean floor. You will distinguish shelves, slopes, deep-sea plains, trenches and minor relief.\n\n## Simple explanation\nThe ocean floor is not flat. It contains continental margins, broad plains, mountains and deep basins formed by tectonic, volcanic and depositional processes.\n\n## Step-by-step breakdown\n- **Continental shelf**: The continental shelf is the shallow submerged extension of a continent, with a gentle gradient ending at the shelf break.\n- **Continental slope**: Beyond the shelf break, the continental slope descends steeply toward the ocean basin.\n- **Deep sea plain**: A deep sea plain is a broad, gently sloping and very smooth part of an ocean basin covered by fine sediments.\n- **Oceanic deeps and trenches**: Oceanic deeps or trenches are narrow, steep-sided and exceptionally deep basins associated with active volcanoes and earthquakes.\n- **Mid-oceanic ridges and seamount**: Mid-oceanic ridges are long submarine mountain systems; a seamount is a volcanic mountain that does not reach the surface.\n- **Submarine canyons, guyot and atoll**: Submarine canyons cut shelves or slopes, a guyot is a flat-topped seamount, and an atoll is a low coral island around a central depression or lagoon.\n\n## Worked example\nQuestion: How do the continental shelf and continental slope differ?\n\nAnswer:\n- The chapter places the shallow, gently sloping continental shelf next to the continent and the steeper continental slope beyond the shelf break.\n- The shelf is the submerged extension of the continent, while the slope is the sharp transition toward deep water.\n- Final answer: The continental shelf is shallow and gentle, whereas the continental slope descends steeply from the shelf break toward the ocean basin.\n\n## Common mistake\nDo not classify trenches as minor relief just because they are narrow; oceanic deeps are one of the major ocean-floor divisions.\n\n## Quick check question\nQuestion: What is a guyot?\nAnswer: A flat-topped seamount.\nExplanation: The chapter describes a guyot as a submerged mountain with a flattened summit.\n\n## Summary\n- Ocean floors are rugged and varied.\n- Shelves are shallow and gentle; slopes are steep transitions.\n- Deep-sea plains are broad and smooth while trenches are very deep.\n- Ridges, seamounts, submarine canyons, guyots and atolls add minor relief.",
+    "Worked examples": "# Worked examples: Water (Oceans)\n\n## What you will learn\nYou will explain how ocean temperature varies horizontally and vertically. You will interpret the thermocline between warm surface water and colder deep water.\n\n## Simple explanation\nOcean water gains solar heat at the surface and changes temperature more slowly than land. Latitude, land-water distribution, prevailing wind and ocean currents modify the horizontal pattern, while the vertical structure is layered.\n\n## Step-by-step breakdown\n- **Latitude**: Ocean temperature generally decreases from equator to poles as insolation decreases.\n- **Prevailing wind**: Offshore winds can move warm surface water away and encourage cold-water upwelling, while onshore winds pile warm water near coasts.\n- **Ocean currents**: Warm currents raise temperature in cold areas while cold currents lower it in warm areas.\n- **Surface layer**: The surface layer is directly heated and is the warmest main layer in lower and middle latitudes.\n- **Thermocline**: The thermocline is the boundary zone where temperature decreases rapidly with depth.\n- **Deep layer**: Below the thermocline is a cold deep layer; polar waters show weaker vertical contrast because surface water is already cold.\n\n## Worked example\nQuestion: Why does ocean temperature not decrease uniformly from surface to bottom?\n\nAnswer:\n- The source describes a warm surface layer, a thermocline of rapid decrease and a cold deep layer.\n- Surface heating is strongest at the top and downward heat transfer is uneven, concentrating the greatest change in the thermocline.\n- Final answer: Ocean temperature decreases non-uniformly because the water column has a warm surface layer, a steep thermocline and a cold deep layer.\n\n## Common mistake\nDo not define thermocline as simply deep cold water; it is specifically the zone of rapid temperature decrease.\n\n## Quick check question\nQuestion: What is a thermocline?\nAnswer: The ocean zone where temperature decreases rapidly with depth below the warm surface layer.\nExplanation: It separates relatively warm surface water from colder deep water.\n\n## Summary\n- Ocean temperature generally decreases poleward and downward.\n- Wind and currents modify coastal temperatures.\n- The surface layer receives direct solar heat.\n- The thermocline contains the sharpest vertical temperature change.",
+    "Exam-style problems": "# Exam-style problems: Water (Oceans)\n\n## What you will learn\nYou will define salinity and explain surface controls. You will compare salinity in enclosed seas and river-influenced regions.\n\n## Simple explanation\nSalinity measures dissolved salts in seawater. It changes because water is removed by evaporation or freezing, added by precipitation and rivers, and redistributed by winds and currents.\n\n## Step-by-step breakdown\n- **Salinity**: Salinity is the total dissolved salt content of seawater, usually expressed in parts per thousand.\n- **Evaporation and precipitation**: Evaporation raises salinity while precipitation dilutes surface water.\n- **River water**: Fresh river water lowers salinity in coastal seas and estuaries.\n- **Freezing and thawing**: Freezing can concentrate salts in remaining water, while thawing adds fresh water.\n- **Regional contrasts**: The Red Sea and Mediterranean Sea have high salinity linked with strong evaporation, while the Baltic Sea is diluted by river inflow.\n- **Indian Ocean contrast**: The Bay of Bengal has lower salinity because of river input, while the Arabian Sea is relatively saltier because evaporation is high and freshwater input lower.\n\n## Worked example\nQuestion: Why can the Bay of Bengal be less saline than the Arabian Sea?\n\nAnswer:\n- The source states that the Bay of Bengal receives large river-water influx, while the Arabian Sea has high evaporation and lower fresh-water input.\n- Freshwater dilution lowers salinity in the Bay, while evaporation concentrates salts in the Arabian Sea.\n- Final answer: The Bay of Bengal is less saline mainly because river water dilutes it, while higher evaporation makes the Arabian Sea more saline.\n\n## Common mistake\nDo not explain salinity by latitude alone; freshwater input, freezing, wind and ocean currents can change local patterns.\n\n## Quick check question\nQuestion: What is salinity of seawater?\nAnswer: The total content of dissolved mineral salts in seawater.\nExplanation: The chapter defines it by the amount of dissolved salt in a standard mass of seawater.\n\n## Summary\n- Salinity measures dissolved salts.\n- Evaporation raises and precipitation lowers surface salinity.\n- River water and thawing dilute water while freezing can concentrate salts.\n- Regional seas show strong local contrasts.",
+    "Revision and recap": "# Revision and recap: Water (Oceans)\n\n## What you will learn\nYou will complete horizontal and vertical salinity distribution. You will connect halocline, salinity and density stratification.\n\n## Simple explanation\nSurface salinity differs among the Atlantic Ocean, Pacific Ocean and Indian Ocean and among enclosed seas because freshwater input, evaporation and currents vary. With depth, salinity can change sharply across a halocline.\n\n## Step-by-step breakdown\n- **Atlantic Ocean**: The chapter describes relatively high Atlantic salinity in subtropical belts.\n- **Pacific Ocean**: Pacific salinity varies partly with ocean shape and meltwater influence.\n- **Indian Ocean**: Indian Ocean salinity reflects contrasting Bay of Bengal and Arabian Sea conditions.\n- **North Sea and Baltic Sea**: North Atlantic Drift carries saltier water toward the North Sea, while river inflow lowers Baltic Sea salinity.\n- **Halocline**: A halocline is a distinct zone where salinity increases sharply with depth.\n- **Density**: Higher salinity increases seawater density; denser water tends to sink beneath lower-salinity water and create stratification.\n\n## Worked example\nQuestion: How are vertical salinity differences linked to density stratification?\n\nAnswer:\n- The source says high-salinity water is denser and that salinity can increase sharply through a halocline.\n- Denser saline water tends to sink below fresher water, separating the water column into layers.\n- Final answer: Vertical salinity differences create stratification because high-salinity water has greater density and tends to lie beneath lower-salinity water.\n\n## Common mistake\nDo not confuse thermocline and halocline: one is rapid temperature change and the other rapid salinity change.\n\n## Quick check question\nQuestion: What is a halocline?\nAnswer: A zone where salinity changes sharply with depth.\nExplanation: The chapter introduces it in the vertical distribution of salinity and links it to density.\n\n## Summary\n- Surface salinity reflects evaporation, freshwater input and circulation.\n- The Atlantic, Pacific and Indian oceans show different regional patterns.\n- A halocline marks rapid vertical salinity change.\n- Salinity affects density and stratification.\n- Hydrological cycling, relief, temperature and salinity together describe the ocean setting."
+  }
+}

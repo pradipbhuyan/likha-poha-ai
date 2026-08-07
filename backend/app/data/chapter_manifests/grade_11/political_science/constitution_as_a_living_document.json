@@ -1,0 +1,85 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "Constitution as a Living Document",
+  "central_question": "How has the Indian Constitution remained durable while adapting to changing social needs, political conflicts, and judicial interpretation?",
+  "in_scope_units": [
+    "Introduction and the question of whether constitutions are static",
+    "The Constitution as both a respected higher law and an instrument open to change",
+    "How to amend the Constitution: flexible and rigid provisions, Article 368, simple majority, special majority, and state ratification",
+    "Why there have been many amendments and the political settings in which they occurred",
+    "Types of amendments: technical changes, differing interpretations, political consensus, and controversial amendments",
+    "Basic structure and evolution of the Constitution through the Kesavananda Bharati ruling",
+    "Judicial interpretation, informal change, and review of the Constitution",
+    "The Constitution as a living document: democracy, rule of law, institutional balance, judiciary, and political leadership",
+    "Conclusion and exercises"
+  ],
+  "banned_topics": [
+    "A full account of the philosophical values of the Constitution, which belongs to the next chapter",
+    "Detailed election procedures unrelated to constitutional amendment",
+    "A complete study of federalism beyond the role of state ratification",
+    "A complete study of fundamental rights and directive principles beyond amendment conflicts"
+  ],
+  "must_include_keywords": [
+    "living document",
+    "static constitution",
+    "Article 368",
+    "flexible constitution",
+    "rigid constitution",
+    "simple majority",
+    "special majority",
+    "state ratification",
+    "parliamentary sovereignty",
+    "broad consensus",
+    "technical amendments",
+    "differing interpretations",
+    "political consensus",
+    "42nd Amendment",
+    "43rd Amendment",
+    "44th Amendment",
+    "internal emergency",
+    "Kesavananda Bharati",
+    "basic structure doctrine",
+    "judicial interpretation",
+    "Parliament",
+    "Judiciary",
+    "rule of law",
+    "constitutional balance",
+    "informal amendment",
+    "constitutional review",
+    "democratic politics",
+    "mature political leadership"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A living Constitution can be changed as easily as an ordinary law.",
+      "correction": "The Indian Constitution combines flexible and rigid procedures, and major amendments require special majorities or state ratification."
+    },
+    {
+      "claim": "Every constitutional amendment requires approval by all States.",
+      "correction": "Only amendments concerning specified federal matters require ratification by legislatures of half the States."
+    },
+    {
+      "claim": "Parliament loses all amendment power after the basic structure ruling.",
+      "correction": "Parliament may amend any part of the Constitution, but no amendment may violate its basic structure."
+    },
+    {
+      "claim": "The basic structure doctrine is written explicitly in the Constitution.",
+      "correction": "It emerged from judicial interpretation in the Kesavananda Bharati case."
+    },
+    {
+      "claim": "A high number of amendments automatically proves constitutional failure.",
+      "correction": "The chapter asks students to examine the content and context of amendments; many were technical, clarificatory, consensual, or responses to interpretation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 1 to distinguish ordinary law, amendment procedure, and judicial review.",
+    "Use NCERT Exercise 3 to map the roles of Parliament, the President, State Legislatures, voters, governors, and the Judiciary.",
+    "Use NCERT Exercise 4 to analyse why the 42nd Amendment became controversial.",
+    "Use NCERT Exercise 6 to correct misconceptions about the basic structure doctrine.",
+    "Use NCERT Exercise 10 to debate whether judicial review of amendments is compatible with elected amending power."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1-10.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

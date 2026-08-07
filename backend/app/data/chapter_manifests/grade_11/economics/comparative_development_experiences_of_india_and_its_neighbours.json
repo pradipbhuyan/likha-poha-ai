@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Comparative Development Experiences of India and its Neighbours",
+  "central_question": "What can India learn by comparing the development strategies, economic structures, and human-development outcomes of China and Pakistan?",
+  "in_scope_units": [
+    "Introduction: why neighbouring developing countries compare strategies in a globalised and competitive economic space",
+    "Developmental path - a snapshot view: common beginnings and different political and planning systems",
+    "China's path: government control, the Great Leap Forward, communes, the Cultural Revolution, and phased reforms from 1978",
+    "Pakistan's path: mixed economy, import substitution, Green Revolution, nationalisation, denationalisation, remittances, and reforms from 1988",
+    "Demographic indicators: population, growth, density, sex ratio, fertility, urbanisation, and the one-child norm",
+    "Gross domestic product and sectors: growth trends, GVA, workforce distribution, and structural change",
+    "Indicators of human development and the need to include liberty indicators",
+    "Development strategies - an appraisal: pre-reform foundations, reform outcomes, strengths, failures, and comparative lessons",
+    "Conclusion, recap, exercises, and suggested additional activities"
+  ],
+  "banned_topics": [
+    "A complete history of Indian economic planning covered in earlier units",
+    "Detailed international-trade theory and balance-of-payments accounting",
+    "A full political history of India, China, or Pakistan unrelated to development strategy",
+    "Country comparisons beyond India, China, and Pakistan"
+  ],
+  "must_include_keywords": [
+    "globalisation",
+    "regional economic groupings",
+    "Five Year Plans",
+    "public sector",
+    "Great Leap Forward",
+    "communes",
+    "Cultural Revolution",
+    "reforms of 1978",
+    "State Owned Enterprises",
+    "dual pricing",
+    "special economic zones",
+    "mixed economy",
+    "import substitution",
+    "Green Revolution",
+    "nationalisation",
+    "denationalisation",
+    "remittances",
+    "reforms of 1988",
+    "one-child norm",
+    "sex ratio",
+    "fertility rate",
+    "urbanisation",
+    "Gross Domestic Product",
+    "Gross Value Added",
+    "sectoral share",
+    "workforce distribution",
+    "human development indicators",
+    "liberty indicators",
+    "maternal mortality",
+    "sanitation",
+    "pre-reform period",
+    "market system",
+    "collective ownership"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "India, China, and Pakistan followed identical political and economic systems.",
+      "correction": "They began planning at roughly the same time and shared some strategies, but their political systems and policy structures differed greatly."
+    },
+    {
+      "claim": "China introduced reforms only because the World Bank and IMF required them.",
+      "correction": "The chapter states that China introduced structural reforms on its own initiative, unlike the external pressures faced by India and Pakistan."
+    },
+    {
+      "claim": "The one-child norm had only positive demographic effects.",
+      "correction": "It slowed population growth but was also associated with a lower sex ratio and a future rise in the proportion of elderly people."
+    },
+    {
+      "claim": "A high service-sector share automatically proves broad-based structural transformation.",
+      "correction": "The chapter contrasts China's agriculture-to-industry-to-services shift with the more direct shift from agriculture to services in India and Pakistan."
+    },
+    {
+      "claim": "Human development can be judged completely by income and health data alone.",
+      "correction": "The chapter argues that liberty indicators, including democratic participation, rights, judicial independence, and rule of law, are also necessary."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 4 to explain the aims and problems of the Great Leap Forward.",
+    "Use NCERT Exercise 7 to trace the demographic implications of the one-child norm.",
+    "Use NCERT Exercises 9 and 10 to compare population indicators and GDP-sector patterns.",
+    "Use NCERT Exercise 15 to compare human-development indicators across the three countries.",
+    "Use NCERT Exercise 16 and Suggested Additional Activity 4 to interpret recent growth and structural-change trends."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1-17, followed by Suggested Additional Activities 1-5.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

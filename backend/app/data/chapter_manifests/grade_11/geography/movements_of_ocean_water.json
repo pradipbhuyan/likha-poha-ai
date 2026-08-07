@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Movements of Ocean Water",
+  "central_question": "What drives waves, tides and ocean currents, how do these movements differ, and how do they affect coasts, climate and human activity?",
+  "in_scope_units": [
+    "Horizontal and vertical movements of ocean water",
+    "Waves and wave characteristics",
+    "Tides and tide-generating forces",
+    "Types of tides by frequency and earth-moon-sun position",
+    "Importance of tides",
+    "Ocean currents and controlling forces",
+    "Characteristics and types of currents",
+    "Major current circulation",
+    "Effects on climate and fisheries",
+    "NCERT exercises and project work"
+  ],
+  "banned_topics": [
+    "Detailed ocean-floor relief and salinity distribution from Chapter 12 except where they control currents",
+    "Detailed coastal landforms from Chapter 6",
+    "Detailed atmospheric circulation beyond wind controls used here"
+  ],
+  "must_include_keywords": [
+    "waves",
+    "wave energy",
+    "crest",
+    "trough",
+    "wave height",
+    "amplitude",
+    "wave period",
+    "wavelength",
+    "wave speed",
+    "wave frequency",
+    "tides",
+    "surges",
+    "gravitational pull",
+    "centrifugal force",
+    "tidal bulges",
+    "tidal currents",
+    "semi-diurnal tide",
+    "diurnal tide",
+    "mixed tide",
+    "spring tides",
+    "neap tides",
+    "perigee",
+    "apogee",
+    "perihelion",
+    "aphelion",
+    "ebb",
+    "flow",
+    "ocean currents",
+    "solar heating",
+    "wind",
+    "Coriolis force",
+    "gyres",
+    "density",
+    "surface currents",
+    "deep water currents",
+    "cold currents",
+    "warm currents",
+    "drift",
+    "prevailing winds",
+    "fishing grounds"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The same mass of water travels forward with a wave over long distances.",
+      "correction": "The chapter says wave energy moves forward while water particles mainly move in small circles."
+    },
+    {
+      "claim": "Tides and surges are the same.",
+      "correction": "Tides are regular astronomical changes; surges are irregular and meteorological."
+    },
+    {
+      "claim": "Spring tides occur only in spring.",
+      "correction": "They occur when sun, moon and earth align, around new and full moon."
+    },
+    {
+      "claim": "Ocean currents are driven only by wind.",
+      "correction": "Solar heating, gravity, Coriolis force and density differences also matter."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2(i): define waves",
+    "NCERT Exercise 2(iv): explain how tides are caused",
+    "NCERT Exercise 2(v): relate tides to navigation",
+    "NCERT Exercise 3(ii): explain causes of currents",
+    "NCERT Exercise 3(i): explain current effects on temperature and coastal climate"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work on observing waves and interpreting ocean-current maps.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

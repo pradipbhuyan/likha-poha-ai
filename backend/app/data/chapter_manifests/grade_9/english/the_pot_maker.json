@@ -2,126 +2,79 @@
   "grade": "Grade 9",
   "subject": "English",
   "chapter": "The Pot Maker",
-  "central_question": "How do passion, perseverance, supportive teaching, and respect for craftsmanship help preserve a difficult traditional vocation?",
+  "central_question": "How do perseverance, mentorship and shared cultural responsibility keep a traditional vocation alive while allowing a young learner to find her own path?",
   "in_scope_units": [
-    "Reflect and Respond: identifying skill-based vocations and comparing handmade and machine-made products.",
-    "Reading for Meaning, Part I: Sentila's dream of becoming a pot maker, Arenla's preference for weaving, the physical and economic hardships of pottery, the observed pot-making process, and the village council's view that inherited skills must be shared.",
-    "Check Your Understanding, Part I: judging the difficulty of pot making, predicting whether Sentila will fulfil her dream, and considering whether Mesoba and Arenla will support her.",
-    "Reading for Meaning, Part II: Sentila's unsuccessful year of training with Arenla, Onula's timely guidance, learning through careful observation, Sentila's sudden mastery, Arenla's death, and the revelation represented by the two matching rows of pots.",
-    "Check Your Understanding, Part II: evaluating Onula's support, inferring Sentila's qualities, and arranging the principal events in chronological order.",
-    "Critical Reflection: analysing extracts about the low returns from pottery and Onula's encouragement, and answering longer questions about process, tradition, perseverance, and the ending.",
-    "Vocabulary and Structures in Context: classifying pottery tools, raw materials, and processes; recognising livelihood-related vocabulary; studying noun clauses, relative clauses, and determiners.",
-    "Listen and Respond: listening for exact information about stone statues and selecting the correct steps in stone carving, with the teacher transcript referenced on page 261.",
-    "Speaking Activity: role-playing Sentila with Arenla, Mesoba, Onula, or a village elder while presenting motives, challenges, and advice grounded in the story.",
-    "Writing Task: producing a five-part reflective write-up about personal skills, passions, practice, career possibilities, examples, and self-understanding.",
-    "Learning Beyond the Text: recognising regional pottery traditions and reading John Galsworthy's 'Quality' to compare devoted craftsmanship with competition, advertising, industrialisation, and mass-produced goods."
+    "Reflect and Respond on vocations and handmade work",
+    "Reading for Meaning: Sentilas wish to become a pot maker, Arenlas resistance and the village councils concern for inherited skill",
+    "Sentilas training with Arenla, Onulas intervention and the completion of her apprenticeship",
+    "Critical Reflection on labour, livelihood, tradition, perseverance and the final revelation",
+    "Vocabulary and Structures in Context: pottery tools and materials, economic vocabulary, noun clauses, relative clauses and determiners",
+    "Listening on stone sculpture, character role-play and reflective writing about skills and passion",
+    "Learning Beyond the Text on Indian pottery traditions and the story Quality",
+    "Reading for Appreciation: Gifts of Grace: Honouring Our Vocations and its celebration of skilled work"
   ],
   "banned_topics": [
-    "The poem 'Gifts of Grace: Honouring Our Vocations' and its detailed analysis of free verse, imagery, metaphor, personification, repetition, alliteration, and symbolism, because it begins the next chapter after 'Quality'.",
-    "ASHA workers, sericulturists, confectioners, welders, horticulturists, goldsmiths, the Career Mela poster, and its listening and speaking tasks, which belong to 'Gifts of Grace: Honouring Our Vocations'.",
-    "R. L. Stevenson's poem 'The Lamplighter', the Ministry of Skill Development and Entrepreneurship presentation, and the Japanese Haiku activity, which occur in the following chapter's Learning Beyond the Text section."
+    "Technical ceramic chemistry or industrial pottery methods not described in the source",
+    "External ethnographic claims about the community or Nagaland beyond the story"
   ],
   "must_include_keywords": [
-    "Temsula Ao",
     "Sentila",
     "Arenla",
     "Mesoba",
     "Onula",
     "pot maker",
-    "weaver",
-    "vocation",
+    "weaving",
     "grey and red clay",
-    "sixteen kilometres",
-    "pittance",
-    "pounding",
-    "bamboo cylinders",
     "dao",
-    "malleable dough",
+    "bamboo cylinders",
     "spatula",
     "kiln",
-    "over firing",
-    "under firing",
     "village council",
-    "generation to generation",
-    "tradition and history",
-    "girls' dormitory",
-    "perseverance",
-    "observation",
+    "malleable dough",
+    "rim",
     "dexterity",
-    "two rows of pots",
-    "profound revelation",
-    "A new pot maker was born",
-    "tools and implements",
-    "raw materials",
+    "perseverance",
+    "tradition and history",
+    "vocation",
     "noun clauses",
     "relative clauses",
     "determiners",
-    "stone statues",
-    "role-play",
-    "reflective writing",
-    "indigenous pottery",
-    "Khurja pottery",
-    "Blue pottery",
-    "Terracotta",
-    "Longpi Black pottery",
+    "livelihood",
     "Quality",
     "Gessler Brothers",
-    "craftsmanship",
-    "advertisement",
-    "competition",
-    "mass-produced goods"
+    "Gifts of Grace",
+    "craftsperson",
+    "carpenters",
+    "electricians",
+    "boatmen",
+    "shoemakers"
   ],
   "known_pitfalls": [
     {
-      "claim": "Arenla opposed pot making because she did not care about Sentila's interests.",
-      "correction": "Arenla described pottery as physically exhausting, slow, messy, seasonal, and poorly paid; she believed weaving would provide more money and cloth for the family."
+      "claim": "Arenla refuses to teach Sentila because she thinks pottery has no cultural value.",
+      "correction": "Arenla describes the exhausting labour and poor return from pottery and prefers weaving for practical reasons; the village elders, however, stress the shared cultural value of the skill."
     },
     {
-      "claim": "Sentila learned to make pots successfully during her first year of lessons with Arenla.",
-      "correction": "Although Sentila learned to prepare malleable dough, she could not shape a pot properly even after almost a year of sessions with her mother."
+      "claim": "Sentila becomes skilled immediately after beginning lessons with her mother.",
+      "correction": "She struggles for a long period with shaping clay and only begins to succeed after Onula helps her relax and observe more carefully."
     },
     {
-      "claim": "Onula completed Sentila's final row of pots for her.",
-      "correction": "Onula once demonstrated the craft and restored Sentila's confidence, but Sentila later made her own row of pots after carefully observing Arenla's hand movement, rhythm, and method of forming the rim."
+      "claim": "Onula replaces Arenla as the only source of Sentilas learning.",
+      "correction": "Onula gives crucial guidance, but Sentila then studies Arenlas technique closely and finally matches her mothers dexterity."
     },
     {
-      "claim": "The village council believed pot-making knowledge belonged privately to Arenla's family.",
-      "correction": "The elders said skills that served the people and represented their tradition and history did not belong to any individual and should be taught to anyone willing to learn."
-    },
-    {
-      "claim": "Sentila's success was effortless and sudden, so perseverance was not important.",
-      "correction": "Her success followed years of desire, repeated failure, practice, Onula's encouragement, and close observation of her mother's technique."
-    },
-    {
-      "claim": "The two rows of pots were clearly different, allowing Onula to identify Sentila's work at once.",
-      "correction": "Onula could find nothing to distinguish one batch from the other; their perfect symmetry revealed that Sentila had reached her mother's level of skill."
-    },
-    {
-      "claim": "In the extract, 'handsome' describes physical attractiveness.",
-      "correction": "In Arenla's comparison of weaving and pot making, 'handsome' refers to a substantial or worthwhile financial return."
-    },
-    {
-      "claim": "A noun clause and a relative clause perform the same grammatical function.",
-      "correction": "The chapter defines a noun clause as acting like a noun, while a relative clause acts like an adjective and gives more information about a noun."
-    },
-    {
-      "claim": "The exact answers to the stone-statue listening blanks can be obtained from the supplied chapter pages alone.",
-      "correction": "The exercise requires exact words from the recording and refers the teacher to a transcript on page 261, which is outside the supplied pages."
-    },
-    {
-      "claim": "Mr Gessler's poor business proved that his boots were of poor quality.",
-      "correction": "The supplementary story repeatedly presents his boots as exceptionally well-made and long-lasting; his difficulties are linked to slow hand production, lack of advertising, competition, and his total devotion to the craft."
+      "claim": "The final rows of pots are presented as the work of one person.",
+      "correction": "Onula recognises two indistinguishable batches and understands that a new pot maker has emerged beside Arenlas work."
     }
   ],
   "recommended_example_progression": [
-    "Begin with Reflect and Respond I-II by identifying the pictured skill-based vocations and discussing the handmade-versus-machine-made comparison supplied by the opening activity.",
-    "Move to Check Your Understanding, Part I, Questions I-III to establish the labour involved in pottery, Sentila's goal, and the likely support of her parents.",
-    "Use Check Your Understanding, Part II, Activity III, Items 1-9 to reconstruct the full plot in chronological order.",
-    "Practise evidence-based answers with Critical Reflection I.1 and I.2, including the meaning of 'handsome', the effect statement, and Onula's character traits.",
-    "Apply language learning through Vocabulary and Structures in Context I and III by classifying pottery vocabulary and distinguishing noun clauses, relative clauses, and determiners.",
-    "Finish with Writing Task I and Learning Beyond the Text II by planning a reflective write-up and a review of 'Quality' focused on traditional craft, competition, advertising, and mass-produced goods."
+    "Check Your Understanding: explain why pottery is difficult",
+    "Critical Reflection: analyse Arenlas comparison of pottery and weaving",
+    "Critical Reflection: explain how Onulas support changes Sentilas learning",
+    "Vocabulary and Structures in Context: identify noun and relative clauses in story sentences",
+    "Gifts of Grace: explain how the poem honours different vocations"
   ],
-  "ncert_end_of_chapter_exercises_reference": "The chapter's assessed practice runs from Check Your Understanding on pages 37 and 41-42 through Critical Reflection, Vocabulary and Structures in Context, Listen and Respond, Speaking Activity, Writing Task, and Learning Beyond the Text on pages 42-56.",
+  "ncert_end_of_chapter_exercises_reference": "The prose is followed by Check Your Understanding and Critical Reflection, then language, listening, speaking, reflective writing and Learning Beyond the Text; the vocation poem has its own appreciation and reflection tasks.",
   "manifest_version": "1.0",
   "manifest_status": "gpt55_generated"
 }

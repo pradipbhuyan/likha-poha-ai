@@ -1,0 +1,147 @@
+{
+  "overall": "PASS",
+  "review_scope": "Source-grounded review of chapter boundaries, proportional five-step coverage, interpretation-only humanities examples, language requirements, and known source/prompt inconsistencies.",
+  "chapter_reviews": [
+    {
+      "file": "08_chapter_8_world_geography_some_glimpses.json",
+      "coverage": [
+        "map projections",
+        "oceans and ocean features",
+        "continents and landforms",
+        "human-environment links"
+      ],
+      "status": "PASS"
+    },
+    {
+      "file": "09_chapter_9_indias_long_road_to_independence.json",
+      "coverage": [
+        "post-1857 colonial rule and reform",
+        "nationalist awakening and revolutionary currents",
+        "Gandhian mass movements",
+        "constitutional debates, INA, Quit India and independence/Partition"
+      ],
+      "status": "PASS"
+    },
+    {
+      "file": "10_chapter_10_a_journey_through_indian_architecture.json",
+      "coverage": [
+        "Harappan planning",
+        "stupas and rock-cut architecture",
+        "temples, water structures and sacred architecture",
+        "mosques, forts, tombs, houses, churches and later styles"
+      ],
+      "status": "PASS"
+    },
+    {
+      "file": "11_chapter_11_the_role_of_the_judiciary_in_our_society.json",
+      "coverage": [
+        "law and justice",
+        "court hierarchy and jurisdictions",
+        "PIL/rights and specialised tribunals",
+        "technology and alternative dispute resolution"
+      ],
+      "status": "PASS"
+    },
+    {
+      "file": "12_chapter_12_citizenship_rights_and_duties.json",
+      "coverage": [
+        "citizenship and inclusion",
+        "Fundamental Rights",
+        "duties",
+        "discrimination, equity and active citizenship"
+      ],
+      "status": "PASS"
+    },
+    {
+      "file": "13_chapter_13_dynamics_of_population.json",
+      "coverage": [
+        "demography and census",
+        "population-change indicators",
+        "demographic transition",
+        "population composition/pyramids",
+        "demographic dividend and ageing"
+      ],
+      "status": "PASS"
+    },
+    {
+      "file": "14_chapter_14_indias_urban_landscape.json",
+      "coverage": [
+        "urban/rural and density",
+        "urbanisation and city economies",
+        "cultural hubs",
+        "urban challenges/slums",
+        "planning and sustainability"
+      ],
+      "status": "PASS"
+    },
+    {
+      "file": "15_chapter_15_cultural_currents_13th_to_17th_centuries.json",
+      "coverage": [
+        "continuity, bhakti and Sufism",
+        "music, painting and gardens",
+        "women and education",
+        "language, literature, science and medicine",
+        "architecture and daily-life exchange"
+      ],
+      "status": "PASS"
+    },
+    {
+      "file": "20_bharatiya_kalayen.json",
+      "coverage": [
+        "कला, लोक और शास्त्रीय परंपरा",
+        "चित्रकला",
+        "संगीत कला",
+        "नृत्य कला",
+        "समेकित सांस्कृतिक पुनरावृत्ति"
+      ],
+      "status": "PASS",
+      "visual_review": "Rendered source pages were inspected because text extraction uses legacy font encoding."
+    }
+  ],
+  "warnings": [
+    {
+      "output": "08_chapter_8_world_geography_some_glimpses.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 8; supplied source internal chapter number 1; title matches and prompt label retained."
+    },
+    {
+      "output": "09_chapter_9_indias_long_road_to_independence.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 9; supplied source internal chapter number 2; title matches and prompt label retained."
+    },
+    {
+      "output": "10_chapter_10_a_journey_through_indian_architecture.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 10; supplied source internal chapter number 3; title matches and prompt label retained."
+    },
+    {
+      "output": "11_chapter_11_the_role_of_the_judiciary_in_our_society.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 11; supplied source internal chapter number 4; title matches and prompt label retained."
+    },
+    {
+      "output": "12_chapter_12_citizenship_rights_and_duties.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 12; supplied source internal chapter number 5; title matches and prompt label retained."
+    },
+    {
+      "output": "13_chapter_13_dynamics_of_population.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 13; supplied source internal chapter number 6; title matches and prompt label retained."
+    },
+    {
+      "output": "14_chapter_14_indias_urban_landscape.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 14; supplied source internal chapter number 7; title matches and prompt label retained."
+    },
+    {
+      "output": "15_chapter_15_cultural_currents_13th_to_17th_centuries.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 15; supplied source internal chapter number 8; title matches and prompt label retained."
+    }
+  ],
+  "notes": [
+    "No external factual correction was inserted for the Grade 8 chapter-number differences.",
+    "Worked examples and quick checks use interpretation/reasoning rather than invented arithmetic."
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Solar Radiation, Heat Balance and Temperature",
+    "central_question": "How is solar energy received, redistributed and returned by the earth-atmosphere system, and how does this create temperature patterns?",
+    "in_scope_units": [
+      "Solar radiation and insolation",
+      "Variability and spatial distribution of insolation",
+      "Passage of solar radiation through the atmosphere",
+      "Conduction, convection, advection and terrestrial radiation",
+      "Heat budget and net radiation balance",
+      "Temperature controls and isotherms",
+      "Inversion of temperature and air drainage",
+      "NCERT exercises and project work"
+    ],
+    "banned_topics": [
+      "Detailed pressure belts and circulation from Chapter 9",
+      "Detailed humidity and precipitation from Chapter 10",
+      "Detailed ocean-current systems from later oceanography chapters"
+    ],
+    "must_include_keywords": [
+      "insolation",
+      "solar radiation",
+      "aphelion",
+      "perihelion",
+      "angle of inclination",
+      "latitude",
+      "short wave",
+      "scattering",
+      "subtropical deserts",
+      "conduction",
+      "convection",
+      "advection",
+      "loo",
+      "terrestrial radiation",
+      "long wave",
+      "greenhouse gases",
+      "albedo",
+      "heat budget",
+      "net radiation balance",
+      "temperature",
+      "normal lapse rate",
+      "distance from the sea",
+      "air masses",
+      "ocean currents",
+      "isotherms",
+      "January",
+      "July",
+      "continentality",
+      "inversion of temperature",
+      "air drainage",
+      "frost"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The atmosphere is mainly heated directly by incoming short-wave solar radiation.",
+        "correction": "The chapter explains that the atmosphere is mainly heated indirectly from below by long-wave terrestrial radiation."
+      },
+      {
+        "claim": "The equator always receives the greatest surface insolation.",
+        "correction": "Subtropical deserts can receive more because cloudiness is lower."
+      },
+      {
+        "claim": "Temperature always decreases with altitude.",
+        "correction": "The normal lapse pattern can reverse during an inversion of temperature."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 1(iv): match insolation, albedo, isotherm and annual range",
+      "NCERT Exercise 2(i): link unequal heat distribution with weather and climate",
+      "NCERT Exercise 3(i): explain latitude and axial tilt effects",
+      "NCERT Exercise 3(ii): explain earth-atmosphere heat balance",
+      "NCERT Exercise 3(iii): compare January temperature distribution in the hemispheres"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work using observatory temperature data."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Solar Radiation, Heat Balance and Temperature\n\n## What you will learn\nYou will define insolation and explain why it varies across time and latitude. You will connect ray angle, day length and atmospheric transparency to unequal heating.\n\n## Simple explanation\nThe earth receives most of its energy from the sun as incoming solar radiation, or insolation. Because the earth is spherical and tilted, solar energy is not distributed equally over all places or seasons.\n\n## Step-by-step breakdown\n- **Insolation**: Incoming solar radiation received by the earth is called insolation and is mainly short wave.\n- **Aphelion and perihelion**: The chapter distinguishes aphelion and perihelion but says their effect on daily weather is masked by land-sea distribution and atmospheric circulation.\n- **Variability controls**: Rotation, angle of inclination, length of day, atmospheric transparency and land aspect influence insolation.\n- **Latitude**: At higher latitude rays are more slanting, spread energy over a larger area and pass through more atmosphere.\n- **Seasonal change**: The amount and intensity of insolation vary through the day, season and year.\n\n## Worked example\nQuestion: How do latitude and the inclination of solar rays affect radiation received at the surface?\n\nAnswer:\n- The text explains that higher latitudes receive more slanting rays that spread over more area and pass through a greater depth of atmosphere.\n- This reduces energy per unit area and increases absorption, scattering and diffusion.\n- Final answer: Latitude affects insolation mainly through ray angle: more oblique rays at higher latitudes deliver less net energy per unit area.\n\n## Common mistake\nDo not explain insolation differences only by earth-sun distance; the chapter gives greater importance to ray angle, rotation and day length.\n\n## Quick check question\nQuestion: What is incoming solar radiation commonly called?\nAnswer: Insolation.\nExplanation: The chapter defines energy received from the sun as incoming solar radiation and abbreviates it as insolation.\n\n## Summary\n- Insolation is incoming solar radiation.\n- Its intensity varies with ray angle, day length, rotation and transparency.\n- Slant rays spread energy over more area and pass through more atmosphere.\n- Aphelion and perihelion cause small annual differences but do not dominate daily weather.",
+    "Core explanation": "# Core explanation: Solar Radiation, Heat Balance and Temperature\n\n## What you will learn\nYou will follow solar radiation through the atmosphere. You will distinguish conduction, convection, advection and terrestrial radiation.\n\n## Simple explanation\nThe atmosphere is largely transparent to short-wave solar radiation, but gases and particles absorb or scatter part of it. Much atmospheric heating occurs after the surface absorbs solar energy and transfers heat upward.\n\n## Step-by-step breakdown\n- **Absorption and scattering**: Water vapour, ozone and other gases absorb parts of near-infrared radiation; small suspended particles scatter visible light and help produce sky colours.\n- **Spatial insolation**: Subtropical deserts can receive maximum surface insolation because cloudiness is low, while the equator may receive comparatively less.\n- **Conduction**: Air touching the warmed surface is heated by contact, especially in the lower atmosphere.\n- **Convection**: Heated air rises vertically and transfers energy upward within the troposphere.\n- **Advection**: Horizontal movement of air transfers heat; the hot local wind loo is an example.\n- **Terrestrial radiation**: The heated earth emits long wave terrestrial radiation, which carbon dioxide and other greenhouse gases absorb and use to heat the atmosphere from below.\n\n## Worked example\nQuestion: Why does the chapter say the atmosphere is mainly heated from below?\n\nAnswer:\n- The source says short-wave insolation heats the earth’s surface, which then emits long-wave terrestrial radiation absorbed by atmospheric gases.\n- The surface therefore acts as the immediate heat source for much of the lower atmosphere.\n- Final answer: The atmosphere is mainly heated from below because the warmed surface transfers energy upward through terrestrial radiation and other heat-transfer processes.\n\n## Common mistake\nA common mistake is to confuse convection with advection: convection is vertical transfer, advection is horizontal transfer.\n\n## Quick check question\nQuestion: Which process transfers heat through horizontal air movement?\nAnswer: Advection.\nExplanation: The chapter explicitly defines advection as horizontal heat transfer.\n\n## Summary\n- Short-wave solar radiation largely passes through the atmosphere.\n- Absorption and scattering modify it before it reaches the surface.\n- Conduction, convection and advection move heat in different ways.\n- Terrestrial radiation is central to heating the atmosphere from below.",
+    "Worked examples": "# Worked examples: Solar Radiation, Heat Balance and Temperature\n\n## What you will learn\nYou will explain the earth’s heat budget as a balance between incoming and outgoing energy. You will see why lower latitudes can have radiation surplus while polar regions have a deficit.\n\n## Simple explanation\nThe earth-atmosphere system maintains overall temperature because absorbed solar energy is eventually balanced by energy returned to space, even though regional radiation balances differ.\n\n## Step-by-step breakdown\n- **Albedo**: The reflected part of incoming radiation is called the earth’s albedo.\n- **Absorption**: Part of solar energy is absorbed by the atmosphere and part by the surface.\n- **Terrestrial return**: The surface emits long-wave radiation; some escapes directly and some is absorbed and reradiated by the atmosphere.\n- **Heat budget**: The heat budget is the balance between incoming absorbed energy and outgoing energy returned to space.\n- **Net radiation balance**: Lower latitudes have a net radiation surplus while polar regions have a deficit; heat is transferred poleward.\n\n## Worked example\nQuestion: How does the earth-atmosphere system maintain heat balance despite unequal heating?\n\nAnswer:\n- The chapter states that the earth as a whole does not accumulate heat because absorbed insolation is balanced by radiation returned to space.\n- Regional surplus and deficit remain, but circulation redistributes heat from lower to higher latitudes.\n- Final answer: Global heat budget is maintained when outgoing energy equals absorbed incoming energy, while heat transfer redistributes regional imbalances.\n\n## Common mistake\nDo not confuse global heat balance with equal heating everywhere; a balanced planet can still have strong local surpluses and deficits.\n\n## Quick check question\nQuestion: What is the reflected fraction of incoming radiation called?\nAnswer: Albedo.\nExplanation: The chapter defines reflected radiation as the albedo of the earth.\n\n## Summary\n- The heat budget balances absorbed energy with energy returned to space.\n- Albedo is reflected radiation.\n- Terrestrial radiation links surface heating to atmospheric heating.\n- Net radiation balance varies by latitude and drives redistribution.",
+    "Exam-style problems": "# Exam-style problems: Solar Radiation, Heat Balance and Temperature\n\n## What you will learn\nYou will explain the major controls of air temperature. You will interpret isotherms and hemispheric contrasts in January and July.\n\n## Simple explanation\nTemperature patterns reflect latitude, altitude, distance from the sea, air masses, ocean currents and local conditions. Maps use isotherms to show these combined effects.\n\n## Step-by-step breakdown\n- **Latitude**: Temperature broadly follows insolation and therefore varies with latitude.\n- **Normal lapse rate**: Because the atmosphere is heated from below, temperature generally decreases with height; this is the normal lapse rate.\n- **Distance from the sea**: Land heats and cools quickly while the sea changes more slowly, so coastal areas have moderated temperature.\n- **Air masses and ocean currents**: Warm or cold air masses and ocean currents raise or lower temperatures where they pass.\n- **Isotherms**: Isotherms join places having equal temperature.\n- **January and July**: January isotherms are especially irregular in the northern hemisphere because land and ocean effects are stronger; the southern hemisphere shows more gradual oceanic patterns. Continentality is a major cause of large annual ranges in interiors.\n\n## Worked example\nQuestion: Why is the annual temperature range high in the Siberian plains?\n\nAnswer:\n- The chapter contrasts the rapid heating and cooling of land with slower temperature change over the sea and highlights strong continental effects in the northern hemisphere.\n- Far from ocean moderation, interior land becomes much colder in winter and warmer in summer.\n- Final answer: Strong continentality produces a large annual temperature range because land responds rapidly to seasonal heating and cooling.\n\n## Common mistake\nDo not read isotherms as latitude lines; they bend because land-sea contrasts and ocean currents modify temperature.\n\n## Quick check question\nQuestion: What do isotherms connect?\nAnswer: Places having equal temperature.\nExplanation: They are the map lines used to represent surface-air temperature distribution.\n\n## Summary\n- Temperature is controlled by latitude and regional geographic factors.\n- Altitude usually lowers temperature under the normal lapse rate.\n- Distance from the sea moderates temperature.\n- Isotherms reveal the combined effects of latitude, land, ocean and currents.",
+    "Revision and recap": "# Revision and recap: Solar Radiation, Heat Balance and Temperature\n\n## What you will learn\nYou will finish with inversion of temperature and air drainage. You will connect inversion to atmospheric stability, fog and frost.\n\n## Simple explanation\nNormally temperature decreases upward, but under suitable conditions colder air can lie below warmer air. This inversion changes lower-atmosphere stability and can trap smoke, dust and cold air near the surface.\n\n## Step-by-step breakdown\n- **Inversion of temperature**: An inversion is a reversal of the normal vertical temperature pattern.\n- **Favourable conditions**: Clear skies, still air and long winter nights favour strong surface cooling and inversion.\n- **Stability**: Surface inversion stabilises lower air, trapping smoke and dust and encouraging dense morning fog.\n- **Air drainage**: Cold dense air flows downslope under gravity and accumulates in valley bottoms with warmer air above.\n- **Frost**: Cold-air drainage and pooling affect frost conditions in valleys and on slopes.\n\n## Worked example\nQuestion: What is inversion of temperature and why is it common on clear, still winter nights?\n\nAnswer:\n- The source defines inversion as a reversal of the normal lapse pattern and says clear skies, still air and long nights favour strong ground cooling.\n- The lowest air becomes colder than the air above, so temperature increases upward through the inversion layer.\n- Final answer: An inversion is a temporary reversal with cold air below warm air, commonly produced by nocturnal cooling under clear and calm conditions.\n\n## Common mistake\nDo not treat inversion as the normal pattern; the normal lapse rate is a decrease of temperature with height.\n\n## Quick check question\nQuestion: What happens to smoke and dust during a surface inversion?\nAnswer: They tend to collect beneath the inversion layer.\nExplanation: Stable lower air suppresses vertical mixing, so suspended material spreads horizontally near the surface.\n\n## Summary\n- Inversion reverses the normal temperature profile.\n- Clear, calm winter nights favour inversion.\n- Stable inversions can trap smoke, dust and fog.\n- Air drainage pools cold air in valleys and affects frost.\n- The chapter links solar radiation, heat budget and temperature into one system."
+  }
+}

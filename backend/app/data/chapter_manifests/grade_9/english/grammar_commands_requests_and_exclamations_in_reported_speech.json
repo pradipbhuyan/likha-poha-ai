@@ -1,0 +1,68 @@
+{
+  "grade": "Grade 9",
+  "subject": "English",
+  "chapter": "Grammar: Commands, Requests and Exclamations in Reported Speech",
+  "central_question": "How can a student report commands, requests, exclamations and greetings using the correct reporting verb and sentence structure?",
+  "in_scope_units": [
+    "Commands and orders: told/ordered/commanded + object + to-infinitive",
+    "Negative commands: told + object + not to-infinitive",
+    "Requests: requested/asked + object + to-infinitive",
+    "Exclamations: exclaimed with emotion + that-clause statement",
+    "Wishes and greetings: wished + object + greeting noun form",
+    "Common errors with to, not and said/told"
+  ],
+  "banned_topics": [
+    "Reported Speech: Statements and Questions",
+    "Active and Passive Voice",
+    "Determiners",
+    "Clauses"
+  ],
+  "must_include_keywords": [
+    "reported speech",
+    "command",
+    "order",
+    "told",
+    "ordered",
+    "commanded",
+    "object",
+    "to-infinitive",
+    "base verb",
+    "negative command",
+    "not to",
+    "request",
+    "requested",
+    "asked",
+    "please",
+    "exclamation",
+    "exclaimed with joy",
+    "exclaimed with sorrow",
+    "that-clause",
+    "wish",
+    "greeting",
+    "wished"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Omitting to after told in a reported command.",
+      "correction": "Use told + object + to + base verb."
+    },
+    {
+      "claim": "Placing not as \"to not\" in a negative command.",
+      "correction": "The more standard reference form is told + object + not to + base verb."
+    },
+    {
+      "claim": "Using said directly before an addressed object and infinitive.",
+      "correction": "Use told + object + to-infinitive for a command."
+    }
+  ],
+  "recommended_example_progression": [
+    "Report a positive command",
+    "Report a negative command",
+    "Report a polite request",
+    "Transform joy and sorrow exclamations into that-clauses",
+    "Report a greeting and correct said/told errors"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice asks students to rewrite commands, requests, exclamations and greetings in reported speech and correct reporting-verb or infinitive errors.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

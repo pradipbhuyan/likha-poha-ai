@@ -1,0 +1,74 @@
+{
+  "grade": "Grade 9",
+  "subject": "English",
+  "chapter": "Grammar: Determiners",
+  "central_question": "How can a student choose determiners that correctly express definiteness, distance, possession, quantity and number before nouns?",
+  "in_scope_units": [
+    "Determiners and major categories",
+    "Articles a, an and the",
+    "Demonstratives this, that, these and those",
+    "Possessive determiners",
+    "Quantifiers with countable and uncountable nouns",
+    "Some and any",
+    "Each and every",
+    "Numbers as determiners",
+    "Common determiner errors"
+  ],
+  "banned_topics": [
+    "Reported Speech",
+    "Clauses",
+    "Active and Passive Voice"
+  ],
+  "must_include_keywords": [
+    "determiner",
+    "article",
+    "a",
+    "an",
+    "the",
+    "indefinite",
+    "definite",
+    "consonant sound",
+    "vowel sound",
+    "demonstrative",
+    "this",
+    "that",
+    "these",
+    "those",
+    "possessive",
+    "quantifier",
+    "countable noun",
+    "uncountable noun",
+    "many",
+    "much",
+    "few",
+    "little",
+    "some",
+    "any",
+    "each",
+    "every"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Using many with an uncountable noun such as water.",
+      "correction": "Use much with uncountable nouns; many is used with countable nouns."
+    },
+    {
+      "claim": "Writing an university because university begins with the letter u.",
+      "correction": "Use a university because the word begins with the consonant sound \"yoo\"."
+    },
+    {
+      "claim": "Omitting the in \"He is best student.\"",
+      "correction": "Use \"He is the best student\" in the reference superlative pattern."
+    }
+  ],
+  "recommended_example_progression": [
+    "Choose a/an/the in context",
+    "Correct sound-based article errors",
+    "Match this/that/these/those to distance and number",
+    "Choose quantifiers for countable or uncountable nouns and some/any patterns",
+    "Contrast each and every and correct mixed determiner errors"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes filling blanks with suitable determiners, correcting article and quantifier errors, and choosing forms based on number, countability and context.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

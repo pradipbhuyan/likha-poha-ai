@@ -1,0 +1,71 @@
+{
+  "grade": "Grade 9",
+  "subject": "English",
+  "chapter": "Grammar: Reported Speech (Statements and Questions)",
+  "central_question": "How can a student accurately change direct statements and questions into reported speech by adjusting tense, pronouns, time/place words and word order?",
+  "in_scope_units": [
+    "Reported speech and backshift in statements",
+    "Pronoun changes",
+    "Time and place expression changes",
+    "Yes/No questions with if or whether",
+    "Wh-questions with statement word order",
+    "Common reported-speech errors"
+  ],
+  "banned_topics": [
+    "Commands, Requests and Exclamations in Reported Speech",
+    "Active and Passive Voice",
+    "Determiners",
+    "Clauses"
+  ],
+  "must_include_keywords": [
+    "reported speech",
+    "direct speech",
+    "reporting verb",
+    "said",
+    "told",
+    "backshift",
+    "simple past",
+    "past continuous",
+    "past perfect",
+    "would",
+    "could",
+    "might",
+    "had to",
+    "pronoun change",
+    "now then",
+    "today that day",
+    "tomorrow next day",
+    "yesterday day before",
+    "here there",
+    "this that",
+    "these those",
+    "if",
+    "whether",
+    "Wh-question",
+    "statement word order"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Keeping direct-question word order in reported questions.",
+      "correction": "Use statement word order after the question word or if/whether."
+    },
+    {
+      "claim": "Forgetting the usual backshift after a past reporting verb.",
+      "correction": "Shift the listed tense or modal one step back, such as is->was or will->would."
+    },
+    {
+      "claim": "Omitting if/whether in a reported Yes/No question.",
+      "correction": "Introduce a Yes/No reported question with if or whether."
+    }
+  ],
+  "recommended_example_progression": [
+    "Report a simple statement with tense backshift",
+    "Practise modal and tense backshift patterns",
+    "Adjust pronouns and time/place expressions",
+    "Report Yes/No questions with if/whether",
+    "Report Wh-questions and correct word-order errors"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes rewriting direct statements and questions in reported speech, completing backshift and time-word changes, and correcting connector or word-order errors.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

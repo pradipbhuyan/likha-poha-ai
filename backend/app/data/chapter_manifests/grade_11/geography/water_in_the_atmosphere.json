@@ -1,0 +1,77 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Water in the Atmosphere",
+  "central_question": "How does atmospheric water move through humidity, evaporation, condensation, clouds and precipitation to create weather and rainfall patterns?",
+  "in_scope_units": [
+    "Water vapour, humidity, saturation and dew point",
+    "Evaporation and condensation",
+    "Dew, frost, fog and mist",
+    "Cloud formation and cloud types",
+    "Precipitation and its forms",
+    "Convectional, orographic and cyclonic rainfall",
+    "World distribution of rainfall",
+    "NCERT exercises and project work"
+  ],
+  "banned_topics": [
+    "Detailed atmospheric circulation and cyclone formation from Chapter 9",
+    "World climate classification from Chapter 11",
+    "Hydrological cycle and ocean-floor relief from Chapter 12"
+  ],
+  "must_include_keywords": [
+    "water vapour",
+    "humidity",
+    "absolute humidity",
+    "relative humidity",
+    "saturated air",
+    "dew point",
+    "evaporation",
+    "latent heat of vaporisation",
+    "condensation",
+    "hygroscopic condensation nuclei",
+    "dew",
+    "frost",
+    "fog",
+    "mist",
+    "smog",
+    "clouds",
+    "cirrus",
+    "cumulus",
+    "stratus",
+    "nimbus",
+    "precipitation",
+    "rainfall",
+    "snowfall",
+    "sleet",
+    "hailstones",
+    "convectional rain",
+    "orographic rain",
+    "rain-shadow area",
+    "cyclonic rain",
+    "world distribution of rainfall"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Relative humidity is the actual mass of vapour in a unit volume.",
+      "correction": "That is absolute humidity; relative humidity compares present moisture with full capacity at the same temperature."
+    },
+    {
+      "claim": "Fog and mist are unrelated to clouds.",
+      "correction": "The chapter describes fog as a cloud at or near the ground and both as condensation around particles."
+    },
+    {
+      "claim": "The leeward side receives more orographic rain.",
+      "correction": "Windward slopes receive more; leeward descending air creates a rain-shadow area."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1(ii): identify evaporation",
+    "NCERT Exercise 2(ii): explain relative humidity",
+    "NCERT Exercise 2(iv): explain cloud formation and classification",
+    "NCERT Exercise 3(ii): describe condensation forms, dew and frost",
+    "NCERT Exercise 3(i): discuss world precipitation distribution"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work on tracking extreme rainfall reports.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

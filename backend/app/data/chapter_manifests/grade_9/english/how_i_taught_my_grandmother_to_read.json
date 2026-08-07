@@ -2,105 +2,80 @@
   "grade": "Grade 9",
   "subject": "English",
   "chapter": "How I Taught My Grandmother to Read",
-  "central_question": "How do literacy, determination, and respect for learning help a person overcome age-based limits and become independent?",
+  "central_question": "How do literacy, determination, affection and respect help a learner become independent at any age?",
   "in_scope_units": [
-    "Reflect and Respond: exploring why reading and writing matter, discussing experiences with elderly relatives, and previewing key story vocabulary.",
-    "Reading for Meaning, Part I: the north Karnataka village setting, Triveni's serial Kashi Yatre, Krishtakka's attachment to the story, the narrator's absence, and the grandmother's regret over missing education.",
-    "Check Your Understanding, Part I: tracing causes and effects, interpreting the grandmother's tears, and predicting how the narrator may help her learn.",
-    "Reading for Meaning, Part II: the grandmother's wish for independence, her Kannada-learning goal and Dassara deadline, her disciplined practice, and her success as the narrator's first student.",
-    "Check Your Understanding, Part II: verifying factual understanding of the grandmother's purpose, learning process, belief about age, respect for her teacher, and progress.",
-    "Critical Reflection: analysing extracts, character traits, setting, emotional atmosphere, assumptions about age, the significance of Kashi Yatre, and the themes of education, determination, and independence.",
-    "Vocabulary and Structures in Context: using binomials, prefixes, learning-related idioms, and simple past and past perfect forms.",
-    "Listen and Respond: listening for exact words in a passage about digital literacy, with the transcript referenced on page 259.",
-    "Speaking Activity: presenting both sides of a turncoat debate about learning a new language and whether learning is limited to youth.",
-    "Writing Task: planning a formal letter to the Editor advocating student participation in adult literacy camps.",
-    "Learning Beyond the Text: exploring Indian languages, adult education, financial literacy, early literacy, cultural literacy, and a reading-related activity with grandparents."
+    "Reflect and Respond activities on literacy, grandparents and vocabulary",
+    "Reading for Meaning: the narrator, Triveni, Kashi Yatre, Krishtakka and the turning point caused by the narrator leaving for a wedding",
+    "The grandmothers decision to learn Kannada, her disciplined study and the Dassara conclusion",
+    "Check Your Understanding and Critical Reflection on character, independence, education and respect for a teacher",
+    "Vocabulary and Structures in Context: binomials, prefixes, learning idioms, simple past and past perfect tense",
+    "Listen and Respond on digital literacy, Turncoat speaking, and formal letter writing on adult literacy",
+    "Learning Beyond the Text on Indian languages, adult, financial, early and cultural literacy",
+    "Reading for Appreciation: Bharat Our Land and its imagery, symbolism, refrain, hyperbole, ode and allusion"
   ],
   "banned_topics": [
-    "The poem 'Bharat Our Land' and its poet Subramania Bharati, because it begins as the next chapter after page 22.",
-    "Himavant, Ganga, the Upanishads, Brahma-knowledge, Buddha's dhamma, ode, allusion, hyperbole, symbolism, and other literary devices taught in 'Bharat Our Land'.",
-    "National Anthem references and projects on India's mountains, rivers, deserts, valleys, islands, and plateaus, which belong to the following chapter."
+    "Biographical claims about Sudha Murty, Triveni or Subramania Bharati that are not stated in the supplied text",
+    "External details about Kashi, literacy schemes or Indian history beyond the source material"
   ],
   "must_include_keywords": [
-    "Sudha Murty",
-    "narrator",
-    "Krishtakka",
-    "Avva",
-    "north Karnataka",
-    "Kannada",
     "Triveni",
     "Kashi Yatre",
     "Karmaveera",
-    "protagonist",
-    "serial",
-    "concentration",
-    "village wedding",
-    "regret",
-    "girls' education",
-    "dependence",
-    "helplessness",
-    "independence",
+    "Krishtakka",
+    "Avva",
     "Kannada alphabet",
     "Saraswati Puja",
     "Dassara",
+    "independent",
     "determination",
-    "no age bar",
-    "teacher-student relationship",
-    "namaskara",
-    "passed with flying colours",
-    "adult literacy",
+    "teacher",
+    "flying colours",
     "binomials",
     "prefixes",
-    "idioms",
-    "simple past",
-    "past perfect",
+    "past perfect tense",
     "digital literacy",
-    "turncoat debate",
-    "letter to the Editor",
+    "adult literacy",
     "National Literacy Mission Authority",
-    "financial literacy",
-    "Early Literacy Project",
-    "cultural literacy"
+    "cultural literacy",
+    "Bharat Our Land",
+    "Himavant",
+    "Ganga",
+    "Upanishads",
+    "Brahma-knowledge",
+    "Buddha",
+    "refrain",
+    "symbolism",
+    "imagery",
+    "hyperbole",
+    "ode",
+    "allusion"
   ],
   "known_pitfalls": [
     {
-      "claim": "The grandmother asked another villager to read Kashi Yatre while the narrator was away.",
-      "correction": "She thought about asking someone but felt too embarrassed; she waited for the narrator and remained unable to read the episode herself."
+      "claim": "Krishtakka learns to read mainly to impress other people.",
+      "correction": "She explicitly connects literacy with independence after feeling helpless when she cannot read Kashi Yatre on her own."
     },
     {
-      "claim": "The grandmother cried because the story of Kashi Yatre had a sad ending.",
-      "correction": "She cried because she could not understand the printed words and felt dependent and helpless despite being well-off."
+      "claim": "The narrator remains dismissive of her grandmothers learning goal.",
+      "correction": "Although she first laughs at the idea, she becomes the teacher and supports the disciplined learning that follows."
     },
     {
-      "claim": "The old lady in Kashi Yatre finally travelled to Kashi after arranging the orphan girl's wedding.",
-      "correction": "The old lady gave away all her savings for the orphan girl's happiness and did not go to Kashi."
+      "claim": "The grandmother touches her granddaughters feet because family roles have been reversed permanently.",
+      "correction": "She explains that she is showing respect to her teacher, not simply to her granddaughter."
     },
     {
-      "claim": "The narrator was the grandmother's first student.",
-      "correction": "The grandmother was the narrator's first student, while the narrator was the grandmother's only teacher in the story."
-    },
-    {
-      "claim": "The grandmother touched her granddaughter's feet simply because family roles had been reversed.",
-      "correction": "She touched the feet of the person she regarded as her teacher, explaining that a teacher deserves respect irrespective of gender and age."
-    },
-    {
-      "claim": "Past perfect is used for the later of two completed past actions.",
-      "correction": "In the chapter's grammar section, the earlier completed action takes the past perfect, while the more recent completed action is expressed in the simple past."
-    },
-    {
-      "claim": "The exact answers to the digital-literacy listening blanks can be guessed from the chapter pages.",
-      "correction": "The exercise requires one to three exact words heard from the recording, and the textbook refers the teacher to a transcript on page 259, which is outside the supplied chapter pages."
+      "claim": "Bharat Our Land is only a geographical description.",
+      "correction": "The poem praises natural features, spiritual traditions, warriors, sages, music and cultural heritage through an ode-like voice."
     }
   ],
   "recommended_example_progression": [
-    "Begin with Reflect and Respond III by matching protagonist, debate, episode, community, concentration, eagerly, convincing, and guided to their given meanings.",
-    "Move to Check Your Understanding, Part I, Cause-and-Effect Table Items 1-6 to establish the narrative sequence and reasons for the grandmother's distress.",
-    "Use Check Your Understanding, Part II, Statements 1-6 to verify factual comprehension of independence, age, teaching, respect, and progress.",
-    "Practise inference with Critical Reflection I.1 and I.2, using exact phrases from the extracts as evidence for character and theme answers.",
-    "Apply grammar through Vocabulary and Structures in Context V(i), especially Item A, to distinguish simple past from past perfect.",
-    "Finish with Writing Task I by organising the prescribed three-paragraph letter to the Editor on student participation in adult literacy camps."
+    "Check Your Understanding: trace the cause of Krishtakkas tears",
+    "Critical Reflection: explain why the wish to be independent reveals determination",
+    "Vocabulary and Structures in Context: distinguish simple past from past perfect",
+    "Bharat Our Land: interpret the repeated praise of India and the symbols Himavant, Ganga and Upanishads",
+    "Critical Reflection on the poem: explain how imagery and rhetorical questions strengthen admiration"
   ],
-  "ncert_end_of_chapter_exercises_reference": "The chapter's practice sequence runs from Check Your Understanding through Critical Reflection, Vocabulary and Structures in Context, Listen and Respond, Speaking Activity, Writing Task, and Learning Beyond the Text on pages 6-22; it has no separately numbered end-of-chapter exercise block.",
+  "ncert_end_of_chapter_exercises_reference": "The unit uses Check Your Understanding and Critical Reflection after the prose and poem, followed by vocabulary, listening, speaking, writing and Learning Beyond the Text activities.",
   "manifest_version": "1.0",
   "manifest_status": "gpt55_generated"
 }

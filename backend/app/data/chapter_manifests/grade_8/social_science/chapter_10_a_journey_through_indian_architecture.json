@@ -1,0 +1,97 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 10: A Journey Through Indian Architecture",
+  "central_question": "How has Indian architecture combined function, technology, environment, belief and artistic expression across regions and historical periods?",
+  "in_scope_units": [
+    "Architecture as a functional, aesthetic and technical field and the chapter’s timeline and map",
+    "Harappan urban planning at Mohenjo-daro and Dholavira",
+    "Structural stupa architecture at Sanchi and Bharhut",
+    "Rock-cut architecture at Udayagiri-Khandagiri, Ajanta and Ellora",
+    "Regional sacred structures including Sharada Peetha, Hidimba Devi, Jageshwar and the Golden Temple",
+    "Water structures: Harappan wells, Shringaverpur reservoirs, stepwells and pushkarinis",
+    "Classical temple architecture and regional temple forms",
+    "Mosque architecture and the adaptation of arches, domes, screens and local craft traditions",
+    "Forts, palaces and fortified urban complexes",
+    "Tombs and mausoleums, including Humayun’s Tomb and the Taj Mahal",
+    "Traditional houses, havelis and Chettinadu houses",
+    "Churches in India and the blending of imported and local forms",
+    "Colonial and Indo-Saracenic architecture",
+    "Architectural diversity, environmental adaptation and conservation of heritage"
+  ],
+  "banned_topics": [
+    "A complete political history of the dynasties that patronised the monuments",
+    "Detailed religious doctrine not needed to understand the structures",
+    "Modern structural-engineering calculations not present in the source chapter"
+  ],
+  "must_include_keywords": [
+    "architecture",
+    "functional and aesthetic",
+    "Harappan architecture",
+    "Mohenjo-daro",
+    "Dholavira",
+    "drainage",
+    "Sanchi Stupa",
+    "toraṇa",
+    "vedikā",
+    "Bharhut",
+    "rock-cut architecture",
+    "Udayagiri-Khandagiri",
+    "Ellora",
+    "Kailasha Temple",
+    "pradakshina",
+    "water structures",
+    "Harappan wells",
+    "Shringaverpur",
+    "Rani ki Vav",
+    "stepwell",
+    "pushkarini",
+    "garbhagriha",
+    "mandapa",
+    "gopuram",
+    "Brihadiswara Temple",
+    "Lingaraja Temple",
+    "Dilwara Temples",
+    "Jama Masjid",
+    "Sidi Saiyyed Jali",
+    "Agra Fort",
+    "Mehrangarh Fort",
+    "Vijayanagara",
+    "Humayun’s Tomb",
+    "Taj Mahal",
+    "Shekhawati havelis",
+    "Chettinadu houses",
+    "St. Thomas Orthodox church",
+    "Madras High Court",
+    "Indo-Saracenic architecture",
+    "heritage conservation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Indian architecture can be explained as one uniform style repeated across the country.",
+      "correction": "The chapter stresses long historical development and great geographical diversity, with forms adapted to local materials, climate, belief and patronage."
+    },
+    {
+      "claim": "Harappan urban planning was concerned only with monumental buildings.",
+      "correction": "The chapter emphasises streets, houses, drains, bathing areas, reservoirs, water management and civic organisation."
+    },
+    {
+      "claim": "Rock-cut architecture is constructed by assembling stone blocks.",
+      "correction": "Rock-cut structures are carved directly out of existing rock, creating spaces for worship, residence or assembly."
+    },
+    {
+      "claim": "Colonial architecture in India simply copied European buildings.",
+      "correction": "The chapter gives Indo-Saracenic examples that combine Islamic, Hindu and Gothic elements."
+    }
+  ],
+  "recommended_example_progression": [
+    "Questions and activities 2: compare the practical challenge of building a brick dome with carving a rock-cut ceiling",
+    "Questions and activities 3: explain the many stairways in the water structures shown in the chapter",
+    "Questions and activities 5: compare common features and differences among temple forms",
+    "Questions and activities 6: reason about how central-courtyard houses handle rainfall",
+    "Questions and activities 10: identify threats to architectural heritage and propose source-grounded ways to protect it"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “Questions and activities” numbered 1-10, including visual analysis, comparison, local research and heritage-conservation tasks.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

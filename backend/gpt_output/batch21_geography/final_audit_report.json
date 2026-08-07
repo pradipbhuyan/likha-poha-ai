@@ -1,0 +1,28 @@
+{
+  "overall": "PASS",
+  "bank_count": 9,
+  "lesson_step_count": 45,
+  "must_include_keyword_checks": 328,
+  "checks": {
+    "primary_validation": "PASS",
+    "independent_validation": "PASS",
+    "source_pair_audit": "PASS",
+    "similarity_audit": "PASS",
+    "content_review": "PASS",
+    "all_lesson_numerals_source_supported": true,
+    "exact_cross_chapter_long_duplicates": 0
+  },
+  "source_notes": [
+    {
+      "file": "06_landforms_and_their_evolution.json",
+      "type": "source_internal_wording",
+      "note": "The supplied chapter describes point bars once as occurring on the concave side of meanders, while its later meander-process explanation places deposition on the convex/inside bank. The rewrite avoids asserting the disputed side for the point-bar definition and preserves the source-supported erosion/deposition process without importing an external correction."
+    },
+    {
+      "file": "12_water_oceans.json",
+      "type": "source_internal_wording",
+      "note": "The supplied chapter says the oceanic part is divided into five oceans and shortly afterward refers to seas, bays and gulfs as parts of “these four large oceans.” The rewrite does not repeat the inconsistent “four” count and does not add an external correction."
+    }
+  ],
+  "packaging_note": "SHA256SUMS.txt and the final ZIP are generated after this audit so their bytes do not create a circular checksum dependency."
+}

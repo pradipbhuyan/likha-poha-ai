@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Composition and Structure of Atmosphere",
+  "central_question": "What is the atmosphere made of, how is it vertically structured, and which parts of it matter most for weather, climate and life?",
+  "in_scope_units": [
+    "The atmosphere as a life-supporting envelope of gases",
+    "Composition: gases, water vapour and dust particles",
+    "Structure: troposphere, tropopause, stratosphere, mesosphere, ionosphere or thermosphere, and exosphere",
+    "Elements of weather and climate",
+    "NCERT exercises"
+  ],
+  "banned_topics": [
+    "Detailed insolation and heat budget from Chapter 8",
+    "Pressure belts and planetary circulation from Chapter 9",
+    "Detailed condensation and rainfall from Chapter 10"
+  ],
+  "must_include_keywords": [
+    "atmosphere",
+    "gases",
+    "oxygen",
+    "carbon dioxide",
+    "ozone",
+    "greenhouse effect",
+    "water vapour",
+    "dust particles",
+    "hygroscopic nuclei",
+    "density",
+    "troposphere",
+    "tropopause",
+    "stratosphere",
+    "ozone layer",
+    "ultra-violet radiation",
+    "mesosphere",
+    "mesopause",
+    "ionosphere",
+    "ions",
+    "radio waves",
+    "thermosphere",
+    "exosphere",
+    "temperature",
+    "pressure",
+    "winds",
+    "humidity",
+    "clouds",
+    "precipitation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Ozone is concentrated mainly in the troposphere.",
+      "correction": "The chapter places the ozone layer in the stratosphere and says it absorbs harmful ultra-violet radiation."
+    },
+    {
+      "claim": "Atmospheric density increases with altitude.",
+      "correction": "Density is highest near the surface and decreases upward."
+    },
+    {
+      "claim": "All atmospheric layers are equally central to daily weather.",
+      "correction": "Weather and climate changes occur in the troposphere, and the chapter says geographers focus especially on the first two layers."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1(v): identify the gas transparent to incoming but opaque to outgoing radiation",
+    "NCERT Exercise 1(iii): classify sea salt, pollen, ash, smoke-soot and fine soil",
+    "NCERT Exercise 2(iii): describe atmospheric composition",
+    "NCERT Exercise 2(iv): explain the importance of the troposphere",
+    "NCERT Exercise 3(ii): draw, label and describe atmospheric structure"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 on atmospheric composition and structure.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

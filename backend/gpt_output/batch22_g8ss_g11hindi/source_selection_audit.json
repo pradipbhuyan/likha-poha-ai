@@ -1,0 +1,1608 @@
+{
+  "overall": "PASS",
+  "pairs_checked": 9,
+  "method": "Exact prompt/source filename pairing; prompt metadata comparison; PDF title/content inspection during generation; tolerant automated keyword support audit. Hindi source used rendered-page visual review because parsed Devanagari text is legacy-encoded.",
+  "pairs": [
+    {
+      "output": "08_chapter_8_world_geography_some_glimpses.json",
+      "prompt": "08_chapter_8_world_geography_some_glimpses_PROMPT.txt",
+      "source_pdf": "08_chapter_8_world_geography_some_glimpses_source.pdf",
+      "prompt_grade": "Grade 8",
+      "prompt_subject": "Social Science",
+      "prompt_chapter": "Chapter 8: World Geography: Some Glimpses",
+      "source_internal_chapter_number": 1,
+      "title_match": true,
+      "numbering_note": "Prompt labels this as Chapter 8 while the supplied title-matched source PDF internally labels it Chapter 1; prompt manifest label was preserved.",
+      "keyword_source_support": [
+        {
+          "keyword": "oblate spheroid",
+          "supported": true
+        },
+        {
+          "keyword": "map projection",
+          "supported": true
+        },
+        {
+          "keyword": "Mercator Projection",
+          "supported": true
+        },
+        {
+          "keyword": "Robinson Projection",
+          "supported": true
+        },
+        {
+          "keyword": "latitude and longitude",
+          "supported": true
+        },
+        {
+          "keyword": "blue planet",
+          "supported": true
+        },
+        {
+          "keyword": "plankton",
+          "supported": true
+        },
+        {
+          "keyword": "ocean currents",
+          "supported": true
+        },
+        {
+          "keyword": "Gulf Stream",
+          "supported": true
+        },
+        {
+          "keyword": "Mariana Trench",
+          "supported": true
+        },
+        {
+          "keyword": "Challenger Deep",
+          "supported": true
+        },
+        {
+          "keyword": "Great Barrier Reef",
+          "supported": true
+        },
+        {
+          "keyword": "coral bleaching",
+          "supported": true
+        },
+        {
+          "keyword": "Suez Canal",
+          "supported": true
+        },
+        {
+          "keyword": "Tibetan Plateau",
+          "supported": true
+        },
+        {
+          "keyword": "Third Pole",
+          "supported": true
+        },
+        {
+          "keyword": "Gobi Desert",
+          "supported": true
+        },
+        {
+          "keyword": "Eurasian Steppes",
+          "supported": true
+        },
+        {
+          "keyword": "carbon sink",
+          "supported": true
+        },
+        {
+          "keyword": "Ural Mountains",
+          "supported": true
+        },
+        {
+          "keyword": "European Plain",
+          "supported": true
+        },
+        {
+          "keyword": "Sahara Desert",
+          "supported": true
+        },
+        {
+          "keyword": "savannah",
+          "supported": true
+        },
+        {
+          "keyword": "River Nile",
+          "supported": true
+        },
+        {
+          "keyword": "Andes Mountains",
+          "supported": true
+        },
+        {
+          "keyword": "Amazon River",
+          "supported": true
+        },
+        {
+          "keyword": "Amazon Rainforest",
+          "supported": true
+        },
+        {
+          "keyword": "deforestation",
+          "supported": true
+        },
+        {
+          "keyword": "Atacama Desert",
+          "supported": true
+        },
+        {
+          "keyword": "Colorado Plateau",
+          "supported": true
+        },
+        {
+          "keyword": "Rocky Mountains",
+          "supported": true
+        },
+        {
+          "keyword": "Yellowstone National Park",
+          "supported": true
+        },
+        {
+          "keyword": "Great Australian Desert",
+          "supported": true
+        },
+        {
+          "keyword": "Antarctica",
+          "supported": true
+        },
+        {
+          "keyword": "desertification",
+          "supported": true
+        }
+      ],
+      "extraction_sensitive_keyword_flags": []
+    },
+    {
+      "output": "09_chapter_9_indias_long_road_to_independence.json",
+      "prompt": "09_chapter_9_indias_long_road_to_independence_PROMPT.txt",
+      "source_pdf": "09_chapter_9_indias_long_road_to_independence_source.pdf",
+      "prompt_grade": "Grade 8",
+      "prompt_subject": "Social Science",
+      "prompt_chapter": "Chapter 9: India's Long Road to Independence",
+      "source_internal_chapter_number": 2,
+      "title_match": true,
+      "numbering_note": "Prompt labels this as Chapter 9 while the supplied title-matched source PDF internally labels it Chapter 2; prompt manifest label was preserved.",
+      "keyword_source_support": [
+        {
+          "keyword": "Royal Proclamation",
+          "supported": true
+        },
+        {
+          "keyword": "paramountcy",
+          "supported": true
+        },
+        {
+          "keyword": "Vernacular Press Act",
+          "supported": true
+        },
+        {
+          "keyword": "reform movements",
+          "supported": true
+        },
+        {
+          "keyword": "Bankim Chandra Chattopadhyay",
+          "supported": true
+        },
+        {
+          "keyword": "Vande Mataram",
+          "supported": true
+        },
+        {
+          "keyword": "Swami Vivekananda",
+          "supported": true
+        },
+        {
+          "keyword": "Indian National Congress",
+          "supported": true
+        },
+        {
+          "keyword": "Dadabhai Naoroji",
+          "supported": true
+        },
+        {
+          "keyword": "Bal Gangadhar Tilak",
+          "supported": true
+        },
+        {
+          "keyword": "Kesari",
+          "supported": true
+        },
+        {
+          "keyword": "Partition of Bengal",
+          "supported": true
+        },
+        {
+          "keyword": "Swadeshi",
+          "supported": true
+        },
+        {
+          "keyword": "boycott",
+          "supported": true
+        },
+        {
+          "keyword": "Bande Mataram",
+          "supported": true
+        },
+        {
+          "keyword": "Aurobindo Ghose",
+          "supported": true
+        },
+        {
+          "keyword": "All-India Muslim League",
+          "supported": true
+        },
+        {
+          "keyword": "Surat split",
+          "supported": true
+        },
+        {
+          "keyword": "Anushilan Samiti",
+          "supported": true
+        },
+        {
+          "keyword": "Abhinav Bharat",
+          "supported": true
+        },
+        {
+          "keyword": "Khudiram Bose",
+          "supported": true
+        },
+        {
+          "keyword": "Ghadar Movement",
+          "supported": true
+        },
+        {
+          "keyword": "Home Rule Movement",
+          "supported": true
+        },
+        {
+          "keyword": "Lucknow Pact",
+          "supported": true
+        },
+        {
+          "keyword": "satyagraha",
+          "supported": true
+        },
+        {
+          "keyword": "Rowlatt Act",
+          "supported": true
+        },
+        {
+          "keyword": "Jallianwala Bagh",
+          "supported": true
+        },
+        {
+          "keyword": "Non-Cooperation Movement",
+          "supported": true
+        },
+        {
+          "keyword": "Khilafat Movement",
+          "supported": true
+        },
+        {
+          "keyword": "Simon Commission",
+          "supported": true
+        },
+        {
+          "keyword": "Bhagat Singh",
+          "supported": true
+        },
+        {
+          "keyword": "Purna Swaraj",
+          "supported": true
+        },
+        {
+          "keyword": "Civil Disobedience Movement",
+          "supported": true
+        },
+        {
+          "keyword": "Dandi March",
+          "supported": true
+        },
+        {
+          "keyword": "Gandhi-Irwin Pact",
+          "supported": true
+        },
+        {
+          "keyword": "Poona Pact",
+          "supported": true
+        },
+        {
+          "keyword": "Subhas Chandra Bose",
+          "supported": true
+        },
+        {
+          "keyword": "Indian National Army",
+          "supported": true
+        },
+        {
+          "keyword": "Quit India Movement",
+          "supported": true
+        },
+        {
+          "keyword": "Partition",
+          "supported": true
+        }
+      ],
+      "extraction_sensitive_keyword_flags": []
+    },
+    {
+      "output": "10_chapter_10_a_journey_through_indian_architecture.json",
+      "prompt": "10_chapter_10_a_journey_through_indian_architecture_PROMPT.txt",
+      "source_pdf": "10_chapter_10_a_journey_through_indian_architecture_source.pdf",
+      "prompt_grade": "Grade 8",
+      "prompt_subject": "Social Science",
+      "prompt_chapter": "Chapter 10: A Journey Through Indian Architecture",
+      "source_internal_chapter_number": 3,
+      "title_match": true,
+      "numbering_note": "Prompt labels this as Chapter 10 while the supplied title-matched source PDF internally labels it Chapter 3; prompt manifest label was preserved.",
+      "keyword_source_support": [
+        {
+          "keyword": "architecture",
+          "supported": true
+        },
+        {
+          "keyword": "functional and aesthetic",
+          "supported": true
+        },
+        {
+          "keyword": "Harappan architecture",
+          "supported": true
+        },
+        {
+          "keyword": "Mohenjo-daro",
+          "supported": true
+        },
+        {
+          "keyword": "Dholavira",
+          "supported": true
+        },
+        {
+          "keyword": "drainage",
+          "supported": true
+        },
+        {
+          "keyword": "Sanchi Stupa",
+          "supported": true
+        },
+        {
+          "keyword": "toraṇa",
+          "supported": true
+        },
+        {
+          "keyword": "vedikā",
+          "supported": true
+        },
+        {
+          "keyword": "Bharhut",
+          "supported": true
+        },
+        {
+          "keyword": "rock-cut architecture",
+          "supported": true
+        },
+        {
+          "keyword": "Udayagiri-Khandagiri",
+          "supported": true
+        },
+        {
+          "keyword": "Ellora",
+          "supported": true
+        },
+        {
+          "keyword": "Kailasha Temple",
+          "supported": true
+        },
+        {
+          "keyword": "pradakshina",
+          "supported": true
+        },
+        {
+          "keyword": "water structures",
+          "supported": true
+        },
+        {
+          "keyword": "Harappan wells",
+          "supported": true
+        },
+        {
+          "keyword": "Shringaverpur",
+          "supported": true
+        },
+        {
+          "keyword": "Rani ki Vav",
+          "supported": true
+        },
+        {
+          "keyword": "stepwell",
+          "supported": true
+        },
+        {
+          "keyword": "pushkarini",
+          "supported": true
+        },
+        {
+          "keyword": "garbhagriha",
+          "supported": true
+        },
+        {
+          "keyword": "mandapa",
+          "supported": true
+        },
+        {
+          "keyword": "gopuram",
+          "supported": true
+        },
+        {
+          "keyword": "Brihadiswara Temple",
+          "supported": true
+        },
+        {
+          "keyword": "Lingaraja Temple",
+          "supported": true
+        },
+        {
+          "keyword": "Dilwara Temples",
+          "supported": true
+        },
+        {
+          "keyword": "Jama Masjid",
+          "supported": true
+        },
+        {
+          "keyword": "Sidi Saiyyed Jali",
+          "supported": true
+        },
+        {
+          "keyword": "Agra Fort",
+          "supported": true
+        },
+        {
+          "keyword": "Mehrangarh Fort",
+          "supported": true
+        },
+        {
+          "keyword": "Vijayanagara",
+          "supported": true
+        },
+        {
+          "keyword": "Humayun’s Tomb",
+          "supported": true
+        },
+        {
+          "keyword": "Taj Mahal",
+          "supported": true
+        },
+        {
+          "keyword": "Shekhawati havelis",
+          "supported": true
+        },
+        {
+          "keyword": "Chettinadu houses",
+          "supported": true
+        },
+        {
+          "keyword": "St. Thomas Orthodox church",
+          "supported": true
+        },
+        {
+          "keyword": "Madras High Court",
+          "supported": true
+        },
+        {
+          "keyword": "Indo-Saracenic architecture",
+          "supported": true
+        },
+        {
+          "keyword": "heritage conservation",
+          "supported": false
+        }
+      ],
+      "extraction_sensitive_keyword_flags": [
+        "heritage conservation"
+      ]
+    },
+    {
+      "output": "11_chapter_11_the_role_of_the_judiciary_in_our_society.json",
+      "prompt": "11_chapter_11_the_role_of_the_judiciary_in_our_society_PROMPT.txt",
+      "source_pdf": "11_chapter_11_the_role_of_the_judiciary_in_our_society_source.pdf",
+      "prompt_grade": "Grade 8",
+      "prompt_subject": "Social Science",
+      "prompt_chapter": "Chapter 11: The Role of the Judiciary in Our Society",
+      "source_internal_chapter_number": 4,
+      "title_match": true,
+      "numbering_note": "Prompt labels this as Chapter 11 while the supplied title-matched source PDF internally labels it Chapter 4; prompt manifest label was preserved.",
+      "keyword_source_support": [
+        {
+          "keyword": "justice",
+          "supported": true
+        },
+        {
+          "keyword": "judiciary",
+          "supported": true
+        },
+        {
+          "keyword": "independent judiciary",
+          "supported": true
+        },
+        {
+          "keyword": "law",
+          "supported": true
+        },
+        {
+          "keyword": "substantive justice",
+          "supported": true
+        },
+        {
+          "keyword": "procedural justice",
+          "supported": true
+        },
+        {
+          "keyword": "Supreme Court",
+          "supported": true
+        },
+        {
+          "keyword": "High Courts",
+          "supported": true
+        },
+        {
+          "keyword": "Subordinate Courts",
+          "supported": true
+        },
+        {
+          "keyword": "Article 124",
+          "supported": true
+        },
+        {
+          "keyword": "Article 32",
+          "supported": false
+        },
+        {
+          "keyword": "Article 226",
+          "supported": true
+        },
+        {
+          "keyword": "writ petition",
+          "supported": true
+        },
+        {
+          "keyword": "Fundamental Rights",
+          "supported": true
+        },
+        {
+          "keyword": "Public Interest Litigation",
+          "supported": true
+        },
+        {
+          "keyword": "Article 21",
+          "supported": false
+        },
+        {
+          "keyword": "Kapila Hingorani",
+          "supported": true
+        },
+        {
+          "keyword": "original jurisdiction",
+          "supported": true
+        },
+        {
+          "keyword": "Article 131",
+          "supported": true
+        },
+        {
+          "keyword": "appellate jurisdiction",
+          "supported": true
+        },
+        {
+          "keyword": "advisory jurisdiction",
+          "supported": true
+        },
+        {
+          "keyword": "Article 143",
+          "supported": true
+        },
+        {
+          "keyword": "Special Leave Petition",
+          "supported": true
+        },
+        {
+          "keyword": "Article 136",
+          "supported": true
+        },
+        {
+          "keyword": "Article 141",
+          "supported": true
+        },
+        {
+          "keyword": "High Court",
+          "supported": true
+        },
+        {
+          "keyword": "Article 214",
+          "supported": true
+        },
+        {
+          "keyword": "Article 227",
+          "supported": true
+        },
+        {
+          "keyword": "District Courts",
+          "supported": true
+        },
+        {
+          "keyword": "tribunals",
+          "supported": true
+        },
+        {
+          "keyword": "National Green Tribunal",
+          "supported": true
+        },
+        {
+          "keyword": "digital technology",
+          "supported": true
+        },
+        {
+          "keyword": "e-Filing",
+          "supported": true
+        },
+        {
+          "keyword": "National Judicial Data Grid",
+          "supported": true
+        },
+        {
+          "keyword": "alternate dispute resolution",
+          "supported": true
+        },
+        {
+          "keyword": "arbitration",
+          "supported": true
+        },
+        {
+          "keyword": "mediation",
+          "supported": true
+        },
+        {
+          "keyword": "Lok Adalats",
+          "supported": true
+        },
+        {
+          "keyword": "Gram Nyayalayas",
+          "supported": true
+        },
+        {
+          "keyword": "access to justice",
+          "supported": true
+        }
+      ],
+      "extraction_sensitive_keyword_flags": [
+        "Article 32",
+        "Article 21"
+      ]
+    },
+    {
+      "output": "12_chapter_12_citizenship_rights_and_duties.json",
+      "prompt": "12_chapter_12_citizenship_rights_and_duties_PROMPT.txt",
+      "source_pdf": "12_chapter_12_citizenship_rights_and_duties_source.pdf",
+      "prompt_grade": "Grade 8",
+      "prompt_subject": "Social Science",
+      "prompt_chapter": "Chapter 12: Citizenship: Rights and Duties",
+      "source_internal_chapter_number": 5,
+      "title_match": true,
+      "numbering_note": "Prompt labels this as Chapter 12 while the supplied title-matched source PDF internally labels it Chapter 5; prompt manifest label was preserved.",
+      "keyword_source_support": [
+        {
+          "keyword": "citizen",
+          "supported": true
+        },
+        {
+          "keyword": "resident",
+          "supported": true
+        },
+        {
+          "keyword": "citizenship",
+          "supported": true
+        },
+        {
+          "keyword": "legal identity",
+          "supported": true
+        },
+        {
+          "keyword": "social responsibility",
+          "supported": true
+        },
+        {
+          "keyword": "rights",
+          "supported": true
+        },
+        {
+          "keyword": "duties",
+          "supported": true
+        },
+        {
+          "keyword": "discrimination",
+          "supported": true
+        },
+        {
+          "keyword": "inclusion",
+          "supported": true
+        },
+        {
+          "keyword": "Fundamental Rights",
+          "supported": true
+        },
+        {
+          "keyword": "right to equality",
+          "supported": true
+        },
+        {
+          "keyword": "equity",
+          "supported": true
+        },
+        {
+          "keyword": "right to freedom",
+          "supported": true
+        },
+        {
+          "keyword": "right to life",
+          "supported": true
+        },
+        {
+          "keyword": "dignity",
+          "supported": true
+        },
+        {
+          "keyword": "right against exploitation",
+          "supported": true
+        },
+        {
+          "keyword": "child labour",
+          "supported": true
+        },
+        {
+          "keyword": "freedom of religion",
+          "supported": true
+        },
+        {
+          "keyword": "cultural and educational rights",
+          "supported": true
+        },
+        {
+          "keyword": "constitutional remedies",
+          "supported": true
+        },
+        {
+          "keyword": "Article 32",
+          "supported": false
+        },
+        {
+          "keyword": "Articles 14-18",
+          "supported": false
+        },
+        {
+          "keyword": "Articles 19-22",
+          "supported": false
+        },
+        {
+          "keyword": "Articles 23-24",
+          "supported": false
+        },
+        {
+          "keyword": "Articles 25-28",
+          "supported": false
+        },
+        {
+          "keyword": "Articles 29-30",
+          "supported": false
+        },
+        {
+          "keyword": "Article 51A",
+          "supported": true
+        },
+        {
+          "keyword": "Fundamental Duties",
+          "supported": true
+        },
+        {
+          "keyword": "unity and integrity",
+          "supported": true
+        },
+        {
+          "keyword": "environment",
+          "supported": true
+        },
+        {
+          "keyword": "scientific temper",
+          "supported": true
+        },
+        {
+          "keyword": "public property",
+          "supported": true
+        },
+        {
+          "keyword": "right to education",
+          "supported": true
+        },
+        {
+          "keyword": "Savitribai Phule",
+          "supported": true
+        },
+        {
+          "keyword": "Anandibai Joshi",
+          "supported": true
+        },
+        {
+          "keyword": "visible discrimination",
+          "supported": true
+        },
+        {
+          "keyword": "invisible discrimination",
+          "supported": true
+        },
+        {
+          "keyword": "accessibility",
+          "supported": false
+        },
+        {
+          "keyword": "belonging",
+          "supported": true
+        },
+        {
+          "keyword": "active participation",
+          "supported": true
+        }
+      ],
+      "extraction_sensitive_keyword_flags": [
+        "Article 32",
+        "Articles 14-18",
+        "Articles 19-22",
+        "Articles 23-24",
+        "Articles 25-28",
+        "Articles 29-30",
+        "accessibility"
+      ]
+    },
+    {
+      "output": "13_chapter_13_dynamics_of_population.json",
+      "prompt": "13_chapter_13_dynamics_of_population_PROMPT.txt",
+      "source_pdf": "13_chapter_13_dynamics_of_population_source.pdf",
+      "prompt_grade": "Grade 8",
+      "prompt_subject": "Social Science",
+      "prompt_chapter": "Chapter 13: Dynamics of Population",
+      "source_internal_chapter_number": 6,
+      "title_match": true,
+      "numbering_note": "Prompt labels this as Chapter 13 while the supplied title-matched source PDF internally labels it Chapter 6; prompt manifest label was preserved.",
+      "keyword_source_support": [
+        {
+          "keyword": "demography",
+          "supported": true
+        },
+        {
+          "keyword": "population structure",
+          "supported": true
+        },
+        {
+          "keyword": "population composition",
+          "supported": true
+        },
+        {
+          "keyword": "working-age population",
+          "supported": true
+        },
+        {
+          "keyword": "census",
+          "supported": true
+        },
+        {
+          "keyword": "projection",
+          "supported": true
+        },
+        {
+          "keyword": "population growth",
+          "supported": true
+        },
+        {
+          "keyword": "birth rate",
+          "supported": true
+        },
+        {
+          "keyword": "fertility rate",
+          "supported": true
+        },
+        {
+          "keyword": "replacement level fertility",
+          "supported": true
+        },
+        {
+          "keyword": "death rate",
+          "supported": true
+        },
+        {
+          "keyword": "mortality rate",
+          "supported": true
+        },
+        {
+          "keyword": "migration",
+          "supported": true
+        },
+        {
+          "keyword": "life expectancy",
+          "supported": true
+        },
+        {
+          "keyword": "child mortality",
+          "supported": true
+        },
+        {
+          "keyword": "One-Child Policy",
+          "supported": true
+        },
+        {
+          "keyword": "literacy",
+          "supported": true
+        },
+        {
+          "keyword": "demographic transition",
+          "supported": true
+        },
+        {
+          "keyword": "Stage 1",
+          "supported": true
+        },
+        {
+          "keyword": "Stage 2",
+          "supported": true
+        },
+        {
+          "keyword": "Stage 3",
+          "supported": true
+        },
+        {
+          "keyword": "India’s population",
+          "supported": true
+        },
+        {
+          "keyword": "sex ratio",
+          "supported": true
+        },
+        {
+          "keyword": "population pyramid",
+          "supported": true
+        },
+        {
+          "keyword": "age structure",
+          "supported": true
+        },
+        {
+          "keyword": "young population",
+          "supported": true
+        },
+        {
+          "keyword": "ageing population",
+          "supported": true
+        },
+        {
+          "keyword": "youth bulge",
+          "supported": true
+        },
+        {
+          "keyword": "demographic dividend",
+          "supported": true
+        },
+        {
+          "keyword": "median age",
+          "supported": true
+        },
+        {
+          "keyword": "human capital",
+          "supported": true
+        },
+        {
+          "keyword": "education",
+          "supported": true
+        },
+        {
+          "keyword": "skilling",
+          "supported": true
+        },
+        {
+          "keyword": "healthcare",
+          "supported": true
+        },
+        {
+          "keyword": "productivity",
+          "supported": true
+        },
+        {
+          "keyword": "pensions",
+          "supported": true
+        },
+        {
+          "keyword": "women in the workforce",
+          "supported": true
+        },
+        {
+          "keyword": "childcare infrastructure",
+          "supported": true
+        },
+        {
+          "keyword": "resource allocation",
+          "supported": false
+        }
+      ],
+      "extraction_sensitive_keyword_flags": [
+        "resource allocation"
+      ]
+    },
+    {
+      "output": "14_chapter_14_indias_urban_landscape.json",
+      "prompt": "14_chapter_14_indias_urban_landscape_PROMPT.txt",
+      "source_pdf": "14_chapter_14_indias_urban_landscape_source.pdf",
+      "prompt_grade": "Grade 8",
+      "prompt_subject": "Social Science",
+      "prompt_chapter": "Chapter 14: India's Urban Landscape",
+      "source_internal_chapter_number": 7,
+      "title_match": true,
+      "numbering_note": "Prompt labels this as Chapter 14 while the supplied title-matched source PDF internally labels it Chapter 7; prompt manifest label was preserved.",
+      "keyword_source_support": [
+        {
+          "keyword": "urban",
+          "supported": true
+        },
+        {
+          "keyword": "rural",
+          "supported": true
+        },
+        {
+          "keyword": "population density",
+          "supported": true
+        },
+        {
+          "keyword": "urbanisation",
+          "supported": true
+        },
+        {
+          "keyword": "economic activities",
+          "supported": true
+        },
+        {
+          "keyword": "trade routes",
+          "supported": true
+        },
+        {
+          "keyword": "natural resources",
+          "supported": true
+        },
+        {
+          "keyword": "Jamshedpur",
+          "supported": true
+        },
+        {
+          "keyword": "Mumbai",
+          "supported": true
+        },
+        {
+          "keyword": "Bengaluru",
+          "supported": true
+        },
+        {
+          "keyword": "information technology",
+          "supported": true
+        },
+        {
+          "keyword": "specialised industries",
+          "supported": true
+        },
+        {
+          "keyword": "tourism",
+          "supported": true
+        },
+        {
+          "keyword": "Delhi",
+          "supported": true
+        },
+        {
+          "keyword": "National Capital Region",
+          "supported": true
+        },
+        {
+          "keyword": "metropolitan areas",
+          "supported": true
+        },
+        {
+          "keyword": "migration",
+          "supported": true
+        },
+        {
+          "keyword": "cultural hubs",
+          "supported": true
+        },
+        {
+          "keyword": "Durga Puja",
+          "supported": true
+        },
+        {
+          "keyword": "infrastructure",
+          "supported": true
+        },
+        {
+          "keyword": "water supply",
+          "supported": true
+        },
+        {
+          "keyword": "waste management",
+          "supported": true
+        },
+        {
+          "keyword": "heat islands",
+          "supported": true
+        },
+        {
+          "keyword": "Air Quality Index",
+          "supported": true
+        },
+        {
+          "keyword": "slums",
+          "supported": true
+        },
+        {
+          "keyword": "affordable housing",
+          "supported": true
+        },
+        {
+          "keyword": "urban planning",
+          "supported": true
+        },
+        {
+          "keyword": "sustainability",
+          "supported": true
+        },
+        {
+          "keyword": "inclusive city",
+          "supported": true
+        },
+        {
+          "keyword": "Jaipur",
+          "supported": true
+        },
+        {
+          "keyword": "Singapore",
+          "supported": true
+        },
+        {
+          "keyword": "mixed-use spaces",
+          "supported": true
+        },
+        {
+          "keyword": "public transport",
+          "supported": true
+        },
+        {
+          "keyword": "walkability",
+          "supported": true
+        },
+        {
+          "keyword": "green spaces",
+          "supported": true
+        },
+        {
+          "keyword": "citizen participation",
+          "supported": true
+        },
+        {
+          "keyword": "Sabarmati Riverfront",
+          "supported": true
+        },
+        {
+          "keyword": "Gangtok",
+          "supported": true
+        },
+        {
+          "keyword": "ICT",
+          "supported": true
+        },
+        {
+          "keyword": "rural-urban interdependence",
+          "supported": false
+        }
+      ],
+      "extraction_sensitive_keyword_flags": [
+        "rural-urban interdependence"
+      ]
+    },
+    {
+      "output": "15_chapter_15_cultural_currents_13th_to_17th_centuries.json",
+      "prompt": "15_chapter_15_cultural_currents_13th_to_17th_centuries_PROMPT.txt",
+      "source_pdf": "15_chapter_15_cultural_currents_13th_to_17th_centuries_source.pdf",
+      "prompt_grade": "Grade 8",
+      "prompt_subject": "Social Science",
+      "prompt_chapter": "Chapter 15: Cultural Currents: 13th to 17th Centuries",
+      "source_internal_chapter_number": 8,
+      "title_match": true,
+      "numbering_note": "Prompt labels this as Chapter 15 while the supplied title-matched source PDF internally labels it Chapter 8; prompt manifest label was preserved.",
+      "keyword_source_support": [
+        {
+          "keyword": "culture",
+          "supported": true
+        },
+        {
+          "keyword": "cultural continuity",
+          "supported": true
+        },
+        {
+          "keyword": "bhakti marga",
+          "supported": true
+        },
+        {
+          "keyword": "moksha",
+          "supported": true
+        },
+        {
+          "keyword": "Kabir",
+          "supported": true
+        },
+        {
+          "keyword": "Ravidas",
+          "supported": true
+        },
+        {
+          "keyword": "Guru Nanak",
+          "supported": true
+        },
+        {
+          "keyword": "Mirabai",
+          "supported": true
+        },
+        {
+          "keyword": "Purandaradasa",
+          "supported": true
+        },
+        {
+          "keyword": "Sufism",
+          "supported": true
+        },
+        {
+          "keyword": "qawwali",
+          "supported": true
+        },
+        {
+          "keyword": "Khwaja Moinuddin Chishti",
+          "supported": true
+        },
+        {
+          "keyword": "Nizamuddin Auliya",
+          "supported": true
+        },
+        {
+          "keyword": "zikr",
+          "supported": true
+        },
+        {
+          "keyword": "Dara Shikoh",
+          "supported": true
+        },
+        {
+          "keyword": "Hindustani music",
+          "supported": true
+        },
+        {
+          "keyword": "Carnatic music",
+          "supported": true
+        },
+        {
+          "keyword": "Amir Khusro",
+          "supported": true
+        },
+        {
+          "keyword": "miniature paintings",
+          "supported": true
+        },
+        {
+          "keyword": "Rajput painting",
+          "supported": true
+        },
+        {
+          "keyword": "Mughal painting",
+          "supported": true
+        },
+        {
+          "keyword": "gardens",
+          "supported": true
+        },
+        {
+          "keyword": "Nur Jahan",
+          "supported": true
+        },
+        {
+          "keyword": "education",
+          "supported": true
+        },
+        {
+          "keyword": "apprenticeships",
+          "supported": true
+        },
+        {
+          "keyword": "literature",
+          "supported": true
+        },
+        {
+          "keyword": "Hindavi",
+          "supported": true
+        },
+        {
+          "keyword": "Persian",
+          "supported": true
+        },
+        {
+          "keyword": "Urdu",
+          "supported": true
+        },
+        {
+          "keyword": "Dakhini",
+          "supported": true
+        },
+        {
+          "keyword": "Ganita Kaumudi",
+          "supported": true
+        },
+        {
+          "keyword": "Narayana Pandita",
+          "supported": true
+        },
+        {
+          "keyword": "Madhava",
+          "supported": true
+        },
+        {
+          "keyword": "Kerala School",
+          "supported": true
+        },
+        {
+          "keyword": "Ayurveda",
+          "supported": true
+        },
+        {
+          "keyword": "Siddha",
+          "supported": true
+        },
+        {
+          "keyword": "Unani",
+          "supported": true
+        },
+        {
+          "keyword": "regional architecture",
+          "supported": true
+        },
+        {
+          "keyword": "Vijayanagara",
+          "supported": true
+        },
+        {
+          "keyword": "cultural exchange",
+          "supported": true
+        }
+      ],
+      "extraction_sensitive_keyword_flags": []
+    },
+    {
+      "output": "20_bharatiya_kalayen.json",
+      "prompt": "20_bharatiya_kalayen_PROMPT.txt",
+      "source_pdf": "20_bharatiya_kalayen_source.pdf",
+      "prompt_grade": "Grade 11",
+      "prompt_subject": "Hindi",
+      "prompt_chapter": "Bharatiya Kalayen",
+      "source_internal_chapter_number": null,
+      "title_match": true,
+      "numbering_note": "No chapter-number conflict applicable; Hindi title/source pair visually checked.",
+      "keyword_source_support": [
+        {
+          "keyword": "भारतीय कलाएँ",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "अभिव्यक्ति",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "विविधता",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "लोककला",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "जनजातीय कला",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "शास्त्रीय कला",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "भरत मुनि",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "नाट्यशास्त्र",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "चित्रकला",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "शैलचित्र",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "भीमबेटका",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "अजंता",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "एलोरा",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "लघुचित्र",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "पटचित्र",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "मधुबनी",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "रंगोली",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "गांधार शैली",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "संगीत कला",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "मार्गी संगीत",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "देशी संगीत",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "सामवेद",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "राग",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "ताल",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "वीणा",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "संस्कारगीत",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "ऋतुगीत",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "नृत्य कला",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "अभिनय",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "भाव-भंगिमा",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "लोक नृत्य",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "गिद्धा",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "घूमर",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "डांडिया रास",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "कथकली",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "कथक",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "कुचिपुड़ी",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "ओडिसी",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "मणिपुरी",
+          "supported": "manual_visual_review"
+        },
+        {
+          "keyword": "भरतनाट्यम",
+          "supported": "manual_visual_review"
+        }
+      ],
+      "extraction_sensitive_keyword_flags": []
+    }
+  ],
+  "warnings": [
+    {
+      "output": "08_chapter_8_world_geography_some_glimpses.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 8; supplied source internal chapter number 1; title matches and prompt label retained."
+    },
+    {
+      "output": "09_chapter_9_indias_long_road_to_independence.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 9; supplied source internal chapter number 2; title matches and prompt label retained."
+    },
+    {
+      "output": "10_chapter_10_a_journey_through_indian_architecture.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 10; supplied source internal chapter number 3; title matches and prompt label retained."
+    },
+    {
+      "output": "11_chapter_11_the_role_of_the_judiciary_in_our_society.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 11; supplied source internal chapter number 4; title matches and prompt label retained."
+    },
+    {
+      "output": "12_chapter_12_citizenship_rights_and_duties.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 12; supplied source internal chapter number 5; title matches and prompt label retained."
+    },
+    {
+      "output": "13_chapter_13_dynamics_of_population.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 13; supplied source internal chapter number 6; title matches and prompt label retained."
+    },
+    {
+      "output": "14_chapter_14_indias_urban_landscape.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 14; supplied source internal chapter number 7; title matches and prompt label retained."
+    },
+    {
+      "output": "15_chapter_15_cultural_currents_13th_to_17th_centuries.json",
+      "type": "prompt_source_numbering_difference",
+      "detail": "Prompt chapter number 15; supplied source internal chapter number 8; title matches and prompt label retained."
+    }
+  ]
+}

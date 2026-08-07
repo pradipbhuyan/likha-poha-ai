@@ -1,0 +1,105 @@
+{
+  "grade": "Grade 12",
+  "subject": "Political Science",
+  "chapter": "Chapter 15: Recent Developments in Indian Politics",
+  "central_question": "How did the major political developments since the late 1980s transform India's party system, social representation, debates on secularism and the emergence of a new political consensus?",
+  "in_scope_units": [
+    "In this chapter and Context of the 1990s — the central questions and five developments that reshaped politics",
+    "Era of Coalitions — the 1989 election, National Front government and the beginning of coalition politics",
+    "Decline of Congress — the end of Congress dominance without an immediate single-party replacement",
+    "Alliance politics — multi-party competition, regional parties, United Front, BJP-led coalitions, NDA and UPA",
+    "Central Governments Since 1989 — the visual timeline of coalition and party-led governments",
+    "Political Rise of Other Backward Classes — OBC identity, political mobilisation and representation",
+    "'Mandal' implemented and The Mandal Commission — origins, recommendations, implementation, protests and the Indira Sawhney case",
+    "Political fallouts — BAMCEF, bahujan politics, Kanshi Ram and the rise of the BSP",
+    "Communalism, Secularism, Democracy — BJP, Hindutva, Shah Bano and politics based on religious identity",
+    "Ayodhya Issue and From Legal Proceedings to Amicable Acceptance — dispute, legal process and the Supreme Court verdict described in the chapter",
+    "Emergence of a new consensus — competition between Congress and BJP and the electoral charts",
+    "Lok Sabha Elections (2004-2019) — UPA, NDA, the 2014 and 2019 BJP majorities and continuing relevance of coalition politics",
+    "Growing consensus — four areas of broad agreement among political parties and continuing democratic contestation",
+    "Party Position in 17th Lok Sabha and Let Us Do It Together — visual and tabular electoral review",
+    "Exercises — chronology, matching, analytical questions and the Zoya Hasan passage"
+  ],
+  "banned_topics": [
+    "Detailed history of the Emergency and the pre-1980 party system beyond the brief background references made in this chapter",
+    "Detailed constitutional or electoral-system theory not used by the chapter to explain developments since the late 1980s"
+  ],
+  "must_include_keywords": [
+    "Congress system",
+    "1989 elections",
+    "National Front",
+    "Mandal issue",
+    "Other Backward Classes",
+    "OBC",
+    "Mandal Commission",
+    "new economic reforms",
+    "Ram Janmabhoomi",
+    "Rajiv Gandhi",
+    "Narsimha Rao",
+    "Era of Coalitions",
+    "Decline of Congress",
+    "multi-party system",
+    "regional parties",
+    "Alliance politics",
+    "United Front",
+    "BJP",
+    "Left Front",
+    "NDA",
+    "UPA",
+    "coalition politics",
+    "Political Rise of Other Backward Classes",
+    "Second Backward Classes Commission",
+    "B. P. Mandal",
+    "Indira Sawhney case",
+    "BAMCEF",
+    "bahujan",
+    "Bahujan Samaj Party",
+    "Kanshi Ram",
+    "Communalism",
+    "Secularism",
+    "Democracy",
+    "Hindutva",
+    "Shah Bano case",
+    "Ayodhya Issue",
+    "Supreme Court",
+    "Emergence of a new consensus",
+    "Growing consensus",
+    "State level parties"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The defeat of Congress in 1989 meant Congress disappeared from national politics.",
+      "correction": "The chapter says Congress lost its earlier centrality and dominance but remained an important party and returned to power after the 1991 elections."
+    },
+    {
+      "claim": "Coalition politics began because one new national party immediately replaced Congress.",
+      "correction": "The chapter explains that Congress dominance declined without any single party immediately replacing it, leading to a multi-party era in which regional parties became crucial to ruling alliances."
+    },
+    {
+      "claim": "The Mandal Commission was only about political party alliances.",
+      "correction": "The chapter says the Commission investigated educational and social backwardness, identified backward classes and recommended measures including reservation, which then had major political consequences."
+    },
+    {
+      "claim": "Dalit politics and OBC politics are presented as the same movement.",
+      "correction": "The chapter says they often developed independently and sometimes in competition, even though bahujan politics sought to mobilise SC, ST, OBC and minorities together."
+    },
+    {
+      "claim": "The chapter presents the Ayodhya dispute as being resolved outside democratic and legal processes.",
+      "correction": "The supplied text emphasises court hearings, mediation attempts, popular movements and the 2019 constitutional-bench verdict as part of due process of law and conflict resolution in a plural society."
+    },
+    {
+      "claim": "The emergence of a new consensus means political parties stopped competing.",
+      "correction": "The chapter describes severe competition continuing alongside broad agreement on several major political and economic issues."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Exercise 3 to organise the major post-1989 issues and the party configurations they produced.",
+    "Use NCERT Exercise 4 to analyse why coalition alignments could cross ideological differences and focus on power-sharing arrangements.",
+    "Use NCERT Exercise 1 to build a source-grounded chronology linking Mandal, changing party formations, NDA, UPA and the Ram Janmabhoomi judgment.",
+    "Use NCERT Exercise 5 to trace the emergence of BJP through the chapter's discussion of post-Emergency reorganisation, Hindutva, Shah Bano, Ayodhya and later electoral growth.",
+    "Finish with NCERT Exercise 6 to assess how Congress continued to influence politics after losing its former dominance."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's EXERCISES contain Questions 1-8, followed by a LET US DO IT TOGETHER activity and a party-position table for elections from 2004 to 2019.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

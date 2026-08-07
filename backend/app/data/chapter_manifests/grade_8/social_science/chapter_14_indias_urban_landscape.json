@@ -1,0 +1,93 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 14: India's Urban Landscape",
+  "central_question": "How do cities grow into economic and cultural centres, what challenges accompany urbanisation, and how can planning make urban life more inclusive and sustainable?",
+  "in_scope_units": [
+    "Urban and rural areas, India’s urban legacy and the meaning of cities",
+    "Population density and the spatial contrast between rural and urban settlements",
+    "How favourable locations, trade, raw materials and institutions help cities become economic centres",
+    "The process of urbanisation from rural origins to towns, cities and metropolitan areas",
+    "Industrial, financial, technological, specialised, pilgrimage and administrative city examples in India",
+    "Cities as cultural hubs where languages, foods, festivals, institutions and networks mix",
+    "Challenges faced by cities, including infrastructure pressure, pollution, heat islands, waste, safety and slums",
+    "Urban planning for infrastructure, public spaces, inclusion, sustainability and quality of life",
+    "Singapore as an example of integrated planning and Indian examples such as the Sabarmati Riverfront and Gangtok’s M.G. Road",
+    "Use of technology, citizen participation and urban services to support convenient and sustainable cities"
+  ],
+  "banned_topics": [
+    "Detailed population-transition theory from the preceding population chapter",
+    "Detailed constitutional structure of urban local government beyond what this chapter states",
+    "Urban-planning statistics, rankings or case studies not present in the supplied chapter"
+  ],
+  "must_include_keywords": [
+    "urban",
+    "rural",
+    "population density",
+    "urbanisation",
+    "economic activities",
+    "trade routes",
+    "natural resources",
+    "Jamshedpur",
+    "Mumbai",
+    "Bengaluru",
+    "information technology",
+    "specialised industries",
+    "tourism",
+    "Delhi",
+    "National Capital Region",
+    "metropolitan areas",
+    "migration",
+    "cultural hubs",
+    "Durga Puja",
+    "infrastructure",
+    "water supply",
+    "waste management",
+    "heat islands",
+    "Air Quality Index",
+    "slums",
+    "affordable housing",
+    "urban planning",
+    "sustainability",
+    "inclusive city",
+    "Jaipur",
+    "Singapore",
+    "mixed-use spaces",
+    "public transport",
+    "walkability",
+    "green spaces",
+    "citizen participation",
+    "Sabarmati Riverfront",
+    "Gangtok",
+    "ICT",
+    "rural-urban interdependence"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A city is defined everywhere by one fixed population threshold.",
+      "correction": "The chapter states that definitions of urban and rural areas vary across countries and uses different national thresholds to illustrate this."
+    },
+    {
+      "claim": "Urbanisation means only an increase in the number of buildings.",
+      "correction": "The chapter defines urbanisation as a population shift from rural to urban areas accompanied by changes in occupations, infrastructure and the growth of towns and cities."
+    },
+    {
+      "claim": "Slum residents do not contribute to city economies.",
+      "correction": "The chapter explicitly notes that slum dwellers often support cities through informal work such as vending, domestic work, construction and other services."
+    },
+    {
+      "claim": "Good urban planning is only about building more roads.",
+      "correction": "The chapter presents planning as a balance of infrastructure, housing, public transport, green and public spaces, services, inclusion, technology and sustainability."
+    }
+  ],
+  "recommended_example_progression": [
+    "Questions and activities 1: distinguish urban and rural areas using the chapter’s criteria",
+    "Questions and activities 4: explain the factors that help a place grow into an important city",
+    "Questions and activities 5: connect urban growth with pressure on green and forest areas",
+    "Questions and activities 7: reason as an urban planner about access for children, older people and people with disabilities",
+    "Questions and activities 13: propose chapter-grounded planning responses to waste, traffic, safety, mobility, slums and heat waves"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “Questions and activities” numbered 1–14, covering urban-rural comparison, city growth, planning, migration, pollution, slums and rehabilitation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "Political Science",
+  "chapter": "The Philosophy of the Constitution",
+  "central_question": "What moral vision, democratic aims, achievements, criticisms, and limitations shape the political philosophy of the Indian Constitution?",
+  "in_scope_units": [
+    "Introduction: why constitutional provisions must be studied together with objectives, moral content, and Constituent Assembly debates",
+    "What is meant by philosophy of the Constitution: conceptual structure, coherent vision, and justification of values",
+    "Constitution as a means of democratic transformation and political self-determination",
+    "Why the Constituent Assembly debates remain relevant to present constitutional practice",
+    "The political philosophy of the Constitution: liberal, democratic, egalitarian, secular, federal, community-sensitive, and national",
+    "Individual freedom and social justice",
+    "Respect for diversity, minority rights, and Indian secularism as principled distance",
+    "Universal franchise, asymmetric federalism, and national identity",
+    "Procedural achievements: deliberation, compromise, accommodation, and consensus",
+    "Criticisms: unwieldy, unrepresentative, and alien",
+    "Limitations: centralised national unity, gender justice, and socio-economic rights",
+    "Conclusion and exercises"
+  ],
+  "banned_topics": [
+    "Detailed amendment procedures and special-majority calculations from the previous chapter",
+    "A complete list of Fundamental Rights without connection to constitutional philosophy",
+    "A full institutional study of Parliament, Executive, or Judiciary",
+    "A complete account of federal administration beyond the philosophical meaning of asymmetric federalism"
+  ],
+  "must_include_keywords": [
+    "political philosophy",
+    "moral vision",
+    "conceptual structure",
+    "Constituent Assembly Debates",
+    "democratic transformation",
+    "self-determination",
+    "freedom",
+    "equality",
+    "social justice",
+    "national unity",
+    "individual freedom",
+    "liberalism",
+    "reservations",
+    "Scheduled Castes",
+    "Scheduled Tribes",
+    "minority rights",
+    "community values",
+    "secularism",
+    "mutual exclusion",
+    "principled distance",
+    "state intervention",
+    "universal franchise",
+    "asymmetric federalism",
+    "Article 371A",
+    "national identity",
+    "fraternity",
+    "political deliberation",
+    "compromise",
+    "accommodation",
+    "unwieldy",
+    "unrepresentative",
+    "alien document",
+    "selective adaptation",
+    "gender justice",
+    "Directive Principles"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Constitution is only a collection of legal rules with no moral content.",
+      "correction": "The chapter presents it as a document based on a moral vision connecting laws with values such as equality, freedom, justice, and democracy."
+    },
+    {
+      "claim": "Indian secularism requires the State never to engage with religion.",
+      "correction": "The chapter describes principled distance, under which the State may intervene or abstain depending on what promotes liberty, equality, and social justice."
+    },
+    {
+      "claim": "Indian liberalism protects individual rights but ignores social justice.",
+      "correction": "The chapter emphasises that Indian constitutional liberalism links individual freedom with reservations and other measures for historically disadvantaged groups."
+    },
+    {
+      "claim": "Borrowing from other constitutions made the Indian Constitution wholly alien.",
+      "correction": "The chapter calls the process innovative and selective adaptation that combined modern and Indian values."
+    },
+    {
+      "claim": "Acknowledging limitations means rejecting the philosophy of the Constitution.",
+      "correction": "The chapter identifies serious limitations but argues that they do not destroy its overall moral and democratic vision."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use NCERT Exercise 2 to identify the most plausible philosophical description of the Constitution.",
+    "Use NCERT Exercise 4 to distinguish procedural achievements from substantive values.",
+    "Use NCERT Exercise 5 to analyse Indian secularism and the rights of religious groups.",
+    "Use NCERT Exercise 7 to debate the claim that the Constitution is merely borrowed.",
+    "Use NCERT Exercises 8-10 to evaluate representation, gender justice, and the place of socio-economic rights."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Exercises 1-11.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

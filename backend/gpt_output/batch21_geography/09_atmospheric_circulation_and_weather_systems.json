@@ -1,0 +1,102 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Atmospheric Circulation and Weather Systems",
+    "central_question": "How do pressure differences and wind-driving forces produce global circulation, local winds, air-mass interactions and major weather systems?",
+    "in_scope_units": [
+      "Atmospheric pressure and vertical and horizontal variation",
+      "World sea-level pressure belts",
+      "Forces affecting wind and geostrophic flow",
+      "Cyclonic and anticyclonic circulation",
+      "General circulation, ITCZ and cells",
+      "El Nino, Southern Oscillation and ENSO",
+      "Seasonal and local winds",
+      "Air masses and fronts",
+      "Extra-tropical cyclones",
+      "Tropical cyclones",
+      "Thunderstorms and tornadoes",
+      "NCERT exercises and project work"
+    ],
+    "banned_topics": [
+      "Detailed heat budget from Chapter 8",
+      "Detailed condensation and rainfall classification from Chapter 10",
+      "Detailed monsoon mechanism reserved for India: Physical Environment"
+    ],
+    "must_include_keywords": [
+      "atmospheric pressure",
+      "millibar",
+      "isobars",
+      "equatorial low",
+      "subtropical highs",
+      "subpolar lows",
+      "polar high",
+      "pressure gradient force",
+      "frictional force",
+      "Coriolis force",
+      "geostrophic wind",
+      "cyclonic circulation",
+      "anticyclonic circulation",
+      "convergence",
+      "divergence",
+      "general circulation",
+      "ITCZ",
+      "Hadley Cell",
+      "Ferrel cell",
+      "polar cell",
+      "El Nino",
+      "Southern Oscillation",
+      "ENSO",
+      "sea breeze",
+      "land breeze",
+      "valley breeze",
+      "mountain wind",
+      "katabatic wind",
+      "air mass",
+      "frontogenesis",
+      "cold front",
+      "warm front",
+      "occluded front",
+      "extra tropical cyclone",
+      "tropical cyclone",
+      "eye",
+      "eye wall",
+      "storm surge",
+      "thunderstorm",
+      "tornado"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Wind direction is controlled only by the pressure gradient force.",
+        "correction": "Near the surface pressure-gradient, frictional and Coriolis forces act together, with gravity acting downward."
+      },
+      {
+        "claim": "Coriolis force is strongest at the equator.",
+        "correction": "It is absent at the equator and increases with latitude."
+      },
+      {
+        "claim": "Tropical and extra-tropical cyclones form in the same way.",
+        "correction": "Extra-tropical cyclones are frontal mid/high-latitude systems; tropical cyclones form over warm tropical oceans."
+      },
+      {
+        "claim": "El Nino is only an ocean-temperature change.",
+        "correction": "The chapter links El Nino with Pacific pressure changes called the Southern Oscillation; together they are ENSO."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 2(i): explain pressure units and sea-level reduction",
+      "NCERT Exercise 2(ii): explain northern tropical north-easterlies",
+      "NCERT Exercise 3(i): discuss forces affecting wind",
+      "NCERT Exercise 3(ii): explain general circulation and subtropical highs",
+      "NCERT Exercise 3(iii): explain tropical-cyclone origin and strongest rain and wind"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work on collecting and interpreting weather information."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Atmospheric Circulation and Weather Systems\n\n## What you will learn\nYou will define atmospheric pressure and explain why it varies vertically and horizontally. You will read global pressure belts through isobars and seasonal shifts.\n\n## Simple explanation\nAir moves because pressure is not the same everywhere. Atmospheric pressure is the weight of a column of air over a unit area, and pressure differences set wind in motion from high toward low pressure.\n\n## Step-by-step breakdown\n- **Atmospheric pressure**: Pressure is expressed in millibar and measured with mercury or aneroid barometers; gravity makes air denser and pressure higher near the surface.\n- **Vertical variation**: Pressure decreases rapidly with height, while the strong vertical pressure gradient is largely opposed by gravity.\n- **Isobars**: Horizontal pressure patterns are mapped with isobars after station values are reduced to sea level for comparison.\n- **Pressure systems**: Closed isobars can enclose lows with lowest pressure at the centre or highs with highest pressure at the centre.\n- **World belts**: The chapter identifies the equatorial low, subtropical highs, subpolar lows and polar high, with seasonal migration following the apparent movement of the sun.\n\n## Worked example\nQuestion: Why is station pressure reduced to sea level before comparison on a weather map?\n\nAnswer:\n- The source states that pressure decreases with altitude and that sea-level pressure is used for comparison.\n- Without adjustment, high-elevation stations would appear low partly because of altitude rather than horizontal weather conditions.\n- Final answer: Pressure is reduced to sea level so stations at different elevations can be compared on a common reference surface.\n\n## Common mistake\nDo not interpret every low pressure value as a storm; altitude itself lowers pressure, so weather maps standardise readings.\n\n## Quick check question\nQuestion: What are isobars?\nAnswer: Lines connecting places having equal atmospheric pressure.\nExplanation: They show the horizontal distribution of pressure and help identify high- and low-pressure systems.\n\n## Summary\n- Atmospheric pressure decreases with height.\n- Horizontal pressure differences cause wind.\n- Isobars map equal pressure on a common sea-level basis.\n- Major pressure belts shift seasonally.",
+    "Core explanation": "# Core explanation: Atmospheric Circulation and Weather Systems\n\n## What you will learn\nYou will analyse the forces controlling wind speed and direction. You will connect them to geostrophic, cyclonic and anticyclonic circulation.\n\n## Simple explanation\nPressure differences start air moving, but friction and earth’s rotation modify the path. The final wind reflects the balance among these forces and differs between hemispheres.\n\n## Step-by-step breakdown\n- **Pressure gradient force**: A strong pressure gradient occurs where isobars are close together and produces stronger wind acceleration.\n- **Frictional force**: Surface friction slows wind and is strongest near the ground, while it is weaker over the sea and above the frictional layer.\n- **Coriolis force**: Earth’s rotation deflects wind right in the northern hemisphere and left in the southern hemisphere; it is absent at the equator.\n- **Geostrophic wind**: Where friction is negligible and isobars are straight, pressure-gradient and Coriolis forces can balance and wind flows parallel to isobars.\n- **Cyclonic circulation**: Air converges and rises over lows; wind around lows forms cyclonic circulation.\n- **Anticyclonic circulation**: Air subsides and diverges over highs; wind around highs forms anticyclonic circulation.\n\n## Worked example\nQuestion: Why do surface winds toward the equatorial low become north-easterlies in the northern hemisphere?\n\nAnswer:\n- The chapter says the pressure gradient drives air equatorward while Coriolis force deflects it to the right.\n- A southward-moving parcel is therefore turned westward and arrives from the northeast.\n- Final answer: Northern tropical winds become north-easterlies because pressure-gradient motion is modified by rightward Coriolis deflection.\n\n## Common mistake\nDo not treat Coriolis force as the cause that starts wind; pressure differences initiate motion and Coriolis changes direction.\n\n## Quick check question\nQuestion: What is a geostrophic wind?\nAnswer: A wind parallel to straight isobars when pressure-gradient force is balanced by Coriolis force and friction is negligible.\nExplanation: The chapter describes this balance for upper-air flow above the main surface-friction layer.\n\n## Summary\n- Pressure-gradient force initiates wind.\n- Friction slows surface wind.\n- Coriolis deflects moving air.\n- Geostrophic flow is a pressure-gradient-Coriolis balance.\n- Lows favour convergence and ascent; highs favour subsidence and divergence.",
+    "Worked examples": "# Worked examples: Atmospheric Circulation and Weather Systems\n\n## What you will learn\nYou will follow general circulation from the ITCZ through Hadley, Ferrel and polar cells. You will connect circulation with ENSO, seasonal shifts and local winds.\n\n## Simple explanation\nPlanetary circulation transfers heat from low to high latitudes and reflects unequal heating, pressure belts, seasonal migration, continents, oceans and earth’s rotation. These broad patterns are modified by ocean-atmosphere interaction and local heating contrasts.\n\n## Step-by-step breakdown\n- **ITCZ and Hadley Cell**: Strong heating creates rising air at the ITCZ; upper air moves poleward, sinks near subtropical highs and returns equatorward as easterlies, forming the Hadley Cell.\n- **Ferrel cell**: Middle-latitude westerlies are linked with the Ferrel cell between subtropical and polar circulation.\n- **Polar cell**: Cold dense air subsides near the poles and flows toward middle latitudes as polar easterlies.\n- **El Nino and ENSO**: Warm central-Pacific water toward South America is El Nino; associated pressure changes are the Southern Oscillation, and together they form ENSO.\n- **Local winds**: Differential heating produces sea breeze and land breeze, valley breeze by day and mountain wind or katabatic wind during cooling.\n\n## Worked example\nQuestion: Why does subtropical high pressure develop in the descending branch of tropical circulation?\n\nAnswer:\n- The chapter describes air rising at the ITCZ, moving poleward aloft, accumulating near the subtropics and sinking as it cools.\n- Accumulation and subsidence increase the mass of air over the subtropical belt.\n- Final answer: Subtropical highs form where upper-tropospheric air from tropical convection accumulates, cools and descends in the Hadley circulation.\n\n## Common mistake\nDo not treat ENSO as a purely local coastal event; the chapter links strong ENSO with large-scale weather changes.\n\n## Quick check question\nQuestion: Why does a daytime sea breeze blow from sea to land?\nAnswer: Land heats faster, air rises over land and creates lower pressure, so air flows from the relatively higher-pressure sea.\nExplanation: The chapter uses differential heating of land and water to explain the daily sea-land reversal.\n\n## Summary\n- The ITCZ is a major rising zone.\n- Hadley, Ferrel and polar cells organise planetary winds.\n- ENSO links Pacific warming with pressure changes.\n- Seasonal shifts modify general circulation.\n- Local heating creates sea-land and mountain-valley winds.",
+    "Exam-style problems": "# Exam-style problems: Atmospheric Circulation and Weather Systems\n\n## What you will learn\nYou will distinguish air masses, fronts and extra tropical cyclone development. You will trace frontogenesis, occlusion and cyclone decay.\n\n## Simple explanation\nLarge air bodies acquire characteristic temperature and humidity over broad source regions. Where unlike air masses meet, fronts form and can generate major middle-latitude cyclones.\n\n## Step-by-step breakdown\n- **Air mass**: An air mass is a large body of air with little horizontal variation in temperature and moisture, formed over homogeneous source regions.\n- **Source regions**: The chapter recognises maritime tropical, continental tropical, maritime polar, continental polar and continental arctic types.\n- **Frontogenesis**: The formation of boundaries between unlike air masses is frontogenesis; cold, warm, stationary and occluded fronts are distinguished.\n- **Extra tropical cyclone**: These mid- and high-latitude systems form along the polar front and contain warm and cold sectors.\n- **Occluded front**: A faster cold front can overtake a warm front, lift warm air off the surface and form an occluded front as the cyclone weakens.\n\n## Worked example\nQuestion: How does an extra tropical cyclone develop and later dissipate?\n\nAnswer:\n- The chapter describes movement of warm and cold air along a disturbed polar front, creating cyclonic circulation with warm and cold fronts, followed by the faster cold front overtaking the warm front.\n- Occlusion lifts warm air from the surface and reorganises the temperature contrast supporting the mature cyclone.\n- Final answer: An extra tropical cyclone develops through frontal disturbance and weakens after occlusion.\n\n## Common mistake\nDo not describe extra-tropical cyclones as warm-ocean storms without fronts; their defining structure is frontal interaction in middle and high latitudes.\n\n## Quick check question\nQuestion: What is frontogenesis?\nAnswer: The process of formation of a front between two different air masses.\nExplanation: A front is a boundary zone between unlike air masses, and frontogenesis creates that boundary.\n\n## Summary\n- Air masses acquire properties from source regions.\n- Fronts form where unlike air masses meet.\n- Extra-tropical cyclones develop along fronts.\n- A cold front can overtake a warm front to form an occluded front.",
+    "Revision and recap": "# Revision and recap: Atmospheric Circulation and Weather Systems\n\n## What you will learn\nYou will compare tropical cyclones with extra-tropical cyclones and finish with thunderstorms and tornadoes. You will identify where the strongest winds and rain occur in a mature tropical cyclone.\n\n## Simple explanation\nTropical cyclones are violent warm-ocean storms whose energy comes from condensation and continuous moisture supply. They differ from frontal extra-tropical cyclones, while thunderstorms and tornadoes are smaller but intense local storms.\n\n## Step-by-step breakdown\n- **Tropical cyclone**: A tropical cyclone forms over warm tropical oceans under favourable sea temperature, Coriolis force, weak vertical wind-speed change, a pre-existing low and upper divergence.\n- **Eye**: The eye contains relatively calm subsiding air.\n- **Eye wall**: The eye wall contains powerful spiralling ascent, maximum wind and torrential rain.\n- **Storm surge**: Tropical cyclones can create storm surge and severe coastal inundation.\n- **Landfall**: After landfall, the oceanic moisture supply is cut off and the storm weakens.\n- **Thunderstorm and tornado**: A thunderstorm grows from intense convection on moist hot days; severe systems can produce a tornado, called a waterspout over sea.\n\n## Worked example\nQuestion: Why do tropical cyclones originate over warm seas and where are the strongest winds and rain?\n\nAnswer:\n- The source says warm ocean water and continuous moisture supply energy through condensation, and identifies the eye wall as the zone of strongest ascent, wind and torrential rain.\n- Warm seas provide the moisture-energy source, while the eye wall concentrates the most vigorous rising motion.\n- Final answer: Tropical cyclones intensify over warm seas and their strongest winds and rain occur in the eye wall.\n\n## Common mistake\nA common mistake is to place the strongest winds in the eye; the eye is comparatively calm.\n\n## Quick check question\nQuestion: Why do tropical cyclones weaken after crossing the coast?\nAnswer: Their continuous moisture supply from the warm sea is cut off.\nExplanation: The chapter directly links intensification to oceanic moisture and condensation.\n\n## Summary\n- Tropical cyclones are warm-ocean, non-frontal storms.\n- The eye wall contains the strongest winds and torrential rain.\n- Storm surge is a major coastal hazard.\n- Thunderstorms are intense convective storms and can generate tornadoes.\n- Pressure, wind forces and air-mass interaction together explain major weather systems."
+  }
+}

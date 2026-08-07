@@ -1,0 +1,84 @@
+{
+  "manifest": {
+    "grade": "Grade 11",
+    "subject": "Geography",
+    "chapter": "Water in the Atmosphere",
+    "central_question": "How does atmospheric water move through humidity, evaporation, condensation, clouds and precipitation to create weather and rainfall patterns?",
+    "in_scope_units": [
+      "Water vapour, humidity, saturation and dew point",
+      "Evaporation and condensation",
+      "Dew, frost, fog and mist",
+      "Cloud formation and cloud types",
+      "Precipitation and its forms",
+      "Convectional, orographic and cyclonic rainfall",
+      "World distribution of rainfall",
+      "NCERT exercises and project work"
+    ],
+    "banned_topics": [
+      "Detailed atmospheric circulation and cyclone formation from Chapter 9",
+      "World climate classification from Chapter 11",
+      "Hydrological cycle and ocean-floor relief from Chapter 12"
+    ],
+    "must_include_keywords": [
+      "water vapour",
+      "humidity",
+      "absolute humidity",
+      "relative humidity",
+      "saturated air",
+      "dew point",
+      "evaporation",
+      "latent heat of vaporisation",
+      "condensation",
+      "hygroscopic condensation nuclei",
+      "dew",
+      "frost",
+      "fog",
+      "mist",
+      "smog",
+      "clouds",
+      "cirrus",
+      "cumulus",
+      "stratus",
+      "nimbus",
+      "precipitation",
+      "rainfall",
+      "snowfall",
+      "sleet",
+      "hailstones",
+      "convectional rain",
+      "orographic rain",
+      "rain-shadow area",
+      "cyclonic rain",
+      "world distribution of rainfall"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Relative humidity is the actual mass of vapour in a unit volume.",
+        "correction": "That is absolute humidity; relative humidity compares present moisture with full capacity at the same temperature."
+      },
+      {
+        "claim": "Fog and mist are unrelated to clouds.",
+        "correction": "The chapter describes fog as a cloud at or near the ground and both as condensation around particles."
+      },
+      {
+        "claim": "The leeward side receives more orographic rain.",
+        "correction": "Windward slopes receive more; leeward descending air creates a rain-shadow area."
+      }
+    ],
+    "recommended_example_progression": [
+      "NCERT Exercise 1(ii): identify evaporation",
+      "NCERT Exercise 2(ii): explain relative humidity",
+      "NCERT Exercise 2(iv): explain cloud formation and classification",
+      "NCERT Exercise 3(ii): describe condensation forms, dew and frost",
+      "NCERT Exercise 3(i): discuss world precipitation distribution"
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work on tracking extreme rainfall reports."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept introduction: Water in the Atmosphere\n\n## What you will learn\nYou will distinguish absolute and relative humidity, saturation and dew point. You will connect them to evaporation and condensation.\n\n## Simple explanation\nWater exists in the atmosphere as gas, liquid and solid. Humidity describes water vapour in air, while temperature controls how much vapour air can retain.\n\n## Step-by-step breakdown\n- **Humidity**: Water vapour in air is humidity. Absolute humidity is the actual amount per unit volume, while relative humidity compares present moisture with full capacity at the same temperature.\n- **Saturated air**: Air holding moisture to full capacity at a given temperature is saturated air.\n- **Dew point**: The temperature at which saturation occurs in a sample of air is the dew point.\n- **Evaporation**: Evaporation changes liquid water into vapour; heat is the main cause, and moving air increases evaporation by replacing saturated air with unsaturated air.\n- **Latent heat of vaporisation**: The latent heat of vaporisation is the heat required to convert a unit mass of liquid into vapour without changing temperature.\n- **Condensation**: Condensation converts vapour to liquid through heat loss and often occurs around hygroscopic condensation nuclei such as dust, smoke and salt.\n\n## Worked example\nQuestion: Why can relative humidity change when temperature changes even if no moisture is added?\n\nAnswer:\n- The chapter states that air’s moisture-holding capacity depends on temperature and relative humidity compares present moisture with that capacity.\n- Changing temperature changes the denominator of that comparison.\n- Final answer: Relative humidity can change without adding water because the air’s capacity to hold vapour changes with temperature.\n\n## Common mistake\nDo not confuse saturation with high absolute humidity; saturation is relative to capacity at a particular temperature.\n\n## Quick check question\nQuestion: What is the dew point?\nAnswer: The temperature at which saturation occurs in a given sample of air.\nExplanation: Cooling air to this point means it can no longer hold all its water vapour.\n\n## Summary\n- Humidity measures atmospheric water vapour.\n- Absolute and relative humidity describe moisture differently.\n- Saturation and dew point connect moisture capacity with temperature.\n- Evaporation adds vapour and condensation removes it into liquid or solid forms.",
+    "Core explanation": "# Core explanation: Water in the Atmosphere\n\n## What you will learn\nYou will compare dew, frost, fog and mist. You will identify how temperature and location distinguish these condensation forms.\n\n## Simple explanation\nAfter condensation, atmospheric moisture can appear on surfaces or within air near the ground. The form depends on temperature and where condensation occurs.\n\n## Step-by-step breakdown\n- **Dew**: Dew is deposited as water droplets on cool solid surfaces under clear, calm, humid conditions when dew point is above freezing.\n- **Frost**: Frost forms on cold surfaces at or below freezing and deposits minute ice crystals instead of water droplets.\n- **Fog**: Fog forms when moist air cools and condenses on fine particles; it is a cloud with its base at or near the ground.\n- **Mist**: Mist contains more moisture than fog in the chapter’s description and often occurs when rising warm air meets a cold mountain surface.\n- **Smog**: Fog mixed with smoke is described as smog, especially where smoke provides many condensation nuclei.\n\n## Worked example\nQuestion: How do conditions for dew and frost differ?\n\nAnswer:\n- The source gives similar clear, calm and humid conditions, but dew requires dew point above freezing while frost forms at or below freezing.\n- The temperature threshold determines whether moisture appears as liquid droplets or ice crystals.\n- Final answer: Dew forms as liquid above freezing, while frost forms as ice under freezing conditions.\n\n## Common mistake\nA common mistake is to define frost only as frozen dew; the chapter describes direct deposition as minute ice crystals.\n\n## Quick check question\nQuestion: What is fog in relation to a cloud?\nAnswer: A cloud with its base at or very near the ground.\nExplanation: Fog forms by condensation within moist air around fine particles, just as clouds do aloft.\n\n## Summary\n- Dew forms as droplets on cool surfaces.\n- Frost forms as ice crystals at freezing conditions.\n- Fog and mist are near-surface condensation forms.\n- Smoke mixed with fog produces smog.",
+    "Worked examples": "# Worked examples: Water in the Atmosphere\n\n## What you will learn\nYou will classify the main cloud forms. You will relate cloud appearance and height to cirrus, cumulus, stratus and nimbus.\n\n## Simple explanation\nClouds are masses of minute water droplets or tiny ice crystals formed by condensation in free air at height. Height, shape, density and transparency distinguish the basic groups.\n\n## Step-by-step breakdown\n- **Cirrus**: Cirrus clouds are high, thin, detached, white and feathery.\n- **Cumulus**: Cumulus clouds look like cotton wool, occur in patches and have a flat base.\n- **Stratus**: Stratus clouds form layers covering large parts of the sky, often from cooling or mixing of air masses.\n- **Nimbus**: Nimbus clouds are dark, dense and opaque and can occur at middle levels or near the surface.\n- **Cloud combinations**: The chapter also names high, middle, low and vertically developed combinations built from the basic cloud forms.\n\n## Worked example\nQuestion: How would you distinguish cirrus, cumulus, stratus and nimbus?\n\nAnswer:\n- The source separates them by altitude and appearance: cirrus are high and feathery, cumulus are cotton-like, stratus are layered and nimbus are dark and dense.\n- These visible properties combine height, shape and opacity rather than relying on one feature.\n- Final answer: The four cloud groups can be distinguished by their characteristic height, form and density.\n\n## Common mistake\nDo not assume every dark cloud is a separate family beyond the chapter’s system; nimbus is one of the basic groups and also combines with other forms.\n\n## Quick check question\nQuestion: Which basic cloud type is high and feathery?\nAnswer: Cirrus.\nExplanation: The chapter describes cirrus as thin, detached and white high-altitude clouds.\n\n## Summary\n- Clouds are droplets or ice crystals formed by condensation aloft.\n- Cirrus, cumulus, stratus and nimbus are the four basic groups.\n- Appearance, height and opacity are key clues.\n- Basic forms combine into additional named cloud types.",
+    "Exam-style problems": "# Exam-style problems: Water in the Atmosphere\n\n## What you will learn\nYou will distinguish precipitation forms and the main rainfall origins. You will explain windward and leeward rainfall contrasts.\n\n## Simple explanation\nPrecipitation begins when condensed particles grow too large for the air to support them. The form reaching the ground depends on temperature, while the cause of uplift distinguishes rainfall types.\n\n## Step-by-step breakdown\n- **Precipitation**: The release of condensed moisture to the earth is precipitation.\n- **Rainfall and snowfall**: Liquid precipitation is rainfall; under subfreezing conditions precipitation can fall as snowfall.\n- **Sleet and hailstones**: Sleet consists of frozen or refrozen drops; hailstones are rounded pieces of ice formed by rainwater passing through colder layers.\n- **Convectional rain**: Strong heating makes air rise, expand, cool and condense, producing heavy but often short-lived convectional rain.\n- **Orographic rain**: Saturated air forced over a mountain cools and rains on the windward slope; descending leeward air warms.\n- **Rain-shadow area**: The drier leeward area receiving less rainfall is a rain-shadow area.\n- **Cyclonic rain**: The chapter refers to the preceding chapter for detailed cyclonic rain or frontal rainfall.\n\n## Worked example\nQuestion: Why does an orographic rain-shadow area develop?\n\nAnswer:\n- The source says saturated air rises on the windward slope, expands, cools and rains; after crossing the mountain it descends and warms.\n- Warming increases moisture-holding capacity and reduces condensation on the leeward side.\n- Final answer: A rain shadow forms because uplift removes moisture on the windward slope and descending leeward air becomes warmer and drier.\n\n## Common mistake\nDo not say mountains simply block all rain; the chapter explains ascent, cooling, condensation, descent and warming.\n\n## Quick check question\nQuestion: Name the three main rainfall types by origin.\nAnswer: Convectional, orographic or relief, and cyclonic or frontal.\nExplanation: These are the three types explicitly listed in the chapter.\n\n## Summary\n- Precipitation includes rainfall, snowfall, sleet and hailstones.\n- Convectional rain follows strong heating and rising air.\n- Orographic rain is greater on windward slopes.\n- Leeward descent creates a rain-shadow area.\n- Cyclonic rain is associated with cyclonic or frontal uplift.",
+    "Revision and recap": "# Revision and recap: Water in the Atmosphere\n\n## What you will learn\nYou will interpret broad world distribution of rainfall. You will connect latitude, coasts, prevailing winds and mountains to rainfall patterns.\n\n## Simple explanation\nRainfall is uneven because moisture supply and uplift vary from place to place. Oceans, continental interiors, prevailing winds and mountain barriers all shape the world pattern.\n\n## Step-by-step breakdown\n- **Equator to poles**: In general rainfall decreases from the equator toward the poles.\n- **Coast and interior**: Coastal areas generally receive more than continental interiors, and oceans are major moisture sources.\n- **Mid-latitude margins**: The chapter contrasts eastern-coast rainfall in lower middle latitudes with western-margin rainfall in higher middle latitudes under the westerlies.\n- **Mountain effect**: Where mountains parallel a coast, windward coastal areas receive more rain and totals decrease leeward.\n- **World distribution of rainfall**: Heavy, moderate and low rainfall regimes reflect combinations of latitude, oceanic influence, prevailing winds and rain shadow.\n\n## Worked example\nQuestion: Why do many coastal and windward regions receive more rainfall than interiors or rain shadows?\n\nAnswer:\n- The text identifies oceans as major moisture sources and shows mountains forcing moist air upward on windward slopes.\n- Coasts have easier access to moist air, while interiors and leeward areas have less moisture or more descending air.\n- Final answer: Rainfall is greater where moist oceanic air is available and forced to rise, and lower where moisture supply or uplift is limited.\n\n## Common mistake\nA common mistake is to explain world rainfall only by latitude; the chapter also emphasises oceans, winds and mountains.\n\n## Quick check question\nQuestion: What broad rainfall trend is given from equator toward poles?\nAnswer: Rainfall generally decreases toward the poles.\nExplanation: This is the first broad rule in the section on world rainfall distribution.\n\n## Summary\n- Rainfall is spatially and seasonally uneven.\n- Oceans and coasts generally favour greater moisture supply.\n- Prevailing winds affect which continental margins receive rain.\n- Mountains intensify windward rain and create leeward rain shadows.\n- Humidity, condensation, clouds and precipitation form a connected atmospheric-water sequence."
+  }
+}

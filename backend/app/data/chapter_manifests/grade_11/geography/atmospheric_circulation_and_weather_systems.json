@@ -1,0 +1,95 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Atmospheric Circulation and Weather Systems",
+  "central_question": "How do pressure differences and wind-driving forces produce global circulation, local winds, air-mass interactions and major weather systems?",
+  "in_scope_units": [
+    "Atmospheric pressure and vertical and horizontal variation",
+    "World sea-level pressure belts",
+    "Forces affecting wind and geostrophic flow",
+    "Cyclonic and anticyclonic circulation",
+    "General circulation, ITCZ and cells",
+    "El Nino, Southern Oscillation and ENSO",
+    "Seasonal and local winds",
+    "Air masses and fronts",
+    "Extra-tropical cyclones",
+    "Tropical cyclones",
+    "Thunderstorms and tornadoes",
+    "NCERT exercises and project work"
+  ],
+  "banned_topics": [
+    "Detailed heat budget from Chapter 8",
+    "Detailed condensation and rainfall classification from Chapter 10",
+    "Detailed monsoon mechanism reserved for India: Physical Environment"
+  ],
+  "must_include_keywords": [
+    "atmospheric pressure",
+    "millibar",
+    "isobars",
+    "equatorial low",
+    "subtropical highs",
+    "subpolar lows",
+    "polar high",
+    "pressure gradient force",
+    "frictional force",
+    "Coriolis force",
+    "geostrophic wind",
+    "cyclonic circulation",
+    "anticyclonic circulation",
+    "convergence",
+    "divergence",
+    "general circulation",
+    "ITCZ",
+    "Hadley Cell",
+    "Ferrel cell",
+    "polar cell",
+    "El Nino",
+    "Southern Oscillation",
+    "ENSO",
+    "sea breeze",
+    "land breeze",
+    "valley breeze",
+    "mountain wind",
+    "katabatic wind",
+    "air mass",
+    "frontogenesis",
+    "cold front",
+    "warm front",
+    "occluded front",
+    "extra tropical cyclone",
+    "tropical cyclone",
+    "eye",
+    "eye wall",
+    "storm surge",
+    "thunderstorm",
+    "tornado"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Wind direction is controlled only by the pressure gradient force.",
+      "correction": "Near the surface pressure-gradient, frictional and Coriolis forces act together, with gravity acting downward."
+    },
+    {
+      "claim": "Coriolis force is strongest at the equator.",
+      "correction": "It is absent at the equator and increases with latitude."
+    },
+    {
+      "claim": "Tropical and extra-tropical cyclones form in the same way.",
+      "correction": "Extra-tropical cyclones are frontal mid/high-latitude systems; tropical cyclones form over warm tropical oceans."
+    },
+    {
+      "claim": "El Nino is only an ocean-temperature change.",
+      "correction": "The chapter links El Nino with Pacific pressure changes called the Southern Oscillation; together they are ENSO."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2(i): explain pressure units and sea-level reduction",
+    "NCERT Exercise 2(ii): explain northern tropical north-easterlies",
+    "NCERT Exercise 3(i): discuss forces affecting wind",
+    "NCERT Exercise 3(ii): explain general circulation and subtropical highs",
+    "NCERT Exercise 3(iii): explain tropical-cyclone origin and strongest rain and wind"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work on collecting and interpreting weather information.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

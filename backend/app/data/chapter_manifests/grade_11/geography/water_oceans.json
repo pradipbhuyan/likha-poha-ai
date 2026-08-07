@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Water (Oceans)",
+  "central_question": "How is water circulated through the hydrological cycle, and how are ocean-floor relief, temperature and salinity organised across the world’s oceans?",
+  "in_scope_units": [
+    "Hydrological cycle and planetary water distribution",
+    "Major divisions of ocean-floor relief",
+    "Minor ocean-floor relief",
+    "Ocean temperature and its controls",
+    "Horizontal and vertical temperature distribution and thermocline",
+    "Salinity and its controls",
+    "Horizontal and vertical salinity distribution and halocline",
+    "NCERT exercises and atlas project work"
+  ],
+  "banned_topics": [
+    "Detailed waves, tides and current mechanics from Chapter 13",
+    "Detailed atmospheric humidity and rainfall from Chapter 10",
+    "Detailed plate-tectonic theory beyond the stated ocean-floor features"
+  ],
+  "must_include_keywords": [
+    "Blue Planet",
+    "hydrological cycle",
+    "evaporation",
+    "condensation",
+    "precipitation",
+    "surface runoff",
+    "infiltration",
+    "groundwater",
+    "continental shelf",
+    "shelf break",
+    "continental slope",
+    "deep sea plain",
+    "oceanic deeps",
+    "trenches",
+    "mid-oceanic ridges",
+    "seamount",
+    "submarine canyons",
+    "guyot",
+    "atoll",
+    "ocean temperature",
+    "latitude",
+    "prevailing wind",
+    "ocean currents",
+    "thermocline",
+    "surface layer",
+    "deep layer",
+    "salinity",
+    "evaporation and precipitation",
+    "river water",
+    "freezing and thawing",
+    "Atlantic Ocean",
+    "Pacific Ocean",
+    "Indian Ocean",
+    "Red Sea",
+    "Baltic Sea",
+    "Mediterranean Sea",
+    "Bay of Bengal",
+    "Arabian Sea",
+    "halocline",
+    "density"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The hydrological cycle permanently consumes water.",
+      "correction": "The chapter calls water a cyclic resource used and reused through continuous exchange."
+    },
+    {
+      "claim": "The continental shelf is the steep transition into the deep ocean.",
+      "correction": "The shelf is shallow and gentle; the continental slope is the steep descent beyond the shelf break."
+    },
+    {
+      "claim": "Ocean temperature decreases uniformly with depth.",
+      "correction": "The rate is not uniform; the thermocline is the zone of rapid decrease."
+    },
+    {
+      "claim": "Salinity depends only on evaporation.",
+      "correction": "Precipitation, river inflow, freezing and thawing, wind and currents also matter."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2(i): explain Blue Planet",
+    "NCERT Exercise 3(i): interrelate the hydrological cycle",
+    "NCERT Exercise 2(iv): define thermocline",
+    "NCERT Exercise 3(ii): explain ocean-temperature controls",
+    "NCERT Exercise 2(vi): define salinity"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work using an atlas to map ocean-floor relief and ridges.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

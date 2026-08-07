@@ -1,0 +1,78 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Solar Radiation, Heat Balance and Temperature",
+  "central_question": "How is solar energy received, redistributed and returned by the earth-atmosphere system, and how does this create temperature patterns?",
+  "in_scope_units": [
+    "Solar radiation and insolation",
+    "Variability and spatial distribution of insolation",
+    "Passage of solar radiation through the atmosphere",
+    "Conduction, convection, advection and terrestrial radiation",
+    "Heat budget and net radiation balance",
+    "Temperature controls and isotherms",
+    "Inversion of temperature and air drainage",
+    "NCERT exercises and project work"
+  ],
+  "banned_topics": [
+    "Detailed pressure belts and circulation from Chapter 9",
+    "Detailed humidity and precipitation from Chapter 10",
+    "Detailed ocean-current systems from later oceanography chapters"
+  ],
+  "must_include_keywords": [
+    "insolation",
+    "solar radiation",
+    "aphelion",
+    "perihelion",
+    "angle of inclination",
+    "latitude",
+    "short wave",
+    "scattering",
+    "subtropical deserts",
+    "conduction",
+    "convection",
+    "advection",
+    "loo",
+    "terrestrial radiation",
+    "long wave",
+    "greenhouse gases",
+    "albedo",
+    "heat budget",
+    "net radiation balance",
+    "temperature",
+    "normal lapse rate",
+    "distance from the sea",
+    "air masses",
+    "ocean currents",
+    "isotherms",
+    "January",
+    "July",
+    "continentality",
+    "inversion of temperature",
+    "air drainage",
+    "frost"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The atmosphere is mainly heated directly by incoming short-wave solar radiation.",
+      "correction": "The chapter explains that the atmosphere is mainly heated indirectly from below by long-wave terrestrial radiation."
+    },
+    {
+      "claim": "The equator always receives the greatest surface insolation.",
+      "correction": "Subtropical deserts can receive more because cloudiness is lower."
+    },
+    {
+      "claim": "Temperature always decreases with altitude.",
+      "correction": "The normal lapse pattern can reverse during an inversion of temperature."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1(iv): match insolation, albedo, isotherm and annual range",
+    "NCERT Exercise 2(i): link unequal heat distribution with weather and climate",
+    "NCERT Exercise 3(i): explain latitude and axial tilt effects",
+    "NCERT Exercise 3(ii): explain earth-atmosphere heat balance",
+    "NCERT Exercise 3(iii): compare January temperature distribution in the hemispheres"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work using observatory temperature data.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 11",
+  "subject": "Economics",
+  "chapter": "Use of Statistical Tools",
+  "central_question": "How can a student design a sound economic project, collect and present data, apply statistical tools, and draw evidence-based conclusions?",
+  "in_scope_units": [
+    "Introduction: the role of statistical tools in economic analysis and project work",
+    "Steps towards making a project: identifying a problem or area of study",
+    "Choice of target group",
+    "Collection of primary and secondary data and the suitability of sampling",
+    "Organisation and presentation of data through tables and diagrams",
+    "Analysis and interpretation using central tendency, dispersion, and correlation",
+    "Conclusion and bibliography",
+    "Suggested list of projects 1-12",
+    "Sample project: a toothpaste-market survey and questionnaire design",
+    "Data analysis and simplified project report with tables, diagrams, mean, standard deviation, preferences, and media influence",
+    "Recap, glossary of statistical terms, table of two-digit random numbers, and cautionary quotations about statistics"
+  ],
+  "banned_topics": [
+    "Full derivations of mean, standard deviation, and correlation already taught in earlier chapters",
+    "Detailed index-number construction",
+    "Detailed time-series analysis beyond glossary references",
+    "Invented survey results or numerical examples not found in the source",
+    "A general business plan that omits data collection and statistical analysis"
+  ],
+  "must_include_keywords": [
+    "project objective",
+    "target group",
+    "primary data",
+    "secondary data",
+    "questionnaire",
+    "interview schedule",
+    "sampling",
+    "organisation of data",
+    "tabulation",
+    "bar diagram",
+    "pie diagram",
+    "histogram",
+    "mean",
+    "standard deviation",
+    "correlation",
+    "analysis",
+    "interpretation",
+    "conclusion",
+    "bibliography",
+    "sample survey method",
+    "population",
+    "informant",
+    "random sampling",
+    "sampling error",
+    "non-sampling error",
+    "toothpaste survey",
+    "sample size",
+    "family income",
+    "family expenditure",
+    "occupational status",
+    "consumer preference",
+    "media influence",
+    "two-digit random numbers",
+    "judgement"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A project should begin by collecting any data that are easy to obtain.",
+      "correction": "The chapter begins with a clear problem and objective, which determine the target group, questions, data type, and method."
+    },
+    {
+      "claim": "The same target group is suitable for every survey.",
+      "correction": "Target groups depend on the topic; cars, soap, and safe drinking water require different populations."
+    },
+    {
+      "claim": "Secondary data are always inferior to primary data.",
+      "correction": "Secondary data can be suitable when they meet the objective and save time, money, and manpower."
+    },
+    {
+      "claim": "A questionnaire is good if it contains many questions.",
+      "correction": "It must generate the specific information needed for the study and should be tested or suitably modified."
+    },
+    {
+      "claim": "Statistical calculation alone produces a complete conclusion.",
+      "correction": "The chapter requires organisation, interpretation, contextual judgement, conclusions, suggestions, and acknowledgement of sources."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Suggested Project 3 to plan a study of how advertising affects sales.",
+    "Use Suggested Project 5 to design evidence collection for an overcharging complaint.",
+    "Use Suggested Project 11 to connect income, expenditure, and saving habits.",
+    "Use the Sample Project: Toothpaste Survey to examine questionnaire design and target information.",
+    "Use the Simplified Project Report tables and diagrams to interpret income, expenditure, brand preference, and media influence without inventing data."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter has no conventional exercise set; it provides Suggested Projects 1-12, a detailed sample toothpaste project, a recap, and statistical appendices.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "Biodiversity and Conservation",
+  "central_question": "What is biodiversity, why does it matter, what threatens it, and how can conservation protect the living systems on which humans depend?",
+  "in_scope_units": [
+    "Biodiversity and its uneven global distribution",
+    "Genetic, species and ecosystem diversity",
+    "Ecological, economic and scientific importance",
+    "Loss of biodiversity and causes",
+    "Endangered, vulnerable and rare species",
+    "Conservation, mega diversity centres and hotspots",
+    "Protected areas, law, international action and community involvement",
+    "NCERT exercises and project work"
+  ],
+  "banned_topics": [
+    "Detailed ecosystem structure and food-chain theory from the preceding chapter",
+    "Detailed geomorphic weathering beyond its brief link to vegetation diversity",
+    "Modern threatened-species categories not stated in the supplied chapter"
+  ],
+  "must_include_keywords": [
+    "biodiversity",
+    "tropics",
+    "genetic diversity",
+    "species diversity",
+    "ecosystem diversity",
+    "species richness",
+    "hotspots",
+    "agro-biodiversity",
+    "ecological role",
+    "economic role",
+    "scientific role",
+    "ecosystem stability",
+    "intrinsic right to exist",
+    "loss of biodiversity",
+    "over-exploitation",
+    "deforestation",
+    "natural calamities",
+    "pesticides",
+    "pollutants",
+    "exotic species",
+    "poaching",
+    "IUCN",
+    "Red List",
+    "endangered species",
+    "vulnerable species",
+    "rare species",
+    "conservation",
+    "mega diversity centres",
+    "Wild Life (Protection) Act",
+    "national parks",
+    "sanctuaries",
+    "biosphere reserves",
+    "sustainable use",
+    "local communities",
+    "Earth Summit",
+    "Convention of Biodiversity",
+    "Rio de Janeiro",
+    "habitat protection",
+    "international trade"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Biodiversity means only the number of animal species.",
+      "correction": "It includes plants, animals, microorganisms, genes and ecosystems and is discussed at three levels."
+    },
+    {
+      "claim": "Areas with larger populations necessarily have greater species diversity.",
+      "correction": "The chapter says biodiversity is richer in the tropics and declines toward the poles."
+    },
+    {
+      "claim": "Conservation is only about protecting individual endangered species.",
+      "correction": "The chapter stresses habitat protection, sustainable use, local participation and continuity of conservation."
+    },
+    {
+      "claim": "Exotic species are rare native species.",
+      "correction": "They are introduced organisms that are not natural inhabitants of the local habitat."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 2(i): define biodiversity",
+    "NCERT Exercise 2(ii): distinguish biodiversity levels",
+    "NCERT Exercise 2(iii): explain hotspots",
+    "NCERT Exercise 3(i): explain biodiversity roles",
+    "NCERT Exercise 3(ii): analyse biodiversity loss and prevention"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work on mapping national parks, sanctuaries and biosphere reserves.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

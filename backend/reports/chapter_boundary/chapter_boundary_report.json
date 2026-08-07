@@ -1,69 +1,69 @@
 {
-  "audited_at": "2026-08-02T15:32:19.267916+00:00",
+  "audited_at": "2026-08-07T16:09:47.119045+00:00",
   "manifests_used": 1,
   "lessons_audited": 5,
   "total_critical_findings": 0,
   "total_high_findings": 0,
   "results": [
     {
-      "lesson_cache_id": "84ca7baf-0d41-4a54-8960-fac8a1c85f87",
+      "lesson_cache_id": "63c8149c-7944-4faa-b334-e87358ae467a",
       "grade": "Grade 12",
       "subject": "Hindi",
-      "chapter": "Ateet Mein Dabe Paon",
+      "chapter": "Silver Wedding",
       "step_title": "Concept introduction",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/ateet_mein_dabe_paon.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/silver_wedding.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 2221
+      "content_length": 3255
     },
     {
-      "lesson_cache_id": "7ca8f3da-4d41-4796-84c9-03be6e01198c",
+      "lesson_cache_id": "e98a7675-2418-407a-831d-00f3edf2a066",
       "grade": "Grade 12",
       "subject": "Hindi",
-      "chapter": "Ateet Mein Dabe Paon",
-      "step_title": "Core explanation",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/ateet_mein_dabe_paon.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 2291
-    },
-    {
-      "lesson_cache_id": "028d3b1c-aad7-4e0a-bcfa-9e943ac5c8e3",
-      "grade": "Grade 12",
-      "subject": "Hindi",
-      "chapter": "Ateet Mein Dabe Paon",
+      "chapter": "Silver Wedding",
       "step_title": "Worked examples",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/ateet_mein_dabe_paon.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/silver_wedding.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 2248
+      "content_length": 3151
     },
     {
-      "lesson_cache_id": "7e452f4d-1cd5-4fbb-9680-33c622c71a8c",
+      "lesson_cache_id": "581c51b0-3909-4847-89da-1fd9ee9054a8",
       "grade": "Grade 12",
       "subject": "Hindi",
-      "chapter": "Ateet Mein Dabe Paon",
-      "step_title": "Exam-style problems",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/ateet_mein_dabe_paon.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 2317
-    },
-    {
-      "lesson_cache_id": "778e9aa9-ce3e-4ef4-8f1d-ec992d92ef7e",
-      "grade": "Grade 12",
-      "subject": "Hindi",
-      "chapter": "Ateet Mein Dabe Paon",
+      "chapter": "Silver Wedding",
       "step_title": "Revision and recap",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/ateet_mein_dabe_paon.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/silver_wedding.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 3013
+      "content_length": 3562
+    },
+    {
+      "lesson_cache_id": "694deaf7-1bb8-4c47-b594-aa9aa8d14790",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Silver Wedding",
+      "step_title": "Core explanation",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/silver_wedding.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 3318
+    },
+    {
+      "lesson_cache_id": "32c8c266-59eb-4885-92ed-5f2b52757494",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Silver Wedding",
+      "step_title": "Exam-style problems",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/silver_wedding.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 3751
     }
   ]
 }

@@ -2,120 +2,78 @@
   "grade": "Grade 9",
   "subject": "English",
   "chapter": "The World of Limitless Possibilities",
-  "central_question": "How can resilience, empathy, inclusion, and purposeful communication help people transform challenges into a world of limitless possibilities?",
+  "central_question": "How can resilience, sport, inclusion and supportive communities challenge stereotypes and expand what people believe is possible?",
   "in_scope_units": [
-    "Paralympics – Reflect and Respond through Sheetal Devi's image and prior knowledge about the Games",
-    "Paralympics – Reading for Meaning through the interview with Dr. Deepa Malik",
-    "Paralympics – Check Your Understanding using a fact table, fact-opinion, and cause-effect relationships",
-    "Paralympics – Critical Reflection on transformation, stereotypes, tone, title, advocacy, and life lessons",
-    "Paralympics – Vocabulary and Structures in Context covering phrases, movement words, modal auxiliaries, and direct and reported speech",
-    "Paralympics – Listen and Respond to a school special-assembly announcement",
-    "Paralympics – Speaking Activity using formal and informal sports interviews",
-    "Paralympics – Writing Task on notice format and an Inter-school Athletic Meet notice",
-    "Paralympics – Learning Beyond the Text on the origin of the Paralympics and a group presentation",
-    "Nine Gold Medals – Reflect and Respond on Olympics, Special Olympics, Paralympics, empathy, sympathy, and compassion",
-    "Nine Gold Medals – Reading for Appreciation of David Roth's eight-stanza poem",
-    "Nine Gold Medals – Check Your Understanding through contextual vocabulary, stanza gist, imagery, alliteration, tone, mood, and message",
-    "Nine Gold Medals – Critical Reflection through extract-based and analytical questions",
-    "Nine Gold Medals – Vocabulary in Context through collocations and adjective choice",
-    "Nine Gold Medals – Listen and Respond to a radio-talk about Patrick Gomes",
-    "Nine Gold Medals – Speaking Activity on expressing points of view about Special Olympics",
-    "Nine Gold Medals – Writing Task on slogans and poster design",
-    "Nine Gold Medals – Learning Beyond the Text on Indian Special Olympics achievers and an Olympics infographic"
+    "Reflect and Respond on para-sport and Sheetal Devi",
+    "Reading for Meaning: Paralympics and the interview with Dr. Deepa Malik",
+    "Dr. Maliks journey from spinal tumour and paralysis to para-athletics, medals and public recognition",
+    "Her views on resilience, ability beyond disability, stereotypes, inclusivity, accessibility and advocacy",
+    "Check Your Understanding and Critical Reflection on fact-opinion, cause-effect, attitude and social impact",
+    "Vocabulary and Structures in Context: phrases, movement cline, modal auxiliaries and reported speech",
+    "Listening on inclusion, formal and informal interviewing, notice writing and Learning Beyond the Text on Paralympics",
+    "Reading for Appreciation: Nine Gold Medals and its themes of empathy, collective support and Special Olympics"
   ],
   "banned_topics": [
-    "Detailed medical treatment of spine tumours beyond the diagnosis, surgery, paralysis, and wheelchair outcome stated in the interview",
-    "Biographies or achievements of athletes not named in the chapter, except as student research topics rather than taught facts",
-    "Detailed rules, classifications, scoring systems, or training methods of individual Paralympic and Special Olympics sports",
-    "A complete history of the ancient or modern Olympic movement beyond the facts included in the chapter's infographic",
-    "Answers to the listening exercises without using the teacher transcripts referred to on page 268",
-    "Unrelated grammar topics beyond modal auxiliaries and the direct-to-reported-speech transformations taught in this unit"
+    "Medical or sporting facts about Dr. Deepa Malik not included in the supplied text",
+    "Current Paralympic records, medal tables or biographies from outside the source"
   ],
   "must_include_keywords": [
-    "Sheetal Devi",
     "Paralympics",
-    "Dr. Deepa Malik",
     "resilience",
+    "Dr. Deepa Malik",
     "spine tumour",
-    "2016 Rio Paralympic Games",
+    "wheelchair",
+    "para-athletics",
+    "Rio Paralympic Games",
     "shot-put",
-    "silver medal",
     "trailblazer",
     "ability beyond disability",
+    "societal perceptions",
     "fortitude",
+    "support system",
     "preconceived notions",
     "inclusivity",
     "accessibility",
     "advocacy",
-    "support system",
-    "fact and opinion",
-    "cause and effect",
-    "defy the odds",
-    "a new lease of life",
-    "in hindsight",
-    "breakthrough moment",
-    "turn obstacles into stepping stones",
     "modal auxiliaries",
-    "direct speech",
     "reported speech",
+    "notice",
     "Nine Gold Medals",
-    "David Roth",
     "Special Olympics",
-    "empathy",
-    "compassion",
-    "hundred-yard dash",
+    "nine runners",
     "standing ovation",
-    "visual imagery",
-    "auditory imagery",
-    "alliteration",
-    "tone and mood",
-    "collocation",
-    "notice writing",
-    "slogan and poster"
+    "empathy",
+    "collective support",
+    "Patrick Gomes",
+    "Olympic torch",
+    "Agitos"
   ],
   "known_pitfalls": [
     {
-      "claim": "Dr. Deepa Malik won a gold medal at the 2016 Rio Paralympic Games.",
-      "correction": "She secured the silver medal in the shot-put event at the 2016 Rio Paralympic Games."
+      "claim": "The interview presents disability as a reason to lower expectations.",
+      "correction": "Dr. Malik repeatedly argues that physical limitations do not define potential and uses the phrase ability beyond disability."
     },
     {
-      "claim": "Dr. Deepa Malik began para-athletics before her surgery.",
-      "correction": "After the surgery and the declaration that she would be wheelchair-bound, she chose to switch from her earlier experience as a swimmer to para-athletics."
+      "claim": "Dr. Maliks achievements are shown as purely individual.",
+      "correction": "She explicitly credits family support alongside her own fortitude and advocates wider systems of inclusion and opportunity."
     },
     {
-      "claim": "The interview says physical strength alone helped Dr. Malik overcome her challenges.",
-      "correction": "She says that overcoming underestimation required physical strength, mental resilience, family support, and fortitude."
+      "claim": "Paralympics and Special Olympics are treated as the same event.",
+      "correction": "The Learning Beyond section distinguishes Paralympics for para-athletes from Special Olympics for children and adults with intellectual disabilities."
     },
     {
-      "claim": "Every statement made by Dr. Malik in the interview is a fact.",
-      "correction": "Some statements are factual, while statements expressing how she felt or interpreted an event are opinions."
-    },
-    {
-      "claim": "The eight runners in 'Nine Gold Medals' continued racing and left the fallen athlete behind.",
-      "correction": "They stopped, turned back, helped him to his feet, joined hands, and walked together to the finish line."
-    },
-    {
-      "claim": "The nine gold medals reward only athletic speed.",
-      "correction": "The poem presents the medals and standing ovation as recognition of compassion, unity, and collective support."
-    },
-    {
-      "claim": "Paralympics and Special Olympics are identical terms.",
-      "correction": "The chapter describes the Paralympics as games showcasing athletes with disabilities, while the Special Olympics provides training and competition for children and adults with intellectual disabilities and promotes acceptance and inclusion."
-    },
-    {
-      "claim": "Listening-task answers can be completed from the visible questions alone.",
-      "correction": "The chapter states that the listening answers depend on the teacher transcripts on page 268, so they should not be invented."
+      "claim": "Nine Gold Medals celebrates winning by defeating competitors.",
+      "correction": "The poem celebrates the runners who stop to help a fallen athlete and cross the finish together."
     }
   ],
   "recommended_example_progression": [
-    "Begin with Check Your Understanding II (1) from the interview to distinguish fact from opinion.",
-    "Use Critical Reflection I.1(iv) from the interview to interpret the phrase 'in hindsight' as reflective thinking.",
-    "Use Vocabulary and Structures in Context V to convert Dr. Malik's direct speech into reported speech.",
-    "Use Nine Gold Medals Check Your Understanding II to arrange the eight stanza gists in sequence.",
-    "Use Nine Gold Medals Critical Reflection I.1(v) to explain why the runners' return is the poem's turning point.",
-    "Finish with Learning Beyond the Text III to compare the Paralympics and Special Olympics and interpret the infographic."
+    "Check Your Understanding: distinguish fact-opinion from cause-effect in the interview",
+    "Critical Reflection: interpret ability beyond disability and changing perceptions",
+    "Vocabulary and Structures in Context: identify functions of modal auxiliaries",
+    "Reported speech task: convert interview statements while preserving meaning",
+    "Nine Gold Medals: explain why the race changes from individual competition to collective achievement"
   ],
-  "ncert_end_of_chapter_exercises_reference": "The unit has no single separately numbered end-of-chapter exercise; its assessable tasks are distributed across Check Your Understanding, Critical Reflection, Vocabulary, Listen and Respond, Speaking Activity, Writing Task, and Learning Beyond the Text on pages 143–168.",
+  "ncert_end_of_chapter_exercises_reference": "The interview is followed by Check Your Understanding and Critical Reflection, then vocabulary, grammar, listening, interviewing, notice writing and Learning Beyond the Text; Nine Gold Medals has its own appreciation and reflection tasks.",
   "manifest_version": "1.0",
   "manifest_status": "gpt55_generated"
 }

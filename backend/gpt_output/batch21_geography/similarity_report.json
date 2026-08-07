@@ -1,0 +1,17 @@
+{
+  "overall": "PASS",
+  "exact_duplicate_long_blocks": [],
+  "exact_duplicate_long_block_count": 0,
+  "maximum_cross_chapter_lesson_similarity": {
+    "first": [
+      "07_composition_and_structure_of_atmosphere.json",
+      "Concept introduction"
+    ],
+    "second": [
+      "11_world_climate_and_climate_change.json",
+      "Revision and recap"
+    ],
+    "cosine_content_word_similarity": 0.5621
+  },
+  "threshold_note": "Exact repeated normalized blocks of 120+ characters are treated as failures; cosine similarity is reported diagnostically, not used alone as a failure."
+}

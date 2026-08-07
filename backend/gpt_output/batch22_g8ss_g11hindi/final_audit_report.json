@@ -1,0 +1,18 @@
+{
+  "overall": "PASS",
+  "banks": 9,
+  "lesson_steps": 45,
+  "total_must_include_keywords": 354,
+  "primary_validation": "PASS",
+  "independent_validation": "PASS",
+  "similarity_validation": "PASS",
+  "source_selection_audit": "PASS",
+  "prompt_source_numbering_warnings": 8,
+  "package_verification": {
+    "verified": true,
+    "checksum_entries": 16,
+    "checksum_failures": [],
+    "zip_members": 17,
+    "zip_crc_failure": null
+  }
+}

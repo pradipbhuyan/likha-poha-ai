@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 11",
+  "subject": "Geography",
+  "chapter": "World Climate and Climate Change",
+  "central_question": "How can world climates be classified from temperature and precipitation, and what evidence and processes explain climate change?",
+  "in_scope_units": [
+    "Empirical, genetic and applied climate classification",
+    "Koeppen climate-classification scheme and letter codes",
+    "Tropical humid climates",
+    "Dry climates",
+    "Warm temperate climates",
+    "Cold snow-forest climates",
+    "Polar climates",
+    "Climate change evidence",
+    "Astronomical, terrestrial and anthropogenic causes",
+    "Global warming, greenhouse gases, ozone depletion and international response",
+    "NCERT exercises and project work"
+  ],
+  "banned_topics": [
+    "Detailed daily weather-system mechanics from Chapter 9",
+    "Detailed cloud and precipitation processes from Chapter 10",
+    "A modern classification replacing the supplied Koeppen scheme"
+  ],
+  "must_include_keywords": [
+    "empirical classification",
+    "genetic classification",
+    "applied classification",
+    "V. Koeppen",
+    "vegetation",
+    "A-Tropical",
+    "B-Dry",
+    "C-Warm Temperate",
+    "D-Cold Snow Forest",
+    "E-Cold",
+    "Af",
+    "Am",
+    "Aw",
+    "BSh",
+    "BWh",
+    "Cfa",
+    "Cs",
+    "Cfb",
+    "Df",
+    "Dw",
+    "ET",
+    "EF",
+    "ITCZ",
+    "permafrost",
+    "climate change",
+    "glacial",
+    "inter-glacial",
+    "sunspots",
+    "Millankovitch oscillations",
+    "volcanism",
+    "aerosols",
+    "global warming",
+    "greenhouse effect",
+    "greenhouse gases",
+    "carbon dioxide",
+    "CFCs",
+    "methane",
+    "nitrous oxide",
+    "ozone",
+    "Kyoto protocol"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Koeppen classification is mainly genetic.",
+      "correction": "The chapter calls it empirical because it is based on observed temperature and precipitation related to vegetation."
+    },
+    {
+      "claim": "All five major groups are based only on temperature.",
+      "correction": "Four are temperature-based, while B-Dry is distinguished by precipitation relative to potential evaporation."
+    },
+    {
+      "claim": "Climate change is presented only as modern human-caused warming.",
+      "correction": "The chapter presents long natural variability as well as anthropogenic greenhouse-gas forcing."
+    },
+    {
+      "claim": "All greenhouse gases behave identically.",
+      "correction": "Their effectiveness depends on concentration change, atmospheric lifetime and wavelengths absorbed."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Exercise 1(ii): identify Koeppen as empirical",
+    "NCERT Exercise 2(i): name the two climatic variables used by Koeppen",
+    "NCERT Exercise 3(i): compare A and B climates",
+    "NCERT Exercise 2(iv): interpret the chapter’s sunspot discussion",
+    "NCERT Exercise 3(iii): define and list greenhouse gases"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with EXERCISES 1, 2 and 3 and Project Work on the Kyoto declaration related to global climate changes.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
