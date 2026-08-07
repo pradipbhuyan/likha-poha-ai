@@ -462,6 +462,94 @@ def _get_doubt_kb_stats_REMOVED() -> dict:
         }
 
 
+def get_dkb_chapter_status(grade: str) -> list[dict]:
+    """
+    For admin panel: list all syllabus chapters with DKB entry counts.
+    Returns [{"subject": str, "chapter": str, "entries": int,
+              "prewarmed": int, "llm": int, "gpt55": int, "admin_approved": int}]
+
+    Unlike get_doubt_kb_grade_stats (per-subject only), this breaks counts
+    down per chapter so an admin can see exactly which chapters still need
+    a coverage pass -- mirrors lesson_kb_service.get_lkb_chapter_status.
+
+    Matches on normalize_chapter_core(), NOT the raw chapter string. The
+    student-facing dropdown shows a display-prefixed chapter name for
+    multi-book subjects (e.g. "Text Book - Part 1 - 1. Locating Places on
+    the Earth"), which is exactly what gets sent to /api/doubt/answer and
+    what earlier DKB prewarm runs stored -- while get_syllabus_for_grade
+    (used here to enumerate syllabus chapters) returns the bare form. An
+    exact-string match would report most multi-book chapters as uncovered
+    even when 30-60 Q&A pairs already exist for them under the prefixed
+    name. Confirmed live: this exact-match version reported 51 of 54
+    "zero-coverage" Grade 5-7 chapters as gaps when the content already
+    existed under a mismatched chapter string.
+
+    Fetches ALL active rows via explicit .range() pagination -- a plain
+    .execute() silently caps at 1000 rows (PostgREST default page size),
+    and every grade here already has 1,500-3,900+ active doubt_kb rows.
+    Confirmed live: without pagination this function was aggregating off a
+    truncated ~1000-row sample, reporting real chapters as zero-coverage
+    simply because their rows fell outside the arbitrary first page.
+    """
+    try:
+        from app.services.prewarm_service import get_syllabus_for_grade  # noqa: PLC0415
+        from app.services.mock_test_service import normalize_chapter_core  # noqa: PLC0415
+        syllabus = get_syllabus_for_grade(grade)
+        cbse_data = syllabus.get("CBSE", {})
+
+        supabase = get_content_db(grade)
+        rows: list[dict] = []
+        page_size = 1000
+        start = 0
+        while True:
+            page = (
+                supabase.table("doubt_kb")
+                .select("subject, chapter, source")
+                .eq("grade", grade)
+                .eq("status", "active")
+                .order("id")  # stable order required for correct pagination —
+                # without it, Postgrest gives no guarantee that consecutive
+                # .range() pages are disjoint when rows are being inserted
+                # concurrently (confirmed live: running this while a batch
+                # ingest was still writing produced a doubled count for one
+                # chapter whose rows straddled a page boundary).
+                .range(start, start + page_size - 1)
+                .execute()
+            ).data or []
+            rows.extend(page)
+            if len(page) < page_size:
+                break
+            start += page_size
+
+        # Build per-(subject, normalized chapter core) breakdown by source —
+        # aggregates every display-prefix variant of the same logical chapter.
+        breakdown: dict[tuple, dict] = {}
+        for row in rows:
+            key = (row.get("subject"), normalize_chapter_core(row.get("chapter") or ""))
+            entry = breakdown.setdefault(
+                key, {"entries": 0, "prewarmed": 0, "llm": 0, "gpt55": 0, "admin_approved": 0}
+            )
+            entry["entries"] += 1
+            src = row.get("source") or "llm"
+            if src in entry:
+                entry[src] += 1
+            else:
+                entry["llm"] += 1
+
+        result = []
+        for subject, chapters in cbse_data.items():
+            for chapter in chapters:
+                key = (subject, normalize_chapter_core(chapter))
+                counts = breakdown.get(key, {
+                    "entries": 0, "prewarmed": 0, "llm": 0, "gpt55": 0, "admin_approved": 0,
+                })
+                result.append({"subject": subject, "chapter": chapter, **counts})
+        return result
+    except Exception as exc:
+        logger.warning("DKB chapter status failed for %s: %s", grade, exc)
+        return []
+
+
 def get_doubt_kb_grade_stats(grade: str) -> dict:
     """Return per-subject DKB entry counts for one grade."""
     supabase = get_content_db(grade)

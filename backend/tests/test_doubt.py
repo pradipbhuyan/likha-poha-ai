@@ -22,7 +22,7 @@ def test_answer_doubt_api(monkeypatch):
       - mentor_suggestions
     """
 
-    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None, **kwargs):
         return {
             "answer": "Matter is anything that has mass and occupies space.",
             "source_type": "MOCK",
@@ -74,7 +74,7 @@ def test_answer_doubt_response_has_valid_data_types(monkeypatch):
     - mentor_suggestions should be a list.
     """
 
-    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None, **kwargs):
         return {
             "answer": "Matter has mass and occupies space.",
             "source_type": "MOCK",
@@ -134,7 +134,7 @@ def test_answer_doubt_empty_question():
 def test_answer_doubt_uses_authenticated_profile_username(monkeypatch):
     captured = {}
 
-    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None, **kwargs):
         captured["mode"] = mode
         captured["username"] = username
         return {
@@ -167,7 +167,7 @@ def test_answer_doubt_saves_full_history(monkeypatch):
     """A normal Ask Doubt request should persist the full answer for review."""
     captured_history = {}
 
-    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None, **kwargs):
         return {
             "answer": "Osmosis is movement of water across a membrane.",
             "source_type": "RAG",
@@ -209,7 +209,7 @@ def test_answer_doubt_can_skip_history_for_followups(monkeypatch):
     """Follow-up helper calls should not clutter the student's doubt history."""
     captured = {"called": False}
 
-    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None, **kwargs):
         return {
             "answer": "Short follow-up answer.",
             "source_type": "LLM",
@@ -381,6 +381,76 @@ def test_free_tier_user_within_limit_gets_answer_and_logs_usage(monkeypatch):
 
     assert response.status_code == 200
     assert response.json()["success"] is True
+    assert logged.get("feature") == "doubt_answer_free_tier"
+
+
+def test_free_tier_user_blocked_by_daily_limit_even_on_a_dkb_hit(monkeypatch):
+    """The daily cap must be checked BEFORE the DKB lookup, so a free-tier
+    user who has used all 5 doubts today is blocked even for a question the
+    DKB already has a cached answer for — every doubt counts, hit or miss."""
+    monkeypatch.setattr(
+        doubt_route,
+        "search_doubt_kb",
+        lambda **kwargs: {"answer": "Cached", "question": "q", "source_type": "DOUBT_KB", "id": "1", "similarity": 0.9},
+    )
+
+    def _boom_answer_doubt(**kwargs):
+        raise AssertionError("answer_doubt must not be reached when the daily cap is exhausted")
+    monkeypatch.setattr(doubt_route, "answer_doubt", _boom_answer_doubt)
+
+    monkeypatch.setattr(doubt_route, "is_free_tier_user", lambda user_id: True)
+    monkeypatch.setattr(
+        doubt_route,
+        "enforce_daily_limit",
+        lambda username, feature, max_requests: {"allowed": False, "message": "capped"},
+    )
+
+    response = client.post("/api/doubt/answer", json={
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "CBSE",
+        "subject": "Science",
+        "chapter": "Matter",
+        "question": "What is matter?",
+    })
+
+    assert response.status_code == 429
+
+
+def test_free_tier_dkb_hit_counts_against_the_daily_quota(monkeypatch):
+    """A DKB hit must log usage for a free-tier user, same as a miss —
+    hits are no longer free/unlimited against the daily cap."""
+    monkeypatch.setattr(
+        doubt_route,
+        "search_doubt_kb",
+        lambda **kwargs: {"answer": "Cached answer", "question": "q", "source_type": "DOUBT_KB", "id": "1", "similarity": 0.9},
+    )
+
+    def _boom_answer_doubt(**kwargs):
+        raise AssertionError("answer_doubt must not be reached on a DKB hit")
+    monkeypatch.setattr(doubt_route, "answer_doubt", _boom_answer_doubt)
+
+    monkeypatch.setattr(doubt_route, "is_free_tier_user", lambda user_id: True)
+    monkeypatch.setattr(
+        doubt_route,
+        "enforce_daily_limit",
+        lambda username, feature, max_requests: {"allowed": True, "message": "ok"},
+    )
+
+    logged = {}
+    monkeypatch.setattr(doubt_route, "log_ai_usage", lambda **kwargs: logged.update(kwargs))
+
+    response = client.post("/api/doubt/answer", json={
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "CBSE",
+        "subject": "Science",
+        "chapter": "Matter",
+        "question": "What is matter?",
+    })
+
+    assert response.status_code == 200
+    assert response.json()["source_type"] == "DOUBT_KB"
     assert logged.get("feature") == "doubt_answer_free_tier"
 
 

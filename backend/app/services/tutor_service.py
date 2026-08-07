@@ -1,6 +1,7 @@
 
+import logging
 import os as _os
-from app.services.openai_service import DEFAULT_TEXT_MODEL, ask_llm, PREWARM_TEXT_MODEL
+from app.services.openai_service import DEFAULT_TEXT_MODEL, ask_llm
 from app.services.rag_service import search_textbook_content, strip_chapter_number_prefix
 from app.services.rag_visual_service import (
     find_visual_assets_for_question,
@@ -21,6 +22,8 @@ from app.services.lesson_cache_service import (
     get_cached_lesson_by_chapter_text,
     store_lesson_cache,
 )
+
+logger = logging.getLogger("likhapoha.tutor_service")
 
 # Display-source prefixes added when multiple books are uploaded for one subject.
 # The lesson cache may have been built before these prefixes were introduced,
@@ -59,6 +62,26 @@ RAG_ANSWER_THRESHOLD = 0.35
 # Max characters of textbook excerpt shown to the student per answer.
 RAG_EXCERPT_MAX_CHARS = 1500
 
+# QA/smoke-test scripts that call answer_doubt()/answer_lesson_follow_up()
+# directly against the LIVE production DB with hardcoded generic questions
+# (e.g. "What is <chapter>?", "Can you explain the most important idea in
+# <chapter> with a simple example?"). Their answers must never be cached
+# into the DKB, or they leak into real students' "Suggested questions"
+# chips -- confirmed live across many grades/subjects on 2026-08-06:
+#   - scripts/e2e_sim/run_student_journey.py -- create_test_students.py's
+#     username_for() logs in as "E2ESim-Grade<N>".
+#   - scripts/doubt_qa_harness.py -- hardcoded username="qa_harness".
+_TEST_HARNESS_USERNAME_PREFIXES = ("E2ESim-",)
+_TEST_HARNESS_USERNAMES = {"qa_harness"}
+
+
+def _is_e2e_sim_user(username: str | None) -> bool:
+    if not username:
+        return False
+    if username in _TEST_HARNESS_USERNAMES:
+        return True
+    return username.startswith(_TEST_HARNESS_USERNAME_PREFIXES)
+
 
 def _filter_relevant_chunks(rag_results, threshold: float = RAG_ANSWER_THRESHOLD):
     """Keep only RAG chunks whose similarity clears the extractive-answer bar."""
@@ -66,13 +89,60 @@ def _filter_relevant_chunks(rag_results, threshold: float = RAG_ANSWER_THRESHOLD
 
 
 def build_textbook_excerpt_answer(chunks, max_chunks: int = 3) -> str:
-    """Build a purely extractive answer from the top RAG chunks -- no LLM synthesis."""
+    """Build a purely extractive answer from the top RAG chunks -- no LLM synthesis.
+    Used only as a fallback if LLM synthesis fails or the API is disabled."""
     excerpt = "\n\n".join(
         c.get("chunk_text", "").strip() for c in chunks[:max_chunks] if c.get("chunk_text")
     ).strip()
     if len(excerpt) > RAG_EXCERPT_MAX_CHARS:
         excerpt = excerpt[:RAG_EXCERPT_MAX_CHARS].rsplit(" ", 1)[0] + "…"
     return f"Here's what your textbook says about this:\n\n{excerpt}"
+
+
+DOUBT_SYNTHESIS_SYSTEM = (
+    "You are an expert CBSE tutor answering a student's follow-up doubt. "
+    "Answer the student's actual question directly and clearly, grounded ONLY "
+    "in the provided textbook context -- never invent facts, numbers, or "
+    "examples that aren't in it. Use student-appropriate language for the "
+    "grade given. Answer in 3-6 sentences unless the question genuinely needs "
+    "more. Never mention 'the textbook context', 'the excerpt', or any "
+    "internal retrieval mechanics -- answer as a tutor would, from knowledge."
+)
+
+
+def build_synthesized_doubt_answer(
+    question: str, chunks: list, grade: str, subject: str, chapter: str, max_chunks: int = 3
+) -> str:
+    """Synthesize a direct answer to the student's question from the top RAG
+    chunks via one live LLM call, instead of pasting raw textbook text. Uses
+    DEFAULT_TEXT_MODEL (not PREWARM_TEXT_MODEL) -- this is a live per-request
+    student answer, not a bulk/offline prewarm job, so it should get the
+    admin's configured "best quality" model/provider, same as generate_step_lesson.
+    Raises on failure -- callers must fall back to build_textbook_excerpt_answer."""
+    context = "\n\n".join(
+        c.get("chunk_text", "").strip() for c in chunks[:max_chunks] if c.get("chunk_text")
+    ).strip()
+    if len(context) > RAG_EXCERPT_MAX_CHARS:
+        context = context[:RAG_EXCERPT_MAX_CHARS].rsplit(" ", 1)[0] + "…"
+
+    user_prompt = f"""
+Grade: {grade}
+Subject: {subject}
+Chapter: {chapter}
+
+Textbook context:
+{context}
+
+Student question: {question}
+
+Answer the question clearly for a {grade} student.
+"""
+    return ask_llm(
+        DOUBT_SYNTHESIS_SYSTEM,
+        user_prompt,
+        feature="doubt_answer_live_synthesis",
+        model=DEFAULT_TEXT_MODEL,
+    )
 
 
 def build_ncert_fallback_answer(grade: str, subject: str, chapter: str) -> str:
@@ -1237,17 +1307,25 @@ def answer_doubt(
     question: str,
     username: str = "unknown",
     board: str = "CBSE",
+    allow_llm: bool = True,
 ):
     """
-    Answer a student doubt purely from retrieval — never calls an LLM.
+    Answer a student doubt, preferring the free/instant DKB cache over an LLM call.
 
     Flow:
     1. Search Doubt Knowledge Base (DKB) by semantic similarity.
-       On hit → return cached answer instantly.
-    2. On DKB miss → RAG search over textbook content, chapter-scoped then
-       subject-scoped. If any chunk clears RAG_ANSWER_THRESHOLD, return it
-       as an extractive textbook excerpt.
-    3. If nothing relevant is found, return a warm NCERT-reference fallback.
+       On hit → return cached answer instantly, zero LLM cost (any tier).
+    2. On DKB miss:
+       - allow_llm=False (free tier): never touches RAG/LLM — returns the
+         standard upgrade prompt instead. Free-tier doubts are DKB-only.
+       - allow_llm=True (paid tier): RAG search over textbook content,
+         chapter-scoped then subject-scoped. If any chunk clears
+         RAG_ANSWER_THRESHOLD, synthesize a direct answer from those chunks
+         via one LLM call as a last resort (falling back to a raw extractive
+         excerpt if that call fails), then cache the result in the DKB so
+         the same question never costs an LLM call again for ANY tier.
+    3. If nothing relevant is found (paid tier only), return a warm
+       NCERT-reference fallback.
     4. Auto-store new excerpt answers in DKB for future reuse.
     """
     # ----------------------------------------------------------------- DKB
@@ -1292,8 +1370,28 @@ def answer_doubt(
                 ],
             }
     except Exception:
-        pass  # DKB unavailable — fall through to RAG
+        pass  # DKB unavailable — free tier gates below; paid tier falls through to RAG
     # -------------------------------------------------------------- end DKB
+
+    if not allow_llm:
+        # Free tier: DKB has no answer for this question. Never touch RAG/LLM —
+        # show the standard upgrade prompt instead.
+        from app.services.offer_access_service import build_offer_gate_response  # noqa: PLC0415
+        gate = build_offer_gate_response()
+        try:
+            save_mentor_memory(
+                username=username, grade=grade, mode=mode, subject=subject,
+                chapter=chapter, question=question, answer=gate["answer"],
+            )
+        except Exception:
+            pass  # Never let mentor-memory logging block doubt delivery
+        return {
+            "answer": gate["answer"],
+            "source_type": gate["source_type"],
+            "sources": [],
+            "textbook_visuals": [],
+            "mentor_suggestions": [],
+        }
 
     rag_query = f"""
     Student doubt:
@@ -1333,7 +1431,11 @@ IMPORTANT:
     good_chunks = _filter_relevant_chunks(rag_results)
 
     if good_chunks:
-        answer = build_textbook_excerpt_answer(good_chunks)
+        try:
+            answer = build_synthesized_doubt_answer(question, good_chunks, grade, subject, chapter)
+        except Exception as exc:
+            logger.warning("Doubt answer synthesis failed, using extractive fallback: %s", exc)
+            answer = build_textbook_excerpt_answer(good_chunks)
         source_type = "TEXTBOOK_EXCERPT"
     else:
         answer = build_ncert_fallback_answer(grade, subject, chapter)
@@ -1396,7 +1498,7 @@ IMPORTANT:
     try:
         from app.services.doubt_kb_service import store_in_doubt_kb  # noqa: PLC0415
         from app.services.academic_guardrail_service import is_non_academic_question  # noqa: PLC0415
-        if not is_non_academic_question(question):
+        if not is_non_academic_question(question) and not _is_e2e_sim_user(username):
             # Also log to unanswered_questions so admin can review and improve DKB quality
             try:
                 from app.services.auth_service import admin_client as _sb_log  # noqa: PLC0415
@@ -1446,16 +1548,20 @@ def answer_lesson_follow_up(
     question: str,
     username: str = "unknown",
     board: str = "CBSE",
+    allow_llm: bool = True,
 ):
     """
-    Answer a follow-up about a generated lesson step purely from retrieval —
-    never calls an LLM.
+    Answer a follow-up about a generated lesson step, preferring the free/instant
+    DKB cache over an LLM call.
 
     DKB-first: checks the Doubt Knowledge Base for a pre-answered match. On a
-    miss, RAG-searches the chapter's textbook content (falling back to the
-    whole subject if the chapter search is empty) and returns the best
-    matching chunk(s) as an extractive excerpt, or a warm NCERT-reference
-    fallback if nothing clears RAG_ANSWER_THRESHOLD.
+    miss:
+    - allow_llm=False (free tier): never touches RAG/LLM — returns the
+      standard upgrade prompt instead. Free-tier doubts are DKB-only.
+    - allow_llm=True (paid tier): RAG-searches the chapter's textbook content
+      (falling back to the whole subject if the chapter search is empty) and
+      synthesizes a direct answer as a last resort, or a warm NCERT-reference
+      fallback if nothing clears RAG_ANSWER_THRESHOLD.
     """
     # ----------------------------------------------------------------- DKB
     try:
@@ -1485,8 +1591,27 @@ def answer_lesson_follow_up(
                 "textbook_visuals": [],
             }
     except Exception:
-        pass  # DKB unavailable — fall through to RAG
+        pass  # DKB unavailable — free tier gates below; paid tier falls through to RAG
     # -------------------------------------------------------------- end DKB
+
+    if not allow_llm:
+        # Free tier: DKB has no answer for this question. Never touch RAG/LLM —
+        # show the standard upgrade prompt instead.
+        from app.services.offer_access_service import build_offer_gate_response  # noqa: PLC0415
+        gate = build_offer_gate_response()
+        try:
+            save_mentor_memory(
+                username=username, grade=grade, mode=mode, subject=subject,
+                chapter=chapter, question=question, answer=gate["answer"],
+            )
+        except Exception:
+            pass  # Never let mentor-memory logging block doubt delivery
+        return {
+            "answer": gate["answer"],
+            "source_type": gate["source_type"],
+            "sources": [],
+            "textbook_visuals": [],
+        }
 
     rag_query = f"""
 Grade: {grade}
@@ -1519,7 +1644,11 @@ Student follow-up question: {question}
     good_chunks = _filter_relevant_chunks(rag_results)
 
     if good_chunks:
-        answer = build_textbook_excerpt_answer(good_chunks)
+        try:
+            answer = build_synthesized_doubt_answer(question, good_chunks, grade, subject, chapter)
+        except Exception as exc:
+            logger.warning("Follow-up answer synthesis failed, using extractive fallback: %s", exc)
+            answer = build_textbook_excerpt_answer(good_chunks)
         source_type = "TEXTBOOK_EXCERPT"
     else:
         answer = build_ncert_fallback_answer(grade, subject, chapter)
@@ -1536,21 +1665,23 @@ Student follow-up question: {question}
             question=question,
         )
         # Cache so an identical follow-up question hits the DKB next time
-        # instead of repeating the vector search.
-        try:
-            from app.services.doubt_kb_service import store_in_doubt_kb  # noqa: PLC0415
-            store_in_doubt_kb(
-                question=question,
-                answer=answer,
-                grade=grade,
-                subject=subject,
-                chapter=chapter if chapter else None,
-                mode=mode,
-                board=board,
-                source="retrieval",
-            )
-        except Exception:
-            pass  # DKB store failure must never break doubt delivery
+        # instead of repeating the vector search. Never cache e2e_sim's
+        # synthetic smoke-test question (see _is_e2e_sim_user docstring).
+        if not _is_e2e_sim_user(username):
+            try:
+                from app.services.doubt_kb_service import store_in_doubt_kb  # noqa: PLC0415
+                store_in_doubt_kb(
+                    question=question,
+                    answer=answer,
+                    grade=grade,
+                    subject=subject,
+                    chapter=chapter if chapter else None,
+                    mode=mode,
+                    board=board,
+                    source="retrieval",
+                )
+            except Exception:
+                pass  # DKB store failure must never break doubt delivery
     else:
         textbook_visuals = []
 

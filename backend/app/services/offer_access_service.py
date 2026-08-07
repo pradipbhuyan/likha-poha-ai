@@ -3,13 +3,17 @@ offer_access_service.py
 ───────────────────────
 Helpers for determining whether a user is on Free Tier (limited access).
 
-Ask Doubt (both the in-lesson widget and the standalone Doubt page) never
-calls an LLM for either tier — every answer comes from the Doubt Knowledge
-Base (DKB) cache or an extractive textbook (RAG) excerpt, with a warm
-NCERT-reference fallback when neither finds a match. There is no per-topic
-restriction any more: free-tier users may ask about any subject/chapter.
-The only free-tier control is a shared cap of 5 doubt questions per day,
-counted with one counter across both surfaces (see enforce_daily_limit in
+Ask Doubt (both the in-lesson widget and the standalone Doubt page) is
+DKB-only for the Free Tier — it NEVER calls an LLM. A DKB hit answers
+instantly at zero cost; a DKB miss shows the standard upgrade prompt
+(build_offer_gate_response) instead of ever reaching RAG/LLM. Paid tier can
+fall back to an LLM as a last resort on a DKB miss (RAG-grounded synthesis,
+then a warm NCERT-reference fallback if nothing is grounded — see
+answer_doubt/answer_lesson_follow_up's allow_llm parameter in
+tutor_service.py). There is no per-topic restriction: free-tier users may
+ask about any subject/chapter. The only free-tier control is a shared cap of
+5 doubt questions per day — EVERY attempt counts, DKB hit or miss — counted
+with one counter across both surfaces (see enforce_daily_limit in
 usage_service.py, feature="doubt_answer_free_tier"). Paid users have no
 daily cap.
 
@@ -30,10 +34,12 @@ from app.services.auth_service import admin_client
 
 logger = logging.getLogger(__name__)
 
-# Message shown to offer-code users when a doubt is outside the DKB (Option 2)
+# Message shown to a free-tier user (any tier without an active paid
+# subscription — offer code or not) when a doubt has no match in the DKB.
+# Free tier is DKB-only: this is shown instead of ever calling an LLM.
 OFFER_GATE_MESSAGE = (
-    "🔒 **This doubt is outside your current access**\n\n"
-    "Your offer gives you a taste of Likha Poha AI across select topics. "
+    "🔒 **This doubt isn't in our free knowledge base yet**\n\n"
+    "Free access answers doubts already covered in our knowledge base. "
     "To ask the AI anything — any subject, any chapter, any question — "
     "a paid subscription unlocks it all."
 )

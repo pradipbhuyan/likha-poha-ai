@@ -6,10 +6,14 @@ import JourneyRenderer from "../components/journey/JourneyRenderer";
 import StudyRenderer from "../components/journey/StudyRenderer";
 
 vi.mock("../api/lesson", () => ({
-  askLessonFollowUp: vi.fn(async () => ({
+  ensureLessonKbChips: vi.fn(async () => ({
     success: true,
-    answer: "Because gas particles move freely.",
-    source_type: "MOCK",
+    lkb_chips: [
+      { id: "chip-1", question: "Why do gases spread out quickly?", answer: "Because gas particles move freely and have weak attraction." },
+      { id: "chip-2", question: "How is a solid different from a liquid?", answer: "A solid keeps a fixed shape; a liquid takes the shape of its container." },
+      { id: "chip-3", question: "What happens to particles when matter is heated?", answer: "Particles gain energy and move faster, spreading further apart." },
+    ],
+    generated: false,
   })),
 }));
 
@@ -225,8 +229,8 @@ describe("ChapterJourneyView", () => {
     expect(saved.quizAnswers["0:2"]).toBe(2);
   });
 
-  test("follow-up box sends question with milestone context", async () => {
-    const { askLessonFollowUp } = await import("../api/lesson");
+  test("Ask about this chapter shows LKB chips and reveals the answer on click", async () => {
+    const { ensureLessonKbChips } = await import("../api/lesson");
     render(
       <ChapterJourneyView
         doc={SAMPLE_DOC}
@@ -237,18 +241,17 @@ describe("ChapterJourneyView", () => {
         chapter="Chapter 3: Matter Around Us"
       />
     );
-    fireEvent.change(
-      screen.getByPlaceholderText(/ask a question about what you just read/i),
-      { target: { value: "Why do gases spread?" } }
-    );
-    fireEvent.click(screen.getByRole("button", { name: /ask/i }));
-    expect(
-      await screen.findByText(/because gas particles move freely/i)
-    ).toBeInTheDocument();
-    expect(askLessonFollowUp).toHaveBeenCalledWith(
+    expect(await screen.findByText(/why do gases spread out quickly/i)).toBeInTheDocument();
+    expect(screen.queryByText(/weak attraction/i)).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /why do gases spread out quickly/i }));
+    expect(await screen.findByText(/weak attraction/i)).toBeInTheDocument();
+
+    expect(ensureLessonKbChips).toHaveBeenCalledWith(
       expect.objectContaining({
-        username: "test_user",
         grade: "Grade 6",
+        subject: "Science",
+        chapter: "Chapter 3: Matter Around Us",
         step_title: "Concept introduction",
       })
     );

@@ -502,10 +502,10 @@ def lesson_follow_up(
     enforce_profile_grade(profile, data.grade)
     enforce_profile_board(profile, request_board)
     enforce_account_standing(profile, data.mode)
-    # Ask Doubt never calls an LLM for any tier, so there is no per-topic
-    # access gate any more — free-tier users may ask about any subject or
+    # Free tier is DKB-only and never reaches an LLM call, so there is no
+    # per-topic access gate — free-tier users may ask about any subject or
     # chapter. The only free-tier control is the shared 5/day cap applied
-    # further below, right before the retrieval pipeline runs.
+    # further below (every attempt counts, hit or miss).
     username_key = profile.get("username") or data.username
     is_free = is_free_tier_user(user.id)
 
@@ -557,8 +557,9 @@ def lesson_follow_up(
         )
 
     # ── Free-tier daily cap: shared across both Ask Doubt surfaces ───────────
-    # Paid users are never capped. Neither tier ever reaches an LLM call —
-    # both fall through to the retrieval-only pipeline below.
+    # Every attempt counts (DKB hit or miss). Paid users are never capped.
+    # Free tier never reaches an LLM call — see allow_llm below; paid tier
+    # can fall back to an LLM as a last resort on a DKB miss.
     if is_free:
         limit = enforce_daily_limit(username_key, feature="doubt_answer_free_tier", max_requests=5)
         if not limit["allowed"]:
@@ -576,6 +577,7 @@ def lesson_follow_up(
             lesson=data.lesson,
             question=data.question,
             username=data.username,
+            allow_llm=not is_free,
         )
 
         if is_free:

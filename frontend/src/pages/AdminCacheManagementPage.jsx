@@ -12,6 +12,7 @@ import {
   startChapterQuestionBankBuild,
   startDoubtKbPrewarm,
   getDoubtKbStats,
+  getDkbChapterOverview,
   restoreLessonCache,
   startLkbBuild,
   getLkbOverview,
@@ -101,6 +102,9 @@ function AdminCacheManagementPage({ user }) {
   // ---- Doubt KB state ----
   const [dkbStats, setDkbStats] = useState(null);
   const [dkbRunningGrades, setDkbRunningGrades] = useState({});
+  const [dkbCoverageGrade, setDkbCoverageGrade] = useState("Grade 9");
+  const [dkbChapterCoverage, setDkbChapterCoverage] = useState(null);
+  const [dkbChapterCoverageLoading, setDkbChapterCoverageLoading] = useState(false);
 
   // ---- LKB (Lesson Knowledge Base) state ----
   const [lkbOverviews, setLkbOverviews] = useState({});
@@ -154,6 +158,25 @@ function AdminCacheManagementPage({ user }) {
       // DKB stats are optional — fail silently
     }
   }
+
+  async function loadDkbChapterCoverage(grade) {
+    /** Per-chapter DKB entry counts for one grade — shows exactly which
+     *  syllabus chapters still need a coverage pass. */
+    setDkbChapterCoverageLoading(true);
+    try {
+      const result = await getDkbChapterOverview(gradeToSlug(grade), user.accessToken);
+      setDkbChapterCoverage(result.success ? (result.chapters || []) : []);
+    } catch {
+      setDkbChapterCoverage([]);
+    } finally {
+      setDkbChapterCoverageLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (activeTab === "doubtkb") loadDkbChapterCoverage(dkbCoverageGrade);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab, dkbCoverageGrade]);
 
   async function loadAudioOverview(grade) {
     try {
@@ -799,10 +822,82 @@ function AdminCacheManagementPage({ user }) {
           <div className="info-box" style={{ marginTop: 12, fontSize: "0.82rem" }}>
             💡 Click <strong>🧠 Build Doubt KB</strong> on any grade to pre-generate 25 Q&A
             pairs per chapter. New student doubts that don't match are automatically added
-            to the KB so it grows with use.
+            to the KB so it grows with use. For deliberate, higher-quality full-syllabus
+            coverage, use the GPT-5.5 authoring pipeline (see
+            docs/GPT55_DOUBT_KB_AUTHORING_PROMPT.md) — the table below shows exactly which
+            chapters still need it.
           </div>
         </section>
       )}
+
+      <section className="premium-section">
+        <div className="premium-header">
+          <p className="eyebrow">Coverage Tracking</p>
+          <h3>📋 Doubt KB Coverage by Chapter</h3>
+        </div>
+
+        <label style={{ display: "block", maxWidth: 260, marginBottom: 14 }}>
+          Grade
+          <select
+            value={dkbCoverageGrade}
+            onChange={(e) => setDkbCoverageGrade(e.target.value)}
+            style={{ width: "100%", marginTop: 4 }}
+          >
+            {ALL_GRADE_OPTIONS.filter((g) => Number(g.split(" ")[1]) >= 5).map((g) => (
+              <option key={g} value={g}>{g}</option>
+            ))}
+          </select>
+        </label>
+
+        {dkbChapterCoverageLoading && (
+          <p style={{ fontSize: "0.85rem", color: "#888" }}>Loading chapter coverage…</p>
+        )}
+
+        {!dkbChapterCoverageLoading && dkbChapterCoverage && dkbChapterCoverage.length === 0 && (
+          <p style={{ fontSize: "0.85rem", color: "#888" }}>
+            No syllabus chapters found for {dkbCoverageGrade} (no RAG content uploaded yet).
+          </p>
+        )}
+
+        {!dkbChapterCoverageLoading && dkbChapterCoverage && dkbChapterCoverage.length > 0 && (
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem" }}>
+              <thead>
+                <tr>
+                  <th style={{ textAlign: "left", borderBottom: "1px solid #e5e7eb", padding: "6px 8px" }}>Subject</th>
+                  <th style={{ textAlign: "left", borderBottom: "1px solid #e5e7eb", padding: "6px 8px" }}>Chapter</th>
+                  <th style={{ textAlign: "right", borderBottom: "1px solid #e5e7eb", padding: "6px 8px" }}>Entries</th>
+                  <th style={{ textAlign: "left", borderBottom: "1px solid #e5e7eb", padding: "6px 8px" }}>Source breakdown</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dkbChapterCoverage.map((row) => (
+                  <tr key={`${row.subject}::${row.chapter}`}>
+                    <td style={{ padding: "6px 8px", borderBottom: "1px solid #f3f4f6" }}>{row.subject}</td>
+                    <td style={{ padding: "6px 8px", borderBottom: "1px solid #f3f4f6" }}>{row.chapter}</td>
+                    <td style={{
+                      padding: "6px 8px", borderBottom: "1px solid #f3f4f6", textAlign: "right", fontWeight: 600,
+                      color: row.entries === 0 ? "#dc2626" : row.entries < 15 ? "#d97706" : "#16a34a",
+                    }}>
+                      {row.entries}
+                    </td>
+                    <td style={{ padding: "6px 8px", borderBottom: "1px solid #f3f4f6", color: "#6b7280" }}>
+                      {row.entries === 0
+                        ? "—"
+                        : [
+                            row.gpt55 > 0 && `${row.gpt55} gpt55`,
+                            row.prewarmed > 0 && `${row.prewarmed} prewarmed`,
+                            row.llm > 0 && `${row.llm} llm`,
+                            row.admin_approved > 0 && `${row.admin_approved} admin`,
+                          ].filter(Boolean).join(" · ")}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
       </div>
       )}
 

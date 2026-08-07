@@ -31,6 +31,7 @@ from app.services.lesson_cache_service import (
 from app.services.doubt_kb_service import (
     get_doubt_kb_stats,
     get_doubt_kb_grade_stats,
+    get_dkb_chapter_status,
     prewarm_doubt_kb_for_grade,
 )
 
@@ -266,6 +267,20 @@ def get_doubt_kb_grade_overview(grade_slug: str, admin=Depends(require_admin)):
     return {
         "success": True,
         **get_doubt_kb_grade_stats(grade),
+    }
+
+
+@router.get("/doubt-kb/chapters/{grade_slug}")
+def get_doubt_kb_chapter_overview(grade_slug: str, admin=Depends(require_admin)):
+    """Return per-chapter DKB entry counts for one grade, so an admin can see
+    exactly which syllabus chapters still need a coverage pass."""
+    grade = grade_slug.replace("-", " ").title()
+    if grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {grade_slug}")
+    return {
+        "success": True,
+        "grade": grade,
+        "chapters": get_dkb_chapter_status(grade),
     }
 
 

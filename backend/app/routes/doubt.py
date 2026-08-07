@@ -165,10 +165,11 @@ def answer_student_doubt(
     enforce_profile_grade(profile, data.grade)
     enforce_profile_board(profile, request_board)
     enforce_account_standing(profile, data.mode)
-    # Ask Doubt never calls an LLM for any tier, so there is no per-topic
-    # access gate any more — free-tier users may ask about any subject or
-    # chapter. The only free-tier control is the shared 5/day cap applied
-    # further below, right before the retrieval pipeline runs.
+    # Free tier is DKB-only and never reaches an LLM call — there is no
+    # per-topic access gate, so free-tier users may ask about any subject or
+    # chapter. Every doubt attempt (DKB hit or miss) counts against the
+    # shared 5/day cap enforced below. Paid tier can fall back to an LLM as
+    # a last resort when the DKB has no answer (see allow_llm in answer_doubt).
     is_free = is_free_tier_user(user.id)
 
     if is_platform_info_question(data.question):
@@ -230,6 +231,16 @@ def answer_student_doubt(
             "message": "Academic guardrail: non-academic question redirected",
         }
 
+    # ── Free-tier daily cap: applies to every doubt attempt, hit or miss ─────
+    # Free-tier users get a shared 5/day cap across both Ask Doubt surfaces,
+    # counted whether the question is answered from the DKB or not — free
+    # tier is DKB-only (see below), so this is the only quota that matters.
+    # Paid users are never capped.
+    if is_free:
+        limit = enforce_daily_limit(canonical_username, feature="doubt_answer_free_tier", max_requests=5)
+        if not limit["allowed"]:
+            raise HTTPException(status_code=429, detail=DAILY_LIMIT_MESSAGE)
+
     # ── DKB lookup: runs for ALL users (free + paid) ─────────────────────────
     # Suggestion chips send dkb_id → direct PK lookup (O(1), no text matching).
     # Manual questions fall back to text search.
@@ -276,6 +287,8 @@ def answer_student_doubt(
             board=request_board,
         )
     if dkb_result:
+        if is_free:
+            log_ai_usage(username=canonical_username, feature="doubt_answer_free_tier", model="none")
         return {
             "success": True,
             "answer": dkb_result["answer"],
@@ -287,15 +300,6 @@ def answer_student_doubt(
             "message": "Answered from knowledge base",
         }
 
-    # ── DKB miss: apply the free-tier daily cap ──────────────────────────────
-    # Free-tier users get a shared 5/day cap across both Ask Doubt surfaces.
-    # Paid users are never capped. Neither tier ever reaches an LLM call —
-    # both fall through to the retrieval-only pipeline below.
-    if is_free:
-        limit = enforce_daily_limit(canonical_username, feature="doubt_answer_free_tier", max_requests=5)
-        if not limit["allowed"]:
-            raise HTTPException(status_code=429, detail=DAILY_LIMIT_MESSAGE)
-
     try:
         result = call_with_optional_board(
             answer_doubt,
@@ -306,6 +310,7 @@ def answer_student_doubt(
             chapter=data.chapter,
             question=data.question,
             username=canonical_username,
+            allow_llm=not is_free,
         )
         history_item = None
 

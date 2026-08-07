@@ -213,6 +213,12 @@ class TestUsernameSpoofing:
             }
 
         monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
+        # Force a DKB miss so the request actually reaches answer_doubt --
+        # DOUBT_PAYLOAD's generic question ("What is matter?") now has a
+        # real, exact-match DKB entry after this session's coverage-building
+        # work, which would otherwise short-circuit the route before the
+        # username-spoofing check point this test exists to verify.
+        monkeypatch.setattr(doubt_route, "search_doubt_kb", lambda **kwargs: None)
 
         r = client.post("/api/doubt/answer", json={
             **DOUBT_PAYLOAD,

@@ -94,6 +94,13 @@ export async function getDoubtKbStats(accessToken) {
   });
 }
 
+export async function getDkbChapterOverview(gradeSlug, accessToken) {
+  /** Return per-chapter Doubt Knowledge Base entry counts for a grade. */
+  return authFetch(`/api/cache-management/doubt-kb/chapters/${gradeSlug}`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+}
+
 export async function restoreLessonCache(gradeSlug, accessToken) {
   /** Restore archived (soft-deleted) lessons for a grade back to active status. */
   return authFetch(`/api/cache-management/cache/lessons/${gradeSlug}/restore`, {

@@ -98,6 +98,7 @@ def test_students_from_grade_1_to_grade_10_can_use_lesson_follow_up(monkeypatch)
         lesson,
         question,
         username="unknown",
+        **kwargs,
     ):
         captured_grades.append(grade)
         return {
@@ -140,7 +141,7 @@ def test_students_from_grade_1_to_grade_10_can_ask_doubts(monkeypatch):
     """Every onboarded grade should be able to ask CBSE doubts for its grade."""
     captured_grades = []
 
-    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None, **kwargs):
         captured_grades.append(grade)
         return {
             "answer": f"{grade} doubt answer",
@@ -150,6 +151,12 @@ def test_students_from_grade_1_to_grade_10_can_ask_doubts(monkeypatch):
         }
 
     monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
+    # Force a DKB miss so every grade actually reaches answer_doubt -- a
+    # generic "Please explain this concept." question can now hit a real
+    # DKB entry in at least one grade/subject after this session's
+    # coverage-building work, which would short-circuit the route before
+    # the mocked answer_doubt this test asserts against.
+    monkeypatch.setattr(doubt_route, "search_doubt_kb", lambda **kwargs: None)
 
     for grade, subject, chapter in GRADE_FIXTURES:
         patch_all_grade_routes(monkeypatch, grade)
