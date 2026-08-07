@@ -1,6 +1,10 @@
 {
   "permissions": {
     "allow": [
+      "Bash(npx eslint *)",
+      "Bash(source .venv/bin/activate)",
+      "Bash(npm run build)",
+      "Bash(npm run lint)",
       "Bash(brew install *)",
       "Bash(gh --version)",
       "Bash(python3 -c ' *)",
