@@ -120,24 +120,33 @@ describe("SubscriptionPlansPage payments", () => {
      * This validates the no-Razorpay setup path.
      *
      * Expected result:
-     * - Discounted Standard plan is shown from mocked Supabase settings.
+     * - Parent selects a plan from the shared NoticeboardPricingTable (same
+     *   comparison table + CTA row the student view uses, replacing the old
+     *   per-plan card grid).
+     * - The payment summary panel below reflects the real, DB-configured
+     *   plan (discounted Standard price) once selected.
      * - Button says Payment Setup Pending.
      * - Clicking it does not call payment APIs and shows manual activation text.
      */
     renderPage();
 
+    // "starter" is rendered as "Choose Premium" by the shared pricing table
+    // (its CTA copy is fixed per plan key, independent of the admin-configured
+    // display label) — selecting it still drives the real "starter" plan data.
     expect(
-      await screen.findByRole("button", { name: /choose standard/i })
+      await screen.findByRole("button", { name: /choose premium/i })
     ).toBeInTheDocument();
-    expect(screen.getAllByText("₹449").length).toBeGreaterThan(0);
-    expect(screen.getByText("Summer Special")).toBeInTheDocument();
     expect(screen.getByText("help@likhapoha.test")).toBeInTheDocument();
     expect(screen.getByText("Replies within 24 hours.")).toBeInTheDocument();
     expect(
       screen.getByText("Support number will be added soon")
     ).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: /choose standard/i }));
+    fireEvent.click(screen.getByRole("button", { name: /choose premium/i }));
+
+    // Payment summary now shows the real DB-configured plan label + discounted price
+    expect(screen.getByText("Standard")).toBeInTheDocument();
+    expect(screen.getAllByText("₹449").length).toBeGreaterThan(0);
 
     const paymentButton = screen.getByRole("button", {
       name: /payment setup pending/i,
@@ -196,9 +205,9 @@ describe("SubscriptionPlansPage payments", () => {
     renderPage();
 
     expect(
-      await screen.findByRole("button", { name: /choose standard/i })
+      await screen.findByRole("button", { name: /choose premium/i })
     ).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: /choose standard/i }));
+    fireEvent.click(screen.getByRole("button", { name: /choose premium/i }));
     fireEvent.click(screen.getByRole("button", { name: /pay with upi/i }));
 
     await waitFor(() => {
@@ -349,6 +358,55 @@ describe("SubscriptionPlansPage — non-array included/notIncluded regression", 
 
     const matches2 = await screen.findAllByText(/Premium/i);
     expect(matches2.length).toBeGreaterThan(0);
+  });
+
+  test("does not crash when plan_order references a key missing from plans", async () => {
+    /**
+     * Reproduces a production crash: "Cannot read properties of undefined
+     * (reading 'key')" at the plan grid's planOrder.map(). plan_order can
+     * list a key that isn't (or is no longer) present in `plans` — the old
+     * filter (`loadedPlans[planKey]?.isPublic !== false`) let missing keys
+     * through because optional chaining on a missing entry evaluates to
+     * `undefined`, which is `!== false`. The page must render the plans it
+     * does have and simply skip the stray key, not crash to a blank screen.
+     */
+    const { getParentSubscriptionPlans } = await import("../api/parentDashboard");
+    getParentSubscriptionPlans.mockResolvedValueOnce({
+      success: true,
+      persisted: true,
+      source: "database",
+      plans: {
+        starter: {
+          key: "starter",
+          label: "Premium",
+          short_label: "Premium",
+          price: 299,
+          billing_label: "month",
+          is_public: true,
+          display_order: 1,
+          access_cbse: true,
+          included: [],
+          not_included: [],
+          comparison: {},
+        },
+      },
+      // "family_premium" has no matching entry in `plans` above
+      plan_order: ["starter", "family_premium"],
+      contact: {},
+    });
+
+    render(
+      <SubscriptionPlansPage
+        user={{
+          role: "parent",
+          email: "parent@example.com",
+          username: "Parent User",
+        }}
+      />
+    );
+
+    const matches = await screen.findAllByText(/Premium/i);
+    expect(matches.length).toBeGreaterThan(0);
   });
 
   test("student role renders SubscriptionPlansPage without crash", async () => {

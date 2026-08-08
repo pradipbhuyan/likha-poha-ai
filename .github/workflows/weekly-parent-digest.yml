@@ -1,0 +1,41 @@
+##############################################################################
+# LikhaPoha AI — Weekly Parent Progress Digest
+# Emails every opted-in parent a summary of each linked child's week (mock
+# tests, weak areas, activity, plan status). Runs directly against Supabase
+# from GitHub's infrastructure, same shape as db-backup.yml.
+##############################################################################
+name: Weekly Parent Digest
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"   # Every Monday, 03:00 UTC
+  workflow_dispatch:        # allow an on-demand manual run from the Actions tab
+
+jobs:
+  digest:
+    name: "📧 Weekly Parent Digest"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run weekly digest
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_FROM_ADDRESS: ${{ secrets.EMAIL_FROM_ADDRESS }}
+          BACKEND_URL: ${{ secrets.BACKEND_URL }}
+        run: python -m app.services.weekly_digest_service

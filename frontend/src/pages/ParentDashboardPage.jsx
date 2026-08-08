@@ -9,6 +9,7 @@ import ParentHeroSummary from "../components/parent/ParentHeroSummary";
 import ParentChildStatusCard from "../components/parent/ParentChildStatusCard";
 import ParentActionPlan from "../components/parent/ParentActionPlan";
 import ParentChildWorkspace from "../components/parent/ParentChildWorkspace";
+import ParentSiblingComparison from "../components/parent/ParentSiblingComparison";
 
 // ── Design tokens (shared) ────────────────────────────────────────────────────
 var inp={padding:"8px 12px",borderRadius:8,border:"1px solid var(--border,#e5e7eb)",fontFamily:"inherit",fontSize:".85rem",background:"var(--surface2,#f8fafc)",color:"var(--text,#1e293b)",width:"100%"};
@@ -76,7 +77,7 @@ function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
   // Credentials panel shown after successful creation
   if(creds){
     return(
-      <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.4)",zIndex:400,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
+      <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.4)",zIndex:600,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
         <div ref={credsPanelRef} role="dialog" aria-modal="true" aria-label="Child account created" style={{background:"var(--panel,#fff)",border:"1px solid #86efac",borderRadius:14,padding:"16px 18px",width:"100%",maxWidth:420,boxShadow:"0 8px 32px rgba(0,0,0,.2)"}}>
           <div style={{fontWeight:800,fontSize:"1rem",color:"#166534",marginBottom:4}}>Child account created</div>
           <div style={{fontSize:".78rem",color:"#64748b",marginBottom:14}}>
@@ -132,7 +133,7 @@ function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
   }
 
   return(
-    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.4)",zIndex:400,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
+    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.4)",zIndex:600,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
       <div ref={formPanelRef} role="dialog" aria-modal="true" aria-label="Add Child" style={{background:"var(--panel,#fff)",border:"1px solid var(--border,#e5e7eb)",borderRadius:14,padding:"16px 18px",width:"100%",maxWidth:420,maxHeight:"90vh",overflowY:"auto",boxShadow:"0 8px 32px rgba(0,0,0,.2)"}}>
         <div style={{display:"flex",justifyContent:"space-between",marginBottom:14}}>
           <h4 style={{margin:0}}>➕ Add Child</h4>
@@ -324,6 +325,13 @@ export default function ParentDashboardPage({ user, setActivePage }){
               <button onClick={goUpgrade} style={{background:"none",border:"none",color:"#6366f1",cursor:"pointer",fontFamily:"inherit",fontWeight:600,fontSize:".78rem"}}>Upgrade to Family Premium</button> for a second child.
             </div>
           )}
+        </div>
+      )}
+
+      {/* Sibling comparison */}
+      {children.length>=2&&(
+        <div style={{marginBottom:20}}>
+          <ParentSiblingComparison children={children} onOpenChild={function(c){setSelected(c);}}/>
         </div>
       )}
 

@@ -913,3 +913,118 @@ def send_upgrade_email(
         text=text,
     )
     _log.info("email_service.upgrade_queued", to=to, plan_name=plan_name)
+
+
+# ── Weekly parent digest ──────────────────────────────────────────────────────
+
+def _build_weekly_digest_email(
+    parent_name: str,
+    children: list[dict],
+    unsubscribe_url: str,
+) -> tuple[str, str, str]:
+    """
+    Build (subject, html, text) for the weekly parent digest.
+
+    children: [{name, grade, mock_tests_count, avg_score (float|None),
+                weak_areas (list[str]), activity_count, plan_name,
+                plan_status_label, has_full_access}, ...]
+    """
+    first_name = (parent_name or "there").split()[0]
+
+    def _child_block(c: dict) -> str:
+        score_line = (
+            f"{c['avg_score']}% average" if c.get("avg_score") is not None
+            else "no mock tests this week"
+        )
+        weak = c.get("weak_areas") or []
+        weak_line = (
+            f"<p style=\"margin:6px 0 0;font-size:13px;color:#b91c1c\">"
+            f"Needs practice: {', '.join(weak[:3])}</p>"
+            if weak else ""
+        )
+        plan_color = "#166534" if c.get("has_full_access") else "#dc2626"
+        return f"""
+<div style="border:1px solid #e5e7eb;border-radius:10px;padding:14px 18px;margin-bottom:12px">
+  <p style="margin:0 0 4px;font-size:16px;font-weight:800">{c.get('name','Child')}
+    <span style="font-weight:500;color:#64748b;font-size:13px">&middot; {c.get('grade','')}</span>
+  </p>
+  <p style="margin:0;font-size:13px;color:{plan_color};font-weight:700">{c.get('plan_status_label','')}</p>
+  <p style="margin:8px 0 0;font-size:14px;color:#374151">
+    {c.get('mock_tests_count',0)} mock test(s) this week &middot; {score_line}
+    &middot; {c.get('activity_count',0)} AI activity session(s)
+  </p>
+  {weak_line}
+</div>"""
+
+    children_html = "".join(_child_block(c) for c in children)
+
+    body = f"""
+<p style="margin:0 0 20px;font-size:24px;font-weight:900;letter-spacing:-0.02em">
+  This week's progress, {first_name} 👋
+</p>
+<p style="margin:0 0 20px;font-size:14px;color:#475569">
+  Here's how your {"children are" if len(children) > 1 else "child is"} doing this week:
+</p>
+{children_html}
+<p style="margin:20px 0 0;font-size:12px;color:#94a3b8">
+  <a href="{unsubscribe_url}" style="color:#94a3b8">Unsubscribe from weekly emails</a>
+</p>
+"""
+
+    html = _email_shell(
+        body_html=body,
+        cta_url=_FRONTEND_URL,
+        cta_label="View Full Dashboard →",
+    )
+
+    def _child_text(c: dict) -> str:
+        score = f"{c['avg_score']}% average" if c.get("avg_score") is not None else "no mock tests this week"
+        lines = [
+            f"- {c.get('name','Child')} ({c.get('grade','')}): {c.get('plan_status_label','')}",
+            f"  {c.get('mock_tests_count',0)} mock test(s), {score}, "
+            f"{c.get('activity_count',0)} AI activity session(s)",
+        ]
+        if c.get("weak_areas"):
+            lines.append(f"  Needs practice: {', '.join(c['weak_areas'][:3])}")
+        return "\n".join(lines)
+
+    text = (
+        f"This week's progress, {first_name}\n\n"
+        + "\n\n".join(_child_text(c) for c in children)
+        + f"\n\nView your full dashboard at {_FRONTEND_URL}\n"
+        + f"Unsubscribe: {unsubscribe_url}\n"
+    )
+
+    subject = "Your weekly progress digest 📊" if len(children) > 1 else f"{children[0].get('name','Your child')}'s weekly progress 📊"
+    return subject, html, text
+
+
+def send_weekly_digest_email(
+    to: str,
+    parent_name: str,
+    children: list[dict],
+    unsubscribe_url: str,
+    blocking: bool = False,
+) -> bool | None:
+    """
+    Send the weekly parent progress digest.
+
+    blocking=True is required for callers whose process exits right after
+    calling this (e.g. the weekly digest cron job) — _send_async's daemon
+    thread would otherwise be killed before it finishes sending. Returns the
+    send result (True/False) when blocking, else None (fire-and-forget).
+    """
+    if not to or not children:
+        return False if blocking else None
+
+    subject, html, text = _build_weekly_digest_email(parent_name, children, unsubscribe_url)
+
+    if blocking:
+        result = _send(to, subject, html, text)
+        _log.info("email_service.digest_sent" if result else "email_service.digest_failed",
+                   to=to, children=len(children))
+        return result
+
+    _send_async(to=to, subject=subject, html=html, text=text)
+    _log.info("email_service.digest_queued", to=to, children=len(children))
+    return None

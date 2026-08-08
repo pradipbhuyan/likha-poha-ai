@@ -16,6 +16,14 @@ import ParentAccessExplanation from "./ParentAccessExplanation";
 import ParentProgressStory from "./ParentProgressStory";
 import ParentNotificationGroups from "./ParentNotificationGroups";
 
+// Lazy-loaded on click — jsPDF + jspdf-autotable + the embedded Devanagari
+// font add ~250KB and have no reason to be in every parent's initial bundle.
+function downloadProgressReportPdf(report){
+  import("../../utils/progressReportPdf").then(function(mod){
+    mod.generateProgressReportPdf(report);
+  });
+}
+
 // ── Design tokens ─────────────────────────────────────────────────────────────
 var btn1={padding:"7px 14px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".8rem",fontWeight:700,cursor:"pointer"};
 var card={background:"var(--panel,#fff)",border:"1px solid var(--border,#e5e7eb)",borderRadius:12,padding:"14px 16px",marginBottom:12};
@@ -263,7 +271,11 @@ function ReportSection({report, loading}){
     <div data-testid="workspace-section-report">
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
         <div style={{fontWeight:700,fontSize:".88rem"}}>Progress Report</div>
-        <button onClick={function(){window.print();}} style={{...btn1,padding:"5px 14px",fontSize:".75rem"}}>🖨️ Print</button>
+        <div style={{display:"flex",gap:8}}>
+          <button onClick={function(){window.print();}} style={{...btn1,padding:"5px 14px",fontSize:".75rem"}}>🖨️ Print</button>
+          <button data-testid="download-pdf-btn" onClick={function(){downloadProgressReportPdf(report);}}
+            style={{...btn1,padding:"5px 14px",fontSize:".75rem",background:"#0ea5e9"}}>⬇️ Download PDF</button>
+        </div>
       </div>
       <div style={{fontSize:".7rem",color:"#94a3b8",marginBottom:10}}>Generated: {report.generated_at?new Date(report.generated_at).toLocaleString():""}</div>
       {/* Child info */}
@@ -451,7 +463,7 @@ export default function ParentChildWorkspace({child, onClose, onUpgrade}){
   return(
     <div ref={panelRef} data-testid="parent-child-workspace" role="dialog" aria-modal="true"
       aria-label={"Learning workspace for "+(child?.name||"student")}
-      style={{position:"fixed",top:0,right:0,width:Math.min(640,window.innerWidth),height:"100vh",background:"var(--panel,#fff)",boxShadow:"-4px 0 32px rgba(0,0,0,.15)",zIndex:300,display:"flex",flexDirection:"column",overflowY:"hidden",overflowX:"clip"}}>
+      style={{position:"fixed",top:0,right:0,width:Math.min(640,window.innerWidth),height:"100vh",background:"var(--panel,#fff)",boxShadow:"-4px 0 32px rgba(0,0,0,.15)",zIndex:600,display:"flex",flexDirection:"column",overflowY:"hidden",overflowX:"clip"}}>
 
       {/* Header */}
       <div style={{padding:"14px 16px 0",borderBottom:"1px solid var(--border,#e5e7eb)",flexShrink:0}}>

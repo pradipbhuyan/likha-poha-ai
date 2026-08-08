@@ -141,6 +141,11 @@ describe("ParentDashboardPage Phase 3", () => {
     expect(cards.length).toBe(2);
   });
 
+  test("renders sibling comparison when family has 2 children", async () => {
+    render(<ParentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    expect(await screen.findByTestId("parent-sibling-comparison")).toBeInTheDocument();
+  });
+
   test("Free Tier child card shows Restricted Access", async () => {
     render(<ParentDashboardPage user={USER} setActivePage={vi.fn()} />);
     await screen.findByTestId("parent-children-list");

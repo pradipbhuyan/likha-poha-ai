@@ -30,6 +30,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 from app.services.auth_service import require_parent, get_current_user, create_auth_user, invite_parent_by_email, admin_client
@@ -50,6 +51,7 @@ from app.services.subscription_settings_service import (
     list_subscription_plan_settings,
 )
 from app.services.board_service import normalize_board
+from app.services.audit_log_service import write_audit_event
 
 _log = logging.getLogger("likhapoha.parent")
 
@@ -1772,3 +1774,37 @@ def mark_all_notifications_read(parent=Depends(require_parent)):
         return {"success": False, "error": "Could not update notifications."}
 
     return {"success": True, "updated": len(rows)}
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# GET /api/parent/digest/unsubscribe
+# ─────────────────────────────────────────────────────────────────────────────
+
+_UNSUBSCRIBE_HTML = """<!doctype html>
+<html><body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+text-align:center;padding:60px 20px;color:#1e293b">
+<h2>You're unsubscribed</h2>
+<p style="color:#64748b">You will no longer receive the weekly progress digest email.
+You can still see your child's progress any time by signing in to your dashboard.</p>
+</body></html>"""
+
+
+@router_parent.get("/digest/unsubscribe", response_class=HTMLResponse)
+def unsubscribe_email_digest(parent_id: str):
+    """
+    Unauthenticated by design — this is a one-click link opened from an email,
+    where the parent may not have an active session. The parent's UUID doubles
+    as the token (unguessable, and misuse only toggles a notification
+    preference — not a data exposure). Always returns the same confirmation
+    regardless of whether parent_id matched a row, so the response itself
+    can't be used to probe which ids exist.
+    """
+    try:
+        admin_client.table("profiles").update(
+            {"email_digest_opt_out": True}
+        ).eq("id", parent_id).eq("role", "parent").execute()
+        write_audit_event(event_type="parent.email_digest_opt_out", target_user_id=parent_id)
+    except Exception as exc:
+        _log.warning("digest_unsubscribe_failed parent_id=%s error=%s", parent_id, exc)
+
+    return _UNSUBSCRIBE_HTML

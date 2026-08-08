@@ -2,11 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "../api/supabaseClient";
 import { redeemOfferCode } from "../api/adminControl";
 import {
-  Check,
   CreditCard,
   Mail,
   MessageCircle,
-  Minus,
   Phone,
   ShieldCheck,
   Sparkles,
@@ -614,7 +612,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
         const loadedChildren = childrenResult.children || [];
         const loadedPlans = mergeSubscriptionPlans(planResult.plans || {});
         const loadedPlanOrder = (planResult.plan_order || []).filter(
-          (planKey) => loadedPlans[planKey]?.isPublic !== false
+          (planKey) => loadedPlans[planKey] && loadedPlans[planKey].isPublic !== false
         );
         const loadedContact = {
           ...DEFAULT_SUBSCRIPTION_CONTACT,
@@ -650,7 +648,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
         .then((planResult) => {
           const loadedPlans = mergeSubscriptionPlans(planResult.plans || {});
           const loadedPlanOrder = (planResult.plan_order || []).filter(
-            (planKey) => loadedPlans[planKey]?.isPublic !== false
+            (planKey) => loadedPlans[planKey] && loadedPlans[planKey].isPublic !== false
           );
           const loadedContact = {
             ...DEFAULT_SUBSCRIPTION_CONTACT,
@@ -1006,80 +1004,10 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
       {message && <div className="info-box">{message}</div>}
       {error && <div className="error-box">{error}</div>}
 
-      <section className="subscription-plan-grid">
-        {planOrder.map((planKey) => {
-          const plan = plans[planKey];
-          const isActive = activePlan.key === plan.key;
-          const isSelected = selectedPlanKey === plan.key;
-          const displayPrice = getPlanDisplayPrice(plan);
-          const hasDiscount = Number(plan.discountPercent || 0) > 0;
-
-          return (
-            <article
-              key={plan.key}
-              className={[
-                "subscription-plan-card",
-                plan.recommended ? "recommended" : "",
-                isSelected ? "selected" : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-            >
-              <div className="subscription-plan-topline">
-                <div>
-                  <h3>{plan.label}</h3>
-                  <p>{plan.audience}</p>
-                </div>
-
-                {(plan.badge || isActive) && (
-                  <span className={isActive ? "plan-badge active" : "plan-badge"}>
-                    {isActive ? "Current" : plan.badge}
-                  </span>
-                )}
-              </div>
-
-              <div className="subscription-price-row">
-                <strong>{formatPlanPrice(displayPrice)}</strong>
-                <span>/ {plan.billingLabel}</span>
-              </div>
-
-              {hasDiscount && (
-                <div className="subscription-discount-row">
-                  <span>{formatPlanPrice(plan.price)}</span>
-                  <strong>
-                    {plan.discountLabel ||
-                      `${plan.discountPercent}% off active`}
-                  </strong>
-                </div>
-              )}
-
-              <ul className="subscription-feature-list">
-                {(Array.isArray(plan.included) ? plan.included : []).map((feature) => (
-                  <li key={feature}>
-                    <Check size={18} strokeWidth={2.6} />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-
-                {(Array.isArray(plan.notIncluded) ? plan.notIncluded : []).map((feature) => (
-                  <li key={feature} className="muted-feature">
-                    <Minus size={18} strokeWidth={2.6} />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                className={plan.recommended ? "primary-btn" : "secondary-btn"}
-                onClick={() => handlePlanClick(plan.key)}
-              >
-                {isActive ? "Review Current Plan" : `Choose ${plan.shortLabel}`}
-              </button>
-            </article>
-          );
-        })}
-      </section>
-
+      {/* Plan comparison + selection — same NoticeboardPricingTable pattern as
+          the student view (StudentSubscriptionView above): parents pick a
+          plan directly from the comparison table's CTA row instead of a
+          separate card grid. */}
       <section className="subscription-bottom-grid">
         <div className="premium-section subscription-compare">
           <div className="subscription-section-heading">
@@ -1087,7 +1015,11 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
             <h3>Compare plans</h3>
           </div>
           <div style={{ marginTop: 12 }}>
-            <NoticeboardPricingTable theme="light" showCta={false} />
+            <NoticeboardPricingTable
+              theme="light"
+              showFreeCta={false}
+              onChoosePlan={handlePlanClick}
+            />
           </div>
         </div>
 
