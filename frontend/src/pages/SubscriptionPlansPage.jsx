@@ -966,11 +966,11 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
     <div className="premium-page subscription-page">
       <section className="subscription-hero">
         <div>
-          <p className="eyebrow">Parent Subscription</p>
+          <p className="eyebrow">Your Subscription</p>
           <h2>Choose the right plan for your family</h2>
           <p>
-            Compare CBSE access, AI limits, and parent controls
-            before activating a plan.
+            Compare plans and pay directly with UPI. Your child's
+            access is activated instantly after payment.
           </p>
         </div>
 
@@ -994,7 +994,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
           </label>
 
           <div className="subscription-current-plan">
-            <span>Current plan</span>
+            <span>Your current access</span>
             <strong>{activePlan.label}</strong>
             <small>{selectedChild?.account_status || "active"}</small>
           </div>
@@ -1008,7 +1008,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
           the student view (StudentSubscriptionView above): parents pick a
           plan directly from the comparison table's CTA row instead of a
           separate card grid. */}
-      <section className="subscription-bottom-grid">
+      <section className="subscription-bottom-grid subscription-bottom-grid--stacked">
         <div className="premium-section subscription-compare">
           <div className="subscription-section-heading">
             <ShieldCheck size={22} strokeWidth={2.4} />
@@ -1048,7 +1048,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
           )}
           <div className="subscription-section-heading">
             <CreditCard size={22} strokeWidth={2.4} />
-            <h3>Payment preview</h3>
+            <h3>Payment summary</h3>
           </div>
 
           <div className="subscription-summary-line">
@@ -1059,15 +1059,6 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
           <div className="subscription-summary-line">
             <span>Selected plan</span>
             <strong>{selectedPlan.label}</strong>
-          </div>
-
-          <div className="subscription-summary-line">
-            <span>Includes</span>
-            <strong>
-              {selectedPlan.key === "family_premium"
-                ? "2 children + CBSE + AI"
-                : "CBSE + AI"}
-            </strong>
           </div>
 
           {examPrepDiscount > 0 && (
@@ -1114,8 +1105,8 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
 
       <section className="premium-section subscription-contact-card">
         <div>
-          <p className="eyebrow">Need help?</p>
-          <h3>Contact us before choosing a plan</h3>
+          <p className="eyebrow">Questions?</p>
+          <h3>Contact us to learn more</h3>
           <p>{contact.message || DEFAULT_SUBSCRIPTION_CONTACT.message}</p>
           <small>{contact.availability || DEFAULT_SUBSCRIPTION_CONTACT.availability}</small>
         </div>
