@@ -103,6 +103,7 @@ import RefundPolicyPage from "./pages/RefundPolicyPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import SignupPage from "./pages/SignupPage";
+import TeacherSignupPage from "./pages/TeacherSignupPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 
@@ -304,7 +305,7 @@ const PAGE_META = {
   },
   teacherTestPaper: {
     title: "Create Test Paper",
-    subtitle: "Generate AI-powered MCQ and subjective test papers for any grade. Download question paper + answer key.",
+    subtitle: "Instantly download a ready-made MCQ and subjective test paper for any grade. Includes an answer key.",
     icon: "📝",
   },
   teacherStudentAnalytics: {
@@ -318,7 +319,7 @@ const PAGE_META = {
     icon: "🔬",
   },
   teacherLessonPlan: {
-    title: "Lesson Plans",
+    title: "Create Lesson Plans",
     subtitle: "Generate detailed CBSE-aligned lesson plans for any grade, subject and chapter. Download as PDF.",
     icon: "📋",
   },
@@ -849,6 +850,8 @@ function App() {
         setActivePage("adminControl");
       } else if (parsedUser.role === "parent") {
         setActivePage("parentDashboard");
+      } else if (parsedUser.role === "teacher" && parsedUser.accountStatus === "pending_verification") {
+        setActivePage("teacherPendingVerification");
       } else if (parsedUser.role === "teacher") {
         setActivePage("teacherDashboard");
       } else if (parsedUser.role === "sales") {
@@ -984,6 +987,9 @@ function App() {
     } else if (enrichedUser.role === "parent") {
       setActivePage("parentDashboard");
       localStorage.setItem("tutor_active_page", "parentDashboard");
+    } else if (enrichedUser.role === "teacher" && enrichedUser.accountStatus === "pending_verification") {
+      setActivePage("teacherPendingVerification");
+      localStorage.setItem("tutor_active_page", "teacherPendingVerification");
     } else if (enrichedUser.role === "teacher") {
       setActivePage("teacherDashboard");
       localStorage.setItem("tutor_active_page", "teacherDashboard");
@@ -1144,6 +1150,18 @@ function App() {
     return (
       <ResetPasswordPage
         onBackToLogin={handleBackToLogin}
+      />
+    );
+  }
+
+  if (routePath === "/teacher-signup") {
+    return (
+      <TeacherSignupPage
+        onBackToLogin={() => {
+          window.history.replaceState({}, "", "/");
+          setRoutePath("/");
+          setShowLanding(false);
+        }}
       />
     );
   }
@@ -1695,6 +1713,26 @@ function App() {
         return <ParentDashboardPage user={user} />;
       case "teacherDashboard":
         return <TeacherDashboardPage user={user} />;
+      case "teacherPendingVerification":
+        return (
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "70vh", padding: 24 }}>
+            <div style={{ textAlign: "center", maxWidth: 420 }}>
+              <h2 style={{ margin: "0 0 8px", fontSize: "1.2rem", fontWeight: 800 }}>Account pending verification</h2>
+              <p style={{ color: "var(--text-muted,#64748b)", fontSize: ".9rem", lineHeight: 1.5 }}>
+                Thanks for signing up, {user?.username || "there"}! Our team is
+                reviewing your school details. You'll get an email once your
+                teacher dashboard is unlocked.
+              </p>
+              <button
+                type="button"
+                onClick={handleLogout}
+                style={{ marginTop: 16, padding: "9px 20px", borderRadius: 9, fontWeight: 700, background: "#6366f1", color: "#fff", border: "none", cursor: "pointer" }}
+              >
+                Log out
+              </button>
+            </div>
+          </div>
+        );
       case "teacherLessonPlan":
         return <TeacherLessonPlanPage user={user} />;
       case "teacherTestPaper":

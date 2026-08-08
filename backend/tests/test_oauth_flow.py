@@ -532,10 +532,13 @@ class TestOAuthCompleteProfile:
 
         app.dependency_overrides.clear()
 
-    def test_existing_student_cannot_switch_to_teacher_returns_409(self, monkeypatch):
+    def test_teacher_role_rejected_outright(self, monkeypatch):
         """
-        State D: existing confirmed student tries to switch to teacher.
-        Must return 409. This enforces one role per Google account.
+        Teacher accounts are no longer obtainable via Google OAuth at all —
+        they must go through POST /api/auth/teacher-signup instead, which
+        starts them as account_status="pending_verification" pending admin
+        review. Requesting role=teacher here must 400 regardless of any
+        existing profile, before any role-conflict logic even runs.
         """
         confirmed_student = {
             "id": OAUTH_USER_ID, "email": OAUTH_EMAIL, "username": OAUTH_NAME,
@@ -569,9 +572,9 @@ class TestOAuthCompleteProfile:
                 headers={"Authorization": "Bearer fake-token"},
             )
 
-        assert resp.status_code == 409, f"Expected 409: {resp.text}"
+        assert resp.status_code == 400, f"Expected 400: {resp.text}"
         detail = resp.json().get("detail", "")
-        assert "student" in detail.lower(), f"Expected 'student' in detail: {detail}"
+        assert "teacher" in detail.lower(), f"Expected 'teacher' in detail: {detail}"
 
         app.dependency_overrides.clear()
 
@@ -582,10 +585,13 @@ class TestOAuthCompleteProfile:
         - subscription_plan = 'free'
         - subscription_expires_at = None
         Google OAuth must NOT grant paid access.
+
+        Uses role="parent" since role="teacher" is no longer accepted by this
+        endpoint (see test_teacher_role_rejected_outright).
         """
         created = {
             "id": OAUTH_USER_ID, "email": OAUTH_EMAIL, "username": OAUTH_NAME,
-            "role": "teacher", "grade": None, "board": None,
+            "role": "parent", "grade": None, "board": None,
             "parent_id": None, "family_id": None,
             "subscription_plan": "free", "account_status": "active",
             "access_cbse": False, "access_sof_science": False,
@@ -607,7 +613,7 @@ class TestOAuthCompleteProfile:
         with TestClient(app) as client:
             resp = client.post(
                 "/api/auth/oauth/complete-profile",
-                json={"role": "teacher"},
+                json={"role": "parent"},
                 headers={"Authorization": "Bearer fake-token"},
             )
 

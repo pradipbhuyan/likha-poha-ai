@@ -15,6 +15,8 @@ Endpoints:
   GET  /support/users/{uid}/audit-history               — sanitised audit events
   POST /support/students/{uid}/reset-password           — generate + set new password
   POST /support/users/{uid}/resend-welcome              — mark welcome resent (stub)
+  GET  /support/pending-teachers                        — list teacher signups awaiting review
+  POST /support/users/{uid}/verify-teacher              — approve a pending teacher account
   GET  /support/view-as/{uid}                           — read-only user context
   POST /support/log-impersonation-event                 — log impersonation events
 """
@@ -372,6 +374,60 @@ def support_resend_welcome(user_id: str, admin=Depends(require_admin)):
         "note": "If invite_sent=false, share login link manually.",
         "error": invite_error,
     }
+
+
+# ── 6b. Pending Teacher Approvals ──────────────────────────────────────────────
+
+@router.get("/support/pending-teachers")
+def support_pending_teachers(admin=Depends(require_admin)):
+    """
+    List teacher accounts awaiting verification (self-signed-up via
+    POST /api/auth/teacher-signup, account_status="pending_verification").
+    Admin-only.
+    """
+    rows, err = _safe(
+        lambda: admin_client.table("profiles")
+        .select("id, username, email, school_name, created_at")
+        .eq("role", "teacher")
+        .eq("account_status", "pending_verification")
+        .order("created_at", desc=False)
+        .execute()
+    )
+    return {"success": err is None, "teachers": rows, "count": len(rows), "error": err}
+
+
+@router.post("/support/users/{user_id}/verify-teacher")
+def support_verify_teacher(user_id: str, admin=Depends(require_admin)):
+    """
+    Approve a pending teacher account, setting account_status="active" so
+    require_teacher() lets them into the teacher dashboard. Admin-only. Audited.
+    """
+    user, err = _safe_one(
+        lambda: admin_client.table("profiles")
+        .select("id, username, email, role, account_status")
+        .eq("id", user_id)
+        .limit(1)
+        .execute()
+    )
+    if not user:
+        return {"success": False, "error": err or "User not found"}
+    if user.get("role") != "teacher":
+        return {"success": False, "error": "User is not a teacher account"}
+    if user.get("account_status") != "pending_verification":
+        return {"success": False, "error": f"Account is not pending verification (status: {user.get('account_status')})"}
+
+    admin_client.table("profiles").update({"account_status": "active"}).eq("id", user_id).execute()
+
+    write_audit_event(
+        event_type="support.verify_teacher",
+        actor_user_id=admin.get("profile", {}).get("id"),
+        target_user_id=user_id,
+        entity_type="user",
+        entity_id=user_id,
+        metadata={},
+    )
+
+    return {"success": True, "username": user.get("username"), "account_status": "active"}
 
 
 # ── 7. View-as-User context ───────────────────────────────────────────────────

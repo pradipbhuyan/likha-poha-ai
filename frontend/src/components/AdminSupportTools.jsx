@@ -6,7 +6,7 @@
  * No .json() called on already-parsed responses — uses raw fetch + .json().
  * Props: accessToken
  */
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const API = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
@@ -70,6 +70,40 @@ export default function AdminSupportTools({ accessToken }) {
 
   const [actionMsg, setActionMsg] = useState(null);
   const [resetResult, setResetResult] = useState(null);
+
+  // ── Pending teacher approvals ─────────────────────────────────────────────────
+  const [pendingTeachers, setPendingTeachers] = useState([]);
+  const [pendingState, setPendingState] = useState(S_IDLE);
+  const [pendingActioningId, setPendingActioningId] = useState(null);
+
+  const loadPendingTeachers = useCallback(async () => {
+    setPendingState(S_LOADING);
+    try {
+      const d = await apiFetch("/api/admin/support/pending-teachers", accessToken);
+      setPendingTeachers(d.teachers || []);
+      setPendingState(S_IDLE);
+    } catch {
+      setPendingState(S_ERROR);
+    }
+  }, [accessToken]);
+
+  useEffect(() => { loadPendingTeachers(); }, [loadPendingTeachers]);
+
+  async function approveTeacher(userId) {
+    setPendingActioningId(userId);
+    try {
+      const d = await apiPost(`/api/admin/support/users/${userId}/verify-teacher`, accessToken);
+      if (d.success) {
+        setPendingTeachers((prev) => prev.filter((t) => t.id !== userId));
+      } else {
+        setActionMsg(`⚠ ${d.error || "Could not verify teacher"}`);
+      }
+    } catch (e) {
+      setActionMsg(`⚠ ${e.message}`);
+    } finally {
+      setPendingActioningId(null);
+    }
+  }
 
   // ── Search ──────────────────────────────────────────────────────────────────
   async function doSearch() {
@@ -157,6 +191,42 @@ export default function AdminSupportTools({ accessToken }) {
 
   return (
     <div data-testid="admin-support-tools">
+      {/* ── Pending teacher approvals ────────────────────────────────────── */}
+      {!selected && pendingState === S_LOADING && (
+        <div style={{ color: "var(--muted,#94a3b8)", fontSize: ".8rem", marginBottom: 8 }}>
+          Checking for pending teacher signups…
+        </div>
+      )}
+      {!selected && pendingTeachers.length > 0 && (
+        <Section title={`Pending Teacher Approvals (${pendingTeachers.length})`}>
+          <div data-testid="pending-teachers-list" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {pendingTeachers.map((t) => (
+              <div key={t.id} data-testid={`pending-teacher-${t.id}`}
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  gap: 10, padding: "8px 10px", borderRadius: 7,
+                  border: "1px solid var(--border,#e5e7eb)", background: "var(--surface2,#f8fafc)",
+                }}>
+                <div style={{ fontSize: ".82rem" }}>
+                  <strong>{t.username}</strong> — {t.email}
+                  <div style={{ color: "var(--muted,#94a3b8)", fontSize: ".76rem" }}>
+                    {t.school_name || "No school provided"}
+                  </div>
+                </div>
+                <button
+                  onClick={() => approveTeacher(t.id)}
+                  disabled={pendingActioningId === t.id}
+                  data-testid={`approve-teacher-${t.id}`}
+                  className="primary-btn"
+                >
+                  {pendingActioningId === t.id ? "Approving…" : "Approve"}
+                </button>
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
       {/* ── Search bar ──────────────────────────────────────────────────── */}
       <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
         <input

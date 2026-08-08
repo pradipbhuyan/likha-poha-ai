@@ -231,12 +231,6 @@ export default function TeacherTestPaperPage({ user }) {
 
   return (
     <div className="premium-page" style={{ maxWidth: 900 }}>
-      <div className="premium-header">
-        <p className="eyebrow">Teacher Tools</p>
-        <h2>📝 Create Test Paper</h2>
-        <p>Generate a customised test paper for any grade and chapter. Download the question paper and answer key instantly.</p>
-      </div>
-
       {/* Configuration card */}
       <div className="premium-card" style={{ marginBottom: 24 }}>
         <h3 style={{ marginBottom: 16 }}>⚙️ Paper Settings</h3>

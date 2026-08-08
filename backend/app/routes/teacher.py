@@ -2,20 +2,31 @@
 Teacher Routes
 ==============
 Endpoints specific to teacher accounts:
-  POST /api/teacher/test-paper/generate  — AI-generated test paper (MCQ + subjective)
+  POST /api/teacher/test-paper/generate  — test paper (MCQ + subjective), served from pre-authored banks
   GET  /api/teacher/student-analytics    — progress across all assigned students
+
+Test Paper and Lesson Plan are both served entirely from pre-authored content
+(question_bank / subjective_question_bank / lesson_plan_bank) — no LLM call
+at request time, mirroring how Mock Test's MCQ mode works. See
+docs/GPT55_SUBJECTIVE_QUESTION_BANK_AUTHORING_PROMPT.md and
+docs/GPT55_LESSON_PLAN_AUTHORING_PROMPT.md for how that content gets authored.
 """
-import json
 import logging
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.services.auth_service import get_current_user, admin_client
-from app.services.openai_service import get_openai_client
-from app.services.model_routing_service import resolve_student_feature_model
-from app.services.rag_service import search_textbook_content
-from app.services.question_bank_service import get_questions_from_bank
+from app.services.mock_test_service import (
+    get_questions_from_bank_with_fallback,
+    get_bank_capacity_with_fallback,
+    bank_shortfall_message,
+)
+from app.services.subjective_question_bank_service import (
+    get_subjective_questions_from_bank_with_fallback,
+    get_subjective_bank_capacity_with_fallback,
+)
+from app.services.lesson_plan_bank_service import get_lesson_plan as get_lesson_plan_handout
 
 _logger = logging.getLogger("likhapoha.teacher")
 router = APIRouter()
@@ -48,70 +59,6 @@ class TestPaperRequest(BaseModel):
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
 
-_DIFFICULTY_GUIDE = {
-    "Easy":   "straightforward recall and identification questions suitable for average students",
-    "Medium": "application and understanding questions that require moderate thinking",
-    "Hard":   "analysis, evaluation and HOTS (Higher Order Thinking Skills) questions",
-    "Mixed":  "a variety covering easy (30%), medium (40%), and hard (30%) questions",
-}
-
-
-def _build_mcq_prompt(grade: str, subject: str, chapter: str, difficulty: str, count: int, context: str) -> str:
-    guide = _DIFFICULTY_GUIDE.get(difficulty, _DIFFICULTY_GUIDE["Medium"])
-    return f"""You are an experienced CBSE school teacher for {grade} creating a multiple-choice test.
-
-Chapter: {chapter}
-Subject: {subject}
-Grade: {grade}
-Difficulty: {difficulty} — {guide}
-
-{f'Reference content:{chr(10)}{context[:2000]}' if context else ''}
-
-Generate exactly {count} MCQ questions. Each must have:
-- A clear question statement
-- Exactly 4 distinct options (A, B, C, D as plain text without labels)
-- One correct answer (matching one of the options exactly)
-
-Respond ONLY with a valid JSON array:
-[
-  {{
-    "question": "...",
-    "options": ["option A text", "option B text", "option C text", "option D text"],
-    "answer": "option A text",
-    "type": "mcq"
-  }},
-  ...
-]
-No markdown, no explanation, only the JSON array."""
-
-
-def _build_subjective_prompt(grade: str, subject: str, chapter: str, difficulty: str, count: int, context: str) -> str:
-    guide = _DIFFICULTY_GUIDE.get(difficulty, _DIFFICULTY_GUIDE["Medium"])
-    return f"""You are an experienced CBSE school teacher for {grade} creating subjective questions.
-
-Chapter: {chapter}
-Subject: {subject}
-Grade: {grade}
-Difficulty: {difficulty} — {guide}
-
-{f'Reference content:{chr(10)}{context[:2000]}' if context else ''}
-
-Generate exactly {count} subjective questions. Mix short-answer (2-3 marks) and long-answer (4-5 marks) as appropriate.
-
-Respond ONLY with a valid JSON array:
-[
-  {{
-    "question": "...",
-    "answer": "A concise model answer for the teacher to reference.",
-    "marks": 3,
-    "lines": 4,
-    "type": "subjective"
-  }},
-  ...
-]
-No markdown, no explanation, only the JSON array."""
-
-
 def _bank_questions_to_test_paper_format(bank_questions: list) -> list:
     """Convert question_bank row format to the test-paper MCQ format."""
     result = []
@@ -134,27 +81,19 @@ def _bank_questions_to_test_paper_format(bank_questions: list) -> list:
     return result
 
 
-def _safe_parse_questions(raw: str, expected_type: str) -> list:
-    """Extract a JSON array from the LLM response robustly."""
-    text = raw.strip()
-    # Strip markdown code fences if present
-    if text.startswith("```"):
-        text = text.split("```")[1]
-        if text.startswith("json"):
-            text = text[4:]
-    # Find first '[' and last ']'
-    start = text.find("[")
-    end   = text.rfind("]")
-    if start == -1 or end == -1:
-        return []
-    try:
-        items = json.loads(text[start:end + 1])
-        # Ensure each item has the correct type field
-        for item in items:
-            item["type"] = expected_type
-        return items
-    except Exception:
-        return []
+def _subjective_bank_questions_to_test_paper_format(bank_questions: list) -> list:
+    """Convert subjective_question_bank row format to the test-paper subjective format."""
+    result = []
+    for q in bank_questions:
+        result.append({
+            "question": q.get("question", ""),
+            "answer":   q.get("model_answer", ""),
+            "marks":    q.get("marks", 3),
+            "lines":    max(2, (q.get("marks") or 3) + 1),
+            "type":     "subjective",
+            "source":   "question_bank",
+        })
+    return result
 
 
 # ── Routes ─────────────────────────────────────────────────────────────────────
@@ -162,7 +101,11 @@ def _safe_parse_questions(raw: str, expected_type: str) -> list:
 @router.post("/test-paper/generate")
 async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_user)):
     """
-    Generate an AI test paper for the given grade/subject/chapter.
+    Serve a CBSE test paper for the given grade/subject/chapter — entirely
+    from pre-authored banks (question_bank for MCQs, subjective_question_bank
+    for subjective questions), mirroring Mock Test's zero-LLM MCQ mode.
+    No LLM call at request time. A bank shortfall returns success:false with
+    a friendly message instead of falling back to live generation.
 
     Called by the Teacher Test Paper page. Returns structured question objects
     that the frontend formats as a printable HTML page.
@@ -172,123 +115,60 @@ async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_u
     if role not in ("teacher", "admin"):
         raise HTTPException(status_code=403, detail="Only teachers can generate test papers.")
 
-    # Use admin-configured model — honours whatever model admin has selected in Admin Control
-    ai_model = resolve_student_feature_model(profile, feature="teacher_tool")
-
     mcq_count  = min(max(int(data.mcq_count or 0), 0), 30)
     subj_count = min(max(int(data.subjective_count or 0), 0), 20)
 
     if mcq_count + subj_count == 0:
         raise HTTPException(status_code=400, detail="At least one question is required.")
 
-    # Pull RAG context to ground the questions in the textbook content
-    try:
-        rag_results = search_textbook_content(
-            query=f"{data.chapter} {data.subject} CBSE {data.grade}",
+    bank_difficulty = data.difficulty if data.difficulty != "Mixed" else "Medium"
+    questions: list = []
+
+    if mcq_count > 0:
+        bank_qs = get_questions_from_bank_with_fallback(
+            board="CBSE",
             grade=data.grade,
             subject=data.subject,
             chapter=data.chapter,
-            match_count=8,
+            difficulty=bank_difficulty,
+            num_questions=mcq_count,
         )
-        context = "\n\n".join(r.get("chunk_text", "") for r in rag_results[:5] if r.get("chunk_text"))
-    except Exception:
-        context = ""
-
-    try:
-        client = get_openai_client()
-    except Exception as exc:
-        _logger.error("OpenAI client init failed: %s", exc)
-        raise HTTPException(status_code=500, detail="AI service is not configured. Please check OPENAI_API_KEY on the server.")
-
-    questions: list = []
-    last_error: str = ""
-    bank_source_count = 0
-
-    # ── MCQ generation: question bank first → LLM for shortfall ──────────────
-    if mcq_count > 0:
-        # 1. Try the question bank — zero token cost
-        bank_difficulty = data.difficulty if data.difficulty != "Mixed" else "Medium"
-        try:
-            bank_qs = get_questions_from_bank(
-                board="CBSE",
-                grade=data.grade,
-                subject=data.subject,
-                chapter=data.chapter,
-                difficulty=bank_difficulty,
-                num_questions=mcq_count,
+        if not bank_qs:
+            available = get_bank_capacity_with_fallback(
+                "CBSE", data.grade, data.subject, data.chapter, bank_difficulty,
             )
-            bank_mcqs = _bank_questions_to_test_paper_format(bank_qs)
-            if bank_mcqs:
-                questions.extend(bank_mcqs[:mcq_count])
-                bank_source_count = len(questions)
-                _logger.info(
-                    "test-paper: served %d/%d MCQs from question_bank for %s %s %s",
-                    len(bank_mcqs), mcq_count, data.grade, data.subject, data.chapter[:40]
-                )
-        except Exception as exc:
-            _logger.warning("Question bank lookup failed: %s — falling back to LLM", exc)
+            return {
+                "success": False,
+                "message": bank_shortfall_message(available, mcq_count, data.chapter or data.subject),
+            }
+        questions.extend(_bank_questions_to_test_paper_format(bank_qs)[:mcq_count])
+        _logger.info(
+            "test-paper: served %d MCQs from question_bank for %s %s %s",
+            len(bank_qs), data.grade, data.subject, data.chapter[:40]
+        )
 
-        # 2. Fill any shortfall with LLM
-        llm_needed = mcq_count - len([q for q in questions if q.get("type") == "mcq"])
-        if llm_needed > 0:
-            try:
-                resp = client.chat.completions.create(
-                    model=ai_model,
-                    messages=[{"role": "user", "content": _build_mcq_prompt(
-                        data.grade, data.subject, data.chapter, data.difficulty, llm_needed, context
-                    )}],
-                    temperature=0.7,
-                    max_tokens=4000,
-                )
-                raw = resp.choices[0].message.content or ""
-                mcqs = _safe_parse_questions(raw, "mcq")
-                if mcqs:
-                    questions.extend(mcqs[:llm_needed])
-                else:
-                    last_error = f"MCQ LLM fallback parse failed. Model returned: {raw[:200]}"
-                    _logger.warning("MCQ LLM parse empty. Raw: %s", raw[:300])
-            except Exception as exc:
-                last_error = str(exc)
-                err_lower = last_error.lower()
-                if "429" in last_error or "rate" in err_lower or "quota" in err_lower:
-                    raise HTTPException(status_code=429, detail="AI service is busy. Please try again in a moment.")
-                _logger.error("MCQ LLM generation failed: %s", exc)
-
-    # Generate subjective questions
     if subj_count > 0:
-        try:
-            resp = client.chat.completions.create(
-                model=ai_model,
-                messages=[{"role": "user", "content": _build_subjective_prompt(
-                    data.grade, data.subject, data.chapter, data.difficulty, subj_count, context
-                )}],
-                temperature=0.7,
-                max_tokens=4000,
+        bank_subjs = get_subjective_questions_from_bank_with_fallback(
+            board="CBSE",
+            grade=data.grade,
+            subject=data.subject,
+            chapter=data.chapter,
+            difficulty=bank_difficulty,
+            num_questions=subj_count,
+        )
+        if not bank_subjs:
+            available = get_subjective_bank_capacity_with_fallback(
+                "CBSE", data.grade, data.subject, data.chapter, bank_difficulty,
             )
-            raw = resp.choices[0].message.content or ""
-            subjs = _safe_parse_questions(raw, "subjective")
-            if subjs:
-                questions.extend(subjs[:subj_count])
-            else:
-                last_error = f"Subjective parsing failed. Model returned: {raw[:200]}"
-                _logger.warning("Subjective parse empty. Raw: %s", raw[:300])
-        except Exception as exc:
-            last_error = str(exc)
-            err_lower = last_error.lower()
-            if "429" in last_error or "rate" in err_lower or "quota" in err_lower:
-                raise HTTPException(status_code=429, detail="AI service is busy. Please try again in a moment.")
-            _logger.error("Subjective generation failed: %s", exc)
-
-    if not questions:
-        detail = "Could not generate questions."
-        if last_error:
-            if "api key" in last_error.lower() or "authentication" in last_error.lower():
-                detail = "AI service is not configured. Please check the server's OPENAI_API_KEY."
-            elif "model" in last_error.lower():
-                detail = f"AI model error: {last_error[:120]}"
-            else:
-                detail = f"Generation failed: {last_error[:120]}"
-        raise HTTPException(status_code=500, detail=detail)
+            return {
+                "success": False,
+                "message": bank_shortfall_message(available, subj_count, data.chapter or data.subject),
+            }
+        questions.extend(_subjective_bank_questions_to_test_paper_format(bank_subjs)[:subj_count])
+        _logger.info(
+            "test-paper: served %d subjective questions from subjective_question_bank for %s %s %s",
+            len(bank_subjs), data.grade, data.subject, data.chapter[:40]
+        )
 
     return {
         "success": True,
@@ -307,139 +187,39 @@ class LessonPlanRequest(BaseModel):
     grade: str
     subject: str
     chapter: str
-    duration_minutes: int = 45
-
-
-_LESSON_PLAN_PROMPT = """You are an experienced CBSE school teacher creating a detailed lesson plan.
-
-Grade: {grade}
-Subject: {subject}
-Chapter/Topic: {chapter}
-Duration: {duration} minutes
-
-{context}
-
-Create a comprehensive, structured lesson plan in the following exact format (use Markdown):
-
-## 📋 Lesson Overview
-- **Topic:** {chapter}
-- **Grade:** {grade}
-- **Subject:** {subject}
-- **Duration:** {duration} minutes
-- **CBSE Unit:** (identify the unit/chapter from NCERT)
-
-## 🎯 Learning Objectives
-By the end of this lesson, students will be able to:
-1. (recall/understand level objective)
-2. (application level objective)
-3. (analysis/evaluation level objective — HOTS)
-
-## 📚 Prerequisites
-Students should already know:
-- (prerequisite 1)
-- (prerequisite 2)
-
-## 🛠️ Materials & Resources
-- NCERT Textbook {grade} {subject}
-- Blackboard / Whiteboard
-- (additional materials specific to this topic)
-
-## 📝 Lesson Plan (Step-by-Step)
-
-### 🔔 Introduction & Hook (5 minutes)
-- (attention-grabbing opening activity or question)
-- Connect to prior knowledge
-
-### 📖 Direct Instruction (15 minutes)
-- (key concept explanation step by step)
-- Include the main formula/rule/concept
-
-### 🔬 Guided Practice (10 minutes)
-- (worked example with student participation)
-- Solve one problem together on the board
-
-### 🏃 Student Activity (10 minutes)
-- (individual or pair activity)
-- Practice problems from NCERT
-
-### ✅ Assessment & Closure (5 minutes)
-- Quick oral questions to check understanding
-- Summary of key points
-- Exit ticket: (one question to assess learning)
-
-## 📘 Homework Assignment
-- NCERT Exercise: (specific exercise numbers)
-- (any additional practice)
-
-## 🎯 Differentiation Strategies
-- **For slow learners:** (simplified approach or extra support)
-- **For advanced learners:** (extension or HOTS challenge)
-
-## 📌 Common Misconceptions to Address
-1. (common student mistake 1)
-2. (common student mistake 2)
-
-## 🔗 NCERT Alignment
-- Chapter reference, Exercise numbers, Example numbers
-
-Keep it practical, concise, and classroom-ready. Use bullet points throughout."""
 
 
 @router.post("/lesson-plan/generate")
 async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current_user)):
     """
-    Generate a structured CBSE lesson plan for a teacher.
-    Returns Markdown that the frontend renders and can print as PDF.
+    Serve a pre-authored, duration-agnostic CBSE lesson-plan handout for a
+    chapter — no LLM call at request time (see lesson_plan_bank_service.py
+    and docs/GPT55_LESSON_PLAN_AUTHORING_PROMPT.md). Returns Markdown that
+    the frontend renders and can print as PDF.
+
+    If no handout has been authored yet for this chapter, returns
+    success:false with a friendly message instead of generating one live.
     """
     profile = _get_profile(user.id)
     role = profile.get("role") or ""
     if role not in ("teacher", "admin"):
         raise HTTPException(status_code=403, detail="Only teachers can generate lesson plans.")
 
-    # Use admin-configured model — honours whatever model admin has selected in Admin Control
-    ai_model = resolve_student_feature_model(profile, feature="teacher_tool")
-
-    # Pull RAG context for the chapter
-    try:
-        rag_results = search_textbook_content(
-            query=f"{data.chapter} {data.subject} CBSE {data.grade} lesson",
-            grade=data.grade,
-            subject=data.subject,
-            chapter=data.chapter,
-            match_count=6,
-        )
-        context = "\n\n".join(r.get("chunk_text", "") for r in rag_results[:4] if r.get("chunk_text"))
-        context = f"Reference textbook content:\n{context[:2000]}" if context else ""
-    except Exception:
-        context = ""
-
-    prompt = _LESSON_PLAN_PROMPT.format(
-        grade=data.grade,
-        subject=data.subject,
-        chapter=data.chapter,
-        duration=data.duration_minutes,
-        context=context,
-    )
-
-    try:
-        client = get_openai_client()
-        resp = client.chat.completions.create(
-            model=ai_model,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.6,
-            max_tokens=3000,
-        )
-        plan = resp.choices[0].message.content or ""
-    except Exception as exc:
-        _logger.error("Lesson plan generation failed: %s", exc)
-        raise HTTPException(status_code=500, detail="Could not generate lesson plan. Please try again.")
+    plan = get_lesson_plan_handout(data.grade, data.subject, data.chapter)
+    if not plan:
+        return {
+            "success": False,
+            "message": (
+                f"A lesson plan for '{data.chapter or data.subject}' is still being prepared. "
+                "Please try another chapter or check back soon."
+            ),
+        }
 
     return {
         "success": True,
         "grade": data.grade,
         "subject": data.subject,
         "chapter": data.chapter,
-        "duration_minutes": data.duration_minutes,
         "lesson_plan": plan,
     }
 

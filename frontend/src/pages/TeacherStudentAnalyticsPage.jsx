@@ -105,12 +105,6 @@ export default function TeacherStudentAnalyticsPage({ user }) {
 
   return (
     <div className="premium-page">
-      <div className="premium-header">
-        <p className="eyebrow">Teacher Tools</p>
-        <h2>📊 Student Analytics</h2>
-        <p>Track each assigned student's mock test performance, subject strengths, and areas needing attention.</p>
-      </div>
-
       {error && <div className="error-box">{error}</div>}
 
       {students.length === 0 && !error && (

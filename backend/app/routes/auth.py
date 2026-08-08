@@ -372,10 +372,15 @@ def oauth_complete_profile(
       409 → role conflict (existing confirmed role differs from requested)
     """
     role = (data.role or "").lower().strip()
+    if role == "teacher":
+        raise HTTPException(
+            status_code=400,
+            detail="Teacher accounts are not available via Google sign-in. Please use the teacher signup page.",
+        )
     if role not in VALID_SIGNUP_ROLES:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid role '{role}'. Must be one of: parent, student, teacher.",
+            detail=f"Invalid role '{role}'. Must be one of: parent, student.",
         )
 
     # ── 1. Look up existing profile by auth user id (primary) ────────────────
@@ -709,6 +714,14 @@ class FreeSignupRequest(BaseModel):
     stream: Optional[str] = None   # for Grade 11/12 students: PCM|PCB|PCMB|Commerce|Humanities
     school: Optional[str] = None   # for teachers
     password: Optional[str] = None # when provided, enables direct login without email verification
+
+
+class TeacherSignupRequest(BaseModel):
+    """Request body for the dedicated teacher self-signup path (POST /teacher-signup)."""
+    name: str
+    email: str
+    school: str
+    password: str
 
 
 def _razorpay_is_configured() -> bool:
@@ -1125,6 +1138,11 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
     from app.services.auth_service import create_auth_user  # noqa: PLC0415
 
     role = (data.role or "").lower().strip()
+    if role == "teacher":
+        raise HTTPException(
+            status_code=400,
+            detail="Teacher accounts must be created via /api/auth/teacher-signup.",
+        )
     if role not in VALID_SIGNUP_ROLES:
         raise HTTPException(status_code=400, detail="Invalid role.")
 
@@ -1286,6 +1304,105 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
         "role": role,
         "tier": "free",
         "password_set_link": password_set_link,
+    }
+
+
+@router.post("/teacher-signup")
+def teacher_signup(data: TeacherSignupRequest, _rl=Depends(rate_limit_dependency(SIGNUP_LIMITER))):
+    """
+    Dedicated self-serve signup path for teachers — separate from /signup-free.
+
+    Unlike parent/student Free Tier signup, teacher accounts created here start
+    as account_status="pending_verification". They can log in immediately, but
+    require_teacher() blocks teacher-dashboard routes until an admin approves
+    the account via POST /api/admin/support/users/{id}/verify-teacher.
+
+    This is the only self-serve path that can create a teacher account —
+    /signup-free and /oauth/complete-profile both reject role="teacher".
+    """
+    from app.services.auth_service import create_auth_user  # noqa: PLC0415
+
+    email_clean = (data.email or "").strip().lower()
+    name_clean = (data.name or "").strip()
+    school_clean = (data.school or "").strip()
+
+    if not email_clean:
+        raise HTTPException(status_code=400, detail="Email is required.")
+    if not name_clean:
+        raise HTTPException(status_code=400, detail="Name is required.")
+    if not school_clean:
+        raise HTTPException(status_code=400, detail="School is required.")
+    if not data.password or len(data.password) < 8:
+        raise HTTPException(status_code=400, detail="Password must be at least 8 characters.")
+
+    existing = (
+        admin_client
+        .table("profiles")
+        .select("id")
+        .eq("email", email_clean)
+        .limit(1)
+        .execute()
+    )
+    if existing.data:
+        raise HTTPException(
+            status_code=409,
+            detail="An account with this email already exists. Please log in instead.",
+        )
+
+    auth_user = create_auth_user(
+        email=email_clean,
+        password=data.password,
+        email_confirm=True,  # account immediately active for login
+    )
+
+    base_profile = {
+        "id": auth_user.id,
+        "email": email_clean,
+        "username": name_clean,
+        "role": "teacher",
+        "school_name": school_clean,
+        "parent_id": None,
+        "family_id": None,
+        "subscription_plan": "free",
+        # Distinct from "active" — require_teacher() blocks dashboard routes
+        # until an admin reviews the school details and approves the account.
+        "account_status": "pending_verification",
+        "access_cbse": False,
+        "daily_token_limit": 0,
+        "monthly_token_limit": 0,
+        "oauth_profile_complete": True,
+    }
+    admin_client.table("profiles").insert(base_profile).execute()
+
+    try:
+        admin_client.table("platform_audit_logs").insert({
+            "user_id": auth_user.id,
+            "event": "auth.teacher_signup_pending",
+            "metadata": {"email": email_clean, "school": school_clean},
+        }).execute()
+    except Exception:
+        pass
+
+    try:
+        from app.services.email_service import send_welcome_email  # noqa: PLC0415
+        send_welcome_email(
+            to=email_clean,
+            name=name_clean,
+            role="teacher",
+            is_paid=False,
+            plan_name="",
+        )
+    except Exception:
+        pass  # Email send must never block signup
+
+    return {
+        "success": True,
+        "message": (
+            "Account created! Our team will verify your school details before "
+            "your teacher dashboard unlocks — you can log in now to check status."
+        ),
+        "role": "teacher",
+        "account_status": "pending_verification",
     }
 
 

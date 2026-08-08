@@ -101,7 +101,7 @@ def get_user_profile(user_id: str):
     response = (
         admin_client
         .table("profiles")
-        .select("id, email, username, role, parent_id, family_id, grade, stream, cbse_subjects")
+        .select("id, email, username, role, parent_id, family_id, grade, stream, cbse_subjects, account_status")
         .eq("id", user_id)
         .single()
         .execute()
@@ -180,8 +180,11 @@ def require_teacher(user=Depends(get_current_user)):
     """
     FastAPI dependency that allows only teacher profile users.
 
-    Teacher accounts are created by admins, not public signup, and this guard
-    scopes teacher dashboard endpoints to those admin-created profiles.
+    Teachers can self-signup via POST /api/auth/teacher-signup, which sets
+    account_status="pending_verification" until an admin approves the account
+    (see POST /api/admin/support/users/{id}/verify-teacher). This guard blocks
+    every teacher-dashboard route until that approval lands, same as the
+    account_status gate already used for lesson/doubt/mock-test access.
     """
     profile = get_user_profile(user.id)
 
@@ -189,6 +192,12 @@ def require_teacher(user=Depends(get_current_user)):
         raise HTTPException(
             status_code=403,
             detail="Teacher access required",
+        )
+
+    if profile.get("account_status") not in (None, "active", "trial"):
+        raise HTTPException(
+            status_code=403,
+            detail="Teacher account pending verification",
         )
 
     return {
