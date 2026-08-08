@@ -39,6 +39,7 @@ from app.routes.parent_dashboard import (
     get_child_analytics,
     get_academic_insights,
     get_progress_report,
+    get_child_detail,
     get_notifications,
     mark_notification_read,
     mark_all_notifications_read,
@@ -106,6 +107,14 @@ class TestOwnershipEnforcement:
                             lambda p, c: None)
         with pytest.raises(HTTPException) as exc:
             get_progress_report("foreign-child", parent=PARENT)
+        assert exc.value.status_code == 403
+
+    def test_child_detail_enforces_ownership(self, monkeypatch):
+        """Parent cannot access /children/{id}/detail for an unrelated child."""
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
+                            lambda p, c: None)
+        with pytest.raises(HTTPException) as exc:
+            get_child_detail("foreign-child", parent=PARENT)
         assert exc.value.status_code == 403
 
 
@@ -356,6 +365,111 @@ class TestMarkRead:
         result = mark_all_notifications_read(parent=PARENT)
         assert result["success"] is True
         assert result["updated"] == 0
+
+
+# ── 7b. get_notifications — filter fallback regression + pagination ──────────
+
+class TestNotificationsFilterFallbackRegression:
+    """
+    Regression: a parent who HAS persisted notifications but filters to a
+    status/type with zero matches must get an honest empty list, not the
+    rule-based generator (which could resurface already-read notifications).
+    The rule-based fallback should only trigger when the parent has NO
+    persisted notifications at all (or the table is unreachable).
+    """
+
+    def test_filter_with_zero_matches_returns_honest_empty_list(self, monkeypatch):
+        calls = {"n": 0}
+
+        def fake_safe_query(fn):
+            calls["n"] += 1
+            if calls["n"] == 1:
+                # Existence check: parent has at least one persisted notification
+                return ([{"id": "notif-1"}], None)
+            # Main filtered query / count query / unread query: no matches
+            return ([], None)
+
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query", fake_safe_query)
+        result = get_notifications(status="unread", notif_type="all", parent=PARENT)
+        assert result["source"] == "database"
+        assert result["notifications"] == []
+        assert result["total"] == 0
+
+    def test_no_persisted_notifications_falls_back_to_rule_based(self, monkeypatch):
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
+                            lambda fn: ([], None))
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
+                            lambda uid: _free_sub())
+        result = get_notifications(status="all", notif_type="all", parent=PARENT)
+        assert result["source"] == "rule_based"
+
+    def test_table_unavailable_falls_back_to_rule_based(self, monkeypatch):
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
+                            lambda fn: ([], "relation does not exist"))
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
+                            lambda uid: _free_sub())
+        result = get_notifications(status="all", notif_type="all", parent=PARENT)
+        assert result["source"] == "rule_based"
+
+    def test_pagination_params_echoed_in_response(self, monkeypatch):
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
+                            lambda fn: ([], None))
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
+                            lambda uid: _free_sub())
+        result = get_notifications(status="all", notif_type="all", limit=5, offset=10, parent=PARENT)
+        assert result["limit"] == 5
+        assert result["offset"] == 10
+
+    def test_limit_is_clamped_to_max_100(self, monkeypatch):
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
+                            lambda fn: ([], None))
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
+                            lambda uid: _free_sub())
+        result = get_notifications(status="all", notif_type="all", limit=9999, offset=0, parent=PARENT)
+        assert result["limit"] == 100
+
+
+# ── 7c. get_child_detail — ownership + real-error visibility ─────────────────
+
+class TestChildDetailDataWarnings:
+    """
+    Regression: _safe_query silently returns [] on both "table empty" and
+    "query errored" — get_child_detail must surface real errors via
+    data_warnings instead of letting them look like an empty section.
+    """
+
+    def _mock_common(self, monkeypatch):
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
+                            lambda p, c: CHILD)
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
+                            lambda uid: _free_sub())
+        monkeypatch.setattr("app.routes.parent_dashboard.get_feature_summary",
+                            lambda uid: {"features": {}})
+
+    def test_no_warnings_when_all_queries_succeed(self, monkeypatch):
+        self._mock_common(monkeypatch)
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
+                            lambda fn: ([], None))
+        result = get_child_detail("child-1", parent=PARENT)
+        assert result["success"] is True
+        assert result["data_warnings"] == []
+
+    def test_warning_surfaced_when_a_query_errors(self, monkeypatch):
+        self._mock_common(monkeypatch)
+        state = {"n": 0}
+
+        def flaky_safe_query(fn):
+            state["n"] += 1
+            if state["n"] == 1:
+                # First call inside get_child_detail is the activity query
+                return ([], "connection reset")
+            return ([], None)
+
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query", flaky_safe_query)
+        result = get_child_detail("child-1", parent=PARENT)
+        assert result["success"] is True
+        assert len(result["data_warnings"]) == 1
+        assert "activity" in result["data_warnings"][0].lower()
 
 
 # ── 8. Notification metadata sanitization ────────────────────────────────────

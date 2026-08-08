@@ -691,7 +691,49 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
         _child_filter = _child_filter.eq("family_id", _family_id).neq("role", "parent")
     else:
         _child_filter = _child_filter.eq("parent_id", parent_id)
-    children_rows, _ = _safe_query(lambda: _child_filter.execute())
+    children_rows, children_err = _safe_query(lambda: _child_filter.execute())
+
+    data_warnings = []
+    if children_err:
+        data_warnings.append("Some family data could not be loaded. Pull to refresh, or try again shortly.")
+
+    # Batch-fetch activity + mock-test rows for ALL children up front (2 queries
+    # total) instead of issuing 2 extra queries per child in the loop below —
+    # avoids an N+1 pattern once families can have more than 1-2 children.
+    usernames = [c.get("username", "") for c in children_rows if c.get("username")]
+    thirty_days_ago = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
+
+    activity_all, test_all = [], []
+    if usernames:
+        activity_all, activity_err = _safe_query(
+            lambda: admin_client.table("ai_usage_logs")
+            .select("username, created_at, feature")
+            .in_("username", usernames)
+            .gte("created_at", thirty_days_ago)
+            .order("created_at", desc=True)
+            .limit(200)
+            .execute()
+        )
+        if activity_err:
+            data_warnings.append("Recent activity data could not be loaded.")
+
+        test_all, test_err = _safe_query(
+            lambda: admin_client.table("test_history")
+            .select("username, percentage, raw_score, max_score, subject, chapter, created_at")
+            .in_("username", usernames)
+            .order("created_at", desc=True)
+            .limit(200)
+            .execute()
+        )
+        if test_err:
+            data_warnings.append("Mock test data could not be loaded.")
+
+    activity_by_user: dict = {}
+    for r in activity_all:
+        activity_by_user.setdefault(r.get("username"), []).append(r)
+    test_by_user: dict = {}
+    for r in test_all:
+        test_by_user.setdefault(r.get("username"), []).append(r)
 
     children_summary = []
     all_notifications = []
@@ -714,30 +756,13 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
         features = feat_summary.get("features", {})
         feature_badges = _build_feature_badges(features)
 
-        # Last active from ai_usage_logs
-        now_iso = datetime.now(timezone.utc).isoformat()
-        thirty_days_ago = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
-        activity_rows, _ = _safe_query(
-            lambda: admin_client.table("ai_usage_logs")
-            .select("created_at, feature")
-            .eq("username", child_username)
-            .gte("created_at", thirty_days_ago)
-            .order("created_at", desc=True)
-            .limit(5)
-            .execute()
-        )
+        # Last active from ai_usage_logs (already batch-fetched above)
+        activity_rows = activity_by_user.get(child_username, [])[:5]
         last_active = activity_rows[0]["created_at"] if activity_rows else None
         recent_activity = [{"feature": r.get("feature"), "at": r.get("created_at")} for r in activity_rows[:3]]
 
-        # Mock test summary from test_history
-        test_rows, _ = _safe_query(
-            lambda: admin_client.table("test_history")
-            .select("percentage, raw_score, max_score, subject, chapter, created_at")
-            .eq("username", child_username)
-            .order("created_at", desc=True)
-            .limit(10)
-            .execute()
-        )
+        # Mock test summary from test_history (already batch-fetched above)
+        test_rows = test_by_user.get(child_username, [])[:10]
         mock_count = len(test_rows)
         scores = [s for s in (_normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score")) for r in test_rows) if s is not None]
         avg_score = round(sum(scores) / len(scores), 1) if scores else None
@@ -814,6 +839,7 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
         "can_add_child": len(children_summary) < (child_limit if child_limit is not None else 999),
         "children": children_summary,
         "notifications": all_notifications,
+        "data_warnings": data_warnings,
     }
 
 
@@ -855,9 +881,15 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
     )
     plan_display["expiry_warning"] = child_expiry_warning
 
+    # Track real query failures separately from "no data yet" — a failed
+    # _safe_query silently returns [] just like an empty table would, so we
+    # collect the actual error strings here and surface them as data_warnings
+    # instead of letting them look identical to a legitimately empty section.
+    data_warnings = []
+
     # Activity
     thirty_days_ago = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
-    activity_rows, _ = _safe_query(
+    activity_rows, activity_err = _safe_query(
         lambda: admin_client.table("ai_usage_logs")
         .select("created_at, feature")
         .eq("username", child_username)
@@ -866,6 +898,8 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
         .limit(20)
         .execute()
     )
+    if activity_err:
+        data_warnings.append("Recent activity data could not be loaded.")
     last_active = activity_rows[0]["created_at"] if activity_rows else None
     feature_counts: dict = {}
     for r in activity_rows:
@@ -873,7 +907,7 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
         feature_counts[f] = feature_counts.get(f, 0) + 1
 
     # Mock tests
-    test_rows, _ = _safe_query(
+    test_rows, test_err = _safe_query(
         lambda: admin_client.table("test_history")
         .select("percentage, raw_score, max_score, subject, chapter, created_at")
         .eq("username", child_username)
@@ -881,22 +915,26 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
         .limit(20)
         .execute()
     )
+    if test_err:
+        data_warnings.append("Mock test data could not be loaded.")
     mock_count = len(test_rows)
     scores = [s for s in (_normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score")) for r in test_rows) if s is not None]
     avg_score = round(sum(scores) / len(scores), 1) if scores else None
 
     # Progress (chapter completions)
-    progress_rows, _ = _safe_query(
+    progress_rows, progress_err = _safe_query(
         lambda: admin_client.table("student_progress")
         .select("subject, chapter, completed, current_step_index, updated_at")
         .eq("username", child_username)
         .execute()
     )
+    if progress_err:
+        data_warnings.append("Progress data could not be loaded.")
     completed_chapters = [r for r in progress_rows if r.get("completed")]
     in_progress = [r for r in progress_rows if not r.get("completed") and (r.get("current_step_index") or 0) > 0]
 
     # Weak area alerts
-    weak_rows, _ = _safe_query(
+    weak_rows, weak_err = _safe_query(
         lambda: admin_client.table("weak_area_alerts")
         .select("subject, chapter, step_title, best_score, created_at")
         .eq("username", child_username)
@@ -904,6 +942,8 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
         .limit(5)
         .execute()
     )
+    if weak_err:
+        data_warnings.append("Weak-area alerts could not be loaded.")
 
     # Recommendations
     recs = _build_recommendations(
@@ -958,6 +998,7 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
         },
         "recommendations": recs,
         "notifications": notifications,
+        "data_warnings": data_warnings,
     }
 
 
@@ -1549,6 +1590,8 @@ def _generate_rule_based_notifications(parent_id: str, children_rows: list) -> l
 def get_notifications(
     status: str = "all",
     notif_type: str = "all",
+    limit: int = 50,
+    offset: int = 0,
     parent=Depends(require_parent),
 ):
     """
@@ -1557,23 +1600,21 @@ def get_notifications(
     Parent can only access own notifications.
     """
     parent_id = parent["profile"]["id"]
+    limit = max(1, min(limit, 100))
+    offset = max(0, offset)
 
-    # Try persistent notifications table
-    query = (
-        admin_client.table("parent_notifications")
-        .select("*")
+    # Existence check (unfiltered) — lets us tell "this parent has no persisted
+    # notifications yet / table unavailable" (→ rule-based fallback) apart from
+    # "the requested filter legitimately matched zero rows" (→ honest empty list).
+    existence_rows, existence_err = _safe_query(
+        lambda: admin_client.table("parent_notifications")
+        .select("id")
         .eq("parent_id", parent_id)
-        .order("created_at", desc=True)
-        .limit(50)
+        .limit(1)
+        .execute()
     )
-    if status != "all":
-        query = query.eq("status", status)
-    if notif_type != "all":
-        query = query.eq("type", notif_type)
 
-    db_notifs, db_err = _safe_query(lambda: query.execute())
-
-    if db_err or len(db_notifs) == 0:
+    if existence_err or len(existence_rows) == 0:
         # Table doesn't exist or no persisted notifications — generate rule-based
         children_rows, _ = _safe_query(
             lambda: admin_client.table("profiles")
@@ -1590,15 +1631,59 @@ def get_notifications(
             all_notifs = [n for n in all_notifs if n.get("type") == notif_type]
 
         unread_count = sum(1 for n in all_notifs if n.get("status") == "unread")
+        total = len(all_notifs)
+        page = all_notifs[offset:offset + limit]
         return {
             "success": True,
             "source": "rule_based",
             "unread_count": unread_count,
-            "total": len(all_notifs),
-            "notifications": all_notifs,
+            "total": total,
+            "limit": limit,
+            "offset": offset,
+            "notifications": page,
         }
 
-    unread_count = sum(1 for n in db_notifs if n.get("status") == "unread")
+    # Parent has persisted notifications — apply the real (possibly filtered,
+    # possibly empty) query and return honest results, not a rule-based fallback.
+    query = (
+        admin_client.table("parent_notifications")
+        .select("*")
+        .eq("parent_id", parent_id)
+        .order("created_at", desc=True)
+    )
+    if status != "all":
+        query = query.eq("status", status)
+    if notif_type != "all":
+        query = query.eq("type", notif_type)
+    query = query.range(offset, offset + limit - 1)
+
+    db_notifs, db_err = _safe_query(lambda: query.execute())
+    if db_err:
+        raise HTTPException(status_code=503, detail="Could not load notifications right now. Please try again.")
+
+    # Total count matching the same filters (for pagination), and unread count
+    # across ALL of this parent's notifications (not just this page/filter).
+    count_query = (
+        admin_client.table("parent_notifications")
+        .select("id")
+        .eq("parent_id", parent_id)
+    )
+    if status != "all":
+        count_query = count_query.eq("status", status)
+    if notif_type != "all":
+        count_query = count_query.eq("type", notif_type)
+    count_rows, _ = _safe_query(lambda: count_query.execute())
+    total = len(count_rows)
+
+    unread_rows, _ = _safe_query(
+        lambda: admin_client.table("parent_notifications")
+        .select("id")
+        .eq("parent_id", parent_id)
+        .eq("status", "unread")
+        .execute()
+    )
+    unread_count = len(unread_rows)
+
     # Sanitize: strip raw metadata keys that could contain secrets
     safe_notifs = []
     for n in db_notifs:
@@ -1610,7 +1695,9 @@ def get_notifications(
         "success": True,
         "source": "database",
         "unread_count": unread_count,
-        "total": len(safe_notifs),
+        "total": total,
+        "limit": limit,
+        "offset": offset,
         "notifications": safe_notifs,
     }
 

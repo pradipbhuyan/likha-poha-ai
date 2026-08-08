@@ -5,7 +5,7 @@
  * Strengths & Needs, Mock Tests, Homework & Exams, Notifications,
  * Platform Access, Report
  */
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   getChildDetail,
   getChildAnalytics,
@@ -19,6 +19,20 @@ import ParentNotificationGroups from "./ParentNotificationGroups";
 // ── Design tokens ─────────────────────────────────────────────────────────────
 var btn1={padding:"7px 14px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".8rem",fontWeight:700,cursor:"pointer"};
 var card={background:"var(--panel,#fff)",border:"1px solid var(--border,#e5e7eb)",borderRadius:12,padding:"14px 16px",marginBottom:12};
+
+// ── Fetch error banner — distinct from an empty/no-data state ────────────────
+function FetchErrorBanner({message, onRetry}){
+  return(
+    <div role="alert" data-testid="workspace-fetch-error"
+      style={{background:"#fef2f2",border:"1px solid #fecaca",borderRadius:8,padding:"10px 14px",marginBottom:12,display:"flex",justifyContent:"space-between",alignItems:"center",gap:10,flexWrap:"wrap"}}>
+      <span style={{fontSize:".8rem",color:"#dc2626"}}>⚠ {message}</span>
+      <button data-testid="workspace-retry-btn" onClick={onRetry}
+        style={{padding:"4px 12px",borderRadius:6,border:"1px solid #dc2626",background:"none",color:"#dc2626",fontFamily:"inherit",fontSize:".75rem",fontWeight:700,cursor:"pointer"}}>
+        Retry
+      </button>
+    </div>
+  );
+}
 
 // ── Section tab bar ───────────────────────────────────────────────────────────
 var TABS=[
@@ -339,68 +353,104 @@ export default function ParentChildWorkspace({child, onClose, onUpgrade}){
   var [report,setReport]       = useState(null);
   var [loadingDetail,setLD]    = useState(true);
   var [loadingReport,setLR]    = useState(true);
+  var [detailError,setDetailError]       = useState(null);
+  var [analyticsError,setAnalyticsError] = useState(null);
+  var [insightsError,setInsightsError]   = useState(null);
+  var [reportError,setReportError]       = useState(null);
+
+  var closeBtnRef = useRef(null);
+  var panelRef     = useRef(null);
 
   // Load detail on mount
-  useEffect(function(){
-    if(!child?.id) return;
-    setLD(true);
+  var loadDetail = useCallback(function(){
+    if(!child?.id) return function(){};
+    setLD(true);setDetailError(null);
     var c=false;
-    try{
-      getChildDetail(child.id)
-        .then(function(d){if(!c){setDetail(d);setLD(false);}})
-        .catch(function(){if(!c)setLD(false);});
-    }catch(e){setLD(false);}
+    getChildDetail(child?.id)
+      .then(function(d){if(!c){setDetail(d);setLD(false);}})
+      .catch(function(e){if(!c){setLD(false);setDetailError((e&&e.message)||"Could not load this child's details.");}});
     return function(){c=true;};
   },[child?.id]);
 
+  useEffect(function(){return loadDetail();},[loadDetail]);
+
   // Load analytics lazily when progress/strengths tabs opened
+  var loadAnalytics = useCallback(function(){
+    if(!child?.id) return function(){};
+    setAnalyticsError(null);
+    var c=false;
+    getChildAnalytics(child?.id)
+      .then(function(d){if(!c)setAnalytics(d);})
+      .catch(function(e){if(!c)setAnalyticsError((e&&e.message)||"Could not load progress data.");});
+    return function(){c=true;};
+  },[child?.id]);
+
   useEffect(function(){
-    if(!child?.id||analytics) return;
-    if(tab==="progress"||tab==="strengths"){
-      var c=false;
-      try{
-        getChildAnalytics(child.id)
-          .then(function(d){if(!c)setAnalytics(d);})
-          .catch(function(){ /* handled */ });
-      }catch(e){/* ignore */}
-      return function(){c=true;};
-    }
-  },[tab,child?.id,analytics]);
+    if(!child?.id||analytics||analyticsError) return;
+    if(tab==="progress"||tab==="strengths") return loadAnalytics();
+  },[tab,child?.id,analytics,analyticsError,loadAnalytics]);
 
   // Load insights lazily
+  var loadInsights = useCallback(function(){
+    if(!child?.id) return function(){};
+    setInsightsError(null);
+    var c=false;
+    getChildAcademicInsights(child?.id)
+      .then(function(d){if(!c)setInsights(d);})
+      .catch(function(e){if(!c)setInsightsError((e&&e.message)||"Could not load homework and exam data.");});
+    return function(){c=true;};
+  },[child?.id]);
+
   useEffect(function(){
-    if(!child?.id||insights) return;
-    if(tab==="homework"){
-      var c=false;
-      try{
-        getChildAcademicInsights(child.id)
-          .then(function(d){if(!c)setInsights(d);})
-          .catch(function(){ /* handled */ });
-      }catch(e){/* ignore */}
-      return function(){c=true;};
-    }
-  },[tab,child?.id,insights]);
+    if(!child?.id||insights||insightsError) return;
+    if(tab==="homework") return loadInsights();
+  },[tab,child?.id,insights,insightsError,loadInsights]);
 
   // Load report lazily
+  var loadReport = useCallback(function(){
+    if(!child?.id) return function(){};
+    setLR(true);setReportError(null);
+    var c=false;
+    getChildProgressReport(child?.id)
+      .then(function(d){if(!c){setReport(d);setLR(false);}})
+      .catch(function(e){if(!c){setLR(false);setReportError((e&&e.message)||"Could not load the progress report.");}});
+    return function(){c=true;};
+  },[child?.id]);
+
   useEffect(function(){
-    if(!child?.id||report) return;
-    if(tab==="report"){
-      setLR(true);
-      var c=false;
-      try{
-        getChildProgressReport(child.id)
-          .then(function(d){if(!c){setReport(d);setLR(false);}})
-          .catch(function(){if(!c)setLR(false);});
-      }catch(e){setLR(false);}
-      return function(){c=true;};
+    if(!child?.id||report||reportError) return;
+    if(tab==="report") return loadReport();
+  },[tab,child?.id,report,reportError,loadReport]);
+
+  // Escape-to-close + basic focus trap while the drawer is open
+  useEffect(function(){
+    if(closeBtnRef.current) closeBtnRef.current.focus();
+    function onKeyDown(e){
+      if(e.key==="Escape"){onClose();return;}
+      if(e.key==="Tab"&&panelRef.current){
+        var focusable=panelRef.current.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if(!focusable.length) return;
+        var first=focusable[0], last=focusable[focusable.length-1];
+        if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+        else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+      }
     }
-  },[tab,child?.id,report]);
+    document.addEventListener("keydown",onKeyDown);
+    return function(){document.removeEventListener("keydown",onKeyDown);};
+  },[onClose]);
 
   var plan=detail?.plan||child?.plan||{};
   var allNotifs=[...(detail?.notifications||[]),...(child?.notifications||[])];
 
+  var activeError=null, retryActive=null;
+  if(tab==="overview"||tab==="plan"||tab==="mock"){activeError=detailError;retryActive=loadDetail;}
+  else if(tab==="progress"||tab==="strengths"){activeError=analyticsError;retryActive=loadAnalytics;}
+  else if(tab==="homework"){activeError=insightsError;retryActive=loadInsights;}
+  else if(tab==="report"){activeError=reportError;retryActive=loadReport;}
+
   return(
-    <div data-testid="parent-child-workspace"
+    <div ref={panelRef} data-testid="parent-child-workspace" role="dialog" aria-modal="true"
+      aria-label={"Learning workspace for "+(child?.name||"student")}
       style={{position:"fixed",top:0,right:0,width:Math.min(640,window.innerWidth),height:"100vh",background:"var(--panel,#fff)",boxShadow:"-4px 0 32px rgba(0,0,0,.15)",zIndex:300,display:"flex",flexDirection:"column",overflowY:"hidden",overflowX:"clip"}}>
 
       {/* Header */}
@@ -413,14 +463,14 @@ export default function ParentChildWorkspace({child, onClose, onUpgrade}){
               {plan.plan_name&&<span style={{marginLeft:6,fontSize:".7rem",fontWeight:600,color:plan.has_full_access?"#22c55e":"#ef4444"}}>{plan.has_full_access?"✓ "+plan.plan_name:"⊘ "+plan.plan_name}</span>}
             </div>
           </div>
-          <button onClick={onClose} style={{background:"none",border:"none",fontSize:"1.2rem",cursor:"pointer",padding:4}}>✕</button>
+          <button ref={closeBtnRef} onClick={onClose} aria-label="Close learning workspace" style={{background:"none",border:"none",fontSize:"1.2rem",cursor:"pointer",padding:4}}>✕</button>
         </div>
         {/* Tab bar — horizontal scroll with touch support */}
-        <div style={{display:"flex",gap:0,overflowX:"scroll",overflowY:"hidden",
+        <div role="tablist" aria-label="Child workspace sections" style={{display:"flex",gap:0,overflowX:"scroll",overflowY:"hidden",
           WebkitOverflowScrolling:"touch",scrollbarWidth:"thin",scrollbarColor:"#e2e8f0 transparent",
           marginLeft:-16,marginRight:-16,paddingLeft:16,paddingRight:16,paddingBottom:2}}>
           {TABS.map(function(t){return(
-            <button key={t.key} data-testid={"ws-tab-"+t.key} onClick={function(){setTab(t.key);}}
+            <button key={t.key} data-testid={"ws-tab-"+t.key} role="tab" aria-selected={tab===t.key} onClick={function(){setTab(t.key);}}
               style={{padding:"7px 12px",border:"none",background:"none",cursor:"pointer",
                 fontFamily:"inherit",fontSize:".72rem",fontWeight:tab===t.key?700:500,
                 color:tab===t.key?"#6366f1":"#64748b",
@@ -434,7 +484,13 @@ export default function ParentChildWorkspace({child, onClose, onUpgrade}){
       </div>
 
       {/* Body */}
-      <div style={{flex:1,overflowY:"auto",padding:16}}>
+      <div role="tabpanel" style={{flex:1,overflowY:"auto",padding:16}}>
+        {activeError&&<FetchErrorBanner message={activeError} onRetry={retryActive}/>}
+        {!activeError&&(detail?.data_warnings||[]).length>0&&(
+          <div role="status" data-testid="workspace-data-warning" style={{background:"rgba(245,158,11,.08)",border:"1px solid #fcd34d",borderRadius:8,padding:"8px 12px",marginBottom:12,fontSize:".76rem",color:"#92400e"}}>
+            ⚠ Some data couldn't be loaded: {detail.data_warnings.join(" ")}
+          </div>
+        )}
         {loadingDetail&&tab==="overview"&&<div style={{color:"#94a3b8",padding:8}}>Loading…</div>}
         {tab==="overview"  &&<OverviewSection child={child} detail={detail} analytics={analytics} onUpgrade={onUpgrade}/>}
         {tab==="plan"      &&<TodaysPlanSection detail={detail} onUpgrade={onUpgrade} onSectionNav={setTab}/>}

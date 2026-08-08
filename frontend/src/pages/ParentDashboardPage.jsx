@@ -3,7 +3,7 @@
  * Redesigned parent portal using extracted components.
  * Safety: parentId alone NEVER implies paid access — all feature data from backend.
  */
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { getParentDashboardSummary, createStudent } from "../api/parentDashboard";
 import ParentHeroSummary from "../components/parent/ParentHeroSummary";
 import ParentChildStatusCard from "../components/parent/ParentChildStatusCard";
@@ -21,6 +21,31 @@ var STREAMS=[
   {key:"Commerce",label:"Commerce"},
   {key:"Humanities",label:"Arts / Humanities"},
 ];
+
+// ── Modal accessibility: Escape-to-close + focus trap + initial focus ────────
+function useModalA11y(onClose){
+  var panelRef=useRef(null);
+  useEffect(function(){
+    var el=panelRef.current;
+    if(el){
+      var focusable=el.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if(focusable.length) focusable[0].focus();
+    }
+    function onKeyDown(e){
+      if(e.key==="Escape"){onClose();return;}
+      if(e.key==="Tab"&&panelRef.current){
+        var focusable=panelRef.current.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if(!focusable.length) return;
+        var first=focusable[0], last=focusable[focusable.length-1];
+        if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+        else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+      }
+    }
+    document.addEventListener("keydown",onKeyDown);
+    return function(){document.removeEventListener("keydown",onKeyDown);};
+  },[onClose]);
+  return panelRef;
+}
 
 // ── Skeleton loader ───────────────────────────────────────────────────────────
 function Skel(){
@@ -41,6 +66,8 @@ function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
   var [loading,setLoading]=useState(false);
   var [msg,setMsg]=useState(null);
   var [creds,setCreds]=useState(null); // {login_id, password, login_email}
+  var credsPanelRef=useModalA11y(function(){creds&&onAdded();onClose();});
+  var formPanelRef=useModalA11y(onClose);
 
   function copyToClipboard(text){
     navigator.clipboard&&navigator.clipboard.writeText(text).catch(function(){});
@@ -50,7 +77,7 @@ function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
   if(creds){
     return(
       <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.4)",zIndex:400,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
-        <div style={{background:"var(--panel,#fff)",border:"1px solid #86efac",borderRadius:14,padding:"16px 18px",width:"100%",maxWidth:420,boxShadow:"0 8px 32px rgba(0,0,0,.2)"}}>
+        <div ref={credsPanelRef} role="dialog" aria-modal="true" aria-label="Child account created" style={{background:"var(--panel,#fff)",border:"1px solid #86efac",borderRadius:14,padding:"16px 18px",width:"100%",maxWidth:420,boxShadow:"0 8px 32px rgba(0,0,0,.2)"}}>
           <div style={{fontWeight:800,fontSize:"1rem",color:"#166534",marginBottom:4}}>Child account created</div>
           <div style={{fontSize:".78rem",color:"#64748b",marginBottom:14}}>
             Share these credentials with your child. The password will not be shown again.
@@ -106,10 +133,10 @@ function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
 
   return(
     <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.4)",zIndex:400,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
-      <div style={{background:"var(--panel,#fff)",border:"1px solid var(--border,#e5e7eb)",borderRadius:14,padding:"16px 18px",width:"100%",maxWidth:420,maxHeight:"90vh",overflowY:"auto",boxShadow:"0 8px 32px rgba(0,0,0,.2)"}}>
+      <div ref={formPanelRef} role="dialog" aria-modal="true" aria-label="Add Child" style={{background:"var(--panel,#fff)",border:"1px solid var(--border,#e5e7eb)",borderRadius:14,padding:"16px 18px",width:"100%",maxWidth:420,maxHeight:"90vh",overflowY:"auto",boxShadow:"0 8px 32px rgba(0,0,0,.2)"}}>
         <div style={{display:"flex",justifyContent:"space-between",marginBottom:14}}>
           <h4 style={{margin:0}}>➕ Add Child</h4>
-          <button onClick={onClose} style={{background:"none",border:"none",cursor:"pointer",fontSize:"1.1rem"}}>✕</button>
+          <button onClick={onClose} aria-label="Close" style={{background:"none",border:"none",cursor:"pointer",fontSize:"1.1rem"}}>✕</button>
         </div>
         {/* If limit reached AND parent already has children: show a guide card on
             how the child logs in, with an upgrade option at the bottom.
@@ -222,6 +249,7 @@ export default function ParentDashboardPage({ user, setActivePage }){
   var parentPlan = summary?.parent_plan||{};
   var canAdd     = summary?.can_add_child!==false;
   var parentName = (user?.username||summary?.parent?.username||"").split(" ")[0];
+  var dataWarnings = summary?.data_warnings||[];
 
   return(
     <div style={{fontFamily:"inherit",maxWidth:960,margin:"0 auto",padding:"0 14px 60px"}}>
@@ -246,6 +274,13 @@ export default function ParentDashboardPage({ user, setActivePage }){
           onClose={function(){setShowAdd(false);}}
           onAdded={function(){loadSummary();flash("✅ Child added — on Free Tier with limited access.");}}
         />
+      )}
+
+      {/* Partial-data notice — some sections failed to load, distinct from a full-page error */}
+      {dataWarnings.length>0&&(
+        <div role="status" data-testid="parent-data-warning" style={{marginTop:14,background:"rgba(245,158,11,.08)",border:"1px solid #fcd34d",borderRadius:8,padding:"8px 14px",fontSize:".78rem",color:"#92400e"}}>
+          ⚠ Some information couldn't be loaded right now ({dataWarnings.join(" ")}). The rest of your dashboard is up to date.
+        </div>
       )}
 
       {/* Hero summary */}
