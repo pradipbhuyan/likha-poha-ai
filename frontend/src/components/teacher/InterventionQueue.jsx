@@ -5,6 +5,7 @@
  * Actions: View Student, Create Task, Reset Password, Email Login Details (paid), Message Parent
  */
 import { useEffect, useState } from "react";
+import { AlertTriangle, CheckCircle2 } from "lucide-react";
 import { getInterventions } from "../../api/teacherDashboard";
 
 const SEV_LABELS = {
@@ -25,10 +26,10 @@ export default function InterventionQueue({ isPaid: _isPaid, onViewStudent, onCr
   }, []);
 
   if (loading) return <div style={{ color: "#94a3b8", fontSize: ".82rem" }}>Loading interventions…</div>;
-  if (error)   return <div style={{ color: "#dc2626", fontSize: ".82rem" }}>⚠ {error}</div>;
+  if (error)   return <div style={{ color: "#dc2626", fontSize: ".82rem", display: "flex", alignItems: "center", gap: 5 }}><AlertTriangle size={14}/>{error}</div>;
   if (interventions.length === 0) return (
-    <div data-testid="intervention-queue-empty" style={{ padding: "12px 0", color: "#94a3b8", fontSize: ".85rem" }}>
-      ✅ No students need attention right now.
+    <div data-testid="intervention-queue-empty" style={{ padding: "12px 0", color: "#94a3b8", fontSize: ".85rem", display: "flex", alignItems: "center", gap: 6 }}>
+      <CheckCircle2 size={15}/>No students need attention right now.
     </div>
   );
 

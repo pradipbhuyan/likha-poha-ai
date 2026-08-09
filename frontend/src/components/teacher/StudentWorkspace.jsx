@@ -9,6 +9,11 @@
  */
 import { useCallback, useEffect, useState } from "react";
 import {
+  User, TrendingUp, ClipboardList, NotebookPen, Clock, Users, Settings,
+  X, BarChart3, Zap, KeyRound, Mail, CheckCircle2, AlertTriangle, Lock,
+  MessageCircle, Save, Trash2,
+} from "lucide-react";
+import {
   getTeacherStudentDetail,
   getStudentTimeline,
   listStudentNotes,
@@ -24,13 +29,13 @@ import {
 } from "../../api/teacherDashboard";
 
 const SECTIONS = [
-  { key: "overview",     label: "Overview",     icon: "👤" },
-  { key: "progress",     label: "Progress",     icon: "📈" },
-  { key: "assessments",  label: "Assessments",  icon: "📝" },
-  { key: "notes",        label: "Notes",        icon: "🗒️" },
-  { key: "activity",     label: "Activity",     icon: "⏱️" },
-  { key: "parent",       label: "Parent",       icon: "👨‍👩‍👧" },
-  { key: "settings",     label: "Settings",     icon: "⚙️" },
+  { key: "overview",     label: "Overview",     Icon: User },
+  { key: "progress",     label: "Progress",     Icon: TrendingUp },
+  { key: "assessments",  label: "Assessments",  Icon: ClipboardList },
+  { key: "notes",        label: "Notes",        Icon: NotebookPen },
+  { key: "activity",     label: "Activity",     Icon: Clock },
+  { key: "parent",       label: "Parent",       Icon: Users },
+  { key: "settings",     label: "Settings",     Icon: Settings },
 ];
 
 const card = { background: "var(--panel,#fff)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 10, padding: "14px 16px", marginBottom: 12 };
@@ -66,7 +71,7 @@ export default function StudentWorkspace({ student, onClose, isPaid }) {
             <h3 style={{ margin: 0, fontSize: "1rem" }} data-testid="workspace-student-name">{student.username}</h3>
             <span style={{ fontSize: ".75rem", color: "#64748b" }}>{student.grade || "—"} · {student.email || "No email"}</span>
           </div>
-          <button onClick={onClose} style={{ background: "none", border: "none", fontSize: "1.2rem", cursor: "pointer", padding: "4px 8px" }}>✕</button>
+          <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 8px", display: "flex", alignItems: "center" }}><X size={19}/></button>
         </div>
         {/* Section tabs */}
         <div style={{ display: "flex", gap: 2, overflowX: "auto", paddingBottom: 0, WebkitOverflowScrolling: "touch" }}>
@@ -81,7 +86,7 @@ export default function StudentWorkspace({ student, onClose, isPaid }) {
                 borderBottom: activeSection === s.key ? "2px solid #6366f1" : "2px solid transparent",
                 whiteSpace: "nowrap", marginBottom: -1,
               }}>
-              {s.icon} {s.label}
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}><s.Icon size={13}/>{s.label}</span>
             </button>
           ))}
         </div>
@@ -124,7 +129,7 @@ function WSOverview({ student, detail, isPaid }) {
 
   async function doEmail() {
     const d = await emailTeacherStudentCredentials(student.id).catch(e => ({ success: false, error: e.message }));
-    setMsg(d.invite_sent ? "✅ Credentials emailed." : "⚠ " + (d.error || "Could not send."));
+    setMsg(d.invite_sent ? { ok: true, text: "Credentials emailed." } : { ok: false, text: d.error || "Could not send." });
   }
 
   return (
@@ -146,7 +151,7 @@ function WSOverview({ student, detail, isPaid }) {
 
       {/* Learning stats */}
       <div style={card}>
-        <div style={{ fontWeight: 700, marginBottom: 8 }}>📊 Learning</div>
+        <div style={{ fontWeight: 700, marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}><BarChart3 size={15}/>Learning</div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           {[["Lessons", learning.lessons_generated ?? 0], ["Doubts", learning.doubts_asked ?? 0], ["Mock Tests", learning.mock_tests_completed ?? 0], ["Avg Score", learning.mock_test_avg != null ? learning.mock_test_avg + "%" : "—"]].map(([k, v]) => (
             <div key={k} style={{ background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 7, padding: "6px 10px", textAlign: "center", minWidth: 64 }}>
@@ -167,19 +172,19 @@ function WSOverview({ student, detail, isPaid }) {
 
       {/* Quick actions */}
       <div style={card}>
-        <div style={{ fontWeight: 700, marginBottom: 8 }}>⚡ Quick Actions</div>
+        <div style={{ fontWeight: 700, marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}><Zap size={15}/>Quick Actions</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          <button onClick={doReset} className="secondary-btn">🔑 Reset Password</button>
+          <button onClick={doReset} className="secondary-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><KeyRound size={14}/>Reset Password</button>
           {isPaid
-            ? <button onClick={doEmail} className="secondary-btn">📧 Email Login Details</button>
-            : <button disabled title="Upgrade to paid plan" style={{ opacity: .5, cursor: "not-allowed" }} className="secondary-btn">📧 Email Login Details (Paid only)</button>
+            ? <button onClick={doEmail} className="secondary-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Mail size={14}/>Email Login Details</button>
+            : <button disabled title="Upgrade to paid plan" style={{ opacity: .5, cursor: "not-allowed", display: "inline-flex", alignItems: "center", gap: 6 }} className="secondary-btn"><Mail size={14}/>Email Login Details (Paid only)</button>
           }
         </div>
-        {msg && <div style={{ marginTop: 6, fontSize: ".82rem", color: msg.startsWith("✅") ? "#166534" : "#dc2626" }}>{msg}</div>}
+        {msg && <div style={{ marginTop: 6, fontSize: ".82rem", color: msg.ok ? "#166534" : "#dc2626", display: "flex", alignItems: "center", gap: 5 }}>{msg.ok ? <CheckCircle2 size={14}/> : <AlertTriangle size={14}/>}{msg.text}</div>}
         {pwResult?.success && (
-          <div style={{ marginTop: 8, padding: "8px 12px", background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 7, fontSize: ".82rem" }}>
-            🔑 Temp password: <code style={{ color: "#f59e0b", fontWeight: 700 }}>{pwResult.temp_password}</code>
-            <small style={{ display: "block", color: "#64748b" }}>{pwResult.warning}</small>
+          <div style={{ marginTop: 8, padding: "8px 12px", background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 7, fontSize: ".82rem", display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
+            <KeyRound size={14}/>Temp password: <code style={{ color: "#f59e0b", fontWeight: 700 }}>{pwResult.temp_password}</code>
+            <small style={{ display: "block", color: "#64748b", width: "100%" }}>{pwResult.warning}</small>
           </div>
         )}
       </div>
@@ -195,7 +200,7 @@ function WSProgress({ detail }) {
   const hasData = learning.lessons_generated > 0 || learning.doubts_asked > 0;
   return (
     <div data-testid="ws-progress">
-      <h4 style={{ margin: "0 0 10px" }}>📈 Learning Progress</h4>
+      <h4 style={{ margin: "0 0 10px", display: "flex", alignItems: "center", gap: 6 }}><TrendingUp size={16}/>Learning Progress</h4>
       {!hasData ? <NA /> : (
         <>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
@@ -232,7 +237,7 @@ function WSAssessments({ detail }) {
   const hasTests = learning.mock_tests_completed > 0;
   return (
     <div data-testid="ws-assessments">
-      <h4 style={{ margin: "0 0 10px" }}>📝 Assessments</h4>
+      <h4 style={{ margin: "0 0 10px", display: "flex", alignItems: "center", gap: 6 }}><ClipboardList size={16}/>Assessments</h4>
       {!hasTests ? <NA /> : (
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           {[
@@ -274,31 +279,31 @@ function WSNotes({ studentId }) {
     e.preventDefault();
     if (!text.trim()) return;
     await createStudentNote(studentId, text.trim());
-    setText(""); setMsg("✅ Note added."); loadNotes();
+    setText(""); setMsg({ ok: true, text: "Note added." }); loadNotes();
   }
 
   async function doEdit(noteId) {
     await updateStudentNote(studentId, noteId, editText.trim());
-    setEditId(null); setMsg("✅ Note updated."); loadNotes();
+    setEditId(null); setMsg({ ok: true, text: "Note updated." }); loadNotes();
   }
 
   async function doDelete(noteId) {
     if (!window.confirm("Delete this note?")) return;
     await deleteStudentNote(studentId, noteId);
-    setMsg("Note deleted."); loadNotes();
+    setMsg({ ok: false, text: "Note deleted." }); loadNotes();
   }
 
   return (
     <div data-testid="ws-notes">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-        <h4 style={{ margin: 0 }}>🗒️ Private Teacher Notes</h4>
-        <span style={{ fontSize: ".7rem", background: "rgba(99,102,241,.08)", color: "#6366f1", padding: "2px 7px", borderRadius: 4, fontWeight: 600 }}>🔒 Visible to you only</span>
+        <h4 style={{ margin: 0, display: "flex", alignItems: "center", gap: 6 }}><NotebookPen size={16}/>Private Teacher Notes</h4>
+        <span style={{ fontSize: ".7rem", background: "rgba(99,102,241,.08)", color: "#6366f1", padding: "2px 7px", borderRadius: 4, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 3 }}><Lock size={11}/>Visible to you only</span>
       </div>
       <form onSubmit={doAdd} style={{ display: "flex", gap: 6, marginBottom: 12 }}>
         <input value={text} onChange={e => setText(e.target.value)} placeholder="Add a private note…" style={{ ...inp, flex: 1 }} data-testid="note-input" />
         <button type="submit" className="primary-btn" style={{ whiteSpace: "nowrap" }}>Add</button>
       </form>
-      {msg && <div style={{ marginBottom: 8, fontSize: ".82rem", color: msg.startsWith("✅") ? "#166534" : "#64748b" }}>{msg}</div>}
+      {msg && <div style={{ marginBottom: 8, fontSize: ".82rem", color: msg.ok ? "#166534" : "#64748b" }}>{msg.text}</div>}
       {loading && <div style={{ color: "#94a3b8" }}>Loading notes…</div>}
       {!loading && notes.length === 0 && <div style={{ color: "#94a3b8", fontSize: ".85rem" }}>No notes yet. Add your first note above.</div>}
       {notes.map(n => (
@@ -345,9 +350,9 @@ function WSActivity({ studentId }) {
 
   return (
     <div data-testid="ws-activity">
-      <h4 style={{ margin: "0 0 10px" }}>⏱️ Activity Timeline</h4>
+      <h4 style={{ margin: "0 0 10px", display: "flex", alignItems: "center", gap: 6 }}><Clock size={16}/>Activity Timeline</h4>
       {loading && <div style={{ color: "#94a3b8" }}>Loading timeline…</div>}
-      {error && <div style={{ color: "#dc2626", fontSize: ".82rem" }}>⚠ {error}</div>}
+      {error && <div style={{ color: "#dc2626", fontSize: ".82rem", display: "flex", alignItems: "center", gap: 5 }}><AlertTriangle size={14}/>{error}</div>}
       {!loading && !error && events.length === 0 && <div style={{ color: "#94a3b8", fontSize: ".85rem" }}>No activity recorded yet.</div>}
       <div style={{ position: "relative" }}>
         {events.map((ev, i) => (
@@ -396,7 +401,7 @@ function WSParent({ studentId, isPaid: _isPaid }) {
 
   return (
     <div data-testid="ws-parent">
-      <h4 style={{ margin: "0 0 10px" }}>👨‍👩‍👧 Parent Contact</h4>
+      <h4 style={{ margin: "0 0 10px", display: "flex", alignItems: "center", gap: 6 }}><Users size={16}/>Parent Contact</h4>
       {!parentData?.has_parent ? (
         <div style={{ ...card, color: "#64748b", fontSize: ".85rem" }}>
           No parent linked to this student.
@@ -405,12 +410,12 @@ function WSParent({ studentId, isPaid: _isPaid }) {
         <div style={card}>
           <div style={{ fontSize: ".85rem", marginBottom: 8 }}>
             <strong>{parentData.parent?.username || "Parent"}</strong>
-            <span style={{ marginLeft: 8, fontSize: ".75rem", color: "#64748b" }}>
-              {parentData.parent?.has_email ? "✓ Can be messaged" : "✗ No email address"}
+            <span style={{ marginLeft: 8, fontSize: ".75rem", color: "#64748b", display: "inline-flex", alignItems: "center", gap: 3 }}>
+              {parentData.parent?.has_email ? <><CheckCircle2 size={12}/>Can be messaged</> : <><X size={12}/>No email address</>}
             </span>
           </div>
           {parentData.parent?.has_email && (
-            <button onClick={() => setShowModal(true)} className="secondary-btn">💬 Message Parent</button>
+            <button onClick={() => setShowModal(true)} className="secondary-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><MessageCircle size={14}/>Message Parent</button>
           )}
         </div>
       )}
@@ -418,7 +423,7 @@ function WSParent({ studentId, isPaid: _isPaid }) {
       {/* Message modal */}
       {showModal && (
         <div style={{ ...card, borderColor: "#6366f1" }}>
-          <h5 style={{ margin: "0 0 8px" }}>💬 Send Message to Parent</h5>
+          <h5 style={{ margin: "0 0 8px", display: "flex", alignItems: "center", gap: 6 }}><MessageCircle size={14}/>Send Message to Parent</h5>
           <form onSubmit={doSend} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <input value={subject} onChange={e => setSubject(e.target.value)} placeholder="Subject" required style={{ ...inp }} />
             <textarea value={msgBody} onChange={e => setMsgBody(e.target.value)} placeholder="Message…" required rows={4} style={{ ...inp, resize: "vertical" }} />
@@ -428,8 +433,8 @@ function WSParent({ studentId, isPaid: _isPaid }) {
             </div>
           </form>
           {sendResult && (
-            <div style={{ marginTop: 8, fontSize: ".82rem", color: sendResult.status === "sent" ? "#166534" : "#dc2626" }}>
-              {sendResult.note || (sendResult.success ? "✅ Sent" : "⚠ Failed")}
+            <div style={{ marginTop: 8, fontSize: ".82rem", color: sendResult.status === "sent" ? "#166534" : "#dc2626", display: "flex", alignItems: "center", gap: 5 }}>
+              {sendResult.note || (sendResult.success ? <><CheckCircle2 size={14}/>Sent</> : <><AlertTriangle size={14}/>Failed</>)}
             </div>
           )}
         </div>
@@ -451,7 +456,7 @@ function WSSettings({ student, detail: _detail, isPaid, onClose }) {
   async function doSave(e) {
     e.preventDefault();
     const d = await updateTeacherStudent(student.id, form).catch(e => ({ success: false, error: e.message }));
-    setMsg(d.success ? "✅ Saved." : "⚠ " + d.error);
+    setMsg(d.success ? { ok: true, text: "Saved." } : { ok: false, text: d.error });
   }
 
   async function doReset() {
@@ -468,7 +473,7 @@ function WSSettings({ student, detail: _detail, isPaid, onClose }) {
 
   return (
     <div data-testid="ws-settings">
-      <h4 style={{ margin: "0 0 10px" }}>⚙️ Settings</h4>
+      <h4 style={{ margin: "0 0 10px", display: "flex", alignItems: "center", gap: 6 }}><Settings size={16}/>Settings</h4>
       <form onSubmit={doSave} style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
         <label>
           <span style={{ fontSize: ".78rem", fontWeight: 600 }}>Name</span>
@@ -484,23 +489,23 @@ function WSSettings({ student, detail: _detail, isPaid, onClose }) {
           <span style={{ fontSize: ".78rem", fontWeight: 600 }}>Email</span>
           <input type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} style={{ ...inp, marginTop: 2 }} />
         </label>
-        {msg && <div style={{ fontSize: ".82rem", color: msg.startsWith("✅") ? "#166534" : "#dc2626" }}>{msg}</div>}
-        <button type="submit" className="primary-btn">💾 Save Changes</button>
+        {msg && <div style={{ fontSize: ".82rem", color: msg.ok ? "#166534" : "#dc2626", display: "flex", alignItems: "center", gap: 5 }}>{msg.ok ? <CheckCircle2 size={14}/> : <AlertTriangle size={14}/>}{msg.text}</div>}
+        <button type="submit" className="primary-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Save size={14}/>Save Changes</button>
       </form>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <button onClick={doReset} className="secondary-btn">🔑 Reset Temporary Password</button>
+        <button onClick={doReset} className="secondary-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><KeyRound size={14}/>Reset Temporary Password</button>
         {isPaid
-          ? <button onClick={async () => { const d = await emailTeacherStudentCredentials(student.id).catch(() => ({ success: false })); setMsg(d.invite_sent ? "✅ Emailed." : "⚠ Failed."); }} className="secondary-btn">📧 Email Login Details</button>
-          : <button disabled title="Upgrade to paid plan" style={{ opacity: .5, cursor: "not-allowed" }} className="secondary-btn">📧 Email Login Details (Paid only)</button>
+          ? <button onClick={async () => { const d = await emailTeacherStudentCredentials(student.id).catch(() => ({ success: false })); setMsg(d.invite_sent ? { ok: true, text: "Emailed." } : { ok: false, text: "Failed." }); }} className="secondary-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Mail size={14}/>Email Login Details</button>
+          : <button disabled title="Upgrade to paid plan" style={{ opacity: .5, cursor: "not-allowed", display: "inline-flex", alignItems: "center", gap: 6 }} className="secondary-btn"><Mail size={14}/>Email Login Details (Paid only)</button>
         }
-        <button onClick={doArchive} className="danger-btn">🗑 Archive / Remove from Roster</button>
+        <button onClick={doArchive} className="danger-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Trash2 size={14}/>Archive / Remove from Roster</button>
       </div>
 
       {pwResult?.success && (
-        <div style={{ marginTop: 10, padding: "8px 12px", background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 7, fontSize: ".82rem" }}>
-          🔑 Temp password: <code style={{ color: "#f59e0b", fontWeight: 700 }}>{pwResult.temp_password}</code>
-          <small style={{ display: "block", color: "#64748b" }}>{pwResult.warning}</small>
+        <div style={{ marginTop: 10, padding: "8px 12px", background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 7, fontSize: ".82rem", display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
+          <KeyRound size={14}/>Temp password: <code style={{ color: "#f59e0b", fontWeight: 700 }}>{pwResult.temp_password}</code>
+          <small style={{ display: "block", color: "#64748b", width: "100%" }}>{pwResult.warning}</small>
         </div>
       )}
     </div>

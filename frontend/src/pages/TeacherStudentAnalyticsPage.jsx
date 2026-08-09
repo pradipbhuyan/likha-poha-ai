@@ -5,6 +5,7 @@ import {
 } from "recharts";
 import { getUserHistory } from "../api/analytics";
 import { getTeacherDashboardSummary } from "../api/teacherDashboard";
+import { GraduationCap, TrendingUp, BookOpen, History } from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
@@ -109,7 +110,7 @@ export default function TeacherStudentAnalyticsPage({ user }) {
 
       {students.length === 0 && !error && (
         <div className="premium-card" style={{ textAlign: "center", padding: 40 }}>
-          <div style={{ fontSize: "3rem", marginBottom: 12 }}>🎓</div>
+          <GraduationCap size={44} strokeWidth={1.6} style={{ marginBottom: 12, color: "var(--muted)" }} />
           <h3>No assigned students yet</h3>
           <p style={{ color: "var(--muted)" }}>Ask your admin to assign students to your account.</p>
         </div>
@@ -146,7 +147,9 @@ export default function TeacherStudentAnalyticsPage({ user }) {
           {/* Class subject overview chart */}
           {classOverview.length > 0 && (
             <div className="premium-card" style={{ marginBottom: 24 }}>
-              <h3 style={{ marginBottom: 4 }}>📈 Class Subject Performance</h3>
+              <h3 style={{ marginBottom: 4, display: "flex", alignItems: "center", gap: 7 }}>
+                <TrendingUp size={17} /> Class Subject Performance
+              </h3>
               <p style={{ color: "var(--muted)", fontSize: ".82rem", marginBottom: 14 }}>
                 Average score per subject across all your students.
               </p>
@@ -252,7 +255,9 @@ export default function TeacherStudentAnalyticsPage({ user }) {
                 {/* Score trend */}
                 {!histLoading && trendData.length > 0 && (
                   <div className="premium-card" style={{ marginBottom: 16 }}>
-                    <h4 style={{ marginBottom: 12 }}>📈 Score Trend</h4>
+                    <h4 style={{ marginBottom: 12, display: "flex", alignItems: "center", gap: 6 }}>
+                      <TrendingUp size={15} /> Score Trend
+                    </h4>
                     <ResponsiveContainer width="100%" height={200}>
                       <LineChart data={trendData}>
                         <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
@@ -268,7 +273,9 @@ export default function TeacherStudentAnalyticsPage({ user }) {
                 {/* Subject performance */}
                 {subjectPerf.length > 0 && (
                   <div className="premium-card" style={{ marginBottom: 16 }}>
-                    <h4 style={{ marginBottom: 12 }}>📚 Subject Performance</h4>
+                    <h4 style={{ marginBottom: 12, display: "flex", alignItems: "center", gap: 6 }}>
+                      <BookOpen size={15} /> Subject Performance
+                    </h4>
                     <ResponsiveContainer width="100%" height={200}>
                       <BarChart data={subjectPerf} barCategoryGap="30%" barGap={3}>
                         <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
@@ -286,7 +293,9 @@ export default function TeacherStudentAnalyticsPage({ user }) {
 
                 {/* Recent test activity */}
                 <div className="premium-card">
-                  <h4 style={{ marginBottom: 12 }}>🕘 Recent Tests</h4>
+                  <h4 style={{ marginBottom: 12, display: "flex", alignItems: "center", gap: 6 }}>
+                    <History size={15} /> Recent Tests
+                  </h4>
                   {(selected.recent_history || []).length === 0 ? (
                     <p style={{ color: "var(--muted)", fontSize: ".85rem" }}>No tests taken yet.</p>
                   ) : (

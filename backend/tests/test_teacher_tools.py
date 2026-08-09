@@ -72,7 +72,7 @@ class TestGenerateLessonPlan:
         assert resp.status_code == 200  # not an HTTP error — same convention as Mock Test
         data = resp.json()
         assert data["success"] is False
-        assert "still being prepared" in data["message"]
+        assert "No lesson plan has been created yet" in data["message"]
 
     def test_no_duration_field_in_request_or_response(self, client):
         """duration_minutes was removed — a single handout can't vary by it."""

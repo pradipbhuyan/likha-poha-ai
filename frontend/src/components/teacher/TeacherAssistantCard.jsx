@@ -4,6 +4,7 @@
  * No external AI required — derived from dashboard summary + interventions + tasks.
  */
 import { useEffect, useState } from "react";
+import { CheckCircle2, GraduationCap } from "lucide-react";
 import { getTeacherClassroomSummary, getInterventions, listTeacherTasks } from "../../api/teacherDashboard";
 
 export default function TeacherAssistantCard({ onNavigate }) {
@@ -43,7 +44,7 @@ export default function TeacherAssistantCard({ onNavigate }) {
   return (
     <div data-testid="teacher-assistant-card" style={{ background: allClear ? "linear-gradient(135deg,#f0fdf4,#dcfce7)" : "linear-gradient(135deg,#eff6ff,#dbeafe)", border: `1px solid ${allClear ? "#bbf7d0" : "#bfdbfe"}`, borderRadius: 12, padding: "14px 16px", marginBottom: 14 }}>
       <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-        <span style={{ fontSize: "1.4rem" }}>{allClear ? "✅" : "🧑‍🏫"}</span>
+        {allClear ? <CheckCircle2 size={24} color="#22c55e"/> : <GraduationCap size={24} color="#1d4ed8"/>}
         <div style={{ flex: 1 }}>
           <div style={{ fontWeight: 700, fontSize: ".9rem", marginBottom: 4 }}>
             {allClear

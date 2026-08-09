@@ -210,8 +210,8 @@ async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current
         return {
             "success": False,
             "message": (
-                f"A lesson plan for '{data.chapter or data.subject}' is still being prepared. "
-                "Please try another chapter or check back soon."
+                f"No lesson plan has been created yet for '{data.chapter or data.subject}'. "
+                "Please try another chapter."
             ),
         }
 

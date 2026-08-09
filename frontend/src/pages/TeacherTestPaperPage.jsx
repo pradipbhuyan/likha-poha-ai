@@ -1,4 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  Settings, Ban, BarChart3, Loader2, Sparkles, History, Printer,
+  KeyRound, ArrowLeft, ListChecks, ClipboardList, CheckCircle2,
+} from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
@@ -233,7 +237,9 @@ export default function TeacherTestPaperPage({ user }) {
     <div className="premium-page" style={{ maxWidth: 900 }}>
       {/* Configuration card */}
       <div className="premium-card" style={{ marginBottom: 24 }}>
-        <h3 style={{ marginBottom: 16 }}>⚙️ Paper Settings</h3>
+        <h3 style={{ marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
+          <Settings size={17} strokeWidth={2.2} /> Paper Settings
+        </h3>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 14, marginBottom: 14 }}>
           <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -293,23 +299,28 @@ export default function TeacherTestPaperPage({ user }) {
         {/* Daily limit banner for free-tier teachers */}
         {freeTeacher && (
           <div style={{ marginBottom: 10, padding: "8px 12px", borderRadius: 8, fontSize: ".82rem", fontWeight: 600,
+            display: "flex", alignItems: "center", gap: 7,
             background: testLimitReached ? "rgba(239,68,68,.08)" : "rgba(99,102,241,.07)",
             border: `1px solid ${testLimitReached ? "rgba(239,68,68,.3)" : "rgba(167,139,250,.25)"}`,
             color: testLimitReached ? "#f87171" : "#a78bfa" }}>
             {testLimitReached
-              ? `🚫 Daily limit reached (${FREE_TEACHER_DAILY_LIMIT}/${FREE_TEACHER_DAILY_LIMIT} test papers today). Upgrade for unlimited or come back tomorrow.`
-              : `📊 ${todayTestCount}/${FREE_TEACHER_DAILY_LIMIT} free test papers used today`}
+              ? <><Ban size={15} /> Daily limit reached ({FREE_TEACHER_DAILY_LIMIT}/{FREE_TEACHER_DAILY_LIMIT} test papers today). Upgrade for unlimited or come back tomorrow.</>
+              : <><BarChart3 size={15} /> {todayTestCount}/{FREE_TEACHER_DAILY_LIMIT} free test papers used today</>}
           </div>
         )}
 
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-          <button className="primary-btn" onClick={handleGenerate} disabled={generating || syllabusLoading || testLimitReached} style={{ maxWidth: 260 }}>
-            {testLimitReached ? "🚫 Daily Limit Reached" : generating ? "⏳ Generating Questions…" : "✨ Generate Test Paper"}
+          <button className="primary-btn" onClick={handleGenerate} disabled={generating || syllabusLoading || testLimitReached} style={{ maxWidth: 260, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+            {testLimitReached
+              ? <><Ban size={16} /> Daily Limit Reached</>
+              : generating
+                ? <><Loader2 size={16} className="spin" /> Generating Questions…</>
+                : <><Sparkles size={16} /> Generate Test Paper</>}
           </button>
           {history.length > 0 && (
             <button onClick={() => setHistoryOpen(h => !h)}
-              style={{ padding: "11px 18px", borderRadius: 10, border: "1.5px solid var(--border)", background: "transparent", color: "var(--muted)", fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer" }}>
-              🕘 History ({history.length})
+              style={{ padding: "11px 18px", borderRadius: 10, border: "1.5px solid var(--border)", background: "transparent", color: "var(--muted)", fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 7 }}>
+              <History size={15} /> History ({history.length})
             </button>
           )}
         </div>
@@ -318,7 +329,9 @@ export default function TeacherTestPaperPage({ user }) {
       {/* History panel */}
       {historyOpen && history.length > 0 && (
         <div className="premium-card" style={{ marginBottom: 20 }}>
-          <h4 style={{ marginBottom: 12 }}>🕘 Recently Generated Test Papers</h4>
+          <h4 style={{ marginBottom: 12, display: "flex", alignItems: "center", gap: 7 }}>
+            <History size={16} /> Recently Generated Test Papers
+          </h4>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             {history.map((h, i) => (
               <button key={i}
@@ -356,15 +369,15 @@ export default function TeacherTestPaperPage({ user }) {
         <div>
           {/* Action bar */}
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
-            <button className="primary-btn" onClick={handlePrintPaper} style={{ maxWidth: 220 }}>
-              🖨️ Download / Print Paper
+            <button className="primary-btn" onClick={handlePrintPaper} style={{ maxWidth: 220, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+              <Printer size={16} /> Download / Print Paper
             </button>
-            <button className="secondary-btn" onClick={handlePrintAnswerKey} style={{ maxWidth: 220 }}>
-              🔑 Download Answer Key
+            <button className="secondary-btn" onClick={handlePrintAnswerKey} style={{ maxWidth: 220, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+              <KeyRound size={16} /> Download Answer Key
             </button>
             <button onClick={() => { setPreviewMode(false); setQuestions([]); }}
-              style={{ background: "transparent", border: "1px solid var(--border)", borderRadius: 8, padding: "10px 16px", color: "var(--muted)", cursor: "pointer", fontFamily: "inherit", fontSize: ".85rem" }}>
-              ← New Paper
+              style={{ background: "transparent", border: "1px solid var(--border)", borderRadius: 8, padding: "10px 16px", color: "var(--muted)", cursor: "pointer", fontFamily: "inherit", fontSize: ".85rem", display: "inline-flex", alignItems: "center", gap: 6 }}>
+              <ArrowLeft size={14} /> New Paper
             </button>
           </div>
 
@@ -387,14 +400,20 @@ export default function TeacherTestPaperPage({ user }) {
           {/* MCQ section */}
           {mcqs.length > 0 && (
             <div className="premium-card" style={{ marginBottom: 18 }}>
-              <h4 style={{ marginBottom: 14, color: "#2563eb" }}>📌 Section A — Multiple Choice Questions (1 mark each)</h4>
+              <h4 style={{ marginBottom: 14, color: "#2563eb", display: "flex", alignItems: "center", gap: 7 }}>
+                <ListChecks size={17} /> Section A — Multiple Choice Questions (1 mark each)
+              </h4>
               {mcqs.map((q, i) => (
                 <div key={i} style={{ marginBottom: 18, paddingBottom: 14, borderBottom: i < mcqs.length - 1 ? "1px solid var(--border)" : "none" }}>
                   <p style={{ fontWeight: 600, marginBottom: 8 }}>Q{i + 1}. {q.question}</p>
                   <ol style={{ marginLeft: 20, marginBottom: 6 }} type="a">
                     {(q.options || []).map((opt, j) => (
                       <li key={j} style={{ marginBottom: 3, color: opt === q.answer ? "#10b981" : "inherit", fontWeight: opt === q.answer ? 700 : 400 }}>
-                        {opt} {opt === q.answer && <span style={{ fontSize: ".75rem", marginLeft: 6, color: "#10b981" }}>✓ Answer</span>}
+                        {opt} {opt === q.answer && (
+                          <span style={{ fontSize: ".75rem", marginLeft: 6, color: "#10b981", display: "inline-flex", alignItems: "center", gap: 3 }}>
+                            <CheckCircle2 size={12} /> Answer
+                          </span>
+                        )}
                       </li>
                     ))}
                   </ol>
@@ -406,7 +425,9 @@ export default function TeacherTestPaperPage({ user }) {
           {/* Subjective section */}
           {subjs.length > 0 && (
             <div className="premium-card">
-              <h4 style={{ marginBottom: 14, color: "#7c3aed" }}>📋 Section B — Short / Long Answer Questions</h4>
+              <h4 style={{ marginBottom: 14, color: "#7c3aed", display: "flex", alignItems: "center", gap: 7 }}>
+                <ClipboardList size={17} /> Section B — Short / Long Answer Questions
+              </h4>
               {subjs.map((q, i) => (
                 <div key={i} style={{ marginBottom: 20, paddingBottom: 16, borderBottom: i < subjs.length - 1 ? "1px solid var(--border)" : "none" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 8 }}>

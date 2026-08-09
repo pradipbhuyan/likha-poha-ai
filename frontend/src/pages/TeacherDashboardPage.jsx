@@ -3,7 +3,11 @@
  * Design: Notion x Linear x Google Classroom x Duolingo Teacher
  */
 import { useCallback, useEffect, useState } from "react";
-import { LayoutDashboard, GraduationCap, Building2, Mail, CheckSquare } from "lucide-react";
+import {
+  LayoutDashboard, GraduationCap, Building2, Mail, CheckSquare,
+  CheckCircle2, AlertTriangle, Undo2, Plus, X, ArrowRight, Hand,
+  BarChart3,
+} from "lucide-react";
 import {
   getTeacherClassroomSummary, listTeacherStudents,
   listTeacherInvitations, createTeacherInvitation,
@@ -72,7 +76,7 @@ function TRow({ task, onComplete, onDismiss }){
         </div>
         {task.status==="open"&&(
           <div style={{display:"flex",gap:5}}>
-            <button onClick={function(){onComplete(task.id);}} style={bsm("#22c55e")}>✓ Done</button>
+            <button onClick={function(){onComplete(task.id);}} style={{...bsm("#22c55e"),display:"inline-flex",alignItems:"center",gap:4}}><CheckSquare size={12}/>Done</button>
             <button onClick={function(){onDismiss(task.id);}} style={bsm("#94a3b8")}>Dismiss</button>
           </div>
         )}
@@ -90,11 +94,11 @@ function SCard({ student, sev, onOpen }){
           <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
             <span style={{fontWeight:700,fontSize:".87rem"}}>{student.username}</span>
             <Bdg status={student.account_status||"active"}/>
-            {sv&&<span style={{fontSize:".68rem",background:sv.bg,color:sv.text,padding:"1px 6px",borderRadius:4,fontWeight:700,border:"1px solid "+sv.border}}>{sev==="critical"?"⚠ Critical":"↩ Review"}</span>}
+            {sv&&<span style={{fontSize:".68rem",background:sv.bg,color:sv.text,padding:"1px 6px",borderRadius:4,fontWeight:700,border:"1px solid "+sv.border,display:"inline-flex",alignItems:"center",gap:3}}>{sev==="critical"?<><AlertTriangle size={11}/>Critical</>:<><Undo2 size={11}/>Review</>}</span>}
           </div>
           <div style={{fontSize:".71rem",color:"#94a3b8",marginTop:2}}>{student.grade||"—"}{student.email?" · "+student.email:""}</div>
         </div>
-        <span style={{fontSize:".75rem",color:"#6366f1",fontWeight:600,flexShrink:0}}>View →</span>
+        <span style={{fontSize:".75rem",color:"#6366f1",fontWeight:600,flexShrink:0,display:"inline-flex",alignItems:"center",gap:2}}>View<ArrowRight size={12}/></span>
       </div>
     </div>
   );
@@ -210,7 +214,7 @@ export default function TeacherDashboardPage({ user }) {
     await completeTeacherTask(id).catch(function(){});
     setTasks(function(p){return p.filter(function(t){return t.id!==id;});});
     setTaskViewData(function(p){return p.filter(function(t){return t.id!==id;});});
-    flash("✅ Task completed");
+    flash("Task completed");
   }
   async function doDismiss(id){
     if(!window.confirm("Dismiss this task?"))return;
@@ -227,28 +231,28 @@ export default function TeacherDashboardPage({ user }) {
       setTaskViewData(function(p){return[d.task,...p];});
       setNewTask({title:"",priority:"medium"});
       setShowTask(false);
-      flash("✅ Task created");
+      flash("Task created");
     }
   }
   async function doAddStudent(e){
     e.preventDefault();
     if(!addStuForm.username||!addStuForm.password){setAddStuMsg("Name and password required.");return;}
     var d=await createTeacherStudent({...addStuForm,email:addStuForm.email||undefined}).catch(function(){return{success:false};});
-    if(d&&d.success!==false){setShowAdd(false);setAddStuForm({username:"",grade:"Grade 9",password:"",email:""});loadAll();flash("✅ Student added");}
+    if(d&&d.success!==false){setShowAdd(false);setAddStuForm({username:"",grade:"Grade 9",password:"",email:""});loadAll();flash("Student added");}
     else setAddStuMsg("Failed to add student.");
   }
   async function doCreateInv(e){
     e.preventDefault();
     if(!invForm.student_name||!invForm.email){setInvMsg("Name and email required.");return;}
     var d=await createTeacherInvitation(invForm).catch(function(){return{success:false};});
-    if(d&&d.success){setInvForm({student_name:"",grade:"Grade 9",email:""});loadInvAll(invFilter);loadAll();flash("✅ Invitation sent");setInvMsg(null);}
+    if(d&&d.success){setInvForm({student_name:"",grade:"Grade 9",email:""});loadInvAll(invFilter);loadAll();flash("Invitation sent");setInvMsg(null);}
     else setInvMsg("Failed to send invitation.");
   }
   async function doCreateCls(e){
     e.preventDefault();
     if(!clsForm.name.trim()){setClsMsg("Name required.");return;}
     var d=await createTeacherClassroom(clsForm).catch(function(){return{success:false};});
-    if(d&&d.success){setClsForm({name:"",description:""});loadAll();flash("✅ Classroom created");setClsMsg(null);}
+    if(d&&d.success){setClsForm({name:"",description:""});loadAll();flash("Classroom created");setClsMsg(null);}
     else setClsMsg("Failed to create classroom.");
   }
 
@@ -294,19 +298,19 @@ return (
     <div style={{fontFamily:"inherit",maxWidth:1040,margin:"0 auto",padding:"0 14px 80px"}}>
 
       {/* Flash toast */}
-      {flashMsg&&<div style={{position:"fixed",top:16,left:"50%",transform:"translateX(-50%)",background:"#1e293b",color:"#fff",padding:"8px 20px",borderRadius:8,fontSize:".82rem",fontWeight:600,zIndex:999,boxShadow:"0 4px 24px rgba(0,0,0,.25)",whiteSpace:"nowrap"}}>{flashMsg}</div>}
+      {flashMsg&&<div style={{position:"fixed",top:16,left:"50%",transform:"translateX(-50%)",background:"#1e293b",color:"#fff",padding:"8px 20px",borderRadius:8,fontSize:".82rem",fontWeight:600,zIndex:999,boxShadow:"0 4px 24px rgba(0,0,0,.25)",whiteSpace:"nowrap",display:"flex",alignItems:"center",gap:6}}><CheckCircle2 size={15}/>{flashMsg}</div>}
 
       {/* Overlays */}
       {workspace&&<StudentWorkspace student={workspace} isPaid={isPaid} onClose={function(){setWorkspace(null);loadAll();}}/>}
-      {taskModal&&<SuggestedTaskModal intervention={taskModal} onClose={function(){setTaskModal(null);}} onCreated={function(){setTaskModal(null);loadAll();flash("✅ Task created from intervention");}}/>}
+      {taskModal&&<SuggestedTaskModal intervention={taskModal} onClose={function(){setTaskModal(null);}} onCreated={function(){setTaskModal(null);loadAll();flash("Task created from intervention");}}/>}
 
       {/* Add Student Modal */}
       {showAdd&&(
         <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.4)",zIndex:400,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
           <div style={{...card(),width:"100%",maxWidth:440,maxHeight:"90vh",overflowY:"auto",boxShadow:"0 8px 32px rgba(0,0,0,.2)"}}>
             <div style={{display:"flex",justifyContent:"space-between",marginBottom:14}}>
-              <h4 style={{margin:0}}>➕ Add Student</h4>
-              <button onClick={function(){setShowAdd(false);setAddStuMsg(null);}} style={{background:"none",border:"none",cursor:"pointer",fontSize:"1.1rem"}}>✕</button>
+              <h4 style={{margin:0,display:"flex",alignItems:"center",gap:6}}><Plus size={16}/>Add Student</h4>
+              <button onClick={function(){setShowAdd(false);setAddStuMsg(null);}} style={{background:"none",border:"none",cursor:"pointer",display:"flex",alignItems:"center"}}><X size={18}/></button>
             </div>
             <form onSubmit={doAddStudent} style={{display:"flex",flexDirection:"column",gap:9}}>
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Name *</span>
@@ -344,7 +348,7 @@ return (
           {/* Hero */}
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:12,flexWrap:"wrap",marginBottom:16}}>
             <div>
-              <h1 style={{margin:0,fontSize:"1.25rem",fontWeight:800}}>{greet()}, {uname.split(" ")[0]} 👋</h1>
+              <h1 style={{margin:0,fontSize:"1.25rem",fontWeight:800,display:"flex",alignItems:"center",gap:8}}>{greet()}, {uname.split(" ")[0]} <Hand size={20}/></h1>
               <p style={{margin:"4px 0 0",fontSize:".83rem",color:"#64748b"}}>
                 {allGood?"Everything looks good — no urgent actions today."
                   :[crit.length&&(crit.length+" student"+(crit.length>1?"s":"")+" need"+(crit.length>1?"":"s")+" immediate attention"),
@@ -355,18 +359,18 @@ return (
                 }
               </p>
             </div>
-            <button onClick={function(){setShowAdd(true);}} style={btn1}>＋ Add Student</button>
+            <button onClick={function(){setShowAdd(true);}} style={{...btn1,display:"inline-flex",alignItems:"center",gap:6}}><Plus size={14}/>Add Student</button>
           </div>
 
           {/* KPI row */}
           <div style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:20}}>
-            {[{icon:"🎓",label:"Students", value:total,  sub:active+" active",  color:"#6366f1"},
-              {icon:"📊",label:"Avg Score",value:avg!=null?avg+"%":"—",sub:"mock tests",color:"#0ea5e9"},
-              {icon:"🚨",label:"Attention",value:crit.length+med.length,sub:crit.length?crit.length+" critical":"none critical",color:crit.length?"#dc2626":"#64748b"},
-              {icon:"✅",label:"Open Tasks",value:open.length,sub:"this session",color:open.length?"#f59e0b":"#22c55e"},
+            {[{Icon:GraduationCap,label:"Students", value:total,  sub:active+" active",  color:"#6366f1"},
+              {Icon:BarChart3,label:"Avg Score",value:avg!=null?avg+"%":"—",sub:"mock tests",color:"#0ea5e9"},
+              {Icon:AlertTriangle,label:"Attention",value:crit.length+med.length,sub:crit.length?crit.length+" critical":"none critical",color:crit.length?"#dc2626":"#64748b"},
+              {Icon:CheckCircle2,label:"Open Tasks",value:open.length,sub:"this session",color:open.length?"#f59e0b":"#22c55e"},
             ].map(function(k){return(
               <div key={k.label} style={{flex:"1 1 100px",...card(),paddingTop:12,paddingBottom:12,textAlign:"center"}}>
-                <div style={{fontSize:"1.15rem"}}>{k.icon}</div>
+                <div style={{display:"flex",justifyContent:"center"}}><k.Icon size={19} color={k.color}/></div>
                 <div style={{fontSize:"1.5rem",fontWeight:800,color:k.color,lineHeight:1.1,marginTop:2}}>{k.value}</div>
                 <div style={{fontSize:".7rem",fontWeight:600,color:"#374151"}}>{k.label}</div>
                 <div style={{fontSize:".65rem",color:"#94a3b8"}}>{k.sub}</div>
@@ -374,12 +378,12 @@ return (
             );})}
           </div>
 
-          {atLim&&<div style={{...card(),background:"#fef2f2",border:"1px solid #fecaca",display:"flex",gap:8,alignItems:"center"}}><span>⚠️</span><span style={{fontSize:".82rem",color:"#dc2626",fontWeight:600}}>Student limit reached — upgrade to add more.</span></div>}
+          {atLim&&<div style={{...card(),background:"#fef2f2",border:"1px solid #fecaca",display:"flex",gap:8,alignItems:"center"}}><AlertTriangle size={16} color="#dc2626"/><span style={{fontSize:".82rem",color:"#dc2626",fontWeight:600}}>Student limit reached — upgrade to add more.</span></div>}
 
           {/* All-clear banner */}
           {allGood&&(
             <div style={{...card(),background:"linear-gradient(135deg,#f0fdf4,#dcfce7)",border:"1px solid #bbf7d0",display:"flex",gap:10,alignItems:"center"}}>
-              <span style={{fontSize:"1.4rem"}}>✅</span>
+              <CheckCircle2 size={26} color="#22c55e"/>
               <div>
                 <div style={{fontWeight:700,fontSize:".9rem",color:"#15803d"}}>All students are on track</div>
                 <div style={{fontSize:".75rem",color:"#4ade80"}}>No urgent actions today</div>
@@ -396,7 +400,7 @@ return (
               {(crit.length>0||med.length>0)&&(
                 <div style={card()}>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-                    <h3 style={{margin:0,fontSize:".9rem",fontWeight:800,color:"#dc2626"}}>🚨 Needs Attention</h3>
+                    <h3 style={{margin:0,fontSize:".9rem",fontWeight:800,color:"#dc2626",display:"flex",alignItems:"center",gap:5}}><AlertTriangle size={15}/>Needs Attention</h3>
                     <span style={{fontSize:".72rem",color:"#64748b"}}>{crit.length+med.length} student{crit.length+med.length>1?"s":""}</span>
                   </div>
                   {[...crit,...med].map(function(inv,i){return(
@@ -411,23 +415,23 @@ return (
               {/* Today's Tasks */}
               <div style={card()}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-                  <h3 style={{margin:0,fontSize:".9rem",fontWeight:700}}>✅ Today's Tasks</h3>
-                  <button onClick={function(){setShowTask(function(v){return !v;});}} style={{...btn2,background:"#6366f1",color:"#fff",border:"none",fontWeight:600}}>＋ New</button>
+                  <h3 style={{margin:0,fontSize:".9rem",fontWeight:700,display:"flex",alignItems:"center",gap:5}}><CheckCircle2 size={14}/>Today's Tasks</h3>
+                  <button onClick={function(){setShowTask(function(v){return !v;});}} style={{...btn2,background:"#6366f1",color:"#fff",border:"none",fontWeight:600,display:"inline-flex",alignItems:"center",gap:4}}><Plus size={12}/>New</button>
                 </div>
                 {showTask&&(
                   <form onSubmit={doCreateTask} style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:10}}>
                     <input value={newTask.title} onChange={function(e){setNewTask(function(p){return{...p,title:e.target.value};});}} placeholder="Task title…" required style={{...inp,flex:1,minWidth:140}} data-testid="task-title-input"/>
                     <select value={newTask.priority} onChange={function(e){setNewTask(function(p){return{...p,priority:e.target.value};});}} style={{...inp,width:"auto"}}>
-                      <option value="critical">🔴 Critical</option>
-                      <option value="medium">🟡 Medium</option>
-                      <option value="low">⚪ Low</option>
+                      <option value="critical">Critical</option>
+                      <option value="medium">Medium</option>
+                      <option value="low">Low</option>
                     </select>
                     <button type="submit" style={btn1}>Add</button>
                   </form>
                 )}
                 {open.length===0&&!showTask&&<div style={{fontSize:".82rem",color:"#94a3b8",padding:"6px 0"}}>No open tasks — <button onClick={function(){setShowTask(true);}} style={{background:"none",border:"none",color:"#6366f1",cursor:"pointer",fontFamily:"inherit",fontSize:".82rem",fontWeight:600}}>create one</button></div>}
                 {open.map(function(t){return <TRow key={t.id} task={t} onComplete={doComplete} onDismiss={doDismiss}/>;  })}
-                {open.length>0&&<button onClick={function(){setView("tasks");}} style={{...btn2,marginTop:6,width:"100%",textAlign:"center"}}>View all tasks →</button>}
+                {open.length>0&&<button onClick={function(){setView("tasks");}} style={{...btn2,marginTop:6,width:"100%",textAlign:"center",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:4}}>View all tasks<ArrowRight size={12}/></button>}
               </div>
             </div>
 
@@ -437,12 +441,12 @@ return (
               {invites.length>0&&(
                 <div style={card()}>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-                    <h3 style={{margin:0,fontSize:".9rem",fontWeight:700}}>✉️ Pending Invitations</h3>
-                    <button onClick={function(){setView("invitations");}} style={{...btn2,fontSize:".7rem"}}>View all →</button>
+                    <h3 style={{margin:0,fontSize:".9rem",fontWeight:700,display:"flex",alignItems:"center",gap:5}}><Mail size={14}/>Pending Invitations</h3>
+                    <button onClick={function(){setView("invitations");}} style={{...btn2,fontSize:".7rem",display:"inline-flex",alignItems:"center",gap:3}}>View all<ArrowRight size={11}/></button>
                   </div>
                   {invites.slice(0,3).map(function(inv){return(
                     <InvCard key={inv.id} inv={inv}
-                      onResend={async function(id){ await resendTeacherInvitation(id).catch(function(){}); loadAll(); flash("✅ Invitation resent"); }}
+                      onResend={async function(id){ await resendTeacherInvitation(id).catch(function(){}); loadAll(); flash("Invitation resent"); }}
                       onCancel={async function(id){ if(!window.confirm("Cancel invitation?"))return; await cancelTeacherInvitation(id).catch(function(){}); loadAll(); flash("Invitation cancelled"); }}/>
                   );})}
                 </div>
@@ -451,8 +455,8 @@ return (
               {/* Recent students preview */}
               <div style={card()}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-                  <h3 style={{margin:0,fontSize:".9rem",fontWeight:700}}>🎓 Students</h3>
-                  <button onClick={function(){setView("students");}} style={{...btn2,fontSize:".7rem"}}>View all →</button>
+                  <h3 style={{margin:0,fontSize:".9rem",fontWeight:700,display:"flex",alignItems:"center",gap:5}}><GraduationCap size={14}/>Students</h3>
+                  <button onClick={function(){setView("students");}} style={{...btn2,fontSize:".7rem",display:"inline-flex",alignItems:"center",gap:3}}>View all<ArrowRight size={11}/></button>
                 </div>
                 <input value={stuQ} onChange={function(e){setStuQ(e.target.value);}} placeholder="Search students…" style={{...inp,marginBottom:10}} data-testid="student-search-input"/>
                 {filtStu.length===0&&<div style={{fontSize:".82rem",color:"#94a3b8"}}>No students found.</div>}
@@ -460,7 +464,7 @@ return (
                   <SCard key={s.id} student={s} sev={aidMap[s.id]}
                     onOpen={function(){setWorkspace(s);}}/>
                 );})}
-{filtStu.length>5&&<button onClick={function(){setView("students");}} style={{...btn2,marginTop:4,width:"100%",textAlign:"center"}}>See all {filtStu.length} students →</button>}
+{filtStu.length>5&&<button onClick={function(){setView("students");}} style={{...btn2,marginTop:4,width:"100%",textAlign:"center",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:4}}>See all {filtStu.length} students<ArrowRight size={12}/></button>}
               </div>
             </div>
           </div>
@@ -471,16 +475,16 @@ return (
       {view==="students"&&(
         <div data-testid="teacher-students-tab">
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14,flexWrap:"wrap",gap:8}}>
-            <h2 style={{margin:0,fontSize:"1.05rem",fontWeight:800}}>🎓 Students</h2>
-            <button onClick={function(){setShowAdd(true);}} style={btn1}>＋ Add Student</button>
+            <h2 style={{margin:0,fontSize:"1.05rem",fontWeight:800,display:"flex",alignItems:"center",gap:6}}><GraduationCap size={17}/>Students</h2>
+            <button onClick={function(){setShowAdd(true);}} style={{...btn1,display:"inline-flex",alignItems:"center",gap:6}}><Plus size={14}/>Add Student</button>
           </div>
           <input value={stuQ} onChange={function(e){setStuQ(e.target.value);}} placeholder="Search by name or email…" style={{...inp,marginBottom:12}} data-testid="student-search-input"/>
           {filtStu.length===0&&(
             <div style={{...card(),textAlign:"center",padding:32,color:"#94a3b8"}}>
-              <div style={{fontSize:"2rem",marginBottom:8}}>🎓</div>
+              <div style={{display:"flex",justifyContent:"center",marginBottom:8}}><GraduationCap size={30}/></div>
               <div style={{fontWeight:600}}>No students found.</div>
               <div style={{fontSize:".82rem",marginTop:4}}>Add a student or send an invitation.</div>
-              <button onClick={function(){setShowAdd(true);}} style={{...btn1,marginTop:12}}>＋ Add Student</button>
+              <button onClick={function(){setShowAdd(true);}} style={{...btn1,marginTop:12,display:"inline-flex",alignItems:"center",gap:6}}><Plus size={14}/>Add Student</button>
             </div>
           )}
           {filtStu.map(function(s){return(
@@ -493,7 +497,7 @@ return (
       {/* ══ CLASSROOMS VIEW ═════════════════════════════════════════ */}
       {view==="classrooms"&&(
         <div data-testid="teacher-classrooms-tab">
-          <h2 style={{margin:"0 0 14px",fontSize:"1.05rem",fontWeight:800}}>🏫 Classrooms</h2>
+          <h2 style={{margin:"0 0 14px",fontSize:"1.05rem",fontWeight:800,display:"flex",alignItems:"center",gap:6}}><Building2 size={17}/>Classrooms</h2>
 
           {/* Create classroom */}
           <div style={card()}>
@@ -508,7 +512,7 @@ return (
 
           {classrooms.length===0&&(
             <div style={{...card(),textAlign:"center",padding:24,color:"#94a3b8"}}>
-              <div style={{fontSize:"2rem",marginBottom:8}}>🏫</div>
+              <div style={{display:"flex",justifyContent:"center",marginBottom:8}}><Building2 size={30}/></div>
               <div style={{fontWeight:600}}>No classrooms yet</div>
               <div style={{fontSize:".82rem",marginTop:4}}>Create a classroom above to organise your students.</div>
             </div>
@@ -526,7 +530,7 @@ return (
                     var n=window.prompt("Rename classroom:",cls.name);
                     if(!n||!n.trim())return;
                     await updateTeacherClassroom(cls.id,{name:n.trim()}).catch(function(){});
-                    loadAll(); flash("✅ Classroom renamed");
+                    loadAll(); flash("Classroom renamed");
                   }} style={btn2}>Rename</button>
                   <button onClick={async function(){
                     if(!window.confirm("Archive "+cls.name+"?"))return;
@@ -541,9 +545,9 @@ return (
                   if(!e.target.value)return;
                   await addStudentToClassroom(cls.id,e.target.value).catch(function(){});
                   e.target.value="";
-                  loadAll(); flash("✅ Student added to classroom");
+                  loadAll(); flash("Student added to classroom");
                 }} style={{...inp,width:"auto",maxWidth:"100%"}}>
-                  <option value="">＋ Add student to classroom…</option>
+                  <option value="">Add student to classroom…</option>
                   {students.map(function(s){return <option key={s.id} value={s.id}>{s.username} ({s.grade||"—"})</option>;})}
                 </select>
               </div>
@@ -554,7 +558,7 @@ return (
 {/* ══ INVITATIONS VIEW ════════════════════════════════════════ */}
       {view==="invitations"&&(
         <div data-testid="teacher-invitations-tab">
-          <h2 style={{margin:"0 0 14px",fontSize:"1.05rem",fontWeight:800}}>✉️ Invitations</h2>
+          <h2 style={{margin:"0 0 14px",fontSize:"1.05rem",fontWeight:800,display:"flex",alignItems:"center",gap:6}}><Mail size={17}/>Invitations</h2>
 
           {/* Create invitation */}
           <div style={card()}>
@@ -582,10 +586,10 @@ return (
             );})}
           </div>
 
-          {invAll.length===0&&<div style={{...card(),textAlign:"center",padding:24,color:"#94a3b8"}}><div style={{fontSize:"2rem",marginBottom:8}}>✉️</div><div style={{fontWeight:600}}>No invitations.</div></div>}
+          {invAll.length===0&&<div style={{...card(),textAlign:"center",padding:24,color:"#94a3b8"}}><div style={{display:"flex",justifyContent:"center",marginBottom:8}}><Mail size={30}/></div><div style={{fontWeight:600}}>No invitations.</div></div>}
           {invAll.map(function(inv){return(
             <InvCard key={inv.id} inv={inv}
-              onResend={async function(id){ await resendTeacherInvitation(id).catch(function(){}); loadInvAll(invFilter); flash("✅ Invitation resent"); }}
+              onResend={async function(id){ await resendTeacherInvitation(id).catch(function(){}); loadInvAll(invFilter); flash("Invitation resent"); }}
               onCancel={async function(id){ if(!window.confirm("Cancel invitation?"))return; await cancelTeacherInvitation(id).catch(function(){}); loadInvAll(invFilter); loadAll(); flash("Invitation cancelled"); }}/>
           );})}
         </div>
@@ -595,8 +599,8 @@ return (
       {view==="tasks"&&(
         <div data-testid="teacher-tasks-tab">
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14,flexWrap:"wrap",gap:8}}>
-            <h2 style={{margin:0,fontSize:"1.05rem",fontWeight:800}}>✅ Tasks</h2>
-            <button onClick={function(){setShowTask(function(v){return !v;});}} style={btn1}>＋ New Task</button>
+            <h2 style={{margin:0,fontSize:"1.05rem",fontWeight:800,display:"flex",alignItems:"center",gap:6}}><CheckCircle2 size={17}/>Tasks</h2>
+            <button onClick={function(){setShowTask(function(v){return !v;});}} style={{...btn1,display:"inline-flex",alignItems:"center",gap:6}}><Plus size={14}/>New Task</button>
           </div>
 
           {showTask&&(
@@ -604,9 +608,9 @@ return (
               <form onSubmit={doCreateTask} style={{display:"flex",flexDirection:"column",gap:8}}>
                 <input value={newTask.title} onChange={function(e){setNewTask(function(p){return{...p,title:e.target.value};});}} placeholder="Task title *" required style={inp} data-testid="task-title-input"/>
                 <select value={newTask.priority} onChange={function(e){setNewTask(function(p){return{...p,priority:e.target.value};});}} style={{...inp,width:"auto"}}>
-                  <option value="critical">🔴 Critical</option>
-                  <option value="medium">🟡 Medium</option>
-                  <option value="low">⚪ Low</option>
+                  <option value="critical">Critical</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
                 </select>
                 <div style={{display:"flex",gap:8}}>
                   <button type="submit" style={btn1}>Create Task</button>
@@ -633,7 +637,7 @@ return (
 
           {taskViewData.length===0&&(
             <div style={{...card(),textAlign:"center",padding:24,color:"#94a3b8"}}>
-              <div style={{fontSize:"2rem",marginBottom:8}}>✅</div>
+              <div style={{display:"flex",justifyContent:"center",marginBottom:8}}><CheckCircle2 size={30}/></div>
               <div style={{fontWeight:600}}>No {taskFilter} tasks.</div>
               {taskFilter==="open"&&<div style={{fontSize:".82rem",marginTop:4}}>Create a task above to get started.</div>}
             </div>

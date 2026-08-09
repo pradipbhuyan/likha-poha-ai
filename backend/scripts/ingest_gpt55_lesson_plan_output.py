@@ -6,9 +6,12 @@ See docs/GPT55_LESSON_PLAN_AUTHORING_PROMPT.md for the full workflow this
 script completes (paired with scripts/prepare_gpt55_lesson_plan_prompts.py).
 
 Takes the JSON output produced by pasting a lesson-plan authoring prompt into
-a GPT-5.5 chat session, validates it against the expected schema, resolves
-the CURRENT canonical (rag_documents-format) chapter name — same resolution
-ingest_gpt55_question_bank_output.py uses — and writes
+a GPT-5.5 chat session, validates it against the expected schema, runs the
+deterministic pedagogy quality-control pass (app/services/
+lesson_plan_quality_checks.py — objective count, timing budget, teacher-talk
+cap, differentiation labels, assessment alignment; blocks ingestion on
+errors), resolves the CURRENT canonical (rag_documents-format) chapter name
+— same resolution ingest_gpt55_question_bank_output.py uses — and writes
 backend/app/data/lesson_plan_bank/<grade_slug>/<subject_slug>/<chapter_slug>.json,
 overwriting any existing handout for that chapter.
 
@@ -35,6 +38,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app.services.grade_db_router import get_content_db  # noqa: E402
 from app.services.lesson_plan_bank_service import _slugify, _BANK_ROOT  # noqa: E402
+from app.services.lesson_plan_quality_checks import check_lesson_plan_markdown, has_errors  # noqa: E402
 
 REQUIRED_KEYS = ["grade", "subject", "chapter", "lesson_plan_markdown"]
 MIN_MARKDOWN_LENGTH = 200
@@ -61,6 +65,30 @@ def load_and_validate(input_path: Path) -> dict:
         raise ValueError(
             f"lesson_plan_markdown is too short ({len(markdown)} chars, "
             f"need >= {MIN_MARKDOWN_LENGTH})."
+        )
+
+    # Headings must stay plain text — TeacherLessonPlanPage.jsx maps each
+    # exact heading string to a Lucide icon (H2_ICONS/H3_ICONS); an
+    # emoji-prefixed heading won't match and will silently render without
+    # an icon instead of erroring, so warn loudly here instead.
+    emoji_headings = [
+        line for line in markdown.split("\n")
+        if re.match(r"^#{2,3}\s", line)
+        and re.search(r"[\U0001F300-\U0001FAFF☀-➿]", line)
+    ]
+    if emoji_headings:
+        print(f"    [warn] Heading(s) contain emoji and will lose their icon in the UI: {emoji_headings}")
+
+    # Pedagogy quality-control pass (see app/services/lesson_plan_quality_checks.py):
+    # objective count, timing budget, teacher-talk cap, differentiation labels,
+    # assessment alignment. Errors block ingestion; warnings are printed only.
+    issues = check_lesson_plan_markdown(markdown, grade=str(data.get("grade") or ""), subject=str(data.get("subject") or ""))
+    for issue in issues:
+        print(f"    {issue}")
+    if has_errors(issues):
+        raise ValueError(
+            "lesson_plan_markdown failed the pedagogy quality-control pass "
+            f"({sum(1 for i in issues if i.severity == 'error')} error(s) above) — re-author before ingesting."
         )
 
     return data
@@ -130,7 +158,7 @@ def ingest(data: dict, dry_run: bool) -> dict:
         ),
         encoding="utf-8",
     )
-    print(f"    Written.")
+    print("    Written.")
     return {"grade": grade, "subject": subject, "chapter": chapter, "status": "ingested"}
 
 
@@ -161,7 +189,7 @@ def main() -> None:
         print("No .json files found to process.")
         return
 
-    print(f"\n  Ingest GPT-5.5 Lesson-Plan Handout Output")
+    print("\n  Ingest GPT-5.5 Lesson-Plan Handout Output")
     print(f"  Mode: {'DRY RUN' if args.dry_run else 'LIVE WRITE'}")
     print(f"  Files to check: {len(paths)}\n")
 

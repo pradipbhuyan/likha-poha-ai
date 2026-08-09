@@ -13,6 +13,11 @@ Each authored handout is duration-agnostic (sized for a standard ~40-45
 minute CBSE period) since a single static file can't vary by the duration a
 teacher picks at request time — see the doc for why.
 
+The prompt itself is built by app.services.lesson_plan_pedagogy, which
+adapts objective limits, timing guidance, and activity style automatically
+by grade band and subject — see that module for the pedagogy rules
+themselves. Nothing grade- or subject-specific belongs in this file.
+
 Usage:
     cd backend
     python3 scripts/prepare_gpt55_lesson_plan_prompts.py --grade "Grade 9" --subject "Social Science"
@@ -30,125 +35,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app.services.grade_db_router import get_content_db  # noqa: E402
+from app.services.lesson_plan_pedagogy import build_lesson_plan_prompt  # noqa: E402
 
 MODE = "CBSE"
-
-PROMPT_TEMPLATE = """\
------------------------------------------------------------------------------
-SYSTEM ROLE
-
-You are an experienced CBSE {subject} school teacher creating a classroom-
-ready lesson plan handout for Grade {grade_number}, for one specific chapter,
-for a CBSE AI tutoring platform used by teachers. You must ground every
-activity, example, and reference strictly in the CHAPTER_LESSON_TEXT
-provided below — never invent NCERT exercise/example numbers, facts, or
-figures that do not appear there.
-
-BINDING RULES (do not violate any of these):
-
-1. GROUNDING: Every concept, example, and NCERT reference in the plan MUST
-   be grounded in CHAPTER_LESSON_TEXT. Do not invent exercise numbers,
-   figure numbers, or facts that do not appear there.
-2. DURATION: Size the plan for a single standard ~40-45 minute CBSE class
-   period. Do not ask for a duration — always produce one plan sized this
-   way.
-3. FULL COVERAGE: The plan must cover the chapter's main concepts as a
-   whole, not just one narrow sub-topic.
-4. PRACTICAL, NOT ACADEMIC: Write in the voice of an experienced classroom
-   teacher's planning notes — short, actionable bullet points, not
-   textbook prose.
-5. LANGUAGE LEVEL: Write for a teacher instructing Grade {grade_number}
-   students — clear, classroom-appropriate CBSE phrasing.
-
------------------------------------------------------------------------------
-USER TASK
-
-GRADE: {grade}
-SUBJECT: {subject}
-CHAPTER: {chapter}
-
-CHAPTER_LESSON_TEXT:
-\"\"\"
-{chapter_lesson_text}
-\"\"\"
-
-Produce ONE lesson plan in Markdown, using EXACTLY this section structure:
-
-## 📋 Lesson Overview
-- **Topic:** {chapter}
-- **Grade:** {grade}
-- **Subject:** {subject}
-- **Duration:** 40-45 minutes
-- **CBSE Unit:** (identify the unit/chapter from NCERT)
-
-## 🎯 Learning Objectives
-By the end of this lesson, students will be able to:
-1. (recall/understand level objective)
-2. (application level objective)
-3. (analysis/evaluation level objective — HOTS)
-
-## 📚 Prerequisites
-Students should already know:
-- (prerequisite 1)
-- (prerequisite 2)
-
-## 🛠️ Materials & Resources
-- NCERT Textbook {grade} {subject}
-- Blackboard / Whiteboard
-- (additional materials specific to this topic)
-
-## 📝 Lesson Plan (Step-by-Step)
-
-### 🔔 Introduction & Hook (5 minutes)
-- (attention-grabbing opening activity or question)
-- Connect to prior knowledge
-
-### 📖 Direct Instruction (15 minutes)
-- (key concept explanation step by step)
-- Include the main formula/rule/concept
-
-### 🔬 Guided Practice (10 minutes)
-- (worked example with student participation)
-- Solve one problem together on the board
-
-### 🏃 Student Activity (10 minutes)
-- (individual or pair activity)
-- Practice problems from NCERT
-
-### ✅ Assessment & Closure (5 minutes)
-- Quick oral questions to check understanding
-- Summary of key points
-- Exit ticket: (one question to assess learning)
-
-## 📘 Homework Assignment
-- NCERT Exercise: (specific exercise numbers)
-- (any additional practice)
-
-## 🎯 Differentiation Strategies
-- **For slow learners:** (simplified approach or extra support)
-- **For advanced learners:** (extension or HOTS challenge)
-
-## 📌 Common Misconceptions to Address
-1. (common student mistake 1)
-2. (common student mistake 2)
-
-## 🔗 NCERT Alignment
-- Chapter reference, Exercise numbers, Example numbers
-
-Return ONLY a single valid JSON object (no markdown fences, no commentary
-before or after) with exactly this shape:
-
-{{
-  "grade": "{grade}",
-  "subject": "{subject}",
-  "chapter": "{chapter}",
-  "lesson_plan_markdown": "## 📋 Lesson Overview\\n- **Topic:** ...\\n(the full markdown plan, using \\n for line breaks)"
-}}
-
-Return ONLY the JSON object described above. No markdown code fences, no
-explanation text before or after it.
------------------------------------------------------------------------------
-"""
 
 
 def _slugify(text: str) -> str:
@@ -200,8 +89,6 @@ def run(
     output_dir: Path,
     only_chapters: list[str] | None,
 ) -> None:
-    grade_number = grade.split()[-1]
-
     chapters = get_lesson_authored_chapters(grade, subject)
     if not chapters:
         print(f"ERROR: no authored lesson_cache content found for {grade} / {subject}. "
@@ -237,7 +124,7 @@ def run(
         "  3. Save the JSON response as <chapter_slug>_lesson_plan.json in this folder.",
         "  4. Once all chapters are done, ingest them all in one command:",
         "",
-        f"     cd backend",
+        "     cd backend",
         f"     python3 scripts/ingest_gpt55_lesson_plan_output.py --dir {output_dir} --dry-run",
         f"     python3 scripts/ingest_gpt55_lesson_plan_output.py --dir {output_dir}",
         "",
@@ -251,9 +138,8 @@ def run(
             print(f"  [{i:02d}] {chapter} -- [skip] authored lesson content is suspiciously short")
             continue
 
-        prompt_text = PROMPT_TEMPLATE.format(
+        prompt_text = build_lesson_plan_prompt(
             grade=grade,
-            grade_number=grade_number,
             subject=subject,
             chapter=chapter,
             chapter_lesson_text=lesson_text,
