@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import {
-  Settings, Sparkles, History, Printer, RefreshCw, Ban, BarChart3,
+  Settings, Sparkles, History, Printer, Ban, BarChart3,
   Lightbulb, Target, ClipboardList, Bell, FlaskConical, BookOpen,
   Pin, CheckCircle2, Loader2, ListChecks, Wrench, NotebookPen,
   Users, AlertTriangle, Link2, Presentation, ArrowLeft,
@@ -31,6 +31,10 @@ const H3_ICONS = {
   "Student Activity": Users,
   "Assessment & Closure": CheckCircle2,
 };
+
+// The fixed section order every lesson_plan_bank handout is authored with —
+// used to drive the stepwise "creating your lesson plan" reveal animation.
+const SECTION_STEPS = Object.keys(H2_ICONS);
 
 function HeadingWithIcon({ level: Tag, iconMap, children, ...props }) {
   const text = Array.isArray(children) ? children.join("") : String(children ?? "");
@@ -76,6 +80,13 @@ export default function TeacherLessonPlanPage({ user }) {
   const [planMeta, setPlanMeta] = useState(null);
   const [error, setError] = useState("");
 
+  // Lesson plans are served instantly from a pre-authored bank (no live LLM
+  // call), so the fetch itself has nothing to visibly wait for. This holds
+  // the fetched result back and reveals it section-by-section against the
+  // Likha Poha AI gif so "Generate" still feels like it's building the plan.
+  const [pendingResult, setPendingResult] = useState(null);
+  const [stepIndex, setStepIndex] = useState(0);
+
   // History of generated plans (session only)
   const [history, setHistory] = useState([]);
   const [historyOpen, setHistoryOpen] = useState(false);
@@ -99,6 +110,25 @@ export default function TeacherLessonPlanPage({ user }) {
   useEffect(() => { setSubject(subjects[0] || ""); setChapter(""); }, [grade]);
   useEffect(() => { setChapter(chapters[0] || ""); }, [subject, grade]);
 
+  // Advances one section at a time through SECTION_STEPS, then reveals the
+  // already-fetched plan once every step has had its moment on screen.
+  useEffect(() => {
+    if (!pendingResult) return;
+    if (stepIndex >= SECTION_STEPS.length) {
+      const t = setTimeout(() => {
+        setPlan(pendingResult.plan);
+        setPlanMeta(pendingResult.meta);
+        setHistory(prev => [{ ...pendingResult.meta, plan: pendingResult.plan }, ...prev.slice(0, 9)]);
+        setGenerating(false);
+        setPendingResult(null);
+        setStepIndex(0);
+      }, 350);
+      return () => clearTimeout(t);
+    }
+    const t = setTimeout(() => setStepIndex(i => i + 1), 260);
+    return () => clearTimeout(t);
+  }, [pendingResult, stepIndex]);
+
   // ── Free-tier daily limit ──────────────────────────────────────────────────
   const freeTeacher = user?.role === "teacher" &&
     (!user?.subscriptionPlan || user.subscriptionPlan === "free") &&
@@ -121,6 +151,8 @@ export default function TeacherLessonPlanPage({ user }) {
     setGenerating(true);
     setPlan("");
     setPlanMeta(null);
+    setPendingResult(null);
+    setStepIndex(0);
     try {
       const res = await fetch(`${API_BASE}/api/teacher/lesson-plan/generate`, {
         method: "POST",
@@ -132,14 +164,13 @@ export default function TeacherLessonPlanPage({ user }) {
       });
       const data = await res.json();
       if (!res.ok || !data.success) throw new Error(data.detail || data.message || "Generation failed");
-      setPlan(data.lesson_plan);
       const meta = { grade, subject, chapter, ts: new Date().toLocaleTimeString() };
-      setPlanMeta(meta);
-      setHistory(prev => [{ ...meta, plan: data.lesson_plan }, ...prev.slice(0, 9)]);
+      // Hand off to the stepwise-reveal effect above instead of showing the
+      // plan immediately — see the pendingResult/stepIndex effect.
+      setPendingResult({ plan: data.lesson_plan, meta });
       if (freeTeacher) incrementPlanCount();
     } catch (err) {
       setError(err.message || "Failed to generate lesson plan. Please try again.");
-    } finally {
       setGenerating(false);
     }
   }
@@ -218,8 +249,8 @@ export default function TeacherLessonPlanPage({ user }) {
           </div>
         )}
 
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-          <button className="primary-btn" onClick={handleGenerate} disabled={generating || syllabusLoading || planLimitReached} style={{ maxWidth: 260, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+          <button className="primary-btn" onClick={handleGenerate} disabled={generating || syllabusLoading || planLimitReached} style={{ maxWidth: 260, marginTop: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
             {planLimitReached
               ? <><Ban size={16} /> Daily Limit Reached</>
               : generating
@@ -256,16 +287,52 @@ export default function TeacherLessonPlanPage({ user }) {
         </div>
       )}
 
+      {/* Stepwise "creating your lesson plan" reveal — the plan itself is a
+          near-instant bank lookup, so this holds it back and walks through
+          SECTION_STEPS to give Generate a sense of building something. */}
+      {generating && (
+        <div className="premium-card" style={{ padding: "36px 28px", textAlign: "center" }}>
+          <img
+            src="/likhapohaai.gif"
+            alt="Likha Poha AI is creating your lesson plan…"
+            style={{ width: 150, height: "auto", margin: "0 auto 10px", display: "block" }}
+          />
+          <div style={{ fontWeight: 700, fontSize: "1rem", marginBottom: 20 }}>Creating your lesson plan…</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6, maxWidth: 380, margin: "0 auto", textAlign: "left" }}>
+            {SECTION_STEPS.map((label, i) => {
+              const Icon = H2_ICONS[label];
+              const done = i < stepIndex;
+              const active = i === stepIndex;
+              return (
+                <div key={label} style={{
+                  display: "flex", alignItems: "center", gap: 10, padding: "7px 10px", borderRadius: 8,
+                  background: active ? "rgba(99,102,241,.08)" : "transparent",
+                  opacity: done || active ? 1 : 0.4,
+                  transition: "opacity .25s ease, background .25s ease",
+                }}>
+                  {done
+                    ? <CheckCircle2 size={16} style={{ color: "var(--success)", flexShrink: 0 }} />
+                    : active
+                      ? <Loader2 size={16} className="spin" style={{ color: "var(--primary)", flexShrink: 0 }} />
+                      : <Icon size={16} style={{ opacity: .6, flexShrink: 0 }} />}
+                  <span style={{ fontSize: ".85rem", fontWeight: active ? 700 : 500 }}>{label}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Plan preview */}
       {plan && planMeta && (
         <div>
           {/* Action bar */}
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 18 }}>
-            <button className="primary-btn" onClick={handlePrint} style={{ maxWidth: 240, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 18 }}>
+            <button className="primary-btn" onClick={handlePrint} style={{ maxWidth: 240, marginTop: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
               <Printer size={16} /> Download / Print PDF
             </button>
             <button onClick={() => { setPlan(""); setPlanMeta(null); }}
-              style={{ padding: "10px 18px", borderRadius: 10, border: "1.5px solid var(--border)", background: "transparent", color: "var(--muted)", fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>
+              style={{ padding: "12px 18px", borderRadius: 12, border: "1.5px solid var(--border)", background: "var(--panel-soft)", color: "var(--text)", fontWeight: 600, fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>
               <ArrowLeft size={14} /> New Plan
             </button>
           </div>
@@ -289,14 +356,14 @@ export default function TeacherLessonPlanPage({ user }) {
               <ReactMarkdown remarkPlugins={[remarkGfm]} components={MARKDOWN_COMPONENTS}>{plan}</ReactMarkdown>
             </div>
 
-            {/* Print button at bottom too */}
-            <div style={{ marginTop: 24, paddingTop: 16, borderTop: "1px solid var(--border)", display: "flex", gap: 10 }}>
-              <button className="primary-btn" onClick={handlePrint} style={{ maxWidth: 240, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+            {/* Print button at bottom too. No "Regenerate" here — plans are
+                served from a fixed pre-authored bank, so regenerating the
+                same grade/subject/chapter always returns byte-identical
+                content; "New Plan" above is the only way to get something
+                different. */}
+            <div style={{ marginTop: 24, paddingTop: 16, borderTop: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 10 }}>
+              <button className="primary-btn" onClick={handlePrint} style={{ maxWidth: 240, marginTop: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
                 <Printer size={16} /> Download as PDF
-              </button>
-              <button onClick={handleGenerate} disabled={generating}
-                style={{ padding: "10px 18px", borderRadius: 10, border: "1.5px solid var(--border)", background: "transparent", color: "var(--muted)", fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 7 }}>
-                <RefreshCw size={14} /> Regenerate
               </button>
             </div>
           </div>
@@ -316,7 +383,7 @@ export default function TeacherLessonPlanPage({ user }) {
                 { Icon: Bell, label: "Introduction hook to grab attention" },
                 { Icon: FlaskConical, label: "Guided practice + student activities" },
                 { Icon: BookOpen, label: "NCERT-aligned homework assignment" },
-                { Icon: Target, label: "Differentiation for slow/fast learners" },
+                { Icon: Target, label: "Differentiation for support & extension" },
                 { Icon: Pin, label: "Common misconceptions to address" },
                 { Icon: CheckCircle2, label: "Assessment & exit ticket strategy" },
               ].map(({ Icon, label }) => (

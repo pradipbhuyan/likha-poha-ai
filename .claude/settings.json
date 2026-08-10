@@ -340,7 +340,13 @@
       "Bash(.venv/bin/pip list *)",
       "Bash(.venv/bin/python3 scripts/import_cbse_sample_paper_answers.py --answers scripts/cbse_pilot_data/gpt5_answers_science_2025_26.json --grade 'Grade 10' --academic-year 2025-26 --source-subject-code Science --dry-run)",
       "Bash(.venv/bin/python3 scripts/import_cbse_sample_paper_answers.py --answers /private/tmp/claude-501/-Users-pradipbhuyan-likha-poha-ai/faba8cd3-1c9e-44e5-9056-9a35860f5710/scratchpad/cbse_batch2/englishl_gpt5_answered.json --grade 'Grade 10' --academic-year 2025-26 --source-subject-code EnglishL --dry-run)",
-      "Bash(.venv/bin/python3 scripts/import_cbse_sample_paper_answers.py --answers /private/tmp/claude-501/-Users-pradipbhuyan-likha-poha-ai/faba8cd3-1c9e-44e5-9056-9a35860f5710/scratchpad/cbse_batch2/englishl_gpt5_answered.json --grade 'Grade 10' --academic-year 2025-26 --source-subject-code EnglishL)"
+      "Bash(.venv/bin/python3 scripts/import_cbse_sample_paper_answers.py --answers /private/tmp/claude-501/-Users-pradipbhuyan-likha-poha-ai/faba8cd3-1c9e-44e5-9056-9a35860f5710/scratchpad/cbse_batch2/englishl_gpt5_answered.json --grade 'Grade 10' --academic-year 2025-26 --source-subject-code EnglishL)",
+      "Bash(source .venv/bin/activate*)",
+      "Bash(source venv/bin/activate*)",
+      "Bash(.venv/bin/python -m pytest *)",
+      "Bash(./venv/bin/python -m pytest *)",
+      "Bash(curl -s -o /dev/null -w \"server: %{http_code}\\n\" http://localhost:8000/docs*)",
+      "Bash(curl -s http://localhost:8001/api/health*)"
     ],
     "additionalDirectories": [
       "/private/tmp",
