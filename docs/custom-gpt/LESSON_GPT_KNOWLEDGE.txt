@@ -1,0 +1,224 @@
+LIKHA POHA AI — LESSON GENERATOR KNOWLEDGE DOCUMENT
+=====================================================
+Upload this file as a Knowledge document in your Custom GPT.
+The Instructions field references this file for lesson structures.
+
+
+====================================================
+PROSE LESSON STRUCTURE (English stories, prose chapters)
+====================================================
+
+Detect: Subject is English AND chapter is a story, letter, travelogue, biography, diary.
+Examples: Papa's Spectacles, A Letter to God, The Happy Prince, Madam Rides the Bus,
+          From the Diary of Anne Frank, The Hack Driver
+
+STEP 1 — What We Learn (Overview / Context)
+- Title of the prose, name of the author, type (story / letter / travelogue / etc.)
+- When and where the story is set (time period, location, situation)
+- First impression and tone of the chapter (humorous / sad / tense / inspiring)
+- What students should look for as they read
+
+STEP 2 — Core Concepts (Paragraph / Section Breakdown)
+- Go through the passage section by section (or paragraph by paragraph)
+- Paraphrase each section in simple modern English
+- Highlight key events, turning points, and important lines from the text
+- Explain the significance of each section for the story's progression
+
+STEP 3 — Worked Examples (Characters and Theme)
+- Detailed character analysis for each major character:
+  * Personality traits (with evidence from the text)
+  * Motivation and goals
+  * Role in the story and how they change
+- Central theme(s): state clearly and explain with direct textual evidence
+- Sub-themes and moral lessons
+- How characters embody or contrast the theme
+NOTE: This section earns the most marks in CBSE English exams.
+
+STEP 4 — Exam-style problems (Literary Devices and Language)
+- Identify literary devices used in the text:
+  Metaphor, Simile, Personification, Alliteration, Irony, Symbolism, Hyperbole
+- For each device: quote the exact line → name the device → explain the effect on the reader
+- Vocabulary section: list 5-8 important words with meaning and usage in context
+
+STEP 5 — Revision (CBSE-style Questions and Answers)
+- 2 short-answer questions (2-3 marks each) with complete model answers
+- 1 long-answer / value-based question (5 marks) with complete model answer
+- 1 extract-based question: quote a passage → ask 3 sub-questions → give model answers
+- All questions must be in CBSE board exam format
+
+
+====================================================
+POEM LESSON STRUCTURE (English poetry chapters)
+====================================================
+
+Detect: Subject is English AND chapter is a poem, verse, ode, rhyme.
+Examples: Dust of Snow, Amanda, The Ball Poem, A Tiger in the Zoo,
+          The Trees, Fog, How to Tell Wild Animals
+
+STEP 1 — What We Learn (Introduction)
+- Poet's full name, nationality, era
+- Type of poem (lyric / narrative / didactic / humorous)
+- Central idea / main message in 2-3 sentences
+- Tone and mood of the poem
+- Setting if applicable
+
+STEP 2 — Core Concepts (Stanza-by-Stanza Explanation)
+- Explain each stanza in simple prose
+- Paraphrase the poet's meaning line by line where needed
+- Highlight important images, feelings, and observations in each stanza
+- Connect how each stanza builds on the previous one
+
+STEP 3 — Worked Examples (Theme and Message)
+- Central theme: state clearly and explain in detail
+- Sub-themes and supporting ideas
+- The poet's message to the reader
+- How the poem relates to real life, nature, or human values
+
+STEP 4 — Exam-style problems (Poetic Devices and Rhyme Scheme)
+- Identify poetic devices used:
+  Metaphor, Simile, Personification, Alliteration, Assonance, Imagery, Symbolism, Repetition
+- For each device: quote the exact line → name the device → explain the effect on the reader
+- Rhyme scheme notation (ABAB / AABB / ABCB / Free verse)
+- Sound devices: onomatopoeia, rhythm pattern if present
+
+STEP 5 — Revision (CBSE-style Questions and Answers)
+- 2 reference-to-context (extract) questions with model answers
+- 1 appreciation / value-based question
+- 1 short note on the poem's central idea and the poet's message
+- All in CBSE board exam format
+
+
+====================================================
+DEFAULT LESSON STRUCTURE (Science, Maths, Social Science, Grammar, Hindi, Sanskrit)
+====================================================
+
+Use this 7-section structure for all non-English-literature chapters:
+
+Section 1: What you will learn
+  - 3-5 bullet points listing the key concepts covered in this step
+
+Section 2: Simple explanation
+  - Clear, direct explanation of the concept
+  - Age-appropriate language for the grade
+  - Real-world analogy or everyday example
+
+Section 3: Step-by-step breakdown
+  - Break the concept into clear stages or sub-parts
+  - Explain each part in sequence
+  - Use numbered list: 1. 2. 3.
+
+Section 4: Worked example
+  - Start with: "Question: <complete data> <task instruction>"
+    Example: "Question: Find the area of a rectangle with length 8 cm and breadth 5 cm."
+  - Show solution starting with "Step 1:", "Step 2:", etc.
+  - Explain the reasoning behind each step
+  - State the final answer clearly
+  - NEVER ask the student to draw, sketch, or produce visual output
+
+Section 5: Common mistake
+  - Describe the most frequent error students make with this concept
+  - Explain why it happens
+  - Show what correct thinking looks like
+
+Section 6: Quick check question
+  - ONE short question to test understanding
+  - This is the ONLY place in the lesson where you ask the student a question
+  - Keep it answerable in 1-2 sentences
+
+Section 7: Summary
+  - 3-5 bullet points recapping the key ideas
+  - End with this exact sentence:
+    "Review these key points, then move to the next lesson step when ready."
+
+
+====================================================
+VISUAL-JSON REFERENCE
+====================================================
+
+Use a visual-json block ONLY when it significantly improves understanding.
+Good use cases: science processes, cycles, step flows, cause-effect chains, comparisons.
+
+FLOW / STEPS / CYCLE format:
+```visual-json
+{"type":"flow","title":"Short descriptive title","items":["First step or event","Second step or event","Third step or event"],"note":"Optional one-line explanation"}
+```
+
+COMPARE format:
+```visual-json
+{"type":"compare","title":"Short title","columns":["Option A","Option B"],"rows":[["Point about A","Point about B"],["Another point","Another point"]]}
+```
+
+Rules:
+- type: must be flow, steps, cycle, or compare
+- title: under 80 characters
+- each item/label: under 70 characters, must be complete (never cut off)
+- flow/steps/cycle: 2 to 6 items
+- compare: 2 columns, 2 to 5 rows
+- Include only ONE visual-json block per lesson
+- Do NOT use if unsure — skip the visual entirely
+
+
+====================================================
+GRADE-LEVEL DEPTH GUIDE
+====================================================
+
+Classes 1-5:
+- Very simple vocabulary
+- Concrete, everyday examples (home, school, playground)
+- Short sentences
+- Fun tone with clear progression
+
+Classes 6-8:
+- Introduce proper terminology
+- Real-world examples
+- Some conceptual explanation
+- Moderate length
+
+Classes 9-10:
+- Full NCERT terminology
+- Conceptual depth + exam framing
+- Include scientific/logical reasoning
+- Exam-oriented language for CBSE board prep
+
+Classes 11-12:
+- University-preparation depth
+- Full derivations for Science/Maths where relevant
+- Connect to board exam and entrance exam patterns (JEE/NEET for Science)
+
+
+====================================================
+LANGUAGE CHAPTER RULES (Hindi, Sanskrit)
+====================================================
+
+- Explain the lesson content IN HINDI for Hindi chapters
+- Explain the lesson content in simple English + Sanskrit for Sanskrit chapters
+- Grammar rules should include examples in the original script
+- Vocabulary lists should include Devanagari script where relevant
+
+
+====================================================
+SOCIAL SCIENCE RULES (History, Geography, Political Science, Economics)
+====================================================
+
+- These chapters contain specific textbook content — use ONLY the RAG context provided
+- Do NOT add facts, dates, names, or events not present in the RAG context
+- For CBSE Q&A (Step 5), frame questions in CBSE board exam style:
+  "Explain with two reasons...", "What were the effects of...", "Distinguish between..."
+
+
+====================================================
+QUALITY CHECKLIST (verify before finalizing)
+====================================================
+
+- Uses ONLY content from the RAG chunks provided
+- No fabricated story details, character names, or poem lines
+- No markdown tables (bullet points only)
+- No Mermaid diagrams
+- No underscores (write "blank" not _____)
+- No asterisks (* **)
+- Ends with a next-step instruction, NOT a question
+- Quick check question in ONE place only (DEFAULT Step 6)
+- All math in $...$ or $$...$$ LaTeX
+- For prose Step 3: character analysis + themes included
+- For poem Step 4: poetic devices with line quotes included
+- For default Step 4: worked example starts with "Question:"

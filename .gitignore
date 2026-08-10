@@ -38,7 +38,9 @@ frontend/coverage/
 backend/htmlcov/
 .coverage
 backend/.coverage
-docs/
+
+# Large mockup exports (PPTX decks + PNG slide exports) — kept locally only
+docs/mockups/
 
 # IDE
 .vscode/

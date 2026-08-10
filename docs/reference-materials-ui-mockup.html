@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reference Materials UI Mockup — LikhaPoha AI Tutor Platform</title>
+<style>
+/* === Platform design tokens === */
+:root {
+  --bg: #eef1f8;
+  --panel: #ffffff;
+  --panel-soft: #f4f6fd;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --muted: #64748b;
+  --border: #dde2f0;
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --accent: #7c3aed;
+  --success: #059669;
+  --shadow: 0 4px 16px rgba(79,70,229,0.08), 0 1px 4px rgba(15,23,42,0.06);
+  --shadow-lg: 0 12px 32px rgba(79,70,229,0.12), 0 2px 8px rgba(15,23,42,0.08);
+  --radius: 16px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* === App shell === */
+.app-shell { display: flex; min-height: 100vh; }
+
+/* === Sidebar === */
+.sidebar {
+  width: 260px;
+  background: #0f172a;
+  color: white;
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+.sidebar-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.brand-icon {
+  width: 44px; height: 44px; border-radius: 14px;
+  background: linear-gradient(135deg, #dbeafe, #ede9fe);
+  display: grid; place-items: center; font-size: 22px;
+  flex-shrink: 0;
+}
+.sidebar-brand strong { font-size: 18px; color: white; }
+.sidebar-brand small { color: #93c5fd; font-size: 12px; font-weight: 700; }
+.nav-btn {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; text-align: left;
+  background: transparent; color: #cbd5e1;
+  border: none; padding: 10px 12px; border-radius: 12px;
+  cursor: pointer; font-size: 14px; font-weight: 700;
+}
+.nav-btn:hover { background: rgba(255,255,255,0.07); color: white; }
+.nav-btn.active { background: #2563eb; color: white; box-shadow: 0 8px 20px rgba(37,99,235,0.3); }
+.nav-icon { font-size: 16px; }
+
+/* === Main === */
+.main { flex: 1; padding: 28px 32px 48px; min-width: 0; max-width: 1200px; }
+
+/* === Topbar === */
+.topbar {
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(226,232,240,0.9);
+  border-radius: 24px;
+  padding: 22px 26px;
+  margin-bottom: 24px;
+  box-shadow: 0 18px 50px rgba(15,23,42,0.07);
+  backdrop-filter: blur(18px);
+}
+.eyebrow { color: #2563eb; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.topbar h1 { font-size: 32px; letter-spacing: -0.04em; margin-bottom: 6px; }
+.topbar p { color: #64748b; font-size: 15px; }
+
+/* === Premium section === */
+.premium-section {
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  border: 1px solid #dbeafe;
+  border-radius: 28px;
+  padding: 26px;
+  box-shadow: 0 18px 48px rgba(37,99,235,0.07);
+  margin-bottom: 22px;
+}
+.section-header { margin-bottom: 20px; }
+.section-header h3 { font-size: 20px; margin-bottom: 6px; }
+.section-header p { color: #64748b; }
+
+/* === Dropdowns === */
+.form-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+label { font-weight: 700; font-size: 14px; color: #374151; display: flex; flex-direction: column; gap: 6px; }
+select {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background: white;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+}
+
+/* === Resource grid === */
+.resource-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+
+/* === Resource card === */
+.resource-card {
+  background: radial-gradient(circle at bottom right, rgba(59,130,246,0.08), transparent 30%), #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 14px 38px rgba(15,23,42,0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.resource-card:hover { transform: translateY(-3px); box-shadow: 0 22px 50px rgba(37,99,235,0.12); }
+
+.card-header { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
+.card-icon {
+  width: 50px; height: 50px;
+  display: grid; place-items: center;
+  border-radius: 16px;
+  font-size: 22px;
+  flex-shrink: 0;
+  box-shadow: 0 10px 22px rgba(37,99,235,0.1);
+}
+.icon-blue { background: #eff6ff; }
+.icon-purple { background: #f5f3ff; }
+.icon-green { background: #f0fdf4; }
+.icon-amber { background: #fffbeb; }
+.icon-red { background: #fef2f2; }
+
+.card-header h4 { font-size: 16px; margin-bottom: 4px; line-height: 1.3; }
+.type-badge {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.badge-video { background: #fee2e2; color: #b91c1c; }
+.badge-ncert { background: #dbeafe; color: #1d4ed8; }
+.badge-exemplar { background: #d1fae5; color: #065f46; }
+.badge-grammar { background: #ede9fe; color: #5b21b6; }
+.badge-cbse { background: #fef3c7; color: #92400e; }
+.badge-reference { background: #f1f5f9; color: #475569; }
+.badge-phet { background: #ecfdf5; color: #065f46; }
+
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 13px;
+  box-shadow: 0 12px 26px rgba(37,99,235,0.22);
+}
+
+/* === Exemplar section === */
+.exemplar-section {
+  background: linear-gradient(135deg, rgba(5,150,105,0.06), rgba(37,99,235,0.04)), #ffffff;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 28px;
+  padding: 26px;
+  margin-bottom: 22px;
+  box-shadow: 0 18px 48px rgba(5,150,105,0.08);
+}
+
+.exemplar-banner {
+  background: linear-gradient(135deg, #f0fdf4, #eff6ff);
+  border: 1px solid #bbf7d0;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  box-shadow: 0 14px 32px rgba(5,150,105,0.10);
+}
+.exemplar-icon-wrap {
+  width: 64px; height: 64px; flex-shrink: 0;
+  border-radius: 20px;
+  display: grid; place-items: center;
+  background: white;
+  font-size: 30px;
+  box-shadow: 0 14px 28px rgba(5,150,105,0.14);
+}
+.exemplar-banner h4 { font-size: 18px; margin-bottom: 8px; }
+.exemplar-banner p { color: #475569; font-size: 14px; line-height: 1.6; margin-bottom: 14px; }
+.exemplar-unit-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.unit-chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: white;
+  border: 1px solid #bbf7d0;
+  color: #065f46;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* === Grammar section === */
+.grammar-section {
+  background: linear-gradient(135deg, rgba(109,40,217,0.05), rgba(37,99,235,0.03)), #ffffff;
+  border: 1.5px solid #ddd6fe;
+  border-radius: 28px;
+  padding: 26px;
+  margin-bottom: 22px;
+  box-shadow: 0 18px 48px rgba(109,40,217,0.07);
+}
+
+/* === Callout box === */
+.section-callout {
+  background: linear-gradient(135deg, #eff6ff, #ede9fe);
+  border: 1px solid #ddd6fe;
+  border-radius: 18px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #4338ca;
+}
+
+/* === Source badge (on lesson page) === */
+.lesson-source-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: white;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #1d4ed8;
+  box-shadow: 0 8px 20px rgba(37,99,235,0.08);
+}
+
+/* === Lesson snippet === */
+.lesson-snippet {
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  border: 1px solid #dbeafe;
+  border-radius: 24px;
+  padding: 22px;
+  margin-bottom: 22px;
+}
+.lesson-snippet-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.lesson-snippet-title { font-size: 18px; font-weight: 900; }
+.lesson-content-preview { color: #475569; font-size: 14px; line-height: 1.7; border-left: 3px solid #2563eb; padding-left: 14px; }
+
+/* === View switcher tabs === */
+.view-tabs {
+  display: flex;
+  gap: 10px;
+  background: #f1f5f9;
+  border-radius: 14px;
+  padding: 6px;
+  margin-bottom: 24px;
+  width: fit-content;
+}
+.tab-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  font-weight: 800;
+  font-size: 14px;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.tab-btn.active { background: white; color: #1d4ed8; box-shadow: 0 4px 12px rgba(37,99,235,0.12); }
+
+/* === Heading with icon === */
+.section-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.section-heading h3 { font-size: 20px; }
+.section-heading span { font-size: 22px; }
+
+/* === Pill tags === */
+.grade-pill {
+  display: inline-flex; padding: 6px 12px; border-radius: 999px;
+  background: #eff6ff; color: #1d4ed8; font-size: 12px; font-weight: 900;
+}
+
+/* === Demo note === */
+.demo-note {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 24px;
+}
+
+/* === Section divider === */
+.section-divider {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 28px 0;
+}
+
+/* Lesson page "where" annotation */
+.where-label {
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #9ca3af;
+  margin-bottom: 10px;
+}
+.where-arrow {
+  width: 28px; height: 28px;
+  background: #fef3c7;
+  border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #92400e; font-size: 14px; font-weight: 900;
+  margin-right: 8px;
+}
+
+/* Page title strip */
+.page-section-title {
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  padding: 10px 0 6px;
+  margin-bottom: 16px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+</style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║  MOCKUP NOTE                                           ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<div class="demo-note" style="margin:16px;border-radius:14px;padding:14px 18px;font-size:14px;">
+  🎨 <strong>UI Mockup — Reference Materials for Students</strong> &nbsp;|&nbsp;
+  This shows how Maths/Science Exemplar Problems & English Grammar resources appear across 3 locations in the platform.
+  Built from actual platform CSS. Click buttons to see hover states.
+</div>
+
+<div class="app-shell">
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">🎓</div>
+      <div>
+        <strong>LikhaPoha AI</strong>
+        <br><small>CBSE Tutor Platform</small>
+      </div>
+    </div>
+    <button class="nav-btn"><span class="nav-icon">🏠</span> Dashboard</button>
+    <button class="nav-btn"><span class="nav-icon">📖</span> Lessons</button>
+    <button class="nav-btn"><span class="nav-icon">🤔</span> Ask Doubt</button>
+    <button class="nav-btn"><span class="nav-icon">📝</span> Mock Test</button>
+    <button class="nav-btn active"><span class="nav-icon">🎥</span> Learn More</button>
+    <button class="nav-btn"><span class="nav-icon">🏆</span> Leaderboard</button>
+    <button class="nav-btn"><span class="nav-icon">📊</span> Progress</button>
+    <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08)">
+      <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.07);border-radius:14px;padding:12px;">
+        <div style="width:36px;height:36px;background:#2563eb;border-radius:12px;display:grid;place-items:center;font-weight:900;color:white;">A</div>
+        <div>
+          <div style="color:white;font-weight:800;font-size:13px;">Akshita</div>
+          <div style="color:#93c5fd;font-size:11px;">Grade 9 · CBSE</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="main">
+
+    <!-- ────────────────────────────────────────────────────── -->
+    <!-- VIEW 1: THE RESOURCES PAGE ("Learn More") -->
+    <!-- ────────────────────────────────────────────────────── -->
+    <div class="page-section-title">📍 Location 1 — The "Learn More" / Resources Page</div>
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <p class="eyebrow">Learning Library</p>
+      <h1>🎥 Learn More</h1>
+      <p>Explore curated free resources for the selected chapter. Watch videos, open references, and strengthen concepts beyond the AI lesson.</p>
+    </div>
+
+    <!-- Topic selector -->
+    <div class="premium-section">
+      <div class="section-header">
+        <h3>🎯 Select Topic</h3>
+        <p>Choose the exact context for resource discovery.</p>
+      </div>
+      <div class="form-grid">
+        <label>Grade
+          <select>
+            <option>Grade 8</option>
+            <option selected>Grade 9</option>
+            <option>Grade 10</option>
+          </select>
+        </label>
+        <label>Mode
+          <select><option selected>CBSE</option><option>SOF</option></select>
+        </label>
+        <label>Subject
+          <select>
+            <option selected>Science</option>
+            <option>Maths</option>
+            <option>English</option>
+          </select>
+        </label>
+        <label>Chapter / Section
+          <select>
+            <option selected>Describing Motion Around Us</option>
+            <option>Cell: The Building Block of Life</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <!-- Free Learning Resources -->
+    <div class="premium-section">
+      <div class="section-header">
+        <h3>🌐 Free Learning Resources</h3>
+        <p>Videos and references matched to your selected subject and chapter.</p>
+      </div>
+      <div class="resource-grid">
+
+        <div class="resource-card">
+          <div class="card-header">
+            <div class="card-icon icon-red">▶️</div>
+            <div>
+              <h4>LikhaPoha AI — Describing Motion Around Us</h4>
+              <span class="type-badge badge-video">Video</span>
+            </div>
+          </div>
+          <p style="font-size:13px;color:#64748b;">AI-generated lesson video for Class 9 Science Chapter 4.</p>
+          <a href="#" class="resource-link">Open Resource →</a>
+        </div>
+
+        <div class="resource-card">
+          <div class="card-header">
+            <div class="card-icon icon-blue">📚</div>
+            <div>
+              <h4>NCERT Official Textbooks</h4>
+              <span class="type-badge badge-ncert">NCERT Textbook</span>
+            </div>
+          </div>
+          <p style="font-size:13px;color:#64748b;">Official NCERT Science textbook — free to download.</p>
+          <a href="#" class="resource-link">Open Resource →</a>
+        </div>
+
+        <div class="resource-card" style="border-color:#bbf7d0;background:radial-gradient(circle at bottom right,rgba(5,150,105,0.08),transparent 30%),#fff;">
+          <div class="card-header">
+            <div class="card-icon icon-green">🔬</div>
+            <div>
+              <h4>NCERT Exemplar Problems — Class 9 Science</h4>
+              <span class="type-badge badge-exemplar">Practice Problems</span>
+            </div>
+          </div>
+          <p style="font-size:13px;color:#64748b;">17 chapters of higher-order problems with solutions. Official NCERT — free, no login.</p>
+          <a href="#" class="resource-link" style="background:linear-gradient(135deg,#059669,#2563eb);">Open Exemplar →</a>
+        </div>
+
+        <div class="resource-card" style="border-color:#bbf7d0;">
+          <div class="card-header">
+            <div class="card-icon icon-green">🔬</div>
+            <div>
+              <h4>NCERT Exemplar Problems — Browse All</h4>
+              <span class="type-badge badge-exemplar">Practice Problems</span>
+            </div>
+          </div>
+          <p style="font-size:13px;color:#64748b;">Browse all NCERT Exemplar books for Class 6–12 Maths and Science.</p>
+          <a href="#" class="resource-link" style="background:linear-gradient(135deg,#059669,#2563eb);">Browse All →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── EXEMPLAR SECTION (appears for Maths/Science Grade 8-10) ── -->
+    <div class="exemplar-section">
+      <div class="section-heading">
+        <span>🔬</span>
+        <div>
+          <h3>NCERT Exemplar Practice Problems</h3>
+          <p style="color:#475569;font-size:14px;margin-top:4px;">Official NCERT higher-order thinking problems for Grade 9 Science. Ideal for board exam preparation and SOF Olympiad practice.</p>
+        </div>
+      </div>
+
+      <div class="exemplar-banner">
+        <div class="exemplar-icon-wrap">🔬</div>
+        <div>
+          <h4>NCERT Exemplar — Grade 9 Science (Full Book)</h4>
+          <p>Official NCERT exemplar with MCQs, short-answer and long-answer problems with solutions. Free from NCERT — no login required.</p>
+          <div class="exemplar-unit-chips">
+            <span class="unit-chip">Matter in Our Surroundings</span>
+            <span class="unit-chip">Atoms and Molecules</span>
+            <span class="unit-chip">Motion</span>
+            <span class="unit-chip">Force and Laws of Motion</span>
+            <span class="unit-chip">Gravitation</span>
+            <span class="unit-chip">Work and Energy</span>
+            <span class="unit-chip">+ 11 more units</span>
+          </div>
+          <a href="#" class="resource-link" style="background:linear-gradient(135deg,#059669,#2563eb);">Browse All Exemplar Problems →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ENGLISH GRAMMAR SECTION (appears when subject = English) ── -->
+    <div class="grammar-section">
+      <div class="section-heading">
+        <span>✍️</span>
+        <div>
+          <h3>English Grammar Reference Library</h3>
+          <p style="color:#475569;font-size:14px;margin-top:4px;">Free grammar guides and exercises from trusted sources. Covers all CBSE Grade 9 grammar topics.</p>
+        </div>
+      </div>
+
+      <div class="section-callout">
+        <span>💡</span>
+        Showing Grammar resources for Grade 9 English. Switch to English subject above to see these.
+      </div>
+
+      <div class="resource-grid">
+        <div class="resource-card" style="border-color:#ddd6fe;">
+          <div class="card-header">
+            <div class="card-icon icon-purple">✍️</div>
+            <div>
+              <h4>BBC Learning English — Grammar</h4>
+              <span class="type-badge badge-grammar">Grammar Guide</span>
+            </div>
+          </div>
+          <p style="font-size:13px;color:#64748b;">Tenses, Voice, Reported Speech, Clauses, Modals — free interactive lessons with examples.</p>
+          <a href="#" class="resource-link" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">Open BBC Grammar →</a>
+        </div>
+
+        <div class="resource-card" style="border-color:#ddd6fe;">
+          <div class="card-header">
+            <div class="card-icon icon-purple">✍️</div>
+            <div>
+              <h4>British Council — LearnEnglish Grammar</h4>
+              <span class="type-badge badge-grammar">Grammar Guide</span>
+            </div>
+          </div>
+          <p style="font-size:13px;color:#64748b;">A1 to C1 level grammar lessons with practice exercises. Covers all CBSE grammar topics.</p>
+          <a href="#" class="resource-link" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">Open British Council →</a>
+        </div>
+
+        <div class="resource-card" style="border-color:#fde68a;">
+          <div class="card-header">
+            <div class="card-icon icon-amber">📋</div>
+            <div>
+              <h4>CBSE Sample Papers — English</h4>
+              <span class="type-badge badge-cbse">CBSE Resource</span>
+            </div>
+          </div>
+          <p style="font-size:13px;color:#64748b;">Official CBSE sample papers with grammar and writing sections — best for board exam prep.</p>
+          <a href="#" class="resource-link" style="background:linear-gradient(135deg,#b45309,#d97706);">Open CBSE Sample Papers →</a>
+        </div>
+
+        <div class="resource-card">
+          <div class="card-header">
+            <div class="card-icon icon-blue">📚</div>
+            <div>
+              <h4>NCERT English Textbook — Beehive / First Flight</h4>
+              <span class="type-badge badge-ncert">NCERT Textbook</span>
+            </div>
+          </div>
+          <p style="font-size:13px;color:#64748b;">Official NCERT English textbooks with integrated grammar sections for each grade.</p>
+          <a href="#" class="resource-link">Open NCERT →</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- ────────────────────────────────────────────────────── -->
+    <!-- VIEW 2: LESSON PAGE — "📚 Based on NCERT" source badge + "Practice" CTA -->
+    <!-- ────────────────────────────────────────────────────── -->
+    <div class="page-section-title" style="margin-top:8px;">📍 Location 2 — Lesson Page (Source Badge + Practice Link)</div>
+
+    <div class="lesson-snippet">
+      <div class="lesson-snippet-header">
+        <div>
+          <div class="eyebrow" style="margin-bottom:4px;">Grade 9 · Science · CBSE</div>
+          <div class="lesson-snippet-title">📖 How Forces Affect Motion — Step 3: Newton's Second Law</div>
+        </div>
+        <span class="grade-pill">RAG ✅</span>
+      </div>
+      <div class="lesson-content-preview">
+        Newton's Second Law states that the acceleration of an object is directly proportional to the net force
+        applied and inversely proportional to its mass: <strong>F = ma</strong>. This means that for a constant
+        force, a heavier object accelerates less than a lighter one...
+      </div>
+
+      <!-- NEW: Source badge + Practice Problems link at bottom of lesson -->
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid #e2e8f0;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span class="lesson-source-badge">📚 Based on NCERT Science Grade 9 — <em>How Forces Affect Motion</em></span>
+        <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:999px;color:#065f46;font-weight:900;font-size:13px;text-decoration:none;">🔬 Practice Exemplar Problems</a>
+        <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:999px;color:#1d4ed8;font-weight:900;font-size:13px;text-decoration:none;">Open Full Textbook →</a>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- ────────────────────────────────────────────────────── -->
+    <!-- VIEW 3: DOUBT PAGE — "Related Resources" after answer  -->
+    <!-- ────────────────────────────────────────────────────── -->
+    <div class="page-section-title">📍 Location 3 — After a Doubt Answer (Trust Signal + Reference Link)</div>
+
+    <div class="lesson-snippet" style="border-color:#d1fae5;background:linear-gradient(180deg,#fff,#f0fdf4);">
+      <div class="lesson-snippet-header">
+        <div>
+          <div class="eyebrow" style="margin-bottom:4px;color:#047857;">🤖 AI Answer — Ask Doubt</div>
+          <div class="lesson-snippet-title">Why does a heavier object not fall faster than a lighter one?</div>
+        </div>
+        <span class="grade-pill" style="background:#d1fae5;color:#065f46;">Science · Grade 9</span>
+      </div>
+      <div class="lesson-content-preview" style="border-color:#059669;">
+        This is because gravity applies a proportionally greater force on heavier objects, but their greater mass also
+        means more inertia. Both effects cancel exactly — giving all objects the same acceleration (g = 9.8 m/s²)
+        in the absence of air resistance. This was demonstrated by Galileo's famous experiment at the Leaning Tower of Pisa...
+      </div>
+
+      <!-- NEW: Trust signal + Resources below doubt answer -->
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid #d1fae5;">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:9px 14px;background:white;border:1px solid #bbf7d0;border-radius:999px;font-size:13px;font-weight:800;color:#047857;">
+            📖 This answer is based on your Grade 9 Science textbook
+          </span>
+          <a href="#" style="display:inline-flex;align-items:center;gap:6px;padding:9px 14px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:999px;font-size:13px;font-weight:900;color:#1d4ed8;text-decoration:none;">Read original textbook →</a>
+          <a href="#" style="display:inline-flex;align-items:center;gap:6px;padding:9px 14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:999px;font-size:13px;font-weight:900;color:#065f46;text-decoration:none;">🔬 Try Exemplar Practice →</a>
+        </div>
+        <!-- Mentor suggestion chips (already exist in platform) -->
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button style="padding:9px 14px;border:1px solid #dbeafe;background:#eff6ff;color:#1d4ed8;border-radius:999px;font-weight:800;font-size:13px;cursor:pointer;">Give a practice question</button>
+          <button style="padding:9px 14px;border:1px solid #dbeafe;background:#eff6ff;color:#1d4ed8;border-radius:999px;font-weight:800;font-size:13px;cursor:pointer;">Explain step-by-step</button>
+          <button style="padding:9px 14px;border:1px solid #dbeafe;background:#eff6ff;color:#1d4ed8;border-radius:999px;font-weight:800;font-size:13px;cursor:pointer;">Give a real-life example</button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- ────────────────────────────────────────────────────── -->
+    <!-- SUMMARY CARD                                          -->
+    <!-- ────────────────────────────────────────────────────── -->
+    <div style="background:linear-gradient(135deg,#0f172a,#1e1b4b);border-radius:28px;padding:28px;color:white;margin-bottom:28px;">
+      <p class="eyebrow" style="color:#93c5fd;">Implementation Summary</p>
+      <h2 style="font-size:28px;margin:8px 0 16px;letter-spacing:-0.03em;">3 Places Students See Reference Materials</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;">
+
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:18px;padding:18px;">
+          <div style="font-size:28px;margin-bottom:10px;">🎥</div>
+          <strong style="display:block;margin-bottom:6px;font-size:16px;">Learn More Page</strong>
+          <p style="color:#94a3b8;font-size:13px;line-height:1.6;">Grade/subject dropdown → chapter-specific NCERT link + 🔬 Exemplar section + ✍️ Grammar Library.</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:18px;padding:18px;">
+          <div style="font-size:28px;margin-bottom:10px;">📖</div>
+          <strong style="display:block;margin-bottom:6px;font-size:16px;">Lesson Page Footer</strong>
+          <p style="color:#94a3b8;font-size:13px;line-height:1.6;">"📚 Based on NCERT" badge + "Open Textbook" + "Practice Exemplar" at the bottom of every generated lesson.</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:18px;padding:18px;">
+          <div style="font-size:28px;margin-bottom:10px;">🤔</div>
+          <strong style="display:block;margin-bottom:6px;font-size:16px;">After Doubt Answer</strong>
+          <p style="color:#94a3b8;font-size:13px;line-height:1.6;">Trust signal "This answer is based on your textbook" + "Read original" + "Try Exemplar" alongside mentor chips.</p>
+        </div>
+
+      </div>
+
+      <div style="margin-top:20px;padding:16px;background:rgba(255,255,255,0.06);border-radius:16px;font-size:13px;color:#cbd5e1;">
+        <strong style="color:white;">Resource badges explained:</strong>
+        &nbsp;▶️ Video &nbsp; 📚 NCERT Textbook &nbsp; 🔬 Practice Problems &nbsp; ✍️ Grammar Guide &nbsp; 📋 CBSE Resource &nbsp; 🧪 PhET Simulation
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

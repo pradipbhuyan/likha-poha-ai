@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option B — Workbook Mode | Grade 5 English — Papa's Spectacles</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f9fa;color:#111827;min-height:100vh}
+
+/* ── Top bar ── */
+.topbar{background:#fff;border-bottom:1px solid #e5e7eb;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:200;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.logo{font-weight:900;font-size:1rem;color:#6366f1}
+.topnav{display:flex;align-items:center;gap:6px;font-size:.78rem;color:#6b7280}
+.topnav span{color:#111827;font-weight:600}
+.topnav-sep{color:#d1d5db}
+.top-actions{display:flex;gap:8px;align-items:center}
+.btn-outline{background:none;border:1px solid #e5e7eb;border-radius:8px;padding:5px 12px;font-size:.75rem;color:#6b7280;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:4px}
+.btn-outline:hover{background:#f9fafb}
+.avatar{width:30px;height:30px;border-radius:50%;background:#e0e7ff;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#6366f1}
+
+/* ── Chapter header ── */
+.ch-header{background:#fff;border-bottom:1px solid #e5e7eb;padding:18px 24px 16px}
+.ch-header-inner{max-width:1140px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.ch-info{flex:1;min-width:200px}
+.ch-eyebrow{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#6b7280;margin-bottom:4px}
+.ch-title{font-size:1.35rem;font-weight:800;color:#111827;line-height:1.2}
+.ch-sub{font-size:.82rem;color:#6b7280;margin-top:4px}
+.ch-meta-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.meta-pill{display:flex;align-items:center;gap:5px;background:#f3f4f6;border-radius:99px;padding:4px 11px;font-size:.72rem;color:#374151}
+.meta-pill b{font-weight:700}
+.step-tabs{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.step-tab{border:1.5px solid #e5e7eb;border-radius:9px;padding:7px 14px;font-size:.78rem;font-family:inherit;cursor:pointer;background:#fff;color:#6b7280;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.step-tab.active{background:#6366f1;border-color:#6366f1;color:#fff;font-weight:700}
+.step-tab.done{background:#f0fdf4;border-color:#86efac;color:#15803d}
+.step-tab.done::before{content:'✓ '}
+
+/* ── Main workspace ── */
+.workspace{max-width:1140px;margin:0 auto;padding:24px;display:grid;grid-template-columns:220px 1fr 260px;gap:24px;align-items:start}
+
+/* ── Left TOC ── */
+.toc{position:sticky;top:72px;background:#fff;border-radius:12px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.toc-header{padding:12px 16px;background:#f8f9fa;border-bottom:1px solid #f3f4f6;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#6b7280}
+.toc-list{list-style:none;padding:8px 0}
+.toc-item a{display:flex;align-items:center;gap:8px;padding:8px 16px;font-size:.8rem;color:#374151;text-decoration:none;border-left:2px solid transparent;transition:all .15s;line-height:1.35}
+.toc-item a:hover{background:#f9fafb;color:#6366f1}
+.toc-item.active a{background:#eff6ff;color:#6366f1;font-weight:700;border-left-color:#6366f1}
+.toc-item.done a{color:#16a34a}
+.toc-icon{font-size:.85rem;flex-shrink:0;width:18px;text-align:center}
+.toc-divider{height:1px;background:#f3f4f6;margin:4px 0}
+.toc-footer{padding:10px 16px;border-top:1px solid #f3f4f6}
+.toc-progress{font-size:.72rem;color:#6b7280;margin-bottom:6px}
+.progress-bar-wrap{height:5px;background:#f3f4f6;border-radius:99px;overflow:hidden}
+.progress-bar-fill{height:100%;background:#6366f1;border-radius:99px;width:20%}
+.pin-btn{width:100%;margin-top:8px;background:none;border:1px solid #e5e7eb;border-radius:7px;padding:7px;font-size:.73rem;color:#6b7280;cursor:pointer;font-family:inherit}
+.pin-btn:hover{border-color:#6366f1;color:#6366f1}
+
+/* ── Main content ── */
+.content{background:#fff;border-radius:12px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.content-header{padding:18px 24px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between}
+.step-badge{display:inline-flex;align-items:center;gap:6px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:99px;padding:4px 12px;font-size:.72rem;font-weight:700;color:#1d4ed8}
+.content-actions{display:flex;gap:6px}
+.content-body{padding:24px}
+
+/* ── Workbook sections ── */
+.ws{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #f3f4f6}
+.ws:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.ws-header{display:flex;align-items:center;gap:9px;margin-bottom:14px}
+.ws-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.ws-icon.blue{background:#dbeafe}
+.ws-icon.amber{background:#fef3c7}
+.ws-icon.green{background:#dcfce7}
+.ws-icon.orange{background:#ffedd5}
+.ws-icon.red{background:#ffe4e6}
+.ws-icon.purple{background:#ede9fe}
+.ws-title{font-size:1rem;font-weight:700;color:#111827}
+.ws-tag{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:#6b7280;font-weight:700;margin-left:auto}
+.ws-body{font-size:.9rem;line-height:1.7;color:#374151}
+.ws-body p+p{margin-top:10px}
+.ws-body ul{padding-left:1.4em;margin-top:8px}
+.ws-body li{margin-bottom:6px}
+.ws-body strong{color:#111827}
+
+/* Story block */
+.story-block{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:16px 18px;margin:12px 0;position:relative}
+.story-block::before{content:'"';position:absolute;top:-2px;left:12px;font-size:2.5rem;color:#f59e0b;opacity:.4;line-height:1}
+.story-text{font-style:italic;font-size:.9rem;line-height:1.7;color:#374151;padding-left:8px}
+
+/* Vocab table */
+.vocab-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.85rem}
+.vocab-table th{text-align:left;padding:8px 12px;background:#f8f9fa;color:#6b7280;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;border-bottom:2px solid #e5e7eb}
+.vocab-table td{padding:9px 12px;border-bottom:1px solid #f3f4f6;vertical-align:top}
+.vocab-table td:first-child{font-weight:700;color:#1d4ed8;white-space:nowrap}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table tr:hover td{background:#f9fafb}
+
+/* Step breakdown */
+.step-card{border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;margin-top:10px}
+.step-row{display:flex;align-items:flex-start;padding:11px 14px;gap:12px;border-bottom:1px solid #f3f4f6}
+.step-row:last-child{border-bottom:none}
+.sn{min-width:24px;height:24px;border-radius:50%;background:#6366f1;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;margin-top:1px}
+.st{font-size:.86rem;line-height:1.5;color:#374151}
+.st strong{color:#111827}
+
+/* Warning block */
+.warn-block{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:14px 16px;display:flex;gap:12px;margin-top:8px}
+.warn-block .wi{font-size:1.3rem;flex-shrink:0}
+.warn-block .wt{font-size:.86rem;line-height:1.6;color:#7c2d12}
+.warn-block .wt strong{color:#9a3412}
+
+/* Inline question box */
+.iq-box{background:#fff1f2;border:1.5px solid #fda4af;border-radius:11px;padding:16px 18px;margin-top:10px}
+.iq-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:#be123c;font-weight:700;margin-bottom:8px}
+.iq-q{font-size:.93rem;font-weight:600;color:#881337;margin-bottom:12px;line-height:1.45}
+.iq-box textarea{width:100%;border:1.5px solid #fda4af;border-radius:8px;padding:9px 12px;font-size:.86rem;font-family:inherit;min-height:72px;background:rgba(255,255,255,.85);color:#111827;outline:none;resize:vertical}
+.iq-box textarea:focus{border-color:#f43f5e;box-shadow:0 0 0 3px rgba(244,63,94,.1)}
+.iq-actions{display:flex;gap:8px;margin-top:9px;align-items:center;flex-wrap:wrap}
+.iq-check-btn{background:#f43f5e;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:inherit}
+.iq-check-btn:hover{background:#e11d48}
+.iq-skip{font-size:.75rem;color:#9ca3af;cursor:pointer;background:none;border:none;font-family:inherit;text-decoration:underline}
+
+/* Summary list */
+.sum-list{list-style:none;padding:0;margin:8px 0 0}
+.sum-list li{display:flex;gap:9px;margin-bottom:9px;font-size:.88rem;line-height:1.55;color:#374151;align-items:flex-start}
+.sum-list li::before{content:'📌';flex-shrink:0;font-size:.85rem}
+
+/* ── Right panel ── */
+.aside{display:flex;flex-direction:column;gap:14px;position:sticky;top:72px}
+.aside-card{background:#fff;border-radius:12px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.aside-hdr{padding:11px 14px;background:#f8f9fa;border-bottom:1px solid #f3f4f6;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#6b7280}
+.aside-body{padding:12px 14px}
+.aside-body .chip{display:block;width:100%;text-align:left;background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:7px 10px;font-size:.78rem;color:#1d4ed8;cursor:pointer;font-family:inherit;margin-bottom:6px;line-height:1.4}
+.aside-body .chip:hover{background:#dbeafe}
+.aside-body .chip:last-child{margin-bottom:0}
+.ask-row{display:flex;gap:6px;margin-top:8px}
+.ask-input{flex:1;border:1px solid #e5e7eb;border-radius:8px;padding:7px 10px;font-size:.78rem;font-family:inherit;outline:none}
+.ask-input:focus{border-color:#6366f1;box-shadow:0 0 0 2px rgba(99,102,241,.1)}
+.ask-go{background:#6366f1;color:#fff;border:none;border-radius:8px;padding:7px 11px;font-size:.78rem;cursor:pointer;font-family:inherit}
+.note-area{width:100%;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px;font-size:.78rem;font-family:inherit;min-height:70px;resize:vertical;outline:none;color:#374151}
+.note-area:focus{border-color:#6366f1}
+.save-note-btn{width:100%;margin-top:6px;background:none;border:1px solid #6366f1;border-radius:8px;padding:7px;font-size:.73rem;color:#6366f1;cursor:pointer;font-family:inherit;font-weight:600}
+.save-note-btn:hover{background:#eff6ff}
+.aside-stat{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:.8rem;color:#374151}
+.aside-stat span:last-child{font-weight:700;color:#6366f1}
+.score-bar{height:6px;background:#f3f4f6;border-radius:99px;overflow:hidden;margin-bottom:12px}
+.score-fill{height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);border-radius:99px}
+
+/* ── Nav footer ── */
+.nav-footer{max-width:1140px;margin:0 auto;padding:0 24px 30px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.nav-prev{background:#fff;border:1.5px solid #e5e7eb;border-radius:10px;padding:10px 20px;font-size:.85rem;color:#6b7280;cursor:pointer;font-family:inherit}
+.nav-prev:hover{border-color:#6366f1;color:#6366f1}
+.nav-next{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:10px;padding:11px 24px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px}
+.nav-next:hover{opacity:.92}
+.nav-meta{font-size:.78rem;color:#6b7280}
+.mockup-note{background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;padding:10px 14px;font-size:.78rem;color:#92400e;line-height:1.5;margin:0 24px 20px}
+
+@media(max-width:900px){
+  .workspace{grid-template-columns:1fr}
+  .toc,.aside{position:static}
+  .toc{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:16px">
+    <div class="logo">Likha Poha</div>
+    <div class="topnav">
+      Grade 5 <span class="topnav-sep">›</span>
+      English <span class="topnav-sep">›</span>
+      <span>Papa's Spectacles</span>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button class="btn-outline">🔊 Read Aloud</button>
+    <button class="btn-outline">📥 Save Notes</button>
+    <button class="btn-outline">⚙️ Change Chapter</button>
+    <div class="avatar">AM</div>
+  </div>
+</div>
+
+<!-- CHAPTER HEADER -->
+<div class="ch-header">
+  <div class="ch-header-inner">
+    <div class="ch-info">
+      <div class="ch-eyebrow">Santoor English Grade 5 · Chapter 1</div>
+      <div class="ch-title">Papa's Spectacles</div>
+      <div class="ch-sub">A warm family story about searching for lost glasses 🕶️</div>
+      <div class="ch-meta-row">
+        <div class="meta-pill">📚 <b>Grade 5</b> · English</div>
+        <div class="meta-pill">⏱ <b>~20 min</b> total · 4 steps</div>
+        <div class="meta-pill">📊 <b>1 of 4</b> steps done</div>
+      </div>
+    </div>
+    <div class="step-tabs">
+      <button class="step-tab active">Step 1 · What We Learn</button>
+      <button class="step-tab">Step 2 · Core</button>
+      <button class="step-tab">Step 3 · Examples</button>
+      <button class="step-tab">Step 4 · Recap</button>
+    </div>
+  </div>
+</div>
+
+<!-- WORKSPACE -->
+<div class="workspace">
+
+  <!-- LEFT TOC -->
+  <nav class="toc">
+    <div class="toc-header">On this page</div>
+    <ul class="toc-list">
+      <li class="toc-item active">
+        <a href="#intro"><span class="toc-icon">🎯</span>What you will learn</a>
+      </li>
+      <li class="toc-item">
+        <a href="#concept"><span class="toc-icon">📘</span>About the story</a>
+      </li>
+      <li class="toc-item">
+        <a href="#extract"><span class="toc-icon">📖</span>Story extract</a>
+      </li>
+      <li class="toc-item">
+        <a href="#vocab"><span class="toc-icon">🔤</span>New vocabulary</a>
+      </li>
+      <li class="toc-divider"></li>
+      <li class="toc-item">
+        <a href="#howto"><span class="toc-icon">🧩</span>How to answer</a>
+      </li>
+      <li class="toc-item">
+        <a href="#mistake"><span class="toc-icon">⚠️</span>Common mistake</a>
+      </li>
+      <li class="toc-item">
+        <a href="#check"><span class="toc-icon">✅</span>Quick check</a>
+      </li>
+      <li class="toc-divider"></li>
+      <li class="toc-item">
+        <a href="#summary"><span class="toc-icon">📌</span>Summary</a>
+      </li>
+    </ul>
+    <div class="toc-footer">
+      <div class="toc-progress">Step progress: 20%</div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill"></div></div>
+      <button class="pin-btn">📌 Pin section for revision</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+    <div class="content-header">
+      <div class="step-badge">📖 Step 1 of 4 · What We Learn · ~6 min</div>
+      <div class="content-actions">
+        <button class="btn-outline">🔊 Read step</button>
+        <button class="btn-outline">📥 Save</button>
+      </div>
+    </div>
+    <div class="mockup-note">
+      📐 <b>Mockup — Option B: Structured Workbook Mode.</b> Desktop-first 3-column layout with sticky TOC, full inline content (no accordions), vocabulary table, inline practice question, and AI doubt panel on the right.
+    </div>
+    <div class="content-body">
+
+      <!-- SECTION 1: INTRO -->
+      <div class="ws" id="intro">
+        <div class="ws-header">
+          <div class="ws-icon blue">🎯</div>
+          <div class="ws-title">What you will learn</div>
+          <div class="ws-tag">Introduction</div>
+        </div>
+        <div class="ws-body">
+          <p>In this step you will:</p>
+          <ul>
+            <li>Read and understand the story <em>Papa's Spectacles</em> — a story about family and teamwork</li>
+            <li>Learn <strong>8 new vocabulary words</strong> including <em>spectacles, misplaced, frantic</em></li>
+            <li>Understand how to identify the main idea of a story</li>
+            <li>Practise writing a one-sentence summary</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SECTION 2: ABOUT THE STORY -->
+      <div class="ws" id="concept">
+        <div class="ws-header">
+          <div class="ws-icon amber">📘</div>
+          <div class="ws-title">About the story</div>
+          <div class="ws-tag">Concept</div>
+        </div>
+        <div class="ws-body">
+          <p>
+            <em>Papa's Spectacles</em> is a short story from your Grade 5 English textbook
+            <strong>Santoor</strong>. It is about a family who search for Papa's missing glasses.
+          </p>
+          <p>
+            The story shows how a <strong>loving family works together</strong> to solve a small, funny
+            problem. The search takes everyone to different parts of the house — and the ending
+            is a big surprise!
+          </p>
+          <p>
+            <strong>Main characters:</strong> Papa, Mama, and their children. The narrator of the
+            story is one of the children.
+          </p>
+          <p>
+            <strong>Setting:</strong> A family home — living room, kitchen, garden.
+          </p>
+        </div>
+      </div>
+
+      <!-- SECTION 3: STORY EXTRACT -->
+      <div class="ws" id="extract">
+        <div class="ws-header">
+          <div class="ws-icon green">📖</div>
+          <div class="ws-title">Story extract — read this carefully</div>
+          <div class="ws-tag">Story</div>
+        </div>
+        <div class="ws-body">
+          <p>Here is how the story begins. Read it slowly and picture the scene in your mind:</p>
+          <div class="story-block">
+            <p class="story-text">
+              "Papa could not find his spectacles anywhere. He looked on the table, under the sofa,
+              and even inside the refrigerator — but they were nowhere to be found!<br><br>
+              'I am sure I left them right here,' said Papa, becoming more and more frantic with
+              every passing minute."
+            </p>
+          </div>
+          <p>
+            The whole family then joins the search. Mama checks the kitchen. The children run to the
+            garden. After a long and funny search, little Ria looks up — and sees Papa's spectacles
+            sitting right on top of his own head!
+          </p>
+        </div>
+      </div>
+
+      <!-- SECTION 4: VOCABULARY -->
+      <div class="ws" id="vocab">
+        <div class="ws-header">
+          <div class="ws-icon amber">🔤</div>
+          <div class="ws-title">New vocabulary from the story</div>
+          <div class="ws-tag">Words</div>
+        </div>
+        <div class="ws-body">
+          <p>Learn these words — they will appear in exam questions too.</p>
+          <table class="vocab-table">
+            <thead>
+              <tr><th>Word</th><th>Meaning</th><th>In a sentence</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>spectacles</td><td>Glasses worn to help you see clearly</td><td><em>Papa wore spectacles to read the newspaper.</em></td></tr>
+              <tr><td>misplaced</td><td>Put in the wrong place; temporarily lost</td><td><em>She had misplaced her pencil again.</em></td></tr>
+              <tr><td>frantic</td><td>Very worried and rushing about</td><td><em>The dog was frantic when it heard thunder.</em></td></tr>
+              <tr><td>relieved</td><td>Happy because a worry is over</td><td><em>Everyone was relieved when the spectacles were found.</em></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SECTION 5: HOW TO ANSWER -->
+      <div class="ws" id="howto">
+        <div class="ws-header">
+          <div class="ws-icon green">🧩</div>
+          <div class="ws-title">How to answer story questions</div>
+          <div class="ws-tag">Step-by-step</div>
+        </div>
+        <div class="ws-body">
+          <p>When your teacher asks <em>"What is the main idea of the story?"</em>, use this method:</p>
+          <div class="step-card">
+            <div class="step-row"><div class="sn">1</div><div class="st"><strong>Read the question carefully.</strong> Underline the key word — here it is <em>"main idea"</em>.</div></div>
+            <div class="step-row"><div class="sn">2</div><div class="st"><strong>Think about the whole story</strong>, not just one event. What is the biggest message or point?</div></div>
+            <div class="step-row"><div class="sn">3</div><div class="st"><strong>Write a full sentence</strong> that names the characters and describes what they did or learned.</div></div>
+            <div class="step-row"><div class="sn">4</div><div class="st"><strong>Check your answer</strong>: Does it cover the beginning, middle, and end? Is it one clear sentence?</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 6: COMMON MISTAKE -->
+      <div class="ws" id="mistake">
+        <div class="ws-header">
+          <div class="ws-icon orange">⚠️</div>
+          <div class="ws-title">Common mistake to avoid</div>
+          <div class="ws-tag">Warning</div>
+        </div>
+        <div class="ws-body">
+          <div class="warn-block">
+            <div class="wi">⚠️</div>
+            <div class="wt">
+              <strong>❌ Weak answer:</strong> "The story is about spectacles." — This is too short and does not explain anything.<br><br>
+              <strong>✅ Better answer:</strong> "The story is about a family who search everywhere for Papa's missing spectacles and discover them on top of his head."<br><br>
+              Always include <strong>who</strong> the story is about, <strong>what</strong> they did, and <strong>how</strong> it ended.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 7: QUICK CHECK -->
+      <div class="ws" id="check">
+        <div class="ws-header">
+          <div class="ws-icon red">✅</div>
+          <div class="ws-title">Quick check</div>
+          <div class="ws-tag">Practice</div>
+        </div>
+        <div class="ws-body">
+          <div class="iq-box">
+            <div class="iq-label">📝 Answer in 1–2 sentences</div>
+            <div class="iq-q">Why does everyone in the family help Papa search for his spectacles? What does this tell you about their family?</div>
+            <textarea placeholder="Write your answer here…"></textarea>
+            <div class="iq-actions">
+              <button class="iq-check-btn">✨ Get AI Feedback</button>
+              <button class="iq-skip">Skip for now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 8: SUMMARY -->
+      <div class="ws" id="summary">
+        <div class="ws-header">
+          <div class="ws-icon purple">📌</div>
+          <div class="ws-title">Summary — what we covered</div>
+          <div class="ws-tag">Recap</div>
+        </div>
+        <div class="ws-body">
+          <ul class="sum-list">
+            <li><em>Papa's Spectacles</em> is a funny, warm story about a family working together to find Papa's missing glasses.</li>
+            <li>New words: <strong>spectacles, misplaced, frantic, relieved</strong> — all useful for exam answers.</li>
+            <li>A strong story answer includes <strong>who, what,</strong> and <strong>how it ended</strong>.</li>
+            <li>Always re-read the question and underline the key word before writing your answer.</li>
+          </ul>
+          <div style="margin-top:14px;background:#f0fdf4;border:1px solid #86efac;border-radius:9px;padding:12px 14px;font-size:.83rem;color:#14532d;line-height:1.55">
+            🎉 <strong>Step 1 complete!</strong> Click <em>Step 2 · Core Explanation</em> in the tabs above to continue.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end content-body -->
+  </main>
+
+  <!-- RIGHT ASIDE -->
+  <aside class="aside">
+
+    <!-- Step progress -->
+    <div class="aside-card">
+      <div class="aside-hdr">📊 Your Progress</div>
+      <div class="aside-body">
+        <div class="aside-stat"><span>Steps done</span><span>1 / 4</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:25%"></div></div>
+        <div class="aside-stat"><span>Lessons completed</span><span>12</span></div>
+        <div class="aside-stat"><span>Streak</span><span>🔥 4 days</span></div>
+      </div>
+    </div>
+
+    <!-- AI Doubt chips -->
+    <div class="aside-card">
+      <div class="aside-hdr">💬 Ask AI Tutor</div>
+      <div class="aside-body">
+        <button class="chip">What does 'frantic' mean?</button>
+        <button class="chip">Why is Papa upset in the story?</button>
+        <button class="chip">How does the story end?</button>
+        <button class="chip">What is a 'main idea' in English?</button>
+        <div class="ask-row">
+          <input class="ask-input" placeholder="Ask your own question…" />
+          <button class="ask-go">Ask</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Notes -->
+    <div class="aside-card">
+      <div class="aside-hdr">📝 My Notes</div>
+      <div class="aside-body">
+        <textarea class="note-area" placeholder="Write notes for revision here…"></textarea>
+        <button class="save-note-btn">💾 Save to Revision List</button>
+      </div>
+    </div>
+
+    <!-- Next step preview -->
+    <div class="aside-card">
+      <div class="aside-hdr">🔭 Up Next</div>
+      <div class="aside-body" style="font-size:.82rem;color:#374151;line-height:1.55">
+        <div style="font-weight:700;color:#6366f1;margin-bottom:4px">Step 2 · Core Explanation</div>
+        <div style="color:#6b7280;font-size:.78rem">Characters, plot structure, and reading comprehension techniques.</div>
+        <div style="margin-top:10px">
+          <div style="font-size:.72rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">What you'll learn</div>
+          <ul style="padding-left:1.2em;font-size:.78rem;color:#374151">
+            <li style="margin-bottom:4px">Plot: beginning → middle → end</li>
+            <li style="margin-bottom:4px">Character feelings and actions</li>
+            <li>Writing a story summary</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+</div><!-- end workspace -->
+
+<!-- NAV FOOTER -->
+<div class="nav-footer">
+  <button class="nav-prev">⬅ Previous Step</button>
+  <span class="nav-meta">Step 1 of 4 · Papa's Spectacles</span>
+  <button class="nav-next">Continue to Step 2 ➡</button>
+</div>
+
+<!-- DESIGN NOTES -->
+<div style="max-width:1140px;margin:0 auto;padding:0 24px 40px">
+  <div style="background:#1e293b;color:#e2e8f0;border-radius:14px;padding:24px">
+    <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;margin-bottom:14px">🎨 Option B Design Notes</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:.83rem;line-height:1.65">
+      <div>
+        <div style="font-weight:700;color:#e2e8f0;margin-bottom:8px">Layout</div>
+        <ul style="list-style:none;padding:0">
+          <li style="margin-bottom:7px;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#60a5fa">→</span> <strong>3-column grid</strong>: sticky TOC left, main content centre, AI panel right</li>
+          <li style="margin-bottom:7px;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#60a5fa">→</span> <strong>Step tabs</strong> in chapter header for quick step switching</li>
+          <li style="margin-bottom:7px;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#60a5fa">→</span> <strong>Responsive</strong>: collapses to single column on mobile/tablet</li>
+          <li style="padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#60a5fa">→</span> <strong>TOC anchor links</strong>: click any section to jump directly to it</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-weight:700;color:#e2e8f0;margin-bottom:8px">Content</div>
+        <ul style="list-style:none;padding:0">
+          <li style="margin-bottom:7px;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#34d399">→</span> <strong>All content expanded</strong> — no accordions, Ctrl+F works natively</li>
+          <li style="margin-bottom:7px;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#34d399">→</span> <strong>Vocabulary table</strong> with word, meaning, and example sentence</li>
+          <li style="margin-bottom:7px;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#34d399">→</span> <strong>Inline practice question</strong> placed right after lesson sections</li>
+          <li style="padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#34d399">→</span> <strong>My Notes panel</strong>: save revision notes from the lesson directly</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

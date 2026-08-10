@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Motivation Card Icon Options</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+  body { background: #0f172a; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  h1 { color: #f1f5f9; margin-bottom: 6px; font-size: 1.1rem; }
+  p { color: #64748b; font-size: .82rem; margin-bottom: 20px; text-align: center; }
+
+  /* Motivation card mockup */
+  .card-preview {
+    width: 100%;
+    max-width: 700px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 16px;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 32px rgba(99,102,241,.3);
+  }
+  .card-text { flex: 1 }
+  .card-title { font-weight: 800; font-size: 1rem; color: #fff; margin-bottom: 6px }
+  .card-quote { font-size: .9rem; font-style: italic; color: rgba(255,255,255,.9); margin-bottom: 4px }
+  .card-author { font-size: .78rem; color: rgba(255,255,255,.65) }
+  .card-icon { opacity: .65; display: flex; align-items: center; justify-content: center; margin-left: 20px }
+  .card-icon svg { color: #fff; }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, 140px); gap: 14px; justify-content: center; max-width: 900px; }
+  .opt { background: #1e293b; border-radius: 12px; padding: 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; border: 2px solid transparent; cursor: pointer; transition: all .15s; }
+  .opt:hover { border-color: #6366f1; }
+  .icon-wrap { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg,#6366f1,#8b5cf6); display: flex; align-items: center; justify-content: center; }
+  .icon-wrap svg { color: #fff; }
+  .label { font-size: .7rem; font-weight: 700; color: #94a3b8; text-align: center; font-family: monospace }
+  .letter { font-size: .65rem; font-weight: 800; color: #6366f1; background: rgba(99,102,241,.15); border-radius: 4px; padding: 2px 7px }
+  .note { color: #475569; font-size: .72rem; margin-top: 24px; text-align: center }
+</style>
+</head>
+<body>
+<h1>📚 Motivation Card — Icon Options</h1>
+<p>Preview of how the icon looks on the actual motivation card. Tell me the letter to apply it.</p>
+
+<!-- Live card mockup with the first icon as default -->
+<div class="card-preview">
+  <div class="card-text">
+    <div class="card-title">Motivation for You 💡</div>
+    <div class="card-quote">"Perseverance is not a long race; it is many short races one after another."</div>
+    <div class="card-author">— Walter Elliott</div>
+  </div>
+  <div class="card-icon" id="preview-icon">
+    <i data-lucide="sparkles" width="64" height="64" stroke-width="1.4"></i>
+  </div>
+</div>
+
+<div class="grid">
+
+  <div class="opt" onclick="updatePreview('sparkles')">
+    <div class="icon-wrap"><i data-lucide="sparkles" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">Sparkles</div>
+    <div class="letter">A</div>
+  </div>
+
+  <div class="opt" onclick="updatePreview('star')">
+    <div class="icon-wrap"><i data-lucide="star" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">Star</div>
+    <div class="letter">B</div>
+  </div>
+
+  <div class="opt" onclick="updatePreview('flame')">
+    <div class="icon-wrap"><i data-lucide="flame" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">Flame</div>
+    <div class="letter">C</div>
+  </div>
+
+  <div class="opt" onclick="updatePreview('rocket')">
+    <div class="icon-wrap"><i data-lucide="rocket" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">Rocket</div>
+    <div class="letter">D</div>
+  </div>
+
+  <div class="opt" onclick="updatePreview('trophy')">
+    <div class="icon-wrap"><i data-lucide="trophy" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">Trophy</div>
+    <div class="letter">E</div>
+  </div>
+
+  <div class="opt" onclick="updatePreview('sunrise')">
+    <div class="icon-wrap"><i data-lucide="sunrise" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">Sunrise</div>
+    <div class="letter">F</div>
+  </div>
+
+  <div class="opt" onclick="updatePreview('zap')">
+    <div class="icon-wrap"><i data-lucide="zap" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">Zap</div>
+    <div class="letter">G</div>
+  </div>
+
+  <div class="opt" onclick="updatePreview('heart')">
+    <div class="icon-wrap"><i data-lucide="heart" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">Heart</div>
+    <div class="letter">H</div>
+  </div>
+
+  <div class="opt" onclick="updatePreview('mountain')">
+    <div class="icon-wrap"><i data-lucide="mountain" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">Mountain</div>
+    <div class="letter">I</div>
+  </div>
+
+  <div class="opt" onclick="updatePreview('target')">
+    <div class="icon-wrap"><i data-lucide="target" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">Target</div>
+    <div class="letter">J</div>
+  </div>
+
+  <div class="opt" onclick="updatePreview('graduation-cap')">
+    <div class="icon-wrap"><i data-lucide="graduation-cap" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">GraduationCap</div>
+    <div class="letter">K</div>
+  </div>
+
+  <div class="opt" onclick="updatePreview('quote')">
+    <div class="icon-wrap"><i data-lucide="quote" width="24" height="24" stroke-width="1.8"></i></div>
+    <div class="label">Quote</div>
+    <div class="letter">L</div>
+  </div>
+
+</div>
+
+<p class="note">Click any card to preview it on the motivation banner above. Then tell me the letter.</p>
+
+<script>
+  lucide.createIcons();
+
+  function updatePreview(iconName) {
+    const preview = document.getElementById('preview-icon');
+    preview.innerHTML = `<i data-lucide="${iconName}" width="64" height="64" stroke-width="1.4"></i>`;
+    lucide.createIcons();
+  }
+</script>
+</body>
+</html>

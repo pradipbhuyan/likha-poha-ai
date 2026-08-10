@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Lesson Section Cards – Likha Poha AI Mockups</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;background:#eef1f8;padding:32px 20px;transition:background .3s}
+body.dark{background:#020617;color:#f8fafc}
+h1{text-align:center;font-size:26px;font-weight:900;color:#0f172a;margin-bottom:4px;letter-spacing:-.04em}
+body.dark h1{color:#f8fafc}
+p.sub{text-align:center;color:#64748b;font-size:13px;margin-bottom:28px}
+/* Admin toolbar */
+.toolbar{background:#0f172a;border-radius:18px;padding:18px 22px;margin-bottom:36px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.tbar-section{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tbar-label{color:#93c5fd;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap}
+.tbar-sep{width:1px;height:28px;background:rgba(255,255,255,.12);flex-shrink:0}
+.pill-btn{padding:8px 16px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.06);color:#cbd5e1;font-weight:700;font-size:12px;cursor:pointer;transition:all .18s;white-space:nowrap}
+.pill-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+.pill-btn.active-brand{background:linear-gradient(135deg,#2563eb,#7c3aed);border-color:transparent;color:#fff;box-shadow:0 6px 16px rgba(37,99,235,.38)}
+.pill-btn.active-forest{background:linear-gradient(135deg,#166534,#0f766e);border-color:transparent;color:#fff;box-shadow:0 6px 16px rgba(22,101,52,.38)}
+.pill-btn.active-mode{background:#1e293b;color:#fff;border-color:rgba(255,255,255,.22)}
+.tbar-right{margin-left:auto;display:flex;gap:8px}
+/* 3-column grid */
+.options-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+/* Option card */
+.opt-card{border-radius:20px;background:#fff;border:2px solid #e2e8f0;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+body.dark .opt-card{background:#0f172a;border-color:#1e293b}
+.opt-card.is-active{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.18)}
+body.dark .opt-card.is-active{border-color:#4f46e5;box-shadow:0 0 0 3px rgba(79,70,229,.25)}
+.opt-card.is-active-forest{border-color:#059669;box-shadow:0 0 0 3px rgba(5,150,105,.18)}
+.opt-header{padding:18px 18px 14px;border-bottom:1px solid #f1f5f9}
+body.dark .opt-header{border-color:#1e293b}
+.opt-name{font-size:16px;font-weight:800;color:#0f172a;margin-bottom:4px;letter-spacing:-.02em}
+body.dark .opt-name{color:#f1f5f9}
+.opt-desc{font-size:12px;color:#64748b;line-height:1.5}
+.active-chip{display:inline-flex;align-items:center;gap:5px;margin-top:10px;padding:5px 10px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:11px;font-weight:800}
+body.dark .active-chip{background:rgba(37,99,235,.18);color:#93c5fd}
+.active-chip-forest{background:#ecfdf5;color:#047857}
+body.dark .active-chip-forest{background:rgba(5,150,105,.18);color:#6ee7b7}
+/* Preview area */
+.preview-wrap{padding:14px;display:flex;flex-direction:column;gap:14px}
+.preview-block{background:#f8fafc;border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px}
+body.dark .preview-block{background:#111827}
+.preview-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#94a3b8;margin-bottom:4px}
+/* Mini cards — Option A */
+.ma{border-radius:10px;position:relative;overflow:hidden;padding:9px 12px;display:flex;align-items:center;gap:9px}
+.ma-badge{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ma-body{flex:1}.ma-title{font-size:11px;font-weight:700}.ma-sub{font-size:10px;opacity:.6;margin-top:1px}
+.ma-arr{font-size:13px;opacity:.3;flex-shrink:0}
+/* Mini cards — Option B */
+.mb{border-radius:9px;overflow:hidden}
+.mb-bar{height:4px}
+.mb-inner{display:flex;align-items:center;padding:8px 10px;gap:9px}
+.mb-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.mb-mid{flex:1}.mb-title{font-size:11px;font-weight:700}.mb-tag{font-size:9px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-top:1px}
+.mb-right{font-size:11px;font-weight:800;flex-shrink:0}
+/* Mini cards — Option C */
+.mc{border-radius:9px;overflow:hidden}
+.mc-head{display:flex;align-items:center;padding:8px 10px;gap:8px}
+.mc-num{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.mc-emoji{font-size:13px;flex-shrink:0}
+.mc-title{font-size:11px;font-weight:800;flex:1}
+.mc-arr{font-size:11px;opacity:.4;flex-shrink:0}
+/* Activate button */
+.opt-footer{padding:14px 18px;border-top:1px solid #f1f5f9}
+body.dark .opt-footer{border-color:#1e293b}
+.activate-btn{width:100%;padding:11px;border-radius:12px;border:none;font-weight:800;font-size:13px;cursor:pointer;transition:all .18s}
+.activate-btn-brand{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.28)}
+.activate-btn-brand:hover{box-shadow:0 12px 28px rgba(37,99,235,.38);transform:translateY(-1px)}
+.activate-btn-forest{background:linear-gradient(135deg,#166534,#0f766e);color:#fff;box-shadow:0 8px 20px rgba(22,101,52,.28)}
+.activate-btn-forest:hover{box-shadow:0 12px 28px rgba(22,101,52,.38);transform:translateY(-1px)}
+.activate-btn-off{background:#f1f5f9;color:#64748b}
+body.dark .activate-btn-off{background:#1e293b;color:#94a3b8}
+.activate-btn-off:hover{background:#e2e8f0;color:#334155}
+body.dark .activate-btn-off:hover{background:#334155;color:#e2e8f0}
+</style>
+</head>
+<body>
+<div style="max-width:1300px;margin:0 auto">
+<h1>📚 Lesson Section Cards — Design Mockups</h1>
+<p class="sub">Choose card style & colour theme from Admin Console — preview before activating</p>
+<div class="toolbar">
+<div class="tbar-section">
+    <span class="tbar-label">🎨 Colour Theme</span>
+    <button class="pill-btn active-brand" id="btnBrand" onclick="setTheme('brand',this)">🎓 Likha Poha AI</button>
+    <button class="pill-btn" id="btnForest" onclick="setTheme('forest',this)">🌿 Forest Trail</button>
+  </div>
+  <div class="tbar-sep"></div>
+  <div class="tbar-section">
+    <span class="tbar-label">☀️ Preview Mode</span>
+    <button class="pill-btn active-mode" id="btnLight" onclick="setMode('light')">Light</button>
+    <button class="pill-btn" id="btnDark" onclick="setMode('dark')">Dark</button>
+  </div>
+  <div class="tbar-right">
+    <span style="color:#475569;font-size:12px;font-weight:700;align-self:center">Admin Console</span>
+  </div>
+</div>
+<div class="options-grid" id="grid"></div>
+</div>
+<script>
+// ── Data ────────────────────────────────────────────────────────────────────
+const SECTIONS=[
+  {e:"📚",t:"1. Introduction",s:"What is this lesson about?",tag:"STARTER",pt:"+5 XP",f:5},
+  {e:"🎯",t:"2. What you will learn",s:"Learning objectives",tag:"GOALS",pt:"+10 XP",f:2},
+  {e:"📖",t:"3. Simple explanation",s:"The concept broken down",tag:"CONCEPT",pt:"+15 XP",f:0},
+];
+// Brand theme palette per section [lightGrad, darkGrad, accent, darkAccent, lightTxt, darkTxt, bar, lBadge, dBadge, lHead, dHead]
+const BRAND=[
+  ["#dbeafe,#eff6ff","#0c1a3a,#1e3a8a","#2563eb","#60a5fa","#1e3a8a","#bfdbfe","#2563eb,#1d4ed8","rgba(37,99,235,.15)","rgba(96,165,250,.22)","#2563eb","#0c1a3a"],
+  ["#eef2ff,#e0e7ff","#1e1b4b,#312e81","#4f46e5","#818cf8","#312e81","#c7d2fe","#4f46e5,#4338ca","rgba(79,70,229,.14)","rgba(129,140,248,.22)","#4f46e5","#1e1b4b"],
+  ["#f5f3ff,#ede9fe","#2e1065,#4c1d95","#7c3aed","#a78bfa","#3730a3","#ddd6fe","#7c3aed,#6d28d9","rgba(124,58,237,.13)","rgba(167,139,250,.22)","#7c3aed","#2e1065"],
+];
+// Forest Trail palette per section
+const FOREST=[
+  ["#d1fae5,#ecfdf5","#022c22,#064e3b","#059669","#34d399","#064e3b","#a7f3d0","#059669,#047857","rgba(5,150,105,.15)","rgba(52,211,153,.22)","#059669","#022c22"],
+  ["#ccfbf1,#d1fae5","#042f2e,#134e4a","#0f766e","#2dd4bf","#134e4a","#99f6e4","#0f766e,#0d9488","rgba(15,118,110,.14)","rgba(45,212,191,.22)","#0f766e","#042f2e"],
+  ["#dcfce7,#d1fae5","#14532d,#166534","#16a34a","#4ade80","#166534","#bbf7d0","#16a34a,#15803d","rgba(22,163,74,.14)","rgba(74,222,128,.22)","#16a34a","#14532d"],
+];
+const OPTIONS=[
+  {id:"A",name:"Option A — Gradient Glow",desc:"Pastel gradient background with coloured glow. Soft & premium."},
+  {id:"B",name:"Option B — Game Cards",desc:"Colour stripe + XP badge + progress dots. Gamified & motivating."},
+  {id:"C",name:"Option C — Bold Header",desc:"Coloured number badge + title band. Strong hierarchy."},
+];
+let _theme='brand', _mode='light', _active='A';
+function palette(){return _theme==='forest'?FOREST:BRAND;}
+function isForest(){return _theme==='forest';}
+function dk(){return _mode==='dark';}
+
+function miniA(s,p,dark){
+  const lg=dark?p[1]:p[0],ac=dark?p[3]:p[2],tx=dark?p[5]:p[4],bg=dark?p[8]:p[7];
+  return `<div class="ma" style="background:linear-gradient(135deg,${lg});border:1px solid ${ac}33">
+    <div class="ma-badge" style="background:${bg}">${s.e}</div>
+    <div class="ma-body"><div class="ma-title" style="color:${tx}">${s.t}</div><div class="ma-sub" style="color:${tx}">${s.s}</div></div>
+    <span class="ma-arr" style="color:${ac}">›</span></div>`;
+}
+function miniB(s,p,dark){
+  const ac=dark?p[3]:p[2],tx=dark?p[5]:p[4],bg=dark?p[8]:p[7];
+  const base=dark?"#1e293b":"#fff",bdr=dark?"rgba(255,255,255,.06)":"rgba(0,0,0,.06)";
+  const dotOff=dark?"#334155":"#e2e8f0";
+  const dots=Array.from({length:3},(_,i)=>`<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${i<s.f?ac:dotOff};margin-right:3px"></span>`).join('');
+  return `<div class="mb" style="background:${base};border:1px solid ${bdr}">
+    <div class="mb-bar" style="background:linear-gradient(90deg,${p[6]})"></div>
+    <div class="mb-inner">
+      <div class="mb-icon" style="background:${bg}">${s.e}</div>
+      <div class="mb-mid"><div class="mb-title" style="color:${tx}">${s.t}</div><div class="mb-tag" style="color:${ac}">${s.tag}</div></div>
+      <div class="mb-right" style="color:${ac}">${s.pt}</div>
+    </div>
+    <div style="padding:0 10px 7px;display:flex;gap:3px">${dots}</div></div>`;
+}
+function miniC(s,p,dark){
+  const ac=dark?p[3]:p[2],tx=dark?p[5]:p[4],hb=dark?p[10]:p[9];
+  const base=dark?"#1e293b":"#fff",bdr=dark?"rgba(255,255,255,.06)":"rgba(0,0,0,.06)";
+  return `<div class="mc" style="background:${base};border:1px solid ${bdr}">
+    <div class="mc-head" style="background:${hb}22">
+      <div class="mc-num" style="background:${hb}44;color:${ac}">${s.t[0]}</div>
+      <span class="mc-emoji">${s.e}</span>
+      <div class="mc-title" style="color:${tx}">${s.t}</div>
+      <span class="mc-arr" style="color:${ac}">⌄</span>
+    </div></div>`;
+}
+
+const RENDERERS={A:miniA,B:miniB,C:miniC};
+
+function buildCard(opt){
+  const pal=palette();
+  const dark=dk();
+  const isActive=_active===opt.id;
+  const forest=isForest();
+  const activeCls=isActive?(forest?'is-active-forest':'is-active'):'';
+  const chipCls=forest?'active-chip active-chip-forest':'active-chip';
+  const btnCls=isActive?(forest?'activate-btn activate-btn-forest':'activate-btn activate-btn-brand'):'activate-btn activate-btn-off';
+  const btnLabel=isActive?'✓ Currently Active':'Activate This Style';
+  const fn=RENDERERS[opt.id];
+  const lCards=SECTIONS.map((s,i)=>fn(s,pal[i],false)).join('');
+  const dCards=SECTIONS.map((s,i)=>fn(s,pal[i],true)).join('');
+  return `<div class="opt-card ${activeCls}" id="card-${opt.id}">
+  <div class="opt-header">
+    <div class="opt-name">${opt.name}</div>
+    <div class="opt-desc">${opt.desc}</div>
+    ${isActive?`<div class="${chipCls}">✓ Active Style</div>`:''}
+  </div>
+  <div class="preview-wrap">
+    <div class="preview-block">
+      <div class="preview-label">☀️ Light</div>${lCards}
+    </div>
+    <div class="preview-block" style="background:${dark?'#111827':'#1e293b'}">
+      <div class="preview-label">🌙 Dark</div>${dCards}
+    </div>
+  </div>
+  <div class="opt-footer">
+    <button class="${btnCls}" onclick="activate('${opt.id}')">${btnLabel}</button>
+  </div></div>`;
+}
+
+function render(){
+  document.getElementById('grid').innerHTML=OPTIONS.map(o=>buildCard(o)).join('');
+}
+
+function setTheme(t,btn){
+  _theme=t;
+  document.getElementById('btnBrand').className='pill-btn'+(t==='brand'?' active-brand':'');
+  document.getElementById('btnForest').className='pill-btn'+(t==='forest'?' active-forest':'');
+  render();
+}
+function setMode(m){
+  _mode=m;
+  document.body.classList.toggle('dark',m==='dark');
+  document.getElementById('btnLight').className='pill-btn'+(m==='light'?' active-mode':'');
+  document.getElementById('btnDark').className='pill-btn'+(m==='dark'?' active-mode':'');
+  render();
+}
+function activate(id){
+  _active=id;
+  render();
+  const el=document.getElementById('card-'+id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+render();
+</script>
+</body>
+</html>

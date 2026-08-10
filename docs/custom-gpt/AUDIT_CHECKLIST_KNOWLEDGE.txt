@@ -1,0 +1,209 @@
+NLG INTERNAL AUDIT DELIVERY REVIEW CHECKLIST - NON AGILE
+CH-197 Version 2.3
+Complete reference for all 81 checklist items (S.No 1-81)
+
+FORMAT: S.No | Title | Question | Look For
+
+=== SECTION A: Project Initiation and Planning (One-Time Activity) ===
+
+1 | MSA/SOW Availability | Does the project have a signed and valid SOW and MSA, or approval for uncontracted work? | SOW/MSA signatures and validity dates. If expired or missing, look for uncontracted work approval or Work Ahead Request.
+
+2 | Agreed Acceptance Criteria | Has DONE/Acceptance criteria been defined and agreed with the customer? | Acceptance criteria in SOW/MSA, or email/MoM evidences, or criteria defined in Software Project Plan (SPP).
+
+3 | Contract Review & Compliance | Has the PM reviewed the contract, raised alerts, and recorded compliance clauses in the Contract Compliance Tracker? | SOW/MSA contractual requirements (ODC, HIPAA, SOC). Alerts raised by PM. Estimation sheet review evidence. All clauses in Contract Compliance Tracker.
+
+4 | Project Scope Definition | Is the project scope well-defined with clarity for execution? | SOW scope description. Clarity for project type (Development/Migration/Maintenance). What defines project success.
+
+5 | Kick-Off Action Items | Are all kick-off actions tracked and closed with stakeholder commitment? | Kick-off Presentation, invitees, Meeting Results, Actions identified, open actions past target date.
+
+6 | Estimation | Is the estimation model aligned with the applicable process model (Agile/Non-Agile)? | Estimation model used and customization. Estimating guideline. Appropriateness for process model (V-Process, Agile, Testing).
+
+7 | Quality Assurance & Control | Do the estimation tasks cover QA, SQA reviews, testing, and rework time? | Tasks in approved estimation sheet. Reviews (SQA, peer), testing tasks, rework time inclusion.
+
+8 | Schedule | Does the project schedule include all tasks, dependencies, and align with the estimation? | Project schedule (MS Project/Excel). Alignment between estimation and schedule. Variations to be assessed.
+
+9 | Operational Process | Is the operational process defined in the SPP with tailoring and customization? | Approved SPP. Operational Process section. CM Plan, Communication Plan, Risk Management Plan, Staffing Plan, BCP, Metrics chosen.
+
+10 | Testing Strategies | Has the project defined a testing strategy and process for all test types? | Test Strategy/Test Plan. Processes for unit testing, system testing, integration testing, defect capture, re-test, reporting.
+
+11 | Environment Issues / Challenges | Are there challenges setting up dev/test/DevOps environments? | SOW/Schedule timelines for environment setup. Deviations and impact on schedule.
+
+12 | Communication Plan | Are meetings planned at all levels adequate for governance? | SPP meetings planned (team meeting, DM meeting, GDE meeting, CDE meeting). Adequacy assessment.
+
+13 | Preparation Of Cost Model | Is the team in place in line with the cost model? | Cost model team structure vs staffing plan. Deviations assessed.
+
+14 | SQA Identification | Has an SQA been identified to carry out independent review of deliverables? | SQA in cost model or SOW. SQA tasks in estimation sheet.
+
+15 | Performance Objectives / Metrics / Customer Goals | Are performance metrics defined using the more stringent of org or customer goals? | Metrics/goals defined. Org goals vs customer goals (use whichever is stricter). Sub-process management.
+
+16 | Interested Parties | Have all internal and external interested parties been identified and registered? | Interested Parties Register. Internal and external stakeholders identified. Completeness and fulfilment requirements.
+
+17 | Transition Phase | Are transition phase deliverables defined in the SPP in line with SOW? | Approved SPP and SOW. Transition deliverable list comparison. Highlight discrepancies.
+
+18 | Steady State | Are steady state deliverables defined in the SPP in line with SOW? | Approved SPP and SOW. Steady state deliverable list comparison. Highlight discrepancies.
+
+19 | SLA Agreement | Have SLAs/KPIs been defined and agreed with the customer before steady state? | SLAs/KPIs agreed with customer. Coverage of scope. Internally defined SLAs if customer does not require them.
+
+=== SECTION B: Project Execution (Recurring / Regular Activity) ===
+
+20 | Entry & Exit Criteria | Is the operational process with entry/exit criteria implemented effectively? | SPP execution model. Entry and Exit Criteria defined. Evidences of process being followed.
+
+21 | Client Feedback | Is customer feedback collected at the defined frequency? | Frequency defined in SPP. Feedback received. Actions identified and implementation effectiveness. Non-Agile = at least once a year.
+
+22 | Identification Of Risk/Opportunities | Are risks and opportunities identified, monitored, and tracked for closure? | Risk Register. Risk Priorities. Closure actions. Opportunity identification and how PM is leveraging them.
+
+23 | Potential Risk Identification | Do you foresee potential risks the PM should work on? Any opportunity for growth, AI implementation, or expansion? | Auditor's own assessment. Scope, process model, project type, cost model, team structure, progress, security. THIS REQUIRES AUDITOR'S OWN ANALYSIS.
+
+24 | Customer & Deliverable Sign Off Available | Are deliverables signed off by the customer and CCT updated? | Deliverable sign-off evidences. Deemed acceptance clause in SOW. CCT updates. Sign-offs for requirement/design changes.
+
+25 | Actual GM Verification | Is Gross Margin variance tracked and reported in Accelerate/WSR? | Budget tracker. GM variance. Accelerate updates. Weekly Status Report.
+
+26 | Accelerate Reporting | Do weekly status reports accurately reflect actual project status? | Weekly Status Report. Customer Status Report. Risks, issues, current outages reflected accurately.
+
+27 | Meeting Results | Are MoMs maintained for all meetings per the defined frequency? | Meetings defined in SPP. Meeting results/MoMs. Actions tracked to closure.
+
+28 | Cost Model Deviation | Can the current team meet project objectives if different from the cost model? | Cost model vs actual team. Staffing plan. Skill gaps. Training plan. Capability assessment.
+
+29 | Induction On Process Execution | Have all team members been inducted on the execution process? | Induction process in SPP. Induction evidences for all team members.
+
+30 | Skill Gap Analysis | Does the training tracker capture skill gaps and track trainings to closure? | Training tracker. Skill gaps identified. Trainings provided. Effectiveness. ESD awareness and advanced quality tools for TL domain projects.
+
+31 | Handover/Takeover | Are team exits tracked and RRs raised in advance for smooth handover? | Staffing plan. Resource Requests for exits. Dates raised vs notice period. Sufficient time for handover/takeover.
+
+32 | Reporting Issues | Are issues identified, tracked for closure, and reported weekly? | Issue management process in SPP. Issue logs for PM and technical issues. Closure tracking.
+
+33 | Impact Analysis | Do change requests contain impact analysis and are they tracked in the CR log? | Change requests. Impact analysis (efforts and timelines). Change Request Log maintained.
+
+34 | Vendor Evaluation | Are vendors evaluated for subcontracting and compliance tracked? | Subcontracting process. Vendor evaluations. Compliance clauses in CCT. Mark Not Applicable if no vendor involved.
+
+35 | Additional Checklist | Are there additional checklists the project should be using? | Checklists defined for the project. Additional checklists for defect-less delivery (code review, deployment checklist, etc.).
+
+36 | Project Goals / Customer KPI / NTT Goals | Are project goals aligned with KPIs/NTT goals and managed at sub-process level? | Performance objectives/Metrics. Org vs customer goals (stricter applies). Sub-process management. Quantitative Project Management.
+
+37 | Deviation/Variation Causal Analysis | Are there variances requiring RCA and corrective actions? | Project Metrics Report. Variances from goals. RCA carried out. Corrective actions taken. Benefits realized.
+
+38 | Regression Test | Has regression testing been carried out before releases/deployments? | Regression test packs. Updated and current status. Evidences of regression tests for each release.
+
+39 | Addressing Defects | Are defects tracked to closure before delivery to the customer? | Defect tracking tool. Internal defects from peer review, lead review, SME review, SQA, testing. All phases (requirements, design, coding, testing).
+
+40 | Corrective Action | Is the project conducting RCA for defects and implementing corrective actions? | RCA report. Types of defects analyzed. Defects missed from analysis. Corrective actions and implementation effectiveness.
+
+41 | Testing Methodologies | Do the tests planned and executed meet customer requirements per SOW? | SOW tests required. Evidences of tests done. Deviations highlighted. Additional tests if needed.
+
+42 | Test Case Scenario | Do test cases cover all scenarios with traceability? | Test cases prepared. Coverage for all tests. Traceability matrix. Variances highlighted.
+
+43 | RCA Suggestion To PM | Where should RCA have been carried out that the project missed? | Auditor's own assessment. Risks, issues, customer complaints, metrics variances, defects, DR findings, GM variance, skill gaps. THIS REQUIRES AUDITOR'S OWN ANALYSIS.
+
+44 | Configuration Area/Archival/SharePoint | Are all latest versions of configurable items in the configuration repository? | Configuration area/repository. Latest versions. Checked-out items and durations. Completeness of items.
+
+45 | Configuration Audit | Are configuration audits conducted at defined frequency with findings closed timely? | Configuration audit reports. Frequency alignment. Timely closure of audit findings.
+
+46 | Customer Escalation | Has the project taken corrective action for all customer escalations and feedback? | Customer feedback from all sources (NPS, CSAT, VONC, meetings). RCA carried out. Actions implemented. Meeting result actions.
+
+47 | Challenges In Meeting Objectives & Project Goals | Are there challenges in meeting the performance goals/metrics? | Risks, issues, metrics variances, defects, DR findings, GM variance, skill gaps. Assess challenges not yet identified by the project.
+
+48 | Previous NC | Have previous review findings been closed with corrective actions? | All Review/Audit findings in AMS. Open findings. Corrective actions for correctness and appropriateness.
+
+49 | Decision Analysis Report | Has the project carried out DAR for all qualifying decision scenarios? | Multiple-solution scenarios. DAR conducted and results recorded in NCoRe format. Shared with customer as applicable.
+
+50 | Medical Devices/Telecom Project | Is software for medical devices/telecom validated initially and after changes? APPLICABLE ONLY for Medical Devices/Telecom projects. | Validation techniques adopted. Changes incorporated adequately.
+
+51 | Tele Communication Projects | Are TL measurement metrics defined, monitored, and reported? | SPP for TL metrics. Monthly data shared with Quality team. Analysis performed.
+
+52 | N-KMP Submission | Have knowledge assets, best practices, and lessons learned been submitted to N-KMP? | N-KMP submitted assets. Reuse declarations. CSI/customer success stories around automation and Gen AI. Effort savings declared.
+
+53 | BCP Training & Drill | Has BCP/BRP training been provided and drills conducted? | Business Resumption Plan, Disaster Recovery Plan, Business Continuity Plan. Drill evidences and results.
+
+54 | SLA Monitoring and Slippage RCA | Is the project meeting SLAs/KPIs and sharing RCA for breaches? Has any penalty been paid? | SLA/KPI performance data. RCA Reports for breaches. RCA shared with customer. Penalty status.
+
+55 | RCA Reports For Ticket With Slippage | Are RCAs carried out for individual tickets that missed SLA even if overall SLA is met? | SLA performance at individual ticket level. RCA for each slipped ticket even when overall SLA target is met.
+
+56 | Capacity & Availability | Is capacity and availability tracked weekly in line with the plan? | Capacity and Availability Plan. Planned vs actual. Variances highlighted.
+
+57 | Deployment Issue | Have all releases been deployed successfully with no issues? | Release plan provided by customer. Successful completion of all releases. Post-deployment issues if any.
+
+58 | Continuous Service Improvement | Are automations, innovations, and CSIs implemented and reported in MBR/QBRs? | Service Improvement Plan. Improvements shown to customer. Frequency and forum for showcasing CSIs.
+
+59 | Knowledge Articles & Knowledge Repository | Is the knowledge repository (KEDB) being maintained within the team? | KEDB/Knowledge Repository. Documents updated and current. Accessibility for team members.
+
+60 | Service Catalogue | Is the service catalogue updated for all services per the latest SOW? | Service Catalogue. All services documented with relevant details. Alignment with current SOW scope.
+
+61 | Generic | Additional finding not covered in any other checklist item. | Only use if a finding or observation from the transcript genuinely does not fit into any other S.No.
+
+62 | Schedule Tracker | Is the project schedule tracked for dependencies, change requests, and kept up to date? | Project schedule (MS Project or equivalent). Dependencies tracked. Change requests reflected. Current and updated.
+
+63 | Traceability Matrix | Is the traceability matrix updated for all change requests? | Requirements Traceability Matrix. Updates for all change requests. End-to-end traceability maintained.
+
+64 | Non-Functional Requirements | Are functional and non-functional requirements adequately captured? | Software Requirements Specifications / Functional Specifications. Functional and non-functional requirements. Requirement allocation among resources.
+
+65 | Design and Development | Are design documents available, reviewed, and approved? | Design document. Design constraints, testing requirements, resources, safety, environment, business, user, quality, functional, reliability all considered.
+
+66 | Attrition | Is attrition in line with the organization-defined percentage? Is there delivery impact? | Attrition percentage for the project. Impact on delivery based on resource replacements vs cost model.
+
+67 | Transition Tracker | Is the transition schedule tracked for dependencies, CRs, deliverables, and up to date? | Transition Project Schedule. Dependencies and change requests tracked. Deliverables tracked. Schedule current and updated.
+
+68 | Transition Risk/Issue | Are there risks/issues with transition progress for successful completion? | SOW transition scope. Risk/Issue Register/Log. Transition progress. Risks or issues for successful completion.
+
+69 | Stabilization Phase | Has stabilization been completed successfully with SLAs defined for steady state? | Current performance vs SLAs agreed with customer. Variance assessment. Appropriateness of SLAs agreed.
+
+70 | Problem Management | Are problems identified, reported to customer, and tracked with ticket reduction RCA? | SOW for Problem Management scope. Problems identified and reported. Problem tracking and ageing. RCA and ticket reduction benefits.
+
+71 | RCA For Internal Defects | Is RCA carried out for defects from peer review, SQA, internal testing, and customer-reported? | RCA report for all defect categories. Types analyzed. Missed defects. Corrective actions and implementation effectiveness.
+
+72 | Productivity Improvement | For projects more than 2 years old, is productivity improvement observed? Mark Not Applicable for projects under 2 years. | Productivity and utilization values/trends in the MMR tool.
+
+73 | Technical Accelerators Adoption | Has the project explored technical accelerators or tools to enhance delivery? | KMP, Tools Catalog. Tools like Axet, Co-pilot, etc. explored or adopted to speed up delivery.
+
+74 | Service Expansion Opportunities | Has the team identified transformation, migration, or complementing service opportunities? | CSI Tracker. RiMAC opportunities captured. Transformation or expansion proposals.
+
+75 | Gen AI Awareness | Have technical team members completed Gen AI trainings (Gen AI 101 mandatory, White Belt Level 1&2, Yellow Belt Level 3)? | CATALYS training records. Completion status. Gen AI tools/frameworks awareness sessions conducted.
+
+76 | Gen AI Customer Proposal | Is the team identifying and proposing Gen AI implementation opportunities to the customer? | RCA reports for automation opportunities. Customer proposals made. Engagement on Gen AI topics.
+
+77 | Gen AI Implementation | If client expressed interest in Gen AI, has the team met expectations and measured productivity improvement? | CSI Tracker. Customer feedback. Action plan for implementation. Productivity improvement measured.
+
+=== SECTION C: Project Closure (One-Time Activity) ===
+
+78 | Closure Audit | Has the project completed the closure audit with all required documents and metrics updated? | Customer sign-off evidence. Closure meeting with stakeholders. Published/updated closure report.
+
+79 | N-KMP Closure Submission | Have knowledge assets been submitted to N-KMP at closure? | N-KMP submitted assets. Reuse declarations for the project.
+
+80 | Closure Archival | Have all project documents been uploaded to the organization archival repository? | Organization archival repository. All artifacts including reusable components uploaded.
+
+81 | Case Study Submission | Has the case study been prepared and submitted to the organizational repository? | Case study on the engagement. Project video on achievements. Organizational Case Study repository.
+
+=== GLOSSARY ===
+
+SPP = Software Project Plan
+SOW = Statement of Work
+MSA = Master Services Agreement
+CCT = Contract Compliance Tracker
+SQA = Software Quality Assurance
+RCA = Root Cause Analysis
+MoM = Minutes of Meeting
+WSR = Weekly Status Report
+GM = Gross Margin
+BCP = Business Continuity Plan
+BRP = Business Resumption Plan
+DRP = Disaster Recovery Plan
+DAR = Decision Analysis and Resolution
+KEDB = Known Error Database
+CSI = Continuous Service Improvement
+N-KMP = NTT Knowledge Management Portal
+AMS = Audit Management System
+NPS = Net Promoter Score
+CSAT = Customer Satisfaction Survey
+VONC = Voice of the Customer
+RR = Resource Request
+CDE = Client Delivery Executive
+DM = Delivery Manager
+GDE = Global Delivery Executive
+DR = Delivery Review
+PMG = Project Management Group
+MMR = Monthly Metrics Report
+CR = Change Request
+TL = Telecom domain (TL9000 standard)
+ESD = Electrostatic Discharge
+ODC = Offshore Development Center
+HIPAA = Health Insurance Portability and Accountability Act
+SOC = Service Organization Control

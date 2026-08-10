@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option A — Card Feed | Grade 5 English — Papa's Spectacles</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f3f4f6;color:#111827;min-height:100vh}
+.topbar{background:#fff;border-bottom:1px solid #e5e7eb;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.logo{font-weight:900;font-size:1.05rem;color:#6366f1;letter-spacing:-.3px}
+.breadcrumb{font-size:.75rem;color:#6b7280}
+.breadcrumb b{color:#111827}
+.avatar{width:30px;height:30px;border-radius:50%;background:#e0e7ff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#6366f1}
+.chapter-banner{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;padding:18px 20px 16px;position:relative;overflow:hidden}
+.chapter-banner::after{content:'📚';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:3rem;opacity:.2}
+.ch-eyebrow{font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;opacity:.75;margin-bottom:3px}
+.ch-title{font-size:1.15rem;font-weight:800}
+.ch-sub{font-size:.75rem;opacity:.75;margin-top:3px}
+.step-bar{background:#fff;padding:11px 18px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:10px}
+.dots{display:flex;gap:5px;align-items:center}
+.dot{width:9px;height:9px;border-radius:50%;background:#e5e7eb}
+.dot.done{background:#16a34a}
+.dot.active{width:26px;border-radius:5px;background:#6366f1}
+.step-info{font-size:.78rem;color:#6b7280}
+.step-info b{color:#111827}
+.read-time{margin-left:auto;font-size:.72rem;color:#6b7280;background:#f3f4f6;padding:3px 10px;border-radius:99px}
+.feed{max-width:580px;margin:0 auto;padding:14px 14px 90px;display:flex;flex-direction:column;gap:12px}
+.card{border-radius:14px;padding:18px;border:1.5px solid transparent;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.card.intro{background:#eff6ff;border-color:#bfdbfe}
+.card.concept{background:#fffbeb;border-color:#fcd34d}
+.card.story{background:#f0fdf4;border-color:#86efac}
+.card.breakdown{background:#f0fdf4;border-color:#86efac}
+.card.warning{background:#fff7ed;border-color:#fdba74}
+.card.check{background:#fff1f2;border-color:#fda4af}
+.card.summary{background:#faf5ff;border-color:#d8b4fe}
+.ch{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.ci{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.intro .ci{background:#dbeafe}
+.concept .ci{background:#fef3c7}
+.story .ci,.breakdown .ci{background:#dcfce7}
+.warning .ci{background:#ffedd5}
+.check .ci{background:#ffe4e6}
+.summary .ci{background:#ede9fe}
+.ct{display:flex;flex-direction:column;gap:1px;flex:1}
+.ctag{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#6b7280}
+.ctitle{font-size:.92rem;font-weight:700;color:#111827;line-height:1.3}
+.audio-btn{margin-left:auto;background:none;border:1px solid rgba(0,0,0,.12);border-radius:7px;padding:4px 9px;font-size:.7rem;color:#6b7280;cursor:pointer;display:flex;align-items:center;gap:3px;white-space:nowrap;font-family:inherit}
+.audio-btn:hover{background:rgba(0,0,0,.04)}
+.cbody{font-size:.88rem;line-height:1.68;color:#374151}
+.cbody p+p{margin-top:8px}
+.cbody ul{padding-left:1.3em;margin-top:6px}
+.cbody li{margin-bottom:4px}
+.story-quote{background:rgba(255,255,255,.75);border-left:3px solid #f59e0b;border-radius:0 9px 9px 0;padding:11px 13px;margin:10px 0;font-style:italic;font-size:.86rem;line-height:1.6;color:#374151}
+.vocab-list{list-style:none;padding:0;margin:10px 0 0}
+.vocab-list li{display:flex;gap:8px;align-items:flex-start;margin-bottom:9px}
+.vocab-word{min-width:110px;font-weight:700;font-size:.85rem;color:#1d4ed8}
+.vocab-meaning{font-size:.85rem;color:#374151;line-height:1.45}
+.steps-list{list-style:none;padding:0;margin:8px 0 0}
+.steps-list li{display:flex;gap:9px;align-items:flex-start;margin-bottom:10px}
+.snum{min-width:22px;height:22px;border-radius:50%;background:#16a34a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0;margin-top:2px}
+.stext{font-size:.86rem;line-height:1.5;color:#374151}
+.warn-box{display:flex;gap:9px;background:rgba(251,146,60,.14);border-radius:9px;padding:11px;margin-top:6px}
+.warn-icon{font-size:1.2rem;flex-shrink:0}
+.warn-text{font-size:.83rem;line-height:1.55;color:#92400e}
+.q-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#be123c;margin-bottom:8px}
+.q-text{font-size:.93rem;font-weight:600;color:#881337;margin-bottom:11px;line-height:1.45}
+.ans-box{width:100%;border:1.5px solid #fda4af;border-radius:9px;padding:9px 12px;font-size:.86rem;font-family:inherit;min-height:65px;background:rgba(255,255,255,.8);color:#111827;outline:none;resize:vertical;transition:border-color .15s}
+.ans-box:focus{border-color:#f43f5e;box-shadow:0 0 0 3px rgba(244,63,94,.1)}
+.check-row{display:flex;align-items:center;gap:10px;margin-top:9px;flex-wrap:wrap}
+.check-btn{background:#f43f5e;color:#fff;border:none;border-radius:9px;padding:9px 18px;font-size:.83rem;font-weight:700;cursor:pointer;font-family:inherit}
+.check-btn:hover{background:#e11d48}
+.skip-link{font-size:.75rem;color:#9ca3af;cursor:pointer;background:none;border:none;font-family:inherit;text-decoration:underline}
+.sum-points{list-style:none;padding:0;margin:8px 0 0}
+.sum-points li{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;font-size:.86rem;line-height:1.5;color:#374151}
+.sum-points li::before{content:'✓';color:#7c3aed;font-weight:700;flex-shrink:0;margin-top:1px}
+.terms{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.term{background:rgba(99,102,241,.1);color:#6366f1;border-radius:99px;padding:3px 10px;font-size:.7rem;font-weight:600;border:1px solid rgba(99,102,241,.2)}
+.continue-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;padding:12px 18px;display:flex;gap:10px;align-items:center;box-shadow:0 -2px 12px rgba(0,0,0,.08);max-width:580px;margin:0 auto}
+.continue-bar{left:50%;transform:translateX(-50%);width:100%;max-width:100%}
+.next-btn{flex:1;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:11px;padding:13px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px}
+.next-btn:hover{opacity:.92}
+.doubt-btn{background:none;border:1px solid #e5e7eb;border-radius:11px;padding:13px 16px;font-size:.82rem;color:#6b7280;cursor:pointer;font-family:inherit}
+.section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;padding:6px 0 4px}
+.mockup-note{background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;padding:10px 14px;font-size:.78rem;color:#92400e;margin-bottom:4px;line-height:1.5}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="logo">Likha Poha</div>
+    <div class="breadcrumb">Grade 5 · English · <b>Papa's Spectacles</b></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <button style="background:none;border:1px solid #e5e7eb;border-radius:8px;padding:5px 12px;font-size:.75rem;cursor:pointer;font-family:inherit;color:#6b7280">📚 Change</button>
+    <div class="avatar">AM</div>
+  </div>
+</div>
+
+<!-- CHAPTER BANNER -->
+<div class="chapter-banner">
+  <div class="ch-eyebrow">Santoor English · Chapter 1</div>
+  <div class="ch-title">Papa's Spectacles</div>
+  <div class="ch-sub">A story about a loving family and lost glasses 🕶️</div>
+</div>
+
+<!-- STEP PROGRESS BAR -->
+<div class="step-bar">
+  <div class="dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+  <div class="step-info">Step <b>1</b> of 4 — <b>What We Learn</b></div>
+  <div class="read-time">⏱ ~6 min</div>
+</div>
+
+<!-- CARD FEED -->
+<div class="feed">
+
+  <div class="mockup-note">
+    📐 <b>Mockup — Option A: Scrollable Card Feed.</b> Each section is a colour-coded card. No accordions to click open — scroll naturally to read. Cards animate in as you scroll.
+  </div>
+
+  <!-- CARD 1: INTRO (Blue) -->
+  <div class="card intro">
+    <div class="ch">
+      <div class="ci">🎯</div>
+      <div class="ct">
+        <div class="ctag">What you will learn</div>
+        <div class="ctitle">In this lesson step…</div>
+      </div>
+      <button class="audio-btn">🔊 Listen</button>
+    </div>
+    <div class="cbody">
+      <ul>
+        <li>Read and understand the story <em>Papa's Spectacles</em></li>
+        <li>Learn 8 new vocabulary words</li>
+        <li>Answer questions about characters and events</li>
+        <li>Practise writing a short summary</li>
+      </ul>
+    </div>
+    <div class="terms">
+      <span class="term">spectacles</span>
+      <span class="term">misplaced</span>
+      <span class="term">search</span>
+      <span class="term">relieved</span>
+    </div>
+  </div>
+
+  <!-- CARD 2: CONCEPT (Amber) -->
+  <div class="card concept">
+    <div class="ch">
+      <div class="ci">📘</div>
+      <div class="ct">
+        <div class="ctag">Simple Explanation</div>
+        <div class="ctitle">About the story</div>
+      </div>
+      <button class="audio-btn">🔊 Listen</button>
+    </div>
+    <div class="cbody">
+      <p>
+        <em>Papa's Spectacles</em> is a short story about a family who searches for Papa's
+        missing glasses. It is a funny, warm story that shows how families work together
+        to solve everyday problems.
+      </p>
+      <p style="margin-top:9px">
+        <strong>Characters:</strong> Papa, Mama, and their children. Each person searches
+        in a different place. In the end, the spectacles are found in a surprising spot!
+      </p>
+    </div>
+  </div>
+
+  <!-- CARD 3: STORY EXTRACT (Green) -->
+  <div class="card story">
+    <div class="ch">
+      <div class="ci">🧪</div>
+      <div class="ct">
+        <div class="ctag">Story Extract</div>
+        <div class="ctitle">Read this part carefully</div>
+      </div>
+      <button class="audio-btn">🔊 Listen</button>
+    </div>
+    <div class="cbody">
+      <p>Here is how the story begins:</p>
+      <div class="story-quote">
+        "Papa could not find his spectacles anywhere. He looked on the table, under the sofa,
+        and even inside the refrigerator — but they were nowhere to be found!"
+      </div>
+      <p>The whole family joins the search. Mama checks the kitchen. The children look in the garden.
+      Finally, little Ria finds them sitting right on top of Papa's head!</p>
+    </div>
+  </div>
+
+  <!-- CARD 4: VOCABULARY (Amber) -->
+  <div class="card concept">
+    <div class="ch">
+      <div class="ci">📖</div>
+      <div class="ct">
+        <div class="ctag">New Words</div>
+        <div class="ctitle">Vocabulary from the story</div>
+      </div>
+      <button class="audio-btn">🔊 Listen</button>
+    </div>
+    <div class="cbody">
+      <ul class="vocab-list">
+        <li><span class="vocab-word">spectacles</span><span class="vocab-meaning">another word for glasses that help you see clearly</span></li>
+        <li><span class="vocab-word">misplaced</span><span class="vocab-meaning">lost or put in the wrong place by mistake</span></li>
+        <li><span class="vocab-word">relieved</span><span class="vocab-meaning">feeling happy that a problem or worry is over</span></li>
+        <li><span class="vocab-word">frantic</span><span class="vocab-meaning">very worried and rushing about in a confused way</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CARD 5: BREAKDOWN (Green) -->
+  <div class="card breakdown">
+    <div class="ch">
+      <div class="ci">🧩</div>
+      <div class="ct">
+        <div class="ctag">Step-by-step</div>
+        <div class="ctitle">How to answer story questions</div>
+      </div>
+      <button class="audio-btn">🔊 Listen</button>
+    </div>
+    <div class="cbody">
+      <p>When your teacher asks "What is the main idea of the story?", follow these steps:</p>
+      <ul class="steps-list">
+        <li><div class="snum">1</div><div class="stext"><strong>Read the question carefully.</strong> Underline the key word — here it is "main idea".</div></li>
+        <li><div class="snum">2</div><div class="stext"><strong>Think about what the whole story is about</strong>, not just one part.</div></li>
+        <li><div class="snum">3</div><div class="stext"><strong>Write a sentence</strong> that mentions the characters and the problem they solved.</div></li>
+        <li><div class="snum">4</div><div class="stext"><strong>Check your answer</strong> — does it cover the beginning, middle, and end?</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CARD 6: WARNING (Orange) -->
+  <div class="card warning">
+    <div class="ch">
+      <div class="ci">⚠️</div>
+      <div class="ct">
+        <div class="ctag">Common Mistake</div>
+        <div class="ctitle">Watch out for this!</div>
+      </div>
+    </div>
+    <div class="cbody">
+      <div class="warn-box">
+        <div class="warn-icon">⚠️</div>
+        <div class="warn-text">
+          Many students write <strong>"The story is about spectacles"</strong> — this is too short!
+          Always include <em>who</em> the story is about and <em>what happened</em>.
+          A better answer: <strong>"The story is about a family who work together to find Papa's missing glasses."</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 7: CHECK (Red) -->
+  <div class="card check">
+    <div class="ch">
+      <div class="ci">✅</div>
+      <div class="ct">
+        <div class="ctag">Quick Check</div>
+        <div class="ctitle">Try this question</div>
+      </div>
+    </div>
+    <div class="cbody">
+      <div class="q-label">📝 Answer in 1–2 sentences</div>
+      <div class="q-text">Why does everyone in the family help Papa search for his spectacles? What does this tell you about the family?</div>
+      <textarea class="ans-box" placeholder="Write your answer here…"></textarea>
+      <div class="check-row">
+        <button class="check-btn">✨ Get AI Feedback</button>
+        <button class="skip-link">Skip for now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 8: SUMMARY (Purple) -->
+  <div class="card summary">
+    <div class="ch">
+      <div class="ci">📌</div>
+      <div class="ct">
+        <div class="ctag">Summary</div>
+        <div class="ctitle">What we covered today</div>
+      </div>
+      <button class="audio-btn">🔊 Listen</button>
+    </div>
+    <div class="cbody">
+      <ul class="sum-points">
+        <li>Papa's Spectacles is a story about a family solving a small, everyday problem together.</li>
+        <li>New words learned: spectacles, misplaced, relieved, frantic.</li>
+        <li>Good story answers include who, what, and why — not just one word.</li>
+        <li>Always re-read a question before answering to find the key words.</li>
+      </ul>
+    </div>
+    <div style="margin-top:12px;padding:10px 12px;background:rgba(124,58,237,.08);border-radius:9px;font-size:.8rem;color:#4c1d95;line-height:1.5">
+      🎉 <strong>Step 1 complete!</strong> Click <em>Next Step</em> below to continue to Step 2: Core Explanation.
+    </div>
+  </div>
+
+  <!-- DOUBT CHIPS -->
+  <div style="background:#fff;border-radius:14px;padding:16px;border:1px solid #e5e7eb;box-shadow:0 2px 10px rgba(0,0,0,.06)">
+    <div style="font-size:.78rem;font-weight:700;color:#6b7280;margin-bottom:10px;text-transform:uppercase;letter-spacing:.07em">💬 Ask AI Tutor — Quick Questions</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <button style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:99px;padding:6px 13px;font-size:.78rem;color:#1d4ed8;cursor:pointer;font-family:inherit">What does 'frantic' mean?</button>
+      <button style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:99px;padding:6px 13px;font-size:.78rem;color:#1d4ed8;cursor:pointer;font-family:inherit">Why is Papa upset?</button>
+      <button style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:99px;padding:6px 13px;font-size:.78rem;color:#1d4ed8;cursor:pointer;font-family:inherit">How does the story end?</button>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <input style="flex:1;border:1px solid #e5e7eb;border-radius:9px;padding:8px 12px;font-size:.83rem;font-family:inherit;outline:none" placeholder="Or ask your own question…" />
+      <button style="background:#6366f1;color:#fff;border:none;border-radius:9px;padding:8px 14px;font-size:.83rem;cursor:pointer;font-family:inherit">Ask ✨</button>
+    </div>
+  </div>
+
+</div><!-- end feed -->
+
+<!-- FIXED BOTTOM NAVIGATION -->
+<div class="continue-bar">
+  <button class="doubt-btn">⬅ Previous</button>
+  <button class="next-btn">Continue to Step 2 ➡</button>
+</div>
+
+<!-- DESIGN NOTES -->
+<div style="max-width:580px;margin:0 auto;padding:90px 14px 30px">
+  <div style="background:#1e293b;color:#e2e8f0;border-radius:14px;padding:20px">
+    <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;margin-bottom:12px">🎨 Option A Design Notes</div>
+    <ul style="list-style:none;padding:0;font-size:.83rem;line-height:1.6">
+      <li style="margin-bottom:8px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:#60a5fa">→</span> <strong>No accordions</strong> — all content visible, natural scroll reading</li>
+      <li style="margin-bottom:8px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:#60a5fa">→</span> <strong>Colour coding</strong> — blue intro, amber concept, green example, orange warning, red check, purple summary</li>
+      <li style="margin-bottom:8px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:#60a5fa">→</span> <strong>🔊 per-section audio</strong> — listen to just the vocabulary, not the whole step</li>
+      <li style="margin-bottom:8px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:#60a5fa">→</span> <strong>Inline check question</strong> — appears right after the lesson, not at the bottom of the page</li>
+      <li style="margin-bottom:8px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:#60a5fa">→</span> <strong>Fixed bottom bar</strong> — always accessible Continue/Previous buttons, no scrolling needed</li>
+      <li style="margin-bottom:8px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:#60a5fa">→</span> <strong>Mobile-first</strong> — max-width 580px, works perfectly on phone screens</li>
+      <li style="padding-left:16px;position:relative"><span style="position:absolute;left:0;color:#60a5fa">→</span> <strong>Quick doubt chips</strong> — pre-answered questions visible right below the lesson</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

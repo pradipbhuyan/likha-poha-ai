@@ -54,6 +54,11 @@
 .nbp-theme-light .nbp-feature-row td:first-child,
 .nbp-theme-light .nbp-table thead th:first-child { background: var(--panel,#fff); }
 
+.nbp-theme-dark .nbp-jump-chip { color: #f8fafc; }
+.nbp-theme-light .nbp-jump-chip { color: var(--text,#0f172a); }
+.nbp-theme-dark .nbp-swipe-hint { color: #94a3b8; }
+.nbp-theme-light .nbp-swipe-hint { color: var(--muted,#64748b); }
+
 /* ── Structural layout (shared) ─────────────────────────────────────────── */
 .nbp-wrap {
   overflow-x: auto;
@@ -88,10 +93,14 @@
 .nbp-cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
 .nbp-btn { padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: .88rem; cursor: pointer; font-family: inherit; }
 
+/* ── Mobile: quick-jump chips + swipe hint, hidden above the table breakpoint ── */
+.nbp-jump-row { display: none; }
+.nbp-swipe-hint { display: none; }
+
 /* ── Mobile: sticky first column so labels stay visible while scrolling ── */
 @media (max-width: 640px) {
   .nbp-table { min-width: 580px; }
-  .nbp-feature-col { width: 38%; }
+  .nbp-feature-col { width: 34%; }
   .nbp-table thead th:first-child,
   .nbp-feature-row td:first-child,
   .nbp-group-row td:first-child {
@@ -109,6 +118,39 @@
   .nbp-footnote { flex-direction: column; gap: 6px; font-size: .64rem; }
   .nbp-cta-row { flex-direction: column; align-items: stretch; }
   .nbp-btn { width: 100%; }
+
+  /* Swipe settles cleanly on one plan column at a time; scroll-padding keeps
+     the snapped column from tucking behind the sticky feature column. */
+  .nbp-wrap { scroll-snap-type: x proximity; scroll-padding-left: 34%; }
+  .nbp-table th:not(:first-child),
+  .nbp-table td:not(:first-child) { scroll-snap-align: start; }
+
+  .nbp-jump-row {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px 2px 10px;
+    margin-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nbp-jump-chip {
+    flex: 0 0 auto;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1.5px solid;
+    background: transparent;
+    font-size: .74rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .nbp-swipe-hint {
+    display: block;
+    text-align: center;
+    font-size: .68rem;
+    margin: 8px 0 0;
+  }
 }
 
 @media (max-width: 400px) {

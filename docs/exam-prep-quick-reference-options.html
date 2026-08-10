@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Prep — Quick Reference: 3 UI Options</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; padding: 32px 24px; }
+h1 { text-align: center; font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; color: #f1f5f9; }
+.subtitle { text-align: center; font-size: .8rem; color: #64748b; margin-bottom: 40px; }
+.options-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1400px; margin: 0 auto; }
+.option { background: #1e293b; border: 2px solid #334155; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+.option.recommended { border-color: #6366f1; }
+.option-header { padding: 14px 18px; border-bottom: 1px solid #334155; background: rgba(99,102,241,.08); }
+.option-label { font-size: .58rem; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
+.option-title { font-size: .95rem; font-weight: 800; margin-bottom: 3px; }
+.option-desc { font-size: .7rem; color: #94a3b8; line-height: 1.5; }
+.badge { display: inline-block; font-size: .58rem; font-weight: 700; padding: 2px 7px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+.badge-pro { background: rgba(34,197,94,.15); color: #4ade80; }
+.option-body { padding: 16px; flex: 1; }
+.chrome { background: #0f172a; border: 1px solid #334155; border-radius: 10px; overflow: hidden; font-size: .7rem; }
+.chrome-top { background: #1e293b; padding: 7px 12px; border-bottom: 1px solid #334155; font-size: .68rem; color: #64748b; }
+.etabs { display: flex; gap: 5px; padding: 7px 12px; border-bottom: 1px solid #334155; background: #1e293b; }
+.etab { padding: 4px 9px; border-radius: 6px; font-size: .6rem; font-weight: 700; border: 1px solid #334155; color: #94a3b8; }
+.etab.on { border-color: #6366f1; background: rgba(99,102,241,.15); color: #a5b4fc; }
+.mtabs { display: flex; gap: 5px; padding: 7px 12px; border-bottom: 1px solid #334155; background: #1e293b; flex-wrap: wrap; }
+.mtab { padding: 4px 9px; border-radius: 6px; font-size: .6rem; font-weight: 700; border: 1px solid #334155; color: #94a3b8; }
+.mtab.on { border-color: #6366f1; background: rgba(99,102,241,.15); color: #a5b4fc; }
+.mtab.new-tab { border-color: rgba(16,185,129,.5); background: rgba(16,185,129,.1); color: #34d399; }
+.reftabs { display: flex; gap: 5px; padding: 7px 12px; border-bottom: 1px solid #1e293b; }
+.rtab { padding: 3px 8px; border-radius: 5px; font-size: .58rem; font-weight: 700; border: 1px solid #334155; color: #94a3b8; }
+.rtab.on { border-color: #6366f1; background: rgba(99,102,241,.12); color: #a5b4fc; }
+.refbody { padding: 9px 12px; }
+.rs { margin-bottom: 8px; }
+.rst { font-size: .58rem; font-weight: 700; color: #a5b4fc; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+.frow { background: rgba(99,102,241,.06); border: 1px solid rgba(99,102,241,.15); border-radius: 5px; padding: 4px 7px; margin-bottom: 3px; font-size: .62rem; font-family: monospace; color: #c7d2fe; }
+.frow small { color: #475569; font-family: sans-serif; font-size: .56rem; display: block; margin-top: 1px; }
+.trap { font-size: .6rem; color: #fca5a5; background: rgba(239,68,68,.06); border: 1px solid rgba(239,68,68,.18); border-radius: 4px; padding: 3px 6px; margin-bottom: 3px; }
+.bul { font-size: .6rem; color: #94a3b8; padding-left: 9px; position: relative; margin-bottom: 2px; }
+.bul::before { content: "•"; position: absolute; left: 0; color: #6366f1; }
+.phase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 9px 12px; }
+.pc { background: rgba(99,102,241,.05); border: 1px solid rgba(99,102,241,.18); border-radius: 6px; padding: 6px 8px; }
+.pc.p2 { background: rgba(139,92,246,.1); border-color: rgba(139,92,246,.4); }
+.pn { font-size: .52rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 1px; }
+.pt { font-size: .65rem; font-weight: 700; }
+.pd { font-size: .56rem; color: #64748b; line-height: 1.3; margin-top: 2px; }
+.pcta { font-size: .58rem; font-weight: 700; margin-top: 3px; }
+.expand-wrap { margin: 6px 12px 10px; border: 1px solid rgba(16,185,129,.3); border-radius: 7px; overflow: hidden; }
+.expand-hd { background: rgba(16,185,129,.07); padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; font-size: .65rem; font-weight: 700; color: #34d399; border-bottom: 1px solid rgba(16,185,129,.2); }
+.expand-bd { padding: 8px 10px; background: #0a1628; }
+.modal-bg { background: rgba(0,0,0,.55); padding: 8px; border-radius: 8px; margin: 6px 12px 10px; }
+.modal-win { background: #1e293b; border: 1px solid #475569; border-radius: 8px; overflow: hidden; }
+.modal-hd { padding: 8px 12px; background: rgba(99,102,241,.1); border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; font-size: .68rem; font-weight: 700; }
+.modal-close { font-size: .72rem; color: #64748b; }
+.modal-bd { padding: 8px 12px; }
+.pros-cons { padding: 12px 18px; border-top: 1px solid #334155; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pct { font-size: .58rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 5px; }
+.pct.g { color: #4ade80; }
+.pct.r { color: #f87171; }
+.pci { font-size: .6rem; color: #94a3b8; margin-bottom: 3px; padding-left: 11px; position: relative; }
+.pci::before { position: absolute; left: 0; font-size: .62rem; }
+.pci.p::before { content: "✓"; color: #4ade80; }
+.pci.c::before { content: "✗"; color: #f87171; }
+.rec { text-align: center; margin: 28px auto 0; max-width: 540px; background: rgba(99,102,241,.1); border: 1px solid rgba(99,102,241,.3); border-radius: 10px; padding: 14px 18px; }
+.rec strong { color: #a5b4fc; font-size: .88rem; }
+.rec p { font-size: .73rem; color: #94a3b8; margin-top: 5px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<h1>📝 Exam Quick Reference — 3 UI Options for Phase 2</h1>
+<p class="subtitle">Content per tab: Key Formulas · Important Constants · Memory Mnemonics · Common Exam Traps · Last-minute Revision Bullets<br>All content is static/hardcoded — no backend API, no subscription gate beyond existing Exam Prep access</p>
+
+<div class="options-row">
+
+<!-- ══════════════ OPTION A — 4th Permanent Tab ══════════════ -->
+<div class="option recommended">
+  <div class="option-header">
+    <div class="option-label">Option A <span class="badge badge-pro">★ Recommended</span></div>
+    <div class="option-title">📋 4th Permanent Tab in Header</div>
+    <div class="option-desc">Quick Reference lives alongside Structured Learning / Practice / Simulated Test as a permanent 4th tab. Phase 2 card says "Open Quick Reference →" which sets activeMode to "reference". Always one click away from any other tab.</div>
+  </div>
+  <div class="option-body">
+    <div class="chrome">
+      <div class="chrome-top">🎓 Grade 11 & 12 — JEE Main · NEET UG · CUET UG</div>
+      <div class="etabs">
+        <div class="etab on">📐 JEE Main</div>
+        <div class="etab">🔬 NEET UG</div>
+        <div class="etab">🏛️ CUET UG</div>
+      </div>
+      <!-- 4 mode tabs -->
+      <div class="mtabs">
+        <div class="mtab">📖 Structured Learning</div>
+        <div class="mtab">⚡ Practice</div>
+        <div class="mtab">📝 Simulated Test</div>
+        <div class="mtab on new-tab">📋 Quick Reference ●</div>
+      </div>
+      <!-- Subject selector -->
+      <div class="reftabs">
+        <div class="rtab on">⚛️ Physics</div>
+        <div class="rtab">🧪 Chemistry</div>
+        <div class="rtab">📐 Maths</div>
+      </div>
+      <!-- Content -->
+      <div class="refbody">
+        <div class="rs">
+          <div class="rst">📐 Key Formulas — Kinematics</div>
+          <div class="frow">v = u + at <small>v=final velocity · u=initial · a=acceleration · t=time</small></div>
+          <div class="frow">s = ut + ½at² <small>displacement — if u=0 then s = ½at²</small></div>
+          <div class="frow">v² = u² + 2as <small>time-independent — use when t is not given</small></div>
+        </div>
+        <div class="rs">
+          <div class="rst">⚠️ Common Exam Traps</div>
+          <div class="trap">Deceleration → a is negative. Check sign convention before substituting.</div>
+          <div class="trap">Projectile horizontal velocity is CONSTANT — no acceleration acts horizontally.</div>
+        </div>
+        <div class="rs">
+          <div class="rst">🎯 Last-minute Points</div>
+          <div class="bul">At max height: v_y = 0, v_x unchanged</div>
+          <div class="bul">Max range → θ = 45° · Max height → θ = 90°</div>
+          <div class="bul">Relative velocity: v_AB = v_A − v_B (vector subtraction)</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px; font-size:.62rem; color:#475569; text-align:center;">Phase 2 card links here via "Open Quick Reference →"</div>
+  </div>
+  <div class="pros-cons">
+    <div>
+      <div class="pct g">Pros</div>
+      <div class="pci p">Always 1 click away from any mode</div>
+      <div class="pci p">Consistent pattern with existing tabs</div>
+      <div class="pci p">Works independently of Structured Learning</div>
+      <div class="pci p">Easiest to discover and bookmark mentally</div>
+      <div class="pci p">Subject tabs auto-sync with selected exam</div>
+    </div>
+    <div>
+      <div class="pct r">Cons</div>
+      <div class="pci c">Header now has 4 tabs (slightly busier)</div>
+      <div class="pci c">Less contextual — not tied to current subject</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ OPTION B — Inline Expandable ══════════════ -->
+<div class="option">
+  <div class="option-header">
+    <div class="option-label">Option B</div>
+    <div class="option-title">📂 Inline Expand in Structured Learning</div>
+    <div class="option-desc">Phase 2 card in Structured Learning expands an inline accordion panel below it, showing reference content filtered to the current subject. The content lives within the existing Structured Learning view — no new tab or overlay.</div>
+  </div>
+  <div class="option-body">
+    <div class="chrome">
+      <div class="chrome-top">🎓 Grade 11 & 12 — JEE Main · NEET UG · CUET UG</div>
+      <div class="etabs">
+        <div class="etab on">📐 JEE Main</div>
+        <div class="etab">🔬 NEET UG</div>
+        <div class="etab">🏛️ CUET UG</div>
+      </div>
+      <div class="mtabs">
+        <div class="mtab on">📖 Structured Learning</div>
+        <div class="mtab">⚡ Practice</div>
+        <div class="mtab">📝 Simulated Test</div>
+      </div>
+      <!-- Physics subject card with Phase 2 expanded -->
+      <div style="padding:9px 12px;">
+        <div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:8px;overflow:hidden;margin-bottom:8px;">
+          <div style="background:rgba(99,102,241,.12);padding:7px 10px;font-size:.65rem;font-weight:800;">⚛️ Physics — 22 chapters · 33% weightage</div>
+          <div class="phase-grid">
+            <div class="pc"><div class="pn" style="color:#6366f1">Phase 1</div><div class="pt">📘 Read NCERT</div><div class="pd">Cover theory & examples</div><div class="pcta" style="color:#6366f1">Open Lessons →</div></div>
+            <div class="pc p2"><div class="pn" style="color:#8b5cf6">Phase 2 ▼ OPEN</div><div class="pt">📝 Note Key Concepts</div><div class="pd">Formulas & important points</div><div class="pcta" style="color:#8b5cf6">Tap to collapse ▲</div></div>
+            <div class="pc"><div class="pn" style="color:#10b981">Phase 3</div><div class="pt">⚡ Practice Questions</div></div>
+            <div class="pc"><div class="pn" style="color:#f59e0b">Phase 4</div><div class="pt">🔁 Revise Weak Topics</div></div>
+          </div>
+          <!-- EXPANDED INLINE PANEL -->
+          <div class="expand-wrap" style="margin:0 8px 8px;">
+            <div class="expand-hd">📋 Physics Quick Reference — Kinematics <span style="font-size:.58rem;color:#475569;">click Phase 2 to collapse</span></div>
+            <div class="expand-bd">
+              <div class="rs">
+                <div class="rst">Key Formulas</div>
+                <div class="frow">v = u + at <small>time-based — use when displacement not needed</small></div>
+                <div class="frow">v² = u² + 2as <small>time-independent — use when t is unknown</small></div>
+              </div>
+              <div class="rs">
+                <div class="rst">⚠️ Exam Trap</div>
+                <div class="trap">Deceleration → a is NEGATIVE. Don't forget sign.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px; font-size:.62rem; color:#475569; text-align:center;">Phase 2 card toggles the accordion inline. Other subjects have their own panels.</div>
+  </div>
+  <div class="pros-cons">
+    <div>
+      <div class="pct g">Pros</div>
+      <div class="pci p">Context-aware — shows subject you're studying</div>
+      <div class="pci p">No new tab — stays within Structured Learning</div>
+      <div class="pci p">Natural flow: study plan → expand reference</div>
+    </div>
+    <div>
+      <div class="pct r">Cons</div>
+      <div class="pci c">Hidden unless you click Phase 2</div>
+      <div class="pci c">Can't access while in Practice or Test mode</div>
+      <div class="pci c">Long page if multiple subjects expanded</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ OPTION C — Full-screen Modal ══════════════ -->
+<div class="option">
+  <div class="option-header">
+    <div class="option-label">Option C</div>
+    <div class="option-title">🪟 Full-screen Modal Overlay</div>
+    <div class="option-desc">Phase 2 card opens a full-screen modal that slides over the page. The modal has exam tabs + subject tabs + scrollable content. Close button returns to where you were.</div>
+  </div>
+  <div class="option-body">
+    <div class="chrome">
+      <div class="chrome-top">🎓 Grade 11 & 12 — JEE Main · NEET UG · CUET UG</div>
+      <div class="etabs">
+        <div class="etab on">📐 JEE Main</div>
+        <div class="etab">🔬 NEET UG</div>
+        <div class="etab">🏛️ CUET UG</div>
+      </div>
+      <div class="mtabs">
+        <div class="mtab on">📖 Structured Learning</div>
+        <div class="mtab">⚡ Practice</div>
+        <div class="mtab">📝 Simulated Test</div>
+      </div>
+      <!-- Page dimmed behind modal -->
+      <div class="modal-bg">
+        <div class="modal-win">
+          <div class="modal-hd">
+            <span>📋 JEE Main — Quick Reference</span>
+            <span class="modal-close">✕ Close</span>
+          </div>
+          <!-- Exam selector inside modal -->
+          <div style="display:flex;gap:5px;padding:6px 10px;border-bottom:1px solid #334155;background:#1e293b;">
+            <div class="rtab on">📐 JEE Main</div>
+            <div class="rtab">🔬 NEET UG</div>
+            <div class="rtab">🏛️ CUET UG</div>
+          </div>
+          <!-- Subject selector -->
+          <div class="reftabs" style="padding:6px 10px;">
+            <div class="rtab on">⚛️ Physics</div>
+            <div class="rtab">🧪 Chemistry</div>
+            <div class="rtab">📐 Maths</div>
+          </div>
+          <div class="modal-bd">
+            <div class="rs">
+              <div class="rst">📐 Key Formulas — Kinematics</div>
+              <div class="frow">v = u + at <small>v=final · u=initial · a=accel · t=time</small></div>
+              <div class="frow">s = ut + ½at² <small>if start from rest: s = ½at²</small></div>
+              <div class="frow">v² = u² + 2as <small>no t needed — use for speed at displacement</small></div>
+            </div>
+            <div class="rs">
+              <div class="rst">⚡ Constants</div>
+              <div class="frow">g = 9.8 m/s² (≈10 m/s² in JEE) <small>use 10 unless specifically told otherwise</small></div>
+            </div>
+            <div class="rs">
+              <div class="rst">⚠️ Exam Traps</div>
+              <div class="trap">Deceleration → a is negative. Check direction carefully.</div>
+              <div class="trap">Projectile: horizontal v is constant, vertical v changes.</div>
+            </div>
+            <div class="rs">
+              <div class="rst">🎯 Last-minute Bullets</div>
+              <div class="bul">At max height: v_y = 0, v_x unchanged</div>
+              <div class="bul">Range max at θ = 45° · Time of flight: T = 2u sinθ / g</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px; font-size:.62rem; color:#475569; text-align:center;">Phase 2 click → modal opens. ✕ closes it. Background page is dimmed.</div>
+  </div>
+  <div class="pros-cons">
+    <div>
+      <div class="pct g">Pros</div>
+      <div class="pci p">Maximum screen space for content</div>
+      <div class="pci p">Can include all 3 exams inside one overlay</div>
+      <div class="pci p">Feels premium and focused</div>
+      <div class="pci p">Doesn't change the tab structure</div>
+    </div>
+    <div>
+      <div class="pct r">Cons</div>
+      <div class="pci c">Interrupts flow — blocks page completely</div>
+      <div class="pci c">Can't see practice questions while reading reference</div>
+      <div class="pci c">Extra dismiss step each time</div>
+      <div class="pci c">Harder to use alongside other tabs</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .options-row -->
+
+<!-- Recommendation Banner -->
+<div class="rec">
+  <strong>★ Recommendation: Option A — 4th Permanent Tab</strong>
+  <p>
+    The 4th tab pattern is the most discoverable and reusable. Students can switch between
+    Structured Learning → Quick Reference → Practice → back to Reference without losing
+    their place. Phase 2 links directly to it. Content is organized by exam × subject,
+    renders instantly (no API), and can be expanded with more topics over time.
+    <br><br>
+    <span style="color:#6366f1;font-weight:700;">If the header feels too crowded:</span>
+    combine Options A + B — the 4th tab is the primary route, but Phase 2 in Structured
+    Learning also expands a compact inline preview as a secondary shortcut.
+  </p>
+</div>
+
+</body>
+</html>

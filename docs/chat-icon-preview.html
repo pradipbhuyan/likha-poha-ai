@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chat Icon Options</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+  body { background: #0f172a; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+  h1 { color: #f1f5f9; margin-bottom: 8px; font-size: 1.1rem; }
+  p { color: #64748b; font-size: .82rem; margin-bottom: 32px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, 160px); gap: 16px; justify-content: center; max-width: 900px; }
+  .card { background: #1e293b; border-radius: 14px; padding: 20px 16px; display: flex; flex-direction: column; align-items: center; gap: 12px; border: 2px solid transparent; cursor: pointer; transition: all .15s; }
+  .card:hover { border-color: #6366f1; background: #1e293b; }
+  .btn { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .btn svg { color: #fff; }
+  .label { font-size: .72rem; font-weight: 700; color: #94a3b8; text-align: center; font-family: monospace; }
+  .letter { font-size: .65rem; font-weight: 800; color: #6366f1; background: rgba(99,102,241,.15); border-radius: 4px; padding: 2px 6px; }
+  .current { border-color: #f59e0b !important; }
+  .current .label { color: #fbbf24; }
+  .note { color: #475569; font-size: .72rem; margin-top: 28px; }
+</style>
+</head>
+<body>
+<h1>💬 Chat Button Icon Options</h1>
+<p>Current icon is the 👥 emoji. Pick a Lucide icon below and tell me the letter.</p>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#10b981,#0ea5e9)">
+      <i data-lucide="message-circle" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">MessageCircle</div>
+    <div class="letter">A</div>
+  </div>
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+      <i data-lucide="message-square" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">MessageSquare</div>
+    <div class="letter">B</div>
+  </div>
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)">
+      <i data-lucide="messages-square" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">MessagesSquare</div>
+    <div class="letter">C</div>
+  </div>
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">
+      <i data-lucide="message-square-more" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">MessageSquareMore</div>
+    <div class="letter">D</div>
+  </div>
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#10b981,#6366f1)">
+      <i data-lucide="message-square-text" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">MessageSquareText</div>
+    <div class="letter">E</div>
+  </div>
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">
+      <i data-lucide="message-circle-more" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">MessageCircleMore</div>
+    <div class="letter">F</div>
+  </div>
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#2563eb,#0ea5e9)">
+      <i data-lucide="send" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">Send</div>
+    <div class="letter">G</div>
+  </div>
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#7c3aed,#ec4899)">
+      <i data-lucide="mail" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">Mail</div>
+    <div class="letter">H</div>
+  </div>
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#0d9488,#2563eb)">
+      <i data-lucide="inbox" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">Inbox</div>
+    <div class="letter">I</div>
+  </div>
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#dc2626,#f97316)">
+      <i data-lucide="bell-ring" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">BellRing</div>
+    <div class="letter">J</div>
+  </div>
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#16a34a,#10b981)">
+      <i data-lucide="headphones" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">Headphones</div>
+    <div class="letter">K</div>
+  </div>
+
+  <div class="card">
+    <div class="btn" style="background:linear-gradient(135deg,#b45309,#f59e0b)">
+      <i data-lucide="radio" width="26" height="26" stroke-width="2"></i>
+    </div>
+    <div class="label">Radio</div>
+    <div class="letter">L</div>
+  </div>
+
+</div>
+
+<p class="note">Tell me the letter (A–L) or any other Lucide icon name from lucide.dev and I'll apply it.</p>
+
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

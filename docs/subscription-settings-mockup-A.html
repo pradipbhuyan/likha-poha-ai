@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Option A — Tabbed Plan Editor</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f172a;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px}
+.page{max-width:1060px;margin:0 auto;padding:24px 20px}
+h1{font-size:1.35rem;font-weight:800}
+.sub{color:#64748b;font-size:.8rem;margin-top:3px}
+.badge{display:inline-flex;align-items:center;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80;padding:2px 9px;border-radius:20px;font-size:.6rem;font-weight:700;margin-top:6px}
+.card{background:#1e293b;border:1px solid #334155;border-radius:12px;overflow:hidden;margin-bottom:12px}
+.cpad{padding:14px 18px}
+.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+input,textarea{background:#0f172a;border:1px solid #334155;border-radius:6px;padding:6px 10px;color:#e2e8f0;font-size:.78rem;font-family:inherit;width:100%}
+input:focus,textarea:focus{outline:none;border-color:#6366f1}
+textarea{resize:vertical}
+label{font-size:.6rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:3px}
+.fg{margin-bottom:9px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid #334155}
+.col{padding:16px 18px;border-right:1px solid #334155}
+.col:last-child{border-right:none}
+.col-hd{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#6366f1;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(99,102,241,.15)}
+.tab-bar{display:flex;gap:3px;background:#1e293b;border:1px solid #334155;border-radius:10px;padding:4px;margin-bottom:12px;overflow-x:auto}
+.tab{padding:7px 14px;border-radius:7px;cursor:pointer;font-size:.75rem;font-weight:600;color:#64748b;white-space:nowrap;border:none;background:none;display:flex;flex-direction:column;align-items:flex-start}
+.tab.on{background:#334155;color:#e2e8f0}
+.tp{font-size:.58rem;color:#475569;margin-top:1px}
+.tab.on .tp{color:#64748b}
+.dot{width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;margin-right:4px}
+.ed-head{background:rgba(99,102,241,.07);border-bottom:1px solid #334155;padding:14px 20px;display:flex;justify-content:space-between;align-items:flex-start}
+.amt{font-size:1.9rem;font-weight:900;color:#a5b4fc;line-height:1}
+.amt-lbl{font-size:.6rem;color:#64748b;margin-top:2px;text-align:right}
+.chip{display:inline-flex;align-items:center;padding:2px 7px;border-radius:20px;font-size:.58rem;font-weight:700;margin-right:4px}
+.c-green{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.c-amber{background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.c-purple{background:rgba(99,102,241,.12);color:#a5b4fc;border:1px solid rgba(99,102,241,.2)}
+.calc{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.18);border-radius:7px;padding:9px 12px;margin-bottom:10px}
+.calc-r{display:flex;justify-content:space-between;font-size:.65rem;margin-bottom:2px;color:#64748b}
+.calc-r.total{font-weight:800;color:#a5b4fc;font-size:.72rem;margin-bottom:0}
+.tog{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:#0f172a;border:1px solid #334155;border-radius:7px;margin-bottom:7px}
+.tog-l{flex:1}
+.tog-l .tl{font-size:.75rem;font-weight:600}
+.tog-l .td{font-size:.58rem;color:#64748b;margin-top:1px}
+.sw{width:32px;height:18px;background:#334155;border-radius:18px;position:relative;cursor:pointer;flex-shrink:0}
+.sw::after{content:'';position:absolute;left:3px;top:3px;width:12px;height:12px;background:#64748b;border-radius:50%}
+.sw.on{background:#6366f1}
+.sw.on::after{left:17px;background:#fff}
+.save-bar{background:rgba(99,102,241,.05);border-top:1px solid #334155;padding:12px 18px;display:flex;justify-content:space-between;align-items:center}
+.save-bar p{font-size:.72rem;color:#64748b}
+.btn-save{padding:9px 22px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:8px;color:#fff;font-weight:700;font-size:.82rem;cursor:pointer;font-family:inherit}
+.btn-sm{padding:5px 12px;border-radius:6px;font-size:.72rem;font-weight:700;cursor:pointer;font-family:inherit;border:1px solid rgba(99,102,241,.3);background:rgba(99,102,241,.1);color:#a5b4fc}
+.intro-box{background:rgba(99,102,241,.07);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:12px 16px;margin-bottom:18px;display:flex;gap:10px;align-items:flex-start}
+.intro-box h3{font-size:.85rem;font-weight:800;color:#a5b4fc}
+.intro-box p{font-size:.72rem;color:#64748b;margin-top:2px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="intro-box">
+  <span style="font-size:1.5rem;flex-shrink:0">📋</span>
+  <div>
+    <h3>Option A — Tabbed Plan Editor</h3>
+    <p>One plan visible at a time. Tab bar to switch plans. 3-column layout: <strong>Pricing & Validity</strong> · <strong>Display & Limits</strong> · <strong>Features & Toggles</strong>. Contact details condensed to a single row at the top. No vertical scrolling except inside the feature text areas.</p>
+  </div>
+</div>
+
+<div style="margin-bottom:18px">
+  <h1>⚙️ Subscription Settings</h1>
+  <p class="sub">Manage plan pricing, validity, features, and content for all tiers.</p>
+  <span class="badge">✅ Source: database</span>
+</div>
+
+<!-- Contact bar -->
+<div class="card" style="margin-bottom:12px">
+  <div class="cpad">
+    <div class="row">
+      <span style="font-size:.7rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap">💬 Support Contact</span>
+      <div style="flex:1;min-width:160px"><input value="likhapohaai@gmail.com" placeholder="Email" /></div>
+      <div style="flex:1;min-width:140px"><input value="" placeholder="WhatsApp" /></div>
+      <div style="flex:1;min-width:130px"><input value="" placeholder="Phone" /></div>
+      <button class="btn-sm">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Tab bar -->
+<div class="tab-bar">
+  <button class="tab on">
+    <span><span class="dot"></span>Nano</span>
+    <span class="tp">₹99 · 8 days</span>
+  </button>
+  <button class="tab">
+    <span>Premium</span>
+    <span class="tp">₹299 · 30 days</span>
+  </button>
+  <button class="tab">
+    <span>Family Premium</span>
+    <span class="tp">₹499 · 30 days</span>
+  </button>
+  <button class="tab">
+    <span>6-Month</span>
+    <span class="tp">₹1,495 · 184d</span>
+  </button>
+  <button class="tab">
+    <span>Annual</span>
+    <span class="tp">₹2,999 · 366d</span>
+  </button>
+  <button class="tab">
+    <span>Family Annual</span>
+    <span class="tp">₹4,999 · 366d</span>
+  </button>
+</div>
+
+<!-- Plan Editor -->
+<div class="card">
+  <!-- Header -->
+  <div class="ed-head">
+    <div>
+      <div style="font-size:.95rem;font-weight:800">✨ Premium Nano &nbsp;<code style="background:#0f172a;padding:2px 6px;border-radius:4px;font-size:.7rem;color:#64748b">key: free</code></div>
+      <div style="margin-top:6px">
+        <span class="chip c-green">✅ Visible</span>
+        <span class="chip c-amber">🎓 Exam Prep ON</span>
+        <span class="chip c-purple">📖 Exemplar ON</span>
+      </div>
+    </div>
+    <div>
+      <div class="amt">₹99</div>
+      <div class="amt-lbl">Razorpay charge</div>
+    </div>
+  </div>
+
+  <!-- 3 columns -->
+  <div class="g3">
+
+    <!-- Col 1: Pricing -->
+    <div class="col">
+      <div class="col-hd">💰 Pricing & Validity</div>
+      <div class="calc">
+        <div class="calc-r"><span>Base price</span><span>₹99</span></div>
+        <div class="calc-r"><span>Discount</span><span>0%</span></div>
+        <div class="calc-r total"><span>Razorpay charge</span><span>₹99</span></div>
+      </div>
+      <div class="g2" style="margin-bottom:9px">
+        <div class="fg"><label>Price (₹)</label><input type="number" value="99" /></div>
+        <div class="fg"><label>Discount %</label><input type="number" value="0" /></div>
+      </div>
+      <div class="fg"><label>Discount Label</label><input placeholder="e.g. Summer offer" /></div>
+      <div class="g2" style="margin-bottom:9px">
+        <div class="fg"><label>Duration (days)</label><input type="number" value="8" /></div>
+        <div class="fg"><label>Billing Label</label><input value="8 days" /></div>
+      </div>
+      <div class="fg"><label>Badge Text</label><input value="Start here" /></div>
+      <div class="tog">
+        <div class="tog-l"><div class="tl">Show to parents</div><div class="td">Visible on subscription page</div></div>
+        <div class="sw on"></div>
+      </div>
+      <div class="tog">
+        <div class="tog-l"><div class="tl">Recommended</div><div class="td">Highlighted on plans page</div></div>
+        <div class="sw"></div>
+      </div>
+    </div>
+
+    <!-- Col 2: Display -->
+    <div class="col">
+      <div class="col-hd">🏷️ Display & Limits</div>
+      <div class="fg"><label>Plan Label</label><input value="Premium Nano" /></div>
+      <div class="fg"><label>Short Label</label><input value="Nano" /></div>
+      <div class="fg"><label>Audience Description</label><textarea rows="3">Experience the complete learning platform before committing to a monthly plan.</textarea></div>
+      <div class="g2" style="margin-bottom:9px">
+        <div class="fg"><label>Daily Tokens</label><input type="number" value="100000" /></div>
+        <div class="fg"><label>Monthly Tokens</label><input type="number" value="1000000" /></div>
+      </div>
+      <div class="fg"><label>Included Features (one per line)</label><textarea rows="5">All CBSE subjects
+AI Lessons
+Mock Tests
+Parent Dashboard</textarea></div>
+      <div class="fg"><label>Not Included (one per line)</label><textarea rows="2"></textarea></div>
+    </div>
+
+    <!-- Col 3: Features & Toggles -->
+    <div class="col">
+      <div class="col-hd">🎛️ Feature Flags & Comparison</div>
+      <div class="tog">
+        <div class="tog-l"><div class="tl">🎓 Exam Prep (JEE/NEET/CUET)</div><div class="td">Grants access to Exam Prep Center</div></div>
+        <div class="sw on"></div>
+      </div>
+      <div class="tog">
+        <div class="tog-l"><div class="tl">📖 Exemplar Access</div><div class="td">Exemplar Research & Lessons</div></div>
+        <div class="sw on"></div>
+      </div>
+      <div style="margin-top:12px;margin-bottom:8px;font-size:.6rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.04em">Comparison Table Values</div>

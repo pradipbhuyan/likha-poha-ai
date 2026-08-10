@@ -10,7 +10,7 @@
  * Single source of truth for the PLANS/GROUPS data so all three surfaces
  * always show identical pricing/feature info.
  */
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import "./NoticeboardPricingTable.css";
 
 export const NOTICEBOARD_PLANS = [
@@ -72,16 +72,41 @@ function renderCell(v) {
  *   (hidden where free_tier isn't a real selectable plan, e.g. Subscription page)
  */
 export default function NoticeboardPricingTable({ theme = "light", onChoosePlan, showCta = true, showFreeCta = true }) {
+  const scrollRef = useRef(null);
+  const colRefs = useRef({});
+
+  function jumpToPlan(key) {
+    /** Mobile-only quick jump: scroll the horizontally-scrolling table so the tapped plan's column lands right after the sticky feature column. */
+    const wrap = scrollRef.current;
+    const col = colRefs.current[key];
+    if (!wrap || !col) return;
+    const stickyWidth = wrap.querySelector(".nbp-feature-head")?.offsetWidth || 0;
+    wrap.scrollTo({ left: col.offsetLeft - stickyWidth, behavior: "smooth" });
+  }
+
   return (
     <div className={"nbp-root nbp-theme-" + theme}>
-      <div className="nbp-wrap">
+      <div className="nbp-jump-row" role="tablist" aria-label="Jump to plan">
+        {NOTICEBOARD_PLANS.map(p => (
+          <button
+            key={p.key}
+            type="button"
+            className="nbp-jump-chip"
+            style={{ borderColor: p.color }}
+            onClick={() => jumpToPlan(p.key)}
+          >
+            {p.name}
+          </button>
+        ))}
+      </div>
+      <div className="nbp-wrap" ref={scrollRef}>
         <table className="nbp-table">
           <colgroup><col className="nbp-feature-col" /><col /><col /><col /><col /></colgroup>
           <thead>
             <tr>
               <th className="nbp-feature-head">What&rsquo;s included</th>
               {NOTICEBOARD_PLANS.map(p => (
-                <th key={p.key}>
+                <th key={p.key} ref={(el) => { colRefs.current[p.key] = el; }}>
                   <div className="nbp-plan-tab" style={{ background: p.color + "22" }}>
                     {p.tag && <div className="nbp-washi" style={{ background: p.color }}>{p.tag}</div>}
                     <div className="nbp-plan-name">{p.name}</div>
@@ -107,6 +132,7 @@ export default function NoticeboardPricingTable({ theme = "light", onChoosePlan,
           </tbody>
         </table>
       </div>
+      <p className="nbp-swipe-hint">&#8596; Swipe or tap a plan above to compare</p>
       <div className="nbp-footnote">
         <span>✓ marked present &nbsp;&nbsp; ✗ marked absent</span>
         <span>Prices in INR &middot; Family Premium fits 2 children &middot; Exam Prep Center (&#8377;1,999/yr) is a Grade 11&ndash;12 only add&#8209;on covering JEE, NEET, CUET, SAT, IELTS & TOEFL</span>
