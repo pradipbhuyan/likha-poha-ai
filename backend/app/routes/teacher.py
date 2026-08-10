@@ -27,6 +27,11 @@ from app.services.subjective_question_bank_service import (
     get_subjective_bank_capacity_with_fallback,
 )
 from app.services.lesson_plan_bank_service import get_lesson_plan as get_lesson_plan_handout
+from app.services.teacher_lesson_plan_service import (
+    get_teacher_edit,
+    save_teacher_edit,
+    delete_teacher_edit,
+)
 
 _logger = logging.getLogger("likhapoha.teacher")
 router = APIRouter()
@@ -192,18 +197,35 @@ class LessonPlanRequest(BaseModel):
 @router.post("/lesson-plan/generate")
 async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current_user)):
     """
-    Serve a pre-authored, duration-agnostic CBSE lesson-plan handout for a
-    chapter — no LLM call at request time (see lesson_plan_bank_service.py
-    and docs/GPT55_LESSON_PLAN_AUTHORING_PROMPT.md). Returns Markdown that
-    the frontend renders and can print as PDF.
+    Serve a lesson-plan handout for a chapter — no LLM call at request time.
 
-    If no handout has been authored yet for this chapter, returns
-    success:false with a friendly message instead of generating one live.
+    If this teacher has previously saved their own edited copy of this
+    chapter's plan (see /lesson-plan/save), that private copy is returned
+    instead of the shared system-generated one, and is visible ONLY to the
+    teacher who saved it — other teachers requesting the same chapter still
+    get the untouched system version. The system-generated
+    lesson_plan_bank/*.json file is never modified by this feature.
+
+    If neither a teacher edit nor a system handout exists yet for this
+    chapter, returns success:false with a friendly message instead of
+    generating one live.
     """
     profile = _get_profile(user.id)
     role = profile.get("role") or ""
     if role not in ("teacher", "admin"):
         raise HTTPException(status_code=403, detail="Only teachers can generate lesson plans.")
+
+    teacher_edit = get_teacher_edit(user.id, data.grade, data.subject, data.chapter)
+    if teacher_edit:
+        return {
+            "success": True,
+            "grade": data.grade,
+            "subject": data.subject,
+            "chapter": data.chapter,
+            "lesson_plan": teacher_edit["lesson_plan_markdown"],
+            "is_teacher_edited": True,
+            "edited_at": teacher_edit.get("updated_at"),
+        }
 
     plan = get_lesson_plan_handout(data.grade, data.subject, data.chapter)
     if not plan:
@@ -221,7 +243,138 @@ async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current
         "subject": data.subject,
         "chapter": data.chapter,
         "lesson_plan": plan,
+        "is_teacher_edited": False,
     }
+
+
+class SaveLessonPlanRequest(BaseModel):
+    grade: str
+    subject: str
+    chapter: str
+    lesson_plan_markdown: str
+
+
+@router.post("/lesson-plan/save")
+async def save_lesson_plan_edit(data: SaveLessonPlanRequest, user=Depends(get_current_user)):
+    """
+    Save this teacher's own edited copy of a lesson plan.
+
+    This is ALWAYS a private write scoped to the requesting teacher
+    (teacher_lesson_plan_edits.teacher_id = user.id) — it never modifies the
+    shared system-generated lesson_plan_bank/*.json file, and no other
+    teacher will ever see this edit. Saving again for the same chapter
+    overwrites this teacher's own previous edit.
+    """
+    profile = _get_profile(user.id)
+    role = profile.get("role") or ""
+    if role not in ("teacher", "admin"):
+        raise HTTPException(status_code=403, detail="Only teachers can save lesson plans.")
+
+    result = save_teacher_edit(user.id, data.grade, data.subject, data.chapter, data.lesson_plan_markdown)
+    if not result.get("success"):
+        raise HTTPException(status_code=400, detail=result.get("error", "Failed to save lesson plan."))
+
+    _logger.info(
+        "lesson-plan: teacher %s saved private edit for %s %s %s",
+        user.id, data.grade, data.subject, data.chapter[:40],
+    )
+    return {"success": True, "edit": result["edit"]}
+
+
+@router.post("/lesson-plan/revert")
+async def revert_lesson_plan_edit(data: LessonPlanRequest, user=Depends(get_current_user)):
+    """
+    Delete this teacher's own saved edit for a chapter, reverting them back
+    to the shared system-generated version on their next fetch. Scoped to
+    the requesting teacher — cannot affect any other teacher's saved edit
+    or the system-generated bank file.
+    """
+    profile = _get_profile(user.id)
+    role = profile.get("role") or ""
+    if role not in ("teacher", "admin"):
+        raise HTTPException(status_code=403, detail="Only teachers can revert lesson plans.")
+
+    result = delete_teacher_edit(user.id, data.grade, data.subject, data.chapter)
+    if not result.get("success"):
+        raise HTTPException(status_code=400, detail=result.get("error", "Failed to revert lesson plan."))
+
+    plan = get_lesson_plan_handout(data.grade, data.subject, data.chapter)
+    return {
+        "success": True,
+        "lesson_plan": plan,
+        "is_teacher_edited": False,
+    }
+
+
+@router.post("/lesson-plan/lecture-audio")
+def generate_lecture_audio(data: LessonPlanRequest, user=Depends(get_current_user)):
+    """
+    Generate (or serve cached) spoken-lecture audio for a chapter's
+    pre-authored lesson plan — a teacher rehearsal aid, not a student-facing
+    feature. The script is deterministically extracted from the same plan
+    served by /lesson-plan/generate (see lesson_plan_lecture_script.py), so
+    it stays in sync with the plan automatically.
+
+    Reuses the existing per-step audio cache (lesson_audio_cache / Supabase
+    Storage) via the step_title sentinel "__lecture__" — no schema change
+    needed. If the storage upload fails for any reason, falls back to
+    returning the freshly generated audio as a data: URL instead of failing
+    the request — playable immediately, just not persisted/shared across
+    requests.
+    """
+    import base64  # noqa: PLC0415
+    import os as _os  # noqa: PLC0415
+
+    from app.services.lesson_plan_lecture_script import build_lecture_script  # noqa: PLC0415
+    from app.services.tts_service import clean_text_for_tts, generate_speech_file  # noqa: PLC0415
+    from app.services.audio_cache_service import get_cached_audio_url, store_audio  # noqa: PLC0415
+
+    profile = _get_profile(user.id)
+    role = profile.get("role") or ""
+    if role not in ("teacher", "admin"):
+        raise HTTPException(status_code=403, detail="Only teachers can generate lecture audio.")
+
+    # Rehearse from this teacher's own saved edit if they have one, so the
+    # narration matches what they'll actually teach from — otherwise fall
+    # back to the shared system-generated handout. Never touches the bank file.
+    teacher_edit = get_teacher_edit(user.id, data.grade, data.subject, data.chapter)
+    plan = teacher_edit["lesson_plan_markdown"] if teacher_edit else get_lesson_plan_handout(data.grade, data.subject, data.chapter)
+    if not plan:
+        return {
+            "success": False,
+            "message": (
+                f"No lesson plan has been created yet for '{data.chapter or data.subject}'. "
+                "Generate the lesson plan first."
+            ),
+        }
+
+    voice = "hi-IN-SwaraNeural" if "hindi" in (data.subject or "").lower() else "en-IN-NeerjaNeural"
+    rate = "+0%"
+    step_title = "__lecture__"
+
+    cached_url = get_cached_audio_url(data.grade, data.subject, data.chapter, step_title, voice, rate)
+    if cached_url:
+        return {"success": True, "audio_url": cached_url, "cached": True}
+
+    script = build_lecture_script(plan)
+    if not script.strip():
+        return {"success": False, "message": "This lesson plan has no lecture-worthy content to narrate."}
+
+    cleaned = clean_text_for_tts(script)
+    mp3_path = generate_speech_file(cleaned, voice=voice, rate=rate)
+    try:
+        with open(mp3_path, "rb") as f:
+            mp3_bytes = f.read()
+    finally:
+        _os.remove(mp3_path)
+
+    try:
+        audio_url = store_audio(data.grade, data.subject, data.chapter, step_title, mp3_bytes, voice, rate)
+    except RuntimeError as exc:
+        _logger.warning("lecture_audio.store_failed_falling_back_to_data_url: %s", str(exc)[:200])
+        b64 = base64.b64encode(mp3_bytes).decode("ascii")
+        audio_url = f"data:audio/mpeg;base64,{b64}"
+    return {"success": True, "audio_url": audio_url, "cached": False}
 
 
 @router.get("/student-analytics")

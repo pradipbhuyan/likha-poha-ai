@@ -30,6 +30,7 @@ import {
   Bug,
   MessageSquare,
   FileText,
+  Headphones,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -295,6 +296,13 @@ function Sidebar({
       key: "teacherTestPaper",
       label: "Create Test Paper",
       icon: ClipboardList,
+      roles: ["teacher"],
+      hideForAdmin: true,
+    },
+    {
+      key: "teacherLectureAudio",
+      label: "Listen to Lecture",
+      icon: Headphones,
       roles: ["teacher"],
       hideForAdmin: true,
     },

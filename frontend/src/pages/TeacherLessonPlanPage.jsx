@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import {
   Settings, Sparkles, History, Printer, Ban, BarChart3,
   Lightbulb, Target, ClipboardList, Bell, FlaskConical, BookOpen,
   Pin, CheckCircle2, Loader2, ListChecks, Wrench, NotebookPen,
-  Users, AlertTriangle, Link2, Presentation, ArrowLeft,
+  Users, AlertTriangle, Link2, Presentation, ArrowLeft, Download,
+  Pencil, Save, RotateCcw, UserCheck,
 } from "lucide-react";
+import { generateLessonPlanPdf } from "../utils/lessonPlanPdf";
+import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
-const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
+const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 
 // Maps the plain-text section headings authored in lesson_plan_bank markdown
 // to a matching Lucide icon, so the rendered plan uses icons instead of emoji.
@@ -80,6 +85,18 @@ export default function TeacherLessonPlanPage({ user }) {
   const [planMeta, setPlanMeta] = useState(null);
   const [error, setError] = useState("");
 
+  // Whether the currently displayed plan is this teacher's own saved edit
+  // (private to them) vs the shared system-generated version. Editing/
+  // saving here never touches the system-generated lesson_plan_bank file —
+  // it only ever creates/updates this teacher's own private copy.
+  const [isTeacherEdited, setIsTeacherEdited] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [draftPlan, setDraftPlan] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [reverting, setReverting] = useState(false);
+  const [saveError, setSaveError] = useState("");
+  const [saveNotice, setSaveNotice] = useState("");
+
   // Lesson plans are served instantly from a pre-authored bank (no live LLM
   // call), so the fetch itself has nothing to visibly wait for. This holds
   // the fetched result back and reveals it section-by-section against the
@@ -118,6 +135,11 @@ export default function TeacherLessonPlanPage({ user }) {
       const t = setTimeout(() => {
         setPlan(pendingResult.plan);
         setPlanMeta(pendingResult.meta);
+        setIsTeacherEdited(!!pendingResult.isTeacherEdited);
+        setIsEditing(false);
+        setDraftPlan("");
+        setSaveError("");
+        setSaveNotice("");
         setHistory(prev => [{ ...pendingResult.meta, plan: pendingResult.plan }, ...prev.slice(0, 9)]);
         setGenerating(false);
         setPendingResult(null);
@@ -167,11 +189,90 @@ export default function TeacherLessonPlanPage({ user }) {
       const meta = { grade, subject, chapter, ts: new Date().toLocaleTimeString() };
       // Hand off to the stepwise-reveal effect above instead of showing the
       // plan immediately — see the pendingResult/stepIndex effect.
-      setPendingResult({ plan: data.lesson_plan, meta });
+      setPendingResult({ plan: data.lesson_plan, meta, isTeacherEdited: !!data.is_teacher_edited });
       if (freeTeacher) incrementPlanCount();
     } catch (err) {
       setError(err.message || "Failed to generate lesson plan. Please try again.");
       setGenerating(false);
+    }
+  }
+
+  function handleDownloadPdf() {
+    if (!plan) return;
+    generateLessonPlanPdf(plan, planMeta);
+  }
+
+  function handleStartEdit() {
+    setDraftPlan(plan);
+    setSaveError("");
+    setSaveNotice("");
+    setIsEditing(true);
+  }
+
+  function handleCancelEdit() {
+    setIsEditing(false);
+    setDraftPlan("");
+    setSaveError("");
+  }
+
+  async function handleSaveEdit() {
+    if (!planMeta) return;
+    setSaving(true);
+    setSaveError("");
+    setSaveNotice("");
+    try {
+      const res = await fetch(`${API_BASE}/api/teacher/lesson-plan/save`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.accessToken}`,
+        },
+        body: JSON.stringify({
+          grade: planMeta.grade,
+          subject: planMeta.subject,
+          chapter: planMeta.chapter,
+          lesson_plan_markdown: draftPlan,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.detail || "Failed to save your edits.");
+      setPlan(draftPlan);
+      setIsTeacherEdited(true);
+      setIsEditing(false);
+      setDraftPlan("");
+      setSaveNotice("Saved — only visible to you. The original plan is unchanged for other teachers.");
+    } catch (err) {
+      setSaveError(err.message || "Failed to save your edits. Please try again.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function handleRevert() {
+    if (!planMeta) return;
+    setReverting(true);
+    setSaveError("");
+    setSaveNotice("");
+    try {
+      const res = await fetch(`${API_BASE}/api/teacher/lesson-plan/revert`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.accessToken}`,
+        },
+        body: JSON.stringify({ grade: planMeta.grade, subject: planMeta.subject, chapter: planMeta.chapter }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.detail || "Failed to revert.");
+      setPlan(data.lesson_plan || "");
+      setIsTeacherEdited(false);
+      setIsEditing(false);
+      setDraftPlan("");
+      setSaveNotice("Reverted to the original system-generated plan.");
+    } catch (err) {
+      setSaveError(err.message || "Failed to revert. Please try again.");
+    } finally {
+      setReverting(false);
     }
   }
 
@@ -328,13 +429,35 @@ export default function TeacherLessonPlanPage({ user }) {
         <div>
           {/* Action bar */}
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 18 }}>
-            <button className="primary-btn" onClick={handlePrint} style={{ maxWidth: 240, marginTop: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-              <Printer size={16} /> Download / Print PDF
-            </button>
-            <button onClick={() => { setPlan(""); setPlanMeta(null); }}
-              style={{ padding: "12px 18px", borderRadius: 12, border: "1.5px solid var(--border)", background: "var(--panel-soft)", color: "var(--text)", fontWeight: 600, fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>
-              <ArrowLeft size={14} /> New Plan
-            </button>
+            {!isEditing && (
+              <button className="primary-btn" onClick={handleDownloadPdf} style={{ maxWidth: 220, marginTop: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                <Download size={16} /> Download as PDF
+              </button>
+            )}
+            {!isEditing && (
+              <button onClick={handlePrint}
+                style={{ padding: "12px 18px", borderRadius: 12, border: "1.5px solid var(--border)", background: "var(--panel-soft)", color: "var(--text)", fontWeight: 600, fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>
+                <Printer size={14} /> Print
+              </button>
+            )}
+            {!isEditing && (
+              <button onClick={handleStartEdit}
+                style={{ padding: "12px 18px", borderRadius: 12, border: "1.5px solid var(--border)", background: "var(--panel-soft)", color: "var(--text)", fontWeight: 600, fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>
+                <Pencil size={14} /> Edit Plan
+              </button>
+            )}
+            {!isEditing && isTeacherEdited && (
+              <button onClick={handleRevert} disabled={reverting}
+                style={{ padding: "12px 18px", borderRadius: 12, border: "1.5px solid rgba(239,68,68,.35)", background: "rgba(239,68,68,.06)", color: "#dc2626", fontWeight: 600, fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>
+                {reverting ? <Loader2 size={14} className="spin" /> : <RotateCcw size={14} />} Revert to Original
+              </button>
+            )}
+            {!isEditing && (
+              <button onClick={() => { setPlan(""); setPlanMeta(null); setIsEditing(false); setIsTeacherEdited(false); }}
+                style={{ padding: "12px 18px", borderRadius: 12, border: "1.5px solid var(--border)", background: "var(--panel-soft)", color: "var(--text)", fontWeight: 600, fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>
+                <ArrowLeft size={14} /> New Plan
+              </button>
+            )}
           </div>
 
           {/* Meta badges */}
@@ -348,32 +471,99 @@ export default function TeacherLessonPlanPage({ user }) {
                 {b.label}
               </span>
             ))}
+            {isTeacherEdited && (
+              <span style={{ fontSize: ".78rem", fontWeight: 700, padding: "4px 10px", borderRadius: 20, background: "rgba(217,119,6,.14)", color: "#d97706", border: "1px solid rgba(217,119,6,.35)", display: "inline-flex", alignItems: "center", gap: 5 }}>
+                <UserCheck size={13} /> Your saved version — visible only to you
+              </span>
+            )}
           </div>
 
-          {/* Rendered markdown */}
-          <div className="premium-card" style={{ padding: "28px 32px" }}>
-            <div className="markdown-content" style={{ fontSize: ".9rem", lineHeight: 1.7 }}>
-              <ReactMarkdown remarkPlugins={[remarkGfm]} components={MARKDOWN_COMPONENTS}>{plan}</ReactMarkdown>
+          {saveNotice && !isEditing && (
+            <div style={{ marginBottom: 14, padding: "8px 12px", borderRadius: 8, fontSize: ".82rem", fontWeight: 600, background: "rgba(16,185,129,.08)", border: "1px solid rgba(16,185,129,.3)", color: "#059669" }}>
+              {saveNotice}
             </div>
+          )}
+          {saveError && (
+            <div className="error-box" style={{ marginBottom: 14 }}>{saveError}</div>
+          )}
 
-            {/* Print button at bottom too. No "Regenerate" here — plans are
-                served from a fixed pre-authored bank, so regenerating the
-                same grade/subject/chapter always returns byte-identical
-                content; "New Plan" above is the only way to get something
-                different. */}
-            <div style={{ marginTop: 24, paddingTop: 16, borderTop: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 10 }}>
-              <button className="primary-btn" onClick={handlePrint} style={{ maxWidth: 240, marginTop: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-                <Printer size={16} /> Download as PDF
-              </button>
+          {isEditing ? (
+            /* Edit mode: a plain markdown textarea. Saving writes ONLY to
+               this teacher's own private teacher_lesson_plan_edits row —
+               the shared system-generated bank file is never touched, and
+               no other teacher will ever see this content. */
+            <div className="premium-card" style={{ padding: "24px 28px" }}>
+              <div style={{ marginBottom: 12, padding: "8px 12px", borderRadius: 8, fontSize: ".8rem", fontWeight: 600,
+                background: "rgba(99,102,241,.06)", border: "1px solid rgba(99,102,241,.2)", color: "var(--muted)",
+                display: "flex", alignItems: "center", gap: 7 }}>
+                <Pencil size={14} /> Editing markdown — only you will see this saved version. The original plan stays the same for every other teacher.
+              </div>
+              <textarea
+                value={draftPlan}
+                onChange={e => setDraftPlan(e.target.value)}
+                rows={26}
+                style={{
+                  width: "100%", fontFamily: "monospace", fontSize: ".82rem", lineHeight: 1.6,
+                  padding: "14px 16px", borderRadius: 10, border: "1.5px solid var(--border)",
+                  background: "var(--panel-soft)", color: "var(--text)", resize: "vertical",
+                }}
+              />
+              <div style={{ marginTop: 16, display: "flex", gap: 10, alignItems: "center" }}>
+                <button className="primary-btn" onClick={handleSaveEdit} disabled={saving || !draftPlan.trim()}
+                  style={{ maxWidth: 200, marginTop: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                  {saving ? <><Loader2 size={16} className="spin" /> Saving…</> : <><Save size={16} /> Save My Version</>}
+                </button>
+                <button onClick={handleCancelEdit} disabled={saving}
+                  style={{ padding: "12px 18px", borderRadius: 12, border: "1.5px solid var(--border)", background: "var(--panel-soft)", color: "var(--text)", fontWeight: 600, fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer" }}>
+                  Cancel
+                </button>
+              </div>
             </div>
-          </div>
+          ) : (
+            /* Rendered markdown */
+            <div className="premium-card" style={{ padding: "28px 32px" }}>
+              <div className="markdown-content" style={{ fontSize: ".9rem", lineHeight: 1.7 }}>
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm, remarkMath]}
+                  rehypePlugins={[rehypeKatex]}
+                  components={MARKDOWN_COMPONENTS}
+                >
+                  {normalizeTutorMarkdown(plan)}
+                </ReactMarkdown>
+              </div>
+
+              {/* Download/Print buttons at bottom too. No "Regenerate" here —
+                  plans are served from a fixed pre-authored bank, so
+                  regenerating the same grade/subject/chapter always returns
+                  byte-identical content; "New Plan" above is the only way to
+                  get something different. */}
+              <div style={{ marginTop: 24, paddingTop: 16, borderTop: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 10 }}>
+                <button className="primary-btn" onClick={handleDownloadPdf} style={{ maxWidth: 220, marginTop: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                  <Download size={16} /> Download as PDF
+                </button>
+                <button onClick={handlePrint}
+                  style={{ padding: "10px 18px", borderRadius: 10, border: "1.5px solid var(--border)", background: "transparent", color: "var(--muted)", fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 7 }}>
+                  <Printer size={14} /> Print
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
-      {/* Empty state tip */}
+      {/* Empty state tip — uses the same premium-card container as every
+          other panel on this page so all cards share one consistent
+          background, border-radius, and shadow instead of a mismatched
+          tinted box. */}
       {!plan && !generating && (
-        <div style={{ padding: "20px 22px", borderRadius: 12, background: "rgba(99,102,241,.06)", border: "1px solid rgba(99,102,241,.2)", display: "flex", gap: 14, alignItems: "flex-start" }}>
-          <Lightbulb size={26} strokeWidth={2} style={{ flexShrink: 0, color: "#7c6fe0" }} />
+        <div className="premium-card" style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+          <div style={{
+            flexShrink: 0, width: 40, height: 40, borderRadius: 12,
+            background: "rgba(99,102,241,.12)", display: "flex",
+            alignItems: "center", justifyContent: "center",
+          }}>
+            <Lightbulb size={22} strokeWidth={2} style={{ color: "#7c6fe0" }} />
+          </div>
           <div>
             <div style={{ fontWeight: 700, fontSize: ".88rem", marginBottom: 6 }}>What the lesson plan includes</div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 16px", fontSize: ".8rem", color: "var(--muted)", lineHeight: 1.7 }}>

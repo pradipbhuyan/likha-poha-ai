@@ -70,7 +70,11 @@ Students should already know:
 GOOD_OBJECTIVES = (
     "1. Identify the three tiers of local self-government.\n"
     "2. Explain why local self-government brings decision-making closer to citizens.\n"
-    "3. Compare the powers of a Gram Panchayat and a Municipal Corporation."
+    "3. Compare the powers of a Gram Panchayat and a Municipal Corporation.\n\n"
+    "Success criteria:\n"
+    "- I can name the three tiers of local self-government.\n"
+    "- I can explain why decisions made locally can be closer to citizens.\n"
+    "- I can compare one power of a Gram Panchayat with one power of a Municipal Corporation."
 )
 
 GOOD_FLOW = """### Introduction & Hook (5 minutes)

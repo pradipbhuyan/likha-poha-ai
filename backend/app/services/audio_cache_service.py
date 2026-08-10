@@ -1,26 +1,24 @@
 """
-audio_cache_service.py — Pre-warmed TTS audio cache backed by Cloudflare R2.
+audio_cache_service.py — Pre-warmed TTS audio cache backed by Supabase Storage.
 
-Storage: Cloudflare R2 (S3-compatible, 10 GB free, zero egress fees)
-  Bucket: lesson-audio (public)
-  Client: boto3 with R2 endpoint
+Storage: Supabase Storage (bucket "lesson-audio", public)
+  Client: admin_client.storage.from_(BUCKET_NAME) — same Supabase project
+  and client used everywhere else in the app (see rag_visual_service.py for
+  the same upload/get_public_url pattern). No separate credentials needed —
+  reuses the existing admin_client service-role connection.
+
+  Cloudflare R2 was evaluated but never adopted; this service now matches
+  what's actually deployed — the "lesson-audio" bucket and its existing
+  cached rows already live in Supabase Storage.
 
 DB tracking: lesson_audio_cache table on Supabase 1 (primary)
   — stores public URLs, file sizes, cache keys
-  — DB is always Supabase 1 regardless of storage backend
 
 Flow:
   1. get_cached_audio_url(grade, ...) → URL or None
-     Single DB lookup by cache_key (indexed). Returns R2 public URL.
+     Single DB lookup by cache_key (indexed). Returns Supabase Storage public URL.
   2. store_audio(grade, ..., mp3_bytes) → URL
-     Uploads to R2 bucket, saves public URL + metadata to DB.
-
-Environment variables required:
-  R2_ACCOUNT_ID         — Cloudflare Account ID
-  R2_ACCESS_KEY_ID      — R2 API token Access Key ID
-  R2_SECRET_ACCESS_KEY  — R2 API token Secret Access Key
-  R2_BUCKET_NAME        — bucket name (default: lesson-audio)
-  R2_PUBLIC_URL         — public base URL e.g. https://pub-xxxx.r2.dev
+     Uploads to the Supabase Storage bucket, saves public URL + metadata to DB.
 """
 
 import hashlib
@@ -32,58 +30,26 @@ from app.services.logger_service import get_logger
 
 _log = get_logger("audio_cache_service")
 
-BUCKET_NAME = os.getenv("R2_BUCKET_NAME", "lesson-audio")
+BUCKET_NAME = os.getenv("LESSON_AUDIO_BUCKET", "lesson-audio")
 
 
-# ── R2 client (lazy singleton) ────────────────────────────────────────────────
-
-_r2_client = None
-
-
-def _get_r2_client():
+def _upload_to_supabase_storage(file_path: str, mp3_bytes: bytes) -> str:
     """
-    Return a boto3 S3 client configured for Cloudflare R2.
-    Lazy singleton — created once on first use.
-    Raises RuntimeError if R2 credentials are not configured.
+    Upload MP3 bytes to the Supabase Storage bucket and return its public URL.
+    Raises RuntimeError if the bucket is missing or the upload fails.
     """
-    global _r2_client
-    if _r2_client is not None:
-        return _r2_client
-
-    account_id        = os.getenv("R2_ACCOUNT_ID", "").strip()
-    access_key_id     = os.getenv("R2_ACCESS_KEY_ID", "").strip()
-    secret_access_key = os.getenv("R2_SECRET_ACCESS_KEY", "").strip()
-
-    if not all([account_id, access_key_id, secret_access_key]):
-        raise RuntimeError(
-            "Cloudflare R2 credentials not configured. "
-            "Set R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY in .env"
+    try:
+        admin_client.storage.from_(BUCKET_NAME).upload(
+            path=file_path,
+            file=mp3_bytes,
+            file_options={"content-type": "audio/mpeg", "upsert": "true"},
         )
-
-    import boto3  # noqa: PLC0415
-    _r2_client = boto3.client(
-        "s3",
-        endpoint_url=f"https://{account_id}.r2.cloudflarestorage.com",
-        aws_access_key_id=access_key_id,
-        aws_secret_access_key=secret_access_key,
-        region_name="auto",
-    )
-    return _r2_client
-
-
-def _get_r2_public_url(file_path: str) -> str:
-    """
-    Build the public URL for an object in the R2 bucket.
-    Uses R2_PUBLIC_URL env var (set from bucket Settings → Public Access URL).
-    e.g. https://pub-xxxx.r2.dev/grade-9/english/ch1/step1.mp3
-    """
-    base = os.getenv("R2_PUBLIC_URL", "").rstrip("/")
-    if not base:
+    except Exception as exc:
         raise RuntimeError(
-            "R2_PUBLIC_URL not configured. "
-            "Set it to the public bucket URL from R2 bucket Settings tab."
-        )
-    return f"{base}/{file_path}"
+            f"Unable to upload audio to Supabase Storage bucket '{BUCKET_NAME}': {exc}"
+        ) from exc
+
+    return admin_client.storage.from_(BUCKET_NAME).get_public_url(file_path)
 
 
 # ── Cache key ─────────────────────────────────────────────────────────────────
@@ -107,7 +73,7 @@ def _make_file_path(
     chapter: str,
     step_title: str,
 ) -> str:
-    """Build a human-readable storage path inside the R2 bucket."""
+    """Build a human-readable storage path inside the Supabase Storage bucket."""
     def slugify(s: str) -> str:
         s = s.lower().strip()
         s = re.sub(r"[^\w\s-]", "", s)
@@ -136,7 +102,7 @@ def get_cached_audio_url(
     """
     Return pre-warmed audio URL if available, else None.
     Fast path: single DB lookup by cache_key (indexed).
-    DB is always Supabase 1; URL points to Cloudflare R2.
+    DB is always Supabase 1; URL points to Supabase Storage.
     """
     cache_key = _make_cache_key(grade, subject, chapter, step_title, voice, rate)
     try:
@@ -172,32 +138,17 @@ def store_audio(
     rate: str = "+0%",
 ) -> str:
     """
-    Upload MP3 bytes to Cloudflare R2, then save the public URL
+    Upload MP3 bytes to Supabase Storage, then save the public URL
     and metadata to lesson_audio_cache on Supabase 1.
 
-    Returns the public R2 URL.
+    Returns the public URL.
     Raises RuntimeError on upload or DB failure.
     """
     cache_key = _make_cache_key(grade, subject, chapter, step_title, voice, rate)
     file_path = _make_file_path(grade, subject, chapter, step_title)
 
-    # ── Upload to Cloudflare R2 ────────────────────────────────────────────
-    try:
-        r2 = _get_r2_client()
-        r2.put_object(
-            Bucket=BUCKET_NAME,
-            Key=file_path,
-            Body=mp3_bytes,
-            ContentType="audio/mpeg",
-        )
-    except Exception as exc:
-        raise RuntimeError(f"R2 upload failed: {exc}") from exc
-
-    # ── Build public URL ───────────────────────────────────────────────────
-    try:
-        public_url = _get_r2_public_url(file_path)
-    except Exception as exc:
-        raise RuntimeError(f"Could not build R2 public URL: {exc}") from exc
+    # ── Upload to Supabase Storage ──────────────────────────────────────────
+    public_url = _upload_to_supabase_storage(file_path, mp3_bytes)
 
     # ── Save to DB (Supabase 1) ────────────────────────────────────────────
     try:
@@ -227,7 +178,7 @@ def store_audio(
         chapter=chapter,
         step_title=step_title,
         size_kb=round(len(mp3_bytes) / 1024),
-        storage="Cloudflare R2",
+        storage="Supabase Storage",
         url=public_url[:80],
     )
     return public_url

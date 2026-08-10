@@ -2916,6 +2916,11 @@ body.dark-mode .lesson-sections.style-C .lesson-section-header::before { backgro
 ========================= */
 
 .theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
   border: none;
   border-radius: 999px;
   padding: 10px 14px;
@@ -2924,6 +2929,8 @@ body.dark-mode .lesson-sections.style-C .lesson-section-header::before { backgro
   color: white;
 
   font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
   cursor: pointer;
 
   transition: all 0.2s ease;
@@ -2931,6 +2938,15 @@ body.dark-mode .lesson-sections.style-C .lesson-section-header::before { backgro
 
 .theme-toggle-btn:hover {
   transform: translateY(-1px);
+}
+
+/* .topbar-actions is a flex row with default align-items:stretch, so its
+   children (theme toggle button, account-menu-wrap) can end up different
+   heights. Aligning them all to center (rather than each pill trying to
+   vertically-center its own stretched box) keeps the toggle button and the
+   account pill visually level regardless of height differences. */
+.topbar-actions {
+  align-items: center;
 }
 
 body.dark-mode {

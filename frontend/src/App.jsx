@@ -74,6 +74,7 @@ import TeacherTestPaperPage from "./pages/TeacherTestPaperPage";
 import TeacherStudentAnalyticsPage from "./pages/TeacherStudentAnalyticsPage";
 import ExemplarResearchPage from "./pages/ExemplarResearchPage";
 import TeacherLessonPlanPage from "./pages/TeacherLessonPlanPage";
+import TeacherLectureAudioPage from "./pages/TeacherLectureAudioPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import SalesIncentivePage from "./pages/SalesIncentivePage";
@@ -322,6 +323,11 @@ const PAGE_META = {
     title: "Create Lesson Plans",
     subtitle: "Generate detailed CBSE-aligned lesson plans for any grade, subject and chapter. Download as PDF.",
     icon: "📋",
+  },
+  teacherLectureAudio: {
+    title: "Listen to Lecture",
+    subtitle: "Hear a model spoken run-through of any chapter's lesson plan, in a teacher's voice, to rehearse your delivery before class.",
+    icon: "🎧",
   },
   examPrep: {
     title: "Exam Prep Center",
@@ -1735,6 +1741,8 @@ function App() {
         );
       case "teacherLessonPlan":
         return <TeacherLessonPlanPage user={user} />;
+      case "teacherLectureAudio":
+        return <TeacherLectureAudioPage user={user} />;
       case "teacherTestPaper":
         return <TeacherTestPaperPage user={user} />;
       case "teacherStudentAnalytics":

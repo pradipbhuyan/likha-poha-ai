@@ -52,11 +52,23 @@ VAGUE_OBJECTIVE_PATTERNS = [
 STAGE_HEADING_RE = re.compile(r"^###\s+(.*?)\s*\(.*?(\d+)\s*minutes?\)\s*$", re.MULTILINE)
 NUMBERED_LINE_RE = re.compile(r"^\s*\d+\.\s+\S", re.MULTILINE)
 SKIP_CORE_CONTENT_RE = re.compile(r"\b(skip|skipping|omit|omitting|remove|removing)\b", re.IGNORECASE)
+# A success-criteria line is detected loosely: any "I can ..." phrase
+# anywhere in the Learning Objectives section (or immediately after it, if
+# authored as its own sub-block). This is intentionally lenient about exact
+# placement/formatting since the goal is just to confirm student-facing
+# "I can..." statements exist, not to enforce one exact markdown shape.
+I_CAN_LINE_RE = re.compile(r"\bi\s+can\b", re.IGNORECASE)
 
 _STOPWORDS = {
     "the", "a", "an", "and", "or", "but", "of", "in", "on", "to", "for", "with",
     "students", "student", "will", "be", "able", "this", "that", "their", "its",
     "one", "using", "use", "based", "from", "into", "about", "core", "lesson",
+    # Generic instructional/question verbs that appear in almost any exit
+    # ticket or objective regardless of topic — excluded so the
+    # objective/closure keyword-overlap heuristic checks actual TOPIC
+    # content, not just shared classroom-instruction phrasing.
+    "name", "identify", "explain", "describe", "quick", "ticket", "exit",
+    "question", "oral", "check", "criteria", "success", "can",
 }
 
 
@@ -108,6 +120,21 @@ def check_lesson_plan_markdown(markdown: str, grade: str, subject: str) -> list[
         if pattern.search(objectives_body):
             issues.append(QualityIssue("warning", "A learning objective uses vague phrasing (e.g. 'know', 'learn', 'understand everything about')."))
             break
+
+    # -- Student-friendly success criteria ("I can...") ----------------------
+    # Required alongside the core objectives so students (not just the
+    # teacher) can self-check their own learning. Counted loosely as any
+    # number of "I can ..." lines >= 2 within/adjacent to Learning
+    # Objectives — not tied to one exact markdown sub-heading, since
+    # handouts may format this as a sub-list under each objective or as its
+    # own short block immediately after the numbered objectives.
+    n_i_can_lines = len(I_CAN_LINE_RE.findall(objectives_body))
+    if n_objectives >= 2 and n_i_can_lines < 2:
+        issues.append(QualityIssue(
+            "warning",
+            "Learning Objectives section has fewer than 2 student-friendly "
+            "\"I can...\" success-criteria statements — add one per core objective.",
+        ))
 
     # -- Timing ---------------------------------------------------------------
     lesson_flow = _section(markdown, "## Lesson Plan (Step-by-Step)")

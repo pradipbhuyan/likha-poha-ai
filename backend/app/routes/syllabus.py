@@ -726,6 +726,31 @@ def build_chapter_content_status(syllabus_tree, rag_counts):
     return status
 
 
+def chapter_sort_tuple_for_ordering(chapter):
+    """Return a (part_number, chapter_number) tuple for chronological ordering.
+
+    Display labels can carry a "Part N - " and/or "<Source> - " prefix (see
+    create_part_display_label/create_source_display_label) stacked in front of
+    the actual chapter text. Multi-part textbooks restart chapter numbering
+    per part (e.g. "Part 1 - Chapter 1", "Part 2 - Chapter 1"), so sorting by
+    chapter number alone would interleave chapters from different parts --
+    the part number must be included as the primary sort key, with chapter
+    number only breaking ties within the same part. Returns None if the
+    chapter has no parseable chapter number (so callers can detect subjects
+    that shouldn't be reordered at all, e.g. custom-titled readers).
+    """
+    text = str(chapter or "")
+    without_source = strip_book_source_prefix(text)
+    chapter_number = extract_chapter_number(strip_part_prefix(without_source))
+
+    if chapter_number is None:
+        return None
+
+    part_number = extract_part_number(text) if is_part_display_label(text) else 0
+
+    return (part_number, chapter_number)
+
+
 def merge_reviewed_and_live_chapters(reviewed_chapters, live_chapters, mode="CBSE"):
     """
     Keep admin-reviewed order, but reconcile it against live RAG content.
@@ -733,6 +758,18 @@ def merge_reviewed_and_live_chapters(reviewed_chapters, live_chapters, mode="CBS
     The RAG table is the source of truth for what students can study. A saved
     review should preserve ordering for matching live chapters, but it should
     not hide newly reuploaded chapters or keep deleted chapters selectable.
+
+    A saved review is a point-in-time snapshot: if chapters are re-uploaded or
+    newly added to a subject AFTER the review was saved, the old code appended
+    them to the very END of the reviewed list regardless of their chapter
+    number -- confirmed live for Grade 12 Geography, where chapters 3-7 were
+    uploaded/re-reviewed after the original review (covering chapters 1, 2,
+    9-17) was saved, producing the student-facing order 1, 2, 9, 10, ..., 17,
+    3, 4, 5, 6, 7 instead of 1-17. When every chapter in the final merged list
+    has a parseable "Chapter N" number, re-sort the whole list chronologically
+    by that number so out-of-order reviews like this self-heal automatically.
+    Subjects whose chapters aren't numbered (e.g. custom-titled readers) keep
+    the original reviewed-order-then-append behavior untouched.
     """
     reviewed = clean_chapter_list(reviewed_chapters)
     live = clean_chapter_list([
@@ -765,7 +802,21 @@ def merge_reviewed_and_live_chapters(reviewed_chapters, live_chapters, mode="CBS
             merged.append(chapter)
             seen.add(lookup)
 
-    return merged or live
+    result = merged or live
+
+    if len(result) > 1:
+        sort_tuples = [chapter_sort_tuple_for_ordering(chapter) for chapter in result]
+
+        if all(sort_tuple is not None for sort_tuple in sort_tuples):
+            result = [
+                chapter
+                for _, chapter in sorted(
+                    zip(sort_tuples, result, strict=True),
+                    key=lambda pair: pair[0],
+                )
+            ]
+
+    return result
 
 
 def apply_syllabus_overrides(merged, overrides):

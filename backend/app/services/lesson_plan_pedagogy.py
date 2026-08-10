@@ -200,7 +200,13 @@ OBJECTIVE_RULES = """\
   verbs such as know, learn, understand everything about, or become familiar
   with.
 - Do not include an objective the lesson does not have enough teaching or
-  practice time to actually deliver and assess within this period."""
+  practice time to actually deliver and assess within this period.
+- For EACH core objective, also write one short student-facing "I can..."
+  success-criteria statement in plain, grade-appropriate language (e.g. "I
+  can explain why the narrator's attitude changes" or "I can identify the
+  coefficient and constant in a linear equation"). Each success criterion
+  must map directly to one objective — do not invent a success criterion
+  unrelated to any objective."""
 
 
 TIMING_RULES = f"""\
