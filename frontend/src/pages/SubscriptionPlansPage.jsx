@@ -835,15 +835,25 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
     const supportWhatsapp = cleanContactNumber(contact.whatsapp);
     const isFree = !user?.subscriptionPlan || user.subscriptionPlan === "free";
 
-    const freeFeatures = [
-      { icon: "📝", label: "Test Paper Generator", free: "2/day", paid: "Unlimited" },
-      { icon: "📋", label: "Lesson Plan Creator", free: "2/day", paid: "Unlimited" },
-      { icon: "🔬", label: "Exemplar Research (AI explanations)", free: "❌ Locked", paid: "✅ Full access" },
-      { icon: "📚", label: "Exemplar Lessons (Class 8–10)", free: "❌ Locked", paid: "✅ Full access" },
-      { icon: "📊", label: "Student Analytics Dashboard", free: "✅ Available", paid: "✅ Available" },
-      { icon: "🧪", label: "Question Bank (for test papers)", free: "✅ Available", paid: "✅ Full bank" },
-      { icon: "❓", label: "Ask Doubt (AI-assisted)", free: "Limited tokens", paid: "Unlimited" },
-      { icon: "🎒", label: "All CBSE Grade 5–12", free: "✅ Available", paid: "✅ Available" },
+    const teacherPlans = [
+      { key: "free_trial", name: "Free Trial", price: "₹0", period: "forever", note: "Try it out", color: "#64748b" },
+      { key: "paid_teacher", name: "Paid Teacher", price: "Contact us", period: "", note: "Full toolkit", color: "#7c3aed", tag: "Recommended" },
+    ];
+
+    const teacherGroups = [
+      { title: "Content Creation", rows: [
+        ["Test Paper Generator", "2 / day", "Unlimited"],
+        ["Lesson Plan Creator", "2 / day", "Unlimited"],
+        ["Listen to Lecture (AI audio)", "2 / day", "Unlimited"],
+      ]},
+      { title: "Exam Prep & Insights", rows: [
+        ["Exemplar Research (AI explanations)", false, true],
+        ["Question Bank (for test papers)", "Available", "Full bank"],
+        ["Student Analytics Dashboard", true, true],
+      ]},
+      { title: "Coverage", rows: [
+        ["All CBSE Grade 5–12", true, true],
+      ]},
     ];
 
     return (
@@ -872,25 +882,14 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
             <h3>Free Trial vs Paid — Feature Comparison</h3>
           </div>
 
-          <div className="subscription-table-wrap" style={{ marginTop: 16 }}>
-            <table>
-              <thead>
-                <tr>
-                  <th style={{ textAlign: "left" }}>Feature</th>
-                  <th style={{ textAlign: "center" }}>🆓 Free Trial</th>
-                  <th style={{ textAlign: "center" }}>⭐ Paid Plan</th>
-                </tr>
-              </thead>
-              <tbody>
-                {freeFeatures.map(({ icon, label, free, paid }) => (
-                  <tr key={label}>
-                    <td>{icon} {label}</td>
-                    <td style={{ textAlign: "center", color: free.startsWith("❌") ? "#ef4444" : free.startsWith("✅") ? "#10b981" : "var(--muted)", fontWeight: 600, fontSize: ".88rem" }}>{free}</td>
-                    <td style={{ textAlign: "center", color: paid.startsWith("✅") ? "#10b981" : "#6366f1", fontWeight: 700, fontSize: ".88rem" }}>{paid}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div style={{ marginTop: 16 }}>
+            <NoticeboardPricingTable
+              theme="light"
+              plans={teacherPlans}
+              groups={teacherGroups}
+              showCta={false}
+              footnote={<span>✓ / ✗ show what&rsquo;s included &middot; Paid Teacher is activated after contacting our team below</span>}
+            />
           </div>
         </section>
 
@@ -900,7 +899,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
             <Sparkles size={22} strokeWidth={2.4} />
             <h3>What paid teachers get</h3>
           </div>
-          <div className="premium-grid premium-grid-3" style={{ marginTop: 16 }}>
+          <div className="premium-grid premium-grid-4" style={{ marginTop: 16 }}>
             <div className="premium-card premium-glow-card glow-blue">
               <h3>📝 Unlimited Test Papers</h3>
               <p>Generate as many test papers as you need daily — MCQ, Subjective, or Mixed for any CBSE chapter.</p>
@@ -909,9 +908,13 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
               <h3>📋 Unlimited Lesson Plans</h3>
               <p>Create detailed CBSE-aligned lesson plans for any chapter, instantly downloadable as PDF.</p>
             </div>
+            <div className="premium-card premium-glow-card glow-red">
+              <h3>🎧 Unlimited Lecture Audio</h3>
+              <p>Turn any lesson plan into a ready-to-play AI narrated lecture — no more daily cap on Listen to Lecture.</p>
+            </div>
             <div className="premium-card premium-glow-card glow-green">
-              <h3>🔬 Exemplar Research & Lessons</h3>
-              <p>AI explanations for hard NCERT Exemplar topics (Class 8–10) + generate lessons for all Exemplar chapters.</p>
+              <h3>🔬 Exemplar Research</h3>
+              <p>Full access to AI explanations for hard NCERT Exemplar topics (Class 8–12) to help prep advanced students.</p>
             </div>
           </div>
         </section>

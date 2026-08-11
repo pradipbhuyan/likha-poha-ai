@@ -70,8 +70,23 @@ function renderCell(v) {
  *   parent-linked/teacher read-only views where a different action exists)
  * @param {boolean} showFreeCta - whether to render the "Start Free" button
  *   (hidden where free_tier isn't a real selectable plan, e.g. Subscription page)
+ * @param {Array} plans - plan-tab data, defaults to NOTICEBOARD_PLANS (student/parent
+ *   plans). Pass a different set (e.g. a 2-column Free Trial vs Paid) to reuse this
+ *   same notebook-style table for other audiences, such as the teacher comparison.
+ * @param {Array} groups - grouped feature rows, defaults to NOTICEBOARD_GROUPS.
+ * @param {import('react').ReactNode} footnote - overrides the default footnote text
+ *   under the table (which references INR pricing/Family Premium specifics that only
+ *   apply to the student/parent plans).
  */
-export default function NoticeboardPricingTable({ theme = "light", onChoosePlan, showCta = true, showFreeCta = true }) {
+export default function NoticeboardPricingTable({
+  theme = "light",
+  onChoosePlan,
+  showCta = true,
+  showFreeCta = true,
+  plans = NOTICEBOARD_PLANS,
+  groups = NOTICEBOARD_GROUPS,
+  footnote,
+}) {
   const scrollRef = useRef(null);
   const colRefs = useRef({});
 
@@ -87,7 +102,7 @@ export default function NoticeboardPricingTable({ theme = "light", onChoosePlan,
   return (
     <div className={"nbp-root nbp-theme-" + theme}>
       <div className="nbp-jump-row" role="tablist" aria-label="Jump to plan">
-        {NOTICEBOARD_PLANS.map(p => (
+        {plans.map(p => (
           <button
             key={p.key}
             type="button"
@@ -101,11 +116,11 @@ export default function NoticeboardPricingTable({ theme = "light", onChoosePlan,
       </div>
       <div className="nbp-wrap" ref={scrollRef}>
         <table className="nbp-table">
-          <colgroup><col className="nbp-feature-col" /><col /><col /><col /><col /></colgroup>
+          <colgroup><col className="nbp-feature-col" />{plans.map(p => <col key={p.key} />)}</colgroup>
           <thead>
             <tr>
               <th className="nbp-feature-head">What&rsquo;s included</th>
-              {NOTICEBOARD_PLANS.map(p => (
+              {plans.map(p => (
                 <th key={p.key} ref={(el) => { colRefs.current[p.key] = el; }}>
                   <div className="nbp-plan-tab" style={{ background: p.color + "22" }}>
                     {p.tag && <div className="nbp-washi" style={{ background: p.color }}>{p.tag}</div>}
@@ -118,9 +133,9 @@ export default function NoticeboardPricingTable({ theme = "light", onChoosePlan,
             </tr>
           </thead>
           <tbody>
-            {NOTICEBOARD_GROUPS.map(g => (
+            {groups.map(g => (
               <Fragment key={g.title}>
-                <tr className="nbp-group-row"><td colSpan={5}>{g.title}</td></tr>
+                <tr className="nbp-group-row"><td colSpan={plans.length + 1}>{g.title}</td></tr>
                 {g.rows.map(([label, ...vals]) => (
                   <tr key={label} className="nbp-feature-row">
                     <td className="nbp-feature-label">{label}</td>
@@ -135,7 +150,9 @@ export default function NoticeboardPricingTable({ theme = "light", onChoosePlan,
       <p className="nbp-swipe-hint">&#8596; Swipe or tap a plan above to compare</p>
       <div className="nbp-footnote">
         <span>✓ marked present &nbsp;&nbsp; ✗ marked absent</span>
-        <span>Prices in INR &middot; Family Premium fits 2 children &middot; Exam Prep Center (&#8377;1,999/yr) is a Grade 11&ndash;12 only add&#8209;on covering JEE, NEET, CUET, SAT, IELTS & TOEFL</span>
+        {footnote !== undefined ? footnote : (
+          <span>Prices in INR &middot; Family Premium fits 2 children &middot; Exam Prep Center (&#8377;1,999/yr) is a Grade 11&ndash;12 only add&#8209;on covering JEE, NEET, CUET, SAT, IELTS & TOEFL</span>
+        )}
       </div>
       {showCta && (
         <div className="nbp-cta-row">
