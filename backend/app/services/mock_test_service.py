@@ -12,6 +12,10 @@ from app.services.question_bank_service import (
     _distribute_across_chapters,
 )
 
+# subjective_question_bank_service imports normalize_chapter_core /
+# strip_source_display_prefix from this module, so it's imported lazily
+# inside _bank_written_questions() below to avoid a circular import.
+
 _log = get_logger("services.mock_test")
 
 # Display-source prefixes added by the syllabus review UI when multiple books
@@ -306,6 +310,120 @@ def calculate_score(questions, user_answers):
     return total_score, max_score, results
 
 
+def _subjective_bank_to_mock_questions(bank_questions: list[dict]) -> list[dict]:
+    """
+    Convert subjective_question_bank row format to the MockTestQuestion shape.
+
+    Marks-based split mirrors the GPT-5.5 authoring convention: 2-3 marks is
+    short-answer, 4-5 marks is long-answer (see
+    prepare_gpt55_subjective_question_prompts.py).
+    """
+    converted = []
+    for q in bank_questions:
+        marks = int(q.get("marks") or 3)
+        is_long = marks >= 4
+        converted.append({
+            "id": q.get("id"),
+            "db_id": q.get("db_id"),
+            "section": "Section C" if is_long else "Section B",
+            "question": q.get("question", ""),
+            "options": {},
+            "answer": "",
+            "explanation": "",
+            "marks": marks,
+            "question_type": "written_long" if is_long else "written_short",
+            "model_answer": q.get("model_answer", ""),
+            "expected_keywords": q.get("expected_keywords") or [],
+        })
+    return converted
+
+
+def _bank_written_questions(
+    grade: str,
+    board: str,
+    subject: str,
+    chapter: str,
+    difficulty: str,
+    num_questions: int,
+    excluded_ids: list[str] | None,
+) -> list[dict]:
+    """
+    Try to serve written questions from the pre-authored subjective bank.
+
+    Returns [] (never raises) if the bank can't fill the request — the caller
+    falls back to live LLM generation, since the bank is only populated for a
+    subset of grades/subjects so far.
+    """
+    try:
+        from app.services.subjective_question_bank_service import (  # noqa: PLC0415
+            get_subjective_questions_from_bank_with_fallback,
+        )
+        bank_questions = get_subjective_questions_from_bank_with_fallback(
+            board=board, grade=grade, subject=subject, chapter=chapter,
+            difficulty=difficulty, num_questions=num_questions,
+            excluded_ids=excluded_ids,
+        )
+        return _subjective_bank_to_mock_questions(bank_questions)
+    except Exception:
+        return []
+
+
+def _bank_mixed_or_written(
+    grade: str,
+    board: str,
+    subject: str,
+    chapter: str,
+    difficulty: str,
+    num_questions: int,
+    excluded_ids: list[str] | None,
+    question_format: str,
+) -> list[dict] | None:
+    """
+    Try to serve a written/mixed test entirely from the pre-authored banks
+    (question_bank for MCQ, subjective_question_bank for written).
+
+    Returns None if either portion can't be filled from the bank, so the
+    caller falls back to live LLM generation rather than returning a test
+    that's half bank-sourced, half missing. Only called for single-chapter
+    (Class Test) requests — multi-chapter written/mixed papers still use the
+    LLM path, since there's no multi-chapter subjective bank helper yet.
+    """
+    if question_format == "mixed":
+        mcq_count = max(1, num_questions // 2)
+        written_count = num_questions - mcq_count
+    else:
+        mcq_count = 0
+        written_count = num_questions
+
+    written_questions: list[dict] = []
+    if written_count:
+        written_questions = _bank_written_questions(
+            grade=grade, board=board, subject=subject, chapter=chapter,
+            difficulty=difficulty, num_questions=written_count,
+            excluded_ids=excluded_ids,
+        )
+        if len(written_questions) < written_count:
+            return None
+
+    mcq_questions: list[dict] = []
+    if mcq_count:
+        mcq_questions = get_questions_from_bank_with_fallback(
+            board=board, grade=grade, subject=subject, chapter=chapter,
+            difficulty=difficulty, num_questions=mcq_count,
+            excluded_ids=excluded_ids,
+        )
+        if len(mcq_questions) < mcq_count:
+            return None
+        for q in mcq_questions:
+            q["question_type"] = "mcq"
+
+    combined = mcq_questions + written_questions
+    random.shuffle(combined)
+    for index, q in enumerate(combined, start=1):
+        q["id"] = index
+    return combined
+
+
 def generate_cbse_mock_test(
     grade,
     subject,
@@ -341,9 +459,21 @@ def generate_cbse_mock_test(
     """
     selected_chapters = [c for c in (chapters or []) if c]
 
-    # ── Written / Mixed format: always generate fresh via LLM (no bank) ────
+    # ── Written / Mixed format: try the pre-authored banks first, fall back
+    # to live LLM generation for grades/subjects/chapters not yet authored
+    # (or for multi-chapter Mid-Term/Annual papers, not yet bank-backed) ────
     if question_format in ("written", "mixed"):
         chapter_label = ", ".join(selected_chapters) if selected_chapters else chapter
+
+        if not selected_chapters and chapter:
+            bank_result = _bank_mixed_or_written(
+                grade=grade, board=board, subject=subject, chapter=chapter,
+                difficulty=difficulty, num_questions=num_questions,
+                excluded_ids=excluded_ids, question_format=question_format,
+            )
+            if bank_result:
+                return bank_result
+
         return _generate_written_questions(
             grade=grade, board=board, subject=subject, chapter=chapter_label,
             exam_type=exam_type, num_questions=num_questions,

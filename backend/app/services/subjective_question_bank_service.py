@@ -115,13 +115,34 @@ def _fetch_subjective_pool_fuzzy(
     return deduped
 
 
-def _sample_pool(pool: list[dict], num_questions: int) -> list[dict]:
-    """Sample num_questions from an already-fetched pool. [] if too small."""
+def _sample_pool(
+    pool: list[dict],
+    num_questions: int,
+    excluded_ids: list[str] | None = None,
+) -> list[dict]:
+    """
+    Sample num_questions from an already-fetched pool, preferring unseen
+    (excluded_ids) questions — mirrors question_bank_service._sample_pool.
+    Returns [] if the pool is too small.
+    """
     if len(pool) < num_questions:
         return []
-    sampled = random.sample(pool, num_questions)
+
+    excluded_set = {str(eid) for eid in (excluded_ids or [])}
+    fresh = [q for q in pool if str(q.get("id", "")) not in excluded_set]
+
+    if len(fresh) >= num_questions:
+        sampled = random.sample(fresh, num_questions)
+    else:
+        seen = [q for q in pool if str(q.get("id", "")) in excluded_set]
+        sampled = fresh + random.sample(seen, num_questions - len(fresh))
+        random.shuffle(sampled)
+
+    for q in sampled:
+        q["db_id"] = str(q.get("id", ""))
     for index, q in enumerate(sampled, start=1):
         q["id"] = index
+
     return sampled
 
 
@@ -160,6 +181,7 @@ def get_subjective_questions_from_bank(
     chapter: str | None,
     difficulty: str,
     num_questions: int,
+    excluded_ids: list[str] | None = None,
 ) -> list[dict]:
     """
     Sample random subjective questions from the bank for a test paper.
@@ -169,7 +191,7 @@ def get_subjective_questions_from_bank(
     """
     try:
         pool = _fetch_subjective_pool(board, grade, subject, chapter, difficulty)
-        return _sample_pool(pool, num_questions)
+        return _sample_pool(pool, num_questions, excluded_ids)
     except Exception:
         return []
 
@@ -181,11 +203,12 @@ def get_subjective_questions_from_bank_fuzzy(
     chapter_core: str,
     difficulty: str,
     num_questions: int,
+    excluded_ids: list[str] | None = None,
 ) -> list[dict]:
     """Sample subjective questions via ILIKE substring match on a normalized chapter core."""
     try:
         pool = _fetch_subjective_pool_fuzzy(board, grade, subject, chapter_core, difficulty)
-        return _sample_pool(pool, num_questions)
+        return _sample_pool(pool, num_questions, excluded_ids)
     except Exception:
         return []
 
@@ -197,6 +220,7 @@ def get_subjective_questions_from_bank_with_fallback(
     chapter: str,
     difficulty: str,
     num_questions: int,
+    excluded_ids: list[str] | None = None,
 ) -> list[dict]:
     """
     Look up subjective bank questions with the same chapter-display-format
@@ -207,6 +231,7 @@ def get_subjective_questions_from_bank_with_fallback(
     questions = get_subjective_questions_from_bank(
         board=board, grade=grade, subject=subject, chapter=chapter,
         difficulty=difficulty, num_questions=num_questions,
+        excluded_ids=excluded_ids,
     )
     if questions:
         return questions
@@ -216,6 +241,7 @@ def get_subjective_questions_from_bank_with_fallback(
         questions = get_subjective_questions_from_bank(
             board=board, grade=grade, subject=subject, chapter=stripped,
             difficulty=difficulty, num_questions=num_questions,
+            excluded_ids=excluded_ids,
         )
         if questions:
             return questions
@@ -225,6 +251,7 @@ def get_subjective_questions_from_bank_with_fallback(
         questions = get_subjective_questions_from_bank(
             board=board, grade=grade, subject=subject, chapter=core,
             difficulty=difficulty, num_questions=num_questions,
+            excluded_ids=excluded_ids,
         )
         if questions:
             return questions
@@ -233,6 +260,7 @@ def get_subjective_questions_from_bank_with_fallback(
         questions = get_subjective_questions_from_bank_fuzzy(
             board=board, grade=grade, subject=subject, chapter_core=core,
             difficulty=difficulty, num_questions=num_questions,
+            excluded_ids=excluded_ids,
         )
 
     return questions
