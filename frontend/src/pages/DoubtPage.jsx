@@ -968,14 +968,18 @@ Important:
                 </button>
               </div>
 
-              {/* ── Trust signal: NCERT source + Exemplar link ── */}
+              {/* ── Trust signal: NCERT source + Exemplar link ──
+                   Uses semi-transparent tinted backgrounds (not solid
+                   white/pale colors) so these pills stay legible against
+                   both the light theme's white panel and the dark theme's
+                   near-black panel (var(--panel)). */}
               <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: 4 }}>
                 {sourceInfo?.sourceType === "TEXTBOOK_EXCERPT" && (
                   <span style={{
                     display: "inline-flex", alignItems: "center", gap: 6,
-                    padding: "9px 14px", background: "white",
-                    border: "1px solid #bbf7d0", borderRadius: 999,
-                    fontSize: 13, fontWeight: 800, color: "#047857",
+                    padding: "9px 14px", background: "rgba(16,185,129,.12)",
+                    border: "1px solid rgba(16,185,129,.4)", borderRadius: 999,
+                    fontSize: 13, fontWeight: 800, color: "#10b981",
                   }}>
                     <BookOpen size={14} strokeWidth={2.4} /> This answer is based on your {grade}{subject ? ` ${subject}` : ""} textbook
                   </span>
@@ -986,9 +990,9 @@ Important:
                   rel="noreferrer"
                   style={{
                     display: "inline-flex", alignItems: "center", gap: 6,
-                    padding: "9px 14px", background: "#eff6ff",
-                    border: "1px solid #bfdbfe", borderRadius: 999,
-                    fontSize: 13, fontWeight: 800, color: "#1d4ed8",
+                    padding: "9px 14px", background: "rgba(59,130,246,.12)",
+                    border: "1px solid rgba(59,130,246,.4)", borderRadius: 999,
+                    fontSize: 13, fontWeight: 800, color: "#3b82f6",
                     textDecoration: "none",
                   }}
                 >
@@ -1002,9 +1006,9 @@ Important:
                     rel="noreferrer"
                     style={{
                       display: "inline-flex", alignItems: "center", gap: 6,
-                      padding: "9px 14px", background: "#f0fdf4",
-                      border: "1px solid #bbf7d0", borderRadius: 999,
-                      fontSize: 13, fontWeight: 800, color: "#065f46",
+                      padding: "9px 14px", background: "rgba(16,185,129,.12)",
+                      border: "1px solid rgba(16,185,129,.4)", borderRadius: 999,
+                      fontSize: 13, fontWeight: 800, color: "#10b981",
                       textDecoration: "none",
                     }}
                   >
