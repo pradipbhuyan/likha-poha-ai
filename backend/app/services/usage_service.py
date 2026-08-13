@@ -205,3 +205,51 @@ def enforce_daily_limit(username: str, feature: str, max_requests: int):
         "message": "Allowed",
         "usage": usage,
     }
+
+
+def get_daily_usage_multi(username: str, features: list[str]):
+    """Summarize today's usage across SEVERAL feature keys combined.
+
+    Used for caps that must count more than one ai_usage_logs feature value
+    as a single quota -- e.g. paid-tier Ask Doubt calls can log under either
+    'doubt_answer_live_synthesis' (strong RAG match) or
+    'doubt_answer_weak_grounding' (weak RAG match), and both must count
+    toward the same daily LLM-call cap.
+    """
+    today = datetime.now(timezone.utc).date().isoformat()
+
+    result = (
+        supabase.table("ai_usage_logs")
+        .select("total_tokens, estimated_cost")
+        .eq("username", username)
+        .in_("feature", features)
+        .gte("created_at", f"{today}T00:00:00Z")
+        .execute()
+    )
+
+    logs = result.data or []
+
+    return {
+        "requests": len(logs),
+        "total_cost": sum(float(item.get("estimated_cost") or 0) for item in logs),
+        "total_tokens": sum(int(item.get("total_tokens") or 0) for item in logs),
+    }
+
+
+def enforce_daily_limit_multi(username: str, features: list[str], max_requests: int):
+    """Same as enforce_daily_limit(), but the cap is checked across several
+    feature keys combined (see get_daily_usage_multi's docstring)."""
+    usage = get_daily_usage_multi(username, features)
+
+    if usage["requests"] >= max_requests:
+        return {
+            "allowed": False,
+            "message": f"Daily limit reached for {features}. Try again tomorrow.",
+            "usage": usage,
+        }
+
+    return {
+        "allowed": True,
+        "message": "Allowed",
+        "usage": usage,
+    }

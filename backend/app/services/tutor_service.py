@@ -109,6 +109,36 @@ DOUBT_SYNTHESIS_SYSTEM = (
     "internal retrieval mechanics -- answer as a tutor would, from knowledge."
 )
 
+# System prompt for the WEAK-GROUNDING fallback path: used when RAG found
+# chunks for the chapter but none cleared RAG_ANSWER_THRESHOLD (i.e. the
+# retrieval is not confident this content answers the question). Rather than
+# skipping the LLM call entirely (the old behaviour -- see answer_doubt's
+# weak-grounding branch), a paid user still gets an LLM-backed answer, but
+# the model is explicitly told to admit when the provided context does not
+# contain the requested fact instead of guessing -- e.g. "who is the poet"
+# for an anthology poem that the NCERT textbook itself leaves uncredited.
+# This preserves the anti-hallucination guarantee (the model must not invent
+# facts) while no longer forcing every low-similarity doubt into a generic
+# canned "I couldn't find an exact match" message.
+DOUBT_WEAK_GROUNDING_SYSTEM = (
+    "You are an expert CBSE tutor answering a student's doubt. You have been "
+    "given textbook context that may or may not directly contain the answer "
+    "to the student's specific question -- the retrieval system was not "
+    "fully confident this context answers the question. "
+    "Read the context carefully. If it DOES contain the specific fact asked "
+    "for, answer directly and clearly using ONLY that context -- never invent "
+    "facts, numbers, names, or examples that aren't in it. "
+    "If the context does NOT contain the specific fact asked for (for "
+    "example, the student asks who wrote a poem but the textbook does not "
+    "credit any author), say so honestly and briefly in one or two sentences "
+    "-- for example, 'This textbook doesn't credit a specific author for "
+    "this poem.' -- and then, if useful, briefly mention what the context "
+    "DOES say about the topic. Never guess or fabricate an answer to fill "
+    "the gap. Use student-appropriate language for the grade given. Never "
+    "mention 'the textbook context', 'the excerpt', 'retrieval', or any "
+    "internal mechanics -- answer as a tutor would, from knowledge."
+)
+
 
 def build_synthesized_doubt_answer(
     question: str, chunks: list, grade: str, subject: str, chapter: str, max_chunks: int = 3
@@ -141,6 +171,47 @@ Answer the question clearly for a {grade} student.
         DOUBT_SYNTHESIS_SYSTEM,
         user_prompt,
         feature="doubt_answer_live_synthesis",
+        model=DEFAULT_TEXT_MODEL,
+    )
+
+
+def build_weak_grounding_doubt_answer(
+    question: str, chunks: list, grade: str, subject: str, chapter: str, max_chunks: int = 3
+) -> str:
+    """Synthesize an answer from RAG chunks that exist for the chapter but did
+    NOT clear RAG_ANSWER_THRESHOLD -- i.e. retrieval is uncertain this content
+    actually answers the question. Still makes one LLM call (so paid users are
+    not silently downgraded to a canned fallback message for every low-
+    similarity doubt), but instructs the model to explicitly admit when the
+    context doesn't contain the requested fact rather than guessing. See
+    DOUBT_WEAK_GROUNDING_SYSTEM's docstring/comment for the motivating case
+    (asking who wrote an anthology poem the NCERT textbook itself leaves
+    uncredited). Raises on failure -- callers must fall back to
+    build_ncert_fallback_answer."""
+    context = "\n\n".join(
+        c.get("chunk_text", "").strip() for c in chunks[:max_chunks] if c.get("chunk_text")
+    ).strip()
+    if len(context) > RAG_EXCERPT_MAX_CHARS:
+        context = context[:RAG_EXCERPT_MAX_CHARS].rsplit(" ", 1)[0] + "…"
+
+    user_prompt = f"""
+Grade: {grade}
+Subject: {subject}
+Chapter: {chapter}
+
+Textbook context (retrieval was not fully confident this answers the question):
+{context}
+
+Student question: {question}
+
+Answer the question for a {grade} student. If the context above does not
+contain the specific fact the student asked for, say so honestly instead of
+guessing.
+"""
+    return ask_llm(
+        DOUBT_WEAK_GROUNDING_SYSTEM,
+        user_prompt,
+        feature="doubt_answer_weak_grounding",
         model=DEFAULT_TEXT_MODEL,
     )
 
@@ -1437,13 +1508,29 @@ IMPORTANT:
             logger.warning("Doubt answer synthesis failed, using extractive fallback: %s", exc)
             answer = build_textbook_excerpt_answer(good_chunks)
         source_type = "TEXTBOOK_EXCERPT"
+    elif rag_results:
+        # Weak grounding: RAG found chunks for this chapter/subject, but none
+        # cleared RAG_ANSWER_THRESHOLD. Rather than skipping the LLM entirely
+        # (which used to force every low-similarity question into the canned
+        # NCERT-reference fallback even for full-access paid users), still
+        # make one LLM call using those weaker chunks, with an explicit
+        # instruction to admit when the context doesn't contain the fact
+        # asked for instead of guessing. See build_weak_grounding_doubt_answer
+        # docstring for the motivating case.
+        try:
+            answer = build_weak_grounding_doubt_answer(question, rag_results, grade, subject, chapter)
+            source_type = "TEXTBOOK_EXCERPT_WEAK"
+        except Exception as exc:
+            logger.warning("Weak-grounding doubt synthesis failed, using NCERT fallback: %s", exc)
+            answer = build_ncert_fallback_answer(grade, subject, chapter)
+            source_type = "NO_MATCH_FALLBACK"
     else:
         answer = build_ncert_fallback_answer(grade, subject, chapter)
         source_type = "NO_MATCH_FALLBACK"
 
     answer = remove_mermaid_blocks(answer)
 
-    if source_type == "TEXTBOOK_EXCERPT":
+    if source_type in ("TEXTBOOK_EXCERPT", "TEXTBOOK_EXCERPT_WEAK"):
         textbook_visuals = find_visual_assets_for_question(
             board=board,
             grade=grade,
@@ -1650,13 +1737,25 @@ Student follow-up question: {question}
             logger.warning("Follow-up answer synthesis failed, using extractive fallback: %s", exc)
             answer = build_textbook_excerpt_answer(good_chunks)
         source_type = "TEXTBOOK_EXCERPT"
+    elif rag_results:
+        # Weak grounding — see answer_doubt's identical branch for the full
+        # rationale. A paid user still gets an LLM-backed answer from the
+        # weaker chunks instead of a canned fallback for every low-similarity
+        # follow-up question.
+        try:
+            answer = build_weak_grounding_doubt_answer(question, rag_results, grade, subject, chapter)
+            source_type = "TEXTBOOK_EXCERPT_WEAK"
+        except Exception as exc:
+            logger.warning("Weak-grounding follow-up synthesis failed, using NCERT fallback: %s", exc)
+            answer = build_ncert_fallback_answer(grade, subject, chapter)
+            source_type = "NO_MATCH_FALLBACK"
     else:
         answer = build_ncert_fallback_answer(grade, subject, chapter)
         source_type = "NO_MATCH_FALLBACK"
 
     answer = remove_mermaid_blocks(answer)
 
-    if source_type == "TEXTBOOK_EXCERPT":
+    if source_type in ("TEXTBOOK_EXCERPT", "TEXTBOOK_EXCERPT_WEAK"):
         textbook_visuals = find_visual_assets_for_question(
             board=board,
             grade=grade,

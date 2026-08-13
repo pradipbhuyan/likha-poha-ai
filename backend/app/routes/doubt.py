@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 
 from app.models.schemas import DoubtRequest
 from app.services.tutor_service import answer_doubt
-from app.services.usage_service import enforce_daily_limit, log_ai_usage
+from app.services.usage_service import enforce_daily_limit, enforce_daily_limit_multi, log_ai_usage
 from app.services.doubt_history_service import (
     list_doubt_history,
     save_doubt_history,
@@ -14,6 +14,10 @@ from app.services.platform_info_service import (
 from app.services.offer_access_service import (
     is_free_tier_user,
     DAILY_LIMIT_MESSAGE,
+    PAID_TIER_DAILY_LLM_CAP,
+    PAID_TIER_DOUBT_LLM_FEATURES,
+    PAID_TIER_DAILY_LIMIT_MESSAGE,
+    build_paid_tier_daily_limit_response,
 )
 from app.services.doubt_kb_service import search_doubt_kb
 from app.services.academic_guardrail_service import (
@@ -165,6 +169,24 @@ def answer_student_doubt(
     enforce_profile_grade(profile, data.grade)
     enforce_profile_board(profile, request_board)
     enforce_account_standing(profile, data.mode)
+
+    # Exemplar Research (ExemplarResearchPage.jsx) reuses this endpoint with
+    # chapter="Exemplar: <chapter>". It's advertised on the teacher
+    # subscription page (SubscriptionPlansPage.jsx) as a paid-only feature —
+    # gate it here for free-tier teachers so that claim is actually true.
+    # Students/parents are unaffected (this endpoint has never gated Exemplar
+    # content for them; only teacher.py-style role checks are in scope here).
+    if profile.get("role") == "teacher" and (data.chapter or "").strip().lower().startswith("exemplar:"):
+        if (profile.get("subscription_plan") or "free") == "free":
+            raise HTTPException(
+                status_code=403,
+                detail={
+                    "feature": "EXEMPLAR_RESEARCH",
+                    "message": "Exemplar Research requires the Paid Teacher plan.",
+                    "upgrade_message": "Upgrade to the Paid Teacher plan for full Exemplar Research access.",
+                },
+            )
+
     # Free tier is DKB-only and never reaches an LLM call — there is no
     # per-topic access gate, so free-tier users may ask about any subject or
     # chapter. Every doubt attempt (DKB hit or miss) counts against the
@@ -299,6 +321,58 @@ def answer_student_doubt(
             "history_id": None,
             "message": "Answered from knowledge base",
         }
+
+    # ── Paid-tier daily LLM cap: only applies past this point (DKB missed) ───
+    # Lessons and Mock Tests never call an LLM for any tier — they are served
+    # entirely from pre-approved content. Ask Doubt is the ONLY surface that
+    # can reach a live LLM call, so its cap is sized against the full paid-tier
+    # AI budget (~Rs 100/month — see offer_access_service.PAID_TIER_DAILY_LLM_CAP
+    # for the cost math). DKB hits above are never capped; only genuine
+    # LLM-backed answers (TEXTBOOK_EXCERPT / TEXTBOOK_EXCERPT_WEAK) count here.
+    if not is_free:
+        paid_limit = enforce_daily_limit_multi(
+            canonical_username,
+            features=PAID_TIER_DOUBT_LLM_FEATURES,
+            max_requests=PAID_TIER_DAILY_LLM_CAP,
+        )
+        if not paid_limit["allowed"]:
+            gate = build_paid_tier_daily_limit_response()
+            history_item = None
+            if data.save_to_history:
+                display_question = (
+                    data.display_question
+                    or data.question.split("Preferred answer style:", 1)[0]
+                    or data.question
+                ).strip()
+                try:
+                    history_item = save_doubt_history(
+                        client=admin_client,
+                        profile_id=profile.get("id"),
+                        username=canonical_username,
+                        grade=data.grade,
+                        mode=data.mode,
+                        board=request_board,
+                        subject=data.subject,
+                        chapter=data.chapter,
+                        question=display_question,
+                        prompt_question=data.question,
+                        answer=gate["answer"],
+                        source_type=gate["source_type"],
+                        sources=[],
+                        mentor_suggestions=[],
+                    )
+                except Exception as history_error:
+                    print(f"Doubt history save failed: {history_error}")
+            return {
+                "success": True,
+                "answer": gate["answer"],
+                "source_type": gate["source_type"],
+                "sources": [],
+                "textbook_visuals": [],
+                "mentor_suggestions": [],
+                "history_id": history_item.get("id") if history_item else None,
+                "message": "Paid-tier daily AI question limit reached",
+            }
 
     try:
         result = call_with_optional_board(

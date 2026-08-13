@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 import app.routes.doubt as doubt_route
+from tests.conftest import fake_student_profile, patch_route_profile
 
 client = TestClient(app)
 
@@ -464,6 +465,71 @@ def test_paid_user_never_capped(monkeypatch):
 
     monkeypatch.setattr(doubt_route, "enforce_daily_limit", _boom)
     monkeypatch.setattr(doubt_route, "log_ai_usage", _boom)
+
+    response = client.post("/api/doubt/answer", json={
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "CBSE",
+        "subject": "Science",
+        "chapter": "Matter",
+        "question": "What is matter?",
+    })
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True
+
+
+# ── Exemplar Research paywall for teachers ───────────────────────────────────
+# ExemplarResearchPage.jsx reuses this endpoint (chapter="Exemplar: <chapter>").
+# SubscriptionPlansPage.jsx advertises Exemplar Research as paid-teacher-only;
+# previously nothing in this route enforced that for teachers, so a free-tier
+# teacher calling the API directly got full, unrestricted access.
+
+def test_free_tier_teacher_is_blocked_from_exemplar_research(monkeypatch):
+    _mock_doubt_answer(monkeypatch)
+    profile = fake_student_profile(role="teacher", subscription_plan="free")
+    patch_route_profile(monkeypatch, doubt_route, profile)
+
+    response = client.post("/api/doubt/answer", json={
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "CBSE",
+        "subject": "Science",
+        "chapter": "Exemplar: Matter",
+        "question": "Explain Exemplar problem on matter.",
+    })
+
+    assert response.status_code == 403
+    assert response.json()["detail"]["feature"] == "EXEMPLAR_RESEARCH"
+
+
+def test_paid_teacher_can_use_exemplar_research(monkeypatch):
+    _mock_doubt_answer(monkeypatch)
+    monkeypatch.setattr(doubt_route, "is_free_tier_user", lambda user_id: False)
+    profile = fake_student_profile(role="teacher", subscription_plan="starter")
+    patch_route_profile(monkeypatch, doubt_route, profile)
+
+    response = client.post("/api/doubt/answer", json={
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "CBSE",
+        "subject": "Science",
+        "chapter": "Exemplar: Matter",
+        "question": "Explain Exemplar problem on matter.",
+    })
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True
+
+
+def test_free_tier_teacher_is_not_blocked_from_non_exemplar_doubts(monkeypatch):
+    """The Exemplar gate must only apply to Exemplar-prefixed chapters — a free
+    teacher's regular Ask Doubt use is untouched (still subject to the normal
+    5/day DKB-only cap, not a hard block)."""
+    _mock_doubt_answer(monkeypatch)
+    monkeypatch.setattr(doubt_route, "is_free_tier_user", lambda user_id: False)
+    profile = fake_student_profile(role="teacher", subscription_plan="free")
+    patch_route_profile(monkeypatch, doubt_route, profile)
 
     response = client.post("/api/doubt/answer", json={
         "username": "test_user",

@@ -191,3 +191,47 @@ def build_daily_limit_response() -> dict:
         "textbook_visuals": [],
         "mentor_suggestions": [],
     }
+
+
+# ── Paid-tier LLM daily cap ──────────────────────────────────────────────────
+# Lessons and Mock Tests never call an LLM for any tier -- they are served
+# entirely from pre-approved content in lesson_cache / question banks. Ask
+# Doubt is the ONLY live-LLM-calling surface, so its cap is sized against the
+# full per-user AI budget (approx Rs 100/month). Sized against the WORST-CASE
+# active provider (gpt-4.1, ~20x costlier than gpt-4.1-nano) so the cap stays
+# safe no matter which provider the admin has configured at any moment:
+#   10 calls/day x 30 days x $0.0031/call (gpt-4.1 typical answer)
+#   = $0.93/month =~ Rs 78/month -- comfortably within the Rs 100 budget.
+# DKB hits are unlimited/free and never count toward this cap -- it only
+# limits genuine LLM-backed answers (TEXTBOOK_EXCERPT / TEXTBOOK_EXCERPT_WEAK).
+PAID_TIER_DAILY_LLM_CAP = 10
+
+# Feature keys logged by build_synthesized_doubt_answer() /
+# build_weak_grounding_doubt_answer() in tutor_service.py -- both must count
+# toward the SAME daily cap (see usage_service.enforce_daily_limit_multi).
+PAID_TIER_DOUBT_LLM_FEATURES = [
+    "doubt_answer_live_synthesis",
+    "doubt_answer_weak_grounding",
+]
+
+PAID_TIER_DAILY_LIMIT_MESSAGE = (
+    "🚀 You've asked 10 brain-boosting questions today — that's dedication! "
+    "Your AI tutor needs a quick recharge. Come back tomorrow for 10 more, "
+    "or explore our Knowledge Base with 1000s of pre-answered doubts "
+    "(zero limit!) in the meantime."
+)
+
+PAID_TIER_DAILY_LIMIT_SOURCE_TYPE = "PAID_TIER_DAILY_LIMIT_REACHED"
+
+
+def build_paid_tier_daily_limit_response() -> dict:
+    """Return the standard payload for a paid-tier student who has used all
+    10 of today's LLM-backed Ask Doubt answers. DKB-served answers remain
+    unlimited and are never affected by this cap."""
+    return {
+        "answer": PAID_TIER_DAILY_LIMIT_MESSAGE,
+        "source_type": PAID_TIER_DAILY_LIMIT_SOURCE_TYPE,
+        "sources": [],
+        "textbook_visuals": [],
+        "mentor_suggestions": [],
+    }
