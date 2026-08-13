@@ -215,19 +215,27 @@ def get_daily_usage_multi(username: str, features: list[str]):
     'doubt_answer_live_synthesis' (strong RAG match) or
     'doubt_answer_weak_grounding' (weak RAG match), and both must count
     toward the same daily LLM-call cap.
+
+    Best-effort: any Supabase/network failure returns a zero-usage result
+    instead of raising, matching the fail-open pattern used elsewhere in
+    this module (log_ai_usage, is_free_tier_user) -- a usage-tracking outage
+    must never crash the student's Ask Doubt request.
     """
     today = datetime.now(timezone.utc).date().isoformat()
 
-    result = (
-        supabase.table("ai_usage_logs")
-        .select("total_tokens, estimated_cost")
-        .eq("username", username)
-        .in_("feature", features)
-        .gte("created_at", f"{today}T00:00:00Z")
-        .execute()
-    )
-
-    logs = result.data or []
+    try:
+        result = (
+            supabase.table("ai_usage_logs")
+            .select("total_tokens, estimated_cost")
+            .eq("username", username)
+            .in_("feature", features)
+            .gte("created_at", f"{today}T00:00:00Z")
+            .execute()
+        )
+        logs = result.data or []
+    except Exception as e:
+        print("get_daily_usage_multi failed (failing open):", str(e))
+        logs = []
 
     return {
         "requests": len(logs),
@@ -238,7 +246,8 @@ def get_daily_usage_multi(username: str, features: list[str]):
 
 def enforce_daily_limit_multi(username: str, features: list[str], max_requests: int):
     """Same as enforce_daily_limit(), but the cap is checked across several
-    feature keys combined (see get_daily_usage_multi's docstring)."""
+    feature keys combined (see get_daily_usage_multi's docstring). Fails
+    open (allowed=True) if the underlying usage lookup errors out."""
     usage = get_daily_usage_multi(username, features)
 
     if usage["requests"] >= max_requests:
