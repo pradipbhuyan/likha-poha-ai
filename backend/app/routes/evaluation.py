@@ -1,10 +1,13 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 
 from app.models.schemas import AnswerEvaluationRequest
 from app.services.evaluation_service import (
     evaluate_student_answer,
     generate_practice_questions,
 )
+from app.services.auth_service import get_current_user
+from app.services.offer_access_service import is_free_tier_user
+from app.services.test_account_service import is_all_access_test_user
 
 router = APIRouter()
 
@@ -27,7 +30,10 @@ def validate_required_text(value: str, field_name: str):
 
 
 @router.post("/evaluate")
-def evaluate_answer(data: AnswerEvaluationRequest):
+def evaluate_answer(
+    data: AnswerEvaluationRequest,
+    user=Depends(get_current_user),
+):
     """
     Evaluate a student's answer.
 
@@ -38,11 +44,26 @@ def evaluate_answer(data: AnswerEvaluationRequest):
     - ideal_context
 
     Empty values are rejected before calling the evaluation service.
+
+    Tier gating for AI feedback (see evaluation_service.evaluate_student_answer
+    and offer_access_service.py for the full policy):
+    - Both free and paid tiers get instant, zero-cost keyword-scored feedback
+      whenever the question has expected_keywords (the GPT-5.5-authored
+      subjective_question_bank we ingest offline, or admin-prewarmed lesson
+      practice questions).
+    - Free tier NEVER reaches a live LLM call -- if a question has no
+      expected_keywords, free-tier users see an upgrade prompt instead.
+    - Paid tier can fall back to a live LLM call for such questions, capped
+      at 10/day (mirrors the Ask Doubt paid-tier LLM cap).
     """
     validate_required_text(data.username, "username")
     validate_required_text(data.question, "question")
     validate_required_text(data.student_answer, "student_answer")
     validate_required_text(data.ideal_context, "ideal_context")
+
+    is_free = is_free_tier_user(user.id) and not is_all_access_test_user(
+        {"username": data.username}
+    )
 
     try:
         result = evaluate_student_answer(
@@ -58,6 +79,7 @@ def evaluate_answer(data: AnswerEvaluationRequest):
             question_type=data.question_type,
             expected_keywords=data.expected_keywords,
             correct_answer=data.correct_answer,
+            is_free=is_free,
         )
 
         return {
@@ -79,7 +101,10 @@ def evaluate_answer(data: AnswerEvaluationRequest):
 
 
 @router.post("/practice-questions")
-def create_practice_questions(data: AnswerEvaluationRequest):
+def create_practice_questions(
+    data: AnswerEvaluationRequest,
+    user=Depends(get_current_user),
+):
     """
     Generate practice questions from lesson context.
 

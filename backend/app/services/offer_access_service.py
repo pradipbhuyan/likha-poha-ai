@@ -235,3 +235,42 @@ def build_paid_tier_daily_limit_response() -> dict:
         "textbook_visuals": [],
         "mentor_suggestions": [],
     }
+
+
+# ── Mock Test written-answer AI evaluation ("Get AI Feedback") ─────────────
+# Free tier has NO access to written/subjective mock-test questions at all
+# (enforced at generation time in mock_test_service.generate_cbse_mock_test
+# and the frontend's paid-only Written/Mixed format gate) -- so this cap
+# only ever applies to paid users, mirroring the same Rs 100/month AI budget
+# and worst-case-provider cost math as PAID_TIER_DAILY_LLM_CAP above. Written
+# answers are evaluated for free using keyword-coverage scoring whenever
+# expected_keywords are present (from the GPT-5.5-authored subjective_
+# question_bank we ingest offline) -- the LLM is only invoked as a fallback
+# for the rare case of an inline lesson practice question with no keywords.
+# That fallback path is what this cap protects.
+PAID_TIER_DAILY_EVAL_LLM_CAP = 10
+
+# Feature key logged by evaluation_service.evaluate_student_answer()'s LLM
+# fallback branch (ask_llm(..., feature="answer_evaluation")).
+PAID_TIER_EVAL_LLM_FEATURES = ["answer_evaluation"]
+
+PAID_TIER_EVAL_DAILY_LIMIT_MESSAGE = (
+    "🚀 You've asked for 10 rounds of AI feedback today — that's some "
+    "serious exam prep! Your AI tutor needs a quick recharge. Come back "
+    "tomorrow for 10 more rounds of feedback."
+)
+
+PAID_TIER_EVAL_DAILY_LIMIT_SOURCE_TYPE = "PAID_TIER_EVAL_DAILY_LIMIT_REACHED"
+
+
+def build_paid_tier_eval_daily_limit_response() -> dict:
+    """Return the standard payload for a paid-tier student who has used all
+    10 of today's LLM-backed answer-evaluation calls (Mock Test written
+    questions / inline lesson practice questions with no expected_keywords).
+    Keyword-scored evaluations (zero LLM cost) are never affected by this cap."""
+    return {
+        "evaluation": PAID_TIER_EVAL_DAILY_LIMIT_MESSAGE,
+        "score": 0,
+        "passed": False,
+        "source_type": PAID_TIER_EVAL_DAILY_LIMIT_SOURCE_TYPE,
+    }

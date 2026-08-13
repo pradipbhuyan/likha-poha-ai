@@ -1,27 +1,23 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+import { authFetch } from "./authClient";
 
 export async function evaluateStudentAnswer(payload) {
-  /** Send a practice response for coaching feedback, score signal, and revision memory. */
-  const response = await fetch(`${API_BASE_URL}/api/evaluation/evaluate`, {
+  /**
+   * Send a practice response for coaching feedback, score signal, and
+   * revision memory. Uses authFetch so the backend can identify the
+   * requesting user's tier (free vs paid) for AI-feedback gating: free
+   * tier only gets instant keyword-scored feedback, paid tier gets a
+   * 10/day cap on live AI feedback (see offer_access_service.py).
+   */
+  return authFetch("/api/evaluation/evaluate", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify(payload),
   });
-
-  return response.json();
 }
 
 export async function generatePracticeQuestions(payload) {
   /** Generate structured self-check questions for the current lesson step. */
-  const response = await fetch(`${API_BASE_URL}/api/evaluation/practice-questions`, {
+  return authFetch("/api/evaluation/practice-questions", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify(payload),
   });
-
-  return response.json();
 }

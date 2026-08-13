@@ -3,6 +3,22 @@ import re
 
 from app.services.openai_service import ask_llm
 from app.services.mentor_memory_service import save_mentor_memory
+from app.services.offer_access_service import (
+    PAID_TIER_DAILY_EVAL_LLM_CAP,
+    PAID_TIER_EVAL_LLM_FEATURES,
+    build_paid_tier_eval_daily_limit_response,
+)
+from app.services.usage_service import enforce_daily_limit_multi
+
+# question_type values that should use the free, zero-LLM-cost keyword-
+# coverage scorer whenever expected_keywords are available. Mock Test written
+# questions (MockTestPage.jsx) send "short_answer"; the subjective bank /
+# LLM-generated written questions use "written_short"/"written_long"; inline
+# lesson practice questions use "descriptive". All four must be treated
+# identically here -- keyword coverage first, LLM only as a last resort.
+DESCRIPTIVE_QUESTION_TYPES = {
+    "descriptive", "short_answer", "written_short", "written_long",
+}
 
 
 EVALUATOR_SYSTEM = """
@@ -259,13 +275,23 @@ def evaluate_student_answer(
     question_type: str = "descriptive",
     expected_keywords: list[str] | None = None,
     correct_answer: str = "",
+    is_free: bool = False,
 ):
     """
     Evaluate a student answer as coaching feedback, not as a progression gate.
 
-    Keyword-first: when expected_keywords are provided, evaluation is instant
-    with zero LLM cost using keyword coverage scoring. Only falls back to LLM
-    when no keywords are available (e.g. inline lesson questions).
+    Keyword-first: when expected_keywords are provided (e.g. from the
+    GPT-5.5-authored subjective_question_bank we ingest offline, or the
+    admin lesson-prewarm cache), evaluation is instant with zero LLM cost
+    using keyword coverage scoring for BOTH free and paid tiers -- this is
+    the only evaluation path free-tier users can reach.
+
+    Only falls back to a live LLM call when no keywords are available (e.g.
+    an inline lesson practice question authored without a keyword list).
+    That fallback is paid-tier only (is_free=True returns an upgrade
+    message instead of ever calling the LLM) and is capped at
+    PAID_TIER_DAILY_EVAL_LLM_CAP calls/day per paid user, mirroring the Ask
+    Doubt paid-tier LLM cap.
     """
     expected_keywords = expected_keywords or []
 
@@ -298,7 +324,7 @@ def evaluate_student_answer(
     # ---------------------------------------------------- end MCQ
 
     # ------------------------------------------------- keyword-based (no LLM)
-    if question_type == "descriptive" and expected_keywords:
+    if question_type in DESCRIPTIVE_QUESTION_TYPES and expected_keywords:
         result = _keyword_based_evaluation(student_answer, expected_keywords)
 
         try:
@@ -316,6 +342,59 @@ def evaluate_student_answer(
 
         return result
     # -------------------------------------------- end keyword-based
+
+    # -------------------------------------- LLM fallback gate (paid-only + cap)
+    # Free tier never reaches a live LLM call for answer evaluation -- only
+    # the keyword-based path above is available to them. If a free-tier
+    # user's question has no expected_keywords, show the upgrade prompt
+    # instead of ever calling ask_llm().
+    if is_free:
+        gate = build_paid_tier_eval_daily_limit_response()
+        gate["evaluation"] = (
+            "🔒 **AI feedback for this question isn't available on the free "
+            "plan yet.**\n\nFree access covers instant feedback on our "
+            "pre-answered practice questions. To get AI feedback on any "
+            "written answer, any subject, any chapter — a paid subscription "
+            "unlocks it all."
+        )
+        try:
+            save_mentor_memory(
+                username=username,
+                grade=grade,
+                mode=mode,
+                subject=subject,
+                chapter=chapter or step_title,
+                question=f"Practice: {question}",
+                answer="Free-tier: AI feedback gated (no keyword coverage available).",
+            )
+        except Exception:
+            pass
+        return gate
+
+    # Paid tier: cap live LLM evaluation calls at PAID_TIER_DAILY_EVAL_LLM_CAP
+    # per day, mirroring the Ask Doubt paid-tier LLM cap. Fails open if the
+    # usage lookup itself errors (see enforce_daily_limit_multi).
+    eval_limit = enforce_daily_limit_multi(
+        username,
+        features=PAID_TIER_EVAL_LLM_FEATURES,
+        max_requests=PAID_TIER_DAILY_EVAL_LLM_CAP,
+    )
+    if not eval_limit["allowed"]:
+        gate = build_paid_tier_eval_daily_limit_response()
+        try:
+            save_mentor_memory(
+                username=username,
+                grade=grade,
+                mode=mode,
+                subject=subject,
+                chapter=chapter or step_title,
+                question=f"Practice: {question}",
+                answer="Paid-tier daily AI feedback limit reached.",
+            )
+        except Exception:
+            pass
+        return gate
+    # ------------------------------------ end LLM fallback gate
 
     # Fallback: LLM evaluation (inline lesson questions without keywords)
     prompt = f"""

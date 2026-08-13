@@ -76,6 +76,7 @@ def test_evaluate_answer_response_has_valid_data_types(monkeypatch):
         question_type="descriptive",
         expected_keywords=None,
         correct_answer="",
+        is_free=False,
     ):
         return {
             "evaluation": "Good answer.",
