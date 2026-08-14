@@ -257,3 +257,64 @@ describe("Sidebar mobile drawer", () => {
     expect(setMobileNavOpen).toHaveBeenCalledWith(false);
   });
 });
+
+describe("Sidebar avatar picker (icons, not emoji)", () => {
+  const student = { role: "student", username: "Aisha", grade: "Grade 11", accessToken: "tok" };
+
+  test("opening the picker renders 10 preset-avatar icon buttons with no emoji text", () => {
+    renderSidebar(student);
+
+    fireEvent.click(screen.getByTitle(/click to change avatar/i));
+
+    expect(screen.getByText("Choose Avatar")).toBeInTheDocument();
+    // Every preset avatar renders an <svg> icon, not an emoji character.
+    const presetButtons = screen.getAllByRole("button").filter(
+      (btn) => btn.querySelector("svg") && btn.style.borderRadius === "50%" && btn.style.width === "40px"
+    );
+    expect(presetButtons).toHaveLength(10);
+    presetButtons.forEach((btn) => {
+      expect(btn.textContent.trim()).toBe("");
+    });
+  });
+
+  test("Upload, Camera, and Remove Avatar controls render an icon alongside their label", () => {
+    renderSidebar(student);
+    fireEvent.click(screen.getByTitle(/click to change avatar/i));
+
+    const uploadLabel = screen.getByText("Upload").closest("label");
+    expect(uploadLabel.querySelector("svg")).not.toBeNull();
+
+    const removeBtn = screen.getByText(/remove avatar/i).closest("button");
+    expect(removeBtn.querySelector("svg")).not.toBeNull();
+  });
+
+  test("a previously-saved preset avatar key (e.g. from before the emoji-to-icon change) still resolves to an icon, not the fallback initial", () => {
+    // Regression: PRESET_AVATARS keys (boy1/girl2/etc.) were kept stable when
+    // emoji were swapped for Lucide icons, so avatars saved before that
+    // change keep rendering a picture instead of silently falling back.
+    renderSidebar({ ...student, avatar: "girl2" });
+
+    const avatarBubble = screen.getByTitle(/click to change avatar/i);
+    expect(avatarBubble.querySelector("svg")).not.toBeNull();
+    expect(avatarBubble.textContent.trim()).not.toBe("A"); // not the initial fallback
+  });
+
+  test("selecting a preset avatar saves it and closes the picker", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => ({}) });
+    globalThis.fetch = fetchMock;
+
+    renderSidebar(student);
+    fireEvent.click(screen.getByTitle(/click to change avatar/i));
+
+    const presetButtons = screen.getAllByRole("button").filter(
+      (btn) => btn.querySelector("svg") && btn.style.borderRadius === "50%" && btn.style.width === "40px"
+    );
+    fireEvent.click(presetButtons[0]);
+
+    expect(screen.queryByText("Choose Avatar")).not.toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining("/api/profile/update-avatar"),
+      expect.objectContaining({ method: "POST" })
+    );
+  });
+});

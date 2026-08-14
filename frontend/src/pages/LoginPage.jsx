@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import logo from "../assets/AITutorLogo1.png";
 
-import { BookOpen, Brain, ClipboardList, BarChart3, User, AtSign, Lock, Eye, EyeOff } from "lucide-react";
+import { BookOpen, Brain, ClipboardList, BarChart3, AtSign, Lock, Eye, EyeOff } from "lucide-react";
 
 import { supabase } from "../api/supabaseClient";
 
@@ -24,12 +24,10 @@ const PASSWORD_RESET_REDIRECT_URL =
   `${window.location.origin}/reset-password`;
 
 function LoginPage({ onLogin, onShowSignup, onShowLanding }) {
-  /** Handles Supabase authentication and parent signup for the app entry point. */
-  const [isSignupMode, setIsSignupMode] = useState(false);
+  /** Handles Supabase authentication for the app entry point. Account creation lives on the dedicated Signup page (see onShowSignup). */
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [fullName, setFullName] = useState("");
   const [error, setError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -294,156 +292,6 @@ useEffect(() => {
     }
   }
 
-  async function handleSignup(e) {
-    /** Create a parent family, profile, and authenticated session for new signup users. */
-    e.preventDefault();
-
-    setError("");
-    setLoading(true);
-
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email: username,
-        password,
-      });
-
-      if (error) {
-        const msg = error.message || "";
-
-        if (msg.toLowerCase().includes("rate limit") || msg.toLowerCase().includes("over_email")) {
-          setError(
-            "⏳ Too many signup attempts. Supabase has temporarily limited email sending. Please wait a few minutes and try again."
-          );
-        } else {
-          setError(msg || "Unable to create account.");
-        }
-
-        return;
-      }
-
-      if (!data.user) {
-        setError("Unable to create account.");
-        return;
-      }
-
-      // Check if a profile already exists for this user (re-submission after
-      // a previous signup attempt with the same email).
-      const { data: existingProfile } = await supabase
-        .from("profiles")
-        .select("id, family_id")
-        .eq("id", data.user.id)
-        .maybeSingle();
-
-      let familyId = existingProfile?.family_id;
-
-      if (!existingProfile) {
-        // First signup attempt — create a new family and profile.
-        familyId = crypto.randomUUID();
-
-        const { error: familyError } = await supabase
-          .from("families")
-          .insert({
-            id: familyId,
-            family_name: `${fullName}'s Family`,
-          });
-
-        if (familyError) {
-          setError(familyError.message);
-          return;
-        }
-
-        const profilePayload = {
-          id: data.user.id,
-          email: username,
-          username: fullName,
-          role: "parent",
-          parent_id: null,
-          family_id: familyId,
-          access_cbse: true,
-          access_sof_science: false,
-          access_sof_maths: false,
-          access_sof_english: false,
-          cbse_subjects: [],
-          daily_token_limit: 50000,
-          monthly_token_limit: 1000000,
-          subscription_plan: "free",
-          account_status: "active",
-        };
-
-        const { error: profileError } = await supabase
-          .from("profiles")
-          .insert(profilePayload);
-
-        if (profileError) {
-          setError(profileError.message);
-          return;
-        }
-      }
-
-      // When email confirmation is enabled in Supabase, signUp does not
-      // return a session. Show a friendly message and stop here — the parent
-      // must click the confirmation link before they can log in.
-      if (!data.session) {
-        setError("");
-        setInfoMessage(
-          "📧 Account created! A confirmation email has been sent to your inbox. Please click the link in that email to activate your account before signing in. Check your spam folder if you don't see it within a few minutes."
-        );
-        setIsSignupMode(false);
-        return;
-      }
-
-      const profilePayload = existingProfile || {
-        id: data.user.id,
-        email: username,
-        username: fullName,
-        role: "parent",
-        family_id: familyId,
-      };
-
-      const { data: loginData, error: loginError } =
-        await supabase.auth.signInWithPassword({
-          email: username,
-          password,
-        });
-
-      if (loginError) {
-        const msg = loginError.message || "";
-
-        if (
-          msg.toLowerCase().includes("email not confirmed") ||
-          msg.toLowerCase().includes("email_not_confirmed")
-        ) {
-          setError("");
-          setInfoMessage(
-            "📧 Please confirm your email address first. Check your inbox for a confirmation link from Likha Poha AI. Check your spam folder if you don't see it."
-          );
-        } else {
-          setError(msg || "Unable to sign in after account creation.");
-        }
-
-        return;
-      }
-
-      const { data: freshProfile } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", loginData.user.id)
-        .single();
-
-      onLogin(
-        await buildLoginUser({
-          authUser: loginData.user,
-          profile: freshProfile || profilePayload,
-          accessToken: loginData.session.access_token,
-        })
-      );
-    } catch (err) {
-      setError(err.message || "Unable to create account.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
   return (
     <div className="ait-login-page">
       <div className="ait-login-shell">
@@ -494,41 +342,19 @@ useEffect(() => {
 
         <div className="ait-login-right">
           <div className="ait-form-card">
-            <h2>{isSignupMode ? "Create Parent Account" : "Welcome back"}</h2>
+            <h2>Welcome back</h2>
 
-            <p>
-              {isSignupMode
-                ? "Create your parent account to begin."
-                : "Sign in to continue learning."}
-            </p>
+            <p>Sign in to continue learning.</p>
 
-            <form onSubmit={isSignupMode ? handleSignup : handleLogin}>
-              {isSignupMode && (
-                <div className="ait-input-row">
-                  <span className="ait-input-icon"><User size={20} strokeWidth={2} /></span>
-
-                  <label htmlFor="login-fullname" className="sr-only">Full name</label>
-                  <input
-                    id="login-fullname"
-                    type="text"
-                    placeholder="Enter your full name"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    required
-                  />
-                </div>
-              )}
-
+            <form onSubmit={handleLogin}>
               <div className="ait-input-row">
                 <span className="ait-input-icon"><AtSign size={20} strokeWidth={2} /></span>
 
-                <label htmlFor="login-username" className="sr-only">
-                  {isSignupMode ? "Email address" : "Username or email"}
-                </label>
+                <label htmlFor="login-username" className="sr-only">Username or email</label>
                 <input
                   id="login-username"
-                  type={isSignupMode ? "email" : "text"}
-                  placeholder={isSignupMode ? "Email address" : "Username or email"}
+                  type="text"
+                  placeholder="Username or email"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
@@ -558,30 +384,22 @@ useEffect(() => {
                 </button>
               </div>
 
-              {!isSignupMode && (
-                <div className="ait-login-options">
-                  <button
-                    type="button"
-                    onClick={handleForgotPassword}
-                    disabled={loading}
-                  >
-                    Forgot password?
-                  </button>
-                </div>
-              )}
+              <div className="ait-login-options">
+                <button
+                  type="button"
+                  onClick={handleForgotPassword}
+                  disabled={loading}
+                >
+                  Forgot password?
+                </button>
+              </div>
 
               <button
                 className="ait-signin-btn"
                 type="submit"
                 disabled={loading}
               >
-                {loading
-                  ? isSignupMode
-                    ? "Creating..."
-                    : "Signing in..."
-                  : isSignupMode
-                  ? "Create Parent Account"
-                  : "Sign in"}
+                {loading ? "Signing in..." : "Sign in"}
               </button>
 
               {/* Google OAuth button — official Google button style */}
@@ -624,19 +442,13 @@ useEffect(() => {
               <div className="ait-divider"></div>
 
               <div className="ait-create-account">
-                {isSignupMode ? "Already have an account?" : "New here?"}
+                New here?
 
                 <span
                   style={{ cursor: "pointer", marginLeft: 6 }}
-                  onClick={() => {
-                    if (!isSignupMode && onShowSignup) {
-                      onShowSignup();
-                    } else {
-                      setIsSignupMode(!isSignupMode);
-                    }
-                  }}
+                  onClick={() => onShowSignup?.()}
                 >
-                  {isSignupMode ? "Sign in" : "Create an account"}
+                  Create an account
                 </span>
               </div>
             </form>

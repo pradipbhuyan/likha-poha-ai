@@ -1,13 +1,16 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.services.auth_service import admin_client as supabase  # uses service_role to bypass RLS
+from app.services.auth_service import (
+    admin_client as supabase,  # uses service_role to bypass RLS
+    get_current_user,
+    get_user_profile,
+)
 
 router = APIRouter()
 
 
 class WeakAreaAlertRequest(BaseModel):
-    username: str
     grade: str
     mode: str
     subject: str
@@ -19,10 +22,21 @@ class WeakAreaAlertRequest(BaseModel):
 
 
 @router.post("/save")
-def save_weak_area_alert(data: WeakAreaAlertRequest):
-    """Record a weak-area alert when practice attempts show revision is needed."""
+def save_weak_area_alert(data: WeakAreaAlertRequest, user=Depends(get_current_user)):
+    """
+    Record a weak-area alert when practice attempts show revision is needed.
+
+    username is derived from the authenticated session, never taken from the
+    request body — this endpoint previously trusted a client-supplied
+    username with no auth check at all, letting any caller spoof weak-area
+    records for any student account.
+    """
+    profile = get_user_profile(user.id)
+    if not profile:
+        raise HTTPException(status_code=403, detail="Profile not found")
+
     payload = {
-        "username": data.username,
+        "username": profile.get("username"),
         "grade": data.grade,
         "mode": data.mode,
         "subject": data.subject,

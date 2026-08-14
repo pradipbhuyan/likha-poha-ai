@@ -31,17 +31,33 @@ import {
   MessageSquare,
   FileText,
   Headphones,
+  User,
+  UserRound,
+  CircleUser,
+  CircleUserRound,
+  School,
+  Brain,
+  Star,
+  Rocket,
+  Pencil,
+  Camera,
+  Trash2,
+  Upload,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
+// Icon choices for preset avatars — keys are preserved exactly from the old
+// emoji set (boy1/boy2/boy3/girl1/girl2/girl3/star/rocket/book/brain) so
+// avatars already saved to a student/parent's profile keep resolving to a
+// picture instead of falling back to their initial.
 const PRESET_AVATARS = [
-  { key:"boy1", emoji:"👦" }, { key:"boy2", emoji:"🧒" }, { key:"boy3", emoji:"👨‍🎓" },
-  { key:"girl1", emoji:"👧" }, { key:"girl2", emoji:"🧒‍♀️" }, { key:"girl3", emoji:"👩‍🎓" },
-  { key:"star", emoji:"⭐" }, { key:"rocket", emoji:"🚀" }, { key:"book", emoji:"📚" },
-  { key:"brain", emoji:"🧠" },
+  { key:"boy1", Icon: User }, { key:"boy2", Icon: UserRound }, { key:"boy3", Icon: GraduationCap },
+  { key:"girl1", Icon: CircleUser }, { key:"girl2", Icon: CircleUserRound }, { key:"girl3", Icon: School },
+  { key:"star", Icon: Star }, { key:"rocket", Icon: Rocket }, { key:"book", Icon: BookOpen },
+  { key:"brain", Icon: Brain },
 ];
 
 function AvatarDisplay({ avatar, initial, size = 40 }) {
@@ -50,7 +66,10 @@ function AvatarDisplay({ avatar, initial, size = 40 }) {
   }
   if (avatar) {
     const found = PRESET_AVATARS.find(a => a.key === avatar);
-    return <span style={{ fontSize: size * 0.6 }}>{found?.emoji || initial}</span>;
+    if (found) {
+      const Icon = found.Icon;
+      return <Icon size={Math.round(size * 0.55)} strokeWidth={2} />;
+    }
   }
   return <span style={{ fontSize: size * 0.5, fontWeight: 700 }}>{initial}</span>;
 }
@@ -495,7 +514,9 @@ function Sidebar({
         >
           <AvatarDisplay avatar={avatar} initial={user?.username?.[0]?.toUpperCase() || "U"} size={40} />
           {["student", "parent", "teacher"].includes(user?.role) && (
-            <span style={{ position: "absolute", bottom: -2, right: -2, fontSize: ".55rem", background: "#6366f1", borderRadius: "50%", width: 14, height: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>✏️</span>
+            <span style={{ position: "absolute", bottom: -2, right: -2, background: "#6366f1", borderRadius: "50%", width: 14, height: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Pencil size={8} strokeWidth={2.5} color="#fff" />
+            </span>
           )}
         </div>
 
@@ -510,25 +531,28 @@ function Sidebar({
         <div style={{ position: "absolute", left: 12, top: 180, zIndex: 200, background: "var(--panel, #1e293b)", border: "1px solid var(--border)", borderRadius: 12, padding: 14, width: 256, boxShadow: "0 8px 32px rgba(0,0,0,.4)" }}>
           <p style={{ fontSize: ".72rem", fontWeight: 700, color: "var(--muted)", marginBottom: 8 }}>Choose Avatar</p>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10 }}>
-            {PRESET_AVATARS.map(av => (
-              <button key={av.key} onClick={() => saveAvatar(av.key)}
-                style={{
-                  width: 40, height: 40, borderRadius: "50%",
-                  border: `2px solid ${avatar === av.key ? "#6366f1" : "rgba(99,102,241,.2)"}`,
-                  background: avatar === av.key ? "rgba(99,102,241,.2)" : "rgba(255,255,255,.04)",
-                  cursor: "pointer", overflow: "hidden",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: "1.4rem", lineHeight: 1, padding: 0,
-                  boxShadow: avatar === av.key ? "0 0 0 3px rgba(99,102,241,.35)" : "none",
-                }}>
-                {av.emoji}
-              </button>
-            ))}
+            {PRESET_AVATARS.map(av => {
+              const Icon = av.Icon;
+              return (
+                <button key={av.key} onClick={() => saveAvatar(av.key)}
+                  style={{
+                    width: 40, height: 40, borderRadius: "50%",
+                    border: `2px solid ${avatar === av.key ? "#6366f1" : "rgba(99,102,241,.2)"}`,
+                    background: avatar === av.key ? "rgba(99,102,241,.2)" : "rgba(255,255,255,.04)",
+                    cursor: "pointer", overflow: "hidden",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    padding: 0, color: avatar === av.key ? "#a5b4fc" : "var(--text, #e2e8f0)",
+                    boxShadow: avatar === av.key ? "0 0 0 3px rgba(99,102,241,.35)" : "none",
+                  }}>
+                  <Icon size={20} strokeWidth={2} />
+                </button>
+              );
+            })}
           </div>
           {/* Upload + Camera row */}
           <div style={{ display: "flex", gap: 6, marginBottom: 6 }}>
             <label style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 4, background: "rgba(99,102,241,.1)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 7, padding: "6px 8px", cursor: "pointer", fontSize: ".72rem", color: "#a5b4fc", fontWeight: 600 }}>
-              📁 Upload
+              <Upload size={14} strokeWidth={2} /> Upload
               <input ref={fileRef} type="file" accept="image/*" style={{ display: "none" }}
                 onChange={e => { const f = e.target.files?.[0]; if (!f) return; const r = new FileReader(); r.onload = ev => saveAvatar(ev.target.result); r.readAsDataURL(f); }} />
             </label>
@@ -547,7 +571,7 @@ function Sidebar({
                   type="button"
                   onClick={() => cameraRef.current?.click()}
                   style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 4, background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.2)", borderRadius: 7, padding: "6px 8px", cursor: "pointer", fontSize: ".72rem", color: "#6ee7b7", fontWeight: 600 }}>
-                  📸 Camera
+                  <Camera size={14} strokeWidth={2} /> Camera
                 </button>
               </>
             ) : (
@@ -557,12 +581,15 @@ function Sidebar({
                   // Open webcam using getUserMedia inline
                   const modal = document.createElement("div");
                   modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:2147483647;display:flex;align-items:center;justify-content:center;";
+                  // Lucide's "camera" icon (svg path), inlined since this
+                  // modal is raw DOM (innerHTML), outside React's render tree.
+                  const cameraIconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:6px"><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/><circle cx="12" cy="13" r="3"/></svg>';
                   modal.innerHTML = `<div style="background:#1e293b;border-radius:16px;padding:20px;max-width:420px;width:90%;text-align:center">
-                    <p style="color:#f1f5f9;font-weight:700;margin-bottom:12px">📸 Take a Photo</p>
+                    <p style="color:#f1f5f9;font-weight:700;margin-bottom:12px;display:flex;align-items:center;justify-content:center">${cameraIconSvg}Take a Photo</p>
                     <video id="avatarCamVideo" autoplay playsinline muted style="width:100%;border-radius:10px;background:#000;max-height:300px"></video>
                     <canvas id="avatarCamCanvas" style="display:none"></canvas>
                     <div style="display:flex;gap:8px;margin-top:12px">
-                      <button id="avatarCamCapture" style="flex:2;padding:10px;border:none;border-radius:8px;background:#6366f1;color:#fff;font-weight:700;cursor:pointer">📷 Capture</button>
+                      <button id="avatarCamCapture" style="flex:2;padding:10px;border:none;border-radius:8px;background:#6366f1;color:#fff;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center">${cameraIconSvg}Capture</button>
                       <button id="avatarCamClose" style="flex:1;padding:10px;border:none;border-radius:8px;background:rgba(239,68,68,.2);color:#f87171;font-weight:700;cursor:pointer">Cancel</button>
                     </div>
                   </div>`;
@@ -587,13 +614,13 @@ function Sidebar({
                   };
                 }}
                 style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 4, background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.2)", borderRadius: 7, padding: "6px 8px", cursor: "pointer", fontSize: ".72rem", color: "#6ee7b7", fontWeight: 600 }}>
-                📸 Camera
+                <Camera size={14} strokeWidth={2} /> Camera
               </button>
             )}
           </div>
           <button onClick={() => saveAvatar("")}
-            style={{ width: "100%", background: "rgba(239,68,68,.08)", border: "1px solid rgba(239,68,68,.2)", borderRadius: 7, padding: "6px 8px", cursor: "pointer", fontSize: ".72rem", color: "#f87171", fontWeight: 600, marginBottom: 6 }}>
-            🗑 Remove Avatar
+            style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 4, background: "rgba(239,68,68,.08)", border: "1px solid rgba(239,68,68,.2)", borderRadius: 7, padding: "6px 8px", cursor: "pointer", fontSize: ".72rem", color: "#f87171", fontWeight: 600, marginBottom: 6 }}>
+            <Trash2 size={14} strokeWidth={2} /> Remove Avatar
           </button>
           <button onClick={() => setShowAvatarPicker(false)}
             style={{ width: "100%", background: "none", border: "none", cursor: "pointer", fontSize: ".72rem", color: "var(--muted)" }}>

@@ -75,3 +75,37 @@ describe("LoginPage password reset", () => {
     ).toBeInTheDocument();
   });
 });
+
+describe("LoginPage account creation", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  test('"Create an account" always hands off to onShowSignup, never opens an in-page signup form', () => {
+    /**
+     * Regression test: LoginPage used to have a dormant in-page signup path
+     * (handleSignup/isSignupMode) that directly inserted an unrestricted-
+     * access profile via the anon-key client, unreachable only because
+     * onShowSignup is always passed by App.jsx. That path has been removed
+     * entirely — clicking "Create an account" must always defer to the real
+     * signup flow via onShowSignup, and no full-name/signup form can appear.
+     */
+    const onShowSignup = vi.fn();
+    render(<LoginPage onLogin={vi.fn()} onShowSignup={onShowSignup} />);
+
+    fireEvent.click(screen.getByText(/create an account/i));
+
+    expect(onShowSignup).toHaveBeenCalledTimes(1);
+    expect(screen.queryByPlaceholderText(/full name/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/create parent account/i)).not.toBeInTheDocument();
+  });
+
+  test('clicking "Create an account" without onShowSignup does not crash or open a signup form', () => {
+    render(<LoginPage onLogin={vi.fn()} />);
+
+    fireEvent.click(screen.getByText(/create an account/i));
+
+    expect(screen.queryByPlaceholderText(/full name/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/welcome back/i)).toBeInTheDocument();
+  });
+});
