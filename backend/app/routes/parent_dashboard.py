@@ -632,16 +632,30 @@ def _build_notifications(child_name: str, sub: dict, mock_count: int,
     return notes
 
 
-def _verify_child_ownership(parent_id: str, child_id: str) -> dict | None:
-    """Return child profile if parent owns it, else None."""
-    child, _ = _safe_one(
-        lambda: admin_client.table("profiles")
+def _verify_child_ownership(parent_profile: dict, child_id: str) -> dict | None:
+    """
+    Return the child profile if it's visible to this parent, else None.
+
+    Mirrors get_parent_dashboard_summary's visibility rule: when the parent
+    belongs to a family, any student in that family_id is visible (so both
+    parents on a Family Premium account see the same children — a second
+    parent invited via /invite-parent has parent_id=None on their own profile
+    and would otherwise be locked out of every child added by the first
+    parent). Falls back to a strict parent_id match only for parents with no
+    family_id.
+    """
+    family_id = parent_profile.get("family_id")
+    query = (
+        admin_client.table("profiles")
         .select("id, username, grade, email, parent_id, family_id, account_status, subscription_plan, access_cbse, subscription_expires_at")
         .eq("id", child_id)
-        .eq("parent_id", parent_id)
-        .limit(1)
-        .execute()
+        .eq("role", "student")
     )
+    if family_id:
+        query = query.eq("family_id", family_id)
+    else:
+        query = query.eq("parent_id", parent_profile["id"])
+    child, _ = _safe_one(lambda: query.limit(1).execute())
     return child
 
 
@@ -857,9 +871,8 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
     Teacher-private notes are NEVER included.
     """
     parent_profile = parent["profile"]
-    parent_id = parent_profile["id"]
 
-    child = _verify_child_ownership(parent_id, child_id)
+    child = _verify_child_ownership(parent_profile, child_id)
     if not child:
         raise HTTPException(status_code=403, detail="Child not found or not linked to this parent.")
 
@@ -1028,8 +1041,7 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
     Parent ownership enforced. Missing data returns available=false.
     Teacher-private notes and admin audit data NEVER exposed.
     """
-    parent_id = parent["profile"]["id"]
-    child = _verify_child_ownership(parent_id, child_id)
+    child = _verify_child_ownership(parent["profile"], child_id)
     if not child:
         raise HTTPException(status_code=403, detail="Child not found or not linked to this parent.")
 
@@ -1227,8 +1239,7 @@ def get_academic_insights(child_id: str, parent=Depends(require_parent)):
     Homework/exam tables do not exist yet — returns available=false gracefully.
     Mock test recommendations returned if data exists.
     """
-    parent_id = parent["profile"]["id"]
-    child = _verify_child_ownership(parent_id, child_id)
+    child = _verify_child_ownership(parent["profile"], child_id)
     if not child:
         raise HTTPException(status_code=403, detail="Child not found or not linked to this parent.")
 
@@ -1337,8 +1348,7 @@ def get_progress_report(child_id: str, parent=Depends(require_parent)):
     Print-friendly progress report for a parent's child.
     Excludes teacher-private notes and admin audit data entirely.
     """
-    parent_id = parent["profile"]["id"]
-    child = _verify_child_ownership(parent_id, child_id)
+    child = _verify_child_ownership(parent["profile"], child_id)
     if not child:
         raise HTTPException(status_code=403, detail="Child not found or not linked to this parent.")
 

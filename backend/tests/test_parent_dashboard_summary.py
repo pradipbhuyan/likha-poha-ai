@@ -433,44 +433,84 @@ class TestSafeQuery:
 # 9. _verify_child_ownership
 # ─────────────────────────────────────────────────────────────────────────────
 
+class _ChainMock:
+    """Records every .eq() filter applied, then returns `data` on .execute()."""
+    def __init__(self, data):
+        self.data = data
+        self.eq_calls = []
+
+    def eq(self, field, value):
+        self.eq_calls.append((field, value))
+        return self
+
+    def limit(self, n):
+        return self
+
+    def execute(self):
+        return MagicMock(data=self.data)
+
+
+def _patch_admin_client(monkeypatch, chain):
+    monkeypatch.setattr(
+        "app.routes.parent_dashboard.admin_client",
+        MagicMock(table=lambda t: MagicMock(select=lambda *a: chain)),
+    )
+
+
 class TestChildOwnership:
-    def test_returns_child_when_parent_owns_it(self, monkeypatch):
-        child_data = {"id": "child-1", "username": "Alice", "parent_id": "parent-1"}
-        monkeypatch.setattr(
-            "app.routes.parent_dashboard.admin_client",
-            MagicMock(table=lambda t: MagicMock(
-                select=lambda *a: MagicMock(
-                    eq=lambda f, v: MagicMock(
-                        eq=lambda f2, v2: MagicMock(
-                            limit=lambda n: MagicMock(
-                                execute=lambda: MagicMock(data=[child_data])
-                            )
-                        )
-                    )
-                )
-            ))
-        )
-        result = _verify_child_ownership("parent-1", "child-1")
+    """
+    _verify_child_ownership takes the full parent profile (not just an id) so
+    it can prefer family_id — required for a second parent invited via
+    /invite-parent, whose own profile has parent_id=None and who would
+    otherwise be locked out of every child added by the first parent.
+    """
+
+    def test_family_parent_matches_by_family_id_not_parent_id(self, monkeypatch):
+        # Regression test: an invited co-parent (parent_id=None on their own
+        # profile) must still see a child created by the *other* parent, as
+        # long as they share a family_id.
+        child_data = {"id": "child-1", "username": "Alice", "parent_id": "parent-1", "family_id": "fam-1"}
+        chain = _ChainMock([child_data])
+        _patch_admin_client(monkeypatch, chain)
+
+        invited_co_parent_profile = {"id": "parent-2", "family_id": "fam-1"}
+        result = _verify_child_ownership(invited_co_parent_profile, "child-1")
+
         assert result is not None
         assert result["username"] == "Alice"
+        assert ("family_id", "fam-1") in chain.eq_calls
+        assert not any(f == "parent_id" for f, _ in chain.eq_calls)
+
+    def test_no_family_id_falls_back_to_parent_id(self, monkeypatch):
+        child_data = {"id": "child-1", "username": "Alice", "parent_id": "parent-1"}
+        chain = _ChainMock([child_data])
+        _patch_admin_client(monkeypatch, chain)
+
+        solo_parent_profile = {"id": "parent-1", "family_id": None}
+        result = _verify_child_ownership(solo_parent_profile, "child-1")
+
+        assert result is not None
+        assert ("parent_id", "parent-1") in chain.eq_calls
+        assert not any(f == "family_id" for f, _ in chain.eq_calls)
 
     def test_returns_none_when_parent_does_not_own_child(self, monkeypatch):
-        monkeypatch.setattr(
-            "app.routes.parent_dashboard.admin_client",
-            MagicMock(table=lambda t: MagicMock(
-                select=lambda *a: MagicMock(
-                    eq=lambda f, v: MagicMock(
-                        eq=lambda f2, v2: MagicMock(
-                            limit=lambda n: MagicMock(
-                                execute=lambda: MagicMock(data=[])
-                            )
-                        )
-                    )
-                )
-            ))
-        )
-        result = _verify_child_ownership("other-parent", "child-1")
+        chain = _ChainMock([])
+        _patch_admin_client(monkeypatch, chain)
+
+        other_parent_profile = {"id": "other-parent", "family_id": None}
+        result = _verify_child_ownership(other_parent_profile, "child-1")
         assert result is None
+
+    def test_returns_none_for_unrelated_family(self, monkeypatch):
+        # Same query shape, but Supabase found nothing for this family_id —
+        # simulates a child that belongs to a different family entirely.
+        chain = _ChainMock([])
+        _patch_admin_client(monkeypatch, chain)
+
+        unrelated_parent_profile = {"id": "parent-9", "family_id": "fam-9"}
+        result = _verify_child_ownership(unrelated_parent_profile, "child-1")
+        assert result is None
+        assert ("family_id", "fam-9") in chain.eq_calls
 
 
 # ─────────────────────────────────────────────────────────────────────────────

@@ -18,7 +18,7 @@ from app.services.usage_service import enforce_token_limits
 from app.services.subject_access_service import has_cbse_subject_access
 from app.services.board_service import is_school_board, normalize_board, resolve_request_board
 from app.services.test_account_service import is_all_access_test_user
-from app.services.offer_access_service import is_free_tier_user as is_offer_code_user
+from app.services.offer_access_service import is_free_tier_user
 
 router = APIRouter()
 
@@ -155,8 +155,7 @@ def enforce_mock_access(profile: dict, mode: str, subject: str, user_id: str = "
         #     is_free_tier_user() returns True for all free users, so
         #     `not True = False` made the condition always False → no block.
         # Correct logic: block if user has NO paid access AND is free tier.
-        from app.services.offer_access_service import is_free_tier_user as _is_free  # noqa: PLC0415
-        if _is_free(user_id):
+        if is_free_tier_user(user_id):
             # Free-tier users: allow mock tests but enforce daily limit.
             # The CBSE board check is NOT a blocker for free users —
             # they can attempt CBSE mock tests subject to the 5/day limit.
@@ -185,6 +184,30 @@ def enforce_mock_access(profile: dict, mode: str, subject: str, user_id: str = "
         status_code=403,
         detail="Invalid learning mode.",
     )
+
+
+def enforce_question_format_access(profile: dict, question_format: str, user_id: str = ""):
+    """
+    Written and Mixed mock-test formats require a paid subscription — MCQ is
+    free for everyone. Mirrors MockTestPage.jsx's isPaid gate (hasPaidAccess)
+    server-side: that check previously existed only in the frontend, so a
+    free-tier student could get the paid formats for free by calling this
+    endpoint directly with question_format="written"/"mixed".
+    """
+    if (question_format or "mcq") == "mcq":
+        return
+
+    if not profile:
+        raise HTTPException(status_code=403, detail="Profile not found")
+
+    if profile.get("role") == "admin" or is_all_access_test_user(profile):
+        return
+
+    if is_free_tier_user(user_id):
+        raise HTTPException(
+            status_code=403,
+            detail="Written and Mixed modes require a paid subscription. MCQ is free for all.",
+        )
 
 
 def enforce_ai_token_limit(username: str):
@@ -218,6 +241,7 @@ def generate_mock_test(
         data.subject,
         user_id=user.id,
     )
+    enforce_question_format_access(profile, data.question_format, user_id=user.id)
 
     enforce_ai_token_limit(profile.get("username"))
 

@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 import app.routes.mock_test as mock_test_route
+from tests.conftest import fake_admin_profile, patch_route_profile
 
 client = TestClient(app)
 
@@ -127,3 +128,85 @@ def test_generate_mock_test_response_has_valid_data_types(monkeypatch):
     assert isinstance(data["success"], bool)
     assert isinstance(data["questions"], list)
     assert isinstance(data["message"], str)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Written/Mixed format requires a paid subscription (server-side, not just UI)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _base_payload(**overrides):
+    payload = {
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "CBSE",
+        "subject": "Science",
+        "chapter": "Matter in Our Surroundings",
+        "mock_type": "CBSE Mock Test",
+        "exam_type": "Class Test",
+        "question_count": 1,
+        "difficulty": "easy",
+    }
+    payload.update(overrides)
+    return payload
+
+
+def test_written_format_blocked_for_free_tier_user(monkeypatch):
+    """A free-tier student calling the API directly must not get Written for free."""
+    monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: True)
+
+    called = {"generate": False}
+
+    def fake_generate_cbse_mock_test(**kwargs):
+        called["generate"] = True
+        return []
+
+    monkeypatch.setattr(mock_test_route, "generate_cbse_mock_test", fake_generate_cbse_mock_test)
+
+    response = client.post("/api/mock-test/generate", json=_base_payload(question_format="written"))
+
+    assert response.status_code == 403
+    assert "paid subscription" in response.json()["detail"]
+    assert called["generate"] is False  # never reached the question bank
+
+
+def test_mixed_format_blocked_for_free_tier_user(monkeypatch):
+    monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: True)
+    monkeypatch.setattr(mock_test_route, "generate_cbse_mock_test", lambda **kwargs: [])
+
+    response = client.post("/api/mock-test/generate", json=_base_payload(question_format="mixed"))
+
+    assert response.status_code == 403
+    assert "paid subscription" in response.json()["detail"]
+
+
+def test_mcq_format_allowed_for_free_tier_user(monkeypatch):
+    """MCQ stays free for everyone regardless of subscription tier."""
+    monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: True)
+    monkeypatch.setattr(mock_test_route, "generate_cbse_mock_test", lambda **kwargs: [])
+
+    response = client.post("/api/mock-test/generate", json=_base_payload(question_format="mcq"))
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True
+
+
+def test_written_format_allowed_for_paid_user(monkeypatch):
+    monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: False)
+    monkeypatch.setattr(mock_test_route, "generate_cbse_mock_test", lambda **kwargs: [])
+
+    response = client.post("/api/mock-test/generate", json=_base_payload(question_format="written"))
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True
+
+
+def test_written_format_allowed_for_admin_regardless_of_tier(monkeypatch):
+    """Admins are exempt even if the (irrelevant) tier check would say free."""
+    monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: True)
+    monkeypatch.setattr(mock_test_route, "generate_cbse_mock_test", lambda **kwargs: [])
+    patch_route_profile(monkeypatch, mock_test_route, fake_admin_profile())
+
+    response = client.post("/api/mock-test/generate", json=_base_payload(question_format="written"))
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True
