@@ -1,0 +1,80 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 8: Mechanical Properties of Solids",
+  "central_question": "How do stress, strain and elastic moduli quantify the way solids deform and recover under applied forces, and how are these ideas used in engineering design?",
+  "in_scope_units": [
+    "8.1 Introduction — elasticity, plasticity and engineering importance.",
+    "8.2 Stress and strain — longitudinal, shearing and hydraulic forms.",
+    "8.3 Hooke’s law.",
+    "8.4 Stress–strain curve — proportional region, elastic limit, yield, plastic deformation, ultimate strength and fracture.",
+    "8.5 Elastic moduli — Young’s modulus, shear modulus, bulk modulus, Poisson’s ratio and elastic potential energy.",
+    "8.6 Applications of elastic behaviour of materials — ropes, beams, columns and limits on mountain height."
+  ],
+  "banned_topics": [
+    "Fluid flow and Bernoulli principle",
+    "Rotational dynamics",
+    "Detailed microscopic solid-state theory"
+  ],
+  "must_include_keywords": [
+    "elasticity",
+    "plasticity",
+    "elastic deformation",
+    "stress",
+    "strain",
+    "tensile stress",
+    "compressive stress",
+    "longitudinal strain",
+    "shearing stress",
+    "shearing strain",
+    "hydraulic stress",
+    "volume strain",
+    "Hooke’s law",
+    "elastic limit",
+    "yield point",
+    "yield strength",
+    "plastic deformation",
+    "ultimate tensile strength",
+    "brittle",
+    "ductile",
+    "elastomer",
+    "Young’s modulus",
+    "shear modulus",
+    "bulk modulus",
+    "compressibility",
+    "Poisson’s ratio",
+    "elastic potential energy",
+    "strain energy density",
+    "factor of safety",
+    "I-shaped beam",
+    "buckling"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A material that stretches more under the same load is more elastic.",
+      "correction": "In the chapter’s elasticity convention, a larger Young’s modulus means greater elasticity or stiffness: less strain for the same stress."
+    },
+    {
+      "claim": "Stress is a vector because force is a vector.",
+      "correction": "Stress is not assigned a single vector direction; it is characterised with reference to the surface and type of deformation."
+    },
+    {
+      "claim": "Hooke’s law is valid throughout the stress–strain curve.",
+      "correction": "Hooke’s law applies only in the initial linear region where stress is proportional to strain."
+    },
+    {
+      "claim": "Bulk modulus is only for solids.",
+      "correction": "Bulk modulus applies to solids, liquids and gases; Young’s and shear moduli require solid shape/length."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 8.1 — stress, strain and elongation of a steel rod.",
+    "NCERT Example 8.2 — load on copper and steel wires connected in series.",
+    "NCERT Example 8.4 — shear deformation of a lead slab.",
+    "NCERT Example 8.5 — compression of water at ocean depth.",
+    "NCERT Exercise 8.9 — maximum load supported by a steel cable under a stress limit."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 8.1–8.16 supplied in CHAPTER_PDF_TEXT.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

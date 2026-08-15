@@ -1,0 +1,90 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 14: Waves",
+  "central_question": "How do disturbances propagate as waves, and how are travelling waves, their speeds, superposition, reflection, standing modes and beats described quantitatively?",
+  "in_scope_units": [
+    "14.1 Introduction — waves as propagating disturbances carrying energy/information without bulk transport of matter; mechanical, electromagnetic and matter waves.",
+    "14.2 Transverse and longitudinal waves.",
+    "14.3 Displacement relation in a progressive wave, including amplitude, phase, wavelength, angular wave number, period and frequency.",
+    "14.4 Speed of a travelling wave — v = νλ, transverse waves on strings and longitudinal sound waves.",
+    "14.5 Principle of superposition and interference.",
+    "14.6 Reflection of waves, standing waves and normal modes in strings and air columns.",
+    "14.7 Beats."
+  ],
+  "banned_topics": [
+    "Detailed isolated simple harmonic motion from the previous chapter",
+    "Electromagnetic-wave theory beyond the chapter introduction",
+    "Quantum theory of matter waves"
+  ],
+  "must_include_keywords": [
+    "wave",
+    "mechanical wave",
+    "transverse wave",
+    "longitudinal wave",
+    "progressive wave",
+    "compression",
+    "rarefaction",
+    "amplitude",
+    "phase",
+    "wavelength",
+    "angular wave number",
+    "period",
+    "frequency",
+    "y(x,t) = a sin(kx − ωt + φ)",
+    "v = νλ",
+    "linear mass density",
+    "wave speed on string",
+    "bulk modulus",
+    "speed of sound",
+    "Laplace correction",
+    "superposition",
+    "constructive interference",
+    "destructive interference",
+    "reflection",
+    "phase change π",
+    "standing wave",
+    "node",
+    "antinode",
+    "normal mode",
+    "fundamental frequency",
+    "harmonic",
+    "open pipe",
+    "closed pipe",
+    "resonance",
+    "beats",
+    "beat frequency"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A mechanical wave transports the medium bodily from source to receiver.",
+      "correction": "The disturbance propagates while the medium’s particles oscillate about equilibrium; there is no bulk flow of matter with the wave."
+    },
+    {
+      "claim": "All waves require a material medium.",
+      "correction": "Mechanical waves require a medium, but electromagnetic waves such as light can travel through vacuum."
+    },
+    {
+      "claim": "A travelling-wave speed is set by its frequency alone.",
+      "correction": "For the non-dispersive mechanical waves treated here, the medium determines the speed; source frequency and v then fix λ through v = νλ."
+    },
+    {
+      "claim": "A pulse reflected from a rigid boundary keeps the same phase.",
+      "correction": "Reflection from a rigid boundary produces a phase change of π; reflection from a free/open boundary has no phase reversal."
+    },
+    {
+      "claim": "A pipe closed at one end supports all harmonics.",
+      "correction": "The chapter’s closed-open air column supports only odd harmonics."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 14.1 — classify transverse and longitudinal wave motions.",
+    "NCERT Example 14.2 — read amplitude, wavelength, period and frequency from a travelling-wave equation.",
+    "NCERT Example 14.3 — calculate transverse-wave speed on a stretched wire.",
+    "NCERT Example 14.5 — identify resonance modes of open and closed pipes.",
+    "NCERT Example 14.6 — determine an unknown tuning frequency from beats."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 14.1–14.19 supplied in CHAPTER_PDF_TEXT.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

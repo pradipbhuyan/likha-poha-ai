@@ -1,69 +1,103 @@
 {
-  "audited_at": "2026-08-07T16:09:47.119045+00:00",
+  "audited_at": "2026-08-13T13:11:23.231955+00:00",
   "manifests_used": 1,
   "lessons_audited": 5,
-  "total_critical_findings": 0,
+  "total_critical_findings": 5,
   "total_high_findings": 0,
   "results": [
     {
-      "lesson_cache_id": "63c8149c-7944-4faa-b334-e87358ae467a",
-      "grade": "Grade 12",
-      "subject": "Hindi",
-      "chapter": "Silver Wedding",
+      "lesson_cache_id": "7000073c-e55c-4dfe-9101-26e658b72b4e",
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "Chapter 12: Kinetic Theory",
       "step_title": "Concept introduction",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/silver_wedding.json",
-      "findings": [],
-      "critical_count": 0,
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_11/physics/chapter_12_kinetic_theory.json",
+      "findings": [
+        {
+          "severity": "critical",
+          "category": "known_pitfall",
+          "message": "Content may repeat a known scientific/pedagogical error: \"Real gases obey the ideal gas equation exactly at every pressure and temperature.\"",
+          "detail": "Correction: An ideal gas is a theoretical model; real gases approach ideal behaviour especially at low pressures and high temperatures."
+        }
+      ],
+      "critical_count": 1,
       "high_count": 0,
-      "content_length": 3255
+      "content_length": 4335
     },
     {
-      "lesson_cache_id": "e98a7675-2418-407a-831d-00f3edf2a066",
-      "grade": "Grade 12",
-      "subject": "Hindi",
-      "chapter": "Silver Wedding",
-      "step_title": "Worked examples",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/silver_wedding.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 3151
-    },
-    {
-      "lesson_cache_id": "581c51b0-3909-4847-89da-1fd9ee9054a8",
-      "grade": "Grade 12",
-      "subject": "Hindi",
-      "chapter": "Silver Wedding",
-      "step_title": "Revision and recap",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/silver_wedding.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 3562
-    },
-    {
-      "lesson_cache_id": "694deaf7-1bb8-4c47-b594-aa9aa8d14790",
-      "grade": "Grade 12",
-      "subject": "Hindi",
-      "chapter": "Silver Wedding",
-      "step_title": "Core explanation",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/silver_wedding.json",
-      "findings": [],
-      "critical_count": 0,
-      "high_count": 0,
-      "content_length": 3318
-    },
-    {
-      "lesson_cache_id": "32c8c266-59eb-4885-92ed-5f2b52757494",
-      "grade": "Grade 12",
-      "subject": "Hindi",
-      "chapter": "Silver Wedding",
+      "lesson_cache_id": "9c9c17fb-d708-471e-b1c6-c72a6a2fc9fa",
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "Chapter 12: Kinetic Theory",
       "step_title": "Exam-style problems",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/silver_wedding.json",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_11/physics/chapter_12_kinetic_theory.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 3751
+      "content_length": 4214
+    },
+    {
+      "lesson_cache_id": "28d5e239-81b7-4b29-99ae-ac713e7512e8",
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "Chapter 12: Kinetic Theory",
+      "step_title": "Core explanation",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_11/physics/chapter_12_kinetic_theory.json",
+      "findings": [
+        {
+          "severity": "critical",
+          "category": "known_pitfall",
+          "message": "Content may repeat a known scientific/pedagogical error: \"Real gases obey the ideal gas equation exactly at every pressure and temperature.\"",
+          "detail": "Correction: An ideal gas is a theoretical model; real gases approach ideal behaviour especially at low pressures and high temperatures."
+        }
+      ],
+      "critical_count": 1,
+      "high_count": 0,
+      "content_length": 4694
+    },
+    {
+      "lesson_cache_id": "f15c58df-04fc-46df-a252-cab5a16366b5",
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "Chapter 12: Kinetic Theory",
+      "step_title": "Worked examples",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_11/physics/chapter_12_kinetic_theory.json",
+      "findings": [
+        {
+          "severity": "critical",
+          "category": "known_pitfall",
+          "message": "Content may repeat a known scientific/pedagogical error: \"Real gases obey the ideal gas equation exactly at every pressure and temperature.\"",
+          "detail": "Correction: An ideal gas is a theoretical model; real gases approach ideal behaviour especially at low pressures and high temperatures."
+        },
+        {
+          "severity": "critical",
+          "category": "known_pitfall",
+          "message": "Content may repeat a known scientific/pedagogical error: \"Temperatures in gas-law and kinetic-energy formulas can be inserted directly in degrees Celsius.\"",
+          "detail": "Correction: These relations use absolute temperature on the kelvin scale."
+        }
+      ],
+      "critical_count": 2,
+      "high_count": 0,
+      "content_length": 4275
+    },
+    {
+      "lesson_cache_id": "5f6a6805-bb86-4ad8-b67b-c051e227ade0",
+      "grade": "Grade 11",
+      "subject": "Physics",
+      "chapter": "Chapter 12: Kinetic Theory",
+      "step_title": "Revision and recap",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_11/physics/chapter_12_kinetic_theory.json",
+      "findings": [
+        {
+          "severity": "critical",
+          "category": "known_pitfall",
+          "message": "Content may repeat a known scientific/pedagogical error: \"Real gases obey the ideal gas equation exactly at every pressure and temperature.\"",
+          "detail": "Correction: An ideal gas is a theoretical model; real gases approach ideal behaviour especially at low pressures and high temperatures."
+        }
+      ],
+      "critical_count": 1,
+      "high_count": 0,
+      "content_length": 4591
     }
   ]
 }

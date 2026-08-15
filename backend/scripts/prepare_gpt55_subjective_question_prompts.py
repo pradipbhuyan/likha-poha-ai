@@ -64,6 +64,90 @@ BINDING RULES (do not violate any of these):
    sections/sub-topics as evenly as possible.
 6. LANGUAGE LEVEL: Write for Grade {grade_number} level -- clear, exam-style
    CBSE phrasing.
+7. NEVER TREAT MARKDOWN STRUCTURE AS CONTENT: CHAPTER_LESSON_TEXT below is
+   internal lesson-authoring material and may contain markdown artifacts
+   such as "## Step-by-step breakdown", "**Bold sub-labels**:", section
+   titles like "Worked example" / "Quick check question" / "Exam-style
+   problems" / "Revision and recap", or generic labels like "Section B" /
+   "Opening overview" / "core explanation" / "revision activities". These
+   are internal authoring scaffolding, NOT chapter content, and must NEVER
+   appear as the subject of a question. Do NOT write template questions
+   like "Explain the chapter point about <bold label> and connect it with
+   another idea from <some other section name>" or "How is <bold label>
+   explained in <section name>?" — these are meaningless to a student
+   because <bold label> and <section name> are not real facts, characters,
+   events, or concepts from the actual chapter/story/poem. Every question
+   must be about a REAL, NAMEABLE fact: a character's action, a specific
+   event, a definition, a rule, a number, an example — something a student
+   could point to in the actual textbook chapter, not in this lesson-notes
+   scaffolding. If you cannot find enough real content to write the
+   requested number of distinct, well-grounded questions, write FEWER
+   questions rather than templating around section/label names.
+8. NO MECHANICAL SENTENCE TEMPLATES: Do not build every question from one
+   or two reusable sentence skeletons with just the topic noun swapped in
+   (e.g. "Explain <topic> and state its key features, mechanism or
+   significance.", "Explain <topic A> and <topic B> in detail, showing the
+   relationship between them.", "Explain <topic> and distinguish the linked
+   ideas where relevant.", "Give a detailed account of <topic>, including
+   the mechanism, evidence, examples or consequences stated in the
+   chapter.", "Explain the major points relating to <topic>.", "What role
+   does the treatment of <topic> play in the development of the scene?",
+   "Why are the details associated with <topic> significant in this
+   episode?", "Compare the treatment of <X> and <Y> in <chapter>. What
+   larger idea emerges when they are read together?", "Examine the
+   relationship between <X> and <Y>. Why is that relationship important to
+   the meaning of <chapter>?", "What does the chapter reveal through the
+   treatment of <topic>?", "How does the treatment of <topic> contribute to
+   the text's meaning?", "What becomes clearer to the reader through the
+   treatment of <topic>?" — the prose/poetry-flavored examples in this list
+   apply to literature chapters specifically; the same rule holds regardless
+   of subject.), or, matched on their TAIL rather than the opener since the
+   openers alone are legitimate CBSE phrasing, "Give a brief account of
+   <topic> using two specific details from the text." / "...including the
+   relevant definition, pattern or example.", "What is the significance of
+   <topic> in <chapter>? Support your answer with two facts.", "State two
+   features, examples or implications associated with <topic>.", "What
+   does the text state about <topic>? Give two relevant details." These
+   exact phrases are banned outright — do not use them even once. A
+   student answering 20 questions built from 2-3 repeated skeletons is doing rote
+   glossary recall, not a genuine CBSE exam. Each
+   question's STEM must vary and match how CBSE actually phrases questions
+   for this content type: "Why does...", "How does X differ from Y?",
+   "Give two reasons why...", "A student observed that <scenario> — explain
+   this using the chapter's explanation of <concept>.", "Justify the
+   statement that...", "Differentiate between X and Y with one example
+   each.", "What would happen if...", "State any three...", "With the help
+   of a suitable example, explain...". Reuse of "Explain" as a verb across
+   several questions is fine (CBSE does this too) — what's forbidden is
+   reusing the SAME surrounding sentence structure/scaffold repeatedly.
+   IMPORTANT — inventing your OWN fixed list of stems and then applying that
+   same list once per chapter is THE SAME VIOLATION, even if each individual
+   stem looks fine and no single phrase repeats within one chapter: e.g.
+   deciding on a personal formula of "one 'state two important points about
+   X' question, one 'give the main defining features of X' question, one 'a
+   student gives an incomplete account of X' question..." and then filling
+   that same fixed set of slots for every chapter is still a rigid template,
+   just disguised as variety. The right way to get variety is to let the
+   chapter's actual content decide which question types make sense — a
+   chapter full of processes calls for more "explain the steps of..."
+   questions, a chapter full of comparisons calls for more "distinguish
+   X from Y" questions — not to pre-decide a fixed roster of question types
+   and mechanically fill it in for every chapter regardless of content.
+   ALSO FORBIDDEN — reusing a fixed PHRASE as a generic keyword-insertion
+   point across many differently-worded questions, e.g. writing "the
+   treatment of <topic>" or "the writer's use of <topic>" over and over with
+   only <topic> swapped, each time wrapped in a different surrounding
+   sentence to look varied ("What effect is created through the treatment
+   of <topic>?", "What does the treatment of <topic> reveal about...",
+   "How does the writer's use of <topic> shape...", "What does the writer's
+   use of <topic> contribute to..."). Varying the WRAPPER sentence while
+   reusing the same insertion phrase as the actual analytical content is
+   still templating — it just hides the repetition one level down. For
+   literature/poetry chapters specifically: name the actual literary
+   device, technique, character, event, or theme directly in each
+   question's own words ("How does the imagery of the pigeons underline the
+   loss of freedom?", not "What effect is created through the treatment of
+   pigeons?") rather than filling a generic "the treatment of X" slot.
 
 -----------------------------------------------------------------------------
 USER TASK

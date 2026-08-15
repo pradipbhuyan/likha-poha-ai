@@ -16,7 +16,8 @@ import logging
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.services.auth_service import get_current_user, admin_client
+from app.services.auth_service import admin_client, require_teacher_or_admin
+from app.services.usage_service import enforce_daily_limit, log_ai_usage
 from app.services.mock_test_service import (
     get_questions_from_bank_with_fallback,
     get_bank_capacity_with_fallback,
@@ -27,6 +28,7 @@ from app.services.subjective_question_bank_service import (
     get_subjective_bank_capacity_with_fallback,
 )
 from app.services.lesson_plan_bank_service import get_lesson_plan as get_lesson_plan_handout
+from app.services.exemplar_research_bank_service import get_exemplar_explanation
 from app.services.teacher_lesson_plan_service import (
     get_teacher_edit,
     save_teacher_edit,
@@ -36,19 +38,30 @@ from app.services.teacher_lesson_plan_service import (
 _logger = logging.getLogger("likhapoha.teacher")
 router = APIRouter()
 
-
-def _get_profile(user_id: str) -> dict:
-    """Return the full application profile for role and model-preference checks."""
-    try:
-        resp = admin_client.table("profiles").select("role,ai_model_preference,subscription_plan").eq("id", user_id).single().execute()
-        return resp.data or {}
-    except Exception:
-        return {}
+# Free-tier teachers get 2/day on Test Paper Generator, Lesson Plan Creator, and
+# Listen to Lecture — mirrors the FREE_TEACHER_DAILY_LIMIT constant duplicated
+# in TeacherTestPaperPage.jsx / TeacherLessonPlanPage.jsx / TeacherLectureAudioPage.jsx.
+# Those frontend counters are UX-only (localStorage); this is the actual gate.
+FREE_TEACHER_DAILY_LIMIT = 2
 
 
-def _get_profile_role(user_id: str) -> str:
-    """Return the application role ('teacher', 'admin', 'student', etc.) for a user."""
-    return _get_profile(user_id).get("role") or ""
+def _is_free_tier_teacher(profile: dict) -> bool:
+    """Admins and teachers with any non-free subscription_plan are unmetered."""
+    if profile.get("role") == "admin":
+        return False
+    return (profile.get("subscription_plan") or "free") == "free"
+
+
+def _enforce_teacher_daily_limit(profile: dict, feature: str) -> None:
+    """Raise 429 if this free-tier teacher has hit today's cap for `feature`."""
+    if not _is_free_tier_teacher(profile):
+        return
+    result = enforce_daily_limit(profile.get("username") or "", feature=feature, max_requests=FREE_TEACHER_DAILY_LIMIT)
+    if not result["allowed"]:
+        raise HTTPException(
+            status_code=429,
+            detail=f"Daily free-tier limit reached ({FREE_TEACHER_DAILY_LIMIT}/day). Upgrade to the Paid Teacher plan for unlimited access.",
+        )
 
 
 # ── Schemas ────────────────────────────────────────────────────────────────────
@@ -104,7 +117,7 @@ def _subjective_bank_questions_to_test_paper_format(bank_questions: list) -> lis
 # ── Routes ─────────────────────────────────────────────────────────────────────
 
 @router.post("/test-paper/generate")
-async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_user)):
+async def generate_test_paper(data: TestPaperRequest, ctx=Depends(require_teacher_or_admin)):
     """
     Serve a CBSE test paper for the given grade/subject/chapter — entirely
     from pre-authored banks (question_bank for MCQs, subjective_question_bank
@@ -115,10 +128,8 @@ async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_u
     Called by the Teacher Test Paper page. Returns structured question objects
     that the frontend formats as a printable HTML page.
     """
-    profile = _get_profile(user.id)
-    role = profile.get("role") or ""
-    if role not in ("teacher", "admin"):
-        raise HTTPException(status_code=403, detail="Only teachers can generate test papers.")
+    profile = ctx["profile"]
+    _enforce_teacher_daily_limit(profile, feature="teacher_test_paper_free_tier")
 
     mcq_count  = min(max(int(data.mcq_count or 0), 0), 30)
     subj_count = min(max(int(data.subjective_count or 0), 0), 20)
@@ -175,6 +186,9 @@ async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_u
             len(bank_subjs), data.grade, data.subject, data.chapter[:40]
         )
 
+    if _is_free_tier_teacher(profile):
+        log_ai_usage(username=profile.get("username") or "", feature="teacher_test_paper_free_tier", model="none")
+
     return {
         "success": True,
         "grade": data.grade,
@@ -195,7 +209,7 @@ class LessonPlanRequest(BaseModel):
 
 
 @router.post("/lesson-plan/generate")
-async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current_user)):
+async def generate_lesson_plan(data: LessonPlanRequest, ctx=Depends(require_teacher_or_admin)):
     """
     Serve a lesson-plan handout for a chapter — no LLM call at request time.
 
@@ -210,13 +224,14 @@ async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current
     chapter, returns success:false with a friendly message instead of
     generating one live.
     """
-    profile = _get_profile(user.id)
-    role = profile.get("role") or ""
-    if role not in ("teacher", "admin"):
-        raise HTTPException(status_code=403, detail="Only teachers can generate lesson plans.")
+    profile = ctx["profile"]
+    user = ctx["auth_user"]
+    _enforce_teacher_daily_limit(profile, feature="teacher_lesson_plan_free_tier")
 
     teacher_edit = get_teacher_edit(user.id, data.grade, data.subject, data.chapter)
     if teacher_edit:
+        if _is_free_tier_teacher(profile):
+            log_ai_usage(username=profile.get("username") or "", feature="teacher_lesson_plan_free_tier", model="none")
         return {
             "success": True,
             "grade": data.grade,
@@ -237,6 +252,9 @@ async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current
             ),
         }
 
+    if _is_free_tier_teacher(profile):
+        log_ai_usage(username=profile.get("username") or "", feature="teacher_lesson_plan_free_tier", model="none")
+
     return {
         "success": True,
         "grade": data.grade,
@@ -244,6 +262,60 @@ async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current
         "chapter": data.chapter,
         "lesson_plan": plan,
         "is_teacher_edited": False,
+    }
+
+
+class ExemplarExplanationRequest(BaseModel):
+    grade: str
+    subject: str
+    chapter: str
+    topic: str
+
+
+@router.post("/exemplar-research/explain")
+async def get_exemplar_research_explanation(data: ExemplarExplanationRequest, ctx=Depends(require_teacher_or_admin)):
+    """
+    Serve a pre-authored Exemplar Research explanation for a topic card — no
+    LLM call at request time (replaces the old live /api/doubt/answer call
+    from ExemplarResearchPage.jsx; see
+    docs/EXEMPLAR_RESEARCH_CONTENT_STATUS.md for why).
+
+    Exemplar Research is a paid-only teacher feature (advertised as such on
+    SubscriptionPlansPage.jsx) — free-tier teachers are rejected outright
+    rather than metered, since serving static content has no per-call AI
+    cost to cap. Admins always pass.
+
+    If no explanation has been authored yet for this topic, returns
+    success:false with a friendly message instead of generating one live.
+    """
+    profile = ctx["profile"]
+    if _is_free_tier_teacher(profile):
+        raise HTTPException(
+            status_code=403,
+            detail={
+                "feature": "EXEMPLAR_RESEARCH",
+                "message": "Exemplar Research requires the Paid Teacher plan.",
+                "upgrade_message": "Upgrade to the Paid Teacher plan for full Exemplar Research access.",
+            },
+        )
+
+    explanation = get_exemplar_explanation(data.grade, data.subject, data.topic)
+    if not explanation:
+        return {
+            "success": False,
+            "message": (
+                f"No Exemplar Research explanation has been authored yet for '{data.topic}'. "
+                "Please try another topic."
+            ),
+        }
+
+    return {
+        "success": True,
+        "grade": data.grade,
+        "subject": data.subject,
+        "chapter": data.chapter,
+        "topic": data.topic,
+        "explanation": explanation,
     }
 
 
@@ -255,7 +327,7 @@ class SaveLessonPlanRequest(BaseModel):
 
 
 @router.post("/lesson-plan/save")
-async def save_lesson_plan_edit(data: SaveLessonPlanRequest, user=Depends(get_current_user)):
+async def save_lesson_plan_edit(data: SaveLessonPlanRequest, ctx=Depends(require_teacher_or_admin)):
     """
     Save this teacher's own edited copy of a lesson plan.
 
@@ -265,10 +337,7 @@ async def save_lesson_plan_edit(data: SaveLessonPlanRequest, user=Depends(get_cu
     teacher will ever see this edit. Saving again for the same chapter
     overwrites this teacher's own previous edit.
     """
-    profile = _get_profile(user.id)
-    role = profile.get("role") or ""
-    if role not in ("teacher", "admin"):
-        raise HTTPException(status_code=403, detail="Only teachers can save lesson plans.")
+    user = ctx["auth_user"]
 
     result = save_teacher_edit(user.id, data.grade, data.subject, data.chapter, data.lesson_plan_markdown)
     if not result.get("success"):
@@ -282,17 +351,14 @@ async def save_lesson_plan_edit(data: SaveLessonPlanRequest, user=Depends(get_cu
 
 
 @router.post("/lesson-plan/revert")
-async def revert_lesson_plan_edit(data: LessonPlanRequest, user=Depends(get_current_user)):
+async def revert_lesson_plan_edit(data: LessonPlanRequest, ctx=Depends(require_teacher_or_admin)):
     """
     Delete this teacher's own saved edit for a chapter, reverting them back
     to the shared system-generated version on their next fetch. Scoped to
     the requesting teacher — cannot affect any other teacher's saved edit
     or the system-generated bank file.
     """
-    profile = _get_profile(user.id)
-    role = profile.get("role") or ""
-    if role not in ("teacher", "admin"):
-        raise HTTPException(status_code=403, detail="Only teachers can revert lesson plans.")
+    user = ctx["auth_user"]
 
     result = delete_teacher_edit(user.id, data.grade, data.subject, data.chapter)
     if not result.get("success"):
@@ -307,7 +373,7 @@ async def revert_lesson_plan_edit(data: LessonPlanRequest, user=Depends(get_curr
 
 
 @router.post("/lesson-plan/lecture-audio")
-def generate_lecture_audio(data: LessonPlanRequest, user=Depends(get_current_user)):
+def generate_lecture_audio(data: LessonPlanRequest, ctx=Depends(require_teacher_or_admin)):
     """
     Generate (or serve cached) spoken-lecture audio for a chapter's
     pre-authored lesson plan — a teacher rehearsal aid, not a student-facing
@@ -329,10 +395,9 @@ def generate_lecture_audio(data: LessonPlanRequest, user=Depends(get_current_use
     from app.services.tts_service import clean_text_for_tts, generate_speech_file  # noqa: PLC0415
     from app.services.audio_cache_service import get_cached_audio_url, store_audio  # noqa: PLC0415
 
-    profile = _get_profile(user.id)
-    role = profile.get("role") or ""
-    if role not in ("teacher", "admin"):
-        raise HTTPException(status_code=403, detail="Only teachers can generate lecture audio.")
+    profile = ctx["profile"]
+    user = ctx["auth_user"]
+    _enforce_teacher_daily_limit(profile, feature="teacher_lecture_audio_free_tier")
 
     # Rehearse from this teacher's own saved edit if they have one, so the
     # narration matches what they'll actually teach from — otherwise fall
@@ -354,6 +419,8 @@ def generate_lecture_audio(data: LessonPlanRequest, user=Depends(get_current_use
 
     cached_url = get_cached_audio_url(data.grade, data.subject, data.chapter, step_title, voice, rate)
     if cached_url:
+        if _is_free_tier_teacher(profile):
+            log_ai_usage(username=profile.get("username") or "", feature="teacher_lecture_audio_free_tier", model="none")
         return {"success": True, "audio_url": cached_url, "cached": True}
 
     script = build_lecture_script(plan)
@@ -374,19 +441,21 @@ def generate_lecture_audio(data: LessonPlanRequest, user=Depends(get_current_use
         _logger.warning("lecture_audio.store_failed_falling_back_to_data_url: %s", str(exc)[:200])
         b64 = base64.b64encode(mp3_bytes).decode("ascii")
         audio_url = f"data:audio/mpeg;base64,{b64}"
+
+    if _is_free_tier_teacher(profile):
+        log_ai_usage(username=profile.get("username") or "", feature="teacher_lecture_audio_free_tier", model="none")
+
     return {"success": True, "audio_url": audio_url, "cached": False}
 
 
 @router.get("/student-analytics")
-async def get_teacher_student_analytics(user=Depends(get_current_user)):
+async def get_teacher_student_analytics(ctx=Depends(require_teacher_or_admin)):
     """
     Return mock-test history for all students assigned to this teacher.
 
     The frontend uses this data to show a per-student progress view.
     """
-    role = _get_profile_role(user.id)
-    if role not in ("teacher", "admin"):
-        raise HTTPException(status_code=403, detail="Only teachers can view student analytics.")
+    user = ctx["auth_user"]
 
     try:
         # Get assignments for this teacher

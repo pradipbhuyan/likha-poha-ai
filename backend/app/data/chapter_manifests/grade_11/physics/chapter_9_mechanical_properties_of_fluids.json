@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 9: Mechanical Properties of Fluids",
+  "central_question": "How do pressure, flow, viscosity and surface effects determine the mechanical behaviour of liquids and gases at rest and in motion?",
+  "in_scope_units": [
+    "9.1 Introduction — defining fluids and contrasting their compressibility and response to shear with solids.",
+    "9.2 Pressure, including Pascal’s law, variation with depth, atmospheric/gauge pressure and hydraulic machines.",
+    "9.3 Streamline flow and the equation of continuity.",
+    "9.4 Bernoulli’s principle, Torricelli’s law and dynamic lift.",
+    "9.5 Viscosity and Stokes’ law, including terminal velocity.",
+    "9.6 Surface tension, surface energy, angle of contact, drops/bubbles and capillary rise."
+  ],
+  "banned_topics": [
+    "Elastic moduli of solids beyond the brief comparisons used here",
+    "Thermodynamic equations of state as a main topic",
+    "Detailed turbulence theory beyond the chapter’s qualitative treatment"
+  ],
+  "must_include_keywords": [
+    "fluid",
+    "pressure",
+    "Pascal’s law",
+    "density",
+    "relative density",
+    "hydrostatic pressure",
+    "gauge pressure",
+    "atmospheric pressure",
+    "barometer",
+    "manometer",
+    "hydraulic lift",
+    "hydraulic brakes",
+    "steady flow",
+    "streamline",
+    "equation of continuity",
+    "volume flux",
+    "critical speed",
+    "turbulent flow",
+    "Bernoulli’s equation",
+    "Torricelli’s law",
+    "dynamic lift",
+    "Magnus effect",
+    "aerofoil",
+    "viscosity",
+    "coefficient of viscosity",
+    "laminar flow",
+    "Stokes’ law",
+    "terminal velocity",
+    "surface tension",
+    "surface energy",
+    "angle of contact",
+    "excess pressure",
+    "capillary rise"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Pressure in a fluid at rest has a fixed vector direction.",
+      "correction": "Pressure is a scalar; the force due to pressure on a surface is normal to that surface."
+    },
+    {
+      "claim": "Hydrostatic pressure at a given depth depends on container shape.",
+      "correction": "For a given fluid, pressure difference depends on ρgh, not on container shape or base area."
+    },
+    {
+      "claim": "Bernoulli’s equation applies unchanged to turbulent, viscous flow.",
+      "correction": "The chapter’s Bernoulli relation assumes steady flow of an incompressible fluid with negligible viscosity."
+    },
+    {
+      "claim": "Viscosity of liquids and gases changes with temperature in the same way.",
+      "correction": "Liquid viscosity generally decreases with temperature, while gas viscosity increases."
+    },
+    {
+      "claim": "Surface tension is an effect of gases as well as liquids.",
+      "correction": "The chapter treats surface tension as a property associated with liquid interfaces/free surfaces; gases do not have free surfaces of their own."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 9.5 — force multiplication and volume conservation in connected syringes.",
+    "NCERT Exercise 9.4(b) — continuity reasoning for fast jets through narrowed openings.",
+    "NCERT Example 9.7 — dynamic lift on an aircraft wing.",
+    "NCERT Example 9.9 — infer viscosity from terminal velocity.",
+    "NCERT Example 9.10 — pressure required to form a bubble at a capillary tip under water."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 9.1–9.20 supplied in CHAPTER_PDF_TEXT.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

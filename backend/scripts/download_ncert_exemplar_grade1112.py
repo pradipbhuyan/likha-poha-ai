@@ -197,8 +197,16 @@ CHAPTER_NAMES: dict[str, list[str]] = {
         "General Principles and Processes of Isolation of Elements",
         "The p-Block Elements",
     ],
-    # Grade 12 Biology (16 chapters)
+    # Grade 12 Biology (16 chapters) — corrected 2026-08-15, content-verified
+    # against each PDF's own self-declared "CHAPTER N" header (leep401.pdf
+    # through leep416.pdf). The previous list was missing "Reproduction in
+    # Organisms" (the real Chapter 1) entirely, which cascaded an off-by-one
+    # shift through the rest, and had a fabricated "Animal Husbandry" entry
+    # at position 16 that does not exist in this exemplar book at all — the
+    # real Chapter 16 is "Environmental Issues". See
+    # docs/EXEMPLAR_RESEARCH_CONTENT_STATUS.md §5 for the full investigation.
     "leep4": [
+        "Reproduction in Organisms",
         "Sexual Reproduction in Flowering Plants",
         "Human Reproduction",
         "Reproductive Health",
@@ -206,6 +214,7 @@ CHAPTER_NAMES: dict[str, list[str]] = {
         "Molecular Basis of Inheritance",
         "Evolution",
         "Human Health and Disease",
+        "Strategies for Enhancement in Food Production",
         "Microbes in Human Welfare",
         "Biotechnology: Principles and Processes",
         "Biotechnology and Its Applications",
@@ -213,8 +222,6 @@ CHAPTER_NAMES: dict[str, list[str]] = {
         "Ecosystem",
         "Biodiversity and Conservation",
         "Environmental Issues",
-        "Strategies for Enhancement in Food Production",
-        "Animal Husbandry",
     ],
 }
 

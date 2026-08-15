@@ -71,21 +71,32 @@ EXEMPLAR_BOOKS = [
 # ── Unit names (from ncert.nic.in exemplar page HTML) ─────────────────────────
 
 EXEMPLAR_UNIT_NAMES = {
-    # Grade 8 Maths
+    # Grade 8 Maths — corrected 2026-08-15, content-verified against each
+    # PDF's own "Main Concepts and Results" body text (heep212 also has a
+    # self-declared "UNIT 12" header confirming position 12 independently).
+    # The previous heep206/208/209/210/211/213 assignments were a cyclic
+    # mislabeling. See docs/EXEMPLAR_RESEARCH_CONTENT_STATUS.md §5a.
     "heep201": "Rational Numbers",
     "heep202": "Data Handling",
     "heep203": "Square-Square Root and Cube-Cube Root",
     "heep204": "Linear Equation in One Variable",
     "heep205": "Understanding Quadrilaterals and Practical Geometry",
-    "heep206": "Comparing Quantities",
+    "heep206": "Visualising Solid Shapes",
     "heep207": "Algebraic Expressions and Identities",
-    "heep208": "Mensuration",
-    "heep209": "Playing with Numbers",
-    "heep210": "Visualising Solid Shapes",
-    "heep211": "Exponents and Powers",
+    "heep208": "Exponents and Powers",
+    "heep209": "Comparing Quantities",
+    "heep210": "Direct and Inverse Proportions",
+    "heep211": "Mensuration",
     "heep212": "Introduction to Graphs",
-    "heep213": "Direct and Inverse Proportions",
-    # Grade 8 Science
+    "heep213": "Playing with Numbers",
+    # Grade 8 Science — corrected 2026-08-15, content-verified against each
+    # PDF's own self-declared "N ChapterTitle" header (heep101 through
+    # heep118 all have one, cleanly). Positions 8-18 (11 of 18 chapters)
+    # were mislabeled/scrambled in the previous version; 1-7 were correct.
+    # "Force and Pressure"/"Stars and the Solar System" match the frontend
+    # TOPIC_CARDS naming (the PDF's own headers are terser: "Force" and
+    # "Stars and Solar System"). See
+    # docs/EXEMPLAR_RESEARCH_CONTENT_STATUS.md §5a.
     "heep101": "Crop Production and Management",
     "heep102": "Microorganisms: Friend and Foe",
     "heep103": "Synthetic Fibres and Plastics",
@@ -93,17 +104,17 @@ EXEMPLAR_UNIT_NAMES = {
     "heep105": "Coal and Petroleum",
     "heep106": "Combustion and Flame",
     "heep107": "Conservation of Plants and Animals",
-    "heep108": "Reproduction in Animals",
-    "heep109": "Force and Pressure",
-    "heep110": "Friction",
-    "heep111": "Sound",
-    "heep112": "Chemical Effects of Electric Current",
-    "heep113": "Some Natural Phenomena",
-    "heep114": "Light",
-    "heep115": "Stars and the Solar System",
-    "heep116": "Pollution of Air and Water",
-    "heep117": "Cell - Structure and Functions",
-    "heep118": "Reaching the Age of Adolescence",
+    "heep108": "Cell - Structure and Functions",
+    "heep109": "Reproduction in Animals",
+    "heep110": "Reaching the Age of Adolescence",
+    "heep111": "Force and Pressure",
+    "heep112": "Friction",
+    "heep113": "Sound",
+    "heep114": "Chemical Effects of Electric Current",
+    "heep115": "Some Natural Phenomena",
+    "heep116": "Light",
+    "heep117": "Stars and the Solar System",
+    "heep118": "Pollution of Air and Water",
     # Grade 9 Maths
     "ieep201": "Number Systems",
     "ieep202": "Polynomials",

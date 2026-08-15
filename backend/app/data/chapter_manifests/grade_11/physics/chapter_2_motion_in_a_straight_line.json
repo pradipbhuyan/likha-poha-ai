@@ -1,0 +1,66 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 2: Motion in a Straight Line",
+  "central_question": "How can one describe, interpret and predict the motion of an object along a straight line using velocity, acceleration, graphs and kinematic relations?",
+  "in_scope_units": [
+    "2.1 Introduction — motion, rectilinear motion, point-object approximation and the scope of kinematics.",
+    "2.2 Instantaneous velocity and speed — limiting definition of velocity, slope of the position–time graph and speed as the magnitude of velocity.",
+    "2.3 Acceleration — average and instantaneous acceleration, signs of velocity and acceleration, and interpretation of x–t and v–t graphs.",
+    "2.4 Kinematic equations for uniformly accelerated motion — graphical and calculus forms relating displacement, velocity, acceleration and time.",
+    "Applications in the source — vertical motion, free fall, Galileo’s odd-number law, stopping distance and reaction time.",
+    "Relative velocity — listed in the chapter contents and represented in the end exercise on the police van, bullet and thief’s car."
+  ],
+  "banned_topics": [
+    "Detailed causes of motion and force laws",
+    "Two-dimensional projectile-motion treatment",
+    "Rotational motion"
+  ],
+  "must_include_keywords": [
+    "rectilinear motion",
+    "point object",
+    "position",
+    "instantaneous velocity",
+    "instantaneous speed",
+    "average velocity",
+    "acceleration",
+    "x–t graph",
+    "v–t graph",
+    "slope",
+    "area under v–t curve",
+    "uniform acceleration",
+    "v = v₀ + at",
+    "x = x₀ + v₀t + ½at²",
+    "v² = v₀² + 2a(x − x₀)",
+    "free fall",
+    "acceleration due to gravity",
+    "sign convention",
+    "stopping distance",
+    "reaction time",
+    "relative velocity"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A negative acceleration always means an object is slowing down.",
+      "correction": "The sign of acceleration depends on the chosen positive direction; speed decreases only when acceleration is opposite to velocity."
+    },
+    {
+      "claim": "Zero velocity at an instant means zero acceleration.",
+      "correction": "A vertically thrown particle has zero velocity at its highest point while its acceleration due to gravity remains non-zero."
+    },
+    {
+      "claim": "The kinematic equations are valid for any one-dimensional motion.",
+      "correction": "The standard equations v = v₀ + at, x = x₀ + v₀t + ½at² and v² = v₀² + 2a(x − x₀) require constant acceleration."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 2.1 — obtain instantaneous and average velocity from x = a + bt².",
+    "NCERT Example 2.2 — derive the constant-acceleration equations using calculus.",
+    "NCERT Example 2.3 — analyse a ball thrown upward from a building.",
+    "NCERT Example 2.6 — derive stopping distance and its dependence on initial speed.",
+    "NCERT Exercise 2.14 — apply relative velocity to the police-van and thief-car situation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 2.1–2.18 supplied in CHAPTER_PDF_TEXT.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

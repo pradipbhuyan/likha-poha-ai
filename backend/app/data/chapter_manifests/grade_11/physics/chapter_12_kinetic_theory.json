@@ -1,0 +1,113 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 12: Kinetic Theory",
+  "central_question": "How can the microscopic motion, collisions and energy of atoms and molecules explain the macroscopic pressure, temperature, specific heats and mean-free-path behaviour of matter, especially gases?",
+  "in_scope_units": [
+    "12.1 Introduction — why kinetic theory gives a molecular explanation of gas behaviour and connects microscopic motion with pressure, temperature and specific heat.",
+    "12.2 Molecular nature of matter — atomic and molecular ideas, molecular size, interatomic distance and the contrast between solids, liquids and gases.",
+    "12.3 Behaviour of gases — ideal-gas behaviour, Avogadro's hypothesis and number, Boltzmann constant, gas laws, molar volume and partial pressures.",
+    "12.4 Kinetic theory of an ideal gas — assumptions of random molecular motion and elastic collisions.",
+    "12.4.1 Pressure of an Ideal Gas — momentum transfer at container walls and the derivation P = (1/3)nm<v^2>.",
+    "12.4.2 Kinetic Interpretation of Temperature — relation between absolute temperature, average translational kinetic energy and rms speed.",
+    "12.5 Law of equipartition of energy — translational, rotational and vibrational degrees of freedom and equal energy per quadratic mode.",
+    "12.6 Specific heat capacity — using equipartition to predict molar heat capacities.",
+    "12.6.1 Monatomic Gases — Cv, Cp and gamma for three translational degrees of freedom.",
+    "12.6.2 Diatomic Gases — rigid-rotator and vibrational contributions to Cv, Cp and gamma.",
+    "12.6.3 Polyatomic Gases — translational, rotational and vibrational contributions to specific heats.",
+    "12.6.4 Specific Heat Capacity of Solids — equipartition result U = 3RT per mole and C = 3R.",
+    "12.7 Mean Free Path — collision time, molecular diameter, number density and average distance between collisions."
+  ],
+  "banned_topics": [
+    "Detailed thermodynamic-process theory such as full isothermal, adiabatic and cyclic-process analysis beyond the gas-law and heat-capacity relations used in this chapter.",
+    "A quantum-mechanical derivation of rotational or vibrational energy levels; the chapter only notes classical-equipartition limits and a brief quantum-mechanical caveat.",
+    "A full transport-theory treatment of viscosity, thermal conductivity or diffusion; the chapter only notes that kinetic theory relates these bulk properties to molecular parameters."
+  ],
+  "must_include_keywords": [
+    "atomic hypothesis",
+    "interatomic distance",
+    "Avogadro's hypothesis",
+    "Avogadro number",
+    "Boltzmann constant",
+    "ideal gas equation",
+    "Boyle's law",
+    "Charles' law",
+    "Dalton's law of partial pressures",
+    "molar volume",
+    "number density",
+    "elastic molecular collisions",
+    "pressure of an ideal gas",
+    "P = (1/3)nm<v^2>",
+    "mean square speed",
+    "root mean square speed",
+    "kinetic interpretation of temperature",
+    "average translational kinetic energy",
+    "(3/2)k_B T",
+    "degree of freedom",
+    "translational degrees of freedom",
+    "rotational degrees of freedom",
+    "vibrational mode",
+    "law of equipartition of energy",
+    "specific heat at constant volume",
+    "specific heat at constant pressure",
+    "gamma = Cp/Cv",
+    "monatomic gas",
+    "diatomic gas",
+    "polyatomic gas",
+    "specific heat of solids",
+    "mean free path"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "At a fixed temperature, the average kinetic energy of an ideal-gas molecule changes with pressure, volume, molecular mass or gas type.",
+      "correction": "At a fixed absolute temperature, the average translational kinetic energy per ideal-gas molecule is (3/2)k_B T and is independent of pressure, volume and molecular identity or mass."
+    },
+    {
+      "claim": "All molecules of a gas have the same speed.",
+      "correction": "Gas molecules have a distribution of velocities; kinetic theory uses averages such as <v^2>, with v_rms = sqrt(<v^2>)."
+    },
+    {
+      "claim": "At the same temperature, all gas species have the same rms speed.",
+      "correction": "At the same temperature they have the same average translational kinetic energy, but v_rms = sqrt(3k_B T/m), so lighter molecules have larger rms speed."
+    },
+    {
+      "claim": "Real gases obey the ideal gas equation exactly at every pressure and temperature.",
+      "correction": "An ideal gas is a theoretical model; real gases approach ideal behaviour especially at low pressures and high temperatures."
+    },
+    {
+      "claim": "Molecular collisions in the ideal-gas model destroy kinetic energy.",
+      "correction": "Collisions between molecules and with the walls are taken to be elastic, so total kinetic energy and momentum are conserved in the collision."
+    },
+    {
+      "claim": "A vibrational mode contributes only (1/2)k_B T because it is one motion.",
+      "correction": "A vibrational mode has both kinetic and potential quadratic terms, so it contributes k_B T on average, equal to two contributions of (1/2)k_B T."
+    },
+    {
+      "claim": "For an ideal gas, Cp and Cv are the same.",
+      "correction": "For any ideal gas in this chapter, Cp - Cv = R; the actual values depend on the active degrees of freedom."
+    },
+    {
+      "claim": "The specific heat of a solid follows from only translational motion of free atoms.",
+      "correction": "In the classical solid model, atoms vibrate about mean positions; equipartition gives average energy 3k_B T per atom, U = 3RT per mole and C = 3R when volume change is negligible."
+    },
+    {
+      "claim": "Mean free path is the same as the interatomic distance.",
+      "correction": "Mean free path is the average distance between successive collisions; in the chapter's water-vapour comparison it is about 100 times the interatomic distance."
+    },
+    {
+      "claim": "Temperatures in gas-law and kinetic-energy formulas can be inserted directly in degrees Celsius.",
+      "correction": "These relations use absolute temperature on the kelvin scale."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 12.2 — estimate the volume and radius of a water molecule using the density and Avogadro-number data from Example 12.1.",
+    "NCERT Example 12.3 — use the vapour/liquid volume change and molecular size to estimate the interatomic distance in water vapour.",
+    "NCERT Example 12.5 — compare average kinetic energy and rms speeds of argon and chlorine at the same temperature, reinforcing that average kinetic energy depends only on temperature.",
+    "NCERT Example 12.8 — calculate the heat needed to raise the temperature of helium at fixed volume using Cv = (3/2)R for a monatomic gas.",
+    "NCERT Example 12.9 — estimate the mean free path of water molecules in water vapour at 373 K.",
+    "NCERT Exercise 12.8 — synthesize Avogadro's hypothesis with v_rms to compare equal-volume samples of monatomic, diatomic and polyatomic gases."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The provided end-of-chapter EXERCISES section contains Exercises 12.1 through 12.10.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

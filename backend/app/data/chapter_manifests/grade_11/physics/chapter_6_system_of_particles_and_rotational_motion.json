@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 6: System of Particles and Rotational Motion",
+  "central_question": "How can the motion and equilibrium of extended bodies be described using centre of mass, torque, moment of inertia and angular momentum?",
+  "in_scope_units": [
+    "6.1 Introduction and 6.1.1 kinds of rigid-body motion — translation, rotation and their combination.",
+    "6.2 Centre of mass.",
+    "6.3 Motion of centre of mass.",
+    "6.4 Linear momentum of a system of particles.",
+    "6.5 Vector product of two vectors.",
+    "6.6 Angular velocity and its relation with linear velocity, including angular acceleration.",
+    "6.7 Torque and angular momentum.",
+    "6.8 Equilibrium of a rigid body, principle of moments and centre of gravity.",
+    "6.9 Moment of inertia and radius of gyration.",
+    "6.10 Kinematics of rotational motion about a fixed axis.",
+    "6.11 Dynamics of rotational motion about a fixed axis.",
+    "6.12 Angular momentum for rotation about a fixed axis and conservation of angular momentum."
+  ],
+  "banned_topics": [
+    "Work–energy chapter treatment unrelated to rotational analogies",
+    "Fluid mechanics",
+    "Elastic deformation of solids"
+  ],
+  "must_include_keywords": [
+    "rigid body",
+    "translation",
+    "rotation",
+    "centre of mass",
+    "mass-weighted mean",
+    "motion of centre of mass",
+    "external force",
+    "linear momentum",
+    "conservation of linear momentum",
+    "centre-of-mass frame",
+    "vector product",
+    "cross product",
+    "right-hand rule",
+    "angular velocity",
+    "v = ω × r",
+    "angular acceleration",
+    "torque",
+    "τ = r × F",
+    "angular momentum",
+    "L = r × p",
+    "mechanical equilibrium",
+    "principle of moments",
+    "centre of gravity",
+    "moment of inertia",
+    "radius of gyration",
+    "rotational kinetic energy",
+    "angular displacement",
+    "uniform angular acceleration",
+    "τ = Iα",
+    "work done by torque",
+    "L = Iω",
+    "conservation of angular momentum"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "In pure translation different particles of a rigid body can have different velocities at the same instant.",
+      "correction": "In pure translational motion, all particles of the rigid body have the same velocity at any instant."
+    },
+    {
+      "claim": "Internal forces determine the acceleration of the centre of mass.",
+      "correction": "Internal forces cancel in pairs in the system equation; M A_CM equals the net external force."
+    },
+    {
+      "claim": "The vector product is commutative.",
+      "correction": "a × b = −b × a, so reversing the order reverses the direction."
+    },
+    {
+      "claim": "A rigid body is in equilibrium if only the net force is zero.",
+      "correction": "Mechanical equilibrium requires both net external force zero and net external torque zero."
+    },
+    {
+      "claim": "Moment of inertia depends only on total mass.",
+      "correction": "It depends on how the mass is distributed relative to the chosen axis."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 6.1 — centre of mass of three particles at the vertices of an equilateral triangle.",
+    "NCERT Example 6.5 — evaluate torque from r × F.",
+    "NCERT Example 6.8 — use force and torque balance for a supported bar.",
+    "NCERT Example 6.11 — rotational kinematics of an accelerating motor wheel.",
+    "NCERT Example 6.12 — connect torque, rotational work and rotational kinetic energy for a flywheel."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 6.1–6.17 supplied in CHAPTER_PDF_TEXT.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

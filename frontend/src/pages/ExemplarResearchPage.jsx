@@ -236,7 +236,7 @@ const TOPIC_CARDS = {
       { topic: "Biomolecules — Carbohydrates and Proteins", chapter: "Biomolecules", difficulty: "Tricky", emoji: "🧬", hint: "Reducing sugars, peptide bonds, denaturation, enzyme action" },
     ],
     Biology: [
-      { topic: "Reproduction in Organisms", chapter: "Sexual Reproduction in Flowering Plants", difficulty: "Tricky", emoji: "🌸", hint: "Asexual vs sexual, vegetative propagation, sporulation, budding" },
+      { topic: "Reproduction in Organisms", chapter: "Reproduction in Organisms", difficulty: "Tricky", emoji: "🌸", hint: "Asexual vs sexual, vegetative propagation, sporulation, budding" },
       { topic: "Human Reproduction — Gametogenesis", chapter: "Human Reproduction", difficulty: "Hard", emoji: "🧬", hint: "Spermatogenesis, oogenesis, menstrual cycle, fertilisation, implantation" },
       { topic: "Reproductive Health — Contraception", chapter: "Reproductive Health", difficulty: "Medium", emoji: "🏥", hint: "Types of contraception, STIs, MTP, infertility causes and ART" },
       { topic: "Principles of Inheritance — Mendel's Laws", chapter: "Principles of Inheritance and Variation", difficulty: "Hard", emoji: "🔬", hint: "Law of segregation, independent assortment, Punnett square, chi-square" },
@@ -371,51 +371,30 @@ export default function ExemplarResearchPage({ user, setActivePage }) {
     setExplanation("");
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/api/doubt/answer`, {
+      // Pre-authored via GPT-5.5 handover, served instantly — no live LLM
+      // call. See docs/EXEMPLAR_RESEARCH_CONTENT_STATUS.md for why this
+      // replaced the old live /api/doubt/answer call.
+      const res = await fetch(`${API_BASE}/api/teacher/exemplar-research/explain`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${user?.accessToken}`,
         },
         body: JSON.stringify({
-          username: user?.username,
           grade: selectedGrade,
-          mode: "CBSE",
-          board: "CBSE",
-          subject: toRagSubject(selectedGrade, selectedSubject),
-          chapter: `Exemplar: ${topic.chapter}`,
-          question: `You are a CBSE ${selectedGrade} ${selectedSubject} teacher. Explain "${topic.topic}" concisely for exam preparation.
-
-STRICT RULES:
-- Do NOT reference diagrams, figures, drawings, or visualisations — none will be shown.
-- Do NOT use phrases like "let's visualise", "as shown in the diagram", "see the figure", "draw a diagram".
-- Write in plain text with bullet points. Keep each section to 2-4 lines maximum.
-- No long paragraphs. Be direct and exam-focused.
-
-Format your response exactly as:
-
-**What it means**
-One-sentence plain-English definition.
-
-**Key rule / formula**
-State the formula or rule. If none applies, skip this section entirely.
-
-**Solved example**
-State the given values, then show the calculation steps, then the answer. Keep it short.
-
-**Exam mistakes to avoid**
-• Mistake 1
-• Mistake 2
-• Mistake 3 (if relevant)
-
-**Quick recall**
-One-line memory trick or exam tip.`,
-          save_to_history: false,
+          subject: selectedSubject,
+          chapter: topic.chapter,
+          topic: topic.topic,
         }),
       });
       const data = await res.json();
-      // Post-process: remove any visualization references the LLM sneaks in
-      const cleaned = removeVisualizationRefs(cleanMathText(data.answer) || "Could not load explanation.");
+      if (!res.ok || !data.success) {
+        setExplanation(data.message || data.detail?.message || "Could not load explanation. Please try again.");
+        return;
+      }
+      // Post-process: remove any visualization references (kept for parity with
+      // the old live-answer path; pre-authored content shouldn't contain these).
+      const cleaned = removeVisualizationRefs(cleanMathText(data.explanation) || "Could not load explanation.");
       explanationCache.current[cacheKey] = cleaned;
       setExplanation(cleaned);
     } catch {

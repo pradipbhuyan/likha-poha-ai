@@ -1,0 +1,81 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 5: Work, Energy and Power",
+  "central_question": "How do work, kinetic and potential energy, power and conservation laws provide a scalar description of motion and interactions, including collisions?",
+  "in_scope_units": [
+    "5.1 Introduction and 5.1.1 Scalar Product — physical meanings and the dot product needed to define work.",
+    "5.2 Notions of Work and Kinetic Energy: The Work–Energy Theorem.",
+    "5.3 Work and 5.4 Kinetic Energy.",
+    "5.5 Work Done by a Variable Force and 5.6 Work–Energy Theorem for a Variable Force.",
+    "5.7 Concept of Potential Energy and conservative forces.",
+    "5.8 Conservation of Mechanical Energy.",
+    "5.9 Potential Energy of a Spring.",
+    "5.10 Power.",
+    "5.11 Collisions, including elastic/inelastic collisions and one- and two-dimensional cases."
+  ],
+  "banned_topics": [
+    "Vector product/cross product as a rotational-motion topic",
+    "Detailed rotational dynamics",
+    "Thermodynamic internal energy"
+  ],
+  "must_include_keywords": [
+    "scalar product",
+    "dot product",
+    "work",
+    "kinetic energy",
+    "work–energy theorem",
+    "positive work",
+    "negative work",
+    "variable force",
+    "area under F–x curve",
+    "potential energy",
+    "conservative force",
+    "non-conservative force",
+    "mechanical energy",
+    "spring force",
+    "Hooke’s law",
+    "spring constant",
+    "elastic potential energy",
+    "power",
+    "instantaneous power",
+    "watt",
+    "horsepower",
+    "kWh",
+    "linear momentum",
+    "elastic collision",
+    "inelastic collision",
+    "completely inelastic collision",
+    "impulse",
+    "collision in one dimension",
+    "collision in two dimensions"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any applied force necessarily does work.",
+      "correction": "Work requires displacement and depends on the component of force along displacement; it is zero for zero displacement or perpendicular force."
+    },
+    {
+      "claim": "Action and reaction forces always do equal and opposite work.",
+      "correction": "The forces are equal and opposite, but the displacements of the two bodies can differ, so the works need not be equal and opposite."
+    },
+    {
+      "claim": "Kinetic energy is conserved in every collision.",
+      "correction": "Linear momentum is conserved for an isolated collision; kinetic energy is conserved only in an elastic collision."
+    },
+    {
+      "claim": "kWh is a unit of power.",
+      "correction": "kWh is a unit of energy; power is measured in watt, with 1 W = 1 J s⁻¹."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Example 5.3 — signed work in a skidding stop.",
+    "NCERT Example 5.5 — work from the area under a variable-force graph.",
+    "NCERT Example 5.7 — conservation of mechanical energy for a bob in a vertical circle.",
+    "NCERT Example 5.10 — power required by an elevator.",
+    "NCERT Example 5.11 — energy transfer in an elastic neutron–nucleus collision."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the end-of-chapter EXERCISES 5.1–5.23 supplied in CHAPTER_PDF_TEXT.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

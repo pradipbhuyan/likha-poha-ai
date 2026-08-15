@@ -1,534 +1,10 @@
 {
-  "audited_at": "2026-08-10T11:11:22.995764+00:00",
+  "audited_at": "2026-08-14T14:53:07.624422+00:00",
   "lessons": [
     {
-      "grade": "Grade 10",
-      "subject": "Social Science",
-      "chapter": "Geography - Chapter 3: Water Resources",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam preparation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.991100+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "English",
-      "chapter": "Grammar: Subject-Verb Concord (Advanced Rules)",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Core explanation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.991243+00:00"
-    },
-    {
       "grade": "Grade 11",
       "subject": "Biology",
-      "chapter": "Chapter 9: Biomolecules",
-      "step_count": 1,
-      "total_findings": 1,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 1
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 98,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [
-        {
-          "severity": "low",
-          "category": "pedagogy",
-          "message": "Step 'Concept introduction' lacks real-world context.",
-          "detail": ""
-        }
-      ],
-      "steps": [
-        {
-          "step_title": "Concept introduction",
-          "findings": [
-            {
-              "severity": "low",
-              "category": "pedagogy",
-              "message": "Step 'Concept introduction' lacks real-world context.",
-              "detail": ""
-            }
-          ],
-          "finding_count": 1
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.991514+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Social Science",
-      "chapter": "Geography - Chapter 2: Forest and Wildlife Resources",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam-style problems",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.991830+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "English",
-      "chapter": "Text Book - Chapter 2: Nelson Mandela: Long Walk to Freedom",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Revision and recap",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.992348+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "English",
-      "chapter": "Chapter 7: Madam Rides the Bus",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam-style problems",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.992662+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Science",
-      "chapter": "Chapter 13: Our Environment",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam-style problems",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.992898+00:00"
-    },
-    {
-      "grade": "Grade 11",
-      "subject": "Accountancy",
-      "chapter": "Chapter 1: Introduction to Accounting",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Core explanation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.993108+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Social Science",
-      "chapter": "History - Chapter 2: Nationalism in India",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam preparation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.993426+00:00"
-    },
-    {
-      "grade": "Grade 11",
-      "subject": "Accountancy",
-      "chapter": "Chapter 7: Depreciation, Provisions and Reserves",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Core explanation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.993604+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Social Science",
-      "chapter": "Chapter 4: Political Parties",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam-style problems",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.993830+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Science",
-      "chapter": "Chapter 10: The Human Eye and the Colourful World",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam-style problems",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.994052+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "English",
-      "chapter": "Workbook - Chapter 8: The Sermon at Benares",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Concept introduction",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.994234+00:00"
-    },
-    {
-      "grade": "Grade 11",
-      "subject": "Biology",
-      "chapter": "Chapter 1: The Living World",
-      "step_count": 1,
-      "total_findings": 1,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 1,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 95,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 93
-      },
-      "findings": [
-        {
-          "severity": "medium",
-          "category": "structure",
-          "message": "Step 'Revision and recap' summary section lacks clear summary language.",
-          "detail": ""
-        }
-      ],
-      "steps": [
-        {
-          "step_title": "Revision and recap",
-          "findings": [
-            {
-              "severity": "medium",
-              "category": "structure",
-              "message": "Step 'Revision and recap' summary section lacks clear summary language.",
-              "detail": ""
-            }
-          ],
-          "finding_count": 1
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.994486+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "English",
-      "chapter": "Chapter 3: Two Stories about Flying",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam-style problems",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.994633+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "English",
-      "chapter": "Chapter 6: The Making of a Scientist",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Core explanation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-10T11:11:22.994877+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "English",
-      "chapter": "Grammar: Active and Passive Voice (Advanced Usage)",
+      "chapter": "Chapter 10: Cell Cycle and Cell Division",
       "step_count": 1,
       "total_findings": 0,
       "critical_count": 0,
@@ -554,12 +30,43 @@
           "finding_count": 0
         }
       ],
-      "audited_at": "2026-08-10T11:11:22.994950+00:00"
+      "audited_at": "2026-08-14T14:53:07.619928+00:00"
     },
     {
       "grade": "Grade 10",
-      "subject": "Science",
-      "chapter": "Chapter 3: Metals and Non-metals",
+      "subject": "English",
+      "chapter": "Text Book - Chapter 3: Two Stories about Flying",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Revision and recap",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.620304+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Chapter 6: The Making of a Scientist",
       "step_count": 1,
       "total_findings": 1,
       "critical_count": 0,
@@ -599,12 +106,247 @@
           "finding_count": 1
         }
       ],
-      "audited_at": "2026-08-10T11:11:22.995343+00:00"
+      "audited_at": "2026-08-14T14:53:07.620708+00:00"
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Biology",
+      "chapter": "Chapter 18: Neural Control and Coordination",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Core explanation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.620876+00:00"
     },
     {
       "grade": "Grade 10",
-      "subject": "Maths",
-      "chapter": "Chapter 10: Circles",
+      "subject": "Social Science",
+      "chapter": "Chapter 3: Gender, Religion and Caste",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Worked examples",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.620941+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Hindi",
+      "chapter": "\u0905\u0927\u094d\u092f\u093e\u092f 2: \u0924\u0941\u0932\u0938\u0940\u0926\u093e\u0938",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam preparation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.621069+00:00"
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Biology",
+      "chapter": "Chapter 13: Plant Growth and Development",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Worked examples",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.621249+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "Text Book - Chapter 1: Development",
+      "step_count": 2,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam-style problems",
+          "findings": [],
+          "finding_count": 0
+        },
+        {
+          "step_title": "Core explanation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.621587+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Hindi",
+      "chapter": "\u0905\u0927\u094d\u092f\u093e\u092f 9: \u092f\u0936\u092a\u093e\u0932",
+      "step_count": 2,
+      "total_findings": 3,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 2,
+        "medium": 0,
+        "low": 1
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 78,
+        "student_flow_score": 100,
+        "overall_score": 90
+      },
+      "findings": [
+        {
+          "severity": "high",
+          "category": "pedagogy",
+          "message": "Step 'Worked examples' likely needs an example but none found.",
+          "detail": ""
+        },
+        {
+          "severity": "high",
+          "category": "pedagogy",
+          "message": "Step 'Concept introduction' likely needs an example but none found.",
+          "detail": ""
+        },
+        {
+          "severity": "low",
+          "category": "pedagogy",
+          "message": "Step 'Concept introduction' lacks real-world context.",
+          "detail": ""
+        }
+      ],
+      "steps": [
+        {
+          "step_title": "Worked examples",
+          "findings": [
+            {
+              "severity": "high",
+              "category": "pedagogy",
+              "message": "Step 'Worked examples' likely needs an example but none found.",
+              "detail": ""
+            }
+          ],
+          "finding_count": 1
+        },
+        {
+          "step_title": "Concept introduction",
+          "findings": [
+            {
+              "severity": "high",
+              "category": "pedagogy",
+              "message": "Step 'Concept introduction' likely needs an example but none found.",
+              "detail": ""
+            },
+            {
+              "severity": "low",
+              "category": "pedagogy",
+              "message": "Step 'Concept introduction' lacks real-world context.",
+              "detail": ""
+            }
+          ],
+          "finding_count": 2
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.621972+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "Geography - Chapter 3: Water Resources",
       "step_count": 1,
       "total_findings": 0,
       "critical_count": 0,
@@ -630,12 +372,12 @@
           "finding_count": 0
         }
       ],
-      "audited_at": "2026-08-10T11:11:22.995521+00:00"
+      "audited_at": "2026-08-14T14:53:07.622073+00:00"
     },
     {
       "grade": "Grade 11",
-      "subject": "Accountancy",
-      "chapter": "Chapter 4: Recording of Transactions \u2013 II",
+      "subject": "Biology",
+      "chapter": "Chapter 17: Locomotion and Movement",
       "step_count": 1,
       "total_findings": 1,
       "critical_count": 0,
@@ -675,7 +417,238 @@
           "finding_count": 1
         }
       ],
-      "audited_at": "2026-08-10T11:11:22.995703+00:00"
+      "audited_at": "2026-08-14T14:53:07.622242+00:00"
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Biology",
+      "chapter": "Chapter 2: Biological Classification",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Core explanation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.622546+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "Geography - Chapter 2: Forest and Wildlife Resources",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Revision and recap",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.622908+00:00"
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Accountancy",
+      "chapter": "Chapter 2: Theory Base of Accounting",
+      "step_count": 1,
+      "total_findings": 1,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 1
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 98,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "category": "pedagogy",
+          "message": "Step 'Concept introduction' lacks real-world context.",
+          "detail": ""
+        }
+      ],
+      "steps": [
+        {
+          "step_title": "Concept introduction",
+          "findings": [
+            {
+              "severity": "low",
+              "category": "pedagogy",
+              "message": "Step 'Concept introduction' lacks real-world context.",
+              "detail": ""
+            }
+          ],
+          "finding_count": 1
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.623022+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "Chapter 1: Resources and Development",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam-style problems",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.623272+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Text Book - Chapter 2: Nelson Mandela: Long Walk to Freedom",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Concept introduction",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.623362+00:00"
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Accountancy",
+      "chapter": "Chapter 5: Bank Reconciliation Statement",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam-style problems",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.623491+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Science",
+      "chapter": "Chapter 11: Electricity",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam preparation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-14T14:53:07.623997+00:00"
     }
   ]
 }

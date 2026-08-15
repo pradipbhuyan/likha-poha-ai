@@ -368,6 +368,39 @@ def _bank_written_questions(
         return []
 
 
+def _written_bank_capacity(
+    board: str,
+    grade: str,
+    subject: str,
+    chapter: str,
+    difficulty: str,
+    question_format: str,
+) -> int:
+    """
+    Report the servable capacity for a written/mixed request, for the
+    shortfall message shown when the bank can't fill it. For "mixed"
+    format this reports the smaller of the two halves (MCQ / written)
+    since the whole test is blocked once either half falls short.
+    """
+    try:
+        from app.services.subjective_question_bank_service import (  # noqa: PLC0415
+            get_subjective_bank_capacity_with_fallback,
+        )
+        written_capacity = get_subjective_bank_capacity_with_fallback(
+            board, grade, subject, chapter, difficulty,
+        )
+    except Exception:
+        written_capacity = 0
+
+    if question_format != "mixed":
+        return written_capacity
+
+    mcq_capacity = get_bank_capacity_with_fallback(board, grade, subject, chapter, difficulty)
+    # A "mixed" test needs both halves; capacity is limited by whichever
+    # half (scaled back to a full-test equivalent) is smaller.
+    return min(written_capacity * 2, mcq_capacity * 2)
+
+
 def _bank_mixed_or_written(
     grade: str,
     board: str,
@@ -459,25 +492,47 @@ def generate_cbse_mock_test(
     """
     selected_chapters = [c for c in (chapters or []) if c]
 
-    # ── Written / Mixed format: try the pre-authored banks first, fall back
-    # to live LLM generation for grades/subjects/chapters not yet authored
-    # (or for multi-chapter Mid-Term/Annual papers, not yet bank-backed) ────
+    # ── Written / Mixed format: served EXCLUSIVELY from the pre-authored
+    # subjective_question_bank (+ question_bank for the MCQ half of
+    # "mixed") — mirroring the MCQ path's zero-LLM-at-request-time design
+    # and Teacher Test Paper's identical behavior (app/routes/teacher.py).
+    #
+    # Previously, any bank shortfall silently fell back to a live LLM call
+    # with ONLY the bare chapter title as context (no textbook grounding
+    # at all). That produced confidently-wrong, template-guessing questions
+    # -- e.g. Grade 5 English "1. Papa's Spectacles" got "Explain the
+    # chapter point about Faithfulness and connect it with another idea
+    # from the exam-style activities", where "Faithfulness" and "Section
+    # B"/"exam-style activities" are bolded sub-labels and lesson-step
+    # section names lifted from lesson_cache, not real chapter content.
+    # Refusing to serve an ungrounded test (and reporting the shortfall,
+    # exactly like the MCQ path already does via bank_shortfall_message)
+    # is strictly better than serving plausible-sounding but wrong
+    # questions to a student. ────────────────────────────────────────────
     if question_format in ("written", "mixed"):
         chapter_label = ", ".join(selected_chapters) if selected_chapters else chapter
 
-        if not selected_chapters and chapter:
-            bank_result = _bank_mixed_or_written(
-                grade=grade, board=board, subject=subject, chapter=chapter,
-                difficulty=difficulty, num_questions=num_questions,
-                excluded_ids=excluded_ids, question_format=question_format,
+        if selected_chapters:
+            # Multi-chapter written/mixed papers have no bank-backed path yet.
+            raise ValueError(
+                f"Written/mixed test papers across multiple chapters "
+                f"('{chapter_label}') are still being prepared. Please "
+                "generate one chapter at a time."
             )
-            if bank_result:
-                return bank_result
 
-        return _generate_written_questions(
-            grade=grade, board=board, subject=subject, chapter=chapter_label,
-            exam_type=exam_type, num_questions=num_questions,
-            difficulty=difficulty, question_format=question_format,
+        bank_result = _bank_mixed_or_written(
+            grade=grade, board=board, subject=subject, chapter=chapter,
+            difficulty=difficulty, num_questions=num_questions,
+            excluded_ids=excluded_ids, question_format=question_format,
+        )
+        if bank_result:
+            return bank_result
+
+        available = _written_bank_capacity(
+            board, grade, subject, chapter, difficulty, question_format,
+        )
+        raise ValueError(
+            bank_shortfall_message(available, num_questions, chapter or subject)
         )
 
     if selected_chapters:

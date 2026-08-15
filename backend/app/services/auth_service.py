@@ -101,7 +101,7 @@ def get_user_profile(user_id: str):
     response = (
         admin_client
         .table("profiles")
-        .select("id, email, username, role, parent_id, family_id, grade, stream, cbse_subjects, account_status")
+        .select("id, email, username, role, parent_id, family_id, grade, stream, cbse_subjects, account_status, subscription_plan")
         .eq("id", user_id)
         .single()
         .execute()
@@ -195,6 +195,37 @@ def require_teacher(user=Depends(get_current_user)):
         )
 
     if profile.get("account_status") not in (None, "active", "trial"):
+        raise HTTPException(
+            status_code=403,
+            detail="Teacher account pending verification",
+        )
+
+    return {
+        "auth_user": user,
+        "profile": profile,
+    }
+
+
+def require_teacher_or_admin(user=Depends(get_current_user)):
+    """
+    FastAPI dependency that allows teacher OR admin profile users.
+
+    Applies the same pending_verification gate as require_teacher() to
+    teachers, but also lets admins through unconditionally (admins are never
+    gated). Used by the teacher content-generation routes in
+    app/routes/teacher.py, which previously used an ad-hoc role check that let
+    a pending_verification teacher call them directly and bypass admin
+    approval entirely.
+    """
+    profile = get_user_profile(user.id)
+
+    if not profile or profile.get("role") not in ("teacher", "admin"):
+        raise HTTPException(
+            status_code=403,
+            detail="Teacher access required",
+        )
+
+    if profile.get("role") == "teacher" and profile.get("account_status") not in (None, "active", "trial"):
         raise HTTPException(
             status_code=403,
             detail="Teacher account pending verification",

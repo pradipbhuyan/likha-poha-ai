@@ -18,14 +18,21 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 from app.services.auth_service import get_current_user
+import app.services.auth_service as auth_service
 import app.routes.teacher as teacher_route
 
 FAKE_TEACHER_A = SimpleNamespace(id="teacher-aaa", email="a@example.com")
 FAKE_TEACHER_B = SimpleNamespace(id="teacher-bbb", email="b@example.com")
 
 
+TEACHER_PROFILE = {
+    "role": "teacher", "username": "teacher1",
+    "account_status": "active", "subscription_plan": "starter",
+}
+
+
 def _client_as(monkeypatch, user):
-    monkeypatch.setattr(teacher_route, "_get_profile", lambda uid: {"role": "teacher"})
+    monkeypatch.setattr(auth_service, "get_user_profile", lambda uid: dict(TEACHER_PROFILE))
     app.dependency_overrides[get_current_user] = lambda: user
     return TestClient(app)
 
@@ -111,7 +118,7 @@ class TestPerTeacherIsolation:
     def test_teacher_b_does_not_see_teacher_as_saved_edit(self, monkeypatch, fake_store):
         # Teacher A saves a private edit.
         app.dependency_overrides[get_current_user] = lambda: FAKE_TEACHER_A
-        monkeypatch.setattr(teacher_route, "_get_profile", lambda uid: {"role": "teacher"})
+        monkeypatch.setattr(auth_service, "get_user_profile", lambda uid: dict(TEACHER_PROFILE))
         with TestClient(app) as c:
             c.post(
                 "/api/teacher/lesson-plan/save",
@@ -135,7 +142,7 @@ class TestPerTeacherIsolation:
 
     def test_teacher_bs_own_save_does_not_overwrite_teacher_as(self, monkeypatch, fake_store):
         app.dependency_overrides[get_current_user] = lambda: FAKE_TEACHER_A
-        monkeypatch.setattr(teacher_route, "_get_profile", lambda uid: {"role": "teacher"})
+        monkeypatch.setattr(auth_service, "get_user_profile", lambda uid: dict(TEACHER_PROFILE))
         with TestClient(app) as c:
             c.post(
                 "/api/teacher/lesson-plan/save",
@@ -166,7 +173,7 @@ class TestPerTeacherIsolation:
 class TestRevert:
     def test_revert_deletes_edit_and_falls_back_to_system_version(self, monkeypatch, fake_store):
         app.dependency_overrides[get_current_user] = lambda: FAKE_TEACHER_A
-        monkeypatch.setattr(teacher_route, "_get_profile", lambda uid: {"role": "teacher"})
+        monkeypatch.setattr(auth_service, "get_user_profile", lambda uid: dict(TEACHER_PROFILE))
         with TestClient(app) as c:
             c.post(
                 "/api/teacher/lesson-plan/save",
@@ -204,7 +211,7 @@ class TestSystemBankNeverMutated:
         before = bank_file.read_bytes()
 
         app.dependency_overrides[get_current_user] = lambda: FAKE_TEACHER_A
-        monkeypatch.setattr(teacher_route, "_get_profile", lambda uid: {"role": "teacher"})
+        monkeypatch.setattr(auth_service, "get_user_profile", lambda uid: dict(TEACHER_PROFILE))
         with TestClient(app) as c:
             c.post(
                 "/api/teacher/lesson-plan/save",
