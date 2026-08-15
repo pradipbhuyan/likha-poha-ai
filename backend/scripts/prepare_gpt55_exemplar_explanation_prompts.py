@@ -220,6 +220,25 @@ def parse_topic_cards() -> dict:
 
 # ── PDF path resolution: chapter name -> Path, per grade/subject ──────────────
 
+# EXEMPLAR_UNIT_NAMES is {filename: chapter_name} — one name per file, so it
+# can't represent a real NCERT chapter that combines two topics TOPIC_CARDS
+# treats as separate cards. Confirmed 2026-08-15: Grade 10 Maths' real
+# Chapter 13 is "Statistics and Probability" (single PDF, jeep213 — its own
+# self-declared header), but ExemplarResearchPage.jsx has separate
+# "Statistics" and "Probability" cards. (jeep214/215, which the catalogue
+# used to wrongly claim were dedicated "Statistics"/"Probability" chapters,
+# are actually sample-question-paper blueprints, not chapters at all — see
+# the comment in download_ncert_exemplar.py.) Both alias names resolve to
+# the one real combined-chapter PDF here rather than fabricating content
+# that doesn't exist as a separate source.
+MULTI_CARD_CHAPTER_ALIASES: dict[tuple[str, str], dict[str, str]] = {
+    ("Grade 10", "Maths"): {
+        "Statistics": "Statistics and Probability",
+        "Probability": "Statistics and Probability",
+    },
+}
+
+
 def build_chapter_pdf_index() -> dict:
     """Return {(grade, subject): {chapter_name: pdf_path}}."""
     index: dict[tuple[str, str], dict[str, Path]] = {}
@@ -236,6 +255,9 @@ def build_chapter_pdf_index() -> dict:
             pdf_path = book_dir / f"{filename}.pdf"
             if pdf_path.exists():
                 chapter_map[unit_name] = pdf_path
+        for alias, canonical in MULTI_CARD_CHAPTER_ALIASES.get((grade_label, subject), {}).items():
+            if canonical in chapter_map:
+                chapter_map[alias] = chapter_map[canonical]
         index[(grade_label, subject)] = chapter_map
 
     # Grade 11-12

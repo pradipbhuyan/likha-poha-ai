@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { answerDoubt } from "../api/doubt";
 import { hasPaidAccess } from "../utils/resolveSubscription";
+import { isAllAccessTestUser } from "../utils/testAccounts";
 
 /**
  * Strip LaTeX $...$ delimiters so math like $P(x)$, $(x-2)$ displays as plain text.
@@ -332,10 +333,15 @@ export default function ExemplarResearchPage({ user, setActivePage }) {
   const isTeacher = user?.role === "teacher";
   const userGrade = user?.grade || "Grade 9";
   const paidAccess = hasPaidAccess(user);
+  // akshita.teststudent is a full-access QA account (see utils/testAccounts.js,
+  // used the same way in ExamPrepPage.jsx) — let it browse every grade like a
+  // teacher can, instead of being locked to its own profile grade.
+  const canBrowseAllGrades = isTeacher || isAllAccessTestUser(user);
 
-  // Grade selector — teachers can view any grade; students see only their own
-  const [selectedGrade, setSelectedGrade] = useState(isTeacher ? "Grade 10" : userGrade);
-  const isUpperSecondary = (g => g === "Grade 11" || g === "Grade 12")(isTeacher ? "Grade 10" : userGrade);
+  // Grade selector — teachers (and the all-access test account) can view any
+  // grade; other students see only their own
+  const [selectedGrade, setSelectedGrade] = useState(canBrowseAllGrades ? "Grade 10" : userGrade);
+  const isUpperSecondary = (g => g === "Grade 11" || g === "Grade 12")(canBrowseAllGrades ? "Grade 10" : userGrade);
   const [selectedSubject, setSelectedSubject] = useState(isUpperSecondary ? "Physics" : "Maths");
   const [activeTopic, setActiveTopic] = useState(null);
   const [explanation, setExplanation] = useState("");
@@ -544,8 +550,8 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
       {/* ── Controls row ── */}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 20 }}>
 
-        {/* Grade picker — teachers see all, students see their own only */}
-        {isTeacher ? (
+        {/* Grade picker — teachers (and the all-access test account) see all, other students see their own only */}
+        {canBrowseAllGrades ? (
           <select value={selectedGrade} onChange={e => { const g = e.target.value; setSelectedGrade(g); setActiveTopic(null); setExplanation(""); setSelectedSubject((g === "Grade 11" || g === "Grade 12") ? "Physics" : "Maths"); }}
             style={{ padding: "8px 12px", borderRadius: 8, border: "1.5px solid var(--border)", background: "var(--card-bg)", color: "var(--text)", fontFamily: "inherit", fontSize: ".85rem" }}>
             {["Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"].map(g => <option key={g}>{g}</option>)}

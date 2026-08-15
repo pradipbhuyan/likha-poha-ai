@@ -119,7 +119,18 @@ CHAPTER_NAMES: dict[str, list[str]] = {
         "Environmental Chemistry",
         "States of Matter",
     ],
-    # Grade 11 Biology (22 chapters)
+    # Grade 11 Biology (22 chapters) — corrected 2026-08-15, content-verified
+    # against each PDF's own self-declared "CHAPTER N" header (keep401
+    # through keep422, keep407's garbled banner-overlap header resolved via
+    # body content). Positions 1-10 were already correct; 11-22 were a
+    # scrambled block, surfaced by GPT-5.5 refusing 5 of a 12-card batch
+    # (Transport in Plants, Mineral Nutrition, Photosynthesis, Respiration
+    # in Plants, Plant Growth and Development) reporting mismatched source
+    # text. The previous doc note claiming "all 22 chapters confirmed
+    # correctly self-sequential" only checked that each file declares
+    # itself "CHAPTER N" (true), not that the catalogued NAME at position N
+    # matches what chapter N is actually about (false, for 12 of 22) — see
+    # docs/EXEMPLAR_RESEARCH_CONTENT_STATUS.md §5/§6 for that lesson.
     "keep4": [
         "The Living World",
         "Biological Classification",
@@ -131,18 +142,18 @@ CHAPTER_NAMES: dict[str, list[str]] = {
         "Cell: The Unit of Life",
         "Biomolecules",
         "Cell Cycle and Cell Division",
+        "Transport in Plants",
+        "Mineral Nutrition",
         "Photosynthesis in Higher Plants",
         "Respiration in Plants",
         "Plant Growth and Development",
+        "Digestion and Absorption",
         "Breathing and Exchange of Gases",
         "Body Fluids and Circulation",
         "Excretory Products and Their Elimination",
         "Locomotion and Movement",
         "Neural Control and Coordination",
         "Chemical Coordination and Integration",
-        "Digestion and Absorption",
-        "Mineral Nutrition",
-        "Transport in Plants",
     ],
     # Grade 12 Maths (13 chapters)
     "leep2": [

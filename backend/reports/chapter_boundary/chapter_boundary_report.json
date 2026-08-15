@@ -1,103 +1,141 @@
 {
-  "audited_at": "2026-08-13T13:11:23.231955+00:00",
+  "audited_at": "2026-08-15T12:43:05.432606+00:00",
   "manifests_used": 1,
-  "lessons_audited": 5,
-  "total_critical_findings": 5,
+  "lessons_audited": 11,
+  "total_critical_findings": 0,
   "total_high_findings": 0,
   "results": [
     {
-      "lesson_cache_id": "7000073c-e55c-4dfe-9101-26e658b72b4e",
-      "grade": "Grade 11",
-      "subject": "Physics",
-      "chapter": "Chapter 12: Kinetic Theory",
-      "step_title": "Concept introduction",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_11/physics/chapter_12_kinetic_theory.json",
-      "findings": [
-        {
-          "severity": "critical",
-          "category": "known_pitfall",
-          "message": "Content may repeat a known scientific/pedagogical error: \"Real gases obey the ideal gas equation exactly at every pressure and temperature.\"",
-          "detail": "Correction: An ideal gas is a theoretical model; real gases approach ideal behaviour especially at low pressures and high temperatures."
-        }
-      ],
-      "critical_count": 1,
-      "high_count": 0,
-      "content_length": 4335
-    },
-    {
-      "lesson_cache_id": "9c9c17fb-d708-471e-b1c6-c72a6a2fc9fa",
-      "grade": "Grade 11",
-      "subject": "Physics",
-      "chapter": "Chapter 12: Kinetic Theory",
-      "step_title": "Exam-style problems",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_11/physics/chapter_12_kinetic_theory.json",
+      "lesson_cache_id": "dd540bd9-0c4b-4c32-ac34-7c0c1de80277",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Core explanation",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/chapter_15_shram_vibhajan_aur_jati_pratha.json",
       "findings": [],
       "critical_count": 0,
       "high_count": 0,
-      "content_length": 4214
+      "content_length": 2299
     },
     {
-      "lesson_cache_id": "28d5e239-81b7-4b29-99ae-ac713e7512e8",
-      "grade": "Grade 11",
-      "subject": "Physics",
-      "chapter": "Chapter 12: Kinetic Theory",
-      "step_title": "Core explanation",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_11/physics/chapter_12_kinetic_theory.json",
-      "findings": [
-        {
-          "severity": "critical",
-          "category": "known_pitfall",
-          "message": "Content may repeat a known scientific/pedagogical error: \"Real gases obey the ideal gas equation exactly at every pressure and temperature.\"",
-          "detail": "Correction: An ideal gas is a theoretical model; real gases approach ideal behaviour especially at low pressures and high temperatures."
-        }
-      ],
-      "critical_count": 1,
-      "high_count": 0,
-      "content_length": 4694
-    },
-    {
-      "lesson_cache_id": "f15c58df-04fc-46df-a252-cab5a16366b5",
-      "grade": "Grade 11",
-      "subject": "Physics",
-      "chapter": "Chapter 12: Kinetic Theory",
+      "lesson_cache_id": "4a291df6-1727-49c8-a50a-11dccd09c4d0",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Shram Vibhajan Aur Jati Pratha",
       "step_title": "Worked examples",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_11/physics/chapter_12_kinetic_theory.json",
-      "findings": [
-        {
-          "severity": "critical",
-          "category": "known_pitfall",
-          "message": "Content may repeat a known scientific/pedagogical error: \"Real gases obey the ideal gas equation exactly at every pressure and temperature.\"",
-          "detail": "Correction: An ideal gas is a theoretical model; real gases approach ideal behaviour especially at low pressures and high temperatures."
-        },
-        {
-          "severity": "critical",
-          "category": "known_pitfall",
-          "message": "Content may repeat a known scientific/pedagogical error: \"Temperatures in gas-law and kinetic-energy formulas can be inserted directly in degrees Celsius.\"",
-          "detail": "Correction: These relations use absolute temperature on the kelvin scale."
-        }
-      ],
-      "critical_count": 2,
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/chapter_15_shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
       "high_count": 0,
-      "content_length": 4275
+      "content_length": 2256
     },
     {
-      "lesson_cache_id": "5f6a6805-bb86-4ad8-b67b-c051e227ade0",
-      "grade": "Grade 11",
-      "subject": "Physics",
-      "chapter": "Chapter 12: Kinetic Theory",
-      "step_title": "Revision and recap",
-      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_11/physics/chapter_12_kinetic_theory.json",
-      "findings": [
-        {
-          "severity": "critical",
-          "category": "known_pitfall",
-          "message": "Content may repeat a known scientific/pedagogical error: \"Real gases obey the ideal gas equation exactly at every pressure and temperature.\"",
-          "detail": "Correction: An ideal gas is a theoretical model; real gases approach ideal behaviour especially at low pressures and high temperatures."
-        }
-      ],
-      "critical_count": 1,
+      "lesson_cache_id": "4d19354f-4b41-401f-b72b-d00289a952d5",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Exam-style problems",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/chapter_15_shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
       "high_count": 0,
-      "content_length": 4591
+      "content_length": 2624
+    },
+    {
+      "lesson_cache_id": "8abaa4c9-e287-4ec5-ad7a-58276d4e0a72",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Revision and recap",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/chapter_15_shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2770
+    },
+    {
+      "lesson_cache_id": "e951cf29-1774-47fa-aef8-6677e045a5c7",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Concept introduction",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/chapter_15_shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2314
+    },
+    {
+      "lesson_cache_id": "efc192c9-9c04-4379-a930-83b72ee68cef",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Core explanation",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/chapter_15_shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2410
+    },
+    {
+      "lesson_cache_id": "2baa94b7-3702-42c3-9df4-ddf039f8f4e8",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Worked examples",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/chapter_15_shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2346
+    },
+    {
+      "lesson_cache_id": "165ae62b-8309-40e3-950f-dab434d4c17d",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Exam-style problems",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/chapter_15_shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2325
+    },
+    {
+      "lesson_cache_id": "d674a09f-b716-4dfa-8758-00b6b8e91758",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Revision and recap",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/chapter_15_shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 3021
+    },
+    {
+      "lesson_cache_id": "d1236b92-cc1c-4233-8fe0-864b981610c4",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Concept introduction",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/chapter_15_shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2229
+    },
+    {
+      "lesson_cache_id": "5458f94c-c559-4bc1-8e9b-4e1adc7c5856",
+      "grade": "Grade 12",
+      "subject": "Hindi",
+      "chapter": "Chapter 15: Shram Vibhajan Aur Jati Pratha",
+      "step_title": "Concept introduction",
+      "manifest_path": "/Users/a0247716/Pradips_Project/cbse-tutor-platform/backend/app/data/chapter_manifests/grade_12/hindi/chapter_15_shram_vibhajan_aur_jati_pratha.json",
+      "findings": [],
+      "critical_count": 0,
+      "high_count": 0,
+      "content_length": 2229
     }
   ]
 }

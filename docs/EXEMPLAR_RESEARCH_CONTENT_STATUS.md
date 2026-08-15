@@ -187,8 +187,15 @@ chapter title in the first few lines (e.g. an MCQ about epithelium/adipose
 tissue types is genuinely "Structural Organisation in Animals" content, it
 just doesn't say those words on page 1). Verified clean:
 
-- **Grade 11 Biology** — all 22 chapters confirmed correctly
-  self-sequential (file N = NCERT's own "CHAPTER N", checked every file).
+- ~~**Grade 11 Biology** — all 22 chapters confirmed correctly
+  self-sequential (file N = NCERT's own "CHAPTER N", checked every file).~~
+  **CORRECTED 2026-08-15 — this was wrong.** "Self-sequential" only meant
+  each file declares itself "CHAPTER N"; it did NOT mean the catalogued
+  chapter *name* at position N matched N's real content. Positions 11-22
+  were in fact a scrambled block (12 of 22 chapters mislabeled) — see §5d.
+  Left here struck through rather than deleted, as a concrete example of
+  why "file declares itself CHAPTER N" and "catalogued name is correct for
+  CHAPTER N" are two different claims that both need checking.
 - **Grade 9 Science** (ieep105, ieep114 flags) and **Grade 10 Science**
   (jeep118 flag) — spot-checked, content matches expected topic.
 - The Grade 9/10 "last unit" flags (ieep216, ieep116, jeep118, jeep215) are
@@ -325,13 +332,123 @@ The pieces §4 flagged as "not yet built" now exist:
   real numbered Exemplar problems, on-topic). Ingested; confirmed via
   directory listing (12/12 files) and a live route call.
   **Grade 9 Science bank is now 12/12 — fully covered.**
+- **`grade10_maths_exemplar_research_all_12.zip` (2026-08-15) processed —
+  found a genuine new catalogue bug.** 10 of 12 cards passed validation
+  cleanly and were ingested. The other 2 (Statistics, Probability) failed
+  structural validation (too few key_rules_formulas), and the batch's own
+  QA note (`grade10_maths_exemplar_research_qa.txt`, included in the zip)
+  had already caught it: their supplied source text was "SET-I"/"SET-II
+  DESIGN OF THE QUESTION PAPER" — a sample-paper blueprint, not the real
+  chapter. Root-caused: `EXEMPLAR_UNIT_NAMES` in `download_ncert_exemplar.py`
+  had `"jeep214": "Statistics"` / `"jeep215": "Probability"` as fabricated
+  entries — those two files are sample-paper blueprints, not chapters at
+  all. Grade 10 Maths' real Chapter 13 (content-verified via its own
+  self-declared "CHAPTER 13" header) is a single combined **"Statistics
+  and Probability"** chapter (`jeep213`) — but `ExemplarResearchPage.jsx`
+  has it split into two separate cards. Since the filename->name catalogue
+  dict can only hold one name per file, fixed this with a small,
+  explicitly-scoped alias mechanism (`MULTI_CARD_CHAPTER_ALIASES` in
+  `prepare_gpt55_exemplar_explanation_prompts.py`) so both "Statistics"
+  and "Probability" card lookups resolve to the one real combined-chapter
+  PDF instead of the fabricated split. Regenerated both prompts, confirmed
+  genuinely grounded (grouped-data mean/median formulas, not sample-paper
+  design text) — sitting in
+  `~/Downloads/GPT55_Exemplar_Explanation_Prompts_Grade_10_maths_Statistics_Probability_CORRECTED/`,
+  waiting on a GPT-5.5 run. **Grade 10 Maths bank is 10/12**; the other
+  Grade 9/10 "last unit" bonus-file entries this same pattern could apply
+  to (`ieep216`, `jeep118`, etc. — see §5b) were previously assumed benign
+  because no card referenced them, but that assumption held only by
+  coincidence here until it didn't — worth a deliberate re-check, not
+  just trusting the earlier "doesn't affect any card" note.
+- **`grade10_exemplar_research_all_14.zip` (2026-08-15) processed** — the
+  2 corrected Statistics/Probability prompts plus the full 12-card Grade 10
+  Science section, all 14 in one batch. All passed validation cleanly (no
+  refusals, no templating); spot-checked Statistics/Probability grounding
+  (genuine grouped-data/equally-likely-outcomes content, confirming last
+  round's catalogue alias fix works) plus one Science card (Electricity).
+  Ingested; confirmed via directory listing and live route calls.
+  **Grade 10 Maths: 12/12. Grade 10 Science: 12/12 — both fully covered.**
+- **`grade11_exemplar_research_all_12.zip` (2026-08-15) processed** — all
+  12 Grade 11 Maths cards passed validation cleanly (no refusals, no
+  templating). Spot-checked 3 (Sets, Conic Sections, Permutations and
+  Combinations) — genuinely grounded, no sign of the catalogue-mismatch
+  pattern found elsewhere. This is a partial answer to the "re-verify
+  Grade 11 Maths with the same rigor" item below — real authored content
+  came back clean, though that's evidence from spot-checking 3 of 12, not
+  a full independent header-by-header audit of the catalogue itself.
+  Ingested; confirmed via directory listing (12/12) and a live route call.
+  **Grade 11 Maths bank is now 12/12 — fully covered.**
+- **`grade11_biology_exemplar_research_all_12.zip` (2026-08-15) processed
+  — the §5c/§5e "re-verify the other already-live sections" concern paid
+  off.** 7 of 12 cards passed and were ingested. The other 5 (Transport in
+  Plants, Mineral Nutrition, Photosynthesis, Respiration in Plants, Plant
+  Growth and Development) were refused by GPT-5.5, each correctly
+  identifying it had been given a different chapter's content. Verified
+  directly against all 22 PDFs' own self-declared "CHAPTER N" headers:
+  **positions 11-22 (12 of 22 chapters) were a scrambled block** — far
+  worse than the earlier doc note claiming "all 22 chapters confirmed
+  correctly self-sequential." That earlier check only confirmed each file
+  declares itself "CHAPTER N" (true) without checking whether the
+  catalogued NAME at position N actually matches chapter N's real content
+  (false, for more than half the book). Fixed `CHAPTER_NAMES["keep4"]` in
+  `download_ncert_exemplar_grade1112.py` with the full corrected 22-entry
+  list. No frontend-level card/chapter mismatch this time (unlike Grade 12
+  Biology) — `TOPIC_CARDS` chapter fields were already internally
+  consistent with their topics, the catalogue alone was wrong. Regenerated
+  the 5 affected prompts, spot-checked one (Transport in Plants — now
+  genuinely reverse-osmosis/transpiration/stomata content, not the earlier
+  mismatched chapter) — sitting in
+  `~/Downloads/GPT55_Exemplar_Explanation_Prompts_Grade_11_biology_CORRECTED/`,
+  waiting on a GPT-5.5 run. **Grade 11 Biology bank is 7/12.**
+  **Standing-rule update:** "file N self-declares CHAPTER N" is necessary
+  but not sufficient evidence the catalogue is correct — must also check
+  the catalogued NAME against that chapter's actual content, not just its
+  number. Re-verifying Grade 12 Maths/Physics with this stricter bar is
+  still open (§5e).
+- **`grade12_maths_exemplar_research_all_12.zip` (2026-08-15) processed
+  — the other "already live, unverified" section, and this one held up.**
+  Before trusting the "0 refusals" signal alone (which wasn't sufficient
+  evidence in Grade 11 Biology's case — GPT-5.5 didn't refuse the cards
+  whose real content merely *resembled* the requested topic), independently
+  read all 13 PDFs' own self-declared headers directly. Unlike the Biology
+  PDFs (garbled/interleaved due to the bold-text-artifact and running-header
+  overlap issues from §4), Grade 12 Maths' PDFs have a clean, unambiguous
+  "N Chapter TITLE" header on page 1 of every file — all 13 matched the
+  current catalogue exactly. Also spot-checked 3 cards' actual authored
+  content (Matrices, Vector Algebra, Probability) — all genuinely on-topic.
+  Ingested all 12; confirmed via directory listing and a live route call.
+  **Grade 12 Maths bank is 12/12 — fully covered, and genuinely verified
+  clean this time (not just assumed).**
+- **`grade12_physics_exemplar_research_all_12.zip` (2026-08-15) processed
+  — the last "already live, unverified" section, and it's genuinely
+  clean.** All 12 cards passed validation with no refusals. Independently
+  verified all 15 PDFs' own self-declared "Chapter One"/"Chapter Two"/etc.
+  headers before trusting the clean result (same discipline applied to
+  Grade 12 Maths) — all 15 matched the catalogue exactly. Spot-checked 3
+  cards including the two the batch's own QA note flagged with source-scope
+  caveats (Electromagnetic Waves: no fabricated wavelength-range table;
+  Semiconductor: Zener-regulation-infeasibility handled honestly rather
+  than fudged) — both hold up. Ingested all 12; confirmed via directory
+  listing and a live route call (as a student profile, matching the
+  2026-08-15 auth-gate fix). **Grade 12 Physics bank is 12/12 — fully
+  covered.**
+
+  **Every section originally flagged in §5c as "already live, needs the
+  same rigor as Grade 12 Biology" has now actually been checked** (Grade
+  11 Maths, Grade 12 Maths, Grade 12 Physics — all genuinely clean; Grade
+  11 Biology was the one that wasn't and got fixed in this round).
 - **Still pending:** the remaining 7 of 8 corrected Grade 8 Science
   prompts (Force and Pressure, Sound, Light, Pollution of Air and Water,
   Reproduction in Animals, Friction, Stars and the Solar System) —
   regenerated prompts already sit in
   `~/Downloads/GPT55_Exemplar_Explanation_Prompts_Grade_8_science_CORRECTED/`,
-  waiting on a GPT-5.5 handover run. Grade 9 Maths, Grade 10 Maths/Science,
-  Grade 11/12 sections haven't had any batches processed yet at all.
+  waiting on a GPT-5.5 handover run. Grade 9 Maths (already 11/12 in the
+  bank via concurrent work, unverified by this session), the 5 corrected
+  Grade 11 Biology prompts above, and **Grade 12 Biology** (fixable —
+  catalogue already corrected early this session per §5, has real PDFs,
+  just no GPT-5.5 batch generated/processed yet — don't confuse with
+  Grade 12 **Chemistry**, which is the permanently-unfixable one with no
+  PDF at all, per §3) round out what's left.
 
 ### 5e. Not yet done
 - Decide whether to also re-verify Grade 11 Maths, Grade 12 Maths, Grade 12

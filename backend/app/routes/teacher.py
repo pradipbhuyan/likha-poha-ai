@@ -16,7 +16,7 @@ import logging
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.services.auth_service import admin_client, require_teacher_or_admin
+from app.services.auth_service import admin_client, require_teacher_or_admin, get_current_user, get_user_profile
 from app.services.usage_service import enforce_daily_limit, log_ai_usage
 from app.services.mock_test_service import (
     get_questions_from_bank_with_fallback,
@@ -273,23 +273,30 @@ class ExemplarExplanationRequest(BaseModel):
 
 
 @router.post("/exemplar-research/explain")
-async def get_exemplar_research_explanation(data: ExemplarExplanationRequest, ctx=Depends(require_teacher_or_admin)):
+async def get_exemplar_research_explanation(data: ExemplarExplanationRequest, user=Depends(get_current_user)):
     """
     Serve a pre-authored Exemplar Research explanation for a topic card — no
     LLM call at request time (replaces the old live /api/doubt/answer call
     from ExemplarResearchPage.jsx; see
     docs/EXEMPLAR_RESEARCH_CONTENT_STATUS.md for why).
 
-    Exemplar Research is a paid-only teacher feature (advertised as such on
-    SubscriptionPlansPage.jsx) — free-tier teachers are rejected outright
-    rather than metered, since serving static content has no per-call AI
-    cost to cap. Admins always pass.
+    ExemplarResearchPage.jsx is used by students AND teachers — despite
+    living in teacher.py (added here since it mirrors the lesson-plan-bank
+    route pattern), this route must accept any authenticated user, not
+    require_teacher_or_admin. Only free-tier TEACHERS get an entitlement
+    403 (Exemplar Research is advertised as a paid-only teacher feature on
+    SubscriptionPlansPage.jsx); this exactly mirrors the gate the old
+    /api/doubt/answer route had for Exemplar content — students/parents
+    were never blocked by it. Getting this wrong once already broke the
+    page for real students (403 surfaced to them as a generic "Could not
+    load explanation" in the UI) — see git history/conversation around
+    2026-08-15 for that incident.
 
     If no explanation has been authored yet for this topic, returns
     success:false with a friendly message instead of generating one live.
     """
-    profile = ctx["profile"]
-    if _is_free_tier_teacher(profile):
+    profile = get_user_profile(user.id) or {}
+    if profile.get("role") == "teacher" and _is_free_tier_teacher(profile):
         raise HTTPException(
             status_code=403,
             detail={

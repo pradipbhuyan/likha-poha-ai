@@ -163,9 +163,18 @@ EXEMPLAR_UNIT_NAMES = {
     "jeep210": "Constructions",
     "jeep211": "Areas Related to Circles",
     "jeep212": "Surface Areas and Volumes",
+    # jeep213 is the real, sole "CHAPTER 13: STATISTICS AND PROBABILITY"
+    # (self-declared header, content-verified 2026-08-15) — Grade 10 Maths
+    # Exemplar has only 13 real chapters. jeep214/215 are NOT chapters at
+    # all; they're "SET-I"/"SET-II DESIGN OF THE QUESTION PAPER" sample-
+    # paper blueprints bundled at the end of the download range (same bonus-
+    # file pattern as Grade 9/10's other "last unit" entries — see
+    # docs/EXEMPLAR_RESEARCH_CONTENT_STATUS.md §5b — except this one WAS
+    # wrongly chapter-mapped and DOES collide with real TOPIC_CARDS entries:
+    # ExemplarResearchPage.jsx's Grade 10 Maths "Statistics" and
+    # "Probability" cards both need jeep213's content — see the
+    # MULTI_CARD_CHAPTER_ALIASES in prepare_gpt55_exemplar_explanation_prompts.py.
     "jeep213": "Statistics and Probability",
-    "jeep214": "Statistics",
-    "jeep215": "Probability",
     # Grade 10 Science
     "jeep101": "Chemical Reactions and Equations",
     "jeep102": "Acids, Bases and Salts",
