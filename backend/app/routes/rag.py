@@ -47,8 +47,13 @@ class RagVisualAssetUpdate(BaseModel):
 
 
 @router.post("/upload-text", response_model=RagUploadResponse)
-def upload_text(data: RagTextUploadRequest):
-    """Upload raw text as a RAG document and create searchable embeddings."""
+def upload_text(data: RagTextUploadRequest, _admin=Depends(require_admin)):
+    """Upload raw text as a RAG document and create searchable embeddings.
+
+    Admin-only: this writes into the corpus that grounds every student-facing
+    lesson and doubt answer, so it carries the same guard as the read routes
+    below rather than trusting the client-supplied username for identity.
+    """
     result = upload_textbook_text(
         username=data.username,
         grade=data.grade,
@@ -71,8 +76,9 @@ async def upload_image(
     chapter: str = Form(...),
     title: str = Form(...),
     file: UploadFile = File(...),
+    _admin=Depends(require_admin),
 ):
-    """OCR one uploaded image and save the extracted text into RAG."""
+    """OCR one uploaded image and save the extracted text into RAG. Admin-only."""
     image_bytes = await file.read()
 
     extracted_text = extract_text_from_image_bytes(image_bytes)
@@ -99,8 +105,9 @@ async def upload_file(
     chapter: str = Form(...),
     title: str = Form(...),
     file: UploadFile = File(...),
+    _admin=Depends(require_admin),
 ):
-    """Extract text from one supported file type and save it into RAG."""
+    """Extract text from one supported file type and save it into RAG. Admin-only."""
     try:
         file_bytes = await file.read()
 
@@ -139,9 +146,10 @@ async def upload_files_batch(
     chapter: str = Form(...),
     titles: str = Form(...),
     files: list[UploadFile] = File(...),
+    _admin=Depends(require_admin),
 ):
     """
-    Upload up to 20 files into RAG as separate documents.
+    Upload up to 20 files into RAG as separate documents. Admin-only.
 
     Titles are supplied as a comma-separated list and must line up one-for-one
     with the uploaded files so each document has useful source attribution.
@@ -227,8 +235,8 @@ async def upload_files_batch(
 
 
 @router.get("/documents")
-def get_rag_documents():
-    """Return uploaded RAG document metadata for the admin upload page."""
+def get_rag_documents(_admin=Depends(require_admin)):
+    """Return uploaded RAG document metadata for the admin upload page. Admin-only."""
     documents = list_rag_documents()
 
     return {
@@ -369,8 +377,8 @@ def update_rag_document_metadata(
 
 
 @router.delete("/documents/{document_id}")
-def remove_rag_document(document_id: str):
-    """Delete a RAG document and all associated chunks by document id."""
+def remove_rag_document(document_id: str, _admin=Depends(require_admin)):
+    """Delete a RAG document and all associated chunks by document id. Admin-only."""
     try:
         delete_rag_document(document_id)
 
@@ -388,12 +396,14 @@ def remove_rag_document(document_id: str):
 @router.post("/analyze-image")
 async def analyze_rag_image(
     file: UploadFile = File(...),
+    _admin=Depends(require_admin),
 ):
     """
-    OCR and classify one textbook page image before upload.
+    OCR and classify one textbook page image before upload. Admin-only.
 
     The endpoint suggests grade/subject/chapter metadata but does not persist
-    anything; admins review the result before uploading.
+    anything; admins review the result before uploading. It still runs OCR and
+    an LLM call per request, so it is guarded as a billable operation too.
     """
     try:
         image_bytes = await file.read()
@@ -483,8 +493,12 @@ Never return code fences.
 
 
 @router.post("/search", response_model=RagSearchResponse)
-def search_rag(data: RagSearchRequest):
-    """Run a manual RAG search for admin/debug verification."""
+def search_rag(data: RagSearchRequest, _admin=Depends(require_admin)):
+    """Run a manual RAG search for admin/debug verification. Admin-only.
+
+    Student-facing retrieval does not come through here — it runs inside the
+    lesson/doubt services — so guarding this route does not affect learners.
+    """
     try:
         results = search_textbook_content(
             query=data.query,

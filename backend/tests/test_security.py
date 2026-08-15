@@ -109,15 +109,36 @@ class TestUnauthenticatedAccess:
         r = client.get("/api/health")
         assert r.status_code == 200
 
-    def test_rag_documents_list_is_public(self, monkeypatch):
+    def test_rag_documents_list_requires_auth(self):
+        """
+        The RAG corpus is admin-only.
+
+        This previously asserted the document list was public. It is the corpus
+        that grounds every student-facing lesson and doubt answer, and the
+        write/delete routes beside it were open too — so an outsider could
+        enumerate it, poison it, or delete it. Every /api/rag/ route now
+        requires an admin.
+        """
+        app.dependency_overrides.clear()
+        r = client.get("/api/rag/documents")
+        assert r.status_code in [401, 403]
+
+    def test_rag_documents_list_denied_to_students(self, monkeypatch):
+        """A signed-in student must not be able to enumerate the corpus."""
+        app.dependency_overrides.clear()
         override_as(fake_student_profile())
         monkeypatch.setattr(
             "app.routes.rag.list_rag_documents",
             lambda: [],
             raising=False,
         )
+        monkeypatch.setattr(
+            "app.services.auth_service.get_user_profile",
+            lambda user_id: fake_student_profile(),
+            raising=False,
+        )
         r = client.get("/api/rag/documents")
-        assert r.status_code == 200
+        assert r.status_code == 403
 
 
 # ---------------------------------------------------------------------------

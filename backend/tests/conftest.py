@@ -2,11 +2,17 @@ import pytest
 from types import SimpleNamespace
 
 from app.main import app
-from app.services.auth_service import get_current_user, require_parent
+from app.services.auth_service import (
+    get_current_user,
+    require_parent,
+    require_self_by_username,
+)
 
 import app.routes.doubt as doubt_route
 import app.routes.lesson as lesson_route
 import app.routes.mock_test as mock_test_route
+import app.routes.profile as profile_route
+import app.routes.progress as progress_route
 
 
 TEST_USER_ID = "11111111-1111-1111-1111-111111111111"
@@ -153,6 +159,25 @@ def override_auth_dependencies(monkeypatch):
 
     app.dependency_overrides[get_current_user] = lambda: fake_user
     app.dependency_overrides[require_parent] = lambda: fake_parent()
+
+    # Routes that take a student username in the path (progress/profile/
+    # recommendations) guard with require_self_by_username, which does a real
+    # profile lookup. Tests get the same fake student the other guards use.
+    app.dependency_overrides[require_self_by_username] = lambda: {
+        "auth_user": fake_user,
+        "profile": fake_profile,
+    }
+
+    # progress/profile derive the username from the session rather than the
+    # request body, via a helper called inside the handler (not a dependency),
+    # so it needs patching per route module rather than overriding.
+    for _route_module in (progress_route, profile_route):
+        monkeypatch.setattr(
+            _route_module,
+            "resolve_session_username",
+            lambda _user, _u=fake_profile["username"]: _u,
+            raising=False,
+        )
 
     monkeypatch.setattr(
         doubt_route,

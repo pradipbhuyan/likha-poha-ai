@@ -23,6 +23,20 @@ if _init_sentry():
 else:
     _log.info("Sentry disabled (SENTRY_DSN not set).")
 
+# ── Production secret checks ─────────────────────────────────────────────────
+# RAZORPAY_WEBHOOK_SECRET signs the one unauthenticated endpoint that can
+# activate a paid plan (POST /api/payments/webhook). The handler already fails
+# closed without it, but in production a missing secret silently disables the
+# payment-recovery safety net that catches captured payments whose /verify call
+# never landed — so refuse to boot rather than run degraded and unnoticed.
+# Development and test environments are unaffected.
+if settings.ENVIRONMENT == "production" and not settings.RAZORPAY_WEBHOOK_SECRET:
+    raise RuntimeError(
+        "RAZORPAY_WEBHOOK_SECRET is required when ENVIRONMENT=production. "
+        "Set it from the Razorpay dashboard (Settings → Webhooks) so webhook "
+        "signatures can be verified."
+    )
+
 # rate_limit_service and metrics_service share state via Redis when REDIS_URL
 # is configured (see app/services/redis_client.py); otherwise they hold state
 # in-process, which is safe for a single Uvicorn/Gunicorn worker and silently
@@ -52,17 +66,14 @@ else:
 from app.routes.auth import router as auth_router
 from app.routes.syllabus import router as syllabus_router
 from app.routes.lesson import router as lesson_router
-from app.routes.tts import router as tts_router
 from app.routes.mock_test import router as mock_test_router
 from app.routes.board_papers import router as board_papers_router
 from app.routes.analytics import router as analytics_router
 from app.routes.progress import router as progress_router
 from app.routes.doubt import router as doubt_router
-from app.routes.quiz import router as quiz_router
 from app.routes.resources import router as resources_router
 from app.routes.rag import router as rag_router
 from app.routes.rag_bulk_book_upload import router as rag_bulk_book_upload_router
-from app.routes import images
 from app.routes import usage
 from app.routes import recommendations
 from app.routes import profile
@@ -187,12 +198,6 @@ app.include_router(
 )
 
 app.include_router(
-    tts_router,
-    prefix="/api/tts",
-    tags=["Text To Speech"]
-)
-
-app.include_router(
     mock_test_router,
     prefix="/api/mock-test",
     tags=["Mock Test"]
@@ -220,12 +225,6 @@ app.include_router(
     doubt_router,
     prefix="/api/doubt",
     tags=["Doubt"]
-)
-
-app.include_router(
-    quiz_router,
-    prefix="/api/quiz",
-    tags=["Quiz"]
 )
 
 app.include_router(
@@ -306,7 +305,6 @@ app.include_router(
     tags=["Offer Codes"],
 )
 
-app.include_router(images.router, prefix="/api/images", tags=["Images"])
 app.include_router(usage.router, prefix="/api/usage", tags=["Usage"])
 
 app.include_router(

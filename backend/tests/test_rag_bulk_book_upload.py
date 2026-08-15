@@ -1,5 +1,6 @@
 import json
 
+import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app
@@ -10,6 +11,22 @@ from app.services.auth_service import require_admin
 
 
 client = TestClient(app)
+
+
+@pytest.fixture(autouse=True)
+def _as_admin():
+    """
+    Every RAG corpus route is admin-only — these endpoints write and delete the
+    knowledge base that grounds student-facing lesson and doubt answers, and
+    they previously shipped with no guard at all. These tests exercise the
+    upload behaviour as an admin; the guards themselves are covered in
+    test_unauthenticated_endpoint_regression.py.
+    """
+    app.dependency_overrides[require_admin] = lambda: {
+        "profile": {"id": "admin-id", "role": "admin", "username": "admin_user"}
+    }
+    yield
+    app.dependency_overrides.pop(require_admin, None)
 
 
 class FakeUpdateQuery:

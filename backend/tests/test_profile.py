@@ -95,23 +95,48 @@ def test_log_activity_api_with_mocked_service(monkeypatch):
     assert data["profile"]["lessons_completed"] == 1
 
 
-def test_log_activity_missing_username():
+def test_log_activity_without_username_uses_the_session(monkeypatch):
     """
-    Test that the profile activity endpoint rejects a missing username.
+    Test that activity logs fine without a username in the body.
 
-    Activity must belong to a specific student, so username is required.
-
-    Expected result:
-    - The backend should reject the request.
-    - The response should be HTTP 422 because the required field is missing.
+    The username used to be a required body field. It is now derived from the
+    authenticated session, so omitting it is valid.
     """
-    payload = {
-        "activity_type": "lesson_completed",
-    }
+    monkeypatch.setattr(
+        profile_route,
+        "update_student_activity",
+        lambda username, activity_type: {"username": username, "activity_type": activity_type},
+    )
 
-    response = client.post("/api/profile/activity", json=payload)
+    response = client.post(
+        "/api/profile/activity",
+        json={"activity_type": "lesson_completed"},
+    )
 
-    assert response.status_code == 422
+    assert response.status_code == 200
+    assert response.json()["profile"]["username"] == "test_user"
+
+
+def test_log_activity_ignores_a_spoofed_username(monkeypatch):
+    """
+    Test that a username in the request body cannot redirect the activity log.
+
+    This endpoint previously had no authentication, so any caller could inflate
+    another student's streak, XP, and level by naming them.
+    """
+    monkeypatch.setattr(
+        profile_route,
+        "update_student_activity",
+        lambda username, activity_type: {"username": username, "activity_type": activity_type},
+    )
+
+    response = client.post(
+        "/api/profile/activity",
+        json={"username": "victim_student", "activity_type": "lesson_completed"},
+    )
+
+    assert response.status_code == 200
+    assert response.json()["profile"]["username"] == "test_user"
 
 
 def test_log_activity_missing_activity_type():

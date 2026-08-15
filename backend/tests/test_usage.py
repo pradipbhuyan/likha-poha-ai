@@ -1,9 +1,28 @@
+import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.services.auth_service import require_admin
 import app.routes.usage as usage_route
+from tests.conftest import fake_admin_profile, fake_current_user
 
 client = TestClient(app)
+
+
+@pytest.fixture(autouse=True)
+def _as_admin():
+    """
+    GET /api/usage/summary is admin-only — it exposes platform-wide AI spend
+    and a per-user cost breakdown. These tests run as an admin; the guard
+    itself is covered in test_unauthenticated_endpoint_regression.py.
+    """
+    profile = fake_admin_profile()
+    app.dependency_overrides[require_admin] = lambda: {
+        "auth_user": fake_current_user(profile),
+        "profile": profile,
+    }
+    yield
+    app.dependency_overrides.pop(require_admin, None)
 
 
 class FakeUsageResult:

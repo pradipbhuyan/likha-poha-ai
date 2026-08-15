@@ -737,6 +737,16 @@ async def razorpay_webhook(request: Request):
     - Network errors prevented the frontend from completing signup
     - Any payment that Razorpay captured but we never processed
 
+    Signature verification is MANDATORY and fails closed. This endpoint is
+    unauthenticated by necessity (Razorpay calls it), and its success path
+    activates a paid plan — so an unsigned or unverifiable request must never
+    reach that path. Previously verification was skipped entirely when
+    RAZORPAY_WEBHOOK_SECRET was unset, which let anyone who could name a
+    pending order id forge a payment.captured event and activate a plan
+    without paying. A missing secret is now a refusal, not a bypass; startup
+    additionally refuses to boot without it when ENVIRONMENT=production
+    (see app/main.py).
+
     Always returns 200 so Razorpay stops retrying (even on errors).
     """
     import hashlib
@@ -749,17 +759,28 @@ async def razorpay_webhook(request: Request):
         raw_body = await request.body()
         signature = request.headers.get("X-Razorpay-Signature", "")
 
-        # If webhook secret is configured, verify signature
+        # Signature verification is mandatory — fail closed on a missing
+        # secret, a missing header, or a mismatch.
         webhook_secret = settings.RAZORPAY_WEBHOOK_SECRET
-        if webhook_secret:
-            expected = hmac_lib.new(
-                webhook_secret.encode("utf-8"),
-                raw_body,
-                hashlib.sha256,
-            ).hexdigest()
-            if not hmac_lib.compare_digest(expected, signature):
-                logger.warning("Razorpay webhook: invalid signature — ignoring")
-                return {"status": "ignored", "reason": "invalid_signature"}
+        if not webhook_secret:
+            logger.error(
+                "Razorpay webhook: RAZORPAY_WEBHOOK_SECRET is not configured — "
+                "refusing to process. Set it to enable webhook activation."
+            )
+            return {"status": "ignored", "reason": "webhook_secret_not_configured"}
+
+        if not signature:
+            logger.warning("Razorpay webhook: missing X-Razorpay-Signature — ignoring")
+            return {"status": "ignored", "reason": "missing_signature"}
+
+        expected = hmac_lib.new(
+            webhook_secret.encode("utf-8"),
+            raw_body,
+            hashlib.sha256,
+        ).hexdigest()
+        if not hmac_lib.compare_digest(expected, signature):
+            logger.warning("Razorpay webhook: invalid signature — ignoring")
+            return {"status": "ignored", "reason": "invalid_signature"}
 
         payload = await request.json() if not raw_body else __import__("json").loads(raw_body)
         event = payload.get("event", "")

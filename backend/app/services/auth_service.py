@@ -237,6 +237,53 @@ def require_teacher_or_admin(user=Depends(get_current_user)):
     }
 
 
+def require_self_by_username(username: str, user=Depends(get_current_user)):
+    """
+    FastAPI dependency for routes that take a student username in the path.
+
+    Allows the signed-in user to read their own record, and admins/teachers to
+    read anyone's. Use this instead of trusting the path segment: these routes
+    historically had no auth at all, which let any caller read another
+    student's progress, profile, or recommendations by guessing a username.
+
+    analytics.py carries its own near-identical require_self_or_admin_or_teacher
+    with the same semantics but a history-specific 403 message; it is left in
+    place so its existing tests keep asserting against that wording.
+    """
+    profile = get_user_profile(user.id)
+    role = profile.get("role") if profile else None
+
+    if not profile or (profile.get("username") != username and role not in ("admin", "teacher")):
+        raise HTTPException(
+            status_code=403,
+            detail="Not authorized to view this student's record",
+        )
+
+    return {"auth_user": user, "profile": profile}
+
+
+def resolve_session_username(user) -> str:
+    """
+    Return the username of the signed-in user, for routes that used to accept a
+    client-supplied username in the request body.
+
+    Writes keyed on a client-supplied username let any caller author records
+    into another student's account — the same flaw already closed in
+    weak_area_alerts.py. Route handlers call this and ignore the body value.
+    """
+    profile = get_user_profile(user.id)
+
+    if not profile:
+        raise HTTPException(status_code=403, detail="Profile not found")
+
+    username = profile.get("username")
+
+    if not username:
+        raise HTTPException(status_code=403, detail="Profile has no username")
+
+    return username
+
+
 def require_sales(user=Depends(get_current_user)):
     """
     FastAPI dependency that allows only sales profile users.

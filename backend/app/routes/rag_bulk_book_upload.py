@@ -360,9 +360,11 @@ def run_full_book_upload_job(
 @router.post("/analyze-book-set")
 async def analyze_book_set(
     files: list[UploadFile] = File(...),
+    _admin=Depends(require_admin),
 ):
     """
     Extract text and suggest editable TOC/chapter labels before RAG upload.
+    Admin-only.
 
     Nothing is persisted here. The admin reviews the suggestions and the final
     upload still happens through /book-set-upload.
@@ -575,9 +577,10 @@ def read_recent_rag_upload_jobs(
 async def analyze_full_book(
     ocr_scanned: bool = Form(False),
     file: UploadFile = File(...),
+    _admin=Depends(require_admin),
 ):
     """
-    Analyze one full textbook PDF and suggest chapter page ranges.
+    Analyze one full textbook PDF and suggest chapter page ranges. Admin-only.
 
     Nothing is persisted here. Admins review/correct the page ranges before the
     confirm endpoint creates one RAG document per chapter.
@@ -615,9 +618,11 @@ async def upload_full_book_sections(
     chapters_json: str = Form(...),
     ocr_scanned: bool = Form(False),
     file: UploadFile = File(...),
+    _admin=Depends(require_admin),
 ):
     """
     Persist reviewed full-book chapter ranges as separate RAG documents.
+    Admin-only.
 
     Each included chapter becomes its own RAG document so student dropdowns and
     retrieval stay chapter-aware even when the source was one complete PDF.
@@ -731,9 +736,11 @@ async def bulk_book_upload(
     username: str = Form(...),
     metadata_json: str = Form(...),
     files: list[UploadFile] = File(...),
+    _admin=Depends(require_admin),
 ):
     """
     Upload Class 1-10 CBSE books with per-file grade and subject metadata.
+    Admin-only.
 
     This endpoint is for full subject books or large book PDFs. The content is
     stored under the stable "Uploaded Book Content" chapter unless the admin
@@ -830,9 +837,10 @@ async def book_set_upload(
     book_title: str = Form(...),
     section_titles: str = Form(""),
     files: list[UploadFile] = File(...),
+    _admin=Depends(require_admin),
 ):
     """
-    Upload one book that is split across multiple TOC/chapter files.
+    Upload one book that is split across multiple TOC/chapter files. Admin-only.
 
     Each file becomes a separate RAG document under the same grade, subject, and
     book title prefix, while the chapter field stores the section title. This

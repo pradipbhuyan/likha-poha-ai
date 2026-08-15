@@ -211,20 +211,20 @@ def test_update_existing_chapter_progress(monkeypatch):
     assert progress["last_lesson"] == "Updated lesson."
 
 
-def test_save_progress_missing_username():
+def test_save_progress_without_username_uses_the_session(monkeypatch):
     """
-    Test that saving progress without a username is rejected.
+    Test that saving progress works without a username in the body.
 
-    The username is required because progress must belong to a specific
-    student. Without it, the backend would not know which student record
-    to save or update.
+    The username used to be a required body field. It is now derived from the
+    authenticated session, so omitting it is valid — the record still lands
+    under the signed-in student.
 
     Expected result:
-    - The backend should reject the request.
-    - The response should be HTTP 400 or HTTP 422.
-      - 400 means bad request.
-      - 422 means validation error.
+    - The request should succeed.
+    - The saved record should belong to the session's user.
     """
+    store = setup_fake_progress_store(monkeypatch)
+
     payload = {
         "grade": "Grade 9",
         "mode": "CBSE",
@@ -237,7 +237,44 @@ def test_save_progress_missing_username():
 
     response = client.post("/api/progress/save", json=payload)
 
-    assert response.status_code in [400, 422]
+    assert response.status_code == 200
+    assert response.json()["progress"]["username"] == "test_user"
+    assert list(store)[0][0] == "test_user"
+
+
+def test_save_progress_ignores_a_spoofed_username(monkeypatch):
+    """
+    Test that a username in the request body cannot redirect the write.
+
+    This endpoint previously had no authentication and keyed the record on a
+    client-supplied username, so any caller could author progress into another
+    student's account — and that fabrication surfaced in the parent progress
+    report, which reads student_progress by username.
+
+    Expected result:
+    - The record is stored under the session's username, not the body's.
+    """
+    store = setup_fake_progress_store(monkeypatch)
+
+    payload = {
+        "username": "victim_student",
+        "grade": "Grade 9",
+        "mode": "CBSE",
+        "subject": "Science",
+        "chapter": "Test Chapter",
+        "current_step_index": 1,
+        "completed": True,
+        "last_lesson": "Forged completion.",
+    }
+
+    response = client.post("/api/progress/save", json=payload)
+
+    assert response.status_code == 200
+    assert response.json()["progress"]["username"] == "test_user"
+
+    saved_usernames = {key[0] for key in store}
+    assert saved_usernames == {"test_user"}
+    assert "victim_student" not in saved_usernames
 
 
 def test_save_progress_invalid_step_index():

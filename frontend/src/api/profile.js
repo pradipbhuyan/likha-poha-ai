@@ -1,40 +1,21 @@
-import API_BASE_URL from "./client";
+import { authFetch } from "./authClient";
 
-export async function logStudentActivity({
-  username,
-  activity_type,
-}) {
+/**
+ * Gamified student profile reads and activity writes.
+ *
+ * Activity is logged against the signed-in user — the backend ignores any
+ * username sent in the body.
+ */
+
+export async function logStudentActivity({ username, activity_type }) {
   /** Record one gamified student activity such as lesson completion or test. */
-  const response = await fetch(
-    `${API_BASE_URL}/api/profile/activity`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        activity_type,
-      }),
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Failed to log student activity");
-  }
-
-  return response.json();
+  return authFetch("/api/profile/activity", {
+    method: "POST",
+    body: JSON.stringify({ username, activity_type }),
+  });
 }
 
 export async function getStudentProfile(username) {
   /** Load gamified profile counters, XP, level, rank, and streak details. */
-  const response = await fetch(
-    `${API_BASE_URL}/api/profile/${username}`
-  );
-
-  if (!response.ok) {
-    throw new Error("Failed to load student profile");
-  }
-
-  return response.json();
+  return authFetch(`/api/profile/${encodeURIComponent(username)}`);
 }

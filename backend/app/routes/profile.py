@@ -8,12 +8,19 @@ from app.services.profile_service import (
 
 router = APIRouter()
 
-from app.services.auth_service import admin_client as _sb, get_current_user  # noqa: E402
+from app.services.auth_service import (  # noqa: E402
+    admin_client as _sb,
+    get_current_user,
+    require_self_by_username,
+    resolve_session_username,
+)
 from fastapi import Depends  # noqa: E402
 
 
 class ActivityRequest(BaseModel):
-    username: str
+    # Accepted for backward compatibility but ignored — identity comes from the
+    # session, so activity cannot be logged against another student's profile.
+    username: str | None = None
     activity_type: str
 
 
@@ -22,8 +29,14 @@ class AvatarUpdateRequest(BaseModel):
 
 
 @router.get("/{username}")
-def get_profile(username: str):
-    """Return gamified profile/progress summary for one student username."""
+def get_profile(username: str, _auth=Depends(require_self_by_username)):
+    """
+    Return the gamified profile/progress summary for one student username.
+
+    Self, or any student when called by an admin/teacher. This was previously
+    unauthenticated, leaking a child's streak/points/activity to anyone who
+    guessed their username.
+    """
     return {
         "success": True,
         "profile": get_student_profile(username),
@@ -31,12 +44,12 @@ def get_profile(username: str):
 
 
 @router.post("/activity")
-def log_activity(data: ActivityRequest):
-    """Record one student activity and return the updated profile summary."""
+def log_activity(data: ActivityRequest, user=Depends(get_current_user)):
+    """Record one activity for the signed-in user and return the updated profile."""
     return {
         "success": True,
         "profile": update_student_activity(
-            username=data.username,
+            username=resolve_session_username(user),
             activity_type=data.activity_type,
         ),
     }

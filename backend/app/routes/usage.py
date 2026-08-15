@@ -1,16 +1,24 @@
-from fastapi import APIRouter, Query
-from app.services.auth_service import admin_client as supabase  # uses service_role to bypass RLS
+from fastapi import APIRouter, Depends, Query
+from app.services.auth_service import (
+    admin_client as supabase,  # uses service_role to bypass RLS
+    require_admin,
+)
 
 router = APIRouter()
 
 
 @router.get("/summary")
-def get_usage_summary(username: str | None = Query(default=None)):
+def get_usage_summary(
+    username: str | None = Query(default=None),
+    _admin=Depends(require_admin),
+):
     """
-    Summarize AI usage logs for admin cost/token monitoring.
+    Summarize AI usage logs for admin cost/token monitoring. Admin-only.
 
     Optional username filtering powers per-student drill-downs while the default
-    returns platform-wide totals and recent log rows.
+    returns platform-wide totals and recent log rows. Only the admin AI Usage
+    page calls this; it was previously unauthenticated and exposed
+    platform-wide spend plus a per-user cost breakdown to anyone.
     """
     query = (
         supabase.table("ai_usage_logs")
