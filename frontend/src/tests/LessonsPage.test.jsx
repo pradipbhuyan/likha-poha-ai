@@ -102,10 +102,6 @@ vi.mock("../api/doubt", () => ({
   getDoubtHistory: vi.fn(),
 }));
 
-vi.mock("../api/tts", () => ({
-  generateSpeech: vi.fn(),
-}));
-
 vi.mock("../components/LessonSections", () => ({
   default: ({ lesson }) => <div>{lesson}</div>,
 }));
