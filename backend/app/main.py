@@ -30,7 +30,7 @@ else:
 # payment-recovery safety net that catches captured payments whose /verify call
 # never landed — so refuse to boot rather than run degraded and unnoticed.
 # Development and test environments are unaffected.
-if settings.ENVIRONMENT == "production" and not settings.RAZORPAY_WEBHOOK_SECRET:
+if settings.is_production() and not settings.RAZORPAY_WEBHOOK_SECRET:
     raise RuntimeError(
         "RAZORPAY_WEBHOOK_SECRET is required when ENVIRONMENT=production. "
         "Set it from the Razorpay dashboard (Settings → Webhooks) so webhook "

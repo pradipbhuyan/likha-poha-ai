@@ -156,7 +156,7 @@ def login(data: LoginRequest, _rl=Depends(rate_limit_dependency(LOGIN_LIMITER)))
     Real logins use Supabase; keeping this reachable in production adds an
     attack surface that nothing in the deployed product needs.
     """
-    if settings.ENVIRONMENT == "production":
+    if settings.is_production():
         raise HTTPException(status_code=404, detail="Not found")
 
     username = data.username.lower()

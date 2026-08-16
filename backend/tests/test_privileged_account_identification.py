@@ -144,14 +144,60 @@ class TestLegacyLoginDisabledInProduction:
         return auth_route.login(LoginRequest(username=username, password=password))
 
     def test_production_returns_404(self, monkeypatch):
-        monkeypatch.setattr(auth_route.settings, "ENVIRONMENT", "production")
+        monkeypatch.setattr(auth_route.settings, "is_production", lambda: True)
         with pytest.raises(Exception) as exc_info:
             self._login()
         assert getattr(exc_info.value, "status_code", None) == 404
 
     def test_non_production_still_reachable(self, monkeypatch):
         """Local demo access and older tests must keep working."""
-        monkeypatch.setattr(auth_route.settings, "ENVIRONMENT", "development")
+        monkeypatch.setattr(auth_route.settings, "is_production", lambda: False)
         result = self._login(password="definitely-wrong")
         # Reachable, and correctly rejects a bad password rather than 404ing.
         assert result.success is False
+
+
+class TestProductionDetection:
+    """
+    Security gates must not depend on ENVIRONMENT alone.
+
+    The deployed backend was found serving POST /api/auth/login with HTTP 200
+    after that endpoint had supposedly been disabled "in production" — because
+    ENVIRONMENT is not set on the host, so it defaulted to "development" and
+    every `ENVIRONMENT == "production"` guard was inert. RENDER is injected by
+    the platform and cannot be forgotten in a dashboard.
+    """
+
+    def _reload_config(self, monkeypatch, environment=None, render=None):
+        import importlib
+        monkeypatch.delenv("ENVIRONMENT", raising=False)
+        monkeypatch.delenv("RENDER", raising=False)
+        if environment is not None:
+            monkeypatch.setenv("ENVIRONMENT", environment)
+        if render is not None:
+            monkeypatch.setenv("RENDER", render)
+        import app.config as config_module
+        return importlib.reload(config_module).settings
+
+    def test_unset_environment_on_render_is_production(self, monkeypatch):
+        """The exact configuration the live deployment was found in."""
+        assert self._reload_config(monkeypatch, render="true").is_production() is True
+
+    def test_explicit_production_is_production(self, monkeypatch):
+        assert self._reload_config(monkeypatch, environment="production").is_production() is True
+
+    def test_stale_environment_on_render_is_still_production(self, monkeypatch):
+        """A leftover ENVIRONMENT value must not re-open a production gate."""
+        assert self._reload_config(
+            monkeypatch, environment="development", render="true"
+        ).is_production() is True
+
+    def test_local_and_ci_are_not_production(self, monkeypatch):
+        assert self._reload_config(monkeypatch).is_production() is False
+        assert self._reload_config(monkeypatch, environment="development").is_production() is False
+
+    def teardown_method(self):
+        """Leave app.config as the rest of the suite expects it."""
+        import importlib
+        import app.config
+        importlib.reload(app.config)
