@@ -450,6 +450,50 @@ The pieces §4 flagged as "not yet built" now exist:
   Grade 12 **Chemistry**, which is the permanently-unfixable one with no
   PDF at all, per §3) round out what's left.
 
+- **2026-08-16 — consolidated every remaining prompt into one folder, then
+  processed a partial batch back.** Ground-truth directory check found
+  Grade 9 Maths was actually already 12/12 (the earlier "11/12" note was
+  stale). Generated Grade 12 Biology's 12 prompts for the first time ever
+  (using the corrected catalogue from §5 — confirmed the "Reproduction in
+  Organisms" card, previously broken by both the catalogue bug AND the
+  frontend chapter-mismatch bug, is now genuinely grounded in the right
+  content). Combined with the still-pending 7 Grade 8 Science + 5 Grade 11
+  Biology corrected prompts into
+  `~/Downloads/GPT55_Exemplar_Explanation_Prompts_ALL_REMAINING_2026-08-16/`
+  (24 total).
+  **`mixed_exemplar_research_all_20.zip` processed** — the first 20 of
+  those 24 (all of Grade 8 Science + Grade 11 Biology, 8 of 12 Grade 12
+  Biology). All 20 passed validation cleanly; spot-checked 3 including
+  the two the batch's own QA note flagged with honest scope limits (Grade
+  8 Light: reflection only, no refraction numerics in source; Grade 12
+  Evolution: Darwinism/Hardy-Weinberg only, no speciation-isolation
+  mechanisms) — both held up. Ingested; confirmed via directory listing
+  and live route calls. **Grade 8 Science: 12/12. Grade 11 Biology:
+  12/12. Grade 12 Biology: 8/12** (4 cards — Biotechnology Principles and
+  Processes, Biotechnology and Its Applications, Ecosystem, Biodiversity
+  and Conservation — still need their own GPT-5.5 run; prompts for them
+  already exist in the ALL_REMAINING folder above, files 21-24).
+
+- **`grade12_biology_exemplar_research_batch3_all_4.zip` (2026-08-16)
+  processed — the last 4 cards.** All 4 passed validation cleanly, spot-
+  checked grounding (Biotechnology, Ecosystem — both genuinely on-topic),
+  ingested and confirmed via directory listing and a live route call.
+
+  **🎉 Every fixable Exemplar Research section is now 12/12 — 132/132
+  cards, the entire content pipeline is complete.** Full sweep of
+  `exemplar_research_bank/*/*/`: Grade 8 Maths/Science, Grade 9
+  Maths/Science, Grade 10 Maths/Science, Grade 11 Maths/Biology, Grade 12
+  Maths/Physics/Biology — all 12/12. Existing backend test suite (214
+  tests under `teacher`/`lesson_plan`) still green throughout.
+
+  The only remaining gaps are the 3 sections with **no NCERT Exemplar PDF
+  published at all** (36 cards, confirmed via live 404s against
+  ncert.nic.in — not a content-pipeline problem, see §3): Grade 11
+  Physics, Grade 11 Chemistry, Grade 12 Chemistry. Fixing those requires
+  a separate product decision (different source material, different
+  framing/copy admitting it isn't from the Exemplar book, or dropping
+  those cards) — not more authoring.
+
 ### 5e. Not yet done
 - Decide whether to also re-verify Grade 11 Maths, Grade 12 Maths, Grade 12
   Physics (the other "already live" sections) with the same rigor applied

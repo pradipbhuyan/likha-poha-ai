@@ -1,20 +1,20 @@
 grade,subject,chapter,step_count,overall_score,completeness_score,formula_quality_score,mcq_quality_score,pedagogy_score,student_flow_score,critical,high,medium,low,audited_at
-Grade 10,Hindi,अध्याय 4: सूर्यकांत त्रिपाठी 'निराला',1,92,100,90,80,88,100,0,1,0,1,2026-08-15T13:18:32.493589+00:00
-Grade 10,Science,Chemical Reactions and Equations,1,94,100,90,80,100,100,0,0,0,0,2026-08-15T13:18:32.493942+00:00
-Grade 10,Maths,Chapter 4: Quadratic Equations,1,94,100,90,80,100,100,0,0,0,0,2026-08-15T13:18:32.494021+00:00
-Grade 11,Biology,Chapter 5: Morphology of Flowering Plants,1,93,95,90,80,100,100,0,0,1,0,2026-08-15T13:18:32.494510+00:00
-Grade 10,Hindi,अध्याय 12: भदंत आनंद कौसल्यायन,1,92,100,90,80,90,100,0,1,0,0,2026-08-15T13:18:32.494800+00:00
-Grade 11,Accountancy,Chapter 2: Theory Base of Accounting,1,93,95,90,80,100,100,0,0,1,0,2026-08-15T13:18:32.495074+00:00
-Grade 11,Accountancy,Chapter 5: Bank Reconciliation Statement,1,94,100,90,80,100,100,0,0,0,0,2026-08-15T13:18:32.495220+00:00
-Grade 10,Social Science,Chapter 1: Development,2,94,100,90,80,98,100,0,0,0,1,2026-08-15T13:18:32.495621+00:00
-Grade 10,Social Science,Chapter 1: The Rise of Nationalism in Europe,1,93,95,90,80,100,100,0,0,1,0,2026-08-15T13:18:32.496098+00:00
-Grade 11,Biology,Chapter 7: Structural Organisation in Animals,1,94,100,90,80,100,100,0,0,0,0,2026-08-15T13:18:32.496314+00:00
-Grade 11,Biology,Chapter 12: Respiration in Plants,1,94,100,90,80,98,100,0,0,0,1,2026-08-15T13:18:32.496530+00:00
-Grade 10,Social Science,Chapter 4: Agriculture,1,94,100,90,80,100,100,0,0,0,0,2026-08-15T13:18:32.496769+00:00
-Grade 10,Social Science,"Political Science - Chapter 3: Gender, Religion and Caste",1,94,100,90,80,100,100,0,0,0,0,2026-08-15T13:18:32.497289+00:00
-Grade 10,Social Science,Geography - Chapter 1: Resources and Development,1,94,100,90,80,100,100,0,0,0,0,2026-08-15T13:18:32.497494+00:00
-Grade 10,Social Science,Chapter 7: Lifelines of National Economy,1,94,100,90,80,100,100,0,0,0,0,2026-08-15T13:18:32.497724+00:00
-Grade 10,English,Grammar: Subject-Verb Concord (Advanced Rules),1,94,100,90,80,100,100,0,0,0,0,2026-08-15T13:18:32.497840+00:00
-Grade 10,Science,Chapter 9: Light – Reflection and Refraction,1,94,100,90,80,100,100,0,0,0,0,2026-08-15T13:18:32.497856+00:00
-Grade 10,Maths,Chapter 6: Triangles,1,94,100,90,80,98,100,0,0,0,1,2026-08-15T13:18:32.498097+00:00
-Grade 10,English,Workbook - Chapter 2: Nelson Mandela — Long Walk to Freedom,1,94,100,90,80,100,100,0,0,0,0,2026-08-15T13:18:32.498385+00:00
+Grade 10,English,Chapter 3: Two Stories about Flying,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.944002+00:00
+Grade 10,English,Chapter 8: The Sermon at Benares,2,94,100,90,80,98,100,0,0,0,1,2026-08-16T05:46:47.944293+00:00
+Grade 10,Social Science,Chapter 6: Manufacturing Industries,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.944423+00:00
+Grade 10,English,Workbook - Chapter 3: Two Stories About Flying,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.944653+00:00
+Grade 10,Social Science,Political Science - Chapter 5: Outcomes of Democracy,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.944913+00:00
+Grade 10,English,Text Book - Chapter 5: Glimpses of India,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.945071+00:00
+Grade 10,Science,Chapter 10: The Human Eye and the Colourful World,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.945224+00:00
+Grade 10,Science,Chapter 4: Carbon and Its Compounds,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.945461+00:00
+Grade 10,Social Science,History - Chapter 5: Print Culture and the Modern World,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.945745+00:00
+Grade 11,Biology,Chapter 15: Body Fluids and Circulation,1,94,100,90,80,98,100,0,0,0,1,2026-08-16T05:46:47.945994+00:00
+Grade 10,Social Science,Chapter 4: Globalisation and the Indian Economy,1,93,95,90,80,100,100,0,0,1,0,2026-08-16T05:46:47.946428+00:00
+Grade 11,Biology,Chapter 2: Biological Classification,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.946587+00:00
+Grade 10,Hindi,अध्याय 9: यशपाल,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.946781+00:00
+Grade 10,Hindi,अध्याय 8: रामवृक्ष बेनीपुरी,1,93,95,90,80,100,100,0,0,1,0,2026-08-16T05:46:47.947062+00:00
+Grade 10,Hindi,अध्याय 12: भदंत आनंद कौसल्यायन,1,92,100,90,80,88,100,0,1,0,1,2026-08-16T05:46:47.947290+00:00
+Grade 10,Science,Chapter 6: Control and Coordination,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.947691+00:00
+Grade 10,English,Text Book - Chapter 1: A Letter to God,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.947768+00:00
+Grade 10,Maths,Chapter 7: Coordinate Geometry,1,94,100,90,80,100,100,0,0,0,0,2026-08-16T05:46:47.947855+00:00
+Grade 10,English,Grammar: Subject-Verb Concord (Advanced Rules),1,93,95,90,80,100,100,0,0,1,0,2026-08-16T05:46:47.947987+00:00
