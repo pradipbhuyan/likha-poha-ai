@@ -22,6 +22,14 @@
 -- account that has none.
 -- ============================================================================
 
+-- ============================================================================
+-- RESOLVED 2026-08-16: all four groups confirmed as test accounts by the
+-- platform owner and scheduled for deletion rather than renaming. See
+-- 2026-08-16_delete_duplicate_test_accounts.sql, which supersedes the rename
+-- path below. The queries here remain useful as a diagnostic if duplicates
+-- reappear.
+-- ============================================================================
+
 -- ── 1. Which of the four names actually have records? ───────────────────────
 -- Names with zero rows everywhere are free to rename either side.
 with dupes(name) as (
