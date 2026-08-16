@@ -333,9 +333,9 @@ export default function ExemplarResearchPage({ user, setActivePage }) {
   const isTeacher = user?.role === "teacher";
   const userGrade = user?.grade || "Grade 9";
   const paidAccess = hasPaidAccess(user);
-  // akshita.teststudent is a full-access QA account (see utils/testAccounts.js,
-  // used the same way in ExamPrepPage.jsx) — let it browse every grade like a
-  // teacher can, instead of being locked to its own profile grade.
+  // All-access QA accounts (profiles.is_test_account — see utils/testAccounts.js,
+  // used the same way in ExamPrepPage.jsx) browse every grade like a teacher
+  // can, instead of being locked to their own profile grade.
   const canBrowseAllGrades = isTeacher || isAllAccessTestUser(user);
 
   // Grade selector — teachers (and the all-access test account) can view any

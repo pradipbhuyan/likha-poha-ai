@@ -34,10 +34,11 @@ describe("subjectAccess", () => {
   });
 
   test("allows the QA test student to access every subject", () => {
-    /** akshita.teststudent is intentionally unrestricted for test coverage. */
+    /** An account flagged is_test_account is intentionally unrestricted. */
     const user = {
       role: "student",
       username: "akshita.teststudent",
+      isTestAccount: true,
       accessCbse: false,
       cbseSubjects: ["Science"],
     };

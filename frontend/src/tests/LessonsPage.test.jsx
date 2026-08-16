@@ -161,7 +161,8 @@ describe("LessonsPage — selector access rules", () => {
   });
 
   test("the internal all-access test account sees every grade", async () => {
-    await renderPage({ user: student({ username: "akshita.teststudent" }) });
+    // Identity comes from profiles.is_test_account, not the username.
+    await renderPage({ user: student({ isTestAccount: true }) });
 
     const [gradeSelect] = selects();
     const options = [...gradeSelect.options].map((o) => o.value);
@@ -375,13 +376,13 @@ describe("LessonsPage — refresh lesson control", () => {
   });
 
   test("is shown to the internal all-access test account", async () => {
-    await renderPage({ user: student({ username: "akshita.teststudent" }) });
+    await renderPage({ user: student({ isTestAccount: true }) });
 
     expect(await screen.findByRole("button", { name: REFRESH })).toBeInTheDocument();
   });
 
   test("refetches with refresh:true to bypass the server-side cache", async () => {
-    await renderPage({ user: student({ username: "akshita.teststudent" }) });
+    await renderPage({ user: student({ isTestAccount: true }) });
 
     fireEvent.click(await screen.findByRole("button", { name: REFRESH }));
 
@@ -393,7 +394,7 @@ describe("LessonsPage — refresh lesson control", () => {
   });
 
   test("keeps the current lesson on screen when a refresh fails", async () => {
-    await renderPage({ user: student({ username: "akshita.teststudent" }) });
+    await renderPage({ user: student({ isTestAccount: true }) });
     await screen.findByTestId("chapter-journey-view");
 
     getChapterDoc.mockRejectedValueOnce(new Error("refresh failed"));

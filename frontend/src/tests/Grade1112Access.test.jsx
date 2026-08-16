@@ -9,7 +9,7 @@
  *   - ExamPrepPage: grade-blocked students see "not available" guard
  *   - ExamPrepPage: Grade 11/12 free/nano students see premium gate
  *   - ExamPrepPage: Grade 11/12 premium students see full center
- *   - ExamPrepPage: akshita.teststudent (Grade 9) bypasses grade gate
+ *   - ExamPrepPage: an all-access QA account (Grade 9) bypasses the grade gate
  *   - ExamPrepPage: admin bypasses grade gate
  *   - Sidebar: Exam Prep visible for Grade 11/12 (all tiers)
  *   - Sidebar: Exam Prep hidden for Grade 5-10
@@ -156,8 +156,12 @@ const adminUser = {
   id: "u6", username: "admin_user", role: "admin",
   grade: null, subscriptionPlan: "free", accessToken: "tok6",
 };
+// All-access QA account. Identity is the profiles.is_test_account flag, not
+// the username — a username here would be a grant anyone could claim, since
+// signup takes it from a user-supplied field with no uniqueness check.
 const testUser = {
   id: "u7", username: "akshita.teststudent", role: "student",
+  isTestAccount: true,
   grade: "Grade 9", subscriptionPlan: "free", accessToken: "tok7",
 };
 
@@ -347,7 +351,7 @@ describe("ExamPrepPage — Access Control", () => {
     });
   });
 
-  it("akshita.teststudent (Grade 9) bypasses grade gate and sees full center", async () => {
+  it("an all-access QA account (Grade 9) bypasses grade gate and sees full center", async () => {
     mockFetch(ACCESS_TEST_USER);
     render(<ExamPrepPage user={testUser} />);
     await waitFor(() => {
@@ -407,9 +411,17 @@ describe("Sidebar — Exam Prep Link Visibility", () => {
     expect(screen.queryByText("Exam Prep Center")).toBeNull();
   });
 
-  it("Exam Prep Centre visible for akshita.teststudent (Grade 9 test bypass)", () => {
+  it("Exam Prep Centre visible for an all-access QA account (Grade 9 bypass)", () => {
     renderSidebar(testUser);
     expect(screen.getByText("Exam Prep Center")).toBeTruthy();
+  });
+
+  it("Exam Prep Centre stays hidden for a Grade 9 student who merely shares the username", () => {
+    // Regression: the bypass used to key on the username string, so anyone
+    // registering that name inherited it. It is now the database flag.
+    const { isTestAccount, ...impostor } = testUser;
+    renderSidebar({ ...impostor, id: "u8" });
+    expect(screen.queryByText("Exam Prep Center")).toBeNull();
   });
 
   it("Exam Prep Centre visible for admin", () => {

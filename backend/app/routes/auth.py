@@ -101,13 +101,21 @@ def _build_me_response(auth_user, profile: dict, needs_role_selection: bool = Fa
     }
 
 # ── Reserved usernames ───────────────────────────────────────────────────────
-# Signup takes the username straight from a user-supplied name field with no
-# uniqueness constraint, so any name that carries meaning elsewhere in the
-# system is claimable by registering it. These are the names that still do:
-# the seeded demo accounts, and the QA test account whose all-access
-# behaviour has a username fallback until profiles.is_test_account is
-# populated (see test_account_service). Once that flag is set and the
-# fallback is deleted, only the demo names need reserving.
+# Signup takes the username straight from a user-supplied name field, and
+# `username` has no uniqueness constraint, so any name that carries meaning
+# elsewhere in the system is claimable by registering it.
+#
+# These stay reserved even now that test-account access is a database flag.
+# The reason is stronger than impersonation: require_self_by_username()
+# authorizes by comparing the caller's profile username to the one in the
+# path, while the queries behind it — get_user_progress, get_student_profile,
+# build_study_recommendations — all filter on that username STRING. Two
+# accounts sharing a username would therefore each pass the guard for the
+# other's records and read them.
+#
+# The real fix is a uniqueness constraint on profiles.username; see
+# docs/sql/2026-08-16_check_username_uniqueness.sql. Until that lands, this
+# list is what prevents the known-sensitive names from being duplicated.
 RESERVED_USERNAMES = {
     "admin",
     "akshita",

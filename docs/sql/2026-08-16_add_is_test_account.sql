@@ -37,18 +37,25 @@ select id, username, role, is_test_account
  where is_test_account = true;
 
 -- ============================================================================
--- AFTERWARDS
+-- AFTERWARDS  —  applied 2026-08-16, verify query returned the expected row
 -- ============================================================================
--- Once the query above returns the expected row, the username fallback can be
--- deleted from both of these, leaving the flag as the only source of truth:
+-- The username fallback has been removed from all three files; the flag is now
+-- the only source of truth:
 --
---   backend/app/services/test_account_service.py  -> _LEGACY_TEST_USERNAMES
---   shared/utils/testAccounts.js                  -> LEGACY_TEST_USERNAMES
---   frontend/src/utils/testAccounts.js            -> LEGACY_TEST_USERNAMES
+--   backend/app/services/test_account_service.py
+--   shared/utils/testAccounts.js
+--   frontend/src/utils/testAccounts.js
 --
--- 'akshita.teststudent' can then also come out of RESERVED_USERNAMES in
--- backend/app/routes/auth.py, since the name would no longer grant anything.
+-- CORRECTION to this file's original note: it said 'akshita.teststudent' could
+-- then come out of RESERVED_USERNAMES in backend/app/routes/auth.py. That was
+-- wrong, and it stays reserved. require_self_by_username() authorizes by
+-- comparing the caller's profile username to the one in the request path,
+-- while the queries behind it (get_user_progress, get_student_profile,
+-- build_study_recommendations) filter on that username STRING. Two accounts
+-- sharing a username would each pass the guard for the other's records and
+-- read them. Reserving the name is what prevents that for the known-sensitive
+-- accounts; see 2026-08-16_check_username_uniqueness.sql for the real fix.
 --
--- To revoke access later, no deploy is needed:
---   update public.profiles set is_test_account = false where username = '...';
+-- To revoke test access later, no deploy is needed:
+--   update public.profiles set is_test_account = false where id = '...';
 -- ============================================================================

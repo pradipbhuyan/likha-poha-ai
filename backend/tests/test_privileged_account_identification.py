@@ -14,9 +14,9 @@ name. Two mechanisms were affected:
     authorization against {"admin", "pradip", "pradip admin"}. All admin
     authority now comes from the profile role, which is what the 90 admin
     endpoints already enforced.
-  - QA test account: identified by a profiles.is_test_account flag, with the
-    legacy username retained as a transitional fallback until the column is
-    populated.
+  - QA test account: identified solely by the profiles.is_test_account flag.
+    The transitional username fallback was removed once the column was
+    populated and verified.
 
 The legacy /api/auth/login path is also disabled in production here — a second
 authentication path outside Supabase's session and lockout policy.
@@ -33,7 +33,7 @@ from app.services.test_account_service import is_all_access_test_user
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Test account: flag first, username only as a transitional fallback
+# Test account: the database flag is the only source of truth
 # ─────────────────────────────────────────────────────────────────────────────
 
 class TestAllAccessTestAccount:
@@ -51,20 +51,25 @@ class TestAllAccessTestAccount:
         assert is_all_access_test_user({"username": "real_student"}) is False
         assert is_all_access_test_user({"username": "real_student", "is_test_account": False}) is False
 
-    def test_missing_flag_does_not_grant(self):
-        """A profile loaded before the migration simply has no flag."""
-        assert is_all_access_test_user({"username": "real_student"}) is False
-
     def test_none_profile_is_safe(self):
         assert is_all_access_test_user(None) is False
 
-    def test_legacy_username_still_works_pre_migration(self):
+    def test_username_alone_no_longer_grants_access(self):
         """
-        The existing QA account must keep working before is_test_account is
-        populated — deploys are automatic on push, so code can land first.
+        The transitional fallback is gone.
+
+        profiles.is_test_account was populated on 2026-08-16 and verified, so
+        the hard-coded username set was removed. Registering that name must no
+        longer grant anything — which was the whole point of the flag.
         """
-        assert is_all_access_test_user({"username": "akshita.teststudent"}) is True
-        assert is_all_access_test_user({"username": "  Akshita.TestStudent  "}) is True
+        assert is_all_access_test_user({"username": "akshita.teststudent"}) is False
+        assert is_all_access_test_user({"username": "  Akshita.TestStudent  "}) is False
+
+    def test_the_real_qa_account_still_works(self):
+        """The provisioned account keeps its access via the flag."""
+        assert is_all_access_test_user(
+            {"username": "akshita.teststudent", "is_test_account": True}
+        ) is True
 
     def test_flag_takes_priority_over_absent_username(self):
         assert is_all_access_test_user({"is_test_account": True}) is True

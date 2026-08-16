@@ -5,24 +5,15 @@
  * every grade, every subject, no entitlement gates — without provisioning a
  * paid account per scenario.
  *
- * The account is identified by a `profiles.is_test_account` flag, not by its
- * username. Usernames come straight from a user-supplied field at signup with
- * no uniqueness constraint, so a name in shipped code is a grant anyone can
- * claim by registering it. A database flag is provisioned deliberately,
- * revocable without a deploy, and works for more than one QA account.
+ * Identified solely by the `profiles.is_test_account` flag. It was previously
+ * a username hard-coded here, which is a grant anyone could claim: signup
+ * takes the username straight from a user-supplied field with no uniqueness
+ * constraint. The flag is provisioned deliberately, revocable without a
+ * deploy, and works for any number of QA accounts.
  *
- * LEGACY FALLBACK: the username set below still grants access so this keeps
- * working before the `is_test_account` column is populated. Delete
- * LEGACY_TEST_USERNAMES (and the `||` clause) once the flag is set on the
- * account — see docs/sql/2026-08-16_add_is_test_account.sql.
+ * To grant or revoke, no code change is needed:
+ *   update public.profiles set is_test_account = <true|false> where id = '...';
  */
-const LEGACY_TEST_USERNAMES = new Set(["akshita.teststudent"]);
-
-export function normalizeUsername(value) {
-  return String(value || "").trim().toLowerCase();
-}
-
 export function isAllAccessTestUser(user) {
-  if (user?.isTestAccount === true) return true;
-  return LEGACY_TEST_USERNAMES.has(normalizeUsername(user?.username));
+  return user?.isTestAccount === true;
 }

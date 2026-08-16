@@ -1,7 +1,7 @@
 /**
  * ExamPrepPage.jsx — JEE / NEET / CUET Exam Prep Center
  * ======================================================
- * Access: admin | Grade 11/12 students | akshita.teststudent
+ * Access: admin | Grade 11/12 students | all-access QA accounts
  *
  * Sections:
  *   1. Exam tabs (JEE active, NEET/CUET coming soon)
@@ -40,14 +40,13 @@ import {
   verifyStudentPayment,
 } from "../api/payments";
 import { SUBSCRIPTION_PLANS } from "../config/subscriptionPlans";
+import { isAllAccessTestUser } from "../utils/testAccounts";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
 // NOTE: Frontend does NOT infer Exam Prep access from plan strings.
 // All access decisions come from GET /api/exam-prep/access-check (canonical backend).
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
-const TEST_ACCESS_USERS = new Set(["akshita.teststudent"]);
-
 const EXAMS = {
   jee_main:   { label: "JEE Main",   icon: Ruler,          color: "#6366f1", active: true },
   neet_ug:    { label: "NEET UG",    icon: Microscope,     color: "#10b981", active: true },
@@ -1743,7 +1742,7 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
   const [simHistory, setSimHistory] = useState([]);
   const [simHistoryLoading, setSimHistoryLoading] = useState(false);
 
-  const isTestUser = TEST_ACCESS_USERS.has(user?.username);
+  const isTestUser = isAllAccessTestUser(user);
   const isAdmin = user?.role === "admin";
 
   // Self-checkout for the ₹1999 Exam Prep Center plan is only offered to

@@ -46,6 +46,7 @@ import {
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
+import { isAllAccessTestUser } from "../utils/testAccounts";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
@@ -372,7 +373,9 @@ function Sidebar({
       icon: GraduationCap,
       roles: ["admin", "student"],
       gradeFilter: ["Grade 11", "Grade 12"],
-      testUsers: ["akshita.teststudent"],
+      // All-access QA accounts see this regardless of grade, so the team can
+      // check the Grade 11/12 experience from one login.
+      bypassGradeFilterForTestAccounts: true,
       group: "Practise & Prepare",
     },
     {
@@ -459,8 +462,10 @@ function Sidebar({
   const visiblePages = pages.filter((page) => {
     /** Hide student/parent-only destinations from admin while keeping admin tools visible. */
     if (isAdmin) return !page.parentOnly && !page.hideForAdmin;
-    // Test user access: specific usernames can see pages before role-based launch
-    if (page.testUsers?.includes(user?.username)) return true;
+    // All-access QA accounts. Keyed on profiles.is_test_account rather than a
+    // username, which signup takes from a user-supplied field and never
+    // checks for uniqueness — a name here would be a grant anyone could claim.
+    if (page.bypassGradeFilterForTestAccounts && isAllAccessTestUser(user)) return true;
     if (!page.roles?.includes(user?.role)) return false;
     // Grade-gated pages: students must be in one of the allowed grades
     if (page.gradeFilter && user?.role === "student") {
