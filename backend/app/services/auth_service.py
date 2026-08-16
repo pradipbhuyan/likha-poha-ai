@@ -1,7 +1,9 @@
 import os
+import re as _re
 
 from dotenv import load_dotenv
 
+from app.services.logger_service import get_logger
 from app.services.ssl_service import enable_system_truststore
 
 from fastapi import Depends, HTTPException
@@ -11,6 +13,27 @@ from supabase import create_client
 enable_system_truststore()
 
 load_dotenv()
+
+_log = get_logger("services.auth")
+
+# Provider error strings are not guaranteed to keep credentials or personal
+# data out of their message, so scrub both before anything reaches the logs.
+# A JWT is three base64url segments separated by dots; a bearer token in a log
+# line is a session-hijack vector. Emails are scrubbed because the users here
+# are children and their addresses must not accumulate in log retention.
+_JWT_PATTERN = _re.compile(r"\beyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
+_EMAIL_PATTERN = _re.compile(r"\b[^\s@<>]+@[^\s@<>]+\.[A-Za-z]{2,}\b")
+
+
+def _safe_auth_error(exc: object, limit: int = 200) -> str:
+    """
+    Render an auth exception for logging with tokens and emails redacted and the
+    message length capped.
+
+    Used on every auth failure path. The success path logs nothing at all.
+    """
+    text = _JWT_PATTERN.sub("<redacted-token>", str(exc))
+    return _EMAIL_PATTERN.sub("<redacted-email>", text)[:limit]
 
 security = HTTPBearer()
 
@@ -41,6 +64,13 @@ def get_current_user(
     Retries up to 2 times on transient HTTP/2 connection drops (Render free tier
     occasionally terminates the connection pool mid-request, causing ConnectionTerminated
     or ReadError errors that are not auth failures).
+
+    Deliberately logs nothing on the success path. This runs on every
+    authenticated request, and it previously printed the user's id and email to
+    stdout each time — accumulating children's personal data in log retention,
+    outside the platform's consent and deletion story. Failures log the provider
+    error only; the token and the user's identity are never logged. Per-request
+    identity belongs in tracing, not here.
     """
     import time as _time  # noqa: PLC0415
 
@@ -57,9 +87,6 @@ def get_current_user(
                     detail="Invalid token",
                 )
 
-            print("AUTH USER ID:", response.user.id)
-            print("AUTH USER EMAIL:", response.user.email)
-
             return response.user
 
         except HTTPException:
@@ -75,17 +102,17 @@ def get_current_user(
             ))
             if is_transient and attempt < 2:
                 last_exc = e
-                print(f"AUTH ERROR (retry {attempt + 1}): {e}")
+                _log.warning("auth.transient_error", attempt=attempt + 1, error=_safe_auth_error(e))
                 _time.sleep(0.3 * (attempt + 1))
                 continue
-            print("AUTH ERROR:", str(e))
+            _log.warning("auth.token_rejected", error=_safe_auth_error(e))
             raise HTTPException(
                 status_code=401,
                 detail="Invalid or expired token",
             )
 
     # All retries exhausted — still a transient error, return 401
-    print("AUTH ERROR (all retries failed):", str(last_exc))
+    _log.error("auth.retries_exhausted", error=_safe_auth_error(last_exc))
     raise HTTPException(
         status_code=401,
         detail="Invalid or expired token",
@@ -159,12 +186,15 @@ def require_admin(user=Depends(get_current_user)):
 
     Admin-only routes can mutate access, families, plans, and user records, so
     they must use this guard before touching service-role Supabase APIs.
+
+    A denied attempt is logged, since a non-admin reaching an admin route is
+    worth seeing. Only the role is recorded — this previously printed the whole
+    profile row, email included, on every admin request.
     """
     profile = get_user_profile(user.id)
 
-    print("ADMIN PROFILE:", profile)
-
     if not profile or profile.get("role") != "admin":
+        _log.warning("auth.admin_denied", role=(profile or {}).get("role"))
         raise HTTPException(
             status_code=403,
             detail="Admin access required",
