@@ -83,7 +83,10 @@ function Sidebar({
   setMobileNavOpen,
 }) {
   /** Builds the role-aware navigation menu and renders the persistent app sidebar. */
-  const isAdmin = user?.role === "admin" || user?.username === "pradip";
+  // Admin is a role, never a username. Usernames come from a user-supplied
+  // field at signup with no uniqueness check, so granting on a literal name
+  // means anyone who registers it inherits the grant.
+  const isAdmin = user?.role === "admin";
   const [avatar, setAvatar] = useState(user?.avatar || "");
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const fileRef = useRef(null);

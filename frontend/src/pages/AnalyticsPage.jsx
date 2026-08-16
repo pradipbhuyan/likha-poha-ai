@@ -355,7 +355,7 @@ function AnalyticsPage({ user, setActivePage }) {
         </>
       )}
 
-      {(user.username === "pradip" || user.username === "admin") && (
+      {user.role === "admin" && (
         <section className="premium-section premium-admin-danger-section">
           <div className="premium-header">
             <h3>🧹 Admin: Clear Test History</h3>

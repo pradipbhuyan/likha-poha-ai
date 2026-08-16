@@ -1005,6 +1005,10 @@ class TestProductionSafetyGaps:
             "daily_token_limit", "monthly_token_limit",
             "subscription_expires_at", "subscription_days_remaining",
             "subscription_expiring_soon", "avatar", "can_report_issues",
+            # Boolean capability flag, same class as access_cbse: marks an
+            # all-access QA account so the client can grant test-only UI.
+            # Carries no credential and no personal data.
+            "is_test_account",
         }
 
         FORBIDDEN_FIELDS = {

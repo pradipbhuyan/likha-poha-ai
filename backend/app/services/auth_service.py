@@ -118,6 +118,22 @@ def get_current_user(
         detail="Invalid or expired token",
     )
 
+_PROFILE_COLUMNS = (
+    "id, email, username, role, parent_id, family_id, grade, stream, "
+    "cbse_subjects, account_status, subscription_plan"
+)
+
+# is_test_account is selected separately so this module keeps working whether
+# or not the column exists yet. Deploys are automatic on push, so code can
+# reach production before the migration is applied; selecting an unknown
+# column would fail every profile lookup and take down all authentication.
+# The first failure flips this off and the short column list is used from then
+# on — self-healing in the other direction too, since a process started before
+# the migration picks the column up on its next restart.
+_OPTIONAL_PROFILE_COLUMNS = ["is_test_account"]
+_optional_columns_available = True
+
+
 def get_user_profile(user_id: str):
     """
     Load the application profile row that belongs to an authenticated user id.
@@ -125,16 +141,37 @@ def get_user_profile(user_id: str):
     Supabase auth confirms identity, while the profile row provides app-level
     role and family metadata used by route guards.
     """
-    response = (
-        admin_client
-        .table("profiles")
-        .select("id, email, username, role, parent_id, family_id, grade, stream, cbse_subjects, account_status, subscription_plan")
-        .eq("id", user_id)
-        .single()
-        .execute()
-    )
+    global _optional_columns_available
 
-    return response.data
+    def _query(columns: str):
+        return (
+            admin_client
+            .table("profiles")
+            .select(columns)
+            .eq("id", user_id)
+            .single()
+            .execute()
+        )
+
+    if _optional_columns_available:
+        try:
+            return _query(
+                _PROFILE_COLUMNS + ", " + ", ".join(_OPTIONAL_PROFILE_COLUMNS)
+            ).data
+        except Exception as e:
+            message = str(e).lower()
+            # Only treat an unknown-column error as "not migrated yet"; any
+            # other failure must surface rather than being silently retried.
+            if not any(col in message for col in _OPTIONAL_PROFILE_COLUMNS):
+                raise
+            _optional_columns_available = False
+            _log.warning(
+                "auth.profile_optional_columns_missing",
+                columns=",".join(_OPTIONAL_PROFILE_COLUMNS),
+                hint="run docs/sql/2026-08-16_add_is_test_account.sql",
+            )
+
+    return _query(_PROFILE_COLUMNS).data
 
 
 def require_parent(user=Depends(get_current_user)):

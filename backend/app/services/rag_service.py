@@ -9,14 +9,6 @@ import re
 # deleting all rag_chunks rows and re-uploading every RAG document.
 EMBEDDING_MODEL = "text-embedding-3-small"
 
-ADMIN_USERS = {"admin", "pradip", "pradip admin"}
-
-
-def is_admin_upload_user(username) -> bool:
-    normalized_username = str(username or "").strip().lower()
-    return normalized_username in ADMIN_USERS
-
-
 def split_text_into_chunks(text, chunk_size=1200):
     words = text.split()
     chunks = []
@@ -82,15 +74,14 @@ def upload_textbook_text(
     """
     Store one RAG document, split its text, and persist embeddings for search.
     Routes to the Grade 11/12 Supabase project when grade is 11 or 12.
-    """
-    if not is_admin_upload_user(username):
-        return {
-            "success": False,
-            "message": "Only an admin user can upload RAG content.",
-            "document_id": None,
-            "chunks_created": 0,
-        }
 
+    Authorization is enforced by the route layer: every /api/rag/ endpoint
+    depends on require_admin, which checks the profile role. This function
+    previously re-checked authorization itself against a hard-coded username
+    set, which was both redundant and wrong in the restrictive direction — any
+    admin whose username was not one of three literals silently got
+    "Only an admin user can upload RAG content" on every upload.
+    """
     db = get_content_db(grade)
 
     document_row = {

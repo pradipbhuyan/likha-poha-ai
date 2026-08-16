@@ -153,7 +153,7 @@ function formatIcon(format, channel) {
 
 function SalesCollateralPage({ user }) {
   /** Show salespeople downloadable collateral and admin-only collateral management. */
-  const isAdmin = user?.role === "admin" || user?.username === "pradip";
+  const isAdmin = user?.role === "admin";
   const [collaterals, setCollaterals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);

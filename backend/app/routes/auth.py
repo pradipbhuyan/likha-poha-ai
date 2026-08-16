@@ -93,8 +93,38 @@ def _build_me_response(auth_user, profile: dict, needs_role_selection: bool = Fa
         "subscription_expiring_soon": expiring_soon,
         "avatar": profile.get("avatar") or "",
         "stream": profile.get("stream") or None,   # Grade 11/12 academic stream
+        # All-access QA account flag. Drives isAllAccessTestUser() on the
+        # client so test-account behaviour is provisioned in the database
+        # rather than keyed on a username anyone could register.
+        "is_test_account": bool(profile.get("is_test_account")),
         "can_report_issues": _check_can_report_issues(profile.get("id") or ""),
     }
+
+# ── Reserved usernames ───────────────────────────────────────────────────────
+# Signup takes the username straight from a user-supplied name field with no
+# uniqueness constraint, so any name that carries meaning elsewhere in the
+# system is claimable by registering it. These are the names that still do:
+# the seeded demo accounts, and the QA test account whose all-access
+# behaviour has a username fallback until profiles.is_test_account is
+# populated (see test_account_service). Once that flag is set and the
+# fallback is deleted, only the demo names need reserving.
+RESERVED_USERNAMES = {
+    "admin",
+    "akshita",
+    "pradip",
+    "pradip admin",
+    "akshita.teststudent",
+}
+
+
+def _reject_reserved_username(name: str) -> None:
+    """Block signup from claiming a username that grants elevated behaviour."""
+    if str(name or "").strip().casefold() in RESERVED_USERNAMES:
+        raise HTTPException(
+            status_code=400,
+            detail="That name is reserved. Please choose a different one.",
+        )
+
 
 USERS = {
     "akshita": {
@@ -119,7 +149,16 @@ def login(data: LoginRequest, _rl=Depends(rate_limit_dependency(LOGIN_LIMITER)))
 
     Most current UI auth flows use Supabase directly, but this endpoint remains
     for compatibility with older tests and local demo access.
+
+    Disabled in production. This is a second authentication path that does not
+    go through Supabase, so it sits outside whatever session, lockout and MFA
+    policy is configured there — and the accounts it grants are fixed in code.
+    Real logins use Supabase; keeping this reachable in production adds an
+    attack surface that nothing in the deployed product needs.
     """
+    if settings.ENVIRONMENT == "production":
+        raise HTTPException(status_code=404, detail="Not found")
+
     username = data.username.lower()
     if username not in USERS:
         return LoginResponse(success=False, message="Invalid username or password")
@@ -956,6 +995,8 @@ def complete_signup(data: CompleteSignupRequest):
     if role not in VALID_SIGNUP_ROLES:
         raise HTTPException(status_code=400, detail="Invalid role.")
 
+    _reject_reserved_username(data.name)
+
     if not _razorpay_is_configured():
         raise HTTPException(status_code=503, detail="Payment not configured.")
 
@@ -1145,6 +1186,8 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
         )
     if role not in VALID_SIGNUP_ROLES:
         raise HTTPException(status_code=400, detail="Invalid role.")
+
+    _reject_reserved_username(data.name)
 
     email_clean = (data.email or "").strip().lower()
     if not email_clean:
@@ -1487,6 +1530,8 @@ def signup_with_offer_code(data: OfferCodeSignupRequest, _rl=Depends(rate_limit_
     role = (data.role or "").lower().strip()
     if role not in VALID_SIGNUP_ROLES:
         raise HTTPException(status_code=400, detail="Invalid role.")
+
+    _reject_reserved_username(data.name)
 
     code = (data.offer_code or "").strip().upper()
     if len(code) != 8:
