@@ -1,398 +1,10 @@
 {
-  "audited_at": "2026-08-16T05:46:47.948029+00:00",
+  "audited_at": "2026-08-17T09:02:57.494055+00:00",
   "lessons": [
     {
       "grade": "Grade 10",
-      "subject": "English",
-      "chapter": "Chapter 3: Two Stories about Flying",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam-style problems",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.944002+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "English",
-      "chapter": "Chapter 8: The Sermon at Benares",
-      "step_count": 2,
-      "total_findings": 1,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 1
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 98,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [
-        {
-          "severity": "low",
-          "category": "pedagogy",
-          "message": "Step 'Concept introduction' lacks real-world context.",
-          "detail": ""
-        }
-      ],
-      "steps": [
-        {
-          "step_title": "Concept introduction",
-          "findings": [
-            {
-              "severity": "low",
-              "category": "pedagogy",
-              "message": "Step 'Concept introduction' lacks real-world context.",
-              "detail": ""
-            }
-          ],
-          "finding_count": 1
-        },
-        {
-          "step_title": "Worked examples",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.944293+00:00"
-    },
-    {
-      "grade": "Grade 10",
       "subject": "Social Science",
-      "chapter": "Chapter 6: Manufacturing Industries",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam-style problems",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.944423+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "English",
-      "chapter": "Workbook - Chapter 3: Two Stories About Flying",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam preparation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.944653+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Social Science",
-      "chapter": "Political Science - Chapter 5: Outcomes of Democracy",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Core explanation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.944913+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "English",
-      "chapter": "Text Book - Chapter 5: Glimpses of India",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam preparation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.945071+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Science",
-      "chapter": "Chapter 10: The Human Eye and the Colourful World",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Core explanation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.945224+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Science",
-      "chapter": "Chapter 4: Carbon and Its Compounds",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam preparation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.945461+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Social Science",
-      "chapter": "History - Chapter 5: Print Culture and the Modern World",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam-style problems",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.945745+00:00"
-    },
-    {
-      "grade": "Grade 11",
-      "subject": "Biology",
-      "chapter": "Chapter 15: Body Fluids and Circulation",
-      "step_count": 1,
-      "total_findings": 1,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 1
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 98,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [
-        {
-          "severity": "low",
-          "category": "pedagogy",
-          "message": "Step 'Concept introduction' lacks real-world context.",
-          "detail": ""
-        }
-      ],
-      "steps": [
-        {
-          "step_title": "Concept introduction",
-          "findings": [
-            {
-              "severity": "low",
-              "category": "pedagogy",
-              "message": "Step 'Concept introduction' lacks real-world context.",
-              "detail": ""
-            }
-          ],
-          "finding_count": 1
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.945994+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Social Science",
-      "chapter": "Chapter 4: Globalisation and the Indian Economy",
-      "step_count": 1,
-      "total_findings": 1,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 1,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 95,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 93
-      },
-      "findings": [
-        {
-          "severity": "medium",
-          "category": "structure",
-          "message": "Step 'Revision and recap' summary section lacks clear summary language.",
-          "detail": ""
-        }
-      ],
-      "steps": [
-        {
-          "step_title": "Revision and recap",
-          "findings": [
-            {
-              "severity": "medium",
-              "category": "structure",
-              "message": "Step 'Revision and recap' summary section lacks clear summary language.",
-              "detail": ""
-            }
-          ],
-          "finding_count": 1
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.946428+00:00"
-    },
-    {
-      "grade": "Grade 11",
-      "subject": "Biology",
-      "chapter": "Chapter 2: Biological Classification",
+      "chapter": "Chapter 5: Consumer Rights",
       "step_count": 1,
       "total_findings": 0,
       "critical_count": 0,
@@ -418,176 +30,152 @@
           "finding_count": 0
         }
       ],
-      "audited_at": "2026-08-16T05:46:47.946587+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Hindi",
-      "chapter": "\u0905\u0927\u094d\u092f\u093e\u092f 9: \u092f\u0936\u092a\u093e\u0932",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam-style problems",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.946781+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Hindi",
-      "chapter": "\u0905\u0927\u094d\u092f\u093e\u092f 8: \u0930\u093e\u092e\u0935\u0943\u0915\u094d\u0937 \u092c\u0947\u0928\u0940\u092a\u0941\u0930\u0940",
-      "step_count": 1,
-      "total_findings": 1,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 1,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 95,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 93
-      },
-      "findings": [
-        {
-          "severity": "medium",
-          "category": "structure",
-          "message": "Step 'Revision and recap' summary section lacks clear summary language.",
-          "detail": ""
-        }
-      ],
-      "steps": [
-        {
-          "step_title": "Revision and recap",
-          "findings": [
-            {
-              "severity": "medium",
-              "category": "structure",
-              "message": "Step 'Revision and recap' summary section lacks clear summary language.",
-              "detail": ""
-            }
-          ],
-          "finding_count": 1
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.947062+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Hindi",
-      "chapter": "\u0905\u0927\u094d\u092f\u093e\u092f 12: \u092d\u0926\u0902\u0924 \u0906\u0928\u0902\u0926 \u0915\u094c\u0938\u0932\u094d\u092f\u093e\u092f\u0928",
-      "step_count": 1,
-      "total_findings": 2,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 1,
-        "medium": 0,
-        "low": 1
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 88,
-        "student_flow_score": 100,
-        "overall_score": 92
-      },
-      "findings": [
-        {
-          "severity": "high",
-          "category": "pedagogy",
-          "message": "Step 'Concept introduction' likely needs an example but none found.",
-          "detail": ""
-        },
-        {
-          "severity": "low",
-          "category": "pedagogy",
-          "message": "Step 'Concept introduction' lacks real-world context.",
-          "detail": ""
-        }
-      ],
-      "steps": [
-        {
-          "step_title": "Concept introduction",
-          "findings": [
-            {
-              "severity": "high",
-              "category": "pedagogy",
-              "message": "Step 'Concept introduction' likely needs an example but none found.",
-              "detail": ""
-            },
-            {
-              "severity": "low",
-              "category": "pedagogy",
-              "message": "Step 'Concept introduction' lacks real-world context.",
-              "detail": ""
-            }
-          ],
-          "finding_count": 2
-        }
-      ],
-      "audited_at": "2026-08-16T05:46:47.947290+00:00"
+      "audited_at": "2026-08-17T09:02:57.491184+00:00"
     },
     {
       "grade": "Grade 10",
       "subject": "Science",
       "chapter": "Chapter 6: Control and Coordination",
       "step_count": 1,
-      "total_findings": 0,
+      "total_findings": 1,
       "critical_count": 0,
       "findings_summary": {
         "critical": 0,
         "high": 0,
-        "medium": 0,
+        "medium": 1,
         "low": 0
       },
       "scores": {
-        "completeness_score": 100,
+        "completeness_score": 95,
         "formula_quality_score": 90,
         "mcq_quality_score": 80,
         "pedagogy_score": 100,
         "student_flow_score": 100,
-        "overall_score": 94
+        "overall_score": 93
       },
-      "findings": [],
-      "steps": [
+      "findings": [
         {
-          "step_title": "Exam preparation",
-          "findings": [],
-          "finding_count": 0
+          "severity": "medium",
+          "category": "structure",
+          "message": "Step 'Revision and recap' summary section lacks clear summary language.",
+          "detail": ""
         }
       ],
-      "audited_at": "2026-08-16T05:46:47.947691+00:00"
+      "steps": [
+        {
+          "step_title": "Revision and recap",
+          "findings": [
+            {
+              "severity": "medium",
+              "category": "structure",
+              "message": "Step 'Revision and recap' summary section lacks clear summary language.",
+              "detail": ""
+            }
+          ],
+          "finding_count": 1
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.491550+00:00"
     },
     {
       "grade": "Grade 10",
       "subject": "English",
-      "chapter": "Text Book - Chapter 1: A Letter to God",
+      "chapter": "Chapter 2: Nelson Mandela: Long Walk to Freedom",
+      "step_count": 2,
+      "total_findings": 1,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 1,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 95,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 93
+      },
+      "findings": [
+        {
+          "severity": "medium",
+          "category": "structure",
+          "message": "Step 'Revision and recap' summary section lacks clear summary language.",
+          "detail": ""
+        }
+      ],
+      "steps": [
+        {
+          "step_title": "Revision and recap",
+          "findings": [
+            {
+              "severity": "medium",
+              "category": "structure",
+              "message": "Step 'Revision and recap' summary section lacks clear summary language.",
+              "detail": ""
+            }
+          ],
+          "finding_count": 1
+        },
+        {
+          "step_title": "Core explanation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.491945+00:00"
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Accountancy",
+      "chapter": "Chapter 8: Financial Statements \u2013 I",
+      "step_count": 1,
+      "total_findings": 1,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 1
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 98,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "category": "pedagogy",
+          "message": "Step 'Concept introduction' lacks real-world context.",
+          "detail": ""
+        }
+      ],
+      "steps": [
+        {
+          "step_title": "Concept introduction",
+          "findings": [
+            {
+              "severity": "low",
+              "category": "pedagogy",
+              "message": "Step 'Concept introduction' lacks real-world context.",
+              "detail": ""
+            }
+          ],
+          "finding_count": 1
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.492074+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "Political Science - Chapter 4: Political Parties",
       "step_count": 1,
       "total_findings": 0,
       "critical_count": 0,
@@ -613,12 +201,105 @@
           "finding_count": 0
         }
       ],
-      "audited_at": "2026-08-16T05:46:47.947768+00:00"
+      "audited_at": "2026-08-17T09:02:57.492093+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "Text Book - Chapter 4: Globalisation and the Indian Economy",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Concept introduction",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.492122+00:00"
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Biology",
+      "chapter": "Chapter 4: Animal Kingdom",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Core explanation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.492275+00:00"
     },
     {
       "grade": "Grade 10",
       "subject": "Maths",
-      "chapter": "Chapter 7: Coordinate Geometry",
+      "chapter": "Chapter 14: Probability",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam-style problems",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.492422+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "History - Chapter 2: Nationalism in India",
       "step_count": 1,
       "total_findings": 0,
       "critical_count": 0,
@@ -644,12 +325,105 @@
           "finding_count": 0
         }
       ],
-      "audited_at": "2026-08-16T05:46:47.947855+00:00"
+      "audited_at": "2026-08-17T09:02:57.492645+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Chapter 8: The Sermon at Benares",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Worked examples",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.492760+00:00"
     },
     {
       "grade": "Grade 10",
       "subject": "English",
       "chapter": "Grammar: Subject-Verb Concord (Advanced Rules)",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Worked examples",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.492815+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "Chapter 2: Nationalism in India",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Worked examples",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.492865+00:00"
+    },
+    {
+      "grade": "Grade 11",
+      "subject": "Biology",
+      "chapter": "Chapter 2: Biological Classification",
       "step_count": 1,
       "total_findings": 1,
       "critical_count": 0,
@@ -689,7 +463,181 @@
           "finding_count": 1
         }
       ],
-      "audited_at": "2026-08-16T05:46:47.947987+00:00"
+      "audited_at": "2026-08-17T09:02:57.493096+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Workbook - Chapter 4: From the Diary of Anne Frank",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Core explanation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.493350+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "History - Chapter 5: Print Culture and the Modern World",
+      "step_count": 1,
+      "total_findings": 1,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 1,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 95,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 93
+      },
+      "findings": [
+        {
+          "severity": "medium",
+          "category": "structure",
+          "message": "Step 'Exam preparation' may lack a clear title/heading.",
+          "detail": ""
+        }
+      ],
+      "steps": [
+        {
+          "step_title": "Exam preparation",
+          "findings": [
+            {
+              "severity": "medium",
+              "category": "structure",
+              "message": "Step 'Exam preparation' may lack a clear title/heading.",
+              "detail": ""
+            }
+          ],
+          "finding_count": 1
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.493502+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "Geography - Chapter 5: Minerals and Energy Resources",
+      "step_count": 2,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam preparation",
+          "findings": [],
+          "finding_count": 0
+        },
+        {
+          "step_title": "Core explanation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.493858+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "Chapter 3: Water Resources",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Core explanation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.493998+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "Text Book - Chapter 1: Development",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Worked examples",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-08-17T09:02:57.494016+00:00"
     }
   ]
 }
