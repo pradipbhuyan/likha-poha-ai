@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp ~/Downloads/GPT55_Subjective_Prompts_Grade_7_social_science/15_chapter_6_the_state_the_government_and_you_PROMPT.txt ~/Downloads/GPT55_Subjective_Prompts_Grade_7_social_science_remaining/08_chapter_6_the_state_the_government_and_you_PROMPT.txt *)",
+      "Bash(git push *)",
+      "Bash(grep -A2 \"^\\\\[.*\\\\] Uploaded Book Content\\\\|Principle of Mathematical Induction\\\\|^\\\\[.*\\\\] Namak$\" /Users/a0247716/.claude/projects/-Users-a0247716-Pradips-Project-cbse-tutor-platform-backend/726f67ad-ef91-4557-a03f-87d9e47981ad/tool-results/bh7a8hv7t.txt)",
+      "Bash(python3 -c ' *)",
+      "WebFetch(domain:claude.ai)",
+      "Bash(unzip -l \"/Users/a0247716/Downloads/grade8_maths_exemplar_research_all_12.zip\")"
+    ],
+    "additionalDirectories": [
+      "/Users/a0247716/Downloads/GPT55_Subjective_Prompts_Grade_7_social_science"
+    ]
+  }
+}
