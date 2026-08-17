@@ -1,6 +1,11 @@
 # Lesson Plan Pedagogy Rewrite — Rollout Status
 
 > Context doc for picking this work up in a fresh session. Written 2026-08-10.
+> **Status refreshed 2026-08-17: the rollout is complete.** This file spent a
+> while claiming Grades 9-12 were "Not started" and the total was 220 chapters,
+> long after all four had been authored and committed. Anyone planning work
+> from the old table would have concluded three-quarters of the bank was
+> missing. Counts below are read from disk, not carried forward.
 
 ## Background
 
@@ -18,7 +23,7 @@ core content, off-topic exit tickets, unrelated-trivia extensions — see the
 old Grade 5 "The Frog" example for the canonical bad case). This work rewrote
 the pedagogy rules and rolled out re-authored plans grade by grade.
 
-## What was implemented (code — done, not yet committed)
+## What was implemented (code — done and committed)
 
 - **`backend/app/services/lesson_plan_pedagogy.py`** (new) — single source of
   the authoring prompt. `grade_band()` maps a grade to one of 4 pedagogy
@@ -80,16 +85,15 @@ real teacher account through the actual login form).
 | 6 | ✅ Done, ingested | 54/54 (English 5, Hindi 13, Maths 10, Science 12, Social Science 14) | Social Science was 28 raw chapters in `lesson_cache` but only 14 unique — 2 duplicate naming-prefix variants per chapter (`"1. X"` vs `"Text Book - Part 1 - 1. X"` vs `"History - Part 4 - ..."`); deduped before authoring |
 | 7 | ✅ Done, ingested | 62/62 (English 5, Hindi 10, Maths 15, Science 12, Social Science 20) | |
 | 8 | ✅ Done, ingested | 57/57 (English 5, Hindi 10, Maths 14, Science 13, Social Science 15) | **10 NCERT "Exemplar" chapters excluded per explicit instruction** — supplementary problem-book content that isn't a real syllabus chapter. See "Known issues" below. |
-| 9 | ❌ Not started | 1 old-template file exists (`social_science/democracy.json`, used as a reference in tests — do not touch without checking `tests/test_teacher_tools.py`) | |
-| 10 | ❌ Not started | 0 files | |
-| 11 | ❌ Not started | 0 files | |
-| 12 | ❌ Not started | 0 files | |
+| 9 | ✅ Done, ingested | 84 (Advanced Maths, Advanced Science, English, English Supplementary Reader, Hindi, Maths, Science, Social Science) | Includes `social_science/democracy.json`, referenced by `tests/test_teacher_tools.py` — check that test before touching it |
+| 10 | ✅ Done, ingested | 60 (English, Maths, Science, Social Science) | |
+| 11 | ✅ Done, ingested | 191 (Accountancy, Biology, Business Studies, Chemistry, Economics, English, Geography, Hindi, History, Mathematics, Physics, Political Science, Psychology, Sociology) | Widest subject spread of any grade |
+| 12 | ✅ Done, ingested | 158 (Accountancy, Biology, Business Studies, Chemistry, Economics, English, Geography, Hindi, History, Mathematics, Physics, Political Science) | |
 
-**Total re-authored and live in the bank right now: 220 chapters (47 + 173).**
+**Total live in the bank right now: 713 chapters across all eight grades**
+(5:47 · 6:54 · 7:62 · 8:57 · 9:84 · 10:60 · 11:191 · 12:158).
 
-**Nothing is committed to git yet.** `git status` shows the Grade 5 files as
-modified (`M`) and `grade_6/`, `grade_7/`, `grade_8/` as new untracked
-directories (`??`). Ask the user before committing.
+**All committed.** `git ls-files` and the on-disk count agree at 713/713.
 
 ## How the Grade 6-8 rollout was actually done (repeat this for Grade 9-12)
 

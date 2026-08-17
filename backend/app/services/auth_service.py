@@ -1,5 +1,8 @@
+import hashlib
 import os
 import re as _re
+import threading
+import time as _time_module
 
 from dotenv import load_dotenv
 
@@ -52,6 +55,80 @@ admin_client = create_client(
 )
 
 
+# ── Token validation cache ───────────────────────────────────────────────────
+# Every authenticated request made two network round trips before reaching any
+# handler: admin_client.auth.get_user(token) against Supabase Auth, then a
+# profiles query in whichever require_* guard the route uses. The auth call is
+# the expensive one — a full HTTP request to a separate service, on the
+# critical path of every request, and a hard dependency: if Supabase Auth is
+# slow, everything is slow. The retry loop below, added for Render dropping
+# connections mid-request, is evidence of that pressure.
+#
+# This caches the token -> user result for a short window, so a burst of
+# requests from one signed-in user costs one auth call rather than one each.
+#
+# DELIBERATELY NOT CACHING THE PROFILE ROW. That is where role, plan and
+# entitlements live, and staleness there is user-visible in the worst place:
+# someone finishes a payment, the webhook activates their plan, and they keep
+# seeing the free tier until the entry expires. Halving the round trips is
+# worth having; risking that is not.
+#
+# What staleness this does introduce is bounded and mild: a revoked or
+# signed-out session keeps validating until its entry expires. Failures are
+# never cached, so an invalid token is rechecked every time.
+_AUTH_CACHE_TTL_SECONDS = float(os.getenv("AUTH_CACHE_TTL_SECONDS", "30"))
+_AUTH_CACHE_MAX_ENTRIES = 2000
+
+_auth_cache: dict[str, tuple[float, object]] = {}
+_auth_cache_lock = threading.Lock()
+
+
+def _token_key(token: str) -> str:
+    """Hash the token so raw bearer tokens are not held as dict keys."""
+    return hashlib.sha256(token.encode("utf-8")).hexdigest()
+
+
+def _auth_cache_get(token: str):
+    """Return the cached user for a token, or None when absent or expired."""
+    if _AUTH_CACHE_TTL_SECONDS <= 0:
+        return None
+    key = _token_key(token)
+    now = _time_module.monotonic()
+    with _auth_cache_lock:
+        entry = _auth_cache.get(key)
+        if not entry:
+            return None
+        expires_at, user = entry
+        if expires_at <= now:
+            _auth_cache.pop(key, None)
+            return None
+        return user
+
+
+def _auth_cache_put(token: str, user) -> None:
+    """Cache a successful validation. Never called for failures."""
+    if _AUTH_CACHE_TTL_SECONDS <= 0:
+        return
+    now = _time_module.monotonic()
+    with _auth_cache_lock:
+        if len(_auth_cache) >= _AUTH_CACHE_MAX_ENTRIES:
+            # Drop everything already expired; if that frees nothing, clear the
+            # lot. Both are cheap and correctness-preserving — the worst case
+            # is that the next requests revalidate.
+            for k, (exp, _) in list(_auth_cache.items()):
+                if exp <= now:
+                    _auth_cache.pop(k, None)
+            if len(_auth_cache) >= _AUTH_CACHE_MAX_ENTRIES:
+                _auth_cache.clear()
+        _auth_cache[_token_key(token)] = (now + _AUTH_CACHE_TTL_SECONDS, user)
+
+
+def clear_auth_cache() -> None:
+    """Drop every cached validation. For tests, and for sign-out-everywhere."""
+    with _auth_cache_lock:
+        _auth_cache.clear()
+
+
 def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
 ):
@@ -71,11 +148,19 @@ def get_current_user(
     outside the platform's consent and deletion story. Failures log the provider
     error only; the token and the user's identity are never logged. Per-request
     identity belongs in tracing, not here.
+
+    Successful validations are cached briefly against the token — see the cache
+    block above for what that does and does not cover. Failures are never
+    cached, so an invalid token costs a real check every time.
     """
     import time as _time  # noqa: PLC0415
 
     token = credentials.credentials
     last_exc = None
+
+    cached_user = _auth_cache_get(token)
+    if cached_user is not None:
+        return cached_user
 
     for attempt in range(3):
         try:
@@ -87,6 +172,7 @@ def get_current_user(
                     detail="Invalid token",
                 )
 
+            _auth_cache_put(token, response.user)
             return response.user
 
         except HTTPException:

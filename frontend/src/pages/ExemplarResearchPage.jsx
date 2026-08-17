@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { answerDoubt } from "../api/doubt";
+import { authFetch } from "../api/authClient";
 import { hasPaidAccess } from "../utils/resolveSubscription";
 import { isAllAccessTestUser } from "../utils/testAccounts";
 
@@ -360,6 +361,41 @@ export default function ExemplarResearchPage({ user, setActivePage }) {
     ? cards
     : cards.filter(c => c.difficulty === filterDifficulty);
 
+  // Which of these cards actually have authored content. 168 cards ship
+  // against 132 explanations, and 36 of that gap is permanent — NCERT never
+  // published Exemplar books for three of the fourteen sections. Marking them
+  // up front beats letting a student find out one click at a time.
+  // null = not looked up yet, so nothing is greyed out while the answer loads.
+  const [availability, setAvailability] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setAvailability(null);
+
+    // Read the card list inside the effect rather than depending on the
+    // `cards` array: it is derived from these two values and gets a new
+    // identity every render, so listing it as a dependency would loop.
+    const topics = (TOPIC_CARDS[selectedGrade]?.[selectedSubject] || []).map(c => c.topic);
+    if (!topics.length) return undefined;
+
+    authFetch("/api/teacher/exemplar-research/availability", {
+      method: "POST",
+      body: JSON.stringify({
+        grade: selectedGrade,
+        subject: selectedSubject,
+        topics,
+      }),
+    })
+      .then(res => { if (!cancelled && res?.success) setAvailability(res.available || {}); })
+      .catch(() => { /* non-critical — cards stay unmarked and remain clickable */ });
+
+    return () => { cancelled = true; };
+  }, [selectedGrade, selectedSubject]);
+
+  const unavailableCount = availability
+    ? cards.filter(c => availability[c.topic] === false).length
+    : 0;
+
   async function explainTopic(topic, forceRefresh = false) {
     setActiveTopic(topic);
     setPracticeQs([]);
@@ -629,22 +665,30 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
         <div className="exemplar-card-panel">
           <p style={{ fontSize: ".75rem", fontWeight: 700, color: "var(--muted)", marginBottom: 12, textTransform: "uppercase", letterSpacing: ".08em" }}>
             {filteredCards.length} topics · click any card to get instant AI explanation
+            {unavailableCount > 0 && ` · ${unavailableCount} without NCERT Exemplar material`}
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 14 }}>
             {filteredCards.map((card, i) => {
               const dc = DIFFICULTY_COLORS[card.difficulty] || DIFFICULTY_COLORS.Medium;
               const isActive = activeTopic?.topic === card.topic;
+              // Only dim once the lookup has answered — an unknown card stays
+              // fully clickable rather than looking broken while loading.
+              const isUnavailable = availability?.[card.topic] === false;
               return (
                 <button key={i} onClick={() => explainTopic(card)}
+                  disabled={isUnavailable}
+                  title={isUnavailable ? "No NCERT Exemplar material published for this topic" : undefined}
                   style={{
                     display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 8,
-                    padding: "16px 18px", borderRadius: 14, cursor: "pointer", textAlign: "left",
+                    padding: "16px 18px", borderRadius: 14,
+                    cursor: isUnavailable ? "not-allowed" : "pointer", textAlign: "left",
                     border: `2px solid ${isActive ? "#6366f1" : "var(--border)"}`,
                     background: isActive ? "rgba(99,102,241,.08)" : "var(--card-bg)",
                     fontFamily: "inherit", transition: "all .15s",
+                    opacity: isUnavailable ? 0.45 : 1,
                     boxShadow: isActive ? "0 0 0 3px rgba(99,102,241,.2)" : "none",
                   }}
-                  onMouseEnter={e => { if (!isActive) { e.currentTarget.style.borderColor = "#6366f1"; e.currentTarget.style.transform = "translateY(-2px)"; } }}
+                  onMouseEnter={e => { if (!isActive && !isUnavailable) { e.currentTarget.style.borderColor = "#6366f1"; e.currentTarget.style.transform = "translateY(-2px)"; } }}
                   onMouseLeave={e => { if (!isActive) { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.transform = "none"; } }}
                 >
                   <div style={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "flex-start" }}>
@@ -657,6 +701,7 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
                     <div style={{ fontWeight: 700, fontSize: ".9rem", marginBottom: 4, color: "var(--text)" }}>{card.topic}</div>
                     <div style={{ fontSize: ".75rem", color: "var(--muted)", lineHeight: 1.4 }}>{card.hint}</div>
                   </div>
+                  {isUnavailable && <div style={{ fontSize: ".72rem", fontWeight: 700, color: "var(--muted)", marginTop: 2 }}>Not published by NCERT</div>}
                   {isActive && <div style={{ fontSize: ".72rem", fontWeight: 700, color: "#6366f1", marginTop: 2 }}>✦ Viewing explanation →</div>}
                 </button>
               );

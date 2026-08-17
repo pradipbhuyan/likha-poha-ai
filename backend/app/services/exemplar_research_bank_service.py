@@ -76,3 +76,25 @@ def get_exemplar_explanation(grade: str, subject: str, topic: str) -> str | None
         return None
 
     return None
+
+
+def get_available_topics(grade: str, subject: str, topics: list[str]) -> dict[str, bool]:
+    """
+    Report which of the given topic cards have authored content.
+
+    Lets the grid mark the ones that will come back empty, instead of a student
+    discovering it a click at a time. 168 topic cards ship in the UI against 132
+    authored explanations, and 36 of the gap can never be closed — NCERT never
+    published Exemplar books for three of the fourteen sections, so those cards
+    are permanently unfillable rather than merely pending.
+
+    Deliberately answers by calling get_exemplar_explanation() rather than by a
+    cheaper existence check on the filename. The answer must agree exactly with
+    what happens when the card is clicked, including the substring fallback for
+    topic-title drift — a faster check that disagreed would be worse than none,
+    because it would mark good cards dead or dead cards good.
+    """
+    return {
+        topic: get_exemplar_explanation(grade, subject, topic) is not None
+        for topic in topics
+    }

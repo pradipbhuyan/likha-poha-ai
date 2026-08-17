@@ -28,7 +28,10 @@ from app.services.subjective_question_bank_service import (
     get_subjective_bank_capacity_with_fallback,
 )
 from app.services.lesson_plan_bank_service import get_lesson_plan as get_lesson_plan_handout
-from app.services.exemplar_research_bank_service import get_exemplar_explanation
+from app.services.exemplar_research_bank_service import (
+    get_available_topics,
+    get_exemplar_explanation,
+)
 from app.services.teacher_lesson_plan_service import (
     get_teacher_edit,
     save_teacher_edit,
@@ -270,6 +273,36 @@ class ExemplarExplanationRequest(BaseModel):
     subject: str
     chapter: str
     topic: str
+
+
+class ExemplarAvailabilityRequest(BaseModel):
+    grade: str
+    subject: str
+    topics: list[str]
+
+
+@router.post("/exemplar-research/availability")
+def get_exemplar_research_availability(
+    data: ExemplarAvailabilityRequest,
+    _user=Depends(get_current_user),
+):
+    """
+    Report which topic cards have authored content, so the grid can mark the
+    rest instead of letting a student find out one click at a time.
+
+    168 cards ship against 132 authored explanations, and 36 of that gap is
+    permanent: NCERT never published Exemplar books for three of the fourteen
+    sections, so those cards will never fill. Same auth as the explain route —
+    any authenticated user, since students and teachers share this page.
+
+    Capped at 200 topics per call; the largest real section is far below that,
+    and the cap keeps a malformed or hostile request from walking the bank.
+    """
+    topics = [t for t in (data.topics or []) if isinstance(t, str) and t.strip()][:200]
+    return {
+        "success": True,
+        "available": get_available_topics(data.grade, data.subject, topics),
+    }
 
 
 @router.post("/exemplar-research/explain")

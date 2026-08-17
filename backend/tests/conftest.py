@@ -154,6 +154,12 @@ def override_auth_dependencies(monkeypatch):
     Unit/API tests should not depend on real login tokens or real Supabase data.
     """
 
+    # get_current_user caches successful token validations in module-level
+    # state. Left alone, one test's cached token would satisfy another test's
+    # request and silently bypass its fake client — so start every test cold.
+    from app.services.auth_service import clear_auth_cache  # noqa: PLC0415
+    clear_auth_cache()
+
     fake_profile = fake_student_profile()
     fake_user = fake_current_user(fake_profile)
 
@@ -244,4 +250,5 @@ def override_auth_dependencies(monkeypatch):
 
     yield
 
+    clear_auth_cache()
     app.dependency_overrides.clear()

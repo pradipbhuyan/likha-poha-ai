@@ -24,6 +24,7 @@ Run with:
 
 import inspect
 import logging
+import time
 
 import pytest
 
@@ -250,3 +251,108 @@ class TestAdminDenialLogging:
         assert capture_auth_logs.records == [], (
             "A successful admin check must log nothing — it runs on every admin request"
         )
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Token validation cache
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestTokenValidationCache:
+    """
+    Every authenticated request used to make two network round trips before
+    reaching a handler: a Supabase Auth call to validate the token, then a
+    profiles query in the route's guard. This caches the first briefly.
+
+    The profile row is deliberately NOT cached — role, plan and entitlements
+    live there, and stale entitlements are user-visible exactly where it hurts
+    most, right after someone pays.
+    """
+
+    def setup_method(self):
+        auth_service.clear_auth_cache()
+
+    def teardown_method(self):
+        auth_service.clear_auth_cache()
+        auth_service._AUTH_CACHE_TTL_SECONDS = 30.0
+
+    def _counting_client(self, counter, raises=None):
+        class _Auth:
+            @staticmethod
+            def get_user(_token):
+                counter["n"] += 1
+                if raises is not None:
+                    raise raises
+                return type("_Response", (), {"user": _user("u1", "kid@example.com")})()
+
+        return type("_Client", (), {"auth": _Auth()})()
+
+    def test_repeat_requests_hit_the_cache(self, monkeypatch):
+        counter = {"n": 0}
+        monkeypatch.setattr(auth_service, "admin_client", self._counting_client(counter))
+
+        for _ in range(5):
+            auth_service.get_current_user(_Credentials("tok-A"))
+
+        assert counter["n"] == 1, "five requests on one token should cost one auth call"
+
+    def test_distinct_tokens_are_not_conflated(self, monkeypatch):
+        counter = {"n": 0}
+        monkeypatch.setattr(auth_service, "admin_client", self._counting_client(counter))
+
+        auth_service.get_current_user(_Credentials("tok-A"))
+        auth_service.get_current_user(_Credentials("tok-B"))
+
+        assert counter["n"] == 2, "a second token must be validated on its own"
+
+    def test_failures_are_never_cached(self, monkeypatch):
+        """An invalid token must cost a real check every time, not be memoised."""
+        counter = {"n": 0}
+        monkeypatch.setattr(
+            auth_service, "admin_client",
+            self._counting_client(counter, raises=Exception("bad_jwt: invalid signature")),
+        )
+
+        for _ in range(3):
+            with pytest.raises(Exception):
+                auth_service.get_current_user(_Credentials("tok-BAD"))
+
+        assert counter["n"] == 3
+
+    def test_entry_expires(self, monkeypatch):
+        counter = {"n": 0}
+        monkeypatch.setattr(auth_service, "admin_client", self._counting_client(counter))
+        monkeypatch.setattr(auth_service, "_AUTH_CACHE_TTL_SECONDS", 0.05)
+
+        auth_service.get_current_user(_Credentials("tok-C"))
+        time.sleep(0.1)
+        auth_service.get_current_user(_Credentials("tok-C"))
+
+        assert counter["n"] == 2, "a revoked session must not be cached indefinitely"
+
+    def test_can_be_switched_off(self, monkeypatch):
+        counter = {"n": 0}
+        monkeypatch.setattr(auth_service, "admin_client", self._counting_client(counter))
+        monkeypatch.setattr(auth_service, "_AUTH_CACHE_TTL_SECONDS", 0)
+
+        for _ in range(3):
+            auth_service.get_current_user(_Credentials("tok-D"))
+
+        assert counter["n"] == 3, "AUTH_CACHE_TTL_SECONDS=0 must disable caching"
+
+    def test_raw_tokens_are_not_used_as_keys(self, monkeypatch):
+        counter = {"n": 0}
+        monkeypatch.setattr(auth_service, "admin_client", self._counting_client(counter))
+
+        auth_service.get_current_user(_Credentials(SAMPLE_JWT))
+
+        assert SAMPLE_JWT not in auth_service._auth_cache
+        assert all(len(k) == 64 for k in auth_service._auth_cache), "keys should be sha256 hex"
+
+    def test_profile_lookup_is_not_cached(self):
+        """
+        Stated as a test because it is a deliberate limit, not an oversight.
+        Caching the profile would delay a just-paid user's upgrade.
+        """
+        import inspect
+
+        src = inspect.getsource(auth_service.get_user_profile)
+        assert "_auth_cache" not in src
