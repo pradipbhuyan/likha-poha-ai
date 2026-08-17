@@ -206,3 +206,133 @@ class TestProductionDetection:
         import importlib
         import app.config
         importlib.reload(app.config)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# The flag has to survive the trip to the client
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# The helper tests above all pass a profile dict in directly, so they stayed
+# green while the account had no access at all. The break was in transport:
+# GET /api/auth/profile never returned `is_test_account`, and that endpoint is
+# what App.jsx reads on login, on app load, and on every profile refresh. The
+# client assigns the field with no fallback, so an omitted field is not
+# "unchanged" — it is set to false. Between the flag landing and the username
+# fallback being deleted, the fallback masked this; deleting it took all QA
+# access away.
+#
+# These tests assert the response contract rather than the helper, because the
+# helper was never the thing that was wrong.
+
+class TestFlagReachesTheClient:
+
+    QA_PROFILE = {
+        "id": "70d9e183", "email": "qa@example.test", "username": "akshita.teststudent",
+        "role": "student", "grade": "Grade 11", "board": "CBSE",
+        "parent_id": None, "family_id": "fam-qa",
+        "subscription_plan": "free", "account_status": "active",
+        "access_cbse": True, "access_sof_science": False,
+        "access_sof_maths": True, "access_sof_english": False,
+        "cbse_subjects": ["Physics"], "daily_token_limit": 50000,
+        "monthly_token_limit": 1000000, "subscription_expires_at": None,
+        "stream": "PCMB", "avatar": "boy3", "is_test_account": True,
+    }
+
+    def _get_profile(self, monkeypatch, profile):
+        """Call GET /api/auth/profile against a stubbed profiles table."""
+        from types import SimpleNamespace
+        from fastapi.testclient import TestClient
+        from app.main import app
+        from app.services.auth_service import get_current_user
+
+        class FQ:
+            def select(self, *a, **kw): return self
+            def eq(self, *a, **kw): return self
+            def limit(self, *a, **kw): return self
+            def update(self, *a, **kw): return self
+            def single(self): return self
+            def execute(self): return SimpleNamespace(data=[profile])
+
+        monkeypatch.setattr(
+            auth_route, "admin_client", SimpleNamespace(table=lambda _n: FQ())
+        )
+        monkeypatch.setattr(auth_route, "_check_can_report_issues", lambda uid: False)
+        app.dependency_overrides[get_current_user] = lambda: SimpleNamespace(
+            id=profile["id"], email=profile["email"]
+        )
+        try:
+            with TestClient(app) as client:
+                resp = client.get(
+                    "/api/auth/profile",
+                    headers={"Authorization": "Bearer fake-token"},
+                )
+            assert resp.status_code == 200, resp.text
+            return resp.json()
+        finally:
+            app.dependency_overrides.pop(get_current_user, None)
+
+    def test_profile_endpoint_returns_the_flag(self, monkeypatch):
+        """Omitting it revokes QA access on the client — this is the regression."""
+        body = self._get_profile(monkeypatch, self.QA_PROFILE)
+        assert "is_test_account" in body, (
+            "GET /api/auth/profile dropped is_test_account. App.jsx reads this "
+            "field on login and on every app load and assigns it with no "
+            "fallback, so omitting it revokes the QA account's access."
+        )
+        assert body["is_test_account"] is True
+
+    def test_profile_endpoint_reports_a_revoked_flag_as_false(self, monkeypatch):
+        body = self._get_profile(
+            monkeypatch, {**self.QA_PROFILE, "is_test_account": False}
+        )
+        assert body["is_test_account"] is False
+
+    def test_profile_endpoint_returns_the_sof_flags(self, monkeypatch):
+        """Same omission, same consequence — the client hard-falses these too."""
+        body = self._get_profile(monkeypatch, self.QA_PROFILE)
+        assert body["access_sof_science"] is False
+        assert body["access_sof_maths"] is True
+        assert body["access_sof_english"] is False
+
+    def test_me_response_carries_every_entitlement_flag(self):
+        """/auth/me feeds the same client fields and must agree with /profile."""
+        from types import SimpleNamespace
+
+        body = auth_route._build_me_response(
+            SimpleNamespace(id=self.QA_PROFILE["id"], email=self.QA_PROFILE["email"]),
+            self.QA_PROFILE,
+        )
+        for field in (
+            "is_test_account",
+            "access_cbse",
+            "access_sof_science",
+            "access_sof_maths",
+            "access_sof_english",
+        ):
+            assert field in body, f"/auth/me dropped {field}"
+        assert body["is_test_account"] is True
+        assert body["access_sof_maths"] is True
+
+    def test_both_endpoints_agree_on_the_entitlement_fields(self, monkeypatch):
+        """
+        The client reads entitlements from whichever of the two answered last.
+        If they disagree on which fields exist, access flickers by login path.
+        """
+        from types import SimpleNamespace
+
+        profile_body = self._get_profile(monkeypatch, self.QA_PROFILE)
+        me_body = auth_route._build_me_response(
+            SimpleNamespace(id=self.QA_PROFILE["id"], email=self.QA_PROFILE["email"]),
+            self.QA_PROFILE,
+        )
+        entitlements = {
+            "is_test_account", "access_cbse", "access_sof_science",
+            "access_sof_maths", "access_sof_english", "stream", "grade",
+            "cbse_subjects", "subscription_plan", "account_status",
+        }
+        missing_from_profile = entitlements - profile_body.keys()
+        missing_from_me = entitlements - me_body.keys()
+        assert not missing_from_profile, f"/auth/profile is missing {missing_from_profile}"
+        assert not missing_from_me, f"/auth/me is missing {missing_from_me}"
+        for field in entitlements:
+            assert profile_body[field] == me_body[field], f"{field} disagrees"

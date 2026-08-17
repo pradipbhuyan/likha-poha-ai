@@ -58,4 +58,32 @@ select id, username, role, is_test_account
 --
 -- To revoke test access later, no deploy is needed:
 --   update public.profiles set is_test_account = false where id = '...';
+--
+-- ============================================================================
+-- FOLLOW-UP  —  2026-08-17: the column was set but the account had no access
+-- ============================================================================
+-- Setting the flag is necessary but was not sufficient. GET /api/auth/profile
+-- never returned is_test_account, and that endpoint is what the client reads
+-- on login, on app load, and on every profile refresh. The client assigns the
+-- field as `!!p.is_test_account` with no fallback, so an omitted field did not
+-- leave the flag alone — it set it to false on every one of those paths.
+--
+-- While the username fallback was still in place the client fell back to the
+-- name and access worked, which is why this was invisible until the fallback
+-- was deleted. The row was correct the whole time; only the transport was not.
+--
+-- Fixed by returning the flag from /api/auth/profile (and the access_sof_*
+-- trio, omitted the same way and zeroed on the client for the same reason),
+-- and by reading it in LoginPage.buildLoginUser. The client now merges it with
+-- `??` so a genuinely revoked flag (false) still wins while an absent field
+-- leaves the held value alone.
+--
+-- Verify a grant end to end, not just in the table — the query below confirms
+-- the row, but only the API response confirms the account can actually use it:
+--   curl -s "$API/api/auth/profile" -H "Authorization: Bearer $TOKEN" \
+--     | python3 -c 'import json,sys; print(json.load(sys.stdin)["is_test_account"])'
+--
+-- Regression tests: backend/tests/test_privileged_account_identification.py,
+-- class TestFlagReachesTheClient — asserts the response contract rather than
+-- the helper, because the helper was never the thing that was wrong.
 -- ============================================================================

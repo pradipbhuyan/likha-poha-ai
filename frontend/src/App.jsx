@@ -818,7 +818,10 @@ function App() {
               ...parsed,
               accessToken: freshToken,
               accessCbse: !!p.access_cbse,
-              isTestAccount: !!p.is_test_account,
+              // `??` not `!!` — a revoked flag arrives as false and must win,
+              // but a field the endpoint omits must leave the held value
+              // alone rather than silently revoking QA access on every reload.
+              isTestAccount: !!(p.is_test_account ?? parsed.isTestAccount),
               accessSofScience: !!p.access_sof_science,
               accessSofMaths: !!p.access_sof_maths,
               accessSofEnglish: !!p.access_sof_english,
@@ -962,7 +965,9 @@ function App() {
           enrichedUser = {
             ...userData,
             accessCbse: !!p.access_cbse,
-            isTestAccount: !!p.is_test_account,
+            // See the session-restore path above: `??` so an omitted field
+            // preserves what login already established instead of revoking it.
+            isTestAccount: !!(p.is_test_account ?? userData.isTestAccount),
             accessSofScience: !!p.access_sof_science,
             accessSofMaths: !!p.access_sof_maths,
             accessSofEnglish: !!p.access_sof_english,
@@ -1110,7 +1115,9 @@ function App() {
         ...user,
         accessToken: session.access_token,
         accessCbse: !!p.access_cbse,
-        isTestAccount: !!p.is_test_account,
+        // See the session-restore path above: `??` so an omitted field
+        // preserves what login already established instead of revoking it.
+        isTestAccount: !!(p.is_test_account ?? user?.isTestAccount),
         accessSofScience: !!p.access_sof_science,
         accessSofMaths: !!p.access_sof_maths,
         accessSofEnglish: !!p.access_sof_english,

@@ -108,6 +108,10 @@ useEffect(() => {
       accessToken,
 
       accessCbse: !!profile.access_cbse,
+      // All-access QA flag — see shared/utils/testAccounts.js. Read here as
+      // well as from /api/auth/profile so the account is not dependent on a
+      // single endpoint remembering to return it.
+      isTestAccount: !!profile.is_test_account,
       accessSofScience: !!profile.access_sof_science,
       accessSofMaths: !!profile.access_sof_maths,
       accessSofEnglish: !!profile.access_sof_english,

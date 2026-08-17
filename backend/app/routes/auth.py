@@ -86,6 +86,9 @@ def _build_me_response(auth_user, profile: dict, needs_role_selection: bool = Fa
         "subscription_plan": profile.get("subscription_plan") or "free",
         "account_status": profile.get("account_status") or "active",
         "access_cbse": bool(profile.get("access_cbse")),
+        "access_sof_science": bool(profile.get("access_sof_science")),
+        "access_sof_maths": bool(profile.get("access_sof_maths")),
+        "access_sof_english": bool(profile.get("access_sof_english")),
         "cbse_subjects": profile.get("cbse_subjects") or [],
         "daily_token_limit": profile.get("daily_token_limit"),
         "monthly_token_limit": profile.get("monthly_token_limit"),
@@ -910,6 +913,15 @@ def get_my_profile(user=Depends(get_current_user)):
         "board": profile.get("board"),
         "subscription_plan": profile.get("subscription_plan"),
         "access_cbse": bool(profile.get("access_cbse")),
+        # Every entitlement flag the client reads off this response must be
+        # returned here. The client assigns them as `!!p.<field>`, with no
+        # fallback to what it already held, so a field omitted below is not
+        # "unchanged" on the client — it is actively set to false on login and
+        # again on every app-load profile refresh.
+        "is_test_account": bool(profile.get("is_test_account")),
+        "access_sof_science": bool(profile.get("access_sof_science")),
+        "access_sof_maths": bool(profile.get("access_sof_maths")),
+        "access_sof_english": bool(profile.get("access_sof_english")),
         "cbse_subjects": profile.get("cbse_subjects") or [],
         "stream": profile.get("stream") or None,
         "daily_token_limit": profile.get("daily_token_limit"),
