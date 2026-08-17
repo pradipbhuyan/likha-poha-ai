@@ -464,7 +464,13 @@ class TestFeatureAuthorizationDBLogic:
 
         assert _DB_DRIVEN_FEATURES[Feature.EXAM_PREP_CONTENT] == "access_exam_prep"
         assert _DB_DRIVEN_FEATURES[Feature.EXEMPLAR] == "access_exemplar"
-        assert _DB_DRIVEN_FEATURES[Feature.EXEMPLAR_RESEARCH] == "access_exemplar"
+
+        # EXEMPLAR_RESEARCH deliberately has no DB flag. It used to share
+        # access_exemplar with Feature.EXEMPLAR, which gates Exemplar chapters
+        # inside Lessons — a genuinely paid feature. One admin toggle meant for
+        # those chapters would silently have disabled the separate, open
+        # Exemplar Research page too.
+        assert Feature.EXEMPLAR_RESEARCH not in _DB_DRIVEN_FEATURES
 
 
 # ─────────────────────────────────────────────────────────────────────────────

@@ -6,7 +6,8 @@ Comprehensive regression suite for the canonical feature authorization system.
 Covers:
   Phase 1 — authorize_feature() unit tests
     - FREE_TIER gets allowed=True, limited=True for lessons/mock_test/doubts
-    - FREE_TIER gets allowed=False for EXEMPLAR/EXEMPLAR_RESEARCH
+    - FREE_TIER gets allowed=False for EXEMPLAR (paid lesson chapters)
+    - FREE_TIER gets allowed=True for EXEMPLAR_RESEARCH (role-gated, not plan-gated)
     - NANO/PREMIUM/FAMILY_PREMIUM/ADMIN_GRANT get allowed=True for all features
     - Expired subscriptions revert to FREE_TIER rules
     - Unknown feature → denied (fail-safe)
@@ -113,9 +114,24 @@ class TestFreeTierFeatureAccess:
         assert r["limited"] is False
         assert r["canonical_plan_key"] == "FREE_TIER"
 
-    def test_exemplar_research_denied(self):
+    def test_exemplar_research_allowed_on_free_tier(self):
+        """
+        Exemplar Research is open to every plan — role gates it, not plan.
+
+        The route (POST /api/teacher/exemplar-research/explain) serves any
+        authenticated user and 403s only free-tier TEACHERS, which is what
+        SubscriptionPlansPage.jsx advertises: that row lives in teacherGroups,
+        rendered only when role === "teacher". It was never sold to students
+        as paid.
+
+        The matrix used to exclude FREE_TIER, which nothing enforced. Its one
+        visible effect was _build_feature_badges() showing a free-tier parent
+        "Exemplar Research — locked" for a child who could open the page and
+        use every authored card.
+        """
         r = _auth("user-1", Feature.EXEMPLAR_RESEARCH, "FREE_TIER", False)
-        assert r["allowed"] is False
+        assert r["allowed"] is True
+        assert r["limited"] is False
 
     def test_mock_test_unlimited_denied(self):
         r = _auth("user-1", Feature.MOCK_TEST_UNLIMITED, "FREE_TIER", False)
@@ -392,9 +408,29 @@ class TestFeatureMatrixParity:
         assert matrix["allowed_plans"] is not None, "Exemplar should have restricted plans"
         assert "FREE_TIER" not in matrix["allowed_plans"]
 
-    def test_free_tier_exemplar_research_always_denied(self):
+    def test_exemplar_research_open_to_all_plans(self):
+        """allowed_plans=None means every plan; the role check lives at the route."""
         from app.services.feature_authorization_service import _FEATURE_MATRIX
         matrix = _FEATURE_MATRIX[Feature.EXEMPLAR_RESEARCH]
+        assert matrix["allowed_plans"] is None
+
+    def test_exemplar_research_does_not_share_a_db_flag_with_exemplar(self):
+        """
+        The two are different features and must not move together.
+
+        Feature.EXEMPLAR gates Exemplar chapters inside Lessons, which are
+        paid. EXEMPLAR_RESEARCH is the separate topic-card page. They both
+        used to map to access_exemplar, so one admin toggle intended for the
+        paid chapters would silently have disabled the open page too.
+        """
+        from app.services.feature_authorization_service import _DB_DRIVEN_FEATURES
+        assert _DB_DRIVEN_FEATURES.get(Feature.EXEMPLAR) == "access_exemplar"
+        assert Feature.EXEMPLAR_RESEARCH not in _DB_DRIVEN_FEATURES
+
+    def test_exemplar_lesson_chapters_stay_paid(self):
+        """The genuinely-paid sibling must be unaffected by that split."""
+        from app.services.feature_authorization_service import _FEATURE_MATRIX
+        matrix = _FEATURE_MATRIX[Feature.EXEMPLAR]
         assert matrix["allowed_plans"] is not None
         assert "FREE_TIER" not in matrix["allowed_plans"]
 
@@ -448,9 +484,17 @@ class TestCriticalBugRegression:
         r = _auth("user-bug3", Feature.EXEMPLAR, "FREE_TIER", False)
         assert r["allowed"] is False, "BUG 3 NOT FIXED: FREE_TIER must not access Exemplar"
 
-    def test_bug3_backend_free_tier_exemplar_research_denied(self):
+    def test_bug3_scope_is_exemplar_chapters_not_exemplar_research(self):
+        """
+        BUG 3 was about Exemplar chapters in Lessons, which remain paid.
+
+        Exemplar Research was swept into the same matrix rule at the time, but
+        it is a different feature with a different gate (role, at the route)
+        and was never advertised to students as paid. Keeping it denied here
+        only produced a wrong "locked" badge on the parent dashboard.
+        """
         r = _auth("user-bug3", Feature.EXEMPLAR_RESEARCH, "FREE_TIER", False)
-        assert r["allowed"] is False
+        assert r["allowed"] is True
 
     def test_bug4_mock_test_inverted_check_free_user_limited(self):
         """

@@ -143,8 +143,11 @@ class Feature:
 # Placed AFTER Feature class so string constants are available.
 _DB_DRIVEN_FEATURES: dict[str, str] = {
     Feature.EXAM_PREP_CONTENT:  "access_exam_prep",
+    # Gates Exemplar chapters inside Lessons (chapter names starting
+    # "Exemplar:"), which are paid. EXEMPLAR_RESEARCH — the separate topic-card
+    # page — used to share this flag, so one admin toggle intended for these
+    # chapters silently moved both. It no longer does; see its matrix entry.
     Feature.EXEMPLAR:           "access_exemplar",
-    Feature.EXEMPLAR_RESEARCH:  "access_exemplar",
 }
 
 
@@ -178,11 +181,29 @@ _FEATURE_MATRIX: dict[str, dict] = {
         "upgrade_message": "Exemplar access is available with a paid subscription.",
     },
     Feature.EXEMPLAR_RESEARCH: {
-        "allowed_plans": {"NANO", "PREMIUM", "PREMIUM_6MONTH", "PREMIUM_ANNUAL",
-                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT",
-                          "EXAM_PREP_CENTER"},
+        # Available on every plan, because plan is not what gates this feature
+        # — role is. POST /api/teacher/exemplar-research/explain serves any
+        # authenticated user and 403s only free-tier TEACHERS, which is what
+        # SubscriptionPlansPage.jsx advertises (the "Exemplar Research" row
+        # lives in teacherGroups, rendered only when role === "teacher"). It
+        # was never sold to students as a paid feature.
+        #
+        # This entry previously excluded FREE_TIER, which nothing enforced.
+        # The only place it surfaced was _build_feature_badges() in
+        # parent_dashboard.py: a free-tier parent was shown "Exemplar
+        # Research — locked" for a child who could open the page and use all
+        # 132 authored cards. The badge was wrong, not the access.
+        #
+        # Note this is deliberately NOT in _DB_DRIVEN_FEATURES. It used to
+        # share the access_exemplar flag with Feature.EXEMPLAR, which gates
+        # Exemplar *chapters inside Lessons* — a genuinely paid feature. One
+        # admin toggle meant for those chapters would silently have changed
+        # this one too.
+        "allowed_plans": None,
         "limited_on": set(),
-        "upgrade_message": "Exemplar Research is available with a paid subscription.",
+        # Reached only via the role check at the route, never through the
+        # plan matrix.
+        "upgrade_message": "Exemplar Research requires the Paid Teacher plan.",
     },
     Feature.MOCK_TEST: {
         "allowed_plans": None,   # all plans may take mock tests

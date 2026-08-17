@@ -76,7 +76,13 @@ class TestFeatureMatrixConstants:
 
         for feature in (Feature.EXEMPLAR, Feature.EXEMPLAR_RESEARCH, Feature.FORMULA_SHEET_PREMIUM):
             allowed = _FEATURE_MATRIX[feature]["allowed_plans"]
-            assert "EXAM_PREP_CENTER" in allowed, f"{feature}: EXAM_PREP_CENTER must be allowed"
+            # allowed_plans is None means "every plan", which satisfies this
+            # just as well as naming EXAM_PREP_CENTER explicitly.
+            # EXEMPLAR_RESEARCH is None: it is gated by role at the route, not
+            # by plan.
+            assert allowed is None or "EXAM_PREP_CENTER" in allowed, (
+                f"{feature}: EXAM_PREP_CENTER must be allowed"
+            )
 
     def test_exam_prep_content_has_upgrade_message(self):
         from app.services.feature_authorization_service import _FEATURE_MATRIX, Feature
