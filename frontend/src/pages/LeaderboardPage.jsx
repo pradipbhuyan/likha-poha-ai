@@ -17,8 +17,15 @@ function getRankName(index) {
   return "Learner";
 }
 
-function LeaderboardPage({ user }) {
-  /** Shows ranked student mock-test performance with podium and full ranking views. */
+function LeaderboardPage() {
+  /**
+   * Shows ranked student mock-test performance with podium and full ranking views.
+   *
+   * Students are identified by initials, not names — the API returns
+   * display_name plus an is_you flag and never sends a username, so no full
+   * name reaches the browser. "You" highlighting comes from that flag rather
+   * than a client-side comparison, which is why this no longer takes `user`.
+   */
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -76,18 +83,18 @@ function LeaderboardPage({ user }) {
           <section className="leaderboard-podium premium-leaderboard-podium">
             {topThree.map((item, index) => (
               <div
-                key={item.username}
-                className={`podium-card premium-podium-card rank-${index + 1}${item.username === user?.username ? " premium-podium-card-you" : ""}`}
+                key={item.rank}
+                className={`podium-card premium-podium-card rank-${index + 1}${item.is_you ? " premium-podium-card-you" : ""}`}
               >
                 <div className="podium-medal">{getMedal(index)}</div>
 
                 <div className="leader-avatar premium-leader-avatar">
-                  {item.username?.[0]?.toUpperCase() || "U"}
+                  {item.display_name?.[0]?.toUpperCase() || "U"}
                 </div>
 
                 <p className="premium-rank-name">{getRankName(index)}</p>
 
-                <h3>{item.username}{item.username === user?.username && " (You)"}</h3>
+                <h3>{item.display_name}{item.is_you && " (You)"}</h3>
 
                 <p className="leader-score">{item.average_score}%</p>
                 <span>Average Score</span>
@@ -106,23 +113,24 @@ function LeaderboardPage({ user }) {
               <p>
                 Ranked by average score across completed mock tests — the number
                 of tests taken isn't weighted, so compare it alongside the score.
+                Learners are shown by initials to keep names private.
               </p>
             </div>
 
             <div className="premium-leaderboard-rows">
               {leaderboard.map((item, index) => (
                 <div
-                  key={item.username}
-                  className={`leaderboard-row premium-leaderboard-row${item.username === user?.username ? " premium-leaderboard-row-you" : ""}`}
+                  key={item.rank}
+                  className={`leaderboard-row premium-leaderboard-row${item.is_you ? " premium-leaderboard-row-you" : ""}`}
                 >
                   <div className="leader-rank">{getMedal(index)}</div>
 
                   <div className="leader-avatar small premium-leader-avatar small">
-                    {item.username?.[0]?.toUpperCase() || "U"}
+                    {item.display_name?.[0]?.toUpperCase() || "U"}
                   </div>
 
                   <div className="leader-main">
-                    <strong>{item.username}{item.username === user?.username && " (You)"}</strong>
+                    <strong>{item.display_name}{item.is_you && " (You)"}</strong>
                     <span>{item.tests} tests taken</span>
                   </div>
 

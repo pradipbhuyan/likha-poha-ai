@@ -23,10 +23,14 @@ Run with:
     cd backend && python -m pytest tests/test_public_data_exposure.py -v
 """
 
+import json
+
+import pytest
 from fastapi.routing import APIRoute
 
 from app.config import Settings
 from app.main import app
+from app.routes.analytics import _to_initials
 from app.services.auth_service import get_current_user
 
 
@@ -81,6 +85,88 @@ class TestLeaderboardRequiresAuth:
                 unguarded.append(f"{method} {route.path}")
 
         assert not unguarded, f"Unauthenticated analytics routes: {unguarded}"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# The leaderboard does not emit names at all
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestLeaderboardShowsInitialsOnly:
+    """
+    Authentication stopped anonymous reads. It did not stop a signed-in
+    student reading every other child's full name and marks, so the payload
+    carries initials and never the username.
+    """
+
+    @pytest.mark.parametrize("name,expected", [
+        ("Rishika B", "R.B."),
+        ("Jia", "J."),
+        ("mary jane watson", "M.J.W."),
+        ("akshita.teststudent", "A.T."),   # dots split like spaces
+        ("a b c d e", "A.B.C."),           # capped at three
+        ("Émile Zola", "É.Z."),
+        ("", "?"),
+        (None, "?"),
+        ("   ", "?"),
+    ])
+    def test_initials(self, name, expected):
+        assert _to_initials(name) == expected
+
+    def test_response_carries_no_username(self, monkeypatch):
+        import app.routes.analytics as analytics_route
+
+        monkeypatch.setattr(analytics_route, "get_leaderboard", lambda: [
+            {"username": "Rishika B", "tests": 3, "best_score": 92.0, "average_score": 88.0},
+            {"username": "Jia",       "tests": 2, "best_score": 80.0, "average_score": 75.0},
+        ])
+        monkeypatch.setattr(
+            analytics_route, "get_user_profile", lambda _uid: {"username": "Jia"}
+        )
+
+        result = analytics_route.leaderboard(user=type("U", (), {"id": "u1"})())
+        rows = result["leaderboard"]
+
+        serialised = json.dumps(rows)
+        assert "Rishika" not in serialised, "a full name reached the response"
+        assert "username" not in serialised, "the username key must not be emitted"
+
+        assert [r["display_name"] for r in rows] == ["R.B.", "J."]
+        assert [r["rank"] for r in rows] == [1, 2]
+
+    def test_is_you_is_computed_server_side(self, monkeypatch):
+        """
+        The client cannot compare names it never receives, so the flag has to
+        come from the server.
+        """
+        import app.routes.analytics as analytics_route
+
+        monkeypatch.setattr(analytics_route, "get_leaderboard", lambda: [
+            {"username": "Rishika B", "tests": 3, "best_score": 92.0, "average_score": 88.0},
+            {"username": "  JIA  ",   "tests": 2, "best_score": 80.0, "average_score": 75.0},
+        ])
+        monkeypatch.setattr(
+            analytics_route, "get_user_profile", lambda _uid: {"username": "jia"}
+        )
+
+        rows = analytics_route.leaderboard(user=type("U", (), {"id": "u1"})())["leaderboard"]
+
+        # Case and surrounding whitespace must not defeat the match.
+        assert [r["is_you"] for r in rows] == [False, True]
+
+    def test_scores_are_preserved(self, monkeypatch):
+        """Masking the name must not disturb the ranking data."""
+        import app.routes.analytics as analytics_route
+
+        monkeypatch.setattr(analytics_route, "get_leaderboard", lambda: [
+            {"username": "Om", "tests": 4, "best_score": 100.0, "average_score": 80.0},
+        ])
+        monkeypatch.setattr(analytics_route, "get_user_profile", lambda _uid: {})
+
+        row = analytics_route.leaderboard(user=type("U", (), {"id": "u1"})())["leaderboard"][0]
+        assert row["tests"] == 4
+        assert row["best_score"] == 100.0
+        assert row["average_score"] == 80.0
+        assert row["is_you"] is False
 
 
 # ─────────────────────────────────────────────────────────────────────────────

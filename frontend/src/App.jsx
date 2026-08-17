@@ -1689,7 +1689,7 @@ function App() {
       case "analytics":
         return <AnalyticsPage user={user} setActivePage={handlePageChange} />;
       case "leaderboard":
-        return <LeaderboardPage user={user} />;
+        return <LeaderboardPage />;
       case "ragUpload":
         return <RagUploadPage user={user} />;
       case "syllabusReview":

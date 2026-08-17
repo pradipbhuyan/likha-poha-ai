@@ -113,26 +113,55 @@ def user_history(username: str, _viewer=Depends(require_self_or_admin_or_teacher
     }
 
 
+def _to_initials(name: str | None) -> str:
+    """
+    Reduce a student's name to initials: "Rishika B" -> "R.B.", "Jia" -> "J."
+
+    Returns "?" for anything unusable so a malformed row still renders.
+    """
+    parts = [p for p in str(name or "").replace(".", " ").split() if p]
+    if not parts:
+        return "?"
+    return "".join(f"{p[0].upper()}." for p in parts[:3])
+
+
 @router.get("/leaderboard")
-def leaderboard(_user=Depends(get_current_user)):
+def leaderboard(user=Depends(get_current_user)):
     """
-    Return ranked students based on stored test-history performance.
+    Return ranked students by mock-test performance, identified by initials.
 
-    Requires authentication. This route had no guard while every other route
-    in this file did — including require_self_or_admin on the one directly
-    below it — so it was public by accident rather than design. It returns
-    children's names alongside their test counts and scores, and those names
-    fed a second public endpoint (GET /api/auth/lookup-email/{username}) that
-    resolves a username to an email address. Anonymous caller to a list of
-    children's names, marks and contact details, in two requests.
+    Requires authentication, and never emits a full name. Both properties were
+    missing: the route had no guard at all while every other route in this
+    file did — including require_self_or_admin on the one directly below it —
+    so children's names, test counts and scores were readable by anyone. Those
+    names also fed GET /api/auth/lookup-email/{username}, which resolves a
+    username to an email address, so two anonymous requests produced a list of
+    children's names, marks and contact details.
 
-    Note this still shows every ranked student to any signed-in user, which is
-    what a leaderboard is for — but see the display-name question in
-    docs/ for whether full names belong here at all.
+    Authentication alone would have left every signed-in student able to read
+    every other child's full name and marks, so the payload now carries
+    initials and an is_you flag instead of the username. Masking happens here
+    rather than in the client because a name the server never sends cannot
+    leak from the browser, the network tab, or a cached response.
     """
+    profile = get_user_profile(user.id) or {}
+    my_username = (profile.get("username") or "").strip().casefold()
+
+    rows = []
+    for rank, entry in enumerate(get_leaderboard(), start=1):
+        raw_name = entry.get("username") or ""
+        rows.append({
+            "rank": rank,
+            "display_name": _to_initials(raw_name),
+            "is_you": bool(my_username) and raw_name.strip().casefold() == my_username,
+            "tests": entry.get("tests", 0),
+            "best_score": entry.get("best_score", 0),
+            "average_score": entry.get("average_score", 0),
+        })
+
     return {
         "success": True,
-        "leaderboard": get_leaderboard()
+        "leaderboard": rows,
     }
 
 
