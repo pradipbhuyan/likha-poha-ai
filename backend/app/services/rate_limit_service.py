@@ -276,6 +276,13 @@ def rate_limit_dependency(limiter: RateLimiter) -> Callable:
 LOGIN_LIMITER = RateLimiter(max_calls=10, window_seconds=60, name="login")            # 10/min
 SIGNUP_LIMITER = RateLimiter(max_calls=5, window_seconds=60, name="signup")           # 5/min
 PASSWORD_RESET_LIMITER = RateLimiter(max_calls=3, window_seconds=300, name="password_reset")  # 3/5min
+# GET /api/auth/lookup-email/{username} resolves a username to an email so the
+# login form can hand Supabase an address. Public by necessity — it runs before
+# sign-in — which makes it an enumeration primitive: feed it usernames, collect
+# email addresses. It had no limit at all, so a list of usernames converted
+# straight into a list of addresses. Tighter than login, because a legitimate
+# user hits this once per sign-in attempt.
+EMAIL_LOOKUP_LIMITER = RateLimiter(max_calls=8, window_seconds=60, name="email_lookup")  # 8/min
 
 # Payment — order creation / verification  (per IP)
 PAYMENT_CREATE_LIMITER = RateLimiter(max_calls=10, window_seconds=60, name="payment_create")  # 10/min

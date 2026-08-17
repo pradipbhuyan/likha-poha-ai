@@ -1,7 +1,4 @@
 import { authFetch } from "./authClient";
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ||
-  "http://localhost:8000";
 
 export async function saveTestHistory(payload) {
   /** Save one completed mock-test result for analytics and leaderboard views. */
@@ -17,14 +14,8 @@ export async function getUserHistory(username) {
 }
 
 export async function getLeaderboard() {
-  /** Load leaderboard data built from saved test history. */
-  const response = await fetch(`${API_BASE_URL}/api/analytics/leaderboard`);
-
-  if (!response.ok) {
-    throw new Error("Failed to load leaderboard");
-  }
-
-  return response.json();
+  /** Load leaderboard data built from saved test history. Requires sign-in. */
+  return authFetch("/api/analytics/leaderboard");
 }
 
 export async function clearUserHistory(username) {

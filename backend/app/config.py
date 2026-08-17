@@ -57,5 +57,25 @@ class Settings:
             return True
         return bool(os.getenv("RENDER"))
 
+    @staticmethod
+    def docs_urls() -> tuple[str | None, str | None, str | None]:
+        """
+        Return (docs_url, redoc_url, openapi_url) for the FastAPI constructor.
+
+        FastAPI publishes all three by default. In production that served a
+        browsable index of every registered endpoint — admin routes, internal
+        tooling, the lot — to anyone who asked, turning "find an unguarded
+        endpoint" from a guessing game into reading a list. They are genuinely
+        useful in development, so they stay on there.
+
+        Kept here as a pure function so it can be tested by monkeypatching
+        is_production(), rather than by reloading app.main — reloading swaps
+        module identity out from under the dependency-override keys that the
+        test suite installs, which breaks unrelated tests.
+        """
+        if Settings.is_production():
+            return (None, None, None)
+        return ("/docs", "/redoc", "/openapi.json")
+
 
 settings = Settings()

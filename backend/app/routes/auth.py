@@ -15,6 +15,7 @@ from app.services.rate_limit_service import (
     LOGIN_LIMITER,
     SIGNUP_LIMITER,
     PASSWORD_RESET_LIMITER,
+    EMAIL_LOOKUP_LIMITER,
 )
 
 router = APIRouter()
@@ -262,12 +263,18 @@ def forgot_password(payload: dict, _rl=Depends(rate_limit_dependency(PASSWORD_RE
 
 
 @router.get("/lookup-email/{username}")
-def lookup_email(username: str):
+def lookup_email(username: str, _rl=Depends(rate_limit_dependency(EMAIL_LOOKUP_LIMITER))):
     """
     Resolve a friendly username to an email address for Supabase login.
 
     The admin alias fallback lets the UI log in as "admin" even when the profile
     row stores a display name rather than that exact username.
+
+    Rate limited because this is an enumeration primitive: it is public by
+    necessity (it runs before sign-in) and turns a username into an email
+    address. It previously had no limit, so any list of usernames converted
+    straight into a list of addresses — and GET /api/analytics/leaderboard was
+    publishing exactly such a list, unauthenticated, for children.
     """
     clean_username = username.strip().lower()
     response = (

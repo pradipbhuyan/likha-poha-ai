@@ -143,10 +143,20 @@ allowed_origins = [
     frontend_url,
 ]
 
+# Interactive API docs — published in development, withheld in production.
+# See Settings.docs_urls() for why.
+_docs_url, _redoc_url, _openapi_url = settings.docs_urls()
+
 app = FastAPI(
     title="CBSE Tutor API",
     version="1.0.0",
+    docs_url=_docs_url,
+    redoc_url=_redoc_url,
+    openapi_url=_openapi_url,
 )
+
+if _docs_url is None:
+    _log.info("API docs disabled (production).")
 
 # ── Middleware stack ──────────────────────────────────────────────────────────
 # app.add_middleware() prepends, so the LAST middleware registered here ends up

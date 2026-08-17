@@ -114,8 +114,22 @@ def user_history(username: str, _viewer=Depends(require_self_or_admin_or_teacher
 
 
 @router.get("/leaderboard")
-def leaderboard():
-    """Return ranked students based on stored test-history performance."""
+def leaderboard(_user=Depends(get_current_user)):
+    """
+    Return ranked students based on stored test-history performance.
+
+    Requires authentication. This route had no guard while every other route
+    in this file did — including require_self_or_admin on the one directly
+    below it — so it was public by accident rather than design. It returns
+    children's names alongside their test counts and scores, and those names
+    fed a second public endpoint (GET /api/auth/lookup-email/{username}) that
+    resolves a username to an email address. Anonymous caller to a list of
+    children's names, marks and contact details, in two requests.
+
+    Note this still shows every ranked student to any signed-in user, which is
+    what a leaderboard is for — but see the display-name question in
+    docs/ for whether full names belong here at all.
+    """
     return {
         "success": True,
         "leaderboard": get_leaderboard()
