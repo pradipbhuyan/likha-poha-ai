@@ -13554,6 +13554,501 @@ body.dark-mode .structured-visual-note {
   }
 }
 
+/* ── Chapter summary infographic ───────────────────────────────────────────
+   Whole-chapter wall-chart rendered at the end of the final lesson step by
+   ChapterSummaryBlock.jsx. Built from real DOM text rather than a flat image
+   so it reflows on phones, inverts cleanly in dark mode and stays selectable.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.chapter-summary-card {
+  margin: 28px 0 8px;
+  padding: 22px;
+  border: 1px solid #c7d2fe;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #f7f8ff 0%, #ffffff 62%);
+  box-shadow: 0 16px 40px rgba(79, 70, 229, 0.09);
+  min-width: 0;
+  overflow: visible;
+}
+
+.chapter-summary-header {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.18);
+}
+
+.chapter-summary-eyebrow {
+  color: #4f46e5;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.chapter-summary-title {
+  margin: 0;
+  color: #1e1b4b;
+  font-size: 1.22rem;
+  font-weight: 800;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.chapter-summary-subtitle {
+  margin: 0;
+  color: #4c516d;
+  font-size: 0.94rem;
+  line-height: 1.45;
+}
+
+.chapter-summary-definition {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-left: 4px solid #6366f1;
+  border-radius: 0 10px 10px 0;
+  background: rgba(99, 102, 241, 0.07);
+  color: #312e63;
+  font-size: 0.96rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* Concept panels — auto-fit so 1 column on phones, 2-3 on tablet/desktop. */
+.chapter-summary-panels {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 18px;
+}
+
+.chapter-summary-panel {
+  padding: 14px;
+  border: 1px solid #dbe2f5;
+  border-radius: 14px;
+  background: #ffffff;
+  min-width: 0;
+}
+
+.chapter-summary-panel h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  color: #1e293b;
+  font-size: 0.98rem;
+  font-weight: 800;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.chapter-summary-panel-index {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #4f46e5;
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.chapter-summary-panel ul {
+  margin: 0;
+  padding-left: 1.15em;
+}
+
+.chapter-summary-panel li {
+  margin-bottom: 6px;
+  color: #334155;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.chapter-summary-panel li:last-child {
+  margin-bottom: 0;
+}
+
+.chapter-summary-section-heading {
+  margin: 0 0 10px;
+  color: #3730a3;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.chapter-summary-pipeline {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(99, 102, 241, 0.28);
+}
+
+/* Numbered workflow. auto-fit keeps every step card the same width and wraps
+   to as many rows as needed — no horizontal page scroll on any viewport. */
+.chapter-summary-pipeline-track {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.chapter-summary-pipeline-step {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid #dbe2f5;
+  border-left: 3px solid #6366f1;
+  border-radius: 12px;
+  background: #fbfcff;
+  min-width: 0;
+}
+
+.chapter-summary-pipeline-index {
+  color: #4f46e5;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.chapter-summary-pipeline-label {
+  color: #1e293b;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.chapter-summary-pipeline-detail {
+  color: #475569;
+  font-size: 0.85rem;
+  line-height: 1.42;
+  overflow-wrap: anywhere;
+}
+
+.chapter-summary-footer {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(99, 102, 241, 0.28);
+}
+
+.chapter-summary-remember ul {
+  margin: 0;
+  padding-left: 1.15em;
+}
+
+.chapter-summary-remember li {
+  margin-bottom: 7px;
+  color: #334155;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.chapter-summary-terms dl {
+  margin: 0;
+}
+
+.chapter-summary-term-row {
+  display: grid;
+  gap: 2px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.chapter-summary-term-row:last-child {
+  border-bottom: 0;
+}
+
+.chapter-summary-term-row dt {
+  color: #3730a3;
+  font-size: 0.87rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.chapter-summary-term-row dd {
+  margin: 0;
+  color: #475569;
+  font-size: 0.87rem;
+  line-height: 1.42;
+  overflow-wrap: anywhere;
+}
+
+body.dark-mode .chapter-summary-card {
+  border-color: rgba(129, 140, 248, 0.35);
+  background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .chapter-summary-header {
+  border-bottom-color: rgba(129, 140, 248, 0.28);
+}
+
+body.dark-mode .chapter-summary-eyebrow,
+body.dark-mode .chapter-summary-section-heading,
+body.dark-mode .chapter-summary-pipeline-index,
+body.dark-mode .chapter-summary-term-row dt {
+  color: #a5b4fc;
+}
+
+body.dark-mode .chapter-summary-title,
+body.dark-mode .chapter-summary-panel h4,
+body.dark-mode .chapter-summary-pipeline-label {
+  color: #e5e7eb;
+}
+
+body.dark-mode .chapter-summary-subtitle,
+body.dark-mode .chapter-summary-panel li,
+body.dark-mode .chapter-summary-pipeline-detail,
+body.dark-mode .chapter-summary-remember li,
+body.dark-mode .chapter-summary-term-row dd {
+  color: #cbd5e1;
+}
+
+body.dark-mode .chapter-summary-definition {
+  border-left-color: #818cf8;
+  background: rgba(129, 140, 248, 0.12);
+  color: #ddd6fe;
+}
+
+body.dark-mode .chapter-summary-panel,
+body.dark-mode .chapter-summary-pipeline-step {
+  border-color: rgba(148, 163, 184, 0.24);
+  background: #111827;
+}
+
+body.dark-mode .chapter-summary-pipeline-step {
+  border-left-color: #818cf8;
+}
+
+body.dark-mode .chapter-summary-pipeline,
+body.dark-mode .chapter-summary-footer {
+  border-top-color: rgba(129, 140, 248, 0.28);
+}
+
+body.dark-mode .chapter-summary-term-row {
+  border-bottom-color: rgba(148, 163, 184, 0.2);
+}
+
+@media (max-width: 640px) {
+  .chapter-summary-card {
+    padding: 15px;
+    border-radius: 14px;
+  }
+
+  .chapter-summary-title {
+    font-size: 1.08rem;
+  }
+
+  /* Single column everywhere on phones — minmax() floors above would
+     otherwise force a 240px track wider than a 320px viewport's padding box. */
+  .chapter-summary-panels,
+  .chapter-summary-pipeline-track,
+  .chapter-summary-footer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .chapter-summary-card {
+    border-color: #94a3b8;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}
+
+/* ── Chapter infographic (poster image) ────────────────────────────────────
+   Rendered by ChapterInfographicBlock.jsx at the end of a chapter's final
+   lesson step. The inline frame is a preview; the readable experience is the
+   full-screen viewer, since poster text is far too small at column width.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.chapter-infographic {
+  margin: 28px 0 8px;
+  padding: 14px;
+  border: 1px solid #c7d2fe;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #f7f8ff 0%, #ffffff 62%);
+  box-shadow: 0 16px 40px rgba(79, 70, 229, 0.09);
+  min-width: 0;
+}
+
+.chapter-infographic-eyebrow {
+  display: block;
+  margin-bottom: 10px;
+  color: #4f46e5;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.chapter-infographic-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid #dbe2f5;
+  border-radius: 14px;
+  background: #ffffff;
+  cursor: zoom-in;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+.chapter-infographic-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.chapter-infographic-zoom-hint {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.78);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.chapter-infographic-caption {
+  margin-top: 10px;
+  color: #4c516d;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+/* ── Full-screen viewer ──────────────────────────────────────────────────── */
+
+.chapter-infographic-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: flex;
+  flex-direction: column;
+  /* Solid rather than a light scrim — the same dark-mode bleed-through that
+     affected ExtractPopupBlock makes a dense poster unreadable. */
+  background: rgba(2, 6, 23, 0.92);
+}
+
+.chapter-infographic-viewer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex: 0 0 auto;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  color: #e2e8f0;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.chapter-infographic-viewer-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.chapter-infographic-viewer-actions a {
+  color: #a5b4fc;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.chapter-infographic-viewer-actions button {
+  border: none;
+  background: none;
+  color: #cbd5e1;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.chapter-infographic-viewer-scroll {
+  flex: 1 1 auto;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px;
+  text-align: center;
+}
+
+/* Natural width so panel text is legible; the container scrolls/pans, and
+   pinch-zoom still layers on top of this on touch devices. */
+.chapter-infographic-viewer-scroll img {
+  max-width: none;
+  height: auto;
+  border-radius: 8px;
+}
+
+body.dark-mode .chapter-infographic {
+  border-color: rgba(129, 140, 248, 0.35);
+  background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .chapter-infographic-eyebrow {
+  color: #a5b4fc;
+}
+
+body.dark-mode .chapter-infographic-frame {
+  border-color: rgba(148, 163, 184, 0.24);
+  background: #111827;
+}
+
+body.dark-mode .chapter-infographic-caption {
+  color: #cbd5e1;
+}
+
+@media (max-width: 640px) {
+  .chapter-infographic {
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .chapter-infographic-frame {
+    border-radius: 10px;
+  }
+
+  /* On a phone the poster is unreadable inline no matter what, so make the
+     affordance unmissable rather than a small corner pill. */
+  .chapter-infographic-zoom-hint {
+    left: 10px;
+    right: 10px;
+    text-align: center;
+  }
+}
+
+@media print {
+  .chapter-infographic {
+    border-color: #94a3b8;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .chapter-infographic-zoom-hint {
+    display: none;
+  }
+}
+
 .admin-performance-page {
   display: grid;
   gap: 24px;

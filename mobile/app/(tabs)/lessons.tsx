@@ -22,7 +22,11 @@ import { authFetch } from "../../lib/authFetch";
 import { BRAND_COLOR } from "../../constants";
 import { STREAM_SUBJECTS } from "@likhapoha/shared/utils/subjectAccess";
 import { normalizeTutorMarkdown } from "@likhapoha/shared/utils/markdownCleanup";
+import { extractChapterSummaries } from "@likhapoha/shared/utils/chapterSummary";
+import { extractChapterInfographics } from "@likhapoha/shared/utils/chapterInfographic";
 import ChapterJourney, { ChapterDocData } from "../../components/ChapterJourney";
+import ChapterSummaryCard, { ChapterSummary } from "../../components/ChapterSummaryCard";
+import ChapterInfographicCard, { ChapterInfographic } from "../../components/ChapterInfographicCard";
 
 // ── Dynamic loading messages — mirrors web LessonsPage.jsx getLoadingMessage ──
 const LOADING_MESSAGES: Record<number, Record<string, string>> = {
@@ -290,11 +294,24 @@ function mathToUnicode(latex: string): string {
 //  2. Renders each display block as a styled formula card (📐)
 //  3. Converts $...$$ inline math → Unicode text in markdown passages
 function MathAwareMarkdown({ content, accent }: { content: string; accent: string }) {
+  // Pull out ```chapter-summary fences BEFORE anything else. React Native's
+  // markdown renderer has no per-fence component hook (unlike react-markdown
+  // on the web), so a fence left in the text renders as a wall of raw JSON.
+  // Extracting here covers every mobile caller at once: this lessons tab and
+  // ChapterJourney, which receives this component via its renderMarkdown prop.
+  const { text: withoutSummaries, summaries } = extractChapterSummaries(content) as {
+    text: string;
+    summaries: ChapterSummary[];
+  };
+  const { text: withoutBlocks, infographics } = extractChapterInfographics(withoutSummaries) as {
+    text: string;
+    infographics: ChapterInfographic[];
+  };
   // Run the same shared cleanup pass the web LessonMarkdown uses first —
   // model output often writes display math as "[ \frac{a}{b} ]" (plain
   // square brackets) rather than "$$...$$". Without this, that content
   // never matches DISPLAY_MATH_RE below and renders as raw LaTeX text.
-  const normalized: string = normalizeTutorMarkdown(content);
+  const normalized: string = normalizeTutorMarkdown(withoutBlocks);
   // Split on $$...$$ (multiline)
   const DISPLAY_MATH_RE = /(\$\$[\s\S]+?\$\$)/g;
   const parts = normalized.split(DISPLAY_MATH_RE);
@@ -320,6 +337,12 @@ function MathAwareMarkdown({ content, accent }: { content: string; accent: strin
           <Markdown key={i} style={buildMarkdownStyles(accent)}>{processed}</Markdown>
         );
       })}
+      {summaries.map((summary, i) => (
+        <ChapterSummaryCard key={`chapter-summary-${i}`} summary={summary} />
+      ))}
+      {infographics.map((infographic, i) => (
+        <ChapterInfographicCard key={`chapter-infographic-${i}`} infographic={infographic} />
+      ))}
     </View>
   );
 }

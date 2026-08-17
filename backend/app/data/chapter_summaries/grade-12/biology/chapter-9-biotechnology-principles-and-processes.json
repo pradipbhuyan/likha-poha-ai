@@ -1,0 +1,177 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 9: Biotechnology: Principles and Processes",
+  "step_title": "Revision and recap",
+  "summary": {
+    "title": "Biotechnology: Principles and Processes",
+    "subtitle": "Whole-chapter recap — from cutting DNA to a purified, quality-tested product.",
+    "definition": "Biotechnology uses living organisms, cells, enzymes or molecular components to make useful products and services. Its two core techniques are genetic engineering and bioprocess engineering.",
+    "panels": [
+      {
+        "heading": "Recombinant DNA technology",
+        "points": [
+          "Genetic engineering alters DNA or RNA and transfers selected material into a host to change its phenotype.",
+          "Bioprocess engineering maintains sterile conditions for large-scale growth of a desired microbe or cell.",
+          "In 1972 Cohen and Boyer linked an antibiotic-resistance gene with a Salmonella typhimurium plasmid.",
+          "Three basic steps: identify desirable DNA, introduce it into a host, then maintain and transmit it to progeny."
+        ]
+      },
+      {
+        "heading": "Restriction enzymes",
+        "points": [
+          "Exonucleases remove nucleotides from the ends of DNA; endonucleases cut at positions within DNA.",
+          "Hind II was the first sequence-specific restriction endonuclease described.",
+          "EcoRI is named from Escherichia coli strain RY13; the Roman numeral gives the order of isolation.",
+          "A DNA palindrome reads the same on both strands in the 5-prime to 3-prime direction, such as GAATTC paired with CTTAAG.",
+          "Staggered cutting leaves complementary single-stranded sticky ends that help DNA ligase act."
+        ]
+      },
+      {
+        "heading": "Cloning vectors",
+        "points": [
+          "The origin of replication (ori) starts replication and controls the copy number of the linked DNA.",
+          "A selectable marker such as antibiotic resistance lets transformants grow while non-transformants are eliminated.",
+          "A vector should carry very few, preferably one, recognition site for a given restriction enzyme.",
+          "pBR322 is an E. coli vector carrying ori, ampR, tetR and several restriction sites.",
+          "A disarmed Ti plasmid of Agrobacterium tumefaciens delivers genes to plants; disarmed retroviruses deliver them to animal cells."
+        ]
+      },
+      {
+        "heading": "Selecting recombinants",
+        "points": [
+          "Insertion at the BamHI site in tetR disrupts tetracycline resistance while ampicillin resistance remains.",
+          "Insertion within the beta-galactosidase coding sequence prevents blue colour on a chromogenic substrate.",
+          "Non-recombinants with active beta-galactosidase form blue colonies; recombinants form colourless or white colonies.",
+          "A transformant has taken up vector DNA; only some transformants also carry the foreign insert."
+        ]
+      },
+      {
+        "heading": "Getting DNA into a host",
+        "points": [
+          "DNA is hydrophilic and does not cross the cell membrane easily, so hosts must be made competent.",
+          "Divalent calcium ions increase bacterial competence to take up DNA.",
+          "Heat shock: incubate cells with recombinant DNA on ice, hold briefly at 42 degrees C, then return to ice.",
+          "Microinjection delivers DNA into an animal cell nucleus; biolistics shoots DNA-coated gold or tungsten particles into plant cells."
+        ]
+      },
+      {
+        "heading": "Amplification and separation",
+        "points": [
+          "PCR repeats denaturation, primer annealing and extension to amplify a selected DNA segment.",
+          "Taq polymerase from Thermus aquaticus stays active through repeated high-temperature denaturation.",
+          "Agarose gel electrophoresis separates fragments by size; smaller fragments travel farther.",
+          "DNA is negatively charged and migrates toward the anode, the positive electrode.",
+          "Ethidium bromide staining under UV light reveals bright orange DNA bands, which are then eluted."
+        ]
+      },
+      {
+        "heading": "Expression and downstream processing",
+        "points": [
+          "A protein expressed in a heterologous host is called a recombinant protein.",
+          "A bioreactor supplies optimum temperature, pH, substrate, salts, vitamins and oxygen.",
+          "A stirred-tank bioreactor is a cylindrical vessel with a curved base, a stirrer and a sparger.",
+          "Downstream processing separates, purifies, formulates and preserves the product.",
+          "Products, especially drugs, undergo strict quality control before marketing."
+        ]
+      }
+    ],
+    "pipeline": {
+      "heading": "Recombinant DNA technology — major steps",
+      "steps": [
+        {
+          "label": "Isolation of DNA",
+          "detail": "Lysozyme, cellulase or chitinase break the cell wall; ribonuclease and protease remove RNA and protein."
+        },
+        {
+          "label": "Precipitation",
+          "detail": "Purified DNA precipitates in chilled ethanol as visible fine threads."
+        },
+        {
+          "label": "Cutting of DNA",
+          "detail": "The same restriction enzyme cuts source DNA and vector so their sticky ends are compatible."
+        },
+        {
+          "label": "Separation and elution",
+          "detail": "Agarose gel separates fragments by size; the required band is cut out and the DNA extracted."
+        },
+        {
+          "label": "Amplification by PCR",
+          "detail": "Denaturation, annealing and extension repeat to produce an enormous number of copies of the target."
+        },
+        {
+          "label": "Ligation",
+          "detail": "DNA ligase seals the sugar-phosphate backbones to make a stable recombinant molecule."
+        },
+        {
+          "label": "Transformation",
+          "detail": "Competent cells, microinjection, biolistics or disarmed vectors carry recombinant DNA into the host."
+        },
+        {
+          "label": "Selection",
+          "detail": "Selectable markers and insertional inactivation identify the cells that carry the insert."
+        },
+        {
+          "label": "Expression in a bioreactor",
+          "detail": "Host cells grow under controlled conditions and express the cloned gene as a recombinant protein."
+        },
+        {
+          "label": "Downstream processing",
+          "detail": "The product is separated, purified, formulated and quality tested before release."
+        }
+      ]
+    },
+    "terms": [
+      {
+        "term": "Recombinant DNA",
+        "meaning": "DNA made by joining fragments from two different sources."
+      },
+      {
+        "term": "Vector",
+        "meaning": "DNA molecule that carries foreign DNA into a host and replicates there."
+      },
+      {
+        "term": "Origin of replication",
+        "meaning": "Sequence where replication begins; it also controls the copy number of the linked DNA."
+      },
+      {
+        "term": "Selectable marker",
+        "meaning": "Gene that identifies transformants and allows only them to grow under selective conditions."
+      },
+      {
+        "term": "Insertional inactivation",
+        "meaning": "Loss of a gene's function because foreign DNA has been inserted inside its coding sequence."
+      },
+      {
+        "term": "Transformant",
+        "meaning": "Cell that has taken up vector DNA, whether or not it carries the foreign insert."
+      },
+      {
+        "term": "Sticky ends",
+        "meaning": "Complementary single-stranded overhangs left by a staggered restriction cut."
+      },
+      {
+        "term": "Competent cell",
+        "meaning": "Cell treated, usually with divalent calcium ions, so that it can take up DNA."
+      },
+      {
+        "term": "Bioreactor",
+        "meaning": "Vessel that grows cells at scale under controlled conditions to make a desired product."
+      },
+      {
+        "term": "Downstream processing",
+        "meaning": "Recovery, purification, formulation and quality testing carried out after biosynthesis."
+      }
+    ],
+    "remember": [
+      "Restriction in restriction enzyme means cutting DNA only at a specific recognition site.",
+      "Exonucleases remove nucleotides from the ends of DNA; endonucleases cut within it.",
+      "DNA moves toward the anode, the positive electrode, because it is negatively charged.",
+      "Ethidium bromide staining makes DNA visible under UV light, not in visible light.",
+      "Cutting comes before ligation: source DNA and vector must be cut first, then joined.",
+      "Cloning here means making many identical copies of a DNA fragment, not producing a whole animal.",
+      "Transformant and recombinant are not synonyms; only some transformants carry the insert.",
+      "Downstream processing begins after the product has been synthesised, not during cloning."
+    ]
+  }
+}

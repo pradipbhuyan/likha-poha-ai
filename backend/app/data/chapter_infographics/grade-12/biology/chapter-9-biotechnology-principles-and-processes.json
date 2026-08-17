@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 9: Biotechnology: Principles and Processes",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 02_03_22 PM (1).png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-9-biotechnology-principles-and-processes.webp",
+    "alt": "One-page revision poster for Biotechnology: Principles and Processes, covering recombinant DNA technology, restriction enzymes, vectors, PCR, gel electrophoresis, the nine major recombinant DNA steps, key terms and common exam points.",
+    "caption": "Full-chapter revision poster — recombinant DNA technology, restriction enzymes, vectors, PCR, gel electrophoresis and the nine-step workflow.",
+    "width": 1183,
+    "height": 1329
+  }
+}

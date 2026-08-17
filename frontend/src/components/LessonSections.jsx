@@ -6,6 +6,8 @@ import rehypeKatex from "rehype-katex";
 
 import StructuredVisualBlock from "./StructuredVisualBlock";
 import ExtractPopupBlock from "./ExtractPopupBlock";
+import ChapterSummaryBlock from "./ChapterSummaryBlock";
+import ChapterInfographicBlock from "./ChapterInfographicBlock";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 
 /** Fix $$ used inline (mid-sentence) by downgrading to $ $ inline math.
@@ -59,7 +61,10 @@ function getSectionType(title) {
     return "warning";
   if (t.includes("quick check") || t.includes("check question") || t.includes("practice") || t.includes("self check") || t.includes("question"))
     return "check";
-  if (t.includes("summary") || t.includes("recap") || t.includes("revision") || t.includes("review") || t.includes("key points"))
+  // "at a glance" covers the whole-chapter summary section appended by
+  // backend/scripts/apply_chapter_summary.py ("## Chapter at a glance"), which
+  // would otherwise fall through to the generic grey "default" styling.
+  if (t.includes("summary") || t.includes("recap") || t.includes("revision") || t.includes("review") || t.includes("key points") || t.includes("at a glance"))
     return "summary";
   // Hindi patterns — see scripts/prepare_gpt55_prompts.py HEADING_SETS["hi"]
   // (आप क्या सीखेंगे, सरल व्याख्या, चरण-दर-चरण विवरण, हल किया गया उदाहरण,
@@ -403,6 +408,28 @@ function LessonMarkdownTable({ children }) {
   );
 }
 
+// ── Shared ReactMarkdown <pre> renderer (used by both layouts) ────────────────
+// ReactMarkdown wraps every fenced block in a <pre>, which forces monospace and
+// white-space:pre onto whatever it contains. A chapter-summary renders a full
+// multi-column card, so that wrapper would visibly break it — unwrap it here.
+//
+// Detection must read `node` (react-markdown's pre-mapping hast AST), not the
+// rendered children: by the time they reach this component the nested <code>
+// has already become <ChapterSummaryBlock raw={...} />, which carries no
+// className. Same reasoning as JourneyPre in journey/LessonMarkdown.jsx.
+//
+// Deliberately scoped to chapter-summary alone. visual-json and extract-ref
+// still receive the <pre> wrapper in this layout, as they always have; changing
+// that is a separate call, since their current styling was tuned around it.
+function LessonMarkdownPre({ node, children }) {
+  const codeNode = node?.children?.find((c) => c.tagName === "code");
+  const codeClassName = (codeNode?.properties?.className || []).join(" ");
+  if (/language-chapter-(?:summary|infographic)/.test(codeClassName)) {
+    return <>{children}</>;
+  }
+  return <pre>{children}</pre>;
+}
+
 // ── Shared ReactMarkdown code renderer (used by both layouts) ─────────────────
 function LessonMarkdownCode({ className, children, node }) {
   const language = className || "";
@@ -410,6 +437,8 @@ function LessonMarkdownCode({ className, children, node }) {
 
   if (/language-visual-json/.test(language)) return <StructuredVisualBlock raw={raw} />;
   if (/language-extract-ref/.test(language)) return <ExtractPopupBlock raw={raw} />;
+  if (/language-chapter-summary/.test(language)) return <ChapterSummaryBlock raw={raw} />;
+  if (/language-chapter-infographic/.test(language)) return <ChapterInfographicBlock raw={raw} />;
   if (/language-mermaid/.test(language)) return null;
 
   const isLikelyLessonContent =
@@ -539,7 +568,7 @@ function CardFeedSection({
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
-            components={{ code: LessonMarkdownCode, table: LessonMarkdownTable }}
+            components={{ code: LessonMarkdownCode, pre: LessonMarkdownPre, table: LessonMarkdownTable }}
           >
             {fixInlineDisplayMath(renderableContent)}
           </ReactMarkdown>
@@ -735,7 +764,7 @@ function WorkbookSection({
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
-            components={{ code: LessonMarkdownCode, table: LessonMarkdownTable }}
+            components={{ code: LessonMarkdownCode, pre: LessonMarkdownPre, table: LessonMarkdownTable }}
           >
             {fixInlineDisplayMath(renderableContent)}
           </ReactMarkdown>
@@ -1021,7 +1050,7 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, grade, cardStyle 
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm, remarkMath]}
                     rehypePlugins={[rehypeKatex]}
-                    components={{ code: LessonMarkdownCode, table: LessonMarkdownTable }}
+                    components={{ code: LessonMarkdownCode, pre: LessonMarkdownPre, table: LessonMarkdownTable }}
                   >
                     {renderableContent}
                   </ReactMarkdown>

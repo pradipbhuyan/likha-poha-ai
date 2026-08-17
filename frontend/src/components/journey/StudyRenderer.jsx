@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AlertTriangle, Award, BookOpen, CheckCircle2, Compass, GraduationCap, HelpCircle, ImageIcon, Trophy } from "lucide-react";
 
 import LessonMarkdown from "./LessonMarkdown";
@@ -239,13 +239,17 @@ function ExploreMoreSection({ block }) {
   );
 }
 
-function StudyBlock({ block, blockKey, savedAnswer, onAnswer }) {
+function StudyBlock({ block, blockKey, savedAnswer, onAnswer, anchorId }) {
   switch (block.type) {
     case "hook":
       return null; // Study mode skips the playful opener
     case "concept":
       return (
-        <div style={{ margin: "16px 0" }}>
+        // anchorId is set only on the chapter-infographic block, so the
+        // outline's "Chapter at a glance" entry has something to scroll to.
+        // scrollMarginTop matches the milestone sections so the sticky topbar
+        // does not cover the heading on landing.
+        <div id={anchorId} style={{ margin: "16px 0", scrollMarginTop: anchorId ? 90 : undefined }}>
           {block.title && (
             <h4 style={{ fontSize: "1rem", margin: "0 0 6px", display: "flex", alignItems: "center", gap: 7 }}>
               <BookOpen size={15} strokeWidth={2.3} color="var(--accent, #2d4a8a)" aria-hidden="true" />
@@ -414,8 +418,36 @@ function useIsWide() {
   return matches;
 }
 
+// Anchor for the chapter-infographic block, referenced by the outline link.
+const CHAPTER_GLANCE_ANCHOR = "study-chapter-at-a-glance";
+
+/** Locate the block carrying a ```chapter-infographic fence, if any.
+ *
+ *  Derived from content rather than keyed to a chapter name: the outline entry
+ *  appears exactly for chapters that actually have a poster, so it needs no
+ *  per-chapter wiring as more are authored — and stays absent for the ones
+ *  that have none.
+ */
+function findChapterGlance(doc) {
+  const milestones = doc?.milestones || [];
+  for (let mi = 0; mi < milestones.length; mi += 1) {
+    const blocks = milestones[mi]?.blocks || [];
+    for (let bi = 0; bi < blocks.length; bi += 1) {
+      const block = blocks[bi];
+      // Restricted to "concept" because that is the only branch of StudyBlock
+      // that renders anchorId. Matching a type whose anchor is never stamped
+      // would put a dead link in the outline.
+      if (block?.type === "concept" && /```+\s*chapter-infographic/i.test(block.body_md || "")) {
+        return { mi, bi };
+      }
+    }
+  }
+  return null;
+}
+
 function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, onNavigate }) {
   const isWide = useIsWide();
+  const chapterGlance = useMemo(() => findChapterGlance(doc), [doc]);
 
   return (
     <div style={{
@@ -461,6 +493,23 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
             {milestone.title}
           </a>
         ))}
+        {chapterGlance && (
+          // Sits directly under the last milestone ("Revision and recap"),
+          // matching where the poster actually appears in the document.
+          <a
+            href={`#${CHAPTER_GLANCE_ANCHOR}`}
+            onClick={() => onNavigate?.(chapterGlance.mi)}
+            style={{
+              display: "flex", alignItems: "center", gap: 6,
+              padding: "7px 14px", textDecoration: "none",
+              color: "var(--text, #374151)", fontWeight: 500,
+              borderLeft: "3px solid transparent", lineHeight: 1.35,
+            }}
+          >
+            <ImageIcon size={13} strokeWidth={2.3} aria-hidden="true" />
+            Chapter at a glance
+          </a>
+        )}
         {doc.recap && (
           <a href="#study-recap" style={{
             display: "block", padding: "7px 14px", textDecoration: "none",
@@ -527,6 +576,11 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
                 blockKey={`${mi}:${bi}`}
                 savedAnswer={quizAnswers?.[`${mi}:${bi}`]}
                 onAnswer={onQuickCheckAnswer}
+                anchorId={
+                  chapterGlance && chapterGlance.mi === mi && chapterGlance.bi === bi
+                    ? CHAPTER_GLANCE_ANCHOR
+                    : undefined
+                }
               />
             ))}
           </section>

@@ -5,6 +5,8 @@ import rehypeKatex from "rehype-katex";
 
 import StructuredVisualBlock from "../StructuredVisualBlock";
 import ExtractPopupBlock from "../ExtractPopupBlock";
+import ChapterSummaryBlock from "../ChapterSummaryBlock";
+import ChapterInfographicBlock from "../ChapterInfographicBlock";
 import { normalizeTutorMarkdown } from "../../utils/markdownCleanup";
 
 /** Shared markdown renderer for Chapter Journey blocks.
@@ -25,13 +27,15 @@ import { normalizeTutorMarkdown } from "../../utils/markdownCleanup";
 // language on the <pre> itself (via its single child's className) lets us
 // skip the <pre> wrapper entirely for these block types and render the
 // interactive component as a normal sibling <div>/<button> instead.
-const _CUSTOM_BLOCK_LANGUAGE_RE = /language-(?:visual-json|extract-ref|mermaid)/;
+const _CUSTOM_BLOCK_LANGUAGE_RE = /language-(?:visual-json|extract-ref|chapter-summary|chapter-infographic|mermaid)/;
 
 function JourneyCode({ className, children }) {
   const language = className || "";
   const raw = String(children).replace(/\n$/, "");
   if (/language-visual-json/.test(language)) return <StructuredVisualBlock raw={raw} />;
   if (/language-extract-ref/.test(language)) return <ExtractPopupBlock raw={raw} />;
+  if (/language-chapter-summary/.test(language)) return <ChapterSummaryBlock raw={raw} />;
+  if (/language-chapter-infographic/.test(language)) return <ChapterInfographicBlock raw={raw} />;
   if (/language-mermaid/.test(language)) return null;
   return <code className={className}>{children}</code>;
 }
