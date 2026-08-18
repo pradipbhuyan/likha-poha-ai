@@ -58,7 +58,10 @@ import StudentDashboardPage from "./pages/StudentDashboardPage";
 import FormulaSheetPage from "./pages/FormulaSheetPage";
 import AdminQACenterPage from "./pages/AdminQACenterPage";
 import AdminIssuesPage from "./pages/AdminIssuesPage";
+import AdminFeedbackPage from "./pages/AdminFeedbackPage";
+import AdminTechDebtPage from "./pages/AdminTechDebtPage";
 import ReportIssueModal from "./components/ReportIssueModal";
+import { FeedbackPromptProvider } from "./context/FeedbackPromptContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, Users, GraduationCap, AlertTriangle, Atom, Microscope, FlaskConical, Briefcase, Landmark, ChevronDown, CreditCard, KeyRound, LogOut } from "lucide-react";
 import { PAGE_ICONS } from "./utils/pageIcons";
@@ -152,6 +155,18 @@ const PAGE_META = {
   adminIssues: {
     title: "Product Bugs",
     icon: "🐛",
+    roles: ["admin"],
+  },
+  adminFeedback: {
+    title: "User Feedback",
+    subtitle: "Feedback and suggestions submitted by students, parents and teachers.",
+    icon: "💬",
+    roles: ["admin"],
+  },
+  adminTechDebt: {
+    title: "Tech Debt Backlog",
+    subtitle: "Assimilated from user feedback and bug reports, sorted by criticality.",
+    icon: "🛠️",
     roles: ["admin"],
   },
   adminChat: {
@@ -1683,6 +1698,10 @@ function App() {
         return <AdminQACenterPage user={user} setActivePage={handlePageChange} />;
       case "adminIssues":
         return <AdminIssuesPage user={user} setActivePage={handlePageChange} />;
+      case "adminFeedback":
+        return <AdminFeedbackPage user={user} setActivePage={handlePageChange} />;
+      case "adminTechDebt":
+        return <AdminTechDebtPage user={user} setActivePage={handlePageChange} />;
       case "lessons":
         return <LessonsPage user={user} setActivePage={handlePageChange} />;
       case "doubt":
@@ -1791,6 +1810,7 @@ function App() {
 
   return (
     <ToastProvider>
+    <FeedbackPromptProvider user={user}>
     <div className="app-shell premium-app-shell">
       <Sidebar
         activePage={activePage}
@@ -1978,6 +1998,7 @@ function App() {
         </>
       )}
     </div>
+    </FeedbackPromptProvider>
     </ToastProvider>
   );
 }

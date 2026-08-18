@@ -4,6 +4,7 @@ import { MessageCircle } from "lucide-react";
 import { ensureLessonKbChips } from "../../api/lesson";
 import { saveChapterProgress } from "../../api/progress";
 import { logStudentActivity } from "../../api/profile";
+import { useFeedbackPrompt } from "../../context/useFeedbackPrompt";
 import JourneyRenderer from "./JourneyRenderer";
 import StudyRenderer from "./StudyRenderer";
 import LessonMarkdown from "./LessonMarkdown";
@@ -103,6 +104,7 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
   const [openChipIds, setOpenChipIds] = useState(() => new Set());
   const requestedStepsRef = useRef(new Set());
 
+  const { triggerFeedbackPrompt } = useFeedbackPrompt();
   const isJunior = JUNIOR_GRADES.has(grade);
   // Wide screens get a sticky milestone rail (Journey) / outline (Study), so
   // the compact progress strip is only needed on narrow viewports.
@@ -203,6 +205,7 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
               username: user.username,
               activity_type: "lesson_completed",
             }).catch(() => { /* non-critical */ });
+            triggerFeedbackPrompt("lesson_completed", { grade, subject, chapter });
           }
         });
       },
@@ -210,7 +213,7 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
     );
     observer.observe(card);
     return () => observer.disconnect();
-  }, [doc, isJunior, user.username, grade, mode, subject, chapter]);
+  }, [doc, isJunior, user.username, grade, mode, subject, chapter, triggerFeedbackPrompt]);
 
   function handleQuickCheckAnswer(blockKey, answerIndex, _isCorrect) {
     setProgress((prev) => {
