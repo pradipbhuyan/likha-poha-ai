@@ -1,7 +1,10 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status:** shipped for one chapter (Grade 12 Biology, Chapter 9) on
-> 2026-08-17. Rollout to Grades 5-12 Science + Maths is pending authoring.
+> **Status (2026-08-17):** live on 26 chapters — Grade 12 Biology Ch 9, all 10
+> Grade 5 EVS chapters (replaced once with a stronger batch), and all 15 Grade
+> 5 Maths chapters (12 replaced; 13-15 rejected on review, still on their
+> original poster — see open items). Grade 5 is complete. 266 of 292 in-scope
+> chapters remain.
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -23,9 +26,10 @@ The student-facing behaviour:
 - Poster text is unreadable at column width, so the preview carries a
   **"Tap to enlarge"** affordance. Clicking opens a full-screen viewer where
   the image renders at natural size and the student pans around it.
-- On Grades 9-12 (Chapter Journey / `StudyRenderer`), a **"Chapter at a glance"
-  link** appears in the left "On this chapter" outline, directly below the last
-  milestone and above "Wrap-up".
+- A **"Chapter at a glance"** navigation entry appears directly below the last
+  milestone and above "Wrap-up" — in the "On this chapter" outline for Grades
+  9-12 (`StudyRenderer`) and the "Chapter path" rail for Grades 5-8
+  (`JourneyRenderer`). It appears only for chapters that actually have a poster.
 
 ---
 
@@ -45,7 +49,7 @@ Chapter counts with authored `lesson_cache` content as of 2026-08-17
 
 | Grade | Maths | Science | Total |
 |-------|-------|---------|-------|
-| 5  | 15 | 10 (EVS) | 25 |
+| 5  | 15 ✅ | 10 ✅ (EVS) | 25 — **done** |
 | 6  | 10 | 12 | 22 |
 | 7  | 15 | 12 | 27 |
 | 8  | 24 | 13 | 37 |
@@ -115,7 +119,9 @@ python3 scripts/apply_chapter_infographic.py --remove \
 | Schema + fence extraction (single source of truth) | `shared/utils/chapterInfographic.js` |
 | Web renderer (preview + full-screen viewer) | `frontend/src/components/ChapterInfographicBlock.jsx` |
 | Web styles (light/dark/mobile/print) | `frontend/src/App.css` — search `.chapter-infographic` |
-| Outline link ("Chapter at a glance") | `frontend/src/components/journey/StudyRenderer.jsx` |
+| Nav-entry lookup (shared by both renderers) | `frontend/src/components/journey/chapterGlance.js` |
+| Nav entry — Grades 9-12 outline | `frontend/src/components/journey/StudyRenderer.jsx` |
+| Nav entry — Grades 5-8 rail | `frontend/src/components/journey/JourneyRenderer.jsx` |
 | Fence wiring — per-step lesson view | `frontend/src/components/LessonSections.jsx` |
 | Fence wiring — Chapter Journey view | `frontend/src/components/journey/LessonMarkdown.jsx` |
 | Mobile renderer | `mobile/components/ChapterInfographicCard.tsx` |
@@ -170,6 +176,26 @@ frontend bug, which is what makes it expensive.
 From the UI there is a **"Refresh lesson"** button that hits
 `GET /api/lesson/chapter-doc?refresh=true` and rebuilds the same way — that is
 the no-terminal fix.
+
+### Trap 1b: Grade 4/5 — the step you target is NOT the milestone title
+
+`chapter_doc_service._LEGACY_STEP_TITLES` remaps Grade 4/5 milestone titles to
+the `lesson_cache` rows that actually feed them, and tries the **mapped** title
+FIRST, falling back to the literal title only if the mapped row is missing:
+
+| Grade 5 milestone title | `lesson_cache.step_title` actually used |
+|-------------------------|------------------------------------------|
+| What We Learn           | `Concept introduction` |
+| Worked Examples         | `Worked examples` |
+| Recap                   | **`Revision and recap`** |
+
+Grade 5 EVS chapters have rows under BOTH `Recap` and `Revision and recap`.
+Targeting `--step "Recap"` writes to a row the converter ignores: the apply
+reports success, the chapter doc rebuilds, and the poster still never appears.
+Use the script's default `--step "Revision and recap"` for Grade 4/5 as well.
+
+Symptom to check for: the fence is present in `lesson_cache` but
+`0/N` chapter docs carry it. Verify against the DOC, never the cache row.
 
 ### Trap 2: mobile has no per-fence renderer hook
 
@@ -280,10 +306,39 @@ fixing posters one at a time.
 - [ ] **Decide the review gate** before bulk apply — the failure mode is a
       confidently wrong revision poster, which is worse than none.
 - [ ] Decide whether to delete the `chapter-summary` text path (§6).
-- [ ] Grade 5-8 use the Journey renderer, not `StudyRenderer` — the outline link
-      is currently **only** wired into `StudyRenderer` (Grades 9-12).
-      `JourneyRenderer.jsx` needs the equivalent before the lower-grade rollout
-      is complete.
+- [x] ~~Grade 5-8 Journey renderer nav link~~ — done 2026-08-17. Both
+      renderers now use `frontend/src/components/journey/chapterGlance.js`;
+      `StudyRenderer` adds it to the "On this chapter" outline and
+      `JourneyRenderer` to the "Chapter path" rail, in both cases below the
+      last milestone and above Wrap-up.
+- [x] ~~Regenerate Grade 5 EVS Chapters 5 and 6 clipping~~ — moot. All 10
+      Grade 5 EVS posters were REPLACED 2026-08-17 with a denser, more
+      thorough illustrated batch (Grade5-EVS.zip). Reviewed all 10 at full
+      resolution: only one defect found (Ch 6 "Words to Know" is missing the
+      term "Unique" before its definition — cosmetic, content otherwise
+      accurate). Facts spot-checked and confirmed correct: Arabian
+      Sea/Bay of Bengal river groupings, India's six Sanskrit-named seasons,
+      Gir/Kankrej/Ongole cattle breeds exported to Brazil, Mexican origin of
+      marigolds.
+- [ ] **Grade 5 Maths Chapters 13-15 still need a clean poster.** Chapters 1-12
+      were replaced 2026-08-17 with a second, illustrated-template batch
+      (denser 6-panel layout, better lettering than the first zip). Chapters
+      13-15 were offered in the same style but **rejected and never applied**
+      — each had a real content defect, not cosmetic:
+        - Ch 13 (Animal Jumps): "Remember This" box contains Chapter 12's
+          time-conversion facts (hours/minutes/seconds), not common
+          multiples/factors — content bleed from the wrong chapter.
+        - Ch 14 (Maps and Locations): clue "Yellow tent is closest to the
+          lake" contradicts its own map (blue tent sits beside the lake,
+          yellow is farthest away); repeated in both the explanation panel
+          and the worked example.
+        - Ch 15 (Data Through Pictures): three different values for the same
+          dataset across three panels — the icon-count table, the bar-height
+          panel, and the worked-example answer key all disagree. This is the
+          bar-graph-reading chapter, so the poster undermines the exact skill
+          it teaches.
+      Chapters 13-15 still carry the original (first-batch) zip poster.
+      Regenerate before reattempting.
 - [ ] `mobile/package.json` pins `typescript` twice (`~5.9.2` deps,
       `~5.3.3` devDeps); 5.3.3 wins and cannot parse Expo's base tsconfig, so
       `npx tsc` fails there. Typecheck with 5.9.2 explicitly.
@@ -296,7 +351,7 @@ fixing posters one at a time.
 ## 8. Verifying a change
 
 ```bash
-cd frontend && npx vitest run        # 922 tests at time of writing
+cd frontend && npx vitest run        # 925 tests at time of writing
 cd frontend && npx vite build
 cd mobile   && /path/to/tsc --noEmit  # must be TypeScript 5.9.x, see §7
 ```

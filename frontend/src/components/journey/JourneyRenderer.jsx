@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import LessonMarkdown from "./LessonMarkdown";
+import { CHAPTER_GLANCE_ANCHOR, CHAPTER_GLANCE_LABEL, findChapterGlance } from "./chapterGlance";
 import StructuredVisualBlock from "../StructuredVisualBlock";
 
 /**
@@ -46,13 +47,17 @@ const CARD_ICONS = {
   recap: Star,
 };
 
-function CardShell({ type, title, children }) {
+function CardShell({ type, title, children, anchorId }) {
   const colours = CARD_COLOURS[type] || CARD_COLOURS.concept;
   const Icon = CARD_ICONS[type] || BookOpen;
   return (
     <div
+      id={anchorId}
       className={`journey-card journey-card-${type}`}
       style={{
+        // scrollMarginTop keeps the sticky topbar off the card when the
+        // "Chapter at a glance" rail link scrolls to it.
+        scrollMarginTop: anchorId ? 90 : undefined,
         background: colours.bg,
         border: `1.5px solid ${colours.border}`,
         borderRadius: 16,
@@ -179,7 +184,7 @@ function StudentsAskCard({ block }) {
   );
 }
 
-function JourneyBlock({ block, blockKey, savedAnswer, onAnswer }) {
+function JourneyBlock({ block, blockKey, savedAnswer, onAnswer, anchorId }) {
   switch (block.type) {
     case "hook":
       return (
@@ -191,7 +196,7 @@ function JourneyBlock({ block, blockKey, savedAnswer, onAnswer }) {
       );
     case "concept":
       return (
-        <CardShell type="concept" title={block.title}>
+        <CardShell type="concept" title={block.title} anchorId={anchorId}>
           <div className="lesson-section-body" style={{ fontSize: ".95rem", lineHeight: 1.65 }}>
             <LessonMarkdown>{block.body_md}</LessonMarkdown>
           </div>
@@ -418,6 +423,7 @@ function ExploreMoreCard({ block }) {
 }
 
 function MilestoneRail({ doc, activeMilestone }) {
+  const chapterGlance = findChapterGlance(doc);
   /** Sticky left rail on wide screens: chapter path, always visible. */
   return (
     <nav className="journey-rail" style={{
@@ -466,6 +472,27 @@ function MilestoneRail({ doc, activeMilestone }) {
           </a>
         );
       })}
+      {chapterGlance && (
+        // Sits directly under the last milestone, matching where the poster
+        // actually appears in the feed.
+        <a
+          href={`#${CHAPTER_GLANCE_ANCHOR}`}
+          style={{
+            display: "flex", alignItems: "center", gap: 10, padding: "8px 14px",
+            textDecoration: "none", fontSize: ".84rem", fontWeight: 600,
+            color: "var(--muted, #9ca3af)", borderLeft: "3px solid transparent",
+          }}
+        >
+          <span style={{
+            width: 24, height: 24, borderRadius: "50%", flexShrink: 0,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            background: "var(--border, #e5e7eb)", color: "var(--muted, #9ca3af)",
+          }}>
+            <ImageIcon size={13} strokeWidth={2.6} aria-hidden="true" />
+          </span>
+          <span>{CHAPTER_GLANCE_LABEL}</span>
+        </a>
+      )}
       {doc.recap && (
         <a href="#journey-recap" style={{
           display: "flex", alignItems: "center", gap: 10, padding: "8px 14px",
@@ -487,6 +514,7 @@ function MilestoneRail({ doc, activeMilestone }) {
 }
 
 function JourneyRenderer({ doc, onQuickCheckAnswer, quizAnswers, activeMilestone = 0, isWide = false }) {
+  const chapterGlance = findChapterGlance(doc);
   return (
     <div style={isWide ? { display: "flex", gap: 26, alignItems: "flex-start" } : undefined}>
       {isWide && <MilestoneRail doc={doc} activeMilestone={activeMilestone} />}
@@ -519,6 +547,11 @@ function JourneyRenderer({ doc, onQuickCheckAnswer, quizAnswers, activeMilestone
               blockKey={`${mi}:${bi}`}
               savedAnswer={quizAnswers?.[`${mi}:${bi}`]}
               onAnswer={onQuickCheckAnswer}
+              anchorId={
+                chapterGlance && chapterGlance.mi === mi && chapterGlance.bi === bi
+                  ? CHAPTER_GLANCE_ANCHOR
+                  : undefined
+              }
             />
           ))}
         </section>

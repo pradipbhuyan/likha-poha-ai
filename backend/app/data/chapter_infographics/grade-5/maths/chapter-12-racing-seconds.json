@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 12: Racing Seconds",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 07_45_08 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-12-racing-seconds.webp",
+    "alt": "Grade 5 Maths Chapter 12 revision poster on converting hours, minutes and seconds, double number lines, and solving start, finish and elapsed time problems.",
+    "caption": "Chapter 12 at a glance: time conversion and elapsed time problems.",
+    "width": 1024,
+    "height": 1536
+  }
+}

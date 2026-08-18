@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 1: We the Travellers — I",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 06_50_27 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-1-we-the-travellers-i.webp",
+    "alt": "Grade 5 Maths Chapter 1 revision poster on rounding to the nearest ten, hundred and thousand, the midpoint rule, and solving travel problems with multiplication and division.",
+    "caption": "Chapter 1 at a glance: rounding on number lines and travel word problems.",
+    "width": 1122,
+    "height": 1402
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 11: Grandmother’s Quilt",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 07_42_11 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-11-grandmother-s-quilt.webp",
+    "alt": "Grade 5 Maths Chapter 11 revision poster on perimeter and area, measurement activities, approximating area on a grid, reasonableness checks and the tile game.",
+    "caption": "Chapter 11 at a glance: perimeter, area, grids and formulas.",
+    "width": 1024,
+    "height": 1536
+  }
+}

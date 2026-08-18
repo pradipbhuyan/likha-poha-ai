@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "EVS",
+  "chapter": "Chapter 3: The Mystery of Food",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 09_31_50 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/evs/chapter-3-the-mystery-of-food.webp",
+    "alt": "Grade 5 EVS Chapter 3 revision poster on food preservation by drying, pickling with oil or salt, keeping food away from air, and cold preservation by refrigeration.",
+    "caption": "Chapter 3 at a glance: drying, pickling, air-tight storage and cold preservation.",
+    "width": 1024,
+    "height": 1536
+  }
+}

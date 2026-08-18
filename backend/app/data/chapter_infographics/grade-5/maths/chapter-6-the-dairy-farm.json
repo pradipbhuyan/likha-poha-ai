@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 6: The Dairy Farm",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 07_31_52 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-6-the-dairy-farm.webp",
+    "alt": "Grade 5 Maths Chapter 6 revision poster on multiplication strategies including doubling-halving, nearest multiple, multiplying by 10s and 100s, and break-apart partial products.",
+    "caption": "Chapter 6 at a glance: smart multiplication strategies for dairy farm problems.",
+    "width": 1024,
+    "height": 1536
+  }
+}

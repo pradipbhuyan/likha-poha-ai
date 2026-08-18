@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 10: Symmetrical Designs",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 06_45_36 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-10-symmetrical-designs.webp",
+    "alt": "Grade 5 Maths Chapter 10 revision poster on rotational symmetry, centre of rotation, quarter, half and three-quarter turns, and which letters and digits look the same after a half turn.",
+    "caption": "Chapter 10 at a glance: rotational symmetry and how to check it.",
+    "width": 1122,
+    "height": 1402
+  }
+}

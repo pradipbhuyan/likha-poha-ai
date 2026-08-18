@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 5: Far and Near",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 07_06_10 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-5-far-and-near.webp",
+    "alt": "Grade 5 Maths Chapter 5 revision poster on adding and subtracting mixed lengths in kilometres, metres and centimetres using like-unit, single-unit and centimetre methods.",
+    "caption": "Chapter 5 at a glance: two valid methods for mixed-length addition and subtraction.",
+    "width": 1149,
+    "height": 1369
+  }
+}

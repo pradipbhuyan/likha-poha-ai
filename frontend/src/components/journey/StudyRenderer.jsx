@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AlertTriangle, Award, BookOpen, CheckCircle2, Compass, GraduationCap, HelpCircle, ImageIcon, Trophy } from "lucide-react";
 
 import LessonMarkdown from "./LessonMarkdown";
+import { CHAPTER_GLANCE_ANCHOR, CHAPTER_GLANCE_LABEL, findChapterGlance } from "./chapterGlance";
 import StructuredVisualBlock from "../StructuredVisualBlock";
 
 /**
@@ -418,33 +419,6 @@ function useIsWide() {
   return matches;
 }
 
-// Anchor for the chapter-infographic block, referenced by the outline link.
-const CHAPTER_GLANCE_ANCHOR = "study-chapter-at-a-glance";
-
-/** Locate the block carrying a ```chapter-infographic fence, if any.
- *
- *  Derived from content rather than keyed to a chapter name: the outline entry
- *  appears exactly for chapters that actually have a poster, so it needs no
- *  per-chapter wiring as more are authored — and stays absent for the ones
- *  that have none.
- */
-function findChapterGlance(doc) {
-  const milestones = doc?.milestones || [];
-  for (let mi = 0; mi < milestones.length; mi += 1) {
-    const blocks = milestones[mi]?.blocks || [];
-    for (let bi = 0; bi < blocks.length; bi += 1) {
-      const block = blocks[bi];
-      // Restricted to "concept" because that is the only branch of StudyBlock
-      // that renders anchorId. Matching a type whose anchor is never stamped
-      // would put a dead link in the outline.
-      if (block?.type === "concept" && /```+\s*chapter-infographic/i.test(block.body_md || "")) {
-        return { mi, bi };
-      }
-    }
-  }
-  return null;
-}
-
 function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, onNavigate }) {
   const isWide = useIsWide();
   const chapterGlance = useMemo(() => findChapterGlance(doc), [doc]);
@@ -507,7 +481,7 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
             }}
           >
             <ImageIcon size={13} strokeWidth={2.3} aria-hidden="true" />
-            Chapter at a glance
+            {CHAPTER_GLANCE_LABEL}
           </a>
         )}
         {doc.recap && (

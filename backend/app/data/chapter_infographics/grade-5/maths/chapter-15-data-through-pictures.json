@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 15: Data Through Pictures",
+  "step_title": "Revision and recap",
+  "source_image": "chapter_15_data_through_pictures.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-15-data-through-pictures.webp",
+    "alt": "Grade 5 Maths Chapter 15 poster on pictographs, scales, bar graphs, comparing values and checking conclusions from data.",
+    "caption": "Chapter 15 at a glance: read pictographs and bar graphs with the correct scale.",
+    "width": 1600,
+    "height": 2000
+  }
+}

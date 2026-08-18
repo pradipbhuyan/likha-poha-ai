@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 7: Shapes and Patterns",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 07_34_40 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-7-shapes-and-patterns.webp",
+    "alt": "Grade 5 Maths Chapter 7 revision poster on shapes, tessellation, making patterns with shapes, cubes as 3D shapes and angles meeting at a point.",
+    "caption": "Chapter 7 at a glance: tessellation, patterns, cubes and angles at a point.",
+    "width": 1122,
+    "height": 1402
+  }
+}

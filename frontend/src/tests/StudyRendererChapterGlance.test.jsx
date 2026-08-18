@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 
 import StudyRenderer from "../components/journey/StudyRenderer";
+import JourneyRenderer from "../components/journey/JourneyRenderer";
 
 const INFOGRAPHIC = {
   url: "https://cdn.example.com/chapter-9.webp",
@@ -40,13 +41,13 @@ describe("StudyRenderer — Chapter at a glance outline link", () => {
 
     const link = screen.getByRole("link", { name: /chapter at a glance/i });
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", "#study-chapter-at-a-glance");
+    expect(link).toHaveAttribute("href", "#chapter-at-a-glance");
   });
 
   test("the link target exists, so it actually scrolls somewhere", () => {
     const { container } = render(<StudyRenderer doc={buildDoc({ withInfographic: true })} />);
 
-    const target = container.querySelector("#study-chapter-at-a-glance");
+    const target = container.querySelector("#chapter-at-a-glance");
     expect(target).toBeInTheDocument();
     // The anchored block is the one holding the poster.
     expect(target.querySelector(".chapter-infographic")).toBeInTheDocument();
@@ -76,15 +77,58 @@ describe("StudyRenderer — Chapter at a glance outline link", () => {
     const { container } = render(<StudyRenderer doc={doc} />);
 
     expect(screen.queryByRole("link", { name: /chapter at a glance/i })).toBeNull();
-    expect(container.querySelector("#study-chapter-at-a-glance")).toBeNull();
+    expect(container.querySelector("#chapter-at-a-glance")).toBeNull();
   });
 
   test("is absent for a chapter with no poster", () => {
     const { container } = render(<StudyRenderer doc={buildDoc({ withInfographic: false })} />);
 
     expect(screen.queryByRole("link", { name: /chapter at a glance/i })).toBeNull();
-    expect(container.querySelector("#study-chapter-at-a-glance")).toBeNull();
+    expect(container.querySelector("#chapter-at-a-glance")).toBeNull();
     // The anchor id is never stamped on an unrelated block.
-    expect(container.querySelectorAll("[id^='study-chapter']")).toHaveLength(0);
+    expect(container.querySelectorAll("[id^='chapter-at']")).toHaveLength(0);
   });
 });
+
+// Grades 5-8 use JourneyRenderer ("Chapter path" rail), not StudyRenderer.
+// Both must offer the entry, or the lower-grade rollout ships without it.
+describe("JourneyRenderer rail (Grades 5-8)", () => {
+    test("adds the rail entry and a matching anchor", () => {
+      const { container } = render(
+        <JourneyRenderer doc={buildDoc({ withInfographic: true })} isWide />,
+      );
+
+      const link = screen.getByRole("link", { name: /chapter at a glance/i });
+      expect(link).toHaveAttribute("href", "#chapter-at-a-glance");
+
+      const target = container.querySelector("#chapter-at-a-glance");
+      expect(target).toBeInTheDocument();
+      expect(target.querySelector(".chapter-infographic")).toBeInTheDocument();
+    });
+
+    test("sits below the last milestone and above Wrap-up", () => {
+      const { container } = render(
+        <JourneyRenderer doc={buildDoc({ withInfographic: true })} isWide />,
+      );
+
+      const labels = Array.from(
+        container.querySelectorAll(".journey-rail a"),
+      ).map((a) => a.textContent.trim());
+
+      expect(labels).toEqual([
+        "1Concept introduction",
+        "2Revision and recap",
+        "Chapter at a glance",
+        "Wrap-up",
+      ]);
+    });
+
+    test("is absent for a chapter with no poster", () => {
+      const { container } = render(
+        <JourneyRenderer doc={buildDoc({ withInfographic: false })} isWide />,
+      );
+
+      expect(screen.queryByRole("link", { name: /chapter at a glance/i })).toBeNull();
+      expect(container.querySelector("#chapter-at-a-glance")).toBeNull();
+    });
+  });

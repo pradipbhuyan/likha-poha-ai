@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 8: Weight and Capacity",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 07_37_54 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-8-weight-and-capacity.webp",
+    "alt": "Grade 5 Maths Chapter 8 revision poster on weight and capacity problems involving multiplication, division, mixed-unit conversion, cost and comparison.",
+    "caption": "Chapter 8 at a glance: multi-step weight and capacity problems with unit conversion.",
+    "width": 1024,
+    "height": 1536
+  }
+}

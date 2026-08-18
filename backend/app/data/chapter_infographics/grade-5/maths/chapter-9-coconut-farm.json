@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 9: Coconut Farm",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 07_39_50 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-9-coconut-farm.webp",
+    "alt": "Grade 5 Maths Chapter 9 revision poster on partial quotients, remainders, the division relation N = D x Q + R, equal sharing, packing and deciding from context.",
+    "caption": "Chapter 9 at a glance: division strategies and interpreting remainders in context.",
+    "width": 1122,
+    "height": 1402
+  }
+}

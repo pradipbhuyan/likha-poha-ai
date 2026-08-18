@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 4: We the Travellers — II",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 07_04_10 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-4-we-the-travellers-ii.webp",
+    "alt": "Grade 5 Maths Chapter 4 revision poster on making sums equal by interchanging numbers, subtracting large numbers, estimating sums and differences, and number patterns.",
+    "caption": "Chapter 4 at a glance: swapping numbers, large subtraction, estimation and patterns.",
+    "width": 1122,
+    "height": 1402
+  }
+}

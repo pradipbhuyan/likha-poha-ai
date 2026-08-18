@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 2: Fractions",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 07_02_21 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-2-fractions.webp",
+    "alt": "Grade 5 Maths Chapter 2 revision poster on equivalent fractions, fraction kits, making a whole, counting smaller pieces and equivalent fraction families.",
+    "caption": "Chapter 2 at a glance: equivalent fractions and how to generate them.",
+    "width": 1153,
+    "height": 1364
+  }
+}

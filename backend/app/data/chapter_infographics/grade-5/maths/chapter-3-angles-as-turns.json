@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 3: Angles as Turns",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 06_53_01 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-3-angles-as-turns.webp",
+    "alt": "Grade 5 Maths Chapter 3 revision poster on clockwise and anti-clockwise turns, half and full turns, right-angle turns and finding the ending direction.",
+    "caption": "Chapter 3 at a glance: angles as turns and compass directions.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "EVS",
+  "chapter": "Chapter 1: Water — The Essence of Life",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 09_27_18 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/evs/chapter-1-water-the-essence-of-life.webp",
+    "alt": "Grade 5 EVS Chapter 1 revision poster on rivers flowing to the Arabian Sea and Bay of Bengal, freshwater habitats, pond plants and animals, and how a river flows from mountains to the sea.",
+    "caption": "Chapter 1 at a glance: river direction, freshwater habitats and how a river flows.",
+    "width": 1024,
+    "height": 1536
+  }
+}

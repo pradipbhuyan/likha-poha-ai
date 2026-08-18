@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 14: Maps and Locations",
+  "step_title": "Revision and recap",
+  "source_image": "chapter_14_maps_and_locations.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-14-maps-and-locations.webp",
+    "alt": "Grade 5 Maths Chapter 14 poster on directions, relative locations, grid positions, route turns, map keys and interchanges.",
+    "caption": "Chapter 14 at a glance: read maps with directions, grids, keys and routes.",
+    "width": 1600,
+    "height": 2000
+  }
+}

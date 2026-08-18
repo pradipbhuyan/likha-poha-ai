@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "EVS",
+  "chapter": "Chapter 2: Journey of a River",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 09_29_47 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/evs/chapter-2-journey-of-a-river.webp",
+    "alt": "Grade 5 EVS Chapter 2 revision poster on the uses of rivers, how animals and plants depend on rivers, problems rivers face from pollution and dams, and how we can protect rivers.",
+    "caption": "Chapter 2 at a glance: river uses, threats to rivers and how to protect them.",
+    "width": 1024,
+    "height": 1536
+  }
+}

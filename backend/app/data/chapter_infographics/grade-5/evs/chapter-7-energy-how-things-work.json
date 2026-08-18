@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "EVS",
+  "chapter": "Chapter 7: Energy — How Things Work",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 09_39_55 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/evs/chapter-7-energy-how-things-work.webp",
+    "alt": "Grade 5 EVS Chapter 7 revision poster on what energy is, sources of energy such as the sun, wind, water, food and fuels, forms of energy, and how to save energy.",
+    "caption": "Chapter 7 at a glance: energy sources, forms of energy and saving energy.",
+    "width": 1024,
+    "height": 1536
+  }
+}

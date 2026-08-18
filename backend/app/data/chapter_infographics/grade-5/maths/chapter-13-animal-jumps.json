@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 5",
+  "subject": "Maths",
+  "chapter": "Chapter 13: Animal Jumps",
+  "step_title": "Revision and recap",
+  "source_image": "chapter_13_animal_jumps.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-5/maths/chapter-13-animal-jumps.webp",
+    "alt": "Grade 5 Maths Chapter 13 poster on multiples, common multiples, factors, common factors, divisibility and prime numbers.",
+    "caption": "Chapter 13 at a glance: use animal jumps to see factors and multiples.",
+    "width": 1600,
+    "height": 2000
+  }
+}
