@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 3: A Peek Beyond the Point",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 10_02_57 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/maths/chapter-3-a-peek-beyond-the-point.webp",
+    "alt": "Grade 7 Maths Chapter 3 revision poster on the base-ten place value system beyond the decimal point, how the decimal point separates whole and fractional parts, why 705, 70.5 and 7.05 mean different things, reading decimals, expanded form, and multiple tenths.",
+    "caption": "Chapter 3 at a glance: place value, the decimal point, and reading decimal numbers.",
+    "width": 1024,
+    "height": 1536
+  }
+}

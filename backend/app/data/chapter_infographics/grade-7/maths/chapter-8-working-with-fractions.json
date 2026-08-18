@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 8: Working with Fractions",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 10_23_43 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/maths/chapter-8-working-with-fractions.webp",
+    "alt": "Grade 7 Maths Chapter 8 revision poster on multiplying fractions: a unit fraction product shown as an overlapping grid, a non-unit fraction product, reducing to lowest form, connecting the product to rectangle area, the general a/b times c/d rule, and multiplying a whole number by a fraction.",
+    "caption": "Chapter 8 at a glance: multiplying fractions using grid overlap and the area model.",
+    "width": 1024,
+    "height": 1536
+  }
+}

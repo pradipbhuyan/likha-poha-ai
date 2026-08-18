@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 2: Arithmetic Expressions",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 10_01_29 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/maths/chapter-2-arithmetic-expressions.webp",
+    "alt": "Grade 7 Maths Chapter 2 revision poster on why brackets matter in arithmetic expressions, the brackets-first evaluation order, and a worked money example showing how changing a bracketed expression changes the total.",
+    "caption": "Chapter 2 at a glance: why brackets matter and the correct order for evaluating expressions.",
+    "width": 1024,
+    "height": 1536
+  }
+}

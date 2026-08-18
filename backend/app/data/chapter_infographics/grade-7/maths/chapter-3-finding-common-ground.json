@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 3: Finding Common Ground",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 10_12_08 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/maths/chapter-3-finding-common-ground.webp",
+    "alt": "Grade 7 Maths Chapter 3 (Part 2) revision poster on the Highest Common Factor: a square-tiling problem, listing common factors of 12 and 16, choosing the largest tile size, the HCF/GCD definition, and a bag-packing example finding the HCF of 84 and 108.",
+    "caption": "Chapter 3 at a glance: finding the Highest Common Factor through tiling and packing problems.",
+    "width": 1024,
+    "height": 1536
+  }
+}

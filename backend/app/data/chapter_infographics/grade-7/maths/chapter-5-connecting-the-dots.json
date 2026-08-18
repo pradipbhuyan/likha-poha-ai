@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 5: Connecting the Dots…",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 10_15_36 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/maths/chapter-5-connecting-the-dots.webp",
+    "alt": "Grade 7 Maths Chapter 5 revision poster on interpreting data correctly: how a zero score differs from a missing value, central tendency (mean, median, range), variability and clustering, reading data carefully, and generalising from a sample to a population with caution.",
+    "caption": "Chapter 5 at a glance: reading data carefully — central tendency, variability, and sampling.",
+    "width": 1024,
+    "height": 1536
+  }
+}

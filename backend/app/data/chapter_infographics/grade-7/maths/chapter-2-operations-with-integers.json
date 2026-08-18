@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 2: Operations with Integers",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 10_01_58 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/maths/chapter-2-operations-with-integers.webp",
+    "alt": "Grade 7 Maths Chapter 2 (Part 2) revision poster on dividing integers: division as the missing-factor question, sign rules for same and different signs, why the divisor cannot be zero, using division for temperature change, and using it for profit and loss.",
+    "caption": "Chapter 2 at a glance: dividing integers, sign rules, and real-life applications.",
+    "width": 1024,
+    "height": 1536
+  }
+}

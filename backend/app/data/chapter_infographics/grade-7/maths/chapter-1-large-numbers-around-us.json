@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 1: Large Numbers Around Us",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 09_59_41 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/maths/chapter-1-large-numbers-around-us.webp",
+    "alt": "Grade 7 Maths Chapter 1 revision poster covering the Land of Tens calculator story: fixed-step +1000/+10/+100 button presses, counting button presses to build a number, minimum button presses using standard place-value decomposition, and worked examples like 5072 and 90,305 written as sums of place-value parts.",
+    "caption": "Chapter 1 at a glance: building large numbers with fixed-step calculators and place-value decomposition.",
+    "width": 1024,
+    "height": 1536
+  }
+}

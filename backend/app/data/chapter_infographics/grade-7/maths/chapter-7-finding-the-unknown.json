@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 7: Finding the Unknown",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 10_22_45 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/maths/chapter-7-finding-the-unknown.webp",
+    "alt": "Grade 7 Maths Chapter 7 (Part 2) revision poster on solving linear equations carefully, showing four common mistakes and their correct fixes: a sign error, a coefficient error, mishandling unknown terms on both sides, and misapplying the distributive property.",
+    "caption": "Chapter 7 at a glance: avoiding sign, coefficient, and distribution errors when solving equations.",
+    "width": 1024,
+    "height": 1536
+  }
+}

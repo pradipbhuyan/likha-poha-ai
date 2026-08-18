@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 6: Number Play",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 10_20_59 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/maths/chapter-6-number-play.webp",
+    "alt": "Grade 7 Maths Chapter 6 (Part 2) revision poster on magic squares using the numbers 1 to 9: feasible grid clues, why every row and column sums to 45, the magic sum of 15 for a 3x3 square, why the centre must be 5, which positions cannot hold 1 or 9, and the general m-based structure.",
+    "caption": "Chapter 6 at a glance: building and solving a 3x3 magic square with numbers 1 to 9.",
+    "width": 1024,
+    "height": 1536
+  }
+}

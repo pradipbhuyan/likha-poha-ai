@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 1: Geometric Twins",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 10_00_04 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/maths/chapter-1-geometric-twins.webp",
+    "alt": "Grade 7 Maths Chapter 1 (Part 2) revision poster on triangle congruence: the SSS condition, two-arc-intersection constructions, vertex correspondence, corresponding sides and angles, correct renaming of congruence statements, and a worked example proving triangle ABD congruent to CBD.",
+    "caption": "Chapter 1 at a glance: triangle congruence by the SSS condition and vertex correspondence.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Maths",
+  "chapter": "Chapter 4: Expressions using Letter-Numbers",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 10_15_15 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/maths/chapter-4-expressions-using-letter-numbers.webp",
+    "alt": "Grade 7 Maths Chapter 4 (Part 2) revision poster on algebraic expressions: writing a rectangle's perimeter using letter-numbers, combining like terms such as 5c + 3c + 10c, and keeping unlike terms such as 18c and 11d separate.",
+    "caption": "Chapter 4 at a glance: writing algebraic expressions and combining like terms.",
+    "width": 1024,
+    "height": 1536
+  }
+}
