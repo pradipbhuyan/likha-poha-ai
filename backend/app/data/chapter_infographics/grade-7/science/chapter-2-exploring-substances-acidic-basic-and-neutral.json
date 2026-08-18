@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 2: Exploring Substances: Acidic, Basic, and Neutral",
+  "step_title": "Revision and recap",
+  "source_image": "ch02.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/science/chapter-2-exploring-substances-acidic-basic-and-neutral.webp",
+    "alt": "Grade 7 Science Chapter 2 revision poster on acidic, basic and neutral substances: taste and feel tests on known edible items, litmus and red rose extract as natural indicators, and a comparison table classifying lemon juice, baking soda, salt, soap and vinegar.",
+    "caption": "Chapter 2 at a glance: testing substances as acidic, basic or neutral using natural indicators.",
+    "width": 1024,
+    "height": 1536
+  }
+}

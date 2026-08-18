@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 1: The Ever-Evolving World of Science",
+  "step_title": "Revision and recap",
+  "source_image": "ch01.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/science/chapter-1-the-ever-evolving-world-of-science.webp",
+    "alt": "Grade 7 Science Chapter 1 revision poster on science as a process: asking deeper questions, staying open to the unknown, using evidence to support, challenge or raise new questions, and the observe-question-idea-test-evidence-conclude cycle.",
+    "caption": "Chapter 1 at a glance: science as an ever-evolving process of questioning and evidence.",
+    "width": 1024,
+    "height": 1536
+  }
+}

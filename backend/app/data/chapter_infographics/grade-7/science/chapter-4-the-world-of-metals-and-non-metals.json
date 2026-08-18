@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 4: The World of Metals and Non-metals",
+  "step_title": "Revision and recap",
+  "source_image": "ch04.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/science/chapter-4-the-world-of-metals-and-non-metals.webp",
+    "alt": "Grade 7 Science Chapter 4 revision poster on properties of metals and non-metals: ductility, malleability, sonority and conduction of heat and electricity, with a comparison table of examples like copper, iron, aluminium, sulphur, wood and plastic.",
+    "caption": "Chapter 4 at a glance: comparing the properties of metals and non-metals.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 10: Life Processes in Plants",
+  "step_title": "Revision and recap",
+  "source_image": "ch10.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/science/chapter-10-life-processes-in-plants.webp",
+    "alt": "Grade 7 Science Chapter 10 revision poster on testing a leaf for starch: removing chlorophyll by boiling in alcohol, decolourisation, the need for chlorophyll and sunlight in Activity 10.3, and interpreting iodine-test results where blue-black shows starch is present.",
+    "caption": "Chapter 10 at a glance: testing leaves for starch and the need for sunlight and chlorophyll.",
+    "width": 1024,
+    "height": 1536
+  }
+}
