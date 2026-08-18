@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 5: Changes Around Us: Physical and Chemical",
+  "step_title": "Revision and recap",
+  "source_image": "ch05.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/science/chapter-5-changes-around-us-physical-and-chemical.webp",
+    "alt": "Grade 7 Science Chapter 5 revision poster on weathering of rocks: physical weathering by temperature and roots, chemical weathering forming an iron-oxide layer on basalt, soil formation, sediments, and transport by wind and water shown as a five-step rock-to-soil process.",
+    "caption": "Chapter 5 at a glance: how weathering slowly turns rock into soil.",
+    "width": 1024,
+    "height": 1536
+  }
+}

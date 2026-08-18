@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 3: Electricity: Circuits and Their Components",
+  "step_title": "Revision and recap",
+  "source_image": "ch03.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/science/chapter-3-electricity-circuits-and-their-components.webp",
+    "alt": "Grade 7 Science Chapter 3 revision poster on electric circuit symbols for cell, battery, LED, lamp, switch and wire, and a step-by-step troubleshooting checklist covering source, path, lamp, switch, contacts and polarity for a circuit that does not work.",
+    "caption": "Chapter 3 at a glance: circuit symbols and a logical order for troubleshooting a faulty circuit.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 9: Life Processes in Animals",
+  "step_title": "Revision and recap",
+  "source_image": "ch09.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/science/chapter-9-life-processes-in-animals.webp",
+    "alt": "Grade 7 Science Chapter 9 revision poster on breathing and respiration in animals: air entry through the nostrils, the windpipe and trachea, the diaphragm and rib cage, gas exchange at alveoli in the lungs, and a model showing how a balloon-and-straw setup demonstrates inhalation and exhalation.",
+    "caption": "Chapter 9 at a glance: how we breathe and how respiration releases energy.",
+    "width": 1024,
+    "height": 1536
+  }
+}

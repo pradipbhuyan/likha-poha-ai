@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 12: Earth, Moon, and the Sun",
+  "step_title": "Revision and recap",
+  "source_image": "ch12.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/science/chapter-12-earth-moon-and-the-sun.webp",
+    "alt": "Grade 7 Science Chapter 12 revision poster on seasons caused by Earth tilted axis: June and December solstices, the equinoxes, opposite seasons in the Northern and Southern Hemisphere, and how sunlight intensity and day length vary through the year.",
+    "caption": "Chapter 12 at a glance: Earth tilted axis and revolution cause the seasons.",
+    "width": 1024,
+    "height": 1536
+  }
+}

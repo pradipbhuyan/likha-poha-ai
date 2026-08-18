@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 11: Light: Shadows and Reflections",
+  "step_title": "Revision and recap",
+  "source_image": "ch11.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/science/chapter-11-light-shadows-and-reflections.webp",
+    "alt": "Grade 7 Science Chapter 11 revision poster on light travelling in a straight line: natural and artificial sources, luminous versus non-luminous objects, and activities showing light passing through aligned holes and a straight tube, with the Moon shining by reflected sunlight.",
+    "caption": "Chapter 11 at a glance: light travels in a straight line and how we see objects.",
+    "width": 1024,
+    "height": 1536
+  }
+}

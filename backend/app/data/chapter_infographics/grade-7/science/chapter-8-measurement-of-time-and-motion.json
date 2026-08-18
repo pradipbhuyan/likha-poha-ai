@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Science",
+  "chapter": "Chapter 8: Measurement of Time and Motion",
+  "step_title": "Revision and recap",
+  "source_image": "ch08.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/science/chapter-8-measurement-of-time-and-motion.webp",
+    "alt": "Grade 7 Science Chapter 8 revision poster on the distance, speed and time relationship, worked examples of each rearranged formula, instantaneous versus average speed, and a six-step troubleshooting checklist for exam questions involving formula, units, calculation, data, meaning and rechecking.",
+    "caption": "Chapter 8 at a glance: linking speed, distance and time.",
+    "width": 1024,
+    "height": 1536
+  }
+}
