@@ -39,6 +39,7 @@ import {
   getStudentPaymentConfig,
   verifyStudentPayment,
 } from "../api/payments";
+import { useFeedbackPrompt } from "../context/FeedbackPromptContext";
 import { SUBSCRIPTION_PLANS } from "../config/subscriptionPlans";
 import { isAllAccessTestUser } from "../utils/testAccounts";
 
@@ -1687,6 +1688,7 @@ const RESOURCES = [
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
 export default function ExamPrepPage({ user, setActivePage, onSubscriptionComplete }) {
+  const { triggerFeedbackPrompt } = useFeedbackPrompt();
   const [selectedExam, setSelectedExam] = useState("jee_main");
   const [dashboard, setDashboard] = useState(null);
   const [subjects, setSubjects] = useState([]);
@@ -1984,6 +1986,7 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
       const result = await submitSimulatedTest(user.accessToken, testSession.test_id, { answers, timeSpentSeconds: timeSpent });
       setTestResult(result);
       setActiveMode("result");
+      triggerFeedbackPrompt("exam_prep_completed", { grade: user?.grade, subject: selectedExam });
     } catch (e) {
       alert(e.message || "Failed to submit test");
     } finally { setTestLoading(false); }

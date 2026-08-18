@@ -106,6 +106,8 @@ from app.routes.teacher import router as teacher_router
 from app.routes.teacher_classroom import router as teacher_classroom_router
 from app.routes.subscription import router as subscription_router
 from app.routes.issues import router as issues_router
+from app.routes.feedback import router as feedback_router
+from app.routes.tech_debt import router as tech_debt_router
 from app.routes.platform_chat import router as platform_chat_router
 from app.routes.learning_simulation import router as learning_simulation_router
 from app.routes.admin_operations import router as admin_operations_router
@@ -518,6 +520,16 @@ app.include_router(
 app.include_router(
     issues_router,
     tags=["Issues"],
+)
+
+app.include_router(
+    feedback_router,
+    tags=["Feedback"],
+)
+
+app.include_router(
+    tech_debt_router,
+    tags=["Tech Debt"],
 )
 
 app.include_router(

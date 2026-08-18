@@ -148,6 +148,20 @@ function Sidebar({
       group: "Overview",
     },
     {
+      key: "adminFeedback",
+      label: "User Feedback",
+      icon: MessageSquare,
+      roles: ["admin"],
+      group: "Overview",
+    },
+    {
+      key: "adminTechDebt",
+      label: "Tech Debt Backlog",
+      icon: ListChecks,
+      roles: ["admin"],
+      group: "Overview",
+    },
+    {
       key: "cacheManagement",
       label: "Cache & Question Bank",
       icon: Database,

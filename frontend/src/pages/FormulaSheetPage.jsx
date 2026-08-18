@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { authFetch } from "../api/authClient";
 import { hasPaidAccess } from "../utils/resolveSubscription";
+import { useFeedbackPrompt } from "../context/FeedbackPromptContext";
 
 const ALL_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 const SUBJECT_ICONS = {
@@ -936,6 +937,7 @@ function saveStudied(grade, subject, set) {
 
 // ── Main page ─────────────────────────────────────────────────────────────────
 export default function FormulaSheetPage({ user, setActivePage }) {
+  const { triggerFeedbackPrompt } = useFeedbackPrompt();
   const enrolledGrade = user?.grade || "Grade 9";
   const isPaid = hasPaidAccess(user);
 
@@ -977,8 +979,10 @@ export default function FormulaSheetPage({ user, setActivePage }) {
   function handleStudied(formulaKey) {
     setStudiedSet(prev => {
       const next = new Set(prev);
-      if (next.has(formulaKey)) { next.delete(formulaKey); } else { next.add(formulaKey); }
+      const marking = !next.has(formulaKey);
+      if (marking) { next.add(formulaKey); } else { next.delete(formulaKey); }
       saveStudied(selectedGrade, subject, next);
+      if (marking) triggerFeedbackPrompt("formula_sheet_used", { grade: selectedGrade, subject });
       return next;
     });
   }

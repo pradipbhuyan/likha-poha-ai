@@ -21,6 +21,7 @@ import {
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
 import { filterAllowedSubjects } from "../utils/subjectAccess";
+import { useFeedbackPrompt } from "../context/FeedbackPromptContext";
 
 const ROLE_META = {
   likhapoha: { label: "LikhaPoha AI", Icon: PlayCircle },
@@ -242,6 +243,7 @@ function VideoEmbedCard({ videoId, title }) {
 
 function ResourcesPage({ user }) {
   /** Lets students browse external learning resources for a selected syllabus topic. */
+  const { triggerFeedbackPrompt } = useFeedbackPrompt();
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
   const [error, setError] = useState("");
@@ -485,7 +487,11 @@ function ResourcesPage({ user }) {
               const Icon = getResourceIcon(resource);
               const videoId = resource.type === "youtube" ? getYoutubeVideoId(resource.url) : null;
               return (
-                <div key={index} className="resource-card premium-resource-card">
+                <div
+                  key={index}
+                  className="resource-card premium-resource-card"
+                  onClickCapture={() => triggerFeedbackPrompt("learn_more_used", { grade, subject, chapter })}
+                >
                   <div className="premium-resource-card-header">
                     <Icon size={20} />
                     <div>

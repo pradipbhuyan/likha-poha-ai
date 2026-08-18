@@ -27,6 +27,7 @@ import {
 } from "../utils/syllabusDefaults";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 import { filterAllowedSubjects, isSchoolBoardMode } from "../utils/subjectAccess";
+import { useFeedbackPrompt } from "../context/FeedbackPromptContext";
 import { isAllAccessTestUser } from "../utils/testAccounts";
 
 const ANSWER_STYLE_OPTIONS = [
@@ -54,6 +55,7 @@ const ANSWER_STYLE_OPTIONS = [
 
 function DoubtPage({ user, setActivePage }) {
   /** Student doubt-solving page with syllabus context, RAG/LLM answers, images, and follow-ups. */
+  const { triggerFeedbackPrompt } = useFeedbackPrompt();
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
   const [error, setError] = useState("");
@@ -371,6 +373,7 @@ function DoubtPage({ user, setActivePage }) {
 
       setAnswer(finalAnswer);
       setMentorSuggestions(result.mentor_suggestions || []);
+      triggerFeedbackPrompt("doubt_answered", { grade, subject, chapter });
 
       // Scroll to the answer section so students see the response immediately
       setTimeout(() => {

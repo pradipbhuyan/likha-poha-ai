@@ -27,6 +27,7 @@ import { getSyllabus } from "../api/syllabus";
 import { generateMockTest } from "../api/mockTest";
 import { saveTestHistory, saveWrongAnswers } from "../api/analytics";
 import { logStudentActivity } from "../api/profile";
+import { useFeedbackPrompt } from "../context/FeedbackPromptContext";
 import { evaluateStudentAnswer } from "../api/evaluation";
 import { getDefaultSelection, getUserBoard, getUserGrade, getVisibleGrades } from "../utils/syllabusDefaults";
 import { filterAllowedSubjects, isSchoolBoardMode } from "../utils/subjectAccess";
@@ -68,6 +69,7 @@ const DEFAULT_QUESTION_COUNT_BY_EXAM_TYPE = {
 };
 
 function MockTestPage({ user, setActivePage }) {
+  const { triggerFeedbackPrompt } = useFeedbackPrompt();
   const [syllabusData,    setSyllabusData]    = useState(null);
   const [grade,           setGrade]           = useState("Grade 9");
   const [mode,            setMode]            = useState("CBSE");
@@ -297,6 +299,7 @@ function MockTestPage({ user, setActivePage }) {
     setResults(payload);
     setPhase(PHASE_RESULT);
     setSecondsLeft(0);
+    triggerFeedbackPrompt("mock_test_completed", { grade, subject, chapter: chapterLabel });
 
     saveTestHistory(payload)
       .then(() => logStudentActivity({ username: user.username, activity_type: "mock_test_taken" }))
