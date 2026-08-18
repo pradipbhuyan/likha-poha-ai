@@ -1,10 +1,13 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-17):** live on 26 chapters — Grade 12 Biology Ch 9, all 10
-> Grade 5 EVS chapters (replaced once with a stronger batch), and all 15 Grade
-> 5 Maths chapters (12 replaced; 13-15 rejected on review, still on their
-> original poster — see open items). Grade 5 is complete. 266 of 292 in-scope
-> chapters remain.
+> **Status (2026-08-18):** live on 95 chapters — Grade 12 Biology Ch 9, all 10
+> Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
+> rejected on review, still on their original poster — see open items), all
+> 15 Grade 7 Maths chapters, all 14 Grade 8 Maths chapters, all 13 Grade 8
+> Science chapters, all 8 Grade 9 Maths chapters, and all 13 Grade 9 Science
+> chapters. Grade 5, Grade 7 Maths, Grade 8 (Maths + Science), and Grade 9
+> (Maths + Science) are all complete. 197 of 292 in-scope chapters remain
+> (Grades 6, 10, 11, 12 minus the one already-live Grade 12 chapter).
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -232,6 +235,28 @@ block — if that ever changes, the link silently stops scrolling.
 New component files plus changed import graphs mean the running Vite bundle is
 stale. Hard-reload the browser (`Cmd+Shift+R`) after pulling these changes.
 
+### Trap 6: `alt` over 300 characters renders nothing, with zero error anywhere
+
+`validateChapterInfographic()` in `shared/utils/chapterInfographic.js` caps
+`alt` (and `caption`) at 300 characters and returns `null` — not a truncated
+string — if either is over. `ChapterInfographicBlock.jsx` renders `null` on a
+`null` payload, by design ("fails safe... showing nothing beats showing a
+broken image frame"). Nothing logs, nothing throws, and the containing
+`.lesson-section-body` card still renders with its normal padding, so the
+symptom is a card with the right title and a blank white box under it — not
+a missing card, not a console error, not a stale-cache symptom. It looks
+identical to a doc-cache staleness issue (see Trap 1) and is easy to
+misdiagnose as one; a `refresh=true` / "Refresh lesson" retry will NOT fix it,
+because the freshly-rebuilt doc still carries the same over-length `alt`.
+Confirmed live 2026-08-18: 2 of Grade 7 Maths' 15 posters (Ch 1 at 312 chars,
+Ch 6 at 301) were silently blank in the student view despite the sidecar,
+`lesson_cache` fence, and image all being individually correct. Diagnosed by
+extracting the `alt` string and running it through `validateChapterInfographic`
+directly in Node — parsing the markdown fence in isolation confirmed the AST
+was clean, isolating the failure to that one length check.
+**Check every `alt`/`caption` length before applying** (`len(alt) <= 300`);
+the apply script does not currently enforce this itself.
+
 ---
 
 ## 6. Design decision: image vs. structured text
@@ -302,6 +327,77 @@ fixing posters one at a time.
 
 ## 7. Open items
 
+- [x] ~~Grade 8 Maths: 14 of 14 chapters authored~~ — 2026-08-18. Reviewed
+      all 14 (13 pasted directly, 1 — Chapter 9 "The Baudhayana-Pythagoras
+      Theorem" — generated fresh to fill a gap) against source content
+      (factor pairing, exponent laws, Pythagorean triples, fractal ratios,
+      pie-chart angles, algebraic identities all checked) before applying.
+      12 applied cleanly first pass. **Two needed a regeneration round**:
+        - **Chapter 8 "Fractions in Disguise"**: two separate attempts both
+          printed "CHAPTER 1" on the title bar instead of "CHAPTER 8".
+          Root cause found in `lesson_cache`: this chapter's content is
+          headed "Chapter 1: Fractions in Disguise" internally (a legacy
+          label unrelated to the grade's real Chapter 1, "A Square and A
+          Cube", which already has its own separate poster) — GPT-5.5 read
+          the number from the content instead of the CHAPTER: instruction
+          both times. Content itself (percentage change, worked examples)
+          was correct both attempts.
+        - **Chapter 10 "Proportional Reasoning-2"**: "Words to Know"
+          included "Solute", "Solvent", and "Uniform Mixture" — Grade 8
+          *Science* Chapter 9 vocabulary (a cross-subject bleed, not just
+          cross-chapter), unrelated to pie charts.
+      Sent regeneration prompts for both with an added HARD RULE naming the
+      exact defect (Ch 8's rule explicitly overrides the "Chapter 1" text
+      inside CHAPTER_CONTENT). Both came back clean on the next attempt — Ch
+      8's title bar correctly reads "CHAPTER 8", Ch 10's Words to Know is
+      pie-chart-only (Pie Chart/Central Angle/Frequency/Ratio/Sector) and its
+      angle sum re-verified (77°+129°+51°+103°=360°). Applied.
+      **Grade 8 Maths is complete — Grade 8 (Maths + Science) is now fully
+      authored.**
+- [x] ~~Grade 8 Science: 13 of 13 chapters authored~~ — already complete
+      going into this session (applied prior to the work logged in this
+      doc); confirmed via `/api/syllabus` that 13 is the full live count,
+      no dual-key duplicates found for this grade/subject.
+- [x] ~~Grade 9 Science: 13 of 13 chapters authored~~ — 2026-08-18. Reviewed
+      all 13 generated posters against source content before applying (math,
+      formulas, taxonomy, balanced equations, all checked). 12 applied
+      cleanly; **Chapter 7 "Work, Energy, and Simple Machines"** initially
+      held back — its "Key Terms" strip included "Mixture", "Homogeneous
+      Mixture (Solution)" and "Heterogeneous Mixture", bled in from Chapter 5
+      "Exploring Mixtures and Their Separation". Regenerated from a prompt
+      with an added HARD RULE naming the defect; re-reviewed (Key Terms now
+      Work/Force/Displacement/Energy/Power/Simple Machine only, all worked
+      examples re-verified: 100 J, 36 J, 294 J, 5 W) and applied. **Grade 9
+      Science is complete.**
+- [x] ~~Grade 9 Maths: 8 of 8 chapters authored~~ — 2026-08-18. Reviewed all
+      8 generated posters against source content (formulas, worked examples,
+      identities, distance/area calculations all checked) before applying.
+      7 applied cleanly; **Chapter 5 "I'm Up and Down, and Round and Round"**
+      initially held back — its "Common Mistakes" strip included "Thinking
+      √2 or π are rational numbers", bled in from Chapter 3 "The World of
+      Numbers". Regenerated from a prompt with an added HARD RULE naming the
+      defect; re-reviewed (Key Terms now Circle/Diameter/Radius/Chord/Arc/
+      Semicircle/Cyclic Quadrilateral/Segment only, geometry re-verified) and
+      applied. **Grade 9 Maths is complete — Grade 9 (Maths + Science) is
+      now fully authored.**
+- [x] ~~Grade 9 Maths and Science prompts generated~~ — 2026-08-18. Ran
+      `prepare_gpt55_infographic_prompts.py --grade "Grade 9" --subject Maths`
+      and `... --subject Science`, which wrote 12 and 27 prompts
+      respectively — but the live `/api/syllabus` dropdown only lists **8**
+      Maths and **13** Science chapters for Grade 9 (21 total). The extra 18
+      prompts were for a duplicate, non-"Chapter N: "-prefixed `lesson_cache`
+      chapter key that exists alongside the real one for the same content
+      (e.g. bare "Cell: The Building Block of Life" alongside the live
+      "Chapter 2: Cell: The Building Block of Life") — the same dual-key
+      situation `chapter_doc_service._strip_display_prefixes`'s docstring
+      already documents for Grade 10 English / Grade 11 Maths & Biology,
+      just not previously hit by this script. Deleted the 18 stale-duplicate
+      prompt files (verified each deleted file's `CHAPTER:` line lacked the
+      `Chapter N: ` prefix); the remaining 21 map 1:1 onto the syllabus
+      dropdown. **Any future `prepare_gpt55_infographic_prompts.py` run for a
+      grade/subject should be checked against `/api/syllabus` before
+      treating its output count as the true chapter count** — the script
+      counts distinct `lesson_cache` chapter keys, not distinct chapters.
 - [ ] Author posters for the remaining 291 chapters (see §2).
 - [ ] **Decide the review gate** before bulk apply — the failure mode is a
       confidently wrong revision poster, which is worse than none.
@@ -339,6 +435,37 @@ fixing posters one at a time.
           it teaches.
       Chapters 13-15 still carry the original (first-batch) zip poster.
       Regenerate before reattempting.
+- [x] ~~Grade 7 Maths: Chapters 5/6/7 posters swapped between storage
+      paths~~ — fixed 2026-08-18. All 15 Grade 7 Maths posters (applied
+      2026-08-18, commit `c768f96a`) were reviewed at full resolution.
+      Two pairs had the right sidecar metadata (alt/caption already
+      described the correct chapter) but the wrong image bytes uploaded to
+      each other's storage path — visible only by opening the image, not by
+      reading the JSON: `chapter-5-parallel-and-intersecting-lines.webp` held
+      the Chapter 6 Constructions-and-Tilings poster and vice versa; same
+      swap between `chapter-6-number-play.webp` and
+      `chapter-7-a-tale-of-three-intersecting-lines.webp`. Fixed by
+      re-running `apply_chapter_infographic.py` with each pair's image
+      swapped back to its own storage path (same URL, so the sidecar/fence
+      text didn't need to change) and re-verified at full resolution.
+- [x] ~~Grade 7 Maths Chapters 7 (Finding the Unknown) and 8 (Working with
+      Fractions) needed a regenerated poster~~ — fixed 2026-08-18. Found in
+      the same review: Ch 7's title bar read "CHAPTER 15" instead of
+      "CHAPTER 7" (its `lesson_cache` content is headed "Chapter 15" — the
+      straight-through position across both textbook parts — rather than the
+      Part-2-relative "Chapter 7" shown to students; GPT-5.5 took the number
+      from the chapter content instead of the corrected instruction).
+      Ch 8's "Remember This" strip had five magic-square bullets bled in
+      from Chapter 6 "Number Play". Regenerated both with prompts carrying
+      an added HARD RULE naming the exact defect; re-applied and verified —
+      Ch 7 now reads "CHAPTER 7", Ch 8's closing strips are fractions-only.
+      **Residual, not fixed:** Ch 7's new "Diagnosing Errors" panel shows
+      the *same* correct step (`5x − 3 = 12 → 5x = 15, added 3`) under both
+      the "Incorrect step ✗" and "Correct step ✓" boxes — the two examples
+      are supposed to differ (the incorrect one should show the actual
+      slip-up, e.g. subtracting 3 again) but render identically, so as
+      printed a correct step is red-X'd. Cosmetic rather than a swap/bleed,
+      left as-is; worth a third pass if this poster gets revisited.
 - [ ] `mobile/package.json` pins `typescript` twice (`~5.9.2` deps,
       `~5.3.3` devDeps); 5.3.3 wins and cannot parse Expo's base tsconfig, so
       `npx tsc` fails there. Typecheck with 5.9.2 explicitly.

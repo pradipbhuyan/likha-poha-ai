@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 2: The Invisible Living World: Beyond Our Naked Eye",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 02 - The Invisible Living World.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-2-the-invisible-living-world-beyond-our-naked-eye.webp",
+    "alt": "One-page revision poster covering Chapter 2: The Invisible Living World: Beyond Our Naked Eye for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — The Invisible Living World: Beyond Our Naked Eye",
+    "width": 1024,
+    "height": 1536
+  }
+}

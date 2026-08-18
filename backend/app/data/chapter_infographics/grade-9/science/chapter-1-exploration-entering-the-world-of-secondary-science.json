@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 1: Exploration: Entering the World of Secondary Science",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-1-exploration-entering-the-world-of-secondary-science.webp",
+    "alt": "Grade 9 Science Chapter 1 revision poster on scientific estimation: why estimation matters, the estimation steps, worked examples estimating daily air breathed and a family's monthly rice needs, tools used for estimation, and things to remember for reasonable approximations.",
+    "caption": "Chapter 1 at a glance: making reasonable estimates using observation, measurement, and logical reasoning.",
+    "width": 1024,
+    "height": 1536
+  }
+}

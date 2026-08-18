@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 7: Particulate Nature of Matter",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 07 - Particulate Nature of Matter.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-7-particulate-nature-of-matter.webp",
+    "alt": "One-page revision poster covering Chapter 7: Particulate Nature of Matter for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — Particulate Nature of Matter",
+    "width": 1024,
+    "height": 1536
+  }
+}

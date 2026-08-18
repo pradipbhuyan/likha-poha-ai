@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 5: Exploring Forces",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 05 - Exploring Forces.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-5-exploring-forces.webp",
+    "alt": "One-page revision poster covering Chapter 5: Exploring Forces for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — Exploring Forces",
+    "width": 1024,
+    "height": 1536
+  }
+}

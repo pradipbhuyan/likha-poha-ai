@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 7: Proportional Reasoning-1",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-7-proportional-reasoning-1.webp",
+    "alt": "Grade 8 Maths Chapter 7 revision poster on proportional reasoning: how a shape keeps its appearance when every length is scaled by the same factor, examples of enlargement and reduction, distortion from using different factors, and checking similarity by comparing ratios.",
+    "caption": "Chapter 7 at a glance: scale factors, similar shapes, and spotting distortion.",
+    "width": 1122,
+    "height": 1402
+  }
+}

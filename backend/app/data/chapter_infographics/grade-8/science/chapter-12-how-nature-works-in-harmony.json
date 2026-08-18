@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 12: How Nature Works in Harmony",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 12 - How Nature Works in Harmony.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-12-how-nature-works-in-harmony.webp",
+    "alt": "One-page revision poster covering Chapter 12: How Nature Works in Harmony for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — How Nature Works in Harmony",
+    "width": 1024,
+    "height": 1536
+  }
+}

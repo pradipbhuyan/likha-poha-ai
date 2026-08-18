@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 2: Cell: The Building Block of Life",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-2-cell-the-building-block-of-life.webp",
+    "alt": "Grade 9 Science Chapter 2 revision poster on cells: what a cell is, the eye's limit of resolution, why microscopes are needed, unicellular vs multicellular organisms, Robert Hooke's discovery of cork cells, and the plant cell parts revealed through microscopy.",
+    "caption": "Chapter 2 at a glance: cells as the basic unit of life, seen through the microscope.",
+    "width": 1149,
+    "height": 1369
+  }
+}

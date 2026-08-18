@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Chapter 4: Exploring Algebraic Identities",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Maths-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/maths/chapter-4-exploring-algebraic-identities.webp",
+    "alt": "Grade 9 Maths Chapter 4 revision poster on algebraic identities: expanding (a+b)squared, (a-b)squared and (a+b+c)squared, factoring using identities, a geometric visualisation of an identity, and real-life applications in areas and volumes.",
+    "caption": "Chapter 4 at a glance: expanding, factoring, and visualising algebraic identities.",
+    "width": 1024,
+    "height": 1536
+  }
+}

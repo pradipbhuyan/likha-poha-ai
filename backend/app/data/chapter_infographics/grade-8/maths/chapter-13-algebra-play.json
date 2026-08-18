@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 13: Algebra Play",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter13.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-13-algebra-play.webp",
+    "alt": "Grade 8 Maths Chapter 13 revision poster on number pyramids: the local rule that each entry is the sum of the two below it, deriving the top expression from a three-entry base, why the middle entry has coefficient 2, and reverse-solving for a missing entry.",
+    "caption": "Chapter 13 at a glance: number pyramids and the algebra behind their patterns.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 12: Patterns in Life: Diversity and Classification",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter12.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-12-patterns-in-life-diversity-and-classification.webp",
+    "alt": "Grade 9 Science Chapter 12 revision poster on biological classification: why classification matters, the hierarchical taxonomy from kingdom to species, classification criteria, the three-domain system, and worked classification examples for five organisms.",
+    "caption": "Chapter 12 at a glance: classifying living things from kingdom down to species.",
+    "width": 1024,
+    "height": 1536
+  }
+}

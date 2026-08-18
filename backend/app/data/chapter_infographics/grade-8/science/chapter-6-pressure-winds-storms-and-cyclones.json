@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 6: Pressure, Winds, Storms, and Cyclones",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 06 - Pressure Winds Storms and Cyclones.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-6-pressure-winds-storms-and-cyclones.webp",
+    "alt": "One-page revision poster covering Chapter 6: Pressure, Winds, Storms, and Cyclones for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — Pressure, Winds, Storms, and Cyclones",
+    "width": 1024,
+    "height": 1536
+  }
+}

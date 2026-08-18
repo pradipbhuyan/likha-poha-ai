@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Chapter 1: Orienting Yourself: The Use of Coordinates",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Maths-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/maths/chapter-1-orienting-yourself-the-use-of-coordinates.webp",
+    "alt": "Grade 9 Maths Chapter 1 revision poster on coordinates: the coordinate plane and its four quadrants, locating points with ordered pairs, quadrant sign rules, plotting points, and finding the distance between two points using the distance formula.",
+    "caption": "Chapter 1 at a glance: locating and measuring distances between points on the coordinate plane.",
+    "width": 1024,
+    "height": 1536
+  }
+}

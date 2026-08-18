@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 4: Describing Motion Around Us",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-4-describing-motion-around-us.webp",
+    "alt": "Grade 9 Science Chapter 4 revision poster on describing motion: what motion is, position and reference points, distance versus displacement, worked examples, and reading position-time graphs for rest, uniform, and non-uniform motion.",
+    "caption": "Chapter 4 at a glance: describing motion using reference points, distance, displacement, and graphs.",
+    "width": 1024,
+    "height": 1536
+  }
+}

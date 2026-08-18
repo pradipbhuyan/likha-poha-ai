@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 10: Sound Waves: Characteristics and Applications",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter10.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-10-sound-waves-characteristics-and-applications.webp",
+    "alt": "Grade 9 Science Chapter 10 revision poster on sound waves: how sound is produced, its nature as a longitudinal wave, compressions and rarefactions, the energy sound carries, how sound propagates through media, and reflection, absorption and transmission.",
+    "caption": "Chapter 10 at a glance: how sound is produced, travels, and interacts with materials.",
+    "width": 1024,
+    "height": 1536
+  }
+}

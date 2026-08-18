@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 1: A Square and A Cube",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-1-a-square-and-a-cube.webp",
+    "alt": "Grade 8 Maths Chapter 1 revision poster on the locker puzzle: how factor pairing determines whether a locker is toggled an even or odd number of times, why perfect squares have an unpaired middle factor, and the list of open lockers from 1 to 100.",
+    "caption": "Chapter 1 at a glance: why only perfect-square lockers stay open in the locker puzzle.",
+    "width": 1024,
+    "height": 1536
+  }
+}

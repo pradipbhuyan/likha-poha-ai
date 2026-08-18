@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Chapter 5: I’m Up and Down, and Round and Round",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Mat-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/maths/chapter-5-i-m-up-and-down-and-round-and-round.webp",
+    "alt": "Grade 9 Maths Chapter 5 revision poster on circle theorems: the angle in a semicircle is 90 degrees, angles in the same segment are equal, cyclic quadrilateral opposite angles sum to 180 degrees, the converse test for cyclicity, and how to prove a quadrilateral is cyclic step by step.",
+    "caption": "Chapter 5 at a glance: circle angle theorems and cyclic quadrilaterals.",
+    "width": 1024,
+    "height": 1536
+  }
+}

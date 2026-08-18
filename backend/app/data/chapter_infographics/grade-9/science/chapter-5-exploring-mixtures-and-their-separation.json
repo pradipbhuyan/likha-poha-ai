@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 5: Exploring Mixtures and Their Separation",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-5-exploring-mixtures-and-their-separation.webp",
+    "alt": "Grade 9 Science Chapter 5 revision poster on mixtures: homogeneous and heterogeneous mixtures, suspensions, colloids and true solutions, separation methods like filtration and evaporation, the Tyndall effect, and everyday applications of separation.",
+    "caption": "Chapter 5 at a glance: types of mixtures and the methods used to separate them.",
+    "width": 1024,
+    "height": 1536
+  }
+}

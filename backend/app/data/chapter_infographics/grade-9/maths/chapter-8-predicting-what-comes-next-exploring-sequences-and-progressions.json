@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Maths-Chapter8.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/maths/chapter-8-predicting-what-comes-next-exploring-sequences-and-progressions.webp",
+    "alt": "Grade 9 Maths Chapter 8 revision poster on sequences and progressions: identifying arithmetic and geometric progressions, their general term and sum formulas, finding missing terms, real-life applications, and a step-by-step method for solving sequence problems.",
+    "caption": "Chapter 8 at a glance: arithmetic and geometric progressions, their formulas, and how to use them.",
+    "width": 1024,
+    "height": 1536
+  }
+}

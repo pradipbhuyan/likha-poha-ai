@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 12: Tales by Dots and Lines",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter12.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-12-tales-by-dots-and-lines.webp",
+    "alt": "Grade 8 Maths Chapter 12 revision poster on spreadsheets and line graphs: cells and ranges, the SUM and AVERAGE formulas, copying formulas with the fill handle, reading a line graph's axes and slope, and the steps to create a line graph from data.",
+    "caption": "Chapter 12 at a glance: spreadsheet formulas and reading line graphs.",
+    "width": 1024,
+    "height": 1536
+  }
+}

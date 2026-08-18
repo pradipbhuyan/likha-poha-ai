@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 9: The Amazing World of Solutes, Solvents, and Solutions",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 09 - The Amazing World of Solutes Solvents and Solutions.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-9-the-amazing-world-of-solutes-solvents-and-solutions.webp",
+    "alt": "One-page revision poster covering Chapter 9: The Amazing World of Solutes, Solvents, and Solutions for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — The Amazing World of Solutes, Solvents, and Solutions",
+    "width": 1024,
+    "height": 1536
+  }
+}

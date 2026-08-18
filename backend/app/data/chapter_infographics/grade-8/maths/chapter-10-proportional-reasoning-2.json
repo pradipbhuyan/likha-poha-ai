@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 10: Proportional Reasoning-2",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Mat-Chapter10.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-10-proportional-reasoning-2.webp",
+    "alt": "Grade 8 Maths Chapter 10 revision poster on pie charts: finding total frequency, category fraction, and central angle, converting a ratio directly to angles, checking that all angles sum to 360 degrees, and a worked example charting favourite fruits.",
+    "caption": "Chapter 10 at a glance: turning category counts into pie-chart angles.",
+    "width": 1024,
+    "height": 1536
+  }
+}

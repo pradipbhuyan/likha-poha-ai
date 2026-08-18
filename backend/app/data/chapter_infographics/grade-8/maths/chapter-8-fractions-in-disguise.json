@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 8: Fractions in Disguise",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Mat-Chapter8.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-8-fractions-in-disguise.webp",
+    "alt": "Grade 8 Maths Chapter 8 revision poster on percentages: finding the whole from a known percentage part, remaining percentage, percentage increase and decrease formulas, using the original amount as the base, and a worked example finding a remaining distance.",
+    "caption": "Chapter 8 at a glance: percentage change, reverse-percentage, and finding the whole from a part.",
+    "width": 1024,
+    "height": 1536
+  }
+}

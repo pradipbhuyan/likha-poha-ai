@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 9: The Baudhayana-Pythagoras Theorem",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter9.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-9-the-baudhayana-pythagoras-theorem.webp",
+    "alt": "Grade 8 Maths Chapter 9 revision poster on the Baudhayana-Pythagoras theorem: the dissection proof, the formula relating the two legs and hypotenuse of a right triangle, finding a missing side, verifying results, and a worked 5-12-13 triangle example.",
+    "caption": "Chapter 9 at a glance: the Baudhayana-Pythagoras theorem, proof, and how to use it.",
+    "width": 1122,
+    "height": 1402
+  }
+}

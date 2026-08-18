@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 9: Atomic Foundations of Matter",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter9.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-9-atomic-foundations-of-matter.webp",
+    "alt": "Grade 9 Science Chapter 9 revision poster on the law of conservation of mass: why mass is conserved in a chemical reaction, evidence from closed and open systems, balancing chemical equations, and real-life examples like burning fuel and rusting iron.",
+    "caption": "Chapter 9 at a glance: mass is conserved in every chemical reaction.",
+    "width": 1024,
+    "height": 1536
+  }
+}

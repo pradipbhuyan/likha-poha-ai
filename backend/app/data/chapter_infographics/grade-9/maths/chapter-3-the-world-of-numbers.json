@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Chapter 3: The World of Numbers",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Maths-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/maths/chapter-3-the-world-of-numbers.webp",
+    "alt": "Grade 9 Maths Chapter 3 revision poster on rational and irrational numbers: terminating versus repeating decimals, why some fractions repeat, the 1/7 cyclic number pattern, how rational and irrational numbers combine to form the real number line, and key properties.",
+    "caption": "Chapter 3 at a glance: rational and irrational numbers, and how they build the real number line.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 11: Exploring Some Geometric Themes",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter11.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-11-exploring-some-geometric-themes.webp",
+    "alt": "Grade 8 Maths Chapter 11 revision poster on fractals: how the Sierpinski Gasket removes central triangles so active triangles multiply by 3 and area remains 3/4 each step, how the Koch construction replaces segments so length multiplies by 4/3 each step, and a side-by-side comparison.",
+    "caption": "Chapter 11 at a glance: the Sierpinski Gasket and Koch Snowflake fractal constructions.",
+    "width": 1024,
+    "height": 1536
+  }
+}

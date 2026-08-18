@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 2: Power Play",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-2-power-play.webp",
+    "alt": "Grade 8 Maths Chapter 2 revision poster on the laws of exponents: the product, quotient and power rules, the same-exponent laws, zero and negative exponents, a worked simplification example, and a common mistake about combining different bases.",
+    "caption": "Chapter 2 at a glance: the laws of exponents and how to apply them correctly.",
+    "width": 1024,
+    "height": 1536
+  }
+}

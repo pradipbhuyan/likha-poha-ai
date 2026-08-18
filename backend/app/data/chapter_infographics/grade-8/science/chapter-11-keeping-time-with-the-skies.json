@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 11: Keeping Time with the Skies",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 11 - Keeping Time with the Skies.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-11-keeping-time-with-the-skies.webp",
+    "alt": "One-page revision poster covering Chapter 11: Keeping Time with the Skies for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — Keeping Time with the Skies",
+    "width": 1024,
+    "height": 1536
+  }
+}

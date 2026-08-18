@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 3: A Story of Numbers",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-3-a-story-of-numbers.webp",
+    "alt": "Grade 8 Maths Chapter 3 revision poster on the history of counting: why humans needed to count, one-to-one mapping with sticks or pebbles, the need for a fixed order, number systems and numerals, and early counting tools across cultures.",
+    "caption": "Chapter 3 at a glance: how one-to-one mapping led to counting, numerals, and number systems.",
+    "width": 1086,
+    "height": 1448
+  }
+}

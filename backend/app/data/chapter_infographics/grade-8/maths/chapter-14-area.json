@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 14: Area",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter14.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-14-area.webp",
+    "alt": "Grade 8 Maths Chapter 14 revision poster on the area of a rhombus and a trapezium: how a rhombus's diagonals create right triangles, the rhombus area formula, decomposing a trapezium, the two-copy proof, and the trapezium area formula.",
+    "caption": "Chapter 14 at a glance: finding the area of a rhombus and a trapezium.",
+    "width": 1024,
+    "height": 1536
+  }
+}

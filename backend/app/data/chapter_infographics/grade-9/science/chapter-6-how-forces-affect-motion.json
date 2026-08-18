@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 6: How Forces Affect Motion",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-6-how-forces-affect-motion.webp",
+    "alt": "Grade 9 Science Chapter 6 revision poster on forces and motion: what force is, contact and non-contact forces, Newton's three laws of motion, calculating net force, a problem-solving flow, and worked examples with connected blocks and friction.",
+    "caption": "Chapter 6 at a glance: how forces change motion, from Newton's laws to net force calculations.",
+    "width": 1024,
+    "height": 1536
+  }
+}

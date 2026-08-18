@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Chapter 7: The Mathematics of Maybe: Introduction to Probability",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Maths-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/maths/chapter-7-the-mathematics-of-maybe-introduction-to-probability.webp",
+    "alt": "Grade 9 Maths Chapter 7 revision poster on probability: understanding randomness, sample space and events, the probability scale from 0 to 1, experimental versus theoretical probability, finding probability with worked examples, and common sample spaces.",
+    "caption": "Chapter 7 at a glance: measuring how likely an event is, from randomness to the probability formula.",
+    "width": 1024,
+    "height": 1536
+  }
+}

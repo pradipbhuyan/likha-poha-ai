@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 6: We Distribute, Yet Things Multiply",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-6-we-distribute-yet-things-multiply.webp",
+    "alt": "Grade 8 Maths Chapter 6 revision poster on mental multiplication and square identities: multiplying by 11 and 101, the square-of-sum and square-of-difference identities, the sum-times-difference identity, and a worked example squaring 65 using an area model.",
+    "caption": "Chapter 6 at a glance: mental multiplication tricks and the algebraic identities behind them.",
+    "width": 1024,
+    "height": 1536
+  }
+}

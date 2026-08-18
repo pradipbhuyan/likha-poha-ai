@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 3: Tissues in Action",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-3-tissues-in-action.webp",
+    "alt": "Grade 9 Science Chapter 3 revision poster on tissues: how cells group into tissues, plant tissue types (protective, supporting, conducting), animal tissue types (epithelial, connective, muscular, nervous), and how tissues work together in transport and movement.",
+    "caption": "Chapter 3 at a glance: how tissues form from cells and work together in plants and animals.",
+    "width": 1024,
+    "height": 1536
+  }
+}

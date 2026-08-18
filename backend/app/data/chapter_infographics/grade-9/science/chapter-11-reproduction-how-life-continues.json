@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 11: Reproduction: How Life Continues",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter11.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-11-reproduction-how-life-continues.webp",
+    "alt": "Grade 9 Science Chapter 11 revision poster on reproduction in animals: gametes and fertilisation, external versus internal fertilisation, the few-eggs versus many-eggs survival strategy, and the step-by-step process of sexual reproduction in animals.",
+    "caption": "Chapter 11 at a glance: gametes, fertilisation, and reproductive strategies in animals.",
+    "width": 1149,
+    "height": 1369
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Chapter 6: Measuring Space: Perimeter and Area",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Maths-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/maths/chapter-6-measuring-space-perimeter-and-area.webp",
+    "alt": "Grade 9 Maths Chapter 6 revision poster on the area of a parallelogram: understanding base and height, why the area formula works by transforming the shape into a rectangle, worked examples, properties of a parallelogram, and real-life applications.",
+    "caption": "Chapter 6 at a glance: finding the area of a parallelogram from its base and height.",
+    "width": 1122,
+    "height": 1402
+  }
+}

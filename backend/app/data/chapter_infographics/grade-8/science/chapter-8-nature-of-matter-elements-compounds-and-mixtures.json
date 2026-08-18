@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 08 - Nature of Matter Elements Compounds and Mixtures.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-8-nature-of-matter-elements-compounds-and-mixtures.webp",
+    "alt": "One-page revision poster covering Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — Nature of Matter: Elements, Compounds, and Mixtures",
+    "width": 1024,
+    "height": 1536
+  }
+}

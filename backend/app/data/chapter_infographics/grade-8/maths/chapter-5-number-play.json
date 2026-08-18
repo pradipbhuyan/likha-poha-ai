@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 5: Number Play",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-5-number-play.webp",
+    "alt": "Grade 8 Maths Chapter 5 revision poster on parity: the eight sign arrangements for four numbers, why switching one sign changes an expression by an even amount, and why all such plus-minus expressions of the same numbers share the same parity.",
+    "caption": "Chapter 5 at a glance: why every plus-minus arrangement of the same numbers shares the same parity.",
+    "width": 1024,
+    "height": 1536
+  }
+}

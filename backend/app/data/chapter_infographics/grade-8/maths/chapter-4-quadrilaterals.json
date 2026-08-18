@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Chapter 4: Quadrilaterals",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Maths-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/maths/chapter-4-quadrilaterals.webp",
+    "alt": "Grade 8 Maths Chapter 4 revision poster on quadrilaterals: the properties of a square, how its diagonals bisect each other at right angles and bisect the vertex angles, why the angle sum of any quadrilateral is 360 degrees, and the square-rectangle relationship.",
+    "caption": "Chapter 4 at a glance: square properties and why every quadrilateral's angles sum to 360 degrees.",
+    "width": 1024,
+    "height": 1536
+  }
+}

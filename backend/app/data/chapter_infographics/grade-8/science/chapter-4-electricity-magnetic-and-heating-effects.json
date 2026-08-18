@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 4: Electricity: Magnetic and Heating Effects",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 04 - Electricity Magnetic and Heating Effects.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-4-electricity-magnetic-and-heating-effects.webp",
+    "alt": "One-page revision poster covering Chapter 4: Electricity: Magnetic and Heating Effects for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — Electricity: Magnetic and Heating Effects",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 7: Work, Energy, and Simple Machines",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Sci-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-7-work-energy-and-simple-machines.webp",
+    "alt": "Grade 9 Science Chapter 7 revision poster on work, energy and power: the formulas for work, kinetic energy, potential energy and power, four worked numeric examples, the four types of simple machines, and common mistakes with units and formulas.",
+    "caption": "Chapter 7 at a glance: work, energy, power formulas, and simple machines.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 10: Light: Mirrors and Lenses",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 10 - Light Mirrors and Lenses.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-10-light-mirrors-and-lenses.webp",
+    "alt": "One-page revision poster covering Chapter 10: Light: Mirrors and Lenses for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — Light: Mirrors and Lenses",
+    "width": 1024,
+    "height": 1536
+  }
+}

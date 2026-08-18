@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 1: Exploring the Investigative World of Science",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 01 - Exploring the Investigative World of Science.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-1-exploring-the-investigative-world-of-science.webp",
+    "alt": "One-page revision poster covering Chapter 1: Exploring the Investigative World of Science for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — Exploring the Investigative World of Science",
+    "width": 1024,
+    "height": 1536
+  }
+}

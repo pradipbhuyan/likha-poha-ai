@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 13: Earth as a System: Energy, Matter, and Life",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter13.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-13-earth-as-a-system-energy-matter-and-life.webp",
+    "alt": "Grade 9 Science Chapter 13 revision poster on Earth as a system: the five interacting spheres, how they exchange matter and energy, the Sun as the main energy source, biogeochemical cycles, the impact of changes in one sphere, and why the balance matters.",
+    "caption": "Chapter 13 at a glance: Earth's spheres connected through energy and matter flow.",
+    "width": 1149,
+    "height": 1369
+  }
+}

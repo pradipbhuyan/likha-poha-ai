@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Chapter 8: Journey Inside the Atom",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Science-Chapter8.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/science/chapter-8-journey-inside-the-atom.webp",
+    "alt": "Grade 9 Science Chapter 8 revision poster on atomic structure: what an atom is, the particles inside it, the historical journey of atomic models from Dalton to Schrodinger, atomic and mass numbers, electron shells, and key takeaways.",
+    "caption": "Chapter 8 at a glance: the structure of the atom and the history of atomic models.",
+    "width": 1024,
+    "height": 1536
+  }
+}

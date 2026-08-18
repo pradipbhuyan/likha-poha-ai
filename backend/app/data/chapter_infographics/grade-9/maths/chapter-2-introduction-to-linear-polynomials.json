@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Chapter 2: Introduction to Linear Polynomials",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Maths-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/maths/chapter-2-introduction-to-linear-polynomials.webp",
+    "alt": "Grade 9 Maths Chapter 2 revision poster on linear polynomials: what a linear polynomial is, the general form ax + b, identifying coefficients and constants, characteristics of linear polynomials, real-life uses, and a quick check for spotting linear versus non-linear expressions.",
+    "caption": "Chapter 2 at a glance: recognising and working with linear polynomials of the form ax + b.",
+    "width": 1024,
+    "height": 1536
+  }
+}

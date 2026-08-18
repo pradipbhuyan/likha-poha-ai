@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Chapter 3: Health: The Ultimate Treasure",
+  "step_title": "Revision and recap",
+  "source_image": "Chapter 03 - Health The Ultimate Treasure.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/science/chapter-3-health-the-ultimate-treasure.webp",
+    "alt": "One-page revision poster covering Chapter 3: Health: The Ultimate Treasure for Grade 8 Science.",
+    "caption": "Full-chapter revision poster — Health: The Ultimate Treasure",
+    "width": 1024,
+    "height": 1536
+  }
+}
