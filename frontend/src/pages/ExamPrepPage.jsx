@@ -39,7 +39,7 @@ import {
   getStudentPaymentConfig,
   verifyStudentPayment,
 } from "../api/payments";
-import { useFeedbackPrompt } from "../context/FeedbackPromptContext";
+import { useFeedbackPrompt } from "../context/useFeedbackPrompt";
 import { SUBSCRIPTION_PLANS } from "../config/subscriptionPlans";
 import { isAllAccessTestUser } from "../utils/testAccounts";
 

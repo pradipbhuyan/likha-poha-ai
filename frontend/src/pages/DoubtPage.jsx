@@ -27,7 +27,7 @@ import {
 } from "../utils/syllabusDefaults";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 import { filterAllowedSubjects, isSchoolBoardMode } from "../utils/subjectAccess";
-import { useFeedbackPrompt } from "../context/FeedbackPromptContext";
+import { useFeedbackPrompt } from "../context/useFeedbackPrompt";
 import { isAllAccessTestUser } from "../utils/testAccounts";
 
 const ANSWER_STYLE_OPTIONS = [

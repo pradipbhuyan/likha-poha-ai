@@ -4,7 +4,7 @@ import { MessageCircle } from "lucide-react";
 import { ensureLessonKbChips } from "../../api/lesson";
 import { saveChapterProgress } from "../../api/progress";
 import { logStudentActivity } from "../../api/profile";
-import { useFeedbackPrompt } from "../../context/FeedbackPromptContext";
+import { useFeedbackPrompt } from "../../context/useFeedbackPrompt";
 import JourneyRenderer from "./JourneyRenderer";
 import StudyRenderer from "./StudyRenderer";
 import LessonMarkdown from "./LessonMarkdown";

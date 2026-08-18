@@ -4,7 +4,8 @@
  */
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { FeedbackPromptProvider, useFeedbackPrompt } from "../context/FeedbackPromptContext";
+import { FeedbackPromptProvider } from "../context/FeedbackPromptContext";
+import { useFeedbackPrompt } from "../context/useFeedbackPrompt";
 
 vi.mock("../api/feedback", () => ({
   getFeedbackEligibility: vi.fn(),

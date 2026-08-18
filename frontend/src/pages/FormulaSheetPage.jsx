@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { authFetch } from "../api/authClient";
 import { hasPaidAccess } from "../utils/resolveSubscription";
-import { useFeedbackPrompt } from "../context/FeedbackPromptContext";
+import { useFeedbackPrompt } from "../context/useFeedbackPrompt";
 
 const ALL_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 const SUBJECT_ICONS = {

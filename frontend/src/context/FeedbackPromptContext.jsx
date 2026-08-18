@@ -12,14 +12,14 @@
  * show the card more than once.
  *
  * Usage anywhere in the tree:
+ *   import { useFeedbackPrompt } from "./useFeedbackPrompt";
  *   const { triggerFeedbackPrompt } = useFeedbackPrompt();
  *   triggerFeedbackPrompt("lesson_completed", { grade, subject, chapter });
  */
-import { createContext, useCallback, useContext, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { getFeedbackEligibility, markFeedbackPromptShown } from "../api/feedback";
 import FeedbackModal from "../components/FeedbackModal";
-
-const FeedbackPromptContext = createContext(null);
+import { FeedbackPromptContext } from "./feedbackPromptContextObject";
 
 export function FeedbackPromptProvider({ children, user }) {
   const [prompt, setPrompt] = useState(null); // { triggerEvent, context } | null
@@ -108,14 +108,4 @@ export function FeedbackPromptProvider({ children, user }) {
       <FeedbackModal open={modalOpen} onClose={closeModal} context={modalContext} user={user} />
     </FeedbackPromptContext.Provider>
   );
-}
-
-/** Returns { triggerFeedbackPrompt } from the nearest FeedbackPromptProvider. */
-export function useFeedbackPrompt() {
-  const ctx = useContext(FeedbackPromptContext);
-  if (!ctx) {
-    // Graceful fallback outside the provider (e.g. unit tests)
-    return { triggerFeedbackPrompt: () => {} };
-  }
-  return ctx;
 }

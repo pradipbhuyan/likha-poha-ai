@@ -27,7 +27,7 @@ import { getSyllabus } from "../api/syllabus";
 import { generateMockTest } from "../api/mockTest";
 import { saveTestHistory, saveWrongAnswers } from "../api/analytics";
 import { logStudentActivity } from "../api/profile";
-import { useFeedbackPrompt } from "../context/FeedbackPromptContext";
+import { useFeedbackPrompt } from "../context/useFeedbackPrompt";
 import { evaluateStudentAnswer } from "../api/evaluation";
 import { getDefaultSelection, getUserBoard, getUserGrade, getVisibleGrades } from "../utils/syllabusDefaults";
 import { filterAllowedSubjects, isSchoolBoardMode } from "../utils/subjectAccess";

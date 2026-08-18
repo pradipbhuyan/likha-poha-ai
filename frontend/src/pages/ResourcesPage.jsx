@@ -21,7 +21,7 @@ import {
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
 import { filterAllowedSubjects } from "../utils/subjectAccess";
-import { useFeedbackPrompt } from "../context/FeedbackPromptContext";
+import { useFeedbackPrompt } from "../context/useFeedbackPrompt";
 
 const ROLE_META = {
   likhapoha: { label: "LikhaPoha AI", Icon: PlayCircle },
