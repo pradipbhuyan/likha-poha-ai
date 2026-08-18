@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 2 Lines and Angles",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 07_12_06 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/maths/chapter-2-lines-and-angles.webp",
+    "alt": "Grade 6 Maths Chapter 2 revision poster showing how to use a protractor to measure and draw angles, including centre, zero line, scale, drawing, and angle bisector steps, plus a worked example.",
+    "caption": "Chapter 2 at a glance: measuring and drawing angles with a protractor.",
+    "width": 1149,
+    "height": 1369
+  }
+}

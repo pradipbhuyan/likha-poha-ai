@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 4: Exploring Magnets",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 09_59_42 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/science/chapter-4-exploring-magnets.webp",
+    "alt": "Grade 6 Science Chapter 4 revision poster on how magnets act through non-magnetic materials, like and unlike poles, uses of magnets, and safe storage and handling of magnets.",
+    "caption": "Chapter 4 at a glance: magnetic effect through materials, poles, uses and safe storage.",
+    "width": 1122,
+    "height": 1402
+  }
+}

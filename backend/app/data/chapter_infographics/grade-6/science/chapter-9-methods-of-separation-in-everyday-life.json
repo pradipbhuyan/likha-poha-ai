@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 9: Methods of Separation in Everyday Life",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 10_09_29 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/science/chapter-9-methods-of-separation-in-everyday-life.webp",
+    "alt": "Grade 6 Science Chapter 9 revision poster comparing sieving and evaporation as separation methods, with kitchen and construction examples and a guide to choosing the right method.",
+    "caption": "Chapter 9 at a glance: sieving versus evaporation and how to choose the right method.",
+    "width": 1024,
+    "height": 1536
+  }
+}

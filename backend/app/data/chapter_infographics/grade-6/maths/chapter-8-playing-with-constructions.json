@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 8 Playing with Constructions",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 09_07_03 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/maths/chapter-8-playing-with-constructions.webp",
+    "alt": "Grade 6 Maths Chapter 8 revision poster on constructing points using intersecting circles, building a house figure with a compass, and a worked example locating a point equidistant from two others.",
+    "caption": "Chapter 8 at a glance: using intersecting circles and arcs to construct figures with a compass.",
+    "width": 1024,
+    "height": 1536
+  }
+}

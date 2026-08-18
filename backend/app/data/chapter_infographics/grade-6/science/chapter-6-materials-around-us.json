@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 6: Materials Around Us",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 10_03_16 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/science/chapter-6-materials-around-us.webp",
+    "alt": "Grade 6 Science Chapter 6 revision poster on identifying materials used to make objects, how one object can have many materials, and classifying objects by their material.",
+    "caption": "Chapter 6 at a glance: materials, one object with many materials, and classification.",
+    "width": 1024,
+    "height": 1536
+  }
+}

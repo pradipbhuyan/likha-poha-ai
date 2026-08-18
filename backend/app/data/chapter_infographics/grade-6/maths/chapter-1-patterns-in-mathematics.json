@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 1 Patterns in Mathematics",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 07_04_33 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/maths/chapter-1-patterns-in-mathematics.webp",
+    "alt": "Grade 6 Maths Chapter 1 revision poster covering patterns around us, number theory, Table 1 of important number sequences (counting, odd, even, triangular, square, cube, Virahanka numbers, powers of 2 and 3), and a worked example extending a pattern.",
+    "caption": "Chapter 1 at a glance: patterns around us and Table 1's important number sequences.",
+    "width": 1024,
+    "height": 1536
+  }
+}

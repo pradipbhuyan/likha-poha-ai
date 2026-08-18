@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 6 Perimeter and Area",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 07_20_20 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/maths/chapter-6-perimeter-and-area.webp",
+    "alt": "Grade 6 Maths Chapter 6 revision poster showing how a rectangle's diagonal creates two equal triangles, the triangle area formula, and a worked example finding a triangle's area on a grid.",
+    "caption": "Chapter 6 at a glance: triangle area from a rectangle's diagonal, and perimeter versus area.",
+    "width": 1024,
+    "height": 1536
+  }
+}

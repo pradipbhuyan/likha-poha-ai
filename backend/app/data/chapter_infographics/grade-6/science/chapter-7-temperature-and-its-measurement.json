@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 7: Temperature and its Measurement",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 10_05_27 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/science/chapter-7-temperature-and-its-measurement.webp",
+    "alt": "Grade 6 Science Chapter 7 revision poster on the parts of a laboratory thermometer, its range and smallest division, and the correct method to measure the temperature of a liquid.",
+    "caption": "Chapter 7 at a glance: thermometer parts, range, and the correct measuring method.",
+    "width": 1024,
+    "height": 1536
+  }
+}

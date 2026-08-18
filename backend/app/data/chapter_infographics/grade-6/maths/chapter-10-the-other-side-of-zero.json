@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 10 The Other Side of Zero",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 07_09_48 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/maths/chapter-10-the-other-side-of-zero.webp",
+    "alt": "Grade 6 Maths Chapter 10 revision poster covering positive and negative numbers, zero as reference, inverses, integers, and a worked example finding the inverses of +4, -3, and 0 using a number line.",
+    "caption": "Chapter 10 at a glance: positive and negative integers, zero as reference, and inverses.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 7 Fractions",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 07_21_58 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/maths/chapter-7-fractions.webp",
+    "alt": "Grade 6 Maths Chapter 7 revision poster covering equal shares, unit fractions, numerator, denominator, repeated unit fractions, and a worked example sharing three rotis among four children.",
+    "caption": "Chapter 7 at a glance: equal parts, numerator, denominator and repeated unit fractions.",
+    "width": 1024,
+    "height": 1536
+  }
+}

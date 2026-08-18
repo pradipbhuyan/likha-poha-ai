@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 2: Diversity in the Living World",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 09_55_59 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/science/chapter-2-diversity-in-the-living-world.webp",
+    "alt": "Grade 6 Science Chapter 2 revision poster on how animals move using different body parts, and how plants and animals like cactus, camel, polar bear and lotus are adapted to their habitats.",
+    "caption": "Chapter 2 at a glance: animal movement and plant and animal adaptations to habitats.",
+    "width": 1024,
+    "height": 1536
+  }
+}

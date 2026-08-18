@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 5 Prime Time",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 07_18_15 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/maths/chapter-5-prime-time.webp",
+    "alt": "Grade 6 Maths Chapter 5 revision poster explaining prime and composite numbers, the number 1, the Sieve of Eratosthenes, and a worked example checking whether 29 is prime.",
+    "caption": "Chapter 5 at a glance: prime and composite numbers and the Sieve of Eratosthenes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

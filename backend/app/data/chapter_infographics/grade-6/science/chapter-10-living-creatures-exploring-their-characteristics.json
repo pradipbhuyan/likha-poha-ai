@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 10: Living Creatures: Exploring their Characteristics",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 09_48_14 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/science/chapter-10-living-creatures-exploring-their-characteristics.webp",
+    "alt": "Grade 6 Science Chapter 10 revision poster comparing the frog, plant and mosquito life cycles, showing how growth changes body form and habitat across a continuous life cycle.",
+    "caption": "Chapter 10 at a glance: frog, plant and mosquito life cycles and growth changes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

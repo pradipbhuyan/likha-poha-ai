@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 11: Nature’s Treasures",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 09_49_48 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/science/chapter-11-nature-s-treasures.webp",
+    "alt": "Grade 6 Science Chapter 11 revision poster on why air is essential for life, what air contains, and how moving air (wind) can do useful work such as generating electricity.",
+    "caption": "Chapter 11 at a glance: air, its composition, and wind energy.",
+    "width": 1024,
+    "height": 1536
+  }
+}

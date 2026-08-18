@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 3 Number Play",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 07_13_58 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/maths/chapter-3-number-play.webp",
+    "alt": "Grade 6 Maths Chapter 3 revision poster on estimation and reasonableness, including a school example, Game 21 and Game 99, and a worked example estimating a total.",
+    "caption": "Chapter 3 at a glance: estimation, reasonableness and number games.",
+    "width": 1149,
+    "height": 1369
+  }
+}

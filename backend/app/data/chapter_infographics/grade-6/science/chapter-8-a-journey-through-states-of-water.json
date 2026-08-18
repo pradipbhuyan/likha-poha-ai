@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 8: A Journey through States of Water",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 10_07_26 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/science/chapter-8-a-journey-through-states-of-water.webp",
+    "alt": "Grade 6 Science Chapter 8 revision poster on condensation, how water droplets form on a cold tumbler from air, dew formation, and the marked-level and balance investigation.",
+    "caption": "Chapter 8 at a glance: condensation, dew, and the marked-level and balance investigation.",
+    "width": 1024,
+    "height": 1536
+  }
+}

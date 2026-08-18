@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 4 Data Handling and Presentation",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 07_16_16 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/maths/chapter-4-data-handling-and-presentation.webp",
+    "alt": "Grade 6 Maths Chapter 4 revision poster covering raw data, categories, tally marks, frequency, and the purpose of data handling, with a worked sweets survey example.",
+    "caption": "Chapter 4 at a glance: organising raw data using categories, tally marks and frequency.",
+    "width": 1024,
+    "height": 1536
+  }
+}

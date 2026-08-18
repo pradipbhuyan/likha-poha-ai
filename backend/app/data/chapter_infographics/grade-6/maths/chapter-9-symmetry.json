@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Maths",
+  "chapter": "Chapter 9 Symmetry",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 18, 2026, 09_10_23 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/maths/chapter-9-symmetry.webp",
+    "alt": "Grade 6 Maths Chapter 9 revision poster explaining rotational symmetry, centre of rotation, angle of symmetry, a windmill and square's angles of symmetry, and a worked example listing a windmill's angles of symmetry.",
+    "caption": "Chapter 9 at a glance: rotational symmetry, centre of rotation and angles of symmetry.",
+    "width": 1024,
+    "height": 1536
+  }
+}

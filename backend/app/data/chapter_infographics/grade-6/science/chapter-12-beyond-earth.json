@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 12: Beyond Earth",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 09_51_55 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/science/chapter-12-beyond-earth.webp",
+    "alt": "Grade 6 Science Chapter 12 revision poster on light pollution, best conditions for night sky watching, eye adjustment, and locating the Pole Star, Orion and Sirius.",
+    "caption": "Chapter 12 at a glance: night sky watching conditions and locating the Pole Star, Orion and Sirius.",
+    "width": 1122,
+    "height": 1402
+  }
+}

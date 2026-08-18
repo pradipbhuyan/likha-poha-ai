@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 5: Measurement of Length and Motion",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 10_01_25 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/science/chapter-5-measurement-of-length-and-motion.webp",
+    "alt": "Grade 6 Science Chapter 5 revision poster on the SI unit of length, conversions between kilometre, metre, centimetre and millimetre, and choosing the right unit for a measurement.",
+    "caption": "Chapter 5 at a glance: SI units of length, conversions and choosing the right unit.",
+    "width": 1122,
+    "height": 1402
+  }
+}

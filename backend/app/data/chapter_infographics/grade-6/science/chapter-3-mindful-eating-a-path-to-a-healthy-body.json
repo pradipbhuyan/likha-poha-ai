@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Science",
+  "chapter": "Chapter 3: Mindful Eating: A Path to a Healthy Body",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 17, 2026, 09_57_54 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/science/chapter-3-mindful-eating-a-path-to-a-healthy-body.webp",
+    "alt": "Grade 6 Science Chapter 3 revision poster explaining the starch, fat and protein food tests, their results and the safety practices to follow during these tests.",
+    "caption": "Chapter 3 at a glance: starch, fat and protein food tests and safe lab practices.",
+    "width": 1024,
+    "height": 1536
+  }
+}
