@@ -45,14 +45,38 @@ def free_tier_year(grade: str, years: list[str] | None = None) -> str | None:
     return years[0] if years else None
 
 
-def free_tier_subject(grade: str, academic_year: str, subjects: list[str] | None = None) -> str | None:
-    """The single subject a free-tier account may see for that year
-    (deterministic — alphabetically first of whatever's available). Pass
-    `subjects` when the caller already has the list to skip a redundant
-    identical query."""
+# Grade 11/12 stream -> the one subject a free-tier student from that stream
+# actually cares about (mirrors STREAM_SUBJECTS in routes/auth.py). Picking
+# the alphabetically-first subject regardless of stream meant a PCB student
+# was shown Accountancy — not relevant to their exams at all.
+_STREAM_PREFERRED_SUBJECT = {
+    "PCM": "Physics",
+    "PCB": "Physics",
+    "PCMB": "Physics",
+    "Commerce": "Accountancy",
+    "Humanities": "English",
+}
+
+
+def free_tier_subject(
+    grade: str, academic_year: str, subjects: list[str] | None = None, stream: str | None = None,
+) -> str | None:
+    """The single subject a free-tier account may see for that year.
+
+    Prefers the subject relevant to the student's Grade 11/12 stream (see
+    _STREAM_PREFERRED_SUBJECT); falls back to alphabetically-first when no
+    stream is set (Grade 10 has none) or the preferred subject isn't offered
+    for that year. Pass `subjects` when the caller already has the list to
+    skip a redundant identical query.
+    """
     if subjects is None:
         subjects = list_subjects(grade, academic_year)
-    return subjects[0] if subjects else None
+    if not subjects:
+        return None
+    preferred = _STREAM_PREFERRED_SUBJECT.get((stream or "").strip())
+    if preferred and preferred in subjects:
+        return preferred
+    return subjects[0]
 
 
 # ── Bank-content cache (years/subjects only) ────────────────────────────────

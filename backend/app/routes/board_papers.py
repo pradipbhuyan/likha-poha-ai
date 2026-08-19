@@ -81,7 +81,9 @@ def get_overview(grade: str, user=Depends(get_current_user)):
             subjects = [{"subject": p["subject"], "locked": True, "paper": None} for p in papers]
         else:
             subject_names = [p["subject"] for p in papers]
-            free_subject = board_papers_service.free_tier_subject(grade, year, subjects=subject_names)
+            free_subject = board_papers_service.free_tier_subject(
+                grade, year, subjects=subject_names, stream=profile.get("stream"),
+            )
             subjects = [
                 {
                     "subject": p["subject"],
@@ -125,7 +127,9 @@ def get_subjects(grade: str, academic_year: str, user=Depends(get_current_user))
         # A locked year — every subject in it is locked too.
         return {"success": True, "full_access": False, "subjects": [{"subject": s, "locked": True} for s in subjects]}
 
-    free_subject = board_papers_service.free_tier_subject(grade, academic_year, subjects=subjects)
+    free_subject = board_papers_service.free_tier_subject(
+        grade, academic_year, subjects=subjects, stream=profile.get("stream"),
+    )
     return {
         "success": True,
         "full_access": False,
@@ -149,7 +153,10 @@ def get_papers(
         if academic_year and academic_year != free_year:
             raise HTTPException(status_code=403, detail=FREE_TIER_MESSAGE)
         academic_year = free_year
-        free_subject = board_papers_service.free_tier_subject(grade, free_year) if free_year else None
+        free_subject = (
+            board_papers_service.free_tier_subject(grade, free_year, stream=profile.get("stream"))
+            if free_year else None
+        )
         if subject and subject != free_subject:
             raise HTTPException(status_code=403, detail=FREE_TIER_MESSAGE)
         subject = free_subject
@@ -170,7 +177,10 @@ def get_paper_questions(paper_id: str, grade: str, user=Depends(get_current_user
 
     if not board_papers_service.is_full_access(profile, user.id):
         free_year = board_papers_service.free_tier_year(grade)
-        free_subject = board_papers_service.free_tier_subject(grade, free_year) if free_year else None
+        free_subject = (
+            board_papers_service.free_tier_subject(grade, free_year, stream=profile.get("stream"))
+            if free_year else None
+        )
         if paper.get("academic_year") != free_year or paper.get("subject") != free_subject:
             raise HTTPException(status_code=403, detail=FREE_TIER_MESSAGE)
 
@@ -206,7 +216,10 @@ def submit_attempt(paper_id: str, req: SubmitAttemptRequest, user=Depends(get_cu
 
     if not board_papers_service.is_full_access(profile, user.id):
         free_year = board_papers_service.free_tier_year(req.grade)
-        free_subject = board_papers_service.free_tier_subject(req.grade, free_year) if free_year else None
+        free_subject = (
+            board_papers_service.free_tier_subject(req.grade, free_year, stream=profile.get("stream"))
+            if free_year else None
+        )
         if paper.get("academic_year") != free_year or paper.get("subject") != free_subject:
             raise HTTPException(status_code=403, detail=FREE_TIER_MESSAGE)
 
