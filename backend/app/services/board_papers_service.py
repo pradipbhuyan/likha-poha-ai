@@ -12,6 +12,9 @@ akshita.teststudent see everything. Enforced here (not just hidden in the
 UI) so a free-tier user can't bypass the gate by calling the API directly
 with a different year/subject.
 """
+import threading
+import time as _time_module
+
 from app.services.auth_service import admin_client
 from app.services.grade_db_router import get_content_db
 from app.services.offer_access_service import is_free_tier_user
@@ -28,22 +31,60 @@ def is_full_access(profile: dict, user_id: str) -> bool:
         return False
     if profile.get("role") == "admin" or is_all_access_test_user(profile):
         return True
-    if is_free_tier_user(user_id):
+    if is_free_tier_user(user_id, profile=profile):
         return False
     return bool(profile.get("access_cbse"))
 
 
-def free_tier_year(grade: str) -> str | None:
-    """The single academic year a free-tier account may see: the most recent one."""
-    years = list_years(grade)
+def free_tier_year(grade: str, years: list[str] | None = None) -> str | None:
+    """The single academic year a free-tier account may see: the most recent
+    one. Pass `years` when the caller already has the list (e.g. `/years`
+    just fetched it) to skip a redundant identical query."""
+    if years is None:
+        years = list_years(grade)
     return years[0] if years else None
 
 
-def free_tier_subject(grade: str, academic_year: str) -> str | None:
-    """The single subject a free-tier account may see for that year (deterministic —
-    alphabetically first of whatever's available)."""
-    subjects = list_subjects(grade, academic_year)
+def free_tier_subject(grade: str, academic_year: str, subjects: list[str] | None = None) -> str | None:
+    """The single subject a free-tier account may see for that year
+    (deterministic — alphabetically first of whatever's available). Pass
+    `subjects` when the caller already has the list to skip a redundant
+    identical query."""
+    if subjects is None:
+        subjects = list_subjects(grade, academic_year)
     return subjects[0] if subjects else None
+
+
+# ── Bank-content cache (years/subjects only) ────────────────────────────────
+# board_sample_papers is written ahead of time by the offline extract/import
+# scripts (see module docstring) — nothing here changes mid-request the way
+# a profile's entitlements can, so a short TTL is safe and cuts the fan-out
+# of duplicate `board_sample_papers` queries the Board Papers page produces:
+# it fires one /years + one /subjects call per visible year, all landing
+# within the same second or two, each of which re-runs the same query for
+# the same grade. Deliberately NOT caching anything from `profiles` (see
+# auth_service.py) — this cache only ever holds bank content.
+_CONTENT_CACHE_TTL_SECONDS = 30
+_content_cache: dict[tuple, tuple[float, object]] = {}
+_content_cache_lock = threading.Lock()
+
+
+def _cache_get(key: tuple):
+    now = _time_module.monotonic()
+    with _content_cache_lock:
+        entry = _content_cache.get(key)
+        if not entry:
+            return None
+        expires_at, value = entry
+        if expires_at <= now:
+            _content_cache.pop(key, None)
+            return None
+        return value
+
+
+def _cache_put(key: tuple, value) -> None:
+    with _content_cache_lock:
+        _content_cache[key] = (_time_module.monotonic() + _CONTENT_CACHE_TTL_SECONDS, value)
 
 
 def list_papers(grade: str, subject: str | None = None, academic_year: str | None = None) -> list[dict]:
@@ -65,6 +106,10 @@ def list_papers(grade: str, subject: str | None = None, academic_year: str | Non
 
 
 def list_years(grade: str) -> list[str]:
+    cache_key = ("years", grade)
+    cached = _cache_get(cache_key)
+    if cached is not None:
+        return cached
     db = get_content_db(grade)
     result = (
         db.table("board_sample_papers")
@@ -73,10 +118,15 @@ def list_years(grade: str) -> list[str]:
         .execute()
     )
     years = sorted({row["academic_year"] for row in (result.data or [])}, reverse=True)
+    _cache_put(cache_key, years)
     return years
 
 
 def list_subjects(grade: str, academic_year: str) -> list[str]:
+    cache_key = ("subjects", grade, academic_year)
+    cached = _cache_get(cache_key)
+    if cached is not None:
+        return cached
     db = get_content_db(grade)
     result = (
         db.table("board_sample_papers")
@@ -85,6 +135,7 @@ def list_subjects(grade: str, academic_year: str) -> list[str]:
         .execute()
     )
     subjects = sorted({row["subject"] for row in (result.data or [])})
+    _cache_put(cache_key, subjects)
     return subjects
 
 

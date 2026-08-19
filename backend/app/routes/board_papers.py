@@ -61,7 +61,7 @@ def get_years(grade: str, user=Depends(get_current_user)):
     _enforce_grade(profile, grade)
     years = board_papers_service.list_years(grade)
     full_access = board_papers_service.is_full_access(profile, user.id)
-    free_year = None if full_access else board_papers_service.free_tier_year(grade)
+    free_year = None if full_access else board_papers_service.free_tier_year(grade, years=years)
     return {
         "success": True,
         "full_access": full_access,
@@ -84,7 +84,7 @@ def get_subjects(grade: str, academic_year: str, user=Depends(get_current_user))
         # A locked year — every subject in it is locked too.
         return {"success": True, "full_access": False, "subjects": [{"subject": s, "locked": True} for s in subjects]}
 
-    free_subject = board_papers_service.free_tier_subject(grade, academic_year)
+    free_subject = board_papers_service.free_tier_subject(grade, academic_year, subjects=subjects)
     return {
         "success": True,
         "full_access": False,

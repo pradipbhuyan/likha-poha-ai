@@ -47,7 +47,7 @@ OFFER_GATE_MESSAGE = (
 OFFER_GATE_SOURCE_TYPE = "OFFER_GATE"
 
 
-def is_free_tier_user(user_id: str) -> bool:
+def is_free_tier_user(user_id: str, profile: dict | None = None) -> bool:
     """
     Return True if the user is on the Free Tier (limited, DKB-only access).
 
@@ -60,23 +60,28 @@ def is_free_tier_user(user_id: str) -> bool:
     remain available as an optional upgrade path but are not required.
 
     Admins and test accounts always return False (never gated).
+
+    `profile` lets a caller that already fetched the row (via select("*"), so
+    it has role/access_cbse/subscription_expires_at) pass it in and skip the
+    second identical `profiles` lookup below — no caching involved, this is
+    just avoiding fetching the same row twice within one request.
     """
     if not user_id:
         return False
 
     try:
-        profile_result = (
-            admin_client
-            .table("profiles")
-            .select(
-                "id, role, access_cbse, subscription_expires_at"
+        if profile is None:
+            profile_result = (
+                admin_client
+                .table("profiles")
+                .select(
+                    "id, role, access_cbse, subscription_expires_at"
+                )
+                .eq("id", user_id)
+                .single()
+                .execute()
             )
-            .eq("id", user_id)
-            .single()
-            .execute()
-        )
-
-        profile = profile_result.data
+            profile = profile_result.data
         if not profile:
             return False
 
