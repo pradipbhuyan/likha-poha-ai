@@ -145,7 +145,11 @@ def get_countdown_info(exam_type: str) -> dict:
 
 # ── Phase 2 ────────────────────────────────────────────────────────────────────
 
-def _build_llm_prompt(exam_type: str, exam_label: str, weeks: int, daily_hours: int, weak_topics: list[str]) -> tuple[str, str]:
+def _build_llm_prompt(
+    exam_type: str, exam_label: str, weeks: int, daily_hours: int, weak_topics: list[str],
+    batch_start: int = 1, batch_end: int | None = None,
+) -> tuple[str, str]:
+    batch_end = weeks if batch_end is None else batch_end
     chapters = EXAM_CHAPTERS.get(exam_type, {})
     subjects_str = json.dumps(chapters, indent=2)
     weak_str = ", ".join(weak_topics) if weak_topics else "None identified yet"
@@ -171,11 +175,13 @@ def _build_llm_prompt(exam_type: str, exam_label: str, weeks: int, daily_hours: 
         f"Schema: [{{\"week\":1,\"theme\":\"...\",\"tasks\":[{{\"day\":1,\"subject\":\"...\","
         f"\"topic\":\"...\",\"task_type\":\"revise\",\"description\":\"...\",\"duration_minutes\":60}}]}}]"
     )
+    batch_size = batch_end - batch_start + 1
     user_prompt = (
         f"Exam: {exam_label}\nExam Date: {exam_dt.strftime('%B %d, %Y')}\n"
         f"Weeks: {weeks}\nDaily Hours: {daily_hours}\nWeak Topics: {weak_str}\n\n"
         f"Chapters:\n{subjects_str}\n\n"
-        f"Generate ALL {weeks} weeks. Return JSON array only."
+        f"Generate ONLY weeks {batch_start} to {batch_end} ({batch_size} weeks) of this {weeks}-week "
+        f"plan. Return a JSON array of exactly {batch_size} week objects, no more, no less."
     )
     return system_prompt, user_prompt
 
@@ -224,10 +230,9 @@ def generate_plan(user_id: str, exam_type: str, daily_hours: int = 4) -> dict:
     while remaining > 0:
         batch_size = min(BATCH, remaining)
         batch_end = batch_start + batch_size - 1
-        _, batch_user = _build_llm_prompt(exam_type, exam_label, weeks, daily_hours, weak_topics)
-        batch_user = (
-            f"Generate ONLY weeks {batch_start} to {batch_end} ({batch_size} weeks).\n"
-            + batch_user
+        _, batch_user = _build_llm_prompt(
+            exam_type, exam_label, weeks, daily_hours, weak_topics,
+            batch_start=batch_start, batch_end=batch_end,
         )
         try:
             raw = ask_llm(
