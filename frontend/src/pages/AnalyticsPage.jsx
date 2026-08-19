@@ -139,18 +139,6 @@ function AnalyticsPage({ user, setActivePage }) {
   const { trendData, subjects } = buildSubjectTrend(history);
   const subjectPerformance = buildSubjectPerformance(history);
 
-  // Honest framing: this is a rule-based summary of real numbers already on
-  // this page (average score, test count) — not an AI-personalized insight.
-  const insightTip =
-    averageScore >= 85
-      ? "Excellent consistency — you're ready for harder questions and Hard-level practice."
-      : averageScore >= 65
-      ? "Good progress — focus on weaker subjects and review mistakes after every mock test."
-      : "Revision needed — start with concept review, then attempt short quizzes before mock tests.";
-  const insightText = totalTests > 0
-    ? `Average ${averageScore}% across ${totalTests} test${totalTests > 1 ? "s" : ""}. ${insightTip}`
-    : insightTip;
-
   const tooltipStyle = {
     contentStyle: {
       background: "#0f172a",
@@ -165,21 +153,6 @@ function AnalyticsPage({ user, setActivePage }) {
   return (
     <div className="analytics-page premium-page premium-analytics-page">
       {message && <div className="info-box">{message}</div>}
-
-      {/* Score Summary — compact banner, no redundant page title.
-          Renamed from "AI Insight": this is a rule-based summary of the
-          real numbers on this page, not an AI-personalized insight. */}
-      <div style={{
-        display: "flex", alignItems: "flex-start", gap: 12, padding: "12px 16px",
-        margin: "8px 0 4px", borderRadius: 12,
-        background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)",
-      }}>
-        <span style={{ fontSize: "1.3rem", flexShrink: 0 }}>📊</span>
-        <div>
-          <strong style={{ fontSize: "0.85rem", color: "#818cf8" }}>Score Summary</strong>
-          <p style={{ margin: "2px 0 0", fontSize: "0.85rem", color: "var(--text, #e5e7eb)", lineHeight: 1.5 }}>{insightText}</p>
-        </div>
-      </div>
 
       {totalTests === 0 ? (
         <section className="premium-section premium-empty-analytics">
