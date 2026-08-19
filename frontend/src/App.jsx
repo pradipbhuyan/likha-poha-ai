@@ -1930,7 +1930,12 @@ function App() {
               display: "flex", alignItems: "center", justifyContent: "space-between",
               flexWrap: "wrap", gap: 8,
             }}>
-              <span style={{ fontSize: ".85rem", fontWeight: 600, color: resolved.expiringSoon ? "#fbbf24" : "#a5b4fc" }}>
+              <span style={{
+                fontSize: ".85rem", fontWeight: 600,
+                color: resolved.expiringSoon
+                  ? (darkMode ? "#fbbf24" : "#b45309")
+                  : (darkMode ? "#a5b4fc" : "#4f46e5"),
+              }}>
                 {resolved.expiringSoon ? "⚠️" : "✨"}{" "}
                 <strong>{resolved.planName} active</strong>
                 {" — "}
@@ -1948,7 +1953,9 @@ function App() {
                   border: `1px solid ${resolved.expiringSoon ? "rgba(245,158,11,.5)" : "rgba(99,102,241,.5)"}`,
                   borderRadius: 6, padding: "4px 12px", cursor: "pointer",
                   fontSize: ".78rem", fontWeight: 700, fontFamily: "inherit",
-                  color: resolved.expiringSoon ? "#fbbf24" : "#a5b4fc",
+                  color: resolved.expiringSoon
+                    ? (darkMode ? "#fbbf24" : "#b45309")
+                    : (darkMode ? "#a5b4fc" : "#4f46e5"),
                   whiteSpace: "nowrap",
                 }}
               >
