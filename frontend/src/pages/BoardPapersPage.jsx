@@ -25,9 +25,7 @@ import {
 } from "lucide-react";
 
 import {
-  listBoardPaperYears,
-  listBoardPaperSubjects,
-  listBoardPapers,
+  getBoardPapersOverview,
   getBoardPaperQuestions,
   submitBoardPaperAttempt,
   listBoardPaperAttempts,
@@ -754,7 +752,6 @@ export default function BoardPapersPage({ user }) {
   const [grade, setGrade] = useState(() => examGradeFor(getUserGrade(user, "Grade 10")));
   const [years, setYears] = useState([]); // [{year, locked}]
   const [fullAccess, setFullAccess] = useState(true);
-  const [expandedYear, setExpandedYear] = useState(null);
   const [subjectsByYear, setSubjectsByYear] = useState({}); // year -> [{subject, locked}]
   const [papersByYear, setPapersByYear] = useState({}); // year -> [paper] (unlocked papers only)
   const [loading, setLoading] = useState(true);
@@ -766,42 +763,34 @@ export default function BoardPapersPage({ user }) {
   useEffect(() => {
     let cancelled = false;
     // Year/subject labels (e.g. "2025-26") can repeat across grades, so the
-    // per-year caches below must be cleared on every grade switch — otherwise
-    // switching from Grade 10 to Grade 12 could show Grade 10's cached
-    // subjects under a same-named Grade 12 year.
+    // per-year state below must be cleared on every grade switch — otherwise
+    // switching from Grade 10 to Grade 12 could show Grade 10's data under a
+    // same-named Grade 12 year.
     setYears([]);
     setSubjectsByYear({});
     setPapersByYear({});
-    setExpandedYear(null);
     setError("");
     setLoading(true);
-    listBoardPaperYears(grade)
+    getBoardPapersOverview(grade)
       .then((result) => {
         if (cancelled) return;
         const yrs = result?.years || [];
-        setYears(yrs);
         setFullAccess(result?.full_access !== false);
-        if (yrs.length) setExpandedYear(yrs[0].year);
+        setYears(yrs.map(({ year, locked }) => ({ year, locked })));
+
+        const subjByYear = {};
+        const papersByYr = {};
+        for (const { year, subjects } of yrs) {
+          subjByYear[year] = (subjects || []).map(({ subject, locked }) => ({ subject, locked }));
+          papersByYr[year] = (subjects || []).filter((s) => s.paper).map((s) => s.paper);
+        }
+        setSubjectsByYear(subjByYear);
+        setPapersByYear(papersByYr);
       })
-      .catch((err) => !cancelled && setError(err.message || "Could not load years"))
+      .catch((err) => !cancelled && setError(err.message || "Could not load board papers"))
       .finally(() => !cancelled && setLoading(false));
     return () => { cancelled = true; };
   }, [grade]);
-
-  // Load subjects + papers for every visible year (timeline shows all at once)
-  useEffect(() => {
-    if (!years.length) return;
-    years.forEach(({ year }) => {
-      if (subjectsByYear[year]) return;
-      listBoardPaperSubjects(grade, year)
-        .then((result) => setSubjectsByYear((prev) => ({ ...prev, [year]: result?.subjects || [] })))
-        .catch(() => {/* silently skip failed years */});
-      listBoardPapers({ grade, academicYear: year })
-        .then((result) => setPapersByYear((prev) => ({ ...prev, [year]: result?.papers || [] })))
-        .catch(() => {/* silently skip */});
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [years, grade]);
 
   function openPaper(paper) {
     setLoadingPaper(true);
@@ -939,9 +928,6 @@ export default function BoardPapersPage({ user }) {
           const subjects = subjectsByYear[year] || [];
           const papers = papersByYear[year] || [];
           const paperBySubject = Object.fromEntries(papers.map((p) => [p.subject, p]));
-          const needsLoad = expandedYear !== year && !subjectsByYear[year];
-          // Eagerly load on render
-          if (!subjectsByYear[year] && !needsLoad) {/* already triggered */}
           return (
             <div key={year} style={{ display: "flex", gap: 0, opacity: yearLocked ? 0.55 : 1 }}>
               {/* Left year label */}
@@ -995,7 +981,9 @@ export default function BoardPapersPage({ user }) {
 
                 {/* Subject pills */}
                 {subjects.length === 0 && (
-                  <p style={{ fontSize: ".8rem", color: "var(--muted, #64748b)", margin: 0 }}>Loading…</p>
+                  <p style={{ fontSize: ".8rem", color: "var(--muted, #64748b)", margin: 0 }}>
+                    {loading ? "Loading…" : "No papers available yet for this year."}
+                  </p>
                 )}
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                   {subjects.map(({ subject, locked: subjectLocked }) => {

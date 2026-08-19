@@ -1,5 +1,14 @@
 import { authFetch } from "./authClient";
 
+export async function getBoardPapersOverview(grade) {
+  /** Every year + subject + paper for this grade in one request — replaces
+   * the old fan-out of one /years + one /subjects + one /list call per
+   * visible year, which meant a single dropped request left that year's
+   * row stuck loading forever with no retry. */
+  const qs = new URLSearchParams({ grade }).toString();
+  return authFetch(`/api/board-papers/overview?${qs}`);
+}
+
 export async function listBoardPaperYears(grade) {
   /** Distinct academic years available for a grade. */
   const qs = new URLSearchParams({ grade }).toString();

@@ -55,6 +55,47 @@ def _enforce_custom_subject_list(profile: dict, subject: str | None):
         raise HTTPException(status_code=403, detail=f"No access to {subject} on this plan.")
 
 
+@router.get("/overview")
+def get_overview(grade: str, user=Depends(get_current_user)):
+    """Every year + subject + paper for this grade in one response — replaces
+    the old client-side fan-out of one /years + one /subjects + one /list
+    call per visible year (20+ requests on one page load, see
+    board_papers_service.list_overview for why that was fragile)."""
+    profile = _get_profile(user.id)
+    _enforce_grade(profile, grade)
+    overview = board_papers_service.list_overview(grade)
+    full_access = board_papers_service.is_full_access(profile, user.id)
+
+    years_list = [item["year"] for item in overview]
+    free_year = None if full_access else board_papers_service.free_tier_year(grade, years=years_list)
+
+    result_years = []
+    for item in overview:
+        year = item["year"]
+        papers = item["papers"]
+        year_locked = (not full_access) and year != free_year
+
+        if full_access:
+            subjects = [{"subject": p["subject"], "locked": False, "paper": p} for p in papers]
+        elif year_locked:
+            subjects = [{"subject": p["subject"], "locked": True, "paper": None} for p in papers]
+        else:
+            subject_names = [p["subject"] for p in papers]
+            free_subject = board_papers_service.free_tier_subject(grade, year, subjects=subject_names)
+            subjects = [
+                {
+                    "subject": p["subject"],
+                    "locked": p["subject"] != free_subject,
+                    "paper": p if p["subject"] == free_subject else None,
+                }
+                for p in papers
+            ]
+
+        result_years.append({"year": year, "locked": year_locked, "subjects": subjects})
+
+    return {"success": True, "full_access": full_access, "years": result_years}
+
+
 @router.get("/years")
 def get_years(grade: str, user=Depends(get_current_user)):
     profile = _get_profile(user.id)

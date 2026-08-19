@@ -105,6 +105,39 @@ def list_papers(grade: str, subject: str | None = None, academic_year: str | Non
     return result.data or []
 
 
+def list_overview(grade: str) -> list[dict]:
+    """Every active paper for this grade, grouped by year, in a single query.
+
+    The Board Papers timeline used to call /years then /subjects + /list once
+    per visible year (20+ requests on one page load) — any one of those
+    requests silently failing (network blip, auth race, etc.) left that
+    year's row stuck on "Loading…" forever, since nothing retried and the
+    frontend swallowed the error. One query for the whole grade removes that
+    failure surface entirely: either the whole page loads or the whole page
+    errors, nothing to get stuck mid-way.
+    """
+    cache_key = ("overview", grade)
+    cached = _cache_get(cache_key)
+    if cached is not None:
+        return cached
+    db = get_content_db(grade)
+    result = (
+        db.table("board_sample_papers")
+        .select("id, board, academic_year, grade, subject, subject_variant, "
+                "question_paper_url, marking_scheme_url, source_page_url, status")
+        .eq("board", BOARD).eq("grade", grade).eq("status", "active")
+        .execute()
+    )
+    by_year: dict[str, list[dict]] = {}
+    for row in (result.data or []):
+        by_year.setdefault(row["academic_year"], []).append(row)
+    for papers in by_year.values():
+        papers.sort(key=lambda p: p["subject"])
+    overview = [{"year": y, "papers": by_year[y]} for y in sorted(by_year, reverse=True)]
+    _cache_put(cache_key, overview)
+    return overview
+
+
 def list_years(grade: str) -> list[str]:
     cache_key = ("years", grade)
     cached = _cache_get(cache_key)
