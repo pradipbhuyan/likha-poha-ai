@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 13: Our Environment",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Science-Chapter13.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/science/chapter-13-our-environment.webp",
+    "alt": "Chapter 13 Our Environment revision poster: biodegradable vs non-biodegradable waste, why materials resist decomposition, waste management at home and in communities, treatment and disposal, 3Rs, key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on environment: biodegradable waste, waste management, disposal methods, and the 3Rs.",
+    "width": 1024,
+    "height": 1536
+  }
+}

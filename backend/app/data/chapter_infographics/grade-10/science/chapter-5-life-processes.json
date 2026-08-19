@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 5: Life Processes",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Science-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/science/chapter-5-life-processes.webp",
+    "alt": "Chapter 5 Life Processes revision poster: meaning of life processes, why diffusion is insufficient in multicellular organisms, nutrition/respiration/transportation/excretion overview, autotrophic nutrition and photosynthesis, key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on life processes: nutrition, respiration, transportation, excretion, and photosynthesis basics.",
+    "width": 1024,
+    "height": 1535
+  }
+}

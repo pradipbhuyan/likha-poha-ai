@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 12: Magnetic Effects of Electric Current",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Science-Chapter12-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/science/chapter-12-magnetic-effects-of-electric-current.webp",
+    "alt": "Chapter 12 Magnetic Effects of Electric Current revision poster: domestic supply wires, separate and parallel circuits, earthing, fuses, short-circuit and overloading, right-hand thumb rule and Flemings left-hand rule, key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on magnetic effects of electric current: domestic circuits, earthing, fuses, and direction rules.",
+    "width": 1024,
+    "height": 1536
+  }
+}

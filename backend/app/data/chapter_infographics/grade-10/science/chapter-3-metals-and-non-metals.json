@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 3: Metals and Non-metals",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Science-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/science/chapter-3-metals-and-non-metals.webp",
+    "alt": "Chapter 3 Metals and Non-metals revision poster: corrosion examples, conditions for rusting, prevention methods (painting, galvanisation, alloying, electroplating), common alloys and their uses, key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on metals and non-metals: corrosion, rusting conditions, prevention methods, and alloys.",
+    "width": 1024,
+    "height": 1536
+  }
+}

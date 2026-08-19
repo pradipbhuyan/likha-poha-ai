@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 1: Chemical Reactions and Equations",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Science-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/science/chapter-1-chemical-reactions-and-equations.webp",
+    "alt": "Chapter 1 Chemical Reactions and Equations revision poster: writing and balancing chemical equations, six reaction types (combination, decomposition, displacement, double displacement, exothermic, endothermic) with examples, interpreting equations, key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on chemical reactions and equations: types of reactions, balancing steps, and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

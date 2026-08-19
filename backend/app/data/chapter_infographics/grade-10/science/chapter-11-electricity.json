@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 11: Electricity",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Science-Chapter11.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/science/chapter-11-electricity.webp",
+    "alt": "Chapter 11 Electricity revision poster: electric current, potential difference, resistance, Ohms law, how current is controlled with a rheostat, verifying Ohms law circuit, summary table, practical applications, key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on electricity: current, voltage, resistance, Ohms law, and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

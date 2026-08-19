@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 13: Statistics",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter13.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-13-statistics.webp",
+    "alt": "Chapter 13 Statistics revision poster: median definition, cumulative frequency table construction, finding the median class, median formula for grouped data, a fully worked median example (median=30.625), key terms and common mistakes with corrections.",
+    "caption": "Full-chapter revision poster on statistics: median of grouped data, cumulative frequency, worked example, and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

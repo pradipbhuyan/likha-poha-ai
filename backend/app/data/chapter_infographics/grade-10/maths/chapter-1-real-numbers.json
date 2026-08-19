@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 1: Real Numbers",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter1Revised.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-1-real-numbers.webp",
+    "alt": "Grade 10 Maths Chapter 1 revision poster on real numbers: the number system hierarchy, rational versus irrational numbers, decimal expansion rules, the Fundamental Theorem of Arithmetic, proving that the square root of a prime is irrational, and locating real numbers on the number line.",
+    "caption": "Chapter 1 at a glance: rational, irrational, and real numbers, and why the square root of a prime is irrational.",
+    "width": 1024,
+    "height": 1536
+  }
+}

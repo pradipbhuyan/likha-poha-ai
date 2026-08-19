@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 8: Heredity",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Science-Chapter8.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/science/chapter-8-heredity.webp",
+    "alt": "Chapter 8 Heredity revision poster: Mendel dihybrid cross (tall/round vs short/wrinkled), F2 phenotypic ratio 9:3:3:1, independent inheritance, genes and proteins, chromosomes and genes, flow of information from parents to offspring, key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on heredity: Mendel dihybrid cross, 9:3:3:1 ratio, genes, chromosomes, and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 2: Polynomials",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-2-polynomials.webp",
+    "alt": "Grade 10 Maths Chapter 2 revision poster on polynomials: identifying the degree, the sum and product of roots formulas for a quadratic, factorizing by finding two binomials, coefficients and leading terms, the general quadratic form, and a step-by-step exam approach with common mistakes.",
+    "caption": "Chapter 2 at a glance: degree, roots, and factorizing quadratic polynomials.",
+    "width": 1024,
+    "height": 1536
+  }
+}

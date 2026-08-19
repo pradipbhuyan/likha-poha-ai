@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 6: Triangles",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-6-triangles.webp",
+    "alt": "Grade 10 Maths Chapter 6 revision poster on triangles: similar figures, the AA, SAS and SSS similarity criteria, the Basic Proportionality Theorem, properties of similar triangles including the area-ratio rule, and using similarity to measure heights indirectly.",
+    "caption": "Chapter 6 at a glance: similarity criteria, BPT, and indirect height measurement.",
+    "width": 1024,
+    "height": 1536
+  }
+}

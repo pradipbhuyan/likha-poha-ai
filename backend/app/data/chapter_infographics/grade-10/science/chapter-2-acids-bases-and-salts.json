@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 2: Acids, Bases and Salts",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Science-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/science/chapter-2-acids-bases-and-salts.webp",
+    "alt": "Chapter 2 Acids Bases and Salts revision poster: pH scale, how acids and bases produce ions, strong vs weak acids/bases, effect of dilution on pH, everyday acid/base examples, key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on acids, bases and salts: pH scale, ion production, strong vs weak acids/bases, and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

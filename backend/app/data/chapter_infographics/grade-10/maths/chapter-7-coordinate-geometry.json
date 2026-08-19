@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 7: Coordinate Geometry",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter7-Regenerated.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-7-coordinate-geometry.webp",
+    "alt": "Chapter 7 Coordinate Geometry revision poster: coordinate plane, distance formula, section formula for internal division, midpoint formula, area of a triangle by coordinates, why opposite weighting works (with corrected A/B symmetry), key terms and common mistakes with corrections.",
+    "caption": "Full-chapter revision poster on coordinate geometry: distance, section, midpoint and area formulas, with worked examples and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

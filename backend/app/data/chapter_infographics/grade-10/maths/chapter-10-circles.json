@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 10: Circles",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter10.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-10-circles.webp",
+    "alt": "Chapter 10 Circles revision poster: tangent definition, tangent-radius perpendicularity, positions of a line relative to a circle (non-intersecting, secant, tangent), tangents from external and interior points, equal-tangents theorem (PA=PB), key terms and common mistakes with corrections.",
+    "caption": "Full-chapter revision poster on tangents to a circle: definitions, tangent-radius perpendicularity, equal tangents theorem, and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 14: Probability",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter14.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-14-probability.webp",
+    "alt": "Chapter 14 Probability revision poster: complementary/sure/impossible events, probability range 0 to 1, deck-of-cards facts (52 cards, 4 suits, 13 each), a worked example finding P(not a king)=12/13, key terms and common mistakes with corrections.",
+    "caption": "Full-chapter revision poster on probability: complementary events, deck-of-cards worked example, and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

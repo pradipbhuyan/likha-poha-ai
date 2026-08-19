@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 3: Pair of Linear Equations in Two Variables",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-3-pair-of-linear-equations-in-two-variables.webp",
+    "alt": "Grade 10 Maths Chapter 3 revision poster on pairs of linear equations: what a pair of linear equations is, the substitution, elimination and graphical solving methods with worked examples, and the three types of solutions (unique, none, infinitely many) shown as graphs.",
+    "caption": "Chapter 3 at a glance: solving pairs of linear equations by substitution, elimination, and graphing.",
+    "width": 1024,
+    "height": 1536
+  }
+}

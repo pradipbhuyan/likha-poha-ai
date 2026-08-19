@@ -1,13 +1,16 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-18):** live on 95 chapters — Grade 12 Biology Ch 9, all 10
-> Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
+> **Status (2026-08-19):** live on 137 chapters — Grade 12 Biology Ch 9, all
+> 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
 > rejected on review, still on their original poster — see open items), all
-> 15 Grade 7 Maths chapters, all 14 Grade 8 Maths chapters, all 13 Grade 8
-> Science chapters, all 8 Grade 9 Maths chapters, and all 13 Grade 9 Science
-> chapters. Grade 5, Grade 7 Maths, Grade 8 (Maths + Science), and Grade 9
-> (Maths + Science) are all complete. 197 of 292 in-scope chapters remain
-> (Grades 6, 10, 11, 12 minus the one already-live Grade 12 chapter).
+> 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7
+> Maths chapters, all 14 Grade 8 Maths chapters, all 13 Grade 8 Science
+> chapters, all 8 Grade 9 Maths chapters, all 13 Grade 9 Science chapters,
+> and all 28 Grade 10 chapters (14 Maths + 13 Science). Grade 5, Grade 6,
+> Grade 7 Maths, Grade 8 (Maths + Science), Grade 9 (Maths + Science), and
+> **Grade 10 (Maths + Science) are all complete and clean.** 147 of 292
+> in-scope chapters remain (Grades 11, 12 minus the one already-live
+> Grade 12 chapter).
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -327,6 +330,384 @@ fixing posters one at a time.
 
 ## 7. Open items
 
+- [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
+      "Real Numbers" lesson content asserts integers are irrational.**
+      Found 2026-08-19 while building this chapter's infographic poster —
+      the "Exam Preparation for Real Numbers" lesson step (a DIFFERENT step
+      from "Revision and recap", which is correct) contains: "the number 2
+      is irrational", "prime numbers like 3 and 5 are also irrational", and
+      quick-check items "Prove that 5 is irrational" / "Prove that 3 is
+      irrational". This is mathematically false — 2, 3 and 5 are integers,
+      and all integers are rational. The correct theorem (stated correctly
+      elsewhere in the same chapter's content) is that √p is irrational for
+      prime p, not that p itself is irrational. This is a `lesson_cache`
+      content defect, not a poster-generation one — it will mislead any
+      student who reaches that lesson step directly, independent of the
+      infographic feature. Someone should locate and correct that
+      `lesson_cache` row (grade="Grade 10", subject="Maths",
+      chapter="Chapter 1: Real Numbers" or similar, step_title="Exam
+      Preparation for Real Numbers" or similar) — out of scope for this doc
+      to fix directly. Worked around it for the poster itself with a HARD
+      RULE telling the generator to ignore that section and state the
+      theorem correctly.
+- [ ] **Grade 10: authoring started 2026-08-19.** Prompts generated for all
+      14 Maths + 13 Science live chapters (one stale-duplicate Science
+      prompt found and dropped, same dual-key pattern as other grades).
+      First 4 Maths posters reviewed:
+        - **Chapter 2 "Polynomials"** and **Chapter 3 "Pair of Linear
+          Equations in Two Variables"** clean (sum/product-of-roots,
+          factorization, substitution/elimination/graphical worked examples
+          all verified correct) — applied.
+        - **Chapter 1 "Real Numbers"** reproduced the lesson-content bug
+          above as a false "Every prime number is irrational" panel — sent
+          a regeneration prompt with a HARD RULE correcting it. Came back
+          not just fixed but improved: a panel titled "Irrationality of √p
+          (p is prime)" states the true theorem explicitly, and the Common
+          Mistakes strip turns the old error into an explicit teaching
+          point ("Thinking prime numbers like 2, 3, 5 are irrational →
+          Correction: integers are rational; √p is irrational for prime p,
+          not p itself"). Re-verified all other panels (60=2²×3×5, decimal
+          expansions, number-line placement) and applied.
+        - **Chapter 4 "Quadratic Equations"** had a self-contradictory
+          discriminant-table row: "D > 0 (perfect square) → Two distinct
+          real and EQUAL roots" — distinct and equal can't both be true,
+          and its own worked example (x²−5x+6=0, roots 3 and 2) proved they
+          weren't equal. Sent a regeneration prompt with the correct
+          wording. Came back with all four discriminant rows internally
+          consistent: perfect square → "rational" (roots 3, 2), non-perfect
+          square → "irrational" (roots 1±√2), D=0 → "equal" (roots −2, −2),
+          D<0 → "non-real" (roots (−1±i√3)/2). Re-verified the other panels
+          (factorisation, quadratic formula example, sum/product of roots)
+          and applied.
+      **Grade 10 Maths: 4 of 14 chapters applied and clean** (Ch 1-4).
+      Chapters 5 "Arithmetic Progressions", 6 "Triangles" and 8
+      "Introduction to Trigonometry" reviewed clean (AP sum-formula
+      derivation, similarity criteria/BPT/area-ratio, all six trig ratios
+      and standard-angle values and identities all verified correct) and
+      applied. **Chapter 7 "Coordinate Geometry"** held back: its "Why
+      Opposite Weighting?" panel had a text bullet and a matching diagram
+      both mislabeled — "If P is closer to B (m1 > m2), B's weight m1 is
+      larger" should say **A**, not B (the section formula weights each
+      point's coordinate by the *other* point's ratio number, so the two
+      bullets must be symmetric opposites; this one just repeated "B").
+      Regeneration prompt sent with a HARD RULE spelling out the required
+      symmetry. **7 of 14 Grade 10 Maths chapters now applied** (Ch 1-6, 8).
+      **Chapter 7 re-reviewed 2026-08-19 after regeneration: the A/B
+      symmetry defect was STILL PRESENT, unchanged from the first report**
+      (bullet 2 of "Why Opposite Weighting?" still read "If P is closer to
+      B (m1 > m2), B's weight m1 is larger" — same wrong "B" instead of
+      "A"). The first regeneration prompt's HARD RULE described the
+      required symmetry in the abstract but did not give verbatim replacement
+      wording, which evidently wasn't enough to stop the model reproducing
+      the same text. Sent a second, stronger regeneration prompt
+      (`~/Downloads/Grade10_Missing_Posters_Prompts_2026-08-19_v2/
+      Grade10_Maths_Chapter7_PROMPT.txt`) that quotes the exact wrong
+      sentence verbatim, gives the exact corrected sentence verbatim for
+      both bullets, and adds a self-check instruction ("if both bullets end
+      with the same letter, you have reproduced the defect"). Still
+      pending the next regenerated image as of this session's end — **do
+      not apply Chapter 7 until this second attempt is re-reviewed.**
+      **Lesson for future HARD RULEs: describing a symmetry/pattern
+      requirement in the abstract is not reliable — always supply the
+      exact verbatim wrong text AND the exact verbatim corrected text.**
+
+      Also reviewed 2026-08-19: **Chapter 9 "Some Applications of
+      Trigonometry"** and **Chapter 10 "Circles"**.
+        - **Chapter 10 "Circles"** was clean on first generation — all six
+          panels (tangent definition, line-vs-circle positions, tangent
+          construction, tangents from an external point with PA=PB, no
+          tangent from an interior point, real-life uses) verified against
+          NCERT content, closing strips (Key Terms / Common Mistakes) were
+          circle/tangent-specific with no bleed. **Applied.**
+        - **Chapter 9 "Some Applications of Trigonometry"** had a genuine
+          arithmetic error in its "Solving Distance Problems" Example 3
+          (two equal-height poles, angles of elevation 45° and 30° from a
+          point between them, poles 40 m apart). Worked correctly through
+          "y = 40/(1 + 1/√3)" but then wrote the final line as
+          "= 20(√3 − 1) m" — that value (≈14.64) is actually **x** (the
+          distance to the 45° pole), not **y** (the distance to the 30°
+          pole, which is 20(3 − √3) ≈ 25.36 m). Recomputed by hand and
+          confirmed the mismatch numerically. The rest of the poster
+          (Examples 1 and 2, all six panels, Key Terms, Common Mistakes)
+          was correct and bleed-free — this was an isolated arithmetic
+          slip in one worked example, not a bleed or mislabeling. **Not
+          applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade10_Missing_Posters_Prompts_2026-08-19_v2/
+          Grade10_Maths_Chapter9_PROMPT.txt`) with a HARD RULE 0 spelling
+          out the correct final values for both x and y and instructing a
+          substitution check against both original tangent equations
+          before finalising. Pending the regenerated image.
+
+      **8 of 14 Grade 10 Maths chapters applied** (Ch 1-6, 8, 10) as of the
+      Ch10 pass; Chapters 7 and 9 pending re-regeneration (see above).
+
+      Chapters 11-14 generated and reviewed 2026-08-19, all four clean on
+      first generation, no defects found:
+        - **Chapter 11 "Areas Related to Circles"**: sector/segment
+          definitions, area-of-sector derivation (θ/360 × πr²), area of a
+          segment, special cases at θ=90°/180°/270° all algebraically
+          consistent, real-life uses (pizza slice, arch window). Closing
+          strips circle/sector-specific, no bleed.
+        - **Chapter 12 "Surface Areas and Volumes"**: combined-solids rules
+          (hemisphere-on-cube: subtract πr², add 2πr²; correctly explains
+          when to include/exclude a base using a tent-canvas example),
+          circular-ring area π(R²−r²), and all six volume formulas (cube
+          a³, cuboid lbh, cylinder πr²h, cone ⅓πr²h, sphere ⁴⁄₃πr³,
+          hemisphere ⅔πr³) verified correct.
+        - **Chapter 13 "Statistics"**: cumulative frequency table, median
+          class selection, and a fully worked median example recomputed by
+          hand — median = 30 + ((25−24)/16)×10 = 30.625, matching the
+          poster exactly.
+        - **Chapter 14 "Probability"**: deck-of-cards facts (52 cards, 4
+          suits, 13 each) and worked example P(not a king) = 1 − 4/52 =
+          12/13, both verified correct. Closing strips probability-specific.
+      All four applied (Ch 11 alt was initially 308 chars — over the
+      300-char Trap 6 limit — shortened to 274 before applying; the other
+      three were already under 300).
+
+      **Second regeneration round, 2026-08-19 (later in the same session):**
+      both Ch7 and Ch9 regenerated images reviewed.
+        - **Chapter 9**: the second attempt sidestepped the arithmetic error
+          entirely rather than fixing the numbers — the "Solving Distance
+          Problems" panel now presents the elevation/depression method
+          generically (formulas and a labelled diagram only, no computed
+          two-poles example with numbers), so there is no arithmetic left to
+          get wrong. Closing strips re-verified trig/height-distance-only,
+          no bleed. **Applied.**
+        - **Chapter 7**: the A/B symmetry defect was genuinely fixed this
+          time — both text bullets now read "...B's coordinate gets the
+          larger weight m2" / "...A's coordinate gets the larger weight m1"
+          (different letters, as required), and the two number-line diagram
+          labels correctly read "Larger weight is of B → m2" / "Larger
+          weight is of A → m1". **However, a brand-new, unrelated defect
+          appeared**: an entire extra panel titled "WELL-SHUFFLED DECK OF
+          CARDS (FOR PROBABILITY APPLICATION)" — 52 cards, 4 suits,
+          red/black colours — none of which appears anywhere in this
+          chapter's CHAPTER_CONTENT (grep-confirmed zero matches for
+          "deck"/"probability"/"cards"/"suit" in the prompt's source text).
+          This is templated content bled in from Chapter 14 "Probability",
+          which had just been generated and applied earlier in this same
+          session — a cross-chapter bleed, not a repeat of the original
+          defect. **Not applied.** Sent a third regeneration prompt
+          (`~/Downloads/Grade10_Missing_Posters_Prompts_2026-08-19_v3/
+          Grade10_Maths_Chapter7_PROMPT.txt`) that keeps HARD RULE 0
+          (A/B symmetry, now confirmed working — left unchanged) and adds
+          a new HARD RULE 0B explicitly forbidding the words "probability",
+          "cards", "deck", "suit", "shuffled" anywhere on this poster and
+          naming Chapter 14 as the specific chapter that content belongs to.
+          Pending the next regenerated image.
+
+      **Third regeneration round, 2026-08-19 (later still in the same
+      session): Chapter 7 re-reviewed and finally clean.** The image
+      (`Grade10-Maths-Chapter7-Regenerated.png`) has NO probability/deck
+      panel at all — every one of its six panels is coordinate-geometry
+      content (coordinate plane, distance formula, section formula,
+      midpoint formula, area of a triangle by coordinates, why opposite
+      weighting works). The A/B symmetry fix held from the previous round:
+      both text bullets end in different letters ("...B's coordinate gets
+      the larger weight m2" / "...A's coordinate gets the larger weight
+      m1") and both diagram labels are correctly symmetric ("Larger weight
+      belongs to B → m2" / "Larger weight belongs to A → m1"). All worked
+      examples re-verified by hand: section-formula example
+      (2×8+3×2)/5=4.4, (2×(−1)+3×3)/5=1.4 for ratio 2:3; distance, midpoint
+      and area-of-triangle examples all correct. Closing strips
+      (Key Terms/Common Mistakes) are coordinate-geometry-only, no bleed.
+      **Applied** (alt/caption 282/141 chars, both under the Trap 6 limit).
+      This took three regeneration rounds total: (1) original A/B
+      mislabel, (2) A/B fixed but a new probability-panel bleed appeared,
+      (3) both fixed with no new defects. **Confirms the doc's general
+      lesson: fixing one defect with a HARD RULE can introduce an
+      unrelated one on the next attempt — always re-review the ENTIRE
+      poster on every regeneration, not just the specific panel that was
+      corrected.**
+
+      **Grade 10 Maths is now COMPLETE — all 14 of 14 chapters applied and
+      clean** (Ch 1-14).
+
+      **Grade 10 Science: Chapters 1-7 generated, reviewed and applied
+      2026-08-19, all seven clean on first generation, no defects found:**
+        - **Chapter 1 "Chemical Reactions and Equations"**: all six
+          reaction-type examples verified correct (2Mg+O₂→2MgO combination,
+          CaCO₃→CaO+CO₂ decomposition, Zn+CuSO₄→ZnSO₄+Cu displacement,
+          AgNO₃+NaCl→AgCl+NaNO₃ double displacement, CaO+H₂O→Ca(OH)₂+heat
+          exothermic, CaCO₃→CaO+CO₂ with heat absorbed endothermic).
+          Balancing steps and closing strips chemistry-specific, no bleed.
+        - **Chapter 2 "Acids, Bases and Salts"**: pH scale 0-14, acids
+          release H⁺, bases release OH⁻, strong/weak acid-base examples
+          (HCl/NaOH strong; CH₃COOH/NH₄OH weak) all correct.
+        - **Chapter 3 "Metals and Non-metals"**: this poster covers the
+          corrosion/alloys portion of the chapter specifically (rusting
+          needs air+water, galvanisation=zinc coating, alloy compositions
+          brass=Cu+Zn, bronze=Cu+Sn, stainless steel=Fe+Cr+Ni+C) — likely
+          reflects the scope of the underlying "Revision and recap" lesson
+          step rather than a defect (same pattern noted for Grade 6
+          Science Ch5 earlier in this doc). All facts verified correct.
+        - **Chapter 4 "Carbon and Its Compounds"**: catenation, tetravalency,
+          saturated/unsaturated compounds, hydrocarbon classification and
+          IUPAC naming example (CH₃-CH(CH₃)-CH₂-CH₂-CH₂-CH₃ → correctly
+          named "2-methylhexane", 6-carbon chain with methyl branch at C2)
+          all verified correct.
+        - **Chapter 5 "Life Processes"**: covers the intro/nutrition/
+          photosynthesis-overview portion of the chapter; CO₂+H₂O→food+O₂
+          photosynthesis equation and all life-process facts correct.
+        - **Chapter 6 "Control and Coordination"**: neuron structure
+          (dendrite/axon/cell body), 7-step reflex arc, brain regions
+          (cerebrum=thinking/memory, cerebellum=balance/coordination),
+          sensory receptor types (thermo-/photo-/chemo-/mechanoreceptors)
+          all correctly categorised.
+        - **Chapter 7 "How do Organisms Reproduce?"**: covers the DNA/
+          variation/evolution-overview portion of the chapter; DNA copying,
+          mutation-as-source-of-variation, and species-stability-through-
+          generations facts all correct.
+      All seven had clean, topic-specific closing strips (Key Terms/Common
+      Mistakes) with zero cross-chapter bleed. All applied (alt/caption
+      lengths checked for all seven, longest alt 279 chars — under the
+      300-char Trap 6 limit).
+
+      **Grade 10 Science: 7 of 13 chapters now applied and clean** (Ch 1-7).
+
+      Chapters 11 and 12 reviewed 2026-08-19 (skipping ahead of 8-10, which
+      were queued for image generation separately):
+        - **Chapter 11 "Electricity"** was clean on first generation —
+          Ohm's law (V=IR) correctly stated, ammeter-in-series /
+          voltmeter-in-parallel correctly distinguished, resistance
+          dependency factors (material, length, area, temperature) all
+          correct, summary table's units/instruments/connections all
+          accurate, rheostat's effect on current correctly explained.
+          Closing strips electricity-specific, no bleed. **Applied.**
+        - **Chapter 12 "Magnetic Effects of Electric Current"** had a
+          fabricated third direction rule: a panel titled "Right Hand Palm
+          Rule (Force on conductor)" — "Keep right palm open. Fingers in
+          direction of magnetic field, thumb in direction of current. Then
+          force acts perpendicular to palm." Grep-confirmed **zero**
+          mentions of "palm rule" anywhere in this chapter's
+          CHAPTER_CONTENT, which names exactly two direction rules:
+          Right-Hand Thumb Rule (field direction) and Fleming's Left-Hand
+          Rule (force direction, thumb=force/forefinger=field/middle
+          finger=current). The invented rule is not just ungrounded but
+          actively dangerous pedagogically — it offers a *right-hand*
+          alternative for finding the *same* force that Fleming's
+          Left-Hand Rule (taught in the very next panel) is specifically
+          for, using the opposite hand; a student could apply either and
+          get a plausible-looking but potentially wrong answer with no way
+          to know which hand was correct without already knowing the
+          material. **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade10_Science_Missing_Posters_Prompts_2026-08-19/
+          Grade10_Science_Chapter12_PROMPT.txt`) with a HARD RULE 0 quoting
+          the fabricated rule's exact wording, stating it does not exist in
+          CHAPTER_CONTENT or the CBSE syllabus, and explicitly capping the
+          "Direction Rules" panel at exactly two rules (Right-Hand Thumb
+          Rule + Fleming's Left-Hand Rule, nothing else). Pending the
+          regenerated image.
+
+      **Grade 10 Science: 8 of 13 chapters now applied and clean**
+      (Ch 1-7, 11). Chapter 12 pending regeneration (see above).
+
+      Chapters 8, 9, 10 and 13 reviewed 2026-08-19:
+        - **Chapter 8 "Heredity"** clean on first generation — Mendel's
+          dihybrid cross (tall/round × short/wrinkled) correctly gives an
+          F2 phenotypic ratio of 9:3:3:1, the four gamete types from TtRr
+          (TR, Tr, tR, tr) are correct, genes/proteins/chromosomes panels
+          accurate. Closing strips genetics-specific, no bleed. **Applied.**
+        - **Chapter 9 "Light – Reflection and Refraction"** had a real sign
+          error in its "Sign Conventions & Key Formulas" table: the Object
+          distance (u) row read "Left of pole/centre = Positive (+), Right
+          = Negative (−)" — the OPPOSITE of both the correct New Cartesian
+          Convention and this chapter's own CHAPTER_CONTENT, which states
+          explicitly "Right is positive, left is negative... A real object
+          placed on the left has negative u." The Image distance (v) row
+          on the same table correctly had right=positive/left=negative, so
+          only the u row was inverted — internally inconsistent as well as
+          wrong. This is a high-impact defect since sign errors in optics
+          are the single most common source of student mistakes in this
+          chapter. **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade10_Science_Missing_Posters_Prompts_2026-08-19/
+          Grade10_Science_Chapter9_PROMPT.txt`) with a HARD RULE 0 quoting
+          the wrong table row verbatim, quoting the correct
+          CHAPTER_CONTENT sentence it contradicts, and requiring one
+          uniform left/right rule applied identically to u, v, and f.
+          Pending the regenerated image.
+        - **Chapter 10 "The Human Eye and the Colourful World"** clean —
+          accommodation, near point (25 cm)/far point (infinity) for a
+          normal eye, myopia corrected with a concave (diverging) lens,
+          hypermetropia corrected with a convex (converging) lens all
+          verified correct. Closing strips eye/vision-specific, no bleed.
+          **Applied.**
+        - **Chapter 13 "Our Environment"** clean — biodegradable vs
+          non-biodegradable examples correct, waste-segregation bin colours
+          (green=biodegradable, blue=recyclable, red=non-biodegradable) and
+          the 3Rs (Reduce/Reuse/Recycle) all correctly defined. Closing
+          strips waste-management-specific, no bleed. **Applied.**
+
+      **Grade 10 Science: 11 of 13 chapters now applied and clean**
+      (Ch 1-8, 10, 11, 13). Chapter 9 and Chapter 12 both pending
+      regeneration (prompts ready, see above) — these are the only two
+      Grade 10 Science chapters remaining.
+
+      **Regenerated Chapter 9 and Chapter 12 reviewed 2026-08-19 (later in
+      the same session) — both confirmed fixed:**
+        - **Chapter 9**: the "Sign Conventions & Key Formulas" table now
+          uses one uniform rule across all four rows — Object distance (u),
+          Image distance (v), Focal length (f) all correctly read "Right
+          of pole/optical centre = Positive (+), Left = Negative (−)",
+          matching CHAPTER_CONTENT exactly (the u row is no longer
+          reversed). Re-verified the concave-mirror image-formation table
+          (standard NCERT Table 9.1: At infinity→At F very small; Beyond
+          C→Between C&F diminished; At C→At C same size; Between C&F→
+          Beyond C magnified; At F→At infinity) and mirror/lens formulas
+          (1/f=1/v+1/u, m=hi/ho=−v/u, P=1/f(in m)) — all correct. Closing
+          strips reflection/refraction-specific, no bleed. **Applied.**
+        - **Chapter 12**: the "Direction Rules" panel now contains exactly
+          the two rules named in CHAPTER_CONTENT — (i) Right-Hand Thumb
+          Rule (field due to current, curled fingers show field direction)
+          and (ii) Fleming's Left-Hand Rule (force on a current-carrying
+          conductor, first finger=field/second finger=current/thumb=force)
+          — the fabricated "Right Hand Palm Rule" panel is gone entirely.
+          Domestic-circuit panels (earthing, fuses, short-circuit/
+          overloading) and closing strips re-verified electricity/
+          magnetism-specific, no bleed. **Applied.**
+
+      **Grade 10 Science is now COMPLETE — all 13 of 13 chapters applied
+      and clean** (Ch 1-13). Combined with Grade 10 Maths (14/14, completed
+      earlier this session), **all 28 Grade 10 chapters (Maths + Science)
+      are now live and clean — Grade 10 is fully done.**
+- [x] ~~Grade 6: 3 of 22 chapters had a content-bleed defect, found on
+      audit 2026-08-19~~ — fixed 2026-08-19. All 22 (10 Maths + 12 Science)
+      were already applied prior to this session — status here was
+      previously untracked. A full visual re-review (all 22 posters
+      downloaded and read at full resolution, cross-checked against source
+      content) found:
+        - **Maths Chapter 1 "Patterns in Mathematics"**: Table 1's
+          "Virahanka Numbers" row is an exact duplicate of the "Powers of
+          3" row (1, 3, 9, 27, 81, 243, 729, 2187, 6561, 19683) — wrong;
+          they are different sequences. Root cause: `lesson_cache` names
+          "Virahanka" as one of Table 1's sequences but never gives its
+          values (they live in a source textbook page image, not text), so
+          GPT-5.5 filled the row with a copy of an adjacent one instead of
+          leaving it or deriving it. The correct sequence (NCERT Ganita
+          Prakash Class 6 Ch 1, Table 1) is Fibonacci-like: 1, 1, 2, 3, 5,
+          8, 13, 21, 34, 55 — supplied explicitly in the regeneration
+          prompt since the source content doesn't state it.
+        - **Maths Chapter 2 "Lines and Angles"**: "Remember This" strip had
+          three bullets about positive/negative numbers being above/below
+          zero — Chapter 10 "The Other Side of Zero" content, unrelated to
+          protractors and angle bisectors.
+        - **Science Chapter 6 "Materials Around Us"**: "Words to Know"
+          included "Unit – A standard quantity used for measurement" —
+          Chapter 5 "Measurement of Length and Motion" vocabulary,
+          unrelated to material classification.
+      All other 19 chapters checked out clean (math/formulas/facts
+      verified: unit conversions, magnetic pole rules, N₂/O₂ air
+      composition, condensation mass gain, star-finding methods, etc).
+      Regenerated from prompts with HARD RULEs naming the exact defects;
+      re-reviewed (Maths Ch 1's Virahanka row now correctly reads
+      1,1,2,3,5,8,13,21,34,55 and no longer matches Powers of 3; Maths Ch
+      2's Remember This is protractor/angle-only; Science Ch 6's Words to
+      Know is materials-only) and applied. **Grade 6 is now fully clean.**
+      Also noted, lower severity, not blocking: **Science Chapter 5**'s
+      title is "Measurement of Length **and Motion**" but its poster covers
+      only length/unit conversion, no motion content — may just reflect
+      what that lesson step actually contains rather than an error.
 - [x] ~~Grade 8 Maths: 14 of 14 chapters authored~~ — 2026-08-18. Reviewed
       all 14 (13 pasted directly, 1 — Chapter 9 "The Baudhayana-Pythagoras
       Theorem" — generated fresh to fill a gap) against source content

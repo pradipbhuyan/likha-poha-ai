@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 12: Surface Areas and Volumes",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter12.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-12-surface-areas-and-volumes.webp",
+    "alt": "Chapter 12 Surface Areas and Volumes revision poster: combined solids (hemisphere on cube, cone on cylinder), circular ring area, exposed vs unexposed base rules, volume formulas for cube, cuboid, cylinder, cone, sphere and hemisphere, key terms and common mistakes with corrections.",
+    "caption": "Full-chapter revision poster on surface areas and volumes of combined solids, with volume formulas and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

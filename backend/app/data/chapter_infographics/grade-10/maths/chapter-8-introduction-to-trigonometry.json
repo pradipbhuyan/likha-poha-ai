@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 8: Introduction to Trigonometry",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter8.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-8-introduction-to-trigonometry.webp",
+    "alt": "Grade 10 Maths Chapter 8 revision poster on trigonometry: the six basic ratios in a right triangle, standard values of all six ratios at 0, 30, 45, 60 and 90 degrees, expressing one ratio in terms of another, key identities, and real-life height and distance applications.",
+    "caption": "Chapter 8 at a glance: the six trigonometric ratios, standard values, and identities.",
+    "width": 1024,
+    "height": 1536
+  }
+}

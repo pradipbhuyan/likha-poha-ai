@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 11: Areas Related to Circles",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter11.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-11-areas-related-to-circles.webp",
+    "alt": "Chapter 11 Areas Related to Circles revision poster: sector and segment definitions, deriving area-of-sector formula (theta/360 x pi r squared), area of a segment, special cases at 90/180/270 degrees, real-life uses (pizza slice, arch window), key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on areas related to circles: sector and segment area formulas, worked derivation, and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

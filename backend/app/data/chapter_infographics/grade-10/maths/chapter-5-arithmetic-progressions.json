@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 5: Arithmetic Progressions",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-5-arithmetic-progressions.webp",
+    "alt": "Grade 10 Maths Chapter 5 revision poster on arithmetic progressions: recognising an AP, deriving the sum-of-n-terms formula by reversing and adding the series, the final formula in two equivalent forms, a worked example, and real-life applications like savings and staircases.",
+    "caption": "Chapter 5 at a glance: deriving and applying the sum formula for an AP.",
+    "width": 1024,
+    "height": 1536
+  }
+}

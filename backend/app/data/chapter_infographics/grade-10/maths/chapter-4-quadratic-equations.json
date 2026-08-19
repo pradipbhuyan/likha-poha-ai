@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 4: Quadratic Equations",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter4Revised.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-4-quadratic-equations.webp",
+    "alt": "Grade 10 Maths Chapter 4 revision poster on quadratic equations: recognising the standard form, solving by factorisation, the nature of roots using the discriminant, the quadratic formula, the sum and product of roots, and real-life applications in area, motion and profit problems.",
+    "caption": "Chapter 4 at a glance: factorising, the discriminant, and the quadratic formula.",
+    "width": 1024,
+    "height": 1536
+  }
+}

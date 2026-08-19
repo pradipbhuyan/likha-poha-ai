@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 6: Control and Coordination",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Science-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/science/chapter-6-control-and-coordination.webp",
+    "alt": "Chapter 6 Control and Coordination revision poster: neuron structure, reflex action and reflex arc steps, brain and spinal cord functions, sensory receptor types, flow of information in the body, key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on control and coordination: neurons, reflex arc, brain and spinal cord, and sensory receptors.",
+    "width": 1024,
+    "height": 1536
+  }
+}

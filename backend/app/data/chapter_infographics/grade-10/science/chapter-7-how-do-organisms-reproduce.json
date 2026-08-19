@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 7: How do Organisms Reproduce?",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Science-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/science/chapter-7-how-do-organisms-reproduce.webp",
+    "alt": "Chapter 7 How do Organisms Reproduce revision poster: DNA as the blueprint of body design, DNA copying and cell division, similarity and variation in offspring, stability of species over generations, key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on reproduction: DNA copying, cell division, variation in offspring, and species stability.",
+    "width": 1024,
+    "height": 1536
+  }
+}

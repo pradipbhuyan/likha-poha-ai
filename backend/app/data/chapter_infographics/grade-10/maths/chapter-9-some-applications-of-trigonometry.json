@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Chapter 9: Some Applications of Trigonometry",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Maths-Chapter9-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/maths/chapter-9-some-applications-of-trigonometry.webp",
+    "alt": "Chapter 9 Some Applications of Trigonometry revision poster: angle of elevation and depression definitions, right-triangle setup, using trigonometry to find heights and distances, step-by-step solving method, key terms and common mistakes with corrections.",
+    "caption": "Full-chapter revision poster on applications of trigonometry: elevation/depression angles, height-distance formulas, and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

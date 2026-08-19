@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chapter 10: The Human Eye and the Colourful World",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Science-Chapter10.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/science/chapter-10-the-human-eye-and-the-colourful-world.webp",
+    "alt": "Chapter 10 The Human Eye and the Colourful World revision poster: how the eye focuses, accommodation, near/far point, myopia and hypermetropia with correction lenses, key terms and common mistakes.",
+    "caption": "Full-chapter revision poster on the human eye: accommodation, near/far point, myopia, hypermetropia, and correction lenses.",
+    "width": 1024,
+    "height": 1536
+  }
+}
