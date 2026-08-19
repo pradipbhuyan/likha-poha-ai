@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 14: Probability",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter14.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-14-probability.webp",
+    "alt": "Chapter 14 Probability revision poster: random experiment, sample space, event, occurrence and impossible event, sure event, simple and compound events, subsets view of events, decision process for occurrence, how to identify an event, key terms and important points.",
+    "caption": "Full-chapter revision poster on probability: sample space, events, occurrence rules, and key terms.",
+    "width": 1024,
+    "height": 1536
+  }
+}

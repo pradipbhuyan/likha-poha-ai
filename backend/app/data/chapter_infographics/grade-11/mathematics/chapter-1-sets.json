@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 1: Sets",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-1-sets.webp",
+    "alt": "Chapter 1 Sets revision poster: equal sets, subsets, proper subsets, power set, universal set, intervals, Venn diagrams, number of subsets, a worked NCERT example, set operations, important relations, laws of sets, key terms and important points.",
+    "caption": "Full-chapter revision poster on sets: subsets, power set, Venn diagrams, set operations, and laws of sets.",
+    "width": 1024,
+    "height": 1536
+  }
+}

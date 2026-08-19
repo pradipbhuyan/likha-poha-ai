@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 12: Limits and Derivatives",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter12-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-12-limits-and-derivatives.webp",
+    "alt": "Chapter 12 Limits and Derivatives revision poster: limit notation, left/right-hand limits, existence of limit, table and graph examples, when limit does not exist, algebra of limits, a worked rational-function example, limits at infinity, process to evaluate a limit, key terms and points.",
+    "caption": "Full-chapter revision poster on limits and derivatives: limit rules, worked examples, and evaluation process.",
+    "width": 1024,
+    "height": 1536
+  }
+}

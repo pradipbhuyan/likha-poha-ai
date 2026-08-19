@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 2: Relations and Functions",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter2-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-2-relations-and-functions.webp",
+    "alt": "Chapter 2 Relations and Functions revision poster: ordered pair, Cartesian product, relation, representation of relation, domain codomain and range, function definition, not a function, types of functions, how to check if a relation is a function, key symbols, key terms and important points.",
+    "caption": "Full-chapter revision poster on relations and functions: domain, range, function types, and how to check functions.",
+    "width": 1024,
+    "height": 1536
+  }
+}

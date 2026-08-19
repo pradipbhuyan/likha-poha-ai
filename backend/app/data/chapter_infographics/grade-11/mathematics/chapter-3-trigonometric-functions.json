@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 3: Trigonometric Functions",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-3-trigonometric-functions.webp",
+    "alt": "Chapter 3 Trigonometric Functions revision poster: basic definitions, sum and difference identities, tangent restrictions, related angles, periodicity, standard angle values, cofunction identities, core identities, a worked sin75 example, unit circle, key terms and important points.",
+    "caption": "Full-chapter revision poster on trigonometric functions: identities, standard angle values, worked example, and key formulas.",
+    "width": 1024,
+    "height": 1536
+  }
+}

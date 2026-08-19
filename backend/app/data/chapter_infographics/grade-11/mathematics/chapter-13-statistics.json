@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 13: Statistics",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter13.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-13-statistics.webp",
+    "alt": "Chapter 13 Statistics revision poster: class mid-points, assumed mean, step-deviation variable, mean by step-deviation method, mean deviation ungrouped and grouped, median of continuous distribution, limitations of mean deviation, key terms and important points.",
+    "caption": "Full-chapter revision poster on statistics: step-deviation method, mean deviation, median formula, and key terms.",
+    "width": 1024,
+    "height": 1536
+  }
+}

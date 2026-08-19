@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 4: Complex Numbers and Quadratic Equations",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter4-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-4-complex-numbers-and-quadratic-equations.webp",
+    "alt": "Chapter 4 Complex Numbers and Quadratic Equations revision poster: complex numbers and i, equality, algebra of complex numbers, conjugate and modulus, argument, quadratic equations, nature of roots and relations, solving quadratic equations, key terms and important points.",
+    "caption": "Full-chapter revision poster on complex numbers and quadratic equations: algebra, modulus, discriminant, and roots.",
+    "width": 1024,
+    "height": 1536
+  }
+}

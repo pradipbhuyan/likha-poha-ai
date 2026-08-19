@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 11: Introduction to Three Dimensional Geometry",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter11.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-11-introduction-to-three-dimensional-geometry.webp",
+    "alt": "Chapter 11 Introduction to Three Dimensional Geometry revision poster: coordinates of a point, octants and signs, distance between two points, collinearity and triangle type, section formula (internal/external), centroid of a triangle, uses and applications, key terms and important points.",
+    "caption": "Full-chapter revision poster on 3D geometry: coordinates, octants, distance, section formula, and centroid.",
+    "width": 1024,
+    "height": 1536
+  }
+}

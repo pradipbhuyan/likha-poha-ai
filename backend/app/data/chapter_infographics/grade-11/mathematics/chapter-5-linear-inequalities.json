@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 5: Linear Inequalities",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-5-linear-inequalities.webp",
+    "alt": "Chapter 5 Linear Inequalities revision poster: open/closed boundary rules, direction of shading, average-model word problems, integer filtering, verification steps, a worked NCERT example, types of inequalities, common mistakes, solving steps, key terms and important points.",
+    "caption": "Full-chapter revision poster on linear inequalities: boundary and shading rules, worked example, and common mistakes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

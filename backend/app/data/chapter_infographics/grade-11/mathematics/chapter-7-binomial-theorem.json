@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 7: Binomial Theorem",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-7-binomial-theorem.webp",
+    "alt": "Chapter 7 Binomial Theorem revision poster: binomial expansion terms, exponent and total-degree patterns, Pascals triangle coefficient pattern, symmetry of coefficients, signs of terms, general term formula, expansions for small n, key terms and important points.",
+    "caption": "Full-chapter revision poster on the binomial theorem: expansion patterns, Pascals triangle, general term, and key formulas.",
+    "width": 1024,
+    "height": 1536
+  }
+}

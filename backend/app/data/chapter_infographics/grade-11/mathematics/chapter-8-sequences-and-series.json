@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 8: Sequences and Series",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter8.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-8-sequences-and-series.webp",
+    "alt": "Chapter 8 Sequences and Series revision poster: geometric progression, sum of first n terms, equivalent sum formula, special case r=1, finding an unknown term, applications of GP sums, a worked NCERT example, key formulas at a glance, key terms and important points.",
+    "caption": "Full-chapter revision poster on sequences and series: geometric progressions, sum formulas, worked example, and applications.",
+    "width": 1024,
+    "height": 1536
+  }
+}

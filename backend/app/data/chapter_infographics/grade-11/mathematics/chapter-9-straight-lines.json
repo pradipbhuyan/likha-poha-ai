@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 9: Straight Lines",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter9-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-9-straight-lines.webp",
+    "alt": "Chapter 9 Straight Lines revision poster: slope of a line, various forms of the equation, intercepts and conditions, parallel and perpendicular lines, distance of a point from a line, angle between two lines, concurrent lines, pair of lines, key terms and important points.",
+    "caption": "Full-chapter revision poster on straight lines: equation forms, slope conditions, distance formula, and key terms.",
+    "width": 1024,
+    "height": 1536
+  }
+}

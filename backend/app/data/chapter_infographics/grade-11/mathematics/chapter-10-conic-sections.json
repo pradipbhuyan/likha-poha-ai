@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 10: Conic Sections",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter10.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-10-conic-sections.webp",
+    "alt": "Chapter 10 Conic Sections revision poster: parts of a cone, circle, ellipse, parabola, hyperbola, degenerate point and lines, summary of conic conditions, a worked NCERT example on angle between generators, key terms and important points.",
+    "caption": "Full-chapter revision poster on conic sections: cone geometry, circle/ellipse/parabola/hyperbola conditions, and a worked example.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Mathematics",
+  "chapter": "Chapter 6: Permutations and Combinations",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Maths-Chapter6-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/mathematics/chapter-6-permutations-and-combinations.webp",
+    "alt": "Chapter 6 Permutations and Combinations revision poster: fundamental principle of counting, permutations, combinations, relation between them, factorial and multinomial definitions, four worked examples, counting strategy, key terms and important points.",
+    "caption": "Full-chapter revision poster on permutations and combinations: formulas, worked examples, and counting strategy.",
+    "width": 1024,
+    "height": 1536
+  }
+}

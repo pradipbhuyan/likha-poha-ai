@@ -1,6 +1,6 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-19):** live on 137 chapters — Grade 12 Biology Ch 9, all
+> **Status (2026-08-19):** live on 151 chapters — Grade 12 Biology Ch 9, all
 > 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
 > rejected on review, still on their original poster — see open items), all
 > 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7
@@ -779,6 +779,266 @@ fixing posters one at a time.
       grade/subject should be checked against `/api/syllabus` before
       treating its output count as the true chapter count** — the script
       counts distinct `lesson_cache` chapter keys, not distinct chapters.
+- [x] ~~Grade 11 prompts generated~~ — 2026-08-19. Ran
+      `prepare_gpt55_infographic_prompts.py --grade "Grade 11"` for all four
+      subjects. As with every other grade, the script's raw output count
+      was inflated by stale-duplicate `lesson_cache` chapter keys relative
+      to the live `/api/syllabus` dropdown — cross-checked and cleaned:
+        - **Mathematics**: script wrote 15, live syllabus has 14. Deleted
+          `15_principle_of_mathematical_induction_PROMPT.txt` (no
+          "Chapter N: " prefix, not in the live 14-chapter list).
+        - **Physics**: script wrote 15, live syllabus has 14. Deleted
+          `15_uploaded_book_content_PROMPT.txt` — an obviously bogus
+          placeholder chapter key ("Uploaded Book Content"), not a real
+          chapter.
+        - **Chemistry**: script wrote 11, live syllabus has 9. Deleted two
+          legacy-titled duplicates: `10_hydrogen_PROMPT.txt` and
+          `11_states_of_matter_PROMPT.txt` (neither has the "Chapter N: "
+          prefix and neither is in the live 9-chapter list — these are
+          content that exists in `lesson_cache` under old chapter numbers
+          from a previous NCERT edition/import, not currently taught).
+        - **Biology**: script wrote 22, live syllabus has 19. Deleted three
+          legacy-titled duplicates: `20_digestion_and_absorption_PROMPT.txt`,
+          `21_mineral_nutrition_PROMPT.txt`,
+          `22_transport_in_plants_PROMPT.txt` (same pattern as Chemistry).
+      **Final clean counts, matching `/api/syllabus` exactly: Mathematics
+      14, Physics 14, Chemistry 9, Biology 19 — 56 Grade 11 chapters
+      total**, all written to
+      `~/Downloads/GPT55_Chapter_Infographic_Prompts_2026-08-19/grade_11/`.
+      Ready to hand to the user for image generation, review, and apply —
+      same workflow as every prior grade in this doc.
+- [ ] **Grade 11 Mathematics: authoring started 2026-08-19.** Chapters 1-5
+      generated and reviewed:
+        - **Chapter 1 "Sets"** clean — power set of {1,2,3} correctly lists
+          all 8 subsets (∅, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}),
+          all seven "Important Relations" (⊂, ⊆, ⊃, ⊇, =, ≠, and empty/
+          non-empty set notation) and all five "Laws of Sets" (commutative,
+          associative, distributive, identity, complement) verified
+          correct. **Applied.**
+        - **Chapter 3 "Trigonometric Functions"** clean — worked example
+          sin75° = (√6+√2)/4 numerically verified (≈0.9659, matches
+          sin(75°) exactly), all eight core trigonometric identities
+          (sin²+cos²=1, 1+tan²=sec², 1+cot²=csc², etc.) correct. **Applied.**
+        - **Chapter 5 "Linear Inequalities"** clean — worked example
+          (student's third score x ≥ 70 for a three-test average of at
+          least 60, given scores 62 and 48) verified by substitution:
+          (62+48+70)/3 = 60 exactly. **Applied.**
+        - **Chapter 2 "Relations and Functions"** and **Chapter 4 "Complex
+          Numbers and Quadratic Equations"** both had the SAME defect: an
+          entire extra panel titled "[N] DIRECTION RULES (IMPORTANT IN
+          THIS CHAPTER)" containing the Right-Hand Thumb Rule and
+          Fleming's Left-Hand Rule — magnetism/electric-current content
+          from Physics, with **zero** connection to either Maths chapter's
+          actual topic. This is the same templated magnetism-rules content
+          previously found bleeding into two different chapters earlier in
+          this session (Grade 10 Maths Ch7 first attempt, Grade 10 Science
+          Ch12), now recurring a third and fourth time across a completely
+          different grade and subject boundary — **this specific panel
+          appears to be a generator-level template default that gets
+          inserted when the model runs out of chapter-specific content to
+          fill a numbered-panel layout**, not a one-off random error.
+          Verified the rest of each poster was otherwise correct before
+          concluding the panel was the only issue: Ch2's function-type
+          panels (identity/constant/polynomial/rational/modulus/signum/
+          greatest-integer) and NCERT Example 15 (domain/range of f(x)=1/x)
+          were all correct; Ch4's Argand-plane panels and NCERT Example 10
+          worked example (modulus=2, principal argument=−2π/3 for
+          z=−1−i√3, hand-verified) and the discriminant table (this time
+          internally consistent: D>0→distinct, D=0→equal, D<0→non-real
+          conjugate, unlike the earlier Grade 10 Ch4 self-contradiction)
+          were also correct. **Neither applied.** Sent regeneration
+          prompts for both
+          (`~/Downloads/Grade11_Missing_Posters_Prompts_2026-08-19/
+          Grade11_Maths_Chapter2_PROMPT.txt` and
+          `..._Chapter4_PROMPT.txt`) with a HARD RULE 0 naming the exact
+          panel title and rule text verbatim, explicitly stating it
+          belongs to Physics Chapter 12 (a different subject entirely,
+          not just a different chapter), and banning the words "magnetic",
+          "current", "conductor", "Fleming", "thumb rule" from appearing
+          anywhere on either poster. Pending the regenerated images.
+      **Grade 11 Mathematics: 3 of 14 chapters applied and clean** (Ch 1,
+      3, 5). Chapters 2 and 4 pending regeneration (see above).
+
+      Chapters 6-10 reviewed 2026-08-19:
+        - **Chapter 6 "Permutations and Combinations"** had a fabricated
+          worked example not present anywhere in CHAPTER_CONTENT: "How
+          many 4-letter words can be formed using the letters of the word
+          MATHS... so that the consonants occupy the even places?" —
+          grep-confirmed zero mentions of "MATHS" in the source content.
+          Worse, the invented solution is internally inconsistent: it
+          computes ⁴P₂=12 ways to arrange 2 consonants in the even
+          positions, then ²P₁=2 for the single vowel A in "one of the two
+          odd positions" — but MATHS has only ONE vowel (A) while a
+          4-letter word has TWO odd positions (1st and 3rd), so the
+          problem as posed cannot be solved by "vowels occupy odd places"
+          without repeating a letter (not allowed) — the poster silently
+          filled only one of the two required odd slots and never
+          accounted for the other. All other panels (stage/order/
+          selection/repetition/identity tests, restriction strategy, key
+          formulas table, decision-flow chart) were correct and grounded.
+          **Not applied.** Sent a regeneration prompt naming the exact
+          fabricated example and directing the model to use only the
+          worked examples that actually exist in CHAPTER_CONTENT (the
+          chairman/vice-chairman selection, the ROOT rearrangement, the
+          4C2 example, or Mohan's pants-and-shirts example).
+        - **Chapter 7 "Binomial Theorem"** clean — Pascal's triangle rows
+          (1; 1,1; 1,2,1; 1,3,3,1; 1,4,6,4,1; 1,5,10,10,5,1) all correct,
+          symmetry and coefficient panels correct. One cosmetic imprecision
+          noted but not fixed: the "Signs of Terms" panel lists identical
+          sign patterns for "if n is even" and "if n is odd" (both "+,-,+,
+          -,..."), which is technically true for the alternating pattern
+          itself but doesn't address that the LAST term's sign does depend
+          on n's parity — imprecise wording, not a factual error. **Applied.**
+        - **Chapter 8 "Sequences and Series"** clean — worked example
+          (a=3, r=1/2, sum=3069/512) hand-verified to require exactly
+          n=10 terms, matching the poster's answer exactly. All GP
+          formulas correct. **Applied.**
+        - **Chapter 9 "Straight Lines"** had a severe closing-strip bleed:
+          5 of the 6 bullets in "Important Points to Remember" were
+          entirely about the Binomial Theorem ("In (a+b)^n, power of a
+          decreases from n to 0...", "Sum of exponents of a and b in every
+          term is n", "Coefficients are symmetric: nCr = nCn-r", "First
+          and last terms have coefficient 1", "All terms in (a+b)^n are
+          positive; in (a-b)^n signs alternate") — content belonging to
+          Chapter 7 "Binomial Theorem", with zero connection to straight
+          lines. Only the final bullet ("These different forms represent
+          the same line; choose the most convenient one") was actually
+          on-topic. The rest of the poster (all nine line-form panels,
+          the point-slope worked example y=4x+11 hand-verified correct)
+          was fine — only the closing strip was affected. **Not applied.**
+          Sent a regeneration prompt quoting the bled bullets verbatim and
+          naming Chapter 7 as their source.
+        - **Chapter 10 "Conic Sections"** clean — worked example (angle
+          between generators = 2 × semi-vertical angle = 2×45° = 90°)
+          hand-verified correct, all cone/circle/ellipse/parabola/
+          hyperbola/degenerate-case panels and the summary table correct.
+          **Applied.**
+      **Grade 11 Mathematics: 6 of 14 chapters now applied and clean**
+      (Ch 1, 3, 5, 7, 8, 10). Chapters 2, 4, 6, 9 all pending regeneration
+      (prompts ready, see above and earlier entry). Chapters 11-14 not yet
+      generated as images.
+
+      **Two new failure modes catalogued this round, worth watching across
+      the rest of the rollout:**
+        1. **Fabricated worked examples** (Ch6) — the model invents an
+           entirely new question/example not grounded in CHAPTER_CONTENT
+           at all, rather than reusing one of the source's own examples.
+           Different from earlier bleeds (which import a *real* example
+           from a *different* chapter) — this is invention from nothing,
+           and can be internally inconsistent on top of being ungrounded.
+        2. **Non-magnetism cross-chapter closing-strip bleeds** (Ch9) —
+           confirms the closing-strip bleed pattern isn't limited to the
+           recurring magnetism-panel template; any chapter's content can
+           leak into another's closing strip when the model runs low on
+           chapter-specific material to fill the required panel count.
+
+      Chapters 11-14 reviewed 2026-08-19:
+        - **Chapter 11 "Introduction to Three Dimensional Geometry"**
+          clean — octant sign table (I=+++, IV=+−+, V=+−−, etc.) matches
+          the standard NCERT convention exactly, distance formula,
+          section formula (internal/external division), and centroid
+          formula all correct. Closing strips 3D-geometry-specific, no
+          bleed. **Applied.**
+        - **Chapter 12 "Limits and Derivatives"** had a genuine, severe
+          math error in its "Example: Rational Function" panel: asked to
+          find lim(x→2) of (x²−1)/(x−2), correctly noted q(2)=2−2=0 (not
+          allowed), then factored the numerator as (x−1)(x+1) and FALSELY
+          claimed "q(x)=x−2 is removed after cancellation" — but (x−2) is
+          NOT a factor of x²−1 (the numerator at x=2 equals 3, not 0), so
+          there is nothing to cancel. Confirmed numerically: the function
+          diverges to −∞ approaching from the left (values like −2996 at
+          x=1.999) and +∞ from the right (+3004 at x=2.001) — this limit
+          does not exist at all, let alone equal a clean finite value.
+          Grep-confirmed this exact example (with these exact numbers)
+          does not appear anywhere in CHAPTER_CONTENT — fabricated outright
+          AND internally self-contradictory, combining both new failure
+          modes catalogued after Ch6/Ch9 in one panel. The rest of the
+          poster (limit notation, left/right-hand limits, existence test,
+          algebra of limits, polynomial/rational limit rules, the "when
+          limit does not exist" panel with unequal one-sided limits and
+          unbounded behaviour) was correct and well-grounded — only this
+          one worked example was broken. **Not applied.** Sent a
+          regeneration prompt quoting the exact broken claim verbatim,
+          explaining precisely why (x−2) cannot cancel, and suggesting a
+          mathematically valid substitute (x²−4)/(x−2) → x+2 → limit 4 if
+          a removable-singularity example is wanted, with an instruction to
+          verify any factoring/cancellation step before using it.
+        - **Chapter 13 "Statistics"** clean — all formulas (class
+          mid-point, assumed mean, step-deviation, mean-by-step-deviation,
+          mean deviation for ungrouped/grouped data, median of continuous
+          distribution M=l+((N/2−Cf)/f)×h) match the standard NCERT
+          definitions; no numeric worked example to verify (formulas/
+          definitions only). Closing strips statistics-specific, no bleed.
+          **Applied.**
+        - **Chapter 14 "Probability"** clean — both worked examples in the
+          "Decision Process" panel hand-verified correct: Example 1
+          (E={2,4,6}, ω=5 → 5∉E → does not occur) and Example 2
+          (E={1,3,5}, ω=3 → 3∈E → occurs) are both internally consistent
+          with their own stated event sets. Simple/compound event examples
+          and the events-as-subsets Venn diagram all correct. Closing
+          strips probability-specific, no bleed. **Applied.**
+      **Grade 11 Mathematics: 9 of 14 chapters now applied and clean**
+      (Ch 1, 3, 5, 7, 8, 10, 11, 13, 14). Chapters 2, 4, 6, 9, 12 all
+      pending regeneration (prompts ready).
+
+      **Regenerated Chapters 2, 4, 6, 9 and 12 all reviewed 2026-08-19
+      (later in the same session) — all five confirmed fixed, no new
+      defects:**
+        - **Chapter 2 "Relations and Functions"**: the fabricated
+          magnetism "Direction Rules" panel is completely gone — all 12
+          panels are relations/functions content (ordered pair, Cartesian
+          product, relation, representation, domain/codomain/range,
+          function definition, not-a-function, types of functions, how to
+          check if a relation is a function, key symbols). Re-verified the
+          "not a function" example (R={(1,3),(1,4),(2,5)} from A={1,2}:
+          element 1 has two images 3 and 4) — correct.
+        - **Chapter 4 "Complex Numbers and Quadratic Equations"**: the
+          magnetism panel is gone — all 8 panels are complex-numbers/
+          quadratics content. Vieta's formulas (α+β=−b/a, αβ=c/a) and the
+          four-way discriminant rules (D>0 distinct, D=0 equal, D<0
+          non-real conjugate) are correct and internally consistent.
+        - **Chapter 6 "Permutations and Combinations"**: the fabricated
+          MATHS example is gone, replaced with four worked examples that
+          all exist in and match CHAPTER_CONTENT — chairman/vice-chairman
+          (⁸P₂=56), ROOT rearrangement (4!/2!=12), 4C2 from {2,4,6,8}
+          (=6), and Mohan's pants/shirts (3×2=6) — all four hand-verified
+          correct.
+        - **Chapter 9 "Straight Lines"**: the Binomial Theorem
+          closing-strip bleed is fully fixed — "Important Points to
+          Remember" now contains only straight-lines content (slope
+          formula usage, form selection rules, parallel/perpendicular
+          slope conditions, distance formula, pair-of-lines conditions).
+          Panel 4's parallel (m₁=m₂) and perpendicular (m₁m₂=−1) rules
+          hand-verified correct.
+        - **Chapter 12 "Limits and Derivatives"**: the broken rational-
+          function example was replaced exactly as suggested — now finds
+          lim(x→2) of (x²−4)/(x−2), correctly notes 0/0 at x=2, factors to
+          (x−2)(x+2)/(x−2)=x+2, and gives the correct answer of 4.
+          Numerically re-verified: the function smoothly approaches 4 from
+          both sides (3.999 at x=1.999, 4.001 at x=2.001) — no divergence
+          this time, confirming the cancellation is now mathematically
+          valid (numerator genuinely zero at x=2, unlike the original
+          broken version). The accompanying table example (f(x)=2x,
+          limit=4 at x=2) is internally consistent with this. All other
+          panels (limit notation, one-sided limits, existence test,
+          algebra of limits, limits at infinity, evaluation process)
+          remain correct.
+      All five applied (Ch12's alt was initially 315 then 306 chars — over
+      the 300-char Trap 6 limit twice — shortened to 289 before applying;
+      the other four were already under 300).
+
+      **Grade 11 Mathematics is now COMPLETE — all 14 of 14 chapters
+      applied and clean** (Ch 1-14). This took two regeneration rounds
+      total across the five defective chapters found in this grade: one
+      round each fully resolved every defect (recurring magnetism-panel
+      template in Ch2/Ch4, fabricated worked example in Ch6, cross-chapter
+      closing-strip bleed in Ch9, and a fabricated-and-broken worked
+      example in Ch12) with no new defects introduced on regeneration —
+      unlike the Grade 10 Maths Chapter 7 case earlier in this doc, which
+      needed three rounds because each fix introduced a new, different
+      defect. **Grade 11 Mathematics joins Grade 5, Grade 6, Grade 7
+      Maths, Grade 8 (Maths + Science), Grade 9 (Maths + Science), and
+      Grade 10 (Maths + Science) as fully complete and clean.**
 - [ ] Author posters for the remaining 291 chapters (see §2).
 - [ ] **Decide the review gate** before bulk apply — the failure mode is a
       confidently wrong revision poster, which is worse than none.
