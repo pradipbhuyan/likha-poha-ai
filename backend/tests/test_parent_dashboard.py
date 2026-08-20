@@ -189,12 +189,27 @@ class FakeProfilesTable:
 
     def __init__(self):
         self.inserted_payload = None
+        self._querying = False
 
     def insert(self, payload):
         self.inserted_payload = payload
+        self._querying = False
         return self
 
+    # create_student's pre-insert _reject_taken_username() check queries by
+    # username before ever calling insert() — these tests aren't exercising
+    # a collision, so the read side always reports "nothing found".
+    def select(self, *_):
+        self._querying = True
+        return self
+
+    def ilike(self, *_): return self
+    def eq(self, *_): return self
+    def limit(self, *_): return self
+
     def execute(self):
+        if self._querying:
+            return FakeInsertResult([])
         return FakeInsertResult([self.inserted_payload])
 
 
@@ -485,7 +500,14 @@ class TestChildLoginCredentials:
             profiles_table.inserted_payload = insert_data
             class FakeResultWithData:
                 data = [insert_data]
-            profiles_table.execute = lambda: FakeResultWithData()
+            # Only override the insert-side result — the pre-insert
+            # _reject_taken_username() select/ilike check must still see
+            # "not found" (base class's querying-flag execute()), or every
+            # one of these tests would 409 before the insert it's testing.
+            _base_execute = profiles_table.execute
+            profiles_table.execute = lambda: (
+                FakeResultWithData() if not profiles_table._querying else _base_execute()
+            )
 
         fake_admin = FakeAdminClient()
         fake_admin.profiles_table = profiles_table
@@ -526,8 +548,20 @@ class TestChildLoginCredentials:
         class CapturingTable:
             def insert(self, payload):
                 captured_profile.update(payload)
+                self._querying = False
                 return self
+            # Pre-insert _reject_taken_username() check — no collision here.
+            def select(self, *_):
+                self._querying = True
+                return self
+            def ilike(self, *_): return self
+            def eq(self, *_): return self
+            def limit(self, *_): return self
             def execute(self):
+                if getattr(self, "_querying", False):
+                    class Empty:
+                        data = []
+                    return Empty()
                 class R:
                     data = [captured_profile]
                 return R()
@@ -560,8 +594,20 @@ class TestChildLoginCredentials:
         class CapTable:
             def insert(self, payload):
                 captured.update(payload)
+                self._querying = False
                 return self
+            # Pre-insert _reject_taken_username() check — no collision here.
+            def select(self, *_):
+                self._querying = True
+                return self
+            def ilike(self, *_): return self
+            def eq(self, *_): return self
+            def limit(self, *_): return self
             def execute(self):
+                if getattr(self, "_querying", False):
+                    class Empty:
+                        data = []
+                    return Empty()
                 class R:
                     data = [captured]
                 return R()
@@ -590,6 +636,11 @@ class TestChildLoginCredentials:
 
         class EmptyTable:
             def insert(self, payload): return self
+            # Pre-insert _reject_taken_username() check — no collision here.
+            def select(self, *_): return self
+            def ilike(self, *_): return self
+            def eq(self, *_): return self
+            def limit(self, *_): return self
             def execute(self):
                 class R:
                     data = []  # silent insert failure
@@ -635,6 +686,48 @@ class TestChildLoginCredentials:
         assert login_id == "RiyaTest"
         assert login_email == "RiyaTest@child.likhapoha.in"
         # Parent can reconstruct: child logs in with username=login_id, password=<what they entered>
+
+    def test_create_student_rejects_taken_username(self, monkeypatch):
+        """
+        create_student ("Add Child") returns 409 when the username is already
+        used by any other profile in the system.
+
+        Regression for the "likha" incident (2026-08-20): a new child sharing
+        a username with an unrelated existing profile inherited that
+        profile's mock test scores and progress in the Parent Dashboard,
+        because get_child_analytics filters by the username STRING, not the
+        child's profile id. See docs/sql/2026-08-16_check_username_uniqueness.sql.
+        """
+        from fastapi import HTTPException
+
+        class TakenUsernameTable:
+            def insert(self, payload): return self  # should never be reached
+            def select(self, *_): return self
+            def ilike(self, *_): return self
+            def eq(self, *_): return self
+            def limit(self, *_): return self
+            def execute(self):
+                class R:
+                    data = [{"id": "some-other-profile"}]
+                return R()
+
+        class TakenUsernameAdmin:
+            def table(self, t): return TakenUsernameTable()
+
+        monkeypatch.setattr("app.routes.parent_dashboard.get_children", lambda pid: [])
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
+                            lambda pid: {"canonical_plan_key":"FREE_TIER","child_limit":1,"plan_name":"Free Tier","restrictions":[]})
+        monkeypatch.setattr("app.routes.parent_dashboard.create_auth_user",
+                            lambda email, password, **kw: FakeAuthUser("uuid-1"))
+        monkeypatch.setattr("app.routes.parent_dashboard.admin_client", TakenUsernameAdmin())
+
+        req = create_student_request_factory("likha", "pw")
+        with pytest.raises(HTTPException) as exc:
+            __import__("app.routes.parent_dashboard", fromlist=["create_student"]).create_student(
+                data=req, parent=FAKE_PARENT
+            )
+        assert exc.value.status_code == 409
+        assert "already taken" in exc.value.detail.lower()
 
 
 def create_student_request_factory(username, password, email=None):

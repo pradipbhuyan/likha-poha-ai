@@ -138,6 +138,49 @@ def _reject_reserved_username(name: str) -> None:
         )
 
 
+def _reject_taken_username(name: str, client=None) -> None:
+    """
+    Block signup/child-creation from claiming a username already in use.
+
+    Several backend queries (get_child_analytics, get_parent_dashboard_summary
+    in parent_dashboard.py; get_user_progress, build_study_recommendations
+    elsewhere) filter test_history/student_progress/weak_area_alerts by the
+    `username` STRING rather than the profile id, so two accounts sharing a
+    username silently read each other's mock test scores and progress — see
+    docs/sql/2026-08-16_check_username_uniqueness.sql for the full writeup
+    (this collided for real: two "likha" profiles, 2026-08-20).
+
+    This is a best-effort application-level check, not the real backstop —
+    that's the unique index in the SQL file above, which must be applied in
+    Supabase directly (Postgrest has no DDL). This check just closes the gap
+    until then and keeps closing it if the index is ever dropped.
+
+    `client` defaults to this module's `admin_client` but accepts an explicit
+    override — callers outside auth.py (e.g. parent_dashboard.py's
+    create_student) must pass their own module's `admin_client` binding so
+    that module's tests can mock it; otherwise this would silently reach past
+    the mock and query the real database (see git history around 2026-08-20
+    for the test failure this caused).
+    """
+    db = client if client is not None else admin_client
+    clean = str(name or "").strip()
+    if not clean:
+        return
+    existing = (
+        db
+        .table("profiles")
+        .select("id")
+        .ilike("username", clean)
+        .limit(1)
+        .execute()
+    )
+    if existing.data:
+        raise HTTPException(
+            status_code=409,
+            detail="That name is already taken. Please choose a different one.",
+        )
+
+
 USERS = {
     "akshita": {
         "password": settings.AKSHITA_PASSWORD,
@@ -1043,6 +1086,7 @@ def complete_signup(data: CompleteSignupRequest):
         raise HTTPException(status_code=400, detail="Invalid role.")
 
     _reject_reserved_username(data.name)
+    _reject_taken_username(data.name)
 
     if not _razorpay_is_configured():
         raise HTTPException(status_code=503, detail="Payment not configured.")
@@ -1236,6 +1280,7 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
         raise HTTPException(status_code=400, detail="Invalid role.")
 
     _reject_reserved_username(data.name)
+    _reject_taken_username(data.name)
 
     email_clean = (data.email or "").strip().lower()
     if not email_clean:
@@ -1582,6 +1627,7 @@ def signup_with_offer_code(data: OfferCodeSignupRequest, _rl=Depends(rate_limit_
         raise HTTPException(status_code=400, detail="Invalid role.")
 
     _reject_reserved_username(data.name)
+    _reject_taken_username(data.name)
 
     code = (data.offer_code or "").strip().upper()
     if len(code) != 8:

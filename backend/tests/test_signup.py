@@ -180,6 +180,11 @@ class TestCompleteSignup:
             def table(self, *_): return self
             def select(self, *_): return self
             def eq(self, *_): return self
+            # Only .eq() (the email-uniqueness check below) should see
+            # existing_email's canned data. .ilike() is _reject_taken_username's
+            # username-uniqueness check — a different column — and none of
+            # these tests simulate a username collision, so it always reads empty.
+            def ilike(self, *_): return FakeQueryBuilder()
             def limit(self, *_): return self
             def insert(self, *_): return self
             def upsert(self, *_, **__): return self
@@ -217,6 +222,7 @@ class TestCompleteSignup:
                 return self
             def select(self, *_): return self
             def eq(self, *_): return self
+            def ilike(self, *_): return self
             def limit(self, *_): return self
             def insert(self, data):
                 if self._tbl == "families":
@@ -269,6 +275,43 @@ class TestCompleteSignup:
         assert exc.value.status_code == 409
         assert "already exists" in exc.value.detail
 
+    def test_complete_signup_rejects_taken_username(self, monkeypatch):
+        """
+        complete-signup returns 409 when the username is already taken by a
+        different profile — even if the email is unique.
+
+        Regression for the "likha" incident (2026-08-20): get_child_analytics
+        and get_parent_dashboard_summary filter test_history/student_progress
+        by the username STRING, not the profile id, so two profiles sharing a
+        username silently read each other's mock test scores and progress.
+        See docs/sql/2026-08-16_check_username_uniqueness.sql.
+        """
+        self._mock_dependencies(monkeypatch)
+
+        class TakenUsernameClient:
+            def table(self, *_): return self
+            def select(self, *_): return self
+            def eq(self, *_): return self       # email-uniqueness check: not a collision
+            def ilike(self, *_): return self     # username-uniqueness check: IS a collision
+            def limit(self, *_): return self
+            def execute(self):
+                class R:
+                    data = [{"id": "some-other-profile"}]
+                return R()
+
+        monkeypatch.setattr(auth_module, "admin_client", TakenUsernameClient())
+
+        from fastapi import HTTPException
+        with pytest.raises(HTTPException) as exc:
+            auth_module.complete_signup(auth_module.CompleteSignupRequest(
+                role="parent",
+                name="likha",
+                email="newparent@test.com",
+                **self.BASE_PAYLOAD,
+            ))
+        assert exc.value.status_code == 409
+        assert "already taken" in exc.value.detail.lower()
+
     # ------------------------------------------------------------------
     # STUDENT signup journey
     # ------------------------------------------------------------------
@@ -284,6 +327,7 @@ class TestCompleteSignup:
                 return self
             def select(self, *_): return self
             def eq(self, *_): return self
+            def ilike(self, *_): return self
             def limit(self, *_): return self
             def insert(self, data):
                 captured.update(data)
@@ -323,6 +367,7 @@ class TestCompleteSignup:
                 return self
             def select(self, *_): return self
             def eq(self, *_): return self
+            def ilike(self, *_): return self
             def limit(self, *_): return self
             def insert(self, data):
                 captured.update(data)
@@ -367,6 +412,7 @@ class TestCompleteSignup:
                 return self
             def select(self, *_): return self
             def eq(self, *_): return self
+            def ilike(self, *_): return self
             def limit(self, *_): return self
             def insert(self, data):
                 captured.update(data)
@@ -496,6 +542,7 @@ class TestCompleteSignup:
                 return self
             def select(self, *_): return self
             def eq(self, *_): return self
+            def ilike(self, *_): return self
             def limit(self, *_): return self
             def insert(self, data):
                 if self._tbl == "families":

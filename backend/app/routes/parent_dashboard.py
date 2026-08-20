@@ -222,6 +222,16 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
             detail="Parent does not belong to a family.",
         )
 
+    # A username collision here isn't just cosmetic: get_child_analytics and
+    # get_parent_dashboard_summary below both filter test_history/
+    # student_progress/weak_area_alerts by the username STRING, so a new
+    # child sharing a name with an existing profile inherits that profile's
+    # mock test scores and progress. See docs/sql/2026-08-16_check_username_uniqueness.sql
+    # (this collided for real: two "likha" profiles, 2026-08-20).
+    from app.routes.auth import _reject_reserved_username, _reject_taken_username  # noqa: PLC0415
+    _reject_reserved_username(data.username)
+    _reject_taken_username(data.username, client=admin_client)
+
     auth_email = _resolve_child_auth_email(data.email, data.username)
 
     auth_user = create_auth_user(

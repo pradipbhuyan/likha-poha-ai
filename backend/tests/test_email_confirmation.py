@@ -73,12 +73,27 @@ class FakeProfilesTable:
     def __init__(self, payload_store=None):
         self.inserted_payload = None
         self._payload_store = payload_store
+        self._querying = False
 
     def insert(self, payload):
         self.inserted_payload = payload
+        self._querying = False
         return self
 
+    # create_student's pre-insert _reject_taken_username() check queries by
+    # username before ever calling insert() — none of these tests simulate
+    # a username collision, so the read side always reports "nothing found".
+    def select(self, *_):
+        self._querying = True
+        return self
+
+    def ilike(self, *_): return self
+    def eq(self, *_): return self
+    def limit(self, *_): return self
+
     def execute(self):
+        if self._querying:
+            return FakeInsertResult([])
         return FakeInsertResult([self.inserted_payload])
 
 
