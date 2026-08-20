@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Chapter 4: The d- and f-Block Elements",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Chemistry-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/chemistry/chapter-4-the-d-and-f-block-elements.webp",
+    "alt": "Revision poster for Chapter 4: The d- and f-Block Elements — covers metallic character, enthalpy of atomisation, atomic/ionic radii trends, oxidation states and their stability, electronic configurations, and uses of transition elements.",
+    "caption": "Full-chapter revision poster — transition-element trends, oxidation states, and electronic configurations.",
+    "width": 1024,
+    "height": 1536
+  }
+}

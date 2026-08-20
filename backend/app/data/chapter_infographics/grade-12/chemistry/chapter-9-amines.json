@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Chapter 9: Amines",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Chemistry-Chapter9.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/chemistry/chapter-9-amines.webp",
+    "alt": "Revision poster for Chapter 9: Amines — covers diazotisation, the Sandmeyer and Gattermann reactions, iodide/fluoride replacement, deamination, azo coupling, and the synthetic uses of diazonium salts.",
+    "caption": "Full-chapter revision poster — diazonium-salt chemistry: Sandmeyer, Gattermann, azo coupling, and applications.",
+    "width": 1024,
+    "height": 1536
+  }
+}

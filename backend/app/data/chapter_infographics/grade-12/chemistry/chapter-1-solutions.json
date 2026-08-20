@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Chapter 1: Solutions",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Chemistry-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/chemistry/chapter-1-solutions.webp",
+    "alt": "Revision poster for Chapter 1: Solutions — covers colligative properties (relative lowering of vapour pressure, boiling-point elevation, freezing-point depression, osmosis, osmotic pressure) and molar-mass determination.",
+    "caption": "Full-chapter revision poster — colligative properties and molar-mass determination.",
+    "width": 1024,
+    "height": 1536
+  }
+}

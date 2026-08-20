@@ -1,9 +1,11 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 253 chapters — all 13 Grade 12
+> **Status (2026-08-20):** live on 257 chapters — all 13 Grade 12
 > Mathematics chapters, all 13 Grade 12 Biology chapters, 12 of 14 Grade 12
 > Physics chapters (Ch 3 pending a third regeneration; Ch 14 "Semiconductor
-> Electronics" not yet started — out of the batch reviewed so far), all 10
+> Electronics" not yet started — out of the batch reviewed so far), 4 of 10
+> Grade 12 Chemistry chapters (Ch 1, 4, 5, 9 — see open items for the other
+> 6: 5 pending regeneration, Ch 10 "Biomolecules" not yet generated), all 10
 > Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
 > rejected on review, still on their original poster — see open items),
 > all 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15
@@ -14,9 +16,10 @@
 > Grade 5, Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9
 > (Maths + Science), Grade 10 (Maths + Science), **Grade 11 (all four
 > subjects), Grade 12 Mathematics, and Grade 12 Biology are all complete
-> and clean.** 39 of 292 in-scope chapters remain (1 Grade 12 Physics
+> and clean.** 35 of 292 in-scope chapters remain (1 Grade 12 Physics
 > chapter pending regeneration + Grade 12 Physics Ch 14 not yet generated
-> + all of Grade 12 Chemistry).
+> + 6 Grade 12 Chemistry chapters: 5 pending regeneration + Ch 10 not yet
+> generated).
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -976,6 +979,124 @@ fixing posters one at a time.
       subsequent review passes only ever covered Ch 1-13. **Grade 12
       Physics is therefore 12 of 14, not 12 of 13 — 2 chapters remain: Ch3
       (regeneration pending) and Ch14 (not yet started).**
+- [ ] **Grade 12 Chemistry: 9 of 10 chapters generated and reviewed
+      2026-08-20 (Ch 10 "Biomolecules" not yet generated as an image).
+      Unusually high defect rate — 5 of 9 reviewed had a genuine defect, and
+      two of those are a NEW failure mode for this rollout: an entire
+      cross-SUBJECT panel bleed (Physics content into a Chemistry poster,
+      not just a different chapter of the same subject).**
+        - **Chapter 1 "Solutions"**: clean — relative lowering of vapour
+          pressure (p0-p)/p0=x2, ΔTb=Kbm, ΔTf=Kfm, osmotic pressure
+          π=CRT=n2RT/V, and the 6-step molar-mass-determination process all
+          standard, correct formulas; Key Terms and Important Points both
+          Solutions-specific, no bleed. **Applied.**
+        - **Chapter 2 "Electrochemistry"**: had a severe cross-subject
+          bleed — an entire extra panel titled "EXAM-STYLE EXAMPLE:
+          STAR-CONNECTED THREE-BRANCH CIRCUIT" (three resistors 4Ω/2Ω/3Ω, a
+          10V EMF, Kirchhoff's junction law) with zero connection to
+          electrochemistry. This is the exact same broken circuit content
+          already flagged as defective in Grade 12 Physics Chapter 3
+          "Current Electricity" earlier this session — it has now bled
+          across subjects into Chemistry, carrying the identical arithmetic
+          errors: I1=(10-3)/4 printed as "2.50A" though 7/4=1.75, and a
+          self-check line "2.50=3.50+1.00" falsely labelled "✓ (Verified)"
+          despite 2.50≠4.50. The rest of the poster (primary/secondary/fuel/
+          dry/mercury cells, corrosion mechanism Fe→Fe2++2e- and
+          O2+2H2O+4e-→4OH-, corrosion prevention) was correct and
+          well-grounded. **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade12_Chemistry_Missing_Posters_Prompts_2026-08-20/
+          03_chapter_2_electrochemistry_PROMPT_v1.txt`) with a HARD RULE 0
+          naming Physics Chapter 3 as the source and quoting the exact
+          broken numbers.
+        - **Chapter 3 "Chemical Kinetics"**: had the same new failure mode —
+          an entire extra panel titled "WORKED EXAMPLE: NCERT EXAMPLE 9.3
+          (CONCAVE MIRROR)" (object/image distance, focal length,
+          magnification table for a concave mirror) plus closing-strip
+          bullets "For concave mirror, f<0; for convex mirror, f>0" and
+          "Always use Cartesian sign convention" — all Grade 12 Physics
+          Chapter 9 "Ray Optics and Optical Instruments" content, zero
+          connection to reaction kinetics. The rest of the poster (catalyst/
+          activation-energy panels, collision theory, Arrhenius equation
+          k=Ae^(-Ea/RT), factors affecting rate) was correct and
+          well-grounded. **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade12_Chemistry_Missing_Posters_Prompts_2026-08-20/
+          04_chapter_3_chemical_kinetics_PROMPT_v1.txt`) with a HARD RULE 0
+          naming Physics Chapter 9 as the source.
+        - **Chapter 4 "The d- and f-Block Elements"**: clean — metallic
+          character, enthalpy-of-atomisation trend, atomic/ionic radii
+          trends, 4d/5d similarity, oxidation-state range (0 to +7),
+          stability factors, electronic configurations ([Ar]3d^1-10 4s^0-2,
+          [Kr]4d^1-10 5s^0-2), and importance panels all correct standard
+          content, no bleed. **Applied.**
+        - **Chapter 5 "Coordination Compounds"**: clean — Werner's
+          cobalt-ammonia data (CoCl3·6NH3/5NH3/4NH3 → 3/2/1 Cl- precipitated
+          with AgNO3) hand-verified consistent with primary/secondary
+          valence theory; ligand examples, coordination number
+          ([Co(NH3)6]3+ → 6), double-salt-vs-complex distinction, and the
+          formation diagram (ending in the correct neutral compound
+          [Co(NH3)6]3+ 3Cl-) all correct. **Applied.**
+        - **Chapter 6 "Haloalkanes and Haloarenes"**: had a genuine
+          self-contradictory classification error — the "Important Points
+          to Remember" strip stated "Haloalkanes: halogen on sp³ carbon;
+          haloarenes: halogen on sp³ carbon" (both labelled sp³), directly
+          contradicting the poster's own overview strip and its own
+          "Vinylic and Aryl Halides" panel, both of which correctly state
+          haloarenes have the halogen on an sp² (aromatic) carbon. The rest
+          of the poster (alkyl-halide classification, allylic/benzylic/
+          vinylic/aryl distinctions, geminal/vicinal dihalides,
+          nomenclature, reactivity trend RI>RBr>RCl>RF) was correct.
+          **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade12_Chemistry_Missing_Posters_Prompts_2026-08-20/
+          07_chapter_6_haloalkanes_and_haloarenes_PROMPT_v1.txt`) with a
+          HARD RULE 0 quoting the wrong sentence verbatim and the exact
+          corrected sentence.
+        - **Chapter 7 "Alcohols, Phenols and Ethers"**: had a
+          closing-strip bleed — "Key Terms" included "Corrosion", "Anode",
+          "Cathode" and "Electrolyte" with electrochemistry definitions,
+          and "Important Points to Remember" included "Batteries, fuel
+          cells and corrosion are applications of electrochemistry in daily
+          life" — all Chapter 2 "Electrochemistry" content, zero connection
+          to alcohols/ethers. The rest of the poster (dehydration to
+          ethers, Williamson synthesis, ether cleavage by HI/HBr, methanol/
+          ethanol preparation and hazards) was correct and well-grounded.
+          **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade12_Chemistry_Missing_Posters_Prompts_2026-08-20/
+          08_chapter_7_alcohols_phenols_and_ethers_PROMPT_v1.txt`) with a
+          HARD RULE 0 naming Chapter 2 as the source and quoting the four
+          bled terms and the bled bullet verbatim.
+        - **Chapter 8 "Aldehydes, Ketones and Carboxylic Acids"**: had a
+          smaller closing-strip bleed — "Key Terms" included "Activation
+          energy (Ea): Minimum energy required for a reaction to occur",
+          which is Chapter 3 "Chemical Kinetics" content with zero
+          connection to carbonyl chemistry. The rest of the poster
+          (aldehyde/ketone nomenclature, carbonyl geometry and resonance,
+          carbonyl reactivity, preparation routes that stop at an aldehyde
+          vs. continue to a carboxylic acid) was correct and well-grounded.
+          **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade12_Chemistry_Missing_Posters_Prompts_2026-08-20/
+          09_chapter_8_aldehydes_ketones_and_carboxylic_acids_PROMPT_v1.txt`)
+          with a HARD RULE 0 naming Chapter 3 as the source.
+        - **Chapter 9 "Amines"**: clean — this poster covers the
+          diazonium-salt portion of the chapter specifically (diazotisation,
+          Sandmeyer and Gattermann reactions, KI/HBF4 replacement,
+          H3PO2/ethanol deamination, azo coupling, synthetic applications),
+          a scope-limited but grounded poster consistent with the pattern
+          noted elsewhere in this doc for lesson-step-scoped content. All
+          reactions and conditions verified standard and correct.
+          **Applied.**
+      **Grade 12 Chemistry: 4 of 10 chapters applied and clean** (Ch 1, 4,
+      5, 9). Chapters 2, 3, 6, 7, 8 all pending regeneration (prompts ready,
+      see above) — Chapter 10 "Biomolecules" has not yet been generated as
+      an image at all (prompt exists at
+      `~/Downloads/GPT55_Chapter_Infographic_Prompts_2026-08-20/grade_12/chemistry/01_chapter_10_biomolecules_PROMPT.txt`).
+      **New failure mode discovered this pass: a cross-SUBJECT panel bleed,
+      not just cross-chapter** — Chemistry Ch2 and Ch3 each picked up an
+      entire fabricated/defective panel from a DIFFERENT SUBJECT (Physics
+      Ch3's broken circuit example, Physics Ch9's mirror-equation table)
+      that had already been flagged as defective in that other subject
+      earlier in this session, suggesting the underlying generator can
+      cross-contaminate between subjects, not just between chapters of the
+      same subject as previously assumed.
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

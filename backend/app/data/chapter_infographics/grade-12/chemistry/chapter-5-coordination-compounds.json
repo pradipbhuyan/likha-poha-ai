@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Chapter 5: Coordination Compounds",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Chemistry-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/chemistry/chapter-5-coordination-compounds.webp",
+    "alt": "Revision poster for Chapter 5: Coordination Compounds — covers Werner's cobalt-ammonia experiments, primary/secondary valence, ligands, coordination number, double salts vs. complexes, and coordination-compound formation.",
+    "caption": "Full-chapter revision poster — Werner's theory, ligands, coordination number, and complex-ion formation.",
+    "width": 1024,
+    "height": 1536
+  }
+}
