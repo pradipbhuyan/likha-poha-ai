@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 10: Thermal Properties of Matter",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter10.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-10-thermal-properties-of-matter.webp",
+    "alt": "Chapter 10 Thermal Properties of Matter revision poster: gases and their variables, Boyles law, Charles law, ideal gas law, pressure-volume relation, volume-temperature relation, kinetic theory connection, limitations of gas laws, key terms and important points.",
+    "caption": "Full-chapter revision poster on thermal properties of matter: gas laws and their applications.",
+    "width": 1024,
+    "height": 1536
+  }
+}

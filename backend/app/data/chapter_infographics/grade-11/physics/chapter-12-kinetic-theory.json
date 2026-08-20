@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 12: Kinetic Theory",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter12.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-12-kinetic-theory.webp",
+    "alt": "Chapter 12 Kinetic Theory revision poster: atomic hypothesis, interatomic distance, Avogadros hypothesis, ideal gas equation, connection with gas laws, Boltzmann constant, average kinetic energy, pressure from kinetic theory, key terms and important points.",
+    "caption": "Full-chapter revision poster on kinetic theory: molecular picture of gases and key formulas.",
+    "width": 1024,
+    "height": 1536
+  }
+}

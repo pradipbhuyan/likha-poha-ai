@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 11: Thermodynamics",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter11.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-11-thermodynamics.webp",
+    "alt": "Chapter 11 Thermodynamics revision poster: thermal equilibrium, zeroth law of thermodynamics, using a third system, determining thermal equilibrium, temperature, practical application, example application, key takeaways, key terms and important points.",
+    "caption": "Full-chapter revision poster on thermodynamics: zeroth law and thermal equilibrium.",
+    "width": 1024,
+    "height": 1536
+  }
+}

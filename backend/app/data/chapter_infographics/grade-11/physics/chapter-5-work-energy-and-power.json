@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 5: Work, Energy and Power",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-5-work-energy-and-power.webp",
+    "alt": "Chapter 5 Work, Energy and Power revision poster: scalar product, work by a constant force, zero work, kinetic energy, work-energy theorem, sign of work, power, special cases, key terms and important points.",
+    "caption": "Full-chapter revision poster on work, energy and power: formulas, sign conventions, and key terms.",
+    "width": 1024,
+    "height": 1536
+  }
+}

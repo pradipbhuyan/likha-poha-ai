@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 1: Units and Measurements",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-1-units-and-measurements.webp",
+    "alt": "Chapter 1 Units and Measurements revision poster: understanding dimensions, fundamental and derived quantities, how to find dimensions, importance of dimensional analysis, rules for dimensions, common dimensions of derived quantities, examples, dimensionally consistent equations, key terms.",
+    "caption": "Full-chapter revision poster on units and measurements: dimensions, dimensional analysis, and key formulas.",
+    "width": 1024,
+    "height": 1536
+  }
+}

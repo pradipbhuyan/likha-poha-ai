@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 14: Waves",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter14.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-14-waves.webp",
+    "alt": "Chapter 14 Waves revision poster: wave transport, mechanical waves, transverse wave, longitudinal wave, distinction from bulk transport, essential requirements for mechanical waves, energy and information carried by waves, key summary, key terms and important points.",
+    "caption": "Full-chapter revision poster on waves: mechanical waves, transverse/longitudinal classification, and key terms.",
+    "width": 1024,
+    "height": 1536
+  }
+}

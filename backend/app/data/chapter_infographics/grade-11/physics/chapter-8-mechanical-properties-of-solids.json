@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 8: Mechanical Properties of Solids",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter8.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-8-mechanical-properties-of-solids.webp",
+    "alt": "Chapter 8 Mechanical Properties of Solids revision poster: elasticity vs plasticity, stress, longitudinal strain, shearing strain, hydraulic compression, stress-strain relationship, elastic energy, summary of main deformations, key terms and important points.",
+    "caption": "Full-chapter revision poster on mechanical properties of solids: stress, strain, and elasticity.",
+    "width": 1024,
+    "height": 1536
+  }
+}

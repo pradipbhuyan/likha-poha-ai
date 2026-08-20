@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 6: System of Particles and Rotational Motion",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-6-system-of-particles-and-rotational-motion.webp",
+    "alt": "Chapter 6 System of Particles and Rotational Motion revision poster: pure translation, rotation about a fixed axis, centre of mass, motion of centre of mass, total linear momentum, key points, key terms and important points.",
+    "caption": "Full-chapter revision poster on system of particles and rotational motion: centre of mass and momentum.",
+    "width": 1024,
+    "height": 1536
+  }
+}

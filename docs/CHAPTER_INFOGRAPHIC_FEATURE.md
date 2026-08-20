@@ -1,6 +1,6 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-19):** live on 151 chapters — Grade 12 Biology Ch 9, all
+> **Status (2026-08-20):** live on 165 chapters — Grade 12 Biology Ch 9, all
 > 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
 > rejected on review, still on their original poster — see open items), all
 > 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7
@@ -1039,6 +1039,83 @@ fixing posters one at a time.
       defect. **Grade 11 Mathematics joins Grade 5, Grade 6, Grade 7
       Maths, Grade 8 (Maths + Science), Grade 9 (Maths + Science), and
       Grade 10 (Maths + Science) as fully complete and clean.**
+- [x] ~~Grade 11 Physics: 14 of 14 chapters authored~~ — 2026-08-20. All 14
+      posters were generated and reviewed at full resolution before
+      applying — **clean on first generation, zero defects found**, the
+      first full subject in this rollout with no regeneration round at
+      all. Every formula, constant, and dimensional expression was
+      hand-verified:
+        - **Chapter 1 "Units and Measurements"**: all dimensional
+          formulas correct (Force [MLT⁻²], Work/Energy [ML²T⁻²], Power
+          [ML²T⁻³], Density [ML⁻³], Momentum [MLT⁻¹], Pressure
+          [ML⁻¹T⁻²]) — hand-verified against F=ma, W=Fd, P=W/t etc.
+        - **Chapter 2 "Motion in a Straight Line"**: reference-frame,
+          displacement/distance, velocity-time and position-time graph
+          interpretations all correct (slope of x-t graph = velocity,
+          area under v-t graph = displacement).
+        - **Chapter 3 "Motion in a Plane"**: scalar/vector classification
+          correct (mass/speed/volume/density/work/energy = scalars;
+          velocity/acceleration/displacement/force/momentum = vectors);
+          vector-algebra validity rules (vector+scalar meaningless,
+          vector×scalar valid) correctly stated.
+        - **Chapter 4 "Laws of Motion"**: F=ma, p=mv, F=dp/dt, impulse=Δp,
+          Newton's third law F_AB=−F_BA, dimensions of force/momentum/
+          impulse all correct.
+        - **Chapter 5 "Work, Energy and Power"**: W=Fd·cosθ, K=½mv²,
+          work-energy theorem Kf−Ki=Wnet, P=W/Δt=F·v, sign-of-work
+          categorisation by angle (0°≤θ<90° positive, 90°<θ≤180°
+          negative) all correct.
+        - **Chapter 6 "System of Particles and Rotational Motion"**:
+          centre-of-mass formula X=Σmixi/Σmi, MaCM=Fext, P=ΣmiVi=MvCM all
+          correct — poster covers only the centre-of-mass/translation
+          portion of this chapter, no torque/angular-momentum/moment-of-
+          inertia content, which is likely the scope of the underlying
+          "Revision and recap" lesson step rather than a defect (same
+          pattern noted for other chapters earlier in this doc, e.g.
+          Grade 6 Science Ch5).
+        - **Chapter 7 "Gravitation"**: G=6.67×10⁻¹¹ N·m²·kg⁻² (correct
+          standard value), F=Gm₁m₂/r², F=mg, g=GMe/Re² all correct.
+        - **Chapter 8 "Mechanical Properties of Solids"**: stress σ=F/A,
+          longitudinal strain εL=ΔL/L, shearing strain γ=Δx/L=tanθ,
+          Hooke's law σ=Yε, elastic PE U=½kx² all correct.
+        - **Chapter 9 "Mechanical Properties of Fluids"**: P=F/A, ρ=m/V,
+          Pascal's law F1/A1=F2/A2, P2−P1=ρgh, Pabs=Patm+Pg, standard
+          atmospheric pressure 1.01×10⁵ Pa at sea level — all correct.
+        - **Chapter 10 "Thermal Properties of Matter"**: Boyle's law
+          PV=const, Charles' law V/T=const, ideal gas law PV=nRT,
+          R=8.314 J·mol⁻¹·K⁻¹, STP T=273K/P=1atm — all correct.
+        - **Chapter 11 "Thermodynamics"**: covers only the Zeroth Law
+          (A≈B and B≈C ⟹ A≈C, thermal equilibrium, temperature) — no
+          first law/heat engines/entropy content, again likely reflecting
+          lesson-step scope rather than a defect, similar to Ch6.
+        - **Chapter 12 "Kinetic Theory"**: Avogadro's number
+          Na=6.022×10²³ mol⁻¹, Boltzmann constant kb=1.38×10⁻²³ J/K,
+          average KE ⟨K⟩=(3/2)kT, total KE=(3/2)NkT, pressure
+          P=(1/3)nm⟨c²⟩ — all correct standard values and formulas.
+        - **Chapter 13 "Oscillations"**: x(t)=Acos(ωt+φ),
+          v(t)=−Aωsin(ωt+φ), a(t)=−Aω²cos(ωt+φ)=−ω²x(t), ω=2π/T=2πf,
+          total energy E=½kA² (constant), restoring force F=−kx — all
+          correct SHM formulas.
+        - **Chapter 14 "Waves"**: wave classification correct
+          (transverse=strings/water waves, longitudinal=sound/seismic
+          P-waves, EM waves=not mechanical) — poster covers only wave
+          transport/classification basics, not wave equations/
+          superposition, again likely reflecting lesson-step scope.
+      Every chapter's closing strips (Key Terms/Important Points) were
+      topic-specific with zero cross-chapter or cross-subject bleed —
+      **notably, none of the fourteen posters contained the recurring
+      magnetism/direction-rules panel that bled into four different
+      chapters (two in Grade 10, two in Grade 11 Maths) earlier in this
+      rollout**, suggesting that failure mode may be specific to certain
+      prompt/content combinations rather than a universal template
+      default. All 14 applied (alt text for Ch1, Ch2 and Ch7 was
+      initially over the 300-char Trap 6 limit — 312, 331, and 309 chars
+      respectively — shortened to 291, 279, and 273 before applying; the
+      other eleven were already under 300). **Grade 11 Physics is now
+      COMPLETE — all 14 of 14 chapters applied and clean**, joining
+      Grade 5, Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9
+      (Maths + Science), Grade 10 (Maths + Science), and Grade 11
+      Mathematics as fully done.
 - [ ] Author posters for the remaining 291 chapters (see §2).
 - [ ] **Decide the review gate** before bulk apply — the failure mode is a
       confidently wrong revision poster, which is worse than none.

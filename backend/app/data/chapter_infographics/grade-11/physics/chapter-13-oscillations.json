@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 13: Oscillations",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter13.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-13-oscillations.webp",
+    "alt": "Chapter 13 Oscillations revision poster: displacement, velocity and acceleration in SHM, angular frequency and period, energy in SHM, phase constant, graphical representation, conditions for SHM, key terms and important points.",
+    "caption": "Full-chapter revision poster on oscillations: simple harmonic motion formulas and graphs.",
+    "width": 1024,
+    "height": 1536
+  }
+}

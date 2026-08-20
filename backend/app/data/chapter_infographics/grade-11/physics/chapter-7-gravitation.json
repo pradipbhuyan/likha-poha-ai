@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 7: Gravitation",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-7-gravitation.webp",
+    "alt": "Chapter 7 Gravitation revision poster: nature of gravitational force, gravitational constant and units, gravitational shielding, effect of large distances, force due to Earth, orbital motion, tides due to gravity, gravitational force vs tidal effects, key terms and points.",
+    "caption": "Full-chapter revision poster on gravitation: universal law, orbital motion, and tidal effects.",
+    "width": 1024,
+    "height": 1536
+  }
+}

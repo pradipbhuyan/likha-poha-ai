@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 3: Motion in a Plane",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-3-motion-in-a-plane.webp",
+    "alt": "Chapter 3 Motion in a Plane revision poster: scalar vs vector quantities, scalar and vector quantities in motion, important vector relations, algebra of scalar and vector quantities, meaningfulness of algebraic operations, compare and contrast scalar vs vector, key terms and important points.",
+    "caption": "Full-chapter revision poster on motion in a plane: scalars, vectors, and vector algebra.",
+    "width": 1024,
+    "height": 1536
+  }
+}

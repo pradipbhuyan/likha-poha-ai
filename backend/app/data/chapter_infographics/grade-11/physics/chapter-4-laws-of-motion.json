@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 4: Laws of Motion",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-4-laws-of-motion.webp",
+    "alt": "Chapter 4 Laws of Motion revision poster: Newtons second law, force and acceleration as vector quantities, momentum, relation between force and momentum, Newtons third law, applications in everyday life, units and dimensions, key terms and important points.",
+    "caption": "Full-chapter revision poster on laws of motion: Newtons laws, momentum, and applications.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 2: Motion in a Straight Line",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-2-motion-in-a-straight-line.webp",
+    "alt": "Chapter 2 Motion in a Straight Line revision poster: reference frame, rectilinear motion, point-object approximation, instantaneous velocity and speed, position/displacement/distance, velocity-time graph, position-time graph, uniform and non-uniform motion, key terms and points.",
+    "caption": "Full-chapter revision poster on motion in a straight line: velocity, displacement, and graphical analysis.",
+    "width": 1024,
+    "height": 1536
+  }
+}

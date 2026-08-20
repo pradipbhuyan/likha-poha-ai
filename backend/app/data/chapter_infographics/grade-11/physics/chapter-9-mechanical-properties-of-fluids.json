@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Physics",
+  "chapter": "Chapter 9: Mechanical Properties of Fluids",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Physics-Chapter9.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/physics/chapter-9-mechanical-properties-of-fluids.webp",
+    "alt": "Chapter 9 Mechanical Properties of Fluids revision poster: pressure, density, Pascals law, pressure with depth, absolute and gauge pressure, hydraulic devices, important points about pressure, applications, key terms and important points.",
+    "caption": "Full-chapter revision poster on mechanical properties of fluids: pressure, Pascals law, and hydraulic devices.",
+    "width": 1024,
+    "height": 1536
+  }
+}
