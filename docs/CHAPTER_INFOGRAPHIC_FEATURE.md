@@ -365,6 +365,28 @@ fixing posters one at a time.
 
 ## 7. Open items
 
+- [ ] **Grade 12 prompts generated 2026-08-20.** Ran
+      `prepare_gpt55_infographic_prompts.py --grade "Grade 12"` for all
+      four subjects. As with every other grade in this rollout, the
+      script's raw output count was inflated by a stale-duplicate
+      `lesson_cache` chapter key relative to the live `/api/syllabus`
+      dropdown — cross-checked and cleaned:
+        - **Physics**: script wrote 15, live syllabus has 14. Deleted
+          `15_uploaded_book_content_PROMPT.txt` — the same bogus
+          placeholder chapter key ("Uploaded Book Content") already seen
+          and removed from Grade 11 Physics earlier in this doc, not a
+          real chapter.
+        - **Mathematics, Chemistry, Biology**: all three matched the
+          live syllabus exactly on first generation (13, 10, and 13
+          chapters respectively) — no duplicates found.
+      **Final clean counts, matching `/api/syllabus` exactly: Mathematics
+      13, Physics 14, Chemistry 10, Biology 13 — 50 Grade 12 chapters
+      total**, all written to
+      `~/Downloads/GPT55_Chapter_Infographic_Prompts_2026-08-20/grade_12/`.
+      Ready to hand to the user for image generation, review, and apply —
+      same workflow as every prior grade in this doc. **This is the final
+      grade in the rollout — once Grade 12 is complete, all 292 in-scope
+      chapters across Grades 5-12 will be done.**
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —
