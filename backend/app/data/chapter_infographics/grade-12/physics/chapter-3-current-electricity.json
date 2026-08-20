@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 3: Current Electricity",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 20, 2026, 10_21_25 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-3-current-electricity.webp",
+    "alt": "Revision poster for Chapter 3: Current Electricity — covers Ohm's law, series and parallel resistor combinations, Kirchhoff's junction and loop laws, Joule's law of heating, resistivity, measuring instruments, and a worked Kirchhoff's-law circuit example.",
+    "caption": "Full-chapter revision poster — Ohm's law, Kirchhoff's laws, resistor combinations, and a worked circuit example.",
+    "width": 1024,
+    "height": 1536
+  }
+}

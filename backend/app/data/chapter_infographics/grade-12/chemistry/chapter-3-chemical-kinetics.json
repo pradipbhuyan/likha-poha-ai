@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Chapter 3: Chemical Kinetics",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 20, 2026, 10_22_10 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/chemistry/chapter-3-chemical-kinetics.webp",
+    "alt": "Revision poster for Chapter 3: Chemical Kinetics — covers rate of reaction, factors affecting rate, activation energy, collision theory, the Arrhenius equation, catalysts, order and molecularity, and integrated rate equations.",
+    "caption": "Full-chapter revision poster — reaction rates, collision theory, the Arrhenius equation, and integrated rate laws.",
+    "width": 1024,
+    "height": 1536
+  }
+}

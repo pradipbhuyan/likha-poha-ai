@@ -1,25 +1,26 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 257 chapters — all 13 Grade 12
-> Mathematics chapters, all 13 Grade 12 Biology chapters, 12 of 14 Grade 12
-> Physics chapters (Ch 3 pending a third regeneration; Ch 14 "Semiconductor
-> Electronics" not yet started — out of the batch reviewed so far), 4 of 10
-> Grade 12 Chemistry chapters (Ch 1, 4, 5, 9 — see open items for the other
-> 6: 5 pending regeneration, Ch 10 "Biomolecules" not yet generated), all 10
-> Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
-> rejected on review, still on their original poster — see open items),
-> all 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15
-> Grade 7 Maths chapters, all 14 Grade 8 Maths chapters, all 13 Grade 8
-> Science chapters, all 8 Grade 9 Maths chapters, all 13 Grade 9 Science
-> chapters, all 28 Grade 10 chapters (14 Maths + 13 Science), and all 56
-> Grade 11 chapters (14 Maths + 14 Physics + 9 Chemistry + 19 Biology).
-> Grade 5, Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9
-> (Maths + Science), Grade 10 (Maths + Science), **Grade 11 (all four
-> subjects), Grade 12 Mathematics, and Grade 12 Biology are all complete
-> and clean.** 35 of 292 in-scope chapters remain (1 Grade 12 Physics
-> chapter pending regeneration + Grade 12 Physics Ch 14 not yet generated
-> + 6 Grade 12 Chemistry chapters: 5 pending regeneration + Ch 10 not yet
-> generated).
+> **Status (2026-08-20):** live on 261 chapters — all 13 Grade 12
+> Mathematics chapters, all 13 Grade 12 Biology chapters, 13 of 14 Grade 12
+> Physics chapters (only Ch 14 "Semiconductor Electronics" remains, not yet
+> generated — Ch 3 is now fixed and applied), 7 of 10 Grade 12 Chemistry
+> chapters (Ch 1, 2, 3, 4, 5, 8, 9 — see open items for Ch 6 and Ch 7,
+> pending a third regeneration round, and Ch 10 "Biomolecules", not yet
+> generated), all 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters
+> (12 replaced; 13-15 rejected on review, still on their original poster —
+> see open items), all 10 Grade 6 Maths chapters, all 12 Grade 6 Science
+> chapters, all 15 Grade 7 Maths chapters, all 14 Grade 8 Maths chapters,
+> all 13 Grade 8 Science chapters, all 8 Grade 9 Maths chapters, all 13
+> Grade 9 Science chapters, all 28 Grade 10 chapters (14 Maths + 13
+> Science), and all 56 Grade 11 chapters (14 Maths + 14 Physics + 9
+> Chemistry + 19 Biology). Grade 5, Grade 6, Grade 7 Maths, Grade 8
+> (Maths + Science), Grade 9 (Maths + Science), Grade 10 (Maths +
+> Science), **Grade 11 (all four subjects), Grade 12 Mathematics, and
+> Grade 12 Biology are all complete and clean.** 31 of 292 in-scope
+> chapters remain (Grade 12 Physics Ch 14 not yet generated + Grade 12
+> Chemistry Ch 6 and Ch 7 pending regeneration + Grade 12 Chemistry Ch 10
+> not yet generated — plus the still-open Grade 5 Maths Ch 13-15
+> rejections).
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -1097,6 +1098,88 @@ fixing posters one at a time.
       earlier in this session, suggesting the underlying generator can
       cross-contaminate between subjects, not just between chapters of the
       same subject as previously assumed.
+- [ ] **Grade 12 Physics Chapter 3 (3rd regeneration) and Grade 12 Chemistry
+      Chapters 2, 3, 6, 7, 8 (regenerations) reviewed 2026-08-20 (later the
+      same day). 4 of 6 confirmed fully fixed; Ch 6 and Ch 7 each fixed
+      their original defect but picked up a different new one.**
+        - **Physics Chapter 3 "Current Electricity" (3rd regeneration)**:
+          fully fixed, no new defects. The worked example now follows
+          exactly the required Loop ABD / Loop BCD / junction-law method:
+          Loop ABD gives I1=10/4=2.5A directly (no node-potential
+          variable), Loop BCD gives I3=(2/3)I2, and the junction law gives
+          I2=1.5A, I3=1A — every occurrence of these three numbers on the
+          poster (working, boxed "Therefore" summary, and self-check line)
+          is now identical, and the self-check "I1=I2+I3 → 2.5=1.5+1.0=2.5"
+          is correctly labelled "Verified" (the garbled "Verirect" is
+          gone). **Applied. Grade 12 Physics is now 13 of 14 — only
+          Chapter 14 "Semiconductor Electronics" remains, not yet
+          generated as an image.**
+        - **Chemistry Chapter 2 "Electrochemistry"**: fully fixed, no new
+          defects. The bled-in Physics circuit panel is gone entirely; all
+          content (galvanic/electrolytic cells, secondary cells, fuel
+          cells, corrosion mechanism and prevention, galvanic-cell
+          construction) re-verified correct and electrochemistry-specific.
+          **Applied.**
+        - **Chemistry Chapter 3 "Chemical Kinetics"**: fully fixed, no new
+          defects. The bled-in Physics concave-mirror panel is gone
+          entirely; all content (rate law, activation energy, collision
+          theory, Arrhenius equation, catalysis, order/molecularity,
+          integrated rate equations for zero and first order) re-verified
+          correct and kinetics-specific. **Applied.**
+        - **Chemistry Chapter 6 "Haloalkanes and Haloarenes"**: the
+          original sp2/sp3 self-contradiction is genuinely fixed — the
+          closing strip now correctly reads "Haloalkanes: halogen on sp3
+          carbon; haloarenes: halogen on sp2 carbon," consistent with the
+          panels above it. **However, a brand-new, unrelated defect
+          appeared**: the "Important Points to Remember" strip now
+          contains the bizarre, out-of-place bullet "Carbonyl (not here)
+          is different; here focus is on C−X bond polarity" — carbonyl
+          chemistry belongs to Chapter 8 (Aldehydes, Ketones and
+          Carboxylic Acids) and has zero connection to this chapter; the
+          bullet reads like an internal disclaimer that should never have
+          been rendered onto the poster itself. **Not applied.** Sent a
+          third regeneration prompt
+          (`~/Downloads/Grade12_Chemistry_Missing_Posters_Prompts_2026-08-20_v2/
+          07_chapter_6_haloalkanes_and_haloarenes_PROMPT_v2.txt`) that
+          keeps the working HARD RULE 0 (sp2/sp3 fix, confirmed working —
+          left unchanged) and adds a new HARD RULE 0B forbidding any
+          mention of "carbonyl" or meta-style disclaimer bullets about
+          what the poster does not cover.
+        - **Chemistry Chapter 7 "Alcohols, Phenols and Ethers"**: the
+          original Electrochemistry closing-strip bleed is genuinely
+          fixed — no "Corrosion"/"Anode"/"Cathode"/"Electrolyte" terms or
+          the batteries/fuel-cells bullet remain. **However, a different
+          new bleed appeared**: the "Key Terms" strip now includes
+          "Diazotisation: Conversion of aromatic primary amine to
+          diazonium salt using NaNO2 and acid (context from related
+          reactions)" — this is Chapter 9 "Amines" content with zero
+          connection to alcohols/phenols/ethers; the hedging parenthetical
+          "(context from related reactions)" does not make it belong here.
+          The rest of the poster (alcohol/ether/phenol preparation
+          routes, methanol/ethanol properties and hazards) was correct and
+          well-grounded. **Not applied.** Sent a third regeneration prompt
+          (`~/Downloads/Grade12_Chemistry_Missing_Posters_Prompts_2026-08-20_v2/
+          08_chapter_7_alcohols_phenols_and_ethers_PROMPT_v2.txt`) that
+          keeps the working HARD RULE 0 (Electrochemistry-bleed fix,
+          confirmed working — left unchanged) and adds a new HARD RULE 0B
+          naming Chapter 9 as the source of the new bleed and quoting the
+          exact bled entry verbatim.
+        - **Chemistry Chapter 8 "Aldehydes, Ketones and Carboxylic
+          Acids"**: fully fixed, no new defects. The bled-in "Activation
+          energy (Ea)" Key Terms entry is gone; all content (carbonyl
+          polarity, nomenclature, preparation routes stopping at an
+          aldehyde vs. continuing to a carboxylic acid) re-verified
+          correct. **Applied.**
+      **Grade 12 Chemistry: 7 of 10 chapters applied and clean** (Ch 1, 2,
+      3, 4, 5, 8, 9). Chapters 6 and 7 both pending a third regeneration
+      round (prompts ready, see above); Chapter 10 "Biomolecules" has
+      still not been generated as an image at all. **Confirms yet again
+      the doc's general lesson (already seen for Grade 10 Maths Ch7,
+      Grade 11 Chemistry Ch9, and Grade 12 Maths Ch7 earlier in this
+      doc): fixing one flagged defect on regeneration does not guarantee
+      no new defect appears elsewhere on the same poster — the entire
+      poster must be re-reviewed on every regeneration round, not just the
+      specific panel or bullet that was targeted for a fix.**
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

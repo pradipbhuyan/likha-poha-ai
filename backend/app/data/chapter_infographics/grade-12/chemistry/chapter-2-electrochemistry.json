@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Chapter 2: Electrochemistry",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 20, 2026, 10_22_00 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/chemistry/chapter-2-electrochemistry.webp",
+    "alt": "Revision poster for Chapter 2: Electrochemistry — covers galvanic and electrolytic cells, secondary cells, fuel cells, corrosion and its prevention, and the step-by-step construction of a galvanic cell.",
+    "caption": "Full-chapter revision poster — galvanic/electrolytic cells, batteries, fuel cells, and corrosion.",
+    "width": 1024,
+    "height": 1536
+  }
+}
