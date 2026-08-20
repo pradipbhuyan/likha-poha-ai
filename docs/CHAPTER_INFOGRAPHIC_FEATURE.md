@@ -261,6 +261,40 @@ was clean, isolating the failure to that one length check.
 **Check every `alt`/`caption` length before applying** (`len(alt) <= 300`);
 the apply script does not currently enforce this itself.
 
+### Trap 7: chapter-title casing mismatches cause a silent, partial success
+
+The apply script's `--chapter` lookup against `lesson_cache`/`lesson_chapter_doc`
+is an **exact string match**, including case. If the chapter title you pass on
+the command line differs in casing from the actual DB value (e.g. "...and
+**their** Elimination" vs the DB's "...and **Their** Elimination"), the first
+half of the apply — image optimisation, Supabase Storage upload, sidecar JSON
+write — **all succeed independently of the chapter lookup** and print normal
+success output. Only the second half — finding the `lesson_cache` row to
+attach the fence to and calling `refresh_chapter_doc()` — silently fails to
+find a match, so the chapter doc a student is actually served **never gets the
+fence**, while every other symptom (sidecar exists, alt/caption valid, image
+correctly hosted) looks completely normal. This is functionally identical to
+Trap 1 (chapter doc never gets the fence) but the *cause* is different, so the
+existing fixes (retry `apply_chapter_infographic.py`, hit `refresh=true`) will
+keep failing identically forever — the underlying casing mismatch has to be
+fixed, not just retried. Confirmed live 2026-08-20: Grade 11 Biology Chapter
+16 was marked "Applied" in this doc and had a fully correct sidecar, but the
+poster never reached the student — a re-run of the exact same apply command
+printed **"✗ no active lesson_cache row for ... / Revision and recap"**, which
+was the only visible symptom, and even that only showed up because the script
+happened to be re-run a second time by accident.
+**Any "✗ no active lesson_cache row" message must be investigated
+immediately, even on what looks like a harmless duplicate/retry run** — it
+means the chapter title string does not exactly match the DB, and the fence
+was never actually applied on any prior run either.
+**To verify a chapter's poster actually reached the student (not just that
+the sidecar exists), query `lesson_chapter_doc` directly and check for the
+`chapter-infographic` string in the stored `doc`** — see §8 for the exact
+query. Cross-check the *exact* chapter title against `lesson_cache` (or the
+live `/api/syllabus` response) rather than typing it from memory or copying
+it from a doc/prompt file, since `lesson_cache` may use different casing,
+spacing, or wording than the display title shown to students.
+
 ---
 
 ## 6. Design decision: image vs. structured text
@@ -1309,6 +1343,53 @@ fixing posters one at a time.
       Grade 5, Grade 6, Grade 7 Maths, Grade 8 (Maths + Science),
       Grade 9 (Maths + Science), and Grade 10 (Maths + Science) as
       fully complete and clean grades.**
+
+      **Found and fixed a genuine silent-failure defect in Chapter 16
+      "Excretory Products and their Elimination" 2026-08-20 (reported by
+      the user, not caught by any review step in this doc): the poster
+      never actually reached the student despite being marked "Applied"
+      earlier in this doc, the sidecar JSON existing correctly, and the
+      first `apply_chapter_infographic.py` run reporting success.**
+      Root cause: a **case-sensitivity mismatch** between the `--chapter`
+      argument used to apply it ("...and **their** Elimination", lowercase
+      t, matching this doc's and the syllabus display's casing) and the
+      actual `lesson_cache.chapter` value in the database ("...and
+      **Their** Elimination", capital T). The apply script's row lookup
+      is exact-match, so the mismatch meant `refresh_chapter_doc()` never
+      found the row to attach the fence to — the SAME symptom as Trap 1
+      (chapter doc never gets the fence) but with a **new, previously
+      undocumented root cause**: title-casing mismatches, not just missing
+      `refresh_chapter_doc()` calls or wrong step names. This is
+      especially dangerous because the *first* pass of the apply script
+      (image optimisation, Storage upload, sidecar write) all succeeded
+      independently of the chapter lookup, so the terminal output looked
+      identical to every other successful apply in this doc — the failure
+      was only visible on a *second* duplicate run of the same command,
+      which printed "✗ no active lesson_cache row..." — a message I
+      initially and incorrectly dismissed as a harmless duplicate-run
+      side effect rather than investigating why the lookup failed at all.
+      **Lesson: a "✗ no active lesson_cache row" message on ANY run,
+      including an accidental duplicate, must be investigated — it is
+      never harmless.** Fixed by re-running with the exact DB casing
+      ("Chapter 16: Excretory Products and **Their** Elimination"), which
+      matched immediately (row `4fa08be6`) and correctly rebuilt the
+      chapter doc. **Applied and confirmed** — verified directly against
+      `lesson_chapter_doc` (not just the sidecar) that the fence is now
+      present.
+
+      **Following this, ran a full audit script against EVERY chapter
+      sidecar in the entire rollout** (not just Grade 11) — for each of
+      the 206 sidecar JSON files, queried `lesson_chapter_doc` directly
+      by grade/subject/chapter and checked whether a
+      `chapter-infographic` fence string is present in the stored doc
+      (the only check that reflects what a student is actually served,
+      per Trap 1). **Result: 0 missing/broken after the Chapter 16 fix** —
+      Chapter 16 was an isolated, one-off casing defect, not a systemic
+      problem across the rollout. This audit script/technique should be
+      re-run any time this doc's chapter-by-chapter "Applied" markings are
+      trusted for a bulk decision, since (as this incident shows) an
+      "Applied" note in this doc reflects what the apply script *reported*,
+      not necessarily what ended up in the chapter doc.
 - [ ] **Grade 11 Biology: authoring started 2026-08-20.** Chapters 1-19
       generated and reviewed (19 chapters total, confirmed against
       `/api/syllabus` earlier in this doc):
