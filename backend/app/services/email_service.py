@@ -516,6 +516,24 @@ def _get_student_features(grade: str, stream: str, is_paid: bool) -> list:
         return _FEATURES_GRADE_11_12_SCIENCE
     return _FEATURES_STUDENT  # fallback
 
+_FEATURES_TEACHER = [
+    ("📋", "Create Lesson Plans",
+     "Generate curriculum-aligned lesson plans for any NCERT chapter in seconds. "
+     "Go to <strong>Create Lesson Plans</strong>."),
+    ("🧪", "Create Test Papers",
+     "Generate CBSE-pattern test papers for any grade, subject, and chapter, "
+     "ready to print or share. Use <strong>Create Test Paper</strong>."),
+    ("🎧", "Listen to Lecture Audio",
+     "AI-narrated lecture audio you can play in class or share with students for revision. "
+     "Available under <strong>Listen to Lecture</strong>."),
+    ("📖", "Browse AI Lessons",
+     "Preview the same step-by-step AI lessons your students see, chapter by chapter. "
+     "Available under <strong>Lessons</strong>."),
+    ("📊", "Student Analytics",
+     "Track your students' chapter coverage, mock test scores, and weak topics — "
+     "all in your <strong>Student Analytics</strong> dashboard."),
+]
+
 _FEATURES_PARENT = [
     ("👁", "Child Progress Dashboard",
      "See every lesson your child has studied, mock test scores by chapter, "
@@ -598,6 +616,7 @@ def send_welcome_email(
     first_name = (name or "there").split()[0]
     role_clean = (role or "student").lower()
     is_parent  = role_clean == "parent"
+    is_teacher = role_clean == "teacher"
     g = (grade or "").strip()
     s = (stream or "").strip().upper()
     g_lower = g.lower()
@@ -625,7 +644,9 @@ def send_welcome_email(
         )
 
     # ── Grade-specific features ────────────────────────────────────────────
-    if is_parent:
+    if is_teacher:
+        features = _FEATURES_TEACHER
+    elif is_parent:
         features = _FEATURES_PARENT
     else:
         features = _get_student_features(g, s, is_paid)
@@ -633,7 +654,17 @@ def send_welcome_email(
     features_html = _feature_table(features)
 
     # ── Grade-specific free tier notice ───────────────────────────────────
-    if is_paid:
+    if is_teacher:
+        free_notice = """
+<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;
+            padding:14px 16px;margin-top:16px">
+  <p style="margin:0;font-size:13px;color:#1e3a8a;line-height:1.6">
+    <strong>&#128203; Account under review:</strong> our team verifies your school details
+    before the Teacher Dashboard unlocks — usually within one business day. You can log in
+    anytime to check your status.
+  </p>
+</div>"""
+    elif is_paid:
         free_notice = ""
     elif is_1112 and is_science_stream:
         free_notice = """
@@ -660,7 +691,28 @@ def send_welcome_email(
         free_notice = _FREE_TIER_NOTICE
 
     # ── Grade-specific intro + next step ──────────────────────────────────
-    if is_parent:
+    if is_teacher:
+        intro = (
+            "<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
+            "Welcome to <strong>Likha Poha AI</strong> — India's AI-powered CBSE tutor. "
+            "As a teacher, you can generate lesson plans and test papers in seconds, "
+            "listen to AI-narrated lecture audio, and track every student's progress "
+            "from one dashboard.</p>"
+            "<p style=\"margin:0 0 6px;font-size:14px;color:#64748b\">"
+            "Here's what you'll have access to once your account is verified:</p>"
+        )
+        next_step = (
+            "<div style=\"background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;"
+            "padding:16px 18px;margin-top:16px\">"
+            "<p style=\"margin:0 0 8px;font-size:14px;font-weight:700;color:#1e40af\">"
+            "&#128075; What happens next</p>"
+            "<p style=\"margin:0;font-size:13px;color:#1e3a8a;line-height:1.7\">"
+            "Our team verifies your school details — usually within one business day. "
+            "You can log in right away to check your verification status; once approved, "
+            "your <strong>Teacher Dashboard</strong> unlocks automatically.</p>"
+            "</div>"
+        )
+    elif is_parent:
         intro = (
             "<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
             "Welcome to <strong>Likha Poha AI</strong> — India's AI-powered CBSE tutor. "

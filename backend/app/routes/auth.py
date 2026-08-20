@@ -398,6 +398,7 @@ class OAuthCompleteProfileRequest(BaseModel):
     full_name: Optional[str] = None
     grade: Optional[str] = None    # for students
     stream: Optional[str] = None   # for Grade 11/12 students: PCM|PCB|PCMB|Commerce|Humanities
+    school: Optional[str] = None   # for teachers
 
 
 @router.post("/oauth/complete-profile")
@@ -420,6 +421,9 @@ def oauth_complete_profile(
     - NEVER grants paid access.
     - NEVER changes an already-confirmed role.
     - Creates family record for parent role.
+    - Teacher role requires `school`; account_status is set to
+      "pending_verification" until an admin approves it (same gate as the
+      dedicated /teacher-signup path — see require_teacher()).
     - All access flags start as False (Free Tier).
     - Emits audit event when available.
 
@@ -429,15 +433,17 @@ def oauth_complete_profile(
       409 → role conflict (existing confirmed role differs from requested)
     """
     role = (data.role or "").lower().strip()
-    if role == "teacher":
-        raise HTTPException(
-            status_code=400,
-            detail="Teacher accounts are not available via Google sign-in. Please use the teacher signup page.",
-        )
     if role not in VALID_SIGNUP_ROLES:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid role '{role}'. Must be one of: parent, student.",
+            detail=f"Invalid role '{role}'. Must be one of: parent, student, teacher.",
+        )
+
+    school_clean = (data.school or "").strip()
+    if role == "teacher" and not school_clean:
+        raise HTTPException(
+            status_code=400,
+            detail="School name is required for teacher accounts.",
         )
 
     # ── 1. Look up existing profile by auth user id (primary) ────────────────
@@ -573,6 +579,11 @@ def oauth_complete_profile(
             elif role == "teacher":
                 updates["daily_token_limit"] = 0
                 updates["monthly_token_limit"] = 0
+                updates["school_name"] = school_clean
+                # Distinct from "active" — require_teacher() blocks dashboard
+                # routes until an admin reviews the school details and approves
+                # the account, same as the /teacher-signup path.
+                updates["account_status"] = "pending_verification"
 
             admin_client.table("profiles").update(updates).eq("id", existing["id"]).execute()
 
@@ -687,6 +698,13 @@ def oauth_complete_profile(
                 base_profile["cbse_subjects"] = _STREAM_SUBJECTS.get(data.stream.strip(), [])
             else:
                 base_profile["cbse_subjects"] = []
+
+        elif role == "teacher":
+            base_profile["school_name"] = school_clean
+            # Distinct from "active" — require_teacher() blocks dashboard
+            # routes until an admin reviews the school details and approves
+            # the account, same as the /teacher-signup path.
+            base_profile["account_status"] = "pending_verification"
 
         admin_client.table("profiles").insert(base_profile).execute()
 

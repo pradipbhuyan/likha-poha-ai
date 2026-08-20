@@ -7,6 +7,7 @@ Covers:
 - New Google user gets oauth_profile_complete=False via /auth/me
 - Existing Google parent cannot switch to student (409 role_conflict)
 - Existing Google student cannot switch to teacher (409 role_conflict)
+- New Google teacher signup requires `school`, starts pending_verification
 - Profile lookup falls back to email for legacy rows
 - Duplicate profile creation is idempotent
 - Created profile has access_cbse=False, subscription_plan='free'
@@ -532,13 +533,11 @@ class TestOAuthCompleteProfile:
 
         app.dependency_overrides.clear()
 
-    def test_teacher_role_rejected_outright(self, monkeypatch):
+    def test_teacher_role_without_school_returns_400(self, monkeypatch):
         """
-        Teacher accounts are no longer obtainable via Google OAuth at all —
-        they must go through POST /api/auth/teacher-signup instead, which
-        starts them as account_status="pending_verification" pending admin
-        review. Requesting role=teacher here must 400 regardless of any
-        existing profile, before any role-conflict logic even runs.
+        Teacher accounts ARE obtainable via Google OAuth (in addition to
+        POST /api/auth/teacher-signup), but the `school` field is required —
+        it must 400 before any role-conflict logic even runs.
         """
         confirmed_student = {
             "id": OAUTH_USER_ID, "email": OAUTH_EMAIL, "username": OAUTH_NAME,
@@ -574,7 +573,87 @@ class TestOAuthCompleteProfile:
 
         assert resp.status_code == 400, f"Expected 400: {resp.text}"
         detail = resp.json().get("detail", "")
-        assert "teacher" in detail.lower(), f"Expected 'teacher' in detail: {detail}"
+        assert "school" in detail.lower(), f"Expected 'school' in detail: {detail}"
+
+        app.dependency_overrides.clear()
+
+    def test_placeholder_profile_sets_teacher_role_pending_verification(self, monkeypatch):
+        """
+        State B/C: oauth_profile_complete=False + role=teacher + school →
+        profile updates to role=teacher, account_status="pending_verification"
+        (same gate as POST /api/auth/teacher-signup — require_teacher() blocks
+        the dashboard until an admin approves), and school_name is stored.
+        """
+        placeholder = {
+            "id": OAUTH_USER_ID,
+            "email": OAUTH_EMAIL,
+            "username": OAUTH_NAME,
+            "role": "student",           # trigger default
+            "grade": "Grade 9",
+            "board": "CBSE",
+            "parent_id": None,
+            "family_id": None,
+            "subscription_plan": "free",
+            "account_status": "active",
+            "access_cbse": False,
+            "access_sof_science": False,
+            "access_sof_maths": False,
+            "access_sof_english": False,
+            "cbse_subjects": [],
+            "daily_token_limit": 0,
+            "monthly_token_limit": 0,
+            "subscription_expires_at": None,
+            "oauth_profile_complete": False,   # ← needs completion
+        }
+        updated = {
+            **placeholder,
+            "role": "teacher",
+            "school_name": "Delhi Public School",
+            "account_status": "pending_verification",
+            "oauth_profile_complete": True,
+        }
+
+        oauth_user = _make_oauth_user()
+        app.dependency_overrides[get_current_user] = lambda: oauth_user
+
+        class FakeQuery:
+            def __init__(self, data):
+                self._data = data
+                self._updates = []
+            def select(self, *a, **kw): return self
+            def eq(self, *a, **kw): return self
+            def limit(self, *a, **kw): return self
+            def single(self):
+                return SimpleNamespace(data=updated, execute=lambda: SimpleNamespace(data=updated))
+            def update(self, payload):
+                self._updates.append(payload)
+                return self
+            def insert(self, *a, **kw): return self
+            def execute(self): return SimpleNamespace(data=self._data)
+
+        class FakeAdminClient:
+            def table(self, name):
+                return FakeQuery([placeholder] if name == "profiles" else [])
+
+        import app.routes.auth as auth_route
+        monkeypatch.setattr(auth_route, "admin_client", FakeAdminClient())
+        monkeypatch.setattr(auth_route, "_check_can_report_issues", lambda uid: False)
+        monkeypatch.setattr(auth_route, "VALID_GRADES", {"Grade 9", "Grade 10"})
+
+        with TestClient(app) as client:
+            resp = client.post(
+                "/api/auth/oauth/complete-profile",
+                json={"role": "teacher", "full_name": OAUTH_NAME, "school": "Delhi Public School"},
+                headers={"Authorization": "Bearer fake-token"},
+            )
+
+        assert resp.status_code == 200, f"Expected 200: {resp.text}"
+        data = resp.json()
+        assert data["profile_complete"] is True
+        assert data["needs_role_selection"] is False
+        assert data["role"] == "teacher"
+        assert data["account_status"] == "pending_verification"
+        assert data["access_cbse"] is False
 
         app.dependency_overrides.clear()
 
@@ -586,8 +665,8 @@ class TestOAuthCompleteProfile:
         - subscription_expires_at = None
         Google OAuth must NOT grant paid access.
 
-        Uses role="parent" since role="teacher" is no longer accepted by this
-        endpoint (see test_teacher_role_rejected_outright).
+        Uses role="parent" for simplicity — teacher OAuth signups are covered
+        separately in test_placeholder_profile_sets_teacher_role_pending_verification.
         """
         created = {
             "id": OAUTH_USER_ID, "email": OAUTH_EMAIL, "username": OAUTH_NAME,

@@ -63,7 +63,7 @@ import AdminTechDebtPage from "./pages/AdminTechDebtPage";
 import ReportIssueModal from "./components/ReportIssueModal";
 import { FeedbackPromptProvider } from "./context/FeedbackPromptContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Users, GraduationCap, AlertTriangle, Atom, Microscope, FlaskConical, Briefcase, Landmark, ChevronDown, CreditCard, KeyRound, LogOut } from "lucide-react";
+import { BookOpen, Users, GraduationCap, AlertTriangle, Atom, Microscope, FlaskConical, Briefcase, Landmark, ChevronDown, CreditCard, KeyRound, LogOut, Presentation } from "lucide-react";
 import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
 import ParentDashboardPage from "./pages/ParentDashboardPage";
@@ -418,7 +418,8 @@ function App() {
   const [oauthRole, setOauthRole] = useState("student");
   const [oauthGrade, setOauthGrade] = useState("Grade 9");
   const [oauthStream, setOauthStream] = useState("");
-  const [oauthStep, setOauthStep] = useState("role");      // "role" → "grade" → done
+  const [oauthSchool, setOauthSchool] = useState("");
+  const [oauthStep, setOauthStep] = useState("role");      // "role" → "grade" | "school" → done
   const [oauthSaving, setOauthSaving] = useState(false);
   const [oauthSaveError, setOauthSaveError] = useState(null);
   const [_oauthDiagnostics, setOauthDiagnostics] = useState([]);  // safe stages for display — eslint-disable-line no-unused-vars
@@ -684,7 +685,17 @@ function App() {
         };
         recordStage(STAGES.ROUTE_RESOLVED, STATUS.SUCCESS, "Showing role picker");
         setPendingOauthUser(partialUser);
-        setOauthStep("role");
+        // TeacherSignupPage's Google button stores this hint before redirecting
+        // so teachers skip the generic role picker and land straight on the
+        // school-name step.
+        const intendedRole = sessionStorage.getItem("oauth_intended_role");
+        sessionStorage.removeItem("oauth_intended_role");
+        if (intendedRole === "teacher") {
+          setOauthRole("teacher");
+          setOauthStep("school");
+        } else {
+          setOauthStep("role");
+        }
         setOauthLoading(false);
         clearOAuthSession();
         return;
@@ -1319,6 +1330,7 @@ function App() {
               {[
               { r: "student", Icon: GraduationCap, label: "Student", desc: "I want to learn and take practice tests" },
               { r: "parent",  Icon: Users,          label: "Parent",  desc: "I want to track my child's learning" },
+              { r: "teacher", Icon: Presentation,   label: "Teacher", desc: "I want lesson plans, test papers and student analytics" },
               ].map(({ r, Icon: RoleIcon, label, desc }) => (
                 <div key={r}
                   onClick={() => setOauthRole(r)}
@@ -1346,7 +1358,11 @@ function App() {
                   setOauthStep("grade");
                   return;
                 }
-                // Parents and teachers — call backend to set role securely
+                if (oauthRole === "teacher") {
+                  setOauthStep("school");
+                  return;
+                }
+                // Parents — call backend to set role securely
                 setOauthSaving(true);
                 try {
                   const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -1398,7 +1414,102 @@ function App() {
       );
     }
 
-    // Step 2: Grade selection (students only)
+    // Step 2 (teacher): School name
+    if (oauthStep === "school") {
+      return (
+        <div style={cardStyle}>
+          <div style={boxStyle}>
+            {avatar && (
+              <div style={{ textAlign: "center", marginBottom: 16 }}>
+                <img src={avatar} alt="Profile"
+                  style={{ width: 60, height: 60, borderRadius: "50%", border: "3px solid #6366f1" }} />
+              </div>
+            )}
+            <h2 style={{ margin: "0 0 6px", fontSize: "1.3rem", fontWeight: 800, textAlign: "center" }}>
+              Which school do you teach at? 🏫
+            </h2>
+            <p style={{ margin: "0 0 20px", fontSize: "0.88rem", color: "#94a3b8", textAlign: "center" }}>
+              Our team reviews new teacher accounts before the dashboard unlocks.
+            </p>
+            <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#cbd5e1", marginBottom: 8 }}>
+              School name
+            </label>
+            <input
+              type="text"
+              value={oauthSchool}
+              onChange={e => setOauthSchool(e.target.value)}
+              placeholder="e.g. Delhi Public School"
+              style={{ ...selectStyle, marginBottom: 20 }}
+            />
+            <button
+              disabled={oauthSaving || !oauthSchool.trim()}
+              onClick={async () => {
+                setOauthSaveError(null);
+                if (!oauthSchool.trim()) {
+                  setOauthSaveError("Please enter your school name to continue.");
+                  return;
+                }
+                setOauthSaving(true);
+                try {
+                  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+                  let freshToken = pendingOauthUser.accessToken;
+                  try {
+                    const { data: refreshed } = await supabase.auth.refreshSession();
+                    if (refreshed?.session?.access_token) freshToken = refreshed.session.access_token;
+                  } catch { /* use original token */ }
+
+                  const resp = await fetch(`${API_BASE}/api/auth/oauth/complete-profile`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", Authorization: `Bearer ${freshToken}` },
+                    body: JSON.stringify({ role: "teacher", school: oauthSchool.trim(), full_name: pendingOauthUser.username }),
+                  });
+                  const result = await resp.json();
+
+                  if (!resp.ok) {
+                    setOauthSaveError(result.detail || "Could not save your school. Please try again.");
+                    return;
+                  }
+
+                  const { data: freshSession } = await supabase.auth.getSession();
+                  const finalToken = freshSession?.session?.access_token || freshToken;
+                  await _finishOAuthLogin(result, { ...freshSession?.session, access_token: finalToken, user: freshSession?.session?.user });
+                  setPendingOauthUser(null);
+                } catch (err) {
+                  setOauthSaveError("We couldn't save your school. Please try again.");
+                  console.error("[oauth] complete-profile (teacher) error:", err);
+                } finally {
+                  setOauthSaving(false);
+                }
+              }}
+              style={{
+                ...btnBase,
+                background: !oauthSchool.trim() ? "#334155" : "linear-gradient(135deg,#6366f1,#8b5cf6)",
+                color: "#fff",
+                cursor: !oauthSchool.trim() ? "not-allowed" : "pointer",
+                opacity: !oauthSchool.trim() ? 0.6 : 1,
+              }}
+            >
+              {oauthSaving ? "Saving…" : "Continue as Teacher →"}
+            </button>
+            {oauthSaveError && (
+              <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 8,
+                background: "rgba(239,68,68,.12)", border: "1px solid rgba(239,68,68,.3)",
+                fontSize: "0.82rem", color: "#fca5a5", textAlign: "center" }}>
+                {oauthSaveError}
+              </div>
+            )}
+            <button
+              style={{ ...btnBase, background: "transparent", color: "#94a3b8", marginTop: 8, fontSize: "0.82rem" }}
+              onClick={() => { setOauthStep("role"); setOauthSaveError(null); }}
+            >
+              ← Back
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    // Step 2 (student): Grade selection
     return (
       <div style={cardStyle}>
         <div style={boxStyle}>
