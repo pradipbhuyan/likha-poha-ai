@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 10: Biotechnology and its Applications",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter10.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-10-biotechnology-and-its-applications.webp",
+    "alt": "Chapter 10 Biotechnology and its Applications revision poster: genetically modified crops, Bt toxin activation, Cry genes, RNA interference in plants, key terms and important points.",
+    "caption": "Full-chapter revision poster on biotechnology applications: GM crops, Bt toxins, and RNAi.",
+    "width": 1024,
+    "height": 1536
+  }
+}

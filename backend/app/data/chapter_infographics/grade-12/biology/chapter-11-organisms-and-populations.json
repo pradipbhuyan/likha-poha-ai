@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 11: Organisms and Populations",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter11.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-11-organisms-and-populations.webp",
+    "alt": "Chapter 11 Organisms and Populations revision poster: life-history strategies, predation, prey adaptations, plant defences against herbivory, coevolution, key terms and important points.",
+    "caption": "Full-chapter revision poster on organisms and populations: predation and adaptations.",
+    "width": 1024,
+    "height": 1536
+  }
+}

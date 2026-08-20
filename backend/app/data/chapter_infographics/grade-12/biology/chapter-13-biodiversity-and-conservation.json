@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 13: Biodiversity and Conservation",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter13.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-13-biodiversity-and-conservation.webp",
+    "alt": "Chapter 13 Biodiversity and Conservation revision poster: latitudinal gradient of biodiversity, species-area relationship, regression coefficient, key terms and important points.",
+    "caption": "Full-chapter revision poster on biodiversity and conservation: species-area relationship.",
+    "width": 1024,
+    "height": 1536
+  }
+}

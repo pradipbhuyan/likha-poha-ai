@@ -1,19 +1,19 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 220 chapters — Grade 12 Biology Ch 9, all
-> 9 Grade 12 Mathematics chapters, all 10 Grade 5 EVS chapters, all 15 Grade 5
-> Maths chapters (12 replaced; 13-15 rejected on review, still on their
-> original poster — see open items), all 10 Grade 6 Maths chapters, all 12
-> Grade 6 Science chapters, all 15 Grade 7 Maths chapters, all 14 Grade 8
-> Maths chapters, all 13 Grade 8 Science chapters, all 8 Grade 9 Maths
-> chapters, all 13 Grade 9 Science chapters, all 28 Grade 10 chapters
-> (14 Maths + 13 Science), and all 56 Grade 11 chapters (14 Maths + 14
-> Physics + 9 Chemistry + 19 Biology). Grade 5, Grade 6, Grade 7 Maths,
-> Grade 8 (Maths + Science), Grade 9 (Maths + Science), Grade 10
-> (Maths + Science), **Grade 11 (all four subjects), and Grade 12
-> Mathematics are all complete and clean.** 81 of 292 in-scope chapters
-> remain (all in Grade 12 Physics, Chemistry, and Biology minus the one
-> already-live Grade 12 Biology chapter).
+> **Status (2026-08-20):** live on 230 chapters — all 9 Grade 12 Mathematics
+> chapters, 11 of 13 Grade 12 Biology chapters (Ch 4 and Ch 8 pending
+> regeneration), all 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters
+> (12 replaced; 13-15 rejected on review, still on their original poster —
+> see open items), all 10 Grade 6 Maths chapters, all 12 Grade 6 Science
+> chapters, all 15 Grade 7 Maths chapters, all 14 Grade 8 Maths chapters, all
+> 13 Grade 8 Science chapters, all 8 Grade 9 Maths chapters, all 13 Grade 9
+> Science chapters, all 28 Grade 10 chapters (14 Maths + 13 Science), and all
+> 56 Grade 11 chapters (14 Maths + 14 Physics + 9 Chemistry + 19 Biology).
+> Grade 5, Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9
+> (Maths + Science), Grade 10 (Maths + Science), **Grade 11 (all four
+> subjects), and Grade 12 Mathematics are all complete and clean.** 62 of 292
+> in-scope chapters remain (2 Grade 12 Biology pending regeneration + all of
+> Grade 12 Physics and Chemistry).
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -591,6 +591,121 @@ fixing posters one at a time.
       Chapter 9. Joins Grade 5, Grade 6, Grade 7 Maths, Grade 8
       (Maths + Science), Grade 9 (Maths + Science), Grade 10
       (Maths + Science), and all four Grade 11 subjects as fully done.
+- [ ] **Grade 12 Biology: authoring started 2026-08-20.** Chapters 1-13
+      generated and reviewed (Chapter 9 "Biotechnology: Principles and
+      Processes" was already live prior to this rollout — confirmed its
+      content is consistent with the freshly-generated poster reviewed
+      here, not re-applied).
+        - **Chapter 1 "Sexual Reproduction in Flowering Plants"** clean —
+          flower structure, pollination types, pollen-pistil interaction,
+          double fertilisation, post-fertilisation seed/fruit formation,
+          apomixis, and polyembryony all correct standard NCERT content.
+          **Applied.**
+        - **Chapter 2 "Human Reproduction"** clean — female reproductive
+          system, ovarian cycle (~28/29 day length), gametogenesis
+          (spermatogenesis: spermatogonium→primary spermatocyte→
+          secondary spermatocyte→spermatid→sperm; oogenesis: oogonium→
+          primary oocyte→secondary oocyte+first polar body→ovum+second
+          polar body) and hormonal control all correctly staged and
+          sequenced. **Applied.**
+        - **Chapter 3 "Reproductive Health"** clean — legal marriage age
+          (21 male/18 female), population statistics, and all six
+          contraceptive method categories (barrier/IUD/hormonal/surgical/
+          emergency/natural) correctly classified. **Applied.**
+        - **Chapter 4 "Principles of Inheritance and Variation"** had a
+          closing-strip bleed: "Important Points to Remember" contained
+          population-growth statistics ("World population: ~2 billion
+          (1900), ~6 billion (2000), 7.2 billion (2011); India's
+          population ~350 million at independence, now over 1.2
+          billion") — grep-confirmed **zero** matches for this content
+          in Chapter 4's CHAPTER_CONTENT; it is Chapter 3 "Reproductive
+          Health" content with zero connection to Mendelian genetics.
+          The rest of the poster (Mendel's pea plant experiments, the
+          seven contrasting trait pairs, monohybrid cross methodology)
+          was correct and well-grounded. **Not applied.** Sent a
+          regeneration prompt
+          (`~/Downloads/Grade12_Biology_Missing_Posters_Prompts_2026-08-20/
+          Grade12_Biology_Chapter4_PROMPT.txt`) with a HARD RULE 0
+          quoting the bled statistics verbatim and naming Chapter 3 as
+          their source.
+        - **Chapter 5 "Molecular Basis of Inheritance"** clean —
+          frameshift mutation panel, tRNA/anticodon structure, codon
+          table (UUU/UUC→Phe, AAA/AAG→Lys, GUU/GUC/GUA/GUG→Val,
+          UAA/UAG/UGA→Stop, all hand-verified against the standard
+          genetic code), and lac operon repression/induction mechanism
+          all correct. **Applied.**
+        - **Chapter 6 "Evolution"** clean — homology (bird wing/whale
+          flipper/bat wing/horse forelimb, same origin different
+          function) vs analogy (bird wing/insect wing, different origin
+          similar function) correctly distinguished; divergent vs
+          convergent evolution examples and vestigial organs (vermiform
+          appendix, pelvic bones in whales, nictitating membrane) all
+          standard and correct. **Applied.**
+        - **Chapter 7 "Human Health and Disease"** clean — this poster
+          covers the drugs/alcohol/substance-abuse portion of the
+          chapter specifically (opioid receptors, cannabinoid receptors,
+          coca-alkaloid dopamine-transport interference, alcohol as CNS
+          depressant, tobacco/nicotine) — a scope-limited but grounded
+          poster consistent with the pattern noted elsewhere in this
+          doc for lesson-step-scoped content, not a defect. **Applied.**
+        - **Chapter 8 "Microbes in Human Welfare"** had a closing-strip
+          bleed: "Important Points to Remember" contained a bullet about
+          frameshift mutations ("Large deletions/rearrangements or
+          insertions of 1 or 2 nucleotides shift the reading frame
+          mutations") — grep-confirmed **zero** matches in Chapter 8's
+          CHAPTER_CONTENT; it is Chapter 5 "Molecular Basis of
+          Inheritance" content (the exact panel already seen correctly
+          on Chapter 5's own poster), with zero connection to
+          biofertilisers. The rest of the poster (Rhizobium, Azospirillum/
+          Azotobacter, mycorrhiza/Glomus, cyanobacteria, phosphate-
+          solubilising bacteria, saprophytic microbes) was correct and
+          well-grounded. **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade12_Biology_Missing_Posters_Prompts_2026-08-20/
+          Grade12_Biology_Chapter8_PROMPT.txt`) with a HARD RULE 0
+          quoting the bled mutation bullet verbatim and naming Chapter 5
+          as its source.
+        - **Chapter 9 "Biotechnology: Principles and Processes"**
+          (already live prior to this rollout) — the freshly-generated
+          poster reviewed here matches: gene-transfer methods (competent
+          cells/calcium ions, heat shock, microinjection, biolistics/gene
+          gun, Agrobacterium-mediated transfer, liposomes, electroporation,
+          virus-mediated) and the ten-step recombinant-DNA workflow
+          (isolation→digestion→electrophoresis→purification→vector
+          prep→ligation→introduction→selection→amplification→expression)
+          all correct standard NCERT content — no action needed, already
+          applied.
+        - **Chapter 10 "Biotechnology and its Applications"** clean — Bt
+          toxin activation mechanism (crystal protein→protease activation
+          in alkaline midgut pH 9.5-11→receptor binding→pore formation→
+          cell lysis), Cry gene-crop pairings (cry1Ac→cotton/bollworms,
+          cry1Ab→corn/borer), and RNAi mechanism (dsRNA in plant→siRNA→
+          gene silencing in insect) all correct. **Applied.**
+        - **Chapter 11 "Organisms and Populations"** clean — Type I
+          (few, large offspring: mammals) vs Type II (many, small:
+          oysters/fish) life-history strategies correctly contrasted;
+          prey adaptations, plant chemical defences (alkaloids/phenolics/
+          terpenoids), and predator-prey population dynamics all correct
+          standard ecology content. **Applied.**
+        - **Chapter 12 "Ecosystem"** clean — ten per cent law worked
+          example (1000→100→10 units) hand-verified correct
+          (1000×0.10=100, 100×0.10=10); food chain/web, trophic levels,
+          and nutrient cycling all correct. **Applied.**
+        - **Chapter 13 "Biodiversity and Conservation"** clean —
+          species-area equation S=CAᶻ correctly stated; bird-species
+          examples (Colombia ~1,400, India ~1,200) correctly ordered;
+          regression coefficient z range (0.1-0.2 for broad-scale taxa)
+          matches the standard NCERT value. **Applied.**
+      **Grade 12 Biology: 11 of 13 chapters applied and clean**
+      (Ch 1, 2, 3, 5, 6, 7, 10, 11, 12, 13, plus the already-live Ch 9).
+      Chapters 4 and 8 both pending regeneration (prompts ready, see
+      above) — both defects are the same failure mode (a closing-strip
+      bleed importing a real panel from a different, specific chapter),
+      the first from Chapter 3 into Chapter 4, the second from Chapter 5
+      into Chapter 8 — confirming yet again that closing-strip bleeds
+      can occur between any two chapters in a subject, not just from a
+      recurring template.
+- [ ] **Grade 12 Mathematics: Chapters 10-13 not yet generated as images
+      — pending image generation from the ready prompts before review.**
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

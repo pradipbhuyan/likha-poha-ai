@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 7: Human Health and Disease",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-7-human-health-and-disease.webp",
+    "alt": "Chapter 7 Human Health and Disease revision poster: drugs, alcohol, and prevention of substance abuse, dependence and withdrawal, key terms and important points.",
+    "caption": "Full-chapter revision poster on human health and disease: drugs and alcohol abuse.",
+    "width": 1024,
+    "height": 1536
+  }
+}

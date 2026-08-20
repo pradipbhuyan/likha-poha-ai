@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 6: Evolution",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-6-evolution.webp",
+    "alt": "Chapter 6 Evolution revision poster: Darwin and Wallace, fossils, homology and analogy, divergent and convergent evolution, vestigial organs, natural selection process, key terms and important points.",
+    "caption": "Full-chapter revision poster on evolution.",
+    "width": 1024,
+    "height": 1536
+  }
+}

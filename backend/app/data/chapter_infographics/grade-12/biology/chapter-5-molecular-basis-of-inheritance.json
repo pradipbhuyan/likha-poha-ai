@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 5: Molecular Basis of Inheritance",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-5-molecular-basis-of-inheritance.webp",
+    "alt": "Chapter 5 Molecular Basis of Inheritance revision poster: mutations, tRNA, translation, genetic code, lac operon, DNA to protein flow, key terms and important points.",
+    "caption": "Full-chapter revision poster on molecular basis of inheritance.",
+    "width": 1024,
+    "height": 1536
+  }
+}

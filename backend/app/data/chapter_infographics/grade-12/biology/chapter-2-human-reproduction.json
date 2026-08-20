@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 2: Human Reproduction",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-2-human-reproduction.webp",
+    "alt": "Chapter 2 Human Reproduction revision poster: female reproductive system, ovarian cycle, gametogenesis, spermatogenesis, oogenesis, hormonal control, implantation, key terms and important points.",
+    "caption": "Full-chapter revision poster on human reproduction.",
+    "width": 1024,
+    "height": 1536
+  }
+}

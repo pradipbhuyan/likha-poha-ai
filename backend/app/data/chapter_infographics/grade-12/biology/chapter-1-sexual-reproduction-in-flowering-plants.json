@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 1: Sexual Reproduction in Flowering Plants",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-1-sexual-reproduction-in-flowering-plants.webp",
+    "alt": "Chapter 1 Sexual Reproduction in Flowering Plants revision poster: flower structure, pollination, pollen-pistil interaction, double fertilisation, seed and fruit formation, apomixis, polyembryony, key terms and important points.",
+    "caption": "Full-chapter revision poster on sexual reproduction in flowering plants.",
+    "width": 1024,
+    "height": 1536
+  }
+}

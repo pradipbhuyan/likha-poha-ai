@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 3: Reproductive Health",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-3-reproductive-health.webp",
+    "alt": "Chapter 3 Reproductive Health revision poster: population growth, contraceptive methods and categories, family planning steps, key terms and important points.",
+    "caption": "Full-chapter revision poster on reproductive health and contraceptive methods.",
+    "width": 1024,
+    "height": 1536
+  }
+}

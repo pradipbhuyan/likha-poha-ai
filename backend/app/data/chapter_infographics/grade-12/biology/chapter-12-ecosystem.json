@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 12: Ecosystem",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter12.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-12-ecosystem.webp",
+    "alt": "Chapter 12 Ecosystem revision poster: capture of solar energy, food chains and webs, trophic levels, ten per cent law, nutrient cycling, key terms and important points.",
+    "caption": "Full-chapter revision poster on ecosystem: energy flow and nutrient cycling.",
+    "width": 1024,
+    "height": 1536
+  }
+}
