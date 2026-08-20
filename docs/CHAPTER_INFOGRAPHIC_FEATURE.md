@@ -1,16 +1,17 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 210 chapters — Grade 12 Biology Ch 9, all
+> **Status (2026-08-20):** live on 211 chapters — Grade 12 Biology Ch 9, all
 > 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
 > rejected on review, still on their original poster — see open items), all
 > 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7
 > Maths chapters, all 14 Grade 8 Maths chapters, all 13 Grade 8 Science
 > chapters, all 8 Grade 9 Maths chapters, all 13 Grade 9 Science chapters,
-> and all 28 Grade 10 chapters (14 Maths + 13 Science). Grade 5, Grade 6,
-> Grade 7 Maths, Grade 8 (Maths + Science), Grade 9 (Maths + Science), and
-> **Grade 10 (Maths + Science) are all complete and clean.** 147 of 292
-> in-scope chapters remain (Grades 11, 12 minus the one already-live
-> Grade 12 chapter).
+> all 28 Grade 10 chapters (14 Maths + 13 Science), and all 56 Grade 11
+> chapters (14 Maths + 14 Physics + 9 Chemistry + 19 Biology). Grade 5,
+> Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9
+> (Maths + Science), Grade 10 (Maths + Science), and **Grade 11 (all four
+> subjects) are all complete and clean.** 90 of 292 in-scope chapters
+> remain (all in Grade 12, minus the one already-live Grade 12 chapter).
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -1265,6 +1266,49 @@ fixing posters one at a time.
       explicitly flagging that a previous fix attempt introduced this
       exact doubling error, and adding an explicit bromine-count check
       instruction before finalising. Pending the next regenerated image.
+
+      **Third regeneration (v3 prompt) reviewed 2026-08-20 (later the
+      same day): fully fixed, no new defects.** The "Dehalogenation of
+      Tetrahalides" panel now shows "CHBr₂-CHBr₂ + Zn → CHBr=CHBr +
+      ZnBr₂" with correct 1:1 coefficients (no leading "2" on either Zn
+      or ZnBr₂) — hand-verified balanced: 4 Br on the left (in
+      CHBr₂-CHBr₂) equal 2 (in the CHBr=CHBr product) + 2 (in the single
+      ZnBr₂) = 4 on the right, 2 carbons and 1 Zn also balanced on both
+      sides. Re-verified every other panel on this third pass: alkene
+      structure (sp² hybridisation, ~120° bond angle), geometrical
+      isomerism (cis/trans-2-butene correctly drawn with CH₃ groups on
+      matching/opposite sides), the other three preparation methods
+      (dehydration of ethanol, dehydrohalogenation of ethyl bromide,
+      halogenation/hydrohalogenation of ethene), Markovnikov's rule
+      worked example (propene+HBr→2-bromopropane, H to CH₂/Br to more
+      substituted C), anti-Markovnikov/peroxide effect
+      (propene+HBr/peroxide→1-bromopropane), oxidation with dilute KMnO₄
+      (3CH₂=CH₂+2KMnO₄+4H₂O→3 ethane-1,2-diol+2MnO₂+2KOH, hand-verified
+      balanced: C6=6, O12=12, H20=20, Mn2=2, K2=2), and ozonolysis of
+      but-2-ene (→2× ethanal, correct symmetric cleavage) — all correct
+      and no equilibrium-content regression. **Applied.**
+
+      **Grade 11 Chemistry is now COMPLETE — all 9 of 9 chapters applied
+      and clean** (Ch 1-9), joining Grade 5, Grade 6, Grade 7 Maths,
+      Grade 8 (Maths + Science), Grade 9 (Maths + Science), Grade 10
+      (Maths + Science), Grade 11 Mathematics, Grade 11 Physics, and
+      Grade 11 Biology as fully done. **This took three regeneration
+      rounds total for Chapter 9 — the same pattern as Grade 10 Maths
+      Chapter 7 earlier in this doc, where fixing one defect introduced
+      a new, different one on the next attempt (here: fixing the
+      equilibrium bleed → introduced the tetrabromoethane example →
+      fixing that introduced a stoichiometry error in my own supplied
+      HARD RULE text) before a clean result was reached. Confirms the
+      general lesson again: always re-review the ENTIRE poster on every
+      regeneration, including verifying any "correct" replacement text
+      supplied in a HARD RULE is itself actually correct before using
+      it as a fix.**
+
+      **All four Grade 11 subjects (Mathematics, Physics, Chemistry,
+      Biology) are now complete — Grade 11 is fully done, joining
+      Grade 5, Grade 6, Grade 7 Maths, Grade 8 (Maths + Science),
+      Grade 9 (Maths + Science), and Grade 10 (Maths + Science) as
+      fully complete and clean grades.**
 - [ ] **Grade 11 Biology: authoring started 2026-08-20.** Chapters 1-19
       generated and reviewed (19 chapters total, confirmed against
       `/api/syllabus` earlier in this doc):

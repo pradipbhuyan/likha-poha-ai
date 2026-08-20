@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Chapter 9: Hydrocarbons",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 20, 2026, 11_08_53 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/chemistry/chapter-9-hydrocarbons.webp",
+    "alt": "Chapter 9 Hydrocarbons revision poster: alkene structure, geometrical isomerism, preparation methods, addition reactions, Markovnikov and anti-Markovnikov rules, oxidation, ozonolysis, key terms and important points.",
+    "caption": "Full-chapter revision poster on hydrocarbons: alkene reactions and preparation methods.",
+    "width": 1024,
+    "height": 1536
+  }
+}
