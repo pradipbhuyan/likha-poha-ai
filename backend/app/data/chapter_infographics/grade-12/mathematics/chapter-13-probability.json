@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 13: Probability",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter13.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-13-probability.webp",
+    "alt": "Chapter 13 Probability revision poster: independence, product test, dependence, complements, union of independent events, repeated trials, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on probability: independence and conditional probability.",
+    "width": 1024,
+    "height": 1536
+  }
+}

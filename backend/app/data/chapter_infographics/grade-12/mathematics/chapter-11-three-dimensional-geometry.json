@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 11: Three Dimensional Geometry",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter11.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-11-three-dimensional-geometry.webp",
+    "alt": "Chapter 11 Three Dimensional Geometry revision poster: point-direction and parametric forms, Cartesian form, direction ratios and cosines, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on three dimensional geometry: lines in space.",
+    "width": 1024,
+    "height": 1536
+  }
+}

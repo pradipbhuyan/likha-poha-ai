@@ -1,19 +1,20 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 230 chapters — all 9 Grade 12 Mathematics
-> chapters, 11 of 13 Grade 12 Biology chapters (Ch 4 and Ch 8 pending
-> regeneration), all 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters
-> (12 replaced; 13-15 rejected on review, still on their original poster —
-> see open items), all 10 Grade 6 Maths chapters, all 12 Grade 6 Science
-> chapters, all 15 Grade 7 Maths chapters, all 14 Grade 8 Maths chapters, all
-> 13 Grade 8 Science chapters, all 8 Grade 9 Maths chapters, all 13 Grade 9
-> Science chapters, all 28 Grade 10 chapters (14 Maths + 13 Science), and all
-> 56 Grade 11 chapters (14 Maths + 14 Physics + 9 Chemistry + 19 Biology).
-> Grade 5, Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9
-> (Maths + Science), Grade 10 (Maths + Science), **Grade 11 (all four
-> subjects), and Grade 12 Mathematics are all complete and clean.** 62 of 292
-> in-scope chapters remain (2 Grade 12 Biology pending regeneration + all of
-> Grade 12 Physics and Chemistry).
+> **Status (2026-08-20):** live on 233 chapters — 12 of 13 Grade 12
+> Mathematics chapters (Ch 12 pending regeneration), 11 of 13 Grade 12
+> Biology chapters (Ch 4 and Ch 8 pending regeneration), all 10 Grade 5 EVS
+> chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15 rejected on
+> review, still on their original poster — see open items), all 10 Grade 6
+> Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7 Maths
+> chapters, all 14 Grade 8 Maths chapters, all 13 Grade 8 Science chapters,
+> all 8 Grade 9 Maths chapters, all 13 Grade 9 Science chapters, all 28
+> Grade 10 chapters (14 Maths + 13 Science), and all 56 Grade 11 chapters
+> (14 Maths + 14 Physics + 9 Chemistry + 19 Biology). Grade 5, Grade 6,
+> Grade 7 Maths, Grade 8 (Maths + Science), Grade 9 (Maths + Science),
+> Grade 10 (Maths + Science), and **Grade 11 (all four subjects) are all
+> complete and clean.** 59 of 292 in-scope chapters remain (1 Grade 12
+> Mathematics + 2 Grade 12 Biology pending regeneration + all of Grade 12
+> Physics and Chemistry).
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -704,8 +705,63 @@ fixing posters one at a time.
       into Chapter 8 — confirming yet again that closing-strip bleeds
       can occur between any two chapters in a subject, not just from a
       recurring template.
-- [ ] **Grade 12 Mathematics: Chapters 10-13 not yet generated as images
-      — pending image generation from the ready prompts before review.**
+- [ ] **Grade 12 Mathematics: Chapters 10-13 reviewed 2026-08-20.**
+        - **Chapter 10 "Vector Algebra"** clean — component form,
+          magnitude, addition, scalar multiplication, and unit-vector
+          worked example (unit vector in the direction of 2i+3j+k)
+          hand-verified correct: |a|=√(4+9+1)=√14, matching the poster's
+          answer exactly. **Applied.**
+        - **Chapter 11 "Three Dimensional Geometry"** clean — worked
+          example (line through P(2,−1,3) with direction 2i+3j+6k)
+          hand-verified correct in all three forms: vector
+          r=(2i−j+3k)+λ(2i+3j+6k), parametric x=2+2λ/y=−1+3λ/z=3+6λ, and
+          Cartesian (x−2)/2=(y+1)/3=(z−3)/6, all internally consistent.
+          **Applied.**
+        - **Chapter 12 "Linear Programming"** had a severe, self-
+          contradictory fabricated worked example. The poster invented
+          an entirely new LPP not present anywhere in CHAPTER_CONTENT —
+          "Maximise Z=3x+2y subject to x+y≤4, x+2y≤6, x≥0, y≥0" — with
+          corner points O(0,0), A(4,0), B(2,2), C(0,4). Hand-verified
+          this is not just fabricated but internally impossible: the
+          claimed corner point C(0,4) does **not** satisfy the poster's
+          own stated constraint x+2y≤6, since 0+2(4)=8>6 — C(0,4) is not
+          even a feasible point, let alone a valid corner of the
+          feasible region. Grep-confirmed CHAPTER_CONTENT contains a
+          completely different worked example instead — "NCERT Example
+          1: Maximise Z=4x+y subject to x+y≤50, 3x+y≤90, x≥0 and y≥0"
+          with correct vertices (0,0), (30,0), (20,30), (0,50) and
+          objective values 0, 120, 110, 50 respectively (maximum 120 at
+          (30,0)) — all of which are internally consistent and
+          hand-verified correct. The rest of the poster (boundary
+          line/half-plane/feasible-region/corner-point theory panels,
+          the six-step feasible-region construction method) was correct
+          and well-grounded — only the fabricated worked example was
+          broken. **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade12_Maths_Missing_Posters_Prompts_2026-08-20_v3/
+          Grade12_Maths_Chapter12_PROMPT.txt`) with a HARD RULE 0 quoting
+          the exact fabricated example and its infeasibility verbatim,
+          explicitly banning invented LPP examples, and supplying the
+          correct NCERT Example 1 verbatim with a per-vertex constraint
+          check instruction. Pending the regenerated image. **This is
+          the same "fabricated example" failure mode already catalogued
+          for Grade 11 Mathematics Chapter 6 and Grade 11 Chemistry
+          Chapter 9 earlier in this doc, but combined here with the
+          additional twist that the fabrication is also internally
+          self-contradictory (violating its own stated constraint) —
+          the same combination pattern already seen in Grade 11
+          Chemistry Chapter 9's first regeneration.**
+        - **Chapter 13 "Probability"** clean — worked example (two coins
+          tossed, find P(at least one head) and P(exactly two heads))
+          hand-verified correct by direct enumeration of the sample
+          space {HH,HT,TH,TT}: P(at least one head)=3/4=1−(1/2)²,
+          P(exactly two heads)=1/4, both matching the poster exactly.
+          **Applied.**
+      **Grade 12 Mathematics: 12 of 13 chapters applied and clean**
+      (Ch 1-11, 13). Chapter 12 pending regeneration (prompt ready, see
+      above) — the only remaining Grade 12 Mathematics chapter (this
+      grade's chapter count is 13, not 9 as the earlier "COMPLETE" note
+      above stated — Chapters 10-13 were generated and reviewed in this
+      later pass).
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

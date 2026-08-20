@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 10: Vector Algebra",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter10.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-10-vector-algebra.webp",
+    "alt": "Chapter 10 Vector Algebra revision poster: component form, magnitude, addition and scalar multiplication, unit vector, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on vector algebra: component operations and unit vectors.",
+    "width": 1024,
+    "height": 1536
+  }
+}
