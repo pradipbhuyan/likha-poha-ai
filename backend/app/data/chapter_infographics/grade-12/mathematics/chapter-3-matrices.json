@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 3: Matrices",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-3-matrices.webp",
+    "alt": "Chapter 3 Matrices revision poster: row, column, square, diagonal, scalar, identity and zero matrices, equality of matrices, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on matrices: matrix types and equality.",
+    "width": 1024,
+    "height": 1536
+  }
+}

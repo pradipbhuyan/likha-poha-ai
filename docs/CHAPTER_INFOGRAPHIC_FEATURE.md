@@ -387,6 +387,130 @@ fixing posters one at a time.
       same workflow as every prior grade in this doc. **This is the final
       grade in the rollout — once Grade 12 is complete, all 292 in-scope
       chapters across Grades 5-12 will be done.**
+- [ ] **Grade 12 Mathematics: authoring started 2026-08-20.** Chapters
+      1-9 generated and reviewed — **an unusually high defect rate for
+      this rollout: 4 of the 9 chapters reviewed had a genuine wrong
+      final answer or a severe content bleed, plus 1 more with a
+      cosmetic exponent typo.**
+        - **Chapter 1 "Relations and Functions"** clean — relation-on-a-
+          set, reflexive/symmetric/transitive/equivalence-relation
+          definitions all correct; NCERT Example 5 worked example
+          (congruence mod 2 on integers) correctly verifies all three
+          properties and concludes it is an equivalence relation;
+          Cartesian product example A×A for A={1,2,3} correctly lists
+          all 9 ordered pairs. **Applied.**
+        - **Chapter 2 "Inverse Trigonometric Functions"** had a genuine
+          wrong final answer in its only worked example. NCERT
+          Miscellaneous Exercise: evaluate tan⁻¹(1)+tan⁻¹(2)+tan⁻¹(3).
+          The poster correctly derived the sum equals π+tan⁻¹(0)=π
+          through its intermediate steps, then appended a fabricated
+          "Final check" step claiming the sum needed adjusting by −π
+          because it wrongly assumed a SUM of three tan⁻¹ terms must lie
+          in the individual-term principal range (−π/2, π/2) — giving a
+          WRONG final boxed answer of 0. Hand-verified independently
+          (`math.atan(1)+math.atan(2)+math.atan(3) = π` exactly) and
+          grep-confirmed CHAPTER_CONTENT explicitly states "Final
+          answer: The value is π." — the poster's own grounded source
+          material directly contradicts its final answer. **Not
+          applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade12_Maths_Missing_Posters_Prompts_2026-08-20/
+          Grade12_Maths_Chapter2_PROMPT.txt`) with a HARD RULE 0
+          explaining precisely why the principal-range constraint
+          doesn't apply to sums of multiple terms and instructing the
+          final answer to be stated as exactly π with no further
+          adjustment. **This is a new, sixth failure mode for this
+          rollout: a fabricated "verification/check" step appended AFTER
+          a correct derivation that silently overturns the correct
+          answer with a plausible-sounding but wrong justification** —
+          distinct from a simple arithmetic slip, since the poster's own
+          working shows the right answer before the bogus check step
+          discards it.
+        - **Chapter 3 "Matrices"** clean — matrix type definitions
+          (row/column/square/diagonal/scalar/identity/zero) all correct;
+          NCERT Example 4 worked example (equality of matrices, solve
+          for x and z) hand-verified correct: x+3=0 gives x=−3, z=6.
+          **Applied.**
+        - **Chapter 4 "Determinants"** clean — NCERT Example 1 worked
+          example (|A|=ad−bc for a=2,b=4,c=−1,d=2) hand-verified correct,
+          |A|=8; determinant properties (row/column interchange sign
+          change, transpose invariance, zero row/column gives zero
+          determinant) all standard and correct. **Applied.**
+        - **Chapter 5 "Continuity and Differentiability"** clean — NCERT
+          Rolle's theorem worked example (f(x)=x²−4x+3 on [1,3])
+          hand-verified correct: f(1)=f(3)=0, f'(2)=0, c=2 lies in (1,3).
+          Rolle's/LMVT theorem statements and geometric meaning correct.
+          **Applied.**
+        - **Chapter 6 "Application of Derivatives"** had a cosmetic
+          exponent typo, not a math error — the question-statement label
+          reads "Find where f(x)=x³−4x+6 is increasing or decreasing"
+          but grep-confirmed CHAPTER_CONTENT states the function as
+          f(x)=x²−4x+6 (power 2). Every subsequent step in the same
+          panel's derivation (f'(x)=2x−4, critical number x=2, f(2)=2,
+          sign chart) correctly used the power-2 function throughout —
+          only the question label itself has the wrong exponent
+          displayed. **Not applied**, held back alongside the other
+          defective chapters for a batch regeneration even though this
+          one is lower-severity (a single mis-rendered character, not a
+          wrong final answer). Sent a regeneration prompt
+          (`~/Downloads/Grade12_Maths_Missing_Posters_Prompts_2026-08-20/
+          Grade12_Maths_Chapter6_PROMPT.txt`) with a HARD RULE 0 quoting
+          the exact typo and the correct exponent.
+        - **Chapter 7 "Integrals"** had a severe closing-strip bleed:
+          the entire "Important Points to Remember" strip was Chapter 4
+          "Determinants" content ("Determinant is defined for square
+          matrices", "For a 2×2 matrix, |A|=ad−bc", "|A| denotes
+          determinant of A, not |aij|") with zero connection to
+          integrals. The rest of the poster was correct and
+          well-grounded: NCERT partial-fractions worked example
+          ((x+1)/((x−1)(x+2)), A=2/3, B=1/3) and NCERT integration-by-
+          parts worked example (∫x·eˣ dx = x·eˣ−eˣ+C) both hand-verified
+          correct. **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade12_Maths_Missing_Posters_Prompts_2026-08-20/
+          Grade12_Maths_Chapter7_PROMPT.txt`) with a HARD RULE 0 quoting
+          the bled bullets verbatim and naming Chapter 4 as their source.
+        - **Chapter 8 "Application of Integrals"** had a genuine wrong
+          final answer in its only worked example. NCERT Example 3: find
+          the area bounded by y=3x+2, x-axis, x=−1 and x=1. Grep-
+          confirmed CHAPTER_CONTENT explicitly states "the two positive
+          areas are 1/6 and 25/6" and "the total area is 13/3 square
+          units" — but the poster's final boxed answer reads "7 square
+          units", contradicting both its own source material and an
+          independent hand calculation (1/6+25/6=26/6=13/3≈4.33, not 7).
+          **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade12_Maths_Missing_Posters_Prompts_2026-08-20/
+          Grade12_Maths_Chapter8_PROMPT.txt`) with a HARD RULE 0 quoting
+          the correct piece-areas and final answer verbatim and
+          instructing a hand-verification step before finalising.
+        - **Chapter 9 "Differential Equations"** had TWO separate
+          defects compounded in one poster. (1) The worked example's
+          question box states "Solve dy/dx=−4xy³" (power 3), but
+          grep-confirmed CHAPTER_CONTENT states the equation as
+          dy/dx=−4xy² (power 2). With the incorrect power-3 version, the
+          poster's own subsequent derivation (separating into dy/y³,
+          integrating to get y⁻²) produces a particular solution that
+          gives an IMPOSSIBLE negative value for y² when the initial
+          condition y=1 at x=0 is substituted back in — a genuine
+          internal contradiction hand-confirmed with Python. The correct
+          power-2 equation (as CHAPTER_CONTENT states) separates cleanly
+          to give the correct particular solution y=1/(2x²+1), which
+          correctly satisfies y=1 at x=0. (2) The "Important Points to
+          Remember" closing strip contained Chapter 6 "Application of
+          Derivatives" content (f'(x)>0/f'(x)<0 increasing/decreasing
+          tests, sign-chart methodology) with zero connection to
+          differential equations. **Not applied.** Sent a regeneration
+          prompt
+          (`~/Downloads/Grade12_Maths_Missing_Posters_Prompts_2026-08-20/
+          Grade12_Maths_Chapter9_PROMPT.txt`) with a HARD RULE 0 fixing
+          the exponent and deriving the correct particular solution, and
+          a HARD RULE 0B naming Chapter 6 as the source of the bled
+          closing-strip content.
+      **Grade 12 Mathematics: 4 of 9 chapters applied and clean**
+      (Ch 1, 3, 4, 5). Chapters 2, 6, 7, 8, 9 all pending regeneration
+      (prompts ready, see above) — **this is the highest single-batch
+      defect rate found anywhere in this rollout** (5 of 9 chapters, or
+      56%, needed at least one fix), including two genuine wrong-final-
+      answer defects (Ch2, Ch8) and one chapter with both a wrong
+      exponent AND a closing-strip bleed compounded together (Ch9).
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 5: Continuity and Differentiability",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-5-continuity-and-differentiability.webp",
+    "alt": "Chapter 5 Continuity and Differentiability revision poster: continuity, differentiability, Rolle theorem, Lagrange mean value theorem, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on continuity and differentiability: mean value theorems.",
+    "width": 1024,
+    "height": 1536
+  }
+}

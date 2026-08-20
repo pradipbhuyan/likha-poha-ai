@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 1: Relations and Functions",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-1-relations-and-functions.webp",
+    "alt": "Chapter 1 Relations and Functions revision poster: relation on a set, reflexive, symmetric, transitive and equivalence relations, worked example, properties, key terms and important points.",
+    "caption": "Full-chapter revision poster on relations and functions: equivalence relations and properties.",
+    "width": 1024,
+    "height": 1536
+  }
+}

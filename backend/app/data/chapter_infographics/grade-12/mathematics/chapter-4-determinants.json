@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 4: Determinants",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-4-determinants.webp",
+    "alt": "Chapter 4 Determinants revision poster: determinant notation, order one and two determinants, link with linear systems, properties, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on determinants: notation, properties, and linear systems.",
+    "width": 1024,
+    "height": 1536
+  }
+}
