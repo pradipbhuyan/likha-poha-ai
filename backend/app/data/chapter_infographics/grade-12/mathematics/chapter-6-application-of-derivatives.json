@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 6: Application of Derivatives",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter6-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-6-application-of-derivatives.webp",
+    "alt": "Chapter 6 Application of Derivatives revision poster: increasing and decreasing functions, critical numbers, sign chart, derivative test, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on application of derivatives: monotonicity and the derivative sign test.",
+    "width": 1024,
+    "height": 1536
+  }
+}

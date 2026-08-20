@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 9: Differential Equations",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter9-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-9-differential-equations.webp",
+    "alt": "Chapter 9 Differential Equations revision poster: separable differential equations, general and particular solutions, constant of integration, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on differential equations: separation of variables and particular solutions.",
+    "width": 1024,
+    "height": 1536
+  }
+}

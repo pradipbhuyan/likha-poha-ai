@@ -511,6 +511,59 @@ fixing posters one at a time.
       56%, needed at least one fix), including two genuine wrong-final-
       answer defects (Ch2, Ch8) and one chapter with both a wrong
       exponent AND a closing-strip bleed compounded together (Ch9).
+
+      **All five regenerated posters reviewed 2026-08-20 (later the same
+      day): 4 of 5 confirmed fully fixed, 1 introduced a brand-new
+      defect.**
+        - **Chapter 2**: the fabricated "final check" step is gone — the
+          worked example now correctly derives and states the final
+          answer as exactly π, with no post-hoc range adjustment. All
+          other panels re-verified correct. **Applied.**
+        - **Chapter 6**: the question box now correctly reads
+          "f(x)=x²−4x+6" (squared exponent, matching the rest of the
+          derivation). **Applied.**
+        - **Chapter 8**: the worked example's final answer now correctly
+          reads "13/3 square units" (hand re-verified: 1/6+25/6=13/3),
+          matching CHAPTER_CONTENT exactly. **Applied.**
+        - **Chapter 9**: both defects fixed — the ODE now correctly reads
+          dy/dx=−4xy² (power 2), and the closing strip is now
+          differential-equations-specific with no Chapter 6 bleed.
+          Numerically re-verified the particular solution y=1/(2x²+1)
+          satisfies the ODE at several x values. **Applied.**
+        - **Chapter 7**: the Chapter 4 Determinants closing-strip bleed
+          is confirmed fixed — the closing strip is now integrals-
+          specific. **However, a brand-new sign error appeared** in the
+          partial-fractions worked example: decomposing
+          (2x−1)/((x−1)(x−2))=A/(x−1)+B/(x−2), the poster states "Putting
+          x=1 ⟹ A=1" — but substituting x=1 into 2x−1=A(x−2)+B(x−1) gives
+          1=−A, so A=−1, not +1 (hand-verified, and independently
+          confirmed by testing the reconstructed decomposition at x=3:
+          the poster's A=1,B=3 gives 7/2, but the true value of the
+          original expression at x=3 is 5/2 — only the correct A=−1,B=3
+          reconstruction matches). The resulting final decomposition
+          line and the integral answer (ln|x−1|+3ln|x−2|+C) both
+          propagate the same sign error and should read −1/(x−1)+3/(x−2)
+          and −ln|x−1|+3ln|x−2|+C respectively. **Not applied.** Sent a
+          third regeneration prompt
+          (`~/Downloads/Grade12_Maths_Missing_Posters_Prompts_2026-08-20_v2/
+          Grade12_Maths_Chapter7_PROMPT_v2.txt`) that keeps the working
+          HARD RULE 0 (closing-strip fix, confirmed working — left
+          unchanged) and adds a new HARD RULE 0B quoting the exact sign
+          error, working through the correct substitution step by step,
+          and instructing a third-point numerical check (at x=3) before
+          finalising. Pending the next regenerated image. **This is the
+          same general pattern seen with Grade 11 Chemistry Chapter 9 and
+          Grade 10 Maths Chapter 7 earlier in this doc: fixing one
+          defect (a closing-strip bleed) on regeneration introduced an
+          unrelated new defect (a sign error) in a completely different
+          part of the same poster** — reinforcing the lesson that the
+          ENTIRE poster must be re-reviewed on every regeneration, not
+          just the specific panel that was targeted for a fix.
+
+      **Grade 12 Mathematics: 8 of 9 chapters now applied and clean**
+      (Ch 1-6, 8, 9). Chapter 7 pending a third regeneration round
+      (prompt ready, see above) — the only remaining Grade 12 Mathematics
+      chapter.
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

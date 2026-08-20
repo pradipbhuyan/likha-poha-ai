@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 8: Application of Integrals",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter8-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-8-application-of-integrals.webp",
+    "alt": "Chapter 8 Application of Integrals revision poster: area between curves and the x-axis, signed area vs geometric area, worked example finding area bounded by a line, key terms and important points.",
+    "caption": "Full-chapter revision poster on application of integrals: signed area versus geometric area.",
+    "width": 1024,
+    "height": 1536
+  }
+}

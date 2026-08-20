@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 2: Inverse Trigonometric Functions",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter2-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-2-inverse-trigonometric-functions.webp",
+    "alt": "Chapter 2 Inverse Trigonometric Functions revision poster: tan inverse function, addition and subtraction formulas, principal value range, worked example evaluating tan inverse sum, key terms and important points.",
+    "caption": "Full-chapter revision poster on inverse trigonometric functions: addition formulas and principal values.",
+    "width": 1024,
+    "height": 1536
+  }
+}
