@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 13: Nuclei",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter13.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-13-nuclei.webp",
+    "alt": "Chapter 13 Nuclei revision poster: nucleus composition, size and mass, atomic identity and stability, nuclear forces, key terms and important points.",
+    "caption": "Full-chapter revision poster on nuclei: structure and nuclear forces.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 8: Electromagnetic Waves",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter8.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-8-electromagnetic-waves.webp",
+    "alt": "Chapter 8 Electromagnetic Waves revision poster: nature and generation of electromagnetic waves, electromagnetic spectrum, energy and momentum, applications, key terms and important points.",
+    "caption": "Full-chapter revision poster on electromagnetic waves.",
+    "width": 1024,
+    "height": 1536
+  }
+}

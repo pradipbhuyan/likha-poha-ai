@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 12: Atoms",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter12.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-12-atoms.webp",
+    "alt": "Chapter 12 Atoms revision poster: Bohr model, quantised energy levels, excitation and ionisation energy, spectral series, key terms and important points.",
+    "caption": "Full-chapter revision poster on atoms: Bohr model and spectral series.",
+    "width": 1024,
+    "height": 1536
+  }
+}

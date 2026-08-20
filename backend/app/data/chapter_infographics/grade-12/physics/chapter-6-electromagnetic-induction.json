@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 6: Electromagnetic Induction",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-6-electromagnetic-induction.webp",
+    "alt": "Chapter 6 Electromagnetic Induction revision poster: magnetic flux, Faraday law, Lenz law, self and mutual induction, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on electromagnetic induction.",
+    "width": 1024,
+    "height": 1536
+  }
+}

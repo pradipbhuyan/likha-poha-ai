@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 8: Microbes in Human Welfare",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter8-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-8-microbes-in-human-welfare.webp",
+    "alt": "Chapter 8 Microbes in Human Welfare revision poster: biofertilisers, Rhizobium, mycorrhiza, cyanobacteria, phosphate-solubilising bacteria, key terms and important points.",
+    "caption": "Full-chapter revision poster on microbes in human welfare: biofertilisers.",
+    "width": 1024,
+    "height": 1536
+  }
+}

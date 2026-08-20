@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 2: Electrostatic Potential and Capacitance",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-2-electrostatic-potential-and-capacitance.webp",
+    "alt": "Chapter 2 Electrostatic Potential and Capacitance revision poster: electric potential, superposition, dipole potential, capacitance, energy stored, series and parallel combination, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on electrostatic potential and capacitance.",
+    "width": 1024,
+    "height": 1536
+  }
+}

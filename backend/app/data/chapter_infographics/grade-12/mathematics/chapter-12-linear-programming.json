@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 12: Linear Programming",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter12-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-12-linear-programming.webp",
+    "alt": "Chapter 12 Linear Programming revision poster: graphical method, lines and half-planes, objective function iso-profit lines, feasible region, types of solutions, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on linear programming: graphical method and feasible region.",
+    "width": 1024,
+    "height": 1536
+  }
+}

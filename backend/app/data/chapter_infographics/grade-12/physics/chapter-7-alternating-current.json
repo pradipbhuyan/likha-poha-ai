@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 7: Alternating Current",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-7-alternating-current.webp",
+    "alt": "Chapter 7 Alternating Current revision poster: pure inductor, inductive reactance, phase relationship, power, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on alternating current.",
+    "width": 1024,
+    "height": 1536
+  }
+}

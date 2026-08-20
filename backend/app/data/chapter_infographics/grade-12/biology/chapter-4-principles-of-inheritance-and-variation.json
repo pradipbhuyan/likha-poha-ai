@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Chapter 4: Principles of Inheritance and Variation",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Biology-Chapter4-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/biology/chapter-4-principles-of-inheritance-and-variation.webp",
+    "alt": "Chapter 4 Principles of Inheritance and Variation revision poster: Mendel's experiments, monohybrid and dihybrid crosses, laws of inheritance, key terms and important points.",
+    "caption": "Full-chapter revision poster on principles of inheritance and variation: Mendelian genetics.",
+    "width": 1024,
+    "height": 1536
+  }
+}

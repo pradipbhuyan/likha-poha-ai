@@ -1,20 +1,20 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 233 chapters — 12 of 13 Grade 12
-> Mathematics chapters (Ch 12 pending regeneration), 11 of 13 Grade 12
-> Biology chapters (Ch 4 and Ch 8 pending regeneration), all 10 Grade 5 EVS
-> chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15 rejected on
-> review, still on their original poster — see open items), all 10 Grade 6
-> Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7 Maths
-> chapters, all 14 Grade 8 Maths chapters, all 13 Grade 8 Science chapters,
-> all 8 Grade 9 Maths chapters, all 13 Grade 9 Science chapters, all 28
-> Grade 10 chapters (14 Maths + 13 Science), and all 56 Grade 11 chapters
-> (14 Maths + 14 Physics + 9 Chemistry + 19 Biology). Grade 5, Grade 6,
-> Grade 7 Maths, Grade 8 (Maths + Science), Grade 9 (Maths + Science),
-> Grade 10 (Maths + Science), and **Grade 11 (all four subjects) are all
-> complete and clean.** 59 of 292 in-scope chapters remain (1 Grade 12
-> Mathematics + 2 Grade 12 Biology pending regeneration + all of Grade 12
-> Physics and Chemistry).
+> **Status (2026-08-20):** live on 249 chapters — all 13 Grade 12
+> Mathematics chapters, all 13 Grade 12 Biology chapters, 8 of 13 Grade 12
+> Physics chapters (Ch 1, 3, 9, 10, 11 pending regeneration), all 10
+> Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
+> rejected on review, still on their original poster — see open items),
+> all 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15
+> Grade 7 Maths chapters, all 14 Grade 8 Maths chapters, all 13 Grade 8
+> Science chapters, all 8 Grade 9 Maths chapters, all 13 Grade 9 Science
+> chapters, all 28 Grade 10 chapters (14 Maths + 13 Science), and all 56
+> Grade 11 chapters (14 Maths + 14 Physics + 9 Chemistry + 19 Biology).
+> Grade 5, Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9
+> (Maths + Science), Grade 10 (Maths + Science), **Grade 11 (all four
+> subjects), Grade 12 Mathematics, and Grade 12 Biology are all complete
+> and clean.** 43 of 292 in-scope chapters remain (5 Grade 12 Physics
+> pending regeneration + all of Grade 12 Chemistry).
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -762,6 +762,136 @@ fixing posters one at a time.
       grade's chapter count is 13, not 9 as the earlier "COMPLETE" note
       above stated — Chapters 10-13 were generated and reviewed in this
       later pass).
+- [ ] **Grade 12 Biology and Mathematics regenerated posters, and Grade 12
+      Physics Chapters 1-13, reviewed 2026-08-20 (later the same day).**
+        - **Mathematics Chapter 12 "Linear Programming" regeneration**:
+          fully fixed, no new defects. The correct NCERT Example 1
+          (Maximise Z=4x+y subject to x+y≤50, 3x+y≤90) is now used, with
+          all four corner points (0,0), (30,0), (20,30), (0,50)
+          hand-verified to satisfy both constraints and give the correct
+          objective values 0, 120, 110, 50 respectively (maximum 120 at
+          (30,0)) — no infeasibility this time. **Applied.**
+        - **Biology Chapter 4 "Principles of Inheritance and Variation"
+          regeneration**: fully fixed, no new defects. The population-
+          statistics bleed is gone; the closing strip is now genetics-
+          specific. Monohybrid (3:1) and dihybrid (9:3:3:1) F2 ratios
+          hand-verified correct. **Applied.**
+        - **Biology Chapter 8 "Microbes in Human Welfare" regeneration**:
+          fully fixed, no new defects. The frameshift-mutation bleed is
+          gone; the closing strip is now fully biofertiliser-specific.
+          **Applied.** **Grade 12 Mathematics (13/13) and Grade 12
+          Biology (13/13) are now both COMPLETE.**
+        - **Physics Chapter 1 "Electric Charges and Fields"** had a
+          closing-strip bleed: "Important Points to Remember" contained
+          Linear Programming terminology ("Feasible Solution",
+          "Infeasible Solution", "non-negativity constraints x≥0, y≥0")
+          — grep-confirmed **zero** matches in CHAPTER_CONTENT; this is
+          Mathematics Chapter 12 "Linear Programming" content bleeding
+          across subjects, not just chapters. The rest of the poster
+          (electric field definition, superposition, NCERT Example 1.5
+          worked example — three equal charges at an equilateral
+          triangle's vertices, symmetry gives zero net force at the
+          centroid, hand-verified with vector sum = 0) was correct and
+          well-grounded. **Not applied.**
+        - **Physics Chapter 2 "Electrostatic Potential and
+          Capacitance"** clean — dipole potential worked example
+          (p=4×10⁻⁶ C·m, r=0.2m, axial potential V=9×10⁵ V) hand-
+          verified correct via V=kp/r². **Applied.**
+        - **Physics Chapter 3 "Current Electricity"** had a genuine,
+          severe math defect: the "Exam-Style Example" panel invented a
+          triangular circuit with two EMF sources (10V and 5V) and gave
+          a final answer (I1=2A, I2=1/3A, I3=1A) that does **not**
+          satisfy its own stated junction-law equation I1=I2+I3
+          (2≠1/3+1=4/3) — an internal contradiction independent of the
+          exact circuit values used. CHAPTER_CONTENT's actual worked
+          example is a much simpler star-connected three-branch circuit
+          with a single 10V EMF, giving I1=2.5A, I2=1.5A, I3=1A (which
+          correctly satisfies 2.5=1.5+1). This is the same "fabricated
+          example" failure mode already catalogued for other subjects
+          in this doc, here appearing for the first time with an
+          internally-inconsistent final answer that doesn't even match
+          its own stated equations, rather than a wrong-vs-source-content
+          answer. **Not applied.**
+        - **Physics Chapter 4 "Moving Charges and Magnetism"** clean —
+          this is the correct home for the Right-Hand Thumb Rule and
+          Fleming's Left-Hand Rule content that had bled incorrectly
+          into four other chapters earlier in this rollout (two in
+          Grade 10, two in Grade 11 Maths) — confirms that content
+          belongs here, not those other chapters. All formulas
+          (B=μ₀I/2πr, F=qv×B, τ=m×B) standard and correct. **Applied.**
+        - **Physics Chapter 5 "Magnetism and Matter"** clean — B=μ₀nI
+          (solenoid), F=BILsinθ, Fleming's Left-Hand Rule, and
+          diamagnetic/paramagnetic/ferromagnetic susceptibility
+          categorisation all correct. **Applied.**
+        - **Physics Chapter 6 "Electromagnetic Induction"** clean —
+          NCERT Example 6.2 worked example (10cm square loop, 0.5Ω
+          resistance, 0.10T field at 45°, reduced to zero in 0.70s)
+          hand-verified correct: EMF=1.01mV, I=2.02mA, both matching the
+          poster exactly. **Applied.**
+        - **Physics Chapter 7 "Alternating Current"** clean — worked
+          example (L=44mH, V=220V, f=50Hz) hand-verified correct:
+          Xl=13.82Ω, Irms=15.9A, both matching the poster exactly.
+          **Applied.**
+        - **Physics Chapter 8 "Electromagnetic Waves"** clean — c=fλ,
+          E=hf, p=h/λ, EM spectrum ordering (radio→micro→infrared→
+          visible→UV→X-ray→gamma) all correct standard content, no
+          numeric worked example to verify. **Applied.**
+        - **Physics Chapter 9 "Ray Optics and Optical Instruments"** had
+          a genuine math defect in NCERT Example 9.3's Case (ii) row:
+          for object distance u=−5cm at a concave mirror of R=15cm
+          (f=−7.5cm), the poster claims v=−3.75cm, m=−0.75 ("Real,
+          inverted, diminished") — this is both mathematically wrong
+          (substituting into 1/v+1/u=1/f gives v=+15cm, not −3.75cm) and
+          physically impossible (an object between the pole and focus of
+          a concave mirror always produces a virtual, erect, magnified
+          image, never real and diminished). Grep-confirmed
+          CHAPTER_CONTENT explicitly states the correct values: "For
+          u=−5cm, v=+15cm and m=+3: virtual and erect." Case (i)
+          (u=−10cm, v=−30cm, m=−3) was correctly hand-verified. **Not
+          applied.**
+        - **Physics Chapter 10 "Wave Optics"** had a closing-strip bleed:
+          "Important Points to Remember" contained electromagnetic-
+          induction content ("Induced current appears only when magnetic
+          flux through a circuit changes", "Magnetic flux for uniform
+          field", "Flux linkage") — grep-confirmed **zero** matches in
+          CHAPTER_CONTENT; this is Chapter 6 "Electromagnetic Induction"
+          content. The rest of the poster (wavefront types, Huygens'
+          principle, laws of optics derivation) was correct and
+          well-grounded. **Not applied.**
+        - **Physics Chapter 11 "Dual Nature of Radiation and Matter"**
+          had a closing-strip bleed: "Important Points to Remember"
+          contained a bullet about an ideal inductor and AC power ("An
+          ideal inductor has zero average power at AC, energy keeps
+          exchanging") — grep-confirmed **zero** matches in
+          CHAPTER_CONTENT; this is Chapter 7 "Alternating Current"
+          content. The rest of the poster (photoelectric-effect panels,
+          stopping-potential worked example Kmax=eV0=2.4×10⁻¹⁹ J for
+          V0=1.5V, hand-verified correct) was fine. **Not applied.**
+        - **Physics Chapter 12 "Atoms"** clean — Bohr model energy
+          levels (En=−13.6/n²) hand-verified correct: excitation energy
+          n=1→n=2 is 10.2 eV, n=1→n=3 is 12.09 eV, ionisation energy
+          (n=1→n=∞) is 13.6 eV, all matching the poster exactly.
+          **Applied.**
+        - **Physics Chapter 13 "Nuclei"** clean — poster covers basic
+          nucleus composition/structure (protons/neutrons, atomic number
+          examples for H/He/C/O, nuclear force basics), a scope-limited
+          but grounded poster consistent with the pattern noted
+          elsewhere in this doc for lesson-step-scoped content, not a
+          defect. **Applied.**
+      **Grade 12 Physics: 8 of 13 chapters applied and clean**
+      (Ch 2, 4, 5, 6, 7, 8, 12, 13). Chapters 1, 3, 9, 10, 11 all pending
+      regeneration (prompts ready at
+      `~/Downloads/Grade12_Physics_Missing_Posters_Prompts_2026-08-20/`)
+      — **this is the highest defect rate found for a single Physics
+      subject in this rollout** (5 of 13, or 38%), spanning three
+      distinct failure modes in one batch: two closing-strip bleeds from
+      other Physics chapters within the same subject (Ch1←Ch12-Maths,
+      Ch10←Ch6, Ch11←Ch7 — note Ch1's bleed crosses subjects entirely,
+      from Mathematics into Physics), and two genuine math defects
+      (Ch3's internally-inconsistent circuit answer, Ch9's
+      physically-impossible mirror-equation values) — confirming that
+      closing-strip bleeds can cross subject boundaries (Ch1) as well as
+      chapter boundaries within the same subject (Ch10, Ch11).
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

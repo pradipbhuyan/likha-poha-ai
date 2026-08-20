@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 5: Magnetism and Matter",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-5-magnetism-and-matter.webp",
+    "alt": "Chapter 5 Magnetism and Matter revision poster: magnetic field, Fleming left-hand rule, magnetic materials, earth as a magnet, key terms and important points.",
+    "caption": "Full-chapter revision poster on magnetism and matter.",
+    "width": 1024,
+    "height": 1536
+  }
+}

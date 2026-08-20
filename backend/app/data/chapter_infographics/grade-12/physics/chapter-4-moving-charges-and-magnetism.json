@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 4: Moving Charges and Magnetism",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-4-moving-charges-and-magnetism.webp",
+    "alt": "Chapter 4 Moving Charges and Magnetism revision poster: magnetic field due to straight conductor and loops, force on moving charge, torque on current loop, moving coil galvanometer, key terms and important points.",
+    "caption": "Full-chapter revision poster on moving charges and magnetism.",
+    "width": 1024,
+    "height": 1536
+  }
+}
