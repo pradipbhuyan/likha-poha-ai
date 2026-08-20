@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 5: Morphology of Flowering Plants",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter5-Regen.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-5-morphology-of-flowering-plants.webp",
+    "alt": "Chapter 5 Morphology of Flowering Plants revision poster: root, stem, leaf, phyllotaxy, flower, fruit, seed, root systems, monocot vs dicot differences, worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on morphology of flowering plants: plant organs and monocot/dicot classification.",
+    "width": 1024,
+    "height": 1536
+  }
+}

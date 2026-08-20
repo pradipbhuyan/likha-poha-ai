@@ -1,6 +1,6 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 209 chapters — Grade 12 Biology Ch 9, all
+> **Status (2026-08-20):** live on 210 chapters — Grade 12 Biology Ch 9, all
 > 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
 > rejected on review, still on their original poster — see open items), all
 > 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7
@@ -1235,6 +1235,36 @@ fixing posters one at a time.
       an atom-count/mass-balance violation, on top of a formula/IUPAC-name
       mismatch within the same panel — three separate errors compounded
       into one panel.**
+
+      **Second regeneration (v2 prompt) reviewed 2026-08-20 (later the
+      same day): the compound-identity fix worked, but a NEW stoichiometry
+      defect appeared — this one self-inflicted by an error in the HARD
+      RULE 0B text itself.** The "Dehalogenation of Tetrahalides" panel now
+      correctly shows CHBr₂-CHBr₂ (1,1,2,2-tetrabromoethane, matching the
+      HARD RULE's corrected compound) reacting to give CHBr=CHBr
+      (1,2-dibromoethene) — the formula/IUPAC-name mismatch and the
+      atom-count violation are both genuinely fixed, confirmed by
+      hand-checking carbon count (2=2) on both sides. However, the
+      reaction is now written as "CHBr₂-CHBr₂ + 2Zn → CHBr=CHBr + 2ZnBr₂"
+      — copied verbatim from the HARD RULE 0B text I supplied — and that
+      text was itself wrong: with coefficient 2 on both Zn and ZnBr₂, the
+      bromine count does not balance (4 Br on the left vs 2+2×2=6 Br on
+      the right). The correct equation needs coefficient 1 on both (plain
+      "Zn" and "ZnBr₂", no leading number), which balances 4=4. All other
+      panels (structure of alkenes, geometrical isomerism, Markovnikov/
+      anti-Markovnikov rules, oxidation, ozonolysis, polymerisation,
+      general addition mechanism) were correct. **Not applied.** This is
+      a useful lesson distinct from prior findings: **the model followed
+      the HARD RULE's supplied "correct" replacement text faithfully —
+      the defect this time originated in the human-authored fix itself,
+      not in the model's interpretation of it.** Sent a third regeneration
+      prompt
+      (`~/Downloads/Grade11_Chemistry_Missing_Posters_Prompts_2026-08-20/
+      Grade11_Chemistry_Chapter9_PROMPT_v3.txt`) correcting the HARD RULE
+      0B text to specify coefficient 1 (not 2) for both Zn and ZnBr₂,
+      explicitly flagging that a previous fix attempt introduced this
+      exact doubling error, and adding an explicit bromine-count check
+      instruction before finalising. Pending the next regenerated image.
 - [ ] **Grade 11 Biology: authoring started 2026-08-20.** Chapters 1-19
       generated and reviewed (19 chapters total, confirmed against
       `/api/syllabus` earlier in this doc):
@@ -1403,10 +1433,34 @@ fixing posters one at a time.
           correctly distinguished from anterior pituitary's indirect
           portal-vessel control. **Applied.**
       **Grade 11 Biology: 18 of 19 chapters applied and clean** (Ch 1-4,
-      6-19). Chapter 5 pending regeneration (prompt ready, see above) —
-      the only Grade 11 Biology chapter remaining, and the only Grade 11
-      chapter of any subject remaining given Mathematics and Physics are
-      both already complete.
+      6-19). Chapter 5 pending regeneration (prompt ready, see above at
+      time of first pass) — later regenerated and re-reviewed the same
+      day, see below.
+
+      **Chapter 5 regeneration reviewed 2026-08-20 (later the same day):
+      fully fixed, no new defects.** The photosynthesis/limiting-factors
+      content is completely gone — all 8 panels are genuine morphology
+      content: root types and functions, stem functions, leaf structure
+      (lamina/midrib/venation), phyllotaxy (alternate/opposite/whorled),
+      flower parts (calyx/corolla/androecium/gynoecium), fruit
+      development, seed structure, and root systems (tap vs fibrous). The
+      worked example matches exactly what was supplied in the HARD RULE:
+      "A plant shows parallel venation in leaves, flower parts in threes,
+      and a fibrous root system. Identify if it is a monocot or dicot" →
+      correctly answered MONOCOT with matching reasoning. The
+      monocot-vs-dicot differences table (cotyledons 1 vs 2, venation
+      parallel vs reticulate, flower parts multiples of 3 vs 4/5, root
+      system fibrous vs tap, vascular bundles scattered vs in a ring,
+      secondary growth absent vs usually present) is all correct standard
+      NCERT content. **Applied.**
+
+      **Grade 11 Biology is now COMPLETE — all 19 of 19 chapters applied
+      and clean** (Ch 1-19), joining Grade 5, Grade 6, Grade 7 Maths,
+      Grade 8 (Maths + Science), Grade 9 (Maths + Science), Grade 10
+      (Maths + Science), Grade 11 Mathematics, and Grade 11 Physics as
+      fully done. **All of Grade 11 (Mathematics, Physics, Biology) is
+      now complete except Chemistry Chapter 9, which is still pending its
+      third regeneration round (see above).**
 - [ ] **Decide the review gate** before bulk apply — the failure mode is a
       confidently wrong revision poster, which is worse than none.
 - [ ] Decide whether to delete the `chapter-summary` text path (§6).
