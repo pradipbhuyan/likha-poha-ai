@@ -364,6 +364,9 @@ _FEATURES_GRADE_9_10 = [
     ("&#128270;", "NCERT Exemplar Research",
      "Hard NCERT Exemplar problems with instant AI step-by-step solutions — "
      "essential for scoring 90%+ in Class 10 boards."),
+    ("📄", "Board Papers",
+     "A decade of real CBSE Class 10 board papers to practise under exam conditions, "
+     "with every mark explained. Find them under <strong>Board Papers</strong>."),
     ("📐", "Formula Sheets",
      "Chapter-wise Maths & Science formulas with worked examples, memory tips, "
      "and practice MCQs. Find them under <strong>Resources</strong>."),
@@ -385,6 +388,9 @@ _FEATURES_GRADE_11_12_SCIENCE = [
     ("&#128270;", "NCERT Exemplar Research",
      "Hard NCERT Exemplar problems — Physics, Chemistry, Maths, Biology — "
      "with instant AI explanations. Essential for board exam scoring."),
+    ("📄", "Board Papers",
+     "A decade of real CBSE Class 11 & 12 board papers to practise under exam conditions, "
+     "with every mark explained. Find them under <strong>Board Papers</strong>."),
     ("❓", "Ask Doubts Instantly",
      "Type any Physics, Chemistry, Maths, or Biology doubt and get an AI answer with "
      "step-by-step working. Available in the <strong>Ask Doubt</strong> tab."),
@@ -424,6 +430,9 @@ _FEATURES_GRADE_11_12_COMMERCE = [
     ("❓", "Ask Doubts Instantly",
      "Type any Accountancy, Economics, or Business Studies doubt and get an AI answer "
      "in seconds. Available in the <strong>Ask Doubt</strong> tab."),
+    ("📄", "Board Papers",
+     "A decade of real CBSE Class 11 & 12 board papers to practise under exam conditions, "
+     "with every mark explained. Find them under <strong>Board Papers</strong>."),
     ("📊", "Progress & Analytics",
      "Track your chapter coverage, mock test scores by subject, and daily study time "
      "— all in your <strong>Analytics</strong> dashboard."),
@@ -442,6 +451,9 @@ _FEATURES_GRADE_11_12_HUMANITIES = [
     ("❓", "Ask Doubts Instantly",
      "Type any History, Geography, or Polsci doubt and get a clear AI answer in seconds. "
      "Available in the <strong>Ask Doubt</strong> tab."),
+    ("📄", "Board Papers",
+     "A decade of real CBSE Class 11 & 12 board papers to practise under exam conditions, "
+     "with every mark explained. Find them under <strong>Board Papers</strong>."),
     ("📊", "Progress & Analytics",
      "Track your chapter coverage, mock test scores by subject, and study consistency "
      "— all in your <strong>Analytics</strong> dashboard."),
@@ -464,6 +476,12 @@ _FEATURES_STUDENT = [
     ("&#128270;", "NCERT Exemplar Research",
      "Hard problems from NCERT Exemplar with instant AI explanations — "
      "essential for scoring 90%+ in board exams."),
+    ("📄", "Board Papers",
+     "A decade of real CBSE board papers (Grades 9&ndash;12) to practise under exam conditions, "
+     "with every mark explained. Find them under <strong>Board Papers</strong>."),
+    ("🎯", "Exam Prep Center",
+     "Dedicated JEE Main &amp; NEET UG prep for Grades 11&ndash;12 — topic-priority practice "
+     "and simulated full tests, available as a <strong>Premium feature</strong>."),
     ("📊", "Progress & Analytics",
      "Track lessons completed, mock test scores, weak topics, and AI usage — "
      "all in your <strong>Analytics</strong> dashboard."),
@@ -779,7 +797,8 @@ def send_welcome_email(
     text = (
         f"Welcome to Likha Poha AI, {first_name}!{grade_line}\n\n"
         f"Your account is ready. Visit {_FRONTEND_URL} to start learning.\n\n"
-        f"Key features: AI Lessons | Mock Tests | Ask Doubts | Formula Sheets | Progress Analytics\n"
+        f"Key features: AI Lessons | Mock Tests | Ask Doubts | Formula Sheets | "
+        f"Board Papers | Exam Prep Center | Progress Analytics\n"
         + (f"\nYour plan: {plan_name}\n" if is_paid and plan_name else
            f"\nFree Tier: 5 mock tests/day, limited lessons. Upgrade anytime at {_FRONTEND_URL}.\n")
     )
