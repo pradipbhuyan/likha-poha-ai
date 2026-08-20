@@ -1,8 +1,9 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 249 chapters — all 13 Grade 12
-> Mathematics chapters, all 13 Grade 12 Biology chapters, 8 of 13 Grade 12
-> Physics chapters (Ch 1, 3, 9, 10, 11 pending regeneration), all 10
+> **Status (2026-08-20):** live on 253 chapters — all 13 Grade 12
+> Mathematics chapters, all 13 Grade 12 Biology chapters, 12 of 14 Grade 12
+> Physics chapters (Ch 3 pending a third regeneration; Ch 14 "Semiconductor
+> Electronics" not yet started — out of the batch reviewed so far), all 10
 > Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
 > rejected on review, still on their original poster — see open items),
 > all 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15
@@ -13,8 +14,9 @@
 > Grade 5, Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9
 > (Maths + Science), Grade 10 (Maths + Science), **Grade 11 (all four
 > subjects), Grade 12 Mathematics, and Grade 12 Biology are all complete
-> and clean.** 43 of 292 in-scope chapters remain (5 Grade 12 Physics
-> pending regeneration + all of Grade 12 Chemistry).
+> and clean.** 39 of 292 in-scope chapters remain (1 Grade 12 Physics
+> chapter pending regeneration + Grade 12 Physics Ch 14 not yet generated
+> + all of Grade 12 Chemistry).
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -892,6 +894,88 @@ fixing posters one at a time.
       physically-impossible mirror-equation values) — confirming that
       closing-strip bleeds can cross subject boundaries (Ch1) as well as
       chapter boundaries within the same subject (Ch10, Ch11).
+- [ ] **Grade 12 Physics Chapters 1, 9, 10, 11 regenerated posters reviewed
+      2026-08-20 (later the same day) — 4 of 4 confirmed fully fixed, no new
+      defects. Chapter 3's regenerated poster reviewed the same pass —
+      still broken, a new failure mode this time.**
+        - **Chapter 1 "Electric Charges and Fields"**: the Linear
+          Programming closing-strip bleed is gone — "Important Points to
+          Remember" and "Key Terms" are now both electric-field-specific
+          (E=lim F/q, superposition, field lines, symmetry). NCERT
+          Example 1.5 (three equal charges at an equilateral triangle's
+          vertices, symmetry gives zero net force on Q at the centroid)
+          re-verified correct. **Applied.**
+        - **Chapter 9 "Ray Optics and Optical Instruments"**: the Case
+          (ii) mirror-equation defect is fixed — for u=−5cm at a concave
+          mirror (f=−7.5cm), the poster now correctly shows v=+15cm, m=+3,
+          "Virtual and erect" (hand re-verified via 1/v+1/u=1/f:
+          1/15+1/(−5)=1/15−3/15=−2/15=1/(−7.5) ✓, and m=−v/u=−15/(−5)=3
+          ✓). Case (i) (u=−10cm, v=−30cm, m=−3) re-verified correct. The
+          standard NCERT Table 9.1 image-formation table, mirror/lens
+          formulas, and sign-convention panel were all correct with no
+          bleed. **Applied.**
+        - **Chapter 10 "Wave Optics"**: the Electromagnetic Induction
+          closing-strip bleed is gone — "Important Points to Remember" is
+          now wave-optics-specific (wavefronts, Huygens' principle,
+          i=r, v1/v2 speeds). No EM-induction terminology anywhere on the
+          poster. **Applied.**
+        - **Chapter 11 "Dual Nature of Radiation and Matter"**: the
+          Alternating Current closing-strip bleed (the ideal-inductor/AC-
+          power bullet) is gone — "Important Points to Remember" is now
+          photoelectric-effect-specific (photoemission instantaneous,
+          saturation current vs intensity, stopping potential independent
+          of intensity, threshold frequency, Einstein's equation, KE
+          depends on frequency not intensity). Einstein's equation
+          hν=φ+Kmax, φ=hν0, ν0=φ/h all correctly stated. **Applied.**
+        - **Chapter 3 "Current Electricity"**: the fabricated
+          triangular-two-EMF circuit from the first regeneration is gone —
+          the poster now attempts the correct star-connected circuit
+          (4Ω/2Ω/3Ω branches meeting at junction D, single 10V EMF) that
+          actually exists in CHAPTER_CONTENT. **However, the regenerated
+          derivation itself is now broken in a new way — the poster
+          discarded the source's clean loop-based method (Loop ABD gives
+          I1=10/4=2.5A directly; Loop BCD gives I3=(2/3)I2; junction law
+          gives I2=1.5A, I3=1A) and invented an unrelated node-potential
+          method instead**, writing "I1=(10-V0)/4, I2=(10-V0)/2,
+          I3=V0/3", "Substitute: (10-V0)/4=(10-V0)/2+V0/3", "Solving:
+          V0=3V" — hand-verified this equation does NOT solve to V0=3 (it
+          actually solves to V0=−30, an unphysical value for this
+          circuit). The poster's own boxed final line then compounds this
+          with a bare arithmetic error: "I1=(10-3)/4=7/4=2.50A" — 7/4 is
+          1.75, not 2.50, so the shown division and the printed answer on
+          the same line contradict each other. Its self-check line uses a
+          THIRD value for I1: "I1=I2+I3 / 2.35=3.50+1.00" — which is also
+          false (2.35≠4.50), and labels the failed check with the garbled
+          non-word "(Verirect)" instead of a real verdict word. **Not
+          applied.** This is a new failure mode for this rollout: the
+          model discarded a correctly-grounded derivation method it was
+          explicitly told to use (rule 0 in the prior prompt already gave
+          the right final numbers) and replaced it with a self-invented,
+          algebraically-wrong alternative method, then further garbled the
+          arithmetic transcription of its own invented method. Sent a
+          third regeneration prompt
+          (`~/Downloads/Grade12_Physics_Missing_Posters_Prompts_2026-08-20_v2/
+          Grade12_Physics_Chapter3_PROMPT.txt`) with a new HARD RULE 0B,
+          placed before the existing (still-valid) rule 0, that spells out
+          the exact required derivation steps verbatim (Loop ABD directly
+          gives I1=2.5A by division, not via a node potential) and quotes
+          all three contradictory numbers from this round's defect so the
+          model cannot reproduce any of them. Pending the next regenerated
+          image.
+      **Grade 12 Physics: 12 of 14 chapters applied and clean**
+      (Ch 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13). Chapter 3 pending a
+      third regeneration round (prompt ready, see above). **Chapter 14
+      "Semiconductor Electronics" has not yet been generated as an image
+      at all** — its prompt exists at
+      `~/Downloads/GPT55_Chapter_Infographic_Prompts_2026-08-20/grade_12/physics/05_chapter_14_semiconductor_electronics_PROMPT.txt`
+      but was never handed off for image generation in this doc's history;
+      this was discovered only now because the live syllabus query
+      returns 14 Grade 12 Physics chapters, one more than the "13" this
+      doc had been tracking against — the earlier "Physics 14" count noted
+      in the 2026-08-20 prompt-generation entry above was correct, but the
+      subsequent review passes only ever covered Ch 1-13. **Grade 12
+      Physics is therefore 12 of 14, not 12 of 13 — 2 chapters remain: Ch3
+      (regeneration pending) and Ch14 (not yet started).**
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

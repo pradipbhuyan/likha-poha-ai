@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 9: Ray Optics and Optical Instruments",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter9.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-9-ray-optics-and-optical-instruments.webp",
+    "alt": "Revision poster for Chapter 9: Ray Optics and Optical Instruments — covers spherical mirrors, mirror formula and magnification, sign convention, the concave-mirror image-formation table, lens formula, lensmaker's formula, optical instruments, and NCERT Example 9.3.",
+    "caption": "Full-chapter revision poster — mirror and lens formulas, sign convention, image-formation table, and optical instruments.",
+    "width": 1024,
+    "height": 1536
+  }
+}

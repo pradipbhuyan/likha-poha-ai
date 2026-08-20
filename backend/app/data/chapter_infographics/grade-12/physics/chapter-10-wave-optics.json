@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 10: Wave Optics",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter10.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-10-wave-optics.webp",
+    "alt": "Revision poster for Chapter 10: Wave Optics — covers plane and spherical wavefronts, reflection and refraction of wavefronts, Huygens' principle, and how Huygens' construction derives the laws of reflection and refraction.",
+    "caption": "Full-chapter revision poster — wavefronts, Huygens' principle, and the construction of reflection and refraction laws.",
+    "width": 1024,
+    "height": 1536
+  }
+}

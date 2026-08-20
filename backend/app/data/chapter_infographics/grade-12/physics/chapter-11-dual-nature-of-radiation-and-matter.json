@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 11: Dual Nature of Radiation and Matter",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter11.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-11-dual-nature-of-radiation-and-matter.webp",
+    "alt": "Revision poster for Chapter 11: Dual Nature of Radiation and Matter — covers the photoelectric effect and apparatus, effects of intensity, collector potential and frequency, Einstein's photoelectric equation, work function, and saturation current.",
+    "caption": "Full-chapter revision poster — photoelectric effect, Einstein's equation, work function, and stopping/saturation behaviour.",
+    "width": 1024,
+    "height": 1536
+  }
+}

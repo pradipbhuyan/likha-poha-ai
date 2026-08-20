@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 1: Electric Charges and Fields",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Physics-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-1-electric-charges-and-fields.webp",
+    "alt": "Revision poster for Chapter 1: Electric Charges and Fields — covers the electric field definition, superposition principle, field lines, field due to a point charge, symmetry arguments, and NCERT Example 1.5's centroid symmetry proof of zero net force.",
+    "caption": "Full-chapter revision poster — electric field, superposition, field lines, and the equilateral-triangle symmetry worked example.",
+    "width": 1024,
+    "height": 1536
+  }
+}
