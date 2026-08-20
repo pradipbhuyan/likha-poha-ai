@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 9: Biomolecules",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter9.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-9-biomolecules.webp",
+    "alt": "Chapter 9 Biomolecules revision poster: carbohydrates, proteins, lipids, nucleic acids, functions of biomolecules, tests for biomolecules, structural levels of proteins, biosynthesis, key terms and important points.",
+    "caption": "Full-chapter revision poster on biomolecules: types, tests, and biosynthesis.",
+    "width": 1024,
+    "height": 1536
+  }
+}

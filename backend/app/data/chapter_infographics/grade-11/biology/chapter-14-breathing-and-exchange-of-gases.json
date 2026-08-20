@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 14: Breathing and Exchange of Gases",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter15.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-14-breathing-and-exchange-of-gases.webp",
+    "alt": "Chapter 14 Breathing and Exchange of Gases revision poster: structure for gas exchange, gas exchange curve, factors affecting gas exchange, process of exchange at alveoli, key terms and important points.",
+    "caption": "Full-chapter revision poster on breathing and gas exchange: alveolar structure and diffusion.",
+    "width": 1024,
+    "height": 1536
+  }
+}

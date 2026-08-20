@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 12: Respiration in Plants",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter12.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-12-respiration-in-plants.webp",
+    "alt": "Chapter 12 Respiration in Plants revision poster: aerobic and anaerobic respiration, glycolysis, Krebs cycle, electron transport chain, respiration vs photosynthesis, key terms and important points.",
+    "caption": "Full-chapter revision poster on respiration in plants: glycolysis, Krebs cycle, and ETC.",
+    "width": 1024,
+    "height": 1536
+  }
+}

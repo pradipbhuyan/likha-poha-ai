@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 17: Locomotion and Movement",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter17.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-17-locomotion-and-movement.webp",
+    "alt": "Chapter 17 Locomotion and Movement revision poster: neural signal, calcium release, cross-bridge cycle, band changes during contraction, relaxation, sliding-filament mechanism, key terms and important points.",
+    "caption": "Full-chapter revision poster on locomotion and movement: sliding filament mechanism of muscle contraction.",
+    "width": 1024,
+    "height": 1536
+  }
+}

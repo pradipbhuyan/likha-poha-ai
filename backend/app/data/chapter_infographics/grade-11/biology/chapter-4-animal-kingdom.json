@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 4: Animal Kingdom",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-4-animal-kingdom.webp",
+    "alt": "Chapter 4 Animal Kingdom revision poster: what is the animal kingdom, features of animals, classification of animals, major levels of organisation, habitat and diversity, key characteristics, key terms and important points.",
+    "caption": "Full-chapter revision poster on the animal kingdom: features, organisation, and classification.",
+    "width": 1024,
+    "height": 1536
+  }
+}

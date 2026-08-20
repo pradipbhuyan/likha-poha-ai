@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 16: Excretory Products and their Elimination",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter16.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-16-excretory-products-and-their-elimination.webp",
+    "alt": "Chapter 16 Excretory Products and their Elimination revision poster: main excretory products, organs of excretion, pathway of urine formation, types of excretory products, excretion vs egestion, key terms and important points.",
+    "caption": "Full-chapter revision poster on excretory products: urine formation and excretion vs egestion.",
+    "width": 1024,
+    "height": 1536
+  }
+}

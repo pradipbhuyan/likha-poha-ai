@@ -1,6 +1,6 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 173 chapters — Grade 12 Biology Ch 9, all
+> **Status (2026-08-20):** live on 209 chapters — Grade 12 Biology Ch 9, all
 > 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
 > rejected on review, still on their original poster — see open items), all
 > 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7
@@ -1235,7 +1235,178 @@ fixing posters one at a time.
       an atom-count/mass-balance violation, on top of a formula/IUPAC-name
       mismatch within the same panel — three separate errors compounded
       into one panel.**
-- [ ] Author posters for the remaining 291 chapters (see §2).
+- [ ] **Grade 11 Biology: authoring started 2026-08-20.** Chapters 1-19
+      generated and reviewed (19 chapters total, confirmed against
+      `/api/syllabus` earlier in this doc):
+        - **Chapter 1 "The Living World"** clean — taxonomic hierarchy
+          from order to species correctly ordered (broadest to most
+          specific), Carnivora example (Felidae, Canidae) and Chordata
+          phylum examples (fish/amphibians/reptiles/birds/mammals) all
+          correct. **Applied.**
+        - **Chapter 2 "Biological Classification"** clean — poster covers
+          the classification *process/methodology* (identify features,
+          compare with known groups, logical reasoning, assign to a
+          group) rather than kingdom-specific facts; grep-confirmed this
+          matches the "Worked Examples" lesson step's actual content
+          (which is about classification methodology, not the Whittaker
+          five-kingdom criteria found in a different "Concept
+          Introduction" step of the same chapter) — a scope-limited but
+          grounded poster, not a defect, consistent with the pattern
+          already noted for other chapters. **Applied.**
+        - **Chapter 3 "Plant Kingdom"** clean — major plant groups
+          correctly ordered by complexity (Thallophyta→Bryophyta→
+          Pteridophyta→Gymnosperms→Angiosperms), examples correct
+          (Bryophyta=mosses/liverworts, Pteridophyta=ferns/horsetails,
+          Gymnosperms=Cycas/Pinus, Monocots=wheat/maize/lily,
+          Dicots=pea/hibiscus/sunflower). **Applied.**
+        - **Chapter 4 "Animal Kingdom"** clean — general animal-kingdom
+          overview (multicellular, heterotrophic, eukaryotic; levels of
+          organisation cells→tissues→organs→organ systems→organism)
+          correctly stated; poster covers general features rather than
+          phylum-specific classification, again matching this chapter's
+          "Revision and recap" scope. **Applied.**
+        - **Chapter 5 "Morphology of Flowering Plants"** had a SEVERE
+          defect: the poster's title correctly read "Chapter 5:
+          Morphology of Flowering Plants" but **100% of its panel content
+          was about photosynthesis and limiting factors** (rate-vs-light-
+          intensity curve, regions A/B/C) — zero morphology content (no
+          roots, stems, leaves, flowers, fruits, seeds, or monocot/dicot
+          classification anywhere). Root-caused by inspecting the raw
+          `lesson_cache` CHAPTER_CONTENT directly: this chapter's content
+          genuinely contains a "Worked Example: Photosynthesis and
+          Limiting Factors" section (grep-confirmed as the FIRST content
+          block in CHAPTER_CONTENT) that belongs to Chapter 11
+          "Photosynthesis in Higher Plants" — a `lesson_cache`-level
+          content-mixing defect, not a pure poster-generation
+          hallucination, though the poster generator's choice to
+          visualize the first/most prominent section instead of the
+          correct material (which DOES exist further down in the same
+          file, under "Concept Introduction: Morphology of Flowering
+          Plants" and "Core explanation: Chapter 5") compounded the
+          problem. The correct material includes a worked example
+          classifying a plant with parallel venation, flower parts in
+          threes, and fibrous roots as a monocot. **Not applied.** Sent a
+          regeneration prompt
+          (`~/Downloads/Grade11_Biology_Missing_Posters_Prompts_2026-08-20/
+          Grade11_Biology_Chapter5_PROMPT.txt`) with a HARD RULE 0 naming
+          the exact photosynthesis section to ignore, pointing to the
+          exact correct-material headings to use instead, and supplying
+          the correct worked example verbatim. Pending the regenerated
+          image. **This is a new, fifth failure mode for this rollout:
+          a genuine content-mixing defect in the underlying `lesson_cache`
+          row itself (two different chapters' material concatenated into
+          one), distinct from cross-chapter template bleeds, fabricated
+          examples, and closing-strip bleeds catalogued earlier — the
+          poster generator picked the wrong (but genuinely present)
+          section rather than hallucinating content from nothing.**
+        - **Chapter 6 "Anatomy of Flowering Plants"** clean — dorsiventral
+          dicot leaf (bifacial, differentiated palisade/spongy mesophyll,
+          stomata mainly lower surface) vs isobilateral monocot leaf
+          (undifferentiated mesophyll, stomata both surfaces, bulliform
+          cells, parallel venation) correctly distinguished; bundle-sheath
+          presence correctly noted as a monocot feature. **Applied.**
+        - **Chapter 7 "Structural Organisation in Animals"** clean — frog
+          circulatory system (closed circulation, sinus venosus receiving
+          blood from venae cavae, conus arteriosus with spiral valve
+          folds) and blood-flow sequence (Sinus Venosus→Right Atrium→
+          Ventricle+Conus Arteriosus→Arteries→Body→Back to Heart)
+          correctly ordered; portal systems (hepatic/renal), lymphatic
+          system, and excretory system all correct. **Applied.**
+        - **Chapter 8 "Cell: The Unit of Life"** clean — cell theory
+          correctly stated, prokaryotic vs eukaryotic correctly
+          distinguished, plant cell (cell wall, chloroplast, large
+          vacuole) vs animal cell (no cell wall, central nucleus)
+          correctly distinguished, organelle functions all correct.
+          **Applied.**
+        - **Chapter 9 "Biomolecules"** clean — photosynthesis equation
+          (6CO₂+6H₂O→C₆H₁₂O₆+6O₂) hand-verified balanced (C:6=6, O:18=18,
+          H:12=12); biomolecule tests (Molisch=carbohydrates,
+          Biuret=proteins, Sudan III=lipids, Diphenylamine=nucleic acids)
+          and protein structural levels (primary→quaternary) all correct.
+          **Applied.**
+        - **Chapter 10 "Cell Cycle and Cell Division"** clean — poster
+          covers Meiosis II specifically (Interkinesis→Prophase II→
+          Metaphase II→Anaphase II→Telophase II/Cytokinesis, correctly
+          ordered); Mitosis vs Meiosis differences table (divisions 1 vs
+          2, daughter cells 2 vs 4, ploidy same vs half, genetically
+          identical vs different) all correct. **Applied.**
+        - **Chapter 11 "Photosynthesis in Higher Plants"** clean — this
+          IS the correct home for the rate-vs-light-intensity curve and
+          limiting-factors content that erroneously appeared on Chapter
+          5's poster; C3/C4/CAM pathway comparison (first stable product
+          PGA vs OAA vs night-time CO2 fixation, water-use-efficiency
+          Low<Medium<High) all correct. **Applied.**
+        - **Chapter 12 "Respiration in Plants"** clean — glucose (6C) →
+          2 pyruvate (3C each) hand-verified balanced; glycolysis net
+          2 ATP + 2 NADH, Krebs cycle per acetyl-CoA (3 NADH + 1 FADH₂ +
+          2 CO₂ + 1 ATP), ETC (O₂ as final electron acceptor, water
+          formed), and anaerobic respiration (glucose→ethanol+CO₂) all
+          correct standard NCERT figures. **Applied.**
+        - **Chapter 13 "Plant Growth and Development"** clean — growth
+          hormones correctly listed (Auxin=elongation/apical dominance,
+          Gibberellin=stem elongation/germination, Cytokinin=cell
+          division, Ethylene=ripening/abscission, Abscisic acid=growth
+          inhibitor/dormancy) and life-cycle sequence (Seed→Germination→
+          Seedling→Vegetative Growth→Maturity→Flowering/Fruiting→Seed
+          Formation) correctly ordered. **Applied.**
+        - **Chapter 14 "Breathing and Exchange of Gases"** clean — gas
+          exchange direction correctly shown (O₂ alveoli→blood, CO₂
+          blood→alveoli, both down their respective concentration
+          gradients); found this image saved under a mislabeled filename
+          ("Chapter15.png") in the initial batch — the poster's own
+          title bar correctly read "Chapter 14," confirming it was a
+          filename mixup rather than a content defect; verified against
+          a later, correctly-named duplicate file with identical content.
+          **Applied** (using the mislabeled file; the correctly-named
+          duplicate that arrived later was visually confirmed identical
+          and not re-applied).
+        - **Chapter 15 "Body Fluids and Circulation"** clean (image
+          arrived in a later batch) — blood composition hematocrit
+          values (plasma ~55%, buffy coat/WBC+platelets <1%, RBC ~45%)
+          and plasma water content (90-92%) match standard NCERT values;
+          double-circulation sequence (Body→Right Atrium→Right
+          Ventricle→Lungs→Left Atrium→Left Ventricle→Body) correctly
+          ordered; arteries/veins/capillaries correctly distinguished.
+          **Applied.**
+        - **Chapter 16 "Excretory Products and their Elimination"**
+          clean — excretory products (CO₂, urea, uric acid, excess
+          water/salts) and nitrogenous-waste classification
+          (ammonotelism/ureotelism/uricotelism) correct; urine-formation
+          pathway (Filtration→Reabsorption→Secretion→Urine) correctly
+          ordered; excretion vs egestion correctly distinguished.
+          **Applied.**
+        - **Chapter 17 "Locomotion and Movement"** clean — poster covers
+          the sliding-filament mechanism specifically (motor neuron→ACh
+          release→Ca²⁺ release from sarcoplasmic reticulum→Ca²⁺ binds
+          troponin→tropomyosin shift exposes myosin-binding sites→
+          cross-bridge cycling); band changes during contraction
+          hand-verified correct (I-band and H-zone narrow, A-band
+          unchanged, Z-lines move closer) — matches standard NCERT muscle
+          physiology exactly. **Applied.**
+        - **Chapter 18 "Neural Control and Coordination"** clean — poster
+          covers synaptic transmission specifically; electrical synapses
+          (direct current flow, gap junctions, fast/bidirectional) vs
+          chemical synapses (neurotransmitter release, unidirectional)
+          correctly distinguished, with an explicit "Common Mistake"
+          panel correcting the misconception that electrical synapses use
+          neurotransmitters; synaptic-transmission sequence (action
+          potential→Ca²⁺ influx→vesicle fusion→neurotransmitter
+          diffusion→receptor binding→ion channel opening→postsynaptic
+          response) correctly ordered. **Applied.**
+        - **Chapter 19 "Chemical Coordination and Integration"** clean —
+          hypothalamic-pituitary axis worked example hand-verified correct
+          (GnRH stimulates gonadotropin cells → increases FSH/LH →
+          increases gonadotropin secretion; somatostatin/GHIH inhibits
+          somatotroph cells → decreases growth hormone secretion); direct
+          control of posterior pituitary (hypothalamic neurons directly
+          synthesize hormones stored/released from posterior pituitary)
+          correctly distinguished from anterior pituitary's indirect
+          portal-vessel control. **Applied.**
+      **Grade 11 Biology: 18 of 19 chapters applied and clean** (Ch 1-4,
+      6-19). Chapter 5 pending regeneration (prompt ready, see above) —
+      the only Grade 11 Biology chapter remaining, and the only Grade 11
+      chapter of any subject remaining given Mathematics and Physics are
+      both already complete.
 - [ ] **Decide the review gate** before bulk apply — the failure mode is a
       confidently wrong revision poster, which is worse than none.
 - [ ] Decide whether to delete the `chapter-summary` text path (§6).

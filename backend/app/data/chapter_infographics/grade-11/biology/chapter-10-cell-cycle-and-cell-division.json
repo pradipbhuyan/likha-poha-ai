@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 10: Cell Cycle and Cell Division",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter10.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-10-cell-cycle-and-cell-division.webp",
+    "alt": "Chapter 10 Cell Cycle and Cell Division revision poster: meiosis II stages, mitosis vs meiosis differences, importance of meiosis, key terms and important points.",
+    "caption": "Full-chapter revision poster on cell cycle and cell division: meiosis II and mitosis vs meiosis.",
+    "width": 1024,
+    "height": 1536
+  }
+}

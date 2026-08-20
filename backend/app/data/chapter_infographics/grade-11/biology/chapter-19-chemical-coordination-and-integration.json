@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 19: Chemical Coordination and Integration",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter19.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-19-chemical-coordination-and-integration.webp",
+    "alt": "Chapter 19 Chemical Coordination and Integration revision poster: endocrine glands, hormone definition, hypothalamic neurosecretory nuclei, portal control of pituitary, chemical vs neural coordination, key terms and important points.",
+    "caption": "Full-chapter revision poster on chemical coordination: hypothalamic-pituitary control and hormones.",
+    "width": 1024,
+    "height": 1536
+  }
+}

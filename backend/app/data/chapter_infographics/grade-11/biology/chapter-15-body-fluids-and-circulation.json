@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 15: Body Fluids and Circulation",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter15.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-15-body-fluids-and-circulation.webp",
+    "alt": "Chapter 15 Body Fluids and Circulation revision poster: body fluids, components of blood, formed elements, blood vessels, the heart as a pump, double circulation, key terms and important points.",
+    "caption": "Full-chapter revision poster on body fluids and circulation: blood composition and double circulation.",
+    "width": 1024,
+    "height": 1536
+  }
+}

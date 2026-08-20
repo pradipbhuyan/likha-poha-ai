@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 18: Neural Control and Coordination",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter18.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-18-neural-control-and-coordination.webp",
+    "alt": "Chapter 18 Neural Control and Coordination revision poster: electrical and chemical synapses, vesicle release, receptor binding, excitation and inhibition, chemical synaptic transmission sequence, key terms and important points.",
+    "caption": "Full-chapter revision poster on neural control: synaptic transmission and excitation/inhibition.",
+    "width": 1024,
+    "height": 1536
+  }
+}

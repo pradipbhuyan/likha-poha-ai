@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 8: Cell: The Unit of Life",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter8.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-8-cell-the-unit-of-life.webp",
+    "alt": "Chapter 8 Cell The Unit of Life revision poster: cell theory, types of cells, structure of plant and animal cells, cell organelles and functions, cell membrane, importance of studying cells, key terms and important points.",
+    "caption": "Full-chapter revision poster on the cell: cell theory, structure, and organelle functions.",
+    "width": 1024,
+    "height": 1536
+  }
+}

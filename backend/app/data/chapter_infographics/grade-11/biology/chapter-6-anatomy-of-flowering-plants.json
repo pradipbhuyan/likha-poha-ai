@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 6: Anatomy of Flowering Plants",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-6-anatomy-of-flowering-plants.webp",
+    "alt": "Chapter 6 Anatomy of Flowering Plants revision poster: leaf anatomy comparing dicots and monocots, dorsiventral vs isobilateral leaves, vascular bundles, venation, key terms and important points.",
+    "caption": "Full-chapter revision poster on anatomy of flowering plants: leaf structure in dicots and monocots.",
+    "width": 1024,
+    "height": 1536
+  }
+}

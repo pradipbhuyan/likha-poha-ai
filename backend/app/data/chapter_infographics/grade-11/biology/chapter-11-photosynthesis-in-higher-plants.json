@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 11: Photosynthesis in Higher Plants",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter11.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-11-photosynthesis-in-higher-plants.webp",
+    "alt": "Chapter 11 Photosynthesis in Higher Plants revision poster: rate vs light intensity curve, factors affecting the rate, comparison of C3 C4 and CAM pathways, exam-style problem approach, key terms and important points.",
+    "caption": "Full-chapter revision poster on photosynthesis: rate-limiting factors and C3/C4/CAM pathways.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 1: The Living World",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-1-the-living-world.webp",
+    "alt": "Chapter 1 The Living World revision poster: taxonomic hierarchy from order to species, kingdom, phylum, class, increasing inclusiveness, key idea, key terms and important points.",
+    "caption": "Full-chapter revision poster on the living world: taxonomic hierarchy and classification ranks.",
+    "width": 1024,
+    "height": 1536
+  }
+}

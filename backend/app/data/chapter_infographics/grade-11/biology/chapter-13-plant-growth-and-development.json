@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 13: Plant Growth and Development",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter13.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-13-plant-growth-and-development.webp",
+    "alt": "Chapter 13 Plant Growth and Development revision poster: plant growth and development, stages of plant life cycle, growth regulators, factors affecting growth, key terms and important points.",
+    "caption": "Full-chapter revision poster on plant growth and development: hormones and life cycle stages.",
+    "width": 1024,
+    "height": 1536
+  }
+}

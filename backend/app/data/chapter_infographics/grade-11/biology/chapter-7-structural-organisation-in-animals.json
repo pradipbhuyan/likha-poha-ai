@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 7: Structural Organisation in Animals",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-7-structural-organisation-in-animals.webp",
+    "alt": "Chapter 7 Structural Organisation in Animals revision poster: frog heart and circulation, portal systems, lymphatic system, excretory system, flow of blood in frog, key terms and important points.",
+    "caption": "Full-chapter revision poster on structural organisation in animals: frog circulatory and excretory systems.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Chapter 3: Plant Kingdom",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Biology-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/biology/chapter-3-plant-kingdom.webp",
+    "alt": "Chapter 3 Plant Kingdom revision poster: earlier placement, artificial systems, natural systems, phylogenetic systems, numerical taxonomy, chemotaxonomy, major groups of plants, key terms and important points.",
+    "caption": "Full-chapter revision poster on the plant kingdom: classification systems and major plant groups.",
+    "width": 1024,
+    "height": 1536
+  }
+}
