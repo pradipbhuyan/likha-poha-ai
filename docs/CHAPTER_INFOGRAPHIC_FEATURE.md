@@ -1,17 +1,19 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 211 chapters — Grade 12 Biology Ch 9, all
-> 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
-> rejected on review, still on their original poster — see open items), all
-> 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7
-> Maths chapters, all 14 Grade 8 Maths chapters, all 13 Grade 8 Science
-> chapters, all 8 Grade 9 Maths chapters, all 13 Grade 9 Science chapters,
-> all 28 Grade 10 chapters (14 Maths + 13 Science), and all 56 Grade 11
-> chapters (14 Maths + 14 Physics + 9 Chemistry + 19 Biology). Grade 5,
-> Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9
-> (Maths + Science), Grade 10 (Maths + Science), and **Grade 11 (all four
-> subjects) are all complete and clean.** 90 of 292 in-scope chapters
-> remain (all in Grade 12, minus the one already-live Grade 12 chapter).
+> **Status (2026-08-20):** live on 220 chapters — Grade 12 Biology Ch 9, all
+> 9 Grade 12 Mathematics chapters, all 10 Grade 5 EVS chapters, all 15 Grade 5
+> Maths chapters (12 replaced; 13-15 rejected on review, still on their
+> original poster — see open items), all 10 Grade 6 Maths chapters, all 12
+> Grade 6 Science chapters, all 15 Grade 7 Maths chapters, all 14 Grade 8
+> Maths chapters, all 13 Grade 8 Science chapters, all 8 Grade 9 Maths
+> chapters, all 13 Grade 9 Science chapters, all 28 Grade 10 chapters
+> (14 Maths + 13 Science), and all 56 Grade 11 chapters (14 Maths + 14
+> Physics + 9 Chemistry + 19 Biology). Grade 5, Grade 6, Grade 7 Maths,
+> Grade 8 (Maths + Science), Grade 9 (Maths + Science), Grade 10
+> (Maths + Science), **Grade 11 (all four subjects), and Grade 12
+> Mathematics are all complete and clean.** 81 of 292 in-scope chapters
+> remain (all in Grade 12 Physics, Chemistry, and Biology minus the one
+> already-live Grade 12 Biology chapter).
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -564,6 +566,31 @@ fixing posters one at a time.
       (Ch 1-6, 8, 9). Chapter 7 pending a third regeneration round
       (prompt ready, see above) — the only remaining Grade 12 Mathematics
       chapter.
+
+      **Third regeneration reviewed 2026-08-20 (later the same day):
+      fully fixed, no new defects.** The partial-fractions worked
+      example now correctly reads "A+B=2, −2A−B=−1, solving A=−1, B=3"
+      and shows an explicit verification step at x=3
+      (LHS=(2(3)−1)/((3−1)(3−2))=5/2, RHS=−1/(3−1)+3/(3−2)=−1/2+3=5/2 ✓)
+      — independently hand-verified to match exactly. The final answer
+      correctly reads "−ln|x−1|+3ln|x−2|+C" (with the minus sign now
+      present). The integration-by-parts worked example (∫xeˣdx=xeˣ−eˣ+C
+      =eˣ(x−1)+C) includes its own verification step
+      (d/dx[eˣ(x−1)]=eˣ(x−1)+eˣ=xeˣ ✓), also hand-confirmed correct, plus
+      a second by-parts example (∫x·sinx dx=−x·cosx+sinx+C) for repeated
+      use. Closing strips remain integrals-specific with no bleed.
+      **Applied** (alt 160 chars, under the Trap 6 limit).
+
+      **Grade 12 Mathematics is now COMPLETE — all 9 of 9 chapters
+      applied and clean** (Ch 1-9). This took three regeneration rounds
+      total for Chapter 7 across this session: (1) original closing-
+      strip bleed from Chapter 4, (2) bleed fixed but a new sign error
+      appeared in the partial-fractions example, (3) sign error fixed
+      with no new defects — the same three-round pattern seen earlier
+      in this doc for Grade 10 Maths Chapter 7 and Grade 11 Chemistry
+      Chapter 9. Joins Grade 5, Grade 6, Grade 7 Maths, Grade 8
+      (Maths + Science), Grade 9 (Maths + Science), Grade 10
+      (Maths + Science), and all four Grade 11 subjects as fully done.
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

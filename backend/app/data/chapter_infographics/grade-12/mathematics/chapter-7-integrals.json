@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Mathematics",
+  "chapter": "Chapter 7: Integrals",
+  "step_title": "Revision and recap",
+  "source_image": "Grade12-Maths-Chapter7-Regen-v2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/mathematics/chapter-7-integrals.webp",
+    "alt": "Chapter 7 Integrals revision poster: partial fractions, integration by parts, LIATE rule, two worked examples with verification, key terms and important points.",
+    "caption": "Full-chapter revision poster on integrals: partial fractions and integration by parts.",
+    "width": 1024,
+    "height": 1536
+  }
+}
