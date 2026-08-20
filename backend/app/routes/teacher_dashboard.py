@@ -258,6 +258,17 @@ def create_student(data: CreateStudentRequest, teacher=Depends(require_teacher))
             detail=f"INVALID_GRADE: '{grade}' is not a recognised grade.",
         )
 
+    # A username collision here isn't just cosmetic: get_child_analytics and
+    # load_progress_by_username/load_test_history_by_username (this module)
+    # filter student_progress/test_history by the username STRING, so a new
+    # student sharing a name with an existing profile inherits that
+    # profile's mock test scores and progress. See
+    # docs/sql/2026-08-16_check_username_uniqueness.sql and the "likha"
+    # incident it predicted (2026-08-20).
+    from app.routes.auth import _reject_reserved_username, _reject_taken_username  # noqa: PLC0415
+    _reject_reserved_username(username)
+    _reject_taken_username(username, client=admin_client)
+
     # ── Enforce student limit (backend) ──────────────────────────────────
     is_free = is_free_tier_user(teacher_id)
     max_students = FREE_TEACHER_MAX_STUDENTS if is_free else PAID_TEACHER_MAX_STUDENTS

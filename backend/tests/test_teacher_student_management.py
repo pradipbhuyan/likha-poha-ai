@@ -122,7 +122,16 @@ class FakeTable:
         return self
 
     def eq(self, key, value):
-        self._filters.append((key, value))
+        self._filters.append(("eq", key, value))
+        return self
+
+    # _reject_taken_username() (added 2026-08-20, see test_tenant_isolation.py)
+    # pre-checks a new student's username via .ilike() before create_student
+    # does anything else — none of these tests simulate a collision, so this
+    # just needs to participate in the same case-insensitive-ish filtering
+    # as .eq() rather than raise AttributeError.
+    def ilike(self, key, value):
+        self._filters.append(("ilike", key, value))
         return self
 
     def limit(self, n):
@@ -134,11 +143,19 @@ class FakeTable:
     def single(self):
         return self
 
+    def _row_matches(self, row):
+        for op, k, v in self._filters:
+            cell = row.get(k)
+            if op == "eq" and cell != v:
+                return False
+            if op == "ilike" and str(cell or "").lower() != str(v or "").lower():
+                return False
+        return True
+
     def execute(self):
         if self.table_name == "teacher_student_assignments":
             if self._op == "select":
-                rows = [r for r in self.client.assignments
-                        if all(r.get(k) == v for k, v in self._filters)]
+                rows = [r for r in self.client.assignments if self._row_matches(r)]
                 return FakeResponse(rows)
             if self._op == "insert":
                 self.client.assignments.append({
@@ -149,8 +166,7 @@ class FakeTable:
 
         if self.table_name == "profiles":
             if self._op == "select":
-                rows = [r for r in self.client.profiles
-                        if all(r.get(k) == v for k, v in self._filters)]
+                rows = [r for r in self.client.profiles if self._row_matches(r)]
                 return FakeResponse(rows)
             if self._op == "insert":
                 self.client.profiles.append({**self._payload})
@@ -493,6 +509,65 @@ class TestStudentCreationValidation:
         assigned = [a for a in fake_client.assignments if a.get("teacher_id") == teacher_id]
         assert len(assigned) == 1
         assert assigned[0]["student_id"] == "auto-assigned-student"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 2b. Username uniqueness — teacher-created students (added 2026-08-20)
+# ─────────────────────────────────────────────────────────────────────────────
+# See docs/sql/2026-08-16_check_username_uniqueness.sql and
+# tests/test_tenant_isolation.py: get_child_analytics and
+# load_progress_by_username/load_test_history_by_username (teacher_dashboard.py)
+# filter student data by the username STRING, not profile id, so a
+# teacher-created student sharing a name with any other profile — a parent's
+# child, another teacher's student, anyone — inherits that profile's mock
+# test scores and progress. Teacher-initiated creation is a fifth entry
+# point alongside complete_signup, signup_free, signup_with_offer_code, and
+# parent_dashboard.create_student.
+
+class TestTeacherCreateStudentUsernameUniqueness:
+
+    def test_rejects_username_already_used_by_any_profile(self, monkeypatch):
+        """A teacher cannot create a student whose name collides with ANY
+        existing profile, not just their own roster — the leak this guards
+        against isn't scoped to one teacher's students."""
+        teacher = _free_teacher()
+        fake_client = FakeAdminClient(
+            assignments=[],
+            # The colliding profile belongs to someone else entirely —
+            # a different family's child, not this teacher's.
+            profiles=[{"id": "unrelated-child", "username": "likha", "role": "student"}],
+        )
+        monkeypatch.setattr(teacher_route, "admin_client", fake_client)
+        monkeypatch.setattr(teacher_route, "is_free_tier_user", lambda uid: True)
+
+        with pytest.raises(HTTPException) as exc:
+            teacher_route.create_student(
+                CreateStudentRequest(username="likha", grade="Grade 9", password="pass123"),
+                teacher=teacher,
+            )
+        assert exc.value.status_code == 409
+        assert "already taken" in exc.value.detail.lower()
+
+    def test_allows_genuinely_new_username(self, monkeypatch):
+        """Sanity check: the guard doesn't block ordinary, non-colliding creation."""
+        teacher = _free_teacher()
+        teacher_id = teacher["profile"]["id"]
+        fake_client = FakeAdminClient(
+            assignments=[],
+            profiles=[{"id": teacher_id, "role": "teacher", "access_cbse": False, "subscription_expires_at": None}],
+        )
+        monkeypatch.setattr(teacher_route, "admin_client", fake_client)
+        monkeypatch.setattr(teacher_route, "is_free_tier_user", lambda uid: True)
+
+        mock_user = MagicMock()
+        mock_user.id = "brand-new-student"
+        monkeypatch.setattr(teacher_route, "create_auth_user", lambda **kwargs: mock_user)
+
+        result = teacher_route.create_student(
+            CreateStudentRequest(username="Genuinely New Name", grade="Grade 9", password="pass123"),
+            teacher=teacher,
+        )
+        assert result["success"] is True
 
 
 # ─────────────────────────────────────────────────────────────────────────────

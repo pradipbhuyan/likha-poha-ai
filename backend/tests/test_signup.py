@@ -19,6 +19,23 @@ def fake_razorpay_order(plan_key="free"):
     return {"id": f"order_{plan_key}_test123", "status": "created"}
 
 
+class NoCollisionAdminClient:
+    """
+    Minimal admin_client stand-in for tests whose only DB interaction is
+    _reject_taken_username()'s pre-insert lookup (added 2026-08-20 — see
+    test_tenant_isolation.py). Always reports "no existing profile", so
+    tests exercising an earlier rejection (bad signature, payment not
+    configured, etc.) reach that check instead of a real network call.
+    """
+    def table(self, *_): return self
+    def select(self, *_): return self
+    def eq(self, *_): return self
+    def ilike(self, *_): return self
+    def limit(self, *_): return self
+    def execute(self):
+        return type("R", (), {"data": []})()
+
+
 def fake_auth_user(user_id="user-abc-123"):
     """Return a minimal fake Supabase auth user object."""
     class FakeUser:
@@ -482,6 +499,7 @@ class TestCompleteSignup:
 
     def test_complete_signup_rejects_bad_payment_signature(self, monkeypatch):
         """complete-signup returns 400 when the Razorpay signature does not verify."""
+        monkeypatch.setattr(auth_module, "admin_client", NoCollisionAdminClient())
         monkeypatch.setattr(auth_module, "_razorpay_is_configured", lambda: True)
         monkeypatch.setattr(auth_module, "_verify_signature", lambda *_: False)
         monkeypatch.setattr(auth_module, "_get_plan", lambda pk: {
@@ -506,6 +524,7 @@ class TestCompleteSignup:
 
     def test_complete_signup_rejects_when_payment_not_configured(self, monkeypatch):
         """complete-signup returns 503 when Razorpay is not configured."""
+        monkeypatch.setattr(auth_module, "admin_client", NoCollisionAdminClient())
         monkeypatch.setattr(auth_module, "_razorpay_is_configured", lambda: False)
 
         from fastapi import HTTPException
