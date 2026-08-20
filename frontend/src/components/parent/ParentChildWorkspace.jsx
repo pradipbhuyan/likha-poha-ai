@@ -1,9 +1,8 @@
 /**
  * ParentChildWorkspace.jsx
  * Redesigned child detail workspace — story-driven, parent-friendly.
- * 9 meaningful sections: Overview, Today's Plan, Progress Story,
- * Strengths & Needs, Mock Tests, Homework & Exams, Notifications,
- * Platform Access, Report
+ * 8 meaningful sections: Overview, Today's Plan, Progress Story,
+ * Strengths & Needs, Mock Tests, Homework & Exams, Notifications, Report
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -12,7 +11,6 @@ import {
   getChildAcademicInsights,
   getChildProgressReport,
 } from "../../api/parentDashboard";
-import ParentAccessExplanation from "./ParentAccessExplanation";
 import ParentProgressStory from "./ParentProgressStory";
 import ParentNotificationGroups from "./ParentNotificationGroups";
 
@@ -51,7 +49,6 @@ var TABS=[
   {key:"mock",        label:"Mock Tests"},
   {key:"homework",    label:"Homework"},
   {key:"notifs",      label:"Notifications"},
-  {key:"access",      label:"Access"},
   {key:"report",      label:"Report"},
 ];
 
@@ -511,7 +508,6 @@ export default function ParentChildWorkspace({child, onClose, onUpgrade}){
         {tab==="mock"      &&<MockTestsSection detail={detail} plan={plan} onUpgrade={onUpgrade}/>}
         {tab==="homework"  &&<HomeworkExamsSection insights={insights}/>}
         {tab==="notifs"    &&<ParentNotificationGroups notifications={allNotifs}/>}
-        {tab==="access"    &&<ParentAccessExplanation plan={plan} featureBadges={detail?.feature_badges} subscription={detail?.subscription} onUpgrade={onUpgrade}/>}
         {tab==="report"    &&<ReportSection report={report} loading={loadingReport}/>}
       </div>
     </div>

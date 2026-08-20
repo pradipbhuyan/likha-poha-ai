@@ -10,8 +10,6 @@
  * - Recommendation card shows reason and action
  * - Child workspace opens from child card
  * - Missing progress data shows friendly explanation
- * - Platform Access uses "Platform Access" terminology, not "CBSE Access"
- * - Paid plan shows full access
  * - Expired paid plan shows Free Tier fallback
  * - Report section includes "Teacher-private notes are not included."
  * - Print button exists and does not crash
@@ -122,7 +120,6 @@ vi.mock("../api/parentDashboard", () => ({
 import ParentDashboardPage from "../pages/ParentDashboardPage";
 import ParentChildStatusCard from "../components/parent/ParentChildStatusCard";
 import ParentActionPlan from "../components/parent/ParentActionPlan";
-import ParentAccessExplanation from "../components/parent/ParentAccessExplanation";
 import ParentProgressStory from "../components/parent/ParentProgressStory";
 
 const USER = { id: "p1", role: "parent", username: "TestParent" };
@@ -201,38 +198,6 @@ describe("ParentDashboardPage Phase 3", () => {
       <ParentChildStatusCard child={FREE_CHILD} onView={vi.fn()} onUpgrade={vi.fn()} />
     );
     expect(container.textContent).toContain("Free Tier");
-  });
-});
-
-describe("ParentAccessExplanation Phase 3", () => {
-  test("uses Platform Access terminology, not CBSE Access", () => {
-    const { container } = render(
-      <ParentAccessExplanation plan={FREE_CHILD.plan} featureBadges={FREE_CHILD.feature_badges} subscription={FREE_CHILD.subscription} onUpgrade={vi.fn()} />
-    );
-    expect(container.textContent).not.toContain("CBSE Access");
-    expect(container.textContent).toContain("Platform");
-  });
-
-  test("Free Tier shows Restricted Platform Access", () => {
-    const { container } = render(
-      <ParentAccessExplanation plan={FREE_CHILD.plan} featureBadges={[]} subscription={FREE_CHILD.subscription} onUpgrade={vi.fn()} />
-    );
-    expect(container.textContent).toContain("Restricted Platform Access");
-  });
-
-  test("Paid plan shows Full Platform Access", () => {
-    const { container } = render(
-      <ParentAccessExplanation plan={PAID_CHILD.plan} featureBadges={[]} subscription={PAID_CHILD.subscription} onUpgrade={vi.fn()} />
-    );
-    expect(container.textContent).toContain("Full Platform Access");
-  });
-
-  test("Free Tier shows Upgrade CTA", () => {
-    const { container } = render(
-      <ParentAccessExplanation plan={FREE_CHILD.plan} featureBadges={[]} subscription={FREE_CHILD.subscription} onUpgrade={vi.fn()} />
-    );
-    expect(container.querySelector("button")).toBeTruthy();
-    expect(container.textContent).toContain("Upgrade");
   });
 });
 
