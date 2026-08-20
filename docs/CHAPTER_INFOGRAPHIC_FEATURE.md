@@ -1193,6 +1193,48 @@ fixing posters one at a time.
           the poster. Pending the regenerated image.
       **Grade 11 Chemistry: 8 of 9 chapters applied and clean** (Ch 1-8).
       Chapter 9 pending regeneration (prompt ready, see above).
+
+      **Regenerated Chapter 9 reviewed 2026-08-20 (later the same day) —
+      the equilibrium bleed is fixed, but a NEW defect appeared.** The
+      "Direction of Reaction using Reaction Quotient (Q) and Equilibrium
+      Constant (K)" panel is confirmed gone — the poster now covers only
+      structure of alkenes, geometrical isomerism, addition reactions,
+      Markovnikov's rule, anti-Markovnikov (peroxide) addition, oxidation,
+      ozonolysis, polymerisation, and four alkene-preparation methods, all
+      grep/hand-verified correct except one: the fourth preparation-method
+      panel, "Dehalogenation of Tetrahalides," shows a chemically
+      impossible example — CHBr₃ (labelled "1,1,1-Tribromoethane," which
+      is itself a mislabel: CHBr₃ is actually tribromomethane/bromoform, a
+      **one-carbon** compound, while 1,1,1-tribromoethane would be
+      CH₃-CBr₃, a two-carbon compound) is shown reacting with Zn to
+      produce CHBr=CHBr (1,2-dibromoethene, a **two-carbon** compound) —
+      dehalogenation with Zn cannot form new carbon-carbon bonds, so a
+      one-carbon reactant cannot yield a two-carbon product under any
+      circumstance. Grep-confirmed this exact example does not appear
+      anywhere in CHAPTER_CONTENT — fabricated outright, combining a
+      formula/name mismatch with an atom-count-violating "reaction." All
+      other panels (structure of alkenes, cis/trans isomerism of but-2-ene,
+      the five addition-reaction types, Markovnikov's rule worked example,
+      peroxide-effect worked example, mild/vigorous oxidation of alkenes,
+      ozonolysis of but-2-ene, polymerisation of ethene, and preparation
+      methods 1-3: dehydration of ethanol, dehydrohalogenation of ethyl
+      bromide, dehalogenation of 1,2-dibromoethane) were all hand-verified
+      correct and standard. **Not applied.** Sent a second regeneration
+      prompt
+      (`~/Downloads/Grade11_Chemistry_Missing_Posters_Prompts_2026-08-20/
+      Grade11_Chemistry_Chapter9_PROMPT_v2.txt`) that keeps the working
+      HARD RULE 0 (equilibrium content, confirmed fixed — left unchanged)
+      and adds a new HARD RULE 0B quoting the exact broken example
+      verbatim, explaining precisely why it is impossible (no C-C bond
+      formation in this reaction type), and supplying the correct
+      standard substitute: 1,1,2,2-tetrabromoethane (CHBr₂-CHBr₂, two
+      carbons, four bromines) + 2Zn → 1,2-dibromoethene + 2ZnBr₂, which
+      balances correctly. Pending the next regenerated image. **This is
+      the fourth distinct failure mode combination catalogued in this
+      rollout: a fabricated example that is ALSO internally broken by
+      an atom-count/mass-balance violation, on top of a formula/IUPAC-name
+      mismatch within the same panel — three separate errors compounded
+      into one panel.**
 - [ ] Author posters for the remaining 291 chapters (see §2).
 - [ ] **Decide the review gate** before bulk apply — the failure mode is a
       confidently wrong revision poster, which is worse than none.
