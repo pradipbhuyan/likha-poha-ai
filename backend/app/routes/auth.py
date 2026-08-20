@@ -615,6 +615,7 @@ def oauth_complete_profile(
                     role=role,
                     is_paid=False,
                     plan_name="",
+                    school=school_clean,
                 )
             except Exception:
                 pass  # Email send must never block signup
@@ -738,6 +739,7 @@ def oauth_complete_profile(
                 role=role,
                 is_paid=False,
                 plan_name="",
+                school=school_clean,
             )
         except Exception:
             pass  # Email send must never block signup
@@ -1187,6 +1189,7 @@ def complete_signup(data: CompleteSignupRequest):
             role=role,
             is_paid=True,
             plan_name=_pn,
+            school=base_profile.get("school_name", ""),
         )
     except Exception:
         pass  # Email send must never block signup
@@ -1378,6 +1381,7 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
             plan_name="",
             grade=base_profile.get("grade", ""),
             stream=base_profile.get("stream", ""),
+            school=base_profile.get("school_name", ""),
         )
     except Exception:
         pass  # Email send must never block signup
@@ -1479,6 +1483,7 @@ def teacher_signup(data: TeacherSignupRequest, _rl=Depends(rate_limit_dependency
             role="teacher",
             is_paid=False,
             plan_name="",
+            school=school_clean,
         )
     except Exception:
         pass  # Email send must never block signup
@@ -1745,6 +1750,7 @@ def signup_with_offer_code(data: OfferCodeSignupRequest, _rl=Depends(rate_limit_
             role=role,
             is_paid=False,
             plan_name="Offer Access",
+            school=(data.school or "").strip(),
         )
     except Exception:
         pass  # Email send must never block signup

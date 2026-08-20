@@ -33,6 +33,9 @@ _BRAND_COLOR = "#6366f1"
 _FRONTEND_URL = os.getenv("FRONTEND_URL", "https://likhapoha.in")
 # Logo always uses the production domain — never localhost — so it renders in email clients
 _LOGO_URL = "https://likhapoha.in/favicon.png"
+# Internal inbox that gets pinged whenever a new teacher signs up, so someone
+# reviews the school details and approves the account (see require_teacher()).
+_ADMIN_NOTIFICATION_EMAIL = "likhapohaai@gmail.com"
 
 
 # ── SMTP helpers ──────────────────────────────────────────────────────────────
@@ -583,6 +586,78 @@ _FREE_TIER_NOTICE = """
 </div>"""
 
 
+# ── Admin notification — new teacher signup ────────────────────────────────
+
+def send_teacher_signup_admin_notification(name: str, email: str, school: str) -> None:
+    """
+    Notify the team inbox whenever a new teacher account is created, so
+    someone reviews the school details and approves it via
+    POST /api/admin/support/users/{id}/verify-teacher (see require_teacher()
+    in auth_service.py — the account is otherwise stuck on
+    account_status="pending_verification" until this happens).
+
+    Reuses the same branded shell / fire-and-forget send as every other
+    email in this module. Never raises — callers wrap this in try/except
+    anyway, but a failure here must never be able to block a signup.
+    """
+    if not _ADMIN_NOTIFICATION_EMAIL:
+        return
+
+    first_name = (name or "there").split()[0]
+    school_clean = (school or "").strip() or "(not provided)"
+    email_clean = (email or "").strip() or "(not provided)"
+
+    body = f"""
+<p style="margin:0 0 16px;font-size:20px;font-weight:900;letter-spacing:-0.02em">
+  New teacher signup &#128276;
+</p>
+<p style="margin:0 0 16px;font-size:15px;line-height:1.7">
+  <strong>{name or "A teacher"}</strong> just signed up and is waiting on school verification
+  before their Teacher Dashboard unlocks.
+</p>
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+       style="margin:8px 0 16px;border-radius:10px;overflow:hidden;border:1px solid #e5e7eb">
+  <tr style="background:#f8fafc">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b;width:110px">Name</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{name or "—"}</td>
+  </tr>
+  <tr style="border-top:1px solid #e5e7eb">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b">Email</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{email_clean}</td>
+  </tr>
+  <tr style="border-top:1px solid #e5e7eb;background:#f8fafc">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b">School</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{school_clean}</td>
+  </tr>
+</table>
+<p style="margin:0;font-size:13px;color:#64748b;line-height:1.7">
+  Approve from Admin Control &rarr; Support Tools &rarr; Pending Teacher Approvals.
+</p>
+"""
+
+    html = _email_shell(
+        body_html=body,
+        cta_url=_FRONTEND_URL,
+        cta_label="Open Admin Panel →",
+    )
+
+    text = (
+        f"New teacher signup: {name or 'Unknown'}\n"
+        f"Email: {email_clean}\n"
+        f"School: {school_clean}\n\n"
+        f"Approve from Admin Control -> Support Tools -> Pending Teacher Approvals.\n"
+        f"{_FRONTEND_URL}\n"
+    )
+
+    _send_async(
+        to=_ADMIN_NOTIFICATION_EMAIL,
+        subject=f"New teacher signup: {first_name} ({school_clean})",
+        html=html,
+        text=text,
+    )
+    _log.info("email_service.teacher_admin_notification_queued", teacher_email=email_clean, school=school_clean)
+
+
 # ── Public API ────────────────────────────────────────────────────────────────
 
 def send_welcome_email(
@@ -593,6 +668,7 @@ def send_welcome_email(
     plan_name: str = "",
     grade: str = "",
     stream: str = "",
+    school: str = "",
 ) -> None:
     """
     Send a grade-personalised welcome email to a newly registered user.
@@ -601,12 +677,16 @@ def send_welcome_email(
     ----------
     grade  : Student grade string e.g. "Grade 9", "Grade 11". Empty for parents/teachers.
     stream : Academic stream for Grade 11/12 e.g. "PCM", "PCB", "Commerce", "Humanities".
+    school : Teacher's school name. Empty for parents/students. When role="teacher",
+             also triggers send_teacher_signup_admin_notification() so the team
+             knows to review and approve the account.
 
     Called after:
       - Free Tier signup  (signup_free)
       - Paid signup       (complete_signup)
       - Offer code signup (signup_with_offer_code)
       - Google OAuth      (oauth_complete_profile — first time role is set)
+      - Teacher signup    (teacher_signup)
 
     Non-blocking: always fires in a background thread.
     """
@@ -622,6 +702,12 @@ def send_welcome_email(
     g_lower = g.lower()
     is_1112 = g_lower in ("grade 11", "grade 12")
     is_science_stream = s in ("PCM", "PCB", "PCMB")
+
+    if is_teacher:
+        try:
+            send_teacher_signup_admin_notification(name=name, email=to, school=school)
+        except Exception:
+            _log.warning("email_service.teacher_admin_notification_failed", to=to, exc_info=True)
 
     plan_badge = ""
     if is_paid and plan_name:
