@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Chapter 8: Organic Chemistry – Some Basic Principles and Techniques",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Chemistry-Chapter8.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/chemistry/chapter-8-organic-chemistry-some-basic-principles-and-techniques.webp",
+    "alt": "Chapter 8 Organic Chemistry Some Basic Principles and Techniques revision poster: inductive effect, plus-I and minus-I effects, resonance, electromeric effect, hyperconjugation, types of reactions, key terms and important points.",
+    "caption": "Full-chapter revision poster on organic chemistry basics: electronic effects and reaction types.",
+    "width": 1024,
+    "height": 1536
+  }
+}

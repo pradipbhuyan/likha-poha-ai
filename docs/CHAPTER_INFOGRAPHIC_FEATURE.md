@@ -1,6 +1,6 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 165 chapters — Grade 12 Biology Ch 9, all
+> **Status (2026-08-20):** live on 173 chapters — Grade 12 Biology Ch 9, all
 > 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15
 > rejected on review, still on their original poster — see open items), all
 > 10 Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7
@@ -1116,6 +1116,83 @@ fixing posters one at a time.
       Grade 5, Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9
       (Maths + Science), Grade 10 (Maths + Science), and Grade 11
       Mathematics as fully done.
+- [ ] **Grade 11 Chemistry: authoring started 2026-08-20.** Chapters 1-9
+      generated and reviewed:
+        - **Chapter 1 "Some Basic Concepts of Chemistry"** clean —
+          conservation of mass, law of definite proportions (H:O ratio
+          2g:16g simplified to 1:8), law of multiple proportions (O-mass
+          ratio 16:32=1:2 for two compounds with fixed H mass), law of
+          gaseous volumes (N₂+3H₂→2NH₃, 1:3:2 by volume), Avogadro's law,
+          Dalton's atomic theory all hand-verified correct. **Applied.**
+        - **Chapter 2 "Structure of Atom"** clean — Bohr model worked
+          example (excitation energy n=1 to n=2: E₂−E₁=−3.4−(−13.6)=10.2
+          eV) hand-verified correct; Eₙ=−13.6/n² formula correctly gives
+          E₁=−13.6 eV, E₂=−3.4 eV matching the poster's energy-level
+          diagram exactly; Balmer series (transitions to n=2) correctly
+          identified. **Applied.**
+        - **Chapter 3 "Classification of Elements and Periodicity in
+          Properties"** clean — worked example (3s²3p⁵ → Period 3,
+          p-block, Group 17/halogens: 10+2+5=17) and Fe example
+          (3d⁶4s² → d-block, Group 8: 6+2=8) both hand-verified correct;
+          hydrogen's dual placement near alkali metals and halogens
+          correctly explained. **Applied.**
+        - **Chapter 4 "Chemical Bonding and Molecular Structure"** clean —
+          ethene (C₂H₄) worked example (5 sigma bonds: 4 C-H + 1 C-C; 1 pi
+          bond from the C=C) hand-verified correct; hybridisation examples
+          (sp: BeCl₂/CO₂ at 180°, sp²: BF₃/C₂H₄ at 120°, sp³: CH₄/NH₃ at
+          109.5°) all standard and correct. **Applied.**
+        - **Chapter 5 "Thermodynamics"** clean — worked example (q=mcΔT
+          for 100 g water, c=4.18 J·g⁻¹K⁻¹, ΔT=10 K → q=4180 J=4.18×10³ J)
+          hand-verified correct; H=U+PV, qₚ=ΔH, qᵥ=ΔU, ΔH=ΔU+ΔnₘRT all
+          standard and correct. **Applied.**
+        - **Chapter 6 "Equilibrium"** clean — worked example (Kc
+          expression for CaCO₃(s)⇌CaO(s)+CO₂(g): pure solids omitted per
+          convention, Kc=[CO₂]) hand-verified correct; Q-vs-K direction
+          table (Q<K→forward, Q>K→reverse, Q=K→equilibrium) correct.
+          **Applied.**
+        - **Chapter 7 "Redox Reactions"** clean — worked example
+          (oxidation number of Mn in KMnO₄: K=+1, 4×O=−8, so Mn=+7)
+          hand-verified correct; all oxidation-number rules (free
+          element=0, monatomic ion=charge, fluorine=−1, oxygen usually
+          −2 except peroxides/superoxides/OF₂, hydrogen +1 except metal
+          hydrides) standard and correct. **Applied.**
+        - **Chapter 8 "Organic Chemistry – Some Basic Principles and
+          Techniques"** clean — inductive-effect order (tert-alkyl >
+          sec-alkyl > primary-alkyl > methyl for +I effect) correct
+          standard trend; reaction classification (substitution/
+          addition/elimination/rearrangement), hyperconjugation,
+          electromeric effect and resonance all correctly explained
+          (definitions/mechanisms only, no numeric worked example to
+          verify). **Applied.**
+        - **Chapter 9 "Hydrocarbons"** had a genuine cross-chapter bleed:
+          an entire extra panel titled "Direction of Reaction using
+          Reaction Quotient (Q) and Equilibrium Constant (K)" with a
+          full Q-vs-K comparison table — grep-confirmed **zero** mentions
+          of "reaction quotient" or "equilibrium constant" anywhere in
+          this chapter's CHAPTER_CONTENT. This is the exact same
+          direction-of-reaction content already seen (correctly) on
+          Chapter 6 "Equilibrium", bled into a completely unrelated
+          organic-chemistry chapter — the panel is not simply the
+          recurring magnetism template seen earlier in this rollout, but
+          confirms that *any* chapter's content can bleed into *any*
+          other chapter's poster when the model runs low on
+          chapter-specific material. The rest of the poster was correct
+          and well-grounded: the Markovnikov's-rule worked example
+          (propene + HBr without peroxide → secondary carbocation more
+          stable → 2-bromopropane) was grep-confirmed to match
+          CHAPTER_CONTENT's worked example verbatim; geometrical
+          isomerism, preparation of alkenes, addition reactions,
+          peroxide effect, oxidation, and ozonolysis panels were all
+          correct. **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade11_Chemistry_Missing_Posters_Prompts_2026-08-20/
+          Grade11_Chemistry_Chapter9_PROMPT.txt`) with a HARD RULE 0
+          quoting the bled panel's exact title and table verbatim,
+          naming Chapter 6 "Equilibrium" as the specific chapter that
+          content belongs to, and banning the words "reaction quotient",
+          "equilibrium constant" (in the equilibrium sense) anywhere on
+          the poster. Pending the regenerated image.
+      **Grade 11 Chemistry: 8 of 9 chapters applied and clean** (Ch 1-8).
+      Chapter 9 pending regeneration (prompt ready, see above).
 - [ ] Author posters for the remaining 291 chapters (see §2).
 - [ ] **Decide the review gate** before bulk apply — the failure mode is a
       confidently wrong revision poster, which is worse than none.

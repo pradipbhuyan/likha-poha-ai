@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Chapter 3: Classification of Elements and Periodicity in Properties",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Chemistry-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/chemistry/chapter-3-classification-of-elements-and-periodicity-in-properties.webp",
+    "alt": "Chapter 3 Classification of Elements and Periodicity in Properties revision poster: period, s-block, p-block, d-block, f-block elements, group similarity, hydrogen and helium special cases, a worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on classification of elements: periodic table blocks and periodicity.",
+    "width": 1024,
+    "height": 1536
+  }
+}

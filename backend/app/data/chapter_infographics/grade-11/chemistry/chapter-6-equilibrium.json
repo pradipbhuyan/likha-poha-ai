@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Chapter 6: Equilibrium",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Chemistry-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/chemistry/chapter-6-equilibrium.webp",
+    "alt": "Chapter 6 Equilibrium revision poster: equilibrium constant Kc, pure solids and liquids, equilibrium constant Kp, relation between Kp and Kc, magnitude of K, reverse reaction, reaction quotient Q, a worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on equilibrium: Kc, Kp, reaction quotient, and direction of reaction.",
+    "width": 1024,
+    "height": 1536
+  }
+}

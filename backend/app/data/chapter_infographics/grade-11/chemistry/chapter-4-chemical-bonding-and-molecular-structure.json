@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Chapter 4: Chemical Bonding and Molecular Structure",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Chemistry-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/chemistry/chapter-4-chemical-bonding-and-molecular-structure.webp",
+    "alt": "Chapter 4 Chemical Bonding and Molecular Structure revision poster: sigma and pi bonds, sp/sp2/sp3 hybridisation, multiple bonds, rotation about bonds, a worked example on ethene, key terms and important points.",
+    "caption": "Full-chapter revision poster on chemical bonding: sigma/pi bonds, hybridisation, and molecular structure.",
+    "width": 1024,
+    "height": 1536
+  }
+}

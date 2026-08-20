@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Chapter 2: Structure of Atom",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Chemistry-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/chemistry/chapter-2-structure-of-atom.webp",
+    "alt": "Chapter 2 Structure of Atom revision poster: stationary states, energy levels, ground and excited states, emission of radiation, absorption of radiation, series of spectral lines, limitation of Bohr model, a worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on structure of atom: Bohr model, energy levels, and spectral lines.",
+    "width": 1024,
+    "height": 1536
+  }
+}

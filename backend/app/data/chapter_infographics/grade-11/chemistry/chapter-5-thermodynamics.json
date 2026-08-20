@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Chapter 5: Thermodynamics",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Chemistry-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/chemistry/chapter-5-thermodynamics.webp",
+    "alt": "Chapter 5 Thermodynamics revision poster: enthalpy, heat at constant pressure, heat at constant volume, relation for gases, heat capacity, specific heat, calorimetry principle, a worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on thermodynamics: enthalpy, heat capacity, and calorimetry.",
+    "width": 1024,
+    "height": 1536
+  }
+}

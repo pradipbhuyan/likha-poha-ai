@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Chapter 1: Some Basic Concepts of Chemistry",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Chemistry-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/chemistry/chapter-1-some-basic-concepts-of-chemistry.webp",
+    "alt": "Chapter 1 Some Basic Concepts of Chemistry revision poster: conservation of mass, law of definite proportions, law of multiple proportions, law of gaseous volumes, Avogadros law, Daltons atomic theory, a worked example, key terms and important points.",
+    "caption": "Full-chapter revision poster on basic concepts of chemistry: laws of chemical combination and atomic theory.",
+    "width": 1024,
+    "height": 1536
+  }
+}

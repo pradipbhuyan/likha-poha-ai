@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Chapter 7: Redox Reactions",
+  "step_title": "Revision and recap",
+  "source_image": "Grade11-Chemistry-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-11/chemistry/chapter-7-redox-reactions.webp",
+    "alt": "Chapter 7 Redox Reactions revision poster: oxidation number rules for free elements, monatomic ions, fluorine, oxygen, hydrogen, oxidation and reduction, a worked example on KMnO4, key terms and important points.",
+    "caption": "Full-chapter revision poster on redox reactions: oxidation number rules and a worked example.",
+    "width": 1024,
+    "height": 1536
+  }
+}
