@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 6: The State, the Government, and You",
+  "step_title": "Revision and recap",
+  "source_image": "Grade7-Social-Part2-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/social-science/chapter-6-the-state-the-government-and-you.webp",
+    "alt": "Grade 7 Social Science Chapter 6 (Part 2) revision poster covering the four features of a state, the difference between state and government, police as an agent of the state, and citizens' rights and duties.",
+    "caption": "Full-chapter revision poster: The State, the Government, and You",
+    "width": 1024,
+    "height": 1536
+  }
+}

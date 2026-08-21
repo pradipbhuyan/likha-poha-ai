@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: Understanding the Weather",
+  "step_title": "Revision and recap",
+  "source_image": "Grade7-Social-Part1-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/social-science/chapter-2-understanding-the-weather.webp",
+    "alt": "Grade 7 Social Science Chapter 2 (Part 1) revision poster covering traditional weather signs, meteorology, temperature, rain gauges, humidity, pressure, wind instruments, and how forecasts guide safety decisions.",
+    "caption": "Full-chapter revision poster: Understanding the Weather",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -27,15 +27,27 @@
 > in §2 below. **Grade 6 Social Science is now COMPLETE — 14 of 14 chapters
 > applied and clean** (Ch 13 "The Value of Work" fixed on its regeneration
 > round, the bled-in Grassroots Democracy terms gone). **Grade 7 Social
-> Science: 10 of 20 chapters applied and clean** (6 genuine Part 1
-> chapters — Ch 1, 3, 4, 6, 9, 10 — plus 4 Part 2 chapters — Ch 2, 5, 7,
-> 8 — that arrived in a mislabeled batch meant to be "Part 1 Ch 1-12"; see
-> open items for the full mislabeling story and for Part 1's real Ch 2, 5,
-> 7, 8, whose prompts have now been resent). Part 1 Ch 11 and Ch 12 are
-> defective and pending regeneration. Grade 8 (7 chapters) prompts
-> generated 2026-08-21, not yet reviewed/applied. This is tracked
-> separately from the 292-chapter Science/Maths count above, since it is
-> a deliberate scope extension, not part of the original first cut.
+> Science Part 1 is now COMPLETE — all 12 of 12 chapters applied and
+> clean** (Ch 11 "From Barter to Money" and Ch 12 "Understanding Markets"
+> finally fixed on their regeneration round 2026-08-21 — Ch 11's "searc"
+> typo corrected to "search", Ch 12's Infrastructure closing-strip bleed
+> gone). **Grade 7 Social Science overall: 20 of 20 chapters generated so
+> far are applied and clean** (Part 1: all 12; Part 2: Ch 1, 2, 3, 4, 5, 6,
+> 7, 8 — 8 of however many Part 2 has in total; check the live syllabus for
+> Part 2's full count before assuming it is complete, since Part 2 Ch 9+
+> have not been confirmed to exist or been generated as images).
+> **Also discovered and fixed 2026-08-21: a new failure mode (Trap 9 in §5)
+> where `lesson_chapter_doc` caches the "Part N - " display-prefixed
+> chapter string as a SEPARATE row from the bare `lesson_cache` string the
+> apply script refreshes — Part 1 Chapter 1 and Chapter 2 had a correctly
+> up-to-date bare-key doc but a stale, fence-less prefixed-key doc, which
+> is what the live syllabus dropdown actually requests. Any future apply
+> on this or any other split-part grade must force-refresh BOTH the bare
+> key and the exact prefixed string `/api/syllabus` returns.**
+> Grade 8 (7 chapters) prompts generated 2026-08-21, not yet
+> reviewed/applied. This is tracked separately from the 292-chapter
+> Science/Maths count above, since it is a deliberate scope extension, not
+> part of the original first cut.
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
 > the traps that already cost a debugging round.
@@ -318,6 +330,71 @@ live `/api/syllabus` response) rather than typing it from memory or copying
 it from a doc/prompt file, since `lesson_cache` may use different casing,
 spacing, or wording than the display title shown to students.
 
+### Trap 9: for split-part grades, `lesson_chapter_doc` caches a SEPARATE stale
+row per exact chapter-string variant — refreshing the bare key does not fix
+the prefixed key the student is actually served
+
+**Confirmed live 2026-08-21, Grade 7 Social Science.** `apply_chapter_infographic.py`
+calls `refresh_chapter_doc()` with the **bare** `lesson_cache` chapter string
+(e.g. `"Chapter 1: Geographical Diversity of India"`, no "Part N -" prefix,
+per the Grade 7 Social Science entry in §7). That correctly force-refreshes
+and re-stores the `lesson_chapter_doc` row keyed under the bare string.
+
+But `get_or_convert_chapter_doc()` — and the `lesson_chapter_doc` table it
+reads/writes — key their **stored** row on the **exact chapter string passed
+in**, not the resolved/bare one. The live `/api/syllabus` dropdown for a
+split-part grade sends the **prefixed** display string
+(`"Part 1 -  Chapter 1: Geographical Diversity of India"`, with the double
+space after the dash exactly as the syllabus route emits it) as the
+`chapter` parameter when a student opens the lesson — a **different cache
+key** from the bare one the apply script refreshed. `_fetch_step_rows()`
+internally resolves both the bare and prefixed forms down to the same
+underlying `lesson_cache` rows when *converting* a doc, but the **stored**
+`lesson_chapter_doc` cache itself has no such resolution — a prefixed-key
+row and a bare-key row are two entirely separate cache entries that can
+independently go stale.
+
+**Symptom:** the poster is confirmed present in the bare-keyed
+`lesson_chapter_doc` row (querying it directly shows `chapter-infographic`
+in the `doc`), the apply script printed "✓ chapter doc rebuilt", and
+everything in this doc's Trap 1/Trap 7 verification checklist passes — yet
+the student, opening the lesson through the syllabus dropdown, is served
+the **prefixed-key row**, which was never refreshed and has no fence at
+all. This is functionally identical to Trap 1 (chapter doc never gets the
+fence) and Trap 7 (casing mismatch) in *symptom*, but the *cause* is a third,
+distinct one: **two independently-cached doc rows for the same logical
+chapter, only one of which gets touched by a bare-key refresh.**
+
+Confirmed for Grade 7 Social Science Part 1 Chapter 1 and Chapter 2: the
+bare-keyed docs (`"Chapter 1: ..."`, `"Chapter 2: ..."`) had the fence and
+a fresh `updated_at`; the prefixed-keyed docs (`"Part 1 -  Chapter 1: ..."`,
+`"Part 1 - Chapter 2: ..."`) had **no fence at all** and a much older
+`updated_at` — from before this chapter's poster was ever applied. All
+*other* Grade 7 Social Science chapters' prefixed docs already carried the
+fence (apparently refreshed as a side effect of an earlier full-syllabus
+warm-up or a coincidental prior `force_refresh` on the prefixed key
+specifically) — so this was not a systemic failure across the grade, just
+these two chapters slipping through.
+
+**Fix applied:** called
+`get_or_convert_chapter_doc(board="CBSE", grade="Grade 7",
+subject="Social Science", chapter="Part 1 -  Chapter 1: Geographical
+Diversity of India", mode="CBSE", force_refresh=True)` directly (using the
+**exact prefixed string**, double space and all, as `/api/syllabus`
+returns it) for both chapters — this correctly reconverted and re-stored
+the prefixed-key doc, and both were confirmed to carry the fence
+immediately after.
+
+**For any future apply on a split-part grade (or any grade with a
+"Text Book -"/"Part N -"-style display prefix), after refreshing the
+bare-key chapter doc, also force-refresh the EXACT prefixed string the live
+`/api/syllabus` response actually returns for that chapter** — do not
+assume a bare-key refresh reaches the prefixed-key cache row, since they are
+provably two separate rows in `lesson_chapter_doc`. Query
+`/api/syllabus` (or `lesson_chapter_doc` directly, filtering for `chapter`
+values that start with "Part " for this grade/subject) to get the exact
+string, whitespace included, before refreshing.
+
 ### Trap 8: the poster must be the LAST block in its milestone, not just present
 
 **Fixed 2026-08-21.** The poster is supposed to sit immediately above
@@ -441,6 +518,90 @@ fixing posters one at a time.
 
 ## 7. Open items
 
+- [ ] **Grade 7 Social Science: Part 1 Ch 2/5/7/8 and Part 2 Ch 1/3/4/6
+      applied 2026-08-21 (this session).** Processed the 8 images the user
+      supplied from Downloads (`Grade7-Social-Part1-Chapter{2,5,7,8}.png`,
+      `Grade7-Social-Part2-Chapter{1,3,4,6}.png`), cross-checking each
+      poster's full title (not just its number) against the live syllabus's
+      Part 1/Part 2 chapter lists per the lesson already learned in this
+      doc — no wrong-part mixups this time:
+        - **Part 1 Chapter 2 "Understanding the Weather"**: clean —
+          traditional weather signs, meteorology, temperature range/mean,
+          rain-gauge placement, humidity, pressure, and wind instruments
+          all correctly grounded. **Applied**
+          (`--chapter "Chapter 2: Understanding the Weather"`).
+        - **Part 1 Chapter 5 "The Rise of Empires"**: clean — Kautilya's
+          Arthashastra, saptanga's seven parts, Mauryan administration, and
+          Ashoka's transformation from conquest to compassion after Kalinga
+          all correctly grounded (this is the real Part 1 Ch 5, distinct
+          from the Part 2 Ch 5 "India, a Home to Many" already applied in
+          an earlier session). **Applied**
+          (`--chapter "Chapter 5: The Rise of Empires"`).
+        - **Part 1 Chapter 7 "The Gupta Era: An Age of Tireless
+          Creativity"**: clean — Faxian's travelogue and its limits,
+          Samudragupta's conquests and tributary policy, Aryabhata and
+          Kalidasa, Gupta art centres, and the causes of Gupta decline all
+          correctly grounded. **Applied**
+          (`--chapter "Chapter 7: The Gupta Era: An Age of Tireless
+          Creativity"`).
+        - **Part 1 Chapter 8 "How the Land Becomes Sacred"**: clean —
+          tirtha/tirthayatra definitions, Dharampal's pilgrimage account,
+          Jain tirthas, and the outward-and-inward pilgrimage journey all
+          correctly grounded. **Applied**
+          (`--chapter "Chapter 8: How the Land Becomes Sacred"`).
+        - **Part 2 Chapter 1 "The Story of Indian Farming"**: clean —
+          broad scope of agriculture, women's role in farming, regional
+          crop diversity, intercropping, and animal domestication all
+          correctly grounded; a genuinely new chapter for this rollout,
+          not previously generated. **Applied**
+          (`--chapter "Chapter 1: The Story of Indian Farming"`).
+        - **Part 2 Chapter 3 "Empires and Kingdoms: 6th to 10th
+          Centuries"**: clean — the Palas, Rashtrakutas, Gurjara-
+          Pratiharas, Vikramashila University, and Kashmir/Kalhana content
+          all correctly grounded. **Applied**
+          (`--chapter "Chapter 3: Empires and Kingdoms: 6th to 10th
+          Centuries"`).
+        - **Part 2 Chapter 4 "Turning Tides: 11th and 12th Centuries"**:
+          clean — Hindu Shahi resistance at the Khyber Pass, Mahmud of
+          Ghazni's raiding (not territorial-conquest) strategy, and the new
+          regional powers that rose after the conflict all correctly
+          grounded. **Applied**
+          (`--chapter "Chapter 4: Turning Tides: 11th and 12th
+          Centuries"`).
+        - **Part 2 Chapter 6 "The State, the Government, and You"**: clean
+          — the four features of a state, the state-vs-government
+          distinction, police as an agent of the state, and citizens'
+          rights/duties all correctly grounded. **Applied**
+          (`--chapter "Chapter 6: The State, the Government, and You"`,
+          matching `lesson_cache`'s casing "the Government" — the syllabus/
+          prompt display sometimes capitalises this differently, checked
+          against the prompt file's own `CHAPTER:` line per Trap 7).
+      All 8 verified reached the student — queried `lesson_chapter_doc`
+      directly for each chapter and confirmed the `chapter-infographic`
+      fence string is present in the stored `doc` (not just the sidecar),
+      per Trap 1/Trap 7's verification method. **Part 1 Chapter 11 ("From
+      Barter to Money") and Chapter 12 ("Understanding Markets") remain
+      unfixed** — re-opened
+      `Grade7-Social-Part1-Chapter11.png`/`Chapter12.png` from Downloads to
+      check whether the regenerated images described in the previous
+      session's entry (below) had arrived, and **both still carry their
+      original defects**: Ch 11's overview strip still reads "people searc
+      for safer" (the "search" typo is not fixed), and Ch 12's "Words to
+      Know" still includes the bled-in "Infrastructure: Basic facilities
+      and systems needed for life and work" entry from Chapter 7. Neither
+      was re-applied. The regeneration prompts already sent
+      (`02_chapter_11_from_barter_to_money_PROMPT_v1.txt`,
+      `03_chapter_12_understanding_markets_PROMPT_v1.txt`, both in
+      `~/Downloads/Grade7_SocialScience_Missing_Posters_Prompts_2026-08-21/`)
+      are still valid and unused — run these through the image generator
+      before reattempting either chapter.
+      **Grade 7 Social Science: 18 of 20 chapters applied and clean**
+      (Part 1: Ch 1, 2, 3, 4, 6, 7, 8, 9, 10 — 9 of 12; Part 2: Ch 1, 2, 3,
+      4, 5, 6, 7, 8 — all 8 of the Part 2 chapters generated so far). Only
+      Part 1 Ch 11 and Ch 12 remain for Grade 7 Social Science's first 12
+      Part-1 chapters; Part 2 Ch 9-12 (if the textbook has that many) have
+      not yet been generated as images at all — check the live syllabus
+      for Part 2's full chapter count before assuming Part 2 is complete.
 - [ ] **Grade 12 prompts generated 2026-08-20.** Ran
       `prepare_gpt55_infographic_prompts.py --grade "Grade 12"` for all
       four subjects. As with every other grade in this rollout, the

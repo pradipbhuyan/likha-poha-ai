@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: The Rise of Empires",
+  "step_title": "Revision and recap",
+  "source_image": "Grade7-Social-Part1-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/social-science/chapter-5-the-rise-of-empires.webp",
+    "alt": "Grade 7 Social Science Chapter 5 (Part 1) revision poster covering Kautilya's Arthashastra, saptanga, Mauryan administration, Ashoka's transformation after Kalinga, and his edicts and communication across the empire.",
+    "caption": "Full-chapter revision poster: The Rise of Empires",
+    "width": 1024,
+    "height": 1536
+  }
+}

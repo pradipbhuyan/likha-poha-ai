@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: The Story of Indian Farming",
+  "step_title": "Revision and recap",
+  "source_image": "Grade7-Social-Part2-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/social-science/chapter-1-the-story-of-indian-farming.webp",
+    "alt": "Grade 7 Social Science Chapter 1 (Part 2) revision poster covering the broad scope of Indian agriculture, women's role in farming, regional crop diversity, intercropping, animal domestication, and how farming developed over time.",
+    "caption": "Full-chapter revision poster: The Story of Indian Farming",
+    "width": 1024,
+    "height": 1536
+  }
+}
