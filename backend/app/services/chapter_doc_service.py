@@ -403,6 +403,30 @@ def is_duplicate_question(a: str, b: str, threshold: float = 0.7) -> bool:
     return overlap >= threshold
 
 
+# Matches frontend/src/components/journey/chapterGlance.js's FENCE_RE — kept
+# in sync deliberately, since both must agree on which block carries the
+# chapter-infographic poster (that file finds it for nav-entry purposes, this
+# one for insertion-order purposes).
+_CHAPTER_INFOGRAPHIC_FENCE_RE = re.compile(r"```+\s*chapter-infographic", re.IGNORECASE)
+
+
+def _chapter_infographic_index(blocks: list) -> int | None:
+    """Index of the ConceptBlock carrying the chapter-infographic poster, if any.
+
+    The poster must always be the last thing rendered in a milestone (it sits
+    just above "Wrap-up" in both renderers). Anything appended to a
+    milestone's blocks after this point — LKB chips, textbook page images —
+    must be spliced in BEFORE this index, not appended past it, or those
+    blocks would render below the poster instead of above it.
+    """
+    for i, block in enumerate(blocks):
+        if getattr(block, "type", None) == "concept" and _CHAPTER_INFOGRAPHIC_FENCE_RE.search(
+            getattr(block, "body_md", "") or ""
+        ):
+            return i
+    return None
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Converter: cached step markdown → ChapterDoc
 # ─────────────────────────────────────────────────────────────────────────────
@@ -892,6 +916,7 @@ def convert_chapter(
 
         # ── LKB chips: attach top 2, deduped against in-lesson quickchecks
         # AND against every chip already attached anywhere in this chapter ──
+        new_chip_blocks = []
         for chip in _fetch_lkb_chips(grade, subject, chapter, lkb_step_title):
             question = (chip.get("question") or "").strip()
             answer = (chip.get("answer") or "").strip()
@@ -902,10 +927,11 @@ def convert_chapter(
             if any(is_duplicate_question(question, aq) for aq in attached_ask_questions):
                 continue
             attached_ask_questions.append(question)
-            blocks.append(StudentsAskBlock(question=question, answer_md=answer))
+            new_chip_blocks.append(StudentsAskBlock(question=question, answer_md=answer))
 
         # ── Textbook images: attach best-matching approved page(s) for this
         # milestone's topic, placed right after the concept/example content ──
+        image_blocks = []
         if approved_visuals:
             milestone_text = " ".join(
                 getattr(b, "body_md", "") or getattr(b, "text", "") or ""
@@ -914,7 +940,14 @@ def convert_chapter(
             image_blocks = _match_visuals_to_milestone(
                 approved_visuals, step_title, milestone_text, used_visual_ids,
             )
-            blocks.extend(image_blocks)
+
+        # The chapter-at-a-glance poster must always be the last thing in a
+        # milestone (it sits just above "Wrap-up"). Splice new chips/images in
+        # BEFORE it rather than appending past it, so any other lesson images
+        # move above the poster instead of rendering below it.
+        poster_index = _chapter_infographic_index(blocks)
+        insert_at = poster_index if poster_index is not None else len(blocks)
+        blocks[insert_at:insert_at] = new_chip_blocks + image_blocks
 
         if blocks:
             milestones.append(Milestone(title=step_title, blocks=blocks))
@@ -934,16 +967,26 @@ def convert_chapter(
         per_milestone = 2
         vis_iter = iter(approved_visuals)
         for milestone in milestones:
+            poster_index = _chapter_infographic_index(milestone.blocks)
             for _ in range(per_milestone):
                 visual = next(vis_iter, None)
                 if visual is None:
                     break
                 try:
-                    milestone.blocks.append(TextbookImageBlock(
+                    image_block = TextbookImageBlock(
                         asset_url=visual["asset_url"],
                         caption=visual.get("caption") or "",
                         page_number=visual.get("page_number"),
-                    ))
+                    )
+                    # Keep the poster last in the milestone (see
+                    # _chapter_infographic_index) — insert before it rather
+                    # than appending past it, tracking the shift as each
+                    # image is added.
+                    if poster_index is not None:
+                        milestone.blocks.insert(poster_index, image_block)
+                        poster_index += 1
+                    else:
+                        milestone.blocks.append(image_block)
                 except Exception:
                     continue
 

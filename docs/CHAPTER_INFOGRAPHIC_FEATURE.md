@@ -311,6 +311,59 @@ live `/api/syllabus` response) rather than typing it from memory or copying
 it from a doc/prompt file, since `lesson_cache` may use different casing,
 spacing, or wording than the display title shown to students.
 
+### Trap 8: the poster must be the LAST block in its milestone, not just present
+
+**Fixed 2026-08-21.** The poster is supposed to sit immediately above
+"Wrap-up" — but `convert_chapter()` in `chapter_doc_service.py` builds each
+milestone's `blocks` list from the step's markdown sections first (which
+correctly puts the poster's `concept` block last, since
+`apply_chapter_infographic.py` always appends the `## Chapter at a glance`
+fence at the true end of the step's raw markdown), and THEN, after that list
+is built, unconditionally **appended** three more kinds of content straight
+onto the same list: LKB "Students also ask" chips, keyword-matched textbook
+page images, and (for a small number of legacy-font source PDFs) round-robin
+fallback textbook images. All three used `.append()`/`.extend()`, so for any
+milestone that already had a poster AND any of these three, the chip/image
+ended up **below** the poster — between the poster and "Wrap-up" — even
+though the poster is meant to be the very last thing before it.
+
+Fixed by adding `_chapter_infographic_index()` (mirrors the FENCE_RE lookup
+in `frontend/src/components/journey/chapterGlance.js`'s `findChapterGlance()`
+— same regex, same "only `concept`-type blocks" restriction, kept in sync
+deliberately) and splicing new chips/images in **before** that index instead
+of appending past it, at all three call sites in `convert_chapter()`. No
+frontend change was needed: both `StudyRenderer.jsx` and `JourneyRenderer.jsx`
+already render `milestone.blocks` in array order and `doc.recap` ("Wrap-up")
+strictly after all milestones — the bug was purely in how the backend
+converter assembled the array, not in rendering order.
+
+Because `lesson_chapter_doc` is a cache (`get_or_convert_chapter_doc` serves
+the stored row when present rather than re-deriving live — see Trap 1), the
+fix alone did not change what was already live for any of the 264+ chapters
+with an applied poster. Ran
+`python3 scripts/invalidate_all_chapter_docs.py` (platform-wide, all 468
+stored `lesson_chapter_doc` rows, not just infographic chapters — this
+script is explicitly designed to be safe for exactly this situation: it only
+deletes the derived/cached doc, never `lesson_cache` itself, and every doc
+deterministically reconverts on the next student visit with no LLM call) to
+force every chapter to reconvert with the corrected ordering. Verified live
+against Grade 12 Physics Chapter 1 (`Electric Charges and Fields`, which has
+both textbook images and a poster in "Revision and recap"): before the fix,
+its `Revision and recap` milestone ended
+`[..., concept(poster), textbook_image, textbook_image]` — poster in the
+middle, images trailing below it; after the fix and cache invalidation,
+`get_or_convert_chapter_doc()` reconverts fresh and correctly returns
+`[..., textbook_image, textbook_image, concept(poster)]` — poster last.
+Added a regression test,
+`TestConvertChapter.test_chapter_infographic_stays_last_ahead_of_new_chips`
+in `backend/tests/test_chapter_doc.py`, asserting a fresh LKB chip lands
+before the poster block, not after.
+**If a future script or fix adds a new kind of content that gets appended to
+a milestone's `blocks` after `_sections_to_blocks()` runs, it must also use
+`_chapter_infographic_index()` (or splice before whatever index it returns)
+instead of a bare `.append()`/`.extend()` — otherwise this exact bug
+reappears for that new content type.**
+
 ---
 
 ## 6. Design decision: image vs. structured text

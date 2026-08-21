@@ -341,6 +341,28 @@ class TestConvertChapter:
         assert len(ask_blocks) == 1
         assert "diffuse" in ask_blocks[0].question
 
+    def test_chapter_infographic_stays_last_ahead_of_new_chips(self, monkeypatch):
+        # The poster sits just above "Wrap-up" in both renderers — anything
+        # attached after conversion (LKB chips, textbook images) must be
+        # spliced in BEFORE it, never appended past it.
+        md_with_poster = CANONICAL_STEP_MD + (
+            "\n## Chapter at a glance\n\n"
+            '```chapter-infographic\n{"url": "https://x.test/p.webp", '
+            '"alt": "Poster"}\n```\n'
+        )
+        steps = {"Revision and recap": md_with_poster}
+        chips = [
+            {"question": "What is a brand-new question?", "answer": "A brand-new answer."},
+        ]
+        self._patch(monkeypatch, steps, chips)
+        doc = cds.convert_chapter("CBSE", "Grade 6", "Science", "Ch 1")
+        blocks = doc.milestones[0].blocks
+        types = [b.type for b in blocks]
+        assert types[-1] == "concept"
+        assert "chapter-infographic" in blocks[-1].body_md
+        assert "students_ask" in types
+        assert types.index("students_ask") < len(blocks) - 1
+
     def test_returns_none_when_no_cache_rows(self, monkeypatch):
         self._patch(monkeypatch, {})
         assert cds.convert_chapter("CBSE", "Grade 6", "Science", "Ch 1") is None
