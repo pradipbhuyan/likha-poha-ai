@@ -243,6 +243,7 @@ class TestOAuthCompleteProfile:
 
             def select(self, *a, **kw): return self
             def eq(self, *a, **kw): return self
+            def ilike(self, *a, **kw): return self
             def limit(self, *a, **kw): return self
             def single(self): return FakeSingleQuery(self._data[0] if self._data else None)
             def execute(self): return SimpleNamespace(data=self._data)

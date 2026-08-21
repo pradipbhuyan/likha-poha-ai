@@ -450,6 +450,10 @@ def create_sales_person(
     admin=Depends(require_admin),
 ):
     """Create a sales login/profile from the admin panel only."""
+    from app.routes.auth import _reject_reserved_username, _reject_taken_username  # noqa: PLC0415
+    _reject_reserved_username(data.username)
+    _reject_taken_username(data.username, client=admin_client)
+
     salesperson_type = data.salesperson_type
     if salesperson_type not in {"school", "independent", "partner"}:
         salesperson_type = "independent"

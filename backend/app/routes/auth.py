@@ -131,7 +131,13 @@ RESERVED_USERNAMES = {
 
 def _reject_reserved_username(name: str) -> None:
     """Block signup from claiming a username that grants elevated behaviour."""
-    if str(name or "").strip().casefold() in RESERVED_USERNAMES:
+    normalized = str(name or "").strip().casefold()
+    # "admin" is privileged language, not just one exact account name.  Block
+    # it wherever it appears so punctuation/spacing variants such as
+    # "PradipAdmin", "pradip-admin", and "pradip_admin" cannot impersonate
+    # an administrator.  Existing profiles are unaffected because this guard
+    # runs only while creating a profile or changing its username.
+    if "admin" in normalized or normalized in RESERVED_USERNAMES:
         raise HTTPException(
             status_code=400,
             detail="That name is reserved. Please choose a different one.",
@@ -569,6 +575,9 @@ def oauth_complete_profile(
                 or existing.get("username")
                 or (user.email.split("@")[0] if user.email else "User")
             )
+            _reject_reserved_username(display_name)
+            if display_name != existing.get("username"):
+                _reject_taken_username(display_name)
 
             updates: dict = {
                 "role": role,
@@ -671,6 +680,8 @@ def oauth_complete_profile(
             (data.full_name or "").strip()
             or (user.email.split("@")[0] if user.email else "User")
         )
+        _reject_reserved_username(display_name)
+        _reject_taken_username(display_name)
 
         # Duplicate guard: check email again (another request may have created it)
         dup_check = (
@@ -1471,6 +1482,9 @@ def teacher_signup(data: TeacherSignupRequest, _rl=Depends(rate_limit_dependency
         raise HTTPException(status_code=400, detail="School is required.")
     if not data.password or len(data.password) < 8:
         raise HTTPException(status_code=400, detail="Password must be at least 8 characters.")
+
+    _reject_reserved_username(name_clean)
+    _reject_taken_username(name_clean)
 
     existing = (
         admin_client

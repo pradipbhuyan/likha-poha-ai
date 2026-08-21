@@ -71,6 +71,13 @@ class FakeTable:
         self.filters.append((key, value))
         return self
 
+    def ilike(self, key, value):
+        self.filters.append((key, value))
+        return self
+
+    def limit(self, _value):
+        return self
+
     def in_(self, key, values):
         self.filters.append((key, tuple(values)))
         return self

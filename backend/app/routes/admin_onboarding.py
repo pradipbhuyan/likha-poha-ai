@@ -68,6 +68,10 @@ def create_parent(data: CreateParentRequest, admin=Depends(require_admin)):
 
     Admin-created parents default to the free plan until plan/access is updated.
     """
+    from app.routes.auth import _reject_reserved_username, _reject_taken_username  # noqa: PLC0415
+    _reject_reserved_username(data.username)
+    _reject_taken_username(data.username, client=admin_client)
+
     family_id = data.family_id
 
     if not family_id:
@@ -144,6 +148,10 @@ def create_child(data: CreateChildRequest, admin=Depends(require_admin)):
     an existing parent later. Admin-created students bypass email verification
     by default (skip_email_confirmation=True) for in-person onboarding.
     """
+    from app.routes.auth import _reject_reserved_username, _reject_taken_username  # noqa: PLC0415
+    _reject_reserved_username(data.username)
+    _reject_taken_username(data.username, client=admin_client)
+
     if data.skip_email_confirmation:
         if not data.password:
             raise HTTPException(
@@ -202,6 +210,10 @@ def create_teacher(data: CreateTeacherRequest, admin=Depends(require_admin)):
     metadata is stored separately so teacher access can evolve without changing
     parent/student signup.
     """
+    from app.routes.auth import _reject_reserved_username, _reject_taken_username  # noqa: PLC0415
+    _reject_reserved_username(data.username)
+    _reject_taken_username(data.username, client=admin_client)
+
     teacher_type = data.teacher_type
     if teacher_type not in {"school", "independent"}:
         teacher_type = "independent"

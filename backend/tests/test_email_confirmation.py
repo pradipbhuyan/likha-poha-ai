@@ -136,6 +136,13 @@ class FakeTable:
         self.filters.append((key, value))
         return self
 
+    def ilike(self, key, value):
+        self.filters.append((key, value))
+        return self
+
+    def limit(self, _value):
+        return self
+
     def execute(self):
         if self.table_name == "families" and self.operation == "insert":
             return FakeResponse([{"id": "new-family-id", **self.payload}])

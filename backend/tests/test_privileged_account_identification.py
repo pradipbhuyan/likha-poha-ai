@@ -112,23 +112,29 @@ class TestReservedUsernames:
 
     @pytest.mark.parametrize(
         "name",
-        ["admin", "pradip", "Pradip", "  PRADIP  ", "akshita", "akshita.teststudent"],
+        [
+            "admin", "ADMIN", "PradipAdmin", "pradip-admin",
+            "pradip_admin", "Pradip.Admin", "School Administrator",
+            "admin2", "pradip", "Pradip", "  PRADIP  ", "akshita",
+            "akshita.teststudent",
+        ],
     )
     def test_reserved_names_are_rejected(self, name):
         with pytest.raises(Exception) as exc_info:
             auth_route._reject_reserved_username(name)
         assert getattr(exc_info.value, "status_code", None) == 400
 
-    @pytest.mark.parametrize("name", ["Riya Sharma", "pradipa", "admin2", "akshita2"])
+    @pytest.mark.parametrize("name", ["Riya Sharma", "pradipa", "akshita2"])
     def test_ordinary_names_are_allowed(self, name):
         auth_route._reject_reserved_username(name)  # must not raise
 
     def test_every_signup_path_checks(self):
-        """All three account-creating endpoints must call the guard."""
+        """Every public account-creating endpoint must call the guard."""
         import inspect
         for fn in (
             auth_route.complete_signup,
             auth_route.signup_free,
+            auth_route.teacher_signup,
             auth_route.signup_with_offer_code,
         ):
             src = inspect.getsource(fn)
