@@ -22,13 +22,16 @@
 > is the only chapter left before the ENTIRE Grade 12 rollout (Maths,
 > Physics, Chemistry, Biology) is complete.**
 >
-> **Scope expansion 2026-08-21: Grade 6 Social Science entered the
-> rollout**, the first Social Science chapters attempted — outside the
-> original "Science and Maths only, first cut" scope in §2 below. 13 of
-> 14 chapters applied and clean; Ch 13 "The Value of Work" pending
-> regeneration (see open items). This is now tracked separately from the
-> 292-chapter Science/Maths count above, since it is a deliberate scope
-> extension, not part of the original first cut.
+> **Scope expansion 2026-08-21: Grade 6, 7 and 8 Social Science entered the
+> rollout**, outside the original "Science and Maths only, first cut" scope
+> in §2 below. Grade 6: 13 of 14 chapters applied and clean; Ch 13 "The
+> Value of Work" pending regeneration (see open items). Grade 7 (20
+> chapters) and Grade 8 (7 chapters) prompts generated 2026-08-21, not yet
+> reviewed/applied (see open items for two grade-7-specific findings: no
+> stale-duplicate chapters this time, but a "Part N -" prefix convention to
+> get right, and a genuine content gap discovered in Grade 8). This is
+> tracked separately from the 292-chapter Science/Maths count above, since
+> it is a deliberate scope extension, not part of the original first cut.
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
 > the traps that already cost a debugging round.
@@ -1433,6 +1436,64 @@ fixing posters one at a time.
       status line above) — not yet decided whether to extend the rollout
       to Social Science for other grades; ask before generating prompts
       for another grade's Social Science content.
+- [ ] **Grade 7 and Grade 8 Social Science: prompts generated 2026-08-21,
+      not yet reviewed/applied.** User asked to extend the Social Science
+      scope expansion (above) to these two grades. Two grade-specific
+      findings surfaced while preparing the prompts:
+        - **Grade 7 has no stale-duplicate chapters** — the generator's
+          raw output (20) matched the live syllabus (20) exactly on first
+          generation, unlike every other grade in this rollout so far.
+        - **Grade 7 IS a split-textbook grade (Part 1 / Part 2), like
+          Grade 7/8 Maths already noted elsewhere in this doc — but the
+          "Part N -" prefix belongs ONLY in the syllabus/course-picker
+          display string, never in `--chapter`.** The live syllabus
+          returns entries like `'Part 1 -  Chapter 1: Geographical
+          Diversity of India'` (note: two spaces after the dash) and
+          `'Part 2 - Chapter 1: The Story of Indian Farming'`, but
+          `lesson_cache.chapter` stores the SAME two chapters as plain
+          `'Chapter 1: Geographical Diversity of India'` and `'Chapter 1:
+          The Story of Indian Farming'` — no "Part N -" prefix at all.
+          Confirmed against an existing precedent, Grade 7 Maths' already-
+          applied `chapter-1-geometric-twins.json` sidecar: its `"chapter"`
+          field is the plain `"Chapter 1: Geometric Twins"`, with the
+          Part-2 context only mentioned inside the `alt` text
+          ("Grade 7 Maths Chapter 1 (Part 2) revision poster..."), not in
+          the lookup string itself. **When applying Grade 7 Social Science
+          posters, use the plain `Chapter N: Title` string (matching
+          `lesson_cache`, NOT the syllabus display string) as `--chapter`
+          — do not prepend "Part 1 -"/"Part 2 -", and do not be alarmed
+          that two different chapters both start "Chapter N:" with
+          different numbers than their position in the syllabus dropdown
+          suggests. Do mention "(Part 1)"/"(Part 2)" in the `alt` text for
+          clarity, following the Grade 7 Maths precedent.** This is the
+          opposite of Trap 7 (casing mismatch) but the same underlying
+          lesson: never assume the syllabus display string is what
+          `lesson_cache` actually stores — check both explicitly for every
+          split-part grade before applying.
+        - **Grade 8 has a genuine content gap, not a duplicate-key
+          inflation.** The generator's raw output was 15 chapters against
+          a live syllabus of 7 — but unlike every prior stale-duplicate
+          case in this doc, none of the 15 raw chapter titles were
+          obviously-bogus legacy keys (no "Text Book - Part N -" pattern).
+          All 15 were real, distinctly-titled, plausible NCERT chapter
+          names (e.g. "Chapter 8: World Geography: Some Glimpses",
+          "Chapter 15: Cultural Currents: 13th to 17th Centuries").
+          Cross-checked against `rag_documents` (the actual ingested-
+          textbook table the live syllabus is built from, not just the
+          syllabus API) and confirmed only Chapters 1-7 have any
+          `rag_documents` rows at all — Chapters 8-15 have authored
+          `lesson_cache` content but ZERO backing textbook ingestion,
+          meaning they are not real, currently-live, student-selectable
+          chapters. Dropped Chapters 8-15 and generated prompts for only
+          the 7 live chapters. **This is a new variant of the standard
+          "cross-check lesson_cache count against the live syllabus"
+          workflow step — the check must be against `rag_documents`
+          specifically when the chapter titles look legitimate rather than
+          obviously stale, since a duplicate-key heuristic alone would not
+          have caught this.**
+      Prompts sent for Grade 7 (20 chapters) and Grade 8 (7 chapters).
+      Pending image generation and review — same workflow as every other
+      grade in this doc.
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —
