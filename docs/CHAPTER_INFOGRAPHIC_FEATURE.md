@@ -1,12 +1,11 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-21):** live on 261 chapters — all 13 Grade 12
+> **Status (2026-08-21):** live on 262 chapters — all 13 Grade 12
 > Mathematics chapters, all 13 Grade 12 Biology chapters, 13 of 14 Grade 12
 > Physics chapters (only Ch 14 "Semiconductor Electronics" remains, not yet
-> generated — Ch 3 is now fixed and applied), 7 of 10 Grade 12 Chemistry
-> chapters (Ch 1, 2, 3, 4, 5, 8, 9 — see open items for Ch 6 and Ch 7,
-> now pending a FOURTH regeneration round each after two straight rounds
-> where fixing one defect introduced a different one, and Ch 10
+> generated — Ch 3 is now fixed and applied), 8 of 10 Grade 12 Chemistry
+> chapters (Ch 1, 2, 3, 4, 5, 7, 8, 9 — Ch 7 is now fixed and applied; see
+> open items for Ch 6, pending a FIFTH regeneration round, and Ch 10
 > "Biomolecules", not yet generated), all 10 Grade 5 EVS chapters, all 15
 > Grade 5 Maths chapters
 > (12 replaced; 13-15 rejected on review, still on their original poster —
@@ -18,10 +17,10 @@
 > Chemistry + 19 Biology). Grade 5, Grade 6, Grade 7 Maths, Grade 8
 > (Maths + Science), Grade 9 (Maths + Science), Grade 10 (Maths +
 > Science), **Grade 11 (all four subjects), Grade 12 Mathematics, and
-> Grade 12 Biology are all complete and clean.** 31 of 292 in-scope
+> Grade 12 Biology are all complete and clean.** 30 of 292 in-scope
 > chapters remain (Grade 12 Physics Ch 14 not yet generated + Grade 12
-> Chemistry Ch 6 and Ch 7 pending regeneration + Grade 12 Chemistry Ch 10
-> not yet generated — plus the still-open Grade 5 Maths Ch 13-15
+> Chemistry Ch 6 pending a fifth regeneration round + Grade 12 Chemistry
+> Ch 10 not yet generated — plus the still-open Grade 5 Maths Ch 13-15
 > rejections).
 >
 > **Read this first** if you are picking up the infographic rollout in a new
@@ -1245,6 +1244,52 @@ fixing posters one at a time.
       regeneration — every poster needs a full re-review every round,
       with no exceptions for chapters that have already been "mostly
       fixed."**
+- [ ] **Grade 12 Chemistry Chapters 6 and 7, fourth regeneration round,
+      reviewed 2026-08-21. Chapter 7 finally clean; Chapter 6's sp2/sp3
+      fix finally held but a new lettering glitch appeared.**
+        - **Chapter 7 "Alcohols, Phenols and Ethers"**: fully fixed, no
+          new defects. The dehydration-to-alkene line now correctly reads
+          "Higher temperature: R−OH → alkene + H2O (favoured over ether
+          formation)" with no fabricated Kelvin number, while the
+          correctly-grounded "~413 K" ether-formation reaction is
+          untouched. All other panels (alcohol/ether preparation and
+          reactions, physical properties, methanol/ethanol, hazards) re-
+          verified correct. Note: this poster's scope is limited to
+          alcohols and ethers with no dedicated phenol-preparation panel
+          (unlike the very first round-1 version, which had covered the
+          Dow process and benzene-sulfonic-acid routes) — consistent with
+          the doc's established pattern of a poster's scope reflecting
+          whichever `lesson_cache` step grounded it, not a defect.
+          **Applied.**
+        - **Chapter 6 "Haloalkanes and Haloarenes"**: the sp2/sp3
+          hybridisation defect that regressed in round 3 is genuinely
+          fixed this time — "Key Terms" now correctly reads "Haloarene:
+          ...attached to an sp2 carbon" and "Important Points to Remember"
+          correctly reads "...haloarenes: halogen on sp2 carbon," in both
+          places, holding for the first time across four rounds. **A new,
+          unrelated lettering defect appeared, however**: the overview
+          strip directly under the title ends "...is more important than
+          the halogen itself," but the word "halogen" rendered as a
+          garbled string of mixed/foreign-looking characters instead of
+          plain English — the same class of defect the doc's Trap/rule 3
+          already covers for diagrams, but this time in ordinary
+          overview-strip prose, which should be the easiest text on the
+          whole poster to get right. All 8 numbered panels, the
+          classification flow, and the rest of both closing strips were
+          otherwise correct. **Not applied.** Sent a fifth regeneration
+          prompt
+          (`~/Downloads/Grade12_Chemistry_Missing_Posters_Prompts_2026-08-21_v4/
+          07_chapter_6_haloalkanes_and_haloarenes_PROMPT_v4.txt`) with a
+          HARD RULE 0D that explicitly preserves the now-working sp2/sp3
+          wording and gives the exact correct overview sentence verbatim
+          to render letter-for-letter.
+      **Grade 12 Chemistry: 8 of 10 chapters applied and clean** (Ch 1, 2,
+      3, 4, 5, 7, 8, 9). Chapter 6 is now on its fifth regeneration round
+      — surpassing even the three-round pattern seen elsewhere in this
+      doc (Grade 10 Maths Ch7, Grade 11 Chemistry Ch9, Grade 12 Maths
+      Ch7) as the longest-running single-chapter fix in the entire
+      rollout. Chapter 10 "Biomolecules" still has not been generated as
+      an image at all.
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

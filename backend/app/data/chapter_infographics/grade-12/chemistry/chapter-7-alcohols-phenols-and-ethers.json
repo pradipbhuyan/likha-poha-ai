@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Chapter 7: Alcohols, Phenols and Ethers",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 21, 2026, 06_30_14 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/chemistry/chapter-7-alcohols-phenols-and-ethers.webp",
+    "alt": "Revision poster for Chapter 7: Alcohols, Phenols and Ethers — covers alcohol and ether preparation and reactions, physical properties, methanol/ethanol preparation, and hazards and safety.",
+    "caption": "Full-chapter revision poster — alcohol/ether preparation, reactions, and methanol/ethanol safety.",
+    "width": 1024,
+    "height": 1536
+  }
+}
