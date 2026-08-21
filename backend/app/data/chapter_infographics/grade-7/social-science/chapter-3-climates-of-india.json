@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: Climates of India",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 21, 2026, 02_17_20 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/social-science/chapter-3-climates-of-india.webp",
+    "alt": "Revision poster for Chapter 3: Climates of India — covers how latitude, altitude, sea moderation, winds, topography, and microclimates shape India's regional climates.",
+    "caption": "Full-chapter revision poster — latitude, altitude, sea moderation, winds, and microclimates.",
+    "width": 1024,
+    "height": 1536
+  }
+}

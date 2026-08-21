@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: India, a Home to Many",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 21, 2026, 02_17_37 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/social-science/chapter-5-india-a-home-to-many.webp",
+    "alt": "Revision poster for Chapter 5: India, a Home to Many — covers the Parsi flight to India, the Sanjan legend, the sacred fire at Udvada, and Arab trade connections.",
+    "caption": "Full-chapter revision poster — the Parsi arrival in India and its Arab trade connections.",
+    "width": 1024,
+    "height": 1536
+  }
+}

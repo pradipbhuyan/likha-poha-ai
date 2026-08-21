@@ -26,13 +26,16 @@
 > rollout**, outside the original "Science and Maths only, first cut" scope
 > in §2 below. **Grade 6 Social Science is now COMPLETE — 14 of 14 chapters
 > applied and clean** (Ch 13 "The Value of Work" fixed on its regeneration
-> round, the bled-in Grassroots Democracy terms gone). Grade 7 (20
-> chapters) and Grade 8 (7 chapters) prompts generated 2026-08-21, not yet
-> reviewed/applied (see open items for two grade-7-specific findings: no
-> stale-duplicate chapters this time, but a "Part N -" prefix convention to
-> get right, and a genuine content gap discovered in Grade 8). This is
-> tracked separately from the 292-chapter Science/Maths count above, since
-> it is a deliberate scope extension, not part of the original first cut.
+> round, the bled-in Grassroots Democracy terms gone). **Grade 7 Social
+> Science: 10 of 20 chapters applied and clean** (6 genuine Part 1
+> chapters — Ch 1, 3, 4, 6, 9, 10 — plus 4 Part 2 chapters — Ch 2, 5, 7,
+> 8 — that arrived in a mislabeled batch meant to be "Part 1 Ch 1-12"; see
+> open items for the full mislabeling story and for Part 1's real Ch 2, 5,
+> 7, 8, whose prompts have now been resent). Part 1 Ch 11 and Ch 12 are
+> defective and pending regeneration. Grade 8 (7 chapters) prompts
+> generated 2026-08-21, not yet reviewed/applied. This is tracked
+> separately from the 292-chapter Science/Maths count above, since it is
+> a deliberate scope extension, not part of the original first cut.
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
 > the traps that already cost a debugging round.
@@ -1504,6 +1507,108 @@ fixing posters one at a time.
       Prompts sent for Grade 7 (20 chapters) and Grade 8 (7 chapters).
       Pending image generation and review — same workflow as every other
       grade in this doc.
+- [ ] **Grade 7 Social Science "Part 1 Chapters 1-12" batch reviewed
+      2026-08-21 — a NEW failure mode for this rollout: 4 of the 12
+      images were the WRONG chapter (Part 2 instead of Part 1), not a
+      content defect within a correctly-identified chapter.**
+      The user asked to process images for "Part 1, Chapter 1 to 12", and
+      the 12 images supplied were internally labelled "Chapter 1" through
+      "Chapter 12" — but 4 of them (numbered 2, 5, 7 and 8) turned out to
+      be posters for **Part 2's** chapters with those same numbers
+      ("India and Her Neighbours", "India, a Home to Many",
+      "Infrastructure: Engine of India's Development", "Banks and the
+      Magic of Finance"), not Part 1's actual Ch 2 ("Understanding the
+      Weather"), Ch 5 ("The Rise of Empires"), Ch 7 ("The Gupta Era: An
+      Age of Tireless Creativity") or Ch 8 ("How the Land Becomes
+      Sacred") — confirmed by cross-checking every poster's title against
+      the live syllabus's Part 1 vs Part 2 chapter lists side by side.
+      Because `lesson_cache.chapter` has no "Part N -" prefix and each
+      chapter title is independently unique, applying each of the 4
+      "wrong-part" posters under its own displayed title still correctly
+      wrote the fence to the RIGHT chapter (Part 2's, not Part 1's) — so
+      nothing was mis-applied — but this means **Part 1's real Ch 2, 5, 7
+      and 8 were never actually generated as images at all**, despite the
+      user's request nominally covering "Chapters 1 to 12." Re-sent their
+      prompts (already-generated, unchanged) so they can be run through
+      the image generator properly:
+      `07_chapter_2_understanding_the_weather_PROMPT.txt`,
+      `13_chapter_5_the_rise_of_empires_PROMPT.txt`,
+      `17_chapter_7_the_gupta_era_an_age_of_tireless_creativity_PROMPT.txt`,
+      `19_chapter_8_how_the_land_becomes_sacred_PROMPT.txt` (all in
+      `~/Downloads/GPT55_Chapter_Infographic_Prompts_2026-08-21/grade_7/social_science/`).
+      **Lesson: for split-part grades, a poster's own "Chapter N" title is
+      not sufficient to confirm it answers the request "Part X Chapter
+      N" — always check the poster's full chapter TITLE (not just the
+      number) against the live syllabus's per-part chapter list, since two
+      different parts can and do reuse the same chapter number with
+      completely different topics.**
+        - **Part 1 Chapter 1 "Geographical Diversity of India"**: clean.
+          West/East coast, delta and island content all correct. One item
+          verified rather than assumed: the poster's "Andaman and Nicobar
+          ... more than 500 large and small volcanic islands" claim is
+          geologically loose (most of the archipelago is considered a
+          submerged extension of Myanmar's Arakan Yoma range, not
+          volcanic in origin — Barren Island and Narcondam are the actual
+          volcanic exceptions) — but grep-confirmed this exact wording is
+          already present in `lesson_cache`'s own "Exam-style problems"
+          step, so this is a pre-existing lesson-content characterisation
+          (like the Grade 10 Maths Ch1 "irrational integers" bug catalogued
+          below), not something the poster invented. Not blocking on it;
+          noting it here in case it is ever worth a separate content fix.
+          **Applied.**
+        - **Part 1 Chapter 3 "Climates of India"**, **Chapter 4 "New
+          Beginnings: Cities and States"**, **Chapter 6 "The Age of
+          Reorganisation"**, **Chapter 9 "From the Rulers to the Ruled:
+          Types of Governments"**, **Chapter 10 "The Constitution of
+          India — An Introduction"**: all clean. Ch10 in particular is
+          fully accurate on every historical date and figure (Constituent
+          Assembly formed 9 December 1946, 389 members reduced to 299
+          after Partition, 15 women members, Dr. Rajendra Prasad chaired
+          the Assembly, Dr. B.R. Ambedkar separately chaired the Drafting
+          Committee, adopted 26 November 1949, in force 26 January 1950)
+          — all hand-verified against standard historical record.
+          **All applied.**
+        - **Part 1 Chapter 11 "From Barter to Money"**: had a genuine
+          lettering defect — the overview strip read "people searc for
+          safer..." instead of "search for", a truncated/garbled word in
+          the single easiest sentence on the poster to get right. All
+          panel content (paper money, RBI's sole currency-issuing
+          authority, digital money, QR payments, NEFT/RTGS/IMPS/UPI, the
+          seven-step barter-to-digital-money journey) was correct.
+          **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade7_SocialScience_Missing_Posters_Prompts_2026-08-21/
+          02_chapter_11_from_barter_to_money_PROMPT_v1.txt`) quoting the
+          garbled sentence and giving the exact correct wording verbatim.
+        - **Part 1 Chapter 12 "Understanding Markets"**: had a closing-
+          strip bleed — "Words to Know" included "Infrastructure: Basic
+          facilities and systems needed for life and work," which is
+          Chapter 7 "Infrastructure" content (confirmed identical wording
+          to that chapter's own Key Terms entry) with no connection to
+          any of this poster's six panels (market access, consumer
+          signals, trusted relationships, Ima Keithal, government
+          fairness intervention, public goods). The rest of the poster,
+          including the accurate Ima Keithal (women-led Imphal market)
+          reference, was correct and well-grounded. **Not applied.** Sent
+          a regeneration prompt
+          (`~/Downloads/Grade7_SocialScience_Missing_Posters_Prompts_2026-08-21/
+          03_chapter_12_understanding_markets_PROMPT_v1.txt`) naming
+          Chapter 7 as the source and quoting the bled entry verbatim.
+        - **Part 2 Chapter 2 "India and Her Neighbours"**, **Chapter 5
+          "India, a Home to Many"**, **Chapter 7 "Infrastructure: Engine
+          of India's Development"**, **Chapter 8 "Banks and the Magic of
+          Finance"**: all clean (reviewed as a byproduct of the mislabeling
+          above). Ch5's Sanjan legend (Jadi Rana's full-vessel-of-milk
+          symbolism, the sacred fire preserved at Udvada, Gujarat) and
+          Ch6's Karikala/Kallanai (Grand Anicut) Chola-era irrigation dam
+          were both hand-verified against standard historical accounts.
+          **All applied** — an incidental head start on the Part 2
+          rollout, not something to assume covers all of Part 2 (it
+          does not; Part 2 Ch 1, 3, 4, 6 are still outstanding).
+      **Grade 7 Social Science: 10 of 20 chapters applied and clean**
+      (Part 1: Ch 1, 3, 4, 6, 9, 10; Part 2: Ch 2, 5, 7, 8). Part 1 Ch 11
+      and Ch 12 pending regeneration (prompts ready, see above). Part 1's
+      real Ch 2, 5, 7, 8 and all of Part 2 except Ch 2/5/7/8 are not yet
+      generated as images at all.
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

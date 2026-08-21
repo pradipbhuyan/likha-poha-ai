@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 7",
+  "subject": "Social Science",
+  "chapter": "Chapter 8: Banks and the Magic of Finance",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 21, 2026, 02_23_05 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-7/social-science/chapter-8-banks-and-the-magic-of-finance.webp",
+    "alt": "Revision poster for Chapter 8: Banks and the Magic of Finance — covers withdrawal slips, ATMs, cheques, POS machines, netbanking, and UPI payments.",
+    "caption": "Full-chapter revision poster — banking and digital payment methods from withdrawal slips to UPI.",
+    "width": 1024,
+    "height": 1536
+  }
+}
