@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Chapter 10: Biomolecules",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 21, 2026, 06_40_00 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/chemistry/chapter-10-biomolecules.webp",
+    "alt": "Revision poster for Chapter 10: Biomolecules — covers carbohydrate classification, aldose/ketose nomenclature, glucose and fructose open-chain and cyclic (Haworth) structures, and optical rotation and mutarotation.",
+    "caption": "Full-chapter revision poster — carbohydrate classification, glucose/fructose structures, and mutarotation.",
+    "width": 1024,
+    "height": 1536
+  }
+}

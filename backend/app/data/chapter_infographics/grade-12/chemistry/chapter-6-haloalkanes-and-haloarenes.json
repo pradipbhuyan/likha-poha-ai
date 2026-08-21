@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Chemistry",
+  "chapter": "Chapter 6: Haloalkanes and Haloarenes",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 21, 2026, 06_39_50 AM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/chemistry/chapter-6-haloalkanes-and-haloarenes.webp",
+    "alt": "Revision poster for Chapter 6: Haloalkanes and Haloarenes — covers classification by carbon type and halogen count, preparation (free-radical halogenation, Sandmeyer reaction), nucleophilic substitution, elimination, Wurtz, Finkelstein, and Grignard reagent formation.",
+    "caption": "Full-chapter revision poster — classification, preparation methods, and key reactions of haloalkanes and haloarenes.",
+    "width": 1024,
+    "height": 1536
+  }
+}

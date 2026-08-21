@@ -1,27 +1,26 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-21):** live on 262 chapters — all 13 Grade 12
-> Mathematics chapters, all 13 Grade 12 Biology chapters, 13 of 14 Grade 12
-> Physics chapters (only Ch 14 "Semiconductor Electronics" remains, not yet
-> generated — Ch 3 is now fixed and applied), 8 of 10 Grade 12 Chemistry
-> chapters (Ch 1, 2, 3, 4, 5, 7, 8, 9 — Ch 7 is now fixed and applied; see
-> open items for Ch 6, pending a FIFTH regeneration round, and Ch 10
-> "Biomolecules", not yet generated), all 10 Grade 5 EVS chapters, all 15
-> Grade 5 Maths chapters
-> (12 replaced; 13-15 rejected on review, still on their original poster —
-> see open items), all 10 Grade 6 Maths chapters, all 12 Grade 6 Science
-> chapters, all 15 Grade 7 Maths chapters, all 14 Grade 8 Maths chapters,
-> all 13 Grade 8 Science chapters, all 8 Grade 9 Maths chapters, all 13
-> Grade 9 Science chapters, all 28 Grade 10 chapters (14 Maths + 13
-> Science), and all 56 Grade 11 chapters (14 Maths + 14 Physics + 9
-> Chemistry + 19 Biology). Grade 5, Grade 6, Grade 7 Maths, Grade 8
-> (Maths + Science), Grade 9 (Maths + Science), Grade 10 (Maths +
-> Science), **Grade 11 (all four subjects), Grade 12 Mathematics, and
-> Grade 12 Biology are all complete and clean.** 30 of 292 in-scope
-> chapters remain (Grade 12 Physics Ch 14 not yet generated + Grade 12
-> Chemistry Ch 6 pending a fifth regeneration round + Grade 12 Chemistry
-> Ch 10 not yet generated — plus the still-open Grade 5 Maths Ch 13-15
-> rejections).
+> **Status (2026-08-21):** live on 264 chapters — all 13 Grade 12
+> Mathematics chapters, all 13 Grade 12 Biology chapters, all 10 Grade 12
+> Chemistry chapters (**Grade 12 Chemistry is now COMPLETE** — Ch 6 finally
+> clean on its fifth regeneration round, Ch 10 "Biomolecules" clean on
+> first generation), 13 of 14 Grade 12 Physics chapters (only Ch 14
+> "Semiconductor Electronics" remains, not yet generated), all 10 Grade 5
+> EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15 rejected
+> on review, still on their original poster — see open items), all 10
+> Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7
+> Maths chapters, all 14 Grade 8 Maths chapters, all 13 Grade 8 Science
+> chapters, all 8 Grade 9 Maths chapters, all 13 Grade 9 Science chapters,
+> all 28 Grade 10 chapters (14 Maths + 13 Science), and all 56 Grade 11
+> chapters (14 Maths + 14 Physics + 9 Chemistry + 19 Biology). Grade 5,
+> Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9 (Maths +
+> Science), Grade 10 (Maths + Science), **Grade 11 (all four subjects),
+> Grade 12 Mathematics, Grade 12 Chemistry, and Grade 12 Biology are all
+> complete and clean.** 28 of 292 in-scope chapters remain — almost
+> entirely just Grade 12 Physics Ch 14 (not yet generated) plus the
+> still-open Grade 5 Maths Ch 13-15 rejections; **Grade 12 Physics Ch 14
+> is the only chapter left before the ENTIRE Grade 12 rollout (Maths,
+> Physics, Chemistry, Biology) is complete.**
 >
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
@@ -1290,6 +1289,53 @@ fixing posters one at a time.
       Ch7) as the longest-running single-chapter fix in the entire
       rollout. Chapter 10 "Biomolecules" still has not been generated as
       an image at all.
+- [ ] **Grade 12 Chemistry Chapter 6 (fifth regeneration) and Chapter 10
+      "Biomolecules" (first generation) reviewed 2026-08-21. Both clean —
+      Grade 12 Chemistry is now COMPLETE, 10 of 10.**
+        - **Chapter 6 "Haloalkanes and Haloarenes" (5th regeneration)**:
+          fully fixed, no new defects, and an entirely redesigned layout
+          from the previous four rounds (classification/preparation/
+          reactions structure rather than the earlier panel set). The
+          overview-strip lettering glitch is gone — "...is more important
+          than the halogen itself" now renders as plain, correctly-spelled
+          English. The sp2/sp3 pairing holds everywhere it appears (Key
+          Terms, Important Points, and the classification panel): haloalkane
+          → sp3, haloarene → sp2, no exceptions. All preparation and
+          reaction chemistry re-verified correct: free-radical halogenation,
+          electrophilic aromatic chlorination, Sandmeyer reaction, SN/E
+          competition, Wurtz, Finkelstein, and Grignard formation. **Applied.
+          This took five regeneration rounds total — the longest fix in
+          this entire rollout — across five distinct defects: (1) original
+          sp2/sp3 mislabel, (2) fixed but a stray "Carbonyl (not here)"
+          meta-bullet appeared, (3) meta-bullet fixed but the sp2/sp3
+          defect regressed and duplicated, (4) sp2/sp3 fix finally held but
+          a lettering glitch appeared in the overview strip, (5) lettering
+          fixed with no new defects.**
+        - **Chapter 10 "Biomolecules"**: clean on first generation. This
+          poster is scope-limited to the carbohydrates portion of the
+          chapter (monosaccharide/oligosaccharide/polysaccharide
+          classification, aldose/ketose nomenclature, glucose and fructose
+          open-chain Fischer projections, cyclic Haworth structures,
+          optical rotation and mutarotation) rather than the full NCERT
+          chapter (proteins, vitamins, nucleic acids, hormones are not
+          covered) — consistent with the doc's established pattern of a
+          poster's scope reflecting whichever `lesson_cache` step grounded
+          it, not a defect. Hand-verified: the open-chain Fischer
+          projections for both D-glucose (OH right/left/right/right at
+          C2-C5) and D-fructose (OH left/right/right at C3-C5) exactly
+          match the standard configurations; the mutarotation values
+          (+112.2° pure α-D-glucopyranose → +52.7° equilibrium mixture)
+          match the standard NCERT figures; fructose's anomeric carbon
+          correctly identified as C-2 (since the ketone is at C-2), versus
+          glucose's C-1. **Applied.**
+      **Grade 12 Chemistry: 10 of 10 chapters applied and clean — COMPLETE**
+      (Ch 1-10). Combined with the already-complete Grade 12 Mathematics
+      (13/13) and Grade 12 Biology (13/13), **three of Grade 12's four
+      subjects are now fully done. Grade 12 Physics Ch 14 "Semiconductor
+      Electronics" (not yet generated as an image) is the only chapter
+      remaining before the entire Grade 12 rollout, and the entire
+      292-chapter rollout except the Grade 5 Maths Ch 13-15 rejections,
+      is complete.**
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —
