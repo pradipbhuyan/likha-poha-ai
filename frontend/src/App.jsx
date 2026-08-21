@@ -129,7 +129,7 @@ const PAGE_META = {
   lessons: {
     title: "Lessons",
     subtitle:
-      "Generate step-wise AI lessons with progress and RAG sources.",
+      "Step-wise AI lessons with knowledge checks and progress indicator",
     icon: "📖",
   },
   doubt: {
@@ -182,7 +182,7 @@ const PAGE_META = {
   },
   formulaSheet: {
     title: "Formulas & Concepts",
-    subtitle: "Chapter-wise CBSE formula reference for your grade. Preview free, unlock all with Premium.",
+    subtitle: "Chapter-wise CBSE formula reference for your grade.",
     icon: "📐",
   },
   analytics: {
