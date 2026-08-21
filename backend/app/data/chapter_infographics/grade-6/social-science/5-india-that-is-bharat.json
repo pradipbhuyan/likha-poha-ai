@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "5. India, That Is Bharat",
+  "step_title": "Revision and recap",
+  "source_image": "Grade6-Social-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/social-science/5-india-that-is-bharat.webp",
+    "alt": "Revision poster for Chapter 5: India, That Is Bharat — covers the many historical names for India (Bharat, Aryavarta, Jambudvipa, Hind) and how boundaries changed over time.",
+    "caption": "Full-chapter revision poster — historical names for India and changing boundaries.",
+    "width": 1024,
+    "height": 1536
+  }
+}

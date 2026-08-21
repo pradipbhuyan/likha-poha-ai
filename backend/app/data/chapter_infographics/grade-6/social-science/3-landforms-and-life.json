@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "3. Landforms and Life",
+  "step_title": "Revision and recap",
+  "source_image": "Grade6-Social-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/social-science/3-landforms-and-life.webp",
+    "alt": "Revision poster for Chapter 3: Landforms and Life — covers the three landform types (mountains, plateaus, plains), young vs old mountains, and how mountains form.",
+    "caption": "Full-chapter revision poster — mountains, plateaus, plains, and how mountains form.",
+    "width": 1024,
+    "height": 1536
+  }
+}

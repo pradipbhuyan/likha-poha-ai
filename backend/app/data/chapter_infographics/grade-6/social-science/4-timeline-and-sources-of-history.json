@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "4. Timeline and Sources of History",
+  "step_title": "Revision and recap",
+  "source_image": "Grade6-Social-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/social-science/4-timeline-and-sources-of-history.webp",
+    "alt": "Revision poster for Chapter 4: Timeline and Sources of History — covers eras, calendars, the CE/BCE dating system, and how timelines order historical events.",
+    "caption": "Full-chapter revision poster — eras, calendars, CE/BCE, and building a timeline.",
+    "width": 1024,
+    "height": 1536
+  }
+}

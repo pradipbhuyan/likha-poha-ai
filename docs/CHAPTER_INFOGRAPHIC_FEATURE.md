@@ -22,6 +22,13 @@
 > is the only chapter left before the ENTIRE Grade 12 rollout (Maths,
 > Physics, Chemistry, Biology) is complete.**
 >
+> **Scope expansion 2026-08-21: Grade 6 Social Science entered the
+> rollout**, the first Social Science chapters attempted — outside the
+> original "Science and Maths only, first cut" scope in §2 below. 13 of
+> 14 chapters applied and clean; Ch 13 "The Value of Work" pending
+> regeneration (see open items). This is now tracked separately from the
+> 292-chapter Science/Maths count above, since it is a deliberate scope
+> extension, not part of the original first cut.
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
 > the traps that already cost a debugging round.
@@ -1336,6 +1343,43 @@ fixing posters one at a time.
       remaining before the entire Grade 12 rollout, and the entire
       292-chapter rollout except the Grade 5 Maths Ch 13-15 rejections,
       is complete.**
+- [ ] **Grade 6 Social Science: first Social Science chapters attempted in
+      this rollout, 2026-08-21.** Prompts generated for all 14 live
+      chapters (the generator's raw output was 28 — the same stale-
+      duplicate `lesson_cache` chapter-key pattern seen in every other
+      grade, here with an inconsistent prefix: 13 duplicates use
+      "Text Book - Part N - ..." but Chapter 4's duplicate instead uses
+      "History - Part 4 - ..." — cross-checked against the live syllabus
+      (14) and cleaned). All 14 reviewed:
+        - **Chapters 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14** all clean
+          on first generation — no bleeds, no factual errors found on
+          careful review of historical dates, definitions and
+          classifications (e.g. Ch6's Indus-Sarasvati civilisation dating
+          from ~3500 BCE, Ch7's account of the Buddha's life and
+          teachings, Ch2's ocean-size ordering Pacific>Atlantic>Indian>
+          Southern>Arctic, Ch10-12's civics content on separation of
+          powers and local government). **All 13 applied.**
+        - **Chapter 13 "The Value of Work"** had a closing-strip bleed:
+          "Key Terms" included "Decentralisation: Local people take part
+          in decisions about their areas." and "Ward: A smaller local
+          unit in a city or town." — both are Chapters 10-12 "Grassroots
+          Democracy" content, with zero connection to economic vs.
+          non-economic activity, markets or fees. The rest of the poster
+          (economic/non-economic activity definitions and examples,
+          market/fee definitions, the six-step "how an activity becomes
+          economic" flow) was correct and well-grounded. **Not applied.**
+          Sent a regeneration prompt
+          (`~/Downloads/Grade6_SocialScience_Missing_Posters_Prompts_2026-08-21/
+          05_13_the_value_of_work_PROMPT_v1.txt`) with a HARD RULE 0
+          naming Chapters 10-12 as the source and quoting the two bled
+          terms verbatim.
+      **Grade 6 Social Science: 13 of 14 chapters applied and clean.**
+      Chapter 13 pending regeneration (prompt ready, see above) — the
+      only remaining chapter for this grade/subject. Note this subject is
+      a scope extension beyond the original Maths/Science first cut (see
+      status line above) — not yet decided whether to extend the rollout
+      to Social Science for other grades; ask before generating prompts
+      for another grade's Social Science content.
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —

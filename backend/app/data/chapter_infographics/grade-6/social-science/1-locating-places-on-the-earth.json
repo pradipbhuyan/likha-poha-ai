@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "1. Locating Places on the Earth",
+  "step_title": "Revision and recap",
+  "source_image": "Grade6-Social-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/social-science/1-locating-places-on-the-earth.webp",
+    "alt": "Revision poster for Chapter 1: Locating Places on the Earth — covers why a flat map distorts the globe, coordinate systems, and lines of latitude from the Equator to the poles.",
+    "caption": "Full-chapter revision poster — globes, latitude, and locating places using coordinates.",
+    "width": 1024,
+    "height": 1536
+  }
+}

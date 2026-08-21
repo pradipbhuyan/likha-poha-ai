@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 6",
+  "subject": "Social Science",
+  "chapter": "2. Oceans and Continents",
+  "step_title": "Revision and recap",
+  "source_image": "Grade6-Social-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-6/social-science/2-oceans-and-continents.webp",
+    "alt": "Revision poster for Chapter 2: Oceans and Continents — covers the five oceans, their relative sizes, India's two seas, and marine flora and fauna.",
+    "caption": "Full-chapter revision poster — the five oceans, their sizes, and marine life.",
+    "width": 1024,
+    "height": 1536
+  }
+}
