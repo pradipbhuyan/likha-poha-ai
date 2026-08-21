@@ -419,7 +419,7 @@ function useIsWide() {
   return matches;
 }
 
-function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, onNavigate }) {
+function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, activeBeyond, onNavigate }) {
   const isWide = useIsWide();
   const chapterGlance = useMemo(() => findChapterGlance(doc), [doc]);
 
@@ -470,6 +470,11 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
         {chapterGlance && (
           // Sits directly under the last milestone ("Revision and recap"),
           // matching where the poster actually appears in the document.
+          // Highlighted the same way milestone links are (purple text +
+          // left bar) when the poster is the section currently in view —
+          // driven by activeBeyond from ChapterJourneyView's scroll-spy,
+          // since this section has no "study-milestone-N" id for the
+          // milestone observer to pick up.
           <a
             href={`#${CHAPTER_GLANCE_ANCHOR}`}
             onClick={(e) => {
@@ -483,8 +488,12 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
             style={{
               display: "flex", alignItems: "center", gap: 6,
               padding: "7px 14px", textDecoration: "none",
-              color: "var(--text, #374151)", fontWeight: 500,
-              borderLeft: "3px solid transparent", lineHeight: 1.35,
+              color: activeBeyond === "glance" ? "var(--accent, #2d4a8a)" : "var(--text, #374151)",
+              fontWeight: activeBeyond === "glance" ? 700 : 500,
+              borderLeft: activeBeyond === "glance"
+                ? "3px solid var(--accent, #2d4a8a)"
+                : "3px solid transparent",
+              lineHeight: 1.35,
             }}
           >
             <ImageIcon size={13} strokeWidth={2.3} aria-hidden="true" />
@@ -494,7 +503,11 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
         {doc.recap && (
           <a href="#study-recap" style={{
             display: "block", padding: "7px 14px", textDecoration: "none",
-            color: "var(--text, #374151)", fontWeight: 500, borderLeft: "3px solid transparent",
+            color: activeBeyond === "recap" ? "var(--accent, #2d4a8a)" : "var(--text, #374151)",
+            fontWeight: activeBeyond === "recap" ? 700 : 500,
+            borderLeft: activeBeyond === "recap"
+              ? "3px solid var(--accent, #2d4a8a)"
+              : "3px solid transparent",
           }}>
             Wrap-up
           </a>

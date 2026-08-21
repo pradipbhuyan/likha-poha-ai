@@ -422,7 +422,7 @@ function ExploreMoreCard({ block }) {
   );
 }
 
-function MilestoneRail({ doc, activeMilestone }) {
+function MilestoneRail({ doc, activeMilestone, activeBeyond }) {
   const chapterGlance = findChapterGlance(doc);
   /** Sticky left rail on wide screens: chapter path, always visible. */
   return (
@@ -474,20 +474,28 @@ function MilestoneRail({ doc, activeMilestone }) {
       })}
       {chapterGlance && (
         // Sits directly under the last milestone, matching where the poster
-        // actually appears in the feed.
+        // actually appears in the feed. Highlighted the same way milestone
+        // links are (teal text + red left bar + filled dot) when the poster
+        // is the section currently in view — driven by activeBeyond from
+        // ChapterJourneyView's scroll-spy, since this section has no
+        // "journey-milestone-N" id for the milestone observer to pick up.
         <a
           href={`#${CHAPTER_GLANCE_ANCHOR}`}
           onClick={scrollToChapterGlance}
           style={{
             display: "flex", alignItems: "center", gap: 10, padding: "8px 14px",
-            textDecoration: "none", fontSize: ".84rem", fontWeight: 600,
-            color: "var(--muted, #9ca3af)", borderLeft: "3px solid transparent",
+            textDecoration: "none", fontSize: ".84rem",
+            fontWeight: activeBeyond === "glance" ? 800 : 600,
+            color: activeBeyond === "glance" ? "#0e9488" : "var(--muted, #9ca3af)",
+            borderLeft: activeBeyond === "glance" ? "3px solid #e8604c" : "3px solid transparent",
+            background: activeBeyond === "glance" ? "rgba(14,148,136,.07)" : "none",
           }}
         >
           <span style={{
             width: 24, height: 24, borderRadius: "50%", flexShrink: 0,
             display: "flex", alignItems: "center", justifyContent: "center",
-            background: "var(--border, #e5e7eb)", color: "var(--muted, #9ca3af)",
+            background: activeBeyond === "glance" ? "#0e9488" : "var(--border, #e5e7eb)",
+            color: activeBeyond === "glance" ? "#fff" : "var(--muted, #9ca3af)",
           }}>
             <ImageIcon size={13} strokeWidth={2.6} aria-hidden="true" />
           </span>
@@ -497,13 +505,17 @@ function MilestoneRail({ doc, activeMilestone }) {
       {doc.recap && (
         <a href="#journey-recap" style={{
           display: "flex", alignItems: "center", gap: 10, padding: "8px 14px",
-          textDecoration: "none", fontSize: ".84rem", fontWeight: 600,
-          color: "var(--muted, #9ca3af)", borderLeft: "3px solid transparent",
+          textDecoration: "none", fontSize: ".84rem",
+          fontWeight: activeBeyond === "recap" ? 800 : 600,
+          color: activeBeyond === "recap" ? "#0e9488" : "var(--muted, #9ca3af)",
+          borderLeft: activeBeyond === "recap" ? "3px solid #e8604c" : "3px solid transparent",
+          background: activeBeyond === "recap" ? "rgba(14,148,136,.07)" : "none",
         }}>
           <span style={{
             width: 24, height: 24, borderRadius: "50%", flexShrink: 0,
             display: "flex", alignItems: "center", justifyContent: "center",
-            background: "var(--border, #e5e7eb)", color: "var(--muted, #9ca3af)",
+            background: activeBeyond === "recap" ? "#0e9488" : "var(--border, #e5e7eb)",
+            color: activeBeyond === "recap" ? "#fff" : "var(--muted, #9ca3af)",
           }}>
             <Star size={13} strokeWidth={2.6} aria-hidden="true" />
           </span>
@@ -514,11 +526,11 @@ function MilestoneRail({ doc, activeMilestone }) {
   );
 }
 
-function JourneyRenderer({ doc, onQuickCheckAnswer, quizAnswers, activeMilestone = 0, isWide = false }) {
+function JourneyRenderer({ doc, onQuickCheckAnswer, quizAnswers, activeMilestone = 0, activeBeyond = null, isWide = false }) {
   const chapterGlance = findChapterGlance(doc);
   return (
     <div style={isWide ? { display: "flex", gap: 26, alignItems: "flex-start" } : undefined}>
-      {isWide && <MilestoneRail doc={doc} activeMilestone={activeMilestone} />}
+      {isWide && <MilestoneRail doc={doc} activeMilestone={activeMilestone} activeBeyond={activeBeyond} />}
 
       <div
         className="journey-feed"

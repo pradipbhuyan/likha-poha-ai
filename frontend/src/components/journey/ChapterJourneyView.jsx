@@ -5,6 +5,7 @@ import { ensureLessonKbChips } from "../../api/lesson";
 import { saveChapterProgress } from "../../api/progress";
 import { logStudentActivity } from "../../api/profile";
 import { useFeedbackPrompt } from "../../context/useFeedbackPrompt";
+import { CHAPTER_GLANCE_ANCHOR } from "./chapterGlance";
 import JourneyRenderer from "./JourneyRenderer";
 import StudyRenderer from "./StudyRenderer";
 import LessonMarkdown from "./LessonMarkdown";
@@ -97,6 +98,15 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
   const storageKey = progressKey({ grade, subject, chapter });
   const [progress, setProgress] = useState(() => loadProgress(storageKey));
   const [activeMilestone, setActiveMilestone] = useState(0);
+  // "beyond" tracks sections that live AFTER the last numbered milestone —
+  // the poster (chapter-at-a-glance anchor) and Wrap-up (recap) — so the
+  // nav link for whichever one is in view can get the same purple
+  // highlight/left-bar treatment the milestone links already have. Before
+  // this, activeMilestone stayed pinned to the last milestone's index once
+  // the student scrolled past it, since neither Chapter at a glance's div
+  // nor Wrap-up's section carry a "journey-milestone-N"/"study-milestone-N"
+  // id the existing scroll-spy observer watches.
+  const [activeBeyond, setActiveBeyond] = useState(null);
   const hasSavedCompletionRef = useRef(false);
 
   const [lkbChipsByStep, setLkbChipsByStep] = useState({});
@@ -114,6 +124,7 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
   useEffect(() => {
     setProgress(loadProgress(storageKey));
     setActiveMilestone(0);
+    setActiveBeyond(null);
     setLkbChipsByStep({});
     setOpenChipIds(new Set());
     requestedStepsRef.current = new Set();
@@ -154,13 +165,53 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = Number(entry.target.id.replace(prefix, ""));
-            if (!Number.isNaN(index)) setActiveMilestone(index);
+            if (!Number.isNaN(index)) {
+              setActiveMilestone(index);
+              // A milestone has scrolled back into view — clear whichever
+              // "beyond" section (glance/recap) was previously active so
+              // its highlight doesn't linger while a milestone is current.
+              setActiveBeyond(null);
+            }
           }
         });
       },
       { rootMargin: "-15% 0px -70% 0px" }
     );
     sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [doc, isJunior]);
+
+  // Scroll-spy for the two sections that come AFTER the last milestone —
+  // the "Chapter at a glance" poster and the "Wrap-up" recap. Neither
+  // carries a "journey-milestone-N"/"study-milestone-N" id, so the
+  // milestone observer above never selects them, and activeMilestone stays
+  // stuck on the last milestone's index once the student scrolls past it —
+  // which is why neither nav link ever got the purple highlight/left-bar
+  // treatment the milestone links get. This mirrors that same observer
+  // pattern for exactly these two ids.
+  useEffect(() => {
+    const recapId = isJunior ? "journey-recap" : "study-recap";
+    const targets = [
+      { id: CHAPTER_GLANCE_ANCHOR, key: "glance" },
+      { id: recapId, key: "recap" },
+    ]
+      .map(({ id, key }) => ({ el: document.getElementById(id), key }))
+      .filter((t) => t.el);
+    if (targets.length === 0 || typeof IntersectionObserver === "undefined") return undefined;
+
+    const keyByElement = new Map(targets.map((t) => [t.el, t.key]));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const key = keyByElement.get(entry.target);
+            if (key) setActiveBeyond(key);
+          }
+        });
+      },
+      { rootMargin: "-15% 0px -70% 0px" }
+    );
+    targets.forEach((t) => observer.observe(t.el));
     return () => observer.disconnect();
   }, [doc, isJunior]);
 
@@ -297,6 +348,7 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
           quizAnswers={progress.quizAnswers}
           onQuickCheckAnswer={handleQuickCheckAnswer}
           activeMilestone={activeMilestone}
+          activeBeyond={activeBeyond}
           isWide={isWide}
         />
       ) : (
@@ -305,6 +357,7 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
           quizAnswers={progress.quizAnswers}
           onQuickCheckAnswer={handleQuickCheckAnswer}
           activeMilestone={activeMilestone}
+          activeBeyond={activeBeyond}
           onNavigate={setActiveMilestone}
         />
       )}
