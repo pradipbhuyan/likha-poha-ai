@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 7: Factors of Production",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Social-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/social-science/chapter-7-factors-of-production.webp",
+    "alt": "Grade 8 Social Science Chapter 7 revision poster covering production, business, land, labour, capital, entrepreneurship, and the input-process-output chain of factors of production.",
+    "caption": "Full-chapter revision poster: Factors of Production",
+    "width": 1024,
+    "height": 1536
+  }
+}

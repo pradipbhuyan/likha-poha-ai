@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: Natural Resources and Their Use",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Social-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/social-science/chapter-1-natural-resources-and-their-use.webp",
+    "alt": "Grade 8 Social Science Chapter 1 revision poster covering nature and resources, the three conditions for a resource, essential and material resources, energy resources, and why resources are classified.",
+    "caption": "Full-chapter revision poster: Natural Resources and Their Use",
+    "width": 1024,
+    "height": 1536
+  }
+}

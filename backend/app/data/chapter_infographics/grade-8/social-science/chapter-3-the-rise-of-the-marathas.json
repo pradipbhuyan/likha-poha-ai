@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 8",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: The Rise of the Marathas",
+  "step_title": "Revision and recap",
+  "source_image": "Grade8-Social-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-8/social-science/chapter-3-the-rise-of-the-marathas.webp",
+    "alt": "Grade 8 Social Science Chapter 3 revision poster covering Maratha civil administration, welfare, the Ashta Pradhana Mandala council, revenue arrangements, military structure, and justice and trade.",
+    "caption": "Full-chapter revision poster: The Rise of the Marathas",
+    "width": 1024,
+    "height": 1536
+  }
+}

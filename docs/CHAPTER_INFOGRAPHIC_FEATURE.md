@@ -44,10 +44,11 @@
 > is what the live syllabus dropdown actually requests. Any future apply
 > on this or any other split-part grade must force-refresh BOTH the bare
 > key and the exact prefixed string `/api/syllabus` returns.**
-> Grade 8 (7 chapters) prompts generated 2026-08-21, not yet
-> reviewed/applied. This is tracked separately from the 292-chapter
-> Science/Maths count above, since it is a deliberate scope extension, not
-> part of the original first cut.
+> **Grade 8 Social Science is now COMPLETE — all 7 of 7 chapters applied
+> and clean** (Chapters 1-7, all clean on first generation, no bleeds or
+> defects). This is tracked separately from the 292-chapter Science/Maths
+> count above, since it is a deliberate scope extension, not part of the
+> original first cut.
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
 > the traps that already cost a debugging round.
@@ -518,6 +519,64 @@ fixing posters one at a time.
 
 ## 7. Open items
 
+- [ ] **Grade 8 Social Science: all 7 of 7 chapters applied 2026-08-21
+      (this session).** Processed the 7 images the user supplied from
+      Downloads (`Grade8-Social-Chapter{1-7}.png`). Confirmed against both
+      `lesson_cache` and `rag_documents` (per the "genuine content gap"
+      finding already catalogued in this doc's Grade 7/8 prompt-generation
+      entry below) that Grade 8 Social Science has exactly 7 live chapters
+      — no stale-duplicate keys, no split-part "Part N -" prefix issue
+      (confirmed no `lesson_chapter_doc` rows existed yet for this grade/
+      subject before this session, so Trap 9 does not apply here):
+        - **Chapter 1 "Natural Resources and Their Use"**: clean — nature
+          and resources, the three conditions for a resource (technologically
+          accessible/economically feasible/culturally acceptable), essential
+          and material resources, and energy resources all correctly
+          grounded. **Applied.**
+        - **Chapter 2 "Reshaping India's Political Map"**: clean —
+          peasant/tribal resistance, Rani Durgavati, Rajput resistance
+          (Rana Sanga, Maharana Pratap), the Ahom paik system, Lachit
+          Borphukan's victory at Saraighat (1671), and Guru Gobind Singh's
+          founding of the Khalsa (1699) all hand-verified against standard
+          historical record. **Applied**
+          (`--chapter "Chapter 2: Reshaping India’s Political Map"` — note
+          the curly right-single-quote U+2019 in "India's", confirmed
+          against `lesson_cache` before applying, not a straight
+          apostrophe).
+        - **Chapter 3 "The Rise of the Marathas"**: clean — civil
+          administration, the Ashta Pradhana Mandala (council of eight),
+          Chauth (25% of revenue) and Sardeshmukhi (10%) revenue system,
+          military structure (bargirs/silledars), and justice/transport/
+          trade all correctly grounded. **Applied.**
+        - **Chapter 4 "The Colonial Era in India"**: clean — commercial
+          foothold, divide and rule, the Battle of Plassey (1757, Robert
+          Clive/Mir Jafar), kingmaker strategy, the Doctrine of Lapse, and
+          indirect control all correctly grounded. **Applied.**
+        - **Chapter 5 "Universal Franchise and India's Electoral System"**:
+          clean — Lok Sabha/Assembly elections, the first-past-the-post
+          system, government formation, the Rajya Sabha (6-year terms,
+          one-third retiring every two years, 12 nominated members), and
+          the indirect election of President and Vice-President all
+          correctly grounded. **Applied** (same curly-apostrophe caution
+          as Chapter 2).
+        - **Chapter 6 "The Parliamentary System: Legislature and
+          Executive"**: clean — popular consent, Parliament's bicameral
+          composition, federalism, the Lok Sabha Speaker, and the Rajya
+          Sabha Chairperson (correctly identified as the Vice President of
+          India) all correctly grounded. **Applied.**
+        - **Chapter 7 "Factors of Production"**: clean — production,
+          business, land, labour, capital, entrepreneurship, and the
+          input-process-output chain all correctly grounded, no bleeds
+          from any of the six other chapters. **Applied.**
+      All 7 verified reached the student — queried `lesson_chapter_doc`
+      directly for each chapter, confirmed the `chapter-infographic` fence
+      string is present in the stored `doc`, and confirmed there are
+      exactly 7 chapter keys total in `lesson_chapter_doc` for this
+      grade/subject with no "Part N -"-prefixed duplicates (unlike Grade 7
+      Social Science, Grade 8 is not a split-part grade, so Trap 9 does
+      not apply). **Grade 8 Social Science is now COMPLETE — 7 of 7
+      chapters applied and clean**, joining Grade 6 and Grade 7 Part 1
+      Social Science as fully done within this scope-extension subject.
 - [ ] **Grade 7 Social Science: Part 1 Ch 2/5/7/8 and Part 2 Ch 1/3/4/6
       applied 2026-08-21 (this session).** Processed the 8 images the user
       supplied from Downloads (`Grade7-Social-Part1-Chapter{2,5,7,8}.png`,
