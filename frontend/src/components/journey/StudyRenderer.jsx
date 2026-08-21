@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AlertTriangle, Award, BookOpen, CheckCircle2, Compass, GraduationCap, HelpCircle, ImageIcon, Trophy } from "lucide-react";
 
 import LessonMarkdown from "./LessonMarkdown";
-import { CHAPTER_GLANCE_ANCHOR, CHAPTER_GLANCE_LABEL, findChapterGlance } from "./chapterGlance";
+import { CHAPTER_GLANCE_ANCHOR, CHAPTER_GLANCE_LABEL, findChapterGlance, scrollToChapterGlance } from "./chapterGlance";
 import StructuredVisualBlock from "../StructuredVisualBlock";
 
 /**
@@ -472,7 +472,14 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
           // matching where the poster actually appears in the document.
           <a
             href={`#${CHAPTER_GLANCE_ANCHOR}`}
-            onClick={() => onNavigate?.(chapterGlance.mi)}
+            onClick={(e) => {
+              onNavigate?.(chapterGlance.mi);
+              // Corrective re-scroll: textbook images above the poster in
+              // this milestone load lazily with no reserved height, so a
+              // single scrollIntoView can land short and then get pushed
+              // down as they finish loading. See chapterGlance.js.
+              scrollToChapterGlance(e);
+            }}
             style={{
               display: "flex", alignItems: "center", gap: 6,
               padding: "7px 14px", textDecoration: "none",

@@ -396,6 +396,51 @@ provably two separate rows in `lesson_chapter_doc`. Query
 values that start with "Part " for this grade/subject) to get the exact
 string, whitespace included, before refreshing.
 
+### Trap 10: the nav link can land short of the poster because unrelated
+content ABOVE it in the same milestone loads asynchronously with no
+reserved height
+
+**Fixed 2026-08-21 (reported live by a user: "when I click on Chapter at a
+Glance in the sidebar, it does not directly take me to the posters. It goes
+to images above and I need to scroll down").** The poster sits at the END
+of its milestone (Trap 8 guarantees this), but it is not necessarily the
+first thing in the viewport when the nav link fires — the SAME milestone
+can contain matched textbook page images (`TextbookImageBlock`, see
+`chapter_doc_service.py`'s `_match_textbook_images_for_milestone`) or LKB
+"Students also ask" chips rendered just above it. Both `StudyRenderer.jsx`'s
+`textbook_image` case and `JourneyRenderer.jsx`'s equivalent render these
+images with `loading="lazy"` and **no reserved `width`/`height`** — unlike
+`ChapterInfographicBlock.jsx`, which deliberately reserves `aspectRatio`
+from the fence payload's `width`/`height` specifically to avoid this
+problem (see the file's own comment: "does not shove the rest of the lesson
+down the page as it loads").
+
+**Symptom:** `element.scrollIntoView()` fires once at click time and lands
+correctly on the poster's anchor — but a moment later, as the textbook
+images above the anchor finish downloading and expand from 0px to their
+natural height, the whole page shifts down and the poster's actual anchor
+point moves below the viewport. The student is left looking at the
+textbook images that happen to have scrolled into view instead, with no
+indication they need to keep scrolling.
+
+**Fix:** added `scrollToChapterGlance()` to `chapterGlance.js` — instead of
+relying on the anchor `<a href="#chapter-at-a-glance">` alone, both
+`StudyRenderer.jsx` and `JourneyRenderer.jsx` now call this on click, which
+re-issues `scrollIntoView()` every 200ms for ~2 seconds. This self-corrects
+for the layout shift without needing to know in advance how many images are
+above the poster in a given chapter or how large they will render, since
+every regeneration/re-review pass in this rollout can change a milestone's
+block composition. `event.preventDefault()` is called first so a
+JavaScript-disabled fallback would still use the plain anchor jump, and the
+existing `scrollMarginTop: 90` on the anchor element (set for the sticky
+topbar) is preserved since the fix only re-triggers the same
+`scrollIntoView()` browser API repeatedly, not a custom scroll calculation.
+**Any future content type spliced in above the poster within the same
+milestone (per Trap 8) should either reserve its own height the way the
+poster does, or rely on this same corrective re-scroll — a single
+un-repeated `scrollIntoView()` call is not reliable whenever unsized,
+lazy-loading content can appear above the target.**
+
 ### Trap 8: the poster must be the LAST block in its milestone, not just present
 
 **Fixed 2026-08-21.** The poster is supposed to sit immediately above

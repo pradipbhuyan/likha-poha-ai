@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 import LessonMarkdown from "./LessonMarkdown";
-import { CHAPTER_GLANCE_ANCHOR, CHAPTER_GLANCE_LABEL, findChapterGlance } from "./chapterGlance";
+import { CHAPTER_GLANCE_ANCHOR, CHAPTER_GLANCE_LABEL, findChapterGlance, scrollToChapterGlance } from "./chapterGlance";
 import StructuredVisualBlock from "../StructuredVisualBlock";
 
 /**
@@ -477,6 +477,7 @@ function MilestoneRail({ doc, activeMilestone }) {
         // actually appears in the feed.
         <a
           href={`#${CHAPTER_GLANCE_ANCHOR}`}
+          onClick={scrollToChapterGlance}
           style={{
             display: "flex", alignItems: "center", gap: 10, padding: "8px 14px",
             textDecoration: "none", fontSize: ".84rem", fontWeight: 600,

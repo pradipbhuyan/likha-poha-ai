@@ -48,3 +48,38 @@ export function findChapterGlance(doc) {
   }
   return null;
 }
+
+/**
+ * Scroll to the "Chapter at a glance" poster, correcting for layout shift
+ * caused by content that sits ABOVE the poster in the same milestone but
+ * loads asynchronously without reserved space:
+ *   - Matched textbook page images (TextbookImageBlock) have no width/height
+ *     reserved and use loading="lazy" — see chapter_doc_service.py.
+ *   - The poster itself DOES reserve its aspect ratio via width/height on
+ *     the fence payload, so once everything above it has settled, the
+ *     anchor's position is stable.
+ *
+ * A single scrollIntoView() at click time can land correctly and then get
+ * pushed further down the page a moment later as those images above the
+ * anchor finish loading — this was reported by a user as the nav link
+ * "goes to images above it and I need to scroll down". Re-issuing the
+ * scroll for ~2 seconds after the click corrects for that shift without
+ * needing to know in advance how many images are still loading or how
+ * large they will render.
+ */
+export function scrollToChapterGlance(event) {
+  if (event) event.preventDefault();
+  const el = document.getElementById(CHAPTER_GLANCE_ANCHOR);
+  if (!el) return;
+
+  let attempts = 0;
+  const maxAttempts = 10; // ~2s total at 200ms apart
+  const rescroll = () => {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    attempts += 1;
+    if (attempts < maxAttempts) {
+      setTimeout(rescroll, 200);
+    }
+  };
+  rescroll();
+}
