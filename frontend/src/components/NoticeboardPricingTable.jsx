@@ -15,9 +15,9 @@ import "./NoticeboardPricingTable.css";
 
 export const NOTICEBOARD_PLANS = [
   { key: "free_tier",        name: "Free Tier",        price: "₹0",     period: "forever", note: "Get started",  color: "#64748b" },
-  { key: "starter",          name: "Premium",          price: "₹299",   period: "/ mo",     note: "Most popular", color: "#7c3aed", tag: "Popular" },
-  { key: "family_premium",   name: "Family Premium",   price: "₹499",   period: "/ mo",     note: "Up to 2 kids", color: "#10b981", tag: "Best value" },
-  { key: "exam_prep_center", name: "Exam Prep Center", price: "₹1,999", period: "/ yr",     note: "Gr 11–12 · JEE · NEET · CUET · SAT · IELTS · TOEFL", color: "#3b82f6", tag: "New" },
+  { key: "starter",          name: "Premium",          price: "₹299",   period: "/ month",     note: "Most popular", color: "#7c3aed", tag: "Popular" },
+  { key: "family_premium",   name: "Family Premium",   price: "₹499",   period: "/ month",     note: "Up to 2 kids", color: "#10b981", tag: "Best value" },
+  { key: "exam_prep_center", name: "Exam Prep Center", price: "₹1,999", period: "/ year",     note: "Gr 11–12 · JEE · NEET · CUET · SAT · IELTS · TOEFL", color: "#3b82f6", tag: "New" },
 ];
 
 export const NOTICEBOARD_GROUPS = [
@@ -114,6 +114,7 @@ export default function NoticeboardPricingTable({
           </button>
         ))}
       </div>
+      <p className="nbp-swipe-hint">&#8596; Swipe or tap a plan above to compare</p>
       <div className="nbp-wrap" ref={scrollRef}>
         <table className="nbp-table">
           <colgroup><col className="nbp-feature-col" />{plans.map(p => <col key={p.key} />)}</colgroup>
@@ -147,11 +148,10 @@ export default function NoticeboardPricingTable({
           </tbody>
         </table>
       </div>
-      <p className="nbp-swipe-hint">&#8596; Swipe or tap a plan above to compare</p>
       <div className="nbp-footnote">
         <span>✓ marked present &nbsp;&nbsp; ✗ marked absent</span>
         {footnote !== undefined ? footnote : (
-          <span>Prices in INR &middot; Family Premium fits 2 children &middot; Exam Prep Center (&#8377;1,999/yr) is a Grade 11&ndash;12 only add&#8209;on covering JEE, NEET, CUET, SAT, IELTS & TOEFL</span>
+          <span>Prices in INR &middot; Family Premium fits 2 children &middot; Exam Prep Center (&#8377;1,999 / year) is a Grade 11&ndash;12 only add&#8209;on covering JEE, NEET, CUET, SAT, IELTS & TOEFL</span>
         )}
       </div>
       {showCta && (

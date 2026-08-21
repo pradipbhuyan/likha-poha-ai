@@ -25,7 +25,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
   }, []);
   const faqs = [
     { q: "Which classes and boards are supported?", a: "LikhaPoha AI supports Grade 5 to Grade 12 for CBSE. Grade 5–10 covers Science, Maths, English, Social Science, and Hindi. Grade 11–12 adds Physics, Chemistry, Mathematics, Biology, Accountancy, Economics, and Business Studies — plus an Exam Prep Center for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT." },
-    { q: "What is the Exam Prep Center for Grade 11 & 12?", a: "The Exam Prep Center covers six exams: JEE Main, NEET UG, and CUET UG with an NTA-style simulator, curated MCQ question bank, subject-wise topic priorities, and simulated full-length tests with a floating countdown timer and question palette — exactly like the real exam interface. It also covers SAT, IELTS, and TOEFL iBT for students planning to study abroad, with exam-authentic practice for each format. Exam Prep Center is a separate ₹1,999/year plan for Grade 11–12 students — Premium and Family Premium do not include it, but Exam Prep Center in turn includes full CBSE Grade 11–12 lessons, doubts, and mock tests alongside all six exams." },
+    { q: "What is the Exam Prep Center for Grade 11 & 12?", a: "The Exam Prep Center covers six exams: JEE Main, NEET UG, and CUET UG with an NTA-style simulator, curated MCQ question bank, subject-wise topic priorities, and simulated full-length tests with a floating countdown timer and question palette — exactly like the real exam interface. It also covers SAT, IELTS, and TOEFL iBT for students planning to study abroad, with exam-authentic practice for each format. Exam Prep Center is a separate ₹1,999 / year plan for Grade 11–12 students — Premium and Family Premium do not include it, but Exam Prep Center in turn includes full CBSE Grade 11–12 lessons, doubts, and mock tests alongside all six exams." },
     { q: "Does the AI use real textbooks or make things up?", a: "Every lesson and doubt answer is grounded in uploaded NCERT textbooks using RAG technology. The AI cannot hallucinate chapter content — it is strictly textbook-aligned." },
     { q: "How many practice questions are available?", a: "LikhaPoha AI has 140,000+ practice questions covering all chapters from Grade 5 to Grade 12 across CBSE subjects — including question banks for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT for Grade 11 & 12." },
     { q: "Is there a mobile app?", a: "LikhaPoha AI is a mobile-first progressive web app. It works perfectly on any phone browser — no app download needed. Add it to your home screen for an app-like experience." },
@@ -241,7 +241,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       </div></div>
       <div className="lp-ctasec">
         <h2>Start Your Child's AI Learning Journey Today</h2>
-        <p>Join hundreds of families already studying smarter with LikhaPoha AI</p>
+        <p>NCERT-grounded lessons, doubt solving any hour, and chapter-level progress for parents</p>
         <button className="lp-bc" onClick={() => handleCta("free")} style={{display:"inline-flex",alignItems:"center",gap:8}}><Zap size={18} strokeWidth={2.5}/> Try for Free</button>
         <p style={{marginTop:"16px",fontSize:".8rem",color:"#cbd5e1"}}>Free to start &middot; Upgrade anytime</p>
       </div>
