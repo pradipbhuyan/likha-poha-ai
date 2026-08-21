@@ -6,7 +6,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.routes.admin_control import build_activity_by_username
+from app.routes.admin_control import build_activity_by_profile_id
 from app.services.auth_service import admin_client, require_teacher, create_auth_user
 from app.services.offer_access_service import is_free_tier_user
 
@@ -72,49 +72,48 @@ def load_profiles_by_id(profile_ids: list[str]):
     }
 
 
-def load_progress_by_username(usernames: list[str]):
-    """Load recent chapter-progress rows for assigned students."""
-    if not usernames:
+def load_progress_by_profile_id(profile_ids: list[str]):
+    """Load chapter progress keyed by immutable assigned-student profile ID."""
+    if not profile_ids:
         return {}
     response = (
         admin_client
         .table("student_progress")
         .select("*")
-        .in_("username", usernames)
+        .in_("profile_id", profile_ids)
         .order("updated_at", desc=True)
         .execute()
     )
-    progress_by_username = {username: [] for username in usernames}
+    progress_by_profile_id = {profile_id: [] for profile_id in profile_ids}
     for row in response.data or []:
-        username = row.get("username")
-        if username in progress_by_username:
-            progress_by_username[username].append(row)
-    return progress_by_username
+        profile_id = row.get("profile_id")
+        if profile_id in progress_by_profile_id:
+            progress_by_profile_id[profile_id].append(row)
+    return progress_by_profile_id
 
 
-def load_test_history_by_username(usernames: list[str]):
-    """Load recent mock test results for assigned students from test_history."""
-    if not usernames:
+def load_test_history_by_profile_id(profile_ids: list[str]):
+    """Load mock-test results keyed by immutable assigned-student profile ID."""
+    if not profile_ids:
         return {}
 
-    # Query test_history for all assigned student usernames at once
     response = (
         admin_client
         .table("test_history")
-        .select("username, subject, chapter, grade, mode, exam_type, difficulty, "
+        .select("profile_id, username, subject, chapter, grade, mode, exam_type, difficulty, "
                 "final_score, max_score, percentage, submitted_at")
-        .in_("username", usernames)
+        .in_("profile_id", profile_ids)
         .order("submitted_at", desc=True)
         .execute()
     )
 
-    history_by_username: dict[str, list] = {u: [] for u in usernames}
+    history_by_profile_id: dict[str, list] = {profile_id: [] for profile_id in profile_ids}
     for row in response.data or []:
-        uname = row.get("username")
-        if uname in history_by_username:
-            history_by_username[uname].append(row)
+        profile_id = row.get("profile_id")
+        if profile_id in history_by_profile_id:
+            history_by_profile_id[profile_id].append(row)
 
-    return history_by_username
+    return history_by_profile_id
 
 
 def load_notes_by_student(teacher_id: str, student_ids: list[str]):
@@ -258,11 +257,9 @@ def create_student(data: CreateStudentRequest, teacher=Depends(require_teacher))
             detail=f"INVALID_GRADE: '{grade}' is not a recognised grade.",
         )
 
-    # A username collision here isn't just cosmetic: get_child_analytics and
-    # load_progress_by_username/load_test_history_by_username (this module)
-    # filter student_progress/test_history by the username STRING, so a new
-    # student sharing a name with an existing profile inherits that
-    # profile's mock test scores and progress. See
+    # Username uniqueness remains required for stable display names and older
+    # compatibility paths. Ownership-sensitive dashboard queries now use the
+    # student's immutable profile id. See
     # docs/sql/2026-08-16_check_username_uniqueness.sql and the "likha"
     # incident it predicted (2026-08-20).
     from app.routes.auth import _reject_reserved_username, _reject_taken_username  # noqa: PLC0415
@@ -444,16 +441,10 @@ def get_teacher_summary(teacher=Depends(require_teacher)):
     })
 
     profiles_by_id = load_profiles_by_id(student_ids)
-    usernames = [
-        profile_row.get("username")
-        for profile_row in profiles_by_id.values()
-        if profile_row.get("username")
-    ]
-
-    activity_by_username = build_activity_by_username(usernames)
-    progress_by_username = load_progress_by_username(usernames)
+    activity_by_profile_id = build_activity_by_profile_id(profiles_by_id)
+    progress_by_profile_id = load_progress_by_profile_id(student_ids)
     notes_by_student = load_notes_by_student(teacher_id, student_ids)
-    test_history_by_username = load_test_history_by_username(usernames)
+    test_history_by_profile_id = load_test_history_by_profile_id(student_ids)
 
     students = []
 
@@ -468,7 +459,7 @@ def get_teacher_summary(teacher=Depends(require_teacher)):
             for item in assignments
             if item.get("student_id") == student_id
         ]
-        progress_rows = progress_by_username.get(username, [])
+        progress_rows = progress_by_profile_id.get(student_id, [])
         completed_count = len([
             item for item in progress_rows
             if item.get("completed")
@@ -479,7 +470,7 @@ def get_teacher_summary(teacher=Depends(require_teacher)):
         has_real_email = bool(student_email) and not _is_synthetic_email(student_email)
 
         # Mock test summary
-        test_rows = test_history_by_username.get(username, [])
+        test_rows = test_history_by_profile_id.get(student_id, [])
         test_summary = {}
         if test_rows:
             percentages = [float(r.get("percentage") or 0) for r in test_rows]
@@ -493,7 +484,7 @@ def get_teacher_summary(teacher=Depends(require_teacher)):
         students.append({
             "profile": {**student, "has_real_email": has_real_email},
             "assignments": student_assignments,
-            "activity": activity_by_username.get(username, {}),
+            "activity": activity_by_profile_id.get(student_id, {}),
             "recent_progress": progress_rows[:5],
             "progress_summary": {
                 "tracked_chapters": len(progress_rows),

@@ -1,14 +1,16 @@
 from app.services.auth_service import admin_client as supabase  # uses service_role to bypass RLS
 
 
-def get_chapter_progress(username, grade, mode, subject, chapter):
+def get_chapter_progress(username, grade, mode, subject, chapter, profile_id=None):
     """Return saved progress for one chapter, or an initial progress object."""
-    response = (
+    query = (
         supabase
         .table("student_progress")
         .select("*")
-        .eq("username", username)
-        .eq("grade", grade)
+    )
+    query = query.eq("profile_id", profile_id) if profile_id else query.eq("username", username)
+    response = (
+        query.eq("grade", grade)
         .eq("mode", mode)
         .eq("subject", subject)
         .eq("chapter", chapter)
@@ -34,6 +36,7 @@ def get_chapter_progress(username, grade, mode, subject, chapter):
 def save_chapter_progress(data):
     """Upsert progress for one chapter and preserve per-step lesson cache."""
     username = data.get("username")
+    profile_id = data.get("profile_id")
     grade = data.get("grade")
     mode = data.get("mode")
     subject = data.get("subject")
@@ -49,6 +52,7 @@ def save_chapter_progress(data):
         mode=mode,
         subject=subject,
         chapter=chapter,
+        profile_id=profile_id,
     )
 
     step_lessons = existing.get("step_lessons") or {}
@@ -58,6 +62,7 @@ def save_chapter_progress(data):
 
     payload = {
         "username": username,
+        "profile_id": profile_id,
         "grade": grade,
         "mode": mode,
         "subject": subject,
@@ -73,22 +78,24 @@ def save_chapter_progress(data):
         .table("student_progress")
         .upsert(
             payload,
-            on_conflict="username,grade,mode,subject,chapter"
+            on_conflict=(
+                "profile_id,grade,mode,subject,chapter"
+                if profile_id else "username,grade,mode,subject,chapter"
+            )
         )
         .execute()
     )
 
     return response.data[0] if response.data else payload
 
-def get_user_progress(username):
+def get_user_progress(username, profile_id=None):
     """Return all chapter-progress records for one username."""
-    response = (
+    query = (
         supabase
         .table("student_progress")
         .select("*")
-        .eq("username", username)
-        .order("updated_at", desc=True)
-        .execute()
     )
+    query = query.eq("profile_id", profile_id) if profile_id else query.eq("username", username)
+    response = query.order("updated_at", desc=True).execute()
 
     return response.data or []

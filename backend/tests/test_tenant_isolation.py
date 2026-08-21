@@ -31,31 +31,20 @@ Covers:
   correct — a regression guard, not a new fix).
 - Two profiles with genuinely distinct usernames never cross-contaminate
   (the happy path, proven against real row data instead of assumed).
-- KNOWN GAP (xfail, not a regression): if two profiles ever do share a
-  username — despite the signup-time guards added alongside this suite,
-  e.g. from a race condition before the DB unique index is applied, or
-  legacy data — get_child_analytics still leaks the other profile's mock
-  test data into the rightful owner's dashboard. This is not fixed by this
-  suite; it's made visible so it can't silently regress from "known and
-  tracked" to "forgotten."
+- Parent analytics resolve owned records by the child's immutable profile id,
+  so legacy username collisions cannot mix dashboard data.
 - Every signup path (complete_signup, signup_free, signup_with_offer_code,
   create_student, oauth complete-profile) rejects a taken username, across
   parent/student/teacher role combinations — the actual fix, tested at
   every entry point that can create a profile.
-- KNOWN GAP (xfail), teacher side: teacher_dashboard.py's
-  load_progress_by_username/load_test_history_by_username enrich a
-  teacher's correctly id-scoped assigned-student list
-  (teacher_student_assignments.student_id) with progress/mock-test data
-  looked up by username — the same pattern, same exposure. This is not an
-  isolated parent-dashboard bug; grep for `.eq("username",` /
-  `.in_("username",` across app/routes and app/services turns up 60+ call
-  sites in student_dashboard.py, teacher_dashboard.py, teacher_classroom.py,
-  recommendations.py, usage.py, profile_service.py, progress_service.py,
-  test_history_service.py, and more. Fixing all of them is the "key by
-  profile id, not username" migration docs/sql/2026-08-16_resolve_duplicate_usernames.sql
-  already calls out as a planned backfill, not a quick patch.
+- Teacher roster enrichment resolves progress, history, and usage by assigned
+  student profile ids. The schema migration also backfills and maintains
+  profile_id across every legacy username-owned table while remaining
+  backward compatible with older writers.
 """
 from __future__ import annotations
+
+from pathlib import Path
 
 import pytest
 from fastapi import HTTPException
@@ -66,6 +55,31 @@ PROFILE_TABLES = [
     "profiles", "test_history", "student_progress", "weak_area_alerts",
     "ai_usage_logs", "families",
 ]
+
+
+class TestProfileIdOwnershipMigration:
+    def test_covers_every_username_owned_table_and_protected_account(self):
+        migration = (
+            Path(__file__).parents[1]
+            / "migrations"
+            / "20260821_profile_id_ownership.sql"
+        ).read_text()
+
+        for table in (
+            "ai_usage_events", "ai_usage_logs", "board_paper_attempts",
+            "doubt_history", "mentor_memory", "mock_test_wrong_answers",
+            "student_profiles", "student_progress", "test_history",
+            "unanswered_questions", "user_feedback", "weak_area_alerts",
+        ):
+            assert f"'{table}'" in migration
+            assert f"{table}_profile_id_idx" in migration
+
+        assert "set_profile_id_from_username" in migration
+        assert "admin@tutor.com" in migration
+        assert "akshita.teststudent@mail.com" in migration
+        assert "where id = 723" in migration.casefold()
+        assert "payload_versions <> 1" in migration.casefold()
+        assert "drop table" not in migration.casefold()
 
 
 def _seed_profile(db, **fields):
@@ -119,8 +133,8 @@ class TestChildAnalyticsDataIsolation:
         db = MiniSupabaseClient(PROFILE_TABLES)
         _seed_profile(db, id="child-A", username="Aarav", family_id="family-A", parent_id="parent-A")
         _seed_profile(db, id="child-B", username="Riya", family_id="family-B", parent_id="parent-B")
-        db.tables["test_history"].append({"username": "Aarav", "percentage": 80, "raw_score": None, "max_score": None, "subject": "Maths", "chapter": "Ch1", "created_at": "2026-08-01T00:00:00Z"})
-        db.tables["test_history"].append({"username": "Riya", "percentage": 40, "raw_score": None, "max_score": None, "subject": "Science", "chapter": "Ch2", "created_at": "2026-08-01T00:00:00Z"})
+        db.tables["test_history"].append({"profile_id": "child-A", "username": "Aarav", "percentage": 80, "raw_score": None, "max_score": None, "subject": "Maths", "chapter": "Ch1", "created_at": "2026-08-01T00:00:00Z"})
+        db.tables["test_history"].append({"profile_id": "child-B", "username": "Riya", "percentage": 40, "raw_score": None, "max_score": None, "subject": "Science", "chapter": "Ch2", "created_at": "2026-08-01T00:00:00Z"})
 
         monkeypatch.setattr(pd, "admin_client", db)
         monkeypatch.setattr(pd, "resolve_user_subscription", lambda uid: {"canonical_plan_key": "FREE_TIER"})
@@ -131,26 +145,6 @@ class TestChildAnalyticsDataIsolation:
         assert result["mock_tests"]["total_tests"]["value"] == 1
         assert result["mock_tests"]["average_score"]["value"] == "80.0%"
 
-    @pytest.mark.xfail(
-        strict=True,
-        reason=(
-            "KNOWN GAP, not a regression: get_child_analytics filters "
-            "test_history/student_progress/weak_area_alerts/ai_usage_logs by "
-            "the username STRING (parent_dashboard.py's "
-            "get_child_analytics), not by profile id. If two profiles ever "
-            "share a username — e.g. a race between two signups both "
-            "passing _reject_taken_username() before either inserts, prior "
-            "to the DB unique index in "
-            "backend/sql/add_username_uniqueness_to_profiles.sql being "
-            "applied, or legacy data — the rightful owner's dashboard still "
-            "shows the other profile's mock test data. The real fix is the "
-            "'longer term' plan in "
-            "docs/sql/2026-08-16_resolve_duplicate_usernames.sql: key these "
-            "tables on profile id instead of username. This test exists so "
-            "that gap stays visible instead of forgotten — remove the "
-            "xfail marker once that migration lands."
-        ),
-    )
     def test_colliding_username_does_not_leak_into_owners_dashboard(self, monkeypatch):
         """
         Reproduces the exact production incident (2026-08-20): a legitimately
@@ -166,7 +160,7 @@ class TestChildAnalyticsDataIsolation:
         # An unrelated orphaned profile sharing the same username — simulates
         # the account that existed before the signup-time guard shipped.
         _seed_profile(db, id="orphan-1", username="likha", family_id=None, parent_id=None)
-        db.tables["test_history"].append({"username": "likha", "percentage": 3.3, "raw_score": None, "max_score": None, "subject": "Maths", "chapter": "Old", "created_at": "2026-07-21T00:00:00Z"})
+        db.tables["test_history"].append({"profile_id": "orphan-1", "username": "likha", "percentage": 3.3, "raw_score": None, "max_score": None, "subject": "Maths", "chapter": "Old", "created_at": "2026-07-21T00:00:00Z"})
 
         monkeypatch.setattr(pd, "admin_client", db)
         monkeypatch.setattr(pd, "resolve_user_subscription", lambda uid: {"canonical_plan_key": "FREE_TIER"})
@@ -303,33 +297,18 @@ class TestTeacherStudentDataIsolation:
         profiles_by_id = td.load_profiles_by_id(assigned_ids)
         assert set(profiles_by_id.keys()) == {"student-A"}
 
-    @pytest.mark.xfail(
-        strict=True,
-        reason=(
-            "KNOWN GAP, not a regression: load_progress_by_username and "
-            "load_test_history_by_username (teacher_dashboard.py) enrich a "
-            "teacher's correctly id-scoped assigned-student list with "
-            "progress/mock-test data looked up by username — the same "
-            "pattern as the parent-dashboard incident this suite is named "
-            "for. If the teacher's assigned student shares a username with "
-            "an unrelated profile, the teacher's Student Analytics view "
-            "shows that unrelated profile's data. Same real fix as the "
-            "parent-side gap: key student_progress/test_history on profile "
-            "id, not username."
-        ),
-    )
     def test_progress_enrichment_does_not_leak_from_colliding_username(self, monkeypatch):
         import app.routes.teacher_dashboard as td
 
         db = MiniSupabaseClient(["profiles", "student_progress"])
         _seed_profile(db, id="student-A", username="likha", role="student")
         _seed_profile(db, id="orphan-1", username="likha", role="student")
-        db.tables["student_progress"].append({"username": "likha", "subject": "Maths", "chapter": "Old orphaned progress", "completed": True, "updated_at": "2026-07-21T00:00:00Z"})
+        db.tables["student_progress"].append({"profile_id": "orphan-1", "username": "likha", "subject": "Maths", "chapter": "Old orphaned progress", "completed": True, "updated_at": "2026-07-21T00:00:00Z"})
 
         monkeypatch.setattr(td, "admin_client", db)
 
         # The teacher's assigned student is student-A, looked up by their
         # own (correct) username — but the orphaned profile's row comes
         # back too, because the query can't tell them apart.
-        progress = td.load_progress_by_username(["likha"])
-        assert len(progress["likha"]) == 0, "assigned student has no progress of their own yet"
+        progress = td.load_progress_by_profile_id(["student-A"])
+        assert len(progress["student-A"]) == 0, "assigned student has no progress of their own yet"

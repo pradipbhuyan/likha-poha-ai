@@ -260,6 +260,24 @@ def get_user_profile(user_id: str):
     return _query(_PROFILE_COLUMNS).data
 
 
+def get_profile_by_username(username: str):
+    """Resolve a display username to its immutable profile row."""
+    normalized = str(username or "").strip().casefold()
+    response = (
+        admin_client.table("profiles")
+        .select("*")
+        .ilike("username", str(username or "").strip())
+        .execute()
+    )
+    return next(
+        (
+            row for row in response.data or []
+            if str(row.get("username") or "").strip().casefold() == normalized
+        ),
+        None,
+    )
+
+
 def require_parent(user=Depends(get_current_user)):
     """
     FastAPI dependency that allows only users whose profile role is parent.
@@ -405,14 +423,29 @@ def require_self_by_username(username: str, user=Depends(get_current_user)):
     """
     profile = get_user_profile(user.id)
     role = profile.get("role") if profile else None
+    target_profile = get_profile_by_username(username)
+    allowed = bool(profile and target_profile and profile.get("id") == target_profile.get("id"))
 
-    if not profile or (profile.get("username") != username and role not in ("admin", "teacher")):
+    if profile and target_profile and role == "admin":
+        allowed = True
+    elif profile and target_profile and role == "teacher":
+        assignment = (
+            admin_client.table("teacher_student_assignments")
+            .select("student_id")
+            .eq("teacher_id", profile.get("id"))
+            .eq("student_id", target_profile.get("id"))
+            .limit(1)
+            .execute()
+        )
+        allowed = bool(assignment.data)
+
+    if not allowed:
         raise HTTPException(
             status_code=403,
             detail="Not authorized to view this student's record",
         )
 
-    return {"auth_user": user, "profile": profile}
+    return {"auth_user": user, "profile": profile, "target_profile": target_profile}
 
 
 def resolve_session_username(user) -> str:

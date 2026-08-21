@@ -127,6 +127,32 @@ def build_activity_by_username(usernames: list[str]):
     }
 
 
+def build_activity_by_profile_id(profiles_by_id: dict[str, dict]):
+    """Batch-load usage scoped to immutable student profile IDs."""
+    profile_ids = list(profiles_by_id)
+    if not profile_ids:
+        return {}
+
+    usage_response = (
+        admin_client.table("ai_usage_logs")
+        .select("*")
+        .in_("profile_id", profile_ids)
+        .execute()
+    )
+    logs_by_profile_id = {profile_id: [] for profile_id in profile_ids}
+    for log in usage_response.data or []:
+        profile_id = log.get("profile_id")
+        if profile_id in logs_by_profile_id:
+            logs_by_profile_id[profile_id].append(log)
+
+    return {
+        profile_id: summarize_student_activity(
+            profiles_by_id[profile_id].get("username", ""), logs,
+        )
+        for profile_id, logs in logs_by_profile_id.items()
+    }
+
+
 def list_teacher_profiles_by_id():
     """Return teacher metadata rows keyed by profile_id for admin display."""
     try:

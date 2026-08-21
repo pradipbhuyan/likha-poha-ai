@@ -117,6 +117,7 @@ class FakeAdminClient:
         ]
         self.usage_logs = [
             {
+                "profile_id": "student-1",
                 "username": "Akshita",
                 "feature": "lesson",
                 "total_tokens": 100,
@@ -124,6 +125,7 @@ class FakeAdminClient:
                 "created_at": "2026-06-04T10:00:00+00:00",
             },
             {
+                "profile_id": "student-2",
                 "username": "Rohan",
                 "feature": "lesson",
                 "total_tokens": 999,
@@ -133,6 +135,7 @@ class FakeAdminClient:
         ]
         self.progress_rows = [
             {
+                "profile_id": "student-1",
                 "username": "Akshita",
                 "subject": "Science",
                 "chapter": "Motion",

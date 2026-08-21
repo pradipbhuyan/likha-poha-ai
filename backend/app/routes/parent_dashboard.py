@@ -917,7 +917,7 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
     activity_rows, activity_err = _safe_query(
         lambda: admin_client.table("ai_usage_logs")
         .select("created_at, feature")
-        .eq("username", child_username)
+        .eq("profile_id", child_id)
         .gte("created_at", thirty_days_ago)
         .order("created_at", desc=True)
         .limit(20)
@@ -935,7 +935,7 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
     test_rows, test_err = _safe_query(
         lambda: admin_client.table("test_history")
         .select("percentage, raw_score, max_score, subject, chapter, created_at")
-        .eq("username", child_username)
+        .eq("profile_id", child_id)
         .order("created_at", desc=True)
         .limit(20)
         .execute()
@@ -950,7 +950,7 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
     progress_rows, progress_err = _safe_query(
         lambda: admin_client.table("student_progress")
         .select("subject, chapter, completed, current_step_index, updated_at")
-        .eq("username", child_username)
+        .eq("profile_id", child_id)
         .execute()
     )
     if progress_err:
@@ -962,7 +962,7 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
     weak_rows, weak_err = _safe_query(
         lambda: admin_client.table("weak_area_alerts")
         .select("subject, chapter, step_title, best_score, created_at")
-        .eq("username", child_username)
+        .eq("profile_id", child_id)
         .order("created_at", desc=True)
         .limit(5)
         .execute()
@@ -1061,7 +1061,7 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
     test_rows, _ = _safe_query(
         lambda: admin_client.table("test_history")
         .select("percentage, raw_score, max_score, subject, chapter, created_at")
-        .eq("username", username)
+        .eq("profile_id", child_id)
         .order("created_at", desc=True)
         .limit(50)
         .execute()
@@ -1089,7 +1089,7 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
     prog_rows, _ = _safe_query(
         lambda: admin_client.table("student_progress")
         .select("subject, chapter, completed, current_step_index, updated_at")
-        .eq("username", username)
+        .eq("profile_id", child_id)
         .execute()
     )
     completed_ch = [r for r in prog_rows if r.get("completed")]
@@ -1111,7 +1111,7 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
     weak_rows, _ = _safe_query(
         lambda: admin_client.table("weak_area_alerts")
         .select("subject, chapter, step_title, best_score, created_at")
-        .eq("username", username)
+        .eq("profile_id", child_id)
         .order("created_at", desc=True)
         .limit(10)
         .execute()
@@ -1122,7 +1122,7 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
     act_rows, act_err = _safe_query(
         lambda: admin_client.table("ai_usage_logs")
         .select("created_at, feature")
-        .eq("username", username)
+        .eq("profile_id", child_id)
         .gte("created_at", ninety_days_ago)
         .order("created_at", desc=True)
         .limit(200)

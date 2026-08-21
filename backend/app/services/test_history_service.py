@@ -4,6 +4,7 @@ from app.services.auth_service import admin_client as supabase  # uses service_r
 def save_test_result(result):
     """Persist one mock-test result row for analytics and leaderboard features."""
     payload = {
+        "profile_id": result.get("profile_id"),
         "username": result.get("username"),
         "grade": result.get("grade"),
         "mode": result.get("mode"),
@@ -32,16 +33,15 @@ def save_test_result(result):
     return response.data[0] if response.data else payload
 
 
-def get_user_history(username):
+def get_user_history(username, profile_id=None):
     """Return all stored test results for one username in chronological order."""
-    response = (
+    query = (
         supabase
         .table("test_history")
         .select("*")
-        .eq("username", username)
-        .order("submitted_at", desc=False)
-        .execute()
     )
+    query = query.eq("profile_id", profile_id) if profile_id else query.eq("username", username)
+    response = query.order("submitted_at", desc=False).execute()
 
     return response.data or []
 
@@ -72,15 +72,15 @@ def clear_test_history():
     return response.data
 
 
-def clear_user_test_history(username):
+def clear_user_test_history(username, profile_id=None):
     """Delete all test-history rows for one username."""
-    response = (
+    query = (
         supabase
         .table("test_history")
         .delete()
-        .eq("username", username)
-        .execute()
     )
+    query = query.eq("profile_id", profile_id) if profile_id else query.eq("username", username)
+    response = query.execute()
 
     return response.data
 

@@ -50,6 +50,7 @@ def setup_fake_progress_store(monkeypatch):
         mode,
         subject,
         chapter,
+        profile_id=None,
     ):
         key = (
             username,

@@ -36,6 +36,7 @@ def save_weak_area_alert(data: WeakAreaAlertRequest, user=Depends(get_current_us
         raise HTTPException(status_code=403, detail="Profile not found")
 
     payload = {
+        "profile_id": profile.get("id"),
         "username": profile.get("username"),
         "grade": data.grade,
         "mode": data.mode,

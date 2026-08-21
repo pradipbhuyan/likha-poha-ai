@@ -15,6 +15,7 @@ from app.services.auth_service import (
     require_admin,
     get_current_user,
     get_user_profile,
+    get_profile_by_username,
 )
 
 
@@ -29,22 +30,40 @@ def require_self_or_admin_or_teacher(username: str, user=Depends(get_current_use
     """
     profile = get_user_profile(user.id)
     role = profile.get("role") if profile else None
+    target_profile = get_profile_by_username(username)
+    allowed = bool(profile and target_profile and profile.get("id") == target_profile.get("id"))
+    if profile and target_profile and role == "admin":
+        allowed = True
+    elif profile and target_profile and role == "teacher":
+        assignment = (
+            supabase.table("teacher_student_assignments")
+            .select("student_id")
+            .eq("teacher_id", profile.get("id"))
+            .eq("student_id", target_profile.get("id"))
+            .limit(1)
+            .execute()
+        )
+        allowed = bool(assignment.data)
 
-    if not profile or (profile.get("username") != username and role not in ("admin", "teacher")):
+    if not allowed:
         raise HTTPException(status_code=403, detail="Not authorized to view this student's history")
 
-    return {"auth_user": user, "profile": profile}
+    return {"auth_user": user, "profile": profile, "target_profile": target_profile}
 
 
 def require_self_or_admin(username: str, user=Depends(get_current_user)):
     """Allow a student to clear their own history, or an admin to clear anyone's."""
     profile = get_user_profile(user.id)
     role = profile.get("role") if profile else None
+    target_profile = get_profile_by_username(username)
+    allowed = bool(profile and target_profile and profile.get("id") == target_profile.get("id"))
+    if profile and target_profile and role == "admin":
+        allowed = True
 
-    if not profile or (profile.get("username") != username and role != "admin"):
+    if not allowed:
         raise HTTPException(status_code=403, detail="Not authorized to modify this student's history")
 
-    return {"auth_user": user, "profile": profile}
+    return {"auth_user": user, "profile": profile, "target_profile": target_profile}
 
 
 class SaveTestResultRequest(BaseModel):
@@ -97,6 +116,7 @@ def save_history(data: SaveTestResultRequest, student=Depends(require_student)):
     """
     payload = data.model_dump()
     payload["username"] = student["profile"]["username"]
+    payload["profile_id"] = student["profile"]["id"]
     saved = save_test_result(payload)
     return {
         "success": True,
@@ -109,7 +129,7 @@ def user_history(username: str, _viewer=Depends(require_self_or_admin_or_teacher
     """Return saved test-history records for one student."""
     return {
         "success": True,
-        "history": get_user_history(username)
+        "history": get_user_history(username, profile_id=_viewer["target_profile"]["id"])
     }
 
 
@@ -168,7 +188,7 @@ def leaderboard(user=Depends(get_current_user)):
 @router.delete("/test-history/user/{username}")
 def clear_user_history(username: str, _viewer=Depends(require_self_or_admin)):
     """Delete test-history records for one student username."""
-    clear_user_test_history(username)
+    clear_user_test_history(username, profile_id=_viewer["target_profile"]["id"])
     return {
         "success": True,
         "message": f"History cleared for {username}"
@@ -199,9 +219,11 @@ def save_wrong_answers(data: SaveWrongAnswersRequest, student=Depends(require_st
         return {"success": True, "saved": 0}
 
     username = student["profile"]["username"]
+    profile_id = student["profile"]["id"]
 
     rows = [
         {
+            "profile_id": profile_id,
             "username": username,
             "grade": data.grade,
             "mode": data.mode,
@@ -245,7 +267,7 @@ def get_wrong_answers_for_chapter(
             supabase
             .table("mock_test_wrong_answers")
             .select("id, subject, chapter, grade, mode, question, correct_answer, selected_answer, options, explanation, created_at")
-            .eq("username", username)
+            .eq("profile_id", _viewer["target_profile"]["id"])
             .order("created_at", desc=True)
             .limit(limit)
         )
@@ -270,7 +292,7 @@ def get_weak_chapters(username: str, limit: int = 10, _viewer=Depends(require_se
             supabase
             .table("mock_test_wrong_answers")
             .select("grade, mode, subject, chapter")
-            .eq("username", username)
+            .eq("profile_id", _viewer["target_profile"]["id"])
             .execute()
         )
         rows = resp.data or []

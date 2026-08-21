@@ -57,6 +57,7 @@ def read_chapter_progress(data: ChapterProgressRequest, user=Depends(get_current
             data.mode,
             data.subject,
             data.chapter,
+            profile_id=getattr(user, "id", None),
         ),
     }
 
@@ -72,6 +73,7 @@ def save_progress(data: SaveProgressRequest, user=Depends(get_current_user)):
     """
     payload = data.model_dump()
     payload["username"] = resolve_session_username(user)
+    payload["profile_id"] = getattr(user, "id", None)
 
     saved = save_chapter_progress(payload)
 
@@ -86,5 +88,5 @@ def user_progress(username: str, _auth=Depends(require_self_by_username)):
     """Return all saved chapter progress records for one user (self, or any as admin/teacher)."""
     return {
         "success": True,
-        "progress": get_user_progress(username),
+        "progress": get_user_progress(username, profile_id=_auth["target_profile"]["id"]),
     }
