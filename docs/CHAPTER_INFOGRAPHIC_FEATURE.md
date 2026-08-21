@@ -1,12 +1,14 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-20):** live on 261 chapters — all 13 Grade 12
+> **Status (2026-08-21):** live on 261 chapters — all 13 Grade 12
 > Mathematics chapters, all 13 Grade 12 Biology chapters, 13 of 14 Grade 12
 > Physics chapters (only Ch 14 "Semiconductor Electronics" remains, not yet
 > generated — Ch 3 is now fixed and applied), 7 of 10 Grade 12 Chemistry
 > chapters (Ch 1, 2, 3, 4, 5, 8, 9 — see open items for Ch 6 and Ch 7,
-> pending a third regeneration round, and Ch 10 "Biomolecules", not yet
-> generated), all 10 Grade 5 EVS chapters, all 15 Grade 5 Maths chapters
+> now pending a FOURTH regeneration round each after two straight rounds
+> where fixing one defect introduced a different one, and Ch 10
+> "Biomolecules", not yet generated), all 10 Grade 5 EVS chapters, all 15
+> Grade 5 Maths chapters
 > (12 replaced; 13-15 rejected on review, still on their original poster —
 > see open items), all 10 Grade 6 Maths chapters, all 12 Grade 6 Science
 > chapters, all 15 Grade 7 Maths chapters, all 14 Grade 8 Maths chapters,
@@ -1180,6 +1182,69 @@ fixing posters one at a time.
       no new defect appears elsewhere on the same poster — the entire
       poster must be re-reviewed on every regeneration round, not just the
       specific panel or bullet that was targeted for a fix.**
+- [ ] **Grade 12 Chemistry Chapters 6 and 7, third regeneration round,
+      reviewed 2026-08-21. Both are entirely new poster layouts (the
+      model redesigned the whole chapter rather than patching the old
+      one) — and both still have a genuine defect, a third round in a
+      row for each.**
+        - **Chapter 6 "Haloalkanes and Haloarenes"**: the "Carbonyl (not
+          here)" stray bullet from round 2 is gone. **But the ORIGINAL
+          sp2/sp3 defect from round 1 has fully regressed — and is now
+          duplicated in two places instead of one.** The "Key Terms" strip
+          now defines "Haloarene: Aromatic compound with halogen directly
+          attached to sp3 carbon" (wrong — should be sp2), and separately
+          the "Important Points to Remember" strip again reads
+          "Haloalkanes: halogen on sp3 carbon; haloarenes: halogen on sp3
+          carbon" (the exact original wrong sentence from round 1, word
+          for word). Both contradict the poster's own overview strip and
+          its own "Vinylic and Aryl Halides" panel, which correctly state
+          sp2 for haloarenes. All 8 numbered concept panels, the
+          classification flow, and the rest of the closing strips were
+          otherwise correct and well-grounded (alkyl/allylic/benzylic/
+          vinylic/aryl/geminal/vicinal classification, IUPAC nomenclature,
+          C−X bond polarity, reactivity trend). **Not applied.** Sent a
+          fourth regeneration prompt
+          (`~/Downloads/Grade12_Chemistry_Missing_Posters_Prompts_2026-08-21_v3/
+          07_chapter_6_haloalkanes_and_haloarenes_PROMPT_v3.txt`) that
+          keeps HARD RULE 0 and 0B unchanged and adds a HARD RULE 0C
+          spelling out that the correct pairing ("haloalkane→sp3,
+          haloarene→sp2") must hold in EVERY closing-strip occurrence,
+          with an explicit instruction to search the poster's own Key
+          Terms and Important Points strips for the word "haloarene" and
+          check the hybridisation named next to it each time.
+        - **Chapter 7 "Alcohols, Phenols and Ethers"**: the Diazotisation/
+          Amines bleed from round 2 is gone — Key Terms is now fully
+          alcohol/ether/phenol-specific. **But a new, ungrounded numeric
+          error appeared**: the "Reactions of Alcohols" panel's
+          dehydration line reads "170 K: R−OH → alkene + H2O" — 170 K
+          (≈−103°C) is a cryogenic temperature and would not dehydrate
+          anything; grep-confirmed CHAPTER_CONTENT does not give ANY
+          specific numeric temperature for the alkene-forming reaction at
+          all (it only says "higher temperature favours alkene
+          formation"), so this number was fabricated by the model, not
+          just mis-converted between Celsius and Kelvin. The correctly-
+          grounded "413 K" used elsewhere on the same poster for ether
+          formation was untouched and remains correct. The rest of the
+          poster (alcohol/ether preparation routes, physical properties,
+          methanol/ethanol facts, hazards) was correct and well-grounded.
+          **Not applied.** Sent a fourth regeneration prompt
+          (`~/Downloads/Grade12_Chemistry_Missing_Posters_Prompts_2026-08-21_v3/
+          08_chapter_7_alcohols_phenols_and_ethers_PROMPT_v3.txt`) that
+          keeps HARD RULE 0 and 0B unchanged and adds a HARD RULE 0C
+          instructing the model to state the alkene-dehydration line
+          exactly as CHAPTER_CONTENT phrases it (a qualitative "higher
+          temperature" statement, no specific number) rather than
+          inventing a number CHAPTER_CONTENT never gives.
+      **Grade 12 Chemistry remains 7 of 10 chapters applied** (Ch 1, 2, 3,
+      4, 5, 8, 9). Chapters 6 and 7 are now each on their fourth
+      regeneration round — the most rounds any single chapter has needed
+      in this entire rollout. **This reinforces, even more strongly than
+      the Grade 10/11/12-Maths precedents already in this doc, that
+      fixing a targeted defect provides no guarantee against a new one
+      appearing elsewhere (or the same defect regressing) on the very next
+      regeneration — every poster needs a full re-review every round,
+      with no exceptions for chapters that have already been "mostly
+      fixed."**
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —
