@@ -24,8 +24,9 @@
 >
 > **Scope expansion 2026-08-21: Grade 6, 7 and 8 Social Science entered the
 > rollout**, outside the original "Science and Maths only, first cut" scope
-> in §2 below. Grade 6: 13 of 14 chapters applied and clean; Ch 13 "The
-> Value of Work" pending regeneration (see open items). Grade 7 (20
+> in §2 below. **Grade 6 Social Science is now COMPLETE — 14 of 14 chapters
+> applied and clean** (Ch 13 "The Value of Work" fixed on its regeneration
+> round, the bled-in Grassroots Democracy terms gone). Grade 7 (20
 > chapters) and Grade 8 (7 chapters) prompts generated 2026-08-21, not yet
 > reviewed/applied (see open items for two grade-7-specific findings: no
 > stale-duplicate chapters this time, but a "Part N -" prefix convention to
@@ -1429,13 +1430,22 @@ fixing posters one at a time.
           05_13_the_value_of_work_PROMPT_v1.txt`) with a HARD RULE 0
           naming Chapters 10-12 as the source and quoting the two bled
           terms verbatim.
-      **Grade 6 Social Science: 13 of 14 chapters applied and clean.**
-      Chapter 13 pending regeneration (prompt ready, see above) — the
-      only remaining chapter for this grade/subject. Note this subject is
-      a scope extension beyond the original Maths/Science first cut (see
-      status line above) — not yet decided whether to extend the rollout
-      to Social Science for other grades; ask before generating prompts
-      for another grade's Social Science content.
+      **Chapter 13 "The Value of Work" regeneration reviewed 2026-08-21
+      (later the same day): fully fixed, no new defects.** The bled-in
+      "Decentralisation" and "Ward" entries are gone from Key Terms, which
+      is now fully economic/non-economic-activity-specific (Economic
+      Activity, Non-economic Activity, Money, Money's Worth, Market, Fee).
+      All panel content (economic vs. non-economic classification, money
+      vs. money's worth, markets, fees, six-step "how an economic activity
+      works in a market" flow) re-verified correct and well-grounded, no
+      other bleed. **Applied.**
+      **Grade 6 Social Science is now COMPLETE — all 14 of 14 chapters
+      applied and clean** (Ch 1-14). Note this subject is a scope
+      extension beyond the original Maths/Science first cut (see status
+      line above) — Grade 7 and 8 prompts have already been generated
+      (see the entry directly below) as an explicit continuation of this
+      extension; ask before going further (e.g. Grade 9+) if picking this
+      up in a new session.
 - [ ] **Grade 7 and Grade 8 Social Science: prompts generated 2026-08-21,
       not yet reviewed/applied.** User asked to extend the Social Science
       scope expansion (above) to these two grades. Two grade-specific
