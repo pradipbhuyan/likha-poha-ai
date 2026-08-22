@@ -99,29 +99,14 @@ def _user_can_chat(user_id: str, profile: dict, settings: dict) -> bool:
     """
     Returns True if the user is allowed to use platform chat.
 
-    Priority:
-    1. Global chat must be enabled
-    2. Admin and teacher roles always have access
-    3. User explicitly granted by admin
-    4. Paid subscription plan with access_chat=true (future: check plan flag)
+    Chat is free for every role and plan (student/parent/teacher/admin) — the
+    only gate is the admin's global on/off switch. `_get_chat_user_ids` /
+    `chat_access_users` (the old per-user allowlist from when chat was a
+    paid-only feature) is no longer consulted here; the admin endpoints that
+    manage it are kept as-is in case fine-grained control is needed again.
     """
-    if not settings.get("global_enabled", True):
-        return False
-
-    role = (profile.get("role") or "student").lower()
-    if role in ("admin", "teacher"):
-        return True
-
-    # Explicitly granted by admin
-    if user_id in _get_chat_user_ids():
-        return True
-
-    # Paid subscription: any non-free plan gets chat by default
-    plan = (profile.get("subscription_plan") or "free").lower()
-    if plan not in ("free", ""):
-        return True
-
-    return False
+    del user_id, profile  # unused now that chat is free for all — kept for call-site compatibility
+    return bool(settings.get("global_enabled", True))
 
 
 def _normalize_room(room: dict, my_id: str, profiles: dict) -> dict:

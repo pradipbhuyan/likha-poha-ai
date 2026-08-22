@@ -1299,3 +1299,63 @@ def send_student_invitation_email(
         html=html_body,
         text=text,
     )
+
+
+_CHAT_STORAGE_ALERT_TO = "likhapohaai@gmail.com"
+
+
+def send_chat_storage_alert_email(
+    total_bytes: int,
+    threshold_bytes: int,
+    blocking: bool = False,
+) -> bool | None:
+    """
+    Alert the platform team when chat attachment storage crosses a threshold.
+
+    Fires from the chat retention cleanup job when the sum of attachment_size
+    across chat_messages is still over the threshold after expired
+    messages/files have been purged — i.e. storage is growing from live usage,
+    not just an unpruned backlog.
+
+    blocking=True is required for the cron job (process exits right after the
+    job returns); the admin-triggered path can leave it fire-and-forget.
+    """
+    total_gb = total_bytes / (1024 ** 3)
+    threshold_gb = threshold_bytes / (1024 ** 3)
+
+    body = f"""
+<p style="margin:0 0 16px;font-size:20px;font-weight:900">Chat storage alert</p>
+<p style="margin:0 0 16px;font-size:14px;color:#475569">
+  Platform chat attachments now total <strong>{total_gb:.2f} GB</strong>, over the
+  <strong>{threshold_gb:.0f} GB</strong> alert threshold.
+</p>
+<div style="padding:16px;border:1px solid #e5e7eb;border-radius:10px;background:#f8fafc;
+            font-size:14px;line-height:1.7;color:#1e293b">
+  The retention cleanup job already purged everything past its expiry — this total
+  is what's left from active/recent chats. Consider tightening the chat retention
+  window or file-size limit in Admin &rarr; Chat Settings.
+</div>
+"""
+    html_body = _email_shell(
+        body_html=body,
+        cta_url=_FRONTEND_URL,
+        cta_label="Open Admin Dashboard →",
+    )
+    text = (
+        f"Chat storage alert\n\n"
+        f"Platform chat attachments now total {total_gb:.2f} GB, over the "
+        f"{threshold_gb:.0f} GB alert threshold.\n\n"
+        f"The retention cleanup job already purged everything past its expiry — "
+        f"this total is what's left from active/recent chats. Consider tightening "
+        f"the chat retention window or file-size limit in Admin -> Chat Settings.\n\n"
+        f"{_FRONTEND_URL}\n"
+    )
+
+    if blocking:
+        result = _send(_CHAT_STORAGE_ALERT_TO, "⚠️ Chat storage over 1 GB — Likha Poha AI", html_body, text)
+        _log.info("email_service.chat_storage_alert_sent" if result else "email_service.chat_storage_alert_failed",
+                   total_bytes=total_bytes)
+        return result
+
+    _send_async(_CHAT_STORAGE_ALERT_TO, "⚠️ Chat storage over 1 GB — Likha Poha AI", html_body, text)
+    return None

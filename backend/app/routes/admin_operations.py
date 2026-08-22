@@ -16,6 +16,7 @@ Endpoints:
   GET  /usage         — user/signup/teacher/student counts + rate-limit events
   GET  /alerts        — recent audit events for failures and alerts
   POST /run-expiry-job — trigger the expiry job (also available at /api/subscription/)
+  POST /run-chat-retention-job — trigger the chat retention cleanup job
 """
 from __future__ import annotations
 
@@ -29,6 +30,7 @@ from fastapi import APIRouter, Depends, Query
 from app.services.auth_service import admin_client, require_admin
 from app.services.metrics_service import get_counters
 from app.services.expiry_job_service import run_expiry_job
+from app.services.chat_retention_service import run_chat_retention_job
 
 router = APIRouter()
 
@@ -523,6 +525,17 @@ def operations_run_expiry_job(admin=Depends(require_admin)):
     Idempotent — safe to run multiple times.
     """
     summary = run_expiry_job()
+    return {"success": True, **summary}
+
+
+@router.post("/run-chat-retention-job")
+def operations_run_chat_retention_job(admin=Depends(require_admin)):
+    """
+    Admin-only: trigger the chat retention cleanup job immediately.
+    Deletes expired chat_messages + their Storage attachments, and alerts by
+    email if remaining attachment storage is still over 1 GB. Idempotent.
+    """
+    summary = run_chat_retention_job()
     return {"success": True, **summary}
 
 

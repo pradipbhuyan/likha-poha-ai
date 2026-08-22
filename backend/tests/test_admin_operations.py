@@ -372,6 +372,34 @@ class TestExpiryJobEndpoints:
         assert result["last_run_summary"]["users_inspected"] == 10
 
 
+# ── Chat retention job endpoint ────────────────────────────────────────────────
+
+class TestChatRetentionJobEndpoint:
+    """POST /run-chat-retention-job triggers run_chat_retention_job and returns summary."""
+
+    def test_run_chat_retention_job_requires_admin(self):
+        import inspect
+        sig = inspect.signature(ops.operations_run_chat_retention_job)
+        assert "admin" in sig.parameters
+
+    def test_run_chat_retention_job_returns_success(self, monkeypatch):
+        fake_summary = {
+            "ran_at": "2026-01-01T00:00:00",
+            "messages_inspected": 4,
+            "messages_deleted": 4,
+            "attachments_deleted": 2,
+            "attachment_delete_errors": 0,
+            "total_attachment_bytes": 12345,
+            "storage_alert_sent": False,
+            "errors": 0,
+        }
+        monkeypatch.setattr(ops, "run_chat_retention_job", lambda: fake_summary)
+        result = ops.operations_run_chat_retention_job(admin=ADMIN_CTX)
+        assert result["success"] is True
+        assert result["messages_deleted"] == 4
+        assert result["attachments_deleted"] == 2
+
+
 # ── Alerts endpoint ───────────────────────────────────────────────────────────
 
 class TestOperationsAlerts:

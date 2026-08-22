@@ -1,0 +1,42 @@
+##############################################################################
+# LikhaPoha AI — Chat Retention Cleanup
+# Deletes chat_messages past their expires_at (and their Storage attachment),
+# and alerts likhapohaai@gmail.com if attachment storage is still over 1 GB
+# after cleanup. Runs directly against Supabase, same shape as
+# weekly-parent-digest.yml.
+##############################################################################
+name: Chat Retention Cleanup
+
+on:
+  schedule:
+    - cron: "0 4 * * *"   # Every day, 04:00 UTC
+  workflow_dispatch:        # allow an on-demand manual run from the Actions tab
+
+jobs:
+  cleanup:
+    name: "🧹 Chat Retention Cleanup"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run chat retention cleanup
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_FROM_ADDRESS: ${{ secrets.EMAIL_FROM_ADDRESS }}
+          BACKEND_URL: ${{ secrets.BACKEND_URL }}
+        run: python -m app.services.chat_retention_service
