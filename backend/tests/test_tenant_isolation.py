@@ -312,3 +312,128 @@ class TestTeacherStudentDataIsolation:
         # back too, because the query can't tell them apart.
         progress = td.load_progress_by_profile_id(["student-A"])
         assert len(progress["student-A"]) == 0, "assigned student has no progress of their own yet"
+
+
+class TestParentChildTeacherOwnershipJourney:
+    """End-to-end ownership journey through the real write/read functions."""
+
+    def test_child_records_are_visible_only_to_family_and_assigned_teacher(self, monkeypatch):
+        import app.routes.admin_control as admin_control
+        import app.routes.parent_dashboard as parent_dashboard
+        import app.routes.teacher_dashboard as teacher_dashboard
+        import app.services.progress_service as progress_service
+        import app.services.test_history_service as history_service
+
+        tables = [
+            "profiles", "families", "student_progress", "test_history",
+            "weak_area_alerts", "ai_usage_logs", "teacher_student_assignments",
+            "teacher_notes", "user_sessions", "ai_usage_events",
+        ]
+        db = MiniSupabaseClient(tables)
+
+        parent = _seed_profile(
+            db, id="journey-parent", username="Journey Parent", role="parent",
+            family_id="journey-family",
+        )
+        child = _seed_profile(
+            db, id="journey-child", username="journey.child", role="student",
+            parent_id=parent["id"], family_id=parent["family_id"], grade="Grade 8",
+            email="journey.child@example.test",
+        )
+        other_child = _seed_profile(
+            db, id="other-child", username="other.child", role="student",
+            parent_id="other-parent", family_id="other-family", grade="Grade 8",
+        )
+        assigned_teacher = _seed_profile(
+            db, id="assigned-teacher", username="Assigned Teacher", role="teacher",
+        )
+        unassigned_teacher = _seed_profile(
+            db, id="unassigned-teacher", username="Unassigned Teacher", role="teacher",
+        )
+
+        monkeypatch.setattr(progress_service, "supabase", db)
+        monkeypatch.setattr(history_service, "supabase", db)
+        monkeypatch.setattr(parent_dashboard, "admin_client", db)
+        monkeypatch.setattr(teacher_dashboard, "admin_client", db)
+        monkeypatch.setattr(admin_control, "admin_client", db)
+        monkeypatch.setattr(
+            parent_dashboard,
+            "resolve_user_subscription",
+            lambda _profile_id: {"canonical_plan_key": "FREE_TIER"},
+        )
+        monkeypatch.setattr(teacher_dashboard, "is_free_tier_user", lambda _profile_id: True)
+
+        saved_progress = progress_service.save_chapter_progress({
+            "profile_id": child["id"],
+            "username": child["username"],
+            "grade": "Grade 8",
+            "mode": "CBSE",
+            "subject": "Science",
+            "chapter": "Force and Pressure",
+            "current_step_index": 3,
+            "highest_unlocked_step": 3,
+            "completed": True,
+            "last_lesson": "Completed force lesson",
+        })
+        saved_test = history_service.save_test_result({
+            "profile_id": child["id"],
+            "username": child["username"],
+            "grade": "Grade 8",
+            "mode": "CBSE",
+            "subject": "Science",
+            "chapter": "Force and Pressure",
+            "difficulty": "medium",
+            "rawScore": 8,
+            "finalScore": 8,
+            "maxScore": 10,
+            "wrongCount": 2,
+            "penalty": 0,
+            "percentage": 80,
+            "submittedAt": "2026-08-22T10:00:00Z",
+        })
+
+        # A different tenant has records too; none may enter this family's view.
+        db.tables["student_progress"].append({
+            "profile_id": other_child["id"], "username": other_child["username"],
+            "grade": "Grade 8", "mode": "CBSE", "subject": "Maths",
+            "chapter": "Other tenant chapter", "current_step_index": 5,
+            "completed": True, "updated_at": "2026-08-22T09:00:00Z",
+        })
+        db.tables["test_history"].append({
+            "profile_id": other_child["id"], "username": other_child["username"],
+            "subject": "Maths", "chapter": "Other tenant test",
+            "percentage": 10, "submitted_at": "2026-08-22T09:00:00Z",
+            "created_at": "2026-08-22T09:00:00Z",
+        })
+
+        parent_view = parent_dashboard.get_child_analytics(
+            child_id=child["id"], parent={"profile": parent}
+        )
+        assert saved_progress["profile_id"] == child["id"]
+        assert saved_test["profile_id"] == child["id"]
+        assert parent_view["mock_tests"]["total_tests"]["value"] == 1
+        assert parent_view["mock_tests"]["average_score"]["value"] == "80.0%"
+        assert parent_view["progress"]["completed_chapters"]["value"] == 1
+
+        db.tables["teacher_student_assignments"].append({
+            "teacher_id": assigned_teacher["id"],
+            "student_id": child["id"],
+            "grade": "Grade 8",
+            "subject": "Science",
+            "created_at": "2026-08-22T10:05:00Z",
+        })
+
+        teacher_view = teacher_dashboard.get_teacher_summary(
+            teacher={"profile": assigned_teacher}
+        )
+        assert [row["profile"]["id"] for row in teacher_view["students"]] == [child["id"]]
+        assert teacher_view["students"][0]["recent_progress"][0]["chapter"] == "Force and Pressure"
+        assert teacher_view["students"][0]["recent_tests"][0]["percentage"] == 80
+
+        unassigned_view = teacher_dashboard.get_teacher_summary(
+            teacher={"profile": unassigned_teacher}
+        )
+        assert unassigned_view["students"] == []
+        with pytest.raises(HTTPException) as exc:
+            teacher_dashboard.ensure_assigned_student(unassigned_teacher["id"], child["id"])
+        assert exc.value.status_code == 403

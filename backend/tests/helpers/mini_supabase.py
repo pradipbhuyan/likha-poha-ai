@@ -38,6 +38,8 @@ class _Query:
         self._filters: list[tuple[str, str, Any]] = []  # (op, col, val)
         self._limit: int | None = None
         self._insert_payload: dict | list[dict] | None = None
+        self._upsert_payload: dict | list[dict] | None = None
+        self._upsert_conflict_columns: list[str] = []
         self._on_insert = on_insert
         self._single = False
 
@@ -86,8 +88,49 @@ class _Query:
         self._insert_payload = payload
         return self
 
+    def upsert(self, payload, on_conflict=None):
+        """Insert or replace rows using Supabase's comma-delimited conflict key."""
+        self._upsert_payload = payload
+        self._upsert_conflict_columns = [
+            column.strip()
+            for column in str(on_conflict or "").split(",")
+            if column.strip()
+        ]
+        return self
+
     # ── terminal ─────────────────────────────────────────────────────────
     def execute(self):
+        if self._upsert_payload is not None:
+            rows = (
+                self._upsert_payload
+                if isinstance(self._upsert_payload, list)
+                else [self._upsert_payload]
+            )
+            saved = []
+            for payload in rows:
+                row = dict(payload)
+                existing = next(
+                    (
+                        candidate
+                        for candidate in self._rows
+                        if self._upsert_conflict_columns
+                        and all(
+                            candidate.get(column) == row.get(column)
+                            for column in self._upsert_conflict_columns
+                        )
+                    ),
+                    None,
+                )
+                if existing is None:
+                    self._rows.append(row)
+                    saved.append(row)
+                else:
+                    existing.update(row)
+                    saved.append(existing)
+                if self._on_insert:
+                    self._on_insert(row)
+            return _ExecResult(saved)
+
         if self._insert_payload is not None:
             rows = self._insert_payload if isinstance(self._insert_payload, list) else [self._insert_payload]
             for row in rows:
