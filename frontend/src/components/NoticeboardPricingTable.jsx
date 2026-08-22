@@ -23,7 +23,7 @@ export const NOTICEBOARD_PLANS = [
 export const NOTICEBOARD_GROUPS = [
   { title: "Learning Core", rows: [
     ["CBSE Curriculum Coverage", "All subjects · all grades", "All subjects · all grades", "All subjects · all grades", "Grade 11–12 only"],
-    ["AI-Powered Lessons", "Limited daily access", "Unlimited", "Unlimited", "Unlimited (Gr 11–12)"],
+    ["AI-Powered Lessons", "Unlimited", "Unlimited", "Unlimited", "Unlimited (Gr 11–12)"],
     ["Ask-a-Doubt (AI)", "5 / day", "Unlimited", "Unlimited", "Unlimited (Gr 11–12)"],
     ["Mock Tests", "5 / day", "Unlimited", "Unlimited", "Unlimited (Gr 11–12)"],
   ]},
@@ -45,6 +45,7 @@ export const NOTICEBOARD_GROUPS = [
     ["Child Profiles", "1", "1", "2", "1"],
     ["Parent Dashboard", "Basic", "Full + alerts", "Full + analytics", "Full + analytics"],
     ["Family Learning Management", false, false, true, true],
+    ["Direct Chat (Students, Parents & Teachers)", true, true, true, true],
   ]},
   { title: "Plan & Support", rows: [
     ["Priority Support", false, true, true, true],

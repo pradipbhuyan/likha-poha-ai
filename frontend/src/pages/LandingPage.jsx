@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import logoImg from "../assets/AITutorLogo1.png";
-import { BookOpen, MessageCircle, ClipboardList, Users, TrendingUp, Zap, Leaf, ShieldCheck, Globe, GraduationCap, HelpCircle, BarChart2, Trophy, Award, Target, Monitor, FlaskConical, Landmark, Heart, Calculator, Languages, Headphones, Check, X, FileText } from "lucide-react";
+import { BookOpen, MessageCircle, MessagesSquare, ClipboardList, Users, TrendingUp, Zap, Leaf, ShieldCheck, Globe, GraduationCap, HelpCircle, BarChart2, Trophy, Award, Target, Monitor, FlaskConical, Landmark, Heart, Calculator, Languages, Headphones, Check, X, FileText } from "lucide-react";
 import NoticeboardPricingTable from "../components/NoticeboardPricingTable";
 import "./LandingPage.css";
 
@@ -172,6 +172,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
             <div className="lp-fc" style={{background:"linear-gradient(180deg,rgba(16,185,129,.05),transparent 60%),#0f172a",borderColor:"rgba(16,185,129,.25)"}}><div className="lp-fi" style={{background:"rgba(16,185,129,.15)"}}><MessageCircle size={22} strokeWidth={2} /></div><h3>Instant Doubt Solving</h3><p>Ask any chapter question. AI answers from your actual NCERT textbook &mdash; not generic internet content.</p></div>
             <div className="lp-fc" style={{background:"linear-gradient(180deg,rgba(245,158,11,.05),transparent 60%),#0f172a",borderColor:"rgba(245,158,11,.25)"}}><div className="lp-fi" style={{background:"rgba(245,158,11,.15)"}}><ClipboardList size={22} strokeWidth={2} /></div><h3>Mock Tests and Question Bank</h3><p>CBSE class tests, mid-terms and full mock tests across all grades. 140,000+ practice questions — Grade 5 to Grade 12.</p></div>
             <div className="lp-fc" style={{background:"linear-gradient(180deg,rgba(239,68,68,.05),transparent 60%),#0f172a",borderColor:"rgba(239,68,68,.25)"}}><div className="lp-fi" style={{background:"rgba(239,68,68,.15)"}}><Users size={22} strokeWidth={2} /></div><h3>Parent Dashboard</h3><p>Track daily study time, test scores, weak area alerts, and AI usage. Two children per family account.</p></div>
+            <div className="lp-fc" style={{background:"linear-gradient(180deg,rgba(59,130,246,.05),transparent 60%),#0f172a",borderColor:"rgba(59,130,246,.25)"}}><div className="lp-fi" style={{background:"rgba(59,130,246,.15)"}}><MessagesSquare size={22} strokeWidth={2} /></div><h3>Direct Chat &mdash; Students, Parents &amp; Teachers</h3><p>Message teachers and parents right inside the platform, with file and voice attachments. Free for every student, parent and teacher on every plan.</p></div>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:"16px"}}>
             <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}><HelpCircle size={16} strokeWidth={2}/></div>INSTANT DOUBT SOLVING</div><img src="/screenshots/2026-08-askdoubt.png" alt="Doubt Solving" style={{width:"100%",display:"block"}} loading="lazy" /></div>

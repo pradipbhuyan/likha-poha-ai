@@ -854,6 +854,9 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
       { title: "Coverage", rows: [
         ["All CBSE Grade 5–12", true, true],
       ]},
+      { title: "Communication", rows: [
+        ["Direct Chat (Students & Parents)", true, true],
+      ]},
     ];
 
     return (
