@@ -79,6 +79,7 @@ from pydantic import BaseModel
 
 from app.services.auth_service import admin_client, require_teacher
 from app.services.audit_log_service import write_audit_event
+from app.services.email_service import send_teacher_parent_message
 from app.services.offer_access_service import is_free_tier_user
 
 router = APIRouter()
@@ -120,6 +121,24 @@ def _grade_sort_key(grade_str: str | None) -> int:
         return int("".join(filter(str.isdigit, grade_str)) or "999")
     except Exception:
         return 999
+
+
+def _test_percentage(row: dict) -> float | None:
+    """Read a score from the current test_history schema, with safe fallback."""
+    try:
+        if row.get("percentage") is not None:
+            value = float(row["percentage"])
+            if 0 <= value <= 100:
+                return round(value, 1)
+    except (TypeError, ValueError):
+        pass
+
+    try:
+        if row.get("max_score") is not None and float(row["max_score"]) > 0:
+            return round(float(row.get("final_score") or 0) / float(row["max_score"]) * 100, 1)
+    except (TypeError, ValueError):
+        pass
+    return None
 
 
 def _gen_password(length: int = 12) -> str:
@@ -359,17 +378,12 @@ def teacher_dashboard_summary(teacher=Depends(require_teacher)):
     mock_avg = None
     test_rows, _ = _safe_q(
         lambda: admin_client.table("test_history")
-        .select("score, total_questions, username")
-        .in_("username", [profiles.get(s, {}).get("username", "") for s in student_ids])
+        .select("profile_id, percentage, final_score, max_score")
+        .in_("profile_id", student_ids)
         .execute()
     )
     if test_rows:
-        scores = []
-        for t in test_rows:
-            total = t.get("total_questions") or 0
-            score = t.get("score") or 0
-            if total > 0:
-                scores.append(score / total * 100)
+        scores = [score for score in (_test_percentage(t) for t in test_rows) if score is not None]
         if scores:
             mock_avg = round(sum(scores) / len(scores), 1)
 
@@ -584,15 +598,15 @@ def get_student_detail(student_id: str, teacher=Depends(require_teacher)):
     )
     tests, _ = _safe_q(
         lambda: admin_client.table("test_history")
-        .select("score, total_questions, subject, created_at")
-        .eq("username", username)
-        .order("created_at", desc=True)
+        .select("profile_id, percentage, final_score, max_score, subject, chapter, submitted_at, created_at")
+        .eq("profile_id", student_id)
+        .order("submitted_at", desc=True)
         .limit(20)
         .execute()
     )
     mock_avg = None
     if tests:
-        scores = [t["score"] / t["total_questions"] * 100 for t in tests if (t.get("total_questions") or 0) > 0]
+        scores = [score for score in (_test_percentage(t) for t in tests) if score is not None]
         if scores:
             mock_avg = round(sum(scores) / len(scores), 1)
 
@@ -610,6 +624,15 @@ def get_student_detail(student_id: str, teacher=Depends(require_teacher)):
             "doubts_asked": doubts,
             "mock_tests_completed": len(tests),
             "mock_test_avg": mock_avg,
+            "recent_tests": [
+                {
+                    "subject": row.get("subject"),
+                    "chapter": row.get("chapter"),
+                    "score": _test_percentage(row),
+                    "submitted_at": row.get("submitted_at") or row.get("created_at"),
+                }
+                for row in tests[:10]
+            ],
             "recent_activity": activity[:5],
         },
     }
@@ -1156,29 +1179,28 @@ def get_student_timeline(student_id: str, teacher=Depends(require_teacher)):
         })
 
     # ── Mock test results ────────────────────────────────────────────────────
-    if username:
-        test_rows, _ = _safe_q(
-            lambda: admin_client.table("test_history")
-            .select("score, total_questions, subject, created_at")
-            .eq("username", username)
-            .order("created_at", desc=True)
-            .limit(20)
-            .execute()
-        )
-        for row in test_rows:
-            total = row.get("total_questions") or 0
-            score = row.get("score") or 0
-            pct = round(score / total * 100) if total > 0 else 0
-            category = "success" if pct >= 60 else ("warning" if pct >= 40 else "alert")
-            events.append({
-                "id": f"test-{row.get('created_at','')}",
-                "type": "mock_test",
-                "title": f"📝 Mock Test: {row.get('subject','Unknown')}",
-                "description": f"Score: {score}/{total} ({pct}%)",
-                "timestamp": row.get("created_at"),
-                "category": category,
-            })
+    test_rows, _ = _safe_q(
+        lambda: admin_client.table("test_history")
+        .select("percentage, final_score, max_score, subject, submitted_at, created_at")
+        .eq("profile_id", student_id)
+        .order("submitted_at", desc=True)
+        .limit(20)
+        .execute()
+    )
+    for row in test_rows:
+        pct = _test_percentage(row) or 0
+        category = "success" if pct >= 60 else ("warning" if pct >= 40 else "alert")
+        timestamp = row.get("submitted_at") or row.get("created_at")
+        events.append({
+            "id": f"test-{timestamp or ''}",
+            "type": "mock_test",
+            "title": f"📝 Mock Test: {row.get('subject','Unknown')}",
+            "description": f"Score: {pct}%",
+            "timestamp": timestamp,
+            "category": category,
+        })
 
+    if username:
         # ── AI activity (lessons, doubts) ────────────────────────────────────
         activity_rows, _ = _safe_q(
             lambda: admin_client.table("ai_usage_logs")
@@ -1274,21 +1296,20 @@ def get_interventions(teacher=Depends(require_teacher)):
     # Load mock test averages
     test_rows, _ = _safe_q(
         lambda: admin_client.table("test_history")
-        .select("score, total_questions, username")
-        .in_("username", [profiles.get(s, {}).get("username", "") for s in student_ids])
+        .select("profile_id, percentage, final_score, max_score")
+        .in_("profile_id", student_ids)
         .execute()
     )
     test_avg_map: dict = {}
     test_count_map: dict = {}
     for t in test_rows:
-        u = t.get("username")
-        total = t.get("total_questions") or 0
-        score = t.get("score") or 0
-        if u and total > 0:
-            test_avg_map.setdefault(u, []).append(score / total * 100)
-    for u, scores in test_avg_map.items():
-        test_count_map[u] = len(scores)
-        test_avg_map[u] = round(sum(scores) / len(scores), 1)
+        profile_id = t.get("profile_id")
+        score = _test_percentage(t)
+        if profile_id and score is not None:
+            test_avg_map.setdefault(profile_id, []).append(score)
+    for profile_id, scores in test_avg_map.items():
+        test_count_map[profile_id] = len(scores)
+        test_avg_map[profile_id] = round(sum(scores) / len(scores), 1)
 
     # Load pending invitations
     pending_inv, _ = _safe_q(
@@ -1307,8 +1328,8 @@ def get_interventions(teacher=Depends(require_teacher)):
         p = profiles.get(sid, {})
         username = p.get("username", sid)
         last_active = last_active_map.get(username)
-        avg_score = test_avg_map.get(username)
-        test_count = test_count_map.get(username, 0)
+        avg_score = test_avg_map.get(sid)
+        test_count = test_count_map.get(sid, 0)
 
         reasons = []
         actions = []
@@ -1590,24 +1611,22 @@ def get_classroom_analytics(classroom_id: str, teacher=Depends(require_teacher))
 
     # Mock test analytics
     mock_analytics = {"available": False, "reason": "No test data"}
-    if usernames:
+    if student_ids:
         test_rows, _ = _safe_q(
             lambda: admin_client.table("test_history")
-            .select("score, total_questions, username, created_at")
-            .in_("username", usernames)
+            .select("profile_id, percentage, final_score, max_score, submitted_at, created_at")
+            .in_("profile_id", student_ids)
             .execute()
         )
         if test_rows:
             scores = []
             completed_by_student: dict = {}
             for t in test_rows:
-                total = t.get("total_questions") or 0
-                score = t.get("score") or 0
-                u = t.get("username", "")
-                if total > 0:
-                    pct = score / total * 100
+                profile_id = t.get("profile_id")
+                pct = _test_percentage(t)
+                if profile_id and pct is not None:
                     scores.append(pct)
-                    completed_by_student[u] = completed_by_student.get(u, 0) + 1
+                    completed_by_student[profile_id] = completed_by_student.get(profile_id, 0) + 1
             if scores:
                 avg = round(sum(scores) / len(scores), 1)
                 mock_analytics = {
@@ -1876,7 +1895,7 @@ def message_parent(student_id: str, data: MessageParentRequest, teacher=Depends(
 
     parent, _ = _safe_one(
         lambda: admin_client.table("profiles")
-        .select("id, email")
+        .select("id, username, email")
         .eq("id", student["parent_id"])
         .limit(1)
         .execute()
@@ -1890,15 +1909,26 @@ def message_parent(student_id: str, data: MessageParentRequest, teacher=Depends(
     clean_subject = html.escape(data.subject.strip())[:200]
     clean_message = html.escape(data.message.strip())[:2000]
 
-    # Attempt to send — use Supabase invite as a no-op proxy if no email service
+    # Send through the transactional email provider. Supabase invitations are
+    # account-creation operations and reject parents who are already registered.
     status = "no_email"
     send_error = None
     if parent_email:
         try:
-            admin_client.auth.admin.invite_user_by_email(parent_email)
-            status = "sent"
+            sent = send_teacher_parent_message(
+                to=parent_email,
+                parent_name=parent.get("username") or "Parent",
+                teacher_name=teacher.get("profile", {}).get("username") or "Teacher",
+                student_name=student.get("username") or "your child",
+                subject=data.subject.strip(),
+                message=data.message.strip(),
+            )
+            status = "sent" if sent else "failed"
+            if not sent:
+                send_error = "Email service is unavailable. Please try again later."
         except Exception as exc:
-            send_error = str(exc)[:100]
+            _log.warning("teacher.parent_message_send_failed", error=str(exc)[:200])
+            send_error = "Email service is unavailable. Please try again later."
             status = "failed"
 
     # Log the message attempt

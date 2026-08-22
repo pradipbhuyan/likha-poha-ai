@@ -60,9 +60,18 @@ export default function StudentWorkspace({ student, onClose, isPaid }) {
   const width = Math.min(680, window.innerWidth);
 
   return (
+    <>
+    <div
+      aria-hidden="true"
+      onClick={onClose}
+      style={{ position: "fixed", inset: 0, background: "rgba(15,23,42,.36)", zIndex: 2199 }}
+    />
     <div
       data-testid="student-workspace"
-      style={{ position: "fixed", top: 0, right: 0, width, height: "100vh", background: "var(--panel,#fff)", boxShadow: "-4px 0 32px rgba(0,0,0,.15)", zIndex: 300, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${student.username || "Student"} workspace`}
+      style={{ position: "fixed", top: 0, right: 0, width, maxWidth: "100vw", height: "100dvh", boxSizing: "border-box", background: "var(--panel,#fff)", boxShadow: "-4px 0 32px rgba(0,0,0,.22)", zIndex: 2200, display: "flex", flexDirection: "column", overflow: "hidden" }}>
 
       {/* ── Header ─────────────────────────────────────────────────────── */}
       <div style={{ padding: "14px 16px 0", borderBottom: "1px solid var(--border,#e5e7eb)", background: "var(--panel,#fff)", flexShrink: 0 }}>
@@ -71,7 +80,7 @@ export default function StudentWorkspace({ student, onClose, isPaid }) {
             <h3 style={{ margin: 0, fontSize: "1rem" }} data-testid="workspace-student-name">{student.username}</h3>
             <span style={{ fontSize: ".75rem", color: "#64748b" }}>{student.grade || "—"} · {student.email || "No email"}</span>
           </div>
-          <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 8px", display: "flex", alignItems: "center" }}><X size={19}/></button>
+          <button aria-label="Close student workspace" onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 8px", display: "flex", alignItems: "center" }}><X size={19}/></button>
         </div>
         {/* Section tabs */}
         <div style={{ display: "flex", gap: 2, overflowX: "auto", paddingBottom: 0, WebkitOverflowScrolling: "touch" }}>
@@ -108,6 +117,7 @@ export default function StudentWorkspace({ student, onClose, isPaid }) {
         )}
       </div>
     </div>
+    </>
   );
 }
 
@@ -239,17 +249,31 @@ function WSAssessments({ detail }) {
     <div data-testid="ws-assessments">
       <h4 style={{ margin: "0 0 10px", display: "flex", alignItems: "center", gap: 6 }}><ClipboardList size={16}/>Assessments</h4>
       {!hasTests ? <NA /> : (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          {[
-            ["Tests Done", learning.mock_tests_completed],
-            ["Avg Score", learning.mock_test_avg != null ? learning.mock_test_avg + "%" : "—"],
-          ].map(([k, v]) => (
-            <div key={k} style={{ background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 8, padding: "10px 14px", textAlign: "center", flex: "1 1 80px" }}>
-              <div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#0ea5e9" }}>{v ?? 0}</div>
-              <div style={{ fontSize: ".72rem", color: "#64748b" }}>{k}</div>
-            </div>
-          ))}
-        </div>
+        <>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
+            {[
+              ["Tests Done", learning.mock_tests_completed],
+              ["Avg Score", learning.mock_test_avg != null ? learning.mock_test_avg + "%" : "—"],
+            ].map(([k, v]) => (
+              <div key={k} style={{ background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 8, padding: "10px 14px", textAlign: "center", flex: "1 1 80px" }}>
+                <div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#0ea5e9" }}>{v ?? 0}</div>
+                <div style={{ fontSize: ".72rem", color: "#64748b" }}>{k}</div>
+              </div>
+            ))}
+          </div>
+          <div style={card}>
+            <div style={{ fontWeight: 700, marginBottom: 6 }}>Recent Mock Tests</div>
+            {(learning.recent_tests || []).map((test, index) => (
+              <div key={`${test.submitted_at || "test"}-${index}`} style={{ display: "flex", justifyContent: "space-between", gap: 10, padding: "7px 0", borderBottom: "1px solid var(--border,#f1f5f9)", fontSize: ".78rem" }}>
+                <div>
+                  <div style={{ fontWeight: 600 }}>{test.subject || "Mock Test"}</div>
+                  <div style={{ color: "#94a3b8" }}>{test.chapter || ""}{test.submitted_at ? ` · ${test.submitted_at.slice(0, 10)}` : ""}</div>
+                </div>
+                <strong style={{ color: "#0ea5e9" }}>{test.score != null ? `${test.score}%` : "—"}</strong>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

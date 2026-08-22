@@ -22,6 +22,7 @@ SMTP configuration (environment variables):
 import os
 import smtplib
 import threading
+from html import escape
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -1185,3 +1186,50 @@ def send_weekly_digest_email(
     _send_async(to=to, subject=subject, html=html, text=text)
     _log.info("email_service.digest_queued", to=to, children=len(children))
     return None
+
+
+def send_teacher_parent_message(
+    *,
+    to: str,
+    parent_name: str,
+    teacher_name: str,
+    student_name: str,
+    subject: str,
+    message: str,
+) -> bool:
+    """Send a teacher's message to an existing parent's email account."""
+    if not (to or "").strip():
+        return False
+
+    safe_parent = escape((parent_name or "Parent").strip())
+    safe_teacher = escape((teacher_name or "Teacher").strip())
+    safe_student = escape((student_name or "your child").strip())
+    safe_subject = escape((subject or "Update from your child's teacher").strip())
+    safe_message = escape((message or "").strip()).replace("\n", "<br>")
+
+    body = f"""
+<p style="margin:0 0 16px;font-size:20px;font-weight:900">Message from {safe_teacher}</p>
+<p style="margin:0 0 16px;font-size:14px;color:#475569">
+  Hello {safe_parent}, here is an update about <strong>{safe_student}</strong>.
+</p>
+<div style="padding:16px;border:1px solid #e5e7eb;border-radius:10px;background:#f8fafc;
+            font-size:14px;line-height:1.7;color:#1e293b">
+  {safe_message}
+</div>
+"""
+    html_body = _email_shell(
+        body_html=body,
+        cta_url=_FRONTEND_URL,
+        cta_label="Open Parent Dashboard →",
+    )
+    text = (
+        f"Hello {parent_name or 'Parent'},\n\n"
+        f"{teacher_name or 'Your teacher'} sent an update about {student_name or 'your child'}:\n\n"
+        f"{message.strip()}\n\nOpen the Parent Dashboard: {_FRONTEND_URL}\n"
+    )
+    return _send(
+        to=to.strip(),
+        subject=f"{subject.strip() or 'Student update'} — Likha Poha AI",
+        html=html_body,
+        text=text,
+    )

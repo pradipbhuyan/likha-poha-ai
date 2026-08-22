@@ -408,3 +408,51 @@ class TestParentContact:
         for call in audit_calls:
             meta_str = str(call.get("metadata", {}))
             assert "PRIVATE MESSAGE BODY" not in meta_str
+
+    def test_message_parent_emails_existing_registered_parent(self, monkeypatch):
+        """Registered parents receive mail; the endpoint must not invite them again."""
+        call_n = {"n": 0}
+
+        def mock_safe_one(fn):
+            call_n["n"] += 1
+            if call_n["n"] == 1:
+                return {
+                    "id": STUDENT_ID,
+                    "username": "Alice",
+                    "parent_id": "parent-1",
+                }, None
+            return {
+                "id": "parent-1",
+                "username": "Alice Parent",
+                "email": "registered.parent@example.test",
+            }, None
+
+        sent = []
+        monkeypatch.setattr(p2, "_ensure_owns_student", lambda t, s: None)
+        monkeypatch.setattr(p2, "_safe_one", mock_safe_one)
+        monkeypatch.setattr(
+            p2,
+            "send_teacher_parent_message",
+            lambda **kwargs: sent.append(kwargs) or True,
+        )
+        mock_client = MagicMock()
+        mock_client.table.return_value.insert.return_value.execute.return_value = MagicMock()
+        monkeypatch.setattr(p2, "admin_client", mock_client)
+        monkeypatch.setattr(p2, "write_audit_event", MagicMock())
+
+        result = message_parent(
+            STUDENT_ID,
+            MessageParentRequest(subject="Science update", message="Alice scored 80%."),
+            teacher={"profile": {"id": "teacher-1", "username": "Ms Rao"}},
+        )
+
+        assert result["status"] == "sent"
+        assert sent == [{
+            "to": "registered.parent@example.test",
+            "parent_name": "Alice Parent",
+            "teacher_name": "Ms Rao",
+            "student_name": "Alice",
+            "subject": "Science update",
+            "message": "Alice scored 80%.",
+        }]
+        assert not mock_client.auth.admin.invite_user_by_email.called

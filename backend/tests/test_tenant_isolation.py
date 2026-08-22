@@ -320,6 +320,7 @@ class TestParentChildTeacherOwnershipJourney:
     def test_child_records_are_visible_only_to_family_and_assigned_teacher(self, monkeypatch):
         import app.routes.admin_control as admin_control
         import app.routes.parent_dashboard as parent_dashboard
+        import app.routes.teacher_classroom as teacher_classroom
         import app.routes.teacher_dashboard as teacher_dashboard
         import app.services.progress_service as progress_service
         import app.services.test_history_service as history_service
@@ -355,6 +356,7 @@ class TestParentChildTeacherOwnershipJourney:
         monkeypatch.setattr(history_service, "supabase", db)
         monkeypatch.setattr(parent_dashboard, "admin_client", db)
         monkeypatch.setattr(teacher_dashboard, "admin_client", db)
+        monkeypatch.setattr(teacher_classroom, "admin_client", db)
         monkeypatch.setattr(admin_control, "admin_client", db)
         monkeypatch.setattr(
             parent_dashboard,
@@ -429,6 +431,21 @@ class TestParentChildTeacherOwnershipJourney:
         assert [row["profile"]["id"] for row in teacher_view["students"]] == [child["id"]]
         assert teacher_view["students"][0]["recent_progress"][0]["chapter"] == "Force and Pressure"
         assert teacher_view["students"][0]["recent_tests"][0]["percentage"] == 80
+
+        # The canonical Teacher Dashboard detail endpoint must include history
+        # created before the assignment. Access begins at assignment time, but
+        # ownership is profile-based and historical rows are not time-filtered.
+        teacher_detail = teacher_classroom.get_student_detail(
+            child["id"], teacher={"profile": assigned_teacher}
+        )
+        assert teacher_detail["learning"]["mock_tests_completed"] == 1
+        assert teacher_detail["learning"]["mock_test_avg"] == 80
+        assert teacher_detail["learning"]["recent_tests"][0] == {
+            "subject": "Science",
+            "chapter": "Force and Pressure",
+            "score": 80.0,
+            "submitted_at": "2026-08-22T10:00:00Z",
+        }
 
         unassigned_view = teacher_dashboard.get_teacher_summary(
             teacher={"profile": unassigned_teacher}

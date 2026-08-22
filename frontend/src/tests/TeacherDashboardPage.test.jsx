@@ -5,6 +5,7 @@ import TeacherDashboardPage from "../pages/TeacherDashboardPage";
 import {
   createTeacherNote,
   getTeacherDashboardSummary,
+  getTeacherStudentDetail,
 } from "../api/teacherDashboard";
 
 vi.mock("../api/teacherDashboard", () => ({
@@ -149,6 +150,38 @@ describe("TeacherDashboardPage", () => {
     // Both students should be visible (mocked)
     expect(await screen.findByText("Akshita")).toBeInTheDocument();
     expect(screen.getByText("Rohan")).toBeInTheDocument();
+  });
+
+  test("shows an assigned student's historical mock-test result", async () => {
+    getTeacherStudentDetail.mockResolvedValueOnce({
+      success: true,
+      student: { id: "student-1", username: "Akshita", grade: "Grade 9", account_status: "active" },
+      classrooms: [],
+      learning: {
+        last_active: null,
+        lessons_generated: 0,
+        doubts_asked: 0,
+        mock_tests_completed: 1,
+        mock_test_avg: 40,
+        recent_tests: [{
+          subject: "Science",
+          chapter: "Entering the World of Secondary Science",
+          score: 40,
+          submitted_at: "2026-08-22T00:28:45.282Z",
+        }],
+      },
+    });
+
+    render(<TeacherDashboardPage user={teacherUser} />);
+    fireEvent.click(screen.getByTestId("teacher-tab-students"));
+    fireEvent.click(await screen.findByText("Akshita"));
+    const workspace = await screen.findByTestId("student-workspace");
+    expect(workspace).toHaveStyle({ zIndex: "2200", maxWidth: "100vw" });
+    fireEvent.click(await screen.findByTestId("ws-tab-assessments"));
+
+    expect(await screen.findByText("Recent Mock Tests")).toBeInTheDocument();
+    expect(screen.getAllByText("40%")).toHaveLength(2);
+    expect(screen.getByText("Entering the World of Secondary Science", { exact: false })).toBeInTheDocument();
   });
 
   test("shows empty roster guidance when no students are assigned", async () => {
