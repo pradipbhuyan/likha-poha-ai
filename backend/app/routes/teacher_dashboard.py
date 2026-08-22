@@ -35,6 +35,7 @@ class CreateStudentRequest(BaseModel):
     email: Optional[str] = None     # optional — real email or omit for synthetic
     subject: Optional[str] = None   # initial subject assignment (default "General")
     section: Optional[str] = None   # optional class section
+    stream: Optional[str] = None    # required for Grade 11/12: PCM|PCB|PCMB|Commerce|Humanities
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -250,6 +251,20 @@ def create_student(data: CreateStudentRequest, teacher=Depends(require_teacher))
             detail="Temporary password must be at least 6 characters.",
         )
 
+    # Grade 11/12: stream is required — mirrors the same rule enforced for
+    # parent-added children (parent_dashboard.py) and self-signup (auth.py),
+    # so a teacher-created student gets the right subjects from day one.
+    stream = ""
+    if grade in ("Grade 11", "Grade 12"):
+        valid_streams = {"PCM", "PCB", "PCMB", "Commerce", "Humanities"}
+        stream = (data.stream or "").strip()
+        if stream not in valid_streams:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Stream is required for {grade} students. "
+                       f"Choose one of: PCM, PCB, PCMB, Commerce, Humanities",
+            )
+
     from app.data.product_catalogue import ALL_GRADES_INCLUDING_HIDDEN  # noqa: PLC0415
     if grade not in ALL_GRADES_INCLUDING_HIDDEN:
         raise HTTPException(
@@ -310,6 +325,17 @@ def create_student(data: CreateStudentRequest, teacher=Depends(require_teacher))
         "cbse_subjects": [],
         "ai_model_preference": "default",
     }
+
+    if stream:
+        stream_subjects = {
+            "PCM":        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+            "PCB":        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+            "PCMB":       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+            "Commerce":   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+            "Humanities": ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+        }
+        student_profile["stream"] = stream
+        student_profile["cbse_subjects"] = stream_subjects.get(stream, [])
 
     profile_resp = (
         admin_client

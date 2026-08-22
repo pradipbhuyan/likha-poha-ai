@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import {
   LayoutDashboard, GraduationCap, Building2, Mail, CheckSquare,
   CheckCircle2, AlertTriangle, Undo2, Plus, X, ArrowRight, Hand,
-  BarChart3,
+  BarChart3, Pencil,
 } from "lucide-react";
 import {
   getTeacherClassroomSummary, listTeacherStudents,
@@ -44,6 +44,14 @@ const btn1 = { padding:"7px 14px", borderRadius:8, border:"none", background:"#6
 const btn2 = { padding:"5px 10px", borderRadius:7, border:"1px solid var(--border,#e5e7eb)", background:"var(--panel,#fff)", fontFamily:"inherit", fontSize:".75rem", cursor:"pointer", color:"var(--text,#374151)" };
 function bsm(c){ c=c||"#6366f1"; return { padding:"4px 9px", borderRadius:6, border:"1px solid "+c, background:c+"18", color:c, fontFamily:"inherit", fontSize:".72rem", fontWeight:600, cursor:"pointer" }; }
 const GRADES = Array.from({length:12},function(_,i){ return "Grade "+(i+1); });
+const STREAMS = [
+  {key:"PCM",label:"Science (PCM)"},
+  {key:"PCB",label:"Science (PCB)"},
+  {key:"PCMB",label:"Science (PCMB)"},
+  {key:"Commerce",label:"Commerce"},
+  {key:"Humanities",label:"Arts / Humanities"},
+];
+function needsStream(grade){ return grade==="Grade 11"||grade==="Grade 12"; }
 function greet(){ var h=new Date().getHours(); return h<12?"Good morning":h<17?"Good afternoon":"Good evening"; }
 
 function Bdg({ status }){
@@ -128,18 +136,53 @@ function IRow({ inv, onView, onTask }){
 }
 function InvCard({ inv, onResend, onCancel }){
   var sc=SS[inv.status]||SS.inactive;
+  var canResend = inv.status==="pending"||inv.status==="expired";
+  var [editing, setEditing] = useState(false);
+  var [emailDraft, setEmailDraft] = useState(inv.email||"");
+  var [err, setErr] = useState("");
+
+  function startEdit(){ setEmailDraft(inv.email||""); setErr(""); setEditing(true); }
+
+  async function saveAndResend(){
+    var next = emailDraft.trim();
+    if(!next){ setErr("Email required."); return; }
+    var res = await onResend(inv.id, next!==inv.email?next:undefined);
+    if(res&&res.success===false){ setErr(res.error||"Failed to resend."); return; }
+    setEditing(false);
+  }
+
   return (
     <div style={{...card(),marginBottom:8,padding:"10px 14px"}}>
       <div style={{display:"flex",justifyContent:"space-between",gap:8,flexWrap:"wrap",alignItems:"center"}}>
-        <div>
+        <div style={{flex:1,minWidth:200}}>
           <span style={{fontWeight:600,fontSize:".85rem"}}>{inv.student_name}</span>
           <span style={{...sc,display:"inline-block",fontSize:".7rem",padding:"1px 7px",borderRadius:5,fontWeight:600,marginLeft:7}}>{inv.status}</span>
-          <div style={{fontSize:".72rem",color:"#94a3b8",marginTop:2}}>{inv.email} · {inv.grade} · Expires {(inv.expires_at||"").slice(0,10)}</div>
+          {!editing&&(
+            <div style={{fontSize:".72rem",color:"#94a3b8",marginTop:2,display:"flex",alignItems:"center",gap:5,flexWrap:"wrap"}}>
+              <span>{inv.email} · {inv.grade} · Expires {(inv.expires_at||"").slice(0,10)}</span>
+              {canResend&&(
+                <button onClick={startEdit} title="Edit email" style={{background:"none",border:"none",cursor:"pointer",color:"#6366f1",display:"inline-flex",alignItems:"center",padding:0}}>
+                  <Pencil size={12}/>
+                </button>
+              )}
+            </div>
+          )}
+          {editing&&(
+            <div style={{marginTop:6,display:"flex",gap:6,alignItems:"center",flexWrap:"wrap"}}>
+              <input type="email" value={emailDraft} onChange={function(e){setEmailDraft(e.target.value);}}
+                placeholder="Email to send invitation to" style={{...inp,maxWidth:240,padding:"5px 9px",fontSize:".78rem"}}/>
+              <button onClick={saveAndResend} style={bsm("#6366f1")}>Send to this email</button>
+              <button onClick={function(){setEditing(false);setErr("");}} style={bsm("#64748b")}>Cancel</button>
+              {err&&<div style={{fontSize:".72rem",color:"#dc2626",width:"100%"}}>{err}</div>}
+            </div>
+          )}
         </div>
-        <div style={{display:"flex",gap:5}}>
-          {(inv.status==="pending"||inv.status==="expired")&&<button onClick={function(){onResend(inv.id);}} style={bsm("#6366f1")}>Resend</button>}
-          {inv.status==="pending"&&<button onClick={function(){onCancel(inv.id);}} style={bsm("#ef4444")}>Cancel</button>}
-        </div>
+        {!editing&&(
+          <div style={{display:"flex",gap:5}}>
+            {canResend&&<button onClick={function(){onResend(inv.id);}} style={bsm("#6366f1")}>Resend</button>}
+            {inv.status==="pending"&&<button onClick={function(){onCancel(inv.id);}} style={bsm("#ef4444")}>Cancel</button>}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -172,8 +215,8 @@ export default function TeacherDashboardPage({ user }) {
   var [invFilter,    setInvFilter]    = useState("");
   var [invAll,       setInvAll]       = useState([]);
   var [clsForm,      setClsForm]      = useState({ name:"", description:"" });
-  var [invForm,      setInvForm]      = useState({ student_name:"", grade:"Grade 9", email:"" });
-  var [addStuForm,   setAddStuForm]   = useState({ username:"", grade:"Grade 9", password:"", email:"" });
+  var [invForm,      setInvForm]      = useState({ student_name:"", grade:"Grade 9", email:"", stream:"" });
+  var [addStuForm,   setAddStuForm]   = useState({ username:"", grade:"Grade 9", password:"", email:"", stream:"" });
   var [addStuMsg,    setAddStuMsg]    = useState(null);
   var [invMsg,       setInvMsg]       = useState(null);
   var [clsMsg,       setClsMsg]       = useState(null);
@@ -237,16 +280,18 @@ export default function TeacherDashboardPage({ user }) {
   async function doAddStudent(e){
     e.preventDefault();
     if(!addStuForm.username||!addStuForm.password){setAddStuMsg("Name and password required.");return;}
-    var d=await createTeacherStudent({...addStuForm,email:addStuForm.email||undefined}).catch(function(){return{success:false};});
-    if(d&&d.success!==false){setShowAdd(false);setAddStuForm({username:"",grade:"Grade 9",password:"",email:""});loadAll();flash("Student added");}
-    else setAddStuMsg("Failed to add student.");
+    if(needsStream(addStuForm.grade)&&!addStuForm.stream){setAddStuMsg("Please choose a stream for Grade 11/12.");return;}
+    var d=await createTeacherStudent({...addStuForm,email:addStuForm.email||undefined}).catch(function(err){return{success:false,error:err&&err.message};});
+    if(d&&d.success!==false){setShowAdd(false);setAddStuForm({username:"",grade:"Grade 9",password:"",email:"",stream:""});loadAll();flash("Student added");}
+    else setAddStuMsg(d&&d.error?d.error:"Failed to add student.");
   }
   async function doCreateInv(e){
     e.preventDefault();
     if(!invForm.student_name||!invForm.email){setInvMsg("Name and email required.");return;}
+    if(needsStream(invForm.grade)&&!invForm.stream){setInvMsg("Please choose a stream for Grade 11/12.");return;}
     var d=await createTeacherInvitation(invForm).catch(function(){return{success:false};});
-    if(d&&d.success){setInvForm({student_name:"",grade:"Grade 9",email:""});loadInvAll(invFilter);loadAll();flash("Invitation sent");setInvMsg(null);}
-    else setInvMsg("Failed to send invitation.");
+    if(d&&d.success){setInvForm({student_name:"",grade:"Grade 9",email:"",stream:""});loadInvAll(invFilter);loadAll();flash("Invitation sent");setInvMsg(null);}
+    else setInvMsg(d&&d.error?d.error:"Failed to send invitation.");
   }
   async function doCreateCls(e){
     e.preventDefault();
@@ -316,8 +361,14 @@ return (
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Name *</span>
                 <input value={addStuForm.username} onChange={function(e){setAddStuForm(function(p){return{...p,username:e.target.value};});}} required style={{...inp,marginTop:2}}/></label>
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Grade *</span>
-                <select value={addStuForm.grade} onChange={function(e){setAddStuForm(function(p){return{...p,grade:e.target.value};});}} style={{...inp,marginTop:2}}>
+                <select value={addStuForm.grade} onChange={function(e){setAddStuForm(function(p){return{...p,grade:e.target.value,stream:""};});}} style={{...inp,marginTop:2}}>
                   {GRADES.map(function(g){return <option key={g} value={g}>{g}</option>;})}</select></label>
+              {needsStream(addStuForm.grade)&&(
+                <label><span style={{fontSize:".78rem",fontWeight:600}}>Stream *</span>
+                  <select value={addStuForm.stream} onChange={function(e){setAddStuForm(function(p){return{...p,stream:e.target.value};});}} style={{...inp,marginTop:2}}>
+                    <option value="">Choose a stream…</option>
+                    {STREAMS.map(function(s){return <option key={s.key} value={s.key}>{s.label}</option>;})}</select></label>
+              )}
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Password *</span>
                 <input type="text" value={addStuForm.password} onChange={function(e){setAddStuForm(function(p){return{...p,password:e.target.value};});}} required placeholder="Share with student" style={{...inp,marginTop:2}}/></label>
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Email (optional)</span>
@@ -446,7 +497,7 @@ return (
                   </div>
                   {invites.slice(0,3).map(function(inv){return(
                     <InvCard key={inv.id} inv={inv}
-                      onResend={async function(id){ await resendTeacherInvitation(id).catch(function(){}); loadAll(); flash("Invitation resent"); }}
+                      onResend={async function(id,newEmail){ var r=await resendTeacherInvitation(id,newEmail).catch(function(){return{success:false};}); if(r&&r.success!==false){loadAll();flash(newEmail?"Invitation resent to new email":"Invitation resent");} return r; }}
                       onCancel={async function(id){ if(!window.confirm("Cancel invitation?"))return; await cancelTeacherInvitation(id).catch(function(){}); loadAll(); flash("Invitation cancelled"); }}/>
                   );})}
                 </div>
@@ -567,9 +618,15 @@ return (
               <label style={{gridColumn:"1 / -1"}}><span style={{fontSize:".78rem",fontWeight:600}}>Student Name *</span>
                 <input value={invForm.student_name} onChange={function(e){setInvForm(function(p){return{...p,student_name:e.target.value};});}} required style={{...inp,marginTop:2}}/></label>
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Grade</span>
-                <select value={invForm.grade} onChange={function(e){setInvForm(function(p){return{...p,grade:e.target.value};});}} style={{...inp,marginTop:2}}>
+                <select value={invForm.grade} onChange={function(e){setInvForm(function(p){return{...p,grade:e.target.value,stream:""};});}} style={{...inp,marginTop:2}}>
                   {GRADES.map(function(g){return <option key={g} value={g}>{g}</option>;})}</select></label>
-              <label><span style={{fontSize:".78rem",fontWeight:600}}>Email *</span>
+              {needsStream(invForm.grade)?(
+                <label><span style={{fontSize:".78rem",fontWeight:600}}>Stream *</span>
+                  <select value={invForm.stream} onChange={function(e){setInvForm(function(p){return{...p,stream:e.target.value};});}} style={{...inp,marginTop:2}}>
+                    <option value="">Choose a stream…</option>
+                    {STREAMS.map(function(s){return <option key={s.key} value={s.key}>{s.label}</option>;})}</select></label>
+              ):<div/>}
+              <label style={{gridColumn:"1 / -1"}}><span style={{fontSize:".78rem",fontWeight:600}}>Email *</span>
                 <input type="email" value={invForm.email} onChange={function(e){setInvForm(function(p){return{...p,email:e.target.value};});}} required style={{...inp,marginTop:2}}/></label>
               {invMsg&&<div style={{gridColumn:"1 / -1",fontSize:".8rem",color:"#dc2626"}}>{invMsg}</div>}
               <button type="submit" style={btn1}>Send Invitation</button>
@@ -589,7 +646,7 @@ return (
           {invAll.length===0&&<div style={{...card(),textAlign:"center",padding:24,color:"#94a3b8"}}><div style={{display:"flex",justifyContent:"center",marginBottom:8}}><Mail size={30}/></div><div style={{fontWeight:600}}>No invitations.</div></div>}
           {invAll.map(function(inv){return(
             <InvCard key={inv.id} inv={inv}
-              onResend={async function(id){ await resendTeacherInvitation(id).catch(function(){}); loadInvAll(invFilter); flash("Invitation resent"); }}
+              onResend={async function(id,newEmail){ var r=await resendTeacherInvitation(id,newEmail).catch(function(){return{success:false};}); if(r&&r.success!==false){loadInvAll(invFilter);flash(newEmail?"Invitation resent to new email":"Invitation resent");} return r; }}
               onCancel={async function(id){ if(!window.confirm("Cancel invitation?"))return; await cancelTeacherInvitation(id).catch(function(){}); loadInvAll(invFilter); loadAll(); flash("Invitation cancelled"); }}/>
           );})}
         </div>

@@ -49,7 +49,6 @@ vi.mock("../api/teacherDashboard", () => ({
   })),
   updateTeacherStudent:          vi.fn(async () => ({ success: true })),
   archiveTeacherStudent:         vi.fn(async () => ({ success: true, archived_at: "2026-06-27T10:00:00" })),
-  resetTeacherStudentPassword:   vi.fn(async () => ({ success: true, temp_password: "Abc123!@#$", warning: "Show once only." })),
   emailTeacherStudentCredentials: vi.fn(async () => ({ success: true, invite_sent: true })),
   listTeacherInvitations: vi.fn(async () => ({
     success: true,

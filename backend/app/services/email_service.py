@@ -1233,3 +1233,69 @@ def send_teacher_parent_message(
         html=html_body,
         text=text,
     )
+
+
+def send_student_invitation_email(
+    *,
+    to: str,
+    student_name: str,
+    teacher_name: str,
+    grade: str,
+    invite_link: str,
+    expiry_days: int = 7,
+    stream: str = "",
+) -> bool:
+    """
+    Send a teacher's student invitation email via Resend/SMTP.
+
+    Fires when a teacher invites a student from the Teacher Dashboard's
+    Invitations tab. The link takes the student to a public accept-invitation
+    page where they set a password and their account is created.
+
+    Non-blocking: call via _send_async for fire-and-forget, or use the
+    returned bool from _send() directly when the caller wants to know
+    whether the email actually went out.
+    """
+    if not (to or "").strip():
+        return False
+
+    safe_student = escape((student_name or "there").strip())
+    safe_teacher = escape((teacher_name or "Your teacher").strip())
+    safe_grade   = escape((grade or "").strip())
+    safe_stream  = escape((stream or "").strip())
+
+    grade_line = f" for <strong>{safe_grade}</strong>" if safe_grade else ""
+    if safe_stream:
+        grade_line += f" (<strong>{safe_stream}</strong> stream)"
+
+    body = f"""
+<p style="margin:0 0 16px;font-size:20px;font-weight:900">You're invited to Likha Poha AI</p>
+<p style="margin:0 0 16px;font-size:14px;color:#475569">
+  Hi {safe_student}, <strong>{safe_teacher}</strong> has invited you to join their classroom
+  on Likha Poha AI{grade_line}.
+</p>
+<div style="padding:16px;border:1px solid #e5e7eb;border-radius:10px;background:#f8fafc;
+            font-size:14px;line-height:1.7;color:#1e293b">
+  Click the button below to set your password and start learning. This invitation
+  expires in {expiry_days} days.
+</div>
+"""
+    html_body = _email_shell(
+        body_html=body,
+        cta_url=invite_link,
+        cta_label="Accept Invitation →",
+    )
+    text_grade = (f" for {grade}" if grade else "") + (f" ({stream} stream)" if stream else "")
+    text = (
+        f"Hi {student_name or 'there'},\n\n"
+        f"{teacher_name or 'Your teacher'} has invited you to join their classroom on "
+        f"Likha Poha AI{text_grade}.\n\n"
+        f"Accept your invitation: {invite_link}\n\n"
+        f"This invitation expires in {expiry_days} days.\n"
+    )
+    return _send(
+        to=to.strip(),
+        subject=f"{teacher_name or 'Your teacher'} invited you to Likha Poha AI",
+        html=html_body,
+        text=text,
+    )

@@ -79,6 +79,7 @@ import ExemplarResearchPage from "./pages/ExemplarResearchPage";
 import TeacherLessonPlanPage from "./pages/TeacherLessonPlanPage";
 import TeacherLectureAudioPage from "./pages/TeacherLectureAudioPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import AcceptInvitePage from "./pages/AcceptInvitePage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import SalesIncentivePage from "./pages/SalesIncentivePage";
 import WalkthroughPage from "./pages/WalkthroughPage";
@@ -1193,6 +1194,14 @@ function App() {
   if (routePath === "/reset-password") {
     return (
       <ResetPasswordPage
+        onBackToLogin={handleBackToLogin}
+      />
+    );
+  }
+
+  if (routePath === "/accept-invite") {
+    return (
+      <AcceptInvitePage
         onBackToLogin={handleBackToLogin}
       />
     );

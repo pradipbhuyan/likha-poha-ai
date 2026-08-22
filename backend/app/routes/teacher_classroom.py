@@ -11,7 +11,6 @@ Phase 1 endpoints (all require role=teacher):
   GET  /students/{id}                — student detail
   PATCH /students/{id}               — update student name/grade/email
   POST /students/{id}/archive        — archive from roster
-  POST /students/{id}/reset-password — reset temp password (creates new)
   POST /students/{id}/email-credentials — email credentials (paid only)
 
   GET  /invitations                  — list invitations
@@ -63,23 +62,25 @@ Safety:
 - Notes are teacher_private — never exposed to students/parents.
 - All mutating actions write sanitized audit events.
 - Missing source tables return graceful empty results.
-- Passwords are NEVER stored, returned, or logged in plaintext.
+- Teachers cannot set or view a student's password, and have no way to log
+  into a student's account — email-credentials sends a Supabase-generated
+  invite link straight to the student's own inbox instead.
 """
 from __future__ import annotations
 
 import html
 import logging
-import secrets
-import string
+import re
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
 
-from app.services.auth_service import admin_client, require_teacher
+from app.config import settings
+from app.services.auth_service import admin_client, require_teacher, create_auth_user
 from app.services.audit_log_service import write_audit_event
-from app.services.email_service import send_teacher_parent_message
+from app.services.email_service import send_teacher_parent_message, send_student_invitation_email
 from app.services.offer_access_service import is_free_tier_user
 
 router = APIRouter()
@@ -89,6 +90,7 @@ _log = logging.getLogger("likhapoha.teacher")
 FREE_TEACHER_MAX   = 10
 PAID_TEACHER_MAX   = 30
 INVITATION_EXPIRY_DAYS = 7
+_EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -139,11 +141,6 @@ def _test_percentage(row: dict) -> float | None:
     except (TypeError, ValueError):
         pass
     return None
-
-
-def _gen_password(length: int = 12) -> str:
-    alphabet = string.ascii_letters + string.digits + "!@#$"
-    return "".join(secrets.choice(alphabet) for _ in range(length))
 
 
 def _safe_q(fn):
@@ -228,6 +225,16 @@ def _get_tid(teacher: dict) -> str:
     return teacher["profile"]["id"]
 
 
+def _invite_link(token: str) -> str:
+    base = (getattr(settings, "FRONTEND_URL", "") or "https://likhapoha.in").rstrip("/")
+    return f"{base}/accept-invite?token={token}"
+
+
+def _teacher_display_name(teacher: dict) -> str:
+    profile = teacher.get("profile") or {}
+    return profile.get("username") or profile.get("email") or "Your teacher"
+
+
 # ── Pydantic models ───────────────────────────────────────────────────────────
 
 class UpdateStudentRequest(BaseModel):
@@ -240,6 +247,11 @@ class CreateInvitationRequest(BaseModel):
     student_name: str
     grade: str = "Grade 9"
     email: str
+    stream: Optional[str] = None    # required for Grade 11/12: PCM|PCB|PCMB|Commerce|Humanities
+
+
+class ResendInvitationRequest(BaseModel):
+    email: Optional[str] = None     # set to change the invitation's email before resending
 
 
 class CreateClassroomRequest(BaseModel):
@@ -689,37 +701,6 @@ def archive_student(student_id: str, teacher=Depends(require_teacher)):
     return {"success": True, "archived_at": now}
 
 
-@router.post("/students/{student_id}/reset-password")
-def reset_student_password(student_id: str, teacher=Depends(require_teacher)):
-    """
-    Generate a new temporary password for a student.
-    Password shown once only — never logged or stored.
-    Teacher must own the student.
-    """
-    teacher_id = teacher["profile"]["id"]
-    _ensure_owns_student(teacher_id, student_id)
-
-    new_password = _gen_password(12)
-    try:
-        admin_client.auth.admin.update_user_by_id(student_id, {"password": new_password})
-    except Exception as exc:
-        return {"success": False, "error": str(exc)[:150]}
-
-    write_audit_event(
-        event_type="teacher.student.password_reset",
-        actor_user_id=teacher_id,
-        target_user_id=student_id,
-        entity_type="student",
-        entity_id=student_id,
-        metadata={"triggered_by": "teacher_dashboard"},
-    )
-    return {
-        "success": True,
-        "temp_password": new_password,
-        "warning": "Show once only. Advise student to change password immediately.",
-    }
-
-
 @router.post("/students/{student_id}/email-credentials")
 def email_student_credentials(student_id: str, teacher=Depends(require_teacher)):
     """
@@ -817,11 +798,43 @@ def create_invitation(data: CreateInvitationRequest, teacher=Depends(require_tea
             "at_limit": True,
         }
 
+    # Grade 11/12: stream is required — the student gets access to exactly
+    # this stream's subjects the moment they accept, mirroring the rule
+    # enforced for parent-added children and self-signup.
+    stream = ""
+    if data.grade in ("Grade 11", "Grade 12"):
+        valid_streams = {"PCM", "PCB", "PCMB", "Commerce", "Humanities"}
+        stream = (data.stream or "").strip()
+        if stream not in valid_streams:
+            return {
+                "success": False,
+                "error": f"Stream is required for {data.grade} students. "
+                         f"Choose one of: PCM, PCB, PCMB, Commerce, Humanities",
+            }
+
+    # Fail fast if this email already has an account — the invitation would
+    # otherwise sit as "pending" forever because acceptance can never create
+    # a second Supabase auth user for the same address.
+    existing, _ = _safe_one(
+        lambda: admin_client.table("profiles")
+        .select("id")
+        .eq("email", data.email.strip().lower())
+        .limit(1)
+        .execute()
+    )
+    if existing:
+        return {
+            "success": False,
+            "error": "An account with this email already exists. "
+                     "Ask them to log in directly, or invite a different email address.",
+        }
+
     row = {
         "teacher_id": teacher_id,
         "student_name": data.student_name,
         "grade": data.grade,
         "email": data.email,
+        "stream": stream or None,
         "status": "pending",
         "expires_at": _expiry_iso(),
     }
@@ -829,21 +842,75 @@ def create_invitation(data: CreateInvitationRequest, teacher=Depends(require_tea
         result = admin_client.table("teacher_invitations").insert(row).execute()
         inv = result.data[0] if result.data else row
     except Exception as exc:
-        return {"success": False, "error": str(exc)[:150]}
+        err = str(exc)
+        is_missing_stream_column = "stream" in err and ("PGRST204" in err or "column" in err.lower())
+        if is_missing_stream_column and stream:
+            # A stream was required (Grade 11/12) but the DB migration that adds
+            # the `stream` column hasn't run yet — do NOT silently drop it and
+            # create an invitation with no stream. That produced a real bug:
+            # the accepted student got zero cbse_subjects, i.e. ALL subjects
+            # instead of just their chosen stream's.
+            return {
+                "success": False,
+                "error": "Stream selection isn't available on the server yet "
+                         "(missing database migration). Contact your admin before "
+                         "inviting Grade 11/12 students.",
+            }
+        if is_missing_stream_column:
+            # Non-11/12 invitation — stream is empty anyway, safe to drop.
+            row.pop("stream", None)
+            try:
+                result = admin_client.table("teacher_invitations").insert(row).execute()
+                inv = result.data[0] if result.data else row
+            except Exception as exc2:
+                return {"success": False, "error": str(exc2)[:150]}
+        else:
+            return {"success": False, "error": err[:150]}
+
+    email_sent = False
+    if inv.get("token"):
+        email_sent = send_student_invitation_email(
+            to=data.email,
+            student_name=data.student_name,
+            teacher_name=_teacher_display_name(teacher),
+            grade=data.grade,
+            invite_link=_invite_link(inv["token"]),
+            expiry_days=INVITATION_EXPIRY_DAYS,
+            stream=stream,
+        )
+        if not email_sent:
+            _log.warning("teacher.invitation.email_not_sent", extra={"invitation_id": inv.get("id")})
 
     write_audit_event(
         event_type="teacher.invitation.created",
         actor_user_id=teacher_id,
         entity_type="invitation",
         entity_id=inv.get("id", ""),
-        metadata={"grade": data.grade, "status": "pending"},
+        metadata={"grade": data.grade, "status": "pending", "email_sent": email_sent},
     )
-    return {"success": True, "invitation": inv}
+    return {
+        "success": True,
+        "invitation": inv,
+        "email_sent": email_sent,
+        "warning": None if email_sent else (
+            "Invitation saved, but the email could not be sent. "
+            "Check RESEND_API_KEY / EMAIL_FROM_ADDRESS configuration, or share the invite link manually."
+        ),
+    }
 
 
 @router.post("/invitations/{invitation_id}/resend")
-def resend_invitation(invitation_id: str, teacher=Depends(require_teacher)):
-    """Resend an invitation and extend its expiry by 7 days."""
+def resend_invitation(
+    invitation_id: str,
+    data: ResendInvitationRequest = ResendInvitationRequest(),
+    teacher=Depends(require_teacher),
+):
+    """
+    Resend an invitation and extend its expiry by 7 days.
+    Optionally pass a new `email` to redirect the invite before resending —
+    e.g. when the original address already had an account, was mistyped,
+    or the invite needs to go to someone else.
+    """
     teacher_id = teacher["profile"]["id"]
     inv, _ = _safe_one(
         lambda: admin_client.table("teacher_invitations")
@@ -858,22 +925,67 @@ def resend_invitation(invitation_id: str, teacher=Depends(require_teacher)):
     if inv.get("status") not in ("pending", "expired"):
         return {"success": False, "error": f"Cannot resend invitation with status '{inv.get('status')}'."}
 
-    new_expiry = _expiry_iso()
+    new_email = (data.email or "").strip().lower()
+    target_email = inv.get("email")
+    update_fields = {"status": "pending", "expires_at": _expiry_iso(), "updated_at": _now_iso()}
+
+    if new_email and new_email != (inv.get("email") or "").strip().lower():
+        if not _EMAIL_RE.match(new_email):
+            return {"success": False, "error": "Please enter a valid email address."}
+        existing, _ = _safe_one(
+            lambda: admin_client.table("profiles")
+            .select("id")
+            .eq("email", new_email)
+            .limit(1)
+            .execute()
+        )
+        if existing:
+            return {
+                "success": False,
+                "error": "An account with this email already exists. "
+                         "Ask them to log in directly, or use a different email address.",
+            }
+        update_fields["email"] = new_email
+        target_email = new_email
+
+    new_expiry = update_fields["expires_at"]
     try:
-        admin_client.table("teacher_invitations").update(
-            {"status": "pending", "expires_at": new_expiry, "updated_at": _now_iso()}
-        ).eq("id", invitation_id).execute()
+        admin_client.table("teacher_invitations").update(update_fields).eq("id", invitation_id).execute()
     except Exception as exc:
         return {"success": False, "error": str(exc)[:150]}
+
+    email_sent = False
+    if inv.get("token") and target_email:
+        email_sent = send_student_invitation_email(
+            to=target_email,
+            student_name=inv.get("student_name", ""),
+            teacher_name=_teacher_display_name(teacher),
+            grade=inv.get("grade", ""),
+            invite_link=_invite_link(inv["token"]),
+            expiry_days=INVITATION_EXPIRY_DAYS,
+            stream=inv.get("stream") or "",
+        )
+        if not email_sent:
+            _log.warning("teacher.invitation.resend_email_not_sent", extra={"invitation_id": invitation_id})
 
     write_audit_event(
         event_type="teacher.invitation.resent",
         actor_user_id=teacher_id,
         entity_type="invitation",
         entity_id=invitation_id,
-        metadata={"new_expiry": new_expiry},
+        metadata={"new_expiry": new_expiry, "email_sent": email_sent, "email_changed": "email" in update_fields},
     )
-    return {"success": True, "invitation_id": invitation_id, "new_expiry": new_expiry}
+    return {
+        "success": True,
+        "invitation_id": invitation_id,
+        "new_expiry": new_expiry,
+        "email": target_email,
+        "email_sent": email_sent,
+        "warning": None if email_sent else (
+            "Expiry extended, but the email could not be resent. "
+            "Check RESEND_API_KEY / EMAIL_FROM_ADDRESS configuration."
+        ),
+    }
 
 
 @router.post("/invitations/{invitation_id}/cancel")
@@ -908,6 +1020,212 @@ def cancel_invitation(invitation_id: str, teacher=Depends(require_teacher)):
         metadata={},
     )
     return {"success": True, "invitation_id": invitation_id, "status": "cancelled"}
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 3b. Public invitation acceptance — NO auth (the student has no account yet).
+#     Reachable via the emailed accept-invitation link.
+# ─────────────────────────────────────────────────────────────────────────────
+
+class AcceptInvitationRequest(BaseModel):
+    username: str
+    password: str
+
+
+def _invitation_status_error(inv: dict) -> Optional[str]:
+    """Return a human-readable error if this invitation is not acceptable, else None."""
+    status = inv.get("status")
+    if status == "accepted":
+        return "This invitation has already been accepted."
+    if status == "cancelled":
+        return "This invitation has been cancelled. Ask your teacher to send a new one."
+    if status == "expired" or _is_expired(inv.get("expires_at")):
+        return "This invitation has expired. Ask your teacher to resend it."
+    return None
+
+
+@router.get("/invitations/token/{token}")
+def get_invitation_by_token(token: str):
+    """Public — look up a pending invitation by its token (used by the accept-invitation page)."""
+    inv, _ = _safe_one(
+        lambda: admin_client.table("teacher_invitations")
+        .select("id, student_name, grade, email, status, expires_at, teacher_id")
+        .eq("token", token)
+        .limit(1)
+        .execute()
+    )
+    if not inv:
+        return {"success": False, "error": "Invitation not found."}
+
+    status_error = _invitation_status_error(inv)
+    if status_error:
+        return {"success": False, "error": status_error}
+
+    teacher_profile, _ = _safe_one(
+        lambda: admin_client.table("profiles")
+        .select("username")
+        .eq("id", inv["teacher_id"])
+        .limit(1)
+        .execute()
+    )
+    return {
+        "success": True,
+        "invitation": {
+            "student_name": inv.get("student_name"),
+            "grade": inv.get("grade"),
+            "email": inv.get("email"),
+            "teacher_name": (teacher_profile or {}).get("username", "Your teacher"),
+        },
+    }
+
+
+@router.post("/invitations/token/{token}/accept")
+def accept_invitation(token: str, data: AcceptInvitationRequest):
+    """
+    Public — accept an invitation: create the student's auth account + profile,
+    auto-assign them to the inviting teacher, and mark the invitation accepted.
+    """
+    inv, _ = _safe_one(
+        lambda: admin_client.table("teacher_invitations")
+        .select("*")
+        .eq("token", token)
+        .limit(1)
+        .execute()
+    )
+    if not inv:
+        raise HTTPException(status_code=404, detail="Invitation not found.")
+
+    status_error = _invitation_status_error(inv)
+    if status_error:
+        raise HTTPException(status_code=400, detail=status_error)
+
+    username = (data.username or "").strip()
+    if not username:
+        raise HTTPException(status_code=400, detail="Username is required.")
+    password = (data.password or "").strip()
+    if len(password) < 6:
+        raise HTTPException(status_code=400, detail="Password must be at least 6 characters.")
+
+    from app.routes.auth import _reject_reserved_username, _reject_taken_username  # noqa: PLC0415
+    _reject_reserved_username(username)
+    _reject_taken_username(username, client=admin_client)
+
+    teacher_id = inv["teacher_id"]
+    grade = inv.get("grade") or "Grade 9"
+    email = inv["email"]
+
+    # Re-check the teacher's plan limit at acceptance time (it may have changed
+    # or filled up with other students since the invite was sent).
+    current = _count_active_assignments(teacher_id)
+    limit = _resolve_teacher_limit(teacher_id)
+    if current >= limit:
+        raise HTTPException(
+            status_code=403,
+            detail="Your teacher's student limit has been reached. Please contact them.",
+        )
+
+    # Re-check for an existing account with this email — it may have been
+    # created (e.g. self-signup) after the invitation was sent.
+    existing, _ = _safe_one(
+        lambda: admin_client.table("profiles")
+        .select("id")
+        .eq("email", email.strip().lower())
+        .limit(1)
+        .execute()
+    )
+    if existing:
+        raise HTTPException(
+            status_code=409,
+            detail="An account with this email already exists. Please sign in directly "
+                   "instead of accepting this invitation, or ask your teacher to resend "
+                   "the invitation to a different email address.",
+        )
+
+    # Supabase hashes the password immediately — it is never stored in plain text.
+    try:
+        auth_user = create_auth_user(email=email, password=password, email_confirm=True)
+    except HTTPException as exc:
+        if "already been registered" in str(exc.detail).lower():
+            raise HTTPException(
+                status_code=409,
+                detail="An account with this email already exists. Please sign in directly "
+                       "instead of accepting this invitation, or ask your teacher to resend "
+                       "the invitation to a different email address.",
+            )
+        raise
+
+    student_profile = {
+        "id": auth_user.id,
+        "email": email,
+        "username": username,
+        "role": "student",
+        "parent_id": None,
+        "family_id": None,
+        "board": "CBSE",
+        "grade": grade,
+        "subscription_plan": "free",
+        "account_status": "active",
+        "access_cbse": False,   # Free Tier — limited access, matches teacher-created students
+        "daily_token_limit": 0,
+        "monthly_token_limit": 0,
+        "cbse_subjects": [],
+        "ai_model_preference": "default",
+    }
+
+    # Grade 11/12: apply the stream the teacher chose at invite time, so the
+    # student gets access to exactly that stream's subjects on first login.
+    stream = (inv.get("stream") or "").strip()
+    if grade in ("Grade 11", "Grade 12") and stream:
+        stream_subjects = {
+            "PCM":        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+            "PCB":        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+            "PCMB":       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+            "Commerce":   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+            "Humanities": ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+        }
+        student_profile["stream"] = stream
+        student_profile["cbse_subjects"] = stream_subjects.get(stream, [])
+
+    try:
+        profile_resp = admin_client.table("profiles").insert(student_profile).execute()
+        created_profile = profile_resp.data[0] if profile_resp.data else student_profile
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"Unable to create student profile: {str(exc)[:150]}")
+
+    try:
+        admin_client.table("teacher_student_assignments").insert({
+            "teacher_id": teacher_id,
+            "student_id": auth_user.id,
+            "grade": grade,
+            "subject": "General",
+            "section": "",   # empty string, not None — column is NOT NULL
+        }).execute()
+    except Exception as exc:
+        _log.warning("teacher.invitation.assignment_insert_failed: %s", str(exc)[:200])
+
+    admin_client.table("teacher_invitations").update({
+        "status": "accepted",
+        "accepted_at": _now_iso(),
+        "student_id": auth_user.id,
+        "updated_at": _now_iso(),
+    }).eq("id", inv["id"]).execute()
+
+    write_audit_event(
+        event_type="teacher.invitation.accepted",
+        actor_user_id=auth_user.id,
+        entity_type="invitation",
+        entity_id=inv["id"],
+        metadata={"teacher_id": teacher_id, "grade": grade},
+    )
+
+    return {
+        "success": True,
+        "student": {
+            "id": created_profile.get("id") or auth_user.id,
+            "username": created_profile.get("username", username),
+            "grade": created_profile.get("grade", grade),
+        },
+    }
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1367,7 +1685,7 @@ def get_interventions(teacher=Depends(require_teacher)):
                 severity = "low"
 
         # Actions
-        actions = ["view_student", "reset_password"]
+        actions = ["view_student"]
         if not is_free_tier_user(teacher_id):
             actions.append("email_credentials")
         actions.append("add_note")

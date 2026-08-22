@@ -10,7 +10,7 @@
 import { useCallback, useEffect, useState } from "react";
 import {
   User, TrendingUp, ClipboardList, NotebookPen, Clock, Users, Settings,
-  X, BarChart3, Zap, KeyRound, Mail, CheckCircle2, AlertTriangle, Lock,
+  X, BarChart3, Zap, Mail, CheckCircle2, AlertTriangle, Lock,
   MessageCircle, Save, Trash2,
 } from "lucide-react";
 import {
@@ -22,7 +22,6 @@ import {
   deleteStudentNote,
   getParentContact,
   messageParent,
-  resetTeacherStudentPassword,
   emailTeacherStudentCredentials,
   updateTeacherStudent,
   archiveTeacherStudent,
@@ -125,17 +124,10 @@ export default function StudentWorkspace({ student, onClose, isPaid }) {
 // Section: Overview
 // ─────────────────────────────────────────────────────────────────────────────
 function WSOverview({ student, detail, isPaid }) {
-  const [pwResult, setPwResult] = useState(null);
   const [msg, setMsg] = useState(null);
 
   const learning = detail?.learning || {};
   const classrooms = detail?.classrooms || [];
-
-  async function doReset() {
-    if (!window.confirm("Reset temp password? Shown once only.")) return;
-    const d = await resetTeacherStudentPassword(student.id).catch(e => ({ success: false, error: e.message }));
-    setPwResult(d);
-  }
 
   async function doEmail() {
     const d = await emailTeacherStudentCredentials(student.id).catch(e => ({ success: false, error: e.message }));
@@ -184,19 +176,12 @@ function WSOverview({ student, detail, isPaid }) {
       <div style={card}>
         <div style={{ fontWeight: 700, marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}><Zap size={15}/>Quick Actions</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          <button onClick={doReset} className="secondary-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><KeyRound size={14}/>Reset Password</button>
           {isPaid
             ? <button onClick={doEmail} className="secondary-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Mail size={14}/>Email Login Details</button>
             : <button disabled title="Upgrade to paid plan" style={{ opacity: .5, cursor: "not-allowed", display: "inline-flex", alignItems: "center", gap: 6 }} className="secondary-btn"><Mail size={14}/>Email Login Details (Paid only)</button>
           }
         </div>
         {msg && <div style={{ marginTop: 6, fontSize: ".82rem", color: msg.ok ? "#166534" : "#dc2626", display: "flex", alignItems: "center", gap: 5 }}>{msg.ok ? <CheckCircle2 size={14}/> : <AlertTriangle size={14}/>}{msg.text}</div>}
-        {pwResult?.success && (
-          <div style={{ marginTop: 8, padding: "8px 12px", background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 7, fontSize: ".82rem", display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
-            <KeyRound size={14}/>Temp password: <code style={{ color: "#f59e0b", fontWeight: 700 }}>{pwResult.temp_password}</code>
-            <small style={{ display: "block", color: "#64748b", width: "100%" }}>{pwResult.warning}</small>
-          </div>
-        )}
       </div>
     </div>
   );
@@ -474,19 +459,12 @@ const GRADE_OPTIONS = Array.from({ length: 12 }, (_, i) => `Grade ${i + 1}`);
 
 function WSSettings({ student, detail: _detail, isPaid, onClose }) {
   const [form, setForm] = useState({ username: student.username || "", grade: student.grade || "Grade 9", email: student.email || "" });
-  const [pwResult, setPwResult] = useState(null);
   const [msg, setMsg] = useState(null);
 
   async function doSave(e) {
     e.preventDefault();
     const d = await updateTeacherStudent(student.id, form).catch(e => ({ success: false, error: e.message }));
     setMsg(d.success ? { ok: true, text: "Saved." } : { ok: false, text: d.error });
-  }
-
-  async function doReset() {
-    if (!window.confirm("Reset temp password? Shown once only.")) return;
-    const d = await resetTeacherStudentPassword(student.id).catch(e => ({ success: false, error: e.message }));
-    setPwResult(d);
   }
 
   async function doArchive() {
@@ -518,20 +496,12 @@ function WSSettings({ student, detail: _detail, isPaid, onClose }) {
       </form>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <button onClick={doReset} className="secondary-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><KeyRound size={14}/>Reset Temporary Password</button>
         {isPaid
           ? <button onClick={async () => { const d = await emailTeacherStudentCredentials(student.id).catch(() => ({ success: false })); setMsg(d.invite_sent ? { ok: true, text: "Emailed." } : { ok: false, text: "Failed." }); }} className="secondary-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Mail size={14}/>Email Login Details</button>
           : <button disabled title="Upgrade to paid plan" style={{ opacity: .5, cursor: "not-allowed", display: "inline-flex", alignItems: "center", gap: 6 }} className="secondary-btn"><Mail size={14}/>Email Login Details (Paid only)</button>
         }
         <button onClick={doArchive} className="danger-btn" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Trash2 size={14}/>Archive / Remove from Roster</button>
       </div>
-
-      {pwResult?.success && (
-        <div style={{ marginTop: 10, padding: "8px 12px", background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 7, fontSize: ".82rem", display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
-          <KeyRound size={14}/>Temp password: <code style={{ color: "#f59e0b", fontWeight: 700 }}>{pwResult.temp_password}</code>
-          <small style={{ display: "block", color: "#64748b", width: "100%" }}>{pwResult.warning}</small>
-        </div>
-      )}
     </div>
   );
 }

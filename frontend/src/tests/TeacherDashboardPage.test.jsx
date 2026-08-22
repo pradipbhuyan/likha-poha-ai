@@ -33,7 +33,6 @@ vi.mock("../api/teacherDashboard", () => ({
   getTeacherStudentDetail: vi.fn(async () => ({ success: true, student: { id: "student-1", username: "Akshita", grade: "Grade 9", account_status: "active" }, classrooms: [], learning: { last_active: null, lessons_generated: 0, doubts_asked: 0, mock_tests_completed: 0, mock_test_avg: null } })),
   updateTeacherStudent:          vi.fn(async () => ({ success: true })),
   archiveTeacherStudent:         vi.fn(async () => ({ success: true, archived_at: new Date().toISOString() })),
-  resetTeacherStudentPassword:   vi.fn(async () => ({ success: true, temp_password: "Tmp123!@#", warning: "Show once only." })),
   emailTeacherStudentCredentials: vi.fn(async () => ({ success: true, invite_sent: true })),
   listTeacherInvitations: vi.fn(async () => ({ success: true, invitations: [] })),
   createTeacherInvitation:  vi.fn(async () => ({ success: true, invitation: {} })),

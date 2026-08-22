@@ -65,7 +65,6 @@ vi.mock("../api/teacherDashboard", () => ({
     mock_test: { available: true, average_score: 72, total_tests: 10, students_tested: 4 },
     activity: { available: true, active_last_7_days: 3, total_ai_requests: 15 },
   })),
-  resetTeacherStudentPassword:    vi.fn(async () => ({ success: true, temp_password: "Tmp123!", warning: "Show once" })),
   emailTeacherStudentCredentials: vi.fn(async () => ({ success: true, invite_sent: true })),
   updateTeacherStudent:  vi.fn(async () => ({ success: true })),
   archiveTeacherStudent: vi.fn(async () => ({ success: true })),

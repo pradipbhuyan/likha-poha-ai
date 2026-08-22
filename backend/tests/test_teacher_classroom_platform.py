@@ -17,7 +17,6 @@ Covers:
 
   Student actions:
   - archive sets archived_at
-  - reset-password uses Supabase auth (stub) — no password in audit log
   - email-credentials blocked for free teacher
 
   Invitations:
@@ -53,7 +52,6 @@ from app.routes.teacher_classroom import (
     teacher_dashboard_summary,
     list_students,
     archive_student,
-    reset_student_password,
     email_student_credentials,
     create_invitation,
     resend_invitation,
@@ -120,6 +118,7 @@ class TestPlanLimits:
         """Free teacher with 5/10 students CAN create invitation."""
         monkeypatch.setattr(tc, "is_free_tier_user", lambda uid: True)
         monkeypatch.setattr(tc, "_count_active_assignments", lambda tid: 5)
+        monkeypatch.setattr(tc, "_safe_one", lambda fn: (None, None))  # no existing account for this email
         mock_insert = MagicMock()
         mock_insert.return_value.data = [{"id": INV_ID, "status": "pending"}]
         monkeypatch.setattr(tc, "admin_client",
@@ -131,6 +130,27 @@ class TestPlanLimits:
         req = CreateInvitationRequest(student_name="Arjun", grade="Grade 9", email="arjun@example.com")
         result = create_invitation(req, teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
+
+    def test_create_invitation_rejects_grade_11_without_stream(self, monkeypatch):
+        """Grade 11/12 invitations require a stream."""
+        monkeypatch.setattr(tc, "is_free_tier_user", lambda uid: True)
+        monkeypatch.setattr(tc, "_count_active_assignments", lambda tid: 5)
+        from app.routes.teacher_classroom import CreateInvitationRequest
+        req = CreateInvitationRequest(student_name="Arjun", grade="Grade 11", email="arjun@example.com")
+        result = create_invitation(req, teacher={"profile": TEACHER_FREE})
+        assert result["success"] is False
+        assert "Stream" in result["error"]
+
+    def test_create_invitation_rejects_existing_email(self, monkeypatch):
+        """Cannot invite an email that already has an account — it can never be accepted."""
+        monkeypatch.setattr(tc, "is_free_tier_user", lambda uid: True)
+        monkeypatch.setattr(tc, "_count_active_assignments", lambda tid: 5)
+        monkeypatch.setattr(tc, "_safe_one", lambda fn: ({"id": "existing-profile"}, None))
+        from app.routes.teacher_classroom import CreateInvitationRequest
+        req = CreateInvitationRequest(student_name="Arjun", grade="Grade 9", email="taken@example.com")
+        result = create_invitation(req, teacher={"profile": TEACHER_FREE})
+        assert result["success"] is False
+        assert "already exists" in result["error"]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -225,21 +245,9 @@ class TestStudentActions:
         assert result["success"] is True
         assert "archived_at" in result
 
-    def test_reset_password_never_returns_password_in_audit(self, monkeypatch):
-        """Audit log for password reset must NOT contain the password."""
-        monkeypatch.setattr(tc, "_ensure_owns_student", lambda t, s: None)
-        mock_auth = MagicMock()
-        mock_auth.admin.update_user_by_id.return_value = None
-        monkeypatch.setattr(tc, "admin_client", MagicMock(auth=mock_auth))
-        audit_calls = []
-        monkeypatch.setattr(tc, "write_audit_event", lambda **kw: audit_calls.append(kw))
-        result = reset_student_password(STUDENT_ID, teacher={"profile": TEACHER_FREE})
-        assert result["success"] is True
-        assert result.get("temp_password")  # password returned once to caller
-        # Audit log must NOT contain the password
-        for call in audit_calls:
-            meta_str = str(call.get("metadata", {}))
-            assert result["temp_password"] not in meta_str
+    def test_teacher_has_no_reset_password_capability(self):
+        """Teachers must have no way to set/view a student's password or log into their account."""
+        assert not hasattr(tc, "reset_student_password")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -280,6 +288,56 @@ class TestInvitations:
         result = resend_invitation(INV_ID, teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
         assert "new_expiry" in result
+
+    def test_resend_with_new_email_updates_and_sends(self, monkeypatch):
+        """Teacher can redirect a pending invitation to a different email on resend."""
+        calls = {"n": 0}
+        def fake_safe_one(fn):
+            calls["n"] += 1
+            if calls["n"] == 1:
+                return ({
+                    "id": INV_ID, "status": "pending", "teacher_id": TEACHER_FREE["id"],
+                    "email": "old@example.com", "token": "tok123",
+                    "student_name": "Vidya", "grade": "Grade 9",
+                }, None)
+            return (None, None)  # no existing profile at the new email
+        monkeypatch.setattr(tc, "_safe_one", fake_safe_one)
+        mock_tbl = MagicMock()
+        mock_tbl.return_value.update.return_value.eq.return_value.execute.return_value = MagicMock()
+        monkeypatch.setattr(tc, "admin_client", MagicMock(table=mock_tbl))
+        monkeypatch.setattr(tc, "write_audit_event", MagicMock())
+        monkeypatch.setattr(tc, "send_student_invitation_email", lambda **kw: True)
+        monkeypatch.setattr(tc, "_teacher_display_name", lambda t: "Ms. Teacher")
+
+        from app.routes.teacher_classroom import ResendInvitationRequest
+        result = resend_invitation(
+            INV_ID, data=ResendInvitationRequest(email="new@example.com"),
+            teacher={"profile": TEACHER_FREE},
+        )
+        assert result["success"] is True
+        assert result["email"] == "new@example.com"
+        assert result["email_sent"] is True
+
+    def test_resend_with_new_email_rejects_existing_account(self, monkeypatch):
+        """Cannot redirect a resend to an email that already has an account."""
+        calls = {"n": 0}
+        def fake_safe_one(fn):
+            calls["n"] += 1
+            if calls["n"] == 1:
+                return ({
+                    "id": INV_ID, "status": "pending", "teacher_id": TEACHER_FREE["id"],
+                    "email": "old@example.com",
+                }, None)
+            return ({"id": "existing-profile"}, None)  # taken email
+        monkeypatch.setattr(tc, "_safe_one", fake_safe_one)
+
+        from app.routes.teacher_classroom import ResendInvitationRequest
+        result = resend_invitation(
+            INV_ID, data=ResendInvitationRequest(email="taken@example.com"),
+            teacher={"profile": TEACHER_FREE},
+        )
+        assert result["success"] is False
+        assert "already exists" in result["error"]
 
 
 # ─────────────────────────────────────────────────────────────────────────────

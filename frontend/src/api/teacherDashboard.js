@@ -80,14 +80,6 @@ export async function archiveTeacherStudent(studentId) {
   return authFetch(`/api/teacher/students/${studentId}/archive`, { method: "POST" });
 }
 
-export async function resetTeacherStudentPassword(studentId) {
-  /**
-   * Generate and return a new temp password (shown once only).
-   * Never stored or logged.
-   */
-  return authFetch(`/api/teacher/students/${studentId}/reset-password`, { method: "POST" });
-}
-
 export async function emailTeacherStudentCredentials(studentId) {
   /** Email login credentials — paid teachers only (backend enforces). */
   return authFetch(`/api/teacher/students/${studentId}/email-credentials`, { method: "POST" });
@@ -109,14 +101,48 @@ export async function createTeacherInvitation(payload) {
   });
 }
 
-export async function resendTeacherInvitation(invitationId) {
-  /** Resend and extend expiry of a pending/expired invitation. */
-  return authFetch(`/api/teacher/invitations/${invitationId}/resend`, { method: "POST" });
+export async function resendTeacherInvitation(invitationId, newEmail) {
+  /** Resend and extend expiry of a pending/expired invitation. Pass newEmail to redirect it first. */
+  return authFetch(`/api/teacher/invitations/${invitationId}/resend`, {
+    method: "POST",
+    body: JSON.stringify(newEmail ? { email: newEmail } : {}),
+  });
 }
 
 export async function cancelTeacherInvitation(invitationId) {
   /** Cancel a pending invitation. */
   return authFetch(`/api/teacher/invitations/${invitationId}/cancel`, { method: "POST" });
+}
+
+// ── Public invitation acceptance (no signed-in session yet) ────────────────────
+
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
+export async function getInvitationByToken(token) {
+  /** Public — look up invitation details (student name, grade, teacher) by token. */
+  const response = await fetch(
+    `${API_BASE_URL}/api/teacher/invitations/token/${encodeURIComponent(token)}`,
+    { method: "GET" }
+  );
+  return response.json();
+}
+
+export async function acceptInvitation(token, { username, password }) {
+  /** Public — accept an invitation: creates the student's account and signs them up. */
+  const response = await fetch(
+    `${API_BASE_URL}/api/teacher/invitations/token/${encodeURIComponent(token)}/accept`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    }
+  );
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(data.detail || data.error || "Unable to accept invitation.");
+  }
+  return data;
 }
 
 // ── Classrooms ────────────────────────────────────────────────────────────────

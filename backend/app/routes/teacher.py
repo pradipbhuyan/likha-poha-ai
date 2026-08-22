@@ -501,7 +501,7 @@ async def get_teacher_student_analytics(ctx=Depends(require_teacher_or_admin)):
         # Get assignments for this teacher
         assignments_resp = (
             admin_client
-            .table("teacher_assignments")
+            .table("teacher_student_assignments")
             .select("student_id, grade, subject, section")
             .eq("teacher_id", user.id)
             .execute()
