@@ -526,8 +526,8 @@ async def get_teacher_student_analytics(ctx=Depends(require_teacher_or_admin)):
         history_resp = (
             admin_client
             .table("test_history")
-            .select("user_id, subject, chapter, percentage, created_at, difficulty")
-            .in_("user_id", student_ids)
+            .select("profile_id, subject, chapter, percentage, created_at, difficulty")
+            .in_("profile_id", student_ids)
             .order("created_at", desc=True)
             .limit(500)
             .execute()
@@ -537,7 +537,7 @@ async def get_teacher_student_analytics(ctx=Depends(require_teacher_or_admin)):
         # Group history by student
         history_by_student: dict = {}
         for h in all_history:
-            uid = h.get("user_id")
+            uid = h.get("profile_id")
             if uid:
                 history_by_student.setdefault(uid, []).append(h)
 
