@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: Gender, Religion and Caste",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-PoliticalScience-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-3-gender-religion-and-caste.webp",
+    "alt": "Revision poster for Chapter 3: Gender, Religion and Caste — covers the public/private divide, invisible household labour, the distinction between biological sex and gender roles, and why gender division is a social construction.",
+    "caption": "Full-chapter revision poster — gender division, invisible labour, and sex vs. gender roles.",
+    "width": 1024,
+    "height": 1536
+  }
+}

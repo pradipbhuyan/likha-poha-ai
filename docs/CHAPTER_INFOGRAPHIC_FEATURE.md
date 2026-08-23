@@ -20,10 +20,11 @@
 > Climate" fixed on regeneration — the fabricated west-to-east rainfall
 > claim is gone, replaced with correct, well-grounded content on
 > atmospheric layers, the heat budget, pressure belts, and the monsoon
-> cycle). **Grade 10 Social Science: History Ch 1-5 and Text Book Ch 1-3,5
-> (9 of 22) applied and clean** — Text Book Ch 4 "Globalisation and the
-> Indian Economy" pending regeneration for a misspelled heading (see Open
-> Items). Grade 10 uses yet another variant
+> cycle). **Grade 10 Social Science: History Ch 1-5, Text Book Ch 1-3,5,
+> and Political Science Ch 1-5 (14 of 22) applied and clean** — Text Book
+> Ch 4 "Globalisation and the Indian Economy" pending regeneration for a
+> misspelled heading (see Open Items); Geography (7 chapters) still
+> pending review. Grade 10 uses yet another variant
 > of the bare-vs-display-prefixed pattern already seen for Grade 7
 > ("Part N -") and Grade 6-8 ("Text Book -") — here the live syllabus
 > groups chapters under **discipline names** ("Text Book -", "History -",
@@ -601,6 +602,28 @@ fixing posters one at a time.
       not the mobile carrier) — all verified correct, no bleeds. **This
       was the only remaining chapter in the entire original 292-chapter
       Maths/Science rollout — that scope is now 100% complete.**
+- [ ] **Grade 10 Social Science: Political Science Chapters 1-5 of 22
+      applied 2026-08-23.** All 5 clean on first generation — every core
+      concept re-verified against standard NCERT Class 10 Political
+      Science content: Ch1's prudential-vs-moral distinction and four
+      forms of power-sharing; Ch2's Union/State/Concurrent List examples
+      (including the specific "information technology" residuary-powers
+      example and the correctly up-to-date merged UT name "Dadra & Nagar
+      Haveli and Daman & Diu", reflecting the 2020 merger rather than the
+      old two-separate-UTs naming); Ch3's public/private sphere divide and
+      the sex-vs-gender-roles distinction; Ch4's one-party-system framing
+      (correctly stated as NOT considered a democratic option by the
+      chapter, not merely "less democratic") and two-party (USA/UK) vs.
+      multiparty (India) examples; Ch5's "democracy is a framework, not a
+      results-guarantee machine" framing, which is this chapter's central
+      argument, correctly represented in the overview strip. No bleeds, no
+      fabrications, no errors found across all 5. **All 5 applied**,
+      confirmed via `get_or_convert_chapter_doc()` that both the bare and
+      "Political Science - "-prefixed rows carry the fence.
+      **Grade 10 Social Science: 14 of 22 chapters applied and clean**
+      (History 5/5, Text Book 4/5, Political Science 5/5). Text Book Ch 4
+      pending regeneration (prompt ready, see above entry). Geography (7
+      chapters) is now the only book not yet reviewed.
 - [ ] **Grade 10 Social Science: Text Book Chapters 1-5 of 22 reviewed
       2026-08-23 (Economics book).** 4 of 5 clean on first generation.
         - **Chapter 1 "Development"**: clean — the classic NCERT

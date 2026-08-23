@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 4: Political Parties",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-PoliticalScience-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-4-political-parties.webp",
+    "alt": "Revision poster for Chapter 4: Political Parties — covers why parties are necessary, one-party, two-party and multiparty systems, and why different countries have different party systems.",
+    "caption": "Full-chapter revision poster — one-party, two-party and multiparty systems and why they differ.",
+    "width": 1024,
+    "height": 1536
+  }
+}

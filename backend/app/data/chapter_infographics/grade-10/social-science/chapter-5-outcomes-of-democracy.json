@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: Outcomes of Democracy",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-PoliticalScience-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-5-outcomes-of-democracy.webp",
+    "alt": "Revision poster for Chapter 5: Outcomes of Democracy — covers reasonable expectations from democracy, democracy as an idea vs. practice, its valued outcomes, and why it is a continuous process.",
+    "caption": "Full-chapter revision poster — democracy as a framework, its outcomes, and its continuous improvement.",
+    "width": 1024,
+    "height": 1536
+  }
+}

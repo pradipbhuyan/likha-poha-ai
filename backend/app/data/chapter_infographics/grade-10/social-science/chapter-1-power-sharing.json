@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: Power-sharing",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-PoliticalScience-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-1-power-sharing.webp",
+    "alt": "Revision poster for Chapter 1: Power-sharing — covers the prudential and moral reasons for power-sharing, how it makes government more legitimate, and the four forms power-sharing can take.",
+    "caption": "Full-chapter revision poster — prudential vs. moral reasons for power-sharing and its forms.",
+    "width": 1024,
+    "height": 1536
+  }
+}

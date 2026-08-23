@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: Federalism",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-PoliticalScience-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-2-federalism.webp",
+    "alt": "Revision poster for Chapter 2: Federalism — covers the Union, State and Concurrent Lists, residuary powers, special provisions, Union Territories, and the constitutional safeguards that protect India's federal character.",
+    "caption": "Full-chapter revision poster — Union/State/Concurrent Lists, residuary powers, and federal safeguards.",
+    "width": 1024,
+    "height": 1536
+  }
+}
