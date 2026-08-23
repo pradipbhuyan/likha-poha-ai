@@ -727,17 +727,23 @@ def build_chapter_content_status(syllabus_tree, rag_counts):
 
 
 def chapter_sort_tuple_for_ordering(chapter):
-    """Return a (part_number, chapter_number) tuple for chronological ordering.
+    """Return a (source_rank, part_number, chapter_number) tuple for
+    chronological ordering.
 
     Display labels can carry a "Part N - " and/or "<Source> - " prefix (see
     create_part_display_label/create_source_display_label) stacked in front of
-    the actual chapter text. Multi-part textbooks restart chapter numbering
-    per part (e.g. "Part 1 - Chapter 1", "Part 2 - Chapter 1"), so sorting by
-    chapter number alone would interleave chapters from different parts --
-    the part number must be included as the primary sort key, with chapter
-    number only breaking ties within the same part. Returns None if the
-    chapter has no parseable chapter number (so callers can detect subjects
-    that shouldn't be reordered at all, e.g. custom-titled readers).
+    the actual chapter text. Multi-book subjects (e.g. Grade 10 Social
+    Science's Text Book/History/Geography/Political Science, each restarting
+    at "Chapter 1") must be grouped by source FIRST, then ordered by chapter
+    number within that source -- sorting by chapter number alone interleaves
+    every book's Chapter 1s together, then every book's Chapter 2s, and so on
+    (confirmed live for Grade 10 Social Science's dropdown). Multi-part
+    textbooks similarly restart chapter numbering per part (e.g. "Part 1 -
+    Chapter 1", "Part 2 - Chapter 1"), so the part number is the next sort
+    key, with chapter number only breaking ties within the same source and
+    part. Returns None if the chapter has no parseable chapter number (so
+    callers can detect subjects that shouldn't be reordered at all, e.g.
+    custom-titled readers).
     """
     text = str(chapter or "")
     without_source = strip_book_source_prefix(text)
@@ -747,8 +753,9 @@ def chapter_sort_tuple_for_ordering(chapter):
         return None
 
     part_number = extract_part_number(text) if is_part_display_label(text) else 0
+    source_rank = book_source_rank(extract_book_source(text))
 
-    return (part_number, chapter_number)
+    return (source_rank, part_number, chapter_number)
 
 
 def merge_reviewed_and_live_chapters(reviewed_chapters, live_chapters, mode="CBSE"):

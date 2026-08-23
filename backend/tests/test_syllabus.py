@@ -452,6 +452,43 @@ def test_reviewed_chapter_merge_keeps_matching_labels_and_appends_new_live_rag()
     ]
 
 
+def test_reviewed_chapter_merge_groups_multi_book_chapters_by_source():
+    """A stale admin review that interleaved four books' chapter numbers
+    (Text Book Ch1, History Ch1, Geography Ch1, Political Science Ch1,
+    Text Book Ch2, ...) must self-heal into source-grouped, chapter-ordered
+    output — confirmed live for Grade 10 Social Science's dropdown, where
+    the chronological self-heal in merge_reviewed_and_live_chapters()
+    previously sorted by chapter number alone and interleaved every book's
+    same-numbered chapter together."""
+    result = syllabus_route.merge_reviewed_and_live_chapters(
+        [
+            "Text Book - Chapter 1: Development",
+            "History - Chapter 1: The Rise of Nationalism in Europe",
+            "Geography - Chapter 1: Resources and Development",
+            "Political Science - Chapter 1: Power-sharing",
+            "Text Book - Chapter 2: Sectors of the Indian Economy",
+            "History - Chapter 2: Nationalism in India",
+        ],
+        [
+            "Text Book - Chapter 1: Development",
+            "History - Chapter 1: The Rise of Nationalism in Europe",
+            "Geography - Chapter 1: Resources and Development",
+            "Political Science - Chapter 1: Power-sharing",
+            "Text Book - Chapter 2: Sectors of the Indian Economy",
+            "History - Chapter 2: Nationalism in India",
+        ],
+    )
+
+    assert result == [
+        "Text Book - Chapter 1: Development",
+        "Text Book - Chapter 2: Sectors of the Indian Economy",
+        "History - Chapter 1: The Rise of Nationalism in Europe",
+        "History - Chapter 2: Nationalism in India",
+        "Geography - Chapter 1: Resources and Development",
+        "Political Science - Chapter 1: Power-sharing",
+    ]
+
+
 def test_subject_override_controls_visible_subjects():
     """Admin-reviewed subject lists should hide removed subjects and add new ones."""
     merged = {
