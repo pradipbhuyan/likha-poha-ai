@@ -15,10 +15,13 @@
 > clean** (295 confirmed by the 2026-08-21 platform-wide audit — see that
 > entry in Open Items for full methodology — plus this one chapter).
 >
-> **Scope extension continued 2026-08-23: Grade 9 Social Science 8 of 9
-> chapters applied and clean** (Ch 3 "Atmosphere and Climate" pending
-> regeneration — see Open Items). **Grade 10 Social Science: 22 prompts
-> generated, not yet reviewed/applied.** Grade 10 uses yet another variant
+> **Scope extension continued 2026-08-23: Grade 9 Social Science is now
+> COMPLETE — 9 of 9 chapters applied and clean** (Ch 3 "Atmosphere and
+> Climate" fixed on regeneration — the fabricated west-to-east rainfall
+> claim is gone, replaced with correct, well-grounded content on
+> atmospheric layers, the heat budget, pressure belts, and the monsoon
+> cycle). **Grade 10 Social Science: 22 prompts generated, not yet
+> reviewed/applied.** Grade 10 uses yet another variant
 > of the bare-vs-display-prefixed pattern already seen for Grade 7
 > ("Part N -") and Grade 6-8 ("Text Book -") — here the live syllabus
 > groups chapters under **discipline names** ("Text Book -", "History -",
@@ -624,9 +627,21 @@ fixing posters one at a time.
           correct direction, and instructing the model to omit any
           west-east rainfall gradient claim entirely since CHAPTER_CONTENT
           does not ground one.
-      **Grade 9 Social Science: 8 of 9 chapters applied and clean.**
-      Chapter 3 pending regeneration (prompt ready, see above) — the only
-      remaining chapter for this grade/subject.
+      **Chapter 3 "Atmosphere and Climate" regeneration reviewed
+      2026-08-23 (later the same day): fully fixed, no new defects.** The
+      fabricated west-to-east rainfall claim is gone entirely — the
+      redesigned poster instead covers the atmosphere's five layers
+      (troposphere/stratosphere/mesosphere/thermosphere/exosphere,
+      correct order), weather-vs-climate definitions, Earth's heat-budget
+      balance, the three-cell global pressure-belt system (polar high/
+      subpolar low/subtropical high/equatorial low, standard latitudes),
+      and the advancing/retreating monsoon cycle with correct wind
+      directions (sea-to-land in summer, land-to-sea in winter) and the
+      correct fact that Tamil Nadu receives most of its rain from the
+      retreating/north-east monsoon in winter, not the main summer
+      monsoon. All re-verified correct, no bleeds. **Applied.**
+      **Grade 9 Social Science is now COMPLETE — all 9 of 9 chapters
+      applied and clean** (Ch 1-9).
 - [ ] **Grade 8 Social Science: all 7 of 7 chapters applied 2026-08-21
       (this session).** Processed the 7 images the user supplied from
       Downloads (`Grade8-Social-Chapter{1-7}.png`). Confirmed against both

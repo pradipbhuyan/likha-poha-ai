@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: Atmosphere and Climate",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 23, 2026, 02_01_13 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/social-science/chapter-3-atmosphere-and-climate.webp",
+    "alt": "Revision poster for Chapter 3: Atmosphere and Climate — covers the atmosphere's five layers, weather vs. climate, Earth's heat budget, global pressure belts and winds, and the advancing and retreating monsoon.",
+    "caption": "Full-chapter revision poster — atmosphere, heat budget, pressure belts, and the monsoon cycle.",
+    "width": 1024,
+    "height": 1536
+  }
+}
