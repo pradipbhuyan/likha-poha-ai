@@ -15,6 +15,22 @@
 > clean** (295 confirmed by the 2026-08-21 platform-wide audit — see that
 > entry in Open Items for full methodology — plus this one chapter).
 >
+> **Scope extension continued 2026-08-23: prompts generated for Grade 9
+> Social Science (9 chapters) and Grade 10 Social Science (22 chapters),
+> not yet reviewed/applied.** Grade 9 had the familiar bogus
+> "Uploaded Book Content" placeholder key (dropped). Grade 10 uses yet
+> another variant of the bare-vs-display-prefixed pattern already seen for
+> Grade 7 ("Part N -") and Grade 6-8 ("Text Book -") — here the live
+> syllabus groups chapters under **discipline names** ("Text Book -",
+> "History -", "Geography -", "Political Science -", one for each of the
+> four books that make up NCERT Class 10 Social Science), and
+> `lesson_cache` stores each of the 22 real chapters TWICE: once bare
+> (`"Chapter 1: Development"`) and once discipline-prefixed
+> (`"Text Book - Chapter 1: Development"`). Used the bare key for the
+> prompts, consistent with the Grade 7 precedent — expect to need the
+> Trap 9 fix's benefit here too once these are applied (it's now automatic,
+> no manual step needed).
+>
 > **Two things fixed during the audit, not just found:** (1) Grade 7
 > Science Chapter 7 "Heat Transfer in Nature" had a 302-character `alt`
 > (2 over the Trap 6 cap) silently rendering as nothing for students —
