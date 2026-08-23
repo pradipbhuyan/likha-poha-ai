@@ -1,54 +1,27 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-21):** live on 264 chapters — all 13 Grade 12
-> Mathematics chapters, all 13 Grade 12 Biology chapters, all 10 Grade 12
-> Chemistry chapters (**Grade 12 Chemistry is now COMPLETE** — Ch 6 finally
-> clean on its fifth regeneration round, Ch 10 "Biomolecules" clean on
-> first generation), 13 of 14 Grade 12 Physics chapters (only Ch 14
-> "Semiconductor Electronics" remains, not yet generated), all 10 Grade 5
-> EVS chapters, all 15 Grade 5 Maths chapters (12 replaced; 13-15 rejected
-> on review, still on their original poster — see open items), all 10
-> Grade 6 Maths chapters, all 12 Grade 6 Science chapters, all 15 Grade 7
-> Maths chapters, all 14 Grade 8 Maths chapters, all 13 Grade 8 Science
-> chapters, all 8 Grade 9 Maths chapters, all 13 Grade 9 Science chapters,
-> all 28 Grade 10 chapters (14 Maths + 13 Science), and all 56 Grade 11
-> chapters (14 Maths + 14 Physics + 9 Chemistry + 19 Biology). Grade 5,
-> Grade 6, Grade 7 Maths, Grade 8 (Maths + Science), Grade 9 (Maths +
-> Science), Grade 10 (Maths + Science), **Grade 11 (all four subjects),
-> Grade 12 Mathematics, Grade 12 Chemistry, and Grade 12 Biology are all
-> complete and clean.** 28 of 292 in-scope chapters remain — almost
-> entirely just Grade 12 Physics Ch 14 (not yet generated) plus the
-> still-open Grade 5 Maths Ch 13-15 rejections; **Grade 12 Physics Ch 14
-> is the only chapter left before the ENTIRE Grade 12 rollout (Maths,
-> Physics, Chemistry, Biology) is complete.**
+> **Status (2026-08-21, confirmed by a platform-wide audit the same day
+> — see the Open Items entry "Platform-wide audit, 2026-08-21" for the
+> full methodology):** live on 295 chapters, verified directly against
+> `get_or_convert_chapter_doc()` for every single one (not just sidecar
+> file presence). Original 292-chapter Maths/Science first cut: **291 of
+> 292 live and clean** — the only gap is Grade 12 Physics Ch 14
+> "Semiconductor Electronics" (not yet generated); every other grade/
+> subject in that scope, including Grade 5 Maths Chapters 13-15 (see the
+> struck-through open item — the doc's earlier "still rejected" claim was
+> stale; the audit confirmed all three are live with correct content),
+> is complete. Scope-extension Social Science: **Grade 6 (14/14), Grade 7
+> (20/20 — Part 1's 12 plus Part 2's 8, confirmed against the live
+> syllabus), and Grade 8 (7/7) are all complete.**
 >
-> **Scope expansion 2026-08-21: Grade 6, 7 and 8 Social Science entered the
-> rollout**, outside the original "Science and Maths only, first cut" scope
-> in §2 below. **Grade 6 Social Science is now COMPLETE — 14 of 14 chapters
-> applied and clean** (Ch 13 "The Value of Work" fixed on its regeneration
-> round, the bled-in Grassroots Democracy terms gone). **Grade 7 Social
-> Science Part 1 is now COMPLETE — all 12 of 12 chapters applied and
-> clean** (Ch 11 "From Barter to Money" and Ch 12 "Understanding Markets"
-> finally fixed on their regeneration round 2026-08-21 — Ch 11's "searc"
-> typo corrected to "search", Ch 12's Infrastructure closing-strip bleed
-> gone). **Grade 7 Social Science overall: 20 of 20 chapters generated so
-> far are applied and clean** (Part 1: all 12; Part 2: Ch 1, 2, 3, 4, 5, 6,
-> 7, 8 — 8 of however many Part 2 has in total; check the live syllabus for
-> Part 2's full count before assuming it is complete, since Part 2 Ch 9+
-> have not been confirmed to exist or been generated as images).
-> **Also discovered and fixed 2026-08-21: a new failure mode (Trap 9 in §5)
-> where `lesson_chapter_doc` caches the "Part N - " display-prefixed
-> chapter string as a SEPARATE row from the bare `lesson_cache` string the
-> apply script refreshes — Part 1 Chapter 1 and Chapter 2 had a correctly
-> up-to-date bare-key doc but a stale, fence-less prefixed-key doc, which
-> is what the live syllabus dropdown actually requests. Any future apply
-> on this or any other split-part grade must force-refresh BOTH the bare
-> key and the exact prefixed string `/api/syllabus` returns.**
-> **Grade 8 Social Science is now COMPLETE — all 7 of 7 chapters applied
-> and clean** (Chapters 1-7, all clean on first generation, no bleeds or
-> defects). This is tracked separately from the 292-chapter Science/Maths
-> count above, since it is a deliberate scope extension, not part of the
-> original first cut.
+> **Two things fixed during the audit, not just found:** (1) Grade 7
+> Science Chapter 7 "Heat Transfer in Nature" had a 302-character `alt`
+> (2 over the Trap 6 cap) silently rendering as nothing for students —
+> shortened and re-applied. (2) Trap 9 (the "Part N -" split-part-grade
+> stale-cache bug) had only ever been patched by hand for 2 chapters —
+> added a permanent fix, `invalidate_stored_chapter_doc_variants()`, so
+> every future apply self-heals every cached variant automatically. See
+> the Trap 9 entry in §5 and the audit entry in Open Items for details.
 > **Read this first** if you are picking up the infographic rollout in a new
 > session. It explains what exists, where it lives, how to add a chapter, and
 > the traps that already cost a debugging round.
@@ -377,24 +350,37 @@ warm-up or a coincidental prior `force_refresh` on the prefixed key
 specifically) — so this was not a systemic failure across the grade, just
 these two chapters slipping through.
 
-**Fix applied:** called
+**Immediate fix applied 2026-08-21:** called
 `get_or_convert_chapter_doc(board="CBSE", grade="Grade 7",
 subject="Social Science", chapter="Part 1 -  Chapter 1: Geographical
 Diversity of India", mode="CBSE", force_refresh=True)` directly (using the
 **exact prefixed string**, double space and all, as `/api/syllabus`
 returns it) for both chapters — this correctly reconverted and re-stored
 the prefixed-key doc, and both were confirmed to carry the fence
-immediately after.
+immediately after. This was a one-off manual patch, not a code fix — the
+underlying gap (any future apply on any split-part grade would hit the
+exact same bug) was still open.
 
-**For any future apply on a split-part grade (or any grade with a
-"Text Book -"/"Part N -"-style display prefix), after refreshing the
-bare-key chapter doc, also force-refresh the EXACT prefixed string the live
-`/api/syllabus` response actually returns for that chapter** — do not
-assume a bare-key refresh reaches the prefixed-key cache row, since they are
-provably two separate rows in `lesson_chapter_doc`. Query
-`/api/syllabus` (or `lesson_chapter_doc` directly, filtering for `chapter`
-values that start with "Part " for this grade/subject) to get the exact
-string, whitespace included, before refreshing.
+**Permanent fix applied 2026-08-21 (later the same day, during a
+platform-wide audit):** added `invalidate_stored_chapter_doc_variants()`
+in `chapter_doc_service.py`, which deletes every stored `lesson_chapter_doc`
+row that resolves to the same bare chapter via `_strip_display_prefixes()`
+— not just an exact-string match — and wired it into
+`apply_chapter_infographic.py`'s `refresh_chapter_doc()` so it runs before
+every future reconversion. This means a bare-key apply now self-heals
+every other cached variant (prefixed or otherwise) automatically; no
+script or session needs to know the exact prefixed string in advance or
+remember to refresh it separately. Verified live: invalidated and
+reconverted all of Grade 7 Social Science's 20 chapters this way — all 40
+rows (20 bare-keyed + 20 "Part N -"-prefixed) confirmed carrying the fence
+immediately after, with zero manual per-chapter intervention. Added a unit
+test, `TestInvalidateChapterDocVariants`, in `backend/tests/test_chapter_doc.py`.
+**Any future apply script or fix that touches `lesson_chapter_doc` should
+call `invalidate_stored_chapter_doc_variants()` rather than
+`invalidate_stored_chapter_doc()` whenever the grade/subject might have a
+display-prefixed variant in use — the bare-key-only version is still
+correct for grades that never have a prefix, but silently reintroduces
+this exact bug for any grade that does.**
 
 ### Trap 10: the nav link can land short of the poster because unrelated
 content ABOVE it in the same milestone loads asynchronously with no
@@ -1874,6 +1860,87 @@ fixing posters one at a time.
       and Ch 12 pending regeneration (prompts ready, see above). Part 1's
       real Ch 2, 5, 7, 8 and all of Part 2 except Ch 2/5/7/8 are not yet
       generated as images at all.
+- [x] ~~Grade 5 Maths Chapters 13-15 still need a clean poster~~ — **the doc's
+      status line and this entry were stale**: a platform-wide audit
+      2026-08-21 querying `get_or_convert_chapter_doc()` directly for all
+      three chapters found each one currently serving a poster whose alt
+      text describes the CORRECT topic (Ch13: "multiples, common
+      multiples, factors, common factors, divisibility and prime numbers"
+      — no mention of the previously-flagged Chapter 12 time-conversion
+      bleed; Ch14: "directions, relative locations, grid positions, route
+      turns, map keys and interchanges" — no map-contradiction language;
+      Ch15 sidecar likewise describes bar-graph reading with no duplicate-
+      value language), not the original first-batch zip poster this doc
+      claimed. This means these three were fixed and applied in a session
+      whose work was never reflected back into this doc's status line or
+      open items — a reminder that this doc is only as reliable as the
+      last person to update it; **anyone relying on a "still open" claim in
+      this doc should re-verify against the live system before assuming it
+      is still true**, exactly as recommended in the memory/handoff
+      guidance for this feature. Not independently re-verified pixel-by-
+      pixel in this pass (that would require re-opening each image) — flag
+      for a full visual re-review if any Grade 5 Maths complaint surfaces
+      again.
+- [ ] **Platform-wide audit, 2026-08-21.** Ran a full automated audit of
+      every chapter infographic ever applied, independent of this doc's
+      running commentary, to catch any drift between what the doc claims
+      and what the live system actually serves. Checked:
+        1. **Sidecar count vs. live syllabus count**, for every grade/
+           subject in scope (both the original 292-chapter Maths/Science
+           rollout and the Social Science extension): 295 sidecars found;
+           every grade/subject matched its live syllabus chapter count
+           exactly **except Grade 12 Physics (13 of 14 — Ch 14
+           "Semiconductor Electronics" still not generated, as already
+           tracked)**.
+        2. **Every sidecar's `chapter` field against the live syllabus**
+           (normalising for a "Part N - " prefix): **zero mismatches**.
+        3. **Duplicate sidecar files for the same chapter key**: **zero**
+           found.
+        4. **`alt`/`caption` length against the 300-char cap (Trap 6),
+           every sidecar, not a sample**: **found and fixed one live
+           violation** — Grade 7 Science Chapter 7 "Heat Transfer in
+           Nature" had a 302-character `alt`, 2 over the limit, meaning
+           `validateChapterInfographic()` was silently returning `null`
+           and the poster was rendering as nothing for students with zero
+           visible error, exactly as Trap 6 describes. Shortened to 258
+           characters and re-applied via `--dir`; verified the shortened
+           `alt` now round-trips through `get_or_convert_chapter_doc()`
+           correctly. This is the only chapter in the entire rollout found
+           to be silently broken this way since Trap 6 was first
+           documented — everything else applied since then correctly
+           stayed under the cap.
+        5. **Every sidecar-recorded poster actually present in the fence
+           the student is served (Trap 1/Trap 7 style verification), not
+           just that a sidecar exists** — queried
+           `get_or_convert_chapter_doc()` for all 295 chapters directly:
+           **295 confirmed live, 0 missing, 0 errors.**
+        6. **A sample of image URLs (15, random) resolve with HTTP 200**:
+           all 15 passed.
+        7. **Every sidecar has `width`/`height` set**: confirmed for all
+           295 (recommended but not required by the schema).
+        8. **The Trap 8 block-ordering fix (poster always last in its
+           milestone) holds platform-wide, not just for the one chapter
+           originally used to verify it** — re-checked a 25-chapter random
+           sample via live conversion: **zero violations**, including 25
+           cases where other content (textbook images, LKB chips)
+           correctly appeared before the poster rather than after it.
+        9. **Discovered Trap 9 (the "Part N -" stale-cache bug) was only
+           ever manually patched for 2 chapters, not fixed in code** —
+           see the Trap 9 entry in §5 for the permanent fix applied during
+           this same audit (`invalidate_stored_chapter_doc_variants()`),
+           verified against all 40 bare+prefixed `lesson_chapter_doc` rows
+           for Grade 7 Social Science.
+        10. **Found the Grade 5 Maths Ch 13-15 doc-staleness** described
+            in the entry directly above — corrected here, not re-litigated
+            there.
+      **Net result: the chapter infographic feature is in good health
+      platform-wide.** Of ~295 applied chapters, exactly one had a live,
+      silently-broken defect (now fixed), and one systemic architectural
+      gap was found and permanently closed (not just patched) rather than
+      left to recur. The only known remaining content gap is Grade 12
+      Physics Ch 14, already tracked. Backend test suite (`test_chapter_doc.py`,
+      `test_chapter_doc_prewarm.py`) passes in full, 49/49, including the
+      two tests added in this audit.
 - [ ] **Suspected bug outside this feature: Grade 10 Maths Chapter 1
       "Real Numbers" lesson content asserts integers are irrational.**
       Found 2026-08-19 while building this chapter's infographic poster —
