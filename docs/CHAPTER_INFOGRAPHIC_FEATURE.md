@@ -20,8 +20,9 @@
 > Climate" fixed on regeneration — the fabricated west-to-east rainfall
 > claim is gone, replaced with correct, well-grounded content on
 > atmospheric layers, the heat budget, pressure belts, and the monsoon
-> cycle). **Grade 10 Social Science: 22 prompts generated, not yet
-> reviewed/applied.** Grade 10 uses yet another variant
+> cycle). **Grade 10 Social Science: History Ch 1-5 of 22 applied and
+> clean** (all 5 clean on first generation — see Open Items for the
+> historical-detail verification). Grade 10 uses yet another variant
 > of the bare-vs-display-prefixed pattern already seen for Grade 7
 > ("Part N -") and Grade 6-8 ("Text Book -") — here the live syllabus
 > groups chapters under **discipline names** ("Text Book -", "History -",
@@ -29,9 +30,24 @@
 > that make up NCERT Class 10 Social Science), and `lesson_cache` stores
 > each of the 22 real chapters TWICE: once bare (`"Chapter 1:
 > Development"`) and once discipline-prefixed (`"Text Book - Chapter 1:
-> Development"`). Used the bare key for the prompts, consistent with the
-> Grade 7 precedent — expect to need the Trap 9 fix's benefit here too
-> once these are applied (it's now automatic, no manual step needed).
+> Development"`). Applied using the bare key, consistent with the Grade 7
+> precedent — confirmed the Trap 9 fix worked automatically here: both the
+> bare and "History - " prefixed `lesson_chapter_doc` rows carry the
+> fence with zero manual intervention.
+>
+> **Related fix, same day, adjacent system:** the student-facing chapter
+> DROPDOWN (not the infographic doc cache) for this same multi-book
+> subject was interleaving all four books' same-numbered chapters
+> together (Text Book Ch1, History Ch1, Geography Ch1, Political Science
+> Ch1, Text Book Ch2, ...) instead of grouping by book. Root cause was in
+> `backend/app/routes/syllabus.py`'s `chapter_sort_tuple_for_ordering()`
+> — used by the admin-review chronological self-heal — which sorted only
+> by `(part_number, chapter_number)` and dropped the book/source identity
+> that the un-reviewed code path already tracked via `book_source_rank()`.
+> Fixed by adding source rank as the leading sort key. This is a syllabus/
+> dropdown bug, not a `chapter_doc_service.py`/infographic bug, so it
+> isn't one of the numbered Traps below — noted here only because it
+> surfaced while reviewing this exact grade/subject's chapters.
 >
 > **Two things fixed during the audit, not just found:** (1) Grade 7
 > Science Chapter 7 "Heat Transfer in Nature" had a 302-character `alt`
@@ -584,6 +600,33 @@ fixing posters one at a time.
       not the mobile carrier) — all verified correct, no bleeds. **This
       was the only remaining chapter in the entire original 292-chapter
       Maths/Science rollout — that scope is now 100% complete.**
+- [ ] **Grade 10 Social Science: History Chapters 1-5 of 22 applied
+      2026-08-23.** First batch of the newly-generated Grade 10 prompts to
+      come back from image generation. All 5 clean on first generation —
+      an unusually accurate batch, with several specific historical
+      details hand-verified against known fact rather than just "plausible
+      sounding": Ch1's Sorrieu print (Frédéric Sorrieu's actual 1848
+      "Dream of Universal Democratic and Social Republics") correctly
+      named and described; Ch2's dates (Lahore Session December 1929,
+      Purna Swaraj resolution, 26 January 1930 as Independence Day pledge
+      day, Dandi March starting 12 March 1930 with 78 volunteers, salt law
+      broken at Dandi 6 April 1930) all match the standard historical
+      record exactly; Ch3's "USA turned from international debtor into
+      international creditor" claim (a specific, somewhat counter-
+      intuitive economic-history fact, not a generic platitude) is
+      accurate; Ch4's named prints ("The Dawn of the Century", "Two
+      Magicians") are genuine period images actually discussed in this
+      specific NCERT chapter, not invented; Ch5's "Public Sphere" key term
+      correctly reflects this chapter's specific historiographical
+      framing. No bleeds, no fabrications, no self-contradictions found
+      across all 5. **All 5 applied**, and confirmed via
+      `get_or_convert_chapter_doc()` that BOTH the bare-keyed and
+      "History - "-prefixed `lesson_chapter_doc` rows carry the fence with
+      zero manual intervention — the permanent Trap 9 fix worked exactly
+      as designed on its first real use since being added.
+      **Grade 10 Social Science: 5 of 22 chapters applied and clean**
+      (History Ch 1-5). Text Book (5), Geography (7) and Political Science
+      (5) chapters — 17 remaining — still pending image generation/review.
 - [ ] **Grade 9 Social Science: 8 of 9 chapters applied 2026-08-23.**
       Processed the 9 images the user supplied
       (`Grade9-Social-Chapter{1,2,4-9}.png` plus Chapter 3 which was held

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: The Rise of Nationalism in Europe",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-History-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-1-the-rise-of-nationalism-in-europe.webp",
+    "alt": "Revision poster for Chapter 1: The Rise of Nationalism in Europe — covers Sorrieu's utopian vision, the modern state vs. nation-state, liberalism and nationalism, nation-building, and the French Revolution's role as a turning point.",
+    "caption": "Full-chapter revision poster — nation-states, liberalism, nationalism, and nation-building in 19th-century Europe.",
+    "width": 1024,
+    "height": 1536
+  }
+}

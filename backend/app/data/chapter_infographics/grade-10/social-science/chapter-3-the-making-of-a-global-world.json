@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: The Making of a Global World",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-History-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-3-the-making-of-a-global-world.webp",
+    "alt": "Revision poster for Chapter 3: The Making of a Global World — covers the First World War's economic impact, the shift of financial power to the United States, Fordist mass production, and the causes and global spread of the Great Depression.",
+    "caption": "Full-chapter revision poster — post-WWI economy, Fordism, credit, overproduction, and the Great Depression.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 4: The Age of Industrialisation",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-History-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-4-the-age-of-industrialisation.webp",
+    "alt": "Revision poster for Chapter 4: The Age of Industrialisation — covers proto-industrialisation, why merchants moved production to villages, the gradual and uneven pace of industrial change, and production outside factories.",
+    "caption": "Full-chapter revision poster — proto-industrialisation, uneven industrial change, and production beyond factories.",
+    "width": 1024,
+    "height": 1536
+  }
+}
