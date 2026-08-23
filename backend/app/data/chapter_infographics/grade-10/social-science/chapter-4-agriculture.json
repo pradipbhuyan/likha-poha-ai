@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 4: Agriculture",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Social-Chapter4-Agriculture-Regenerated.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-4-agriculture.webp",
+    "alt": "Grade 10 Social Science Chapter 4 revision poster covering the importance of agriculture, factors affecting crops, cropping patterns, Kharif and Rabi food crops, sustainable agriculture, and the role of technology and government.",
+    "caption": "Full-chapter revision poster: Agriculture",
+    "width": 1024,
+    "height": 1536
+  }
+}

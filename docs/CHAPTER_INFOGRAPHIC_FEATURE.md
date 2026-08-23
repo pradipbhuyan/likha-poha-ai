@@ -20,14 +20,18 @@
 > Climate" fixed on regeneration — the fabricated west-to-east rainfall
 > claim is gone, replaced with correct, well-grounded content on
 > atmospheric layers, the heat budget, pressure belts, and the monsoon
-> cycle). **Grade 10 Social Science: History Ch 1-5, Text Book Ch 1-3,5,
-> Political Science Ch 1-5, and Geography Ch 1-3,5,6 (19 of 22) applied
-> and clean.** Three chapters pending regeneration: Text Book Ch 4
-> (misspelled heading), Geography Ch 4 "Agriculture" (arhar/moong/urad
-> wrongly classified as Rabi pulses — only gram is Rabi, confirmed against
-> the chapter's own worked example), and Geography Ch 7 (a misspelling,
-> "integrration" for "integration") — see Open Items. Grade 10 uses yet
-> another variant
+> cycle). **Grade 10 Social Science is now also COMPLETE — 22 of 22
+> chapters applied and clean.** The three chapters pending regeneration
+> (Text Book Ch 4's misspelled "SERVICCES" heading, Geography Ch 4
+> "Agriculture"'s wrong Kharif/Rabi pulse grouping, and Geography Ch 7's
+> "integrration" misspelling) were all regenerated and reviewed clean on
+> the same day — see the Open Items entry below for the full verification.
+> **This means every grade and subject across BOTH the original
+> 292-chapter Maths/Science scope and the entire Social Science
+> scope-extension (Grades 6-10) is now complete except Grade 7 Part 2
+> Chapters 9+ (not yet confirmed to exist) and the two still-unfixed
+> Grade 7 Part 1 chapters (Ch 11, Ch 12) documented further down.** Grade
+> 10 used yet another variant
 > of the bare-vs-display-prefixed pattern already seen for Grade 7
 > ("Part N -") and Grade 6-8 ("Text Book -") — here the live syllabus
 > groups chapters under **discipline names** ("Text Book -", "History -",
