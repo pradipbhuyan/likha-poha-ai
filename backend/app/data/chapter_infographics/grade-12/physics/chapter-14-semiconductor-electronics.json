@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Chapter 14: Semiconductor Electronics",
+  "step_title": "Revision and recap",
+  "source_image": "ChatGPT Image Aug 23, 2026, 01_38_23 PM.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-12/physics/chapter-14-semiconductor-electronics.webp",
+    "alt": "Revision poster for Chapter 14: Semiconductor Electronics — covers covalent crystal structure, intrinsic carriers, electron and hole current, n-type (pentavalent) and p-type (trivalent) doping, and the equilibrium relation ne*nh = ni^2.",
+    "caption": "Full-chapter revision poster — intrinsic vs. extrinsic semiconductors, n-type/p-type doping, and carrier equilibrium.",
+    "width": 1024,
+    "height": 1536
+  }
+}

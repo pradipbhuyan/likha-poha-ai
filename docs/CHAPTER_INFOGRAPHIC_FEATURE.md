@@ -1,18 +1,19 @@
 # Chapter Infographic ("Chapter at a Glance") — Feature Context
 
-> **Status (2026-08-21, confirmed by a platform-wide audit the same day
-> — see the Open Items entry "Platform-wide audit, 2026-08-21" for the
-> full methodology):** live on 295 chapters, verified directly against
-> `get_or_convert_chapter_doc()` for every single one (not just sidecar
-> file presence). Original 292-chapter Maths/Science first cut: **291 of
-> 292 live and clean** — the only gap is Grade 12 Physics Ch 14
-> "Semiconductor Electronics" (not yet generated); every other grade/
-> subject in that scope, including Grade 5 Maths Chapters 13-15 (see the
-> struck-through open item — the doc's earlier "still rejected" claim was
-> stale; the audit confirmed all three are live with correct content),
-> is complete. Scope-extension Social Science: **Grade 6 (14/14), Grade 7
-> (20/20 — Part 1's 12 plus Part 2's 8, confirmed against the live
-> syllabus), and Grade 8 (7/7) are all complete.**
+> **Status (2026-08-23): the original 292-chapter Maths/Science first cut
+> is now 100% COMPLETE.** Grade 12 Physics Chapter 14 "Semiconductor
+> Electronics" — the last remaining chapter in that scope — was generated,
+> reviewed (covalent crystal structure, intrinsic carrier physics,
+> electron/hole current, n-type/p-type doping, and the `ne·nh = ni²`
+> equilibrium relation all correct, no bleeds) and applied clean on first
+> generation, confirmed live via `get_or_convert_chapter_doc()`. Every
+> grade and subject in the original scope (§2) — Grade 5 through Grade 12,
+> Maths and Science/Physics/Chemistry/Biology — is now live and clean.
+> Scope-extension Social Science is also complete: **Grade 6 (14/14),
+> Grade 7 (20/20), and Grade 8 (7/7).** **296 of 296 chapters across both
+> the original scope and the Social Science extension are now live and
+> clean** (295 confirmed by the 2026-08-21 platform-wide audit — see that
+> entry in Open Items for full methodology — plus this one chapter).
 >
 > **Two things fixed during the audit, not just found:** (1) Grade 7
 > Science Chapter 7 "Heat Transfer in Nature" had a 302-character `alt`
@@ -550,6 +551,21 @@ fixing posters one at a time.
 
 ## 7. Open items
 
+- [x] ~~Grade 12 Physics Chapter 14 "Semiconductor Electronics"~~ — applied
+      2026-08-23, clean on first generation. Covalent crystal structure
+      (Si/Ge four valence electrons, four covalent bonds), intrinsic
+      carriers (thermal excitation across the energy gap producing an
+      electron-hole pair, `ne=nh=ni`), total current `I=Ie+Ih` with
+      correct current-direction conventions for electrons vs. holes,
+      n-type (pentavalent P/As/Sb doping, donor electron, electrons
+      majority) and p-type (trivalent B/Al/Ga doping, acceptor hole,
+      holes majority) semiconductors, the equilibrium relation
+      `ne·nh=ni²`, and the n-type/p-type comparison table (including the
+      donor-ion-positive/acceptor-ion-negative fixed-charge row, which is
+      standard and correct — refers to the immobile ionised dopant core,
+      not the mobile carrier) — all verified correct, no bleeds. **This
+      was the only remaining chapter in the entire original 292-chapter
+      Maths/Science rollout — that scope is now 100% complete.**
 - [ ] **Grade 8 Social Science: all 7 of 7 chapters applied 2026-08-21
       (this session).** Processed the 7 images the user supplied from
       Downloads (`Grade8-Social-Chapter{1-7}.png`). Confirmed against both
