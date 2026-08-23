@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Chapter 7: Elections",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Social-Chapter7.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/social-science/chapter-7-elections.webp",
+    "alt": "Revision poster for Chapter 7: Elections — covers why elections matter, direct and indirect elections, accountability, representation, legitimacy, and the election process step by step.",
+    "caption": "Full-chapter revision poster — direct/indirect elections, accountability, and the election process.",
+    "width": 1024,
+    "height": 1536
+  }
+}

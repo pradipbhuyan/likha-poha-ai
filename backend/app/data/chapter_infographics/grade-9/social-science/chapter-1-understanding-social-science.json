@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: Understanding Social Science",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Social-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/social-science/chapter-1-understanding-social-science.webp",
+    "alt": "Revision poster for Chapter 1: Understanding Social Science — covers the systematic study of society, everyday interdependence, the questions Social Science asks, and its five branches (History, Geography, Political Science, Economics, Sociology).",
+    "caption": "Full-chapter revision poster — what Social Science studies and its five branches.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -15,21 +15,20 @@
 > clean** (295 confirmed by the 2026-08-21 platform-wide audit — see that
 > entry in Open Items for full methodology — plus this one chapter).
 >
-> **Scope extension continued 2026-08-23: prompts generated for Grade 9
-> Social Science (9 chapters) and Grade 10 Social Science (22 chapters),
-> not yet reviewed/applied.** Grade 9 had the familiar bogus
-> "Uploaded Book Content" placeholder key (dropped). Grade 10 uses yet
-> another variant of the bare-vs-display-prefixed pattern already seen for
-> Grade 7 ("Part N -") and Grade 6-8 ("Text Book -") — here the live
-> syllabus groups chapters under **discipline names** ("Text Book -",
-> "History -", "Geography -", "Political Science -", one for each of the
-> four books that make up NCERT Class 10 Social Science), and
-> `lesson_cache` stores each of the 22 real chapters TWICE: once bare
-> (`"Chapter 1: Development"`) and once discipline-prefixed
-> (`"Text Book - Chapter 1: Development"`). Used the bare key for the
-> prompts, consistent with the Grade 7 precedent — expect to need the
-> Trap 9 fix's benefit here too once these are applied (it's now automatic,
-> no manual step needed).
+> **Scope extension continued 2026-08-23: Grade 9 Social Science 8 of 9
+> chapters applied and clean** (Ch 3 "Atmosphere and Climate" pending
+> regeneration — see Open Items). **Grade 10 Social Science: 22 prompts
+> generated, not yet reviewed/applied.** Grade 10 uses yet another variant
+> of the bare-vs-display-prefixed pattern already seen for Grade 7
+> ("Part N -") and Grade 6-8 ("Text Book -") — here the live syllabus
+> groups chapters under **discipline names** ("Text Book -", "History -",
+> "Geography -", "Political Science -", one for each of the four books
+> that make up NCERT Class 10 Social Science), and `lesson_cache` stores
+> each of the 22 real chapters TWICE: once bare (`"Chapter 1:
+> Development"`) and once discipline-prefixed (`"Text Book - Chapter 1:
+> Development"`). Used the bare key for the prompts, consistent with the
+> Grade 7 precedent — expect to need the Trap 9 fix's benefit here too
+> once these are applied (it's now automatic, no manual step needed).
 >
 > **Two things fixed during the audit, not just found:** (1) Grade 7
 > Science Chapter 7 "Heat Transfer in Nature" had a 302-character `alt`
@@ -582,6 +581,52 @@ fixing posters one at a time.
       not the mobile carrier) — all verified correct, no bleeds. **This
       was the only remaining chapter in the entire original 292-chapter
       Maths/Science rollout — that scope is now 100% complete.**
+- [ ] **Grade 9 Social Science: 8 of 9 chapters applied 2026-08-23.**
+      Processed the 9 images the user supplied
+      (`Grade9-Social-Chapter{1,2,4-9}.png` plus Chapter 3 which was held
+      back). Confirmed against the live syllabus that Grade 9 has exactly
+      9 real chapters — `lesson_cache` had one extra bogus
+      "Uploaded Book Content" placeholder key, the same pattern already
+      catalogued for other grades, dropped before generating prompts.
+        - **Chapters 1, 2, 4, 5, 6, 7, 8, 9** all clean — no bleeds, no
+          factual errors found on careful review, including several
+          specific claims hand-verified: Ch2's plate-boundary examples
+          (Mid-Atlantic Ridge/divergent, Andes Mountains and Japan Islands/
+          convergent, San Andreas Fault/transform) all correctly matched
+          to their boundary type; Ch4's human-evolution sequence
+          (Australopithecus→Homo habilis→Homo erectus→Homo sapiens) and
+          Out-of-Africa migration timing correct; Ch6's 2024 election
+          figures (population >140 crore, >96.8 crore registered voters)
+          match actual Election Commission data; Ch9's law-of-demand table
+          (price 10→100 through 50→20, a consistent linear inverse
+          relationship) and its change-in-demand-vs-change-in-quantity-
+          demanded distinction (movement along the curve vs. a full shift)
+          both correct — this is a commonly-confused economics concept
+          and the poster gets it right. **All 8 applied.**
+        - **Chapter 3 "Atmosphere and Climate"** had a fabricated and
+          factually-reversed claim: the "Monsoon or Rainy Season" panel's
+          bullet "Rainfall generally decreases from west to east" does not
+          appear anywhere in CHAPTER_CONTENT (grep-confirmed) and also
+          states the real geography backwards — the well-established fact
+          (used in every standard India-geography source) is that monsoon
+          rainfall from the Bay-of-Bengal branch decreases from EAST to
+          WEST across the Indo-Gangetic plain (West Bengal/Bihar wetter,
+          Punjab/western Rajasthan drier), not west to east. The rest of
+          the poster (four-IMD-seasons classification, winter/summer
+          temperature ranges, the land-sea pressure-reversal mechanism,
+          and the retreating/north-east monsoon's rain on the Tamil Nadu
+          coast) was correct and well-grounded — this was an isolated
+          fabricated detail, not a bleed. **Not applied.** Sent a
+          regeneration prompt
+          (`~/Downloads/Grade9_SocialScience_Missing_Posters_Prompts_2026-08-23/
+          03_chapter_3_atmosphere_and_climate_PROMPT_v1.txt`) with a HARD
+          RULE 0 quoting the fabricated claim verbatim, stating the
+          correct direction, and instructing the model to omit any
+          west-east rainfall gradient claim entirely since CHAPTER_CONTENT
+          does not ground one.
+      **Grade 9 Social Science: 8 of 9 chapters applied and clean.**
+      Chapter 3 pending regeneration (prompt ready, see above) — the only
+      remaining chapter for this grade/subject.
 - [ ] **Grade 8 Social Science: all 7 of 7 chapters applied 2026-08-21
       (this session).** Processed the 7 images the user supplied from
       Downloads (`Grade8-Social-Chapter{1-7}.png`). Confirmed against both

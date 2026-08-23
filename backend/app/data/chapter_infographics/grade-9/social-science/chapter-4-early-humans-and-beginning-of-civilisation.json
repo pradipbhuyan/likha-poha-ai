@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Chapter 4: Early Humans and Beginning of Civilisation",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Social-Chapter4.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/social-science/chapter-4-early-humans-and-beginning-of-civilisation.webp",
+    "alt": "Revision poster for Chapter 4: Early Humans and Beginning of Civilisation — covers human evolution, the Out of Africa migration, stone-tool technology, early art and beliefs, and the rise of settlements.",
+    "caption": "Full-chapter revision poster — human evolution, tool technology, and early settlements.",
+    "width": 1024,
+    "height": 1536
+  }
+}

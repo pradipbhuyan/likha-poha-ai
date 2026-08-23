@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Chapter 6: Democracy",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Social-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/social-science/chapter-6-democracy.webp",
+    "alt": "Revision poster for Chapter 6: Democracy — covers the meaning of democracy, India's democratic scale, the role of the Constitution, and the historical roots of Indian democratic practice.",
+    "caption": "Full-chapter revision poster — democracy's meaning, India's scale, and the Constitution's role.",
+    "width": 1024,
+    "height": 1536
+  }
+}

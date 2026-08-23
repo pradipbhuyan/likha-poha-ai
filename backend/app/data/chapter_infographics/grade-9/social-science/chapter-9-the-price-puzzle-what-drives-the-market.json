@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Chapter 9: The Price Puzzle: What Drives the Market",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Social-Chapter9.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/social-science/chapter-9-the-price-puzzle-what-drives-the-market.webp",
+    "alt": "Revision poster for Chapter 9: The Price Puzzle: What Drives the Market — covers demand, purchasing power, the law of demand, determinants of demand, and the difference between a change in demand and a change in quantity demanded.",
+    "caption": "Full-chapter revision poster — the law of demand, its determinants, and demand-curve shifts vs. movements.",
+    "width": 1024,
+    "height": 1536
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: Shaping of the Earth's Surface",
+  "step_title": "Revision and recap",
+  "source_image": "Grade9-Social-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-9/social-science/chapter-2-shaping-of-the-earth-s-surface.webp",
+    "alt": "Revision poster for Chapter 2: Shaping of the Earth's Surface — covers plate tectonics, Earth's internal structure, the lithosphere and asthenosphere, plate types, and the three kinds of plate boundaries.",
+    "caption": "Full-chapter revision poster — plate tectonics, Earth structure, and plate boundaries.",
+    "width": 1024,
+    "height": 1536
+  }
+}
