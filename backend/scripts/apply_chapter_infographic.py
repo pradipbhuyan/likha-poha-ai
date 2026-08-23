@@ -189,9 +189,21 @@ def refresh_chapter_doc(*, board: str, grade: str, subject: str, chapter: str, m
     lesson_chapter_doc row rather than lesson_cache directly. Without this the
     poster is written to lesson_cache but the student keeps seeing whatever the
     doc was last built from — which looks exactly like the change not working.
+
+    For a split-part grade (e.g. Grade 7 Social Science), the live syllabus
+    sends a "Part N - " prefixed chapter string that caches to a SEPARATE
+    lesson_chapter_doc row from this bare `chapter` string — see Trap 9 in
+    docs/CHAPTER_INFOGRAPHIC_FEATURE.md. Invalidating every stored row that
+    resolves to the same bare chapter (not just this exact string) before
+    reconverting means the syllabus-facing variant reconverts fresh on its
+    own next request too, instead of silently keeping a stale fence-less doc.
     """
     try:
-        from app.services.chapter_doc_service import get_or_convert_chapter_doc  # noqa: PLC0415
+        from app.services.chapter_doc_service import (  # noqa: PLC0415
+            get_or_convert_chapter_doc,
+            invalidate_stored_chapter_doc_variants,
+        )
+        invalidate_stored_chapter_doc_variants(grade=grade, subject=subject, chapter=chapter, mode=mode)
         doc = get_or_convert_chapter_doc(
             board=board, grade=grade, subject=subject, chapter=chapter,
             mode=mode, force_refresh=True,

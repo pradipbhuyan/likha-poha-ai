@@ -247,6 +247,72 @@ class TestQuestionDedupe:
         )
 
 
+# ──────────────────────────────────────────────────── doc invalidation ──
+
+class _FakeResult:
+    def __init__(self, data):
+        self.data = data
+
+
+class _FakeQuery:
+    """Minimal chainable stand-in for a Supabase select/delete/eq/execute chain."""
+
+    def __init__(self, table):
+        self.table = table
+        self.filters = {}
+        self.is_delete = False
+
+    def select(self, *_a, **_k):
+        return self
+
+    def delete(self):
+        self.is_delete = True
+        return self
+
+    def eq(self, key, value):
+        self.filters[key] = value
+        return self
+
+    def execute(self):
+        if self.is_delete:
+            matched = [r for r in self.table.rows if all(r.get(k) == v for k, v in self.filters.items())]
+            self.table.rows = [r for r in self.table.rows if r not in matched]
+            return _FakeResult(matched)
+        matched = [r for r in self.table.rows if all(r.get(k) == v for k, v in self.filters.items())]
+        return _FakeResult(matched)
+
+
+class _FakeTable:
+    def __init__(self, rows):
+        self.rows = rows
+
+    def table(self, _name):
+        return _FakeQuery(self)
+
+
+class TestInvalidateChapterDocVariants:
+    def test_deletes_bare_and_prefixed_variants(self, monkeypatch):
+        rows = [
+            {"grade": "Grade 7", "subject": "Social Science", "mode": "CBSE",
+             "chapter": "Chapter 3: Climates of India"},
+            {"grade": "Grade 7", "subject": "Social Science", "mode": "CBSE",
+             "chapter": "Part 1 - Chapter 3: Climates of India"},
+            {"grade": "Grade 7", "subject": "Social Science", "mode": "CBSE",
+             "chapter": "Chapter 4: New Beginnings: Cities and States"},
+        ]
+        fake_db = _FakeTable(rows)
+        monkeypatch.setattr(cds, "get_content_db", lambda grade: fake_db)
+
+        deleted = cds.invalidate_stored_chapter_doc_variants(
+            grade="Grade 7", subject="Social Science",
+            chapter="Chapter 3: Climates of India", mode="CBSE",
+        )
+
+        assert deleted == 2
+        remaining = [r["chapter"] for r in fake_db.rows]
+        assert remaining == ["Chapter 4: New Beginnings: Cities and States"]
+
+
 # ───────────────────────────────────────────────────────────── converter ──
 
 class TestConvertChapter:

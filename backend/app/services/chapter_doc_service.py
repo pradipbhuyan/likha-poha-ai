@@ -1128,6 +1128,56 @@ def invalidate_stored_chapter_doc(grade, subject, chapter, mode="CBSE") -> int:
         return 0
 
 
+def invalidate_stored_chapter_doc_variants(grade, subject, chapter, mode="CBSE") -> int:
+    """Delete the exact-match row AND every other stored row that resolves to
+    the same bare chapter (see Trap 9 in docs/CHAPTER_INFOGRAPHIC_FEATURE.md).
+
+    For a split-part grade, `/api/syllabus` sends students a "Part N - "
+    (or "Text Book - ") prefixed chapter string, which caches to a SEPARATE
+    lesson_chapter_doc row from whatever bare/differently-prefixed string an
+    authoring script refreshes with `invalidate_stored_chapter_doc()`. A row
+    keyed on one variant can go stale independently of a row keyed on
+    another, even though both resolve to the same underlying lesson_cache
+    content via `_strip_display_prefixes()`. Confirmed live 2026-08-21: Grade
+    7 Social Science Part 1 Chapters 1-2 had a freshly-refreshed bare-keyed
+    doc with the poster fence, but a stale prefixed-keyed doc with no fence
+    at all, served to students via the syllabus dropdown.
+
+    This deletes every row for this grade/subject/mode whose chapter string
+    shares the same bare form, so each reconverts fresh (fence included) on
+    its own next request — no per-variant refresh call needed. Returns the
+    total number of rows deleted.
+    """
+    bare = _strip_display_prefixes(chapter)
+    db = get_content_db(grade)
+    try:
+        result = (
+            db.table("lesson_chapter_doc")
+            .select("chapter")
+            .eq("grade", grade)
+            .eq("subject", subject)
+            .eq("mode", mode)
+            .execute()
+        )
+    except Exception as exc:
+        _log.warning(
+            "chapter_doc.invalidate_variants_lookup_failed",
+            grade=grade, chapter=chapter[:60], error=str(exc),
+        )
+        return invalidate_stored_chapter_doc(grade, subject, chapter, mode=mode)
+
+    variants = {
+        row["chapter"] for row in (result.data or [])
+        if _strip_display_prefixes(row["chapter"]) == bare
+    }
+    variants.add(chapter)
+
+    deleted = 0
+    for variant in variants:
+        deleted += invalidate_stored_chapter_doc(grade, subject, variant, mode=mode)
+    return deleted
+
+
 def get_or_convert_chapter_doc(
     board, grade, subject, chapter, mode="CBSE", force_refresh: bool = False,
 ) -> dict | None:
