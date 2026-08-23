@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 6: Manufacturing Industries",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Geography-Chapter6.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-6-manufacturing-industries.webp",
+    "alt": "Revision poster for Chapter 6: Manufacturing Industries — covers the iron and steel, aluminium, chemical, construction, automobile and electronic industries, and the factors that determine where industries locate.",
+    "caption": "Full-chapter revision poster — key industries and the factors that determine their location.",
+    "width": 1024,
+    "height": 1536
+  }
+}

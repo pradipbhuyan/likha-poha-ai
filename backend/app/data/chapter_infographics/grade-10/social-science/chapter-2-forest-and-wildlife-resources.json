@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: Forest and Wildlife Resources",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Geography-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-2-forest-and-wildlife-resources.webp",
+    "alt": "Revision poster for Chapter 2: Forest and Wildlife Resources — covers the Wildlife Protection Act 1972, species-specific conservation projects, and how Project Tiger's core and buffer zones protect tigers and their habitat.",
+    "caption": "Full-chapter revision poster — wildlife conservation law, protected-species projects, and Project Tiger.",
+    "width": 1024,
+    "height": 1536
+  }
+}

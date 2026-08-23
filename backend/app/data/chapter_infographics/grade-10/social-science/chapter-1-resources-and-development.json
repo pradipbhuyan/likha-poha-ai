@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: Resources and Development",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Geography-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-1-resources-and-development.webp",
+    "alt": "Revision poster for Chapter 1: Resources and Development — covers why balanced regional planning matters, planning at national/state/regional/local levels, the five stages of resource planning, and India's land-use categories.",
+    "caption": "Full-chapter revision poster — resource planning stages, conservation principles, and land-use categories.",
+    "width": 1024,
+    "height": 1536
+  }
+}

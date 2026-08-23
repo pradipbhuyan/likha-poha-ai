@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: Water Resources",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Geography-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-3-water-resources.webp",
+    "alt": "Revision poster for Chapter 3: Water Resources — covers how damming affects river flow and aquatic life, the flood paradox from sedimentation, downstream fertility loss, waterlogging and salinisation, and multipurpose-project benefits.",
+    "caption": "Full-chapter revision poster — dams, ecological costs, waterlogging, and multipurpose-project benefits.",
+    "width": 1024,
+    "height": 1536
+  }
+}

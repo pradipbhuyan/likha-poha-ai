@@ -21,10 +21,13 @@
 > claim is gone, replaced with correct, well-grounded content on
 > atmospheric layers, the heat budget, pressure belts, and the monsoon
 > cycle). **Grade 10 Social Science: History Ch 1-5, Text Book Ch 1-3,5,
-> and Political Science Ch 1-5 (14 of 22) applied and clean** — Text Book
-> Ch 4 "Globalisation and the Indian Economy" pending regeneration for a
-> misspelled heading (see Open Items); Geography (7 chapters) still
-> pending review. Grade 10 uses yet another variant
+> Political Science Ch 1-5, and Geography Ch 1-3,5,6 (19 of 22) applied
+> and clean.** Three chapters pending regeneration: Text Book Ch 4
+> (misspelled heading), Geography Ch 4 "Agriculture" (arhar/moong/urad
+> wrongly classified as Rabi pulses — only gram is Rabi, confirmed against
+> the chapter's own worked example), and Geography Ch 7 (a misspelling,
+> "integrration" for "integration") — see Open Items. Grade 10 uses yet
+> another variant
 > of the bare-vs-display-prefixed pattern already seen for Grade 7
 > ("Part N -") and Grade 6-8 ("Text Book -") — here the live syllabus
 > groups chapters under **discipline names** ("Text Book -", "History -",
@@ -602,6 +605,60 @@ fixing posters one at a time.
       not the mobile carrier) — all verified correct, no bleeds. **This
       was the only remaining chapter in the entire original 292-chapter
       Maths/Science rollout — that scope is now 100% complete.**
+- [ ] **Grade 10 Social Science: Geography Chapters 1-7 of 22 reviewed
+      2026-08-23 — the final book. 5 of 7 clean.**
+        - **Chapters 1 "Resources and Development", 2 "Forest and
+          Wildlife Resources", 3 "Water Resources", 5 "Minerals and
+          Energy Resources", 6 "Manufacturing Industries"**: all clean,
+          with several specific facts verified — Ch1's land-use
+          percentages sum to exactly 100% (Forest 23% + Net Sown 47% +
+          Barren/Uncultivable 7% + Non-agricultural 8% + Other Unutilised
+          15%) and match known real proportions; Ch2's Wildlife
+          Protection Act year (1972) and Project Tiger launch year (1973)
+          both correct; Ch5's four-stage coal classification (peat →
+          lignite → bituminous → anthracite) correctly ordered by
+          increasing carbon content/quality; Ch6's "chemical industry is
+          its own largest consumer" is a specific, correct NCERT fact, not
+          a generic filler claim. No bleeds or errors. **All 5 applied.**
+        - **Chapter 4 "Agriculture"** had a genuine classification error:
+          the "Pulses" panel was headed "PULSES (RABI CROPS)" and grouped
+          "gram, arhar, moong and urad" together as if all four were Rabi
+          crops. Grep-confirmed CHAPTER_CONTENT explicitly lists "tur"
+          (arhar), "moong" and "urad" under KHARIF crops ("Paddy, maize,
+          jowar, bajra, tur, moong, urad, cotton, jute, groundnut and
+          soyabean"), and lists "gram" as the Rabi example — reinforced by
+          the chapter's own worked example, which directly states "The
+          correct answer is Gram" for "which listed crop is a rabi crop"
+          and adds "Rice, millets and cotton are listed with kharif
+          cultivation." Only one of the poster's four named pulses (gram)
+          is actually Rabi; the other three are Kharif. The rest of the
+          poster (rice/wheat/millets/maize growing conditions and
+          regions, the crop-requirements summary table for those four
+          crops) was correct. **Not applied.** Sent a regeneration prompt
+          (`~/Downloads/Grade10_SocialScience_Missing_Posters_Prompts_2026-08-23/
+          Geography_Chapter4_Agriculture_PROMPT_v1.txt`) with a HARD RULE
+          0 quoting CHAPTER_CONTENT's exact Kharif and Rabi crop lists and
+          requiring gram to be shown separately from arhar/moong/urad
+          rather than grouped under one "Rabi" heading.
+        - **Chapter 7 "Lifelines of National Economy"** had a lettering
+          defect: the overview strip read "...supporting national
+          integrration and economic development" — "integrration"
+          misspelled with an extra "r". The rest of the poster (postal
+          classes, mail channels, telecom, mass communication, digital
+          communication, and the communication-to-economic-development
+          flow) was correct and well-grounded. **Not applied.** Sent a
+          regeneration prompt
+          (`~/Downloads/Grade10_SocialScience_Missing_Posters_Prompts_2026-08-23/
+          Geography_Chapter7_LifelinesOfNationalEconomy_PROMPT_v1.txt`)
+          with a HARD RULE 0 quoting the misspelling and the correct
+          spelling verbatim.
+      **Grade 10 Social Science: 19 of 22 chapters applied and clean**
+      (History 5/5, Text Book 4/5, Political Science 5/5, Geography 5/7).
+      Three chapters pending regeneration: Text Book Ch 4, Geography Ch 4,
+      Geography Ch 7 (all prompts ready, see above and the entry below).
+      **This completes review of all four Geography-book-equivalent
+      groups for the first time — every remaining gap is now a
+      regeneration, not an unreviewed chapter.**
 - [ ] **Grade 10 Social Science: Political Science Chapters 1-5 of 22
       applied 2026-08-23.** All 5 clean on first generation — every core
       concept re-verified against standard NCERT Class 10 Political

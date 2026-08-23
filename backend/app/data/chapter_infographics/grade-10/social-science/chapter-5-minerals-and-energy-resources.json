@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: Minerals and Energy Resources",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-Geography-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-5-minerals-and-energy-resources.webp",
+    "alt": "Revision poster for Chapter 5: Minerals and Energy Resources — covers coal types and distribution, petroleum and natural gas uses, and hydel vs. thermal power generation.",
+    "caption": "Full-chapter revision poster — coal types, petroleum and natural gas, and hydel vs. thermal power.",
+    "width": 1024,
+    "height": 1536
+  }
+}
