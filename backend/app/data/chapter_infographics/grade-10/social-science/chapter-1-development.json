@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: Development",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-TextBook-Chapter1.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-1-development.webp",
+    "alt": "Revision poster for Chapter 1: Development — covers per capita income, infant mortality rate, literacy rate, and net attendance ratio, comparing Haryana, Kerala and Bihar to show development is multi-dimensional.",
+    "caption": "Full-chapter revision poster — comparing Haryana, Kerala and Bihar across multiple development indicators.",
+    "width": 1024,
+    "height": 1536
+  }
+}

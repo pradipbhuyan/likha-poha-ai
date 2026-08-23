@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: Consumer Rights",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-TextBook-Chapter5.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-5-consumer-rights.webp",
+    "alt": "Revision poster for Chapter 5: Consumer Rights — covers the right to safety, information, and choice, MRP and expiry-date rules, the RTI Act, and the step-by-step consumer grievance process.",
+    "caption": "Full-chapter revision poster — consumer rights, MRP rules, and how to take consumer-grievance action.",
+    "width": 1024,
+    "height": 1536
+  }
+}

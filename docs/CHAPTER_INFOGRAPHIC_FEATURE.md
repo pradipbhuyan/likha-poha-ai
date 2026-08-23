@@ -20,9 +20,10 @@
 > Climate" fixed on regeneration — the fabricated west-to-east rainfall
 > claim is gone, replaced with correct, well-grounded content on
 > atmospheric layers, the heat budget, pressure belts, and the monsoon
-> cycle). **Grade 10 Social Science: History Ch 1-5 of 22 applied and
-> clean** (all 5 clean on first generation — see Open Items for the
-> historical-detail verification). Grade 10 uses yet another variant
+> cycle). **Grade 10 Social Science: History Ch 1-5 and Text Book Ch 1-3,5
+> (9 of 22) applied and clean** — Text Book Ch 4 "Globalisation and the
+> Indian Economy" pending regeneration for a misspelled heading (see Open
+> Items). Grade 10 uses yet another variant
 > of the bare-vs-display-prefixed pattern already seen for Grade 7
 > ("Part N -") and Grade 6-8 ("Text Book -") — here the live syllabus
 > groups chapters under **discipline names** ("Text Book -", "History -",
@@ -600,6 +601,52 @@ fixing posters one at a time.
       not the mobile carrier) — all verified correct, no bleeds. **This
       was the only remaining chapter in the entire original 292-chapter
       Maths/Science rollout — that scope is now 100% complete.**
+- [ ] **Grade 10 Social Science: Text Book Chapters 1-5 of 22 reviewed
+      2026-08-23 (Economics book).** 4 of 5 clean on first generation.
+        - **Chapter 1 "Development"**: clean — the classic NCERT
+          Haryana/Kerala/Bihar comparison across per capita income,
+          infant mortality rate, literacy rate, and Net Attendance Ratio,
+          all internally consistent between the panel charts and the
+          summary table (Kerala best on health/education indicators
+          despite lower income than Haryana; Bihar worst on all).
+          **Applied.**
+        - **Chapter 2 "Sectors of the Indian Economy"**: clean — the
+          organised/unorganised distinction (Kanta vs. Kamal examples),
+          correctly noted as orthogonal to the primary/secondary/tertiary
+          classification (a specific point of confusion this NCERT
+          chapter explicitly addresses, correctly represented here).
+          **Applied.**
+        - **Chapter 3 "Money and Credit"**: clean — grep-confirmed the
+          "banks keep about 5 per cent of deposits as cash" figure
+          exactly matches CHAPTER_CONTENT's own wording (this seemed
+          worth double-checking since common real-world cash-reserve
+          figures are often cited differently, but the poster is
+          correctly grounded in what this specific chapter's source
+          content states). Salim's positive-credit and the debt-trap
+          examples both correct. **Applied.**
+        - **Chapter 4 "Globalisation and the Indian Economy"** had a
+          lettering defect: the full-width process-strip heading read
+          "HOW SERVICCES CROSS BORDERS" — "SERVICCES" misspelled with an
+          extra "C" (should be "SERVICES"). The rest of the poster
+          (transport/information technology, the London-magazine-
+          printed-in-Delhi services example, trade barriers,
+          liberalisation, WTO, and the impact of globalisation) was
+          correct and well-grounded. **Not applied.** Sent a regeneration
+          prompt
+          (`~/Downloads/Grade10_SocialScience_Missing_Posters_Prompts_2026-08-23/
+          Textbook_Chapter4_GlobalisationAndTheIndianEconomy_PROMPT_v1.txt`)
+          with a HARD RULE 0 quoting the misspelling and the correct
+          heading verbatim.
+        - **Chapter 5 "Consumer Rights"**: clean — the six consumer
+          rights (safety, information, choice, plus MRP/expiry rules, the
+          RTI Act, and the consumer-grievance process) all correct and
+          consistent; the Reji Mathew hospital-negligence case matches
+          this chapter's known real-world case-study content. **Applied.**
+      **Grade 10 Social Science: 9 of 22 chapters applied and clean**
+      (History Ch 1-5, Text Book Ch 1, 2, 3, 5). Text Book Ch 4 pending
+      regeneration (prompt ready, see above). Geography (7) and Political
+      Science (5) chapters — 12 remaining — still pending image
+      generation/review.
 - [ ] **Grade 10 Social Science: History Chapters 1-5 of 22 applied
       2026-08-23.** First batch of the newly-generated Grade 10 prompts to
       come back from image generation. All 5 clean on first generation —

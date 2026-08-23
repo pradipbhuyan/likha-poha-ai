@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: Sectors of the Indian Economy",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-TextBook-Chapter2.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-2-sectors-of-the-indian-economy.webp",
+    "alt": "Revision poster for Chapter 2: Sectors of the Indian Economy — covers the organised vs. unorganised sector distinction, why unorganised workers need protection, and how this classification differs from primary/secondary/tertiary.",
+    "caption": "Full-chapter revision poster — organised vs. unorganised sectors and why the distinction matters.",
+    "width": 1024,
+    "height": 1536
+  }
+}

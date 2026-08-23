@@ -1,0 +1,14 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: Money and Credit",
+  "step_title": "Revision and recap",
+  "source_image": "Grade10-TextBook-Chapter3.png",
+  "infographic": {
+    "url": "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/rag-visuals/chapter-infographics/cbse/grade-10/social-science/chapter-3-money-and-credit.webp",
+    "alt": "Revision poster for Chapter 3: Money and Credit — covers how banks mediate between depositors and borrowers, bank income, the meaning of credit, and how credit can help or trap borrowers in debt.",
+    "caption": "Full-chapter revision poster — bank mediation, credit, and the difference between helpful credit and a debt trap.",
+    "width": 1024,
+    "height": 1536
+  }
+}
