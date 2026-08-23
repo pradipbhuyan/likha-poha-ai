@@ -39,7 +39,12 @@ def get_profile(username: str, _auth=Depends(require_self_by_username)):
     """
     return {
         "success": True,
-        "profile": get_student_profile(username),
+        "profile": get_student_profile(
+            username,
+            profile_id=(
+                (_auth.get("target_profile") or _auth.get("profile") or {}).get("id")
+            ),
+        ),
     }
 
 
@@ -51,6 +56,7 @@ def log_activity(data: ActivityRequest, user=Depends(get_current_user)):
         "profile": update_student_activity(
             username=resolve_session_username(user),
             activity_type=data.activity_type,
+            profile_id=user.id,
         ),
     }
 

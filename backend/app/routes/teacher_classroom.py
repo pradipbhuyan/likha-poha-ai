@@ -80,7 +80,11 @@ from pydantic import BaseModel
 from app.config import settings
 from app.services.auth_service import admin_client, require_teacher, create_auth_user
 from app.services.audit_log_service import write_audit_event
-from app.services.email_service import send_teacher_parent_message, send_student_invitation_email
+from app.services.email_service import (
+    configured_email_provider,
+    send_teacher_parent_message,
+    send_student_invitation_email,
+)
 from app.services.offer_access_service import is_free_tier_user
 
 router = APIRouter()
@@ -366,8 +370,8 @@ def teacher_dashboard_summary(teacher=Depends(require_teacher)):
     seven_days_ago = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
     recent_activity, _ = _safe_q(
         lambda: admin_client.table("ai_usage_logs")
-        .select("username, feature, created_at")
-        .in_("username", [profiles.get(s, {}).get("username", "") for s in student_ids])
+        .select("profile_id, username, feature, created_at")
+        .in_("profile_id", student_ids)
         .gte("created_at", seven_days_ago)
         .order("created_at", desc=True)
         .limit(20)
@@ -380,7 +384,7 @@ def teacher_dashboard_summary(teacher=Depends(require_teacher)):
         p = profiles.get(sid, {})
         last_seen = None
         for log in recent_activity:
-            if log.get("username") == p.get("username"):
+            if log.get("profile_id") == sid:
                 last_seen = log.get("created_at")
                 break
         if not last_seen:
@@ -603,7 +607,7 @@ def get_student_detail(student_id: str, teacher=Depends(require_teacher)):
     activity, _ = _safe_q(
         lambda: admin_client.table("ai_usage_logs")
         .select("feature, total_tokens, created_at")
-        .eq("username", username)
+        .eq("profile_id", student_id)
         .order("created_at", desc=True)
         .limit(10)
         .execute()
@@ -659,6 +663,24 @@ def update_student(student_id: str, data: UpdateStudentRequest, teacher=Depends(
     updates = {k: v for k, v in data.dict().items() if v is not None}
     if not updates:
         return {"success": True, "message": "No changes provided."}
+
+    if "username" in updates:
+        from app.routes.auth import _reject_reserved_username, _reject_taken_username
+
+        clean_username = updates["username"].strip()
+        if not clean_username:
+            raise HTTPException(status_code=400, detail="Username cannot be empty.")
+        _reject_reserved_username(clean_username)
+        current, _ = _safe_one(
+            lambda: admin_client.table("profiles")
+            .select("username")
+            .eq("id", student_id)
+            .limit(1)
+            .execute()
+        )
+        if not current or clean_username.casefold() != (current.get("username") or "").strip().casefold():
+            _reject_taken_username(clean_username, client=admin_client)
+        updates["username"] = clean_username
 
     try:
         admin_client.table("profiles").update(updates).eq("id", student_id).execute()
@@ -1518,16 +1540,16 @@ def get_student_timeline(student_id: str, teacher=Depends(require_teacher)):
             "category": category,
         })
 
-    if username:
-        # ── AI activity (lessons, doubts) ────────────────────────────────────
-        activity_rows, _ = _safe_q(
-            lambda: admin_client.table("ai_usage_logs")
-            .select("feature, created_at")
-            .eq("username", username)
-            .order("created_at", desc=True)
-            .limit(20)
-            .execute()
-        )
+    # ── AI activity (lessons, doubts) ────────────────────────────────────────
+    activity_rows, _ = _safe_q(
+        lambda: admin_client.table("ai_usage_logs")
+        .select("feature, created_at")
+        .eq("profile_id", student_id)
+        .order("created_at", desc=True)
+        .limit(20)
+        .execute()
+    )
+    if activity_rows:
         FEATURE_LABELS = {
             "lesson": ("📖 Lesson Generated", "Student generated an AI lesson"),
             "doubt":  ("❓ Doubt Asked",       "Student asked an AI doubt"),
@@ -1597,19 +1619,19 @@ def get_interventions(teacher=Depends(require_teacher)):
     seven_days_ago = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
     activity_rows, _ = _safe_q(
         lambda: admin_client.table("ai_usage_logs")
-        .select("username, created_at")
-        .in_("username", [profiles.get(s, {}).get("username", "") for s in student_ids])
+        .select("profile_id, created_at")
+        .in_("profile_id", student_ids)
         .gte("created_at", fourteen_days_ago)
         .order("created_at", desc=True)
         .limit(100)
         .execute()
     )
-    # Map username → last_active
+    # Map immutable profile id → last_active
     last_active_map = {}
     for row in activity_rows:
-        u = row.get("username")
-        if u and u not in last_active_map:
-            last_active_map[u] = row.get("created_at")
+        profile_id = row.get("profile_id")
+        if profile_id and profile_id not in last_active_map:
+            last_active_map[profile_id] = row.get("created_at")
 
     # Load mock test averages
     test_rows, _ = _safe_q(
@@ -1645,7 +1667,7 @@ def get_interventions(teacher=Depends(require_teacher)):
     for sid in student_ids:
         p = profiles.get(sid, {})
         username = p.get("username", sid)
-        last_active = last_active_map.get(username)
+        last_active = last_active_map.get(sid)
         avg_score = test_avg_map.get(sid)
         test_count = test_count_map.get(sid, 0)
 
@@ -1966,17 +1988,17 @@ def get_classroom_analytics(classroom_id: str, teacher=Depends(require_teacher))
 
     # Activity analytics
     activity_analytics = {"available": False, "reason": "No activity data"}
-    if usernames:
+    if student_ids:
         seven_days_ago = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
         act_rows, _ = _safe_q(
             lambda: admin_client.table("ai_usage_logs")
-            .select("username, feature, created_at")
-            .in_("username", usernames)
+            .select("profile_id, feature, created_at")
+            .in_("profile_id", student_ids)
             .gte("created_at", seven_days_ago)
             .execute()
         )
         if act_rows:
-            active_users = set(r.get("username") for r in act_rows)
+            active_users = set(r.get("profile_id") for r in act_rows if r.get("profile_id"))
             feature_counts: dict = {}
             for r in act_rows:
                 f = r.get("feature", "other")
@@ -2231,6 +2253,7 @@ def message_parent(student_id: str, data: MessageParentRequest, teacher=Depends(
     # account-creation operations and reject parents who are already registered.
     status = "no_email"
     send_error = None
+    provider = configured_email_provider()
     if parent_email:
         try:
             sent = send_teacher_parent_message(
@@ -2243,10 +2266,10 @@ def message_parent(student_id: str, data: MessageParentRequest, teacher=Depends(
             )
             status = "sent" if sent else "failed"
             if not sent:
-                send_error = "Email service is unavailable. Please try again later."
+                send_error = "provider_failed" if provider != "unconfigured" else "not_configured"
         except Exception as exc:
             _log.warning("teacher.parent_message_send_failed", error=str(exc)[:200])
-            send_error = "Email service is unavailable. Please try again later."
+            send_error = "provider_exception"
             status = "failed"
 
     # Log the message attempt
@@ -2257,6 +2280,9 @@ def message_parent(student_id: str, data: MessageParentRequest, teacher=Depends(
         "subject": clean_subject,
         "message": clean_message,
         "status": status,
+        "provider": provider,
+        "error_code": send_error,
+        "sent_at": _now_iso() if status == "sent" else None,
     }
     try:
         admin_client.table("teacher_parent_messages").insert(msg_row).execute()
@@ -2269,13 +2295,20 @@ def message_parent(student_id: str, data: MessageParentRequest, teacher=Depends(
         target_user_id=student_id,
         entity_type="parent_message",
         entity_id="",
-        metadata={"status": status, "has_email": bool(parent_email)},
+        metadata={
+            "status": status,
+            "has_email": bool(parent_email),
+            "provider": provider,
+            "error_code": send_error,
+        },
     )
     return {
         "success": True,
         "status": status,
         "note": "Message sent." if status == "sent"
                 else ("No email address for parent." if status == "no_email"
-                      else f"Failed to send: {send_error}"),
-        "error": send_error,
+                      else "Email service is unavailable. Please try again later."),
+        "error": None if status != "failed" else "Email service is unavailable. Please try again later.",
+        "provider": provider,
+        "error_code": send_error,
     }

@@ -20,7 +20,7 @@ def test_get_profile_api_with_mocked_service(monkeypatch):
     - profile should contain the mocked username and XP details.
     """
 
-    def fake_get_student_profile(username):
+    def fake_get_student_profile(username, profile_id=None):
         return {
             "username": username,
             "xp_points": 100,
@@ -61,7 +61,7 @@ def test_log_activity_api_with_mocked_service(monkeypatch):
     - profile should include the mocked updated activity values.
     """
 
-    def fake_update_student_activity(username, activity_type):
+    def fake_update_student_activity(username, activity_type, profile_id=None):
         return {
             "username": username,
             "activity_type": activity_type,
@@ -105,7 +105,7 @@ def test_log_activity_without_username_uses_the_session(monkeypatch):
     monkeypatch.setattr(
         profile_route,
         "update_student_activity",
-        lambda username, activity_type: {"username": username, "activity_type": activity_type},
+            lambda username, activity_type, profile_id=None: {"username": username, "activity_type": activity_type},
     )
 
     response = client.post(
@@ -127,7 +127,7 @@ def test_log_activity_ignores_a_spoofed_username(monkeypatch):
     monkeypatch.setattr(
         profile_route,
         "update_student_activity",
-        lambda username, activity_type: {"username": username, "activity_type": activity_type},
+            lambda username, activity_type, profile_id=None: {"username": username, "activity_type": activity_type},
     )
 
     response = client.post(

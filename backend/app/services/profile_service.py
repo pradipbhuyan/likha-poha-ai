@@ -30,25 +30,22 @@ def calculate_rank_title(level: int) -> str:
     return "Beginner"
 
 
-def get_student_profile(username: str):
+def get_student_profile(username: str, profile_id: str | None = None):
     """
     Load or initialize a student's gamified profile record.
 
     New students get a default profile row so dashboard/profile views can render
     without a separate onboarding step.
     """
-    response = call_with_retry(
-        lambda: supabase
-        .table("student_profiles")
-        .select("*")
-        .eq("username", username)
-        .execute()
-    )
+    query = supabase.table("student_profiles").select("*")
+    query = query.eq("profile_id", profile_id) if profile_id else query.eq("username", username)
+    response = call_with_retry(lambda: query.execute())
 
     if response.data:
         return response.data[0]
 
     profile = {
+        "profile_id": profile_id,
         "username": username,
         "study_streak_days": 0,
         "lessons_completed": 0,
@@ -67,14 +64,14 @@ def get_student_profile(username: str):
     return profile
 
 
-def update_student_activity(username: str, activity_type: str):
+def update_student_activity(username: str, activity_type: str, profile_id: str | None = None):
     """
     Apply XP, streak, and activity counters for one student action.
 
     Streaks increment only for consecutive active days; activity-specific
     counters are updated alongside the shared XP/level/rank fields.
     """
-    profile = get_student_profile(username)
+    profile = get_student_profile(username, profile_id=profile_id)
 
     today = date.today()
     last_active = profile.get("last_active_date")
@@ -119,15 +116,11 @@ def update_student_activity(username: str, activity_type: str):
     if activity_type == "visual_generated":
         updates["visuals_generated"] = int(profile.get("visuals_generated") or 0) + 1
 
-    response = (
-        supabase
-        .table("student_profiles")
-        .update(updates)
-        .eq("username", username)
-        .execute()
-    )
+    query = supabase.table("student_profiles").update(updates)
+    query = query.eq("profile_id", profile_id) if profile_id else query.eq("username", username)
+    response = query.execute()
 
-    return response.data[0] if response.data else get_student_profile(username)
+    return response.data[0] if response.data else get_student_profile(username, profile_id=profile_id)
 
 
 def get_chapter_progress(username, grade, mode, subject, chapter):

@@ -6,6 +6,26 @@ from app.services.auth_service import admin_client as supabase  # uses service_r
 UNLIMITED_TOKEN_LIMIT = 0
 
 
+def _profile_id_for_username(username: str) -> str | None:
+    """Resolve the immutable owner once; username remains a display snapshot."""
+    try:
+        response = (
+            supabase.table("profiles")
+            .select("id")
+            .eq("username", username)
+            .limit(1)
+            .execute()
+        )
+        return response.data[0]["id"] if response.data else None
+    except Exception:
+        return None
+
+
+def _owned_query(query, username: str):
+    profile_id = _profile_id_for_username(username)
+    return query.eq("profile_id", profile_id) if profile_id else query.eq("username", username)
+
+
 def normalize_token_limit(value) -> int:
     """Normalize token caps so zero means unlimited and negatives never persist."""
     try:
@@ -40,6 +60,7 @@ def log_ai_usage(
     try:
         supabase.table("ai_usage_logs").insert({
             "username": username or "unknown",
+            "profile_id": _profile_id_for_username(username) if username else None,
             "feature": feature,
             "model": model,
             "prompt_tokens": prompt_tokens,
@@ -77,19 +98,13 @@ def get_token_usage(username: str):
     month_start = now.replace(day=1).date().isoformat()
 
     daily_response = (
-        supabase
-        .table("ai_usage_logs")
-        .select("total_tokens")
-        .eq("username", username)
+        _owned_query(supabase.table("ai_usage_logs").select("total_tokens"), username)
         .gte("created_at", f"{today_start}T00:00:00Z")
         .execute()
     )
 
     monthly_response = (
-        supabase
-        .table("ai_usage_logs")
-        .select("total_tokens")
-        .eq("username", username)
+        _owned_query(supabase.table("ai_usage_logs").select("total_tokens"), username)
         .gte("created_at", f"{month_start}T00:00:00Z")
         .execute()
     )
@@ -172,9 +187,7 @@ def get_daily_usage(username: str, feature: str):
     today = datetime.now(timezone.utc).date().isoformat()
 
     result = (
-        supabase.table("ai_usage_logs")
-        .select("*")
-        .eq("username", username)
+        _owned_query(supabase.table("ai_usage_logs").select("*"), username)
         .eq("feature", feature)
         .gte("created_at", f"{today}T00:00:00Z")
         .execute()
@@ -225,9 +238,10 @@ def get_daily_usage_multi(username: str, features: list[str]):
 
     try:
         result = (
-            supabase.table("ai_usage_logs")
-            .select("total_tokens, estimated_cost")
-            .eq("username", username)
+            _owned_query(
+                supabase.table("ai_usage_logs").select("total_tokens, estimated_cost"),
+                username,
+            )
             .in_("feature", features)
             .gte("created_at", f"{today}T00:00:00Z")
             .execute()

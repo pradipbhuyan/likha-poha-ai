@@ -6,7 +6,7 @@ route.
 
 Covers:
   1. _child_week_stats — pure per-child stat computation
-  2. _group_by_username — grouping helper
+  2. _group_by_profile_id — immutable ownership grouping helper
   3. run_weekly_digest_job — end-to-end job behavior (sends, skips, failures)
   4. unsubscribe_email_digest — unauthenticated opt-out route
 """
@@ -18,7 +18,7 @@ import pytest
 
 from app.services.weekly_digest_service import (
     _child_week_stats,
-    _group_by_username,
+    _group_by_profile_id,
     run_weekly_digest_job,
 )
 from app.routes.parent_dashboard import unsubscribe_email_digest
@@ -93,18 +93,18 @@ class TestChildWeekStats:
         assert stats["plan_status_label"] == "Full Access"
 
 
-# ── 2. _group_by_username ──────────────────────────────────────────────────
+# ── 2. _group_by_profile_id ────────────────────────────────────────────────
 
-class TestGroupByUsername:
-    def test_groups_rows_by_username(self):
-        rows = [{"username": "a", "x": 1}, {"username": "b", "x": 2}, {"username": "a", "x": 3}]
-        grouped = _group_by_username(rows)
+class TestGroupByProfileId:
+    def test_groups_rows_by_profile_id(self):
+        rows = [{"profile_id": "a", "x": 1}, {"profile_id": "b", "x": 2}, {"profile_id": "a", "x": 3}]
+        grouped = _group_by_profile_id(rows)
         assert len(grouped["a"]) == 2
         assert len(grouped["b"]) == 1
 
-    def test_skips_rows_with_no_username(self):
-        rows = [{"x": 1}, {"username": None, "x": 2}, {"username": "a", "x": 3}]
-        grouped = _group_by_username(rows)
+    def test_skips_rows_with_no_profile_id(self):
+        rows = [{"x": 1}, {"profile_id": None, "x": 2}, {"profile_id": "a", "x": 3}]
+        grouped = _group_by_profile_id(rows)
         assert list(grouped.keys()) == ["a"]
 
 

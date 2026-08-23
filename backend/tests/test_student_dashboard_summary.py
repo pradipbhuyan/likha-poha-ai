@@ -53,7 +53,7 @@ def test_streak_and_xp_come_from_gamified_profile_not_auth_profile(monkeypatch):
     _patch_common(monkeypatch)
     monkeypatch.setattr(
         sd, "get_student_profile",
-        lambda username: {
+        lambda username, profile_id=None: {
             "study_streak_days": 7,
             "lessons_completed": 4,
             "xp_points": 225,
@@ -80,7 +80,7 @@ def test_missing_gamified_profile_defaults_safely(monkeypatch):
     """A brand-new student with no student_profiles row yet must not crash,
     and must show honest zeros/defaults rather than any fabricated value."""
     _patch_common(monkeypatch)
-    monkeypatch.setattr(sd, "get_student_profile", lambda username: None)
+    monkeypatch.setattr(sd, "get_student_profile", lambda username, profile_id=None: None)
 
     result = sd.get_student_dashboard_summary(student=_student())
 

@@ -179,7 +179,7 @@ def get_child_weak_area_alerts(child_id: str, parent=Depends(require_parent)):
         admin_client
         .table("weak_area_alerts")
         .select("*")
-        .eq("username", child.get("username"))
+        .eq("profile_id", child_id)
         .order("created_at", desc=True)
         .execute()
     )
@@ -726,15 +726,15 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
     # Batch-fetch activity + mock-test rows for ALL children up front (2 queries
     # total) instead of issuing 2 extra queries per child in the loop below —
     # avoids an N+1 pattern once families can have more than 1-2 children.
-    usernames = [c.get("username", "") for c in children_rows if c.get("username")]
+    child_ids = [c.get("id") for c in children_rows if c.get("id")]
     thirty_days_ago = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
 
     activity_all, test_all = [], []
-    if usernames:
+    if child_ids:
         activity_all, activity_err = _safe_query(
             lambda: admin_client.table("ai_usage_logs")
-            .select("username, created_at, feature")
-            .in_("username", usernames)
+            .select("profile_id, username, created_at, feature")
+            .in_("profile_id", child_ids)
             .gte("created_at", thirty_days_ago)
             .order("created_at", desc=True)
             .limit(200)
@@ -745,8 +745,8 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
 
         test_all, test_err = _safe_query(
             lambda: admin_client.table("test_history")
-            .select("username, percentage, raw_score, max_score, subject, chapter, created_at")
-            .in_("username", usernames)
+            .select("profile_id, username, percentage, raw_score, max_score, subject, chapter, created_at")
+            .in_("profile_id", child_ids)
             .order("created_at", desc=True)
             .limit(200)
             .execute()
@@ -756,10 +756,10 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
 
     activity_by_user: dict = {}
     for r in activity_all:
-        activity_by_user.setdefault(r.get("username"), []).append(r)
+        activity_by_user.setdefault(r.get("profile_id"), []).append(r)
     test_by_user: dict = {}
     for r in test_all:
-        test_by_user.setdefault(r.get("username"), []).append(r)
+        test_by_user.setdefault(r.get("profile_id"), []).append(r)
 
     children_summary = []
     all_notifications = []
@@ -783,12 +783,12 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
         feature_badges = _build_feature_badges(features)
 
         # Last active from ai_usage_logs (already batch-fetched above)
-        activity_rows = activity_by_user.get(child_username, [])[:5]
+        activity_rows = activity_by_user.get(child_id, [])[:5]
         last_active = activity_rows[0]["created_at"] if activity_rows else None
         recent_activity = [{"feature": r.get("feature"), "at": r.get("created_at")} for r in activity_rows[:3]]
 
         # Mock test summary from test_history (already batch-fetched above)
-        test_rows = test_by_user.get(child_username, [])[:10]
+        test_rows = test_by_user.get(child_id, [])[:10]
         mock_count = len(test_rows)
         scores = [s for s in (_normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score")) for r in test_rows) if s is not None]
         avg_score = round(sum(scores) / len(scores), 1) if scores else None
@@ -1259,7 +1259,7 @@ def get_academic_insights(child_id: str, parent=Depends(require_parent)):
     test_rows, _ = _safe_query(
         lambda: admin_client.table("test_history")
         .select("percentage, raw_score, max_score, subject, chapter, created_at")
-        .eq("username", username)
+        .eq("profile_id", child_id)
         .order("created_at", desc=True)
         .limit(10)
         .execute()
@@ -1272,7 +1272,7 @@ def get_academic_insights(child_id: str, parent=Depends(require_parent)):
     weak_rows, _ = _safe_query(
         lambda: admin_client.table("weak_area_alerts")
         .select("subject, chapter, best_score")
-        .eq("username", username)
+        .eq("profile_id", child_id)
         .order("created_at", desc=True)
         .limit(5)
         .execute()
@@ -1378,7 +1378,7 @@ def get_progress_report(child_id: str, parent=Depends(require_parent)):
     prog_rows, _ = _safe_query(
         lambda: admin_client.table("student_progress")
         .select("subject, chapter, completed, current_step_index, updated_at")
-        .eq("username", username)
+        .eq("profile_id", child_id)
         .execute()
     )
     completed_ch = [r for r in prog_rows if r.get("completed")]
@@ -1387,7 +1387,7 @@ def get_progress_report(child_id: str, parent=Depends(require_parent)):
     test_rows, _ = _safe_query(
         lambda: admin_client.table("test_history")
         .select("percentage, raw_score, max_score, subject, chapter, created_at")
-        .eq("username", username)
+        .eq("profile_id", child_id)
         .order("created_at", desc=True)
         .limit(20)
         .execute()
@@ -1399,7 +1399,7 @@ def get_progress_report(child_id: str, parent=Depends(require_parent)):
     weak_rows, _ = _safe_query(
         lambda: admin_client.table("weak_area_alerts")
         .select("subject, chapter, best_score")
-        .eq("username", username)
+        .eq("profile_id", child_id)
         .order("created_at", desc=True)
         .limit(5)
         .execute()
@@ -1538,7 +1538,7 @@ def _generate_rule_based_notifications(parent_id: str, children_rows: list) -> l
         act_rows, _ = _safe_query(
             lambda: admin_client.table("ai_usage_logs")
             .select("created_at")
-            .eq("username", username)
+            .eq("profile_id", child_id)
             .gte("created_at", fourteen_days_ago)
             .limit(1)
             .execute()
@@ -1562,7 +1562,7 @@ def _generate_rule_based_notifications(parent_id: str, children_rows: list) -> l
         test_rows, _ = _safe_query(
             lambda: admin_client.table("test_history")
             .select("percentage")
-            .eq("username", username)
+            .eq("profile_id", child_id)
             .limit(10)
             .execute()
         )

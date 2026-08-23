@@ -55,7 +55,7 @@ def get_student_dashboard_summary(student=Depends(require_student)):
     # — profile.get("study_streak_days"/"lessons_completed") was always
     # falling back to its default here since those columns were never
     # selected from that table.
-    gamified_profile = get_student_profile(username) or {}
+    gamified_profile = get_student_profile(username, profile_id=uid) or {}
 
     # ── Subscription / Feature access ────────────────────────────────────────
     sub = resolve_user_subscription(uid)
@@ -68,7 +68,7 @@ def get_student_dashboard_summary(student=Depends(require_student)):
     test_rows, _ = _safe_query(
         lambda: admin_client.table("test_history")
         .select("percentage, raw_score, max_score, subject, chapter, created_at, mode")
-        .eq("username", username)
+        .eq("profile_id", uid)
         .order("created_at", desc=True)
         .limit(50)
         .execute()
@@ -107,7 +107,7 @@ def get_student_dashboard_summary(student=Depends(require_student)):
     prog_rows, _ = _safe_query(
         lambda: admin_client.table("student_progress")
         .select("subject, chapter, completed, current_step_index, updated_at")
-        .eq("username", username)
+        .eq("profile_id", uid)
         .execute()
     )
     completed_ch = [r for r in prog_rows if r.get("completed")]
@@ -140,7 +140,7 @@ def get_student_dashboard_summary(student=Depends(require_student)):
     weak_rows, _ = _safe_query(
         lambda: admin_client.table("weak_area_alerts")
         .select("subject, chapter, best_score, status, created_at")
-        .eq("username", username)
+        .eq("profile_id", uid)
         .order("created_at", desc=True)
         .limit(5)
         .execute()
@@ -151,7 +151,7 @@ def get_student_dashboard_summary(student=Depends(require_student)):
     act_rows, _ = _safe_query(
         lambda: admin_client.table("ai_usage_logs")
         .select("feature, created_at")
-        .eq("username", username)
+        .eq("profile_id", uid)
         .gte("created_at", ninety_ago)
         .order("created_at", desc=True)
         .limit(200)

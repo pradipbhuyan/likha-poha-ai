@@ -281,12 +281,13 @@ def _question_number_sort_key(question_number) -> tuple:
 # the paper itself may live on the Grade 11/12 project. Always use
 # admin_client (primary project, service role) here, never get_content_db.
 
-def save_attempt(username: str, paper: dict, payload: dict) -> dict:
+def save_attempt(username: str, paper: dict, payload: dict, profile_id: str | None = None) -> dict:
     """Persist one Timed Test attempt. Scoring in `payload` was computed
     client-side (MCQ auto-graded, subjective self-marked) — this just
     denormalizes paper metadata and stores the result, no validation."""
     row = {
         "username": username,
+        "profile_id": profile_id,
         "paper_id": paper.get("id"),
         "grade": payload.get("grade") or paper.get("grade"),
         "board": paper.get("board") or BOARD,
@@ -305,14 +306,13 @@ def save_attempt(username: str, paper: dict, payload: dict) -> dict:
     return response.data[0] if response.data else row
 
 
-def list_attempts(username: str, paper_id: str) -> list[dict]:
+def list_attempts(username: str, paper_id: str, profile_id: str | None = None) -> list[dict]:
     """Return this user's past Timed Test attempts for one paper, most
     recent first."""
+    query = admin_client.table("board_paper_attempts").select("*")
+    query = query.eq("profile_id", profile_id) if profile_id else query.eq("username", username)
     response = (
-        admin_client.table("board_paper_attempts")
-        .select("*")
-        .eq("username", username)
-        .eq("paper_id", paper_id)
+        query.eq("paper_id", paper_id)
         .order("submitted_at", desc=True)
         .execute()
     )

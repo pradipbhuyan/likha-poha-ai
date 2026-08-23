@@ -96,12 +96,12 @@ def _child_week_stats(
     }
 
 
-def _group_by_username(rows: list[dict]) -> dict[str, list[dict]]:
+def _group_by_profile_id(rows: list[dict]) -> dict[str, list[dict]]:
     grouped: dict[str, list[dict]] = {}
     for r in rows:
-        username = r.get("username")
-        if username:
-            grouped.setdefault(username, []).append(r)
+        profile_id = r.get("profile_id")
+        if profile_id:
+            grouped.setdefault(profile_id, []).append(r)
     return grouped
 
 
@@ -156,40 +156,40 @@ def run_weekly_digest_job() -> dict[str, Any]:
         if c.get("parent_id"):
             children_by_parent.setdefault(c["parent_id"], []).append(c)
 
-    usernames = [c["username"] for c in children if c.get("username")]
+    child_ids = [c["id"] for c in children if c.get("id")]
 
     test_all: list[dict] = []
     activity_all: list[dict] = []
     weak_all: list[dict] = []
-    if usernames:
+    if child_ids:
         try:
             test_all = (
                 admin_client.table("test_history")
-                .select("username, percentage, raw_score, max_score, subject, chapter, created_at")
-                .in_("username", usernames)
+                .select("profile_id, username, percentage, raw_score, max_score, subject, chapter, created_at")
+                .in_("profile_id", child_ids)
                 .gte("created_at", week_ago)
                 .execute()
             ).data or []
             activity_all = (
                 admin_client.table("ai_usage_logs")
-                .select("username, created_at, feature")
-                .in_("username", usernames)
+                .select("profile_id, username, created_at, feature")
+                .in_("profile_id", child_ids)
                 .gte("created_at", week_ago)
                 .execute()
             ).data or []
             weak_all = (
                 admin_client.table("weak_area_alerts")
-                .select("username, subject, chapter, best_score, created_at")
-                .in_("username", usernames)
+                .select("profile_id, username, subject, chapter, best_score, created_at")
+                .in_("profile_id", child_ids)
                 .gte("created_at", week_ago)
                 .execute()
             ).data or []
         except Exception as exc:
             logger.warning("weekly_digest.activity_query_failed error=%s", exc)
 
-    test_by_user = _group_by_username(test_all)
-    activity_by_user = _group_by_username(activity_all)
-    weak_by_user = _group_by_username(weak_all)
+    test_by_user = _group_by_profile_id(test_all)
+    activity_by_user = _group_by_profile_id(activity_all)
+    weak_by_user = _group_by_profile_id(weak_all)
 
     for parent in parents:
         result["parents_processed"] += 1
@@ -208,9 +208,9 @@ def run_weekly_digest_job() -> dict[str, Any]:
             digest_children = [
                 _child_week_stats(
                     child,
-                    test_by_user.get(child.get("username", ""), []),
-                    activity_by_user.get(child.get("username", ""), []),
-                    weak_by_user.get(child.get("username", ""), []),
+                    test_by_user.get(child["id"], []),
+                    activity_by_user.get(child["id"], []),
+                    weak_by_user.get(child["id"], []),
                 )
                 for child in own_children
             ]

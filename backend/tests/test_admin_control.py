@@ -860,6 +860,21 @@ def test_delete_user_returns_502_when_auth_delete_fails(monkeypatch):
     assert delete_calls == []
 
 
+@pytest.mark.parametrize("email", ["admin@tutor.com", "AKSHITA.TESTSTUDENT@mail.com"])
+def test_delete_user_protects_operational_accounts(monkeypatch, email):
+    fake_client = FakeAdminClient()
+    fake_client.profile_rows = [{
+        "id": "protected-user", "username": "Protected", "role": "student", "email": email,
+    }]
+    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+
+    with pytest.raises(HTTPException) as error:
+        admin_control_route.delete_user("protected-user", admin={"role": "admin"})
+
+    assert error.value.status_code == 409
+    assert fake_client.auth.admin.deleted_users == []
+
+
 def test_delete_user_returns_404_when_profile_not_found(monkeypatch):
     """
     Deleting an unknown user should return a clear 404 error.

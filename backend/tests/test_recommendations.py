@@ -32,25 +32,26 @@ class FakeRecommendationQuery:
 
     def __init__(self, data):
         self.data = data
-        self.filtered_username = None
+        self.filtered_column = None
+        self.filtered_value = None
 
     def select(self, value):
         return self
 
     def eq(self, column, value):
-        if column == "username":
-            self.filtered_username = value
+        self.filtered_column = column
+        self.filtered_value = value
         return self
 
     def order(self, column):
         return self
 
     def execute(self):
-        if self.filtered_username:
+        if self.filtered_column:
             filtered_data = [
                 item
                 for item in self.data
-                if item.get("username") == self.filtered_username
+                if item.get(self.filtered_column) == self.filtered_value
             ]
             return FakeRecommendationResult(filtered_data)
 
@@ -89,16 +90,19 @@ def test_get_recommendations_api_with_mocked_supabase(monkeypatch):
     """
     fake_history = [
         {
+            "profile_id": "test-user-id",
             "username": "test_user",
             "subject": "Science",
             "percentage": 50,
         },
         {
+            "profile_id": "test-user-id",
             "username": "test_user",
             "subject": "Math",
             "percentage": 90,
         },
         {
+            "profile_id": "other-user-id",
             "username": "other_user",
             "subject": "Science",
             "percentage": 10,

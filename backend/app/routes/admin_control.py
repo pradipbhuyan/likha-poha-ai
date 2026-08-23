@@ -358,6 +358,16 @@ def delete_user(user_id: str, admin=Depends(require_admin)):
             detail="User not found.",
         )
 
+    profile = profile_response.data[0]
+    if (profile.get("email") or "").strip().casefold() in {
+        "admin@tutor.com",
+        "akshita.teststudent@mail.com",
+    }:
+        raise HTTPException(
+            status_code=409,
+            detail="This protected operational account cannot be deleted.",
+        )
+
     try:
         admin_client.auth.admin.delete_user(user_id)
     except Exception as exc:

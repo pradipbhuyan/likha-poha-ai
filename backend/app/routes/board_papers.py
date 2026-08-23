@@ -227,7 +227,7 @@ def submit_attempt(paper_id: str, req: SubmitAttemptRequest, user=Depends(get_cu
     if not username:
         raise HTTPException(status_code=400, detail="No username on this account")
 
-    attempt = board_papers_service.save_attempt(username, paper, req.model_dump())
+    attempt = board_papers_service.save_attempt(username, paper, req.model_dump(), profile_id=user.id)
     return {"success": True, "attempt": attempt}
 
 
@@ -238,5 +238,5 @@ def get_attempts(paper_id: str, user=Depends(get_current_user)):
     username = profile.get("username")
     if not username:
         return {"success": True, "attempts": []}
-    attempts = board_papers_service.list_attempts(username, paper_id)
+    attempts = board_papers_service.list_attempts(username, paper_id, profile_id=user.id)
     return {"success": True, "attempts": attempts}

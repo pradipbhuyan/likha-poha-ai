@@ -1235,6 +1235,15 @@ def send_teacher_parent_message(
     )
 
 
+def configured_email_provider() -> str:
+    """Return a non-secret provider label for delivery logs and diagnostics."""
+    if os.getenv("RESEND_API_KEY", "").strip():
+        return "resend"
+    if _get_smtp_config():
+        return "smtp"
+    return "unconfigured"
+
+
 def send_student_invitation_email(
     *,
     to: str,

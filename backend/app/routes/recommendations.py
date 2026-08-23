@@ -17,10 +17,11 @@ def get_recommendations(username: str, _auth=Depends(require_self_by_username)):
     the service-role client, which bypasses row-level security — so the guard
     on this route is the only thing scoping the read.
     """
+    target_profile = _auth.get("target_profile") or _auth.get("profile") or {}
     result = (
         supabase.table("test_history")
         .select("*")
-        .eq("username", username)
+        .eq("profile_id", target_profile.get("id"))
         .order("created_at")
         .execute()
     )

@@ -81,6 +81,22 @@ class TestProfileIdOwnershipMigration:
         assert "payload_versions <> 1" in migration.casefold()
         assert "drop table" not in migration.casefold()
 
+    def test_hardening_enforces_rls_fk_validation_and_orphan_quarantine(self):
+        migration = (
+            Path(__file__).parents[1]
+            / "migrations"
+            / "20260822_profile_id_hardening.sql"
+        ).read_text().casefold()
+
+        assert "can_access_student_profile" in migration
+        assert "is_self_or_admin" in migration
+        assert "enable row level security" in migration
+        assert "validate constraint" in migration
+        assert "profile_id_orphan_counts" in migration
+        assert "check (profile_id is not null) not valid" in migration
+        assert "drop table" not in migration
+        assert "delete from" not in migration
+
 
 def _seed_profile(db, **fields):
     row = {
