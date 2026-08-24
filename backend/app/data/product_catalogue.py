@@ -71,6 +71,14 @@ ALL_GRADES_INCLUDING_HIDDEN: list[str] = list(
     DEFAULT_PRODUCT_CATALOGUE["grades"].keys()
 )
 
+# Grades a teacher may assign to a student they add/invite, or edit a
+# student into. Teachers work with middle/senior school (Grade 5-12) —
+# Grade 1-4 students are managed by parents only, never by a teacher.
+TEACHER_ALLOWED_GRADES: list[str] = [
+    g for g in ALL_GRADES_INCLUDING_HIDDEN
+    if g not in ("Grade 1", "Grade 2", "Grade 3", "Grade 4")
+]
+
 # Only grades visible to students (dynamic — overridden by DB at runtime)
 def get_visible_grades(catalogue: dict | None = None) -> list[str]:
     """Return grades currently visible to students."""

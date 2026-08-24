@@ -211,3 +211,44 @@ def test_teacher_note_requires_assigned_student(monkeypatch):
 
     assert error.value.status_code == 403
     assert error.value.detail == "Student is not assigned to this teacher."
+
+
+def test_create_student_rejects_grade_below_five(monkeypatch):
+    """
+    Teachers only work with Grade 5-12 students — Grade 1-4 is parent-managed
+    only. create-student must reject a grade outside that range before ever
+    touching Supabase auth or the plan-limit check.
+
+    Source under test:
+        backend/app/routes/teacher_dashboard.py
+        create_student()
+    """
+    fake_client = FakeAdminClient()
+    monkeypatch.setattr(teacher_dashboard_route, "admin_client", fake_client)
+    monkeypatch.setattr(teacher_dashboard_route, "is_free_tier_user", lambda uid: True)
+
+    request = teacher_dashboard_route.CreateStudentRequest(
+        username="TinyTot",
+        grade="Grade 3",
+        password="temp1234",
+    )
+
+    with pytest.raises(HTTPException) as error:
+        teacher_dashboard_route.create_student(
+            request,
+            teacher=fake_teacher(),
+        )
+
+    assert error.value.status_code == 400
+    assert "INVALID_GRADE" in error.value.detail
+    assert "Grade 5-12" in error.value.detail
+
+
+def test_create_student_accepts_grade_in_teacher_range(monkeypatch):
+    """Grade 5-12 remains valid for teacher-created students."""
+    from app.data.product_catalogue import TEACHER_ALLOWED_GRADES
+
+    assert "Grade 5" in TEACHER_ALLOWED_GRADES
+    assert "Grade 12" in TEACHER_ALLOWED_GRADES
+    assert "Grade 1" not in TEACHER_ALLOWED_GRADES
+    assert "Grade 4" not in TEACHER_ALLOWED_GRADES

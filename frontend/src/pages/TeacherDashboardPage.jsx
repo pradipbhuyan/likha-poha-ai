@@ -43,7 +43,9 @@ const inp  = { padding:"8px 12px", borderRadius:8, border:"1px solid var(--borde
 const btn1 = { padding:"7px 14px", borderRadius:8, border:"none", background:"#6366f1", color:"#fff", fontFamily:"inherit", fontSize:".82rem", fontWeight:700, cursor:"pointer" };
 const btn2 = { padding:"5px 10px", borderRadius:7, border:"1px solid var(--border,#e5e7eb)", background:"var(--panel,#fff)", fontFamily:"inherit", fontSize:".75rem", cursor:"pointer", color:"var(--text,#374151)" };
 function bsm(c){ c=c||"#6366f1"; return { padding:"4px 9px", borderRadius:6, border:"1px solid "+c, background:c+"18", color:c, fontFamily:"inherit", fontSize:".72rem", fontWeight:600, cursor:"pointer" }; }
-const GRADES = Array.from({length:12},function(_,i){ return "Grade "+(i+1); });
+// Teachers only teach Grade 5-12 — the platform has no Grade 1-4 content,
+// so the Add Student / Invite Student grade pickers must not offer them.
+const GRADES = Array.from({length:8},function(_,i){ return "Grade "+(i+5); });
 const STREAMS = [
   {key:"PCM",label:"Science (PCM)"},
   {key:"PCB",label:"Science (PCB)"},

@@ -666,3 +666,32 @@ class TestDashboardConsistency:
         assert "learning" in result
         # Data consistency invariant: students_used == total_students
         assert result["subscription"]["students_used"] == result["students"]["total_students"]
+
+
+class TestTeacherGradeRange:
+    """
+    Teachers only work with Grade 5-12 students — Grade 1-4 is parent-managed
+    only. Every grade a teacher can assign (add, invite, or edit into) must
+    be rejected below Grade 5.
+    """
+
+    def test_create_invitation_rejects_grade_below_five(self, monkeypatch):
+        monkeypatch.setattr(tc, "is_free_tier_user", lambda uid: True)
+        monkeypatch.setattr(tc, "_count_active_assignments", lambda tid: 0)
+        from app.routes.teacher_classroom import CreateInvitationRequest
+        req = CreateInvitationRequest(student_name="Tiny", grade="Grade 2", email="tiny@example.com")
+        result = create_invitation(req, teacher={"profile": TEACHER_FREE})
+        assert result["success"] is False
+        assert "Grade 5-12" in result["error"]
+
+    def test_update_student_rejects_grade_below_five(self, monkeypatch):
+        from app.routes.teacher_classroom import UpdateStudentRequest, update_student
+        from fastapi import HTTPException
+
+        monkeypatch.setattr(tc, "_safe_one", _mock_safe_one({"id": "assignment-1"}))
+
+        req = UpdateStudentRequest(grade="Grade 4")
+        with pytest.raises(HTTPException) as exc_info:
+            update_student(STUDENT_ID, req, teacher={"profile": TEACHER_FREE})
+        assert exc_info.value.status_code == 400
+        assert "Grade 5-12" in exc_info.value.detail

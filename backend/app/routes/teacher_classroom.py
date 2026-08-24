@@ -664,6 +664,14 @@ def update_student(student_id: str, data: UpdateStudentRequest, teacher=Depends(
     if not updates:
         return {"success": True, "message": "No changes provided."}
 
+    if "grade" in updates:
+        from app.data.product_catalogue import TEACHER_ALLOWED_GRADES  # noqa: PLC0415
+        if updates["grade"] not in TEACHER_ALLOWED_GRADES:
+            raise HTTPException(
+                status_code=400,
+                detail=f"'{updates['grade']}' is not a grade teachers can assign (must be Grade 5-12).",
+            )
+
     if "username" in updates:
         from app.routes.auth import _reject_reserved_username, _reject_taken_username
 
@@ -818,6 +826,15 @@ def create_invitation(data: CreateInvitationRequest, teacher=Depends(require_tea
             "error": f"Student limit reached ({current}/{limit}). "
                      + ("Contact admin to increase limit." if limit == PAID_TEACHER_MAX else "Upgrade to a paid plan for more students."),
             "at_limit": True,
+        }
+
+    # Teachers only work with Grade 5-12 students — Grade 1-4 is
+    # parent-managed only, so a teacher may not invite a student in that range.
+    from app.data.product_catalogue import TEACHER_ALLOWED_GRADES  # noqa: PLC0415
+    if data.grade not in TEACHER_ALLOWED_GRADES:
+        return {
+            "success": False,
+            "error": f"'{data.grade}' is not a grade teachers can assign (must be Grade 5-12).",
         }
 
     # Grade 11/12: stream is required — the student gets access to exactly

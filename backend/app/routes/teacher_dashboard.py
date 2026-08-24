@@ -265,11 +265,14 @@ def create_student(data: CreateStudentRequest, teacher=Depends(require_teacher))
                        f"Choose one of: PCM, PCB, PCMB, Commerce, Humanities",
             )
 
-    from app.data.product_catalogue import ALL_GRADES_INCLUDING_HIDDEN  # noqa: PLC0415
-    if grade not in ALL_GRADES_INCLUDING_HIDDEN:
+    # Teachers only work with Grade 5-12 students — Grade 1-4 is
+    # parent-managed only, so a teacher may not create a student in that range.
+    from app.data.product_catalogue import TEACHER_ALLOWED_GRADES  # noqa: PLC0415
+    if grade not in TEACHER_ALLOWED_GRADES:
         raise HTTPException(
             status_code=400,
-            detail=f"INVALID_GRADE: '{grade}' is not a recognised grade.",
+            detail=f"INVALID_GRADE: '{grade}' is not a grade teachers can assign "
+                   f"(must be Grade 5-12).",
         )
 
     # Username uniqueness remains required for stable display names and older
