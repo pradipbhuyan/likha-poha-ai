@@ -182,11 +182,12 @@ _FEATURE_MATRIX: dict[str, dict] = {
     },
     Feature.EXEMPLAR_RESEARCH: {
         # Available on every plan, because plan is not what gates this feature
-        # — role is. POST /api/teacher/exemplar-research/explain serves any
-        # authenticated user and 403s only free-tier TEACHERS, which is what
-        # SubscriptionPlansPage.jsx advertises (the "Exemplar Research" row
-        # lives in teacherGroups, rendered only when role === "teacher"). It
-        # was never sold to students as a paid feature.
+        # — role is. POST /api/teacher/exemplar-research/explain (and the
+        # matching /api/doubt/answer "Exemplar:" gate) serve any authenticated
+        # STUDENT/parent/admin and 403 EVERY teacher unconditionally, regardless
+        # of subscription plan. SubscriptionPlansPage.jsx no longer advertises
+        # this feature to teachers at all — it is purely a student-facing paid
+        # feature (see StudentSubscriptionView's plan comparison table).
         #
         # This entry previously excluded FREE_TIER, which nothing enforced.
         # The only place it surfaced was _build_feature_badges() in
@@ -202,8 +203,8 @@ _FEATURE_MATRIX: dict[str, dict] = {
         "allowed_plans": None,
         "limited_on": set(),
         # Reached only via the role check at the route, never through the
-        # plan matrix.
-        "upgrade_message": "Exemplar Research requires the Paid Teacher plan.",
+        # plan matrix — teachers are blocked outright by role, not by plan.
+        "upgrade_message": "Exemplar Research is a student-only feature.",
     },
     Feature.MOCK_TEST: {
         "allowed_plans": None,   # all plans may take mock tests

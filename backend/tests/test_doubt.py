@@ -481,9 +481,11 @@ def test_paid_user_never_capped(monkeypatch):
 
 # ── Exemplar Research paywall for teachers ───────────────────────────────────
 # ExemplarResearchPage.jsx reuses this endpoint (chapter="Exemplar: <chapter>").
-# SubscriptionPlansPage.jsx advertises Exemplar Research as paid-teacher-only;
-# previously nothing in this route enforced that for teachers, so a free-tier
-# teacher calling the API directly got full, unrestricted access.
+# Exemplar Research is a student-only feature — SubscriptionPlansPage.jsx no
+# longer advertises it to teachers at all, and EVERY teacher is blocked
+# unconditionally regardless of subscription plan (previously only free-tier
+# teachers were blocked, mirroring an older paid-teacher-feature framing that
+# has since been retired).
 
 def test_free_tier_teacher_is_blocked_from_exemplar_research(monkeypatch):
     _mock_doubt_answer(monkeypatch)
@@ -503,7 +505,9 @@ def test_free_tier_teacher_is_blocked_from_exemplar_research(monkeypatch):
     assert response.json()["detail"]["feature"] == "EXEMPLAR_RESEARCH"
 
 
-def test_paid_teacher_can_use_exemplar_research(monkeypatch):
+def test_paid_teacher_is_also_blocked_from_exemplar_research(monkeypatch):
+    """Exemplar Research is a student-only feature — a teacher on a paid
+    plan is blocked exactly the same as a free-tier teacher."""
     _mock_doubt_answer(monkeypatch)
     monkeypatch.setattr(doubt_route, "is_free_tier_user", lambda user_id: False)
     profile = fake_student_profile(role="teacher", subscription_plan="starter")
@@ -518,8 +522,8 @@ def test_paid_teacher_can_use_exemplar_research(monkeypatch):
         "question": "Explain Exemplar problem on matter.",
     })
 
-    assert response.status_code == 200
-    assert response.json()["success"] is True
+    assert response.status_code == 403
+    assert response.json()["detail"]["feature"] == "EXEMPLAR_RESEARCH"
 
 
 def test_free_tier_teacher_is_not_blocked_from_non_exemplar_doubts(monkeypatch):

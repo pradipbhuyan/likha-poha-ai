@@ -171,21 +171,21 @@ def answer_student_doubt(
     enforce_account_standing(profile, data.mode)
 
     # Exemplar Research (ExemplarResearchPage.jsx) reuses this endpoint with
-    # chapter="Exemplar: <chapter>". It's advertised on the teacher
-    # subscription page (SubscriptionPlansPage.jsx) as a paid-only feature —
-    # gate it here for free-tier teachers so that claim is actually true.
-    # Students/parents are unaffected (this endpoint has never gated Exemplar
-    # content for them; only teacher.py-style role checks are in scope here).
+    # chapter="Exemplar: <chapter>". Exemplar Research is a student-only
+    # feature (see SubscriptionPlansPage.jsx and teacher.py's
+    # /exemplar-research/explain route, both of which no longer advertise or
+    # allow it for teachers of any plan) — gate it here for ALL teachers,
+    # not just free-tier ones. Students/parents are unaffected (this
+    # endpoint has never gated Exemplar content for them; only
+    # teacher.py-style role checks are in scope here).
     if profile.get("role") == "teacher" and (data.chapter or "").strip().lower().startswith("exemplar:"):
-        if (profile.get("subscription_plan") or "free") == "free":
-            raise HTTPException(
-                status_code=403,
-                detail={
-                    "feature": "EXEMPLAR_RESEARCH",
-                    "message": "Exemplar Research requires the Paid Teacher plan.",
-                    "upgrade_message": "Upgrade to the Paid Teacher plan for full Exemplar Research access.",
-                },
-            )
+        raise HTTPException(
+            status_code=403,
+            detail={
+                "feature": "EXEMPLAR_RESEARCH",
+                "message": "Exemplar Research is a student-only feature and is not available to teacher accounts.",
+            },
+        )
 
     # Free tier is DKB-only and never reaches an LLM call — there is no
     # per-topic access gate, so free-tier users may ask about any subject or

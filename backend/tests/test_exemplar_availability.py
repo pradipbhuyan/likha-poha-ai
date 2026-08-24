@@ -92,36 +92,67 @@ class TestAvailabilityRoute:
             "explain route it describes"
         )
 
-    def test_topic_list_is_capped(self):
+    def test_topic_list_is_capped(self, monkeypatch):
         """A malformed or hostile request must not walk the whole bank."""
+        from app.routes import teacher as teacher_route
         from app.routes.teacher import (
             ExemplarAvailabilityRequest,
             get_exemplar_research_availability,
         )
+
+        # Role check now needs a real profile lookup — a student profile
+        # passes straight through to the availability logic under test.
+        monkeypatch.setattr(teacher_route, "get_user_profile", lambda uid: {"role": "student"})
 
         result = get_exemplar_research_availability(
             ExemplarAvailabilityRequest(
                 grade="Grade 8", subject="Maths",
                 topics=[f"topic-{i}" for i in range(500)],
             ),
-            _user=object(),
+            user=type("U", (), {"id": "test-user"})(),
         )
         assert len(result["available"]) == 200
 
-    def test_blank_and_non_string_topics_are_dropped(self):
+    def test_blank_and_non_string_topics_are_dropped(self, monkeypatch):
+        from app.routes import teacher as teacher_route
         from app.routes.teacher import (
             ExemplarAvailabilityRequest,
             get_exemplar_research_availability,
         )
+
+        monkeypatch.setattr(teacher_route, "get_user_profile", lambda uid: {"role": "student"})
 
         result = get_exemplar_research_availability(
             ExemplarAvailabilityRequest(
                 grade="Grade 8", subject="Maths",
                 topics=["Squares and Square Roots", "", "   "],
             ),
-            _user=object(),
+            user=type("U", (), {"id": "test-user"})(),
         )
         assert list(result["available"]) == ["Squares and Square Roots"]
+
+    def test_teacher_is_blocked_from_availability_check(self, monkeypatch):
+        """Exemplar Research is a student-only feature — a teacher calling
+        the availability endpoint must get the same 403 as the explain route."""
+        from fastapi import HTTPException
+        from app.routes import teacher as teacher_route
+        from app.routes.teacher import (
+            ExemplarAvailabilityRequest,
+            get_exemplar_research_availability,
+        )
+
+        monkeypatch.setattr(teacher_route, "get_user_profile", lambda uid: {"role": "teacher"})
+
+        with pytest.raises(HTTPException) as exc_info:
+            get_exemplar_research_availability(
+                ExemplarAvailabilityRequest(
+                    grade="Grade 8", subject="Maths",
+                    topics=["Squares and Square Roots"],
+                ),
+                user=type("U", (), {"id": "test-teacher"})(),
+            )
+        assert exc_info.value.status_code == 403
+        assert exc_info.value.detail["feature"] == "EXEMPLAR_RESEARCH"
 
 
 def test_the_gap_this_exists_for_is_real():

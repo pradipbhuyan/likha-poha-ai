@@ -290,7 +290,7 @@ function getSubjectsForGrade(grade, user) {
     if (stream === "PCM")  return ["Physics", "Chemistry", "Maths"];
     if (stream === "PCB")  return ["Physics", "Chemistry", "Biology"];
     if (stream === "PCMB") return ["Physics", "Chemistry", "Maths", "Biology"];
-    // Admin / teacher / unknown stream — show all
+    // Admin / all-access test account / unknown stream — show all
     return all;
   }
   return ["Maths", "Science"];
@@ -331,16 +331,17 @@ function UpgradeCard({ onClose, onUpgrade }) {
 }
 
 export default function ExemplarResearchPage({ user, setActivePage }) {
-  const isTeacher = user?.role === "teacher";
+  // Student-only paid feature — teachers never reach this page (see App.jsx's
+  // "exemplarResearch" case and the backend 403s in doubt.py / teacher.py).
+  // The all-access QA test account (profiles.is_test_account — see
+  // utils/testAccounts.js, used the same way in ExamPrepPage.jsx) still
+  // browses every grade instead of being locked to its own profile grade.
   const userGrade = user?.grade || "Grade 9";
   const paidAccess = hasPaidAccess(user);
-  // All-access QA accounts (profiles.is_test_account — see utils/testAccounts.js,
-  // used the same way in ExamPrepPage.jsx) browse every grade like a teacher
-  // can, instead of being locked to their own profile grade.
-  const canBrowseAllGrades = isTeacher || isAllAccessTestUser(user);
+  const canBrowseAllGrades = isAllAccessTestUser(user);
 
-  // Grade selector — teachers (and the all-access test account) can view any
-  // grade; other students see only their own
+  // Grade selector — the all-access test account can view any grade; other
+  // students see only their own
   const [selectedGrade, setSelectedGrade] = useState(canBrowseAllGrades ? "Grade 10" : userGrade);
   const isUpperSecondary = (g => g === "Grade 11" || g === "Grade 12")(canBrowseAllGrades ? "Grade 10" : userGrade);
   const [selectedSubject, setSelectedSubject] = useState(isUpperSecondary ? "Physics" : "Maths");
@@ -586,7 +587,7 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
       {/* ── Controls row ── */}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 20 }}>
 
-        {/* Grade picker — teachers (and the all-access test account) see all, other students see their own only */}
+        {/* Grade picker — the all-access test account sees all grades, other students see their own only */}
         {canBrowseAllGrades ? (
           <select value={selectedGrade} onChange={e => { const g = e.target.value; setSelectedGrade(g); setActiveTopic(null); setExplanation(""); setSelectedSubject((g === "Grade 11" || g === "Grade 12") ? "Physics" : "Maths"); }}
             style={{ padding: "8px 12px", borderRadius: 8, border: "1.5px solid var(--border)", background: "var(--card-bg)", color: "var(--text)", fontFamily: "inherit", fontSize: ".85rem" }}>

@@ -284,7 +284,7 @@ class ExemplarAvailabilityRequest(BaseModel):
 @router.post("/exemplar-research/availability")
 def get_exemplar_research_availability(
     data: ExemplarAvailabilityRequest,
-    _user=Depends(get_current_user),
+    user=Depends(get_current_user),
 ):
     """
     Report which topic cards have authored content, so the grid can mark the
@@ -292,12 +292,26 @@ def get_exemplar_research_availability(
 
     168 cards ship against 132 authored explanations, and 36 of that gap is
     permanent: NCERT never published Exemplar books for three of the fourteen
-    sections, so those cards will never fill. Same auth as the explain route —
-    any authenticated user, since students and teachers share this page.
+    sections, so those cards will never fill.
+
+    Exemplar Research is a student-only paid feature (see
+    SubscriptionPlansPage.jsx, which no longer lists it for teachers, and the
+    explain route below) — any authenticated TEACHER is blocked outright,
+    matching the explain route's gate.
 
     Capped at 200 topics per call; the largest real section is far below that,
     and the cap keeps a malformed or hostile request from walking the bank.
     """
+    profile = get_user_profile(user.id) or {}
+    if profile.get("role") == "teacher":
+        raise HTTPException(
+            status_code=403,
+            detail={
+                "feature": "EXEMPLAR_RESEARCH",
+                "message": "Exemplar Research is a student-only feature and is not available to teacher accounts.",
+            },
+        )
+
     topics = [t for t in (data.topics or []) if isinstance(t, str) and t.strip()][:200]
     return {
         "success": True,
@@ -313,29 +327,26 @@ async def get_exemplar_research_explanation(data: ExemplarExplanationRequest, us
     from ExemplarResearchPage.jsx; see
     docs/EXEMPLAR_RESEARCH_CONTENT_STATUS.md for why).
 
-    ExemplarResearchPage.jsx is used by students AND teachers — despite
-    living in teacher.py (added here since it mirrors the lesson-plan-bank
-    route pattern), this route must accept any authenticated user, not
-    require_teacher_or_admin. Only free-tier TEACHERS get an entitlement
-    403 (Exemplar Research is advertised as a paid-only teacher feature on
-    SubscriptionPlansPage.jsx); this exactly mirrors the gate the old
-    /api/doubt/answer route had for Exemplar content — students/parents
-    were never blocked by it. Getting this wrong once already broke the
-    page for real students (403 surfaced to them as a generic "Could not
-    load explanation" in the UI) — see git history/conversation around
-    2026-08-15 for that incident.
+    Exemplar Research is a student-only paid feature — ExemplarResearchPage.jsx
+    is never shown to teachers (see App.jsx's "exemplarResearch" case and
+    SubscriptionPlansPage.jsx, which no longer advertises it for teachers).
+    This route (living in teacher.py since it mirrors the lesson-plan-bank
+    route pattern) accepts any authenticated STUDENT/parent/admin, but blocks
+    every teacher unconditionally — not just free-tier ones. Previously only
+    free-tier teachers were blocked (mirroring an older paid-teacher-feature
+    framing); that framing has been retired, so ANY teacher now gets the 403
+    regardless of subscription plan.
 
     If no explanation has been authored yet for this topic, returns
     success:false with a friendly message instead of generating one live.
     """
     profile = get_user_profile(user.id) or {}
-    if profile.get("role") == "teacher" and _is_free_tier_teacher(profile):
+    if profile.get("role") == "teacher":
         raise HTTPException(
             status_code=403,
             detail={
                 "feature": "EXEMPLAR_RESEARCH",
-                "message": "Exemplar Research requires the Paid Teacher plan.",
-                "upgrade_message": "Upgrade to the Paid Teacher plan for full Exemplar Research access.",
+                "message": "Exemplar Research is a student-only feature and is not available to teacher accounts.",
             },
         )
 

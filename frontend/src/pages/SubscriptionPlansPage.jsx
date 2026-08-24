@@ -847,7 +847,6 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
         ["Listen to Lecture (AI audio)", "2 / day", "Unlimited"],
       ]},
       { title: "Exam Prep & Insights", rows: [
-        ["Exemplar Research (AI explanations)", false, true],
         ["Question Bank (for test papers)", "Available", "Full bank"],
         ["Student Analytics Dashboard", true, true],
       ]},
@@ -867,7 +866,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
             <p className="eyebrow">Teacher Subscription</p>
             <h2>Unlock the full Teacher Toolkit</h2>
             <p>You are currently on the <strong>{isFree ? "Free Tier" : "Paid"}</strong> plan.
-              Upgrade to get unlimited test papers, lesson plans, and full Exemplar access.</p>
+              Upgrade to get unlimited test papers, lesson plans, and lecture audio.</p>
           </div>
           <div className="subscription-current-panel">
             <div className="subscription-current-plan">
@@ -916,8 +915,8 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
               <p>Turn any lesson plan into a ready-to-play AI narrated lecture — no more daily cap on Listen to Lecture.</p>
             </div>
             <div className="premium-card premium-glow-card glow-green">
-              <h3>🔬 Exemplar Research</h3>
-              <p>Full access to AI explanations for hard NCERT Exemplar topics (Class 8–12) to help prep advanced students.</p>
+              <h3>📊 Full Question Bank</h3>
+              <p>Access the complete pre-authored question bank for any CBSE chapter to build richer test papers.</p>
             </div>
           </div>
         </section>

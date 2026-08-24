@@ -1899,6 +1899,12 @@ function App() {
       case "teacherStudentAnalytics":
         return <TeacherStudentAnalyticsPage user={user} />;
       case "exemplarResearch":
+        // Student-only paid feature — never advertised to or usable by
+        // teachers (see SubscriptionPlansPage.jsx, which no longer lists it
+        // for teachers, and the backend 403 in doubt.py / teacher.py). Guard
+        // here too so a stale localStorage-restored page for a teacher who
+        // somehow lands on this key never renders the page.
+        if (user?.role === "teacher") return null;
         return <ExemplarResearchPage user={user} setActivePage={handlePageChange} />;
       case "subscriptionPlans":
         return <SubscriptionPlansPage user={user} onSubscriptionComplete={handleSubscriptionComplete} />;

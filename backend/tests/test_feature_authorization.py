@@ -119,10 +119,10 @@ class TestFreeTierFeatureAccess:
         Exemplar Research is open to every plan — role gates it, not plan.
 
         The route (POST /api/teacher/exemplar-research/explain) serves any
-        authenticated user and 403s only free-tier TEACHERS, which is what
-        SubscriptionPlansPage.jsx advertises: that row lives in teacherGroups,
-        rendered only when role === "teacher". It was never sold to students
-        as paid.
+        authenticated STUDENT/parent/admin and 403s EVERY teacher
+        unconditionally, regardless of plan — Exemplar Research is a
+        student-only feature and SubscriptionPlansPage.jsx no longer
+        advertises it to teachers at all.
 
         The matrix used to exclude FREE_TIER, which nothing enforced. Its one
         visible effect was _build_feature_badges() showing a free-tier parent
