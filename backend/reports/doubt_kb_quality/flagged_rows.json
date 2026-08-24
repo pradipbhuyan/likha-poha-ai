@@ -1,0 +1,13 @@
+[
+  {
+    "id": "e218f1c0-b89b-47af-9ff4-34176228fc57",
+    "grade": "Grade 12",
+    "subject": "Biology",
+    "chapter": "Chapter 5: Molecular Basis of Inheritance",
+    "question": "Based on the chapter's hypothetical transcription unit example (section 5.5.1), if the template strand reads 3'-ATGCATGCATGCATGCATGCATGC-5', write out the coding strand and the resulting mRNA sequence.",
+    "answer_preview": "- The chapter defines the coding strand as having the same sequence as the RNA (except thymine in place of uracil) and being the complement of the template strand, running in the opposite (5'->3') direction.\n- Base-pairing the given template strand (3'-ATGCATGCATGCATGCATGCATGC-5') using A-T and G-C ",
+    "issues": [
+      "duplicated_substrings:['ATGCATGCATGC', 'TACGTACGTACG', 'TACGTACGTACG', 'UACGUACGUACG']"
+    ]
+  }
+]

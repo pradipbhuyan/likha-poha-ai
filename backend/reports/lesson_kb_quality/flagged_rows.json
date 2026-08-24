@@ -1,0 +1,329 @@
+[
+  {
+    "id": "cc03781c-c98a-49a4-b20a-b26c9fec7d17",
+    "grade": "Grade 10",
+    "subject": "Social Science",
+    "chapter": "Text Book - Chapter 5: Consumer Rights",
+    "step_title": "Revision and recap",
+    "question": "Why did the people go to these organisations in these cases?",
+    "answer_preview": "- These verdicts came about because some people persisted\n- These could be answered in writing individually\n- While carrying out each activity you could start with a brainstorming session about the activity\n- Similarly, there are many opportunities for roleplay in this chapter and this could be a us",
+    "issues": [
+      "duplicated_substrings:['NDERST', 'NDERST', 'ANDING', 'ANDING', 'CONOMICCONOMIC']",
+      "page_number_noise"
+    ]
+  },
+  {
+    "id": "c0dfdb26-1650-4c89-9ee5-080306b00651",
+    "grade": "Grade 10",
+    "subject": "Social Science",
+    "chapter": "Text Book - Chapter 5: Consumer Rights",
+    "step_title": "Revision and recap",
+    "question": "What do we understand from this incident?",
+    "answer_preview": "- Any consumer who receives a service in whatever capacity, regardless of age, gender and nature of service, has the right to choose whether to continue to receive the service\n- Suppose you want to buy toothpaste, and the shop owner says that she can sell the toothpaste only\n- When choice is denied ",
+    "issues": [
+      "repeated_phrase:['RefundA']"
+    ]
+  },
+  {
+    "id": "84c9f630-19fe-4350-b30f-09a2cc7a142c",
+    "grade": "Grade 5",
+    "subject": "Maths",
+    "chapter": "Chapter 1: We the Travellers \u2014 I",
+    "step_title": "Worked Examples",
+    "question": "How do we write the number 45,867?",
+    "answer_preview": "- 10,000 10,000 20,000 Twenty thousand 10,000 10,000 10,000 10,000 1,000 1,000 1,000 1,000 1,000 100 100 100 100 100 100 100 100 10 10 10 10 10 10 1 1 1 1 1 1 1 45,867 Forty-five thousand eight hundred sixty-seven",
+    "issues": [
+      "repeated_phrase:['100 100', '10 10', '1 1']",
+      "page_number_noise"
+    ]
+  },
+  {
+    "id": "f979e44a-8b82-46e2-9b54-8c848eb2c048",
+    "grade": "Grade 6",
+    "subject": "Social Science",
+    "chapter": "Text Book - Part 8 - 8. Unity in Diversity, or 'Many in the One'",
+    "step_title": "Revision and recap",
+    "question": "How do we make out the unity underlying the diversity?",
+    "answer_preview": "- India\u2019s unity celebrates diversity because diversity does not divide \u2014 it enriches.\n- Certain food grains are common to almost every part of the country \u2014 cereals such as rice, barley and wheat; millets such as pearl millet (bajra), sorghum (jowar), finger millet (ragi); and pulses such as various",
+    "issues": [
+      "repeated_phrase:['rice']"
+    ]
+  },
+  {
+    "id": "4414ab77-abfd-4a03-b2d0-c756e7da2816",
+    "grade": "Grade 7",
+    "subject": "Maths",
+    "chapter": "Part 2 - Chapter 1: Geometric Twins",
+    "step_title": "Worked examples",
+    "question": "How do we check if two figures are congruent?",
+    "answer_preview": "- We can check if two figures are congruent by using the SSS (Side Side Side) condition. - When two triangles have the same sidelengths, we say that the SSS condition is satisfied. - The SSS condition guarantees congruence.",
+    "issues": [
+      "repeated_phrase:['Side']"
+    ]
+  },
+  {
+    "id": "ddd8eca4-ec84-453d-b57b-0dc513779fcd",
+    "grade": "Grade 7",
+    "subject": "Maths",
+    "chapter": "Part 2 - Chapter 1: Geometric Twins",
+    "step_title": "Revision and recap",
+    "question": "Can you identify any pair of congruent triangles in the figure where AB = AD, CB = CD?",
+    "answer_preview": "- Yes, \u2206ABD and \u2206CBD are congruent triangles.\n- They are congruent because AB = AD and CB = CD.\n- \u2206ABD and \u2206CBD have the same shape and size.\n- They can be superimposed so that one fits exactly over the other.\n- \u2206ABD and \u2206CBD are congruent because they satisfy the SSS (Side Side Side) condition.\n- T",
+    "issues": [
+      "repeated_phrase:['Side']"
+    ]
+  },
+  {
+    "id": "3cb49f45-ce4a-446b-8bfd-2154bea6cd92",
+    "grade": "Grade 7",
+    "subject": "Maths",
+    "chapter": "Part 2 - Chapter 1: Geometric Twins",
+    "step_title": "Revision and recap",
+    "question": "Are \u2206ABC and \u2206XYZ congruent if AB = XY = 6 cm, AC = XZ = 5 cm, and \u2220A = \u2220X = 30\u00b0?",
+    "answer_preview": "- Yes, \u2206ABC and \u2206XYZ are congruent.\n- They are congruent because they satisfy the SSS (Side Side Side) condition.\n- The SSS condition guarantees congruence.\n- \u2206ABC and \u2206XYZ have the same shape and size.\n- They can be superimposed so that one fits exactly over the other.\n- \u2206ABC and \u2206XYZ are congruent",
+    "issues": [
+      "repeated_phrase:['Side']"
+    ]
+  },
+  {
+    "id": "22b52fa2-aa3c-4188-ae92-07de0cfa6d85",
+    "grade": "Grade 7",
+    "subject": "Maths",
+    "chapter": "Part 2 - Chapter 1: Geometric Twins",
+    "step_title": "Revision and recap",
+    "question": "Can you identify a pair of congruent triangles in the figure where AB = CD, AD = BD, and \u2220A = \u2220D?",
+    "answer_preview": "- Yes, \u2206ABD and \u2206CBD are congruent triangles.\n- They are congruent because AB = CD, AD = BD, and \u2220A = \u2220D.\n- \u2206ABD and \u2206CBD have the same shape and size.\n- They can be superimposed so that one fits exactly over the other.\n- \u2206ABD and \u2206CBD are congruent because they satisfy the SSS (Side Side Side) cond",
+    "issues": [
+      "repeated_phrase:['Side']"
+    ]
+  },
+  {
+    "id": "4b0ba94e-d5b8-4fb4-8b19-ab722e6898f5",
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Physical World",
+    "step_title": "Revision and recap",
+    "question": "What is the principle of conservation of mechanical energy?",
+    "answer_preview": "- From the principle of conservation of mechanical energy 1 2 4 2 v GM R GM R GM R GM R 2 \u2212 \u2212 = \u2212 \u2212 5 or\n- 2 1 5 4 2 2 R M G v 2 / 1 5 3 R M G v",
+    "issues": [
+      "repeated_phrase:['GM R']",
+      "short_token_run_x1"
+    ]
+  },
+  {
+    "id": "78a81c6c-abf6-44ca-b079-eb6c4eea73ef",
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Systems of Particles and Rotational Motion",
+    "step_title": "Concept introduction",
+    "question": "Find the scalar product of vectors a and b.",
+    "answer_preview": "- \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 (3 4 5 ) ( 2 3 ) 6 4 15 25 = \u2212 + \u2212 + \u2212 = \u2212 \u2212 \u2212 = \u2212 a b i j k i j k i",
+    "issues": [
+      "repeated_phrase:['\u02c6 \u02c6']",
+      "page_number_noise",
+      "short_token_run_x1"
+    ]
+  },
+  {
+    "id": "ffef8b64-0b29-475c-b2db-c1b09cced4af",
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Systems of Particles and Rotational Motion",
+    "step_title": "Concept introduction",
+    "question": "Find the vector product of vectors a and b.",
+    "answer_preview": "- \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 3 4 5 7 5 2 1 3 \u00d7 = \u2212 = \u2212 \u2212 \u2212 \u2212 i j k a b i j k",
+    "issues": [
+      "repeated_phrase:['\u02c6 \u02c6']",
+      "short_token_run_x1"
+    ]
+  },
+  {
+    "id": "4f0a883a-9336-4418-b2eb-b16ed85b3549",
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Systems of Particles and Rotational Motion",
+    "step_title": "Core explanation",
+    "question": "What is the determinant form to remember for a \u00d7 b?",
+    "answer_preview": "- a \u00d7 b can be put in a determinant form which is easy to remember.\n- \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 x y z x y z a a a b b b \u00d7 = i j k a b",
+    "issues": [
+      "repeated_phrase:['\u02c6 \u02c6']",
+      "short_token_run_x1"
+    ]
+  },
+  {
+    "id": "137e0a1d-4dd3-4058-9849-a04005661e45",
+    "grade": "Grade 11",
+    "subject": "Physics",
+    "chapter": "Systems of Particles and Rotational Motion",
+    "step_title": "Worked examples",
+    "question": "What is the determinant form to remember for a \u00d7 b?",
+    "answer_preview": "- \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 x y z x y z a a a b b b \u00d7 = i j k a b",
+    "issues": [
+      "repeated_phrase:['\u02c6 \u02c6']",
+      "short_token_run_x1"
+    ]
+  },
+  {
+    "id": "dfdbf629-3de7-4764-8d51-dd994ab114a8",
+    "grade": "Grade 12",
+    "subject": "Physics",
+    "chapter": "Electrostatic Potential and Capacitance",
+    "step_title": "Core explanation",
+    "question": "What is the energy stored in a capacitor?",
+    "answer_preview": "- The energy U stored in a capacitor of capacitance C, with charge Q and voltage V is U QV CV Q C = = = 1 2 1 2 1 2 2 2",
+    "issues": [
+      "repeated_phrase:['1 2']",
+      "short_token_run_x1"
+    ]
+  },
+  {
+    "id": "207628ce-53b2-4c79-b1d0-899a5396f487",
+    "grade": "Grade 12",
+    "subject": "Physics",
+    "chapter": "Electrostatic Potential and Capacitance",
+    "step_title": "Exam preparation",
+    "question": "What is the expression for the energy stored in a capacitor of capacitance C, with charge Q and voltage V?",
+    "answer_preview": "- U QV CV Q C = = = 1 2 1 2 1 2 2 2",
+    "issues": [
+      "repeated_phrase:['1 2']"
+    ]
+  },
+  {
+    "id": "81968431-8b5f-422d-a0e5-2b2bc098aafb",
+    "grade": "Grade 12",
+    "subject": "Physics",
+    "chapter": "Nuclei",
+    "step_title": "Worked examples",
+    "question": "What is the work needed to bring \u2013q to D when +q at A,\u2013q at B, and +q at C?",
+    "answer_preview": "- Work needed is given by (charge at D) \u00d7 (potential at D due to charges at A, B and C) = \u2212 + + \u2212 + q q d q d q d 4 4 2 4 0 0 0 \u03c0 \u03c0 \u03c0 \u03b5 \u03b5 \u03b5 = \u2212 \u2212 q d 2 0 4 2 1 2 \u03c0\u03b5",
+    "issues": [
+      "repeated_phrase:['q d']",
+      "short_token_run_x1"
+    ]
+  },
+  {
+    "id": "69733230-005f-435f-8b9e-2e93b5eaa1df",
+    "grade": "Grade 12",
+    "subject": "Mathematics",
+    "chapter": "Integrals",
+    "step_title": "Exam-style problems",
+    "question": "What is the value of the definite integral 3 6 sin cos sin 2 x x dx x \u03c0 \u03c0 + \u222b?",
+    "answer_preview": "- Let I = 3 6 cos 1 tan cos sin x dx dx x x x \u03c0 \u03c0 \u03c0 \u03c0 = + + \u222b \u222b ... (1)\n- Then, by P3, I = 3 6 cos 3 6 cos sin 3 6 3 6 x dx x x \u03c0 \u03c0 \u03c0 \u03c0 + \u2212 \u03c0 \u03c0 \u03c0 \u03c0 + \u2212 + \u2212 \u222b\n- Adding (1) and (2), we get 2I = [ ] 3 3 6 6 3 6 6 dx x \u03c0 \u03c0 \u03c0 \u03c0 \u03c0 \u03c0 \u03c0 = = \u2212 = \u222b",
+    "issues": [
+      "repeated_phrase:['\u03c0 \u03c0']",
+      "short_token_run_x1"
+    ]
+  },
+  {
+    "id": "a57c3f9d-ef64-42b8-997a-076571b18969",
+    "grade": "Grade 12",
+    "subject": "Mathematics",
+    "chapter": "Application of Integrals",
+    "step_title": "Exam preparation",
+    "question": "What is the area of the region bounded by the line y = 3x + 2, the x-axis and the ordinates x = \u20131 and x = 1?",
+    "answer_preview": "- The area of the region bounded by the line y = 3x + 2, the x-axis and the ordinates x = \u20131 and x = 1 is given by the integral 2 1 3 2 1 3 (3 2) (3 2) x dx x dx \u2212 \u2212 \u2212 + + + \u222b \u222b .\n- The area of the region bounded by the line y = 3x + 2, the x-axis and the ordinates x = \u20131 and x = 1 is equal to 1 25 ",
+    "issues": [
+      "page_number_noise",
+      "low_compression_ratio:0.23"
+    ]
+  },
+  {
+    "id": "abbfe73f-a97c-4987-b520-1fd9e1768f88",
+    "grade": "Grade 12",
+    "subject": "Mathematics",
+    "chapter": "Vector Algebra",
+    "step_title": "Concept introduction",
+    "question": "How can the cross product of two vectors be given in component form?",
+    "answer_preview": "- The cross product of two vectors a and b can be given by = 1 2 3 1 2 3 \u02c6 \u02c6 \u02c6 i j k a a a b b b = 1 1 1 2 1 3 2 1 \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 ( ) ( ) ( ) a b i i a b i j a b i k a b j i \u00d7 + \u00d7 + \u00d7 + \u00d7 + 2 2 2 3 \u02c6 \u02c6 \u02c6 \u02c6 ( ) ( ) a b j j a b j k \u00d7 + \u00d7 + 3 1 3 2 3 3 \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 \u02c6 ( ) ( ) ( ) a b k i a b k j a b k k \u00d7",
+    "issues": [
+      "repeated_phrase:['\u02c6 \u02c6', '\u02c6 \u02c6']",
+      "short_token_run_x4"
+    ]
+  },
+  {
+    "id": "a925dad5-be10-4140-b029-d4f4fa8e1f38",
+    "grade": "Grade 12",
+    "subject": "Mathematics",
+    "chapter": "Vector Algebra",
+    "step_title": "Revision and recap",
+    "question": "How do you express 1 cos tan 1 sin x x \u2212 \u2212 , 3 2 2 \u03c0 \u03c0 \u2212 < < x in the simplest form?",
+    "answer_preview": "- We write 2 2 1 \u20131 2 2 cos sin cos 2 2 tan tan 1 sin cos sin 2 2 2 2 x x x x x x x x \u2212 \u2212 = \u2212 + \u2212 = \u20131 2 cos sin cos sin 2 2 2 2 tan cos sin 2 2 x x x x x x + \u2212 \u2212 = \u20131 cos sin 2 2 tan cos sin 2 2 x x x x + \u2212 \u20131 1 tan 2 tan 1 tan 2 x x + = \u2212 = \u20131 tan tan 4 2 4 2 x x \u03c0 \u03c0 + = +",
+    "issues": [
+      "repeated_phrase:['x x', 'x x']",
+      "short_token_run_x2"
+    ]
+  },
+  {
+    "id": "4e44e5e9-029a-40cc-960f-0c6efc073494",
+    "grade": "Grade 12",
+    "subject": "Mathematics",
+    "chapter": "Linear Programming",
+    "step_title": "Exam preparation",
+    "question": "Evaluate 3 6 1 tan dx x \u03c0 \u03c0 + \u222b",
+    "answer_preview": "- Let I = 3 6 cos 3 6 cos sin 3 6 3 6 x dx x x \u03c0 \u03c0 \u03c0 \u03c0 + \u2212 \u03c0 \u03c0 \u03c0 \u03c0 + \u2212 + + \u2212 \u222b\n- 2I = [ ] 3 3 6 6 3 6 6 dx x \u03c0 \u03c0 \u03c0 \u03c0 \u03c0 \u03c0 \u03c0 \u03c0 = = \u2212 = \u222b\n- Hence I = 12 \u03c0",
+    "issues": [
+      "repeated_phrase:['\u03c0 \u03c0']"
+    ]
+  },
+  {
+    "id": "5d522ea0-9eab-4b95-8b49-a43a0fc0bf51",
+    "grade": "Grade 12",
+    "subject": "Biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "step_title": "Core explanation",
+    "question": "If the sequence of one strand of DNA is written as follows: 5'-ATGCATGCATGCATGCATGCATGCATGC-3' Write down the sequence of complementary strand in 5'\u21923' direction.",
+    "answer_preview": "- The complementary strand of DNA is TACGTACGTACGTACGTACGTACGTACGTAC.\n- The sequence of the complementary strand is written in 5'\u21923' direction.",
+    "issues": [
+      "duplicated_substrings:['TACGTACGTACG']"
+    ]
+  },
+  {
+    "id": "72fe02b7-af18-4bba-9e4b-06b789c7a454",
+    "grade": "Grade 12",
+    "subject": "Biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "step_title": "Core explanation",
+    "question": "If the sequence of the coding strand in a transcription unit is written as follows: 5'-ATGCATGCATGCATGCATGCATGCATGC-3' Write down the sequence of mRNA.",
+    "answer_preview": "- The sequence of mRNA is written as 5'-UACGUACGUACGUACGUACGUACGUACGUACGUAC-3'.\n- The sequence of mRNA is complementary to the coding strand.\n- The sequence of mRNA is written in 5'\u21923' direction.",
+    "issues": [
+      "duplicated_substrings:['UACGUACGUACGUACG']"
+    ]
+  },
+  {
+    "id": "a0fe487d-25c2-43d6-ac3d-f3e9f74f1bae",
+    "grade": "Grade 11",
+    "subject": "Mathematics",
+    "chapter": "Chapter 8: Sequences and Series",
+    "step_title": "Concept introduction",
+    "question": "What is the formula for the area of a triangle whose vertices are (x1, y1), (x2, y2), and (x3, y3)?",
+    "answer_preview": "- ( ) ( ) ( ) 1 2 3 2 3 3 1 1 2 1 2 \u2212 + \u2212 + \u2212 y y y y y y x x x .",
+    "issues": [
+      "repeated_phrase:['y y']",
+      "short_token_run_x1"
+    ]
+  },
+  {
+    "id": "1d53dac6-3485-4448-8a0e-3fe9c9439e99",
+    "grade": "Grade 11",
+    "subject": "Chemistry",
+    "chapter": "Chapter 4: Chemical Bonding and Molecular Structure",
+    "step_title": "Concept introduction",
+    "question": "Describe the VSEPR theory and predict the geometry of simple molecules.",
+    "answer_preview": "- The VSEPR model used for predicting the geometrical shapes of molecules is based on the assumption that electron pairs repel each other and, therefore, tend to remain as far apart as possible.\n- According to this model, molecular geometry is determined by repulsions between lone pairs and lone pai",
+    "issues": [
+      "repeated_phrase:['pairs and bonding']"
+    ]
+  },
+  {
+    "id": "67b30a81-932e-43bd-a6a3-63a6d6b796a5",
+    "grade": "Grade 11",
+    "subject": "Chemistry",
+    "chapter": "Chapter 4: Chemical Bonding and Molecular Structure",
+    "step_title": "Concept introduction",
+    "question": "What is the VSEPR model?",
+    "answer_preview": "- The VSEPR model used for predicting the geometrical shapes of molecules is based on the assumption that electron pairs repel each other and, therefore, tend to remain as far apart as possible.\n- Molecular geometry is determined by repulsions between lone pairs and lone pairs; lone pairs and bondin",
+    "issues": [
+      "repeated_phrase:['pairs and bonding']"
+    ]
+  }
+]

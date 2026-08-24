@@ -1,0 +1,59 @@
+id,grade,subject,chapter,step_title,question,issues,answer_preview
+cc03781c-c98a-49a4-b20a-b26c9fec7d17,Grade 10,Social Science,Text Book - Chapter 5: Consumer Rights,Revision and recap,Why did the people go to these organisations in these cases?,"duplicated_substrings:['NDERST', 'NDERST', 'ANDING', 'ANDING', 'CONOMICCONOMIC']; page_number_noise","- These verdicts came about because some people persisted
+- These could be answered in writing individually
+- While carrying out each activity you could start with a brainstorming session about the activity
+- Similarly, there are many opportunities for roleplay in this chapter and this could be a us"
+c0dfdb26-1650-4c89-9ee5-080306b00651,Grade 10,Social Science,Text Book - Chapter 5: Consumer Rights,Revision and recap,What do we understand from this incident?,repeated_phrase:['RefundA'],"- Any consumer who receives a service in whatever capacity, regardless of age, gender and nature of service, has the right to choose whether to continue to receive the service
+- Suppose you want to buy toothpaste, and the shop owner says that she can sell the toothpaste only
+- When choice is denied "
+84c9f630-19fe-4350-b30f-09a2cc7a142c,Grade 5,Maths,Chapter 1: We the Travellers — I,Worked Examples,"How do we write the number 45,867?","repeated_phrase:['100 100', '10 10', '1 1']; page_number_noise","- 10,000 10,000 20,000 Twenty thousand 10,000 10,000 10,000 10,000 1,000 1,000 1,000 1,000 1,000 100 100 100 100 100 100 100 100 10 10 10 10 10 10 1 1 1 1 1 1 1 45,867 Forty-five thousand eight hundred sixty-seven"
+f979e44a-8b82-46e2-9b54-8c848eb2c048,Grade 6,Social Science,"Text Book - Part 8 - 8. Unity in Diversity, or 'Many in the One'",Revision and recap,How do we make out the unity underlying the diversity?,repeated_phrase:['rice'],"- India’s unity celebrates diversity because diversity does not divide — it enriches.
+- Certain food grains are common to almost every part of the country — cereals such as rice, barley and wheat; millets such as pearl millet (bajra), sorghum (jowar), finger millet (ragi); and pulses such as various"
+4414ab77-abfd-4a03-b2d0-c756e7da2816,Grade 7,Maths,Part 2 - Chapter 1: Geometric Twins,Worked examples,How do we check if two figures are congruent?,repeated_phrase:['Side'],"- We can check if two figures are congruent by using the SSS (Side Side Side) condition. - When two triangles have the same sidelengths, we say that the SSS condition is satisfied. - The SSS condition guarantees congruence."
+ddd8eca4-ec84-453d-b57b-0dc513779fcd,Grade 7,Maths,Part 2 - Chapter 1: Geometric Twins,Revision and recap,"Can you identify any pair of congruent triangles in the figure where AB = AD, CB = CD?",repeated_phrase:['Side'],"- Yes, ∆ABD and ∆CBD are congruent triangles.
+- They are congruent because AB = AD and CB = CD.
+- ∆ABD and ∆CBD have the same shape and size.
+- They can be superimposed so that one fits exactly over the other.
+- ∆ABD and ∆CBD are congruent because they satisfy the SSS (Side Side Side) condition.
+- T"
+3cb49f45-ce4a-446b-8bfd-2154bea6cd92,Grade 7,Maths,Part 2 - Chapter 1: Geometric Twins,Revision and recap,"Are ∆ABC and ∆XYZ congruent if AB = XY = 6 cm, AC = XZ = 5 cm, and ∠A = ∠X = 30°?",repeated_phrase:['Side'],"- Yes, ∆ABC and ∆XYZ are congruent.
+- They are congruent because they satisfy the SSS (Side Side Side) condition.
+- The SSS condition guarantees congruence.
+- ∆ABC and ∆XYZ have the same shape and size.
+- They can be superimposed so that one fits exactly over the other.
+- ∆ABC and ∆XYZ are congruent"
+22b52fa2-aa3c-4188-ae92-07de0cfa6d85,Grade 7,Maths,Part 2 - Chapter 1: Geometric Twins,Revision and recap,"Can you identify a pair of congruent triangles in the figure where AB = CD, AD = BD, and ∠A = ∠D?",repeated_phrase:['Side'],"- Yes, ∆ABD and ∆CBD are congruent triangles.
+- They are congruent because AB = CD, AD = BD, and ∠A = ∠D.
+- ∆ABD and ∆CBD have the same shape and size.
+- They can be superimposed so that one fits exactly over the other.
+- ∆ABD and ∆CBD are congruent because they satisfy the SSS (Side Side Side) cond"
+4b0ba94e-d5b8-4fb4-8b19-ab722e6898f5,Grade 11,Physics,Physical World,Revision and recap,What is the principle of conservation of mechanical energy?,repeated_phrase:['GM R']; short_token_run_x1,"- From the principle of conservation of mechanical energy 1 2 4 2 v GM R GM R GM R GM R 2 − − = − − 5 or
+- 2 1 5 4 2 2 R M G v 2 / 1 5 3 R M G v"
+78a81c6c-abf6-44ca-b079-eb6c4eea73ef,Grade 11,Physics,Systems of Particles and Rotational Motion,Concept introduction,Find the scalar product of vectors a and b.,repeated_phrase:['ˆ ˆ']; page_number_noise; short_token_run_x1,- ˆ ˆ ˆ ˆ ˆ ˆ (3 4 5 ) ( 2 3 ) 6 4 15 25 = − + − + − = − − − = − a b i j k i j k i
+ffef8b64-0b29-475c-b2db-c1b09cced4af,Grade 11,Physics,Systems of Particles and Rotational Motion,Concept introduction,Find the vector product of vectors a and b.,repeated_phrase:['ˆ ˆ']; short_token_run_x1,- ˆ ˆ ˆ ˆ ˆ ˆ 3 4 5 7 5 2 1 3 × = − = − − − − i j k a b i j k
+4f0a883a-9336-4418-b2eb-b16ed85b3549,Grade 11,Physics,Systems of Particles and Rotational Motion,Core explanation,What is the determinant form to remember for a × b?,repeated_phrase:['ˆ ˆ']; short_token_run_x1,"- a × b can be put in a determinant form which is easy to remember.
+- ˆ ˆ ˆ ˆ ˆ ˆ x y z x y z a a a b b b × = i j k a b"
+137e0a1d-4dd3-4058-9849-a04005661e45,Grade 11,Physics,Systems of Particles and Rotational Motion,Worked examples,What is the determinant form to remember for a × b?,repeated_phrase:['ˆ ˆ']; short_token_run_x1,- ˆ ˆ ˆ ˆ ˆ ˆ x y z x y z a a a b b b × = i j k a b
+dfdbf629-3de7-4764-8d51-dd994ab114a8,Grade 12,Physics,Electrostatic Potential and Capacitance,Core explanation,What is the energy stored in a capacitor?,repeated_phrase:['1 2']; short_token_run_x1,"- The energy U stored in a capacitor of capacitance C, with charge Q and voltage V is U QV CV Q C = = = 1 2 1 2 1 2 2 2"
+207628ce-53b2-4c79-b1d0-899a5396f487,Grade 12,Physics,Electrostatic Potential and Capacitance,Exam preparation,"What is the expression for the energy stored in a capacitor of capacitance C, with charge Q and voltage V?",repeated_phrase:['1 2'],- U QV CV Q C = = = 1 2 1 2 1 2 2 2
+81968431-8b5f-422d-a0e5-2b2bc098aafb,Grade 12,Physics,Nuclei,Worked examples,"What is the work needed to bring –q to D when +q at A,–q at B, and +q at C?",repeated_phrase:['q d']; short_token_run_x1,"- Work needed is given by (charge at D) × (potential at D due to charges at A, B and C) = − + + − + q q d q d q d 4 4 2 4 0 0 0 π π π ε ε ε = − − q d 2 0 4 2 1 2 πε"
+69733230-005f-435f-8b9e-2e93b5eaa1df,Grade 12,Mathematics,Integrals,Exam-style problems,What is the value of the definite integral 3 6 sin cos sin 2 x x dx x π π + ∫?,repeated_phrase:['π π']; short_token_run_x1,"- Let I = 3 6 cos 1 tan cos sin x dx dx x x x π π π π = + + ∫ ∫ ... (1)
+- Then, by P3, I = 3 6 cos 3 6 cos sin 3 6 3 6 x dx x x π π π π + − π π π π + − + − ∫
+- Adding (1) and (2), we get 2I = [ ] 3 3 6 6 3 6 6 dx x π π π π π π π = = − = ∫"
+a57c3f9d-ef64-42b8-997a-076571b18969,Grade 12,Mathematics,Application of Integrals,Exam preparation,"What is the area of the region bounded by the line y = 3x + 2, the x-axis and the ordinates x = –1 and x = 1?",page_number_noise; low_compression_ratio:0.23,"- The area of the region bounded by the line y = 3x + 2, the x-axis and the ordinates x = –1 and x = 1 is given by the integral 2 1 3 2 1 3 (3 2) (3 2) x dx x dx − − − + + + ∫ ∫ .
+- The area of the region bounded by the line y = 3x + 2, the x-axis and the ordinates x = –1 and x = 1 is equal to 1 25 "
+abbfe73f-a97c-4987-b520-1fd9e1768f88,Grade 12,Mathematics,Vector Algebra,Concept introduction,How can the cross product of two vectors be given in component form?,"repeated_phrase:['ˆ ˆ', 'ˆ ˆ']; short_token_run_x4",- The cross product of two vectors a and b can be given by = 1 2 3 1 2 3 ˆ ˆ ˆ i j k a a a b b b = 1 1 1 2 1 3 2 1 ˆ ˆ ˆ ˆ ˆ ˆ ˆ ˆ ( ) ( ) ( ) a b i i a b i j a b i k a b j i × + × + × + × + 2 2 2 3 ˆ ˆ ˆ ˆ ( ) ( ) a b j j a b j k × + × + 3 1 3 2 3 3 ˆ ˆ ˆ ˆ ˆ ˆ ( ) ( ) ( ) a b k i a b k j a b k k ×
+a925dad5-be10-4140-b029-d4f4fa8e1f38,Grade 12,Mathematics,Vector Algebra,Revision and recap,"How do you express 1 cos tan 1 sin x x − − , 3 2 2 π π − < < x in the simplest form?","repeated_phrase:['x x', 'x x']; short_token_run_x2",- We write 2 2 1 –1 2 2 cos sin cos 2 2 tan tan 1 sin cos sin 2 2 2 2 x x x x x x x x − − = − + − = –1 2 cos sin cos sin 2 2 2 2 tan cos sin 2 2 x x x x x x + − − = –1 cos sin 2 2 tan cos sin 2 2 x x x x + − –1 1 tan 2 tan 1 tan 2 x x + = − = –1 tan tan 4 2 4 2 x x π π + = +
+4e44e5e9-029a-40cc-960f-0c6efc073494,Grade 12,Mathematics,Linear Programming,Exam preparation,Evaluate 3 6 1 tan dx x π π + ∫,repeated_phrase:['π π'],"- Let I = 3 6 cos 3 6 cos sin 3 6 3 6 x dx x x π π π π + − π π π π + − + + − ∫
+- 2I = [ ] 3 3 6 6 3 6 6 dx x π π π π π π π π = = − = ∫
+- Hence I = 12 π"
+5d522ea0-9eab-4b95-8b49-a43a0fc0bf51,Grade 12,Biology,Molecular Basis of Inheritance,Core explanation,If the sequence of one strand of DNA is written as follows: 5'-ATGCATGCATGCATGCATGCATGCATGC-3' Write down the sequence of complementary strand in 5'→3' direction.,duplicated_substrings:['TACGTACGTACG'],"- The complementary strand of DNA is TACGTACGTACGTACGTACGTACGTACGTAC.
+- The sequence of the complementary strand is written in 5'→3' direction."
+72fe02b7-af18-4bba-9e4b-06b789c7a454,Grade 12,Biology,Molecular Basis of Inheritance,Core explanation,If the sequence of the coding strand in a transcription unit is written as follows: 5'-ATGCATGCATGCATGCATGCATGCATGC-3' Write down the sequence of mRNA.,duplicated_substrings:['UACGUACGUACGUACG'],"- The sequence of mRNA is written as 5'-UACGUACGUACGUACGUACGUACGUACGUACGUAC-3'.
+- The sequence of mRNA is complementary to the coding strand.
+- The sequence of mRNA is written in 5'→3' direction."
+a0fe487d-25c2-43d6-ac3d-f3e9f74f1bae,Grade 11,Mathematics,Chapter 8: Sequences and Series,Concept introduction,"What is the formula for the area of a triangle whose vertices are (x1, y1), (x2, y2), and (x3, y3)?",repeated_phrase:['y y']; short_token_run_x1,- ( ) ( ) ( ) 1 2 3 2 3 3 1 1 2 1 2 − + − + − y y y y y y x x x .
+1d53dac6-3485-4448-8a0e-3fe9c9439e99,Grade 11,Chemistry,Chapter 4: Chemical Bonding and Molecular Structure,Concept introduction,Describe the VSEPR theory and predict the geometry of simple molecules.,repeated_phrase:['pairs and bonding'],"- The VSEPR model used for predicting the geometrical shapes of molecules is based on the assumption that electron pairs repel each other and, therefore, tend to remain as far apart as possible.
+- According to this model, molecular geometry is determined by repulsions between lone pairs and lone pai"
+67b30a81-932e-43bd-a6a3-63a6d6b796a5,Grade 11,Chemistry,Chapter 4: Chemical Bonding and Molecular Structure,Concept introduction,What is the VSEPR model?,repeated_phrase:['pairs and bonding'],"- The VSEPR model used for predicting the geometrical shapes of molecules is based on the assumption that electron pairs repel each other and, therefore, tend to remain as far apart as possible.
+- Molecular geometry is determined by repulsions between lone pairs and lone pairs; lone pairs and bondin"
