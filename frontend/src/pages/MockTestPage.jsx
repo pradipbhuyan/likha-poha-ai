@@ -100,6 +100,11 @@ function MockTestPage({ user, setActivePage }) {
 
   const examTopRef    = useRef(null);
   const questionRefs  = useRef({});
+  const scrollTimeoutRef = useRef(null);
+
+  useEffect(() => {
+    return () => clearTimeout(scrollTimeoutRef.current);
+  }, []);
 
   const isPaid            = hasPaidAccess(user);
   const isFreeUser        = user?.role === "student" && !isPaid;
@@ -310,7 +315,9 @@ function MockTestPage({ user, setActivePage }) {
         correct: r.correct, options: r.options || null, explanation: r.explanation || "", section: r.section || "", marks: r.marks }));
     if (wrongItems.length) saveWrongAnswers({ username: user?.username, grade, mode, subject, chapter: chapterLabel, wrongAnswers: wrongItems }).catch(() => {});
 
-    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
+    scrollTimeoutRef.current = setTimeout(() => {
+      if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100);
   }
 
   // ── Navigator helper ──────────────────────────────────────────────────────────
