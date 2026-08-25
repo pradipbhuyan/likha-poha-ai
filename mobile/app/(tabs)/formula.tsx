@@ -23,6 +23,7 @@ import {
   TouchableOpacity, ActivityIndicator,
 } from "react-native";
 import { authFetch } from "../../lib/authFetch";
+import { useUserProfile } from "../../lib/UserProfileContext";
 import { BRAND_COLOR } from "../../constants";
 
 // ── LaTeX → Unicode ───────────────────────────────────────────────────────────
@@ -343,25 +344,15 @@ export default function FormulaScreen() {
   const [error, setError]           = useState("");
   const [search, setSearch]         = useState("");
   const [activeChapter, setChapter] = useState<string | null>(null);
-  // Grade lock
-  const [studentGrade, setStudentGrade]   = useState<string | null>(null);
-  const [hasFullAccess, setHasFullAccess] = useState(false);
+  // Grade lock — enrolled grade + subscription come from the shared
+  // profile context (fetched once at the tabs layout).
+  const { profile, hasFullAccess } = useUserProfile();
+  const studentGrade = profile ? (profile.grade ?? "Grade 9") : null;
   const isGradeLocked = studentGrade !== null && !hasFullAccess;
 
-  // Fetch enrolled grade + subscription on mount
   useEffect(() => {
-    Promise.all([
-      authFetch("/api/auth/me").catch(() => null),
-      authFetch("/api/subscription/features").catch(() => null),
-    ]).then(([me, featureData]) => {
-      const enrolledGrade = me?.grade ?? "Grade 9";
-      setStudentGrade(enrolledGrade);
-      setGrade(enrolledGrade);
-      if (featureData?.has_full_access !== undefined) {
-        setHasFullAccess(featureData.has_full_access ?? false);
-      }
-    });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (studentGrade) setGrade(studentGrade);
+  }, [studentGrade]);
 
   async function loadSheet() {
     setLoading(true); setError(""); setData(null); setChapter(null);

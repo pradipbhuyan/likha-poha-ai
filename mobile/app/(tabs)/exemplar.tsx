@@ -14,6 +14,7 @@ import { Feather } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import Markdown from "react-native-markdown-display";
 import { authFetch } from "../../lib/authFetch";
+import { useUserProfile } from "../../lib/UserProfileContext";
 import { BRAND_COLOR } from "../../constants";
 
 type TopicCard = { topic: string; chapter: string; difficulty: string; hint: string };
@@ -276,13 +277,11 @@ type PracticeQ = { q: string; options: string[]; answer: string; explanation: st
 export default function ExemplarScreen() {
   const router = useRouter();
   const [grade, setGrade]       = useState("Grade 9");
-  const [stream, setStream]     = useState("");
   const [subject, setSubject]   = useState("Maths");
   const [diffFilter, setDiff]   = useState("All");
   const [activeTopic, setActive] = useState<TopicCard | null>(null);
   const [explanation, setExpl]  = useState("");
   const [loading, setLoading]   = useState(false);
-  const [hasAccess, setHasAccess] = useState(false);
   const explCache = useRef<Record<string, string>>({});
 
   const [practiceQs, setPracticeQs] = useState<PracticeQ[]>([]);
@@ -294,12 +293,16 @@ export default function ExemplarScreen() {
   const [searchResult, setSearchResult] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
 
-  useEffect(() => {
-    authFetch("/api/auth/me").then((me: any) => setStream(me?.stream ?? "")).catch(() => {});
-    authFetch("/api/subscription/features").then((d: any) => {
-      setHasAccess(d?.features?.EXEMPLAR_RESEARCH?.allowed ?? d?.has_full_access ?? false);
-    }).catch(() => {});
-  }, []);
+  // Stream + access come from the shared profile context (fetched once at
+  // the tabs layout). hasAccess mirrors backend policy exactly: Exemplar
+  // Research is a paid, student-only feature — EXEMPLAR_RESEARCH.allowed
+  // is backend-computed from subscription plan (see
+  // docs/ACCESS_CONTROL_ARCHITECTURE_BLUEPRINT.md §2/§5 for the fix that
+  // made this flag trustworthy; it used to be true for every non-teacher
+  // regardless of plan).
+  const { profile, features, hasFullAccess } = useUserProfile();
+  const stream = profile?.stream ?? "";
+  const hasAccess = features?.EXEMPLAR_RESEARCH?.allowed ?? hasFullAccess;
 
   const subjects = getSubjectsForGrade(grade, stream).filter(sub => !!TOPIC_CARDS[grade]?.[sub]);
   const allTopics = TOPIC_CARDS[grade]?.[subject] ?? [];

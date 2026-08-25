@@ -17,6 +17,7 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { authFetch } from "../../lib/authFetch";
+import { useUserProfile } from "../../lib/UserProfileContext";
 import { BRAND_COLOR } from "../../constants";
 import { STREAM_SUBJECTS } from "@likhapoha/shared/utils/subjectAccess";
 
@@ -44,28 +45,28 @@ export default function MockTestScreen() {
   const [grade, setGrade] = useState("Grade 9");
   const [subject, setSubject] = useState("Science");
   const [difficulty, setDifficulty] = useState("Medium");
-  const [studentGrade, setStudentGrade] = useState<string | null>(null);
-  const [studentUsername, setStudentUsername] = useState<string>("");
-  const [cbseSubjects, setCbseSubjects] = useState<string[]>([]);
-  const [studentStream, setStudentStream] = useState<string>("");
-  const [hasFullAccess, setHasFullAccess] = useState(false);
+
+  // Enrolled grade/subjects/stream/username + entitlement come from the
+  // shared profile context (fetched once at the tabs layout).
+  const { profile, hasFullAccess } = useUserProfile();
+  const studentGrade = profile?.grade ?? null;
+  const studentUsername = profile?.username ?? "";
+  const cbseSubjects = profile?.cbseSubjects ?? [];
+  const studentStream = profile?.stream ?? "";
 
   useEffect(() => {
-    authFetch("/api/auth/me").then((me: any) => {
-      const sg = me?.grade ?? null;
-      setStudentGrade(sg);
-      if (sg) setGrade(sg);
-      setStudentUsername(me?.username ?? me?.email?.split("@")[0] ?? "student");
-      const subs = me?.cbse_subjects ?? [];
-      setCbseSubjects(subs);
-      setStudentStream(me?.stream ?? "");
-      const effective = subs.length > 0 ? subs : (me?.stream && STREAM_SUBJECTS[me.stream] ? STREAM_SUBJECTS[me.stream] : []);
-      if (effective.length > 0) setSubject(effective[0]);
-    }).catch(() => {});
-    authFetch("/api/subscription/features").then((d: any) => {
-      setHasFullAccess(d?.has_full_access ?? false);
-    }).catch(() => {});
-  }, []); // eslint-disable-line
+    if (studentGrade) setGrade(studentGrade);
+  }, [studentGrade]);
+
+  // Seed the initial subject selection from the enrolled subjects/stream —
+  // a one-time side effect (mirrors the original fetch-once-on-mount
+  // behavior) once the profile resolves.
+  useEffect(() => {
+    if (!profile) return;
+    const effective = cbseSubjects.length > 0 ? cbseSubjects
+      : (studentStream && STREAM_SUBJECTS[studentStream] ? STREAM_SUBJECTS[studentStream] : []);
+    if (effective.length > 0) setSubject(effective[0]);
+  }, [profile]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Grade lock: free users locked to enrolled grade
   const isGradeLocked = studentGrade !== null && !hasFullAccess;

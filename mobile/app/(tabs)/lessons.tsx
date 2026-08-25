@@ -19,6 +19,7 @@ import {
 import Markdown from "react-native-markdown-display";
 import { Feather } from "@expo/vector-icons";
 import { authFetch } from "../../lib/authFetch";
+import { useUserProfile } from "../../lib/UserProfileContext";
 import { BRAND_COLOR } from "../../constants";
 import { STREAM_SUBJECTS } from "@likhapoha/shared/utils/subjectAccess";
 import { normalizeTutorMarkdown } from "@likhapoha/shared/utils/markdownCleanup";
@@ -647,9 +648,6 @@ const sectionStyles = StyleSheet.create({
 export default function LessonsScreen() {
   const [syllabus, setSyllabus] = useState<SyllabusData | null>(null);
   const [grade, setGrade] = useState("Grade 9");
-  const [studentGrade, setStudentGrade] = useState<string | null>(null);
-  const [studentCbseSubjects, setStudentCbseSubjects] = useState<string[]>([]);
-  const [studentStream, setStudentStream] = useState<string>("");
   const [subject, setSubject] = useState("");
   const [chapter, setChapter] = useState("");
   const [stepIndex, setStepIndex] = useState(0);
@@ -660,11 +658,17 @@ export default function LessonsScreen() {
   const [chapterDoc, setChapterDoc] = useState<ChapterDocData | null>(null);
   const [chapterDocLoading, setChapterDocLoading] = useState(false);
   const [loadingSyllabus, setLoadingSyllabus] = useState(true);
-  const [studentUsername, setStudentUsername] = useState("");
   const highestStepReached = useRef(0);
-  // Feature access (from /api/subscription/features — canonical source of truth)
-  const [features, setFeatures] = useState<Record<string, { allowed: boolean; limited: boolean }>>({});
-  const [hasFullAccess, setHasFullAccess] = useState(false);
+
+  // Enrolled grade/subjects/stream/username + feature access all come from
+  // the shared profile context (fetched once at the tabs layout). This is
+  // the one consumer that needs the raw `features` map (not just a single
+  // derived boolean) since it reads Feature.EXEMPLAR specifically.
+  const { profile, features, hasFullAccess } = useUserProfile();
+  const studentGrade = profile ? (profile.grade ?? "Grade 9") : null;
+  const studentCbseSubjects = profile?.cbseSubjects ?? [];
+  const studentStream = profile?.stream ?? "";
+  const studentUsername = profile?.username ?? "";
 
   const steps = LESSON_STEPS_BY_GRADE[grade] ?? LESSON_STEPS_BY_GRADE.default;
   const stepTitle = steps[stepIndex];
@@ -679,46 +683,34 @@ export default function LessonsScreen() {
   const isGradeLocked = studentGrade !== null && !hasFullAccess;
 
   useEffect(() => {
-    // Fetch grade + subscription features + syllabus in parallel
-    Promise.all([
-      authFetch("/api/auth/me").catch(() => null),
-      authFetch("/api/subscription/features").catch(() => null),
-      authFetch("/api/syllabus").catch(() => null),
-    ]).then(([me, featureData, syllabusData]) => {
-      const enrolledGrade = me?.grade ?? "Grade 9";
-      setStudentGrade(enrolledGrade);
-      setGrade(enrolledGrade);
-      setStudentUsername(me?.username ?? me?.email?.split("@")[0] ?? "student");
-      // Store enrolled subjects + stream for Grade 11/12 filtering
-      const enrolledSubjects: string[] = me?.cbse_subjects ?? [];
-      setStudentCbseSubjects(enrolledSubjects);
-      setStudentStream(me?.stream ?? "");
+    // Wait for the shared profile context to resolve (grade/subjects/stream/
+    // features), then fetch the syllabus — the syllabus lookup itself is
+    // page-local (only this screen needs it), so it isn't part of the
+    // shared context, but it depends on knowing the enrolled grade first.
+    if (!profile) return;
+    const enrolledGrade = studentGrade ?? "Grade 9";
+    setGrade(enrolledGrade);
 
-      if (featureData?.features) {
-        setFeatures(featureData.features);
-        setHasFullAccess(featureData.has_full_access ?? false);
-      }
-
+    authFetch("/api/syllabus").catch(() => null).then((syllabusData: any) => {
       if (syllabusData?.syllabus) {
         setSyllabus(syllabusData.syllabus);
         const allSubjects = Object.keys(syllabusData.syllabus?.[enrolledGrade]?.["CBSE"] ?? {});
         // For Grade 11/12: only show enrolled stream subjects
         const isG1112 = enrolledGrade === "Grade 11" || enrolledGrade === "Grade 12";
-        const filteredSubjects = isG1112 && enrolledSubjects.length > 0
-          ? allSubjects.filter(s => enrolledSubjects.some(es => s.toLowerCase().includes(es.toLowerCase()) || es.toLowerCase().includes(s.toLowerCase())))
+        const filteredSubjects = isG1112 && studentCbseSubjects.length > 0
+          ? allSubjects.filter(s => studentCbseSubjects.some(es => s.toLowerCase().includes(es.toLowerCase()) || es.toLowerCase().includes(s.toLowerCase())))
           : allSubjects;
         const firstSubject = filteredSubjects[0] ?? allSubjects[0] ?? "";
         const firstChapter = syllabusData.syllabus?.[enrolledGrade]?.["CBSE"]?.[firstSubject]?.[0] ?? "";
         setSubject(firstSubject);
         setChapter(firstChapter);
       }
-
       setLoadingSyllabus(false);
     }).catch(() => {
       Alert.alert("Error", "Could not load lessons data.");
       setLoadingSyllabus(false);
     });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [profile]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Chapter Journey: try the typed-block doc first; fall back silently ─────
   useEffect(() => {

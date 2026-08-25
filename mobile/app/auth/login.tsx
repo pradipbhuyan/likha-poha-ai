@@ -14,7 +14,7 @@ import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { Feather } from "@expo/vector-icons";
 import { supabase } from "../../lib/supabase";
-import { signInWithGoogle, checkAuthState } from "../../lib/auth";
+import { signInWithGoogle } from "../../lib/auth";
 import { useTheme } from "../../lib/theme";
 import { BRAND_COLOR, API_BASE_URL } from "../../constants";
 
@@ -253,25 +253,17 @@ export default function LoginScreen() {
         setErrorMsg("Sign-in completed but no session was returned. Please try again.");
         return;
       }
-      const data = { session };
-      console.log("[OAuth] session established, user:", data.session.user?.email);
+      console.log("[OAuth] session established, user:", session.user?.email);
 
-      // Check backend to determine if role selection needed
-      try {
-        console.log("[OAuth] calling checkAuthState...");
-        const meData = await checkAuthState(data.session.access_token);
-        console.log("[OAuth] checkAuthState:", JSON.stringify({ needs_role: meData.needs_role_selection, role: meData.role }));
-        if (meData.needs_role_selection) {
-          console.log("[OAuth] routing to role-select");
-          router.replace("/auth/role-select" as any);
-        } else {
-          console.log("[OAuth] routing to /(tabs)");
-          router.replace("/(tabs)");
-        }
-      } catch (e2: any) {
-        console.log("[OAuth] checkAuthState failed:", e2?.message, "→ defaulting to /(tabs)");
-        router.replace("/(tabs)");
-      }
+      // Deliberately no checkAuthState/routing call here. Establishing the
+      // session (setSession/exchangeCodeForSession above) fires Supabase's
+      // onAuthStateChange, which _layout.tsx's root listener is already
+      // subscribed to — it is the single place that decides needs_role vs
+      // ready vs error and routes accordingly (with retry, and a blocking
+      // error screen if the check keeps failing, instead of guessing).
+      // This used to duplicate that check here and route independently,
+      // racing _layout.tsx's own routing decision; on failure it silently
+      // sent every user to /(tabs), skipping role-select for new sign-ups.
     } catch (e: any) {
       const msg: string = e?.message ?? "Google sign-in failed.";
       console.log("[OAuth] OUTER catch:", msg);

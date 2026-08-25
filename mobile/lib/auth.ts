@@ -82,6 +82,37 @@ export async function checkAuthState(accessToken: string) {
   return res.json(); // { profile_complete, needs_role_selection, role, ... }
 }
 
+/**
+ * Same as checkAuthState, but retries with backoff instead of failing once.
+ *
+ * needs_role_selection decides whether a brand-new Google sign-in sees the
+ * role/grade picker or lands straight on the dashboard. A single transient
+ * failure here (cold start, flaky network, the Zscaler WebView conditions
+ * this app already works around elsewhere) used to be silently treated as
+ * "profile complete" by both callers of checkAuthState — landing new users
+ * on the dashboard with the DB's placeholder Grade 9/student values instead
+ * of the picker. Retrying first makes that far less likely; callers must
+ * still decide what to do if every attempt fails (see _layout.tsx's "error"
+ * auth state) rather than defaulting to "proceed".
+ */
+export async function checkAuthStateWithRetry(
+  accessToken: string,
+  { retries = 2, baseDelayMs = 600 }: { retries?: number; baseDelayMs?: number } = {}
+) {
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      return await checkAuthState(accessToken);
+    } catch (e) {
+      lastError = e;
+      if (attempt < retries) {
+        await new Promise(resolve => setTimeout(resolve, baseDelayMs * (attempt + 1)));
+      }
+    }
+  }
+  throw lastError;
+}
+
 /** Complete OAuth profile (assign role). Mirrors POST /api/auth/oauth/complete-profile. */
 export async function completeOAuthProfile(
   accessToken: string,

@@ -181,30 +181,31 @@ _FEATURE_MATRIX: dict[str, dict] = {
         "upgrade_message": "Exemplar access is available with a paid subscription.",
     },
     Feature.EXEMPLAR_RESEARCH: {
-        # Available on every plan, because plan is not what gates this feature
-        # — role is. POST /api/teacher/exemplar-research/explain (and the
-        # matching /api/doubt/answer "Exemplar:" gate) serve any authenticated
-        # STUDENT/parent/admin and 403 EVERY teacher unconditionally, regardless
-        # of subscription plan. SubscriptionPlansPage.jsx no longer advertises
-        # this feature to teachers at all — it is purely a student-facing paid
-        # feature (see StudentSubscriptionView's plan comparison table).
+        # Two independent gates, both real now:
+        #   1. ROLE — every teacher is 403'd unconditionally at the route layer
+        #      (POST /api/teacher/exemplar-research/explain, /availability, and
+        #      the matching /api/doubt/answer "Exemplar:" gate). Not expressed
+        #      here; this matrix has no role axis, only a plan axis.
+        #   2. PLAN — students/parents/admin are gated by subscription plan,
+        #      same paid-plan set as Feature.EXEMPLAR (mirrors the "premium
+        #      content bundle" — Exemplar + Formula Sheet + Board Papers).
+        #      Free-tier students are denied here.
+        # Both gates are enforced route-side via require_feature(); this was
+        # previously allowed_plans=None (every plan, unconditionally) with
+        # the actual free/paid split for students living ONLY in the web
+        # client's hasPaidAccess() check — mobile never replicated that
+        # check, so free-tier mobile students got full functional access.
+        # See docs/ACCESS_CONTROL_ARCHITECTURE_BLUEPRINT.md for the audit.
         #
-        # This entry previously excluded FREE_TIER, which nothing enforced.
-        # The only place it surfaced was _build_feature_badges() in
-        # parent_dashboard.py: a free-tier parent was shown "Exemplar
-        # Research — locked" for a child who could open the page and use all
-        # 132 authored cards. The badge was wrong, not the access.
-        #
-        # Note this is deliberately NOT in _DB_DRIVEN_FEATURES. It used to
-        # share the access_exemplar flag with Feature.EXEMPLAR, which gates
-        # Exemplar *chapters inside Lessons* — a genuinely paid feature. One
-        # admin toggle meant for those chapters would silently have changed
-        # this one too.
-        "allowed_plans": None,
+        # Not in _DB_DRIVEN_FEATURES — it used to share the access_exemplar
+        # flag with Feature.EXEMPLAR (which gates Exemplar chapters *inside*
+        # Lessons); one admin toggle meant for those chapters would silently
+        # have changed this one too.
+        "allowed_plans": {"NANO", "PREMIUM", "PREMIUM_6MONTH", "PREMIUM_ANNUAL",
+                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT",
+                          "EXAM_PREP_CENTER"},
         "limited_on": set(),
-        # Reached only via the role check at the route, never through the
-        # plan matrix — teachers are blocked outright by role, not by plan.
-        "upgrade_message": "Exemplar Research is a student-only feature.",
+        "upgrade_message": "Exemplar Research is available with a paid subscription.",
     },
     Feature.MOCK_TEST: {
         "allowed_plans": None,   # all plans may take mock tests

@@ -102,7 +102,12 @@ class TestAvailabilityRoute:
 
         # Role check now needs a real profile lookup — a student profile
         # passes straight through to the availability logic under test.
+        # require_feature() also needs a real plan lookup (a fake user id
+        # fails DB resolution and defaults to FREE_TIER, now correctly
+        # denied) — stub it out since this test is about the topic cap, not
+        # entitlement.
         monkeypatch.setattr(teacher_route, "get_user_profile", lambda uid: {"role": "student"})
+        monkeypatch.setattr(teacher_route, "require_feature", lambda *a, **k: None)
 
         result = get_exemplar_research_availability(
             ExemplarAvailabilityRequest(
@@ -121,6 +126,7 @@ class TestAvailabilityRoute:
         )
 
         monkeypatch.setattr(teacher_route, "get_user_profile", lambda uid: {"role": "student"})
+        monkeypatch.setattr(teacher_route, "require_feature", lambda *a, **k: None)
 
         result = get_exemplar_research_availability(
             ExemplarAvailabilityRequest(
@@ -153,6 +159,69 @@ class TestAvailabilityRoute:
             )
         assert exc_info.value.status_code == 403
         assert exc_info.value.detail["feature"] == "EXEMPLAR_RESEARCH"
+
+    def test_free_tier_student_is_blocked_from_availability_check(self, monkeypatch):
+        """
+        Exemplar Research is a paid, student-only feature — a free-tier
+        student must be denied here too, not just teachers.
+
+        Previously this route never checked student plan at all (only role),
+        so a free-tier student's request sailed through unconditionally —
+        the actual open door behind mobile's free-tier leak (mobile's own
+        client-side entitlement flag was separately broken, but even a
+        correct client would have had nothing backend-side stopping a direct
+        API call). See docs/ACCESS_CONTROL_ARCHITECTURE_BLUEPRINT.md.
+        """
+        from unittest.mock import patch
+        from fastapi import HTTPException
+        from app.routes import teacher as teacher_route
+        from app.routes.teacher import (
+            ExemplarAvailabilityRequest,
+            get_exemplar_research_availability,
+        )
+
+        monkeypatch.setattr(teacher_route, "get_user_profile", lambda uid: {"role": "student"})
+
+        with patch(
+            "app.services.feature_authorization_service.resolve_user_subscription",
+            return_value={"canonical_plan_key": "FREE_TIER", "plan_name": "Free Tier",
+                          "has_full_access": False, "restrictions": []},
+        ):
+            with pytest.raises(HTTPException) as exc_info:
+                get_exemplar_research_availability(
+                    ExemplarAvailabilityRequest(
+                        grade="Grade 8", subject="Maths",
+                        topics=["Squares and Square Roots"],
+                    ),
+                    user=type("U", (), {"id": "test-free-student"})(),
+                )
+        assert exc_info.value.status_code == 403
+        assert exc_info.value.detail["feature"] == "EXEMPLAR_RESEARCH"
+
+    def test_paid_student_is_allowed_through_availability_check(self, monkeypatch):
+        """The other half of the same gate — a paid student must not be denied."""
+        from unittest.mock import patch
+        from app.routes import teacher as teacher_route
+        from app.routes.teacher import (
+            ExemplarAvailabilityRequest,
+            get_exemplar_research_availability,
+        )
+
+        monkeypatch.setattr(teacher_route, "get_user_profile", lambda uid: {"role": "student"})
+
+        with patch(
+            "app.services.feature_authorization_service.resolve_user_subscription",
+            return_value={"canonical_plan_key": "PREMIUM", "plan_name": "Premium",
+                          "has_full_access": True, "restrictions": []},
+        ):
+            result = get_exemplar_research_availability(
+                ExemplarAvailabilityRequest(
+                    grade="Grade 8", subject="Maths",
+                    topics=["Squares and Square Roots"],
+                ),
+                user=type("U", (), {"id": "test-paid-student"})(),
+            )
+        assert result["available"] == {"Squares and Square Roots": True}
 
 
 def test_the_gap_this_exists_for_is_real():

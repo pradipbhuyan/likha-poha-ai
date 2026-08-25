@@ -12,6 +12,7 @@ import {
 import { Feather } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { authFetch } from "../../lib/authFetch";
+import { useUserProfile } from "../../lib/UserProfileContext";
 import { BRAND_COLOR } from "../../constants";
 
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
@@ -55,24 +56,19 @@ export default function LearnScreen() {
   const [resources, setResources] = useState<Resource[]>([]);
   const [loading, setLoading]   = useState(false);
   const [syllabusLoading, setSyllabusLoading] = useState(true);
-  // Grade lock
-  const [studentGrade, setStudentGrade]   = useState<string | null>(null);
-  const [hasFullAccess, setHasFullAccess] = useState(false);
+  // Grade lock — enrolled grade + subscription come from the shared profile
+  // context (fetched once at the tabs layout); the syllabus fetch below
+  // waits for it to resolve since it needs the enrolled grade.
+  const { profile, hasFullAccess } = useUserProfile();
+  const studentGrade = profile ? (profile.grade ?? "Grade 9") : null;
   const isGradeLocked = studentGrade !== null && !hasFullAccess;
 
-  // Load syllabus + enrolled grade + subscription in parallel
   useEffect(() => {
-    Promise.all([
-      authFetch("/api/syllabus").catch(() => null),
-      authFetch("/api/auth/me").catch(() => null),
-      authFetch("/api/subscription/features").catch(() => null),
-    ]).then(([syllabusRes, me, featureData]) => {
-      const enrolledGrade = me?.grade ?? "Grade 9";
-      setStudentGrade(enrolledGrade);
-      setGrade(enrolledGrade);
-      if (featureData?.has_full_access !== undefined) {
-        setHasFullAccess(featureData.has_full_access ?? false);
-      }
+    if (!profile) return;
+    const enrolledGrade = studentGrade ?? "Grade 9";
+    setGrade(enrolledGrade);
+
+    authFetch("/api/syllabus").catch(() => null).then((syllabusRes: any) => {
       if (syllabusRes?.syllabus) {
         setSyllabus(syllabusRes.syllabus);
         const firstSubject = Object.keys(syllabusRes.syllabus?.[enrolledGrade]?.["CBSE"] ?? {})[0] ?? "";
@@ -81,7 +77,7 @@ export default function LearnScreen() {
         setChapter(firstChapter);
       }
     }).catch(() => {}).finally(() => setSyllabusLoading(false));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [profile]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Load resources when grade/subject/chapter change
   useEffect(() => {

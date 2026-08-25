@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Tabs, useRouter, useSegments } from "expo-router";
 import { Feather } from "@expo/vector-icons";
 import { BRAND_COLOR } from "../../constants";
-import { authFetch } from "../../lib/authFetch";
+import { UserProfileProvider, useUserProfile } from "../../lib/UserProfileContext";
 import ReportIssueModal from "../../components/ReportIssueModal";
 
 // Professional Feather vector icon tab component
@@ -41,21 +41,15 @@ function HeaderLogo() {
   );
 }
 
-export default function TabsLayout() {
-  const [canReportIssues, setCanReportIssues] = useState(false);
+function TabsLayoutInner() {
   const [reportOpen, setReportOpen] = useState(false);
-  const [userGrade, setUserGrade] = useState<string | undefined>(undefined);
   const segments = useSegments();
+  const { profile } = useUserProfile();
+  const canReportIssues = profile?.canReportIssues ?? false;
+  const userGrade = profile?.grade || undefined;
 
   // Current screen = last segment (e.g. "lessons", "doubt", "formula")
   const currentScreen = segments[segments.length - 1] || "home";
-
-  useEffect(() => {
-    authFetch("/api/auth/me").then((me: any) => {
-      setCanReportIssues(!!me?.can_report_issues);
-      setUserGrade(me?.grade || undefined);
-    }).catch(() => {});
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -196,5 +190,13 @@ export default function TabsLayout() {
       </>
     )}
     </>
+  );
+}
+
+export default function TabsLayout() {
+  return (
+    <UserProfileProvider>
+      <TabsLayoutInner />
+    </UserProfileProvider>
   );
 }

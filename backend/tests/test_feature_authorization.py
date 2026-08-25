@@ -114,24 +114,23 @@ class TestFreeTierFeatureAccess:
         assert r["limited"] is False
         assert r["canonical_plan_key"] == "FREE_TIER"
 
-    def test_exemplar_research_allowed_on_free_tier(self):
+    def test_exemplar_research_denied_on_free_tier(self):
         """
-        Exemplar Research is open to every plan — role gates it, not plan.
+        Exemplar Research is gated on TWO axes now: role (teachers blocked
+        outright at the route, not expressed in this matrix) and plan
+        (students/parents/admin gated here, same paid-plan set as EXEMPLAR).
 
-        The route (POST /api/teacher/exemplar-research/explain) serves any
-        authenticated STUDENT/parent/admin and 403s EVERY teacher
-        unconditionally, regardless of plan — Exemplar Research is a
-        student-only feature and SubscriptionPlansPage.jsx no longer
-        advertises it to teachers at all.
-
-        The matrix used to exclude FREE_TIER, which nothing enforced. Its one
-        visible effect was _build_feature_badges() showing a free-tier parent
-        "Exemplar Research — locked" for a child who could open the page and
-        use every authored card.
+        Previously this matrix entry was allowed_plans=None (every plan let
+        through unconditionally), so the free/paid split for students lived
+        only in the web client's hasPaidAccess() check — mobile never
+        replicated that check, so free-tier mobile students got full
+        functional access to a feature sold exclusively as paid. Both axes
+        are backend-enforced now; see
+        docs/ACCESS_CONTROL_ARCHITECTURE_BLUEPRINT.md for the audit that
+        found it.
         """
         r = _auth("user-1", Feature.EXEMPLAR_RESEARCH, "FREE_TIER", False)
-        assert r["allowed"] is True
-        assert r["limited"] is False
+        assert r["allowed"] is False
 
     def test_mock_test_unlimited_denied(self):
         r = _auth("user-1", Feature.MOCK_TEST_UNLIMITED, "FREE_TIER", False)
@@ -408,11 +407,12 @@ class TestFeatureMatrixParity:
         assert matrix["allowed_plans"] is not None, "Exemplar should have restricted plans"
         assert "FREE_TIER" not in matrix["allowed_plans"]
 
-    def test_exemplar_research_open_to_all_plans(self):
-        """allowed_plans=None means every plan; the role check lives at the route."""
+    def test_exemplar_research_plan_gate_mirrors_exemplar(self):
+        """Same paid-plan set as EXEMPLAR — the role check lives at the route, separately."""
         from app.services.feature_authorization_service import _FEATURE_MATRIX
         matrix = _FEATURE_MATRIX[Feature.EXEMPLAR_RESEARCH]
-        assert matrix["allowed_plans"] is None
+        assert matrix["allowed_plans"] == _FEATURE_MATRIX[Feature.EXEMPLAR]["allowed_plans"]
+        assert "FREE_TIER" not in matrix["allowed_plans"]
 
     def test_exemplar_research_does_not_share_a_db_flag_with_exemplar(self):
         """
@@ -484,17 +484,20 @@ class TestCriticalBugRegression:
         r = _auth("user-bug3", Feature.EXEMPLAR, "FREE_TIER", False)
         assert r["allowed"] is False, "BUG 3 NOT FIXED: FREE_TIER must not access Exemplar"
 
-    def test_bug3_scope_is_exemplar_chapters_not_exemplar_research(self):
+    def test_bug3_exemplar_chapters_and_exemplar_research_are_both_paid_but_independent(self):
         """
         BUG 3 was about Exemplar chapters in Lessons, which remain paid.
 
-        Exemplar Research was swept into the same matrix rule at the time, but
-        it is a different feature with a different gate (role, at the route)
-        and was never advertised to students as paid. Keeping it denied here
-        only produced a wrong "locked" badge on the parent dashboard.
+        Exemplar Research was swept into the same matrix rule at the time by
+        sharing EXEMPLAR's DB-driven flag — see
+        test_exemplar_research_does_not_share_a_db_flag_with_exemplar. That
+        coupling was the bug, not the fact that both happen to be paid: they
+        must move independently (one admin toggle for the paid Lessons
+        chapters must not silently affect the other), even though today both
+        correctly deny FREE_TIER.
         """
         r = _auth("user-bug3", Feature.EXEMPLAR_RESEARCH, "FREE_TIER", False)
-        assert r["allowed"] is True
+        assert r["allowed"] is False
 
     def test_bug4_mock_test_inverted_check_free_user_limited(self):
         """

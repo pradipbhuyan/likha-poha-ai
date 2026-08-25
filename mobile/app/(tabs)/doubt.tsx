@@ -19,6 +19,7 @@ import {
 import Markdown from "react-native-markdown-display";
 import { Feather } from "@expo/vector-icons";
 import { authFetch } from "../../lib/authFetch";
+import { useUserProfile } from "../../lib/UserProfileContext";
 import { BRAND_COLOR } from "../../constants";
 import { STREAM_SUBJECTS as STREAM_SUBJECTS_DOUBT } from "@likhapoha/shared/utils/subjectAccess";
 
@@ -170,10 +171,6 @@ const SUBJECTS = ["Mathematics","Science","Social Science","English","Hindi","Ph
 export default function DoubtScreen() {
   const [grade, setGrade]         = useState("Grade 9");
   const [subject, setSubject]     = useState("");
-  const [studentGrade, setStudentGrade] = useState<string | null>(null);
-  const [cbseSubjects, setCbseSubjects] = useState<string[]>([]);
-  const [studentStream, setStudentStream] = useState<string>("");
-  const [hasFullAccess, setHasFullAccess] = useState(false);
   const [question, setQuestion]   = useState("");
   const [answerStyle, setStyle]   = useState("simple");
   const [answer, setAnswer]       = useState("");
@@ -187,20 +184,16 @@ export default function DoubtScreen() {
   const [showHistory, setShowHist] = useState(false);
   const scrollRef = useRef<ScrollView>(null);
 
-  // Load student grade + subjects on mount
+  // Student grade + subjects + entitlement come from the shared profile
+  // context (fetched once at the tabs layout) — seed the local grade
+  // selector from it once it resolves.
+  const { profile, hasFullAccess } = useUserProfile();
+  const studentGrade = profile?.grade ?? null;
+  const cbseSubjects = profile?.cbseSubjects ?? [];
+  const studentStream = profile?.stream ?? "";
   useEffect(() => {
-    authFetch("/api/auth/me").then((me: any) => {
-      const sg = me?.grade ?? null;
-      setStudentGrade(sg);
-      if (sg) setGrade(sg);
-      const subs = me?.cbse_subjects ?? [];
-      setCbseSubjects(subs);
-      setStudentStream(me?.stream ?? "");
-    }).catch(() => {});
-    authFetch("/api/subscription/features").then((d: any) => {
-      setHasFullAccess(d?.has_full_access ?? false);
-    }).catch(() => {});
-  }, []); // eslint-disable-line
+    if (studentGrade) setGrade(studentGrade);
+  }, [studentGrade]);
 
   // Grade lock for free users
   const isGradeLocked = studentGrade !== null && !hasFullAccess;

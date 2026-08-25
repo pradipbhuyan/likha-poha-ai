@@ -526,6 +526,66 @@ def test_paid_teacher_is_also_blocked_from_exemplar_research(monkeypatch):
     assert response.json()["detail"]["feature"] == "EXEMPLAR_RESEARCH"
 
 
+def test_free_tier_student_is_blocked_from_exemplar_research(monkeypatch):
+    """
+    Exemplar Research is a paid, student-only feature — a free-tier student
+    must be denied here too, not just teachers.
+
+    Previously this endpoint never checked student plan at all (only role),
+    so a free-tier student's request sailed through unconditionally — the
+    actual open door behind mobile's free-tier leak. See
+    docs/ACCESS_CONTROL_ARCHITECTURE_BLUEPRINT.md.
+    """
+    from unittest.mock import patch
+
+    _mock_doubt_answer(monkeypatch)
+    profile = fake_student_profile(role="student", subscription_plan="free")
+    patch_route_profile(monkeypatch, doubt_route, profile)
+
+    with patch(
+        "app.services.feature_authorization_service.resolve_user_subscription",
+        return_value={"canonical_plan_key": "FREE_TIER", "plan_name": "Free Tier",
+                      "has_full_access": False, "restrictions": []},
+    ):
+        response = client.post("/api/doubt/answer", json={
+            "username": "test_user",
+            "grade": "Grade 9",
+            "mode": "CBSE",
+            "subject": "Science",
+            "chapter": "Exemplar: Matter",
+            "question": "Explain Exemplar problem on matter.",
+        })
+
+    assert response.status_code == 403
+    assert response.json()["detail"]["feature"] == "EXEMPLAR_RESEARCH"
+
+
+def test_paid_student_is_allowed_through_exemplar_research(monkeypatch):
+    """The other half of the same gate — a paid student must not be denied."""
+    from unittest.mock import patch
+
+    _mock_doubt_answer(monkeypatch)
+    profile = fake_student_profile(role="student", subscription_plan="starter")
+    patch_route_profile(monkeypatch, doubt_route, profile)
+
+    with patch(
+        "app.services.feature_authorization_service.resolve_user_subscription",
+        return_value={"canonical_plan_key": "PREMIUM", "plan_name": "Premium",
+                      "has_full_access": True, "restrictions": []},
+    ):
+        response = client.post("/api/doubt/answer", json={
+            "username": "test_user",
+            "grade": "Grade 9",
+            "mode": "CBSE",
+            "subject": "Science",
+            "chapter": "Exemplar: Matter",
+            "question": "Explain Exemplar problem on matter.",
+        })
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True
+
+
 def test_free_tier_teacher_is_not_blocked_from_non_exemplar_doubts(monkeypatch):
     """The Exemplar gate must only apply to Exemplar-prefixed chapters — a free
     teacher's regular Ask Doubt use is untouched (still subject to the normal

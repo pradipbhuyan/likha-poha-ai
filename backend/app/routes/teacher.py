@@ -32,6 +32,7 @@ from app.services.exemplar_research_bank_service import (
     get_available_topics,
     get_exemplar_explanation,
 )
+from app.services.feature_authorization_service import require_feature, Feature
 from app.services.teacher_lesson_plan_service import (
     get_teacher_edit,
     save_teacher_edit,
@@ -297,7 +298,10 @@ def get_exemplar_research_availability(
     Exemplar Research is a student-only paid feature (see
     SubscriptionPlansPage.jsx, which no longer lists it for teachers, and the
     explain route below) — any authenticated TEACHER is blocked outright,
-    matching the explain route's gate.
+    matching the explain route's gate. Free-tier students/parents are then
+    blocked by require_feature()'s plan check (see feature_authorization_service.py
+    — Feature.EXEMPLAR_RESEARCH is gated to the same paid-plan set as
+    Feature.EXEMPLAR). Both checks are backend-enforced; no client is trusted.
 
     Capped at 200 topics per call; the largest real section is far below that,
     and the cap keeps a malformed or hostile request from walking the bank.
@@ -311,6 +315,7 @@ def get_exemplar_research_availability(
                 "message": "Exemplar Research is a student-only feature and is not available to teacher accounts.",
             },
         )
+    require_feature(user.id, Feature.EXEMPLAR_RESEARCH)
 
     topics = [t for t in (data.topics or []) if isinstance(t, str) and t.strip()][:200]
     return {
@@ -337,6 +342,14 @@ async def get_exemplar_research_explanation(data: ExemplarExplanationRequest, us
     framing); that framing has been retired, so ANY teacher now gets the 403
     regardless of subscription plan.
 
+    Free-tier students/parents are then blocked by require_feature()'s plan
+    check — previously this feature's matrix entry was allowed_plans=None
+    (every plan let through unconditionally), so the free/paid split for
+    students existed only in the web client's hasPaidAccess() check. Mobile
+    never replicated that check, so free-tier mobile students got full
+    functional access. Both checks are backend-enforced now; see
+    docs/ACCESS_CONTROL_ARCHITECTURE_BLUEPRINT.md for the audit trail.
+
     If no explanation has been authored yet for this topic, returns
     success:false with a friendly message instead of generating one live.
     """
@@ -349,6 +362,7 @@ async def get_exemplar_research_explanation(data: ExemplarExplanationRequest, us
                 "message": "Exemplar Research is a student-only feature and is not available to teacher accounts.",
             },
         )
+    require_feature(user.id, Feature.EXEMPLAR_RESEARCH)
 
     explanation = get_exemplar_explanation(data.grade, data.subject, data.topic)
     if not explanation:
