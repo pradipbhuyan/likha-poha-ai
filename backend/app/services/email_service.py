@@ -659,6 +659,98 @@ def send_teacher_signup_admin_notification(name: str, email: str, school: str) -
     _log.info("email_service.teacher_admin_notification_queued", teacher_email=email_clean, school=school_clean)
 
 
+def send_new_registration_admin_notification(
+    name: str,
+    email: str,
+    role: str,
+    grade: str = "",
+) -> None:
+    """
+    Notify the team inbox whenever a new student or parent registers, so the
+    team has visibility into every signup as it happens.
+
+    role must be "student" or "parent" — teacher signups are already covered
+    by send_teacher_signup_admin_notification() (different approval workflow).
+
+    Reuses the same branded shell / fire-and-forget send as every other email
+    in this module. Never raises — callers wrap this in try/except anyway,
+    but a failure here must never be able to block a signup.
+    """
+    if not _ADMIN_NOTIFICATION_EMAIL:
+        return
+
+    role_clean = (role or "").strip().lower()
+    if role_clean not in ("student", "parent"):
+        return
+
+    name_clean = (name or "").strip() or "(not provided)"
+    email_clean = (email or "").strip() or "(not provided)"
+    role_label = role_clean.capitalize()
+    grade_clean = (grade or "").strip()
+    first_name = (name or "there").split()[0]
+
+    grade_row = (
+        f"""
+  <tr style="border-top:1px solid #e5e7eb">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b">Grade</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{grade_clean}</td>
+  </tr>"""
+        if grade_clean else ""
+    )
+
+    body = f"""
+<p style="margin:0 0 16px;font-size:20px;font-weight:900;letter-spacing:-0.02em">
+  New {role_label.lower()} registration &#128276;
+</p>
+<p style="margin:0 0 16px;font-size:15px;line-height:1.7">
+  <strong>{name_clean}</strong> just created a new {role_label.lower()} account.
+</p>
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+       style="margin:8px 0 16px;border-radius:10px;overflow:hidden;border:1px solid #e5e7eb">
+  <tr style="background:#f8fafc">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b;width:110px">Name</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{name_clean}</td>
+  </tr>
+  <tr style="border-top:1px solid #e5e7eb">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b">Email</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{email_clean}</td>
+  </tr>
+  <tr style="border-top:1px solid #e5e7eb;background:#f8fafc">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b">Role</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{role_label}</td>
+  </tr>{grade_row}
+</table>
+"""
+
+    html = _email_shell(
+        body_html=body,
+        cta_url=_FRONTEND_URL,
+        cta_label="Open Admin Panel →",
+    )
+
+    text_lines = [
+        f"New {role_label.lower()} registration: {name_clean}",
+        f"Email: {email_clean}",
+        f"Role: {role_label}",
+    ]
+    if grade_clean:
+        text_lines.append(f"Grade: {grade_clean}")
+    text_lines.append(f"\n{_FRONTEND_URL}\n")
+    text = "\n".join(text_lines)
+
+    subject_suffix = f" — {grade_clean}" if grade_clean else ""
+    _send_async(
+        to=_ADMIN_NOTIFICATION_EMAIL,
+        subject=f"New {role_label.lower()} registration: {first_name}{subject_suffix}",
+        html=html,
+        text=text,
+    )
+    _log.info(
+        "email_service.new_registration_admin_notification_queued",
+        role=role_clean, email=email_clean, grade=grade_clean,
+    )
+
+
 # ── Public API ────────────────────────────────────────────────────────────────
 
 def send_welcome_email(
@@ -709,6 +801,11 @@ def send_welcome_email(
             send_teacher_signup_admin_notification(name=name, email=to, school=school)
         except Exception:
             _log.warning("email_service.teacher_admin_notification_failed", to=to, exc_info=True)
+    elif role_clean in ("student", "parent"):
+        try:
+            send_new_registration_admin_notification(name=name, email=to, role=role_clean, grade=g)
+        except Exception:
+            _log.warning("email_service.new_registration_admin_notification_failed", to=to, exc_info=True)
 
     plan_badge = ""
     if is_paid and plan_name:
