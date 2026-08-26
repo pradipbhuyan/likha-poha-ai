@@ -424,8 +424,19 @@ describe("No subscription gate blocks users", () => {
     expect(needsSubscriptionGate(admin, null)).toBe(false);
   });
 
-  test("parent-linked child is never blocked", () => {
+  test("REGRESSION: a parent-linked child with no paid access still needs the gate", () => {
+    // A previous version of needsSubscriptionGate() returned false for ANY
+    // user with parentId set, regardless of whether the parent had actually
+    // paid — bypassing the gate for every child unconditionally. Fixed: a
+    // child now goes through the same resolver as everyone else, so a child
+    // of a free-plan parent (no accessCbse, no offer) still resolves to
+    // ACCESS_SOURCE.NONE and correctly needs the gate.
     const child = { ...NEW_USER_NO_OFFER, parentId: "parent-uuid-xyz" };
-    expect(needsSubscriptionGate(child, null)).toBe(false);
+    expect(needsSubscriptionGate(child, null)).toBe(true);
+  });
+
+  test("a parent-linked child whose parent DID pay is not gated", () => {
+    const paidChild = { ...NEW_USER_NO_OFFER, parentId: "parent-uuid-xyz", accessCbse: true };
+    expect(needsSubscriptionGate(paidChild, null)).toBe(false);
   });
 });

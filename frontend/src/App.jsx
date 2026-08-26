@@ -113,7 +113,8 @@ import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 
 import "./App.css";
-import { resolveSubscription, ACCESS_SOURCE } from "./utils/resolveSubscription";
+import { resolveSubscription, ACCESS_SOURCE, computeDaysRemaining } from "./utils/resolveSubscription";
+import { isPageBlockedForRole } from "./utils/pageAccess";
 
 const PAGE_META = {
   dashboard: {
@@ -1086,10 +1087,21 @@ function App() {
         }
       } catch { /* non-critical */ }
 
+      // subscription_days_remaining / subscription_expiring_soon aren't raw
+      // profiles columns — /api/auth/profile computes them server-side
+      // (see auth.py's get_my_profile). This query reads the profiles table
+      // directly via Supabase, so they're derived here the same way, from
+      // the same subscription_expires_at this query does return.
+      const { daysRemaining: subscriptionDaysRemaining, expiringSoon: subscriptionExpiringSoon } =
+        computeDaysRemaining(profile.subscription_expires_at);
+
       const updatedUser = {
         ...user,
         accessToken: session.access_token,
         subscriptionPlan: profile.subscription_plan || "free",
+        subscriptionExpiresAt: profile.subscription_expires_at || null,
+        subscriptionDaysRemaining,
+        subscriptionExpiringSoon,
         accessCbse: !!profile.access_cbse,
         isTestAccount: !!profile.is_test_account,
         accessSofScience: !!profile.access_sof_science,
@@ -1807,6 +1819,7 @@ function App() {
 
   function renderPage() {
     /** Render the active page component while keeping all routing state inside the app shell. */
+    if (isPageBlockedForRole(activePage, user?.role)) return null;
     switch (activePage) {
       case "dashboard":
         return <StudentDashboardPage user={user} setActivePage={handlePageChange} />;

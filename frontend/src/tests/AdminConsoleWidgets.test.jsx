@@ -12,7 +12,7 @@
  * No secrets, API keys, or raw metadata in any mock response.
  */
 
-import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
 import AdminQuickActions from "../components/AdminQuickActions";

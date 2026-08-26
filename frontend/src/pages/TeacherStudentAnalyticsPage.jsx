@@ -4,15 +4,9 @@ import {
   XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid,
 } from "recharts";
 import { getUserHistory } from "../api/analytics";
-import { getTeacherDashboardSummary } from "../api/teacherDashboard";
 import { GraduationCap, TrendingUp, BookOpen, History } from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
-
-const SUBJECT_COLORS = [
-  "#3b82f6","#10b981","#f59e0b","#ef4444",
-  "#8b5cf6","#06b6d4","#ec4899","#f97316",
-];
 
 function ScoreBadge({ score }) {
   const color = score >= 75 ? "#10b981" : score >= 50 ? "#f59e0b" : "#ef4444";

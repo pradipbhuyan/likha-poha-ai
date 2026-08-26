@@ -93,10 +93,8 @@ vi.mock("../api/teacherDashboard", () => ({
 }));
 
 const FREE_USER  = { id: "t1", role: "teacher", isPaid: false,  username: "Teacher T" };
-const PAID_USER  = { id: "t2", role: "teacher", isPaid: true,   username: "Teacher P" };
 
 function renderFree()  { return render(<TeacherDashboardPage user={FREE_USER} />); }
-function renderPaid()  { return render(<TeacherDashboardPage user={PAID_USER} />); }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Tab navigation

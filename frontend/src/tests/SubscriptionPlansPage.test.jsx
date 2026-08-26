@@ -17,6 +17,7 @@ import {
   getStudentPaymentConfig,
   verifyPayment,
 } from "../api/payments";
+import { getParentChildren } from "../api/parentDashboard";
 
 vi.mock("../api/parentDashboard", () => ({
   getParentChildren: vi.fn(async () => ({
@@ -243,6 +244,89 @@ describe("SubscriptionPlansPage payments", () => {
     expect(
       await screen.findByText(/payment verified/i)
     ).toBeInTheDocument();
+  });
+
+  test("REGRESSION: refreshes the child's plan and notifies the app shell after successful payment", async () => {
+    /*
+     * Before this fix, the Razorpay success handler never refetched the
+     * parent's children or called onSubscriptionComplete — the pay button
+     * stayed enabled on the just-purchased plan (activePlan/isCurrentPlan
+     * derive from `children`, which never updated), risking an accidental
+     * second charge until a manual page reload.
+     */
+    getPaymentConfig.mockResolvedValue({
+      configured: true,
+      provider: "razorpay",
+      currency: "INR",
+      key_id: "rzp_test_key",
+    });
+    createPaymentOrder.mockResolvedValue({
+      key_id: "rzp_test_key",
+      order: { id: "order_123", amount: 44900, currency: "INR" },
+    });
+    verifyPayment.mockResolvedValue({ success: true });
+
+    // Initial bootstrap load: child still on "free". Post-payment refetch:
+    // child now shows "starter" — the newly-purchased plan.
+    getParentChildren
+      .mockResolvedValueOnce({
+        children: [
+          { id: "child-1", username: "Student One", subscription_plan: "free", account_status: "active" },
+        ],
+      })
+      .mockResolvedValueOnce({
+        children: [
+          { id: "child-1", username: "Student One", subscription_plan: "starter", account_status: "active" },
+        ],
+      });
+
+    const open = vi.fn();
+    window.Razorpay = vi.fn(function Razorpay(options) {
+      setTimeout(() => {
+        options.handler({
+          razorpay_order_id: "order_123",
+          razorpay_payment_id: "pay_123",
+          razorpay_signature: "signature_123",
+        });
+      }, 0);
+      return { open };
+    });
+
+    const onSubscriptionComplete = vi.fn();
+    render(
+      <SubscriptionPlansPage
+        user={{ role: "parent", email: "parent@example.com", username: "Parent User" }}
+        onSubscriptionComplete={onSubscriptionComplete}
+      />
+    );
+
+    expect(
+      await screen.findByRole("button", { name: /choose premium/i })
+    ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /choose premium/i }));
+    fireEvent.click(screen.getByRole("button", { name: /pay with upi/i }));
+
+    await waitFor(() => {
+      expect(verifyPayment).toHaveBeenCalled();
+    });
+
+    // Children were refetched a second time (initial load + post-payment refresh)
+    await waitFor(() => {
+      expect(getParentChildren).toHaveBeenCalledTimes(2);
+    });
+
+    // Pay button must now reflect the new plan instead of staying purchasable
+    expect(
+      await screen.findByRole("button", { name: /current plan selected/i })
+    ).toBeDisabled();
+
+    // App shell notified so the parent's own profile refreshes too
+    await waitFor(
+      () => {
+        expect(onSubscriptionComplete).toHaveBeenCalled();
+      },
+      { timeout: 2000 }
+    );
   });
 });
 

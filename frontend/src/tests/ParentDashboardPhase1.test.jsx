@@ -224,6 +224,49 @@ expect(true).toBe(true); // notifications test relaxed for Phase 3
     });
   });
 
+  test("REGRESSION: switching grade back below 11 clears a previously-picked stream", async () => {
+    // Before this fix, changing the grade dropdown only updated form.grade,
+    // not form.stream — a parent who picked Grade 11 + a stream, then
+    // switched to Grade 9 before submitting, silently sent a stale stream
+    // value on a sub-11 profile.
+    const { getParentDashboardSummary, createStudent } = await import("../api/parentDashboard");
+    getParentDashboardSummary.mockResolvedValueOnce({
+      success: true,
+      parent: { id: "parent-5", username: "New Parent" },
+      parent_plan: { canonical_plan_key: "FREE_TIER", plan_name: "Free Tier", has_full_access: false, status_label: "Free Tier — Restricted", status_color: "restricted" },
+      parent_canonical_plan_key: "FREE_TIER",
+      child_limit: 1,
+      children_count: 0,
+      can_add_child: true,
+      children: [],
+      notifications: [],
+    });
+    render(<ParentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    await screen.findByTestId("parent-no-children");
+
+    fireEvent.click(screen.getAllByRole("button", { name: /Add Child|＋ Add/i })[0]);
+    const gradeSelect = await screen.findByLabelText(/Grade \*/i);
+
+    fireEvent.change(gradeSelect, { target: { value: "Grade 11" } });
+    const streamSelect = await screen.findByLabelText(/Stream \*/i);
+    fireEvent.change(streamSelect, { target: { value: "PCM" } });
+
+    // Switch back down — the Stream field must disappear...
+    fireEvent.change(gradeSelect, { target: { value: "Grade 9" } });
+    expect(screen.queryByLabelText(/Stream \*/i)).not.toBeInTheDocument();
+
+    fireEvent.change(screen.getByLabelText(/Child's Name \*/i), { target: { value: "Arjun" } });
+    fireEvent.change(screen.getByLabelText(/Password \*/i), { target: { value: "temp1234" } });
+    fireEvent.click(screen.getByRole("button", { name: /^Add Child$/i }));
+
+    // ...and the stale "PCM" must not be submitted with the Grade 9 profile.
+    await waitFor(() => {
+      expect(createStudent).toHaveBeenCalledWith(
+        expect.objectContaining({ grade: "Grade 9", stream: "", username: "Arjun" })
+      );
+    });
+  });
+
   test("Child detail drawer opens on View click", async () => {
     render(<ParentDashboardPage user={USER} setActivePage={vi.fn()} />);
     await screen.findByTestId("parent-children-list");

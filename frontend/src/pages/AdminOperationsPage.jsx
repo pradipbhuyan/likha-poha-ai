@@ -38,24 +38,6 @@ const DATE_OPTIONS = [
   { label: "30 days", days: 30 },
 ];
 
-function Badge({ ok }) {
-  return (
-    <span
-      style={{
-        display: "inline-block",
-        padding: "2px 10px",
-        borderRadius: 9999,
-        fontSize: ".78rem",
-        fontWeight: 700,
-        background: ok ? "#dcfce7" : "#fee2e2",
-        color: ok ? "#166534" : "#991b1b",
-      }}
-    >
-      {ok ? "✓ OK" : "✗ Error"}
-    </span>
-  );
-}
-
 function StatCard({ label, value, sub, note }) {
   return (
     <div
@@ -190,12 +172,12 @@ function InMemoryNote() {
 
 // ── Main Component ────────────────────────────────────────────────────────────
 
-export default function AdminOperationsPage({ user }) {
+export default function AdminOperationsPage() {
   const [days, setDays] = useState(30);
   const [loading, setLoading] = useState(true);
   const [refreshKey, setRefreshKey] = useState(0);
 
-  const [summary, setSummary] = useState(null);
+  const [_summary, setSummary] = useState(null);
   const [health, setHealth] = useState(null);
   const [payments, setPayments] = useState(null);
   const [webhooks, setWebhooks] = useState(null);

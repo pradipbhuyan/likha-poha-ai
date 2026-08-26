@@ -791,6 +791,22 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
             setMessage(
               `${selectedPlan.label} payment verified. Subscription access has been updated.`
             );
+
+            // Refresh this child's plan so activePlan/isCurrentPlan reflect the
+            // new entitlement immediately — without this, the pay button stays
+            // enabled on the just-purchased plan until a manual page reload,
+            // risking an accidental second charge.
+            try {
+              const refreshed = await getParentChildren();
+              setChildren(refreshed.children || []);
+            } catch (refreshErr) {
+              console.error(refreshErr);
+            }
+
+            // Notify App shell to refresh the parent's own profile too.
+            if (typeof onSubscriptionComplete === "function") {
+              setTimeout(onSubscriptionComplete, 1200);
+            }
           } catch (err) {
             console.error(err);
             setError(err.message || "Payment verification failed.");

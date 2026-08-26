@@ -41,7 +41,7 @@ const SELECTED_PLAN_LABELS = {
   exam_prep_center: { label: "Exam Prep Center", price: "₹1,999/year" },
 };
 
-export default function SignupPage({ onLogin, onBack, onBackToLogin, initialPlan }) {
+export default function SignupPage({ onBack, onBackToLogin, initialPlan }) {
   const handleBack = onBackToLogin || onBack;
   const selectedPlan = SELECTED_PLAN_LABELS[initialPlan] || null;
   const [role, setRole]         = useState("parent");

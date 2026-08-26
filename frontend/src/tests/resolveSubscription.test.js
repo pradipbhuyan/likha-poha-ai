@@ -19,6 +19,8 @@ import { describe, expect, test } from "vitest";
 import {
   resolveSubscription,
   needsSubscriptionGate,
+  hasPaidAccess,
+  computeDaysRemaining,
   ACCESS_SOURCE,
   TIER,
 } from "../utils/resolveSubscription";
@@ -341,6 +343,107 @@ describe("Expired paid plan", () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 4b. hasPaidAccess() — the client-side gate used directly by Lessons,
+//     Mock Tests, Formula Sheet, and Exemplar Research pages.
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe("hasPaidAccess()", () => {
+  test("admin always has access", () => {
+    expect(hasPaidAccess({ role: "admin" })).toBe(true);
+  });
+
+  test("active time-limited subscription → true", () => {
+    const user = { ...BASE_STUDENT, subscriptionExpiresAt: daysFromNow(5) };
+    expect(hasPaidAccess(user)).toBe(true);
+  });
+
+  test("perpetual paid plan (accessCbse, no expiry ever set) → true", () => {
+    const user = { ...BASE_STUDENT, accessCbse: true, subscriptionExpiresAt: null };
+    expect(hasPaidAccess(user)).toBe(true);
+  });
+
+  test("REGRESSION: expired subscription with a still-stale accessCbse=true must NOT show paid content", () => {
+    // accessCbse can remain true for a while after subscriptionExpiresAt has
+    // passed — the backend's nightly expiry job hasn't caught up yet. Before
+    // this fix, hasPaidAccess() ignored the expiry and returned true purely
+    // from the stale flag, so a lapsed student kept seeing Lessons/Mock
+    // Tests/Formula Sheet/Exemplar Research unlocked until next login.
+    const user = {
+      ...BASE_STUDENT,
+      subscriptionPlan: "starter",
+      accessCbse: true,
+      subscriptionExpiresAt: daysAgo(1),
+    };
+    expect(hasPaidAccess(user)).toBe(false);
+    // Must match resolveSubscription()'s verdict for the same user — the two
+    // functions must never disagree about whether a lapsed plan is active.
+    expect(resolveSubscription(user, null).hasFullAccess).toBe(false);
+  });
+
+  test("no subscription at all → false", () => {
+    expect(hasPaidAccess(BASE_STUDENT)).toBe(false);
+  });
+
+  test("missing user → false", () => {
+    expect(hasPaidAccess()).toBe(false);
+    expect(hasPaidAccess(null)).toBe(false);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4c. computeDaysRemaining() — used by App.jsx's handleSubscriptionComplete
+//     to derive the fields /api/auth/profile normally computes server-side,
+//     since that handler reads the profiles table directly via Supabase.
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe("computeDaysRemaining()", () => {
+  test("null/missing expiry → null daysRemaining, not expiring soon", () => {
+    expect(computeDaysRemaining(null)).toEqual({ daysRemaining: null, expiringSoon: false });
+    expect(computeDaysRemaining(undefined)).toEqual({ daysRemaining: null, expiringSoon: false });
+  });
+
+  test("invalid date string → null daysRemaining, not expiring soon", () => {
+    expect(computeDaysRemaining("not-a-date")).toEqual({ daysRemaining: null, expiringSoon: false });
+  });
+
+  test("30 days out → not expiring soon", () => {
+    const result = computeDaysRemaining(daysFromNow(30));
+    expect(result.daysRemaining).toBeGreaterThanOrEqual(29);
+    expect(result.expiringSoon).toBe(false);
+  });
+
+  test("2 days out → expiring soon", () => {
+    const result = computeDaysRemaining(daysFromNow(2));
+    expect(result.daysRemaining).toBeLessThanOrEqual(2);
+    expect(result.expiringSoon).toBe(true);
+  });
+
+  test("already past → clamped to 0, expiring soon", () => {
+    expect(computeDaysRemaining(daysAgo(5))).toEqual({ daysRemaining: 0, expiringSoon: true });
+  });
+
+  test("REGRESSION: a freshly-purchased plan's expiry must resolve to a real days-remaining, not null", () => {
+    // Before this fix, handleSubscriptionComplete() built its updatedUser
+    // object without subscriptionExpiresAt/DaysRemaining/ExpiringSoon at
+    // all, so resolveSubscription() treated a brand-new time-limited
+    // purchase as a perpetual plan (validUntil: null) right after payment —
+    // the "expires in N days" banner disappeared until the next full login.
+    const user = { ...BASE_STUDENT, subscriptionPlan: "starter", accessCbse: true };
+    const { daysRemaining, expiringSoon } = computeDaysRemaining(daysFromNow(30));
+    const updatedUser = {
+      ...user,
+      subscriptionExpiresAt: daysFromNow(30),
+      subscriptionDaysRemaining: daysRemaining,
+      subscriptionExpiringSoon: expiringSoon,
+    };
+    const resolved = resolveSubscription(updatedUser, null);
+    expect(resolved.hasFullAccess).toBe(true);
+    expect(resolved.validUntil).not.toBeNull();
+    expect(resolved.daysRemaining).not.toBeNull();
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 // 5. Free tier / subscription gate
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -357,8 +460,16 @@ describe("Free tier (no enrollment)", () => {
     expect(result.validUntil).toBeNull();
   });
 
-  test("parent-linked child is never gated (parent manages access)", () => {
+  test("REGRESSION: a parent-linked child with no paid access still needs the gate", () => {
+    // A previous version bypassed the gate for ANY user with parentId set,
+    // regardless of whether the parent had actually paid. A child of a
+    // free-plan parent must resolve the same as any other free-tier user.
     const user = { ...BASE_STUDENT, parentId: "parent-uuid-123" };
+    expect(needsSubscriptionGate(user, null)).toBe(true);
+  });
+
+  test("a parent-linked child whose parent DID pay is not gated", () => {
+    const user = { ...BASE_STUDENT, parentId: "parent-uuid-123", accessCbse: true };
     expect(needsSubscriptionGate(user, null)).toBe(false);
   });
 

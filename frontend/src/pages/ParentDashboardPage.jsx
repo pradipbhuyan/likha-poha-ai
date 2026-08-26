@@ -188,7 +188,7 @@ function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Child's Name *</span>
                 <input value={form.username} onChange={function(e){setForm(function(p){return{...p,username:e.target.value};});}} required style={{...inp,marginTop:2}}/></label>
               <label><span style={{fontSize:".78rem",fontWeight:600}}>Grade *</span>
-                <select value={form.grade} onChange={function(e){setForm(function(p){return{...p,grade:e.target.value};});}} style={{...inp,marginTop:2}}>
+                <select value={form.grade} onChange={function(e){setForm(function(p){return{...p,grade:e.target.value,stream:""};});}} style={{...inp,marginTop:2}}>
                   {GRADES.map(function(g){return <option key={g} value={g}>{g}</option>;})}</select></label>
               {needsStream&&(
                 <label><span style={{fontSize:".78rem",fontWeight:600}}>Stream *</span>

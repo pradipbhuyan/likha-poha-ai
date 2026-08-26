@@ -59,6 +59,20 @@ export default defineConfig([
     },
   },
 
+  // ── Root-level Node config files ─────────────────────────────────────────
+  // playwright.config.js, vite.config.js, etc. run under Node, not the
+  // browser — they need `process`/`__dirname`/etc., not window/document.
+  // CI's `eslint src/ --max-warnings 50` never lints these anyway, but
+  // `eslint .` (what a contributor runs locally, and what this project's
+  // own lint script covers) does, so they still need to pass cleanly.
+  {
+    files: ['*.config.js', '*.config.mjs', '*.config.cjs'],
+    extends: [js.configs.recommended],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
+
   // ── Test files ────────────────────────────────────────────────────────────
   // Vitest injects globals (describe, test, expect, …) at runtime.
   // Tell ESLint about them so it doesn't flag them as undefined.

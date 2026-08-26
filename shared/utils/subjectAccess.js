@@ -61,6 +61,11 @@ export function hasCbseSubjectAccess(user, subjectName) {
         const subjectKey = normalizeSubjectName(subjectName);
         return streamSubjects.some(s => normalizeSubjectName(s) === subjectKey);
       }
+      // Stream was set but doesn't match a known stream (STREAM_SUBJECTS is an
+      // exact, case-sensitive match) — fail closed instead of showing every
+      // subject across all streams. A grade 11/12 student with no stream at
+      // all still falls through to the permissive `return true` below.
+      return false;
     }
     return true;
   }

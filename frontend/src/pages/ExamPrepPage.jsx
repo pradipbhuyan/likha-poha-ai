@@ -1841,25 +1841,6 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
   }, [user]);
   useEffect(() => { refreshAccessCheck(); }, [refreshAccessCheck]);
 
-  // Pack-only users: auto-switch the default exam tab to one they've actually
-  // purchased, since "jee_main" (the hardcoded default) may not be owned.
-  useEffect(() => {
-    if (accessCheck?.reason !== "pack_access") return;
-    const owned = accessCheck?.owned_packs || {};
-    if (!owned[selectedExam] && Object.values(owned).some(Boolean)) {
-      const firstOwned = Object.keys(owned).find(k => owned[k]);
-      if (firstOwned) setSelectedExam(firstOwned);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessCheck]);
-
-  // ── Exam Prep Pack ownership (existing purchases only — new pack sales were
-  // removed; students should use the Exam Prep Center bundle instead). Kept so
-  // anyone who already bought a pack still sees their unlocked exam(s) and the
-  // "Pack Access" banner below.
-  const ownedPacks = accessCheck?.owned_packs || {};
-  const isPackAccessOnly = accessCheck?.reason === "pack_access";
-
   // ── Fetch sim history when oracle tab is active ────────────────────────────
   useEffect(() => {
     if (activeMode !== "oracle" || !user?.accessToken || !accessCheck?.has_access) return;
@@ -2122,22 +2103,17 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
           </div>
         )}
 
-        {/* Exam tabs — stream-aware: JEE for PCM/PCMB, NEET for PCB/PCMB.
-            Pack-only access (Free/Nano student who bought a single-exam pack)
-            further restricts tabs to ONLY the exam(s) they purchased — packs
-            exist for jee_main/neet_ug/cuet_ug only; sat/ielts/toefl_ibt are
-            never unlocked by a pack. */}
+        {/* Exam tabs — stream-aware: JEE for PCM/PCMB, NEET for PCB/PCMB. */}
         <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
           {Object.entries(EXAMS).map(([key, exam]) => {
             const elig = accessCheck?.exam_eligibility?.[key];
             const streamIneligible = elig && !elig.eligible && !elig.coming_soon;
             const comingSoon = elig?.coming_soon;
-            const packLocked = isPackAccessOnly && !ownedPacks[key];
-            const ineligible = streamIneligible || packLocked;
+            const ineligible = streamIneligible;
             return (
               <button key={key}
                 onClick={() => !comingSoon && !ineligible && setSelectedExam(key)}
-                title={packLocked ? "Buy this exam's pack to unlock" : streamIneligible ? elig.reason : comingSoon ? "Coming Soon" : ""}
+                title={streamIneligible ? elig.reason : comingSoon ? "Coming Soon" : ""}
                 style={{
                   padding: "9px 18px", borderRadius: 10,
                   border: `2px solid ${selectedExam === key ? exam.color : ineligible ? "var(--border,#1e293b)" : "var(--border,#334155)"}`,
@@ -2152,23 +2128,11 @@ export default function ExamPrepPage({ user, setActivePage, onSubscriptionComple
                 <exam.icon size={15} strokeWidth={2.25} />
                 <span>{exam.label}</span>
                 {comingSoon && <span style={{ fontSize: ".6rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 6px", borderRadius: 10 }}>Soon</span>}
-                {packLocked && <span style={{ fontSize: ".6rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 6px", borderRadius: 10, display: "inline-flex", alignItems: "center", gap: 3 }}><Lock size={9} strokeWidth={2.5} /> Pack</span>}
-                {!packLocked && streamIneligible && <span style={{ fontSize: ".6rem", background: "rgba(100,116,139,.2)", color: "#64748b", padding: "1px 6px", borderRadius: 10 }}>N/A</span>}
+                {streamIneligible && <span style={{ fontSize: ".6rem", background: "rgba(100,116,139,.2)", color: "#64748b", padding: "1px 6px", borderRadius: 10 }}>N/A</span>}
               </button>
             );
           })}
         </div>
-
-        {/* Pack-only access banner — shown when accessing via a purchased pack, not Premium */}
-        {isPackAccessOnly && (
-          <div style={{ background: "rgba(34,197,94,.07)", border: "1px solid rgba(34,197,94,.25)", borderRadius: 10, padding: "9px 14px", fontSize: ".78rem", marginBottom: 16, display: "flex", alignItems: "center", gap: 9 }}>
-            <Target size={16} strokeWidth={2.25} />
-            <span>
-              <strong>Pack Access.</strong> You've unlocked {Object.entries(ownedPacks).filter(([, v]) => v).map(([k]) => EXAMS[k]?.label).join(", ")} via a standalone pack purchase.
-              {" "}Upgrade to Premium for access to all exams, all CBSE lessons, and more.
-            </span>
-          </div>
-        )}
 
         {/* Stats row */}
         {loadingDash ? (

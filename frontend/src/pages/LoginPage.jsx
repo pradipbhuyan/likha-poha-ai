@@ -19,10 +19,6 @@ async function signInWithGoogle() {
   });
 }
 
-const PASSWORD_RESET_REDIRECT_URL =
-  import.meta.env.VITE_PASSWORD_RESET_REDIRECT_URL ||
-  `${window.location.origin}/reset-password`;
-
 function LoginPage({ onLogin, onShowSignup, onShowLanding }) {
   /** Handles Supabase authentication for the app entry point. Account creation lives on the dedicated Signup page (see onShowSignup). */
   const [username, setUsername] = useState("");
@@ -239,26 +235,6 @@ useEffect(() => {
     } finally {
       setLoading(false);
     }
-  }
-
-  async function resolveLoginEmail(value) {
-    /** Resolve an email or username into the email Supabase needs for auth actions. */
-    const loginValue = value.trim();
-
-    if (loginValue.includes("@")) {
-      return loginValue;
-    }
-
-    const response = await fetch(
-      `${API_BASE_URL}/api/auth/lookup-email/${encodeURIComponent(loginValue)}`
-    );
-
-    if (!response.ok) {
-      return "";
-    }
-
-    const result = await response.json();
-    return result.email || "";
   }
 
   async function handleForgotPassword() {

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Settings, Ban, BarChart3, Loader2, Sparkles, History, Printer,
   KeyRound, ArrowLeft, ListChecks, ClipboardList, CheckCircle2,

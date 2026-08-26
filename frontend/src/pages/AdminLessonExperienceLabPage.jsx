@@ -491,7 +491,7 @@ export default function AdminLessonExperienceLabPage({ user }) { // eslint-disab
 
   useEffect(() => {
     if (selLesson) loadLesson(selLesson);
-  }, [selLesson]); // eslint-disable-line -- loadLesson is stable
+  }, [selLesson]);
 
   useEffect(() => {
     if (showVisuals && selLesson) loadVisuals();

@@ -388,7 +388,7 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
     } catch { /* non-critical */ }
   }, [filterStatus, filterGrade]);
 
-  useEffect(() => { loadLatest(); loadLlmInfo(); }, [loadLatest, loadLlmInfo]); // eslint-disable-line -- stable callbacks
+  useEffect(() => { loadLatest(); loadLlmInfo(); }, [loadLatest, loadLlmInfo]);
 
   // Poll while job is running
   useEffect(() => {

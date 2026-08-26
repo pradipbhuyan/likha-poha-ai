@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { answerDoubt } from "../api/doubt";
 import { authFetch } from "../api/authClient";
 import { hasPaidAccess } from "../utils/resolveSubscription";
 import { isAllAccessTestUser } from "../utils/testAccounts";
+import { getSubjectsForGrade } from "../utils/exemplarResearchAccess";
 
 /**
  * Strip LaTeX $...$ delimiters so math like $P(x)$, $(x-2)$ displays as plain text.
@@ -281,20 +281,6 @@ const SUBJECT_COLORS = {
   Chemistry: { icon: "🧪", gradient: "linear-gradient(135deg,#0891b2,#059669)", tag: "Chemistry" },
   Biology:   { icon: "🌿", gradient: "linear-gradient(135deg,#16a34a,#0891b2)", tag: "Biology" },
 };
-
-/** Return subjects available for a grade, filtered by stream for Grade 11/12 */
-function getSubjectsForGrade(grade, user) {
-  if (grade === "Grade 11" || grade === "Grade 12") {
-    const stream = (user?.stream || "").toUpperCase();
-    const all = ["Physics", "Chemistry", "Maths", "Biology"];
-    if (stream === "PCM")  return ["Physics", "Chemistry", "Maths"];
-    if (stream === "PCB")  return ["Physics", "Chemistry", "Biology"];
-    if (stream === "PCMB") return ["Physics", "Chemistry", "Maths", "Biology"];
-    // Admin / all-access test account / unknown stream — show all
-    return all;
-  }
-  return ["Maths", "Science"];
-}
 
 /** The Grade 11/12 Exemplar RAG chapters were ingested under subject "Mathematics",
  * not "Maths" (see backend/scripts/upload_ncert_exemplar_grade1112_rag.py
