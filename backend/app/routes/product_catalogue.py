@@ -6,47 +6,16 @@ PATCH /api/product-catalogue/grade   — toggle a grade's visibility
 PATCH /api/product-catalogue/program — toggle a coaching program's visibility
 """
 
-import copy
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.data.product_catalogue import DEFAULT_PRODUCT_CATALOGUE
 from app.services.auth_service import require_admin  # reuse existing admin guard
+from app.services.product_catalogue_service import (
+    load_product_catalogue as _load_catalogue,
+    save_product_catalogue as _save_catalogue,
+)
 
 router = APIRouter()
-
-_CATALOGUE_KEY = "product_catalogue"
-
-
-def _load_catalogue() -> dict:
-    """
-    Return the live catalogue from admin_settings DB row, falling back to
-    the hardcoded defaults when no row exists yet.
-    """
-    try:
-        from app.services.auth_service import admin_client  # noqa: PLC0415
-        resp = (
-            admin_client
-            .table("admin_settings")
-            .select("value")
-            .eq("key", _CATALOGUE_KEY)
-            .limit(1)
-            .execute()
-        )
-        if resp.data:
-            return resp.data[0]["value"]
-    except Exception:
-        pass
-    return copy.deepcopy(DEFAULT_PRODUCT_CATALOGUE)
-
-
-def _save_catalogue(catalogue: dict) -> None:
-    """Upsert the catalogue into admin_settings."""
-    from app.services.auth_service import admin_client  # noqa: PLC0415
-    admin_client.table("admin_settings").upsert(
-        {"key": _CATALOGUE_KEY, "value": catalogue},
-        on_conflict="key",
-    ).execute()
 
 
 # ── Request models ────────────────────────────────────────────────────────────

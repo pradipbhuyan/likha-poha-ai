@@ -37,23 +37,27 @@ DEFAULT_PRODUCT_CATALOGUE: dict = {
         },
     },
     "coaching_programs": {
-        # ── Entrance exam prep — hidden until content + UI are ready ────────
-        "JEE": {
-            "visible": False,
+        # ── Entrance exam prep — Exam Prep Center. Live since 2026-07 (bundled
+        # ── Exam Prep Center plan, ₹1,999/yr — see 03_SUBSCRIPTIONS.md); all
+        # ── six visible:True below matches that current reality. Keys match
+        # ── exam_prep.py's /status and exam_prep_service.py's EXAM_SUBJECTS_MAP
+        # ── exactly — keep them in sync if either changes.
+        "jee_main": {
+            "visible": True,
             "full_name": "JEE Mains + Advanced",
             "subjects": ["Physics", "Chemistry", "Mathematics"],
             "description": "Engineering entrance — IITs, NITs, IIITs",
             "target_grades": ["Grade 11", "Grade 12"],
         },
-        "NEET": {
-            "visible": False,
+        "neet_ug": {
+            "visible": True,
             "full_name": "NEET UG",
             "subjects": ["Physics", "Chemistry", "Biology"],
             "description": "Medical entrance — MBBS, BDS admissions",
             "target_grades": ["Grade 11", "Grade 12"],
         },
-        "CUET": {
-            "visible": False,
+        "cuet_ug": {
+            "visible": True,
             "full_name": "CUET UG",
             "subjects": [
                 "Physics", "Chemistry", "Mathematics", "Biology",
@@ -62,6 +66,27 @@ DEFAULT_PRODUCT_CATALOGUE: dict = {
             ],
             "description": "Central Universities common entrance test",
             "target_grades": ["Grade 12"],
+        },
+        "sat": {
+            "visible": True,
+            "full_name": "SAT (Scholastic Assessment Test)",
+            "subjects": ["Reading & Writing", "Mathematics"],
+            "description": "US/international undergraduate admissions test",
+            "target_grades": ["Grade 11", "Grade 12"],
+        },
+        "ielts": {
+            "visible": True,
+            "full_name": "IELTS (Academic)",
+            "subjects": ["Listening", "Reading", "Vocabulary & Grammar"],
+            "description": "English proficiency test for study or immigration abroad",
+            "target_grades": ["Grade 11", "Grade 12"],
+        },
+        "toefl_ibt": {
+            "visible": True,
+            "full_name": "TOEFL iBT",
+            "subjects": ["Reading", "Listening", "Integrated Skills"],
+            "description": "English proficiency test for US/international university admission",
+            "target_grades": ["Grade 11", "Grade 12"],
         },
     },
 }
@@ -87,6 +112,24 @@ def get_visible_grades(catalogue: dict | None = None) -> list[str]:
 
 
 def get_visible_coaching_programs(catalogue: dict | None = None) -> list[str]:
-    """Return coaching program keys currently visible to students."""
+    """
+    Return coaching program keys currently visible to students.
+
+    Iterates the CANONICAL key list (this module's own coaching_programs),
+    not whatever happens to be in `catalogue` — and a canonical key absent
+    from `catalogue["coaching_programs"]` defaults to visible rather than
+    hidden. This matters concretely, not just defensively: a real
+    `admin_settings` DB row already exists (saved before the 2026-08-26
+    rename from "JEE"/"NEET"/"CUET" to "jee_main"/"neet_ug"/"cuet_ug", and
+    before "sat"/"ielts"/"toefl_ibt" existed at all) that contains none of
+    the six current keys. Treating "absent" the same as "admin explicitly
+    hid this" would have silently deactivated all six exams for every
+    student the moment this function's caller shipped (see TECH_DEBT.md
+    TD-14) — "not yet migrated" must default to on, not off.
+    """
     cat = catalogue or DEFAULT_PRODUCT_CATALOGUE
-    return [k for k, v in cat["coaching_programs"].items() if v.get("visible", False)]
+    programs = cat.get("coaching_programs", {})
+    return [
+        key for key in DEFAULT_PRODUCT_CATALOGUE["coaching_programs"]
+        if programs.get(key, {"visible": True}).get("visible", True)
+    ]

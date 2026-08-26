@@ -135,6 +135,18 @@ DEFAULT_SUBSCRIPTION_PLANS = {
             "parentDashboard": "Full + alerts",
         },
     },
+    # "premium" — NOT a duplicate of "starter" to clean up; both are real,
+    # separate raw DB values for the *same* product tier, and this entry is
+    # intentional (confirmed 2026-08-26, was previously logged as "purpose
+    # unconfirmed" in TECH_DEBT.md TD-15). "starter" is the current key new
+    # subscriptions are created with; "premium" is recognized by
+    # subscription_resolver_service._canonical_plan_key() (and its mirror,
+    # shared/utils/resolveSubscription.js) as a legacy raw value that maps to
+    # the same canonical PREMIUM tier — the same pattern already used for
+    # "free" meaning legacy Nano (see that function's own docstring). Keep
+    # this entry's price/duration/features in sync with "starter" above;
+    # do not delete it without confirming no profile row still carries
+    # subscription_plan="premium" (not verifiable from this repo alone).
     "premium": {
         # Centralized feature flags — overridden by subscription_plan_settings DB
         "duration_days": 30,
@@ -332,9 +344,9 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     # ── EXAM PREP CENTER — bundled Grade 11–12 annual plan ────────────────────
     # Single ₹1,999/year plan covering ALL 6 exams together (JEE Main, NEET UG,
     # CUET UG, SAT, IELTS, TOEFL iBT) — independent of the CBSE subscription
-    # tiers above. Grade 11–12 students only. Distinct from the standalone
-    # per-exam packs below (exam_prep_jee/neet/cuet), which remain available
-    # for students who only want ONE specific exam rather than the full bundle.
+    # tiers above. Grade 11–12 students only. This is now the ONLY exam prep
+    # plan sold — the standalone per-exam packs (exam_prep_jee/neet/cuet) were
+    # retired; no customer ever held one, so no legacy-access shim is needed.
     "exam_prep_center": {
         "duration_days": 366,
         "access_exam_prep": True,
@@ -381,83 +393,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
             "cbse": "Grade 11–12 only",
             "parentDashboard": "Full + analytics",
         },
-        "exam_type": None,  # bundle — not a single exam_type like the packs below
-    },
-    # ── EXAM PREP PACKS — independent of CBSE subscription ───────────────────
-    # These plans are for the exam prep add-on packs sold separately.
-    # A student on Free tier can buy them; Premium students also need to buy separately.
-    # Prices managed by admin via Subscription Settings page.
-    "exam_prep_jee": {
-        "key": "exam_prep_jee",
-        "label": "JEE Main Prep Pack",
-        "short_label": "JEE Pack",
-        "price": 499,
-        "billing_label": "season",
-        "audience": "Full JEE Main preparation — practice questions, simulated tests, AI explanations.",
-        "badge": "",
-        "recommended": False,
-        "discount_percent": 0,
-        "discount_label": "",
-        "is_public": True,
-        "display_order": 10,
-        "access_cbse": False,
-        "daily_token_limit": 0,
-        "monthly_token_limit": 0,
-        "included": ["JEE Main practice questions", "Full simulated tests (+4/-1)", "AI step-by-step explanations", "Weak topic tracker"],
-        "not_included": ["CBSE lessons", "Ask Doubt", "Mock Tests"],
-        "comparison": {},
-        "duration_days": 120,
-        "access_exam_prep": True,
-        "access_exemplar": False,
-        "exam_type": "jee_main",
-    },
-    "exam_prep_neet": {
-        "key": "exam_prep_neet",
-        "label": "NEET UG Prep Pack",
-        "short_label": "NEET Pack",
-        "price": 499,
-        "billing_label": "season",
-        "audience": "Full NEET UG preparation — practice questions, simulated tests, AI explanations.",
-        "badge": "",
-        "recommended": False,
-        "discount_percent": 0,
-        "discount_label": "",
-        "is_public": True,
-        "display_order": 11,
-        "access_cbse": False,
-        "daily_token_limit": 0,
-        "monthly_token_limit": 0,
-        "included": ["NEET UG practice questions", "Full simulated tests (+4/-1)", "AI step-by-step explanations", "Weak topic tracker"],
-        "not_included": ["CBSE lessons", "Ask Doubt", "Mock Tests"],
-        "comparison": {},
-        "duration_days": 300,
-        "access_exam_prep": True,
-        "access_exemplar": False,
-        "exam_type": "neet_ug",
-    },
-    "exam_prep_cuet": {
-        "key": "exam_prep_cuet",
-        "label": "CUET UG Prep Pack",
-        "short_label": "CUET Pack",
-        "price": 399,
-        "billing_label": "season",
-        "audience": "Full CUET UG preparation — all subjects, simulated tests, AI explanations.",
-        "badge": "",
-        "recommended": False,
-        "discount_percent": 0,
-        "discount_label": "",
-        "is_public": True,
-        "display_order": 12,
-        "access_cbse": False,
-        "daily_token_limit": 0,
-        "monthly_token_limit": 0,
-        "included": ["CUET UG practice questions", "Full simulated tests (+5/-1)", "AI step-by-step explanations", "Weak topic tracker"],
-        "not_included": ["CBSE lessons", "Ask Doubt", "Mock Tests"],
-        "comparison": {},
-        "duration_days": 240,
-        "access_exam_prep": True,
-        "access_exemplar": False,
-        "exam_type": "cuet_ug",
+        "exam_type": None,  # single, all-exam bundle — no per-exam packs anymore
     },
 }
 

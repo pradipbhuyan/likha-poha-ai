@@ -140,6 +140,55 @@ class TestExamPrepAccessControl:
         assert r.json()["has_access"] is True
         clear_overrides()
 
+    def test_status_defaults_all_six_exams_active(self, monkeypatch):
+        """
+        TD-14 regression: /status must reflect the Product Catalogue's
+        coaching_programs visibility, not a hardcoded True for every exam.
+        Against the real (unpatched) default catalogue, all six should be
+        active — this is the "admin hasn't touched the toggle" case and must
+        keep matching pre-TD-14 behavior exactly.
+        """
+        override_user(GRADE_12_USER, GRADE_12_PROFILE)
+        monkeypatch.setattr(
+            "app.routes.exam_prep.get_user_profile",
+            lambda uid: GRADE_12_PROFILE,
+            raising=False,
+        )
+        r = client.get("/api/exam-prep/status")
+        assert r.status_code == 200
+        exams = r.json()["exams"]
+        assert set(exams.keys()) == {
+            "jee_main", "neet_ug", "cuet_ug", "sat", "ielts", "toefl_ibt",
+        }
+        assert all(info["active"] is True for info in exams.values())
+        clear_overrides()
+
+    def test_status_respects_admin_hidden_exam(self, monkeypatch):
+        """An admin hiding one exam via the Product Catalogue toggle must be
+        reflected in /status for that exam only — this is the exact bug
+        TD-14 tracked: the toggle previously saved but was never read back."""
+        override_user(GRADE_12_USER, GRADE_12_PROFILE)
+        monkeypatch.setattr(
+            "app.routes.exam_prep.get_user_profile",
+            lambda uid: GRADE_12_PROFILE,
+            raising=False,
+        )
+        monkeypatch.setattr(
+            "app.routes.exam_prep.get_live_visible_coaching_programs",
+            lambda: {"jee_main", "neet_ug", "cuet_ug", "ielts", "toefl_ibt"},  # sat hidden
+            raising=False,
+        )
+        r = client.get("/api/exam-prep/status")
+        assert r.status_code == 200
+        exams = r.json()["exams"]
+        assert exams["sat"]["active"] is False
+        assert exams["jee_main"]["active"] is True
+        assert exams["neet_ug"]["active"] is True
+        assert exams["cuet_ug"]["active"] is True
+        assert exams["ielts"]["active"] is True
+        assert exams["toefl_ibt"]["active"] is True
+        clear_overrides()
+
     def test_admin_can_always_access(self, monkeypatch):
         """Admin can always access Exam Prep."""
         override_user(ADMIN_USER, ADMIN_PROFILE)

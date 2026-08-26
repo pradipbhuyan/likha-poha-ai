@@ -48,6 +48,7 @@ from app.services.auth_service import (
 )
 from app.services.logger_service import get_logger
 from app.services.openai_service import ask_llm, get_effective_settings
+from app.services.product_catalogue_service import get_live_visible_coaching_programs
 import app.services.exam_prep_service as svc
 
 _log = get_logger("exam_prep")
@@ -82,17 +83,6 @@ def _require_exam_prep_content(user=Depends(get_current_user)):
         raise HTTPException(403, "Profile not found")
     svc.check_exam_prep_content_access(profile)
     return {"user": user, "profile": profile}
-
-
-def _require_exam_content_for(exam: str, user, profile):
-    """
-    Enforce content access for a SPECIFIC exam, honoring standalone pack
-    ownership (jee_main/neet_ug/cuet_ug) as an alternative to a Premium+
-    subscription. Call this explicitly inside content endpoints that take
-    an `exam` query/body param, since FastAPI Depends() cannot see other
-    parameters' values.
-    """
-    svc.check_exam_content_access_with_packs(profile, exam)
 
 
 # ── Canonical access-check endpoint (called by frontend on page load) ──────────
@@ -137,19 +127,30 @@ def get_access_check(user=Depends(get_current_user)):
 def get_status(ctx=Depends(_require_exam_prep_access)):
     """Return access status and exam availability."""
     profile = ctx["profile"]
+    # TD-14 (2026-08-26): "active" now reflects the admin's Product Catalogue
+    # toggle instead of being hardcoded True for all six — see
+    # get_live_visible_coaching_programs(). load_product_catalogue() already
+    # fails open to the hardcoded defaults (all six visible:True) on any
+    # Supabase error, so an empty `visible` set here means an admin
+    # deliberately hid every exam, not a transient failure — that's a real
+    # choice to honor, not something to silently override.
+    visible = get_live_visible_coaching_programs()
+    exams = {
+        "jee_main":  {"label": "JEE Main",   "coming_soon": False},
+        "neet_ug":   {"label": "NEET UG",    "coming_soon": False},
+        "cuet_ug":   {"label": "CUET UG",    "coming_soon": False},
+        "sat":       {"label": "SAT",        "coming_soon": False},
+        "ielts":     {"label": "IELTS",      "coming_soon": False},
+        "toefl_ibt": {"label": "TOEFL iBT",  "coming_soon": False},
+    }
+    for key, info in exams.items():
+        info["active"] = key in visible
     return {
         "success": True,
         "has_access": True,
         "grade": profile.get("grade"),
         "username": profile.get("username"),
-        "exams": {
-            "jee_main":   {"label": "JEE Main",    "active": True, "coming_soon": False},
-            "neet_ug":    {"label": "NEET UG",     "active": True, "coming_soon": False},
-            "cuet_ug":    {"label": "CUET UG",     "active": True, "coming_soon": False},
-            "sat":        {"label": "SAT",         "active": True, "coming_soon": False},
-            "ielts":      {"label": "IELTS",       "active": True, "coming_soon": False},
-            "toefl_ibt":  {"label": "TOEFL iBT",  "active": True, "coming_soon": False},
-        },
+        "exams": exams,
     }
 
 
@@ -160,9 +161,9 @@ def get_dashboard(
     exam: str = "jee_main",
     ctx=Depends(_require_exam_prep_access),
 ):
-    """Return dashboard stats for the given exam. Requires Premium+ or an active pack for this exam."""
+    """Return dashboard stats for the given exam. Requires Exam Prep Center subscription."""
     user, profile = ctx["user"], ctx["profile"]
-    _require_exam_content_for(exam, user, profile)
+    svc.check_exam_prep_content_access(profile)
     data = svc.get_dashboard(exam_type=exam, user_id=user.id)
     return {"success": True, **data}
 
@@ -174,9 +175,9 @@ def get_subjects(
     exam: str = "jee_main",
     ctx=Depends(_require_exam_prep_access),
 ):
-    """Return subject cards for the given exam. Requires Premium+ or an active pack for this exam."""
+    """Return subject cards for the given exam. Requires Exam Prep Center subscription."""
     user, profile = ctx["user"], ctx["profile"]
-    _require_exam_content_for(exam, user, profile)
+    svc.check_exam_prep_content_access(profile)
     subjects = svc.get_subjects(exam_type=exam, user_id=user.id)
     return {"success": True, "subjects": subjects, "count": len(subjects)}
 
@@ -189,9 +190,9 @@ def get_topics(
     subject: str = "Physics",
     ctx=Depends(_require_exam_prep_access),
 ):
-    """Return topic priority cards for a subject. Requires Premium+ or an active pack for this exam."""
+    """Return topic priority cards for a subject. Requires Exam Prep Center subscription."""
     user, profile = ctx["user"], ctx["profile"]
-    _require_exam_content_for(exam, user, profile)
+    svc.check_exam_prep_content_access(profile)
     topics = svc.get_topics(exam_type=exam, subject=subject)
     return {"success": True, "topics": topics, "count": len(topics)}
 
@@ -206,9 +207,9 @@ def list_questions(
     limit: int = 20,
     ctx=Depends(_require_exam_prep_access),
 ):
-    """Return published questions for practice. Requires Premium+ or an active pack for this exam."""
+    """Return published questions for practice. Requires Exam Prep Center subscription."""
     user, profile = ctx["user"], ctx["profile"]
-    _require_exam_content_for(exam, user, profile)
+    svc.check_exam_prep_content_access(profile)
     questions = svc.get_questions(
         exam_type=exam,
         subject=subject,
@@ -308,10 +309,10 @@ def start_simulated_test(
     req: StartTestRequest,
     ctx=Depends(_require_exam_prep_access),
 ):
-    """Start a new simulated test. Requires Premium+ or an active pack for this exam."""
+    """Start a new simulated test. Requires Exam Prep Center subscription."""
     user = ctx["user"]
     profile = ctx["profile"]
-    _require_exam_content_for(req.exam, user, profile)
+    svc.check_exam_prep_content_access(profile)
     grade = profile.get("grade", "Grade 12")
     result = svc.start_simulated_test(
         user_id=user.id,

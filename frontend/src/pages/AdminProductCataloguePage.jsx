@@ -234,10 +234,12 @@ export default function AdminProductCataloguePage({ user }) {
       <section className="premium-section">
         <div className="premium-header">
           <p className="eyebrow">Section B</p>
-          <h3>🏆 Coaching Programs (Entrance Exam Prep)</h3>
+          <h3>🏆 Coaching Programs (Exam Prep Center)</h3>
           <p>
-            JEE, NEET, and CUET preparation modules. All hidden until dedicated
-            subject content is uploaded and the coaching-mode UI is built.
+            JEE, NEET, CUET, SAT, IELTS, and TOEFL — live since 2026-07 as the
+            standalone Exam Prep Center plan. This toggle controls whether each
+            exam shows as available on the Exam Prep status page; it does not
+            affect the underlying content, which already exists for all six.
           </p>
         </div>
 
@@ -298,10 +300,9 @@ export default function AdminProductCataloguePage({ user }) {
         </div>
 
         <div className="info-box" style={{ marginTop: 16, fontSize: "0.83rem" }}>
-          🚧 <strong>Content roadmap for coaching programs:</strong>
-          Upload topic-wise Physics / Chemistry / Maths / Biology PDFs →
-          Prewarm via Cache Management → Build JEE/NEET mock format (180Q with
-          negative marking) → Toggle visible here when ready.
+          ✅ <strong>Status:</strong> all six exams have live content, simulated
+          tests, and a question bank. This toggle is for temporarily hiding an
+          individual exam (e.g. during a content refresh) — not a launch gate.
         </div>
       </section>
 
@@ -314,9 +315,9 @@ export default function AdminProductCataloguePage({ user }) {
 
         <div className="premium-card">
           {[
-            { phase: "Now — Live",       color: "#22c55e", items: ["Grade 5–10 CBSE", "Ask Doubt (RAG)", "140,000+ Question Bank", "Parent Dashboard", "Teacher Module"] },
+            { phase: "Now — Live",       color: "#22c55e", items: ["Grade 5–10 CBSE", "Ask Doubt (RAG)", "140,000+ Question Bank", "Parent Dashboard", "Teacher Module", "Exam Prep Center — JEE, NEET, CUET, SAT, IELTS, TOEFL (see Section B)", "Negative-marking simulated tests"] },
             { phase: "Phase 2 (Ready to unlock)", color: "#f59e0b", items: ["Grade 11 CBSE — Science, Commerce, Arts", "Grade 12 CBSE — Science, Commerce, Arts", "Stream selection at signup"] },
-            { phase: "Phase 3 (Content + UI needed)", color: "#a78bfa", items: ["JEE Mains + Advanced prep", "NEET UG prep", "CUET prep", "Negative marking mock tests", "Topic-wise progress tracking"] },
+            { phase: "Phase 3 (Not yet verified)", color: "#a78bfa", items: ["Topic-wise progress tracking"] },
             { phase: "Phase 4 (Future)",  color: "#64748b", items: ["ICSE + State Board content", "Vernacular (Hindi/Marathi/Tamil) UI", "School white-labelling", "Mobile app (native)"] },
           ].map(({ phase, color, items }) => (
             <div key={phase} style={{ marginBottom: 20 }}>

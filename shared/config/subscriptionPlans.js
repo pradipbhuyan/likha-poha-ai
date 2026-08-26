@@ -184,7 +184,13 @@ export const SUBSCRIPTION_PLANS = {
     },
   },
 
-  // Hidden alias kept for backwards-compatibility with admin flows
+  // Hidden alias kept for backwards-compatibility with admin flows.
+  // Confirmed intentional 2026-08-26 (was "purpose unconfirmed" in
+  // TECH_DEBT.md TD-15): "starter" is the current key, "premium" is a
+  // legacy raw subscription_plan value some profiles may still carry —
+  // same not-a-duplicate pattern as resolveSubscription.js's
+  // _canonicalPlanKey() mapping, and backend/app/data/subscription_plans.py's
+  // matching "premium" entry has the full explanation. Not dead code.
   premium: {
     key: "premium",
     label: "Premium",

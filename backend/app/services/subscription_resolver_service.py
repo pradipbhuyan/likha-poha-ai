@@ -315,6 +315,13 @@ def _canonical_plan_key(plan_key: str) -> str:
     which is which from subscription_expires_at and access_cbse before calling
     this — so callers of _canonical_plan_key always know the user IS on a paid
     plan; "free" here means Nano.
+
+    Same pattern applies to "starter" vs "premium" below: two raw DB keys,
+    one canonical tier. "starter" is current; "premium" is a legacy raw
+    value some profile rows may still carry, kept mapped here rather than
+    removed (see the "premium" entry's comment in
+    app/data/subscription_plans.py for the full explanation — this isn't
+    dead code, don't delete it as part of a "duplicate cleanup").
     """
     mapping = {
         "free": "NANO",
