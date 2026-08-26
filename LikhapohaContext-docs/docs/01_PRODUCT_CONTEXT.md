@@ -36,7 +36,13 @@ Paid plans unlock full platform access:
 - **Premium Annual**: ₹2,999 / year (offer-code / admin only)
 - **Family Annual**: ₹4,999 / year (offer-code / admin only)
 
-> **Note:** The legacy "Premium Nano" plan (₹99/8 days) has been retired and is no longer sold (`isPublic: false`). Existing users on this plan retain their access until expiry. Do not create new Nano subscriptions through the UI.
+Standalone add-on (independent of the CBSE plans above):
+
+- **Exam Prep Center**: ₹1,999/year — bundled JEE Main / NEET UG / CUET UG / SAT / IELTS / TOEFL access. Added 2026-07; replaced the older per-exam pack system (`exam_prep_packs`), which was removed after never having a paying customer. See `03_SUBSCRIPTIONS.md` and `09_AI_PLATFORM.md`.
+
+> **Note:** The legacy "Premium Nano" plan (₹99/8 days) has been retired and is no longer sold (`isPublic: false` in both the backend catalog and frontend config — purchase attempts return 404 server-side, not just a hidden UI card). Existing users on this plan retain their access until expiry. Do not create new Nano subscriptions through the UI.
+>
+> **Note:** Premium 6-Month, Premium Annual, and Family Annual are `is_public: true` in the backend catalog, but the frontend deliberately overrides all three to hidden (`shared/config/subscriptionPlans.js`, by design — "frontend config's isPublic always wins"). They render on no public card today; access is still granted via offer code or admin grant.
 
 Free Tier has restricted access. It must never accidentally receive full premium capability.
 
@@ -116,11 +122,13 @@ Each policy JSX file contains a `── Maintenance reminder ──` comment blo
 9. Failed or pending payments must not unlock premium access.
 10. Admin ₹1 payment tests must remain admin-only and must use intended plan, not charged amount.
 11. The retired Nano plan (key: "free") must not appear in public plan cards or the comparison table (`isPublic: false`). Existing holders retain access until expiry.
-11. Teacher Free plan allows up to 10 students.
-12. Teacher paid plans allow up to 30 students.
-13. Teacher credential email is paid-only.
-14. Parent-child association is admin-controlled.
-15. Admin grants must not be revoked by paid-plan expiry jobs.
+12. Teacher Free plan allows up to 10 students.
+13. Teacher paid plans allow up to 30 students.
+14. Teacher credential email is paid-only.
+15. Parent-child association is admin-controlled.
+16. Admin grants must not be revoked by paid-plan expiry jobs.
+17. Teachers may add/invite students only into Grade 5–12 (Grade 1–4 blocked), enforced both frontend and backend against the canonical `TEACHER_ALLOWED_GRADES` list.
+18. Exemplar Research is blocked for the teacher role unconditionally, at the route layer, regardless of plan — it is a student-only paid feature (added 2026-08-25).
 
 ## Product Guardrails
 

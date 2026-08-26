@@ -4,6 +4,17 @@ _Last updated: 2026-06-28_
 
 ## Completed
 
+### August 2026 (added 2026-08-26 — see linked docs for detail, this is a summary only)
+
+- **Exam Prep Center** — new standalone ₹1,999/year plan (JEE/NEET/CUET/SAT/IELTS/TOEFL) replaced the legacy per-exam pack system entirely. See `03_SUBSCRIPTIONS.md`, `FEATURE_MATRIX.md`, `TECH_DEBT.md` (TD-04, resolved).
+- **Premium Nano fully discontinued** — confirmed retired at both backend (`is_public: false`, purchase 404s) and frontend layers.
+- **Teacher restrictions** — teachers can now only add/invite students into Grade 5–12 (was unrestricted); Exemplar Research blocked for the teacher role entirely, unconditionally, as a student-only paid feature. See `06_TEACHER_PLATFORM.md`.
+- **Parent Add Child — Grade 11/12 support** — parents can now create Grade 11/12 child accounts with a mandatory stream selection, matching self-signup. `ParentChildWorkspace` reduced from 9 tabs to 8 (Platform Access tab removed). See `07_PARENT_PLATFORM.md`.
+- **Admin signup notification emails** — admin inbox (email, not the in-app Notification Center) now gets a message on every new teacher signup and every new student/parent registration. See `05_ADMIN_PLATFORM.md`.
+- **Go-live security hardening pass** — ~10 commits: profile-id ownership hardening, a real username-collision data-leak fix, 3 unauthenticated billable AI routes deleted, mandatory Razorpay webhook verification + production-boot secret requirement, family-scoped child ownership, and a near-miss fix where production-only security gates had been silently inert because `ENVIRONMENT` was never actually set on the host. See `10_SECURITY.md`.
+- **Rate limiting shipped** — Redis-backed (in-memory fallback) on login, signup, password reset, username lookup, and payment endpoints. One known gap remains (`complete-signup`) — see `TECH_DEBT.md` TD-13.
+- **Mobile** — versionCode reached 50 (from 13); Doubt solving, Analytics, and Google OAuth are all now fully shipped on mobile (previously documented as not-yet-built — that was stale, not the code). Board Papers tab added. See `MOBILE_APP.md`.
+
 ### Foundation
 - Free signup without offer-code requirement
 - Canonical subscription resolver + feature authorization
@@ -98,6 +109,8 @@ _Last updated: 2026-06-28_
 - Sentry integration
 
 ## Key Technical Debt
+
+**The full, actively-maintained register is `TECH_DEBT.md`** — it has status/priority tracking and is re-verified against current code periodically (last re-verified 2026-08-26). The four items below are quick DB/session gotchas worth keeping here for fast reference; don't extend this list further — add new debt to `TECH_DEBT.md` instead.
 
 1. `chapter_progress` table never created — always use `student_progress`
 2. `test_history.score` column does not exist — always use `percentage`

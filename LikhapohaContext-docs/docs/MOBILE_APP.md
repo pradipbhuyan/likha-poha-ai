@@ -1,7 +1,7 @@
 # Likha Poha AI — Mobile App
 
-_Last updated: 2026-07-12_
-_Status: **Working via Expo Go. Standalone APK being validated (Build #18).**_
+_Last updated: 2026-08-26_
+_Status: **In active use. `mobile/app.json` currently: version `1.1.0`, versionCode `50`** (up from versionCode 13/"Build #18" as of the previous update — `build_apk.sh` auto-increments and auto-commits this on every build, so check `mobile/app.json` directly for the live number rather than trusting a hardcoded value in this doc)._
 
 ---
 
@@ -58,7 +58,7 @@ NODE_TLS_REJECT_UNAUTHORIZED=0 eas build --platform android --profile preview --
 
 Track builds at: https://expo.dev/accounts/pradipbhuyans-team/projects/likhapohaai/builds
 
-**Latest build:** `5d57730c` (Build #18, versionCode 13, newArchEnabled:true)
+**Latest build:** versionCode `50` as of 2026-08-26 (check `mobile/app.json` for the current value and the EAS builds page above for the matching build hash — `build_apk.sh` bumps this on every build, so any hash recorded here goes stale immediately)
 
 ### After build completes
 
@@ -70,20 +70,35 @@ Track builds at: https://expo.dev/accounts/pradipbhuyans-team/projects/likhapoha
 
 ## Project Structure
 
+**Refreshed 2026-08-26 — the tree below was 4 tabs; it's now 7 visible + 4 hidden-but-navigable, plus several files added since that aren't reflected below at all:**
+
 ```
 mobile/
 ├── app/
 │   ├── _layout.tsx            ← Root layout — Expo Router entry, Supabase session guard
+│   ├── learn.tsx               ← top-level (not under (tabs)) — Learn More content
 │   ├── auth/
 │   │   ├── _layout.tsx        ← Auth stack layout
 │   │   ├── login.tsx          ← Email/password login with Likha Poha logo
-│   │   └── signup.tsx         ← Student/parent registration with grade selector
+│   │   ├── signup.tsx         ← Student/parent registration with grade selector
+│   │   └── role-select.tsx    ← one-time OAuth role picker (not in previous version of this doc)
 │   └── (tabs)/
 │       ├── _layout.tsx        ← Tab bar with Likha Poha logo in header
 │       ├── index.tsx          ← Home / Student Dashboard
 │       ├── lessons.tsx        ← AI lesson generation (core feature)
 │       ├── mocktest.tsx       ← Mock tests
-│       └── account.tsx        ← User profile
+│       ├── doubt.tsx          ← Ask AI / doubt solving (543 lines — see Feature Status table below)
+│       ├── formula.tsx        ← Formulas & Concepts
+│       ├── learn.tsx          ← Learn More (tab variant)
+│       ├── boardpapers.tsx    ← Board Papers (added by commit 0ef52dcb)
+│       ├── account.tsx        ← User profile (present, hidden from tab bar)
+│       ├── analytics.tsx      ← Analytics (280 lines; present, hidden from tab bar — see Feature Status table)
+│       ├── examprep.tsx       ← Exam Prep Center (present, hidden from tab bar)
+│       └── exemplar.tsx       ← Exemplar Research (present, hidden from tab bar)
+├── components/
+│   └── ReportIssueModal.jsx   ← floating Report Issue button, mirrors web
+├── lib/
+│   └── UserProfileContext.tsx ← added alongside the 2026-08-25 teacher/Exemplar + OAuth-retry commit
 ├── assets/
 │   ├── icon.png               ← Likha Poha AI logo (from frontend/public/android-chrome-512x512.png)
 │   ├── splash-icon.png        ← Same as icon.png
@@ -212,11 +227,11 @@ curl -X PUT "https://dpivlbbyzlbpwnwgajso.supabase.co/auth/v1/admin/users/<UUID>
 | Mock tests | ✅ | ✅ | Same backend |
 | Student dashboard | ✅ | ⚠️ | Needs student profile in backend DB |
 | Progress tracking | ✅ | ⚠️ | Needs student profile |
-| Doubt solving | ✅ | 🔲 | Not yet implemented on mobile |
-| Analytics | ✅ | 🔲 | Not yet |
-| Push notifications | 🔲 | 🔲 | Planned |
-| Google OAuth | ✅ | 🔲 | Needs expo-auth-session deep links |
-| Admin console | ✅ | ❌ | Web-only by design |
+| Doubt solving | ✅ | **✅** | **Shipped** — `mobile/app/(tabs)/doubt.tsx`, full chat UI, backend-wired, role/plan-gated. Previous "not yet implemented" status was stale as of 2026-08-26. |
+| Analytics | ✅ | **✅** | **Shipped** — `mobile/app/(tabs)/analytics.tsx` (280 lines). Previous "not yet" status was stale as of 2026-08-26. |
+| Push notifications | 🔲 | 🔲 | Still accurate — planned, not built. **But note:** `expo-notifications` is already in `mobile/package.json` with zero imports/usages anywhere in the app — dead dependency, not a partial implementation. See `TECH_DEBT.md`. |
+| Google OAuth | ✅ | **✅** | **Shipped** — `signInWithGoogle()` in `mobile/lib/auth.ts` uses `AuthSession.makeRedirectUri`; full implicit-flow handling, retry/backoff, role-select routing in place (5 fix commits landed: `f6206fdc`, `82a435fd`, `bbcc86d5`, `1f273eda`, `ccde3c6f`). Matches `docs/CODEX_BOOTSTRAP.md` and `docs/10_SECURITY.md`, which were already correct — this table was the stale one. |
+| Admin console | ✅ | ❌ | Web-only by design — confirmed still true; mobile auth only recognizes `"student" \| "parent"` roles. |
 
 ---
 

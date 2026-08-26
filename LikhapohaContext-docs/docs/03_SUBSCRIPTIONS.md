@@ -2,18 +2,26 @@
 
 ## Plans
 
-| Plan | Price | Duration | Access | Child Limit |
-|---|---:|---:|---|---:|
-| Free Tier | ₹0 | none | Limited | 1 by default unless configured otherwise |
-| Premium Nano | ₹99 | 8 days | Full | 1 |
-| Premium | ₹299 | 30 days | Full | 1 |
-| Family Premium | ₹499 | 30 days | Full | 2 |
+_Refreshed 2026-08-26 against `backend/app/data/subscription_plans.py` + `shared/config/subscriptionPlans.js` (frontend visibility always wins over backend `is_public` — see note below)._
+
+| Plan | Price | Duration | Access | Child Limit | Status |
+|---|---:|---:|---|---:|---|
+| Free Tier | ₹0 | none | Limited | 1 by default unless configured otherwise | Public |
+| Premium Nano | ₹99 | 8 days | Full | 1 | **Retired — not sold.** `isPublic: false` both layers; purchase 404s server-side. Existing holders keep access until expiry. |
+| Premium | ₹299 | 30 days | Full | 1 | Public |
+| Family Premium | ₹499 | 30 days | Full | 2 | Public |
+| Premium — 6 Months | ₹1,495 | 184 days | Full | 1 | Hidden (offer-code / admin grant) |
+| Premium — Annual | ₹2,999 | 366 days | Full | 1 | Hidden (offer-code / admin grant) |
+| Family Premium — Annual | ₹4,999 | 366 days | Full | 2 | Hidden (offer-code / admin grant) |
+| Exam Prep Center | ₹1,999 | 366 days | JEE/NEET/CUET/SAT/IELTS/TOEFL content only — **not** CBSE core access | — | Public, standalone add-on (added 2026-07, see the 2026-08-26 section below) |
+
+> **Internal-only key found in code, not a real product plan:** `subscription_plans.py` also defines a `premium` key (`is_public: false`, same ₹299/30-day terms as `starter`/"Premium"). Purpose unconfirmed — looks like a vestigial duplicate. See `TECH_DEBT.md`.
 
 ## Core Rules
 
 1. All new signups start in Free Tier.
 2. Offer code is not required for signup.
-3. Nano, Premium, and Family Premium are full-access plans only while active.
+3. Premium, Family Premium, Premium 6-Month, Premium Annual, and Family Annual are full-access plans while active. **Nano is retired** — no new subscriptions; existing holders keep access until expiry (do not treat it as a currently-sellable full-access plan).
 4. Expired paid plans fall back to Free Tier or valid offer-code access.
 5. Paid active plan takes precedence over free/offer access.
 6. Pending/failed payments do not grant access.
@@ -25,9 +33,13 @@
 Use stable canonical keys:
 
 - `FREE_TIER`
-- `NANO`
+- `NANO` (retired — legacy holders only, never assign to a new subscription)
 - `PREMIUM`
 - `FAMILY_PREMIUM`
+- `PREMIUM_6MONTH`
+- `PREMIUM_ANNUAL`
+- `FAMILY_ANNUAL`
+- `EXAM_PREP_CENTER` (standalone — does not grant CBSE core access)
 - `ADMIN_GRANT`
 
 Legacy values such as raw `free` must be normalized by the resolver.
@@ -215,3 +227,15 @@ Each plan card now shows:
 | `family_annual` | Family Premium — Annual | ₹4,999 | 366 days |
 
 These are `is_public: false` and do not appear in the public subscription page unless admin enables them.
+
+---
+
+## 2026-08-26: Exam Prep Center Replaces Legacy Per-Exam Packs (TD-04 resolved)
+
+**Background:** `TECH_DEBT.md`'s TD-04 flagged two coexisting, contradictory Exam Prep gating mechanisms — a legacy `exam_prep_subscriptions` table / `exam_prep_packs.py` route (per-exam pack purchases, only `jee_main`/`neet_ug`/`cuet_ug`) vs. the canonical `Feature.EXAM_PREP_CONTENT` check.
+
+**Resolution:** The legacy pack system was deleted outright rather than revived — per its own removal comment in `subscription_plans.py`, no customer ever held a pack. Removed: `backend/app/routes/exam_prep_packs.py`, `backend/tests/test_exam_prep_packs.py`, `frontend/src/api/examPrepPacks.js`, and the pack-aware helpers `get_active_packs()` / `check_exam_content_access_with_packs()` from `exam_prep_service.py`. The `exam_prep_subscriptions` table itself is left in place as a historic migration only — no application code reads or writes it anymore.
+
+**Current model — exactly one gate:** `exam_prep_service.check_exam_prep_content_access()` = grade/role eligibility (`check_exam_prep_access()`) + `authorize_feature(user_id, Feature.EXAM_PREP_CONTENT)`, which resolves via `subscription_plan_settings.access_exam_prep`. Satisfied by holding the `exam_prep_center` plan (₹1,999/year — see Plans table above) or an admin/test-user override. Free/Nano now uniformly get `has_access: false, preview_only: true` — no more partial "owned this one pack" access.
+
+**Status note:** committed 2026-08-26.

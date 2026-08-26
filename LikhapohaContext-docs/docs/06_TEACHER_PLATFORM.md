@@ -122,6 +122,15 @@ POST /students/{id}/message-parent   — send message
 - Paid teacher: 30 students
 - Email login details: paid-only
 - Backend must enforce limits and permissions
+- Teachers may add/invite students only into **Grade 5–12** (Grade 1–4 blocked) — enforced via the canonical `TEACHER_ALLOWED_GRADES` list (`backend/app/data/product_catalogue.py`), checked in `teacher_dashboard.py` (create student), `teacher_classroom.py` (update student, create invitation), and mirrored in the frontend grade picker (`TeacherDashboardPage.jsx`). Added 2026-08-25.
+
+## Content Access Restrictions
+
+**Exemplar Research is blocked for the teacher role entirely — unconditionally, regardless of plan.** Added 2026-08-25 ("student-only paid feature"). Enforced at the route layer *before* any plan/feature check:
+- `GET /api/teacher/exemplar-research/availability` and `/explain` (`backend/app/routes/teacher.py`) — 403 immediately if `role == "teacher"`.
+- The `"exemplar:"`-prefixed chapter gate in `POST /api/doubt/answer` (`backend/app/routes/doubt.py`) — same unconditional teacher 403, ahead of the `Feature.EXEMPLAR_RESEARCH` check applied to everyone else.
+
+This is a role gate, not a plan gate, so it doesn't appear in `FEATURE_MATRIX.md`'s plan-columned tables. A teacher on any plan, including an admin-grant plan key, still hits this block — only `role == "admin"` bypasses it.
 
 ## Audit Events
 

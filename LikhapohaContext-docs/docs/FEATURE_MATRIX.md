@@ -4,7 +4,9 @@ This matrix is the product-level source of truth. Backend feature authorization 
 
 ## Subscription Feature Matrix
 
-| Feature | Free Tier | Nano | Premium | Family Premium | Admin/Admin Grant |
+_"Nano" is retired (no new subscriptions, `isPublic:false`, purchase 404s) — column kept only to describe existing legacy holders' access until expiry. Premium 6-Month / Premium Annual behave like Premium; Family Annual behaves like Family Premium — omitted as separate columns for readability. See `03_SUBSCRIPTIONS.md` for the full current plan list, including the standalone Exam Prep Center add-on (not shown here — it does not grant any CBSE feature below; see the Exam Prep Center Feature Matrix)._
+
+| Feature | Free Tier | Nano (legacy holders only) | Premium | Family Premium | Admin/Admin Grant |
 |---|---|---|---|---|---|
 | Core lessons | Limited | Full | Full | Full | Full |
 | Exemplar lessons | No | Yes | Yes | Yes | Yes |
@@ -18,6 +20,8 @@ This matrix is the product-level source of truth. Backend feature authorization 
 | Progress view | Basic | Full | Full | Full | Full |
 | Parent dashboard | Basic | Full | Full | Full | Full |
 | Child profiles | 1 | 1 | 1 | 2 | Admin-controlled |
+
+> **Role override (added 2026-08-25):** regardless of plan, the **teacher role** cannot access Exemplar lessons, Exemplar section, or Exemplar research in any form — blocked unconditionally at the route layer (`backend/app/routes/teacher.py`, `backend/app/routes/doubt.py`). This is a student-only paid feature; the columns above describe student/parent access only. See `06_TEACHER_PLATFORM.md`.
 
 ## Teacher Feature Matrix
 
@@ -48,11 +52,13 @@ Admins can access admin console, operations, analytics, support tools, audit vie
 
 ## Exam Prep Center Feature Matrix
 
+**2026-08-26 update — access model changed:** the legacy per-exam pack purchase system (`exam_prep_packs`, JEE/NEET/CUET-only) was removed entirely (see `03_SUBSCRIPTIONS.md`'s 2026-08-26 section, TECH_DEBT.md TD-04). Content access is now a single flag: `subscription_plan_settings.access_exam_prep`, satisfied by the standalone **Exam Prep Center** plan (₹1,999/year — covers all 6 exams, no more per-exam partial access) or an admin/test-user override. Whether the main CBSE Premium/Family Premium plans *also* carry `access_exam_prep=true` is an admin-configurable DB setting (Admin → Subscription Settings), not fixed in code — verify the live value rather than assuming from this table.
+
 | Access Type | JEE Main | NEET UG | CUET UG |
 |---|---|---|---|
 | Grade 5–10 student | ❌ Grade locked | ❌ Grade locked | ❌ Grade locked |
-| Grade 11/12 Free/Nano | 🔒 Preview only | 🔒 Preview only | 🔒 Preview only |
-| Grade 11/12 Premium+ | Stream-dependent | Stream-dependent | ✅ Active |
+| Grade 11/12, `access_exam_prep=false` on current plan | 🔒 Preview only | 🔒 Preview only | 🔒 Preview only |
+| Grade 11/12, `access_exam_prep=true` on current plan | Stream-dependent | Stream-dependent | ✅ Active |
 | PCM stream | ✅ Eligible | ❌ | ✅ Eligible |
 | PCB stream | ❌ | ✅ Eligible | ✅ Eligible |
 | PCMB stream | ✅ Eligible | ✅ Eligible | ✅ Eligible |
@@ -60,6 +66,8 @@ Admins can access admin console, operations, analytics, support tools, audit vie
 | Test users (akshita.teststudent) | ✅ Full | ✅ Full | ✅ Full |
 
 **Access check endpoint:** `GET /api/exam-prep/access-check` — always call this; never infer from plan string.
+
+**Known gap:** the admin-editable `coaching_programs` visibility toggle (`backend/app/data/product_catalogue.py`, `PATCH /api/admin/product-catalogue/program`) is not read anywhere by `exam_prep.py`/`exam_prep_service.py` — flipping it has no effect. See TECH_DEBT.md.
 
 **Question states:** `draft` (admin only) → `published` (students) → `archived` (hidden)
 

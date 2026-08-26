@@ -36,6 +36,13 @@ AI features should support learning, not replace structured pedagogy. AI usage s
 
 Premium-only content must be protected by backend feature authorization.
 
+## Exemplar Research Access — Updated 2026-08-25
+
+Two independent gates now apply, not one:
+
+1. **Role gate (new, teacher-only, unconditional):** the teacher role is blocked from Exemplar Research entirely — availability check, explain endpoint, and the `"exemplar:"`-prefixed chapter gate in Ask Doubt all 403 any `role == "teacher"` before any plan check runs. See `06_TEACHER_PLATFORM.md`. Exemplar Research is explicitly a **student-only** paid feature.
+2. **Plan gate (tightened):** `Feature.EXEMPLAR_RESEARCH`'s allowed-plans list changed from unconditional (`allowed_plans=None`) to matching `Feature.EXEMPLAR`'s paid-plan set (`NANO, PREMIUM, PREMIUM_6MONTH, PREMIUM_ANNUAL, FAMILY_PREMIUM, FAMILY_ANNUAL, ADMIN_GRANT, EXAM_PREP_CENTER`). Previously being unconditional had let free-tier **mobile** students through, since the free/paid split for this feature only lived in the web client's UI check — this closed that leak. See `backend/app/services/feature_authorization_service.py`.
+
 ---
 
 ## AI Studio (Admin) — 2026-06-30

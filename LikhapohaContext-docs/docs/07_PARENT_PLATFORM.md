@@ -33,7 +33,7 @@ New extracted components:
 - `ParentNotificationGroups` — grouped (Needs Attention / Good News / Upcoming / Platform Access), mark-read
 - `ParentAccessExplanation` — "Platform Access" terminology (NOT "CBSE Access"), feature list with badges
 - `ParentProgressStory` — visual progress: subject bars, score trend, strengths, needs practice
-- `ParentChildWorkspace` — 9-tab story-driven drawer: Overview, Today's Plan, Progress, Strengths & Needs, Mock Tests, Homework & Exams, Notifications, Platform Access, Report
+- `ParentChildWorkspace` — **8-tab** story-driven drawer: Overview, Today's Plan, Progress, Strengths & Needs, Mock Tests, Homework & Exams, Notifications, Report. (The "Platform Access" tab was removed 2026-08 as redundant; `ParentAccessExplanation.jsx` was deleted entirely — was 9 tabs before this.)
 
 ### Add Child Flow
 - Creates Supabase auth user + profile in one atomic operation
@@ -42,7 +42,7 @@ New extracted components:
 - Credentials panel with copy buttons shown once after creation
 - "What to do next" instructions shown after successful child creation
 - Child limit message only shown when parent is truly at their plan's limit (not on first open)
-- Grade dropdown: Grade 5–10 only (no Grade 11/12)
+- **Grade dropdown: Grade 5–12** (updated 2026-08 — Grade 11/12 was briefly removed then re-added). Grade 11/12 requires a mandatory stream selection (PCM / PCB / PCMB / Commerce / Humanities), mirroring self-signup; `cbse_subjects` are derived server-side from the chosen stream. Enforced both in `ParentDashboardPage.jsx`'s `AddChildModal` and server-side in `POST /api/parent-dashboard/create-student`.
 
 ## Data Sources
 - `student_progress` table (not `chapter_progress` which does not exist)

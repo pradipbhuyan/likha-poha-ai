@@ -112,10 +112,9 @@ Five cascading defects were found and fixed:
 ## Mandatory Pre-Task Reading
 
 1. `LikhapohaContext-docs/docs/CODEX_BOOTSTRAP.md`
-2. `LikhapohaContext-docs/docs/CODEX_CONTEXT.md`
-3. `LikhapohaContext-docs/CODEX_CONTEXT.md`
-4. `LikhapohaContext-docs/docs/09_AI_PLATFORM.md` ← **required for this bug (lessons + LLM)**
-5. `LikhapohaContext-docs/docs/02_ARCHITECTURE.md`
+2. `LikhapohaContext-docs/docs/CODEX_CONTEXT.md` (as of 2026-08-26 this is the only copy — the old second root-level copy is now a redirect stub)
+3. `LikhapohaContext-docs/docs/09_AI_PLATFORM.md` ← **required for this bug (lessons + LLM)**
+4. `LikhapohaContext-docs/docs/02_ARCHITECTURE.md`
 
 ---
 

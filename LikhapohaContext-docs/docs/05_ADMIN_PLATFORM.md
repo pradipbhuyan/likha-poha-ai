@@ -212,6 +212,22 @@ otherwise             → chat disabled
 - Writes single audit log entry
 - Returns count of updated rows + any not-found IDs
 
+## Admin Signup Notification Emails — Added 2026-08-25
+
+**This is a plain email to an inbox, not a DB-backed feature and not the same system as the in-app "Notification Center" listed above.** Do not conflate the two:
+
+| | Admin signup notification emails (this section) | In-app Notification Center (Admin Productivity Features, above) |
+|---|---|---|
+| Delivery | Email to `likhapohaai@gmail.com` (`_ADMIN_NOTIFICATION_EMAIL`, `email_service.py`) | Badge/dropdown inside Admin Console |
+| Backed by | Nothing persisted — fire-and-forget email send | `GET /api/admin/operations/notifications`, sourced from `platform_audit_logs` |
+| Triggers on | Every new signup (any role, any path) | Operational alerts only: failed payments in the last 24h, rate-limit spikes |
+
+**Trigger:** both fire from inside `send_welcome_email()` (`email_service.py`) — no separate call site was needed since every signup path already calls it:
+- Teacher signup → `send_teacher_signup_admin_notification()` — Name/Email/School; also flags the account `pending_verification` for manual admin approval.
+- Student/parent registration → `send_new_registration_admin_notification()` — Name/Email/Role/Grade.
+
+Both are fire-and-forget (a failed send does not block signup).
+
 ## Admin Safety
 
 - Audit sensitive admin actions.

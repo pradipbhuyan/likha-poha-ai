@@ -161,3 +161,39 @@ When locked: 🔐 notice shown, Generate button disabled.
 The syllabus route may add "Part N - " prefix (e.g. "Part 1 - Exemplar: Rational Numbers"). Always use `includes("Exemplar:")`, never `startsWith("Exemplar:")`.
 
 Backend `syllabus.py` `create_part_display_label()` is configured to skip "Part N - " for exemplar chapters, so after server restart chapters will show as clean "Exemplar: Name". But the `includes()` check ensures safety before restart too.
+
+---
+
+## Rate Limiting — Added 2026-08 (closes most of former TD-07)
+
+**Infrastructure:** `backend/app/services/rate_limit_service.py`'s `RateLimiter` class — Redis sliding-window via an atomic Lua script (ZADD/ZCARD/EXPIRE), backed by `redis_client.py`. Falls back to in-memory automatically if `REDIS_URL` is unset or Redis is unreachable (wrapped in try/except — never blocks a request on Redis failure).
+
+**Coverage — applied via `rate_limit_dependency` on:**
+
+| Endpoint | Limiter |
+|---|---|
+| `POST /api/auth/login` | 10 / 60s |
+| `GET /api/auth/lookup-email/{username}` | 8 / 60s |
+| `POST /api/auth/forgot-password` | 3 / 300s |
+| `POST /api/auth/signup-order`, `signup-free`, `teacher-signup`, `signup-with-offer-code` | 5 / 60s each |
+| Payment create + verify (x2 each) | dedicated `PAYMENT_CREATE_LIMITER` / `PAYMENT_VERIFY_LIMITER` |
+
+**Known gap (not yet covered):** `POST /api/auth/complete-signup` (the paid-signup completion endpoint, `auth.py`) has **no** rate limiter. Its `_reject_taken_username()` check — a DB query that returns a distinct 409 if the username is taken — runs *before* Razorpay signature verification, so it's reachable at unlimited rate without any proof of payment. Same username-enumeration shape the original TD-07 flagged, just on an endpoint that wasn't named at the time. Track as follow-up.
+
+**Separately:** `chatbot.py` has its own in-memory-only limiter, not wired to the shared Redis-backed system — under multiple workers it isn't shared state. Low severity (public FAQ bot, not an auth surface), but inconsistent with the rest of the app.
+
+**Not the same system:** the daily AI/LLM usage quota (Ask Doubt, lessons, mock test feedback) is a *separate*, DB-backed mechanism — `usage_service.py`'s `enforce_daily_limit()` / `enforce_daily_limit_multi()`, querying `ai_usage_logs` directly, no Redis involved. Don't confuse the two when debugging either one.
+
+## Go-Live Security Hardening — August 2026
+
+A cluster of security fixes landed in a short window (commits `008e78c3`, `aa66bdc5`, `dea9df74`, `9faa2529`, `b9d2046d`, `d9668295`, `1443fa3b`, `a6ed4cfb`, `95f0026b`, `bbfefba0`). **No standalone audit report exists in the repo** — the findings are traceable only through commit messages and regression-test docstrings (`backend/tests/test_unauthenticated_endpoint_regression.py` cites "blockers 1-3" of a stated 28 endpoints found with zero auth dependency; `backend/tests/test_auth_logging_privacy.py` documents an 11th finding not captured below — `get_current_user` used to print user id/email to logs).
+
+- **Profile-ID ownership hardening** (`008e78c3`, `aa66bdc5`) — queries across `usage_service.py`, `profile.py`, `parent_dashboard.py`, `teacher_classroom.py`, `board_papers_service.py`, `weekly_digest_service.py` now filter/compare by resolved `profile_id` instead of the mutable `username` string. Shipped with migration `20260822_profile_id_hardening.sql`, a live CI check (`.github/workflows/tenant-isolation-smoke.yml`), and a rollout runbook at `docs/security/profile-id-ownership-rollout.md`.
+- **Username-collision data leak, real incident** (`dea9df74`) — two profiles both named "likha" leaked one child's mock-test scores to an unrelated parent because a query filtered by the `username` string. Fixed with an app-level `_reject_taken_username()` guard on every signup path, plus `backend/sql/add_username_uniqueness_to_profiles.sql` as a DB unique-index backstop. **That index is a manual "run in Supabase SQL Editor" step — its applied-in-production status cannot be confirmed from the repo.** Treat as open until verified, the same caution as a pending migration (see `TECH_DEBT.md` TD-09).
+- **Reserved admin usernames** (`9faa2529`) — `_reject_reserved_username()` changed from exact-match to substring check (blocks "PradipAdmin", "pradip-admin", etc.), and wired into `oauth_complete_profile` and `teacher_signup`, which hadn't called it before.
+- **Three unauthenticated, billable AI routes deleted outright** (`b9d2046d`) — `/api/quiz/generate`, `/api/tts/generate`, `/api/images/generate`: no auth, no rate limit, real per-call cost, unreachable from any shipped frontend. Confirmed gone.
+- **RAG admin lock + mandatory webhook verification** (`d9668295`) — all RAG upload/delete/search/list routes now require `require_admin`; Razorpay webhook signature verification is mandatory and fail-closed; production boot now refuses to start without `RAZORPAY_WEBHOOK_SECRET` set (`main.py`).
+- **Family-scoped child ownership + mock-test paywall** (`1443fa3b`) — `_verify_child_ownership()` now prefers `family_id` over strict `parent_id` match (fixes a second parent on Family Premium being locked out); `POST /api/mock-test/generate` gained format-access enforcement so free-tier can't reach paid Written/Mixed mode via direct API call.
+- **Weak-area-alerts spoofing + dormant signup bypass** (`a6ed4cfb`) — `POST /api/weak-area-alerts/save` previously trusted a client-supplied username with no auth; now derives it from the caller's own profile. A dormant in-page signup path in `LoginPage.jsx` that inserted an unrestricted-access profile via the anon-key Supabase client directly was deleted.
+- **Production-detection near-miss** (`95f0026b`) — `settings.is_production()` previously trusted only the `ENVIRONMENT` env var, which was **never actually set on the host** — meaning the production-only gates the other fixes above added (legacy-login disable, mandatory webhook secret) were silently inert in production until this fix. Verified live at the time by probing and getting HTTP 200 from `/api/auth/login`. Now also treats the platform-injected `RENDER` env var as authoritative, so it no longer depends on a manually-set variable alone.
+- **Privilege checks moved off username literals** (`bbfefba0`) — replaced hardcoded checks like `username === "pradip"` / `"admin"` (frontend Sidebar/Analytics) with `role === "admin"`, since anyone can sign up and claim any username. Also deleted the redundant, partly-broken `rag_service.ADMIN_USERS` allowlist and moved "all-access QA account" behavior to a real `profiles.is_test_account` DB flag.

@@ -38,7 +38,7 @@ The Student Dashboard motivates learning and makes the next best action immediat
 ### Student Signup
 - Single-step card-based signup (SignupPage.jsx)
 - Parent + Student roles only (Teacher not in public signup)
-- Student signup includes Grade selector (Grade 5–10)
+- Student signup includes Grade selector (**Grade 5–12** — updated 2026-08; Grade 11/12 requires a mandatory stream selection: PCM / PCB / PCMB / Commerce / Humanities, enforced at 5 call sites in `backend/app/routes/auth.py`)
 - Grade saved to profile and used to show relevant lessons on dashboard
 - Google Sign In supported
 - All new accounts start on Free Tier
@@ -98,7 +98,7 @@ All score display must use `_normalize_score_pct(percentage, raw_score, max_scor
 |---|---|
 | `study_streak_days` | Current learning streak |
 | `lessons_completed` | Total lessons generated |
-| `grade` | Grade 5–10 (set at signup) |
+| `grade` | Grade 5–12 (set at signup; 11/12 also carries a `stream`) |
 | `board` | CBSE (default) |
 | `access_cbse` | Canonical paid access flag |
 | `subscription_expires_at` | Expiry date if applicable |
@@ -106,10 +106,10 @@ All score display must use `_normalize_score_pct(percentage, raw_score, max_scor
 ## Exam Prep Center — Grade 11/12
 
 ### Access Rules
-- **Grade 11/12 students**: access controlled by subscription (Premium+ only)
+- **Grade 11/12 students**: content access gated by the `subscription_plan_settings.access_exam_prep` flag on their current plan — satisfied by the standalone **Exam Prep Center** plan (₹1,999/year) or any other plan an admin has flagged with `access_exam_prep=true`. **2026-08-26: the old per-exam pack purchase system (`exam_prep_packs`) was removed** — see `03_SUBSCRIPTIONS.md` and `FEATURE_MATRIX.md` for the current model. Without the flag: `preview_only: true`.
 - **`akshita.teststudent`**: always gets full access (`reason: "test_user"`, `ADMIN_GRANT` plan)
 - **admin role**: always gets full access
-- **Grade 5–10 students**: see a grade-ineligible lock screen
+- **Grade 5–10 students**: see a grade-ineligible lock screen (Exam Prep Center remains Grade 11/12-only regardless of the broader Grade 5–12 signup/add-child range above)
 
 ### Stream-based Exam Eligibility
 | Stream | JEE Main | NEET UG | CUET UG |

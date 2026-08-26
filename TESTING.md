@@ -93,10 +93,31 @@ cd frontend
 npx playwright test
 ```
 
-Current E2E tests cover:
+Current E2E tests cover (26 tests, 5 spec files):
 
-- App loads
-- Page renders non-empty content
+- App loads / renders non-empty content (`lesson-practice.spec.js`)
+- Public navigation: landing → login → signup → back, direct URLs for
+  `/signup`, `/teacher-signup`, legal pages, and confirmation that a
+  signed-out visitor never sees authenticated dashboard content
+  (`navigation.spec.js`)
+- Email/password login: role-based routing to the correct dashboard for
+  student/parent/teacher/admin, invalid-credentials and unconfirmed-email
+  error messages, forgot-password (`login.spec.js`)
+- Free signup: happy path, client-side validation (short password, Grade
+  11/12 stream required), duplicate-email and rate-limit API errors,
+  unconfirmed-email-after-signup (`signup.spec.js`)
+- Free-tier access restriction: a free student sees the upgrade prompt and
+  can follow it through to the Subscription page (`access-control.spec.js`)
+
+These tests mock the Supabase and backend network calls (see
+`e2e/support/mockAuth.js`) rather than hitting a live Supabase project, so
+they're deterministic and don't require real credentials or a running
+backend — only `npm run dev` for the frontend.
+
+Not yet automated at the E2E layer (still only covered by backend pytest
+and/or frontend Vitest tests, or not covered at all): parent adds child,
+teacher adds student, paid upgrade payment flow, subscription
+expiry/fallback, admin payment test, admin operations checks.
 
 ---
 

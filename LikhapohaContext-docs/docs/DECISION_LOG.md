@@ -1,8 +1,44 @@
 # Decision Log
 
-_Last updated: 2026-07-12 (late morning — mobile Phase 1+2)_
+_Last updated: 2026-08-26_
 
 This file records key technical decisions made during development, including the reasoning and any constraints that must not be violated.
+
+---
+
+## 2026-08-26: Documentation Re-Sync — 422 Commits of Drift Corrected
+
+**Decision:** The handbook went ~6 weeks without a full re-verification pass (last dated update: 2026-07-16, this file's own last update: 2026-07-12). Every doc was cross-checked against current code by direct file inspection rather than trusted at face value. Corrected: Nano-retirement contradictions across 4 docs, the Exam Prep Center plan (existed in code, was undocumented anywhere), the teacher Grade 5-12 + Exemplar Research restrictions below (shipped 2026-08-25, was undocumented), parent Grade 11/12 support, the admin signup-notification emails, a rate-limiting rollout, and the security hardening pass below. Full detail lives in each affected doc; tech-debt-shaped findings in `TECH_DEBT.md`.
+
+**Process note:** this file's own "How to Keep This File Up To Date" section (below) exists for exactly this situation and wasn't run for 6 weeks. Re-run it on a schedule, not just when something breaks.
+
+---
+
+## 2026-08-25: Teacher Access Restricted — Grade 5-12 Only, Exemplar Research Blocked Entirely
+
+**Decision:** Teachers may only add or invite students into Grade 5–12 (previously unrestricted at the teacher-add path). Exemplar Research is blocked for the teacher role unconditionally, at the route layer, regardless of plan — it is a student-only paid feature.
+
+**Root cause / why:** Exemplar Research's plan gate had been unconditional (`allowed_plans=None`) on some paths, which had let free-tier **mobile** students through — the free/paid split for this feature previously only lived in the web client's UI check, not the backend. Tightening the plan gate to match `Feature.EXEMPLAR`'s paid-plan set closed that leak; blocking teachers outright is a separate, deliberate product decision.
+
+**Files:** `backend/app/routes/teacher.py`, `backend/app/routes/doubt.py`, `backend/app/services/feature_authorization_service.py`, `backend/app/data/product_catalogue.py` (`TEACHER_ALLOWED_GRADES`), `backend/app/routes/teacher_dashboard.py`, `backend/app/routes/teacher_classroom.py`, `frontend/src/pages/TeacherDashboardPage.jsx`.
+
+---
+
+## 2026-08 (date uncommitted at time of writing): Exam Prep Legacy Pack System Retired
+
+**Decision:** Deleted the legacy per-exam pack purchase system (`exam_prep_packs.py`, the `exam_prep_subscriptions` table's application code, `examPrepPacks.js`) rather than reviving it, resolving `TECH_DEBT.md` TD-04. No customer had ever purchased a pack. Exam Prep access is now solely the canonical `Feature.EXAM_PREP_CONTENT` check via `subscription_plan_settings.access_exam_prep`, satisfied by the new standalone Exam Prep Center plan (₹1,999/year, all 6 exams — no more per-exam partial access).
+
+**Files:** `backend/app/routes/exam_prep.py`, `backend/app/routes/exam_prep_packs.py` (deleted), `backend/app/services/exam_prep_service.py`, `backend/app/services/product_catalogue_service.py` (new), `backend/app/data/subscription_plans.py`.
+
+---
+
+## 2026-08 (dates per git log): Go-Live Security Hardening Pass
+
+**Decision:** A cluster of ~10 security fixes addressing a stated 28 endpoints found with no auth dependency during an internal review (no standalone audit report exists in the repo — findings are traceable only via commit history and regression-test docstrings). Highlights: profile-id ownership hardening (queries now key by resolved `profile_id`, not the mutable `username` string) after a real incident where two same-named profiles leaked one child's scores to an unrelated parent; three unauthenticated, billable AI routes deleted outright; mandatory Razorpay webhook signature verification with production-boot refusal if the secret is missing; and a fix for `is_production()` having silently never detected production — the `ENVIRONMENT` variable was never actually set on the host, so every production-only protection gated on it had been inert until this fix.
+
+**Constraint going forward:** don't reintroduce username-string-keyed ownership checks. Don't add a production-only security gate without independently confirming `settings.is_production()` actually evaluates true in the target environment — this exact assumption failed silently once already.
+
+**Files:** see `10_SECURITY.md`'s "Go-Live Security Hardening — August 2026" section for the full per-fix file list.
 
 ---
 

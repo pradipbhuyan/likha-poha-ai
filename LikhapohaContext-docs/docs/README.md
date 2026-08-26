@@ -22,6 +22,8 @@ Future implementation prompts should reference these documents instead of repeat
 | Document | Purpose |
 |---|---|
 | `CODEX_BOOTSTRAP.md` | First file for Codex/AI agents to read before any change. |
+| `CODEX_CONTEXT.md` | Single-file fast-path digest `CODEX_BOOTSTRAP.md` sends you to first. Was previously duplicated at the repo root with drifted content — merged 2026-08-26; this is now the only copy. |
+| `CONTENT_MANAGEMENT.md` | How Formula Sheets / Study Materials / NCERT Exemplar content is structured, stored, and expanded. |
 | `01_PRODUCT_CONTEXT.md` | Product vision, roles, business rules, and definition of done. |
 | `02_ARCHITECTURE.md` | Technical architecture and canonical service boundaries. |
 | `03_SUBSCRIPTIONS.md` | Subscription model, lifecycle, resolver, and feature authorization. |
