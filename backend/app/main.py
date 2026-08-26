@@ -141,6 +141,10 @@ allowed_origins = [
     "https://likhapoha.in",
     "https://www.likhapoha.in",
 
+    # Instagram bio-link questionnaire (interest/index.html), served via
+    # GitHub Pages from the likha-poha-promo-assets repo.
+    "https://pradipbhuyan.github.io",
+
     frontend_url,
 ]
 
@@ -497,6 +501,10 @@ app.include_router(chatbot_router, prefix="/api/chatbot", tags=["Chatbot"])
 # Unanswered questions review (admin intelligence management)
 from app.routes.unanswered_review import router as unanswered_router  # noqa: E402
 app.include_router(unanswered_router, prefix="/api/unanswered-review", tags=["Unanswered Review"])
+
+# Public Instagram bio-link lead capture — no auth required
+from app.routes.leads import router as leads_router  # noqa: E402
+app.include_router(leads_router, prefix="/api/leads", tags=["Leads"])
 
 app.include_router(
     teacher_classroom_router,

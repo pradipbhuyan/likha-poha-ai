@@ -659,6 +659,87 @@ def send_teacher_signup_admin_notification(name: str, email: str, school: str) -
     _log.info("email_service.teacher_admin_notification_queued", teacher_email=email_clean, school=school_clean)
 
 
+def send_instagram_lead_notification(
+    role: str,
+    name: str,
+    phone: str,
+    grade: str = "",
+    student_count: str = "",
+) -> None:
+    """
+    Notify the team inbox whenever someone submits the "Learn More"
+    questionnaire linked from the Instagram bio. Reuses the same branded
+    shell / fire-and-forget send as every other admin notification in this
+    module. Never raises — the route wraps this in try/except anyway, but a
+    failure here must never be able to block the lead from saving.
+    """
+    if not _ADMIN_NOTIFICATION_EMAIL:
+        return
+
+    name_clean = (name or "").strip() or "(not provided)"
+    phone_clean = (phone or "").strip() or "(not provided)"
+    grade_clean = (grade or "").strip() or "—"
+    count_clean = (student_count or "").strip() or "—"
+    role_label = {"student": "Student", "parent": "Parent", "teacher": "Teacher / School"}.get(role, role or "Unknown")
+
+    body = f"""
+<p style="margin:0 0 16px;font-size:20px;font-weight:900;letter-spacing:-0.02em">
+  New Instagram lead &#128241;
+</p>
+<p style="margin:0 0 16px;font-size:15px;line-height:1.7">
+  <strong>{name_clean}</strong> just submitted the free study plan questionnaire
+  from the Instagram bio link.
+</p>
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+       style="margin:8px 0 16px;border-radius:10px;overflow:hidden;border:1px solid #e5e7eb">
+  <tr style="background:#f8fafc">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b;width:110px">Role</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{role_label}</td>
+  </tr>
+  <tr style="border-top:1px solid #e5e7eb">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b">Name</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{name_clean}</td>
+  </tr>
+  <tr style="border-top:1px solid #e5e7eb;background:#f8fafc">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b">WhatsApp</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{phone_clean}</td>
+  </tr>
+  <tr style="border-top:1px solid #e5e7eb">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b">Grade</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{grade_clean}</td>
+  </tr>
+  <tr style="border-top:1px solid #e5e7eb;background:#f8fafc">
+    <td style="padding:10px 14px;font-size:13px;color:#64748b">Count</td>
+    <td style="padding:10px 14px;font-size:13px;font-weight:700">{count_clean}</td>
+  </tr>
+</table>
+<p style="margin:0;font-size:13px;color:#64748b;line-height:1.7">
+  Follow up on WhatsApp within 24 hours.
+</p>
+"""
+
+    html = _email_shell(
+        body_html=body,
+        cta_url=f"https://wa.me/91{phone_clean}" if phone_clean.isdigit() else _FRONTEND_URL,
+        cta_label="Message on WhatsApp →",
+    )
+
+    text = (
+        f"New Instagram lead: {name_clean} ({role_label})\n"
+        f"WhatsApp: {phone_clean}\n"
+        f"Grade: {grade_clean}\n"
+        f"Count: {count_clean}\n"
+    )
+
+    _send_async(
+        to=_ADMIN_NOTIFICATION_EMAIL,
+        subject=f"New Instagram lead: {name_clean} ({role_label})",
+        html=html,
+        text=text,
+    )
+    _log.info("email_service.instagram_lead_notification_queued", role=role, phone=phone_clean)
+
+
 def send_new_registration_admin_notification(
     name: str,
     email: str,

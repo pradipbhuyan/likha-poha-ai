@@ -290,3 +290,6 @@ PAYMENT_VERIFY_LIMITER = RateLimiter(max_calls=10, window_seconds=60, name="paym
 
 # Admin test payments  (stricter — admin-only traffic should be low volume)
 ADMIN_TEST_PAYMENT_LIMITER = RateLimiter(max_calls=5, window_seconds=60, name="admin_test_payment")  # 5/min
+
+# Instagram bio-link lead capture (public, unauthenticated, per IP)
+LEAD_CAPTURE_LIMITER = RateLimiter(max_calls=5, window_seconds=60, name="lead_capture")  # 5/min
