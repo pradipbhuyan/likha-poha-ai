@@ -18,6 +18,21 @@
   --shadow-lg: 0 12px 32px rgba(79, 70, 229, 0.12), 0 2px 8px rgba(15, 23, 42, 0.08);
   --radius: 16px;
   --surface2: #edf0f7;
+  --accent-soft: #f2edfe;
+
+  /* Aliases — these names are referenced across ~54 files (mostly inline
+     `var(--surface, #hex)` fallbacks) but were never actually defined, so
+     every one of those call sites was silently stuck on its hardcoded
+     fallback and never responded to the dark-mode toggle. Same concept as
+     --panel / --text-muted / --border above — kept as separate explicit
+     values (not `var(--panel)` cross-references) because --surface is only
+     specified here on :root (the <html> element); a cross-reference would
+     resolve using :root's own cascade and never see body.dark-mode's
+     override one element down, silently freezing at the light value. */
+  --surface: #ffffff;
+  --card-bg: #ffffff;
+  --text-secondary: #475569;
+  --border-color: #dde2f0;
 }
 
 * {
@@ -1210,7 +1225,7 @@ textarea:focus {
   border: 1px solid #e5e7eb;
   border-radius: 18px;
   overflow: hidden;
-  background: #ffffff;
+  background: var(--panel);
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
 }
 
@@ -1224,7 +1239,7 @@ textarea:focus {
   align-items: center;
   cursor: pointer;
   font-weight: 900;
-  color: #0f172a;
+  color: var(--text);
   font-size: 16px;
 }
 
@@ -1325,7 +1340,7 @@ textarea:focus {
 
 .inline-question-choice.muted {
   background: #f8fafc;
-  color: #475569;
+  color: var(--text-muted);
 }
 
 .inline-question-choice.active.muted {
@@ -1933,7 +1948,7 @@ body.dark-mode .lesson-sections.style-C .lesson-section-header::before { backgro
   justify-content: space-between;
   gap: 12px;
   padding: 14px 16px;
-  color: #0f172a;
+  color: var(--text);
   font-weight: 900;
   cursor: pointer;
   list-style: none;
@@ -1969,7 +1984,7 @@ body.dark-mode .lesson-sections.style-C .lesson-section-header::before { backgro
   border: 1px solid #e2e8f0;
   border-radius: 14px;
   background: #ffffff;
-  color: #0f172a;
+  color: var(--text);
   text-align: left;
   cursor: pointer;
 }
@@ -2962,6 +2977,19 @@ body.dark-mode {
   --primary: #6366f1;
   --primary-dark: #4f46e5;
   --accent: #7c3aed;
+  --accent-soft: rgba(124, 58, 237, 0.18);
+  /* Previously undefined in dark mode — every element still using the
+     light-mode red/green/amber below (which is dim on a near-black
+     background) had to be individually re-patched with an inline
+     `darkMode ? "#fbbf24" : "#b45309"`-style ternary. These three lines are
+     why that workaround shouldn't be needed anymore. */
+  --danger: #f87171;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --surface: #0f172a;
+  --card-bg: #0f172a;
+  --text-secondary: #94a3b8;
+  --border-color: #1e293b;
   --shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
   --surface2: #1e293b;
@@ -3019,7 +3047,6 @@ body.dark-mode .inline-question-choice.active {
 }
 body.dark-mode .inline-question-choice.muted {
   background: #0f172a !important;
-  color: #94a3b8 !important;
 }
 body.dark-mode .inline-question-choice.active.muted {
   background: #1e3a5f !important;
@@ -3519,11 +3546,6 @@ body.dark-mode .lesson-history-item {
   border-color: #334155 !important;
 }
 
-body.dark-mode .lesson-history-panel summary,
-body.dark-mode .lesson-history-item {
-  color: #f8fafc !important;
-}
-
 body.dark-mode .lesson-history-panel summary span {
   background: rgba(37, 99, 235, 0.18) !important;
   color: #bfdbfe !important;
@@ -3612,14 +3634,12 @@ body.dark-mode .lesson-section-content h4 {
 }
 
 body.dark-mode .lesson-section-card {
-  background: #0f172a !important;
   border-color: #334155 !important;
 }
 
 body.dark-mode .lesson-section-header {
   background: #111827 !important;
   border-color: #334155 !important;
-  color: #f8fafc !important;
 }
 
 body.dark-mode .lesson-section-body {
@@ -5036,10 +5056,6 @@ body.dark-mode .visual-image-card {
   border-color: #334155 !important;
 }
 
-body.dark-mode .visual-generator-header p {
-  color: #94a3b8 !important;
-}
-
 body.dark-mode .visual-image-card img {
   background: #020617 !important;
 }
@@ -5421,7 +5437,7 @@ body.dark-mode .selected-files-box {
     border-radius: 28px !important;
     padding: 26px !important;
     border: 1px solid rgba(226, 232, 240, 0.95) !important;
-    background: #ffffff !important;
+    background: var(--panel) !important;
     box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08) !important;
   }
   
@@ -5634,7 +5650,6 @@ body.dark-mode .selected-files-box {
   }
   
   body.dark-mode .premium-stat-card {
-    background: #0f172a !important;
     border-color: #334155 !important;
   }
   
@@ -5821,7 +5836,7 @@ body.dark-mode .selected-files-box {
 .recommendation-card h4 {
   font-size: 22px;
   margin-bottom: 12px;
-  color: #0f172a;
+  color: var(--text);
 }
 
 .recommendation-card p {
@@ -5869,10 +5884,6 @@ body.dark-mode .recommendation-section {
 body.dark-mode .recommendation-card {
   background: #111827 !important;
   border-color: #334155 !important;
-}
-
-body.dark-mode .recommendation-card h4 {
-  color: #f8fafc !important;
 }
 
 body.dark-mode .recommendation-card p {
@@ -6895,7 +6906,7 @@ body.dark-mode .premium-lesson-output .lesson-output-header p:not(.eyebrow) {
   margin: 14px 0 0;
   font-size: 36px;
   font-weight: 900;
-  color: #0f172a;
+  color: var(--text);
 }
 
 .premium-chart-card {
@@ -6979,10 +6990,6 @@ body.dark-mode .premium-analytics-insight-card p,
 body.dark-mode .premium-history-row p,
 body.dark-mode .premium-analytics-stats .premium-card strong {
   color: #cbd5e1 !important;
-}
-
-body.dark-mode .premium-analytics-stats .premium-card p {
-  color: #f8fafc !important;
 }
 
 body.dark-mode .premium-history-row span {
@@ -7467,7 +7474,7 @@ body.dark-mode .admin-family-id {
   .doubt-file-button,
   .doubt-answer-actions button {
     border: 1px solid #c7d2fe;
-    background: #ffffff;
+    background: var(--panel);
     color: #1e3a8a;
     border-radius: 12px;
     padding: 10px 13px;
@@ -7523,7 +7530,7 @@ body.dark-mode .admin-family-id {
   }
 
   .doubt-history-item strong {
-    color: #0f172a;
+    color: var(--text);
     display: -webkit-box;
     font-size: 15px;
     line-height: 1.35;
@@ -7678,7 +7685,6 @@ body.dark-mode .admin-family-id {
 
   body.dark-mode .doubt-file-button,
   body.dark-mode .doubt-answer-actions button {
-    background: #0f172a;
     border-color: #334155;
     color: #bfdbfe;
   }
@@ -7690,10 +7696,6 @@ body.dark-mode .admin-family-id {
   body.dark-mode .doubt-history-item {
     background: #111827;
     border-color: #334155;
-  }
-
-  body.dark-mode .doubt-history-item strong {
-    color: #f8fafc;
   }
 
   body.dark-mode .doubt-history-item span,
@@ -8110,7 +8112,7 @@ body.dark-mode .premium-resource-empty p {
     margin: 0;
     font-size: 42px;
     font-weight: 950;
-    color: #0f172a;
+    color: var(--text);
   }
   
   .premium-podium-card > span {
@@ -8216,10 +8218,6 @@ body.dark-mode .premium-resource-empty p {
   body.dark-mode .premium-leaderboard-row .leader-main span,
   body.dark-mode .premium-leaderboard-row .leader-metric span {
     color: #cbd5e1 !important;
-  }
-  
-  body.dark-mode .premium-podium-card .leader-score {
-    color: #f8fafc !important;
   }
   
   body.dark-mode .premium-rank-chip {
@@ -8410,7 +8408,7 @@ body.dark-mode .premium-resource-empty p {
     display: block;
     font-size: 28px;
     margin-bottom: 8px;
-    color: #0f172a;
+    color: var(--text);
   }
   
   .premium-parent-usage-grid span {
@@ -8455,10 +8453,6 @@ body.dark-mode .premium-resource-empty p {
   body.dark-mode .premium-parent-usage-grid span,
   body.dark-mode .premium-parent-empty p {
     color: #cbd5e1 !important;
-  }
-  
-  body.dark-mode .premium-parent-usage-grid strong {
-    color: #f8fafc !important;
   }
   
   body.dark-mode .premium-parent-activity-row span {
@@ -8561,7 +8555,7 @@ body.dark-mode .premium-resource-empty p {
   margin: 14px 0 0;
   font-size: 30px;
   font-weight: 900;
-  color: #0f172a;
+  color: var(--text);
 }
 
 .premium-usage-alert-section {
@@ -8612,7 +8606,7 @@ body.dark-mode .premium-resource-empty p {
 .premium-usage-log-row span {
   display: block;
   font-weight: 900;
-  color: #0f172a;
+  color: var(--text);
 }
 
 .premium-usage-row small,
@@ -8749,7 +8743,7 @@ body.dark-mode .premium-resource-empty p {
 }
 
 .pricing-result-card strong {
-  color: #0f172a;
+  color: var(--text);
   font-size: 30px;
   line-height: 1;
 }
@@ -10198,10 +10192,6 @@ body.dark-mode .admin-cbse-subject-chip-grid label {
   color: #e5e7eb;
 }
 
-body.dark-mode .pricing-result-card strong {
-  color: #f8fafc;
-}
-
 body.dark-mode .sales-demo-presenter strong,
 body.dark-mode .sales-demo-copy h3,
 body.dark-mode .sales-demo-screen h4,
@@ -10816,7 +10806,7 @@ body.dark-mode .premium-rag-extracted-pages {
   display: grid;
   gap: 10px;
   text-align: left;
-  color: #0f172a;
+  color: var(--text);
   cursor: pointer;
   box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
 }
@@ -10866,7 +10856,7 @@ body.dark-mode .premium-rag-extracted-pages {
   border: 1px solid #cbd5e1;
   border-radius: 16px;
   background: #ffffff;
-  color: #0f172a;
+  color: var(--text);
   padding: 0 18px;
   font-size: 1rem;
   font-weight: 800;
@@ -10892,7 +10882,7 @@ body.dark-mode .premium-rag-extracted-pages {
 }
 
 .textbook-visual-results > strong {
-  color: #0f172a;
+  color: var(--text);
   font-weight: 950;
 }
 
@@ -10980,12 +10970,6 @@ body.dark-mode .premium-rag-result-row small {
   color: #cbd5e1 !important;
 }
 
-body.dark-mode .premium-usage-stats .premium-card p,
-body.dark-mode .premium-usage-row span,
-body.dark-mode .premium-usage-log-row span {
-  color: #f8fafc !important;
-}
-
 body.dark-mode .premium-rag-result-row span {
   background: rgba(37, 99, 235, 0.18);
   color: #93c5fd;
@@ -11045,10 +11029,6 @@ body.dark-mode .textbook-visual-note {
   border-color: #334155;
 }
 
-body.dark-mode .textbook-visual-option {
-  color: #f8fafc;
-}
-
 body.dark-mode .textbook-visual-option img {
   background: #020617;
   border-color: #334155;
@@ -11062,7 +11042,6 @@ body.dark-mode .textbook-selected-caption {
 body.dark-mode .textbook-visual-input {
   background: #111827;
   border-color: #334155;
-  color: #f8fafc;
 }
 
 body.dark-mode .textbook-visual-input::placeholder {
@@ -11072,10 +11051,6 @@ body.dark-mode .textbook-visual-input::placeholder {
 body.dark-mode .textbook-visual-results {
   background: rgba(15, 23, 42, 0.72);
   border-color: #334155;
-}
-
-body.dark-mode .textbook-visual-results > strong {
-  color: #f8fafc;
 }
 
 body.dark-mode .textbook-visual-callout {
@@ -11199,7 +11174,7 @@ body.dark-mode .textbook-visual-callout {
 }
 
 .admin-syllabus-preview-panel strong {
-  color: #0f172a;
+  color: var(--text);
   font-size: 18px;
 }
 
@@ -11337,10 +11312,6 @@ body.dark-mode .admin-syllabus-preview-panel,
 body.dark-mode .admin-syllabus-draft-row {
   background: #111827 !important;
   border-color: #334155 !important;
-}
-
-body.dark-mode .admin-syllabus-preview-panel strong {
-  color: #f8fafc !important;
 }
 
 body.dark-mode .admin-syllabus-preview-panel span {
@@ -11483,7 +11454,7 @@ body.dark-mode .admin-syllabus-draft-row button {
 
 .mentor-suggestion-card-btn strong {
   display: block;
-  color: #0f172a;
+  color: var(--text);
   margin-bottom: 6px;
 }
 
@@ -11524,10 +11495,6 @@ body.dark-mode .mentor-followup-answer {
 body.dark-mode .mentor-followup-panel {
   background: #0f172a !important;
   border-color: #334155 !important;
-}
-
-body.dark-mode .mentor-suggestion-card-btn strong {
-  color: #f8fafc !important;
 }
 
 body.dark-mode .mentor-suggestion-card-btn small {
@@ -11663,7 +11630,7 @@ body.dark-mode .visual-topic-helper {
 .visual-generator-header p,
 .visual-prompt-helper,
 .visual-topic-helper {
-  color: #475569 !important;
+  color: var(--text-muted) !important;
 }
 
 /* Dark mode */
@@ -12043,7 +12010,7 @@ button.family-person-card {
   border: none;
   border-radius: 999px;
   background: #f1f5f9;
-  color: #0f172a;
+  color: var(--text);
   font-size: 24px;
   font-weight: 900;
   cursor: pointer;
@@ -12074,7 +12041,6 @@ body.dark-mode .family-empty-card small {
 
 body.dark-mode .modal-close {
   background: #0f172a;
-  color: #f8fafc;
 }
 
 @media (max-width: 1100px) {
@@ -12397,7 +12363,7 @@ body.dark-mode .selected-child-badge {
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 0 12px;
-  background: #ffffff;
+  background: var(--panel);
   color: var(--text);
 }
 
@@ -12739,7 +12705,6 @@ body.dark-mode .subscription-plan-card {
 }
 
 body.dark-mode .subscription-current-panel select {
-  background: #0f172a;
   border-color: rgba(148, 163, 184, 0.28);
   color: #e5e7eb;
 }
@@ -13052,7 +13017,7 @@ body.dark-mode .admin-subscription-save-bar {
 }
 
 .teacher-student-card {
-  background: #ffffff;
+  background: var(--panel);
   border: 1px solid #dbe3f0;
   border-radius: 16px;
   color: #1f2937;
@@ -13115,7 +13080,6 @@ body.dark-mode .admin-subscription-save-bar {
 }
 
 body.dark-mode .teacher-student-card {
-  background: #0f172a;
   border-color: rgba(148, 163, 184, 0.28);
   color: #e5e7eb;
 }
@@ -14562,7 +14526,7 @@ body.dark-mode .performance-results-table td {
 
 .first-guide-hero h3 {
   margin: 0;
-  color: #0f172a;
+  color: var(--text);
   font-size: 1.1rem;
 }
 
@@ -14625,7 +14589,7 @@ body.dark-mode .performance-results-table td {
 
 .first-guide-step-card h4 {
   margin: 0 0 4px;
-  color: #0f172a;
+  color: var(--text);
   font-size: 0.85rem;
 }
 
@@ -14690,7 +14654,7 @@ body.dark-mode .performance-results-table td {
 
 .admin-guide-preview-token strong {
   margin-top: 8px;
-  color: #0f172a;
+  color: var(--text);
   font-size: 1.05rem;
 }
 
@@ -14749,7 +14713,7 @@ body.dark-mode .performance-results-table td {
 
 .admin-guide-theme-card h3 {
   margin: 16px 0 8px;
-  color: #0f172a;
+  color: var(--text);
 }
 
 .admin-guide-theme-card p {
@@ -14802,13 +14766,6 @@ body.dark-mode .admin-guide-theme-card,
 body.dark-mode .admin-guide-toggle-grid label {
   background: rgba(15, 23, 42, 0.96);
   border-color: rgba(148, 163, 184, 0.24);
-}
-
-body.dark-mode .first-guide-hero h3,
-body.dark-mode .first-guide-step-card h4,
-body.dark-mode .admin-guide-theme-card h3,
-body.dark-mode .admin-guide-preview-token strong {
-  color: #f8fafc;
 }
 
 body.dark-mode .first-guide-step-card span,
