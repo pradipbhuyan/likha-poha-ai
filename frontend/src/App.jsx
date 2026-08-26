@@ -287,7 +287,9 @@ const PAGE_META = {
   },
   platformWalkthrough: {
     title: "Platform Walkthrough",
-    subtitle: "Watch the student platform walkthrough in English and Hindi.",
+    // Shown to students, parents and teachers, who now each get a different
+    // walkthrough video — so the copy stays audience-neutral.
+    subtitle: "Watch the platform walkthrough in English and Hindi.",
     icon: "🎬",
   },
   subscriptionPlans: {

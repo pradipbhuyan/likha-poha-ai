@@ -3,30 +3,61 @@ import { useState } from "react";
 const WALKTHROUGH_BUCKET_URL =
   "https://dpivlbbyzlbpwnwgajso.supabase.co/storage/v1/object/public/platform-walkthrough-videos";
 
-const VIDEOS = {
-  english: {
-    label: "🇬🇧 English",
-    src: `${WALKTHROUGH_BUCKET_URL}/walkthrough-en.mp4`,
-    title: "Likha Poha AI — Student Platform Walkthrough (English)",
+// Two walkthroughs, picked by role: teachers see the teacher workspace tour,
+// students and parents see the learner journey. Both ship in English and Hindi.
+const WALKTHROUGHS = {
+  learners: {
+    audience: "Student & Parent",
+    english: {
+      label: "🇬🇧 English",
+      src: `${WALKTHROUGH_BUCKET_URL}/walkthrough-learners-en.mp4`,
+      title: "Likha Poha AI — Student & Parent Platform Walkthrough (English)",
+    },
+    hindi: {
+      label: "🇮🇳 Hindi",
+      src: `${WALKTHROUGH_BUCKET_URL}/walkthrough-learners-hi.mp4`,
+      title: "Likha Poha AI — Student & Parent Platform Walkthrough (Hindi)",
+    },
   },
-  hindi: {
-    label: "🇮🇳 Hindi",
-    src: `${WALKTHROUGH_BUCKET_URL}/walkthrough-hi.mp4`,
-    title: "Likha Poha AI — Student Platform Walkthrough (Hindi)",
+  teachers: {
+    audience: "Teacher",
+    english: {
+      label: "🇬🇧 English",
+      src: `${WALKTHROUGH_BUCKET_URL}/walkthrough-teachers-en.mp4`,
+      title: "Likha Poha AI — Teacher Platform Walkthrough (English)",
+    },
+    hindi: {
+      label: "🇮🇳 Hindi",
+      src: `${WALKTHROUGH_BUCKET_URL}/walkthrough-teachers-hi.mp4`,
+      title: "Likha Poha AI — Teacher Platform Walkthrough (Hindi)",
+    },
   },
 };
 
-function WalkthroughPage() {
-  /** Platform Walkthrough — self-hosted videos (Supabase Storage) with English / Hindi toggle. */
+/** Teachers get the teacher tour; everyone else gets the learner one. */
+function walkthroughFor(user) {
+  return (user?.role || "").toLowerCase() === "teacher"
+    ? WALKTHROUGHS.teachers
+    : WALKTHROUGHS.learners;
+}
+
+function WalkthroughPage({ user }) {
+  /**
+   * Platform Walkthrough — self-hosted videos (Supabase Storage), chosen by the
+   * viewer's role, with an English / Hindi toggle.
+   */
   const [lang, setLang] = useState("english");
-  const video = VIDEOS[lang];
+  const set = walkthroughFor(user);
+  const video = set[lang];
 
   return (
     <div className="premium-page">
       <section className="premium-section">
         {/* Language toggle */}
         <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
-          {Object.entries(VIDEOS).map(([key, v]) => (
+          {["english", "hindi"].map((key) => {
+            const v = set[key];
+            return (
             <button
               key={key}
               onClick={() => setLang(key)}
@@ -50,7 +81,8 @@ function WalkthroughPage() {
             >
               {v.label}
             </button>
-          ))}
+            );
+          })}
         </div>
 
         {/* Self-hosted video (Supabase Storage) */}
