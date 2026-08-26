@@ -28,6 +28,7 @@ import { extractChapterInfographics } from "@likhapoha/shared/utils/chapterInfog
 import ChapterJourney, { ChapterDocData } from "../../components/ChapterJourney";
 import ChapterSummaryCard, { ChapterSummary } from "../../components/ChapterSummaryCard";
 import ChapterInfographicCard, { ChapterInfographic } from "../../components/ChapterInfographicCard";
+import { isGradeLocked } from "@likhapoha/shared/utils/resolveSubscription";
 
 // ── Dynamic loading messages — mirrors web LessonsPage.jsx getLoadingMessage ──
 const LOADING_MESSAGES: Record<number, Record<string, string>> = {
@@ -680,7 +681,7 @@ export default function LessonsScreen() {
   const isExemplarLocked = isExemplarChapter && !hasExemplarAccess;
 
   // Grade lock: only apply for free/limited users — premium/admin users can select any grade
-  const isGradeLocked = studentGrade !== null && !hasFullAccess;
+  const gradeLocked = isGradeLocked(studentGrade, hasFullAccess);
 
   useEffect(() => {
     // Wait for the shared profile context to resolve (grade/subjects/stream/
@@ -811,7 +812,7 @@ export default function LessonsScreen() {
       {/* ── Grade selector — locked to enrolled grade for free tier; all grades for premium ── */}
       <View style={styles.labelRow}>
         <Text style={styles.label}>Grade</Text>
-        {isGradeLocked && studentGrade && (
+        {gradeLocked && studentGrade && (
           <Text style={styles.labelLock}>🔒 Locked to {studentGrade}</Text>
         )}
       </View>
@@ -822,7 +823,7 @@ export default function LessonsScreen() {
             return !isNaN(num) && num >= 5;
           })
           .map((g) => {
-            const locked = isGradeLocked && g !== studentGrade;
+            const locked = gradeLocked && g !== studentGrade;
             const isActive = grade === g;
             return (
               <TouchableOpacity

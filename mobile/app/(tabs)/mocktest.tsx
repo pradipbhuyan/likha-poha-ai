@@ -20,6 +20,7 @@ import { authFetch } from "../../lib/authFetch";
 import { useUserProfile } from "../../lib/UserProfileContext";
 import { BRAND_COLOR } from "../../constants";
 import { STREAM_SUBJECTS } from "@likhapoha/shared/utils/subjectAccess";
+import { isGradeLocked } from "@likhapoha/shared/utils/resolveSubscription";
 
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 const ALL_SUBJECTS = ["Science","Maths","Social Science","English","Hindi","Physics","Chemistry","Biology","Mathematics","Accountancy","Business Studies","Economics","History","Geography","Political Science"];
@@ -69,7 +70,7 @@ export default function MockTestScreen() {
   }, [profile]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Grade lock: free users locked to enrolled grade
-  const isGradeLocked = studentGrade !== null && !hasFullAccess;
+  const gradeLocked = isGradeLocked(studentGrade, hasFullAccess);
   // Subject list: use cbse_subjects if available, fall back to stream-derived subjects
   const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
   const effectiveSubjects = cbseSubjects.length > 0 ? cbseSubjects
@@ -194,11 +195,11 @@ export default function MockTestScreen() {
 
       <View style={{ flexDirection:"row", justifyContent:"space-between", alignItems:"center", marginBottom:4 }}>
         <Text style={styles.label}>Grade</Text>
-        {isGradeLocked && studentGrade && <Text style={{ fontSize:11, color:BRAND_COLOR, fontWeight:"600" }}>🔒 {studentGrade}</Text>}
+        {gradeLocked && studentGrade && <Text style={{ fontSize:11, color:BRAND_COLOR, fontWeight:"600" }}>🔒 {studentGrade}</Text>}
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipRow}>
         {GRADES.map((g) => {
-          const locked = isGradeLocked && g !== studentGrade;
+          const locked = gradeLocked && g !== studentGrade;
           const active = grade === g;
           return (
             <TouchableOpacity

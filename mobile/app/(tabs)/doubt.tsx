@@ -22,6 +22,7 @@ import { authFetch } from "../../lib/authFetch";
 import { useUserProfile } from "../../lib/UserProfileContext";
 import { BRAND_COLOR } from "../../constants";
 import { STREAM_SUBJECTS as STREAM_SUBJECTS_DOUBT } from "@likhapoha/shared/utils/subjectAccess";
+import { isGradeLocked } from "@likhapoha/shared/utils/resolveSubscription";
 
 // ── Shared math utilities (inline — mirrors mobile/app/(tabs)/lessons.tsx) ───
 function mathToUnicode(latex: string): string {
@@ -196,7 +197,7 @@ export default function DoubtScreen() {
   }, [studentGrade]);
 
   // Grade lock for free users
-  const isGradeLocked = studentGrade !== null && !hasFullAccess;
+  const gradeLocked = isGradeLocked(studentGrade, hasFullAccess);
   // Subject list: use cbse_subjects if available, fall back to stream-derived
   const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
   const effectiveSubjectsDoubt = cbseSubjects.length > 0 ? cbseSubjects
@@ -306,7 +307,7 @@ export default function DoubtScreen() {
         {/* ── Grade selector ── */}
         <View style={{ flexDirection:"row", justifyContent:"space-between", alignItems:"center", marginBottom:4 }}>
           <Text style={styles.label}>Grade</Text>
-          {isGradeLocked && studentGrade && (
+          {gradeLocked && studentGrade && (
             <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
               <Feather name="lock" size={11} color={BRAND_COLOR} />
               <Text style={{ fontSize:11, color:BRAND_COLOR, fontWeight:"600" }}>{studentGrade}</Text>
@@ -315,7 +316,7 @@ export default function DoubtScreen() {
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipRow}>
           {GRADES.map(g => {
-            const locked = isGradeLocked && g !== studentGrade;
+            const locked = gradeLocked && g !== studentGrade;
             const active = grade === g;
             return (
               <TouchableOpacity key={g}

@@ -210,6 +210,12 @@ function _paidPlanName(planKey) {
  * Map raw DB plan key to canonical unambiguous key.
  * Callers of this function have already determined the user IS on a paid plan,
  * so "free" here means Nano (not Free Tier).
+ *
+ * "starter"/"premium" both map to PREMIUM for the same reason "free" means
+ * Nano here: two raw DB key spellings, one canonical tier. "premium" is a
+ * legacy value, not a mistake to remove — see the matching config entry in
+ * subscriptionPlans.js and app/data/subscription_plans.py (backend) for the
+ * full explanation (TECH_DEBT.md TD-15).
  */
 function _canonicalPlanKey(planKey) {
   const mapping = {
@@ -222,6 +228,27 @@ function _canonicalPlanKey(planKey) {
     "standard_annual":"PREMIUM_ANNUAL",
   };
   return mapping[planKey] ?? "PREMIUM";
+}
+
+/**
+ * Derive days-remaining and expiring-soon from an expiry ISO timestamp.
+ *
+ * Mirrors the backend's exact computation in auth.py's get_my_profile()
+ * (days_remaining = max(0, (exp - now).days); expiring_soon = <= 3 days
+ * left). Any caller that reads subscription_expires_at directly — bypassing
+ * the /api/auth/profile endpoint, which computes these two server-side —
+ * must use this instead of hand-rolling the math, so the two never drift
+ * apart and a stale value can't quietly reappear in a different code path.
+ *
+ * @param {string|null} expiresAtIso
+ * @returns {{ daysRemaining: number|null, expiringSoon: boolean }}
+ */
+export function computeDaysRemaining(expiresAtIso) {
+  if (!expiresAtIso) return { daysRemaining: null, expiringSoon: false };
+  const expiresMs = new Date(expiresAtIso).getTime();
+  if (isNaN(expiresMs)) return { daysRemaining: null, expiringSoon: false };
+  const daysRemaining = Math.max(0, Math.floor((expiresMs - Date.now()) / 86400000));
+  return { daysRemaining, expiringSoon: daysRemaining <= 3 };
 }
 
 /**
@@ -238,11 +265,17 @@ function _canonicalPlanKey(planKey) {
  *
  * Hierarchy:
  *   1. Admin → always has access
- *   2. accessCbse=true → paid, admin-granted, or active legacy Nano
- *      (this covers parent-managed children IF their parent paid — the
- *       payment webhook sets access_cbse=true on the child's profile)
- *   3. subscriptionExpiresAt in the future → active paid plan
- *   4. Otherwise → no paid access (Free Tier)
+ *   2. subscriptionExpiresAt in the future → active paid plan
+ *   3. subscriptionExpiresAt in the past → accessCbse is NOT trusted as a
+ *      fallback here, even if still true — it can be stale until the
+ *      backend's nightly expiry job revokes it. Mirrors the
+ *      `hadExpiredSubscription` guard in resolveSubscription() above; without
+ *      it, a just-lapsed time-limited plan kept showing as paid client-side
+ *      until the next login/profile refetch.
+ *   4. accessCbse=true (no expiry ever set) → paid, admin-granted, or active
+ *      legacy Nano (this covers parent-managed children IF their parent
+ *      paid — the payment webhook sets access_cbse=true on the child's profile)
+ *   5. Otherwise → no paid access (Free Tier)
  *
  * @param {object} user
  */
@@ -251,15 +284,19 @@ export function hasPaidAccess(user = {}) {
   if (user.role === "admin") return true;
 
   // Active paid subscription (time-limited)
+  let hadExpiredSubscription = false;
   if (user.subscriptionExpiresAt) {
     const expiresMs = new Date(user.subscriptionExpiresAt).getTime();
     if (!isNaN(expiresMs) && expiresMs > Date.now()) return true;
+    // Paid subscription expired — accessCbse may be stale (pending backend
+    // revocation), so it must not be trusted as a fallback signal below.
+    hadExpiredSubscription = true;
   }
 
   // access_cbse=true is set by payment webhook only — reliable paid indicator
   // NOTE: parentId alone is NOT sufficient — a free-plan parent's child has
   // parentId but no accessCbse and must be treated as Free Tier.
-  if (user.accessCbse) return true;
+  if (user.accessCbse && !hadExpiredSubscription) return true;
 
   return false;
 }
@@ -273,14 +310,35 @@ export function hasPaidAccess(user = {}) {
  */
 export function needsSubscriptionGate(user = {}, offerAccess = null) {
   if (user.role !== "student") return false;
-  // NOTE: Do NOT gate parent-linked children from the subscription page.
-  // They don't self-subscribe, but they still need proper authorization checks.
-  // Removed: `if (user.parentId) return false;` — this was bypassing the gate
-  // for ALL children regardless of whether the parent actually paid.
-  // Children of free-plan parents should see the upgrade path.
-  if (user.parentId) return false; // children subscribe via parent — no self-gate
+  // Parent-linked children don't self-subscribe, but still go through the
+  // same resolver as everyone else below — NOT a blanket bypass. An earlier
+  // version returned false here whenever parentId was set, which bypassed
+  // the gate for every child regardless of whether the parent had actually
+  // paid; a child of a free-plan parent must still see the upgrade path.
 
   const resolved = resolveSubscription(user, offerAccess);
   // Gate fires only when there is no active access at all
   return resolved.accessSource === ACCESS_SOURCE.NONE;
+}
+
+/**
+ * Returns true when a student's content should be locked to their enrolled
+ * grade — i.e. they have a grade on file but not full platform access.
+ * Free-tier students are confined to their own grade; paid/admin-grant
+ * students (hasFullAccess) can browse any grade.
+ *
+ * Added 2026-08-26 (TECH_DEBT.md TD-06). Mobile is the only current caller —
+ * `mobile/lib/UserProfileContext.tsx` already resolves `hasFullAccess` from
+ * the server (`GET /api/subscription/features` → has_full_access), so this
+ * function does not re-derive subscription tier itself, only the one small
+ * boolean every mobile screen was independently re-deriving from it
+ * (identically, in formula.tsx, doubt.tsx, learn.tsx, mocktest.tsx, and
+ * lessons.tsx — copy-pasted five times with nothing enforcing they stay in
+ * sync). Import this instead of writing the expression out again.
+ *
+ * @param {string|null} studentGrade
+ * @param {boolean} hasFullAccess
+ */
+export function isGradeLocked(studentGrade, hasFullAccess) {
+  return studentGrade !== null && !hasFullAccess;
 }

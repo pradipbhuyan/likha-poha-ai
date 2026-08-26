@@ -14,6 +14,7 @@ import { useRouter } from "expo-router";
 import { authFetch } from "../../lib/authFetch";
 import { useUserProfile } from "../../lib/UserProfileContext";
 import { BRAND_COLOR } from "../../constants";
+import { isGradeLocked } from "@likhapoha/shared/utils/resolveSubscription";
 
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 
@@ -61,7 +62,7 @@ export default function LearnScreen() {
   // waits for it to resolve since it needs the enrolled grade.
   const { profile, hasFullAccess } = useUserProfile();
   const studentGrade = profile ? (profile.grade ?? "Grade 9") : null;
-  const isGradeLocked = studentGrade !== null && !hasFullAccess;
+  const gradeLocked = isGradeLocked(studentGrade, hasFullAccess);
 
   useEffect(() => {
     if (!profile) return;
@@ -125,13 +126,13 @@ export default function LearnScreen() {
           {/* Grade selector */}
           <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 14, marginBottom: 8 }}>
             <Text style={s.label}>Grade</Text>
-            {isGradeLocked && studentGrade && (
+            {gradeLocked && studentGrade && (
               <Text style={{ fontSize: 10, fontWeight: "600", color: "#6366f1" }}>🔒 Locked to {studentGrade}</Text>
             )}
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={s.chipRow}>
             {GRADES.map(g => {
-              const locked = isGradeLocked && g !== studentGrade;
+              const locked = gradeLocked && g !== studentGrade;
               const isActive = grade === g;
               return (
                 <TouchableOpacity

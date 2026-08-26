@@ -25,6 +25,7 @@ import {
 import { authFetch } from "../../lib/authFetch";
 import { useUserProfile } from "../../lib/UserProfileContext";
 import { BRAND_COLOR } from "../../constants";
+import { isGradeLocked } from "@likhapoha/shared/utils/resolveSubscription";
 
 // ── LaTeX → Unicode ───────────────────────────────────────────────────────────
 function mathToUnicode(latex: string): string {
@@ -348,7 +349,7 @@ export default function FormulaScreen() {
   // profile context (fetched once at the tabs layout).
   const { profile, hasFullAccess } = useUserProfile();
   const studentGrade = profile ? (profile.grade ?? "Grade 9") : null;
-  const isGradeLocked = studentGrade !== null && !hasFullAccess;
+  const gradeLocked = isGradeLocked(studentGrade, hasFullAccess);
 
   useEffect(() => {
     if (studentGrade) setGrade(studentGrade);
@@ -396,10 +397,10 @@ export default function FormulaScreen() {
       <Text style={s.pageSubtitle}>CBSE syllabus-aligned quick reference</Text>
 
       {/* Grade selector */}
-      <GradeLabelRow isGradeLocked={isGradeLocked} studentGrade={studentGrade} />
+      <GradeLabelRow isGradeLocked={gradeLocked} studentGrade={studentGrade} />
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={s.chipRow}>
         {GRADES.map(g => {
-          const locked = isGradeLocked && g !== studentGrade;
+          const locked = gradeLocked && g !== studentGrade;
           const isActive = grade === g;
           return (
             <TouchableOpacity
