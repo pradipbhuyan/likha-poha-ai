@@ -16,6 +16,8 @@ from __future__ import annotations
 from unittest.mock import MagicMock
 import pytest
 
+from fastapi import HTTPException
+
 from app.routes.formula_sheets import _build_chapters, get_formula_sheets
 
 
@@ -138,6 +140,30 @@ class TestGetFormulaSheets:
         result = get_formula_sheets(grade=None, subject=None, chapter=None, student=self.STUDENT)
         assert result["success"] is True
         assert result["available"] is False
+
+    def test_requesting_another_grade_is_blocked(self, monkeypatch):
+        """
+        REGRESSION: a Grade 9 student passing ?grade=Grade 12 must be
+        rejected, not served that grade's formula sheet structure/preview.
+        """
+        self._mock_formula_rows(monkeypatch, [])
+        with pytest.raises(HTTPException) as exc:
+            get_formula_sheets(grade="Grade 12", subject=None, chapter=None, student=self.STUDENT)
+        assert exc.value.status_code == 403
+        assert "Grade 9" in exc.value.detail
+
+    def test_requesting_own_grade_explicitly_is_allowed(self, monkeypatch):
+        """Passing the student's own grade explicitly must still work."""
+        self._mock_formula_rows(monkeypatch, [])
+        result = get_formula_sheets(grade="Grade 9", subject=None, chapter=None, student=self.STUDENT)
+        assert result["success"] is True
+
+    def test_all_access_test_user_can_browse_other_grades(self, monkeypatch):
+        """The designated QA test account bypasses the grade-ownership check."""
+        self._mock_formula_rows(monkeypatch, [])
+        test_student = {"profile": {"id": "uid-2", "username": "qa", "grade": "Grade 9", "is_test_account": True}}
+        result = get_formula_sheets(grade="Grade 12", subject=None, chapter=None, student=test_student)
+        assert result["success"] is True
 
 
 # ── Seed data structure validation ────────────────────────────────────────────

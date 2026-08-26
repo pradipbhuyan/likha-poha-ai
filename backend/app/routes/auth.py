@@ -25,10 +25,11 @@ router = APIRouter()
 # ---------------------------------------------------------------------------
 
 VALID_SIGNUP_ROLES = {"parent", "student", "teacher"}
-# All grades the backend accepts — includes Grade 11/12 which are hidden from
-# students until admin enables them in the Product Catalogue page.
-from app.data.product_catalogue import ALL_GRADES_INCLUDING_HIDDEN  # noqa: E402
-VALID_GRADES = set(ALL_GRADES_INCLUDING_HIDDEN)
+# Grades currently visible to students — DB-aware, so an admin's "hide this
+# grade" toggle in the Product Catalogue page actually takes effect here.
+# Call fresh at signup time (not cached at import time): the admin can flip
+# visibility at any point after the server starts.
+from app.services.product_catalogue_service import get_live_visible_grades  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -607,7 +608,7 @@ def oauth_complete_profile(
 
             elif role == "student":
                 grade = data.grade or existing.get("grade") or "Grade 9"
-                if grade not in VALID_GRADES:
+                if grade not in get_live_visible_grades():
                     grade = "Grade 9"
                 updates["grade"] = grade
                 updates["board"] = "CBSE"
@@ -735,7 +736,7 @@ def oauth_complete_profile(
 
         elif role == "student":
             grade = data.grade or "Grade 9"
-            if grade not in VALID_GRADES:
+            if grade not in get_live_visible_grades():
                 grade = "Grade 9"
             base_profile["grade"] = grade
             base_profile["board"] = "CBSE"
@@ -1186,7 +1187,7 @@ def complete_signup(data: CompleteSignupRequest):
 
     elif role == "student":
         grade = data.grade or "Grade 9"
-        if grade not in VALID_GRADES:
+        if grade not in get_live_visible_grades():
             grade = "Grade 9"
         base_profile["grade"] = grade
         base_profile["board"] = "CBSE"
@@ -1362,7 +1363,7 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
 
     elif role == "student":
         grade = data.grade or "Grade 9"
-        if grade not in VALID_GRADES:
+        if grade not in get_live_visible_grades():
             grade = "Grade 9"
         base_profile["grade"] = grade
         base_profile["board"] = "CBSE"
@@ -1777,7 +1778,7 @@ def signup_with_offer_code(data: OfferCodeSignupRequest, _rl=Depends(rate_limit_
 
     elif role == "student":
         grade = data.grade or "Grade 9"
-        if grade not in VALID_GRADES:
+        if grade not in get_live_visible_grades():
             grade = "Grade 9"
         base_profile["grade"] = grade
         base_profile["board"] = "CBSE"

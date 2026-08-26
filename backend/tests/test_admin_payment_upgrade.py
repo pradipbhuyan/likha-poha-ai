@@ -422,8 +422,21 @@ def _make_admin_test_payment(plan_key: str, order_id: str = "order_test"):
     }
 
 
-def _setup_verify_monkeypatches(monkeypatch, plan_key: str, order_id: str = "order_test"):
-    """Wire all monkeypatches needed for a successful admin-test-verify call."""
+def _setup_verify_monkeypatches(monkeypatch, plan_key: str, order_id: str = "order_test",
+                                 extra_children=()):
+    """
+    Wire all monkeypatches needed for a successful admin-test-verify call.
+
+    Seeds a small fake `profiles` table so activate_plan_for_payment()'s real
+    parent/family lookups resolve correctly: the target "user-free-1" is a
+    student whose parent is "parent-1". `extra_children` lets a test add more
+    students under "parent-1" to verify family_premium's fan-out.
+
+    Returns (payment_id, sig, activated_updates, rows) where activated_updates
+    is a list of {"fields": {...}, "ids": [...]} — one entry per .update()
+    call the activation path issued (nano/starter issue one, for the single
+    target row; family_premium issues two: the children batch + the parent).
+    """
     secret = "test_secret"
     payment_id = f"pay_{plan_key}"
     sig = _make_signature(order_id, payment_id, secret)
@@ -441,23 +454,86 @@ def _setup_verify_monkeypatches(monkeypatch, plan_key: str, order_id: str = "ord
         lambda: {"plans": ALL_PLANS},
     )
 
-    activated = {}
+    rows = [
+        {"id": "user-free-1", "role": "student", "parent_id": "parent-1", "family_id": "fam-1"},
+        {"id": "parent-1", "role": "parent", "family_id": "fam-1"},
+        *extra_children,
+    ]
+    activated_updates = []
 
-    class FakeUpdateResp:
-        data = [{"id": "user-free-1", "access_cbse": True, "subscription_plan": plan_key}]
-    class FakeUpdateChain:
-        def update(self, fields): activated.update(fields); return self
-        def eq(self, *a): return self
-        def execute(self): return FakeUpdateResp()
-    monkeypatch.setattr(payments_route.admin_client, "table", lambda t: FakeUpdateChain())
+    class FakeProfilesTable:
+        def __init__(self):
+            self._op = None
+            self._filters = []
+            self._update_fields = None
+
+        def select(self, *_a, **_kw):
+            self._op = "select"
+            return self
+
+        def update(self, fields):
+            self._op = "update"
+            self._update_fields = fields
+            return self
+
+        def eq(self, col, val):
+            self._filters.append(("eq", col, val))
+            return self
+
+        def in_(self, col, vals):
+            self._filters.append(("in", col, vals))
+            return self
+
+        def limit(self, _n):
+            return self
+
+        def single(self):
+            return self
+
+        def _matches(self, row):
+            for kind, col, val in self._filters:
+                if kind == "eq" and row.get(col) != val:
+                    return False
+                if kind == "in" and row.get(col) not in val:
+                    return False
+            return True
+
+        def execute(self):
+            matched = [r for r in rows if self._matches(r)]
+            if self._op == "update":
+                for r in matched:
+                    r.update(self._update_fields)
+                activated_updates.append({
+                    "fields": dict(self._update_fields),
+                    "ids": [r["id"] for r in matched],
+                })
+            return type("R", (), {"data": matched})()
+
+    class FakeClient:
+        def table(self, _name):
+            return FakeProfilesTable()
+
+    monkeypatch.setattr(payments_route, "admin_client", FakeClient())
+    monkeypatch.setattr(
+        payments_route, "get_children",
+        lambda parent_id: [r for r in rows if r.get("parent_id") == parent_id and r.get("role") == "student"],
+    )
     monkeypatch.setattr(payments_route, "save_payment_record", lambda r: r)
 
-    return payment_id, sig, activated
+    return payment_id, sig, activated_updates, rows
+
+
+def _updated_fields_for(activated_updates, user_id):
+    """Find the .update() call (if any) whose matched rows included user_id."""
+    for update in activated_updates:
+        if user_id in update["ids"]:
+            return update["fields"]
+    return {}
 
 
 def test_admin_test_verify_activates_nano_plan(monkeypatch):
     """Successful ₹1 nano test payment activates the Premium Nano plan."""
-    payment_id, sig, activated = _setup_verify_monkeypatches(monkeypatch, "free")
+    payment_id, sig, activated_updates, _rows = _setup_verify_monkeypatches(monkeypatch, "free")
 
     result = payments_route.admin_test_verify(
         AdminTestVerifyRequest(
@@ -468,6 +544,7 @@ def test_admin_test_verify_activates_nano_plan(monkeypatch):
         admin=ADMIN_CONTEXT,
     )
 
+    activated = _updated_fields_for(activated_updates, "user-free-1")
     assert result["success"] is True
     assert activated.get("subscription_plan") == "free"
     assert activated.get("access_cbse") is True
@@ -478,7 +555,7 @@ def test_admin_test_verify_activates_nano_plan(monkeypatch):
 
 def test_admin_test_verify_activates_premium_plan(monkeypatch):
     """Successful ₹1 premium test payment activates the Premium plan."""
-    payment_id, sig, activated = _setup_verify_monkeypatches(monkeypatch, "starter")
+    payment_id, sig, activated_updates, _rows = _setup_verify_monkeypatches(monkeypatch, "starter")
 
     result = payments_route.admin_test_verify(
         AdminTestVerifyRequest(
@@ -489,6 +566,7 @@ def test_admin_test_verify_activates_premium_plan(monkeypatch):
         admin=ADMIN_CONTEXT,
     )
 
+    activated = _updated_fields_for(activated_updates, "user-free-1")
     assert result["success"] is True
     assert activated.get("subscription_plan") == "starter"
     assert activated.get("access_cbse") is True
@@ -497,8 +575,19 @@ def test_admin_test_verify_activates_premium_plan(monkeypatch):
 
 
 def test_admin_test_verify_activates_family_premium_plan(monkeypatch):
-    """Successful ₹1 family premium test payment activates Family Premium."""
-    payment_id, sig, activated = _setup_verify_monkeypatches(monkeypatch, "family_premium")
+    """
+    REGRESSION: successful ₹1 family premium test payment must activate
+    Family Premium exactly like a real payment does — every child in the
+    family, plus the parent's own subscription_plan/subscription_expires_at
+    (but NOT access_cbse, which is a student-only AI-access flag). Before
+    this fix, admin_test_verify did a flat single-row update on only the
+    target child, so a second child and the parent were never touched —
+    the tool didn't test what it claimed to.
+    """
+    second_child = {"id": "user-free-2", "role": "student", "parent_id": "parent-1", "family_id": "fam-1"}
+    payment_id, sig, activated_updates, rows = _setup_verify_monkeypatches(
+        monkeypatch, "family_premium", extra_children=(second_child,)
+    )
 
     result = payments_route.admin_test_verify(
         AdminTestVerifyRequest(
@@ -510,9 +599,21 @@ def test_admin_test_verify_activates_family_premium_plan(monkeypatch):
     )
 
     assert result["success"] is True
-    assert activated.get("subscription_plan") == "family_premium"
-    assert activated.get("access_cbse") is True
     assert result["intended_plan"]["key"] == "family_premium"
+
+    # Both children — not just the payment's target child — must be activated.
+    target_fields = _updated_fields_for(activated_updates, "user-free-1")
+    sibling_fields = _updated_fields_for(activated_updates, "user-free-2")
+    assert target_fields.get("subscription_plan") == "family_premium"
+    assert target_fields.get("access_cbse") is True
+    assert sibling_fields.get("subscription_plan") == "family_premium"
+    assert sibling_fields.get("access_cbse") is True
+
+    # The parent's own profile gets subscription_plan/expiry, but NOT access_cbse.
+    parent_row = next(r for r in rows if r["id"] == "parent-1")
+    assert parent_row.get("subscription_plan") == "family_premium"
+    assert parent_row.get("subscription_expires_at") is not None
+    assert "access_cbse" not in parent_row
 
 
 def test_admin_test_verify_uses_intended_plan_not_charged_amount(monkeypatch):
@@ -521,7 +622,7 @@ def test_admin_test_verify_uses_intended_plan_not_charged_amount(monkeypatch):
     NOT the charged amount of ₹1. The plan fields come from the real plan
     definition (NANO/Premium/Family Premium), not a ₹1 plan.
     """
-    payment_id, sig, activated = _setup_verify_monkeypatches(monkeypatch, "starter")
+    payment_id, sig, activated_updates, _rows = _setup_verify_monkeypatches(monkeypatch, "starter")
 
     payments_route.admin_test_verify(
         AdminTestVerifyRequest(
@@ -533,6 +634,7 @@ def test_admin_test_verify_uses_intended_plan_not_charged_amount(monkeypatch):
     )
 
     # The activated plan should be "starter" (₹299/30 days), NOT a ₹1 plan
+    activated = _updated_fields_for(activated_updates, "user-free-1")
     assert activated.get("subscription_plan") == "starter"
     # Token limits from the real plan, not ₹0/₹1 plan
     assert activated.get("daily_token_limit") == 50000

@@ -5,10 +5,10 @@ Subscription plan and contact settings — DB-driven with built-in defaults as
 fallback, loaded/normalized here so admin and parent-facing pages stay aligned.
 
 Extracted from app/routes/admin_control.py, where it originally lived as
-route-file-local logic despite being imported by 5 other files (auth.py,
-parent_dashboard.py, payments.py, exam_prep_packs.py,
-feature_authorization_service.py) — moved to a service module so those
-callers depend on a service, not on another route file's internals.
+route-file-local logic despite being imported by other files (auth.py,
+parent_dashboard.py, payments.py, feature_authorization_service.py) —
+moved to a service module so those callers depend on a service, not on
+another route file's internals.
 """
 from __future__ import annotations
 

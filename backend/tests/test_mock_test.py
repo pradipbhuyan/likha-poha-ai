@@ -150,9 +150,26 @@ def _base_payload(**overrides):
     return payload
 
 
+def _allow_daily_limit(monkeypatch):
+    """
+    Free-tier requests now go through the real enforce_daily_limit(), which
+    queries ai_usage_logs over the network. Tests that aren't specifically
+    exercising the daily-cap behavior must stub it — otherwise they depend on
+    real, accumulating DB state (how many mock tests this test username has
+    already logged today), which makes them flaky/order-dependent instead of
+    hermetic.
+    """
+    monkeypatch.setattr(
+        mock_test_route, "enforce_daily_limit",
+        lambda username, feature, max_requests: {"allowed": True, "message": "Allowed", "usage": {}},
+    )
+    monkeypatch.setattr(mock_test_route, "log_ai_usage", lambda **kwargs: None)
+
+
 def test_written_format_blocked_for_free_tier_user(monkeypatch):
     """A free-tier student calling the API directly must not get Written for free."""
     monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: True)
+    _allow_daily_limit(monkeypatch)
 
     called = {"generate": False}
 
@@ -171,6 +188,7 @@ def test_written_format_blocked_for_free_tier_user(monkeypatch):
 
 def test_mixed_format_blocked_for_free_tier_user(monkeypatch):
     monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: True)
+    _allow_daily_limit(monkeypatch)
     monkeypatch.setattr(mock_test_route, "generate_cbse_mock_test", lambda **kwargs: [])
 
     response = client.post("/api/mock-test/generate", json=_base_payload(question_format="mixed"))
@@ -182,6 +200,7 @@ def test_mixed_format_blocked_for_free_tier_user(monkeypatch):
 def test_mcq_format_allowed_for_free_tier_user(monkeypatch):
     """MCQ stays free for everyone regardless of subscription tier."""
     monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: True)
+    _allow_daily_limit(monkeypatch)
     monkeypatch.setattr(mock_test_route, "generate_cbse_mock_test", lambda **kwargs: [])
 
     response = client.post("/api/mock-test/generate", json=_base_payload(question_format="mcq"))
@@ -207,6 +226,94 @@ def test_written_format_allowed_for_admin_regardless_of_tier(monkeypatch):
     patch_route_profile(monkeypatch, mock_test_route, fake_admin_profile())
 
     response = client.post("/api/mock-test/generate", json=_base_payload(question_format="written"))
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REGRESSION: free-tier daily mock-test cap (previously documented but never
+# enforced server-side — FREE_MOCK_TEST_DAILY_LIMIT was read only for the
+# parent dashboard's display text; nothing counted or blocked against it).
+# ─────────────────────────────────────────────────────────────────────────────
+
+def test_free_tier_blocked_once_daily_mock_test_limit_reached(monkeypatch):
+    """A free-tier student who already used today's cap gets 429, not a test."""
+    monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: True)
+    generate_called = {"value": False}
+    monkeypatch.setattr(
+        mock_test_route, "generate_cbse_mock_test",
+        lambda **kwargs: generate_called.__setitem__("value", True) or [],
+    )
+    monkeypatch.setattr(
+        mock_test_route,
+        "enforce_daily_limit",
+        lambda username, feature, max_requests: {
+            "allowed": False,
+            "message": "Daily limit reached",
+            "usage": {"requests": max_requests},
+        },
+    )
+
+    response = client.post("/api/mock-test/generate", json=_base_payload())
+
+    assert response.status_code == 429
+    assert response.json()["detail"] == mock_test_route.FREE_MOCK_TEST_LIMIT_MESSAGE
+    assert generate_called["value"] is False  # never reached the question bank
+
+
+def test_free_tier_allowed_under_daily_mock_test_limit(monkeypatch):
+    """A free-tier student still under today's cap can generate normally."""
+    monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: True)
+    monkeypatch.setattr(mock_test_route, "generate_cbse_mock_test", lambda **kwargs: [])
+    monkeypatch.setattr(
+        mock_test_route,
+        "enforce_daily_limit",
+        lambda username, feature, max_requests: {
+            "allowed": True, "message": "Allowed", "usage": {"requests": 2},
+        },
+    )
+    monkeypatch.setattr(mock_test_route, "log_ai_usage", lambda **kwargs: None)
+
+    response = client.post("/api/mock-test/generate", json=_base_payload())
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True
+
+
+def test_free_tier_generation_logs_usage_against_the_daily_cap(monkeypatch):
+    """A successful free-tier generation must be counted, or the cap above is a no-op."""
+    monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: True)
+    monkeypatch.setattr(mock_test_route, "generate_cbse_mock_test", lambda **kwargs: [])
+    monkeypatch.setattr(
+        mock_test_route,
+        "enforce_daily_limit",
+        lambda username, feature, max_requests: {"allowed": True, "message": "Allowed", "usage": {}},
+    )
+    logged = {}
+    monkeypatch.setattr(
+        mock_test_route,
+        "log_ai_usage",
+        lambda **kwargs: logged.update(kwargs),
+    )
+
+    response = client.post("/api/mock-test/generate", json=_base_payload())
+
+    assert response.status_code == 200
+    assert logged.get("feature") == mock_test_route.MOCK_TEST_FREE_TIER_FEATURE
+
+
+def test_paid_user_never_hits_the_daily_mock_test_limit(monkeypatch):
+    """Paid users must not be metered by the free-tier cap at all."""
+    monkeypatch.setattr(mock_test_route, "is_free_tier_user", lambda user_id: False)
+    monkeypatch.setattr(mock_test_route, "generate_cbse_mock_test", lambda **kwargs: [])
+
+    def fail_if_called(username, feature, max_requests):
+        raise AssertionError("enforce_daily_limit must not be called for a paid user")
+
+    monkeypatch.setattr(mock_test_route, "enforce_daily_limit", fail_if_called)
+
+    response = client.post("/api/mock-test/generate", json=_base_payload())
 
     assert response.status_code == 200
     assert response.json()["success"] is True

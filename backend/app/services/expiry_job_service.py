@@ -47,6 +47,7 @@ def run_expiry_job() -> dict[str, Any]:
         "users_revoked": 0,
         "users_skipped_already_revoked": 0,
         "users_skipped_offer_fallback": 0,
+        "users_skipped_renewed_mid_run": 0,
         "errors": 0,
     }
 
@@ -117,11 +118,34 @@ def run_expiry_job() -> dict[str, Any]:
             has_active_offer = bool(offer_resp.data)
 
             # ── Revoke access flags ──────────────────────────────────────────
+            # Guarded by the exact subscription_expires_at value read in the
+            # batch SELECT above: if a renewal lands between that SELECT and
+            # this row's UPDATE (a real gap when many profiles expire in the
+            # same run), the extra .eq() here matches zero rows and the update
+            # becomes a no-op instead of clobbering the fresh renewal.
             old_plan = profile.get("subscription_plan", "free")
-            admin_client.table("profiles").update({
-                "access_cbse": False,
-                "subscription_expires_at": None,   # clear so it doesn't trigger again
-            }).eq("id", user_id).execute()
+            old_expires_at = profile.get("subscription_expires_at")
+            update_resp = (
+                admin_client.table("profiles")
+                .update({
+                    "access_cbse": False,
+                    "subscription_expires_at": None,   # clear so it doesn't trigger again
+                })
+                .eq("id", user_id)
+                .eq("subscription_expires_at", old_expires_at)
+                .execute()
+            )
+
+            if not update_resp.data:
+                # subscription_expires_at changed since the batch SELECT — the
+                # user renewed mid-run. The renewal must win, so no revocation,
+                # timeline event, or audit event is recorded for it.
+                result["users_skipped_renewed_mid_run"] += 1
+                logger.info(
+                    "expiry_job.renewed_mid_run user=%s — revoke skipped, renewal preserved",
+                    username,
+                )
+                continue
 
             result["users_revoked"] += 1
 

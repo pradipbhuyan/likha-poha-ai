@@ -306,7 +306,7 @@ class TestOAuthCompleteProfile:
         import app.routes.auth as auth_route
         monkeypatch.setattr(auth_route, "admin_client", fake_admin)
         monkeypatch.setattr(auth_route, "_check_can_report_issues", lambda uid: False)
-        monkeypatch.setattr(auth_route, "VALID_GRADES", {"Grade 9", "Grade 10"})
+        monkeypatch.setattr(auth_route, "get_live_visible_grades", lambda: {"Grade 9", "Grade 10"})
 
         with TestClient(app) as client:
             resp = client.post(
@@ -379,7 +379,7 @@ class TestOAuthCompleteProfile:
         import app.routes.auth as auth_route
         monkeypatch.setattr(auth_route, "admin_client", FakeAdminClient())
         monkeypatch.setattr(auth_route, "_check_can_report_issues", lambda uid: False)
-        monkeypatch.setattr(auth_route, "VALID_GRADES", {"Grade 9", "Grade 10"})
+        monkeypatch.setattr(auth_route, "get_live_visible_grades", lambda: {"Grade 9", "Grade 10"})
 
         with TestClient(app) as client:
             resp = client.post(
@@ -430,7 +430,7 @@ class TestOAuthCompleteProfile:
         import app.routes.auth as auth_route
         monkeypatch.setattr(auth_route, "admin_client", SimpleNamespace(table=lambda n: FQ([placeholder] if n == "profiles" else [])))
         monkeypatch.setattr(auth_route, "_check_can_report_issues", lambda uid: False)
-        monkeypatch.setattr(auth_route, "VALID_GRADES", {"Grade 8", "Grade 9", "Grade 10"})
+        monkeypatch.setattr(auth_route, "get_live_visible_grades", lambda: {"Grade 8", "Grade 9", "Grade 10"})
 
         with TestClient(app) as client:
             resp = client.post(
@@ -639,7 +639,7 @@ class TestOAuthCompleteProfile:
         import app.routes.auth as auth_route
         monkeypatch.setattr(auth_route, "admin_client", FakeAdminClient())
         monkeypatch.setattr(auth_route, "_check_can_report_issues", lambda uid: False)
-        monkeypatch.setattr(auth_route, "VALID_GRADES", {"Grade 9", "Grade 10"})
+        monkeypatch.setattr(auth_route, "get_live_visible_grades", lambda: {"Grade 9", "Grade 10"})
 
         with TestClient(app) as client:
             resp = client.post(
@@ -688,7 +688,7 @@ class TestOAuthCompleteProfile:
         import app.routes.auth as auth_route
         monkeypatch.setattr(auth_route, "admin_client", fake_admin)
         monkeypatch.setattr(auth_route, "_check_can_report_issues", lambda uid: False)
-        monkeypatch.setattr(auth_route, "VALID_GRADES", {"Grade 9"})
+        monkeypatch.setattr(auth_route, "get_live_visible_grades", lambda: {"Grade 9"})
 
         with TestClient(app) as client:
             resp = client.post(

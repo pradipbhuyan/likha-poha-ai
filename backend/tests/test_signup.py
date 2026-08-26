@@ -414,6 +414,57 @@ class TestCompleteSignup:
         # Grade stored in captured profile should be Grade 9 (default)
         assert captured.get("grade") == "Grade 9"
 
+    def test_student_signup_defaults_to_grade_9_when_grade_hidden_by_admin(self, monkeypatch):
+        """
+        REGRESSION: a grade an admin has hidden via the Product Catalogue page
+        must be rejected at signup exactly like an out-of-range grade — not
+        silently accepted because it was still in the old static
+        ALL_GRADES_INCLUDING_HIDDEN list. Simulates Grade 12 being toggled
+        hidden while everything else stays visible.
+        """
+        self._mock_dependencies(monkeypatch)
+        captured = {}
+
+        class GradeCapture:
+            def table(self, name):
+                self._tbl = name
+                return self
+            def select(self, *_): return self
+            def eq(self, *_): return self
+            def ilike(self, *_): return self
+            def limit(self, *_): return self
+            def insert(self, data):
+                captured.update(data)
+                return type("R", (), {"execute": lambda self: type("D", (), {"data": []})()})()
+            def upsert(self, *_, **__):
+                return type("R", (), {"execute": lambda self: type("D", (), {"data": []})()})()
+            def execute(self):
+                class R:
+                    data = []
+                return R()
+
+        monkeypatch.setattr(auth_module, "admin_client", GradeCapture())
+        monkeypatch.setattr(
+            "app.services.auth_service.create_auth_user",
+            lambda email, password, email_confirm=True: fake_auth_user("student-003"),
+            raising=False,
+        )
+        monkeypatch.setattr(
+            auth_module,
+            "get_live_visible_grades",
+            lambda: {f"Grade {i}" for i in range(1, 12)},  # Grade 12 hidden
+        )
+
+        result = auth_module.complete_signup(auth_module.CompleteSignupRequest(
+            role="student",
+            name="Priya Test",
+            email="priya@test.com",
+            grade="Grade 12",  # currently hidden by admin
+            **self.BASE_PAYLOAD,
+        ))
+        assert result["success"] is True
+        assert captured.get("grade") == "Grade 9"
+
     # ------------------------------------------------------------------
     # TEACHER signup journey
     # ------------------------------------------------------------------

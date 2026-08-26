@@ -330,24 +330,39 @@ class TestP4ExpiryJob:
         class FakeOfferResp:
             data = []  # no active offer
 
+        class FakeUpdateResp:
+            # Real PostgREST returns the updated row(s) when the .eq() filters
+            # (including the subscription_expires_at guard) match — a non-empty
+            # .data here is what tells run_expiry_job() the update actually hit.
+            data = [profile]
+
         updated_profiles = []
 
         class FakeTable:
-            _mode = "select"
-            def select(self, *a): self._mode = "select"; return self
+            _op = "select"
+            _select_count = 0
+            def select(self, *a):
+                self._op = "select"
+                self._select_count += 1
+                return self
             def lt(self, *a): return self
             def gte(self, *a): return self
             @property
             def not_(self): return self
             def is_(self, *a): return self
             def eq(self, col, val): return self
-            def update(self, data): updated_profiles.append(data); return self
+            def update(self, data):
+                self._op = "update"
+                updated_profiles.append(data)
+                return self
             def limit(self, n): return self
             def order(self, *a, **kw): return self
             def execute(self):
-                if self._mode == "select" and not updated_profiles:
-                    return FakeResp()   # expired profiles
-                return FakeOfferResp()  # no offer
+                if self._op == "update":
+                    return FakeUpdateResp()    # profiles UPDATE matched the row
+                if self._select_count == 1:
+                    return FakeResp()          # initial expired-profiles batch
+                return FakeOfferResp()         # offer_redemptions check (no offer)
 
         mock_client = MagicMock()
         mock_client.table.return_value = FakeTable()
@@ -361,6 +376,81 @@ class TestP4ExpiryJob:
         assert result["users_inspected"] == 1
         assert result["users_revoked"] == 1
         assert result["errors"] == 0
+
+    def test_expiry_job_preserves_renewal_that_lands_mid_run(self, monkeypatch):
+        """
+        REGRESSION: a renewal landing between the batch SELECT and this row's
+        UPDATE must survive, not get silently reverted.
+
+        The revoke UPDATE is guarded by .eq("subscription_expires_at", <value
+        read at SELECT time>) — if the user renewed in between (a real gap
+        when many profiles expire in the same run), the row's real value has
+        since changed, so the guarded UPDATE matches zero rows and becomes a
+        no-op instead of clobbering the fresh renewal.
+        """
+        import app.services.expiry_job_service as ej
+        from app.services.expiry_job_service import run_expiry_job
+
+        profile = self._make_expired_profile()  # stale subscription_expires_at read at SELECT time
+
+        class FakeResp:
+            data = [profile]
+
+        class FakeOfferResp:
+            data = []  # no active offer
+
+        class FakeNoMatchUpdateResp:
+            # Simulates: the user renewed since the SELECT, so the row's real
+            # subscription_expires_at no longer matches — the .eq() guard
+            # matches zero rows and PostgREST returns no updated rows.
+            data = []
+
+        updated_profiles = []
+
+        class FakeTable:
+            _op = "select"
+            _select_count = 0
+            def select(self, *a):
+                self._op = "select"
+                self._select_count += 1
+                return self
+            def lt(self, *a): return self
+            def gte(self, *a): return self
+            @property
+            def not_(self): return self
+            def is_(self, *a): return self
+            def eq(self, col, val): return self
+            def update(self, data):
+                self._op = "update"
+                updated_profiles.append(data)
+                return self
+            def limit(self, n): return self
+            def order(self, *a, **kw): return self
+            def execute(self):
+                if self._op == "update":
+                    return FakeNoMatchUpdateResp()
+                if self._select_count == 1:
+                    return FakeResp()
+                return FakeOfferResp()
+
+        mock_client = MagicMock()
+        mock_client.table.return_value = FakeTable()
+        monkeypatch.setattr(ej, "admin_client", mock_client)
+        audit_calls = []
+        monkeypatch.setattr(ej, "write_audit_event", lambda **kw: audit_calls.append(kw))
+        timeline_calls = []
+        monkeypatch.setattr(ej, "write_timeline_event", lambda **kw: timeline_calls.append(kw) or True)
+        monkeypatch.setattr(ej, "increment", lambda *a, **kw: None)
+
+        result = run_expiry_job()
+        assert result["users_inspected"] == 1
+        assert result["users_revoked"] == 0
+        assert result["users_skipped_renewed_mid_run"] == 1
+        assert result["errors"] == 0
+        # No misleading "this user's subscription expired" audit/timeline
+        # trail for a renewal that actually survived.
+        assert timeline_calls == []
+        assert not any(c.get("event_type") == "subscription.expired" for c in audit_calls)
 
     def test_expiry_job_skips_already_revoked_user(self, monkeypatch):
         """User with no access flags set must be skipped (not counted as revoked)."""

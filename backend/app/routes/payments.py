@@ -194,6 +194,16 @@ def plan_expires_at(plan) -> str | None:
       3. None                   — no expiry (perpetual / admin-granted)
 
     Perpetual/admin-granted access leaves subscription_expires_at as NULL.
+
+    NO PRORATION BY DESIGN: this always computes now + the new plan's full
+    duration, with no credit for time remaining on whatever plan the user
+    was on before. A mid-cycle upgrade or downgrade forfeits the unused
+    portion of the old plan rather than crediting it onto the new one. This
+    is an accepted product trade-off, not an oversight — it can't be used to
+    extend access for free (each switch still starts a fresh, full-price
+    window), it just means a user who switches plans mid-cycle loses
+    whatever time was left on the old one. Revisit only as a deliberate
+    product decision (what to credit and how), not a bug fix.
     """
     # 1. Prefer explicit duration_days from DB (admin-configurable)
     duration_days = plan.get("duration_days")
@@ -221,6 +231,10 @@ def profile_access_from_plan(plan):
     limits are applied after a successful payment or family premium activation.
     Includes subscription_expires_at so time-limited plans (e.g. ₹99/8-day
     Premium Nano) revert to free tier automatically after the access window.
+
+    No proration: subscription_expires_at always comes from plan_expires_at()'s
+    now + full duration — see that function's docstring for why switching
+    plans mid-cycle isn't credited.
     """
     fields = {
         "subscription_plan": plan["key"],
@@ -1029,6 +1043,50 @@ def admin_test_create_order(
     }
 
 
+def _resolve_parent_profile_for_admin_test(target_user_id: str) -> dict | None:
+    """
+    Resolve the `parent_profile` activate_plan_for_payment() needs, for the
+    admin test tool's target (a student OR a parent — see AdminTestOrderRequest).
+
+    admin-test payment records store parent_id=<admin id> for audit purposes
+    (see admin_test_create_order), not the target's real parent, so it can't
+    be reused the way the webhook path uses payment["parent_id"]. This looks
+    up the real family relationship instead — the same thing require_parent()
+    would already give the real /verify flow.
+    """
+    target_resp = (
+        admin_client
+        .table("profiles")
+        .select("id, role, parent_id, family_id")
+        .eq("id", target_user_id)
+        .limit(1)
+        .execute()
+    )
+    target_rows = target_resp.data or []
+    if not target_rows:
+        return None
+
+    target = target_rows[0]
+    if target.get("role") == "parent":
+        return target
+
+    parent_id = target.get("parent_id")
+    if not parent_id:
+        return None
+
+    parent_resp = (
+        admin_client
+        .table("profiles")
+        .select("id, role, family_id")
+        .eq("id", parent_id)
+        .eq("role", "parent")
+        .limit(1)
+        .execute()
+    )
+    parent_rows = parent_resp.data or []
+    return parent_rows[0] if parent_rows else None
+
+
 @router.post("/admin-test-verify")
 def admin_test_verify(
     data: AdminTestVerifyRequest,
@@ -1098,14 +1156,35 @@ def admin_test_verify(
     intended_plan = get_plan_any(payment["plan_key"])
     target_user_id = payment["child_id"]
 
-    activated = (
-        admin_client
-        .table("profiles")
-        .update(profile_access_from_plan(intended_plan))
-        .eq("id", target_user_id)
-        .execute()
-    )
-    activated_profile = (activated.data or [{}])[0]
+    # Use the same activation path a real payment goes through — for
+    # family_premium this updates every child in the family and the parent's
+    # own profile (without access_cbse), exactly like activate_plan_for_payment()
+    # already does for /verify and the webhook. A flat single-row update here
+    # would silently under-test family_premium: real activation touches every
+    # child plus the parent; this tool used to touch only the target row.
+    parent_profile = _resolve_parent_profile_for_admin_test(target_user_id)
+    if parent_profile:
+        activated_rows = activate_plan_for_payment(payment, intended_plan, parent_profile)
+        activated_profile = next(
+            (row for row in activated_rows if row.get("id") == target_user_id),
+            activated_rows[0] if activated_rows else {},
+        )
+    else:
+        # No resolvable parent (e.g. an orphaned test profile) — fall back to
+        # a direct single-profile update rather than failing the test tool.
+        _log.warning(
+            "admin_test_verify: could not resolve a parent profile for target — "
+            "activating target profile only, not family-wide",
+            target_user_id=target_user_id,
+        )
+        activated = (
+            admin_client
+            .table("profiles")
+            .update(profile_access_from_plan(intended_plan))
+            .eq("id", target_user_id)
+            .execute()
+        )
+        activated_profile = (activated.data or [{}])[0]
 
     verified_at = datetime.now(timezone.utc).isoformat()
     saved_payment = save_payment_record({

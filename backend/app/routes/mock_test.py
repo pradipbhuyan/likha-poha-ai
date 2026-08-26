@@ -14,13 +14,20 @@ from app.services.auth_service import (
     admin_client,
 )
 
-from app.services.usage_service import enforce_token_limits
+from app.services.usage_service import enforce_token_limits, enforce_daily_limit, log_ai_usage
 from app.services.subject_access_service import has_cbse_subject_access
 from app.services.board_service import is_school_board, normalize_board, resolve_request_board
 from app.services.test_account_service import is_all_access_test_user
 from app.services.offer_access_service import is_free_tier_user
+from app.services.feature_authorization_service import FREE_MOCK_TEST_DAILY_LIMIT
 
 router = APIRouter()
+
+MOCK_TEST_FREE_TIER_FEATURE = "mock_test_free_tier"
+FREE_MOCK_TEST_LIMIT_MESSAGE = (
+    f"You've used all {FREE_MOCK_TEST_DAILY_LIMIT} of your free mock tests for today. "
+    "Come back tomorrow, or upgrade for unlimited mock tests."
+)
 
 
 def call_with_optional_board(func, board: str, **kwargs):
@@ -160,7 +167,13 @@ def enforce_mock_access(profile: dict, mode: str, subject: str, user_id: str = "
             # The CBSE board check is NOT a blocker for free users —
             # they can attempt CBSE mock tests subject to the 5/day limit.
             # This preserves the original intent (free users get limited access).
-            pass  # daily limit is enforced at a higher level in the route
+            limit = enforce_daily_limit(
+                profile.get("username"),
+                feature=MOCK_TEST_FREE_TIER_FEATURE,
+                max_requests=FREE_MOCK_TEST_DAILY_LIMIT,
+            )
+            if not limit["allowed"]:
+                raise HTTPException(status_code=429, detail=FREE_MOCK_TEST_LIMIT_MESSAGE)
         elif not profile.get("access_cbse"):
             # Paid user with no CBSE access → block
             access_label = "CBSE" if normalize_board(mode) == "CBSE" else "School-board"
@@ -264,6 +277,13 @@ def generate_mock_test(
             excluded_ids=excluded_ids,
             question_format=getattr(data, "question_format", "mcq"),
         )
+
+        # Count this generation against the free-tier daily cap enforced
+        # above — mirrors doubt.py's log-after-success pattern for its own
+        # "_free_tier" usage key. Paid/admin users are never capped, so their
+        # usage isn't tracked under this key.
+        if is_free_tier_user(user.id):
+            log_ai_usage(username=profile.get("username"), feature=MOCK_TEST_FREE_TIER_FEATURE, model="none")
 
         return MockTestResponse(
             success=True,

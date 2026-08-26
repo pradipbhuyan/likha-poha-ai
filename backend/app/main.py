@@ -118,7 +118,6 @@ from app.routes.admin_support import router as admin_support_router
 from app.routes.lesson_repair import router as lesson_repair_router
 from app.routes.ai_studio import router as ai_studio_router
 from app.routes.exam_prep import router as exam_prep_router, admin_router as exam_prep_admin_router
-from app.routes.exam_prep_packs import router as exam_prep_packs_router
 from app.routes.study_planner import router as study_planner_router
 from app.routes.lesson_lab import router as lesson_lab_router
 from app.routes.lesson_experience import router as lesson_experience_router
@@ -539,7 +538,6 @@ app.include_router(
 
 app.include_router(exam_prep_router)
 app.include_router(exam_prep_admin_router)
-app.include_router(exam_prep_packs_router)
 app.include_router(study_planner_router)
 
 @app.get("/api/platform-settings/lesson-card")

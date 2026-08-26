@@ -18,10 +18,11 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 
 from app.services.auth_service import require_student, admin_client
 from app.services.feature_authorization_service import Feature, get_feature_summary
+from app.services.test_account_service import is_all_access_test_user
 from app.routes.parent_dashboard import _safe_query
 
 router = APIRouter()
@@ -32,6 +33,37 @@ FREE_PREVIEW_PER_CHAPTER = 3   # Number of formulas unlocked per chapter for Fre
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
+
+def normalize_grade(value: str | None):
+    """Normalize stored/requested grade values to the app's Grade N label."""
+    text = str(value or "Grade 9").strip()
+    digits = "".join(char for char in text if char.isdigit())
+
+    if digits:
+        return f"Grade {int(digits)}"
+
+    return text
+
+
+def enforce_profile_grade(profile: dict, requested_grade: str):
+    """
+    Prevent a student from reading another grade's formula sheets.
+    Mirrors the same check already enforced on lesson, doubt, and
+    mock-test routes — this route was missing it, letting any student
+    pass ?grade=<other grade> and read that grade's structure/preview
+    content regardless of their own onboarded grade.
+    """
+    if not profile or is_all_access_test_user(profile):
+        return
+
+    profile_grade = normalize_grade(profile.get("grade"))
+    request_grade = normalize_grade(requested_grade)
+
+    if profile_grade != request_grade:
+        raise HTTPException(
+            status_code=403,
+            detail=f"This student is onboarded for {profile_grade}.",
+        )
 
 def _build_chapters(rows: list[dict], has_premium: bool) -> list[dict]:
     """
@@ -121,6 +153,9 @@ def get_formula_sheets(
     profile  = student["profile"]
     uid = profile["id"]
     eff_grade = (grade or profile.get("grade", "Grade 9")).strip()
+
+    # Prevent reading another grade's formula sheets via ?grade=
+    enforce_profile_grade(profile, eff_grade)
 
     # Validate grade
     valid_grades = {f"Grade {i}" for i in range(5, 13)}
