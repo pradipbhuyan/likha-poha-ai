@@ -66,7 +66,7 @@ jobs:
           fetch-depth: 0    # full history for secret scanning
 
       - name: Gitleaks scan
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true   # report but don't hard-fail for now
