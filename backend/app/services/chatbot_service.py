@@ -232,6 +232,7 @@ PLATFORM_FAQ: list[dict] = [
     # ── Parent dashboard ──────────────────────────────────────────────────────
     {
         "keywords": ["parent dashboard", "parent", "track child", "child progress",
+                     "track kid", "kid progress", "kids progress",
                      "weak area", "progress tracking", "parent view", "how does parent"],
         "answer": (
             "The **Parent Dashboard** is a real-time window into your child's learning:\n\n"
@@ -250,7 +251,9 @@ PLATFORM_FAQ: list[dict] = [
     {
         "keywords": ["add child", "add a child", "create child", "second child", "child account",
                      "add student", "how many children", "two children", "multiple children",
-                     "create student", "student account", "child login"],
+                     "create student", "student account", "child login",
+                     "add kid", "add a kid", "second kid", "kid account", "how many kids",
+                     "two kids", "multiple kids", "kids account", "kid login", "kid", "kids"],
         "answer": (
             "**How to add a child on LikhaPoha AI:**\n\n"
             "**Step 1 — Log in as Parent**\n"
@@ -337,7 +340,8 @@ PLATFORM_FAQ: list[dict] = [
 
     # ── Safety / Guardrail ────────────────────────────────────────────────────
     {
-        "keywords": ["is it safe", "child safe", "safe for children",
+        "keywords": ["is it safe", "is this safe", "child safe", "safe for children",
+                     "kid safe", "safe for kids", "kids safe",
                      "inappropriate", "guardrail", "off topic",
                      "block", "politics", "filter", "age appropriate"],
         "answer": (
