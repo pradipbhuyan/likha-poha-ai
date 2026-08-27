@@ -191,3 +191,52 @@ class TestWelcomeEmailTriggersRegistrationNotification:
 
         # The user's own welcome email must still have been queued.
         send_async_mock.assert_called_once()
+
+
+class TestEmailSkippedDuringTests:
+    """
+    REGRESSION: automated test runs must never send real email — every
+    signup success-case test in test_signup.py/test_oauth_flow.py exercises
+    a code path that (pre-fix) fired a real Resend send to
+    likhapohaai@gmail.com plus the user's own welcome email, on every single
+    pytest run. _send_async() must no-op under pytest by default.
+    """
+
+    def test_is_test_environment_true_under_pytest_by_default(self):
+        # PYTEST_CURRENT_TEST is set by pytest for the duration of every test.
+        assert email_service._is_test_environment() is True
+
+    def test_is_test_environment_false_when_explicitly_allowed(self, monkeypatch):
+        monkeypatch.setenv("ALLOW_TEST_EMAILS", "1")
+        assert email_service._is_test_environment() is False
+
+    def test_send_async_does_not_start_a_thread_under_pytest(self, monkeypatch):
+        import threading
+
+        thread_started = []
+        monkeypatch.setattr(
+            threading, "Thread",
+            lambda *a, **kw: thread_started.append(True) or MagicMock(),
+        )
+
+        email_service._send_async(
+            to="someone@example.com", subject="s", html="<p>h</p>", text="t",
+        )
+
+        assert thread_started == []
+
+    def test_send_async_starts_a_thread_when_explicitly_allowed(self, monkeypatch):
+        import threading
+
+        monkeypatch.setenv("ALLOW_TEST_EMAILS", "1")
+        start_mock = MagicMock()
+        monkeypatch.setattr(
+            threading, "Thread",
+            lambda *a, **kw: MagicMock(start=start_mock),
+        )
+
+        email_service._send_async(
+            to="someone@example.com", subject="s", html="<p>h</p>", text="t",
+        )
+
+        start_mock.assert_called_once()

@@ -30,6 +30,24 @@ from app.services.logger_service import get_logger
 
 _log = get_logger("email_service")
 
+
+def _is_test_environment() -> bool:
+    """
+    True while running under pytest (pytest sets PYTEST_CURRENT_TEST for the
+    duration of every test — no plugin needed). Real emails must never go out
+    from an automated test/CI run: they hit the team's real Resend/SMTP send
+    limits, and every route in this app fires an admin notification to
+    likhapohaai@gmail.com on top of the user-facing email, so an unmocked
+    test suite burns quota on every single run.
+
+    Set ALLOW_TEST_EMAILS=1 to explicitly opt back in — e.g. a deliberate,
+    one-off manual send while debugging the email pipeline itself.
+    """
+    if os.getenv("ALLOW_TEST_EMAILS", "").strip().lower() in ("1", "true", "yes"):
+        return False
+    return bool(os.getenv("PYTEST_CURRENT_TEST"))
+
+
 _BRAND_COLOR = "#6366f1"
 _FRONTEND_URL = os.getenv("FRONTEND_URL", "https://likhapoha.in")
 # Logo always uses the production domain — never localhost — so it renders in email clients
@@ -257,6 +275,9 @@ def _send(to: str, subject: str, html: str, text: str) -> bool:
 
 def _send_async(to: str, subject: str, html: str, text: str) -> None:
     """Fire-and-forget in a daemon thread so routes never block."""
+    if _is_test_environment():
+        _log.info("email_service.skipped_in_test_environment", to=to, subject=subject)
+        return
     threading.Thread(
         target=_send,
         args=(to, subject, html, text),
