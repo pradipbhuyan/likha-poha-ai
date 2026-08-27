@@ -64,29 +64,19 @@ const ROLE_STEPS = {
       icon: Compass,
     },
     {
-      title: "Lessons — 5-Step Learning",
-      text: "Go to Lessons → pick Grade, Subject, and Chapter. Each chapter has 5 steps: Concept Introduction → Core Explanation → Worked Examples → Exam-Style Problems → Revision & Recap. Grade 10 has a bonus Exam Preparation step.",
+      title: "Lessons — Chapter Journey",
+      text: "Go to Lessons → pick Grade, Subject, and Chapter. Grade 11 and 12 students see subjects from their chosen stream — Science (PCM), Science (PCB), Science (PCMB), Commerce, or Humanities. Grade 5-8 gets a card-by-card feed with XP; Grade 9-12 gets an exam-style outline with worked examples.",
       icon: BookOpen,
     },
     {
-      title: "Generate & Read Your Lesson",
-      text: "Click Generate Lesson. The AI creates a personalised, NCERT-grounded lesson just for you. Read each step carefully. Click Listen to hear it aloud while you follow along.",
+      title: "Read & Answer Quick Checks",
+      text: "Scroll through the chapter at your own pace — jump to any section using the milestone list. Answer the inline Quick Check questions and worked examples as you go; your progress saves automatically.",
       icon: Sparkles,
     },
     {
-      title: "Ask Doubts Inside Lessons",
-      text: "See chips (quick questions) at the bottom of each lesson — click any chip for an instant pre-answered answer at zero AI cost. Or type your own question in the Ask a follow-up box.",
+      title: "Ask About This Chapter",
+      text: "Click Ask about this chapter to reveal ready-made answers to common questions for what you're reading — instant. For anything else, use the Ask Doubt page.",
       icon: HelpCircle,
-    },
-    {
-      title: "Practice Questions",
-      text: "After reading, click Generate 2 Practice Questions. For MCQs, click Check Answer for instant feedback. For descriptive, click Get AI Feedback. This builds exam memory.",
-      icon: ClipboardList,
-    },
-    {
-      title: "Move to the Next Step",
-      text: "Use the Previous / Next buttons at the top and bottom of the lesson to move between the 5 steps. All steps are freely navigable — no lock.",
-      icon: Compass,
     },
     {
       title: "Mock Tests",
@@ -94,7 +84,7 @@ const ROLE_STEPS = {
       icon: ClipboardList,
     },
     {
-      title: "Ask Doubt (Standalone)",
+      title: "Ask Doubt",
       text: "Use the Ask Doubt page for any question not tied to a specific lesson step. The AI answers instantly using NCERT-grounded knowledge.",
       icon: HelpCircle,
     },
@@ -109,6 +99,11 @@ const ROLE_STEPS = {
       icon: Sparkles,
     },
     {
+      title: "Exam Prep Center (Grade 11 & 12)",
+      text: "Preparing for a competitive exam? Go to Exam Prep Center → choose JEE Main, NEET UG, CUET UG, SAT, IELTS, or TOEFL iBT → practice questions, simulated tests, and AI explanations tailored to that exam.",
+      icon: Compass,
+    },
+    {
       title: "Analytics — Track Progress",
       text: "Analytics shows your lesson completion, mock test scores by chapter, weak areas, and AI usage. Review it weekly to see where you're improving.",
       icon: BarChart3,
@@ -119,6 +114,11 @@ const ROLE_STEPS = {
       title: "Parent Dashboard — Overview",
       text: "Your Parent Dashboard shows all linked children, their subscription status, and recent learning activity. Switch between children using the selector at the top.",
       icon: Users,
+    },
+    {
+      title: "Add a Child",
+      text: "Click Add Child → enter their name, pick their Grade (5-12), and set a password. Grade 11 and 12 also need a stream — Science (PCM), Science (PCB), Science (PCMB), Commerce, or Arts/Humanities. New children start on Free Tier with limited access until you upgrade.",
+      icon: Compass,
     },
     {
       title: "Child Progress & Activity",
@@ -132,7 +132,7 @@ const ROLE_STEPS = {
     },
     {
       title: "Subscription Plans",
-      text: "Go to Subscription → compare Standard and Premium plans. Click Choose Plan to start checkout via Razorpay (UPI supported). Plans auto-renew monthly unless cancelled.",
+      text: "Go to Subscription → compare Premium and Family Premium (up to 2 children). Grade 11 & 12 students can also choose the Exam Prep Center annual plan, which includes full Premium-equivalent access plus JEE, NEET, CUET, SAT, IELTS & TOEFL prep. Click Choose Plan to check out via Razorpay (UPI supported). Plans run for a fixed term and must be renewed manually before they expire — they do not auto-renew.",
       icon: ClipboardList,
     },
     {
@@ -148,24 +148,34 @@ const ROLE_STEPS = {
       icon: Users,
     },
     {
-      title: "AI Lessons & Ask Doubt",
-      text: "Browse NCERT step-wise lessons for any grade (5-10) and answer student doubts using the AI tutor.",
+      title: "Add or Invite a Student",
+      text: "Click Add Student to create an account directly, or send an email invitation from the Invitations tab. Grade 5-12 only.",
+      icon: ClipboardList,
+    },
+    {
+      title: "Lessons",
+      text: "Browse the same Chapter Journey lessons your students see for Grade 5-12 (Grade 11 & 12 by stream) — useful for lesson planning and checking content before teaching.",
       icon: BookOpen,
     },
     {
       title: "Create Test Paper",
-      text: "Generate MCQ and subjective test papers for any grade and chapter in seconds. Download the question paper and answer key for printing.",
+      text: "Generate MCQ and subjective test papers for Grade 5-10 and any chapter in seconds. Download the question paper and answer key for printing.",
       icon: ClipboardList,
+    },
+    {
+      title: "Create Lesson Plans",
+      text: "Generate a detailed, CBSE-aligned lesson plan for any grade (5-12), subject, and chapter — download it as a PDF before class.",
+      icon: ClipboardList,
+    },
+    {
+      title: "Listen to Lecture",
+      text: "Hear a model spoken run-through of any chapter's lesson plan, in a teacher's voice, to rehearse your delivery before class.",
+      icon: Sparkles,
     },
     {
       title: "Student Analytics",
       text: "See each student's score trend, subject performance (best/average/latest bars), and recent test activity. Sort by weakest first to spot students who need help.",
       icon: BarChart3,
-    },
-    {
-      title: "Learn More Resources",
-      text: "Access NCERT reference videos, exemplar materials, and grammar guides for any subject you teach.",
-      icon: Sparkles,
     },
     {
       title: "Spot Weak Areas",

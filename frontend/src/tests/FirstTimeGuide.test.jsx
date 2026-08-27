@@ -48,7 +48,23 @@ describe("FirstTimeGuide", () => {
     expect(screen.getByText(/welcome to your first learning quest/i)).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: /next/i }));
-    expect(screen.getByText(/lessons.*5-step/i)).toBeInTheDocument();
+    expect(screen.getByText(/lessons.*chapter journey/i)).toBeInTheDocument();
+  });
+
+  test("shows a role-aware guide for teacher users after clicking the launcher", async () => {
+    render(
+      <FirstTimeGuide
+        activePage="teacherDashboard"
+        user={{ role: "teacher", username: "teacher.test" }}
+      />
+    );
+
+    const launcher = await screen.findByRole("button", { name: /likha poha ai guide/i });
+    fireEvent.click(launcher);
+
+    await waitFor(() => {
+      expect(screen.getByText(/teacher dashboard/i)).toBeInTheDocument();
+    });
   });
 
   test("does not render for admin users", async () => {

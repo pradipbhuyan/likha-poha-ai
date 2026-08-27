@@ -2041,7 +2041,7 @@ function App() {
             </div>
 
             {/* Likha Poha AI Guide — inline in header, no longer floating */}
-            {["student", "parent"].includes(user.role) && (
+            {["student", "parent", "teacher"].includes(user.role) && (
               <FirstTimeGuide user={user} activePage={activePage} />
             )}
           </div>
