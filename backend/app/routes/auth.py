@@ -25,11 +25,59 @@ router = APIRouter()
 # ---------------------------------------------------------------------------
 
 VALID_SIGNUP_ROLES = {"parent", "student", "teacher"}
-# Grades currently visible to students — DB-aware, so an admin's "hide this
-# grade" toggle in the Product Catalogue page actually takes effect here.
-# Call fresh at signup time (not cached at import time): the admin can flip
-# visibility at any point after the server starts.
-from app.services.product_catalogue_service import get_live_visible_grades  # noqa: E402
+# All grades the platform supports. Grades have no admin-hide toggle — see
+# app.data.product_catalogue's module docstring for why that was removed.
+from app.data.product_catalogue import ALL_GRADES  # noqa: E402
+VALID_GRADES = set(ALL_GRADES)
+
+STREAM_SUBJECTS = {
+    "PCM":        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+    "PCB":        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+    "PCMB":       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+    "Commerce":   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+    "Humanities": ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+}
+VALID_STREAMS = set(STREAM_SUBJECTS)
+
+
+def _resolve_student_grade_and_subjects(
+    grade: Optional[str], stream: Optional[str]
+) -> tuple[str, Optional[str], list[str]]:
+    """
+    Resolve a signup/profile-completion grade + stream into
+    (grade, stream, cbse_subjects) — the single place every entry point that
+    accepts a student-supplied grade must go through.
+
+    An absent/out-of-range grade silently falls back to "Grade 9" (existing,
+    intentional behaviour). For Grade 11/12 a stream is REQUIRED and must be
+    one of VALID_STREAMS; raises 400 otherwise.
+
+    Why this is centralized (found 2026-08-27): this logic used to be copy-
+    pasted across 5 call sites in this file, and had drifted — signup_free
+    required and validated a stream for Grade 11/12, but complete_signup and
+    signup_with_offer_code had no stream field at all (silently registering
+    paid/offer-code Grade 11/12 students with zero cbse_subjects), and
+    oauth_complete_profile silently proceeded with empty subjects instead of
+    rejecting a missing stream. A student's registered grade+stream must
+    always determine exactly the subjects/lessons they see; one shared
+    function is what keeps that true everywhere instead of needing 5
+    call sites kept in sync by hand.
+    """
+    resolved_grade = grade or "Grade 9"
+    if resolved_grade not in VALID_GRADES:
+        resolved_grade = "Grade 9"
+
+    if resolved_grade not in ("Grade 11", "Grade 12"):
+        return resolved_grade, None, []
+
+    normalized_stream = (stream or "").strip()
+    if normalized_stream not in VALID_STREAMS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Stream is required for {resolved_grade} students. "
+                   f"Choose one of: {', '.join(sorted(VALID_STREAMS))}",
+        )
+    return resolved_grade, normalized_stream, STREAM_SUBJECTS[normalized_stream]
 
 
 # ---------------------------------------------------------------------------
@@ -607,27 +655,16 @@ def oauth_complete_profile(
                 updates["monthly_token_limit"] = 0
 
             elif role == "student":
-                grade = data.grade or existing.get("grade") or "Grade 9"
-                if grade not in get_live_visible_grades():
-                    grade = "Grade 9"
+                grade, stream, cbse_subjects = _resolve_student_grade_and_subjects(
+                    data.grade or existing.get("grade"), data.stream
+                )
                 updates["grade"] = grade
                 updates["board"] = "CBSE"
                 updates["daily_token_limit"] = 0
                 updates["monthly_token_limit"] = 0
-                # Grade 11/12: populate stream and cbse_subjects from stream selection
-                _STREAM_SUBJECTS = {
-                    "PCM":        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
-                    "PCB":        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
-                    "PCMB":       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
-                    "Commerce":   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
-                    "Humanities": ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
-                }
-                _valid_streams = {"PCM", "PCB", "PCMB", "Commerce", "Humanities"}
-                if grade in {"Grade 11", "Grade 12"} and data.stream and (data.stream or "").strip() in _valid_streams:
-                    updates["stream"] = data.stream.strip()
-                    updates["cbse_subjects"] = _STREAM_SUBJECTS.get(data.stream.strip(), [])
-                else:
-                    updates["cbse_subjects"] = []
+                updates["cbse_subjects"] = cbse_subjects
+                if stream:
+                    updates["stream"] = stream
 
             elif role == "teacher":
                 updates["daily_token_limit"] = 0
@@ -735,25 +772,14 @@ def oauth_complete_profile(
                 base_profile["family_id"] = fam.data[0]["id"]
 
         elif role == "student":
-            grade = data.grade or "Grade 9"
-            if grade not in get_live_visible_grades():
-                grade = "Grade 9"
+            grade, stream, cbse_subjects = _resolve_student_grade_and_subjects(
+                data.grade, data.stream
+            )
             base_profile["grade"] = grade
             base_profile["board"] = "CBSE"
-            # Grade 11/12: populate stream and cbse_subjects from stream selection
-            _STREAM_SUBJECTS = {
-                "PCM":        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
-                "PCB":        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
-                "PCMB":       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
-                "Commerce":   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
-                "Humanities": ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
-            }
-            _valid_streams = {"PCM", "PCB", "PCMB", "Commerce", "Humanities"}
-            if grade in {"Grade 11", "Grade 12"} and data.stream and (data.stream or "").strip() in _valid_streams:
-                base_profile["stream"] = data.stream.strip()
-                base_profile["cbse_subjects"] = _STREAM_SUBJECTS.get(data.stream.strip(), [])
-            else:
-                base_profile["cbse_subjects"] = []
+            base_profile["cbse_subjects"] = cbse_subjects
+            if stream:
+                base_profile["stream"] = stream
 
         elif role == "teacher":
             base_profile["school_name"] = school_clean
@@ -823,6 +849,7 @@ class CompleteSignupRequest(BaseModel):
     razorpay_payment_id: str
     razorpay_signature: str
     grade: Optional[str] = None
+    stream: Optional[str] = None   # for Grade 11/12 students: PCM|PCB|PCMB|Commerce|Humanities
     school: Optional[str] = None
 
 
@@ -833,6 +860,7 @@ class OfferCodeSignupRequest(BaseModel):
     email: str
     offer_code: str  # 8-char alphanumeric
     grade: Optional[str] = None   # for students
+    stream: Optional[str] = None  # for Grade 11/12 students: PCM|PCB|PCMB|Commerce|Humanities
     school: Optional[str] = None  # for teachers
     password: Optional[str] = None  # when provided, skips email verification and enables direct login
 
@@ -1186,13 +1214,15 @@ def complete_signup(data: CompleteSignupRequest):
             base_profile["family_id"] = family_resp.data[0]["id"]
 
     elif role == "student":
-        grade = data.grade or "Grade 9"
-        if grade not in get_live_visible_grades():
-            grade = "Grade 9"
+        grade, stream, cbse_subjects = _resolve_student_grade_and_subjects(
+            data.grade, data.stream
+        )
         base_profile["grade"] = grade
         base_profile["board"] = "CBSE"
-        base_profile["cbse_subjects"] = []
+        base_profile["cbse_subjects"] = cbse_subjects
         base_profile["ai_model_preference"] = "default"
+        if stream:
+            base_profile["stream"] = stream
 
     elif role == "teacher":
         if data.school:
@@ -1362,33 +1392,15 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
             base_profile["family_id"] = family_resp.data[0]["id"]
 
     elif role == "student":
-        grade = data.grade or "Grade 9"
-        if grade not in get_live_visible_grades():
-            grade = "Grade 9"
+        grade, stream, cbse_subjects = _resolve_student_grade_and_subjects(
+            data.grade, data.stream
+        )
         base_profile["grade"] = grade
         base_profile["board"] = "CBSE"
-        base_profile["cbse_subjects"] = []
+        base_profile["cbse_subjects"] = cbse_subjects
         base_profile["ai_model_preference"] = "default"
-        # Grade 11/12: validate and save stream
-        if grade in ("Grade 11", "Grade 12"):
-            valid_streams = {"PCM", "PCB", "PCMB", "Commerce", "Humanities"}
-            stream = (data.stream or "").strip()
-            if stream not in valid_streams:
-                raise HTTPException(
-                    status_code=400,
-                    detail=f"Stream is required for {grade} students. "
-                           f"Choose one of: PCM, PCB, PCMB, Commerce, Humanities",
-                )
+        if stream:
             base_profile["stream"] = stream
-            # Populate cbse_subjects from stream so welcome email and frontend use correct subjects
-            STREAM_SUBJECTS = {
-                "PCM":        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
-                "PCB":        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
-                "PCMB":       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
-                "Commerce":   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
-                "Humanities": ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
-            }
-            base_profile["cbse_subjects"] = STREAM_SUBJECTS.get(stream, [])
 
     elif role == "teacher":
         if data.school:
@@ -1777,13 +1789,15 @@ def signup_with_offer_code(data: OfferCodeSignupRequest, _rl=Depends(rate_limit_
             base_profile["family_id"] = family_resp.data[0]["id"]
 
     elif role == "student":
-        grade = data.grade or "Grade 9"
-        if grade not in get_live_visible_grades():
-            grade = "Grade 9"
+        grade, stream, cbse_subjects = _resolve_student_grade_and_subjects(
+            data.grade, data.stream
+        )
         base_profile["grade"] = grade
         base_profile["board"] = "CBSE"
-        base_profile["cbse_subjects"] = []
+        base_profile["cbse_subjects"] = cbse_subjects
         base_profile["ai_model_preference"] = "default"
+        if stream:
+            base_profile["stream"] = stream
 
     admin_client.table("profiles").insert(base_profile).execute()
 

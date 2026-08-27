@@ -2,9 +2,17 @@
 Product Catalogue — canonical definition of all grades, boards, and coaching
 programs the platform supports.
 
-`visible: False`  → feature exists in code but is hidden from all students /
-                    parents until an admin toggles it on via the Product
-                    Catalogue admin page.
+Grades are NOT admin-togglable: every grade the platform supports (Grade
+1-12) is always available at signup. There used to be a per-grade
+`visible` flag here plus an admin toggle route, but that let a stale
+`admin_settings` DB row (never touched by any UI, since no frontend ever
+called the toggle) silently demote Grade 12 signups to Grade 9 with no
+error shown to anyone — see TECH_DEBT.md. Removed entirely rather than
+patched, so no future code path can reintroduce that failure mode.
+
+Coaching programs (JEE/NEET/CUET/SAT/IELTS/TOEFL) keep their own
+`visible` flag below — that one has a real admin UI and is a legitimate,
+currently-used feature.
 
 This dict is the *source of truth* that is stored in (and can be overridden
 by) the `admin_settings` Supabase table under key "product_catalogue".
@@ -13,25 +21,21 @@ When no DB row exists the hardcoded defaults below are used.
 
 DEFAULT_PRODUCT_CATALOGUE: dict = {
     "grades": {
-        # ── Currently live ─────────────────────────────────────────────────
-        "Grade 1":  {"visible": True,  "boards": ["CBSE"], "streams": []},
-        "Grade 2":  {"visible": True,  "boards": ["CBSE"], "streams": []},
-        "Grade 3":  {"visible": True,  "boards": ["CBSE"], "streams": []},
-        "Grade 4":  {"visible": True,  "boards": ["CBSE"], "streams": []},
-        "Grade 5":  {"visible": True,  "boards": ["CBSE"], "streams": []},
-        "Grade 6":  {"visible": True,  "boards": ["CBSE"], "streams": []},
-        "Grade 7":  {"visible": True,  "boards": ["CBSE"], "streams": []},
-        "Grade 8":  {"visible": True,  "boards": ["CBSE"], "streams": []},
-        "Grade 9":  {"visible": True,  "boards": ["CBSE"], "streams": []},
-        "Grade 10": {"visible": True,  "boards": ["CBSE"], "streams": []},
-        # ── Ready in code, hidden until content is uploaded ─────────────────
+        "Grade 1":  {"boards": ["CBSE"], "streams": []},
+        "Grade 2":  {"boards": ["CBSE"], "streams": []},
+        "Grade 3":  {"boards": ["CBSE"], "streams": []},
+        "Grade 4":  {"boards": ["CBSE"], "streams": []},
+        "Grade 5":  {"boards": ["CBSE"], "streams": []},
+        "Grade 6":  {"boards": ["CBSE"], "streams": []},
+        "Grade 7":  {"boards": ["CBSE"], "streams": []},
+        "Grade 8":  {"boards": ["CBSE"], "streams": []},
+        "Grade 9":  {"boards": ["CBSE"], "streams": []},
+        "Grade 10": {"boards": ["CBSE"], "streams": []},
         "Grade 11": {
-            "visible": True,
             "boards": ["CBSE"],
             "streams": ["Science (PCM)", "Science (PCB)", "Science (PCMB)", "Commerce", "Arts / Humanities"],
         },
         "Grade 12": {
-            "visible": True,
             "boards": ["CBSE"],
             "streams": ["Science (PCM)", "Science (PCB)", "Science (PCMB)", "Commerce", "Arts / Humanities"],
         },
@@ -91,24 +95,17 @@ DEFAULT_PRODUCT_CATALOGUE: dict = {
     },
 }
 
-# All grade keys including hidden ones — used for backend validation
-ALL_GRADES_INCLUDING_HIDDEN: list[str] = list(
-    DEFAULT_PRODUCT_CATALOGUE["grades"].keys()
-)
+# All grade keys the platform supports — used for backend validation.
+# Every grade here is always valid at signup; there is no hidden subset.
+ALL_GRADES: list[str] = list(DEFAULT_PRODUCT_CATALOGUE["grades"].keys())
 
 # Grades a teacher may assign to a student they add/invite, or edit a
 # student into. Teachers work with middle/senior school (Grade 5-12) —
 # Grade 1-4 students are managed by parents only, never by a teacher.
 TEACHER_ALLOWED_GRADES: list[str] = [
-    g for g in ALL_GRADES_INCLUDING_HIDDEN
+    g for g in ALL_GRADES
     if g not in ("Grade 1", "Grade 2", "Grade 3", "Grade 4")
 ]
-
-# Only grades visible to students (dynamic — overridden by DB at runtime)
-def get_visible_grades(catalogue: dict | None = None) -> list[str]:
-    """Return grades currently visible to students."""
-    cat = catalogue or DEFAULT_PRODUCT_CATALOGUE
-    return [g for g, v in cat["grades"].items() if v.get("visible", False)]
 
 
 def get_visible_coaching_programs(catalogue: dict | None = None) -> list[str]:

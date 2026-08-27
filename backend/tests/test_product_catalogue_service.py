@@ -14,8 +14,9 @@ Tests:
     the current 6 keys, all default-visible, old keys dropped
   - Stored row that already has a current key with visible=False -> that
     admin choice is honored, not overridden
-  - Stored row's other sections (grades) with all-current keys already
-    present -> preserved exactly, untouched by the merge
+  - Stored row's "grades" section is never consulted -> the hardcoded
+    ALL_GRADES list is always authoritative, even if a stored row carries
+    a leftover "visible: False" from the removed grade-hiding feature
 """
 
 import copy
@@ -114,18 +115,22 @@ class TestLoadProductCatalogueMerge:
         assert "sat" not in visible
         assert "jee_main" in visible
 
-    def test_grades_section_with_current_keys_passes_through_unchanged(self, monkeypatch):
-        """The grades section was never renamed, so a stored row that
-        already has all 12 current grade keys (including an admin's real
-        visible=False choices) must come back exactly as stored — the merge
-        must not silently reset legitimate existing configuration."""
-        custom_grades = copy.deepcopy(DEFAULT_PRODUCT_CATALOGUE["grades"])
-        custom_grades["Grade 11"]["visible"] = False
-        custom_grades["Grade 12"]["visible"] = False
-        row = {"grades": custom_grades, "coaching_programs": {}}
+    def test_stored_grades_section_is_ignored_entirely(self, monkeypatch):
+        """
+        REGRESSION: grades have no admin toggle. A stored row that still
+        carries a leftover "visible: False" for Grade 11/12 (from the
+        removed grade-hiding feature — this exact shape was found live and
+        silently demoted Grade 12 signups to Grade 9 with no error shown to
+        anyone) must have zero effect. load_product_catalogue() must always
+        return the hardcoded grades defaults, regardless of what's stored.
+        """
+        stale_grades = copy.deepcopy(DEFAULT_PRODUCT_CATALOGUE["grades"])
+        stale_grades["Grade 11"]["visible"] = False
+        stale_grades["Grade 12"]["visible"] = False
+        row = {"grades": stale_grades, "coaching_programs": {}}
         _patch_admin_client(monkeypatch, row)
 
         cat = svc.load_product_catalogue()
-        assert cat["grades"]["Grade 11"]["visible"] is False
-        assert cat["grades"]["Grade 12"]["visible"] is False
-        assert cat["grades"]["Grade 1"]["visible"] is True
+        assert cat["grades"] == DEFAULT_PRODUCT_CATALOGUE["grades"]
+        assert "Grade 12" in cat["grades"]
+        assert "visible" not in cat["grades"]["Grade 12"]

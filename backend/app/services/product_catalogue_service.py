@@ -1,16 +1,22 @@
 """
 product_catalogue_service.py
 ─────────────────────────────────────────────────────────────────────────────
-Live-loads the product catalogue (grade/coaching-program visibility) from the
+Live-loads the product catalogue (coaching-program visibility) from the
 admin_settings DB row, falling back to the hardcoded defaults in
 app.data.product_catalogue when no row exists yet.
 
 This is the single place any code — admin routes or student-facing
-enforcement (e.g. signup grade validation) — must go through to know what's
-actually visible right now. Reading app.data.product_catalogue's
-DEFAULT_PRODUCT_CATALOGUE directly ignores whatever an admin has toggled via
-the Product Catalogue admin page, since the DB row (when present) overrides
-those hardcoded defaults.
+enforcement — must go through to know what's actually visible right now.
+Reading app.data.product_catalogue's DEFAULT_PRODUCT_CATALOGUE directly
+ignores whatever an admin has toggled via the Product Catalogue admin page,
+since the DB row (when present) overrides those hardcoded defaults.
+
+NOTE: the "grades" section is intentionally NOT merged from the stored DB
+row (see _merge_with_defaults) — grades have no admin toggle and are always
+the hardcoded ALL_GRADES list, on purpose. A stale admin_settings row that
+still carries a "visible: False" from a long-removed grade-hiding feature
+silently demoted Grade 12 signups to Grade 9 with no error shown to anyone;
+see TECH_DEBT.md and app.data.product_catalogue's module docstring.
 """
 from __future__ import annotations
 
@@ -19,7 +25,6 @@ import copy
 from app.data.product_catalogue import (
     DEFAULT_PRODUCT_CATALOGUE,
     get_visible_coaching_programs,
-    get_visible_grades,
 )
 
 _CATALOGUE_KEY = "product_catalogue"
@@ -27,31 +32,34 @@ _CATALOGUE_KEY = "product_catalogue"
 
 def _merge_with_defaults(stored: dict) -> dict:
     """
-    Merge a DB-stored catalogue onto the current hardcoded defaults, section
-    by section and key by key: a key the stored row already has keeps its
-    stored value (an admin's real toggle); a key the stored row DOESN'T have
-    keeps the current default rather than vanishing; a key the stored row
-    has that ISN'T in the current defaults is dropped as orphaned.
+    Merge a DB-stored catalogue onto the current hardcoded defaults, key by
+    key, for the "coaching_programs" section only: a key the stored row
+    already has keeps its stored value (an admin's real toggle); a key the
+    stored row DOESN'T have keeps the current default rather than vanishing;
+    a key the stored row has that ISN'T in the current defaults is dropped
+    as orphaned. The "grades" section is never read from `stored` — grades
+    have no admin toggle, so the hardcoded default is always authoritative
+    regardless of whatever a DB row happens to contain.
 
-    Why this exists (found live 2026-08-26, not hypothetical): a real
-    `admin_settings` row already existed with `coaching_programs` keyed
-    "JEE"/"NEET"/"CUET" (all visible:false, no entry at all for
-    "sat"/"ielts"/"toefl_ibt") — saved before this section was renamed to
-    "jee_main"/"neet_ug"/"cuet_ug" and expanded to six exams. Without this
-    merge, that one stale row would have (a) made every exam read as hidden
-    the moment TD-14's /status fix shipped, and (b) shown the admin a
-    catalogue page with 3 dead keys that don't match anything real anymore,
-    where toggling any of them would silently do nothing — the exact bug
-    TD-14 was about, just re-introduced one level up via stale data instead
-    of missing code. The next admin save naturally writes the merged,
-    current-schema catalogue back, self-correcting the DB row for good.
+    Why the coaching_programs merge exists (found live 2026-08-26, not
+    hypothetical): a real `admin_settings` row already existed with
+    `coaching_programs` keyed "JEE"/"NEET"/"CUET" (all visible:false, no
+    entry at all for "sat"/"ielts"/"toefl_ibt") — saved before this section
+    was renamed to "jee_main"/"neet_ug"/"cuet_ug" and expanded to six exams.
+    Without this merge, that one stale row would have (a) made every exam
+    read as hidden the moment TD-14's /status fix shipped, and (b) shown the
+    admin a catalogue page with 3 dead keys that don't match anything real
+    anymore, where toggling any of them would silently do nothing — the
+    exact bug TD-14 was about, just re-introduced one level up via stale
+    data instead of missing code. The next admin save naturally writes the
+    merged, current-schema catalogue back, self-correcting the DB row for
+    good.
     """
     merged = copy.deepcopy(DEFAULT_PRODUCT_CATALOGUE)
-    for section, defaults in merged.items():
-        stored_section = stored.get(section, {})
-        for key in defaults:
-            if key in stored_section:
-                defaults[key] = stored_section[key]
+    stored_programs = stored.get("coaching_programs", {})
+    for key in merged["coaching_programs"]:
+        if key in stored_programs:
+            merged["coaching_programs"][key] = stored_programs[key]
     return merged
 
 
@@ -85,18 +93,6 @@ def save_product_catalogue(catalogue: dict) -> None:
     ).execute()
 
 
-def get_live_visible_grades() -> set[str]:
-    """
-    Return the set of grades currently visible to students, honoring
-    whatever an admin has toggled via the Product Catalogue admin page.
-
-    Callers that accept a student-supplied grade (signup, profile edits)
-    must validate against this — not the static ALL_GRADES_INCLUDING_HIDDEN
-    list — or the admin's "hide this grade" switch has no real effect.
-    """
-    return set(get_visible_grades(load_product_catalogue()))
-
-
 def get_live_visible_coaching_programs() -> set[str]:
     """
     Return the set of Exam Prep Center exam keys currently visible to
@@ -104,10 +100,9 @@ def get_live_visible_coaching_programs() -> set[str]:
     honoring whatever an admin has toggled via the Product Catalogue admin
     page's Coaching Programs section.
 
-    Added 2026-08-26 (TECH_DEBT.md TD-14) — mirrors get_live_visible_grades().
-    Before this, the "visible" toggle on this admin page was cosmetic: it
-    saved to the DB but nothing ever read it back, so it silently did
-    nothing. exam_prep.py's GET /status must call this instead of
-    hardcoding every exam as active.
+    Added 2026-08-26 (TECH_DEBT.md TD-14). Before this, the "visible"
+    toggle on this admin page was cosmetic: it saved to the DB but nothing
+    ever read it back, so it silently did nothing. exam_prep.py's GET
+    /status must call this instead of hardcoding every exam as active.
     """
     return set(get_visible_coaching_programs(load_product_catalogue()))

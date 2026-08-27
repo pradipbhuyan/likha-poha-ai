@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   getProductCatalogue,
-  setGradeVisibility,
   setProgramVisibility,
 } from "../api/productCatalogue";
 
@@ -80,20 +79,6 @@ export default function AdminProductCataloguePage({ user }) {
     if (user?.accessToken) load();
   }, [user?.accessToken]);
 
-  async function handleGradeToggle(grade, visible) {
-    setSaving(grade);
-    setMessage(""); setError("");
-    try {
-      const data = await setGradeVisibility(grade, visible);
-      setCatalogue(data.catalogue);
-      setMessage(data.message);
-    } catch (err) {
-      setError(err.message || "Failed to update grade.");
-    } finally {
-      setSaving(null);
-    }
-  }
-
   async function handleProgramToggle(program, visible) {
     setSaving(program);
     setMessage(""); setError("");
@@ -113,9 +98,6 @@ export default function AdminProductCataloguePage({ user }) {
   const grades   = Object.entries(catalogue?.grades || {});
   const programs = Object.entries(catalogue?.coaching_programs || {});
 
-  const liveGrades   = grades.filter(([, v]) => v.visible).length;
-  const hiddenGrades = grades.filter(([, v]) => !v.visible).length;
-
   return (
     <div className="premium-page">
 
@@ -125,22 +107,19 @@ export default function AdminProductCataloguePage({ user }) {
           <p className="eyebrow">Admin — Product Management</p>
           <h2>📦 Product Catalogue</h2>
           <p>
-            Control which grades, boards, and coaching programs are visible to
-            students and parents. Hidden items exist fully in the codebase but
-            are not shown anywhere in the student or parent UI until you toggle
-            them on here.
+            Grades 1–12 are always available to students — there is no
+            grade-visibility toggle (removed 2026-08-27: a stale hidden flag
+            on Grade 12 silently downgraded new Grade 12 signups to Grade 9
+            with no error shown to anyone). Coaching programs below still
+            have a real, working visibility toggle.
           </p>
         </div>
 
         {/* Overview pills */}
         <div className="admin-overview-grid">
           <div className="admin-overview-card">
-            <span>Live Grades</span>
-            <strong style={{ color: "#22c55e" }}>{liveGrades}</strong>
-          </div>
-          <div className="admin-overview-card">
-            <span>Hidden Grades</span>
-            <strong style={{ color: "#f59e0b" }}>{hiddenGrades}</strong>
+            <span>Grades Offered</span>
+            <strong style={{ color: "#22c55e" }}>{grades.length}</strong>
           </div>
           <div className="admin-overview-card">
             <span>Coaching Programs</span>
@@ -158,10 +137,7 @@ export default function AdminProductCataloguePage({ user }) {
         <div className="premium-header">
           <p className="eyebrow">Section A</p>
           <h3>🎓 Grades & Boards</h3>
-          <p>
-            Grade 1–10 are live. Grade 11 and Grade 12 are ready in the codebase
-            but hidden until NCERT content is uploaded and prewarmed.
-          </p>
+          <p>Reference only — grades have no visibility toggle. Grade 1–12 are all always live.</p>
         </div>
 
         <div className="premium-card" style={{ padding: 0, overflow: "hidden" }}>
@@ -169,26 +145,25 @@ export default function AdminProductCataloguePage({ user }) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1.5fr 1.5fr 1fr 1fr 80px",
+              gridTemplateColumns: "1.5fr 1.5fr 1fr",
               gap: 0,
               background: "var(--accent, #2563eb)",
               padding: "10px 20px",
             }}
           >
-            {["Grade", "Board", "Streams", "Status", "Visible"].map((h) => (
+            {["Grade", "Board", "Streams"].map((h) => (
               <span key={h} style={{ fontSize: "0.8rem", fontWeight: 700, color: "#fff" }}>{h}</span>
             ))}
           </div>
 
           {grades.map(([grade, info], idx) => {
-            const isHigherGrade = grade === "Grade 11" || grade === "Grade 12";
             const rowBg = idx % 2 === 0 ? "var(--surface, #1e293b)" : "var(--surface2, #162136)";
             return (
               <div
                 key={grade}
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1.5fr 1.5fr 1fr 1fr 80px",
+                  gridTemplateColumns: "1.5fr 1.5fr 1fr",
                   gap: 0,
                   background: rowBg,
                   padding: "12px 20px",
@@ -196,14 +171,7 @@ export default function AdminProductCataloguePage({ user }) {
                   borderTop: "1px solid rgba(255,255,255,0.05)",
                 }}
               >
-                <span style={{ fontWeight: isHigherGrade ? 700 : 400, color: isHigherGrade ? "#fbbf24" : "#fff" }}>
-                  {grade}
-                  {isHigherGrade && (
-                    <span style={{ marginLeft: 8, fontSize: "0.7rem", color: "#fbbf24", background: "rgba(251,191,36,0.15)", padding: "1px 6px", borderRadius: 4 }}>
-                      NEW
-                    </span>
-                  )}
-                </span>
+                <span style={{ color: "#fff" }}>{grade}</span>
                 <span style={{ color: "#cbd5e1", fontSize: "0.85rem" }}>
                   {(info.boards || ["CBSE"]).join(", ")}
                 </span>
@@ -212,21 +180,9 @@ export default function AdminProductCataloguePage({ user }) {
                     ? info.streams.join(" · ")
                     : "—"}
                 </span>
-                <Pill visible={info.visible} />
-                <Toggle
-                  enabled={info.visible}
-                  disabled={saving === grade}
-                  onChange={(val) => handleGradeToggle(grade, val)}
-                />
               </div>
             );
           })}
-        </div>
-
-        <div className="info-box" style={{ marginTop: 12, fontSize: "0.83rem" }}>
-          ⚠️ <strong>Before making Grade 11 or 12 visible:</strong> upload NCERT textbooks
-          for all subjects via the RAG Upload page, then prewarm lessons and the question
-          bank via Cache Management. Only then toggle visible.
         </div>
       </section>
 
@@ -315,8 +271,7 @@ export default function AdminProductCataloguePage({ user }) {
 
         <div className="premium-card">
           {[
-            { phase: "Now — Live",       color: "#22c55e", items: ["Grade 5–10 CBSE", "Ask Doubt (RAG)", "140,000+ Question Bank", "Parent Dashboard", "Teacher Module", "Exam Prep Center — JEE, NEET, CUET, SAT, IELTS, TOEFL (see Section B)", "Negative-marking simulated tests"] },
-            { phase: "Phase 2 (Ready to unlock)", color: "#f59e0b", items: ["Grade 11 CBSE — Science, Commerce, Arts", "Grade 12 CBSE — Science, Commerce, Arts", "Stream selection at signup"] },
+            { phase: "Now — Live",       color: "#22c55e", items: ["Grade 1–10 CBSE", "Grade 11 & 12 CBSE — Science (PCM/PCB/PCMB), Commerce, Humanities", "Stream selection at signup", "Ask Doubt (RAG)", "140,000+ Question Bank", "Parent Dashboard", "Teacher Module", "Exam Prep Center — JEE, NEET, CUET, SAT, IELTS, TOEFL (see Section B)", "Negative-marking simulated tests"] },
             { phase: "Phase 3 (Not yet verified)", color: "#a78bfa", items: ["Topic-wise progress tracking"] },
             { phase: "Phase 4 (Future)",  color: "#64748b", items: ["ICSE + State Board content", "Vernacular (Hindi/Marathi/Tamil) UI", "School white-labelling", "Mobile app (native)"] },
           ].map(({ phase, color, items }) => (

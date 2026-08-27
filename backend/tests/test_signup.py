@@ -414,13 +414,16 @@ class TestCompleteSignup:
         # Grade stored in captured profile should be Grade 9 (default)
         assert captured.get("grade") == "Grade 9"
 
-    def test_student_signup_defaults_to_grade_9_when_grade_hidden_by_admin(self, monkeypatch):
+    def test_student_signup_grade_12_always_succeeds(self, monkeypatch):
         """
-        REGRESSION: a grade an admin has hidden via the Product Catalogue page
-        must be rejected at signup exactly like an out-of-range grade — not
-        silently accepted because it was still in the old static
-        ALL_GRADES_INCLUDING_HIDDEN list. Simulates Grade 12 being toggled
-        hidden while everything else stays visible.
+        REGRESSION: grades have no admin-hide toggle and must never be
+        silently downgraded regardless of what any stored product-catalogue
+        state says. A prior version gated signup on a DB-driven
+        get_live_visible_grades() call, and a stale admin_settings row (never
+        touched by any UI) had Grade 12 marked not-visible — silently
+        demoting every Grade 12 signup to Grade 9 with no error shown to
+        anyone. Grade validation must come only from the hardcoded
+        VALID_GRADES set, which always contains Grade 1-12.
         """
         self._mock_dependencies(monkeypatch)
         captured = {}
@@ -449,21 +452,18 @@ class TestCompleteSignup:
             lambda email, password, email_confirm=True: fake_auth_user("student-003"),
             raising=False,
         )
-        monkeypatch.setattr(
-            auth_module,
-            "get_live_visible_grades",
-            lambda: {f"Grade {i}" for i in range(1, 12)},  # Grade 12 hidden
-        )
 
         result = auth_module.complete_signup(auth_module.CompleteSignupRequest(
             role="student",
             name="Priya Test",
             email="priya@test.com",
-            grade="Grade 12",  # currently hidden by admin
+            grade="Grade 12",
+            stream="PCMB",
             **self.BASE_PAYLOAD,
         ))
         assert result["success"] is True
-        assert captured.get("grade") == "Grade 9"
+        assert captured.get("grade") == "Grade 12"
+        assert captured.get("stream") == "PCMB"
 
     # ------------------------------------------------------------------
     # TEACHER signup journey

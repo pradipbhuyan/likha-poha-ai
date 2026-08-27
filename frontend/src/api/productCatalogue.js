@@ -9,18 +9,6 @@ export async function getProductCatalogue() {
 }
 
 /**
- * Toggle a grade's student-facing visibility.
- * @param {string} grade  e.g. "Grade 11"
- * @param {boolean} visible
- */
-export async function setGradeVisibility(grade, visible) {
-  return authFetch("/api/product-catalogue/grade", {
-    method: "PATCH",
-    body: JSON.stringify({ grade, visible }),
-  });
-}
-
-/**
  * Toggle a coaching program's student-facing visibility.
  * @param {string} program  e.g. "JEE", "NEET", "CUET"
  * @param {boolean} visible

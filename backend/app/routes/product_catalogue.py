@@ -2,8 +2,13 @@
 Product Catalogue admin routes.
 
 GET  /api/product-catalogue          — return full catalogue (admin only)
-PATCH /api/product-catalogue/grade   — toggle a grade's visibility
 PATCH /api/product-catalogue/program — toggle a coaching program's visibility
+
+There is deliberately no grade-visibility toggle here anymore. Grades are
+always the full ALL_GRADES list (see app.data.product_catalogue) — a
+per-grade admin toggle used to exist but had no frontend ever wired to it,
+and a stale DB row it left behind silently demoted Grade 12 signups to
+Grade 9. Removed rather than fixed, so it can't happen again.
 """
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -20,11 +25,6 @@ router = APIRouter()
 
 # ── Request models ────────────────────────────────────────────────────────────
 
-class GradeVisibilityRequest(BaseModel):
-    grade: str
-    visible: bool
-
-
 class ProgramVisibilityRequest(BaseModel):
     program: str
     visible: bool
@@ -37,32 +37,6 @@ def get_product_catalogue(admin=Depends(require_admin)):
     """Return the full product catalogue for the admin console."""
     catalogue = _load_catalogue()
     return {"success": True, "catalogue": catalogue}
-
-
-@router.patch("/grade")
-def set_grade_visibility(
-    data: GradeVisibilityRequest,
-    admin=Depends(require_admin),
-):
-    """
-    Toggle a grade's student-facing visibility.
-    Grade 11 / Grade 12 start hidden and are enabled here when content
-    is uploaded and the admin is ready to launch.
-    """
-    catalogue = _load_catalogue()
-
-    if data.grade not in catalogue.get("grades", {}):
-        raise HTTPException(status_code=404, detail=f"Grade '{data.grade}' not found in catalogue.")
-
-    catalogue["grades"][data.grade]["visible"] = data.visible
-    _save_catalogue(catalogue)
-
-    action = "visible to students" if data.visible else "hidden from students"
-    return {
-        "success": True,
-        "message": f"{data.grade} is now {action}.",
-        "catalogue": catalogue,
-    }
 
 
 @router.patch("/program")

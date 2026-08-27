@@ -239,8 +239,8 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
         password=data.password,
     )
 
-    from app.data.product_catalogue import ALL_GRADES_INCLUDING_HIDDEN  # noqa: PLC0415
-    grade = data.grade if data.grade in ALL_GRADES_INCLUDING_HIDDEN else "Grade 9"
+    from app.data.product_catalogue import ALL_GRADES  # noqa: PLC0415
+    grade = data.grade if data.grade in ALL_GRADES else "Grade 9"
 
     child_profile = {
         "id": auth_user.id,
