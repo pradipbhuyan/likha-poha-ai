@@ -86,6 +86,7 @@ export default function PlatformChat({ user }) {
   const [recording, setRecording] = useState(false);
   const [totalUnread, setTotalUnread] = useState(0);
   const [loadingRooms, setLoadingRooms] = useState(false);
+  const [loadingContacts, setLoadingContacts] = useState(false);
   const [error, setError] = useState(null);
 
   const bottomRef = useRef(null);
@@ -149,6 +150,18 @@ export default function PlatformChat({ user }) {
     }
     return () => { if (unsubRef.current) { unsubRef.current(); unsubRef.current = null; } };
   }, [activeRoom, view, user?.id]);
+
+  async function loadContacts() {
+    setLoadingContacts(true);
+    try {
+      const r = await getChatContacts();
+      if (r.success) setContacts(r.contacts || []);
+      else setError("Could not load contacts.");
+    } catch (e) {
+      setError("Could not load contacts: " + e.message);
+    }
+    setLoadingContacts(false);
+  }
 
   async function openContact(contact) {
     try {
@@ -324,7 +337,7 @@ export default function PlatformChat({ user }) {
                   {view === "rooms" && <div style={{ fontSize: 10, color: "rgba(255,255,255,.6)" }}>Your conversations</div>}
                 </div>
                 {view === "rooms" && (
-                  <button onClick={() => { setView("contacts"); getChatContacts().then(r => { if (r.success) setContacts(r.contacts || []); }); }}
+                  <button onClick={() => { setView("contacts"); loadContacts(); }}
                     style={{ background: "rgba(255,255,255,.12)", border: "none", color: "#fff", borderRadius: 7, padding: "4px 9px", cursor: "pointer", fontSize: 11, fontFamily: "inherit", fontWeight: 600 }}>
                     + New
                   </button>
@@ -394,8 +407,21 @@ export default function PlatformChat({ user }) {
           {/* ── CONTACTS LIST ── */}
           {view === "contacts" && (
             <div style={{ flex: 1, overflowY: "auto" }}>
-              {contacts.length === 0 && <div style={{ padding: 20, textAlign: "center", color: "#64748b", fontSize: ".82rem" }}>Loading contacts…</div>}
-              {contacts.map(c => (
+              {loadingContacts && <div style={{ padding: 20, textAlign: "center", color: "#64748b", fontSize: ".82rem" }}>Loading contacts…</div>}
+              {!loadingContacts && contacts.length === 0 && (
+                <div style={{ padding: 24, textAlign: "center", color: "#64748b", fontSize: ".82rem" }}>
+                  <div style={{ fontSize: "2rem", marginBottom: 8 }}>👥</div>
+                  <div>No contacts available yet.</div>
+                  <div style={{ marginTop: 4, fontSize: ".74rem" }}>
+                    {user?.role === "student"
+                      ? "You'll be able to message a teacher once one is assigned to you, or your parent once linked."
+                      : user?.role === "parent"
+                      ? "You'll be able to message a teacher once one is assigned to your child."
+                      : "Check back once contacts are available."}
+                  </div>
+                </div>
+              )}
+              {!loadingContacts && contacts.map(c => (
                 <div key={c.id} onClick={() => openContact(c)}
                   style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderBottom: "1px solid #1e293b", cursor: "pointer" }}
                   onMouseEnter={e => e.currentTarget.style.background = "#1e293b"}
