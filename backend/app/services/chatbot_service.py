@@ -182,17 +182,15 @@ PLATFORM_FAQ: list[dict] = [
                      "step lesson", "lesson step", "how to learn", "how to study",
                      "start lesson", "generate lesson", "ai lesson", "what is a lesson"],
         "answer": (
-            "The AI breaks each chapter into **4–6 short, focused steps**:\n\n"
-            "1. **What is this topic?** — Simple introduction\n"
-            "2. **Deep explanation** — With real-world examples\n"
-            "3. **Solved problems** — Step-by-step worked examples\n"
-            "4. **Exam-style questions** — Practice at exam level\n"
-            "5. **Quick revision** — Key points to remember\n"
-            "6. **Exam tips** *(Class 10–12 only)*\n\n"
-            "The AI studies your child's actual NCERT textbook first, then teaches "
-            "it back in clear, simple language.\n\n"
-            "Students can also 🔊 **listen** to the lesson aloud or ask the AI "
-            "follow-up questions mid-lesson."
+            "Each chapter loads as a **Chapter Journey** — pick Grade, Subject, and Chapter "
+            "and it's ready instantly, no separate generate step:\n\n"
+            "- **Class 5–8:** a card-by-card feed, one idea per card, with XP as you progress\n"
+            "- **Class 9–12:** an exam-style outline with worked examples and inline quick-check "
+            "questions\n\n"
+            "The AI studies your child's actual NCERT textbook first, then presents it in clear, "
+            "simple language.\n\n"
+            "Every chapter also has an **Ask about this chapter** panel — click a question to "
+            "reveal its answer instantly."
         ),
         "suggestions": ["How does doubt solving work?", "How does the parent dashboard work?", "How do mock tests work?"],
     },
@@ -259,27 +257,21 @@ PLATFORM_FAQ: list[dict] = [
             "Go to [likhapoha.in](https://likhapoha.in) and sign in with your parent account.\n\n"
             "**Step 2 — Open the Parent Dashboard**\n"
             "Click **Parent Dashboard** in the left sidebar.\n\n"
-            "**Step 3 — Go to Family Learning Center**\n"
-            "Scroll to the **Family Hub** section. You will see your linked children and parents.\n\n"
-            "**Step 4 — Click + Add Child**\n"
-            "Click the **+ Add Child** button (disabled if you already have 2 children — Family plan limit).\n\n"
-            "**Step 5 — Fill in the child's details**\n"
-            "- **Profile picture** (optional) — choose a preset avatar emoji or upload a photo\n"
-            "- **Student Name** (required) — this becomes their username\n"
-            "- **Student Email** (optional) — leave blank if your child has no email address; "
-            "they can log in with username + password instead\n"
+            "**Step 3 — Click + Add Child**\n"
+            "You'll find the **+ Add Child** button on your dashboard.\n\n"
+            "**Step 4 — Fill in the child's details**\n"
+            "- **Child's Name** (required) — this becomes their username\n"
             "- **Grade** (required) — select Grade 5 to Grade 12 (Grade 11 & 12 also require choosing "
             "a stream: Science-PCM, Science-PCB, Science-PCMB, Commerce, or Humanities)\n"
-            "- **Password** (required) — set a password you will share with your child\n\n"
-            "**Step 6 — Click Create Student**\n"
-            "A confirmation screen will appear with:\n"
-            "- Username and password\n"
-            "- A **one-click login link** — share this with your child for instant sign-in\n\n"
-            "**Step 7 — Share login with your child**\n"
+            "- **Password** (required) — set a password you will share with your child\n"
+            "- **Email** (optional) — leave blank if your child has no email address; "
+            "they can log in with username + password instead\n\n"
+            "**Step 5 — Click Add Child**\n"
+            "The child's **login ID and password** appear on screen — copy them and share with your child.\n\n"
+            "**Step 6 — Share login with your child**\n"
             "Your child can log in at **likhapoha.in** using their username OR email + password.\n\n"
             "💡 **Tips:**\n"
-            "- You can add up to **2 children** under one Family account\n"
-            "- The child can change their password anytime from their profile\n"
+            "- Family Premium supports up to **2 children** on one subscription\n"
             "- Sit with your child for their first login and give a quick walkthrough"
         ),
         "suggestions": ["What does the Parent Dashboard show?", "How much does the Family plan cost?", "How do lessons work?"],
@@ -294,14 +286,14 @@ PLATFORM_FAQ: list[dict] = [
             "| Plan | Price | Best for |\n"
             "|------|-------|----------|\n"
             "| Free Tier | ₹0 forever | Try the platform — 3 subjects, 5 doubts/day, basic mock tests |\n"
+            "| Premium Nano | ₹99 / 8 days | Short trial of full access, one student |\n"
             "| Premium | ₹299 / month | One student, full unlimited access |\n"
             "| Family Premium | ₹499 / month | Up to 2 children, full unlimited access |\n"
-            "| Premium — 6 Months | ₹1,495 | Save ₹299 vs monthly (1 month free) |\n"
-            "| Premium — Annual | ₹2,999 | Save ₹589 vs monthly (2 months free) |\n"
-            "| Family Premium — Annual | ₹4,999 | Save ₹989 vs monthly (2 months free) |\n\n"
-            "Premium and Family Premium include all CBSE subjects/grades, unlimited AI lessons, "
-            "doubts and mock tests, Exemplar Research, the Formula & Concepts library, 10 years "
-            "of Board Papers, and — for Grade 11–12 — the full Exam Prep Center.\n\n"
+            "| Exam Prep Center | ₹1,999 / year | Grade 11 & 12 — JEE, NEET, CUET, SAT, IELTS, TOEFL prep |\n\n"
+            "Premium, Premium Nano, and Family Premium include all CBSE subjects/grades, unlimited "
+            "AI lessons, doubts and mock tests, Exemplar Research, the Formula & Concepts library, "
+            "and 10 years of Board Papers. The **Exam Prep Center** (Grade 11 & 12) is a separate "
+            "annual plan — it's not bundled into Premium.\n\n"
             "💡 Have an offer code? Sign up free, then redeem it from the Subscription page."
         ),
         "suggestions": ["How do I sign up?", "What does the Family plan include?", "Do you have offer codes?"],
@@ -433,14 +425,13 @@ PLATFORM_FAQ: list[dict] = [
                      "assign student", "school teacher", "teacher features", "teacher tools",
                      "lesson plan creator", "teacher lesson plan"],
         "answer": (
-            "**Teachers** get a full AI-powered workspace on LikhaPoha AI with 7 key features:\n\n"
+            "**Teachers** get a full AI-powered workspace on LikhaPoha AI with 6 key features:\n\n"
             "📋 **Teacher Dashboard** — View assigned students, class progress, subject performance, and add teacher notes for any student.\n\n"
-            "📖 **Lessons** — Browse AI step-wise lessons for Grade 5-12 (Grade 11 & 12 by stream) and subject. Useful for lesson planning and checking content before teaching.\n\n"
-            "❓ **Ask Doubt** — Use the AI doubt solver for any chapter — great for checking explanations you'll give in class.\n\n"
+            "📖 **Lessons** — Browse the same AI Chapter Journey lessons your students see, for Grade 5-12 (Grade 11 & 12 by stream). Useful for lesson planning and checking content before teaching.\n\n"
             "📝 **Create Test Paper** — Generate CBSE-aligned MCQ and subjective test papers for Grade 5-10/subject/chapter in seconds. Download the question paper + answer key.\n\n"
             "🗓️ **Lesson Plan Creator** — Generate a printable, duration-based lesson plan (30–90 min) for Grade 5-12/subject/chapter. Free tier: 2 plans/day; paid: unlimited.\n\n"
+            "🎧 **Listen to Lecture** — Hear an AI-narrated spoken run-through of any chapter's lesson plan, to rehearse your delivery before class.\n\n"
             "📊 **Student Analytics** — See each student's score trend, subject performance (best/average/latest), and recent test activity. Sort by weakest students first.\n\n"
-            "🎥 **Learn More** — Access NCERT reference videos, Exemplar problems, and Grammar resources for every subject.\n\n"
             "**For schools:** Contact us at likhapohaai@gmail.com for bulk accounts and a free demo."
         ),
         "suggestions": ["How do I create a test paper?", "How does student analytics work?", "How do I sign up as a teacher?"],
@@ -496,11 +487,15 @@ PLATFORM_FAQ: list[dict] = [
     {
         "keywords": ["refund", "cancel", "money back", "cancellation", "return"],
         "answer": (
-            "For refund and cancellation policy, please visit our **Refund Policy** page "
-            "at the bottom of the website.\n\n"
-            "To request a refund, email **likhapohaai@gmail.com** with your "
-            "payment ID and reason within 7 days of purchase.\n\n"
-            "Refunds are processed within 5–7 business days to your original payment method."
+            "For the full policy, visit the **Refund Policy** page at the bottom of the website.\n\n"
+            "**Refund eligibility:** a full refund is available only if you request it **within 24 "
+            "hours of your first purchase** AND haven't used the platform yet (no lessons generated, "
+            "no doubts asked, no mock tests taken, no Board Papers viewed). After 24 hours, or once "
+            "you've used paid features, subscriptions are **non-refundable** for that billing period.\n\n"
+            "To request a refund, email **likhapohaai@gmail.com** with your registered email, "
+            "the plan you subscribed to, the purchase date, and your reason.\n\n"
+            "We respond within 2 business days; approved refunds are processed within 5–7 business "
+            "days to your original payment method."
         ),
         "suggestions": ["How do I contact support?", "How much does it cost?", "How do I sign up?"],
     },
