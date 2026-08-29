@@ -305,3 +305,18 @@ class TestGreetingUsesRoleNotName:
     def test_missing_or_blank_principal_name_still_works(self):
         html = svc.build_principal_email_html("", "Atal Adarsh Vidyalaya", "https://likhapoha.in")
         assert "Dear Principal" in html
+
+
+class TestFreeOfferAndTrustItems:
+    def test_initial_email_mentions_free_student_access(self):
+        html = svc.build_principal_email_html("", "Atal Adarsh Vidyalaya", "https://likhapoha.in")
+        text = svc.build_principal_email_text("", "Atal Adarsh Vidyalaya", "https://likhapoha.in")
+        for content in (html, text):
+            assert "free access to all students" in content
+
+    def test_initial_email_no_longer_mentions_razorpay_or_payments(self):
+        html = svc.build_principal_email_html("", "Atal Adarsh Vidyalaya", "https://likhapoha.in")
+        text = svc.build_principal_email_text("", "Atal Adarsh Vidyalaya", "https://likhapoha.in")
+        for content in (html, text):
+            assert "Razorpay" not in content
+            assert "Safe Payments" not in content

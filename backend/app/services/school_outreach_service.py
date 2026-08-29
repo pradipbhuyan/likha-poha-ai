@@ -229,7 +229,6 @@ _TEACHER_FEATURES = [
 _TRUST_ITEMS = [
     ("🔒", "Stays On Topic", "The AI only talks schoolwork — it blocks hateful, political, or unrelated content automatically."),
     ("🔑", "Safe Google Sign-In", "We only ever see a user's name, email, and photo — nothing else, never sold."),
-    ("💳", "Safe Payments", "All payments go through Razorpay, a trusted, widely-used Indian payment service."),
 ]
 
 _STAT_BADGES = [
@@ -255,6 +254,24 @@ def build_principal_email_html(principal_name: str, school_name: str, cta_url: s
   classroom, not replacing it. A full overview of what it offers everyone at
   {school_clean} &mdash; and what it offers you, as Principal.
 </p>"""
+
+    free_offer = f"""
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+       style="margin:16px 0 4px;background:linear-gradient(135deg,#ecfdf5,#d1fae5);
+              border:1px solid #6ee7b7;border-radius:12px">
+  <tr>
+    <td style="padding:18px 20px">
+      <div style="font-size:16px;font-weight:800;color:#065f46;margin-bottom:8px">
+        🎁 Free for every student at {school_clean}
+      </div>
+      <p style="margin:0;font-size:13.5px;line-height:1.7;color:#065f46">
+        We'd like to offer free access to all students of your school &mdash;
+        no cost to you or your students. Just reply to this email and I'll
+        get it set up.
+      </p>
+    </td>
+  </tr>
+</table>"""
 
     stats = _stat_badges(_STAT_BADGES)
     students = _section_title("🎓", "For Students", "#7c3aed") + _feature_table(_STUDENT_FEATURES)
@@ -291,7 +308,7 @@ def build_principal_email_html(principal_name: str, school_name: str, cta_url: s
   it from there.
 </p>"""
 
-    body = intro + stats + students + parents + teachers + trust + principal + closing
+    body = intro + free_offer + stats + students + parents + teachers + trust + principal + closing
     return _campaign_email_shell(body_html=body, cta_url=cta_url, cta_label="Visit Likha Poha AI")
 
 
@@ -310,6 +327,9 @@ homework support, it helps your students excel in their studies -- augmenting
 what your teachers teach in the classroom, not replacing it. A full overview
 of what it offers everyone at {school} -- and what it offers you, as
 Principal.
+
+We'd like to offer free access to all students of your school -- no cost to
+you or your students. Just reply to this email and I'll get it set up.
 
 FOR STUDENTS
 {_text_feature_lines(_STUDENT_FEATURES)}
