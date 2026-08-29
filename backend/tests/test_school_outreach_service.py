@@ -199,3 +199,32 @@ class TestSendCampaignEmailPayload:
             result = svc.send_campaign_email(to="a@x.com", subject="s", html="h", text="t")
         assert result.success is False
         mock_urlopen.assert_not_called()
+
+
+class TestGreetingUsesRoleNotName:
+    """
+    The greeting addresses "Dear Principal," regardless of the scraped
+    principal_name (spreadsheet names are inconsistently formatted/OCR'd
+    across 28k rows) — but the school name must still appear, since that
+    data is reliable and is the actual personalization hook.
+    """
+
+    def test_initial_email_html_and_text(self):
+        html = svc.build_principal_email_html("Pushpa Kumari Singh", "Atal Adarsh Vidyalaya", "https://likhapoha.in")
+        text = svc.build_principal_email_text("Pushpa Kumari Singh", "Atal Adarsh Vidyalaya", "https://likhapoha.in")
+        for content in (html, text):
+            assert "Dear Principal" in content
+            assert "Pushpa" not in content
+            assert "Atal Adarsh Vidyalaya" in content
+
+    def test_reminder_email_html_and_text(self):
+        html = svc.build_reminder_email_html("Pushpa Kumari Singh", "Atal Adarsh Vidyalaya", "https://likhapoha.in")
+        text = svc.build_reminder_email_text("Pushpa Kumari Singh", "Atal Adarsh Vidyalaya", "https://likhapoha.in")
+        for content in (html, text):
+            assert "Dear Principal" in content
+            assert "Pushpa" not in content
+            assert "Atal Adarsh Vidyalaya" in content
+
+    def test_missing_or_blank_principal_name_still_works(self):
+        html = svc.build_principal_email_html("", "Atal Adarsh Vidyalaya", "https://likhapoha.in")
+        assert "Dear Principal" in html

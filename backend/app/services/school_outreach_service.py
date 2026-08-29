@@ -226,12 +226,11 @@ _STAT_BADGES = [
 
 
 def build_principal_email_html(principal_name: str, school_name: str, cta_url: str) -> str:
-    first_name = (principal_name or "Principal").strip().split()[0] if principal_name else "Principal"
     school_clean = (school_name or "your school").strip()
 
     intro = f"""
 <p style="margin:0 0 14px;font-size:15px;line-height:1.7">
-  Dear {first_name},
+  Dear Principal,
 </p>
 <p style="margin:0 0 6px;font-size:15px;line-height:1.7">
   I'm reaching out from <strong>Likha Poha AI</strong>, an AI-powered CBSE
@@ -286,9 +285,8 @@ def _text_feature_lines(features: list[tuple[str, str, str]]) -> str:
 
 
 def build_principal_email_text(principal_name: str, school_name: str, cta_url: str) -> str:
-    first = (principal_name or "Principal").strip().split()[0] if principal_name else "Principal"
     school = (school_name or "your school").strip()
-    return f"""Dear {first},
+    return f"""Dear Principal,
 
 I'm reaching out from Likha Poha AI, an AI-powered CBSE learning platform built
 from actual NCERT textbooks (900+ chapters, Grades 5-12, 12+ subjects,
@@ -327,12 +325,11 @@ Email us at likhapohaaischool@gmail.com
 
 
 def build_reminder_email_html(principal_name: str, school_name: str, cta_url: str) -> str:
-    first_name = (principal_name or "Principal").strip().split()[0] if principal_name else "Principal"
     school_clean = (school_name or "your school").strip()
 
     body = f"""
 <p style="margin:0 0 16px;font-size:15px;line-height:1.7">
-  Dear {first_name},
+  Dear Principal,
 </p>
 <p style="margin:0 0 16px;font-size:15px;line-height:1.7">
   Just following up on my note last week about <strong>Likha Poha AI</strong>
@@ -349,9 +346,8 @@ def build_reminder_email_html(principal_name: str, school_name: str, cta_url: st
 
 
 def build_reminder_email_text(principal_name: str, school_name: str, cta_url: str) -> str:
-    first = (principal_name or "Principal").strip().split()[0] if principal_name else "Principal"
     school = (school_name or "your school").strip()
-    return f"""Dear {first},
+    return f"""Dear Principal,
 
 Just following up on my note last week about Likha Poha AI for {school} -- an
 AI-powered CBSE learning platform for students, parents, and teachers, with a
