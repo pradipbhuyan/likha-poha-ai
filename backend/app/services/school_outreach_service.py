@@ -43,6 +43,21 @@ SEND_DELAY_SECONDS = 2.0  # spread sends out rather than firing requests back to
 
 TABLE = "school_outreach_principals"
 
+# Distinct `state` values in the imported master list (28,486 rows) — fixed at
+# import time, so a static list sidesteps re-deriving it from a live query
+# (which would need range()-paginated batching to avoid PostgREST's default
+# 1000-row page silently truncating a bare distinct-values scan).
+OUTREACH_STATES = [
+    "Andaman & Nicobar", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
+    "Chandigarh", "Chattisgarh", "Dadar & Nagar Haveli", "Daman & Diu", "Delhi",
+    "Foreign Schools", "Goa", "Gujarat", "Haryana", "Himachal Pradesh",
+    "Jammu & Kashmir", "Jharkhand", "Karnataka", "Kerala", "Ladakh",
+    "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya",
+    "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan",
+    "Sikkim", "Tamilnadu", "Telangana", "Tripura", "Uttar Pradesh",
+    "Uttarakhand", "West Bengal",
+]
+
 
 class SendResult:
     def __init__(self, success: bool, detail: str = ""):
@@ -473,6 +488,7 @@ def list_principals(
     status: str = "",
     needs_reminder: bool = False,
     q: str = "",
+    state: str = "",
     limit: int = 50,
     offset: int = 0,
 ) -> dict:
@@ -494,6 +510,9 @@ def list_principals(
         )
     elif status:
         query = query.eq("status", status)
+
+    if state:
+        query = query.eq("state", state)
 
     if q:
         q_clean = q.strip()

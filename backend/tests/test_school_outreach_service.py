@@ -97,6 +97,24 @@ class TestListPrincipals:
             result = svc.list_principals(q="atal adarsh")
         assert result == {"rows": [], "total": 0}
 
+    def test_state_filter_applies_eq(self):
+        resp = MagicMock(data=[{"email": "a@x.com", "state": "Delhi"}], count=1)
+        chain = _chain_mock(resp)
+        with patch.object(svc, "admin_client") as mock_client:
+            mock_client.table.return_value = chain
+            result = svc.list_principals(state="Delhi")
+        chain.eq.assert_any_call("state", "Delhi")
+        assert result["total"] == 1
+
+    def test_no_state_filter_does_not_apply_state_eq(self):
+        resp = MagicMock(data=[], count=0)
+        chain = _chain_mock(resp)
+        with patch.object(svc, "admin_client") as mock_client:
+            mock_client.table.return_value = chain
+            svc.list_principals()
+        for call in chain.eq.call_args_list:
+            assert call.args[0] != "state"
+
 
 class TestMarkResponded:
     def test_updates_matching_rows(self):

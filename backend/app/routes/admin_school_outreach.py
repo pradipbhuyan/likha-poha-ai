@@ -32,16 +32,24 @@ def get_summary(admin=Depends(require_admin)):
     return {"success": True, "summary": svc.get_summary()}
 
 
+@router.get("/states")
+def list_states(admin=Depends(require_admin)):
+    return {"success": True, "states": svc.OUTREACH_STATES}
+
+
 @router.get("/principals")
 def list_principals(
     status: str = "",
     needs_reminder: bool = False,
     q: str = "",
+    state: str = "",
     limit: int = Query(50, le=200),
     offset: int = Query(0, ge=0),
     admin=Depends(require_admin),
 ):
-    result = svc.list_principals(status=status, needs_reminder=needs_reminder, q=q, limit=limit, offset=offset)
+    result = svc.list_principals(
+        status=status, needs_reminder=needs_reminder, q=q, state=state, limit=limit, offset=offset
+    )
     return {"success": True, "principals": result["rows"], "total": result["total"]}
 
 

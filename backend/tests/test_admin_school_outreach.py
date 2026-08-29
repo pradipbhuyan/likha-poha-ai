@@ -28,12 +28,30 @@ class TestGetSummary:
 class TestListPrincipals:
     def test_passes_filters_through(self):
         with patch.object(route.svc, "list_principals", return_value={"rows": [{"email": "a@x.com"}], "total": 1}) as mock_list:
-            result = route.list_principals(status="pending", needs_reminder=False, q="atal", limit=50, offset=0, admin=fake_admin())
+            result = route.list_principals(
+                status="pending", needs_reminder=False, q="atal", state="", limit=50, offset=0, admin=fake_admin()
+            )
 
-        mock_list.assert_called_once_with(status="pending", needs_reminder=False, q="atal", limit=50, offset=0)
+        mock_list.assert_called_once_with(status="pending", needs_reminder=False, q="atal", state="", limit=50, offset=0)
         assert result["success"] is True
         assert result["total"] == 1
         assert result["principals"] == [{"email": "a@x.com"}]
+
+    def test_passes_state_filter_through(self):
+        with patch.object(route.svc, "list_principals", return_value={"rows": [], "total": 0}) as mock_list:
+            route.list_principals(
+                status="", needs_reminder=False, q="", state="Delhi", limit=50, offset=0, admin=fake_admin()
+            )
+
+        mock_list.assert_called_once_with(status="", needs_reminder=False, q="", state="Delhi", limit=50, offset=0)
+
+
+class TestListStates:
+    def test_returns_the_fixed_state_list(self):
+        result = route.list_states(admin=fake_admin())
+        assert result["success"] is True
+        assert "Delhi" in result["states"]
+        assert result["states"] == route.svc.OUTREACH_STATES
 
 
 class TestSendToSelected:

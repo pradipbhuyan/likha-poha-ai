@@ -7,6 +7,7 @@ import {
   listOutreachPrincipals,
   sendOutreachEmails,
   markOutreachResponded,
+  getOutreachStates,
 } from "../api/schoolOutreach";
 
 vi.mock("../api/schoolOutreach", () => ({
@@ -14,6 +15,7 @@ vi.mock("../api/schoolOutreach", () => ({
   listOutreachPrincipals: vi.fn(),
   sendOutreachEmails: vi.fn(),
   markOutreachResponded: vi.fn(),
+  getOutreachStates: vi.fn(),
 }));
 
 function mockSummary() {
@@ -42,6 +44,7 @@ describe("AdminSchoolOutreachPage", () => {
     listOutreachPrincipals.mockResolvedValue(mockPrincipals());
     sendOutreachEmails.mockResolvedValue({ success: true, queued: 1, message: "Queued 1 email(s)." });
     markOutreachResponded.mockResolvedValue({ success: true, updated: 1 });
+    getOutreachStates.mockResolvedValue({ success: true, states: ["Delhi", "Haryana"] });
   });
 
   test("renders summary stats and the principal roster", async () => {
@@ -103,5 +106,19 @@ describe("AdminSchoolOutreachPage", () => {
     render(<AdminSchoolOutreachPage />);
     await screen.findByText("Pushpa Kumari Singh");
     expect(screen.getByText(/Send to Selected/).closest("button")).toBeDisabled();
+  });
+
+  test("picking a state filters the roster by that state", async () => {
+    render(<AdminSchoolOutreachPage />);
+    await screen.findByText("Pushpa Kumari Singh");
+    await waitFor(() => expect(screen.getByText("Delhi")).toBeInTheDocument());
+
+    fireEvent.change(screen.getByDisplayValue("All states"), { target: { value: "Delhi" } });
+
+    await waitFor(() => {
+      expect(listOutreachPrincipals).toHaveBeenCalledWith(
+        expect.objectContaining({ state: "Delhi" })
+      );
+    });
   });
 });

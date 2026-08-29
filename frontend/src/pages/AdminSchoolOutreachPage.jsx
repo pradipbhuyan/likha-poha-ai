@@ -14,6 +14,7 @@ import {
   listOutreachPrincipals,
   sendOutreachEmails,
   markOutreachResponded,
+  getOutreachStates,
 } from "../api/schoolOutreach";
 
 const PAGE_SIZE = 50;
@@ -56,6 +57,8 @@ export default function AdminSchoolOutreachPage() {
   const [statusFilter, setStatusFilter] = useState("");
   const [needsReminder, setNeedsReminder] = useState(false);
   const [query, setQuery] = useState("");
+  const [stateFilter, setStateFilter] = useState("");
+  const [states, setStates] = useState([]);
   const [selected, setSelected] = useState(() => new Set());
   const [sendType, setSendType] = useState("initial");
   const [loading, setLoading] = useState(true);
@@ -79,6 +82,7 @@ export default function AdminSchoolOutreachPage() {
         status: needsReminder ? "" : statusFilter,
         needsReminder,
         q: query,
+        state: stateFilter,
         limit: PAGE_SIZE,
         offset,
       });
@@ -89,10 +93,15 @@ export default function AdminSchoolOutreachPage() {
     } finally {
       setLoading(false);
     }
-  }, [statusFilter, needsReminder, query, offset]);
+  }, [statusFilter, needsReminder, query, stateFilter, offset]);
 
   useEffect(() => { loadSummary(); }, [loadSummary]);
   useEffect(() => { loadPrincipals(); }, [loadPrincipals]);
+  useEffect(() => {
+    getOutreachStates()
+      .then((res) => setStates(res.states || []))
+      .catch(() => {});
+  }, []);
 
   // Reminder view only makes sense for the reminder send type, and vice versa —
   // keep them in sync so a stray click can't queue the wrong template.
@@ -221,6 +230,17 @@ export default function AdminSchoolOutreachPage() {
             <option value="pending">Pending</option>
             <option value="sent">Sent</option>
             <option value="failed">Failed</option>
+          </select>
+
+          <select
+            value={stateFilter}
+            onChange={(e) => { setStateFilter(e.target.value); setOffset(0); }}
+            style={inputStyle}
+          >
+            <option value="">All states</option>
+            {states.map((s) => (
+              <option key={s} value={s}>{s}</option>
+            ))}
           </select>
 
           <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: ".82rem", cursor: "pointer" }}>
