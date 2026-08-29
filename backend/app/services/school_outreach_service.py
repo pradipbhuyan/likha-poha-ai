@@ -425,15 +425,18 @@ def send_campaign_email(*, to: str, subject: str, html: str, text: str) -> SendR
 # ─────────────────────────────────────────────────────────────────────────────
 
 def get_summary() -> dict:
-    rows = (
-        admin_client.table(TABLE)
-        .select("status")
-        .execute()
-        .data or []
-    )
-    counts = {"pending": 0, "sent": 0, "failed": 0}
-    for r in rows:
-        counts[r["status"]] = counts.get(r["status"], 0) + 1
+    # count="exact" (not select("status") + counting rows in Python) — the
+    # latter silently truncates at PostgREST's default 1000-row page size
+    # once the table has more rows than that, undercounting everything.
+    def _count(status: str) -> int:
+        return (
+            admin_client.table(TABLE)
+            .select("id", count="exact")
+            .eq("status", status)
+            .execute()
+        ).count or 0
+
+    counts = {"pending": _count("pending"), "sent": _count("sent"), "failed": _count("failed")}
 
     reminders_sent = (
         admin_client.table(TABLE)

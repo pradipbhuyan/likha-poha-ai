@@ -28,34 +28,36 @@ def _chain_mock(execute_return):
 
 class TestGetSummary:
     def test_counts_by_status_and_extras(self):
-        rows_resp = MagicMock(data=[{"status": "pending"}, {"status": "pending"}, {"status": "sent"}, {"status": "failed"}])
-        reminders_resp = MagicMock(count=3)
-        responded_resp = MagicMock(count=2)
-        sent_today_resp = MagicMock(count=1)
-
+        # 6 sequential count="exact" queries: pending, sent, failed,
+        # reminders_sent, responded, sent_today. Regression guard for the
+        # real bug this replaced: select("status") + counting rows in
+        # Python silently truncated at PostgREST's default 1000-row page
+        # size once the table grew past 1000 rows (it undercounted a
+        # 28,486-row table as 1000).
         chain_calls = [
-            _chain_mock(rows_resp),
-            _chain_mock(reminders_resp),
-            _chain_mock(responded_resp),
-            _chain_mock(sent_today_resp),
+            _chain_mock(MagicMock(count=17_000)),  # pending
+            _chain_mock(MagicMock(count=11_000)),  # sent
+            _chain_mock(MagicMock(count=486)),     # failed
+            _chain_mock(MagicMock(count=3)),       # reminders_sent
+            _chain_mock(MagicMock(count=2)),       # responded
+            _chain_mock(MagicMock(count=1)),       # sent_today
         ]
 
         with patch.object(svc, "admin_client") as mock_client:
             mock_client.table.side_effect = chain_calls
             summary = svc.get_summary()
 
-        assert summary["total"] == 4
-        assert summary["pending"] == 2
-        assert summary["sent"] == 1
-        assert summary["failed"] == 1
+        assert summary["pending"] == 17_000
+        assert summary["sent"] == 11_000
+        assert summary["failed"] == 486
+        assert summary["total"] == 28_486  # must sum the exact counts, not a truncated row fetch
         assert summary["reminders_sent"] == 3
         assert summary["responded"] == 2
         assert summary["sent_today"] == 1
 
     def test_handles_zero_state_cleanly(self):
-        empty = MagicMock(data=[])
         zero_count = MagicMock(count=0)
-        chain_calls = [_chain_mock(empty), _chain_mock(zero_count), _chain_mock(zero_count), _chain_mock(zero_count)]
+        chain_calls = [_chain_mock(zero_count) for _ in range(6)]
 
         with patch.object(svc, "admin_client") as mock_client:
             mock_client.table.side_effect = chain_calls
