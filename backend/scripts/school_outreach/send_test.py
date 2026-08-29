@@ -50,7 +50,7 @@ def main() -> None:
     else:
         html = build_principal_email_html(args.name, args.school, CTA_URL)
         text = build_principal_email_text(args.name, args.school, CTA_URL)
-        subject = f"[TEST] A Principal Command Center for {args.school}"
+        subject = f"[TEST] AI-Powered Learning & Revision Platform for Students of {args.school}"
 
     result = send_campaign_email(to=args.to, subject=subject, html=html, text=text)
 

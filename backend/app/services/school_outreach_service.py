@@ -591,7 +591,11 @@ def _run_batch(rows: list[dict], email_type: str) -> None:
         else:
             html = build_principal_email_html(name, school, CTA_URL)
             text = build_principal_email_text(name, school, CTA_URL)
-            subject = f"A Principal Command Center for {school}" if school else "A Principal Command Center for your school"
+            subject = (
+                f"AI-Powered Learning & Revision Platform for Students of {school}"
+                if school
+                else "An AI-Powered Learning & Revision Platform for Your School's Students"
+            )
 
         result = send_campaign_email(to=email, subject=subject, html=html, text=text)
 

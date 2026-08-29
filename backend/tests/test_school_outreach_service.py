@@ -180,6 +180,37 @@ class TestQueueSend:
         mock_thread.assert_not_called()
 
 
+class TestBatchSubjectLine:
+    """
+    The initial pitch's subject leads with the AI learning/revision platform
+    itself (not the "Principal Command Center" dashboard feature name) — the
+    school name personalizes it since that field is reliable across the
+    28k-row spreadsheet, unlike the scraped principal_name.
+    """
+
+    def test_initial_send_uses_the_ai_platform_subject_with_school_name(self):
+        rows = [{"email": "a@x.com", "status": "pending", "principal_name": "A", "school_name": "Kendriya Vidyalaya"}]
+        with patch.object(svc, "send_campaign_email") as mock_send, \
+             patch.object(svc, "_mark_sent"), \
+             patch.object(svc.time, "sleep"):
+            mock_send.return_value = svc.SendResult(True, "id-123")
+            svc._run_batch(rows, "initial")
+
+        _, kwargs = mock_send.call_args
+        assert kwargs["subject"] == "AI-Powered Learning & Revision Platform for Students of Kendriya Vidyalaya"
+
+    def test_initial_send_falls_back_when_school_name_missing(self):
+        rows = [{"email": "a@x.com", "status": "pending", "principal_name": "A", "school_name": ""}]
+        with patch.object(svc, "send_campaign_email") as mock_send, \
+             patch.object(svc, "_mark_sent"), \
+             patch.object(svc.time, "sleep"):
+            mock_send.return_value = svc.SendResult(True, "id-123")
+            svc._run_batch(rows, "initial")
+
+        _, kwargs = mock_send.call_args
+        assert kwargs["subject"] == "An AI-Powered Learning & Revision Platform for Your School's Students"
+
+
 class TestSendCampaignEmailPayload:
     def _sent_payload(self, monkeypatch, **kwargs):
         monkeypatch.setenv("RESEND_API_KEY", "re_test_key")
