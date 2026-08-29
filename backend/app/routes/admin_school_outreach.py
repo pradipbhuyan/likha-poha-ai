@@ -61,14 +61,18 @@ def send_to_selected(data: SendRequest, admin=Depends(require_admin)):
         raise HTTPException(status_code=400, detail="No emails selected.")
 
     queued = svc.queue_send(data.emails, email_type=data.type)
-    return {
-        "success": True,
-        "queued": queued,
-        "message": (
+    if queued == 0:
+        message = (
+            "Nothing was queued — 0 of the selected rows were eligible. "
+            "An 'initial' send skips anyone already marked Sent (use Reminder for "
+            "those, or reset the row's status to test again)."
+        )
+    else:
+        message = (
             f"Queued {queued} email(s) — sending in the background, ~2s apart. "
             "Refresh the summary in a moment to see progress."
-        ),
-    }
+        )
+    return {"success": True, "queued": queued, "message": message}
 
 
 @router.post("/mark-responded")

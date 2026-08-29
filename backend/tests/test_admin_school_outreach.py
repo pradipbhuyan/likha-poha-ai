@@ -84,6 +84,18 @@ class TestSendToSelected:
         mock_queue.assert_called_once_with(["a@x.com"], email_type="reminder")
         assert result["queued"] == 1
 
+    def test_zero_queued_explains_the_skip_instead_of_reading_as_success(self):
+        # An "initial" send against rows already marked Sent legitimately
+        # queues 0 — the message must say so plainly, not just "Queued 0
+        # email(s)", which reads like a no-op success rather than a skip.
+        data = route.SendRequest(emails=["already-sent@x.com"], type="initial")
+        with patch.object(route.svc, "queue_send", return_value=0):
+            result = route.send_to_selected(data, admin=fake_admin())
+
+        assert result["queued"] == 0
+        assert "Nothing was queued" in result["message"]
+        assert "already marked Sent" in result["message"]
+
 
 class TestMarkResponded:
     def test_rejects_empty_emails(self):
