@@ -387,6 +387,7 @@ def send_campaign_email(*, to: str, subject: str, html: str, text: str) -> SendR
     payload = {
         "from": f"{SENDER_NAME} <{FROM_ADDRESS}>",
         "to": [to],
+        "cc": [REPLY_TO],  # so every outbound copy also lands where replies go
         "subject": subject,
         "html": html,
         "text": text,

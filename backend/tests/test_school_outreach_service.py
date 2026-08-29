@@ -2,11 +2,11 @@
 test_school_outreach_service.py
 ─────────────────────────────────────────────────────────────────────────────
 Tests for app/services/school_outreach_service.py — the Supabase-backed
-queries (summary, list, mark-responded) and the queue_send() dispatch logic
-(row filtering + background-thread wiring). Sending itself (send_campaign_email)
-already went through a live Resend test send in the campaign's development —
-these tests focus on the new Supabase-integration surface.
+queries (summary, list, mark-responded), the queue_send() dispatch logic
+(row filtering + background-thread wiring), and send_campaign_email()'s
+Resend payload (from/to/cc/reply-to).
 """
+import json
 from unittest.mock import MagicMock, patch
 
 import app.services.school_outreach_service as svc
@@ -158,3 +158,42 @@ class TestQueueSend:
 
         assert queued == 0
         mock_thread.assert_not_called()
+
+
+class TestSendCampaignEmailPayload:
+    def _sent_payload(self, monkeypatch, **kwargs):
+        monkeypatch.setenv("RESEND_API_KEY", "re_test_key")
+        captured = {}
+
+        def fake_urlopen(req, timeout=15):
+            captured["body"] = json.loads(req.data.decode("utf-8"))
+            cm = MagicMock()
+            cm.__enter__.return_value = MagicMock(status=200, read=lambda: b'{"id": "email-123"}')
+            cm.__exit__.return_value = False
+            return cm
+
+        with patch.object(svc.urllib.request, "urlopen", side_effect=fake_urlopen):
+            result = svc.send_campaign_email(
+                to=kwargs.get("to", "principal@example.com"),
+                subject=kwargs.get("subject", "Test subject"),
+                html=kwargs.get("html", "<p>hi</p>"),
+                text=kwargs.get("text", "hi"),
+            )
+        return result, captured["body"]
+
+    def test_cc_includes_the_reply_to_inbox(self, monkeypatch):
+        _result, body = self._sent_payload(monkeypatch)
+        assert body["cc"] == [svc.REPLY_TO]
+
+    def test_to_reply_to_and_from_are_still_correct(self, monkeypatch):
+        _result, body = self._sent_payload(monkeypatch, to="principal@example.com")
+        assert body["to"] == ["principal@example.com"]
+        assert body["reply_to"] == svc.REPLY_TO
+        assert svc.FROM_ADDRESS in body["from"]
+
+    def test_missing_api_key_fails_without_a_network_call(self, monkeypatch):
+        monkeypatch.delenv("RESEND_API_KEY", raising=False)
+        with patch.object(svc.urllib.request, "urlopen") as mock_urlopen:
+            result = svc.send_campaign_email(to="a@x.com", subject="s", html="h", text="t")
+        assert result.success is False
+        mock_urlopen.assert_not_called()
