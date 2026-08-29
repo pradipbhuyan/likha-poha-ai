@@ -364,7 +364,7 @@ function AdminControlPage({ user }) {
     { key: "operations",   label: "Operations",        Icon: Monitor },
     { key: "bulk",         label: "Bulk Tools",        Icon: Zap },
     { key: "analytics",    label: "Analytics",         Icon: BarChart2 },
-    { key: "support",      label: "Support",           Icon: LifeBuoy },
+    { key: "support",      label: "Support and Approval", Icon: LifeBuoy },
     { key: "lessonlab",    label: "Lesson Lab",        Icon: FlaskConical },
   ];
   const VALID_TAB_KEYS = new Set(ADMIN_TABS.map((t) => t.key));
@@ -3382,9 +3382,9 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
       <div id="admin-tab-panel-support" role="tabpanel" aria-labelledby="admin-tab-btn-support" data-testid="tab-panel-support">
         <section className="premium-section">
           <div className="premium-header">
-            <p className="eyebrow">Support Tools</p>
-            <h3>🛟 User Support</h3>
-            <p>Look up users, view resolved subscription state, subscription history, audit events, and reset passwords.</p>
+            <p className="eyebrow">Support and Approval</p>
+            <h3>🛟 User Support &amp; Pending Approvals</h3>
+            <p>Approve pending teacher and principal/school accounts, look up users, view resolved subscription state, subscription history, audit events, and reset passwords.</p>
           </div>
           <AdminSupportTools accessToken={user?.accessToken} />
         </section>
