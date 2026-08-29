@@ -884,6 +884,17 @@ class TeacherSignupRequest(BaseModel):
     password: str
 
 
+class PrincipalSignupRequest(BaseModel):
+    """Request body for the dedicated principal self-signup path (POST /principal-signup)."""
+    name: str
+    email: str
+    school_name: str
+    password: str
+    udise_code: str | None = None
+    city: str = ""
+    state: str = ""
+
+
 def _razorpay_is_configured() -> bool:
     return bool(settings.RAZORPAY_KEY_ID and settings.RAZORPAY_KEY_SECRET)
 
@@ -1568,6 +1579,152 @@ def teacher_signup(data: TeacherSignupRequest, _rl=Depends(rate_limit_dependency
         ),
         "role": "teacher",
         "account_status": "pending_verification",
+    }
+
+
+@router.post("/principal-signup")
+def principal_signup(data: PrincipalSignupRequest, _rl=Depends(rate_limit_dependency(SIGNUP_LIMITER))):
+    """
+    Dedicated self-serve signup path for school principals — separate from
+    /signup-free and /teacher-signup.
+
+    Creates a profiles row (role="principal", account_status=
+    "pending_verification") plus a matching `schools` row (status=
+    "pending_verification") owned by that profile. Both stay unusable for
+    dashboard purposes until an admin verifies the school via
+    POST /api/admin/schools/{id}/verify — same pending-verification pattern
+    teacher-signup already uses, and for the same reason: don't let anyone
+    claim a school and start accumulating incentive-tier credit against it.
+
+    This is purely additive alongside the existing signup paths: it does not
+    change /signup-free, /teacher-signup, or OAuth completion, all of which
+    continue to reject role="principal" the same way they already reject
+    role="teacher".
+    """
+    from app.services.auth_service import create_auth_user  # noqa: PLC0415
+    from app.services.school_service import generate_unique_school_code  # noqa: PLC0415
+
+    email_clean = (data.email or "").strip().lower()
+    name_clean = (data.name or "").strip()
+    school_name_clean = (data.school_name or "").strip()
+    udise_clean = (data.udise_code or "").strip() or None
+
+    if not email_clean:
+        raise HTTPException(status_code=400, detail="Email is required.")
+    if not name_clean:
+        raise HTTPException(status_code=400, detail="Name is required.")
+    if not school_name_clean:
+        raise HTTPException(status_code=400, detail="School name is required.")
+    if not data.password or len(data.password) < 8:
+        raise HTTPException(status_code=400, detail="Password must be at least 8 characters.")
+
+    _reject_reserved_username(name_clean)
+    _reject_taken_username(name_clean)
+
+    existing = (
+        admin_client
+        .table("profiles")
+        .select("id")
+        .eq("email", email_clean)
+        .limit(1)
+        .execute()
+    )
+    if existing.data:
+        raise HTTPException(
+            status_code=409,
+            detail="An account with this email already exists. Please log in instead.",
+        )
+
+    if udise_clean:
+        existing_school = (
+            admin_client
+            .table("schools")
+            .select("id")
+            .eq("udise_code", udise_clean)
+            .limit(1)
+            .execute()
+        )
+        if existing_school.data:
+            raise HTTPException(
+                status_code=409,
+                detail="A school with this UDISE code is already registered.",
+            )
+
+    auth_user = create_auth_user(
+        email=email_clean,
+        password=data.password,
+        email_confirm=True,  # account immediately active for login
+    )
+
+    base_profile = {
+        "id": auth_user.id,
+        "email": email_clean,
+        "username": name_clean,
+        "role": "principal",
+        "parent_id": None,
+        "family_id": None,
+        "subscription_plan": "free",
+        # Distinct from "active" — require_principal() blocks every
+        # /api/principal/* route until an admin verifies the school.
+        "account_status": "pending_verification",
+        "access_cbse": False,
+        "daily_token_limit": 0,
+        "monthly_token_limit": 0,
+        "oauth_profile_complete": True,
+    }
+    admin_client.table("profiles").insert(base_profile).execute()
+
+    school_code = generate_unique_school_code(school_name_clean)
+    school_row = {
+        "name": school_name_clean,
+        "udise_code": udise_clean,
+        "city": (data.city or "").strip(),
+        "state": (data.state or "").strip(),
+        "school_code": school_code,
+        "principal_id": auth_user.id,
+        "status": "pending_verification",
+    }
+    school_resp = admin_client.table("schools").insert(school_row).execute()
+    created_school = school_resp.data[0] if school_resp.data else school_row
+
+    # Stamp the principal's own profile with their school — mirrors how a
+    # teacher/student will later be linked, so the principal's own row is
+    # consistent with everyone else's, even though nothing reads it for them.
+    admin_client.table("profiles").update(
+        {"school_id": created_school.get("id")}
+    ).eq("id", auth_user.id).execute()
+
+    try:
+        admin_client.table("platform_audit_logs").insert({
+            "user_id": auth_user.id,
+            "event": "auth.principal_signup_pending",
+            "metadata": {"email": email_clean, "school_name": school_name_clean},
+        }).execute()
+    except Exception:
+        pass
+
+    try:
+        from app.services.email_service import send_welcome_email  # noqa: PLC0415
+        send_welcome_email(
+            to=email_clean,
+            name=name_clean,
+            role="principal",
+            is_paid=False,
+            plan_name="",
+            school=school_name_clean,
+        )
+    except Exception:
+        pass  # Email send must never block signup
+
+    return {
+        "success": True,
+        "message": (
+            "Account created! Our team will verify your school details before "
+            "your principal dashboard unlocks — you can log in now to check status."
+        ),
+        "role": "principal",
+        "account_status": "pending_verification",
+        "school_code": school_code,
     }
 
 

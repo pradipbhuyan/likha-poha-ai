@@ -11,7 +11,7 @@ from app.services.ssl_service import enable_system_truststore
 
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from supabase import create_client
+from supabase import ClientOptions, create_client
 
 enable_system_truststore()
 
@@ -51,7 +51,19 @@ if not SUPABASE_SERVICE_ROLE_KEY:
 
 admin_client = create_client(
     SUPABASE_URL,
-    SUPABASE_SERVICE_ROLE_KEY
+    SUPABASE_SERVICE_ROLE_KEY,
+    options=ClientOptions(
+        # Default is 120s. admin_client is one long-lived client shared by
+        # every request for this process's whole lifetime; if a pooled
+        # keep-alive connection goes stale (network blip, a proxy/NAT
+        # silently dropping an idle connection — the exact class of issue
+        # the retry loop below this already works around for auth calls),
+        # every PostgREST call reusing that connection hung for a full 2
+        # minutes with zero feedback before failing. 15s turns that into a
+        # fast, visible failure the frontend can show and retry instead of
+        # an indefinite-looking freeze.
+        postgrest_client_timeout=15,
+    ),
 )
 
 
@@ -483,6 +495,43 @@ def require_sales(user=Depends(get_current_user)):
         raise HTTPException(
             status_code=403,
             detail="Sales access required",
+        )
+
+    return {
+        "auth_user": user,
+        "profile": profile,
+    }
+
+
+def require_principal(user=Depends(get_current_user)):
+    """
+    FastAPI dependency that allows only principal profile users.
+
+    Principals self-signup via POST /api/auth/principal-signup, which creates
+    a `schools` row with status="pending_verification" until an admin
+    confirms the school is real (see POST /api/admin/schools/{id}/verify).
+    This guard blocks every /api/principal/* route until that approval lands
+    — same gate require_teacher() already applies to teacher-dashboard
+    routes, and for the same reason: don't let an unverified account start
+    accumulating school-level incentive credit.
+
+    Every principal route is read-only or link/unlink only against
+    individual student/teacher rows — it never creates a login, changes a
+    role, or touches subscription/plan state for anyone but the school
+    object itself.
+    """
+    profile = get_user_profile(user.id)
+
+    if not profile or profile.get("role") != "principal":
+        raise HTTPException(
+            status_code=403,
+            detail="Principal access required",
+        )
+
+    if profile.get("account_status") not in (None, "active", "trial"):
+        raise HTTPException(
+            status_code=403,
+            detail="School account pending verification",
         )
 
     return {

@@ -95,6 +95,9 @@ from app.routes.admin_blog_collaborators import router as admin_blog_collaborato
 from app.routes.admin_platform_settings import router as admin_platform_settings_router
 from app.routes.offer import router as offer_router
 from app.routes.teacher_dashboard import router as teacher_dashboard_router
+from app.routes.principal_dashboard import router as principal_dashboard_router
+from app.routes.admin_schools import router as admin_schools_router
+from app.routes.admin_school_outreach import router as admin_school_outreach_router
 from app.routes.weak_area_alerts import router as weak_area_alerts_router
 from app.routes.payments import router as payments_router
 from app.routes.sales import router as sales_router
@@ -420,6 +423,24 @@ app.include_router(
     teacher_dashboard_router,
     prefix="/api/teacher-dashboard",
     tags=["Teacher Dashboard"],
+)
+
+app.include_router(
+    principal_dashboard_router,
+    prefix="/api/principal",
+    tags=["Principal Dashboard"],
+)
+
+app.include_router(
+    admin_schools_router,
+    prefix="/api/admin",
+    tags=["Admin Schools"],
+)
+
+app.include_router(
+    admin_school_outreach_router,
+    prefix="/api/admin/outreach",
+    tags=["Admin School Outreach"],
 )
 
 app.include_router(

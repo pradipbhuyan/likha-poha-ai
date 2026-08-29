@@ -2,3 +2,10 @@
 
 # graphify-axet
 .graphify/
+
+# School outreach campaign — contains 28k+ principals' names/emails (PII).
+# Never commit the source spreadsheet, the send-state DB, or any export.
+scripts/school_outreach/*.db
+scripts/school_outreach/*.xlsx
+scripts/school_outreach/*.csv
+scripts/school_outreach/data/

@@ -136,6 +136,7 @@ class TestReservedUsernames:
             auth_route.signup_free,
             auth_route.teacher_signup,
             auth_route.signup_with_offer_code,
+            auth_route.principal_signup,
         ):
             src = inspect.getsource(fn)
             assert "_reject_reserved_username" in src, (

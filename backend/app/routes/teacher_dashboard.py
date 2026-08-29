@@ -155,6 +155,32 @@ def ensure_assigned_student(teacher_id: str, student_id: str):
         )
 
 
+def _get_teacher_school_link(teacher_id: str) -> tuple[str | None, bool]:
+    """
+    Look up the creating teacher's school_id, if the principal-portal
+    migration (20260828_principal_school_support.sql) has been applied.
+
+    Returns (school_id_or_None, column_exists). Never raises: if the
+    `school_id` column doesn't exist yet, this returns (None, False) so the
+    caller can skip the key entirely — create_student behaves exactly as it
+    did before this feature existed until the migration lands, regardless
+    of deploy/migration ordering.
+    """
+    try:
+        response = (
+            admin_client
+            .table("profiles")
+            .select("school_id")
+            .eq("id", teacher_id)
+            .limit(1)
+            .execute()
+        )
+        row = (response.data or [None])[0]
+        return (row.get("school_id") if row else None), True
+    except Exception:
+        return None, False
+
+
 def _count_assigned_active_students(teacher_id: str) -> int:
     """Count the number of students currently assigned to a teacher."""
     result = (
@@ -328,6 +354,15 @@ def create_student(data: CreateStudentRequest, teacher=Depends(require_teacher))
         "cbse_subjects": [],
         "ai_model_preference": "default",
     }
+
+    # Silently inherit the creating teacher's school link, if any — the only
+    # way a school roster picks up new students without a separate signup
+    # step. Only added once the column is confirmed to exist (see
+    # _get_teacher_school_link's docstring) so this can never break student
+    # creation on a database that hasn't run the principal-portal migration.
+    teacher_school_id, school_column_exists = _get_teacher_school_link(teacher_id)
+    if school_column_exists:
+        student_profile["school_id"] = teacher_school_id
 
     if stream:
         stream_subjects = {
