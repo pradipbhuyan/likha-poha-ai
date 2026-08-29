@@ -63,7 +63,7 @@ import AdminTechDebtPage from "./pages/AdminTechDebtPage";
 import ReportIssueModal from "./components/ReportIssueModal";
 import { FeedbackPromptProvider } from "./context/FeedbackPromptContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Users, GraduationCap, AlertTriangle, Atom, Microscope, FlaskConical, Briefcase, Landmark, ChevronDown, CreditCard, KeyRound, LogOut, Presentation } from "lucide-react";
+import { BookOpen, Users, GraduationCap, AlertTriangle, Atom, Microscope, FlaskConical, Briefcase, Landmark, ChevronDown, CreditCard, KeyRound, LogOut, Presentation, School } from "lucide-react";
 import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
 import ParentDashboardPage from "./pages/ParentDashboardPage";
@@ -1789,6 +1789,13 @@ function App() {
         line1: "Your classroom and student roster are ready.",
         line2: "Start assigning lessons and tracking progress today.",
         color: "#f59e0b",
+      },
+      principal: {
+        Icon: School,
+        headline: `Welcome, ${firstName}!`,
+        line1: "Your Principal Command Center is ready.",
+        line2: "See every teacher and student, and track your school's progress.",
+        color: "#8b5cf6",
       },
     };
     const cfg = roleConfig[role] || roleConfig.student;
