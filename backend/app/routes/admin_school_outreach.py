@@ -62,11 +62,18 @@ def send_to_selected(data: SendRequest, admin=Depends(require_admin)):
 
     queued = svc.queue_send(data.emails, email_type=data.type)
     if queued == 0:
-        message = (
-            "Nothing was queued — 0 of the selected rows were eligible. "
-            "An 'initial' send skips anyone already marked Sent (use Reminder for "
-            "those, or reset the row's status to test again)."
-        )
+        if data.type == "reminder":
+            message = (
+                "Nothing was queued — a reminder only goes to rows whose initial "
+                "email was already sent. None of the selected rows are eligible "
+                "(send them the initial pitch first)."
+            )
+        else:
+            message = (
+                "Nothing was queued — 0 of the selected rows were eligible. "
+                "An 'initial' send skips anyone already marked Sent (use Reminder for "
+                "those, or reset the row's status to test again)."
+            )
     else:
         message = (
             f"Queued {queued} email(s) — sending in the background, ~2s apart. "

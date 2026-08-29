@@ -622,12 +622,16 @@ def queue_send(emails: list[str], email_type: str = "initial") -> int:
 
     "initial" only sends to rows still pending (skips anything already sent,
     so re-selecting an already-emailed principal is a harmless no-op).
-    "reminder" sends regardless of status filtering here — the admin route
-    is expected to have used needs_reminder=True to build the selection.
+    "reminder" only sends to rows whose initial email was actually sent
+    (status == "sent") — there's nothing to follow up on for a principal
+    who was never emailed the first pitch, regardless of what the admin
+    happens to have selected in the table.
     """
     rows = get_by_emails(emails)
     if email_type == "initial":
         rows = [r for r in rows if r.get("status") != "sent"]
+    elif email_type == "reminder":
+        rows = [r for r in rows if r.get("status") == "sent"]
 
     if not rows:
         return 0

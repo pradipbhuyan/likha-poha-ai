@@ -150,7 +150,7 @@ class TestQueueSend:
         sent_rows_arg = mock_thread.call_args.kwargs["args"][0]
         assert [r["email"] for r in sent_rows_arg] == ["pending1@x.com"]
 
-    def test_reminder_send_does_not_filter_by_status(self):
+    def test_reminder_send_targets_rows_whose_initial_was_sent(self):
         rows = [
             {"email": "sent1@x.com", "status": "sent", "principal_name": "A", "school_name": "S1"},
         ]
@@ -161,6 +161,34 @@ class TestQueueSend:
 
         assert queued == 1
         mock_thread.assert_called_once()
+
+    def test_reminder_send_skips_rows_never_initially_sent(self):
+        # Guard: a follow-up makes no sense for a principal who was never
+        # emailed the first pitch, regardless of what got selected in the UI.
+        rows = [
+            {"email": "never-sent@x.com", "status": "pending", "principal_name": "A", "school_name": "S1"},
+        ]
+        with patch.object(svc, "get_by_emails", return_value=rows), \
+             patch.object(svc.threading, "Thread") as mock_thread:
+            queued = svc.queue_send(["never-sent@x.com"], email_type="reminder")
+
+        assert queued == 0
+        mock_thread.assert_not_called()
+
+    def test_reminder_send_mixed_selection_only_queues_the_sent_rows(self):
+        rows = [
+            {"email": "sent1@x.com", "status": "sent", "principal_name": "A", "school_name": "S1"},
+            {"email": "never-sent@x.com", "status": "pending", "principal_name": "B", "school_name": "S2"},
+            {"email": "failed1@x.com", "status": "failed", "principal_name": "C", "school_name": "S3"},
+        ]
+        with patch.object(svc, "get_by_emails", return_value=rows), \
+             patch.object(svc.threading, "Thread") as mock_thread:
+            mock_thread.return_value = MagicMock()
+            queued = svc.queue_send(["sent1@x.com", "never-sent@x.com", "failed1@x.com"], email_type="reminder")
+
+        assert queued == 1
+        sent_rows_arg = mock_thread.call_args.kwargs["args"][0]
+        assert [r["email"] for r in sent_rows_arg] == ["sent1@x.com"]
 
     def test_no_matching_rows_starts_no_thread(self):
         with patch.object(svc, "get_by_emails", return_value=[]), \

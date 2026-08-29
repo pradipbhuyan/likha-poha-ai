@@ -96,6 +96,18 @@ class TestSendToSelected:
         assert "Nothing was queued" in result["message"]
         assert "already marked Sent" in result["message"]
 
+    def test_zero_queued_reminder_explains_the_initial_not_sent_guard(self):
+        # A reminder against rows that were never emailed the initial pitch
+        # legitimately queues 0 — the message must name that guard, not the
+        # unrelated "already marked Sent" explanation used for initial sends.
+        data = route.SendRequest(emails=["never-sent@x.com"], type="reminder")
+        with patch.object(route.svc, "queue_send", return_value=0):
+            result = route.send_to_selected(data, admin=fake_admin())
+
+        assert result["queued"] == 0
+        assert "Nothing was queued" in result["message"]
+        assert "initial email was already sent" in result["message"]
+
 
 class TestMarkResponded:
     def test_rejects_empty_emails(self):
