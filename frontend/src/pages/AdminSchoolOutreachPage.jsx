@@ -117,16 +117,22 @@ export default function AdminSchoolOutreachPage() {
     });
   }
 
-  function selectAllOnPage() {
-    setSelected((prev) => {
-      const next = new Set(prev);
-      rows.forEach((r) => next.add(r.email));
-      return next;
-    });
-  }
-
   function clearSelection() {
     setSelected(new Set());
+  }
+
+  const pageAllSelected = rows.length > 0 && rows.every((r) => selected.has(r.email));
+
+  function toggleSelectAllOnPage() {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (pageAllSelected) {
+        rows.forEach((r) => next.delete(r.email));
+      } else {
+        rows.forEach((r) => next.add(r.email));
+      }
+      return next;
+    });
   }
 
   async function handleSend() {
@@ -266,7 +272,6 @@ export default function AdminSchoolOutreachPage() {
             {selected.size} selected &middot; showing {pageStart}-{pageEnd} of {total}
           </div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-            <button type="button" style={btnGhost} onClick={selectAllOnPage}>Select page</button>
             <button type="button" style={btnGhost} onClick={clearSelection} disabled={selected.size === 0}>Clear</button>
             <select value={sendType} onChange={(e) => setSendType(e.target.value)} style={{ ...inputStyle, padding: "7px 10px" }}>
               <option value="initial">Initial email</option>
@@ -286,7 +291,15 @@ export default function AdminSchoolOutreachPage() {
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-                <th style={thStyle} />
+                <th style={thStyle}>
+                  <input
+                    type="checkbox"
+                    data-testid="select-all-page"
+                    aria-label="Select all on page"
+                    checked={pageAllSelected}
+                    onChange={toggleSelectAllOnPage}
+                  />
+                </th>
                 <th style={thStyle}>Principal</th>
                 <th style={thStyle}>School</th>
                 <th style={thStyle}>Email</th>
@@ -300,7 +313,12 @@ export default function AdminSchoolOutreachPage() {
               {rows.map((p) => (
                 <tr key={p.email}>
                   <td style={tdStyle}>
-                    <input type="checkbox" checked={selected.has(p.email)} onChange={() => toggleRow(p.email)} />
+                    <input
+                      type="checkbox"
+                      aria-label={`Select ${p.email}`}
+                      checked={selected.has(p.email)}
+                      onChange={() => toggleRow(p.email)}
+                    />
                   </td>
                   <td style={{ ...tdStyle, fontWeight: 700 }}>{p.principal_name || "—"}</td>
                   <td style={tdStyle}>{p.school_name}</td>

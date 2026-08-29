@@ -58,7 +58,7 @@ describe("AdminSchoolOutreachPage", () => {
     render(<AdminSchoolOutreachPage />);
     await screen.findByText("Pushpa Kumari Singh");
 
-    const checkboxes = screen.getAllByRole("checkbox").filter((c) => !c.closest("label"));
+    const checkboxes = screen.getAllByRole("checkbox").filter((c) => !c.closest("label") && c.dataset.testid !== "select-all-page");
     fireEvent.click(checkboxes[0]);
 
     fireEvent.click(screen.getByText(/Send to Selected/));
@@ -80,7 +80,7 @@ describe("AdminSchoolOutreachPage", () => {
       );
     });
 
-    const checkboxes = screen.getAllByRole("checkbox").filter((c) => !c.closest("label"));
+    const checkboxes = screen.getAllByRole("checkbox").filter((c) => !c.closest("label") && c.dataset.testid !== "select-all-page");
     fireEvent.click(checkboxes[0]);
     fireEvent.click(screen.getByText(/Send to Selected/));
 
@@ -93,7 +93,7 @@ describe("AdminSchoolOutreachPage", () => {
     render(<AdminSchoolOutreachPage />);
     await screen.findByText("Pushpa Kumari Singh");
 
-    const checkboxes = screen.getAllByRole("checkbox").filter((c) => !c.closest("label"));
+    const checkboxes = screen.getAllByRole("checkbox").filter((c) => !c.closest("label") && c.dataset.testid !== "select-all-page");
     fireEvent.click(checkboxes[0]);
     fireEvent.click(screen.getByText("Mark as Responded"));
 
@@ -106,6 +106,20 @@ describe("AdminSchoolOutreachPage", () => {
     render(<AdminSchoolOutreachPage />);
     await screen.findByText("Pushpa Kumari Singh");
     expect(screen.getByText(/Send to Selected/).closest("button")).toBeDisabled();
+  });
+
+  test("the header checkbox selects then unselects everyone on the page", async () => {
+    render(<AdminSchoolOutreachPage />);
+    await screen.findByText("Pushpa Kumari Singh");
+
+    const selectAll = screen.getByTestId("select-all-page");
+    fireEvent.click(selectAll);
+    expect(screen.getByLabelText("Select a@example.com")).toBeChecked();
+    expect(screen.getByLabelText("Select b@example.com")).toBeChecked();
+
+    fireEvent.click(selectAll);
+    expect(screen.getByLabelText("Select a@example.com")).not.toBeChecked();
+    expect(screen.getByLabelText("Select b@example.com")).not.toBeChecked();
   });
 
   test("picking a state filters the roster by that state", async () => {
