@@ -43,6 +43,7 @@ import {
   Camera,
   Trash2,
   Upload,
+  Mail,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -295,6 +296,13 @@ function Sidebar({
       group: "Sales",
     },
     {
+      key: "adminSchoolOutreach",
+      label: "School Outreach",
+      icon: Mail,
+      roles: ["admin"],
+      group: "Sales",
+    },
+    {
       key: "salesDemo",
       label: "Product Demo",
       icon: MonitorPlay,
@@ -320,6 +328,13 @@ function Sidebar({
       label: "Teacher Dashboard",
       icon: GraduationCap,
       roles: ["teacher"],
+      hideForAdmin: true,
+    },
+    {
+      key: "principalDashboard",
+      label: "Principal Command Center",
+      icon: School,
+      roles: ["principal"],
       hideForAdmin: true,
     },
     {

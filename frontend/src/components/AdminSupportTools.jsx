@@ -105,6 +105,60 @@ export default function AdminSupportTools({ accessToken }) {
     }
   }
 
+  // ── Pending principal / school approvals ──────────────────────────────────────
+  const [pendingSchools, setPendingSchools] = useState([]);
+  const [pendingSchoolsState, setPendingSchoolsState] = useState(S_IDLE);
+  const [pendingSchoolActioningId, setPendingSchoolActioningId] = useState(null);
+  const [pendingSchoolActionMsg, setPendingSchoolActionMsg] = useState(null);
+
+  const loadPendingSchools = useCallback(async () => {
+    setPendingSchoolsState(S_LOADING);
+    try {
+      const d = await apiFetch("/api/admin/schools/pending", accessToken);
+      setPendingSchools(d.schools || []);
+      setPendingSchoolsState(S_IDLE);
+    } catch {
+      setPendingSchoolsState(S_ERROR);
+    }
+  }, [accessToken]);
+
+  useEffect(() => { loadPendingSchools(); }, [loadPendingSchools]);
+
+  async function approveSchool(schoolId) {
+    setPendingSchoolActioningId(schoolId);
+    setPendingSchoolActionMsg(null);
+    try {
+      const d = await apiPost(`/api/admin/schools/${schoolId}/verify`, accessToken);
+      if (d.success) {
+        setPendingSchools((prev) => prev.filter((s) => s.id !== schoolId));
+      } else {
+        setPendingSchoolActionMsg(`⚠ ${d.error || "Could not verify school"}`);
+      }
+    } catch (e) {
+      setPendingSchoolActionMsg(`⚠ ${e.message}`);
+    } finally {
+      setPendingSchoolActioningId(null);
+    }
+  }
+
+  async function rejectSchool(schoolId) {
+    if (!window.confirm("Reject this school? The principal's join code will stop working for new links.")) return;
+    setPendingSchoolActioningId(schoolId);
+    setPendingSchoolActionMsg(null);
+    try {
+      const d = await apiPost(`/api/admin/schools/${schoolId}/reject`, accessToken);
+      if (d.success) {
+        setPendingSchools((prev) => prev.filter((s) => s.id !== schoolId));
+      } else {
+        setPendingSchoolActionMsg(`⚠ ${d.error || "Could not reject school"}`);
+      }
+    } catch (e) {
+      setPendingSchoolActionMsg(`⚠ ${e.message}`);
+    } finally {
+      setPendingSchoolActioningId(null);
+    }
+  }
+
   // ── Search ──────────────────────────────────────────────────────────────────
   async function doSearch() {
     const q = query.trim();
@@ -221,6 +275,60 @@ export default function AdminSupportTools({ accessToken }) {
                 >
                   {pendingActioningId === t.id ? "Approving…" : "Approve"}
                 </button>
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {/* ── Pending principal / school approvals ─────────────────────────── */}
+      {!selected && pendingSchoolsState === S_LOADING && (
+        <div style={{ color: "var(--muted,#94a3b8)", fontSize: ".8rem", marginBottom: 8 }}>
+          Checking for pending school signups…
+        </div>
+      )}
+      {!selected && pendingSchools.length > 0 && (
+        <Section title={`Pending School Approvals (${pendingSchools.length})`}>
+          {pendingSchoolActionMsg && (
+            <div data-testid="pending-school-action-msg" style={{ marginBottom: 8, fontSize: ".82rem", color: "#b45309" }}>
+              {pendingSchoolActionMsg}
+            </div>
+          )}
+          <div data-testid="pending-schools-list" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {pendingSchools.map((s) => (
+              <div key={s.id} data-testid={`pending-school-${s.id}`}
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  gap: 10, padding: "8px 10px", borderRadius: 7,
+                  border: "1px solid var(--border,#e5e7eb)", background: "var(--surface2,#f8fafc)",
+                }}>
+                <div style={{ fontSize: ".82rem" }}>
+                  <strong>{s.name}</strong>
+                  {s.school_code && <span style={{ fontFamily: "monospace", marginLeft: 8, color: "var(--muted,#94a3b8)" }}>{s.school_code}</span>}
+                  <div style={{ color: "var(--muted,#94a3b8)", fontSize: ".76rem" }}>
+                    Principal: {s.principal_username || "—"} ({s.principal_email || "no email"})
+                    {(s.city || s.state) && ` · ${[s.city, s.state].filter(Boolean).join(", ")}`}
+                    {s.udise_code && ` · UDISE ${s.udise_code}`}
+                  </div>
+                </div>
+                <div style={{ display: "flex", gap: 6 }}>
+                  <button
+                    onClick={() => rejectSchool(s.id)}
+                    disabled={pendingSchoolActioningId === s.id}
+                    data-testid={`reject-school-${s.id}`}
+                    style={{ padding: "6px 12px", borderRadius: 6, border: "1px solid var(--border,#e5e7eb)", background: "var(--panel,#fff)", cursor: "pointer", fontFamily: "inherit", fontSize: ".82rem" }}
+                  >
+                    Reject
+                  </button>
+                  <button
+                    onClick={() => approveSchool(s.id)}
+                    disabled={pendingSchoolActioningId === s.id}
+                    data-testid={`approve-school-${s.id}`}
+                    className="primary-btn"
+                  >
+                    {pendingSchoolActioningId === s.id ? "Approving…" : "Approve"}
+                  </button>
+                </div>
               </div>
             ))}
           </div>

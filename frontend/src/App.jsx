@@ -109,6 +109,9 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import SignupPage from "./pages/SignupPage";
 import TeacherSignupPage from "./pages/TeacherSignupPage";
+import PrincipalSignupPage from "./pages/PrincipalSignupPage";
+import PrincipalDashboardPage from "./pages/PrincipalDashboardPage";
+import AdminSchoolOutreachPage from "./pages/AdminSchoolOutreachPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 
@@ -285,6 +288,22 @@ const PAGE_META = {
     title: "Teacher Dashboard",
     subtitle: "Track assigned students, progress, AI usage, and teacher notes.",
     icon: "🎓",
+  },
+  principalDashboard: {
+    title: "Principal Command Center",
+    subtitle: "Teachers, students, free-vs-paid tracking, and your school's incentive tier.",
+    icon: "🏫",
+  },
+  principalPendingVerification: {
+    title: "Principal Command Center",
+    subtitle: "Your school is awaiting verification.",
+    icon: "🏫",
+  },
+  adminSchoolOutreach: {
+    title: "School Outreach",
+    subtitle: "Browse the CBSE principal list, select recipients, and send the campaign or reminder email.",
+    icon: "📧",
+    roles: ["admin"],
   },
   platformWalkthrough: {
     title: "Platform Walkthrough",
@@ -895,6 +914,10 @@ function App() {
         setActivePage("teacherPendingVerification");
       } else if (parsedUser.role === "teacher") {
         setActivePage("teacherDashboard");
+      } else if (parsedUser.role === "principal" && parsedUser.accountStatus === "pending_verification") {
+        setActivePage("principalPendingVerification");
+      } else if (parsedUser.role === "principal") {
+        setActivePage("principalDashboard");
       } else if (parsedUser.role === "sales") {
         setActivePage("salesLeads");
       } else {
@@ -1037,6 +1060,12 @@ function App() {
     } else if (enrichedUser.role === "teacher") {
       setActivePage("teacherDashboard");
       localStorage.setItem("tutor_active_page", "teacherDashboard");
+    } else if (enrichedUser.role === "principal" && enrichedUser.accountStatus === "pending_verification") {
+      setActivePage("principalPendingVerification");
+      localStorage.setItem("tutor_active_page", "principalPendingVerification");
+    } else if (enrichedUser.role === "principal") {
+      setActivePage("principalDashboard");
+      localStorage.setItem("tutor_active_page", "principalDashboard");
     } else if (enrichedUser.role === "sales") {
       setActivePage("salesLeads");
       localStorage.setItem("tutor_active_page", "salesLeads");
@@ -1123,6 +1152,7 @@ function App() {
         role === "admin" ? "adminControl" :
         role === "parent" ? "parentDashboard" :
         role === "teacher" ? "teacherDashboard" :
+        role === "principal" ? "principalDashboard" :
         role === "sales" ? "salesLeads" :
         "dashboard"; // students go to their dashboard
       setActivePage(targetPage);
@@ -1224,6 +1254,18 @@ function App() {
   if (routePath === "/teacher-signup") {
     return (
       <TeacherSignupPage
+        onBackToLogin={() => {
+          window.history.replaceState({}, "", "/");
+          setRoutePath("/");
+          setShowLanding(false);
+        }}
+      />
+    );
+  }
+
+  if (routePath === "/principal-signup") {
+    return (
+      <PrincipalSignupPage
         onBackToLogin={() => {
           window.history.replaceState({}, "", "/");
           setRoutePath("/");
@@ -1894,6 +1936,30 @@ function App() {
                 Thanks for signing up, {user?.username || "there"}! Our team is
                 reviewing your school details. You'll get an email once your
                 teacher dashboard is unlocked.
+              </p>
+              <button
+                type="button"
+                onClick={handleLogout}
+                style={{ marginTop: 16, padding: "9px 20px", borderRadius: 9, fontWeight: 700, background: "#6366f1", color: "#fff", border: "none", cursor: "pointer" }}
+              >
+                Log out
+              </button>
+            </div>
+          </div>
+        );
+      case "principalDashboard":
+        return <PrincipalDashboardPage user={user} />;
+      case "adminSchoolOutreach":
+        return <AdminSchoolOutreachPage user={user} />;
+      case "principalPendingVerification":
+        return (
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "70vh", padding: 24 }}>
+            <div style={{ textAlign: "center", maxWidth: 420 }}>
+              <h2 style={{ margin: "0 0 8px", fontSize: "1.2rem", fontWeight: 800 }}>Account pending verification</h2>
+              <p style={{ color: "var(--text-muted,#64748b)", fontSize: ".9rem", lineHeight: 1.5 }}>
+                Thanks for signing up, {user?.username || "there"}! Our team is
+                reviewing your school details. You'll get an email once your
+                Principal Command Center is unlocked.
               </p>
               <button
                 type="button"

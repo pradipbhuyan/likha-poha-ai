@@ -86,7 +86,9 @@ export async function authFetch(path, options = {}) {
         // Map to a role-specific friendly message so the user understands
         // the problem and doesn't wrongly think they need to log in again.
         const detail = (rawDetail || "").toLowerCase();
-        if (detail.includes("pending verification")) {
+        if (detail.includes("school account pending verification")) {
+          message = "Your principal account is still pending verification. We'll email you once it's approved.";
+        } else if (detail.includes("pending verification")) {
           message = "Your teacher account is still pending verification. We'll email you once it's approved.";
         } else if (detail.includes("parent")) {
           message = "This account is not registered as a Parent. Please sign in with a Parent account.";

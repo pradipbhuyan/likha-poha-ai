@@ -132,6 +132,46 @@ describe("authFetch — user-facing error messages", () => {
     expect(caught).not.toContain("Supabase");
   });
 
+  test("403 'School account pending verification' shows a principal-specific message, not the teacher one", async () => {
+    // Regression: require_principal() raises "School account pending verification",
+    // which contains the substring "pending verification" — the same substring
+    // require_teacher() uses. Both must map to their own role-correct message.
+    supabase.auth.getSession.mockResolvedValue({
+      data: { session: { access_token: "fake-token" } }, error: null
+    });
+    supabase.auth.refreshSession.mockResolvedValue({ data: { session: null } });
+    mockFetch.mockResolvedValue({
+      ok: false,
+      status: 403,
+      json: async () => ({ detail: "School account pending verification" }),
+      text: async () => "",
+    });
+
+    const authFetch = await getAuthFetch();
+    let caught = null;
+    try { await authFetch("/api/test"); } catch(e) { caught = e.message; }
+    expect(caught).toMatch(/principal account.*pending verification/i);
+    expect(caught).not.toMatch(/teacher account/i);
+  });
+
+  test("403 'Teacher account pending verification' still shows the teacher-specific message", async () => {
+    supabase.auth.getSession.mockResolvedValue({
+      data: { session: { access_token: "fake-token" } }, error: null
+    });
+    supabase.auth.refreshSession.mockResolvedValue({ data: { session: null } });
+    mockFetch.mockResolvedValue({
+      ok: false,
+      status: 403,
+      json: async () => ({ detail: "Teacher account pending verification" }),
+      text: async () => "",
+    });
+
+    const authFetch = await getAuthFetch();
+    let caught = null;
+    try { await authFetch("/api/test"); } catch(e) { caught = e.message; }
+    expect(caught).toMatch(/teacher account.*pending verification/i);
+  });
+
   test("403 'Parent access required' shows role-specific message not session expired", async () => {
     supabase.auth.getSession.mockResolvedValue({
       data: { session: { access_token: "fake-token" } }, error: null
