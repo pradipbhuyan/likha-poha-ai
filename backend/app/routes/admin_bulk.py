@@ -12,7 +12,13 @@ Endpoints:
   POST /reset-passwords     — bulk generate new temp passwords for students
   POST /grant-access        — bulk grant admin access to selected users
   POST /export              — export selected users as CSV bytes (no secrets)
-  POST /import-students     — import students from parsed CSV rows
+  POST /import-students     — import students from parsed CSV rows, optionally linked to a school
+  POST /import-teachers     — import teachers from parsed CSV rows, optionally linked to a school
+
+Account-creation logic for the last two lives in
+app/services/bulk_import_service.py so the standalone Excel-import script
+(scripts/bulk_import_from_excel.py) can reuse it directly, without going
+through HTTP.
 """
 from __future__ import annotations
 
@@ -27,6 +33,7 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, EmailStr, Field
 
+from app.services import bulk_import_service
 from app.services.auth_service import admin_client, require_admin
 from app.services.audit_log_service import write_audit_event
 
@@ -372,6 +379,7 @@ def bulk_export_users(req: BulkExportRequest, admin=Depends(require_admin)):
 class CsvStudentRow(BaseModel):
     name: str
     grade: str = "Grade 9"
+    stream: str | None = None   # required for Grade 11/12: PCM|PCB|PCMB|Commerce|Humanities
     email: str | None = None
     parent_email: str | None = None
     teacher_email: str | None = None
@@ -379,8 +387,9 @@ class CsvStudentRow(BaseModel):
 
 
 class BulkImportRequest(BaseModel):
-    rows: list[CsvStudentRow] = Field(..., min_length=1, max_length=200)
-    confirmed: bool = False   # Must be True to actually run import
+    rows: list[CsvStudentRow] = Field(..., min_length=1, max_length=1000)
+    school_id: str | None = None   # if given, imported students are linked to this school
+    confirmed: bool = False        # Must be True to actually run import
 
 
 @router.post("/import-students")
@@ -392,37 +401,20 @@ def bulk_import_students(req: BulkImportRequest, admin=Depends(require_admin)):
     1. confirmed=False  → validate rows, return preview (no DB writes)
     2. confirmed=True   → create students using secure auth flow
 
+    A row's teacher_email, if it matches an existing teacher, also creates a
+    teacher_student_assignments link — best-effort, never blocks the import.
+
     Security:
     - Passwords never logged or audited in plaintext.
     - If temporary_password omitted, generates one server-side.
     - Uses supabase.auth.admin.create_user for secure creation.
     Admin-only. Audited.
     """
-    # ── Phase 1: Validate and preview ────────────────────────────────────────
-    preview_rows = []
-    validation_errors = []
+    if req.school_id and not bulk_import_service.school_exists(req.school_id):
+        return {"success": False, "error": f"No school found for school_id={req.school_id}"}
 
-    for i, row in enumerate(req.rows):
-        issues = []
-        if not row.name or not row.name.strip():
-            issues.append("name is required")
-        if row.email:
-            # Basic email format check
-            if "@" not in row.email or "." not in row.email.split("@")[-1]:
-                issues.append(f"invalid email: {row.email}")
-        if not row.grade.startswith("Grade "):
-            issues.append(f"grade must start with 'Grade ': {row.grade}")
-
-        preview_rows.append({
-            "row": i + 1,
-            "name": row.name,
-            "grade": row.grade,
-            "email": row.email or f"student{i+1}@temp.local",
-            "has_email": bool(row.email),
-            "errors": issues,
-        })
-        if issues:
-            validation_errors.append({"row": i + 1, "issues": issues})
+    row_dicts = [r.model_dump() for r in req.rows]
+    preview_rows, validation_errors = bulk_import_service.validate_student_rows(row_dicts)
 
     if not req.confirmed:
         return {
@@ -443,58 +435,7 @@ def bulk_import_students(req: BulkImportRequest, admin=Depends(require_admin)):
             "validation_errors": validation_errors[:20],
         }
 
-    # ── Phase 2: Import ───────────────────────────────────────────────────────
-    created, failed, results = 0, 0, []
-
-    for i, row in enumerate(req.rows):
-        email = row.email or f"student_{secrets.token_hex(6)}@auto.local"
-        password = row.temporary_password or _generate_temp_password(12)
-
-        try:
-            # Create Supabase auth user
-            auth_resp = admin_client.auth.admin.create_user({
-                "email": email,
-                "password": password,
-                "email_confirm": True,
-            })
-            user_id = auth_resp.user.id if auth_resp.user else None
-
-            if user_id:
-                # Create profile row
-                admin_client.table("profiles").upsert({
-                    "id": user_id,
-                    "username": row.name.strip(),
-                    "email": email,
-                    "role": "student",
-                    "grade": row.grade,
-                    "board": "CBSE",
-                    "account_status": "active",
-                    "access_cbse": False,
-                    "subscription_plan": "free",
-                }).execute()
-
-                results.append({
-                    "row": i + 1,
-                    "name": row.name,
-                    "email": email,
-                    "success": True,
-                    "user_id": user_id,
-                    "temp_password": password,  # shown once only
-                })
-                created += 1
-            else:
-                results.append({"row": i + 1, "name": row.name, "success": False, "error": "Auth user creation returned no user"})
-                failed += 1
-
-        except Exception as exc:
-            results.append({
-                "row": i + 1,
-                "name": row.name,
-                "email": email,
-                "success": False,
-                "error": str(exc)[:120],
-            })
-            failed += 1
+    outcome = bulk_import_service.import_students(row_dicts, school_id=req.school_id)
 
     # Audit import summary — NO passwords in metadata
     write_audit_event(
@@ -502,16 +443,86 @@ def bulk_import_students(req: BulkImportRequest, admin=Depends(require_admin)):
         actor_user_id=admin.get("id"),
         entity_type="student_batch",
         metadata={
-            "created": created,
-            "failed": failed,
+            "created": outcome["created"],
+            "failed": outcome["failed"],
             "total_rows": len(req.rows),
+            "school_id": req.school_id,
         },
     )
 
     return {
         "success": True,
-        "created": created,
-        "failed": failed,
-        "results": results,
+        "created": outcome["created"],
+        "failed": outcome["failed"],
+        "results": outcome["results"],
         "warning": "Temp passwords shown once only. Store securely and share with students.",
+    }
+
+
+# ── 6. Bulk Import Teachers ───────────────────────────────────────────────────
+
+class CsvTeacherRow(BaseModel):
+    name: str
+    email: str
+    temporary_password: str | None = None
+
+
+class BulkImportTeachersRequest(BaseModel):
+    rows: list[CsvTeacherRow] = Field(..., min_length=1, max_length=1000)
+    school_id: str | None = None   # if given, imported teachers are linked to this school
+    confirmed: bool = False        # Must be True to actually run import
+
+
+@router.post("/import-teachers")
+def bulk_import_teachers(req: BulkImportTeachersRequest, admin=Depends(require_admin)):
+    """
+    Import teachers from parsed CSV rows — same two-phase contract as
+    /import-students. Unlike students, a teacher's email is required (they
+    need it to log in themselves).
+    """
+    if req.school_id and not bulk_import_service.school_exists(req.school_id):
+        return {"success": False, "error": f"No school found for school_id={req.school_id}"}
+
+    row_dicts = [r.model_dump() for r in req.rows]
+    preview_rows, validation_errors = bulk_import_service.validate_teacher_rows(row_dicts)
+
+    if not req.confirmed:
+        return {
+            "success": True,
+            "preview": True,
+            "total": len(req.rows),
+            "valid_count": len(req.rows) - len(validation_errors),
+            "error_count": len(validation_errors),
+            "validation_errors": validation_errors[:20],
+            "preview_rows": preview_rows[:10],
+            "message": "Set confirmed=true to proceed with import after reviewing.",
+        }
+
+    if validation_errors:
+        return {
+            "success": False,
+            "error": f"{len(validation_errors)} row(s) have validation errors. Fix before importing.",
+            "validation_errors": validation_errors[:20],
+        }
+
+    outcome = bulk_import_service.import_teachers(row_dicts, school_id=req.school_id)
+
+    write_audit_event(
+        event_type="bulk.import_teachers",
+        actor_user_id=admin.get("id"),
+        entity_type="teacher_batch",
+        metadata={
+            "created": outcome["created"],
+            "failed": outcome["failed"],
+            "total_rows": len(req.rows),
+            "school_id": req.school_id,
+        },
+    )
+
+    return {
+        "success": True,
+        "created": outcome["created"],
+        "failed": outcome["failed"],
+        "results": outcome["results"],
+        "warning": "Temp passwords shown once only. Store securely and share with teachers.",
     }
