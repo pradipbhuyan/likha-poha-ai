@@ -96,7 +96,7 @@ regex==2026.2.28
 requests==2.32.5
 requests-toolbelt==1.0.0
 rich==14.3.4
-rpds-py==0.30.0
+rpds-py==2026.5.1
 rsa==4.9.1
 six==1.17.0
 smmap==5.0.2
