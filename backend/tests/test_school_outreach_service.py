@@ -4,7 +4,7 @@ test_school_outreach_service.py
 Tests for app/services/school_outreach_service.py — the Supabase-backed
 queries (summary, list, mark-responded), the queue_send() dispatch logic
 (row filtering + background-thread wiring), and send_campaign_email()'s
-Resend payload (from/to/cc/reply-to).
+Resend payload (from/to/reply-to).
 """
 import json
 from unittest.mock import MagicMock, patch
@@ -260,9 +260,13 @@ class TestSendCampaignEmailPayload:
             )
         return result, captured["body"]
 
-    def test_cc_includes_the_reply_to_inbox(self, monkeypatch):
+    def test_no_cc_is_sent(self, monkeypatch):
+        # Resend counts every cc/bcc recipient as a separate email against the
+        # daily quota — cc'ing REPLY_TO on every send would halve real
+        # capacity. reply_to (checked below) still routes replies there for
+        # free.
         _result, body = self._sent_payload(monkeypatch)
-        assert body["cc"] == [svc.REPLY_TO]
+        assert "cc" not in body
 
     def test_to_reply_to_and_from_are_still_correct(self, monkeypatch):
         _result, body = self._sent_payload(monkeypatch, to="principal@example.com")

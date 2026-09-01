@@ -58,7 +58,6 @@ def main() -> None:
         print(f"Sent. Resend id: {result.detail}")
         print(f"From:     {SENDER_NAME} <{FROM_ADDRESS}>")
         print(f"Reply-To: {REPLY_TO}")
-        print(f"Cc:       {REPLY_TO}")
         print(f"To:       {args.to}")
     else:
         print(f"FAILED: {result.detail}")

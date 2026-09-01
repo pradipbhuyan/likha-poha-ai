@@ -418,7 +418,10 @@ def send_campaign_email(*, to: str, subject: str, html: str, text: str) -> SendR
     payload = {
         "from": f"{SENDER_NAME} <{FROM_ADDRESS}>",
         "to": [to],
-        "cc": [REPLY_TO],  # so every outbound copy also lands where replies go
+        # No cc here deliberately — Resend counts every cc/bcc recipient as a
+        # separate email against the daily quota, so cc'ing REPLY_TO on every
+        # send was silently halving real send capacity. reply_to below still
+        # routes any actual reply to that inbox without costing extra quota.
         "subject": subject,
         "html": html,
         "text": text,
