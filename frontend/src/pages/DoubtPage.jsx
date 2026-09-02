@@ -732,7 +732,7 @@ Important:
             </div>
 
             <textarea
-              rows="3"
+              rows={isFreeTierDoubtUser ? 1 : 3}
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               placeholder={
@@ -741,6 +741,7 @@ Important:
                   : "Example: Explain Newton's laws of force with real-life examples."
               }
               disabled={!mode || isFreeTierDoubtUser}
+              style={isFreeTierDoubtUser ? { minHeight: 80 } : undefined}
             />
 
             {isFreeTierDoubtUser && (
@@ -793,17 +794,19 @@ Important:
               ))}
             </div>
 
-            <button
-              className="primary-btn doubt-submit-btn"
-              onClick={() => handleAskDoubt()}
-              disabled={asking || !mode || isFreeTierDoubtUser}
-            >
-              {asking ? "Thinking..." : (
-                <>
-                  <Sparkles size={16} strokeWidth={2.4} /> Ask AI Tutor
-                </>
-              )}
-            </button>
+            {!isFreeTierDoubtUser && (
+              <button
+                className="primary-btn doubt-submit-btn"
+                onClick={() => handleAskDoubt()}
+                disabled={asking || !mode}
+              >
+                {asking ? "Thinking..." : (
+                  <>
+                    <Sparkles size={16} strokeWidth={2.4} /> Ask AI Tutor
+                  </>
+                )}
+              </button>
+            )}
           </section>
 
           <section className="premium-section premium-doubt-history">

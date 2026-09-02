@@ -113,13 +113,16 @@ describe("DoubtPage", () => {
     expect(await screen.findByText("Saved answer from history.")).toBeInTheDocument();
   });
 
-  test("disables free-text asking for a free-tier user", async () => {
+  test("disables free-text asking for a free-tier user and hides the submit button", async () => {
     render(<DoubtPage user={freeTierUser} />);
 
     expect(await screen.findByLabelText(/mode/i)).toBeInTheDocument();
 
-    expect(screen.getByRole("textbox")).toBeDisabled();
-    expect(screen.getByRole("button", { name: /ask ai tutor/i })).toBeDisabled();
+    const textarea = screen.getByRole("textbox");
+    expect(textarea).toBeDisabled();
+    expect(textarea).toHaveAttribute("rows", "1");
+    expect(textarea).toHaveStyle({ minHeight: "80px" });
+    expect(screen.queryByRole("button", { name: /ask ai tutor/i })).not.toBeInTheDocument();
     expect(screen.getByText(/suggested-question library/i)).toBeInTheDocument();
   });
 
@@ -128,7 +131,9 @@ describe("DoubtPage", () => {
 
     expect(await screen.findByLabelText(/mode/i)).toBeInTheDocument();
 
-    expect(screen.getByRole("textbox")).not.toBeDisabled();
+    const textarea = screen.getByRole("textbox");
+    expect(textarea).not.toBeDisabled();
+    expect(textarea).toHaveAttribute("rows", "3");
     expect(screen.getByRole("button", { name: /ask ai tutor/i })).not.toBeDisabled();
   });
 
