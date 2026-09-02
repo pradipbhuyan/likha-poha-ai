@@ -14,7 +14,6 @@ import {
   Variable, Target, Pencil, AlertTriangle, Link2, Rocket, ClipboardList,
 } from "lucide-react";
 import { authFetch } from "../api/authClient";
-import { hasPaidAccess } from "../utils/resolveSubscription";
 import { useFeedbackPrompt } from "../context/useFeedbackPrompt";
 
 const ALL_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
@@ -939,9 +938,7 @@ function saveStudied(grade, subject, set) {
 export default function FormulaSheetPage({ user, setActivePage }) {
   const { triggerFeedbackPrompt } = useFeedbackPrompt();
   const enrolledGrade = user?.grade || "Grade 9";
-  const isPaid = hasPaidAccess(user);
 
-  // Grade selector: paid users can browse any grade; free users locked to enrolled
   const [selectedGrade, setSelectedGrade] = useState(enrolledGrade);
   const [subject, setSubject]             = useState("Mathematics");
   const [data, setData]                   = useState(null);
@@ -967,9 +964,20 @@ export default function FormulaSheetPage({ user, setActivePage }) {
       const res = await authFetch(`/api/student/formula-sheets?${params}`);
       setData(res);
       if (res?.chapters?.length > 0) setActiveChapter(res.chapters[0].chapter_id);
-    } catch { setErr("Could not load formula sheets. Please try again."); }
+    } catch (err) {
+      // 403 here means the request asked for a grade other than the one
+      // this account is onboarded for (backend: enforce_profile_grade in
+      // formula_sheets.py) — authFetch's generic 403 message misreads this
+      // as a role mismatch (it substring-matches "student" in the backend's
+      // detail text), so show our own accurate message instead.
+      if (err?.status === 403) {
+        setErr(`You can only view formula sheets for your own grade (${enrolledGrade}).`);
+      } else {
+        setErr("Could not load formula sheets. Please try again.");
+      }
+    }
     finally { setLoading(false); }
-  }, [selectedGrade, subject]);
+  }, [selectedGrade, subject, enrolledGrade]);
 
   useEffect(() => { load(); }, [load]);
 
@@ -1059,17 +1067,20 @@ export default function FormulaSheetPage({ user, setActivePage }) {
         )}
       </div>
 
-      {/* Grade selector — paid: all grades; free: locked to enrolled */}
+      {/* Grade selector — every student is locked to their own enrolled grade.
+          The backend enforces this too (enforce_profile_grade in
+          formula_sheets.py) regardless of paid/free tier, so this isn't a
+          paywall — it's just which grade's formulas this account has. */}
       <div data-testid="grade-selector-row" style={{ display: "flex", gap: 6, marginBottom: 10, flexWrap: "wrap", alignItems: "center" }}>
         <span style={{ fontSize: ".68rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: ".06em", color: "var(--text-muted,#94a3b8)" }}>Grade:</span>
         {ALL_GRADES.map(g => {
-          const isLocked = !isPaid && g !== enrolledGrade;
+          const isLocked = g !== enrolledGrade;
           return (
             <button
               key={g}
               data-testid={"grade-btn-" + g.toLowerCase().replace(" ", "-")}
               onClick={() => !isLocked && setSelectedGrade(g)}
-              title={isLocked ? "Upgrade to browse other grades" : g}
+              title={isLocked ? `You can only view formula sheets for your enrolled grade (${enrolledGrade})` : g}
               style={{ display: "inline-flex", alignItems: "center", gap: 3, padding: "4px 11px", borderRadius: 20, border: "none",
                 background: selectedGrade === g ? "#6366f1" : "var(--surface2,#f1f5f9)",
                 color: selectedGrade === g ? "#fff" : isLocked ? "#94a3b8" : "var(--text,#374151)",

@@ -1,7 +1,8 @@
 /**
  * FormulaSheetRevamp.test.jsx
  * Regression tests for FormulaSheetPage revamp:
- *   - Grade selector (5-12): paid users see all, free users locked to enrolled
+ *   - Grade selector (5-12): every account (paid or free) is locked to its
+ *     enrolled grade — the backend enforces this too, so it isn't a paywall
  *   - Difficulty filter
  *   - Sort selector
  *   - Studied toggle (localStorage)
@@ -170,16 +171,26 @@ describe("Grade selector", () => {
     expect(authFetch.mock.calls.length).toBe(callsBefore);
   });
 
-  it("paid user can click any grade and triggers API reload", async () => {
+  it("paid user is ALSO locked to their enrolled grade — backend enforces this for everyone", async () => {
     hasPaidAccess.mockReturnValue(true);
     authFetch.mockResolvedValue(PAID_RESPONSE);
     render(<FormulaSheetPage user={PAID_USER} setActivePage={setActivePage} />);
     await waitFor(() => screen.findByTestId("formula-sheet-content"));
     const callsBefore = authFetch.mock.calls.length;
     const btn = screen.getByTestId("grade-btn-grade-10");
-    expect(btn.style.opacity).not.toBe("0.55"); // not dimmed
+    expect(btn.style.opacity).toBe("0.55"); // still dimmed/locked, same as a free user
     fireEvent.click(btn);
-    await waitFor(() => expect(authFetch.mock.calls.length).toBeGreaterThan(callsBefore));
+    expect(authFetch.mock.calls.length).toBe(callsBefore); // no new call fired
+  });
+
+  it("shows a clear grade-mismatch message on a 403, not the generic fallback", async () => {
+    const gradeMismatchError = new Error("This student is onboarded for Grade 9.");
+    gradeMismatchError.status = 403;
+    authFetch.mockRejectedValue(gradeMismatchError);
+    render(<FormulaSheetPage user={FREE_USER} setActivePage={setActivePage} />);
+
+    expect(await screen.findByText(/you can only view formula sheets for your own grade \(grade 9\)/i))
+      .toBeTruthy();
   });
 });
 
