@@ -63,7 +63,7 @@ import AdminTechDebtPage from "./pages/AdminTechDebtPage";
 import ReportIssueModal from "./components/ReportIssueModal";
 import { FeedbackPromptProvider } from "./context/FeedbackPromptContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Users, GraduationCap, AlertTriangle, Atom, Microscope, FlaskConical, Briefcase, Landmark, ChevronDown, CreditCard, KeyRound, LogOut, Presentation, School } from "lucide-react";
+import { BookOpen, Users, GraduationCap, AlertTriangle, Atom, Microscope, FlaskConical, Briefcase, Landmark, ChevronDown, CreditCard, KeyRound, LogOut, School } from "lucide-react";
 import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
 import ParentDashboardPage from "./pages/ParentDashboardPage";
@@ -1393,9 +1393,12 @@ function App() {
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 8 }}>
               {[
+              // Teacher is deliberately not offered here — it only appears
+              // when signing up through the dedicated Teacher signup link,
+              // which sets oauth_intended_role and skips this picker
+              // entirely (see the needs_role_selection handling above).
               { r: "student", Icon: GraduationCap, label: "Student", desc: "I want to learn and take practice tests" },
               { r: "parent",  Icon: Users,          label: "Parent",  desc: "I want to track my child's learning" },
-              { r: "teacher", Icon: Presentation,   label: "Teacher", desc: "I want lesson plans, test papers and student analytics" },
               ].map(({ r, Icon: RoleIcon, label, desc }) => (
                 <div key={r}
                   onClick={() => setOauthRole(r)}
