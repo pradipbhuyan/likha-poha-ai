@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
 import DoubtPage from "../pages/DoubtPage";
-import { answerDoubt, getDoubtHistory } from "../api/doubt";
+import { answerDoubt, getDoubtHistory, getDoubtSuggestions } from "../api/doubt";
 
 vi.mock("../api/syllabus", () => ({
   getSyllabus: vi.fn(async () => ({
@@ -19,6 +19,7 @@ vi.mock("../api/syllabus", () => ({
 vi.mock("../api/doubt", () => ({
   answerDoubt: vi.fn(),
   getDoubtHistory: vi.fn(),
+  getDoubtSuggestions: vi.fn(),
 }));
 
 vi.mock("../components/MermaidBlock", () => ({
@@ -29,6 +30,12 @@ const studentUser = {
   role: "student",
   username: "student_one",
   accessCbse: true,
+};
+
+const freeTierUser = {
+  role: "student",
+  username: "free_student",
+  accessCbse: false,
 };
 
 describe("DoubtPage", () => {
@@ -44,6 +51,10 @@ describe("DoubtPage", () => {
     getDoubtHistory.mockResolvedValue({
       success: true,
       history: [],
+    });
+    getDoubtSuggestions.mockResolvedValue({
+      success: true,
+      doubt_suggestions: [],
     });
   });
 
@@ -100,5 +111,42 @@ describe("DoubtPage", () => {
     fireEvent.click(savedDoubt);
 
     expect(await screen.findByText("Saved answer from history.")).toBeInTheDocument();
+  });
+
+  test("disables free-text asking for a free-tier user", async () => {
+    render(<DoubtPage user={freeTierUser} />);
+
+    expect(await screen.findByLabelText(/mode/i)).toBeInTheDocument();
+
+    expect(screen.getByRole("textbox")).toBeDisabled();
+    expect(screen.getByRole("button", { name: /ask ai tutor/i })).toBeDisabled();
+    expect(screen.getByText(/suggested-question library/i)).toBeInTheDocument();
+  });
+
+  test("leaves the composer enabled for a paid-access user", async () => {
+    render(<DoubtPage user={studentUser} />);
+
+    expect(await screen.findByLabelText(/mode/i)).toBeInTheDocument();
+
+    expect(screen.getByRole("textbox")).not.toBeDisabled();
+    expect(screen.getByRole("button", { name: /ask ai tutor/i })).not.toBeDisabled();
+  });
+
+  test("suggested-question chips stay clickable for a free-tier user", async () => {
+    getDoubtSuggestions.mockResolvedValue({
+      success: true,
+      doubt_suggestions: [{ id: "dkb-1", question: "What is matter made of?" }],
+    });
+
+    render(<DoubtPage user={freeTierUser} />);
+
+    const chip = await screen.findByRole("button", { name: /what is matter made of/i });
+    expect(chip).not.toBeDisabled();
+
+    fireEvent.click(chip);
+
+    await waitFor(() => {
+      expect(answerDoubt).toHaveBeenCalled();
+    });
   });
 });

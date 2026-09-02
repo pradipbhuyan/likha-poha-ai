@@ -166,6 +166,16 @@ function DoubtPage({ user, setActivePage }) {
     return false;
   }
 
+  // Free-tier doubts are DKB-only server-side (see doubt.py's allow_llm gate)
+  // — a free-typed question that misses the knowledge base burns one of
+  // their capped 5/day attempts for a generic "no match" fallback. Disabling
+  // free-text entry keeps them on the suggested-question chips, which are
+  // sourced directly from the DKB and always resolve to a real answer.
+  const isFreeTierDoubtUser =
+    !(user.role === "admin" || isAllAccessTestUser(user)) &&
+    !user.accessCbse &&
+    !user.offerAccess;
+
   const allowedModes = modes.filter((m) => hasModeAccess(m));
   const allModeSubjects = mode ? Object.keys(syllabusData[grade][mode] || {}) : [];
   const allowedSubjects = filterAllowedSubjects(user, allModeSubjects, mode);
@@ -330,14 +340,22 @@ function DoubtPage({ user, setActivePage }) {
     setDailyLimitReached(false);
   }
 
-  async function handleAskDoubt() {
-    /** Validate access and context, then request the main answer from the backend. */
+  async function handleAskDoubt(questionOverride) {
+    /**
+     * Validate access and context, then request the main answer from the
+     * backend. `questionOverride` lets a suggested-question chip submit
+     * directly (bypassing the free-text box and its Ask AI Tutor button,
+     * which are disabled for free-tier users — see isFreeTierDoubtUser)
+     * instead of relying on setQuestion() + a delayed click on that button.
+     */
+    const askedQuestion = questionOverride ?? question;
+
     if (!hasModeAccess(mode)) {
       setError(`You do not have access to ${mode}.`);
       return;
     }
 
-    if (!question.trim()) {
+    if (!askedQuestion.trim()) {
       setError("Please type your question.");
       return;
     }
@@ -358,8 +376,8 @@ function DoubtPage({ user, setActivePage }) {
 
     try {
       const result = await answerDoubt(
-        buildDoubtPayload(question, {
-          displayQuestion: question.trim(),
+        buildDoubtPayload(askedQuestion, {
+          displayQuestion: askedQuestion.trim(),
           saveToHistory: true,
         })
       );
@@ -384,7 +402,7 @@ function DoubtPage({ user, setActivePage }) {
       try {
         const dkbResult = await getDoubtSuggestions({ grade, mode, subject, chapter, limit: 6 });
         const dkbQ = (dkbResult?.doubt_suggestions || []).filter(
-          (s) => s.question.toLowerCase() !== question.trim().toLowerCase()
+          (s) => s.question.toLowerCase() !== askedQuestion.trim().toLowerCase()
         );
         setRelatedDkbQuestions(dkbQ.slice(0, 3));
       } catch {
@@ -707,7 +725,7 @@ Important:
               <div>
                 <p className="eyebrow">Ask AI Tutor</p>
                 <h3><MessageCircle size={18} strokeWidth={2.4} /> What are you stuck on?</h3>
-                <p>Ask any concept, homework, or textbook doubt.</p>
+                <p>Ask Likha Poha AI curated questions from textbook to get a better understanding.</p>
               </div>
 
               <span className="composer-badge">AI Tutor</span>
@@ -717,9 +735,20 @@ Important:
               rows="3"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Example: Explain Newton's laws of force with real-life examples."
-              disabled={!mode}
+              placeholder={
+                isFreeTierDoubtUser
+                  ? "Free plan: pick a suggested question below to get an instant answer."
+                  : "Example: Explain Newton's laws of force with real-life examples."
+              }
+              disabled={!mode || isFreeTierDoubtUser}
             />
+
+            {isFreeTierDoubtUser && (
+              <p style={{ fontSize: "0.78rem", color: "#6b7280", marginTop: -6, marginBottom: 12 }}>
+                Free plan doubts are answered from our suggested-question library below.
+                Upgrade for open-ended AI answers to anything you type.
+              </p>
+            )}
 
             {/* DKB pre-answered question chips */}
             {doubtSuggestions.length > 0 && (
@@ -736,9 +765,7 @@ Important:
                       disabled={!mode || asking}
                       onClick={() => {
                         setQuestion(s.question);
-                        setTimeout(() => {
-                          document.querySelector(".doubt-submit-btn")?.click();
-                        }, 50);
+                        handleAskDoubt(s.question);
                       }}
                     >
                       {s.question.length > 55 ? s.question.slice(0, 52) + "…" : s.question}
@@ -768,8 +795,8 @@ Important:
 
             <button
               className="primary-btn doubt-submit-btn"
-              onClick={handleAskDoubt}
-              disabled={asking || !mode}
+              onClick={() => handleAskDoubt()}
+              disabled={asking || !mode || isFreeTierDoubtUser}
             >
               {asking ? "Thinking..." : (
                 <>
@@ -1027,13 +1054,18 @@ Important:
                   <textarea
                     rows="3"
                     value={followUpQuestion}
-                    placeholder="Ask a deeper follow-up..."
+                    placeholder={
+                      isFreeTierDoubtUser
+                        ? "Follow-up questions need a paid plan — pick a suggested question instead."
+                        : "Ask a deeper follow-up..."
+                    }
                     onChange={(e) => setFollowUpQuestion(e.target.value)}
+                    disabled={isFreeTierDoubtUser}
                   />
 
                   <button
                     className="primary-btn"
-                    disabled={followUpLoading || !followUpQuestion.trim()}
+                    disabled={followUpLoading || !followUpQuestion.trim() || isFreeTierDoubtUser}
                     onClick={() => handleAskFollowUpCard(activeSuggestion)}
                   >
                     {followUpLoading ? "Thinking..." : "Ask Follow-up"}
@@ -1083,9 +1115,7 @@ Important:
                           className="mentor-suggestion-card-btn"
                           onClick={() => {
                             setQuestion(s.question);
-                            setTimeout(() => {
-                              document.querySelector(".doubt-submit-btn")?.click();
-                            }, 50);
+                            handleAskDoubt(s.question);
                           }}
                         >
                           <Brain size={16} strokeWidth={2.4} />
@@ -1166,13 +1196,18 @@ Important:
                       <textarea
                         rows="3"
                         value={followUpQuestion}
-                        placeholder="Ask a deeper follow-up..."
+                        placeholder={
+                          isFreeTierDoubtUser
+                            ? "Follow-up questions need a paid plan — pick a suggested question instead."
+                            : "Ask a deeper follow-up..."
+                        }
                         onChange={(e) => setFollowUpQuestion(e.target.value)}
+                        disabled={isFreeTierDoubtUser}
                       />
 
                       <button
                         className="primary-btn"
-                        disabled={followUpLoading || !followUpQuestion.trim()}
+                        disabled={followUpLoading || !followUpQuestion.trim() || isFreeTierDoubtUser}
                         onClick={() => handleAskFollowUpCard(activeSuggestion)}
                       >
                         {followUpLoading ? "Thinking..." : "Ask Follow-up"}
